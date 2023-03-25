@@ -1,6 +1,6 @@
 ---
 title: "Insights"
-slug: "insights"
+slug: "insights-report"
 hidden: false
 metadata: 
   title: "Insights"
