@@ -11,7 +11,7 @@ metadata:
 
 ## Overview
 <p>
-  <img src="/media/Platform/Reports/Insights/overview.png" alt="overview.png">
+  <img src="https://raw.githubusercontent.com/ranic/mixpanel-docs/main/media/Platform/Reports/Insights/overview.png" alt="overview.png">
 </p>
 Insights is a powerful and flexible tool designed to visualize trends and compositions within your data. You can analyze events, cohorts, and user profiles, and display the data in a wide variety of chart types.
 <p>
