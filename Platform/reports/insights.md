@@ -13,11 +13,7 @@ metadata:
 <p>
   <img src="/hc/article_attachments/4413126687252/mceclip8.png" alt="mceclip8.png">
 </p>
-<p>
-  Insights is a powerful and flexible tool designed to visualize trends and compositions
-  within your data. You can analyze events, cohorts, and user profiles, and display
-  the data in a wide variety of chart types.
-</p>
+Insights is a powerful and flexible tool designed to visualize trends and compositions within your data. You can analyze events, cohorts, and user profiles, and display the data in a wide variety of chart types.
 <p>
   Advanced Insights features also allow you to create formulas, compare current
   data to past data, and generate custom events and properties for deeper analysis.
