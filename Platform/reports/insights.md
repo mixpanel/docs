@@ -9,7 +9,7 @@ metadata:
 
 # Insights
 
-<h2>Overview</h2>
+## Overview
 <p>
   <img src="/hc/article_attachments/4413126687252/mceclip8.png" alt="mceclip8.png">
 </p>
