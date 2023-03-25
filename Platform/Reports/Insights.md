@@ -11,7 +11,7 @@ metadata:
 
 ## Overview
 <p>
-  <img src="/hc/article_attachments/4413126687252/mceclip8.png" alt="mceclip8.png">
+  <img src="/media/Platform/Reports/Insights/overview.png" alt="overview.png">
 </p>
 Insights is a powerful and flexible tool designed to visualize trends and compositions within your data. You can analyze events, cohorts, and user profiles, and display the data in a wide variety of chart types.
 <p>
