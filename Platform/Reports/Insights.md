@@ -8,11 +8,6 @@ metadata:
 ---
 
 # Overview
-<img src="https://raw.githubusercontent.com/ranic/mixpanel-docs/main/media/Platform/Reports/Insights/overview.png" alt="overview.png">
-
-# doc test
-
-## Overview
 
 ![https://raw.githubusercontent.com/ranic/mixpanel-docs/main/media/Platform/Reports/Insights/overview.png](https://raw.githubusercontent.com/ranic/mixpanel-docs/main/media/Platform/Reports/Insights/overview.png)
 
@@ -20,7 +15,7 @@ Insights is a powerful and flexible tool designed to visualize trends and compos
 
 Advanced Insights features also allow you to create formulas, compare current data to past data, and generate custom events and properties for deeper analysis.
 
-## Sample Questions you can Answer in Insights
+# Sample Questions you can Answer in Insights
 
 Imagine your product is a B2B messaging application. You might use Insights to answer these sample questions:
 
@@ -31,7 +26,7 @@ Imagine your product is a B2B messaging application. You might use Insights to a
 - How much revenue was generated on plans purchased in the past year? (property aggregation)
 - How has the power users cohort grown over the past 6 months? (cohort trends)
 
-## Building your First Report
+# Building your First Report
 
 Building a report in Insights takes just a few clicks, and results arrive in seconds. Let's build a simple report together. Continuing the B2B messaging example, imagine you wanted to answer the following question:
 
@@ -40,25 +35,25 @@ Building a report in Insights takes just a few clicks, and results arrive in sec
 
 Feel free to follow along and create your own report right in our demo project, [here](https://mixpanel.com/register/?next=%2Fproject%2F2195193%2Fview%2F139237%2Fapp%2Finsights). To skip ahead and see the final result, click [here](https://mixpanel.com/register/?next=/project/2195193/view/139237/app/insights#~(columnWidths~(bar~())~displayOptions~(chartType~'bar~plotStyle~'standard~analysis~'linear~value~'absolute)~sorting~(bar~(sortBy~'column~colSortAttrs~(~(sortBy~'value~sortOrder~'desc)))~line~(sortBy~'value~sortOrder~'desc~valueField~'averageValue~colSortAttrs~(~))~table~(sortBy~'column~colSortAttrs~(~(sortBy~'label~sortOrder~'asc)))~insights-metric~(sortBy~'value~sortOrder~'desc~valueField~'totalValue~colSortAttrs~(~))~pie~(sortBy~'value~sortOrder~'desc~valueField~'totalValue~colSortAttrs~(~)))~timeComparison~null~querySamplingEnabled~false~title~'~sections~(show~(~(dataset~'!mixpanel~value~(name~'Send*20Message~resourceType~'events)~resourceType~'events~profileType~null~search~'~dataGroupId~null~math~'total~perUserAggregation~null~property~null))~group~(~(dataset~'!mixpanel~value~'!city~resourceType~'events~profileType~null~search~'~dataGroupId~null~propertyType~'string~typeCast~null~unit~null))~filter~(clauses~(~(dataset~'!mixpanel~value~'platform~resourceType~'events~profileType~null~search~'~dataGroupId~null~filterType~'string~defaultType~'string~filterOperator~'equals~filterValue~(~'iOS*20Native)~propertyObjectKey~null))~determiner~'all)~time~(~(value~30~unit~'day)))~legend~())).
 
-### Step 1: Choose Events
+## Step 1: Choose Events
 
 Events, cohorts, or profiles can be the basic building block of an Insights report. In this case, we want to know about users who sent messages, so within the "Events and Cohorts" section, add the "Send Message" event. At this point, your query should look like this:
 
 ![https://www.notion.so/hc/article_attachments/4413139192084/mceclip4.png](https://www.notion.so/hc/article_attachments/4413139192084/mceclip4.png)
 
-### Step 2: Choose Count Type
+## Step 2: Choose Count Type
 
 Next to your selected event, you can choose how to count that event. By default, Insights will count Total events, which, as the name implies, will count every occurrence of the event. In this case, we want to know how many users sent messages, so choose "Unique." Unique counts one event per user. At this point, your query should look like this:
 
 ![https://www.notion.so/hc/article_attachments/4413131169428/mceclip5.gif](https://www.notion.so/hc/article_attachments/4413131169428/mceclip5.gif)
 
-### Step 3: Choose Filters
+## Step 3: Choose Filters
 
 Filters exclude unwanted data. In this case, we only care about events performed on the iOS platform. Therefore, add a "Platform" filter, where Platform equals "iOS Native". At this point, your query should look like this:
 
 ![https://www.notion.so/hc/article_attachments/4413126649492/mceclip6.gif](https://www.notion.so/hc/article_attachments/4413126649492/mceclip6.gif)
 
-### Step 4: Choose Breakdowns
+## Step 4: Choose Breakdowns
 
 Breakdowns segment data into groups. In this case, we want to count message sending users in different cities. Therefore, add a "City" breakdown. At this point, your query should look like this:
 
@@ -66,7 +61,7 @@ Breakdowns segment data into groups. In this case, we want to count message send
 
 Congratulations, you've constructed your first Insights query! Now, it's time to examine the results.
 
-## Visualizing Results
+# Visualizing Results
 
 Insights features multiple visualizations to help you view the results of your query in the clearest chart type. By default, Insights displays line charts, which help you understand how metrics trend over time. However, another chart type might present the results with more clarity. In Insights, you can either choose to get a metric calculated across the entire time period selected in the date picker, or get a time-segmented view of the metric (e.g. daily breakdown).
 
@@ -101,11 +96,11 @@ When breaking down results, click on a bar in the chart to either filter or excl
 
 ![https://www.notion.so/hc/article_attachments/7787493491348/mceclip7.png](https://www.notion.so/hc/article_attachments/7787493491348/mceclip7.png)
 
-## Analysis & Value Settings
+# Analysis & Value Settings
 
 You can switch between Absolute and Relative totals by selecting the **#** dropdown in the top right of the chart and selecting either **# Absolute** or  **% Relative**.
 
-### Note
+## Note
 
 You can only select Absolute or Relative values for the Table, Stacked Line, Stacked Bar, and Bar charts.
 
@@ -130,15 +125,15 @@ For example, if you make a rolling analysis query for the past 30 days, Mixpanel
 - **Logarithmic:** A nonlinear scale based on orders of magnitude, rather than a standard linear scale, so the value represented by each equidistant mark on the scale is the value at the previous mark multiplied by a constant.
 - **Cumulative:** Adds up the values of each point on the graph as it goes along, so the height of the line will increase over time.
 
-## Sorting
+# Sorting
 
-### Bar chart
+## Bar chart
 
 When you are viewing a bar chart, you have four different sorting options: A-Z Ascending, Z-A Descending, Value Ascending, or Value Descending. To switch sorting views, select the **Events** icon in the upper left hand of the report and select which view you would like to see.
 
 ![https://www.notion.so/hc/article_attachments/7787501113876/mceclip9.png](https://www.notion.so/hc/article_attachments/7787501113876/mceclip9.png)
 
-### Line chart
+## Line chart
 
 Line charts in Insights are accompanied with a table of values to give users another way to consume the trends information. This data table can also be sorted by clicking column headers.
 
@@ -161,7 +156,7 @@ Clicking on the "Average" data column performs a flat sort across all segments:
 
 ![https://www.notion.so/hc/article_attachments/7787550370324/mceclip1.png](https://www.notion.so/hc/article_attachments/7787550370324/mceclip1.png)
 
-## Use Cases for Insights Reports
+# Use Cases for Insights Reports
 
 Here's a video that shows a set of use-cases with Mixpanel's Insights report:
 
@@ -183,11 +178,7 @@ Other use-cases:
 
 - [Lifecycle analysis](https://mixpanel.com/blog/growth-through-segmentation-lifecycle-analysis-to-understand-your-users/)
 
-## Further Learning
-
-While this article covers the basics of the Insights report, you can learn more about its capabilities in the following additional articles:
-
-- [Advanced Insights Functionality](https://www.notion.so/hc/en-us/articles/7713028610964) - learn about the report's more advanced capabilities and modes
+# Advanced
 
 Mixpanel's Insights report allows you to analyze your user data as a current snapshot or as a trend over time. This article covers advanced functionality available in the Insights report that lets you drill in more deeply on your data, or ask a more precise question.
 
@@ -276,7 +267,7 @@ If the data function you select calculates based on property (“Event Property 
 
 You can find more information about each data function and how they are calculated below:
 
-### Events
+## Events
 
 | Function Name | Events & Cohorts Calculation | Profiles Calculation |
 | --- | --- | --- |
@@ -286,7 +277,7 @@ Example: How many times did my users watch a video? | N/A |
 Example: How many videos were watched per user?
 Aggregation options: Average, distribution, median, percentiles, minimum, maximum | N/A |
 
-### Users
+## Users
 
 | Function Name | Events & Cohorts Calculation | Profiles Calculation |
 | --- | --- | --- |
@@ -301,7 +292,7 @@ Example: What's the count of users who watched a video in the week? | N/A |
 | Monthly Active Users (MAU) | The number of users who performed [event] within the last 30 days.
 Example: What's the count of users who watched a video in the last month? | N/A |
 
-### Aggregate Property values
+## Aggregate Property values
 
 | Function Name | Events & Cohorts Calculation | Profiles Calculation |
 | --- | --- | --- |
@@ -328,7 +319,7 @@ Example: What's the minimum revenue across all users? |
 Example: What's the maximum number of minutes per video watched? | Maximum of a numeric property value across all user profiles.
 Example: What's the maximum revenue across all users? |
 
-### Aggregate property values per user
+## Aggregate property values per user
 
 | Function Name | Events & Cohorts Calculation | Profiles Calculation |
 | --- | --- | --- |
@@ -348,7 +339,7 @@ Aggregation options: Average, distribution, median, percentiles, minimum, maximu
 Example: What's the maximum number of hours of videos watched per user?
 Aggregation options: Average, distribution, median, percentiles, minimum, maximum | N/A |
 
-### Count Sessions
+## Count Sessions
 
 | Function Name | Events & Cohorts Calculation | Profiles Calculation |
 | --- | --- | --- |
