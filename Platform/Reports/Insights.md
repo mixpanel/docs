@@ -2,7 +2,7 @@
 title: "Insights"
 slug: "insights-report"
 hidden: false
-metadata: 
+metadata:
   title: "Insights"
   description: "Learn how to use the Insights report."
 ---
@@ -33,6 +33,7 @@ Here are some of the sample questions you can answer in insights:
     - How is my WAU changing over time? (unique users)
     - How often are my users getting value (frequency analysis)?
     - What is the distribution of my users across regions / devices etc? (property breakdown)
+    - [Lifecycle analysis](https://mixpanel.com/blog/growth-through-segmentation-lifecycle-analysis-to-understand-your-users/)
 - B2B (in this case, a messaging application
     - How many messages were sent in the US in the past 30 days? (total events, filtered)
     - How many users had a mobile app session yesterday? (unique events)
@@ -42,24 +43,28 @@ Here are some of the sample questions you can answer in insights:
 - Marketing
     - Which advertising campaigns generate the most checkouts? (property breakdown)
 
-Here's another common use-case: Jenny is a Marketing Manager for an online shoes marketplace. and she wants to know which utm source is getting the maximum number of purchases to the platform.
+### Frequency analysis
 
-In Insights, Jenny looks at purchase activity by selecting the "Complete Purchase" event and analyzing the activity over the last 1 month. Mixpanel returns an aggregate number of the total times the event was performed, but Jenny wants to dig deeper.
+It's important to know what's the natural frequency at which your users use your product / experience the core value proposition of your product - do majority of your users use your product daily? weekly ? monthly? A16Z wrote a great article about the [Power User Curve](https://www.reforge.com/brief/understand-your-most-engaged-users-with-the-power-user-curve#bOb9wjj_l0R3Pqo32pggUQ), and this video below shows how you can reproduce that within Mixpanel:
 
-She elects to break down the data by the event property "UTM_source", which categorizes the results into the different UTM_source values of the "Complete Purchase" event.
-
-![Use Cases](https://raw.githubusercontent.com/ranic/mixpanel-docs/main/media/Platform/Reports/Insights/use-cases.png)
-
-Based on the data from the last 30 days, the Insights report shows that LinkedIn is the highest source of paid conversions.
+[block:embed]
+{
+  "html": "<iframe src=\"//www.loom.com/embed/0c05ac17742a4d49a4c6879c0fe9f0de\" height=\"460\" frameborder=\"0\" allowfullscreen=\"\"></iframe>",
+  "url": "https://www.loom.com/embed/0c05ac17742a4d49a4c6879c0fe9f0de",
+  "title": "Natural Frequency Analysis in Mixpanel",
+  "favicon": null,
+  "image": null
+}
+[/block]
 
 # Quick Start
 
 Building a report in Insights takes just a few clicks, and results arrive in seconds. Let's build a simple report together. Continuing the B2B messaging example, imagine you wanted to answer the following question:
 
 > Which cities in the United States have the most users who sent messages via the iOS platform?
-> 
+>
 
-Feel free to follow along and create your own report right in our demo project, [here](https://mixpanel.com/register/?next=%2Fproject%2F2195193%2Fview%2F139237%2Fapp%2Finsights). To skip ahead and see the final result, click [here](https://mixpanel.com/register/?next=/project/2195193/view/139237/app/insights#~(columnWidths~(bar~())~displayOptions~(chartType~'bar~plotStyle~'standard~analysis~'linear~value~'absolute)~sorting~(bar~(sortBy~'column~colSortAttrs~(~(sortBy~'value~sortOrder~'desc)))~line~(sortBy~'value~sortOrder~'desc~valueField~'averageValue~colSortAttrs~(~))~table~(sortBy~'column~colSortAttrs~(~(sortBy~'label~sortOrder~'asc)))~insights-metric~(sortBy~'value~sortOrder~'desc~valueField~'totalValue~colSortAttrs~(~))~pie~(sortBy~'value~sortOrder~'desc~valueField~'totalValue~colSortAttrs~(~)))~timeComparison~null~querySamplingEnabled~false~title~'~sections~(show~(~(dataset~'!mixpanel~value~(name~'Send*20Message~resourceType~'events)~resourceType~'events~profileType~null~search~'~dataGroupId~null~math~'total~perUserAggregation~null~property~null))~group~(~(dataset~'!mixpanel~value~'!city~resourceType~'events~profileType~null~search~'~dataGroupId~null~propertyType~'string~typeCast~null~unit~null))~filter~(clauses~(~(dataset~'!mixpanel~value~'platform~resourceType~'events~profileType~null~search~'~dataGroupId~null~filterType~'string~defaultType~'string~filterOperator~'equals~filterValue~(~'iOS*20Native)~propertyObjectKey~null))~determiner~'all)~time~(~(value~30~unit~'day)))~legend~())).
+Feel free to follow along and create your own report right in our demo project, [here](https://mixpanel.com/register/?next=%2Fproject%2F2195193%2Fview%2F139237%2Fapp%2Finsights). To skip ahead and see the final result, click [here](https://mixpanel.com/register/?next=/project/2195193/view/139237/app/insights#BhixoRC626vx).
 
 ## Step 1: Choose Events
 
@@ -85,9 +90,15 @@ Breakdowns segment data into groups. In this case, we want to count message send
 
 ![Choose Breakdowns](https://raw.githubusercontent.com/ranic/mixpanel-docs/main/media/Platform/Reports/Insights/choose-breakdowns.gif)
 
-Congratulations, you've constructed your first Insights query! Now, it's time to examine the results.
+## Step 5: Change Visualization
 
-# Visualizing Results
+Choosing a different chart can help you visualize data better. Line charts help you see a trend, but other charts will help you see the aggregate value.
+
+![Change Visualization](https://raw.githubusercontent.com/ranic/mixpanel-docs/main/media/Platform/Reports/Insights/change-visualization.png)
+
+# Basic Features
+
+## Chart Types
 
 Insights features multiple visualizations to help you view the results of your query in the clearest chart type. By default, Insights displays line charts, which help you understand how metrics trend over time. However, another chart type might present the results with more clarity. In Insights, you can either choose to get a metric calculated across the entire time period selected in the date picker, or get a time-segmented view of the metric (e.g. daily breakdown).
 
@@ -101,54 +112,15 @@ Insights features multiple visualizations to help you view the results of your q
     - Line chart
     - Stacked line chart
 
-You can easily resize the columns in the bar chart in order to see more or remove detail.
+## Sorting
 
-![Resizing](https://raw.githubusercontent.com/ranic/mixpanel-docs/main/media/Platform/Reports/Insights/visualizing-resize.gif)
-
-When breaking down results, click on a bar in the chart to either filter or exclude that property value. Filter zooms in on that property value, filtering the entire report to that property value. Exclude filters out that property value from the results.
-
-![Filter & Exclude](https://raw.githubusercontent.com/ranic/mixpanel-docs/main/media/Platform/Reports/Insights/visualizing-filter-exclude.png)
-
-# Analysis & Value Settings
-
-You can switch between Absolute and Relative totals by selecting the **#** dropdown in the top right of the chart and selecting either **# Absolute** or  **% Relative**.
-
-[block:callout]
-{
-  "type": "info",
-  "body": "You can only select Absolute or Relative values for the Table, Stacked Line, Stacked Bar, and Bar charts.",
-  "title": "Note"
-}
-[/block]
-
-![Value Setting](https://raw.githubusercontent.com/ranic/mixpanel-docs/main/media/Platform/Reports/Insights/analysis-value-setting.png)
-
-The Absolute view will show you, in numbers, your totals for different event counts. Relative view will display these counts as a percentage of the whole.
-
-The Analysis options will determine the way the chart is calculated and visualized. The options are:
-
-- **Linear:** This is the standard view for the chart.
-- **Rolling:** Rolling analysis calculates the rolling average of the data set. A rolling average curve is a series of averages from subsets of data. Use rolling average analysis to remove noise or spikes from data and smooth out trends over time. Mixpanel calculates the rolling average based on the selected time interval (hour, day, week, month or quarter) for each data point in the graph.<br />
-    | Time Interval | Default Rolling Time Range |
-    | --- | --- |
-    | Hour | Last 12 hours |
-    | Day | Last 7 days |
-    | Week | Last 5 weeks |
-    | Month | Last 3 months |
-    | Quarter | Last 2 quarters |<br />
-For example, if you make a rolling analysis query for the past 30 days, Mixpanel calculates the rolling 7-day average by default. The value reported at each day in the line graph is the average of the values from the 7 days leading to that day. In the case of the first 6 days in your selected time period, the 7-day-average calculation will include days before the selected time period.
-- **Logarithmic:** A nonlinear scale based on orders of magnitude, rather than a standard linear scale, so the value represented by each equidistant mark on the scale is the value at the previous mark multiplied by a constant.
-- **Cumulative:** Adds up the values of each point on the graph as it goes along, so the height of the line will increase over time.
-
-# Sorting
-
-## Bar chart
+### Bar chart
 
 When you are viewing a bar chart, you have four different sorting options: A-Z Ascending, Z-A Descending, Value Ascending, or Value Descending. To switch sorting views, select the **Events** icon in the upper left hand of the report and select which view you would like to see.
 
 ![Sorting Bar Chart](https://raw.githubusercontent.com/ranic/mixpanel-docs/main/media/Platform/Reports/Insights/sorting-bar-chart.png)
 
-## Line chart
+### Line chart
 
 Line charts in Insights are accompanied with a table of values to give users another way to consume the trends information. This data table can also be sorted by clicking column headers.
 
@@ -171,23 +143,40 @@ Clicking on the "Average" data column performs a flat sort across all segments:
 
 ![Sorting Line Chart](https://raw.githubusercontent.com/ranic/mixpanel-docs/main/media/Platform/Reports/Insights/sorting-line-chart-3.png)
 
-## Frequency analysis
+### Table chart
 
-It's important to know what's the natural frequency at which your users use your product / experience the core value proposition of your product - do majority of your users use your product daily? weekly ? monthly? A16Z wrote a great article about the [Power User Curve](https://www.reforge.com/brief/understand-your-most-engaged-users-with-the-power-user-curve#bOb9wjj_l0R3Pqo32pggUQ), and this video below shows how you can reproduce that within Mixpanel:
+**Decision 1**: Grouped View vs Ungrouped View
+The Ungrouped View removes all hierarchy and makes the table flat. A flat table treats each data point as its own row.
+The Grouped View preserves the hierarchy of the breakdowns applied to the report. It shows you segments within a breakdown as displayed below. This view is only applicable when you have 2 or more breakdowns.
 
-[block:embed]
-{
-  "html": "<iframe src=\"//www.loom.com/embed/0c05ac17742a4d49a4c6879c0fe9f0de\" height=\"460\" frameborder=\"0\" allowfullscreen=\"\"></iframe>",
-  "url": "https://www.loom.com/embed/0c05ac17742a4d49a4c6879c0fe9f0de",
-  "title": "Natural Frequency Analysis in Mixpanel",
-  "favicon": null,
-  "image": null
-}
-[/block]
+**Decision 2**: Sorting Type
+In the ungrouped view, you can choose one value to sort on. The two options are:
 
-Other use-cases:
+Sort by a specific metric value OR
+Sort by a segment column (alphabetical)
+![Sorting Ungrouped Table](https://raw.githubusercontent.com/ranic/mixpanel-docs/main/media/Platform/Reports/Insights/sorting-table-chart-1.png)
 
-- [Lifecycle analysis](https://mixpanel.com/blog/growth-through-segmentation-lifecycle-analysis-to-understand-your-users/)
+In the grouped view, you can specify the sorting for each breakdown separately. For each breakdown, you can select to sort by a specific metric or alphabetically.
+![Sorting Grouped Table](https://raw.githubusercontent.com/ranic/mixpanel-docs/main/media/Platform/Reports/Insights/sorting-table-chart-2.png)
+
+Sorting is applied within the grouping, respecting the breakdown hierarchy. As an example of breakdown hierarchy, the image above shows “Item Category” within “Country”
+
+## Analysis Settings
+
+The Analysis options will determine the way the chart is calculated and visualized. The options are:
+
+- **Linear:** This is the standard view for the chart.
+- **Rolling:** Rolling analysis calculates the rolling average of the data set. A rolling average curve is a series of averages from subsets of data. Use rolling average analysis to remove noise or spikes from data and smooth out trends over time. Mixpanel calculates the rolling average based on the selected time interval (hour, day, week, month or quarter) for each data point in the graph.<br />
+    | Time Interval | Default Rolling Time Range |
+    | --- | --- |
+    | Hour | Last 12 hours |
+    | Day | Last 7 days |
+    | Week | Last 5 weeks |
+    | Month | Last 3 months |
+    | Quarter | Last 2 quarters |<br />
+For example, if you make a rolling analysis query for the past 30 days, Mixpanel calculates the rolling 7-day average by default. The value reported at each day in the line graph is the average of the values from the 7 days leading to that day. In the case of the first 6 days in your selected time period, the 7-day-average calculation will include days before the selected time period.
+- **Logarithmic:** A nonlinear scale based on orders of magnitude, rather than a standard linear scale, so the value represented by each equidistant mark on the scale is the value at the previous mark multiplied by a constant.
+- **Cumulative:** Adds up the values of each point on the graph as it goes along, so the height of the line will increase over time.
 
 # Advanced
 
@@ -210,6 +199,22 @@ Note that if a data point for a previous year falls on a weekend, the data point
 Click on the **Compare to past** button at the top of your Insights graph and select the time period you wish to compare to. You can also select a custom date range.
 
 ![Time Period Comparison](https://raw.githubusercontent.com/ranic/mixpanel-docs/main/media/Platform/Reports/Insights/advanced-time-period-comparison.gif)
+
+## Value Comparisons
+
+You can switch between Absolute and Relative totals by selecting the **#** dropdown in the top right of the chart and selecting either **# Absolute** or  **% Relative**.
+
+[block:callout]
+{
+  "type": "info",
+  "body": "You can only select Absolute or Relative values for the Table, Stacked Line, Stacked Bar, and Bar charts.",
+  "title": "Note"
+}
+[/block]
+
+![Value Setting](https://raw.githubusercontent.com/ranic/mixpanel-docs/main/media/Platform/Reports/Insights/analysis-value-setting.png)
+
+The Absolute view will show you, in numbers, your totals for different event counts. Relative view will display these counts as a percentage of the whole.
 
 ## Bucketing
 
