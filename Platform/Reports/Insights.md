@@ -173,15 +173,30 @@ For example, if you make a rolling analysis query for the past 30 days, Mixpanel
 
 # Advanced
 
-## Profile Analysis
+## Formulas
 
-Mixpanel's Insights report allows you to analyze your user data as a current snapshot or as a trend over time. This article covers advanced functionality available in the Insights report that lets you drill in more deeply on your data, or ask a more precise question.
+Use Formulas to make calculations using simple arithmetic operators.
 
-For more of an overview of Insights, click [here](https://www.notion.so/hc/en-us/articles/360001333826).
+Mixpanel supports the following operators:
 
-Choose to explore either **Events & Cohorts** or **Profiles**. Events & Cohorts allows you to examine user behaviors, while Profiles allows you access profile data and visualize your users with filters and breakdowns based on their profile properties. When exploring Profiles, you are always analyzing all user profiles.
+- \+ : Add
+- \- : Subtract
+- \* : Multiply
+- / : Divide
+- () : Use parentheses to influence the order of operations
 
-![User Analysis](https://raw.githubusercontent.com/ranic/mixpanel-docs/main/media/Platform/Reports/Insights/advanced-users.png)
+Click the **Formula** button. Each event in the query shows a letter next to it, which indicates its variable name. Use these letters in combination with the operators to calculate a more advanced query. For example, you can use the DAU, WAU, and MAU functions in Formulas to calculate the stickiness of your product:
+
+![Formulas 1](https://raw.githubusercontent.com/ranic/mixpanel-docs/main/media/Platform/Reports/Insights/advanced-formulas-1.png)
+
+Enter a name for the formula (optional), and click **Apply Formula** to see the formula output. You can also use numbers as constants in a formula. Multiply a ratio by 100 to display as a percentage, for example. Divide a property value tracked in seconds by 3,600 to display the value in hours.
+
+## Custom Bucketing
+
+Insights will automatically group your high-cardinality segments into buckets. Buckets can be edited by using the "Custom Buckets" option in the overflow menu:
+You can choose "Even" to get buckets of uniform size, and you can choose "Varied" to get buckets of different sizes. This helps with organizing outliers, or with drilling deeper into particular ranges.
+
+![Bucketing](https://raw.githubusercontent.com/ranic/mixpanel-docs/main/media/Platform/Reports/Insights/advanced-bucketing.png)
 
 ## Time Period Comparisons
 
@@ -195,26 +210,15 @@ Click on the **Compare to past** button at the top of your Insights graph and se
 
 ## Value Comparisons
 
-You can switch between Absolute and Relative totals by selecting the **#** dropdown in the top right of the chart and selecting either **# Absolute** or  **% Relative**.
+When you have multiple metrics, or have broken down a metric by a property, you can compare them against each and the relative value. Click on **Compare** -> **Overall**. This works for all data functions. For a "totals" data function, you can see the percentage that a particular segment makes up. For non summable aggregations, it compares the segment value to the whole, unsegmented value.
 
-[block:callout]
-{
-  "type": "info",
-  "body": "You can only select Absolute or Relative values for the Table, Stacked Line, Stacked Bar, and Bar charts.",
-  "title": "Note"
-}
-[/block]
+![Value Setting](https://raw.githubusercontent.com/ranic/mixpanel-docs/main/media/Platform/Reports/Insights/advanced-value-comparison.png)
 
-![Value Setting](https://raw.githubusercontent.com/ranic/mixpanel-docs/main/media/Platform/Reports/Insights/analysis-value-setting.png)
+## Profile Analysis
 
-The Absolute view will show you, in numbers, your totals for different event counts. Relative view will display these counts as a percentage of the whole.
+Choose to explore either **Events & Cohorts** or **Profiles**. Events & Cohorts allows you to examine user behaviors, while Profiles allows you access profile data and visualize your users with filters and breakdowns based on their profile properties. When exploring Profiles, you are always analyzing all user profiles. Select the [Data Function](https://help.mixpanel.com/hc/en-us/articles/7713028610964-Advanced-Insights-Functionality-#insights-data-functions-operators-and-calculations) you want to use to calculate results by clicking on **Total** and selecting an option from the drop-down. You can calculate based on users or profile property value.
 
-## Custom Bucketing
-
-Insights will automatically group your high-cardinality segments into buckets. Buckets can be edited by using the "Custom Buckets" option in the overflow menu:
-You can choose "Even" to get buckets of uniform size, and you can choose "Varied" to get buckets of different sizes. This helps with organizing outliers, or with drilling deeper into particular ranges.
-
-![Bucketing](https://raw.githubusercontent.com/ranic/mixpanel-docs/main/media/Platform/Reports/Insights/advanced-bucketing.png)
+![Explore User Profiles](https://raw.githubusercontent.com/ranic/mixpanel-docs/main/media/Platform/Reports/Insights/advanced-profile-analysis.gif)
 
 ## Annotations
 
@@ -336,44 +340,6 @@ Here are some use-cases that are now possible with "Distinct count" of property 
 **Monthly Active Users (MAU)**: Select MAU to calculate the number of unique users in the previous month (30-day) period that have performed the selected event.
 
 If you select the DAU, WAU, or MAU function for a date range that includes the current day, the query will take the end of the current day as the end of the query’s time segment (even though it’s in the future). For example, today is April 25th, and it’s 4:22 PM. If you make a query to show WAU and you select “current day” as your date range, the query will return the count of unique users between April 19 at 12:00:00 AM and April 25 at 11:59:59.
-
-## Explore User Profiles
-
-Select the [Data Function](https://help.mixpanel.com/hc/en-us/articles/7713028610964-Advanced-Insights-Functionality-#insights-data-functions-operators-and-calculations) you want to use to calculate results by clicking on **Total** and selecting an option from the drop-down. You can calculate based on users or profile property value.
-
-![Explore User Profiles](https://raw.githubusercontent.com/ranic/mixpanel-docs/main/media/Platform/Reports/Insights/advanced-explore-user-profiles.gif)
-
-## Formulas
-
-Use Formulas to make calculations using simple arithmetic operators.
-
-Mixpanel supports the following operators:
-
-- \+ : Add
-- \- : Subtract
-- \* : Multiply
-- / : Divide
-- () : Use parentheses to influence the order of operations
-
-[block:callout]
-{
-  "type": "info",
-  "body": "Dig deeper and break down the formula by a property to see how your calculation compares across different segments. Similarly, apply a filter to a formula to narrow in on a specific segment of your data.",
-  "title": "Note"
-}
-[/block]
-
-Click the **Formula** button. Each event in the query shows a letter next to it, which indicates its variable name. Use these letters in combination with the operators to calculate a more advanced query. For example, you can use the DAU, WAU, and MAU functions in Formulas to calculate the stickiness of your product:
-
-![Formulas 1](https://raw.githubusercontent.com/ranic/mixpanel-docs/main/media/Platform/Reports/Insights/advanced-formulas-1.png)
-
-Enter a name for the formula (optional), and click **Apply Formula** to see the formula output.
-
-For example, you can calculate the ratio of DAU to MAU using a formula. Build an Insights report with event A as "App Session" and select MAU. Select "App Session" with DAU for event B. Apply the formula B/A to show the ratio of DAU to MAU in the report.
-
-![Formulas 2](https://raw.githubusercontent.com/ranic/mixpanel-docs/main/media/Platform/Reports/Insights/advanced-formulas-2.png)
-
-You can also use numbers as constants in a formula. Multiply a ratio by 100 to display as a percentage, for example. Divide a property value tracked in seconds by 3,600 to display the value in hours.
 
 ## View Users
 
