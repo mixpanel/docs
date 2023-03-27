@@ -1,5 +1,5 @@
 ---
-title: "Two Factor Authentication (2FA)"
+title: "Two-Factor Authentication (2FA)"
 slug: "two-factor-authentication"
 hidden: false
 metadata: 
