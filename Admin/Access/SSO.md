@@ -125,7 +125,7 @@ You can find the official SCIM spec that Mixpanel implements a subset of here. T
   
 While you can hit the SCIM endpoints directly, the most common use case would to be use it for autoprovisioning within an IDP that has an integration with Mixpanel provisioning. This will let your IDP and Mixpanel stay in sync - when you assign users to Mixpanel in your IDP they will be provisioned in Mixpanel, and optionally you can deprovision users within Mixpanel who lose access in your IDP. IDPs that currently have an autoprovisioning integration with Mixpanel are Okta, Onelogin, and Azure.
 
-If you wish to revoke your SCIM Provisioning token you can generate a new one which will kill the previous token.
+If you wish to revoke your SCIM Provisioning token, you can generate a new one which will kill the previous token.
 
 
 
