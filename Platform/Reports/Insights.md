@@ -247,21 +247,9 @@ The following functions have additional aggregation options which you will be pr
 | Function | Aggregation options |
 | --- | --- |
 | Events | Total Per User |
-| Aggregate Properties | Sum
-Average
-Median
-https://www.loom.com/share/7d0e42f847c24b3c8720d5b6a6bedeb4
-Percentiles (P25,P75,P90,P99)
-Minimum
-Maximum |
-| Count Users | Daily Active Users (DAU)
-Weekly Active Users (WAU)
-Monthly Active Users (MAU) |
-| Event property value per user | Sum
-Average
-Distinct value count
-Minimum
-Maximum |
+| Aggregate Properties | Sum<br />Average<br />Median<br />![Distinct Count](https://www.loom.com/share/7d0e42f847c24b3c8720d5b6a6bedeb4)<br />Percentiles (P25,P75,P90,P99)<br />Minimum<br />Maximum |
+| Count Users | Daily Active Users (DAU)<br />Weekly Active Users (WAU)<br />Monthly Active Users (MAU) |
+| Event property value per user | Sum<br />Average<br />Distinct value count<br />Minimum<br />Maximum |
 
 These functions provide additional aggregation options following the initial calculation because they are “per user” calculations. “Per user” calculations first calculate the value per user, which is an unhelpful query in its raw form, but becomes useful when you perform an aggregation on that calculation.
 
@@ -286,50 +274,39 @@ You can find more information about each data function and how they are calculat
 
 | Function Name | Events & Cohorts Calculation | Profiles Calculation |
 | --- | --- | --- |
-| Total | N/A | Total count of user profiles.<br />Example: What's my total number of users? |
-| Unique | The number of users who performed [event].<br />Example: What's the count of users who watched a video? | N/A |
-| Daily Active Users (DAU) | The number of users who performed [event] within the last 24 hours.<br />Example: What's the count of users who watched a video in the last day? | N/A |
-| Weekly Active Users (WAU) | The number of users who performed [event] within the last 7 days.<br />Example: What's the count of users who watched a video in the week? | N/A |
-| Monthly Active Users (MAU) | The number of users who performed [event] within the last 30 days.<br />Example: What's the count of users who watched a video in the last month? | N/A |
+| Total | N/A | Total count of user profiles.<br /><br />**Example**: What's my total number of users? |
+| Uniques | The number of users who performed [event].<br /><br />**Example**: What's the count of users who watched a video? | N/A |
+| Daily Active Users (DAU) | The number of users who performed [event] within the last 24 hours.<br /><br />**Example**: What's the count of users who watched a video in the last day? | N/A |
+| Weekly Active Users (WAU) | The number of users who performed [event] within the last 7 days.<br /><br />**Example**: What's the count of users who watched a video in the week? | N/A |
+| Monthly Active Users (MAU) | The number of users who performed [event] within the last 30 days.<br /><br />**Example**: What's the count of users who watched a video in the last month? | N/A |
 
 ### Aggregate Property Values
 
 | Function Name | Events & Cohorts Calculation | Profiles Calculation |
 | --- | --- | --- |
-| Sum | The total of a numeric property value across all instances of [event].<br />Example: What's the total number of minutes of videos watched? | The total of a numeric property value across all user profiles.<br />Example: What's the total revenue across all users? |
-| Average | Average of a numeric property value across all instances of [event].<br />Example: What's the average number of minutes per video watched? | Average of a numeric property value across all user profiles.<br />Example: What's the average revenue across all users? |
-| Distinct count | Calculates the unique count of property values across all instances of [event].<br />Example: How many unique songs were played in the last 30 days? | Calculates the unique count of property values across all profiles.<br />Example: How many unique countries were our video watchers from? |
-| Median | Median of a numeric property value across all instances of [event].<br />Example: What's the median number of minutes per video watched? | Median of a numeric property value across all user profiles.<br />Example: What's the median revenue across all users? |
-| Percentiles (25/75/90/99) | The 25/75/90/99th percentile of a numeric property value across all instances of [event].<br />Example: What's the 25th percentile number of minutes of videos watched? | The 25/75/90/99th percentile of a numeric property value across all user profiles.<br />Example: What's the 25th percentile revenue across all users? |
-| Minimum | Minimum of a numeric property value across all instances of [event].<br />Example: What's the minimum number of minutes per video watched? | Minimum of a numeric property value across all user profiles.<br />Example: What's the minimum revenue across all users? |
-| Maximum | Maximum of a numeric property value across all instances of [event].<br />Example: What's the maximum number of minutes per video watched? | Maximum of a numeric property value across all user profiles.<br />Example: What's the maximum revenue across all users? |
+| Sum | The total of a numeric property value across all instances of [event].<br /><br />**Example**: What's the total number of minutes of videos watched? | The total of a numeric property value across all user profiles.<br />Example: What's the total revenue across all users? |
+| Average | Average of a numeric property value across all instances of [event].<br /><br />**Example**: What's the average number of minutes per video watched? | Average of a numeric property value across all user profiles.<br />Example: What's the average revenue across all users? |
+| Distinct count | Calculates the unique count of property values across all instances of [event].<br /><br />**Example**: How many unique songs were played in the last 30 days? | Calculates the unique count of property values across all profiles.<br />Example: How many unique countries were our video watchers from? |
+| Median | Median of a numeric property value across all instances of [event].<br /><br />**Example**: What's the median number of minutes per video watched? | Median of a numeric property value across all user profiles.<br />Example: What's the median revenue across all users? |
+| Percentiles (25/75/90/99) | The 25/75/90/99th percentile of a numeric property value across all instances of [event].<br /><br />**Example**: What's the 25th percentile number of minutes of videos watched? | The 25/75/90/99th percentile of a numeric property value across all user profiles.<br />Example: What's the 25th percentile revenue across all users? |
+| Minimum | Minimum of a numeric property value across all instances of [event].<br /><br />**Example**: What's the minimum number of minutes per video watched? | Minimum of a numeric property value across all user profiles.<br />Example: What's the minimum revenue across all users? |
+| Maximum | Maximum of a numeric property value across all instances of [event].<br /><br />**Example**: What's the maximum number of minutes per video watched? | Maximum of a numeric property value across all user profiles.<br />Example: What's the maximum revenue across all users? |
 
 ### Aggregate Property Values per User
 
 | Function Name | Events & Cohorts Calculation | Profiles Calculation |
 | --- | --- | --- |
-| Sum | The total of a numeric property value across all instances of [event] per user.
-Example: What's the total number of hours of videos watched per user?
-Aggregation options: Average, distribution, median, percentiles, minimum, maximum | N/A |
-| Average | Average of a numeric property value across all instances of [event] per user.
-Example: What's the average number of hours of videos watched per user?
-Aggregation options: Average, distribution, median, percentiles, minimum, maximum | N/A |
-| Distinct count | The number of distinct property values per user.
-Example: How many different videos did each user watch?
-Aggregation options: Average, distribution, median, percentiles, minimum, maximum | N/A |
-| Minimum | Minimum of a numeric property value across all instances of [event] per user.
-Example: What's the minimum number of hours of videos watched per user?
-Aggregation options: Average, distribution, median, percentiles, minimum, maximum | N/A |
-| Maximum | Maximum of a numeric property value across all instances of [event] per user.
-Example: What's the maximum number of hours of videos watched per user?
-Aggregation options: Average, distribution, median, percentiles, minimum, maximum | N/A |
+| Sum | The total of a numeric property value across all instances of [event] per user.<br /><br />**Example**: What's the total number of hours of videos watched per user?<br />**Aggregation options**: Average, distribution, median, percentiles, minimum, maximum | N/A |
+| Average | Average of a numeric property value across all instances of [event] per user.<br /><br />**Example**: What's the average number of hours of videos watched per user?<br />**Aggregation options**: Average, distribution, median, percentiles, minimum, maximum | N/A |
+| Distinct count | The number of distinct property values per user.<br /><br />**Example**: How many different videos did each user watch?<br />**Aggregation options**: Average, distribution, median, percentiles, minimum, maximum | N/A |
+| Minimum | Minimum of a numeric property value across all instances of [event] per user.<br /><br />**Example**: What's the minimum number of hours of videos watched per user?<br />**Aggregation options**: Average, distribution, median, percentiles, minimum, maximum | N/A |
+| Maximum | Maximum of a numeric property value across all instances of [event] per user.<br /><br />**Example**: What's the maximum number of hours of videos watched per user?<br />**Aggregation options**: Average, distribution, median, percentiles, minimum, maximum | N/A |
 
 ### Count Sessions
 
 | Function Name | Events & Cohorts Calculation | Profiles Calculation |
 | --- | --- | --- |
-| Sessions with event | The number of sessions that contain [event].
-Example: What's the total number of sessions in which users watched a video? | N/A |
+| Sessions with event | The number of sessions that contain [event].<br /><br />**Example**: What's the total number of sessions in which users watched a video? | N/A |
 
 ### Additional Aggregation Option Examples
 
