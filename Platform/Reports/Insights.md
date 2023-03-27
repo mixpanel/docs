@@ -392,7 +392,7 @@ When breaking down/segmenting by a numeric property, Mixpanel decides what inter
 ## View Users
 
 You can now click a segment (bar or line) in an Insights report to see the list of users that underlie that data point. This helps see a representative sample of users from any analysis, so you can drill into anomalies or simply get to know your users. You can also save this user list as a cohort to either export or use for message targeting.
-jblock:embed]
+[block:embed]
 {
   "html": "<iframe src=\"//www.loom.com/embed/5568e266532b4804a1c2d36d678eb1a2\" width=\"560\" height=\"315\" frameborder=\"0\" allowfullscreen=\"\"></iframe>",
   "url": "https://www.loom.com/embed/5568e266532b4804a1c2d36d678eb1a2",
