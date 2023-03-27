@@ -33,7 +33,7 @@ B.  Follow [Okta’s documentation on setting up a new application](https://help
 
 You must fill the form found in the “Configure SAML” menu in Okta. The following highlights what you should place in the fields.
 
-image
+![Okta Configure SAML 1 Image](https://raw.githubusercontent.com/ranic/mixpanel-docs/main/media/Admin/Okta/okta_configure_saml1.png)
 
 Make sure that the following is adjusted to match the following:
 
@@ -52,7 +52,7 @@ To access this information, first select the select the Mixpanel app under the "
 
 Under the "SAML 2.0" section, click **View Setup Instructions** and scroll down to "Configuration Data".
 
-image
+![Okta Info 1 Image](https://raw.githubusercontent.com/ranic/mixpanel-docs/main/media/Admin/Okta/okta_info1.png)
 
 ### Public Certificate
 
@@ -60,19 +60,19 @@ Your X.509 certificate is what allows users signing in through a third-party ide
 
 Click **Download Certificate** in the second entry to download your certificate.
 
-image
+![Okta Info 2 Image](https://raw.githubusercontent.com/ranic/mixpanel-docs/main/media/Admin/Okta/okta_info2.png)
 
 ### Authentication URL
 
 Your Authentication URL is in the third entry labeled "Redirect Login URL".
 
-image
+![Okta Info 3 Image](https://raw.githubusercontent.com/ranic/mixpanel-docs/main/media/Admin/Okta/okta_info3.png)
 
 ### Issuer URL
 
 You will find your Issuer URL in the third entry labeled "Identity Provider Issuer".
 
-image
+![Okta Info 4 Image](https://raw.githubusercontent.com/ranic/mixpanel-docs/main/media/Admin/Okta/okta_info4.png)
 
 ## Enable SSO
 
@@ -91,7 +91,7 @@ The following prerequisites must be met to set up SCIM provisioning:
 - The “Username” value in Okta must be an email address with a domain that you’ve claimed.
 - You need to have generated a SCIM OAuth token to use with the app. This token is located in the “Access Security” tab of your organization settings. You will need to be an organization admin to access this.
 
-image
+![Okta SCIM 1 Image](https://raw.githubusercontent.com/ranic/mixpanel-docs/main/media/Admin/Okta/okta_scim1.png)
 
 The following provisioning features are supported:
 
@@ -104,13 +104,13 @@ The following provisioning features are supported:
 
 Click the **Configure API Integration** button in Okta to begin.
 
-image
+![Okta SCIM 2 Image](https://raw.githubusercontent.com/ranic/mixpanel-docs/main/media/Admin/Okta/okta_scim2.png)
 
 Check the **Enable API Integration** box, then enter your SCIM token.
 
 Select the supported features (Create/Update/Deactivate) you wish to enable:
 
-image
+![Okta SCIM 3 Image](https://raw.githubusercontent.com/ranic/mixpanel-docs/main/media/Admin/Okta/okta_scim3.png)
 
 The following profile attributes are required to be sent from Okta to Mixpanel:
 
@@ -119,11 +119,11 @@ The following profile attributes are required to be sent from Okta to Mixpanel:
 - Family name
 - Primary email
 
-image
+![Okta SCIM 4 Image](https://raw.githubusercontent.com/ranic/mixpanel-docs/main/media/Admin/Okta/okta_scim4.png)
 
 Select and assign the users you wish to provision:
 
-image
+![Okta SCIM 5 Image](https://raw.githubusercontent.com/ranic/mixpanel-docs/main/media/Admin/Okta/okta_scim5.png)
 
 ### Troubleshooting
 
