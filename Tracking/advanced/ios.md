@@ -518,5 +518,13 @@ self.mixpanel = [Mixpanel sharedInstanceWithToken:@"MIXPANEL_TOKEN" launchOption
 self.mixpanel.serverURL = @"https://api-eu.mixpanel.com";
 ```
 
+# Types
+Avoid Objective-C primitives for property values because these non-object types cannot be placed in the NSDictionary for event and user profile properties.
+
+Use `NSString` for strings, `NSDate` for dates, `NSBool` for booleans, `NSArray` for arrays, and `NSNumber` for numbers.
+
+For dates, we recommend formatting as ISO8601 UTC dates: "YYYY-MM-DDThh:mm:ss".
+
+
 # Release History
 [See All Releases](https://github.com/mixpanel/mixpanel-iphone/releases).
