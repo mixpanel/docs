@@ -59,7 +59,7 @@ It will be indicated as verified after Mixpanel verifies the domain.
 
 The verification token is available in the Domain Claiming menu after you claim a domain. Use the token as part of the TXT record that you add to your domain’s DNS record.
 
-Add mixpanel-domain-verify=<your-token> as the TXT record.
+Add `mixpanel-domain-verify=<your-token>` as the TXT record.
 
 Note that you will need to leave the token in your DNS records permanently or the domain will unverify after a week. Only remove the token for domains you no longer wish to use SSO with.
 
