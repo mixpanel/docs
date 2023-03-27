@@ -210,7 +210,7 @@ Click on the **Compare to past** button at the top of your Insights graph and se
 
 Insights will automatically group your high-cardinality segments into ranges. Ranges can be edited by using the "Customize Range" option in the overflow menu:
 
-![Advanced Bucketing](https://raw.githubusercontent.com/ranic/mixpanel-docs/main/media/Platform/Reports/Insights/advanced-bucketing.gif)
+![Bucketing](https://raw.githubusercontent.com/ranic/mixpanel-docs/main/media/Platform/Reports/Insights/advanced-bucketing.gif)
 
 If you want custom buckets that are non-uniform, you can create [custom properties](https://www.notion.so/hc/en-us/articles/360030848432) to manipulate these buckets.
 
@@ -240,7 +240,7 @@ The following data functions are only available in Insights, and are separated i
 
 Select the Data Function you want to use to calculate results by clicking on **Total** and selecting an option from the drop-down. You can calculate based on events, users, event property value, event property value per user, and sessions.
 
-![https://www.notion.so/hc/article_attachments/7771317490452/mceclip4.png](https://www.notion.so/hc/article_attachments/7771317490452/mceclip4.png)
+![Data Functions 1](https://raw.githubusercontent.com/ranic/mixpanel-docs/main/media/Platform/Reports/Insights/advanced-data-functions-1.png)
 
 The following functions have additional aggregation options which you will be prompted to select:
 
@@ -267,67 +267,44 @@ These functions provide additional aggregation options following the initial cal
 
 Selecting any of these functions gives you the option to choose different ways to aggregate this data. The default aggregation is **Average**, which you can click on to select a different option such as distribution, median, 25/75/90th percentiles, minimum and maximum.
 
-![https://www.notion.so/hc/article_attachments/7771766371732/mceclip5.png](https://www.notion.so/hc/article_attachments/7771766371732/mceclip5.png)
+![Data Functions 2](https://raw.githubusercontent.com/ranic/mixpanel-docs/main/media/Platform/Reports/Insights/advanced-data-functions-2.png)
 
 If the data function you select calculates based on property (“Event Property Values” or “Event Property Values Per User”), you will be prompted to select an event property.
 
-![https://www.notion.so/hc/article_attachments/7771793956372/mceclip6.gif](https://www.notion.so/hc/article_attachments/7771793956372/mceclip6.gif)
+![Data Functions 3](https://raw.githubusercontent.com/ranic/mixpanel-docs/main/media/Platform/Reports/Insights/advanced-data-functions-3.gif)
 
 You can find more information about each data function and how they are calculated below:
 
-## Events
+### Events
 
 | Function Name | Events & Cohorts Calculation | Profiles Calculation |
 | --- | --- | --- |
-| Total | Total count of [event] performed.
-Example: How many times did my users watch a video? | N/A |
-| Total per user | The number of events performed per user.
-Example: How many videos were watched per user?
-Aggregation options: Average, distribution, median, percentiles, minimum, maximum | N/A |
+| Total | Total count of [event] performed.<br />Example: How many times did my users watch a video? | N/A |
+| Total per user | The number of events performed per user.<br />Example: How many videos were watched per user?<br />Aggregation options: Average, distribution, median, percentiles, minimum, maximum | N/A |
 
-## Users
+### Users
 
 | Function Name | Events & Cohorts Calculation | Profiles Calculation |
 | --- | --- | --- |
-| Total | N/A | Total count of user profiles.
-Example: What's my total number of users? |
-| Unique | The number of users who performed [event].
-Example: What's the count of users who watched a video? | N/A |
-| Daily Active Users (DAU) | The number of users who performed [event] within the last 24 hours.
-Example: What's the count of users who watched a video in the last day? | N/A |
-| Weekly Active Users (WAU) | The number of users who performed [event] within the last 7 days.
-Example: What's the count of users who watched a video in the week? | N/A |
-| Monthly Active Users (MAU) | The number of users who performed [event] within the last 30 days.
-Example: What's the count of users who watched a video in the last month? | N/A |
+| Total | N/A | Total count of user profiles.<br />Example: What's my total number of users? |
+| Unique | The number of users who performed [event].<br />Example: What's the count of users who watched a video? | N/A |
+| Daily Active Users (DAU) | The number of users who performed [event] within the last 24 hours.<br />Example: What's the count of users who watched a video in the last day? | N/A |
+| Weekly Active Users (WAU) | The number of users who performed [event] within the last 7 days.<br />Example: What's the count of users who watched a video in the week? | N/A |
+| Monthly Active Users (MAU) | The number of users who performed [event] within the last 30 days.<br />Example: What's the count of users who watched a video in the last month? | N/A |
 
-## Aggregate Property values
+### Aggregate Property Values
 
 | Function Name | Events & Cohorts Calculation | Profiles Calculation |
 | --- | --- | --- |
-| Sum | The total of a numeric property value across all instances of [event].
-Example: What's the total number of minutes of videos watched? | The total of a numeric property value across all user profiles.
-Example: What's the total revenue across all users? |
-| Average | Average of a numeric property value across all instances of [event].
-Example: What's the average number of minutes per video watched? | Average of a numeric property value across all user profiles.
-Example: What's the average revenue across all users? |
-| Distinct count | Calculates the unique count of property values across all instances of [event].
-Example: How many unique songs were played in the last 30 days? | Calculates the unique count of property values across all profiles.
-Example: How many unique countries were our video watchers from? |
-| Median | Median of a numeric property value across all instances of [event].
-Example: What's the median number of minutes per video watched? | Median of a numeric property value across all user profiles.
-Example: What's the median revenue across all users? |
-| Percentiles
-(25/75/90/99) | The 25/75/90/99th percentile of a numeric property value across all instances of [event].
-Example: What's the 25th percentile number of minutes of videos watched? | The 25/75/90/99th percentile of a numeric property value across all user profiles.
-Example: What's the 25th percentile revenue across all users? |
-| Minimum | Minimum of a numeric property value across all instances of [event].
-Example: What's the minimum number of minutes per video watched? | Minimum of a numeric property value across all user profiles.
-Example: What's the minimum revenue across all users? |
-| Maximum | Maximum of a numeric property value across all instances of [event].
-Example: What's the maximum number of minutes per video watched? | Maximum of a numeric property value across all user profiles.
-Example: What's the maximum revenue across all users? |
+| Sum | The total of a numeric property value across all instances of [event].<br />Example: What's the total number of minutes of videos watched? | The total of a numeric property value across all user profiles.<br />Example: What's the total revenue across all users? |
+| Average | Average of a numeric property value across all instances of [event].<br />Example: What's the average number of minutes per video watched? | Average of a numeric property value across all user profiles.<br />Example: What's the average revenue across all users? |
+| Distinct count | Calculates the unique count of property values across all instances of [event].<br />Example: How many unique songs were played in the last 30 days? | Calculates the unique count of property values across all profiles.<br />Example: How many unique countries were our video watchers from? |
+| Median | Median of a numeric property value across all instances of [event].<br />Example: What's the median number of minutes per video watched? | Median of a numeric property value across all user profiles.<br />Example: What's the median revenue across all users? |
+| Percentiles (25/75/90/99) | The 25/75/90/99th percentile of a numeric property value across all instances of [event].<br />Example: What's the 25th percentile number of minutes of videos watched? | The 25/75/90/99th percentile of a numeric property value across all user profiles.<br />Example: What's the 25th percentile revenue across all users? |
+| Minimum | Minimum of a numeric property value across all instances of [event].<br />Example: What's the minimum number of minutes per video watched? | Minimum of a numeric property value across all user profiles.<br />Example: What's the minimum revenue across all users? |
+| Maximum | Maximum of a numeric property value across all instances of [event].<br />Example: What's the maximum number of minutes per video watched? | Maximum of a numeric property value across all user profiles.<br />Example: What's the maximum revenue across all users? |
 
-## Aggregate property values per user
+### Aggregate Property Values per User
 
 | Function Name | Events & Cohorts Calculation | Profiles Calculation |
 | --- | --- | --- |
@@ -347,7 +324,7 @@ Aggregation options: Average, distribution, median, percentiles, minimum, maximu
 Example: What's the maximum number of hours of videos watched per user?
 Aggregation options: Average, distribution, median, percentiles, minimum, maximum | N/A |
 
-## Count Sessions
+### Count Sessions
 
 | Function Name | Events & Cohorts Calculation | Profiles Calculation |
 | --- | --- | --- |
@@ -403,8 +380,8 @@ Use Formulas to make calculations using simple arithmetic operators.
 
 Mixpanel supports the following operators:
 
-- + : Add
-- - : Subtract
+- \+ : Add
+- \- : Subtract
 - * : Multiply
 - / : Divide
 - () : Use parentheses to influence the order of operations
