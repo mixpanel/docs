@@ -17,6 +17,8 @@ You can use Single Sign-On (SSO) to access Mixpanel. You must be on a Mixpanel E
 
 To access SSO settings in Mixpanel, navigate to your **Organization Settings** located under your name in the top navigation.
 
+![SSO Org Setting Image](https://raw.githubusercontent.com/ranic/mixpanel-docs/main/media/Admin/SSO/sso_org_setting.png)
+
 **Require Users to Log In Using SSO**
 Optionally toggle “Require Users to Log In using SSO” to prevent your users from using a username and password to log in. Click Enable. Organization owners and admins will still be able to log in using username and password if SSO is not set up correctly.
 
@@ -29,17 +31,19 @@ To claim a domain, add a TXT record to your domain’s DNS records with a verifi
 **Generate Verification Key by Claiming Domain**
 To claim a domain, click Access Security in your Organization Settings.
 
-imagehere
+![SSO Access Security Image](https://raw.githubusercontent.com/ranic/mixpanel-docs/main/media/Admin/SSO/sso_access_security.png)
 
 Click Domain Claiming in the Access Security menu.
 
-image here
+![SSO Domain Claiming Image](https://raw.githubusercontent.com/ranic/mixpanel-docs/main/media/Admin/SSO/sso_domain_claiming.png)
 
 Click Add Domain found in Domain Claiming menu. You will be prompted to enter your Mixpanel password.
 
-image here
+![SSO Add Domain Image](https://raw.githubusercontent.com/ranic/mixpanel-docs/main/media/Admin/SSO/sso_add_domain.png)
 
 Enter the domain you wish to claim in the pop-up modal. Click Submit Claim.
+
+![SSO Submit Claim Image](https://raw.githubusercontent.com/ranic/mixpanel-docs/main/media/Admin/SSO/sso_submit_claim.png)
 
 **Check Verification Status**
 
@@ -47,7 +51,7 @@ Enter the domain you wish to claim in the pop-up modal. Click Submit Claim.
 
 The claimed domain appears in the Domain Claiming menu. It will list as pending until it is successfully verified.
 
-image here
+![SSO Check Verification Status Image](https://raw.githubusercontent.com/ranic/mixpanel-docs/main/media/Admin/SSO/sso_check_verification_status.png)
 
 It will be indicated as verified after Mixpanel verifies the domain.
 
@@ -87,7 +91,7 @@ It is possible to set up Mixpanel with IDPs not listed above. Email sso-support@
  
 You likely will need to provide your IDP with a postback URL. The postback URL is accessible from the Access Security tab. To obtain your postback URL, navigate to Access Security in your Organization Settings and toggle the Single Sign-On button.
   
-image here
+![SSO Postback URL Image](https://raw.githubusercontent.com/ranic/mixpanel-docs/main/media/Admin/SSO/sso_postback_url.png)
 
 **SAML Certificate**
 
@@ -109,7 +113,7 @@ This toggle is to determine whether you are using your IDP to manage who should 
 
 This can be enabled in the Access Security tab of your Organization Settings. It is the toggle at the bottom called "IDP Managed Access" and is blue when enabled.
   
-image here
+![SSO IDP Managed Access Image](https://raw.githubusercontent.com/ranic/mixpanel-docs/main/media/Admin/SSO/sso_idp_managed_access.png)
 
 # SCIM
 
@@ -117,7 +121,7 @@ The SCIM tab in the Access Security tab of the Organization Settings lets you ge
 
 You can find the official SCIM spec that Mixpanel implements a subset of here. The base endpoint is https://mixpanel.com/api/app/scim/v2 which you can hit using the SCIM token as an Authentication Bearer token. For instance a GET call on https://mixpanel.com/api/app/scim/v2/Users using the SCIM token will get you a list of all users in your organization. Note that the SCIM endpoint only affects users who's email has a domain in the list of your verified claimed domains.
   
-image here
+![SSO SCIM Image](https://raw.githubusercontent.com/ranic/mixpanel-docs/main/media/Admin/SSO/sso_scim.png)
   
 While you can hit the SCIM endpoints directly, the most common use case would to be use it for autoprovisioning within an IDP that has an integration with Mixpanel provisioning. This will let your IDP and Mixpanel stay in sync - when you assign users to Mixpanel in your IDP they will be provisioned in Mixpanel, and optionally you can deprovision users within Mixpanel who lose access in your IDP. IDPs that currently have an autoprovisioning integration with Mixpanel are Okta, Onelogin, and Azure.
 
