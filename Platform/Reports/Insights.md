@@ -39,25 +39,25 @@ Feel free to follow along and create your own report right in our demo project, 
 
 Events, cohorts, or profiles can be the basic building block of an Insights report. In this case, we want to know about users who sent messages, so within the "Events and Cohorts" section, add the "Send Message" event. At this point, your query should look like this:
 
-![https://www.notion.so/hc/article_attachments/4413139192084/mceclip4.png](https://www.notion.so/hc/article_attachments/4413139192084/mceclip4.png)
+![Choose Events](https://raw.githubusercontent.com/ranic/mixpanel-docs/main/media/Platform/Reports/Insights/choose-events.png)
 
 ## Step 2: Choose Count Type
 
 Next to your selected event, you can choose how to count that event. By default, Insights will count Total events, which, as the name implies, will count every occurrence of the event. In this case, we want to know how many users sent messages, so choose "Unique." Unique counts one event per user. At this point, your query should look like this:
 
-![https://www.notion.so/hc/article_attachments/4413131169428/mceclip5.gif](https://www.notion.so/hc/article_attachments/4413131169428/mceclip5.gif)
+![Choose Count Type](https://raw.githubusercontent.com/ranic/mixpanel-docs/main/media/Platform/Reports/Insights/choose-count-type.gif)
 
 ## Step 3: Choose Filters
 
 Filters exclude unwanted data. In this case, we only care about events performed on the iOS platform. Therefore, add a "Platform" filter, where Platform equals "iOS Native". At this point, your query should look like this:
 
-![https://www.notion.so/hc/article_attachments/4413126649492/mceclip6.gif](https://www.notion.so/hc/article_attachments/4413126649492/mceclip6.gif)
+![Choose Filters](https://raw.githubusercontent.com/ranic/mixpanel-docs/main/media/Platform/Reports/Insights/choose-filters.gif)
 
 ## Step 4: Choose Breakdowns
 
 Breakdowns segment data into groups. In this case, we want to count message sending users in different cities. Therefore, add a "City" breakdown. At this point, your query should look like this:
 
-![https://www.notion.so/hc/article_attachments/4413126669588/mceclip7.gif](https://www.notion.so/hc/article_attachments/4413126669588/mceclip7.gif)
+![Choose Breakdowns](https://raw.githubusercontent.com/ranic/mixpanel-docs/main/media/Platform/Reports/Insights/choose-breakdowns.gif)
 
 Congratulations, you've constructed your first Insights query! Now, it's time to examine the results.
 
@@ -66,35 +66,20 @@ Congratulations, you've constructed your first Insights query! Now, it's time to
 Insights features multiple visualizations to help you view the results of your query in the clearest chart type. By default, Insights displays line charts, which help you understand how metrics trend over time. However, another chart type might present the results with more clarity. In Insights, you can either choose to get a metric calculated across the entire time period selected in the date picker, or get a time-segmented view of the metric (e.g. daily breakdown).
 
 - Metric calculated across the entire time period
-    - Bar chart
-        
-        ![https://www.notion.so/hc/article_attachments/7787500385044/mceclip0.png](https://www.notion.so/hc/article_attachments/7787500385044/mceclip0.png)
-        
-- Stacked bar chart
-    
-    ![https://www.notion.so/hc/article_attachments/7787500394900/mceclip1.png](https://www.notion.so/hc/article_attachments/7787500394900/mceclip1.png)
-    
-- Pie chart
-    
-    ![https://www.notion.so/hc/article_attachments/7787500560660/mceclip2.png](https://www.notion.so/hc/article_attachments/7787500560660/mceclip2.png)
-    
+    - Bar chart<br />![Bar Chart](https://raw.githubusercontent.com/ranic/mixpanel-docs/main/media/Platform/Reports/Insights/visualizing-bar-chart.png)
+    - Stacked bar chart<br />![Stacked Bar Chart](https://raw.githubusercontent.com/ranic/mixpanel-docs/main/media/Platform/Reports/Insights/visualizing-stacked-bar-chart.png)
+    - Pie chart<br />![Pie Chart](https://raw.githubusercontent.com/ranic/mixpanel-docs/main/media/Platform/Reports/Insights/visualizing-pie-chart.png)
 - Metric time-segmented
-    - Line chart
-        
-        ![https://www.notion.so/hc/article_attachments/7787493152276/mceclip4.png](https://www.notion.so/hc/article_attachments/7787493152276/mceclip4.png)
-        
-- Stacked line chart
-    
-    ![https://www.notion.so/hc/article_attachments/7787493279252/mceclip5.png](https://www.notion.so/hc/article_attachments/7787493279252/mceclip5.png)
-    
+    - Line chart<br />![Line Chart](https://raw.githubusercontent.com/ranic/mixpanel-docs/main/media/Platform/Reports/Insights/visualizing-line-chart.png)
+    - Stacked line chart<br />![Stacked Line Chart](https://raw.githubusercontent.com/ranic/mixpanel-docs/main/media/Platform/Reports/Insights/visualizing-stacked-line-chart.png)
 
 You can easily resize the columns in the bar chart in order to see more or remove detail.
 
-![https://www.notion.so/hc/article_attachments/7787500943380/mceclip6.gif](https://www.notion.so/hc/article_attachments/7787500943380/mceclip6.gif)
+![Resizing](https://raw.githubusercontent.com/ranic/mixpanel-docs/main/media/Platform/Reports/Insights/visualizing-resize.gif)
 
 When breaking down results, click on a bar in the chart to either filter or exclude that property value. Filter zooms in on that property value, filtering the entire report to that property value. Exclude filters out that property value from the results.
 
-![https://www.notion.so/hc/article_attachments/7787493491348/mceclip7.png](https://www.notion.so/hc/article_attachments/7787493491348/mceclip7.png)
+![Filter & Exclude](https://raw.githubusercontent.com/ranic/mixpanel-docs/main/media/Platform/Reports/Insights/visualizing-filter-exclude.gif)
 
 # Analysis & Value Settings
 
@@ -115,17 +100,14 @@ The Absolute view will show you, in numbers, your totals for different event cou
 The Analysis options will determine the way the chart is calculated and visualized. The options are:
 
 - **Linear:** This is the standard view for the chart.
-- **Rolling:** Rolling analysis calculates the rolling average of the data set. A rolling average curve is a series of averages from subsets of data. Use rolling average analysis to remove noise or spikes from data and smooth out trends over time. Mixpanel calculates the rolling average based on the selected time interval (hour, day, week, month or quarter) for each data point in the graph.
+- **Rolling:** Rolling analysis calculates the rolling average of the data set. A rolling average curve is a series of averages from subsets of data. Use rolling average analysis to remove noise or spikes from data and smooth out trends over time. Mixpanel calculates the rolling average based on the selected time interval (hour, day, week, month or quarter) for each data point in the graph.<br />| Time Interval | Default Rolling Time Range |
+| --- | --- |
+| Hour | Last 12 hours |
+| Day | Last 7 days |
+| Week | Last 5 weeks |
+| Month | Last 3 months |
+| Quarter | Last 2 quarters |<br />
 For example, if you make a rolling analysis query for the past 30 days, Mixpanel calculates the rolling 7-day average by default. The value reported at each day in the line graph is the average of the values from the 7 days leading to that day. In the case of the first 6 days in your selected time period, the 7-day-average calculation will include days before the selected time period.
-    
-    
-    | Time Interval | Default Rolling Time Range |
-    | --- | --- |
-    | Hour | Last 12 hours |
-    | Day | Last 7 days |
-    | Week | Last 5 weeks |
-    | Month | Last 3 months |
-    | Quarter | Last 2 quarters |
 - **Logarithmic:** A nonlinear scale based on orders of magnitude, rather than a standard linear scale, so the value represented by each equidistant mark on the scale is the value at the previous mark multiplied by a constant.
 - **Cumulative:** Adds up the values of each point on the graph as it goes along, so the height of the line will increase over time.
 
@@ -135,7 +117,7 @@ For example, if you make a rolling analysis query for the past 30 days, Mixpanel
 
 When you are viewing a bar chart, you have four different sorting options: A-Z Ascending, Z-A Descending, Value Ascending, or Value Descending. To switch sorting views, select the **Events** icon in the upper left hand of the report and select which view you would like to see.
 
-![https://www.notion.so/hc/article_attachments/7787501113876/mceclip9.png](https://www.notion.so/hc/article_attachments/7787501113876/mceclip9.png)
+![Sorting Bar Chart](https://raw.githubusercontent.com/ranic/mixpanel-docs/main/media/Platform/Reports/Insights/sorting-bar-chart.png)
 
 ## Line chart
 
@@ -143,7 +125,7 @@ Line charts in Insights are accompanied with a table of values to give users ano
 
 Click on a "data column" header to sort by that column. Click the header again to reverse the sort order. The table below is sorted by event counts on August 2nd:
 
-![https://www.notion.so/hc/article_attachments/7787495449876/mceclip0.png](https://www.notion.so/hc/article_attachments/7787495449876/mceclip0.png)
+![Sorting Line Chart](https://raw.githubusercontent.com/ranic/mixpanel-docs/main/media/Platform/Reports/Insights/sorting-line-chart-1.png)
 
 Results that are segmented (from one or more “group by” clauses in your query) have four different sorting options when you click on the "segment column" headers:
 
@@ -154,15 +136,24 @@ Results that are segmented (from one or more “group by” clauses in your quer
 
 When sorting by segments, the sort is carried out left to right.
 
-![https://www.notion.so/hc/article_attachments/7787556680468/Seg_table_sorting.gif](https://www.notion.so/hc/article_attachments/7787556680468/Seg_table_sorting.gif)
+![Sorting Line Chart](https://raw.githubusercontent.com/ranic/mixpanel-docs/main/media/Platform/Reports/Insights/sorting-line-chart-2.gif)
 
 Clicking on the "Average" data column performs a flat sort across all segments:
 
-![https://www.notion.so/hc/article_attachments/7787550370324/mceclip1.png](https://www.notion.so/hc/article_attachments/7787550370324/mceclip1.png)
+![Sorting Line Chart](https://raw.githubusercontent.com/ranic/mixpanel-docs/main/media/Platform/Reports/Insights/sorting-line-chart-3.png)
 
 # Use Cases for Insights Reports
 
 Here's a video that shows a set of use-cases with Mixpanel's Insights report:
+[block:embed]
+{
+  "html": "<iframe src=\"//www.loom.com/embed/82a392661df84192b67aac0eae9d4215\" height=\"460\" frameborder=\"0\" allowfullscreen=\"\"></iframe>",
+  "url": "https://www.loom.com/embed/82a392661df84192b67aac0eae9d4215",
+  "title": "Mixpanel Insights - July 2020 Update",
+  "favicon": null,
+  "image": null
+}
+[/block]
 
 Here's another common use-case: Jenny is a Marketing Manager for an online shoes marketplace. and she wants to know which utm source is getting the maximum number of purchases to the platform.
 
@@ -170,7 +161,7 @@ In Insights, Jenny looks at purchase activity by selecting the "Complete Purchas
 
 She elects to break down the data by the event property "UTM_source", which categorizes the results into the different UTM_source values of the "Complete Purchase" event.
 
-![https://www.notion.so/hc/article_attachments/7787554482580/mceclip0.png](https://www.notion.so/hc/article_attachments/7787554482580/mceclip0.png)
+![Use Cases](https://raw.githubusercontent.com/ranic/mixpanel-docs/main/media/Platform/Reports/Insights/use-cases.png)
 
 Based on the data from the last 30 days, the Insights report shows that LinkedIn is the highest source of paid conversions.
 
@@ -178,7 +169,15 @@ Based on the data from the last 30 days, the Insights report shows that LinkedIn
 
 It's important to know what's the natural frequency at which your users use your product / experience the core value proposition of your product - do majority of your users use your product daily? weekly ? monthly? A16Z wrote a great article about the [Power User Curve](https://www.reforge.com/brief/understand-your-most-engaged-users-with-the-power-user-curve#bOb9wjj_l0R3Pqo32pggUQ), and this video below shows how you can reproduce that within Mixpanel:
 
-<iframe src="//www.loom.com/embed/0c05ac17742a4d49a4c6879c0fe9f0de" width="560" height="315" frameborder="0" allowfullscreen=""></iframe>
+[block:embed]
+{
+  "html": "<iframe src=\"//www.loom.com/embed/0c05ac17742a4d49a4c6879c0fe9f0de\" height=\"460\" frameborder=\"0\" allowfullscreen=\"\"></iframe>",
+  "url": "https://www.loom.com/embed/0c05ac17742a4d49a4c6879c0fe9f0de",
+  "title": "Natural Frequency Analysis in Mixpanel",
+  "favicon": null,
+  "image": null
+}
+[/block]
 
 Other use-cases:
 
@@ -349,7 +348,7 @@ If you select the DAU, WAU, or MAU function for a date range that includes the c
 
 Select the [Data Function](https://help.mixpanel.com/hc/en-us/articles/7713028610964-Advanced-Insights-Functionality-#insights-data-functions-operators-and-calculations) you want to use to calculate results by clicking on **Total** and selecting an option from the drop-down. You can calculate based on users or profile property value.
 
-![https://www.notion.so/hc/article_attachments/7771794359444/mceclip8.gif](https://www.notion.so/hc/article_attachments/7771794359444/mceclip8.gif)
+![Explore User Profiles](https://raw.githubusercontent.com/ranic/mixpanel-docs/main/media/Platform/Reports/Insights/advanced-explore-user-profiles.gif)
 
 ## Formulas
 
@@ -359,7 +358,7 @@ Mixpanel supports the following operators:
 
 - \+ : Add
 - \- : Subtract
-- * : Multiply
+- \* : Multiply
 - / : Divide
 - () : Use parentheses to influence the order of operations
 
@@ -394,7 +393,7 @@ When breaking down/segmenting by a numeric property, Mixpanel decides what inter
 You can now click a segment (bar or line) in an Insights report to see the list of users that underlie that data point. This helps see a representative sample of users from any analysis, so you can drill into anomalies or simply get to know your users. You can also save this user list as a cohort to either export or use for message targeting.
 [block:embed]
 {
-  "html": "<iframe src=\"//www.loom.com/embed/5568e266532b4804a1c2d36d678eb1a2\" width=\"560\" height=\"315\" frameborder=\"0\" allowfullscreen=\"\"></iframe>",
+  "html": "<iframe src=\"//www.loom.com/embed/5568e266532b4804a1c2d36d678eb1a2\" height=\"460\" frameborder=\"0\" allowfullscreen=\"\"></iframe>",
   "url": "https://www.loom.com/embed/5568e266532b4804a1c2d36d678eb1a2",
   "title": "View Users",
   "favicon": null,
