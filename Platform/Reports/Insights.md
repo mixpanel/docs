@@ -79,7 +79,7 @@ You can easily resize the columns in the bar chart in order to see more or remov
 
 When breaking down results, click on a bar in the chart to either filter or exclude that property value. Filter zooms in on that property value, filtering the entire report to that property value. Exclude filters out that property value from the results.
 
-![Filter & Exclude](https://raw.githubusercontent.com/ranic/mixpanel-docs/main/media/Platform/Reports/Insights/visualizing-filter-exclude.gif)
+![Filter & Exclude](https://raw.githubusercontent.com/ranic/mixpanel-docs/main/media/Platform/Reports/Insights/visualizing-filter-exclude.png)
 
 # Analysis & Value Settings
 
@@ -93,14 +93,15 @@ You can switch between Absolute and Relative totals by selecting the **#** dropd
 }
 [/block]
 
-![https://www.notion.so/hc/article_attachments/7787493636500/mceclip8.png](https://www.notion.so/hc/article_attachments/7787493636500/mceclip8.png)
+![Value Setting](https://raw.githubusercontent.com/ranic/mixpanel-docs/main/media/Platform/Reports/Insights/analysis-value-setting.png)
 
 The Absolute view will show you, in numbers, your totals for different event counts. Relative view will display these counts as a percentage of the whole.
 
 The Analysis options will determine the way the chart is calculated and visualized. The options are:
 
 - **Linear:** This is the standard view for the chart.
-- **Rolling:** Rolling analysis calculates the rolling average of the data set. A rolling average curve is a series of averages from subsets of data. Use rolling average analysis to remove noise or spikes from data and smooth out trends over time. Mixpanel calculates the rolling average based on the selected time interval (hour, day, week, month or quarter) for each data point in the graph.<br />| Time Interval | Default Rolling Time Range |
+- **Rolling:** Rolling analysis calculates the rolling average of the data set. A rolling average curve is a series of averages from subsets of data. Use rolling average analysis to remove noise or spikes from data and smooth out trends over time. Mixpanel calculates the rolling average based on the selected time interval (hour, day, week, month or quarter) for each data point in the graph.<br />
+| Time Interval | Default Rolling Time Range |
 | --- | --- |
 | Hour | Last 12 hours |
 | Day | Last 7 days |
