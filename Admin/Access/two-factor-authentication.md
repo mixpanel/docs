@@ -2,7 +2,7 @@
 title: "Two-Factor Authentication (2FA)"
 slug: "two-factor-authentication"
 hidden: false
-metadata: 
+metadata:
   title: "Two Factor Authentication (2FA)"
   description: "Learn about Two Factor Authentication."
 ---
@@ -10,7 +10,6 @@ metadata:
 # Overview
 
 Two-factor authentication (2FA) is a security process that requires users to provide two different authentication factors, such as passwords or tokens, to verify their identity.
-
 
 ## Enable Two-Factor Authentication for your Organization
 
