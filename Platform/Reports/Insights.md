@@ -194,7 +194,7 @@ For more of an overview of Insights, click [here](https://www.notion.so/hc/en-us
 
 Choose to explore either **Events & Cohorts** or **Profiles**. Events & Cohorts allows you to examine user behaviors, while Profiles allows you access profile data and visualize your users with filters and breakdowns based on their profile properties. When exploring Profiles, you are always analyzing all user profiles.
 
-![https://www.notion.so/hc/article_attachments/7771259735700/mceclip0.png](https://www.notion.so/hc/article_attachments/7771259735700/mceclip0.png)
+![User Analysis](https://raw.githubusercontent.com/ranic/mixpanel-docs/main/media/Platform/Reports/Insights/advanced-users.png)
 
 ## Time Period Comparisons
 
@@ -204,7 +204,7 @@ Note that if a data point for a previous year falls on a weekend, the data point
 
 Click on the **Compare to past** button at the top of your Insights graph and select the time period you wish to compare to. You can also select a custom date range.
 
-![https://www.notion.so/hc/article_attachments/7771414189972/mceclip10.gif](https://www.notion.so/hc/article_attachments/7771414189972/mceclip10.gif)
+![Time Period Comparison](https://raw.githubusercontent.com/ranic/mixpanel-docs/main/media/Platform/Reports/Insights/advanced-time-period-comparison.gif)
 
 ## Bucketing
 
@@ -247,7 +247,7 @@ The following functions have additional aggregation options which you will be pr
 | Function | Aggregation options |
 | --- | --- |
 | Events | Total Per User |
-| Aggregate Properties | Sum<br />Average<br />Median<br />![Distinct Count](https://www.loom.com/share/7d0e42f847c24b3c8720d5b6a6bedeb4)<br />Percentiles (P25,P75,P90,P99)<br />Minimum<br />Maximum |
+| Aggregate Properties | Sum<br />Average<br />Median<br />[Distinct Count](https://www.loom.com/share/7d0e42f847c24b3c8720d5b6a6bedeb4)<br />Percentiles (P25,P75,P90,P99)<br />Minimum<br />Maximum |
 | Count Users | Daily Active Users (DAU)<br />Weekly Active Users (WAU)<br />Monthly Active Users (MAU) |
 | Event property value per user | Sum<br />Average<br />Distinct value count<br />Minimum<br />Maximum |
 
@@ -393,6 +393,15 @@ When breaking down/segmenting by a numeric property, Mixpanel decides what inter
 
 You can now click a segment (bar or line) in an Insights report to see the list of users that underlie that data point. This helps see a representative sample of users from any analysis, so you can drill into anomalies or simply get to know your users. You can also save this user list as a cohort to either export or use for message targeting.
 <iframe src="//www.loom.com/embed/5568e266532b4804a1c2d36d678eb1a2" width="560" height="315" frameborder="0" allowfullscreen=""></iframe>
+[block:embed]
+{
+  "html": "<iframe src="//www.loom.com/embed/5568e266532b4804a1c2d36d678eb1a2" width="560" height="315" frameborder="0" allowfullscreen=""></iframe>",
+  "url": "https://www.loom.com/embed/5568e266532b4804a1c2d36d678eb1a2",
+  "title": "View Users",
+  "favicon": null,
+  "image": null
+}
+[/block]
 
 Please note: "View users" are currently unsupported on visualizations other than bar and line.
 
