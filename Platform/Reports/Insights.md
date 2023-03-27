@@ -166,16 +166,9 @@ Sorting is applied within the grouping, respecting the breakdown hierarchy. As a
 The Analysis options will determine the way the chart is calculated and visualized. The options are:
 
 - **Linear:** This is the standard view for the chart.
-- **Rolling:** Rolling analysis calculates the rolling average of the data set. A rolling average curve is a series of averages from subsets of data. Use rolling average analysis to remove noise or spikes from data and smooth out trends over time. Mixpanel calculates the rolling average based on the selected time interval (hour, day, week, month or quarter) for each data point in the graph.<br />
-    | Time Interval | Default Rolling Time Range |
-    | --- | --- |
-    | Hour | Last 12 hours |
-    | Day | Last 7 days |
-    | Week | Last 5 weeks |
-    | Month | Last 3 months |
-    | Quarter | Last 2 quarters |<br />
-For example, if you make a rolling analysis query for the past 30 days, Mixpanel calculates the rolling 7-day average by default. The value reported at each day in the line graph is the average of the values from the 7 days leading to that day. In the case of the first 6 days in your selected time period, the 7-day-average calculation will include days before the selected time period.
 - **Logarithmic:** A nonlinear scale based on orders of magnitude, rather than a standard linear scale, so the value represented by each equidistant mark on the scale is the value at the previous mark multiplied by a constant.
+- **Rolling:** Rolling analysis calculates the rolling average of the data set. A rolling average curve is a series of averages from subsets of data. Use rolling average analysis to remove noise or spikes from data and smooth out trends over time. Mixpanel calculates the rolling average based on the selected time interval (hour, day, week, month or quarter) for each data point in the graph.<br />
+For example, if you make a rolling analysis query for the past 30 days, Mixpanel calculates the rolling 7-day average by default. The value reported at each day in the line graph is the average of the values from the 7 days leading to that day. In the case of the first 6 days in your selected time period, the 7-day-average calculation will include days before the selected time period.
 - **Cumulative:** Adds up the values of each point on the graph as it goes along, so the height of the line will increase over time.
 
 # Advanced
@@ -216,13 +209,12 @@ You can switch between Absolute and Relative totals by selecting the **#** dropd
 
 The Absolute view will show you, in numbers, your totals for different event counts. Relative view will display these counts as a percentage of the whole.
 
-## Bucketing
+## Custom Bucketing
 
-Insights will automatically group your high-cardinality segments into ranges. Ranges can be edited by using the "Customize Range" option in the overflow menu:
+Insights will automatically group your high-cardinality segments into buckets. Buckets can be edited by using the "Custom Buckets" option in the overflow menu:
+You can choose "Even" to get buckets of uniform size, and you can choose "Varied" to get buckets of different sizes. This helps with organizing outliers, or with drilling deeper into particular ranges.
 
-![Bucketing](https://raw.githubusercontent.com/ranic/mixpanel-docs/main/media/Platform/Reports/Insights/advanced-bucketing.gif)
-
-If you want custom buckets that are non-uniform, you can create [custom properties](https://www.notion.so/hc/en-us/articles/360030848432) to manipulate these buckets.
+![Bucketing](https://raw.githubusercontent.com/ranic/mixpanel-docs/main/media/Platform/Reports/Insights/advanced-bucketing.png)
 
 ## Annotations
 
@@ -339,19 +331,9 @@ Here are some use-cases that are now possible with "Distinct count" of property 
 
 ## Daily, Weekly, and Monthly Active Users
 
-### Daily Active Users (DAU)
-
-Select DAU to calculate the number of unique users in the previous day (24-hour) period that have performed the selected event.
-
-### Weekly Active Users (WAU)
-
-Select WAU to calculate the number of unique users in the previous week (7-day) period that have performed the selected event.
-
-### Monthly Active Users (MAU)
-
-Select MAU to calculate the number of unique users in the previous month (30-day) period that have performed the selected event.
-
-### Note on DAU, WAU, and MAU calculations
+**Daily Active Users (DAU)**: Select DAU to calculate the number of unique users in the previous day (24-hour) period that have performed the selected event.
+**Weekly Active Users (WAU)**: Select WAU to calculate the number of unique users in the previous week (7-day) period that have performed the selected event.
+**Monthly Active Users (MAU)**: Select MAU to calculate the number of unique users in the previous month (30-day) period that have performed the selected event.
 
 If you select the DAU, WAU, or MAU function for a date range that includes the current day, the query will take the end of the current day as the end of the query’s time segment (even though it’s in the future). For example, today is April 25th, and it’s 4:22 PM. If you make a query to show WAU and you select “current day” as your date range, the query will return the count of unique users between April 19 at 12:00:00 AM and April 25 at 11:59:59.
 
@@ -393,15 +375,9 @@ For example, you can calculate the ratio of DAU to MAU using a formula. Build a
 
 You can also use numbers as constants in a formula. Multiply a ratio by 100 to display as a percentage, for example. Divide a property value tracked in seconds by 3,600 to display the value in hours.
 
-## Customize Ranges
-
-When breaking down/segmenting by a numeric property, Mixpanel decides what intervals the values get grouped into, while you always had the option to customize these ranges/buckets with [Custom Properties](https://www.notion.so/hc/en-us/articles/360030848432), it required a bit of effort to setup, so we've added support to define intervals without any formulas:
-
-![Customize Ranges](https://raw.githubusercontent.com/ranic/mixpanel-docs/main/media/Platform/Reports/Insights/advanced-customize-ranges.gif)
-
 ## View Users
 
-You can now click a segment (bar or line) in an Insights report to see the list of users that underlie that data point. This helps see a representative sample of users from any analysis, so you can drill into anomalies or simply get to know your users. You can also save this user list as a cohort to either export or use for message targeting.
+Click a segment in an Insights report to see the list of users that underlie that data point. This helps see a representative sample of users from any analysis, so you can drill into anomalies or simply get to know your users. You can also save this user list as a cohort to either export or use for message targeting.
 [block:embed]
 {
   "html": "<iframe src=\"//www.loom.com/embed/5568e266532b4804a1c2d36d678eb1a2\" height=\"460\" frameborder=\"0\" allowfullscreen=\"\"></iframe>",
@@ -412,18 +388,15 @@ You can now click a segment (bar or line) in an Insights report to see the list 
 }
 [/block]
 
-Please note: "View users" are currently unsupported on visualizations other than bar and line.
-
 ## View Events from Insights
 
-You can now click on a chart segment (bar, line) in Insights and view the raw events that made up that metric (redirects you to Events page):
+Click on a chart segment in Insights and view the raw events that made up that metric. You will be redirected to the Events page.
 
 ![View Events](https://raw.githubusercontent.com/ranic/mixpanel-docs/main/media/Platform/Reports/Insights/advanced-view-events.gif)
 
 ## View Sample Events
 
-If you've ever wanted to see a few samples of an event to help you decide whether that's the right event you want for analysis or which property you should use for filters/breakdowns, this is for you.
-
 You can hover over any event and in the context panel, you now have the ability to "View Sample Events", which redirects you to the Events page with 100 most recent samples of that hovered event:
+You can see a few samples of an event to help you decide whether that's the right event you want for your analysis or which property you should use for filters/breakdowns.
 
 ![View Sample Events](https://raw.githubusercontent.com/ranic/mixpanel-docs/main/media/Platform/Reports/Insights/advanced-view-sample-events.gif)
