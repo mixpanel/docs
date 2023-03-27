@@ -54,7 +54,7 @@ The [Schematized Pipeline reference](doc:schematized-export-pipeline) goes the d
 
 Once you’ve configured your destination, you need to tell Mixpanel to start exporting to that destination.
 
-You can do this by with our [Create Pipeline API](ref:create-warehouse-pipeline). You can create the Pipeline directly from our developer docs UI.
+You can do this with our [Create Pipeline API](ref:create-warehouse-pipeline). You can create the Pipeline directly from our developer docs UI.
 
 # FAQ
 
@@ -62,7 +62,7 @@ You can do this by with our [Create Pipeline API](ref:create-warehouse-pipeline)
 This normally happens when you have a thousands of unique event names or property names, which is usually an implementation mistake (eg: including a UUID in the event or property name). This causes the export process to exceed table or column limits in the destination. In these cases, we try to identify the bad patterns and exclude them from the export process. We always try to communicate this to the customers through their Customer Success Managers.
 
 **Why does the number of events in Mixpanel not match the number of exported events to my destination?**
-This can happen for a couple of reasons:
+This can happen for a few reasons:
 - [Data Sync](doc:schematized-export-pipeline#data-sync) is not enabled or not supported for your pipeline.
 - Data Delay: it can take up to 1 day for late arriving data to be synced from Mixpanel to your destination.
 - Hidden Events: Mixpanel exports all events to your destination, even ones that are hidden in the UI via Lexicon. We recommend checking whether the count in your destination is mostly due to events that have been hidden in the Mixpanel UI.
