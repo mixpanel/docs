@@ -1,6 +1,6 @@
 ---
 title: "Effective Server-Side Tracking"
-slug: "effective-server"
+slug: "effective-server-side-tracking"
 hidden: false
 createdAt: "2021-10-01T20:21:17.479Z"
 updatedAt: "2021-10-02T18:41:55.184Z"
