@@ -15,18 +15,44 @@ Insights is a powerful and flexible tool designed to visualize trends and compos
 
 Advanced Insights features also allow you to create formulas, compare current data to past data, and generate custom events and properties for deeper analysis.
 
-# Sample Questions you can Answer in Insights
+## Sample Questions you can Answer in Insights
 
-Imagine your product is a B2B messaging application. You might use Insights to answer these sample questions:
+[block:embed]
+{
+  "html": "<iframe src=\"//www.loom.com/embed/82a392661df84192b67aac0eae9d4215\" height=\"460\" frameborder=\"0\" allowfullscreen=\"\"></iframe>",
+  "url": "https://www.loom.com/embed/82a392661df84192b67aac0eae9d4215",
+  "title": "Mixpanel Insights - July 2020 Update",
+  "favicon": null,
+  "image": null
+}
+[/block]
 
-- How many messages were sent in the US in the past 30 days? (total events, filtered)
-- How many users had a mobile app session yesterday? (unique events)
-- How many messages are sent per session? (formulas)
-- Which advertising campaigns generate the most signups? (property breakdown)
-- How much revenue was generated on plans purchased in the past year? (property aggregation)
-- How has the power users cohort grown over the past 6 months? (cohort trends)
+Here are some of the sample questions you can answer in insights:
 
-# Building your First Report
+- Product Analytics
+    - How is my WAU changing over time? (unique users)
+    - How often are my users getting value (frequency analysis)?
+    - What is the distribution of my users across regions / devices etc? (property breakdown)
+- B2B (in this case, a messaging application
+    - How many messages were sent in the US in the past 30 days? (total events, filtered)
+    - How many users had a mobile app session yesterday? (unique events)
+    - How many messages are sent per session? (formulas)
+    - How much revenue was generated on plans purchased in the past year? (property aggregation)
+    - How has the power users cohort grown over the past 6 months? (cohort trends)
+- Marketing
+    - Which advertising campaigns generate the most checkouts? (property breakdown)
+
+Here's another common use-case: Jenny is a Marketing Manager for an online shoes marketplace. and she wants to know which utm source is getting the maximum number of purchases to the platform.
+
+In Insights, Jenny looks at purchase activity by selecting the "Complete Purchase" event and analyzing the activity over the last 1 month. Mixpanel returns an aggregate number of the total times the event was performed, but Jenny wants to dig deeper.
+
+She elects to break down the data by the event property "UTM_source", which categorizes the results into the different UTM_source values of the "Complete Purchase" event.
+
+![Use Cases](https://raw.githubusercontent.com/ranic/mixpanel-docs/main/media/Platform/Reports/Insights/use-cases.png)
+
+Based on the data from the last 30 days, the Insights report shows that LinkedIn is the highest source of paid conversions.
+
+# Quick Start
 
 Building a report in Insights takes just a few clicks, and results arrive in seconds. Let's build a simple report together. Continuing the B2B messaging example, imagine you wanted to answer the following question:
 
@@ -66,12 +92,14 @@ Congratulations, you've constructed your first Insights query! Now, it's time to
 Insights features multiple visualizations to help you view the results of your query in the clearest chart type. By default, Insights displays line charts, which help you understand how metrics trend over time. However, another chart type might present the results with more clarity. In Insights, you can either choose to get a metric calculated across the entire time period selected in the date picker, or get a time-segmented view of the metric (e.g. daily breakdown).
 
 - Metric calculated across the entire time period
-    - Bar chart<br />![Bar Chart](https://raw.githubusercontent.com/ranic/mixpanel-docs/main/media/Platform/Reports/Insights/visualizing-bar-chart.png)
-    - Stacked bar chart<br />![Stacked Bar Chart](https://raw.githubusercontent.com/ranic/mixpanel-docs/main/media/Platform/Reports/Insights/visualizing-stacked-bar-chart.png)
-    - Pie chart<br />![Pie Chart](https://raw.githubusercontent.com/ranic/mixpanel-docs/main/media/Platform/Reports/Insights/visualizing-pie-chart.png)
+    - Bar chart
+    - Stacked bar chart
+    - Pie chart
+    - Metric chart
+    - Table chart
 - Metric time-segmented
-    - Line chart<br />![Line Chart](https://raw.githubusercontent.com/ranic/mixpanel-docs/main/media/Platform/Reports/Insights/visualizing-line-chart.png)
-    - Stacked line chart<br />![Stacked Line Chart](https://raw.githubusercontent.com/ranic/mixpanel-docs/main/media/Platform/Reports/Insights/visualizing-stacked-line-chart.png)
+    - Line chart
+    - Stacked line chart
 
 You can easily resize the columns in the bar chart in order to see more or remove detail.
 
@@ -101,13 +129,13 @@ The Analysis options will determine the way the chart is calculated and visualiz
 
 - **Linear:** This is the standard view for the chart.
 - **Rolling:** Rolling analysis calculates the rolling average of the data set. A rolling average curve is a series of averages from subsets of data. Use rolling average analysis to remove noise or spikes from data and smooth out trends over time. Mixpanel calculates the rolling average based on the selected time interval (hour, day, week, month or quarter) for each data point in the graph.<br />
-| Time Interval | Default Rolling Time Range |
-| --- | --- |
-| Hour | Last 12 hours |
-| Day | Last 7 days |
-| Week | Last 5 weeks |
-| Month | Last 3 months |
-| Quarter | Last 2 quarters |<br />
+    | Time Interval | Default Rolling Time Range |
+    | --- | --- |
+    | Hour | Last 12 hours |
+    | Day | Last 7 days |
+    | Week | Last 5 weeks |
+    | Month | Last 3 months |
+    | Quarter | Last 2 quarters |<br />
 For example, if you make a rolling analysis query for the past 30 days, Mixpanel calculates the rolling 7-day average by default. The value reported at each day in the line graph is the average of the values from the 7 days leading to that day. In the case of the first 6 days in your selected time period, the 7-day-average calculation will include days before the selected time period.
 - **Logarithmic:** A nonlinear scale based on orders of magnitude, rather than a standard linear scale, so the value represented by each equidistant mark on the scale is the value at the previous mark multiplied by a constant.
 - **Cumulative:** Adds up the values of each point on the graph as it goes along, so the height of the line will increase over time.
@@ -142,29 +170,6 @@ When sorting by segments, the sort is carried out left to right.
 Clicking on the "Average" data column performs a flat sort across all segments:
 
 ![Sorting Line Chart](https://raw.githubusercontent.com/ranic/mixpanel-docs/main/media/Platform/Reports/Insights/sorting-line-chart-3.png)
-
-# Use Cases for Insights Reports
-
-Here's a video that shows a set of use-cases with Mixpanel's Insights report:
-[block:embed]
-{
-  "html": "<iframe src=\"//www.loom.com/embed/82a392661df84192b67aac0eae9d4215\" height=\"460\" frameborder=\"0\" allowfullscreen=\"\"></iframe>",
-  "url": "https://www.loom.com/embed/82a392661df84192b67aac0eae9d4215",
-  "title": "Mixpanel Insights - July 2020 Update",
-  "favicon": null,
-  "image": null
-}
-[/block]
-
-Here's another common use-case: Jenny is a Marketing Manager for an online shoes marketplace. and she wants to know which utm source is getting the maximum number of purchases to the platform.
-
-In Insights, Jenny looks at purchase activity by selecting the "Complete Purchase" event and analyzing the activity over the last 1 month. Mixpanel returns an aggregate number of the total times the event was performed, but Jenny wants to dig deeper.
-
-She elects to break down the data by the event property "UTM_source", which categorizes the results into the different UTM_source values of the "Complete Purchase" event.
-
-![Use Cases](https://raw.githubusercontent.com/ranic/mixpanel-docs/main/media/Platform/Reports/Insights/use-cases.png)
-
-Based on the data from the last 30 days, the Insights report shows that LinkedIn is the highest source of paid conversions.
 
 ## Frequency analysis
 
