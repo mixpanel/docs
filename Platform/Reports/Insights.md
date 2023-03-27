@@ -9,7 +9,7 @@ metadata:
 
 # Overview
 
-![https://raw.githubusercontent.com/ranic/mixpanel-docs/main/media/Platform/Reports/Insights/overview.png](https://raw.githubusercontent.com/ranic/mixpanel-docs/main/media/Platform/Reports/Insights/overview.png)
+![Insights Overview Image](https://raw.githubusercontent.com/ranic/mixpanel-docs/main/media/Platform/Reports/Insights/overview.png)
 
 Insights is a powerful and flexible tool designed to visualize trends and compositions within your data. You can analyze events, cohorts, and user profiles, and display the data in a wide variety of chart types.
 
@@ -100,9 +100,13 @@ When breaking down results, click on a bar in the chart to either filter or excl
 
 You can switch between Absolute and Relative totals by selecting the **#** dropdown in the top right of the chart and selecting either **# Absolute** or  **% Relative**.
 
-## Note
-
-You can only select Absolute or Relative values for the Table, Stacked Line, Stacked Bar, and Bar charts.
+[block:callout]
+{
+  "type": "info",
+  "body": "You can only select Absolute or Relative values for the Table, Stacked Line, Stacked Bar, and Bar charts.",
+  "title": "Note"
+}
+[/block]
 
 ![https://www.notion.so/hc/article_attachments/7787493636500/mceclip8.png](https://www.notion.so/hc/article_attachments/7787493636500/mceclip8.png)
 
@@ -174,11 +178,15 @@ Based on the data from the last 30 days, the Insights report shows that LinkedIn
 
 It's important to know what's the natural frequency at which your users use your product / experience the core value proposition of your product - do majority of your users use your product daily? weekly ? monthly? A16Z wrote a great article about the [Power User Curve](https://www.reforge.com/brief/understand-your-most-engaged-users-with-the-power-user-curve#bOb9wjj_l0R3Pqo32pggUQ), and this video below shows how you can reproduce that within Mixpanel:
 
+<iframe src="//www.loom.com/embed/0c05ac17742a4d49a4c6879c0fe9f0de" width="560" height="315" frameborder="0" allowfullscreen=""></iframe>
+
 Other use-cases:
 
 - [Lifecycle analysis](https://mixpanel.com/blog/growth-through-segmentation-lifecycle-analysis-to-understand-your-users/)
 
 # Advanced
+
+## Profile Analysis
 
 Mixpanel's Insights report allows you to analyze your user data as a current snapshot or as a trend over time. This article covers advanced functionality available in the Insights report that lets you drill in more deeply on your data, or ask a more precise question.
 
@@ -202,7 +210,7 @@ Click on the **Compare to past** button at the top of your Insights graph and se
 
 Insights will automatically group your high-cardinality segments into ranges. Ranges can be edited by using the "Customize Range" option in the overflow menu:
 
-![https://www.notion.so/hc/article_attachments/7771414076948/mceclip11.gif](https://www.notion.so/hc/article_attachments/7771414076948/mceclip11.gif)
+![Advanced Bucketing](https://raw.githubusercontent.com/ranic/mixpanel-docs/main/media/Platform/Reports/Insights/advanced-bucketing.gif)
 
 If you want custom buckets that are non-uniform, you can create [custom properties](https://www.notion.so/hc/en-us/articles/360030848432) to manipulate these buckets.
 
@@ -214,15 +222,15 @@ Only project admins can create, save, and delete annotations.
 
 To add an annotation, hover your mouse over the point on the chart you want to annotate, and click the blue **+** button that appears.Enter a description for the annotation, such as a holiday that occurred on that day or the end date of your fiscal year, then click **Save**. If you accidentally selected the incorrect date on the chart, you can edit the date and time of the annotation in this window.
 
-![https://www.notion.so/hc/article_attachments/7771423819668/mceclip6.png](https://www.notion.so/hc/article_attachments/7771423819668/mceclip6.png)
+![Annotations 1](https://raw.githubusercontent.com/ranic/mixpanel-docs/main/media/Platform/Reports/Insights/advanced-annotations-1.png)
 
 View an existing annotation by clicking on the number found at the bottom of a report. You will be able to see who submitted the annotation.
 
-![https://www.notion.so/hc/article_attachments/7771423819924/mceclip7.png](https://www.notion.so/hc/article_attachments/7771423819924/mceclip7.png)
+![Annotations 2](https://raw.githubusercontent.com/ranic/mixpanel-docs/main/media/Platform/Reports/Insights/advanced-annotations-2.png)
 
 Hover the cursor over the annotation to edit or delete it. Click on the **pencil icon** to edit an annotation, or the **trash icon** to delete an annotation. Add additional annotations to the same date by clicking **Add annotation**.
 
-![https://www.notion.so/hc/article_attachments/7771423896084/mceclip8.png](https://www.notion.so/hc/article_attachments/7771423896084/mceclip8.png)
+![Annotations 3](https://raw.githubusercontent.com/ranic/mixpanel-docs/main/media/Platform/Reports/Insights/advanced-annotations-3.png)
 
 ## Insights Data Functions, Operators and Calculations
 
@@ -396,40 +404,41 @@ Use Formulas to make calculations using simple arithmetic operators.
 Mixpanel supports the following operators:
 
 - + : Add
-- : Subtract
-- : Multiply
+- - : Subtract
+- * : Multiply
 - / : Divide
 - () : Use parentheses to influence the order of operations
 
-### Note
+[block:callout]
+{
+  "type": "info",
+  "body": "Dig deeper and break down the formula by a property to see how your calculation compares across different segments. Similarly, apply a filter to a formula to narrow in on a specific segment of your data.",
+  "title": "Note"
+}
+[/block]
 
-Dig deeper and break down the formula by a property to see how your calculation compares across different segments. Similarly, apply a filter to a formula to narrow in on a specific segment of your data.
+Click the **Formula** button. Each event in the query shows a letter next to it, which indicates its variable name. Use these letters in combination with the operators to calculate a more advanced query. For example, you can use the DAU, WAU, and MAU functions in Formulas to calculate the stickiness of your product:
 
-Click the
-
-**Formula**
-
-button. Each event in the query shows a letter next to it, which indicates its variable name. Use these letters in combination with the operators to calculate a more advanced query. For example, you can use the DAU, WAU, and MAU functions in Formulas to calculate the stickiness of your product:
-
-![https://www.notion.so/hc/article_attachments/7771766840724/mceclip10.png](https://www.notion.so/hc/article_attachments/7771766840724/mceclip10.png)
+![Formulas 1](https://raw.githubusercontent.com/ranic/mixpanel-docs/main/media/Platform/Reports/Insights/advanced-formulas-1.png)
 
 Enter a name for the formula (optional), and click **Apply Formula** to see the formula output.
 
 For example, you can calculate the ratio of DAU to MAU using a formula. Build an Insights report with event A as "App Session" and select MAU. Select "App Session" with DAU for event B. Apply the formula B/A to show the ratio of DAU to MAU in the report.
 
-![https://www.notion.so/hc/article_attachments/7771766962324/mceclip11.png](https://www.notion.so/hc/article_attachments/7771766962324/mceclip11.png)
+![Formulas 2](https://raw.githubusercontent.com/ranic/mixpanel-docs/main/media/Platform/Reports/Insights/advanced-formulas-2.png)
 
 You can also use numbers as constants in a formula. Multiply a ratio by 100 to display as a percentage, for example. Divide a property value tracked in seconds by 3,600 to display the value in hours.
 
-## Customize ranges
+## Customize Ranges
 
 When breaking down/segmenting by a numeric property, Mixpanel decides what intervals the values get grouped into, while you always had the option to customize these ranges/buckets with [Custom Properties](https://www.notion.so/hc/en-us/articles/360030848432), it required a bit of effort to setup, so we've added support to define intervals without any formulas:
 
-![https://www.notion.so/hc/article_attachments/7771794759060/mceclip12.gif](https://www.notion.so/hc/article_attachments/7771794759060/mceclip12.gif)
+![Customize Ranges](https://raw.githubusercontent.com/ranic/mixpanel-docs/main/media/Platform/Reports/Insights/advanced-customize-ranges.gif)
 
 ## View Users
 
 You can now click a segment (bar or line) in an Insights report to see the list of users that underlie that data point. This helps see a representative sample of users from any analysis, so you can drill into anomalies or simply get to know your users. You can also save this user list as a cohort to either export or use for message targeting.
+<iframe src="//www.loom.com/embed/5568e266532b4804a1c2d36d678eb1a2" width="560" height="315" frameborder="0" allowfullscreen=""></iframe>
 
 Please note: "View users" are currently unsupported on visualizations other than bar and line.
 
@@ -437,7 +446,7 @@ Please note: "View users" are currently unsupported on visualizations other than
 
 You can now click on a chart segment (bar, line) in Insights and view the raw events that made up that metric (redirects you to Events page):
 
-![https://www.notion.so/hc/article_attachments/7771767547156/Screen_Recording_2021-09-09_at_8.13.50_AM.gif](https://www.notion.so/hc/article_attachments/7771767547156/Screen_Recording_2021-09-09_at_8.13.50_AM.gif)
+![View Events](https://raw.githubusercontent.com/ranic/mixpanel-docs/main/media/Platform/Reports/Insights/advanced-view-events.gif)
 
 ## View Sample Events
 
@@ -445,4 +454,4 @@ If you've ever wanted to see a few samples of an event to help you decide whethe
 
 You can hover over any event and in the context panel, you now have the ability to "View Sample Events", which redirects you to the Events page with 100 most recent samples of that hovered event:
 
-![https://www.notion.so/hc/article_attachments/7771767865876/View_sample_events.gif](https://www.notion.so/hc/article_attachments/7771767865876/View_sample_events.gif)
+![View Sample Events](https://raw.githubusercontent.com/ranic/mixpanel-docs/main/media/Platform/Reports/Insights/advanced-view-sample-events.gif)
