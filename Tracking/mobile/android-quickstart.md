@@ -68,3 +68,6 @@ If your events are still not showing up after 60 seconds, check if you have opte
 </application>
 ...
 ```
+
+**How do I use the Android SDK if I use Proguard?**
+Add `-dontwarn com.mixpanel.**` to your `proguard.cfg` file.
