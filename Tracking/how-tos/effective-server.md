@@ -6,7 +6,7 @@ createdAt: "2021-10-01T20:21:17.479Z"
 updatedAt: "2021-10-02T18:41:55.184Z"
 ---
 
-This document gives tips for implementing scalable, maintainable server-side tracking. It augments the [quickstart](docs:server), which you should start with.
+This document gives tips for implementing scalable, maintainable server-side tracking. It augments the [quickstart](doc:server), which you should start with.
 
 ## Tracking Geolocation
 If you supply the `$ip` property on an event, Mixpanel will enrich the event with `$city`, `$country`, and `$region` properties. Our Web and Mobile SDKs automatically set `$ip` to the IP address of the device that they're installed on.
