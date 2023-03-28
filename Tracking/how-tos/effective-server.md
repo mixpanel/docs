@@ -37,7 +37,7 @@ def handle_signup(request):
 ## Tracking Anonymous Users
 Our server libraries require that you specify a `user_id` parameter for each event. If you know who the user is at the time that the event is tracked, simply set this to that user's ID in your internal database (ie: that user's primary key in your "users" table).
 
-If _don't_ know the user's identity at the time the event is tracked, then they're an anonymous user. When using our Web or Mobile SDKs, Mixpanel will automatically generate an ID that's local to that user's device. This ID will persist on all events tracked by that user on that device, until you call `identify()` or `reset()`. More on that in our [identity management guide](docs:identity-management).
+If _don't_ know the user's identity at the time the event is tracked, then they're an anonymous user. When using our Web or Mobile SDKs, Mixpanel will automatically generate an ID that's local to that user's device. This ID will persist on all events tracked by that user on that device, until you call `identify()` or `reset()`. More on that in our [identity management guide](doc:identity-management).
 
 If you're tracking from servers, you'll need to generate and manage that ID yourself. It takes 3 steps:
 
