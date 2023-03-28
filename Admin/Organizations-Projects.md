@@ -17,7 +17,7 @@ An **Organization** is the controlling entity that links projects, users, and a 
 
 A **Project** is a container for your product's analytics data, including saved entities like custom events, or saved reports. Projects house the events, properties and user profiles sent to them which can then be queried with Mixpanel’s web interface and APIs. A single organization can contain multiple projects and each project’s data tallies are summed together to give the organization-level usage.
 
-image organization_overview.png
+![Organization Overview 1 Image](https://raw.githubusercontent.com/ranic/mixpanel-docs/main/media/Admin/Organization-Project/organization_overview.png)
 
 ## Invite Users
 
@@ -86,9 +86,14 @@ Organization Discoverability makes it seamless for new users with a shared work 
 
 This feature is accessible to new users who have verified their email as well as existing organizations that are not an Enterprise plan and do not have SSO enabled.
 
+![Organization Discoverability 1 Image](https://raw.githubusercontent.com/ranic/mixpanel-docs/main/media/Admin/Organization-Project/discoverability1.png)
+
 ### Setting Discoverability
 
 Only **organization owners** and **billing admins** can access Organization Discoverability by going to Organization Settings > Users & Teams > Organization Discoverability.
+
+![Organization Discoverability 2 Image](https://raw.githubusercontent.com/ranic/mixpanel-docs/main/media/Admin/Organization-Project/discoverability2.png)
+
 
 They can enable Organization Discoverability by first specifying the private (i.e., work) email domain(s) that should be granted access when a new user signs up for Mixpanel. Please note that public email domains, such as Gmail or Yahoo, cannot be used.
 
