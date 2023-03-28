@@ -48,8 +48,6 @@ You'll need your Project Token for this, which you can get [here](https://mixpan
 
 ### FAQ
 
-**How do I opt users out of tracking?**
-Call the [optOutTracking()](http://mixpanel.github.io/mixpanel-android/com/mixpanel/android/mpmetrics/MixpanelAPI.html#optOutTracking--) method, which will prevent data from being sent from a user’s device.
 
 **Why aren't my events showing up?**
 First please check your testing device/emulator has access to the internet. To preserve battery life and customer bandwidth, the Mixpanel library doesn't send the events you record immediately. Instead, it sends batches to the Mixpanel servers every 60 seconds while your application is running, as well as when the application transitions to the background. You can call [flush()](http://mixpanel.github.io/mixpanel-android/com/mixpanel/android/mpmetrics/MixpanelAPI.html#flush--) manually if you want to force a flush at a particular moment for example before your application is completely shutdown.
@@ -66,6 +64,10 @@ If your events are still not showing up after 60 seconds, check if you have opte
 </application>
 ...
 ```
+
+**How do I opt users out of tracking?**
+Call the [optOutTracking()](http://mixpanel.github.io/mixpanel-android/com/mixpanel/android/mpmetrics/MixpanelAPI.html#optOutTracking--) method, which will prevent data from being sent from a user’s device.
+
 
 **How do I use the Android SDK if I use Proguard?**
 Add `-dontwarn com.mixpanel.**` to your `proguard.cfg` file.
