@@ -27,11 +27,12 @@ For more information, read [this Microsoft Azure article](https://docs.microsoft
 - Reply URL: https://sso.mixpanel.com/sso/saml2
 - Sign on URL: Postback URL from Mixpanel (should look like https://mixpanel.com/security/sso/v2/authorize/?org_id=<your org id>)
   
-image
+![Azure Config 1 Image](https://raw.githubusercontent.com/ranic/mixpanel-docs/main/media/Admin/Azure/azure_config1.png)
+
   
 3. Click **Edit** under **User Attributes & Claims** to add the required email claim (firstName and lastName are used for provisioning and optional).
   
-image
+![Azure Config 2 Image](https://raw.githubusercontent.com/ranic/mixpanel-docs/main/media/Admin/Azure/azure_config2.png)
   
 4. Download the SAML certificate under **SAML Signing Certificate** by clicking **Download** next to the **Certificate (Base64)** field. If you downloaded an .xml file then you have clicked the wrong button, make sure it is a .cer or .pem file. This will be uploaded to Mixpanel in the next step.
 
@@ -43,7 +44,7 @@ image
 4. Input the Azure Login URL in the Identity Provider Sign-in URL field. 
 5. Assign your team members this new application.
   
-image
+![Azure Config 3 Image](https://raw.githubusercontent.com/ranic/mixpanel-docs/main/media/Admin/Azure/azure_config3.png)
   
 ## SCIM Provisioning
   
