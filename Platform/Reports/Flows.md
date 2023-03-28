@@ -49,7 +49,7 @@ Filters exclude unwanted data. In this case, we only care about events performed
 
 ![https://help.mixpanel.com/hc/article_attachments/360087905852/flows_3.png](https://help.mixpanel.com/hc/article_attachments/360087905852/flows_3.png)
 
-## Step 4 (optional): Choose Breakdowns
+## Step 4: Choose Breakdowns
 
 Breakdowns segment data into groups. In this case, we don't need to apply a breakdown since we already have the query in place to answer our question. However, if we wanted to see how the flow varies by city, we could add a "City" breakdown.
 
@@ -73,7 +73,7 @@ Select any blue node representing an event on the Sankey chart to highlight the 
 
 # Basic Features
 
-## Viewing more steps
+## Viewing More Steps
 
 By default, flows shows you the first 3 events performed by users after the selected event. If you wish to see what users did further along in the path, you can adjust the number of steps directly in the Sankey visualization as shown below.
 
@@ -107,7 +107,7 @@ For example, below Flows is showing the event that happened directly before a Pu
 
 ![https://help.mixpanel.com/hc/article_attachments/7771896990356/Screen_Shot_2021-07-20_at_7.53.04_PM.png](https://help.mixpanel.com/hc/article_attachments/7771896990356/Screen_Shot_2021-07-20_at_7.53.04_PM.png)
 
-## Viewing less frequent events
+## Viewing More Event Flows
 
 By default, flows only shows you the top 3 events performed by users ordered by the number of users who performed them. Less common events performed by fewer users are combined into an "Other events" section. ([Click here](https://help.mixpanel.com/hc/en-us/articles/360036438351-Flows-Report-Overview#h_01FB3F9554W1BPPWBJ4HB80E03) to learn more about other events). To view more events, simply right click the other events node and `Add a row of events`.
 
@@ -291,4 +291,4 @@ You can disable custom events for flows by toggling the Show Custom Events in th
 
 ## Exclusion Steps
 
-- Exclusion Steps - i.e What are the event flows between Add to Cart and Checkout, but only if the user does not Abandon their Cart in between?
+You can add exclusion steps, which exclude users who did a particular step. This is useful digging into a particular view, for example to explore the 2nd most popular path taken.

@@ -76,6 +76,10 @@ Choosing a different chart can help you visualize data better. Line charts help 
 
 ![Change Visualization](https://raw.githubusercontent.com/ranic/mixpanel-docs/main/media/Platform/Reports/Insights/change-visualization.png)
 
+## Step 6: Analyze Results
+
+You now a full analysis that you can use to put into a board, or use as a starting point to dig in further. This might mean adding more filters or breakdowns, or adding another metric and seeing if there's an interesting comparison to be made. You could also change the counting type or the chart type.
+
 # Basic Features
 
 ## Chart Types
