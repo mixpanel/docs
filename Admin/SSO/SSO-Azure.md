@@ -43,9 +43,7 @@ For more information, read [this Microsoft Azure article](https://docs.microsoft
 3. Input the Azure AD Identifier into the Issuer URL field.
 4. Input the Azure Login URL in the Identity Provider Sign-in URL field. 
 5. Assign your team members this new application.
-  
-![Azure Config 3 Image](https://raw.githubusercontent.com/ranic/mixpanel-docs/main/media/Admin/Azure/azure_config3.png)
-  
+    
 ## SCIM Provisioning
   
 Azure has an autoprovisioning integration with Mixpanel that lets you automatically add users to Mixpanel upon giving them access in Azure, and likewise removing access within Mixpanel when you remove access in Azure. You can find more information [here](https://learn.microsoft.com/en-us/azure/active-directory/saas-apps/mixpanel-provisioning-tutorial). Note that it is advised you turn on IDP Managed Access if you are using SCIM Provisioning.
