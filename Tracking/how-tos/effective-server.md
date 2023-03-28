@@ -95,6 +95,7 @@ Once the user logs in, you know their true ID. Set the `$user_id` property to th
 
 Here's a pseudocode example using Django's [cookies](https://django-book.readthedocs.io/en/latest/chapter14.html#cookies) and [authentication](https://django-book.readthedocs.io/en/latest/chapter14.html#using-users). It assumes the client is setting and sending cookies:
 ```python
+import uuid
 
 def track_to_mp(request, event_name, properties):
   # This assumes you've previously set a cookie called "session_id" that is local to the user's session
@@ -105,7 +106,7 @@ def track_to_mp(request, event_name, properties):
   if request.user.is_authenticated():
     properties["$user_id"] = request.user.username
   
-  # Note: for anonymous tracking, always leave the first argument blank.
+  # Note: leave the first argument blank here, since we're passing $device_id and $user_id as properties.
   mp.track("", event_name, properties)
   
 def handle_pageview(request):
