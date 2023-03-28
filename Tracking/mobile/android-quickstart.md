@@ -31,7 +31,7 @@ Next, add the following permissions in your AndroidManifest.xml:
 ```
 
 
-### 2. Track your first event
+### Step 2: Track your first event
 You'll need your Project Token for this, which you can get [here](https://mixpanel.com/settings/project). 
 [block:code]
 {
