@@ -39,11 +39,6 @@ You'll need your Project Token for this, which you can get [here](https://mixpan
 
 
 ### FAQ
-**I want to stop tracking an event/event property in Mixpanel. Is that possible?**
-Yes, in Lexicon, you can intercept and drop incoming events or properties. Mixpanel won’t store any new data for the event or property you select to drop. [See this article for more information](https://help.mixpanel.com/hc/en-us/articles/360001307806#dropping-events-and-properties).
-
-**I have a test user I would like to opt out of tracking. How do I do that?**
-Mixpanel’s client-side tracking library contains the [optOutTracking()](https://mixpanel.github.io/mixpanel-iphone/Classes/Mixpanel.html#//api/name/optOutTracking) method, which will set the user’s local opt-out state to “true” and will prevent data from being sent from a user’s device. More detailed instructions can be found in the section, [Opting users out of tracking](ios#opting-users-out-of-tracking).
 
 **Why aren't my events showing up?**
 To preserve battery life and customer bandwidth, the Mixpanel library doesn't send the events you record immediately. Instead, it sends batches to the Mixpanel servers every 60 seconds while your application is running, as well as when the application transitions to the background. You can call [flush()](https://mixpanel.github.io/mixpanel-iphone/Classes/Mixpanel.html#//api/name/flush) manually if you want to force a flush at a particular moment.
@@ -56,6 +51,9 @@ If your events are still not showing up after 60 seconds, check if you have opte
 ```objc
 mixpanel.enableLogging = YES;
 ```
+
+**I have a test user I would like to opt out of tracking. How do I do that?**
+Call the [optOutTracking()](https://mixpanel.github.io/mixpanel-iphone/Classes/Mixpanel.html#//api/name/optOutTracking) method, method, which will prevent data from being sent from a user’s device.
 
 **Starting with iOS 14.5, do I need to request the user’s permission through the AppTrackingTransparency framework to use Mixpanel?**
 No, Mixpanel does not use IDFA so it does not require user permission through the AppTrackingTransparency(ATT) framework.
