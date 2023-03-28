@@ -84,7 +84,7 @@ If _don't_ know the user's identity at the time the event is tracked, then they'
 If you're tracking from servers, you'll need to generate and manage that ID yourself. **Note: If you're doing this, make sure you leave the _user_id_ positional argument empty in your track calls. See the Python code sample below.**
 
 ### Step 1: Generate an ID
-The key is to have an ID that is unique to each user and persists during that user's session. We recommend setting a cookie and using that cookie as the ID. All common server frameworks provide a simple way to set and retrieve cookies per request.
+The key is to have an ID that is unique to each user and persists during that user's session. We recommend generating a random (how many chars??) UUID and storing that value in a cookie. All common server frameworks provide a simple way to set and retrieve cookies per request.
 
 ### Step 2: Set `$device_id` to that ID
 When tracking events from your server, set the `$device_id` property of that event to the ID for the user performing that event.
@@ -93,19 +93,19 @@ When tracking events from your server, set the `$device_id` property of that eve
 Once the user logs in, you know their true ID. Set the `$user_id` property to that ID. Continue setting `$device_id` to the ID generated in step 1. If Mixpanel receives an event with both `$device_id` and `$user_id` set, it will create a link between those two users. This is essential to track pre-login and post-login behavior accurately.
 
 
-Here's an pseudocode example using Django's [cookies](https://django-book.readthedocs.io/en/latest/chapter14.html#cookies) and [authentication](https://django-book.readthedocs.io/en/latest/chapter14.html#using-users). It assumes the client is setting and sending cookies:
+Here's a pseudocode example using Django's [cookies](https://django-book.readthedocs.io/en/latest/chapter14.html#cookies) and [authentication](https://django-book.readthedocs.io/en/latest/chapter14.html#using-users). It assumes the client is setting and sending cookies:
 ```python
 
 def track_to_mp(request, event_name, properties):
   # This assumes you've previously set a cookie called "session_id" that is local to the user's session
   # Set `$device_id` to that cookie's value
-  properties["$device_id"] = request.COOKIES["session_id"]
+  properties["$device_id"] = uuid.uuid4()
   
   # Set $user_id if the user is authenticated (logged in).
   if request.user.is_authenticated():
     properties["$user_id"] = request.user.username
   
-  # Note: always leave the first argument blank.
+  # Note: for anonymous tracking, always leave the first argument blank.
   mp.track("", event_name, properties)
   
 def handle_pageview(request):
