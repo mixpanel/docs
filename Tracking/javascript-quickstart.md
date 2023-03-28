@@ -51,13 +51,14 @@ You'll need your Project Token for this, which you can get [here](https://mixpan
 
 
 ### FAQ
-**Does Mixpanel use third-party cookies?**
-No, our Mixpanel JavaScript SDK does not set or use any third-party cookies. If you wish to disable cookies entirely, you can set the disable_persistence option to true when initializing your Mixpanel JS instance. Note that disabling persistence will disable the use of super properties and anonymous -> known user tracking.
-
 **Why don't I see my events in Mixpanel?**
 Make sure you've disabled ad blockers and your Do Not Track (DNT) browser settings are set to false when testing your JavaScript implementation. If the DNT setting is set, then Mixpanel won't collect information from that Mixpanel instance.
 
 We recommend [setting up a proxy server](doc:collection-via-a-proxy#how-to-set-up-a-proxy) so that you don't lose events due to ad-blockers.
+        
+**Does Mixpanel use third-party cookies?**
+No, our Mixpanel JavaScript SDK does not set or use any third-party cookies. If you wish to disable cookies entirely, you can set the disable_persistence option to true when initializing your Mixpanel JS instance. Note that disabling persistence will disable the use of super properties and anonymous -> known user tracking.
+
 
 
 ### Walkthrough
