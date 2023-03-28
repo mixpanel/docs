@@ -60,7 +60,3 @@ No, Mixpanel does not use IDFA so it does not require user permission through th
 
 **If I use Mixpanel, how do I answer app privacy questions for the App Store?**
 Please refer to our [Apple App Developer Privacy Guidance](https://mixpanel.com/legal/app-store-privacy-details/)
-
-### Resources
-* **[Sample app](https://github.com/mixpanel/mixpanel-flutter/tree/main/example)**
-* **[Full API Reference](https://developer.mixpanel.com/docs/flutter)**
