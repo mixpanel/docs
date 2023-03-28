@@ -15,19 +15,9 @@ Insights is a powerful and flexible tool designed to visualize trends and compos
 
 Advanced Insights features also allow you to create formulas, compare current data to past data, and generate custom events and properties for deeper analysis.
 
-## Sample Questions you can Answer in Insights
+## Use Cases
 
-[block:embed]
-{
-  "html": "<iframe src=\"//www.loom.com/embed/82a392661df84192b67aac0eae9d4215\" height=\"460\" frameborder=\"0\" allowfullscreen=\"\"></iframe>",
-  "url": "https://www.loom.com/embed/82a392661df84192b67aac0eae9d4215",
-  "title": "Mixpanel Insights - July 2020 Update",
-  "favicon": null,
-  "image": null
-}
-[/block]
-
-Here are some of the sample questions you can answer in insights:
+Here are some of the sample questions you can answer in Insights:
 
 - Product Analytics
     - How is my WAU changing over time? (unique users)
@@ -45,17 +35,7 @@ Here are some of the sample questions you can answer in insights:
 
 ### Frequency analysis
 
-It's important to know what's the natural frequency at which your users use your product / experience the core value proposition of your product - do majority of your users use your product daily? weekly ? monthly? A16Z wrote a great article about the [Power User Curve](https://www.reforge.com/brief/understand-your-most-engaged-users-with-the-power-user-curve#bOb9wjj_l0R3Pqo32pggUQ), and this video below shows how you can reproduce that within Mixpanel:
-
-[block:embed]
-{
-  "html": "<iframe src=\"//www.loom.com/embed/0c05ac17742a4d49a4c6879c0fe9f0de\" height=\"460\" frameborder=\"0\" allowfullscreen=\"\"></iframe>",
-  "url": "https://www.loom.com/embed/0c05ac17742a4d49a4c6879c0fe9f0de",
-  "title": "Natural Frequency Analysis in Mixpanel",
-  "favicon": null,
-  "image": null
-}
-[/block]
+It's important to know what's the natural frequency at which your users use your product / experience the core value proposition of your product - do majority of your users use your product daily? weekly ? monthly? A16Z wrote a great article about the [Power User Curve](https://www.reforge.com/brief/understand-your-most-engaged-users-with-the-power-user-curve#bOb9wjj_l0R3Pqo32pggUQ), and this [video](https://www.loom.com/share/0c05ac17742a4d49a4c6879c0fe9f0de) shows how you can reproduce that within Mixpanel.
 
 # Quick Start
 
