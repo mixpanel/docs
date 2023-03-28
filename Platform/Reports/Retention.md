@@ -13,7 +13,7 @@ metadata:
 
 The Retention report in Mixpanel is designed to assess user engagement over a specified period of time. Retention of your users is critical to achieving product-market fit and sustainable long-term growth, and this report will help you understand how long users continue to come back and find value from your product.
 
-# Use Cases
+## Use Cases
 
 Imagine your product is a B2B messaging application. You might use Retention to answer these sample questions:
 
@@ -22,7 +22,7 @@ Imagine your product is a B2B messaging application. You might use Retention to 
 - How has my 7 day messaging retention changed over time?
 - What percent of users sent messages in 2, 3, or 4 distinct hours of the day?
 
-# Building your First Report
+# Quick Start
 
 Building a Retention report follows the same high level steps as building any other report. You can read about report building basics [here](https://help.mixpanel.com/hc/en-us/articles/7651210894740).
 
@@ -33,19 +33,19 @@ Building a report in Retention takes just a few clicks, and results arrive in se
 
 Feel free to follow along and create your own report right in our demo project, [here](https://mixpanel.com/register/?next=%2Fproject%2F2195193%2Fview%2F139237%2Fapp%2Fretention%3Fredirect%3Dborn_event%3A%27%24mp_anything_event%27%2Cborn_filters%3A%21%28). To skip ahead to see the final result, click [here](https://mixpanel.com/register/?next=%2Fproject%2F2195193%2Fview%2F139237%2Fapp%2Fretention%3Fredirect%3Dreport%2F11945585%2Fi-os-retention-by-onboarding-variant%2Ftitle%3A%27iOS%2520Retention%2520by%2520Onboarding%2520Variant%27).
 
-# Step 1: Choose Events
+## Step 1: Choose Events
 
 In this case, since we want to know retention after signup, choose "Sign Up" in the first event slot. Then, we want to know if users are coming back and using the product, so choose "Any Event" in the second event slot. At this point, your query should look like this:
 
 ![https://help.mixpanel.com/hc/article_attachments/4415409874452/Retention_2_Events.png](https://help.mixpanel.com/hc/article_attachments/4415409874452/Retention_2_Events.png)
 
-# Step 2: Choose Filters
+## Step 2: Choose Filters
 
 Filters exclude unwanted data. In this case, we only care about events performed on the iOS platform. Therefore, add a "Platform" filter, where Platform equals "iOS". At this point, your query should look like this:
 
 ![https://help.mixpanel.com/hc/article_attachments/4415422771604/Retention_Filter.png](https://help.mixpanel.com/hc/article_attachments/4415422771604/Retention_Filter.png)
 
-# Step 3: Choose Breakdowns
+## Step 3: Choose Breakdowns
 
 Breakdowns segment data into groups. In this case, we want to break our report down based on the app version they are using to Sign Up. Therefore, add an "App Version" breakdown. At this point, your query should look like this:
 
@@ -87,7 +87,7 @@ Boxes with an asterisk (\*) indicate that the data is still in flux and not set 
 
 # Advanced
 
-# Calendar Retention Mode
+## Calendar Retention Mode
 
 You can go into advanced menu under Retention Criteria to switch the retention mode from the default rolling time windows to calendar defined time windows. This aligns the retention calculation so that all users entering within a time bucket get calculated together.
 
@@ -136,7 +136,7 @@ Both the modes are extremely useful. It totally depends on the use-case you’re
 
 Above said, general expectation is product use-cases which focus on user stickiness are likely to use rolling interval mode. Marketing & Revenue teams which focus on calendar dates for their activities, are likely to use calendar interval model
 
-# Retention Criteria - On time interval
+## Retention Criteria - On time interval
 
 "On" Retention calculates the percentage of users who come back on a specific time unit (e.g. day, week, month).
 
@@ -146,7 +146,7 @@ For example, day 5 retention is the percentage of users who “came back and did
 
 "On" retention is useful to understand high-level usage patterns.  We also recommend using "on" retention when your product relies on users returning in each and every time unit.
 
-# Retention Criteria - On or After time interval
+## Retention Criteria - On or After time interval
 
 ![https://help.mixpanel.com/hc/article_attachments/360095790691/qjcz6kqfb4.png](https://help.mixpanel.com/hc/article_attachments/360095790691/qjcz6kqfb4.png)
 
@@ -156,17 +156,17 @@ For example, day 5 retention is the percentage of users who “came back and did
 
 We think "On or After" retention is a better fit for most businesses and it is the default calculation for the Retention report. This is because it’s more common that a product doesn’t require users to come back in each time unit to achieve the product’s value proposition, and more often than not when doing retention analysis we don’t only value the user coming back in a specific time unit as long as they eventually do. However, if this is important to you and your business, please utilize "On" Retention.
 
-# Custom Retention Brackets
+## Custom Retention Brackets
 
 Not all retention analysis can be done with a set, repeated cadence and it is not always important to measure how a user came back relative to each and every particular time unit.
 
 Custom bracket retention gives you the flexibility to split up your retention buckets into customized intervals of multiple days, weeks, or months to create meaningful touchpoints as you see fit.
 
-# Use Cases
+### Use Cases
 
 For example, let's answer an important mobile gaming question: How often do my users came back and play a game between 15 and 30 days after sign up to represent mid-term players?
 
-- *In mobile gaming, industry-standard intervals typically examine retention for users that came back and play a game on Day < 1, Days 1-3, Days 4-7, Days 8-14, and Day 15-30.
+In mobile gaming, industry-standard intervals typically examine retention for users that came back and play a game on Day < 1, Days 1-3, Days 4-7, Days 8-14, and Day 15-30.
 
 Typical "exact day" retention buckets don't quite solve for this use case because users should be able to play a game on any day between day 15 and 30 and be counted in a single bucket to understand how many users were retained in that entire period. Exact day retention will log users in each individual day bucket (15, 16, 17, ..., 30) which, while more granular, doesn't give a retention percentage for the entire interval. Instead, we want to know how many users played a game at all in any of the days 15-30.
 
@@ -178,7 +178,7 @@ Typical "exact day" retention buckets don't quite solve for this use case becaus
 
 ![https://help.mixpanel.com/hc/article_attachments/7787258363796/4f3rn68q1x.png](https://help.mixpanel.com/hc/article_attachments/7787258363796/4f3rn68q1x.png)
 
-# Setting Custom Brackets
+### Setting Custom Brackets
 
 First, go into the time unit drop-down in the Retention query builder and select **Custom
 
@@ -190,7 +190,7 @@ Then, select the size of each bracket for the given time unit. In this example, 
 
 Each of these intervals is its own retention bucket, and if the user does the "come back and did B" event anytime inside that bucket they are counted as retained. Now I will be able to understand what percent of users come back to play at least one game in any day between day 15 and day 30 from signing up.
 
-# Frequency View
+## Frequency View
 
 You can use the Frequency report to learn how frequently users return to use your product or service.
 
@@ -210,7 +210,7 @@ This will show how engaged users are with an action. In the example below, you c
 
 ![https://help.mixpanel.com/hc/article_attachments/7787258721044/Screen_Shot_2022-07-05_at_4.49.46_PM.png](https://help.mixpanel.com/hc/article_attachments/7787258721044/Screen_Shot_2022-07-05_at_4.49.46_PM.png)
 
-# Frequency Criteria
+### Frequency Criteria
 
 **Cumulative Frequency**: calculates the number of users who did the event **in at least** X unique intervals. This shows overall engagement up to that up to each frequency interval.
 
@@ -218,7 +218,7 @@ This will show how engaged users are with an action. In the example below, you c
 
 # FAQ
 
-# How is Retention calculated?
+## How is Retention calculated?
 
 - As of 5/25/2021, we've improved segmented retention calculations so that they are now intervalized averages. As such, segmented retention queries are now consistently calculated with the same method Mixpanel uses for unsegmented retention queries.
 
@@ -232,13 +232,13 @@ Segmented queries are now calculated with that same intervalized average method,
 
 ![https://help.mixpanel.com/hc/article_attachments/360093575772/segemented_intervalized_retention.png](https://help.mixpanel.com/hc/article_attachments/360093575772/segemented_intervalized_retention.png)
 
-# How is this different than before?
+### How is this different than before?
 
 Prior to 5/25/2021, we calculated segmented retention in a non-intervalized manner. Instead of calculating each individual day/week/month cohort separately and averaging it, we would treat the entire time period as one single cohort to group the users who performed the events with a given property value in a single row.
 
 ![https://help.mixpanel.com/hc/article_attachments/360093575752/segmented_nonintervalized.png](https://help.mixpanel.com/hc/article_attachments/360093575752/segmented_nonintervalized.png)
 
-# Why make the change?
+### Why make the change?
 
 We wanted to add intervalized averages to segmented retention queries for three key advantages:
 
@@ -246,7 +246,7 @@ We wanted to add intervalized averages to segmented retention queries for three 
 2. **Clarity through consistency:** We used to calculate segmented and unsegmented queries differently: unsegmented queries were intervalized and segmented queries used to be non-intervalized. This prior inconsistency made Retention reports more difficult to consume. It required users to context switch and it took an experienced user to understand what they are looking at once they add a breakdown property. This adds clarity by way of consistent expectations.
 3. **More granular analysis:** Users are now able to see how the individual birth interval cohorts are performing within a particular segment. This unlocks the ability to get more answers and dive deeper into particular cohorts of interest.
 
-# How is the "Average" row for Retention reports calculated?
+## How is the "Average" row for Retention reports calculated?
 
 Mixpanel calculates the "Average" row values by taking the average of all the completed buckets, **weighted** by the number of users who enter. Let's walk through an example using this sample data:
 
