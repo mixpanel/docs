@@ -44,7 +44,7 @@ If you're tracking from servers, you'll need to generate and manage that ID your
 It takes 3 steps:
 
 ### Step 1: Generate an ID
-The key is to have an ID that is unique to each user and persists during that user's session. We recommend setting a cookie and using that cookie as the ID. All server frameworks (eg: ) provide a simple way to set and retrieve cookies per request.
+The key is to have an ID that is unique to each user and persists during that user's session. We recommend setting a cookie and using that cookie as the ID. All common server frameworks provide a simple way to set and retrieve cookies per request.
 
 ### Step 2: Set `$device_id` to that ID
 When tracking events from your server, set the `$device_id` property of that event to the ID for the user performing that event.
