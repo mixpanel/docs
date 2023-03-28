@@ -50,8 +50,8 @@ You'll need your Project Token for this, which you can get [here](https://mixpan
 **I want to stop tracking an event/event property in Mixpanel. Is that possible?**
 Yes, in Lexicon, you can intercept and drop incoming events or properties. Mixpanel won’t store any new data for the event or property you select to drop. [See this article for more information](https://help.mixpanel.com/hc/en-us/articles/360001307806#dropping-events-and-properties).
 
-**I have a test user I would like to opt out of tracking. How do I do that?**
-Mixpanel’s client-side tracking library contains the [optOutTracking()](http://mixpanel.github.io/mixpanel-android/com/mixpanel/android/mpmetrics/MixpanelAPI.html#optOutTracking--) method, which will set the user’s local opt-out state to “true” and will prevent data from being sent from a user’s device. More detailed instructions can be found in the section, [Opting users out of tracking](android#opting-users-out-of-tracking).
+**How do I opt users out of tracking?**
+Simply call the [optOutTracking()](http://mixpanel.github.io/mixpanel-android/com/mixpanel/android/mpmetrics/MixpanelAPI.html#optOutTracking--) method, which will prevent data from being sent from a user’s device.
 
 **Why aren't my events showing up?**
 First please check your testing device/emulator has access to the internet. To preserve battery life and customer bandwidth, the Mixpanel library doesn't send the events you record immediately. Instead, it sends batches to the Mixpanel servers every 60 seconds while your application is running, as well as when the application transitions to the background. You can call [flush()](http://mixpanel.github.io/mixpanel-android/com/mixpanel/android/mpmetrics/MixpanelAPI.html#flush--) manually if you want to force a flush at a particular moment for example before your application is completely shutdown.
