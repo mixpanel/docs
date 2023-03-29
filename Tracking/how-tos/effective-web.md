@@ -4,15 +4,27 @@ slug: "effective-web-tracking"
 hidden: false
 ---
 
-This document gives tips for implementing scalable, maintainable server-side tracking. If you're just getting started, check out the [quickstart](doc:javascript-quickstart).
+This document gives tips for implementing scalable, maintainable web tracking. If you're just getting started, check out the [quickstart](doc:javascript-quickstart).
+
+
+# Prefer Server-Side For Important Events
+
+We recommend tracking important events, like Signup or Purchase, from your [servers](doc:server) instead of via our Javascript SDK. While these events may have multiple entrypoints from your website, the source of truth for what constitutes a Signup or a Purchase is usually something on your backend server. If you track those events from your website, they're likely to diverge from the source of truth, which leads to loss of trust in the data. In other words, whatever can be tracked server-side, should be tracked server-side.
+
+Prefer using our Javascript SDK for events that you can _only_ get on the client -- things like mouse hovers, clicks, scrolls, etc. Anything interaction that makes a call to your servers should be tracked on the server.
 
 
 # Use a Proxy
-We recommend using a proxy server to track events from your website to Mixpanel, which makes your tracking much more reliable since it's less susceptible to ad-blockers. This means that instead of events going straight from your website -> Mixpanel, they will go from your website -> your proxy -> Mixpanel.
+We recommend using a proxy server to track events from your website to Mixpanel. This makes tracking less susceptible to ad-blockers, which results in much higher accuracy. This means that instead of events going straight from your website -> Mixpanel, they will go from your website -> your proxy -> Mixpanel.
 
-### Step 1: Spin up a proxy server
-Here is a sample nginx config:
+See [our guide](doc:collection-via-proxy) on how to set up a proxy.
 
-<script src="https://emgithub.com/embed-v2.js?target=https%3A%2F%2Fgithub.com%2Fmixpanel%2Ftracking-proxy%2Fblob%2F126203cda52abd1564b8d82ab5dd88f67e7c27a5%2Fnginx.conf&style=default&type=code&showBorder=on&showLineNumbers=on&showFileMeta=on&showFullPath=on&showCopy=on"></script>
 
-See more details in [Github](https://github.com/mixpanel/tracking-proxy)
+# Prefer Local Storage to Cookies
+We recommend configuring our SDK to use localStorage instead of cookies for persistence:
+
+```javascript
+mixpanel.set_config({'persistence': 'localStorage'})
+```
+
+This prevents getting a "Cookie Too Large" error and in general is a more reliable way to persist state on the browser.
