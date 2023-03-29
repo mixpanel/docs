@@ -234,10 +234,6 @@ In the Export panel, you can select:
 
 The requester will receive an email with a link to download a single CSV file. This link remains active for 14 days. Each CSV file can contain up to 5,000 events, and 2,000 properties per event. Each CSV file can contain up to 2,000 user profile properties.
 
-Mixpanel supports multiple integrations (Avo.app, mParticle Data Plans, Segment Protocols) and methods (CSV import, Lexicon Schemas API) to import data dictionaries into Lexicon. Project Owner and Admin roles are required to import into Lexicon.
-
-Event and property descriptions and metadata (hidden, dropped, sensitive, etc) that are already in Lexicon will be overwritten by descriptions and metadata for matching event and property names. By default, any event and property descriptions for events that are not imported will remain unchanged unless you check the option to overwrite your entire data dictionary during import.
-
 ## CSV Import
 
 Project owners and admins can export a CSV of their Lexicon changes, make changes, and import that CSV back into Lexicon.
@@ -253,6 +249,8 @@ Once you've made your modifications, you can directly import the CSV file into L
 - Select your CSV file
 - Review Events, Event Properties, and/or User Profile Properties
 - Import into Lexicon
+
+Event and property descriptions and metadata (hidden, dropped, sensitive, etc) that are already in Lexicon will be overwritten by descriptions and metadata for matching event and property names. By default, any event and property descriptions for events that are not imported will remain unchanged unless you check the option to overwrite your entire data dictionary during import.
 
 # Lexicon Schemas API
 
