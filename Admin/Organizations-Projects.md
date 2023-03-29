@@ -19,9 +19,9 @@ A **Project** is a container for your product's analytics data, including saved 
 
 ![Organization Overview 1 Image](https://raw.githubusercontent.com/ranic/mixpanel-docs/main/media/Admin/Organization-Project/organization_overview.png)
 
-## Manage Team Members
+# Manage Team Members
 
-# Invite Users
+## Invite Users
 
 You can invite users users to an organization or to a project with specific role permissions.
 
@@ -54,7 +54,7 @@ To invite a user to a project:
 
 Need new invite box image
 
-# Remove Users
+## Remove Users
 
 You can remove users from a project or organization.
 
@@ -82,25 +82,72 @@ image showing delete button
 
 image showing warning?
 
-## Permissions
+# Permissions
 
 In Mixpanel, users have roles in an organization and in a project.
 
 The types of organization and project roles a user has should be based on the required permissions users need for specific levels.
 
-### Organization Roles
+## Organization Roles
+
+The table below visually breaks down all the permissions per role on an organization level.
+
+| **Organization Role**                                              | **Owner**          | **Admin**          | **Billing Admin**  | **Member** |
+|--------------------------------------------------------------------|--------------------|--------------------|--------------------|------------|
+| Manage Billing Plans                                               | :white_check_mark: | :x:                | :white_check_mark: | :x:        |
+| Create Projects                                                    | :white_check_mark: | :white_check_mark: | :x:                | :x:        |
+| Delete Projects                                                    | :white_check_mark: | :x:                | :x:                | :x:        |
+| Create/Delete Teams                                                | :white_check_mark: | :white_check_mark: | :x:                | :x:        |
+| Transfer Projects Between Organizations                            | :white_check_mark: | :x:                | :x:                | :x:        |
+| Add/Invite/Remove users to an Organization and or Projects         | :white_check_mark: | :white_check_mark: | :x:                | :x:        |
+| Add/Modify/Remove Service Accounts to Organization and or Projects | :white_check_mark: | :white_check_mark: | :x:                | :x:        |
+| Modify Roles - Organization Level                                  | :white_check_mark: | :white_check_mark: | :x:                | :x:        |
+| Modify Roles - Make themselves an Owner                            | :white_check_mark: | :x:                | :x:                | :x:        |
+| Modify Roles - Project/Team Level                                  | :white_check_mark: | :white_check_mark: | :x:                | :x:        |
+| Modify 2-FA and SSO                                                | :white_check_mark: | :white_check_mark: | :x:                | :x:        |
+| Request Organization Deletion                                      | :white_check_mark: | :x:                | :x:                | :x:        |
+
+### Owner
+
+Organization Owners have administrative permissions for the organization and all the projects in the organization. Multiple users can be Owners. However, each organization must have at least one Owner.
+
+### Admin
+
+Organization Admins have permissions to manage projects, members and roles in the organization. Organization Admins have the same permissions as Organization Owners EXCEPT for the following:
+
+- Request Organization deletions
+- Delete Projects
+- Transfer Projects between Organizations
+- Manage Billing Plans
+
+### Billing Admin
+
+Organization Billing Admins can only manage billing plans for your company. The Billing Admin does not have to belong to a team or project. A user can be a Billing Admin and also a member of a Project or a Team simultaneously.
+
+Billing admins can view organization settings solely to:
+
+- Manage Billing Plans
+- Update Billing Information
+- View Receipts
+- Submit a Downgrade Request
+
+### Member
+
+Organization Members have no permissions to control or manage organization settings.
+
+In order for a user to have access to project(s) and/or team(s), they must first be added to the organization as a Member.
 
 
 
-### Project Roles
+## Project Roles
 
 
-### Multiple Roles at Once
+## Multiple Roles at Once
 
 
-### Setting a Default Role on a Project
+## Setting a Default Role on a Project
 
-## Organization Discoverability
+# Organization Discoverability
 
 Organization Discoverability makes it seamless for new users with a shared work email domain to connect with teammates in an existing organization in Mixpanel, allowing them to access their team’s projects, data, and reports, instead of joining a new, empty org.
 
