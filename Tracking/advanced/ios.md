@@ -451,11 +451,7 @@ Mixpanel’s tracking libraries will send user data by default. Explicitly initi
 [/block]
 ## Delete Existing Data
 Opting users out of tracking will stop any future tracking. This does not automatically delete data that has already been collected. Mixpanel's [deletion API](doc:managing-personal-data) can be used to delete existing data.
-# Automatically Track Events
 
-After installing the library into your iOS app, Mixpanel will [automatically collect common mobile events](https://help.mixpanel.com/hc/en-us/articles/115004596186-Which-common-mobile-events-can-Mixpanel-collect-on-my-behalf-automatically-). You can enable/disable automatic collection in the Mixpanel settings menu. In addition, Mixpanel allows you to use our in-browser editor to add tracking on the fly. 
-
-Navigate to our editor by clicking the gear in the upper righthand corner of your Mixpanel project and selecting **Codeless Tracking** from the dropdown.
 
 # Debugging and Logging
 
@@ -536,6 +532,8 @@ Mixpanel's SDKs have a legacy feature to automatically collect common mobile eve
 | $ae_crashed | App Crashed | Executes when Mixpanel receives either an exception or a signal that indicated the app has crashed. |
 | $ae_session | App Session | Executes when a user spends more than 10 seconds in the app. |
 | $ae_iap | In App Purchase (IAP) | Executes when a user conducts an in-app purchase through your app. |
+
+
 
 # Release History
 [See All Releases](https://github.com/mixpanel/mixpanel-iphone/releases).
