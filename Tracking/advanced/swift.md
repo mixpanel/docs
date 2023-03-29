@@ -530,7 +530,7 @@ Mixpanel’s tracking libraries will send user data by default. Explicitly initi
 ## Delete Existing Data
 Opting users out of tracking will stop any future tracking. This does not automatically delete data that has already been collected. Mixpanel's [deletion API](doc:managing-personal-data) can be used to delete existing data.
 
-# [Legacy] Automatically Tracked Events
+## [Legacy] Automatically Tracked Events
 
 Mixpanel's SDKs have a legacy feature to automatically collect common mobile events. We don't recommend enabling this, as these events rely on client-side state and can be unreliable.
 
