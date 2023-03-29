@@ -8,7 +8,7 @@ updatedAt: "2021-10-02T18:41:55.184Z"
 
 This document gives tips for implementing scalable, maintainable server-side tracking. If you're just getting started, check out the [quickstart](doc:server).
 
-## Tracking Geolocation
+# Tracking Geolocation
 If you supply the `$ip` property on an event, Mixpanel will enrich the event with `$city`, `$country`, and `$region` properties. Mixpanel's Web and Mobile SDKs automatically set `$ip` to the IP address of the device that they're installed on.
 
 If you're tracking from your servers, you need to set the `$ip` property of the events to the _client's_ IP address. Most server frameworks provide this out of the box.
@@ -34,7 +34,7 @@ def handle_signup(request):
   return "Signup successful!"
 ```
 
-## Tracking Browser, Device, and OS
+# Tracking Browser, Device, and OS
 Mixpanel's Web and Mobile SDKs parse `User-Agent` into a set of properties about the user's browser, device, and OS. This doesn't happen automatically with server-side tracking, but it's easy to add these properties yourself.
 
 `User-Agent` is a header sent on all requests to your server. Most server frameworks provide a way to access your headers:
@@ -76,7 +76,7 @@ def handle_signup(request):
 
 
 
-## Tracking Anonymous Users
+# Tracking Anonymous Users
 Our server libraries normally require that you specify a `user_id` parameter for each event. If you know who the user is at the time that the event is tracked, simply set this to that user's ID in your internal database (ie: that user's primary key in your "users" table).
 
 If _don't_ know the user's identity at the time the event is tracked, then they're an anonymous user. When using our Web or Mobile SDKs, Mixpanel will automatically generate an ID that's local to that user's device. This ID will persist on all events tracked by that user on that device, until you call `identify()` or `reset()`. More on that in our [identity management guide](doc:identity-management).
