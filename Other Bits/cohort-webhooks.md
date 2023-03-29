@@ -1,9 +1,9 @@
 ---
-title: "Sync Cohorts to Webhooks"
+title: "Cohort Syncs"
 slug: "cohort-webhooks"
 hidden: false
 metadata: 
-  title: "Cohort Syncs To Webhooks | Mixpanel Developer Docs"
+  title: "Cohort Syncs"
   description: "Mixpanel supports syncing cohorts to a custom webhook URL that you provide via our Integrations UI. Learn the prerequisites, webhook format, and more here."
 createdAt: "2021-10-08T22:39:06.529Z"
 updatedAt: "2023-03-25T05:52:10.102Z"
