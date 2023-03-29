@@ -103,7 +103,7 @@ This data lets you easily discover the parts of your implementation that are mos
 
 ![Lexicon Query Volumes](https://raw.githubusercontent.com/ranic/mixpanel-docs/main/media/Admin/Data%20Governance/Lexicon/lexicon-query-volumes.png)
 
-# Dropping Events and Properties
+# Dropping and Hiding Data
 
 In Lexicon, you can intercept and drop incoming events or properties. Mixpanel won’t store any new data for the event or property you select to drop. **Warning: You cannot recover event data after you drop it.**
 
@@ -112,7 +112,9 @@ When an event is dropped, all events of that type that have previously been inge
 Sample use cases for dropping events and properties are:
 
 **Sensitive data:** If you accidentally send sensitive data, such as passwords or credit card information, you can drop the event or property with that data and prevent it from being stored in Mixpanel servers.
+
 **Cost and Time Efficiency:** Being able to drop events and properties that are no longer useful directly from Lexicon is easier and more efficient than having to implement changes to your code base.
+
 **Better Organization:** Events and properties that are no longer useful can cause a cluttered Mixpanel project. Dropping unnecessary events and properties optimizes your code for a clean and streamlined project implementation.
 
 ## Dropping Events
@@ -166,7 +168,7 @@ To show an event or property:
 2. Select Unhide. After you select Unhide, the event or property status changes to “Visible”.
 ![Lexicon Show Events and Properties](https://raw.githubusercontent.com/ranic/mixpanel-docs/main/media/Admin/Data%20Governance/Lexicon/show-events-and-properties.png)
 
-# Merging Events and Event Properties
+# Merging Events and Properties
 
 In Lexicon, project owners can merge events and event properties.
 
@@ -217,6 +219,8 @@ To unmerge properties:
 
 Mixpanel supports exporting and importing Lexicon data dictionaries. Project owners, admins, analysts, and consumers can click Export in Lexicon to receive a CSV file via email that contains the events and properties, and/or user profile properties data from a project.
 
+![Lexicon Export](https://raw.githubusercontent.com/ranic/mixpanel-docs/main/media/Admin/Data%20Governance/Lexicon/lexicon-export.gif)
+
 In the Export panel, you can select:
 
 - Events & Properties and/or
@@ -228,7 +232,23 @@ Mixpanel supports multiple integrations (Avo.app, mParticle Data Plans, Segment 
 
 Event and property descriptions and metadata (hidden, dropped, sensitive, etc) that are already in Lexicon will be overwritten by descriptions and metadata for matching event and property names. By default, any event and property descriptions for events that are not imported will remain unchanged unless you check the option to overwrite your entire data dictionary during import.
 
-### Avo.app
+## CSV Import
+
+Project owners and admins can export a CSV of their Lexicon changes, make changes, and import that CSV back into Lexicon.
+
+When you export your Lexicon Data into a CSV file, you can make modifications, add events and/or properties, and import them into Lexicon.
+
+To import CSV files, they must be in the exported CSV format, otherwise the file will be rejected: 
+
+![Lexicon CSV Import Format](https://raw.githubusercontent.com/ranic/mixpanel-docs/main/media/Admin/Data%20Governance/Lexicon/lexicon-csv-import-format.png)
+
+Once you've made your modifications, you can directly import the CSV file into Lexicon:
+
+- Select your CSV file
+- Review Events, Event Properties, and/or User Profile Properties
+- Import into Lexicon
+
+## Avo.app
 
 In order to import your data dictionary from Avo.app, you will need to enable an integration with Mixpanel. The following information would be necessary in order to complete this integration from Avo.app:
 
@@ -238,7 +258,7 @@ To publish your Avo data dictionary to Lexicon, click the "Publish to Lexicon" b
 
 [Click here](https://www.avo.app/docs/workspace/integrations) for more information on integrating Avo.app with Lexicon.
 
-### mParticle
+## mParticle
 
 When importing a data dictionary from [mParticle](https://www.mparticle.com/), navigate to your Data Plan and select Download Plan Version from the upper right menu.
 
@@ -248,7 +268,7 @@ When importing a data dictionary from [mParticle](https://www.mparticle.com/), n
 4. Review Events, Event Properties, and User Profile Properties to be imported.
 5. Import data into Lexicon
 
-### Segment
+## Segment
 
 When importing a data dictionary from Segment Protocols using the Segment Config API, you will be asked for your Segment Token and Segment Workspace. You can find your Segment Token by going to your Segment dashboard: Settings > Access Management > Tokens
 
@@ -263,31 +283,17 @@ Once you have your Segment Token & Workspace, head over to Lexicon and Select Im
 - Review the Events and Profile Properties that will be imported
 - Import your Segment Plan into Lexicon
 
-### CSV Import
-
-Project owners and admins can export a CSV of their Lexicon changes, make changes, and import that CSV back into Lexicon.
-
-When you export your Lexicon Data into a CSV file, you can make modifications, add events and/or properties, and import them into Lexicon.
-
-To import CSV files, they must be in the exported CSV format, otherwise the file will be rejected: 
-
-Once you've made your modifications, you can directly import the CSV file into Lexicon:
-
-- Select your CSV file
-- Review Events, Event Properties, and/or User Profile Properties
-- Import into Lexicon
-
 ## Replacing Lexicon Entries
 
 For mParticle, Segment, and CSV imports into Lexicon, you'll have an option to Replace Lexicon Entries.
 
 If this option is enabled, all of your existing Lexicon entries would be removed and replaced by the uploaded entries. This feature is useful if you want Lexicon to contain only these new entries.
 
-## Lexicon Schemas API
+# Lexicon Schemas API
 
 Mixpanel provides a suite of API endpoints for you to Retrieve, Create, and Delete your data dictionary in Lexicon. To use these APIs, check out our [API reference docs](https://developer.mixpanel.com/reference/lexicon-schemas-api).
 
-## Adding Tags to Events
+# Adding Tags to Events
 
 Mixpanel provides tags to help you organize and find your data. If you’re new to the project, it could be time-consuming to search hundreds of events to find them. Using Lexicon, you can assign a tag to events that relate to a specific category.
 
