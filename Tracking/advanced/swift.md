@@ -530,12 +530,6 @@ Mixpanel’s tracking libraries will send user data by default. Explicitly initi
 ## Delete Existing Data
 Opting users out of tracking will stop any future tracking. This does not automatically delete data that has already been collected. Mixpanel's [deletion API](doc:managing-personal-data) can be used to delete existing data.
 
-## Automatically Tracked Events
-
-After installing the library into your iOS app, Mixpanel will [automatically collect common mobile events](https://help.mixpanel.com/hc/en-us/articles/115004596186-Which-common-mobile-events-can-Mixpanel-collect-on-my-behalf-automatically-). You can enable/disable automatic collection through your project settings. In addition, Mixpanel allows you to use our in-browser editor to add tracking on the fly. 
-
-Navigate to our editor by clicking the gear in the upper righthand corner of your Mixpanel project and selecting **Codeless Tracking** from the dropdown.
-
 ## Automatically Tracked Properties
 
 ### Event Properties
