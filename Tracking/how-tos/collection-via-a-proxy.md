@@ -9,12 +9,12 @@ This guide demonstrates how to route events from Mixpanel's SDKs via a proxy in 
 
 There are two steps: setting up a proxy server and pointing our JavaScript SDK at your server.
 
-# Step 1: Set up a proxy server
+### Step 1: Set up a proxy server
 The simplest way is to use our [sample nginx config](https://github.com/mixpanel/tracking-proxy). This makes it extremely easy to spin up a proxy server which will allow you to use your own domain to send tracking data. This can be beneficial if your data is being blocked by ad blockers that filter third-party tracking requests.
 
 Once you have deployed your proxy server and it's publicly accessible, you can configure our SDKs to use that server instead of `https://api.mixpanel.com`.
    
-# Step 2: Point our JavaScript SDK at your server
+### Step 2: Point our JavaScript SDK at your server
 Add the following line before the Mixpanel JS snippet, replacing `YOUR_PROXY_DOMAIN` with your proxy server's domain:
 
 ```js
