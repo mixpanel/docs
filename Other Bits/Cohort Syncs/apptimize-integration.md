@@ -21,7 +21,7 @@ You must be a Mixpanel project admin to enable the Apptimize integration.
 
 ## Enable the Integration
 
-Follow these steps to enable the integration with Appcues:
+Follow these steps to enable the integration with Apptimize:
 
 1. Select **Integrations** under the **Data Management** tab in the top navigation bar of Mixpanel.
 
@@ -39,7 +39,7 @@ Follow these steps to enable the integration with Appcues:
 
 ## Matching Users between Apptimize and Mixpanel
 
-Mixpanel only exports identified user profiles (users with at least 1 set profile properties) to match to Appcues - users without user profiles (i.e. anonymous users) will not export.
+Mixpanel only exports identified user profiles (users with at least 1 set profile properties) to match to Apptimize - users without user profiles (i.e. anonymous users) will not export.
 
 The exported users are properly mapped in Apptimize automatically by the integration through the setting of `$apptimize_user_id`. This property is set automatically when both the Apptimize and Mixpanel SDKs are installed on the client.
 
