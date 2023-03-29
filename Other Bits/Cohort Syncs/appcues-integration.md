@@ -53,7 +53,7 @@ Click Export to > Appcues. Select either one-time sync or dynamic sync. Click **
 
 ## Sync Types
 
-This integration supports two types of exports: one-time export and dynamic sync.
+This integration supports two types of exports: one-time export and dynamic sync. When you generate a one-time export or dynamic sync, it overwrites the previous export with an updated export that reflects users who qualify for the cohort at the time of export.
 
 ### One-Time Export
 
@@ -62,8 +62,6 @@ In a one-time export, Mixpanel sends Appcues a static export of users who curren
 ### Dynamic Sync
 
 In dynamic sync, Mixpanel initiates sync between a cohort and Appcues every two hours. The exported cohort will be updated every day to reflect the most recent list of users in a cohort.
-
-When you generate a one-time export or dynamic sync, it overwrites the previous export with an updated export that reflects users who qualify for the cohort at the time of export.
 
 ## Ideal vs. Non-Recommended Use Cases
 
