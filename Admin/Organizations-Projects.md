@@ -200,6 +200,43 @@ For example:
 
 2. If a user is assigned both the Consumer role individually and the Analyst role via a team. The user would be able to do both anything a Consumer can do and anything an Analyst can do.
 
+# Teams
+
+Mixpanel enables you to create and delete Teams within an organization. Teams make it easier to manage roles and permissions for a group of users. Users who are a member of a Team will be provisioned with the same role and permission that is assigned to the team. 
+
+## Creating Teams
+
+To create teams in Mixpanel:
+
+1. Under "Organization Settings", click **Users & Teams** and you will land on the Users tab.
+2. Click **Teams** to see a list of current teams in your organization.
+3. Click **Create Team** and provide a team name.
+4. Click **Done** to complete the process and see the team's permission and membership.
+
+## Adding Users to Teams
+
+All users added to a team will receive the same role and permissions that is assigned to the team. To add users to a team:
+
+1. Under "Organization Settings", click **Users & Teams** and you will land on the Users tab.
+2. Select the **Teams** tab and select the team to add users to.
+3. Click **Add Users** to select users to add to the team.
+4. Click **Done** to complete the process.
+
+## Managing Team Permission
+
+### Adding Projects to Teams
+
+Adding projects to a team gives all individuals in the team access to that project with the specified role. To add projects to a team:
+
+1. Under "Organization Settings", click **Users & Teams** and you will land on the Users tab.
+2. Select the **Teams** tab and select the team to manage.
+3. Click **Add Project** and select the project(s) and permission role.
+4. Click **Add** to complete the process.
+
+### Other Team Permissions
+
+Adding Data Views and Service Accounts to a team will give all individuals in the team access to the Data View and Service Accounts.
+
 
 # Organization Discoverability
 
