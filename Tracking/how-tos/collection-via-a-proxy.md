@@ -5,29 +5,8 @@ hidden: false
 createdAt: "2021-02-10T21:50:27.202Z"
 updatedAt: "2021-09-09T19:23:12.598Z"
 ---
-This guide demonstrates how to leverage Mixpanel's free, open-source SDKs for event collection, but route the events through your servers before sending them to Mixpanel. This approach is useful to:
+This guide demonstrates how to route events from Mixpanel's SDKs via a proxy in your own domain. This is useful when tracking from the web, to reduce the likelihood of ad-blockers impacting your tracking.
 
-- Use your own domain to collect data
-- Have fine-grained control over filtering, auditing, and/or cleaning data before sending it to Mixpanel
-- Turn event collection on or off across all platforms quickly
-- Route Mixpanel events to other downstreams that you own, like data warehouses or real-time applications in a streaming fashion
-
-It's easy to do this with Mixpanel by "proxying" our [Ingestion API](ref:ingestion-api). 
-[block:image]
-{
-  "images": [
-    {
-      "image": [
-        "https://files.readme.io/f1aea64-Group_14.svg",
-        "Group 14.svg",
-        3105,
-        2116,
-        "#333333"
-      ]
-    }
-  ]
-}
-[/block]
 
 [block:api-header]
 {
@@ -111,42 +90,4 @@ MIXPANEL_CUSTOM_LIB_URL:"file:"===f.location.protocol&&"//cdn.mxpnl.com/libs/mix
         <button onclick="mixpanel.track('[Proxy Demo] Button clicked')">Track event</button>
     </body>
 </html>
-```
-
-### Android SDK
-
-Add the following `meta-data` entries to your AndroidManifest.xml inside the <application> tag and replace `<YOUR_PROXY_DOMAIN>` with your actual proxy domain.
-   
-```java
-...
-<application>
-    <meta-data
-      android:name="com.mixpanel.android.MPConfig.EventsEndpoint"
-      android:value="<YOUR_PROXY_DOMAIN>/track" />
-    <meta-data
-      android:name="com.mixpanel.android.MPConfig.PeopleEndpoint"
-      android:value="<YOUR_PROXY_DOMAIN>/engage" />
-    <meta-data
-      android:name="com.mixpanel.android.MPConfig.GroupsEndpoint"
-      android:value="<YOUR_PROXY_DOMAIN>/groups" />
-    ...
-</application>
-...
-```
-
-### iOS Objective-C SDK
-
-Immediately after you initialize the Mixpanel instance, set the proxy url: 
-```objectivec
-self.mixpanel = [Mixpanel sharedInstanceWithToken:@"YOUR_PROJECT_TOKEN" launchOptions:launchOptions];
-self.mixpanel.serverURL = YOUR_PROXY_DOMAIN; // e.g. @"https://proxy-eoca2pin3q-uc.a.run.app"
-```
-
-
-### iOS Swift SDK
-
-Immediately after you initialize the Mixpanel instance, set the proxy url: 
-```swift
-mixpanel = Mixpanel.initialize(token: "YOUR_PROJECT_TOKEN")
-mixpanel.serverURL = YOUR_PROXY_DOMAIN // e.g. "https://proxy-eoca2pin3q-uc.a.run.app"
 ```
