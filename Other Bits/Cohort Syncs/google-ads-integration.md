@@ -23,11 +23,11 @@ Follow these steps to enable the integration with Google Ads:
 
 1. Select **Integrations** under the **Data Management** tab in the top navigation bar of Mixpanel.
 
-image googleads1.png
+![GoogleAds 1 Image](https://raw.githubusercontent.com/ranic/mixpanel-docs/main/media/Other%20Bits/Cohort%20Syncs/Google-Ads/googleads1.png)
 
 2. From the Integrations page, select the Google Ads dropdown, and select **Sign In with Google**.
 
-image googleads2.png
+![GoogleAds 2 Image](https://raw.githubusercontent.com/ranic/mixpanel-docs/main/media/Other%20Bits/Cohort%20Syncs/Google-Ads/googleads2.png)
 
 3. The Google Ads integration page shows a green export icon and details about the integration after it is connected.
 
@@ -35,13 +35,13 @@ image googleads2.png
 
 To export a cohort to Apptimize, navigate to Cohorts by clicking in the **Data Management** tab and select **Cohorts**.
 
-image googleads3.png
+![GoogleAds 3 Image](https://raw.githubusercontent.com/ranic/mixpanel-docs/main/media/Other%20Bits/Cohort%20Syncs/Google-Ads/googleads3.png)
 
 Select the cohort that you want to export. Click on the three-dot icon on the right side of the cohort.
 
 Click **Export to Google Ads**. Select either one-time sync or dynamic sync. Click **Start Sync**.
 
-image googleads4.png
+![GoogleAds 4 Image](https://raw.githubusercontent.com/ranic/mixpanel-docs/main/media/Other%20Bits/Cohort%20Syncs/Google-Ads/googleads4.png)
 
 ## Sync Types
 
@@ -59,11 +59,11 @@ You must log in to Google Business Manager to use the Mixpanel Cohort in Google 
 
 Click on **Tools & Settings** and launch Audience Manager.
 
-image googleads5.png
+![GoogleAds 5 Image](https://raw.githubusercontent.com/ranic/mixpanel-docs/main/media/Other%20Bits/Cohort%20Syncs/Google-Ads/googleads5.png)
 
 The Mixpanel Cohort is available under Audience Manager. Cohorts are exported to Google Ads as mixpanel_<Cohort Name>_<Cohort ID>.
 
-image googleads6.png
+![GoogleAds 6 Image](https://raw.githubusercontent.com/ranic/mixpanel-docs/main/media/Other%20Bits/Cohort%20Syncs/Google-Ads/googleads6.png)
 
 ## Data Requirements
   
