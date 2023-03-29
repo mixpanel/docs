@@ -1,6 +1,6 @@
 ---
 title: "Apptimize Integration"
-slug: "Apptimize-integration"
+slug: "apptimize-integration"
 hidden: false
 metadata: 
   title: "Apptimize Integration"
