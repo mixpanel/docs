@@ -45,7 +45,7 @@ The exported users are properly mapped in Apptimize automatically by the integra
 
 ## Export a Cohort
 
-You can export a cohort to Apptimize from the Cohorts report. Navigate to Cohorts by clicking Cohorts under Users in the navigation bar.
+To export a cohort to Apptimize, navigate to Cohorts by clicking in the **Data Management** tab and select **Cohorts**.
 
 Select the cohort that you want to export. Click on the three-dot icon on the right side of the cohort.
 
