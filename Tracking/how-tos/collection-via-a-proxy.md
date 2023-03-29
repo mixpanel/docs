@@ -1,5 +1,5 @@
 ---
-title: "Collection via Proxy"
+title: "Tracking via Proxy"
 slug: "collection-via-a-proxy"
 hidden: false
 createdAt: "2021-02-10T21:50:27.202Z"
