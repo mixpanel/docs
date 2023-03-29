@@ -559,7 +559,7 @@ Navigate to our editor by clicking the gear in the upper righthand corner of you
 | $wifi | Wifi | Set to true if user’s device has an active, available Wifi connection, false if not. |
 | mp_processing_time_ms | Processing Time | UTC timestamp of when the event was processed by our servers. |
 | $mp_api_timestamp_ms | API Timestamp | Time at which the event was received by our API. |
-| Insert ID | $insert_id | A unique identifier for the event, used to deduplicate events that are accidentally sent multiple times. |
+| $insert_id | Insert ID | A unique identifier for the event, used to deduplicate events that are accidentally sent multiple times. |
 
 ### User Properties
 
