@@ -11,6 +11,8 @@ This document gives tips for implementing scalable, maintainable server-side tra
 # Tracking Geolocation
 If you supply the `$ip` property on an event, Mixpanel will enrich the event with `$city`, `$country`, and `$region` properties. Mixpanel's Web and Mobile SDKs automatically set `$ip` to the IP address of the device that they're installed on.
 
+Note: Mixpanel drops the `$ip` address at ingestion and does not store it at rest, to protect a user's privacy.
+
 If you're tracking from your servers, you need to set the `$ip` property of the events to the _client's_ IP address. Most server frameworks provide this out of the box.
 * [Django](https://docs.djangoproject.com/en/4.1/ref/request-response/#django.http.HttpRequest.META) exposes this in the request object with `request.META['REMOTE_ADDR']`.
 * [Flask](https://flask.palletsprojects.com/en/2.2.x/api/?highlight=remote_addr#flask.Request.remote_addr) exposes this as `request.remote_addr`.
