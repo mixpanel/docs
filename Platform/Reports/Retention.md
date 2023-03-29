@@ -15,7 +15,7 @@ The Retention report in Mixpanel is designed to assess user engagement over a sp
 
 ## Use Cases
 
-Imagine your product is a B2B messaging application. You might use Retention to answer these sample questions:
+Here are some of the sample questions you can answer in Retention:
 
 - On average, how many users are still active after two weeks from signing up?
 - What percent of all users are still sending messages after seven days?
@@ -51,39 +51,37 @@ Breakdowns segment data into groups. In this case, we want to break our report d
 
 ![https://help.mixpanel.com/hc/article_attachments/4415422790292/Retention_Breakdown.png](https://help.mixpanel.com/hc/article_attachments/4415422790292/Retention_Breakdown.png)
 
-Congratulations, you've constructed your first Retention query! Now, it's time to examine the results.
+## Step 4: Analyze Results
 
-# Retention Curve
+By default retention will display a curve chart. This shows the retention data across all users, regardless of their time of entry. This gives a holistic view of how users are retaining over time. You can go to the table below to get a more fine grained view to see if there are certain user cohorts that are retaining better or worse based on when they first entered.
 
-By default, Retention displays a single, multi-part chart type to visualize retention data. It displays retention data as both a line chart, and a table. Data is identical between the two, but while the line chart provides a visual representation of users becoming inactive over time, the table provides a heat map to show which groups have the best retention. In this case, we can select Retention Table to see which App Version yielded the best results. Your report should look like this:
+# Basic Features
+
+## Retention Curve
+
+The retention curve chart displays retention data as both a line chart, and a table. Data is identical between the two. The line chart provides a visual representation of users becoming inactive over time, while the table provides a heat map to show which groups have the best retention.
 
 ![https://help.mixpanel.com/hc/article_attachments/360096661971/Screen_Shot_2021-05-27_at_7.49.12_AM.png](https://help.mixpanel.com/hc/article_attachments/360096661971/Screen_Shot_2021-05-27_at_7.49.12_AM.png)
 
-The report also offers a Retention Trends visualization to observe any changes in a particular retention bucket over time.
+**Incomplete Buckets**
+Boxes with an asterisk (\*) indicate that the data is still in flux and not set yet because the time is still ongoing. Hover over a box to see when the last qualifying date for that bucket will occur.
 
-Now that you've constructed the query, and chosen the ideal chart type, you can easily answer the original question. Finally, save the report for later via the controls at the top right of the report.
+**Color Mapping**
+Each box within a row is assigned a shade of purple. The shading gets darker the higher the retention percentage. It's important to note that the scale is relative to each cohort row.
 
-# Retention Trends
+## Retention Trends
 
 ![https://help.mixpanel.com/hc/article_attachments/7776001258900/ehvdhy2if3.png](https://help.mixpanel.com/hc/article_attachments/7776001258900/ehvdhy2if3.png)
 
 Select **Trends** from the report drop-down list to see how the percentage of retained users has changed over time for any of the retention time unit buckets. You can change between the different time unit buckets (i.e. <1 Day, Day 1, Day 2, ...) to see if your retention metrics are improving or declining along your retention curve.
 
-# User Cohort Buckets
+## User Cohort Buckets
 
 Retention counts users; not event totals. In other words, each of the user cohort buckets will include every unique user that did the "A event" criteria in that time window, starting at 0:00 of the first day of the bucket and ending midnight of the last day. A customer can only be counted once per bucket, but can be included in more than one bucket.
 
 The first column (Date) indicates the day/week/month when the user performed the "A event". The Size column indicates the number of users that performed the "A event" within the time period.
 
 For example, if you are bucketing based on your "Item Purchased" event and creating weekly buckets, a customer who purchased at least one item each week will be in every bucket, not just the bucket of their first purchase.
-
-# Color Mapping
-
-Each box within a row is assigned a shade of purple. The shading gets darker the higher the retention percentage. It's important to note that the scale is relative to each cohort row.
-
-# Incomplete Buckets
-
-Boxes with an asterisk (\*) indicate that the data is still in flux and not set yet because the time is still ongoing. Hover over a box to see when the last qualifying date for that bucket will occur.
 
 # Advanced
 
@@ -150,7 +148,7 @@ For example, day 5 retention is the percentage of users who “came back and did
 
 ![https://help.mixpanel.com/hc/article_attachments/360095790691/qjcz6kqfb4.png](https://help.mixpanel.com/hc/article_attachments/360095790691/qjcz6kqfb4.png)
 
-"On or After" Retention calculates the percentage of users who come back on a specific time unit (e.g. day, week, month) *or any time unit afterward*. A user can fulfill the "came back and did B criteria" on a specific time unit or any time in the future to be counted as retained in "On or After" Retention.
+"On or After" Retention calculates the percentage of users who come back on a specific time unit (e.g. day, week, month) **or any time unit afterward**. A user can fulfill the "came back and did B criteria" on a specific time unit or any time in the future to be counted as retained in "On or After" Retention.
 
 "On or After" Retention gives you a better sense of how long you are holding on to your users in an absolute sense. It will tell you how many users used your app and then ever returned to find more value. In other words, it's the opposite of the overall churn of your user base.
 
@@ -220,8 +218,6 @@ This will show how engaged users are with an action. In the example below, you c
 
 ## How is Retention calculated?
 
-- As of 5/25/2021, we've improved segmented retention calculations so that they are now intervalized averages. As such, segmented retention queries are now consistently calculated with the same method Mixpanel uses for unsegmented retention queries.
-
 When you create an unsegmented retention query (i.e. a retention query that is not segmented by a property or cohort), Mixpanel will automatically intervalize the retention calculation.
 
 In other words, we will calculate the retention of each and every cohort based upon the selected birth interval unit (day/week/month cadence that the user performed the A action) and then summarize it into one line by taking the average of all complete buckets. You can see the retention of each individual interval by expanding the Average Retention column:
@@ -232,19 +228,12 @@ Segmented queries are now calculated with that same intervalized average method,
 
 ![https://help.mixpanel.com/hc/article_attachments/360093575772/segemented_intervalized_retention.png](https://help.mixpanel.com/hc/article_attachments/360093575772/segemented_intervalized_retention.png)
 
-### How is this different than before?
-
-Prior to 5/25/2021, we calculated segmented retention in a non-intervalized manner. Instead of calculating each individual day/week/month cohort separately and averaging it, we would treat the entire time period as one single cohort to group the users who performed the events with a given property value in a single row.
-
-![https://help.mixpanel.com/hc/article_attachments/360093575752/segmented_nonintervalized.png](https://help.mixpanel.com/hc/article_attachments/360093575752/segmented_nonintervalized.png)
-
 ### Why make the change?
 
-We wanted to add intervalized averages to segmented retention queries for three key advantages:
+Intervalized averages to segmented retention queries have two key advantages:
 
-1. **To no longer include users in incomplete periods:** The non-intervalized method did not give all users an equal chance to qualify for the later retention buckets. Newer, more recent users to come into the query towards the end of your date range would not have enough time pass to have the opportunity to be retained in the later date buckets. This would sandbag the last retention buckets in your query. With intervalized retention, Mixpanel only counts the completed time periods into the Average Retention calculation so that all users have the same opportunity to be retained.
-2. **Clarity through consistency:** We used to calculate segmented and unsegmented queries differently: unsegmented queries were intervalized and segmented queries used to be non-intervalized. This prior inconsistency made Retention reports more difficult to consume. It required users to context switch and it took an experienced user to understand what they are looking at once they add a breakdown property. This adds clarity by way of consistent expectations.
-3. **More granular analysis:** Users are now able to see how the individual birth interval cohorts are performing within a particular segment. This unlocks the ability to get more answers and dive deeper into particular cohorts of interest.
+1. **Not including users in incomplete periods:** The non-intervalized method did not give all users an equal chance to qualify for the later retention buckets. Newer, more recent users to come into the query towards the end of your date range would not have enough time pass to have the opportunity to be retained in the later date buckets. This would sandbag the last retention buckets in your query. With intervalized retention, Mixpanel only counts the completed time periods into the Average Retention calculation so that all users have the same opportunity to be retained.
+2. **More granular analysis:** Users are now able to see how the individual birth interval cohorts are performing within a particular segment. This unlocks the ability to get more answers and dive deeper into particular cohorts of interest.
 
 ## How is the "Average" row for Retention reports calculated?
 
