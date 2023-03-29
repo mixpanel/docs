@@ -27,4 +27,4 @@ Add your proxy server to the `mixpanel.init` call:
 mixpanel.init("<YOUR_PROJECT_TOKEN>", {api_host: "https://<YOUR_PROXY_DOMAIN>"})
 ```
 
-🎉 Congratulations, you've set up tracking through a proxy server! Here's a [full code sample]().
+🎉 Congratulations, you've set up tracking through a proxy server! Here's a [full code sample](https://gist.github.com/ranic/80459104def4e4bcd73d5c77b817ee43).
