@@ -9,9 +9,10 @@ This document gives tips for implementing scalable, maintainable web tracking. I
 
 # Prefer Server-Side For Important Events
 
-We recommend tracking important events, like Signup or Purchase, from your [servers](doc:server) instead of via our Javascript SDK. While these events may have multiple entrypoints from your website, the source of truth for what constitutes a Signup or a Purchase is usually something on your backend server. If you track those events from your website, they're likely to diverge from the source of truth, which leads to loss of trust in the data. In other words, whatever can be tracked server-side, should be tracked server-side.
-
 Prefer using our Javascript SDK for events that you can _only_ get on the client -- things like mouse hovers, clicks, scrolls, etc. Anything interaction that makes a call to your servers should be tracked on the server.
+
+We recommend tracking important events, like Signup or Purchase, from your [servers](doc:server) instead of via our Javascript SDK. The source of truth for what constitutes a Signup or a Purchase is usually something on your backend server. If you track those events from your website, they're likely to diverge from the source of truth, which leads to loss of trust in the data.
+
 
 
 # Use a Proxy
