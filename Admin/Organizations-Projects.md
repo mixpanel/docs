@@ -19,11 +19,13 @@ A **Project** is a container for your product's analytics data, including saved 
 
 ![Organization Overview 1 Image](https://raw.githubusercontent.com/ranic/mixpanel-docs/main/media/Admin/Organization-Project/organization_overview.png)
 
-## Invite Users
+## Manage Team Members
+
+# Invite Users
 
 You can invite users users to an organization or to a project with specific role permissions.
 
->See Permissions to learn more about organizaton roles project roles.
+>See Permissions to learn more about organizaton roles and project roles.
 
 ### Invite Users to an Organization
 
@@ -52,7 +54,7 @@ To invite a user to a project:
 
 Need new invite box image
 
-## Remove Users
+# Remove Users
 
 You can remove users from a project or organization.
 
@@ -80,6 +82,24 @@ image showing delete button
 
 image showing warning?
 
+## Permissions
+
+In Mixpanel, users have roles in an organization and in a project.
+
+The types of organization and project roles a user has should be based on the required permissions users need for specific levels.
+
+### Organization Roles
+
+
+
+### Project Roles
+
+
+### Multiple Roles at Once
+
+
+### Setting a Default Role on a Project
+
 ## Organization Discoverability
 
 Organization Discoverability makes it seamless for new users with a shared work email domain to connect with teammates in an existing organization in Mixpanel, allowing them to access their team’s projects, data, and reports, instead of joining a new, empty org.
@@ -99,17 +119,11 @@ They can enable Organization Discoverability by first specifying the private (i.
 
 The org owner or admin can then designate the level of discoverability of their organization; **open to join**, **subject to admin approval**, or **invite only**.
 
-#### Open Organization
+**Open Organization:** An organization designated “open to join” is discoverable and joinable to any new users with an admin-specified email domain(s).
 
-An organization designated “open to join” is discoverable and joinable to any new users with an admin-specified email domain(s).
+**Admin Approval:** An organization designated as requiring “admin approval” is discoverable to any new user signing up with a specified email domain, but can only be joined upon request. Admins will receive an email notification to authorize access.
 
-#### Admin Approval
-
-An organization designated as requiring “admin approval” is discoverable to any new user signing up with a specified email domain, but can only be joined upon request. Admins will receive an email notification to authorize access.
-
-#### Invite Only
-
-An organization designated “invite only” is undiscoverable regardless of email domain. New users must be invited by the admin.
+**Invite Only:** An organization designated “invite only” is undiscoverable regardless of email domain. New users must be invited by the admin.
 
 
 
