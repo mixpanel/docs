@@ -94,7 +94,7 @@ The table below visually breaks down all the permissions per role on an organiza
 
 | **Organization Role**                                              | **Owner**          | **Admin**          | **Billing Admin**  | **Member** |
 |--------------------------------------------------------------------|--------------------|--------------------|--------------------|------------|
-| Manage Billing Plans                                               | :white_check_mark: | :x:                | :white_check_mark: | :x:        |
+| Manage Billing Plans                                               | :heavy_check_mark: | :x:                | :white_check_mark: | :x:        |
 | Create Projects                                                    | :white_check_mark: | :white_check_mark: | :x:                | :x:        |
 | Delete Projects                                                    | :white_check_mark: | :x:                | :x:                | :x:        |
 | Create/Delete Teams                                                | :white_check_mark: | :white_check_mark: | :x:                | :x:        |
