@@ -25,15 +25,15 @@ Follow these steps to enable the integration with Appcues:
 
 1. Select **Integrations** under the **Data Management** tab in the top navigation bar of Mixpanel.
 
-image apptimize1.png
+![Apptimize 1 Image](https://raw.githubusercontent.com/ranic/mixpanel-docs/main/media/Other%20Bits/Cohort%20Syncs/Apptimize/apptimize1.png)
 
 2. From the Integrations page, select the Appcues dropdown, and select **Connect**.
 
-image apptimize2.png
+![Apptimize 2 Image](https://raw.githubusercontent.com/ranic/mixpanel-docs/main/media/Other%20Bits/Cohort%20Syncs/Apptimize/apptimize2.png)
 
 3. You will need to provide an Apptimize Token (generated from the Apptimize dashboard) to authorize the connection. To generate an Apptimize token, go to the Tokens page on Apptimize Dashboard and click “New Token”. Give the token a memorable name and click Generate.
 
-image apptimize3.png
+![Apptimize 3 Image](https://raw.githubusercontent.com/ranic/mixpanel-docs/main/media/Other%20Bits/Cohort%20Syncs/Apptimize/apptimize3.png)
 
 4. Use the Apptimize token to authorize the Mixpanel integration.
 
@@ -65,4 +65,4 @@ In recurring sync, Mixpanel initiates sync between a cohort and Apptimize every 
 
 Once the export completes, you will see your cohorts appear in your Apptimize Groups page.
 
-image apptimize4.png
+![Apptimize 4 Image](https://raw.githubusercontent.com/ranic/mixpanel-docs/main/media/Other%20Bits/Cohort%20Syncs/Apptimize/apptimize4.png)
