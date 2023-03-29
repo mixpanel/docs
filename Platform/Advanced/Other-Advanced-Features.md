@@ -1536,7 +1536,7 @@ The following occurs when sampling is enabled:
 5. The effect is that numbers should closely approximate results seen without sampling enabled. This works better as the number of users increases, particularly for customers with more than 5 million users.
 6. Mixpanel adds an annotation to reports.
 
-# **Saved Reports with Query Time Sampling**
+# Saved Reports with Query Time Sampling
 
 If you save a report that uses query time sampling, then a version of the report *without* sampling is saved. This ensures that Boards and saved reports are computed on the entire dataset for high fidelity.
 
@@ -1610,7 +1610,7 @@ Users can download reports in three formats:
 
 Mixpanel maintains breakdown limits for CSV, PNG, and PDF report downloads.
 
-## **CSV**
+## CSV
 
 For property values that exceed 10,000, Mixpanel only returns the top 10,000 breakdowns of that property. Here’s an example CSV export of an Insights report. The first column contains the date of when each event was sent. The columns contain the event name and the rows contain the number of each event sent to Mixpanel.
 
