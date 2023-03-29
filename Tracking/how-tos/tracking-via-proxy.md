@@ -11,8 +11,6 @@ There are two steps: setting up a proxy server and pointing our JavaScript SDK a
 
 ### Step 1: Set up a proxy server
 The simplest way is to use our [sample nginx config](https://github.com/mixpanel/tracking-proxy). This config redirects any calls made to your proxy server to Mixpanel.
-
-Once you have deployed your proxy server and it's publicly accessible, you can configure our SDKs to use that server instead of `https://api.mixpanel.com`.
    
 ### Step 2: Point our JavaScript SDK at your server
 Add the following line before the Mixpanel JS snippet, replacing `YOUR_PROXY_DOMAIN` with your proxy server's domain:
