@@ -25,14 +25,15 @@ Follow these steps to enable the integration with Appcues:
 
 1. Select **Integrations** under the **Data Management** tab in the top navigation bar of Mixpanel.
 
-image appcues1.png
+![Appcues 1 Image](https://raw.githubusercontent.com/ranic/mixpanel-docs/main/media/Other%20Bits/Cohort%20Syncs/Appcues/appcues1.png)
 
 2. From the Integrations page, select the Appcues dropdown, and select **Connect**.
 
-image appcues2.png
+![Appcues 2 Image](https://raw.githubusercontent.com/ranic/mixpanel-docs/main/media/Other%20Bits/Cohort%20Syncs/Appcues/appcues2.png)
 
 3. The connection uses one credential to authorize, API Key. Supply an **API token** generated from your **Appcues settings page** to establish the connection.
-4. The Appcues integration will show a **Connected** tag in the UI once the connection establishes.
+
+3. The Appcues integration will show a **Connected** tag in the UI once the connection establishes.
 
 ## Matching Users between Appcues and Mixpanel
 
@@ -48,7 +49,7 @@ Select the cohort that you want to export. Click on the three-dot icon on the ri
 
 Click Export to > Appcues. Select either one-time sync or dynamic sync. Click **Start Sync**.
 
-image appcues3.png
+![Appcues 3 Image](https://raw.githubusercontent.com/ranic/mixpanel-docs/main/media/Other%20Bits/Cohort%20Syncs/Appcues/appcues3.png)
 
 ## Sync Types
 
@@ -74,7 +75,7 @@ More ideal use cases are instead around tours and surveys where the tour isn't t
 
 Once the export completes, you will see a Segment reflecting the set of users from your Mixpanel cohort in the Appcues Segment tab, under Custom Properties in the dropdown (e.g. "Volume Buyers"):
 
-image appcues4.png
+![Appcues 4 Image](https://raw.githubusercontent.com/ranic/mixpanel-docs/main/media/Other%20Bits/Cohort%20Syncs/Appcues/appcues4.png)
 
 ## Appcues events into Mixpanel
 
