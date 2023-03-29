@@ -103,6 +103,12 @@ This data lets you easily discover the parts of your implementation that are mos
 
 ![Lexicon Query Volumes](https://raw.githubusercontent.com/ranic/mixpanel-docs/main/media/Admin/Data%20Governance/Lexicon/lexicon-query-volumes.png)
 
+# Lexicon Limits
+
+By default, Mixpanel’s report dropdown menus hide events, event properties, or property values that have not been fired within the last 30 days. If there are no instances of an event, event property, or property value within the last 30 days, the dropdown menus will not display that event name, property name, or property value. If an event, event property, or property value is not sent in the last 30 days, we assume it's no longer relevant and hide it to declutter the dropdown menus and improve their performance.
+
+To have an imported event, event property, or property value that’s older than 30 days show in the dropdowns, you can fire a single instance of that event, property, or property value and the data will resurface in the UI. If you have the event or property name, you can also try to search for it by typing the name in the dropdown menu.
+
 # Dropping and Hiding Data
 
 In Lexicon, you can intercept and drop incoming events or properties. Mixpanel won’t store any new data for the event or property you select to drop. **Warning: You cannot recover event data after you drop it.**
@@ -147,7 +153,7 @@ To undrop an event:
 
 ## Undropping Properties
 
-1.Select a dropped property. The “Status” column indicates if a property is dropped.
+1. Select a dropped property. The “Status” column indicates if a property is dropped.
 ![Lexicon Undrop Properties](https://raw.githubusercontent.com/ranic/mixpanel-docs/main/media/Admin/Data%20Governance/Lexicon/lexicon-undrop-properties.png)
 2. Click Undrop. The “Status” column no longer contains “Dropped”.
 
@@ -248,79 +254,7 @@ Once you've made your modifications, you can directly import the CSV file into L
 - Review Events, Event Properties, and/or User Profile Properties
 - Import into Lexicon
 
-## Avo.app
-
-In order to import your data dictionary from Avo.app, you will need to enable an integration with Mixpanel. The following information would be necessary in order to complete this integration from Avo.app:
-
-Mixpanel Project ID `(https://mixpanel.com/report/<Mixpanel Project ID>/...)`
-[Mixpanel Service Account Username & Secret](https://developer.mixpanel.com/reference/authentication#service-accounts) (Owner or Admin role required)
-To publish your Avo data dictionary to Lexicon, click the "Publish to Lexicon" button in the integration interface.
-
-[Click here](https://www.avo.app/docs/workspace/integrations) for more information on integrating Avo.app with Lexicon.
-
-## mParticle
-
-When importing a data dictionary from [mParticle](https://www.mparticle.com/), navigate to your Data Plan and select Download Plan Version from the upper right menu.
-
-1. Click Import on the top right hand side of Lexicon
-2. Select mParticle
-3. Select the downloaded JSON file from mParticle Data Plans
-4. Review Events, Event Properties, and User Profile Properties to be imported.
-5. Import data into Lexicon
-
-## Segment
-
-When importing a data dictionary from Segment Protocols using the Segment Config API, you will be asked for your Segment Token and Segment Workspace. You can find your Segment Token by going to your Segment dashboard: Settings > Access Management > Tokens
-
-You can use an existing Token, or creating a new token with a Token Role of Workspace Owner.
-
-For the Segment Workplace value, we recommend using the Slug name located in the Segment dashboard: Settings > General Settings.
-
-Once you have your Segment Token & Workspace, head over to Lexicon and Select Import from Segment.
-
-- Enter your Token & Workspace
-- Select the Plan you want to import from Segment
-- Review the Events and Profile Properties that will be imported
-- Import your Segment Plan into Lexicon
-
-## Replacing Lexicon Entries
-
-For mParticle, Segment, and CSV imports into Lexicon, you'll have an option to Replace Lexicon Entries.
-
-If this option is enabled, all of your existing Lexicon entries would be removed and replaced by the uploaded entries. This feature is useful if you want Lexicon to contain only these new entries.
-
 # Lexicon Schemas API
 
 Mixpanel provides a suite of API endpoints for you to Retrieve, Create, and Delete your data dictionary in Lexicon. To use these APIs, check out our [API reference docs](https://developer.mixpanel.com/reference/lexicon-schemas-api).
-
-# Adding Tags to Events
-
-Mixpanel provides tags to help you organize and find your data. If you’re new to the project, it could be time-consuming to search hundreds of events to find them. Using Lexicon, you can assign a tag to events that relate to a specific category.
-
-For example, we’ll use a purchases tag for all events and properties that relate to purchasing, such as In-App Purchase or Booster Pack Purchased. The purchases tag makes the search much easier, because the purchase related events are listed under the purchase tag.
-
-In addition to the previous example, tags are useful to identify specific events of interest for certain teams, distinguish events that are relevant to a specific product or service, or indicate events that are associated with certain key performance indicators.
-
-A tag is a label you assign to an event to help you organize and find it. Tags enable you to categorize events and make them easier to find–especially in large Mixpanel implementations with multiple teams.
-
-Event and property definitions that are clear, accurate, and findable reduce the learning curve and help teams get up to speed faster. This feature is particularly useful when a new member joins the team.
-
-Before new members join your project, you can review your event and property definitions for accuracy and add tags to better organize them.
-
-You can add tags to one or more events in the “Events” or “Custom Events” view.
-
-![Lexicon Tags](https://raw.githubusercontent.com/ranic/mixpanel-docs/main/media/Admin/Data%20Governance/Lexicon/lexicon-add-tags.png)
-
-To add tags to an event:
-
-1. In the “Events” or “Custom Events” view, select one or more events. The “Tag” icon appears.
-2. Click Tag to display the “Tag Selector” box.
-![Lexicon Tags on Events](https://raw.githubusercontent.com/ranic/mixpanel-docs/main/media/Admin/Data%20Governance/Lexicon/lexicon-add-tags2.png)
-3. Add or change tags to one or more events:
-- To add tags, enter the name of one or more tags in the “Tag Selector” box and click Save. As you add tags, they appear in a searchable list in the “Tag Selector” box.
-- To change tags assigned to an event, select one or more tags in the “Tag Selector” box, add or remove tags, and then click Save.
-
-Tags will show up as filtering options in the event dropdown menu in reports. When you select a tag, a list of events that share the same tag appears.
-
-![Lexicon Using Tags in Reports](https://raw.githubusercontent.com/ranic/mixpanel-docs/main/media/Admin/Data%20Governance/Lexicon/lexicon-using-tags-in-reports.png)
 
