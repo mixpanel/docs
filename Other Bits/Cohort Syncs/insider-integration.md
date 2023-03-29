@@ -21,11 +21,11 @@ You must be a Mixpanel project admin to enable the Insider integration.
 
 To enable the integration, select **Integrations** under the **Data Management** tab in the top navigation bar.
 
-image insider1.png
+![insider 1 Image](https://raw.githubusercontent.com/ranic/mixpanel-docs/main/media/Other%20Bits/Cohort%20Syncs/Insider/insider1.png)
 
 From the Integrations page, select the Insider dropdown, and select **Connect**.
 
-image insider2.png
+![insider 2 Image](https://raw.githubusercontent.com/ranic/mixpanel-docs/main/media/Other%20Bits/Cohort%20Syncs/Insider/insider2.png)
 
 The Insider integration will show a **Connected** tag in the UI once the connection succeeds.
 
@@ -45,7 +45,7 @@ Select the cohort that you want to export. Click on the three-dot icon on the ri
 
 Click Export to > Insider. Select either one-time sync or dynamic sync. Click **Start Sync**.
 
-image insider3.png
+![insider 3 Image](https://raw.githubusercontent.com/ranic/mixpanel-docs/main/media/Other%20Bits/Cohort%20Syncs/Insider/insider3.png)
 
 ## Sync Types
 
@@ -61,4 +61,4 @@ In dynamic sync, Mixpanel initiates sync between a cohort and Insider every 15 m
 
 Once the export completes, you will see a custom segment reflecting the set of users from your Mixpanel cohort. (e.g. "7days-cart-abandoners")
 
-image insider4.png
+![insider 4 Image](https://raw.githubusercontent.com/ranic/mixpanel-docs/main/media/Other%20Bits/Cohort%20Syncs/Insider/insider4.png)
