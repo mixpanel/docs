@@ -18,7 +18,7 @@ We recommend using our Javascript SDK for events that you can _only_ get on the 
 # Use a Proxy
 We recommend using a proxy server to track events from your website to Mixpanel. This makes tracking less susceptible to ad-blockers, which results in much higher accuracy. This means that instead of events going straight from your website -> Mixpanel, they will go from your website -> your proxy -> Mixpanel.
 
-See [our guide](doc:collection-via-proxy) on how to set up a proxy.
+Setting up a proxy can be quick; see [our guide](doc:collection-via-proxy) for more details.
 
 
 # Prefer Local Storage to Cookies
