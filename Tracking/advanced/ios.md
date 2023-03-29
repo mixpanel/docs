@@ -525,6 +525,17 @@ Use `NSString` for strings, `NSDate` for dates, `NSBool` for booleans, `NSArray`
 
 For dates, we recommend formatting as ISO8601 UTC dates: "YYYY-MM-DDThh:mm:ss".
 
+# [Legacy] Automatically Tracked Events
+
+Mixpanel's SDKs have a legacy feature to automatically collect common mobile events. We don't recommend enabling this, as these events rely on client-side state and can be unreliable.
+
+| Raw Name | Display Name | Description |
+| --- | --- | --- |
+| $ae_first_open | First App Open | Tracks the first time the user has opened the app. This event is retriggered if the user reinstalls the app or clears local storage. |
+| $ae_updated | App Updated | Executes when a user updates the app from the previous version. |
+| $ae_crashed | App Crashed | Executes when Mixpanel receives either an exception or a signal that indicated the app has crashed. |
+| $ae_session | App Session | Executes when a user spends more than 10 seconds in the app. |
+| $ae_iap | In App Purchase (IAP) | Executes when a user conducts an in-app purchase through your app. |
 
 # Release History
 [See All Releases](https://github.com/mixpanel/mixpanel-iphone/releases).
