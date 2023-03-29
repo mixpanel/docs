@@ -45,6 +45,9 @@ You'll need your Project Token for this, which you can get [here](https://mixpan
 }
 [/block]
 🎉 Congratulations, you've tracked your first event! You can see it in Mixpanel via the [Events page](mixpanel.com/report/events). For more options, see our [JavaScript reference](doc:javascript).
+        
+        
+You can also follow our video walkthrough [here](https://www.loom.com/embed/fbba03274dc441b49b578e8a734b1d99).
 
 
 
@@ -59,22 +62,11 @@ We recommend [setting up a proxy server](doc:collection-via-a-proxy#how-to-set-u
 **Does Mixpanel use third-party cookies?**
 No, our Mixpanel JavaScript SDK does not set or use any third-party cookies. If you wish to disable cookies entirely, you can set the disable_persistence option to true when initializing your Mixpanel JS instance. Note that disabling persistence will disable the use of super properties and anonymous -> known user tracking.
 
+**What are the recommended configuration options?**
+We recommend using localStorage instead of cookies for persistence:
 
+```javascript
+mixpanel.set_config({'persistence': 'localStorage'})
+```
 
-### Walkthrough
-
-[block:embed]
-{
-  "html": "<iframe class=\"embedly-embed\" src=\"//cdn.embedly.com/widgets/media.html?src=https%3A%2F%2Fwww.loom.com%2Fembed%2Ffbba03274dc441b49b578e8a734b1d99&display_name=Loom&url=https%3A%2F%2Fwww.loom.com%2Fembed%2Ffbba03274dc441b49b578e8a734b1d99&image=https%3A%2F%2Fcdn.loom.com%2Fsessions%2Fthumbnails%2Ffbba03274dc441b49b578e8a734b1d99-00001.gif&key=f2aa6fc3595946d0afc3d76cbbd25dc3&type=text%2Fhtml&schema=loom\" width=\"1152\" height=\"864\" scrolling=\"no\" title=\"Loom embed\" frameborder=\"0\" allow=\"autoplay; fullscreen\" allowfullscreen=\"true\"></iframe>",
-  "url": "https://www.loom.com/embed/fbba03274dc441b49b578e8a734b1d99",
-  "title": "Debugging common issues when installing Mixpanel on your web application",
-  "favicon": null,
-  "image": "https://cdn.loom.com/sessions/thumbnails/fbba03274dc441b49b578e8a734b1d99-00001.gif"
-}
-[/block]
-
-Content referenced in the video:
-- [Mixpanel JavaScript Library NPM Page](https://www.npmjs.com/package/mixpanel-browser)
-- [Project Settings For Getting Your Project Token](https://mixpanel.com/settings/project)
-- [See Events in Mixpanel](http://mixpanel.com/report/events)
-- [Setting up a Proxy Server](doc:collection-via-a-proxy#how-to-set-up-a-proxy)
+This prevents getting a "Cookie Too Large" error and in general is a more reliable way to persist state on the browser.
