@@ -27,7 +27,7 @@ Follow these steps to enable the integration with Appcues:
 
 ![Apptimize 1 Image](https://raw.githubusercontent.com/ranic/mixpanel-docs/main/media/Other%20Bits/Cohort%20Syncs/Apptimize/apptimize1.png)
 
-2. From the Integrations page, select the Appcues dropdown, and select **Connect**.
+2. From the Integrations page, select the Apptimize dropdown, and select **Connect**.
 
 ![Apptimize 2 Image](https://raw.githubusercontent.com/ranic/mixpanel-docs/main/media/Other%20Bits/Cohort%20Syncs/Apptimize/apptimize2.png)
 
