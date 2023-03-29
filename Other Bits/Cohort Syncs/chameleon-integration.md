@@ -27,7 +27,7 @@ Follow these steps to enable the integration with Appcues:
 
 ![Chameleon 1 Image](https://raw.githubusercontent.com/ranic/mixpanel-docs/main/media/Other%20Bits/Cohort%20Syncs/Chameleon/chameleon1.png)
 
-2. From the Integrations page, select the Appcues dropdown, and select **Connect**.
+2. From the Integrations page, select the Chameleon dropdown, and select **Connect**.
 
 ![Chameleon 2 Image](https://raw.githubusercontent.com/ranic/mixpanel-docs/main/media/Other%20Bits/Cohort%20Syncs/Chameleon/chameleon2.png)
 
