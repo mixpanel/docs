@@ -11,85 +11,7 @@ A report is the basic unit of performing an analysis in Mixpanel.
 
 Mixpanel has several types of reports: [Insights](https://help.mixpanel.com/hc/en-us/articles/360001333826), [Funnels](https://help.mixpanel.com/hc/en-us/articles/360019982652), [Flows](https://help.mixpanel.com/hc/en-us/articles/360036438351), [Retention](https://help.mixpanel.com/hc/en-us/articles/115004546883) and other advanced reports, each with their specialized use.
 
-This article focuses on the flow of building a report, and learn about some of the common concepts across each report.
-
-# **Building your First Report**
-
-We'll start in Insights, where we'll build an analysis to see how many log in events we get per day.
-
-To start, navigate to the top left, and select "Insights" under "Reports".
-
-![https://help.mixpanel.com/hc/article_attachments/7650057600404/Screen_Shot_2022-07-08_at_5.09.14_PM.png](https://help.mixpanel.com/hc/article_attachments/7650057600404/Screen_Shot_2022-07-08_at_5.09.14_PM.png)
-
-You can also click [here](https://mixpanel.com/project/2132741/view/285693/app/insights) to reach insights directly on one of our demo projects (required being logged in).
-
-Once the page is open, select "Add Metric" under the "Events & Cohorts" section and choose the "Log In" event.
-
-![https://help.mixpanel.com/hc/article_attachments/7650217967252/Screen_Shot_2022-07-08_at_5.13.45_PM.png](https://help.mixpanel.com/hc/article_attachments/7650217967252/Screen_Shot_2022-07-08_at_5.13.45_PM.png)
-
-Note that the event selection section is common across Insights, Funnels, Flows and Retention. Funnels and Retention require at least two events to be chosen, but the process of choosing events is common across all reports.
-
-After selecting an event, you should have something similar to this
-
-![https://help.mixpanel.com/hc/article_attachments/7650275601172/Screen_Shot_2022-07-08_at_5.18.10_PM.png](https://help.mixpanel.com/hc/article_attachments/7650275601172/Screen_Shot_2022-07-08_at_5.18.10_PM.png)
-
-Mixpanel will default to a different visualization depending on what type of report you are building. In the case of Insights, we are now seeing a a trend of "Log In" events over the past 30 days.
-
-## Filters and Breakdowns
-
-Oftentimes, it's not enough to just see an event. We want to investigate some property of the event so that we can dig deeper. The first common way of doing this is by doing a **breakdown.**
-
-In the breakdown section, add a breakdown and select the property that you're interested in, in this case "Login Method".
-
-![https://help.mixpanel.com/hc/article_attachments/7650351140372/Screen_Shot_2022-07-08_at_5.25.38_PM.png](https://help.mixpanel.com/hc/article_attachments/7650351140372/Screen_Shot_2022-07-08_at_5.25.38_PM.png)
-
-Now we can see that most logins happened with "Manual Password" instead of through "Touch ID".
-
-We can add more breakdowns, to further drill down on our data.
-
-![https://help.mixpanel.com/hc/article_attachments/7710341896852/Screen_Shot_2022-07-11_at_3.02.05_PM.png](https://help.mixpanel.com/hc/article_attachments/7710341896852/Screen_Shot_2022-07-11_at_3.02.05_PM.png)
-
-In this case, we've added another breakdown, by "Country", so we can see a trend of "Login" events drilled down by these 2 properties.
-
-If we want to isolate certain segments, we can choose to **filter.**
-
-This can be done by dragging one of the breakdowns to the filter section, or by simply adding a filter.
-
-![https://help.mixpanel.com/hc/article_attachments/7650596222740/Screen_Shot_2022-07-08_at_5.30.49_PM.png](https://help.mixpanel.com/hc/article_attachments/7650596222740/Screen_Shot_2022-07-08_at_5.30.49_PM.png)
-
-In this case, we were only interested in "Login Method" of "Manual Password", but we still wanted to drill in by "Country", so we now have a 30 day view of "Manual Password" "Log In"s, and we can see how each country performed.
-
-## Date Selection
-
-A 30 day view is not necessarily the most meaningful, depending on the type of data and what type of trend we're looking at. This can be easily changed in the top middle, above the chart.
-
-![https://help.mixpanel.com/hc/article_attachments/7650708731668/Screen_Shot_2022-07-08_at_5.34.10_PM.png](https://help.mixpanel.com/hc/article_attachments/7650708731668/Screen_Shot_2022-07-08_at_5.34.10_PM.png)
-
-Simply select the date range that interests you and Mixpanel will perform the analysis over the appropriate range. There are presets that can be selected, but there is finer control under the "Custom" section. You can also choose how Mixpanel buckets the time range. In this case we're looking at the data grouped per week, over a 3 month period.
-
-## Changing Visualization
-
-In the top right, you can change the type of visualization and analysis being performed. The options available will depend on the type of report that you started with. In this case, we switched to a bar view, allowing us to see the total number of "Log In" across the entire time range, allowing us a summarized view that is easily scanned.
-
-![https://help.mixpanel.com/hc/article_attachments/7710470354196/Screen_Shot_2022-07-11_at_3.07.02_PM.png](https://help.mixpanel.com/hc/article_attachments/7710470354196/Screen_Shot_2022-07-11_at_3.07.02_PM.png)
-
-## Saving to a Board
-
-When you are satisfied with the analysis, and decide that this is something that you are likely to revisit, Mixpanel recommends that you save the report to a [Board](https://help.mixpanel.com/hc/en-us/articles/115004565746). You can do this by pressing "Save" in the top right and selecting the Board you would like to save to, or creating a new Board.
-
-![https://help.mixpanel.com/hc/article_attachments/7650984128148/Screen_Shot_2022-07-08_at_5.40.30_PM.png](https://help.mixpanel.com/hc/article_attachments/7650984128148/Screen_Shot_2022-07-08_at_5.40.30_PM.png)
-
-# **Further Reading**
-
-Congratulations, you have now created and saved your first report in Mixpanel. There are still many more types of analysis that can be performed in Mixpanel, but the process of choosing events, using breakdowns to drill into your analysis, using filters to isolate a portion of your data, selecting the time range, and choosing the visualization are common flows across all Mixpanel reports.
-
-Please reference these articles for further learning
-
-- [Insights Overview](https://help.mixpanel.com/hc/en-us/articles/360001333826)
-- [Funnels Overview](https://help.mixpanel.com/hc/en-us/articles/360019982652)
-- [Retention Overview](https://help.mixpanel.com/hc/en-us/articles/115004546883)
-- [Flows Overview](https://help.mixpanel.com/hc/en-us/articles/360036438351)
-- [Reports Concepts](https://help.mixpanel.com/hc/en-us/articles/7651639898260)
+This article focuses on the common concepts across each report.
 
 # Report Concepts
 
@@ -117,7 +39,6 @@ You can select the following filtering options to show a subset of the propertie
 - If you set up [Group Analytics](https://help.mixpanel.com/hc/en-us/articles/360025333632), the Group keys will show up individually under their display names. You can select any Group key to show only the Group properties relevant to the selected Group key:
 
     ![https://help.mixpanel.com/hc/article_attachments/7653440863508/Mixpanel__project_3____Mixpanel_2021-11-18_12-00-58.png](https://help.mixpanel.com/hc/article_attachments/7653440863508/Mixpanel__project_3____Mixpanel_2021-11-18_12-00-58.png)
-
 
 ### Understanding Prefixes in the Menu
 
@@ -170,7 +91,7 @@ In Insights Previous day only includes the last complete 24 hour period. |
 
 ## Select a Date Range
 
-The *Select date range* menu opens up some additional options, "Last", "Fixed" and "Since".
+The **Select date range** menu opens up some additional options, "Last", "Fixed" and "Since".
 
 ### Last
 
@@ -231,6 +152,19 @@ Select the **Breakdown** button, and select the property or cohort you want to
 For cohorts, you will be shown groups of users both in and not in the cohort in your results.
 
 It is only possible to either group by properties or group by cohorts, but not both.
+
+## Changing Visualization
+
+In the top right, you can change the type of visualization and analysis being performed. The options available will depend on the type of report that you started with. In this case, we switched to a bar view, allowing us to see the total number of "Log In" across the entire time range, allowing us a summarized view that is easily scanned.
+
+![https://help.mixpanel.com/hc/article_attachments/7710470354196/Screen_Shot_2022-07-11_at_3.07.02_PM.png](https://help.mixpanel.com/hc/article_attachments/7710470354196/Screen_Shot_2022-07-11_at_3.07.02_PM.png)
+
+## Saving to a Board
+
+When you are satisfied with the analysis, and decide that this is something that you are likely to revisit, Mixpanel recommends that you save the report to a [Board](https://help.mixpanel.com/hc/en-us/articles/115004565746). You can do this by pressing "Save" in the top right and selecting the Board you would like to save to, or creating a new Board.
+
+![https://help.mixpanel.com/hc/article_attachments/7650984128148/Screen_Shot_2022-07-08_at_5.40.30_PM.png](https://help.mixpanel.com/hc/article_attachments/7650984128148/Screen_Shot_2022-07-08_at_5.40.30_PM.png)
+
 
 ## Typecasting
 

@@ -39,91 +39,29 @@ Use the following functions in the **Formula** field to modify your custom pro
 
 | Function | Definition | Syntax & Example |
 | --- | --- | --- |
-| if | Evaluates if an expression is true or false. | if(condition, value if true, value if false)
-Example:
-if(A=="Facebook" or A=="Twitter", "Social", A) |
-| ifs | Runs multiple checks and returns a value corresponding to the first true result. If no conditions are true, undefined is returned. | ifs(condition1, value1, condition2, value2, …)
-Example:
-ifs( A<60,"Less than 1 hour",
-A<120, "More than 1 hour but less than 2 hours",
-A>=120, "More than 2 hours") |
-| not | Returns values that are not true. | not(condition)
-Example:
-not (A == "Facebook") |
-| and | Returns true if both conditions are met. Else, returns false. | x and y
-Example:
-if(A=="San Francisco" and
-B=="Chrome", "Valid user", "Invalid User") |
-| or | Returns true if either condition is met. Else, returns false. | x or y
-Example:
-if(A=="San Francisco" or B=="Chrome", "Valid user", "Invalid User") |
-| in | Returns true if the first condition is contained in the second condition.
- | x in condition
-Example:
-if("Facebook" in A, "Facebook Corporation", A)This can also be used to check against a list of values:
-if(A in ["Chrome","Firefox","Edge"],"Acceptable browser","Unsupported browser")
- |
-| boolean | Casts the argument to a boolean. | boolean(value)->false, boolean(alternate value)-> true
-Example:
-boolean(A) |
-| number | Casts the argument to a number. | number(value to cast)
-Example:
-number(A, B) |
-| string | Casts the argument to a string. | string(value to cast)
-Example:
-string(A) |
-| defined | Determines if a value exists. If a property is not defined on a parent event or profile, this will return false, otherwise this will return true. | defined(variable to check for existence)
-Example:
-defined(A) |
-| has_prefix | Determines whether a string starts with another string. This comparison is case-insensitive. | has_prefix(string to check, prefix)
-Example:
-has_prefix(A, "United") |
-| has_suffix | Determines whether a string ends with another string. This comparison is case-insensitive. | has_suffix(string to check, suffix)
-Example:
-has_suffix(A,"States") |
-| min | Determines the minimum value between two numbers. | min(number, number)
-Example:
-min(A,B) |
-| max | Determines the maximum value between two numbers. | max(number, number)
-Example:
-max(A,B) |
-| floor | Returns the largest integer that is smaller than or equal to the input (ie: rounds down to the nearest integer). | floor(number)
-Example:
-floor(A) |
-| ceil | Returns the smallest integer value greater than or equal to the input (ie: rounds up to the nearest integer). | ceil(number)
-Example:
-ceil(A) |
-| round | Returns the nearest integer value of the input value. | round(number)
-Example:
-round(A) |
-| upper | Cast string property values to uppercase. | upper(string property)
-Example:
-upper(A); upper("hello") -> "HELLO" |
-| lower | Cast string property values to lowercase. | lower(string property)
-Example:
-lower(A); lower("FacEBook") -> "facebook" |
-| regex_extract | If haystack is a string and pattern matches at least one substring, extracts the result from the first pattern match in haystack. The result is a string equal to the entire regex match, or if capture group is specified, only that portion of the match. | regex_extract(haystack, pattern, <optional capture group  #>)
-Example:
-regex_extract("iPhone5.1","iPhone(...)",1) ->5.1 |
-| regex_match | Returns true if the pattern matches any part of the string. | regex_match(haystack, pattern)
-Example:
-regex_match("zzhaystackzz", "ha(..)ack") -> true// Use (?-i) for case-sensitive matchingregex_match("HAYSTACK", "(?-i)haystack") -> false |
-| regex_replace | Replaces the parts of a string that match a regular expression with a different string. | regex_replace(haystack, pattern, replacement)
- 
-Example:
-// convert currency string to numbernumber(regex_replace("$1,234,567", "[^.0-9]\*", "")) -> 1234567 |
-| datedif | Subtract two dates. Units:
-D: days.
-M:  months.
-Y: years
-MD:  days remaining after subtracting whole months.
-YM:  months remaining after subtracting whole years.
-YD:  days, assuming start_date and end_date are within 1 year.
-Use TODAY() for current day. |
-datedif(start_date,end_date,unit)
-Example:
-datedif(registrationdate,TODAY(), "M") -> 5
- |
+| if | Evaluates if an expression is true or false. | if(condition, value if true, value if false)<br />Example:<br />if(A=="Facebook" or A=="Twitter", "Social", A) |
+| ifs | Runs multiple checks and returns a value corresponding to the first true result. If no conditions are true, undefined is returned. | ifs(condition1, value1, condition2, value2, …)<br />Example:<br />ifs( A<60,"Less than 1 hour",<br />A<120, "More than 1 hour but less than 2 hours",<br />A>=120, "More than 2 hours") |
+| not | Returns values that are not true. | not(condition)<br />Example:<br />not (A == "Facebook") |
+| and | Returns true if both conditions are met. Else, returns false. | x and y<br />Example:<br />if(A=="San Francisco" and<br />B=="Chrome", "Valid user", "Invalid User") |
+| or | Returns true if either condition is met. Else, returns false. | x or y<br />Example:<br />if(A=="San Francisco" or B=="Chrome", "Valid user", "Invalid User") |
+| in | Returns true if the first condition is contained in the second condition. | x in condition<br />Example:<br />if("Facebook" in A, "Facebook Corporation", A)This can also be used to check against a list of values:<br />if(A in ["Chrome","Firefox","Edge"],"Acceptable browser","Unsupported browser") |
+| boolean | Casts the argument to a boolean. | boolean(value)->false, boolean(alternate value)-> true<br />Example:<br />boolean(A) |
+| number | Casts the argument to a number. | number(value to cast)<br />Example:<br />number(A, B) |
+| string | Casts the argument to a string. | string(value to cast)<br />Example:<br />string(A) |
+| defined | Determines if a value exists. If a property is not defined on a parent event or profile, this will return false, otherwise this will return true. | defined(variable to check for existence)<br />Example:<br />defined(A) |
+| has_prefix | Determines whether a string starts with another string. This comparison is case-insensitive. | has_prefix(string to check, prefix)<br />Example:<br />has_prefix(A, "United") |
+| has_suffix | Determines whether a string ends with another string. This comparison is case-insensitive. | has_suffix(string to check, suffix)<br />Example:<br />has_suffix(A,"States") |
+| min | Determines the minimum value between two numbers. | min(number, number)<br />Example:<br />min(A,B) |
+| max | Determines the maximum value between two numbers. | max(number, number)<br />Example:<br />max(A,B) |
+| floor | Returns the largest integer that is smaller than or equal to the input (ie: rounds down to the nearest integer). | floor(number)<br />Example:<br />floor(A) |
+| ceil | Returns the smallest integer value greater than or equal to the input (ie: rounds up to the nearest integer). | ceil(number)<br />Example:<br />ceil(A) |
+| round | Returns the nearest integer value of the input value. | round(number)<br />Example:<br />round(A) |
+| upper | Cast string property values to uppercase. | upper(string property)<br />Example:<br />upper(A); upper("hello") -> "HELLO" |
+| lower | Cast string property values to lowercase. | lower(string property)<br />Example:<br />lower(A); lower("FacEBook") -> "facebook" |
+| regex_extract | If haystack is a string and pattern matches at least one substring, extracts the result from the first pattern match in haystack. The result is a string equal to the entire regex match, or if capture group is specified, only that portion of the match. | regex_extract(haystack, pattern, <optional capture group  #>)<br />Example:<br />regex_extract("iPhone5.1","iPhone(...)",1) ->5.1 |
+| regex_match | Returns true if the pattern matches any part of the string. | regex_match(haystack, pattern)<br />Example:<br />regex_match("zzhaystackzz", "ha(..)ack") -> true// Use (?-i) for case-sensitive matchingregex_match("HAYSTACK", "(?-i)haystack") -> false |
+| regex_replace | Replaces the parts of a string that match a regular expression with a different string. | regex_replace(haystack, pattern, replacement)<br />Example:<br />// convert currency string to numbernumber(regex_replace("$1,234,567", "[^.0-9]\*", "")) -> 1234567 |
+| datedif | Subtract two dates. Units:<br />D: days.<br />M:  months.<br />Y: years<br />MD:  days remaining after subtracting whole months.<br />YM:  months remaining after subtracting whole years.<br />YD:  days, assuming start_date and end_date are within 1 year.<br />Use TODAY() for current day. |<br />datedif(start_date,end_date,unit)<br />Example:<br />datedif(registrationdate,TODAY(), "M") -> 5 |
 | len | Returns the length of the string or the list. | len (string) or len (list)
 Example:
 len("Canada") -> 6 |
