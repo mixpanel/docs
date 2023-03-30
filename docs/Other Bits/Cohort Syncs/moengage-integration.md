@@ -21,11 +21,11 @@ You must be a Mixpanel project admin to enable the MoEngage integration.
 
 1. To enable the integration, select **Integrations** under the **Data Management** tab in the top navigation bar.
 
-![Moengage 1 Image](https://raw.githubusercontent.com/ranic/mixpanel-docs/main/media/Other%20Bits/Cohort%20Syncs/Moengage/moengage1.png)
+![Moengage 1 Image](https://raw.githubusercontent.com/ranic/mixpanel-docs/main/media/Other%20Bits/Cohort%20Syncs/MoEngage/moengage1.png)
 
 2. From the Integrations page, select the MoEngage dropdown, and select **Connect**.
 
-![Moengage 2 Image](https://raw.githubusercontent.com/ranic/mixpanel-docs/main/media/Other%20Bits/Cohort%20Syncs/Moengage/moengage2.png)
+![Moengage 2 Image](https://raw.githubusercontent.com/ranic/mixpanel-docs/main/media/Other%20Bits/Cohort%20Syncs/MoEngage/moengage2.png)
 
 3. The connection uses a Basic Authorization Username/Password system. You will need to provide two credentials to authorize the connection:
 
@@ -38,7 +38,7 @@ You will additionally provide one credential to authorize the cohort exports:
 
 You can find these values in your MoEngage settings page - note that MoEngage App ID is used in both the Username and MOE-APPKEY fields.
 
-![Moengage 3 Image](https://raw.githubusercontent.com/ranic/mixpanel-docs/main/media/Other%20Bits/Cohort%20Syncs/Moengage/moengage3.png)
+![Moengage 3 Image](https://raw.githubusercontent.com/ranic/mixpanel-docs/main/media/Other%20Bits/Cohort%20Syncs/MoEngage/moengage3.png)
 
 4. The MoEngage integration will show a **Connected** tag in the UI once the connection succeeds.
 
@@ -57,11 +57,11 @@ To export a cohort to MoEngage:
 
 1. Navigate to Cohorts by clicking **Cohorts** under the **Data Management** tab in the top navigation bar.
 
-![Moengage 4 Image](https://raw.githubusercontent.com/ranic/mixpanel-docs/main/media/Other%20Bits/Cohort%20Syncs/Moengage/moengage4.png)
+![Moengage 4 Image](https://raw.githubusercontent.com/ranic/mixpanel-docs/main/media/Other%20Bits/Cohort%20Syncs/MoEngage/moengage4.png)
 
 2. Select the cohort that you want to export. Click on the three-dot icon on the right side of the cohort and click **Export to MoEngage**.
 
-![Moengage 5 Image](https://raw.githubusercontent.com/ranic/mixpanel-docs/main/media/Other%20Bits/Cohort%20Syncs/Moengage/moengage5.png)
+![Moengage 5 Image](https://raw.githubusercontent.com/ranic/mixpanel-docs/main/media/Other%20Bits/Cohort%20Syncs/MoEngage/moengage5.png)
 
 3. Click **Start Sync**.
 
@@ -77,7 +77,7 @@ In dynamic sync, Mixpanel initiates sync between a cohort and MoEngage every 15 
 ## Select the Custom Segment in MoEngage
 Once the export completes, you will see a custom segment reflecting the set of users from your Mixpanel cohort (e.g. "Power Users"):
 
-![Moengage 6 Image](https://raw.githubusercontent.com/ranic/mixpanel-docs/main/media/Other%20Bits/Cohort%20Syncs/Moengage/moengage6.png)
+![Moengage 6 Image](https://raw.githubusercontent.com/ranic/mixpanel-docs/main/media/Other%20Bits/Cohort%20Syncs/MoEngage/moengage6.png)
 
 ## MoEngage Events into Mixpanel & MTU exemptions
 You can use events from your MoEngage integration to perform deeper analysis in Mixpanel. 
