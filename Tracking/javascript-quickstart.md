@@ -37,7 +37,7 @@ You'll need your Project Token for this, which you can get [here](https://mixpan
 {
   "codes": [
     {
-      "code": "//Uncomment this if you used npm or yarn in Step 1 \n//import mixpanel from 'mixpanel-browser';\n\n// Replace YOUR_TOKEN with your Project Token\nmixpanel.init('YOUR_TOKEN', {debug: true}); \n\n// Set this to a unique identifier for the user performing the event.\n// eg: their ID in your database or their email address.\nmixpanel.identify(/* \"<USER_ID\"> */)\n\n// Track an event. It can be anything, but in this example, we're tracking a Signed Up event.\n// Include a property about the signup, like the Signup Type\nmixpanel.track('Signed Up', {\n  'Signup Type': 'Referral',\n});",
+      "code": "// Uncomment if you used npm or yarn in Step 1 \n//import mixpanel from 'mixpanel-browser';\n\n// Replace YOUR_TOKEN with your Project Token\nmixpanel.init('YOUR_TOKEN', {debug: true}); \n\n// Set this to a unique identifier for the user performing the event.\n// eg: their ID in your database or their email address.\nmixpanel.identify(/* \"<USER_ID\"> */)\n\n// Track an event. It can be anything, but in this example, we're tracking a Signed Up event.\n// Include a property about the signup, like the Signup Type\nmixpanel.track('Signed Up', {\n  'Signup Type': 'Referral',\n});",
       "language": "javascript",
       "name": "Javascript"
     }
