@@ -1,5 +1,5 @@
 ---
-title: "User & Group Profiles"
+title: "User Profiles"
 slug: "users-groups"
 hidden: false
 createdAt: "2021-10-01T20:21:17.479Z"
