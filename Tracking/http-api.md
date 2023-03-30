@@ -23,10 +23,29 @@ Here's a sample script. Just plug in your API Secret at the top, run the script,
 }
 [/block]
 See our [API reference](ref:events) for more details.
-[block:callout]
-{
-  "type": "info",
-  "title": "Looking for a more in-depth walkthrough?",
-  "body": "See our [Amazon S3](doc:s3-import) or [Google Cloud Storage](doc:gcs-import) guides for a more production-grade example of how to use this API."
-}
-[/block]
+
+
+[block:api-header]	
+{	
+  "title": "Best Practices for Scale"	
+}	
+[/block]	
+
+You can use this API at scale, for example to backfill historical data into Mixpanel or as part of a high-throughput streaming pipeline. We provide walkthroughs for [Amazon S3](doc:s3-import) and [Google Cloud Storage](doc:gcs-import) to provide a more production-grade example of how to use this API at scale.
+
+
+Here are some other best practices:
+* Be explicit about what is tracked to Mixpanel rather than implicitly tracking everything, both for performance and security reasons. Avoid sending user generated content, high-cardinality IDs, or large semi-structured objects.	
+* Import a more recent time window first (last 7 days or last 30 days) before backfilling historical data. Mixpanel's autocomplete menus populate events and properties based on the last 30 days of data, so this is the best way to test that data looks as expected.	
+* Leverage batching and compression. Each request to /import can send 2000 events to Mixpanel and can be sent compressed using gzip. The sample code in this guide does both.	
+* When using Cloud Storage, partition files into ~200MB of JSON (or ~200K records) each. Each file is processed in parallel by Cloud Functions/Lambda and must be ingested by the function within the configured timeout.	
+* Log any 400 errors returned by the API. These are non-retryable and indicate something malformed with the data. This should be extremely unlikely once the API is up and running. If a batch contains a mix of valid and invalid data, we will ingest the valid data.	
+
+[block:api-header]	
+{	
+  "title": "Limits"	
+}	
+[/block]	
+Our Import API is built to ingest billions of events per day across our customers. That said, we do rate limit at very high scale to ensure quality of service and real-time ingestion. Please refer to our [Import API docs](ref:import-events) for details.	
+
+All of our sample code transparently retries and backoff from rate limit exceptions. If you require a higher-limit for a 1-time backfill, please reach out to us at apis@mixpanel.com.	
