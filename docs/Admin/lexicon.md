@@ -103,12 +103,6 @@ This data lets you easily discover the parts of your implementation that are mos
 
 ![Lexicon Query Volumes](https://raw.githubusercontent.com/ranic/mixpanel-docs/main/media/Admin/Data%20Governance/Lexicon/lexicon-query-volumes.png)
 
-# Lexicon Limits
-
-By default, Mixpanel’s report dropdown menus hide events, event properties, or property values that have not been fired within the last 30 days. If there are no instances of an event, event property, or property value within the last 30 days, the dropdown menus will not display that event name, property name, or property value. If an event, event property, or property value is not sent in the last 30 days, we assume it's no longer relevant and hide it to declutter the dropdown menus and improve their performance.
-
-To have an imported event, event property, or property value that’s older than 30 days show in the dropdowns, you can fire a single instance of that event, property, or property value and the data will resurface in the UI. If you have the event or property name, you can also try to search for it by typing the name in the dropdown menu.
-
 # Dropping and Hiding Data
 
 In Lexicon, you can intercept and drop incoming events or properties. Mixpanel won’t store any new data for the event or property you select to drop. **Warning: You cannot recover event data after you drop it.**
@@ -165,6 +159,8 @@ To hide an event or property:
 ![Lexicon Hide Events](https://raw.githubusercontent.com/ranic/mixpanel-docs/main/media/Admin/Data%20Governance/Lexicon/hide-events.png)
 2. Select Hide. A message appears to allow you to confirm hiding the event(s). After you select Hide, the event or property status changes to “Hidden”.
 ![Lexicon Hide Events Warning](https://raw.githubusercontent.com/ranic/mixpanel-docs/main/media/Admin/Data%20Governance/Lexicon/lexicon-hide-events2.png)
+
+Another option for hiding an event, property, or property value is to let the name inactivate. Mixpanel’s report dropdown menus hide events, that have not been fired within the last 30 days. Dropdown menus hide event properties and property values that have not been sent to your project in 28 days.
 
 ## Show Events and Properties
 
