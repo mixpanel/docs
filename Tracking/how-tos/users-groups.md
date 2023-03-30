@@ -30,3 +30,4 @@ We recommend tracking user profiles from as close as possible to the source of t
 
 Here's an example script written in Python and using our SDK:
 
+// TODO(vijay): Write this script
