@@ -160,7 +160,7 @@ To hide an event or property:
 2. Select Hide. A message appears to allow you to confirm hiding the event(s). After you select Hide, the event or property status changes to “Hidden”.
 ![Lexicon Hide Events Warning](https://raw.githubusercontent.com/ranic/mixpanel-docs/main/media/Admin/Data%20Governance/Lexicon/lexicon-hide-events2.png)
 
-Another option for hiding an event, property, or property value is to let the name inactivate. Mixpanel’s report dropdown menus hide events, that have not been fired within the last 30 days. Dropdown menus hide event properties and property values that have not been sent to your project in 28 days.
+Another option for hiding an event, property, or property value is to let it inactivate until it is hidden in report dropdown menus. Mixpanel’s report dropdown menus hide events that have not been fired within the last 30 days. Event properties and property values that have not been sent to your project in 28 days be hidden from dropdown menus.
 
 ## Show Events and Properties
 
