@@ -227,11 +227,11 @@ The confidence variables are as follow:
 - **B - A** = The difference in number of events per day performed by non-adopters between the post-launch and pre-launch periods.
 - The mean of **Y - X** over time is denoted by:
 
-��−�
+$$\mu_{Y-X}
 
 - The mean of of **B - A** over time is denoted by:
 
-��−�
+$$\mu_{B-A}
 
 - The standard deviation of **Y - X** over time is denoted by:
 
@@ -1032,7 +1032,7 @@ Steps
             - ≥0 & <0.0001 would approximate to bucket 0
 
 
-# **View Users**
+# View Users
 
 View Users is a streamlined process for exploring the users contributing to a specific metric or point on a chart. By interacting with the chart, you can view a group of users experiencing friction or dig deep into which users are driving feature adoption.
 
