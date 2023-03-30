@@ -23,7 +23,7 @@ You must be a Mixpanel project admin to enable the Kameleoon integration.
 
 To enable the integration, select **Integrations** under the **Data Management** tab in the top navigation bar.
 
-![Kameleoon 1 Image](https://raw.githubusercontent.com/ranic/mixpanel-docs/main/media/Other%20Bits/Cohort%20Syncs/Kameleoon/kameleoon1.png)
+![Kameleoon 1 Image](https://raw.githubusercontent.com/ranic/mixpanel-docs/main/media/Other%20Bits/Cohort%20Syncs/Kameleoon/kemeleoon1.png)
 
 From the Integrations page, select the Kameleoon dropdown, and select **Connect**.
 
