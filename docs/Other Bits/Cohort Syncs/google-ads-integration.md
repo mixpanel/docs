@@ -33,7 +33,7 @@ Follow these steps to enable the integration with Google Ads:
 
 ## Export a Cohort
 
-To export a cohort to Apptimize, navigate to Cohorts by clicking in the **Data Management** tab and select **Cohorts**.
+To export a cohort to Google Ads, navigate to Cohorts by clicking in the **Data Management** tab and select **Cohorts**.
 
 ![GoogleAds 3 Image](https://raw.githubusercontent.com/ranic/mixpanel-docs/main/media/Other%20Bits/Cohort%20Syncs/Google-Ads/googleads3.png)
 
