@@ -81,7 +81,7 @@ We recommend primarily using User Profile Properties to track demographic attrib
 That said, User Profile Properties are as flexible as any other properties in Mixpanel, so you can send arbitrary JSON.
 
 ### How can I update User Profile Properties?
-User Profiles are mutable; Mixpanel only stores the latest value of each profile property. We have methods to update profile properties via our [HTTP API](ref:profile-set) or our SDKs(doc:python).
+User Profiles are mutable; Mixpanel only stores the latest value of each profile property. We have methods to update profile properties via our [HTTP API](ref:profile-set).
 
 ### How can I send User Profiles if I use Segment?
 Mixpanel is 100% compatible with Segment; just follow Segment's best practices. If you call the [`analytics.identify()`](https://segment.com/docs/connections/spec/identify/) method, Segment will create a User Profile in Mixpanel. You can learn more about our integration in Segment's [docs](https://segment.com/docs/connections/destinations/catalog/actions-mixpanel/#identify-user).
