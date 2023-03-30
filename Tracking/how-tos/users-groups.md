@@ -10,18 +10,17 @@ Profiles let you enrich events with properties about the users, or groups of use
 
 
 ## What is a User Profile?
-A User Profile is a set of properties associated with a given user, that you send to Mixpanel via our SDKs or Engage API. Under the hood, Mixpanel stores this profile information as a table that links the user's ID to their profile properties. When queries are run, events are joined against this table to pull the properties of associated users.
+A User Profile is a set of properties associated with a given user, that you send to Mixpanel via our SDKs or Engage API. Mixpanel stores user profiles for your project in a table:
 
 | Distinct ID | Name | Email
 | --- | --- | --- |
 | 40bf7661-0aad-41d2-82a0-e3f9ae927812 | Alice | alice@linear.app |
 | deae3e00-68c0-4f45-b71f-ea53a2c9a8ca | Bob | bob@notion.so |
-| deae3e00-68c0-4f45-b71f-ea53a2c9a8ca | Bob | bob@notion.so |
+| af3ee4ba-2c13-4b18-891f-6f49f1e3eb28 | Carol | carol@figma.com |
 
-The main use case for User Profile Properties is to track demographic attributes of the user, like their name, email, and domain that seldom changes over time. This helps you quickly tie your analysis to the specific users that are affected and potentially reach out to them with a follow-up email. 
+Like [Event Properties](doc:events-properties), you can use User Profile Properties to filter or breakdown your reports.
 
-In most cases, we don't recommend tracking more than this on your User Profiles. Most other properties should be [Event Properties](doc:events-properties), rather than User Profile Properties.
+The main use case for User Profile Properties is to track demographic attributes of the user, like their name, email, and domain.
 
 ## Tracking User Profiles
-We recommend using 
-
+You can track User Profiles to Mixpanel in a similar manner to tracking events
