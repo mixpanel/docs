@@ -7,9 +7,52 @@ metadata:
   description: "Manage data access in your project."
 ---
 
-# Data Views
+# Data Views Overview
 
 Data Views allow you to manage data access for a group of users within a single Mixpanel project. Project Owners and Admins can create and edit Data Views and determine access for privacy and productivity purposes. You must have an active **Enterprise** plan with Mixpanel to access this feature.
+
+# Data Views Use Cases
+
+### Teams or Functional Areas
+
+You have a Mixpanel project that contains all of your data. Engineering, Marketing, Support, and various product teams all use Mixpanel on a regular basis. Each team can have a Data View filtering for relevant data.
+
+Example:
+
+The Community team at Mixpanel uses Data Views. Rather than trudging through thousands of events in the "All Project Data" Data View, we made our own Data View called "QBQ | The Mixpanel Community". In our case, we have 10 events in the global "All Project Data" Data View that pertain to user events in the community. On top of it, there are 5 company-wide engagement indicating events that we try to impact. We added the 15 events to our Data View. It’s made it much easier to go into Mixpanel and access the data we care about.
+
+### Separate Customer Data from Internal User Data
+
+Create a Data View for customer data by excluding data tracked by your internal users/employees. Create another Data View for just your internal users. By doing this, you no longer have to remember to add cohorts or filters each time you create a Board, Report, or Cohort.
+
+Example:
+
+You can create a “Customer” Data View by excluding your internal email addresses with the user property filter. Alternatively, you can also create an “Employees” Data View by including only internal email addresses with the user property filter (e.g. "Email" event and user property contain “@mixpanel.com”).
+
+### Regions or Geo-Based Teams
+
+For a global organization with multiple offices, regional teams might need access to data from only their region. E.g. The marketing team in the Asia region would like to target only Asian customers and should not have access to US customers' data. 
+
+Example:
+
+For each region, you can create a Data View specific to that region. E.g. EMEA, APAC, America or US, UK, FR, etc. After you have created the Data Views, you can configure data for the regional team that was previously filtered by using an event/user property such as ‘Region’ to include or exclude data.
+
+### Verified Data Only
+
+Teams that want to closely manage events that are included in all their analysis can either include or exclude the specific events in the Data View definition. 
+
+Example:
+
+You can either include or exclude specific events by name (e.g. Include events "Doc.Signed", "Doc.Sent", "Log.In", etc.).
+
+### Specific Platform/App Version
+
+Engineering or Product teams working on a specific version can use Data Views to target specific versions of the app or platform version(s) to be included in the analysis.
+
+Example:
+
+Create a Data View that filters based on an event property including only specific versions as part of the analysis (e.g. "App Version" event property equals "2.0.1" or "3.1.0").
+
 
 ## Manage Data View
 
