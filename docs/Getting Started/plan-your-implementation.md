@@ -24,7 +24,7 @@ If you already collect events with your own internal systems, see our [Amazon S3
 It takes less than 5 minutes to track an event to Mixpanel with our Javascript, server, or mobile SDKs. There are two general approaches when it comes to tracking with our SDKs:
 
 * **Server-Side (Recommended):** In this method, you send events from your servers to Mixpanel. This approach is the most reliable and easy to maintain, since it lives in an environment that you control. It also means that you can add tracking in one place (your servers) rather than in 3 places (web, iOS, Android), which keeps tracking unified and clean. See our [quickstart](doc:server) and [best practices](doc:effective-server-side-tracking) for more details on effective server-side tracking.
-* 
+
 * **Client-Side:** In this method, events are generated on the client device and sent to the Mixpanel API. There are two types of client-side tracking: web (Javascript) and mobile. This can be faster to set up, but is the least reliable form of tracking due to ad-blockers. It's also harder to update tracking, since the environment where the tracking code runs is out of your control (web or mobile clients). You can improve reliability of client-side tracking using a [proxy](doc:collection-via-a-proxy), but this takes more effort.
 
 In general, we recommend tracking everything you possibly via your servers, and only supplementing that with client-side tracking when necessary.
