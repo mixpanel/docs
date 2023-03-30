@@ -33,7 +33,7 @@ Follow these steps to enable the integration with OneSignal:
 
 ![OneSignal 2 Image](https://raw.githubusercontent.com/ranic/mixpanel-docs/main/media/Other%20Bits/Cohort%20Syncs/OneSignal/onesignal2.png)
 
-3. You will need to provide two credentials to authorize the connection: **API Key and App ID**. You can find these values in your **OneSignal settings** page. The OneSignal integration will show a **Connected** tag in the UI once the connection succeeds.
+3. You will need to provide two credentials to authorize the connection: **API Key and App ID**. You can find these values in your **OneSignal settings** page. The OneSignal integration will show a **Connected** tag in the UI once the connection succeeds. 
 
 ## Matching Users between OneSignal and Mixpanel
 
