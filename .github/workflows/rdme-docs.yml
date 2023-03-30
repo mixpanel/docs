@@ -18,11 +18,11 @@ jobs:
         uses: actions/checkout@v3
 
       - name: Run `docs` command 🚀
-        uses: readmeio/rdme@v8.6.0
+        uses: readmeio/rdme@v8
         with:
           rdme: docs ./docs --key=${{ secrets.README_API_KEY }} --version=3.19
 
       - name: Run `changelogs` command 🚀
-        uses: readmeio/rdme@v8.6.0
+        uses: readmeio/rdme@v8
         with:
-          rdme: ./changelogs . --key=${{ secrets.README_API_KEY }} --version=3.19
+          rdme: changelogs ./changelogs . --key=${{ secrets.README_API_KEY }} --version=3.19
