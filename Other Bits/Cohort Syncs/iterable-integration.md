@@ -21,11 +21,11 @@ You must be a Mixpanel project admin to use the Iterable data integration.
 
 To enable the integration, select Integrations under the Data Management tab in the top navigation bar.
 
-![iterable 1 Image](https://raw.githubusercontent.com/ranic/mixpanel-docs/main/media/Other%20Bits/Cohort%20Syncs/Iterable/iterabl1.png)
+![iterable 1 Image](https://raw.githubusercontent.com/ranic/mixpanel-docs/main/media/Other%20Bits/Cohort%20Syncs/Iterable/iterable1.png)
 
 From the Integrations page, select the Insider dropdown, and select **Connect**.
 
-![iterable 2 Image](https://raw.githubusercontent.com/ranic/mixpanel-docs/main/media/Other%20Bits/Cohort%20Syncs/Iterable/iterabl2.png)
+![iterable 2 Image](https://raw.githubusercontent.com/ranic/mixpanel-docs/main/media/Other%20Bits/Cohort%20Syncs/Iterable/iterable2.png)
 
 The Iterable integration page will show a green export icon and details about the integration after it is connected.
 
@@ -39,7 +39,7 @@ Select the cohort that you want to export. Click on the three-dot icon on the ri
 
 Click Export to > Iterable. Select either one-time sync or dynamic sync. Click **Start Sync**.
 
-![iterable 3 Image](https://raw.githubusercontent.com/ranic/mixpanel-docs/main/media/Other%20Bits/Cohort%20Syncs/Iterable/iterabl3.png)
+![iterable 3 Image](https://raw.githubusercontent.com/ranic/mixpanel-docs/main/media/Other%20Bits/Cohort%20Syncs/Iterable/iterable3.png)
 
 ## Sync Types
 
@@ -57,7 +57,7 @@ You must log in to Iterable to use the Mixpanel Cohorts to send campaigns.
 
 The Mixpanel Cohort is available in the Audience list. Mixpanel exports cohort data as `mixpanel_<Cohort Name>_<Cohort ID>`.
 
-![iterable 4 Image](https://raw.githubusercontent.com/ranic/mixpanel-docs/main/media/Other%20Bits/Cohort%20Syncs/Iterable/iterabl4.png)
+![iterable 4 Image](https://raw.githubusercontent.com/ranic/mixpanel-docs/main/media/Other%20Bits/Cohort%20Syncs/Iterable/Iterable4.png)
 
 ## Data Requirements
 
