@@ -6,7 +6,25 @@ createdAt: "2021-02-10T21:50:27.202Z"
 updatedAt: "2021-09-09T19:23:12.598Z"
 ---
 
-In this guide, we cover how to effectively use Events and Properties, which are the most key elements of Mixpanel's [Data Model](doc:data-structure-deep-dive)
+Events are the core of Mixpanel's [Data Model](doc:data-structure-deep-dive). All events have a name, a timestamp, and a user ID. Events can optionally have a set of properties, which describe the event in more detail.
+
+# Overview
+If you're familiar with databases, events are like tables and properties are like columns.
+If you're familiar with Google Analytics, events are like hits and properties are like dimensions.
+
+For example:
+* A `Page Viewed` event might have a property called `Page URL`, which is set to the URL of the page that was viewed.
+* A `Signed Up` event might have a property called `Signup Type`, which indicates whether the signup was `organic` vs `referral`.
+* A `Song Played` event might have a property called `Song Name`, which is set to the name of the song that was played.
+* A `Order Completed` event might have a property called `Items`, which is a list of objects, each of which contains details about an item, like its name, category, and price.
+
+You can filter, breakdown, and aggregate your events by their properties to answer more questions:
+* Which pages do users look at before they visit the pricing page?
+* How many Signups did I get that were organic vs referral?
+* Which Song Name is most popular among my users?
+* How many Orders contain shoes? What is the sum total price that users paid for shoes in the last month?
+
+# Best Practices
 
 ## Keep Events Generic
 We recommend keeping event names generic and using properties for all context. For example:
@@ -23,8 +41,7 @@ We recommend having a consistent naming convention for your events and propertie
 For example, don't create an event name like `Purchase (11-01-2019)`. Instead, create an event called Purchase and have some property (eg: `Return Date`) set to the dynamic value `11-01-2019).
 
 
-## FAQ
-
+# FAQ
 
 ### What types of data can I send as properties?
 Mixpanel accepts arbitrary JSON as properties, including strings, numbers, booleans, lists, and objects. See our [API docs](ref:import-events) for more details.
