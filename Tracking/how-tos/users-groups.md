@@ -20,7 +20,6 @@ A User Profile is a set of properties associated with a given user. Under the ho
 
 User Profiles are joined onto your Events based on their Distinct ID, which is the ID of the user. This lets you join the events performed by a user with properties about who that user is. It's very important that you use the same Distinct ID for both your events and your users.
 
-We recommend primarily using User Profile Properties to track demographic attributes of the user, like their name, email, and domain. Most other properties are better tracked as [Event Properties](doc:events-properties). That said, User Profile Properties are as flexible as any other properties in Mixpanel, so you can send arbitrary JSON.
 
 
 ## Tracking User Profiles
@@ -76,7 +75,15 @@ print(resp.json())
 
 ## FAQ
 
-### How can I send user profiles if I use Segment?
+### What should I send as a User Profile Property vs an Event Property?
+We recommend primarily using User Profile Properties to track demographic attributes of the user, like their name, email, and domain. Most other properties are better tracked as [Event Properties](doc:events-properties).
+
+That said, User Profile Properties are as flexible as any other properties in Mixpanel, so you can send arbitrary JSON.
+
+### How can I update User Profile Properties?
+User Profiles are mutable; Mixpanel only stores the latest value of each profile property. We have methods to update profile properties via our [HTTP API](ref:profile-set) or our SDKs(doc:python).
+
+### How can I send User Profiles if I use Segment?
 Mixpanel is 100% compatible with Segment; just follow Segment's best practices. If you call the [`analytics.identify()`](https://segment.com/docs/connections/spec/identify/) method, Segment will create a User Profile in Mixpanel. You can learn more about our integration in Segment's [docs](https://segment.com/docs/connections/destinations/catalog/actions-mixpanel/#identify-user).
 
 ### What does the Updated At property mean?
