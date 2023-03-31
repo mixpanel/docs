@@ -80,6 +80,13 @@ We recommend primarily using User Profile Properties to track demographic attrib
 
 That said, User Profile Properties are as flexible as any other properties in Mixpanel, so you can send arbitrary JSON.
 
+### How does Mixpanel join Events and User Profiles?
+Mixpanel stores Events and User Profiles in two separate tables under the hood. These two tables are joined at query-time, rather than ingestion-time. This means that when you make a report in our UI that uses User Profiles, we run a query that joins the Events table with the User Profiles table. 
+
+The implication of this is that you can ingest User Profiles independently from how you ingest events; as long as they have the same IDs, they'll join automatically.
+
+Another implication of this is that all Events join with the state of a user's profile as of now, rather than as it was at a point in time. If there are aspects of a user's state that change over time (for example, their plan type), we recommend tracking that as a property on their events, so that you can analyze that change over time.
+
 ### How can I update User Profile Properties?
 User Profiles are mutable; Mixpanel only stores the latest value of each profile property. We have methods to update profile properties via our [HTTP API](ref:profile-set).
 
