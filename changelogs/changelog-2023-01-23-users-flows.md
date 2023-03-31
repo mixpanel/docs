@@ -1,5 +1,5 @@
 ---
-title: "Explore new questions with Custom Buckets"
+title: "View Users now available in Flows & more charts"
 slug: "changelog-2023-01-23-users-flows"
 hidden: false
 createdAt: "2023-01-23T17:39:02.165Z"
