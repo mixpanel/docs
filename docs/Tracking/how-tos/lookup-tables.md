@@ -47,5 +47,6 @@ Lookup Tables can be updated -- simply reupload an exisitng Lookup Table from th
 The CSV must be valid according to RFC4180. See our [API reference](ref:replace-lookup-table) for more specific details about how we parse CSVs.
 
 ### When _shouldn't_ I use Lookup Tables?
-Lookup Tables have a limit of 100MB CSV or roughly 1M rows. We don't recommend using Lookup Tables for anything very high cardinality. Here's what we recommend instead:
-* If the ID is a User ID, use [User Profiles](doc:users-groups) instead. Mixpanel is more optimized for User Profiles, so they don't have any scale limits and support more opinionated workflows in our product (like clicking into a report and seeing the list of User Profiles).
+Lookup Tables have a limit of 100MB CSV or roughly 1M rows. We don't recommend using Lookup Tables for anything very high cardinality.
+* Don't use Lookup Tables when the ID is a User ID. Instead use [User Profiles](doc:users-groups). Mixpanel is more optimized for User Profiles, so they don't have any scale limits and support more opinionated workflows in our product (like clicking into a report and seeing the list of User Profiles).
+* Don't use Lookup Tables as a way to mutate events. For example, using it to update an "Order Completed" event in case the order is refunded. A better solution for that use case is to track two events ("Order Completed" and "Order Refunded"). This doesn't have limits on scale and is lossless (you don't lose information about the original order completion).
