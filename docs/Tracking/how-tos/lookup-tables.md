@@ -10,7 +10,7 @@ This guide covers Lookup Tables and how to use them effectively. Lookup Tables a
 
 Lookup Tables let you enrich your Mixpanel events with attributes about other entities.
 * If you have a database background, lookup tables are like dimension tables or join tables.
-* If you have an Excel background, Lookup Tables are like VLOOKUP.
+* If you have an Excel background, Lookup Tables are like VLOOKUP. 
 
 Let's say you're building a media product, and you track a `Song Played` event, which contains a `song_id` property. You want to filter and breakdown this event by other attributes of the song, like `artist` and `genre`, which are not tracked as properties.
 
