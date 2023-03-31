@@ -9,7 +9,7 @@ updatedAt: "2021-10-02T18:41:55.184Z"
 User Profiles let you enrich events with properties about the users that performed those events. Tracking Profiles is optional; we recommend starting with events and only adding Profiles if you need it.
 
 
-## What is a User Profile?
+# Overview
 A User Profile is a set of properties associated with a given user. Under the hood, Mixpanel stores user profiles for your project in a table:
 
 | Distinct ID | Name | Email | Department
@@ -22,7 +22,7 @@ User Profiles are joined onto your Events based on their Distinct ID, which is t
 
 
 
-## Tracking User Profiles
+# Tracking User Profiles
 You can track User Profiles to Mixpanel in all the same ways you track events: from our SDKs, via our HTTP API, or via our Integrations.
 
 We recommend tracking user profiles from as close as possible to the source of truth for those profiles, which is usually your application database or your CRM. One common approach is to run an hourly or daily script on your servers that pulls the list of profiles from your database and pushes them to Mixpanel.
@@ -73,7 +73,7 @@ print(resp.json())
 
 
 
-## FAQ
+# FAQ
 
 ### What should I send as a User Profile Property vs an Event Property?
 We recommend primarily using User Profile Properties to track demographic attributes of the user, like their name, email, and domain. Most other properties are better tracked as [Event Properties](doc:events-properties).
