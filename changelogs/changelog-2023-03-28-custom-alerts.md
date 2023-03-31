@@ -1,6 +1,6 @@
 ---
 title: "Easily create and manage Custom Alerts"
-slug: "changelog-2023-03-28-custom-alerts"
+slug: "changelog-2023-03-29-custom-buckets"
 hidden: false
 createdAt: "2023-03-29T17:39:02.165Z"
 updatedAt: "2023-03-29T17:39:02.165Z"
