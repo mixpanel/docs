@@ -93,7 +93,7 @@ A row will start life at the minimum possible heigh
 
 # Advanced
 
-# Board Templates
+## Board Templates
 
 ![https://help.mixpanel.com/hc/article_attachments/6738945528084/2022-06-01_12.31.38.gif](https://help.mixpanel.com/hc/article_attachments/6738945528084/2022-06-01_12.31.38.gif)
 
@@ -103,7 +103,7 @@ The Company KPIs Board template allows users to generate a comprehensive board c
 
 To get started, click the icon in the lefthand navigator to create a new board, and select `Use a Template`. Alternatively, the `Add` button will allow you to create a custom board from scratch.
 
-## Adding Your Events
+### Adding Your Events
 
 The template uses two events: “Sign Up” and “Value Moment.”
 
@@ -114,11 +114,11 @@ For projects that have already been implemented and have data, you will select y
 
 For projects that do not have data, please refer to our [dev docs](https://developer.mixpanel.com/docs/plan-your-implementation) and [implementation](https://help.mixpanel.com/hc/en-us/categories/115001197206-Data-and-Implementation) resources.
 
-## What’s in the Template?
+### What’s in the Template?
 
 The board contains 9 reports, organized thematically by Engagement, Retention, and Growth.
 
-## Engagement
+### Engagement
 
 User engagement measures how users find value in a product or service. Engagement can be measured by a variety of activities such as clicks, shares, and more. Highly engaged users are more likely to lead to higher user growth because they are more likely to share the product or service with their network. These four reports track:
 
@@ -127,14 +127,14 @@ User engagement measures how users find value in a product or service. Engagemen
 - What is your product’s activation rate
 - What happens to users who don’t reach your product’s value moment
 
-## Retention
+### Retention
 
 Retention is the metric that shows whether your product has staying power. Retention measures how many people are coming back, which is also a key indicator that users are realizing value in your product. These two reports track:
 
 - How many engaged users come back
 - Who are your dormant users
 
-## Growth
+### Growth
 
 Growth is about finding people who need your product and showing them that your product can bring value to them. These three reports track:
 
@@ -144,7 +144,7 @@ Growth is about finding people who need your product and showing them that your 
 
 Together, these 9 reports create a holistic overview of a product’s most important metrics and are applicable across industries and stages of growth. Notably, for startups, this board will be a vital asset for finding product-market fit as well as for sharing with investors during and post-fundraising.
 
-## Free Plan Experience
+### Free Plan Experience
 
 While the current [free plan](http://mixpanel.com/pricing) has a limit of 5 saved reports per user, the reports in the Company KPIs Board template do not count towards this limit until you modify and save them individually. The unmodified template includes a small `Mixpanel Template` tag at the top of the template board and template reports respectively to denote that they do not count towards the saved report limit.
 
@@ -155,7 +155,7 @@ While the current [free plan](http://mixpanel.com/pricing) has a limit of 5 sa
 - If you are a free plan user, the reports in the template don’t count towards your limit until you modify and save them
 t as described above, but clicking and dragging the control under the row will resize it to any height above that minimum.
 
-## Board-wide Date Ranges and Filters
+### Board-wide Date Ranges and Filters
 
 Boards allow you to alter some aspects of the queries within each of the reports on that board, making it simple to ensure every report is showing results from a consistent set of data.  Both date ranges and filters can be added by clicking "Add Filter" at the top right of the board.  This will open a row, shown below, where the date range can be selected, and filters can be applied.
 
