@@ -2,6 +2,9 @@
 title: "Lookup Tables"
 slug: "doc-lookup-tables"
 hidden: false
+metadata:
+  title: "Lookup Tables"
+  description: "Learn about Lookup Tables."
 ---
 
 In this guide, we walk through what Lookup Tables are and when/how to use them effectively. Lookup Tables are optional; if you're new to Mixpanel, we recommend starting with our guide on [Events and Properties](doc:events-properties).
