@@ -35,7 +35,7 @@ If you do not have clearly defined events that denote the beginning and end of a
 
 Sessions are reset every 24 hours at midnight (according to your project timezone), so the maximum session length is 24 hours
 
-# Event Based Example 1
+### Example 1
 
 ![https://help.mixpanel.com/hc/article_attachments/9447968065300/Untitled__3_.png](https://help.mixpanel.com/hc/article_attachments/9447968065300/Untitled__3_.png)
 
@@ -45,7 +45,7 @@ Session Start Event is set to `Login` and Session End Event is set to `Logout
 2. They then wait 30 minutes and perform “Event B” at 11:45 pm.
 3. When the user performs “Logout” at 12:15 am, it triggers new “Session End”. The "Session End" time is the time that “Logout” was performed. However, since all sessions are reset at midnight, the previous “Session Start” event is no longer associated with the “Session End Event”, and the session duration is not calculated for “Session 1”. Similarly, the “Session End Event” does not have an associated “Session Start Event” and session duration is not calculated for “Session 2”.
 
-# Event Based Example 2
+### Example 2
 
 ![https://help.mixpanel.com/hc/article_attachments/9447970960916/Untitled__4_.png](https://help.mixpanel.com/hc/article_attachments/9447970960916/Untitled__4_.png)
 
@@ -66,7 +66,7 @@ Events that do not contain a “Session Id” value are not used in calculating 
 
 Like Event Based Sessions, Sessions are reset every 24 hours at midnight (according to your project timezone), so the maximum session length is 24 hours.
 
-# Property Based Example 1
+### Example 1
 
 [https://help.mixpanel.com/hc/article_attachments/10260746661780](https://help.mixpanel.com/hc/article_attachments/10260746661780)
 
@@ -78,7 +78,7 @@ Session ID Property is set to `session_id`
 4. The user then waits 15 minutes and performs “Event D” at 12:30am.
 5. Assuming the next event has a different `session_id` or no other events occur before the second day ends, then another "Session End" event will be triggered. The time of the "Session End" is the last event performed at 12:30 am. Therefore the session length for “Session 2” is 15 minutes.
 
-# Property Based Example 2
+### Example 2
 
 ![https://help.mixpanel.com/hc/article_attachments/9448356131476/Untitled__6_.png](https://help.mixpanel.com/hc/article_attachments/9448356131476/Untitled__6_.png)
 
@@ -102,7 +102,7 @@ A session starts when a user performs an event. A session ends when a user stops
 
 A single user can start multiple sessions. Those sessions can occur on the same day, or over several days, weeks, or months. As soon as one session ends, another session can begin with the occurrence of a new event.
 
-# Session Timeout
+### Session Timeout
 
 This is the length of time that defines a session timeout after a period of inactivity in Mixpanel. You can set the session timeout period in minutes, hours, or days. The default length is 30 minutes.
 
@@ -130,7 +130,7 @@ Be sure to exclude API-related events in your funnel to ensure that your convers
 
 Exclude events that don’t denote an action made by the user from your funnel to ensure that your conversion time is accurate. For example, if a user is receiving notifications from you every 25 minutes, and session timeout is every 30 minutes, then session length will be 24 hours.
 
-# Excluded Events
+### Excluded Events
 
 Exclude events from being tracked as part of a session (such as backend API events that don’t denote an action made by the user on the site), to ensure the validity of session metrics. Mixpanel API events will be excluded by default, but external API events, such as a message sent through another program, would not be excluded.
 
@@ -145,7 +145,7 @@ Recommended events to exclude which are not triggered by user activity:
 
 Custom events are not supported for exclusions. If you want to exclude a custom event, you can instead exclude the events that make up that custom event.
 
-# Timeout Based Example 1
+### Timeout Based Example 1
 
 ![https://help.mixpanel.com/hc/article_attachments/360037412492/sessions6.png](https://help.mixpanel.com/hc/article_attachments/360037412492/sessions6.png)
 
@@ -159,7 +159,7 @@ Session timeout length is set for 30 minutes.
 6. They perform “Event E” 15 minutes later at 2:25pm.
 7. When they do not perform any more events in the next 30 minutes, "Session End" is triggered. The time of the "Session End" is the last event performed at 2:25pm. Therefore the session length for “Session 2” is 35 minutes.
 
-# Timeout Based Example 2
+### Timeout Based Example 2
 
 ![https://help.mixpanel.com/hc/article_attachments/360037410791/sessions7.png](https://help.mixpanel.com/hc/article_attachments/360037410791/sessions7.png)
 
@@ -232,37 +232,6 @@ Select the **Total** drop down beside an event in your Insights query to selec
 
 This aggregation can be used to determine how many sessions users performed the given event in the selected time range. For example, select an event which determines success for your company, such as "Product Purchase". Using this aggregation you can track how many sessions users made a purchase in. Rather than simply viewing the total number of purchases made, you view how many times a user sat down at your website to make a purchase.
 
-# Mobile Session Tracking
-
-By default, Mixpanel tracks "App Session" ($ae_session) for mobile events.
-
-The "App Session" event executes when the user spends more than ten seconds in the app.
-
-This event also includes a property, “Session Length” ($ae_session_length) that reflects the number of seconds the user spent in the session.
-
-To override the minimum or maximum session value, see [Adjust Session Length Parameters for App Session Events](https://help.mixpanel.com/hc/en-us/articles/115004581763) for details.
-
-To read more about "App Session" and other default mobile events that Mixpanel collects, see [Default Mobile Events Collection](https://help.mixpanel.com/hc/en-us/articles/115004596186#mobile-events).
-
-# navigator.sendBeacon()
-
-The challenge with tracking session length in JavaScript is programmatically defining a "session-end" event. You can use `[navigator.sendBeacon()](https://developer.mozilla.org/en-US/docs/Web/API/Navigator/sendBeacon)`for exit tracking. It is also the safest, most sensible way to ensure any non-sent analytics do get sent out before leaving the page.
-
-For example, use:
-
-```
-window.addEventListener(" unload", ()=> navigator.sendBeacon(url, data));
-```
-
-# mixpanel.time_event
-
-If you can programmatically define a "session-end" event in the context of your website (for example a "Page Close" event), you can return the time between the start and end event [using mixpanel.time_event](https://mixpanel.com/help/reference/javascript-full-api-reference#mixpanel.time_event).
-
-So you could call a "Page Open" event at the start of a session, and then call a "page_close" event when the session ends. Then use [mixpanel.time_event](https://mixpanel.com/help/reference/javascript-full-api-reference#mixpanel.time_event) to return the time between the start and end event.
-
-When you call the "Page Close" event, an event property, “Duration” appends to the "Page Close" event with the elapsed time in seconds as the property value.
-
-Note that each call to time_event for the same event restarts the start timer.
 
 # Session Properties
 
