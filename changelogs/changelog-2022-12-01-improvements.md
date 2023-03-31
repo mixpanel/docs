@@ -1,5 +1,5 @@
 ---
-title: Mixed Improvements in Mixpanel"
+title: "Mixed Improvements in Mixpanel"
 slug: "changelog-2022-12-01-improvements"
 hidden: false
 createdAt: "2022-12-01T17:39:02.165Z"
