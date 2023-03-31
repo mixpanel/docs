@@ -23,4 +23,4 @@ Check out any Flows report to view millisecond level of precision firsthand!
 
 >Note: If you are sending data into Mixpanel via a CDP or the DWH, no change is required at your end if you’re already tracking data at ms precision.
 
-2. Only forward-looking data will be tracked at ms precision. This means that once you update your SDK, it will take some time to accumulate data with ms precision before you can see it reflected in your analysis. 
+2. Only forward-looking data will be tracked at ms precision. This means that once you update your SDK, it will take some time to accumulate data with ms precision before you can see it reflected in your analysis.
