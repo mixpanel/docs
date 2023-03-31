@@ -16,7 +16,7 @@ This feature is accessible to new users who have verified their email as well as
 
 ![Organization Discoverability 1 Image](https://raw.githubusercontent.com/ranic/mixpanel-docs/main/media/Admin/Organization-Project/discoverability1.png)
 
-### Setting Discoverability
+## Setting Discoverability
 
 Only **organization owners** and **billing admins** can access Organization Discoverability by going to Organization Settings > Users & Teams > Organization Discoverability.
 
