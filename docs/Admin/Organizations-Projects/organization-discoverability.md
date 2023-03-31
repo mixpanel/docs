@@ -1,6 +1,6 @@
 ---
 title: "Manage Organization"
-slug: "organization-discoverability"
+slug: "manage-organization"
 hidden: false
 metadata: 
   title: "Manage Organization"
