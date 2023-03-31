@@ -58,6 +58,16 @@ This table provides the values for the **project token** and the **API secret**.
 
 ![manageprojects 4 Image](https://raw.githubusercontent.com/ranic/mixpanel-docs/main/media/Other%20Bits/Cohort%20Syncs/Manage-Projects/manageprojects4.png)
 
+# Reset Projects
+
+You can reset the current project in Project Settings. When you reset the project, Mixpanel deactivates the project and all its data and projects settings, then generates a new project.
+
+![manageprojects 11 Image](https://raw.githubusercontent.com/ranic/mixpanel-docs/main/media/Other%20Bits/Cohort%20Syncs/Manage-Projects/manageprojects11.png)
+
+A warning indicates this reset deactivates the project and all its data and projects settings, then generates a new project.  Mixpanel stores a backup of the deactivated project. Mixpanel will delete the data based on the data retention policy.
+
+![manageprojects 12 Image](https://raw.githubusercontent.com/ranic/mixpanel-docs/main/media/Other%20Bits/Cohort%20Syncs/Manage-Projects/manageprojects12.png)
+
 # Delete Projects
 
 To delete a project:
@@ -177,4 +187,43 @@ Mixpanel hardcodes timestamps of exported data to your project’s timezone. The
 
 As a result, operations such as extract, transform, and load, need a quick timestamp and date property offset to reset the data back to UTC before importing it back to Mixpanel.
 
+# Transfer Project to Another Organization
 
+Organization owners and project owners in a project can transfer that project to another organization of which they have permissions.
+
+When a user transfers a project to another organization, the project members don't transfer with the project. As a result, project members will lose access to the project if they aren't members of the organization.
+
+To transfer a project to another organization:
+
+1. Under **Project Settings**, click a project.
+2. Click **Transfer**.
+
+![manageprojects 13 Image](https://raw.githubusercontent.com/ranic/mixpanel-docs/main/media/Other%20Bits/Cohort%20Syncs/Manage-Projects/manageprojects13.png)
+
+3. The Transfer Project box appears. In the dropdown menu, select the organization where you want to transfer the project and click **Done**. You'll see a message that indicates the project has been transferred successfully.
+
+![manageprojects 14 Image](https://raw.githubusercontent.com/ranic/mixpanel-docs/main/media/Other%20Bits/Cohort%20Syncs/Manage-Projects/manageprojects14.png)
+
+>Note that project tallies will be transferred along with your project to the new Organization.
+
+# Merge Or Combine Mixpanel Projects
+
+If for any reason you need to combine two or more Mixpanel projects, it is possible to do so. A few things to consider before proceeding with the merge to ensure you maintain data integrity:
+
+- If you're using the alias method, bear in mind that aliases are project specific. As such, before importing data into the new project from the old project, you'd need to recreate the aliases from your old project. Mixpanel does not have the ability to provide a historical table of your project’s aliases.
+
+- Merging projects involves exporting and importing data, so to make sure you only have to go through the process once, ensure you have stopped sending data to the old project(s) before beginning to export.
+
+## How to Merge
+To merge projects:
+
+1. Stop sending data to the old project(s).3. 
+2. Begin sending all data to the new project.
+3. Once the old project has completely stopped receiving data, export that data via the raw data export API and import the data into the new project via Mixpanel’s import API.
+
+## Additional Tips
+- When you export raw event data, the timestamps on those events will be in the timezone of your project.
+
+- Before importing into your new project, convert those timestamps to UTC so that they are correctly transformed to the timezone of the new project.
+
+- Read more about timezones and how Mixpanel handles time.
