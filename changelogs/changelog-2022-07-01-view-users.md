@@ -1,6 +1,6 @@
 ---
 title: "Uncover user insights with View Users"
-slug: "changelog-2023-03-28-custom-buckets"
+slug: "changelog-2022-07-01-view-users"
 hidden: false
 createdAt: "2022-07-01T17:39:02.165Z"
 updatedAt: "2023-07-01T17:39:02.165Z"
