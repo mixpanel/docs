@@ -116,7 +116,7 @@ For example, say you set a session timeout length of 15 minutes. A user begins a
 
 Sessions are reset every 24 hours at midnight (according to your project timezone), so the maximum session timeout length is 24 hours. The minimum session timeout length is one minute.
 
-### **Estimate Ideal Session Length
+### Estimate Ideal Session Length
 
 Use your [Time to Convert Chart in Funnels](https://help.mixpanel.com/hc/en-us/articles/360029190092-Advanced-Funnels-Functionality#time-to-convert) to help determine an appropriate session timeout period that aligns with your users’ behavior.
 
