@@ -16,3 +16,4 @@ Introducing **Custom Buckets**, a super simple way to group existing breakdowns 
 **Channel Source:** Group all social channel segments into a single value (Social Media Channels = Facebook + Instagram + Twitter) to determine if your investment in social is driving signups.
 
 ![changelog Image](https://raw.githubusercontent.com/mixpanel/docs/main/media/changelog/changelog-2023-03-28-custom-buckets2.png)
+
