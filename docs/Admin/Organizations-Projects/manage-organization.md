@@ -11,7 +11,7 @@ updatedAt: "2023-03-30T05:52:10.102Z"
 
 # Overview
 
-As an Organization Admin, you may create and manage security process that dictates the requirements needed for your users to access your organization.
+As an Organization Admin, you may create and manage security processes that dictates the requirements needed for your users to access your organization.
 
 # Two-Factor Authentication (2FA)
 
