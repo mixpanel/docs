@@ -1,5 +1,5 @@
 ---
-title: "Explore new questions with Custom Buckets"
+title: "Accurate Event Ordering with Millisecond Precision"
 slug: "changelog-2022-11-07-millisecond"
 hidden: false
 createdAt: "2022-11-07T17:39:02.165Z"
