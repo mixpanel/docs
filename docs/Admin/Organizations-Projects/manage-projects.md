@@ -175,9 +175,10 @@ The Unix timestamp represents the number of seconds that have elapsed since 00:0
 
 In the example below, if your project’s timezone is US/Pacific, the below parameters returns:
 
-'''
+
+```
 00:00:00 Aug. 1 to 11:59:59 Aug. 1 PDT, or 07:00:00 Aug. 1 – 06:59:59 Aug. 2 UTC. from_date = "2015-08-01" to_date = "2015-08-01"
-'''
+```
 
 ### Importing Data into Mixpanel
 
