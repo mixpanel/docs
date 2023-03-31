@@ -7,17 +7,17 @@ metadata:
   description: "Learn about Lookup Tables."
 ---
 
-In this guide, we walk through what Lookup Tables are and when/how to use them effectively. Lookup Tables are optional; if you're new to Mixpanel, we recommend starting with our guide on [Events and Properties](doc:events-properties).
+This guide covers Lookup Tables and how to use them effectively. Lookup Tables are optional; if you're new to Mixpanel, we recommend starting with our guide on [Events and Properties](doc:events-properties).
 
 # Overview
 
 Lookup Tables let you enrich your Mixpanel events with attributes about other entities.
-* If you're coming from databases, lookup tables are like dimension tables or join tables.
-* If you're coming from Excel, Lookup Tables are like VLOOKUP.
+* If you have a database background, lookup tables are like dimension tables or join tables.
+* If you have an Excel background, Lookup Tables are like VLOOKUP.
 
-Let's say you're a media company, and you track a `Song Played` event, which contains the `song_id` property. You want to filter and breakdown this event by other attributes of the song, like `artist` and `genre`, which are not tracked as properties.
+Let's say you're building a media product, and you track a `Song Played` event, which contains a `song_id` property. You want to filter and breakdown this event by other attributes of the song, like `artist` and `genre`, which are not tracked as properties.
 
-Lookup Tables let you upload a CSV like this and map it to the `song_id` property:
+Lookup Tables let you upload a CSV of data about songs like this and map it to the `song_id` property:
 ```csv
 id,artist,genre,is_platinum,name,num_listens,release_date,is_top_40,countries
 c994bb,Drake,Pop,True,Hotline Bling,1700000000,2015-10-18T22:00:00,true,[]
@@ -25,23 +25,23 @@ d8d949,Gipsy Kings,Flamenco,False,Bamboleo,1170000,1987-07-12T05:00:00,false,"["
 a43fb8,Daft Punk,House,False,Aerodynamic,41000000,2001-03-12T07:30:00,false,"[""IN""]"
 ```
 
-Now, whenever you use an event with the song_id property, you'll have access to all the other properties of the song as well. We also provide an [API](ref:replace-lookup-table) so that you can keep this Lookup Table in sync from your source of truth.
+Then, whenever you use an event with the `song_id` property, you'll have access to all these other properties of the song as well. We also provide an [API](ref:replace-lookup-table) to keep Lookup Tables updated.
 
 # Use Cases
 
 ### Media
-One good use case for Lookup Tables is to load metadata about your content (songs, podcasts, articles) into Mixpanel. If you track some sort of content identifier (eg: song_id, podcast_id, article_id) as a property on your events, you can then upload a Lookup Table with other properties of that content, like the name, category, author, or creation date. You can then use any of those properties on any events that have the ID properties.
+One good use case for Lookup Tables is to load metadata about your content (songs, podcasts, articles) into Mixpanel. If you track some content identifier (eg: song_id, podcast_id, article_id) as a property on your events, you can then upload a Lookup Table with other properties of that content, like name, category, author, or creation date. You can then use any of those properties on any events that have the ID properties.
 
 ### E-Commerce
-You can also leverage Lookup Tables if you sell products online. You can load your product catalog into as a Lookup Table. If you track a product_id as a property on your events, you can then enrich that event with other properties about those products, like their name, category, and price.
+If you sell products online, can load your product catalog into Mixpanel as a Lookup Table. As long as you track a product_id or sku_id property on your events, you'll be able to enrich those events with other properties about those products, like their name, category, and price.
 
 ### B2B
-If you run a B2B business, you usually have some set of entities relevant to your service. For example, Github has repositories, Figma has design components, Slack has channels. They might have repository_id, or component_id, or channel_id as properties on your events and use Lookup Tables to enrich those events with information about those repositories, components, and channels.
+If you have a B2B product, you likely have some key entities that are specific to your product. For example, Github has repositories, Figma has design components, Slack has channels. If they track repository_id, component_id, or channel_id as properties on their events, they can use Lookup Tables to enrich those events with information about those repositories, components, and channels.
 
 # How do I upload a Lookup Table?
-Lookup Tables are accessible via Lexicon. Go to Lexicon > Import > Lookup Table, paste in a CSV in the format of the example above, and map it to an event property which is the ID that the Lookup Table should join with. Mixpanel will join assume the first column of the CSV is the ID and will join it with that ID.
+Lookup Tables are accessible via Lexicon. Go to Lexicon > Import > Lookup Table, and upload a CSV in the format of the example above, and map it to an event property which is the ID that the Lookup Table should join with. Mixpanel will assume the first column of the CSV is the ID and will join it with that ID.
 
-Lookup Tables can be updated -- simply reupload an exisitng Lookup Table from the UI. Lookup Tables, once they're created in the UI, can also be updated via our API.
+Lookup Tables can be replaced with a fresh copy, either via our UI or via our API.
 
 
 # FAQ
@@ -52,4 +52,4 @@ The CSV must be valid according to RFC4180. See our [API reference](ref:replace-
 ### When _shouldn't_ I use Lookup Tables?
 Lookup Tables have a limit of 100MB CSV or roughly 1M rows. We don't recommend using Lookup Tables for anything very high cardinality.
 * Don't use Lookup Tables when the ID is a User ID. Instead use [User Profiles](doc:users-groups). Mixpanel is more optimized for User Profiles, so they don't have any scale limits and support more opinionated workflows in our product (like clicking into a report and seeing the list of User Profiles).
-* Don't use Lookup Tables as a way to mutate events. For example, using it to update an "Order Completed" event in case the order is refunded. A better solution for that use case is to track two events ("Order Completed" and "Order Refunded"). This doesn't have limits on scale and is lossless (you don't lose information about the original order completion).
+* Don't use Lookup Tables as a way to mutate events. For example, it might be tempting to have an `Orders` lookup table, with 1 row per Order that a customer makes. Then, you can update the Orders table whenever an order is mutated (eg: when you issue a refund). This approach will quickly run into the 100MB scale limit and will make it difficult to do the analysis you need. Instead, we recommend modeling state changes as events, which doesn't have scale limits and preserves the history of state changes. Track an `Order Completed` event and an `Order Refunded` or `Order Modified` event. You can then use our funnels report to answer questions like: "what % of orders were refunded?"
