@@ -16,3 +16,4 @@ With just one click, you can set up Slack or email alerts for:
 - Monitoring unexpected behavior (or potentially faulty data), such as when any event in any segment changes by more than 25%
 
 As a bonus, we’ve also improved admin controls so that you can better organize your workspace through bulk deletion and clearer invalid alert symbols.
+
