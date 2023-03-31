@@ -6,7 +6,7 @@ createdAt: "2021-02-10T21:50:27.202Z"
 updatedAt: "2021-09-09T19:23:12.598Z"
 ---
 
-Events are the core of Mixpanel's [Data Model](doc:data-structure-deep-dive). All events have a name, a timestamp, and a user ID. Events can optionally have a set of properties, which describe the event in more detail.
+Events are the core of Mixpanel's Data Model. All events have a name, a timestamp, and a user ID. Events can optionally have a set of properties, which describe the event in more detail.
 
 # Overview
 If you're familiar with databases, events are like tables and properties are like columns.
