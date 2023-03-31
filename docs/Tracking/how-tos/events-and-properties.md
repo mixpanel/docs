@@ -6,18 +6,19 @@ createdAt: "2021-02-10T21:50:27.202Z"
 updatedAt: "2021-09-09T19:23:12.598Z"
 ---
 
-Events are the core of Mixpanel's Data Model. All events have a name, a timestamp, and a user ID. Events can optionally have a set of properties, which describe the event in more detail.
 
 # Overview
-If you're familiar with databases, events are like tables and properties are like columns.
-If you're familiar with Google Analytics, events are like hits and properties are like dimensions.
+Events are the core of Mixpanel's Data Model. All events have a name, a timestamp, and a user ID. Events can optionally have a set of properties, which describe the event in more detail.
+* If you're familiar with databases, events are like tables and properties are like columns.
+* If you're familiar with Google Analytics, events are like hits and properties are like dimensions.
 
-For example:
+# Examples
 * A `Page Viewed` event might have a property called `Page URL`, which is set to the URL of the page that was viewed.
 * A `Signed Up` event might have a property called `Signup Type`, which indicates whether the signup was `organic` vs `referral`.
 * A `Song Played` event might have a property called `Song Name`, which is set to the name of the song that was played.
 * A `Order Completed` event might have a property called `Items`, which is a list of objects, each of which contains details about an item, like its name, category, and price.
 
+# Use cases
 You can filter, breakdown, and aggregate your events by their properties to answer more questions:
 * Which pages do users look at before they visit the pricing page?
 * How many Signups did I get that were organic vs referral?
