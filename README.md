@@ -23,7 +23,7 @@ All images/gifs also live in Github under the media/ folder. Updating an image t
 # Adding new docs / changing structure
 These types of changes are currently not possible purely in Github due to a limitation of the ReadMe <> Github integration. We expect this to be rare anyway and want to add a little friction to adding new docs to avoid clutter. 
 
-If you think we need a new doc (eg: because we’re shipping a new feature or adding a how to), create an issue in this repository. We’ll discuss in Github and one of the doc maintainers will create the doc in ReadMe if we decide it’s necessary. Once it’s created, you can then make a pull request to write up the contents of the doc, going through the normal workflow as outlined in the “Contributing fixes” section. 
+If you think we need a new doc (eg: because we’re shipping a new feature or adding a how to), create an issue in this repository and write up the goals of the new doc. Keep in mind that this is publicly accessible. We’ll discuss in Github and one of the doc maintainers will create the doc in ReadMe if we decide it’s necessary or close the issue if it's not. Once it’s created, you can then make a pull request to write up the contents of the doc, going through the normal workflow as outlined in the “Contributing fixes” section. 
 
 # Who are the maintainers?
 Vijay, Marissa, Seams, Mav. Eventually we’ll expand this list, but keeping it tight for now.
