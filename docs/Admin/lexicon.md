@@ -11,7 +11,7 @@ metadata:
 
 # Overview
 
-Lexicon is a data dictionary that stores descriptions of events and their properties. Project owners and admins can add and manage descriptions for all events and properties, and organize data for clarity and discoverability.
+Lexicon is a data dictionary that stores descriptions of events and their properties. Project owners and admins can add and manage descriptions for all events and properties, and organize data for clarity and discoverability. Event and property definitions help your entire team understand what your data means, so everyone stays on the same page.
 
 To open Lexicon, select the Data Management icon on the right side of the top navigation menu and then select Lexicon.
 
