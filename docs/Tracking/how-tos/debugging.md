@@ -4,6 +4,11 @@ slug: "debugging"
 hidden: false
 ---
 
+📝 TO ADD:
+
+- Debugging Undefined/Null values: https://help.mixpanel.com/hc/en-us/articles/115004499403
+- Add images to section on Debugging with Browser Console
+
 This document walks through best practices for debugging your Mixpanel implementation and data discrepancies. The tips below assume that you are already tracking events and creating profiles for your users.
 
 If you haven't set up Mixpanel yet, check out our quickstart guides for [JavaScript](https://developer.mixpanel.com/v3.19/docs/javascript-quickstart), [Server](https://developer.mixpanel.com/v3.19/docs/server), and [Mobile](https://developer.mixpanel.com/v3.19/docs/react-native-quickstart). We have a simple [HTTP API](https://developer.mixpanel.com/v3.19/docs/cloud-ingestion) for any languages we don't support.
