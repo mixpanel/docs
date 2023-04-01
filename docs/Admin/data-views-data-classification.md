@@ -58,13 +58,21 @@ Create a Data View that filters based on an event property including only specif
 
 Navigate to PROJECT SETTINGS, and select at the left-hand menu  Data Views.
 
+![Project Settings](https://github.com/mixpanel/docs/blob/main/media/Admin/Data%20Governance/Data%20Views%20%26%20Data%20Classification/manage-data-view.png)
+
+![Manage Data View Project Settings](https://github.com/mixpanel/docs/blob/main/media/Admin/Data%20Governance/Data%20Views%20%26%20Data%20Classification/manage-data-view-project-settings.png)
+
 All projects have a global Data View called “All Project Data.” This Data View has no data filters and gives users access to all the data in a project. The global Data View in a project is equivalent to a Mixpanel project without Data Views.
 
 The “All Project Data” Data View starts as the default Data View of a project for any new users added to the project. You can decide which Data View you want to set as default by checking the box next to the Workspace name and selecting Set Default.
 
+![Manage Data View Project Settings](https://github.com/mixpanel/docs/blob/main/media/Admin/Data%20Governance/Data%20Views%20%26%20Data%20Classification/set-default-data-view.png)
+
 # Create Data View
 
 To create a new Data View click on + Create Data View in the top right of the Data Views settings. Add a name and description to your Data View and click Save. The name of the Data View cannot be longer than 255 characters.
+
+![Create Data View](https://github.com/mixpanel/docs/blob/main/media/Admin/Data%20Governance/Data%20Views%20%26%20Data%20Classification/create-data-view.png)
 
 Click on your new Data View to see an overview of Data View details, review or update filters, and manage access at the individual or team level.
 
@@ -78,9 +86,14 @@ Select Public under Visibility to allow project members to discover your Data Vi
 
 After the Editing Controls and Visibility are set upon Data View creation, they can be changed by only the Data View creator or a Project Owner.
 
+![Data Views Overview](https://github.com/mixpanel/docs/blob/main/media/Admin/Data%20Governance/Data%20Views%20%26%20Data%20Classification/data-view-overview.png)
+
+
 # Manage Data View Filters
 
 Filters determine what data is accessible within a Data View.
+
+![Data Views Filters](https://github.com/mixpanel/docs/blob/main/media/Admin/Data%20Governance/Data%20Views%20%26%20Data%20Classification/manage-data-view-filters.png)
 
 You can apply multiple event, event property, and user profile property filters to a Data View.
 
@@ -99,6 +112,10 @@ If you set up your Identity Provider to connect to Mixpanel with Single Sign-On,
 # Data View Library
 
 Click on the name of your project in the upper-right corner, and then on "Data View Library". The Data View Library allows you to see the Data Views you have joined, to create new Data Views, and to join other public Data Views. Private Data Views that you have not been invited to will not show up here.
+
+![Data View Library Nav](https://github.com/mixpanel/docs/tree/main/media/Admin/Data%20Governance/Data%20Views%20%26%20Data%20Classification)
+
+![Data View Library](https://github.com/mixpanel/docs/blob/main/media/Admin/Data%20Governance/Data%20Views%20%26%20Data%20Classification/data-view-library2.png)
 
 # Experience Data Views as a User
 
