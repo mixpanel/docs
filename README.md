@@ -1,10 +1,11 @@
-If you have a minor change (typo, broken link, outdated screenshot) you can now propose that change yourself via Github!
+If you see something off with our docs (typo, broken link, outdated content/screenshot) you can now propose that change yourself!
+
+Our live docs live [here](https://developer.mixpanel.com/v3.19). 
 
 # Contributing Fixes
-You’ll need a Github account. It’s free and takes 1 minute to create. We recommend using fullname-mixpanel as your handle so that we can tell who it is. 
+You’ll need a Github account. It’s free and takes 1 minute to create. Not sure what to make your handle? We recommend yourfullname-mixpanel. 
 
 To make an edit: 
-* Go to our docs repository
 * Go to the file you want to edit. Our directory structure roughly matches the hierarchy in ReadMe.
 * Click the pencil icon to make edits to a file’s the markdown. You can swap between code and preview to see what your edits look like.
 * When you’re ready, hit “Commit” and follow the instructions to commit the changes to your branch and create a pull request review. Add a description if you like, keeping in mind that this is publicly accessible. 
