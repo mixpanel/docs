@@ -16,24 +16,20 @@ Data Views allow you to manage data access for a group of users within a single 
 ### Teams or Functional Areas
 
 You have a Mixpanel project that contains all of your data. Engineering, Marketing, Support, and various product teams all use Mixpanel on a regular basis. Each team can have a Data View filtering for relevant data.
-
 ### Separate Customer Data from Internal User Data
 
 Create a Data View for customer data by excluding data tracked by your internal users/employees. Create another Data View for just your internal users. By doing this, you no longer have to remember to add cohorts or filters each time you create a Board, Report, or Cohort.
-
 ### Regions or Geo-Based Teams
 
 For a global organization with multiple offices, regional teams might need access to data from only their region. E.g. The marketing team in the Asia region would like to target only Asian customers and should not have access to US customers' data. 
-
 ### Verified Data Only
 
 Teams that want to closely manage events that are included in all their analysis can either include or exclude the specific events in the Data View definition. 
-
 ### Specific Platform/App Version
 
 Engineering or Product teams working on a specific version can use Data Views to target specific versions of the app or platform version(s) to be included in the analysis.
 
-# Create Data View
+## Create Data View
 
 To create a new Data View click on + Create Data View in the top right of the Data Views settings. Add a name and description to your Data View and click Save. The name of the Data View cannot be longer than 255 characters.
 
@@ -41,7 +37,7 @@ To create a new Data View click on + Create Data View in the top right of the Da
 
 Click on your new Data View to see an overview of Data View details, review or update filters, and manage access at the individual or team level.
 
-# Manage Data View
+## Manage Data View
 
 Navigate to PROJECT SETTINGS, and select at the left-hand menu  Data Views.
 
@@ -55,7 +51,7 @@ The “All Project Data” Data View starts as the default Data View of a projec
 
 ![Manage Data View Project Settings](https://raw.githubusercontent.com/ranic/mixpanel-docs/main/media/Admin/Data%20Governance/Data%20Views%20%26%20Data%20Classification/set-default-data-view.png)
 
-# Manage Visibility and Editing Controls
+## Manage Visibility and Editing Controls
 
 The OVERVIEW tab displays details about the Data View including the name, description, editing controls, visibility, creator name, date created, and URL to access the Data View. The Overview is accessible to all Admins and Owners in the project.
 
@@ -67,16 +63,14 @@ After the Editing Controls and Visibility are set upon Data View creation, they 
 
 ![Data Views Overview](https://raw.githubusercontent.com/ranic/mixpanel-docs/main/media/Admin/Data%20Governance/Data%20Views%20%26%20Data%20Classification/data-view-overview.png)
 
-
-# Manage Data View Filters
+## Manage Data View Filters
 
 Filters determine what data is accessible within a Data View.
 
 ![Data Views Filters](https://raw.githubusercontent.com/ranic/mixpanel-docs/main/media/Admin/Data%20Governance/Data%20Views%20%26%20Data%20Classification/manage-data-view-filters.png)
-
 You can apply multiple event, event property, and user profile property filters to a Data View.
 
-# Add Users or Teams
+## Add Users or Teams
 
 Click + Add User to add individual project members to your Data View. The modal shows only users that are part of your project. 
 
@@ -86,7 +80,7 @@ Click on the TEAMS tab to add or remove teams from a Data View. Add a team to a 
 
 If you set up your Identity Provider to connect to Mixpanel with Single Sign-On, you can define which project members are assigned to which teams. If you set up certain teams with access to specific projects and Data Views, you can streamline your member onboarding to a Mixpanel project. This helps control who has access to what data at scale.
 
-# Data View Library
+## Data View Library
 
 Click on the name of your project in the upper-right corner, and then on "Data View Library". The Data View Library allows you to see the Data Views you have joined, to create new Data Views, and to join other public Data Views. Private Data Views that you have not been invited to will not show up here.
 
@@ -94,15 +88,15 @@ Click on the name of your project in the upper-right corner, and then on "Data V
 
 ![Data View Library](https://raw.githubusercontent.com/ranic/mixpanel-docs/main/media/Admin/Data%20Governance/Data%20Views%20%26%20Data%20Classification/data-view-library2.png)
 
-# Experience Data Views as a User
+## Experience Data Views as a User
 
 You can see the name of the Data View that you are currently in on the upper-left corner next to the project name. A message banner will also notify you when you enter a Data View if the Data View has a filter.
 
-# Saved Content in Data Views
+## Saved Content in Data Views
 
 The saved content you create in Mixpanel is not contained to the Data View in which it was created. For example, you can view a Report you made in one Data View in any of the other Data Views you have access to. The results of a report or Board will change depending on the Data View you have selected.
 
-# Data Views Limits
+## Data Views Limits
 
 The following are limitations to be aware of when using Data Views:
 
@@ -110,3 +104,53 @@ The following are limitations to be aware of when using Data Views:
 - Any Mixpanel APIs that use Project Token or Secret (e.g. Export API), work at a project level and are not the Data View level. That said, any APIs that use OAuth (e.g. Query API) work at the Data View level.
 - Lexicon shows events and properties filtered based upon the Data View you have selected. However if you edit an event or property in Lexicon in one Data View, the changes will persist across the project. All Data Views will be impacted.
 - Applying any User Profile Property filter will remove the ability to analyze by all Group Identifiers except User
+
+# Data Classification
+
+## Mark Properties as Classified Data 
+
+Marking properties as classified limits which users can view them. Navigate to the EVENT PROPERTIES and USER PROFILE PROPERTIES tabs in Lexicon to mark a property as classified.
+
+When you mark a property as classified, users or teams with the checked Can View checkbox checked can see the classified property in reports. You can see the Can View checkbox in Project Settings for individual users and in Organization Settings for teams. Only Project Owners and Admins can mark a property as classified.
+
+Select a property or group of properties and click Mark Classified.
+
+![Mark Classified](https://raw.githubusercontent.com/ranic/mixpanel-docs/main/media/Admin/Data%20Governance/Data%20Views%20%26%20Data%20Classification/mark-classified.png)
+
+A pop-up will confirm that you want to mark the selected property or properties as classified.
+
+![Mark Classified Warning](https://raw.githubusercontent.com/ranic/mixpanel-docs/main/media/Admin/Data%20Governance/Data%20Views%20%26%20Data%20Classification/mark-classified-warning.png)
+
+When you mark a property as classified, the Status column will indicate that the property is classified alongside its visibility state (visible or hidden). If the Status column shows only the visibility state, then the property is not marked as classified.
+
+## Manage Classified Data Viewing Permissions for Individual Users
+
+Go to your Project Settings, and then to the tab "Project Users" in order to manage which users can access the events and properties marked as classified.
+
+In the CURRENT USERS table, the Classified Data column indicates which users have permission to view classified data. Click the Can View check box in a user’s row to update their classified data viewing permission.
+
+![Mark Classified Viewing Perms](https://raw.githubusercontent.com/ranic/mixpanel-docs/main/media/Admin/Data%20Governance/Data%20Views%20%26%20Data%20Classification/manage-classified-data-viewing-perms.png)
+
+Click on All Data Permissions to filter the CURRENT USERS table to display only users that can view classified data or only users that cannot view classified data.
+
+![All Data Permissions](https://raw.githubusercontent.com/ranic/mixpanel-docs/main/media/Admin/Data%20Governance/Data%20Views%20%26%20Data%20Classification/all-data-permissions.png)
+## Manage Classified Data Viewing Permissions for Teams
+
+Navigate to Organization Settings from the gear icon at the top-right corner of the navigation bar. Go to the Users & Teams tab and click on the team for which you wish to manage permissions. You can manage the team’s access to Classified Data for each of the projects to which they have access.
+
+![Manage Classified Data Viewing for Teams](https://raw.githubusercontent.com/ranic/mixpanel-docs/main/media/Admin/Data%20Governance/Data%20Views%20%26%20Data%20Classification/manage-classified-data-viewing-teams.png)
+## Analysis Experience for Users that Cannot View Properties Marked as Classified Data
+
+Users that cannot view properties marked as Classified Data can see which specific properties are marked as classified in Lexicon. Users that cannot view properties marked as Classified Data cannot use such properties as filters or breakdowns.
+
+### Boards
+
+If a report contains any event or property marked as classified when a user without the "Can View" option tries to open it, will see the next warning
+![Sensitive Data Warning](https://raw.githubusercontent.com/ranic/mixpanel-docs/main/media/Admin/Data%20Governance/Data%20Views%20%26%20Data%20Classification/sensitive-data.png)
+Users that cannot view classified data can click on a Board card to access the full report and determine what properties are preventing them from viewing a report.
+
+### Analysis Reports (Insights, Funnels, Flows, and Retention)
+
+Classified properties won't be visibly different when building a report, but if used but a user without the "Can View" option enabled, the next warning will be displayed:
+
+![Analysis Reports Warning](https://raw.githubusercontent.com/ranic/mixpanel-docs/main/media/Admin/Data%20Governance/Data%20Views%20%26%20Data%20Classification/analysis-reports.png)
