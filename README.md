@@ -1,7 +1,7 @@
 If you have a minor change (typo, broken link, outdated screenshot) you can now propose that change yourself via Github!
 
 # Contributing Fixes
-You’ll need a Github account. It’s free and takes 1 minute to create. We recommend using <fullname>-<mixpanel> as your handle so that we can tell who it is. 
+You’ll need a Github account. It’s free and takes 1 minute to create. We recommend using '<fullname>-<mixpanel>' as your handle so that we can tell who it is. 
 
 To make an edit: 
 * Go to our docs repository
