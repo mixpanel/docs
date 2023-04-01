@@ -4,17 +4,9 @@ slug: "debugging"
 hidden: false
 ---
 
-Topics to add:
-
-- Following your own events in Events ✅
-- Find your profile to follow your events ✅
-- Flush interval on mobile ✅
-- Data discrepancies: https://help.mixpanel.com/hc/en-us/articles/115004499403
-- Missing event names / property names / prop values after 30 days
-
 This document gives best practices for QA and debugging your Mixpanel implementation. The tips below assume that you are already tracking events and creating profiles for your users.
 
-If you haven't set up Mixpanel yet, check out our quickstart guides for [JavaScript](https://developer.mixpanel.com/v3.19/docs/javascript-quickstart), [Server](https://developer.mixpanel.com/v3.19/docs/server), and [Mobile](https://developer.mixpanel.com/v3.19/docs/react-native-quickstart).
+If you haven't set up Mixpanel yet, check out our quickstart guides for [JavaScript](https://developer.mixpanel.com/v3.19/docs/javascript-quickstart), [Server](https://developer.mixpanel.com/v3.19/docs/server), and [Mobile](https://developer.mixpanel.com/v3.19/docs/react-native-quickstart). We have a simple [HTTP API](https://developer.mixpanel.com/v3.19/docs/cloud-ingestion) for any languages we don't support.
 
 Theres are two primary places to inspect your raw events as they flow into your Mixpanel project: Events and User Profiles. 
 
@@ -87,3 +79,62 @@ All users can hide events, event properties, and user profile properties in your
 Mixpanel’s report dropdown menus hide events that have not been fired within the last 30 days. The events will still be available in the project's raw data, but will not be visible in the UI (we assume it's no longer relevant and hide it to declutter the dropdown menus and improve their performance). Event properties and property values that have not been sent to your project in the last 28 days will also be hidden from dropdowns.
 
 To have an imported event, event property, or property value that’s older than 30 days show in the dropdowns, you can fire a single instance of that event, property, or property value and the data will refurface it in the UI. If you know the name of the event, you can also search for it by typing the name in the dropdown menu.
+
+# Data Discrepancies
+
+## Discrepancies in Mixpanel Reports
+
+Mixpanel reports calculate data in different ways. While the Insights report defaults to the total event count ('totals'), the funnel report defaults to unique user count ('uniques'). So if you are seeing discrepancies between a Funnel and an Insights report, take a step back and look at the filtering for the events. It's important to note that the 'totals' in Funnels show total conversions, not total event count.
+
+With discrepancies within the Mixpanel interface, it's important to look out for:
+
+- Comparisons between unique user count vs. total event count? In funnels; Are you using unique, total conversions or session conversions?
+- Differences in properties - E.g. event property vs. user property vs. custom property
+
+If you took a screenshot of a report a while ago and the data has changed since then, you can check if any user properties have been used in the report as they change over time, while event properties hold constant. You can also check if you have imported data or if data was ingested later by breaking down a report by the property mp_processing_time_ms. 
+
+A good way to start is to remove all filtering from the reports to check if the underlying data is the same, then re-add them and see when the discrepancy occurs. Likely the culprit will be a filter or a breakdown. 
+
+## Discrepancies between Mixpanel and other sources
+
+Two systems will always track data differently due to their nature. It might very likely be that the systems will never track exactly the same data. However, it is important to get to the bottom of what's causing the discrepancy so you can establish trust in your data.
+
+## Ad Blockers and Do Not Track Settings
+
+Client-Side Tracking can be unreliable, you may lose events for 30-50% of your users. You can resolve this by [sending events through a proxy](https://developer.mixpanel.com/docs/collection-via-a-proxy), but it requires a bit more effort. We [recommend](https://developer.mixpanel.com/docs/client-side-vs-server-side-tracking) server-side tracking, since it is more reliable and easier to maintain than web/mobile tracking.
+
+## Different Timezones
+
+Mixpanel records all events in Coordinated Universal Time (UTC) at intake. By default, Mixpanel displays events times in US Pacific Time but this is adjustable in [Project Settings](https://developer.mixpanel.com/v3.19/docs/manage-projects#manage-timezones-for-projects). Navigate to your Project Settings to determine what timezone your Mixpanel events are displayed in.
+
+- Are event timezones tracked in the same way?
+
+## Different Queries
+
+- Are both systems looking at the same event and the same timeframe?
+- Are any filters applied to the query? Does the discrepancy persist if you remove them?
+- Are you looking at event or user properties?
+
+## Different Calculations
+
+- Some of our reports have calculations applied, such as Funnels or Retention. Does the same calculation apply to the data in your other source?
+
+## Client-Side vs. Server-Side Tracking
+
+- Client-side integrations are more vulnerable to data tracking issues due to ad blockers and DNT settings
+- Mixpanel's SDKs can need loading times to trigger the first event
+
+## Different Triggers to Track Data
+
+- Are both systems using the same triggers to track events? For example, the First App Open event in Mixpanel will trigger when our SDK has loaded, other systems might trigger a comparable event earlier.
+- The event definitions might be different - Think of a button click on the client-side triggering the event in one system vs. an API call triggering the event in the other system.
+
+## Delayed Ingestion
+
+- Mixpanel accepts data that has been triggered a while ago, either via mobile SDKs or event import. You can check the $import property and the mp_processing_time_ms to confirm when data has been ingested.
+- Mixpanel events older than 5 days sent to our /track endpoint will not be ingested, but other systems might accept these events (e.g. Firebase). Check how old an event was at point of ingestion in the other system to confirm. 
+
+## Cohort Export
+
+A cohort might show more in Mixpanel than what is actually being exported to the partner. You can find out more about troubleshooting this here.
+
