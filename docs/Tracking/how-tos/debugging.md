@@ -10,22 +10,28 @@ If you haven't set up Mixpanel yet, check out our quickstart guides for [JavaScr
 
 Theres are two primary places to inspect your raw events as they flow into your Mixpanel project: Events and User Profiles. 
 
-# Using Events to Debug
+# Debugging with Events
 
-Events is a real-time tool that helps you confirm that your events and properties are arriving to your Mixpanel project correctly, so you can troubleshoot your Mixpanel setup quickly. With Events, you can see a feed of events along with all of their properties coming into Mixpanel to validate that they are being sent in the expected format.
+Events is a real-time tool that helps you confirm that your events are arriving to your Mixpanel project, so you can troubleshoot your Mixpanel setup quickly. With Events, you can see a feed of events along with all of their properties coming into Mixpanel to validate that they are being sent in the expected format.
 
-To validate that events are being triggered correctly, we recommend that you search/filter Events for your own activity. Depending on how you send data to Mixpanel, you can:
+To validate that events are being triggered correctly, we recommend that you search/filter Events for your own activity. You can search or filter Events to find a specific event using any information you know is available in the event's raw payload.
+
+![Events Filter](https://raw.githubusercontent.com/ranic/mixpanel-docs/main/media/Tracking/events-filter.png)
+
+A few tips to help you identify your own activity in Events:
 
 1. Filter Events for All Events for a property that will help you identify your own events, such as:
 - All Events where Name = Alice (assuming you are sending a $name property with the value Alice)
-- All Events where City = `[Your Current Location]` (assuming you are using Mixpanel's Web and Mobile SDKs or supplying the `$ip` property  on an event)
-2. If you're setting up Mixpanel on a web application, you can use [`mixpanel.get_distinct_id`](https://developer.mixpanel.com/docs/javascript-full-api-reference#mixpanelget_distinct_id) to return your own distinct_id in your browser console.
+- All Events where City = `[Your Current Location]` (assuming you are using Mixpanel's Web and Mobile SDKs or tracking geolocation by supplying the `$ip` property  on an event)
+2. If you are using Mixpanel's JavaScript SDK, you can use [`mixpanel.get_distinct_id`](https://developer.mixpanel.com/docs/javascript-full-api-reference#mixpanelget_distinct_id) to return your own distinct_id in your browser console and copy the distinct_id value into the Events search bar.
 
-Once you have identified one of your own events in Events, click the User icon on the left to view your User Profile (if you have created one).
+Once you have identified one of your own events in Events, you can inspect all of the properties that were sent with your event. Toggle between the Your Properties and Mixpanel Properties tabs to determine which properties are custom to your Mixpanel implementation and which are send by default by Mixpanel. Toggle JSON mode to view the complete JSON object Mixpanel received from the calls you sent.
+
+To locate the User Profile associated with your events, click the User icon on the left to view your User Profile.
 
 ![View User Profile in Events](https://raw.githubusercontent.com/ranic/mixpanel-docs/main/media/Tracking/view-profile.png)
 
-# Using User Profiles to Debug
+# Debugging with User Profiles
 
 User Profiles allow you to see the events feed and all user properties for a specific user. By reviewing User Profiles, you can validate:
 
