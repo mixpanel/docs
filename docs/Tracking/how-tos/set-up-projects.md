@@ -21,18 +21,7 @@ Remember, use this solution only if your development environment uses a differen
 [block:code]
 {
   "codes": [
-    {
-      "code": "var productionHost = 'Your production Domain'; 
-var devToken = 'Development Token'; 
-var prodToken = 'Production Token'; 
-
-//If the hostname is anything other than your production domain, initialize the Mixpanel library with your Development Token 
-
-if (window.location.hostname.toLowerCase().search(productionHost) < 0) { mixpanel.init(devToken);
- } else { mixpanel.init(prodToken);",
-      "language": "javascript",
-      "name": "Javascript"
-    }
+// testing code block
   ]
 }
 [/block]
