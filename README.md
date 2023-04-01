@@ -41,7 +41,7 @@ The steps for creating a new changelog post are:
 5. Add a file in Github under the changelogs/ folder. Copy the metadata section from one of the prior changelog posts, but swap out the slug for the slug of the new post.
 6. Follow the steps in "Contributing Fixes" to edit the post with the contents that you want. 
 
-If you want to edit an existing changelog post, jump to Step 6. 
+If you want to edit an existing changelog post, you only need to do Step 6. 
 
 Note: due to a ReadMe limitation, there is no staging environment for changelogs, they all get pushed to the main version.
 
