@@ -4,13 +4,15 @@ slug: "debugging"
 hidden: false
 ---
 
-This document gives best practices for QA and debugging your Mixpanel implementation. The tips below assume that you are already tracking events and creating profiles for your users.
+This document walks through best practices for debugging your Mixpanel implementation and data discrepancies. The tips below assume that you are already tracking events and creating profiles for your users.
 
 If you haven't set up Mixpanel yet, check out our quickstart guides for [JavaScript](https://developer.mixpanel.com/v3.19/docs/javascript-quickstart), [Server](https://developer.mixpanel.com/v3.19/docs/server), and [Mobile](https://developer.mixpanel.com/v3.19/docs/react-native-quickstart). We have a simple [HTTP API](https://developer.mixpanel.com/v3.19/docs/cloud-ingestion) for any languages we don't support.
 
+# Tools for Debugging
+
 Theres are two primary places to inspect your raw events as they flow into your Mixpanel project: Events and User Profiles. 
 
-# Debugging with Events
+## Debugging with Events
 
 Events is a real-time tool that helps you confirm that your events are arriving to your Mixpanel project, so you can troubleshoot your Mixpanel setup quickly. With Events, you can see a feed of events along with all of their properties coming into Mixpanel to validate that they are being sent in the expected format.
 
@@ -31,7 +33,7 @@ To locate the User Profile associated with your events, click the User icon on t
 
 ![View User Profile in Events](https://raw.githubusercontent.com/ranic/mixpanel-docs/main/media/Tracking/view-profile.png)
 
-# Debugging with User Profiles
+## Debugging with User Profiles
 
 User Profiles allow you to see the events feed and all user properties for a specific user. By reviewing User Profiles, you can validate:
 
@@ -42,7 +44,7 @@ User Profiles allow you to see the events feed and all user properties for a spe
 
 # Missing or Incomplete Events
 
-## Enable Debug Mode
+### Enable Debug Mode
 
 If you are using one of Mixpanel's client-side SDKs, you can enable debug mode to confirm that requests are sending to Mixpanel: 
 
@@ -51,6 +53,16 @@ If you are using one of Mixpanel's client-side SDKs, you can enable debug mode t
 - [iOS - Swift Debugging and Logging](https://developer.mixpanel.com/docs/swift#debugging-and-logging)
 - [Android - Debugging and Logging](https://developer.mixpanel.com/docs/android#debugging-and-logging)
 - [React Native - Debugging and Logging](https://developer.mixpanel.com/docs/react-native#debugging-and-logging)
+
+### Debugging with the Browser Console (Web)
+
+In web, you can view the Mixpanel API calls being made from the browser developer console.  When opening up the console, you can look at the XHR requests in the network tab and find the Mixpanel API call when firing an event you have Mixpanel instrumented on.  For instance, here is an example /track call being made:
+
+The data attached to the track call is base64 encoded:
+
+Base64 decoding the parameters show the events and properties:
+
+From here, you can then validate that the event was directed to the right project token and using Events, and confirm that the property values were properly sent to Mixpanel.
 
 ## Customize Flush Interval (Mobile)
 
