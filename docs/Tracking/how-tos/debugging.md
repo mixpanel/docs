@@ -37,8 +37,8 @@ To locate the User Profile associated with your events, click the User icon on t
 
 User Profiles allow you to see the events feed and all user properties for a specific user. By reviewing User Profiles, you can validate:
 
-1. User Properties set on the profile are correct 
-2. Whether the expected events are appearing in the Activities feed in the expected order
+1. User Properties set on the profile correctly
+2. Whether the expected events are appearing in the Activity Feed correctly and in order
 
 ![User Profile](https://raw.githubusercontent.com/ranic/mixpanel-docs/main/media/Tracking/user-profile.png)
 
