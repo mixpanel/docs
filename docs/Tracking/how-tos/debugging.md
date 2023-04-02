@@ -6,7 +6,7 @@ hidden: false
 
 📝 TO ADD:
 
-- Debugging Undefined/Null values: https://help.mixpanel.com/hc/en-us/articles/115004499403
+- Troubleshooting Undefined/Null values: https://help.mixpanel.com/hc/en-us/articles/115004499403
 - Add images to section on Debugging with Browser Console
 
 This document walks through best practices for debugging your Mixpanel implementation and data discrepancies. The tips below assume that you are already tracking events and creating profiles for your users.
