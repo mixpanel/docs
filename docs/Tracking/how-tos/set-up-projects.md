@@ -66,11 +66,11 @@ For example, suppose you have project A with a token of "123abc" and project B w
 
 After your initial Project A init call (with 123abc), you could set up a second instance of the initialization like this:
 
-[block:code] { "codes": [ { // Replace YOUR_TOKEN with your Project Token\n\n//"code": "mixpanel.init("YOUR_TOKEN", {}, "project_b")", "language": "javascript", "name": "Javascript" } ] } [/block]
+```{ "codes": [ { // Replace YOUR_TOKEN with your Project Token\n\n//"code": "mixpanel.init("YOUR_TOKEN", {}, "project_b")", "language": "javascript", "name": "Javascript" } ] }```
 
 You would then send any project B calls like this:
 
-[block:code] { "codes": [ { mixpanel.project_b.track("Event name")", "language": "javascript", "name": "Javascript" } ] } [/block]
+```{ "codes": [ { mixpanel.project_b.track("Event name")", "language": "javascript", "name": "Javascript" } ] } [/block]```
 
 Any standard track calls without a specified project name would go to the initial Mixpanel project.
 
