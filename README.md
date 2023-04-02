@@ -1,4 +1,4 @@
-If you see something off with our [docs]((https://developer.mixpanel.com/v3.19) (typo, broken link, outdated content/screenshot) you can now contribute that fix yourself!
+If you see something off with our [docs](https://developer.mixpanel.com/v3.19) (typo, broken link, outdated content/screenshot) you can now contribute that fix yourself!
 
 # Contributing Fixes
 You’ll need a Github account. It’s free and takes 1 minute to create. Not sure what to make your handle? We recommend `yourfullname-mixpanel`. 
