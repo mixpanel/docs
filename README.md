@@ -1,6 +1,6 @@
-If you see something off with our docs (typo, broken link, outdated content/screenshot) you can now propose that change yourself!
+Docs live [here](https://developer.mixpanel.com/v3.19). 
 
-Our live docs live [here](https://developer.mixpanel.com/v3.19). 
+If you see something off with our docs (typo, broken link, outdated content/screenshot) you can now propose that change yourself!
 
 # Contributing Fixes
 You’ll need a Github account. It’s free and takes 1 minute to create. Not sure what to make your handle? We recommend yourfullname-mixpanel. 
