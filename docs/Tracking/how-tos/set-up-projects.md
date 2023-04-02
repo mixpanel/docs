@@ -84,7 +84,8 @@ You would then send any project B calls like this:
 
 ```javascript
 mixpanel.project_b.track("event name")
-```Any standard track calls without a specified project name would go to the initial Mixpanel project.
+```
+Any standard track calls without a specified project name would go to the initial Mixpanel project.
 
 ## iOS 
 
