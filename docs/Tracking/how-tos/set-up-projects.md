@@ -17,14 +17,6 @@ To set up separate environments:
 Dynamically changing project tokens ensure your testing data does not contaminate your production environment. It allows you to easily build reports from true user data. Plus, it removes the need to swap out tokens before every push to production. 
 
 Remember, use this solution only if your development environment uses a different hostname, such as development.yourdomain.com.
-
-[block:code]
-{
-  "codes": [
-//
-  ]
-}
-[/block]
  
  # When to Use Multiple Production Projects
  
@@ -92,53 +84,9 @@ Note that codeless events and A/B testing will always apply to the instance with
 
 For example:
 
-```objc
-Mixpanel *master = [Mixpanel sharedInstanceWithToken:MASTER_TOKEN];
-
-Mixpanel *publisher = [[Mixpanel alloc] initWithToken:PUBLISHER_TOKEN andFlushInterval: 60];
-
-[master track:@"..."];
-
-[publisher track:@"..."];
-```
 
 ## Android
 
 To initialize multiple instances of Mixpanel on Android, construct separate Mixpanel objects.
 
 For example:
-
-```java
-public class MainActivity extends AppCompatActivity {
-    public MixpanelAPI mixpanel;
-    public MixpanelAPI mMixpanel;
-
-    private static final String projectToken = "TOKEN 1";
-    private static final String projectToken_t = "TOKEN 2";
-    private static Context context;
-
-    @Override
-    protected void onCreate(Bundle savedInstanceState) {
-
-        super.onCreate(savedInstanceState);
-
-
-        setContentView(R.layout.activity_main);
-
-        mixpanel = MixpanelAPI.getInstance(this, projectToken);
-        mMixpanel = MixpanelAPI.getInstance(this, projectToken_t);
-        mixpanel.identify(mixpanel.getDistinctId());
-        mMixpanel.identify(mMixpanel.getDistinctId());
-
-
-        try {
-            JSONObject props = new JSONObject();
-            props.put("Screen", "MainActivity");
-            mixpanel.track("Viewed Screen", props);
-            mMixpanel.track("Viewed Screen", props);
-        } catch (JSONException e) {
-            Log.e("MYAPP", "Unable to add properties to JSONObject", e);
-        }
-    }
-}
-```
