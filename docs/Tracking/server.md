@@ -5,7 +5,7 @@ hidden: false
 createdAt: "2023-03-25T20:18:09.345Z"
 updatedAt: "2023-03-26T23:48:54.396Z"
 ---
-You can use Mixpanel's Server SDKs to send events from your backend servers to Mixpanel. We [recommend](doc:client-side-vs-server-side-tracking) server-side tracking, since it is more reliable and easier to maintain than web/mobile tracking.
+You can use Mixpanel's Server SDKs to send events from your backend servers to Mixpanel. We [recommend](doc:plan-your-implementation#need-to-start-tracking-product-data) server-side tracking, since it is more reliable and easier to maintain than web/mobile tracking.
 
 ### Step 1: Install the SDK
 [block:code]
