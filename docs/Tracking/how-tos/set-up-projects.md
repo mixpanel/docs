@@ -28,7 +28,6 @@ var prodToken = 'Production Token';
 if (window.location.hostname.toLowerCase().search(productionHost) < 0) { mixpanel.init(devToken);
  } else { mixpanel.init(prodToken); } 
  ```
- 
  # When to Use Multiple Production Projects
  
 You can choose to send production data from multiple sources (for example, your website and mobile app) to the same Mixpanel project or to two separate projects. It’s up to you to determine which is best for your business, but here are a few tips to help you decide:
@@ -81,13 +80,11 @@ After your initial Project A init call (with 123abc), you could set up a second 
 // Replace YOUR_TOKEN with your Project Token
 mixpanel.init("YOUR_TOKEN", {}, "project_b")
 ```
-
 You would then send any project B calls like this:
 
 ```javascript
 mixpanel.project_b.track("event name")
 ```
-
 Any standard track calls without a specified project name would go to the initial Mixpanel project.
 
 ## iOS 
@@ -109,7 +106,6 @@ Mixpanel *publisher = [[Mixpanel alloc] initWithToken:PUBLISHER_TOKEN andFlushIn
 
 [publisher track:@"..."];
 ```
-
 ## Android
 
 To initialize multiple instances of Mixpanel on Android, construct separate Mixpanel objects.
