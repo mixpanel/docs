@@ -21,7 +21,7 @@ Remember, use this solution only if your development environment uses a differen
 [block:code]
 {
   "codes": [
-// testing code block
+//
   ]
 }
 [/block]
