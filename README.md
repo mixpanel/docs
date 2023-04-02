@@ -28,7 +28,7 @@ These types of changes are currently not possible purely in Github due to a limi
 
 If you think we need a new doc (eg: because we’re shipping a new feature or adding a how to), create an issue in this repository and write up the goals of the new doc. Keep in mind that this is publicly accessible. We’ll discuss in Github and one of the doc maintainers will create the doc in ReadMe if we decide it’s necessary or close the issue if it's not. Once it’s created, you can then make a pull request to write up the contents of the doc, going through the normal workflow as outlined in the “Contributing fixes” section. 
 
-# Advanced: Adding to Product Updates
+# Adding to Product Updates
 Product Updates live in the changelogs/ directory. Each update is its own file.
 
 The steps for creating a new changelog post are:
