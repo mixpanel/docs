@@ -41,13 +41,13 @@ Let's walk through a few user flows where ID Merge is useful and show what Mixpa
     | --- | --- | --- | --- | --- |
     | 1 | D1 |  | $device:D1 |  |
     | 2 | D1 |  | $device:D1 |  |
-2. The user returns later and signs up for your product. You assign the user a known `$user_id`. All events sent after this point are tracked with both the original `$device_id` and the new `$user_id`. Mixpanel will retroactively set the `$user_id` on any events with the user’s `$device_id`.
+2. The user returns later and signs up for your product. You call `.identify(<user_id>)`. All events sent after this point are tracked with both the original `$device_id` and the new `$user_id`. Mixpanel will retroactively set the `$user_id` on any prior events with the user’s `$device_id` so that both event streams are joined.
     
     
     | Event | $device_id | $user_id | distinct_id (set by Mixpanel) | Notes |
     | --- | --- | --- | --- | --- |
-    | 1 | D1 | U1 | U1 | Retroactively updated. |
-    | 2 | D1 | U1 | U1 | Retroactively updated. |
+    | 1 | D1 | U1 | U1 | |
+    | 2 | D1 | U1 | U1 | |
     | 3 | D1 | U1 | U1 | Links D1 ⇒ U1 |
 
 ## Returning User
@@ -70,8 +70,8 @@ Let's walk through a few user flows where ID Merge is useful and show what Mixpa
     | 1 | D1 | U1 | U1 |  |
     | 2 | D1 | U1 | U1 |  |
     | 3 | D1 | U1 | U1 |  |
-    | 4 | D2 | U1 | U1 | Retoractively updated. |
-    | 5 | D2 | U1 | U1 | Retoractively updated. |
+    | 4 | D2 | U1 | U1 |  |
+    | 5 | D2 | U1 | U1 |  |
     | 5 | D2 | U1 | U1 | Links D2 ⇒ U1. |
 
 ## Multiple Users, One Device
