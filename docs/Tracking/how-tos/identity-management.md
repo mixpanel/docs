@@ -24,12 +24,90 @@ If using our Web/Mobile SDKs, there are just 2 steps:
 1. Call `.identify(<user_id>)` when a user signs up or logs in.
 2. Call `.reset()` when a user logs out.
 
-If using Segment, follow their [their best practices for identifying users](https://segment.com/docs/connections/spec/best-practices-identify/) and use the [Mixpanel (Actions) destination].
+If using Segment, follow their [their best practices for identifying users](https://segment.com/docs/connections/spec/best-practices-identify/) and use the [Mixpanel (Actions) destination](https://segment.com/docs/connections/destinations/catalog/actions-mixpanel/).
 
 If using our Server SDKs, HTTP API, or Reverse ETL: it depends on whether you're on Original ID Merge or Simplified ID Merge. See below for more details.
 
 # Example User Flows
 
+Let's walk through a few user flows where ID Merge is useful and show what Mixpanel does under the hood. Note: the specific value of `distinct_id` will be different based on which [version](doc:identity-management#simplified-vs-original-id-merge) of ID Merge you use, but logically both versions work the same way.
+
+## New User Signup
+
+1. A user lands in your product on a new device and interacts with your product before signing up. Our SDK will assign the user a random `$device_id` and persist it. All events tracked at this point will send only a `$device_id`.
+    
+    
+    | Event | $device_id | $user_id | distinct_id (set by Mixpanel) | Notes |
+    | --- | --- | --- | --- | --- |
+    | 1 | D1 |  | $device:D1 |  |
+    | 2 | D1 |  | $device:D1 |  |
+2. The user returns later and signs up for your product. You assign the user a known `$user_id`. All events sent after this point are tracked with both the original `$device_id` and the new `$user_id`. Mixpanel will retroactively set the `$user_id` on any events with the user’s `$device_id`.
+    
+    
+    | Event | $device_id | $user_id | distinct_id (set by Mixpanel) | Notes |
+    | --- | --- | --- | --- | --- |
+    | 1 | D1 | U1 | U1 | Retroactively updated. |
+    | 2 | D1 | U1 | U1 | Retroactively updated. |
+    | 3 | D1 | U1 | U1 | Links D1 ⇒ U1 |
+
+## Returning User
+
+1. The user from the previous flow returns, but is on a new device and has not logged in yet.
+    
+    
+    | Event | $device_id | $user_id | distinct_id (set by Mixpanel) | Notes |
+    | --- | --- | --- | --- | --- |
+    | 1 | D1 | U1 | U1 |  |
+    | 2 | D1 | U1 | U1 |  |
+    | 3 | D1 | U1 | U1 |  |
+    | 4 | D2 |  | $device:D2 | New device D2. |
+    | 5 | D2 |  | $device:D2 |  |
+2. The user logs in allowing us to tell that the user on this device is the same `$user_id` we have seen before.
+    
+    
+    | Event | $device_id | $user_id | distinct_id (set by Mixpanel) | Notes |
+    | --- | --- | --- | --- | --- |
+    | 1 | D1 | U1 | U1 |  |
+    | 2 | D1 | U1 | U1 |  |
+    | 3 | D1 | U1 | U1 |  |
+    | 4 | D2 | U1 | U1 | Retoractively updated. |
+    | 5 | D2 | U1 | U1 | Retoractively updated. |
+    | 5 | D2 | U1 | U1 | Links D2 ⇒ U1. |
+
+## Multiple Users, One Device
+
+1. A first user begins using a new device.
+    
+    
+    | Event | $device_id | $user_id | distinct_id (set by Mixpanel) | Notes |
+    | --- | --- | --- | --- | --- |
+    | 1 | D1 |  | $device:D1 |  |
+2. The user logs in, linking the `$device_id` to their `$user_id`.
+    
+    
+    | Event | $device_id | $user_id | distinct_id (set by Mixpanel) | Notes |
+    | --- | --- | --- | --- | --- |
+    | 1 | D1 | U1 | U1 | Retroactively updated. |
+    | 2 | D1 | U1 | U1 | Links D1 ⇒ U1. |
+3. The user logs out. At this point, you should call the “reset” function on the Mixpanel SDK, or manually generate a new `$device_id` if you are managing it yourself. A new user shows up and tracks events using this new `$device_id`.
+    
+    
+    | Event | $device_id | $user_id | distinct_id (set by Mixpanel) | Notes |
+    | --- | --- | --- | --- | --- |
+    | 1 | D1 | U1 | U1 |  |
+    | 2 | D1 | U1 | U1 |  |
+    | 3 | D2 |  | $device:D2 | Reset generated new ID: D2. |
+    | 4 | D2 |  | $device:D2 |  |
+4. This new user now logs in.
+    
+    
+    | Event | $device_id | $user_id | distinct_id (set by Mixpanel) | Notes |
+    | --- | --- | --- | --- | --- |
+    | 1 | D1 | U1 | U1 |  |
+    | 2 | D1 | U1 | U1 |  |
+    | 3 | D2 | U2 | U2 | Retroactively updated. |
+    | 4 | D2 | U2 | U2 | Retroactively updated. |
+    | 5 | D2 | U2 | U2 | Links D2 ⇒ U2. |
 
 
 
