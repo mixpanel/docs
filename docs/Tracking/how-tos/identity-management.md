@@ -7,7 +7,7 @@ updatedAt: "2021-10-02T18:41:55.184Z"
 ---
 This guide covers how to track events performed by users that are anonymous vs identified, and how to tie these events together once a user logs in. This system is called ID Merge.
 
-Note: Mixpanel is compatible with Segment. If you use Segment, simply follow their [their best practices for identifying users](https://segment.com/docs/connections/spec/best-practices-identify/) and you're all set!
+Note: Mixpanel is compatible with Segment. If you use Segment, follow their [their best practices for identifying users](https://segment.com/docs/connections/spec/best-practices-identify/), set up the [Mixpanel (Actions) destination](https://segment.com/docs/connections/destinations/catalog/actions-mixpanel/), and you're all set!
 
 # What Problem Does ID Merge Solve?
 Mixpanel relies on events being accurately tied to the user who performed them. If the user is logged in, this is simple; just set the `$user_id` property to the User's ID on all the events you send for that user.  If you're using our Web/Mobile SDKs, this happens automatically for all events sent after you call the `.identify()` method.
