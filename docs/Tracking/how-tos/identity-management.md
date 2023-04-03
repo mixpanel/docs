@@ -134,11 +134,11 @@ Note that:
 
 To enable the simplified API on a new project with no data in it go to the “Identity Merge” section of the Project Settings Page:
 
-![Untitled](Original%20vs%20Simplified%20ID%20Merge%20FAQ%20d3aaa69dd85b4f8faf76934d6fbd63ce/Untitled.png)
+![Untitled](https://github.com/mixpanel/docs/blob/main/media/Tracking/id-merge-project-settings.png?raw=true)
 
 If you would like to make sure any new projects created within your organization default to the correct ID Merge API there is an organization-level option to configure which API you would like as the the default for any new projects.
 
-![Untitled](Original%20vs%20Simplified%20ID%20Merge%20FAQ%20d3aaa69dd85b4f8faf76934d6fbd63ce/Untitled%201.png)
+![Untitled](https://github.com/mixpanel/docs/blob/main/media/Tracking/id-merge-org-settings.png?raw=true)
 
 ## Third-Party Integration Support
 
@@ -151,17 +151,13 @@ Customer data platforms partners have their own identity management solutions. T
 | CDP Partner | Supports Original API | Supports Simplified API |
 | --- | --- | --- |
 | https://segment.com/docs/connections/destinations/catalog/actions-mixpanel/ | Yes | Yes |
-| https://segment.com/docs/connections/destinations/catalog/mixpanel/ | Yes | No |
 | https://www.rudderstack.com/docs/destinations/streaming-destinations/mixpanel/ | Yes | No |
 | https://docs.mparticle.com/integrations/mixpanel/event/ | Yes | No |
-| https://documentation.freshpaint.io/destinations/apps/mixpanel | Yes | No |
 
 ## Key Changes from the Original API
 
-If you are already familiar with the original API here are some of the changes in the simplified API, see the [simplified API documentation](https://www.notion.so/Getting-Started-with-Identity-Management-706d70c523e34b36a7563a0d0c4e4bb7) for full details.
-
-- `**$user_id`/`$device_id` are linked without separate `[$identify](https://developer.mixpanel.com/reference/create-identity)`, `[$merge](https://developer.mixpanel.com/reference/identity-merge)`, or `[$create_alias](https://developer.mixpanel.com/reference/identity-create-alias)` events.** For projects on the original API once a user is identified you must send one of these three special event types to link the two identities. In the simplified API the `$identify`, `$merge`, and `$create_alias` events no longer have any special meaning and will be ignored. Instead, in projects on the simplified API, identities are linked using the `$user_id` and `$device_id` properties on regular events as described in the simplified API documentation.
-- `**$distinct_id` is predictable and matches `$user_id` for identified users.** In the original API IDs are grouped into identity clusters and any ID within the cluster might become the “canonical” distinct ID, which can be any ID in the cluster. In the simplified API `$user_id` and `$distinct_id` will always match once the user is identified.
+- **`$user_id`/`$device_id` are linked without separate `[$identify](https://developer.mixpanel.com/reference/create-identity)`, `[$merge](https://developer.mixpanel.com/reference/identity-merge)`, or `[$create_alias](https://developer.mixpanel.com/reference/identity-create-alias)` events.** For projects on the original API once a user is identified you must send one of these three special event types to link the two identities. In the simplified API the `$identify`, `$merge`, and `$create_alias` events no longer have any special meaning and will be ignored. Instead, in projects on the simplified API, identities are linked using the `$user_id` and `$device_id` properties on regular events as described in the simplified API documentation.
+- **`$distinct_id` is predictable and matches `$user_id` for identified users.** In the original API IDs are grouped into identity clusters and any ID within the cluster might become the “canonical” distinct ID, which can be any ID in the cluster. In the simplified API `$user_id` and `$distinct_id` will always match once the user is identified.
 - **There is no limit on the number of `$device_id`s that can be merged into a single `$user_id`.** In the original API a maximum of 500 IDs can be merged into a single cluster. In the simplified API there is no similar restriction, although you can only merge `$device_id`s into `$user_id`s. It is not possible to merge `$user_id`s with each other.
 
 # FAQ
