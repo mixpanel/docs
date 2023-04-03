@@ -29,9 +29,9 @@ We encourage new customers to get started on the free plan and then upgrade once
 
 An organization is charged based on the total number of events across all projects. 
 
-## Excluded Events (Events Plans)
+## Excluded Events
 
-Certain events and API updates are non-qualifying and excluded from the calculation:
+Certain events and API updates are non-qualifying and excluded from the Monthly Events calculation:
 
 - $identify
 - $create_alias
@@ -49,6 +49,8 @@ If you are currently tracking data, you can see your events consumption in your 
 Click on the gear icon in the upper right corner of Mixpanel, and select your organization under ORGANIZATION SETTINGS.
 
 From here, you can quickly view the usage this billing period as well as the current plan under Plan Details & Billing:
+
+![Plan Details and Billing](https://github.com/mixpanel/docs/blob/7e95cda50d0713bf3a3da5d9cb36a8f654f6979e/media/Admin/Pricing-Plans/plan-details-and-billing.png)
 
 To view detailed historical data usage or download a CSV of historical usage for each project, click on View Historical Usage in the top right of Plan Details & Billing. This will show you a graph of your usage over time, as well usage for each project in your organization for the last 12 months. This feature is accessible by all users and can be downloaded to a CSV file.
 
@@ -72,9 +74,9 @@ Total number of events / 1000
 
 This is a rare threshold to exceed, but you can customize an Insights report to confirm your average user triggers fewer than 1000 events per month.
 
-## Excluded Events (MTU Plans)
+## Excluded Events
 
-Certain events and API updates are non-qualifying and excluded from the calculation:
+Certain events and API updates are non-qualifying and excluded from the MTU calculation:
 
 - $identify
 - $create_alias
@@ -112,9 +114,13 @@ To view detailed historical data usage, or download a CSV of historical usage fo
 
 ## What are the top events contributing to my bill?
 
-If you are on an Events Plan, view the top events contributing towards your event count by creating a monthly Insights report using the following filters:
+If you are on an Events Plan, view the top events contributing towards your event count by creating a monthly Insights report filtering out excluded events:
 
-If you are on an MTU Plan, view the top events contributing towards your MTU count by creating a monthly Insights report using the following filters:
+![Top Events Contributing to Event Bill](https://github.com/mixpanel/docs/blob/aada30bb2665f4d92d3df59e671f8bb8a4765261/media/Admin/Pricing-Plans/top-events-contributing-to-billing.png)
+
+If you are on an MTU Plan, view the top events contributing towards your MTU count by creating a monthly Insights report filtering out excluded events:
+
+![Top Events Contributing to MTU](https://github.com/mixpanel/docs/blob/7e95cda50d0713bf3a3da5d9cb36a8f654f6979e/media/Admin/Pricing-Plans/top-events-billing.png)
 
 ## What if I go over my plan allowance?
 
@@ -128,7 +134,7 @@ We don’t charge punitive overages but we do provide volume discounts – if yo
 
 If you go over your prepaid amount, Mixpanel won't stop collecting your data. Once you've finished using your prepaid amount of MTUs you'll be charged the additional data rate for each additional user tracked that month. Alerts are in place to notify Organization Owners and Billing Admins of potential additional data charges.
 
-## Free Plan
+### Free Plan
 
 If you send more data points than your free plan allows:
 
