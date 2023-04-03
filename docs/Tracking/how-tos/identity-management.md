@@ -112,26 +112,57 @@ Let's walk through a few user flows where ID Merge is useful and show what Mixpa
 
 
 # Simplified vs Original ID Merge
-https://help.mixpanel.com/hc/en-us/articles/14383975110292-Original-vs-Simplified-ID-Merge-FAQ 
 
-* What are the differences?
-* Which one should I use? TL;DR: If you have been using original, use it. Otherwise, use Simplified.
+In March 2023, Mixpanel released Simplified ID Merge as a simpler, opt-in alternative to Original ID Merge. 
 
-## How does Simplified ID Merge work?
+The simplified API is an easier to implement interface with the same core functionality as the original API; however, because the simplified API is newer there are a few third-party partner integrations that need to be updated to work with it (see below). Once third-party support for the simplified API is on par with the original API it will become the default for new organizations.
 
-* Set `$device_id` and don't set `$user_id` for events that are anonymous.
-* Once the user logs in, start setting `$user_id` on their events.
-* The moment Mixpanel receives an event with both `$device_id` and `$user_id` set, it will link the two IDs.
-* See our [Server-Side Guide](doc:effective-server-side-tracking#tracking-anonymous-users) for more details and a code example.
+Due to the limited changes in functionality beyond a simpler implementation experience we do not recommend that customers who have already implemented using the original API reimplement on the simplified API. Both APIs will remain supported and provide the same features.
 
+## Which API should I use?
 
-## How does Original ID Merge work?
-https://help.mixpanel.com/hc/en-us/articles/360041039771
+1. If you are an existing customer who has historically used the original API and is familiar with it we recommend continuing to use the original API.
+2. If you are a new customer and want to use the API that currently has the best third-party integration support we recommending using the original API.
+3. If you are a new customer, want an easier integration experience, and are okay with the third-party integration support limitations listed later in this document we recommend using the simplified API.
 
+## How do I enable the Simplified API on a project?
 
-## How it works
+Note that:
 
+- You cannot use both the original API and the simplified API within the same Mixpanel project: enabling the simplified API on a project disables the original API on that project.
+- You cannot switch between the original and simplified APIs once a project contains data. You must choose to enable the simplified API before sending the first event to a new project.
 
+To enable the simplified API on a new project with no data in it go to the “Identity Merge” section of the Project Settings Page:
+
+![Untitled](Original%20vs%20Simplified%20ID%20Merge%20FAQ%20d3aaa69dd85b4f8faf76934d6fbd63ce/Untitled.png)
+
+If you would like to make sure any new projects created within your organization default to the correct ID Merge API there is an organization-level option to configure which API you would like as the the default for any new projects.
+
+![Untitled](Original%20vs%20Simplified%20ID%20Merge%20FAQ%20d3aaa69dd85b4f8faf76934d6fbd63ce/Untitled%201.png)
+
+## Third-Party Integration Support
+
+Most third-party integration integrations send people & event data to Mixpanel using distinct IDs provided by our SDKs and are unaffected by this API change. These integrations are not involved in identity management, they send data to the ID they are given and will continue to work the same way on the simplified API that they do on the original API.
+
+## Customer Data Platforms (CDPs)
+
+Customer data platforms partners have their own identity management solutions. These partners merge user identities and forward the results to Mixpanel using our ID Merge APIs. If you are using one of our CDP partners that has not been updated to support the simplified ID Merge API you will need to use the original API:
+
+| CDP Partner | Supports Original API | Supports Simplified API |
+| --- | --- | --- |
+| https://segment.com/docs/connections/destinations/catalog/actions-mixpanel/ | Yes | Yes |
+| https://segment.com/docs/connections/destinations/catalog/mixpanel/ | Yes | No |
+| https://www.rudderstack.com/docs/destinations/streaming-destinations/mixpanel/ | Yes | No |
+| https://docs.mparticle.com/integrations/mixpanel/event/ | Yes | No |
+| https://documentation.freshpaint.io/destinations/apps/mixpanel | Yes | No |
+
+## Key Changes from the Original API
+
+If you are already familiar with the original API here are some of the changes in the simplified API, see the [simplified API documentation](https://www.notion.so/Getting-Started-with-Identity-Management-706d70c523e34b36a7563a0d0c4e4bb7) for full details.
+
+- `**$user_id`/`$device_id` are linked without separate `[$identify](https://developer.mixpanel.com/reference/create-identity)`, `[$merge](https://developer.mixpanel.com/reference/identity-merge)`, or `[$create_alias](https://developer.mixpanel.com/reference/identity-create-alias)` events.** For projects on the original API once a user is identified you must send one of these three special event types to link the two identities. In the simplified API the `$identify`, `$merge`, and `$create_alias` events no longer have any special meaning and will be ignored. Instead, in projects on the simplified API, identities are linked using the `$user_id` and `$device_id` properties on regular events as described in the simplified API documentation.
+- `**$distinct_id` is predictable and matches `$user_id` for identified users.** In the original API IDs are grouped into identity clusters and any ID within the cluster might become the “canonical” distinct ID, which can be any ID in the cluster. In the simplified API `$user_id` and `$distinct_id` will always match once the user is identified.
+- **There is no limit on the number of `$device_id`s that can be merged into a single `$user_id`.** In the original API a maximum of 500 IDs can be merged into a single cluster. In the simplified API there is no similar restriction, although you can only merge `$device_id`s into `$user_id`s. It is not possible to merge `$user_id`s with each other.
 
 # FAQ
 
