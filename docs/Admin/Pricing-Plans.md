@@ -112,27 +112,29 @@ To view detailed historical data usage, or download a CSV of historical usage fo
 
 ## What are the top events contributing to my bill?
 
-## Event Plans
+If you are on an Events Plan, view the top events contributing towards your event count by creating a monthly Insights report using the following filters:
 
-To view the top events contributing towards your event count, create a monthly Insights report using the following filters:
+If you are on an MTU Plan, view the top events contributing towards your MTU count by creating a monthly Insights report using the following filters:
 
-### MTU Plans
+## What if I go over my plan allowance?
 
-To view the top events contributing towards your MTU count, create a monthly Insights report using the following filters:
-
-To estimate your MTU count if you stopped tracking a specific event, create an Insights report using the following filters:
-
-## What if I go over my prepaid amount?
-
-## Event Plans
+### Event Plans
 
 Once you’ve finished using your prepaid amount of events, you’ll be charged our regular monthly rate for each additional event tracked that month. Alerts are in place to notify Organization Owners and Billing Admins of potential additional data charges.
 
 We don’t charge punitive overages but we do provide volume discounts – if your volume exceeds your projections you can save money by committing to a larger volume and locking in a lower average cost per event.
 
-## MTU Plans
+### MTU Plans
 
 If you go over your prepaid amount, Mixpanel won't stop collecting your data. Once you've finished using your prepaid amount of MTUs you'll be charged the additional data rate for each additional user tracked that month. Alerts are in place to notify Organization Owners and Billing Admins of potential additional data charges.
+
+## Free Plan
+
+If you send more data points than your free plan allows:
+
+- Mixpanel will continue to collect your data - including data sent while over quota.
+- After an account exceeds the free quota, you will retain access to your reports for 5 days. After 5 days, you must [purchase a paid plan](https://mixpanel.com/pricing/) to regain access.
+- Data allowances are reset every month. You will also regain access to Mixpanel when the limit resets the following month.
 
 ## What are the benefits of events over an MTU plan?
 
