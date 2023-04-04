@@ -62,64 +62,18 @@ Use the following functions in the **Formula** field to modify your custom pro
 | regex_match | Returns true if the pattern matches any part of the string. | regex_match(haystack, pattern)<br />Example:<br />regex_match("zzhaystackzz", "ha(..)ack") -> true// Use (?-i) for case-sensitive matchingregex_match("HAYSTACK", "(?-i)haystack") -> false |
 | regex_replace | Replaces the parts of a string that match a regular expression with a different string. | regex_replace(haystack, pattern, replacement)<br />Example:<br />// convert currency string to numbernumber(regex_replace("$1,234,567", "[^.0-9]\*", "")) -> 1234567 |
 | datedif | Subtract two dates. Units:<br />D: days.<br />M:  months.<br />Y: years<br />MD:  days remaining after subtracting whole months.<br />YM:  months remaining after subtracting whole years.<br />YD:  days, assuming start_date and end_date are within 1 year.<br />Use TODAY() for current day. |<br />datedif(start_date,end_date,unit)<br />Example:<br />datedif(registrationdate,TODAY(), "M") -> 5 |
-| len | Returns the length of the string or the list. | len (string) or len (list)
-Example:
-len("Canada") -> 6 |
-| left | Returns characters from the beginning of a given string. | left(string, num_of_characters)
-Example:
-left("Canada",3) -> "Can" |
-| right | Returns characters from the end of a given string | right(string, num_of_characters)
-Example:
-right("Canada",3) -> "ada" |
-| mid | Returns characters from the middle of a given string | mid(string, first_index, num_of_characters)
-Example:
-mid("Canada",1,4) -> "Cana" |
-| split | Splits a string into different parts based on a user-specified delimiter, and lets you select a particular split. Delimiter must be a single ASCII character. To fetch a list of all splits, don't pass a third argument. The first split is accessible by passing n=1 (second with n=2, ...) | split(input string, delimiter, [n: optional]) → string
- 
-Examples with 1 split:
-split("dwight@dm.com","@",2) -> "dm.com"
-split("dwight@dm.com","@",4) -> undefined
-split("dwight@dm.com","/",2) -> "dwight@dm.com"
-split("empty//string/","/",2) -> ""Examples with all splits:
-split("dwight@dm.com","@") -> ["dwight", "dm.com"]
-split("a/b/c/d", "/") -> ["a", "b", "c", "d"]
-split("a/b/c/d", "-") -> ["a/b/c/d"]
-split("a//b/c/d", "/") -> ["a", "", "b", "c", "d"] |
-| let | Define a variable and use it in an expression. This helps keep the custom property definition neat and non-repetitive. Variables are only active within the scope of the LET function. You can nest multiple let functions to define multiple variables. | LET(name, definition, expression)
-// define a variable "spend" and use it in an expression
-LET(
-   spend, <price> * <quantity>,
-   IFS(
-       spend < 50, "no discount",
-       spend < 200, "gold discount",
-       spend > 200, "platinum discount",
-       TRUE, "invalid"
-   )
-)    
- Note: <price> and <quantity> are event properties. |
-| any | Evaluates to TRUE if the given expression is true for any value in the given list. The expression can refer to the current list element by the given name. | ANY(<name>, <list>, <expr>)
- 
-Let's say you had a list of numbers called priceList= [5,205,178,12,22]
-ANY(X, priceList, X > 300) will return false.
-ANY(X, priceList, X >= 5 and X < 300) will return true. |
-| all | Evaluates to TRUE if the given expression is true for all values in the given list. The expression can refer to the current list element by the given name. | ALL(<name>, <list>, <expr>)
- 
-Let's say you had a list of numbers called priceList= [5,205,178,12,22]
-ALL(X, priceList, X > 5 and X < 200) will return false.
-ALL(X, priceList, X >= 5 and X < 300) will return true. |
-| filter | Filters the given list to only include items for which the given expression is true. The expression can refer to the current list element by the given name. | ANY(<name>, <list>, <expr>)
- 
-Let's say you had a list of numbers called priceList= [5,205,178,12,22]
-FILTER(X, priceList, X>100) would give you a new shortened list = [205,178] |
-| map | Transforms each value in the given list using the given expression. The expression can refer to the current list element by the given name. | MAP(<var-name>, <list>, <expr>)
- 
-Assume a list property states = ["Georgia","Florida","Texas"]
-MAP(X, states, LOWER(X)) will return ["georgia","florida","texas"] |
-| sum | Sums all numbers in the given list. Non-numeric items in the list are ignored. | SUM(<list>)
- 
-Let's say you had a list of numbers called priceList= [5,205,178,12,22]
-SUM(priceList) -> 422.
-SUM(FILTER(X, priceList, X>100)) -> 383, because FILTER(X,priceList, X>100) would result in [205,178] and SUM([205,178]) = 383. |
+| len | Returns the length of the string or the list. | len (string) or len (list)<br />Example:<br />len("Canada") -> 6 |
+| left | Returns characters from the beginning of a given string. | left(string, num_of_characters)<br />Example:<br />left("Canada",3) -> "Can" |
+| right | Returns characters from the end of a given string | right(string, num_of_characters)<br />Example:<br />right("Canada",3) -> "ada" |
+| mid | Returns characters from the middle of a given string | mid(string, first_index, num_of_characters)<br />Example:<br />mid("Canada",1,4) -> "Cana" |
+| split | Splits a string into different parts based on a user-specified delimiter, and lets you select a particular split. Delimiter must be a single ASCII character. To fetch a list of all splits, don't pass a third argument. The first split is accessible by passing n=1 (second with n=2, ...) | split(input string, delimiter, [n: optional]) → string <br />Examples with 1 split:<br />split("dwight@dm.com","@",2) -> "dm.com"<br />split("dwight@dm.com","@",4) -> undefined<br />split("dwight@dm.com","/",2) -> "dwight@dm.com"<br />split("empty//string/","/",2) -> ""Examples with all splits:<br />split("dwight@dm.com","@") -> ["dwight", "dm.com"]<br />split("a/b/c/d", "/") -> ["a", "b", "c", "d"]<br />split("a/b/c/d", "-") -> ["a/b/c/d"]<br />split("a//b/c/d", "/") -> ["a", "", "b", "c", "d"] |
+| let | Define a variable and use it in an expression. This helps keep the custom property definition neat and non-repetitive. Variables are only active within the scope of the LET function. You can nest multiple let functions to define multiple variables. | LET(name, definition, expression)<br />// define a variable "spend" and use it in an expression<br />LET(<br />   spend, <price> * <quantity>,<br />   IFS(<br />       spend < 50, "no discount",<br />       spend < 200, "gold discount",<br />       spend > 200, "platinum discount",<br />       TRUE, "invalid"<br />   )<br />)    
+<br />Note: <price> and <quantity> are event properties. |
+| any | Evaluates to TRUE if the given expression is true for any value in the given list. The expression can refer to the current list element by the given name. | ANY(<name>, <list>, <expr>) <br />Let's say you had a list of numbers called priceList= [5,205,178,12,22]<br />ANY(X, priceList, X > 300) will return false.<br />ANY(X, priceList, X >= 5 and X < 300) will return true. |
+| all | Evaluates to TRUE if the given expression is true for all values in the given list. The expression can refer to the current list element by the given name. | ALL(<name>, <list>, <expr>) <br />Let's say you had a list of numbers called priceList= [5,205,178,12,22]<br />ALL(X, priceList, X > 5 and X < 200) will return false.<br />ALL(X, priceList, X >= 5 and X < 300) will return true. |
+| filter | Filters the given list to only include items for which the given expression is true. The expression can refer to the current list element by the given name. | ANY(<name>, <list>, <expr>) <br />Let's say you had a list of numbers called priceList= [5,205,178,12,22]<br />FILTER(X, priceList, X>100) would give you a new shortened list = [205,178] |
+| map | Transforms each value in the given list using the given expression. The expression can refer to the current list element by the given name. | MAP(<var-name>, <list>, <expr>) <br />Assume a list property states = ["Georgia","Florida","Texas"]<br />MAP(X, states, LOWER(X)) will return ["georgia","florida","texas"] |
+| sum | Sums all numbers in the given list. Non-numeric items in the list are ignored. | SUM(<list>) <br />Let's say you had a list of numbers called priceList= [5,205,178,12,22]<br />SUM(priceList) -> 422.<br />SUM(FILTER(X, priceList, X>100)) -> 383, because FILTER(X,priceList, X>100) would result in [205,178] and SUM([205,178]) = 383. |
 
 # Numeric Operators
 
