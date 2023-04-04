@@ -166,6 +166,22 @@ Click the PDF icon beside the receipt to download the receipt as a PDF.
 
 If you are an international customer and need VAT information added to your receipts, add your VAT information by editing the RECEIPT INFORMATION field.
 
+## Downgrade your Plan
+
+Only Organization Owners and Billing Admins can submit requests to downgrade a plan for a Mixpanel account.
+
+You must submit a request to downgrade a plan for a Mixpanel account. Mixpanel uses a downgrade request form to:
+
+- Ensure the account is not under contract before finalizing the request.
+- Track the reasons for downgrades and pay close attention to customer feedback.
+
+To submit a downgrade request:
+
+1. In ORGANIZATION SETTINGS or the dropdown menu below, you can select Plan Details & Billing. Please note that this option will only be visible for Organization Owners and Billing Admins.
+2. In Overview, click "Switch to Free" at the bottom of the Plan Details & Billing section.
+![Switch to Free](https://raw.githubusercontent.com/ranic/mixpanel-docs/main/media/Admin/Pricing-Plans/switch-to-free.png)
+3. When you click Submit, a request will be sent to Mixpanel's Billing Team for processing.
+
 # FAQ
 
 ## What are the top events contributing to my bill?
