@@ -118,11 +118,11 @@ To view detailed historical data usage, or download a CSV of historical usage fo
 
 If you are on an Events Plan, view the top events contributing towards your event count by creating a monthly Insights report filtering out excluded events:
 
-![All MTU Events Contributing to Bill](https://raw.githubusercontent.com/ranic/mixpanel-docs/main/media/Admin/Pricing-Plans/all-mtu-events.png)
+![Top Events Contributing to Bill](https://raw.githubusercontent.com/ranic/mixpanel-docs/main/media/Admin/Pricing-Plans/events-contributing-to-billing.png)
 
 If you are on an MTU Plan, view the top events contributing towards your MTU count by creating a monthly Insights report and typing in `$all_mtu_events` which filters out event names excluded from Mixpanel's MTU calculation:
 
-![All MTU Events Contributing to Bill](https://raw.githubusercontent.com/ranic/mixpanel-docs/main/media/Admin/Pricing-Plans/events-contributing-to-billing.png)
+![All MTU Events Contributing to Bill](https://raw.githubusercontent.com/ranic/mixpanel-docs/main/media/Admin/Pricing-Plans/all-mtu-events.png)
 
 ## What if I go over my plan allowance?
 
