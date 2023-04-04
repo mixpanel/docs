@@ -132,11 +132,19 @@ If you’re an organization members with Billing permission (Billing Admins and 
 
 If you received a notification that your payment did not go through (via email, within the product or both), don't worry, it's quick and easy to get back up and running.
 
+![Card Declined](https://raw.githubusercontent.com/ranic/mixpanel-docs/main/media/Admin/Pricing-Plans/card-declined.png)
+
 Clicking "Update Payment Method" in both the email and the banner will take you to the Payment & Invoices tab of the Billing & Payment section in your organization settings.
+
+![Update Payment Method](https://raw.githubusercontent.com/ranic/mixpanel-docs/main/media/Admin/Pricing-Plans/update-payment-method.png)
 
 In most cases, the payment method will need to be updated. To do this, select the pencil icon (edit) next to your credit card information and enter updated card information.
 
+![Edit Payment Method](https://raw.githubusercontent.com/ranic/mixpanel-docs/main/media/Admin/Pricing-Plans/edit-payment-method.png)
+
 Once you have updated the card on file, the system will automatically attempt to run your payment again.
+
+![Rerun Payment](https://raw.githubusercontent.com/ranic/mixpanel-docs/main/media/Admin/Pricing-Plans/rerun-payment.png)
 
 If your payment method is up to date and new funds were recently added or you contacted your bank to whitelist Mixpanel, select "Rerun Payment".
 
