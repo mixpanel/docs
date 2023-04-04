@@ -1,5 +1,5 @@
 ---
-title: "ID Merge"
+title: "Identifying Users"
 slug: "identity-management"
 hidden: false
 createdAt: "2021-10-01T20:21:17.479Z"
@@ -169,3 +169,13 @@ We recommend using an ID that is unique to each user and does not change, for ex
 [User Profiles](doc:user-profiles) are set directly on $distinct_ids, not on $user_ids or $device_ids. We recommend waiting until after a user is identified before setting user profile properties.
 
 It is possible to set user profile properties for un-identified users by sending the profile updates to `$distinct_id=$device:<device-id>`. However, user profile properties are not preserved when `$device_ids` are linked to `$user_ids`, so any properties set before the IDs became linked will need to be set again using `$distinct_id=<user-id>` once the user is identified.
+
+## Is it possible to merge two `$user_ids`?
+We don't recommend doing this in general, as it adds complexity to your identity resolution strategy. Instead we recommend having a single, unchanging `$user_id` for each user and pointing all other IDs for that user to that single `$user_id`.
+
+If you are on Original ID Merge, we do have a [$merge](https://developer.mixpanel.com/reference/identity-merge) API call that can merge two `$user_id`s.
+
+## What is the status of Mixpanel's legacy `alias` method?
+Prior to March 2020, the only way to connect users together was the `.alias()` method. This was very limited and was not retroactive; this meant that if a user used two devices and then logged in, you would lose activity for the user from one of the devices.
+
+If you set up Mixpanel prior to 2020, you may have implemented with the `alias()` method. Alias is still supported in its original state, but if you want to revisit your identity management strategy, we recommend setting up a new Mixpanel project and using the best practices outlined in this guide.
