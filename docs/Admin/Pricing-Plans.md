@@ -52,6 +52,8 @@ From here, you can quickly view the usage this billing period as well as the cur
 
 To view detailed historical data usage or download a CSV of historical usage for each project, click on View Historical Usage in the top right of Plan Details & Billing. This will show you a graph of your usage over time, as well usage for each project in your organization for the last 12 months. This feature is accessible by all users and can be downloaded to a CSV file.
 
+![Events Usage](https://raw.githubusercontent.com/ranic/mixpanel-docs/main/media/Admin/Pricing-Plans/events-usage.png)
+
 # MTU Pricing
 
 ## What is an MTU?
@@ -116,11 +118,11 @@ To view detailed historical data usage, or download a CSV of historical usage fo
 
 If you are on an Events Plan, view the top events contributing towards your event count by creating a monthly Insights report filtering out excluded events:
 
-![Events Contributing to Events Bill](https://raw.githubusercontent.com/ranic/mixpanel-docs/main/media/Admin/Pricing-Plans/events-usage.png)
+![All MTU Events Contributing to Bill](https://raw.githubusercontent.com/ranic/mixpanel-docs/main/media/Admin/Pricing-Plans/all-mtu-events.png)
 
 If you are on an MTU Plan, view the top events contributing towards your MTU count by creating a monthly Insights report and typing in `$all_mtu_events` which filters out event names excluded from Mixpanel's MTU calculation:
 
-![All MTU Events Contributing to Bill](https://raw.githubusercontent.com/ranic/mixpanel-docs/main/media/Admin/Pricing-Plans/all-mtu-events-contributing-to-billing.png)
+![All MTU Events Contributing to Bill](https://raw.githubusercontent.com/ranic/mixpanel-docs/main/media/Admin/Pricing-Plans/events-contributing-to-billing.png)
 
 ## What if I go over my plan allowance?
 
