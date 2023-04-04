@@ -4,7 +4,6 @@ slug: "plan-your-implementation"
 hidden: false
 metadata: 
   title: "Mixpanel Implementation | Mixpanel Developer Docs"
-  description: "Implementing a new tool can be daunting, but it doesn't have to be. Learn how to implement Mixpanel to ensure it fits seamlessly with the rest of your tech stack."
 createdAt: "2021-04-29T19:12:41.293Z"
 updatedAt: "2023-03-26T23:45:51.525Z"
 ---
