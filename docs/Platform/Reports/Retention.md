@@ -13,7 +13,7 @@ metadata:
 
 The Retention report in Mixpanel is designed to assess user engagement over a specified period of time. Retention of your users is critical to achieving product-market fit and sustainable long-term growth, and this report will help you understand how long users continue to come back and find value from your product.
 
-## Use Cases
+# Use Cases
 
 Here are some of the sample questions you can answer in Retention:
 

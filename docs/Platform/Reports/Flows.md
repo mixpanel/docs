@@ -13,7 +13,7 @@ metadata:
 
 Flows identifies the most frequent paths taken by users to or from any event. Use Flows to understand how your users sequentially perform events in your product, and analyze drop-offs or unsuccessful behavior.
 
-## Use Cases
+# Use Cases
 
 Here are some of the sample questions you can answer in Flows:
 

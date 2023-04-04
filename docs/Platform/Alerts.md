@@ -7,6 +7,8 @@ metadata:
   description: "Learn how to use alerts in Mixpanel."
 ---
 
+# Overview
+
 Create a Custom Alert for your [Insights](https://help.mixpanel.com/hc/en-us/articles/360001333826-Insights-Overview) and [Funnels](https://help.mixpanel.com/hc/en-us/articles/115004561926-Funnels-Deep-Dive) reports to decide which report conditions result in an alert. Alerts are sent as an email and can be sent to multiple users.
 
 To create a custom alert in an Insights or Funnels report, **save your report**, click the **3 dots icon**, go to Alerts and select **Create Alert**.
@@ -28,21 +30,21 @@ Choose the frequency that you would like to receive these alerts, either hourly
 
 Enter the recipient emails that you would like to receive this alert. You can enter any email here, not just internal users. Select any Slack channels you want to send this alert to. Private Slack Channels are not available at this time.
 
-[https://help.mixpanel.com/hc/article_attachments/14210649496084](https://help.mixpanel.com/hc/article_attachments/14210649496084)
+![https://help.mixpanel.com/hc/article_attachments/14210649496084](https://help.mixpanel.com/hc/article_attachments/14210649496084)
 
 Click **Create alert** to save the custom alert.
 
 **IMPORTANT:** You may need to add Mixpanel to Slack, if you have not done this before. Click "Add Mixpanel to Slack" and follow the prompts on the following screens. You will be brought back to this page when you have added Mixpanel to Slack.
 
-[https://help.mixpanel.com/hc/article_attachments/14251383457684](https://help.mixpanel.com/hc/article_attachments/14251383457684)
+![https://help.mixpanel.com/hc/article_attachments/14251383457684](https://help.mixpanel.com/hc/article_attachments/14251383457684)
 
-# Line Charts
+## Line Charts
 
 In line chart reports, you can select relative thresholds.
 
 You can choose a **specific threshold** (this is the same as other chart types) or a **relative threshold as compared to the previous time period**. Then, enter the value or percentage.
 
-[https://help.mixpanel.com/hc/article_attachments/14210683576980](https://help.mixpanel.com/hc/article_attachments/14210683576980)
+![https://help.mixpanel.com/hc/article_attachments/14210683576980](https://help.mixpanel.com/hc/article_attachments/14210683576980)
 
 # Custom Alerts in Funnels
 
@@ -54,13 +56,13 @@ Choose the frequency that you would like to receive these alerts, either hourly
 
 Enter the recipient emails that you would like to receive this alert. You can enter any email here, not just internal users. Select any Slack channels you want to send this alert to. Private Slack Channels are not available at this time.
 
-[https://help.mixpanel.com/hc/article_attachments/14210810107924](https://help.mixpanel.com/hc/article_attachments/14210810107924)
+![https://help.mixpanel.com/hc/article_attachments/14210810107924](https://help.mixpanel.com/hc/article_attachments/14210810107924)
 
 Click **Create alert** to save the custom alert.
 
 **IMPORTANT:** You may need to add Mixpanel to Slack, if you have not done this before. Click "Add Mixpanel to Slack" and follow the prompts on the following screens. You will be brought back to this page when you have added Mixpanel to Slack.
 
-[https://help.mixpanel.com/hc/article_attachments/14251559987092](https://help.mixpanel.com/hc/article_attachments/14251559987092)
+![https://help.mixpanel.com/hc/article_attachments/14251559987092](https://help.mixpanel.com/hc/article_attachments/14251559987092)
 
 # View & Manage Custom Alerts
 

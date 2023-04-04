@@ -13,15 +13,17 @@ metadata:
 
 Mixpanel Boards allow you to view all your most important metrics at a glance. Add Insights, Flows, Funnels, and Retention reports to a board to be able to track those metrics both regularly and simultaneously.
 
-## Use Cases
+# Use Cases
 
 Boards can be used to keep your whole company on top of your KPIs. Additionally, you can add text to your boards to help tell a compelling story, or highlight specific interpretations of the other reports on boards.
 
 Create personal boards or project boards and share them with your team to help you and your colleagues understand and stay on top of your metrics.
 
-# Navigating Boards
+# Quick Start
 
-The best way to navigate to existing boards within your Mixpanel project is the directory on the lefthand side of the page. This directory makes it easy to access your most-used boards by organizing them into several sections:
+## Step 1: Navigating Boards
+
+Before creating a board of your board, it's best to explore existing boards within your Mixpanel project. There's a good chance that someone has already created a board that may be of interested to you. The best way to navigate to existing boards within your Mixpanel project is the directory on the lefthand side of the page. This directory makes it easy to access your most-used boards by organizing them into several sections:
 
 [https://help.mixpanel.com/hc/article_attachments/11441973595156](https://help.mixpanel.com/hc/article_attachments/11441973595156)
 
@@ -33,13 +35,13 @@ The best way to navigate to existing boards within your Mixpanel project is the 
 
 Finally, you can search for all boards, or recently viewed boards, at the top of the directory.
 
-# Creating a new Board
+## Step 2: Creating a new Board
 
-On the Boards page, click "+ New Board" at the top of the left side directory. The new untitled board will be created immediately, but you may wish to give it a name. To do so, click the current title, then type the desired name. At this point, your empty board will look like this:
+Once you've decided that you want to create a board of your own, on the Boards page, click "+ New Board" at the top of the left side directory. The new untitled board will be created immediately, but you may wish to give it a name. To do so, click the current title, then type the desired name. At this point, your empty board will look like this:
 
 [https://help.mixpanel.com/hc/article_attachments/11442046149268](https://help.mixpanel.com/hc/article_attachments/11442046149268)
 
-# Adding Content to Boards
+## Step 3: Adding content to Boards
 
 There are 3 types of content that you can add to a board:
 
@@ -57,11 +59,11 @@ There are a few ways to add an existing report to a board. You can either start 
 
 Note that adding an existing report always creates a [linked copy](https://help.mixpanel.com/hc/en-us/articles/4409841288724-Dashboards-FAQ#what-is-a-linked-report).
 
-# Arranging Board Content
+## Step 3: Arrange Board Content
 
-## A Row-Based System
+### A Row-Based System
 
-The new arranges content within rows. To add a card (either a report or text) to a row, click the "+" button that appears on the left of a row when you hover over that row.
+Content is arranged within rows. To add a card (either a report or text) to a row, click the "+" button that appears on the left of a row when you hover over that row.
 
 ![https://help.mixpanel.com/hc/article_attachments/7412576771860/Screen_Shot_2022-06-29_at_11.49.22_AM.png](https://help.mixpanel.com/hc/article_attachments/7412576771860/Screen_Shot_2022-06-29_at_11.49.22_AM.png)
 
@@ -69,11 +71,11 @@ To add a row, click the "+ Add Row" button below the last existing row in the bo
 
 ![https://help.mixpanel.com/hc/article_attachments/7412579405716/Screen_Shot_2022-06-29_at_11.49.58_AM.png](https://help.mixpanel.com/hc/article_attachments/7412579405716/Screen_Shot_2022-06-29_at_11.49.58_AM.png)
 
-## Moving Cards
+### Moving Cards
 
 To change the order of reports, simply click and drag any report to your desired position, via the gripper icon at the top right of the report.
 
-## Resizing Cards
+### Resizing Cards
 
 Cards on a row will automatically expand to fill the width of that row, but once two or more cards are on the row, you can adjust each card's width by clicking and dragging the control between any two cards. Hover between the cards to surface the drag control.
 
@@ -81,7 +83,7 @@ Cards on a row will automatically expand to fill the width of that row, but once
 
 Up to four cards (either reports or text) can exist within a row, and the content in a row will automatically expand to fill the horizontal width of that row. Cards can be horizontally resized within a row, and will snap to positions 1/12th of the width of the row - the minimum width of a card is 3/12th, or one quarter of the width of the row. This makes it easy to fill a row with 1, 2, 3, or 4 cards of equal size.
 
-## Resizing Rows
+### Resizing Rows
 
 Row heights can now be adjusted to either show more report content, or hide empty space. To vertically resize a row, click and drag the control under that row. Hover under the row to surface the control.
 
@@ -163,8 +165,7 @@ Boards allow you to alter some aspects of the queries within each of the reports
 
 By default, date ranges and filters are temporary, allowing you to explore the data without overwriting the board. But, if you wish to save the date range and filter selections you've made to the board, so they'll appear for other users as well, click "Save to Board."
 
-### Note
-
+**Note**
 Applying date ranges and filters on a board does not change the queries saved in each individual report; instead, it only changes the data displayed when you view those reports in the current board. If you click into a report from the board, however, Mixpanel will maintain the date range and filters to ensure you see data consistent between the board and report. Navigate to the report on its own, though, and you'll see the report's original saved date range and filters.
 
 ## Public Boards

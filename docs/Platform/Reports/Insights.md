@@ -15,7 +15,7 @@ Insights is a powerful and flexible tool designed to visualize trends and compos
 
 Advanced Insights features also allow you to create formulas, compare current data to past data, and generate custom events and properties for deeper analysis.
 
-## Use Cases
+# Use Cases
 
 Here are some of the sample questions you can answer in Insights:
 

@@ -29,14 +29,6 @@ Imagine your product is a B2B messaging application. You might use Funnels to an
 - How do these two paths differ? What actions should I nudge towards or against?
 - What did the users that dropped-off do instead?
 
-# Loose Ordering
-
-Before we construct a query, we must first understand how funnels calculate conversions. Your users must complete the steps you designate in your funnel in loose order. Loose order means that a customer can engage in other actions in between funnel steps, as long as they complete all the funnel steps in order. Let's start with an example where the funnel has steps: A, B, C, D, E and go through a few cases:
-
-1. The customer does steps A -> B -> C -> D -> E in exact order. Mixpanel counts this as a conversion.
-2. The customer does steps A -> B -> *F* -> C -> D -> E. Mixpanel counts this as a conversion. This is an example of loose ordering.
-3. The customer does steps A -> B -> C -> E. Mixpanel will not count this as a full conversion, and the customer will not appear in the funnel after step C. The customer's completion of step E is excluded from the funnel because step D did not occur.
-
 # Quick Start
 
 Building a report in Funnels takes just a few clicks, and results arrive in seconds. Let's build a simple report together. Continuing the B2B messaging example, imagine you wanted to answer the following question:
@@ -77,12 +69,6 @@ However, you can also visualize the funnel in any of the following chart types, 
 - Funnel Trend - view changes in the conversion rate, time to conversion, users entering and exiting your over time
 - Time to Convert - view a distribution of the time it takes users to convert through the funnel
 - Frequency - view the number of times users complete any step before converting or dropping off
-
-# Basic Features
-
-## Chart Types
-
-## Sorting
 
 # Advanced
 
@@ -477,6 +463,14 @@ You can create a cohort from a funnel segment in order to examine that group of 
 
 # FAQ
 
+## Can users do other actions during the funnel?
+
+Users can complete the steps you designate in your funnel in loose order. Loose order means that a customer can engage in other actions in between funnel steps, as long as they complete all the funnel steps in order. Let's start with an example where the funnel has steps: A, B, C, D, E and go through a few cases:
+
+1. The customer does steps A -> B -> C -> D -> E in exact order. Mixpanel counts this as a conversion.
+2. The customer does steps A -> B -> *F* -> C -> D -> E. Mixpanel counts this as a conversion. This is an example of loose ordering.
+3. The customer does steps A -> B -> C -> E. Mixpanel will not count this as a full conversion, and the customer will not appear in the funnel after step C. The customer's completion of step E is excluded from the funnel because step D did not occur.
+
 ## Why do I get differing numbers when comparing Funnels and Insights?
 
 Funnels and Insights have different default counting methods. Insights by default counts events using "Totals", whereas Funnels are by default calculated with the Conversion Criteria in "Uniques".
@@ -568,87 +562,3 @@ To calculate the actual p-value, we estimate the hypergeometric cumulative distr
 In the CDF, the value of any point (X) represents the probability that a random draw would result in fewer conversions P(k < X). 1 - P(k < X) represents the probability that a random draw would result in more conversions P(k >= X).
 
 These two probabilities are used to represent the probability that the selected segment will either outperform (P(k < X)) or underperform (P(k > X)) the overall set of users. Mixpanel takes the higher probability of the two, and calculate the p-value as 1 - max(P(outperform), P(underperform)).
-
-# Conversion and Dropoff Flows
-
-## Introduction
-
-The most common question we find Funnels users asking after observing the conversion percentages from step to step: "*Why did the users in my funnel convert or drop off?"*
-
-In order to find these answers, it is important to segment. Breaking down your funnel allows you to find how the conversion rates of different sub-groupings differ, discover how and with what audiences you are being successful, and formulate hypotheses and product strategies on how to spread that success as best as possible.
-
-At a high level, segmenting is typically done in two ways: Demographic and Behavioral
-
-- **Demographic properties**such as City, Device, Referring Campaign, etc - tell you *who your user is* and how conversion rates differ for different attributes. These demographical insights can help you understand what target audience is successful and what customer base is underperforming. However, demographic properties are often harder to influence with product changes. They can tell you who is finding value in your product, but not necessarily what sorts of behaviors or habits are more likely to bring users towards converting.
-- **Behavioral segmentation** allows you to understand *what users did* and slice and dice your data up by which paths and past behaviors lead to more conversions. This lets you spot particular sequences and actions that occur between funnel steps that promote conversion or places of friction that increase the likelihood of drop-off. Since you can more easily build product features that encourage or discourage particular user behaviors, much more so than change who they are in a demographical sense, these behavioral insights can typically be more actionable.
-    - For example, if you find that using multiple product features and touching more of the product's surface area increases a key conversion- this can influence strategy to improve onboarding to include more of the product. As these sorts of behavioral observations typically identify new potential habits that could be encouraged or changed, these insights regarding *what users did* are much more valuable to product teams.
-
-Mixpanel already empowers segmenting with many types of demographic properties, but with **Conversion and Drop-off Flows** we take a large step forward in behavioral segmentation.
-
-Mixpanel Funnels will now enable you to take a funnel and all of its criteria, view the user paths between each of the funnel steps as a sankey diagram, and segment that sankey by whether they converted or dropped off-- all in one single visualization.
-
-By doing this, we will help you spot the critical actions that tip users toward conversion or drop-off. You can easily understand what users do after they drop-off.
-
-## Questions you can now answer
-
-- What flows do users take between opening an app and making a purchase?
-- Why did the successful users purchase?
-- What flows do users take that don’t lead to a purchase?
-- What paths are performed more often by users who convert compared those who drop off?
-- How do these two paths differ? What actions should I nudge towards or against?
-- What do users do right before dropping off?
-
-Build product changes that encourage behaviors that cause conversion lift, and eliminate the friction that causes drop off.
-
-## How to use Conversion and Drop-off Flows
-
-First, go to the Mixpanel Funnels Report, and create any funnel you like by selecting 2 or more events steps.
-
-Next, click on the conversion or drop-off population you wish to examine further and select View As Flow.
-
-![https://help.mixpanel.com/hc/article_attachments/360088474072/cr8695o49k.png](https://help.mixpanel.com/hc/article_attachments/360088474072/cr8695o49k.png)
-
-In this example, I want to see what events lead to better conversion or more drop-off between Step 1 Browse and Step 2 Add To Cart. This will send me to the Sankey visualization to see these event streams in a Flows report.
-
-Up top, I can see that all of the Funnel's criteria is still maintained. In my example, I still am counting a Unique funnel, within 30 days, holding the Item Name property constant, and excluding users that Abandon Cart at any stage. I can also go back to the Funnel to change my criteria at any time.
-
-![https://help.mixpanel.com/hc/article_attachments/360088473932/scm5ojo77y.png](https://help.mixpanel.com/hc/article_attachments/360088473932/scm5ojo77y.png)
-
-The Sankey is automatically broken down by users that eventually converted or did not convert to Add to Cart (Users may not convert because of hitting exclusion steps, or failing to complete the funnel in the conversion window)
-
-![https://help.mixpanel.com/hc/article_attachments/360096548431/Screen_Shot_2021-05-26_at_7.13.34_AM.png](https://help.mixpanel.com/hc/article_attachments/360096548431/Screen_Shot_2021-05-26_at_7.13.34_AM.png)
-
-Hovering over any path I can see the size of the population and the percent converted to this action from the previous one.
-
-![https://help.mixpanel.com/hc/article_attachments/360088545971/rjgjxun5bz.png](https://help.mixpanel.com/hc/article_attachments/360088545971/rjgjxun5bz.png)
-
-In the example, I can see here that 10.6% converted immediately to Adding to their Cart.
-
-### Lift Actions: What paths are performed more often by users who convert compared those who drop off?
-
-With the recently added lift actions feature, we have made it possible to quickly tell which actions and paths had a higher or lower conversion rate compared to the funnel as a whole.
-
-![https://help.mixpanel.com/hc/article_attachments/360096550751/Screen_Shot_2021-05-26_at_7.38.50_AM.png](https://help.mixpanel.com/hc/article_attachments/360096550751/Screen_Shot_2021-05-26_at_7.38.50_AM.png)
-
-In this example, I can see that Users who performed Search Results, had a +24% higher conversion rate compared to overall (51.1% vs. 41.2%). Whereas, users who performed Experiment Started had a -82.4% reduction in conversion rate compared to overall (7.2% vs. 41.2%).By looking at the positive (green) and negative (red) lift actions, you should be able to quickly form hypothesis on which paths and events are likely to result in more or less conversions.
-
-### Filter by Conversion: What are the common paths taken by users who convert?
-
-If you want to do an isolated analysis of conversions, I can apply a filter so that the report will include only conversions.  This is done by clicking on Filter in the query builder and selecting the Conversion property. Setting it to Converted, will filter only to users who have converted.
-
-![https://help.mixpanel.com/hc/article_attachments/360089685932/l387g5uhw1_1_.png](https://help.mixpanel.com/hc/article_attachments/360089685932/l387g5uhw1_1_.png)
-
-![https://help.mixpanel.com/hc/article_attachments/360096576012/Screen_Shot_2021-05-26_at_7.55.31_AM.png](https://help.mixpanel.com/hc/article_attachments/360096576012/Screen_Shot_2021-05-26_at_7.55.31_AM.png)
-
-In this example, we can see that 35.6% of conversions happened in the first step.
-
-### Filter by drop off: What do users do right before dropping off?
-
-To view what users did before dropping off, change the filter to "Did not Convert", and add more steps before the drop off step
-
-![https://help.mixpanel.com/hc/article_attachments/360096552651/Screen_Shot_2021-05-26_at_7.58.29_AM.png](https://help.mixpanel.com/hc/article_attachments/360096552651/Screen_Shot_2021-05-26_at_7.58.29_AM.png)
-
-![https://help.mixpanel.com/hc/article_attachments/360096576572/Screen_Shot_2021-05-26_at_7.59.51_AM.png](https://help.mixpanel.com/hc/article_attachments/360096576572/Screen_Shot_2021-05-26_at_7.59.51_AM.png)
-
-Now, I can see that 33.7% of users who did not convert, did the "Join Loyalty Program" before dropping off. I can use this hypothesis to evaluate the business impact of the loyalty program, and perhaps make some changes to the product.
-
