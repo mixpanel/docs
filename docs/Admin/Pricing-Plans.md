@@ -112,6 +112,52 @@ To view detailed historical data usage, or download a CSV of historical usage fo
 
 ![Plan Details and Billing](https://raw.githubusercontent.com/ranic/mixpanel-docs/main/media/Admin/Pricing-Plans/mtu-usage-details.png)
 
+# Billing & Payment
+
+Mixpanel runs on a subscription service in which your card is charged at the beginning of every month or every year (depending on the plan you’ve purchased) to cover reporting services for that period of time.
+
+- For example, if you sign up for the monthly Growth plan, you’ll be charged $24 each month at the beginning of the month.
+- If you sign up for the annual Growth plan, you’ll be charged upfront $199 for the entire year.
+
+## Update Billing Information
+
+If you’re an organization members with Billing permission (Billing Admins and Owners), you can update billing information by: 
+
+1. Click on the gear in the upper right corner of Mixpanel, and select your organization under ORGANIZATION SETTINGS.
+2. Click on Plan Details & Billing > Manage Billing & Payment.
+
+![Manage Billing & Payment](https://raw.githubusercontent.com/ranic/mixpanel-docs/main/media/Admin/Pricing-Plans/manage-billing-and-payment.png)
+
+## Troubleshoot Payment Issues
+
+If you received a notification that your payment did not go through (via email, within the product or both), don't worry, it's quick and easy to get back up and running.
+
+Clicking "Update Payment Method" in both the email and the banner will take you to the Payment & Invoices tab of the Billing & Payment section in your organization settings.
+
+In most cases, the payment method will need to be updated. To do this, select the pencil icon (edit) next to your credit card information and enter updated card information.
+
+Once you have updated the card on file, the system will automatically attempt to run your payment again.
+
+If your payment method is up to date and new funds were recently added or you contacted your bank to whitelist Mixpanel, select "Rerun Payment".
+
+If the payment is successful, you will see a success message in the bottom left corner and an error icon should no longer appear next to your payment information. Note: this can take up to a few minutes to process. You may check back later and it will not interrupt processing.
+
+If the payment is unsuccessful you will see an error message at the bottom left corner and the error icon next to your payment information will persist.
+
+If you continue to encounter issues, the next best thing to do is contact your bank.
+
+If you and your bank are unable to resolve the issue, please [reach out our support team](https://mixpanel.com/get-support).
+
+## Invoices & Receipts
+
+Receipts will be emailed to all organization members with Billing permissions (Billing Admins and Owners). The emailed receipts differentiate between your base monthly charge and any additional data rate charges.
+
+To view your recent receipts and upcoming invoices, select the settings cog in the top-right corner and select the Organization name under Organization Settings. In the PLAN DETAILS & BILLING section click Manage Billing & Payment beside Plan Details. Select the Payment & Invoices tab.
+
+Click the PDF icon beside the receipt to download the receipt as a PDF.
+
+If you are an international customer and need VAT information added to your receipts, add your VAT information by editing the RECEIPT INFORMATION field.
+
 # FAQ
 
 ## What are the top events contributing to my bill?
