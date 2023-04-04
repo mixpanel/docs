@@ -20,7 +20,64 @@ Project Admins or Owners can change a project's session definition in Project Se
 
 ![https://help.mixpanel.com/hc/article_attachments/9392326926228/CleanShot_2022-09-16_at_13.30.32.gif](https://help.mixpanel.com/hc/article_attachments/9392326926228/CleanShot_2022-09-16_at_13.30.32.gif)
 
-# Timeout Based Sessions
+
+# Using Sessions
+
+## Funnels
+
+In [Funnels](doc:funnels-report), once you have set up sessions, a “Session Start” and “Session End” event will be generated in the report based on the funnel criteria.
+
+![https://help.mixpanel.com/hc/article_attachments/6693686907156/mceclip7.png](https://help.mixpanel.com/hc/article_attachments/6693686907156/mceclip7.png)
+
+The event properties "Session Duration (Seconds)", "Session Event Count", "Session End Event Name", and "Session Start Event Name" can be used to breakdown or filter these results.
+
+![https://help.mixpanel.com/hc/article_attachments/6693720386068/mceclip8.png](https://help.mixpanel.com/hc/article_attachments/6693720386068/mceclip8.png)
+
+You can also choose to count Sessions instead of Uniques or Totals in the Conversion Details section. If you choose to count Sessions, the conversion window will be limited to one session.
+
+Whenever you make a change to session settings, you can then review the impact of this change in the Funnels Time to Convert Chart. If you see a large group of users doing 4+ hour sessions or just having sessions of <1 minute, you can create cohorts from these user segments and then evaluate their behavior in Flows to confirm Sessions is set up correctly.
+
+![https://help.mixpanel.com/hc/article_attachments/6693775917588/mceclip9.png](https://help.mixpanel.com/hc/article_attachments/6693775917588/mceclip9.png)
+
+If you choose to count Uniques or Totals, you will be able to select a conversion window as usual, including Sessions.
+
+![https://help.mixpanel.com/hc/article_attachments/6693981758228/mceclip15.png](https://help.mixpanel.com/hc/article_attachments/6693981758228/mceclip15.png)
+
+## Flows
+
+In [Flows](doc:flows-report), you can use the “Session Start” and “Session End” events to view the top Flows events within a session. 
+
+When you select sessions in Flows, the flow will be weighted by number of sessions, rather than unique users.
+
+## Insights
+
+In [Insights](doc:insights-report), you can use the “Session Start” and “Session End” events to explore a variety of metrics:
+
+- The total number of sessions over time
+- The average session length per user
+- Session duration broken down across all users
+- The average number of sessions per user
+- Sessions calculated in formulas
+
+![https://help.mixpanel.com/hc/article_attachments/6693868461460/mceclip12.png](https://help.mixpanel.com/hc/article_attachments/6693868461460/mceclip12.png)
+
+When you select sessions in Insights, you will be viewing total sessions counts, rather than uniques or totals.
+
+The event properties "Session Duration (Seconds)", "Session Event Count", "Session End Event Name", and "Session Start Event Name" can be used to breakdown or filter these results.
+
+### Aggregation by Sessions
+
+In Insights, you can also count the number of sessions that contained a particular event. Select the **Total** drop down beside an event in your Insights query to select **Sessions**.
+
+![https://help.mixpanel.com/hc/article_attachments/6693976195092/mceclip14.png](https://help.mixpanel.com/hc/article_attachments/6693976195092/mceclip14.png)
+
+For example, select an event which determines success for your company, such as "Product Purchase". Using this aggregation you can track how many sessions contained a purchase.
+
+
+
+# How Sessions Work
+
+## Timeout Based Sessions
 
 A Timeout Based Session in Mixpanel is defined as a group of events one user performs within a given time frame on your website or app. A session starts when a user performs an event that is not excluded from your Sessions Settings.
 
@@ -30,7 +87,7 @@ A session starts when a user performs an event. A session ends when a user stops
 
 A single user can start multiple sessions. Those sessions can occur on the same day, or over several days, weeks, or months. As soon as one session ends, another session can begin with the occurrence of a new event.
 
-## Session Timeout
+### Session Timeout
 
 This is the length of time that defines a session timeout after a period of inactivity in Mixpanel. You can set the session timeout period in minutes, hours, or days. The default length is 30 minutes.
 
@@ -58,7 +115,7 @@ Be sure to exclude API-related events in your funnel to ensure that your convers
 
 Exclude events that don’t denote an action made by the user from your funnel to ensure that your conversion time is accurate. For example, if a user is receiving notifications from you every 25 minutes, and session timeout is every 30 minutes, then session length will be 24 hours.
 
-## Excluded Events
+### Excluded Events
 
 Exclude events from being tracked as part of a session (such as backend API events that don’t denote an action made by the user on the site), to ensure the validity of session metrics. Mixpanel API events will be excluded by default, but external API events, such as a message sent through another program, would not be excluded.
 
@@ -75,7 +132,7 @@ Custom events are not supported for exclusions. If you want to exclude a custom 
 
 ## Examples
 
-### Example 1
+#### Example 1
 
 ![https://help.mixpanel.com/hc/article_attachments/360037412492/sessions6.png](https://help.mixpanel.com/hc/article_attachments/360037412492/sessions6.png)
 
@@ -89,7 +146,7 @@ Session timeout length is set for 30 minutes.
 6. They perform “Event E” 15 minutes later at 2:25pm.
 7. When they do not perform any more events in the next 30 minutes, "Session End" is triggered. The time of the "Session End" is the last event performed at 2:25pm. Therefore the session length for “Session 2” is 35 minutes.
 
-### Example 2
+#### Example 2
 
 ![https://help.mixpanel.com/hc/article_attachments/360037410791/sessions7.png](https://help.mixpanel.com/hc/article_attachments/360037410791/sessions7.png)
 
@@ -102,7 +159,7 @@ Session timeout length is set for 30 minutes.
 5. The user then waits 5 minutes and performs “Event D” at 12:10am.
 6. They do not perform any other events for 30 minutes, and the session ends. The time of "Session End" is the time of the last event performed at 12:10am. Therefore the session length for “Session 2” is 5 minutes.
 
-# Event Based Sessions
+## Event Based Sessions
 
 An Event Based Session in Mixpanel is defined by an event you choose as the "Session Start" (such as "Login"), and an event you choose as the "Session End" (such as "Log Out").
 
@@ -112,9 +169,9 @@ If you do not have clearly defined events that denote the beginning and end of a
 
 Sessions are reset every 24 hours at midnight (according to your project timezone), so the maximum session length is 24 hours
 
-## Examples
+### Examples
 
-### Example 1
+#### Example 1
 
 ![https://help.mixpanel.com/hc/article_attachments/9447968065300/Untitled__3_.png](https://help.mixpanel.com/hc/article_attachments/9447968065300/Untitled__3_.png)
 
@@ -124,7 +181,7 @@ Session Start Event is set to `Login` and Session End Event is set to `Logout
 2. They then wait 30 minutes and perform “Event B” at 11:45 pm.
 3. When the user performs “Logout” at 12:15 am, it triggers new “Session End”. The "Session End" time is the time that “Logout” was performed. However, since all sessions are reset at midnight, the previous “Session Start” event is no longer associated with the “Session End Event”, and the session duration is not calculated for “Session 1”. Similarly, the “Session End Event” does not have an associated “Session Start Event” and session duration is not calculated for “Session 2”.
 
-### Example 2
+#### Example 2
 
 ![https://help.mixpanel.com/hc/article_attachments/9447970960916/Untitled__4_.png](https://help.mixpanel.com/hc/article_attachments/9447970960916/Untitled__4_.png)
 
@@ -135,7 +192,7 @@ Session Start Event is set to `Login` and Session End Event is set to `Logout
 3. They then wait 30 minutes and perform a “Logout” at 11:45 am, ending “Session 1” and triggering a new “Session End” event. The duration for “Session 1” will be 45 minutes.
 4. Finally, after 30 minutes, another “Logout” event is received at 12:15. Since there is no previous “Session Start” event, a “Session End” event is not created.
 
-# Property Based Sessions
+## Property Based Sessions
 
 A Property Based Session in Mixpanel is defined by a property you choose as the "Session Id" (such as "session_id") and the session persists as long as the value of the “Session Id” property remains constant. As soon as the value for “Session Id" changes, another session is started.
 
@@ -143,9 +200,9 @@ Events that do not contain a “Session Id” value are not used in calculating 
 
 Like Event Based Sessions, Sessions are reset every 24 hours at midnight (according to your project timezone), so the maximum session length is 24 hours.
 
-## Examples
+### Examples
 
-### Example 1
+#### Example 1
 
 ![https://help.mixpanel.com/hc/article_attachments/10260746661780](https://help.mixpanel.com/hc/article_attachments/10260746661780)
 
@@ -157,7 +214,7 @@ Session ID Property is set to `session_id`
 4. The user then waits 15 minutes and performs “Event D” at 12:30am.
 5. Assuming the next event has a different `session_id` or no other events occur before the second day ends, then another "Session End" event will be triggered. The time of the "Session End" is the last event performed at 12:30 am. Therefore the session length for “Session 2” is 15 minutes.
 
-### Example 2
+#### Example 2
 
 ![https://help.mixpanel.com/hc/article_attachments/9448356131476/Untitled__6_.png](https://help.mixpanel.com/hc/article_attachments/9448356131476/Untitled__6_.png)
 
@@ -168,68 +225,6 @@ Session ID Property is set to `session_id`
 3. The user then waits 15 minutes and performs “Event C” at 12:45 am.
 4. The user then waits 15 minutes and performs “Event D” at 12:15 pm.
 5. Assuming the next event has a different `session_id` or no other events occur for the remainder of the day, another "Session End" event will be triggered. The time of the "Session End" is the last event performed at 12:15 pm. Therefore the session length for “Session 2” is 60 minutes.
-
-# Using Sessions
-
-## Funnels
-
-In [Funnels](https://help.mixpanel.com/hc/en-us/articles/115004561926), once you have set up sessions, a “Session Start” and “Session End” event will be generated in the report based on the funnel criteria. These virtual events are not the same as tracked events in your project, and therefore will not add to your data usage in Mixpanel.
-
-![https://help.mixpanel.com/hc/article_attachments/6693686907156/mceclip7.png](https://help.mixpanel.com/hc/article_attachments/6693686907156/mceclip7.png)
-
-The event properties "Session Duration (Seconds)", "Session Event Count", "Session End Event Name", and "Session Start Event Name" can be used to breakdown or filter these results.
-
-![https://help.mixpanel.com/hc/article_attachments/6693720386068/mceclip8.png](https://help.mixpanel.com/hc/article_attachments/6693720386068/mceclip8.png)
-
-You can also choose to count Sessions instead of Uniques or Totals in the Conversion Details section. If you choose to count Sessions, the conversion window will be limited to one session.
-
-Whenever you make a change to session settings, you can then review the impact of this change in the Funnels Time to Convert Chart. If you see a large group of users doing 4+ hour sessions or just having sessions of <1 minute, you can create cohorts from these user segments and then evaluate their behavior in Flows to confirm Sessions is set up correctly.
-
-![https://help.mixpanel.com/hc/article_attachments/6693775917588/mceclip9.png](https://help.mixpanel.com/hc/article_attachments/6693775917588/mceclip9.png)
-
-If you choose to count Uniques or Totals, you will be able to select a conversion window as usual, including Sessions.
-
-![https://help.mixpanel.com/hc/article_attachments/6693981758228/mceclip15.png](https://help.mixpanel.com/hc/article_attachments/6693981758228/mceclip15.png)
-
-## Flows
-
-In [Flows](https://help.mixpanel.com/hc/en-us/articles/360001386926), you can use the “Session Start” and “Session End” events to view the top Flows events within a session. These are virtual events which are not the same as tracked events in your project, and therefore will not add to your data usage in Mixpanel.
-
-![https://help.mixpanel.com/hc/article_attachments/6693828339476/mceclip10.png](https://help.mixpanel.com/hc/article_attachments/6693828339476/mceclip10.png)
-
-When you select sessions in Flows, you will be viewing total sessions counts, rather than uniques or totals.
-
-The event properties "Session Duration (Seconds)", "Session Event Count", "Session End Event Name", and "Session Start Event Name" can be used to breakdown or filter these results.
-
-![https://help.mixpanel.com/hc/article_attachments/6693838235028/mceclip11.png](https://help.mixpanel.com/hc/article_attachments/6693838235028/mceclip11.png)
-
-## Insights
-
-In [Insights](https://help.mixpanel.com/hc/en-us/articles/360001333826), you can use the “Session Start” and “Session End” events to explore a variety of metrics:
-
-- The total number of sessions over time
-- The average session length per user
-- Session duration broken down across all users
-- The average number of sessions per user
-- Sessions calculated in Formulas
-
-These are virtual events which are not the same as tracked events in your project, and therefore will not add to your data usage in Mixpanel.
-
-![https://help.mixpanel.com/hc/article_attachments/6693868461460/mceclip12.png](https://help.mixpanel.com/hc/article_attachments/6693868461460/mceclip12.png)
-
-When you select sessions in Insights, you will be viewing total sessions counts, rather than uniques or totals.
-
-The event properties "Session Duration (Seconds)", "Session Event Count", "Session End Event Name", and "Session Start Event Name" can be used to breakdown or filter these results.
-
-![https://help.mixpanel.com/hc/article_attachments/6693901059860/mceclip13.png](https://help.mixpanel.com/hc/article_attachments/6693901059860/mceclip13.png)
-
-### Aggregation by Sessions
-
-Select the **Total** drop down beside an event in your Insights query to select **Sessions**.
-
-![https://help.mixpanel.com/hc/article_attachments/6693976195092/mceclip14.png](https://help.mixpanel.com/hc/article_attachments/6693976195092/mceclip14.png)
-
-This aggregation can be used to determine how many sessions users performed the given event in the selected time range. For example, select an event which determines success for your company, such as "Product Purchase". Using this aggregation you can track how many sessions users made a purchase in. Rather than simply viewing the total number of purchases made, you view how many times a user sat down at your website to make a purchase.
 
 # Session Properties
 
