@@ -23,17 +23,11 @@ Example use-cases include:
 
 ## Custom Bucketing
 
-Use custom properties to create arbitrary ranges of your numerical properties. This is applicable when you want to create age groups from age, income classes from salary, and other numeric property transformations relevant to your business.
+You can use custom properties to create arbitrary buckets out of your numerical properties, for example creating age groups from age, or income brackets from salary.
 
-For example:
+Note: you can do this without creating a custom property as well, using [Custom Buckets](doc:other-advanced-features#custom-buckets). Custom Properties enables you to save and share this bucketing with the rest of your team.
 
-If you have a property for “Days since registration” and you want to bucket the users into “Months since registration” (0-1 months: X users, 1-6 months: Y users, 6+ months: Z users), you can use custom properties.
-
-Take the property of “Days since registration” and create a new property called “Months since registration" with this transformation:
-
-Ifs( A/30 <= 1, "0-1 months", A/30 <=6, "1-6 months", A/30 >6, "More than 6 months" )
-
-where each instance of "A" is replaced with the property "Days Since Registration".
+For example, if you have a property for “Days since registration” and you want to bucket the users into “Months since registration” (0-1 months: X users, 1-6 months: Y users, 6+ months: Z users), you can use custom properties.
 
 ![https://help.mixpanel.com/hc/article_attachments/360053124672/mceclip0.png](https://help.mixpanel.com/hc/article_attachments/360053124672/mceclip0.png)
 
@@ -49,8 +43,6 @@ A marketing manager wants to understand what portion of the user base is coming 
 
 They can create a custom property using the channel with this transformation:
 
-if("Facebook" in A or "Linkedin" in A or "Twitter" in A, "Social", A)
-
 ![https://help.mixpanel.com/hc/article_attachments/360053125752/mceclip1.png](https://help.mixpanel.com/hc/article_attachments/360053125752/mceclip1.png)
 
 ## Add Domain Knowledge from Existing Data to Make Data More Accessible
@@ -63,8 +55,6 @@ The product team can take these property values and add on domain understanding 
 
 In this example, let’s say that there is an event called “Media Played”, that has the properties "mediaType" (values of 0 or 1, which really mean song (0) or video (1), "Artist" (string, where if the string contains "myflix", then it means that’s an original), so a new custom property could be created to define whether something is an "OriginalSong" (true/false) by combining the logic from "mediaType" and "Artist":
 
-IF(mediaType ==0 AND “myflix” IN Artist, true, false)
-
 ## Create New Properties Based on Values of Different Properties
 
 Use custom properties to create a new property using the values of multiple other properties.
@@ -75,8 +65,6 @@ A marketplace company wants to track total purchase amount for an order, but the
 
 They can create a custom property using “price” and “quantity” with this transformation:
 
-A\*B
-
 ![https://help.mixpanel.com/hc/article_attachments/360053125952/mceclip2.png](https://help.mixpanel.com/hc/article_attachments/360053125952/mceclip2.png)
 
 ## Compute the Number of Days Between Two Date Properties
@@ -84,8 +72,6 @@ A\*B
 Use custom properties to compute the date/time difference between two date properties. You can also use the special "TODAY()" function to find the difference between a date property and the current date/time. This is ideal when you want to transform a "DateofBirth" property into “age” or a "Created" property into “days active since registration”.
 
 A new custom property can be defined by taking into account the “Created” property and using the following transformation:
-
-DATEDIF(Created, TODAY(), “D”)
 
 ![https://help.mixpanel.com/hc/article_attachments/360052865351/Untitled.png](https://help.mixpanel.com/hc/article_attachments/360052865351/Untitled.png)
 
@@ -103,8 +89,6 @@ A telco company charges its customers based on talk-time (minutes spoken) and on
 
 They can create a custom property using “Duration” and “Amount” with this transformation:
 
-if(defined(A), B/A, B)
-
 ![https://help.mixpanel.com/hc/article_attachments/360053264991/mceclip3.png](https://help.mixpanel.com/hc/article_attachments/360053264991/mceclip3.png)
 
 ## Check whether Property Values Are the Same
@@ -116,8 +100,6 @@ For example:
 A company wants to find out what percentage of purchases are being made by users that have changed countries since sign up.
 
 They can create a custom property to determine whether the two country values are the same with this transformation:
-
-if(A==B,FALSE, TRUE)
 
 ![https://help.mixpanel.com/hc/article_attachments/360053127592/mceclip4.png](https://help.mixpanel.com/hc/article_attachments/360053127592/mceclip4.png)
 
@@ -131,15 +113,11 @@ If a company that sells ice-cream wants to look at popular pie flavors, and if t
 
 They can create a custom property that combines and casts all these values to the same case using this transformation:
 
-upper(A) or lower(A)
-
 ![https://help.mixpanel.com/hc/article_attachments/360053127672/mceclip5.png](https://help.mixpanel.com/hc/article_attachments/360053127672/mceclip5.png)
 
 ## Extract Domain from Email Address
 
 Extract the domain of the email from an email address. You can parse out parts of a string after "@" using the SPLIT function:
-
-split(Email, "@",2)
 
 ![https://help.mixpanel.com/hc/article_attachments/360068799312/mceclip1.png](https://help.mixpanel.com/hc/article_attachments/360068799312/mceclip1.png)
 
@@ -155,13 +133,7 @@ Let’s say you have a list of recommendations as a property, and you’d like t
 
 You can parse out the first delivery ID in a list property with several DeliveryIDs:
 
-Deliveries [0]
-
 ![https://help.mixpanel.com/hc/article_attachments/360052737872/Untitled5.png](https://help.mixpanel.com/hc/article_attachments/360052737872/Untitled5.png)
-
-This creates the following output:
-
-![https://help.mixpanel.com/hc/article_attachments/360052867291/Untitled6.png](https://help.mixpanel.com/hc/article_attachments/360052867291/Untitled6.png)
 
 # Creating a Custom Property
 
