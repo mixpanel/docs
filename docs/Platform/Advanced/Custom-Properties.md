@@ -7,6 +7,8 @@ metadata:
   description: "Learn about custom properties."
 ---
 
+# Overview
+
 Custom properties lets you combine existing properties into new properties on the fly, using a simple Excel-like formula language. You can then use these new properties almost anywhere that you can use regular properties, with the ability to save/share them for reuse across your team. For more on why we built this, check out [our blog](https://mixpanel.com/blog/introducing-the-mixpanel-modeling-layer/).
 
 Example use-cases include:
@@ -161,7 +163,7 @@ This creates the following output:
 
 ![https://help.mixpanel.com/hc/article_attachments/360052867291/Untitled6.png](https://help.mixpanel.com/hc/article_attachments/360052867291/Untitled6.png)
 
-# Creating a custom property
+# Creating a Custom Property
 
 Click **Create Custom > Event Property or User Property** to open the property builder.
 
@@ -176,14 +178,6 @@ When writing your formula, click **Ctrl + Space** to see a list of all the ava
 Custom properties are local to the report by default, when you select **Apply**. To save the custom property permanently for use in other reports and to make it usable by other project members, click **Save**. We recommend Apply-ing the custom property and using it in your local analysis first, before saving and sharing, to reduce clutter in the project.
 
 When you create custom properties and select **Save as Custom Property**, your created custom property will be private by default. You can also add a description at this stage, so you and your colleagues can know what the custom property is for. You can also decide to save the custom property and **share** that custom property with specific colleagues, teams or the entire organization by clicking "**Save and Share**":
-
-# Custom Properties in Lexicon
-
-You can view all your saved custom properties in Lexicon. Navigate to Lexicon by clicking on **Data Management** and select **Lexicon**. Once in Lexicon, select either the *EVENT PROPERTIES* or *USER PROFILE PROPERTIES* tab, then click the dropdown list that says **All Types** and select **Custom Properties** from the list. This will filter your properties list to only custom properties.
-
-![https://help.mixpanel.com/hc/article_attachments/360052738512/Untitled7.png](https://help.mixpanel.com/hc/article_attachments/360052738512/Untitled7.png)
-
-The formula used to compose your custom property can't be longer than 20.000 characters.
 
 # Reference
 
