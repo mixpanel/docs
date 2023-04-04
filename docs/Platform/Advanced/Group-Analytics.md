@@ -71,7 +71,7 @@ To change the identifier in a report:
 
 Establish the group identifier with an event property as the Group Key, where the property value is the Group ID. As **event property:value** is **group key:group id**.
 
-# Group Keys in Project Settings
+## Group Keys in Project Settings
 
 Group keys are project specific, and the group key must be set up before group data is sent.
 
@@ -83,13 +83,13 @@ Enter an event property to attribute the group key to. You can also enter a disp
 
 ![https://help.mixpanel.com/hc/article_attachments/7248270683412/Screen_Shot_2022-06-22_at_6.18.38_PM.png](https://help.mixpanel.com/hc/article_attachments/7248270683412/Screen_Shot_2022-06-22_at_6.18.38_PM.png)
 
-# Group Keys Tracked as Event Properties
+## Group Keys Tracked as Event Properties
 
 **Group keys must be event properties.** All events need to have a defined group key on them in order to be attributed to a group.
 
 **Note:** Mixpanel does not backfill historical data to groups before the group key was implemented. This means that Mixpanel is only able to attribute group data from the date that the group key was set up in your Project Settings. Historical events that contain the group key as an event property sent prior to the implementation of the group key in Project Settings will not be attributed to a group.
 
-# Attribute Events to Multiple Groups
+## Attribute Events to Multiple Groups
 
 An event can be attributed to multiple groups. To attribute to multiple groups, track the group event property's value as a list of string-valued group ids.
 
@@ -97,7 +97,7 @@ An event can be attributed to multiple groups. To attribute to multiple groups, 
 
 Not all of a user's events will be attributed to a group. Only the events with a defined group key will be attributed to the group and appear in the group's profile's activity feed.
 
-# Implement Using the Groups API
+## Implement Using the Groups API
 
 Mixpanel's SDKs have methods to help you implement Groups Analytics.
 
@@ -119,11 +119,11 @@ To view the setup guides for implementing Groups using the Groups API, follow th
 - [React Native SDK](https://developer.mixpanel.com/docs/react-native#group-analytics)
 - [Ruby SDK](https://developer.mixpanel.com/docs/ruby#section-group-analytics)
 
-# Upload Group Profiles Using the Users Report
+## Upload Group Profiles Using the Users Report
 
 It is possible to create Group Profiles by CSV upload as an alternative to the Groups API. [Follow the instructions here to learn how to upload Group Profiles using the Users report](https://help.mixpanel.com/hc/en-us/articles/115004695323).
 
-# Add Group Key to User's Profile
+## Add Group Key to User's Profile
 
 Adding the **group_key:group_id** to user profiles connects user profiles to group profiles. This allows you to user group profile properties when analyzing by Users in reports, for example, when creating user cohorts based on group profile properties.
 

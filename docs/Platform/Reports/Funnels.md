@@ -86,7 +86,9 @@ However, you can also visualize the funnel in any of the following chart types, 
 
 # Advanced
 
-## Conversion Criteria - Conversion Window
+## Conversion Criteria
+
+### Conversion Window
 
 The Conversion Window determines how much time a user has to convert through all steps of the funnel after entering it.
 
@@ -102,7 +104,7 @@ For example, let's assume a funnel with the following criteria: A → B → C, 
 
 If the user does A at 1pm and then A again at 1:30pm, before doing B at 1:45pm and C at 2:15pm, they would count as converting to B, but will not be counted as completing the entire funnel to C. This is because 1pm to 2:15pm is greater than one hour. The conversion window for a given funnel trial starts with the first instance of A and is not reset by later instances of A in the same trial. B and C need to be completed within the conversion window from the first instance of A to be counted as conversions.
 
-## Conversion Criteria - Uniques, Totals, or Sessions
+### Counting Method
 
 Your selected counting method determines how many times Mixpanel will count a particular user's activity towards your conversion rates. Mixpanel Funnels can be calculated by uniques, totals, or sessions.
 
@@ -110,23 +112,20 @@ By default, Funnel calculations are based on **uniques**. To change to a diffe
 
 ![https://help.mixpanel.com/hc/article_attachments/4413107176724/Screen_Shot_2021-12-15_at_10.16.00_AM.png](https://help.mixpanel.com/hc/article_attachments/4413107176724/Screen_Shot_2021-12-15_at_10.16.00_AM.png)
 
-### Uniques
-
+**Uniques**
 Unique funnels count a single entry per user (determined by distinct_id). Each user enters the funnel only once, and this is on the first time they perform the Step 1 event in the date range. Even if a particular user completes the funnel multiple times in the date range, they will only be counted towards conversion once, and on the first time they entered in the span of the funnel.
 
-### Totals
-
+**Totals**
 Totals funnels count multiple entries per user.  Users can re-enter the funnel and every time a user enters the funnel they are counted towards conversion. Users may re-enter a totals funnel only after they have exited their previous attempt through the funnel. Users exit a funnel in 3 ways:
 
 1. They complete the funnel and convert to the last step,
 2. They fail to complete the funnel in the conversion window and time out,
 3. They are excluded from conversion by an exclusion step.
 
-### Sessions
-
+**Sessions**
 Sessions funnels count the number of sessions that contain a conversion. Like totals funnels, users will be allowed to re-enter the funnel in subsequent sessions; however, in sessions funnels users must convert through the funnel within the same session they entered the funnel to be counted as converted. If the session ends before they have converted, the user will time out and drop out of the funnel after the last step they reached. Learn more about Sessions [here](https://help.mixpanel.com/hc/en-us/articles/115004695223).
 
-## Conversion Criteria - Specific Order or Any Order
+### Ordering
 
 The order control determines how much flexibility there can be to the sequence of your user's actions to be counted as a conversion.
 
@@ -134,8 +133,7 @@ By default, funnels are **specific order**. To change between order designatio
 
 ![https://help.mixpanel.com/hc/article_attachments/4413107307796/Screen_Shot_2021-12-15_at_10.20.13_AM.png](https://help.mixpanel.com/hc/article_attachments/4413107307796/Screen_Shot_2021-12-15_at_10.20.13_AM.png)
 
-### Specific Order
-
+**Specific Order**
 Specific Order Funnels require the user to complete each of the funnel steps in the order laid out in the query builder to be counted as a conversion from step to step. In other words, Step 1 must be completed before Step 2, which must be completed before Step 3, and so on. The user can engage in other actions in between funnel steps- including additional occurrences of the actions listed as funnels steps- but they will only be counted as converted as long as they complete all the funnel steps in order.
 
 To illustrate with an example, let's say a specific order funnel has steps: A, B, C, D, E
@@ -145,8 +143,7 @@ To illustrate with an example, let's say a specific order funnel has steps: A, B
 3. The customer does steps A -> B -> ***D*** -> C -> D -> E. Mixpanel counts this as a conversion. Even though the customer did an occurrence of D before the first time doing C, because theyeventually did a D after C they will continue to convert.
 4. The customer does steps A -> B -> C -> E. Mixpanel will not count this as a full conversion, and the customer will not appear in the funnel after step C. The customer's completion of step E is excluded from the funnel because step D did not occur.
 
-### Any Order
-
+**Any Order**
 In Any Order Funnels, users can complete unanchored funnels steps in any particular sequence and still convert. This type of funnel is most useful in situations where a user must ultimately complete all actions to be considered converted, but the exact order is not important.
 
 A good example of this could be a job application flow, where a user must input multiple pieces of information (their name, email address, current job title, credentials, references, cover letter, resume, etc.) in order to complete the form and convert to submit their application, but they can provide all this information in any order they'd like and still proceed towards converting.
@@ -167,7 +164,7 @@ A step will either appear with a number beside it, indicating where it must fall
 
 In the above example, Steps 1, 4, and 6 must occur as the 1st, 4th, and 6th steps the user performs.Any of the * steps can occur at any time within those boundaries.
 
-## Conversion Criteria - Hold Property Constant
+## Hold Property Constant
 
 Holding a property constant in a funnel requires that a user retain the same value for a given event property for each step in order to convert. In other words, a user must not only perform the funnel events in the order you specified, but also perform these events with the same property value.
 
@@ -229,7 +226,7 @@ Click on the "three dots" icon beside a step and click **Rename** to rename i
 
 ## View as Flow
 
-In order to learn more about the behavior users take between funnel steps, we recommend checking the feature "View as Flow", which helps to answer questions like:
+In order to learn more about the behavior users take between funnel steps, we recommend checking the feature "View as Flow". You can see what user flows and behaviors that can increase the likelihood of conversion or dropodd. This helps to answer questions like:
 
 - What flows do users take between opening an app and making a purchase?
 - Why did the successful users purchase?
@@ -238,6 +235,58 @@ In order to learn more about the behavior users take between funnel steps, we re
 - What did the users that dropped-off do instead?
 
 ![https://help.mixpanel.com/hc/article_attachments/7771574327060/mceclip19.png](https://help.mixpanel.com/hc/article_attachments/7771574327060/mceclip19.png)
+
+### Using Conversion and Drop-off Flows
+
+First, go to the Mixpanel Funnels Report, and create any funnel you like by selecting 2 or more events steps.
+
+Next, click on the conversion or drop-off population you wish to examine further and select View As Flow.
+
+![https://help.mixpanel.com/hc/article_attachments/7717455374228/cr8695o49k.png](https://help.mixpanel.com/hc/article_attachments/7717455374228/cr8695o49k.png)
+
+In this example, I want to see what events lead to better conversion or more drop-off between Step 1 Browse and Step 2 Add To Cart. This will send me to the Sankey visualization to see these event streams in a Flows report.
+
+Up top, I can see that all of the Funnel's criteria is still maintained. In my example, I still am counting a Unique funnel, within 30 days, holding the Item Name property constant, and excluding users that Abandon Cart at any stage. I can also go back to the Funnel to change my criteria at any time.
+
+![https://help.mixpanel.com/hc/article_attachments/7771486573716/scm5ojo77y.png](https://help.mixpanel.com/hc/article_attachments/7771486573716/scm5ojo77y.png)
+
+The Sankey is automatically broken down by users that eventually converted or did not convert to Add to Cart (Users may not convert because of hitting exclusion steps, or failing to complete the funnel in the conversion window)
+
+![https://help.mixpanel.com/hc/article_attachments/7717457136020/Screen_Shot_2021-05-26_at_7.13.34_AM.png](https://help.mixpanel.com/hc/article_attachments/7717457136020/Screen_Shot_2021-05-26_at_7.13.34_AM.png)
+
+Hovering over any path I can see the size of the population and the percent converted to this action from the previous one.
+
+![https://help.mixpanel.com/hc/article_attachments/7717458989076/rjgjxun5bz.png](https://help.mixpanel.com/hc/article_attachments/7717458989076/rjgjxun5bz.png)
+
+In the example, I can see here that 10.6% converted immediately to Adding to their Cart.
+
+### Lift Actions: What paths are performed more often by users who convert compared those who drop off?
+
+With the recently added lift actions feature, we have made it possible to quickly tell which actions and paths had a higher or lower conversion rate compared to the funnel as a whole.
+
+![https://help.mixpanel.com/hc/article_attachments/7717489439380/Screen_Shot_2021-05-26_at_7.38.50_AM.png](https://help.mixpanel.com/hc/article_attachments/7717489439380/Screen_Shot_2021-05-26_at_7.38.50_AM.png)
+
+In this example, I can see that Users who performed Search Results, had a +24% higher conversion rate compared to overall (51.1% vs. 41.2%). Whereas, users who performed Experiment Started had a -82.4% reduction in conversion rate compared to overall (7.2% vs. 41.2%).By looking at the positive (green) and negative (red) lift actions, you should be able to quickly form hypothesis on which paths and events are likely to result in more or less conversions.
+
+### Filter by Conversion: What are the common paths taken by users who convert?
+
+If you want to do an isolated analysis of conversions, I can apply a filter so that the report will include only conversions.  This is done by clicking on Filter in the query builder and selecting the Conversion property. Setting it to Converted, will filter only to users who have converted.
+
+![https://help.mixpanel.com/hc/article_attachments/7717478913428/l387g5uhw1_1_.png](https://help.mixpanel.com/hc/article_attachments/7717478913428/l387g5uhw1_1_.png)
+
+![https://help.mixpanel.com/hc/article_attachments/7717491465620/Screen_Shot_2021-05-26_at_7.55.31_AM.png](https://help.mixpanel.com/hc/article_attachments/7717491465620/Screen_Shot_2021-05-26_at_7.55.31_AM.png)
+
+In this example, we can see that 35.6% of conversions happened in the first step.
+
+### Filter by drop off: What do users do right before dropping off?
+
+To view what users did before dropping off, change the filter to "Did not Convert", and add more steps before the drop off step
+
+![https://help.mixpanel.com/hc/article_attachments/7717481037972/Screen_Shot_2021-05-26_at_7.58.29_AM.png](https://help.mixpanel.com/hc/article_attachments/7717481037972/Screen_Shot_2021-05-26_at_7.58.29_AM.png)
+
+![https://help.mixpanel.com/hc/article_attachments/7717493572372/Screen_Shot_2021-05-26_at_7.59.51_AM.png](https://help.mixpanel.com/hc/article_attachments/7717493572372/Screen_Shot_2021-05-26_at_7.59.51_AM.png)
+
+Now, I can see that 33.7% of users who did not convert, did the "Join Loyalty Program" before dropping off. I can use this hypothesis to evaluate the business impact of the loyalty program, and perhaps make some changes to the product.
 
 ## Funnel Trends
 
@@ -329,77 +378,6 @@ If you have selected **any order** for your funnels steps, you have the option
 
 ![https://help.mixpanel.com/hc/article_attachments/7740547040276/Screen_Shot_2022-07-12_at_3.30.32_PM.png](https://help.mixpanel.com/hc/article_attachments/7740547040276/Screen_Shot_2022-07-12_at_3.30.32_PM.png)
 
-## Conversion and Drop-off Flows
-
-The most common question we find Funnels users asking after observing the conversion percentages from step to step: "\*Why did the users in my funnel convert or drop off?"\*
-
-**Conversion and Drop-off Flows** allows you to understand *what users did* and slice and dice your data up by which paths and past behaviors lead to more conversions. This lets you spot particular sequences and actions that occur between funnel steps that promote conversion or places of friction that increase the likelihood of drop-off. Since you can more easily build product features that encourage or discourage particular user behaviors, much more so than change who they are in a demographical sense, these behavioral insights can typically be more actionable.
-
-For example, if you find that using multiple product features and touching more of the product's surface area increases a key conversion- this can influence strategy to improve onboarding to include more of the product. As these sorts of behavioral observations typically identify new potential habits that could be encouraged or changed, these insights regarding *what users did* are much more valuable to product teams.
-
-### Questions you can now answer
-
-- What flows do users take between opening an app and making a purchase?
-- Why did the successful users purchase?
-- What flows do users take that don’t lead to a purchase?
-- What paths are performed more often by users who convert compared those who drop off?
-- How do these two paths differ? What actions should I nudge towards or against?
-- What do users do right before dropping off?
-
-Build product changes that encourage behaviors that cause conversion lift, and eliminate the friction that causes drop off.
-
-### Using Conversion and Drop-off Flows
-
-First, go to the Mixpanel Funnels Report, and create any funnel you like by selecting 2 or more events steps.
-
-Next, click on the conversion or drop-off population you wish to examine further and select View As Flow.
-
-![https://help.mixpanel.com/hc/article_attachments/7717455374228/cr8695o49k.png](https://help.mixpanel.com/hc/article_attachments/7717455374228/cr8695o49k.png)
-
-In this example, I want to see what events lead to better conversion or more drop-off between Step 1 Browse and Step 2 Add To Cart. This will send me to the Sankey visualization to see these event streams in a Flows report.
-
-Up top, I can see that all of the Funnel's criteria is still maintained. In my example, I still am counting a Unique funnel, within 30 days, holding the Item Name property constant, and excluding users that Abandon Cart at any stage. I can also go back to the Funnel to change my criteria at any time.
-
-![https://help.mixpanel.com/hc/article_attachments/7771486573716/scm5ojo77y.png](https://help.mixpanel.com/hc/article_attachments/7771486573716/scm5ojo77y.png)
-
-The Sankey is automatically broken down by users that eventually converted or did not convert to Add to Cart (Users may not convert because of hitting exclusion steps, or failing to complete the funnel in the conversion window)
-
-![https://help.mixpanel.com/hc/article_attachments/7717457136020/Screen_Shot_2021-05-26_at_7.13.34_AM.png](https://help.mixpanel.com/hc/article_attachments/7717457136020/Screen_Shot_2021-05-26_at_7.13.34_AM.png)
-
-Hovering over any path I can see the size of the population and the percent converted to this action from the previous one.
-
-![https://help.mixpanel.com/hc/article_attachments/7717458989076/rjgjxun5bz.png](https://help.mixpanel.com/hc/article_attachments/7717458989076/rjgjxun5bz.png)
-
-In the example, I can see here that 10.6% converted immediately to Adding to their Cart.
-
-### Lift Actions: What paths are performed more often by users who convert compared those who drop off?
-
-With the recently added lift actions feature, we have made it possible to quickly tell which actions and paths had a higher or lower conversion rate compared to the funnel as a whole.
-
-![https://help.mixpanel.com/hc/article_attachments/7717489439380/Screen_Shot_2021-05-26_at_7.38.50_AM.png](https://help.mixpanel.com/hc/article_attachments/7717489439380/Screen_Shot_2021-05-26_at_7.38.50_AM.png)
-
-In this example, I can see that Users who performed Search Results, had a +24% higher conversion rate compared to overall (51.1% vs. 41.2%). Whereas, users who performed Experiment Started had a -82.4% reduction in conversion rate compared to overall (7.2% vs. 41.2%).By looking at the positive (green) and negative (red) lift actions, you should be able to quickly form hypothesis on which paths and events are likely to result in more or less conversions.
-
-### Filter by Conversion: What are the common paths taken by users who convert?
-
-If you want to do an isolated analysis of conversions, I can apply a filter so that the report will include only conversions.  This is done by clicking on Filter in the query builder and selecting the Conversion property. Setting it to Converted, will filter only to users who have converted.
-
-![https://help.mixpanel.com/hc/article_attachments/7717478913428/l387g5uhw1_1_.png](https://help.mixpanel.com/hc/article_attachments/7717478913428/l387g5uhw1_1_.png)
-
-![https://help.mixpanel.com/hc/article_attachments/7717491465620/Screen_Shot_2021-05-26_at_7.55.31_AM.png](https://help.mixpanel.com/hc/article_attachments/7717491465620/Screen_Shot_2021-05-26_at_7.55.31_AM.png)
-
-In this example, we can see that 35.6% of conversions happened in the first step.
-
-### Filter by drop off: What do users do right before dropping off?
-
-To view what users did before dropping off, change the filter to "Did not Convert", and add more steps before the drop off step
-
-![https://help.mixpanel.com/hc/article_attachments/7717481037972/Screen_Shot_2021-05-26_at_7.58.29_AM.png](https://help.mixpanel.com/hc/article_attachments/7717481037972/Screen_Shot_2021-05-26_at_7.58.29_AM.png)
-
-![https://help.mixpanel.com/hc/article_attachments/7717493572372/Screen_Shot_2021-05-26_at_7.59.51_AM.png](https://help.mixpanel.com/hc/article_attachments/7717493572372/Screen_Shot_2021-05-26_at_7.59.51_AM.png)
-
-Now, I can see that 33.7% of users who did not convert, did the "Join Loyalty Program" before dropping off. I can use this hypothesis to evaluate the business impact of the loyalty program, and perhaps make some changes to the product.
-
 ## Comparison Events
 
 You can select multiple events at a particular step in a funnel, and Mixpanel will compute a segmented funnel that shows what percent of users reached each of these comparison events.
@@ -443,7 +421,9 @@ Click on the **dot** beside the statistical significance number to make that p
 
 ![https://help.mixpanel.com/hc/article_attachments/7717111134228/Oct-28-2019_10-35-23.gif](https://help.mixpanel.com/hc/article_attachments/7717111134228/Oct-28-2019_10-35-23.gif)
 
-### Property Attribution - First Touch vs Last Touch
+## Property Attribution
+
+### First Touch vs Last Touch
 
 Event property values can vary from step to step in your funnel. For example, a user may select a blue shirt in step 1, but put a red shirt in their cart in step 3. If you want to control when the property value is locked in for all steps of your funnel, you can use property attribution.
 
