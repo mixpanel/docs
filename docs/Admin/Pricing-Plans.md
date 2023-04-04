@@ -140,6 +140,10 @@ If you go over your prepaid amount, Mixpanel won't stop collecting your data. On
 
 ### Alerts for Additional Data Charges
 
+Billing Admins and Organizations Owners  paying for Monthly Tracked Users (MTUs) receive alert emails when their account exceeds their subscription cap by the following percentages: 85%, 100%, 110%, 120%, 200%, 300% and 500%. Email addresses that are CC'd on receipts will also be CC'd on à la carte data rate charge alert emails.
+
+Furthermore, when the billing owner logs into mixpanel.com, they will see a popup if their account has exceeded their subscription cap by the following percentages: 100%, 110% and 120%.
+
 ### Free Plan
 
 If you send more data points than your free plan allows:
