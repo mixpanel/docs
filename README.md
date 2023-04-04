@@ -8,7 +8,7 @@ To make an edit:
 * Click the pencil icon to make edits to a file’s markdown. You can swap between code and preview to see what your edits look like.
 * When you’re ready, hit “Commit” and follow the instructions to commit the changes to your branch and create a pull request review. Add a description if you like, keeping in mind that this is publicly accessible.
 * GitHub will post a message in Mixpanel's internal Slack with a link to your review.
-* One of the docs maintainers will review that request within 1 day and merge when approved (usually faster if it’s a small change).
+* One of the docs maintainers will review that request within 3 days and merge when approved (usually faster if it’s a small change).
 * Once merged, changes will go live automatically, typically within 1-2 minutes.
 
 # Fixing Images
