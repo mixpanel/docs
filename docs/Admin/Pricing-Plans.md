@@ -126,6 +126,8 @@ If you are on an MTU Plan, view the top events contributing towards your MTU cou
 
 ## What if I go over my plan allowance?
 
+If you send more data than your paid monthly or annual plan allows, additional data charges will be charged at the beginning of the following month. So, if you go over your data cap one month, you will be charged your base price at the beginning of the next month plus additional data rate charges from the previous month's excess. 
+
 ### Event Plans
 
 Once you’ve finished using your prepaid amount of events, you’ll be charged our regular monthly rate for each additional event tracked that month. Alerts are in place to notify Organization Owners and Billing Admins of potential additional data charges.
@@ -134,15 +136,21 @@ We don’t charge punitive overages but we do provide volume discounts – if yo
 
 ### MTU Plans
 
-If you go over your prepaid amount, Mixpanel won't stop collecting your data. Once you've finished using your prepaid amount of MTUs you'll be charged the additional data rate for each additional user tracked that month. Alerts are in place to notify Organization Owners and Billing Admins of potential additional data charges. View the additional data rate for your paid plan in Organization Settings > Plan Details & Billing:
+If you go over your prepaid amount, Mixpanel won't stop collecting your data. Once you've finished using your prepaid amount of MTUs you'll be charged the additional data rate for each additional user tracked that month. Alerts are in place to notify Organization Owners and Billing Admins of potential additional data charges. 
+
+For example, let’s say you are on a $24/month Growth plan, but in the month of January, you went over your 1,000 MTU allotment by 500 MTU. Around January 1, you would have paid your base monthly fee for January of $24. Then around February 1, you will pay your base monthly fee for February of $24 plus the January additional data rate charges you incurred. If you purchase an annual plan in January, you will be charged an additional data rate fee each following month for the data used was in excess of the purchased plan.
+
+To maximize saving and avoid additional data rate charges, we recommend [taking a look at pricing options](https://mixpanel.com/pricing/) and upgrading to a pricing plan that better fits your traffic. View the additional data rate for your paid plan in Organization Settings > Plan Details & Billing:
 
 ![Additional Data Rate](https://raw.githubusercontent.com/ranic/mixpanel-docs/main/media/Admin/Pricing-Plans/additional-data-rate.png)
 
 ### Alerts for Additional Data Charges
 
-Billing Admins and Organizations Owners  paying for Monthly Tracked Users (MTUs) receive alert emails when their account exceeds their subscription cap by the following percentages: 85%, 100%, 110%, 120%, 200%, 300% and 500%. Email addresses that are CC'd on receipts will also be CC'd on à la carte data rate charge alert emails.
+If you go over your prepaid amount, Mixpanel won't stop collecting your data. Any additional data over your current plan will be billed the following month.
 
-Furthermore, when the billing owner logs into mixpanel.com, they will see a popup if their account has exceeded their subscription cap by the following percentages: 100%, 110% and 120%.
+Organization owners and billing admins are sent an alert email if their paid account reaches the following percentages of their plan volume: 85%, 100%, 110%, 120%, 200%, 300%, and 400%. It is possible to receive multiple alerts in a month if an account reaches two or more of the thresholds mentioned above. Email addresses that are CC'd on receipts will also be CC'd on additional carte data rate alerts.
+
+If the billing owner logs into Mixpanel, they will see a popup if their account reaches the following percentages of their plan volume: 100%, 110%, and 120%.
 
 ### Free Plan
 
