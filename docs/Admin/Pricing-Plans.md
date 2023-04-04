@@ -19,15 +19,13 @@ Events represent interactions between a user and your product. Think about event
 
 Events-based pricing calculates the amount you owe based on the number of events across all projects in each period. For eligible plans, you can choose to purchase monthly or annually.
 
-There are three event-based billing plans to choose from: Free, Growth, and Enterprise. Refer to our pricing page for more information on the benefits and features of each plan.
+There are three event-based billing plans to choose from: Free, Growth, and Enterprise. Refer to our [pricing page](https://mixpanel.com/pricing/) for more information on the benefits and features of each plan.
 
 ## Monthly Events Calculation
 
 It depends on your number of active users and the number of events (interactions) a typical active user performs in your product every month (or year). These interactions include client-side engagement events (e.g., search, purchase, video view), server-side events (e.g., sign up, account upgrade), and messaging events (e.g., email sent, email opened, etc.). 
 
-We encourage new customers to get started on the free plan and then upgrade once they have an estimate of their volume.
-
-An organization is charged based on the total number of events across all projects. 
+We encourage new customers to get started on the free plan and then upgrade once they have an estimate of their volume. An organization is charged based on the total number of events across all projects. 
 
 ## Excluded Events
 
@@ -50,7 +48,7 @@ Click on the gear icon in the upper right corner of Mixpanel, and select your or
 
 From here, you can quickly view the usage this billing period as well as the current plan under Plan Details & Billing:
 
-![Plan Details and Billing](https://github.com/mixpanel/docs/blob/7e95cda50d0713bf3a3da5d9cb36a8f654f6979e/media/Admin/Pricing-Plans/plan-details-and-billing.png)
+![Plan Details and Billing](https://raw.githubusercontent.com/ranic/mixpanel-docs/main/media/Admin/Pricing-Plans/plan-details-and-billing.png)
 
 To view detailed historical data usage or download a CSV of historical usage for each project, click on View Historical Usage in the top right of Plan Details & Billing. This will show you a graph of your usage over time, as well usage for each project in your organization for the last 12 months. This feature is accessible by all users and can be downloaded to a CSV file.
 
@@ -110,17 +108,19 @@ From here, you can quickly view the usage this billing period as well as the cur
 
 To view detailed historical data usage, or download a CSV of historical usage for each project, click on View Historical Usage in the top right of Plan Details & Billing. This will show you a graph of your usage over time, as well usage for each project in your organization for the last 12 months. This feature is accessible by all users and can be downloaded to a CSV file.
 
+![Plan Details and Billing](https://raw.githubusercontent.com/ranic/mixpanel-docs/main/media/Admin/Pricing-Plans/mtu-usage-details.png)
+
 # FAQ
 
 ## What are the top events contributing to my bill?
 
 If you are on an Events Plan, view the top events contributing towards your event count by creating a monthly Insights report filtering out excluded events:
 
-![Top Events Contributing to Event Bill](https://github.com/mixpanel/docs/blob/aada30bb2665f4d92d3df59e671f8bb8a4765261/media/Admin/Pricing-Plans/top-events-contributing-to-billing.png)
+![Events Contributing to Events Bill](https://raw.githubusercontent.com/ranic/mixpanel-docs/main/media/Admin/Pricing-Plans/events-usage.png)
 
-If you are on an MTU Plan, view the top events contributing towards your MTU count by creating a monthly Insights report filtering out excluded events:
+If you are on an MTU Plan, view the top events contributing towards your MTU count by creating a monthly Insights report and typing in `$all_mtu_events` which filters out event names excluded from Mixpanel's MTU calculation:
 
-![Top Events Contributing to MTU](https://github.com/mixpanel/docs/blob/7e95cda50d0713bf3a3da5d9cb36a8f654f6979e/media/Admin/Pricing-Plans/top-events-billing.png)
+![All MTU Events Contributing to Bill](https://raw.githubusercontent.com/ranic/mixpanel-docs/main/media/Admin/Pricing-Plans/all-mtu-events-contributing-to-billing.png)
 
 ## What if I go over my plan allowance?
 
