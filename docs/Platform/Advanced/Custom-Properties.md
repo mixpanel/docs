@@ -17,7 +17,149 @@ Example use-cases include:
 - Split a string into its parts (eg: extract domain from URL or email)
 - Arbitrarily complex string manipulation with regex
 
-![https://help.mixpanel.com/hc/article_attachments/4410716644500/mceclip0.png](https://help.mixpanel.com/hc/article_attachments/4410716644500/mceclip0.png)
+# Use Cases
+
+## Custom Bucketing
+
+Use custom properties to create arbitrary ranges of your numerical properties. This is applicable when you want to create age groups from age, income classes from salary, and other numeric property transformations relevant to your business.
+
+For example:
+
+If you have a property for “Days since registration” and you want to bucket the users into “Months since registration” (0-1 months: X users, 1-6 months: Y users, 6+ months: Z users), you can use custom properties.
+
+Take the property of “Days since registration” and create a new property called “Months since registration" with this transformation:
+
+Ifs( A/30 <= 1, "0-1 months", A/30 <=6, "1-6 months", A/30 >6, "More than 6 months" )
+
+where each instance of "A" is replaced with the property "Days Since Registration".
+
+![https://help.mixpanel.com/hc/article_attachments/360053124672/mceclip0.png](https://help.mixpanel.com/hc/article_attachments/360053124672/mceclip0.png)
+
+## Merge or Rename Values to Fix Implementation Issues
+
+Use custom properties to combine multiple property values into one. This is helpful when customers want to take multiple variations of a property value (e.g. facebook, fb, fbsocial) and then combine them into one property value (e.g. facebook).
+
+If you send values into Mixpanel with variations (even though they may have been minor) and you want to correct this issue by grouping those values together.
+
+For example:
+
+A marketing manager wants to understand what portion of the user base is coming through a social traffic acquisition path. They want to group all social channel values into a single value, and keep the rest of the channels as-is.
+
+They can create a custom property using the channel with this transformation:
+
+if("Facebook" in A or "Linkedin" in A or "Twitter" in A, "Social", A)
+
+![https://help.mixpanel.com/hc/article_attachments/360053125752/mceclip1.png](https://help.mixpanel.com/hc/article_attachments/360053125752/mceclip1.png)
+
+## Add Domain Knowledge from Existing Data to Make Data More Accessible
+
+Capture your business logic with Custom Properties to add meaning to your data in Mixpanel, and empower the rest of your team to ask more questions with ease. Take signals in your data and add domain-specific understanding to help other teams unfamiliar with your data model explore your data.
+
+For example, take the case where the marketing team for a music streaming service wants to understand the adoption of original music within their platform. The logic to determine which songs are "original" might be a bit complicated for members outside the product team to discover.
+
+The product team can take these property values and add on domain understanding as a new property, so more team members can dig into the data and drive insights for their needs.
+
+In this example, let’s say that there is an event called “Media Played”, that has the properties "mediaType" (values of 0 or 1, which really mean song (0) or video (1), "Artist" (string, where if the string contains "myflix", then it means that’s an original), so a new custom property could be created to define whether something is an "OriginalSong" (true/false) by combining the logic from "mediaType" and "Artist":
+
+IF(mediaType ==0 AND “myflix” IN Artist, true, false)
+
+## Create New Properties Based on Values of Different Properties
+
+Use custom properties to create a new property using the values of multiple other properties.
+
+For example:
+
+A marketplace company wants to track total purchase amount for an order, but the per-unit price is passed as a property and the number of items is passed as a property.
+
+They can create a custom property using “price” and “quantity” with this transformation:
+
+A\*B
+
+![https://help.mixpanel.com/hc/article_attachments/360053125952/mceclip2.png](https://help.mixpanel.com/hc/article_attachments/360053125952/mceclip2.png)
+
+## Compute the Number of Days Between Two Date Properties
+
+Use custom properties to compute the date/time difference between two date properties. You can also use the special "TODAY()" function to find the difference between a date property and the current date/time. This is ideal when you want to transform a "DateofBirth" property into “age” or a "Created" property into “days active since registration”.
+
+A new custom property can be defined by taking into account the “Created” property and using the following transformation:
+
+DATEDIF(Created, TODAY(), “D”)
+
+![https://help.mixpanel.com/hc/article_attachments/360052865351/Untitled.png](https://help.mixpanel.com/hc/article_attachments/360052865351/Untitled.png)
+
+This will create the following output:
+
+![https://help.mixpanel.com/hc/article_attachments/360052735852/Untitled2.png](https://help.mixpanel.com/hc/article_attachments/360052735852/Untitled2.png)
+
+## Modify Defined Properties
+
+Use custom properties to create a new property if and only if a property is defined.
+
+For example:
+
+A telco company charges its customers based on talk-time (minutes spoken) and on apps purchased. If the company wants to track the average duration per minute, they would want to restrict the calculation to just the purchases for talk-time (where duration (minutes) is defined).
+
+They can create a custom property using “Duration” and “Amount” with this transformation:
+
+if(defined(A), B/A, B)
+
+![https://help.mixpanel.com/hc/article_attachments/360053264991/mceclip3.png](https://help.mixpanel.com/hc/article_attachments/360053264991/mceclip3.png)
+
+## Check whether Property Values Are the Same
+
+Use custom properties to create a new property if two property values are the same.
+
+For example:
+
+A company wants to find out what percentage of purchases are being made by users that have changed countries since sign up.
+
+They can create a custom property to determine whether the two country values are the same with this transformation:
+
+if(A==B,FALSE, TRUE)
+
+![https://help.mixpanel.com/hc/article_attachments/360053127592/mceclip4.png](https://help.mixpanel.com/hc/article_attachments/360053127592/mceclip4.png)
+
+## Transform String Property Values to Upper/Lowercase
+
+Use custom properties to change the case of a string property value.
+
+For example:
+
+If a company that sells ice-cream wants to look at popular pie flavors, and if the flavors were written with different casing (“vanilla”, “Vanilla”, vaNilla”), the three values would show up differently as opposed to being the same.
+
+They can create a custom property that combines and casts all these values to the same case using this transformation:
+
+upper(A) or lower(A)
+
+![https://help.mixpanel.com/hc/article_attachments/360053127672/mceclip5.png](https://help.mixpanel.com/hc/article_attachments/360053127672/mceclip5.png)
+
+## Extract Domain from Email Address
+
+Extract the domain of the email from an email address. You can parse out parts of a string after "@" using the SPLIT function:
+
+split(Email, "@",2)
+
+![https://help.mixpanel.com/hc/article_attachments/360068799312/mceclip1.png](https://help.mixpanel.com/hc/article_attachments/360068799312/mceclip1.png)
+
+This provides the following output:
+
+![https://help.mixpanel.com/hc/article_attachments/360069021451/mceclip2.png](https://help.mixpanel.com/hc/article_attachments/360069021451/mceclip2.png)
+
+## Query a List with an Index
+
+Use list referencing with custom properties to parse out any part of a list by an index.
+
+Let’s say you have a list of recommendations as a property, and you’d like to parse out the first recommendation as another string property.
+
+You can parse out the first delivery ID in a list property with several DeliveryIDs:
+
+Deliveries [0]
+
+![https://help.mixpanel.com/hc/article_attachments/360052737872/Untitled5.png](https://help.mixpanel.com/hc/article_attachments/360052737872/Untitled5.png)
+
+This creates the following output:
+
+![https://help.mixpanel.com/hc/article_attachments/360052867291/Untitled6.png](https://help.mixpanel.com/hc/article_attachments/360052867291/Untitled6.png)
 
 # Creating a custom property
 
@@ -33,7 +175,19 @@ When writing your formula, click **Ctrl + Space** to see a list of all the ava
 
 Custom properties are local to the report by default, when you select **Apply**. To save the custom property permanently for use in other reports and to make it usable by other project members, click **Save**. We recommend Apply-ing the custom property and using it in your local analysis first, before saving and sharing, to reduce clutter in the project.
 
-# Functions
+When you create custom properties and select **Save as Custom Property**, your created custom property will be private by default. You can also add a description at this stage, so you and your colleagues can know what the custom property is for. You can also decide to save the custom property and **share** that custom property with specific colleagues, teams or the entire organization by clicking "**Save and Share**":
+
+# Custom Properties in Lexicon
+
+You can view all your saved custom properties in Lexicon. Navigate to Lexicon by clicking on **Data Management** and select **Lexicon**. Once in Lexicon, select either the *EVENT PROPERTIES* or *USER PROFILE PROPERTIES* tab, then click the dropdown list that says **All Types** and select **Custom Properties** from the list. This will filter your properties list to only custom properties.
+
+![https://help.mixpanel.com/hc/article_attachments/360052738512/Untitled7.png](https://help.mixpanel.com/hc/article_attachments/360052738512/Untitled7.png)
+
+The formula used to compose your custom property can't be longer than 20.000 characters.
+
+# Reference
+
+## Functions
 
 Use the following functions in the **Formula** field to modify your custom property:
 
@@ -74,7 +228,7 @@ Use the following functions in the **Formula** field to modify your custom pro
 | map | Transforms each value in the given list using the given expression. The expression can refer to the current list element by the given name. | MAP(<var-name>, <list>, <expr>) <br />Assume a list property states = ["Georgia","Florida","Texas"]<br />MAP(X, states, LOWER(X)) will return ["georgia","florida","texas"] |
 | sum | Sums all numbers in the given list. Non-numeric items in the list are ignored. | SUM(<list>) <br />Let's say you had a list of numbers called priceList= [5,205,178,12,22]<br />SUM(priceList) -> 422.<br />SUM(FILTER(X, priceList, X>100)) -> 383, because FILTER(X,priceList, X>100) would result in [205,178] and SUM([205,178]) = 383. |
 
-# Numeric Operators
+## Numeric Operators
 
 Use the following numeric operators in the **Formula** field to modify your custom property using:
 
@@ -84,180 +238,16 @@ Use the following numeric operators in the **Formula** field to modify your cu
 - / : Division
 - % : Modulo
 
-# Comparison Operators
+## Comparison Operators
 
 Use the following comparison operators in the **Formula** field to modify your custom property:
 
 - < : The first number is strictly less than the second number.
-- > : The first number is strictly greater than the second number.
-- >= : The first number is greater than or equal to the second number.
+- \> : The first number is strictly greater than the second number.
+- \>= : The first number is greater than or equal to the second number.
 - <= : The first number is less than or equal to the second number.
 - == : The first argument is equal to the second argument. If both arguments are strings, the comparison is case-insensitive.
 - != : The first argument is not equal to the second argument. If both arguments are strings, the comparison is case-insensitive.
 - False : Represents the literal value of boolean false.
 - True : Represents the literal value of boolean true.
 - Undefined : Represents the literal value of cases that aren’t defined.
-
-# Use Cases
-
-# Custom Bucketing
-
-Use custom properties to create arbitrary ranges of your numerical properties. This is applicable when you want to create age groups from age, income classes from salary, and other numeric property transformations relevant to your business.
-
-For example:
-
-If you have a property for “Days since registration” and you want to bucket the users into “Months since registration” (0-1 months: X users, 1-6 months: Y users, 6+ months: Z users), you can use custom properties.
-
-Take the property of “Days since registration” and create a new property called “Months since registration" with this transformation:
-
-Ifs( A/30 <= 1, "0-1 months", A/30 <=6, "1-6 months", A/30 >6, "More than 6 months" )
-
-where each instance of "A" is replaced with the property "Days Since Registration".
-
-![https://help.mixpanel.com/hc/article_attachments/360053124672/mceclip0.png](https://help.mixpanel.com/hc/article_attachments/360053124672/mceclip0.png)
-
-# Merge or Rename Values to Fix Implementation Issues
-
-Use custom properties to combine multiple property values into one. This is helpful when customers want to take multiple variations of a property value (e.g. facebook, fb, fbsocial) and then combine them into one property value (e.g. facebook).
-
-If you send values into Mixpanel with variations (even though they may have been minor) and you want to correct this issue by grouping those values together.
-
-For example:
-
-A marketing manager wants to understand what portion of the user base is coming through a social traffic acquisition path. They want to group all social channel values into a single value, and keep the rest of the channels as-is.
-
-They can create a custom property using the channel with this transformation:
-
-if("Facebook" in A or "Linkedin" in A or "Twitter" in A, "Social", A)
-
-![https://help.mixpanel.com/hc/article_attachments/360053125752/mceclip1.png](https://help.mixpanel.com/hc/article_attachments/360053125752/mceclip1.png)
-
-# Add Domain Knowledge from Existing Data to Make Data More Accessible
-
-Capture your business logic with Custom Properties to add meaning to your data in Mixpanel, and empower the rest of your team to ask more questions with ease. Take signals in your data and add domain-specific understanding to help other teams unfamiliar with your data model explore your data.
-
-For example, take the case where the marketing team for a music streaming service wants to understand the adoption of original music within their platform. The logic to determine which songs are "original" might be a bit complicated for members outside the product team to discover.
-
-The product team can take these property values and add on domain understanding as a new property, so more team members can dig into the data and drive insights for their needs.
-
-In this example, let’s say that there is an event called “Media Played”, that has the properties "mediaType" (values of 0 or 1, which really mean song (0) or video (1), "Artist" (string, where if the string contains "myflix", then it means that’s an original), so a new custom property could be created to define whether something is an "OriginalSong" (true/false) by combining the logic from "mediaType" and "Artist":
-
-IF(mediaType ==0 AND “myflix” IN Artist, true, false)
-
-# Create New Properties Based on Values of Different Properties
-
-Use custom properties to create a new property using the values of multiple other properties.
-
-For example:
-
-A marketplace company wants to track total purchase amount for an order, but the per-unit price is passed as a property and the number of items is passed as a property.
-
-They can create a custom property using “price” and “quantity” with this transformation:
-
-A\*B
-
-![https://help.mixpanel.com/hc/article_attachments/360053125952/mceclip2.png](https://help.mixpanel.com/hc/article_attachments/360053125952/mceclip2.png)
-
-# Compute the Number of Days Between Two Date Properties
-
-Use custom properties to compute the date/time difference between two date properties. You can also use the special "TODAY()" function to find the difference between a date property and the current date/time. This is ideal when you want to transform a "DateofBirth" property into “age” or a "Created" property into “days active since registration”.
-
-A new custom property can be defined by taking into account the “Created” property and using the following transformation:
-
-DATEDIF(Created, TODAY(), “D”)
-
-![https://help.mixpanel.com/hc/article_attachments/360052865351/Untitled.png](https://help.mixpanel.com/hc/article_attachments/360052865351/Untitled.png)
-
-This will create the following output:
-
-![https://help.mixpanel.com/hc/article_attachments/360052735852/Untitled2.png](https://help.mixpanel.com/hc/article_attachments/360052735852/Untitled2.png)
-
-# Modify Defined Properties
-
-Use custom properties to create a new property if and only if a property is defined.
-
-For example:
-
-A telco company charges its customers based on talk-time (minutes spoken) and on apps purchased. If the company wants to track the average duration per minute, they would want to restrict the calculation to just the purchases for talk-time (where duration (minutes) is defined).
-
-They can create a custom property using “Duration” and “Amount” with this transformation:
-
-if(defined(A), B/A, B)
-
-![https://help.mixpanel.com/hc/article_attachments/360053264991/mceclip3.png](https://help.mixpanel.com/hc/article_attachments/360053264991/mceclip3.png)
-
-# Check whether Property Values Are the Same
-
-Use custom properties to create a new property if two property values are the same.
-
-For example:
-
-A company wants to find out what percentage of purchases are being made by users that have changed countries since sign up.
-
-They can create a custom property to determine whether the two country values are the same with this transformation:
-
-if(A==B,FALSE, TRUE)
-
-![https://help.mixpanel.com/hc/article_attachments/360053127592/mceclip4.png](https://help.mixpanel.com/hc/article_attachments/360053127592/mceclip4.png)
-
-# Transform String Property Values to Upper/Lowercase
-
-Use custom properties to change the case of a string property value.
-
-For example:
-
-If a company that sells ice-cream wants to look at popular pie flavors, and if the flavors were written with different casing (“vanilla”, “Vanilla”, vaNilla”), the three values would show up differently as opposed to being the same.
-
-They can create a custom property that combines and casts all these values to the same case using this transformation:
-
-upper(A) or lower(A)
-
-![https://help.mixpanel.com/hc/article_attachments/360053127672/mceclip5.png](https://help.mixpanel.com/hc/article_attachments/360053127672/mceclip5.png)
-
-# Extract Domain from Email Address
-
-Extract the domain of the email from an email address. You can parse out parts of a string after "@" using the SPLIT function:
-
-split(Email, "@",2)
-
-![https://help.mixpanel.com/hc/article_attachments/360068799312/mceclip1.png](https://help.mixpanel.com/hc/article_attachments/360068799312/mceclip1.png)
-
-This provides the following output:
-
-![https://help.mixpanel.com/hc/article_attachments/360069021451/mceclip2.png](https://help.mixpanel.com/hc/article_attachments/360069021451/mceclip2.png)
-
-# Query a List with an Index
-
-Use list referencing with custom properties to parse out any part of a list by an index.
-
-Let’s say you have a list of recommendations as a property, and you’d like to parse out the first recommendation as another string property.
-
-You can parse out the first delivery ID in a list property with several DeliveryIDs:
-
-Deliveries [0]
-
-![https://help.mixpanel.com/hc/article_attachments/360052737872/Untitled5.png](https://help.mixpanel.com/hc/article_attachments/360052737872/Untitled5.png)
-
-This creates the following output:
-
-![https://help.mixpanel.com/hc/article_attachments/360052867291/Untitled6.png](https://help.mixpanel.com/hc/article_attachments/360052867291/Untitled6.png)
-
-# Saving Custom Properties
-
-When you create custom properties and select **Save as Custom Property**, your created custom property will be private by default. You can also add a description at this stage, so you and your colleagues can know what the custom property is for.
-
-![https://help.mixpanel.com/hc/article_attachments/360061499792/mceclip1.png](https://help.mixpanel.com/hc/article_attachments/360061499792/mceclip1.png)
-
-# Sharing Custom Properties
-
-You can also decide to save the custom property and **share** that custom property with specific colleagues, teams or the entire organization by clicking "**Save and Share**":
-
-![https://help.mixpanel.com/hc/article_attachments/360061662491/Screen_Shot_2020-07-09_at_10.12.53_AM.png](https://help.mixpanel.com/hc/article_attachments/360061662491/Screen_Shot_2020-07-09_at_10.12.53_AM.png)
-
-# Custom Properties in Lexicon
-
-You can view all your saved custom properties in Lexicon. Navigate to Lexicon by clicking on **Data Management** and select **Lexicon**. Once in Lexicon, select either the *EVENT PROPERTIES* or *USER PROFILE PROPERTIES* tab, then click the dropdown list that says **All Types** and select **Custom Properties** from the list. This will filter your properties list to only custom properties.
-
-![https://help.mixpanel.com/hc/article_attachments/360052738512/Untitled7.png](https://help.mixpanel.com/hc/article_attachments/360052738512/Untitled7.png)
-
-The formula used to compose your custom property can't be longer than 20.000 characters.
