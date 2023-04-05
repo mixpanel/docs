@@ -27,7 +27,7 @@ Values are returned after running the correlation. “Song Played” could have 
 
 This information can be used in future product decisions. By knowing that those who play songs are more likely to purchase songs, it is possible to build tools to encourage song plays. This could lead to a dramatic increase in the amount of users purchasing songs.
 
-## Build a Query in Signal
+# Quick Start
 
 By default, Mixpanel will build a query to show how your [top 50 events](https://help.mixpanel.com/hc/en-us/articles/360001360643-Top-Events-in-Reports) correlate with 2nd week retention in the last quarter for all users. This translates to, “How do the top events correlate with two week retention in the last quarter for all users?"
 
@@ -74,49 +74,6 @@ The default retention events available in Signal include:
 6. Click **Correlate**.
 
 ![https://help.mixpanel.com/hc/article_attachments/7777774565268/Screen_Shot_2022-07-13_at_10.22.08_PM.png](https://help.mixpanel.com/hc/article_attachments/7777774565268/Screen_Shot_2022-07-13_at_10.22.08_PM.png)
-
-## Difference Between New Users and All Users
-
-New users are users who have completed their first event in the selected time frame.
-
-All users will look at all users in your Mixpanel project who have completed the event in the selected time frame.
-
-## Breakdown a Query
-
-It is possible to breakdown the correlation event of a Signal query by its properties. Breaking down the query will return results for all of the values tied to the breakdown property.
-
-There are two different requirements that must be met in order to break down a Signal query.
-
-- The target users must be “All users” and not “New users”.
-- A query can only be broken down if one correlation event is selected.
-
-![https://help.mixpanel.com/hc/article_attachments/7777796323348/Breakdown1.gif](https://help.mixpanel.com/hc/article_attachments/7777796323348/Breakdown1.gif)
-
-## Filter a Query
-
-It is possible to filter the correlation event of a signal query by a property value. Filtering the query will return results for only the property value that the query is filtered by.
-
-![https://help.mixpanel.com/hc/article_attachments/7777796228500/FilterHigh.gif](https://help.mixpanel.com/hc/article_attachments/7777796228500/FilterHigh.gif)
-
-## Use a Cohort as the Target Users
-
-It is possible to select [a cohort](https://help.mixpanel.com/hc/en-us/articles/115005708186-Cohorts-Overview-) as the target users in a Signal query. This runs Signal calculations, such as correlation and opportunity, with the queried population being all users **currently** in the cohort.
-
-To build a Signal query with a cohort as the target users, enter the Signal report, select the **users** dropdown, and select a cohort from the list. [Learn how to create a cohort.](https://help.mixpanel.com/hc/en-us/articles/115005701343-Create-Cohorts)
-
-![https://help.mixpanel.com/hc/article_attachments/7777798950292/Signalsection1.gif](https://help.mixpanel.com/hc/article_attachments/7777798950292/Signalsection1.gif)
-
-## Use a Cohort as The Goal Event
-
-It is possible to select [a cohort](https://help.mixpanel.com/hc/en-us/articles/115005708186-Cohorts-Overview-) as the goal condition of a Signal query. This runs Signal calculations, such as correlation and opportunity, with the the goal being target users either existing in or not existing in the selected cohort.
-
-To build a Signal query with a cohort as the goal event, select the **Goal Event** dropdown, select the **Cohorts** tab, and select a cohort. [Learn how to create a cohort.](https://help.mixpanel.com/hc/en-us/articles/115005701343-Create-Cohorts)
-
-![https://help.mixpanel.com/hc/article_attachments/7777813994388/Signalsection2.gif](https://help.mixpanel.com/hc/article_attachments/7777813994388/Signalsection2.gif)
-
-**[Cohorts are always calculated at query time.](https://help.mixpanel.com/hc/en-us/articles/115005708186-Cohorts-Overview-#cohorts-characteristics)**
-
-This means that if a “from date” and “to date” are selected so that the query is analyzing a time period in the past, the cohort will NOT be the cohort during that historical time period. The cohort will be current, meaning the users analyzed will be the users **currently** in the cohort.
 
 # Interpreting Results
 
@@ -194,6 +151,12 @@ To download the results to a CSV, click the **Download CSV** icon in the upper
 ![https://help.mixpanel.com/hc/article_attachments/7777872257684/Screen_Shot_2022-07-13_at_10.37.09_PM.png](https://help.mixpanel.com/hc/article_attachments/7777872257684/Screen_Shot_2022-07-13_at_10.37.09_PM.png)
 
 # Reference
+
+## New Users vs All Users
+
+New users are users who have completed their first event in the selected time frame.
+
+All users will look at all users in your Mixpanel project who have completed the event in the selected time frame.
 
 ## Download Glossary
 
