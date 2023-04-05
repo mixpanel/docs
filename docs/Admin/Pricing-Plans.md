@@ -120,8 +120,6 @@ The startup program empowers early startups to easily track and analyze data to 
 - Raised no more than $8 million (USD) in total funding
 - Hasn't previously redeemed other Mixpanel offers
 
-## What is included in the Mixpanel for Startups program?
-
 Eligible startups receive $50,000 in credits that they can use over the course of 12 months. These credits can be used to purchase a Growth or Enterprise* plan as well as add-ons such as Group Analytics and Data Pipelines. Your $50,000 in credits can purchase a plan for up to 150M events per month. All the power of Mixpanel you need to launch, grow, and scale your product.
 
 Participants will be invited to join our exclusive Mixpanel for Startups Community in Slack where you’ll have access to curated content, workshops, resources, and opportunities to learn from other startups as well as the team at Mixpanel.
@@ -130,15 +128,17 @@ Participants will be invited to join our exclusive Mixpanel for Startups Communi
 
 [Apply for the startup program](https://mixpanel.com/startups/)
 
-## Will I receive help getting started with Mixpanel?
+## Program FAQ
+
+### Will I receive help getting started with Mixpanel?
 
 Yes! We will provide self-serve resources to help with your onboarding, invite you to attend implementation webinars, provide access to our Mixpanel Community where you’ll be able to engage with other users as well as our team, and of course, our Support team is on hand to assist with technical questions.
 
-## What happens after my 12 months in the startup program?
+### What happens after my 12 months in the startup program?
 
 When your year in the startup program is over, our team will work with you to help you get on the best Mixpanel plan based on your usage and plans for growth. We can help you determine whether a Free, Growth, or Enterprise plan will best suit your needs going forward. If your year is almost up and you want to learn more about your options, contact your account manager or our [sales team](https://mixpanel.com/contact-us/sales/) for assistance.
 
-## Why do you give so many credits?
+### Why do you give so many credits?
 
 Startups are a part of Mixpanel’s DNA and we are dedicated to having the best startup program on the market and supporting as many founders as we can. The Mixpanel for Startups program provides $50,000 in credits, which is more than most of our startups ever use. However, we wanted to make sure we provide enough credits to startups that experience rapid growth in their first year and need to be on a larger data plan. Startups should focus on building world-class products and not worry about short-term trials, restrictive data plans, and hidden pricing.
 
