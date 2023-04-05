@@ -12,6 +12,8 @@ updatedAt: "2022-07-06T22:05:49.187Z"
 
 Please refer to our [Quickstart Guide](unity-quickstart).
 
+The [Full API Reference](http://mixpanel.github.io/mixpanel-unity/api-reference/annotated.html), [Library Source Code](https://github.com/mixpanel/mixpanel-unity), and an [Example Application](https://github.com/mixpanel/mixpanel-unity#examples) is documented in our GitHub repo.
+
 # Installing the Library
 
 This library can be installed using the unity package manager system with git. We support Unity 2018.3 and above. For older versions of Unity, you need to have .NET 4.x Equivalent selected as the scripting runtime version in your editor settings.
