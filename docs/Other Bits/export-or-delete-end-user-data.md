@@ -22,7 +22,28 @@ In order to submit a request, you must first generate a GDPR OAuth token from yo
 2. Under  “PERSONAL SETTINGS”, click Profile & Preferences.
 3. Click Data & Privacy in the left navigation bar.
 4. In the "GDPR API" field, click Reset.
+
 ![image](https://user-images.githubusercontent.com/13734965/230127034-c54d135d-b477-4f24-9fb0-ab87ef4bd518.png)
+
 The "Reset GDPR API token" message asks if you're sure you want to reset the value and invalidate any application using it.
+
 ![image](https://user-images.githubusercontent.com/13734965/230127075-a1db0435-08c2-46b7-9c70-f6db335c379e.png)
-Click Reset. Mixpanel resets the value of the GDPR API token. 
+
+Click **Reset**. Mixpanel resets the value of the GDPR API token. 
+
+# Gather the Project Information and Distinct_ids
+
+Mixpanel exports or deletes end user data according to the user's distinct_id. To export or delete end user data, first select a project that you own and collect the distinct_id of the user(s). Like all data in Mixpanel, the distinct_id can be custom specified in a tracking implementation. As this is the case, it is necessary to ensure that any provided distinct_id is accurate and stored in a project. Any incorrect identifiers submitted as part of export or deletion requests will result in inability to process the request.
+
+It is possible to submit a request from Mixpanel once you gather the distinct_ids of end users requesting exports or deletions. If you implemented Mixpanel before 2020 and are using the alias method to manage user identity, it is possible to submit either the end user’s alias or their distinct_id as part of a deletion request. All data associated with a submitted alias will be deleted. In addition, all data associated with the distinct_id(s) that the alias maps to will be deleted.
+
+# Submit Requests via Request Form in Mixpanel
+
+To access the "Data & Privacy" modal containing the end user data request form:
+
+1. Navigate to "Data & Privacy" by clicking on the settings gear in the upper-right corner and navigating to Organization Settings.
+2. Select Data & Privacy on the left hand side.
+
+![image](https://user-images.githubusercontent.com/13734965/230127075-a1db0435-08c2-46b7-9c70-f6db335c379e.png)
+
+# Submit Requests via API
