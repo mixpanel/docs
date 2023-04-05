@@ -59,7 +59,7 @@ There are a few ways to add an existing report to a board. You can either start 
 
 Note that adding an existing report always creates a [linked copy](https://help.mixpanel.com/hc/en-us/articles/4409841288724-Dashboards-FAQ#what-is-a-linked-report).
 
-## Step 3: Arrange Board Content
+## Step 4: Arrange Board Content
 
 ### A Row-Based System
 
