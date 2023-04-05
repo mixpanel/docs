@@ -9,7 +9,7 @@ updatedAt: "2023-02-04T01:13:34.479Z"
 
 Please refer to our [Quickstart Guide](react-native-quickstart).
 
-
+The [Full API Reference](https://mixpanel.github.io/mixpanel-react-native/Mixpanel.html), [Library Source Code](https://github.com/mixpanel/mixpanel-react-native), and an [Example Application](https://github.com/mixpanel/mixpanel-react-native/tree/master/Samples) is documented in our GitHub repo.
 
 # Sending Events
 
