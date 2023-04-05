@@ -109,7 +109,9 @@ The following are limitations to be aware of when using Data Views:
 
 ## Mark Properties as Classified Data 
 
-Marking properties as classified limits which users can view them. Navigate to the EVENT PROPERTIES and USER PROFILE PROPERTIES tabs in Lexicon to mark a property as classified.
+Marking properties as classified limits which users can view them. Navigate to the EVENT PROPERTIES and USER PROFILE PROPERTIES tabs in Lexicon to mark a property as classified. 
+
+>You must have an active **Enterprise** plan with Mixpanel to access this feature.
 
 When you mark a property as classified, users or teams with the checked Can View checkbox checked can see the classified property in reports. You can see the Can View checkbox in Project Settings for individual users and in Organization Settings for teams. Only Project Owners and Admins can mark a property as classified.
 
