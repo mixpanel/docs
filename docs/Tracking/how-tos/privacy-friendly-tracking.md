@@ -10,62 +10,33 @@ You have full control over the data you send to Mixpanel. Here we share best pra
 # Opting Users Out of Tracking
 You can use the opt_out method in Mixpanel's SDKs to opt users out of tracking. This state is controlled by a flag that is set as a browser cookie or localStorage. Note: because this setting is stateful, it only exists on our Web/Mobile SDKs -- if you're tracking from your servers, you will need to store this opt-out setting in a database and check it before sending any track calls.
 
-[block:code]
-{
-  "codes": [
-    {
-      "code": "mixpanel.opt_out_tracking();",
-      "language": "javascript",
-      "name": "Javascript"
-    },
-    {
-      "code": "Mixpanel *mixpanel = [Mixpanel sharedInstance];\n[mixpanel optOutTracking];",
-      "language": "Objective-C",
-      "name": "iOS"
-    },
-    {
-      "code": "let mixpanel = Mixpanel.initialize(token: YOUR API TOKEN, trackAutomaticEvents: true, optOutTrackingByDefault: true)",
-      "language": "Swift",
-      "name": "Swift"
-    },
-    {
-      "code": "mixpanel.optOutTracking();",
-      "language": "Java",
-      "name": "Android"
-    }
-  ]
-}
-[/block]
+```javascript Javascript
+mixpanel.opt_out_tracking();
+```
+```objectivec Objective-C
+Mixpanel *mixpanel = [Mixpanel sharedInstance];\n[mixpanel optOutTracking];
+```
+```swift Swift
+let mixpanel = Mixpanel.initialize(token: YOUR API TOKEN, trackAutomaticEvents: true, optOutTrackingByDefault: true)
+```
+```java Android
+mixpanel.optOutTracking();
+```
 
-You can also configure our SDKs to opt users out of tracking by default.
+You can also configure our SDKs to opt users out of tracking by default:
 
-[block:code]
-{
-  "codes": [
-    {
-      "code": "mixpanel.init(YOUR TOKEN, {opt_out_tracking_by_default: true});",
-      "language": "javascript",
-      "name": "Javascript"
-    },
-    {
-      "code": "Mixpanel *mixpanel = [Mixpanel sharedInstanceWithToken:@ YOUR_API_TOKEN trackAutomaticEvents:YES optOutTrackingByDefault:YES];",
-      "language": "Objective-C",
-      "name": "iOS"
-    },
-    {
-      "code": "Mixpanel.mainInstance().optOutTracking()",
-      "language": "Swift",
-      "name": "Swift"
-    },
-    {
-      "code": "MixpanelAPI mixpanelOptOutDefault = MixpanelAPI.getInstance(context, YOUR API TOKEN, true, true /* opt out by default */);",
-      "language": "Java",
-      "name": "Android"
-    }
-  ]
-}
-[/block]
-
+```javascript Javascript
+mixpanel.init(YOUR TOKEN, {opt_out_tracking_by_default: true});
+```
+```objectivec Objective-C
+Mixpanel *mixpanel = [Mixpanel sharedInstanceWithToken:@ YOUR_API_TOKEN trackAutomaticEvents:YES optOutTrackingByDefault:YES];
+```
+```swift Swift
+Mixpanel.mainInstance().optOutTracking();
+```
+```java Android
+MixpanelAPI mixpanelOptOutDefault = MixpanelAPI.getInstance(context, YOUR API TOKEN, true, true /* opt out by default */);
+```
 
 
 # Disabling Geolocation
