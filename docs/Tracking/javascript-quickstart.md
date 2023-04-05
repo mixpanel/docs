@@ -55,7 +55,7 @@ You can also follow our video walkthrough [here](https://www.loom.com/embed/fbba
 
 ### FAQ
 **Why don't I see my events in Mixpanel?**
-Make sure you've disabled ad blockers and your Do Not Track (DNT) browser settings are set to false when testing your JavaScript implementation. If the DNT setting is set, then Mixpanel won't collect information from that Mixpanel instance.
+Make sure you've disabled ad blockers and your Do Not Track (DNT) browser settings are set to false when testing your JavaScript implementation. If the DNT setting is set to true, then Mixpanel won't collect information from that Mixpanel instance.
 
 We recommend [setting up a proxy server](doc:collection-via-a-proxy#how-to-set-up-a-proxy) so that you don't lose events due to ad-blockers.
         
