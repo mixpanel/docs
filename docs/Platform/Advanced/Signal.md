@@ -266,5 +266,3 @@ Associated almost perfectly with not converting. Something might be off here.
 Associated almost perfectly with . Too good to be true?
 
 - Example: Users who trigger a purchase event will always trigger an add to cart event. Add to cart and purchase will always have high correlation.
-
-
