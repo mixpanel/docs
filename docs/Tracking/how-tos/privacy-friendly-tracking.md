@@ -94,7 +94,7 @@ Mixpanel's Web and Mobile libraries use IP address to enrich events with geograp
 [/block]
 
 
-## Anonymizing Users
+# Anonymizing Users
 Mixpanel does not know, or need to know, any identifying information about users (like email or phone number). Mixanel only needs to know that a set of events were performed by a particular user ID. You choose the ID and you choose how you want to send that ID to Mixpanel.
 
 If you want to analyze aggregate user behavior without being able to drill down into any particular user, we recommend generating a hash of some unique ID of the user and using that hash as the user's ID when you call the `.identify()` method in our SDKs.
