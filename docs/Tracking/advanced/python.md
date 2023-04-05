@@ -10,6 +10,8 @@ updatedAt: "2023-03-26T20:07:00.387Z"
 ---
 The Mixpanel Python library is designed to be used for scripting, or in circumstances when a user isn't directly interacting with your application on the web or a mobile device.
 
+The [Full API Reference](http://mixpanel.github.io/mixpanel-python), [Library Source Code](https://github.com/mixpanel/mixpanel-python), and an [Example Script](https://github.com/mixpanel/mixpanel-python/tree/master/demo) is documented in our GitHub repo.
+
 # Installing the Library
 
 You can get the library using pip.
