@@ -152,7 +152,7 @@ You can create a custom event containing "Ad Conversion" and "Ad Impression," an
 
     ![https://help.mixpanel.com/hc/article_attachments/7385585102484/mceclip0.png](https://help.mixpanel.com/hc/article_attachments/7385585102484/mceclip0.png)
 
-2. Select **Create Custom**
+2. Select **Create Custom**.
 3. Select the events and properties you’d like to include.
 4. Name your custom event, and click **Save**.
 
@@ -183,7 +183,7 @@ Custom buckets lets you group existing properties into meaningful segments on th
 Example use-cases include:
 
 - Compare how the core markets are performing between US vs UK vs China vs all others
-- Compare how many sign-ups are brought in by organic search vs google ads vs social media channels together (facebook, twitter, linkedin)
+- Compare how many sign-ups are brought in by organic search vs Google ads vs social media channels together (Facebook, Twitter, LinkedIn)
 - Compare # videos watched for users between ages 18-30 vs 30-40 or 40+
 - Compare # users based on duration of video watched: < 30, 30-60, 60-90 mins
 
