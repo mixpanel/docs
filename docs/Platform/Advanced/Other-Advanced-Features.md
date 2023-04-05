@@ -59,7 +59,7 @@ If you are analyzing any custom events, you can breakdown by the property "Event
 
 ![https://help.mixpanel.com/hc/article_attachments/7712515487892/Screen_Shot_2022-07-11_at_4.36.07_PM.png](https://help.mixpanel.com/hc/article_attachments/7712515487892/Screen_Shot_2022-07-11_at_4.36.07_PM.png)
 
-The drop-down menus only shows events/event properties that were ingested within the last 30 days. To select events/event properties that have not been ingested in the last 30 days, type the name of the event/event property in the Filter or Breakdown search bar. You must know the exact name of the event/event property you want to select because event names are case sensitive.
+The drop-down menus only show events/event properties that were ingested within the last 30 days. To select events/event properties that have not been ingested in the last 30 days, type the name of the event/event property in the Filter or Breakdown search bar. You must know the exact name of the event/event property you want to select because event names are case sensitive.
 
 ![https://help.mixpanel.com/hc/article_attachments/7712553274388/query_old_event.gif](https://help.mixpanel.com/hc/article_attachments/7712553274388/query_old_event.gif)
 
