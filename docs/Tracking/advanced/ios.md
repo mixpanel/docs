@@ -9,6 +9,8 @@ updatedAt: "2022-10-11T21:15:03.702Z"
 
 Please refer to our [Quickstart Guide](ios-objective-c-quickstart).
 
+The [Full API Reference](https://mixpanel.github.io/mixpanel-iphone/index.html), [Library Source Code](https://github.com/mixpanel/mixpanel-iphone/), and an [Example Application](https://github.com/mixpanel/mixpanel-iphone/tree/master/HelloMixpanel) is documented in our GitHub repo.
+
 # Sending Events
 
 We recommend tracking only five to seven events in your application instead of tracking too many things to start. Ideally, you track users going through your initial user experience and one key metric that matters for your application (e.g. a video streaming service might choose "Watched Video" as a key metric).
