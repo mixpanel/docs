@@ -39,7 +39,7 @@ We recommend having a consistent naming convention for your events and propertie
 
 
 ## Avoid Creating Event or Property Names Dynamically
-For example, don't create an event name like `Purchase (11-01-2019)`. Instead, create an event called Purchase and have some property (eg: `Return Date`) set to the dynamic value `11-01-2019).
+For example, don't create an event name like `Purchase (11-01-2019)`. Instead, create an event called Purchase and have some property (eg: `Return Date`) set to the dynamic value `11-01-2019`).
 
 
 # FAQ
