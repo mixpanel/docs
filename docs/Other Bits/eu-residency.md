@@ -10,9 +10,7 @@ Mixpanel believes in respecting and protecting people’s fundamental online pri
 Visit our [Privacy Hub](https://mixpanel.com/legal/privacy-hub/) to see how we comply with various privacy guidelines.
 
 # Storing Your Data in the European Union
-By default Mixpanel stores user data on it's US Servers via the Google Cloud Platform.
-However, Mixpanel also provides you with the option to process and store your customers' personal data in Europe via our [EU Data Residency Program](https://mixpanel.com/topics/data-residency-for-mixpanel/).
-You can enable this by selecting the "EU Data Residency" option when creating a new project, and using our EU subdomain during all API calls.
+By default Mixpanel stores user data on it's US Servers via the Google Cloud Platform. However, Mixpanel also provides you with the option to process and store your customers' personal data in Europe via our [EU Data Residency Program](https://mixpanel.com/topics/data-residency-for-mixpanel/). You can enable this by selecting the "EU Data Residency" option when creating a new project, and using our EU subdomain during all API calls.
 
 | API | Standard Server | EU Residency Server |
 |-------|-------------------------|--------------------------------|
@@ -23,7 +21,8 @@ You can enable this by selecting the "EU Data Residency" option when creating a 
 | [Lexicon Schemas API](ref:lexicon-schemas-api) | `mixpanel.com/api/app/projects` | `eu.mixpanel.com/api/app/projects` |
 | [Connectors API](ref:connectors-api) | `mixpanel.com/api/app/projects` | `eu.mixpanel.com/api/app/projects`|
 
-For existing projects, you can find where your data is currently stored under Project Settings > Data Residency. Additionally, projects stored in the EU will have a url that starts with eu.mixpanel.com whereas projects stored in the US will have a mixpanel.com url. The location of existing projects cannot be changed. 
+For existing projects, you can find where your data is currently stored under Project Settings > Data Residency. Additionally, projects stored in the EU will have a url that starts with eu.mixpanel.com whereas projects stored in the US will have a mixpanel.com url. If the wrong Data Residency location was chosen prior to implementation, you will need to create a new project with the applicable data storage option and migrate all your existing data. Mixpanel cannot assist with the migration of an existing project with the wrong residency location. You can find out more about creating a new project here.
+
 
 # Using Our SDKs
 Next you'll need to set the server location to EU when initializing the Mixpanel library. You can find instructions for the required config settings for each SDK below:
@@ -46,18 +45,6 @@ To do so, reach out to your Relationship Manager, Customer Success Manager, or A
 
 # Log in via SSO
 If you want the IdP initiated flow to direct to [eu.mixpanel.com](https://eu.mixpanel.com/), prepend "eu." to your postback URL. For example, [mixpanel.com/security/login/1](https://mixpanel.com/security/login/1) would need to be changed to [eu.mixpanel.com/security/login/1](https://eu-mixpanel.com/security/login/1). 
-
-# Enabling EU Residency
-
-When you first sign up for Mixpanel or create a new project, the following modal prompts you to name your project, select your data storage location (US or EU residency) and select your timezone.
-
-To opt in to EU residency, select the European Union option under Select Where To Store Your Data:
-
-![image](https://user-images.githubusercontent.com/13734965/230121452-425d4ec0-4bb5-44e1-9422-3fae427d9fcb.png)
-
-If your project has EU Residency enabled, you can confirm that in your Project Settings (i.e. Data Residency: EU)
-
-If the wrong Data Residency location was chosen prior to implementation, you will need to create a new project with the applicable data storage option and migrate all your existing data. Mixpanel cannot assist with the migration of an existing project with the wrong residency location. You can find out more about creating a new project here.
 
 # EU Residency and CDPs
 
