@@ -10,6 +10,8 @@ updatedAt: "2023-03-26T20:07:16.780Z"
 ---
 The Mixpanel Ruby library is designed to be used for scripting, or in circumstances when a user isn't directly interacting with your application on the web or a mobile device.
 
+The [Full API Reference](http://mixpanel.github.io/mixpanel-ruby), [Library Source Code](https://github.com/mixpanel/mixpanel-ruby), and an [Example Script](https://github.com/mixpanel/mixpanel-ruby/tree/master/demo) is documented in our GitHub repo.
+
 # Installing the Library
 
 You can get the library with
