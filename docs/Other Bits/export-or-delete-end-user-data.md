@@ -22,12 +22,6 @@ In order to submit a request, you must first generate a GDPR OAuth token from yo
     <img src=https://storage.googleapis.com/cdn-mxpnl-com/static/readme/Personal%20Data%20%26%20Privacy%20Settings.png>
 </p>
 
-The "Reset GDPR API token" message asks if you're sure you want to reset the value and invalidate any application using it.
-
-![image](https://user-images.githubusercontent.com/13734965/230127075-a1db0435-08c2-46b7-9c70-f6db335c379e.png)
-
-Click **Reset**. Mixpanel resets the value of the GDPR API token. 
-
 # Gather the Project Information and Distinct_ids
 
 Mixpanel exports or deletes end user data according to the user's distinct_id. To export or delete end user data, first select a project that you own and collect the distinct_id of the user(s). Like all data in Mixpanel, the distinct_id can be custom specified in a tracking implementation. As this is the case, it is necessary to ensure that any provided distinct_id is accurate and stored in a project. Any incorrect identifiers submitted as part of export or deletion requests will result in inability to process the request.
