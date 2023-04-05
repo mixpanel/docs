@@ -16,14 +16,11 @@ Requests to export or delete end user data can take multiple weeks to process.
 
 # Generate OAuth Token
 
-In order to submit a request, you must first generate a GDPR OAuth token from your Personal Settings. This token is required for requests submitted both through the Mixpanel interface and through Mixpanel's APIs. To generate an OAuth Token for GDPR APIs:
+In order to submit a request, you must first generate a GDPR OAuth token from your Personal Settings. This token is required for requests submitted both through the Mixpanel interface and through Mixpanel's APIs. Users can retrieve this token from their [Account Settings](https://mixpanel.com/settings/account#data-privacy) by selecting their initials in the top right of Mixpanel and selecting **Profile & Preferences**, and then the Data & Privacy tab. The OAuth token has a one year expiry. For requests submitted via API, the token should be passed in the Authentication header. Users are eligible to generate an OAuth token if they are the Project Owner, or if they are a Project Owner or Admin of a project that supports team member roles.
 
-1. In the Mixpanel header bar, click the icon with your initials.
-2. Under  “PERSONAL SETTINGS”, click Profile & Preferences.
-3. Click Data & Privacy in the left navigation bar.
-4. In the "GDPR API" field, click Reset.
-
-![image](https://user-images.githubusercontent.com/13734965/230127034-c54d135d-b477-4f24-9fb0-ab87ef4bd518.png)
+<p align="center">
+    <img src=https://storage.googleapis.com/cdn-mxpnl-com/static/readme/Personal%20Data%20%26%20Privacy%20Settings.png>
+</p>
 
 The "Reset GDPR API token" message asks if you're sure you want to reset the value and invalidate any application using it.
 
@@ -100,7 +97,222 @@ A CCPA deletion includes all data connected to the requested distinct_id.
 There are three different disclosure types as outlined in the CCPA. To export or delete everything, you can select “Data” as the disclosure type. Select “Categories” to export or delete the data table headers. Select “Sources” to export or delete data connected to the means of data collection.
 
 # Opt Out Users
+While the following API can be used to delete or retrieve personal data as outlined by the GPDR, it is important to also opt users out of subsequent tracking. Deleting data from Mixpanel will remove it permanently, but it will not prevent the data from being collected moving forward. If tracking using a client-side Mixpanel library, you can opt users out of tracking using Mixpanel's opt-out methods. These are available in the following client-side libraries:
+* [JavaScript](doc:javascript#section-opting-users-out-of-tracking) 
+* [iOS - Objective-C](doc:ios#section-opting-users-out-of-tracking)
+* [iOS - Swift](doc:swift#section-opting-users-out-of-tracking)
+* [Android](doc:android#section-opting-users-out-of-tracking)
 
-Deleting data from Mixpanel will remove it permanently, but it will not prevent the data from being collected moving forward. If you wish to prevent personal data from being sent to Mixpanel, this logic must be built into a tracking implementation. See here for more information about opting users out of tracking.
+See Mixpanel’s [Privacy-Friendly Tracking](https://developer.mixpanel.com/docs/privacy-friendly-tracking) guide for more information on best practices when handling personal information in Mixpanel.
 
 # Submit Requests via API
+Mixpanel deletion and retrieval APIs are in place to help Mixpanel implementations meet the requirements outlined by the General Data Protection Regulation (GDPR) legislation.
+
+> 📘GDPR Request Rate Limits
+> You can batch up to 2000 distinct IDs per deletion request and up to 100 for a retrieval request. Request rates are limited for GDPR API requests. 
+
+## GDPR and CCPA API (v3)
+The following retrieval and deletion API calls are updated for version 3 and are made for GDPR and CCPA compliance. 
+
+### Create Retrieval
+Request Type: **POST**
+Description: Creates a data retrieval job.
+Endpoint: `https://mixpanel.com/api/app/data-retrievals/v3.0/?token=<your_project_token>`
+Parameters:
+
+| Parameter | Parameter Type | Data Type | Description |
+|-----------------|-------------------------|----------------|-------------------|
+| Token | URL. Passed in request URL. | Query String Parameter | Your Mixpanel [project token](https://help.mixpanel.com/hc/en-us/articles/115004502806-Find-Project-Token-). |
+| distinct_ids | Body. Passed in JSON blob format. | Array of strings | A list of distinct IDs associated with the users whose data you would like to export. You can add up to 1999 distinct IDs. |
+| compliance_type | Body. Passed in JSON blob format. | String | Select CCPA or GDPR. Default is GDPR. |
+| disclosure_type | Body. Passed in JSON blob format. | String | Only required if compliance_type = CCPA. Can be [Data, Categories, or Sources. Default is Data](https://help.mixpanel.com/hc/en-us/articles/360000881023#ccpa-requests). |
+
+Authorization:
+
+| Authorization Type | Pass As | Description |
+|-----------------------------|-------------|-------------------|
+| Bearer | Body. Passed in JSON blob format. | Your [OAuth token](https://help.mixpanel.com/hc/en-us/articles/360000953003#generatingoauth-token-for-gdpr-apis) for GDPR APIs. |
+
+Example Request:
+`curl "https://mixpanel.com/api/app/data-retrievals/v3.0/?token=591b3354bb2bdd96f72f23bf56911673"
+-H "Authorization: Bearer vZcErNw8JCq42BZUJyWoZmDWCKBxXc"
+
+Example Return: 
+`{"status":"ok","results":[{"status":"PENDING", "disclosure_type":"DATA", "date_requested":"2020-03-09T22:28:55.078315", "tracking_id":"1583792934719392965",  "project_id":1978118, "compliance_type":"ccpa", "destination_url":null, "requesting_user":"pat.davis@mixpanel.com", "distinct_id_count":1}]}`
+
+### Check Status of Retrieval 
+Request Type: GET
+
+Description: Checks the status of a data retrieval job.
+
+Endpoint: `https://mixpanel.com/api/app/data-retrievals/v3.0/<tracking_id>?token=<your_project_token>`
+
+Return Format: 
+`200 OK
+{    
+    "results": {
+         "status":  oneOf [
+                         "PENDING",
+                         "STAGING",
+                         "STARTED",
+                         "SUCCESS",
+                         "FAILURE",
+                         "REVOKED",
+                         "NOT_FOUND",
+                         "UNKNOWN",
+          ],
+     }
+}`
+
+Return Key:
+
+| Name | Type | Description |
+|----------|---------|-------------------|
+| PENDING | String | Task ID returned from POST. |
+| STAGING | String | The staging process of the retrieval task has started. The task can still be canceled during staging. |
+| STARTED | String | The retrieval task has started, and cannot be canceled. |
+| SUCCESS | String | The retrieval task is complete. |
+| FAILURE | String | The retrieval task has failed. Check the original task input parameters and create a new task. |
+| REVOKED | String | The retrieval task has been canceled through a DELETE operation. |
+| NOT_FOUND | String | The retrieval task cannot be found. |
+| UNKNOWN | String | An error occurred while locating the retrieval task. |
+
+Parameters:
+
+| Parameter | Parameter Type | Type | Description |
+|-----------------|-------------------------|---------|------------------|
+| Token | URL. Passed in request URL. | Query String Parameter | Your Mixpanel [project token](https://help.mixpanel.com/hc/en-us/articles/115004502806-Find-Project-Token-). |
+| Task ID | URL. Passed in request URL. | Query String Parameter | The tracking ID shown in the response. |
+
+Authorization:
+
+| Authorization Type | Pass As | Description |
+|-----------------------------|-------------|------------------|
+| Bearer | Body. Passed in JSON blob format. | Your [OAuth token](https://help.mixpanel.com/hc/en-us/articles/360000953003#generatingoauth-token-for-gdpr-apis) for GDPR APIs. |
+
+Example Request: 
+`curl "https://mixpanel.com/api/app/data-retrievals/v3.0/1583958896131033662/?token=591b3354bb2bdd96f72f23bf56911673"
+-H "Authorization: Bearer vZcErNw8JCq42BZUJyWoZmDWCKBxXc"`
+
+Example Return:
+`{"status": "ok", "results": {"status": "PENDING", "result": "", "distinct_ids": ["1"]}}`
+
+### Create a Deletion Task
+Request Type: POST
+
+Description: Creates a task that specifies a list of users in a particular project to delete. This will schedule a deletion job that will delete all data, including events and user profile data, for the users specified by distinct_ids. This deletion job may be canceled until it reaches the STARTED stage. A task can take up to 60 days to complete.
+
+Endpoint: `https://mixpanel.com/api/app/data-deletions/v3.0/?token=<your_project_token>`
+
+Parameters:
+
+| Parameter | Parameter Type | Type | Description |
+|-----------------|-------------------------|---------|------------------|
+| Token | URL. Passed in request URL. | Query String Parameter | Your Mixpanel [project token](https://help.mixpanel.com/hc/en-us/articles/115004502806-Find-Project-Token-). |
+| distinct_ids | Body. Passed in JSON blob format. | Array of strings | A list of distinct IDs associated with the users whose data you would like to export. You can add up to 1999 distinct IDs. |
+| compliance_type | Body. Passed in JSON blob format. | String | Select CCPA or GDPR. Default is GDPR. |
+
+Authorization:
+
+| Authorization Type | Pass As | Description |
+|-----------------------------|-------------|------------------|
+| Bearer | Body. Passed in JSON blob format. | Your [OAuth token](https://help.mixpanel.com/hc/en-us/articles/360000953003#generatingoauth-token-for-gdpr-apis) for GDPR APIs. |
+
+Example Request: 
+`curl "https://mixpanel.com/api/app/data-deletions/v3.0/?token=591b3354bb2bdd96f72f23bf56911673"
+-H "Authorization: Bearer vZcErNw8JCq42BZUJyWoZmDWCKBxXc" -d '{"compliance_type":"CCPA", "distinct_ids":["1"]}'`
+
+Example Return:
+`{"status":"ok","results":[{"status":"PENDING", "disclosure_type":"DATA", "date_requested":"2020-03-09T22:28:55.078315", "tracking_id":"1583792934719392965",  "project_id":1978118, "compliance_type":"ccpa", "destination_url":null, "requesting_user":"pat.davis@mixpanel.com", "distinct_id_count":1}]}`
+
+### Check Status of a Deletion Task
+Request Type: **GET**
+
+Description: Checks the status of an existing deletion task.
+
+Endpoint: `https://mixpanel.com/api/app/data-deletions/v3.0/<tracking_id>?token=<your_project_token>`
+
+Return Format:
+` "results": {
+         "status":  
+//You will get one of the following returns
+oneOf [
+                         "PENDING",
+                         "STAGING",
+                         "STARTED",
+                         "SUCCESS",
+                         "FAILURE",
+                         "REVOKED",
+                         "NOT_FOUND",
+                         "UNKNOWN",
+          ],
+     }
+}`
+
+Return Key:
+
+| Name | Type | Description |
+|----------|---------|-------------------|
+| PENDING | String | Task ID returned from POST. |
+| STAGING | String | The staging process of the deletion task has started. The task can still be canceled during staging. |
+| STARTED | String | The deletion task has started, and cannot be canceled. |
+| SUCCESS | String | The deletion task is complete. |
+| FAILURE | String | The deletion task has failed. Check the original task input parameters and create a new task. |
+| REVOKED | String | The deletion task has been canceled through a DELETE operation. |
+| NOT_FOUND | String | The deletion task cannot be found. |
+| UNKNOWN | String | An error occurred while locating the deletion task. |
+
+Parameters:
+
+| Parameter | Parameter Type | Type | Description |
+|-----------------|-------------------------|---------|------------------|
+| Token | URL. Passed in request URL. | Query String Parameter | Your Mixpanel [project token](https://help.mixpanel.com/hc/en-us/articles/115004502806-Find-Project-Token-). |
+| Task ID | URL. Passed in request URL. | Query String Parameter | The tracking ID shown in the response. |
+
+Authorization:
+
+| Authorization Type | Pass As | Description |
+|-----------------------------|-------------|------------------|
+| Bearer | Body. Passed in JSON blob format. | Your [OAuth token](https://help.mixpanel.com/hc/en-us/articles/360000953003#generatingoauth-token-for-gdpr-apis) for GDPR APIs. |
+
+Example Request:
+`curl "https://mixpanel.com/api/app/data-deletions/v3.0/35bd8477-f71f-4088-af55-c88a6fb4ad4b/?token=591b3354bb2bdd96f72f23bf56911674" -H "Authorization: Bearer vZcErNw8JCq42BZUJyWoZmDWCKBxXc"
+
+Example Return:
+`{"status": "ok", "results": {"status": "PENDING", "result": "", "distinct_ids": ["1"]}}`
+
+### Cancel Deletion
+Request Type: **DELETE**
+
+Description: Cancels an existing deletion task. Deletion jobs can be canceled until the STARTED stage initiates.
+
+Endpoint: `https://mixpanel.com/api/app/data-deletions/v3.0/?token=<your_project_token>`
+
+Return Format: `204 NoContent` or `405 MethodNotAllowed`
+
+Return Key:
+
+| Name | Type | Description | 
+|----------|----------|------------------|
+| 204 NoContent | Query String Parameter `required` | Your Mixpanel [project token](https://help.mixpanel.com/hc/en-us/articles/115004502806-Find-Project-Token-). |
+| 405 MethodNotAllowed | Query String Parameter `required` | Task ID returned from POST. |
+
+Parameters:
+
+| Parameter | Parameter Type | Type | Description |
+|-----------------|-------------------------|---------|------------------|
+| Token | URL. Passed in request URL. | Query String Parameter | Your Mixpanel [project token](https://help.mixpanel.com/hc/en-us/articles/115004502806-Find-Project-Token-). |
+| distinct_ids | Body. Passed in JSON blob format. | Array of strings | A list of distinct IDs associated with the users whose data you would like to export. You can add up to 1999 distinct IDs. |
+
+Authorization:
+
+| Authorization Type | Pass As | Description |
+|-----------------------------|-------------|------------------|
+| Bearer | Body. Passed in JSON blob format. | Your [OAuth token](https://help.mixpanel.com/hc/en-us/articles/360000953003#generatingoauth-token-for-gdpr-apis) for GDPR APIs. |
+
+Example Request:
+`curl "https://mixpanel.com/api/app/data-deletions/v3.0/?token=591b3354bb2bdd96f72f23bf56911673"
+-H "Authorization: Bearer vZcErNw8JCq42BZUJyWoZmDWCKBxXc" -d '{"distinct_ids":["1"]}'`
+
+Example Return:
+`{"status": "ok", "results": {"task_id": "35bd8477-f71f-4088-af55-c88a6fb4ad4a"}}`
