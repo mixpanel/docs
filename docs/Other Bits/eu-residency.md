@@ -4,13 +4,48 @@ slug: "eu-residency"
 hidden: false
 ---
 
-# Data Residency in EU
+# Overview
+Mixpanel believes in respecting and protecting people’s fundamental online privacy and data rights. Which is why we've built Mixpanel's analysis tools in compliance with industry best-practices and global data regulations like the GDPR and the CCPA.
 
-Data Residency refers to the physical/geographical storage location of an organization's data or information. For existing projects, you can find where your data is currently stored under Project Settings > Data Residency. Additionally, projects stored in the EU will have a url that starts with eu.mixpanel.com whereas projects stored in the US will have a mixpanel.com url. The location of existing projects cannot be changed. 
+Visit our [Privacy Hub](https://mixpanel.com/legal/privacy-hub/) to see how we comply with various privacy guidelines.
 
-As a Mixpanel customer in the EU, you have the option to send your data to Mixpanel's EU data center, and have your data stored exclusively in the EU when creating a new project. You do not automatically get Data Residency and are not automatically set up in the EU data center. 
+# Storing Your Data in the European Union
+By default Mixpanel stores user data on it's US Servers via the Google Cloud Platform.
+However, Mixpanel also provides you with the option to process and store your customers' personal data in Europe via our [EU Data Residency Program](https://mixpanel.com/topics/data-residency-for-mixpanel/).
+You can enable this by selecting the "EU Data Residency" option when creating a new project, and using our EU subdomain during all API calls.
 
-Mixpanel is at feature parity between the product experience we offer to our EMEA and North American customers. You do not lose any product capability because you choose to store your data in the EU.
+| API | Standard Server | EU Residency Server |
+|-------|-------------------------|--------------------------------|
+| [Ingestion API](ref:ingestion-api) | `api.mixpanel.com` | `api-eu.mixpanel.com` |
+| [Query API](ref:query-api) | `mixpanel.com/api` | `eu.mixpanel.com/api` |
+| [Raw Data Export API](ref:raw-data-export-api) | `data.mixpanel.com/api/2.0/export` | `data-eu.mixpanel.com/api/2.0/export` |
+| [Data Pipelines API](ref:data-warehouse-api) | `data.mixpanel.com/api/2.0/export` | `data-eu.mixpanel.com/api/2.0/export` |
+| [Lexicon Schemas API](ref:lexicon-schemas-api) | `mixpanel.com/api/app/projects` | `eu.mixpanel.com/api/app/projects` |
+| [Connectors API](ref:connectors-api) | `mixpanel.com/api/app/projects` | `eu.mixpanel.com/api/app/projects`|
+
+For existing projects, you can find where your data is currently stored under Project Settings > Data Residency. Additionally, projects stored in the EU will have a url that starts with eu.mixpanel.com whereas projects stored in the US will have a mixpanel.com url. The location of existing projects cannot be changed. 
+
+# Using Our SDKs
+Next you'll need to set the server location to EU when initializing the Mixpanel library. You can find instructions for the required config settings for each SDK below:
+- [JavaScript](doc:javascript#eu-data-residency)
+- [Objective-C](doc:ios#eu-data-residency)
+- [Swift](doc:swift#eu-data-residency)
+- [Android](doc:android#eu-data-residency)
+- [Python](doc:python#eu-data-residency)
+- [Java](doc:java#eu-data-residency)
+- [PHP](doc:php#eu-data-residency)
+- [Ruby](doc:ruby#eu-data-residency)
+- [Node.js](doc:nodejs#eu-data-residency)
+- [React Native](doc:react-native#eu-data-residency)
+- [Flutter](doc:flutter#eu-data-residency)
+
+# Querying Mixpanel Data in the EU
+Once you've set the server location to EU, please notify Mixpanel so we can set your project's cluster to `mixpanel-prod-eu`.
+
+To do so, reach out to your Relationship Manager, Customer Success Manager, or Account Executive and they can help coordinate this change. Once the setup is complete, you can log into your account at `eu.mixpanel.com` and query data in any Mixpanel report.
+
+# Log in via SSO
+If you want the IdP initiated flow to direct to [eu.mixpanel.com](https://eu.mixpanel.com/), prepend "eu." to your postback URL. For example, [mixpanel.com/security/login/1](https://mixpanel.com/security/login/1) would need to be changed to [eu.mixpanel.com/security/login/1](https://eu-mixpanel.com/security/login/1). 
 
 # Enabling EU Residency
 
