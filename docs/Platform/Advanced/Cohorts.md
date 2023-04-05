@@ -1,10 +1,6 @@
 ---
 title: "Cohorts"
 slug: "cohorts"
-hidden: false
-metadata:
-  title: "Cohorts"
-  description: "Learn how to use cohorts in Mixpanel."
 ---
 
 # Overview
@@ -24,7 +20,7 @@ You can create cohorts via any of our report visualizations or explicitly using 
 Click any bar or point in an Insights, Funnels, or Retention report and select "View Users". The side panel will show the list of users that belong to that bar or point you selected. You can save that group of users as a cohort.
 
 ## Creating a Cohort via the Cohort Builder
-The [Cohort builder](https://mixpanel.com/report/users) lets you define cohorts based on a precise set of conditions. These conditions are either of the form "Users who did `<event>` more/less than `<some threshold>`" or "Users where `<profile property>` is equal to/more/less than `<value>`".
+The [Cohort Builder](https://mixpanel.com/report/users) lets you define cohorts based on a precise set of conditions. These conditions are either of the form "Users who did `<event>` more/less than `<some threshold>`" or "Users where `<profile property>` is equal to/more/less than `<value>`".
  
 Let's walk through some of cohorts you can create with the builder.
 
@@ -85,9 +81,10 @@ Cohorts are computed dynamically at the time that you use them in a query. Suppo
 
 This has a few implications. First, it means every time you run a query that uses the cohort, the cohort is freshly computed vs being a static snapshot of users. Second, it means that the set of users who are in the cohort are users that are in the cohort as of _right now_; it's _not_ a rolling window of users that have ever been in the cohort.
 
+## Cohorts and Time
 We don't recommend using Cohorts in analysis when trying to understand cause -> effect relationships between user behavior. For example, suppose you're trying to understand whether watching more comedy videos drives users to subscribe. You might create a Comedy Fans cohort defined as "Users who performed Watched Video where genre=comedy in the last 30 days" and then breakdown your Subscriptions by whether users are in the Comedy Fans cohort. The problem is that the user might have become a Comedy Fan _after_ subscribing, which doesn't tell you whether watching comedy had any impact on subscribing.
 
-We recommend using Funnels if you want to understand specific sequences of events with a strict ordering between each other. For example, creating a funnel from Signup -> Subscription and comparing that to a funnel from Signup -> Watched Comedy -> Subscription, to understand what % of users convert after watching comedy.
+Instead, we recommend using Funnels if you want to understand specific sequences of events with a strict ordering between each other. For example, creating a funnel from Signup -> Subscription and comparing that to a funnel from Signup -> Watched Comedy -> Subscription, to understand what % of users convert after watching comedy.
 
 
 # Saving and Sharing Cohorts
