@@ -37,7 +37,7 @@ Because each user is unique, Mixpanel tracks which users completed what events a
 ###Properties
 Properties are attributes that help you define the specifics of an **Event** or a **User**.
 
-An **Event Property** describes an event. For a coffee purchase, the event would be Purchase and the event property could be *Item Type* (in this case a Coffee) or *Item Price* (in this case $2.50)
+An **Event Property** describes an event. For a coffee purchase, the event would be Purchase and the event properties could be *Item Type* (in this case a Coffee) and *Item Price* (in this case $2.50)
 
 <p align="center">
     <img src=https://storage.googleapis.com/cdn-mxpnl-com/static/readme/Event_Property.svg>
