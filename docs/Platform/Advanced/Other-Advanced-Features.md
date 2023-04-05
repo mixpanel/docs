@@ -111,7 +111,7 @@ After Mixpanel is connected to Slack, any Slack user who posts a Mixpanel link w
 
 ## Privacy
 
-The Mixpanel app for Slack adheres to Mixpanel's overall privacy policy, available in full here: [https://mixpanel.com/legal/privacy-policy/](https://mixpanel.com/legal/privacy-policy/)
+The Mixpanel app for Slack adheres to Mixpanel's overall privacy policy, available in full here: [https://mixpanel.com/legal/privacy-policy/](https://mixpanel.com/legal/privacy-policy/).
 
 # Custom Events
 
@@ -131,18 +131,18 @@ Enterprise: Unlimited Custom Events
 
 MTU Growth: Unlimited Custom Events
 
-Visit our [pricing page](https://mixpanel.com/pricing/) to learn more about differences between plan types
+Visit our [pricing page](https://mixpanel.com/pricing/) to learn more about differences between plan types.
 
 ## Overview
 
-A custom event is a virtual event that was created from one or more events, optionally filtered down by a particular set of properties, and given a name.Useful to:
+A custom event is a virtual event that was created from one or more events, optionally filtered down by a particular set of properties, and given a name. Useful to:
 
 - Merge two events into a single event ("User Signup" + "Account Created" -> "Signup")
-- Create an event based on a filter on another event ("Purchase where Country = "US" -> "US Purchases")
+- Create an event based on a filter on another event ("Purchase" where Country = "US" -> "US Purchases")
 
 Imagine your business has two ways for users to track ads: they can convert from ad, or simply view it. You represent each of these actions with Mixpanel events named "Ad Conversion" and "Ad Impression," respectively. Later, you decide that you want to setup a funnel to track how many users are seeing any ads at all. So what do you do?
 
-You can create a custom event containing "Ad Conversion" and "Ad Impression," and then save it as "Watch Ads.” Now you can use the "Watch Ads" custom event as a funnel step just like a regular event. Then, any time a user performs an "Ad Conversion" or "Ad Impressiong" action, they'll be included in that step. You can also use this new custom event in your other reports, such as Retention.
+You can create a custom event containing "Ad Conversion" and "Ad Impression," and then save it as "Watch Ads.” Now you can use the "Watch Ads" custom event as a funnel step just like a regular event. Then, any time a user performs an "Ad Conversion" or "Ad Impression" action, they'll be included in that step. You can also use this new custom event in your other reports, such as Retention.
 
 ![https://help.mixpanel.com/hc/article_attachments/8088061393300/mceclip3.png](https://help.mixpanel.com/hc/article_attachments/8088061393300/mceclip3.png)
 
