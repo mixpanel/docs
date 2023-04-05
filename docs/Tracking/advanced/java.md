@@ -10,6 +10,10 @@ updatedAt: "2023-03-26T20:07:24.875Z"
 ---
 The Mixpanel Java library is useful to track events from Java servers.
 
+# Getting Started
+
+The [Full API Reference](http://mixpanel.github.io/mixpanel-java/), [Library Source Code](https://github.com/mixpanel/mixpanel-java) and an [Example Application](https://github.com/mixpanel/mixpanel-java/blob/master/src/demo/java/com/mixpanel/mixpanelapi/demo/MixpanelAPIDemo.java) is documented in our GitHub repo.
+
 # Installing the Library
 
 You can get the library by including the following in your project's pom.xml:
