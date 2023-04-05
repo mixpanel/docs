@@ -67,11 +67,7 @@ To create a temporary cohort for the current report, click
 
 **Create Custom...**
 
-in the dropdown menu and select "Cohort. A window will pop up where you can specify the restrictions of your cohort. Learn more about building a cohort
-
-[here](https://help.mixpanel.com/hc/en-us/articles/115005701343)
-
-.
+in the dropdown menu and select "Cohort. A window will pop up where you can specify the restrictions of your cohort. Learn more about building a cohort [here](https://help.mixpanel.com/hc/en-us/articles/115005701343).
 
 ![https://help.mixpanel.com/hc/article_attachments/7712721485460/create_cohort_from_report.gif](https://help.mixpanel.com/hc/article_attachments/7712721485460/create_cohort_from_report.gif)
 
