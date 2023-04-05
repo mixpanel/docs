@@ -12,6 +12,8 @@ updatedAt: "2023-02-04T01:08:26.006Z"
 
 Please refer to our [Quickstart Guide](https://developer.mixpanel.com/docs/javascript-quickstart).
 
+The [Library Source Code](https://github.com/mixpanel/mixpanel-js) and an [Example Application](https://github.com/mixpanel/mixpanel-js/tree/master/examples) is documented in our GitHub repo.
+
 ## Track Events
 
 ### Sending Events
