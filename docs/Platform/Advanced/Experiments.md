@@ -7,7 +7,7 @@ metadata:
   description: "Learn about Mixpanel Experiments report."
 ---
 
-# Experiments Report
+# Overview
 
 The Experiments report analyzes how A/B test variants impact your metrics.  Experiments does this by calculating the difference between variant groups and the effects of the variants on selected events.
 
@@ -15,15 +15,19 @@ Experiments requires an A/B test, its variant, and a dashboard that contains the
 
 ![https://help.mixpanel.com/hc/article_attachments/7447521623444/Screen_Shot_2022-06-30_at_2.44.36_PM.png](https://help.mixpanel.com/hc/article_attachments/7447521623444/Screen_Shot_2022-06-30_at_2.44.36_PM.png)
 
-## Access the Report
+# Use Cases
+
+# Quick Start
+
+# Access the Report
 
 To access Experiments, click on **Applications** in the top right navigation, then select **Experiments**.
 
-## Build a Query
+# Build a Query
 
 To use Experiments you must have a dashboard, and you can either use an existing experiment or you must build one in the query builder.
 
-## Select an Experiment
+# Select an Experiment
 
 **Custom Experiment** - This option allows you to define the control and variant groups of the experiment. These groups can be defined by cohort, user profile property, or event property filters.
 

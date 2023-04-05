@@ -7,17 +7,24 @@ metadata:
   description: "Learn about Mixpanel Impact report."
 ---
 
-# Impact Report
+# Overview
 
 Mixpanel’s Impact report measures the effects of product or marketing launches on your key metrics. Impact calculates the user adoption of the launch, the impact of the launch on an important event, and the differences between users that adopt the launch and those that do not.
 
-## Access Report
-
 To access **Impact**, go to the Applications section in the top right of the top navigation, then select **Impact**.
 
-[https://help.mixpanel.com/hc/article_attachments/11036831782164](https://help.mixpanel.com/hc/article_attachments/11036831782164)
+![https://help.mixpanel.com/hc/article_attachments/11036831782164](https://help.mixpanel.com/hc/article_attachments/11036831782164)
 
-## Build a Query
+# Use Cases
+
+Here are some of the sample questions you can answer in Impact:
+
+- How is the adoption of my feature changing over time?
+- Did my feature launch have an effect on the rate of another key value moment?
+
+# Quick Start
+
+## Step 1: Select a launch event
 
 To build an Impact query, first select a launch event. This is the event that you are measuring as the cause of change.
 
@@ -27,23 +34,25 @@ Select the start date of this launch event. Add any additional filters to narrow
 
 ![https://help.mixpanel.com/hc/article_attachments/360052965711/mceclip0.png](https://help.mixpanel.com/hc/article_attachments/360052965711/mceclip0.png)
 
+## Step 2: Select metric events
+
 Select a metric event by clicking the **Add** button under **IMPACTED EVENTS**. You are measuring the impact of the launch event on this metric event. Add additional filters to narrow the impacted event parameters.
 
 ![https://help.mixpanel.com/hc/article_attachments/360052840692/Untitled2.png](https://help.mixpanel.com/hc/article_attachments/360052840692/Untitled2.png)
 
-Breakdown impacteds event further by clicking the **… icon**, selecting **Add Aggregation**, then selecting an event property, such as “Amount”. This will add up the value of this property for all of the times this event happened in this time range. All aggregate properties are typecast to numeric properties in order to calculate the sum of that property. For example, aggregate the property “Amount” under the event “Process Payment” to analyze revenue.
+## Step 3: Add breakdown (optional)
+
+Breakdown impacted events further by clicking the **… icon**, selecting **Add Aggregation**, then selecting an event property, such as “Amount”. This will add up the value of this property for all of the times this event happened in this time range. All aggregate properties are typecast to numeric properties in order to calculate the sum of that property. For example, aggregate the property “Amount” under the event “Process Payment” to analyze revenue.
 
 ![https://help.mixpanel.com/hc/article_attachments/360054659272/chrome-capture__5_.gif](https://help.mixpanel.com/hc/article_attachments/360054659272/chrome-capture__5_.gif)
 
-To duplicate or delete any events or properties in your query, select the **… icon** and choose **Duplicate** or **Delete** from the drop-down list.
+## Step 4: Select user group
 
-Under **USER DEFINITION s**elect whether you would like to count users who did **only the impacted event** or **any event**.
+Under **USER DEFINITION** select whether you would like to count users who did **only the impacted event** or **any event**.
 
 ![https://help.mixpanel.com/hc/article_attachments/360052967131/mceclip2.png](https://help.mixpanel.com/hc/article_attachments/360052967131/mceclip2.png)
 
-Apply a global filter to the entire report by clicking the **Filter** button under **FILTERS**. This filter will apply to both the launch event and all metric events.
-
-![https://help.mixpanel.com/hc/article_attachments/360052840632/Untitled3.png](https://help.mixpanel.com/hc/article_attachments/360052840632/Untitled3.png)
+## Step 5: Select time range
 
 Select the time range. The time range is a fixed period of time that determines the adopters and non-adopters of the launch event. The default is "15 days before and after", meaning that the 15 days preceding the fixed launch event date and the 15 days following the launch event will be included in the results. This will allow you to see the difference in the metric event before and after the launch event.
 
@@ -51,9 +60,7 @@ The chart will not necessarily change if you change the time range.
 
 ![https://help.mixpanel.com/hc/article_attachments/360052967331/mceclip3.png](https://help.mixpanel.com/hc/article_attachments/360052967331/mceclip3.png)
 
-## Report Calculation Details
-
-The report presents the results in plain English, in an Impact table that includes the Impact values, and in a chart that displays the impact of the launch over time.
+# Reference
 
 ## Adoption
 
@@ -226,5 +233,3 @@ Note that these values can differ from those reported in the Adoption and Impact
 ## Interpret the Causal Impact Results
 
 Mixpanel's causal model is confident your new feature successfully changed the rate at which users perform the impacted metric if the ATE on any impacted metric is positive and the 95% confidence interval does not contain zero. This holds true as long as there are no confounding factors outside of your event data.
-
-

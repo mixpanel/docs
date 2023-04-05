@@ -7,15 +7,11 @@ metadata:
   description: "Learn about Mixpanel Signal report."
 ---
 
-# Signal Report
+# Overview
 
 Signal measures the association between a correlation event and a goal event and quantifies the correlation between the two. This facilitates a deeper understanding of the behaviors that drive customer conversions, and can help guide product decisions.
 
-Note: There are now more features available in Signal that are not highlighted in the video below. Refer [here](https://help.mixpanel.com/hc/en-us/articles/115004567503-Signal-Report#build-a-query-in-signal) to get current information on how to build Signal queries.
-
-![https://embed-ssl.wistia.com/deliveries/e16fc49b56e773a413011bb57142aa9701e481b6.webp?image_crop_resized=960x540](https://embed-ssl.wistia.com/deliveries/e16fc49b56e773a413011bb57142aa9701e481b6.webp?image_crop_resized=960x540)
-
-## Signal Use Case
+# Use Cases
 
 Using an a music sharing application as an example can highlight the value of quantifying correlations between events.
 
@@ -122,7 +118,7 @@ To build a Signal query with a cohort as the goal event, select the **Goal Even
 
 This means that if a “from date” and “to date” are selected so that the query is analyzing a time period in the past, the cohort will NOT be the cohort during that historical time period. The cohort will be current, meaning the users analyzed will be the users **currently** in the cohort.
 
-## Interpreting Results
+# Interpreting Results
 
 ## Summary View
 
@@ -187,15 +183,43 @@ To see the calculations of the optimal correlation data, hover of the ƒx in the
 
 ![https://help.mixpanel.com/hc/article_attachments/7777869737748/Screen_Shot_2022-07-13_at_10.35.35_PM.png](https://help.mixpanel.com/hc/article_attachments/7777869737748/Screen_Shot_2022-07-13_at_10.35.35_PM.png)
 
-## Signal Machine Learning Model
+## Key Findings
+
+Signal also presents two key findings, rarity analysis results and conversion measurements. Rarity defines how common or uncommon it is for users to complete an individual event. The conversion measurements qualifies how likely a given conversion is to be helpful. For example, if all users are converting because the application forces this by design, then the conversion measurement will flag this as "unlikely to be useful".
+
+## CSV Download
+
+To download the results to a CSV, click the **Download CSV** icon in the upper right hand corner of the Summary Results view or the Detailed Results view after you have run your correlation.
+
+![https://help.mixpanel.com/hc/article_attachments/7777872257684/Screen_Shot_2022-07-13_at_10.37.09_PM.png](https://help.mixpanel.com/hc/article_attachments/7777872257684/Screen_Shot_2022-07-13_at_10.37.09_PM.png)
+
+# Reference
+
+## Download Glossary
+
+- **Frequency:** Number of times, up to 10, a user should complete the event for the correlation.
+- **Intervals:** Number of days, up to 15, when a user should complete the event for the correlation.
+- **True positive:** Number of positive correlations that are correctly identified.
+- **True negative:** Number of negative correlations that are correctly identified.
+- **False positive:** Number of positive correlations that are incorrectly identified.
+- **False negative:** Number of negative correlations that are incorrectly identified.
+- **Correlation:** The association between your event to your goal event.
+- **Precision:** Percent of users who convert to your goal among those who did this event at least x times within y days
+- **Fall-out:** Percent of unconverted users who did this event at least x times within y days.
+- **Recall:** Percent of converted users who did this event at least x times within y days.
+- **False Omission Rate:** Percent of users who convert to your goal among those who did this event fewer than x times within y days.
+- **Phi max:** Single number between -1 and 1 that indicates how closely an event moves with your goal event. 1 means that 100% of all users that did your goal event also did the event you are evaluating. -1 means the opposite: 0% of users that did you goal event also did the event you are evaluating.
+- **Mixpanel Opportunity Score:** Mixpanel’s proprietary calculation of how important a given correlation might be.
+
+## Calculations
 
 Signal calculates correlation using a well-known statistical algorithm called the phi coefficient. In addition to correlation, Mixpanel calculates what is called an opportunity score, and also presents a list of key findings.
 
-## Correlation
+### Correlation
 
 The phi coefficient is a single number between -1 and 1 and it indicates how closely an event moves with your goal event. 1 means that 100% of all users that did the goal event also did the correlation event. -1 means that 0% of users that did the goal event also did the correlation event.
 
-## Opportunity Score
+### Opportunity Score
 
 “Opportunity” is Mixpanel’s proprietary calculation of how important a given correlation might be. Opportunity helps pare down results by eliminating false positives and highlighting weak correlations that may be actionable. Based on this assessment, which determines how much an event impacts conversion on your goal, Mixpanel will tell you if there is an opening to make a change in your product or not.
 
@@ -242,29 +266,5 @@ Associated almost perfectly with not converting. Something might be off here.
 Associated almost perfectly with . Too good to be true?
 
 - Example: Users who trigger a purchase event will always trigger an add to cart event. Add to cart and purchase will always have high correlation.
-
-## Key Findings
-
-Signal also presents two key findings, rarity analysis results and conversion measurements. Rarity defines how common or uncommon it is for users to complete an individual event. The conversion measurements qualifies how likely a given conversion is to be helpful. For example, if all users are converting because the application forces this by design, then the conversion measurement will flag this as "unlikely to be useful".
-
-## Signal CSV Download Glossary
-
-Below are explanations for the summary statistics that you will find in the CSV download of your Signal correlation. To download the results to a CSV, click the **Download CSV** icon in the upper right hand corner of the Summary Results view or the Detailed Results view after you have run your correlation.
-
-![https://help.mixpanel.com/hc/article_attachments/7777872257684/Screen_Shot_2022-07-13_at_10.37.09_PM.png](https://help.mixpanel.com/hc/article_attachments/7777872257684/Screen_Shot_2022-07-13_at_10.37.09_PM.png)
-
-- **Frequency:** Number of times, up to 10, a user should complete the event for the correlation.
-- **Intervals:** Number of days, up to 15, when a user should complete the event for the correlation.
-- **True positive:** Number of positive correlations that are correctly identified.
-- **True negative:** Number of negative correlations that are correctly identified.
-- **False positive:** Number of positive correlations that are incorrectly identified.
-- **False negative:** Number of negative correlations that are incorrectly identified.
-- **Correlation:** The association between your event to your goal event.
-- **Precision:** Percent of users who convert to your goal among those who did this event at least x times within y days
-- **Fall-out:** Percent of unconverted users who did this event at least x times within y days.
-- **Recall:** Percent of converted users who did this event at least x times within y days.
-- **False Omission Rate:** Percent of users who convert to your goal among those who did this event fewer than x times within y days.
-- **Phi max:** Single number between -1 and 1 that indicates how closely an event moves with your goal event. 1 means that 100% of all users that did your goal event also did the event you are evaluating. -1 means the opposite: 0% of users that did you goal event also did the event you are evaluating.
-- **Mixpanel Opportunity Score:** Mixpanel’s proprietary calculation of how important a given correlation might be.
 
 
