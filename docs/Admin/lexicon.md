@@ -105,7 +105,7 @@ This data lets you easily discover the parts of your implementation that are mos
 
 # Dropping and Hiding Data
 
-In Lexicon, you can intercept and drop incoming events or properties. Mixpanel won’t store any new data for the event or property you select to drop. **Warning: You cannot recover event data after you drop it.**
+In Lexicon, you can intercept and drop incoming events or properties. Mixpanel won’t store any **new data** for the event or property you select to drop. **Warning: You cannot recover event data after you drop it.**
 
 When an event is dropped, all events of that type that have previously been ingested (before dropping it) will still show in the interface. Only project owners can drop events and properties. Note: It takes a few hours for Mixpanel to process the dropped event.
 
@@ -119,6 +119,8 @@ Sample use cases for dropping events and properties are:
 
 ## Dropping Events
 
+By dropping an event, you can intercept and drop incoming events. Mixpanel won’t store any new data for the event you select to drop. 
+
 To drop an event in Lexicon:
 
 1. Select an event to drop. The Drop icon appears.
@@ -128,6 +130,8 @@ To drop an event in Lexicon:
 3. Click Drop. The status of the event indicates Dropped.
 
 ## Dropping Properties
+
+By dropping a property, you can intercept and drop incoming property. Mixpanel won’t store any new data for the property you select to drop. 
 
 To drop a property in Lexicon:
 
