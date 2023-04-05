@@ -28,7 +28,6 @@ The [Cohort builder](https://mixpanel.com/report/users) lets you define cohorts 
  
 Let's walk through some of cohorts you can create with the builder.
 
-
 Filter by users who watched more than 10 videos in the last 7 days:
 ![https://help.mixpanel.com/hc/article_attachments/360091745932/Kapture_2021-04-06_at_13.43.06.gif](https://help.mixpanel.com/hc/article_attachments/360091745932/Kapture_2021-04-06_at_13.43.06.gif)
 
@@ -59,69 +58,45 @@ Filter to users that are above the age of 60:
 You can also chain any of these cohorts together using the AND/OR operators:
 ![https://help.mixpanel.com/hc/article_attachments/360091749052/Kapture_2021-04-06_at_14.31.41.gif](https://help.mixpanel.com/hc/article_attachments/360091749052/Kapture_2021-04-06_at_14.31.41.gif)
 
+You can also access the builder directly from the property picker in any of our reports, by clicking Create Custom > Cohort. This will create a temporary cohort that only persists for your analysis session.
+
 
 # Using Cohorts in Analysis
+You can visualize how cohorts size over time, use cohorts to filter your reports, or compare how cohorts perform a metric.
 
+## Visualizing Cohort Size Over Time
 
-Select a cohort from the Insights drop down menu to see how the number of users in the cohort has changed over time.
+In Insights, you can define a metric based on the size of a cohort over time. This is useful to understand how key subsets of your user base (like your Power Users) are trending over time. Select a cohort from the "Events and Cohorts" menu in the Insights report; this will generate a line chart that shows the size of the cohort over time. Each point is the size of the cohort as of the end of that time interval.
 
-![https://help.mixpanel.com/hc/article_attachments/360040121212/angela-gif.gif](https://help.mixpanel.com/hc/article_attachments/360040121212/angela-gif.gif)
+## Filtering by a Cohort
 
-When you visualize a cohort over time, you can breakdown by another cohort, compare to an event, or compare to another cohort.
+You can use cohorts to filter any of your analysis by selecting a cohort from the filter menu. For example, if you're focused on Onboarding, you can filter all your analyses to the New Users cohort, which might be defined as users who signed up in the past 7 days.
+
+## Comparing Cohorts
+
+You can compare the behavior of different cohorts by selecting a cohort from the breakdown menu. For example, you can use this to see how engagement compares for Power Users vs All Users.
 
 
 # How Cohorts are Computed
-# Note on cohorts whose filters contain user profile properties:
 
-Because user profile properties only store the most recent value, cohorts involving user profile properties will use the current value for those properties (even if the value changed over time).
+Cohorts are computed dynamically at the time that you use them in a query. Suppose you make a funnels report that filters down to the New Users cohort. Under the hood, Mixpanel does the following:
+1. Run a query to compute the set of users who are in the cohort as of right now (the time that the query is run).
+2. Run a query to compute the set of users who converted in the funnel, filtering down to the list produced in Step 1.
 
-For example, suppose the cohort's filter criteria is: users where user[“City”] == “SF” and “Did Event: Order Ride 3 times in Last 7 days”.
+This has a few implications. First, it means every time you run a query that uses the cohort, the cohort is freshly computed vs being a static snapshot of users. Second, it means that the set of users who are in the cohort are users that are in the cohort as of _right now_; it's _not_ a rolling window of users that have ever been in the cohort.
 
-Mixpanel computes the above over the last 30 days and then groups the set of users who have property user[“City”] == “SF” as of right now and intersect that with the daily cohort of users who did Order Ride 3 times in the last 7 days.
+We don't recommend using Cohorts in analysis when trying to understand cause -> effect relationships between user behavior. For example, suppose you're trying to understand whether watching more comedy videos drives users to subscribe. You might create a Comedy Fans cohort defined as "Users who performed Watched Video where genre=comedy in the last 30 days" and then breakdown your Subscriptions by whether users are in the Comedy Fans cohort. The problem is that the user might have become a Comedy Fan _after_ subscribing, which doesn't tell you whether watching comedy had any impact on subscribing.
 
-# Cohorts are Dynamic
-
-Users qualify for a cohort based on the specified conditions. This doesn’t ensure that that user will always be in the cohort.
-
-For example, assume the condition of the cohort is performing a “Song Play” event in the last 30 days. If a user plays a song once in thirty days, they will enter the cohort. If that user doesn’t listen to another song at the 30 day mark, however, then they will exit the cohort as they no longer meet the qualifying condition of having performed a “Song Play” event in the last 30 days.
-
-# Cohorts are Always Current at the Time you Run a Report
-
-When you run a report that involves a cohort, Mixpanel returns the group of users that meet the criteria for that cohort at the moment.
-
-This is important to consider when running a report with a “From Date” and “To Date” selected. The analyzed cohort will not be the cohort during the “From Date” and “To Date” time period. The analyzed cohort will be users *currently* in the cohort.
+We recommend using Funnels if you want to understand specific sequences of events with a strict ordering between each other. For example, creating a funnel from Signup -> Subscription and comparing that to a funnel from Signup -> Watched Comedy -> Subscription, to understand what % of users convert after watching comedy.
 
 
-# Save a Cohort
+# Saving and Sharing Cohorts
 
-When you finish defining the group filters for your cohort, click **Save**. You must give your cohort a name if you did not do so in the group filter screen. You can add a cohort description to give your team more context about the group of users in your cohort. You can choose to just "Save" the cohort and keep that cohort private, or save the cohort and share that cohort with your colleagues in the same flow (as shown below):
+Cohorts that you create are, by default, only visible to you. You can optionally share cohorts with specific other people or with your organization. This makes Cohorts that you create discoverable by others.
 
-![https://help.mixpanel.com/hc/article_attachments/360083842392/Screen_Recording_2021-01-27_at_2.28.01_PM.gif](https://help.mixpanel.com/hc/article_attachments/360083842392/Screen_Recording_2021-01-27_at_2.28.01_PM.gif)
+We recommend sharing a set of key cohorts with your organization, to ensure that you align on key definitions of user behavior that are important for your business (eg: New Users, Power Users). We also recommend adding descriptions to such cohorts, to share context with your team.
 
-If you already hit "Save" without sharing that cohort with anyone - not to worry, as you can always hit the "Share" button after saving:
 
-![https://help.mixpanel.com/hc/article_attachments/360083913011/Screen_Recording_2021-01-27_at_2.35.20_PM.gif](https://help.mixpanel.com/hc/article_attachments/360083913011/Screen_Recording_2021-01-27_at_2.35.20_PM.gif)
+# Exporting Cohorts
 
-# Update a Cohort
-
-You can update cohorts and any changes you make to your base cohort will reflect in other cohorts that depend on it. For example if a Churn Risk Users cohort (A) is defined as “users who have not done any event in the last 30 days”, you can create a dependent cohort called Churn Risk Users in San Francisco (B), which is “Users in Churn Risk cohort AND have the property ‘City’ = ‘San Francisco’”.
-
-Now, if you make any changes to Cohort A, such as changing the date range to “users who have not done anything in the last 60 days”, then Cohort B will automatically update to use the new definition of Cohort A.
-
-# Create Temporary Inline Cohorts
-
-You have the option to create a temporary cohort in Insights, Funnels, and Dashboards when you choose to add a cohort, or filter and breakdown by a cohort. This cohort will only exist for the current query and does not persist throughout Mixpanel.
-
-In the [Insights](https://help.mixpanel.com/hc/en-us/articles/360001333826) report a temporary cohort can be created in both the query and the results of the query as a filter or breakdown.
-
-In the [Funnels](https://help.mixpanel.com/hc/en-us/articles/360019982652-Funnels-Report-Basics) report a temporary cohort can only be created in the results of your query as a filter or breakdown.
-
-In [Dashboards](https://help.mixpanel.com/hc/en-us/articles/115004565746-Dashboard-Overview-) a temporary cohort can only be created to filter your dashboard.
-
-To add a temporary cohort to your Insights query, click **Add** and select **Cohort**. Then, select **Create cohort**.
-
-![https://help.mixpanel.com/hc/article_attachments/360091942252/mceclip0.png](https://help.mixpanel.com/hc/article_attachments/360091942252/mceclip0.png)
-
-To add a temporary cohort as a filter or breakdown in your report, click either **Filter** or **Breakdown** and select **Create cohort** under the "Cohort" tab.
-
-![https://help.mixpanel.com/hc/article_attachments/360091937971/Kapture_2021-04-08_at_10.08.30.gif](https://help.mixpanel.com/hc/article_attachments/360091937971/Kapture_2021-04-08_at_10.08.30.gif)
+You can download the list of users in any Cohort as a CSV via the Cohort Builder. You can also push cohorts to 3rd-party destinations like [Segment](doc:segment-integration), [Braze](doc:braze-integration), or a [Custom Webhook](doc:cohort-webhooks).
