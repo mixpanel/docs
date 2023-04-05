@@ -130,7 +130,7 @@ Recommended events to exclude which are not triggered by user activity:
 
 Custom events are not supported for exclusions. If you want to exclude a custom event, you can instead exclude the events that make up that custom event.
 
-## Examples
+### Examples
 
 #### Example 1
 
