@@ -20,7 +20,7 @@ Here are some examples of cohorts you can create in Mixpanel:
 
 You can create cohorts via any of our report visualizations or explicitly using the cohort builder. 
 
-## Creating a Cohort from a Report
+## Creating a Cohort via a Report
 Click any bar or point in an Insights, Funnels, or Retention report and select "View Users". The side panel will show the list of users that belong to that bar or point you selected. You can save that group of users as a cohort.
 
 ## Creating a Cohort via the Cohort Builder
