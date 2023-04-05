@@ -71,7 +71,7 @@ If your events are still not showing up after 60 seconds, check if you have opte
 ```javascript
 mixpanel.setLoggingEnabled(true);
 ```
-Please note if you route your data to Mixpanel's EU servers, you will need to look at EU servers( https://eu.mixpanel.com) instead.
+Please note if you route your data to Mixpanel's EU servers, you will need to look at EU servers (https://eu.mixpanel.com) instead.
 
 **Starting with iOS 14.5, do I need to request the user’s permission through the AppTrackingTransparency framework to use Mixpanel?**
 No, Mixpanel does not use IDFA so it does not require user permission through the AppTrackingTransparency(ATT) framework.
