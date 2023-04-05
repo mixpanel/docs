@@ -22,7 +22,7 @@ User Profiles are joined onto your Events based on their Distinct ID, which is t
 
 
 
-# Tracking User Profiles
+# Importing User Profiles via our API
 You can track User Profiles to Mixpanel in all the same ways you track events: from our SDKs, via our HTTP API, or via our Integrations.
 
 We recommend tracking user profiles from as close as possible to the source of truth for those profiles, which is usually your application database or your CRM. One common approach is to run an hourly or daily script on your servers that pulls the list of profiles from your database and pushes them to Mixpanel.
@@ -71,6 +71,54 @@ resp = requests.post(
 print(resp.json())
 ```
 
+# Importing User Profiles via our UI
+
+To get started, click on **Add/Edit Profile** from the [Users](https://mixpanel.com/report/users) page and follow the workflow:
+
+![https://help.mixpanel.com/hc/article_attachments/4411767063444/Screen_Shot_2021-12-01_at_11.44.03_AM.png](https://help.mixpanel.com/hc/article_attachments/4411767063444/Screen_Shot_2021-12-01_at_11.44.03_AM.png)
+
+## Importing Individual User Profiles
+
+### Set an Identifier Column
+
+The most important column is **$distinct_id**. This ID needs to match the distinct_id property that you're sending on your events.
+
+### Add Additional Properties
+
+After **$distinct_id**, you can add additional properties to the profile by pressing the "Add Property" button. Mixpanel will help autocomplete profile properties that you may want to set.
+
+![https://help.mixpanel.com/hc/article_attachments/4411778356756/Screen_Shot_2021-12-01_at_12.20.27_PM.png](https://help.mixpanel.com/hc/article_attachments/4411778356756/Screen_Shot_2021-12-01_at_12.20.27_PM.png)
+
+We recommend using the `$name` and `$email` properties if you're uploading a user's name or email. Mixpanel shows these properties by default in various parts of our UI.
+
+## Importing a CSV
+
+When editing the CSV that you want to upload as profiles, you should **not** include column headers (e.g., Email, Name, etc.). Instead, you’ll identify column headers during the CSV upload wizard in the Mixpanel UI.
+
+**Note**:
+- If you upload a CSV with new information for existing users, any existing information will be overwritten by new values you've imported.
+- The maximum size for your CSV is 1M rows.
+
+### Upload Your CSV
+
+Go the the Import from CSV mode and select your prepared csv to begin the process.
+
+### Choose an Identifier Column
+
+The most important column in your spreadsheet is the **$distinct_id** column for user profiles or **$group_id**, the group identifier, for group profiles, as these are the canonical identifiers in Mixpanel.
+
+If you do not assign an identifier column, Mixpanel will use your $email column as the $distinct_id value; if you don’t have an $email column either, then the $distinct_id value will be assigned randomly by default as described above.
+
+### Choose Desired CSV Columns
+
+![https://help.mixpanel.com/hc/article_attachments/4411778405524/Screen_Shot_2021-12-01_at_12.24.00_PM.png](https://help.mixpanel.com/hc/article_attachments/4411778405524/Screen_Shot_2021-12-01_at_12.24.00_PM.png)
+
+You'll have the opportunity to look through all columns in the CSV to preview the values. In this step you must uncheck all of the columns you wish to NOT import. You must also choose the associated Mixpanel profile property that each CSV column will be associated with. When you done selecting the columns you wish to import along with their associated properties, press the Import profiles button.
+
+**Notes**
+If you import user profiles using $distinct_id values that already exists, those profiles will be updated with the additional user profile properties in your CSV. Mixpanel imports based only on $distinct_id and will not deduplicate user profiles automatically based on other properties, like $email or $last_name.
+
+If you upload user profiles that have the same email address or the same name as existing user profiles, you will be uploading duplicates - they will not be combined. Ensure that the users you’re uploading don’t already have a user profile before you import, and if they do, ensure that the identifier column matches the existing profile’s identifier.
 
 
 # FAQ
