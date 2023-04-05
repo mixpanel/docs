@@ -115,6 +115,6 @@ def handle_pageview(request):
   track_to_mp(request, "Pageview", {"page_url": request.page_url})
 ```
 
-Note: if you're on Original ID Merge, you need to send an explicit `$identify` event to link the two IDs. Learn more in our [ID Merge guide](doc:id-merge).
+Note: if you're on Original ID Merge, you need to send an explicit `$identify` event to link the two IDs. Learn more in our [ID Merge guide](doc:identity-management).
 
 
