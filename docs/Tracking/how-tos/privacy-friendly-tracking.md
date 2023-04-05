@@ -42,28 +42,15 @@ MixpanelAPI mixpanelOptOutDefault = MixpanelAPI.getInstance(context, YOUR API TO
 # Disabling Geolocation
 Mixpanel's Web and Mobile libraries use IP address to enrich events with geographic information like city, country, and region. You can disable this using the following configuration options in each of our SDKs:
 
-[block:code]
-{
-  "codes": [
-    {
-      "code": "mixpanel.init(\"YOUR_TOKEN\", {'ip': false})",
-      "language": "javascript",
-      "name": "Javascript"
-    },
-    {
-      "code": "npm install --save mixpanel-browser",
-      "language": "Objective-C",
-      "name": "iOS"
-    },
-    {
-      "code": "<meta-data android:name="com.mixpanel.android.MPConfig.UseIpAddressForGeolocation" android:value="false" />",
-      "language": "XML",
-      "name": "Android"
-    }
-  ]
-}
-[/block]
-
+```javascript Javascript
+mixpanel.init(\"YOUR_TOKEN\", {'ip': false})
+```
+```objectivec Objective-C
+useIPAddressForGeoLocation = NO
+```
+```xml Android
+<meta-data android:name="com.mixpanel.android.MPConfig.UseIpAddressForGeolocation" android:value="false" />
+```
 
 # Anonymizing Users
 Mixpanel does not know, or need to know, any identifying information about users (like email or phone number). Mixanel only needs to know that a set of events were performed by a particular user ID. You choose the ID and you choose how you want to send that ID to Mixpanel.
