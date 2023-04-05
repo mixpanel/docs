@@ -10,6 +10,8 @@ updatedAt: "2023-03-26T20:07:32.248Z"
 ---
 The Mixpanel PHP library is designed to be used for scripting, or in circumstances when a client can't or won't run client side scripts
 
+The [Full API Reference](http://mixpanel.github.io/mixpanel-php/), [Library Source Code](https://github.com/mixpanel/mixpanel-php), and an [Example Application](https://github.com/mixpanel/mixpanel-php/tree/master/examples) is documented in our GitHub repo.
+
 # Installing the Library
 
 You can get the library using [Composer](http://getcomposer.org/) by including the following in your project's composer.json requirements and running composer update:
