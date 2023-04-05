@@ -13,7 +13,7 @@ If you already use Snowplow to collect event data, it's easy to route that data 
 {
   "type": "info",
   "title": "Pre-requisite",
-  "body": "This guide assumes you have a Snowplow instance which you use to collect events from your apps and websites. If you don't already have event collection, check our [Plan Your Implementation](ref:docs/plan-your-implementation) page for all the ways to get started!"
+  "body": "This guide assumes you have a Snowplow instance which you use to collect events from your apps and websites. If you don't already have event collection, check our [Plan Your Implementation](https://developer.mixpanel.com/docs/plan-your-implementation) page for all the ways to get started!"
 }
 [/block]
 
