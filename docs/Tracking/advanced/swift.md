@@ -12,6 +12,8 @@ updatedAt: "2023-02-04T01:11:56.138Z"
 
 Please refer to our [Quickstart Guide](ios-swift-quickstart).
 
+The [Full API Reference](https://mixpanel.github.io/mixpanel-swift/), [Library Source Code](https://github.com/mixpanel/mixpanel-swift), and an [Example Application](https://github.com/mixpanel/mixpanel-swift/tree/master/MixpanelDemo/MixpanelDemo) is documented in our GitHub repo.
+
 # Sending Events
 
 We recommend tracking only five to seven events in your application instead of tracking too many things to start. Ideally, you track users going through your initial user experience and one key metric that matters for your application (e.g. YouTube might choose "Watched Video" as a key metric).
