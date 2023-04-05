@@ -26,7 +26,7 @@ It takes less than 5 minutes to track an event to Mixpanel with our Javascript, 
 
 * **Client-Side:** In this method, events are generated on the client device and sent to the Mixpanel API. There are two types of client-side tracking: web (Javascript) and mobile. This can be faster to set up, but is the least reliable form of tracking due to ad-blockers. It's also harder to update tracking, since the environment where the tracking code runs is out of your control (web or mobile clients). You can improve reliability of client-side tracking using a [proxy](doc:collection-via-a-proxy), but this takes more effort.
 
-In general, we recommend tracking everything you possibly via your servers, and only supplementing that with client-side tracking when necessary.
+In general, we recommend tracking everything you possibly can via your servers, and only supplementing that with client-side tracking when necessary.
 
 # What To Track
 If you’re just starting to track data, we suggest starting simple by tracking two events critical to your product.
