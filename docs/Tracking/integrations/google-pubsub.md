@@ -160,7 +160,7 @@ Then paste in the following events as the message body.
 [/block]
 Once you `Publish`, the function will trigger and pass the above payload to the Cloud Function. Within a minute, you should see an `Import succeeded` log line in the Cloud Function logs.
 
-You can then navigate to [Live View](http://mixpanel.com/report/live) to see the events in Mixpanel.
+You can then navigate to the [Events](http://mixpanel.com/report/live) page to see the events in Mixpanel.
 [block:image]
 {
   "images": [
@@ -182,7 +182,7 @@ You can then navigate to [Live View](http://mixpanel.com/report/live) to see the
   "title": "Step 4: Connecting your production pipeline"
 }
 [/block]
-At this point, you can route events from your production Pub/Sub topic through a Cloud Function in a similar manner as described above. Simplify modify the Cloud Function to transform events from your internal event format into the format expected by Mixpanel. This is also a good point to strip any PII.
+At this point, you can route events from your production Pub/Sub topic through a Cloud Function in a similar manner as described above. Simply modify the Cloud Function to transform events from your internal event format into the format expected by Mixpanel. This is also a good point to strip any PII.
 
 Once connected, this will result in a steady stream of events being sent to Mixpanel. Happy streaming!
 [block:api-header]
