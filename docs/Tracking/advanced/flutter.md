@@ -12,6 +12,8 @@ updatedAt: "2023-02-04T01:14:18.355Z"
 
 Please refer to our [Quickstart Guide](flutter-quickstart).
 
+The [Full API Reference](https://mixpanel.github.io/mixpanel-flutter), [Library Source Code](https://github.com/mixpanel/mixpanel-flutter), and an [Example Application](https://github.com/mixpanel/mixpanel-flutter/tree/main/example) is documented in our GitHub repo.
+
 
 
 # Sending Events
