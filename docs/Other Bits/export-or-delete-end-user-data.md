@@ -44,6 +44,62 @@ To access the "Data & Privacy" modal containing the end user data request form:
 1. Navigate to "Data & Privacy" by clicking on the settings gear in the upper-right corner and navigating to Organization Settings.
 2. Select Data & Privacy on the left hand side.
 
-![image](https://user-images.githubusercontent.com/13734965/230127075-a1db0435-08c2-46b7-9c70-f6db335c379e.png)
+![Data & Privacy](https://raw.githubusercontent.com/ranic/mixpanel-docs/main/media/Other%20Bits/Privacy%20%26%20Security/export-deletion-request-form.png)
+
+## Exporting User Data
+
+You must submit an export request to export end user data. This is done to satisfy a GDPR right to access request from your users.
+
+1. In the “Data and Privacy” section, click Request Export.
+2. In the “Export User Data” box:
+- Select the either CCPA or GDPR under type of export.  
+- Select a project in the "Project" dropdown.
+- Under “User Data To Export”, select to export data for a single user or multiple users.
+   - For a single user, provide the distinct_id of the user.
+   - For multiple users, upload a list of distinct_ids as a .csv file. There is a limit of 2000 Users.
+3. Click Submit Request. Note that requests can take multiple weeks to process.
+![Data & Privacy](https://raw.githubusercontent.com/ranic/mixpanel-docs/main/media/Other%20Bits/Privacy%20%26%20Security/export-deletion-request-form.png)
+
+## Deleting User Data
+
+You must submit a deletion request to delete end user data. This is done to satisfy a GDPR right to erasure request from your users. 
+
+1. In the “Data and Privacy” section, click Request Deletion.
+2. In the “Request User Data Deletion” box:
+- Select the either CCPA or GDPR under type of export.  
+- Select a project in the "Project" dropdown.
+- Select to delete data for a single user or multiple users.
+   - For a single user, provide the distinct_id of the user.
+   - For multiple users, upload a list of distinct_ids as a CSV file. There is a limit of 2000 users per request.
+ 3. Click Submit Request. Note that requests can take up to several weeks to process.
+
+![Data & Privacy](https://raw.githubusercontent.com/ranic/mixpanel-docs/main/media/Other%20Bits/Privacy%20%26%20Security/delete-user-data-form.png)
+
+## GDPR Requests
+
+GDPR requests are specifically designed to satisfy requirements as outlined in the General Data Protection Regulation.
+
+**Export**
+A GDPR export contains all data connected to the requested distinct_id. 
+
+**Deletion**
+A GDPR deletion includes all data connected to the requested distinct_id.
+
+## CCPA Requests
+
+CCPA requests are specifically designed to satisfy requirements as outlined in the California Consumer Privacy Act.
+
+**Export**
+A CCPA export contains all data from the previous year connected to the requested distinct_id. 
+
+**Deletion**
+A CCPA deletion includes all data connected to the requested distinct_id. 
+
+**Disclosure types**
+There are three different disclosure types as outlined in the CCPA. To export or delete everything, you can select “Data” as the disclosure type. Select “Categories” to export or delete the data table headers. Select “Sources” to export or delete data connected to the means of data collection.
+
+# Opt Out Users
+
+Deleting data from Mixpanel will remove it permanently, but it will not prevent the data from being collected moving forward. If you wish to prevent personal data from being sent to Mixpanel, this logic must be built into a tracking implementation. See here for more information about opting users out of tracking.
 
 # Submit Requests via API
