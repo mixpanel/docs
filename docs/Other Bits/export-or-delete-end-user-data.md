@@ -58,7 +58,7 @@ You must submit an export request to export end user data. This is done to satis
    - For a single user, provide the distinct_id of the user.
    - For multiple users, upload a list of distinct_ids as a .csv file. There is a limit of 2000 Users.
 3. Click Submit Request. Note that requests can take multiple weeks to process.
-![Data & Privacy](https://raw.githubusercontent.com/ranic/mixpanel-docs/main/media/Other%20Bits/Privacy%20%26%20Security/export-deletion-request-form.png)
+![Data & Privacy](https://raw.githubusercontent.com/ranic/mixpanel-docs/main/media/Other%20Bits/Privacy%20%26%20Security/export-user-data-form.png)
 
 ## Deleting User Data
 
