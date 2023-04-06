@@ -11,12 +11,8 @@ To make an edit:
 * One of the docs maintainers will review that request within 3 days and merge when approved (usually faster if it’s a small change).
 * Once merged, changes will go live automatically, typically within 1-2 minutes.
 
-# Fixing Images
-All images/gifs also live in GitHub under the media/ folder. Updating an image takes 2 steps:
-1. Make a commit which uploads the new image or images to the media folder. 
-2. Make the change to the doc to link to that new image. 
-
-You should make both of these commits on the same branch, so that they can be reviewed and merged together. 
+# Images
+You can paste images directly into the markdown of the doc that you're editing. This will automatically upload the file to Github's CDN and embed the image in the doc.
 
 # Previewing Changes
 (TODO) All pull requests will generate a staging link in ReadMe with a staged copy of your changes. This lets you preview your changes without changing what's actually live. 
