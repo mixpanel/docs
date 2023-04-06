@@ -914,23 +914,13 @@ If you save a report that uses query time sampling, then a version of the report
 
 # Query Result Caching
 
-Mixpanel stores the results from a report query in cache, and presents these results from cache when appropriate. This saves time when running a complicated query multiple times, and allows you to surface previously calculated results near-instantaneously.
-
-Query result caching is currently fully supported in Insights, and for Insights cards, Retention cards, and Funnels cards in Boards.
-
-## Cached Query Results Presentation
-
-Mixpanel presents report results from cache depending on the last time you ran a query. The date range of the query will adjust how Mixpanel presents results from the cache.
+Mixpanel stores the results from a report query in cache, and presents these results from cache when appropriate. This saves time when running a complicated query multiple times, and allows you to surface previously calculated results near-instantaneously. The date range of the query will adjust how Mixpanel presents results from the cache.
 
 - If the query date range is over 30 days, then the query results are cached for up to 24 hours.
-- If the query date range is 1 day, then the query results are cached for up to 15 minutes.
 - If the query date range is 30 days or under, then the query results are cached for up to 3 hours.
+- If the query date range is 1 day, then the query results are cached for up to 15 minutes.
 
-After a query is run, any subsequent execution of the same query presents results from the cache. A subsequent query that pulls results from cache also initiates a background query. The results from this query updates the cache with the most recent results.
-
-While this highlights the default cache behavior, you can always refresh a report to include the most current data.
-
-You can see the last time that the cache was refreshed and a report was updated by viewing the “updated ... ago” field at the top of the query builder in Insights. This will indicate when the most recent results were surfaced in the report.
+You can see While this highlights the default cache behavior, you can always refresh a report to include the most current data.
 
 ![https://help.mixpanel.com/hc/article_attachments/360027469711/Cache_Update.png](https://help.mixpanel.com/hc/article_attachments/360027469711/Cache_Update.png)
 
@@ -1035,23 +1025,3 @@ If you don’t want to see “undefined” or "null" values in your report, you 
 If you’re getting “undefined” property values but think you should not be, troubleshoot the issue using the events page. Click on "Filter" in the top left to look at events coming in where the property in question “is not set.” You can then use this data to look at your code and figure out why some events are being fired without that property.
 
 ![https://help.mixpanel.com/hc/article_attachments/6897521421332/mceclip0.png](https://help.mixpanel.com/hc/article_attachments/6897521421332/mceclip0.png)
-
-# User Side Panel
-
-Clicking on certain user icons shows you contextual information about the user, such as their project role and reports that are relevant to them.
-
-Close the side panel by clicking the X at the top right or anywhere outside of the side panel.
-
-![https://help.mixpanel.com/hc/article_attachments/4402544262164/UserSidePanel.png](https://help.mixpanel.com/hc/article_attachments/4402544262164/UserSidePanel.png)
-
-## User Information
-
-Upload an avatar of yourself and fill out a short bio that other organization users can see.
-
-## Most Viewed
-
-Most Viewed shows some of the user's most viewed reports and Boards that have been shared with you.
-
-### Recently Created
-
-Recently Created shows the reports and Boards created by that user in the last 30 days that have been shared with you.
