@@ -956,8 +956,6 @@ While all reports in Mixpanel utilize your event data and properties to deliver 
 
 Reports use events and properties to target users, segment data, and filter data. This guide will clarify which reports can use which event types and properties.
 
-## Analysis
-
 **Insights:** All event types and properties are available in Insights to breakdown and filter data.
 
 **Funnels:** Funnels can be calculated by unique or total events. All event types and properties are available to breakdown and filter data.
@@ -966,9 +964,7 @@ Reports use events and properties to target users, segment data, and filter data
 
 **Signal:** Signal uses only event properties, not user profile properties. However, all event types are available to filter data.
 
-## Users
-
-All event types and properties are available in Explore and Cohorts to filter users.
+**Users:** All event types and properties are available in Users.
 
 # Downloading Reports from Mixpanel
 
