@@ -178,4 +178,4 @@ If you are on Original ID Merge, we do have a [$merge](https://developer.mixpane
 ## What is the status of Mixpanel's legacy `alias` method?
 Prior to March 2020, the only way to connect users together was the `.alias()` method. This was very limited and was not retroactive; this meant that if a user used two devices and then logged in, you would lose activity for the user from one of the devices.
 
-If you set up Mixpanel prior to 2020, you may have implemented with the `alias()` method. Alias is still supported in its original state, but if you want to revisit your identity management strategy, we recommend setting up a new Mixpanel project and using the best practices outlined in this guide.
+If you set up Mixpanel prior to 2020, you may have implemented with the `alias()` method. Alias is still supported in its original state and we have preserved its documentation [here](https://github.com/mixpanel/docs/blob/main/legacy/aliases.md), but if you want to revisit your identity management strategy, we recommend setting up a new Mixpanel project and using the best practices outlined in this guide.
