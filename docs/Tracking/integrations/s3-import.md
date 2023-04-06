@@ -198,7 +198,7 @@ If you navigate to CloudWatch logs, you will see a more detailed log that includ
   ]
 }
 [/block]
-Finally, let's confirm that the events made it into Mixpanel. Head to [Live View](https://mixpanel.com/report/live), pick `test_event` in the event picker, and you should see the events you just imported.
+Finally, let's confirm that the events made it into Mixpanel. Head to the [Events](https://mixpanel.com/report/live) page, pick `test_event` in the event picker, and you should see the events you just imported.
 [block:image]
 {
   "images": [
@@ -210,7 +210,7 @@ Finally, let's confirm that the events made it into Mixpanel. Head to [Live View
         1538,
         "#fcfcfc"
       ],
-      "caption": "You can expand any event in Liveview to see all its properties."
+      "caption": "You can expand any event on the Events page to see all its properties."
     }
   ]
 }
