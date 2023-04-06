@@ -135,7 +135,7 @@ If an authentication app is your preferred method of authentication, you can log
 
 ### Login via Authy (SMS)
 
-Mixpanel is integrated with Authy (a Twilio service), so if you download the Authy app, you can add your email address and phone number. Then, you can add your Mixpanel account to the app. You can learn more about Authy at https://www.authy.com/. Please feel free to contact support if you need additional assistance here.
+Mixpanel is integrated with Authy (a Twilio service), so if you download the Authy app, you can add your email address and phone number. Then, you can add your Mixpanel account to the app. You can learn more about Authy at https://www.authy.com/.
 
 # Single Sign-On
 
@@ -201,7 +201,7 @@ Setting up SSO with Okta requires that you configure a custom app in Okta. Follo
 
 **One Login**
 
-One Login only requires that you get the Postback URL. The application is in the Onelogin application store as "Mixpanel" and supports autoprovisioning. You will just need to copy a SCIM token from Mixpanel into the provisioning token box in the Onelogin app. You can learn how to generate a token here.
+One Login only requires that you get the Postback URL. The application is in the Onelogin application store as "Mixpanel" and supports autoprovisioning. You will just need to copy a SCIM token from Mixpanel into the provisioning token box in the Onelogin app. You can learn how to generate a token [here](manage-projects#access-keys).
   
 **G-Suite**
   
