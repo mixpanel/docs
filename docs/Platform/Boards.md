@@ -226,7 +226,7 @@ Check "Require Passcode" to enable password protection for the specific Public L
 
 ![https://help.mixpanel.com/hc/article_attachments/4402033944212/Screen_Shot_2021-06-09_at_3.08.45_PM.png](https://help.mixpanel.com/hc/article_attachments/4402033944212/Screen_Shot_2021-06-09_at_3.08.45_PM.png)
 
-Use the copy button next to the public URL if you want require passcode.Use the Embed Link button to copy the public URL with the passcode embedded.
+Use the copy button next to the public URL if you want require passcode. Use the Embed Link button to copy the public URL with the passcode embedded.
 
 ![https://help.mixpanel.com/hc/article_attachments/4402034004500/Screen_Shot_2021-06-09_at_3.09.17_PM.png](https://help.mixpanel.com/hc/article_attachments/4402034004500/Screen_Shot_2021-06-09_at_3.09.17_PM.png)
 
