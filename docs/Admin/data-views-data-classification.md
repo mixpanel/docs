@@ -31,7 +31,7 @@ Engineering or Product teams working on a specific version can use Data Views to
 
 ## Create Data View
 
-To create a new Data View click on + Create Data View in the top right of the Data Views settings. Add a name and description to your Data View and click Save. The name of the Data View cannot be longer than 255 characters.
+To create a new Data View, navigate to **Project Settings** then click on **+ Create Data View** in the top right of the Data Views settings. Add a name and description to your Data View and click **Save**. The name of the Data View cannot be longer than 255 characters.
 
 ![Create Data View](https://raw.githubusercontent.com/ranic/mixpanel-docs/main/media/Admin/Data%20Governance/Data%20Views%20%26%20Data%20Classification/create-data-view.png)
 
@@ -45,6 +45,7 @@ Navigate to PROJECT SETTINGS, and select at the left-hand menu  Data Views.
 
 ![Manage Data View Project Settings](https://raw.githubusercontent.com/ranic/mixpanel-docs/main/media/Admin/Data%20Governance/Data%20Views%20%26%20Data%20Classification/manage-data-view-project-settings.png)
 
+### Default Data View
 All projects have a global Data View called “All Project Data.” This Data View has no data filters and gives users access to all the data in a project. The global Data View in a project is equivalent to a Mixpanel project without Data Views.
 
 The “All Project Data” Data View starts as the default Data View of a project for any new users added to the project. You can decide which Data View you want to set as default by checking the box next to the Workspace name and selecting Set Default.
