@@ -456,7 +456,7 @@ mixpanel.init(
 );
 ```
 
-## Automatically Tracked Properties
+## Default Properties Collected by Mixpanel
 
 
 ### Event Properties
