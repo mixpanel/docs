@@ -64,14 +64,14 @@ After the Editing Controls and Visibility are set upon Data View creation, they 
 
 ![Data Views Overview](https://raw.githubusercontent.com/ranic/mixpanel-docs/main/media/Admin/Data%20Governance/Data%20Views%20%26%20Data%20Classification/data-view-overview.png)
 
-## Manage Data View Filters
+### Manage Data View Filters
 
 Filters determine what data is accessible within a Data View.
 
 ![Data Views Filters](https://raw.githubusercontent.com/ranic/mixpanel-docs/main/media/Admin/Data%20Governance/Data%20Views%20%26%20Data%20Classification/manage-data-view-filters.png)
 You can apply multiple event, event property, and user profile property filters to a Data View.
 
-## Add Users or Teams
+### Add Users or Teams
 
 Click + Add User to add individual project members to your Data View. The modal shows only users that are part of your project. 
 
