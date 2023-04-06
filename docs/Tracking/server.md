@@ -8,32 +8,24 @@ updatedAt: "2023-03-26T23:48:54.396Z"
 You can use Mixpanel's Server SDKs to send events from your backend servers to Mixpanel. We [recommend](doc:plan-your-implementation#need-to-start-tracking-product-data) server-side tracking, since it is more reliable and easier to maintain than web/mobile tracking.
 
 ### Step 1: Install the SDK
-[block:code]
-{
-  "codes": [
-    {
-      "code": "pip3 install mixpanel",
-      "language": "shell",
-      "name": "Python"
-    },
-    {
-      "code": "npm install mixpanel",
-      "language": "shell",
-      "name": "Node.js"
-    },
-    {
-      "code": "gem install mixpanel-ruby",
-      "language": "shell",
-      "name": "Ruby"
-    },
-    {
-      "code": "<!--Include the following in your project's pom.xml-->\n<dependency>\n    <groupId>com.mixpanel</groupId>\n    <artifactId>mixpanel-java</artifactId>\n    <version>1.4.4</version>\n</dependency>",
-      "language": "xml",
-      "name": "Java"
-    }
-  ]
-}
-[/block]
+```shell Python
+pip3 install mixpanel
+```
+```shell Node.js
+npm install mixpanel
+```
+```shell Ruby
+gem install mixpanel-ruby
+```
+```xml Java
+<!--Include the following in your project's pom.xml-->
+  <dependency>
+    <groupId>com.mixpanel</groupId>
+    <artifactId>mixpanel-java</artifactId>
+    <version>1.4.4</version>
+  </dependency>
+```
+
 ### Step 2: Track your first event
 
 You'll need your Project Token for this, which you can get [here](mixpanel.com/settings/project).
