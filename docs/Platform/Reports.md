@@ -75,7 +75,7 @@ Determine the time range of a query by clicking on the time selector. The time s
 
 All dates and times in Mixpanel reflect the project timezone. The default on most reports is “Last 30 days” (displayed as "30D"), but there are a variety of pre-set options, as well as the option to select a custom date range.
 
-![https://help.mixpanel.com/hc/article_attachments/7710650223380/Screen_Shot_2022-07-11_at_3.12.20_PM.png](https://help.mixpanel.com/hc/article_attachments/7710650223380/Screen_Shot_2022-07-11_at_3.12.20_PM.png)
+<img width="387" alt="image" src="https://user-images.githubusercontent.com/2077899/230281466-11bfdbf7-0820-41c0-a4e8-b802faabaf20.png">
 
 For these date ranges, the output shows results from the last complete 30 days, plus any results from the current incomplete day.
 
