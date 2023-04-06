@@ -23,7 +23,7 @@ Create personal boards or project boards and share them with your team to help y
 
 ## Step 1: Navigating Boards
 
-Before creating a board of your board, it's best to explore existing boards within your Mixpanel project. There's a good chance that someone has already created a board that may be of interest to you. The best way to navigate to existing boards within your Mixpanel project is the directory on the lefthand side of the page. This directory makes it easy to access your most-used boards by organizing them into several sections:
+Before creating a board of your own, it's best to explore existing boards within your Mixpanel project. There's a good chance that someone has already created a board that may be of interest to you. The best way to navigate to existing boards within your Mixpanel project is the directory on the lefthand side of the page. This directory makes it easy to access your most-used boards by organizing them into several sections:
 
 ![https://help.mixpanel.com/hc/article_attachments/11441973595156](https://help.mixpanel.com/hc/article_attachments/11441973595156)
 
