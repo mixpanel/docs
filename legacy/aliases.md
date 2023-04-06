@@ -1,4 +1,8 @@
-This article reflects a legacy version of identity management in Mixpanel, for projects that were created prior to 2020. See our latest recommendations [here](https://developer.mixpanel.com/docs/identity-management).
+This article reflects a legacy version of identity management in Mixpanel, for projects that were created prior to 2020. If you have ID Merge enabled, you will see it in your Mixpanel [project settings](https://mixpanel.com/settings/project):
+
+![image](https://user-images.githubusercontent.com/2077899/230244606-e12422cd-d937-4328-ac58-8cc60f919df7.png)
+
+If you're using ID Merge, see our latest recommendations [here](https://developer.mixpanel.com/docs/identity-management).
 
 # Manage Identity with Alias and Identify Methods
 An ideal integration enables you to track the actions of your users across your application, website or other platform when using Mixpanel.
