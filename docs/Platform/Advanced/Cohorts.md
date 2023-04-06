@@ -24,34 +24,34 @@ The [Cohort Builder](https://mixpanel.com/report/users) lets you define cohorts 
  
 Let's walk through some of cohorts you can create with the builder.
 
-Filter by users who watched more than 10 videos in the last 7 days:
+### Filter by users who watched more than 10 videos in the last 7 days
 ![https://help.mixpanel.com/hc/article_attachments/360091745932/Kapture_2021-04-06_at_13.43.06.gif](https://help.mixpanel.com/hc/article_attachments/360091745932/Kapture_2021-04-06_at_13.43.06.gif)
 
-Filter by whether the events were performed by business accounts:
+### Filter by whether the events were performed by business accounts:
 ![https://help.mixpanel.com/hc/article_attachments/360091746472/Kapture_2021-04-06_at_13.44.53.gif](https://help.mixpanel.com/hc/article_attachments/360091746472/Kapture_2021-04-06_at_13.44.53.gif)
 
-Filter to only users who watched a video for the very first time in the past 30 days:
+### Filter to only users who watched a video for the very first time in the past 30 days
 ![https://help.mixpanel.com/hc/article_attachments/360091746612/Kapture_2021-04-06_at_13.52.43.gif](https://help.mixpanel.com/hc/article_attachments/360091746612/Kapture_2021-04-06_at_13.52.43.gif)
 
-Filter to users that watched more than 300 mins of video in the previous 30 days:
+### Filter to users that watched more than 300 mins of video in the previous 30 days:
 ![https://help.mixpanel.com/hc/article_attachments/360091743631/Kapture_2021-04-06_at_13.54.25.gif](https://help.mixpanel.com/hc/article_attachments/360091743631/Kapture_2021-04-06_at_13.54.25.gif)
 
-Filter to users whose average video watch time was over 15 minutes in the previous 30 days:
+### Filter to users whose average video watch time was over 15 minutes in the previous 30 days
 ![https://help.mixpanel.com/hc/article_attachments/360091747052/Kapture_2021-04-06_at_13.57.34.gif](https://help.mixpanel.com/hc/article_attachments/360091747052/Kapture_2021-04-06_at_13.57.34.gif)
 
-Filter to users that purchased items in 3 unique categories in the last 30 days:
+### Filter to users that purchased items in 3 unique categories in the last 30 days
 ![https://help.mixpanel.com/hc/article_attachments/360091747132/Kapture_2021-04-06_at_14.00.02.gif](https://help.mixpanel.com/hc/article_attachments/360091747132/Kapture_2021-04-06_at_14.00.02.gif)
 
-Filter to users that watched a video on at least 3 unique days in the previous 30 days:
+### Filter to users that watched a video on at least 3 unique days in the previous 30 days
 ![https://help.mixpanel.com/hc/article_attachments/360091744271/Kapture_2021-04-06_at_14.05.11.gif](https://help.mixpanel.com/hc/article_attachments/360091744271/Kapture_2021-04-06_at_14.05.11.gif)
 
-Filter to users that made a purchase on 4 or more unique weeks in the last 3 months:
+### Filter to users that made a purchase on 4 or more unique weeks in the last 3 months
 ![https://help.mixpanel.com/hc/article_attachments/360091744711/Kapture_2021-04-06_at_14.09.03.gif](https://help.mixpanel.com/hc/article_attachments/360091744711/Kapture_2021-04-06_at_14.09.03.gif)
   
-Filter to users that are above the age of 60:
+### Filter to users that are above the age of 60
 ![https://help.mixpanel.com/hc/article_attachments/360091745051/Kapture_2021-04-06_at_14.13.40.gif](https://help.mixpanel.com/hc/article_attachments/360091745051/Kapture_2021-04-06_at_14.13.40.gif)
 
-You can also chain any of these cohorts together using the AND/OR operators:
+### Chaining cohorts together using the AND/OR operators
 ![https://help.mixpanel.com/hc/article_attachments/360091749052/Kapture_2021-04-06_at_14.31.41.gif](https://help.mixpanel.com/hc/article_attachments/360091749052/Kapture_2021-04-06_at_14.31.41.gif)
 
 You can also access the builder directly from the property picker in any of our reports, by clicking Create Custom > Cohort. This will create a temporary cohort that only persists for your analysis session.
