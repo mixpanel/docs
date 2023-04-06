@@ -1,4 +1,4 @@
-This article reflects a legacy version of identity management in Mixpanel, for projects that were created prior to 2020. If you have ID Merge enabled, you will see it in your Mixpanel [project settings](https://mixpanel.com/settings/project):
+This article reflects a legacy version of identity management in Mixpanel, for projects that were created prior to 2020. In 2020, we released hourly merge. If you have ID Merge enabled, you will see it in your Mixpanel [project settings](https://mixpanel.com/settings/project):
 
 ![image](https://user-images.githubusercontent.com/2077899/230244606-e12422cd-d937-4328-ac58-8cc60f919df7.png)
 
