@@ -210,7 +210,7 @@ In order to clarify the results in your Insights report add detailed annotations
 
 Only project admins can create, save, and delete annotations.
 
-To add an annotation, hover your mouse over the point on the chart you want to annotate, and click the blue **+** button that appears.Enter a description for the annotation, such as a holiday that occurred on that day or the end date of your fiscal year, then click **Save**. If you accidentally selected the incorrect date on the chart, you can edit the date and time of the annotation in this window.
+To add an annotation, hover your mouse over the point on the chart you want to annotate, and click the blue **+** button that appears. Enter a description for the annotation, such as a holiday that occurred on that day or the end date of your fiscal year, then click **Save**. If you accidentally selected the incorrect date on the chart, you can edit the date and time of the annotation in this window.
 
 ![Annotations 1](https://raw.githubusercontent.com/ranic/mixpanel-docs/main/media/Platform/Reports/Insights/advanced-annotations-1.png)
 
