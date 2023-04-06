@@ -27,9 +27,6 @@ Let's walk through some of cohorts you can create with the builder.
 ### Filter by users who watched more than 10 videos in the last 7 days
 ![https://help.mixpanel.com/hc/article_attachments/360091745932/Kapture_2021-04-06_at_13.43.06.gif](https://help.mixpanel.com/hc/article_attachments/360091745932/Kapture_2021-04-06_at_13.43.06.gif)
 
-### Filter by whether the events were performed by business accounts:
-![https://help.mixpanel.com/hc/article_attachments/360091746472/Kapture_2021-04-06_at_13.44.53.gif](https://help.mixpanel.com/hc/article_attachments/360091746472/Kapture_2021-04-06_at_13.44.53.gif)
-
 ### Filter to only users who watched a video for the very first time in the past 30 days
 ![https://help.mixpanel.com/hc/article_attachments/360091746612/Kapture_2021-04-06_at_13.52.43.gif](https://help.mixpanel.com/hc/article_attachments/360091746612/Kapture_2021-04-06_at_13.52.43.gif)
 
