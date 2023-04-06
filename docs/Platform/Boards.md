@@ -154,8 +154,7 @@ While the current [free plan](http://mixpanel.com/pricing) has a limit of 5 sa
 
 - **You only need two events** to use the template (Sign Up & Value Moment)
 - In just a few clicks Mixpanel’s Company KPIs Board template generates 9 reports, covering **key KPIs for Engagement, Retention, and Growth**
-- If you are a free plan user, the reports in the template don’t count towards your limit until you modify and save them
-t as described above, but clicking and dragging the control under the row will resize it to any height above that minimum.
+- If you are a free plan user, the reports in the template don’t count towards your limit until you modify and save them as described above, but clicking and dragging the control under the row will resize it to any height above that minimum.
 
 ### Board-wide Date Ranges and Filters
 
