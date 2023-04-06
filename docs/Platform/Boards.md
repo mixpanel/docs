@@ -91,7 +91,7 @@ Row heights can now be adjusted to either show more report content, or hide empt
 
 A row's height is initially determined by the tallest card within that row. Text cards can be very short if they contain only one line of text, or very tall if they contain many lines. Meanwhile, reports always start at their minimum height, but may warrant expansion in order to show more data (more bars on a bar chart, for example).
 
-A row will start life at the minimum possible heigh
+A row will start life at the minimum possible height
 
 # Advanced
 
