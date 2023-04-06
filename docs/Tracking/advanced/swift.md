@@ -544,7 +544,7 @@ Mixpanel's SDKs have a legacy feature to automatically collect common mobile eve
 | $ae_iap | In App Purchase (IAP) | Executes when a user conducts an in-app purchase through your app. |
 
 
-## Automatically Tracked Properties
+## Default Properties Collected by Mixpanel
 
 ### Event Properties
 
