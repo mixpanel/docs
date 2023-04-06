@@ -63,4 +63,4 @@ You'll need your Project Token for this, which you can get [here](mixpanel.com/s
 [/block]
 🎉 Congratulations, you've tracked your first event! You can see it in Mixpanel via the [Events](mixpanel.com/report/events) page. 
 
-Don't see your language here? See all our libraries in [Github](https://www.github.com/mixpanel). We also have a simple [HTTP API](doc:cloud-ingestion) for any languages we don't support.
+Don't see your language here? See all our libraries in [Github](https://www.github.com/mixpanel) and our references for [Python](doc:python), [Node](doc:nodejs), [Ruby](doc:ruby), and [Java](doc:java). We also have a simple [HTTP API](doc:cloud-ingestion) for any languages we don't support.
