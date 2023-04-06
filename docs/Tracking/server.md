@@ -9,7 +9,7 @@ You can use Mixpanel's Server SDKs to send events from your backend servers to M
 
 ### Step 1: Install the SDK
 ```shell Python
-pip3 install mixpanel
+pip install mixpanel
 ```
 ```shell Node.js
 npm install mixpanel
