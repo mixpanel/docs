@@ -14,6 +14,9 @@ To make an edit:
 # Adding Images
 You can paste images directly into the markdown of the doc that you're editing. This will automatically upload the file to Github's CDN and embed the image in the doc.
 
+You can customize the image's width or height using HTML. Here's a sample (replace the image link with the one generated when you paste your image in):
+`<img height=“387” alt=“image” src=“https://user-images.githubusercontent.com/2077899/230281466-11bfdbf7-0820-41c0-a4e8-b802faabaf20.png”>`
+
 # Previewing Changes
 (TODO) All pull requests will generate a staging link in ReadMe with a staged copy of your changes. This lets you preview your changes without changing what's actually live. 
 
