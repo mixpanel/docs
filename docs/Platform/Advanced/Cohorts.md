@@ -30,7 +30,7 @@ Let's walk through some of cohorts you can create with the builder.
 ### Filter to only users who watched a video for the very first time in the past 30 days
 ![https://help.mixpanel.com/hc/article_attachments/360091746612/Kapture_2021-04-06_at_13.52.43.gif](https://help.mixpanel.com/hc/article_attachments/360091746612/Kapture_2021-04-06_at_13.52.43.gif)
 
-### Filter to users that watched more than 300 mins of video in the previous 30 days:
+### Filter to users that watched more than 300 mins of video in the previous 30 days
 ![https://help.mixpanel.com/hc/article_attachments/360091743631/Kapture_2021-04-06_at_13.54.25.gif](https://help.mixpanel.com/hc/article_attachments/360091743631/Kapture_2021-04-06_at_13.54.25.gif)
 
 ### Filter to users whose average video watch time was over 15 minutes in the previous 30 days
