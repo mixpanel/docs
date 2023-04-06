@@ -75,7 +75,7 @@ in the dropdown menu and select "Cohort. A window will pop up where you can spec
 
 Connect Mixpanel to your Slack workspace to help share reports with your colleagues faster. You can (1) set up an alert to send a message to a Slack channel, (2) set up a Board Digest to send a message to a Slack channel, or (3) share previews of any Mixpanel report in Slack.
 
-To send an alert to a Slack Channel, see [Custom Alerts](https://help.mixpanel.com/hc/en-us/articles/360028142571)To send a digest to a Slack Channel, see [Advanced Board Functionality - Digests](https://help.mixpanel.com/hc/en-us/articles/4409850288276#board-digests)
+To send an alert to a Slack Channel, see [Custom Alerts](https://help.mixpanel.com/hc/en-us/articles/360028142571). To send a digest to a Slack Channel, see [Advanced Board Functionality - Digests](https://help.mixpanel.com/hc/en-us/articles/4409850288276#board-digests).
 
 The Mixpanel application for Slack will also automatically unfurl a preview of any Mixpanel link, including chart images for certain reports, making it easy for anyone in your Slack workspace to learn from your Mixpanel analyses.
 
