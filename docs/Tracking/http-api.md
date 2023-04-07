@@ -1,6 +1,6 @@
 ---
 title: "HTTP API"
-slug: "http-api"
+slug: "cloud-ingestion"
 hidden: false
 ---
 If you don't see an SDK or an integration in your language, you can send events to our API directly.
