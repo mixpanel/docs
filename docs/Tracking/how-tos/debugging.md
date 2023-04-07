@@ -6,14 +6,15 @@ hidden: false
 
 This document walks through best practices for data validation and debugging your Mixpanel implementation.
 
-# Before Debugging: Send Events
+# Before you Debug
+
+## Create a Test Environment
+Mixpanel recommends that you create a [separate development environment and Mixpanel project](https://developer.mixpanel.com/docs/set-up-projects) to validate your event data. This ensures htat your testing data does not contaminate your production environment. 
+
+## Send Events
 Mixpanel doesn't receive any data until you start sending events. If you haven't started sending data to Mixpanel, check out our quickstart guides for [JavaScript](https://developer.mixpanel.com/docs/javascript-quickstart), [Server](https://developer.mixpanel.com/v3.19/docs/server), and [Mobile](https://developer.mixpanel.com/docs/react-native-quickstart). We have a simple [HTTP API](https://developer.mixpanel.com/docs/cloud-ingestion) for any languages we don't support.
 
-Mixpanel recommends that you create a [separate development environment and Mixpanel project](https://developer.mixpanel.com/docs/set-up-projects) to validate your event data.
-
-# Tools for Debugging
-
-Theres are two primary places to inspect your raw events as they flow into your Mixpanel project: Events and User Profiles. 
+🎉 Congratulations, you're ready to debug! Theres are two primary places to inspect your raw events as they flow into your Mixpanel project: Events and User Profiles. 
 
 ## Debugging with Events
 
@@ -39,7 +40,7 @@ To locate your User Profile from Events, click the User icon on the left to view
 User Profiles allow you to see the events feed and all user properties for a specific user. The Activity Feed displays a user's entire event history. The most recent activity appears at the top of the list. By reviewing User Profiles, you can validate:
 
 1. User Properties set on the profile correctly. Keep in mind that user properties should reflect **the most recent value** of the property, unlike event properties which reflect the value at the time of the event.
-2. Whether the expected events are appearing in the Activity Feed correctly and in order.
+2. Whether the expected events are appearing in the Activity Feed correctly and in order. For example, if you only trigger an event onces but two instances of the event appear in the event stream, you should check your initialization and the logic triggering the event for errors.
 
 ![User Profile](https://raw.githubusercontent.com/ranic/mixpanel-docs/main/media/Tracking/user-profile.png)
 
@@ -57,13 +58,13 @@ If you are using one of Mixpanel's client-side SDKs, you can enable debug mode t
 
 ### Debugging with the Browser Console (Web)
 
-If you're using Mixpanel in a web application, you can use your browser's developer console to view Mixpanel API calls being made from each page. When opening up the console, you can look at the XHR requests in the Network tab. For instance, here is an example /track call being made:
+If you're using Mixpanel in a web application, you can use your browser's developer console to view Mixpanel API calls being made from each page. 
 
-The data attached to the track call is base64 encoded:
-
-Base64 decoding the parameters show the events and properties:
-
-From here, you can then validate that the event was directed to the right project token and using Events, and confirm that the property values were properly sent to Mixpanel.
+1. On your website, [enable debug mode](https://developer.mixpanel.com/docs/javascript#debug-mode).
+2. Open your browser's developer console and navigate to the Netowrk > Fetch/XHR tab. 
+3. Perform an action that triggers the `mixpanel.track` call.
+4. Look for a request triggered to `api.mixpanel.com/track`. Troubleshoot any error messages.
+6. If the request is successful, check that the "token" in the data payload matches the token in your Project Settings. From here, you can then validate that the event was directed to the right project token and using Events, and confirm that the data is arriving correctly in Mixpanel.
 
 ## Customize Flush Interval (Mobile)
 
