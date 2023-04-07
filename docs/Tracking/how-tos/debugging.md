@@ -6,7 +6,7 @@ hidden: false
 
 This document walks through best practices for data validation and debugging your Mixpanel implementation.
 
-# Send Events to Mixpanel
+# Before Debugging: Send Events
 Mixpanel doesn't receive any data until you start sending events. If you haven't started sending data to Mixpanel, check out our quickstart guides for [JavaScript](https://developer.mixpanel.com/docs/javascript-quickstart), [Server](https://developer.mixpanel.com/v3.19/docs/server), and [Mobile](https://developer.mixpanel.com/docs/react-native-quickstart). We have a simple [HTTP API](https://developer.mixpanel.com/docs/cloud-ingestion) for any languages we don't support.
 
 Mixpanel recommends that you create a [separate development environment and Mixpanel project](https://developer.mixpanel.com/docs/set-up-projects) to validate your event data.
@@ -17,31 +17,29 @@ Theres are two primary places to inspect your raw events as they flow into your 
 
 ## Debugging with Events
 
-Use Events to confirm that events are arriving to your Mixpanel project, so you can troubleshoot your Mixpanel setup quickly. With Events, you can see a feed of events along with all of their properties coming into Mixpanel to validate that they are being sent in the expected format.
+Use Events to confirm that events are arriving to your Mixpanel project, so you can troubleshoot your Mixpanel setup quickly. With Events, you can see a feed of events along with all of their properties coming into Mixpanel.
 
-To validate that events are being triggered correctly, we recommend that you search/filter Events for your own activity. You can search or filter Events to find a specific event using any information you know is available in the event's raw payload.
+### Find Yourself
+After you start sending  recommend that you search/filter Events for your own activity. Manually fire some of those events on your own device, then search or filter Events to find a specific event using any information you know is available in the event's raw payload. Search by `$user_id`, `$device_id`, `distinct_id`, or user property values. If you are using Mixpanel's JavaScript SDK, you can use [`mixpanel.get_distinct_id`](https://developer.mixpanel.com/docs/javascript-full-api-reference#mixpanelget_distinct_id) to return your own distinct_id in your browser console and copy the distinct_id value into the Events search bar.
 
 ![Events Filter](https://raw.githubusercontent.com/ranic/mixpanel-docs/main/media/Tracking/events-filter.png)
 
-A few tips to help you identify your own activity in Events:
+Once you have identified one of your own events in Events, you can inspect all of the properties that were sent with your event. Toggle between the Your Properties and Mixpanel Properties tabs to determine which properties are custom to your Mixpanel implementation and which are send by default by Mixpanel. Toggle JSON mode to view the complete JSON object Mixpanel received from the calls you sent. We recommend checking that:
 
-1. Filter Events for All Events for a property that will help you identify your own events, such as:
-- All Events where Name = Alice (assuming you are sending a $name property with the value Alice)
-- All Events where City = `[Your Current Location]` (assuming you are using Mixpanel's Web and Mobile SDKs or tracking geolocation by supplying the `$ip` property  on an event)
-2. If you are using Mixpanel's JavaScript SDK, you can use [`mixpanel.get_distinct_id`](https://developer.mixpanel.com/docs/javascript-full-api-reference#mixpanelget_distinct_id) to return your own distinct_id in your browser console and copy the distinct_id value into the Events search bar.
+1. Events are triggered as expected and requests are successful.
+2. Events contain all of the expected properties and event property values, including distinct_id. Keep in mind that event properties should reflect the value **at the time of the event,** whereas user properties reflect the most recent value.
+3. Property values are sent with the expected data type.
 
-Once you have identified one of your own events in Events, you can inspect all of the properties that were sent with your event. Toggle between the Your Properties and Mixpanel Properties tabs to determine which properties are custom to your Mixpanel implementation and which are send by default by Mixpanel. Toggle JSON mode to view the complete JSON object Mixpanel received from the calls you sent.
-
-To locate the User Profile associated with your events, click the User icon on the left to view your User Profile.
+To locate your User Profile from Events, click the User icon on the left to view your User Profile.
 
 ![View User Profile in Events](https://raw.githubusercontent.com/ranic/mixpanel-docs/main/media/Tracking/view-profile.png)
 
 ## Debugging with User Profiles
 
-User Profiles allow you to see the events feed and all user properties for a specific user. By reviewing User Profiles, you can validate:
+User Profiles allow you to see the events feed and all user properties for a specific user. The Activity Feed displays a user's entire event history. The most recent activity appears at the top of the list. By reviewing User Profiles, you can validate:
 
-1. User Properties set on the profile correctly
-2. Whether the expected events are appearing in the Activity Feed correctly and in order
+1. User Properties set on the profile correctly. Keep in mind that user properties should reflect **the most recent value** of the property, unlike event properties which reflect the value at the time of the event.
+2. Whether the expected events are appearing in the Activity Feed correctly and in order.
 
 ![User Profile](https://raw.githubusercontent.com/ranic/mixpanel-docs/main/media/Tracking/user-profile.png)
 
