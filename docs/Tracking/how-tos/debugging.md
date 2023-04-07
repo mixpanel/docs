@@ -4,9 +4,12 @@ slug: "debugging"
 hidden: false
 ---
 
-This document walks through best practices for debugging your Mixpanel implementation and data discrepancies. The tips below assume that you are already tracking events and creating profiles for your users.
+This document walks through best practices for data validation and debugging your Mixpanel implementation.
 
-If you haven't set up Mixpanel yet, check out our quickstart guides for [JavaScript](https://developer.mixpanel.com/v3.19/docs/javascript-quickstart), [Server](https://developer.mixpanel.com/v3.19/docs/server), and [Mobile](https://developer.mixpanel.com/v3.19/docs/react-native-quickstart). We have a simple [HTTP API](https://developer.mixpanel.com/v3.19/docs/cloud-ingestion) for any languages we don't support.
+# Send Events to Mixpanel
+Mixpanel doesn't receive any data until you start sending events. If you haven't started sending data to Mixpanel, check out our quickstart guides for [JavaScript](https://developer.mixpanel.com/docs/javascript-quickstart), [Server](https://developer.mixpanel.com/v3.19/docs/server), and [Mobile](https://developer.mixpanel.com/docs/react-native-quickstart). We have a simple [HTTP API](https://developer.mixpanel.com/docs/cloud-ingestion) for any languages we don't support.
+
+Mixpanel recommends that you create a [separate development environment and Mixpanel project](https://developer.mixpanel.com/docs/set-up-projects) to validate your event data.
 
 # Tools for Debugging
 
@@ -14,7 +17,7 @@ Theres are two primary places to inspect your raw events as they flow into your 
 
 ## Debugging with Events
 
-Events is a real-time tool that helps you confirm that your events are arriving to your Mixpanel project, so you can troubleshoot your Mixpanel setup quickly. With Events, you can see a feed of events along with all of their properties coming into Mixpanel to validate that they are being sent in the expected format.
+Use Events to confirm that events are arriving to your Mixpanel project, so you can troubleshoot your Mixpanel setup quickly. With Events, you can see a feed of events along with all of their properties coming into Mixpanel to validate that they are being sent in the expected format.
 
 To validate that events are being triggered correctly, we recommend that you search/filter Events for your own activity. You can search or filter Events to find a specific event using any information you know is available in the event's raw payload.
 
@@ -56,7 +59,7 @@ If you are using one of Mixpanel's client-side SDKs, you can enable debug mode t
 
 ### Debugging with the Browser Console (Web)
 
-In web, you can view the Mixpanel API calls being made from the browser developer console.  When opening up the console, you can look at the XHR requests in the network tab and find the Mixpanel API call when firing an event you have Mixpanel instrumented on.  For instance, here is an example /track call being made:
+If you're using Mixpanel in a web application, you can use your browser's developer console to view Mixpanel API calls being made from each page. When opening up the console, you can look at the XHR requests in the Network tab. For instance, here is an example /track call being made:
 
 The data attached to the track call is base64 encoded:
 
