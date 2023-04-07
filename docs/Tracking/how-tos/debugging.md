@@ -9,7 +9,7 @@ This document walks through best practices for data validation and debugging you
 # Before you Debug
 
 ## Create a Test Environment
-Mixpanel recommends that you create a [separate development environment and Mixpanel project](https://developer.mixpanel.com/docs/set-up-projects) to validate your event data. This ensures htat your testing data does not contaminate your production environment. 
+Mixpanel recommends that you create a [separate development environment and Mixpanel project](https://developer.mixpanel.com/docs/set-up-projects) to validate your event data. This ensures that your testing data does not contaminate your production environment. 
 
 ## Send Events
 Mixpanel doesn't receive any data until you start sending events. If you haven't started sending data to Mixpanel, check out our quickstart guides for [JavaScript](https://developer.mixpanel.com/docs/javascript-quickstart), [Server](https://developer.mixpanel.com/v3.19/docs/server), and [Mobile](https://developer.mixpanel.com/docs/react-native-quickstart). We have a simple [HTTP API](https://developer.mixpanel.com/docs/cloud-ingestion) for any languages we don't support.
