@@ -21,7 +21,7 @@ Mixpanel doesn't receive any data until you start sending events. If you haven't
 Use Events to confirm that events are arriving to your Mixpanel project, so you can troubleshoot your Mixpanel setup quickly. With Events, you can see a feed of events along with all of their properties coming into Mixpanel.
 
 ### Find Yourself
-After you start sending  recommend that you search/filter Events for your own activity. Manually fire some of those events on your own device, then search or filter Events to find a specific event using any information you know is available in the event's raw payload. Search by `$user_id`, `$device_id`, `distinct_id`, or user property values. If you are using Mixpanel's JavaScript SDK, you can use [`mixpanel.get_distinct_id`](https://developer.mixpanel.com/docs/javascript-full-api-reference#mixpanelget_distinct_id) to return your own distinct_id in your browser console and copy the distinct_id value into the Events search bar.
+The next step to validating your events is to manually trigger some of those events on your own device. After you have fired some events, navigate to Events and search or filter using any user-level information you know is available in the event's raw payload. Search by `$user_id`, `$device_id`, `distinct_id`, or user property values. If you are using Mixpanel's JavaScript SDK, you can use [`mixpanel.get_distinct_id`](https://developer.mixpanel.com/docs/javascript-full-api-reference#mixpanelget_distinct_id) to return your own distinct_id in your browser console and copy the distinct_id value into the Events search bar.
 
 ![Events Filter](https://raw.githubusercontent.com/ranic/mixpanel-docs/main/media/Tracking/events-filter.png)
 
