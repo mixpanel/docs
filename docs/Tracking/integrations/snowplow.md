@@ -2,51 +2,19 @@
 title: "Snowplow"
 slug: "snowplow"
 hidden: false
-metadata: 
-  title: "Ingesting Data: Snowplow | Mixpanel Developer Docs"
-  description: "Already using Snowplow to collect event data? Read our documentation to learn the recommended ways to get events flowing from Snowplow to Mixpanel."
-createdAt: "2021-10-31T01:06:23.383Z"
-updatedAt: "2023-03-25T21:21:37.789Z"
 ---
 If you already use Snowplow to collect event data, it's easy to route that data to Mixpanel. The value of connecting Snowplow and Mixpanel is to enable fast, self-serve product analytics on the events you already collect. In this guide, we share the recommended ways to get events flowing from Snowplow → Mixpanel.
-[block:callout]
-{
-  "type": "info",
-  "title": "Pre-requisite",
-  "body": "This guide assumes you have a Snowplow instance which you use to collect events from your apps and websites. If you don't already have event collection, check our [Plan Your Implementation](ref:docs/plan-your-implementation) page for all the ways to get started!"
-}
-[/block]
 
-[block:api-header]
-{
-  "title": "How Snowplow Works"
-}
-[/block]
+
+# How Snowplow Works
 Snowplow is an open-source, self-hosted platform for collecting and storing event data from your application. Teams use Snowplow's SDKs and platform to exercise full control over event data collection in their own cloud. Snowplow's [event-centric approach](https://docs.snowplowanalytics.com/docs/understanding-your-pipeline/canonical-event/) is fully compatible with Mixpanel; [our infrastructure](https://developer.mixpanel.com/docs/under-the-hood) is also purpose-built to ingest, store, and query events.
 
 Below we show the architecture of a Snowplow pipeline from their [documentation](https://docs.snowplowanalytics.com/docs/understanding-your-pipeline).
-[block:image]
-{
-  "images": [
-    {
-      "image": [
-        "https://files.readme.io/173a463-Screenshot-2020-02-24-at-10.38.12.png",
-        "Screenshot-2020-02-24-at-10.38.12.png",
-        1317,
-        592,
-        "#f5f5fa"
-      ],
-      "caption": "Snowplow's architecture. Mixpanel fits in as a destination on the far right."
-    }
-  ]
-}
-[/block]
 
-[block:api-header]
-{
-  "title": "Integrating with Mixpanel"
-}
-[/block]
+![image](https://user-images.githubusercontent.com/2077899/230695089-ad29a224-0f8e-425a-88a5-f34be4600628.png)
+
+
+# Integrating with Mixpanel
 Snowplow's main responsibility is to collect and validate events before storing the events in either:
 
 - A streaming system like Amazon Kinesis, Google PubSub, or ElasticSearch.
