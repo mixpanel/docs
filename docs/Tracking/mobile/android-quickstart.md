@@ -33,16 +33,30 @@ Next, add the following permissions in your AndroidManifest.xml:
 
 ### Step 2: Track your first event
 You'll need your Project Token for this, which you can get [here](https://mixpanel.com/settings/project). 
-[block:code]
-{
-  "codes": [
-    {
-      "code": "import com.mixpanel.android.mpmetrics.MixpanelAPI;\n\npublic class MainActivity extends ActionBarActivity {\n  private MixpanelAPI mp;\n  \n  @Override\n  protected void onCreate(Bundle savedInstanceState) {\n    super.onCreate(savedInstanceState);\n    setContentView(R.layout.activity_main);\n    \n    // Replace with your Project Token\n    mp = MixpanelAPI.getInstance(this, \"YOUR_TOKEN\");\n  }\n\n  private void sendToMixpanel() throws JSONException {\n    JSONObject props = new JSONObject();\n    props.put(\"Signup Type\", \"Referral\");\n    mp.track(\"Signed Up\", props);\n  }\n}",
-      "language": "java"
-    }
-  ]
+
+```java
+import com.mixpanel.android.mpmetrics.MixpanelAPI;
+
+public class MainActivity extends ActionBarActivity {
+  private MixpanelAPI mp;
+  
+  @Override
+  protected void onCreate(Bundle savedInstanceState) {
+    super.onCreate(savedInstanceState);
+    setContentView(R.layout.activity_main);
+    
+    // Replace with your Project Token
+    mp = MixpanelAPI.getInstance(this, "YOUR_TOKEN");
+  }
+
+  private void sendToMixpanel() throws JSONException {
+    JSONObject props = new JSONObject();
+    props.put("Signup Type", "Referral");
+    mp.track("Signed Up", props);
+  }
 }
-[/block]
+```
+
 🎉 Congratulations, you've tracked your first event! You can see it in Mixpanel via the [Events](https://mixpanel.com/report/events) page. For more options, see our [Android reference](doc:android).
 
 
