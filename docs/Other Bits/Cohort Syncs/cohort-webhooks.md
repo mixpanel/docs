@@ -9,56 +9,25 @@ createdAt: "2021-10-08T22:39:06.529Z"
 updatedAt: "2023-03-25T05:52:10.102Z"
 ---
 Mixpanel supports syncing cohorts to a custom webhook URL that you provide via our Integrations UI. When a sync is established, we will sync the full contents of the cohort to the URL and subsequently sync diffs (ie: the users who entered or exited the cohort since the last sync).
-[block:api-header]
-{
-  "title": "Prerequisites"
-}
-[/block]
+
+# Prerequisites
 * A paid Mixpanel plan
 * A Mixpanel project
 * A webhook server. You can create a dummy webhook for testing purposes using [webhook.site](https://webhook.site/).
 * The webhook server should send back events to Mixpanel to track actions like Message sent etc. (This is optional but customers who need this have to implement it themselves) 
 Customers can follow the naming convention mentioned in this [document](https://help.mixpanel.com/hc/en-us/articles/360001465686-Billing-for-Monthly-Tracked-Users#monthly-tracked-users-calculation) to avoid certain events from being considered for MTU tallies.
 
-[block:callout]
-{
-  "type": "danger",
-  "title": "Note",
-  "body": "This is a sync at least once system which means the same users can be synced multiple times for a cohort to maintain consistency during failures."
-}
-[/block]
-
-[block:api-header]
-{
-  "title": "Setting up the webhook via our UI"
-}
-[/block]
+# Setting up the webhook via our UI
 To create a new Custom Webhook destination, navigate to our Integrations UI and add a new Webhook connection. All you need to provide is a name for the connection and the URL of your webhook server. 
 
 Optional:  Basic Authentication when calling the webhook URL provided
 
-[block:image]
-{
-  "images": [
-    {
-      "image": [
-        "https://files.readme.io/4524dc5-Screen_Shot_2021-11-01_at_12.52.49_PM.png",
-        "Screen Shot 2021-11-01 at 12.52.49 PM.png",
-        2306,
-        1146,
-        "#8d8d93"
-      ],
-      "caption": "Setting up custom webhook integration."
-    }
-  ]
-}
-[/block]
+![image](https://user-images.githubusercontent.com/2077899/230698306-2fa97655-7e3b-4836-87f6-f847306f146f.png)
+
+
 From this point onward, you can sync any cohort to this connection from our cohorts page. 
-[block:api-header]
-{
-  "title": "Webhook Format"
-}
-[/block]
+
+# Webhook Format
 Our webhook format has the following structure in the body of a `POST` request:
 * **action**: The action defines the type of message we are sending. It will be one of:
   * `members`: All members of the cohort, sent the first time the cohort is being synced or to refresh the cohort if there are any intermediate errors. When you get this message, replace the users you have in the cohort with the copy provided by us.
@@ -74,38 +43,59 @@ Our webhook format has the following structure in the body of a `POST` request:
   * **members**: The list of users being added or removed from the cohort. We include `email`, `mixpanel_distinct_id`, `first_name`, and `last_name` to help identify the user.
 
 You can download the Swagger spec [here](https://mxpnl.notion.site/Cohort-Webhook-Yaml-17d35e8ca78245fdbfa0aa4fcbb56596).
-[block:code]
-{
-  "codes": [
-    {
-      "code": "{\n  \"action\": \"members\",\n  \"parameters\": {\n    \"mixpanel_project_id\": \"{mixpanel_project_id}\",\n    \"mixpanel_cohort_name\": \"{mixpanel_cohort_name}\",\n    \"mixpanel_cohort_id\": \"{mixpanel_cohort_id}\",\n    \"mixpanel_cohort_description\": \"description\",\n    \"mixpanel_session_id\": \"mixpanel_session_id\",\n    \"page_info\": {\n      \"total_pages\": 10,\n      \"page_count\": 6\n    },\n    \"members\": [\n      {\n        \"email\": \"string\",\n        \"mixpanel_distinct_id\": \"string\",\n        \"first_name\": \"string\",\n        \"last_name\": \"string\",\n        \"phone_number\": \"xxx-xxx-xxxxx\"\n      },\n      {\n        \"email\": \"string\",\n        \"mixpanel_distinct_id\": \"string\",\n        \"first_name\": \"string\",\n        \"last_name\": \"string\",\n        \"phone_number\": \"xxx-xxx-xxxxx\"\n      }\n    ]\n  }\n}\n",
-      "language": "json"
-    }
-  ]
-}
-[/block]
 
-[block:api-header]
+```json
 {
-  "title": "Expected Response Format"
+  "action": "members",
+  "parameters": {
+    "mixpanel_project_id": "{mixpanel_project_id}",
+    "mixpanel_cohort_name": "{mixpanel_cohort_name}",
+    "mixpanel_cohort_id": "{mixpanel_cohort_id}",
+    "mixpanel_cohort_description": "description",
+    "mixpanel_session_id": "mixpanel_session_id",
+    "page_info": {
+      "total_pages": 10,
+      "page_count": 6
+    },
+    "members": [
+      {
+        "email": "string",
+        "mixpanel_distinct_id": "string",
+        "first_name": "string",
+        "last_name": "string",
+        "phone_number": "xxx-xxx-xxxxx"
+      },
+      {
+        "email": "string",
+        "mixpanel_distinct_id": "string",
+        "first_name": "string",
+        "last_name": "string",
+        "phone_number": "xxx-xxx-xxxxx"
+      }
+    ]
+  }
 }
-[/block]
+```
+
+# Expected Response Format
 We expect a JSON response of the following shape.
 * **action**: Must match the action we sent.
 * **status**: Must be either `success` or `failure`
 * **error**: Only expected on failure.
    * **message**: details about the error
    * **code**: an HTTP status code
-[block:code]
+
+```json
 {
-  "codes": [
-    {
-      "code": "{\n  \"action\": \"add_members\",\n  \"status\": \"success\", // or failure\n  \"error\": {\n    \"message\": \"some error message; this will be displayed in our UI\",\n    \"code\": 400  // an HTTP status code\n  }\n}\n",
-      "language": "json"
-    }
-  ]
+  "action": "add_members",
+  "status": "success", // or failure
+  "error": {
+    "message": "some error message; this will be displayed in our UI",
+    "code": 400  // an HTTP status code
+  }
 }
-[/block]
+```
+
 ## Simple Sync Scenario
 
 Consider A, B, C, D, E, F as users. Sync interval is 30 minutes. T is when the sync is created in our UI.
