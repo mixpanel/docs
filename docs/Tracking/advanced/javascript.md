@@ -131,79 +131,11 @@ Identify a user with a unique ID to track user activity across devices, tie a us
 }
 [/block]
 Call `identify` when you know the identity of the current user, typically after log-in or sign-up. We recommend against using `identify` for anonymous visitors to your site. 
-[block:callout]
-{
-  "type": "info",
-  "title": "ID Merge",
-  "body": "If a project has [ID Merge](https://help.mixpanel.com/hc/en-us/articles/360041039771) enabled, the identify method will connect pre- and post-authentication events when appropriate and calling alias is no longer required.\n\nIf a project does not have ID Merge enabled, identify will change the user's local distinct_id to the unique ID you pass. Events tracked prior to authentication will not be connected to the same user identity. If ID Merge is disabled, alias can be used to connect pre and post registration events."
-}
-[/block]
-### Alias 
-The `alias` method creates an alias which Mixpanel will use to remap one id to another. Multiple aliases can point to the same identifier.  
-[block:callout]
-{
-  "type": "info",
-  "title": "ID Merge",
-  "body": "If a project has [ID Merge](https://help.mixpanel.com/hc/en-us/articles/360041039771) enabled,  just call identify with your chosen identifier as soon as you know who the user is to merge anonymous and identified distinct_ids. Calling alias is no longer required."
-}
-[/block]
 
-[block:parameters]
-{
-  "data": {
-    "h-0": "Argument",
-    "h-1": "Type",
-    "h-2": "Description",
-    "0-0": "**alias**",
-    "0-1": "<span style=\"font-family: courier\">String</span></br><span style=\"color: red\">required</span>",
-    "0-2": "A unique identifier that you want to use as an identifier for this user.",
-    "1-0": "**distinct_id**",
-    "1-1": "<span style=\"font-family: courier\">String</span></br><span style=\"color: green\">optional</span>",
-    "1-2": "The current user identifier."
-  },
-  "cols": 3,
-  "rows": 2
-}
-[/block]
-The following is a valid use of `alias`:
-
-```javascript JavaScript
-mixpanel.alias('new_id', 'existing_id');
-//You can add multiple id aliases to the existing id
-mixpanel.alias('newer_id', 'existing_id');
-```
-
-Aliases can also be chained - the following is a valid example:
-
-```javascript JavaScript
-mixpanel.alias('new_id', 'existing_id');
-// You can chain aliases
-mixpanel.alias('newer_id', 'new_id');
-```
-
-Aliases **cannot** point to multiple identifiers - the following example will not work:
-
-```javascript JavaScript
-mixpanel.alias('new_id', 'existing_id');
-//this is invalid as 'new_id' already points to 'existing_id'
-mixpanel.alias('new_id', 'newer_id'); 
-```
-[block:callout]
-{
-  "type": "danger",
-  "body": "If a project does not have [ID merge](https://help.mixpanel.com/hc/en-us/articles/360041039771) enabled, the best practice is to call `alias` once when a unique ID is first created for a user (e.g., when a user first registers for an account). Do not use `alias` multiple times for a single user without ID Merge enabled.",
-  "title": "ID Merge"
-}
-[/block]
 ### Call Reset at Logout
-[block:callout]
-{
-  "type": "warning",
-  "body": "Reset should only be used if multiple users share a device.  \n\nCalling reset frequently can lead to users quickly exceeding the 500 distinct_id per identity cluster limit. Once the 500 limit is reached you will no longer be able to add additional distinct_ids to the users identity cluster.",
-  "title": "Reset can fill an identity cluster if used frequently"
-}
-[/block]
 [Reset](doc:javascript-full-api-reference#section-mixpanel-reset) generates a new random distinct_id and clears super properties. Call reset to clear data attributed to a user when that user logs out. This allows you to handle multiple users on a single device. For more information about maintaining user identity, see the [Identity Management: Best Practices](https://help.mixpanel.com/hc/en-us/articles/115004497803) article.  
+
+Note: Calling reset frequently can lead to users quickly exceeding the 500 distinct_id per identity cluster limit. Once the 500 limit is reached you will no longer be able to add additional distinct_ids to the users identity cluster.
 
 ## Storing User Profiles
 
@@ -215,6 +147,7 @@ In addition to events, you can store user profiles in Mixpanel. Profiles are per
   "body": "The Mixpanel library does not automatically create user profiles for any user that performs an event. In order to send profile updates, you *must* call <a style=\"font-family: courier\" href=\"https://mixpanel.com/help/reference/javascript-full-api-reference#mixpanel.identify\">mixpanel.identify</a> in addition to mixpanel.people.set, which empowers you to create profiles for only the users of your choice."
 }
 [/block]
+
 ### Setting Profile Properties
 
 You can set properties on a user profile with <a style="font-family: courier" href="https://mixpanel.com/help/reference/javascript-full-api-reference#mixpanel.people.set">mixpanel.people.set</a>.
@@ -274,47 +207,17 @@ Be sure to remove this parameter before going into production; we suggest settin
 
 ### Interpreting Debug Output
 
-[block:image]
-{
-  "images": [
-    {
-      "image": [
-        "https://files.readme.io/6a7dc74-mp-set-config.png",
-        "mp-set-config.png",
-        1382,
-        438,
-        "#1b1a1a"
-      ]
-    }
-  ]
-}
-[/block]
+![image](https://user-images.githubusercontent.com/2077899/230696892-8fb6e415-bd0a-4e0a-a9ef-a121ccda3600.png)
+
 Here, we are debugging an HTML snippet implementation, but the logs are the same regardless of how you enabled debug mode. These events are being sent normally — each batch of events can be expanded to see the properties being sent with the event. Logging for other types of Mixpanel requests, such as `identify` and `alias`, works the same way, with all request contents logged.
 
 SDK errors and warnings, such as calling `track` without an event name and `alias`ing an identifier to itself, are also logged to the console in debug mode. These client-side errors do not result in an request to Mixpanel, so they can't be debugged using the network tab — you must use debug mode to surface them.
-[block:image]
-{
-  "images": [
-    {
-      "image": [
-        "https://files.readme.io/3980f48-mp-debug-error.png",
-        "mp-debug-error.png",
-        1010,
-        190,
-        "#281d1d"
-      ]
-    }
-  ]
-}
-[/block]
+
+![image](https://user-images.githubusercontent.com/2077899/230696898-b839468c-e3a4-444a-ae2c-ae419c44be56.png)
+
+
 ## Group Analytics
-[block:callout]
-{
-  "type": "info",
-  "body": "Reach out to your Customer Success Manager or the [Mixpanel Sales Team](https://mixpanel.com/pricing/) to enable Group Analytics in your reports."
-}
-[/block]
-Mixpanel Group Analytics allows behavioral data analysis by selected groups, as opposed to individual users.
+Mixpanel Group Analytics is a paid add-on that allows behavioral data analysis by selected groups, as opposed to individual users.
 
 Grouping by identifiers other than the `distinct_id` will allow analysis at a company or group level when using Mixpanel analytics. Read [this article](https://help.mixpanel.com/hc/en-us/articles/360025333632) to learn more about Group Analytics.
 
@@ -330,22 +233,6 @@ A user can belong to multiple groups. All updates to a group operate on the `gro
 Administer group keys through your Project Settings. Group keys are event properties. All events need to have a defined group key on them in order to be attributed to a group. Group keys are project specific, and the group key should be set up before group data is sent. Note that Mixpanel does not backfill historical data before the group key was implemented.
 
 To administer group keys, navigate to your Project Settings. Click **+Add Group Key** under the *GROUP KEYS* section.
-[block:image]
-{
-  "images": [
-    {
-      "image": [
-        "https://files.readme.io/e8e477d-Screen_Shot_2019-12-10_at_11.23.26_AM.png",
-        "Screen Shot 2019-12-10 at 11.23.26 AM.png",
-        1846,
-        322,
-        "#f8f9fb"
-      ]
-    }
-  ]
-}
-[/block]
-Enter an event property to attribute the group key to. You can also enter a display name for the group key. Click **Save**.
 
 ### Adding Users to a Group
 Adding users to groups causes the `group_key` and `group_id` to send as a property key and value for all events triggered by that user on the device. You can add multiple values for a single user to the `group_key` list property.
@@ -415,35 +302,6 @@ mixpanel.get_group(group_key, group_id).remove(“property_name”, “property_
 ```javascript JavaScript
 mixpanel.get_group(group_key, group_id).union(“property_name”, [property_value1, … [property_valueN])
 ```
-## Opting Users Out of Tracking
-
-Client-side tracking of individual user data can be stopped or resumed by controlling a user’s opt-out/opt-in state. Opt-out methods and library configuration settings only affect data sent from a single library instance. Data sent from other sources to Mixpanel’s APIs will still be ingested regardless of whether the user is opted out locally.
-
-The opt-out/opt-in state of a user is controlled by an opt-out flag that is set as a browser cookie or localStorage entry. If the value of the flag is true, then the user is opted-out and will not be tracked. If the opt-out flag is false, then the user is tracked. The flag is not set when the SDK is initialized, so the initial state is neither opted in nor opted out. Without the flag set, the user will be tracked by default.
-
-To opt a user out of tracking locally, use the <a style="font-family: courier" href="https://mixpanel.com/help/reference/javascript-full-api-reference#mixpanel.opt_out_tracking">mixpanel.opt_out_tracking</a> method. To resume tracking for an individual user, use <a style="font-family: courier" href="https://mixpanel.com/help/reference/javascript-full-api-reference#mixpanel.opt_in_tracking">mixpanel.opt_in_tracking</a>. Call <a style="font-family: courier" href="https://mixpanel.com/help/reference/javascript-full-api-reference#mixpanel.has_opted_out_tracking">mixpanel.has_opted_out_tracking</a> to check user’s opt-out status locally. By default, an "$opt_in" event is sent every time that a user opts in. 
-
-```javascript JavaScript
-// Opt a user out of data collection
-mixpanel.opt_out_tracking();
-
-// Check a user's opt-out status 
-// Returns true if user is opted out of tracking locally
-mixpanel.has_opted_out_tracking();
-```
-
-### Opting Users Out of Tracking by Default
-
-Mixpanel’s tracking libraries will send user data by default. Explicitly initializing a default opt-out state of true will opt-out all users by default, preventing data from sending unless a user’s opt-out state is set to false. Mixpanel’s Javascript library also respects browser [Do Not Track settings](https://allaboutdnt.com/).
-```javascript JavaScript
-// Initializing a default opt-out state of true 
-// will prevent data from being collected by default
-mixpanel.init("YOUR TOKEN", {opt_out_tracking_by_default: true})
-```
-
-## Delete Existing Data
-Opting users out of tracking will stop any future tracking. This does not automatically delete data that has already been collected. Mixpanel's [deletion API](doc:managing-personal-data) can be used to delete existing data.
-
 ## EU Data Residency
 
 Route data to Mixpanel's EU servers by setting the `api_host` config property.
