@@ -101,12 +101,5 @@ All three are key/value stores that augment your event data with additional meta
 | User Profiles | :x: | :white-check-mark: | :x: |
 | Group Profiles | :white-check-mark: | :white-check-mark: | :x: |
 | Lookup Tables | :white-check-mark: | :x: | :white-check-mark: |
-[block:embed]
-{
-  "html": "<iframe class=\"embedly-embed\" src=\"//cdn.embedly.com/widgets/media.html?src=https%3A%2F%2Fwww.loom.com%2Fembed%2F7055268fd5c3438e97e65f9e038cf355&display_name=Loom&url=https%3A%2F%2Fwww.loom.com%2Fshare%2F7055268fd5c3438e97e65f9e038cf355&image=https%3A%2F%2Fcdn.loom.com%2Fsessions%2Fthumbnails%2F7055268fd5c3438e97e65f9e038cf355-1591669608604.gif&key=f2aa6fc3595946d0afc3d76cbbd25dc3&type=text%2Fhtml&schema=loom\" width=\"1152\" height=\"864\" scrolling=\"no\" title=\"Loom embed\" frameborder=\"0\" allow=\"autoplay; fullscreen\" allowfullscreen=\"true\"></iframe>",
-  "url": "https://www.loom.com/share/7055268fd5c3438e97e65f9e038cf355",
-  "title": "Lookup tables v/s User profiles v/s Group profiles",
-  "favicon": null,
-  "image": "https://cdn.loom.com/sessions/thumbnails/7055268fd5c3438e97e65f9e038cf355-1591669608604.gif"
-}
-[/block]
+
+See this [video walkthrough] for more details.
