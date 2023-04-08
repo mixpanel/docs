@@ -116,20 +116,7 @@ You can handle the identity of a user using the `identify` and `alias` methods. 
 
 ### Identify
 Identify a user with a unique ID to track user activity across devices, tie a user to their events, and create a user profile. If you never call this method, unique visitors are tracked using a UUID that generates the first time they visit the site.
-[block:parameters]
-{
-  "data": {
-    "h-0": "Argument",
-    "h-1": "Type",
-    "h-2": "Description",
-    "0-0": "**unique_id** ",
-    "0-1": "<span style=\"font-family: courier\">String</span></br><span style=\"color: green\">optional</span>",
-    "0-2": "A string that uniquely identifies a user - we recommend a user id. If not provided, the distinct_id currently in the persistent store (cookie or localStorage) is used."
-  },
-  "cols": 3,
-  "rows": 1
-}
-[/block]
+
 Call `identify` when you know the identity of the current user, typically after log-in or sign-up. We recommend against using `identify` for anonymous visitors to your site. 
 
 ### Call Reset at Logout
@@ -139,14 +126,7 @@ Note: Calling reset frequently can lead to users quickly exceeding the 500 disti
 
 ## Storing User Profiles
 
-In addition to events, you can store user profiles in Mixpanel. Profiles are persistent sets of properties that describe a user - things like name, email address, and signup date. You can use profiles to explore and segment users by who they are, rather than what they did. You can also use profiles to send messages, such as emails, SMS, push, or in-app messages.
-[block:callout]
-{
-  "type": "info",
-  "title": "NOTE",
-  "body": "The Mixpanel library does not automatically create user profiles for any user that performs an event. In order to send profile updates, you *must* call <a style=\"font-family: courier\" href=\"https://mixpanel.com/help/reference/javascript-full-api-reference#mixpanel.identify\">mixpanel.identify</a> in addition to mixpanel.people.set, which empowers you to create profiles for only the users of your choice."
-}
-[/block]
+In addition to events, you can store user profiles in Mixpanel. Profiles are persistent sets of properties that describe a user - things like name, email address, and signup date. You can use profiles to explore and segment users by who they are, rather than what they did.
 
 ### Setting Profile Properties
 
