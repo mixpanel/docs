@@ -4,7 +4,7 @@ slug: "api-credentials"
 hidden: false
 ---
 
-# Project Token
+## Project Token
 You need your Project Token to track events to Mixpanel. Mixpanel uses Project Token to ensure that events that you send are routed to your project.
 
 You can find it in the [Project Settings](https://mixpanel.com/settings/project) page under "Access Keys"
@@ -16,7 +16,7 @@ You can then use your token to track events to Mixpanel. See our guides for [Jav
 Note: Project Token does not let you _read_ any data from your Mixpanel project. It only lets you track. This is intentional because your Project Token is public and shipped to client devices as part of your website's Javascript code.
 
 
-# API Secret
+## API Secret
 The API Secret is used to backfill historical events into your project via our Import API and to export data out of your project via our Export APIs.
 
 You should not share your API Secret, since it can be used to export data from your Mixpanel project.
@@ -25,7 +25,7 @@ You should not share your API Secret, since it can be used to export data from y
 You can find it in the [Project Settings](https://mixpanel.com/settings/project) page under "Access Keys", right below Project Token.
 
 
-# Service Accounts
+## Service Accounts
 
 [Service Accounts](ref:service-accounts) are a more advanced form of authentication that is used to grant temporary access to a subset of Mixpanel projects within your organization for certain APIs.
 
