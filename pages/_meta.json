@@ -1,0 +1,14 @@
+{
+  "api-reference": {
+    "title": "API Reference ↗",
+    "type": "page",
+    "href": "https://developer.mixpanel.com/reference",
+    "newWindow": true
+  },
+  "index": "What is Mixpanel?",
+  "plan-your-implementation": "Plan Your Implementation",
+  "Tracking": "Tracking",
+  "Analysis": "Analysis",
+  "Admin": "Admin",
+  "Other Bits": "Other Bits"
+}
