@@ -14,13 +14,13 @@ This guide demonstrates how to set up a serverless ingest pipeline from a Google
 
 Note: This guide assumes you are running in Google Cloud Platform, and have the necessary IAM Access to have Cloud Functions read from GCS.
 
-# Step 1: Create a GCS Bucket
+## Step 1: Create a GCS Bucket
 
 [Create a dedicated Cloud Storage bucket](https://console.cloud.google.com/storage/create-bucket) for this integration. We recommend including `mixpanel-import` in the name to make it explicit and avoid any accidental data sharing.
 
 You can create the bucket in any region, though we recommend `us-central` for highest throughput.
 
-## Step 2a: Setup the Cloud Function
+### Step 2a: Setup the Cloud Function
 
 Create a [new Cloud Function](https://console.cloud.google.com/functions/add). 
 * Set the trigger to `Cloud Storage`, the Event Type to `Finalize/Create` and the bucket name to the bucket created in step 2. This means that any object uploaded to this bucket will trigger an invocation of this Cloud Function.
@@ -29,7 +29,7 @@ Create a [new Cloud Function](https://console.cloud.google.com/functions/add).
 ![image](https://user-images.githubusercontent.com/2077899/230694797-af63de4f-7f10-4325-ad62-204a0ab66dea.png)
 
 
-## Step 2b: Write the Cloud Function
+### Step 2b: Write the Cloud Function
 Switch the runtime to `Python3.9` and change the entrypoint from `hello_gcs` to `main`. Paste the code below for `main.py` and `requirements.txt`.
 
 ![image](https://user-images.githubusercontent.com/2077899/230694808-424dc8ed-f650-40a6-9893-f141e5033701.png)
@@ -144,7 +144,7 @@ This code will be triggered whenever a new object is added to your bucket. It st
 
 Click `Deploy` to deploy the function. At this point, any file you upload to the bucket will trigger an invocation of the function and an import into Mixpanel. Let's test it out!
 
-# Step 3: Test with sample data and watch the logs
+## Step 3: Test with sample data and watch the logs
 
 Let's test the connection with some [sample events](https://storage.googleapis.com/mixpanel-sample-data/10-events.json). Run the following to copy them to your bucket, which will trigger the import:
 
@@ -163,7 +163,7 @@ Finally, let's confirm that the events made it into Mixpanel. Head to the [Event
 ![image](https://user-images.githubusercontent.com/2077899/230694863-7ef80f4b-ce7b-484b-bd8a-b248cfe024ef.png)
 
 
-# Step 4: Import more data
+## Step 4: Import more data
 We're now ready for an import of your own data. If your data is not already in the Mixpanel format, this is a good time to write a transformation step to run as part of the Cloud Function. We recommend testing locally as you iterate on your data transformation logic, as it's much quicker than redeploying the Cloud Function. The [Overview](doc:cloud-ingestion) page has sample code and data to test locally.
 
 Once you're ready and have tested with a few small files, you can upload all the files for your import to your GCS bucket, and the import will kick off. This pipeline can be made recurring by uploading files to the GCS bucket periodically.

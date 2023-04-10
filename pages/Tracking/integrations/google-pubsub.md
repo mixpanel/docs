@@ -9,14 +9,14 @@ Note: if you are on AWS, this approach is very similar using Kinesis and AWS Lam
 ![image](https://user-images.githubusercontent.com/2077899/230694918-71c5be55-a04f-4915-9de4-cf3ac8724937.png)
 
 
-# Step 1: Create a Cloud Pub/Sub Topic
+## Step 1: Create a Cloud Pub/Sub Topic
 (You can skip this step if you already have a Pub/Sub topic with events flowing through it.)
 
 Create a [new Pub/Sub Topic](https://console.cloud.google.com/cloudpubsub/topic). All events that will ultimately route to Mixpanel will flow through this Pub/Sub topic.
 
 ![image](https://user-images.githubusercontent.com/2077899/230694928-a155186e-33cf-4302-90b0-0cdf1324e66d.png)
 
-## Step 2a: Add a Cloud Function Trigger to your Pub/Sub Topic
+### Step 2a: Add a Cloud Function Trigger to your Pub/Sub Topic
 In this step, we set up a Cloud Function to trigger whenever events are pushed to your Pub/Sub topic. [Google's documentation](https://cloud.google.com/functions/docs/calling/pubsub) goes into full detail on how this trigger works.
 
 From your newly created topic, click `+Trigger Cloud Function`. Give the Cloud Function a name and Save.
@@ -27,7 +27,7 @@ From your newly created topic, click `+Trigger Cloud Function`. Give the Cloud F
 ![image](https://user-images.githubusercontent.com/2077899/230694939-ccaaff07-1a57-4dc4-a8c3-8f88ea1e581c.png)
 
 
-## Step 2b: Write the Cloud Function
+### Step 2b: Write the Cloud Function
 Switch the runtime to `Python3.9` and change the entrypoint from `hello_pubsub` to `main`. Paste the code below for main.py and requirements.txt.
 
 ```python main.py
@@ -95,7 +95,7 @@ requests
 
 This code does a very simple passthrough of events from the incoming Pubsub message into Mixpanel's [Import API](ref:import-events). You can use this function to transform events from your Pub/Sub topic into Mixpanel's format before sending them to our Import API.
 
-# Step 3: Test with sample events
+## Step 3: Test with sample events
 Now messages published to our Pubsub topic will trigger an invocation of the function and route events to Mixpanel. Let's give it a try by manually sending a message via the PubSub UI.
 
 On the topic page, navigate to `Messages -> Publish message`.
@@ -122,7 +122,7 @@ You can then navigate to the [Events](http://mixpanel.com/report/live) page to s
 ![image](https://user-images.githubusercontent.com/2077899/230695027-ed9f09e9-1df2-46b2-a477-1013aa25e298.png)
 
 
-# Step 4: Connecting your production pipeline
+## Step 4: Connecting your production pipeline
 At this point, you can route events from your production Pub/Sub topic through a Cloud Function in a similar manner as described above. Simplify modify the Cloud Function to transform events from your internal event format into the format expected by Mixpanel. This is also a good point to strip any PII.
 
 Once connected, this will result in a steady stream of events being sent to Mixpanel. Happy streaming!

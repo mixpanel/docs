@@ -14,11 +14,11 @@ This guide demonstrates how to set up a serverless ingest pipeline from an AWS S
 
 Note: This guide assumes you are running in Amazon Web Services, and have the necessary IAM Access to have AWS Lambda read from S3.
 
-# Step 1: Create an S3 Bucket
+## Step 1: Create an S3 Bucket
 [Create a dedicated S3 bucket](https://docs.aws.amazon.com/AmazonS3/latest/userguide/create-bucket-overview.html) for this integration. We recommend including `mixpanel-import` in the name to make it explicit and avoid any accidental data sharing.
 
 You can create the bucket in any region, though it will need to be in the same region as your AWS Lambda function.
-## Step 2a: Setup the Lambda Function
+### Step 2a: Setup the Lambda Function
 Create a [new Lambda Function](https://docs.aws.amazon.com/lambda/latest/dg/getting-started-create-function.html). 
 * Select `Author From Scratch`.
 * Set the runtime to `python 3.7`.
@@ -27,7 +27,7 @@ Create a [new Lambda Function](https://docs.aws.amazon.com/lambda/latest/dg/gett
 ![image](https://user-images.githubusercontent.com/2077899/230694620-2645c553-c898-4c98-a19c-f31eb0a23799.png)
 
 
-## Step 2b: Write the Lambda Function
+### Step 2b: Write the Lambda Function
 
 Change the filename from `lambda_function.py` to `main.py` and edit the `runtime settings` handler to `main.Handler`. Paste the code below for `main.py`.
 
@@ -142,13 +142,13 @@ def Handler(event, context):
     )
 ```
 
-## Step 2c: Add Trigger
+### Step 2c: Add Trigger
 
 Add a trigger so that your Lambda function runs whenever a new object is added to your bucket by selecting `Add trigger` under `Function Overview`. You will want to use the bucket created in Step 2 and select `All object create events`.
 ![image](https://user-images.githubusercontent.com/2077899/230694688-27b0f49c-3377-4664-9683-2e692b401709.png)
 
 
-## Step 2d: Update Configurations and Deploy
+### Step 2d: Update Configurations and Deploy
 Select `Configuration` > `General Configuration` > `Edit`.
 * Change `Memory` to `1024 MB`.
 * Change `Timeout` to `5 minutes`.
@@ -158,7 +158,7 @@ Select `Configuration` > `General Configuration` > `Edit`.
 
 Click `Versions` > `Publish New Version` to deploy the function. At this point, any file you upload to the bucket will trigger an invocation of the function and an import into Mixpanel. Let's test it out!
 
-# Step 3: Test with sample data and watch the logs
+## Step 3: Test with sample data and watch the logs
 
 Let's test the connection with some [sample events](https://storage.googleapis.com/mixpanel-sample-data/10-events.json). Run the following to copy them to your bucket, which will trigger the import:
 
@@ -179,7 +179,7 @@ Finally, let's confirm that the events made it into Mixpanel. Head to the [Event
 ![image](https://user-images.githubusercontent.com/2077899/230694739-590aa9f1-80e9-4c5b-b599-bea0d72ff6a3.png)
 
 
-# Step 4: Import more data
+## Step 4: Import more data
 
 We're now ready for an import of your own data. If your data is not already in the Mixpanel format, this is a good time to write a transformation step to run as part of the Lambda. We recommend testing locally as you iterate on your data transformation logic, as it's much quicker than redeploying the Lambda. The [Overview](doc:cloud-ingestion) page has sample code and data to test locally.
 

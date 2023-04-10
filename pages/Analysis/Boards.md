@@ -7,21 +7,21 @@ metadata:
   description: "Learn about Boards in Mixpanel."
 ---
 
-# Overview
+## Overview
 
 ![https://help.mixpanel.com/hc/article_attachments/4415151340564/Screen_Shot_2022-01-07_at_2.07.26_PM.png](https://help.mixpanel.com/hc/article_attachments/4415151340564/Screen_Shot_2022-01-07_at_2.07.26_PM.png)
 
 Mixpanel Boards allow you to view all your most important metrics at a glance. Add Insights, Flows, Funnels, and Retention reports to a board to be able to track those metrics both regularly and simultaneously.
 
-# Use Cases
+## Use Cases
 
 Boards can be used to keep your whole company on top of your KPIs. Additionally, you can add text to your boards to help tell a compelling story, or highlight specific interpretations of the other reports on boards.
 
 Create personal boards or project boards and share them with your team to help you and your colleagues understand and stay on top of your metrics.
 
-# Quick Start
+## Quick Start
 
-## Step 1: Navigating Boards
+### Step 1: Navigating Boards
 
 Before creating a board of your own, it's best to explore existing boards within your Mixpanel project. There's a good chance that someone has already created a board that may be of interest to you. The best way to navigate to existing boards within your Mixpanel project is the directory on the lefthand side of the page. This directory makes it easy to access your most-used boards by organizing them into several sections:
 
@@ -35,13 +35,13 @@ Before creating a board of your own, it's best to explore existing boards within
 
 Finally, you can search for all boards, or recently viewed boards, at the top of the directory.
 
-## Step 2: Creating a new Board
+### Step 2: Creating a new Board
 
 Once you've decided that you want to create a board of your own, on the Boards page, click "+ New Board" at the top of the left side directory. The new untitled board will be created immediately, but you may wish to give it a name. To do so, click the current title, then type the desired name. At this point, your empty board will look like this:
 
 ![https://help.mixpanel.com/hc/article_attachments/11442046149268](https://help.mixpanel.com/hc/article_attachments/11442046149268)
 
-## Step 3: Adding content to Boards
+### Step 3: Adding content to Boards
 
 There are 3 types of content that you can add to a board:
 
@@ -59,9 +59,9 @@ There are a few ways to add an existing report to a board. You can either start 
 
 Note that adding an existing report always creates a [linked copy](https://help.mixpanel.com/hc/en-us/articles/4409841288724-Dashboards-FAQ#what-is-a-linked-report).
 
-## Step 4: Arrange Board Content
+### Step 4: Arrange Board Content
 
-### A Row-Based System
+#### A Row-Based System
 
 Content is arranged within rows. To add a card (either a report or text) to a row, click the "+" button that appears on the left of a row when you hover over that row.
 
@@ -71,11 +71,11 @@ To add a row, click the "+ Add Row" button below the last existing row in the bo
 
 ![https://help.mixpanel.com/hc/article_attachments/7412579405716/Screen_Shot_2022-06-29_at_11.49.58_AM.png](https://help.mixpanel.com/hc/article_attachments/7412579405716/Screen_Shot_2022-06-29_at_11.49.58_AM.png)
 
-### Moving Cards
+#### Moving Cards
 
 To change the order of reports, simply click and drag any report to your desired position, via the gripper icon at the top right of the report.
 
-### Resizing Cards
+#### Resizing Cards
 
 Cards on a row will automatically expand to fill the width of that row, but once two or more cards are on the row, you can adjust each card's width by clicking and dragging the control between any two cards. Hover between the cards to surface the drag control.
 
@@ -83,7 +83,7 @@ Cards on a row will automatically expand to fill the width of that row, but once
 
 Up to four cards (either reports or text) can exist within a row, and the content in a row will automatically expand to fill the horizontal width of that row. Cards can be horizontally resized within a row, and will snap to positions 1/12th of the width of the row - the minimum width of a card is 3/12th, or one quarter of the width of the row. This makes it easy to fill a row with 1, 2, 3, or 4 cards of equal size.
 
-### Resizing Rows
+#### Resizing Rows
 
 Row heights can now be adjusted to either show more report content, or hide empty space. To vertically resize a row, click and drag the control under that row. Hover under the row to surface the control.
 
@@ -93,9 +93,9 @@ A row's height is initially determined by the tallest card within that row. Text
 
 A row will start life at the minimum possible height
 
-# Advanced
+## Advanced
 
-## Board Templates
+### Board Templates
 
 ![https://help.mixpanel.com/hc/article_attachments/6738945528084/2022-06-01_12.31.38.gif](https://help.mixpanel.com/hc/article_attachments/6738945528084/2022-06-01_12.31.38.gif)
 
@@ -105,7 +105,7 @@ The Company KPIs Board template allows users to generate a comprehensive board c
 
 To get started, click the icon in the lefthand navigator to create a new board, and select `Use a Template`. Alternatively, the `Add` button will allow you to create a custom board from scratch.
 
-### Adding Your Events
+#### Adding Your Events
 
 The template uses two events: “Sign Up” and “Value Moment.”
 
@@ -116,11 +116,11 @@ For projects that have already been implemented and have data, you will select y
 
 For projects that do not have data, please refer to our [dev docs](https://developer.mixpanel.com/docs/plan-your-implementation) and [implementation](https://help.mixpanel.com/hc/en-us/categories/115001197206-Data-and-Implementation) resources.
 
-### What’s in the Template?
+#### What’s in the Template?
 
 The board contains 9 reports, organized thematically by Engagement, Retention, and Growth.
 
-### Engagement
+#### Engagement
 
 User engagement measures how users find value in a product or service. Engagement can be measured by a variety of activities such as clicks, shares, and more. Highly engaged users are more likely to lead to higher user growth because they are more likely to share the product or service with their network. These four reports track:
 
@@ -129,14 +129,14 @@ User engagement measures how users find value in a product or service. Engagemen
 - What is your product’s activation rate
 - What happens to users who don’t reach your product’s value moment
 
-### Retention
+#### Retention
 
 Retention is the metric that shows whether your product has staying power. Retention measures how many people are coming back, which is also a key indicator that users are realizing value in your product. These two reports track:
 
 - How many engaged users come back
 - Who are your dormant users
 
-### Growth
+#### Growth
 
 Growth is about finding people who need your product and showing them that your product can bring value to them. These three reports track:
 
@@ -146,7 +146,7 @@ Growth is about finding people who need your product and showing them that your 
 
 Together, these 9 reports create a holistic overview of a product’s most important metrics and are applicable across industries and stages of growth. Notably, for startups, this board will be a vital asset for finding product-market fit as well as for sharing with investors during and post-fundraising.
 
-### Free Plan Experience
+#### Free Plan Experience
 
 While the current [free plan](http://mixpanel.com/pricing) has a limit of 5 saved reports per user, the reports in the Company KPIs Board template do not count towards this limit until you modify and save them individually. The unmodified template includes a small `Mixpanel Template` tag at the top of the template board and template reports respectively to denote that they do not count towards the saved report limit.
 
@@ -156,7 +156,7 @@ While the current [free plan](http://mixpanel.com/pricing) has a limit of 5 sa
 - In just a few clicks Mixpanel’s Company KPIs Board template generates 9 reports, covering **key KPIs for Engagement, Retention, and Growth**
 - If you are a free plan user, the reports in the template don’t count towards your limit until you modify and save them as described above, but clicking and dragging the control under the row will resize it to any height above that minimum.
 
-### Board-wide Date Ranges and Filters
+#### Board-wide Date Ranges and Filters
 
 Boards allow you to alter some aspects of the queries within each of the reports on that board, making it simple to ensure every report is showing results from a consistent set of data.  Both date ranges and filters can be added by clicking "Add Filter" at the top right of the board.  This will open a row, shown below, where the date range can be selected, and filters can be applied.
 
@@ -167,13 +167,13 @@ By default, date ranges and filters are temporary, allowing you to explore the d
 **Note**
 Applying date ranges and filters on a board does not change the queries saved in each individual report; instead, it only changes the data displayed when you view those reports in the current board. If you click into a report from the board, however, Mixpanel will maintain the date range and filters to ensure you see data consistent between the board and report. Navigate to the report on its own, though, and you'll see the report's original saved date range and filters.
 
-## Public Boards
+### Public Boards
 
 With Public Boards you can now share your favorite Mixpanel metrics across your entire organization — regardless of whether your teammates have a Mixpanel login or not. Show stakeholders your latest insights with the click of a button, collaborate cross-functionally in new, heightened ways, and make better product decisions, faster, with everyone's buy-in.
 
 Want to flex your data outside of your org? No problem. Share it with investors, agencies, customers, or post it on Twitter for all to see. Best of all, with optional password protection, your boards are only as public as you want them to be.
 
-### Enabling/Disabling For Your Project
+#### Enabling/Disabling For Your Project
 
 Public Boards is **disabled** by default, meaning no one can make a board public without first enabling the feature in [Project Settings](https://mixpanel.com/settings/project). Only Project Owners can enable/disable this feature.
 
@@ -189,7 +189,7 @@ To disable, just click the "Disable for Project" button. It will turn off ALL cu
 
 ![https://help.mixpanel.com/hc/article_attachments/4402033131540/Screen_Shot_2021-06-09_at_2.51.08_PM.png](https://help.mixpanel.com/hc/article_attachments/4402033131540/Screen_Shot_2021-06-09_at_2.51.08_PM.png)
 
-### Creating a Public Link
+#### Creating a Public Link
 
 If the Public Boards feature is enabled for your project, then you can create a Public Link from the Share Modal on the Boards page.
 
@@ -203,13 +203,13 @@ All project users, except project consumers, with edit access to the board can m
 
 **Free Plans:** As Free plans do not have full access to the Sharing Modal, it will look slightly different than that on Paid plans. To make a board public, also click the Share button and switch the "Make Public" toggle on (purple).
 
-### Management of Public Board Links
+#### Management of Public Board Links
 
 To get a view of all current Public Boards links, go to the Public Boards section in [Project Settings](https://mixpanel.com/settings/project). You'll see a list of all boards shared publicly, the Data View to which each Public Link is associated, creator and creation time of the Public Link, and the Public Link URL. You can disable the individual Public Links from this view. You can also disable Public Links at once by turning off the Public Boards feature for the project (see Enabling/Disabling For Your Project).
 
 ![https://help.mixpanel.com/hc/article_attachments/4402033351956/Screen_Shot_2021-06-09_at_2.59.53_PM.png](https://help.mixpanel.com/hc/article_attachments/4402033351956/Screen_Shot_2021-06-09_at_2.59.53_PM.png)
 
-### Password Protection
+#### Password Protection
 
 For additional security, create a password that will be required for anyone viewing your public board.
 
@@ -229,7 +229,7 @@ Use the copy button next to the public URL if you want require passcode. Use the
 
 ![https://help.mixpanel.com/hc/article_attachments/4402034004500/Screen_Shot_2021-06-09_at_3.09.17_PM.png](https://help.mixpanel.com/hc/article_attachments/4402034004500/Screen_Shot_2021-06-09_at_3.09.17_PM.png)
 
-### Embedding Public Boards
+#### Embedding Public Boards
 
 Public Boards are embeddable in an iFrame, so you can add them to your docs (Notion, Coda, Confluence, etc.).
 
@@ -241,7 +241,7 @@ If you are requiring a passcode for the Shared Link, please use the Embed Link.
 
 ![https://help.mixpanel.com/hc/article_attachments/4402022728468/embed.gif](https://help.mixpanel.com/hc/article_attachments/4402022728468/embed.gif)
 
-## Formatting Text on Boards
+### Formatting Text on Boards
 
 Highlighting text you've added will pop up a menu where you can apply the following styling options:
 
@@ -256,7 +256,7 @@ Note that some options (ordered lists, quote blocks, underline, and dividers) ar
 
 ![https://help.mixpanel.com/hc/article_attachments/7715246949268/Screen_Shot_2022-06-15_at_3.32.32_PM.png](https://help.mixpanel.com/hc/article_attachments/7715246949268/Screen_Shot_2022-06-15_at_3.32.32_PM.png)
 
-## Adding Media Cards to Boards
+### Adding Media Cards to Boards
 
 To further add context to reports on boards, you can add media cards.
 
@@ -271,7 +271,7 @@ For images, the supported upload file types are PNG, JPG and GIF. GIFs will loop
 - [Change video privacy settings on YouTube](https://support.google.com/youtube/answer/157177?hl=en)
 - [How to use Loom's privacy settings](https://support.loom.com/hc/en-us/articles/360016527597-How-to-use-Loom-s-privacy-settings)
 
-## Board Digests
+### Board Digests
 
 Board Digests are a snapshot of a board sent as an email or a slack message. Digests allow members to share recent data with both project members and external audiences, providing quick and meaningful insight into a Mixpanel project.
 
@@ -291,7 +291,7 @@ To create a Board Digest:
     - Private Slack Channels are not available, at this time.
 4. Click 'Send'.
 
-## Digests for Private Boards
+### Digests for Private Boards
 
 It is possible to share a digest for a private board. However, there are some restrictions to what will be visible or accessible.
 
@@ -299,7 +299,7 @@ It is possible to share a digest for a private board. However, there are some re
 2. You cannot edit digests of someone else’s private board without selecting a different board that you have access to (regardless of your permissions or role). You can still delete the digest or select a different board.
 3. You cannot see the title of someone else’s private board in a digest. The private board will appear as “Unknown Private Board”.
 
-## Sharing
+### Sharing
 
 Sharing and permissions are set at the board level, and all reports saved on a board inherit the same set of sharing and permissions settings of that board.
 
@@ -313,7 +313,7 @@ Both reports and boards can also be shared via the "Copy URL" button at the top 
 
 So long as the recipient has access to the project, they will be able to see the shared report or board. However, unless they have specifically given Editor permissions, they will only be able to view it, not edit it.
 
-## Permissions
+### Permissions
 
 Sharing and permissions are set at the board level, and all reports saved on a board inherit the same set of sharing and permissions settings of that board.
 
@@ -321,9 +321,9 @@ In the sharing process, you can choose the permissions level granted to the indi
 
 As with sharing, setting a user's permission level on a board will give them the same permission level for all reports on that board.
 
-# FAQ
+## FAQ
 
-## Where are reports saved to?
+### Where are reports saved to?
 
 Reports are always saved to boards. Previously, reports were separately saved and added to boards. In boards now, when you save a report, you'll be prompted to save it to a specific board. In essence, the board now acts as a folder, with many potential purposes, including:
 
@@ -337,7 +337,7 @@ Note: This change only applies to the reports that can be added to boards—Mixp
 
 ![https://help.mixpanel.com/hc/article_attachments/4414931779988/Screen_Shot_2022-01-05_at_9.18.06_PM.png](https://help.mixpanel.com/hc/article_attachments/4414931779988/Screen_Shot_2022-01-05_at_9.18.06_PM.png)
 
-## Where are sharing and permissions set?
+### Where are sharing and permissions set?
 
 Previously, sharing and permissions were editable at both the report and board levels. This made managing sharing and permissions tedious due to the sheer number of items requiring individual settings.
 
@@ -347,7 +347,7 @@ Now, all reports saved on the same board will have the same sharing and permissi
 
 ![https://help.mixpanel.com/hc/article_attachments/4414958748820/Screen_Shot_2022-01-05_at_9.20.44_PM.png](https://help.mixpanel.com/hc/article_attachments/4414958748820/Screen_Shot_2022-01-05_at_9.20.44_PM.png)
 
-## What happens to reports on multiple boards?
+### What happens to reports on multiple boards?
 
 All copies of reports have a source location. This can be seen when looking at the report details.
 
@@ -359,7 +359,7 @@ However, the same report can be viewed from multiple different boards.
 
 On boards, the arrow icon on the top left indicates of the report lives on this board, or is a linked view.
 
-## What is a linked report?
+### What is a linked report?
 
 Every report in Mixpanel has a board where it was originally saved to. This is called the original board. However, in the interest of being able to use the same report across a variety of boards and sharing the same insight across your team and company, Mixpanel has introduced the concept of a "linked report". A linked report is denoted by the arrow in the icon of the report. Any time an existing report is added to a board or a copy is made, a linked report is made. Any changes to the report will get reflected in all of the linked reports associated with the report.
 

@@ -7,7 +7,7 @@ metadata:
   description: "Learn how to use the Insights report."
 ---
 
-# Overview
+## Overview
 
 ![Insights Overview Image](https://raw.githubusercontent.com/ranic/mixpanel-docs/main/media/Platform/Reports/Insights/overview.png)
 
@@ -15,7 +15,7 @@ Insights is a powerful and flexible tool designed to visualize trends and compos
 
 Advanced Insights features also allow you to create formulas, compare current data to past data, and generate custom events and properties for deeper analysis.
 
-# Use Cases
+## Use Cases
 
 Here are some of the sample questions you can answer in Insights:
 
@@ -33,11 +33,11 @@ Here are some of the sample questions you can answer in Insights:
 - Marketing
     - Which advertising campaigns generate the most checkouts? (property breakdown)
 
-### Frequency analysis
+#### Frequency analysis
 
 It's important to know what's the natural frequency at which your users use your product / experience the core value proposition of your product - do majority of your users use your product daily? weekly ? monthly? A16Z wrote a great article about the [Power User Curve](https://www.reforge.com/brief/understand-your-most-engaged-users-with-the-power-user-curve#bOb9wjj_l0R3Pqo32pggUQ), and this [video](https://www.loom.com/share/0c05ac17742a4d49a4c6879c0fe9f0de) shows how you can reproduce that within Mixpanel.
 
-# Quick Start
+## Quick Start
 
 Building a report in Insights takes just a few clicks, and results arrive in seconds. Let's build a simple report together. Continuing the B2B messaging example, imagine you wanted to answer the following question:
 
@@ -46,43 +46,43 @@ Building a report in Insights takes just a few clicks, and results arrive in sec
 
 Feel free to follow along and create your own report right in our demo project, [here](https://mixpanel.com/register/?next=%2Fproject%2F2195193%2Fview%2F139237%2Fapp%2Finsights). To skip ahead and see the final result, click [here](https://mixpanel.com/register/?next=/project/2195193/view/139237/app/insights#BhixoRC626vx).
 
-## Step 1: Choose Events
+### Step 1: Choose Events
 
 Events, cohorts, or profiles can be the basic building block of an Insights report. In this case, we want to know about users who sent messages, so within the "Events and Cohorts" section, add the "Send Message" event. At this point, your query should look like this:
 
 ![Choose Events](https://raw.githubusercontent.com/ranic/mixpanel-docs/main/media/Platform/Reports/Insights/choose-events.png)
 
-## Step 2: Choose Count Type
+### Step 2: Choose Count Type
 
 Next to your selected event, you can choose how to count that event. By default, Insights will count Total events, which, as the name implies, will count every occurrence of the event. In this case, we want to know how many users sent messages, so choose "Unique." Unique counts one event per user. At this point, your query should look like this:
 
 ![Choose Count Type](https://raw.githubusercontent.com/ranic/mixpanel-docs/main/media/Platform/Reports/Insights/choose-count-type.gif)
 
-## Step 3: Choose Filters
+### Step 3: Choose Filters
 
 Filters exclude unwanted data. In this case, we only care about events performed on the iOS platform. Therefore, add a "Platform" filter, where Platform equals "iOS Native". At this point, your query should look like this:
 
 ![Choose Filters](https://raw.githubusercontent.com/ranic/mixpanel-docs/main/media/Platform/Reports/Insights/choose-filters.gif)
 
-## Step 4: Choose Breakdowns
+### Step 4: Choose Breakdowns
 
 Breakdowns segment data into groups. In this case, we want to count message sending users in different cities. Therefore, add a "City" breakdown. At this point, your query should look like this:
 
 ![Choose Breakdowns](https://raw.githubusercontent.com/ranic/mixpanel-docs/main/media/Platform/Reports/Insights/choose-breakdowns.gif)
 
-## Step 5: Change Visualization
+### Step 5: Change Visualization
 
 Choosing a different chart can help you visualize data better. Line charts help you see a trend, but other charts will help you see the aggregate value.
 
 ![Change Visualization](https://raw.githubusercontent.com/ranic/mixpanel-docs/main/media/Platform/Reports/Insights/change-visualization.png)
 
-## Step 6: Analyze Results
+### Step 6: Analyze Results
 
 You now a full analysis that you can use to put into a board, or use as a starting point to dig in further. This might mean adding more filters or breakdowns, or adding another metric and seeing if there's an interesting comparison to be made. You could also change the counting type or the chart type.
 
-# Basic Features
+## Basic Features
 
-## Chart Types
+### Chart Types
 
 Insights features multiple visualizations to help you view the results of your query in the clearest chart type. By default, Insights displays line charts, which help you understand how metrics trend over time. However, another chart type might present the results with more clarity. In Insights, you can either choose to get a metric calculated across the entire time period selected in the date picker, or get a time-segmented view of the metric (e.g. daily breakdown).
 
@@ -96,15 +96,15 @@ Insights features multiple visualizations to help you view the results of your q
     - Line chart
     - Stacked line chart
 
-## Sorting
+### Sorting
 
-### Bar chart
+#### Bar chart
 
 When you are viewing a bar chart, you have four different sorting options: A-Z Ascending, Z-A Descending, Value Ascending, or Value Descending. To switch sorting views, select the **Events** icon in the upper left hand of the report and select which view you would like to see.
 
 ![Sorting Bar Chart](https://raw.githubusercontent.com/ranic/mixpanel-docs/main/media/Platform/Reports/Insights/sorting-bar-chart.png)
 
-### Line chart
+#### Line chart
 
 Line charts in Insights are accompanied with a table of values to give users another way to consume the trends information. This data table can also be sorted by clicking column headers.
 
@@ -127,7 +127,7 @@ Clicking on the "Average" data column performs a flat sort across all segments:
 
 ![Sorting Line Chart](https://raw.githubusercontent.com/ranic/mixpanel-docs/main/media/Platform/Reports/Insights/sorting-line-chart-3.png)
 
-### Table chart
+#### Table chart
 
 **Decision 1**: Grouped View vs Ungrouped View
 The Ungrouped View removes all hierarchy and makes the table flat. A flat table treats each data point as its own row.
@@ -145,7 +145,7 @@ In the grouped view, you can specify the sorting for each breakdown separately. 
 
 Sorting is applied within the grouping, respecting the breakdown hierarchy. As an example of breakdown hierarchy, the image above shows “Item Category” within “Country”
 
-## Analysis Settings
+### Analysis Settings
 
 The Analysis options will determine the way the chart is calculated and visualized. The options are:
 
@@ -155,9 +155,9 @@ The Analysis options will determine the way the chart is calculated and visualiz
 For example, if you make a rolling analysis query for the past 30 days, Mixpanel calculates the rolling 7-day average by default. The value reported at each day in the line graph is the average of the values from the 7 days leading to that day. In the case of the first 6 days in your selected time period, the 7-day-average calculation will include days before the selected time period.
 - **Cumulative:** Adds up the values of each point on the graph as it goes along, so the height of the line will increase over time.
 
-# Advanced
+## Advanced
 
-## Formulas
+### Formulas
 
 Use Formulas to make calculations using simple arithmetic operators.
 
@@ -175,14 +175,14 @@ Click the **Formula** button. Each event in the query shows a letter next to it,
 
 Enter a name for the formula (optional), and click **Apply Formula** to see the formula output. You can also use numbers as constants in a formula. Multiply a ratio by 100 to display as a percentage, for example. Divide a property value tracked in seconds by 3,600 to display the value in hours.
 
-## Custom Bucketing
+### Custom Bucketing
 
 Insights will automatically group your high-cardinality segments into buckets. Buckets can be edited by using the "Custom Buckets" option in the overflow menu:
 You can choose "Even" to get buckets of uniform size, and you can choose "Varied" to get buckets of different sizes. This helps with organizing outliers, or with drilling deeper into particular ranges.
 
 ![Bucketing](https://raw.githubusercontent.com/ranic/mixpanel-docs/main/media/Platform/Reports/Insights/advanced-bucketing.png)
 
-## Time Period Comparisons
+### Time Period Comparisons
 
 Compare the current period of time to previous periods of time in order to track trends and growth in your product’s use. Compare traffic from a specific campaign period or event from one year to the next, or compare the success of that campaignto your normal traffic.
 
@@ -192,19 +192,19 @@ Click on the **Compare to past** button at the top of your Insights graph and se
 
 ![Time Period Comparison](https://raw.githubusercontent.com/ranic/mixpanel-docs/main/media/Platform/Reports/Insights/advanced-time-period-comparison.gif)
 
-## Value Comparisons
+### Value Comparisons
 
 When you have multiple metrics, or have broken down a metric by a property, you can compare them against each and the relative value. Click on **Compare** -> **Overall**. This works for all data functions. For a "totals" data function, you can see the percentage that a particular segment makes up. For non summable aggregations, it compares the segment value to the whole, unsegmented value.
 
 ![Value Setting](https://raw.githubusercontent.com/ranic/mixpanel-docs/main/media/Platform/Reports/Insights/advanced-value-comparison.png)
 
-## Profile Analysis
+### Profile Analysis
 
 Choose to explore either **Events & Cohorts** or **Profiles**. Events & Cohorts allows you to examine user behaviors, while Profiles allows you access profile data and visualize your users with filters and breakdowns based on their profile properties. When exploring Profiles, you are always analyzing all user profiles. Select the [Data Function](https://help.mixpanel.com/hc/en-us/articles/7713028610964-Advanced-Insights-Functionality-#insights-data-functions-operators-and-calculations) you want to use to calculate results by clicking on **Total** and selecting an option from the drop-down. You can calculate based on users or profile property value.
 
 ![Explore User Profiles](https://raw.githubusercontent.com/ranic/mixpanel-docs/main/media/Platform/Reports/Insights/advanced-profile-analysis.gif)
 
-## Annotations
+### Annotations
 
 In order to clarify the results in your Insights report add detailed annotations directly to the line chart. Annotations are tied to a specific date on the chart, rather than a specific data point on the chart.
 
@@ -222,7 +222,7 @@ Hover the cursor over the annotation to edit or delete it. Click on the **pencil
 
 ![Annotations 3](https://raw.githubusercontent.com/ranic/mixpanel-docs/main/media/Platform/Reports/Insights/advanced-annotations-3.png)
 
-## Insights Data Functions, Operators and Calculations
+### Insights Data Functions, Operators and Calculations
 
 Data Functions in Mixpanel reports allow you to perform more complex calculations on your queries - this includes computing aggregate values of your event and property data, including totals, uniques, and averages.
 
@@ -253,14 +253,14 @@ If the data function you select calculates based on property (“Event Property 
 
 You can find more information about each data function and how they are calculated below:
 
-### Events
+#### Events
 
 | Function Name | Events & Cohorts Calculation | Profiles Calculation |
 | --- | --- | --- |
 | Total | Total count of [event] performed.<br />Example: How many times did my users watch a video? | N/A |
 | Total per user | The number of events performed per user.<br />Example: How many videos were watched per user?<br />Aggregation options: Average, distribution, median, percentiles, minimum, maximum | N/A |
 
-### Users
+#### Users
 
 | Function Name | Events & Cohorts Calculation | Profiles Calculation |
 | --- | --- | --- |
@@ -270,7 +270,7 @@ You can find more information about each data function and how they are calculat
 | Weekly Active Users (WAU) | The number of users who performed [event] within the last 7 days.<br /><br />**Example**: What's the count of users who watched a video in the week? | N/A |
 | Monthly Active Users (MAU) | The number of users who performed [event] within the last 30 days.<br /><br />**Example**: What's the count of users who watched a video in the last month? | N/A |
 
-### Aggregate Property Values
+#### Aggregate Property Values
 
 | Function Name | Events & Cohorts Calculation | Profiles Calculation |
 | --- | --- | --- |
@@ -282,7 +282,7 @@ You can find more information about each data function and how they are calculat
 | Minimum | Minimum of a numeric property value across all instances of [event].<br /><br />**Example**: What's the minimum number of minutes per video watched? | Minimum of a numeric property value across all user profiles.<br />Example: What's the minimum revenue across all users? |
 | Maximum | Maximum of a numeric property value across all instances of [event].<br /><br />**Example**: What's the maximum number of minutes per video watched? | Maximum of a numeric property value across all user profiles.<br />Example: What's the maximum revenue across all users? |
 
-### Aggregate Property Values per User
+#### Aggregate Property Values per User
 
 | Function Name | Events & Cohorts Calculation | Profiles Calculation |
 | --- | --- | --- |
@@ -292,13 +292,13 @@ You can find more information about each data function and how they are calculat
 | Minimum | Minimum of a numeric property value across all instances of [event] per user.<br /><br />**Example**: What's the minimum number of hours of videos watched per user?<br />**Aggregation options**: Average, distribution, median, percentiles, minimum, maximum | N/A |
 | Maximum | Maximum of a numeric property value across all instances of [event] per user.<br /><br />**Example**: What's the maximum number of hours of videos watched per user?<br />**Aggregation options**: Average, distribution, median, percentiles, minimum, maximum | N/A |
 
-### Count Sessions
+#### Count Sessions
 
 | Function Name | Events & Cohorts Calculation | Profiles Calculation |
 | --- | --- | --- |
 | Sessions with event | The number of sessions that contain [event].<br /><br />**Example**: What's the total number of sessions in which users watched a video? | N/A |
 
-### Additional Aggregation Option Examples
+#### Additional Aggregation Option Examples
 
 | Data Function | Average | Distribution | Median | Percentiles (25/75/90) | Minimum/Maximum |
 | --- | --- | --- | --- | --- | --- |
@@ -317,7 +317,7 @@ Here are some use-cases that are now possible with "Distinct count" of property 
 - How many **unique songs / videos** were played in the last 30 days?
 - How many **unique files** were worked on in the last week?
 
-## Daily, Weekly, and Monthly Active Users
+### Daily, Weekly, and Monthly Active Users
 
 **Daily Active Users (DAU)**: Select DAU to calculate the number of unique users in the previous day (24-hour) period that have performed the selected event.
 **Weekly Active Users (WAU)**: Select WAU to calculate the number of unique users in the previous week (7-day) period that have performed the selected event.
@@ -325,19 +325,19 @@ Here are some use-cases that are now possible with "Distinct count" of property 
 
 If you select the DAU, WAU, or MAU function for a date range that includes the current day, the query will take the end of the current day as the end of the query’s time segment (even though it’s in the future). For example, today is April 25th, and it’s 4:22 PM. If you make a query to show WAU and you select “current day” as your date range, the query will return the count of unique users between April 19 at 12:00:00 AM and April 25 at 11:59:59.
 
-## View Users
+### View Users
 
 Click a segment in an Insights report to see the list of users that underlie that data point. This helps see a representative sample of users from any analysis, so you can drill into anomalies or simply get to know your users. You can also save this user list as a cohort to either export or use for message targeting.
 
 See this [video walkthrough](https://www.loom.com/embed/5568e266532b4804a1c2d36d678eb1a2) for 
 
-## View Events from Insights
+### View Events
 
 Click on a chart segment in Insights and view the raw events that made up that metric. You will be redirected to the Events page.
 
 ![View Events](https://raw.githubusercontent.com/ranic/mixpanel-docs/main/media/Platform/Reports/Insights/advanced-view-events.gif)
 
-## View Sample Events
+### View Sample Events
 
 You can hover over any event and in the context panel, you now have the ability to "View Sample Events", which redirects you to the Events page with 100 most recent samples of that hovered event:
 You can see a few samples of an event to help you decide whether that's the right event you want for your analysis or which property you should use for filters/breakdowns.

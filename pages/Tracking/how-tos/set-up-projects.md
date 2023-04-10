@@ -4,7 +4,7 @@ slug: "set-up-projects"
 hidden: false
 ---
 
-# Separate Development Data
+## Separate Development Data
 
 We recommend that you set up a separate project for your development environment. Keeping your development data separate is important to maintain the integrity of your Mixpanel data. It's easy to prevent development data from cluttering your production project, but hard to detangle in later stages of a project.
 
@@ -28,11 +28,11 @@ var prodToken = 'Production Token';
 if (window.location.hostname.toLowerCase().search(productionHost) < 0) { mixpanel.init(devToken);
  } else { mixpanel.init(prodToken); } 
  ```
- # When to Use Multiple Production Projects
+## When to Use Multiple Production Projects
  
 You can choose to send production data from multiple sources (for example, your website and mobile app) to the same Mixpanel project or to two separate projects. It’s up to you to determine which is best for your business, but here are a few tips to help you decide:
 
-## Factors to Consider
+### Factors to Consider
 
 **Do you want to track and study cross-platform user behavior?**
  
@@ -44,7 +44,7 @@ You can choose to send production data from multiple sources (for example, your 
 - If the purpose and features of your data sources vary widely, you might consider using two different projects and analyzing each separately.
 - Sending both types of data to the same project could clutter your analytics for both mobile and web, as having a many unique event and property names from different platforms can clutter the UI and dropdown menus in your Mixpanel project.
 
-## Best Practices for Cross-Platform Tracking
+### Best Practices for Cross-Platform Tracking
 
 Generally speaking, Mixpanel users have more flexibility and get more valuable insights when combining the tracking of multiple platforms into a single project to study their overall user experience across platforms.
 
@@ -60,13 +60,13 @@ If you decide to send events from multiple platforms to the same Mixpanel projec
 
 - Advanced tip: You can initialize multiple instances of Mixpanel on the same app to send certain events to their own, different project. This would allow you to send some events to a different project if you have some different functionality on certain platforms and want to analyze that activity separately.
  
- # Send Data to Multiple Projects
+## Send Data to Multiple Projects
 
 You can initialize separate Mixpanel objects with different tokens to send event and property updates to separate projects.
 
 This separation is useful when you want certain events to appear in one project and others events to appear in a different project.
 
-## Web
+### Web
 
 Sending event data from a single website to multiple different Mixpanel projects is possible by using the JavaScript library and modifying the mixpanel.init call.
 
@@ -87,7 +87,7 @@ mixpanel.project_b.track("event name")
 ```
 Any standard track calls without a specified project name would go to the initial Mixpanel project.
 
-## iOS 
+### iOS
 
 You can create multiple instances of the Mixpanel API and switch back and forth between two projects by using the initWithToken method.
 
@@ -106,7 +106,7 @@ Mixpanel *publisher = [[Mixpanel alloc] initWithToken:PUBLISHER_TOKEN andFlushIn
 
 [publisher track:@"..."];
 ```
-## Android
+### Android
 
 To initialize multiple instances of Mixpanel on Android, construct separate Mixpanel objects.
 

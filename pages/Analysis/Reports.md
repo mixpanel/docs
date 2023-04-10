@@ -13,9 +13,9 @@ Mixpanel has several types of reports: [Insights](https://help.mixpanel.com/hc/
 
 This article focuses on the common concepts across each report.
 
-# Report Concepts
+## Report Concepts
 
-## Events Menu
+### Events Menu
 
 This is the menu that appears under "Add Metric" or "Select Step".
 
@@ -25,7 +25,7 @@ If you organize your events using [tags](https://help.mixpanel.com/hc/en-us/art
 
 ![https://help.mixpanel.com/hc/article_attachments/7653439934484/Untitled__1_.png](https://help.mixpanel.com/hc/article_attachments/7653439934484/Untitled__1_.png)
 
-## Properties Menu
+### Properties Menu
 
 This menu appears when adding a filter, an inline filter on an event or breakdown.
 
@@ -40,7 +40,7 @@ You can select the following filtering options to show a subset of the propertie
 
     ![https://help.mixpanel.com/hc/article_attachments/7653440863508/Mixpanel__project_3____Mixpanel_2021-11-18_12-00-58.png](https://help.mixpanel.com/hc/article_attachments/7653440863508/Mixpanel__project_3____Mixpanel_2021-11-18_12-00-58.png)
 
-### Understanding Prefixes in the Menu
+#### Understanding Prefixes in the Menu
 
 The events and properties in the menu are prefixed to provide additional context about the properties' type. They will be removed when additional context is not needed.
 
@@ -69,7 +69,7 @@ The events and properties in the menu are prefixed to provide additional context
     ![https://help.mixpanel.com/hc/article_attachments/7653444473620/Screen_Shot_2021-11-18_at_12.29.06_PM.png](https://help.mixpanel.com/hc/article_attachments/7653444473620/Screen_Shot_2021-11-18_at_12.29.06_PM.png)
 
 
-## Date and Time Selector
+### Date and Time Selector
 
 Determine the time range of a query by clicking on the time selector. The time selector is common across all reports. This article details the options in the time selector.
 
@@ -89,11 +89,11 @@ In Insights Previous day only includes the last complete 24 hour period. |
 | Last 6 months | Last 6 months and the query count from the current incomplete day up to the current second. |
 | Last 12 months | Last 12 months and the query count from the current incomplete day up to the current second. |
 
-## Select a Date Range
+### Select a Date Range
 
 The **Select date range** menu opens up some additional options, "Last", "Fixed" and "Since".
 
-### Last
+#### Last
 
 “In the last” allows you to select a rolling time range similar to the default “last 30 days” but you have the flexibility to choose the time value and scale, either days, weeks, or months.
 
@@ -103,23 +103,23 @@ If you need to, you can click on the **+ Ending** button and shift back the de
 
 ![https://help.mixpanel.com/hc/article_attachments/7710786261396/Screen_Shot_2022-07-11_at_3.18.03_PM.png](https://help.mixpanel.com/hc/article_attachments/7710786261396/Screen_Shot_2022-07-11_at_3.18.03_PM.png)
 
-### Fixed
+#### Fixed
 
 “Fixed” allows you to select two dates to query between or a select particular day to query by entering the same start & end date. If you save this report as a bookmark or add it to the dashboard, the date range selection will always persist.
 
 ![https://help.mixpanel.com/hc/article_attachments/7710854340756/Screen_Shot_2022-07-11_at_3.21.03_PM.png](https://help.mixpanel.com/hc/article_attachments/7710854340756/Screen_Shot_2022-07-11_at_3.21.03_PM.png)
 
-### Since
+#### Since
 
 “Since” allows you to select a specific date to query for all data since that start date.
 
-### Filters
+#### Filters
 
 You can choose to filter the entire report by properties or cohorts by clicking the **Filter** button. This will filter the results of the entire report to show only data with that property or cohort.
 
 ![https://help.mixpanel.com/hc/article_attachments/7653479408532/mceclip4.png](https://help.mixpanel.com/hc/article_attachments/7653479408532/mceclip4.png)
 
-## Event Inline Filters
+### Event Inline Filters
 
 You can choose to add a filter to limit the events that are included in the report.
 
@@ -139,7 +139,7 @@ You can select whether you would like the query to match any of these filters, o
 
 ![https://help.mixpanel.com/hc/article_attachments/7653405221012/mceclip3.png](https://help.mixpanel.com/hc/article_attachments/7653405221012/mceclip3.png)
 
-## Breakdowns
+### Breakdowns
 
 Breakdown groups the results of your Insights, Funnels, Flows, or Retention report by a property or cohort, allowing you to examine which properties or cohorts have a significant impact on your query.
 
@@ -153,20 +153,20 @@ For cohorts, you will be shown groups of users both in and not in the cohort in 
 
 It is only possible to either group by properties or group by cohorts, but not both.
 
-## Changing Visualization
+### Changing Visualization
 
 In the top right, you can change the type of visualization and analysis being performed. The options available will depend on the type of report that you started with. In this case, we switched to a bar view, allowing us to see the total number of "Log In" across the entire time range, allowing us a summarized view that is easily scanned.
 
 ![https://help.mixpanel.com/hc/article_attachments/7710470354196/Screen_Shot_2022-07-11_at_3.07.02_PM.png](https://help.mixpanel.com/hc/article_attachments/7710470354196/Screen_Shot_2022-07-11_at_3.07.02_PM.png)
 
-## Saving to a Board
+### Saving to a Board
 
 When you are satisfied with the analysis, and decide that this is something that you are likely to revisit, Mixpanel recommends that you save the report to a [Board](https://help.mixpanel.com/hc/en-us/articles/115004565746). You can do this by pressing "Save" in the top right and selecting the Board you would like to save to, or creating a new Board.
 
 ![https://help.mixpanel.com/hc/article_attachments/7650984128148/Screen_Shot_2022-07-08_at_5.40.30_PM.png](https://help.mixpanel.com/hc/article_attachments/7650984128148/Screen_Shot_2022-07-08_at_5.40.30_PM.png)
 
 
-## Typecasting
+### Typecasting
 
 Mixpanel allows you to force Properties into another [data type](https://help.mixpanel.com/hc/en-us/articles/115004547063) by using the **"Data Type"** option in the overflow menu for property filters and breakdowns.
 
@@ -182,13 +182,13 @@ You can either customize the ranges by clicking "[Customize Range](https://help.
 
 Or alternatively, if you'd like to see the exact numeric values you can typecast the Number property to a String to remove the range bucketing.
 
-## Compare to Past
+### Compare to Past
 
 Compare to past is a shortcut for segmenting a visualization on two time periods (current and past).
 
 ![https://help.mixpanel.com/hc/article_attachments/7710959181588/compare_to_past.gif](https://help.mixpanel.com/hc/article_attachments/7710959181588/compare_to_past.gif)
 
-## Sessions
+### Sessions
 
 This is a period of continuous user activity. Use Sessions in Mixpanel to track which events users perform within a session, how many sessions contained a key action or how many sessions it takes for a user to convert in a funnel. [Learn more](https://help.mixpanel.com/hc/en-us/articles/115004695223).
 
