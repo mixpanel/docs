@@ -15,17 +15,17 @@ Our self-serve interface empowers your team to answer questions, no matter their
     <img src=https://storage.googleapis.com/cdn-mxpnl-com/static/readme/Dashboard.svg>
 </p>
 
-##Introduction to the Data Model
+## Introduction to the Data Model
 Mixpanel's Data Model is built on three key concepts: **Events**, **Users**, and **Properties**.
 
-###Events
+### Events
 An event is a data point that represents an interaction between a user and your product. Events can be a wide range of interactions. For example, every time a customer purchases a coffee from your café app, there are details that describe the purchase the moment it happens. Actions like purchasing a coffee can be tracked as an event in Mixpanel.
 
 <p align="center">
     <img src=https://storage.googleapis.com/cdn-mxpnl-com/static/readme/Event.svg>
 </p>
 
-###Users
+### Users
 On the other side of an event is a user — the specific individual that completed an interaction with your product.
 
 Because each user is unique, Mixpanel tracks which users completed what events and marries the two distinct data points by joining them. `event.distinct_id = user_profile.distinct_id`
@@ -34,7 +34,7 @@ Because each user is unique, Mixpanel tracks which users completed what events a
     <img src=https://storage.googleapis.com/cdn-mxpnl-com/static/readme/Users.svg>
 </p>
 
-###Properties
+### Properties
 Properties are attributes that help you define the specifics of an **Event** or a **User**.
 
 An **Event Property** describes an event. For a coffee purchase, the event would be Purchase and the event properties could be *Item Type* (in this case a Coffee) and *Item Price* (in this case $2.50)
