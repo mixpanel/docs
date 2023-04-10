@@ -36,7 +36,9 @@ mixpanel.identify(/* \"<USER_ID\"> */)
 
 // Track an event. It can be anything, but in this example, we're tracking a Signed Up event.
 // Include a property about the signup, like the Signup Type
-mixpanel.track('Signed Up', {\n  'Signup Type': 'Referral',\n});
+mixpanel.track('Signed Up', {
+  'Signup Type': 'Referral'
+})
 ```
 
 🎉 Congratulations, you've tracked your first event! You can see it in Mixpanel via the [Events page](mixpanel.com/report/events). For more options, see our [JavaScript reference](doc:javascript).
