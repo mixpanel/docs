@@ -14,11 +14,14 @@ function renderComponent<T>(
 const config: DocsThemeConfig = {
   logo: <span>Mixpanel Documentation</span>,
   project: {
-    link: 'https://github.com/ranic/documentation-starter-kit'
+    link: 'https://github.com/mixpanel/docs'
   },
-  docsRepositoryBase: 'https://github.com/ranic/documentation-starter-kit/tree/main',
+  docsRepositoryBase: 'https://github.com/mixpanel/docs/tree/main',
   sidebar: {
     toggleButton: true,
+
+    // Some magic to make top-level pages look like Separators
+    // We should probably redesign this at some point
     titleComponent({ title, type, route }) {
       if (type !== 'separator' && route.match(/\//g) && route.match(/\//g).length == 1) {
       	return (

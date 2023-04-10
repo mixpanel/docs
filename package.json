@@ -1,7 +1,7 @@
 {
-  "name": "nextra-docs-template",
+  "name": "mixpanel-docs",
   "version": "0.0.1",
-  "description": "Nextra docs template",
+  "description": "Mixpanel's Official Documentation",
   "scripts": {
     "dev": "next dev",
     "build": "next build",
@@ -9,14 +9,14 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/ranic/documentation-starter-kit.git"
+    "url": "git+https://github.com/mixpanel/docs.git"
   },
-  "author": "Shu Ding <g@shud.in>",
+  "author": "Vijay Jayaram <vijay.jayaram@mixpanel.com>",
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/ranic/documentation-starter-kit/issues"
+    "url": "https://github.com/mixpanel/docs/issues"
   },
-  "homepage": "https://github.com/ranic/documentation-starter-kit#readme",
+  "homepage": "https://github.com/mixpanel/docs#readme",
   "dependencies": {
     "clsx": "^1.2.1",
     "next": "^13.0.6",
