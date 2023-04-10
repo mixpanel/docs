@@ -12,11 +12,14 @@ function renderComponent<T>(
 }
 
 const config: DocsThemeConfig = {
+  docsRepositoryBase: 'https://github.com/mixpanel/docs/tree/main',
+  footer: {
+    text: 'Nextra Docs Template',
+  },
   logo: <span>Mixpanel Documentation</span>,
   project: {
     link: 'https://github.com/mixpanel/docs'
   },
-  docsRepositoryBase: 'https://github.com/mixpanel/docs/tree/main',
   sidebar: {
     toggleButton: true,
 
