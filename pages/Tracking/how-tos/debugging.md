@@ -6,17 +6,17 @@ hidden: false
 
 This document walks through best practices for data validation and debugging your Mixpanel implementation.
 
-# Before you Debug
+## Before You Debug
 
-## Create a Test Environment
-Mixpanel recommends that you create a [separate development environment and Mixpanel project](https://developer.mixpanel.com/docs/set-up-projects) to validate your event data. This ensures that your testing data does not contaminate your production environment. 
+### Create a Test Project
+Mixpanel recommends that you create a [separate development Mixpanel project](https://developer.mixpanel.com/docs/set-up-projects) to validate your event data. This ensures that your testing data does not contaminate your production environment. 
 
-## Send Events
+### Send Events
 Mixpanel doesn't receive any data until you start sending events. If you haven't started sending data to Mixpanel, check out our quickstart guides for [JavaScript](https://developer.mixpanel.com/docs/javascript-quickstart), [Server](https://developer.mixpanel.com/v3.19/docs/server), and [Mobile](https://developer.mixpanel.com/docs/react-native-quickstart). We have a simple [HTTP API](https://developer.mixpanel.com/docs/cloud-ingestion) for any languages we don't support.
 
 🎉 Congratulations, you're ready to debug! Theres are two primary places to inspect your raw events as they flow into your Mixpanel project: Events and User Profiles. 
 
-## Debugging with Events
+### Debugging with Events
 
 Use Events to confirm that events are arriving to your Mixpanel project, so you can troubleshoot your Mixpanel setup quickly. With Events, you can see a feed of events along with all of their properties coming into Mixpanel.
 
@@ -35,7 +35,7 @@ To locate your User Profile from Events, click the User icon on the left to view
 
 ![View User Profile in Events](https://raw.githubusercontent.com/ranic/mixpanel-docs/main/media/Tracking/view-profile.png)
 
-## Debugging with User Profiles
+### Debugging with User Profiles
 
 User Profiles allow you to see the events feed and all user properties for a specific user. The Activity Feed displays a user's entire event history. The most recent activity appears at the top of the list. By reviewing User Profiles, you can validate:
 
@@ -44,7 +44,7 @@ User Profiles allow you to see the events feed and all user properties for a spe
 
 ![User Profile](https://raw.githubusercontent.com/ranic/mixpanel-docs/main/media/Tracking/user-profile.png)
 
-# Missing or Incomplete Events
+## Missing or Incomplete Events
 
 ### Enable Debug Mode
 
@@ -66,43 +66,43 @@ If you're using Mixpanel in a web application, you can use your browser's develo
 4. Look for a request triggered to `api.mixpanel.com/track`. Troubleshoot any error messages.
 6. If the request is successful, check that the "token" in the data payload matches the token in your Project Settings. From here, you can then validate that the event was directed to the right project token and using Events, and confirm that the data is arriving correctly in Mixpanel.
 
-## Customize Flush Interval (Mobile)
+### Customize Flush Interval (Mobile)
 
 Both the Mixpanel iOS and Android libraries employ queueing to optimize battery and data use on the end user’s device. Calling track does not send the event immediately, Events and User data sent to Mixpanel gets queued and flushed at certain intervals by default. This interval can be adjusted to flush more or less frequently.
 
-### iOS
+#### iOS
 
 On iOS, data gets flushed every time the user backgrounds the app or every 60 seconds.
 
 Shorten or lengthen the flush interval to send data to Mixpanel on a more or less frequent basis by changing the value of `self.mixpanel.flushInterval`. You can also explicitly call flush() to send the phone's queue immediately after having collected key events (such as sign up).
 
-### Android
+#### Android
 
 On Android, both Event and People calls are put into a queue that gets flushed to Mixpanel according to either time or size. If the bulk upload limit of 40 records is not reached, the default flush interval is 60 seconds.
 
 You can also flush manually with public `void flush()`. One common use case is to call flush before the application is completely shut down to ensure that all of Events are sent to Mixpanel.
 
-### Unity
+#### Unity
 
 On Unity, you can configure the interval at which data is flushed to Mixpanel. The default time is that data gets flushed every 60 seconds. 
 
 You can also flush manually with public `void flush()`. 
 
-## Check for Hidden Events and Properties
+### Check for Hidden Events and Properties
 
-### Hidden in Lexicon
+#### Hidden in Lexicon
 
 All users can hide events, event properties, and user profile properties in your [Mixpanel project through Lexicon](https://developer.mixpanel.com/v3.19/docs/lexicon#hide-events-and-properties).
 
-### Inactive Events and Properties
+#### Inactive Events and Properties
 
 Mixpanel’s report dropdown menus hide events that have not been fired within the last 30 days. The events will still be available in the project's raw data, but will not be visible in the UI (we assume it's no longer relevant and hide it to declutter the dropdown menus and improve their performance). Event properties and property values that have not been sent to your project in the last 28 days will also be hidden from dropdowns.
 
 To have an imported event, event property, or property value that’s older than 30 days show in the dropdowns, you can fire a single instance of that event, property, or property value and the data will refurface it in the UI. If you know the name of the event, you can also search for it by typing the name in the dropdown menu.
 
-# Data Discrepancies
+## Data Discrepancies
 
-## Discrepancies in Mixpanel Reports
+### Discrepancies in Mixpanel Reports
 
 Mixpanel reports calculate data in different ways. While the Insights report defaults to the total event count ('totals'), the funnel report defaults to unique user count ('uniques'). So if you are seeing discrepancies between a Funnel and an Insights report, take a step back and look at the filtering for the events. It's important to note that the 'totals' in Funnels show total conversions, not total event count.
 
@@ -115,46 +115,46 @@ If you took a screenshot of a report a while ago and the data has changed since 
 
 A good way to start is to remove all filtering from the reports to check if the underlying data is the same, then re-add them and see when the discrepancy occurs. Likely the culprit will be a filter or a breakdown. 
 
-## Discrepancies between Mixpanel and other sources
+### Discrepancies between Mixpanel and other sources
 
 Two systems will always track data differently due to their nature. It might very likely be that the systems will never track exactly the same data. However, it is important to get to the bottom of what's causing the discrepancy so you can establish trust in your data.
 
-## Ad Blockers and Do Not Track Settings
+### Ad Blockers and Do Not Track Settings
 
 Client-Side Tracking can be unreliable, you may lose events for 30-50% of your users. You can resolve this by [sending events through a proxy](https://developer.mixpanel.com/docs/collection-via-a-proxy), but it requires a bit more effort. We [recommend](https://developer.mixpanel.com/docs/client-side-vs-server-side-tracking) server-side tracking, since it is more reliable and easier to maintain than web/mobile tracking.
 
-## Different Timezones
+### Different Timezones
 
 Mixpanel records all events in Coordinated Universal Time (UTC) at intake. By default, Mixpanel displays events times in US Pacific Time but this is adjustable in [Project Settings](https://developer.mixpanel.com/v3.19/docs/manage-projects#manage-timezones-for-projects). Navigate to your Project Settings to determine what timezone your Mixpanel events are displayed in.
 
 - Are event timezones tracked in the same way?
 
-## Different Queries
+### Different Queries
 
 - Are both systems looking at the same event and the same timeframe?
 - Are any filters applied to the query? Does the discrepancy persist if you remove them?
 - Are you looking at event or user properties?
 
-## Different Calculations
+### Different Calculations
 
 - Some of our reports have calculations applied, such as Funnels or Retention. Does the same calculation apply to the data in your other source?
 
-## Client-Side vs. Server-Side Tracking
+### Client-Side vs. Server-Side Tracking
 
 - Client-side integrations are more vulnerable to data tracking issues due to ad blockers and DNT settings
 - Mixpanel's SDKs can need loading times to trigger the first event
 
-## Different Triggers to Track Data
+### Different Triggers to Track Data
 
 - Are both systems using the same triggers to track events? For example, the First App Open event in Mixpanel will trigger when our SDK has loaded, other systems might trigger a comparable event earlier.
 - The event definitions might be different - Think of a button click on the client-side triggering the event in one system vs. an API call triggering the event in the other system.
 
-## Delayed Ingestion
+### Delayed Ingestion
 
 - Mixpanel accepts data that has been triggered a while ago, either via mobile SDKs or event import. You can check the $import property and the mp_processing_time_ms to confirm when data has been ingested.
 - Mixpanel events older than 5 days sent to our /track endpoint will not be ingested, but other systems might accept these events (e.g. Firebase). Check how old an event was at point of ingestion in the other system to confirm. 
 
-## Cohort Export
+### Cohort Export
 
 A cohort might show more in Mixpanel than what is actually being exported to the partner. You can find out more about troubleshooting this here.
 
