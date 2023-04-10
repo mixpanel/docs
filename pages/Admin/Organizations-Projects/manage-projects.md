@@ -8,7 +8,7 @@ metadata:
 createdAt: "2021-10-08T22:39:06.529Z"
 updatedAt: "2023-03-30T05:52:10.102Z"
 ---
-# Creating Projects
+## Creating Projects
 
 ![manageprojects 1 Image](https://raw.githubusercontent.com/ranic/mixpanel-docs/main/media/Admin/Organization-Project/Manage-Projects/manageprojects1.png)
 
@@ -26,14 +26,14 @@ To create a new Mixpanel project:
 
 **IMPORTANT! The data residency of a project can't be changed once the project is created.**
 
-# Viewing Project Information
+## Viewing Project Information
 
 To view project information:
 
 1. In Organization Settings, click **Projects**.
 2. Click a project. You’ll see information about project details, usage statistics, and access keys.
 
-## Project Details
+### Project Details
 
 You can edit the name of the project and its timezone. To edit, click the Pencil icon in the "Name" and "Timezone" fields.
 
@@ -52,13 +52,13 @@ This table describes the type of details Mixpanel provides for your project.
 | Date Created   | The date when the project was created.                                    |
 | Access URL     | The URL where you can access the project.                                 |
 
-## Access Keys
+### Access Keys
 
 This table provides the values for the **project token** and the **API secret**. The token is necessary when setting up your tracking.
 
 ![manageprojects 4 Image](https://raw.githubusercontent.com/ranic/mixpanel-docs/main/media/Admin/Organization-Project/Manage-Projects/manageprojects4.png)
 
-# Reset Projects
+## Reset Projects
 
 You can reset the current project in Project Settings. When you reset the project, Mixpanel deactivates the project and all its data and projects settings, then generates a new project.
 
@@ -68,7 +68,7 @@ A warning indicates this reset deactivates the project and all its data and proj
 
 ![manageprojects 12 Image](https://raw.githubusercontent.com/ranic/mixpanel-docs/main/media/Admin/Organization-Project/Manage-Projects/manageprojects12.png)
 
-# Delete Projects
+## Delete Projects
 
 To delete a project:
 
@@ -79,11 +79,11 @@ To delete a project:
 
 ![manageprojects 5 Image](https://raw.githubusercontent.com/ranic/mixpanel-docs/main/media/Admin/Organization-Project/Manage-Projects/manageprojects5.png)
 
-# Find Your Project Tokens
+## Find Your Project Tokens
 
 Each Mixpanel account can contain multiple projects. Each project has its own unique routing number, which we call a project token. Whenever you want to send data to a specific project, you'll need to specify the project token so we know where to put the data.
 
-## Locate Current Project Token
+### Locate Current Project Token
 
 Click the Settings gear in the upper right hand corner of your Mixpanel project and select Project settings to see your Project Token under the Access Keys table.
 
@@ -91,7 +91,7 @@ Click the Settings gear in the upper right hand corner of your Mixpanel project 
 
 ![manageprojects 4 Image](https://raw.githubusercontent.com/ranic/mixpanel-docs/main/media/Admin/Organization-Project/Manage-Projects/manageprojects4.png)
 
-## Locate Tokens for All Projects in Your Mixpanel Account
+### Locate Tokens for All Projects in Your Mixpanel Account
 
 To view the project tokens for all your projects, click the **Settings** gear icon in the top right of Mixpanel and select **Personal Settings**.
 
@@ -101,7 +101,7 @@ Then select the Projects tab.
 
 ![manageprojects 8 Image](https://raw.githubusercontent.com/ranic/mixpanel-docs/main/media/Admin/Organization-Project/Manage-Projects/manageprojects8.png)
 
-# Manage Timezones for Projects
+## Manage Timezones for Projects
 
 Mixpanel records all events in [Coordinated Universal Time (UTC)](https://www.worldtimeserver.com/learn/what-is-utc/) at intake.
 
@@ -109,7 +109,7 @@ Mixpanel converts the timezone to your project timezone before writing the event
 
 >Note: As of 1/11/2023, all new projects store their data in UTC. Changing timezone for any project under project settings only affects the timezone in which Mixpanel outputs results. You will no longer see a gap or spike in events after changing timezone now.
 
-## Changing your Timezone
+### Changing your Timezone
 
 By default, Mixpanel sets your timezone to UTC time. 
 
@@ -129,7 +129,7 @@ To change the project’s timezone:
 
 >Note that changing the timezone will not affect any data, it only affects the timezone in which we output results.
 
-## Understanding How Timezones Affect Data
+### Understanding How Timezones Affect Data
 
 After you set your timezone correctly, you should send any dates or times to Mixpanel as Coordinated Universal Time (UTC).
 
@@ -137,7 +137,7 @@ By default, Mixpanel’s integration libraries work with API ingestion endpoints
 
 >If you overwrite the default timestamp, import old data, or set a property that is in date format (e.g. Account Created Date), be sure to send the timestamp or date in UTC.
 
-### Sending Date Properties to Mixpanel
+#### Sending Date Properties to Mixpanel
 
 As mentioned previously, you should send date properties to Mixpanel as UTC time. Date properties are one of the five data types Mixpanel accepts.
 
@@ -163,7 +163,7 @@ props.put("time-example", dateFormat.format(new Date()));
 }
 Mixpanel.track("Account Created Date", props);
 ```
-### Exporting Data from Mixpanel
+#### Exporting Data from Mixpanel
 
 When you’re exporting raw data from Mixpanel, your request requires the date parameters "from_date" and "to_date" to determine which date range of data to return.
 
@@ -180,7 +180,7 @@ In the example below, if your project’s timezone is US/Pacific, the below para
 00:00:00 Aug. 1 to 11:59:59 Aug. 1 PDT, or 07:00:00 Aug. 1 – 06:59:59 Aug. 2 UTC. from_date = "2015-08-01" to_date = "2015-08-01"
 ```
 
-### Importing Data into Mixpanel
+#### Importing Data into Mixpanel
 
 Always send imported data to Mixpanel in UTC to ensure it displays correctly in your project.
 
@@ -188,7 +188,7 @@ Mixpanel hardcodes timestamps of exported data to your project’s timezone. The
 
 As a result, operations such as extract, transform, and load, need a quick timestamp and date property offset to reset the data back to UTC before importing it back to Mixpanel.
 
-# Transfer Project to Another Organization
+## Transfer Project to Another Organization
 
 Organization owners and project owners in a project can transfer that project to another organization of which they have permissions.
 
@@ -207,7 +207,7 @@ To transfer a project to another organization:
 
 >Note that project tallies will be transferred along with your project to the new Organization.
 
-# Merge Or Combine Mixpanel Projects
+## Merge Or Combine Mixpanel Projects
 
 If for any reason you need to combine two or more Mixpanel projects, it is possible to do so. A few things to consider before proceeding with the merge to ensure you maintain data integrity:
 
@@ -215,14 +215,14 @@ If for any reason you need to combine two or more Mixpanel projects, it is possi
 
 - Merging projects involves exporting and importing data, so to make sure you only have to go through the process once, ensure you have stopped sending data to the old project(s) before beginning to export.
 
-## How to Merge
+### How to Merge
 To merge projects:
 
 1. Stop sending data to the old project(s).3. 
 2. Begin sending all data to the new project.
 3. Once the old project has completely stopped receiving data, export that data via the raw data export API and import the data into the new project via Mixpanel’s import API.
 
-## Additional Tips
+### Additional Tips
 - When you export raw event data, the timestamps on those events will be in the timezone of your project.
 
 - Before importing into your new project, convert those timestamps to UTC so that they are correctly transformed to the timezone of the new project.

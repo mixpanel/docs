@@ -14,7 +14,7 @@ These tools can be used to exercise Right to Access, Right to Portability, and R
 
 Requests to export or delete end user data can take multiple weeks to process. 
 
-# Generate OAuth Token
+## Generate OAuth Token
 
 In order to submit a request, you must first generate a GDPR OAuth token from your Personal Settings. This token is required for requests submitted both through the Mixpanel interface and through Mixpanel's APIs. Users can retrieve this token from their [Account Settings](https://mixpanel.com/settings/account#data-privacy) by selecting their initials in the top right of Mixpanel and selecting **Profile & Preferences**, and then the Data & Privacy tab. The OAuth token has a one year expiry. For requests submitted via API, the token should be passed in the Authentication header. Users are eligible to generate an OAuth token if they are the Project Owner, or if they are a Project Owner or Admin of a project that supports team member roles.
 
@@ -22,13 +22,13 @@ In order to submit a request, you must first generate a GDPR OAuth token from yo
     <img src=https://storage.googleapis.com/cdn-mxpnl-com/static/readme/Personal%20Data%20%26%20Privacy%20Settings.png>
 </p>
 
-# Gather the Project Information and Distinct_ids
+## Gather the Project Information and Distinct_ids
 
 Mixpanel exports or deletes end user data according to the user's distinct_id. To export or delete end user data, first select a project that you own and collect the distinct_id of the user(s). Like all data in Mixpanel, the distinct_id can be custom specified in a tracking implementation. As this is the case, it is necessary to ensure that any provided distinct_id is accurate and stored in a project. Any incorrect identifiers submitted as part of export or deletion requests will result in inability to process the request.
 
 It is possible to submit a request from Mixpanel once you gather the distinct_ids of end users requesting exports or deletions. If you implemented Mixpanel before 2020 and are using the alias method to manage user identity, it is possible to submit either the end user’s alias or their distinct_id as part of a deletion request. All data associated with a submitted alias will be deleted. In addition, all data associated with the distinct_id(s) that the alias maps to will be deleted.
 
-# Submit Requests via Request Form in Mixpanel
+## Submit Requests via Request Form in Mixpanel
 
 To access the "Data & Privacy" modal containing the end user data request form:
 
@@ -37,7 +37,7 @@ To access the "Data & Privacy" modal containing the end user data request form:
 
 ![Data & Privacy](https://raw.githubusercontent.com/ranic/mixpanel-docs/main/media/Other%20Bits/Privacy%20%26%20Security/export-deletion-request-form.png)
 
-## Exporting User Data
+### Exporting User Data
 
 You must submit an export request to export end user data. This is done to satisfy a GDPR right to access request from your users.
 
@@ -52,7 +52,7 @@ You must submit an export request to export end user data. This is done to satis
 
 ![Data & Privacy](https://raw.githubusercontent.com/ranic/mixpanel-docs/main/media/Other%20Bits/Privacy%20%26%20Security/export-user-data-form.png)
 
-## Deleting User Data
+### Deleting User Data
 
 You must submit a deletion request to delete end user data. This is done to satisfy a GDPR right to erasure request from your users. 
 
@@ -67,7 +67,7 @@ You must submit a deletion request to delete end user data. This is done to sati
 
 ![Data & Privacy](https://raw.githubusercontent.com/ranic/mixpanel-docs/main/media/Other%20Bits/Privacy%20%26%20Security/delete-user-data-form.png)
 
-## GDPR Requests
+### GDPR Requests
 
 GDPR requests are specifically designed to satisfy requirements as outlined in the General Data Protection Regulation.
 
@@ -77,7 +77,7 @@ A GDPR export contains all data connected to the requested distinct_id.
 **Deletion**
 A GDPR deletion includes all data connected to the requested distinct_id.
 
-## CCPA Requests
+### CCPA Requests
 
 CCPA requests are specifically designed to satisfy requirements as outlined in the California Consumer Privacy Act.
 
@@ -90,7 +90,7 @@ A CCPA deletion includes all data connected to the requested distinct_id.
 **Disclosure types**
 There are three different disclosure types as outlined in the CCPA. To export or delete everything, you can select “Data” as the disclosure type. Select “Categories” to export or delete the data table headers. Select “Sources” to export or delete data connected to the means of data collection.
 
-# Opt Out Users
+## Opt Out Users
 While the following API can be used to delete or retrieve personal data as outlined by the GPDR, it is important to also opt users out of subsequent tracking. Deleting data from Mixpanel will remove it permanently, but it will not prevent the data from being collected moving forward. If tracking using a client-side Mixpanel library, you can opt users out of tracking using Mixpanel's opt-out methods. These are available in the following client-side libraries:
 * [JavaScript](doc:javascript#section-opting-users-out-of-tracking) 
 * [iOS - Objective-C](doc:ios#section-opting-users-out-of-tracking)
@@ -99,16 +99,16 @@ While the following API can be used to delete or retrieve personal data as outli
 
 See Mixpanel’s [Privacy-Friendly Tracking](https://developer.mixpanel.com/docs/privacy-friendly-tracking) guide for more information on best practices when handling personal information in Mixpanel.
 
-# Submit Requests via API
+## Submit Requests via API
 Mixpanel deletion and retrieval APIs are in place to help Mixpanel implementations meet the requirements outlined by the General Data Protection Regulation (GDPR) legislation.
 
 > 📘GDPR Request Rate Limits
 > You can batch up to 2000 distinct IDs per deletion request and up to 100 for a retrieval request. Request rates are limited for GDPR API requests. 
 
-## GDPR and CCPA API (v3)
+### GDPR and CCPA API (v3)
 The following retrieval and deletion API calls are updated for version 3 and are made for GDPR and CCPA compliance. 
 
-### Create Retrieval
+#### Create Retrieval
 Request Type: **POST**
 Description: Creates a data retrieval job.
 Endpoint: `https://mixpanel.com/api/app/data-retrievals/v3.0/?token=<your_project_token>`
@@ -134,7 +134,7 @@ Example Request:
 Example Return: 
 `{"status":"ok","results":[{"status":"PENDING", "disclosure_type":"DATA", "date_requested":"2020-03-09T22:28:55.078315", "tracking_id":"1583792934719392965",  "project_id":1978118, "compliance_type":"ccpa", "destination_url":null, "requesting_user":"pat.davis@mixpanel.com", "distinct_id_count":1}]}`
 
-### Check Status of Retrieval 
+#### Check Status of Retrieval 
 Request Type: GET
 
 Description: Checks the status of a data retrieval job.
@@ -191,7 +191,7 @@ Example Request:
 Example Return:
 `{"status": "ok", "results": {"status": "PENDING", "result": "", "distinct_ids": ["1"]}}`
 
-### Create a Deletion Task
+#### Create a Deletion Task
 Request Type: POST
 
 Description: Creates a task that specifies a list of users in a particular project to delete. This will schedule a deletion job that will delete all data, including events and user profile data, for the users specified by distinct_ids. This deletion job may be canceled until it reaches the STARTED stage. A task can take up to 60 days to complete.
@@ -219,7 +219,7 @@ Example Request:
 Example Return:
 `{"status":"ok","results":[{"status":"PENDING", "disclosure_type":"DATA", "date_requested":"2020-03-09T22:28:55.078315", "tracking_id":"1583792934719392965",  "project_id":1978118, "compliance_type":"ccpa", "destination_url":null, "requesting_user":"pat.davis@mixpanel.com", "distinct_id_count":1}]}`
 
-### Check Status of a Deletion Task
+#### Check Status of a Deletion Task
 Request Type: **GET**
 
 Description: Checks the status of an existing deletion task.
@@ -275,7 +275,7 @@ Example Request:
 Example Return:
 `{"status": "ok", "results": {"status": "PENDING", "result": "", "distinct_ids": ["1"]}}`
 
-### Cancel Deletion
+#### Cancel Deletion
 Request Type: **DELETE**
 
 Description: Cancels an existing deletion task. Deletion jobs can be canceled until the STARTED stage initiates.

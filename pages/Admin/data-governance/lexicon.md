@@ -9,7 +9,7 @@ metadata:
   description: "Learn how to use Lexicon"
 ---
 
-# Overview
+## Overview
 
 Lexicon is a data dictionary that stores descriptions of events and their properties. Project owners and admins can add and manage descriptions for all events and properties, and organize data for clarity and discoverability. Event and property definitions help your entire team understand what your data means, so everyone stays on the same page.
 
@@ -22,7 +22,7 @@ When you open Lexicon, you see four views:
 3. Event Properties
 4. Profile Properties
 
-## Event Definitions
+### Event Definitions
 
 Events are actions a user performs in your application or website.
 
@@ -39,13 +39,13 @@ This table contains descriptions for each field in the “Events” view.
 | Volume | The total number of events that users fired in the last 30 days. |
 | Queries | The total number of API and UI queries that project members executed in the last 30 days. |
 
-## Custom Event Definitions
+### Custom Event Definitions
 
 Custom events are events and properties you combine into one event to use in Mixpanel reports. The fields for custom events are “Name”, “Display Name”, “Description”, and “Queries” (defined above).
 
 ![Lexicon Custom Events](https://raw.githubusercontent.com/ranic/mixpanel-docs/main/media/Admin/Data%20Governance/Lexicon/lexicon-custom-events.png)
 
-## Event Property Definitions
+### Event Property Definitions
 
 Event properties describe details about events, such as distinct_id or browser.
 
@@ -66,7 +66,7 @@ Lexicon contains property definitions for the default properties that Mixpanel�
 
 ![Lexicon Event Properties](https://raw.githubusercontent.com/ranic/mixpanel-docs/main/media/Admin/Data%20Governance/Lexicon/lexicon-default-properties.png)
 
-## Profile Property Definitions
+### Profile Property Definitions
 
 Profile properties describe details about your users, such as username or email address. 
 
@@ -87,7 +87,7 @@ If you have Group Analytics enabled, you will see a dropdown on the Profile Prop
 
 ![Lexicon Profile Properties](https://raw.githubusercontent.com/ranic/mixpanel-docs/main/media/Admin/Data%20Governance/Lexicon/lexicon-group-analytics-GIF.gif)
 
-# Filtering Events, Custom Events, and Properties
+## Filtering Events, Custom Events, and Properties
 
 Lexicon provides several options for you to filter your events, custom events, event properties, and profile properties.
 
@@ -95,7 +95,7 @@ You can filter by visible or hidden events, dropped events, merged events, tags,
 
 ![Lexicon Filtering](https://raw.githubusercontent.com/ranic/mixpanel-docs/main/media/Admin/Data%20Governance/Lexicon/lexicon-filtering.gif)
 
-# Viewing Query Volumes for Events and Properties
+## Viewing Query Volumes for Events and Properties
 
 In each view, you can see the total UI and API queries in the last 30 days for any of these data types and sort by it. 
 
@@ -103,7 +103,7 @@ This data lets you easily discover the parts of your implementation that are mos
 
 ![Lexicon Query Volumes](https://raw.githubusercontent.com/ranic/mixpanel-docs/main/media/Admin/Data%20Governance/Lexicon/lexicon-query-volumes.png)
 
-# Dropping and Hiding Data
+## Dropping and Hiding Data
 
 In Lexicon, you can intercept and drop incoming events or properties. Mixpanel won’t store any **new data** for the event or property you select to drop. **Warning: You cannot recover event data after you drop it.**
 
@@ -117,7 +117,7 @@ Sample use cases for dropping events and properties are:
 
 **Better Organization:** Events and properties that are no longer useful can cause a cluttered Mixpanel project. Dropping unnecessary events and properties optimizes your code for a clean and streamlined project implementation.
 
-## Dropping Events
+### Dropping Events
 
 By dropping an event, you can intercept and drop incoming events. Mixpanel won’t store any new data for the event you select to drop. 
 
@@ -129,7 +129,7 @@ To drop an event in Lexicon:
 ![Lexicon Drop Events Warning](https://raw.githubusercontent.com/ranic/mixpanel-docs/main/media/Admin/Data%20Governance/Lexicon/lexicon-drop-events-warning.png)
 3. Click Drop. The status of the event indicates Dropped.
 
-## Dropping Properties
+### Dropping Properties
 
 By dropping a property, you can intercept and drop incoming property. Mixpanel won’t store any new data for the property you select to drop. 
 
@@ -139,7 +139,7 @@ To drop a property in Lexicon:
 ![Lexicon Drop Properties](https://raw.githubusercontent.com/ranic/mixpanel-docs/main/media/Admin/Data%20Governance/Lexicon/lexicon-drop-properties.png)
 2. Click Drop. A warning indicates that you cannot recover the data that you choose to drop. Click Drop to confirm. The status of the property will indicate Dropped.
 
-## Undropping Events
+### Undropping Events
 
 You can undrop events and properties when you decide you need them again.
 
@@ -149,13 +149,13 @@ To undrop an event:
 ![Lexicon Undrop Events](https://raw.githubusercontent.com/ranic/mixpanel-docs/main/media/Admin/Data%20Governance/Lexicon/lexicon-undrop-events.png)
 2. Click Undrop. The “Status” column no longer contains “Dropped”.
 
-## Undropping Properties
+### Undropping Properties
 
 1. Select a dropped property. The “Status” column indicates if a property is dropped.
 ![Lexicon Undrop Properties](https://raw.githubusercontent.com/ranic/mixpanel-docs/main/media/Admin/Data%20Governance/Lexicon/lexicon-undrop-properties.png)
 2. Click Undrop. The “Status” column no longer contains “Dropped”.
 
-## Hide Events and Properties
+### Hide Events and Properties
 
 To hide an event or property:
 
@@ -166,7 +166,7 @@ To hide an event or property:
 
 Another option for hiding an event, property, or property value is to let it inactivate until it is hidden in report dropdown menus. Mixpanel’s report dropdown menus hide events that have not been fired within the last 30 days. Event properties and property values that have not been sent to your project in 28 days be hidden from dropdown menus.
 
-## Show Events and Properties
+### Show Events and Properties
 
 To show an event or property:
 
@@ -174,7 +174,7 @@ To show an event or property:
 2. Select Unhide. After you select Unhide, the event or property status changes to “Visible”.
 ![Lexicon Show Events and Properties](https://raw.githubusercontent.com/ranic/mixpanel-docs/main/media/Admin/Data%20Governance/Lexicon/show-events-and-properties.png)
 
-# Merging Events and Properties
+## Merging Events and Properties
 
 In Lexicon, project owners can merge events and event properties.
 
@@ -185,7 +185,7 @@ By merging “Purchase” and “purchase item” into a single event named “P
 Being able to merge events can help streamline your implementation, reduce your costs by eliminating redundant events being sent to Mixpanel, and simplify report analysis because you’re only using optimal events and properties.
 Do note however that user profile properties cannot be merged at this time.
 
-## Merging Events
+### Merging Events
 
 To merge events:
 
@@ -195,7 +195,7 @@ To merge events:
 3. In the “MERGE SELECTED EVENTS INTO…” section, specify which event Mixpanel should consider as the new unique event.
 4. Click Merge. The merged event appears and the “Status” column indicates “Merged”.
 
-## Unmerging Events
+### Unmerging Events
  
 To unmerge events:
 
@@ -203,7 +203,7 @@ To unmerge events:
 ![Lexicon Unmerge Events](https://raw.githubusercontent.com/ranic/mixpanel-docs/main/media/Admin/Data%20Governance/Lexicon/unmerge-events.png)
 2. Click Unmerge. The merged event appears as the original two distinct events.
 
-## Merging Properties
+### Merging Properties
 
 To merge properties:
 
@@ -213,7 +213,7 @@ To merge properties:
 3. In the “MERGE SELECTED PROPERTIES INTO…” section, specify which property Mixpanel should recognize as the newly merged property name.
 4. Click Merge. The merged property appears and the “Status” column indicates “Merged”.
 
-## Unmerging Properties
+### Unmerging Properties
 
 To unmerge properties:
 
@@ -221,7 +221,7 @@ To unmerge properties:
 ![Lexicon Unmerge Events](https://raw.githubusercontent.com/ranic/mixpanel-docs/main/media/Admin/Data%20Governance/Lexicon/unmerge-properties.png)
 2. Click Unmerge. The merged property appears as the original two distinct properties.
 
-# Export and Import Lexicon Data
+## Export and Import Lexicon Data
 
 Mixpanel supports exporting and importing Lexicon data dictionaries. Project owners, admins, analysts, and consumers can click Export in Lexicon to receive a CSV file via email that contains the events and properties, and/or user profile properties data from a project.
 
@@ -234,7 +234,7 @@ In the Export panel, you can select:
 
 The requester will receive an email with a link to download a single CSV file. This link remains active for 14 days. Each CSV file can contain up to 5,000 events, and 2,000 properties per event. Each CSV file can contain up to 2,000 user profile properties.
 
-## CSV Import
+### CSV Import
 
 Project owners and admins can export a CSV of their Lexicon changes, make changes, and import that CSV back into Lexicon.
 
@@ -252,7 +252,7 @@ Once you've made your modifications, you can directly import the CSV file into L
 
 Event and property descriptions and metadata (hidden, dropped, sensitive, etc) that are already in Lexicon will be overwritten by descriptions and metadata for matching event and property names. By default, any event and property descriptions for events that are not imported will remain unchanged unless you check the option to overwrite your entire data dictionary during import.
 
-# Lexicon Schemas API
+## Lexicon Schemas API
 
 Mixpanel provides a suite of API endpoints for you to Retrieve, Create, and Delete your data dictionary in Lexicon. To use these APIs, check out our [API reference docs](https://developer.mixpanel.com/reference/lexicon-schemas-api).
 

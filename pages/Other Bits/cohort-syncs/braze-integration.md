@@ -9,7 +9,7 @@ createdAt: "2021-10-08T22:39:06.529Z"
 updatedAt: "2023-03-30T05:52:10.102Z"
 ---
 
-# Overview
+## Overview
 
 The Mixpanel Braze integration exports Mixpanel Cohorts into [Braze](https://www.braze.com/). This allows you to send Braze campaign messages to targeted cohorts that are created in Mixpanel. You can also send your Braze events into Mixpanel to apply deeper analysis. 
 

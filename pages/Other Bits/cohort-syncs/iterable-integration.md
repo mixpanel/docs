@@ -9,7 +9,7 @@ createdAt: "2021-10-08T22:39:06.529Z"
 updatedAt: "2023-03-25T05:52:10.102Z"
 ---
 
-# Overview
+## Overview
 
 Export Mixpanel cohorts to Iterable to create user lists that you can target in your Iterable campaigns. Manage the Iterable integration from the Mixpanel integrations page.
 

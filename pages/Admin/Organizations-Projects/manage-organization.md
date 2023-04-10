@@ -9,15 +9,15 @@ createdAt: "2021-10-08T22:39:06.529Z"
 updatedAt: "2023-03-30T05:52:10.102Z"
 ---
 
-# Overview
+## Overview
 
 As an Organization Admin, you may create and manage security processes that dictates the requirements needed for your users to access your organization.
 
-# Two-Factor Authentication (2FA)
+## Two-Factor Authentication (2FA)
 
 Two-factor authentication (2FA) is a security process that requires users to provide two different authentication factors, such as passwords or tokens, to verify their identity.
 
-## Enable Two-Factor Authentication for your Organization
+### Enable Two-Factor Authentication for your Organization
 
 If you are an organization admin, you can enable two-factor authentication by doing the following:
 
@@ -39,15 +39,15 @@ If you are an organization admin, you can enable two-factor authentication by do
 
 4. Enter your password and click **Confirm** to finalize changes.
 
-## Setting up your Two-Factor Authentication Method
+### Setting up your Two-Factor Authentication Method
 
 Once two-factor authentication has been enabled for your organization, an individual member of your organization can set up two-factor authentication via the methods below.
 
-### Setup via second login
+#### Setup via second login
 
 On their second login, Mixpanel Users will be prompted to set up two-factor authentication via an authentication app or SMS.
 
-#### Authentication App
+##### Authentication App
 
 1. In order to set up two-factor authentication via an authentication app, select the authentication app option and ensure you have your preferred authentication app downloaded. We recommend using apps such as Google Authenticator, Authy and Microsoft Authenticator.
 
@@ -67,7 +67,7 @@ If you are unable to scan the QR code, click on “Can’t scan QR code?” This
 
 ![2FA Authentication App 3 Image](https://raw.githubusercontent.com/ranic/mixpanel-docs/main/media/Admin/2FA/2fa_authentication_app3.png)
 
-#### SMS Authentication
+##### SMS Authentication
 
 1. In order to set up two-factor authentication via SMS, select the SMS option.
 
@@ -85,7 +85,7 @@ If you are unable to scan the QR code, click on “Can’t scan QR code?” This
 
 ![2FA SMS 4 Image](https://raw.githubusercontent.com/ranic/mixpanel-docs/main/media/Admin/2FA/2fa_sms4.png)
 
-### Setup via personal settings page
+#### Setup via personal settings page
 
 An individual user can also set up their two-factor authentication via their personal settings. In order to setup two-factor authentication, follow these steps:
 
@@ -97,7 +97,7 @@ An individual user can also set up their two-factor authentication via their per
 
 ![2FA Personal 2 Image](https://raw.githubusercontent.com/ranic/mixpanel-docs/main/media/Admin/2FA/2fa_personal2.png)
 
-## Changing your Two-Factor Authentication Method
+### Changing your Two-Factor Authentication Method
 
 An individual user can change their two-factor authentication method via their personal settings page. Users can switch their authentication method from SMS to authentication app and vice versa. Additionally, users can also change their current authentication app to another authentication app (i.e. Authy to Google Authenticator)
 
@@ -113,13 +113,13 @@ Users can switch their method via the following steps:
 
 ![2FA Change 2 Image](https://raw.githubusercontent.com/ranic/mixpanel-docs/main/media/Admin/2FA/2fa_change2.png)
 
-## Login via backup methods
+### Login via backup methods
 
 If you are unable to log in due to two-factor authentication because you have either lost your phone or don’t have access to your number, we have a couple backup methods you can use to log in depending on your authentication method.
 
 **Note: Contact support if none of these backup methods work for you.**
 
-### Login via recovery codes (authentication app)
+#### Login via recovery codes (authentication app)
 
 If an authentication app is your preferred method of authentication, you can login via your saved recovery codes if you don’t have access to your phone. A user can login via a recovery code by doing the following:
 
@@ -133,15 +133,15 @@ If an authentication app is your preferred method of authentication, you can log
 
 **Note: If you use all your recovery codes, you will be asked to reset your two-factor authentication method on your next login.**
 
-### Login via Authy (SMS)
+#### Login via Authy (SMS)
 
 Mixpanel is integrated with Authy (a Twilio service), so if you download the Authy app, you can add your email address and phone number. Then, you can add your Mixpanel account to the app. You can learn more about Authy at https://www.authy.com/.
 
-# Single Sign-On
+## Single Sign-On
 
 You can use Single Sign-On (SSO) to access Mixpanel. You must be on a Mixpanel Enterprise account and use an identity provider or a custom SAML implementation in order to use SSO with Mixpanel. 
 
-## Access SSO Settings
+### Access SSO Settings
 
 To access SSO settings in Mixpanel, navigate to your **Organization Settings** located under your name in the top navigation.
 
@@ -150,7 +150,7 @@ To access SSO settings in Mixpanel, navigate to your **Organization Settings** l
 **Require Users to Log In Using SSO**
 Optionally toggle “Require Users to Log In using SSO” to prevent your users from using a username and password to log in. Click Enable. Organization owners and admins will still be able to log in using username and password if SSO is not set up correctly.
 
-## Claim a Domain
+### Claim a Domain
 
 Claiming a domain will add security to an SSO implementation by only allowing members with a claimed domain in their email address to access Mixpanel. SSO only works on domains that are claimed. 
 
@@ -191,7 +191,7 @@ Add `mixpanel-domain-verify=<your-token>` as the TXT record.
 
 Note that you will need to leave the token in your DNS records permanently or the domain will unverify after a week. Only remove the token for domains you no longer wish to use SSO with.
 
-## Set Up Your IDP
+### Set Up Your IDP
   
 You must configure your Identity Provider (IDP) to connect to Mixpanel in order to use SSO if you are not using custom built SSO. This requires that you directly configure your SSO settings.
 
@@ -225,7 +225,7 @@ You likely will need to provide your IDP with a postback URL. The postback URL i
 
 This needs to be a .cert or .pem file for a valid X509 certificate. Note that .xml files are not valid, if you have downloaded one from your IDP it will not work. Also it's important to note that this certificate will expire after some number of years. At the moment we do not send any notifications when it is about to expire, so make sure you have a system set up to cycle them every so often if you wish to avoid disruption.
 
-## Just in Time Privisioning
+### Just in Time Privisioning
 
 Just in Time (JIT) provisioning using SAML will let users sign in automatically upon the initial login event. This removes the need for organization admin to invite individual users to an Organization. This is part of what IDP Managed Access provides.
 
@@ -235,7 +235,7 @@ To turn on JIT provisioning, go to Access Security, and click on the “IDP Mana
 
 Users added in this way will have first names and last names populated by the firstName and lastName profile attributes provided via SAML at login time. They will also have no roles to start off except those given to all users in your organization. To give these provisioned users default access to projects, invite All Users in the Organization to the project.
   
-## IDP Managed Access
+### IDP Managed Access
   
 This toggle is to determine whether you are using your IDP to manage who should be allowed in the organization or whether you are using it purely as an authentication method and want to leave the management within Mixpanel. If it is enabled all users of your verified claimed domains who log into Mixpanel (whether they are in your org or not) will be prompted to use SSO. If they successfully log in through your SSO set up they will be automatically added to the organization with no permissions except those granted to all users. It will also redirect anyone trying to sign up for a Mixpanel account with your claimed domain or anyone requesting access to a project in your organization to sign in via SSO first. This helps ensure all users in your organization who try to use Mixpanel get routed to your IDP, where you can them assign them access to the Mixpanel app. This also prevents needing to manually invite users to Mixpanel from within the product. We recommend this to be toggled on for most customers.
 
@@ -243,7 +243,7 @@ This can be enabled in the Access Security tab of your Organization Settings. It
   
 ![SSO IDP Managed Access Image](https://raw.githubusercontent.com/ranic/mixpanel-docs/main/media/Admin/SSO/sso_idp_managed_access.png)
 
-## SCIM
+### SCIM
 
 The SCIM tab in the Access Security tab of the Organization Settings lets you generate a token used to hit the SCIM endpoints. Remember to save this token, as you will only see it once. Note that only accounts with enterprise plans have access to SCIM at the moment.
 
@@ -255,11 +255,11 @@ While you can hit the SCIM endpoints directly, the most common use case would to
 
 If you wish to revoke your SCIM Provisioning token, you can generate a new one which will kill the previous token.
 
-# SSO via Microsoft Azure
+## SSO via Microsoft Azure
 
 You can set up Microsoft Azure Single Sign-On to use with your Mixpanel account. 
 
-## Add Mixpanel as a New Application
+### Add Mixpanel as a New Application
 
 For more information, read [this Microsoft Azure article](https://docs.microsoft.com/en-us/azure/active-directory/saas-apps/mixpanel-provisioning-tutorial) about configuring Mixpanel for automatic user provisioning. 
 
@@ -267,7 +267,7 @@ For more information, read [this Microsoft Azure article](https://docs.microsoft
 2. Click **New Application**.
 3. Search and select Mixpanel to add as an application.
 
-## Edit SAML Config in Microsoft Azure
+### Edit SAML Config in Microsoft Azure
 
 1. Click **Single sign-on** under **Manage**.
 2. Enter the following information in the SAML Configuration:
@@ -284,7 +284,7 @@ For more information, read [this Microsoft Azure article](https://docs.microsoft
   
 4. Download the SAML certificate under **SAML Signing Certificate** by clicking **Download** next to the **Certificate (Base64)** field. If you downloaded an .xml file then you have clicked the wrong button, make sure it is a .cer or .pem file. This will be uploaded to Mixpanel in the next step.
 
-## Copy Certificate into Mixpanel
+### Copy Certificate into Mixpanel
 
 1. Navigate to the **Access Security** section in your Mixpanel **Organization Settings**.
 2. Upload the certificate in the SAML Certificate field. 
@@ -292,30 +292,30 @@ For more information, read [this Microsoft Azure article](https://docs.microsoft
 4. Input the Azure Login URL in the Identity Provider Sign-in URL field. 
 5. Assign your team members this new application.
     
-## SCIM Provisioning
+### SCIM Provisioning
   
 Azure has an autoprovisioning integration with Mixpanel that lets you automatically add users to Mixpanel upon giving them access in Azure, and likewise removing access within Mixpanel when you remove access in Azure. You can find more information [here](https://learn.microsoft.com/en-us/azure/active-directory/saas-apps/mixpanel-provisioning-tutorial). Note that it is advised you turn on IDP Managed Access if you are using SCIM Provisioning.
 
-# SSO via Okta
+## SSO via Okta
 You have two setup options in order to use Single Sign-On (SSO) for Mixpanel through Okta:
 
 A.  For most use cases, you can use the "Mixpanel" app within the OIN (Okta's app store). 
 
 B.  If you have a more custom setup, follow Okta’s documentation on setting up a new application to create the Mixpanel App.
 
-## Configure SSO in Mixpanel
+### Configure SSO in Mixpanel
 
 Follow the general SSO set-up instructions.
 
 Make sure to collect your postback URL and successfully claim your domain.
 
-## Configure the Mixpanel App in Okta
+### Configure the Mixpanel App in Okta
 
 A.  Use the ["Mixpanel" app within the OIN (Okta's app store)](https://www.okta.com/integrations/mixpanel/), or
 
 B.  Follow [Okta’s documentation on setting up a new application](https://help.okta.com/en-us/Content/Topics/Apps/Apps_Apps_Page.htm) to create the Mixpanel App.
 
-### Configure SAML
+#### Configure SAML
 
 You must fill the form found in the “Configure SAML” menu in Okta. The following highlights what you should place in the fields.
 
@@ -330,7 +330,7 @@ Make sure that the following is adjusted to match the following:
 
 Additionally, it is required that you use email as an attribute statement.
 
-## Obtain Information From Okta
+### Obtain Information From Okta
 
 You must first obtain your Public Certificate, Authentication URL, and Issuer URL in order to configure Mixpanel use with Okta.
 
@@ -340,7 +340,7 @@ Under the "SAML 2.0" section, click **View Setup Instructions** and scroll down 
 
 ![Okta Info 1 Image](https://raw.githubusercontent.com/ranic/mixpanel-docs/main/media/Admin/Okta/okta_info1.png)
 
-### Public Certificate
+#### Public Certificate
 
 Your X.509 certificate is what allows users signing in through a third-party identity provider to be authenticated by Mixpanel without supplying a username and password. Each identity provider account has a unique X.509 certificate that will need to be uploaded to Mixpanel during the single sign-on setup process.
 
@@ -348,25 +348,25 @@ Click **Download Certificate** in the second entry to download your certificate.
 
 ![Okta Info 2 Image](https://raw.githubusercontent.com/ranic/mixpanel-docs/main/media/Admin/Okta/okta_info2.png)
 
-### Authentication URL
+#### Authentication URL
 
 Your Authentication URL is in the third entry labeled "Redirect Login URL".
 
 ![Okta Info 3 Image](https://raw.githubusercontent.com/ranic/mixpanel-docs/main/media/Admin/Okta/okta_info3.png)
 
-### Issuer URL
+#### Issuer URL
 
 You will find your Issuer URL in the third entry labeled "Identity Provider Issuer".
 
 ![Okta Info 4 Image](https://raw.githubusercontent.com/ranic/mixpanel-docs/main/media/Admin/Okta/okta_info4.png)
 
-## Enable SSO
+### Enable SSO
 
 From Mixpanel, navigate to your **Organization Settings**. From the SSO menu, insert your Public Certificate, Authentication URL, and Issuer URL.
 
 Optionally toggle “Require Users to Log In using SSO” to prevent your users from using a username and password to log in. Click **Enable**. Organization owners and admins will still be able to log in using username and password if SSO is not set up correctly.
 
-## Configuring SCIM Provisioning
+### Configuring SCIM Provisioning
 
 SCIM provisioning uses [the "Mixpanel" app within the OIN (Okta's app store)](https://www.okta.com/integrations/mixpanel/).
 
@@ -386,7 +386,7 @@ The following provisioning features are supported:
 - **Push User Deactivation:** Deactivating the user or removing the user from the application through Okta will deactivate the user in Mixpanel (or delete the account if specified).
 - **Reactivate Users:** Reassigning a previously unassigned user to the application will reactivate the user’s account in Mixpanel.
 
-### Configuration Setup
+#### Configuration Setup
 
 Click the **Configure API Integration** button in Okta to begin.
 
@@ -411,7 +411,7 @@ Select and assign the users you wish to provision:
 
 ![Okta SCIM 5 Image](https://raw.githubusercontent.com/ranic/mixpanel-docs/main/media/Admin/Okta/okta_scim5.png)
 
-### Troubleshooting
+#### Troubleshooting
 
 In Mixpanel, upon account creation, a SCIM-provisioned user will be added to the organization with the organization member role. The organization role for provisioned users can be changed by an organization admin within Mixpanel.
 
@@ -419,14 +419,14 @@ If a Mixpanel account has already been created with the Okta user’s email (the
 
 To resolve this, manually invite the existing user to your organization.
 
-# Organization Discoverability
+## Organization Discoverability
 Organization Discoverability makes it seamless for new users with a shared work email domain to connect with teammates in an existing organization in Mixpanel, allowing them to access their team’s projects, data, and reports, instead of joining a new, empty org.
 
 This feature is accessible to new users who have verified their email as well as existing organizations that are not an Enterprise plan and do not have SSO enabled.
 
 ![Organization Discoverability 1 Image](https://raw.githubusercontent.com/ranic/mixpanel-docs/main/media/Admin/Organization-Project/discoverability1.png)
 
-## Setting Discoverability
+### Setting Discoverability
 
 Only **organization owners** and **billing admins** can access Organization Discoverability by going to Organization Settings > Users & Teams > Organization Discoverability.
 

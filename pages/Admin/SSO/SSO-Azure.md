@@ -7,11 +7,11 @@ metadata:
   description: "Configure SSO with Azure"
 ---
 
-# Overview
+## Overview
 
 You can set up Microsoft Azure Single Sign-On to use with your Mixpanel account. Before using this document, read the general Mixpanel SSO set-up instructions as well as Azure’s documentation on setting up a new application. 
 
-## Add Mixpanel as a New Application
+### Add Mixpanel as a New Application
 
 For more information, read [this Microsoft Azure article](https://docs.microsoft.com/en-us/azure/active-directory/saas-apps/mixpanel-provisioning-tutorial) about configuring Mixpanel for automatic user provisioning. 
 
@@ -19,7 +19,7 @@ For more information, read [this Microsoft Azure article](https://docs.microsoft
 2. Click **New Application**.
 3. Search and select Mixpanel to add as an application.
 
-## Edit SAML Config in Microsoft Azure
+### Edit SAML Config in Microsoft Azure
 
 1. Click **Single sign-on** under **Manage**.
 2. Enter the following information in the SAML Configuration:
@@ -36,7 +36,7 @@ For more information, read [this Microsoft Azure article](https://docs.microsoft
   
 4. Download the SAML certificate under **SAML Signing Certificate** by clicking **Download** next to the **Certificate (Base64)** field. If you downloaded an .xml file then you have clicked the wrong button, make sure it is a .cer or .pem file. This will be uploaded to Mixpanel in the next step.
 
-## Copy Certificate into Mixpanel
+### Copy Certificate into Mixpanel
 
 1. Navigate to the **Access Security** section in your Mixpanel **Organization Settings**.
 2. Upload the certificate in the SAML Certificate field. 
@@ -44,6 +44,6 @@ For more information, read [this Microsoft Azure article](https://docs.microsoft
 4. Input the Azure Login URL in the Identity Provider Sign-in URL field. 
 5. Assign your team members this new application.
     
-## SCIM Provisioning
+### SCIM Provisioning
   
 Azure has an autoprovisioning integration with Mixpanel that lets you automatically add users to Mixpanel upon giving them access in Azure, and likewise removing access within Mixpanel when you remove access in Azure. You can find more information [here](https://learn.microsoft.com/en-us/azure/active-directory/saas-apps/mixpanel-provisioning-tutorial). Note that it is advised you turn on IDP Managed Access if you are using SCIM Provisioning.

@@ -9,7 +9,7 @@ createdAt: "2021-10-08T22:39:06.529Z"
 updatedAt: "2023-03-25T05:52:10.102Z"
 ---
 
-# Overview
+## Overview
 
 Export Mixpanel cohorts to Taplytics to create custom segments that you can apply in your Taplytics experiments, feature flags, and more. Manage the Taplytics integration from the Mixpanel integrations page.
 

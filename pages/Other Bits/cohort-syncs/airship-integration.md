@@ -9,7 +9,7 @@ createdAt: "2021-10-08T22:39:06.529Z"
 updatedAt: "2023-03-25T05:52:10.102Z"
 ---
 
-# Overview
+## Overview
 
 The Airship integration with Mixpanel allows users to export Mixpanel cohorts into Airship. This updates the Mixpanel Tag Group in Airship, allowing you to target specific Mixpanel cohorts using Airship. Mixpanel cohorts can be exported to the Airship Tag Group once, or the cohort data can sync dynamically and update the Tag Group every 15 minutes.
 

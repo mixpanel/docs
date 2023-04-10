@@ -9,17 +9,17 @@ createdAt: "2021-10-08T22:39:06.529Z"
 updatedAt: "2023-03-30T05:52:10.102Z"
 ---
 
-# Overview
+## Overview
 Your team members access your organization and its projects using individual user accounts which is what you use to sign into Mixpanel. An account must be part of an organization but it does not need to be part of all projects in the organization.  Each account will have a single organization role per organization and one project role for each project it is a part of. These roles can further limit what an account will have access to in Mixpanel.
 
 
-## Invite Users
+### Invite Users
 
 You can invite users users to an organization or to a project with specific role permissions.
 
 >See Permissions to learn more about organizaton roles and project roles.
 
-### Invite Users to an Organization
+#### Invite Users to an Organization
 
 To invite a user to an organization:
 
@@ -33,7 +33,7 @@ Need new invite box image
 
 You may bulk invite users via CSV by selecting **Bulk invite** and following the provided **CSV template**.
 
-### Invite Users to a Project
+#### Invite Users to a Project
 
 To invite a user to a project:
 
@@ -49,11 +49,11 @@ Need new invite box image
 >If there are projects that you wish everyone in your organization have some baseline access to as a certain role, you may set default roles by choose All Users in the Organization and select a role in the **Invite Users module** to provide all current and future users in your organization with access.
 
 
-## Remove Users
+### Remove Users
 
 You can remove users from a project or organization.
 
-### Remove User from a Project
+#### Remove User from a Project
 
 >Note: Only users with Organization Owners and Organization Admins can remove users that have access to a project granted through a Team.
 
@@ -67,7 +67,7 @@ image showing delete button
 
 >Note: An organization user may be a member of multiple projects. Deleting a user from one project does not affect their access to other projects within the organization.
 
-### Remove User from an Organization
+#### Remove User from an Organization
 
 1. Under "Organization Settings", click **Users & Teams**.
 2. Find user(s) to remove and click the checkbox next to their name.
@@ -77,13 +77,13 @@ image showing delete button
 
 image showing warning?
 
-# Permissions
+## Permissions
 
 In Mixpanel, users have roles in an organization and in a project.
 
 The types of organization and project roles a user has should be based on the required permissions users need for specific levels.
 
-## Organization Roles
+### Organization Roles
 
 An Organization has 4 roles: Owner, Admin, Billing Admin, and Member. The table below visually breaks down all the permissions per role on an organization level.
 
@@ -102,11 +102,11 @@ An Organization has 4 roles: Owner, Admin, Billing Admin, and Member. The table 
 | Modify 2-FA and SSO                                                | :white_check_mark: | :white_check_mark: | :x:                | :x:        |
 | Request Organization Deletion                                      | :white_check_mark: | :x:                | :x:                | :x:        |
 
-### Owner
+#### Owner
 
 Organization Owners have administrative permissions for the organization and all the projects in the organization. Multiple users can be Owners. However, each organization must have at least one Owner.
 
-### Admin
+#### Admin
 
 Organization Admins have permissions to manage projects, members and roles in the organization. Organization Admins have the same permissions as Organization Owners EXCEPT for the following:
 
@@ -115,7 +115,7 @@ Organization Admins have permissions to manage projects, members and roles in th
 - Transfer Projects between Organizations
 - Manage Billing Plans
 
-### Billing Admin
+#### Billing Admin
 
 Organization Billing Admins can only manage billing plans for your company. The Billing Admin does not have to belong to a team or project. A user can be a Billing Admin and also a member of a Project or a Team simultaneously.
 
@@ -126,13 +126,13 @@ Billing admins can view organization settings solely to:
 - View Receipts
 - Submit a Downgrade Request
 
-### Member
+#### Member
 
 Organization Members have no permissions to control or manage organization settings.
 
 In order for a user to have access to project(s) and/or team(s), they must first be added to the organization as a Member.
 
-## Project Roles
+### Project Roles
 
 A Project has 4 roles: Owner, Admin, Analyst, and Consumer. The table below is an overview of the permissions per role on an project level.
 
@@ -149,7 +149,7 @@ A Project has 4 roles: Owner, Admin, Analyst, and Consumer. The table below is a
 | Approve Access Requests        | :white_check_mark: | :white_check_mark: | :x:         | :x:         |
 | Create Service Accounts        | :white_check_mark: | :white_check_mark: | :x:         | :x:         |
 
-### Owner
+#### Owner
 
 When a user creates a project, they own and have complete control over it. They have all permissions at the project level.
 
@@ -157,19 +157,19 @@ They can provision project ownership to other project users.
 
 Organization owners have administrative permissions to assume an owner role in a project.
 
-### Admin
+#### Admin
 
 Project admins have the same set of permissions as project owners. However, they cannot delete or reset the project or manage its security.
 
 Organization admins have administrative permissions to assume an admin role in a project.
 
-### Analyst
+#### Analyst
 
 Project analysts can create and save Mixpanel reports and Boards. They can also share their saved reports and Boards, along with reports and Boards in which they have editor permissions.
 
 Project analysts cannot manage team member roles.
 
-### Consumer
+#### Consumer
 
 Project consumers can view and save their own reports and Boards. Consumers cannot share their saved reports and Boards with their team members as they will be marked as private.
 
@@ -182,7 +182,7 @@ Consumers cannot create public Boards.
 Project consumers cannot manage team member roles.
 
 
-### Multiple Roles at Once
+#### Multiple Roles at Once
 
 It is possible to have multiple or conflicting roles on a project via teams or organization roles. Within Mixpanel all roles are additive and strictly give permissions to an action. They do not remove any abilities.
 
@@ -192,11 +192,11 @@ For example:
 
 2. If a user is assigned both the Consumer role individually and the Analyst role via a team. The user would be able to do both anything a Consumer can do and anything an Analyst can do.
 
-# Teams
+## Teams
 
 Mixpanel enables you to create and delete Teams within an organization. Teams make it easier to manage roles and permissions for a group of users. Users who are a member of a Team will be provisioned with the same role and permission that is assigned to the team. 
 
-## Creating Teams
+### Creating Teams
 
 To create teams in Mixpanel:
 
@@ -205,7 +205,7 @@ To create teams in Mixpanel:
 3. Click **Create Team** and provide a team name.
 4. Click **Done** to complete the process and see the team's permission and membership.
 
-## Adding Users to Teams
+### Adding Users to Teams
 
 All users added to a team will receive the same role and permissions that is assigned to the team. To add users to a team:
 
@@ -214,9 +214,9 @@ All users added to a team will receive the same role and permissions that is ass
 3. Click **Add Users** to select users to add to the team.
 4. Click **Done** to complete the process.
 
-## Managing Team Permission
+### Managing Team Permission
 
-### Adding Projects to Teams
+#### Adding Projects to Teams
 
 Adding projects to a team gives all individuals in the team access to that project with the specified role. To add projects to a team:
 
@@ -225,6 +225,6 @@ Adding projects to a team gives all individuals in the team access to that proje
 3. Click **Add Project** and select the project(s) and permission role.
 4. Click **Add** to complete the process.
 
-### Other Team Permissions
+#### Other Team Permissions
 
 Adding Data Views and Service Accounts to a team will give all individuals in the team access to the Data View and Service Accounts.

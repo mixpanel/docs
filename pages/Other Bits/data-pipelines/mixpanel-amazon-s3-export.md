@@ -10,14 +10,14 @@ updatedAt: "2023-03-26T19:16:30.791Z"
 ---
 Mixpanel's [Schematized Export Pipeline](doc:schematized-export-pipeline) lets you export your Mixpanel data directly into an S3 bucket, allowing the use of Glue to query it. To set up the Mixpanel AWS pipeline, you must configure AWS to receive the exported data, then [create a pipeline](ref:create-warehouse-pipeline) to export the data.
 
-# Design
+## Design
 ![image](https://user-images.githubusercontent.com/2077899/230698348-abb2656e-fe2a-4d9c-ad61-8f80793e9c07.png)
 
 Mixpanel applies [transformation rules](doc:schematized-export-pipeline#transformation-rules) to make the data compatible with data warehouses and then transfers the transformed data to your S3 bucket. You can then choose to use a glue crawler to create the schema out of the transformed data or let Mixpanel to directly create the schema in your glue database. Having the data and the glue schema in place, you can use SQL with multiple AWS products, including [Amazon Athena](https://aws.amazon.com/athena/) and [Redshift Spectrum](https://docs.aws.amazon.com/redshift/latest/dg/c-getting-started-using-spectrum.html), to query the imported data. 
 
 We recommend the use of [Spectrum](https://docs.aws.amazon.com/redshift/latest/dg/c-getting-started-using-spectrum.html) and [Glue](https://aws.amazon.com/glue/) to query the imported data. 
 
-# Exporting Mixpanel Data to Redshift Spectrum
+## Exporting Mixpanel Data to Redshift Spectrum
 The following summarizes the steps to export Mixpanel data to an S3 bucket. Consult [AWS documentation](https://docs.aws.amazon.com/AmazonS3/latest/gsg/GetStartedWithS3.html) for AWS specific tasks, such as creating an [S3 bucket](http://google.com) and [permissions](https://docs.aws.amazon.com/AmazonS3/latest/dev/using-with-s3-actions.html).
 
 To prepare S3 for the incoming data:
@@ -25,13 +25,13 @@ To prepare S3 for the incoming data:
 2. Give Mixpanel the required permissions to write to the bucket. 
 3. Configure Glue as shown below.
 
-## S3 Bucket Permissions
+### S3 Bucket Permissions
 
 Mixpanel supports a wide range of configurations to secure and manage your data on S3. To access resources, the pipeline uses AWS cross-account roles.
 
 This section highlights the permissions you must give Mixpanel depending on the configuration of the target S3 bucket.  
 
-## Data Modification Policy
+### Data Modification Policy
 All exports from Mixpanel to AWS require that you create a new data modification policy, or add the following permissions to an existing data modification policy.
 
 Replacing ```<BUCKET_NAME>``` with your bucket name before inserting this JSON:
@@ -57,17 +57,17 @@ Replacing ```<BUCKET_NAME>``` with your bucket name before inserting this JSON:
 }
 ```
 
-### Server-Side Encryption
+#### Server-Side Encryption
 Mixpanel always sends data to your S3 bucket on a TLS encrypted connection. To secure your data at rest on S3, you can enable [Server-Side Encryption (SSE)](https://docs.aws.amazon.com/AmazonS3/latest/dev/serv-side-encryption.html).  
 
 There are two options when using SSE: Encryption with Amazon S3-Managed Keys (SSE-S3) and Encryption with AWS KMS-Managed Keys (SSE-KMS)
 
-#### Encryption with Amazon S3-Managed Keys (SSE-S3)
+##### Encryption with Amazon S3-Managed Keys (SSE-S3)
 This setting on your bucket encrypts data at rest using the AES-256 algorithm that uses keys managed by S3.
 
 If you are using this type of SSE, you only need to configure your pipeline by passing the ```s3_encryption=aes```  parameter  when calling the Mixpanel Data Pipelines API. See [AWS S3 and Glue Parameters](ref:create-pipelines).
 
-#### Encryption with AWS KMS-Managed Keys (SSE-KMS)
+##### Encryption with AWS KMS-Managed Keys (SSE-KMS)
 You have a choice of keys if you use the Key Management Service (KMS).
 
 For S3 buckets, you can pick a default key named ```aws/s3```. If you opt to use the default key you don’t need any further configuration on AWS, and only need to configure your pipeline by passing ```s3_encryption=kms``` when calling the Mixpanel Data Pipelines API.
@@ -100,7 +100,7 @@ To achieve this, create an IAM policy that gives permission to Mixpanel to use t
 
 You must configure your pipeline by passing ```s3_encryption=kms``` and ```s3_kms_key_id=<KEY_ARN>``` when calling the Mixpanel Data Pipelines API. 
 
-### S3 Access Role
+#### S3 Access Role
 After creating the policies in the sections above, you must create a cross account IAM Role to assign the policies to the role.
   *   Go to the *AWS IAM *service on the console.
   *   Click **Roles** in the sidebar.
@@ -133,7 +133,7 @@ Next, limit the trust relationship to the Mixpanel export user to ensure only Mi
 }
 ```
 
-### Using AWS External ID 
+#### Using AWS External ID 
 Amazon introduced the use of external id for cross-account access because of [the confused deputy problem](https://docs.aws.amazon.com/IAM/latest/UserGuide/confused-deputy.html). As Mixpanel uses cross account access to export data, you can make use of this feature to make the data transfer more secure. 
 
 Mixpanel uses your project token as external ID when talking to AWS. In order to enable this, you simply need to edit the trust relationship you created as part of the previous step and add a condition to check the passed external id is in fact your Mixpanel project token. So, the final JSON for your trust relationship would be:
@@ -158,7 +158,7 @@ Mixpanel uses your project token as external ID when talking to AWS. In order to
 }
 ```
 
-### Glue Configurations
+#### Glue Configurations
 
 [Glue](https://aws.amazon.com/glue/) offers a data catalog service that will facilitate access to the S3 data from other services on your AWS account.
 
@@ -168,7 +168,7 @@ This section describes how to connect Glue to the exported data in S3. You can s
 
 Note: If you use Athena with Glue and want to enable partitioning, you must choose **parquet** as the data_format for your pipeline
 
-#### Configuring Glue for Mixpanel Direct Export 
+##### Configuring Glue for Mixpanel Direct Export 
 
 Mixpanel can write and update a schema in your Glue instance as soon as new data is available. To get more information about the table schemas, please see [Schema](doc:schematized-export-pipeline#schema). To set this up:
 
@@ -248,7 +248,7 @@ Note: AWS does not support granular resources when granting Glue access. So you 
 
 ![image](https://user-images.githubusercontent.com/2077899/230698416-039e4357-f8f3-4c9a-bba9-c6b0a16311b6.png)
 
-#### Configuring Table Partitions in Glue
+##### Configuring Table Partitions in Glue
 Mixpanel partitions the Glue table by default if it has the proper AWS permissions. The partition key type and name are `string` and `mp_date` respectively and the partition values are dates in the project timezone e.g. `2021-02-03`. To enable partitioning in Glue, the Glue Data Modification Policy must include the following actions:
 
 ```text
@@ -262,7 +262,7 @@ Mixpanel partitions the Glue table by default if it has the proper AWS permissio
 "glue:BatchGetPartition"
 ```
 
-#### Configuring Glue to Use Crawlers
+##### Configuring Glue to Use Crawlers
 
 You can configure Glue to crawl the S3 bucket with Mixpanel data. Glue crawlers are convenient because they automatically extract the schema from the data files and update the Glue schema. 
 
@@ -277,7 +277,7 @@ To use crawlers, you must point the crawler to the top level folder with your Mi
 
 For more details to configure Glue to use crawlers, see [Cataloging Tables with a Crawler](https://docs.aws.amazon.com/glue/latest/dg/add-crawler.html).
 
-### Setting up Redshift
+#### Setting up Redshift
 
 When the data catalog and table definitions are available in Glue through either of the aforementioned means, you can connect your Redshift cluster to the catalog and query it from Redshift. [AWS documentation](https://docs.aws.amazon.com/redshift/latest/dg/c-using-spectrum.html) walks through the process in detail. 
 
@@ -297,7 +297,7 @@ You only need to connect Redshift to Glue once. As the Mixpanel pipeline exports
 
 You can also join data stored in Redshift with Mixpanel data available in S3 through the external schema.
 
-# Queries
+## Queries
 You can query data with a single table schema or with a multiple table schema in Redshift Spectrum. To get more information about the table schemas, please see [Schema](doc:schematized-export-pipeline#schema).
 
 To query a single table schema, use this snippet.
@@ -316,7 +316,7 @@ WHERE mp_event_name = “<CLEANED_EVENT_NAME>”
 
 `CLEANED_EVENT_NAME` is the transformed event name based on [transformation rules](doc:schematized-export-pipeline#transformation-rules).
 
-### Nested and Repeated Fields
+#### Nested and Repeated Fields
 
 [Redshift Spectrum](https://docs.aws.amazon.com/redshift/latest/dg/c-using-spectrum.html) does not support nested and repeated fields. 
 

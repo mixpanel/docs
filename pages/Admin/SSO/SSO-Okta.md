@@ -7,7 +7,7 @@ metadata:
   description: "Configure SSO with Okta."
 ---
 
-# Overview
+## Overview
 
 Before using this document, read the general Mixpanel SSO set-up instructions.
 
@@ -17,19 +17,19 @@ A.  For most use cases, you can use the "Mixpanel" app within the OIN (Okta's ap
 
 B.  If you have a more custom setup, follow Okta’s documentation on setting up a new application to create the Mixpanel App.
 
-## Configure SSO in Mixpanel
+### Configure SSO in Mixpanel
 
 Follow the general SSO set-up instructions.
 
 Make sure to collect your postback URL and successfully claim your domain.
 
-## Configure the Mixpanel App in Okta
+### Configure the Mixpanel App in Okta
 
 A.  Use the ["Mixpanel" app within the OIN (Okta's app store)](https://www.okta.com/integrations/mixpanel/), or
 
 B.  Follow [Okta’s documentation on setting up a new application](https://help.okta.com/en-us/Content/Topics/Apps/Apps_Apps_Page.htm) to create the Mixpanel App.
 
-### Configure SAML
+#### Configure SAML
 
 You must fill the form found in the “Configure SAML” menu in Okta. The following highlights what you should place in the fields.
 
@@ -44,7 +44,7 @@ Make sure that the following is adjusted to match the following:
 
 Additionally, it is required that you use email as an attribute statement.
 
-## Obtain Information From Okta
+### Obtain Information From Okta
 
 You must first obtain your Public Certificate, Authentication URL, and Issuer URL in order to configure Mixpanel use with Okta.
 
@@ -54,7 +54,7 @@ Under the "SAML 2.0" section, click **View Setup Instructions** and scroll down 
 
 ![Okta Info 1 Image](https://raw.githubusercontent.com/ranic/mixpanel-docs/main/media/Admin/Okta/okta_info1.png)
 
-### Public Certificate
+#### Public Certificate
 
 Your X.509 certificate is what allows users signing in through a third-party identity provider to be authenticated by Mixpanel without supplying a username and password. Each identity provider account has a unique X.509 certificate that will need to be uploaded to Mixpanel during the single sign-on setup process.
 
@@ -62,25 +62,25 @@ Click **Download Certificate** in the second entry to download your certificate.
 
 ![Okta Info 2 Image](https://raw.githubusercontent.com/ranic/mixpanel-docs/main/media/Admin/Okta/okta_info2.png)
 
-### Authentication URL
+#### Authentication URL
 
 Your Authentication URL is in the third entry labeled "Redirect Login URL".
 
 ![Okta Info 3 Image](https://raw.githubusercontent.com/ranic/mixpanel-docs/main/media/Admin/Okta/okta_info3.png)
 
-### Issuer URL
+#### Issuer URL
 
 You will find your Issuer URL in the third entry labeled "Identity Provider Issuer".
 
 ![Okta Info 4 Image](https://raw.githubusercontent.com/ranic/mixpanel-docs/main/media/Admin/Okta/okta_info4.png)
 
-## Enable SSO
+### Enable SSO
 
 From Mixpanel, navigate to your **Organization Settings**. From the SSO menu, insert your Public Certificate, Authentication URL, and Issuer URL.
 
 Optionally toggle “Require Users to Log In using SSO” to prevent your users from using a username and password to log in. Click **Enable**. Organization owners and admins will still be able to log in using username and password if SSO is not set up correctly.
 
-## Configuring SCIM Provisioning
+### Configuring SCIM Provisioning
 
 SCIM provisioning uses [the "Mixpanel" app within the OIN (Okta's app store)](https://www.okta.com/integrations/mixpanel/).
 
@@ -100,7 +100,7 @@ The following provisioning features are supported:
 - **Push User Deactivation:** Deactivating the user or removing the user from the application through Okta will deactivate the user in Mixpanel (or delete the account if specified).
 - **Reactivate Users:** Reassigning a previously unassigned user to the application will reactivate the user’s account in Mixpanel.
 
-### Configuration Setup
+#### Configuration Setup
 
 Click the **Configure API Integration** button in Okta to begin.
 
@@ -125,7 +125,7 @@ Select and assign the users you wish to provision:
 
 ![Okta SCIM 5 Image](https://raw.githubusercontent.com/ranic/mixpanel-docs/main/media/Admin/Okta/okta_scim5.png)
 
-### Troubleshooting
+#### Troubleshooting
 
 In Mixpanel, upon account creation, a SCIM-provisioned user will be added to the organization with the organization member role. The organization role for provisioned users can be changed by an organization admin within Mixpanel.
 

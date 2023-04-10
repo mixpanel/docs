@@ -12,7 +12,7 @@ Schematized Export Pipeline is designed to export your Mixpanel data into suppor
 
 This documentation targets users with intermediate or advanced knowledge of databases and knowledge of Amazon Web Services, Google Cloud Platform, or Snowflake technology.
 
-# Mixpanel Schematized Export Pipeline Overview
+## Mixpanel Schematized Export Pipeline Overview
 You must first configure your destination to accept the data before you can export data from Mixpanel to that destination.
 
 For additional information on configuring the Mixpanel export for different destinations, see:
@@ -27,7 +27,7 @@ After configuring the destination, you can [create a pipeline](ref:create-wareho
 
 After configuring the destination and creating a pipeline with the API, you can begin to query Mixpanel data from the destination warehouse or storage bucket. This opens up the use of SQL use from within Google Bigquery, Snowflake, and Amazon Redshift Spectrum.
 
-# Data Sources
+## Data Sources
 Mixpanel can export both events and user data. Mixpanel supports hourly and daily exports (daily is the default).
 
 The event data that is exported using the schematized export pipeline is the same data exported from the [Raw Data Export API](ref:export#raw-event-export). 
@@ -38,19 +38,19 @@ In order to ensure a performant service for all customers, certain steps of the 
 
 In addition, customers are limited to 1 date-range based pipeline creation per 24 hours. A date-range based pipeline is one that has a `from_date` and `to_date` that are both in the past, and uses `events` as the data type.
 
-### Backfilling Historical Data
+#### Backfilling Historical Data
 You can schedule an initial backfill when creating a pipeline. This ensures that historical data is also exported to the data warehouse. 
 
 Use the `from_date` parameter to specify the date you want to use to export historical data. 
 
 The completion time for a backfill depends on the number of days and the amount of data in the project. Larger backfills can take up to multiple weeks.
 
-# User Data Support
+## User Data Support
 User data is exported to a single table named `mp_people_data`  (user data is accessible as a view of `mp_people_data` in BigQuery).
 
 Since user profiles are mutable, the data in the table is replaced every time an export happens based on the schedule (daily or hourly) with the latest user profiles.
 
-# User Identity Resolution
+## User Identity Resolution
 Exports from projects with [ID merge enabled](https://help.mixpanel.com/hc/en-us/articles/360039133851#enable-id-merge) will need to use the identity mapping table to replicate the user counts seen in UI reporting. When ID merge is enabled, Mixpanel assigns multiple identifiers to an individual. Mixpanel resolves these into one identifier, and uses that for reporting unique user counts. Read more about how Mixpanel resolves IDs [here](https://help.mixpanel.com/hc/en-us/articles/360041039771).
 
 Pipelines export event data as they appear when Mixpanel ingests them. This means exported event data before sending alias event has the original user identifier, **not** the resolved identifier. Use the identity mappings table to accurately count unique users. This will allow you to recreate the identity cluster that Mixpanel creates.
@@ -62,14 +62,14 @@ Note: When using the ID mappings table, you should use the **resolved** `distinc
 
 Examples of how to do this are available for [BigQuery](doc:mixpanel-bigquery-export-design#querying-the-identity-mapping-table)  and [Snowflake](doc:mixpanel-snowflake-export#querying-the-identity-mapping-table).
 
-# Service Level Agreement
+## Service Level Agreement
 Mixpanel has the following policy for data latency: 
 
 1. Mixpanel adds 24 hours of end to end latency from when the data is exported from Mixpanel until the data reaches the data warehouse.
 
 2. Mixpanel adds an additional 24 hours for data that reaches the pipeline, or Mixpanel servers at ingestion, late. Mixpanel defines late data as any data point or user profile update that reaches Mixpanel servers later than two hours after the end of export window. 
 
-# Data Sync
+## Data Sync
 Event data stored in Mixpanel’s datastore and event data in the data warehouse can fall out of sync. 
 
 The discrepancy can be attributed to several different causes: 
@@ -83,10 +83,10 @@ Data sync helps keep the data fresh, minimizes missing data points, and most imp
 
 Note: We start checking for late arriving data 24 hours after the data for a day is exported. It may take more than 2 days for the data in the destination to be in sync with the data in Mixpanel.
 
-# Transformation Rules
+## Transformation Rules
 Some characters are not legal for table or column names, or when collisions can occur in the dataset. Mixpanel cleans, or transforms, the data to account for this. This section provides the rules on how Mixpanel cleans data.
 
-### Table and Column Names
+#### Table and Column Names
 Mixpanel applies these rules for table and column names: 
   * Special characters and whitespaces are replaced with `_`(underscore).
   * Letters are converted to lowercase.
@@ -94,7 +94,7 @@ Mixpanel applies these rules for table and column names:
   * Properties that start with a `$` (dollar sign) have a prefix of `mp_`.
   * Properties that conflict with reserved keywords are prefixed with `res_`.
 
-### Naming Conflicts 
+#### Naming Conflicts 
 
 There are several naming transformations that happen as a result of character conflicts. 
 
@@ -105,23 +105,23 @@ For example if values “XY” and “Xy” are sent in:
 * If “Xy” is sent in after "XY", it becomes “xy_1”. 
 * Any subsequent  “xy” values inherit incremental numeric values (i.e. xy_2, xy_3, etc.).
 
-### Type Conflicts 
+#### Type Conflicts 
 Mixpanel transforms values to resolve type conflicts.
 
 If a property value is passed with a particular data type and is passed subsequently with a different data type, then the new data type appends to the property name.
 
 For example, if  “X” appears with type INT first, then subsequently appears as type STRING (or VARCHAR), then the property name will be transformed to "x_string" with a data type of string. 
 
-### New Properties
+#### New Properties
 New properties that were not present in previous imports will append to the old rows with a `NULL` value.
 
-# Property Mappings
+## Property Mappings
 Because of the transformation rules, sometimes it can be hard to know the mappings between original and transformed event and property names. In case you are exporting the schematized data to an object storage or you are exporting to a data warehouse but providing your own intermediate object storage, we export these mappings to ``<BUCKET_NAME>/<PATH_PREFIX>/<MIXPANEL_PROJECT_ID>/schema/`` under `events.json`, `people.json` and `identities.json`.
 
-# Schema
+## Schema
 This section describes how Schematized Export Pipeline creates the schema for the exported data. Event data and user data are loaded into separate tables. User profile data is loaded into one table, whereas events can be loaded into either a single table for each event or one table for all events.
 
-### Common Properties
+#### Common Properties
 
 Regardsless of whether you're using a single table or multiple tables, the following properties will be always present in the schema:
 | name        | type   | description                                         |
@@ -137,7 +137,7 @@ For a single table schema, you will also have an extra property for event name:
 
 Please note that the types in the above tables are generic. The exact type can be different based on your export destination.
 
-### Using One Table for All Events
+#### Using One Table for All Events
 
 In this schema, all your Mixpanel data exists in a single table. Mixpanel recommends a single table schema because it makes querying simpler.
 
@@ -147,7 +147,7 @@ Suppose you have an event with a `purchase_amount` property and one with a `refe
 
 For examples of one table for all events, see [One Table for All Events](#section-one-table-for-all-events).
 
-### Using One Table for Each Event
+#### Using One Table for Each Event
 
 Each Mixpanel event exists in a single table. This schema is a useful workaround for limitations in the number of columns that are allowed in a S3 table. 
 
@@ -160,7 +160,7 @@ For an example of one table for each event, see [One Table for Each Event](#sect
 > 
 > One table for each event is not available during the trial period.
 
-### Table Example
+#### Table Example
 
 Here is an example dataset to view different schema options in either one table for all events or one table for each event.
 
@@ -193,7 +193,7 @@ Here is an example dataset to view different schema options in either one table 
        “time”: 125
 }
 ```
-#### One Table for All Events
+##### One Table for All Events
 
 Single table: _mixpanel_events_ 
 
@@ -203,7 +203,7 @@ Single table: _mixpanel_events_
 | “Purchase”    | 124  | 1           | NULL   | "chrome"  | 123        | NULL    |
 | “Signup”      | 125  | 2           | "paid" | "firefox" | NULL       | 1       |
 
-#### One Table for Each Event
+##### One Table for Each Event
 
 Two tables: _signup \_and \_purchase_ 
 

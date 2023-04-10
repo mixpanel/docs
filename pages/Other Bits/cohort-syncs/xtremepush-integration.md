@@ -9,7 +9,7 @@ createdAt: "2021-10-08T22:39:06.529Z"
 updatedAt: "2023-03-25T05:52:10.102Z"
 ---
 
-# Overview
+## Overview
 
 The Xtremepush integration allows you to combine behavioral analytics with attribution and engagement data for targeted and relevant customer communication.
 
@@ -66,6 +66,3 @@ In dynamic sync, Mixpanel initiates sync between a cohort and Xtremepush every t
 Once the export completes, you will see a custom segment reflecting the set of users from your Mixpanel cohort (e.g. "7days-cart-abandoners"):
 
 ![Xtremepush 4 Image](https://raw.githubusercontent.com/ranic/mixpanel-docs/main/media/Other%20Bits/Cohort%20Syncs/Xtremepush/extremepush4.png)
-
-
-

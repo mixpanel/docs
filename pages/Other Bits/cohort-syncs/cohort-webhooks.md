@@ -10,14 +10,14 @@ updatedAt: "2023-03-25T05:52:10.102Z"
 ---
 Mixpanel supports syncing cohorts to a custom webhook URL that you provide via our Integrations UI. When a sync is established, we will sync the full contents of the cohort to the URL and subsequently sync diffs (ie: the users who entered or exited the cohort since the last sync).
 
-# Prerequisites
+## Prerequisites
 * A paid Mixpanel plan
 * A Mixpanel project
 * A webhook server. You can create a dummy webhook for testing purposes using [webhook.site](https://webhook.site/).
 * The webhook server should send back events to Mixpanel to track actions like Message sent etc. (This is optional but customers who need this have to implement it themselves) 
 Customers can follow the naming convention mentioned in this [document](https://help.mixpanel.com/hc/en-us/articles/360001465686-Billing-for-Monthly-Tracked-Users#monthly-tracked-users-calculation) to avoid certain events from being considered for MTU tallies.
 
-# Setting up the webhook via our UI
+## Setting up the webhook via our UI
 To create a new Custom Webhook destination, navigate to our Integrations UI and add a new Webhook connection. All you need to provide is a name for the connection and the URL of your webhook server. 
 
 Optional:  Basic Authentication when calling the webhook URL provided
@@ -27,7 +27,7 @@ Optional:  Basic Authentication when calling the webhook URL provided
 
 From this point onward, you can sync any cohort to this connection from our cohorts page. 
 
-# Webhook Format
+## Webhook Format
 Our webhook format has the following structure in the body of a `POST` request:
 * **action**: The action defines the type of message we are sending. It will be one of:
   * `members`: All members of the cohort, sent the first time the cohort is being synced or to refresh the cohort if there are any intermediate errors. When you get this message, replace the users you have in the cohort with the copy provided by us.
@@ -77,7 +77,7 @@ You can download the Swagger spec [here](https://mxpnl.notion.site/Cohort-Webhoo
 }
 ```
 
-# Expected Response Format
+## Expected Response Format
 We expect a JSON response of the following shape.
 * **action**: Must match the action we sent.
 * **status**: Must be either `success` or `failure`
@@ -96,7 +96,7 @@ We expect a JSON response of the following shape.
 }
 ```
 
-## Simple Sync Scenario
+### Simple Sync Scenario
 
 Consider A, B, C, D, E, F as users. Sync interval is 30 minutes. T is when the sync is created in our UI.
 
@@ -109,7 +109,7 @@ Consider A, B, C, D, E, F as users. Sync interval is 30 minutes. T is when the s
 * <...No cohort changes...>
 * **T+1h**: `add_members()` | `remove_members()` calls are made to the customer webhook 
 
-##  FAQ
+###  FAQ
 **What is the frequency of the syncs?**
 We sync cohorts once every 30 minutes.
 

@@ -7,11 +7,11 @@ metadata:
   description: "Learn about Two Factor Authentication."
 ---
 
-# Overview
+## Overview
 
 Two-factor authentication (2FA) is a security process that requires users to provide two different authentication factors, such as passwords or tokens, to verify their identity.
 
-## Enable Two-Factor Authentication for your Organization
+### Enable Two-Factor Authentication for your Organization
 
 If you are an organization admin, you can enable two-factor authentication by doing the following:
 
@@ -33,15 +33,15 @@ If you are an organization admin, you can enable two-factor authentication by do
 
 4. Enter your password and click **Confirm** to finalize changes.
 
-## Setting up your Two-Factor Authentication Method
+### Setting up your Two-Factor Authentication Method
 
 Once two-factor authentication has been enabled for your organization, an individual member of your organization can set up two-factor authentication via the methods below.
 
-### Setup via second login
+#### Setup via second login
 
 On their second login, Mixpanel Users will be prompted to set up two-factor authentication via an authentication app or SMS.
 
-#### Authentication App
+##### Authentication App
 
 1. In order to set up two-factor authentication via an authentication app, select the authentication app option and ensure you have your preferred authentication app downloaded. We recommend using apps such as Google Authenticator, Authy and Microsoft Authenticator.
 
@@ -61,7 +61,7 @@ If you are unable to scan the QR code, click on “Can’t scan QR code?” This
 
 ![2FA Authentication App 3 Image](https://raw.githubusercontent.com/ranic/mixpanel-docs/main/media/Admin/2FA/2fa_authentication_app3.png)
 
-#### SMS Authentication
+##### SMS Authentication
 
 1. In order to set up two-factor authentication via SMS, select the SMS option.
 
@@ -79,7 +79,7 @@ If you are unable to scan the QR code, click on “Can’t scan QR code?” This
 
 ![2FA SMS 4 Image](https://raw.githubusercontent.com/ranic/mixpanel-docs/main/media/Admin/2FA/2fa_sms4.png)
 
-### Setup via personal settings page
+#### Setup via personal settings page
 
 An individual user can also set up their two-factor authentication via their personal settings. In order to setup two-factor authentication, follow these steps:
 
@@ -91,7 +91,7 @@ An individual user can also set up their two-factor authentication via their per
 
 ![2FA Personal 2 Image](https://raw.githubusercontent.com/ranic/mixpanel-docs/main/media/Admin/2FA/2fa_personal2.png)
 
-## Changing your Two-Factor Authentication Method
+### Changing your Two-Factor Authentication Method
 
 An individual user can change their two-factor authentication method via their personal settings page. Users can switch their authentication method from SMS to authentication app and vice versa. Additionally, users can also change their current authentication app to another authentication app (i.e. Authy to Google Authenticator)
 
@@ -107,13 +107,13 @@ Users can switch their method via the following steps:
 
 ![2FA Change 2 Image](https://raw.githubusercontent.com/ranic/mixpanel-docs/main/media/Admin/2FA/2fa_change2.png)
 
-## Login via backup methods
+### Login via backup methods
 
 If you are unable to log in due to two-factor authentication because you have either lost your phone or don’t have access to your number, we have a couple backup methods you can use to log in depending on your authentication method.
 
 **Note: Contact support if none of these backup methods work for you.**
 
-### Login via recovery codes (authentication app)
+#### Login via recovery codes (authentication app)
 
 If an authentication app is your preferred method of authentication, you can login via your saved recovery codes if you don’t have access to your phone. A user can login via a recovery code by doing the following:
 
@@ -127,6 +127,6 @@ If an authentication app is your preferred method of authentication, you can log
 
 **Note: If you use all your recovery codes, you will be asked to reset your two-factor authentication method on your next login.**
 
-### Login via Authy (SMS)
+#### Login via Authy (SMS)
 
 Mixpanel is integrated with Authy (a Twilio service), so if you download the Authy app, you can add your email address and phone number. Then, you can add your Mixpanel account to the app. You can learn more about Authy at https://www.authy.com/. Please feel free to contact support if you need additional assistance here.

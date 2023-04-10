@@ -9,7 +9,7 @@ createdAt: "2021-10-08T22:39:06.529Z"
 updatedAt: "2023-03-25T05:52:10.102Z"
 ---
 
-# Overview
+## Overview
 
 The Apptimize integration allows users to export Mixpanel cohorts into Apptimize groups, allowing you to target specific users using Apptimize. 
 

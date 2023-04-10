@@ -9,7 +9,7 @@ createdAt: "2021-10-08T22:39:06.529Z"
 updatedAt: "2023-03-25T05:52:10.102Z"
 ---
 
-# Overview
+## Overview
 
 Export Mixpanel cohorts to Google Ads to use targeted advertisements in Google Search. Manage the Google Ads integration from the Mixpanel integrations page. The integration currently supports data from Mixpanel into a Google Ads account.
 

@@ -9,7 +9,7 @@ createdAt: "2021-09-04T17:16:04.630Z"
 updatedAt: "2023-03-26T23:58:01.531Z"
 ---
 Mixpanel's analysis UI is powered by an in-house database called Arb, which is built for ingesting, storing, and querying trillions of events in real-time. This page covers the core aspects of our design, the pain points it eliminates for users, and how it compares to other systems.
-# Event-Centric
+## Event-Centric
 
 Mixpanel is built for ingesting, storing and querying events. Each event has a name, a timestamp, a unique identifier, a distinct_id that identifies the entity that performed the event, and a JSON blob of properties.
 
@@ -36,7 +36,7 @@ Events are a simple and powerful way of collecting and storing data for the foll
 
 \**The exception is to comply with privacy laws like GDPR, which we handle specially.* 
 
-# Optimized for Interactive User Joins
+## Optimized for Interactive User Joins
 Mixpanel's UI is built for interactive exploration of event-based metrics. We must respond to queries within seconds to make data exploration delightful at scale.
 
 Our query engine employs the usual techniques for CPU performance: columnar storage, dictionary encoding, a query optimizer, and a purpose-built query engine in C/C++. 
@@ -47,38 +47,38 @@ Finally, we benefit from cloud economics: 1 CPU for 100 seconds costs the same a
 
 **What this eliminates**: Data sampling, fact-on-fact joins, and manual refreshing of dashboards.
 
-# Real-Time
+## Real-Time
 Events are available for analysis in Mixpanel within seconds of hitting our ingestion servers. Arb leverages a lambda architecture to collect recent events in a row-oriented format while storing historical events in a time-partitioned columnar format. This enables fast, real-time analysis and efficient historical analysis.
 
 **What this eliminates**: Waiting for periodic ETL jobs or caches to populate.
 
-# Schema-On-Read
+## Schema-On-Read
 Events contain an arbitrary set of JSON properties. The properties associated with a given event type are typically stable, but they might occasionally change when new features are added to the product being tracked. Systems that enforce a schema at collection-time require some sort of schema upgrade for this to happen, which can be time consuming to rollout, especially when collecting events from client devices. That said, schemas are useful to provide features like property autocomplete to the person performing analysis. 
 
 Mixpanel solves both problems with schema-on-read. Events are ingested and stored with arbitrary JSON and we infer schemas in real-time to power the autocomplete menus in our UI. Our schema inference also accounts for recency so that stale schemas naturally age out.
 
 **What this eliminates**: Schema migrations.
 
-# Star Schema
+## Star Schema
 Mixpanel's [data model](doc:data-structure-deep-dive) is fundamentally a star-schema: events are facts and user profiles/lookup tables are dimensions. Events are typically streamed in from client devices and server logs, while dimensional data is periodically loaded from a system of record and provides enrichment to the events for analysis.
 
 Arb's query and storage engine can run star-schema joins on the fly. This means events and dimensions can be loaded at any time without any coordination, rather than needing to be joined at ingestion. This query-time approach also enables backfills of events and dimensions to be done retroactively.
 
 **What this eliminates**: Ingestion-time enrichment. Coordination between streaming and batch systems.
 
-# Idempotent
+## Idempotent
 Mixpanel's ingestion pipeline is idempotent, which means that events that are accidentally sent multiple times will not affect analysis. This simplifies integration of Mixpanel into your own streaming or batch data pipelines as it turns exactly-once ingestion into at-least-once ingestion.  Unlike other systems which deduplicate for a short time window at ingestion, we take a novel query-time approach to deduplication outlined in our [engineering blog](https://engineering.mixpanel.com/petabyte-scale-data-deduplication-mixpanel-engineering-e808c70c99f8). This enables us to detect duplicates even if they arrive months later.
 
 **What this eliminates**: Keeping state about what you have already sent to Mixpanel.
 
-# Cloud-Native
+## Cloud-Native
 Mixpanel is a fully managed cloud application, maintained by the Mixpanel team and deployed on Google Cloud. Like other cloud-native databases, it decouples compute from storage, which reduces costs at high-scale.
 
 Being on Google Cloud also lets us utilize cloud primitives to ship features faster, scale seamlessly when load increases, and leverage enterprise-grade security provided by Google.
 
 **What this eliminates**: Server maintenance, upgrades, and capacity provisioning.
 
-# Open APIs
+## Open APIs
 There are [many ways to integrate](doc:plan-your-implementation) with Mixpanel, but all are based on our JSON-over-HTTP APIs. We believe it should be easy to bring data into or out of Mixpanel with whatever tools you already use, whether it's a CDP, a data pipeline, or a simple cURL.
 
 This approach allows us to plug into the broader data ecosystem, which makes it easy to both stream real-time event streams into Mixpanel and load from source-of-truth systems like data warehouses. Here is a reference, hybrid architecture for bringing data into Mixpanel, enabled by our APIs.
@@ -88,7 +88,7 @@ This approach allows us to plug into the broader data ecosystem, which makes it 
 
 **What this eliminates**: Complex integrations and proprietary data formats.
 
-# Comparison to other systems
+## Comparison to other systems
 Mixpanel makes a set of tradeoffs to achieve the above design goals. Here, we compare Mixpanel to other popular database systems to put these tradeoffs in context:
 
 * Mixpanel is not an OLTP system like MySQL, Postgres, or DynamoDB. We do not have support for ACID transactions, indexes, point-lookups or arbitrary SQL. That said, Mixpanel can ingest the change-data-capture events from an OLTP database to provide behavioral analytics.

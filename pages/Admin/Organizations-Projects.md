@@ -9,9 +9,7 @@ metadata:
   description: "TODO Fill in"
 ---
 
-# Overview
-
-The Mixpanel administrative system includes organizations and projects. 
+The Mixpanel administrative system includes organizations and projects.
 
 An **Organization** is the controlling entity that links projects, users, and a plan together. Each organization has a single Mixpanel plan associated with it and that plan is what determines the data volume limits and features available across all projects in the organization.
 

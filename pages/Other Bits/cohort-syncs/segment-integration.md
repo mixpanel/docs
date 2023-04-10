@@ -9,7 +9,7 @@ createdAt: "2021-10-08T22:39:06.529Z"
 updatedAt: "2023-03-25T05:52:10.102Z"
 ---
 
-# Overview
+## Overview
 
  This integration allows you to export Cohorts of users from Mixpanel to Segment so that you can better target users across many downstream connections.
  

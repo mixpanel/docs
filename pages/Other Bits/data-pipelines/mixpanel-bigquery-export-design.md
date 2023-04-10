@@ -6,7 +6,7 @@ createdAt: "2019-01-25T19:05:42.218Z"
 updatedAt: "2023-03-26T19:16:35.229Z"
 ---
 This guide describes how Mixpanel exports your data to a [Google BigQuery](https://cloud.google.com/bigquery/) dataset.  
-# Design
+## Design
 
 There are currently two ways to export mixpanel data into big.
 1. Exporting into Customer managed BigQuery (recommended)
@@ -19,10 +19,10 @@ As part of the export pipeline, a new dataset `mixpanel_nessie_day_partitioned_<
 
 For user profile and identity mappings tables, we create a new table with a random suffix every time and then will update the `mp_people` and `mp_identity_mappings` views accordingly to use the latest table. You should always use the views and should refrain from using the actual tables as we don't delete the old tables immediately and you may be using an old table.
 
-# Partitioning
+## Partitioning
 The data in the tables is partitioned based on [`_PARTITIONTIME` pseudo column](https://cloud.google.com/bigquery/docs/querying-partitioned-tables#ingestion-time_partitioned_table_pseudo_columns) and in project timezone.
 
-# Queries
+## Queries
 You can query data with a single table schema or with a multiple table schema in BigQuery. To get more information about the table schemas, please see [Schema](doc:schematized-export-pipeline#schema).
 
 To query a single table schema, use this snippet.
@@ -40,7 +40,7 @@ FROM mixpanel_nessie_day_partitioned_<PROJECT_ID>.<CLEANED_EVENT_NAME>
 
 `CLEANED_EVENT_NAME` is the transformed event name based on [transformation rules](doc:schematized-export-pipeline#transformation-rules).
 
-### Getting the number of events in each day
+#### Getting the number of events in each day
 You will need this if you suspect the export process is not exporting all the events you want. As the tables are partitions using  [`_PARTITIONTIME` pseudo column](https://cloud.google.com/bigquery/docs/querying-partitioned-tables#ingestion-time_partitioned_table_pseudo_columns) and in project timezone, you can use to following query to get the number of events per day in an easy and fast way:
 
 ```sql
@@ -58,7 +58,7 @@ GROUP BY
 
 This example returns the number of events in each day in project timezone for a monoschema export pipeline and an example daterange. You can adjust the query for multischema by putting the right table name in the query.
 
-### Querying the identity mapping table
+#### Querying the identity mapping table
 
 When using the ID mappings table, you should use the **resolved** `distinct_id` in place of the non-resolved `distinct_id` whenever present. If there is no resolved `distinct_id`, you can then use the `distinct_id` from the existing people or events table.
 
@@ -82,7 +82,7 @@ LIMIT 100
 
 Counting number of times a user has done a specific behavior is also possible by adding more filters on event properties. You can adjust the query for multischema by putting the right table name in the query.
 
-# Exporting into Customer managed BigQuery (Recommended)
+## Exporting into Customer managed BigQuery (Recommended)
 We recommend exporting Mixpanel data into customer-managed BigQuery, for this the customer needs to follow these steps.
 1. Create a dataset in their BigQuery
 ![image](https://user-images.githubusercontent.com/2077899/230698727-1216833e-8321-46de-a388-8b554a00938c.png)
@@ -109,7 +109,7 @@ We need two permissions to manage the dataset.
 
 3. You need to pass this dataset and gcp project id as params when you [create your pipeline](ref:create-warehouse-pipeline)
 
-# Exporting into Mixpanel managed BigQuery
+## Exporting into Mixpanel managed BigQuery
 
 This is not a recommended approach anymore. But if you choose to export into Mixpanel manged BigQuery then you must provide a Google group email address to use the BigQuery export when you [create your pipeline](ref:create-warehouse-pipeline). Mixpanel exports transformed data into BigQuery at a specified interval. 
 

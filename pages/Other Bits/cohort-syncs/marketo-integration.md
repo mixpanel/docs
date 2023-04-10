@@ -9,7 +9,7 @@ createdAt: "2021-10-08T22:39:06.529Z"
 updatedAt: "2023-03-30T05:52:10.102Z"
 ---
 
-# Overview
+## Overview
 
 The Marketo integration with Mixpanel is a turn-key integration that allows users to export Mixpanel cohorts into Marketo. The integration enables Marketo email campaigns to target users based on Mixpanel cohort data. The cohort export can happen once, or can be configured to dynamically update a Marketo Custom Field every two hours.
 

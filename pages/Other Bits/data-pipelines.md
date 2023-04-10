@@ -17,11 +17,11 @@ Using Data Pipelines requires 2 steps:
 We offer a 30-day free trial of the Data Pipelines add-on. See the [FAQ](#faq) for how to enable it.
 
 
-# Step 1: Configuring your destination
+## Step 1: Configuring your destination
 
 Configuration depends on the type of Pipeline you want to set up.
 
-## Raw
+### Raw
 
 Raw Pipelines export events as JSON to a cloud storage bucket. This is the simplest approach.
 
@@ -37,7 +37,7 @@ Upon successful creation of a pipeline, events will be exported to the following
 An empty `complete` file will be written in the finished hour or day prefix to indicate that the export is complete. The absence of this file means there is an ongoing export for that hour or day.
 
 
-## Schematized
+### Schematized
 
 Schematized Pipelines export events into a schematized table that Mixpanel infers and generates based on your events. Roughly, each event is a table and each property is a column in that table. This is more complex to configure than Raw, but supports additional functionality, like exporting user profile data and exporting to data warehouses.
 
@@ -50,13 +50,13 @@ See our configuration guides for each schematized destination:
 
 The [Schematized Pipeline reference](doc:schematized-export-pipeline) goes the details of schematization and the output format.
 
-# Step 2: Creating the Pipeline
+## Step 2: Creating the Pipeline
 
 Once you’ve configured your destination, you need to tell Mixpanel to start exporting to that destination.
 
 You can do this with our [Create Pipeline API](ref:create-warehouse-pipeline). You can create the Pipeline directly from our developer docs UI.
 
-# FAQ
+## FAQ
 
 **Why are some events or properties not exported to the destination?**
 This normally happens when you have a thousands of unique event names or property names, which is usually an implementation mistake (eg: including a UUID in the event or property name). This causes the export process to exceed table or column limits in the destination. In these cases, we try to identify the bad patterns and exclude them from the export process. We always try to communicate this to the customers through their Customer Success Managers.
