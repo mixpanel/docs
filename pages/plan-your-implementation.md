@@ -56,7 +56,8 @@ mixpanel.track('Sign Up', {
 ```
 This can help you answer even deeper questions like:
 
-📲 **Which platform are most of our customers signing up on? **
+📲 **Which platform are most of our customers signing up on?**
+
 📥 **What channels are generating new sign ups most effectively?**
 
 ### Value Moment Event
@@ -74,7 +75,9 @@ mixpanel.track('Purchased Item', {
 Tracking a value moment can help answer questions like:
 
 ✨ **What does active engagement look like? How many users are experiencing value in my product?**
+
 💞 **What is our retention? How many people are coming back to realize value in our product?**
+
 💰 **What is our activation rate? How many people who sign up make it to the Value Moment?**
 
 > 📘See Your Events in Action
