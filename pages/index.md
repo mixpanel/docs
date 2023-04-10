@@ -11,6 +11,7 @@ updatedAt: "2023-03-26T23:48:04.041Z"
 Mixpanel is a product analytics tool that enables you to capture data on how users interact with your digital product. Mixpanel then lets you analyze this product data with simple, interactive reports that let you query and visualize the data with just a few clicks.
 
 Our self-serve interface empowers your team to answer questions, no matter their data expertise.
+
 ![image](https://user-images.githubusercontent.com/2077899/230815823-88b2c0fa-532a-4f9f-ad63-789084c93589.png)
 
 ## Introduction to the Data Model
