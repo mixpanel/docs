@@ -5,7 +5,7 @@ hidden: false
 createdAt: "2021-04-21T20:28:33.873Z"
 updatedAt: "2023-03-26T23:49:09.160Z"
 ---
-### Step 1: Install the SDK
+## Step 1: Install the SDK
 **Swift Package Manager (requires Xcode 12+)**
 1. In Xcode, select File > Swift Packages > Add Package Dependency.
 2. Paste the URL `https://github.com/mixpanel/mixpanel-swift` and a minimum semantic version of v2.8.0.
@@ -18,7 +18,7 @@ updatedAt: "2023-03-26T23:49:09.160Z"
 Add `github "mixpanel/mixpanel-swift"` to your Cartfile.
 
 
-### Step 2: Track your first event
+## Step 2: Track your first event
 You'll need your Project Token for this, which you can get [here](https://mixpanel.com/settings/project). 
 
 Import Mixpanel into AppDelegate.swift, and initialize Mixpanel within application:didFinishLaunchingWithOptions:
@@ -39,7 +39,7 @@ func application(_ application: UIApplication,
 
 🎉 Congratulations, you've tracked your first event! You can see it in Mixpanel via the [Events](https://mixpanel.com/report/events) page. For more options, see our [iOS - Swift Reference](doc:swift).
 
-### FAQ
+## FAQ
 
 **Why aren't my events showing up?**
 To preserve battery life and customer bandwidth, the Mixpanel library doesn't send the events you record immediately. Instead, it sends batches to the Mixpanel servers every 60 seconds while your application is running, as well as when the application transitions to the background. You can call [flush()](https://mixpanel.github.io/mixpanel-swift/Classes/MixpanelInstance.html#/s:8Mixpanel0A8InstanceC5flush10completionyyycSg_tF) manually if you want to force a flush at a particular moment.

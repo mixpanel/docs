@@ -8,7 +8,7 @@ metadata:
 createdAt: "2021-05-05T18:33:02.642Z"
 updatedAt: "2021-10-22T22:44:52.797Z"
 ---
-# Overview
+## Overview
 
 Mixpanel data is stored and isolated within a [project](https://help.mixpanel.com/hc/en-us/articles/360000857366-Guide-to-Mixpanel-Basics#your-account). At this time, you cannot query data across multiple projects. Mixpanel supports a few different categories of data that can be used for analysis: events, user profiles, group profiles, and lookup tables. In data warehouse parlance, events make up the fact table while user profiles, group profiles, and lookup tables are dimension tables.
 
@@ -23,7 +23,7 @@ Mixpanel data is stored and isolated within a [project](https://help.mixpanel.co
 
 ---
 
-# Example
+## Example
 
 Imagine you work on a music streaming product and you want to answer questions like: 
 
@@ -38,7 +38,7 @@ You want to analyze uniques by both users *and* accounts so you create a group k
 Your Mixpanel data is made up of **events** and **profiles**, each of which is comprised of **properties**.  Events are data points in a time-series database. Profiles are key-value stores.
 
 
-# Anatomy of an Event
+## Anatomy of an Event
 The following event represents the fact that user "john.doe@gmail.com" played the song_id of `0wwPcA6wtMf6HUMpIRdeP7` on Tuesday, September 29, at 2020 8:42:11 PM GMT on a machine with IP 203.0.113.9.
 
 ```json
@@ -87,7 +87,7 @@ The following event represents the fact that user "john.doe@gmail.com" played th
 ```
 ---
 
-# User Profiles, Group Profiles & Lookup Tables
+## User Profiles, Group Profiles & Lookup Tables
 All three are key/value stores that augment your event data with additional metadata about entities. The differences are whether the join key is customizable and whether events are copied and indexed by the join key.
 
 **User profiles** are joined to events via `distinct_id` which is the default indexing for Events. If you don't wish for your events to be associated to any User, you can set `distinct_id: ""`.

@@ -5,7 +5,7 @@ hidden: false
 createdAt: "2021-06-24T22:23:44.226Z"
 updatedAt: "2023-03-26T23:50:45.880Z"
 ---
-### Step 1: Install the SDK
+## Step 1: Install the SDK
 Under your app's root directory, run:
 
 ```
@@ -20,7 +20,7 @@ pod install
 
 Note: For XCode 12.5+, there is a known compile issue, please refer to this [workaround](https://github.com/mixpanel/mixpanel-react-native/issues/43#issuecomment-829599732).
 
-### Step 2: Track your first event
+## Step 2: Track your first event
 
 You'll need your Project Token for this, which you can get [here](https://mixpanel.com/settings/project). 
 
@@ -51,7 +51,7 @@ export default SampleApp;
 🎉 Congratulations, you've tracked your first event! You can see it in Mixpanel via the [Events](https://mixpanel.com/report/events) page. For more options, see our [React Native reference](doc:react-native).
 
 
-### FAQ
+## FAQ
 
 **I want to stop tracking an event/event property in Mixpanel. Is that possible?**
 Yes, in Lexicon, you can intercept and drop incoming events or properties. Mixpanel won’t store any new data for the event or property you select to drop.  [See this article for more information](https://help.mixpanel.com/hc/en-us/articles/360001307806#dropping-events-and-properties).

@@ -12,10 +12,10 @@ The Mixpanel Ruby library is designed to be used for scripting, or in circumstan
 
 The [Full API Reference](http://mixpanel.github.io/mixpanel-ruby), [Library Source Code](https://github.com/mixpanel/mixpanel-ruby), and an [Example Script](https://github.com/mixpanel/mixpanel-ruby/tree/master/demo) is documented in our GitHub repo.
 
-# Getting Started
+## Getting Started
 See our [server](doc:server) quickstart for how to get started with the Ruby SDK.
 
-# EU Data Residency
+## EU Data Residency
 
 Route data to Mixpanel's EU servers by using a custom [consumer](http://mixpanel.github.io/mixpanel-ruby/Mixpanel/Consumer.html)
 
@@ -32,7 +32,7 @@ tracker = Mixpanel::Tracker.new(YOUR_PROJECT_TOKEN) do |type, message|
 end
 ```
 
-# Storing User Profiles
+## Storing User Profiles
 
 In addition to events, you can send user profile updates to Mixpanel. Mixpanel can maintain a profile of each of your users, storing information you know about them. An update is a message that changes the properties of a user profile.
 
@@ -40,7 +40,7 @@ You can use profiles to explore and segment users by who they are, rather than w
 
 Mixpanel determines default geolocation data ($city, $region, mp_country_code) using the IP address on the incoming request. As all server-side calls will likely originate from the same IP (that is, the IP of your server), this can have the unintended effect of setting the location of all of your users to the location of your datacenter. [Read about best practices for geolocation with server-side implementations](https://mixpanel.com/blog/2014/09/08/everything-about-server-side-updates/).
 
-##Setting Profile Properties
+###Setting Profile Properties
 Instances of <a style="font-family: courier" href="http://mixpanel.github.io/mixpanel-ruby/Mixpanel/Tracker.html">Mixpanel::Tracker</a> have a property called `people` that is an instance of <a style="font-family: courier" href="http://mixpanel.github.io/mixpanel-ruby/Mixpanel/People.html">Mixpanel::People</a>. You can use `people` to send profile updates.
 
 ```ruby
@@ -58,7 +58,7 @@ tracker.people.set('12345', {
 
 This call to <a style="font-family: courier" href="http://mixpanel.github.io/mixpanel-ruby/Mixpanel/People.html#method-i-set">Mixpanel::People#set</a> will change the value of properties on user 12345's profile. If there isn't a profile with distinct_id 12345 in Mixpanel already, a new profile will be created. If user 12345 already has has any of these properties set on their profile, the old values will be overwritten with the new ones.
 
-## Incrementing Numeric Properties
+### Incrementing Numeric Properties
 You can change the current value of numeric properties using <a style="font-family: courier" href="http://mixpanel.github.io/mixpanel-ruby/Mixpanel/People.html#method-i-increment">people.increment</a>. This is useful when you want to keep a running tally of things, such as games played, emails sent, or points earned.
 
 ```ruby
@@ -69,7 +69,7 @@ tracker.people.increment('12345', {
 })
 ```
 
-## Appending to List Properties
+### Appending to List Properties
 Use <a style="font-family: courier" href="http://mixpanel.github.io/mixpanel-ruby/Mixpanel/People.html#method-i-append">people.append</a> to add an item to an existing list-valued property. The values you send with the append will be added to the end of the list for each named property. If the property doesn't exist, it will be created with a one element list as its value.
 
 ```ruby
@@ -78,11 +78,11 @@ tracker.people.append('12345', {
 })
 ```
 
-## Other Types of Profile Updates
+### Other Types of Profile Updates
 There are a few other types of profile updates. They're exposed as members of <a style="font-family: courier" href="http://mixpanel.github.io/mixpanel-ruby/Mixpanel/People.html">Mixpanel::People</a>.
 
 
-# Group Analytics
+## Group Analytics
 
 Mixpanel Group Analytics allows behavioral data analysis by selected groups, as opposed to individual users.
 
@@ -96,10 +96,10 @@ If the property “Company” is chosen for Group Analytics, “Company” is th
 
 A user can belong to multiple groups. All updates to a group operate on the `group_key` and `group_id`.
 
-## Creating a Group Key
+### Creating a Group Key
 See the Implementation section in [this article](https://help.mixpanel.com/hc/en-us/articles/360025333632#implementation) for instructions on how to create a group key in your Project Settings.
 
-## Sending Group Identifiers With Events
+### Sending Group Identifiers With Events
 To send group identifiers with events, send the `group_key` as a property key and the `group_id` as the property value. The data type of the `group_key` property is a list, therefore you can add multiple values for a single user. It is also possible to pass only one value.
 
 ```ruby
@@ -108,7 +108,7 @@ tracker.track("user_id1", “App Open”, {
   ‘GROUP KEY’ => 1234,
 })
  
-# event will be attributed to multiple groups with IDs 1000, 1234
+## event will be attributed to multiple groups with IDs 1000, 1234
 tracker.track(“user_id1”, “App Open”, {
   ‘GROUP KEY’ => [1000, 1234],
 })
@@ -118,12 +118,12 @@ Mixpanel can group events by the `group_id`, similar to how events are grouped w
 
 Note that sending in a `group_key` and `group_id` as event properties does not add users to the group profile or assign group membership to the user's profile. Only **events** with your chosen `group_key` property set will be available for behavioral analysis at the group level. See the sections following the code example to learn how to add users to a group profile or add a group to the user's profile.
 
-## Adding Group Identifiers to Individual Users
+### Adding Group Identifiers to Individual Users
 To connect group information to a user profile, include the `group_key` and `group_id` by sending the property as part of the people_set call. 
 
 ```ruby
-# Create or update a user profile with distinct_id "user_id1", a $name property,
-# and group_key = 'Company', group_id = 'Mixpanel'
+## Create or update a user profile with distinct_id "user_id1", a $name property,
+## and group_key = 'Company', group_id = 'Mixpanel'
 tracker = Mixpanel::Tracker.new(YOUR_MIXPANEL_TOKEN)
 tracker.people.set("user_id1", {
   '$name' => 'Steph Curry',
@@ -131,24 +131,24 @@ tracker.people.set("user_id1", {
 })
 ```
 
-## Creating Group Profiles
+### Creating Group Profiles
 It is possible to create a Group profile that is similar to a user profile. You must call a property-setting method like `Mixpanel::Groups#set` (described below) to create a group profile. It is important to include the `group_key`, `group_id`, and at least one property so that the profile is not empty. 
 
-## Setting Group Properties
+### Setting Group Properties
 You can add details to Group Profiles by adding properties to them.
 
 You can set the property `$name` to populate the name field at the top of the group profile.
 
 These operations are similar to the corresponding operations for user profile property updates.
 
-### set
+#### set
 `Mixpanel::Groups#set` updates or adds properties to a group profile. The profile is created if it does not exist.
 
 ```ruby
-# Sets properties on a group profile. Takes a Hash with string
-# keys, and values that are strings, numbers, booleans, or DateTimes
+## Sets properties on a group profile. Takes a Hash with string
+## keys, and values that are strings, numbers, booleans, or DateTimes
 tracker = Mixpanel::Tracker.new(YOUR_MIXPANEL_TOKEN)
-# Sets properties on group profile with group_key "Company", group_id "Acme"
+## Sets properties on group profile with group_key "Company", group_id "Acme"
 tracker.groups.set('Company', 'Acme', {
   '$name' => 'Acme, Inc.',
   'plan' => 'Premium',
@@ -159,17 +159,17 @@ tracker.groups.set('Company', 'Acme', {
 For all Group methods, see our [reference](http://mixpanel.github.io/mixpanel-ruby/Mixpanel/Groups.html).
 
 
-# Tracking Revenue
+## Tracking Revenue
 
 Mixpanel makes it easy to analyze the revenue you make from individual customers. By associating charges with user profiles, you can compare revenue across different customer segments and calculate things like lifetime value.
 
 You can track a single transaction with the <a style="font-family: courier" href="http://mixpanel.github.io/mixpanel-ruby/Mixpanel/People.html#method-i-track_charge">track_charge method of Mixpanel::Tracker#people</a>. Sending a message created with <a style="font-family: courier" href="http://mixpanel.github.io/mixpanel-ruby/Mixpanel/People.html#method-i-track_charge">track_charge</a> will add transactions to the individual user profile, which will also be reflected in the Mixpanel Revenue report.
 
 ```ruby
-# Records a charge of $9.99 from user '12345'
+## Records a charge of $9.99 from user '12345'
 tracker.people.track_charge('12345', 9.99)
 
-# records a charge of $30.50 on the 2nd of January
+## records a charge of $30.50 on the 2nd of January
 mixpanel.people.track_charge("12345", 30.50, {
     '$time' => DateTime.parse("Jan 2 2013"),
 })

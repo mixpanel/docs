@@ -8,7 +8,7 @@ metadata:
 createdAt: "2021-05-05T22:14:07.697Z"
 updatedAt: "2023-03-26T23:50:27.223Z"
 ---
-### Step 1: Install the SDK
+## Step 1: Install the SDK
 
 Add `implementation 'com.mixpanel.android:mixpanel-android:7.+'` as a dependency to your `build.gradle` file.
 
@@ -31,7 +31,7 @@ Next, add the following permissions in your AndroidManifest.xml:
 ```
 
 
-### Step 2: Track your first event
+## Step 2: Track your first event
 You'll need your Project Token for this, which you can get [here](https://mixpanel.com/settings/project). 
 
 ```java
@@ -60,7 +60,7 @@ public class MainActivity extends ActionBarActivity {
 🎉 Congratulations, you've tracked your first event! You can see it in Mixpanel via the [Events](https://mixpanel.com/report/events) page. For more options, see our [Android reference](doc:android).
 
 
-### FAQ
+## FAQ
 
 
 **Why aren't my events showing up?**

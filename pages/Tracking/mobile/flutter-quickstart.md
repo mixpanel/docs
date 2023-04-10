@@ -8,13 +8,13 @@ metadata:
 createdAt: "2021-06-29T00:01:48.830Z"
 updatedAt: "2023-03-26T23:06:45.221Z"
 ---
-### Step 1: Install the SDK
+## Step 1: Install the SDK
 Add `mixpanel_flutter: ^1.0.0` to your package's pubspec.yaml file and run:
 ```
 flutter pub get
 ```
 
-### Step 2: Track your first event
+## Step 2: Track your first event
 You'll need your Project Token for this, which you can get [here](https://mixpanel.com/settings/project). 
 ```dart
 import 'package:mixpanel_flutter/mixpanel_flutter.dart';
@@ -37,7 +37,7 @@ class _YourClassState extends State<YourClass> {
 🎉 Congratulations, you've tracked your first event! You can see it in Mixpanel via the [Events](https://mixpanel.com/report/events) page. For more options, see our [Flutter reference](doc:flutter).
 
 
-### FAQ
+## FAQ
 
 **Why don't I see events in Mixpanel?**
 To preserve battery, Mixpanel's SDKs flush events every 60 seconds while your application is running, as well as when the application transitions to the background. You can call  [flush()](https://mixpanel.github.io/mixpanel-flutter/mixpanel_flutter/Mixpanel/flush.html) manually if you want to force a flush at a particular moment.

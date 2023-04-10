@@ -33,7 +33,7 @@ print(resp.json())
 See our [API reference](ref:events) for more details.
 
 
-# Best Practices for Scale
+## Best Practices for Scale
 You can use this API at scale, for example to backfill historical data into Mixpanel or as part of a high-throughput streaming pipeline. We provide walkthroughs for [Amazon S3](doc:s3-import) and [Google Cloud Storage](doc:gcs-import) to provide a more production-grade example of how to use this API at scale.
 
 
@@ -44,7 +44,7 @@ Here are some other best practices:
 * When using Cloud Storage, partition files into ~200MB of JSON (or ~200K records) each. Each file is processed in parallel by Cloud Functions/Lambda and must be ingested by the function within the configured timeout.	
 * Log any 400 errors returned by the API. These are non-retryable and indicate something malformed with the data. This should be extremely unlikely once the API is up and running. If a batch contains a mix of valid and invalid data, we will ingest the valid data.	
 
-# Limits
+## Limits
 Our Import API is built to ingest billions of events per day across our customers. That said, we do rate limit at very high scale to ensure quality of service and real-time ingestion. Please refer to our [Import API docs](ref:import-events) for details.	
 
 All of our sample code transparently retries and backoff from rate limit exceptions. If you require a higher-limit for a 1-time backfill, please reach out to us at apis@mixpanel.com.	

@@ -8,13 +8,13 @@ metadata:
 createdAt: "2018-09-25T20:58:03.357Z"
 updatedAt: "2023-02-04T01:11:56.138Z"
 ---
-# Getting Started
+## Getting Started
 
 Please refer to our [Quickstart Guide](ios-swift-quickstart).
 
 The [Full API Reference](https://mixpanel.github.io/mixpanel-swift/), [Library Source Code](https://github.com/mixpanel/mixpanel-swift), and an [Example Application](https://github.com/mixpanel/mixpanel-swift/tree/master/MixpanelDemo/MixpanelDemo) is documented in our GitHub repo.
 
-# Sending Events
+## Sending Events
 
 We recommend tracking only five to seven events in your application instead of tracking too many things to start. Ideally, you track users going through your initial user experience and one key metric that matters for your application (e.g. YouTube might choose "Watched Video" as a key metric).
 
@@ -23,7 +23,7 @@ Once you've initialized the library, you can track an event by calling <a style=
 Mixpanel.mainInstance().track(event: "Plan Selected",
 ```
 
-# Timing Events
+## Timing Events
 
 You can track the time it took for an action to occur, such as an image upload or a comment post, using <a style="font-family: courier" href="https://mixpanel.github.io/mixpanel-swift/Classes/MixpanelInstance.html#/s:FC8Mixpanel16MixpanelInstance4timeFT5eventSS_T_"> time(event:)</a>. This will mark the "start" of your action, which you can then finish with a track call. The time duration is then recorded in the "Duration" property.
 ```swift Swift
@@ -33,7 +33,7 @@ Mixpanel.mainInstance().track(event: "Image Upload")
 ```
 
 
-# Super Properties
+## Super Properties
 
 It's very common to have certain properties that you want to include with each event you send. Generally, these are things you know about the user rather than about a specific event—for example, the user's age, gender, or source.
 
@@ -61,7 +61,7 @@ Mixpanel.mainInstance().track(event: "Signup",
     properties:[ "Plan" : "Mega", "Source": "Twitter"])
 ```
 
-## Setting Super Properties Only Once
+### Setting Super Properties Only Once
 If you want to store a super property only once (often for things like ad campaign or source), you can use <a style="font-family: courier" href="https://mixpanel.github.io/mixpanel-swift/Classes/MixpanelInstance.html#/s:FC8Mixpanel16MixpanelInstance27registerSuperPropertiesOnceFTGVs10DictionarySSPs9AnyObject__12defaultValueGSqPS2____T_"> registerSuperPropertiesOnce(_:defaultValue:)</a>. This function behaves like <a style="font-family: courier" href="https://mixpanel.github.io/mixpanel-swift/Classes/MixpanelInstance.html#/s:8Mixpanel0A8InstanceC23registerSuperPropertiesyySDySSAA0A4Type_pGF"> registerSuperProperties(_:)</a> and has the same interface, but it doesn't override super properties you've already saved.
 
 ```swift Swift
@@ -70,21 +70,21 @@ Mixpanel.mainInstance().registerSuperPropertiesOnce(["Source": "ad-01"])
 
 This means that it's safe to call <a style="font-family: courier" href="https://mixpanel.github.io/mixpanel-swift/Classes/MixpanelInstance.html#/s:FC8Mixpanel16MixpanelInstance27registerSuperPropertiesOnceFTGVs10DictionarySSPs9AnyObject__12defaultValueGSqPS2____T_"> registerSuperPropertiesOnce(_:defaultValue:)</a> with the same property on every app load, and it will only set it if the super property doesn't exist.
 
-## Super Properties Live in Local Storage
+### Super Properties Live in Local Storage
 Our mobile libraries store your super properties in local storage. They will persist so long as the app is installed (between launches and updates). Uninstalling the app will remove that customers super properties.
 
 
-# Managing User Identity
+## Managing User Identity
 
 You can handle the identity of a user using the `identify` and `alias` methods. Proper use of these methods can connect events to the correct user as they move across devices, browsers, and other platforms. 
 
-## Identify
+### Identify
 Identify a user with a unique ID to track user activity across devices, tie a user to their events, and create a user profile. If you never call this method, unique visitors are tracked using a UUID that generates the first time they visit the site.
 
 Call `identify` when you know the identity of the current user, typically after log-in or sign-up. We recommend against using `identify` for anonymous visitors to your site. 
 
 
-## Call Reset on Logout
+### Call Reset on Logout
 Reset generates a new random distinct_id and clears super properties. Call reset to clear data attributed to a user when that user logs out. This allows you to handle multiple users on a single device. For more information about maintaining user identity, see the [Identity Management: Best Practices](https://help.mixpanel.com/hc/en-us/articles/115004497803) article.
 
 Note: Calling reset frequently can lead to users quickly exceeding the 500 distinct_id per identity cluster limit. Once the 500 limit is reached you will no longer be able to add additional distinct_ids to the users identity cluster.
@@ -95,13 +95,13 @@ If you want to use IFV(identifierForVendor) as the distinct_id, you can set
 `MIXPANEL_UNIQUE_DISTINCT_ID` in build settings `Active Compilation Conditions` on the Mixpanel framework target. After you call reset, the IFV will not change. However, when a user removes and then re-installs the app, the IFV will change with each installation.
 
 
-# Storing User Profiles
+## Storing User Profiles
 
 In addition to events, you can store user profiles in Mixpanel. User profiles are persistent sets of properties that describe a user—things like name, email address, and signup date.
 
 You can use profiles to explore and segment users by who they are, rather than what they did. You can also use profiles to send messages, such as emails, SMS, or push notifications.
 
-## Setting Profile Properties
+### Setting Profile Properties
 You can set properties on a user profile with <a style="font-family: courier" href="https://mixpanel.github.io/mixpanel-swift/Classes/People.html#/s:FC8Mixpanel6People3setFT8propertySS2toPs9AnyObject__T_"> people.set(property:to:)</a>.
 
 ```swift Swift
@@ -111,7 +111,7 @@ Mixpanel.mainInstance().people.set(properties: [ "plan":"Premium", "$email":"joe
 
 This will set a "Plan" property, with a value "Premium", on user 13793's profile. If there isn't a profile with distinct_id 13793 in Mixpanel already, a new profile will be created. If user 13793 already has a property named "Plan" in their profile, the old value will be overwritten with "Premium".
 
-## Incrementing Numeric Properties
+### Incrementing Numeric Properties
 You can use <a style="font-family: courier" href="https://mixpanel.github.io/mixpanel-swift/Classes/People.html#/s:FC8Mixpanel6People9incrementFT8propertySS2bySd_T_">people.increment(property:by:)</a> to change the current value of numeric properties. This is useful when you want to keep a running tally of things, such as games played, messages sent, or points earned.
 ```swift Swift
 // Here we increment the user's point count by 500.
@@ -123,10 +123,10 @@ Mixpanel.mainInstance().people.increment(properties:
     ["dollars spent": 17, "credits remaining": -34])
 ```
 
-## Other Types of Profile Updates
+### Other Types of Profile Updates
 There are a few other types of profile updates. To learn more, please review the [full MixpanelPeople API documentation](https://mixpanel.github.io/mixpanel-swift/Classes/People.html).
 
-# Tracking Revenue
+## Tracking Revenue
 
 Mixpanel makes it easy to analyze the revenue you earn from individual customers. By associating charges with user profiles, you can compare revenue across different customer segments and calculate things like lifetime value.
 
@@ -140,7 +140,7 @@ Mixpanel.mainInstance().people.trackCharge(amount: 100.77)
 Mixpanel.mainInstance().people.trackCharge(amount: -50)
 ```
 
-# Group Analytics
+## Group Analytics
 Mixpanel Group Analytics is a paid add-on that allows behavioral data analysis by selected groups, as opposed to individual users.
 
 Grouping by identifiers other than the `distinct_id` will allow analysis at a company or group level when using Mixpanel analytics. Read [this article](https://help.mixpanel.com/hc/en-us/articles/360025333632) to learn more about Group Analytics.
@@ -153,12 +153,12 @@ If the property “company” is chosen for Group Analytics, “company” is th
 
 A user can belong to multiple groups. All updates to a group operate on the `group_key` and `group_id`.
 
-## Creating a Group Key
+### Creating a Group Key
 Administer group keys through your Project Settings. Group keys are event properties. All events need to have a defined group key on them in order to be attributed to a group. Group keys are project specific, and the group key should be set up before group data is sent. Note that Mixpanel does not backfill historical data before the group key was implemented.
 
 To administer group keys, navigate to your Project Settings. Click **+Add Group Key** under the *GROUP KEYS* section.
 
-## Adding Users to a Group
+### Adding Users to a Group
 Adding users to groups causes the `group_key` and `group_id` to send as a property key and value for all events triggered by that user on the device. You can add multiple values for a single user to the `group_key` list property.
 
 Similar to a `distinct_id`, the `group_key` allows Mixpanel to group events by an identifier for analysis. A `group_key`, however, is a group level identifier and not a user level identifier like the `distinct_id`.
@@ -180,14 +180,14 @@ You can call <a style="font-family: courier" href="https://mixpanel.github.io/mi
 Mixpanel.mainInstance().removeGroup(groupKey: "Company", groupID: “Mixpanel”)
 ```
 
-## Creating Group Profiles
+### Creating Group Profiles
 It is possible to create a Group profile that is similar to a user profile. You must call <a style="font-family: courier" href="https://mixpanel.github.io/mixpanel-swift/Classes/Group.html">getGroup().set()</a> to build a group profile. It is important to the `group_key`, `group_id`, and one property so that the profile is not empty. 
 
 ```swift Swift
 Mixpanel.mainInstance().getGroup(groupKey: "Company", groupID: “Mixpanel”).set(property: "g", to: "yo")
 ```
 
-## Setting Group Profile Properties
+### Setting Group Profile Properties
 You can add details to Groups by adding properties to them.
 
 In order to update Group profile properties, you must specify the group that needs to be updated by calling <a style="font-family: courier" href="https://mixpanel.github.io/mixpanel-swift/Classes/MixpanelInstance.html#/s:8Mixpanel0A8InstanceC8getGroup8groupKey0E2IDAA0D0CSS_AA0A4Type_ptF">getGroup().set()</a>.
@@ -202,7 +202,7 @@ You can set the property `$name` to populate the name field at the top of the gr
 
 These operations are similar to the corresponding operations for user profile property updates.
 
-### set
+#### set
 <a style="font-family: courier" href="https://mixpanel.github.io/mixpanel-swift/Classes/Group.html">mixpanel.getGroup().set()</a> updates or adds a property to a group.
 
 ```swift Swift
@@ -211,7 +211,7 @@ Mixpanel.mainInstance().getGroup(groupKey: "Company", groupID: “Mixpanel”).s
 
 For all Group functions, see the [reference](https://mixpanel.github.io/mixpanel-swift/Classes/Group.html)
 
-# Debugging and Logging
+## Debugging and Logging
 
 You can turn on Mixpanel logging by enabling the following flag:
 ```swift Swift
@@ -219,7 +219,7 @@ Mixpanel.mainInstance().loggingEnabled = true
 ```
 
 
-# EU Data Residency
+## EU Data Residency
 
 Route data to Mixpanel's EU servers by setting the `serverURL` property after initializing the client. 
 
@@ -228,7 +228,7 @@ mixpanel = Mixpanel.initialize(token: "MIXPANEL_TOKEN")
 mixpanel.serverURL = "https://api-eu.mixpanel.com"
 ```
 
-## [Legacy] Automatically Tracked Events
+### [Legacy] Automatically Tracked Events
 
 Mixpanel's SDKs have a legacy feature to automatically collect common mobile events. We don't recommend enabling this, as these events rely on client-side state and can be unreliable.
 
@@ -240,9 +240,9 @@ Mixpanel's SDKs have a legacy feature to automatically collect common mobile eve
 | $ae_iap | In App Purchase (IAP) | Executes when a user conducts an in-app purchase through your app. |
 
 
-## Default Properties Collected by Mixpanel
+### Default Properties Collected by Mixpanel
 
-### Event Properties
+#### Event Properties
 
 | Raw Name | Display Name | Description |
 | --- | --- | --- |
@@ -265,7 +265,7 @@ Mixpanel's SDKs have a legacy feature to automatically collect common mobile eve
 | $mp_api_timestamp_ms | API Timestamp | Time at which the event was received by our API. |
 | $insert_id | Insert ID | A unique identifier for the event, used to deduplicate events that are accidentally sent multiple times. |
 
-### User Properties
+#### User Properties
 
 | Raw Name | Display Name | Description |
 | --- | --- | --- |
@@ -281,5 +281,5 @@ Mixpanel's SDKs have a legacy feature to automatically collect common mobile eve
 | First App Open Date | First App Open Date | The date the app was first opened on a user’s device. |
 
 
-# Release History
+## Release History
 [See All Releases](https://github.com/mixpanel/mixpanel-swift/releases).

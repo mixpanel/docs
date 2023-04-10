@@ -8,13 +8,13 @@ metadata:
 createdAt: "2021-06-30T18:03:57.829Z"
 updatedAt: "2023-03-26T23:50:23.016Z"
 ---
-### Step 1: Install the SDK
+## Step 1: Install the SDK
 Add `https://github.com/mixpanel/mixpanel-unity.git#master` to the dependencies section of `com.mixpanel.unity`.
 
 Alternatively, you can download and install the .unitypackage file from our [releases page](https://github.com/mixpanel/mixpanel-unity/releases).
 
 
-### Step 2: Track your first event
+## Step 2: Track your first event
 You'll need your Project Token for this, which you can get [here](https://mixpanel.com/settings/project). 
 
 To initialize the library, first open the unity project settings menu for Mixpanel. (Edit -> Project Settings -> Mixpanel) Then, enter your project token into the Token and Debug Token input fields within the inspector. If you prefer to initialize Mixpanel manually, you can select the `Manual Initialization` in the settings and call `Mixpanel.Init()` to initialize.
@@ -34,7 +34,7 @@ Mixpanel.Track('Signup', props);
 
 
 
-### FAQ
+## FAQ
 **I want to stop tracking an event/event property in Mixpanel. Is that possible?**
 Yes, in Lexicon, you can intercept and drop incoming events or properties. Mixpanel won’t store any new data for the event or property you select to drop.  [See this article for more information](https://help.mixpanel.com/hc/en-us/articles/360001307806#dropping-events-and-properties).
 

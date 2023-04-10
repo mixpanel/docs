@@ -10,11 +10,11 @@ updatedAt: "2023-03-26T20:07:24.875Z"
 ---
 The Mixpanel Java library is useful to track events from Java servers.
 
-# Getting Started
+## Getting Started
 
 The [Full API Reference](http://mixpanel.github.io/mixpanel-java/), [Library Source Code](https://github.com/mixpanel/mixpanel-java) and an [Example Application](https://github.com/mixpanel/mixpanel-java/blob/master/src/demo/java/com/mixpanel/mixpanelapi/demo/MixpanelAPIDemo.java) is documented in our GitHub repo.
 
-# Installing the Library
+## Installing the Library
 
 You can get the library by including the following in your project's pom.xml:
 
@@ -28,7 +28,7 @@ You can get the library by including the following in your project's pom.xml:
 
 If you're not using Maven to build your project, you can browse and download the library jar directly from [Maven central](http://search.maven.org/#search%7Cga%7C1%7Cmixpanel-java)
 
-# Sending Events
+## Sending Events
 
 Track events in the mixpanel-java library by creating messages using an instance of <a style="font-family: courier" href="http://mixpanel.github.io/mixpanel-java/com/mixpanel/mixpanelapi/MessageBuilder.html">MessageBuilder</a> using your project token, bundling messages together using an instance of <a style="font-family: courier" href="http://mixpanel.github.io/mixpanel-java/com/mixpanel/mixpanelapi/ClientDelivery.html">ClientDelivery</a>, and then pushing the bundle to Mixpanel using an instance of <a style="font-family: courier" href="http://mixpanel.github.io/mixpanel-java/com/mixpanel/mixpanelapi/MixpanelAPI.html">MixpanelAPI</a>.
 
@@ -70,7 +70,7 @@ MixpanelAPI mixpanel = new MixpanelAPI();
 mixpanel.deliver(delivery);
 ```
 
-# EU Data Residency
+## EU Data Residency
 
 Route data to Mixpanel's EU servers by passing in positional arguments into the `MixpanelAPI`  constructor
 public MixpanelAPI(String eventsEndpoint,
@@ -88,13 +88,13 @@ MixpanelAPI mixpanel = new MixpanelAPI( "https://api-eu.mixpanel.com/track",
                                         "https://api-eu.mixpanel.com/groups");
 ```
 
-# Storing User Profiles
+## Storing User Profiles
 
 In addition to events, you can send user profile updates to Mixpanel. Mixpanel can maintain a profile of each of your users, storing information you know about them. An update is a message that changes the properties of a user profile.
 
 You can use profiles to explore and segment users by who they are, rather than what they did. You can also use profiles to send messages, such as emails, SMS, or push notifications.
 
-## Setting Profile Properties
+### Setting Profile Properties
 You can prepare a profile update message with <a style="font-family: courier" href="http://mixpanel.github.io/mixpanel-java/com/mixpanel/mixpanelapi/MessageBuilder.html#set(java.lang.String,%20org.json.JSONObject)">MessageBuilder.set</a> 
 
 ```java
@@ -120,7 +120,7 @@ mixpanel.sendMessage(update);
 
 This will set a "Plan" property, with a value "Premium", on user 13793's profile. If there isn't a profile with distinct_id 13793 in Mixpanel already, a new profile will be created. If user 13793 already has a property named "Plan" in their profile, the old value will be overwritten with "Premium". The ip property is set to the user’s ip address “72.229.28.185”. The ignore_time property is set to a value of “true”. Learn more about the ip and ignore_time properties in this [article](https://help.mixpanel.com/hc/en-us/articles/115004499343-Tracking-Geolocation-with-Server-Side-Implementation). 
 
-## Incrementing Numeric Properties
+### Incrementing Numeric Properties
 
 You can use <a style="font-family: courier" href="http://mixpanel.github.io/mixpanel-java/com/mixpanel/mixpanelapi/MessageBuilder.html#increment(java.lang.String,%20java.util.Map)">MessageBuilder.increment</a> to create a message that will change the current value of numeric properties. This is useful when you want to keep a running tally of things, such as games played, emails sent, or points earned.
 
@@ -145,7 +145,7 @@ MixpanelAPI mixpanel = new MixpanelAPI();
 mixpanel.sendMessage(update);
 ```
 
-## Appending to List Properties
+### Appending to List Properties
 <a style="font-family: courier" href="http://mixpanel.github.io/mixpanel-java/com/mixpanel/mixpanelapi/MessageBuilder.html#append(java.lang.String,%20org.json.JSONObject)">MessageBuilder.append</a> creates an update that adds an item to a list-valued property. The value you send with the append is added to the end of the list. If the property doesn't exist, it will be created with a one element list as its value.
 
 ```java
@@ -167,7 +167,7 @@ MixpanelAPI mixpanel = new MixpanelAPI();
 mixpanel.sendMessage(update);
 ```
 
-# Group Analytics
+## Group Analytics
 
 Mixpanel Group Analytics allows behavioral data analysis by selected groups, as opposed to individual users.
 
@@ -181,12 +181,12 @@ If the property “Company” is chosen for Group Analytics, “Company” is th
 
 A user can belong to multiple groups. All updates to a group operate on the `group_key` and `group_id`.
 
-## Creating a Group Key
+### Creating a Group Key
 Administer group keys through your Project Settings. Group keys are event properties. All events need to have a defined group key on them in order to be attributed to a group. Group keys are project specific, and the group key should be set up before group data is sent. Note that Mixpanel does not backfill historical data before the group key was implemented.
 
 To administer group keys, navigate to your Project Settings. Click **+Add Group Key** under the *GROUP KEYS* section.
 
-## Sending Group Identifiers With Events
+### Sending Group Identifiers With Events
 To send group identifiers with events, send the `group_key` as a property key and the `group_id` as the property value. The data type of the `group_key` property is a list, therefore you can add multiple values for a single user. It is also possible to pass only one value.
 
 Mixpanel can group events by the `group_id`, similar to how events are grouped with the `distinct_id`. A `group_id`, however, is a group level identifier and not a user level identifier like the `distinct_id`. 
@@ -211,7 +211,7 @@ JSONObject planEvent =
 mixpanel.sendMessage(planEvent);
 ```
 
-## Adding Group Identifiers to Individual Users
+### Adding Group Identifiers to Individual Users
 To connect group information to a user profile, include the `group_key` and `group_id` by sending the property as part of the <a style="font-family: courier" href="http://mixpanel.github.io/mixpanel-java/">set()</a> call. 
 
 ```java
@@ -234,15 +234,15 @@ JSONObject update = messageBuilder.set("13793", props);
 mixpanel.sendMessage(update);
 ```
 
-## Creating Group Profiles
+### Creating Group Profiles
 It is possible to create a Group profile that is similar to a user profile. You must call a property-setting method like <a style="font-family: courier" href="http://mixpanel.github.io/mixpanel-java/">set()</a> (described below) to create a group profile. It is important to include the `group_key`, `group_id`, and at least one property so that the profile is not empty.
 
-## Setting Group Properties
+### Setting Group Properties
 You can add details to Group Profiles by adding properties to them. You can set the property `$name` to populate the name field at the top of the group profile.
 
 These operations are similar to the corresponding operations for user profile property updates.
 
-### set
+#### set
 <a style="font-family: courier" href="http://mixpanel.github.io/mixpanel-java/">groupSet()</a> updates or adds properties to a group profile. The profile is created if it does not exist.
 
 ```java
@@ -271,7 +271,7 @@ try {
 
 For all Group methods, see our [reference](http://mixpanel.github.io/mixpanel-java/).
 
-# Tracking Revenue
+## Tracking Revenue
 
 Mixpanel makes it easy to analyze the revenue you make from individual customers. By associating charges with user profiles, you can compare revenue across different customer segments and calculate things like lifetime value.
 
