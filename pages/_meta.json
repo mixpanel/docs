@@ -5,7 +5,8 @@
     "href": "https://developer.mixpanel.com/reference",
     "newWindow": true
   },
-  "Getting Started": "Getting Started",
+  "index": "What is Mixpanel?",
+  "plan-your-impelementation": "Plan Your Implementation",
   "Tracking": "Tracking",
   "Analysis": "Analysis",
   "Admin": "Admin",
