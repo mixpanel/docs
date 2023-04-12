@@ -18,18 +18,19 @@ Mixpanel doesn't receive any data until you start sending events. If you haven't
 
 ### Debugging with Events
 
-Use Events to confirm that events are arriving to your Mixpanel project, so you can troubleshoot your Mixpanel setup quickly. With Events, you can see a feed of events along with all of their properties coming into Mixpanel.
+Use [Events](https://developer.mixpanel.com/docs/events-page) to confirm that events are arriving to your Mixpanel project, so you can troubleshoot your Mixpanel setup quickly. With Events, you can see a feed of events along with all of their properties coming into Mixpanel.
 
 ### Find Yourself
 The next step to validating your events is to manually trigger some of those events on your own device. After you have fired some events, navigate to Events and search or filter using any user-level information you know is available in the event's raw payload. Search by `$user_id`, `$device_id`, `distinct_id`, or user property values. If you are using Mixpanel's JavaScript SDK, you can use [`mixpanel.get_distinct_id`](https://developer.mixpanel.com/docs/javascript-full-api-reference#mixpanelget_distinct_id) to return your own distinct_id in your browser console and copy the distinct_id value into the Events search bar.
 
 ![Events Filter](https://raw.githubusercontent.com/ranic/mixpanel-docs/main/media/Tracking/events-filter.png)
 
-Once you have identified one of your own events in Events, you can inspect all of the properties that were sent with your event. Toggle between the Your Properties and Mixpanel Properties tabs to determine which properties are custom to your Mixpanel implementation and which are send by default by Mixpanel. Toggle JSON mode to view the complete JSON object Mixpanel received from the calls you sent. We recommend checking that:
+Once you have identified one of your own events in Events, you can inspect all of the properties that were sent with your event by clicking on > to expand it. Toggle between the _Your Properties_ and _Mixpanel Properties_ tabs to determine which properties are custom to your Mixpanel implementation and which are sent default by Mixpanel. Toggle _JSON mode_ to view the complete JSON object Mixpanel received from the calls you sent. We recommend checking that:
 
 1. Events are triggered as expected and requests are successful.
 2. Events contain all of the expected properties and event property values, including distinct_id. Keep in mind that event properties should reflect the value **at the time of the event,** whereas user properties reflect the most recent value.
 3. Property values are sent with the expected data type.
+4. Event and property names are in the correct taxonomy and casing **(Mixpanel is CaSe Sensitive)**
 
 To locate your User Profile from Events, click the User icon on the left to view your User Profile.
 
@@ -41,6 +42,7 @@ User Profiles allow you to see the events feed and all user properties for a spe
 
 1. User Properties set on the profile correctly. Keep in mind that user properties should reflect **the most recent value** of the property, unlike event properties which reflect the value at the time of the event.
 2. Whether the expected events are appearing in the Activity Feed correctly and in order. For example, if you only trigger an event onces but two instances of the event appear in the event stream, you should check your initialization and the logic triggering the event for errors.
+3. If user property names are in the correct taxonomy and casing **(Mixpanel is CaSe Sensitive)**
 
 ![User Profile](https://raw.githubusercontent.com/ranic/mixpanel-docs/main/media/Tracking/user-profile.png)
 
@@ -55,13 +57,14 @@ If you are using one of Mixpanel's client-side SDKs, you can enable debug mode t
 - [iOS - Swift Debugging and Logging](https://developer.mixpanel.com/docs/swift#debugging-and-logging)
 - [Android - Debugging and Logging](https://developer.mixpanel.com/docs/android#debugging-and-logging)
 - [React Native - Debugging and Logging](https://developer.mixpanel.com/docs/react-native#debugging-and-logging)
+- [Flutter - Debugging and Logging](https://developer.mixpanel.com/docs/flutter#debugging-and-logging)
 
 ### Debugging with the Browser Console (Web)
 
 If you're using Mixpanel in a web application, you can use your browser's developer console to view Mixpanel API calls being made from each page. 
 
 1. On your website, [enable debug mode](https://developer.mixpanel.com/docs/javascript#debug-mode).
-2. Open your browser's developer console and navigate to the Netowrk > Fetch/XHR tab. 
+2. Open your browser's developer console and navigate to the Network > Fetch/XHR tab. 
 3. Perform an action that triggers the `mixpanel.track` call.
 4. Look for a request triggered to `api.mixpanel.com/track`. Troubleshoot any error messages.
 6. If the request is successful, check that the "token" in the data payload matches the token in your Project Settings. From here, you can then validate that the event was directed to the right project token and using Events, and confirm that the data is arriving correctly in Mixpanel.
@@ -92,13 +95,13 @@ You can also flush manually with public `void flush()`.
 
 #### Hidden in Lexicon
 
-All users can hide events, event properties, and user profile properties in your [Mixpanel project through Lexicon](https://developer.mixpanel.com/v3.19/docs/lexicon#hide-events-and-properties).
+Project Owner and Admin users can [hide](https://developer.mixpanel.com/docs/lexicon#hide-events-and-properties) events, event properties, and user profile properties in your [Mixpanel project through Lexicon](https://developer.mixpanel.com/docs/lexicon#hide-events-and-properties).
 
 #### Inactive Events and Properties
 
 Mixpanel’s report dropdown menus hide events that have not been fired within the last 30 days. The events will still be available in the project's raw data, but will not be visible in the UI (we assume it's no longer relevant and hide it to declutter the dropdown menus and improve their performance). Event properties and property values that have not been sent to your project in the last 28 days will also be hidden from dropdowns.
 
-To have an imported event, event property, or property value that’s older than 30 days show in the dropdowns, you can fire a single instance of that event, property, or property value and the data will refurface it in the UI. If you know the name of the event, you can also search for it by typing the name in the dropdown menu.
+To have an imported event, event property, or property value that’s older than 30 days show in the dropdowns, you can fire a single instance of that event, property, or property value and the data will resurface it in the UI. If you know the name of the event, you can also search for it by typing the name in the dropdown menu.
 
 ## Data Discrepancies
 
@@ -125,7 +128,7 @@ Client-Side Tracking can be unreliable, you may lose events for 30-50% of your u
 
 ### Different Timezones
 
-Mixpanel records all events in Coordinated Universal Time (UTC) at intake. By default, Mixpanel displays events times in US Pacific Time but this is adjustable in [Project Settings](https://developer.mixpanel.com/v3.19/docs/manage-projects#manage-timezones-for-projects). Navigate to your Project Settings to determine what timezone your Mixpanel events are displayed in.
+Mixpanel records all events in Coordinated Universal Time (UTC) at intake. By default, Mixpanel displays events times in US Pacific Time but this is adjustable in [Project Settings](https://developer.mixpanel.com/docs/manage-projects#manage-timezones-for-projects). Navigate to your Project Settings to determine what timezone your Mixpanel events are displayed in.
 
 - Are event timezones tracked in the same way?
 
@@ -142,7 +145,7 @@ Mixpanel records all events in Coordinated Universal Time (UTC) at intake. By de
 ### Client-Side vs. Server-Side Tracking
 
 - Client-side integrations are more vulnerable to data tracking issues due to ad blockers and DNT settings
-- Mixpanel's SDKs can need loading times to trigger the first event
+- Mixpanel's SDKs needs to be loaded to trigger the first event
 
 ### Different Triggers to Track Data
 
