@@ -39,6 +39,8 @@ gem install mixpanel-ruby
 ## Step 2: Track your first event
 
 You'll need your Project Token for this, which you can get [here](mixpanel.com/settings/project).
+<Tabs>
+<Tab>
 ```python Python
 from mixpanel import Mixpanel
 
@@ -49,6 +51,8 @@ mp.track(user_id, 'Signed Up',  {
   'Signup Type': 'Referral'
 })
 ```
+</Tab>
+<Tab>
 ```javascript Node.js
 var Mixpanel = require('mixpanel');
 
@@ -60,6 +64,8 @@ mixpanel.track('Signed Up', {
   'Signup Type': 'Referral'
 })
 ```
+</Tab>
+<Tab>
 ```ruby Ruby
 require 'mixpanel-ruby'
 mp = Mixpanel::Tracker.new(PROJECT_TOKEN)
@@ -69,6 +75,8 @@ mp.track(user_id, 'Signed Up', {
   'Signup Type' => 'Referral'
 })
 ```
+</Tab>
+<Tab>
 ```java Java
 import com.mixpanel.mixpanelapi.ClientDelivery;
 import com.mixpanel.mixpanelapi.MessageBuilder;
@@ -90,6 +98,9 @@ delivery.addMessage(sentEvent);
 MixpanelAPI mixpanel = new MixpanelAPI();
 mixpanel.deliver(delivery);",
 ```
+</Tab>
+</Tabs>
+
 
 🎉 Congratulations, you've tracked your first event! You can see it in Mixpanel via the [Events](mixpanel.com/report/events) page. 
 

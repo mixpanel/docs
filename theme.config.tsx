@@ -14,7 +14,7 @@ function renderComponent<T>(
 const config: DocsThemeConfig = {
   docsRepositoryBase: 'https://github.com/mixpanel/docs/tree/main',
   footer: {
-    text: 'Nextra Docs Template',
+    text: '© Mixpanel 2023',
   },
   logo: <span>Mixpanel Documentation</span>,
   project: {
