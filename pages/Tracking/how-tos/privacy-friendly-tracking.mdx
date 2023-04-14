@@ -10,24 +10,24 @@ You have full control over the data you send to Mixpanel. Here we share best pra
 ## Opting Users Out of Tracking
 You can use the opt_out method in Mixpanel's SDKs to opt users out of tracking. This state is controlled by a flag that is set as a browser cookie or localStorage. Note: because this setting is stateful, it only exists on our Web/Mobile SDKs -- if you're tracking from your servers, you will need to store this opt-out setting in a database and check it before sending any track calls.
 
-<Tabs>
+<Tabs items={['Javascript', 'Objective-C', 'Swift', 'Android'}>
 <Tab>
-```javascript Javascript
+```javascript
 mixpanel.opt_out_tracking();
 ```
 </Tab>
 <Tab>
-```objectivec Objective-C
+```objc
 Mixpanel *mixpanel = [Mixpanel sharedInstance];\n[mixpanel optOutTracking];
 ```
 </Tab>
 <Tab>
-```swift Swift
+```swift
 let mixpanel = Mixpanel.initialize(token: YOUR API TOKEN, trackAutomaticEvents: true, optOutTrackingByDefault: true)
 ```
 </Tab>
 <Tab>
-```java Android
+```java
 mixpanel.optOutTracking();
 ```
 </Tab>
@@ -35,24 +35,24 @@ mixpanel.optOutTracking();
 
 You can also configure our SDKs to opt users out of tracking by default:
 
-<Tabs>
+<Tabs items={['Javascript', 'Objective-C', 'Swift', 'Android'}>
 <Tab>
-```javascript Javascript
+```javascript
 mixpanel.init(YOUR TOKEN, {opt_out_tracking_by_default: true});
 ```
 </Tab>
 <Tab>
-```objectivec Objective-C
+```objc
 Mixpanel *mixpanel = [Mixpanel sharedInstanceWithToken:@ YOUR_API_TOKEN trackAutomaticEvents:YES optOutTrackingByDefault:YES];
 ```
 </Tab>
 <Tab>
-```swift Swift
+```swift
 Mixpanel.mainInstance().optOutTracking();
 ```
 </Tab>
 <Tab>
-```java Android
+```java
 MixpanelAPI mixpanelOptOutDefault = MixpanelAPI.getInstance(context, YOUR API TOKEN, true, true /* opt out by default */);
 ```
 </Tab>
