@@ -8,7 +8,7 @@ updatedAt: "2023-03-26T23:48:54.396Z"
 You can use Mixpanel's Server SDKs to send events from your backend servers to Mixpanel. We [recommend](doc:plan-your-implementation#need-to-start-tracking-product-data) server-side tracking, since it is more reliable and easier to maintain than web/mobile tracking.
 
 ## Step 1: Install the SDK
-<Tabs>
+<Tabs items={['Python', 'Node', 'Ruby', 'Java']}>
 <Tab>
 ```shell Python
 pip install mixpanel
@@ -39,7 +39,7 @@ gem install mixpanel-ruby
 ## Step 2: Track your first event
 
 You'll need your Project Token for this, which you can get [here](mixpanel.com/settings/project).
-<Tabs>
+<Tabs items={['Python', 'Node', 'Ruby', 'Java']}>
 <Tab>
 ```python Python
 from mixpanel import Mixpanel
