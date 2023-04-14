@@ -122,23 +122,23 @@ Example use-cases include:
 
 ## Creating Custom Buckets
 
-Add a property in Breakdown, then select the **Customize Buckets** option from the overflow menu
+Add a property in Breakdown, then select the **Customize Buckets** option from the overflow menu.
 
 ![https://help.mixpanel.com/hc/article_attachments/14342458665748](https://help.mixpanel.com/hc/article_attachments/14342458665748)
 
-Depending on your added property data type - string vs numeric, you will see a different custom buckets modal, designed based on the data-type use-cases **(more detail below)**
+Depending on your added property data type - string vs numeric, you will see a different custom buckets modal, designed based on the data-type use-cases **(more detail below)**.
 
-Once you define your segment buckets, click **Apply.** Only then will the custom buckets reflect in the visualization. You will also see the custom buckets as an under-item on the property
+Once you define your segment buckets, click **Apply.** Only then will the custom buckets reflect in the visualization. You will also see the custom buckets as an under-item on the property.
 
 ![https://help.mixpanel.com/hc/article_attachments/14342458667924](https://help.mixpanel.com/hc/article_attachments/14342458667924)
 
-To modify the segment buckets, click on the **under-item** and the custom buckets model will open. Once you’ve made the changes, click **Apply**
+To modify the segment buckets, click on the **under-item** and the custom buckets model will open. Once you’ve made the changes, click **Apply**.
 
-To remove all grouping and revert to the default, open the custom buckets modal and click **Reset**
+To remove all grouping and revert to the default, open the custom buckets modal and click **Reset**.
 
 ## String property Use Cases
 
-**Use Case:** You want to compare # videos watched between core markets - North America, Europe & China
+**Use Case:** You want to compare # videos watched between core markets - North America, Europe & China.
 
 Current: You have a property “Country”
 
@@ -151,11 +151,11 @@ Goal: You want to group the countries into meaningful segments
 
 Steps
 
-1. Add a breakdown - Country. Below is the default you’ll see
+1. Add a breakdown - Country. Below is the default you’ll see.
 
     ![https://help.mixpanel.com/hc/article_attachments/12828869626644](https://help.mixpanel.com/hc/article_attachments/12828869626644)
 
-2. Choose to bucket segments, by opening the custom buckets model and click Apply
+2. Choose to bucket segments, by opening the custom buckets model and click Apply.
     - For each segment, choose the operator “is” and select one or more values
     - “Rest of the World” is auto generated as **remaining values**
     - To note — if two segments have the same value, the first segment will consider the value. Custom buckets are non-overlapping and sum up to 100% by definition
@@ -166,8 +166,8 @@ Steps
 
 **You can also re-name these segments to make them meaningful to you**
 
-1. On the same line of the segment, choose to rename it using the pencil icon
-2. Click Apply after creating and naming your segments as desired
+1. On the same line of the segment, choose to rename it using the pencil icon.
+2. Click Apply after creating and naming your segments as desired.
 
 ![https://help.mixpanel.com/hc/article_attachments/14342752741140](https://help.mixpanel.com/hc/article_attachments/14342752741140)
 
@@ -175,7 +175,7 @@ Steps
 
 ## Numeric property Use Cases
 
-**Use Case:** You want to compare #users based on duration of video watched
+**Use Case:** You want to compare #users based on duration of video watched.
 
 Current: You have a property “watch time (mins)”
 
@@ -185,9 +185,9 @@ Goal: You want to distribute this in various ways
 - Use Case B: Specific groups <10, 10-20, 20-50, 50-100, ≥100
 - Use Case C: Want to see all the durations as-is (No grouping)
 
-**Deep Dive: Use Case A**: Evenly in 10 min buckets for the range 50-100 mins
+**Deep Dive: Use Case A**: Evenly in 10 min buckets for the range 50-100 mins.
 
-1. Add a breakdown - “watch time (mins)”
+1. Add a breakdown - “watch time (mins)”.
     - To note — every numeric property is **auto-bucketed into even sized buckets as the default**
     - Here the default seems to be even buckets of 10 mins across the range
 
@@ -195,9 +195,9 @@ Goal: You want to distribute this in various ways
 
         ![https://help.mixpanel.com/hc/article_attachments/12828860268692](https://help.mixpanel.com/hc/article_attachments/12828860268692)
 
-2. Go to the overflow and open the custom buckets modal
-3. Since looking for even buckets of “30 mins”, choose **Even Bucketing**
-4. Modify the min and max values of the desired range, and the bucket size, and click apply
+2. Go to the overflow and open the custom buckets modal.
+3. Since looking for even buckets of “30 mins”, choose **Even Bucketing**.
+4. Modify the min and max values of the desired range, and the bucket size, and click apply.
     - To note — both a lower end and upper end bucket will be auto-generated to ensure your breakdown always adds up to a 100%
     - Here these buckets are <50 mins and ≥ 100 mins
 
@@ -206,21 +206,21 @@ Goal: You want to distribute this in various ways
         ![https://help.mixpanel.com/hc/article_attachments/12828860573204](https://help.mixpanel.com/hc/article_attachments/12828860573204)
 
 
-**Deep Dive: Use Case B**: Specific groups <10, 10-20, 20-50, 50-100, ≥100
+**Deep Dive: Use Case B**: Specific groups <10, 10-20, 20-50, 50-100, ≥100.
 
-1. Open the custom buckets modal
-2. Since looking for specific buckets with varied bucket ranges, choose **Varied Bucketing**
-3. Enter the ‘segment’ break point values in each row and click apply. You can preview the bucket as you enter values in the line-item below
+1. Open the custom buckets modal.
+2. Since looking for specific buckets with varied bucket ranges, choose **Varied Bucketing**.
+3. Enter the ‘segment’ break point values in each row and click apply. You can preview the bucket as you enter values in the line-item below.
     - To note — both a lower end and upper end bucket will be auto-generated to ensure your buckets always adds up to a 100%
 
 ![https://help.mixpanel.com/hc/article_attachments/14342546138516](https://help.mixpanel.com/hc/article_attachments/14342546138516)
 
 ![https://help.mixpanel.com/hc/article_attachments/12828860758676](https://help.mixpanel.com/hc/article_attachments/12828860758676)
 
-**Deep Dive: Use Case C:** Want to see all the durations as-is (No bucketing)
+**Deep Dive: Use Case C:** Want to see all the durations as-is (No bucketing).
 
-1. Open the custom buckets modal
-2. Since looking for “No bucketing”, choose **None —** This lays out all the numeric property values as-is
+1. Open the custom buckets modal.
+2. Since looking for “No bucketing”, choose **None —** This lays out all the numeric property values as-is.
 
 ![https://help.mixpanel.com/hc/article_attachments/14342547991956](https://help.mixpanel.com/hc/article_attachments/14342547991956)
 
@@ -228,7 +228,7 @@ Goal: You want to distribute this in various ways
 
 ## Typecasting property Use Cases
 
-**Use Case:** You want to identify #users of age 18 and age 60 since these are user ages where they change subscription plans (upgrade and downgrade respectively)
+**Use Case:** You want to identify #users of age 18 and age 60 since these are user ages where they change subscription plans (upgrade and downgrade respectively).
 
 Current: You have a property age (years)
 
@@ -240,17 +240,17 @@ Goal: You want to group this in a meaningful way
 
 Steps
 
-1. Add a breakdown age(years). By default this will add as a numeric property
-2. Since you are looking for pin-pointed years and not creating number-ranges, this is a question more common to string property data type
-3. Change **Data Type** of age(years) to String. Once changed you will see the type-casted property type as an under-item
+1. Add a breakdown age(years). By default this will add as a numeric property.
+2. Since you are looking for pin-pointed years and not creating number-ranges, this is a question more common to string property data type.
+3. Change **Data Type** of age(years) to String. Once changed you will see the type-casted property type as an under-item.
     - To note - only type-casted data types show as an under-item. If the data-type was the same as ingested, no under-item for data type will be seen
 
         ![https://help.mixpanel.com/hc/article_attachments/14342634016660](https://help.mixpanel.com/hc/article_attachments/14342634016660)
 
         ![https://help.mixpanel.com/hc/article_attachments/12833644608148](https://help.mixpanel.com/hc/article_attachments/12833644608148)
 
-4. Post changing data-type, open the custom buckets modal. This will now open a modal meant for string property data type
-5. Follow steps as elaborated for String property use-case above, and achieve the goal
+4. Post changing data-type, open the custom buckets modal. This will now open a modal meant for string property data type.
+5. Follow steps as elaborated for String property use-case above, and achieve the goal.
 
     ![https://help.mixpanel.com/hc/article_attachments/14342637801748](https://help.mixpanel.com/hc/article_attachments/14342637801748)
 
@@ -261,13 +261,13 @@ Steps
 
 ## Frequently Asked Questions
 
-- **Which all reports does Custom Buckets work on?**
+- **Which reports does Custom Buckets work on?**
 
     This feature is available in the Insights, Funnels and Retention reports.
 
-- **Which all property types does this support?**
+- **Which property types does this support?**
 
-    Custom Buckets work on String, Numeric and List data type
+    Custom buckets work on String, Numeric and List data type.
 
 - **Can I save a Custom Bucket**?
 
@@ -275,7 +275,7 @@ Steps
 
 - **How is custom buckets different from [custom property](https://help.mixpanel.com/hc/en-us/articles/360030848432)?**
 
-    Custom buckets only supports the most common custom-property use-case of **`if else`** to create meaningful segments in a more simplistic UI, and a low lift way to enable quick ad-hoc exploration. You could get this same answer using custom property too, it would just be more effort and not as intuitive
+    Custom buckets only supports the most common custom-property use-case of **`if else`** to create meaningful segments in a more simplistic UI, and a low lift way to enable quick ad-hoc exploration. You could get this same answer using custom property too, it would just be more effort and not as intuitive.
 
 - **Can I create over-lapping segments like (US & UK) vs (US & Australia)?**
 
@@ -287,27 +287,27 @@ Steps
 
 - **What happens if I change data-type, can I still use custom buckets?**
 
-    Yes you can as long as the data-type you’ve changed the property to is supported.
+    Yes, you can as long as the data-type you’ve changed the property to is supported.
 
 - **Understanding the details:**
-    - **In Numeric: Can I change the operators on the upper and lower bound?**If you are looking for more control on the operators, please create a [custom property](https://help.mixpanel.com/hc/en-us/articles/360030848432-Custom-Properties#creating-a-custom-property).
+    - **In Numeric: Can I change the operators on the upper and lower bound?** If you are looking for more control on the operators, please create a [custom property](https://help.mixpanel.com/hc/en-us/articles/360030848432-Custom-Properties#creating-a-custom-property).
 
-        No, the operators have been fixed. The lower bound is always strictly greater than (≥) and the upper bound is just lesser than(<)
+        No, the operators have been fixed. The lower bound is always strictly greater than (≥) and the upper bound is just lesser than(<).
 
     - **In String: Is (not set) included in (remaining values)?**
 
-        No, (not set) is not included in remaining values
+        No, (not set) is not included in remaining values.
 
-        - (remaining values): refers to ‘set’ values that just don’t fall into any of your defined segments
-        - (not set) refers to the events where a property value has not been set at tracking/ ingestion. For example a new video (MixFun) is has been added. But during tracking, you forget to send the name of this video. So the count of this video is being tracked, but it’s being associated to a property value (not set) vs (MixFun)
+        - (remaining values): refers to ‘set’ values that just don’t fall into any of your defined segments.
+        - (not set) refers to the events where a property value has not been set at tracking/ ingestion. For example a new video (MixFun) is has been added. But during tracking, you forget to send the name of this video. So the count of this video is being tracked, but it’s being associated to a property value (not set) vs (MixFun).
 
-        More details can be found in [this help doc](https://help.mixpanel.com/hc/en-us/articles/115004499403)
+        More details can be found in [this help doc](https://help.mixpanel.com/hc/en-us/articles/115004499403).
 
     - **In Numeric: What is the difference between (not set) and (non-numeric values)?**
-        - (not set) as explained above for string refers to property values that have not been associated to any specific property value
+        - (not set) as explained above for string refers to property values that have not been associated to any specific property value.
         - (non numeric values) refers to set values that have just been sent in as non-numeric data type. For example, you’re looking to track time spent and have coded that as a numeric property, but for some reason some values are tracked as “a”, or “b” which are not-numeric.
 - **Some Common How-do-I(s)**
-    - **How do i know is set, (not set)?**
+    - **How do I know if it is set, (not set)?**
 
         (not set) is automatically computed and will always show up in the UI. You don’t have to select (not set) as a segment to know how many events fall in there. So only figure how would you like to segment your (set) values.
 
@@ -315,25 +315,25 @@ Steps
 
     - **How do I get not contains or not equal to?**
 
-        These will auto-generate under (remaining values). So just select what should be included
+        These will auto-generate under (remaining values). So just select what should be included.
 
-        For example — In the below (remaining values) is not equal to US or India
+        For example — In the below (remaining values) is not equal to US or India.
 
         ![https://help.mixpanel.com/hc/article_attachments/12834082079380](https://help.mixpanel.com/hc/article_attachments/12834082079380)
 
-    - **In number — how do i get a bucket of just 0?**
+    - **In number — how do I get a bucket of just 0?**
 
         If you’re purely looking for just how many people have value “0”, we would encourage you to typecast this to a string property and get that.
 
-        If you’re looking to get the count of 0, in reference to the other numeric buckets, go ahead and create a **Varied Bucketing** custom buckets modal
+        If you’re looking to get the count of 0, in reference to the other numeric buckets, go ahead and create a **Varied Bucketing** custom buckets modal.
 
         - If the numeric values are integers:
             - Choose Varied bucket values 0, 1, 2…
-            - This would generate buckets: <0, ≥0 & <1, ≥1 & <2, ≥2.
+            - This would generate buckets: <0, ≥0 & <1, ≥1 & <2, ≥2
             - ≥0 & <1 would be equal to bucket 0
         - If the numeric values are decimals:
             - Choose Varied bucket values 0, 0.0001, 1, …
-            - This would generate buckets: <0, ≥0 & <0.0001, ≥0.0001 & <1, ≥1.
+            - This would generate buckets: <0, ≥0 & <0.0001, ≥0.0001 & <1, ≥1
             - ≥0 & <0.0001 would approximate to bucket 0
 
 
