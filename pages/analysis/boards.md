@@ -25,7 +25,7 @@ Create personal boards or project boards and share them with your team to help y
 
 Before creating a board of your own, it's best to explore existing boards within your Mixpanel project. There's a good chance that someone has already created a board that may be of interest to you. The best way to navigate to existing boards within your Mixpanel project is the directory on the lefthand side of the page. This directory makes it easy to access your most-used boards by organizing them into several sections:
 
-![/11441973595156](/11441973595156)
+![/11441973595156](/11441973595156.png)
 
 **Favorites**: to favorite a board, click the "Favorite" button at the top right of that board. Once you've done so, it will appear in the favorites section at the top left of the board's page.
 
@@ -39,7 +39,7 @@ Finally, you can search for all boards, or recently viewed boards, at the top of
 
 Once you've decided that you want to create a board of your own, on the Boards page, click "+ New Board" at the top of the left side directory. The new untitled board will be created immediately, but you may wish to give it a name. To do so, click the current title, then type the desired name. At this point, your empty board will look like this:
 
-![/11442046149268](/11442046149268)
+![/11442046149268](/11442046149268.png)
 
 ### Step 3: Adding content to Boards
 
@@ -49,7 +49,7 @@ There are 3 types of content that you can add to a board:
 2. A new report that you can make from Insights, Funnels, Flows or Retention
 3. A text card to give context to your board
 
-![/11442000560788](/11442000560788)
+![/11442000560788](/11442000560788.png)
 
 There are a few ways to add an existing report to a board. You can either start on a board, and add reports to it directly, or start from a report and choose the boards to which the report should be added.
 

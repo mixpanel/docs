@@ -204,7 +204,7 @@ Like Event Based Sessions, Sessions are reset every 24 hours at midnight (accord
 
 #### Example 1
 
-![/10260746661780](/10260746661780)
+![/10260746661780](/10260746661780.png)
 
 Session ID Property is set to `session_id`
 
@@ -251,4 +251,4 @@ By default, the list of associated properties is as follows:
 
 You can add additional properties to be associated with the session by going under Project Settings to Session Settings, and selecting the list of properties you wish to be associated. They will then be accessible for analysis in Mixpanel reports. Note that there is a limit of 4 additional properties that can be associated with session analysis.
 
-![/10494738316692](/10494738316692)
+![/10494738316692](/10494738316692.png)

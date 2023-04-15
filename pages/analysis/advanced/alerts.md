@@ -30,13 +30,13 @@ Choose the frequency that you would like to receive these alerts, either hourly
 
 Enter the recipient emails that you would like to receive this alert. You can enter any email here, not just internal users. Select any Slack channels you want to send this alert to. Private Slack Channels are not available at this time.
 
-![/14210649496084](/14210649496084)
+![/14210649496084](/14210649496084.png)
 
 Click **Create alert** to save the custom alert.
 
 **IMPORTANT:** You may need to add Mixpanel to Slack, if you have not done this before. Click "Add Mixpanel to Slack" and follow the prompts on the following screens. You will be brought back to this page when you have added Mixpanel to Slack.
 
-![/14251383457684](/14251383457684)
+![/14251383457684](/14251383457684.png)
 
 ## Line Charts
 
@@ -44,7 +44,7 @@ In line chart reports, you can select relative thresholds.
 
 You can choose a **specific threshold** (this is the same as other chart types) or a **relative threshold as compared to the previous time period**. Then, enter the value or percentage.
 
-![/14210683576980](/14210683576980)
+![/14210683576980](/14210683576980.png)
 
 # Custom Alerts in Funnels
 
@@ -56,13 +56,13 @@ Choose the frequency that you would like to receive these alerts, either hourly
 
 Enter the recipient emails that you would like to receive this alert. You can enter any email here, not just internal users. Select any Slack channels you want to send this alert to. Private Slack Channels are not available at this time.
 
-![/14210810107924](/14210810107924)
+![/14210810107924](/14210810107924.png)
 
 Click **Create alert** to save the custom alert.
 
 **IMPORTANT:** You may need to add Mixpanel to Slack, if you have not done this before. Click "Add Mixpanel to Slack" and follow the prompts on the following screens. You will be brought back to this page when you have added Mixpanel to Slack.
 
-![/14251559987092](/14251559987092)
+![/14251559987092](/14251559987092.png)
 
 # View & Manage Custom Alerts
 

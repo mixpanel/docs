@@ -13,7 +13,7 @@ Mixpanel’s Impact report measures the effects of product or marketing launches
 
 To access **Impact**, go to the Applications section in the top right of the top navigation, then select **Impact**.
 
-![/11036831782164](/11036831782164)
+![/11036831782164](/11036831782164.png)
 
 # Use Cases
 

@@ -124,13 +124,13 @@ Example use-cases include:
 
 Add a property in Breakdown, then select the **Customize Buckets** option from the overflow menu
 
-![/14342458665748](/14342458665748)
+![/14342458665748](/14342458665748.png)
 
 Depending on your added property data type - string vs numeric, you will see a different custom buckets modal, designed based on the data-type use-cases **(more detail below)**
 
 Once you define your segment buckets, click **Apply.** Only then will the custom buckets reflect in the visualization. You will also see the custom buckets as an under-item on the property
 
-![/14342458667924](/14342458667924)
+![/14342458667924](/14342458667924.png)
 
 To modify the segment buckets, click on the **under-item** and the custom buckets model will open. Once you’ve made the changes, click **Apply**
 
@@ -153,25 +153,25 @@ Steps
 
 1. Add a breakdown - Country. Below is the default you’ll see
 
-    ![/12828869626644](/12828869626644)
+    ![/12828869626644](/12828869626644.png)
 
 2. Choose to bucket segments, by opening the custom buckets model and click Apply
     - For each segment, choose the operator “is” and select one or more values
     - “Rest of the World” is auto generated as **remaining values**
     - To note — if two segments have the same value, the first segment will consider the value. Custom buckets are non-overlapping and sum up to 100% by definition
 
-![/14342715436052](/14342715436052)
+![/14342715436052](/14342715436052.png)
 
-![/12828860042132](/12828860042132)
+![/12828860042132](/12828860042132.png)
 
 **You can also re-name these segments to make them meaningful to you**
 
 1. On the same line of the segment, choose to rename it using the pencil icon
 2. Click Apply after creating and naming your segments as desired
 
-![/14342752741140](/14342752741140)
+![/14342752741140](/14342752741140.png)
 
-![/12828869956628](/12828869956628)
+![/12828869956628](/12828869956628.png)
 
 ## Numeric property Use Cases
 
@@ -191,9 +191,9 @@ Goal: You want to distribute this in various ways
     - To note — every numeric property is **auto-bucketed into even sized buckets as the default**
     - Here the default seems to be even buckets of 10 mins across the range
 
-        ![/14342489051028](/14342489051028)
+        ![/14342489051028](/14342489051028.png)
 
-        ![/12828860268692](/12828860268692)
+        ![/12828860268692](/12828860268692.png)
 
 2. Go to the overflow and open the custom buckets modal
 3. Since looking for even buckets of “30 mins”, choose **Even Bucketing**
@@ -201,9 +201,9 @@ Goal: You want to distribute this in various ways
     - To note — both a lower end and upper end bucket will be auto-generated to ensure your breakdown always adds up to a 100%
     - Here these buckets are <50 mins and ≥ 100 mins
 
-        ![/14342575096724](/14342575096724)
+        ![/14342575096724](/14342575096724.png)
 
-        ![/12828860573204](/12828860573204)
+        ![/12828860573204](/12828860573204.png)
 
 
 **Deep Dive: Use Case B**: Specific groups <10, 10-20, 20-50, 50-100, ≥100
@@ -213,18 +213,18 @@ Goal: You want to distribute this in various ways
 3. Enter the ‘segment’ break point values in each row and click apply. You can preview the bucket as you enter values in the line-item below
     - To note — both a lower end and upper end bucket will be auto-generated to ensure your buckets always adds up to a 100%
 
-![/14342546138516](/14342546138516)
+![/14342546138516](/14342546138516.png)
 
-![/12828860758676](/12828860758676)
+![/12828860758676](/12828860758676.png)
 
 **Deep Dive: Use Case C:** Want to see all the durations as-is (No bucketing)
 
 1. Open the custom buckets modal
 2. Since looking for “No bucketing”, choose **None —** This lays out all the numeric property values as-is
 
-![/14342547991956](/14342547991956)
+![/14342547991956](/14342547991956.png)
 
-![/12833587659028](/12833587659028)
+![/12833587659028](/12833587659028.png)
 
 ## Typecasting property Use Cases
 
@@ -245,18 +245,18 @@ Steps
 3. Change **Data Type** of age(years) to String. Once changed you will see the type-casted property type as an under-item
     - To note - only type-casted data types show as an under-item. If the data-type was the same as ingested, no under-item for data type will be seen
 
-        ![/14342634016660](/14342634016660)
+        ![/14342634016660](/14342634016660.png)
 
-        ![/12833644608148](/12833644608148)
+        ![/12833644608148](/12833644608148.png)
 
 4. Post changing data-type, open the custom buckets modal. This will now open a modal meant for string property data type
 5. Follow steps as elaborated for String property use-case above, and achieve the goal
 
-    ![/14342637801748](/14342637801748)
+    ![/14342637801748](/14342637801748.png)
 
-    ![/14342707763604](/14342707763604)
+    ![/14342707763604](/14342707763604.png)
 
-    ![/12833899595284](/12833899595284)
+    ![/12833899595284](/12833899595284.png)
 
 
 ## Frequently Asked Questions
@@ -283,7 +283,7 @@ Steps
 
     If you really need to answer a question like this, the right way here is to create these as two metrics leveraging [inline filters](https://help.mixpanel.com/hc/en-us/articles/7651639898260#event-inline-filters) and NOT use breakdowns.
 
-    ![/12834111393684](/12834111393684)
+    ![/12834111393684](/12834111393684.png)
 
 - **What happens if I change data-type, can I still use custom buckets?**
 
@@ -311,7 +311,7 @@ Steps
 
         (not set) is automatically computed and will always show up in the UI. You don’t have to select (not set) as a segment to know how many events fall in there. So only figure how would you like to segment your (set) values.
 
-        ![/12834113971348](/12834113971348)
+        ![/12834113971348](/12834113971348.png)
 
     - **How do I get not contains or not equal to?**
 
@@ -319,7 +319,7 @@ Steps
 
         For example — In the below (remaining values) is not equal to US or India
 
-        ![/12834082079380](/12834082079380)
+        ![/12834082079380](/12834082079380.png)
 
     - **In number — how do i get a bucket of just 0?**
 
@@ -733,7 +733,7 @@ User properties are not yet supported.
 
 View the top and bottom converting segments in your funnel by clicking the **Find interesting segments** button at the bottom of the segmentation chart.
 
-![/10038188905364](/10038188905364)
+![/10038188905364](/10038188905364.png)
 
 Rather than searching through multiple property breakdowns to find significant data, this feature automatically identifies this data for you. Mixpanel combs through your event properties and cohorts to show you which of those segments convert higher or lower than average, and are therefore statistically significant.
 
@@ -765,7 +765,7 @@ Mixpanel automatically compares the currently selected date period to the previo
 
 View the top and bottom converting segments in your retention report by clicking the **Find interesting segments** button at the bottom of the retention chart. This feature is not currently available for Frequency Retention.
 
-![/10037069627156](/10037069627156)
+![/10037069627156](/10037069627156.png)
 
 Rather than searching through multiple segment breakdowns to find significant data, this feature automatically identifies that data for you. Mixpanel combs through your event properties and cohorts, and show you which of those segments retain at a higher or lower rate than average.
 
@@ -793,7 +793,7 @@ Navigate to the report where you would like to enable or disable sampling at tim
 
 From the report in which you would like to use sampling, click the **lightning bolt** in the upper right corner of the query builder.
 
-![/13109650264596](/13109650264596)
+![/13109650264596](/13109650264596.png)
 
 This will enable sampling on the report, and will be indicated by the lightning bolt symbol turning blue. The percentage of the total that is included in the query calculations will be indicated in the top right corner of the query builder.
 
