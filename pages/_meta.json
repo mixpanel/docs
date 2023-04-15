@@ -7,8 +7,8 @@
   },
   "index": "What is Mixpanel?",
   "plan-your-implementation": "Plan Your Implementation",
-  "Tracking": "Tracking",
-  "Analysis": "Analysis",
-  "Admin": "Admin",
-  "Other Bits": "Other Bits"
+  "tracking": "Tracking",
+  "analysis": "Analysis",
+  "admin": "Admin",
+  "other-bits": "Other Bits"
 }
