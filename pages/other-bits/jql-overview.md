@@ -223,7 +223,7 @@ Transformations are applied to collections, taking one collection as input and p
 
 The JQL API provides the following set of transformations, which can be chained together to do complex analysis.
 
-## <hr><span style="font-family: courier">filter(function(item) {})</span>
+## filter(function(item) {})
 
 Filter the collection by calling the provided function on each of its elements. If the function evaluates to true, keep the element. Otherwise, discard it.
 
@@ -247,7 +247,7 @@ function main() {
 
 
 
-## <hr><span style="font-family: courier">map(function(item) {})</span>
+## map(function(item) {})
 
 Build a new collection by applying the provided function to each element of the input collection. The output collection contains the return value of the provided function for each element in the input collection, so an input collection of size N will result in an output collection of size N.
 
@@ -268,7 +268,7 @@ function main() {
 
 
 
-## <hr><span style="font-family: courier">reduce([reducer function(s)])</span>
+## reduce([reducer function(s)])
 
 `reduce()` turns the input collection into just a single value.
 
@@ -363,7 +363,7 @@ function minimum(x,y) {
 
 
 
-## <hr><span style="font-family: courier">groupBy([keys], [reducer function(s)])</span>
+## groupBy([keys], [reducer function(s)])
 
 Group the collection according to the provided list of keys, then apply the provided reducer function(s) to each group. The underlying action of `groupBy()` is similar to the one of `reduce()` - aggregating many input values into one. However, the output collection is different: while `reduce()` aggregates everything into a single value, `groupBy()` produces a collection with the following structure:
 
@@ -465,7 +465,7 @@ function main() {
 
 
 
-## <hr><span style="font-family: courier">groupByUser([optional additional keys], [reducer function(s)])</span>
+## groupByUser([optional additional keys], [reducer function(s)])
 
 Group events by distinct_id and, optionally, additional keys, then apply the provided reducer function(s) to each group.
 
@@ -573,7 +573,7 @@ function getDay(event) {
 
 `groupByUser()` places the same restriction on group keys as `groupBy()` does: a key can only include scalars, and list keys can be treated in two different ways depending on presence of the `mixpanel.multiple_keys()` decorator.
 
-## <hr><span style="font-family: courier">flatten()</span>
+## flatten()
 
 Flatten the collection by inlining array elements of the input collection. The contents of arrays in the input collection are placed into the output collection. Input elements that are not arrays are forwarded into the output collection without modification.
 
@@ -595,7 +595,7 @@ function main() {
 
 
 
-## <hr><span style="font-family: courier">sortAsc(accessor)</span>
+## sortAsc(accessor)
 
 Sort the input collection by the provided sort key - either property name or a function. Sort key must be a scalar.
 
@@ -613,7 +613,7 @@ function main() {
 
 
 
-## <hr><span style="font-family: courier">sortDesc(accessor)</span>
+## sortDesc(accessor)
 
 Similar to `sortAsc()`, but sort in descending order.
 
@@ -631,7 +631,7 @@ function main() {
 
 
 
-# <hr>Chained Aggregations
+# Chained Aggregations
 
 Chaining `groupBy()` operations in JQL can be used to compute complex statistics. The simplest case for chained aggregations is the query below that computes the number of unique users that had events from each country:
 
@@ -703,7 +703,7 @@ function main() {
 
 
 
-## <hr><span style="font-family: courier">mixpanel.reducer.count()</a>
+## mixpanel.reducer.count()
 
 Count the number of elements in the collection (or group, if passed to groupBy()). For example, you could use groupBy() and this reducer to implement Mixpanel's Segmentation report.
 
@@ -756,7 +756,7 @@ function main() {
 
 
 
-## <hr><span style="font-family: courier">mixpanel.reducer.sum(accessor)</span>
+## mixpanel.reducer.sum(accessor)
 
 Sum a collection of numeric values together.
 
@@ -781,7 +781,7 @@ function main() {
 
 
 
-## <hr><span style="font-family: courier">mixpanel.reducer.numeric_summary(accessor)</span>
+## mixpanel.reducer.numeric_summary(accessor)
 
 Get a numeric summary of a collection. Returns the count, sum, sum of squares, average and standard deviation for a collection of numeric values.
 
@@ -812,7 +812,7 @@ function main() {
 
 
 
-## <hr><span style="font-family: courier">mixpanel.reducer.avg(accessor)</span>
+## mixpanel.reducer.avg(accessor)
 
 Compute the average of a numeric collection. `avg()` is a shortcut replacement for the two-step process: aggregate with `numeric_summary()`, and follow-up with a `.map()` step that computes average.
 
@@ -839,7 +839,7 @@ function main() {
 
 
 
-## <hr><span style="font-family: courier">mixpanel.reducer.numeric_percentiles(accessor, percentiles spec)</span>
+## mixpanel.reducer.numeric_percentiles(accessor, percentiles spec)
 
 Compute percentiles of a numeric collection. Note: this built-in samples the numeric stream; it's output will differ from exact percentile value up to a fixed error bound. The result may also fluctuate between runs.
 
@@ -898,7 +898,7 @@ function main() {
 
 
 
-## <hr><span style="font-family: courier">mixpanel.reducer.min(accessor)/max(accessor)<span style="font-family: courier">string</span>
+## mixpanel.reducer.min(accessor)/max(accessor)
 
 Compute minimum (or maximum) element in a numeric collection.
 
@@ -926,7 +926,7 @@ function main() {
 
 
 
-## <hr><span style="font-family: courier">mixpanel.reducer.min_by(accessor)/max_by(accessor)</span>
+## mixpanel.reducer.min_by(accessor)/max_by(accessor)
 
 Find the element in a collection that gives the minimum (or maximum) value of a numeric property.
 
@@ -967,7 +967,7 @@ function main() {
 
 
 
-## <hr><span style="font-family: courier">mixpanel.reducer.top(limit)</span>
+## mixpanel.reducer.top(limit)
 
 Limit the response to the top N values of a collection. This function expects the input collection to be of the `groupBy()` format: `{ "key": [...], "value": <numeric value> }`. The output of this function is a collection containing a single item, the list of the top N items.
 
@@ -1011,7 +1011,8 @@ Limit the response to the top N values of a collection. This function expects th
 
 
 
-## <hr><span style="font-family: courier">mixpanel.reducer.applyGroupLimits(limit spec)/</span>
+## mixpanel.reducer.applyGroupLimits(limit spec)/
+
 
 Limit the response of each group to the top N values of a collection and optionally to the top N values of the entire collection. This function expects the input collection to be of the `groupBy()` format: `{ "key": [...], "value": <numeric value> }`. The output of this function is a collection with the following structure.
 
@@ -1068,7 +1069,7 @@ function main() {
 
 
 
-## <hr><span style="font-family: courier">mixpanel.reducer.object_merge()</span>
+## mixpanel.reducer.object_merge()
 
 Merge a collection of JavaScript objects into a single object. Numeric leaf values are summed.
 
@@ -1101,7 +1102,7 @@ function main() {
 
 
 
-## <hr><span style="font-family: courier">mixpanel.reducer.any()</span>
+## mixpanel.reducer.any()
 
 ```javascript Example
 function main() {
@@ -1128,7 +1129,7 @@ function main() {
 
 
 
-## <hr><span style="font-family: courier">mixpanel.reducer.null()</span>
+## mixpanel.reducer.null()
 
 Always return null.
 
@@ -1154,7 +1155,7 @@ function main() {
 
 
 
-## <hr><span style="font-family: courier">mixpanel.numeric_bucket(accessor, buckets spec)</span>
+## mixpanel.numeric_bucket(accessor, buckets spec)
 
 Bucketize a numeric value by normalizing it to the lower boundary of the bucket it falls into. It is commonly used to reduce the number of distinct keys when aggregating over numeric values.
 
@@ -1220,7 +1221,7 @@ function main() {
 
 
 
-## <hr><span style="font-family: courier">mixpanel.to_number(accessor)/</span>
+## mixpanel.to_number(accessor)
 
 Convert input into a number. mixpanel.to_number() is commonly used when executing numeric aggregations over a collection of mixed non-numeric data. When unable to interpret input as a number, return undefined.
 
@@ -1254,7 +1255,7 @@ function main() {
 
 
 
-## <hr><span style="font-family: courier">mixpanel.numeric_bucket()</span>
+## mixpanel.numeric_bucket()
 
 `mixpanel.numeric_bucket()` can be used to segment events over calendar period, when applied to time property.
 
