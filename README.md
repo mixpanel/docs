@@ -18,14 +18,14 @@ You can customize the image's width or height using HTML. Here's a sample (repla
 `<img height=“387” alt=“image” src=“https://user-images.githubusercontent.com/2077899/230281466-11bfdbf7-0820-41c0-a4e8-b802faabaf20.png”>`
 
 # Previewing Changes
-(TODO) All pull requests will generate a staging link in ReadMe with a staged copy of your changes. This lets you preview your changes without changing what's actually live. 
+All pull requests will generate a staging link in Vercel. This lets you preview your changes without changing what's actually live. 
 
 # Adding new docs / changing structure
 These types of changes are currently not possible purely in GitHub due to a limitation of the ReadMe <> GitHub integration. We expect this to be rare anyway and want to add a little friction to adding new docs to avoid clutter. 
 
 If you think we need a new doc (e.g. because we’re shipping a new feature or adding a how to), create an issue in this repository and write up the goals of the new doc. Keep in mind that this is publicly accessible. We’ll discuss in Github and one of the doc maintainers will create the doc in ReadMe if we decide it’s necessary, or close the issue if it's not. Once it’s created, you can then make a pull request to write up the contents of the doc, going through the normal workflow as outlined in the “Contributing fixes” section. 
 
-# Adding to Product Updates
+# Adding to Product Updates (TODO)
 Product Updates live in the changelogs/ directory. Each update is its own file.
 
 The steps for creating a new changelog post are:
@@ -37,11 +37,6 @@ The steps for creating a new changelog post are:
 6. Follow the steps in "Contributing Fixes" to edit the post with the contents that you want. 
 
 If you want to edit an existing changelog post, you only need to do Step 6. 
-
-Note: due to a ReadMe limitation, there is no staging environment for changelogs, they all get pushed to the main version.
-
-
-
 
 # Maintainers
 [Vijay](https://github.com/ranic), [Marissa](https://github.com/marissakuhrau), [Seams](https://github.com/ryanseams), [Mav](https://github.com/mavlee). Eventually we’ll expand this list, but keeping it tight for now.
