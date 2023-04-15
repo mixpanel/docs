@@ -202,7 +202,7 @@ For more options, see the reference and code for each SDK in [Github](https://gi
 ## FAQ
 
 ### Why aren't my events showing up?
-To preserve battery life and customer bandwidth, the Mixpanel library doesn't send the events you record immediately. Instead, it sends batches to the Mixpanel servers every 60 seconds while your application is running, as well as when the application transitions to the background. You can call `.flush()` manually if you want to force a flush at a particular moment for example before your application is completely shutdown. See our [debugging guide](/tracking/how-tos/debugging)
+To preserve battery life and customer bandwidth, the Mixpanel library doesn't send the events you record immediately. Instead, it sends batches to the Mixpanel servers every 60 seconds while your application is running, as well as when the application transitions to the background. You can call `.flush()` manually if you want to force a flush at a particular moment for example before your application is completely shutdown. See our [debugging guide](/tracking/how-tos/debugging).
 
 ### How do I opt users out of tracking?
 Call the `.optOutTracking()` method, which will prevent data from being sent from the user’s device.

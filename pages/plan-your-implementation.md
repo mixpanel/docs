@@ -32,6 +32,7 @@ In general, we recommend tracking everything you possibly via your servers, and 
 If you’re just starting to track data, we suggest starting simple by tracking two events critical to your product.
 
 > 📘
+>
 > Not sure what an event or property is? Check out [What is Mixpanel](doc:what-is-mixpanel) to get a quick introduction to these important concepts.
 
 ### Sign Up Event
@@ -43,7 +44,7 @@ mixpanel.track("Sign Up")
 ```
 Tracking a sign up event can let you answer simple but key questions like:
 
-:seedling: **What is our growth? How many people are signing up on our website (daily, monthly, etc.)?**
+🌱 **What is our growth? How many people are signing up on our website (daily, monthly, etc.)?**
 
 Mixpanel also lets you augment this data with event properties, like a referral source, or if the user opted out of emails.
 
@@ -81,6 +82,7 @@ Tracking a value moment can help answer questions like:
 💰 **What is our activation rate? How many people who sign up make it to the Value Moment?**
 
 > 📘See Your Events in Action
+>
 > Once you've implemented your signup and value moment events, try the [Company KPIs template](https://mixpanel.com/project?show-event-translator=true) to turn your two events into nine unique reports with only a few simple clicks.
 
 From here, you can gradually start tracking more events to better understand user behavior in your app.
