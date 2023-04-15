@@ -29,7 +29,7 @@ Note: you can do this without creating a custom property as well, using [Custom 
 
 For example, if you have a property for “Days since registration” and you want to bucket the users into “Months since registration” (0-1 months: X users, 1-6 months: Y users, 6+ months: Z users), you can use custom properties.
 
-![https://help.mixpanel.com/hc/article_attachments/360053124672/mceclip0.png](https://help.mixpanel.com/hc/article_attachments/360053124672/mceclip0.png)
+![/mceclip0.png](/mceclip0.png)
 
 ## Merge or Rename Values to Fix Implementation Issues
 
@@ -43,7 +43,7 @@ A marketing manager wants to understand what portion of the user base is coming 
 
 They can create a custom property using the channel with this transformation:
 
-![https://help.mixpanel.com/hc/article_attachments/360053125752/mceclip1.png](https://help.mixpanel.com/hc/article_attachments/360053125752/mceclip1.png)
+![/mceclip1.png](/mceclip1.png)
 
 ## Add Domain Knowledge from Existing Data to Make Data More Accessible
 
@@ -65,7 +65,7 @@ A marketplace company wants to track total purchase amount for an order, but the
 
 They can create a custom property using “price” and “quantity” with this transformation:
 
-![https://help.mixpanel.com/hc/article_attachments/360053125952/mceclip2.png](https://help.mixpanel.com/hc/article_attachments/360053125952/mceclip2.png)
+![/mceclip2.png](/mceclip2.png)
 
 ## Compute the Number of Days Between Two Date Properties
 
@@ -73,11 +73,11 @@ Use custom properties to compute the date/time difference between two date prope
 
 A new custom property can be defined by taking into account the “Created” property and using the following transformation:
 
-![https://help.mixpanel.com/hc/article_attachments/360052865351/Untitled.png](https://help.mixpanel.com/hc/article_attachments/360052865351/Untitled.png)
+![/Untitled.png](/Untitled.png)
 
 This will create the following output:
 
-![https://help.mixpanel.com/hc/article_attachments/360052735852/Untitled2.png](https://help.mixpanel.com/hc/article_attachments/360052735852/Untitled2.png)
+![/Untitled2.png](/Untitled2.png)
 
 ## Modify Defined Properties
 
@@ -89,7 +89,7 @@ A telco company charges its customers based on talk-time (minutes spoken) and on
 
 They can create a custom property using “Duration” and “Amount” with this transformation:
 
-![https://help.mixpanel.com/hc/article_attachments/360053264991/mceclip3.png](https://help.mixpanel.com/hc/article_attachments/360053264991/mceclip3.png)
+![/mceclip3.png](/mceclip3.png)
 
 ## Check whether Property Values Are the Same
 
@@ -101,7 +101,7 @@ A company wants to find out what percentage of purchases are being made by users
 
 They can create a custom property to determine whether the two country values are the same with this transformation:
 
-![https://help.mixpanel.com/hc/article_attachments/360053127592/mceclip4.png](https://help.mixpanel.com/hc/article_attachments/360053127592/mceclip4.png)
+![/mceclip4.png](/mceclip4.png)
 
 ## Transform String Property Values to Upper/Lowercase
 
@@ -113,17 +113,17 @@ If a company that sells ice-cream wants to look at popular pie flavors, and if t
 
 They can create a custom property that combines and casts all these values to the same case using this transformation:
 
-![https://help.mixpanel.com/hc/article_attachments/360053127672/mceclip5.png](https://help.mixpanel.com/hc/article_attachments/360053127672/mceclip5.png)
+![/mceclip5.png](/mceclip5.png)
 
 ## Extract Domain from Email Address
 
 Extract the domain of the email from an email address. You can parse out parts of a string after "@" using the SPLIT function:
 
-![https://help.mixpanel.com/hc/article_attachments/360068799312/mceclip1.png](https://help.mixpanel.com/hc/article_attachments/360068799312/mceclip1.png)
+![/mceclip1.png](/mceclip1.png)
 
 This provides the following output:
 
-![https://help.mixpanel.com/hc/article_attachments/360069021451/mceclip2.png](https://help.mixpanel.com/hc/article_attachments/360069021451/mceclip2.png)
+![/mceclip2.png](/mceclip2.png)
 
 ## Query a List with an Index
 
@@ -133,19 +133,19 @@ Let’s say you have a list of recommendations as a property, and you’d like t
 
 You can parse out the first delivery ID in a list property with several DeliveryIDs:
 
-![https://help.mixpanel.com/hc/article_attachments/360052737872/Untitled5.png](https://help.mixpanel.com/hc/article_attachments/360052737872/Untitled5.png)
+![/Untitled5.png](/Untitled5.png)
 
 # Creating a Custom Property
 
 Click **Create Custom > Event Property or User Property** to open the property builder.
 
-![https://help.mixpanel.com/hc/article_attachments/360069674871/mceclip1.png](https://help.mixpanel.com/hc/article_attachments/360069674871/mceclip1.png)
+![/mceclip1.png](/mceclip1.png)
 
 Optionally give your property a name and click into the formula bar to start defining it. If you're new to this feature, we recommend starting with one of the examples. Click the **Insert Example** drop down to populate the box with a use-case specific custom property.
 
 When writing your formula, click **Ctrl + Space** to see a list of all the available functions and their descriptions. Click **period (.)** to search for event or user profile properties to add to the formula.
 
-![https://help.mixpanel.com/hc/article_attachments/360069675111/mceclip2.png](https://help.mixpanel.com/hc/article_attachments/360069675111/mceclip2.png)
+![/mceclip2.png](/mceclip2.png)
 
 Custom properties are local to the report by default, when you select **Apply**. To save the custom property permanently for use in other reports and to make it usable by other project members, click **Save**. We recommend Apply-ing the custom property and using it in your local analysis first, before saving and sharing, to reduce clutter in the project.
 

@@ -9,7 +9,7 @@ You need your Project Token to track events to Mixpanel. Mixpanel uses Project T
 
 You can find it in the [Project Settings](https://mixpanel.com/settings/project) page under "Access Keys"
 
-![image](https://user-images.githubusercontent.com/2077899/229924656-95f4e4e5-441f-49d7-95ea-32b0979a11f8.png)
+![image](/229924656-95f4e4e5-441f-49d7-95ea-32b0979a11f8.png)
 
 You can then use your token to track events to Mixpanel. See our guides for [Javascript](doc:javascript-quickstart), [Server](doc:server), and [Mobile](doc:mobile).
 

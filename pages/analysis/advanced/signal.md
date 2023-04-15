@@ -19,11 +19,11 @@ The music sharing app may want to understand the correlation between top events 
 
 Building this query in Signal would involve selecting the target users, and how the "Song Purchased" goal event is correlated with the top events.
 
-![https://help.mixpanel.com/hc/article_attachments/360054782491/mceclip0.png](https://help.mixpanel.com/hc/article_attachments/360054782491/mceclip0.png)
+![/mceclip0.png](/mceclip0.png)
 
 Values are returned after running the correlation. “Song Played” could have a strong positive correlation with purchasing a song. Most of the users who played a song later purchased a song.
 
-![https://help.mixpanel.com/hc/article_attachments/360054664292/Screen_Shot_2018-07-13_at_9.19.24_AM.png](https://help.mixpanel.com/hc/article_attachments/360054664292/Screen_Shot_2018-07-13_at_9.19.24_AM.png)
+![/Screen_Shot_2018-07-13_at_9.19.24_AM.png](/Screen_Shot_2018-07-13_at_9.19.24_AM.png)
 
 This information can be used in future product decisions. By knowing that those who play songs are more likely to purchase songs, it is possible to build tools to encourage song plays. This could lead to a dramatic increase in the amount of users purchasing songs.
 
@@ -31,7 +31,7 @@ This information can be used in future product decisions. By knowing that those 
 
 By default, Mixpanel will build a query to show how your [top 50 events](https://help.mixpanel.com/hc/en-us/articles/360001360643-Top-Events-in-Reports) correlate with 2nd week retention in the last quarter for all users. This translates to, “How do the top events correlate with two week retention in the last quarter for all users?"
 
-![https://help.mixpanel.com/hc/article_attachments/7777682199956/Screen_Shot_2022-07-13_at_10.13.57_PM.png](https://help.mixpanel.com/hc/article_attachments/7777682199956/Screen_Shot_2022-07-13_at_10.13.57_PM.png)
+![/Screen_Shot_2022-07-13_at_10.13.57_PM.png](/Screen_Shot_2022-07-13_at_10.13.57_PM.png)
 
 To build a new query with Signal, enter the Signal report in the desired Mixpanel project.
 
@@ -39,19 +39,19 @@ Signal queries require a minimum of 60 days worth of data. Queries with any less
 
 1. Determine and specify the target users. “All users” is the default.
 
-![https://help.mixpanel.com/hc/article_attachments/7777681516180/Screen_Shot_2022-07-13_at_10.13.57_PM.png](https://help.mixpanel.com/hc/article_attachments/7777681516180/Screen_Shot_2022-07-13_at_10.13.57_PM.png)
+![/Screen_Shot_2022-07-13_at_10.13.57_PM.png](/Screen_Shot_2022-07-13_at_10.13.57_PM.png)
 
 2. Select any event performed by the target user by clicking the **+** sign.
 
-![https://help.mixpanel.com/hc/article_attachments/7777750405268/Screen_Shot_2022-07-13_at_10.13.57_PM_copy.png](https://help.mixpanel.com/hc/article_attachments/7777750405268/Screen_Shot_2022-07-13_at_10.13.57_PM_copy.png)
+![/Screen_Shot_2022-07-13_at_10.13.57_PM_copy.png](/Screen_Shot_2022-07-13_at_10.13.57_PM_copy.png)
 
 3. Further filter by property by clicking **+ Filter** and selecting any properties as well as the frequency of occurrence.
 
-![https://help.mixpanel.com/hc/article_attachments/7777752285204/Screen_Shot_2022-07-13_at_10.19.21_PM.png](https://help.mixpanel.com/hc/article_attachments/7777752285204/Screen_Shot_2022-07-13_at_10.19.21_PM.png)
+![/Screen_Shot_2022-07-13_at_10.19.21_PM.png](/Screen_Shot_2022-07-13_at_10.19.21_PM.png)
 
 4. Determine and select the Goal Event and its properties. The goal event can be a specific event with a frequency (users did Goal Event at least x number of times) or one of the default Signal retention events calculated by Mixpanel.
 
-![https://help.mixpanel.com/hc/article_attachments/7777768697236/Screen_Shot_2022-07-13_at_10.20.49_PM.png](https://help.mixpanel.com/hc/article_attachments/7777768697236/Screen_Shot_2022-07-13_at_10.20.49_PM.png)
+![/Screen_Shot_2022-07-13_at_10.20.49_PM.png](/Screen_Shot_2022-07-13_at_10.20.49_PM.png)
 
 The default retention events available in Signal include:
 
@@ -65,15 +65,15 @@ The default retention events available in Signal include:
 - The correlation event can be [broken down by property](https://help.mixpanel.com/hc/en-us/articles/115004582086#breakdown-a-query). To do this, select **+ Breakdown** and select the property to break the data down by.
 - The correlation event can be [filtered by property](https://help.mixpanel.com/hc/en-us/articles/115004582086#filter-a-query). To do this, select **+ Filter** and select the property and property value you want to filter by.
 
-![https://help.mixpanel.com/hc/article_attachments/7777773378580/Screen_Shot_2022-07-13_at_10.22.08_PM.png](https://help.mixpanel.com/hc/article_attachments/7777773378580/Screen_Shot_2022-07-13_at_10.22.08_PM.png)
+![/Screen_Shot_2022-07-13_at_10.22.08_PM.png](/Screen_Shot_2022-07-13_at_10.22.08_PM.png)
 
 6. Select the time frame for the query and the users who are to be evaluated. It’s important to select a long enough time frame that allows users to complete both the correlation event(s) and the goal event.
 
-![https://help.mixpanel.com/hc/article_attachments/7777794074004/Screen_Shot_2022-07-13_at_10.24.59_PM.png](https://help.mixpanel.com/hc/article_attachments/7777794074004/Screen_Shot_2022-07-13_at_10.24.59_PM.png)
+![/Screen_Shot_2022-07-13_at_10.24.59_PM.png](/Screen_Shot_2022-07-13_at_10.24.59_PM.png)
 
 6. Click **Correlate**.
 
-![https://help.mixpanel.com/hc/article_attachments/7777774565268/Screen_Shot_2022-07-13_at_10.22.08_PM.png](https://help.mixpanel.com/hc/article_attachments/7777774565268/Screen_Shot_2022-07-13_at_10.22.08_PM.png)
+![/Screen_Shot_2022-07-13_at_10.22.08_PM.png](/Screen_Shot_2022-07-13_at_10.22.08_PM.png)
 
 # Interpreting Results
 
@@ -81,7 +81,7 @@ The default retention events available in Signal include:
 
 Each correlation will be represented by one card in the summary view results. The list-view will display the optimal action, correlation with the goal event, and key findings about the event. Results can be sorted by correlation strength or by Mixpanel opportunity score.
 
-![https://help.mixpanel.com/hc/article_attachments/7777816143508/Screen_Shot_2022-07-13_at_10.32.35_PM.png](https://help.mixpanel.com/hc/article_attachments/7777816143508/Screen_Shot_2022-07-13_at_10.32.35_PM.png)
+![/Screen_Shot_2022-07-13_at_10.32.35_PM.png](/Screen_Shot_2022-07-13_at_10.32.35_PM.png)
 
 ## Scores
 
@@ -110,13 +110,13 @@ The key findings presented are rarity analysis results and conversion measuremen
 
 To access the detailed view, click on a card in the summary view.
 
-![https://help.mixpanel.com/hc/article_attachments/7777852474516/Screen_Shot_2022-07-13_at_10.33.37_PM.png](https://help.mixpanel.com/hc/article_attachments/7777852474516/Screen_Shot_2022-07-13_at_10.33.37_PM.png)
+![/Screen_Shot_2022-07-13_at_10.33.37_PM.png](/Screen_Shot_2022-07-13_at_10.33.37_PM.png)
 
 The detailed view provides the correlation calculations for each event evaluated. This view uses a heat map to show the strength of the correlation with the goal event.
 
 The x-axis represents the velocity, or the number of days it took users to complete the event (up to 15 days) and the y-axis shows the frequency of the event, or the number of times the event was done, up to ten times.
 
-![https://help.mixpanel.com/hc/article_attachments/7777852993556/DetailedView.png](https://help.mixpanel.com/hc/article_attachments/7777852993556/DetailedView.png)
+![/DetailedView.png](/DetailedView.png)
 
 ## Optimal Action
 
@@ -134,11 +134,11 @@ For each combination Mixpanel will provide supporting statistics for further ana
 - **Fall-out**: Percent of unconverted users who did this event at least x times within y days.
 - **Correlation**: Association between performing this event at least x times in y days and converting to your goal.
 
-![https://help.mixpanel.com/hc/article_attachments/7777869737492/Screen_Shot_2022-07-13_at_10.35.27_PM.png](https://help.mixpanel.com/hc/article_attachments/7777869737492/Screen_Shot_2022-07-13_at_10.35.27_PM.png)
+![/Screen_Shot_2022-07-13_at_10.35.27_PM.png](/Screen_Shot_2022-07-13_at_10.35.27_PM.png)
 
 To see the calculations of the optimal correlation data, hover of the ƒx in the upper right-hand corner of the chart at the bottom of the heat map.
 
-![https://help.mixpanel.com/hc/article_attachments/7777869737748/Screen_Shot_2022-07-13_at_10.35.35_PM.png](https://help.mixpanel.com/hc/article_attachments/7777869737748/Screen_Shot_2022-07-13_at_10.35.35_PM.png)
+![/Screen_Shot_2022-07-13_at_10.35.35_PM.png](/Screen_Shot_2022-07-13_at_10.35.35_PM.png)
 
 ## Key Findings
 
@@ -148,7 +148,7 @@ Signal also presents two key findings, rarity analysis results and conversion me
 
 To download the results to a CSV, click the **Download CSV** icon in the upper right hand corner of the Summary Results view or the Detailed Results view after you have run your correlation.
 
-![https://help.mixpanel.com/hc/article_attachments/7777872257684/Screen_Shot_2022-07-13_at_10.37.09_PM.png](https://help.mixpanel.com/hc/article_attachments/7777872257684/Screen_Shot_2022-07-13_at_10.37.09_PM.png)
+![/Screen_Shot_2022-07-13_at_10.37.09_PM.png](/Screen_Shot_2022-07-13_at_10.37.09_PM.png)
 
 # Reference
 

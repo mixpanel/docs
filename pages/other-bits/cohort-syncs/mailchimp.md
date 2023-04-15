@@ -25,11 +25,11 @@ Follow these steps to enable the integration with Mailchimp:
 
 1. Select **Integrations** under the **Data Management** tab in the top navigation bar of Mixpanel.
 
-![mailchimp 1 Image](https://raw.githubusercontent.com/ranic/mixpanel-docs/main/media/Other%20Bits/Cohort%20Syncs/Mailchimp/mailchimp1.png)
+![mailchimp 1 Image](/mailchimp1.png)
 
 2. From the Integrations page, select the Appcues dropdown, and select **Connect**.
 
-![mailchimp 2 Image](https://raw.githubusercontent.com/ranic/mixpanel-docs/main/media/Other%20Bits/Cohort%20Syncs/Mailchimp/mailchimp2.png)
+![mailchimp 2 Image](/mailchimp2.png)
 
 You will need to provide an API key (referred to as an Authorization token in Mailchimp) to authorize the connection. Mailchimp will provide this token during the integration initialization flow.
 
@@ -49,7 +49,7 @@ Select the cohort that you want to export. Click on the three-dot icon on the ri
 
 Click **Export to > Mailchimp**. Select either one-time sync or dynamic sync. Click **Start Sync**.
 
-![mailchimp 3 Image](https://raw.githubusercontent.com/ranic/mixpanel-docs/main/media/Other%20Bits/Cohort%20Syncs/Mailchimp/mailchimp3.png)
+![mailchimp 3 Image](/mailchimp3.png)
 
 ## Sync Types
 
@@ -65,7 +65,7 @@ In dynamic sync, Mixpanel initiates sync between a cohort and Mailchimp every 2 
 
 Once the export completes, you will see updates in your Mailchimp dashboard reflecting your synced audience:
 
-![mailchimp 4 Image](https://raw.githubusercontent.com/ranic/mixpanel-docs/main/media/Other%20Bits/Cohort%20Syncs/Mailchimp/mailchimp4.png)
+![mailchimp 4 Image](/mailchimp4.png)
 
 ## MTU exemptions
 

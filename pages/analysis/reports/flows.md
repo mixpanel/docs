@@ -9,7 +9,7 @@ metadata:
 
 ## Overview
 
-![https://help.mixpanel.com/hc/article_attachments/360087905832/flows_header.png](https://help.mixpanel.com/hc/article_attachments/360087905832/flows_header.png)
+![/flows_header.png](/flows_header.png)
 
 Flows identifies the most frequent paths taken by users to or from any event. Use Flows to understand how your users sequentially perform events in your product, and analyze drop-offs or unsuccessful behavior.
 
@@ -41,13 +41,13 @@ Events are the basic building block of a Flow. In this case, since we want to kn
 
 Above and below your selected events, you can choose how many steps to show before and after each event, respectively. In this case, we're curious to see at least 3 steps after our first selected event, so we input "3" below "Landing Page." At this point, your query should look like this:
 
-![https://help.mixpanel.com/hc/article_attachments/7710864034196/Screen_Shot_2022-07-11_at_3.19.59_PM.png](https://help.mixpanel.com/hc/article_attachments/7710864034196/Screen_Shot_2022-07-11_at_3.19.59_PM.png)
+![/Screen_Shot_2022-07-11_at_3.19.59_PM.png](/Screen_Shot_2022-07-11_at_3.19.59_PM.png)
 
 ### Step 3: Choose Filters
 
 Filters exclude unwanted data. In this case, we only care about events performed by Chrome users. Therefore, add a "Browser" filter, where Browser equals "Chrome". At this point, your query should look like this:
 
-![https://help.mixpanel.com/hc/article_attachments/360087905852/flows_3.png](https://help.mixpanel.com/hc/article_attachments/360087905852/flows_3.png)
+![/flows_3.png](/flows_3.png)
 
 ### Step 4: Choose Breakdowns
 
@@ -59,17 +59,17 @@ Flows features two visualizations to help you view the results of your query in 
 
 User Flows displays a Sankey diagram where the height of the bar is proportional to the number of users who perform that specific event, and the height of the lines that connect bars are proportional to the number of users who perform the the two events in sequence.
 
-![https://help.mixpanel.com/hc/article_attachments/7771733835284/Screen_Shot_2021-07-20_at_7.14.37_PM.png](https://help.mixpanel.com/hc/article_attachments/7771733835284/Screen_Shot_2021-07-20_at_7.14.37_PM.png)
+![/Screen_Shot_2021-07-20_at_7.14.37_PM.png](/Screen_Shot_2021-07-20_at_7.14.37_PM.png)
 
 In the above example, more users moved from the A event “Exit Tutorial” to “Experiment Started” than any other path. This is graphically signified by the height of the line.
 
 Hover over a stage of the diagram to highlight it and see details of that section. This includes the total number of unique users who moved between those two steps on that path, as well as the percentage.
 
-![https://help.mixpanel.com/hc/article_attachments/7771769748372/Screen_Shot_2021-07-20_at_7.15.41_PM.png](https://help.mixpanel.com/hc/article_attachments/7771769748372/Screen_Shot_2021-07-20_at_7.15.41_PM.png)
+![/Screen_Shot_2021-07-20_at_7.15.41_PM.png](/Screen_Shot_2021-07-20_at_7.15.41_PM.png)
 
 Select any blue node representing an event on the Sankey chart to highlight the most popular paths that led to or from that node. The selected node is indicated in a lighter blue.
 
-![https://help.mixpanel.com/hc/article_attachments/7771770569620/Screen_Shot_2021-07-20_at_7.16.15_PM.png](https://help.mixpanel.com/hc/article_attachments/7771770569620/Screen_Shot_2021-07-20_at_7.16.15_PM.png)
+![/Screen_Shot_2021-07-20_at_7.16.15_PM.png](/Screen_Shot_2021-07-20_at_7.16.15_PM.png)
 
 ## Basic Features
 
@@ -79,43 +79,43 @@ By default, flows shows you the first 3 events performed by users after the sele
 
 Use the "+" on the right of the visualization to add steps after your selected events of interest to see what paths your users took following these key events.
 
-![https://help.mixpanel.com/hc/article_attachments/7771815516692/Screen_Shot_2021-07-20_at_7.34.41_PM.png](https://help.mixpanel.com/hc/article_attachments/7771815516692/Screen_Shot_2021-07-20_at_7.34.41_PM.png)
+![/Screen_Shot_2021-07-20_at_7.34.41_PM.png](/Screen_Shot_2021-07-20_at_7.34.41_PM.png)
 
 The "+" on the left of the visualization will add steps before the events you've added in the query builder. This will allow you to see what paths your users took that led up to these events of interest.
 
-![https://help.mixpanel.com/hc/article_attachments/7771830744980/Screen_Shot_2021-07-20_at_7.35.06_PM.png](https://help.mixpanel.com/hc/article_attachments/7771830744980/Screen_Shot_2021-07-20_at_7.35.06_PM.png)
+![/Screen_Shot_2021-07-20_at_7.35.06_PM.png](/Screen_Shot_2021-07-20_at_7.35.06_PM.png)
 
 To add steps in larger quantities, you can adjust the number of steps directly in the query builder section as well.
 
-![https://help.mixpanel.com/hc/article_attachments/7771854530836/Screen_Shot_2021-07-20_at_7.40.10_PM.png](https://help.mixpanel.com/hc/article_attachments/7771854530836/Screen_Shot_2021-07-20_at_7.40.10_PM.png)
+![/Screen_Shot_2021-07-20_at_7.40.10_PM.png](/Screen_Shot_2021-07-20_at_7.40.10_PM.png)
 
 ### Multiple Anchor Steps
 
 You can add multiple steps in the query builder.
 
-![https://help.mixpanel.com/hc/article_attachments/7771857795476/Screen_Shot_2021-07-20_at_7.51.32_PM.png](https://help.mixpanel.com/hc/article_attachments/7771857795476/Screen_Shot_2021-07-20_at_7.51.32_PM.png)
+![/Screen_Shot_2021-07-20_at_7.51.32_PM.png](/Screen_Shot_2021-07-20_at_7.51.32_PM.png)
 
 This allows you to examine flows between targeted events. The "+" on the left of the breakpoint line (marked with ≈) will show you the events that happened directly after the first anchored event.
 
 In the following example, Flows is showing the event that happened right after App Open before the made a Purchase.
 
-![https://help.mixpanel.com/hc/article_attachments/7771896991508/Screen_Shot_2021-07-20_at_7.52.07_PM.png](https://help.mixpanel.com/hc/article_attachments/7771896991508/Screen_Shot_2021-07-20_at_7.52.07_PM.png)
+![/Screen_Shot_2021-07-20_at_7.52.07_PM.png](/Screen_Shot_2021-07-20_at_7.52.07_PM.png)
 
 Use the "+" on the right of the breakpoint line (marked with ≈) will show you the events that happened right before the later anchored event.
 
 For example, below Flows is showing the event that happened directly before a Purchase, but only after the user did App Open.
 
-![https://help.mixpanel.com/hc/article_attachments/7771896990356/Screen_Shot_2021-07-20_at_7.53.04_PM.png](https://help.mixpanel.com/hc/article_attachments/7771896990356/Screen_Shot_2021-07-20_at_7.53.04_PM.png)
+![/Screen_Shot_2021-07-20_at_7.53.04_PM.png](/Screen_Shot_2021-07-20_at_7.53.04_PM.png)
 
 ### Viewing More Event Flows
 
 By default, flows only shows you the top 3 events performed by users ordered by the number of users who performed them. Less common events performed by fewer users are combined into an "Other events" section. ([Click here](https://help.mixpanel.com/hc/en-us/articles/360036438351-Flows-Report-Overview#h_01FB3F9554W1BPPWBJ4HB80E03) to learn more about other events). To view more events, simply right click the other events node and `Add a row of events`.
 
-![https://help.mixpanel.com/hc/article_attachments/7771857738644/Screen_Shot_2021-07-20_at_7.46.45_PM.png](https://help.mixpanel.com/hc/article_attachments/7771857738644/Screen_Shot_2021-07-20_at_7.46.45_PM.png)
+![/Screen_Shot_2021-07-20_at_7.46.45_PM.png](/Screen_Shot_2021-07-20_at_7.46.45_PM.png)
 
 To expand a large number of steps at the same time, you can select the number of rows you want directly in the advanced settings
 
-![https://help.mixpanel.com/hc/article_attachments/7771857740436/Screen_Shot_2021-07-20_at_7.47.31_PM.png](https://help.mixpanel.com/hc/article_attachments/7771857740436/Screen_Shot_2021-07-20_at_7.47.31_PM.png)
+![/Screen_Shot_2021-07-20_at_7.47.31_PM.png](/Screen_Shot_2021-07-20_at_7.47.31_PM.png)
 
 ### Sankey Chart
 
@@ -123,7 +123,7 @@ To expand a large number of steps at the same time, you can select the number of
 
 These are significant moments in a users lifecycle around which you would like to explore user behavior (for example, you may wish to view what users do after a Sign Up event).  Selected events are picked in the query builder and are annotated with an alphabetical label (A, B, C) that is shown in the query builder and the sankey diagram.
 
-![https://help.mixpanel.com/hc/article_attachments/7771789684116/Screen_Shot_2021-07-20_at_7.20.39_PM.png](https://help.mixpanel.com/hc/article_attachments/7771789684116/Screen_Shot_2021-07-20_at_7.20.39_PM.png)
+![/Screen_Shot_2021-07-20_at_7.20.39_PM.png](/Screen_Shot_2021-07-20_at_7.20.39_PM.png)
 
 In the above example, we picked two anchor events "Exit Tutorial" and "Experiment Started", and are viewing the events that were performed by users between them.
 
@@ -131,7 +131,7 @@ In the above example, we picked two anchor events "Exit Tutorial" and "Experimen
 
 Once an event is selected, Mixpanel calculates the most common events performed by users immediately before or after the selected events. These intermediate events can match either regularly tracked events OR the most used custom events in your project. The icon will let you know at a glance the type of event being displayed.
 
-![https://help.mixpanel.com/hc/article_attachments/7771775448084/Screen_Shot_2021-07-20_at_7.27.00_PM.png](https://help.mixpanel.com/hc/article_attachments/7771775448084/Screen_Shot_2021-07-20_at_7.27.00_PM.png)
+![/Screen_Shot_2021-07-20_at_7.27.00_PM.png](/Screen_Shot_2021-07-20_at_7.27.00_PM.png)
 
 In the above example, Install or Open is a custom event, while Experiment Started is a regular event.
 
@@ -141,13 +141,13 @@ In the above example, Install or Open is a custom event, while Experiment Starte
 
 At each step in the flow, Mixpanel by default displays the top 3 intermediate events performed by users ordered by the number of users who performed them at that step. The rest of the events performed are grouped into a single bar called "Other events".
 
-![https://help.mixpanel.com/hc/article_attachments/7771776379412/Screen_Shot_2021-07-20_at_7.28.39_PM.png](https://help.mixpanel.com/hc/article_attachments/7771776379412/Screen_Shot_2021-07-20_at_7.28.39_PM.png)
+![/Screen_Shot_2021-07-20_at_7.28.39_PM.png](/Screen_Shot_2021-07-20_at_7.28.39_PM.png)
 
 #### Drop off
 
 “Drop-off” represents users who did not do any further events in the next step during the time period specified in the report, and therefore dropped out of the flow. Users are considered dropped off at future anchor steps selected in the query builder if they do not perform that particular anchor in the time period.
 
-![https://help.mixpanel.com/hc/article_attachments/7771811651732/Screen_Shot_2021-07-20_at_7.28.54_PM.png](https://help.mixpanel.com/hc/article_attachments/7771811651732/Screen_Shot_2021-07-20_at_7.28.54_PM.png)
+![/Screen_Shot_2021-07-20_at_7.28.54_PM.png](/Screen_Shot_2021-07-20_at_7.28.54_PM.png)
 
 ### Conversion Criteria
 
@@ -157,7 +157,7 @@ Your selected counting method determines how many times Mixpanel will count a pa
 
 By default, Flows calculations are based on **uniques**. To change to a different counting method, click on the word **Uniques** in the conversion criteria, and select between **totals or sessions** from the drop-down list.
 
-![https://help.mixpanel.com/hc/article_attachments/4413107176724/Screen_Shot_2021-12-15_at_10.16.00_AM.png](https://help.mixpanel.com/hc/article_attachments/4413107176724/Screen_Shot_2021-12-15_at_10.16.00_AM.png)
+![/Screen_Shot_2021-12-15_at_10.16.00_AM.png](/Screen_Shot_2021-12-15_at_10.16.00_AM.png)
 
 **Uniques**
 Unique flows count a single entry per user (determined by distinct_id). Each can do the first step only once, and this is on the first time they perform the Step A event in the date range. Even if a particular user completes the funnel multiple times in the date range, they will only be counted towards conversion once, and on the first time they entered in the span of the funnel.
@@ -176,7 +176,7 @@ Sessions ensure every step in the flow is performed in the same session. Like to
 
 The Conversion Window determines how much time a user has to finish the last required step in the flow. By default, all customers have 30 days to complete a flow from the timestamp they perform the Step A event. To adjust this conversion window, click on the words **30 days** in the conversion criteria. You will be able to adjust both the unit of time and the amount.
 
-![https://help.mixpanel.com/hc/article_attachments/4413120858132/Screen_Shot_2021-12-15_at_11.12.25_AM.png](https://help.mixpanel.com/hc/article_attachments/4413120858132/Screen_Shot_2021-12-15_at_11.12.25_AM.png)
+![/Screen_Shot_2021-12-15_at_11.12.25_AM.png](/Screen_Shot_2021-12-15_at_11.12.25_AM.png)
 
 The maximum amount of time you can choose for the conversion window is 366 days, or otherwise equivalent (12 months, 52 weeks, etc).
 
@@ -193,7 +193,7 @@ The way this is calculated depends on whether you have selected a counting metho
 
 To add a property constant to your flows, select the **Holding property constant** button in the conversion criteria section.
 
-![https://help.mixpanel.com/hc/article_attachments/4413113697428/Screen_Shot_2021-12-15_at_11.10.42_AM.png](https://help.mixpanel.com/hc/article_attachments/4413113697428/Screen_Shot_2021-12-15_at_11.10.42_AM.png)
+![/Screen_Shot_2021-12-15_at_11.10.42_AM.png](/Screen_Shot_2021-12-15_at_11.10.42_AM.png)
 
 Some things to keep in mind are that you are only able to select event properties that apply to all of the required steps. Also, you can select multiple properties, but when you do ALL must be kept constant.
 
@@ -205,15 +205,15 @@ Another way to visualize your user flows is by "Top Paths", which condenses the 
 
 In the top bar of the visualization, you will see the option to toggle between User Flows and Top Paths.
 
-![https://help.mixpanel.com/hc/article_attachments/7742097515156/Screen_Shot_2022-07-12_at_4.31.17_PM.png](https://help.mixpanel.com/hc/article_attachments/7742097515156/Screen_Shot_2022-07-12_at_4.31.17_PM.png)
+![/Screen_Shot_2022-07-12_at_4.31.17_PM.png](/Screen_Shot_2022-07-12_at_4.31.17_PM.png)
 
 Top paths will show the 50 most common event sequences of up to the number of steps you had selected in the User Flow sankey visualization.
 
-![https://help.mixpanel.com/hc/article_attachments/7742134862100/Screen_Shot_2022-07-12_at_4.32.15_PM.png](https://help.mixpanel.com/hc/article_attachments/7742134862100/Screen_Shot_2022-07-12_at_4.32.15_PM.png)
+![/Screen_Shot_2022-07-12_at_4.32.15_PM.png](/Screen_Shot_2022-07-12_at_4.32.15_PM.png)
 
 The total percentage of users who reached the ultimate destination of a flow is indicated on the top left, while the total users that reached a given step and the percentage of users who converted from the previous step are indicated on the bottom of each step.
 
-![https://help.mixpanel.com/hc/article_attachments/7742136145428/mceclip0.png](https://help.mixpanel.com/hc/article_attachments/7742136145428/mceclip0.png)
+![/mceclip0.png](/mceclip0.png)
 
 ### Expand Event by Property
 
@@ -221,29 +221,29 @@ You can choose to expand the results of your report by a particular property to 
 
 Click the **Expand** button, select an event, and then select a property under that event.
 
-![https://help.mixpanel.com/hc/article_attachments/7771955184660/psAq6XYr2B.gif](https://help.mixpanel.com/hc/article_attachments/7771955184660/psAq6XYr2B.gif)
+![/psAq6XYr2B.gif](/psAq6XYr2B.gif)
 
 You can also expand on a specific event in the chart below by right clicking on an event and selecting **Expand by property**.
 
-![https://help.mixpanel.com/hc/article_attachments/7771955186964/6.png](https://help.mixpanel.com/hc/article_attachments/7771955186964/6.png)
+![/6.png](/6.png)
 
 ### Breakdown and Compare by Cohorts
 
 Beside the **Filter** button, select the **Breakdown** button to select one or more cohorts from the drop-down list. You will be shown both users in and not in the cohort.
 
-![https://help.mixpanel.com/hc/article_attachments/7771973166868/Screen_Shot_2021-07-20_at_5.42.21_PM.png](https://help.mixpanel.com/hc/article_attachments/7771973166868/Screen_Shot_2021-07-20_at_5.42.21_PM.png)
+![/Screen_Shot_2021-07-20_at_5.42.21_PM.png](/Screen_Shot_2021-07-20_at_5.42.21_PM.png)
 
 If you have selected multiple cohorts, the chart below will be broken down by those cohorts. Cohorts will appear in the chart in different colors, making it easy to follow the paths the cohorts took in your flows.
 
 In the following example, the cohorts “Android Users” and “iPhone Users” are being compared. As shown in the Legend on the left of the chart, “iPhone Users” are indicated in purple, “Android Users” in orange.
 
-![https://help.mixpanel.com/hc/article_attachments/7771957996948/Screen_Shot_2021-07-20_at_5.42.31_PM.png](https://help.mixpanel.com/hc/article_attachments/7771957996948/Screen_Shot_2021-07-20_at_5.42.31_PM.png)
+![/Screen_Shot_2021-07-20_at_5.42.31_PM.png](/Screen_Shot_2021-07-20_at_5.42.31_PM.png)
 
 To see the percentage breakdowns of these cohorts in more detail, click on a node to highlight the strongest path to that node. The box that pops up shows the percentage of each cohort that followed that path.
 
 In the following example, of the users that reached this Exit Tutorial event, 22.2% of users are iPhone users, 77.8% of users are Android users.
 
-![https://help.mixpanel.com/hc/article_attachments/7771973239572/Screen_Shot_2021-07-20_at_5.42.41_PM.png](https://help.mixpanel.com/hc/article_attachments/7771973239572/Screen_Shot_2021-07-20_at_5.42.41_PM.png)
+![/Screen_Shot_2021-07-20_at_5.42.41_PM.png](/Screen_Shot_2021-07-20_at_5.42.41_PM.png)
 
 ### Hide Events
 
@@ -251,11 +251,11 @@ You can choose to hide events from the flows report to simplify and clarify the 
 
 Click the **Hide Events** button at the top of the chart and check any events you want to hide from the query, then click **Apply**.
 
-![https://help.mixpanel.com/hc/article_attachments/7771960787860/Screen_Shot_2021-07-20_at_5.45.22_PM.png](https://help.mixpanel.com/hc/article_attachments/7771960787860/Screen_Shot_2021-07-20_at_5.45.22_PM.png)
+![/Screen_Shot_2021-07-20_at_5.45.22_PM.png](/Screen_Shot_2021-07-20_at_5.45.22_PM.png)
 
 You can also choose to hide a specific event from the flow by right clicking on it in the Flows chart.
 
-![https://help.mixpanel.com/hc/article_attachments/7771976365332/Screen_Shot_2021-07-20_at_5.45.58_PM.png](https://help.mixpanel.com/hc/article_attachments/7771976365332/Screen_Shot_2021-07-20_at_5.45.58_PM.png)
+![/Screen_Shot_2021-07-20_at_5.45.58_PM.png](/Screen_Shot_2021-07-20_at_5.45.58_PM.png)
 
 ### Custom Events in Flows
 
@@ -267,7 +267,7 @@ You may pick custom events as the starting or ending events directly in the quer
 
 Mixpanel automatically considers the most used and common custom events in your project, displaying them in intermediate steps instead of showing the underlying events. When a custom event is shown instead of the underlying event, it is annotated with the custom event icon to indicate that the event displayed is a custom event.
 
-![https://help.mixpanel.com/hc/article_attachments/7771999197204/Screen_Shot_2021-07-20_at_7.04.29_PM.png](https://help.mixpanel.com/hc/article_attachments/7771999197204/Screen_Shot_2021-07-20_at_7.04.29_PM.png)
+![/Screen_Shot_2021-07-20_at_7.04.29_PM.png](/Screen_Shot_2021-07-20_at_7.04.29_PM.png)
 
 [Click here](https://help.mixpanel.com/hc/en-us/articles/4413141791764-Advanced-Flows-Functionality#h_01FB3G2VX96MBQ4Q7XM3BNFCYK) to learn more about all the event types shown in the flows report.
 
@@ -281,13 +281,13 @@ Mixpanel uses the following criteria to decide which custom events are shown in 
 
 You may also expand custom events by event name to view the underlying events if required.
 
-![https://help.mixpanel.com/hc/article_attachments/7772014137748/Screen_Shot_2021-07-30_at_1.21.26_PM.png](https://help.mixpanel.com/hc/article_attachments/7772014137748/Screen_Shot_2021-07-30_at_1.21.26_PM.png)
+![/Screen_Shot_2021-07-30_at_1.21.26_PM.png](/Screen_Shot_2021-07-30_at_1.21.26_PM.png)
 
 #### Disabling custom events
 
 You can disable custom events for flows by toggling the Show Custom Events in the dropdown menu below. Custom events that have been manually chosen as steps in the flow will continue to show up, but no other other custom events will be shown.
 
-![https://help.mixpanel.com/hc/article_attachments/7771999236884/Screen_Shot_2021-10-29_at_10.48.22_AM__1_.png](https://help.mixpanel.com/hc/article_attachments/7771999236884/Screen_Shot_2021-10-29_at_10.48.22_AM__1_.png)
+![/Screen_Shot_2021-10-29_at_10.48.22_AM__1_.png](/Screen_Shot_2021-10-29_at_10.48.22_AM__1_.png)
 
 ### Exclusion Steps
 

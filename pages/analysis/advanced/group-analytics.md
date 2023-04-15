@@ -37,7 +37,7 @@ Group Profiles have an activity feed that shows the events performed by users in
 
 The Group Profile also displays the properties unique to that group - here's an [example](https://mixpanel.com/report/2195193/view/139237/profile#distinct_id=company_id_199&data_group_id=3983652220450539808&) of it:
 
-![https://help.mixpanel.com/hc/article_attachments/7247358107540/Screen_Shot_2022-06-22_at_5.41.07_PM.png](https://help.mixpanel.com/hc/article_attachments/7247358107540/Screen_Shot_2022-06-22_at_5.41.07_PM.png)
+![/Screen_Shot_2022-06-22_at_5.41.07_PM.png](/Screen_Shot_2022-06-22_at_5.41.07_PM.png)
 
 To access a group profile:
 
@@ -45,11 +45,11 @@ To access a group profile:
 
 2. Click the **Analyze Uniques by** dropdown above the query builder.
 
-![https://help.mixpanel.com/hc/article_attachments/7247342946708/Screen_Shot_2022-06-22_at_5.40.43_PM.png](https://help.mixpanel.com/hc/article_attachments/7247342946708/Screen_Shot_2022-06-22_at_5.40.43_PM.png)
+![/Screen_Shot_2022-06-22_at_5.40.43_PM.png](/Screen_Shot_2022-06-22_at_5.40.43_PM.png)
 
 3. Select the group identifier.
 
-![https://help.mixpanel.com/hc/article_attachments/7247254725268/Screen_Shot_2022-06-22_at_5.39.06_PM.png](https://help.mixpanel.com/hc/article_attachments/7247254725268/Screen_Shot_2022-06-22_at_5.39.06_PM.png)
+![/Screen_Shot_2022-06-22_at_5.39.06_PM.png](/Screen_Shot_2022-06-22_at_5.39.06_PM.png)
 
 4. Groups profiles will populate the Users report.
 
@@ -61,11 +61,11 @@ To change the identifier in a report:
 
 2. Click the **Analyze Uniques by** dropdown above the query builder.
 
-![https://help.mixpanel.com/hc/article_attachments/7247558061204/Screen_Shot_2022-06-22_at_5.45.29_PM.png](https://help.mixpanel.com/hc/article_attachments/7247558061204/Screen_Shot_2022-06-22_at_5.45.29_PM.png)
+![/Screen_Shot_2022-06-22_at_5.45.29_PM.png](/Screen_Shot_2022-06-22_at_5.45.29_PM.png)
 
 3. Select the group identifier.
 
-![https://help.mixpanel.com/hc/article_attachments/7247558052372/Screen_Shot_2022-06-22_at_5.46.39_PM.png](https://help.mixpanel.com/hc/article_attachments/7247558052372/Screen_Shot_2022-06-22_at_5.46.39_PM.png)
+![/Screen_Shot_2022-06-22_at_5.46.39_PM.png](/Screen_Shot_2022-06-22_at_5.46.39_PM.png)
 
 4. The report will now display results grouped by the newly selected group identifier.
 
@@ -79,11 +79,11 @@ Group keys are project specific, and the group key must be set up before group d
 
 To administer group keys, navigate to your Project Settings. Click **+Add Group Key** under the *GROUP KEYS* section.
 
-![https://help.mixpanel.com/hc/article_attachments/7246600608532/Screen_Shot_2022-06-22_at_5.21.06_PM.png](https://help.mixpanel.com/hc/article_attachments/7246600608532/Screen_Shot_2022-06-22_at_5.21.06_PM.png)
+![/Screen_Shot_2022-06-22_at_5.21.06_PM.png](/Screen_Shot_2022-06-22_at_5.21.06_PM.png)
 
 Enter an event property to attribute the group key to. You can also enter a display name for the group key. Click **Save**.
 
-![https://help.mixpanel.com/hc/article_attachments/7248270683412/Screen_Shot_2022-06-22_at_6.18.38_PM.png](https://help.mixpanel.com/hc/article_attachments/7248270683412/Screen_Shot_2022-06-22_at_6.18.38_PM.png)
+![/Screen_Shot_2022-06-22_at_6.18.38_PM.png](/Screen_Shot_2022-06-22_at_6.18.38_PM.png)
 
 ## Group Keys Tracked as Event Properties
 

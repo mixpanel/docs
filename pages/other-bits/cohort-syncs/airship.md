@@ -19,7 +19,7 @@ You must be a Mixpanel project admin to enable the Airship integration.
 
 If the setting below is enabled in Airship, you will see the error "Master secret required to set tags on Tag Group mixpanel" in Mixpanel. Work with Airship to disable this setting so Mixpanel can update the Airship tag group.
 
-![Airship 1 Image](https://raw.githubusercontent.com/ranic/mixpanel-docs/main/media/Other%20Bits/Cohort%20Syncs/Airship/airship1.png)
+![Airship 1 Image](/airship1.png)
 
 ## Enable the Integration
 
@@ -58,15 +58,15 @@ Exporting data to Airship is done from the Mixpanel Cohort Manager. From the Coh
 
 1. Click **Export to... Airship**.
 
-![Airship 2 Image](https://raw.githubusercontent.com/ranic/mixpanel-docs/main/media/Other%20Bits/Cohort%20Syncs/Airship/airship2.png)
+![Airship 2 Image](/airship2.png)
 
 2. Enter the Airship Tag under which the export should be saved. Click **Save**.
 
-![Airship 3 Image](https://raw.githubusercontent.com/ranic/mixpanel-docs/main/media/Other%20Bits/Cohort%20Syncs/Airship/airship3.png)
+![Airship 3 Image](/airship3.png)
 
 3. The tag will now be available for targeting within Airship.
 
-![Airship 4 Image](https://raw.githubusercontent.com/ranic/mixpanel-docs/main/media/Other%20Bits/Cohort%20Syncs/Airship/airship4.png)
+![Airship 4 Image](/airship4.png)
 
 ## FAQ
 

@@ -25,11 +25,11 @@ To enable the integration:
 
 1. Select **Integrations** under the **Data Management** tab in the top navigation bar.
 
-![VWO 1 Image](https://raw.githubusercontent.com/ranic/mixpanel-docs/main/media/Other%20Bits/Cohort%20Syncs/VWO/vwo1.png)
+![VWO 1 Image](/vwo1.png)
 
 2. From the Integrations page, select the VWO dropdown, and select **Connect**.
 
-![VWO 2 Image](https://raw.githubusercontent.com/ranic/mixpanel-docs/main/media/Other%20Bits/Cohort%20Syncs/VWO/vwo2.png)
+![VWO 2 Image](/vwo2.png)
 
 3. The connection uses one credential to authorize, **API Key**. Supply an API token generated from your **VWO settings page** to establish the connection.
 
@@ -50,7 +50,7 @@ To export a Cohort to VWO:
 
 3. Click **Export to > VWO**. Select either one-time sync or dynamic sync. Click **Start Sync**.
 
-![VWO 3 Image](https://raw.githubusercontent.com/ranic/mixpanel-docs/main/media/Other%20Bits/Cohort%20Syncs/VWO/vwo3.png)
+![VWO 3 Image](/vwo3.png)
 
 ## Sync Types
 This integration supports two types of exports: one-time export and dynamic sync. When you generate a one-time export or dynamic sync, it overwrites the previous export with an updated export that reflects users who qualify for the cohort at the time of export.

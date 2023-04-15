@@ -31,25 +31,25 @@ This process will require setup on both SFMC and Mixpanel.
 - **Client Secret**
 - **Subdomain**
 
-![SFMC 1 Image](https://raw.githubusercontent.com/ranic/mixpanel-docs/main/media/Other%20Bits/Cohort%20Syncs/SFMC/sfmc1.png)
+![SFMC 1 Image](/sfmc1.png)
 
 2. Navigate to **Audience Builder => Contact Builder => Data Extensions** to Create a New Data Extension.
 
-![SFMC 2 Image](https://raw.githubusercontent.com/ranic/mixpanel-docs/main/media/Other%20Bits/Cohort%20Syncs/SFMC/sfmc2.png)
+![SFMC 2 Image](/sfmc2.png)
 
 3. Create a new **Data Extention** with a primary key of the name **SubscriberKey**. The key type for most use-cases will stay as **Text** and size of 250 characters unless you are selecting email or phone number as the id in which you can find corresponding data types. This field will contain ids that map to the unique user property in Mixpanel.
 
-![SFMC 3 Image](https://raw.githubusercontent.com/ranic/mixpanel-docs/main/media/Other%20Bits/Cohort%20Syncs/SFMC/sfmc3.png)
+![SFMC 3 Image](/sfmc3.png)
 
 4. Note the **External Key** (underlined below) for setup on Mixpanel.
 
-![SFMC 4 Image](https://raw.githubusercontent.com/ranic/mixpanel-docs/main/media/Other%20Bits/Cohort%20Syncs/SFMC/sfmc4.png)
+![SFMC 4 Image](/sfmc4.png)
 
 ### Mixpanel
 
 1. Navigate to **Data Management => Integrations** in Mixpanel.
 
-![SFMC 5 Image](https://raw.githubusercontent.com/ranic/mixpanel-docs/main/media/Other%20Bits/Cohort%20Syncs/SFMC/sfmc5.png)
+![SFMC 5 Image](/sfmc5.png)
 
 2. Look for Salesforce Marketing Cloud in the Integrations list and click **Connect**. The following details are needed:
 
@@ -57,7 +57,7 @@ This process will require setup on both SFMC and Mixpanel.
 - An optional user property (distinct_id will be used by default). This will sync to the SubscriberKey field
 - **client_id**, **client_secret**, **subdomain**
 
-![SFMC 6 Image](https://raw.githubusercontent.com/ranic/mixpanel-docs/main/media/Other%20Bits/Cohort%20Syncs/SFMC/sfmc6.png)
+![SFMC 6 Image](/sfmc6.png)
 
 3. The SFMC integration will show a **Connected** tag in the UI once the connection succeeds.
 
@@ -74,13 +74,13 @@ To export a cohort from Mixpanel to SFMC:
 
 1. Navigate to Cohorts by clicking in the **Data Management** tab and select **Cohorts**.
 
-![SFMC 7 Image](https://raw.githubusercontent.com/ranic/mixpanel-docs/main/media/Other%20Bits/Cohort%20Syncs/SFMC/sfmc7.png)
+![SFMC 7 Image](/sfmc7.png)
 
 2. Select the cohort that you want to export. Click on the three-dot icon on the right side of the cohort.
 
 3. Click Export to > SFMC. Select either one-time sync or dynamic sync. Click **Start Sync**.
 
-![SFMC 8 Image](https://raw.githubusercontent.com/ranic/mixpanel-docs/main/media/Other%20Bits/Cohort%20Syncs/SFMC/sfmc8.png)
+![SFMC 8 Image](/sfmc8.png)
 
 ## Sync Types
 This integration supports two types of exports: one-time export and dynamic sync.
@@ -95,11 +95,11 @@ In dynamic sync, Mixpanel initiates sync between a cohort and SFMC every 15 minu
 
 The cohort data will be exported to the SFMC Data Extension that was set up above. New cohorts are added as property fields to the data extension.
 
-![SFMC 9 Image](https://raw.githubusercontent.com/ranic/mixpanel-docs/main/media/Other%20Bits/Cohort%20Syncs/SFMC/sfmc9.png)
+![SFMC 9 Image](/sfmc9.png)
 
 Each record in the Data Extension is a user and its properties show the membership of this user in different cohorts.
 
-![SFMC 10 Image](https://raw.githubusercontent.com/ranic/mixpanel-docs/main/media/Other%20Bits/Cohort%20Syncs/SFMC/sfmc10.png)
+![SFMC 10 Image](/sfmc10.png)
 
 
 

@@ -10,7 +10,7 @@ updatedAt: "2023-03-30T05:52:10.102Z"
 ---
 ## Creating Projects
 
-![manageprojects 1 Image](https://raw.githubusercontent.com/ranic/mixpanel-docs/main/media/Admin/Organization-Project/Manage-Projects/manageprojects1.png)
+![manageprojects 1 Image](/manageprojects1.png)
 
 To create a new Mixpanel project:
 
@@ -22,7 +22,7 @@ To create a new Mixpanel project:
 6. Click on "Create"
 6. The new project will appear now in the list of projects.
 
-![manageprojects 2 Image](https://raw.githubusercontent.com/ranic/mixpanel-docs/main/media/Admin/Organization-Project/Manage-Projects/manageprojects2.png)
+![manageprojects 2 Image](/manageprojects2.png)
 
 **IMPORTANT! The data residency of a project can't be changed once the project is created.**
 
@@ -37,7 +37,7 @@ To view project information:
 
 You can edit the name of the project and its timezone. To edit, click the Pencil icon in the "Name" and "Timezone" fields.
 
-![manageprojects 3 Image](https://raw.githubusercontent.com/ranic/mixpanel-docs/main/media/Admin/Organization-Project/Manage-Projects/manageprojects3.png)
+![manageprojects 3 Image](/manageprojects3.png)
 
 This table describes the type of details Mixpanel provides for your project.
 
@@ -56,17 +56,17 @@ This table describes the type of details Mixpanel provides for your project.
 
 This table provides the values for the **project token** and the **API secret**. The token is necessary when setting up your tracking.
 
-![manageprojects 4 Image](https://raw.githubusercontent.com/ranic/mixpanel-docs/main/media/Admin/Organization-Project/Manage-Projects/manageprojects4.png)
+![manageprojects 4 Image](/manageprojects4.png)
 
 ## Reset Projects
 
 You can reset the current project in Project Settings. When you reset the project, Mixpanel deactivates the project and all its data and projects settings, then generates a new project.
 
-![manageprojects 11 Image](https://raw.githubusercontent.com/ranic/mixpanel-docs/main/media/Admin/Organization-Project/Manage-Projects/manageprojects11.png)
+![manageprojects 11 Image](/manageprojects11.png)
 
 A warning indicates this reset deactivates the project and all its data and projects settings, then generates a new project.  Mixpanel stores a backup of the deactivated project. Mixpanel will delete the data based on the data retention policy.
 
-![manageprojects 12 Image](https://raw.githubusercontent.com/ranic/mixpanel-docs/main/media/Admin/Organization-Project/Manage-Projects/manageprojects12.png)
+![manageprojects 12 Image](/manageprojects12.png)
 
 ## Delete Projects
 
@@ -77,7 +77,7 @@ To delete a project:
 3. Above the “Project Details” section, click **Delete Project**. A delete box appears and indicates you won’t be able to access the project in the Mixpanel interface or API. Mixpanel will store a backup of the deleted project and will delete the data based on the data retention policy.
 4. Click **Delete Project** to remove the project.
 
-![manageprojects 5 Image](https://raw.githubusercontent.com/ranic/mixpanel-docs/main/media/Admin/Organization-Project/Manage-Projects/manageprojects5.png)
+![manageprojects 5 Image](/manageprojects5.png)
 
 ## Find Your Project Tokens
 
@@ -87,19 +87,19 @@ Each Mixpanel account can contain multiple projects. Each project has its own un
 
 Click the Settings gear in the upper right hand corner of your Mixpanel project and select Project settings to see your Project Token under the Access Keys table.
 
-![manageprojects 6 Image](https://raw.githubusercontent.com/ranic/mixpanel-docs/main/media/Admin/Organization-Project/Manage-Projects/manageprojects5.png)
+![manageprojects 6 Image](/manageprojects5.png)
 
-![manageprojects 4 Image](https://raw.githubusercontent.com/ranic/mixpanel-docs/main/media/Admin/Organization-Project/Manage-Projects/manageprojects4.png)
+![manageprojects 4 Image](/manageprojects4.png)
 
 ### Locate Tokens for All Projects in Your Mixpanel Account
 
 To view the project tokens for all your projects, click the **Settings** gear icon in the top right of Mixpanel and select **Personal Settings**.
 
-![manageprojects 7 Image](https://raw.githubusercontent.com/ranic/mixpanel-docs/main/media/Admin/Organization-Project/Manage-Projects/manageprojects7.png)
+![manageprojects 7 Image](/manageprojects7.png)
 
 Then select the Projects tab.
 
-![manageprojects 8 Image](https://raw.githubusercontent.com/ranic/mixpanel-docs/main/media/Admin/Organization-Project/Manage-Projects/manageprojects8.png)
+![manageprojects 8 Image](/manageprojects8.png)
 
 ## Manage Timezones for Projects
 
@@ -119,11 +119,11 @@ To change the project’s timezone:
 
 1. In **Project Settings**, select the project.
 
-![manageprojects 9 Image](https://raw.githubusercontent.com/ranic/mixpanel-docs/main/media/Admin/Organization-Project/Manage-Projects/manageprojects9.png)
+![manageprojects 9 Image](/manageprojects9.png)
 
 2. 2. In **Overview**, select the pencil icon in the **Timezone** field to display a list of timezones.
 
-![manageprojects 10 Image](https://raw.githubusercontent.com/ranic/mixpanel-docs/main/media/Admin/Organization-Project/Manage-Projects/manageprojects10.png)
+![manageprojects 10 Image](/manageprojects10.png)
 
 3. Select a timezone and click **Save**.
 
@@ -199,11 +199,11 @@ To transfer a project to another organization:
 1. Under **Project Settings**, click a project.
 2. Click **Transfer**.
 
-![manageprojects 13 Image](https://raw.githubusercontent.com/ranic/mixpanel-docs/main/media/Admin/Organization-Project/Manage-Projects/manageprojects13.png)
+![manageprojects 13 Image](/manageprojects13.png)
 
 3. The Transfer Project box appears. In the dropdown menu, select the organization where you want to transfer the project and click **Done**. You'll see a message that indicates the project has been transferred successfully.
 
-![manageprojects 14 Image](https://raw.githubusercontent.com/ranic/mixpanel-docs/main/media/Admin/Organization-Project/Manage-Projects/manageprojects14.png)
+![manageprojects 14 Image](/manageprojects14.png)
 
 >Note that project tallies will be transferred along with your project to the new Organization.
 

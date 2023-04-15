@@ -18,19 +18,19 @@ Imagine your business has two ways for users to track ads: they can convert from
 
 You can create a custom event containing "Ad Conversion" and "Ad Impression," and then save it as "Watch Ads.” Now you can use the "Watch Ads" custom event as a funnel step just like a regular event. Then, any time a user performs an "Ad Conversion" or "Ad Impression" action, they'll be included in that step. You can also use this new custom event in your other reports, such as Retention.
 
-![https://help.mixpanel.com/hc/article_attachments/8088061393300/mceclip3.png](https://help.mixpanel.com/hc/article_attachments/8088061393300/mceclip3.png)
+![/mceclip3.png](/mceclip3.png)
 
 # Create a Custom Event
 
 1. Expand the Event dropdown in either an Insights, Funnels, Retention, or Formulas report.
 
-    ![https://help.mixpanel.com/hc/article_attachments/7385585102484/mceclip0.png](https://help.mixpanel.com/hc/article_attachments/7385585102484/mceclip0.png)
+    ![/mceclip0.png](/mceclip0.png)
 
 2. Select **Create Custom**.
 3. Select the events and properties you’d like to include.
 4. Name your custom event, and click **Save**.
 
-![https://help.mixpanel.com/hc/article_attachments/7385632920980/mceclip1.png](https://help.mixpanel.com/hc/article_attachments/7385632920980/mceclip1.png)
+![/mceclip1.png](/mceclip1.png)
 
 When naming your custom event, note that the UI will break when the URL passes 2,083 characters. Each event and selector adds to the URL length (selectors more so than events). The easiest way to break a custom event is with an "equals" operation that selects a lot of values.
 
@@ -38,17 +38,17 @@ When naming your custom event, note that the UI will break when the URL passes 2
 
 To view your complete list of custom events to manage, edit, or delete them, you must navigate to the [Lexicon](https://help.mixpanel.com/hc/en-us/articles/360001307806).
 
-![https://help.mixpanel.com/hc/article_attachments/7385157703188/mceclip0.png](https://help.mixpanel.com/hc/article_attachments/7385157703188/mceclip0.png)
+![/mceclip0.png](/mceclip0.png)
 
 In Lexicon, click on the **Custom Events** tab.
 
-![https://help.mixpanel.com/hc/article_attachments/7385173826196/mceclip1.png](https://help.mixpanel.com/hc/article_attachments/7385173826196/mceclip1.png)
+![/mceclip1.png](/mceclip1.png)
 
 Here you can see a list of all the custom events in the project. Click on the **name** of the event to edit its details.
 
 To delete a custom event, check the **box** beside the title of all the custom events you want to delete, then click the **delete** button at the top of the list.
 
-![https://help.mixpanel.com/hc/article_attachments/7385263867924/mceclip2.png](https://help.mixpanel.com/hc/article_attachments/7385263867924/mceclip2.png)
+![/mceclip2.png](/mceclip2.png)
 
 # Limits by Plan Type
 

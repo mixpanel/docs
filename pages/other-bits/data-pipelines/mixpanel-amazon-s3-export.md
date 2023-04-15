@@ -11,7 +11,7 @@ updatedAt: "2023-03-26T19:16:30.791Z"
 Mixpanel's [Schematized Export Pipeline](doc:schematized-export-pipeline) lets you export your Mixpanel data directly into an S3 bucket, allowing the use of Glue to query it. To set up the Mixpanel AWS pipeline, you must configure AWS to receive the exported data, then [create a pipeline](ref:create-warehouse-pipeline) to export the data.
 
 ## Design
-![image](https://user-images.githubusercontent.com/2077899/230698348-abb2656e-fe2a-4d9c-ad61-8f80793e9c07.png)
+![image](/230698348-abb2656e-fe2a-4d9c-ad61-8f80793e9c07.png)
 
 Mixpanel applies [transformation rules](doc:schematized-export-pipeline#transformation-rules) to make the data compatible with data warehouses and then transfers the transformed data to your S3 bucket. You can then choose to use a glue crawler to create the schema out of the transformed data or let Mixpanel to directly create the schema in your glue database. Having the data and the glue schema in place, you can use SQL with multiple AWS products, including [Amazon Athena](https://aws.amazon.com/athena/) and [Redshift Spectrum](https://docs.aws.amazon.com/redshift/latest/dg/c-getting-started-using-spectrum.html), to query the imported data. 
 
@@ -178,7 +178,7 @@ Mixpanel can write and update a schema in your Glue instance as soon as new data
   * Click **Add Database**.
   * Enter a database name and click **Create**.
 
-![image](https://user-images.githubusercontent.com/2077899/230698403-de71ee8f-03c2-4528-abd7-94be5a5d1e30.png)
+![image](/230698403-de71ee8f-03c2-4528-abd7-94be5a5d1e30.png)
 
 2. Create an IAM policy.
   * Go to the "AWS IAM" service on the console.
@@ -246,7 +246,7 @@ Note: AWS does not support granular resources when granting Glue access. So you 
 ```
   * Save the contents. 
 
-![image](https://user-images.githubusercontent.com/2077899/230698416-039e4357-f8f3-4c9a-bba9-c6b0a16311b6.png)
+![image](/230698416-039e4357-f8f3-4c9a-bba9-c6b0a16311b6.png)
 
 ##### Configuring Table Partitions in Glue
 Mixpanel partitions the Glue table by default if it has the proper AWS permissions. The partition key type and name are `string` and `mp_date` respectively and the partition values are dates in the project timezone e.g. `2021-02-03`. To enable partitioning in Glue, the Glue Data Modification Policy must include the following actions:

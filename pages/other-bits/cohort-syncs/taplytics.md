@@ -24,11 +24,11 @@ To enable the integration with Taplytics:
 
 1. Select **Integrations** under the **Data Management** tab in the top navigation bar.
 
-![Taplytics 1 Image](https://raw.githubusercontent.com/ranic/mixpanel-docs/main/media/Other%20Bits/Cohort%20Syncs/Taplytics/taplytics1.png)
+![Taplytics 1 Image](/taplytics1.png)
 
 2. From the Integrations page, select the Taplytics dropdown, and select **Connect**.
 
-![Taplytics 2 Image](https://raw.githubusercontent.com/ranic/mixpanel-docs/main/media/Other%20Bits/Cohort%20Syncs/Taplytics/taplytics2.png)
+![Taplytics 2 Image](/taplytics2.png)
 
 3. The connection uses one credential to authorize, **API Key**. Supply an API token generated from your **Taplytics settings page** to establish the connection.
 
@@ -49,7 +49,7 @@ To export a Cohort to Taplytics:
 
 Click **Export to > Taplytics**. Select either one-time sync or dynamic sync. Click **Start Sync**.
 
-![Taplytics 3 Image](https://raw.githubusercontent.com/ranic/mixpanel-docs/main/media/Other%20Bits/Cohort%20Syncs/Taplytics/taplytics3.png)
+![Taplytics 3 Image](/taplytics3.png)
 
 ## Sync Types
 This integration supports two types of exports: one-time export and dynamic sync. When you generate a one-time export or dynamic sync, it overwrites the previous export with an updated export that reflects users who qualify for the cohort at the time of export.
@@ -64,6 +64,6 @@ In dynamic sync, Mixpanel initiates sync between a cohort and Taplytics every tw
 
 Once the export completes, you will see a Segment reflecting the set of users from your Mixpanel cohort in Taplytics's Segment editor, as custom data (e.g. "Beta Users"):
 
-![Taplytics 4 Image](https://raw.githubusercontent.com/ranic/mixpanel-docs/main/media/Other%20Bits/Cohort%20Syncs/Taplytics/taplytics4.png)
+![Taplytics 4 Image](/taplytics4.png)
 
 

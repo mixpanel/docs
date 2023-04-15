@@ -83,7 +83,7 @@ There are [many ways to integrate](doc:plan-your-implementation) with Mixpanel, 
 
 This approach allows us to plug into the broader data ecosystem, which makes it easy to both stream real-time event streams into Mixpanel and load from source-of-truth systems like data warehouses. Here is a reference, hybrid architecture for bringing data into Mixpanel, enabled by our APIs.
 
-![image](https://user-images.githubusercontent.com/2077899/230698268-e5161703-70f5-44ae-b46f-8984966c8064.png)
+![image](/230698268-e5161703-70f5-44ae-b46f-8984966c8064.png)
 
 
 **What this eliminates**: Complex integrations and proprietary data formats.

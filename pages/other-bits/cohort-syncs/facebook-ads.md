@@ -25,11 +25,11 @@ Follow these steps to enable the integration with Facebook Ads:
 
 1. Select **Integrations** under the **Data Management** tab in the top navigation bar of Mixpanel.
 
-![Facebook 1 Image](https://raw.githubusercontent.com/ranic/mixpanel-docs/main/media/Other%20Bits/Cohort%20Syncs/Facebook-Ads/facebook1.png)
+![Facebook 1 Image](/facebook1.png)
 
 2. From the Integrations page, click the **Facebook Ads** dropdown.
 
-![Facebook 2 Image](https://raw.githubusercontent.com/ranic/mixpanel-docs/main/media/Other%20Bits/Cohort%20Syncs/Facebook-Ads/facebook2.png)
+![Facebook 2 Image](/facebook2.png)
 
 3. The Facebook Ads integration page will show a green export icon and details about the integration after it is connected. To disable the connector, select the **Facebook Ads** dropdown and click **Disconnect**.
 
@@ -43,7 +43,7 @@ To export a cohort to Facebook Ads:
 
 3. Click **Export to Facebook**. Select either a one-time sync or a dynamic sync. Click **Start Sync**.
 
-![Facebook 3 Image](https://raw.githubusercontent.com/ranic/mixpanel-docs/main/media/Other%20Bits/Cohort%20Syncs/Facebook-Ads/facebook3.png)
+![Facebook 3 Image](/facebook3.png)
 
 ## Sync Types
 
@@ -61,7 +61,7 @@ You must log in to Facebook Business Manager to use the Mixpanel Cohort in Faceb
 
 Click on **Audiences**.
 
-![Facebook 4 Image](https://raw.githubusercontent.com/ranic/mixpanel-docs/main/media/Other%20Bits/Cohort%20Syncs/Facebook-Ads/facebook4.png)
+![Facebook 4 Image](/facebook4.png)
 
 The Mixpanel Cohort is available in the Audience list. Cohorts are exported to Facebook Ads as `mixpanel_<Cohort Name>_<Cohort ID>`.
 

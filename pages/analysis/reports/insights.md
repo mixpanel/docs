@@ -9,7 +9,7 @@ metadata:
 
 ## Overview
 
-![Insights Overview Image](https://raw.githubusercontent.com/ranic/mixpanel-docs/main/media/Platform/Reports/Insights/overview.png)
+![Insights Overview Image](/overview.png)
 
 Insights is a powerful and flexible tool designed to visualize trends and compositions within your data. You can analyze events, cohorts, and user profiles, and display the data in a wide variety of chart types.
 
@@ -50,31 +50,31 @@ Feel free to follow along and create your own report right in our demo project, 
 
 Events, cohorts, or profiles can be the basic building block of an Insights report. In this case, we want to know about users who sent messages, so within the "Events and Cohorts" section, add the "Send Message" event. At this point, your query should look like this:
 
-![Choose Events](https://raw.githubusercontent.com/ranic/mixpanel-docs/main/media/Platform/Reports/Insights/choose-events.png)
+![Choose Events](/choose-events.png)
 
 ### Step 2: Choose Count Type
 
 Next to your selected event, you can choose how to count that event. By default, Insights will count Total events, which, as the name implies, will count every occurrence of the event. In this case, we want to know how many users sent messages, so choose "Unique." Unique counts one event per user. At this point, your query should look like this:
 
-![Choose Count Type](https://raw.githubusercontent.com/ranic/mixpanel-docs/main/media/Platform/Reports/Insights/choose-count-type.gif)
+![Choose Count Type](/choose-count-type.gif)
 
 ### Step 3: Choose Filters
 
 Filters exclude unwanted data. In this case, we only care about events performed on the iOS platform. Therefore, add a "Platform" filter, where Platform equals "iOS Native". At this point, your query should look like this:
 
-![Choose Filters](https://raw.githubusercontent.com/ranic/mixpanel-docs/main/media/Platform/Reports/Insights/choose-filters.gif)
+![Choose Filters](/choose-filters.gif)
 
 ### Step 4: Choose Breakdowns
 
 Breakdowns segment data into groups. In this case, we want to count message sending users in different cities. Therefore, add a "City" breakdown. At this point, your query should look like this:
 
-![Choose Breakdowns](https://raw.githubusercontent.com/ranic/mixpanel-docs/main/media/Platform/Reports/Insights/choose-breakdowns.gif)
+![Choose Breakdowns](/choose-breakdowns.gif)
 
 ### Step 5: Change Visualization
 
 Choosing a different chart can help you visualize data better. Line charts help you see a trend, but other charts will help you see the aggregate value.
 
-![Change Visualization](https://raw.githubusercontent.com/ranic/mixpanel-docs/main/media/Platform/Reports/Insights/change-visualization.png)
+![Change Visualization](/change-visualization.png)
 
 ### Step 6: Analyze Results
 
@@ -102,7 +102,7 @@ Insights features multiple visualizations to help you view the results of your q
 
 When you are viewing a bar chart, you have four different sorting options: A-Z Ascending, Z-A Descending, Value Ascending, or Value Descending. To switch sorting views, select the **Events** icon in the upper left hand of the report and select which view you would like to see.
 
-![Sorting Bar Chart](https://raw.githubusercontent.com/ranic/mixpanel-docs/main/media/Platform/Reports/Insights/sorting-bar-chart.png)
+![Sorting Bar Chart](/sorting-bar-chart.png)
 
 #### Line chart
 
@@ -110,7 +110,7 @@ Line charts in Insights are accompanied with a table of values to give users ano
 
 Click on a "data column" header to sort by that column. Click the header again to reverse the sort order. The table below is sorted by event counts on August 2nd:
 
-![Sorting Line Chart](https://raw.githubusercontent.com/ranic/mixpanel-docs/main/media/Platform/Reports/Insights/sorting-line-chart-1.png)
+![Sorting Line Chart](/sorting-line-chart-1.png)
 
 Results that are segmented (from one or more “group by” clauses in your query) have four different sorting options when you click on the "segment column" headers:
 
@@ -121,11 +121,11 @@ Results that are segmented (from one or more “group by” clauses in your quer
 
 When sorting by segments, the sort is carried out left to right.
 
-![Sorting Line Chart](https://raw.githubusercontent.com/ranic/mixpanel-docs/main/media/Platform/Reports/Insights/sorting-line-chart-2.gif)
+![Sorting Line Chart](/sorting-line-chart-2.gif)
 
 Clicking on the "Average" data column performs a flat sort across all segments:
 
-![Sorting Line Chart](https://raw.githubusercontent.com/ranic/mixpanel-docs/main/media/Platform/Reports/Insights/sorting-line-chart-3.png)
+![Sorting Line Chart](/sorting-line-chart-3.png)
 
 #### Table chart
 
@@ -138,10 +138,10 @@ In the ungrouped view, you can choose one value to sort on. The two options are:
 
 Sort by a specific metric value OR
 Sort by a segment column (alphabetical)
-![Sorting Ungrouped Table](https://raw.githubusercontent.com/ranic/mixpanel-docs/main/media/Platform/Reports/Insights/sorting-table-chart-1.png)
+![Sorting Ungrouped Table](/sorting-table-chart-1.png)
 
 In the grouped view, you can specify the sorting for each breakdown separately. For each breakdown, you can select to sort by a specific metric or alphabetically.
-![Sorting Grouped Table](https://raw.githubusercontent.com/ranic/mixpanel-docs/main/media/Platform/Reports/Insights/sorting-table-chart-2.png)
+![Sorting Grouped Table](/sorting-table-chart-2.png)
 
 Sorting is applied within the grouping, respecting the breakdown hierarchy. As an example of breakdown hierarchy, the image above shows “Item Category” within “Country”
 
@@ -171,7 +171,7 @@ Mixpanel supports the following operators:
 
 Click the **Formula** button. Each event in the query shows a letter next to it, which indicates its variable name. Use these letters in combination with the operators to calculate a more advanced query. For example, you can use the DAU, WAU, and MAU functions in Formulas to calculate the stickiness of your product:
 
-![Formulas 1](https://raw.githubusercontent.com/ranic/mixpanel-docs/main/media/Platform/Reports/Insights/advanced-formulas-1.png)
+![Formulas 1](/advanced-formulas-1.png)
 
 Enter a name for the formula (optional), and click **Apply Formula** to see the formula output. You can also use numbers as constants in a formula. Multiply a ratio by 100 to display as a percentage, for example. Divide a property value tracked in seconds by 3,600 to display the value in hours.
 
@@ -180,7 +180,7 @@ Enter a name for the formula (optional), and click **Apply Formula** to see the 
 Insights will automatically group your high-cardinality segments into buckets. Buckets can be edited by using the "Custom Buckets" option in the overflow menu:
 You can choose "Even" to get buckets of uniform size, and you can choose "Varied" to get buckets of different sizes. This helps with organizing outliers, or with drilling deeper into particular ranges.
 
-![Bucketing](https://raw.githubusercontent.com/ranic/mixpanel-docs/main/media/Platform/Reports/Insights/advanced-bucketing.png)
+![Bucketing](/advanced-bucketing.png)
 
 ### Time Period Comparisons
 
@@ -190,19 +190,19 @@ Note that if a data point for a previous year falls on a weekend, the data point
 
 Click on the **Compare to past** button at the top of your Insights graph and select the time period you wish to compare to. You can also select a custom date range.
 
-![Time Period Comparison](https://raw.githubusercontent.com/ranic/mixpanel-docs/main/media/Platform/Reports/Insights/advanced-time-period-comparison.gif)
+![Time Period Comparison](/advanced-time-period-comparison.gif)
 
 ### Value Comparisons
 
 When you have multiple metrics, or have broken down a metric by a property, you can compare them against each and the relative value. Click on **Compare** -> **Overall**. This works for all data functions. For a "totals" data function, you can see the percentage that a particular segment makes up. For non summable aggregations, it compares the segment value to the whole, unsegmented value.
 
-![Value Setting](https://raw.githubusercontent.com/ranic/mixpanel-docs/main/media/Platform/Reports/Insights/advanced-value-comparison.png)
+![Value Setting](/advanced-value-comparison.png)
 
 ### Profile Analysis
 
 Choose to explore either **Events & Cohorts** or **Profiles**. Events & Cohorts allows you to examine user behaviors, while Profiles allows you access profile data and visualize your users with filters and breakdowns based on their profile properties. When exploring Profiles, you are always analyzing all user profiles. Select the [Data Function](https://help.mixpanel.com/hc/en-us/articles/7713028610964-Advanced-Insights-Functionality-#insights-data-functions-operators-and-calculations) you want to use to calculate results by clicking on **Total** and selecting an option from the drop-down. You can calculate based on users or profile property value.
 
-![Explore User Profiles](https://raw.githubusercontent.com/ranic/mixpanel-docs/main/media/Platform/Reports/Insights/advanced-profile-analysis.gif)
+![Explore User Profiles](/advanced-profile-analysis.gif)
 
 ### Annotations
 
@@ -212,15 +212,15 @@ Only project admins can create, save, and delete annotations.
 
 To add an annotation, hover your mouse over the point on the chart you want to annotate, and click the blue **+** button that appears. Enter a description for the annotation, such as a holiday that occurred on that day or the end date of your fiscal year, then click **Save**. If you accidentally selected the incorrect date on the chart, you can edit the date and time of the annotation in this window.
 
-![Annotations 1](https://raw.githubusercontent.com/ranic/mixpanel-docs/main/media/Platform/Reports/Insights/advanced-annotations-1.png)
+![Annotations 1](/advanced-annotations-1.png)
 
 View an existing annotation by clicking on the number found at the bottom of a report. You will be able to see who submitted the annotation.
 
-![Annotations 2](https://raw.githubusercontent.com/ranic/mixpanel-docs/main/media/Platform/Reports/Insights/advanced-annotations-2.png)
+![Annotations 2](/advanced-annotations-2.png)
 
 Hover the cursor over the annotation to edit or delete it. Click on the **pencil icon** to edit an annotation, or the **trash icon** to delete an annotation. Add additional annotations to the same date by clicking **Add annotation**.
 
-![Annotations 3](https://raw.githubusercontent.com/ranic/mixpanel-docs/main/media/Platform/Reports/Insights/advanced-annotations-3.png)
+![Annotations 3](/advanced-annotations-3.png)
 
 ### Insights Data Functions, Operators and Calculations
 
@@ -230,7 +230,7 @@ The following data functions are only available in Insights, and are separated i
 
 Select the Data Function you want to use to calculate results by clicking on **Total** and selecting an option from the drop-down. You can calculate based on events, users, event property value, event property value per user, and sessions.
 
-![Data Functions 1](https://raw.githubusercontent.com/ranic/mixpanel-docs/main/media/Platform/Reports/Insights/advanced-data-functions-1.png)
+![Data Functions 1](/advanced-data-functions-1.png)
 
 The following functions have additional aggregation options which you will be prompted to select:
 
@@ -245,11 +245,11 @@ These functions provide additional aggregation options following the initial cal
 
 Selecting any of these functions gives you the option to choose different ways to aggregate this data. The default aggregation is **Average**, which you can click on to select a different option such as distribution, median, 25/75/90th percentiles, minimum and maximum.
 
-![Data Functions 2](https://raw.githubusercontent.com/ranic/mixpanel-docs/main/media/Platform/Reports/Insights/advanced-data-functions-2.png)
+![Data Functions 2](/advanced-data-functions-2.png)
 
 If the data function you select calculates based on property (“Event Property Values” or “Event Property Values Per User”), you will be prompted to select an event property.
 
-![Data Functions 3](https://raw.githubusercontent.com/ranic/mixpanel-docs/main/media/Platform/Reports/Insights/advanced-data-functions-3.gif)
+![Data Functions 3](/advanced-data-functions-3.gif)
 
 You can find more information about each data function and how they are calculated below:
 
@@ -335,11 +335,11 @@ See this [video walkthrough](https://www.loom.com/embed/5568e266532b4804a1c2d36d
 
 Click on a chart segment in Insights and view the raw events that made up that metric. You will be redirected to the Events page.
 
-![View Events](https://raw.githubusercontent.com/ranic/mixpanel-docs/main/media/Platform/Reports/Insights/advanced-view-events.gif)
+![View Events](/advanced-view-events.gif)
 
 ### View Sample Events
 
 You can hover over any event and in the context panel, you now have the ability to "View Sample Events", which redirects you to the Events page with 100 most recent samples of that hovered event:
 You can see a few samples of an event to help you decide whether that's the right event you want for your analysis or which property you should use for filters/breakdowns.
 
-![View Sample Events](https://raw.githubusercontent.com/ranic/mixpanel-docs/main/media/Platform/Reports/Insights/advanced-view-sample-events.gif)
+![View Sample Events](/advanced-view-sample-events.gif)

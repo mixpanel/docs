@@ -214,7 +214,7 @@ Alternatively, you can add the following Preprocessor Macros in Build Settings:
 
 If you're using CocoaPods, you'll need to add this to the Pod target instead of your main app project's target:
 
-![image](https://user-images.githubusercontent.com/2077899/230696566-ee7da1ce-0f45-4da1-9083-e5d05f0b2603.png)
+![image](/230696566-ee7da1ce-0f45-4da1-9083-e5d05f0b2603.png)
 
 
 You can also add this to your Podfile to ensure everyone on your team will always have logging enabled:

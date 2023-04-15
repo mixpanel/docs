@@ -15,11 +15,11 @@ Mixpanel Data Audit surfaces new event, property, and property type data that do
 
 Select Data Audit under Data Management to access this feature. The first time you go to the Data Audit tab, you have the option to enable Data Audit.
 
-![Enable Data Audit](https://raw.githubusercontent.com/ranic/mixpanel-docs/main/media/Admin/Data%20Governance/Data%20Audit/enable-data-audit.png)
+![Enable Data Audit](/enable-data-audit.png)
 
 Select Enable Data Audit, and the Enable Data Audit modal will appear.
 
-![Enable Data Audit Modal](https://raw.githubusercontent.com/ranic/mixpanel-docs/main/media/Admin/Data%20Governance/Data%20Audit/enable-data-audit-settings.png)
+![Enable Data Audit Modal](/enable-data-audit-settings.png)
 
 When you click Enable, Mixpanel takes a snapshot of your data. The snapshot records the event names, property names, and property data types of the data in your project for the last 30 days. The snapshot time period is fixed, and you can see it below the Data Audit title in the Data Audit tab, where it says: "Comparing new data against the snapshot of data sent between..."
 
@@ -27,13 +27,13 @@ The snapshot will remain fixed until you disable and re-enable Data Audit. Mixpa
 
 Every time you go into Data Audit, Mixpanel compares newly received data with your implementation, and surfaces data that does not match.
 
-![Unexpected Properties](https://raw.githubusercontent.com/ranic/mixpanel-docs/main/media/Admin/Data%20Governance/Data%20Audit/unexpected-properties.png)
+![Unexpected Properties](/unexpected-properties.png)
 
 ## Decide How Mixpanel Handles Unexpected Data
 
 When you first enable Data Audit in the Data Audit Settings, you can determine how Mixpanel handles unexpected data.
 
-![Data Audit Settings](https://raw.githubusercontent.com/ranic/mixpanel-docs/main/media/Admin/Data%20Governance/Data%20Audit/data-audit-settings.png)
+![Data Audit Settings](/data-audit-settings.png)
 
 By default, Mixpanel accepts and shows unexpected events and properties in your reports. The data marked as unexpected is visible in Mixpanel until you set is as hidden. This behavior is identical to how Mixpanel handles new data when Data Audit is not enabled.
 
@@ -63,4 +63,4 @@ If you'd like to [Hide](https://developer.mixpanel.com/v3.19/docs/lexicon#hide-e
 
 Click Disable Data Audit, then click Disable in the Disable data audit modal to stop Mixpanel from surfacing data that does not match your implementation.
 
-![Disable Data Audit](https://raw.githubusercontent.com/ranic/mixpanel-docs/main/media/Admin/Data%20Governance/Data%20Audit/disable-data-audit.png)
+![Disable Data Audit](/disable-data-audit.png)

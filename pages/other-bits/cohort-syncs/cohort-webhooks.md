@@ -22,7 +22,7 @@ To create a new Custom Webhook destination, navigate to our Integrations UI and 
 
 Optional:  Basic Authentication when calling the webhook URL provided
 
-![image](https://user-images.githubusercontent.com/2077899/230698306-2fa97655-7e3b-4836-87f6-f847306f146f.png)
+![image](/230698306-2fa97655-7e3b-4836-87f6-f847306f146f.png)
 
 
 From this point onward, you can sync any cohort to this connection from our cohorts page. 

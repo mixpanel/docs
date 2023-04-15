@@ -187,13 +187,13 @@ Be sure to remove this parameter before going into production; we suggest settin
 
 ### Interpreting Debug Output
 
-![image](https://user-images.githubusercontent.com/2077899/230696892-8fb6e415-bd0a-4e0a-a9ef-a121ccda3600.png)
+![image](/230696892-8fb6e415-bd0a-4e0a-a9ef-a121ccda3600.png)
 
 Here, we are debugging an HTML snippet implementation, but the logs are the same regardless of how you enabled debug mode. These events are being sent normally — each batch of events can be expanded to see the properties being sent with the event. Logging for other types of Mixpanel requests, such as `identify` and `alias`, works the same way, with all request contents logged.
 
 SDK errors and warnings, such as calling `track` without an event name and `alias`ing an identifier to itself, are also logged to the console in debug mode. These client-side errors do not result in an request to Mixpanel, so they can't be debugged using the network tab — you must use debug mode to surface them.
 
-![image](https://user-images.githubusercontent.com/2077899/230696898-b839468c-e3a4-444a-ae2c-ae419c44be56.png)
+![image](/230696898-b839468c-e3a4-444a-ae2c-ae419c44be56.png)
 
 
 ## Group Analytics

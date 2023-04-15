@@ -8,7 +8,7 @@ metadata:
 ---
 
 ## Overview
-![https://help.mixpanel.com/hc/article_attachments/7742354046740/Screen_Shot_2022-07-12_at_4.43.34_PM.png](https://help.mixpanel.com/hc/article_attachments/7742354046740/Screen_Shot_2022-07-12_at_4.43.34_PM.png)
+![/Screen_Shot_2022-07-12_at_4.43.34_PM.png](/Screen_Shot_2022-07-12_at_4.43.34_PM.png)
 
 Mixpanel's Users page allows you to filter users and gain a deeper understanding of how they interact with your website or application. By filtering your users into groups called cohorts, you can import these cohorts into other reports and perform analyses on those specific users.
 
@@ -25,7 +25,7 @@ Mixpanel’s Users page aggregates and organizes a collection of user profiles. 
 
 You can select **User Profiles** or **All Users** in the Users page. If you select **User Profiles**, the page will only show users that have at least one user profile property set. If you select **All Users**, the page will show all users who have completed any event.
 
-![https://help.mixpanel.com/hc/article_attachments/7734130976276/Screen_Shot_2022-07-12_at_11.55.17_AM.png](https://help.mixpanel.com/hc/article_attachments/7734130976276/Screen_Shot_2022-07-12_at_11.55.17_AM.png)
+![/Screen_Shot_2022-07-12_at_11.55.17_AM.png](/Screen_Shot_2022-07-12_at_11.55.17_AM.png)
 
 By clicking the name of a user in the User tables, you can explore that user's unique history by examining their user profile. Learn more about the Users Profiles [here](https://help.mixpanel.com/hc/en-us/articles/115004501966).
 
@@ -39,7 +39,7 @@ Learn more about Cohorts [here](https://help.mixpanel.com/hc/en-us/articles/115
 
 You may wish to change what data is displayed in the Users table. You can do so by clicking on **Edit Columns** and selecting / deselecting the profile properties you wish to display on the User table
 
-![https://help.mixpanel.com/hc/article_attachments/7738768080532/Screen_Shot_2022-07-12_at_2.22.57_PM.png](https://help.mixpanel.com/hc/article_attachments/7738768080532/Screen_Shot_2022-07-12_at_2.22.57_PM.png)
+![/Screen_Shot_2022-07-12_at_2.22.57_PM.png](/Screen_Shot_2022-07-12_at_2.22.57_PM.png)
 
 ## Advanced
 
@@ -47,7 +47,7 @@ You may wish to change what data is displayed in the Users table. You can do so 
 
 By default, Mixpanel will display Users with profiles on the Users page. These are users have associated users properties with them. If you wish to see users who have no associated properties, you can switch to "Users" in the selection.
 
-![Users with Profiles](https://raw.githubusercontent.com/ranic/mixpanel-docs/main/media/Platform/Reports/Users/advanced-users-with-profiles.png)
+![Users with Profiles](/advanced-users-with-profiles.png)
 
 Users with Profiles: Users who have properties associated with them
 Users: All Users, including those who may not have properties associated with them, but have associated events.
@@ -64,4 +64,4 @@ Note that when creating cohorts this way, the cohort will remain static, meaning
 
 To download your user profiles from the Users page, simply click the **Export icon.** This will download all the profile data being displayed in the current report - to download more properties, edit your columns to select more properties. You can choose to filter the list or select individual profiles to download instead of downloading the full list.
 
-![https://help.mixpanel.com/hc/article_attachments/7738832818836/Screen_Shot_2022-07-12_at_2.26.45_PM.png](https://help.mixpanel.com/hc/article_attachments/7738832818836/Screen_Shot_2022-07-12_at_2.26.45_PM.png)
+![/Screen_Shot_2022-07-12_at_2.26.45_PM.png](/Screen_Shot_2022-07-12_at_2.26.45_PM.png)

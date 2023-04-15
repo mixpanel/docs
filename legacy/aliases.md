@@ -1,6 +1,6 @@
 This article reflects a legacy version of identity management in Mixpanel, for projects that were created prior to 2020. In 2020, we released hourly merge. If you have ID Merge enabled, you will see it in your Mixpanel [project settings](https://mixpanel.com/settings/project):
 
-![image](https://user-images.githubusercontent.com/2077899/230244606-e12422cd-d937-4328-ac58-8cc60f919df7.png)
+![image](/230244606-e12422cd-d937-4328-ac58-8cc60f919df7.png)
 
 If you're using ID Merge, see our latest recommendations [here](https://developer.mixpanel.com/docs/identity-management).
 
@@ -30,7 +30,7 @@ Mixpanel remaps her original distinct_id of `“12345”`. So all actions Sally 
 
 The image below illustrates the identity management process.
  
-![image](https://user-images.githubusercontent.com/2077899/230244224-17b9c00c-a41a-4061-a22b-4b47d7ecfe84.png)
+![image](/230244224-17b9c00c-a41a-4061-a22b-4b47d7ecfe84.png)
  
 
 # Only Call Alias Once

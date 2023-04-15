@@ -213,7 +213,7 @@ Administer group keys through your Project Settings. Group keys are event proper
 
 To administer group keys, navigate to your Project Settings. Click **+Add Group Key** under the *GROUP KEYS* section.
 
-![image](https://user-images.githubusercontent.com/2077899/230695638-ffcc010d-e07f-474f-81dd-3c3eab33cefa.png)
+![image](/230695638-ffcc010d-e07f-474f-81dd-3c3eab33cefa.png)
 
 Enter an event property to attribute the group key to. You can also enter a display name for the group key. Click **Save**.
 

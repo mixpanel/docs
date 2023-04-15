@@ -11,7 +11,7 @@ metadata:
 
 ## Session Metric Analysis
 
-![https://help.mixpanel.com/hc/article_attachments/7711554141204/Screen_Shot_2022-07-11_at_3.53.47_PM.png](https://help.mixpanel.com/hc/article_attachments/7711554141204/Screen_Shot_2022-07-11_at_3.53.47_PM.png)
+![/Screen_Shot_2022-07-11_at_3.53.47_PM.png](/Screen_Shot_2022-07-11_at_3.53.47_PM.png)
 
 Analyze session metrics by selecting "Session Start" or "Session End" from the events list. Learn more about using Sessions in Insights, Funnels and Flows [here](https://help.mixpanel.com/hc/en-us/articles/115004695223#sessions-in-insights).
 
@@ -19,27 +19,27 @@ Analyze session metrics by selecting "Session Start" or "Session End" from the e
 
 Filter this event by clicking the **inline action menu** and selecting **Add filter** from the drop-down. Choose an event property, user profile property, group profile property, or cohort to filter the event by.
 
-![https://help.mixpanel.com/hc/article_attachments/7772246990228/mceclip2.png](https://help.mixpanel.com/hc/article_attachments/7772246990228/mceclip2.png)
+![/mceclip2.png](/mceclip2.png)
 
 You can select whether you would like your query to match any or all of the filters by clicking on **and/or** beside the filters.
 
-![https://help.mixpanel.com/hc/article_attachments/7772185597972/mceclip1.png](https://help.mixpanel.com/hc/article_attachments/7772185597972/mceclip1.png)
+![/mceclip1.png](/mceclip1.png)
 
 ## Duplicating Events
 
 To duplicate any events or properties in your query, select the inline action menu and choose **Duplicate**. Delete any events or properties by clicking the **trash** icon.
 
-![https://help.mixpanel.com/hc/article_attachments/7772247062292/mceclip3.png](https://help.mixpanel.com/hc/article_attachments/7772247062292/mceclip3.png)
+![/mceclip3.png](/mceclip3.png)
 
 ## Advanced Date and Time Selectors
 
 You can also choose how Mixpanel buckets the time range in Insights, Funnel Trends and Retention Trend reports (granularity may vary). To view a range in hours, you can select **Hour** as the view:
 
-![https://help.mixpanel.com/hc/article_attachments/7711776890132/Screen_Shot_2022-07-11_at_4.01.49_PM.png](https://help.mixpanel.com/hc/article_attachments/7711776890132/Screen_Shot_2022-07-11_at_4.01.49_PM.png)
+![/Screen_Shot_2022-07-11_at_4.01.49_PM.png](/Screen_Shot_2022-07-11_at_4.01.49_PM.png)
 
 To zoom in, click on the graph and drag to highlight a specific window of time in your report. Click **Reset zoom** to return to the previous view.
 
-![https://help.mixpanel.com/hc/article_attachments/7712351271572/zoom.gif](https://help.mixpanel.com/hc/article_attachments/7712351271572/zoom.gif)
+![/zoom.gif](/zoom.gif)
 
 ## Advanced Filter & Breakdown Usage
 
@@ -49,15 +49,15 @@ To breakdown your results click the **Breakdown** button and select an event p
 
 You can breakdown your results by the "Date" event property and breakdown by Hour, Day, Week, Month, Quarter, Year, Hour of Day, or Day of Week.
 
-![https://help.mixpanel.com/hc/article_attachments/7712513119892/breakdown_by_date.gif](https://help.mixpanel.com/hc/article_attachments/7712513119892/breakdown_by_date.gif)
+![/breakdown_by_date.gif](/breakdown_by_date.gif)
 
 If you are analyzing any custom events, you can breakdown by the property "Event Name".
 
-![https://help.mixpanel.com/hc/article_attachments/7712515487892/Screen_Shot_2022-07-11_at_4.36.07_PM.png](https://help.mixpanel.com/hc/article_attachments/7712515487892/Screen_Shot_2022-07-11_at_4.36.07_PM.png)
+![/Screen_Shot_2022-07-11_at_4.36.07_PM.png](/Screen_Shot_2022-07-11_at_4.36.07_PM.png)
 
 The drop-down menus only show events/event properties that were ingested within the last 30 days. To select events/event properties that have not been ingested in the last 30 days, type the name of the event/event property in the Filter or Breakdown search bar. You must know the exact name of the event/event property you want to select because event names are case sensitive.
 
-![https://help.mixpanel.com/hc/article_attachments/7712553274388/query_old_event.gif](https://help.mixpanel.com/hc/article_attachments/7712553274388/query_old_event.gif)
+![/query_old_event.gif](/query_old_event.gif)
 
 To create a temporary cohort for the current report, click
 
@@ -65,7 +65,7 @@ To create a temporary cohort for the current report, click
 
 in the dropdown menu and select "Cohort. A window will pop up where you can specify the restrictions of your cohort. Learn more about building a cohort [here](https://help.mixpanel.com/hc/en-us/articles/115005701343).
 
-![https://help.mixpanel.com/hc/article_attachments/7712721485460/create_cohort_from_report.gif](https://help.mixpanel.com/hc/article_attachments/7712721485460/create_cohort_from_report.gif)
+![/create_cohort_from_report.gif](/create_cohort_from_report.gif)
 
 # Slack Integration
 
@@ -79,15 +79,15 @@ The Mixpanel application for Slack will also automatically unfurl a preview of 
 
 To enable the integration, log in to both Mixpanel and Slack, then click "Add to Slack" below:
 
-![https://platform.slack-edge.com/img/add_to_slack.png](https://platform.slack-edge.com/img/add_to_slack.png)
+![/add_to_slack.png](/add_to_slack.png)
 
 Then, click "Allow:"
 
-![https://help.mixpanel.com/hc/article_attachments/360059603032/Screen_Shot_2020-06-15_at_10.41.00_PM.png](https://help.mixpanel.com/hc/article_attachments/360059603032/Screen_Shot_2020-06-15_at_10.41.00_PM.png)
+![/Screen_Shot_2020-06-15_at_10.41.00_PM.png](/Screen_Shot_2020-06-15_at_10.41.00_PM.png)
 
 After clicking allow, you'll return to Mixpanel, where you'll see a success banner:
 
-![https://help.mixpanel.com/hc/article_attachments/360059763951/Screen_Shot_2020-06-15_at_10.42.06_PM.png](https://help.mixpanel.com/hc/article_attachments/360059763951/Screen_Shot_2020-06-15_at_10.42.06_PM.png)
+![/Screen_Shot_2020-06-15_at_10.42.06_PM.png](/Screen_Shot_2020-06-15_at_10.42.06_PM.png)
 
 At this point, Mixpanel is a part of your Slack workspace, and any Mixpanel links you send in Slack will unfurl with metadata, and if applicable a chart preview.
 
@@ -97,7 +97,7 @@ Once at least one member of your Mixpanel organization has set up the Mixpanel I
 
 Once you've set up the integration, Mixpanel links pasted in Slack will unfurl. Most links will provide some basic link metadata, and links to Insights, Flows, Funnels, or Retention reports will also include a chart preview, for example:
 
-![https://help.mixpanel.com/hc/article_attachments/360060242931/slack_app_demo.png](https://help.mixpanel.com/hc/article_attachments/360060242931/slack_app_demo.png)
+![/slack_app_demo.png](/slack_app_demo.png)
 
 ## Permissions
 
@@ -124,13 +124,13 @@ Example use-cases include:
 
 Add a property in Breakdown, then select the **Customize Buckets** option from the overflow menu
 
-![https://help.mixpanel.com/hc/article_attachments/14342458665748](https://help.mixpanel.com/hc/article_attachments/14342458665748)
+![/14342458665748](/14342458665748)
 
 Depending on your added property data type - string vs numeric, you will see a different custom buckets modal, designed based on the data-type use-cases **(more detail below)**
 
 Once you define your segment buckets, click **Apply.** Only then will the custom buckets reflect in the visualization. You will also see the custom buckets as an under-item on the property
 
-![https://help.mixpanel.com/hc/article_attachments/14342458667924](https://help.mixpanel.com/hc/article_attachments/14342458667924)
+![/14342458667924](/14342458667924)
 
 To modify the segment buckets, click on the **under-item** and the custom buckets model will open. Once you’ve made the changes, click **Apply**
 
@@ -153,25 +153,25 @@ Steps
 
 1. Add a breakdown - Country. Below is the default you’ll see
 
-    ![https://help.mixpanel.com/hc/article_attachments/12828869626644](https://help.mixpanel.com/hc/article_attachments/12828869626644)
+    ![/12828869626644](/12828869626644)
 
 2. Choose to bucket segments, by opening the custom buckets model and click Apply
     - For each segment, choose the operator “is” and select one or more values
     - “Rest of the World” is auto generated as **remaining values**
     - To note — if two segments have the same value, the first segment will consider the value. Custom buckets are non-overlapping and sum up to 100% by definition
 
-![https://help.mixpanel.com/hc/article_attachments/14342715436052](https://help.mixpanel.com/hc/article_attachments/14342715436052)
+![/14342715436052](/14342715436052)
 
-![https://help.mixpanel.com/hc/article_attachments/12828860042132](https://help.mixpanel.com/hc/article_attachments/12828860042132)
+![/12828860042132](/12828860042132)
 
 **You can also re-name these segments to make them meaningful to you**
 
 1. On the same line of the segment, choose to rename it using the pencil icon
 2. Click Apply after creating and naming your segments as desired
 
-![https://help.mixpanel.com/hc/article_attachments/14342752741140](https://help.mixpanel.com/hc/article_attachments/14342752741140)
+![/14342752741140](/14342752741140)
 
-![https://help.mixpanel.com/hc/article_attachments/12828869956628](https://help.mixpanel.com/hc/article_attachments/12828869956628)
+![/12828869956628](/12828869956628)
 
 ## Numeric property Use Cases
 
@@ -191,9 +191,9 @@ Goal: You want to distribute this in various ways
     - To note — every numeric property is **auto-bucketed into even sized buckets as the default**
     - Here the default seems to be even buckets of 10 mins across the range
 
-        ![https://help.mixpanel.com/hc/article_attachments/14342489051028](https://help.mixpanel.com/hc/article_attachments/14342489051028)
+        ![/14342489051028](/14342489051028)
 
-        ![https://help.mixpanel.com/hc/article_attachments/12828860268692](https://help.mixpanel.com/hc/article_attachments/12828860268692)
+        ![/12828860268692](/12828860268692)
 
 2. Go to the overflow and open the custom buckets modal
 3. Since looking for even buckets of “30 mins”, choose **Even Bucketing**
@@ -201,9 +201,9 @@ Goal: You want to distribute this in various ways
     - To note — both a lower end and upper end bucket will be auto-generated to ensure your breakdown always adds up to a 100%
     - Here these buckets are <50 mins and ≥ 100 mins
 
-        ![https://help.mixpanel.com/hc/article_attachments/14342575096724](https://help.mixpanel.com/hc/article_attachments/14342575096724)
+        ![/14342575096724](/14342575096724)
 
-        ![https://help.mixpanel.com/hc/article_attachments/12828860573204](https://help.mixpanel.com/hc/article_attachments/12828860573204)
+        ![/12828860573204](/12828860573204)
 
 
 **Deep Dive: Use Case B**: Specific groups <10, 10-20, 20-50, 50-100, ≥100
@@ -213,18 +213,18 @@ Goal: You want to distribute this in various ways
 3. Enter the ‘segment’ break point values in each row and click apply. You can preview the bucket as you enter values in the line-item below
     - To note — both a lower end and upper end bucket will be auto-generated to ensure your buckets always adds up to a 100%
 
-![https://help.mixpanel.com/hc/article_attachments/14342546138516](https://help.mixpanel.com/hc/article_attachments/14342546138516)
+![/14342546138516](/14342546138516)
 
-![https://help.mixpanel.com/hc/article_attachments/12828860758676](https://help.mixpanel.com/hc/article_attachments/12828860758676)
+![/12828860758676](/12828860758676)
 
 **Deep Dive: Use Case C:** Want to see all the durations as-is (No bucketing)
 
 1. Open the custom buckets modal
 2. Since looking for “No bucketing”, choose **None —** This lays out all the numeric property values as-is
 
-![https://help.mixpanel.com/hc/article_attachments/14342547991956](https://help.mixpanel.com/hc/article_attachments/14342547991956)
+![/14342547991956](/14342547991956)
 
-![https://help.mixpanel.com/hc/article_attachments/12833587659028](https://help.mixpanel.com/hc/article_attachments/12833587659028)
+![/12833587659028](/12833587659028)
 
 ## Typecasting property Use Cases
 
@@ -245,18 +245,18 @@ Steps
 3. Change **Data Type** of age(years) to String. Once changed you will see the type-casted property type as an under-item
     - To note - only type-casted data types show as an under-item. If the data-type was the same as ingested, no under-item for data type will be seen
 
-        ![https://help.mixpanel.com/hc/article_attachments/14342634016660](https://help.mixpanel.com/hc/article_attachments/14342634016660)
+        ![/14342634016660](/14342634016660)
 
-        ![https://help.mixpanel.com/hc/article_attachments/12833644608148](https://help.mixpanel.com/hc/article_attachments/12833644608148)
+        ![/12833644608148](/12833644608148)
 
 4. Post changing data-type, open the custom buckets modal. This will now open a modal meant for string property data type
 5. Follow steps as elaborated for String property use-case above, and achieve the goal
 
-    ![https://help.mixpanel.com/hc/article_attachments/14342637801748](https://help.mixpanel.com/hc/article_attachments/14342637801748)
+    ![/14342637801748](/14342637801748)
 
-    ![https://help.mixpanel.com/hc/article_attachments/14342707763604](https://help.mixpanel.com/hc/article_attachments/14342707763604)
+    ![/14342707763604](/14342707763604)
 
-    ![https://help.mixpanel.com/hc/article_attachments/12833899595284](https://help.mixpanel.com/hc/article_attachments/12833899595284)
+    ![/12833899595284](/12833899595284)
 
 
 ## Frequently Asked Questions
@@ -283,7 +283,7 @@ Steps
 
     If you really need to answer a question like this, the right way here is to create these as two metrics leveraging [inline filters](https://help.mixpanel.com/hc/en-us/articles/7651639898260#event-inline-filters) and NOT use breakdowns.
 
-    ![https://help.mixpanel.com/hc/article_attachments/12834111393684](https://help.mixpanel.com/hc/article_attachments/12834111393684)
+    ![/12834111393684](/12834111393684)
 
 - **What happens if I change data-type, can I still use custom buckets?**
 
@@ -311,7 +311,7 @@ Steps
 
         (not set) is automatically computed and will always show up in the UI. You don’t have to select (not set) as a segment to know how many events fall in there. So only figure how would you like to segment your (set) values.
 
-        ![https://help.mixpanel.com/hc/article_attachments/12834113971348](https://help.mixpanel.com/hc/article_attachments/12834113971348)
+        ![/12834113971348](/12834113971348)
 
     - **How do I get not contains or not equal to?**
 
@@ -319,7 +319,7 @@ Steps
 
         For example — In the below (remaining values) is not equal to US or India
 
-        ![https://help.mixpanel.com/hc/article_attachments/12834082079380](https://help.mixpanel.com/hc/article_attachments/12834082079380)
+        ![/12834082079380](/12834082079380)
 
     - **In number — how do i get a bucket of just 0?**
 
@@ -349,7 +349,7 @@ View Users can help you:
 
 ## Insights
 
-![https://help.mixpanel.com/hc/article_attachments/7001609634196/View_Users_Insights_gif.gif](https://help.mixpanel.com/hc/article_attachments/7001609634196/View_Users_Insights_gif.gif)
+![/View_Users_Insights_gif.gif](/View_Users_Insights_gif.gif)
 
 - To learn more about your users who recently **Signed Up** at a specific point in time, you can click any point on a chart or line to access View Users. The View Users overlay **displays the list of users contributing to your chosen point on the chart**.
 - By clicking on one of these users, you can further **explore their User Properties** like experiment group, purchase count, last event and many more.
@@ -357,14 +357,14 @@ View Users can help you:
 
 ## Funnels
 
-![https://help.mixpanel.com/hc/article_attachments/7001620460820/View_Users_Funnels_gif.gif](https://help.mixpanel.com/hc/article_attachments/7001620460820/View_Users_Funnels_gif.gif)
+![/View_Users_Funnels_gif.gif](/View_Users_Funnels_gif.gif)
 
 - Finding the **exact group of users who dropped off** after **Sign Up** is possible through View Users in Funnels. While in a Funnels report, click on the section of the chart that displays non-converting users and select View Users - this displays the list of those who didn’t convert after signup.
 - **Save this group as a cohort** by clicking the Create Cohort button. Now, you can learn more about their product usage or find the root cause of why they didn’t convert after Sign Up.
 
 ## Retention
 
-![https://help.mixpanel.com/hc/article_attachments/7001609866260/View_Users_Retention_gif.gif](https://help.mixpanel.com/hc/article_attachments/7001609866260/View_Users_Retention_gif.gif)
+![/View_Users_Retention_gif.gif](/View_Users_Retention_gif.gif)
 
 - View Users in Retention report presents you with two options - view retained users and view dropped off users. This is helpful to **find the specific group of users who were engaged or dropped off** after **Sign Up** over a period of time.
 - **Export your group of choice to a CSV with one click**. This data can guide meaningful actions, like emailing your user group a note that helps them get unstuck and engaged.
@@ -375,7 +375,7 @@ View Users can help you:
 
 Undo / redo shortcuts allow for fast adjustments to your analysis. `Cmd + Z` to undo; `Cmd + Shift + Z` to redo. Change filters, date ranges, line vs bar chart, and go back in one second to compare before and after, or fix the view.
 
-![https://help.mixpanel.com/hc/article_attachments/7653362389140/Undo_Redo_gif.gif](https://help.mixpanel.com/hc/article_attachments/7653362389140/Undo_Redo_gif.gif)
+![/Undo_Redo_gif.gif](/Undo_Redo_gif.gif)
 
 - **Navigate different report versions**: add a new event, filter or breakdown and undo that change with `Cmd + Z` . This makes iterating between different versions of your report quick and easy.
 - **Compare visualizations**: go from a bar chart, to a line chart, to a pie chart and all the way back while only using the undo / redo keyboard shortcuts.
@@ -386,13 +386,13 @@ Once you have visualized a metric you are interested in, you want want to compar
 
 ## Time Comparisons
 
-![https://help.mixpanel.com/hc/article_attachments/4489360680852/Screen_Shot_2021-09-22_at_4.38.05_PM.png](https://help.mixpanel.com/hc/article_attachments/4489360680852/Screen_Shot_2021-09-22_at_4.38.05_PM.png)
+![/Screen_Shot_2021-09-22_at_4.38.05_PM.png](/Screen_Shot_2021-09-22_at_4.38.05_PM.png)
 
 The compare to past menu has been modified to include the new comparison options, but users can continue to find the same time comparison options that existed before under the new "Compare" menu.
 
 ## Time Comparison - Absolute Values
 
-![https://help.mixpanel.com/hc/article_attachments/4489375789076/Screen_Shot_2021-09-22_at_4.40.26_PM.png](https://help.mixpanel.com/hc/article_attachments/4489375789076/Screen_Shot_2021-09-22_at_4.40.26_PM.png)
+![/Screen_Shot_2021-09-22_at_4.40.26_PM.png](/Screen_Shot_2021-09-22_at_4.40.26_PM.png)
 
 This is the same default behavior that existed previously. When you compare to a time period users will see a solid line for the present data, and a dashed line for data in the time comparison period.
 
@@ -400,11 +400,11 @@ This is the same default behavior that existed previously. When you compare to a
 
 This can be activated by selecting the "Percent change over Baseline" option in the controller next to the comparison menu.
 
-![https://help.mixpanel.com/hc/article_attachments/4489375796500/Screen_Shot_2021-09-22_at_4.40.41_PM.png](https://help.mixpanel.com/hc/article_attachments/4489375796500/Screen_Shot_2021-09-22_at_4.40.41_PM.png)
+![/Screen_Shot_2021-09-22_at_4.40.41_PM.png](/Screen_Shot_2021-09-22_at_4.40.41_PM.png)
 
 When this view is activated, users will see the percentage difference from the one time period to another. This is the same value that was shown in the tooltip, but now users are able to show how segments are shrinking and growing over time. This also makes it easier to see relative performance between different segments.
 
-![https://help.mixpanel.com/hc/article_attachments/4489317804436/Screen_Shot_2021-09-22_at_4.50.52_PM.png](https://help.mixpanel.com/hc/article_attachments/4489317804436/Screen_Shot_2021-09-22_at_4.50.52_PM.png)
+![/Screen_Shot_2021-09-22_at_4.50.52_PM.png](/Screen_Shot_2021-09-22_at_4.50.52_PM.png)
 
 These values are also reflected into the segmentation table below the chart.
 
@@ -412,13 +412,13 @@ These values are also reflected into the segmentation table below the chart.
 
 Another comparison type that is now natively supported in Mixpanel is the ability to set a segment as a baseline from which other segments are compared against. This allows users to compare different segments across the same time period.
 
-![https://help.mixpanel.com/hc/article_attachments/4489345790740/Screen_Shot_2021-09-22_at_4.50.28_PM.png](https://help.mixpanel.com/hc/article_attachments/4489345790740/Screen_Shot_2021-09-22_at_4.50.28_PM.png)
+![/Screen_Shot_2021-09-22_at_4.50.28_PM.png](/Screen_Shot_2021-09-22_at_4.50.28_PM.png)
 
-![https://help.mixpanel.com/hc/article_attachments/4489363596052/Screen_Shot_2021-09-22_at_4.50.36_PM.png](https://help.mixpanel.com/hc/article_attachments/4489363596052/Screen_Shot_2021-09-22_at_4.50.36_PM.png)
+![/Screen_Shot_2021-09-22_at_4.50.36_PM.png](/Screen_Shot_2021-09-22_at_4.50.36_PM.png)
 
 To enable, choose the "Increase over Baseline" option in the compare menu, then choose the segment that you wish to be the baseline.
 
-![https://help.mixpanel.com/hc/article_attachments/4489367171220/Screen_Shot_2021-09-22_at_4.53.21_PM.png](https://help.mixpanel.com/hc/article_attachments/4489367171220/Screen_Shot_2021-09-22_at_4.53.21_PM.png)
+![/Screen_Shot_2021-09-22_at_4.53.21_PM.png](/Screen_Shot_2021-09-22_at_4.53.21_PM.png)
 
 Notice that because "Home supplies" is chosen at the baseline, it appears on the chart as a flat 0 line - this is because "Home supplies" always has a 0% difference against itself in the same time period.
 
@@ -428,11 +428,11 @@ Also note that the y axis can go below 0, because segments can perform better or
 
 This option allows users to see how segments perform as a percentage of the total. Mixpanel will proactively disable this option when this comparison option won't give meaningful results.
 
-![https://help.mixpanel.com/hc/article_attachments/4489363568532/Screen_Shot_2021-09-22_at_5.10.53_PM.png](https://help.mixpanel.com/hc/article_attachments/4489363568532/Screen_Shot_2021-09-22_at_5.10.53_PM.png)
+![/Screen_Shot_2021-09-22_at_5.10.53_PM.png](/Screen_Shot_2021-09-22_at_5.10.53_PM.png)
 
 To enable, open the Compare menu and select "Percentage of Overall"
 
-![https://help.mixpanel.com/hc/article_attachments/4489317782036/Screen_Shot_2021-09-22_at_5.17.27_PM.png](https://help.mixpanel.com/hc/article_attachments/4489317782036/Screen_Shot_2021-09-22_at_5.17.27_PM.png)
+![/Screen_Shot_2021-09-22_at_5.17.27_PM.png](/Screen_Shot_2021-09-22_at_5.17.27_PM.png)
 
 ## Why do the values in Compare to Overall not add up to 100%?
 
@@ -515,7 +515,7 @@ Interactive analysis is key to finding great insights [Ofrom your data - you as
 
 You will see an indication like this:
 
-![https://help.mixpanel.com/hc/article_attachments/4402821361044/mceclip0.png](https://help.mixpanel.com/hc/article_attachments/4402821361044/mceclip0.png)
+![/mceclip0.png](/mceclip0.png)
 
 **Does this mean the downloaded CSV has lower limits?**
 
@@ -733,7 +733,7 @@ User properties are not yet supported.
 
 View the top and bottom converting segments in your funnel by clicking the **Find interesting segments** button at the bottom of the segmentation chart.
 
-![https://help.mixpanel.com/hc/article_attachments/10038188905364](https://help.mixpanel.com/hc/article_attachments/10038188905364)
+![/10038188905364](/10038188905364)
 
 Rather than searching through multiple property breakdowns to find significant data, this feature automatically identifies this data for you. Mixpanel combs through your event properties and cohorts to show you which of those segments convert higher or lower than average, and are therefore statistically significant.
 
@@ -765,7 +765,7 @@ Mixpanel automatically compares the currently selected date period to the previo
 
 View the top and bottom converting segments in your retention report by clicking the **Find interesting segments** button at the bottom of the retention chart. This feature is not currently available for Frequency Retention.
 
-![https://help.mixpanel.com/hc/article_attachments/10037069627156](https://help.mixpanel.com/hc/article_attachments/10037069627156)
+![/10037069627156](/10037069627156)
 
 Rather than searching through multiple segment breakdowns to find significant data, this feature automatically identifies that data for you. Mixpanel combs through your event properties and cohorts, and show you which of those segments retain at a higher or lower rate than average.
 
@@ -793,7 +793,7 @@ Navigate to the report where you would like to enable or disable sampling at tim
 
 From the report in which you would like to use sampling, click the **lightning bolt** in the upper right corner of the query builder.
 
-![https://help.mixpanel.com/hc/article_attachments/13109650264596](https://help.mixpanel.com/hc/article_attachments/13109650264596)
+![/13109650264596](/13109650264596)
 
 This will enable sampling on the report, and will be indicated by the lightning bolt symbol turning blue. The percentage of the total that is included in the query calculations will be indicated in the top right corner of the query builder.
 
@@ -832,21 +832,21 @@ Mixpanel stores the results from a report query in cache, and presents these res
 
 You can see While this highlights the default cache behavior, you can always refresh a report to include the most current data.
 
-![https://help.mixpanel.com/hc/article_attachments/360027469711/Cache_Update.png](https://help.mixpanel.com/hc/article_attachments/360027469711/Cache_Update.png)
+![/Cache_Update.png](/Cache_Update.png)
 
 You can also view when the most recent update was in Boards by hovering over report cards.
 
-![https://help.mixpanel.com/hc/article_attachments/360027372472/Dashboard_Cache.png](https://help.mixpanel.com/hc/article_attachments/360027372472/Dashboard_Cache.png)
+![/Dashboard_Cache.png](/Dashboard_Cache.png)
 
 ## Refreshing the Query Results Cache
 
 To refresh the query results cache, navigate to an Insights report and click the **Refresh** button at the top of the query builder.
 
-![https://help.mixpanel.com/hc/article_attachments/360027474952/Refresh_Cache.png](https://help.mixpanel.com/hc/article_attachments/360027474952/Refresh_Cache.png)
+![/Refresh_Cache.png](/Refresh_Cache.png)
 
 To refresh query results cache in a Board, click the three dots in the top of the Board, and then click the **Refresh all cards** button.
 
-![https://help.mixpanel.com/hc/article_attachments/360027474992/Dashboard_Refresh.png](https://help.mixpanel.com/hc/article_attachments/360027474992/Dashboard_Refresh.png)
+![/Dashboard_Refresh.png](/Dashboard_Refresh.png)
 
 If the cached result is less than 1 min old, we always serve from cache without running a new background query.
 
@@ -882,13 +882,13 @@ Mixpanel maintains breakdown limits for CSV, PNG, and PDF report downloads.
 
 For property values that exceed 10,000, Mixpanel only returns the top 10,000 breakdowns of that property. Here’s an example CSV export of an Insights report. The first column contains the date of when each event was sent. The columns contain the event name and the rows contain the number of each event sent to Mixpanel.
 
-![https://help.mixpanel.com/hc/article_attachments/360002311923/CSV-download.png](https://help.mixpanel.com/hc/article_attachments/360002311923/CSV-download.png)
+![/CSV-download.png](/CSV-download.png)
 
 ## PNG and PDF
 
 PNG and PDF downloads display up to 30 segments in the Insights table, Insights bar, Retention table, and Retention line; and up to 12 segments for the Insights line. Here’s an example of a chart in PNG format.
 
-![https://help.mixpanel.com/hc/article_attachments/360002311943/PNG-example.png](https://help.mixpanel.com/hc/article_attachments/360002311943/PNG-example.png)
+![/PNG-example.png](/PNG-example.png)
 
 ## Downloading Reports
 
@@ -896,17 +896,17 @@ To download Insights, Funnels, and Retention reports, click the "..." icon on th
 
 ### Insights Download Menu
 
-![https://help.mixpanel.com/hc/article_attachments/360049681372/Screen_Shot_2020-02-14_at_10.31.33_AM.png](https://help.mixpanel.com/hc/article_attachments/360049681372/Screen_Shot_2020-02-14_at_10.31.33_AM.png)
+![/Screen_Shot_2020-02-14_at_10.31.33_AM.png](/Screen_Shot_2020-02-14_at_10.31.33_AM.png)
 
 ### Funnels Download Menu
 
-![https://help.mixpanel.com/hc/article_attachments/360049681352/Screen_Shot_2020-02-14_at_10.32.18_AM.png](https://help.mixpanel.com/hc/article_attachments/360049681352/Screen_Shot_2020-02-14_at_10.32.18_AM.png)
+![/Screen_Shot_2020-02-14_at_10.32.18_AM.png](/Screen_Shot_2020-02-14_at_10.32.18_AM.png)
 
 It is possible (only in the Funnels report) to download "CSV Trends", which downloads funnels by date.
 
 ### Retention Download Menu
 
-![https://help.mixpanel.com/hc/article_attachments/360049805751/Screen_Shot_2020-02-14_at_10.32.36_AM.png](https://help.mixpanel.com/hc/article_attachments/360049805751/Screen_Shot_2020-02-14_at_10.32.36_AM.png)
+![/Screen_Shot_2020-02-14_at_10.32.36_AM.png](/Screen_Shot_2020-02-14_at_10.32.36_AM.png)
 
 # Undefined and Null Properties
 
@@ -923,15 +923,15 @@ If you don’t want to see “undefined” or "null" values in your report, you 
 1. Unchecking the “undefined/null” box in the visualization legend.
 2. Looking only at instances where the property in question “is set" - this will exclude values where you see "undefined" or "null":
 
-    ![https://help.mixpanel.com/hc/article_attachments/6897764720916/mceclip0.png](https://help.mixpanel.com/hc/article_attachments/6897764720916/mceclip0.png)
+    ![/mceclip0.png](/mceclip0.png)
 
 3. Directly exclude undefined or null values from an Insights visualization by hitting the exclude action:
 
-    ![https://help.mixpanel.com/hc/article_attachments/6897318430228/mceclip2.png](https://help.mixpanel.com/hc/article_attachments/6897318430228/mceclip2.png)
+    ![/mceclip2.png](/mceclip2.png)
 
 
 ## Troubleshooting Tips
 
 If you’re getting “undefined” property values but think you should not be, troubleshoot the issue using the events page. Click on "Filter" in the top left to look at events coming in where the property in question “is not set.” You can then use this data to look at your code and figure out why some events are being fired without that property.
 
-![https://help.mixpanel.com/hc/article_attachments/6897521421332/mceclip0.png](https://help.mixpanel.com/hc/article_attachments/6897521421332/mceclip0.png)
+![/mceclip0.png](/mceclip0.png)

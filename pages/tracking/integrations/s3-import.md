@@ -10,7 +10,7 @@ updatedAt: "2022-04-19T05:29:26.723Z"
 ---
 This guide demonstrates how to set up a serverless ingest pipeline from an AWS S3 bucket into Mixpanel. Once this is set up, you can simply upload files containing events into the designated S3 bucket and the events will be ingested into Mixpanel, both one-time and on a recurring basis. Setup should take ~5-10 minutes.
 
-![image](https://user-images.githubusercontent.com/2077899/230694530-4c9e9700-d5b5-4ffb-b299-8bdbcc9334c6.png)
+![image](/230694530-4c9e9700-d5b5-4ffb-b299-8bdbcc9334c6.png)
 
 Note: This guide assumes you are running in Amazon Web Services, and have the necessary IAM Access to have AWS Lambda read from S3.
 
@@ -24,14 +24,14 @@ Create a [new Lambda Function](https://docs.aws.amazon.com/lambda/latest/dg/gett
 * Set the runtime to `python 3.7`.
 * Select  `Create Function`.
 
-![image](https://user-images.githubusercontent.com/2077899/230694620-2645c553-c898-4c98-a19c-f31eb0a23799.png)
+![image](/230694620-2645c553-c898-4c98-a19c-f31eb0a23799.png)
 
 
 ### Step 2b: Write the Lambda Function
 
 Change the filename from `lambda_function.py` to `main.py` and edit the `runtime settings` handler to `main.Handler`. Paste the code below for `main.py`.
 
-![image](https://user-images.githubusercontent.com/2077899/230694643-3d89c178-2b9d-4837-b41b-568a43757ca5.png)
+![image](/230694643-3d89c178-2b9d-4837-b41b-568a43757ca5.png)
 
 ```python main.py
 
@@ -145,7 +145,7 @@ def Handler(event, context):
 ### Step 2c: Add Trigger
 
 Add a trigger so that your Lambda function runs whenever a new object is added to your bucket by selecting `Add trigger` under `Function Overview`. You will want to use the bucket created in Step 2 and select `All object create events`.
-![image](https://user-images.githubusercontent.com/2077899/230694688-27b0f49c-3377-4664-9683-2e692b401709.png)
+![image](/230694688-27b0f49c-3377-4664-9683-2e692b401709.png)
 
 
 ### Step 2d: Update Configurations and Deploy
@@ -153,7 +153,7 @@ Select `Configuration` > `General Configuration` > `Edit`.
 * Change `Memory` to `1024 MB`.
 * Change `Timeout` to `5 minutes`.
 
-![image](https://user-images.githubusercontent.com/2077899/230694709-61ec52ca-36e9-471a-9065-64411cfa1f10.png)
+![image](/230694709-61ec52ca-36e9-471a-9065-64411cfa1f10.png)
 
 
 Click `Versions` > `Publish New Version` to deploy the function. At this point, any file you upload to the bucket will trigger an invocation of the function and an import into Mixpanel. Let's test it out!
@@ -166,17 +166,17 @@ Let's test the connection with some [sample events](https://storage.googleapis.c
 
 Monitor the logs of your Lambda Function; you should see an `Import Complete` log line within a minute. 
 
-![image](https://user-images.githubusercontent.com/2077899/230694725-590b29e8-c774-4b7d-9a01-856f30e033e3.png)
+![image](/230694725-590b29e8-c774-4b7d-9a01-856f30e033e3.png)
 
 
 If you navigate to CloudWatch logs, you will see a more detailed log that includes the filename being imported and the first error encountered (if any).
 
-![image](https://user-images.githubusercontent.com/2077899/230694735-0d0c0546-db69-42b4-8fc8-f8c8fd190282.png)
+![image](/230694735-0d0c0546-db69-42b4-8fc8-f8c8fd190282.png)
 
 
 Finally, let's confirm that the events made it into Mixpanel. Head to the [Events](https://mixpanel.com/report/live) page, pick `test_event` in the event picker, and you should see the events you just imported.
 
-![image](https://user-images.githubusercontent.com/2077899/230694739-590aa9f1-80e9-4c5b-b599-bea0d72ff6a3.png)
+![image](/230694739-590aa9f1-80e9-4c5b-b599-bea0d72ff6a3.png)
 
 
 ## Step 4: Import more data

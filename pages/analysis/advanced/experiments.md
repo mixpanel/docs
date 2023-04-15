@@ -15,7 +15,7 @@ Experiments requires an A/B test, its variant, and a dashboard that contains the
 
 To access Experiments, click on **Applications** in the top right navigation, then select **Experiments**.
 
-![https://help.mixpanel.com/hc/article_attachments/7447521623444/Screen_Shot_2022-06-30_at_2.44.36_PM.png](https://help.mixpanel.com/hc/article_attachments/7447521623444/Screen_Shot_2022-06-30_at_2.44.36_PM.png)
+![/Screen_Shot_2022-06-30_at_2.44.36_PM.png](/Screen_Shot_2022-06-30_at_2.44.36_PM.png)
 
 # Quick Start
 
@@ -104,7 +104,7 @@ The Experiments report locates significant differences between the Control and V
 - Negative differences, where the variant rate is lower than the control rate, are highlighted red.
 - Statistically insignificant results remain gray.
 
-![https://help.mixpanel.com/hc/article_attachments/360047213472/Screen_Shot_2020-01-14_at_5.38.54_PM.png](https://help.mixpanel.com/hc/article_attachments/360047213472/Screen_Shot_2020-01-14_at_5.38.54_PM.png)
+![/Screen_Shot_2020-01-14_at_5.38.54_PM.png](/Screen_Shot_2020-01-14_at_5.38.54_PM.png)
 
 # Advanced
 

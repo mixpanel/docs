@@ -30,15 +30,15 @@ The connection requires a Segment Write Key. You can obtain this key via Segment
 
 3. Search for **Mixpanel Cohorts**, select and hit next
 
-![Segment 1 Image](https://raw.githubusercontent.com/ranic/mixpanel-docs/main/media/Other%20Bits/Cohort%20Syncs/Segment/segment1.png)
+![Segment 1 Image](/segment1.png)
 
 4. Create a Mixpanel Cohorts source.
 
-![Segment 2 Image](https://raw.githubusercontent.com/ranic/mixpanel-docs/main/media/Other%20Bits/Cohort%20Syncs/Segment/segment2.png)
+![Segment 2 Image](/segment2.png)
 
 5. Copy the** Write Key** displayed there.
 
-![Segment 3 Image](https://raw.githubusercontent.com/ranic/mixpanel-docs/main/media/Other%20Bits/Cohort%20Syncs/Segment/segment3.png)
+![Segment 3 Image](/segment3.png)
 
 ### Mixpanel
 
@@ -46,11 +46,11 @@ We will use the Write Key from Segment to enable the connection in Mixpanel.
 
 1. Select **Integrations** under the **Data Management** tab in the top navigation bar.
 
-![Segment 4 Image](https://raw.githubusercontent.com/ranic/mixpanel-docs/main/media/Other%20Bits/Cohort%20Syncs/Segment/segment4.png)
+![Segment 4 Image](/segment4.png)
 
 2. Then select Segment, click **Connect**, and paste the** Write Key** that you generated in Segment.
 
-![Segment 5 Image](https://raw.githubusercontent.com/ranic/mixpanel-docs/main/media/Other%20Bits/Cohort%20Syncs/Segment/segment5.png)
+![Segment 5 Image](/segment5.png)
 
 3. Click **Continue** to complete the process.
 
@@ -62,7 +62,7 @@ To export a Mixpanel cohort into Segment.
 
 2. Select the overflow menu on cohort that you want to export and click Export to... → Segment.
 
-![Segment 6 Image](https://raw.githubusercontent.com/ranic/mixpanel-docs/main/media/Other%20Bits/Cohort%20Syncs/Segment/segment6.png)
+![Segment 6 Image](/segment6.png)
 
 3. Select either one-time sync or dynamic sync, Click **Start Sync**.
 
@@ -79,7 +79,7 @@ In dynamic sync, Mixpanel initiates sync between a cohort and Segment every 15 m
 ## Verifying in Segment 
 Once the export completes, you can open the debugger on the source you created in Segment above and you'll see "identify" calls flowing in for each user that has been added or removed from the cohort.
 
-![Segment 7 Image](https://raw.githubusercontent.com/ranic/mixpanel-docs/main/media/Other%20Bits/Cohort%20Syncs/Segment/segment7.png)
+![Segment 7 Image](/segment7.png)
 
 Mixpanel sets a property on the user's profile in Segment indicating whether they are currently part of the cohort.
 

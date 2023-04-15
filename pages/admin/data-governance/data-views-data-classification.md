@@ -33,7 +33,7 @@ Engineering or Product teams working on a specific version can use Data Views to
 
 To create a new Data View, navigate to **Project Settings** then click on **+ Create Data View** in the top right of the Data Views settings. Add a name and description to your Data View and click **Save**. The name of the Data View cannot be longer than 255 characters.
 
-![Create Data View](https://raw.githubusercontent.com/ranic/mixpanel-docs/main/media/Admin/Data%20Governance/Data%20Views%20%26%20Data%20Classification/create-data-view.png)
+![Create Data View](/create-data-view.png)
 
 Click on your new Data View to see an overview of Data View details, review or update filters, and manage access at the individual or team level.
 
@@ -41,16 +41,16 @@ Click on your new Data View to see an overview of Data View details, review or u
 
 Navigate to PROJECT SETTINGS, and select at the left-hand menu  Data Views.
 
-![Project Settings](https://raw.githubusercontent.com/ranic/mixpanel-docs/main/media/Admin/Data%20Governance/Data%20Views%20%26%20Data%20Classification/manage-data-view.png)
+![Project Settings](/manage-data-view.png)
 
-![Manage Data View Project Settings](https://raw.githubusercontent.com/ranic/mixpanel-docs/main/media/Admin/Data%20Governance/Data%20Views%20%26%20Data%20Classification/manage-data-view-project-settings.png)
+![Manage Data View Project Settings](/manage-data-view-project-settings.png)
 
 #### Default Data View
 All projects have a global Data View called “All Project Data.” This Data View has no data filters and gives users access to all the data in a project. The global Data View in a project is equivalent to a Mixpanel project without Data Views.
 
 The “All Project Data” Data View starts as the default Data View of a project for any new users added to the project. You can decide which Data View you want to set as default by checking the box next to the Workspace name and selecting Set Default.
 
-![Manage Data View Project Settings](https://raw.githubusercontent.com/ranic/mixpanel-docs/main/media/Admin/Data%20Governance/Data%20Views%20%26%20Data%20Classification/set-default-data-view.png)
+![Manage Data View Project Settings](/set-default-data-view.png)
 
 ### Manage Visibility and Editing Controls
 
@@ -62,13 +62,13 @@ Select Public under Visibility to allow project members to discover your Data Vi
 
 After the Editing Controls and Visibility are set upon Data View creation, they can be changed by only the Data View creator or a Project Owner.
 
-![Data Views Overview](https://raw.githubusercontent.com/ranic/mixpanel-docs/main/media/Admin/Data%20Governance/Data%20Views%20%26%20Data%20Classification/data-view-overview.png)
+![Data Views Overview](/data-view-overview.png)
 
 #### Manage Data View Filters
 
 Filters determine what data is accessible within a Data View.
 
-![Data Views Filters](https://raw.githubusercontent.com/ranic/mixpanel-docs/main/media/Admin/Data%20Governance/Data%20Views%20%26%20Data%20Classification/manage-data-view-filters.png)
+![Data Views Filters](/manage-data-view-filters.png)
 You can apply multiple event, event property, and user profile property filters to a Data View.
 
 #### Add Users or Teams
@@ -85,9 +85,9 @@ If you set up your Identity Provider to connect to Mixpanel with Single Sign-On,
 
 Click on the name of your project in the upper-right corner, and then on "Data View Library". The Data View Library allows you to see the Data Views you have joined, to create new Data Views, and to join other public Data Views. Private Data Views that you have not been invited to will not show up here.
 
-![Data View Library Nav](https://raw.githubusercontent.com/ranic/mixpanel-docs/main/media/Admin/Data%20Governance/Data%20Views%20%26%20Data%20Classification/data-view-library.png)
+![Data View Library Nav](/data-view-library.png)
 
-![Data View Library](https://raw.githubusercontent.com/ranic/mixpanel-docs/main/media/Admin/Data%20Governance/Data%20Views%20%26%20Data%20Classification/data-view-library2.png)
+![Data View Library](/data-view-library2.png)
 
 ### Experience Data Views as a User
 
@@ -118,11 +118,11 @@ When you mark a property as classified, users or teams with the checked Can View
 
 Select a property or group of properties and click Mark Classified.
 
-![Mark Classified](https://raw.githubusercontent.com/ranic/mixpanel-docs/main/media/Admin/Data%20Governance/Data%20Views%20%26%20Data%20Classification/mark-classified.png)
+![Mark Classified](/mark-classified.png)
 
 A pop-up will confirm that you want to mark the selected property or properties as classified.
 
-![Mark Classified Warning](https://raw.githubusercontent.com/ranic/mixpanel-docs/main/media/Admin/Data%20Governance/Data%20Views%20%26%20Data%20Classification/mark-classified-warning.png)
+![Mark Classified Warning](/mark-classified-warning.png)
 
 When you mark a property as classified, the Status column will indicate that the property is classified alongside its visibility state (visible or hidden). If the Status column shows only the visibility state, then the property is not marked as classified.
 
@@ -132,16 +132,16 @@ Go to your Project Settings, and then to the tab "Project Users" in order to man
 
 In the CURRENT USERS table, the Classified Data column indicates which users have permission to view classified data. Click the Can View check box in a user’s row to update their classified data viewing permission.
 
-![Mark Classified Viewing Perms](https://raw.githubusercontent.com/ranic/mixpanel-docs/main/media/Admin/Data%20Governance/Data%20Views%20%26%20Data%20Classification/manage-classified-data-viewing-perms.png)
+![Mark Classified Viewing Perms](/manage-classified-data-viewing-perms.png)
 
 Click on All Data Permissions to filter the CURRENT USERS table to display only users that can view classified data or only users that cannot view classified data.
 
-![All Data Permissions](https://raw.githubusercontent.com/ranic/mixpanel-docs/main/media/Admin/Data%20Governance/Data%20Views%20%26%20Data%20Classification/all-data-permissions.png)
+![All Data Permissions](/all-data-permissions.png)
 ### Manage Classified Data Viewing Permissions for Teams
 
 Navigate to Organization Settings from the gear icon at the top-right corner of the navigation bar. Go to the Users & Teams tab and click on the team for which you wish to manage permissions. You can manage the team’s access to Classified Data for each of the projects to which they have access.
 
-![Manage Classified Data Viewing for Teams](https://raw.githubusercontent.com/ranic/mixpanel-docs/main/media/Admin/Data%20Governance/Data%20Views%20%26%20Data%20Classification/manage-classified-data-viewing-teams.png)
+![Manage Classified Data Viewing for Teams](/manage-classified-data-viewing-teams.png)
 ### Analysis Experience for Users that Cannot View Properties Marked as Classified Data
 
 Users that cannot view properties marked as Classified Data can see which specific properties are marked as classified in Lexicon. Users that cannot view properties marked as Classified Data cannot use such properties as filters or breakdowns.
@@ -149,11 +149,11 @@ Users that cannot view properties marked as Classified Data can see which specif
 #### Boards
 
 If a report contains any event or property marked as classified when a user without the "Can View" option tries to open it, will see the next warning
-![Sensitive Data Warning](https://raw.githubusercontent.com/ranic/mixpanel-docs/main/media/Admin/Data%20Governance/Data%20Views%20%26%20Data%20Classification/sensitive-data.png)
+![Sensitive Data Warning](/sensitive-data.png)
 Users that cannot view classified data can click on a Board card to access the full report and determine what properties are preventing them from viewing a report.
 
 #### Analysis Reports (Insights, Funnels, Flows, and Retention)
 
 Classified properties won't be visibly different when building a report, but if used but a user without the "Can View" option enabled, the next warning will be displayed:
 
-![Analysis Reports Warning](https://raw.githubusercontent.com/ranic/mixpanel-docs/main/media/Admin/Data%20Governance/Data%20Views%20%26%20Data%20Classification/analysis-reports.png)
+![Analysis Reports Warning](/analysis-reports.png)

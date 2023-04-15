@@ -26,7 +26,7 @@ To enable the integration:
 
 1. Select **Integrations** under the **Data Management** tab in the top navigation bar.
 
-![Xtremepush 1 Image](https://raw.githubusercontent.com/ranic/mixpanel-docs/main/media/Other%20Bits/Cohort%20Syncs/Xtremepush/extremepush1.png)
+![Xtremepush 1 Image](/extremepush1.png)
 
 2. From the Integrations page, select Xtremepush, and select **Connect**.
 

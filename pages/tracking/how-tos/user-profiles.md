@@ -75,7 +75,7 @@ print(resp.json())
 
 To get started, click on **Add/Edit Profile** from the [Users](https://mixpanel.com/report/users) page and follow the workflow:
 
-![https://help.mixpanel.com/hc/article_attachments/4411767063444/Screen_Shot_2021-12-01_at_11.44.03_AM.png](https://help.mixpanel.com/hc/article_attachments/4411767063444/Screen_Shot_2021-12-01_at_11.44.03_AM.png)
+![/Screen_Shot_2021-12-01_at_11.44.03_AM.png](/Screen_Shot_2021-12-01_at_11.44.03_AM.png)
 
 ## Importing Individual User Profiles
 
@@ -87,7 +87,7 @@ The most important column is **$distinct_id**. This ID needs to match the disti
 
 After **$distinct_id**, you can add additional properties to the profile by pressing the "Add Property" button. Mixpanel will help autocomplete profile properties that you may want to set.
 
-![https://help.mixpanel.com/hc/article_attachments/4411778356756/Screen_Shot_2021-12-01_at_12.20.27_PM.png](https://help.mixpanel.com/hc/article_attachments/4411778356756/Screen_Shot_2021-12-01_at_12.20.27_PM.png)
+![/Screen_Shot_2021-12-01_at_12.20.27_PM.png](/Screen_Shot_2021-12-01_at_12.20.27_PM.png)
 
 We recommend using the `$name` and `$email` properties if you're uploading a user's name or email. Mixpanel shows these properties by default in various parts of our UI.
 
@@ -111,7 +111,7 @@ If you do not assign an identifier column, Mixpanel will use your $email column 
 
 ### Choose Desired CSV Columns
 
-![https://help.mixpanel.com/hc/article_attachments/4411778405524/Screen_Shot_2021-12-01_at_12.24.00_PM.png](https://help.mixpanel.com/hc/article_attachments/4411778405524/Screen_Shot_2021-12-01_at_12.24.00_PM.png)
+![/Screen_Shot_2021-12-01_at_12.24.00_PM.png](/Screen_Shot_2021-12-01_at_12.24.00_PM.png)
 
 You'll have the opportunity to look through all columns in the CSV to preview the values. In this step you must uncheck all of the columns you wish to NOT import. You must also choose the associated Mixpanel profile property that each CSV column will be associated with. When you done selecting the columns you wish to import along with their associated properties, press the Import profiles button.
 

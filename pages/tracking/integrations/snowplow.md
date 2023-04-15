@@ -11,7 +11,7 @@ Snowplow is an open-source, self-hosted platform for collecting and storing even
 
 Below we show the architecture of a Snowplow pipeline from their [documentation](https://docs.snowplowanalytics.com/docs/understanding-your-pipeline).
 
-![image](https://user-images.githubusercontent.com/2077899/230695089-ad29a224-0f8e-425a-88a5-f34be4600628.png)
+![image](/230695089-ad29a224-0f8e-425a-88a5-f34be4600628.png)
 
 
 ## Integrating with Mixpanel

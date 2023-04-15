@@ -13,7 +13,7 @@ Mixpanel’s Impact report measures the effects of product or marketing launches
 
 To access **Impact**, go to the Applications section in the top right of the top navigation, then select **Impact**.
 
-![https://help.mixpanel.com/hc/article_attachments/11036831782164](https://help.mixpanel.com/hc/article_attachments/11036831782164)
+![/11036831782164](/11036831782164)
 
 # Use Cases
 
@@ -28,29 +28,29 @@ Here are some of the sample questions you can answer in Impact:
 
 To build an Impact query, first select a launch event. This is the event that you are measuring as the cause of change.
 
-![https://help.mixpanel.com/hc/article_attachments/360052965351/Untitled.png](https://help.mixpanel.com/hc/article_attachments/360052965351/Untitled.png)
+![/Untitled.png](/Untitled.png)
 
 Select the start date of this launch event. Add any additional filters to narrow the launch event parameters by clicking the **... dropdown** and selecting the **Add filter**.
 
-![https://help.mixpanel.com/hc/article_attachments/360052965711/mceclip0.png](https://help.mixpanel.com/hc/article_attachments/360052965711/mceclip0.png)
+![/mceclip0.png](/mceclip0.png)
 
 ## Step 2: Select metric events
 
 Select a metric event by clicking the **Add** button under **IMPACTED EVENTS**. You are measuring the impact of the launch event on this metric event. Add additional filters to narrow the impacted event parameters.
 
-![https://help.mixpanel.com/hc/article_attachments/360052840692/Untitled2.png](https://help.mixpanel.com/hc/article_attachments/360052840692/Untitled2.png)
+![/Untitled2.png](/Untitled2.png)
 
 ## Step 3: Add breakdown (optional)
 
 Breakdown impacted events further by clicking the **… icon**, selecting **Add Aggregation**, then selecting an event property, such as “Amount”. This will add up the value of this property for all of the times this event happened in this time range. All aggregate properties are typecast to numeric properties in order to calculate the sum of that property. For example, aggregate the property “Amount” under the event “Process Payment” to analyze revenue.
 
-![https://help.mixpanel.com/hc/article_attachments/360054659272/chrome-capture__5_.gif](https://help.mixpanel.com/hc/article_attachments/360054659272/chrome-capture__5_.gif)
+![/chrome-capture__5_.gif](/chrome-capture__5_.gif)
 
 ## Step 4: Select user group
 
 Under **USER DEFINITION** select whether you would like to count users who did **only the impacted event** or **any event**.
 
-![https://help.mixpanel.com/hc/article_attachments/360052967131/mceclip2.png](https://help.mixpanel.com/hc/article_attachments/360052967131/mceclip2.png)
+![/mceclip2.png](/mceclip2.png)
 
 ## Step 5: Select time range
 
@@ -58,7 +58,7 @@ Select the time range. The time range is a fixed period of time that determines 
 
 The chart will not necessarily change if you change the time range.
 
-![https://help.mixpanel.com/hc/article_attachments/360052967331/mceclip3.png](https://help.mixpanel.com/hc/article_attachments/360052967331/mceclip3.png)
+![/mceclip3.png](/mceclip3.png)
 
 # Reference
 
@@ -76,7 +76,7 @@ The Impact Chart shows how the rate of metric event occurrence changes over time
 
 Unlike other Mixpanel charts, the Impact Chart displays time in relative time, not calendar time.  The chart centers around the first day that the launch event is available, or “day zero”. The chart displays the 15 days before and after day zero.
 
-![https://help.mixpanel.com/hc/article_attachments/360052841732/mceclip4.png](https://help.mixpanel.com/hc/article_attachments/360052841732/mceclip4.png)
+![/mceclip4.png](/mceclip4.png)
 
 Every user in the report can have a different day zero.  For users in the adopter group, day zero is the first day that they perform the launch event.  For users in the non-adopter group, day zero is the day the first adopter performed the launch event (which is most likely the launch day of the feature).
 
@@ -96,7 +96,7 @@ You can see how frequently users in each group perform the metric event, both be
 
 The chart also contains average lines for non-adopters and adopters both before and after day zero (or launch), and the unobserved counterfactual of the adopters (UCA), formerly called projected adopters, average after day zero.
 
-![https://help.mixpanel.com/hc/article_attachments/360045157051/Screen_Shot_2019-12-09_at_2.05.03_PM_copy.png](https://help.mixpanel.com/hc/article_attachments/360045157051/Screen_Shot_2019-12-09_at_2.05.03_PM_copy.png)
+![/Screen_Shot_2019-12-09_at_2.05.03_PM_copy.png](/Screen_Shot_2019-12-09_at_2.05.03_PM_copy.png)
 
 ## Impact Table
 
@@ -104,7 +104,7 @@ The Impact Table summarizes the results of the Impact chart.  It displays the a
 
 The table is broken down into three sections: “Pre-Launch”, “Post-Launch”, and “Impact”.
 
-![https://help.mixpanel.com/hc/article_attachments/360045157071/Screen_Shot_2019-12-09_at_2.05.52_PM.png](https://help.mixpanel.com/hc/article_attachments/360045157071/Screen_Shot_2019-12-09_at_2.05.52_PM.png)
+![/Screen_Shot_2019-12-09_at_2.05.52_PM.png](/Screen_Shot_2019-12-09_at_2.05.52_PM.png)
 
 The Impact Table compares users that performed the launch event and those that did not. For both groups of users, Mixpanel calculates the average number of times per day that users performed the metric event before the launch, after the launch, and the difference between the two (the delta).
 
@@ -202,7 +202,7 @@ To learn more about Causal Impact in detail, read this [Mixpanel Whitepaper](ht
 
 Click **View Causal Impact** to use the propensity matching model.
 
-![https://help.mixpanel.com/hc/article_attachments/360047073931/Screen_Shot_2020-01-10_at_11.19.41_AM.png](https://help.mixpanel.com/hc/article_attachments/360047073931/Screen_Shot_2020-01-10_at_11.19.41_AM.png)
+![/Screen_Shot_2020-01-10_at_11.19.41_AM.png](/Screen_Shot_2020-01-10_at_11.19.41_AM.png)
 
 Please note that Causal Impact can take up to a few minutes to calculate results.
 

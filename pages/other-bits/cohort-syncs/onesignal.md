@@ -27,11 +27,11 @@ Follow these steps to enable the integration with OneSignal:
 
 1. Select **Integrations** under the **Data Management** tab in the top navigation bar of Mixpanel.
 
-![OneSignal 1 Image](https://raw.githubusercontent.com/ranic/mixpanel-docs/main/media/Other%20Bits/Cohort%20Syncs/OneSignal/onesignal1.png)
+![OneSignal 1 Image](/onesignal1.png)
 
 2. From the Integrations page, select the OneSignal dropdown, and select **Connect**.
 
-![OneSignal 2 Image](https://raw.githubusercontent.com/ranic/mixpanel-docs/main/media/Other%20Bits/Cohort%20Syncs/OneSignal/onesignal6.png)
+![OneSignal 2 Image](/onesignal6.png)
 
 3. You will need to provide two credentials to authorize the connection: **API Key and App ID**. You can find these values in your **OneSignal settings** page. The OneSignal integration will show a **Connected** tag in the UI once the connection succeeds. 
 
@@ -50,11 +50,11 @@ To export a cohort to OneSignal:
 
 1. Navigate to Cohorts by clicking in the **Data Management** tab and select **Cohorts**.
 
-![OneSignal 3 Image](https://raw.githubusercontent.com/ranic/mixpanel-docs/main/media/Other%20Bits/Cohort%20Syncs/OneSignal/onesignal3.png)
+![OneSignal 3 Image](/onesignal3.png)
 
 2. Select the cohort that you want to export. Click on the three-dot icon on the right side of the cohort and click **Export to OneSignal**.
 
-![OneSignal 4 Image](https://raw.githubusercontent.com/ranic/mixpanel-docs/main/media/Other%20Bits/Cohort%20Syncs/OneSignal/onesignal4.png)
+![OneSignal 4 Image](/onesignal4.png)
 
 ## Sync Types
 This integration supports two types of exports: one-time export and dynamic sync. When you generate a one-time export or dynamic sync, it overwrites the previous export with an updated export that reflects users who qualify for the cohort at the time of export.
@@ -69,7 +69,7 @@ In dynamic sync, Mixpanel initiates sync between a cohort and OneSignal every fi
 
 Once the export completes, you will see a Segment reflecting the set of users from your Mixpanel cohort:
 
-![OneSignal 5 Image](https://raw.githubusercontent.com/ranic/mixpanel-docs/main/media/Other%20Bits/Cohort%20Syncs/OneSignal/onesignal5.png)
+![OneSignal 5 Image](/onesignal5.png)
 
 ## OneSignal events into Mixpanel & MTU exemptions
 

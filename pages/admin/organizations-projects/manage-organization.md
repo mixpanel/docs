@@ -23,19 +23,19 @@ If you are an organization admin, you can enable two-factor authentication by do
 
 1. In your "Organization Settings", select **Access Security**.
 
-![2FA Access Security Image](https://raw.githubusercontent.com/ranic/mixpanel-docs/main/media/Admin/2FA/2fa_access_security.png)
+![2FA Access Security Image](/2fa_access_security.png)
 
 2. In “Two Factor Authentication”, if the icon is gray, click it to enable. If the icon is purple, click it to disable.
 
 **Note: If your organization has SSO enabled, your organization will not have access to 2FA.**
 
-![2FA Enable Image](https://raw.githubusercontent.com/ranic/mixpanel-docs/main/media/Admin/2FA/2fa_enable_2fa.png)
+![2FA Enable Image](/2fa_enable_2fa.png)
 
 3. The “Verify Mixpanel password” box will appear.
 
 **Note: If you do not have a password because you use Magic Link or Google Sign In, please go to your personal settings to set up your password.**
 
-![2FA Verify Password Image](https://raw.githubusercontent.com/ranic/mixpanel-docs/main/media/Admin/2FA/2fa_verify_password.png)
+![2FA Verify Password Image](/2fa_verify_password.png)
 
 4. Enter your password and click **Confirm** to finalize changes.
 
@@ -51,39 +51,39 @@ On their second login, Mixpanel Users will be prompted to set up two-factor auth
 
 1. In order to set up two-factor authentication via an authentication app, select the authentication app option and ensure you have your preferred authentication app downloaded. We recommend using apps such as Google Authenticator, Authy and Microsoft Authenticator.
 
-![2FA Authentication App 1 Image](https://raw.githubusercontent.com/ranic/mixpanel-docs/main/media/Admin/2FA/2fa_authentication_app1.png)
+![2FA Authentication App 1 Image](/2fa_authentication_app1.png)
 
 2. Scan the QR code via your Authentication App in order to complete the setup.
 
-![2FA Authentication App 2 Image](https://raw.githubusercontent.com/ranic/mixpanel-docs/main/media/Admin/2FA/2fa_authentication_app2.png)
+![2FA Authentication App 2 Image](/2fa_authentication_app2.png)
 
 If you are unable to scan the QR code, click on “Can’t scan QR code?” This will provide you a two-factor secret to set up your authentication app manually.
 
-![2FA Authentication App 2b Image](https://raw.githubusercontent.com/ranic/mixpanel-docs/main/media/Admin/2FA/2fa_authentication_app2b.png)
+![2FA Authentication App 2b Image](/2fa_authentication_app2b.png)
 
 3. Before you log in into Mixpanel, download or copy your recovery codes. These are essential for you to log in if you happen to lose your phone.
 
 **Note: This is the only location you can save your recovery codes, please ensure you save them in a safe place.**
 
-![2FA Authentication App 3 Image](https://raw.githubusercontent.com/ranic/mixpanel-docs/main/media/Admin/2FA/2fa_authentication_app3.png)
+![2FA Authentication App 3 Image](/2fa_authentication_app3.png)
 
 ##### SMS Authentication
 
 1. In order to set up two-factor authentication via SMS, select the SMS option.
 
-![2FA SMS 1 Image](https://raw.githubusercontent.com/ranic/mixpanel-docs/main/media/Admin/2FA/2fa_sms1.png)
+![2FA SMS 1 Image](/2fa_sms1.png)
 
 2. Enter your mobile phone number and click Continue.
 
-![2FA SMS 2 Image](https://raw.githubusercontent.com/ranic/mixpanel-docs/main/media/Admin/2FA/2fa_sms2.png)
+![2FA SMS 2 Image](/2fa_sms2.png)
 
 3. You will receive a text message with your Mixpanel security code.
 
-![2FA SMS 3 Image](https://raw.githubusercontent.com/ranic/mixpanel-docs/main/media/Admin/2FA/2fa_sms3.png)
+![2FA SMS 3 Image](/2fa_sms3.png)
 
 4. On the "Two-factor verification screen", enter your Mixpanel security code, and click Log In.
 
-![2FA SMS 4 Image](https://raw.githubusercontent.com/ranic/mixpanel-docs/main/media/Admin/2FA/2fa_sms4.png)
+![2FA SMS 4 Image](/2fa_sms4.png)
 
 #### Setup via personal settings page
 
@@ -91,11 +91,11 @@ An individual user can also set up their two-factor authentication via their per
 
 1. Go to the settings icon > personal settings> your profile, then click on Set Up Method.
 
-![2FA Personal 1 Image](https://raw.githubusercontent.com/ranic/mixpanel-docs/main/media/Admin/2FA/2fa_personal1.png)
+![2FA Personal 1 Image](/2fa_personal1.png)
 
 2. You will be asked to log out in order to set up two-factor authentication. Log in to Mixpanel and follow the setup process.
 
-![2FA Personal 2 Image](https://raw.githubusercontent.com/ranic/mixpanel-docs/main/media/Admin/2FA/2fa_personal2.png)
+![2FA Personal 2 Image](/2fa_personal2.png)
 
 ### Changing your Two-Factor Authentication Method
 
@@ -107,11 +107,11 @@ Users can switch their method via the following steps:
 
 1. Go to settings cog > personal settings> your profile, then click **Change Method**.
 
-![2FA Change 1 Image](https://raw.githubusercontent.com/ranic/mixpanel-docs/main/media/Admin/2FA/2fa_change1.png)
+![2FA Change 1 Image](/2fa_change1.png)
 
 2. To change your method, log out and log back in to Mixpanel to start the setup process for your new authentication method.
 
-![2FA Change 2 Image](https://raw.githubusercontent.com/ranic/mixpanel-docs/main/media/Admin/2FA/2fa_change2.png)
+![2FA Change 2 Image](/2fa_change2.png)
 
 ### Login via backup methods
 
@@ -125,11 +125,11 @@ If an authentication app is your preferred method of authentication, you can log
 
 1. Click on “Need help? Use a recovery code to sign in”
 
-![2FA Backup 1 Image](https://raw.githubusercontent.com/ranic/mixpanel-docs/main/media/Admin/2FA/2fa_backup1.png)
+![2FA Backup 1 Image](/2fa_backup1.png)
 
 2. Enter your recovery code and click Login
 
-![2FA Backup 2 Image](https://raw.githubusercontent.com/ranic/mixpanel-docs/main/media/Admin/2FA/2fa_backup2.png)
+![2FA Backup 2 Image](/2fa_backup2.png)
 
 **Note: If you use all your recovery codes, you will be asked to reset your two-factor authentication method on your next login.**
 
@@ -145,7 +145,7 @@ You can use Single Sign-On (SSO) to access Mixpanel. You must be on a Mixpanel E
 
 To access SSO settings in Mixpanel, navigate to your **Organization Settings** located under your name in the top navigation.
 
-![SSO Org Setting Image](https://raw.githubusercontent.com/ranic/mixpanel-docs/main/media/Admin/SSO/sso_org_setting.png)
+![SSO Org Setting Image](/sso_org_setting.png)
 
 **Require Users to Log In Using SSO**
 Optionally toggle “Require Users to Log In using SSO” to prevent your users from using a username and password to log in. Click Enable. Organization owners and admins will still be able to log in using username and password if SSO is not set up correctly.
@@ -159,19 +159,19 @@ To claim a domain, add a TXT record to your domain’s DNS records with a verifi
 **Generate Verification Key by Claiming Domain**
 To claim a domain, click Access Security in your Organization Settings.
 
-![SSO Access Security Image](https://raw.githubusercontent.com/ranic/mixpanel-docs/main/media/Admin/SSO/sso_access_security.png)
+![SSO Access Security Image](/sso_access_security.png)
 
 Click Domain Claiming in the Access Security menu.
 
-![SSO Domain Claiming Image](https://raw.githubusercontent.com/ranic/mixpanel-docs/main/media/Admin/SSO/sso_domain_claiming.png)
+![SSO Domain Claiming Image](/sso_domain_claiming.png)
 
 Click Add Domain found in Domain Claiming menu. You will be prompted to enter your Mixpanel password.
 
-![SSO Add Domain Image](https://raw.githubusercontent.com/ranic/mixpanel-docs/main/media/Admin/SSO/sso_add_domain.png)
+![SSO Add Domain Image](/sso_add_domain.png)
 
 Enter the domain you wish to claim in the pop-up modal. Click Submit Claim.
 
-![SSO Submit Claim Image](https://raw.githubusercontent.com/ranic/mixpanel-docs/main/media/Admin/SSO/sso_submit_claim.png)
+![SSO Submit Claim Image](/sso_submit_claim.png)
 
 **Check Verification Status**
 
@@ -179,7 +179,7 @@ Enter the domain you wish to claim in the pop-up modal. Click Submit Claim.
 
 The claimed domain appears in the Domain Claiming menu. It will list as pending until it is successfully verified.
 
-![SSO Check Verification Status Image](https://raw.githubusercontent.com/ranic/mixpanel-docs/main/media/Admin/SSO/sso_check_verification_status.png)
+![SSO Check Verification Status Image](/sso_check_verification_status.png)
 
 It will be indicated as verified after Mixpanel verifies the domain.
 
@@ -219,7 +219,7 @@ It is possible to set up Mixpanel with IDPs not listed above. Email sso-support@
  
 You likely will need to provide your IDP with a postback URL. The postback URL is accessible from the Access Security tab. To obtain your postback URL, navigate to Access Security in your Organization Settings and toggle the Single Sign-On button.
   
-![SSO Postback URL Image](https://raw.githubusercontent.com/ranic/mixpanel-docs/main/media/Admin/SSO/sso_postback_url.png)
+![SSO Postback URL Image](/sso_postback_url.png)
 
 **SAML Certificate**
 
@@ -241,7 +241,7 @@ This toggle is to determine whether you are using your IDP to manage who should 
 
 This can be enabled in the Access Security tab of your Organization Settings. It is the toggle at the bottom called "IDP Managed Access" and is blue when enabled.
   
-![SSO IDP Managed Access Image](https://raw.githubusercontent.com/ranic/mixpanel-docs/main/media/Admin/SSO/sso_idp_managed_access.png)
+![SSO IDP Managed Access Image](/sso_idp_managed_access.png)
 
 ### SCIM
 
@@ -249,7 +249,7 @@ The SCIM tab in the Access Security tab of the Organization Settings lets you ge
 
 You can find the official SCIM spec that Mixpanel implements a subset of here. The base endpoint is https://mixpanel.com/api/app/scim/v2 which you can hit using the SCIM token as an Authentication Bearer token. For instance a GET call on https://mixpanel.com/api/app/scim/v2/Users using the SCIM token will get you a list of all users in your organization. Note that the SCIM endpoint only affects users who's email has a domain in the list of your verified claimed domains.
   
-![SSO SCIM Image](https://raw.githubusercontent.com/ranic/mixpanel-docs/main/media/Admin/SSO/sso_scim.png)
+![SSO SCIM Image](/sso_scim.png)
   
 While you can hit the SCIM endpoints directly, the most common use case would to be use it for autoprovisioning within an IDP that has an integration with Mixpanel provisioning. This will let your IDP and Mixpanel stay in sync - when you assign users to Mixpanel in your IDP they will be provisioned in Mixpanel, and optionally you can deprovision users within Mixpanel who lose access in your IDP. IDPs that currently have an autoprovisioning integration with Mixpanel are Okta, Onelogin, and Azure.
 
@@ -275,12 +275,12 @@ For more information, read [this Microsoft Azure article](https://docs.microsoft
 - Reply URL: https://sso.mixpanel.com/sso/saml2
 - Sign on URL: Postback URL from Mixpanel (should look like https://mixpanel.com/security/sso/v2/authorize/?org_id=YOUR_ORG_ID)
   
-![Azure Config 1 Image](https://raw.githubusercontent.com/ranic/mixpanel-docs/main/media/Admin/Azure/azure_config1.png)
+![Azure Config 1 Image](/azure_config1.png)
 
   
 3. Click **Edit** under **User Attributes & Claims** to add the required email claim (firstName and lastName are used for provisioning and optional).
   
-![Azure Config 2 Image](https://raw.githubusercontent.com/ranic/mixpanel-docs/main/media/Admin/Azure/azure_config2.png)
+![Azure Config 2 Image](/azure_config2.png)
   
 4. Download the SAML certificate under **SAML Signing Certificate** by clicking **Download** next to the **Certificate (Base64)** field. If you downloaded an .xml file then you have clicked the wrong button, make sure it is a .cer or .pem file. This will be uploaded to Mixpanel in the next step.
 
@@ -319,7 +319,7 @@ B.  Follow [Okta’s documentation on setting up a new application](https://help
 
 You must fill the form found in the “Configure SAML” menu in Okta. The following highlights what you should place in the fields.
 
-![Okta Configure SAML 1 Image](https://raw.githubusercontent.com/ranic/mixpanel-docs/main/media/Admin/Okta/okta_configure_saml1.png)
+![Okta Configure SAML 1 Image](/okta_configure_saml1.png)
 
 Make sure that the following is adjusted to match the following:
 
@@ -338,7 +338,7 @@ To access this information, first select the select the Mixpanel app under the "
 
 Under the "SAML 2.0" section, click **View Setup Instructions** and scroll down to "Configuration Data".
 
-![Okta Info 1 Image](https://raw.githubusercontent.com/ranic/mixpanel-docs/main/media/Admin/Okta/okta_info1.png)
+![Okta Info 1 Image](/okta_info1.png)
 
 #### Public Certificate
 
@@ -346,19 +346,19 @@ Your X.509 certificate is what allows users signing in through a third-party ide
 
 Click **Download Certificate** in the second entry to download your certificate.
 
-![Okta Info 2 Image](https://raw.githubusercontent.com/ranic/mixpanel-docs/main/media/Admin/Okta/okta_info2.png)
+![Okta Info 2 Image](/okta_info2.png)
 
 #### Authentication URL
 
 Your Authentication URL is in the third entry labeled "Redirect Login URL".
 
-![Okta Info 3 Image](https://raw.githubusercontent.com/ranic/mixpanel-docs/main/media/Admin/Okta/okta_info3.png)
+![Okta Info 3 Image](/okta_info3.png)
 
 #### Issuer URL
 
 You will find your Issuer URL in the third entry labeled "Identity Provider Issuer".
 
-![Okta Info 4 Image](https://raw.githubusercontent.com/ranic/mixpanel-docs/main/media/Admin/Okta/okta_info4.png)
+![Okta Info 4 Image](/okta_info4.png)
 
 ### Enable SSO
 
@@ -377,7 +377,7 @@ The following prerequisites must be met to set up SCIM provisioning:
 - The “Username” value in Okta must be an email address with a domain that you’ve claimed.
 - You need to have generated a SCIM OAuth token to use with the app. This token is located in the “Access Security” tab of your organization settings. You will need to be an organization admin to access this.
 
-![Okta SCIM 1 Image](https://raw.githubusercontent.com/ranic/mixpanel-docs/main/media/Admin/Okta/okta_scim1.png)
+![Okta SCIM 1 Image](/okta_scim1.png)
 
 The following provisioning features are supported:
 
@@ -390,13 +390,13 @@ The following provisioning features are supported:
 
 Click the **Configure API Integration** button in Okta to begin.
 
-![Okta SCIM 2 Image](https://raw.githubusercontent.com/ranic/mixpanel-docs/main/media/Admin/Okta/okta_scim2.png)
+![Okta SCIM 2 Image](/okta_scim2.png)
 
 Check the **Enable API Integration** box, then enter your SCIM token.
 
 Select the supported features (Create/Update/Deactivate) you wish to enable:
 
-![Okta SCIM 3 Image](https://raw.githubusercontent.com/ranic/mixpanel-docs/main/media/Admin/Okta/okta_scim3.png)
+![Okta SCIM 3 Image](/okta_scim3.png)
 
 The following profile attributes are required to be sent from Okta to Mixpanel:
 
@@ -405,11 +405,11 @@ The following profile attributes are required to be sent from Okta to Mixpanel:
 - Family name
 - Primary email
 
-![Okta SCIM 4 Image](https://raw.githubusercontent.com/ranic/mixpanel-docs/main/media/Admin/Okta/okta_scim4.png)
+![Okta SCIM 4 Image](/okta_scim4.png)
 
 Select and assign the users you wish to provision:
 
-![Okta SCIM 5 Image](https://raw.githubusercontent.com/ranic/mixpanel-docs/main/media/Admin/Okta/okta_scim5.png)
+![Okta SCIM 5 Image](/okta_scim5.png)
 
 #### Troubleshooting
 
@@ -424,13 +424,13 @@ Organization Discoverability makes it seamless for new users with a shared work 
 
 This feature is accessible to new users who have verified their email as well as existing organizations that are not an Enterprise plan and do not have SSO enabled.
 
-![Organization Discoverability 1 Image](https://raw.githubusercontent.com/ranic/mixpanel-docs/main/media/Admin/Organization-Project/discoverability1.png)
+![Organization Discoverability 1 Image](/discoverability1.png)
 
 ### Setting Discoverability
 
 Only **organization owners** and **billing admins** can access Organization Discoverability by going to Organization Settings > Users & Teams > Organization Discoverability.
 
-![Organization Discoverability 2 Image](https://raw.githubusercontent.com/ranic/mixpanel-docs/main/media/Admin/Organization-Project/discoverability2.png)
+![Organization Discoverability 2 Image](/discoverability2.png)
 
 
 They can enable Organization Discoverability by first specifying the private (i.e., work) email domain(s) that should be granted access when a new user signs up for Mixpanel. Please note that public email domains, such as Gmail or Yahoo, cannot be used.

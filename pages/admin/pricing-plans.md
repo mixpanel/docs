@@ -48,11 +48,11 @@ Click on the gear icon in the upper right corner of Mixpanel, and select your or
 
 From here, you can quickly view the usage this billing period as well as the current plan under Plan Details & Billing:
 
-![Plan Details and Billing](https://raw.githubusercontent.com/ranic/mixpanel-docs/main/media/Admin/Pricing-Plans/plan-details-and-billing.png)
+![Plan Details and Billing](/plan-details-and-billing.png)
 
 To view detailed historical data usage or download a CSV of historical usage for each project, click on View Historical Usage in the top right of Plan Details & Billing. This will show you a graph of your usage over time, as well usage for each project in your organization for the last 12 months. This feature is accessible by all users and can be downloaded to a CSV file.
 
-![Events Usage](https://raw.githubusercontent.com/ranic/mixpanel-docs/main/media/Admin/Pricing-Plans/events-usage.png)
+![Events Usage](/events-usage.png)
 
 ## MTU Pricing
 
@@ -110,7 +110,7 @@ From here, you can quickly view the usage this billing period as well as the cur
 
 To view detailed historical data usage, or download a CSV of historical usage for each project, click on View Historical Usage in the top right of Plan Details & Billing. This will show you a graph of your usage over time, as well usage for each project in your organization for the last 12 months. This feature is accessible by all users and can be downloaded to a CSV file.
 
-![Plan Details and Billing](https://raw.githubusercontent.com/ranic/mixpanel-docs/main/media/Admin/Pricing-Plans/mtu-usage-details.png)
+![Plan Details and Billing](/mtu-usage-details.png)
 
 ## Mixpanel for Startups
 
@@ -234,25 +234,25 @@ If you’re an organization members with Billing permission (Billing Admins and 
 1. Click on the gear in the upper right corner of Mixpanel, and select your organization under ORGANIZATION SETTINGS.
 2. Click on Plan Details & Billing > Manage Billing & Payment.
 
-![Manage Billing & Payment](https://raw.githubusercontent.com/ranic/mixpanel-docs/main/media/Admin/Pricing-Plans/manage-billing-and-payment.png)
+![Manage Billing & Payment](/manage-billing-and-payment.png)
 
 ### Troubleshoot Payment Issues
 
 If you received a notification that your payment did not go through (via email, within the product or both), don't worry, it's quick and easy to get back up and running.
 
-![Card Declined](https://raw.githubusercontent.com/ranic/mixpanel-docs/main/media/Admin/Pricing-Plans/card-declined.png)
+![Card Declined](/card-declined.png)
 
 Clicking "Update Payment Method" in both the email and the banner will take you to the Payment & Invoices tab of the Billing & Payment section in your organization settings.
 
-![Update Payment Method](https://raw.githubusercontent.com/ranic/mixpanel-docs/main/media/Admin/Pricing-Plans/update-payment-method.png)
+![Update Payment Method](/update-payment-method.png)
 
 In most cases, the payment method will need to be updated. To do this, select the pencil icon (edit) next to your credit card information and enter updated card information.
 
-![Edit Payment Method](https://raw.githubusercontent.com/ranic/mixpanel-docs/main/media/Admin/Pricing-Plans/edit-payment-method.png)
+![Edit Payment Method](/edit-payment-method.png)
 
 Once you have updated the card on file, the system will automatically attempt to run your payment again.
 
-![Rerun Payment](https://raw.githubusercontent.com/ranic/mixpanel-docs/main/media/Admin/Pricing-Plans/rerun-payment.png)
+![Rerun Payment](/rerun-payment.png)
 
 If your payment method is up to date and new funds were recently added or you contacted your bank to whitelist Mixpanel, select "Rerun Payment".
 
@@ -287,7 +287,7 @@ To submit a downgrade request:
 
 1. In ORGANIZATION SETTINGS or the dropdown menu below, you can select Plan Details & Billing. Please note that this option will only be visible for Organization Owners and Billing Admins.
 2. In Overview, click "Switch to Free" at the bottom of the Plan Details & Billing section.
-![Switch to Free](https://raw.githubusercontent.com/ranic/mixpanel-docs/main/media/Admin/Pricing-Plans/switch-to-free.png)
+![Switch to Free](/switch-to-free.png)
 3. When you click Submit, a request will be sent to Mixpanel's Billing Team for processing.
 
 ## FAQ
@@ -296,11 +296,11 @@ To submit a downgrade request:
 
 If you are on an Events Plan, view the top events contributing towards your event count by creating a monthly Insights report filtering out excluded events:
 
-![Top Events Contributing to Bill](https://raw.githubusercontent.com/ranic/mixpanel-docs/main/media/Admin/Pricing-Plans/events-contributing-to-billing.png)
+![Top Events Contributing to Bill](/events-contributing-to-billing.png)
 
 If you are on an MTU Plan, view the top events contributing towards your MTU count by creating a monthly Insights report and typing in `$all_mtu_events` which filters out event names excluded from Mixpanel's MTU calculation:
 
-![All MTU Events Contributing to Bill](https://raw.githubusercontent.com/ranic/mixpanel-docs/main/media/Admin/Pricing-Plans/all-mtu-events.png)
+![All MTU Events Contributing to Bill](/all-mtu-events.png)
 
 ### What if I go over my plan allowance?
 
@@ -320,7 +320,7 @@ For example, let’s say you are on a $24/month Growth plan, but in the month of
 
 To maximize saving and avoid additional data rate charges, we recommend [taking a look at pricing options](https://mixpanel.com/pricing/) and upgrading to a pricing plan that better fits your traffic. View the additional data rate for your paid plan in Organization Settings > Plan Details & Billing:
 
-![Additional Data Rate](https://raw.githubusercontent.com/ranic/mixpanel-docs/main/media/Admin/Pricing-Plans/additional-data-rate.png)
+![Additional Data Rate](/additional-data-rate.png)
 
 #### Alerts for Additional Data Charges
 
