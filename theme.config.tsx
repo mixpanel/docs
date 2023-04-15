@@ -1,5 +1,5 @@
 import cn from 'clsx'
-import {FC, ReactNode} from 'react'
+import {FC, ReactNode, React} from 'react'
 import { DocsThemeConfig } from 'nextra-theme-docs'
 
 function renderComponent<T>(
