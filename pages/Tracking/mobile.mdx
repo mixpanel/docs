@@ -1,0 +1,182 @@
+import { Tab, Tabs } from 'nextra-theme-docs'
+
+## Step 1: Install the SDK
+<Tabs items={['React Native', 'Flutter', 'iOS (Objective-C)', 'iOS (Swift)', 'Android']}>
+
+<Tab>
+Under your app's root directory, run:
+
+```
+npm install mixpanel-react-native
+```
+
+Under your application's iOS folder, run:
+
+```
+pod install
+```
+
+Note: For XCode 12.5+, there is a known compile issue, please refer to this [workaround](https://github.com/mixpanel/mixpanel-react-native/issues/43#issuecomment-829599732).
+</Tab>
+<Tab>
+Add `mixpanel_flutter: ^1.0.0` to your package's pubspec.yaml file and run:
+```
+flutter pub get
+```
+</Tab>
+<Tab>
+**Swift Package Manager**
+1.  In Xcode, select File > Swift Packages > Add Package Dependency.
+2.  Follow the prompts using the URL for this repository and must select a version greater than or equal to v4.0.0
+
+**CocoaPods**
+1. Create a Podfile in your Xcode project directory by running `pod init` in your terminal, edit the Podfile generated, and add the following line: `pod 'Mixpanel'`.
+2. Run `pod install` in your Xcode project directory. CocoaPods should download and install the Mixpanel library, and create a new Xcode workspace. Open up this workspace in Xcode or typing `open *.xcworkspace` in your terminal.
+
+**Carthage**
+Add `github "mixpanel/mixpanel-iphone"` to your Cartfile.
+</Tab>
+<Tab>
+**Swift Package Manager (requires Xcode 12+)**
+1. In Xcode, select File > Swift Packages > Add Package Dependency.
+2. Paste the URL `https://github.com/mixpanel/mixpanel-swift` and a minimum semantic version of v2.8.0.
+
+**CocoaPods**
+1. Create a Podfile in your Xcode project directory by running `pod init` in your terminal, edit the Podfile generated, and add the following line: `pod 'Mixpanel-swift'`.
+2. Run `pod install` in your Xcode project directory. CocoaPods should download and install the Mixpanel library, and create a new Xcode workspace. Open up this workspace in Xcode or typing `open *.xcworkspace` in your terminal.
+
+**Carthage**
+Add `github "mixpanel/mixpanel-swift"` to your Cartfile.
+</Tab>
+<Tab>
+Add `implementation 'com.mixpanel.android:mixpanel-android:7.+'` as a dependency to your `build.gradle` file.
+
+Once you've updated `build.gradle`, you can force Android Studio to sync with your new configuration by clicking the Sync Project with Gradle Files icon at the top of the window:
+![Sync Android With Gradle](https://storage.googleapis.com/cdn-mxpnl-com/static/readme/android-sync-gradle.png)
+
+If it cannot find the dependency, you should make sure you've specified `mavenCentral()` as a repository in `build.gradle`.
+
+Next, add the following permissions in your AndroidManifest.xml:
+
+```java
+<!--Required to allow the application to send events to Mixpanel.-->
+<uses-permission android:name="android.permission.INTERNET" />
+
+<!--Optional, but recommended so we can send data intelligently based on network conditions -->
+<uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+
+<!-- Optional, but recommended so events will contain information about bluetooth state-->
+<uses-permission android:name="android.permission.BLUETOOTH" />
+```
+</Tab>
+</Tabs>
+
+## Step 2: Track your first event
+You'll need your Project Token for this, which you can get [here](https://mixpanel.com/settings/project).
+
+<Tabs items={['React Native', 'Flutter', 'iOS (Objective-C)', 'iOS (Swift)', 'Android']}>
+
+<Tab>
+```javascript
+
+import React from 'react';
+import { Button, SafeAreaView } from "react-native";
+import { Mixpanel } from 'mixpanel-react-native';
+
+const trackAutomaticEvents = true;
+const mixpanel = new Mixpanel("Your Token", trackAutomaticEvents);
+mixpanel.init();
+
+const SampleApp = () => {
+  return (
+    <SafeAreaView>
+      <Button
+        title="Select Premium Plan"
+        onPress={() => mixpanel.track("Signed Up", {"Signup Type": "Referral"})}
+      />
+    </SafeAreaView>
+  );
+}
+
+export default SampleApp;
+```
+</Tab>
+<Tab>
+```dart
+import 'package:mixpanel_flutter/mixpanel_flutter.dart';
+class _YourClassState extends State<YourClass> {
+  Mixpanel mixpanel;
+
+  @override
+  void initState() {
+    super.initState();
+    initMixpanel();
+  }
+
+  Future<void> initMixpanel() async {
+    // Replace with your Project Token
+    // Once you've called this method once, you can access `mixpanel` throughout the rest of your application.
+    mixpanel = await Mixpanel.init("Your Token", trackAutomaticEvents: true);
+  }
+```
+</Tab>
+<Tab>
+```objc
+#import "Mixpanel/Mixpanel.h"
+
+- (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
+...
+	Mixpanel *mixpanel = [Mixpanel sharedInstanceWithToken:@"YOUR_TOKEN" trackAutomaticEvents: YES];
+	[mixpanel track:@"Signed Up" properties:@{
+		@"Signup Type": @"Referral"
+	}];
+...
+}
+```
+</Tab>
+<Tab>
+Import Mixpanel into AppDelegate.swift, and initialize Mixpanel within application:didFinishLaunchingWithOptions:
+```swift
+import Mixpanel
+
+func application(_ application: UIApplication,
+                 didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
+    ...
+    // Replace with your Project Token
+    Mixpanel.initialize(token: "Your Token")
+    Mixpanel.mainInstance().track(event: "Signed Up", properties: [
+        "Signup Type": "Referral", 
+    ])
+    ...
+}
+```
+</Tab>
+<Tab>
+```java
+import com.mixpanel.android.mpmetrics.MixpanelAPI;
+
+public class MainActivity extends ActionBarActivity {
+  private MixpanelAPI mp;
+
+  @Override
+  protected void onCreate(Bundle savedInstanceState) {
+    super.onCreate(savedInstanceState);
+    setContentView(R.layout.activity_main);
+
+    // Replace with your Project Token
+    mp = MixpanelAPI.getInstance(this, "YOUR_TOKEN");
+  }
+
+  private void sendToMixpanel() throws JSONException {
+    JSONObject props = new JSONObject();
+    props.put("Signup Type", "Referral");
+    mp.track("Signed Up", props);
+  }
+}
+```
+</Tab>
+</Tabs>
+
+🎉 Congratulations, you've tracked your first event! You can see it in Mixpanel via the [Events](https://mixpanel.com/report/events) page.
+
+For more options, see the reference and code for each SDK in [Github](https://github.com/mixpanel).
