@@ -5,7 +5,7 @@ import openai
 from openai.embeddings_utils import get_embedding, cosine_similarity
 
 
-openai.api_key = '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'
+openai.api_key = ''
 
 def get_md_files(path):
     return [f for root, _, files in os.walk(path) for f in glob.glob(os.path.join(root, '*.md'))]
