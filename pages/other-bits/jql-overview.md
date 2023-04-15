@@ -31,34 +31,7 @@ function main() {
 
 ## Querying Events
 
-The events collection is fetched by calling `Events()` with a single object argument that describes what events should be fetched. Below are supported fields:
-
-[block:parameters]
-{
-  "data": {
-    "h-0": "Argument",
-    "h-1": "Type",
-    "h-2": "Description",
-    "0-0": "**from_date**",
-    "0-1": "<span style=\"font-family: courier\">string</span></br><span style=\"color: red\">required</span>",
-    "0-2": "The start of the date range to query events for.  \nFormat: \"YYYY-MM-DD\"",
-    "1-0": "**to_date**",
-    "1-1": "<span style=\"font-family: courier\">string</span></br><span style=\"color: red\">required</span>",
-    "1-2": "The end of the date range to query events for (inclusive).  \nFormat: \"YYYY-MM-DD\"",
-    "2-0": "**event_selectors**",
-    "2-1": "<span style=\"font-family: courier\">Array</span></br><span style=\"color: green\">optional</span>",
-    "2-2": "An optional list of selector objects of the format `[{event: \"your event name\", selector: \"Segmentation expression\", label: \"selected event description\"}, ...]`. This will be used to pre-filter to only the events in this list. Segmentation expressions in event selectors can only access event properties, not user properties. More on Segmentation expressions: [tutorial](https://help.mixpanel.com/hc/en-us/articles/115005061286-How-do-I-build-segmentation-expressions-), [reference](ref:segmentation-expressions). The label allows you to differentiate between similar events with different selectors.  \nIt is faster to filter events within the Events query than to use a `filter()` transformation."
-  },
-  "cols": 3,
-  "rows": 3,
-  "align": [
-    "left",
-    "left",
-    "left"
-  ]
-}
-[/block]
-
+The events collection is fetched by calling `Events()` with a single object argument that describes what events should be fetched. 
 ```javascript Example
 function main() {
   // Get all signups and purchases by users with email addresses
