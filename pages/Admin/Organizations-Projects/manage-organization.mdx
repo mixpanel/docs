@@ -187,7 +187,7 @@ It will be indicated as verified after Mixpanel verifies the domain.
 
 The verification token is available in the Domain Claiming menu after you claim a domain. Use the token as part of the TXT record that you add to your domain’s DNS record.
 
-Add `mixpanel-domain-verify=<your-token>` as the TXT record.
+Add `mixpanel-domain-verify=YOUR_TOKEN` as the TXT record.
 
 Note that you will need to leave the token in your DNS records permanently or the domain will unverify after a week. Only remove the token for domains you no longer wish to use SSO with.
 
@@ -273,7 +273,7 @@ For more information, read [this Microsoft Azure article](https://docs.microsoft
 2. Enter the following information in the SAML Configuration:
 - Entity ID: https://mixpanel.com/security/sso/v2/authorize/
 - Reply URL: https://sso.mixpanel.com/sso/saml2
-- Sign on URL: Postback URL from Mixpanel (should look like https://mixpanel.com/security/sso/v2/authorize/?org_id=<your org id>)
+- Sign on URL: Postback URL from Mixpanel (should look like https://mixpanel.com/security/sso/v2/authorize/?org_id=YOUR_ORG_ID)
   
 ![Azure Config 1 Image](https://raw.githubusercontent.com/ranic/mixpanel-docs/main/media/Admin/Azure/azure_config1.png)
 

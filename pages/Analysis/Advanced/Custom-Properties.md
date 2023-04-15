@@ -208,7 +208,7 @@ Use the following numeric operators in the **Formula** field to modify your cu
 
 Use the following comparison operators in the **Formula** field to modify your custom property:
 
-- `<`: The first number is strictly less than the second number.
+- `&lt`: The first number is strictly less than the second number.
 - `>`: The first number is strictly greater than the second number.
 - `>=`: The first number is greater than or equal to the second number.
 - `<=`: The first number is less than or equal to the second number.
