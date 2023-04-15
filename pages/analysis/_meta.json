@@ -1,7 +1,7 @@
 {
-    "Boards": "Boards",
-    "Reports": "Reports",
-    "Events": "Events",
-    "Users": "Users",
-    "Advanced": "Advanced"
+    "boards": "Boards",
+    "reports": "Reports",
+    "events": "Events",
+    "users": "Users",
+    "advanced": "Advanced"
 }
