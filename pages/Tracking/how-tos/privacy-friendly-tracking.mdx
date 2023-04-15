@@ -10,7 +10,7 @@ You have full control over the data you send to Mixpanel. Here we share best pra
 ## Opting Users Out of Tracking
 You can use the opt_out method in Mixpanel's SDKs to opt users out of tracking. This state is controlled by a flag that is set as a browser cookie or localStorage. Note: because this setting is stateful, it only exists on our Web/Mobile SDKs -- if you're tracking from your servers, you will need to store this opt-out setting in a database and check it before sending any track calls.
 
-<Tabs items={['Javascript', 'Objective-C', 'Swift', 'Android'}>
+<Tabs items={['Javascript', 'Objective-C', 'Swift', 'Android']}>
 <Tab>
 ```javascript
 mixpanel.opt_out_tracking();
