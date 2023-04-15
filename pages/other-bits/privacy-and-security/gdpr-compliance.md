@@ -4,9 +4,6 @@ slug: "gdpr-compliance"
 hidden: false
 ---
 
-# Protecting your data
-Mixpanel is a first-party analytics provider. When you use Mixpanel, you collect and control the data. As a first-party analytics provider, Mixpanel helps you maintain the confidentiality and security of your data because it remains under your control.
-
 # Supporting Data Subject Rights
 
 As controllers of personal data, Mixpanel and its customers must uphold certain rights stated by the GDPR, including:
