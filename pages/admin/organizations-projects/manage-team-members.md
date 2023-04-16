@@ -89,18 +89,18 @@ An Organization has 4 roles: Owner, Admin, Billing Admin, and Member. The table 
 
 | **Organization Role**                                              | **Owner**          | **Admin**          | **Billing Admin**  | **Member** |
 |--------------------------------------------------------------------|--------------------|--------------------|--------------------|------------|
-| Manage Billing Plans                                               | :white_check_mark: | :x:                | :white_check_mark: | :x:        |
-| Create Projects                                                    | :white_check_mark: | :white_check_mark: | :x:                | :x:        |
-| Delete Projects                                                    | :white_check_mark: | :x:                | :x:                | :x:        |
-| Create/Delete Teams                                                | :white_check_mark: | :white_check_mark: | :x:                | :x:        |
-| Transfer Projects Between Organizations                            | :white_check_mark: | :x:                | :x:                | :x:        |
-| Add/Invite/Remove users to an Organization and or Projects         | :white_check_mark: | :white_check_mark: | :x:                | :x:        |
-| Add/Modify/Remove Service Accounts to Organization and or Projects | :white_check_mark: | :white_check_mark: | :x:                | :x:        |
-| Modify Roles - Organization Level                                  | :white_check_mark: | :white_check_mark: | :x:                | :x:        |
-| Modify Roles - Make themselves an Owner                            | :white_check_mark: | :x:                | :x:                | :x:        |
-| Modify Roles - Project/Team Level                                  | :white_check_mark: | :white_check_mark: | :x:                | :x:        |
-| Modify 2-FA and SSO                                                | :white_check_mark: | :white_check_mark: | :x:                | :x:        |
-| Request Organization Deletion                                      | :white_check_mark: | :x:                | :x:                | :x:        |
+| Manage Billing Plans                                               | ✅ | ❌                | ✅ | ❌        |
+| Create Projects                                                    | ✅ | ✅ | ❌                | ❌        |
+| Delete Projects                                                    | ✅ | ❌                | ❌                | ❌        |
+| Create/Delete Teams                                                | ✅ | ✅ | ❌                | ❌        |
+| Transfer Projects Between Organizations                            | ✅ | ❌                | ❌                | ❌        |
+| Add/Invite/Remove users to an Organization and or Projects         | ✅ | ✅ | ❌                | ❌        |
+| Add/Modify/Remove Service Accounts to Organization and or Projects | ✅ | ✅ | ❌                | ❌        |
+| Modify Roles - Organization Level                                  | ✅ | ✅ | ❌                | ❌        |
+| Modify Roles - Make themselves an Owner                            | ✅ | ❌                | ❌                | ❌        |
+| Modify Roles - Project/Team Level                                  | ✅ | ✅ | ❌                | ❌        |
+| Modify 2-FA and SSO                                                | ✅ | ✅ | ❌                | ❌        |
+| Request Organization Deletion                                      | ✅ | ❌                | ❌                | ❌        |
 
 #### Owner
 
@@ -138,16 +138,16 @@ A Project has 4 roles: Owner, Admin, Analyst, and Consumer. The table below is a
 
 | **Project Roles**              | **Owner**          | **Admin**          | **Analyst** | **Consumer** |
 |--------------------------------|--------------------|--------------------|-------------|-------------|
-| Transfer/Reset/Delete Projects | :white_check_mark: | :x:                | :x:         | :x:         |
-| Edit Project Timezones         | :white_check_mark: | :white_check_mark: | :x:         | :x:         |
-| Edit Project Name              | :white_check_mark: | :white_check_mark: | :x:         | :x:         |
-| View Access Keys               | :white_check_mark: | :white_check_mark: | :x:         | :x:         |
-| View Usage Statistics          | :white_check_mark: | :white_check_mark: | :x:         | :x:         |
+| Transfer/Reset/Delete Projects | ✅ | ❌                | ❌         | ❌         |
+| Edit Project Timezones         | ✅ | ✅ | ❌         | ❌         |
+| Edit Project Name              | ✅ | ✅ | ❌         | ❌         |
+| View Access Keys               | ✅ | ✅ | ❌         | ❌         |
+| View Usage Statistics          | ✅ | ✅ | ❌         | ❌         |
 | Access Time Period Settings    | Edit               | Edit               | View Only   | View Only   |
-| Invite Project Users           | :white_check_mark: | :white_check_mark: | :x:         | :x:         |
-| Change Project Users Role      | :white_check_mark: | :white_check_mark: | :x:         | :x:         |
-| Approve Access Requests        | :white_check_mark: | :white_check_mark: | :x:         | :x:         |
-| Create Service Accounts        | :white_check_mark: | :white_check_mark: | :x:         | :x:         |
+| Invite Project Users           | ✅ | ✅ | ❌         | ❌         |
+| Change Project Users Role      | ✅ | ✅ | ❌         | ❌         |
+| Approve Access Requests        | ✅ | ✅ | ❌         | ❌         |
+| Create Service Accounts        | ✅ | ✅ | ❌         | ❌         |
 
 #### Owner
 
