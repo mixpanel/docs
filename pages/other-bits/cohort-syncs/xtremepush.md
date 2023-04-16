@@ -26,11 +26,7 @@ To enable the integration:
 
 1. Select **Integrations** under the **Data Management** tab in the top navigation bar.
 
-![Xtremepush 1 Image](/extremepush1.png)
-
 2. From the Integrations page, select Xtremepush, and select **Connect**.
-
-![Xtremepush 2 Image](/extremepush2.png)
 
 3. The Xtremepush integration will show a **Connected** tag in the UI once the connection succeeds.
 
@@ -51,8 +47,6 @@ You can export a cohort to Xtremepush from the Cohorts report.
 
 3. Click **Export to Xtremepush**. Select either one-time sync or dynamic sync. Click **Start Sync**.
 
-![Xtremepush 3 Image](/extremepush3.png)
-
 ## Sync Types
 This integration supports two types of exports: one-time export and dynamic sync. When you generate a one-time export or dynamic sync, it overwrites the previous export with an updated export that reflects users who qualify for the cohort at the time of export.
 
@@ -64,5 +58,3 @@ In dynamic sync, Mixpanel initiates sync between a cohort and Xtremepush every t
 
 ## Select the Custom Segment in Xtremepush
 Once the export completes, you will see a custom segment reflecting the set of users from your Mixpanel cohort (e.g. "7days-cart-abandoners"):
-
-![Xtremepush 4 Image](/extremepush4.png)
