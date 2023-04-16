@@ -138,16 +138,16 @@ A Project has 4 roles: Owner, Admin, Analyst, and Consumer. The table below is a
 
 | **Project Roles**              | **Owner**          | **Admin**          | **Analyst** | **Consumer** |
 |--------------------------------|--------------------|--------------------|-------------|-------------|
-| Transfer/Reset/Delete Projects | :white_check_mark: | :x:                | :x:         | :x:         |
-| Edit Project Timezones         | :white_check_mark: | :white_check_mark: | :x:         | :x:         |
-| Edit Project Name              | :white_check_mark: | :white_check_mark: | :x:         | :x:         |
-| View Access Keys               | :white_check_mark: | :white_check_mark: | :x:         | :x:         |
-| View Usage Statistics          | :white_check_mark: | :white_check_mark: | :x:         | :x:         |
+| Transfer/Reset/Delete Projects | ✅ | :x:                | :x:         | :x:         |
+| Edit Project Timezones         | ✅ | ✅ | :x:         | :x:         |
+| Edit Project Name              | ✅ | ✅ | :x:         | :x:         |
+| View Access Keys               | ✅ | ✅ | :x:         | :x:         |
+| View Usage Statistics          | ✅ | ✅ | :x:         | :x:         |
 | Access Time Period Settings    | Edit               | Edit               | View Only   | View Only   |
-| Invite Project Users           | :white_check_mark: | :white_check_mark: | :x:         | :x:         |
-| Change Project Users Role      | :white_check_mark: | :white_check_mark: | :x:         | :x:         |
-| Approve Access Requests        | :white_check_mark: | :white_check_mark: | :x:         | :x:         |
-| Create Service Accounts        | :white_check_mark: | :white_check_mark: | :x:         | :x:         |
+| Invite Project Users           | ✅ | ✅ | :x:         | :x:         |
+| Change Project Users Role      | ✅ | ✅ | :x:         | :x:         |
+| Approve Access Requests        | ✅ | ✅ | :x:         | :x:         |
+| Create Service Accounts        | ✅ | ✅ | :x:         | :x:         |
 
 #### Owner
 
