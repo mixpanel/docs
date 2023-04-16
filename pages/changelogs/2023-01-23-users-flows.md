@@ -18,4 +18,4 @@ With so many people enjoying the power of View Users, we’re excited to bring t
 - **Metric Chart** in Insights and Funnels report
 - **Pie Chart** in Insights report
 
-![changelog Image](https://raw.githubusercontent.com/mixpanel/docs/main/public/changelog/changelog-2023-01-23-users-flows.png)
+![changelog Image](/changelog-2023-01-23-users-flows.png)
