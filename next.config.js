@@ -9,7 +9,7 @@ const withNextra = require('nextra')({
       {
         source: "/",
         destination: "/getting-started/what-is-mixpanel",
-        statusCode: 301,
+        permanent: true,
       },
     ]
   }
