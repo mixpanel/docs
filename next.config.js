@@ -4,6 +4,9 @@ const withNextra = require('nextra')({
   staticImage: true,
   latex: true,
   defaultShowCopyCode: true,
+})
+
+module.exports = withNextra({
   redirects: () => {
     return [
       {
@@ -14,5 +17,3 @@ const withNextra = require('nextra')({
     ]
   }
 })
-
-module.exports = withNextra()
