@@ -17,26 +17,20 @@ You can paste images directly into the markdown of the doc that you're editing. 
 You can customize the image's width or height using HTML. Here's a sample (replace the image link with the one generated when you paste your image in):
 `<img height=“387” alt=“image” src=“https://user-images.githubusercontent.com/2077899/230281466-11bfdbf7-0820-41c0-a4e8-b802faabaf20.png”>`
 
+Note: images can easily get out of date, so use them judiciously. If showcasing a new feature, we recommend putting images into the changelog instead of the docs.
+
 # Previewing Changes
 All pull requests will generate a staging link in Vercel. This lets you preview your changes without changing what's actually live. 
 
 # Adding new docs / changing structure
-These types of changes are currently not possible purely in GitHub due to a limitation of the ReadMe <> GitHub integration. We expect this to be rare anyway and want to add a little friction to adding new docs to avoid clutter. 
+The navigation of the docs is defined based on the directory structure in this repo. The top-level structure (getting-started, tracking, analysis, admin, other-bits) should not change very often.
 
-If you think we need a new doc (e.g. because we’re shipping a new feature or adding a how to), create an issue in this repository and write up the goals of the new doc. Keep in mind that this is publicly accessible. We’ll discuss in Github and one of the doc maintainers will create the doc in ReadMe if we decide it’s necessary, or close the issue if it's not. Once it’s created, you can then make a pull request to write up the contents of the doc, going through the normal workflow as outlined in the “Contributing fixes” section. 
+We have fewer, longer docs rather than many micro-docs. This helps keep navigation clean and provides confidence to the reader that everything they need to know about a topic is likely in 1 place.
 
-# Adding to Product Updates (TODO)
-Product Updates live in the changelogs/ directory. Each update is its own file.
+The exception to this rule is for How To guides (/tracking/how-tos) or Integrations (tracking/integrations). We expect these docs to be read linearly and focused on accomplishing a certain task.
 
-The steps for creating a new changelog post are:
-1. Go to the [ReadMe console](https://dash.readme.com)
-2. Navigate to "Changelog" on the left side nav. 
-3. Add a new post. 
-4. Click ... > edit metadata and copy the slug of that post. 
-5. Add a file in GitHub under the changelogs/ folder. Copy the metadata section from one of the prior changelog posts, but swap out the slug for the slug of the new post.
-6. Follow the steps in "Contributing Fixes" to edit the post with the contents that you want. 
-
-If you want to edit an existing changelog post, you only need to do Step 6. 
+# Adding to Changelog (TODO)
+The changelog lives in the changelogs/ directory.
 
 # Maintainers
 [Vijay](https://github.com/ranic), [Marissa](https://github.com/marissakuhrau), [Seams](https://github.com/ryanseams), [Mav](https://github.com/mavlee). Eventually we’ll expand this list, but keeping it tight for now.
