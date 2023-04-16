@@ -134,11 +134,11 @@ Note that:
 
 To enable the simplified API on a new project with no data in it go to the “Identity Merge” section of the Project Settings Page:
 
-![Untitled](https://github.com/mixpanel/docs/blob/main/media/Tracking/id-merge-project-settings.png?raw=true)
+![Untitled](https://github.com/mixpanel/docs/blob/main/public/Tracking/id-merge-project-settings.png?raw=true)
 
 If you would like to make sure any new projects created within your organization default to the correct ID Merge API there is an organization-level option to configure which API you would like as the the default for any new projects.
 
-![Untitled](https://github.com/mixpanel/docs/blob/main/media/Tracking/id-merge-org-settings.png?raw=true)
+![Untitled](https://github.com/mixpanel/docs/blob/main/public/Tracking/id-merge-org-settings.png?raw=true)
 
 ### Third-Party Integration Support
 

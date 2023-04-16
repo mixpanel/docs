@@ -14,22 +14,22 @@ This month, we’re introducing our **Mixed Improvements**: updates that enhance
 
 - Report tabs have been adjusted and color-coded to help you easily recognize where you are during an analysis.
 
-![changelog Image](https://raw.githubusercontent.com/mixpanel/docs/main/media/changelog/changelog-2022-12-01-improvements1.gif)
+![changelog Image](https://raw.githubusercontent.com/mixpanel/docs/main/public/changelog/changelog-2022-12-01-improvements1.gif)
 
 
 - The query builder is much easier to scan, all thanks to the new way of adding event and cohort blocks via the header of each section.
 
-![changelog Image](https://raw.githubusercontent.com/mixpanel/docs/main/media/changelog/changelog-2022-12-01-improvements2.gif)
+![changelog Image](https://raw.githubusercontent.com/mixpanel/docs/main/public/changelog/changelog-2022-12-01-improvements2.gif)
 
 
 - Query blocks feel super reactive with their new design that reflects all the possible states they can be in.
 
-![changelog Image](https://raw.githubusercontent.com/mixpanel/docs/main/media/changelog/changelog-2022-12-01-improvements3.jpeg)
+![changelog Image](https://raw.githubusercontent.com/mixpanel/docs/main/public/changelog/changelog-2022-12-01-improvements3.jpeg)
 
 
 - Headers, like **Event & Cohorts**, stick to the top so you don’t have to scroll back up to add other query blocks.
 
-![changelog Image](https://raw.githubusercontent.com/mixpanel/docs/main/media/changelog/changelog-2022-12-01-improvements4.gif)
+![changelog Image](https://raw.githubusercontent.com/mixpanel/docs/main/public/changelog/changelog-2022-12-01-improvements4.gif)
 
 
 - We’ve added arrow controls for a quicker way to input your number of steps in Flows report.
@@ -40,7 +40,7 @@ This month, we’re introducing our **Mixed Improvements**: updates that enhance
 
 - Flows report has been made even more intuitive - hover over a path to find the percent of users who performed that next step, and left-click on an event to pull up the action menu.
 
-![changelog Image](https://raw.githubusercontent.com/mixpanel/docs/main/media/changelog/changelog-2022-12-01-improvements5.gif)
+![changelog Image](https://raw.githubusercontent.com/mixpanel/docs/main/public/changelog/changelog-2022-12-01-improvements5.gif)
 
 - Dashboards feel quicker than ever now that loading times for report editing in a Dashboard have decreased considerably.
 

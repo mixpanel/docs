@@ -16,4 +16,4 @@ You might enjoy Calendar Retention if:
 
 Please checkout our help document if you would like to learn more on how to use Calendar Retention.
 
-![changelog Image](https://raw.githubusercontent.com/mixpanel/docs/main/media/changelog/changelog-2023-02-28-retention-calendar-interval.png)
+![changelog Image](https://raw.githubusercontent.com/mixpanel/docs/main/public/changelog/changelog-2023-02-28-retention-calendar-interval.png)
