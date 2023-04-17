@@ -7,15 +7,15 @@ metadata:
   description: "Learn about Mixpanel advanced features."
 ---
 
-# Query Builder Features
+## Query Builder Features
 
-## Session Metric Analysis
+### Session Metric Analysis
 
 ![/Screen_Shot_2022-07-11_at_3.53.47_PM.png](/Screen_Shot_2022-07-11_at_3.53.47_PM.png)
 
 Analyze session metrics by selecting "Session Start" or "Session End" from the events list. Learn more about using Sessions in Insights, Funnels and Flows [here](https://help.mixpanel.com/hc/en-us/articles/115004695223#sessions-in-insights).
 
-## Inline Filtering
+### Inline Filtering
 
 Filter this event by clicking the **inline action menu** and selecting **Add filter** from the drop-down. Choose an event property, user profile property, group profile property, or cohort to filter the event by.
 
@@ -25,13 +25,13 @@ You can select whether you would like your query to match any or all of the filt
 
 ![/mceclip1.png](/mceclip1.png)
 
-## Duplicating Events
+### Duplicating Events
 
 To duplicate any events or properties in your query, select the inline action menu and choose **Duplicate**. Delete any events or properties by clicking the **trash** icon.
 
 ![/mceclip3.png](/mceclip3.png)
 
-## Advanced Date and Time Selectors
+### Advanced Date and Time Selectors
 
 You can also choose how Mixpanel buckets the time range in Insights, Funnel Trends and Retention Trend reports (granularity may vary). To view a range in hours, you can select **Hour** as the view:
 
@@ -41,7 +41,7 @@ To zoom in, click on the graph and drag to highlight a specific window of time i
 
 ![/zoom.gif](/zoom.gif)
 
-## Advanced Filter & Breakdown Usage
+### Advanced Filter & Breakdown Usage
 
 To filter the results of your Insights query click the **Filter** button and select an event property, user profile property, group profile property, or cohort to filter the event or profile by.
 
@@ -67,7 +67,7 @@ in the dropdown menu and select "Cohort. A window will pop up where you can spec
 
 ![/create_cohort_from_report.gif](/create_cohort_from_report.gif)
 
-# Slack Integration
+## Slack Integration
 
 Connect Mixpanel to your Slack workspace to help share reports with your colleagues faster. You can (1) set up an alert to send a message to a Slack channel, (2) set up a Board Digest to send a message to a Slack channel, or (3) share previews of any Mixpanel report in Slack.
 
@@ -75,7 +75,7 @@ To send an alert to a Slack Channel, see [Custom Alerts](https://help.mixpanel.
 
 The Mixpanel application for Slack will also automatically unfurl a preview of any Mixpanel link, including chart images for certain reports, making it easy for anyone in your Slack workspace to learn from your Mixpanel analyses.
 
-## Enable the Integration
+### Enable the Integration
 
 To enable the integration, log in to both Mixpanel and Slack, then click "Add to Slack" below:
 
@@ -93,23 +93,23 @@ At this point, Mixpanel is a part of your Slack workspace, and any Mixpanel link
 
 Once at least one member of your Mixpanel organization has set up the Mixpanel Integration for Slack for their account, any other members of the Slack workspace will see a prompt the next time they paste a Mixpanel link. The prompt will ask them to connect their own Mixpanel account to Slack as well. If they choose to do so, Slack will guide them through the authentication flow. Once they have successfully connected Mixpanel to Slack, any further links they paste in Slack will unfurl.
 
-## Using the Integration
+### Using the Integration
 
 Once you've set up the integration, Mixpanel links pasted in Slack will unfurl. Most links will provide some basic link metadata, and links to Insights, Flows, Funnels, or Retention reports will also include a chart preview, for example:
 
 ![/slack_app_demo.png](/slack_app_demo.png)
 
-## Permissions
+### Permissions
 
 Mixpanel does not restrict who can enable the Mixpanel integration for Slack. However, your Slack workspace may limit who can perform the connection.
 
 After Mixpanel is connected to Slack, any Slack user who posts a Mixpanel link will be prompted to connect their own account, in order to unfurl report previews. By performing this integration at the user level, it ensures that only reports the user has access to will unfurl in Slack.
 
-## Privacy
+### Privacy
 
 The Mixpanel app for Slack adheres to Mixpanel's overall privacy policy, available in full here: [https://mixpanel.com/legal/privacy-policy/](https://mixpanel.com/legal/privacy-policy/).
 
-# Custom Buckets
+## Custom Buckets
 
 Custom buckets lets you group existing properties into meaningful segments on the fly. This is focused on enabling every person to answer common segmentation questions easily, quickly and in a low friction way.
 
@@ -120,7 +120,7 @@ Example use-cases include:
 - Compare # videos watched for users between ages 18-30 vs 30-40 or 40+
 - Compare # users based on duration of video watched: < 30, 30-60, 60-90 mins
 
-## Creating Custom Buckets
+### Creating Custom Buckets
 
 Add a property in Breakdown, then select the **Customize Buckets** option from the overflow menu
 
@@ -136,7 +136,7 @@ To modify the segment buckets, click on the **under-item** and the custom buck
 
 To remove all grouping and revert to the default, open the custom buckets modal and click **Reset**
 
-## String property Use Cases
+### String property Use Cases
 
 **Use Case:** You want to compare # videos watched between core markets - North America, Europe & China
 
@@ -173,7 +173,7 @@ Steps
 
 ![/12828869956628](/12828869956628.png)
 
-## Numeric property Use Cases
+### Numeric property Use Cases
 
 **Use Case:** You want to compare #users based on duration of video watched
 
@@ -226,7 +226,7 @@ Goal: You want to distribute this in various ways
 
 ![/12833587659028](/12833587659028.png)
 
-## Typecasting property Use Cases
+### Typecasting property Use Cases
 
 **Use Case:** You want to identify #users of age 18 and age 60 since these are user ages where they change subscription plans (upgrade and downgrade respectively)
 
@@ -259,7 +259,7 @@ Steps
     ![/12833899595284](/12833899595284.png)
 
 
-## Frequently Asked Questions
+### Frequently Asked Questions
 
 - **Which all reports does Custom Buckets work on?**
 
@@ -337,7 +337,7 @@ Steps
             - ≥0 & <0.0001 would approximate to bucket 0
 
 
-# View Users
+## View Users
 
 View Users is a streamlined process for exploring the users contributing to a specific metric or point on a chart. By interacting with the chart, you can view a group of users experiencing friction or dig deep into which users are driving feature adoption.
 
@@ -347,7 +347,7 @@ View Users can help you:
 - Save these users as a cohort.
 - Export these users to a CSV file.
 
-## Insights
+### Insights
 
 ![/View_Users_Insights_gif.gif](/View_Users_Insights_gif.gif)
 
@@ -355,23 +355,23 @@ View Users can help you:
 - By clicking on one of these users, you can further **explore their User Properties** like experiment group, purchase count, last event and many more.
 - While viewing a specific user, you can also **discover their recent activities** (\*Like, Comment, Message Sent, Ad Conversion,\* etc) after **Sign Up** through the Activities menu.
 
-## Funnels
+### Funnels
 
 ![/View_Users_Funnels_gif.gif](/View_Users_Funnels_gif.gif)
 
 - Finding the **exact group of users who dropped off** after **Sign Up** is possible through View Users in Funnels. While in a Funnels report, click on the section of the chart that displays non-converting users and select View Users - this displays the list of those who didn’t convert after signup.
 - **Save this group as a cohort** by clicking the Create Cohort button. Now, you can learn more about their product usage or find the root cause of why they didn’t convert after Sign Up.
 
-## Retention
+### Retention
 
 ![/View_Users_Retention_gif.gif](/View_Users_Retention_gif.gif)
 
 - View Users in Retention report presents you with two options - view retained users and view dropped off users. This is helpful to **find the specific group of users who were engaged or dropped off** after **Sign Up** over a period of time.
 - **Export your group of choice to a CSV with one click**. This data can guide meaningful actions, like emailing your user group a note that helps them get unstuck and engaged.
 
-# Keyboard Shortcuts
+## Keyboard Shortcuts
 
-## Undo / Redo Shortcuts
+### Undo / Redo Shortcuts
 
 Undo / redo shortcuts allow for fast adjustments to your analysis. `Cmd + Z` to undo; `Cmd + Shift + Z` to redo. Change filters, date ranges, line vs bar chart, and go back in one second to compare before and after, or fix the view.
 
@@ -380,23 +380,23 @@ Undo / redo shortcuts allow for fast adjustments to your analysis. `Cmd + Z` t
 - **Navigate different report versions**: add a new event, filter or breakdown and undo that change with `Cmd + Z` . This makes iterating between different versions of your report quick and easy.
 - **Compare visualizations**: go from a bar chart, to a line chart, to a pie chart and all the way back while only using the undo / redo keyboard shortcuts.
 
-# Comparison: Time, Baseline and Overall
+## Comparison: Time, Baseline and Overall
 
 Once you have visualized a metric you are interested in, you want want to compare it against related metrics to gain further insight. Previously, only comparing against past values was supported, but there are now 3 different ways to compare your metrics. The ability to do and show comparisons across segments is also supported in Boards, so any report saved will also reflect in Boards.
 
-## Time Comparisons
+### Time Comparisons
 
 ![/Screen_Shot_2021-09-22_at_4.38.05_PM.png](/Screen_Shot_2021-09-22_at_4.38.05_PM.png)
 
 The compare to past menu has been modified to include the new comparison options, but users can continue to find the same time comparison options that existed before under the new "Compare" menu.
 
-## Time Comparison - Absolute Values
+### Time Comparison - Absolute Values
 
 ![/Screen_Shot_2021-09-22_at_4.40.26_PM.png](/Screen_Shot_2021-09-22_at_4.40.26_PM.png)
 
 This is the same default behavior that existed previously. When you compare to a time period users will see a solid line for the present data, and a dashed line for data in the time comparison period.
 
-## Time Comparison - Percentage change over Baseline
+### Time Comparison - Percentage change over Baseline
 
 This can be activated by selecting the "Percent change over Baseline" option in the controller next to the comparison menu.
 
@@ -408,7 +408,7 @@ When this view is activated, users will see the percentage difference from the o
 
 These values are also reflected into the segmentation table below the chart.
 
-## Increase over Baseline
+### Increase over Baseline
 
 Another comparison type that is now natively supported in Mixpanel is the ability to set a segment as a baseline from which other segments are compared against. This allows users to compare different segments across the same time period.
 
@@ -424,7 +424,7 @@ Notice that because "Home supplies" is chosen at the baseline, it appears on the
 
 Also note that the y axis can go below 0, because segments can perform better or worse than the selected baseline, like "Entertainment" above.
 
-## Percentage of Overall
+### Percentage of Overall
 
 This option allows users to see how segments perform as a percentage of the total. Mixpanel will proactively disable this option when this comparison option won't give meaningful results.
 
@@ -434,7 +434,7 @@ To enable, open the Compare menu and select "Percentage of Overall"
 
 ![/Screen_Shot_2021-09-22_at_5.17.27_PM.png](/Screen_Shot_2021-09-22_at_5.17.27_PM.png)
 
-## Why do the values in Compare to Overall not add up to 100%?
+### Why do the values in Compare to Overall not add up to 100%?
 
 Depending on the type of metric, the percentages may not add up to 100%. This is because the value is being compared to the unsegmented value. For example, if you were you segment Total "Add Item to Cart" events by "Category", then the values should sum up to 100%, since an item might not be a part of different categories.
 
@@ -442,7 +442,7 @@ However, if the metric was "average price", then the average price across all ca
 
 More generally, if the metric is summable, and the groups are mutually exclusive, then the percentages will add up to 100%. if the metric is a non counting metric like uniques, or percentile aggregation, the percentages will not add up to 100%. Another example is if the breakdown is by cohorts, where users can be members of multiple cohorts, the percentages will not sum to 100%.
 
-## Supported Charts
+### Supported Charts
 
 Comparisons are supported across all insights chart types. Depending on the exact configuration chosen, certain comparison operations may be disabled.
 
@@ -459,18 +459,18 @@ Comparisons are supported across all insights chart types. Depending on the exac
 | Retention Curve | No | Yes | No |
 | Retention Trends | Yes | Yes | No |
 
-# Limits and Ordering
+## Limits and Ordering
 
-## Summary
+### Summary
 
 In order to keep the interactive analysis experience snappy for projects of all sizes, we've made 2 changes:
 
 - Added maximum limits to how many segments are returned when breaking down a metric by properties
 - Changed the logic for the top segments that are returned
 
-## Limits
+### Limits
 
-## UI
+### UI
 
 We're changing how many segments are returned back to the report (**visible limit**), how many segments can be selected at a time for visualization (**selection limit**) as well as the number of segments selected by default (**default selection**).
 
@@ -483,11 +483,11 @@ Here's the breakdown per report + visualization type:
 | Retention | 6 | 12 | 200 |
 | Funnels | 6 | 12 | 200 |
 
-## Downloaded CSV and API
+### Downloaded CSV and API
 
 When downloading results as CSV or when querying our APIs, the limits remain unchanged.
 
-## Top Segments logic
+### Top Segments logic
 
 The way we pick the top segments differs according to the type of query. We choose the top segments based on the value shown in the second column.
 
@@ -505,7 +505,7 @@ The way we pick the top segments differs according to the type of query. We choo
 | Funnels | Total number of times the first funnel step was completed |
 | Retention | Total number of times the first event was completed |
 
-## FAQ
+### FAQ
 
 **Why are we adding new limits to breakdowns in reports?**
 
@@ -521,13 +521,13 @@ You will see an indication like this:
 
 No, limits for CSV downloads remain unchanged across Insights, Funnels and Retention.
 
-# List Property Support
+## List Property Support
 
-## Introduction
+### Introduction
 
 This article walks through a few scenarios of how list properties behave within Mixpanel. The examples used here are from the Insights report, but the principles of how filter and breakdowns work with list properties remain the same across reports.
 
-## Data
+### Data
 
 Let's assume an e-commerce platform has these 3 events:
 
@@ -549,9 +549,9 @@ Now let's assume that *"List of ProductIDs"* is mapped to a [lookup table](ht
 
 ****
 
-## Use-cases
+### Use-cases
 
-## Breakdown
+### Breakdown
 
 - Breakdown a list property
     - **Question:** TOTAL of *PurchaseCompleted* broken down by *"List of ProductIDs"*
@@ -607,7 +607,7 @@ Now let's assume that *"List of ProductIDs"* is mapped to a [lookup table](ht
         - P3: 2
         - P4: 2
 
-## Filter
+### Filter
 
 - Filter by any element of a list property
     - **Question:** TOTAL of *PurchaseCompleted* filtered by
@@ -715,7 +715,7 @@ Now let's assume that *"List of ProductIDs"* is mapped to a [lookup table](ht
         - P3: 1
         - P4: 2
 
-# Find Interesting Segments
+## Find Interesting Segments
 
 Determine which users are either driving conversion and retention or behaving as outliers by using the built in “Find Interesting Segments” feature.
 
@@ -729,7 +729,7 @@ Find Interesting Segments can help you discover:
 
 User properties are not yet supported.
 
-## Interesting Segments in Funnels
+### Interesting Segments in Funnels
 
 View the top and bottom converting segments in your funnel by clicking the **Find interesting segments** button at the bottom of the segmentation chart.
 
@@ -739,7 +739,7 @@ Rather than searching through multiple property breakdowns to find significant d
 
 There are two reports you will receive in your email: segment analysis and time comparison.
 
-## Segment Analysis
+### Segment Analysis
 
 An email that breaks down the top and bottom converting segments of your funnel based on statistical significance and other factors is automatically sent after you click the button. If no statistically significant segments are found, then the email shows non-statistically significant segments.
 
@@ -750,7 +750,7 @@ Segment Analysis helps answer questions such as:
 
 This is done by examining which segments of users are converting at a high rate and have a large enough population size, or which segments are converting at a low rate and have a large enough population size. In the first scenario, this segment would raise the overall conversion rate, while in the second scenario this segment would be lowering the overall conversion rate.
 
-## Time Comparison
+### Time Comparison
 
 A time comparison chart is also included in the email. This chart shows a segments behavior over time (in terms of both conversion rate change and population size change) as it relates to the overall population trend (population and conversion rate change).
 
@@ -761,7 +761,7 @@ Time comparison answers questions such as:
 
 Mixpanel automatically compares the currently selected date period to the previous one. For example, if you are viewing the current week, the email will compare to the week before.
 
-## Interesting Segments in Retention
+### Interesting Segments in Retention
 
 View the top and bottom converting segments in your retention report by clicking the **Find interesting segments** button at the bottom of the retention chart. This feature is not currently available for Frequency Retention.
 
@@ -771,7 +771,7 @@ Rather than searching through multiple segment breakdowns to find significant da
 
 An email that breaks down the top and bottom retaining segments of your Retention report based on changes on retention rates is automatically sent after you click the button.
 
-## Interpret Email Results
+### Interpret Email Results
 
 When your analysis email says “no interesting segments”, this means that none of the segments you analyzed were behaving significantly differently from the overall population at a large enough volume. To resolve this issue, try extending the date range of the report or try a different report.
 
@@ -779,17 +779,17 @@ If the analysis request included dates in the past five days, and is sent from m
 
 Results are sorted by taking into consideration the property, the number of users in the report, as well as the deviation from overall conversion or retention behavior to surface the most meaningful segments to you.
 
-# Query Time Sampling
+## Query Time Sampling
 
 Query-time sampling allows you to query a subset of users and shorten the time it takes for a report to load results. The Insights, Funnels, Retention and Flows reports all support sampling at query time.
 
 This feature is available to enterprise customers with over 5 million [MTUs](https://help.mixpanel.com/hc/en-us/articles/360001465686-Billing-for-Monthly-Tracked-Users) or over 2 billion monthly events.
 
-## Enable or Disable Query Time Sampling
+### Enable or Disable Query Time Sampling
 
 Navigate to the report where you would like to enable or disable sampling at time of query.
 
-## Enable Sampling
+### Enable Sampling
 
 From the report in which you would like to use sampling, click the **lightning bolt** in the upper right corner of the query builder.
 
@@ -797,13 +797,13 @@ From the report in which you would like to use sampling, click the **lightning 
 
 This will enable sampling on the report, and will be indicated by the lightning bolt symbol turning blue. The percentage of the total that is included in the query calculations will be indicated in the top right corner of the query builder.
 
-## Disable Sampling
+### Disable Sampling
 
 To turn off sampling, click the lightning bolt symbol in the upper right corner of the query builder again.
 
 The lightning bolt symbol will turn grey to indicate that sampling is disabled.
 
-## Query Time Sampling Calculation and Presentation
+### Query Time Sampling Calculation and Presentation
 
 Mixpanel will not sample, or drop, events at ingestion. Instead, Mixpanel will ingest all event data and sample at query time. This prevents the loss of important data, and therefore allows you to toggle sampling on and off depending on need.
 
@@ -818,11 +818,11 @@ The following occurs when sampling is enabled:
 5. The effect is that numbers should closely approximate results seen without sampling enabled. This works better as the number of users increases, particularly for customers with more than 5 million users.
 6. Mixpanel adds an annotation to reports.
 
-## Saved Reports with Query Time Sampling
+### Saved Reports with Query Time Sampling
 
 If you save a report that uses query time sampling, then a version of the report *without* sampling is saved. This ensures that Boards and saved reports are computed on the entire dataset for high fidelity.
 
-# Query Result Caching
+## Query Result Caching
 
 Mixpanel stores the results from a report query in cache, and presents these results from cache when appropriate. This saves time when running a complicated query multiple times, and allows you to surface previously calculated results near-instantaneously. The date range of the query will adjust how Mixpanel presents results from the cache.
 
@@ -838,7 +838,7 @@ You can also view when the most recent update was in Boards by hovering over rep
 
 ![/Dashboard_Cache.png](/Dashboard_Cache.png)
 
-## Refreshing the Query Results Cache
+### Refreshing the Query Results Cache
 
 To refresh the query results cache, navigate to an Insights report and click the **Refresh** button at the top of the query builder.
 
@@ -850,7 +850,7 @@ To refresh query results cache in a Board, click the three dots in the top of th
 
 If the cached result is less than 1 min old, we always serve from cache without running a new background query.
 
-# Event and Property Limitations
+## Event and Property Limitations
 
 While all reports in Mixpanel utilize your event data and properties to deliver insight into your business, not all reports can use all event types or properties.
 
@@ -866,7 +866,7 @@ Reports use events and properties to target users, segment data, and filter data
 
 **Users:** All event types and properties are available in Users.
 
-# Downloading Reports from Mixpanel
+## Downloading Reports from Mixpanel
 
 Users can download reports in three formats:
 
@@ -874,41 +874,41 @@ Users can download reports in three formats:
 - PNG
 - PDF
 
-## Breakdown Limits in Report Downloads
+### Breakdown Limits in Report Downloads
 
 Mixpanel maintains breakdown limits for CSV, PNG, and PDF report downloads.
 
-## CSV
+### CSV
 
 For property values that exceed 10,000, Mixpanel only returns the top 10,000 breakdowns of that property. Here’s an example CSV export of an Insights report. The first column contains the date of when each event was sent. The columns contain the event name and the rows contain the number of each event sent to Mixpanel.
 
 ![/CSV-download.png](/CSV-download.png)
 
-## PNG and PDF
+### PNG and PDF
 
 PNG and PDF downloads display up to 30 segments in the Insights table, Insights bar, Retention table, and Retention line; and up to 12 segments for the Insights line. Here’s an example of a chart in PNG format.
 
 ![/PNG-example.png](/PNG-example.png)
 
-## Downloading Reports
+### Downloading Reports
 
 To download Insights, Funnels, and Retention reports, click the "..." icon on the upper right corner of each report.
 
-### Insights Download Menu
+#### Insights Download Menu
 
 ![/Screen_Shot_2020-02-14_at_10.31.33_AM.png](/Screen_Shot_2020-02-14_at_10.31.33_AM.png)
 
-### Funnels Download Menu
+#### Funnels Download Menu
 
 ![/Screen_Shot_2020-02-14_at_10.32.18_AM.png](/Screen_Shot_2020-02-14_at_10.32.18_AM.png)
 
 It is possible (only in the Funnels report) to download "CSV Trends", which downloads funnels by date.
 
-### Retention Download Menu
+#### Retention Download Menu
 
 ![/Screen_Shot_2020-02-14_at_10.32.36_AM.png](/Screen_Shot_2020-02-14_at_10.32.36_AM.png)
 
-# Undefined and Null Properties
+## Undefined and Null Properties
 
 There are several reasons why you might see "undefined" in your properties list throughout Mixpanel reports when segmenting:
 
@@ -916,7 +916,7 @@ There are several reasons why you might see "undefined" in your properties list 
 - When segmenting an event by a User Profile property, ***you’ll see “undefined” if there are User Profile profiles that don’t contain that property or if the event was triggered by a user without a User Profile at all.*** For example, let’s say you’re segmenting the event “Song Play” by the User Profile property “Favorite Genre.” If there are profiles that have triggered Song Play but don’t have the Favorite Genre property, that value will be “undefined.” Triggers of Song Play by users without a User Profile will also show up under “undefined.”
 - ***For geolocation data (City, Region, Country), the user’s IP couldn’t be mapped to a location, or their IP was not included with the request.*** For JavaScript implementations, City, Region, and Country are [default properties](https://help.mixpanel.com/hc/en-us/articles/115004613766-What-properties-do-Mixpanel-s-libraries-store-by-default-). However, if the IP address of the user is not in Mixpanel’s geolocation database and can’t be mapped to a city, region, or country, they will be “undefined” in reports. For server-side implementations, City, Region, and Country can be “undefined” if the IP address is not included with the request. [Read more about how Mixpanel maps IP to location.](https://help.mixpanel.com/hc/en-us/articles/115004494803-How-can-I-disable-default-collection-of-city-region-and-country-or-anonymize-geolocation-data-)
 
-## Remove “undefined” & "null" values from reports
+### Remove “undefined” & "null" values from reports
 
 If you don’t want to see “undefined” or "null" values in your report, you can remove them by:
 
@@ -930,7 +930,7 @@ If you don’t want to see “undefined” or "null" values in your report, you 
     ![/mceclip2.png](/mceclip2.png)
 
 
-## Troubleshooting Tips
+### Troubleshooting Tips
 
 If you’re getting “undefined” property values but think you should not be, troubleshoot the issue using the events page. Click on "Filter" in the top left to look at events coming in where the property in question “is not set.” You can then use this data to look at your code and figure out why some events are being fired without that property.
 

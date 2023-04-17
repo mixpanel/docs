@@ -7,7 +7,7 @@ metadata:
   description: "Learn about Custom Events in Mixpanel."
 ---
 
-# Overview
+## Overview
 
 A custom event is a virtual event that was created from one or more events, optionally filtered down by a particular set of properties, and given a name. Useful to:
 
@@ -20,7 +20,7 @@ You can create a custom event containing "Ad Conversion" and "Ad Impression," an
 
 ![/mceclip3.png](/mceclip3.png)
 
-# Create a Custom Event
+## Create a Custom Event
 
 1. Expand the Event dropdown in either an Insights, Funnels, Retention, or Formulas report.
 
@@ -34,7 +34,7 @@ You can create a custom event containing "Ad Conversion" and "Ad Impression," an
 
 When naming your custom event, note that the UI will break when the URL passes 2,083 characters. Each event and selector adds to the URL length (selectors more so than events). The easiest way to break a custom event is with an "equals" operation that selects a lot of values.
 
-# Edit and Delete Custom Events
+## Edit and Delete Custom Events
 
 To view your complete list of custom events to manage, edit, or delete them, you must navigate to the [Lexicon](https://help.mixpanel.com/hc/en-us/articles/360001307806).
 
@@ -50,7 +50,7 @@ To delete a custom event, check the **box** beside the title of all the custom
 
 ![/mceclip2.png](/mceclip2.png)
 
-# Limits by Plan Type
+## Limits by Plan Type
 
 Free: 1 Custom Event
 

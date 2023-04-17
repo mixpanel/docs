@@ -7,11 +7,11 @@ metadata:
   description: "Learn about Mixpanel Signal report."
 ---
 
-# Overview
+## Overview
 
 Signal measures the association between a correlation event and a goal event and quantifies the correlation between the two. This facilitates a deeper understanding of the behaviors that drive customer conversions, and can help guide product decisions.
 
-# Use Cases
+## Use Cases
 
 Using an a music sharing application as an example can highlight the value of quantifying correlations between events.
 
@@ -27,7 +27,7 @@ Values are returned after running the correlation. “Song Played” could have 
 
 This information can be used in future product decisions. By knowing that those who play songs are more likely to purchase songs, it is possible to build tools to encourage song plays. This could lead to a dramatic increase in the amount of users purchasing songs.
 
-# Quick Start
+## Quick Start
 
 By default, Mixpanel will build a query to show how your [top 50 events](https://help.mixpanel.com/hc/en-us/articles/360001360643-Top-Events-in-Reports) correlate with 2nd week retention in the last quarter for all users. This translates to, “How do the top events correlate with two week retention in the last quarter for all users?"
 
@@ -75,19 +75,19 @@ The default retention events available in Signal include:
 
 ![/Screen_Shot_2022-07-13_at_10.22.08_PM.png](/Screen_Shot_2022-07-13_at_10.22.08_PM.png)
 
-# Interpreting Results
+## Interpreting Results
 
-## Summary View
+### Summary View
 
 Each correlation will be represented by one card in the summary view results. The list-view will display the optimal action, correlation with the goal event, and key findings about the event. Results can be sorted by correlation strength or by Mixpanel opportunity score.
 
 ![/Screen_Shot_2022-07-13_at_10.32.35_PM.png](/Screen_Shot_2022-07-13_at_10.32.35_PM.png)
 
-## Scores
+### Scores
 
 By default, the results will be sorted by Opportunity. “Opportunity” is Mixpanel’s proprietary calculation of how important a given correlation might be. The correlation strength is calculated using the phi coefficient. [Reference here](https://help.mixpanel.com/hc/en-us/articles/115004567503-Signal-Report#signal-machine-learning-model) for more detail on how Opportunity and correlation strength is calculated.
 
-## Key Findings
+### Key Findings
 
 The key findings presented are rarity analysis results and conversion measurements. Rarity defines how common or uncommon it is for users to complete an individual event. The conversion measurements qualifies how likely a given conversion is to be helpful.
 
@@ -106,7 +106,7 @@ The key findings presented are rarity analysis results and conversion measuremen
 - Associated almost perfectly with not converting.
 - Associated almost perfectly with converting.
 
-## Detailed view
+### Detailed view
 
 To access the detailed view, click on a card in the summary view.
 
@@ -118,13 +118,13 @@ The x-axis represents the velocity, or the number of days it took users to compl
 
 ![/DetailedView.png](/DetailedView.png)
 
-## Optimal Action
+### Optimal Action
 
 The optimal action will be highlighted in green on the heat map.
 
 The optimal action tells you how many times and in how many days your customers should do the event in order to achieve your optimal correlation. Frequency labels are listed below the action and provide precise information, based on the correlation, about when your users should complete the event. For example, if you are a music streaming app and wanted to see how a “Play Song” event correlates with two week retention, you might see something like, “Play song once within ten days” as an optimal action.
 
-## Supporting Statistics
+### Supporting Statistics
 
 For each combination Mixpanel will provide supporting statistics for further analysis:
 
@@ -140,25 +140,25 @@ To see the calculations of the optimal correlation data, hover of the ƒx in the
 
 ![/Screen_Shot_2022-07-13_at_10.35.35_PM.png](/Screen_Shot_2022-07-13_at_10.35.35_PM.png)
 
-## Key Findings
+### Key Findings
 
 Signal also presents two key findings, rarity analysis results and conversion measurements. Rarity defines how common or uncommon it is for users to complete an individual event. The conversion measurements qualifies how likely a given conversion is to be helpful. For example, if all users are converting because the application forces this by design, then the conversion measurement will flag this as "unlikely to be useful".
 
-## CSV Download
+### CSV Download
 
 To download the results to a CSV, click the **Download CSV** icon in the upper right hand corner of the Summary Results view or the Detailed Results view after you have run your correlation.
 
 ![/Screen_Shot_2022-07-13_at_10.37.09_PM.png](/Screen_Shot_2022-07-13_at_10.37.09_PM.png)
 
-# Reference
+## Reference
 
-## New Users vs All Users
+### New Users vs All Users
 
 New users are users who have completed their first event in the selected time frame.
 
 All users will look at all users in your Mixpanel project who have completed the event in the selected time frame.
 
-## Download Glossary
+### Download Glossary
 
 - **Frequency:** Number of times, up to 10, a user should complete the event for the correlation.
 - **Intervals:** Number of days, up to 15, when a user should complete the event for the correlation.
@@ -174,15 +174,15 @@ All users will look at all users in your Mixpanel project who have completed the
 - **Phi max:** Single number between -1 and 1 that indicates how closely an event moves with your goal event. 1 means that 100% of all users that did your goal event also did the event you are evaluating. -1 means the opposite: 0% of users that did you goal event also did the event you are evaluating.
 - **Mixpanel Opportunity Score:** Mixpanel’s proprietary calculation of how important a given correlation might be.
 
-## Calculations
+### Calculations
 
 Signal calculates correlation using a well-known statistical algorithm called the phi coefficient. In addition to correlation, Mixpanel calculates what is called an opportunity score, and also presents a list of key findings.
 
-### Correlation
+#### Correlation
 
 The phi coefficient is a single number between -1 and 1 and it indicates how closely an event moves with your goal event. 1 means that 100% of all users that did the goal event also did the correlation event. -1 means that 0% of users that did the goal event also did the correlation event.
 
-### Opportunity Score
+#### Opportunity Score
 
 “Opportunity” is Mixpanel’s proprietary calculation of how important a given correlation might be. Opportunity helps pare down results by eliminating false positives and highlighting weak correlations that may be actionable. Based on this assessment, which determines how much an event impacts conversion on your goal, Mixpanel will tell you if there is an opening to make a change in your product or not.
 
