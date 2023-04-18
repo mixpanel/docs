@@ -35,6 +35,7 @@ const config: DocsThemeConfig = {
   project: {
     link: "https://github.com/mixpanel/docs",
   },
+  primaryHue: { dark: 256, light: 259 },
   sidebar: {
     toggleButton: true,
 
