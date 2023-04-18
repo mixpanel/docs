@@ -63,7 +63,7 @@ While the following API can be used to delete or retrieve personal data as outli
 * [iOS - Swift](doc:swift#section-opting-users-out-of-tracking)
 * [Android](doc:android#section-opting-users-out-of-tracking)
 
-See Mixpanel’s [Managing Personal Information](/tracking/how-tos/privacy-friendly-tracking-Managing-Personal-Information) guide for more information on best practices when handling personal information in Mixpanel.
+See Mixpanel’s [Managing Personal Information](/tracking/how-tos/privacy-friendly-tracking) guide for more information on best practices when handling personal information in Mixpanel.
 
 ### Authentication
 Authentication occurs via a user-specific OAuth token with a scope that only includes the following deletion and retrieval APIs. Users can retrieve this token from their [Account Settings](https://mixpanel.com/settings/account#data-privacy) by selecting their initials in the top right of Mixpanel and selecting **Profile & Preferences**, and then the Data & Privacy tab. The OAuth token has a one year expiry. It should be passed in the Authentication header. Users are eligible to generate an OAuth token if they are the [project owner](https://help.mixpanel.com/hc/en-us/articles/115004505106-Project-Ownership), or if they are a project owner or admin of a project that supports [team member roles](https://help.mixpanel.com/hc/en-us/articles/360024613412--Project-Roles-and-Permissions-).
@@ -86,7 +86,7 @@ Parameters:
 | Token | URL. Passed in request URL. | Query String Parameter | Your Mixpanel [project token](https://help.mixpanel.com/hc/en-us/articles/115004502806-Find-Project-Token-). |
 | distinct_ids | Body. Passed in JSON blob format. | Array of strings | A list of distinct IDs associated with the users whose data you would like to export. You can add up to 1999 distinct IDs. |
 | compliance_type | Body. Passed in JSON blob format. | String | Select CCPA or GDPR. Default is GDPR. |
-| disclosure_type | Body. Passed in JSON blob format. | String | Only required if compliance_type = CCPA. Can be [Data, Categories, or Sources. Default is Data](/other-bits/privacy-and-security/export-or-delete-end-user-data#ccpa-requests). |
+| disclosure_type | Body. Passed in JSON blob format. | String | Only required if compliance_type = CCPA. Can be [Data, Categories, or Sources. Default is Data](/other-bits/privacy-and-security/export-or-delete-end-user-data). |
 
 Authorization:
 

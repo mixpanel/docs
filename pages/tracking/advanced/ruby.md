@@ -97,7 +97,7 @@ If the property “Company” is chosen for Group Analytics, “Company” is th
 A user can belong to multiple groups. All updates to a group operate on the `group_key` and `group_id`.
 
 ### Creating a Group Key
-See the Implementation section in [this article](/analysis/advanced/group-analytics#implementation) for instructions on how to create a group key in your Project Settings.
+See the Implementation section in [this article](/analysis/advanced/group-analytics) for instructions on how to create a group key in your Project Settings.
 
 ### Sending Group Identifiers With Events
 To send group identifiers with events, send the `group_key` as a property key and the `group_id` as the property value. The data type of the `group_key` property is a list, therefore you can add multiple values for a single user. It is also possible to pass only one value.

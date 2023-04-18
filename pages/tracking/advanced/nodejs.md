@@ -47,7 +47,7 @@ You can track events with `mixpanel.track()` after initializing a Mixpanel insta
 
 The `mixpanel.track()` method takes two arguments, an event name and a properties object which must include the [distinct_id](https://help.mixpanel.com/hc/en-us/articles/115004509406-Distinct-IDs-). 
 
-You have the option to add additional event properties to the call to add detail to that event. [Read more about events and properties here](/tracking/how-tos/effective-server#tracking-geolocation-Tracking-Geolocation-with-Server-Side-Implementation).
+You have the option to add additional event properties to the call to add detail to that event. [Read more about events and properties here](/tracking/how-tos/effective-server#tracking-geolocation).
 ```javascript
 var Mixpanel = require('mixpanel');
 var mixpanel = Mixpanel.init('<YOUR_TOKEN>');
@@ -79,14 +79,14 @@ mixpanel.track('event name', {
 
 You can send user profile updates to Mixpanel in addition to sending events. 
 
-Mixpanel can maintain a [profile of each of your users](/tracking/how-tos/user-profiles-People-Profiles), storing information you know about them. 
+Mixpanel can maintain a [profile of each of your users](/tracking/how-tos/user-profiles), storing information you know about them. 
 
 A profile update changes the properties of a user profile, essentially changing the details tied to that profile or creating it if it does not exist.
 
 You can use profiles and user profile properties to explore and segment users by who they are, in addition to what they did with event tracking.
 
 ### Setting Profile Properties
-You can update or create a [user profile](/tracking/how-tos/user-profiles-People-Profiles) with `mixpanel.people.set()`. The first argument is distinct_id, and the second argument is a JSON list of the properties to add to or update the profile with. 
+You can update or create a [user profile](/tracking/how-tos/user-profiles)`. The first argument is distinct_id, and the second argument is a JSON list of the properties to add to or update the profile with. 
 
 The following example sets a "Plan" property with a value "Premium", a first name, a last name, and a created date on the user's profile that has a distinct id of `13793`. 
 

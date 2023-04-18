@@ -9,7 +9,7 @@ metadata:
 
 ## Overview
 
-Create a Custom Alert for your [Insights](/analysis/reports/insights-Insights-Overview) and [Funnels](https://help.mixpanel.com/hc/en-us/articles/115004561926-Funnels-Deep-Dive) reports to decide which report conditions result in an alert. Alerts are sent as an email and can be sent to multiple users.
+Create a Custom Alert for your [Insights](/analysis/reports/insights) and [Funnels](https://help.mixpanel.com/hc/en-us/articles/115004561926-Funnels-Deep-Dive) reports to decide which report conditions result in an alert. Alerts are sent as an email and can be sent to multiple users.
 
 To create a custom alert in an Insights or Funnels report, **save your report**, click the **3 dots icon**, go to Alerts and select **Create Alert**.
 

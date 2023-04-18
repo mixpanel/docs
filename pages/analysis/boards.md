@@ -57,7 +57,7 @@ There are a few ways to add an existing report to a board. You can either start 
 - Starting from an existing report, adding the report to a board can be done via the board breadcrumb dropdown at the top left of the report, next to the report's title. Click into the dropdown, then select "Add to another Board." Choose your board, and a copy of the report will be added to it.
 - Starting from another board, select the overflow menu of a report you'd like to add. Select "Make a Copy" and then choose the board you would like to add it to.
 
-Note that adding an existing report always creates a [linked copy](/analysis/boards#faq-Dashboards-FAQ#what-is-a-linked-report).
+Note that adding an existing report always creates a [linked copy](/analysis/boards#what-is-a-linked-report).
 
 ### Step 4: Arrange Board Content
 

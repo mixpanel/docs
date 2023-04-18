@@ -13,7 +13,7 @@ metadata:
 
 ![/Screen_Shot_2022-07-11_at_3.53.47_PM.png](/Screen_Shot_2022-07-11_at_3.53.47_PM.png)
 
-Analyze session metrics by selecting "Session Start" or "Session End" from the events list. Learn more about using Sessions in Insights, Funnels and Flows [here](/analysis/advanced/sessions#sessions-in-insights).
+Analyze session metrics by selecting "Session Start" or "Session End" from the events list. Learn more about using Sessions in Insights, Funnels and Flows [here](/analysis/advanced/sessions).
 
 ### Inline Filtering
 
@@ -71,7 +71,7 @@ in the dropdown menu and select "Cohort. A window will pop up where you can spec
 
 Connect Mixpanel to your Slack workspace to help share reports with your colleagues faster. You can (1) set up an alert to send a message to a Slack channel, (2) set up a Board Digest to send a message to a Slack channel, or (3) share previews of any Mixpanel report in Slack.
 
-To send an alert to a Slack Channel, see [Custom Alerts](/analysis/advanced/alerts). To send a digest to a Slack Channel, see [Advanced Board Functionality - Digests](/analysis/boards#advanced#board-digests).
+To send an alert to a Slack Channel, see [Custom Alerts](/analysis/advanced/alerts). To send a digest to a Slack Channel, see [Advanced Board Functionality - Digests](/analysis/boards#board-digests).
 
 The Mixpanel application for Slack will also automatically unfurl a preview of any Mixpanel link, including chart images for certain reports, making it easy for anyone in your Slack workspace to learn from your Mixpanel analyses.
 
@@ -271,7 +271,7 @@ Steps
 
 - **Can I save a Custom Bucket**?
 
-    No, you can’t save a custom bucket. If your custom bucket is something you or your team would like to re-use, we encourage you to instead create a [custom property](/analysis/advanced/custom-properties-Custom-Properties#creating-a-custom-property).
+    No, you can’t save a custom bucket. If your custom bucket is something you or your team would like to re-use, we encourage you to instead create a [custom property](/analysis/advanced/custom-properties#creating-a-custom-property).
 
 - **How is custom buckets different from [custom property](/analysis/advanced/custom-properties)?**
 
@@ -281,7 +281,7 @@ Steps
 
     No, breakdowns are fundamentally designed to sum up to 100%. To ensure your analysis is accurate, please create non-overlapping segments.
 
-    If you really need to answer a question like this, the right way here is to create these as two metrics leveraging [inline filters](/analysis/reports#event-inline-filters) and NOT use breakdowns.
+    If you really need to answer a question like this, the right way here is to create these as two metrics leveraging [inline filters](/analysis/reports) and NOT use breakdowns.
 
     ![/12834111393684](/12834111393684.png)
 
@@ -290,7 +290,7 @@ Steps
     Yes you can as long as the data-type you’ve changed the property to is supported.
 
 - **Understanding the details:**
-    - **In Numeric: Can I change the operators on the upper and lower bound?**If you are looking for more control on the operators, please create a [custom property](/analysis/advanced/custom-properties-Custom-Properties#creating-a-custom-property).
+    - **In Numeric: Can I change the operators on the upper and lower bound?**If you are looking for more control on the operators, please create a [custom property](/analysis/advanced/custom-properties#creating-a-custom-property).
 
         No, the operators have been fixed. The lower bound is always strictly greater than (≥) and the upper bound is just lesser than(<)
 
@@ -814,7 +814,7 @@ The following occurs when sampling is enabled:
 1. Mixpanel selects a uniformly random sample of users on which to run the analysis.
 2. The sample size is 10% of the total population.
 3. The report is generated using that subset of users.
-4. Mixpanel up-samples the data by multiplying by the inverse of the sampling factor. This is done for [functions](/analysis/reports/insights-Insights-Overview#functions) such as totals and uniques. Functions that do not scale with users (average, min, max) will not be up-sampled.
+4. Mixpanel up-samples the data by multiplying by the inverse of the sampling factor. This is done for [functions](/analysis/reports/insights) such as totals and uniques. Functions that do not scale with users (average, min, max) will not be up-sampled.
 5. The effect is that numbers should closely approximate results seen without sampling enabled. This works better as the number of users increases, particularly for customers with more than 5 million users.
 6. Mixpanel adds an annotation to reports.
 
@@ -914,7 +914,7 @@ There are several reasons why you might see "undefined" in your properties list 
 
 - ***The specific property you’re segmenting by isn’t always sent along with the event you’re analyzing.*** For example, let’s say you’re segmenting the event “App Open” by the property “Account type” If there are instances where App Open fires without the Account type property getting sent with it, these will be categorized as “undefined” when you segment by Account type. Another common example is UTM parameters - “undefined” represents users who fired an event without any UTM in the URL that brought the user to your site.
 - When segmenting an event by a User Profile property, ***you’ll see “undefined” if there are User Profile profiles that don’t contain that property or if the event was triggered by a user without a User Profile at all.*** For example, let’s say you’re segmenting the event “Song Play” by the User Profile property “Favorite Genre.” If there are profiles that have triggered Song Play but don’t have the Favorite Genre property, that value will be “undefined.” Triggers of Song Play by users without a User Profile will also show up under “undefined.”
-- ***For geolocation data (City, Region, Country), the user’s IP couldn’t be mapped to a location, or their IP was not included with the request.*** For JavaScript implementations, City, Region, and Country are [default properties](https://help.mixpanel.com/hc/en-us/articles/115004613766-What-properties-do-Mixpanel-s-libraries-store-by-default-). However, if the IP address of the user is not in Mixpanel’s geolocation database and can’t be mapped to a city, region, or country, they will be “undefined” in reports. For server-side implementations, City, Region, and Country can be “undefined” if the IP address is not included with the request. [Read more about how Mixpanel maps IP to location.](/tracking/how-tos/privacy-friendly-tracking#disabling-geolocation-How-can-I-disable-default-collection-of-city-region-and-country-or-anonymize-geolocation-data-)
+- ***For geolocation data (City, Region, Country), the user’s IP couldn’t be mapped to a location, or their IP was not included with the request.*** For JavaScript implementations, City, Region, and Country are [default properties](https://help.mixpanel.com/hc/en-us/articles/115004613766-What-properties-do-Mixpanel-s-libraries-store-by-default-). However, if the IP address of the user is not in Mixpanel’s geolocation database and can’t be mapped to a city, region, or country, they will be “undefined” in reports. For server-side implementations, City, Region, and Country can be “undefined” if the IP address is not included with the request. [Read more about how Mixpanel maps IP to location.](/tracking/how-tos/privacy-friendly-tracking#disabling-geolocation)
 
 ### Remove “undefined” & "null" values from reports
 

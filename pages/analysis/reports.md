@@ -19,9 +19,9 @@ This article focuses on the common concepts across each report.
 
 This is the menu that appears under "Add Metric" or "Select Step".
 
-By default, the event menu shows all events, except for [hidden events](/admin/data-governance/lexicon#hiding-and-showing-events-and-properties).
+By default, the event menu shows all events, except for [hidden events](/admin/data-governance/lexicon#hide-events-and-properties).
 
-If you organize your events using [tags](/admin/data-governance/lexicon#adding-tags-to-events) in Lexicon, the tags will show up as filtering options in the event menu. When you select a tag, a list of events that share the same tag appears:
+If you organize your events using [tags](/admin/data-governance/lexicon) in Lexicon, the tags will show up as filtering options in the event menu. When you select a tag, a list of events that share the same tag appears:
 
 ![/Untitled__1_.png](/Untitled__1_.png)
 
@@ -44,11 +44,11 @@ You can select the following filtering options to show a subset of the propertie
 
 The events and properties in the menu are prefixed to provide additional context about the properties' type. They will be removed when additional context is not needed.
 
-- Event properties are not prefixed (except in [User report's menu](/analysis/reports-Report-Concepts#h_01FNZ33F2GW9P13G0F0R51TJQJ)):
+- Event properties are not prefixed (except in [User report's menu](/analysis/reports):
 
     ![/Screen_Shot_2021-11-18_at_12.26.25_PM.png](/Screen_Shot_2021-11-18_at_12.26.25_PM.png)
 
-- User properties are prefixed by "User": "User" prefix is removed in [User report's menu](/analysis/reports-Report-Concepts#h_01FNZ33F2GW9P13G0F0R51TJQJ) or once you filter the menu by "user properties".
+- User properties are prefixed by "User": "User" prefix is removed in [User report's menu](/analysis/reports) or once you filter the menu by "user properties".
 
     ![/Screen_Shot_2021-11-18_at_12.25.13_PM.png](/Screen_Shot_2021-11-18_at_12.25.13_PM.png)
 

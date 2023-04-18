@@ -109,7 +109,7 @@ For example, below Flows is showing the event that happened directly before a Pu
 
 ### Viewing More Event Flows
 
-By default, flows only shows you the top 3 events performed by users ordered by the number of users who performed them. Less common events performed by fewer users are combined into an "Other events" section. ([Click here](/analysis/reports/flows-Flows-Report-Overview#h_01FB3F9554W1BPPWBJ4HB80E03) to learn more about other events). To view more events, simply right click the other events node and `Add a row of events`.
+By default, flows only shows you the top 3 events performed by users ordered by the number of users who performed them. Less common events performed by fewer users are combined into an "Other events" section. ([Click here](/analysis/reports/flows). To view more events, simply right click the other events node and `Add a row of events`.
 
 ![/Screen_Shot_2021-07-20_at_7.46.45_PM.png](/Screen_Shot_2021-07-20_at_7.46.45_PM.png)
 

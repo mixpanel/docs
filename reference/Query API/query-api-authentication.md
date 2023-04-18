@@ -19,7 +19,7 @@ updatedAt: "2020-10-20T22:16:31.458Z"
 [/block]
 - Requests parameters must include a `project_id`. 
 
-**Projects with [Data Views](/admin/data-governance/data-views-data-classification#manage-data-view-Data-Views)**
+**Projects with [Data Views](/admin/data-governance/data-views-data-classification#manage-data-view)**
 - In addition to `project_id`, you should include the global data view's `workspace_id` as a request parameter.
 
 **Projects with [Classified Data](https://help.mixpanel.com/hc/en-us/articles/360044295131-Data-Classification)**
