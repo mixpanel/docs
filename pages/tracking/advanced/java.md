@@ -118,7 +118,7 @@ MixpanelAPI mixpanel = new MixpanelAPI();
 mixpanel.sendMessage(update);
 ```
 
-This will set a "Plan" property, with a value "Premium", on user 13793's profile. If there isn't a profile with distinct_id 13793 in Mixpanel already, a new profile will be created. If user 13793 already has a property named "Plan" in their profile, the old value will be overwritten with "Premium". The ip property is set to the user’s ip address “72.229.28.185”. The ignore_time property is set to a value of “true”. Learn more about the ip and ignore_time properties in this [article](https://help.mixpanel.com/hc/en-us/articles/115004499343-Tracking-Geolocation-with-Server-Side-Implementation). 
+This will set a "Plan" property, with a value "Premium", on user 13793's profile. If there isn't a profile with distinct_id 13793 in Mixpanel already, a new profile will be created. If user 13793 already has a property named "Plan" in their profile, the old value will be overwritten with "Premium". The ip property is set to the user’s ip address “72.229.28.185”. The ignore_time property is set to a value of “true”. Learn more about the ip and ignore_time properties in this [article](/tracking/how-tos/effective-server#tracking-geolocation-Tracking-Geolocation-with-Server-Side-Implementation). 
 
 ### Incrementing Numeric Properties
 
@@ -171,7 +171,7 @@ mixpanel.sendMessage(update);
 
 Mixpanel Group Analytics allows behavioral data analysis by selected groups, as opposed to individual users.
 
-Grouping by identifiers other than the `distinct_id` allows analysis at a company or group level when using Mixpanel analytics. Read [this article](https://help.mixpanel.com/hc/en-us/articles/360025333632) to learn more about Group Analytics.
+Grouping by identifiers other than the `distinct_id` allows analysis at a company or group level when using Mixpanel analytics. Read [this article](/analysis/advanced/group-analytics) to learn more about Group Analytics.
 
 A group is identified by the `group_key` and `group_id`.
 * `group_key` is the property that connects event data for Group Analytics.

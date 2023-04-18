@@ -9,7 +9,7 @@ metadata:
 
 A report is the basic unit of performing an analysis in Mixpanel.
 
-Mixpanel has several types of reports: [Insights](https://help.mixpanel.com/hc/en-us/articles/360001333826), [Funnels](https://help.mixpanel.com/hc/en-us/articles/360019982652), [Flows](https://help.mixpanel.com/hc/en-us/articles/360036438351), [Retention](https://help.mixpanel.com/hc/en-us/articles/115004546883) and other advanced reports, each with their specialized use.
+Mixpanel has several types of reports: [Insights](/analysis/reports/insights), [Funnels](/analysis/reports/funnels), [Flows](/analysis/reports/flows), [Retention](/analysis/reports/retention) and other advanced reports, each with their specialized use.
 
 This article focuses on the common concepts across each report.
 
@@ -19,9 +19,9 @@ This article focuses on the common concepts across each report.
 
 This is the menu that appears under "Add Metric" or "Select Step".
 
-By default, the event menu shows all events, except for [hidden events](https://help.mixpanel.com/hc/en-us/articles/360001307806#hiding-and-showing-events-and-properties).
+By default, the event menu shows all events, except for [hidden events](/admin/data-governance/lexicon#hiding-and-showing-events-and-properties).
 
-If you organize your events using [tags](https://help.mixpanel.com/hc/en-us/articles/360001307806#adding-tags-to-events) in Lexicon, the tags will show up as filtering options in the event menu. When you select a tag, a list of events that share the same tag appears:
+If you organize your events using [tags](/admin/data-governance/lexicon#adding-tags-to-events) in Lexicon, the tags will show up as filtering options in the event menu. When you select a tag, a list of events that share the same tag appears:
 
 ![/Untitled__1_.png](/Untitled__1_.png)
 
@@ -35,8 +35,8 @@ You can select the following filtering options to show a subset of the propertie
 
 - Select "event properties" to show only the [Event properties](https://help.mixpanel.com/hc/en-us/articles/360001355266).
 - Select "user properties" to show only the [Profile properties](https://help.mixpanel.com/hc/en-us/articles/115004708186).
-- Select "cohorts" to show only the [Cohorts](https://help.mixpanel.com/hc/en-us/articles/115005708186).
-- If you set up [Group Analytics](https://help.mixpanel.com/hc/en-us/articles/360025333632), the Group keys will show up individually under their display names. You can select any Group key to show only the Group properties relevant to the selected Group key:
+- Select "cohorts" to show only the [Cohorts](/analysis/advanced/cohorts).
+- If you set up [Group Analytics](/analysis/advanced/group-analytics), the Group keys will show up individually under their display names. You can select any Group key to show only the Group properties relevant to the selected Group key:
 
     ![/Mixpanel__project_3____Mixpanel_2021-11-18_12-00-58.png](/Mixpanel__project_3____Mixpanel_2021-11-18_12-00-58.png)
 
@@ -44,11 +44,11 @@ You can select the following filtering options to show a subset of the propertie
 
 The events and properties in the menu are prefixed to provide additional context about the properties' type. They will be removed when additional context is not needed.
 
-- Event properties are not prefixed (except in [User report's menu](https://help.mixpanel.com/hc/en-us/articles/7651639898260-Report-Concepts#h_01FNZ33F2GW9P13G0F0R51TJQJ)):
+- Event properties are not prefixed (except in [User report's menu](/analysis/reports-Report-Concepts#h_01FNZ33F2GW9P13G0F0R51TJQJ)):
 
     ![/Screen_Shot_2021-11-18_at_12.26.25_PM.png](/Screen_Shot_2021-11-18_at_12.26.25_PM.png)
 
-- User properties are prefixed by "User": "User" prefix is removed in [User report's menu](https://help.mixpanel.com/hc/en-us/articles/7651639898260-Report-Concepts#h_01FNZ33F2GW9P13G0F0R51TJQJ) or once you filter the menu by "user properties".
+- User properties are prefixed by "User": "User" prefix is removed in [User report's menu](/analysis/reports-Report-Concepts#h_01FNZ33F2GW9P13G0F0R51TJQJ) or once you filter the menu by "user properties".
 
     ![/Screen_Shot_2021-11-18_at_12.25.13_PM.png](/Screen_Shot_2021-11-18_at_12.25.13_PM.png)
 
@@ -161,7 +161,7 @@ In the top right, you can change the type of visualization and analysis being pe
 
 ### Saving to a Board
 
-When you are satisfied with the analysis, and decide that this is something that you are likely to revisit, Mixpanel recommends that you save the report to a [Board](https://help.mixpanel.com/hc/en-us/articles/115004565746). You can do this by pressing "Save" in the top right and selecting the Board you would like to save to, or creating a new Board.
+When you are satisfied with the analysis, and decide that this is something that you are likely to revisit, Mixpanel recommends that you save the report to a [Board](/analysis/boards). You can do this by pressing "Save" in the top right and selecting the Board you would like to save to, or creating a new Board.
 
 ![/Screen_Shot_2022-07-08_at_5.40.30_PM.png](/Screen_Shot_2022-07-08_at_5.40.30_PM.png)
 
@@ -190,6 +190,6 @@ Compare to past is a shortcut for segmenting a visualization on two time periods
 
 ### Sessions
 
-This is a period of continuous user activity. Use Sessions in Mixpanel to track which events users perform within a session, how many sessions contained a key action or how many sessions it takes for a user to convert in a funnel. [Learn more](https://help.mixpanel.com/hc/en-us/articles/115004695223).
+This is a period of continuous user activity. Use Sessions in Mixpanel to track which events users perform within a session, how many sessions contained a key action or how many sessions it takes for a user to convert in a funnel. [Learn more](/analysis/advanced/sessions).
 
 ![/Screen_Shot_2022-07-11_at_3.27.25_PM.png](/Screen_Shot_2022-07-11_at_3.27.25_PM.png)

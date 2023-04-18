@@ -31,7 +31,7 @@ This allows behavioral analysis from a business or group level, as opposed to an
 
 ## Group Profiles
 
-Much like a [user profile](https://help.mixpanel.com/hc/en-us/articles/115004501966-People-Profiles), Group Profiles are a collection of properties and event history specific to a group.
+Much like a [user profile](/tracking/how-tos/user-profiles-People-Profiles), Group Profiles are a collection of properties and event history specific to a group.
 
 Group Profiles have an activity feed that shows the events performed by users in a group. Only the events attributed to the group with a defined group key will appear in the group's activity feed.
 
@@ -123,7 +123,7 @@ To view the setup guides for implementing Groups using the Groups API, follow th
 
 ### Upload Group Profiles Using the Users Report
 
-It is possible to create Group Profiles by CSV upload as an alternative to the Groups API. [Follow the instructions here to learn how to upload Group Profiles using the Users report](https://help.mixpanel.com/hc/en-us/articles/115004695323).
+It is possible to create Group Profiles by CSV upload as an alternative to the Groups API. [Follow the instructions here to learn how to upload Group Profiles using the Users report](/analysis/users#advanced).
 
 ### Add Group Key to User's Profile
 

@@ -36,7 +36,7 @@ Building a report in Funnels takes just a few clicks, and results arrive in seco
 > What marketing UTM medium drove the most signup conversions for users on iOS?
 >
 
-Feel free to follow along and create your own report right in our demo project, [here](https://mixpanel.com/register/?next=%2Fproject%2F2195193%2Fview%2F139237%2Fapp%2Ffunnels%3Fredirect%3Dview%2FchartType%3Achart%2CconversionWindow%3A%28unit%3Aday%2Cvalue%3A30%29%2CcountType%3Aunique%2CdateRange%3A%28type%3A%27in%2520the%2520last%27%2Cwindow%3A%28unit%3Aday%2Cvalue%3A30%29). To skip ahead and see the final result, click [here](https://help.mixpanel.com/hc/en-us/articles/-%20[https://help.mixpanel.com/hc/en-us/articles/360019982652#building-your-first-report](https://help.mixpanel.com/hc/en-us/articles/360019982652#building-your-first-report)%20%20%20%20%20-%20[%20]%20%20first%C2%A0**here**%C2%A0to%C2%A0[https://mixpanel.com/register/?next=%2Fproject%2F2195193%2Fview%2F139237%2Fapp%2Ffunnels%3Fredirect%3Dview%2FchartType%3Achart%2CconversionWindow%3A%28unit%3Aday%2Cvalue%3A30%29%2CcountType%3Aunique%2CdateRange%3A%28type%3A%27in%2520the%2520last%27%2Cwindow%3A%28unit%3Aday%2Cvalue%3A30%29](https://mixpanel.com/register/?next=%2Fproject%2F2195193%2Fview%2F139237%2Fapp%2Ffunnels%3Fredirect%3Dview%2FchartType%3Achart%2CconversionWindow%3A%28unit%3Aday%2Cvalue%3A30%29%2CcountType%3Aunique%2CdateRange%3A%28type%3A%27in%2520the%2520last%27%2Cwindow%3A%28unit%3Aday%2Cvalue%3A30%29)%20%20%20%20%20-%20[%20]%20%20second%C2%A0**here**%C2%A0to%C2%A0[https://mixpanel.com/register/?next=%2Fproject%2F2195193%2Fview%2F139237%2Fapp%2Ffunnels%3Fredirect%3Dview%2F11945087%2Fi-os-sign-up-conversion-by-utm-medium](https://mixpanel.com/register/?next=%2Fproject%2F2195193%2Fview%2F139237%2Fapp%2Ffunnels%3Fredirect%3Dview%2F11945087%2Fi-os-sign-up-conversion-by-utm-medium)).
+Feel free to follow along and create your own report right in our demo project, [here](https://mixpanel.com/register/?next=%2Fproject%2F2195193%2Fview%2F139237%2Fapp%2Ffunnels%3Fredirect%3Dview%2FchartType%3Achart%2CconversionWindow%3A%28unit%3Aday%2Cvalue%3A30%29%2CcountType%3Aunique%2CdateRange%3A%28type%3A%27in%2520the%2520last%27%2Cwindow%3A%28unit%3Aday%2Cvalue%3A30%29). To skip ahead and see the final result, click [here](https://help.mixpanel.com/hc/en-us/articles/-%20[/analysis/reports/funnels#building-your-first-report](/analysis/reports/funnels#building-your-first-report)%20%20%20%20%20-%20[%20]%20%20first%C2%A0**here**%C2%A0to%C2%A0[https://mixpanel.com/register/?next=%2Fproject%2F2195193%2Fview%2F139237%2Fapp%2Ffunnels%3Fredirect%3Dview%2FchartType%3Achart%2CconversionWindow%3A%28unit%3Aday%2Cvalue%3A30%29%2CcountType%3Aunique%2CdateRange%3A%28type%3A%27in%2520the%2520last%27%2Cwindow%3A%28unit%3Aday%2Cvalue%3A30%29](https://mixpanel.com/register/?next=%2Fproject%2F2195193%2Fview%2F139237%2Fapp%2Ffunnels%3Fredirect%3Dview%2FchartType%3Achart%2CconversionWindow%3A%28unit%3Aday%2Cvalue%3A30%29%2CcountType%3Aunique%2CdateRange%3A%28type%3A%27in%2520the%2520last%27%2Cwindow%3A%28unit%3Aday%2Cvalue%3A30%29)%20%20%20%20%20-%20[%20]%20%20second%C2%A0**here**%C2%A0to%C2%A0[https://mixpanel.com/register/?next=%2Fproject%2F2195193%2Fview%2F139237%2Fapp%2Ffunnels%3Fredirect%3Dview%2F11945087%2Fi-os-sign-up-conversion-by-utm-medium](https://mixpanel.com/register/?next=%2Fproject%2F2195193%2Fview%2F139237%2Fapp%2Ffunnels%3Fredirect%3Dview%2F11945087%2Fi-os-sign-up-conversion-by-utm-medium)).
 
 ### Step 1: Choose Events
 
@@ -109,7 +109,7 @@ Totals funnels count multiple entries per user.  Users can re-enter the funnel 
 3. They are excluded from conversion by an exclusion step.
 
 **Sessions**
-Sessions funnels count the number of sessions that contain a conversion. Like totals funnels, users will be allowed to re-enter the funnel in subsequent sessions; however, in sessions funnels users must convert through the funnel within the same session they entered the funnel to be counted as converted. If the session ends before they have converted, the user will time out and drop out of the funnel after the last step they reached. Learn more about Sessions [here](https://help.mixpanel.com/hc/en-us/articles/115004695223).
+Sessions funnels count the number of sessions that contain a conversion. Like totals funnels, users will be allowed to re-enter the funnel in subsequent sessions; however, in sessions funnels users must convert through the funnel within the same session they entered the funnel to be counted as converted. If the session ends before they have converted, the user will time out and drop out of the funnel after the last step they reached. Learn more about Sessions [here](/analysis/advanced/sessions).
 
 #### Ordering
 
@@ -201,7 +201,7 @@ Further example use cases:
 Note:
 1. An exclusion step can be placed between any steps in the funnel. It cannot be the first or last step.
 2. There may be any number of exclusion events between steps.
-3. Exclusion steps have the same [two second grace period](https://help.mixpanel.com/hc/en-us/articles/7716920767124#how-does-mixpanel-handle-simultaneous-events) as other steps in the funnel.
+3. Exclusion steps have the same [two second grace period](/analysis/reports/funnels#faq#how-does-mixpanel-handle-simultaneous-events) as other steps in the funnel.
 
 ### Rename a Step
 
@@ -387,7 +387,7 @@ This behavior matches how users are counted when filtering by property: if a use
 
 Statistical significance in funnels validates an increase or decrease in conversion rate for a property or cohort segment. It attempts to identify random chance with respect to overall conversion. A p-value indicating statistical significance is calculated in the overview table when you choose a property or cohort to group by.
 
-In statistical hypothesis testing, the p-value or probability value is the probability that the variation in a segment’s conversion rate, compared to the overall conversion rate, is not driven by a random chance. This value is shown for every segment by default. To learn more about how this is calculated, click [here](https://help.mixpanel.com/hc/en-us/articles/7716920767124-Funnels-FAQ#how-does-mixpanel-calculate-statistical-significance).
+In statistical hypothesis testing, the p-value or probability value is the probability that the variation in a segment’s conversion rate, compared to the overall conversion rate, is not driven by a random chance. This value is shown for every segment by default. To learn more about how this is calculated, click [here](/analysis/reports/funnels#faq-Funnels-FAQ#how-does-mixpanel-calculate-statistical-significance).
 
 In order to clarify this statistical significance, the segmentation chart shows the confidence level of each segment. Confidence level is defined as 1 - p.
 
@@ -484,7 +484,7 @@ Custom events were designed to specifically target this exact issue. With custom
 
 **Step 2:** Event C
 
-This allows users to make multiple paths to the same end goal. Learn more about creating custom events [here](https://help.mixpanel.com/hc/en-us/articles/115004562246).
+This allows users to make multiple paths to the same end goal. Learn more about creating custom events [here](/analysis/advanced/custom-events).
 
 ### How does Mixpanel handle simultaneous events?
 

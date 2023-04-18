@@ -119,7 +119,7 @@ Parameters:
 | Token | URL. Passed in request URL. | Query String Parameter | Your Mixpanel [project token](https://help.mixpanel.com/hc/en-us/articles/115004502806-Find-Project-Token-). |
 | distinct_ids | Body. Passed in JSON blob format. | Array of strings | A list of distinct IDs associated with the users whose data you would like to export. You can add up to 1999 distinct IDs. |
 | compliance_type | Body. Passed in JSON blob format. | String | Select CCPA or GDPR. Default is GDPR. |
-| disclosure_type | Body. Passed in JSON blob format. | String | Only required if compliance_type = CCPA. Can be [Data, Categories, or Sources. Default is Data](https://help.mixpanel.com/hc/en-us/articles/360000881023#ccpa-requests). |
+| disclosure_type | Body. Passed in JSON blob format. | String | Only required if compliance_type = CCPA. Can be [Data, Categories, or Sources. Default is Data](/other-bits/privacy-and-security/export-or-delete-end-user-data#ccpa-requests). |
 
 Authorization:
 

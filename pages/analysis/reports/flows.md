@@ -109,7 +109,7 @@ For example, below Flows is showing the event that happened directly before a Pu
 
 ### Viewing More Event Flows
 
-By default, flows only shows you the top 3 events performed by users ordered by the number of users who performed them. Less common events performed by fewer users are combined into an "Other events" section. ([Click here](https://help.mixpanel.com/hc/en-us/articles/360036438351-Flows-Report-Overview#h_01FB3F9554W1BPPWBJ4HB80E03) to learn more about other events). To view more events, simply right click the other events node and `Add a row of events`.
+By default, flows only shows you the top 3 events performed by users ordered by the number of users who performed them. Less common events performed by fewer users are combined into an "Other events" section. ([Click here](/analysis/reports/flows-Flows-Report-Overview#h_01FB3F9554W1BPPWBJ4HB80E03) to learn more about other events). To view more events, simply right click the other events node and `Add a row of events`.
 
 ![/Screen_Shot_2021-07-20_at_7.46.45_PM.png](/Screen_Shot_2021-07-20_at_7.46.45_PM.png)
 
@@ -170,7 +170,7 @@ Totals flows count multiple entries per user.  Users can re-start the flow and 
 3. They are excluded from the current flow by an exclusion step.
 
 **Sessions**
-Sessions ensure every step in the flow is performed in the same session. Like totals flows, users will be allowed to re-start the flow in subsequent sessions. Learn more about Sessions [here](https://help.mixpanel.com/hc/en-us/articles/115004695223).
+Sessions ensure every step in the flow is performed in the same session. Like totals flows, users will be allowed to re-start the flow in subsequent sessions. Learn more about Sessions [here](/analysis/advanced/sessions).
 
 #### Conversion Window
 

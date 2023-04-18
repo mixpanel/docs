@@ -142,7 +142,7 @@ The Impact section of the table contains the final calculations that indicate if
 
 The delta is the difference between the UCA and adopters in the post-launch period. The relative delta divides that value by the UCA.
 
-Confidence indicates the statistical significance of report calculations. [See below for details on the calculation of confidence](https://help.mixpanel.com/hc/en-us/articles/360034129112#confidence-calculation).
+Confidence indicates the statistical significance of report calculations. [See below for details on the calculation of confidence](/analysis/advanced/impact#confidence-calculation).
 
 ### Interpret the Results
 
@@ -226,7 +226,7 @@ The Causal Impact Table provides additional detail on the treatment effects on t
 
 For each impacted metric, the table displays the ATE, the ATT (the average treatment effect on the treated), the 95% confidence interval (CI) bounds for those, and the number of adopters and non-adopters in the calculation.
 
-Click the caret to expand the impacted metric row into the 10 subclasses considered.  For each subclass, Mixpanel displays the number of matched adopters in the subclass, number of matched non-adopters in the subclass, and the [rates at which each performed the impacted metric](https://help.mixpanel.com/hc/en-us/articles/360034129112#report-calculation-details).  The Delta column shows the difference between those rates.
+Click the caret to expand the impacted metric row into the 10 subclasses considered.  For each subclass, Mixpanel displays the number of matched adopters in the subclass, number of matched non-adopters in the subclass, and the [rates at which each performed the impacted metric](/analysis/advanced/impact#report-calculation-details).  The Delta column shows the difference between those rates.
 
 Note that these values can differ from those reported in the Adoption and Impact Trends charts because Causal Impact only considers users that can be found to have similar propensity to perform the launch event to other users.
 
