@@ -151,7 +151,7 @@ Customer data platforms partners have their own identity management solutions. T
 | CDP Partner | Supports Original API | Supports Simplified API |
 | --- | --- | --- |
 | [Segment](https://segment.com/docs/connections/destinations/catalog/actions-mixpanel/) | Yes | Yes |
-| [Rudderstack](https://www.rudderstack.com/docs/destinations/streaming-destinations/mixpanel/) | Yes | No |
+| [Rudderstack](https://www.rudderstack.com/docs/destinations/streaming-destinations/mixpanel/) | Yes | Yes |
 | [mParticle](https://docs.mparticle.com/integrations/mixpanel/event/) | Yes | No |
 
 ### Key Changes from the Original API
