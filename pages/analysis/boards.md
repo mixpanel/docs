@@ -283,7 +283,7 @@ To create a Board Digest:
 
 1. Select **Digests** from the overflow menu at the top right of the board.
 
-    [https://help.mixpanel.com/hc/article_attachments/14250933536404](https://help.mixpanel.com/hc/article_attachments/14250933536404)
+    ![https://help.mixpanel.com/hc/article_attachments/14250933536404](https://help.mixpanel.com/hc/article_attachments/14250933536404)
 
 2. The Digest Settings Control Center will display all active Digests. To create a new Digest, click **+ Create Digest** in the top right corner.
 3. Fill out the resulting form, including the name of the digest, the board upon which the digest is based (note: the digest will only contain the first 8 reports in the board due to email size limitations), the intended email recipients or Slack channel, and the sending frequency (one time ASAP, daily, weekly, or monthly).
