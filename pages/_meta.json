@@ -1,21 +1,25 @@
 {
-  "api-reference": {
-    "title": "API Reference ↗",
-    "type": "page",
-    "href": "https://developer.mixpanel.com/reference",
-    "newWindow": true
-  },
-  "changelogs": {
-    "title": "Changelog",
-    "type": "page",
-    "theme": {
-      "sidebar": false
-    }
-  },
-  "getting-started": "Getting Started",
-  "tracking": "Tracking",
-  "analysis": "Analysis",
-  "admin": "Admin",
-  "other-bits": "Other Bits"
-
+    "index": {
+        "type": "page",
+        "title": "Docs",
+        "href": "/"
+    },
+    "api-reference": {
+        "title": "API Reference ↗",
+        "type": "page",
+        "href": "https://developer.mixpanel.com/reference",
+        "newWindow": true
+    },
+    "changelogs": {
+        "title": "Changelog",
+        "type": "page",
+        "theme": {
+            "sidebar": false
+        }
+    },
+    "getting-started": "Getting Started",
+    "tracking": "Tracking",
+    "analysis": "Analysis",
+    "admin": "Admin",
+    "other-bits": "Other Bits"
 }
