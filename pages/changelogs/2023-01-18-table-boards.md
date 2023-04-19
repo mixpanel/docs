@@ -4,6 +4,7 @@ slug: "changelog-2023-01-18-table-boards"
 hidden: false
 createdAt: "2023-01-18T17:39:02.165Z"
 updatedAt: "2023-01-18T17:39:02.165Z"
+date: "2023-01-18"
 ---
 
 If you’re a fan of visualizing data in table format, you can now save your table to a Board and preserve your analysis. To leverage this new capability, simply add a table to your Board or switch an existing Insights chart into its table format.

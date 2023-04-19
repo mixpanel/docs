@@ -4,6 +4,7 @@ slug: "changelog-2022-12-01-improvements"
 hidden: false
 createdAt: "2022-12-01T17:39:02.165Z"
 updatedAt: "2022-12-01T17:39:02.165Z"
+date: "2022-12-01"
 ---
 
 [Perfecting Mixpanel’s workflows are a top priority for us](https://mixpanel.com/blog/mixpanel-product-polish-updates-user-friction/), and that’s why our customers appreciate our best-in-class design when answering their everyday product questions. We take pride in focusing on the small, but vital incremental improvements that help Mixpanel become faster, more intuitive, and an overall joyous experience for our users.

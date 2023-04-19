@@ -4,6 +4,7 @@ slug: "changelog-2023-03-29-custom-alerts"
 hidden: false
 createdAt: "2023-03-29T17:39:02.165Z"
 updatedAt: "2023-03-29T17:39:02.165Z"
+date: "2023-03-29"
 ---
 
 Video: [https://www.loom.com/60e82349-8fb0-4941-b07c-136616b644d7](https://www.loom.com/share/2feb00896e90458e8d085495a2e62f14) NEED TO DOWNLOAD AND UPLOAD VIDEO

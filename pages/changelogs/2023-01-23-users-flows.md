@@ -4,6 +4,7 @@ slug: "changelog-2023-01-23-users-flows"
 hidden: false
 createdAt: "2023-01-23T17:39:02.165Z"
 updatedAt: "2023-01-23T17:39:02.165Z"
+date: "2023-01-23"
 ---
 
 Back in March of 2022, we upgraded Mixpanel’s user insights analysis with View Users - a simple way to discover who’s contributing to a point on a chart or metric. Since then, Mixpanelers have leveraged this feature to learn more about their users who are driving product growth or stagnation.

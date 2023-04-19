@@ -4,6 +4,7 @@ slug: "changelog-2023-03-28-custom-buckets"
 hidden: false
 createdAt: "2023-03-28T17:39:02.165Z"
 updatedAt: "2023-03-28T17:39:02.165Z"
+date: "2023-03-28"
 ---
 
 

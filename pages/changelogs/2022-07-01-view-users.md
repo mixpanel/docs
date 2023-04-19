@@ -4,6 +4,7 @@ slug: "changelog-2022-07-01-view-users"
 hidden: false
 createdAt: "2022-07-01T17:39:02.165Z"
 updatedAt: "2023-07-01T17:39:02.165Z"
+date: "2022-07-01"
 ---
 
 Making sense of your data just got a whole lot easier. In just two clicks, you can now View Users contributing to any event, at any point in time, across Insights, Funnels, and Retention reports. Save this list as a cohort. Export it as a CSV. And just like that, you have the data to find groups of users experiencing friction or dig deeper into what specific users are driving feature adoption. You can expect View Users to help:

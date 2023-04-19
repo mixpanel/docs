@@ -5,6 +5,7 @@ slug: "changelog-2022-11-03-session-improvements"
 hidden: false
 createdAt: "2023-11-03T17:39:02.165Z"
 updatedAt: "2023-11-03T17:39:02.165Z"
+date: "2022-11-03"
 ---
 
 We’ve added two updates to session tracking in Mixpanel for more flexibility when defining your sessions and a simpler process to slice and dice this data. With Property Based Sessions and Sessions Properties, you can take advantage of a whole new way to analyze how users engage with your product:

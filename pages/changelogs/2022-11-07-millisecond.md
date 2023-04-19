@@ -4,6 +4,7 @@ slug: "changelog-2022-11-07-millisecond"
 hidden: false
 createdAt: "2022-11-07T17:39:02.165Z"
 updatedAt: "2022-11-07T17:39:02.165Z"
+date: "2022-11-07"
 ---
 
 Say hello to accurate event ordering with Millisecond Precision. Now, even if you have multiple events happening within the same second, Mixpanel has the power to decipher the exact sequence in which those events occurred.

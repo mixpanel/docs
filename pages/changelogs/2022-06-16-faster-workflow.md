@@ -4,6 +4,7 @@ slug: "changelog-2022-06-16-faster-workflow"
 hidden: false
 createdAt: "2022-06-16T17:39:02.165Z"
 updatedAt: "2022-06-16T17:39:02.165Z"
+date: "2022-06-16"
 ---
 
 Undo mistakes, shift query blocks and switch reports with lightning speed. Now, Mixpanel workflows are even faster with tools to quickly build, rebuild, and explore your reports.
