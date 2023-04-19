@@ -178,7 +178,7 @@ Typecasting is helpful when one of your properties is a number but is sent to Mi
 
 Insights will automatically bucket high-cardinality segments of number data types into ranges.
 
-You can either customize the ranges by clicking "[Customize Range](https://help.mixpanel.com/hc/en-us/articles/360032529592#bucketing)".
+You can either customize the ranges by clicking "[Customize Range](/analysis/advanced/other-advanced-features#custom-buckets)".
 
 Or alternatively, if you'd like to see the exact numeric values you can typecast the Number property to a String to remove the range bucketing.
 

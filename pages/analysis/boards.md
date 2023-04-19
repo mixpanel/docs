@@ -29,7 +29,7 @@ Before creating a board of your own, it's best to explore existing boards within
 
 **Favorites**: to favorite a board, click the "Favorite" button at the top right of that board. Once you've done so, it will appear in the favorites section at the top left of the board's page.
 
-**Pinned**: pinned boards are important boards for your organization. Mixpanel users with the [Admin or Owner roles](https://help.mixpanel.com/hc/en-us/articles/360024613412-Project-Roles-and-Permissions-) will be able to pin a board such that it appears in the Pinned section for every project member.
+**Pinned**: pinned boards are important boards for your organization. Mixpanel users with the [Admin or Owner roles](/admin/organizations-projects/manage-team-members#organization-roles) will be able to pin a board such that it appears in the Pinned section for every project member.
 
 **Your Boards**: any boards you create will appear in this section. To create a new board, click "+ New Board" at the top of the directory.
 
@@ -114,7 +114,7 @@ The template uses two events: “Sign Up” and “Value Moment.”
 
 For projects that have already been implemented and have data, you will select your two corresponding events, at which point the `Apply` CTA will be enabled, and your board will be generated.
 
-For projects that do not have data, please refer to our [dev docs](https://developer.mixpanel.com/docs/plan-your-implementation) and [implementation](https://help.mixpanel.com/hc/en-us/categories/115001197206-Data-and-Implementation) resources.
+For projects that do not have data, please refer to our [dev docs](https://developer.mixpanel.com/docs/plan-your-implementation) and [implementation](/tracking/how-tos/set-up-projects) resources.
 
 #### What’s in the Template?
 
@@ -303,7 +303,7 @@ It is possible to share a digest for a private board. However, there are some re
 
 Sharing and permissions are set at the board level, and all reports saved on a board inherit the same set of sharing and permissions settings of that board.
 
-To share a board, and therefore all reports contained within it, click the Share button at the top right of the board. From here, sharing works as before, but remember, sharing a board now shares all of that board's reports as well. [Click here](https://help.mixpanel.com/hc/en-us/articles/360044299311) to learn more about sharing.
+To share a board, and therefore all reports contained within it, click the Share button at the top right of the board. From here, sharing works as before, but remember, sharing a board now shares all of that board's reports as well. [Click here](/analysis/boards#sharing) to learn more about sharing.
 
 ![/GIF3__light_.gif](/GIF3__light_.gif)
 
@@ -317,7 +317,7 @@ So long as the recipient has access to the project, they will be able to see the
 
 Sharing and permissions are set at the board level, and all reports saved on a board inherit the same set of sharing and permissions settings of that board.
 
-In the sharing process, you can choose the permissions level granted to the individual with whom you're sharing the board. Teammates with access to a board can either be Viewers (any changes made will not be saved) or Editors (changes made will be saved). [Click here](https://help.mixpanel.com/hc/en-us/articles/360044299311#permissions) to learn more about permissions.
+In the sharing process, you can choose the permissions level granted to the individual with whom you're sharing the board. Teammates with access to a board can either be Viewers (any changes made will not be saved) or Editors (changes made will be saved). [Click here](/analysis/boards#permissions) to learn more about permissions.
 
 As with sharing, setting a user's permission level on a board will give them the same permission level for all reports on that board.
 

@@ -24,7 +24,7 @@ Here are some of the sample questions you can answer in Flows:
 
 ## Quick Start
 
-Building a Flows report follows the same high level steps as building any other report. You can read about report building basics [here](https://help.mixpanel.com/hc/en-us/articles/7651210894740).
+Building a Flows report follows the same high level steps as building any other report. You can read about report building basics [here](/analysis/reports).
 
 Building a report in Flows takes just a few clicks, and results arrive in seconds. Let's build a simple report together. Using a B2B messaging example, imagine you wanted to answer the following question:
 
@@ -135,7 +135,7 @@ Once an event is selected, Mixpanel calculates the most common events performed 
 
 In the above example, Install or Open is a custom event, while Experiment Started is a regular event.
 
-[Click here](https://help.mixpanel.com/hc/en-us/articles/4413141791764#custom-events-in-flows) to learn more about custom events in flows.
+[Click here](/analysis/reports/flows#custom-events-in-flows) to learn more about custom events in flows.
 
 #### Other Events
 
@@ -268,8 +268,6 @@ You may pick custom events as the starting or ending events directly in the quer
 Mixpanel automatically considers the most used and common custom events in your project, displaying them in intermediate steps instead of showing the underlying events. When a custom event is shown instead of the underlying event, it is annotated with the custom event icon to indicate that the event displayed is a custom event.
 
 ![/Screen_Shot_2021-07-20_at_7.04.29_PM.png](/Screen_Shot_2021-07-20_at_7.04.29_PM.png)
-
-[Click here](https://help.mixpanel.com/hc/en-us/articles/4413141791764-Advanced-Flows-Functionality#h_01FB3G2VX96MBQ4Q7XM3BNFCYK) to learn more about all the event types shown in the flows report.
 
 Mixpanel uses the following criteria to decide which custom events are shown in user flows:
 

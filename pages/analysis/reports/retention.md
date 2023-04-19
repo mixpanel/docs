@@ -24,7 +24,7 @@ Here are some of the sample questions you can answer in Retention:
 
 ## Quick Start
 
-Building a Retention report follows the same high level steps as building any other report. You can read about report building basics [here](https://help.mixpanel.com/hc/en-us/articles/7651210894740).
+Building a Retention report follows the same high level steps as building any other report. You can read about report building basics [here](/analysis/reports).
 
 Building a report in Retention takes just a few clicks, and results arrive in seconds. Let's build a simple report together. Continuing the B2B messaging example, imagine you wanted to answer the following question:
 

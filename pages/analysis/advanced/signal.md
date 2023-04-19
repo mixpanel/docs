@@ -29,7 +29,7 @@ This information can be used in future product decisions. By knowing that those 
 
 ## Quick Start
 
-By default, Mixpanel will build a query to show how your [top 50 events](https://help.mixpanel.com/hc/en-us/articles/360001360643-Top-Events-in-Reports) correlate with 2nd week retention in the last quarter for all users. This translates to, “How do the top events correlate with two week retention in the last quarter for all users?"
+By default, Mixpanel will build a query to show how your top 50 events correlate with 2nd week retention in the last quarter for all users. This translates to, “How do the top events correlate with two week retention in the last quarter for all users?"
 
 ![/Screen_Shot_2022-07-13_at_10.13.57_PM.png](/Screen_Shot_2022-07-13_at_10.13.57_PM.png)
 
@@ -62,8 +62,8 @@ The default retention events available in Signal include:
 
 5. Determine and select the Correlation Event and its properties. It is possible to add up to ten different correlation events by clicking the **+** button at the bottom of the query builder.
 
-- The correlation event can be [broken down by property](https://help.mixpanel.com/hc/en-us/articles/115004582086#breakdown-a-query). To do this, select **+ Breakdown** and select the property to break the data down by.
-- The correlation event can be [filtered by property](https://help.mixpanel.com/hc/en-us/articles/115004582086#filter-a-query). To do this, select **+ Filter** and select the property and property value you want to filter by.
+- The correlation event can be [broken down by property](/analysis/reports#breakdowns). To do this, select **+ Breakdown** and select the property to break the data down by.
+- The correlation event can be [filtered by property](/analysis/reports#event-inline-filters). To do this, select **+ Filter** and select the property and property value you want to filter by.
 
 ![/Screen_Shot_2022-07-13_at_10.22.08_PM.png](/Screen_Shot_2022-07-13_at_10.22.08_PM.png)
 
