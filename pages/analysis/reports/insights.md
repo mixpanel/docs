@@ -329,7 +329,7 @@ If you select the DAU, WAU, or MAU function for a date range that includes the c
 
 Click a segment in an Insights report to see the list of users that underlie that data point. This helps see a representative sample of users from any analysis, so you can drill into anomalies or simply get to know your users. You can also save this user list as a cohort to either export or use for message targeting.
 
-See this [video walkthrough](https://www.loom.com/embed/5568e266532b4804a1c2d36d678eb1a2) for 
+See this [video walkthrough](https://www.loom.com/embed/5568e266532b4804a1c2d36d678eb1a2) for examples of how View Users can help you understand users contributing to a specific metric.
 
 ### View Events
 
