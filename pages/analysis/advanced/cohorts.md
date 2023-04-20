@@ -93,4 +93,4 @@ We recommend sharing a set of key cohorts with your organization, to ensure that
 
 ## Exporting Cohorts
 
-You can download the list of users in any Cohort as a CSV via the Cohort Builder. You can also push cohorts to 3rd-party destinations like [Segment](doc:segment-integration), [Braze](doc:braze-integration), or a [Custom Webhook](doc:cohort-webhooks).
+You can download the list of users in any Cohort as a CSV via the Cohort Builder. You can also push cohorts to 3rd-party destinations like [Segment](/other-bits/cohort-syncs/segment), [Braze](/other-bits/cohort-syncs/braze), or a [Custom Webhook](/other-bits/cohort-syncs/cohort-webhooks).

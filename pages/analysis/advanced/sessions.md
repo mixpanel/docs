@@ -25,7 +25,7 @@ Project Admins or Owners can change a project's session definition in Project Se
 
 ### Funnels
 
-In [Funnels](doc:funnels-report), once you have set up sessions, a “Session Start” and “Session End” event will be generated in the report based on the funnel criteria.
+In [Funnels](/analysis/reports/funnels), once you have set up sessions, a “Session Start” and “Session End” event will be generated in the report based on the funnel criteria.
 
 ![/mceclip7.png](/mceclip7.png)
 
@@ -45,13 +45,13 @@ If you choose to count Uniques or Totals, you will be able to select a conversio
 
 ### Flows
 
-In [Flows](doc:flows-report), you can use the “Session Start” and “Session End” events to view the top Flows events within a session. 
+In [Flows](/analysis/reports/flows), you can use the “Session Start” and “Session End” events to view the top Flows events within a session. 
 
 When you select sessions in Flows, the flow will be weighted by number of sessions, rather than unique users.
 
 ### Insights
 
-In [Insights](doc:insights-report), you can use the “Session Start” and “Session End” events to explore a variety of metrics:
+In [Insights](/analysis/reports/insights), you can use the “Session Start” and “Session End” events to explore a variety of metrics:
 
 - The total number of sessions over time
 - The average session length per user

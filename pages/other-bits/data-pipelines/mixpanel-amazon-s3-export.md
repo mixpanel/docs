@@ -8,7 +8,7 @@ metadata:
 createdAt: "2019-01-25T17:27:54.264Z"
 updatedAt: "2023-03-26T19:16:30.791Z"
 ---
-Mixpanel's [Schematized Export Pipeline](doc:schematized-export-pipeline) lets you export your Mixpanel data directly into an S3 bucket, allowing the use of Glue to query it. To set up the Mixpanel AWS pipeline, you must configure AWS to receive the exported data, then [create a pipeline](ref:create-warehouse-pipeline) to export the data.
+Mixpanel's [Schematized Export Pipeline](/other-bits/data-pipelines/schematized-export-pipeline) lets you export your Mixpanel data directly into an S3 bucket, allowing the use of Glue to query it. To set up the Mixpanel AWS pipeline, you must configure AWS to receive the exported data, then [create a pipeline](ref:create-warehouse-pipeline) to export the data.
 
 ## Design
 ![image](/230698348-abb2656e-fe2a-4d9c-ad61-8f80793e9c07.png)

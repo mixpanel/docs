@@ -164,7 +164,7 @@ Finally, let's confirm that the events made it into Mixpanel. Head to the [Event
 
 
 ## Step 4: Import more data
-We're now ready for an import of your own data. If your data is not already in the Mixpanel format, this is a good time to write a transformation step to run as part of the Cloud Function. We recommend testing locally as you iterate on your data transformation logic, as it's much quicker than redeploying the Cloud Function. The [Overview](doc:cloud-ingestion) page has sample code and data to test locally.
+We're now ready for an import of your own data. If your data is not already in the Mixpanel format, this is a good time to write a transformation step to run as part of the Cloud Function. We recommend testing locally as you iterate on your data transformation logic, as it's much quicker than redeploying the Cloud Function. The [Overview](/tracking/http-api) page has sample code and data to test locally.
 
 Once you're ready and have tested with a few small files, you can upload all the files for your import to your GCS bucket, and the import will kick off. This pipeline can be made recurring by uploading files to the GCS bucket periodically.
 

@@ -6,7 +6,7 @@ createdAt: "2021-10-01T20:21:17.479Z"
 updatedAt: "2021-10-02T18:41:55.184Z"
 ---
 
-This document gives tips for implementing scalable, maintainable server-side tracking. If you're just getting started, check out the [quickstart](doc:server).
+This document gives tips for implementing scalable, maintainable server-side tracking. If you're just getting started, check out the [quickstart](/tracking/server).
 
 ## Tracking Browser, Device, and OS
 Mixpanel's Web and Mobile SDKs parse `User-Agent` into a set of properties about the user's browser, device, and OS. This doesn't happen automatically with server-side tracking, but it's easy to add these properties yourself.
@@ -79,7 +79,7 @@ def handle_signup(request):
 ## Identifying Users
 Our server libraries normally require that you specify a `user_id` parameter for each event. If you know who the user is at the time that the event is tracked, simply set this to that user's ID in your internal database (ie: that user's primary key in your "users" table).
 
-If _don't_ know the user's identity at the time the event is tracked, then they're an anonymous user. When using our Web or Mobile SDKs, Mixpanel will automatically generate an ID that's local to that user's device. This ID will persist on all events tracked by that user on that device, until you call `identify()` or `reset()`. More on that in our [identity management guide](doc:identity-management).
+If _don't_ know the user's identity at the time the event is tracked, then they're an anonymous user. When using our Web or Mobile SDKs, Mixpanel will automatically generate an ID that's local to that user's device. This ID will persist on all events tracked by that user on that device, until you call `identify()` or `reset()`. More on that in our [identity management guide](/tracking/how-tos/identifying-users).
 
 If you're tracking from servers, you'll need to generate and manage that ID yourself. **Note: If you're doing this, make sure you leave the _user_id_ positional argument empty in your track calls. See the Python code sample below.**
 
@@ -115,6 +115,6 @@ def handle_pageview(request):
   track_to_mp(request, "Pageview", {"page_url": request.page_url})
 ```
 
-Note: if you're on Original ID Merge, you need to send an explicit `$identify` event to link the two IDs. Learn more in our [ID Merge guide](doc:identity-management).
+Note: if you're on Original ID Merge, you need to send an explicit `$identify` event to link the two IDs. Learn more in our [ID Merge guide](/tracking/how-tos/identifying-users).
 
 

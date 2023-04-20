@@ -4,7 +4,7 @@ slug: "doc-lookup-tables"
 hidden: false
 ---
 
-This guide covers Lookup Tables and how to use them effectively. Lookup Tables are optional; if you're new to Mixpanel, we recommend starting with our guide on [Events and Properties](doc:events-properties).
+This guide covers Lookup Tables and how to use them effectively. Lookup Tables are optional; if you're new to Mixpanel, we recommend starting with our guide on [Events and Properties](/tracking/how-tos/events-and-properties).
 
 ## Overview
 

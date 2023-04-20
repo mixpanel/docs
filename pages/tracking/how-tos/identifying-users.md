@@ -12,7 +12,7 @@ Note: Mixpanel is compatible with Segment. If you use Segment, follow their [the
 ## Overview
 Mixpanel relies on events being accurately tied to the user who performed them. If the user is logged in, this is simple; just set the `$distinct_id` property to the User's ID on all the events you send for that user.  If you're using our Web/Mobile SDKs, this happens automatically for all events sent after you call the `.identify()` method.
 
-Sometimes, it's useful to track events about a user before you know their identity, ie: when they are anonymous. This is common if you're tracking events from parts of your product that do not require a login, like your website, blog, or documentation. In this case, the user does not have an ID, so you need to generate one for them, which we call the `$device_id`. This happens automatically in our Web/Mobile SDKs if you don't call `.identify()`. See our [guidance here](doc:effective-server-side-tracking) for how to do this from your servers.
+Sometimes, it's useful to track events about a user before you know their identity, ie: when they are anonymous. This is common if you're tracking events from parts of your product that do not require a login, like your website, blog, or documentation. In this case, the user does not have an ID, so you need to generate one for them, which we call the `$device_id`. This happens automatically in our Web/Mobile SDKs if you don't call `.identify()`. See our [guidance here](/tracking/how-tos/effective-server) for how to do this from your servers.
 
 When anonymous users log in, Mixpanel needs to know that the two IDs are the same. This enables Mixpanel to join the event streams of both users, which enables you to answer questions like:
 * What % of users make it through the Signup funnel?
@@ -166,7 +166,7 @@ Customer data platforms partners have their own identity management solutions. T
 We recommend using an ID that is unique to each user and does not change, for example a database ID. While using an identifier like email may be more convenient, keep in mind that you cannot merge 2 `$user_id`s or change a `$user_id`, so if the user changes their email, they will count as a separate user.
 
 ### How does this relate to User Profiles?
-[User Profiles](doc:user-profiles) are set directly on $distinct_ids, not on $user_ids or $device_ids. We recommend waiting until after a user is identified before setting user profile properties.
+[User Profiles](/tracking/how-tos/user-profiles) are set directly on $distinct_ids, not on $user_ids or $device_ids. We recommend waiting until after a user is identified before setting user profile properties.
 
 It is possible to set user profile properties for un-identified users by sending the profile updates to `$distinct_id=$device:<device-id>`. However, user profile properties are not preserved when `$device_ids` are linked to `$user_ids`, so any properties set before the IDs became linked will need to be set again using `$distinct_id=<user-id>` once the user is identified.
 

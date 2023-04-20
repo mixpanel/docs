@@ -60,7 +60,7 @@ Mixpanel solves both problems with schema-on-read. Events are ingested and store
 **What this eliminates**: Schema migrations.
 
 ## Star Schema
-Mixpanel's [data model](doc:data-structure-deep-dive) is fundamentally a star-schema: events are facts and user profiles/lookup tables are dimensions. Events are typically streamed in from client devices and server logs, while dimensional data is periodically loaded from a system of record and provides enrichment to the events for analysis.
+Mixpanel's [data model](/tracking/advanced/data-structure-deep-dive) is fundamentally a star-schema: events are facts and user profiles/lookup tables are dimensions. Events are typically streamed in from client devices and server logs, while dimensional data is periodically loaded from a system of record and provides enrichment to the events for analysis.
 
 Arb's query and storage engine can run star-schema joins on the fly. This means events and dimensions can be loaded at any time without any coordination, rather than needing to be joined at ingestion. This query-time approach also enables backfills of events and dimensions to be done retroactively.
 
@@ -79,7 +79,7 @@ Being on Google Cloud also lets us utilize cloud primitives to ship features fas
 **What this eliminates**: Server maintenance, upgrades, and capacity provisioning.
 
 ## Open APIs
-There are [many ways to integrate](doc:plan-your-implementation) with Mixpanel, but all are based on our JSON-over-HTTP APIs. We believe it should be easy to bring data into or out of Mixpanel with whatever tools you already use, whether it's a CDP, a data pipeline, or a simple cURL.
+There are [many ways to integrate](/getting-started/plan-your-implementation) with Mixpanel, but all are based on our JSON-over-HTTP APIs. We believe it should be easy to bring data into or out of Mixpanel with whatever tools you already use, whether it's a CDP, a data pipeline, or a simple cURL.
 
 This approach allows us to plug into the broader data ecosystem, which makes it easy to both stream real-time event streams into Mixpanel and load from source-of-truth systems like data warehouses. Here is a reference, hybrid architecture for bringing data into Mixpanel, enabled by our APIs.
 

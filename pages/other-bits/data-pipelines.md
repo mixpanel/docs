@@ -26,9 +26,9 @@ Configuration depends on the type of Pipeline you want to set up.
 Raw Pipelines export events as JSON to a cloud storage bucket. This is the simplest approach.
 
 See our configuration guides for each raw destination:
-- [Amazon S3](doc:aws-raw-pipeline) 
-- [Google Cloud Storage](doc:gcs-raw-pipeline)
-- [Azure Blob Storage](doc:azure-raw-pipeline) 
+- [Amazon S3](/other-bits/data-pipelines/aws-raw-pipeline) 
+- [Google Cloud Storage](/other-bits/data-pipelines/gcs-raw-pipeline)
+- [Azure Blob Storage](/other-bits/data-pipelines/azure-raw-pipeline) 
 
 Upon successful creation of a pipeline, events will be exported to the following locations:
 - Hourly: `<BUCKET_NAME>/<PATH_PREFIX>/<MIXPANEL_PROJECT_ID>/<YEAR>/<MONTH>/<DAY>/<HOUR>`
@@ -42,13 +42,13 @@ An empty `complete` file will be written in the finished hour or day prefix to i
 Schematized Pipelines export events into a schematized table that Mixpanel infers and generates based on your events. Roughly, each event is a table and each property is a column in that table. This is more complex to configure than Raw, but supports additional functionality, like exporting user profile data and exporting to data warehouses.
 
 See our configuration guides for each schematized destination:
-- [BigQuery](doc:mixpanel-bigquery-export-design) 
-- [Snowflake](doc:mixpanel-snowflake-export) 
-- [Amazon Web Services](doc:mixpanel-amazon-s3-export) 
-- [Google Cloud Storage](doc:gcs) 
-- [Azure Blob Storage](doc:azure-blob-storage) 
+- [BigQuery](/other-bits/data-pipelines/mixpanel-bigquery-export-design) 
+- [Snowflake](/other-bits/data-pipelines/mixpanel-snowflake-export) 
+- [Amazon Web Services](/other-bits/data-pipelines/mixpanel-amazon-s3-export) 
+- [Google Cloud Storage](/other-bits/data-pipelines/gcs) 
+- [Azure Blob Storage](/other-bits/data-pipelines/azure-blob-storage) 
 
-The [Schematized Pipeline reference](doc:schematized-export-pipeline) goes the details of schematization and the output format.
+The [Schematized Pipeline reference](/other-bits/data-pipelines/schematized-export-pipeline) goes the details of schematization and the output format.
 
 ## Step 2: Creating the Pipeline
 

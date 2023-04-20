@@ -17,14 +17,14 @@ If you already send events to a CDP like [Segment](https://segment.com/docs/conn
 If you want a more out-of-the-box solution to load data from your warehouse, Mixpanel also connects to a variety of Reverse ETL tools including [Census](https://docs.getcensus.com/destinations/mixpanel) and [Hightouch](https://hightouch.io/docs/destinations/mixpanel/). These make it easy to route data from your warehouse to Mixpanel and all other tools in your stack.
 
 ### Cloud
-If you already collect events with your own internal systems, see our [Amazon S3](doc:s3-import) and [Google Cloud Storage](doc:gcs-import) guides to reliably load these events into Mixpanel.
+If you already collect events with your own internal systems, see our [Amazon S3](/tracking/integrations/s3-import) and [Google Cloud Storage](/tracking/integrations/gcs-import) guides to reliably load these events into Mixpanel.
 
 ## Need To Start Tracking Product Data?
 It takes less than 5 minutes to track an event to Mixpanel with our Javascript, server, or mobile SDKs. There are two general approaches when it comes to tracking with our SDKs:
 
-* **Server-Side (Recommended):** In this method, you send events from your servers to Mixpanel. This approach is the most reliable and easy to maintain, since it lives in an environment that you control. It also means that you can add tracking in one place (your servers) rather than in 3 places (web, iOS, Android), which keeps tracking unified and clean. See our [quickstart](doc:server) and [best practices](doc:effective-server-side-tracking) for more details on effective server-side tracking.
+* **Server-Side (Recommended):** In this method, you send events from your servers to Mixpanel. This approach is the most reliable and easy to maintain, since it lives in an environment that you control. It also means that you can add tracking in one place (your servers) rather than in 3 places (web, iOS, Android), which keeps tracking unified and clean. See our [quickstart](/tracking/server) and [best practices](/tracking/how-tos/effective-server) for more details on effective server-side tracking.
 
-* **Client-Side:** In this method, events are generated on the client device and sent to the Mixpanel API. There are two types of client-side tracking: web (Javascript) and mobile. This can be faster to set up, but is the least reliable form of tracking due to ad-blockers. It's also harder to update tracking, since the environment where the tracking code runs is out of your control (web or mobile clients). You can improve reliability of client-side tracking using a [proxy](doc:collection-via-a-proxy), but this takes more effort.
+* **Client-Side:** In this method, events are generated on the client device and sent to the Mixpanel API. There are two types of client-side tracking: web (Javascript) and mobile. This can be faster to set up, but is the least reliable form of tracking due to ad-blockers. It's also harder to update tracking, since the environment where the tracking code runs is out of your control (web or mobile clients). You can improve reliability of client-side tracking using a [proxy](/tracking/how-tos/tracking-via-proxy), but this takes more effort.
 
 In general, we recommend tracking everything you possibly via your servers, and only supplementing that with client-side tracking when necessary.
 
@@ -33,7 +33,7 @@ If you’re just starting to track data, we suggest starting simple by tracking 
 
 > 📘
 >
-> Not sure what an event or property is? Check out [What is Mixpanel](doc:what-is-mixpanel) to get a quick introduction to these important concepts.
+> Not sure what an event or property is? Check out [What is Mixpanel](/getting-started/what-is-mixpanel) to get a quick introduction to these important concepts.
 
 ### Sign Up Event
 This is the event where a user makes themselves known to your product by “creating an account”. We recommend tracking Sign Up because it's a quick and easy way to get real insights on your product’s growth.
