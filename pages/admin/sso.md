@@ -97,7 +97,7 @@ You likely will need to provide your IDP with a postback URL. The postback URL i
 
 This needs to be a .cert or .pem file for a valid X509 certificate. Note that .xml files are not valid, if you have downloaded one from your IDP it will not work. Also it's important to note that this certificate will expire after some number of years. At the moment we do not send any notifications when it is about to expire, so make sure you have a system set up to cycle them every so often if you wish to avoid disruption.
 
-## Just in Time Privisioning
+## Just in Time Provisioning
 
 Just in Time (JIT) provisioning using SAML will let users sign in automatically upon the initial login event. This removes the need for organization admin to invite individual users to an Organization. This is part of what IDP Managed Access provides.
 
