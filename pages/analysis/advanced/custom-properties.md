@@ -25,7 +25,7 @@ Example use-cases include:
 
 You can use custom properties to create arbitrary buckets out of your numerical properties, for example creating age groups from age, or income brackets from salary.
 
-Note: you can do this without creating a custom property as well, using [Custom Buckets](doc:other-advanced-features#custom-buckets). Custom Properties enables you to save and share this bucketing with the rest of your team.
+Note: you can do this without creating a custom property as well, using [Custom Buckets](/analysis/advanced/other-advanced-features#custom-buckets). Custom Properties enables you to save and share this bucketing with the rest of your team.
 
 For example, if you have a property for “Days since registration” and you want to bucket the users into “Months since registration” (0-1 months: X users, 1-6 months: Y users, 6+ months: Z users), you can use custom properties.
 

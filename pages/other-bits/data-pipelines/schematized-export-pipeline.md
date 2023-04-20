@@ -60,7 +60,7 @@ Mixpanel automatically exports the ID mapping table when you create a people exp
 Note: When using the ID mappings table, you should use the **resolved** `distinct_id` in place of the non-resolved `distinct_id` whenever present. If there is no resolved `distinct_id`, you can then use the `distinct_id` from the existing people or events table.
 }
 
-Examples of how to do this are available for [BigQuery](doc:mixpanel-bigquery-export-design#querying-the-identity-mapping-table)  and [Snowflake](doc:mixpanel-snowflake-export#querying-the-identity-mapping-table).
+Examples of how to do this are available for [BigQuery](/other-bits/data-pipelines/mixpanel-bigquery-export-design#querying-the-identity-mapping-table)  and [Snowflake](/other-bits/data-pipelines/mixpanel-snowflake-export#querying-the-identity-mapping-table).
 
 ## Service Level Agreement
 Mixpanel has the following policy for data latency: 

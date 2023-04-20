@@ -26,17 +26,17 @@ For existing projects, you can find where your data is currently stored under Pr
 
 ## Using Our SDKs
 Next you'll need to set the server location to EU when initializing the Mixpanel library. You can find instructions for the required config settings for each SDK below:
-- [JavaScript](doc:javascript#eu-data-residency)
-- [Objective-C](doc:ios#eu-data-residency)
-- [Swift](doc:swift#eu-data-residency)
-- [Android](doc:android#eu-data-residency)
-- [Python](doc:python#eu-data-residency)
-- [Java](doc:java#eu-data-residency)
+- [JavaScript](/tracking/advanced/javascript#eu-data-residency)
+- [Objective-C](/tracking/advanced/ios#eu-data-residency)
+- [Swift](/tracking/advanced/swift#eu-data-residency)
+- [Android](/tracking/advanced/android#eu-data-residency)
+- [Python](/tracking/advanced/python#eu-data-residency)
+- [Java](/tracking/advanced/java#eu-data-residency)
 - [PHP](doc:php#eu-data-residency)
-- [Ruby](doc:ruby#eu-data-residency)
-- [Node.js](doc:nodejs#eu-data-residency)
-- [React Native](doc:react-native#eu-data-residency)
-- [Flutter](doc:flutter#eu-data-residency)
+- [Ruby](/tracking/advanced/ruby#eu-data-residency)
+- [Node.js](/tracking/advanced/nodejs#eu-data-residency)
+- [React Native](/tracking/advanced/react-native#eu-data-residency)
+- [Flutter](/tracking/advanced/flutter#eu-data-residency)
 
 ## Querying Mixpanel Data in the EU
 Once you've set the server location to EU, please notify Mixpanel so we can set your project's cluster to `mixpanel-prod-eu`.

@@ -59,7 +59,7 @@ There are other less common ways to send data to Mixpanel. To learn more, please
 ### Mixpanel Cookie 
 By default, Mixpanel cookies send over HTTPS requests as part of the headers. However, Mixpanel’s JavaScript library provides a configuration to completely prevent the browser from transmitting your cookies with non-HTTPS requests.
 
-To enable this, use the [`set_config()`](doc:javascript-full-api-reference#mixpanelset_config) method and change the `secure_cookie` flag from false to true. If you configure your instance to send data over HTTP instead of HTTPS but do set `secure_cookie: true`, then your cookie data is not sent to the server. 
+To enable this, use the [`set_config()`](/tracking/advanced/javascript-full-api-reference#mixpanelset_config) method and change the `secure_cookie` flag from false to true. If you configure your instance to send data over HTTP instead of HTTPS but do set `secure_cookie: true`, then your cookie data is not sent to the server. 
 
 ### Super Properties
 
@@ -108,7 +108,7 @@ If you want to store a super property only once (often for things like initial r
 This means that it's safe to call <a style="font-family: courier" href="https://mixpanel.com/help/reference/javascript-full-api-reference#mixpanel.register_once">mixpanel.register_once</a> with the same property on every page load, and it will only set it if the super property doesn't exist.
 
 #### Super Properties Live in Local Storage
-Our JS library uses a cookie (created in the domain of the page loading the lib) to store super properties. These are stored as JSON in the cookie. They will persist for the life of that cookie, which by default is 365 days. If you wish to change the life of the cookie, you may do so using [set_config](doc:javascript-full-api-reference#mixpanelset_config) to adjust the value for the cookie_expiration(an integer in days). 
+Our JS library uses a cookie (created in the domain of the page loading the lib) to store super properties. These are stored as JSON in the cookie. They will persist for the life of that cookie, which by default is 365 days. If you wish to change the life of the cookie, you may do so using [set_config](/tracking/advanced/javascript-full-api-reference#mixpanelset_config) to adjust the value for the cookie_expiration(an integer in days). 
 
 ## Managing User Identity
 
@@ -120,7 +120,7 @@ Identify a user with a unique ID to track user activity across devices, tie a us
 Call `identify` when you know the identity of the current user, typically after log-in or sign-up. We recommend against using `identify` for anonymous visitors to your site. 
 
 ### Call Reset at Logout
-[Reset](doc:javascript-full-api-reference#section-mixpanel-reset) generates a new random distinct_id and clears super properties. Call reset to clear data attributed to a user when that user logs out. This allows you to handle multiple users on a single device. For more information about maintaining user identity, see the [Identity Management: Best Practices](https://help.mixpanel.com/hc/en-us/articles/115004497803) article.  
+[Reset](/tracking/advanced/javascript-full-api-reference#section-mixpanel-reset) generates a new random distinct_id and clears super properties. Call reset to clear data attributed to a user when that user logs out. This allows you to handle multiple users on a single device. For more information about maintaining user identity, see the [Identity Management: Best Practices](https://help.mixpanel.com/hc/en-us/articles/115004497803) article.  
 
 Note: Calling reset frequently can lead to users quickly exceeding the 500 distinct_id per identity cluster limit. Once the 500 limit is reached you will no longer be able to add additional distinct_ids to the users identity cluster.
 
@@ -219,14 +219,14 @@ Adding users to groups causes the `group_key` and `group_id` to send as a proper
 
 Similar to a `distinct_id`, the `group_key` allows Mixpanel to group events by an identifier for analysis. A `group_key`, however, is a group level identifier and not a user level identifier like the `distinct_id`.
 
-You can add users to groups by calling the [`mixpanel.set_group()`](doc:javascript-full-api-reference#mixpanelset_group) method.
+You can add users to groups by calling the [`mixpanel.set_group()`](/tracking/advanced/javascript-full-api-reference#mixpanelset_group) method.
 
 ```javascript JavaScript
 //Assign Company A and Company B to a user
 mixpanel.set_group(“company”, [“Company A”, “Company B”])
 ```
 
-You can call  [`mixpanel.add_group()`](doc:javascript-full-api-reference#mixpaneladd_group) to add any additional groups to an existing list.
+You can call  [`mixpanel.add_group()`](/tracking/advanced/javascript-full-api-reference#mixpaneladd_group) to add any additional groups to an existing list.
 
 ```javascript JavaScript
 //Add “Mixpanel” to the list of existing groups
@@ -234,7 +234,7 @@ mixpanel.add_group(“company”, “Mixpanel”)
 ```
 
 ### Creating Group Profiles
-It is possible to create a Group profile that is similar to a user profile. You must call [`mixpanel.set_group()`](doc:javascript-full-api-reference#mixpanelset_group) to build a group profile. It is important to the `group_key`, `group_id`, and one property so that the profile is not empty. 
+It is possible to create a Group profile that is similar to a user profile. You must call [`mixpanel.set_group()`](/tracking/advanced/javascript-full-api-reference#mixpanelset_group) to build a group profile. It is important to the `group_key`, `group_id`, and one property so that the profile is not empty. 
 ```javascript JavaScript
 mixpanel.get_group(group_key, group_id).set({“property_name”: property_value})
 ```
@@ -242,43 +242,43 @@ mixpanel.get_group(group_key, group_id).set({“property_name”: property_value
 ### Setting Group Profile Properties
 You can add details to Groups by adding properties to them.
 
-In order to update Group profile properties, you must specify the group that needs to be updated by calling [`get_group()`](doc:javascript-full-api-reference#mixpanelget_group)
+In order to update Group profile properties, you must specify the group that needs to be updated by calling [`get_group()`](/tracking/advanced/javascript-full-api-reference#mixpanelget_group)
 ```javascript JavaScript
 mixpanel.get_group(“company”, “Mixpanel”)
 ```
-The [`get_group()`](doc:javascript-full-api-reference#mixpanelget_group) method can be chained with other commands that edit properties specific to the group.
+The [`get_group()`](/tracking/advanced/javascript-full-api-reference#mixpanelget_group) method can be chained with other commands that edit properties specific to the group.
 
 You can set the property `$name` to populate the name field at the top of the group profile.
 
 These operations are similar to the corresponding operations for user profile property updates.
 #### set
-[`mixpanel.get_group().set`](doc:javascript-full-api-reference#mixpanelgroupset) updates or adds a property to a group.
+[`mixpanel.get_group().set`](/tracking/advanced/javascript-full-api-reference#mixpanelgroupset) updates or adds a property to a group.
 
 ```javascript JavaScript
 mixpanel.get_group(group_key, group_id).set({“property_name”: property_value})
 ```
 #### set once
-[`mixpanel.get_group().set_once`](doc:javascript-full-api-reference#mixpanelgroupset_once) adds a property value to a group only if it has not been set before.
+[`mixpanel.get_group().set_once`](/tracking/advanced/javascript-full-api-reference#mixpanelgroupset_once) adds a property value to a group only if it has not been set before.
 
 ```javascript JavaScript
 mixpanel.get_group(group_key, group_id).set_once({“property_name”: property_value})
 ```
 
 #### unset
-[`mixpanel.get_group().unset`](doc:javascript-full-api-reference#mixpanelgroupunset)  unsets a specific property in the group.
+[`mixpanel.get_group().unset`](/tracking/advanced/javascript-full-api-reference#mixpanelgroupunset)  unsets a specific property in the group.
 
 ```javascript JavaScript
 mixpanel.get_group(group_key, group_id).unset(“property_name”)
 ```
 
 #### remove
-[`mixpanel.get_group().remove`](doc:javascript-full-api-reference#mixpanelgroupremove)  removes a specific value in a list property.
+[`mixpanel.get_group().remove`](/tracking/advanced/javascript-full-api-reference#mixpanelgroupremove)  removes a specific value in a list property.
 ```javascript JavaScript
 mixpanel.get_group(group_key, group_id).remove(“property_name”, “property_value”)
 ```
 
 #### union
-[`mixpanel.get_group().union`](doc:javascript-full-api-reference#mixpanelgroupunion) adds the specified values to a list property and ensures that those values only appear once.
+[`mixpanel.get_group().union`](/tracking/advanced/javascript-full-api-reference#mixpanelgroupunion) adds the specified values to a list property and ensures that those values only appear once.
 ```javascript JavaScript
 mixpanel.get_group(group_key, group_id).union(“property_name”, [property_value1, … [property_valueN])
 ```

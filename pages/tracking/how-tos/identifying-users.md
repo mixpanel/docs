@@ -30,7 +30,7 @@ If using our Server SDKs, HTTP API, or Reverse ETL: it depends on whether you're
 
 ## Example User Flows
 
-Let's walk through a few user flows where ID Merge is useful and show what Mixpanel does under the hood. Note: the specific value of `distinct_id` will be different based on which [version](doc:identity-management#simplified-vs-original-id-merge) of ID Merge you use, but logically both versions work the same way.
+Let's walk through a few user flows where ID Merge is useful and show what Mixpanel does under the hood. Note: the specific value of `distinct_id` will be different based on which [version](/tracking/how-tos/identifying-users#simplified-vs-original-id-merge) of ID Merge you use, but logically both versions work the same way.
 
 ### New User Signup
 

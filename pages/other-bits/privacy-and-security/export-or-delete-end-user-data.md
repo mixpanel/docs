@@ -92,10 +92,10 @@ There are three different disclosure types as outlined in the CCPA. To export or
 
 ## Opt Out Users
 While the following API can be used to delete or retrieve personal data as outlined by the GPDR, it is important to also opt users out of subsequent tracking. Deleting data from Mixpanel will remove it permanently, but it will not prevent the data from being collected moving forward. If tracking using a client-side Mixpanel library, you can opt users out of tracking using Mixpanel's opt-out methods. These are available in the following client-side libraries:
-* [JavaScript](doc:javascript#section-opting-users-out-of-tracking) 
-* [iOS - Objective-C](doc:ios#section-opting-users-out-of-tracking)
-* [iOS - Swift](doc:swift#section-opting-users-out-of-tracking)
-* [Android](doc:android#section-opting-users-out-of-tracking)
+* [JavaScript](/tracking/advanced/javascript#section-opting-users-out-of-tracking) 
+* [iOS - Objective-C](/tracking/advanced/ios#section-opting-users-out-of-tracking)
+* [iOS - Swift](/tracking/advanced/swift#section-opting-users-out-of-tracking)
+* [Android](/tracking/advanced/android#section-opting-users-out-of-tracking)
 
 See Mixpanel’s [Privacy-Friendly Tracking](https://developer.mixpanel.com/docs/privacy-friendly-tracking) guide for more information on best practices when handling personal information in Mixpanel.
 

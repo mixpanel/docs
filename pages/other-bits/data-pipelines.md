@@ -63,12 +63,12 @@ This normally happens when you have a thousands of unique event names or propert
 
 **Why does the number of events in Mixpanel not match the number of exported events to my destination?**
 This can happen for a few reasons:
-- [Data Sync](doc:schematized-export-pipeline#data-sync) is not enabled or not supported for your pipeline.
+- [Data Sync](/other-bits/data-pipelines/schematized-export-pipeline#data-sync) is not enabled or not supported for your pipeline.
 - Data Delay: it can take up to 1 day for late arriving data to be synced from Mixpanel to your destination.
 - Hidden Events: Mixpanel exports all events to your destination, even ones that are hidden in the UI via Lexicon. We recommend checking whether the count in your destination is mostly due to events that have been hidden in the Mixpanel UI.
 
 **How can I count events exported by Mixpanel in the warehouse?**
-Counting events can be slightly different for each warehouse, since we use different partitioning methods. Here are examples for [BigQuery](doc:mixpanel-bigquery-export-design#getting-the-number-of-events-in-each-day) and [Snowflake](doc:mixpanel-snowflake-export#getting-the-number-of-events-in-each-day).
+Counting events can be slightly different for each warehouse, since we use different partitioning methods. Here are examples for [BigQuery](/other-bits/data-pipelines/mixpanel-bigquery-export-design#getting-the-number-of-events-in-each-day) and [Snowflake](/other-bits/data-pipelines/mixpanel-snowflake-export#getting-the-number-of-events-in-each-day).
 
 **How does the free trial work?**
 Mixpanel offers a 30-day trial version of the Data Pipelines. The trial allows for one data export pipeline per project to be created.  Simply pass `trial=true` to our API to create a trial pipeline.
