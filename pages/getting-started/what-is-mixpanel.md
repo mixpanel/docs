@@ -12,7 +12,7 @@ Mixpanel is a product analytics tool that enables you to capture data on how use
 
 Our self-serve interface empowers your team to answer questions, no matter their data expertise.
 
-![image](/230815823-88b2c0fa-532a-4f9f-ad63-789084c93589.png)
+![image](/Mixpanel_Board.png)
 
 ## Introduction to the Data Model
 Mixpanel's Data Model is built on three key concepts: **Events**, **Users**, and **Properties**.
