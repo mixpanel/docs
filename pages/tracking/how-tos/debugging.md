@@ -120,7 +120,7 @@ A good way to start is to remove all filtering from the reports to check if the 
 
 ### Discrepancies between Mixpanel and other sources
 
-Two systems will always track data differently due to their nature. It might very likely be that the systems will never track exactly the same data. However, it is important to get to the bottom of what's causing the discrepancy so you can establish trust in your data.
+Two systems will always track data differently due to their nature. It might very likely be that the systems will never track exactly the same data. However, it is important to get to the bottom of what's causing the discrepancy so you can establish trust in your data. Below is a list of common causes of discrepancies between Mixpanel and other sources:
 
 ### Ad Blockers and Do Not Track Settings
 
@@ -161,3 +161,30 @@ Mixpanel records all events in Coordinated Universal Time (UTC) at intake. By de
 
 A cohort might show more in Mixpanel than what is actually being exported to the partner. You can find out more about troubleshooting this here.
 
+### Debugging Discrepancies
+
+To debug, please make sure that you are looking at data in both systems like this:
+
+- data that is triggered at the same point of the user journey
+- at the same timeframe and timezone
+- with the same filtering for the query of the data
+- at the same unit (unique user count, total event count or session count)
+
+Once you have established this, we recommend drilling down into the data, for example into one day that shows the biggest discrepancies. You can also drill down into specific segments such as country to identify users that have been tracked in one system, but not the other. The goal is to confirm which users are present in one system but not the other, to understand a pattern.
+
+You can also compare the total event count versus the unique user count in the affected systems. If the totals match, but the unique user count shows discrepancies, it likely points to an ID management issue. 
+
+A 'last resort' to get to the bottom of things is to implement your own server-side tracking of the data. This will be more reliable as it’s less prone to issues and is independent of Mixpanel and other systems. It would give you a source of truth to compare any other system to and go from there. While this is resource-intense, it’s a good way to get to a source of truth.
+
+### Discrepancies with Segment
+
+The first step here would be to check if you are tracking with a cloud-mode or device-mode integration.
+
+If the discrepancy is between Mixpanel and another source, but you're tracking via Segment in cloud-mode, you can do the following to troubleshoot:
+
+- If Segment and Mixpanel show the same data, we recommend reaching out to Segment Support, as this likely points to an issue with Segment tracking.
+- If Mixpanel and Segment don’t show the same data, and both have a discrepancy with a third source, we also recommend reaching out to Segment Support to troubleshoot the discrepancy between the 3rd party and Segment. In Mixpanel, you can check for specific distinct_ids that should have events in Mixpanel, or specific events that should be in Mixpanel but might’ve been ingested with a different distinct_id.
+
+If the discrepancy is between Segment and Mixpanel only, keep in mind that device-mode tracking will send the data to Mixpanel directly. If there are discrepancies, you can check for data by searching for specific events, or specific distinct_ids, depending on what you have available from Segment, as it might be that the data has been ingested but allocated to the wrong distinct_id.
+
+If you are tracking via cloud-mode, data will be sent from Segment to Mixpanel. It would basically be the same approach as above, whereas you’d need information from Segment Support when data has been sent. If in cloud-mode, then the issue is the communication between the two systems and Segment would need to provide information on when and how data has been sent.
