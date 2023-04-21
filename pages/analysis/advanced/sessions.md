@@ -103,7 +103,7 @@ Sessions are reset every 24 hours at midnight (according to your project timezon
 
 #### Estimating Ideal Session Length
 
-Use your [Time to Convert Chart in Funnels](https://help.mixpanel.com/hc/en-us/articles/360029190092-Advanced-Funnels-Functionality#time-to-convert) to help determine an appropriate session timeout period that aligns with your users’ behavior.
+Use your [Time to Convert Chart in Funnels](/analysis/reports/funnels#time-to-convert) to help determine an appropriate session timeout period that aligns with your users’ behavior.
 
 ![/mceclip6.png](/mceclip6.png)
 

@@ -2,7 +2,7 @@
 title: "Cohort Syncs"
 slug: "cohort-webhooks"
 hidden: false
-metadata: 
+metadata:
   title: "Cohort Syncs"
   description: "Mixpanel supports syncing cohorts to a custom webhook URL that you provide via our Integrations UI. Learn the prerequisites, webhook format, and more here."
 createdAt: "2021-10-08T22:39:06.529Z"
@@ -14,18 +14,18 @@ Mixpanel supports syncing cohorts to a custom webhook URL that you provide via o
 * A paid Mixpanel plan
 * A Mixpanel project
 * A webhook server. You can create a dummy webhook for testing purposes using [webhook.site](https://webhook.site/).
-* The webhook server should send back events to Mixpanel to track actions like Message sent etc. (This is optional but customers who need this have to implement it themselves) 
-Customers can follow the naming convention mentioned in this [document](https://help.mixpanel.com/hc/en-us/articles/360001465686-Billing-for-Monthly-Tracked-Users#monthly-tracked-users-calculation) to avoid certain events from being considered for MTU tallies.
+* The webhook server should send back events to Mixpanel to track actions like Message sent etc. (This is optional but customers who need this have to implement it themselves)
+Customers can follow the naming convention mentioned in this [document](/admin/pricing-plans#mtu-calculation) to avoid certain events from being considered for MTU tallies.
 
 ## Setting up the webhook via our UI
-To create a new Custom Webhook destination, navigate to our Integrations UI and add a new Webhook connection. All you need to provide is a name for the connection and the URL of your webhook server. 
+To create a new Custom Webhook destination, navigate to our Integrations UI and add a new Webhook connection. All you need to provide is a name for the connection and the URL of your webhook server.
 
 Optional:  Basic Authentication when calling the webhook URL provided
 
 ![image](/230698306-2fa97655-7e3b-4836-87f6-f847306f146f.png)
 
 
-From this point onward, you can sync any cohort to this connection from our cohorts page. 
+From this point onward, you can sync any cohort to this connection from our cohorts page.
 
 ## Webhook Format
 Our webhook format has the following structure in the body of a `POST` request:
@@ -102,12 +102,12 @@ Consider A, B, C, D, E, F as users. Sync interval is 30 minutes. T is when the s
 
 `add_members(...)` indicates a call to the webhook to add members. `remove_members(...)` indicates a call to remove members.
 
-* **T**: `add_members(A, B, C, D)` | `remove_members()` 
+* **T**: `add_members(A, B, C, D)` | `remove_members()`
 * **T+0.1h**: B, D leave the cohort
 * **T+0.2h**: E, F join the cohort
-* **T+0.5h**: `add_members(E, F)` | `remove_members(B, D)` 
+* **T+0.5h**: `add_members(E, F)` | `remove_members(B, D)`
 * <...No cohort changes...>
-* **T+1h**: `add_members()` | `remove_members()` calls are made to the customer webhook 
+* **T+1h**: `add_members()` | `remove_members()` calls are made to the customer webhook
 
 ###  FAQ
 **What is the frequency of the syncs?**
@@ -122,8 +122,8 @@ Every time we perform a successful sync to your webhook, we store a snapshot of 
 **When is a full sync of all members in the cohort performed?**
 Full syncs are only performed when:
 * We sync the cohort for the first time.
-* We store the snapshot of the cohort state for the last successful sync for 3 days. If your webhook server is down (returns a 429 or 5XX error) for more than 3 days, the snapshot expires and we do a full sync. 
-    
+* We store the snapshot of the cohort state for the last successful sync for 3 days. If your webhook server is down (returns a 429 or 5XX error) for more than 3 days, the snapshot expires and we do a full sync.
+
 **How are diffs computed when a sync fails?**
 When a sync fails, we do not update the cohort snapshot. The next sync performed will recompute the diff based on the last successful snapshot (until 3 days have passed, at which point we will attempt to sync the full cohort). This ensures that the state of the cohort will converge to what Mixpanel has.
 
@@ -131,7 +131,7 @@ When a sync fails, we do not update the cohort snapshot. The next sync performed
 We pause syncs on when your server returns a non-transient error (400, 401, 403, 404). Please use the appropriate HTTP status code to indicate a non-transient error; this helps avoid added load.
 
 We record failed syncs in our UI and display the error message returned in the response from your webhook server (see the `error.message` field in the sample response above).
-        
+
 **Do we get notified when the sync is paused?**
 Yes, an email is sent to all users who have set up cohort syncs when the syncs pause due to an error.
 
@@ -145,7 +145,7 @@ Yes, we retry 5 times over 60 secs with exponential backoff in response to 5xx a
 Even though we just sync a diff of users for each cohort there can be failures that occur mid sync. In a case like this, we do not have a mechanism to keep track of users that were already synced for a cohort when the failure occurs in between the sync process. So we start the sync from the top again. This can cause issues like users being synced again.
 
 **What can go wrong for custom webhooks when users are synced again after failure scenarios?**
-For example, If these users are set up for some action upon arrival, this failure and recovery could trigger a duplicate action for the same user. 
+For example, If these users are set up for some action upon arrival, this failure and recovery could trigger a duplicate action for the same user.
 
 **How to avoid duplicate actions for the same users?**
 This can be fixed on the custom webhook server-side by keeping track of users who have been already targeted with the action. This way during failure and recovery scenarios of cohort syncs duplicate actions for the same users can be avoided.

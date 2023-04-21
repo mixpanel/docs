@@ -456,10 +456,6 @@ You can choose to attribute a property value from any step to the whole funnel b
 
 For example, the user viewing your website encounters an error and sends in a support ticket to your business. On first touch they may have been using Safari as their browser, and used Safari to send in the support ticket at last touch, but they were using Chrome when they triggered an error-state. It is relevant for your business to know that they triggered an error on the Chrome browser and not Safari, in order to assist them in fixing the error.
 
-### Create Cohorts from Funnels
-
-You can create a cohort from a funnel segment in order to examine that group of users more closely. Learn more about this feature [here](https://help.mixpanel.com/hc/en-us/articles/360025670271).
-
 ## FAQ
 
 ### Can users do other actions during the funnel?
