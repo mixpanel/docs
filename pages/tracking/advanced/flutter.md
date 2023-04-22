@@ -2,7 +2,7 @@
 title: "Flutter - Advanced"
 slug: "flutter"
 hidden: false
-metadata: 
+metadata:
   title: "SDK Integration: Flutter Advanced | Mixpanel Developer Docs"
   description: "Read our advanced documentation on Mixpanel's Flutter SDK integration. You'll dive deeper into additional configurations and use cases including group analytics."
 createdAt: "2021-02-16T18:33:30.205Z"
@@ -90,12 +90,12 @@ Our mobile libraries store your super properties in local storage. They will per
 
 ## Managing User Identity
 
-You can handle the identity of a user using the [identify](https://mixpanel.github.io/mixpanel-flutter/mixpanel_flutter/Mixpanel/identify.html) and [alias](https://mixpanel.github.io/mixpanel-flutter/mixpanel_flutter/Mixpanel/alias.html) methods. Proper use of these methods can connect events to the correct user as they move across devices, browsers, and other platforms. 
+You can handle the identity of a user using the [identify](https://mixpanel.github.io/mixpanel-flutter/mixpanel_flutter/Mixpanel/identify.html) and [alias](https://mixpanel.github.io/mixpanel-flutter/mixpanel_flutter/Mixpanel/alias.html) methods. Proper use of these methods can connect events to the correct user as they move across devices, browsers, and other platforms.
 
 ### Identify
 Identify a user with a unique ID to track user activity across devices, tie a user to their events, and create a user profile. If you never call this method, unique visitors are tracked using a UUID that generates the first time they use the app.
 
-Call [identify](https://mixpanel.github.io/mixpanel-flutter/mixpanel_flutter/Mixpanel/identify.html) when you know the identity of the current user, typically after log-in or sign-up. We recommend against using [identify](https://mixpanel.github.io/mixpanel-flutter/mixpanel_flutter/Mixpanel/identify.html) for anonymous visitors to your site. 
+Call [identify](https://mixpanel.github.io/mixpanel-flutter/mixpanel_flutter/Mixpanel/identify.html) when you know the identity of the current user, typically after log-in or sign-up. We recommend against using [identify](https://mixpanel.github.io/mixpanel-flutter/mixpanel_flutter/Mixpanel/identify.html) for anonymous visitors to your site.
 
 ```java
 // Ensure all future events sent from
@@ -105,13 +105,13 @@ mixpanel.identify("13791");
 
 
 ### Call Reset at Logout
-[reset](https://mixpanel.github.io/mixpanel-flutter/mixpanel_flutter/Mixpanel/reset.html)  generates a new random distinct_id and clears super properties. Call reset to clear data attributed to a user when that user logs out. This allows you to handle multiple users on a single device. For more information about maintaining user identity, see the [Identity Management: Best Practices](https://help.mixpanel.com/hc/en-us/articles/115004497803) article. 
+[reset](https://mixpanel.github.io/mixpanel-flutter/mixpanel_flutter/Mixpanel/reset.html)  generates a new random distinct_id and clears super properties. Call reset to clear data attributed to a user when that user logs out. This allows you to handle multiple users on a single device. For more information about maintaining user identity, see the [Identifying Users](/tracking/how-tos/identifying-users) article article.
 
 Note: Calling reset frequently can lead to users quickly exceeding the 500 distinct_id per identity cluster limit. Once the 500 limit is reached you will no longer be able to add additional distinct_ids to the users identity cluster.
 
 ## Storing User Profiles
 
-In addition to events, you can store user profiles in Mixpanel's [Behavioral Analytics](https://mixpanel.com/people/) product. Profiles are persistent sets of properties that describe a user - things like name, email address, and signup date. You can use profiles to explore and segment users by who they are, rather than what they did. 
+In addition to events, you can store user profiles in Mixpanel's [Behavioral Analytics](https://mixpanel.com/people/) product. Profiles are persistent sets of properties that describe a user - things like name, email address, and signup date. You can use profiles to explore and segment users by who they are, rather than what they did.
 
 ### Setting Profile Properties
 You can set properties on a user profile with <a style="font-family: courier" href="https://mixpanel.github.io/mixpanel-flutter/mixpanel_flutter/People/set.html">mixpanel.getPeople().set</a>.
@@ -183,7 +183,7 @@ A group is identified by the `group_key` and `group_id`.
 * `group_key` is the property that connects event data for Group Analytics.
 * `group_id` is the identifier for a specific group.
 
-If the property “company” is chosen for Group Analytics, “company” is the `group_key`, and “Mixpanel”, “Company A”, and “13254” are all potential `group_id` values. 
+If the property “company” is chosen for Group Analytics, “company” is the `group_key`, and “Mixpanel”, “Company A”, and “13254” are all potential `group_id` values.
 
 A user can belong to multiple groups. All updates to a group operate on the `group_key` and `group_id`.
 
@@ -197,7 +197,7 @@ Adding users to groups causes the `group_key` and `group_id` to send as a proper
 
 Similar to a `distinct_id`, the `group_key` allows Mixpanel to group events by an identifier for analysis. A `group_key`, however, is a group level identifier and not a user level identifier like the `distinct_id`.
 
-You can add users to groups by calling the <a style="font-family: courier" href="https://mixpanel.github.io/mixpanel-flutter/mixpanel_flutter/Mixpanel/setGroup.html">setGroup</a> method. 
+You can add users to groups by calling the <a style="font-family: courier" href="https://mixpanel.github.io/mixpanel-flutter/mixpanel_flutter/Mixpanel/setGroup.html">setGroup</a> method.
 
 ```java
 mixpanel.setGroup("group key", "group id");
@@ -248,7 +248,7 @@ For other Group methods, see our [reference](https://mixpanel.github.io/mixpanel
 
 ## EU Data Residency
 
-Route data to Mixpanel's EU servers by setting the `serverURL` property after initializing the client. 
+Route data to Mixpanel's EU servers by setting the `serverURL` property after initializing the client.
 ```java
 mixpanel.setServerURL("https://api-eu.mixpanel.com");
 ```

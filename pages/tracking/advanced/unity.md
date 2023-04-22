@@ -2,7 +2,7 @@
 title: "Unity - Advanced"
 slug: "unity"
 hidden: false
-metadata: 
+metadata:
   title: "SDK Integration: Unity Advanced | Mixpanel Developer Docs"
   description: "Read our advanced documentation on Mixpanel's Unity SDK integration. You'll dive deeper into additional configurations and use cases including super properties."
 createdAt: "2018-04-12T18:58:41.198Z"
@@ -51,7 +51,7 @@ Mixpanel.Track("Plan Selected", props);
 ```
 
 #### Flushing Events
-To preserve battery life and customer bandwidth, the Mixpanel library doesn't send the events you record immediately. Instead, it sends batches to the Mixpanel servers periodically while your application is running. On Unity, you can configure the interval at which data is flushed to Mixpanel. The default time is that data gets flushed every 60 seconds. 
+To preserve battery life and customer bandwidth, the Mixpanel library doesn't send the events you record immediately. Instead, it sends batches to the Mixpanel servers periodically while your application is running. On Unity, you can configure the interval at which data is flushed to Mixpanel. The default time is that data gets flushed every 60 seconds.
 
 ## Timing Events
 
@@ -69,7 +69,7 @@ It's very common to have certain properties that you want to include with each e
 
 To make things easier, you can register these properties as **super properties**. If you do, we will automatically include them with all tracked events. Super properties are saved to device storage, and will persist across invocations of your app.
 
-To set super properties, call <a style="font-family: courier" href="http://mixpanel.github.io/mixpanel-unity/api-reference/classmixpanel_1_1_mixpanel.html#acf2fccd7625dfb2a15ef54fcaf8ddfe4">Mixpanel.Register.</a> 
+To set super properties, call <a style="font-family: courier" href="http://mixpanel.github.io/mixpanel-unity/api-reference/classmixpanel_1_1_mixpanel.html#acf2fccd7625dfb2a15ef54fcaf8ddfe4">Mixpanel.Register.</a>
 
 ```csharp
 // Send a "User Type: Paid" property will be sent
@@ -112,12 +112,12 @@ Mixpanel's server-side libraries do not automatically append "super properties" 
 
 ## Managing User Identity
 
-You can handle the identity of a user using the `identify` and `alias` methods. Proper use of these methods can connect events to the correct user as they move across devices, browsers, and other platforms. 
+You can handle the identity of a user using the `identify` and `alias` methods. Proper use of these methods can connect events to the correct user as they move across devices, browsers, and other platforms.
 
 ### Identify
 Identify a user with a unique ID to track user activity across devices, tie a user to their events, and create a user profile. If you never call this method, unique visitors are tracked using a UUID that generates the first time they visit the site.
 
-Call `identify` when you know the identity of the current user, typically after log-in or sign-up. We recommend against using `identify` for anonymous visitors to your site. 
+Call `identify` when you know the identity of the current user, typically after log-in or sign-up. We recommend against using `identify` for anonymous visitors to your site.
 ```csharp
 // Associate all future events sent from
 // the library with the distinct_id 13793
@@ -125,7 +125,7 @@ Mixpanel.Identify('13793');
 ```
 
 ### Call Reset at Logout
-[Reset](http://mixpanel.github.io/mixpanel-unity/api-reference/classmixpanel_1_1_mixpanel.html#af80b55f985b94780ec983dc6c1210d6b) generates a new random distinct_id and clears super properties. Call reset to clear data attributed to a user when that user logs out. This allows you to handle multiple users on a single device. For more information about maintaining user identity, see the [Identity Management: Best Practices](https://help.mixpanel.com/hc/en-us/articles/115004497803) article. 
+[Reset](http://mixpanel.github.io/mixpanel-unity/api-reference/classmixpanel_1_1_mixpanel.html#af80b55f985b94780ec983dc6c1210d6b) generates a new random distinct_id and clears super properties. Call reset to clear data attributed to a user when that user logs out. This allows you to handle multiple users on a single device. For more information about maintaining user identity, see the [Identifying Users](/tracking/how-tos/identifying-users) article.
 
 Note: Calling reset frequently can lead to users quickly exceeding the 500 distinct_id per identity cluster limit. Once the 500 limit is reached you will no longer be able to add additional distinct_ids to the users identity cluster.
 

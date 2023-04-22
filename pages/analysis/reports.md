@@ -33,8 +33,8 @@ By default, the menu shows "all properties". This includes event properties, pro
 
 You can select the following filtering options to show a subset of the properties in the menu:
 
-- Select "event properties" to show only the [Event properties](https://help.mixpanel.com/hc/en-us/articles/360001355266).
-- Select "user properties" to show only the [Profile properties](https://help.mixpanel.com/hc/en-us/articles/115004708186).
+- Select "event properties" to show only the [Event properties](/tracking/how-tos/events-and-properties).
+- Select "user properties" to show only the [Profile properties](/tracking/how-tos/events-and-properties).
 - Select "cohorts" to show only the [Cohorts](/analysis/advanced/cohorts).
 - If you set up [Group Analytics](/analysis/advanced/group-analytics), the Group keys will show up individually under their display names. You can select any Group key to show only the Group properties relevant to the selected Group key:
 
@@ -60,7 +60,7 @@ The events and properties in the menu are prefixed to provide additional context
 
     ![/Screen_Shot_2021-11-18_at_12.37.54_PM.png](/Screen_Shot_2021-11-18_at_12.37.54_PM.png)
 
-- [Lookup properties](https://help.mixpanel.com/hc/en-us/articles/360044139291) are prefixed by the mapped property. Let's say "Timezone" is mapped to a Lookup Table that contains "UTC Offset" and "UTC Offset (DST)", these lookup properties will be prefixed by "Timezone"
+- [Lookup properties](/tracking/how-tos/lookup-tables) are prefixed by the mapped property. Let's say "Timezone" is mapped to a Lookup Table that contains "UTC Offset" and "UTC Offset (DST)", these lookup properties will be prefixed by "Timezone"
 
     ![/Screen_Shot_2021-11-18_at_12.29.00_PM.png](/Screen_Shot_2021-11-18_at_12.29.00_PM.png)
 

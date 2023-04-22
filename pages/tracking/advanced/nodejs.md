@@ -2,7 +2,7 @@
 title: "Node.js - Advanced"
 slug: "nodejs"
 hidden: false
-metadata: 
+metadata:
   title: "SDK Integration: Node.js library | Mixpanel Developer Docs"
   description: "The Mixpanel Node.js library provides Mixpanel tracking functionality in server-side applications built using Node.js. Read our docs to learn more."
 createdAt: "2018-12-06T23:05:14.379Z"
@@ -16,11 +16,11 @@ The [Library Source Code](https://github.com/mixpanel/mixpanel-node) and an [Exa
 
 Install the Mixpanel Node.js library and create a Mixpanel instance in order to begin Mixpanel tracking.
 
-Use [npm](https://www.npmjs.com/) to install Mixpanel in your project by calling `npm install mixpanel`. The Mixpanel module will be available in the Node project after installing the library. 
+Use [npm](https://www.npmjs.com/) to install Mixpanel in your project by calling `npm install mixpanel`. The Mixpanel module will be available in the Node project after installing the library.
 
 Next, create a Mixpanel instance and initialize a Mixpanel client to communicate with Mixpanel servers. To do this, grab the Mixpanel factory and create an instance of the Mixpanel client by calling `mixpanel.init(YOUR_PROJECT_TOKEN)`.
 
-The project token is unique to your Mixpanel project. [Instructions for finding your project token can be found here](https://help.mixpanel.com/hc/en-us/articles/115004502806).
+The project token is unique to your Mixpanel project. [Instructions for finding your project token can be found here](/admin/organizations-projects/manage-projects#find-your-project-tokens).
 ```javascript Javascript
 // grab the Mixpanel factory
 var Mixpanel = require('mixpanel');
@@ -45,7 +45,7 @@ mixpanel.init(
 
 You can track events with `mixpanel.track()` after initializing a Mixpanel instance.
 
-The `mixpanel.track()` method takes two arguments, an event name and a properties object which must include the [distinct_id](https://help.mixpanel.com/hc/en-us/articles/115004509406-Distinct-IDs-). 
+The `mixpanel.track()` method takes two arguments, an event name and a properties object which must include the [distinct_id](https://help.mixpanel.com/hc/en-us/articles/115004509406-Distinct-IDs-).
 
 You have the option to add additional event properties to the call to add detail to that event. [Read more about events and properties here](/tracking/how-tos/effective-server#tracking-geolocation).
 ```javascript
@@ -63,7 +63,7 @@ mixpanel.track('event name', {
 
 Mixpanel determines default geolocation data ($city, $region, mp_country_code) using the IP address on the incoming request. This can have the unintended effect of setting the location of all of your users to the location of your datacenter in server-side implementations.
 
-It is therefore important to pass IP as a property in server-side implementations. [Read about best practices for geolocation with server-side implementations](https://help.mixpanel.com/hc/en-us/articles/360000857366-Plan-Your-Implementation#events-and-properties).
+It is therefore important to pass IP as a property in server-side implementations. [Read about best practices for geolocation with server-side implementations](/tracking/how-tos/effective-server).
 ```javascript
 var Mixpanel = require('mixpanel');
 var mixpanel = Mixpanel.init('<YOUR_TOKEN>');
@@ -77,18 +77,18 @@ mixpanel.track('event name', {
 
 ## Storing User Profiles
 
-You can send user profile updates to Mixpanel in addition to sending events. 
+You can send user profile updates to Mixpanel in addition to sending events.
 
-Mixpanel can maintain a [profile of each of your users](/tracking/how-tos/user-profiles), storing information you know about them. 
+Mixpanel can maintain a [profile of each of your users](/tracking/how-tos/user-profiles), storing information you know about them.
 
 A profile update changes the properties of a user profile, essentially changing the details tied to that profile or creating it if it does not exist.
 
 You can use profiles and user profile properties to explore and segment users by who they are, in addition to what they did with event tracking.
 
 ### Setting Profile Properties
-You can update or create a [user profile](/tracking/how-tos/user-profiles)`. The first argument is distinct_id, and the second argument is a JSON list of the properties to add to or update the profile with. 
+You can update or create a [user profile](/tracking/how-tos/user-profiles)`. The first argument is distinct_id, and the second argument is a JSON list of the properties to add to or update the profile with.
 
-The following example sets a "Plan" property with a value "Premium", a first name, a last name, and a created date on the user's profile that has a distinct id of `13793`. 
+The following example sets a "Plan" property with a value "Premium", a first name, a last name, and a created date on the user's profile that has a distinct id of `13793`.
 
 Mixpanel automatically creates a new profile if there isn't already a profile with a distinct_id of `13793` in the project already.
 
@@ -121,9 +121,9 @@ mixpanel.people.increment('13793', {'points': 10, 'games_played': 1});
 ```
 
 ### Appending to List Properties
-Use `mixpanel.people.append()` to add an item to an existing list-valued property.  
+Use `mixpanel.people.append()` to add an item to an existing list-valued property.
 
-`mixpanel.people.append()` adds the values passed to it at the end of the list for each named property. Mixpanel creates a list containing one element as its value if the property does not already exist. 
+`mixpanel.people.append()` adds the values passed to it at the end of the list for each named property. Mixpanel creates a list containing one element as its value if the property does not already exist.
 
 ```javascript
 // append value to a list
@@ -145,7 +145,7 @@ A group is identified by the `group_key` and `group_id`.
 * `group_key` is the property that connects event data for Group Analytics.
 * `group_id` is the identifier for a specific group.
 
-If the property “Company” is chosen for Group Analytics, “Company” is the `group_key`, and “Mixpanel”, “Company A”, and “13254” are all potential `group_id` values. 
+If the property “Company” is chosen for Group Analytics, “Company” is the `group_key`, and “Mixpanel”, “Company A”, and “13254” are all potential `group_id` values.
 
 A user can belong to multiple groups. All updates to a group operate on the `group_key` and `group_id`.
 
@@ -157,7 +157,7 @@ To administer group keys, navigate to your Project Settings. Click **+Add Group 
 ### Sending Group Identifiers With Events
 To send group identifiers with events, send the `group_key` as a property key and the `group_id` as the property value. The data type of the `group_key` property is a list, therefore you can add multiple values for a single user. It is also possible to pass only one value.
 
-Mixpanel can group events by the `group_id`, similar to how events are grouped with the `distinct_id`. A `group_id`, however, is a group level identifier and not a user level identifier like the `distinct_id`. 
+Mixpanel can group events by the `group_id`, similar to how events are grouped with the `distinct_id`. A `group_id`, however, is a group level identifier and not a user level identifier like the `distinct_id`.
 
 Note that sending in a `group_key` and `group_id` as event properties does not add users to the group profile or assign group membership to the user's profile. Only **events** with your chosen `group_key` property set will be available for behavioral analysis at the group level. See the sections following the code example to learn how to add users to a group profile or add a group to the user's profile.
 

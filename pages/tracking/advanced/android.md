@@ -2,7 +2,7 @@
 title: "Android - Advanced"
 slug: "android"
 hidden: false
-metadata: 
+metadata:
   title: "SDK Integration: Android Advanced | Mixpanel Developer Docs"
   description: "Read our advanced documentation on Mixpanel's Android SDK integration. You'll dive deeper into additional configurations and use cases including group analytics."
 createdAt: "2018-04-12T18:57:33.400Z"
@@ -78,13 +78,13 @@ Our mobile libraries store your super properties in local storage. They will per
 
 ## Managing User Identity
 
-You can handle the identity of a user using the [identify](http://mixpanel.github.io/mixpanel-android/com/mixpanel/android/mpmetrics/MixpanelAPI.html#identify-java.lang.String-) 
-method. Proper use of these methods can connect events to the correct user as they move across devices, browsers, and other platforms. 
+You can handle the identity of a user using the [identify](http://mixpanel.github.io/mixpanel-android/com/mixpanel/android/mpmetrics/MixpanelAPI.html#identify-java.lang.String-)
+method. Proper use of these methods can connect events to the correct user as they move across devices, browsers, and other platforms.
 
 ### Identify
 Identify a user with a unique ID to track user activity across devices, tie a user to their events, and create a user profile. If you never call this method, unique visitors are tracked using a UUID that generates the first time they use the app.
 
-Call `identify` when you know the identity of the current user, typically after log-in or sign-up. We recommend against using `identify` for anonymous visitors to your site. 
+Call `identify` when you know the identity of the current user, typically after log-in or sign-up. We recommend against using `identify` for anonymous visitors to your site.
 
 ```java Java
 MixpanelAPI mixpanel =
@@ -99,7 +99,7 @@ In general, if you use [identify](https://mixpanel.github.io/mixpanel-android/co
 
 
 ## Call Reset at Logout
-[Reset](https://mixpanel.github.io/mixpanel-android/com/mixpanel/android/mpmetrics/MixpanelAPI.html#reset()) generates a new random distinct_id and clears super properties. Call reset to clear data attributed to a user when that user logs out. This allows you to handle multiple users on a single device. For more information about maintaining user identity, see the [Identity Management: Best Practices](https://help.mixpanel.com/hc/en-us/articles/115004497803) article. 
+[Reset](https://mixpanel.github.io/mixpanel-android/com/mixpanel/android/mpmetrics/MixpanelAPI.html#reset()) generates a new random distinct_id and clears super properties. Call reset to clear data attributed to a user when that user logs out. This allows you to handle multiple users on a single device. For more information about maintaining user identity, see the [Identifying Users](/tracking/how-tos/identifying-users) article.
 
 Note: Reset should only be used if multiple users share a device. Calling reset frequently can lead to users quickly exceeding the 500 distinct_id per identity cluster limit. Once the 500 limit is reached you will no longer be able to add additional distinct_ids to the users identity cluster.
 
@@ -204,7 +204,7 @@ A group is identified by the `group_key` and `group_id`.
 * `group_key` is the property that connects event data for Group Analytics.
 * `group_id` is the identifier for a specific group.
 
-If the property “company” is chosen for Group Analytics, “company” is the `group_key`, and “Mixpanel”, “Company A”, and “13254” are all potential `group_id` values. 
+If the property “company” is chosen for Group Analytics, “company” is the `group_key`, and “Mixpanel”, “Company A”, and “13254” are all potential `group_id` values.
 
 A user can belong to multiple groups. All updates to a group operate on the `group_key` and `group_id`.
 
@@ -239,7 +239,7 @@ mMixpanel.removeGroup("group key", "group id");
 
 
 ## Creating Group Profiles
-It is possible to create a Group profile that is similar to a user profile. You must call `getGroup.set()` to build a group profile. It is important to the `group_key`, `group_id`, and one property so that the profile is not empty. 
+It is possible to create a Group profile that is similar to a user profile. You must call `getGroup.set()` to build a group profile. It is important to the `group_key`, `group_id`, and one property so that the profile is not empty.
 ```java Java
 mMixpanel.getGroup("group key", "group id").set("SET NAME", "SET VALUE");
 ```
@@ -298,7 +298,7 @@ Route data to Mixpanel's EU servers by adding meta-data entries under the `<appl
            android:value="https://api-eu.mixpanel.com/engage?ip=1" />
 <meta-data android:name="com.mixpanel.android.MPConfig.GroupsEndpoint"
            android:value="https://api-eu.mixpanel.com/groups" />
-<meta-data android:name="com.mixpanel.android.MPConfig.DecideEndpoint" 
+<meta-data android:name="com.mixpanel.android.MPConfig.DecideEndpoint"
            android:value="https://api-eu.mixpanel.com/decide" />
 ```
 

@@ -420,7 +420,7 @@ Your selected choice will determine which step of your funnel determines the pro
 
 #### First Touch Attribution and Forwardfilling
 
-By default, Mixpanel “forwardfills” [event properties](https://help.mixpanel.com/hc/en-us/articles/115004708186-Event-Properties-Super-Properties-People-Properties) in instances where properties are sent in earlier steps of a Funnel but not sent in subsequent steps of the same funnel. This means that the property that is present in early steps of a funnel is appended to the later steps of the funnel where it was previously absent.
+By default, Mixpanel “forwardfills” [event properties](/tracking/how-tos/events-and-properties) in instances where properties are sent in earlier steps of a Funnel but not sent in subsequent steps of the same funnel. This means that the property that is present in early steps of a funnel is appended to the later steps of the funnel where it was previously absent.
 
 Select **First touch** to attribute the first property value to the whole funnel, regardless of whether the property value changes in subsequent steps. First touch is not the same as the first step of the funnel, rather it is the first time the property is given a non-null defined value.
 
@@ -432,7 +432,7 @@ As you can see in the diagram above, the property of “Name” is only a proper
 
 #### Last Touch Attribution and Backfilling
 
-By default, Mixpanel “backfills” [event properties](https://help.mixpanel.com/hc/en-us/articles/115004708186-Event-Properties-Super-Properties-People-Properties) in instances where properties are sent in later steps of a Funnel but not sent in the earlier steps of the same funnel. This means that the property that is present in later steps of a funnel is appended to the earlier steps of the funnel where it was previously absent.
+By default, Mixpanel “backfills” [event properties](/tracking/how-tos/events-and-properties) in instances where properties are sent in later steps of a Funnel but not sent in the earlier steps of the same funnel. This means that the property that is present in later steps of a funnel is appended to the earlier steps of the funnel where it was previously absent.
 
 Select **Last touch** to attribute the last property value to the whole funnel, regardless of the property value in previous steps. Last touch is not the same as the last step of the funnel, rather it is the last time the property is given a non-null defined value.
 
@@ -470,7 +470,7 @@ Users can complete the steps you designate in your funnel in loose order. Loose 
 
 Funnels and Insights have different default counting methods. Insights by default counts events using "Totals", whereas Funnels are by default calculated with the Conversion Criteria in "Uniques".
 
-Funnels uses "Uniques" as its default as it is intended to help you gauge your product's effectiveness in urging your users to complete certain flows (e.g. Registration, Purchase). If the numbers were in Totals, a few select power users could skew your data. Each user will only be counted once for a funnel within any given time period you set. The Funnels report with 'Unique' conversion criteria will show only the conversion rates/steps the first time a user enters the funnel, even if they complete or drop out of the funnel multiple times, hence giving a 'Unique' count.You can toggle the conversion criteria to 'Total' or 'Sessions' counting method. Please note that not every Step 1 event will enter a 'Total' conversion funnel. Learn more about counting methods [here](https://help.mixpanel.com/hc/en-us/articles/360029190092-Advanced-Funnels-Functionality).
+Funnels uses "Uniques" as its default as it is intended to help you gauge your product's effectiveness in urging your users to complete certain flows (e.g. Registration, Purchase). If the numbers were in Totals, a few select power users could skew your data. Each user will only be counted once for a funnel within any given time period you set. The Funnels report with 'Unique' conversion criteria will show only the conversion rates/steps the first time a user enters the funnel, even if they complete or drop out of the funnel multiple times, hence giving a 'Unique' count.You can toggle the conversion criteria to 'Total' or 'Sessions' counting method. Please note that not every Step 1 event will enter a 'Total' conversion funnel. Learn more about counting methods [here](/analysis/reports/funnels#counting-method).
 
 ### Can multiple events count towards the same Funnel step?
 

@@ -72,7 +72,7 @@ $$Group\,Rate= { (\# \,of\,users\,who\,performed\,metric\,event)  \over (\# of\
 
 This value is  a percentage, because the maximum possible value is 1.  We therefor display the percentage of users in the control group who performed the metric event.
 
-If calculating using funnels, then the rate is the [overall conversion rate of the funnel](https://help.mixpanel.com/hc/en-us/articles/360025344831) for users in the group.
+If calculating using funnels, then the rate is the overall conversion rate of the funnel for users in the group.
 
 #### Lift and Lift Trend
 
