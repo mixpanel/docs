@@ -1,15 +1,29 @@
 ---
-title: "Troubleshooting Cohort Syncs"
-slug: "troubleshooting-cohort-syncs"
-hidden: false
-metadata: 
-  title: "Troubleshooting Cohort Syncs"
-  description: "Data discrepancies between Mixpanel cohort and integration"
+title: "Overview"
 ---
+
+## Limits
+Each project is limited to 60 dynamic (recurring) cohort syncs across all destinations. This limit helps ensure that syncs are fast and reliable. We recommend pruning older unused syncs to stay within the limit.
+
+There are no limits for static, or 1-time, syncs.
+
+The exported user data is limited to the following properties:
+
+$distinct_id
+$first_name
+$last_name
+$partner_user_id
+$email
+$phone
+If these properties are not present in your project, users might not be matched in the systems. If an integration partner doesn't use a property to match, it is dropped before ingestion. Please refer to the individual Cohort Sync Help Center pages for the behaviour for specific partners.
+
+The email address and phone number properties will only show in the manual CSV exports for Google Ads and Facebook integrations.
+
+## Troubleshooting
 
 Sometimes, you may find that the number of users shown in your cohort in Mixpanel does not reflect the number of users in the integration partner's interface. Please see below what could be causing this and how you can find out which users were successfully exported from Mixpanel.
 
-## Discrepancies in user count
+### Discrepancies in user count
 
 If you see a discrepancy between the count of your users in a Mixpanel cohort and in the integration partner, the first thing to check is if all your users were eligible to be exported. To match users in both systems, we require a partner ID, e.g. `$braze_external_id` for Braze cohort exports. You can easily confirm this by querying for your cohort in the User report, then adding the filter `$braze_external_id` is set. This will show all eligible users that can be exported from Mixpanel to Braze. 
 
@@ -21,7 +35,7 @@ It is also added by default to any integration where the join key is not the $di
 
 ![image](https://user-images.githubusercontent.com/13734965/233539618-3ac2c97e-d3fd-4c44-8dc3-847ecdfe50bb.png)
 
-## Inspect exported cohorts via CSV download
+### Inspect exported cohorts via CSV download
 
 To find out which and how many users have been exported from your cohort to the integration partner, you can now download a CSV containing all users that have been exported. When accessing the cohort export overview by navigating to the integration in your Integrations tab, then clicking on the cohort, you will be navigated to this overview:
 
@@ -29,7 +43,7 @@ To find out which and how many users have been exported from your cohort to the 
 
 You will find a summary of the total count of users exported and removed and a CSV download button. In the CSV, you can find the list of distinct_ids of the users in the export and an operation column. This operation column can contain one of three values; add when the user profile was newly added to the cohort, remove when the user was removed from the cohort and no-op when the user remains in the cohort. In the column next to the distinct_id, you will see the partner ID for that user. If the numbers between Mixpanel and the integration partner mismatch, you can confirm if a user has been exported by looking at the CSV file. 
 
-## Export is paused
+### Export is paused
 
 If you notice your cohorts are not being exported, you can view the reason for the pause in your Integrations tab. When accessing the integration, you will see the status (either Active or Paused). If the status says Paused, you can hover over the Paused text to see the reason for the pause:
 
@@ -37,7 +51,7 @@ If you notice your cohorts are not being exported, you can view the reason for t
 
 Some integrations have common pause reasons (e.g. [Facebook's authentication pause](/other-bits/cohort-syncs/facebook-ads#troubleshooting-errors)). You can usually resolve the paused reason on your side by confirming the authorization for the integration is still valid, and dis- and reconnecting. 
 
-## View sync error
+### View sync error
 
 To find more details on Failure errors, you can click in the Cohort within the Integrations page to display errors.
 
