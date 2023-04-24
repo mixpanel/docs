@@ -1,0 +1,19 @@
+{
+    "data-structure-deep-dive": "Data Model",
+    "default-properties": "Default Properties",
+    "javascript": "Javascript",
+    "javascript-full-api-reference": {
+        "title": "Javascript Full API Reference ↗",
+        "href": "https://github.com/mixpanel/mixpanel-js/blob/master/doc/readme.io/javascript-full-api-reference.md",
+        "newWindow": true
+    },
+    "python": "Python",
+    "java": "Java",
+    "nodejs": "Node.js",
+    "ruby": "Ruby",
+    "ios": "iOS (Objective-C)",
+    "swift": "iOS (Swift)",
+    "react-native": "React Native",
+    "flutter": "Flutter",
+    "unity": "Unity"
+}
