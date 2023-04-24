@@ -23,16 +23,16 @@ For additional information on configuring the Mixpanel export for different dest
   * [Exporting to Azure Blob Storage](/other-bits/data-pipelines/azure-blob-storage)  
 
 
-After configuring the destination, you can [create a pipeline](ref:create-warehouse-pipeline) to export the data.
+After configuring the destination, you can [create a pipeline](https://developer.mixpanel.com/reference/create-warehouse-pipeline) to export the data.
 
 After configuring the destination and creating a pipeline with the API, you can begin to query Mixpanel data from the destination warehouse or storage bucket. This opens up the use of SQL use from within Google Bigquery, Snowflake, and Amazon Redshift Spectrum.
 
 ## Data Sources
 Mixpanel can export both events and user data. Mixpanel supports hourly and daily exports (daily is the default).
 
-The event data that is exported using the schematized export pipeline is the same data exported from the [Raw Data Export API](ref:export#raw-event-export). 
+The event data that is exported using the schematized export pipeline is the same data exported from the [Raw Data Export API](https://developer.mixpanel.com/reference/export#raw-event-export). 
 
-The user data that is exported using the schematized export pipeline is the same data exported from the [Query API Engage Endpoint](ref:engage#engage-query). 
+The user data that is exported using the schematized export pipeline is the same data exported from the [Query API Engage Endpoint](https://developer.mixpanel.com/reference/engage#engage-query). 
 
 In order to ensure a performant service for all customers, certain steps of the pipelines are limited to 1 pipeline per project running at a time. For example, a project with multiple jobs would have one wait for the other to complete certain steps before proceeding. In this way, something like a large backfill for one customer does not take priority over other customers, and keeps scheduling more fair.
 

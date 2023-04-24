@@ -14,12 +14,12 @@ By default Mixpanel stores user data on it's US Servers via the Google Cloud Pla
 
 | API | Standard Server | EU Residency Server |
 |-------|-------------------------|--------------------------------|
-| [Ingestion API](ref:ingestion-api) | `api.mixpanel.com` | `api-eu.mixpanel.com` |
-| [Query API](ref:query-api) | `mixpanel.com/api` | `eu.mixpanel.com/api` |
-| [Raw Data Export API](ref:raw-data-export-api) | `data.mixpanel.com/api/2.0/export` | `data-eu.mixpanel.com/api/2.0/export` |
-| [Data Pipelines API](ref:data-warehouse-api) | `data.mixpanel.com/api/2.0/export` | `data-eu.mixpanel.com/api/2.0/export` |
-| [Lexicon Schemas API](ref:lexicon-schemas-api) | `mixpanel.com/api/app/projects` | `eu.mixpanel.com/api/app/projects` |
-| [Connectors API](ref:connectors-api) | `mixpanel.com/api/app/projects` | `eu.mixpanel.com/api/app/projects`|
+| [Ingestion API](https://developer.mixpanel.com/reference/ingestion-api) | `api.mixpanel.com` | `api-eu.mixpanel.com` |
+| [Query API](https://developer.mixpanel.com/reference/query-api) | `mixpanel.com/api` | `eu.mixpanel.com/api` |
+| [Raw Data Export API](https://developer.mixpanel.com/reference/raw-data-export-api) | `data.mixpanel.com/api/2.0/export` | `data-eu.mixpanel.com/api/2.0/export` |
+| [Data Pipelines API](https://developer.mixpanel.com/reference/data-warehouse-api) | `data.mixpanel.com/api/2.0/export` | `data-eu.mixpanel.com/api/2.0/export` |
+| [Lexicon Schemas API](https://developer.mixpanel.com/reference/lexicon-schemas-api) | `mixpanel.com/api/app/projects` | `eu.mixpanel.com/api/app/projects` |
+| [Connectors API](https://developer.mixpanel.com/reference/connectors-api) | `mixpanel.com/api/app/projects` | `eu.mixpanel.com/api/app/projects`|
 
 For existing projects, you can find where your data is currently stored under Project Settings > Data Residency. Additionally, projects stored in the EU will have a url that starts with eu.mixpanel.com whereas projects stored in the US will have a mixpanel.com url. If the wrong Data Residency location was chosen prior to implementation, you will need to create a new project with the applicable data storage option and migrate all your existing data. Mixpanel cannot assist with the migration of an existing project with the wrong residency location. You can find out more about creating a new project here.
 
@@ -32,7 +32,6 @@ Next you'll need to set the server location to EU when initializing the Mixpanel
 - [Android](/tracking/advanced/android#eu-data-residency)
 - [Python](/tracking/advanced/python#eu-data-residency)
 - [Java](/tracking/advanced/java#eu-data-residency)
-- [PHP](doc:php#eu-data-residency)
 - [Ruby](/tracking/advanced/ruby#eu-data-residency)
 - [Node.js](/tracking/advanced/nodejs#eu-data-residency)
 - [React Native](/tracking/advanced/react-native#eu-data-residency)

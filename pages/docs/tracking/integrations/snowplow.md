@@ -24,4 +24,4 @@ Depending on which of the above destinations you've configured in Snowplow, you 
 
 If you're using Snowplow to ingest events directly into a data warehouse like Snowflake or BigQuery, we recommend leveraging our Reverse ETL integrations with [Census](https://www.getcensus.com/integrations/mixpanel) and [HighTouch](https://hightouch.io/integrations/destinations/mixpanel). Reverse ETL tools let you model events using a SQL query and push them to all the tools in your stack, including Mixpanel.
 
-Finally, Mixpanel's [Import API](ref:import-events) is a simple JSON-over-HTTP API. You can always use any other orchestration tools you have in your stack (Airflow, Dagster, Spark, etc.) to read data produced by Snowplow in your cloud and directly hit our import API to ingest them into Mixpanel.
+Finally, Mixpanel's [Import API](https://developer.mixpanel.com/reference/import-events) is a simple JSON-over-HTTP API. You can always use any other orchestration tools you have in your stack (Airflow, Dagster, Spark, etc.) to read data produced by Snowplow in your cloud and directly hit our import API to ingest them into Mixpanel.

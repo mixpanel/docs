@@ -23,7 +23,7 @@ Note: Always include your integration ID -- this will help customers better unde
 ### Event Tracking
 For event data, you will include your Integration ID as the `$source` property value.
 
-This can be added to the [Event Object](doc:data-model-deep-dive#anatomy-of-an-event)  when using the [Ingestion API](ref:ingestion-api):
+This can be added to the [Event Object](doc:data-model-deep-dive#anatomy-of-an-event)  when using the [Ingestion API](https://developer.mixpanel.com/reference/ingestion-api):
 
 ```json
 {
@@ -61,7 +61,7 @@ Use this [webhook spec](/other-bits/cohort-syncs/cohort-webhooks) to process inb
 If you are offering experiments or A/B tests to your customers, add support for [auto-populating our Experiments report](/analysis/advanced/experiments) to your integration in order to reduce time-to-value for our mutual customers.
 
 ### Sync your Schemas
-Sync your internal data dictionary or tracking plan with Mixpanel using the [Lexicon Schemas API](ref:lexicon-schemas-api). Schemas that you upload will be used to populate Lexicon and provide additional context for your data across the query UI.
+Sync your internal data dictionary or tracking plan with Mixpanel using the [Lexicon Schemas API](https://developer.mixpanel.com/reference/lexicon-schemas-api). Schemas that you upload will be used to populate Lexicon and provide additional context for your data across the query UI.
 
 # Make your Integration Successful
 ### QA your Code

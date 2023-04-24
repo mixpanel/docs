@@ -27,6 +27,6 @@ You can find it in the [Project Settings](https://mixpanel.com/settings/project)
 
 ## Service Accounts
 
-[Service Accounts](ref:service-accounts) are a more advanced form of authentication that is used to grant temporary access to a subset of Mixpanel projects within your organization for certain APIs.
+[Service Accounts](https://developer.mixpanel.com/reference/service-accounts) are a more advanced form of authentication that is used to grant temporary access to a subset of Mixpanel projects within your organization for certain APIs.
 
 Service Accounts are not necessary to send data to Mixpanel or export data out of Mixpanel.

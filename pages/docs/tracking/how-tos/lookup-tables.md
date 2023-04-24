@@ -22,7 +22,7 @@ d8d949,Gipsy Kings,Flamenco,False,Bamboleo,1170000,1987-07-12T05:00:00,false,"["
 a43fb8,Daft Punk,House,False,Aerodynamic,41000000,2001-03-12T07:30:00,false,"[""IN""]"
 ```
 
-Then, whenever you use an event with the `song_id` property, you'll have access to all these other properties of the song as well. We also provide an [API](ref:replace-lookup-table) to keep Lookup Tables updated.
+Then, whenever you use an event with the `song_id` property, you'll have access to all these other properties of the song as well. We also provide an [API](https://developer.mixpanel.com/reference/replace-lookup-table) to keep Lookup Tables updated.
 
 ## Use Cases
 
@@ -44,7 +44,7 @@ Lookup Tables can be replaced with a fresh copy, either via our UI or via our AP
 ## FAQ
 
 ### How should my Lookup Table CSV be formatted?
-The CSV must be valid according to RFC4180. See our [API reference](ref:replace-lookup-table) for more specific details about how we parse CSVs.
+The CSV must be valid according to RFC4180. See our [API reference](https://developer.mixpanel.com/reference/replace-lookup-table) for more specific details about how we parse CSVs.
 
 ### When _shouldn't_ I use Lookup Tables?
 Lookup Tables have a limit of 100MB CSV or roughly 1M rows. We don't recommend using Lookup Tables for anything very high cardinality.

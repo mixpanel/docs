@@ -5,7 +5,7 @@ hidden: false
 createdAt: "2019-01-25T19:14:54.958Z"
 updatedAt: "2023-03-26T19:16:50.414Z"
 ---
-This guide describes how Mixpanel data is exported into a [Snowflake](https://docs.snowflake.net/manuals/user-guide-getting-started.html) dataset. [Create a pipeline](ref:create-warehouse-pipeline) to export your Mixpanel data into Snowflake. Once an export job is scheduled, Mixpanel exports data to Snowflake on a recurring basis. 
+This guide describes how Mixpanel data is exported into a [Snowflake](https://docs.snowflake.net/manuals/user-guide-getting-started.html) dataset. [Create a pipeline](https://developer.mixpanel.com/reference/create-warehouse-pipeline) to export your Mixpanel data into Snowflake. Once an export job is scheduled, Mixpanel exports data to Snowflake on a recurring basis. 
 
 ## Design
 
