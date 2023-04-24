@@ -1,6 +1,6 @@
 ---
-title: "Support & Community"
-slug: "support-community"
+title: "Mixpanel Support"
+slug: "support"
 hidden: false
 metadata:
   title: "Support & Community"
