@@ -115,10 +115,9 @@ If you do not assign an identifier column, Mixpanel will use your $email column 
 
 You'll have the opportunity to look through all columns in the CSV to preview the values. In this step you must uncheck all of the columns you wish to NOT import. You must also choose the associated Mixpanel profile property that each CSV column will be associated with. When you done selecting the columns you wish to import along with their associated properties, press the Import profiles button.
 
-**Notes**
-If you import user profiles using $distinct_id values that already exists, those profiles will be updated with the additional user profile properties in your CSV. Mixpanel imports based only on $distinct_id and will not deduplicate user profiles automatically based on other properties, like $email or $last_name.
+## Deleting User Profiles
 
-If you upload user profiles that have the same email address or the same name as existing user profiles, you will be uploading duplicates - they will not be combined. Ensure that the users you’re uploading don’t already have a user profile before you import, and if they do, ensure that the identifier column matches the existing profile’s identifier.
+User Profiles can be deleted either via the [Users](https://mixpanel.com/report/users) page or programmatically via our API. We provide a `people_delete` method in the mixpanel-utils library [here](https://github.com/mixpanel/mixpanel-utils#people-delete).
 
 
 ## FAQ
@@ -135,7 +134,7 @@ Mixpanel stores Events and User Profiles in two separate tables under the hood. 
 * All Events join with the latest state of a User Profile, rather than its state at a point in time. If there are aspects of a user's state that change over time (for example, their plan type), we recommend tracking that as a property on their events, so that you can analyze that change over time.
 
 ### How can I update User Profile Properties?
-User Profiles are mutable; Mixpanel only stores the latest value of each profile property. We have methods to update profile properties via our [HTTP API](ref:profile-set).
+User Profiles are mutable; Mixpanel only stores the latest value of each profile property. We have methods to update profile properties via our [HTTP API](https://developer.mixpanel.com/reference/profile-set).
 
 ### How can I send User Profiles if I use Segment?
 Mixpanel is 100% compatible with Segment; just follow Segment's best practices. If you call the [`analytics.identify()`](https://segment.com/docs/connections/spec/identify/) method, Segment will create a User Profile in Mixpanel. You can learn more about our integration in Segment's [docs](https://segment.com/docs/connections/destinations/catalog/actions-mixpanel/#identify-user).
