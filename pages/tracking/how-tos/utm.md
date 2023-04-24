@@ -46,14 +46,50 @@ function source(){
 }
 ```
 
-Using the above code you can track some specific sources directly -- you can add to this list or subtract from it to focus on the most interesting sources of traffic. Register the return as a super property to send it with all events and/or as a user profile property to track the source of each of your users.
+Using the above code you can track some specific sources directly -- you can add to this list or subtract from it to focus on the most interesting sources of traffic.
 
-```
-mixpanel.register_once({"Source": source()});
-mixpanel.people.set_once({"Source": source()});
-```
+### Tracking Last Touch
+This code automatically parses and registers last touch UTM tags as properties that get attached to every subsequently tracked event.
 
-This will make it so you can use your custom source information along with any of the user's future events on your site or use it to target them with a specific message.
+Paste the code below the Mixpanel JavaScript snippet that you add to your site to track events.
+
+```javascript
+function getQueryParam(url, param) {
+// Expects a raw URL
+param = param.replace(/[[]/, "\[").replace(/[]]/, "\]");
+var regexS = "[\?&]" + param + "=([^&#]*)",
+    regex = new RegExp( regexS ),
+    results = regex.exec(url);
+if (results === null || (results && typeof(results[1]) !== 'string' && results[1].length)) {
+  return '';
+  } else {
+  return decodeURIComponent(results[1]).replace(/\W/gi, ' ');
+  }
+};
+
+function campaignParams() {
+var campaign_keywords = 'utm_source utm_medium utm_campaign utm_content utm_term'.split(' ')
+    , kw = ''
+    , params = {}
+    , first_params = {};
+var index;
+for (index = 0; index < campaign_keywords.length; ++index) {
+  kw = getQueryParam(document.URL, campaign_keywords[index]);
+  if (kw.length) {
+    params[campaign_keywords[index] + ' [last touch]'] = kw;
+  }
+}
+for (index = 0; index < campaign_keywords.length; ++index) {
+  kw = getQueryParam(document.URL, campaign_keywords[index]);
+  if (kw.length) {
+    first_params[campaign_keywords[index] + ' [first touch]'] = kw;
+  }
+}
+
+mixpanel.register(params);
+}
+campaignParams();
+```
 
 ## Mobile Attribution
 Mobile attribution, or tracking campaign source for app installs on iOS/Android, can be more complex than the web due to the way mobile devices store attribution information.
