@@ -37,4 +37,4 @@ An **Event Property** describes an event. For a coffee purchase, the event would
 A **User Property** describes a User. This could be their name, email, or age.
 ![image](/user-profile.svg)
 
-[Mixpanel's different reports](/analysis/reports) allow you to view data about various users or events and slice and dice that data by any property.
+[Mixpanel's different reports](/docs/analysis/reports) allow you to view data about various users or events and slice and dice that data by any property.

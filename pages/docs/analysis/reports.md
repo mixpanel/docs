@@ -9,7 +9,7 @@ metadata:
 
 A report is the basic unit of performing an analysis in Mixpanel.
 
-Mixpanel has several types of reports: [Insights](/analysis/reports/insights), [Funnels](/analysis/reports/funnels), [Flows](/analysis/reports/flows), [Retention](/analysis/reports/retention) and other advanced reports, each with their specialized use.
+Mixpanel has several types of reports: [Insights](/docs/analysis/reports/insights), [Funnels](/docs/analysis/reports/funnels), [Flows](/docs/analysis/reports/flows), [Retention](/docs/analysis/reports/retention) and other advanced reports, each with their specialized use.
 
 This article focuses on the common concepts across each report.
 
@@ -35,8 +35,8 @@ You can select the following filtering options to show a subset of the propertie
 
 - Select "event properties" to show only the [Event properties](/tracking/how-tos/events-and-properties).
 - Select "user properties" to show only the [Profile properties](/tracking/how-tos/events-and-properties).
-- Select "cohorts" to show only the [Cohorts](/analysis/advanced/cohorts).
-- If you set up [Group Analytics](/analysis/advanced/group-analytics), the Group keys will show up individually under their display names. You can select any Group key to show only the Group properties relevant to the selected Group key:
+- Select "cohorts" to show only the [Cohorts](/docs/analysis/advanced/cohorts).
+- If you set up [Group Analytics](/docs/analysis/advanced/group-analytics), the Group keys will show up individually under their display names. You can select any Group key to show only the Group properties relevant to the selected Group key:
 
     ![/Mixpanel__project_3____Mixpanel_2021-11-18_12-00-58.png](/Mixpanel__project_3____Mixpanel_2021-11-18_12-00-58.png)
 
@@ -44,11 +44,11 @@ You can select the following filtering options to show a subset of the propertie
 
 The events and properties in the menu are prefixed to provide additional context about the properties' type. They will be removed when additional context is not needed.
 
-- Event properties are not prefixed (except in [User report's menu](/analysis/reports):
+- Event properties are not prefixed (except in [User report's menu](/docs/analysis/reports):
 
     ![/Screen_Shot_2021-11-18_at_12.26.25_PM.png](/Screen_Shot_2021-11-18_at_12.26.25_PM.png)
 
-- User properties are prefixed by "User": "User" prefix is removed in [User report's menu](/analysis/reports) or once you filter the menu by "user properties".
+- User properties are prefixed by "User": "User" prefix is removed in [User report's menu](/docs/analysis/reports) or once you filter the menu by "user properties".
 
     ![/Screen_Shot_2021-11-18_at_12.25.13_PM.png](/Screen_Shot_2021-11-18_at_12.25.13_PM.png)
 
@@ -161,7 +161,7 @@ In the top right, you can change the type of visualization and analysis being pe
 
 ### Saving to a Board
 
-When you are satisfied with the analysis, and decide that this is something that you are likely to revisit, Mixpanel recommends that you save the report to a [Board](/analysis/boards). You can do this by pressing "Save" in the top right and selecting the Board you would like to save to, or creating a new Board.
+When you are satisfied with the analysis, and decide that this is something that you are likely to revisit, Mixpanel recommends that you save the report to a [Board](/docs/analysis/boards). You can do this by pressing "Save" in the top right and selecting the Board you would like to save to, or creating a new Board.
 
 ![/Screen_Shot_2022-07-08_at_5.40.30_PM.png](/Screen_Shot_2022-07-08_at_5.40.30_PM.png)
 
@@ -178,7 +178,7 @@ Typecasting is helpful when one of your properties is a number but is sent to Mi
 
 Insights will automatically bucket high-cardinality segments of number data types into ranges.
 
-You can either customize the ranges by clicking "[Customize Range](/analysis/advanced/other-advanced-features#custom-buckets)".
+You can either customize the ranges by clicking "[Customize Range](/docs/analysis/advanced/other-advanced-features#custom-buckets)".
 
 Or alternatively, if you'd like to see the exact numeric values you can typecast the Number property to a String to remove the range bucketing.
 
@@ -190,6 +190,6 @@ Compare to past is a shortcut for segmenting a visualization on two time periods
 
 ### Sessions
 
-This is a period of continuous user activity. Use Sessions in Mixpanel to track which events users perform within a session, how many sessions contained a key action or how many sessions it takes for a user to convert in a funnel. [Learn more](/analysis/advanced/sessions).
+This is a period of continuous user activity. Use Sessions in Mixpanel to track which events users perform within a session, how many sessions contained a key action or how many sessions it takes for a user to convert in a funnel. [Learn more](/docs/analysis/advanced/sessions).
 
 ![/Screen_Shot_2022-07-11_at_3.27.25_PM.png](/Screen_Shot_2022-07-11_at_3.27.25_PM.png)

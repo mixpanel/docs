@@ -33,7 +33,7 @@ By clicking the name of a user in the User tables, you can explore that user's u
 
 A cohort is a group of users who share a certain set of properties or have performed a particular combination or frequency of events. You can create a cohort on the Users page by generating filtering criteria. Once a cohort is created, you can save it and use it to group and filter data in other Mixpanel reports.
 
-Learn more about Cohorts [here](/analysis/advanced/cohorts).
+Learn more about Cohorts [here](/docs/analysis/advanced/cohorts).
 
 ### Modifying Table Columns
 
@@ -56,7 +56,7 @@ Users: All Users, including those who may not have properties associated with th
 
 ### How do I create a cohort out of a list of user emails I have?
 
-To upload a group of user (or group) profiles and easily sort them into a cohort, add a value to the CSV which sorts the profiles into a cohort as a property. For example, give each profile the unique property of "Cohort = Android Users". Next, go to the [Cohorts](/analysis/advanced/cohorts#creating-cohorts) tab to create a cohort as usual, and filter to user profiles with that property and save. This will create a cohort of users with that matching property.
+To upload a group of user (or group) profiles and easily sort them into a cohort, add a value to the CSV which sorts the profiles into a cohort as a property. For example, give each profile the unique property of "Cohort = Android Users". Next, go to the [Cohorts](/docs/analysis/advanced/cohorts#creating-cohorts) tab to create a cohort as usual, and filter to user profiles with that property and save. This will create a cohort of users with that matching property.
 
 Note that when creating cohorts this way, the cohort will remain static, meaning that it will not update over time like other cohorts as the property is unchanging.
 

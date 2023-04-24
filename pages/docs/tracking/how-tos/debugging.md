@@ -18,7 +18,7 @@ Mixpanel doesn't receive any data until you start sending events. If you haven't
 
 ### Debugging with Events
 
-Use [Events](/analysis/events) to confirm that events are arriving to your Mixpanel project, so you can troubleshoot your Mixpanel setup quickly. With Events, you can see a feed of events along with all of their properties coming into Mixpanel.
+Use [Events](/docs/analysis/events) to confirm that events are arriving to your Mixpanel project, so you can troubleshoot your Mixpanel setup quickly. With Events, you can see a feed of events along with all of their properties coming into Mixpanel.
 
 ### Find Yourself
 The next step to validating your events is to manually trigger some of those events on your own device. After you have fired some events, navigate to Events and search or filter using any user-level information you know is available in the event's raw payload. Search by `$user_id`, `$device_id`, `distinct_id`, or user property values. If you are using Mixpanel's JavaScript SDK, you can use [`mixpanel.get_distinct_id`](https://developer.mixpanel.com/docs/javascript-full-api-reference#mixpanelget_distinct_id) to return your own distinct_id in your browser console and copy the distinct_id value into the Events search bar.

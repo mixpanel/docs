@@ -57,7 +57,7 @@ There are a few ways to add an existing report to a board. You can either start 
 - Starting from an existing report, adding the report to a board can be done via the board breadcrumb dropdown at the top left of the report, next to the report's title. Click into the dropdown, then select "Add to another Board." Choose your board, and a copy of the report will be added to it.
 - Starting from another board, select the overflow menu of a report you'd like to add. Select "Make a Copy" and then choose the board you would like to add it to.
 
-Note that adding an existing report always creates a [linked copy](/analysis/boards#what-is-a-linked-report).
+Note that adding an existing report always creates a [linked copy](/docs/analysis/boards#what-is-a-linked-report).
 
 ### Step 4: Arrange Board Content
 
@@ -303,7 +303,7 @@ It is possible to share a digest for a private board. However, there are some re
 
 Sharing and permissions are set at the board level, and all reports saved on a board inherit the same set of sharing and permissions settings of that board.
 
-To share a board, and therefore all reports contained within it, click the Share button at the top right of the board. From here, sharing works as before, but remember, sharing a board now shares all of that board's reports as well. [Click here](/analysis/boards#sharing) to learn more about sharing.
+To share a board, and therefore all reports contained within it, click the Share button at the top right of the board. From here, sharing works as before, but remember, sharing a board now shares all of that board's reports as well. [Click here](/docs/analysis/boards#sharing) to learn more about sharing.
 
 ![/GIF3__light_.gif](/GIF3__light_.gif)
 
@@ -317,7 +317,7 @@ So long as the recipient has access to the project, they will be able to see the
 
 Sharing and permissions are set at the board level, and all reports saved on a board inherit the same set of sharing and permissions settings of that board.
 
-In the sharing process, you can choose the permissions level granted to the individual with whom you're sharing the board. Teammates with access to a board can either be Viewers (any changes made will not be saved) or Editors (changes made will be saved). [Click here](/analysis/boards#permissions) to learn more about permissions.
+In the sharing process, you can choose the permissions level granted to the individual with whom you're sharing the board. Teammates with access to a board can either be Viewers (any changes made will not be saved) or Editors (changes made will be saved). [Click here](/docs/analysis/boards#permissions) to learn more about permissions.
 
 As with sharing, setting a user's permission level on a board will give them the same permission level for all reports on that board.
 

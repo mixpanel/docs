@@ -86,7 +86,7 @@ There are a few other types of profile updates. They're exposed as members of <a
 
 Mixpanel Group Analytics allows behavioral data analysis by selected groups, as opposed to individual users.
 
-Grouping by identifiers other than the `distinct_id` allows analysis at a company or group level when using Mixpanel analytics. Read [this article](/analysis/advanced/group-analytics) to learn more about Group Analytics.
+Grouping by identifiers other than the `distinct_id` allows analysis at a company or group level when using Mixpanel analytics. Read [this article](/docs/analysis/advanced/group-analytics) to learn more about Group Analytics.
 
 A group is identified by the `group_key` and `group_id`.
 * `group_key` is the property that connects event data for Group Analytics.
@@ -97,7 +97,7 @@ If the property “Company” is chosen for Group Analytics, “Company” is th
 A user can belong to multiple groups. All updates to a group operate on the `group_key` and `group_id`.
 
 ### Creating a Group Key
-See the Implementation section in [this article](/analysis/advanced/group-analytics) for instructions on how to create a group key in your Project Settings.
+See the Implementation section in [this article](/docs/analysis/advanced/group-analytics) for instructions on how to create a group key in your Project Settings.
 
 ### Sending Group Identifiers With Events
 To send group identifiers with events, send the `group_key` as a property key and the `group_id` as the property value. The data type of the `group_key` property is a list, therefore you can add multiple values for a single user. It is also possible to pass only one value.

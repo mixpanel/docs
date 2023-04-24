@@ -27,7 +27,7 @@ To use Experiments you must have a board, which contains the various reports yo
 
 **Custom Experiment** - This option allows you to define the control and variant groups of the experiment. These groups can be defined by cohort, user profile property, or event property filters.
 
-**Tracked Experiments** - This option is available if you have [experiments in your implementation](/analysis/advanced/experiments). Mixpanel automatically detects any experiments that began in the last 30 days, and the report detects and displays them in the dropdown.
+**Tracked Experiments** - This option is available if you have [experiments in your implementation](/docs/analysis/advanced/experiments). Mixpanel automatically detects any experiments that began in the last 30 days, and the report detects and displays them in the dropdown.
 
 ### Step 3: Choose Control and Variant Group
 
@@ -39,7 +39,7 @@ It is important to ensure that the groups are mutually exclusive. For example, i
 
 ### Step 4: Select a Date Range
 
-[Select the date range](/analysis/reports#select-a-date-range) of the experiment. In most cases you should choose the date your experiment began as the start date.
+[Select the date range](/docs/analysis/reports#select-a-date-range) of the experiment. In most cases you should choose the date your experiment began as the start date.
 
 All events tracked by users within the date range will be included in the Experiment report, even if those events took place before the experiment started.
 

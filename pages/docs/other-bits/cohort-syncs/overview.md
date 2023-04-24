@@ -31,7 +31,7 @@ When accessing the "View in Explore" option, you will see the required partner I
 
 ABTasty, Airship, Blitzllama, Braze, Clevertap, Flagship, Insider, Iterable, Kameleoon, LaunchDarkly, Leanplum, Moengage, OneSignal, Optimize, Pushwoosh, SalesforceMC, Segment, VWO, Xtremepush
 
-It is also added by default to any integration where the join key is not the $distinct_id. The added partner ID filter will show up as a [custom property](/analysis/advanced/custom-properties) called "Defined Properties Required for Cohort Selection" whose properties will appear when hovering over the property:
+It is also added by default to any integration where the join key is not the $distinct_id. The added partner ID filter will show up as a [custom property](/docs/analysis/advanced/custom-properties) called "Defined Properties Required for Cohort Selection" whose properties will appear when hovering over the property:
 
 ![image](https://user-images.githubusercontent.com/13734965/233539618-3ac2c97e-d3fd-4c44-8dc3-847ecdfe50bb.png)
 

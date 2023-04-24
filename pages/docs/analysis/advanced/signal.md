@@ -62,8 +62,8 @@ The default retention events available in Signal include:
 
 5. Determine and select the Correlation Event and its properties. It is possible to add up to ten different correlation events by clicking the **+** button at the bottom of the query builder.
 
-- The correlation event can be [broken down by property](/analysis/reports#breakdowns). To do this, select **+ Breakdown** and select the property to break the data down by.
-- The correlation event can be [filtered by property](/analysis/reports#event-inline-filters). To do this, select **+ Filter** and select the property and property value you want to filter by.
+- The correlation event can be [broken down by property](/docs/analysis/reports#breakdowns). To do this, select **+ Breakdown** and select the property to break the data down by.
+- The correlation event can be [filtered by property](/docs/analysis/reports#event-inline-filters). To do this, select **+ Filter** and select the property and property value you want to filter by.
 
 ![/Screen_Shot_2022-07-13_at_10.22.08_PM.png](/Screen_Shot_2022-07-13_at_10.22.08_PM.png)
 
@@ -85,7 +85,7 @@ Each correlation will be represented by one card in the summary view results. Th
 
 ### Scores
 
-By default, the results will be sorted by Opportunity. “Opportunity” is Mixpanel’s proprietary calculation of how important a given correlation might be. The correlation strength is calculated using the phi coefficient. [Reference here](/analysis/advanced/signal#correlation) for more detail on how Opportunity and correlation strength is calculated.
+By default, the results will be sorted by Opportunity. “Opportunity” is Mixpanel’s proprietary calculation of how important a given correlation might be. The correlation strength is calculated using the phi coefficient. [Reference here](/docs/analysis/advanced/signal#correlation) for more detail on how Opportunity and correlation strength is calculated.
 
 ### Key Findings
 
