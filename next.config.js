@@ -10,8 +10,18 @@ module.exports = withNextra({
   redirects: () => {
     return [
       {
+        source: "/docs",
+        destination: "/docs/getting-started/what-is-mixpanel",
+        permanent: true,
+      },
+      {
+        source: "/tutorials",
+        destination: "/tutorials/chapter-1",
+        permanent: true,
+      },
+      {
         source: "/",
-        destination: "/getting-started/what-is-mixpanel",
+        destination: "/docs/getting-started/what-is-mixpanel",
         permanent: true,
       },
     ]
