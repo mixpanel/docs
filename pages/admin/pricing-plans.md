@@ -1,12 +1,5 @@
 ---
 title: "Pricing & Plans"
-slug: "pricing-plans"
-hidden: false
-createdAt: "2023-03-27T17:39:02.165Z"
-updatedAt: "2023-03-27T17:39:02.165Z"
-metadata:
-  title: "Pricing & Plans"
-  description: "TODO Fill in"
 ---
 
 Mixpanel supports two pricing models, Events and MTUs. We recommend events as the best fit for most companies. Our [sales and success teams](https://mixpanel.com/contact-us/sales/) are always available to help determine the best plan for your needs.
@@ -289,6 +282,35 @@ To submit a downgrade request:
 2. In Overview, click "Switch to Free" at the bottom of the Plan Details & Billing section.
 ![Switch to Free](/switch-to-free.png)
 3. When you click Submit, a request will be sent to Mixpanel's Billing Team for processing.
+
+## Sales Tax
+As a result of the Supreme Court decision South Dakota v. Wayfair, Inc., Mixpanel conducted a review of the taxability of our product state by state for customers in the United States. If you reside in a city or state where Mixpanel has a sales tax obligation, you will see a new sales tax line item on your future Mixpanel invoices starting on Nov 1st, 2018.
+
+Mixpanel collects state taxes from the following states:
+
+* Washington DC
+* Pennsylvania
+* Texas
+* Massachusetts
+* Connecticut (effective Dec 1st, 2018)
+* Ohio (effective Dec 1st, 2018)
+* New York (effective Jan 1st, 2019)
+* Arizona (effective Nov 1st, 2020) 
+* Maryland (effective Dec 1st, 2021)
+
+Mixpanel collects city taxes from the following cities (not the whole state):
+
+* Chicago (effective Feb 9th, 2023)
+
+
+### Check & Change Billing Information
+Sales tax is determined using the zip code associated with the credit card you have on file for billing for an Organization. You can update your credit card information and corresponding zip code through your [organization settings](https://mixpanel.com/settings/org):
+
+![image](https://user-images.githubusercontent.com/2077899/233918715-aab79c75-5fc8-4c09-ada6-c5d165aaf400.png)
+
+### Non-Profit Liability
+If you are a non-profit company, you may not be liable for sales tax regardless of this change. Contact AR@mixpanel.com with any tax-exemption certification documents to confirm and verify your tax-exemption.
+
 
 ## FAQ
 
