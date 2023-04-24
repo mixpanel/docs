@@ -1,5 +1,6 @@
 ---
 title: "Community"
+slug: "community"
 ---
 
 You can join our Slack Community [here](https://join.slack.com/t/mixpanelcommunity/shared_invite/zt-1roo44bgl-TJoKJzL_~YGT13f7xg2akw)! 
