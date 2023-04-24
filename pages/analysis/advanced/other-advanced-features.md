@@ -931,6 +931,30 @@ It is possible (only in the Funnels report) to download "CSV Trends", which down
 
 ![/Screen_Shot_2020-02-14_at_10.32.36_AM.png](/Screen_Shot_2020-02-14_at_10.32.36_AM.png)
 
+
+## Embedding Mixpanel in 3rd-Party Apps
+You can embed Boards and Reports in third-party applications. The Mixpanel preview unfurls in the third-party app and automatically updates with your latest data. This can be useful for including data in other contexts where your team collaborates, such as a docs tool or a virtual whiteboard.
+
+Simply paste the link of the Board or Report into the 3rd-party tool and follow the instructions to authenticate. Here's a [video walkthrough](https://www.loom.com/share/000acdf5b6d94efc98d143316afac1db
+) of this process.
+
+### Compatibility
+
+| Company     | Status |
+|-------------|--------|
+| Figma       | GA     |
+| Coda        | GA     |
+| Notion      | GA     |
+| Jira        | Beta   |
+| Confluence  | Beta   |
+| Miro        | Beta   |
+
+### Limitations
+Though this feature works for any third-party that supports a standard oEmbed, certain integrations may be limited depending on how the third-party has customized their oEmbed settings.
+
+In Safari, you must have "Prevent cross-site tracking" off in order for any embedding to work. Go to Safari -> Preferences -> Privacy -> Website tracking: Prevent cross-site tracking should NOT be checked.
+
+
 ## Undefined and Null Properties
 
 There are several reasons why you might see "undefined" in your properties list throughout Mixpanel reports when segmenting:
