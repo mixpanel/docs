@@ -456,6 +456,13 @@ You can choose to attribute a property value from any step to the whole funnel b
 
 For example, the user viewing your website encounters an error and sends in a support ticket to your business. On first touch they may have been using Safari as their browser, and used Safari to send in the support ticket at last touch, but they were using Chrome when they triggered an error-state. It is relevant for your business to know that they triggered an error on the Chrome browser and not Safari, in order to assist them in fixing the error.
 
+## Conversion & Dropoff Flows
+You can click into any funnel step and select "View as Flow". This takes you to the [flows](/analysis/reports/flows) report and lets you see:
+* What events did users do before or after converting?
+* What events did the users who dropped off do instead?
+
+For example, you might use this to discover that most users who dropped off are hitting an specific bug in your platform. You can then fix the bug and revisit your funnel to see if there's been an improvement.
+
 ## FAQ
 
 ### Can users do other actions during the funnel?
