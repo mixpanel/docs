@@ -11,7 +11,7 @@ This guide describes how Mixpanel data is exported into a [Snowflake](https://do
 
 Mixpanel exports data to its own Snowflake account and gives your Snowflake account access to read the data. As a result, you will need a Snowflake account to be able to use the exported data. For more information on how to use your shared data, see [Sharing Data in Snowflake](https://docs.snowflake.net/manuals/user-guide-data-share.html). 
 
-For Snowflake export, we first load the data into a single-column raw (VARIANT type) data table. This data will be a [transformed version](/other-bits/data-pipelines/schematized-export-pipeline#section-transformation-rules) of the raw data stored in Mixpanel. Then, we create a view to expose all properties as columns. The view name is the cleaned version of the event name and the raw table name is always the view name suffixed with `_raw`. For example, for `signup` event, you will have a `signup_raw` table and a `signup` view. Please see [Schema](/other-bits/data-pipelines/schematized-export-pipeline#schema) for general information about the schemas in Schematized Export Pipelines. 
+For Snowflake export, we first load the data into a single-column raw (VARIANT type) data table. This data will be a [transformed version](/docs/other-bits/data-pipelines/schematized-export-pipeline#section-transformation-rules) of the raw data stored in Mixpanel. Then, we create a view to expose all properties as columns. The view name is the cleaned version of the event name and the raw table name is always the view name suffixed with `_raw`. For example, for `signup` event, you will have a `signup_raw` table and a `signup` view. Please see [Schema](/docs/other-bits/data-pipelines/schematized-export-pipeline#schema) for general information about the schemas in Schematized Export Pipelines. 
 
 ## Partitioning
 
@@ -19,7 +19,7 @@ The data in the raw tables is clustered based on `time` column but in project's 
 
 ## Queries
 
-Mixpanel recommends you place all events into a single table to make querying easier. To get more information about the table schemas, please see [Schema](/other-bits/data-pipelines/schematized-export-pipeline#schema). 
+Mixpanel recommends you place all events into a single table to make querying easier. To get more information about the table schemas, please see [Schema](/docs/other-bits/data-pipelines/schematized-export-pipeline#schema). 
 
 A query is a request for data results. You can perform actions on the data, such as combine data from different tables; add, change, or delete table data; and perform calculations.
 

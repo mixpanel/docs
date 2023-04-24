@@ -8,12 +8,12 @@ metadata:
 createdAt: "2019-01-25T17:27:54.264Z"
 updatedAt: "2023-03-26T19:16:30.791Z"
 ---
-Mixpanel's [Schematized Export Pipeline](/other-bits/data-pipelines/schematized-export-pipeline) lets you export your Mixpanel data directly into an S3 bucket, allowing the use of Glue to query it. To set up the Mixpanel AWS pipeline, you must configure AWS to receive the exported data, then [create a pipeline](https://developer.mixpanel.com/reference/create-warehouse-pipeline) to export the data.
+Mixpanel's [Schematized Export Pipeline](/docs/other-bits/data-pipelines/schematized-export-pipeline) lets you export your Mixpanel data directly into an S3 bucket, allowing the use of Glue to query it. To set up the Mixpanel AWS pipeline, you must configure AWS to receive the exported data, then [create a pipeline](https://developer.mixpanel.com/reference/create-warehouse-pipeline) to export the data.
 
 ## Design
 ![image](/230698348-abb2656e-fe2a-4d9c-ad61-8f80793e9c07.png)
 
-Mixpanel applies [transformation rules](/other-bits/data-pipelines/schematized-export-pipeline#transformation-rules) to make the data compatible with data warehouses and then transfers the transformed data to your S3 bucket. You can then choose to use a glue crawler to create the schema out of the transformed data or let Mixpanel to directly create the schema in your glue database. Having the data and the glue schema in place, you can use SQL with multiple AWS products, including [Amazon Athena](https://aws.amazon.com/athena/) and [Redshift Spectrum](https://docs.aws.amazon.com/redshift/latest/dg/c-getting-started-using-spectrum.html), to query the imported data. 
+Mixpanel applies [transformation rules](/docs/other-bits/data-pipelines/schematized-export-pipeline#transformation-rules) to make the data compatible with data warehouses and then transfers the transformed data to your S3 bucket. You can then choose to use a glue crawler to create the schema out of the transformed data or let Mixpanel to directly create the schema in your glue database. Having the data and the glue schema in place, you can use SQL with multiple AWS products, including [Amazon Athena](https://aws.amazon.com/athena/) and [Redshift Spectrum](https://docs.aws.amazon.com/redshift/latest/dg/c-getting-started-using-spectrum.html), to query the imported data. 
 
 We recommend the use of [Spectrum](https://docs.aws.amazon.com/redshift/latest/dg/c-getting-started-using-spectrum.html) and [Glue](https://aws.amazon.com/glue/) to query the imported data. 
 
@@ -170,7 +170,7 @@ Note: If you use Athena with Glue and want to enable partitioning, you must choo
 
 ##### Configuring Glue for Mixpanel Direct Export 
 
-Mixpanel can write and update a schema in your Glue instance as soon as new data is available. To get more information about the table schemas, please see [Schema](/other-bits/data-pipelines/schematized-export-pipeline#schema). To set this up:
+Mixpanel can write and update a schema in your Glue instance as soon as new data is available. To get more information about the table schemas, please see [Schema](/docs/other-bits/data-pipelines/schematized-export-pipeline#schema). To set this up:
 
 1. Create a Glue database. 
   * In the AWS console, go to "Glue". (Make sure you are in the same region as your S3 exported data).
@@ -271,7 +271,7 @@ This convenience, however, can also pose issues, such as:
 * The time column is interpreted as an integer. As a result, it is more difficult to perform timestamp operations. 
 * When using the one table per event schema option, Glue crawlers can merge data from multiple events in one table based on similarity.
 
-To avoid these issues, Mixpanel can write and update a schema in your Glue instance as soon as new data is available. Follow [these instructions](/other-bits/data-pipelines/mixpanel-amazon-s3-export#section-configuring-glue-for-mixpanel-direct-export) to enable Mixpanel to write your data catalog to AWS Glue.
+To avoid these issues, Mixpanel can write and update a schema in your Glue instance as soon as new data is available. Follow [these instructions](/docs/other-bits/data-pipelines/mixpanel-amazon-s3-export#section-configuring-glue-for-mixpanel-direct-export) to enable Mixpanel to write your data catalog to AWS Glue.
 
 To use crawlers, you must point the crawler to the top level folder with your Mixpanel project ID. 
 
@@ -298,7 +298,7 @@ You only need to connect Redshift to Glue once. As the Mixpanel pipeline exports
 You can also join data stored in Redshift with Mixpanel data available in S3 through the external schema.
 
 ## Queries
-You can query data with a single table schema or with a multiple table schema in Redshift Spectrum. To get more information about the table schemas, please see [Schema](/other-bits/data-pipelines/schematized-export-pipeline#schema).
+You can query data with a single table schema or with a multiple table schema in Redshift Spectrum. To get more information about the table schemas, please see [Schema](/docs/other-bits/data-pipelines/schematized-export-pipeline#schema).
 
 To query a single table schema, use this snippet.
 ```sql
@@ -314,7 +314,7 @@ FROM mixpanel.mp_master_event
 WHERE mp_event_name = “<CLEANED_EVENT_NAME>”
 ```
 
-`CLEANED_EVENT_NAME` is the transformed event name based on [transformation rules](/other-bits/data-pipelines/schematized-export-pipeline#transformation-rules).
+`CLEANED_EVENT_NAME` is the transformed event name based on [transformation rules](/docs/other-bits/data-pipelines/schematized-export-pipeline#transformation-rules).
 
 #### Nested and Repeated Fields
 

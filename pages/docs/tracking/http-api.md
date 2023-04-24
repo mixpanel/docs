@@ -34,7 +34,7 @@ See our [API reference](https://developer.mixpanel.com/reference/events) for mor
 
 
 ## Best Practices for Scale
-You can use this API at scale, for example to backfill historical data into Mixpanel or as part of a high-throughput streaming pipeline. We provide walkthroughs for [Amazon S3](/tracking/integrations/s3-import) and [Google Cloud Storage](/tracking/integrations/gcs-import) to provide a more production-grade example of how to use this API at scale.
+You can use this API at scale, for example to backfill historical data into Mixpanel or as part of a high-throughput streaming pipeline. We provide walkthroughs for [Amazon S3](/docs/tracking/integrations/s3-import) and [Google Cloud Storage](/docs/tracking/integrations/gcs-import) to provide a more production-grade example of how to use this API at scale.
 
 
 Here are some other best practices:

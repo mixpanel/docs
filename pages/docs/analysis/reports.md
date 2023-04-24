@@ -19,9 +19,9 @@ This article focuses on the common concepts across each report.
 
 This is the menu that appears under "Add Metric" or "Select Step".
 
-By default, the event menu shows all events, except for [hidden events](/admin/data-governance/lexicon#hide-events-and-properties).
+By default, the event menu shows all events, except for [hidden events](/docs/admin/data-governance/lexicon#hide-events-and-properties).
 
-If you organize your events using [tags](/admin/data-governance/lexicon) in Lexicon, the tags will show up as filtering options in the event menu. When you select a tag, a list of events that share the same tag appears:
+If you organize your events using [tags](/docs/admin/data-governance/lexicon) in Lexicon, the tags will show up as filtering options in the event menu. When you select a tag, a list of events that share the same tag appears:
 
 ![/Untitled__1_.png](/Untitled__1_.png)
 
@@ -33,8 +33,8 @@ By default, the menu shows "all properties". This includes event properties, pro
 
 You can select the following filtering options to show a subset of the properties in the menu:
 
-- Select "event properties" to show only the [Event properties](/tracking/how-tos/events-and-properties).
-- Select "user properties" to show only the [Profile properties](/tracking/how-tos/events-and-properties).
+- Select "event properties" to show only the [Event properties](/docs/tracking/how-tos/events-and-properties).
+- Select "user properties" to show only the [Profile properties](/docs/tracking/how-tos/events-and-properties).
 - Select "cohorts" to show only the [Cohorts](/docs/analysis/advanced/cohorts).
 - If you set up [Group Analytics](/docs/analysis/advanced/group-analytics), the Group keys will show up individually under their display names. You can select any Group key to show only the Group properties relevant to the selected Group key:
 
@@ -60,7 +60,7 @@ The events and properties in the menu are prefixed to provide additional context
 
     ![/Screen_Shot_2021-11-18_at_12.37.54_PM.png](/Screen_Shot_2021-11-18_at_12.37.54_PM.png)
 
-- [Lookup properties](/tracking/how-tos/lookup-tables) are prefixed by the mapped property. Let's say "Timezone" is mapped to a Lookup Table that contains "UTC Offset" and "UTC Offset (DST)", these lookup properties will be prefixed by "Timezone"
+- [Lookup properties](/docs/tracking/how-tos/lookup-tables) are prefixed by the mapped property. Let's say "Timezone" is mapped to a Lookup Table that contains "UTC Offset" and "UTC Offset (DST)", these lookup properties will be prefixed by "Timezone"
 
     ![/Screen_Shot_2021-11-18_at_12.29.00_PM.png](/Screen_Shot_2021-11-18_at_12.29.00_PM.png)
 

@@ -27,7 +27,7 @@ You can select **User Profiles** or **All Users** in the Users page. If yo
 
 ![/Screen_Shot_2022-07-12_at_11.55.17_AM.png](/Screen_Shot_2022-07-12_at_11.55.17_AM.png)
 
-By clicking the name of a user in the User tables, you can explore that user's unique history by examining their user profile. Learn more about the Users Profiles [here](/tracking/how-tos/user-profiles).
+By clicking the name of a user in the User tables, you can explore that user's unique history by examining their user profile. Learn more about the Users Profiles [here](/docs/tracking/how-tos/user-profiles).
 
 ### Cohorts
 

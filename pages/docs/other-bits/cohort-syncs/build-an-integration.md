@@ -54,7 +54,7 @@ curl --request GET \
 Give your customers the option to send data to [our EU servers](https://developer.mixpanel.com/reference/overview) when they activate your Mixpanel integration.
 
 ###  Receive Cohort Syncs from Mixpanel
-Use this [webhook spec](/other-bits/cohort-syncs/cohort-webhooks) to process inbound cohorts Mixpanel syncs to your product, allowing your customers to engage more effectively with the right users at the right time.
+Use this [webhook spec](/docs/other-bits/cohort-syncs/cohort-webhooks) to process inbound cohorts Mixpanel syncs to your product, allowing your customers to engage more effectively with the right users at the right time.
 **Note**: This spec is intended for partner SaaS companies looking to build integrations with Mixpanel. If you are yourself a Mixpanel customer looking to query on Cohorts, refer to the [cohorts query API](https://developer.mixpanel.com/reference/cohorts).
 
 ### Auto-populate Experiments

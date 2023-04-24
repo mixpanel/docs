@@ -138,7 +138,7 @@ Mixpanel reserves certain property names; these properties receive special treat
 ## FAQ
 
 ### What should I send as a User Profile Property vs an Event Property?
-We recommend primarily using User Profile Properties to track demographic attributes of the user, like their name, email, and domain. Most other properties are better tracked as [Event Properties](/tracking/how-tos/events-and-properties).
+We recommend primarily using User Profile Properties to track demographic attributes of the user, like their name, email, and domain. Most other properties are better tracked as [Event Properties](/docs/tracking/how-tos/events-and-properties).
 
 That said, User Profile Properties are as flexible as any other properties in Mixpanel, so you can send arbitrary JSON.
 

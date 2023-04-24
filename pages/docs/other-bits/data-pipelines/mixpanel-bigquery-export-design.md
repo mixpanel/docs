@@ -15,7 +15,7 @@ There are currently two ways to export mixpanel data into big.
 ![image](/230698685-c02cb9a1-d66f-42a7-8063-8e78b79e7b1f.png)
 
 
-As part of the export pipeline, a new dataset `mixpanel_nessie_day_partitioned_<PROJECT_ID>` will be created if the customer chose to export into Mixpanel managed BigQuery or a dataset should be created with appropriate permissions on customer-managed BigQuery and provide us with a name. We also apply [transformation rules](/other-bits/data-pipelines/schematized-export-pipeline#transformation-rules) to make the data compatible with data warehouses. 
+As part of the export pipeline, a new dataset `mixpanel_nessie_day_partitioned_<PROJECT_ID>` will be created if the customer chose to export into Mixpanel managed BigQuery or a dataset should be created with appropriate permissions on customer-managed BigQuery and provide us with a name. We also apply [transformation rules](/docs/other-bits/data-pipelines/schematized-export-pipeline#transformation-rules) to make the data compatible with data warehouses. 
 
 For user profile and identity mappings tables, we create a new table with a random suffix every time and then will update the `mp_people` and `mp_identity_mappings` views accordingly to use the latest table. You should always use the views and should refrain from using the actual tables as we don't delete the old tables immediately and you may be using an old table.
 
@@ -23,7 +23,7 @@ For user profile and identity mappings tables, we create a new table with a rand
 The data in the tables is partitioned based on [`_PARTITIONTIME` pseudo column](https://cloud.google.com/bigquery/docs/querying-partitioned-tables#ingestion-time_partitioned_table_pseudo_columns) and in project timezone.
 
 ## Queries
-You can query data with a single table schema or with a multiple table schema in BigQuery. To get more information about the table schemas, please see [Schema](/other-bits/data-pipelines/schematized-export-pipeline#schema).
+You can query data with a single table schema or with a multiple table schema in BigQuery. To get more information about the table schemas, please see [Schema](/docs/other-bits/data-pipelines/schematized-export-pipeline#schema).
 
 To query a single table schema, use this snippet.
 ```sql
@@ -38,7 +38,7 @@ SELECT count(*)
 FROM mixpanel_nessie_day_partitioned_<PROJECT_ID>.<CLEANED_EVENT_NAME>
 ```
 
-`CLEANED_EVENT_NAME` is the transformed event name based on [transformation rules](/other-bits/data-pipelines/schematized-export-pipeline#transformation-rules).
+`CLEANED_EVENT_NAME` is the transformed event name based on [transformation rules](/docs/other-bits/data-pipelines/schematized-export-pipeline#transformation-rules).
 
 #### Getting the number of events in each day
 You will need this if you suspect the export process is not exporting all the events you want. As the tables are partitions using  [`_PARTITIONTIME` pseudo column](https://cloud.google.com/bigquery/docs/querying-partitioned-tables#ingestion-time_partitioned_table_pseudo_columns) and in project timezone, you can use to following query to get the number of events per day in an easy and fast way:

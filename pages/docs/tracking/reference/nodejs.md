@@ -20,7 +20,7 @@ Use [npm](https://www.npmjs.com/) to install Mixpanel in your project by calling
 
 Next, create a Mixpanel instance and initialize a Mixpanel client to communicate with Mixpanel servers. To do this, grab the Mixpanel factory and create an instance of the Mixpanel client by calling `mixpanel.init(YOUR_PROJECT_TOKEN)`.
 
-The project token is unique to your Mixpanel project. [Instructions for finding your project token can be found here](/admin/organizations-projects/manage-projects#find-your-project-tokens).
+The project token is unique to your Mixpanel project. [Instructions for finding your project token can be found here](/docs/admin/organizations-projects/manage-projects#find-your-project-tokens).
 ```javascript Javascript
 // grab the Mixpanel factory
 var Mixpanel = require('mixpanel');
@@ -47,7 +47,7 @@ You can track events with `mixpanel.track()` after initializing a Mixpanel insta
 
 The `mixpanel.track()` method takes two arguments, an event name and a properties object which must include the [distinct_id](https://help.mixpanel.com/hc/en-us/articles/115004509406-Distinct-IDs-).
 
-You have the option to add additional event properties to the call to add detail to that event. [Read more about events and properties here](/tracking/how-tos/effective-server#tracking-geolocation).
+You have the option to add additional event properties to the call to add detail to that event. [Read more about events and properties here](/docs/tracking/how-tos/effective-server#tracking-geolocation).
 ```javascript
 var Mixpanel = require('mixpanel');
 var mixpanel = Mixpanel.init('<YOUR_TOKEN>');
@@ -63,7 +63,7 @@ mixpanel.track('event name', {
 
 Mixpanel determines default geolocation data ($city, $region, mp_country_code) using the IP address on the incoming request. This can have the unintended effect of setting the location of all of your users to the location of your datacenter in server-side implementations.
 
-It is therefore important to pass IP as a property in server-side implementations. [Read about best practices for geolocation with server-side implementations](/tracking/how-tos/effective-server).
+It is therefore important to pass IP as a property in server-side implementations. [Read about best practices for geolocation with server-side implementations](/docs/tracking/how-tos/effective-server).
 ```javascript
 var Mixpanel = require('mixpanel');
 var mixpanel = Mixpanel.init('<YOUR_TOKEN>');
@@ -79,14 +79,14 @@ mixpanel.track('event name', {
 
 You can send user profile updates to Mixpanel in addition to sending events.
 
-Mixpanel can maintain a [profile of each of your users](/tracking/how-tos/user-profiles), storing information you know about them.
+Mixpanel can maintain a [profile of each of your users](/docs/tracking/how-tos/user-profiles), storing information you know about them.
 
 A profile update changes the properties of a user profile, essentially changing the details tied to that profile or creating it if it does not exist.
 
 You can use profiles and user profile properties to explore and segment users by who they are, in addition to what they did with event tracking.
 
 ### Setting Profile Properties
-You can update or create a [user profile](/tracking/how-tos/user-profiles)`. The first argument is distinct_id, and the second argument is a JSON list of the properties to add to or update the profile with.
+You can update or create a [user profile](/docs/tracking/how-tos/user-profiles)`. The first argument is distinct_id, and the second argument is a JSON list of the properties to add to or update the profile with.
 
 The following example sets a "Plan" property with a value "Premium", a first name, a last name, and a created date on the user's profile that has a distinct id of `13793`.
 

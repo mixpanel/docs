@@ -538,7 +538,7 @@ Let's assume an e-commerce platform has these 3 events:
 - Event 3: *PurchaseCompleted*
     - *List of ProductIDs* = ["P3", "P4"]
 
-Now let's assume that *"List of ProductIDs"* is mapped to a [lookup table](/tracking/how-tos/lookup-tables) called *Products* which looks like this:
+Now let's assume that *"List of ProductIDs"* is mapped to a [lookup table](/docs/tracking/how-tos/lookup-tables) called *Products* which looks like this:
 
 | ProductID | Category | Price |
 | --- | --- | --- |
@@ -565,7 +565,7 @@ Now let's assume that *"List of ProductIDs"* is mapped to a [lookup table](/t
         | P3 | 2 |
         | P4 | 3 |
     - **What's going on here?** When breaking down, each of the list's contents is evaluated as a single item. So for example, P2 is present in Event 1 and Event 2, so the TOTAL (of the *PurchaseCompleted* event) where "P2" is present is 2.
-- Breakdown by [lookup profile property](/tracking/how-tos/lookup-tables) that's joined to a list property
+- Breakdown by [lookup profile property](/docs/tracking/how-tos/lookup-tables) that's joined to a list property
     - **Question:** TOTAL of *PurchaseCompleted* broken down by *"List of ProductIDs"* → *Category*
     - **Answer:**
 
@@ -806,7 +806,7 @@ Results are sorted by taking into consideration the property, the number of user
 
 Query-time sampling allows you to query a subset of users and shorten the time it takes for a report to load results. The Insights, Funnels, Retention and Flows reports all support sampling at query time.
 
-This feature is available to enterprise customers with over 5 million [MTUs](/admin/pricing-plans#mtu-calculation) or over 2 billion monthly events.
+This feature is available to enterprise customers with over 5 million [MTUs](/docs/admin/pricing-plans#mtu-calculation) or over 2 billion monthly events.
 
 ### Enable or Disable Query Time Sampling
 
@@ -937,7 +937,7 @@ There are several reasons why you might see "undefined" in your properties list 
 
 - ***The specific property you’re segmenting by isn’t always sent along with the event you’re analyzing.*** For example, let’s say you’re segmenting the event “App Open” by the property “Account type” If there are instances where App Open fires without the Account type property getting sent with it, these will be categorized as “undefined” when you segment by Account type. Another common example is UTM parameters - “undefined” represents users who fired an event without any UTM in the URL that brought the user to your site.
 - When segmenting an event by a User Profile property, ***you’ll see “undefined” if there are User Profile profiles that don’t contain that property or if the event was triggered by a user without a User Profile at all.*** For example, let’s say you’re segmenting the event “Song Play” by the User Profile property “Favorite Genre.” If there are profiles that have triggered Song Play but don’t have the Favorite Genre property, that value will be “undefined.” Triggers of Song Play by users without a User Profile will also show up under “undefined.”
-- ***For geolocation data (City, Region, Country), the user’s IP couldn’t be mapped to a location, or their IP was not included with the request.*** For JavaScript implementations, City, Region, and Country are [default properties](https://help.mixpanel.com/hc/en-us/articles/115004613766-What-properties-do-Mixpanel-s-libraries-store-by-default-). However, if the IP address of the user is not in Mixpanel’s geolocation database and can’t be mapped to a city, region, or country, they will be “undefined” in reports. For server-side implementations, City, Region, and Country can be “undefined” if the IP address is not included with the request. [Read more about how Mixpanel maps IP to location.](/tracking/how-tos/privacy-friendly-tracking#disabling-geolocation)
+- ***For geolocation data (City, Region, Country), the user’s IP couldn’t be mapped to a location, or their IP was not included with the request.*** For JavaScript implementations, City, Region, and Country are [default properties](https://help.mixpanel.com/hc/en-us/articles/115004613766-What-properties-do-Mixpanel-s-libraries-store-by-default-). However, if the IP address of the user is not in Mixpanel’s geolocation database and can’t be mapped to a city, region, or country, they will be “undefined” in reports. For server-side implementations, City, Region, and Country can be “undefined” if the IP address is not included with the request. [Read more about how Mixpanel maps IP to location.](/docs/tracking/how-tos/privacy-friendly-tracking#disabling-geolocation)
 
 ### Remove “undefined” & "null" values from reports
 

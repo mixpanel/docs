@@ -9,10 +9,10 @@ This document walks through best practices for data validation and debugging you
 ## Before You Debug
 
 ### Create a Test Project
-Mixpanel recommends that you create a [separate development Mixpanel project](/tracking/how-tos/set-up-projects#separate-development-data) to validate your event data. This ensures that your testing data does not contaminate your production environment. 
+Mixpanel recommends that you create a [separate development Mixpanel project](/docs/tracking/how-tos/set-up-projects#separate-development-data) to validate your event data. This ensures that your testing data does not contaminate your production environment. 
 
 ### Send Events
-Mixpanel doesn't receive any data until you start sending events. If you haven't started sending data to Mixpanel, check out our quickstart guides for [JavaScript](/tracking/javascript-quickstart), [Server](/tracking/server), and [Mobile](/tracking/mobile). We have a simple [HTTP API](/tracking/http-api) for any languages we don't support.
+Mixpanel doesn't receive any data until you start sending events. If you haven't started sending data to Mixpanel, check out our quickstart guides for [JavaScript](/docs/tracking/javascript-quickstart), [Server](/docs/tracking/server), and [Mobile](/docs/tracking/mobile). We have a simple [HTTP API](/docs/tracking/http-api) for any languages we don't support.
 
 🎉 Congratulations, you're ready to debug! Theres are two primary places to inspect your raw events as they flow into your Mixpanel project: Events and User Profiles. 
 
@@ -52,18 +52,18 @@ User Profiles allow you to see the events feed and all user properties for a spe
 
 If you are using one of Mixpanel's client-side SDKs, you can enable debug mode to confirm that requests are sending to Mixpanel: 
 
-- [JavaScript Debug Mode](/tracking/advanced/javascript#debug-mode)
-- [iOS - Objective-C Debugging and Logging](/tracking/advanced/ios#debugging-and-logging)
-- [iOS - Swift Debugging and Logging](/tracking/advanced/swift#debugging-and-logging)
+- [JavaScript Debug Mode](/docs/tracking/advanced/javascript#debug-mode)
+- [iOS - Objective-C Debugging and Logging](/docs/tracking/advanced/ios#debugging-and-logging)
+- [iOS - Swift Debugging and Logging](/docs/tracking/advanced/swift#debugging-and-logging)
 - [Android - Debugging and Logging](https://developer.mixpanel.com/docs/android#debugging-and-logging)
-- [React Native - Debugging and Logging](/tracking/advanced/react-native#debugging-and-logging)
-- [Flutter - Debugging and Logging](/tracking/advanced/flutter#debugging-and-logging)
+- [React Native - Debugging and Logging](/docs/tracking/advanced/react-native#debugging-and-logging)
+- [Flutter - Debugging and Logging](/docs/tracking/advanced/flutter#debugging-and-logging)
 
 ### Debugging with the Browser Console (Web)
 
 If you're using Mixpanel in a web application, you can use your browser's developer console to view Mixpanel API calls being made from each page. 
 
-1. On your website, [enable debug mode](/tracking/advanced/javascript#debug-mode).
+1. On your website, [enable debug mode](/docs/tracking/advanced/javascript#debug-mode).
 2. Open your browser's developer console and navigate to the Network > Fetch/XHR tab. 
 3. Perform an action that triggers the `mixpanel.track` call.
 4. Look for a request triggered to `api.mixpanel.com/track`. Troubleshoot any error messages.
@@ -95,7 +95,7 @@ You can also flush manually with public `void flush()`.
 
 #### Hidden in Lexicon
 
-Project Owner and Admin users can hide events, event properties, and user profile properties in your [Mixpanel project through Lexicon](/admin/data-governance/lexicon#hide-events-and-properties).
+Project Owner and Admin users can hide events, event properties, and user profile properties in your [Mixpanel project through Lexicon](/docs/admin/data-governance/lexicon#hide-events-and-properties).
 
 #### Inactive Events and Properties
 
@@ -124,11 +124,11 @@ Two systems will always track data differently due to their nature. It might ver
 
 ### Ad Blockers and Do Not Track Settings
 
-Client-Side Tracking can be unreliable, you may lose events for 30-50% of your users. You can resolve this by [sending events through a proxy](/tracking/how-tos/tracking-via-proxy), but it requires a bit more effort. We [recommend](/tracking/how-tos/debugging#client-side-vs-server-side-tracking) server-side tracking, since it is more reliable and easier to maintain than web/mobile tracking.
+Client-Side Tracking can be unreliable, you may lose events for 30-50% of your users. You can resolve this by [sending events through a proxy](/docs/tracking/how-tos/tracking-via-proxy), but it requires a bit more effort. We [recommend](/docs/tracking/how-tos/debugging#client-side-vs-server-side-tracking) server-side tracking, since it is more reliable and easier to maintain than web/mobile tracking.
 
 ### Different Timezones
 
-Mixpanel records all events in Coordinated Universal Time (UTC) at intake. By default, Mixpanel displays events times in US Pacific Time but this is adjustable in [Project Settings](/admin/organizations-projects/manage-projects#manage-timezones-for-projects). Navigate to your Project Settings to determine what timezone your Mixpanel events are displayed in.
+Mixpanel records all events in Coordinated Universal Time (UTC) at intake. By default, Mixpanel displays events times in US Pacific Time but this is adjustable in [Project Settings](/docs/admin/organizations-projects/manage-projects#manage-timezones-for-projects). Navigate to your Project Settings to determine what timezone your Mixpanel events are displayed in.
 
 - Are event timezones tracked in the same way?
 
@@ -159,7 +159,7 @@ Mixpanel records all events in Coordinated Universal Time (UTC) at intake. By de
 
 ### Cohort Export
 
-A cohort might show more in Mixpanel than what is actually being exported to the partner. You can find out more about [troubleshooting this here](/other-bits/cohort-syncs/cohort-webhooks).
+A cohort might show more in Mixpanel than what is actually being exported to the partner. You can find out more about [troubleshooting this here](/docs/other-bits/cohort-syncs/cohort-webhooks).
 
 ### Debugging Discrepancies
 

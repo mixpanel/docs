@@ -36,7 +36,7 @@ When naming your custom event, note that the UI will break when the URL passes 2
 
 ## Edit and Delete Custom Events
 
-To view your complete list of custom events to manage, edit, or delete them, you must navigate to the [Lexicon](/admin/data-governance/lexicon).
+To view your complete list of custom events to manage, edit, or delete them, you must navigate to the [Lexicon](/docs/admin/data-governance/lexicon).
 
 ![/mceclip0.png](/mceclip0.png)
 

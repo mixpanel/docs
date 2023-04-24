@@ -31,7 +31,7 @@ This allows behavioral analysis from a business or group level, as opposed to an
 
 ## Group Profiles
 
-Much like a [user profile](/tracking/how-tos/user-profiles), Group Profiles are a collection of properties and event history specific to a group.
+Much like a [user profile](/docs/tracking/how-tos/user-profiles), Group Profiles are a collection of properties and event history specific to a group.
 
 Group Profiles have an activity feed that shows the events performed by users in a group. Only the events attributed to the group with a defined group key will appear in the group's activity feed.
 

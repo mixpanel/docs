@@ -16,11 +16,11 @@ This documentation targets users with intermediate or advanced knowledge of data
 You must first configure your destination to accept the data before you can export data from Mixpanel to that destination.
 
 For additional information on configuring the Mixpanel export for different destinations, see:
-  * [Exporting to Amazon](/other-bits/data-pipelines/mixpanel-amazon-s3-export)
-  * [Exporting to BigQuery](/other-bits/data-pipelines/mixpanel-bigquery-export-design)
-  * [Exporting to Snowflake](/other-bits/data-pipelines/mixpanel-snowflake-export) 
-  * [Exporting to Google Cloud Storage](/other-bits/data-pipelines/gcs)
-  * [Exporting to Azure Blob Storage](/other-bits/data-pipelines/azure-blob-storage)  
+  * [Exporting to Amazon](/docs/other-bits/data-pipelines/mixpanel-amazon-s3-export)
+  * [Exporting to BigQuery](/docs/other-bits/data-pipelines/mixpanel-bigquery-export-design)
+  * [Exporting to Snowflake](/docs/other-bits/data-pipelines/mixpanel-snowflake-export) 
+  * [Exporting to Google Cloud Storage](/docs/other-bits/data-pipelines/gcs)
+  * [Exporting to Azure Blob Storage](/docs/other-bits/data-pipelines/azure-blob-storage)  
 
 
 After configuring the destination, you can [create a pipeline](https://developer.mixpanel.com/reference/create-warehouse-pipeline) to export the data.
@@ -51,7 +51,7 @@ User data is exported to a single table named `mp_people_data`  (user data is ac
 Since user profiles are mutable, the data in the table is replaced every time an export happens based on the schedule (daily or hourly) with the latest user profiles.
 
 ## User Identity Resolution
-Exports from projects with [ID merge enabled](/tracking/how-tos/identifying-users#how-do-i-enable-the-simplified-api-on-a-project) will need to use the identity mapping table to replicate the user counts seen in UI reporting. When ID merge is enabled, Mixpanel assigns multiple identifiers to an individual. Mixpanel resolves these into one identifier, and uses that for reporting unique user counts. Read more about how Mixpanel resolves IDs [here](/tracking/how-tos/identifying-users#example-user-flows).
+Exports from projects with [ID merge enabled](/docs/tracking/how-tos/identifying-users#how-do-i-enable-the-simplified-api-on-a-project) will need to use the identity mapping table to replicate the user counts seen in UI reporting. When ID merge is enabled, Mixpanel assigns multiple identifiers to an individual. Mixpanel resolves these into one identifier, and uses that for reporting unique user counts. Read more about how Mixpanel resolves IDs [here](/docs/tracking/how-tos/identifying-users#example-user-flows).
 
 Pipelines export event data as they appear when Mixpanel ingests them. This means exported event data before sending alias event has the original user identifier, **not** the resolved identifier. Use the identity mappings table to accurately count unique users. This will allow you to recreate the identity cluster that Mixpanel creates.
 
@@ -60,7 +60,7 @@ Mixpanel automatically exports the ID mapping table when you create a people exp
 Note: When using the ID mappings table, you should use the **resolved** `distinct_id` in place of the non-resolved `distinct_id` whenever present. If there is no resolved `distinct_id`, you can then use the `distinct_id` from the existing people or events table.
 }
 
-Examples of how to do this are available for [BigQuery](/other-bits/data-pipelines/mixpanel-bigquery-export-design#querying-the-identity-mapping-table)  and [Snowflake](/other-bits/data-pipelines/mixpanel-snowflake-export#querying-the-identity-mapping-table).
+Examples of how to do this are available for [BigQuery](/docs/other-bits/data-pipelines/mixpanel-bigquery-export-design#querying-the-identity-mapping-table)  and [Snowflake](/docs/other-bits/data-pipelines/mixpanel-snowflake-export#querying-the-identity-mapping-table).
 
 ## Service Level Agreement
 Mixpanel has the following policy for data latency: 

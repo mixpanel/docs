@@ -8,7 +8,7 @@ metadata:
 createdAt: "2021-02-03T21:37:31.454Z"
 updatedAt: "2023-03-26T19:16:54.984Z"
 ---
-The GCS schema pipeline exports [transformed data](/other-bits/data-pipelines/schematized-export-pipeline#transformation-rules) to a GCS bucket. This can be useful in case you want to export Mixpanel data into your own BigQuery instance.
+The GCS schema pipeline exports [transformed data](/docs/other-bits/data-pipelines/schematized-export-pipeline#transformation-rules) to a GCS bucket. This can be useful in case you want to export Mixpanel data into your own BigQuery instance.
 
 To set up a schematized export pipeline to Google Cloud Storage (GCS) from Mixpanel, you must configure GCS to receive the exported data, then [create a pipeline](https://developer.mixpanel.com/reference/create-warehouse-pipeline) to export the data.
 

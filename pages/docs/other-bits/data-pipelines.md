@@ -26,9 +26,9 @@ Configuration depends on the type of Pipeline you want to set up.
 Raw Pipelines export events as JSON to a cloud storage bucket. This is the simplest approach.
 
 See our configuration guides for each raw destination:
-- [Amazon S3](/other-bits/data-pipelines/aws-raw-pipeline) 
-- [Google Cloud Storage](/other-bits/data-pipelines/gcs-raw-pipeline)
-- [Azure Blob Storage](/other-bits/data-pipelines/azure-raw-pipeline) 
+- [Amazon S3](/docs/other-bits/data-pipelines/aws-raw-pipeline) 
+- [Google Cloud Storage](/docs/other-bits/data-pipelines/gcs-raw-pipeline)
+- [Azure Blob Storage](/docs/other-bits/data-pipelines/azure-raw-pipeline) 
 
 Upon successful creation of a pipeline, events will be exported to the following locations:
 - Hourly: `<BUCKET_NAME>/<PATH_PREFIX>/<MIXPANEL_PROJECT_ID>/<YEAR>/<MONTH>/<DAY>/<HOUR>`
@@ -42,13 +42,13 @@ An empty `complete` file will be written in the finished hour or day prefix to i
 Schematized Pipelines export events into a schematized table that Mixpanel infers and generates based on your events. Roughly, each event is a table and each property is a column in that table. This is more complex to configure than Raw, but supports additional functionality, like exporting user profile data and exporting to data warehouses.
 
 See our configuration guides for each schematized destination:
-- [BigQuery](/other-bits/data-pipelines/mixpanel-bigquery-export-design) 
-- [Snowflake](/other-bits/data-pipelines/mixpanel-snowflake-export) 
-- [Amazon Web Services](/other-bits/data-pipelines/mixpanel-amazon-s3-export) 
-- [Google Cloud Storage](/other-bits/data-pipelines/gcs) 
-- [Azure Blob Storage](/other-bits/data-pipelines/azure-blob-storage) 
+- [BigQuery](/docs/other-bits/data-pipelines/mixpanel-bigquery-export-design) 
+- [Snowflake](/docs/other-bits/data-pipelines/mixpanel-snowflake-export) 
+- [Amazon Web Services](/docs/other-bits/data-pipelines/mixpanel-amazon-s3-export) 
+- [Google Cloud Storage](/docs/other-bits/data-pipelines/gcs) 
+- [Azure Blob Storage](/docs/other-bits/data-pipelines/azure-blob-storage) 
 
-The [Schematized Pipeline reference](/other-bits/data-pipelines/schematized-export-pipeline) goes the details of schematization and the output format.
+The [Schematized Pipeline reference](/docs/other-bits/data-pipelines/schematized-export-pipeline) goes the details of schematization and the output format.
 
 ## Step 2: Creating the Pipeline
 
@@ -63,12 +63,12 @@ This normally happens when you have a thousands of unique event names or propert
 
 ### Why does the number of events in Mixpanel not match the number of exported events to my destination?
 This can happen for a few reasons:
-- [Data Sync](/other-bits/data-pipelines/schematized-export-pipeline#data-sync) is not enabled or not supported for your pipeline.
+- [Data Sync](/docs/other-bits/data-pipelines/schematized-export-pipeline#data-sync) is not enabled or not supported for your pipeline.
 - Data Delay: it can take up to 1 day for late arriving data to be synced from Mixpanel to your destination.
 - Hidden Events: Mixpanel exports all events to your destination, even ones that are hidden in the UI via Lexicon. We recommend checking whether the count in your destination is mostly due to events that have been hidden in the Mixpanel UI.
 
 ### How can I count events exported by Mixpanel in the warehouse?
-Counting events can be slightly different for each warehouse, since we use different partitioning methods. Here are examples for [BigQuery](/other-bits/data-pipelines/mixpanel-bigquery-export-design#getting-the-number-of-events-in-each-day) and [Snowflake](/other-bits/data-pipelines/mixpanel-snowflake-export#getting-the-number-of-events-in-each-day).
+Counting events can be slightly different for each warehouse, since we use different partitioning methods. Here are examples for [BigQuery](/docs/other-bits/data-pipelines/mixpanel-bigquery-export-design#getting-the-number-of-events-in-each-day) and [Snowflake](/docs/other-bits/data-pipelines/mixpanel-snowflake-export#getting-the-number-of-events-in-each-day).
 
 ### How does the free trial work?
 Mixpanel offers a 30-day trial version of the Data Pipelines. The trial allows for one data export pipeline per project to be created.  Simply pass `trial=true` to our API to create a trial pipeline.

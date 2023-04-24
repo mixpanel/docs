@@ -15,7 +15,7 @@ Mixpanel supports syncing cohorts to a custom webhook URL that you provide via o
 * A Mixpanel project
 * A webhook server. You can create a dummy webhook for testing purposes using [webhook.site](https://webhook.site/).
 * The webhook server should send back events to Mixpanel to track actions like Message sent etc. (This is optional but customers who need this have to implement it themselves)
-Customers can follow the naming convention mentioned in this [document](/admin/pricing-plans#mtu-calculation) to avoid certain events from being considered for MTU tallies.
+Customers can follow the naming convention mentioned in this [document](/docs/admin/pricing-plans#mtu-calculation) to avoid certain events from being considered for MTU tallies.
 
 ## Setting up the webhook via our UI
 To create a new Custom Webhook destination, navigate to our Integrations UI and add a new Webhook connection. All you need to provide is a name for the connection and the URL of your webhook server.

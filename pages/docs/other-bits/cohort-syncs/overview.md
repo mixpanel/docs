@@ -49,7 +49,7 @@ If you notice your cohorts are not being exported, you can view the reason for t
 
 ![image](https://user-images.githubusercontent.com/13734965/233539691-d36370b1-880a-4aa6-a64c-399175c02388.png)
 
-Some integrations have common pause reasons (e.g. [Facebook's authentication pause](/other-bits/cohort-syncs/facebook-ads#troubleshooting-errors)). You can usually resolve the paused reason on your side by confirming the authorization for the integration is still valid, and dis- and reconnecting. 
+Some integrations have common pause reasons (e.g. [Facebook's authentication pause](/docs/other-bits/cohort-syncs/facebook-ads#troubleshooting-errors)). You can usually resolve the paused reason on your side by confirming the authorization for the integration is still valid, and dis- and reconnecting. 
 
 ### View sync error
 
