@@ -14,7 +14,7 @@ Using Data Pipelines requires 2 steps:
 1. Configuring your destination to allow Mixpanel to write to it.
 2. Telling Mixpanel to start exporting your data to that destination using the Pipelines API.
 
-We offer a 30-day free trial of the Data Pipelines add-on. See the [FAQ](#faq) for how to enable it.
+We offer a 30-day free trial of the Data Pipelines add-on. See the [FAQ](#how-does-the-free-trial-work) for how to enable it.
 
 
 ## Step 1: Configuring your destination
@@ -58,19 +58,19 @@ You can do this with our [Create Pipeline API](ref:create-warehouse-pipeline). Y
 
 ## FAQ
 
-**Why are some events or properties not exported to the destination?**
+### Why are some events or properties not exported to the destination?
 This normally happens when you have a thousands of unique event names or property names, which is usually an implementation mistake (eg: including a UUID in the event or property name). This causes the export process to exceed table or column limits in the destination. In these cases, we try to identify the bad patterns and exclude them from the export process. We always try to communicate this to the customers through their Customer Success Managers.
 
-**Why does the number of events in Mixpanel not match the number of exported events to my destination?**
+### Why does the number of events in Mixpanel not match the number of exported events to my destination?
 This can happen for a few reasons:
 - [Data Sync](/other-bits/data-pipelines/schematized-export-pipeline#data-sync) is not enabled or not supported for your pipeline.
 - Data Delay: it can take up to 1 day for late arriving data to be synced from Mixpanel to your destination.
 - Hidden Events: Mixpanel exports all events to your destination, even ones that are hidden in the UI via Lexicon. We recommend checking whether the count in your destination is mostly due to events that have been hidden in the Mixpanel UI.
 
-**How can I count events exported by Mixpanel in the warehouse?**
+### How can I count events exported by Mixpanel in the warehouse?
 Counting events can be slightly different for each warehouse, since we use different partitioning methods. Here are examples for [BigQuery](/other-bits/data-pipelines/mixpanel-bigquery-export-design#getting-the-number-of-events-in-each-day) and [Snowflake](/other-bits/data-pipelines/mixpanel-snowflake-export#getting-the-number-of-events-in-each-day).
 
-**How does the free trial work?**
+### How does the free trial work?
 Mixpanel offers a 30-day trial version of the Data Pipelines. The trial allows for one data export pipeline per project to be created.  Simply pass `trial=true` to our API to create a trial pipeline.
 
 Trial limitations:
