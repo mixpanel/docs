@@ -4,11 +4,9 @@
         "title": "Docs",
         "href": "/"
     },
-    "api-reference": {
-        "title": "API Reference ↗",
-        "type": "page",
-        "href": "https://developer.mixpanel.com/reference",
-        "newWindow": true
+    "tutorials": {
+        "title": "Tutorials",
+        "type": "page"
     },
     "changelogs": {
         "title": "Changelog",
@@ -16,6 +14,12 @@
         "theme": {
             "sidebar": false
         }
+    },
+    "api-reference": {
+        "title": "API Reference ↗",
+        "type": "page",
+        "href": "https://developer.mixpanel.com/reference",
+        "newWindow": true
     },
     "getting-started": "Getting Started",
     "tracking": "Tracking",
