@@ -1,9 +1,10 @@
 {
   "segment": "Segment",
   "rudderstack": "Rudderstack",
-  "api-reference": {
+  "google-tag-manager": {
     "title": "Google Tag Manager ↗",
     "href": "https://github.com/mixpanel/mixpanel-gtm-template#readme",
+    "newWindow": true
   },
   "mparticle": "mParticle",
   "freshpaint": "Freshpaint",
