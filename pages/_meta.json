@@ -5,7 +5,8 @@
     },
     "tutorials": {
         "title": "Tutorials",
-        "type": "page"
+        "type": "page",
+        "display": "hidden"
     },
     "changelogs": {
         "title": "Changelog",
