@@ -89,11 +89,11 @@ For example, if you are bucketing based on your "Item Purchased" event and creat
 
 You can go into advanced menu under Retention Criteria to switch the retention mode from the default rolling time windows to calendar defined time windows. This aligns the retention calculation so that all users entering within a time bucket get calculated together.
 
-![/13599603833876](/13599603833876)
+![/13599603833876.png](/13599603833876.png)
 
 This may be useful in scenarios where you want to check engagement on a strict day basis, OR if you want to check retention of your user base for the entire month and when they return, regardless of when in the month they first entered or when in the next month they returned.
 
-![/13599765981076](/13599765981076)
+![/13599765981076.png](/13599765981076.png)
 
 In the above example, we're looking at retention on a calendar week basis.
 

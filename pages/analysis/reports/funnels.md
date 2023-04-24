@@ -438,7 +438,7 @@ Select **Last touch** to attribute the last property value to the whole funnel
 
 For example, the user shopping on your website chooses to buy a shirt that costs $5. In this instance, properties of the item that is purchased are not sent until the “Purchase” event, so the property is backfilled and added to the “Item View” and “Log In” events:
 
-![/11544922524820](/11544922524820)
+![/11544922524820.png](/11544922524820.png)
 
 As you can see, the property of “Item Price” is only a property of the event “Purchase”, but that property backfilled to the previous two steps. Also, the properties sent with the event “Item View” are backfilled to “Log In”.
 
