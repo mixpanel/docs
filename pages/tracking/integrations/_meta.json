@@ -1,0 +1,14 @@
+{
+  "segment": "Segment",
+  "rudderstack": "Rudderstack",
+  "api-reference": {
+    "title": "Google Tag Manager ↗",
+    "href": "https://github.com/mixpanel/mixpanel-gtm-template#readme",
+  },
+  "mparticle": "mParticle",
+  "freshpaint": "Freshpaint",
+  "s3-import": "Amazon S3",
+  "gcs-import": "Google Cloud Storage",
+  "google-pubsub": "Google PubSub",
+  "snowplow": "Snowplow"
+}
