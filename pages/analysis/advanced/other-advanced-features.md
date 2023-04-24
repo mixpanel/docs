@@ -715,6 +715,29 @@ Now let's assume that *"List of ProductIDs"* is mapped to a [lookup table](/t
         - P3: 1
         - P4: 2
 
+
+## Analyzing First Time Users
+
+Sometimes, you might want to filter an event to only the first time that it's performed by a user. This helps answer the following questions:
+
+* How many users sign up or perform another key event for the first time each week?
+* Which referrers do most first time users come from?
+* How quickly do users make a purchase after their first time engaging with the app?
+* How well do users retain after performing a key event for the first time?
+* What events do users perform before and after doing their first purchase?
+
+You can do this by adding a First Time Filter to any event in Mixpanel. This filters the event down to only the first instance of the event performed by a user:
+
+![233894752-93851682-9d83-4c87-937d-8fd90db465c6.png](https://user-images.githubusercontent.com/2077899/233894752-93851682-9d83-4c87-937d-8fd90db465c6.png)
+
+Mixpanel computes this on-the-fly by scanning each user's history to determine if this was the first instance of the event performed by the user, based on timestamp.
+
+### Nth Time
+You can analyze the Nth time an event was performed by using a First Time Filter in funnels. For example, this shows you the number of users that do Tutorial Complete 4 times:
+
+![233895123-bc2dd00f-5dde-4e43-82fe-081173abf0e4.png](https://user-images.githubusercontent.com/2077899/233895123-bc2dd00f-5dde-4e43-82fe-081173abf0e4.png)
+
+
 ## Find Interesting Segments
 
 Determine which users are either driving conversion and retention or behaving as outliers by using the built in “Find Interesting Segments” feature.
