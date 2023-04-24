@@ -110,14 +110,29 @@ The most important column in your spreadsheet is the **$distinct_id** column f
 If you do not assign an identifier column, Mixpanel will use your $email column as the $distinct_id value; if you don’t have an $email column either, then the $distinct_id value will be assigned randomly by default as described above.
 
 ### Choose Desired CSV Columns
-
 ![/Screen_Shot_2021-12-01_at_12.24.00_PM.png](/Screen_Shot_2021-12-01_at_12.24.00_PM.png)
 
 You'll have the opportunity to look through all columns in the CSV to preview the values. In this step you must uncheck all of the columns you wish to NOT import. You must also choose the associated Mixpanel profile property that each CSV column will be associated with. When you done selecting the columns you wish to import along with their associated properties, press the Import profiles button.
 
 ## Deleting User Profiles
-
 User Profiles can be deleted either via the [Users](https://mixpanel.com/report/users) page or programmatically via our API. We provide a `people_delete` method in the mixpanel-utils library [here](https://github.com/mixpanel/mixpanel-utils#people-delete).
+
+## Reserved Properties
+Mixpanel reserves certain property names; these properties receive special treatment in our UI.
+
+| Name          | Display   | Description                                                                                                                                                                                                                                                                                                                                                             |
+|---------------|-----------|-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| $email        | Email     | The user's email address. You must set this property if you want to send users email from Mixpanel.                                                                                                                                                                                                                                                                    |
+| $phone        | Phone     | The user's phone number. You must set this property if you want to send users SMS from Mixpanel. Note that a '+' needs to precede phone numbers. This is especially useful for international numbers. If the user does not import a phone number with the '+' sign in front of the number, the country code will be prefixed to the front of the number based on the $country_code property, resulting in a phone number with two country codes. |
+| $first_name, $last_name, $name | Name      | User's first and last names, as well as a general name. These are primarily useful because we will use them, if available, in a few spots in our reports.                                                                                                                                                                                                                    |
+| $avatar       | Avatar    | Set this property to a url resource of a gif, jpg, jpeg, or png to update the profile picture in a profile. This property will override a profile picture pulled from Gravatar.                                                                                                                                                                                           |
+| $created      | Created   | The time that the profile was created.                                                                                                                                                                                                                                                                                                                                  |
+| $city         | City      | The city of the event sender, parsed from IP.                                                                                                                                                                                                                                                                                                                           |
+| $region       | Region    | The region (state or province) of the event sender, parsed from IP.                                                                                                                                                                                                                                                                                                     |
+| $country_code | Country   | The country of the event sender, parsed from IP.                                                                                                                                                                                                                                                                                                                        |
+| $timezone     | Timezone  | The timezone of the event sender, parsed from IP. If set, messages can be scheduled to be sent based on a user's timezone.                                                                                                                                                                                                                                              |
+| $bucket       | Bucket    | A reserved property that is hidden from the Mixpanel interface, and will cause other events to not appear in the interface. Do not name any property bucket or $bucket.                                                                                                                                                                                                   |
+
 
 
 ## FAQ
