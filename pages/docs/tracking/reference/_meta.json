@@ -4,15 +4,16 @@
     "javascript": "Javascript",
     "javascript-full-api-reference": {
         "title": "Javascript Full API Reference ↗",
-        "href": "https://github.com/mixpanel/mixpanel-js/blob/master/doc/readme.io/javascript-full-api-reference.md",
+        "href": "https://github.com/mixpanel/mixpanel-js/blob/master/doc/readme.io/javascript-full-api-reference.md#mixpanel",
         "newWindow": true
     },
     "python": "Python",
     "java": "Java",
     "nodejs": "Node.js",
     "ruby": "Ruby",
-    "ios": "iOS (Objective-C)",
+    "android": "Android",
     "swift": "iOS (Swift)",
+    "ios": "iOS (Objective-C)",
     "react-native": "React Native",
     "flutter": "Flutter",
     "unity": "Unity"
