@@ -139,7 +139,8 @@ We support the following data collection mechanisms:
     
     Since CDPs already collect all your data via 1 SDK and route to many downstream destinations, enabling Mixpanel is straightforward. Simply go to your CDP settings and add Mixpanel as a destination:
     
-    ![Untitled](Migrating%20to%20Mixpanel%20from%20Amplitude%20723407166fbf4f7ba9365034691502da/Untitled.png)
+    ![Segment Connection](https://user-images.githubusercontent.com/129823695/234812593-dffee962-bb34-49b8-9686-96bc0f0565d8.png)
+
     
     Once you set up the connection to Mixpanel, you can proceed with configuring key settings like:
     
@@ -209,7 +210,8 @@ We support the following data collection mechanisms:
     
     Simply go to your RETL settings and add Mixpanel as a connection:
     
-    ![Untitled](Migrating%20to%20Mixpanel%20from%20Amplitude%20723407166fbf4f7ba9365034691502da/Untitled%201.png)
+    ![Census Connection](https://user-images.githubusercontent.com/129823695/234812805-ded7dcef-9d47-4375-b52e-a229e4832477.png)
+
     
     We provide Mixpanel as a destination and setup guides for all of the most popular RETL tools:
     
