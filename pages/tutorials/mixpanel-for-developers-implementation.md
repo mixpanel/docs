@@ -5,10 +5,10 @@
 [Initialise SDK](https://www.loom.com/share/e3df729308114aa4bbf14ee74f37c0f8)
 
 ## Super Properties and Track Event
-[Super Properties and Track Event]()
+[Super Properties and Track Event](https://www.loom.com/share/d651d02c989542c390ba3df6739de941)
 
 ## Setting Profile Properties
-[Setting Profile Properties]()
+[Setting Profile Properties](https://www.loom.com/share/c382d447568d4cca9db2da8fefba1176)
 
 ## Other Ingestion methods
 [Other Ingestion methods](https://www.loom.com/share/089c6b39964745c9b208fd81336bc0bc)
