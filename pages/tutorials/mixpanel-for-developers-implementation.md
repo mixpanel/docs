@@ -13,6 +13,8 @@
 ## Other Ingestion methods
 [Other Ingestion methods](https://www.loom.com/share/089c6b39964745c9b208fd81336bc0bc)
 
+---
+
 ## FAQs
 #### 1. What are the different SDKs available by Mixpanel
 - Supported client-side libraries: [JavaScript](https://developer.mixpanel.com/docs/javascript), [iOS - Objective-C](https://developer.mixpanel.com/docs/ios), [iOS - Swift](https://developer.mixpanel.com/docs/swift), [Android](https://developer.mixpanel.com/docs/android), [React Native](https://developer.mixpanel.com/docs/react-native), [Flutter](https://developer.mixpanel.com/docs/flutter), [Unity](https://developer.mixpanel.com/docs/unity)
