@@ -119,10 +119,20 @@ Identify a user with a unique ID to track user activity across devices, tie a us
 
 Call `identify` when you know the identity of the current user, typically after log-in or sign-up. We recommend against using `identify` for anonymous visitors to your site. 
 
+```javascript JavaScript
+// after log-in or sign-up:
+mixpanel.identify("13793");
+```
+
 ### Call Reset at Logout
 [Reset](/docs/tracking/advanced/javascript-full-api-reference#section-mixpanel-reset) generates a new random distinct_id and clears super properties. Call reset to clear data attributed to a user when that user logs out. This allows you to handle multiple users on a single device. For more information about maintaining user identity, see the [Identifying Users](/docs/tracking/how-tos/identifying-users) article.
 
 Note: Calling reset frequently can lead to users quickly exceeding the 500 distinct_id per identity cluster limit. Once the 500 limit is reached you will no longer be able to add additional distinct_ids to the users identity cluster.
+
+```javascript JavaScript
+// after logout:
+mixpanel.reset();
+```
 
 ## Storing User Profiles
 
