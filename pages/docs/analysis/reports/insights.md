@@ -22,9 +22,9 @@ Here are some of the sample questions you can answer in Insights:
 - Product Analytics
     - How is my WAU changing over time? (unique users)
     - How often are my users getting value (frequency analysis)?
-    - What is the distribution of my users across regions / devices etc? (property breakdown)
+    - What is the distribution of my users across regions / devices / etc? (property breakdown)
     - [Lifecycle analysis](https://mixpanel.com/blog/growth-through-segmentation-lifecycle-analysis-to-understand-your-users/)
-- B2B (in this case, a messaging application
+- B2B (in this case, a messaging application)
     - How many messages were sent in the US in the past 30 days? (total events, filtered)
     - How many users had a mobile app session yesterday? (unique events)
     - How many messages are sent per session? (formulas)
@@ -33,9 +33,9 @@ Here are some of the sample questions you can answer in Insights:
 - Marketing
     - Which advertising campaigns generate the most checkouts? (property breakdown)
 
-#### Frequency analysis
+#### Frequency Analysis
 
-It's important to know what's the natural frequency at which your users use your product / experience the core value proposition of your product - do majority of your users use your product daily? weekly ? monthly? A16Z wrote a great article about the [Power User Curve](https://www.reforge.com/brief/understand-your-most-engaged-users-with-the-power-user-curve#bOb9wjj_l0R3Pqo32pggUQ), and this [video](https://www.loom.com/share/0c05ac17742a4d49a4c6879c0fe9f0de) shows how you can reproduce that within Mixpanel.
+It's important to know what's the natural frequency at which your users use your product and experience the core value proposition of your product--do the majority of your users use your product daily? Weekly? Monthly? A16Z wrote a great article about the [Power User Curve](https://www.reforge.com/brief/understand-your-most-engaged-users-with-the-power-user-curve#bOb9wjj_l0R3Pqo32pggUQ), and this [video](https://www.loom.com/share/0c05ac17742a4d49a4c6879c0fe9f0de) shows how you can reproduce that within Mixpanel.
 
 ## Quick Start
 
