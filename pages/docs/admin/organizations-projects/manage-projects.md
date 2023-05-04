@@ -141,7 +141,7 @@ By default, Mixpanel’s integration libraries work with API ingestion endpoints
 
 As mentioned previously, you should send date properties to Mixpanel as UTC time. Date properties are one of the five data types Mixpanel accepts.
 
-For this type of property, Mixpanel recommends an iso-formatted date string (YYYY-MM-DDTHH:mm:ss) to use in your Mixpanel reports.
+For this type of property, Mixpanel recommends an ISO-formatted date string (YYYY-MM-DDTHH:mm:ss) to use in your Mixpanel reports.
 
 Below are some code examples from Mixpanel's client-side libraries that allow you to send a property to Mixpanel with a correctly formatted UTC timestamp.
 
