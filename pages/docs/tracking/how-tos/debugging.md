@@ -20,8 +20,10 @@ Mixpanel doesn't receive any data until you start sending events. If you haven't
 
 Use [Events](/docs/analysis/events) to confirm that events are arriving to your Mixpanel project, so you can troubleshoot your Mixpanel setup quickly. With Events, you can see a feed of events along with all of their properties coming into Mixpanel.
 
+![Events Report](/eventheader.png)
+
 ### Find Yourself
-The next step to validating your events is to manually trigger some of those events on your own device. After you have fired some events, navigate to Events and search or filter using any user-level information you know is available in the event's raw payload. Search by `$user_id`, `$device_id`, `distinct_id`, or user property values. If you are using Mixpanel's JavaScript SDK, you can use [`mixpanel.get_distinct_id`](https://developer.mixpanel.com/docs/javascript-full-api-reference#mixpanelget_distinct_id) to return your own distinct_id in your browser console and copy the distinct_id value into the Events search bar.
+The next step to validating your events is to manually trigger some of those events on your own device. After you have fired some events, navigate to Events and search or filter using any user-level information you know is available in the event's raw payload. Search by `$user_id`, `$device_id`, `distinct_id`, or user property values. If you are using Mixpanel's JavaScript SDK, you can use [`mixpanel.get_distinct_id`](https://github.com/mixpanel/mixpanel-js/blob/master/doc/readme.io/javascript-full-api-reference.md#mixpanelget_distinct_id) to return your own distinct_id in your browser console and copy the distinct_id value into the Events search bar.
 
 ![Events Filter](/events-filter.png)
 
@@ -52,22 +54,22 @@ User Profiles allow you to see the events feed and all user properties for a spe
 
 If you are using one of Mixpanel's client-side SDKs, you can enable debug mode to confirm that requests are sending to Mixpanel: 
 
-- [JavaScript Debug Mode](/docs/tracking/advanced/javascript#debug-mode)
-- [iOS - Objective-C Debugging and Logging](/docs/tracking/advanced/ios#debugging-and-logging)
-- [iOS - Swift Debugging and Logging](/docs/tracking/advanced/swift#debugging-and-logging)
+- [JavaScript Debug Mode](/docs/tracking/reference/javascript#debug-mode)
+- [iOS - Objective-C Debugging and Logging](/docs/tracking/reference/ios#debugging-and-logging)
+- [iOS - Swift Debugging and Logging](/docs/tracking/reference/swift#debugging-and-logging)
 - [Android - Debugging and Logging](https://developer.mixpanel.com/docs/android#debugging-and-logging)
-- [React Native - Debugging and Logging](/docs/tracking/advanced/react-native#debugging-and-logging)
-- [Flutter - Debugging and Logging](/docs/tracking/advanced/flutter#debugging-and-logging)
+- [React Native - Debugging and Logging](/docs/tracking/reference/react-native#debugging-and-logging)
+- [Flutter - Debugging and Logging](/docs/tracking/reference/flutter#debugging-and-logging)
 
 ### Debugging with the Browser Console (Web)
 
 If you're using Mixpanel in a web application, you can use your browser's developer console to view Mixpanel API calls being made from each page. 
 
-1. On your website, [enable debug mode](/docs/tracking/advanced/javascript#debug-mode).
+1. On your website, [enable debug mode](/docs/tracking/reference/javascript#debug-mode).
 2. Open your browser's developer console and navigate to the Network > Fetch/XHR tab. 
 3. Perform an action that triggers the `mixpanel.track` call.
-4. Look for a request triggered to `api.mixpanel.com/track`. Troubleshoot any error messages.
-6. If the request is successful, check that the "token" in the data payload matches the token in your Project Settings. From here, you can then validate that the event was directed to the right project token and using Events, and confirm that the data is arriving correctly in Mixpanel.
+4. If your project has US Data Residency, look for a request triggered to `api.mixpanel.com/track`. If your project has [EU Data Residency](/docs/other-bits/privacy-and-security/eu-residency), look for a request triggered to  `api-eu.mixpanel.com/track`. Troubleshoot any error messages.
+6. If the request is successful, check that the "token" in the data payload matches the token in your [Project Settings](/docs/admin/organizations-projects/manage-projects#access-keys). From here, you can then validate that the event was directed to the right project token and using Events, and confirm that the data is arriving correctly in Mixpanel.
 
 ### Customize Flush Interval (Mobile)
 
@@ -77,13 +79,13 @@ Both the Mixpanel iOS and Android libraries employ queueing to optimize battery 
 
 On iOS, data gets flushed every time the user backgrounds the app or every 60 seconds.
 
-Shorten or lengthen the flush interval to send data to Mixpanel on a more or less frequent basis by changing the value of `self.mixpanel.flushInterval`. You can also explicitly call flush() to send the phone's queue immediately after having collected key events (such as sign up).
+Shorten or lengthen the flush interval to send data to Mixpanel on a more or less frequent basis by changing the value of `self.mixpanel.flushInterval`. You can also explicitly call [flush()](https://mixpanel.github.io/mixpanel-iphone/Classes/Mixpanel.html#//api/name/flush) to send the phone's queue immediately after having collected key events (such as sign up).
 
 #### Android
 
 On Android, both Event and People calls are put into a queue that gets flushed to Mixpanel according to either time or size. If the bulk upload limit of 40 records is not reached, the default flush interval is 60 seconds.
 
-You can also flush manually with public `void flush()`. One common use case is to call flush before the application is completely shut down to ensure that all of Events are sent to Mixpanel.
+You can also flush manually with public [`void flush()`](http://mixpanel.github.io/mixpanel-android/com/mixpanel/android/mpmetrics/MixpanelAPI.html#flush()). One common use case is to call flush before the application is completely shut down to ensure that all of Events are sent to Mixpanel.
 
 #### Unity
 
@@ -95,13 +97,13 @@ You can also flush manually with public `void flush()`.
 
 #### Hidden in Lexicon
 
-Project Owner and Admin users can hide events, event properties, and user profile properties in your [Mixpanel project through Lexicon](/docs/admin/data-governance/lexicon#hide-events-and-properties).
+Project Owner and Admin users can hide events, event properties, and user profile properties in your [Mixpanel project through Lexicon](/docs/admin/data-governance/lexicon#hide-events-and-properties). Check Lexicon to review if the event or property may be hidden.
 
 #### Inactive Events and Properties
 
 Mixpanel’s report dropdown menus hide events that have not been fired within the last 30 days. The events will still be available in the project's raw data, but will not be visible in the UI (we assume it's no longer relevant and hide it to declutter the dropdown menus and improve their performance). Event properties and property values that have not been sent to your project in the last 28 days will also be hidden from dropdowns.
 
-To have an imported event, event property, or property value that’s older than 30 days show in the dropdowns, you can fire a single instance of that event, property, or property value and the data will resurface it in the UI. If you know the name of the event, you can also search for it by typing the name in the dropdown menu.
+To have an imported event, event property, or property value that’s older than 30 days show in the dropdowns, you can fire a single instance of that event, property, or property value and the data will resurface it in the UI. If you know the name of the event, you can also search for it by typing the name in the dropdown menu (case sensitive).
 
 ## Data Discrepancies
 
