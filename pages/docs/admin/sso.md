@@ -71,9 +71,9 @@ You must configure your Identity Provider (IDP) to connect to Mixpanel in order 
   
 Setting up SSO with Okta requires that you configure a custom app in Okta. Follow these instructions to configure a custom application.
 
-**One Login**
+**OneLogin**
 
-One Login only requires that you get the Postback URL. The application is in the Onelogin application store as "Mixpanel" and supports autoprovisioning. You will just need to copy a SCIM token from Mixpanel into the provisioning token box in the Onelogin app. You can learn how to generate a token here.
+OneLogin only requires that you get the Postback URL. The application is in the OneLogin application store as "Mixpanel" and supports autoprovisioning. You will just need to copy a SCIM token from Mixpanel into the provisioning token box in the in app. You can learn how to generate a token here.
   
 **G-Suite**
   
