@@ -84,7 +84,7 @@ You now a full analysis that you can use to put into a board, or use as a starti
 
 ### Chart Types
 
-Insights features multiple visualizations to help you view the results of your query in the clearest chart type. By default, Insights displays line charts, which help you understand how metrics trend over time. However, another chart type might present the results with more clarity. In Insights, you can either choose to get a metric calculated across the entire time period selected in the date picker, or get a time-segmented view of the metric (e.g. daily breakdown).
+Insights features multiple visualizations to help you view the query results in the clearest chart type. By default, Insights displays the results on the line chart, which helps you understand how metrics trend over time. However, another chart type might present the results with more clarity. In Insights, you can choose to get a metric calculated either across the entire time period selected in the date picker or on a time-segmented view of the metric (e.g. daily breakdown).
 
 - Metric calculated across the entire time period
     - Bar chart
