@@ -15,7 +15,7 @@ The Airship integration with Mixpanel allows users to export Mixpanel cohorts in
 
 ## Permissions
 
-You must be a Mixpanel project admin to enable the Airship integration. Read more about project roles and permissions [here](https://help.mixpanel.com/hc/en-us/articles/360024613412).
+You must be a Mixpanel project admin to enable the Airship integration.
 
 If the setting below is enabled in Airship, you will see the error "Master secret required to set tags on Tag Group mixpanel" in Mixpanel. Work with Airship to disable this setting so Mixpanel can update the Airship tag group.
 
