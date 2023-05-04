@@ -17,7 +17,7 @@ The [Library Source Code](https://github.com/mixpanel/mixpanel-js) and an [Examp
 ## Track Events
 
 ### Sending Events
-Once you have the snippet in your page, you can track an event by calling <a style="font-family: courier" href="https://mixpanel.com/help/reference/javascript-full-api-reference#mixpanel.track">mixpanel.track</a> with the event name and properties.
+Once you have the snippet in your page, you can track an event by calling `mixpanel.track()` with the event name and properties.
 ```javascript JavaScript
 // Send a "Played song" event to Mixpanel
 // with a property "genre"
@@ -27,13 +27,13 @@ mixpanel.track(
 );
 ```
 
-All events sent from the JavaScript library will send over HTTPS. 
+All events sent from the JavaScript library will be sent over HTTPS. 
 
 ### Tracking Website Links
 
-When tracking link clicks with <a style="font-family: courier" href="https://mixpanel.com/help/reference/javascript-full-api-reference#mixpanel.track">mixpanel.track</a>, the page can change before the event is successfully sent, leading to inaccurate results.
+When tracking link clicks with [`mixpanel.track()`](https://github.com/mixpanel/mixpanel-js/blob/master/doc/readme.io/javascript-full-api-reference.md#mixpaneltrack), the page can change before the event is successfully sent, leading to inaccurate results.
 
-To make this easier, use <a style="font-family: courier" href="https://mixpanel.com/help/reference/javascript-full-api-reference#mixpanel.track_links">mixpanel.track_links</a>. This function will allow you to bind an event to a link click with much greater accuracy.
+To make this easier, use [`mixpanel.track_links()`](https://github.com/mixpanel/mixpanel-js/blob/master/doc/readme.io/javascript-full-api-reference.md#mixpaneltrack_links). This function will allow you to bind an event to a link click with much greater accuracy.
 
 Here's how it works:
 ```javascript JavaScript
@@ -49,25 +49,25 @@ Here's how it works:
 </script>
 ```
 
-This will send a "click nav link" event (with a 'referrer' property) each time a user clicks on a navigation link. It's important to note that the links matched by the CSS selector must exist on the page at the time the `mixpanel.track_links` call is made, or it will not bind correctly.
+This will send a "click nav link" event (with a "referrer" property) each time a user clicks on a navigation link. It's important to note that the links matched by the CSS selector must exist on the page at the time the `mixpanel.track_links()` call is made, or it will not bind correctly.
 
 ### Other Tracking Methods
-There are other less common ways to send data to Mixpanel. To learn more, please follow the links to the full API documentation.
+There are other less common ways to send data to Mixpanel. To learn more, please refer to the [full API documentation](https://github.com/mixpanel/mixpanel-js/blob/master/doc/readme.io/javascript-full-api-reference.md#mixpanel).
 
-<a style="font-family: courier" href="https://mixpanel.com/help/reference/javascript-full-api-reference#mixpanel.track_forms">mixpanel.track_forms</a> - similar to `track_links`, but tracks form submissions.
+[`mixpanel.track_forms()`](https://github.com/mixpanel/mixpanel-js/blob/master/doc/readme.io/javascript-full-api-reference.md#mixpaneltrack_forms) - similar to `mixpanel.track_links()`, but tracks form submissions.
 
 ### Mixpanel Cookie 
 By default, Mixpanel cookies send over HTTPS requests as part of the headers. However, Mixpanel’s JavaScript library provides a configuration to completely prevent the browser from transmitting your cookies with non-HTTPS requests.
 
-To enable this, use the [`set_config()`](/docs/tracking/advanced/javascript-full-api-reference#mixpanelset_config) method and change the `secure_cookie` flag from false to true. If you configure your instance to send data over HTTP instead of HTTPS but do set `secure_cookie: true`, then your cookie data is not sent to the server. 
+To enable this, use the [`set_config()`](https://github.com/mixpanel/mixpanel-js/blob/master/doc/readme.io/javascript-full-api-reference.md#mixpanelset_config) method and change the `secure_cookie` flag from `false` to `true`. If you configure your instance to send data over HTTP instead of HTTPS but do set `secure_cookie: true`, then your cookie data is not sent to the server. 
 
 ### Super Properties
 
 It's very common to have certain properties that you want to include with each event you send. Generally, these are things you know about the user rather than about a specific event - for example, the user's age, gender, source, or initial referrer.
 
-To make things easier, you can register these properties as [super properties](https://help.mixpanel.com/hc/en-us/articles/115004708186-Event-Properties-Super-Properties-People-Properties#super-properties). If you tell us just once that these properties are important, we will automatically include them with all events sent. Super properties are stored in a browser cookie, and will persist between visits to your site.
+To make things easier, you can register these properties as super properties. If you tell us just once that these properties are important, we will automatically include them with all events sent. Super properties are stored in a browser cookie, and will persist between visits to your site.
 
-To set super properties, call <a style="font-family: courier" href="https://mixpanel.com/help/reference/javascript-full-api-reference#mixpanel.register">mixpanel.register</a>.
+To set super properties, call [`mixpanel.register()`](https://github.com/mixpanel/mixpanel-js/blob/master/doc/readme.io/javascript-full-api-reference.md#mixpanelregister).
 
 ```javascript JavaScript
 <script type="text/javascript">
@@ -79,12 +79,12 @@ To set super properties, call <a style="font-family: courier" href="https://mixp
 </script>
 ```
 
-The next time you track an event, the super properties you just set will be included as properties. If you call
+The next time you track an event, the super properties you just set will be included as properties. If you call:
 ```javascript JavaScript
 mixpanel.track("Signup");
 ```
 
-after making the previous call to <a style="font-family: courier" href="https://mixpanel.com/help/reference/javascript-full-api-reference#mixpanel.register">mixpanel.register</a>, it is just like adding the properties directly:
+after making the previous call to `mixpanel.register()`, it is just like adding the properties directly:
 ```javascript JavaScript
 mixpanel.track("Signup", {
     "age": 28,
@@ -95,7 +95,7 @@ mixpanel.track("Signup", {
 
 #### Setting Super Properties Only Once
 
-If you want to store a super property only once (often for things like initial referrer, ad campaign, or source), you can use <a style="font-family: courier" href="https://mixpanel.com/help/reference/javascript-full-api-reference#mixpanel.register_once">mixpanel.register_once</a>. This function behaves like mixpanel.register and has the same interface, but it doesn't override super properties you've already saved.
+If you want to store a super property only once (often for things like initial referrer, ad campaign, or source), you can use [`mixpanel.register_once()`](https://github.com/mixpanel/mixpanel-js/blob/master/doc/readme.io/javascript-full-api-reference.md#mixpanelregister_once). This function behaves like `mixpanel.register()` and has the same interface, but it doesn't override super properties you've already saved.
 
 ```javascript JavaScript
 <script type="text/javascript">
@@ -105,19 +105,19 @@ If you want to store a super property only once (often for things like initial r
 </script>
 ```
 
-This means that it's safe to call <a style="font-family: courier" href="https://mixpanel.com/help/reference/javascript-full-api-reference#mixpanel.register_once">mixpanel.register_once</a> with the same property on every page load, and it will only set it if the super property doesn't exist.
+This means that it's safe to call `mixpanel.register_once()` with the same property on every page load, and it will only set it if the super property doesn't exist.
 
 #### Super Properties Live in Local Storage
-Our JS library uses a cookie (created in the domain of the page loading the lib) to store super properties. These are stored as JSON in the cookie. They will persist for the life of that cookie, which by default is 365 days. If you wish to change the life of the cookie, you may do so using [set_config](/docs/tracking/advanced/javascript-full-api-reference#mixpanelset_config) to adjust the value for the cookie_expiration(an integer in days). 
+Our JS library uses a cookie (created in the domain of the page loading the lib) to store super properties. These are stored as JSON in the cookie. They will persist for the life of that cookie, which by default is 365 days. If you wish to change the life of the cookie, you may do so using [`set_config()`](https://github.com/mixpanel/mixpanel-js/blob/master/doc/readme.io/javascript-full-api-reference.md#mixpanelset_config) to adjust the value for the `cookie_expiration` (an integer in days). 
 
 ## Managing User Identity
 
-You can handle the identity of a user using the `identify` and `alias` methods. Proper use of these methods can connect events to the correct user as they move across devices, browsers, and other platforms. 
+You can handle the identity of a user using the `identify()` and `alias()` methods. Proper use of these methods can connect events to the correct user as they move across devices, browsers, and other platforms. 
 
 ### Identify
 Identify a user with a unique ID to track user activity across devices, tie a user to their events, and create a user profile. If you never call this method, unique visitors are tracked using a UUID that generates the first time they visit the site.
 
-Call `identify` when you know the identity of the current user, typically after log-in or sign-up. We recommend against using `identify` for anonymous visitors to your site. 
+Call `identify()` when you know the identity of the current user, typically after log-in or sign-up. We recommend against using `identify()` for anonymous visitors to your site. 
 
 ```javascript JavaScript
 // after log-in or sign-up:
