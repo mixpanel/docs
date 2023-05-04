@@ -107,7 +107,7 @@ Mixpanel records all events in [Coordinated Universal Time (UTC)](https://www.wo
 
 Mixpanel converts the timezone to your project timezone before writing the event to Mixpanel data stores. Mixpanel sets project timezones by city or region. If a city or region observes Daylight Savings Time, the ingestion offset adjusts appropriately.
 
->Note: As of 1/11/2023, all new projects store their data in UTC. Changing timezone for any project under project settings only affects the timezone in which Mixpanel outputs results. You will no longer see a gap or spike in events after changing timezone now.
+>Note: As of 11 Jan 2023, all new projects store their data in UTC. Changing timezone for any project under project settings only affects the timezone in which Mixpanel outputs results. You will no longer see a gap or spike in events after changing timezone now.
 
 ### Changing your Timezone
 
