@@ -105,7 +105,7 @@ Go the the Import from CSV mode and select your prepared csv to begin the proces
 
 ### Choose an Identifier Column
 
-The most important column in your spreadsheet is the **$distinct_id** column for user profiles or **$group_id**, the group identifier, for group profiles, as these are the canonical identifiers in Mixpanel.
+The most important column in your spreadsheet is the **"$distinct_id"** column for user profiles or **"$group_id"**, the group identifier, for group profiles, as these are the canonical identifiers in Mixpanel.
 
 If you do not assign an identifier column, Mixpanel will use your $email column as the $distinct_id value; if you don’t have an $email column either, then the $distinct_id value will be assigned randomly by default as described above.
 
