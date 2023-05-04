@@ -338,7 +338,7 @@ We don’t charge punitive overages but we do provide volume discounts – if yo
 
 If you go over your prepaid amount, Mixpanel won't stop collecting your data. Once you've finished using your prepaid amount of MTUs you'll be charged the additional data rate for each additional user tracked that month. Alerts are in place to notify Organization Owners and Billing Admins of potential additional data charges. 
 
-For example, let’s say you are on a \$24/month Growth plan, but in the month of January, you went over your 1,000 MTU allotment by 500 MTU. Around January 1, you would have paid your base monthly fee for January of $24. Then around February 1, you will pay your base monthly fee for February of $24 plus the January additional data rate charges you incurred. If you purchase an annual plan in January, you will be charged an additional data rate fee each following month for the data used was in excess of the purchased plan.
+For example, let’s say you are on a \$24 month Growth plan, but in the month of January, you went over your 1,000 MTU allotment by 500 MTU. Around January 1, you would have paid your base monthly fee for January of \$24. Then around February 1, you will pay your base monthly fee for February of $24 plus the January additional data rate charges you incurred. If you purchase an annual plan in January, you will be charged an additional data rate fee each following month for the data used was in excess of the purchased plan.
 
 To maximize saving and avoid additional data rate charges, we recommend [taking a look at pricing options](https://mixpanel.com/pricing/) and upgrading to a pricing plan that better fits your traffic. View the additional data rate for your paid plan in Organization Settings > Plan Details & Billing:
 
