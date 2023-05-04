@@ -39,7 +39,7 @@ It's important to know what's the natural frequency at which your users use your
 
 ## Quick Start
 
-Building a report in Insights takes just a few clicks, and results arrive in seconds. Let's build a simple report together. Continuing the B2B messaging example, imagine you wanted to answer the following question:
+Building a report in Insights takes just a few clicks, and results arrive in seconds. Let's build a simple report together. Continuing the B2B messaging example, imagine you want to answer the following question:
 
 > Which cities in the United States have the most users who sent messages via the iOS platform?
 >
