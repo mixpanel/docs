@@ -100,24 +100,24 @@ Insights features multiple visualizations to help you view the results of your q
 
 #### Bar chart
 
-When you are viewing a bar chart, you have four different sorting options: A-Z Ascending, Z-A Descending, Value Ascending, or Value Descending. To switch sorting views, select the **Events** icon in the upper left hand of the report and select which view you would like to see.
+When you view a bar chart, you have four different sorting options: A-Z Ascending, Z-A Descending, Value Ascending, or Value Descending. To switch sorting view, select the **Events** or **property name** column header in the upper left hand of the results and then select which sorting order you would like to see.
 
 ![Sorting Bar Chart](/sorting-bar-chart.png)
 
 #### Line chart
 
-Line charts in Insights are accompanied with a table of values to give users another way to consume the trends information. This data table can also be sorted by clicking column headers.
+Line charts in Insights are accompanied by a table of values that gives users another way to consume the trends information. This data table can also be sorted by clicking the column headers.
 
-Click on a "data column" header to sort by that column. Click the header again to reverse the sort order. The table below is sorted by event counts on August 2nd:
+Click on a column header to sort by that column. Click the header again to reverse the sorting order. For example, the table below is sorted by event counts on August 2nd:
 
 ![Sorting Line Chart](/sorting-line-chart-1.png)
 
-Results that are segmented (from one or more “group by” clauses in your query) have four different sorting options when you click on the "segment column" headers:
+Results that are segmented (from one or more "group by" clauses in your query) have four different sorting options when you click on the "segment column" headers:
 
-- Segment Ascending: sort by segment name in ascending order.
-- Segment Descending: sort by segment name in descending order.
-- Value Ascending: sort by segment value in ascending order.
-- Value Descending. sort by segment value in descending order.
+- Segment A-Z Ascending: sort by segment name in ascending order
+- Segment Z-A Descending: sort by segment name in descending order
+- Value Ascending: sort by segment value in ascending order
+- Value Descending. sort by segment value in descending order
 
 When sorting by segments, the sort is carried out left to right.
 
