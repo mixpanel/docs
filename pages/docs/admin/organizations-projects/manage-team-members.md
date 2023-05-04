@@ -17,7 +17,7 @@ Your team members access your organization and its projects using individual use
 
 You can invite users users to an organization or to a project with specific role permissions.
 
->See Permissions to learn more about organizaton roles and project roles.
+>See [Permissions](https://docs-mixpanel.vercel.app/docs/admin/organizations-projects/manage-team-members#permissions) to learn more about organizaton roles and project roles.
 
 #### Invite Users to an Organization
 
@@ -29,7 +29,7 @@ To invite a user to an organization:
 4. Click **Add another user** to invite additional users.
 5. Click **Invite** to complete the process.
 
-Need new invite box image
+![image](/13734965/Add_Org_Users.png)
 
 You may bulk invite users via CSV by selecting **Bulk invite** and following the provided **CSV template**.
 
@@ -63,7 +63,7 @@ To remove a user from a project:
 2. Find user(s) to remove and click the checkbox next to their name.
 3. Click the **Delete** button that appears at the top of the table.
 
-image showing delete button
+![image](/13734965/Del_Proj_Users.png)
 
 >Note: An organization user may be a member of multiple projects. Deleting a user from one project does not affect their access to other projects within the organization.
 
@@ -75,7 +75,7 @@ image showing delete button
 
 >Note: Deleting a user from an organization will remove them from all projects and teams within the organization and is non-reversible.
 
-image showing warning?
+![image](/13734965/Del_Org_Users.png)
 
 ## Permissions
 
@@ -108,7 +108,7 @@ Organization Owners have administrative permissions for the organization and all
 
 #### Admin
 
-Organization Admins have permissions to manage projects, members and roles in the organization. Organization Admins have the same permissions as Organization Owners EXCEPT for the following:
+Organization Admins have permissions to manage projects, members and roles in the organization. Organization Admins have the same permissions as Organization Owners **except** for the following:
 
 - Request Organization deletions
 - Delete Projects
