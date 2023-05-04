@@ -15,7 +15,7 @@ The Airship integration with Mixpanel allows users to export Mixpanel cohorts in
 
 ## Permissions
 
-You must be a Mixpanel project admin to enable the Airship integration.
+You must be a Mixpanel project admin to enable the Airship integration. Read more about project roles and permissions [here](https://help.mixpanel.com/hc/en-us/articles/360024613412).
 
 If the setting below is enabled in Airship, you will see the error "Master secret required to set tags on Tag Group mixpanel" in Mixpanel. Work with Airship to disable this setting so Mixpanel can update the Airship tag group.
 
@@ -48,9 +48,9 @@ The recommendation would be to insert code after the user authenticates that sen
 
 >**Note:** SDK versions older than Android v5.9.6, Swift: v2.10.4, and Objective-C: v3.9.2 automatically created these properties. This has since been removed in favor of them being set according to your user's flow.
 
-Additionally, exports will send all user profiles to match against Airship's Named User system, which handles cross-platform identification. If you would like to specify a value to match a Mixpanel user profile to a Named User, you must add a user property, "$airship_named_user", which will be sent to attempt matching (note you must set this value, the Airship SDK will not automatically declare it).
+**Additionally**, exports will send all user profiles to match against [Airship's Named User system](https://docs.airship.com/guides/messaging/user-guide/audience/segmentation/named-users/), which handles cross-platform identification. If you would like to specify a value to match a Mixpanel user profile to a Named User, **you must add a user property, "$airship_named_user"**, which will be sent to attempt matching (note you must set this value, the Airship SDK will not automatically declare it).
 
-Users without `$airship_named_user` user properties will instead have their distinct_id sent to Airship's Named User system - this route is intended for implementations where the same identifier value is used for both distinct_id (Mixpanel) and named_user_id (Airship). Note that for customers using identity merge, Mixpanel will send the canonical distinct ID, which may change over time. To ensure a consistent identifier is sent to Airship's Named User system, add the `$airship_named_user` property to the user's profile.
+Users without `$airship_named_user` user properties will instead have their distinct_id sent to Airship's Named User system - this route is intended for implementations where the same identifier value is used for both distinct_id (Mixpanel) and named_user_id (Airship). Note that for customers using identity merge, Mixpanel will send the [canonical distinct ID](https://help.mixpanel.com/hc/en-us/articles/360041039771-Getting-Started-with-Identity-Management#individual-users), which may change over time. To ensure a consistent identifier is sent to Airship's Named User system, add the `$airship_named_user` property to the user's profile.
 
 ## Sending Mixpanel Cohorts to Airship
 
@@ -84,7 +84,7 @@ You can export events from your Airship integration to Mixpanel to perform deepe
 
 Events coming from Airship are marked with the property "$source" to denote the source product.
 
-Mixpanel will exempt certain messaging outreach events from MTU calculations, meaning you're free to send campaigns to dormant users without them counting towards MTU billing (only once a user engages with a message will they then be counted towards that tally).
+Mixpanel will exempt certain messaging outreach events from [MTU calculations](https://help.mixpanel.com/hc/en-us/articles/360001465686-Billing-for-Monthly-Tracked-Users#monthly-tracked-users-calculation), meaning you're free to send campaigns to dormant users without them counting towards MTU billing (only once a user engages with a message will they then be counted towards that tally).
 
 The following events are exempt from MTU calculations:
 
