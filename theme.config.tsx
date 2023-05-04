@@ -27,6 +27,10 @@ const config: DocsThemeConfig = {
       />
     </>
   ),
+  feedback: {
+    content: "Question? Contact our Support Team",
+    useLink: () => "https://mixpanel.com/get-support"
+  },
   footer: {
     text: "© Mixpanel 2023",
   },
