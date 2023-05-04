@@ -31,7 +31,7 @@ Our Support Engineers are located all over the world – in San Francisco, Barce
 | Growth | 24 hours | 48 hours | 24 x 5  |
 | Free | 48 hours | N/A | 24 x 5  |
 
-* FRT: First Response Time (within the Hours of Operation). First response times are response times within the Hours of Operation and represent target response times except for critical issues for customers on Premium Support packages. 
+FRT: First Response Time (within the Hours of Operation). First response times are response times within the Hours of Operation and represent target response times except for critical issues for customers on Premium Support packages. 
 
 ** Add-on Support Plans available for purchase with the Enterprise plan.
 
