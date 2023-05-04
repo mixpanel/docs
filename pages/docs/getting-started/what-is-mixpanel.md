@@ -8,6 +8,7 @@ metadata:
 createdAt: "2021-04-16T19:30:56.811Z"
 updatedAt: "2023-03-26T23:48:04.041Z"
 ---
+## What Is Mixpanel?
 Mixpanel is an analytics tool that enables you to capture data on how users interact with your digital product. Mixpanel then lets you analyze this data with simple, interactive reports that let you query and visualize the data with just a few clicks.
 
 Our self-serve interface empowers your team to answer questions, no matter their data expertise.
@@ -30,11 +31,12 @@ Because each user is unique, Mixpanel tracks which users completed what events a
 ### Properties
 Properties are attributes that help you define the specifics of an **Event** or a **User**.
 
-An **Event Property** describes an event. For a coffee purchase, the event would be Purchase and the event properties could be *Item Type* (in this case a Coffee) and *Item Price* (in this case $2.50)
+An **Event Property** describes an event. For a coffee purchase, the event would be Purchase and the event properties could be *Item Type* (in this case a Coffee) and *Item Price* (in this case $2.50).
 
 ![image](/event.svg)
 
 A **User Property** describes a User. This could be their name, email, or age.
+
 ![image](/user-profile.svg)
 
 [Mixpanel's different reports](/docs/analysis/reports) allow you to view data about various users or events and slice and dice that data by any property.
