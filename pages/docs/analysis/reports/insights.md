@@ -78,7 +78,7 @@ Choosing a different chart can help you visualize data better. Line charts help 
 
 ### Step 6: Analyze Results
 
-You now a full analysis that you can use to put into a board, or use as a starting point to dig in further. This might mean adding more filters or breakdowns, or adding another metric and seeing if there's an interesting comparison to be made. You could also change the counting type or the chart type.
+You now have a full analysis that you can use and add onto a Board, or use as a starting point to dig in further. This might mean adding more filters or breakdowns, or adding another metric and seeing if there's an interesting comparison to be made. You could also change the counting type or the chart type.
 
 ## Basic Features
 
