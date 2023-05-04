@@ -235,7 +235,7 @@ Up top, I can see that all of the Funnel's criteria is still maintained. In my e
 
 ![/scm5ojo77y.png](/scm5ojo77y.png)
 
-The Sankey is automatically broken down by users that eventually converted or did not convert to Add to Cart (Users may not convert because of hitting exclusion steps, or failing to complete the funnel in the conversion window)
+The Sankey is automatically broken down by users that eventually converted or did not convert to Add to Cart (Users may not convert because of hitting exclusion steps, or failing to complete the funnel within the conversion window).
 
 ![/Screen_Shot_2021-05-26_at_7.13.34_AM.png](/Screen_Shot_2021-05-26_at_7.13.34_AM.png)
 
