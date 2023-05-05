@@ -218,7 +218,7 @@ If for any reason you need to combine two or more Mixpanel projects, it is possi
 ### How to Merge
 To merge projects:
 
-1. Stop sending data to the old project(s).3. 
+1. Stop sending data to the old project(s).
 2. Begin sending all data to the new project.
 3. Once the old project has completely stopped receiving data, export that data via the raw data export API and import the data into the new project via Mixpanel’s import API.
 

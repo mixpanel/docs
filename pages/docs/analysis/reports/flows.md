@@ -11,7 +11,7 @@ metadata:
 
 ![/flows_header.png](/flows_header.png)
 
-Flows identifies the most frequent paths taken by users to or from any event. Use Flows to understand how your users sequentially perform events in your product, and analyze drop-offs or unsuccessful behavior.
+Flows identifies the most frequent paths taken by users to or from any event. Use Flows to understand how your users sequentially perform events in your product and analyze drop-offs or unsuccessful behavior.
 
 ## Use Cases
 
