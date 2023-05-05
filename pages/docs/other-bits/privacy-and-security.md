@@ -58,10 +58,10 @@ Mixpanel deletion and retrieval APIs are in place to help Mixpanel implementatio
 
 ### User Opt-Out
 While the following API can be used to delete or retrieve personal data as outlined by the GPDR, it is important to also opt users out of subsequent tracking. If tracking using a client-side Mixpanel library, you can opt users out of tracking using Mixpanel's opt-out methods. These are available in the following client-side libraries:
-* [JavaScript](/docs/tracking/advanced/javascript#section-opting-users-out-of-tracking)
-* [iOS - Objective-C](/docs/tracking/advanced/ios#section-opting-users-out-of-tracking)
-* [iOS - Swift](/docs/tracking/advanced/swift#section-opting-users-out-of-tracking)
-* [Android](/docs/tracking/advanced/android#section-opting-users-out-of-tracking)
+* [JavaScript](/docs/tracking/reference/javascript#opting-users-out-of-tracking)
+* [iOS - Objective-C](/docs/tracking/reference/ios#opting-users-out-of-tracking)
+* [iOS - Swift](/docs/tracking/reference/swift#opting-users-out-of-tracking)
+* [Android](/docs/tracking/reference/android#opting-users-out-of-tracking)
 
 See Mixpanel’s [Managing Personal Information](/docs/tracking/how-tos/privacy-friendly-tracking) guide for more information on best practices when handling personal information in Mixpanel.
 
