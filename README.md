@@ -11,6 +11,13 @@ To make an edit:
 * One of the docs maintainers will review that request within 3 days and merge when approved (usually faster if it’s a small change).
 * Once merged, changes will go live automatically, typically within 1-2 minutes.
 
+# Testing Locally
+This is a bit more advanced, but makes it much faster to test the impact of your changes (no waiting for the staging deployment):
+* Clone the repo
+* Install `npm`
+* Run `npm run-script dev` -- this will start serving the docs at localhost:3000
+* Make whatever changes you want locally, this should automatically reflect in your local instance of the docs. 
+
 # Adding Images
 You can paste images directly into the markdown of the doc that you're editing. This will automatically upload the file to Github's CDN and embed the image in the doc.
 

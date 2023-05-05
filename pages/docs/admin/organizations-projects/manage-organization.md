@@ -27,7 +27,7 @@ Only **organization owners** and **billing admins** can access Organization Disc
 ![Organization Discoverability 2 Image](/discoverability2.png)
 
 
-They can enable Organization Discoverability by first specifying the private (i.e., work) email domain(s) that should be granted access when a new user signs up for Mixpanel. Please note that public email domains, such as Gmail or Yahoo, cannot be used.
+They can enable Organization Discoverability by first specifying the private (i.e. work) email domain(s) that should be granted access when a new user signs up for Mixpanel. Please note that public email domains, such as Gmail or Yahoo, cannot be used.
 
 The org owner or admin can then designate the level of discoverability of their organization; **open to join**, **subject to admin approval**, or **invite only**.
 

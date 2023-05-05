@@ -83,16 +83,15 @@ The following event represents the fact that user "john.doe@gmail.com" played th
 ## User Profiles, Group Profiles & Lookup Tables
 All three are key/value stores that augment your event data with additional metadata about entities. The differences are whether the join key is customizable and whether events are copied and indexed by the join key.
 
-**User profiles** are joined to events via `distinct_id` which is the default indexing for Events. If you don't wish for your events to be associated to any User, you can set `distinct_id: ""`.
+**[User profiles](/docs/tracking/how-tos/user-profiles)** are joined to events via `distinct_id` which is the default indexing for Events. 
 
-**Group profiles** are joined to events via an event property you specify. Once you create a new group key, we will add an additional index for your events on that property. This allows you to do funnels or retention by that property instead of by `distinct_id`.
+**[Group profiles](/docs/analysis/advanced/group-analytics)** are joined to events via an event property you specify as a group key. Once you create a new group key, we will add an additional index for your events on that property. This allows you to do funnels or retention by that property instead of by `distinct_id`.
 
-**Lookup tables** are joined to events and user profiles using the join key that you specify. Unlike group profiles, your events are *not* indexed by the join key. You can use lookup table properties to do filtering, breakdowns, etc but you can't do things like funnels analysis using the join key for uniques. Note: Currently, group profile properties cannot be lookup table keys.
+**[Lookup tables](docs/tracking/how-tos/lookup-tables)** are joined to events and user profiles using the join key that you specify. Unlike group profiles, your events are *not* indexed by the join key. You can use lookup table properties to do filtering, breakdowns, etc but you can't do things like funnels analysis using the join key for uniques. Note: Currently, group profile properties cannot be lookup table keys.
 
 | Profile Type | Can Specify Join Key | Can Use Join Key For Uniques Analysis | Can Be Referenced From Other Profiles |
 |---|---|---|---|
-| User Profiles | :x: | :white-check-mark: | :x: |
-| Group Profiles | :white-check-mark: | :white-check-mark: | :x: |
-| Lookup Tables | :white-check-mark: | :x: | :white-check-mark: |
+| User Profiles | ❌ |  ✅  | ❌ |
+| Group Profiles |  ✅  |  ✅  | ❌ |
+| Lookup Tables |  ✅  | ❌ |  ✅  |
 
-See this [video walkthrough] for more details.
