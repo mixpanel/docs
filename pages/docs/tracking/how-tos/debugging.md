@@ -57,7 +57,7 @@ If you are using one of Mixpanel's client-side SDKs, you can enable debug mode t
 - [JavaScript Debug Mode](/docs/tracking/reference/javascript#debug-mode)
 - [iOS - Objective-C Debugging and Logging](/docs/tracking/reference/ios#debugging-and-logging)
 - [iOS - Swift Debugging and Logging](/docs/tracking/reference/swift#debugging-and-logging)
-- [Android - Debugging and Logging](https://developer.mixpanel.com/docs/android#debugging-and-logging)
+- [Android - Debugging and Logging](/docs/tracking/reference/android#debugging-and-logging)
 - [React Native - Debugging and Logging](/docs/tracking/reference/react-native#debugging-and-logging)
 - [Flutter - Debugging and Logging](/docs/tracking/reference/flutter#debugging-and-logging)
 
