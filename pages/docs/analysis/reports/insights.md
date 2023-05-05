@@ -22,9 +22,9 @@ Here are some of the sample questions you can answer in Insights:
 - Product Analytics
     - How is my WAU changing over time? (unique users)
     - How often are my users getting value (frequency analysis)?
-    - What is the distribution of my users across regions / devices etc? (property breakdown)
+    - What is the distribution of my users across regions / devices / etc? (property breakdown)
     - [Lifecycle analysis](https://mixpanel.com/blog/growth-through-segmentation-lifecycle-analysis-to-understand-your-users/)
-- B2B (in this case, a messaging application
+- B2B (in this case, a messaging application)
     - How many messages were sent in the US in the past 30 days? (total events, filtered)
     - How many users had a mobile app session yesterday? (unique events)
     - How many messages are sent per session? (formulas)
@@ -33,13 +33,13 @@ Here are some of the sample questions you can answer in Insights:
 - Marketing
     - Which advertising campaigns generate the most checkouts? (property breakdown)
 
-#### Frequency analysis
+#### Frequency Analysis
 
-It's important to know what's the natural frequency at which your users use your product / experience the core value proposition of your product - do majority of your users use your product daily? weekly ? monthly? A16Z wrote a great article about the [Power User Curve](https://www.reforge.com/brief/understand-your-most-engaged-users-with-the-power-user-curve#bOb9wjj_l0R3Pqo32pggUQ), and this [video](https://www.loom.com/share/0c05ac17742a4d49a4c6879c0fe9f0de) shows how you can reproduce that within Mixpanel.
+It's important to know what's the natural frequency at which your users use your product and experience the core value proposition of your product--do the majority of your users use your product daily? Weekly? Monthly? A16Z wrote a great article about the [Power User Curve](https://www.reforge.com/brief/understand-your-most-engaged-users-with-the-power-user-curve#bOb9wjj_l0R3Pqo32pggUQ), and this [video](https://www.loom.com/share/0c05ac17742a4d49a4c6879c0fe9f0de) shows how you can reproduce that within Mixpanel.
 
 ## Quick Start
 
-Building a report in Insights takes just a few clicks, and results arrive in seconds. Let's build a simple report together. Continuing the B2B messaging example, imagine you wanted to answer the following question:
+Building a report in Insights takes just a few clicks, and results arrive in seconds. Let's build a simple report together. Continuing the B2B messaging example, imagine you want to answer the following question:
 
 > Which cities in the United States have the most users who sent messages via the iOS platform?
 >
@@ -78,13 +78,13 @@ Choosing a different chart can help you visualize data better. Line charts help 
 
 ### Step 6: Analyze Results
 
-You now a full analysis that you can use to put into a board, or use as a starting point to dig in further. This might mean adding more filters or breakdowns, or adding another metric and seeing if there's an interesting comparison to be made. You could also change the counting type or the chart type.
+You now have a full analysis that you can use and add onto a Board, or use as a starting point to dig in further. This might mean adding more filters or breakdowns, or adding another metric and seeing if there's an interesting comparison to be made. You could also change the counting type or the chart type.
 
 ## Basic Features
 
 ### Chart Types
 
-Insights features multiple visualizations to help you view the results of your query in the clearest chart type. By default, Insights displays line charts, which help you understand how metrics trend over time. However, another chart type might present the results with more clarity. In Insights, you can either choose to get a metric calculated across the entire time period selected in the date picker, or get a time-segmented view of the metric (e.g. daily breakdown).
+Insights features multiple visualizations to help you view the query results in the clearest chart type. By default, Insights displays the results on the line chart, which helps you understand how metrics trend over time. However, another chart type might present the results with more clarity. In Insights, you can choose to get a metric calculated either across the entire time period selected in the date picker or on a time-segmented view of the metric (e.g. daily breakdown).
 
 - Metric calculated across the entire time period
     - Bar chart
@@ -100,24 +100,24 @@ Insights features multiple visualizations to help you view the results of your q
 
 #### Bar chart
 
-When you are viewing a bar chart, you have four different sorting options: A-Z Ascending, Z-A Descending, Value Ascending, or Value Descending. To switch sorting views, select the **Events** icon in the upper left hand of the report and select which view you would like to see.
+When you view a bar chart, you have four different sorting options: A-Z Ascending, Z-A Descending, Value Ascending, or Value Descending. To switch sorting view, select the **Events** or **property name** column header in the upper left hand of the results and then select which sorting order you would like to see.
 
 ![Sorting Bar Chart](/sorting-bar-chart.png)
 
 #### Line chart
 
-Line charts in Insights are accompanied with a table of values to give users another way to consume the trends information. This data table can also be sorted by clicking column headers.
+Line charts in Insights are accompanied by a table of values that gives users another way to consume the trends information. This data table can also be sorted by clicking the column headers.
 
-Click on a "data column" header to sort by that column. Click the header again to reverse the sort order. The table below is sorted by event counts on August 2nd:
+Click on a column header to sort by that column. Click the header again to reverse the sorting order. For example, the table below is sorted by event counts on August 2nd:
 
 ![Sorting Line Chart](/sorting-line-chart-1.png)
 
-Results that are segmented (from one or more “group by” clauses in your query) have four different sorting options when you click on the "segment column" headers:
+Results that are segmented (from one or more "group by" clauses in your query) have four different sorting options when you click on the "segment column" headers:
 
-- Segment Ascending: sort by segment name in ascending order.
-- Segment Descending: sort by segment name in descending order.
-- Value Ascending: sort by segment value in ascending order.
-- Value Descending. sort by segment value in descending order.
+- Segment A-Z Ascending: sort by segment name in ascending order
+- Segment Z-A Descending: sort by segment name in descending order
+- Value Ascending: sort by segment value in ascending order
+- Value Descending. sort by segment value in descending order
 
 When sorting by segments, the sort is carried out left to right.
 

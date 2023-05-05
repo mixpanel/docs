@@ -53,7 +53,7 @@ def transform_to_mp_format(user):
     # We recommend using the primary key of your users table for this.
     distinct_id = user.pop("user_id")
 
-    # Note: we set "$ip" to 0 here to tell Mixpanel not to look up the IP of this user.
+    # Note: we set `$ip` to 0 here to tell Mixpanel not to look up the IP of this user.
     return {"$distinct_id": distinct_id, "$token": PROJECT_TOKEN, "$ip": "0", "$set": user}
 
 
@@ -81,11 +81,11 @@ To get started, click on **Add/Edit Profile** from the [Users](https://mixpanel
 
 ### Set an Identifier Column
 
-The most important column is **$distinct_id**. This ID needs to match the distinct_id property that you're sending on your events.
+The most important column is `$distinct_id`. This ID needs to match the distinct_id property that you're sending on your events.
 
 ### Add Additional Properties
 
-After **$distinct_id**, you can add additional properties to the profile by pressing the "Add Property" button. Mixpanel will help autocomplete profile properties that you may want to set.
+After `$distinct_id`, you can add additional properties to the profile by pressing the "Add Property" button. Mixpanel will help autocomplete profile properties that you may want to set.
 
 ![/Screen_Shot_2021-12-01_at_12.20.27_PM.png](/Screen_Shot_2021-12-01_at_12.20.27_PM.png)
 
@@ -105,9 +105,9 @@ Go the the Import from CSV mode and select your prepared csv to begin the proces
 
 ### Choose an Identifier Column
 
-The most important column in your spreadsheet is the **"$distinct_id"** column for user profiles or **"$group_id"**, the group identifier, for group profiles, as these are the canonical identifiers in Mixpanel.
+The most important column in your spreadsheet is the `$distinct_id` column for user profiles or `$group_id`, the group identifier, for group profiles, as these are the canonical identifiers in Mixpanel.
 
-If you do not assign an identifier column, Mixpanel will use your "$email" column as the "$distinct_id" value; if you don’t have an "$email" column either, then the "$distinct_id" value will be assigned randomly by default as described above.
+If you do not assign an identifier column, Mixpanel will use your `$email` column as the `$distinct_id` value; if you don’t have an `$email` column either, then the `$distinct_id` value will be assigned randomly by default as described above.
 
 ### Choose Desired CSV Columns
 ![/Screen_Shot_2021-12-01_at_12.24.00_PM.png](/Screen_Shot_2021-12-01_at_12.24.00_PM.png)
