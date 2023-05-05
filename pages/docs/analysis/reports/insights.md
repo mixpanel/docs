@@ -21,8 +21,8 @@ Here are some of the sample questions you can answer in Insights:
 
 - Product Analytics
     - How is my WAU changing over time? (unique users)
-    - How often are my users getting value (frequency analysis)?
-    - What is the distribution of my users across regions / devices / etc? (property breakdown)
+    - How often are my users getting value? (frequency analysis)
+    - What is the distribution of my users across regions / devices etc? (property breakdown)
     - [Lifecycle analysis](https://mixpanel.com/blog/growth-through-segmentation-lifecycle-analysis-to-understand-your-users/)
 - B2B (in this case, a messaging application)
     - How many messages were sent in the US in the past 30 days? (total events, filtered)
