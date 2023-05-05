@@ -75,7 +75,7 @@ If you are unable to scan the QR code, click on “Can’t scan QR code?” This
 
 ![2FA SMS 3 Image](/2fa_sms3.png)
 
-4. On the "Two-factor verification screen", enter your Mixpanel security code, and click Log In.
+4. On the "Two-factor verification screen", enter your Mixpanel security code, and click "Log in".
 
 ![2FA SMS 4 Image](/2fa_sms4.png)
 
@@ -83,7 +83,7 @@ If you are unable to scan the QR code, click on “Can’t scan QR code?” This
 
 An individual user can also set up their two-factor authentication via their personal settings. In order to setup two-factor authentication, follow these steps:
 
-1. Go to the settings icon > personal settings> your profile, then click on Set Up Method.
+1. Go to the settings icon > personal settings> your profile, then click on "Set Up Method".
 
 ![2FA Personal 1 Image](/2fa_personal1.png)
 
@@ -99,7 +99,7 @@ An individual user can change their two-factor authentication method via their p
 
 Users can switch their method via the following steps:
 
-1. Go to settings cog > personal settings> your profile, then click **Change Method**.
+1. Go to settings cog > personal settings> your profile, then click "**Change Method**".
 
 ![2FA Change 1 Image](/2fa_change1.png)
 
@@ -121,7 +121,7 @@ If an authentication app is your preferred method of authentication, you can log
 
 ![2FA Backup 1 Image](/2fa_backup1.png)
 
-2. Enter your recovery code and click Login
+2. Enter your recovery code and click "Login".
 
 ![2FA Backup 2 Image](/2fa_backup2.png)
 
