@@ -211,7 +211,7 @@ Click on the "three dots" icon beside a step and click **Rename** to rename i
 
 ### View as Flow
 
-In order to learn more about the behavior users take between funnel steps, we recommend checking the feature "View as Flow". You can see what user flows and behaviors that can increase the likelihood of conversion or dropodd. This helps to answer questions like:
+In order to learn more about the behavior users take between funnel steps, we recommend checking the feature "View as Flow". You can see what user flows and behaviors that can increase the likelihood of conversion or dropoff. This helps to answer questions like:
 
 - What flows do users take between opening an app and making a purchase?
 - Why did the successful users purchase?
