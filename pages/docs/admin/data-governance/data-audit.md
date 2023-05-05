@@ -9,7 +9,7 @@ metadata:
 
 ## Data Audit Overview
 
-Mixpanel Data Audit surfaces new event, property, and property type data that does not match your current Mixpanel implementation. This could be due to someone on your team making changes to your tracking without the appropriate approval, or due to errors in your implementation. Only [Project Owners](https://docs-mixpanel.vercel.app/docs/admin/organizations-projects/manage-team-members#project-roles) can enable Data Audit. Data Audit is currently in open BETA and is subject to change.
+Mixpanel Data Audit surfaces new event, property, and property type data that does not match your current Mixpanel implementation. This could be due to someone on your team making changes to your tracking without the appropriate approval, or due to errors in your implementation. Only [Project Owners](/docs/admin/organizations-projects/manage-team-members#project-roles) can enable Data Audit. Data Audit is currently in Beta and is subject to change.
 
 ## Enable Data Audit
 
