@@ -91,7 +91,7 @@ Row heights can now be adjusted to either show more report content, or hide empt
 
 A row's height is initially determined by the tallest card within that row. Text cards can be very short if they contain only one line of text, or very tall if they contain many lines. Meanwhile, reports always start at their minimum height, but may warrant expansion in order to show more data (more bars on a bar chart, for example).
 
-A row will start life at the minimum possible height
+A row will start life at the minimum possible height.
 
 ## Advanced
 
@@ -219,7 +219,7 @@ Go to the Share Modal > Public Board Details to manage the Public Board's passwo
 
 ![/Screen_Shot_2021-06-09_at_3.06.54_PM.png](/Screen_Shot_2021-06-09_at_3.06.54_PM.png)
 
-Check "Require Passcode" to enable password protection for the specific Public Link. The password will be shown only upon creation. If you forget passcode, you will need to provide a new password.
+Check "Require Passcode" to enable password protection for the specific Public Link. The password will be shown only upon creation. If you forget the passcode, you will need to provide a new password.
 
 ![/Screen_Shot_2021-06-09_at_3.07.27_PM.png](/Screen_Shot_2021-06-09_at_3.07.27_PM.png)
 
@@ -303,7 +303,7 @@ It is possible to share a digest for a private board. However, there are some re
 
 Sharing and permissions are set at the board level, and all reports saved on a board inherit the same set of sharing and permissions settings of that board.
 
-To share a board, and therefore all reports contained within it, click the Share button at the top right of the board. From here, sharing works as before, but remember, sharing a board now shares all of that board's reports as well. [Click here](/docs/analysis/boards#sharing) to learn more about sharing.
+To share a board, and therefore all reports contained within it, click the Share button at the top right of the board. From here, sharing works as before, but remember, sharing a board now shares all of that board's reports as well. 
 
 ![/GIF3__light_.gif](/GIF3__light_.gif)
 
@@ -317,7 +317,7 @@ So long as the recipient has access to the project, they will be able to see the
 
 Sharing and permissions are set at the board level, and all reports saved on a board inherit the same set of sharing and permissions settings of that board.
 
-In the sharing process, you can choose the permissions level granted to the individual with whom you're sharing the board. Teammates with access to a board can either be Viewers (any changes made will not be saved) or Editors (changes made will be saved). [Click here](/docs/analysis/boards#permissions) to learn more about permissions.
+In the sharing process, you can choose the permissions level granted to the individual with whom you're sharing the board. Teammates with access to a board can either be Viewers (any changes made will not be saved) or Editors (changes made will be saved). 
 
 As with sharing, setting a user's permission level on a board will give them the same permission level for all reports on that board.
 
