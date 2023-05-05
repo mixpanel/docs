@@ -29,17 +29,18 @@ You can enable this by selecting the "EU Data Residency" option when creating a 
 
 ## Using Our SDKs
 Next you'll need to set the server location to EU when initializing the Mixpanel library. You can find instructions for the required config settings for each SDK below:
-- [JavaScript](/docs/javascript#eu-data-residency)
-- [Objective-C](/docs/ios#eu-data-residency)
-- [Swift](/docs/ios#eu-data-residency)
-- [Android](/docs/android#eu-data-residency)
-- [Python](/docs/python#eu-data-residency)
-- [Java](/docs/java#eu-data-residencyy)
-- [PHP](/docs/php#eu-data-residency)
-- [Ruby](/docs/ruby#eu-data-residency)
-- [Node.js](/docs/nodejs#eu-data-residency)
-- [React Native](/docs/react-native)
-- [Flutter](/docs/flutter#eu-data-residency)
+
+- [JavaScript](/docs/tracking/reference/javascript#eu-data-residency)
+- [Objective-C](/docs/tracking/reference/ios#eu-data-residency)
+- [Swift](/docs/tracking/reference/ios#eu-data-residency)
+- [Android](/docs/tracking/reference/android#eu-data-residency)
+- [Python](/docs/tracking/reference/python#eu-data-residency)
+- [Java](/docs/tracking/reference/java#eu-data-residencyy)
+- [PHP](/docs/tracking/reference/php#eu-data-residency)
+- [Ruby](/docs//tracking/reference/uby#eu-data-residency)
+- [Node.js](/docs/tracking/reference/nodejs#eu-data-residency)
+- [React Native](/docs/tracking/reference/react-native)
+- [Flutter](/docs/tracking/reference/flutter#eu-data-residency)
 
 ## Querying Mixpanel Data in the EU
 Once you've set the server location to EU, please notify Mixpanel so we can set your project's cluster to `mixpanel-prod-eu`.
@@ -58,10 +59,10 @@ Mixpanel deletion and retrieval APIs are in place to help Mixpanel implementatio
 
 ### User Opt-Out
 While the following API can be used to delete or retrieve personal data as outlined by the GPDR, it is important to also opt users out of subsequent tracking. If tracking using a client-side Mixpanel library, you can opt users out of tracking using Mixpanel's opt-out methods. These are available in the following client-side libraries:
-* [JavaScript](/docs/tracking/advanced/javascript#section-opting-users-out-of-tracking)
-* [iOS - Objective-C](/docs/tracking/advanced/ios#section-opting-users-out-of-tracking)
-* [iOS - Swift](/docs/tracking/advanced/swift#section-opting-users-out-of-tracking)
-* [Android](/docs/tracking/advanced/android#section-opting-users-out-of-tracking)
+* [JavaScript](/docs/tracking/reference/javascript#section-opting-users-out-of-tracking)
+* [iOS - Objective-C](/docs/tracking/reference/ios#section-opting-users-out-of-tracking)
+* [iOS - Swift](/docs/tracking/reference/swift#section-opting-users-out-of-tracking)
+* [Android](/docs/tracking/reference/android#section-opting-users-out-of-tracking)
 
 See Mixpanel’s [Managing Personal Information](/docs/tracking/how-tos/privacy-friendly-tracking) guide for more information on best practices when handling personal information in Mixpanel.
 
