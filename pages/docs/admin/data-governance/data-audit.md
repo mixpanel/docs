@@ -57,7 +57,7 @@ Click View in Insights to access an Insights report filtered to show that specif
 
 Click View Event Details to view the event or event property in Lexicon. 
 
-If you'd like to [Hide](https://docs-mixpanel.vercel.app/docs/admin/data-governance/lexicon#hide-events-and-properties), [Drop](https://docs-mixpanel.vercel.app/docs/admin/data-governance/lexicon#dropping-events) or otherwise edit unexpected events or properties that is possible within Lexicon (unexpected events will already be hidden if you selected that option when enabling Data Audit).
+If you'd like to [Hide](/docs/admin/data-governance/lexicon#hide-events-and-properties), [Drop](/docs/admin/data-governance/lexicon#dropping-events) or otherwise edit unexpected events or properties that is possible within Lexicon (unexpected events will already be hidden if you selected that option when enabling Data Audit).
 
 ## Disable Data Audit
 
