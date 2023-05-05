@@ -14,7 +14,7 @@ Mixpanel believes in respecting and protecting people’s fundamental online pri
 Visit our [Privacy Hub](https://mixpanel.com/legal/privacy-hub/) to see how we comply with various privacy guidelines.
 
 ## Storing Your Data in the European Union
-By default Mixpanel stores user data on it's US Servers via the Google Cloud Platform.
+By default Mixpanel stores user data on its US Servers via the Google Cloud Platform.
 However, Mixpanel also provides you with the option to process and store your customers' personal data in Europe via our [EU Data Residency Program](https://mixpanel.com/topics/data-residency-for-mixpanel/).
 You can enable this by selecting the "EU Data Residency" option when creating a new project, and using our EU subdomain during all API calls.
 
@@ -59,10 +59,10 @@ Mixpanel deletion and retrieval APIs are in place to help Mixpanel implementatio
 
 ### User Opt-Out
 While the following API can be used to delete or retrieve personal data as outlined by the GPDR, it is important to also opt users out of subsequent tracking. If tracking using a client-side Mixpanel library, you can opt users out of tracking using Mixpanel's opt-out methods. These are available in the following client-side libraries:
-* [JavaScript](/docs/tracking/reference/javascript#section-opting-users-out-of-tracking)
-* [iOS - Objective-C](/docs/tracking/reference/ios#section-opting-users-out-of-tracking)
-* [iOS - Swift](/docs/tracking/reference/swift#section-opting-users-out-of-tracking)
-* [Android](/docs/tracking/reference/android#section-opting-users-out-of-tracking)
+* [JavaScript](/docs/tracking/reference/javascript#opting-users-out-of-tracking)
+* [iOS - Objective-C](/docs/tracking/reference/ios#opting-users-out-of-tracking)
+* [iOS - Swift](/docs/tracking/reference/swift#opting-users-out-of-tracking)
+* [Android](/docs/tracking/reference/android#opting-users-out-of-tracking)
 
 See Mixpanel’s [Managing Personal Information](/docs/tracking/how-tos/privacy-friendly-tracking) guide for more information on best practices when handling personal information in Mixpanel.
 
@@ -96,8 +96,10 @@ Authorization:
 | Bearer | Body. Passed in JSON blob format. | Your [OAuth token](/docs/other-bits/privacy-and-security/export-or-delete-end-user-data#generate-oauth-token) for GDPR APIs. |
 
 Example Request:
-`curl "https://mixpanel.com/api/app/data-retrievals/v3.0/?token=591b3354bb2bdd96f72f23bf56911673"
+```text
+curl "https://mixpanel.com/api/app/data-retrievals/v3.0/?token=591b3354bb2bdd96f72f23bf56911673"
 -H "Authorization: Bearer vZcErNw8JCq42BZUJyWoZmDWCKBxXc"
+```
 
 Example Return:
 `{"status":"ok","results":[{"status":"PENDING", "disclosure_type":"DATA", "date_requested":"2020-03-09T22:28:55.078315", "tracking_id":"1583792934719392965",  "project_id":1978118, "compliance_type":"ccpa", "destination_url":null, "requesting_user":"pat.davis@mixpanel.com", "distinct_id_count":1}]}`
@@ -238,7 +240,7 @@ Authorization:
 | Bearer | Body. Passed in JSON blob format. | Your [OAuth token](/docs/other-bits/privacy-and-security/export-or-delete-end-user-data#generate-oauth-token) for GDPR APIs. |
 
 Example Request:
-`curl "https://mixpanel.com/api/app/data-deletions/v3.0/35bd8477-f71f-4088-af55-c88a6fb4ad4b/?token=591b3354bb2bdd96f72f23bf56911674" -H "Authorization: Bearer vZcErNw8JCq42BZUJyWoZmDWCKBxXc"
+`curl "https://mixpanel.com/api/app/data-deletions/v3.0/35bd8477-f71f-4088-af55-c88a6fb4ad4b/?token=591b3354bb2bdd96f72f23bf56911674" -H "Authorization: Bearer vZcErNw8JCq42BZUJyWoZmDWCKBxXc"`
 
 Example Return:
 `{"status": "ok", "results": {"status": "PENDING", "result": "", "distinct_ids": ["1"]}}`

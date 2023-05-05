@@ -1,16 +1,9 @@
----
-title: "Users"
-slug: "users-page"
-hidden: false
-metadata:
-  title: "Users"
-  description: "Learn about the Users page."
----
-
 ## Overview
 ![/Screen_Shot_2022-07-12_at_4.43.34_PM.png](/Screen_Shot_2022-07-12_at_4.43.34_PM.png)
 
 Mixpanel's Users page allows you to filter users and gain a deeper understanding of how they interact with your website or application. By filtering your users into groups called cohorts, you can import these cohorts into other reports and perform analyses on those specific users.
+
+If you want to import User Profiles into Mixpanel, see our [User Profiles guide](/docs/tracking/how-tos/user-profiles).
 
 ### Use Case
 
@@ -41,16 +34,6 @@ You may wish to change what data is displayed in the Users table. You can do so 
 
 ![/Screen_Shot_2022-07-12_at_2.22.57_PM.png](/Screen_Shot_2022-07-12_at_2.22.57_PM.png)
 
-## Advanced
-
-### Users vs Users with Profiles
-
-By default, Mixpanel will display Users with profiles on the Users page. These are users have associated users properties with them. If you wish to see users who have no associated properties, you can switch to "Users" in the selection.
-
-![Users with Profiles](/advanced-users-with-profiles.png)
-
-Users with Profiles: Users who have properties associated with them
-Users: All Users, including those who may not have properties associated with them, but have associated events.
 
 ## FAQ
 
@@ -65,3 +48,11 @@ Note that when creating cohorts this way, the cohort will remain static, meaning
 To download your user profiles from the Users page, simply click the **Export icon.** This will download all the profile data being displayed in the current report - to download more properties, edit your columns to select more properties. You can choose to filter the list or select individual profiles to download instead of downloading the full list.
 
 ![/Screen_Shot_2022-07-12_at_2.26.45_PM.png](/Screen_Shot_2022-07-12_at_2.26.45_PM.png)
+
+### What's the difference between "Users" and "Users with Profiles"?
+![Users with Profiles](/advanced-users-with-profiles.png)
+
+Users with Profiles: Users who have properties associated with them
+Users: All Users, including those who may not have properties associated with them, but have associated events.
+
+By default, Mixpanel will display Users with [Profiles](/docs/tracking/how-tos/user-profiles) on the Users page. If you wish to see users who have no associated properties, you can switch to "Users" in the selection.
