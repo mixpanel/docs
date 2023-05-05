@@ -35,7 +35,7 @@ Building a report in Funnels takes just a few clicks, and results arrive in seco
 
 > What marketing UTM medium drove the most signup conversions for users on iOS?
 >
-You can follow along and create your own report [here](https://mixpanel.com/report/funnels).
+You can follow along with the next few steps and create your own report [here](https://mixpanel.com/report/funnels).
 
 ### Step 1: Choose Events
 
