@@ -18,7 +18,7 @@ Mixpanel doesn't receive any data until you start sending events. If you haven't
 
 ### Debugging with Events
 
-Use [Events](/docs/analysis/events) to confirm that events are arriving to your Mixpanel project, so you can troubleshoot your Mixpanel setup quickly. With Events, you can see a feed of events along with all of their properties coming into Mixpanel.
+Use [Events](https://mixpanel.com/report/events) to confirm that events are arriving to your Mixpanel project, so you can troubleshoot your Mixpanel setup quickly. With Events, you can see a feed of events along with all of their properties coming into Mixpanel.
 
 ![Events Report](/eventheader.png)
 
