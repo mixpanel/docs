@@ -113,7 +113,7 @@ The startup program empowers early startups to easily track and analyze data to 
 - Raised no more than $8 million (USD) in total funding
 - Hasn't previously redeemed other Mixpanel offers
 
-Eligible startups receive $50,000 in credits that they can use over the course of 12 months. These credits can be used to purchase a Growth or Enterprise* plan as well as add-ons such as Group Analytics and Data Pipelines. Your $50,000 in credits can purchase a plan for up to 150M events per month. All the power of Mixpanel you need to launch, grow, and scale your product.
+Eligible startups receive \$50,000 in credits that they can use over the course of 12 months. These credits can be used to purchase a Growth or Enterprise* plan as well as add-ons such as Group Analytics and Data Pipelines. Your \$50,000 in credits can purchase a plan for up to 150M events per month. All the power of Mixpanel you need to launch, grow, and scale your product.
 
 Participants will be invited to join our exclusive Mixpanel for Startups Community in Slack where you’ll have access to curated content, workshops, resources, and opportunities to learn from other startups as well as the team at Mixpanel.
 
@@ -159,7 +159,7 @@ Once you have the credits, you need to click 'Redeem Now' and you will be guided
 
 #### How are the credits applied?
 
-Credits are applied to your monthly bill, covering up to $50,000 in total usage per year. Any additional usage costs in excess of $50,000 are not covered by the program and charged to the credit card on file.
+Credits are applied to your monthly bill, covering up to \$50,000 in total usage per year. Any additional usage costs in excess of \$50,000 are not covered by the program and charged to the credit card on file.
 
 #### How long are the credits valid?
 
@@ -338,7 +338,7 @@ We don’t charge punitive overages but we do provide volume discounts – if yo
 
 If you go over your prepaid amount, Mixpanel won't stop collecting your data. Once you've finished using your prepaid amount of MTUs you'll be charged the additional data rate for each additional user tracked that month. Alerts are in place to notify Organization Owners and Billing Admins of potential additional data charges. 
 
-For example, let’s say you are on a \$24/month Growth plan, but in the month of January, you went over your 1,000 MTU allotment by 500 MTU. Around January 1, you would have paid your base monthly fee for January of $24. Then around February 1, you will pay your base monthly fee for February of $24 plus the January additional data rate charges you incurred. If you purchase an annual plan in January, you will be charged an additional data rate fee each following month for the data used was in excess of the purchased plan.
+For example, let’s say you are on a \$24/month Growth plan, but in the month of January, you went over your 1,000 MTU allotment by 500 MTU. Around January 1, you would have paid your base monthly fee for January of \$24. Then around February 1, you will pay your base monthly fee for February of \$24 plus the January additional data rate charges you incurred. If you purchase an annual plan in January, you will be charged an additional data rate fee each following month for the data used was in excess of the purchased plan.
 
 To maximize saving and avoid additional data rate charges, we recommend [taking a look at pricing options](https://mixpanel.com/pricing/) and upgrading to a pricing plan that better fits your traffic. View the additional data rate for your paid plan in Organization Settings > Plan Details & Billing:
 
