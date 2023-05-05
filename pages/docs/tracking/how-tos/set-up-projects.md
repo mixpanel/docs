@@ -44,6 +44,9 @@ You can choose to send production data from multiple sources (for example, your 
 - If the purpose and features of your data sources vary widely, you might consider using two different projects and analyzing each separately.
 - Sending both types of data to the same project could clutter your analytics for both mobile and web, as having a many unique event and property names from different platforms can clutter the UI and dropdown menus in your Mixpanel project.
 
+**Note**
+An organization is charged based on data across all projects. This means that if the same event is being sent to multiple projects, it will count against your data allowance once per each project.
+
 ### Best Practices for Cross-Platform Tracking
 
 Generally speaking, Mixpanel users have more flexibility and get more valuable insights when combining the tracking of multiple platforms into a single project to study their overall user experience across platforms.
