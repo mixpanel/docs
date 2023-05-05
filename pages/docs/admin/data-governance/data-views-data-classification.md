@@ -9,7 +9,7 @@ metadata:
 
 ## Data Views Overview
 
-Data Views allow you to manage data access for a group of users within a single Mixpanel project. [Project Owners and Admins](https://docs-mixpanel.vercel.app/docs/admin/organizations-projects/manage-team-members#permissions) can create and edit Data Views and determine access for privacy and productivity purposes. You must have an active **Enterprise** plan with Mixpanel to access this feature.
+Data Views allow you to manage data access for a group of users within a single Mixpanel project. [Project Owners and Admins](/docs/admin/organizations-projects/manage-team-members#permissions) can create and edit Data Views and determine access for privacy and productivity purposes. You must have an active **Enterprise** plan with Mixpanel to access this feature.
 
 ### Use Cases
 
