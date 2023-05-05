@@ -66,7 +66,7 @@ Funnels features multiple visualizations to help you view the results of your qu
 
 However, you can also visualize the funnel in any of the following chart types, which can give you additional insight:
 
-- Funnel Trend - view changes in the conversion rate, time to conversion, users entering and exiting your over time
+- Funnel Trends - view changes in the conversion rate, time to conversion, users entering and exiting your funnel over time
 - Time to Convert - view a distribution of the time it takes users to convert through the funnel
 - Frequency - view the number of times users complete any step before converting or dropping off
 
@@ -99,9 +99,11 @@ By default, Funnel calculations are based on **uniques**. To change to a diffe
 ![/Screen_Shot_2021-12-15_at_10.16.00_AM.png](/Screen_Shot_2021-12-15_at_10.16.00_AM.png)
 
 **Uniques**
-Unique funnels count a single entry per user (determined by distinct_id). Each user enters the funnel only once, and this is on the first time they perform the Step 1 event in the date range. Even if a particular user completes the funnel multiple times in the date range, they will only be counted towards conversion once, and on the first time they entered in the span of the funnel.
+
+Unique funnels count a single entry per user (determined by distinct_id). Each user enters the funnel only once, and this is on the first time they perform the Step 1 event in the date range. Even if a particular user completes the funnel multiple times in the date range, they will only be counted towards conversion once, and on the first time they entered the funnel.
 
 **Totals**
+
 Totals funnels count multiple entries per user.  Users can re-enter the funnel and every time a user enters the funnel they are counted towards conversion. Users may re-enter a totals funnel only after they have exited their previous attempt through the funnel. Users exit a funnel in 3 ways:
 
 1. They complete the funnel and convert to the last step,
@@ -109,36 +111,39 @@ Totals funnels count multiple entries per user.  Users can re-enter the funnel 
 3. They are excluded from conversion by an exclusion step.
 
 **Sessions**
-Sessions funnels count the number of sessions that contain a conversion. Like totals funnels, users will be allowed to re-enter the funnel in subsequent sessions; however, in sessions funnels users must convert through the funnel within the same session they entered the funnel to be counted as converted. If the session ends before they have converted, the user will time out and drop out of the funnel after the last step they reached. Learn more about Sessions [here](/docs/analysis/advanced/sessions).
+
+Sessions funnels are counted based on the number of sessions that contain a conversion. Like totals funnels, users will be allowed to re-enter the funnel in subsequent sessions; however, in sessions funnels users must convert through the funnel within the same session they entered the funnel to be counted as converted. If the session ends before they have converted, the user will time out and drop out of the funnel after the last step they reached. Learn more about Sessions [here](/docs/analysis/advanced/sessions).
 
 #### Ordering
 
 The order control determines how much flexibility there can be to the sequence of your user's actions to be counted as a conversion.
 
-By default, funnels are **specific order**. To change between order designations, click on the words **specific order** in the conversion criteria, and select between **specific order or any order** from the drop-down list.
+By default, funnels are based on a **specific order**. To change order designation, click on the words **Advanced** next to Conversion Criteria, and toggle on **Any Order** from the drop-down list.
 
 ![/Screen_Shot_2021-12-15_at_10.20.13_AM.png](/Screen_Shot_2021-12-15_at_10.20.13_AM.png)
 
 **Specific Order**
-Specific Order Funnels require the user to complete each of the funnel steps in the order laid out in the query builder to be counted as a conversion from step to step. In other words, Step 1 must be completed before Step 2, which must be completed before Step 3, and so on. The user can engage in other actions in between funnel steps- including additional occurrences of the actions listed as funnels steps- but they will only be counted as converted as long as they complete all the funnel steps in order.
+
+Specific Order Funnels require the user to complete each of the funnel steps in the order laid out to be counted as a conversion from one step to another. In other words, Step 1 must be completed before Step 2, which must be completed before Step 3, and so on. The user can engage in other actions in between funnel steps - including additional occurrences of the actions listed as funnels steps - but they will only be counted as converted if they complete all the funnel steps in order.
 
 To illustrate with an example, let's say a specific order funnel has steps: A, B, C, D, E
 
 1. The customer does steps A -> B -> C -> D -> E in exact order. Mixpanel counts this as a conversion.
 2. The customer does steps A -> B -> ***F*** -> C -> D -> E. Mixpanel counts this as a conversion. Users can do additional actions in between funnels steps and still convert.
-3. The customer does steps A -> B -> ***D*** -> C -> D -> E. Mixpanel counts this as a conversion. Even though the customer did an occurrence of D before the first time doing C, because theyeventually did a D after C they will continue to convert.
-4. The customer does steps A -> B -> C -> E. Mixpanel will not count this as a full conversion, and the customer will not appear in the funnel after step C. The customer's completion of step E is excluded from the funnel because step D did not occur.
+3. The customer does steps A -> B -> ***D*** -> C -> D -> E. Mixpanel counts this as a conversion. Even though the customer did D before the first time they did C, they will continue to convert because they eventually did a D after C.
+4. The customer does steps A -> B -> C -> E. Mixpanel will not count this as a full conversion, and the customer will drop off after step C. The customer's completion of step E is excluded from the funnel because step D did not occur.
 
 **Any Order**
-In Any Order Funnels, users can complete unanchored funnels steps in any particular sequence and still convert. This type of funnel is most useful in situations where a user must ultimately complete all actions to be considered converted, but the exact order is not important.
 
-A good example of this could be a job application flow, where a user must input multiple pieces of information (their name, email address, current job title, credentials, references, cover letter, resume, etc.) in order to complete the form and convert to submit their application, but they can provide all this information in any order they'd like and still proceed towards converting.
+In Any Order Funnels, users can complete unanchored funnel steps in any particular sequence and still convert. This type of funnel is most useful in situations where a user must complete all actions to be considered converted, but the exact order is not important.
 
-To switch to **any order**, expand the "Advanced" menu in the Conversion Criteria and toggle on "Any Order".
+A good example of this could be a job application flow, where a user must input multiple pieces of information (their name, email address, current job title, credentials, references, cover letter, resume, etc.) in order to complete the form and submit their application, but they can provide all this information in any order they'd like and still proceed towards converting.
+
+To switch to **Any Order**, expand the "Advanced" menu in the Conversion Criteria and toggle on "Any Order".
 
 ![/Screen_Shot_2022-07-12_at_3.35.33_PM.png](/Screen_Shot_2022-07-12_at_3.35.33_PM.png)
 
-When you switch to **any order,** you have the option to anchor specific steps in your funnel by clicking on the step number.
+When you switch to **Any Order,** you have the option to anchor specific steps in your funnel by clicking on the step number.
 
 ![/CleanShot_2021-12-15_at_11.03.46.gif](/CleanShot_2021-12-15_at_11.03.46.gif)
 
@@ -152,16 +157,16 @@ In the above example, Steps 1, 4, and 6 must occur as the 1st, 4th, and 6th step
 
 ### Hold Property Constant
 
-Holding a property constant in a funnel requires that a user retain the same value for a given event property for each step in order to convert. In other words, a user must not only perform the funnel events in the order you specified, but also perform these events with the same property value.
+Holding a property constant in a funnel requires that a user retains the same value for a given event property for each step in order to convert. In other words, a user must not only perform the funnel events in the order you specified, but also perform these events with the same property value.
 
-For example, let's say your product is an e-commerce retail site, and you have a three-step funnel of Browse > Add to Cart > Purchase. If you want to examine the conversion of users through this funnel that Browse, Add to Cart, and Purchase the same item - meaning that they cannot convert if they don't complete each step with the same item- you would hold the Item Name property constant.
+For example, let's say your product is an e-commerce retail site, and you have a three-step funnel of Browse > Add to Cart > Purchase. If you want to examine the conversion of users through this funnel that browse, add to cart, and purchase the same item - meaning that they cannot convert if they don't complete each step with the same item - you would hold the Item Name property constant.
 
-The way this is calculated depends on whether you have selected a counting method that does not allow users to re-enter the funnel ("Uniques") or allows re-entry ("Totals" or "Sessions).
+The way this is counted depends on whether you have selected a counting method that does not allow users to re-enter the funnel ("Uniques") or allows re-entry ("Totals" or "Sessions).
 
 - **Uniques:** When you select "Uniques" and hold a property constant, because users of this counting method only enter the funnel once and on the first time they do the Step 1 event, Mixpanel will hold constant the property value from the first Step 1 event.
 - **Totals or Sessions:** When you select "Totals" or "Sessions" and hold a property constant, since these counting methods allow users to re-enter the funnel, Mixpanel will hold the property constant that is set with each new re-entry at the Step 1 event.
 
-To add a property constant to your funnel, expand the "Advanced" menu in the Conversion Criteria and click on "Holding property constant"
+To add a property constant to your funnel, expand the "Advanced" menu in the Conversion Criteria and click on "Holding property constant".
 
 ![/Screen_Shot_2021-12-15_at_11.10.42_AM.png](/Screen_Shot_2021-12-15_at_11.10.42_AM.png)
 
@@ -179,7 +184,7 @@ Select an event from the list and choose whether you would like the event to be 
 
 ![/mceclip1.png](/mceclip1.png)
 
-Click the **filter icon** beside the step and click **Add filter** to filter that event by an event or user profile property.
+Click the **Filter icon** beside the step to filter that event by an event or user profile property.
 
 ![/mceclip2__1_.png](/mceclip2__1_.png)
 
