@@ -1,4 +1,12 @@
 {
     "data-model": "Data Model",
-    "board": "Board"
+    "board": "Boards", 
+    "cohort": "Cohort", 
+    "insights": "Insights", 
+    "funnels": "Funnels", 
+    "retention": "Retention", 
+    "flows": "Flow", 
+    "impact": "Impact", 
+    "signal": "Signal", 
+    "data-management": "Lexicon"    
 }
