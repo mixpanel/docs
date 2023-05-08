@@ -1,17 +1,27 @@
 ## Implement via the Mixpanel SDK
-[Implement via the Mixpanel SDK](https://www.loom.com/share/659097217a0c41d189b67f47356d3831)
+<p style={{ position: 'relative', paddingBottom: '56.25%', height: 0, overflow: 'hidden' }}>
+  <iframe src="https://www.loom.com/embed/659097217a0c41d189b67f47356d3831" frameborder="0" style={{ position: 'absolute', top: 0, left: 0, width: '100%', height: '100%' }} allowfullscreen></iframe>
+</p>
 
 ## Initialise SDK
-[Initialise SDK](https://www.loom.com/share/e3df729308114aa4bbf14ee74f37c0f8)
+<p style={{ position: 'relative', paddingBottom: '56.25%', height: 0, overflow: 'hidden' }}>
+  <iframe src="https://www.loom.com/embed/e3df729308114aa4bbf14ee74f37c0f8" frameborder="0" style={{ position: 'absolute', top: 0, left: 0, width: '100%', height: '100%' }} allowfullscreen></iframe>
+</p>
 
 ## Super Properties and Track Event
-[Super Properties and Track Event](https://www.loom.com/share/d651d02c989542c390ba3df6739de941)
+<p style={{ position: 'relative', paddingBottom: '56.25%', height: 0, overflow: 'hidden' }}>
+  <iframe src="https://www.loom.com/embed/d651d02c989542c390ba3df6739de941" frameborder="0" style={{ position: 'absolute', top: 0, left: 0, width: '100%', height: '100%' }} allowfullscreen></iframe>
+</p>
 
 ## Setting Profile Properties
-[Setting Profile Properties](https://www.loom.com/share/c382d447568d4cca9db2da8fefba1176)
+<p style={{ position: 'relative', paddingBottom: '56.25%', height: 0, overflow: 'hidden' }}>
+  <iframe src="https://www.loom.com/embed/c382d447568d4cca9db2da8fefba1176" frameborder="0" style={{ position: 'absolute', top: 0, left: 0, width: '100%', height: '100%' }} allowfullscreen></iframe>
+</p>
 
 ## Other Ingestion methods
-[Other Ingestion methods](https://www.loom.com/share/089c6b39964745c9b208fd81336bc0bc)
+<p style={{ position: 'relative', paddingBottom: '56.25%', height: 0, overflow: 'hidden' }}>
+  <iframe src="https://www.loom.com/embed/089c6b39964745c9b208fd81336bc0bc" frameborder="0" style={{ position: 'absolute', top: 0, left: 0, width: '100%', height: '100%' }} allowfullscreen></iframe>
+</p>
 
 ---
 
