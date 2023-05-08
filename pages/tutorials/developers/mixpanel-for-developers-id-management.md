@@ -1,12 +1,17 @@
 ## ID Management Overview
-[ID Management Overview](https://www.loom.com/share/01dcff45ee91473a9e6ddb1670fd6cba)
+<p style={{ position: 'relative', paddingBottom: '56.25%', height: 0, overflow: 'hidden' }}>
+  <iframe src="https://www.loom.com/embed/01dcff45ee91473a9e6ddb1670fd6cba" frameborder="0" style={{ position: 'absolute', top: 0, left: 0, width: '100%', height: '100%' }} allowfullscreen></iframe>
+</p>
 
 ## Basic concepts in ID Merge
-[Basic concepts in ID Merge](https://www.loom.com/share/f8f0ee64496a402d83246b111cdd051c)
+<p style={{ position: 'relative', paddingBottom: '56.25%', height: 0, overflow: 'hidden' }}>
+  <iframe src="https://www.loom.com/embed/f8f0ee64496a402d83246b111cdd051c" frameborder="0" style={{ position: 'absolute', top: 0, left: 0, width: '100%', height: '100%' }} allowfullscreen></iframe>
+</p>
 
 ## ID Merge implementation Overview
-[ID Merge implementation Overview](https://www.loom.com/share/9941b613dd044536ba1962ddb6a32ccd)
-
+<p style={{ position: 'relative', paddingBottom: '56.25%', height: 0, overflow: 'hidden' }}>
+  <iframe src="https://www.loom.com/embed/9941b613dd044536ba1962ddb6a32ccd" frameborder="0" style={{ position: 'absolute', top: 0, left: 0, width: '100%', height: '100%' }} allowfullscreen></iframe>
+</p>
 
 ## Understanding Original ID Merge
 Learn more about how [Original ID Merge](https://help.mixpanel.com/hc/en-us/articles/360041039771) works.
