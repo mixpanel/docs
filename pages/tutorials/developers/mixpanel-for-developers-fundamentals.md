@@ -10,7 +10,9 @@ Mixpanel data is stored and isolated within a project. Mixpanel recommends trac
 
 There may be other factors where implementing separate projects is required, but do note that querying data across projects is not possible. Mixpanel supports a few different categories of data that can be used for analysis: events, user profiles, group profiles, and lookup tables. In data warehouse terminology, events make up the fact table while user profiles, group profiles, and lookup tables are dimension tables.
 
-[Mixpanel Data Model](https://www.loom.com/share/fc9390690f1e4d84ab926dcf54914118)
+<p style={{ position: 'relative', paddingBottom: '56.25%', height: 0, overflow: 'hidden' }}>
+  <iframe src="https://www.loom.com/embed/fc9390690f1e4d84ab926dcf54914118" frameborder="0" style={{ position: 'absolute', top: 0, left: 0, width: '100%', height: '100%' }} allowfullscreen></iframe>
+</p>
 
 ## Mixpanel Property Types
 Properties are attributes that help you define the specifics of an **Event** or a **User.** 
