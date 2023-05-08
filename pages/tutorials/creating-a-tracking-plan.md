@@ -1,6 +1,6 @@
-# Creating a Tracking Plan
+## Creating a Tracking Plan
 
-## Utilise a Tracking Plan to Tie Key Goals to Events Tracked
+### Utilise a Tracking Plan to Tie Key Goals to Events Tracked
 Mixpanel recommends creating a tracking plan based on the key business goals identified from your analytics strategy. It should: 
 
 - Be a centralized document that should serve as the source of truth on your Mixpanel implementation
@@ -11,16 +11,16 @@ Mixpanel recommends creating a tracking plan based on the key business goals ide
 
 This will be important for team members who are involved in defining use cases to be implemented in Mixpanel as well as, tech teams involved in the actual implementation of the codes.
 
-## Tracking Plan Methodology
+### Tracking Plan Methodology
 Be intentional with your data. Prioritize the most critical data you'll need based on your analytics strategy and KPIs, then iterate. Tracking everything and anything your user can do in your product can lead to unnecessary development effort and unused data.
 
-### Define and prioritize KPIs
+#### Define and prioritize KPIs
 Define the top KPIs and metrics that will help measure success and inform decisions about your product.
 
-### Map KPIs to User Flows
+#### Map KPIs to User Flows
 Map each KPI / metric to the steps or actions that users take to influence each KPI / metric. For example, sign up flow will be important when measuring KPIs related to new user acquisition. Consider also the different paths that users can take to achieve the same outcomes.
 
-### Translate Flows into Events / Properties
+#### Translate Flows into Events / Properties
 Breakdown your user flows into events (actions) and properties (context of these actions) in your tracking plan. This will ensure that you have scoped out the data you need to achieve your KPIs / metrics in Mixpanel.
 
 Mixpanel provides the following templates for vertical-specific tracking plans:
