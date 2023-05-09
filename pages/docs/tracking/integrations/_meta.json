@@ -6,6 +6,11 @@
     "href": "https://github.com/mixpanel/mixpanel-gtm-template#readme",
     "newWindow": true
   },
+  "google-sheets": {
+    "title": "Google Sheets ↗",
+    "href": "https://workspace.google.com/marketplace/app/sheets_%E2%87%94_mixpanel/1078767167468",
+    "newWindow": true
+  },
   "mparticle": "mParticle",
   "freshpaint": "Freshpaint",
   "s3-import": "Amazon S3",
