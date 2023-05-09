@@ -29,6 +29,35 @@ mixpanel.track(
 
 All events sent from the JavaScript library will be sent over HTTPS. 
 
+### Tracking Page Views
+
+Page view tracking is turned off by default. Automatically page view events on every page load can be added using the `track_pageview` option to the `mixpanel.init` call, like so:
+
+```javascript JavaScript
+mixpanel.init('YOUR_TOKEN', {track_pageview: true});
+```
+
+The `track_pageview` option currently does not auto-track page views in single-page applications. For single-page applications or other manual page view tracking, Mixpanel offers the standard page view event through `mixpanel.track_pageview()`. This call can be inserted into any hooks or listeners for your framework of choice.
+
+The standard page view event includes the page title, URL components, and marketing parameters described below. Additional page view event properties can also be added as event properties.
+
+```javascript JavaScript
+// Send a default page view event
+mixpanel.track_pageview();
+
+// Send a default page view event with additional properties
+mixpanel.track_pageview({"page": "Pricing"});
+```
+
+### Tracking UTM Parameters
+
+The JavaScript library will automatically add any UTM parameters (`utm_source`, `utm_campaign`, `utm_medium`, `utm_term`, `utm_content`) present on the page to events fired from that page load.
+
+When UTM parameters for an identified user are seen for the first time, these will also be stored on the user profile as `initial_utm_source`, `initial_utm_campaign`, `initial_utm_medium`, `initial_utm_term`, and `initial_utm_content`. 
+
+In addition to UTM parameters, Mixpanel will also add any advertising click IDs to events fired. These include `dclid`, `fbclid`, `gclid`, `ko_click_id`, `li_fat_id`, `msclkid`, `ttclid`, `twclid`, `wbraid`
+
+
 ### Tracking Website Links
 
 When tracking link clicks with [`mixpanel.track()`](https://github.com/mixpanel/mixpanel-js/blob/master/doc/readme.io/javascript-full-api-reference.md#mixpaneltrack), the page can change before the event is successfully sent, leading to inaccurate results.
