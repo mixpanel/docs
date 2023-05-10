@@ -132,17 +132,17 @@ Tables are useful to see the precise values of your data and to quickly scan mul
 
 ##### Sort Order
 You can configure how you want rows in the table to be sorted, with our global sorting control.
-![Sorting.gif](Tables%20Help%![Sorting](https://github.com/mixpanel/docs/assets/2077899/a61948a6-3e4a-4e5d-9b75-3f4b14cb1450)
+![Sorting.gif](https://github.com/mixpanel/docs/assets/2077899/a61948a6-3e4a-4e5d-9b75-3f4b14cb1450)
 
 ###### Grouped View vs Ungrouped View 
 The Ungrouped View removes all hierarchy and makes the table flat. Each combination of segment values is treated as a row, independently of the other rows.
     
-![Untitled](Tables%20Help%20Doc%2092eb4f191ee741908de47c326befba17/Untitled%201.png)
-    
+![image](https://github.com/mixpanel/docs/assets/2077899/e57400a1-a86c-4d46-9ffb-379306586d8d)
+
 The Grouped View preserves hierarchy of breakdowns. It shows you segments within a breakdown as displayed below. This view is only applicable when you have 2 or more breakdowns
     
-![Untitled](Tables%20Help%20Doc%2092eb4f191ee741908de47c326befba17/Untitled%202.png)
-    
+![image](https://github.com/mixpanel/docs/assets/2077899/2a72e93c-c332-4418-83e1-91bb24e2d271)
+
 
 ###### Alphabetical vs Value-Based Sorting
 You can sort segments alphabetically or by the value of a particular metric. In the grouped view, sorting is configured on a per-breakdown level, and respects the breakdown hierarchy. 
