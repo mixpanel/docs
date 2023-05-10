@@ -159,7 +159,7 @@ The View “N” control lets you decide how many rows to display per breakdown 
 ![View_N_gif](https://github.com/mixpanel/docs/assets/2077899/4fb0fd18-2ef7-416b-adaa-c7299da0f7b3)
 
 In the ungrouped view, choose the number of rows to display:
-![Untitled](Tables%20Help%20Doc%2092eb4f191ee741908de47c326befba17/Untitled%207.png)
+![image](https://github.com/mixpanel/docs/assets/2077899/b1b25b19-51be-4934-bbfd-7562e0f98d4a)
     
 In the grouped view, you can choose the number of rows you want to display for each breakdown:
     <img width="810" alt="Untitled 8" src="https://github.com/mixpanel/docs/assets/2077899/f9f8c83c-34ed-44bd-b4e7-f60b70255a6f">
