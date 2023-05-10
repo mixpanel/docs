@@ -36,9 +36,6 @@ We have fewer, longer docs rather than many micro-docs. This helps keep navigati
 
 The exception to this rule is for How To guides (/tracking/how-tos) or Integrations (tracking/integrations). We expect these docs to be read linearly and focused on accomplishing a certain task.
 
-# Adding to Changelog (TODO)
-The changelog lives in the changelogs/ directory.
-
 # Maintainers
 [Vijay](https://github.com/ranic), [Marissa](https://github.com/marissakuhrau), [Seams](https://github.com/ryanseams), [Mav](https://github.com/mavlee). Eventually we’ll expand this list, but keeping it tight for now.
 
