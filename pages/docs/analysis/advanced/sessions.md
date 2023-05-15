@@ -228,13 +228,15 @@ Session ID Property is set to `session_id`
 
 ## Session Properties
 
-The virtual session events include the following properties:
+Session Events will automatically have the following properties:
 - Session Duration (Seconds): The duration between the "Session Start" and the "Session End" events in seconds.
 - Session Event Count: The number of events during a session. This does not include Excluded Events and Hidden Events in Lexicon.
 - Session Start Event Name: The original event name that triggered Session Start event.
 - Session End Event Name: The original event name that triggered Session End event.
 
-Mixpanel will also associate properties from the actual events tracked within a user's session. For Timeout based sessions, the properties available on the "Session Start" and "Session End" events will be attributed to the first event which the property is defined of the qualifying sessions. For event and property based sessions, the properties will be associated from the event that triggers the session starting.
+Mixpanel will also associate properties from the events that are part of a user's session onto the Session events. For Timeout based sessions, the properties available on the "Session Start" and "Session End" events will be attributed to the first event which the property is defined of the qualifying sessions. For event and property based sessions, the properties will be associated from the event that triggers the session starting.
+
+This is useful to answer questions like: "How many Sessions came from a particular country or device?"
 
 By default, the list of associated properties is as follows:
 
