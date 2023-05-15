@@ -56,3 +56,10 @@ Project Owners and Admins can be created to delegate access provisioning privile
 
 ![image](https://github.com/mixpanel/docs/assets/50901466/61a9099b-f07e-4bcf-9110-bf5418e7000b)
 
+#### Single Sign-On (SSO) and 2FA
+Mixpanel provides [Single Sign-On (SSO)](https://help.mixpanel.com/hc/en-us/articles/360036428871-Single-Sign-On) access to enterprise accounts using either an [Identity Provider (IDP)](https://help.mixpanel.com/hc/en-us/articles/360036428871-Single-Sign-On#set-up-your-idp) or a custom SAML implementation such as [Okta](https://help.mixpanel.com/hc/en-us/articles/115004474143) or [Microsoft Azure](https://help.mixpanel.com/hc/en-us/articles/360040323292).
+- Enabling [Just in Time (JIT)](https://help.mixpanel.com/hc/en-us/articles/360036428871-Single-Sign-On#just-in-time-provisioning) provisioning using SAML removes the need for organization admins to invite individual users to an organization. 
+- IDPs (Okta, Onelogin, and Azure) that have auto-provisioning integrations with Mixpanel enables syncing of access provisioning and deprovisioning for users.
+- To give provisioned users default access to projects, invite all users in the organization by [Setting a Default Role on a Project](https://help.mixpanel.com/hc/en-us/articles/360020731811-Invite-and-Manage-Users#setting-a-default-role-on-a-project).
+
+Mixpanel also provides [Two Factor Authentication (2FA)](https://help.mixpanel.com/hc/en-us/articles/115004485966-Two-Factor-Authentication-2FA-) feature requiring users to provide a security code sent via SMS to their configure mobile number to verify their identity.
