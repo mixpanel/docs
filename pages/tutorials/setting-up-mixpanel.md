@@ -17,5 +17,42 @@ Each Mixpanel organization contains one or more [Projects](https://help.mixpanel
   - [API/Project Secret](https://help.mixpanel.com/hc/en-us/articles/115004490503#api-secret) - legacy authentication for importing and exporting data, Service Accounts are the preferred and should be used where possible as API SDecret will be deprecated over time
 - Other project settings - [group keys](https://help.mixpanel.com/hc/en-us/articles/360025333632#implementation), [data views](https://help.mixpanel.com/hc/en-us/articles/360043782572), [service accounts](https://developer.mixpanel.com/reference/service-accounts), [public dashboard](https://help.mixpanel.com/hc/en-us/articles/4402022733844), [sessions](https://help.mixpanel.com/hc/en-us/articles/115004695223), etc.
 
-#### Create at least 2 Mixpanel Projects (Production/Live and Development/Sandbox)
+#### Create at least 2 Mixpanel Projects (Production and Development)
 Mixpanel recommends tracking 1 product with multiple platforms (mobile, web, etc.) into one project, but [separate projects for development and production](https://help.mixpanel.com/hc/en-us/articles/360001354886-Automatically-Separate-Development-Data). There may be [factors](https://help.mixpanel.com/hc/en-us/articles/115004491683-When-To-Use-Multiple-Projects#factors-to-consider) where implementing separate projects is required, please refer to the Mixpanel Help.
+
+![image](https://github.com/mixpanel/docs/assets/50901466/8d6d81cf-0e55-4bef-a743-b38d316e0db4)
+
+### Mixpanel User Accounts
+Each Mixpanel user account belongs to an organization and may be assigned with multiple projects with varying permissions / roles.
+
+- [Organization Role](https://help.mixpanel.com/hc/en-us/articles/360025387911-Organization-Roles-and-Permissions) - each user will have a single organization role per organization
+  - Owner (at least one) - super user for the organization and all projects underneath
+  - Admin - manage projects, members, and roles in the organization (with [certain exceptions](https://help.mixpanel.com/hc/en-us/articles/360025387911-Organization-Roles-and-Permissions#admin))
+  - Billing Admin - primarily for managing Billing Plans 
+  - Member - *basic membership* for a user to have access to Project(s) and or Team(s)
+
+- [Project Role](https://help.mixpanel.com/hc/en-us/articles/360024613412-Project-Roles-and-Permissions-) - each user can have multiple project roles, where it conflicts [permissions are additive](https://help.mixpanel.com/hc/en-us/articles/360024613412-Project-Roles-and-Permissions-#having-multiple-roles-at-once)
+  - Owner - super user for the project, default for organization owners
+  - Admin - manage project (except delete, reset, and security) and members within, default for organization admins
+  - Analyst - create, save, edit reports + share and make public dashboards (*most common role for users*)
+  - Consumer - create, save, edit reports but unable to share or create public dashboards
+
+#### User Access Management Approach
+There are two general approaches to user management in Mixpanel
+
+![image](https://github.com/mixpanel/docs/assets/50901466/9b42d818-cc77-4f02-9025-90456a557c6a)
+
+#### Using Mixpanel Teams
+Mixpanel enables assignment of projects and project roles to groups of users called [Teams](https://help.mixpanel.com/hc/en-us/articles/360020731831-Create-and-Manage-Teams) with the flexibility to also assign such projects and project roles to individual user accounts if required.
+
+![image](https://github.com/mixpanel/docs/assets/50901466/de43d48b-4fef-4292-b835-f1d5682345b1)
+
+#### Basic User Account Setup
+Organization Owners and Admins can assign projects or teams directly to user accounts at the organization level by minimally provisioning them with an organization Membership.
+
+![image](https://github.com/mixpanel/docs/assets/50901466/8ec08b83-d0e2-47b3-92a4-5f5e98d70b52)
+
+Project Owners and Admins can be created to delegate access provisioning privileges at the project level. A [default project role](https://help.mixpanel.com/hc/en-us/articles/360020731811-Invite-and-Manage-Users#setting-a-default-role-on-a-project) can also be set for All Users in the Organization as a baseline access. Teams are not available at the project level.
+
+![image](https://github.com/mixpanel/docs/assets/50901466/61a9099b-f07e-4bcf-9110-bf5418e7000b)
+
