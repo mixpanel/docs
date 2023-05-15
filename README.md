@@ -18,13 +18,12 @@ This is a bit more advanced, but makes it much faster to test the impact of your
 * Run `npm run-script dev` -- this will start serving the docs at localhost:3000
 * Make whatever changes you want locally, this should automatically reflect in your local instance of the docs. 
 
-# Adding Images
-You can paste images directly into the markdown of the doc that you're editing. This will automatically upload the file to Github's CDN and embed the image in the doc.
+# Adding Images/GIFs
+Upload images/GIFs to the public/ directory. You can make sub-directories within `public/` to namespace them (eg: `/public/tutorials/` for all tutorial-related images).
 
-You can customize the image's width or height using HTML. Here's a sample (replace the image link with the one generated when you paste your image in):
-`<img height=“387” alt=“image” src=“https://user-images.githubusercontent.com/2077899/230281466-11bfdbf7-0820-41c0-a4e8-b802faabaf20.png”>`
+To reference an image, use a relative link to the image with the `public` stripped out. For example, if you have an image `public/example.png`, you can reference it as follows: `[insert alt text here](/example.png)`.
 
-Note: images can easily get out of date, so use them judiciously. If showcasing a new feature, we recommend putting images into the changelog instead of the docs.
+Images are hard to keep up-to-date, so please use them judiciously.
 
 # Previewing Changes
 All pull requests will generate a staging link in Vercel. This lets you preview your changes without changing what's actually live. 
