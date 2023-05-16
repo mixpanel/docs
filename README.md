@@ -28,7 +28,7 @@ To reference an image, use a relative link to the image with the `public` stripp
 Images are hard to keep up-to-date, so please use them judiciously.
 
 # Previewing Changes
-All pull requests will generate a staging link in Vercel. This lets you preview your changes without changing what's actually live. 
+All pull requests will generate a staging link in Vercel. Here's an [example](https://github.com/mixpanel/docs/pull/33#issuecomment-1520474996). This lets you preview your changes without changing what's actually live. 
 
 # Adding new docs / changing structure
 The navigation of the docs is defined based on the directory structure in this repo. The top-level structure (getting-started, tracking, analysis, admin, other-bits) should not change very often.
