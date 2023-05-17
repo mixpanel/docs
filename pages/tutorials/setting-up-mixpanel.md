@@ -40,21 +40,21 @@ Each Mixpanel user account belongs to an organization and may be assigned with m
 #### User Access Management Approach
 There are two general approaches to user management in Mixpanel
 
-![image](https://github.com/mixpanel/docs/assets/50901466/9b42d818-cc77-4f02-9025-90456a557c6a)
+![user-access-approach](/user-access-approach.png)
 
 #### Using Mixpanel Teams
 Mixpanel enables assignment of projects and project roles to groups of users called [Teams](https://help.mixpanel.com/hc/en-us/articles/360020731831-Create-and-Manage-Teams) with the flexibility to also assign such projects and project roles to individual user accounts if required.
 
-![image](https://github.com/mixpanel/docs/assets/50901466/de43d48b-4fef-4292-b835-f1d5682345b1)
+![using-teams](/using-teams.png)
 
 #### Basic User Account Setup
 Organization Owners and Admins can assign projects or teams directly to user accounts at the organization level by minimally provisioning them with an organization Membership.
 
-![image](https://github.com/mixpanel/docs/assets/50901466/8ec08b83-d0e2-47b3-92a4-5f5e98d70b52)
+![org-level-user-setup](/org-level-user-setup.png)
 
 Project Owners and Admins can be created to delegate access provisioning privileges at the project level. A [default project role](https://help.mixpanel.com/hc/en-us/articles/360020731811-Invite-and-Manage-Users#setting-a-default-role-on-a-project) can also be set for All Users in the Organization as a baseline access. Teams are not available at the project level.
 
-![image](https://github.com/mixpanel/docs/assets/50901466/61a9099b-f07e-4bcf-9110-bf5418e7000b)
+![project-level-user-steup](/project-level-user-steup.png)
 
 #### Single Sign-On (SSO) and 2FA
 Mixpanel provides [Single Sign-On (SSO)](https://help.mixpanel.com/hc/en-us/articles/360036428871-Single-Sign-On) access to enterprise accounts using either an [Identity Provider (IDP)](https://help.mixpanel.com/hc/en-us/articles/360036428871-Single-Sign-On#set-up-your-idp) or a custom SAML implementation such as [Okta](https://help.mixpanel.com/hc/en-us/articles/115004474143) or [Microsoft Azure](https://help.mixpanel.com/hc/en-us/articles/360040323292).
