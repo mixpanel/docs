@@ -1,3 +1,5 @@
+const helpRedirectJson = require("./redirects/help-mixpanel-com.json");
+
 const withNextra = require("nextra")({
   theme: "nextra-theme-docs",
   themeConfig: "./theme.config.tsx",
@@ -26,33 +28,44 @@ module.exports = withNextra({
       },
     ];
 
-    const helpDomainRedirects = [
-      // Need to confirm this will work in production
-      // It will be removed after testing
-      {
-        source: "/redirect/test",
-        destination:
-          "https://docs.mixpanel.com/docs/tracking/javascript-quickstart",
-        permanent: true,
-        has: [
-          {
-            type: "host",
-            value: "docs-eight-henna.vercel.app",
-          },
-        ],
-      },
-      {
-        source: "/redirect/test-wildcard",
-        destination: "https://docs.mixpanel.com/docs/tracking/how-tos/ad-spend",
-        permanent: true,
-        has: [
-          {
-            type: "host",
-            value: "*.vercel.app",
-          },
-        ],
-      },
-    ];
+    const invalidHelpRedirects = helpRedirectJson.flatMap(
+      ({ source, destination }, idx) => {
+        const isValidDestination =
+          destination.startsWith("https://") || destination.startsWith("/");
+        return [
+          !source.startsWith("https://help.mixpanel.com") &&
+            `invalid source at index ${idx}: "${source}". Value must start with https://help.mixpanel.com`,
+          !isValidDestination &&
+            `invalid destination at index ${idx}: "${destination}". Value must be absolute or relative`,
+        ].filter(Boolean);
+      }
+    );
+
+    if (invalidHelpRedirects.length) {
+      throw Error(
+        `Invalid redirects in redirects/help-mixpanel-com.json:\n${invalidHelpRedirects.join(
+          `\n`
+        )}`
+      );
+    }
+
+    const helpDomainRedirects = helpRedirectJson.map(
+      ({ source, destination }) => {
+        return {
+          source: source.replace("https://help.mixpanel.com", ""),
+          destination: `https://docs.mixpanel.com${destination}`,
+          permanent: true,
+          has: [
+            {
+              type: "host",
+              value: "help.mixpanel.com",
+            },
+          ],
+        };
+      }
+    );
+
+    console.log(helpDomainRedirects);
 
     return [...localRedirects, ...helpDomainRedirects];
   },
