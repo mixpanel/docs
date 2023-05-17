@@ -1,4 +1,5 @@
-const helpRedirectJson = require("./redirects/help-mixpanel-com.json");
+const fs = require("fs");
+const { join } = require("path");
 
 const withNextra = require("nextra")({
   theme: "nextra-theme-docs",
@@ -7,6 +8,42 @@ const withNextra = require("nextra")({
   latex: true,
   defaultShowCopyCode: true,
 });
+
+function parseRedirectPartsFromFile(filecontent) {
+  return filecontent.split(`\n`).map((line, idx) => {
+    const parts = line.split(` `);
+    if (parts.length !== 2) {
+      throw Error(
+        `invalid line at index ${idx}: "${line}"\nLine must be in the format: "source destination"`
+      );
+    }
+    const [source, destination] = parts;
+    return { source, destination };
+  });
+}
+
+function formatSourceAndDestination({ source, destination }) {
+  const matches = source.match("https://(?<host>.+.mixpanel.com)(?<path>/.*)$");
+  if (matches) {
+    const { host, path } = matches.groups;
+    if (destination.startsWith(`/`)) {
+      destination = `https://docs.mixpanel.com${destination}`;
+    }
+    return {
+      source: path,
+      destination,
+      permanent: true,
+      has: [
+        {
+          type: "host",
+          value: host,
+        },
+      ],
+    };
+  }
+
+  return { source, destination };
+}
 
 module.exports = withNextra({
   redirects: () => {
@@ -28,45 +65,16 @@ module.exports = withNextra({
       },
     ];
 
-    const invalidHelpRedirects = helpRedirectJson.flatMap(
-      ({ source, destination }, idx) => {
-        const isValidDestination =
-          destination.startsWith("https://") || destination.startsWith("/");
-        return [
-          !source.startsWith("https://help.mixpanel.com") &&
-            `invalid source at index ${idx}: "${source}". Value must start with https://help.mixpanel.com`,
-          !isValidDestination &&
-            `invalid destination at index ${idx}: "${destination}". Value must be absolute or relative`,
-        ].filter(Boolean);
-      }
-    );
+    const redirects = fs
+      .readdirSync(join(__dirname, "redirects"))
+      .flatMap((filename) => {
+        const pathToFile = join(__dirname, "redirects", filename);
+        const filecontent = fs.readFileSync(pathToFile, "utf8");
+        return parseRedirectPartsFromFile(filecontent).map(
+          formatSourceAndDestination
+        );
+      });
 
-    if (invalidHelpRedirects.length) {
-      throw Error(
-        `Invalid redirects in redirects/help-mixpanel-com.json:\n${invalidHelpRedirects.join(
-          `\n`
-        )}`
-      );
-    }
-
-    const helpDomainRedirects = helpRedirectJson.map(
-      ({ source, destination }) => {
-        return {
-          source: source.replace("https://help.mixpanel.com", ""),
-          destination: `https://docs.mixpanel.com${destination}`,
-          permanent: true,
-          has: [
-            {
-              type: "host",
-              value: "help.mixpanel.com",
-            },
-          ],
-        };
-      }
-    );
-
-    console.log(helpDomainRedirects);
-
-    return [...localRedirects, ...helpDomainRedirects];
+    return [...localRedirects, ...redirects];
   },
 });
