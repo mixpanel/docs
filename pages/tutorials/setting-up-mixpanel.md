@@ -20,7 +20,7 @@ Each Mixpanel organization contains one or more [Projects](https://help.mixpanel
 #### Create at least 2 Mixpanel Projects (Production and Development)
 Mixpanel recommends tracking 1 product with multiple platforms (mobile, web, etc.) into one project, but [separate projects for development and production](https://help.mixpanel.com/hc/en-us/articles/360001354886-Automatically-Separate-Development-Data). There may be [factors](https://help.mixpanel.com/hc/en-us/articles/115004491683-When-To-Use-Multiple-Projects#factors-to-consider) where implementing separate projects is required, please refer to the Mixpanel Help.
 
-![image](https://github.com/mixpanel/docs/assets/50901466/8d6d81cf-0e55-4bef-a743-b38d316e0db4)
+![create-project-steps](create-project-steps.png)
 
 ### Mixpanel User Accounts
 Each Mixpanel user account belongs to an organization and may be assigned with multiple projects with varying permissions / roles.
