@@ -17,7 +17,7 @@ Mixpanel Support Engineers are always ready to lend their product expertise and 
 
 1. If you're logged in to Mixpanel, click on “Contact Support” in the Help Menu:
 ![image](https://user-images.githubusercontent.com/13734965/234125798-5c77c52a-a2c3-4dfc-a40c-289c383b6e12.png)
-2. If you aren't logged in, you can access the same form by going to: mixpanel.com/get-support
+2. If you aren't logged in, you can access the same form by going to: [mixpanel.com/get-support](https://mixpanel.com/get-support)
 
 ## Support Offerings & First Response Times
 
