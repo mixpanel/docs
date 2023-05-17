@@ -1,0 +1,3 @@
+/ /docs/getting-started/what-is-mixpanel
+/docs /docs/getting-started/what-is-mixpanel
+/tutorials /tutorials/chapter-1

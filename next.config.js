@@ -1,3 +1,6 @@
+const fs = require("fs");
+const { join } = require("path");
+
 const withNextra = require("nextra")({
   theme: "nextra-theme-docs",
   themeConfig: "./theme.config.tsx",
@@ -6,54 +9,48 @@ const withNextra = require("nextra")({
   defaultShowCopyCode: true,
 });
 
+function parseRedirectPartsFromFile(filecontent) {
+  return filecontent.split(`\n`).map((line, idx) => {
+    const parts = line.split(` `);
+    if (parts.length !== 2) {
+      throw Error(
+        `invalid line at index ${idx}: "${line}"\nLine must be in the format: "source destination"`
+      );
+    }
+    const [source, destination] = parts;
+    return { source, destination };
+  });
+}
+
+function formatForNextRedirect({ source, destination }) {
+  const matches = source.match("https://(?<host>.+.mixpanel.com)(?<path>/.*)$");
+  if (matches) {
+    const { host, path } = matches.groups;
+    if (destination.startsWith(`/`)) {
+      destination = `https://docs.mixpanel.com${destination}`;
+    }
+    return {
+      source: path,
+      destination,
+      permanent: true,
+      has: [
+        {
+          type: "host",
+          value: host,
+        },
+      ],
+    };
+  }
+
+  return { source, destination, permanent: true };
+}
+
 module.exports = withNextra({
   redirects: () => {
-    const localRedirects = [
-      {
-        source: "/docs",
-        destination: "/docs/getting-started/what-is-mixpanel",
-        permanent: true,
-      },
-      {
-        source: "/tutorials",
-        destination: "/tutorials/chapter-1",
-        permanent: true,
-      },
-      {
-        source: "/",
-        destination: "/docs/getting-started/what-is-mixpanel",
-        permanent: true,
-      },
-    ];
-
-    const helpDomainRedirects = [
-      // Need to confirm this will work in production
-      // It will be removed after testing
-      {
-        source: "/redirect/test",
-        destination:
-          "https://docs.mixpanel.com/docs/tracking/javascript-quickstart",
-        permanent: true,
-        has: [
-          {
-            type: "host",
-            value: "docs-eight-henna.vercel.app",
-          },
-        ],
-      },
-      {
-        source: "/redirect/test-wildcard",
-        destination: "https://docs.mixpanel.com/docs/tracking/how-tos/ad-spend",
-        permanent: true,
-        has: [
-          {
-            type: "host",
-            value: "*.vercel.app",
-          },
-        ],
-      },
-    ];
-
-    return [...localRedirects, ...helpDomainRedirects];
+    return fs.readdirSync(join(__dirname, "redirects")).flatMap((filename) => {
+      const pathToFile = join(__dirname, "redirects", filename);
+      const filecontent = fs.readFileSync(pathToFile, "utf8");
+      return parseRedirectPartsFromFile(filecontent).map(formatForNextRedirect);
+    });
   },
 });
