@@ -54,6 +54,6 @@ module.exports = withNextra({
       },
     ];
 
-    return [...localRedirects];
+    return [...localRedirects, ...helpDomainRedirects];
   },
 });
