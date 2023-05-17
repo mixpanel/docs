@@ -22,7 +22,7 @@ function parseRedirectPartsFromFile(filecontent) {
   });
 }
 
-function formatSourceAndDestination({ source, destination }) {
+function formatForNextRedirect({ source, destination }) {
   const matches = source.match("https://(?<host>.+.mixpanel.com)(?<path>/.*)$");
   if (matches) {
     const { host, path } = matches.groups;
@@ -42,39 +42,15 @@ function formatSourceAndDestination({ source, destination }) {
     };
   }
 
-  return { source, destination };
+  return { source, destination, permanent: true };
 }
 
 module.exports = withNextra({
   redirects: () => {
-    const localRedirects = [
-      {
-        source: "/docs",
-        destination: "/docs/getting-started/what-is-mixpanel",
-        permanent: true,
-      },
-      {
-        source: "/tutorials",
-        destination: "/tutorials/chapter-1",
-        permanent: true,
-      },
-      {
-        source: "/",
-        destination: "/docs/getting-started/what-is-mixpanel",
-        permanent: true,
-      },
-    ];
-
-    const redirects = fs
-      .readdirSync(join(__dirname, "redirects"))
-      .flatMap((filename) => {
-        const pathToFile = join(__dirname, "redirects", filename);
-        const filecontent = fs.readFileSync(pathToFile, "utf8");
-        return parseRedirectPartsFromFile(filecontent).map(
-          formatSourceAndDestination
-        );
-      });
-
-    return [...localRedirects, ...redirects];
+    return fs.readdirSync(join(__dirname, "redirects")).flatMap((filename) => {
+      const pathToFile = join(__dirname, "redirects", filename);
+      const filecontent = fs.readFileSync(pathToFile, "utf8");
+      return parseRedirectPartsFromFile(filecontent).map(formatForNextRedirect);
+    });
   },
 });
