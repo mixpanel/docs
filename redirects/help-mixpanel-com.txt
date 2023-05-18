@@ -25,7 +25,9 @@ https://help.mixpanel.com/hc/en-us/articles/115004509406(.*) /docs/tracking/how-
 https://help.mixpanel.com/hc/en-us/articles/115004509426(.*) /docs/tracking/how-tos/identifying-users
 https://help.mixpanel.com/hc/en-us/articles/115004510946(.*) /docs/tracking/how-tos/identifying-users
 https://help.mixpanel.com/hc/en-us/articles/115004511803(.*) /docs/analysis/users#faq
+https://help.mixpanel.com/hc/en-us/articles/115004519886(.*) /docs/other-bits/tutorials/creating-a-tracking-plan
 https://help.mixpanel.com/hc/en-us/articles/115004546863(.*) /docs/tracking/javascript-quickstart
+https://help.mixpanel.com/hc/en-us/articles/115004546883(.*) /docs/analysis/reports/retention#overview
 https://help.mixpanel.com/hc/en-us/articles/115004546883(.*) /docs/analysis/reports/retention
 https://help.mixpanel.com/hc/en-us/articles/115004547203(.*) /docs/admin/organizations-projects/manage-projects#manage-timezones-for-projects
 https://help.mixpanel.com/hc/en-us/articles/115004547263(.*) /docs/tracking/how-tos/user-profiles#faq
@@ -142,6 +144,7 @@ https://help.mixpanel.com/hc/en-us/articles/360043837132(.*) /docs/admin/data-go
 https://help.mixpanel.com/hc/en-us/articles/360044139291(.*) /docs/tracking/how-tos/lookup-tables
 https://help.mixpanel.com/hc/en-us/articles/360044295131(.*) /docs/admin/data-governance/data-views-data-classification#data-classification
 https://help.mixpanel.com/hc/en-us/articles/360045484191(.*) /docs/analysis/reports/retention#advanced
+https://help.mixpanel.com/hc/en-us/articles/360045484191(.*) /docs/analysis/reports/retention#advanced
 https://help.mixpanel.com/hc/en-us/articles/360047094171(.*) /docs/analysis/advanced/other-advanced-features#list-property-support
 https://help.mixpanel.com/hc/en-us/articles/360048486671(.*) /docs/tracking/how-tos/debugging#inactive-events-and-properties
 https://help.mixpanel.com/hc/en-us/articles/360049332572(.*) /docs/other-bits/cohort-syncs/moengage
@@ -190,8 +193,8 @@ https://help.mixpanel.com/hc/en-us/articles/7716920767124(.*) /docs/analysis/rep
 https://help.mixpanel.com/hc/en-us/articles/7773849285780(.*) /docs/tracking/how-tos/lookup-tables
 https://help.mixpanel.com/hc/en-us/articles/9648680824852(.*) /docs/tracking/how-tos/identifying-users
 https://help.mixpanel.com/hc/en-us/articles/9671249667988(.*) /docs/other-bits/community
-https://help.mixpanel.com/hc/en-us/categories/115001197266(.*) /docs/getting-started/what-is-mixpanel
-https://help.mixpanel.com/hc/en-us/categories/115001197206(.*) /docs/tracking/javascript-quickstart
-https://help.mixpanel.com/hc/en-us/categories/115001209063(.*) /docs/analysis/boards
 https://help.mixpanel.com/hc/en-us/categories/115000963103(.*) /docs/admin/organizations-projects
+https://help.mixpanel.com/hc/en-us/categories/115001197206(.*) /docs/tracking/javascript-quickstart
+https://help.mixpanel.com/hc/en-us/categories/115001197266(.*) /docs/getting-started/what-is-mixpanel
+https://help.mixpanel.com/hc/en-us/categories/115001209063(.*) /docs/analysis/boards
 https://help.mixpanel.com/hc/en-us/categories/13174726206612(.*) /changelogs
