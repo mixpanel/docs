@@ -1,4 +1,3 @@
-import cn from "clsx";
 import { FC, ReactNode } from "react";
 import { DocsThemeConfig } from "nextra-theme-docs";
 import MixpanelLogoWordmark from "./components/svg/MixpanelLogoWordmark";
@@ -40,6 +39,9 @@ const config: DocsThemeConfig = {
   },
   logo: <MixpanelLogoWordmark width={125} />,
   logoLink: "https://mixpanel.com/home",
+  useNextSeoProps: () => ({
+    titleTemplate: '%s - Mixpanel Docs'
+  }),
   project: {
     link: "https://github.com/mixpanel/docs",
   },
