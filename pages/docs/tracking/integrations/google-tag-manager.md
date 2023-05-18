@@ -1,7 +1,7 @@
 This document walks through Mixpanel's native integration with Google Tag Manager. The source code lives [here](https://github.com/mixpanel/mixpanel-gtm-template).
 
 ## Walkthrough
-<video src="https://user-images.githubusercontent.com/556882/154125933-b584de10-b7fa-4668-b815-7429192d867a.mp4"/>
+<iframe src="https://user-images.githubusercontent.com/556882/154125933-b584de10-b7fa-4668-b815-7429192d867a.mp4" frameborder="0" style={{ position: 'absolute', top: 0, left: 0, width: '100%', height: '100%' }} allowfullscreen></iframe>
 
 ## Installation
 The easiest way to install the custom template is to locate it in the [Google Tag Manager community template gallery](https://tagmanager.google.com/gallery/#/), and you can install it via the Google Tag Manager user interface.
