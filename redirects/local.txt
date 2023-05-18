@@ -3,13 +3,14 @@
 /docs/admin/data-governance/data-audit /docs/admin/data-governance/data-views-data-classification
 /docs/admin/pricing-plans /docs/admin/pricing-and-plans/pricing
 /docs/analysis/advanced/other-advanced-features.md /docs/analysis/advanced/other-advanced-features
+/docs/implement-mixpanel /docs/getting-started/what-is-mixpanel
 /docs/other-bits/community /docs/other-bits/support-and-community/community
 /docs/other-bits/under-the-hoo /docs/other-bits/under-the-hood
 /docs/tracking/how-tos/event-properties /docs/tracking/how-tos/events-and-properties
 /docs/tracking/mobile/android /docs/tracking/reference/android
 /docs/tracking/reference/androi /docs/tracking/reference/android
+/docs/tutorials/developers /docs/other-bits/tutorials/developers/mixpanel-for-developers-fundamentals
 /docs/tutorials/migration-guides/migrating-to-mixpanel-from-google-analytics /docs/other-bits/tutorials/migration-guides/migrating-to-mixpanel-from-google-analytics
-/docs/tutorials/mixpanel-analysis/retention /docs/other-bits/tutorials/mixpanel-analysis/retention
-/docs/tutorials/mixpanel-analysis/insights /docs/other-bits/tutorials/mixpanel-analysis/insights
 /docs/tutorials/mixpanel-analysis /docs/other-bits/tutorials/mixpanel-analysis/overview
-/docs/tutorials/developers /docs/other-bits/tutorials/mixpanel-analysis/retention
+/docs/tutorials/mixpanel-analysis/insights /docs/other-bits/tutorials/mixpanel-analysis/insights
+/docs/tutorials/mixpanel-analysis/retention /docs/other-bits/tutorials/mixpanel-analysis/retention
