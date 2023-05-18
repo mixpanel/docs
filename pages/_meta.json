@@ -3,11 +3,6 @@
         "title": "Docs",
         "type": "page"
     },
-    "tutorials": {
-        "title": "Tutorials",
-        "type": "page",
-        "display": "hidden"
-    },
     "changelogs": {
         "title": "Changelog",
         "type": "page",

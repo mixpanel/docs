@@ -1,0 +1,15 @@
+## Overview
+
+Cohorts are groups of users defined by a chosen set of criteria, like a shared property or sequence of events. When you define a cohort, you can use it to group and filter data in the Analysis reports. You can also use cohorts to target groups of users via messaging integrations. 
+
+<p style={{ position: 'relative', paddingBottom: '56.25%', height: 0, overflow: 'hidden' }}>
+  <iframe src="https://www.loom.com/embed/c1f5c6b268f94d06877b6e05083934bb" frameborder="0" style={{ position: 'absolute', top: 0, left: 0, width: '100%', height: '100%' }} allowfullscreen></iframe>
+</p>
+
+## Note on cohorts whose filters contain user properties
+
+Because user profile properties only store the most recent value, cohorts involving user profile properties will use the current value for those properties (even if the value changed over time).
+
+For example, suppose the cohort’s filter criteria is: users where user[“City”] == “SF” and “Did Event: Order Ride 3 times in Last 7 days”.
+
+Mixpanel computes the above over the last 30 days and then groups the set of users who have property user[“City”] == “SF” as of right now and intersect that with the daily cohort of users who did Order Ride 3 times in the last 7 days.
