@@ -1,6 +1,5 @@
 / /docs/getting-started/what-is-mixpanel
 /docs /docs/getting-started/what-is-mixpanel
-/tutorials /tutorials/chapter-1
 /docs/admin/data-governance/data-audit /docs/admin/data-governance/data-views-data-classification
 /docs/admin/pricing-plans /docs/admin/pricing-and-plans/pricing
 /docs/analysis/advanced/other-advanced-features.md /docs/analysis/advanced/other-advanced-features
