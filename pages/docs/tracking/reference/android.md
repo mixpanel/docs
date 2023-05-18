@@ -10,7 +10,7 @@ updatedAt: "2023-02-04T01:12:42.453Z"
 ---
 ## Getting Started
 
-Please refer to our [Quickstart Guide](android-quickstart).
+Please refer to our [Quickstart Guide](../mobile).
 
 The [Full API Reference](http://mixpanel.github.io/mixpanel-android/index.html), [Library Source Code](https://github.com/mixpanel/mixpanel-android), and an [Example Application](https://github.com/mixpanel/sample-android-mixpanel-integration) is documented in our GitHub repo.
 

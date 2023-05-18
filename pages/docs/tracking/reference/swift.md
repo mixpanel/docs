@@ -10,7 +10,7 @@ updatedAt: "2023-02-04T01:11:56.138Z"
 ---
 ## Getting Started
 
-Please refer to our [Quickstart Guide](ios-swift-quickstart).
+Please refer to our [Quickstart Guide](../mobile).
 
 The [Full API Reference](https://mixpanel.github.io/mixpanel-swift/), [Library Source Code](https://github.com/mixpanel/mixpanel-swift), and an [Example Application](https://github.com/mixpanel/mixpanel-swift/tree/master/MixpanelDemo/MixpanelDemo) is documented in our GitHub repo.
 
