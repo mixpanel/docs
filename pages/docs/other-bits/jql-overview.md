@@ -11,7 +11,7 @@ updatedAt: "2023-03-26T17:23:09.419Z"
 
 > ❗️ JQL is in maintenance mode.
 > 
-> Mixpanel is not investing in JQL any further. If you would like to run arbitrary queries on your Mixpanel events, please use our [Data Pipelines](https://developer.mixpanel.com/docs/raw-export-pipeline) add-on to export your events to your data warehouse.
+> Mixpanel is not investing in JQL any further. If you would like to run arbitrary queries on your Mixpanel events, please use our [Data Pipelines](https://developer.mixpanel.com/reference/raw-data-export-api) add-on to export your events to your data warehouse.
 
 The JQL JavaScript code must define a `main()` function. This JavaScript will be compiled, and the `main()` function will be executed by the query engine. The return value of `main()` must be a sequence of zero or more transformations applied to a collection of events, user records or joined records.  
 Events are retrieved by calling the `Events()` function.

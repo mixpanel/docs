@@ -28,6 +28,7 @@
 /developer-docs-redirect/javascript /docs/tracking/reference/javascript
 /developer-docs-redirect/javascript-full-api-reference /docs/tracking/reference/javascript-full-api-reference
 /developer-docs-redirect/javascript-quickstart /docs/tracking/javascript-quickstart
+/developer-docs-redirect/jql /docs/other-bits/jql-overview
 /developer-docs-redirect/jql-api-reference /docs/other-bits/jql-overview
 /developer-docs-redirect/jql-examples /docs/other-bits/jql-overview
 /developer-docs-redirect/jql-get-started-guide /docs/other-bits/jql-overview
@@ -47,6 +48,7 @@
 /developer-docs-redirect/privacy-security /docs/other-bits/privacy-and-security
 /developer-docs-redirect/python /docs/tracking/reference/python
 /developer-docs-redirect/quick-start-guide /docs/tracking/mobile
+/developer-docs-redirect/raw-export-pipeline https://developer.mixpanel.com/reference/raw-data-export-api
 /developer-docs-redirect/react-native /docs/tracking/reference/react-native
 /developer-docs-redirect/react-native-quickstart /docs/tracking/mobile
 /developer-docs-redirect/ruby /docs/tracking/reference/ruby
@@ -57,9 +59,9 @@
 /developer-docs-redirect/server /docs/tracking/server
 /developer-docs-redirect/snowplow /docs/tracking/integrations/snowplow
 /developer-docs-redirect/swift /docs/tracking/reference/swift
+/developer-docs-redirect/tracking/reference/nodejs /docs/tracking/reference/nodejs
 /developer-docs-redirect/under-the-hood /docs/other-bits/under-the-hood
 /developer-docs-redirect/unity /docs/tracking/reference/unity
 /developer-docs-redirect/unity-quickstart /docs/tracking/mobile
 /developer-docs-redirect/what-is-mixpanel /docs/getting-started/what-is-mixpanel
 /developer-docs-redirect/write-jql /docs/other-bits/jql-overview
-/docs/implement-mixpanel /docs/getting-started/what-is-mixpanel
