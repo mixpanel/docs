@@ -20,7 +20,7 @@
 /developer-docs-redirect/javascript-full-api-reference /docs/tracking/reference/javascript-full-api-reference
 /developer-docs-redirect/react-native /docs/tracking/reference/react-native
 /developer-docs-redirect/python /docs/tracking/reference/python
-/developer-docs-redirect/android /docs/tracking/reference/androi
+/developer-docs-redirect/android /docs/tracking/reference/android
 /developer-docs-redirect/javascript /docs/tracking/reference/javascript
 /developer-docs-redirect/flutter /docs/tracking/reference/flutter
 /developer-docs-redirect/java /docs/tracking/reference/java
