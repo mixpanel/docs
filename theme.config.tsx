@@ -11,6 +11,9 @@ function renderComponent<T>(ComponentOrNode: FC<T> | ReactNode, props?: T) {
 
 const config: DocsThemeConfig = {
   darkMode: false,
+  nextThemes: {
+    forcedTheme: `light`,
+  },
   docsRepositoryBase: "https://github.com/mixpanel/docs/tree/main",
   head: (
     <>
@@ -30,7 +33,7 @@ const config: DocsThemeConfig = {
   ),
   feedback: {
     content: "Question? Contact our Support Team",
-    useLink: () => "https://mixpanel.com/get-support"
+    useLink: () => "https://mixpanel.com/get-support",
   },
   footer: {
     text: "© Mixpanel 2023",
