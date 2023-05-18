@@ -1,4 +1,4 @@
-/developer-docs-redirect/android /docs/tracking/reference/androi
+/developer-docs-redirect/android /docs/tracking/reference/android
 /developer-docs-redirect/android-quickstart /docs/tracking/mobile
 /developer-docs-redirect/aws-raw-pipeline /docs/other-bits/data-pipelines/aws-raw-pipeline
 /developer-docs-redirect/azure-blob-storage /docs/other-bits/data-pipelines/azure-blob-storage
@@ -57,7 +57,7 @@
 /developer-docs-redirect/server /docs/tracking/server
 /developer-docs-redirect/snowplow /docs/tracking/integrations/snowplow
 /developer-docs-redirect/swift /docs/tracking/reference/swift
-/developer-docs-redirect/under-the-hood /docs/other-bits/under-the-hoo
+/developer-docs-redirect/under-the-hood /docs/other-bits/under-the-hood
 /developer-docs-redirect/unity /docs/tracking/reference/unity
 /developer-docs-redirect/unity-quickstart /docs/tracking/mobile
 /developer-docs-redirect/what-is-mixpanel /docs/getting-started/what-is-mixpanel
