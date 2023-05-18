@@ -10,7 +10,7 @@ const withNextra = require("nextra")({
 });
 
 function parseRedirectPartsFromFile(filecontent) {
-  return filecontent.split(`\n`).map((line, idx) => {
+  return filecontent.trim().split(`\n`).map((line, idx) => {
     const parts = line.split(` `);
     if (parts.length !== 2) {
       throw Error(
