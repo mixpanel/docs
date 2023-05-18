@@ -134,7 +134,8 @@ In order for a user to have access to project(s) and/or team(s), they must first
 
 ### Project Roles
 
-A Project has 4 roles: Owner, Admin, Analyst, and Consumer. The table below is an overview of the permissions per role on an project level.
+A Project has 4 roles: Owner, Admin, Analyst, and Consumer. 
+The table below is an overview of the permissions per role on an project level.
 
 | **Project Roles**              | **Owner**          | **Admin**          | **Analyst** | **Consumer** |
 |--------------------------------|--------------------|--------------------|-------------|-------------|
@@ -148,6 +149,35 @@ A Project has 4 roles: Owner, Admin, Analyst, and Consumer. The table below is a
 | Change Project Users Role      | ✅ | ✅ | ❌         | ❌         |
 | Approve Access Requests        | ✅ | ✅ | ❌         | ❌         |
 | Create Service Accounts        | ✅ | ✅ | ❌         | ❌         |
+
+The table below is an overview of the permissions per role for reports and other features.
+
+| **Project Roles**                 | **Owner**          | **Admin**          | **Analyst** | **Consumer** |
+|-----------------------------------|--------------------|--------------------|-------------|--------------|
+| Create and View Insights Reports  | ✅ | ✅ | ✅ | ✅ |
+| Create and View Flows Reports     | ✅ | ✅ | ✅ | ✅ |
+| Create and View Funnels Reports   | ✅ | ✅ | ✅ | ✅ |
+| Create and View Retention Reports | ✅ | ✅ | ✅ | ✅ |
+| Download Reports                  | ✅ | ✅ | ✅ | ❌         |
+| Create Custom Alerts              | ✅ | ✅ | ✅ | ❌         |
+| Edit Custom Alerts                | ✅ | ✅ | ❌         | ❌         |
+| View Users Report                 | ✅ | ✅ | ✅ | ✅ |
+| Create/Edit Cohorts               | ✅ | ✅ | ✅ | ✅ |
+| Export Cohorts                    | ✅ | ✅ | ✅ | ❌         |
+| Create/Edit User Profiles         | ✅ | ✅ | ✅ | ❌         |
+| Delete User Profiles              | ✅ | ✅ | ❌         | ❌         |
+| Create and View Boards            | ✅ | ✅ | ✅ | ✅ |
+| Create Digests for Boards         | ✅ | ✅ | ✅ | ❌         |
+| Edit Digests for Boards           | ✅ | Only the Creator | Only the Creator | Only the Creator |                               
+| Create/Edit Custom Events         | ✅ | ✅ | ✅ | ❌         |
+| Hide Data in Lexicon              | ✅ | ✅ | ❌         | ❌         |
+| Merge Data in Lexicon             | ✅ | ❌         | ❌         | ❌         |
+| Drop Data in Lexicon              | ✅ | ❌         | ❌         | ❌         |
+| Edit Descriptions in Lexicon      | ✅ | ✅ | ❌         | ❌         |
+| Add Tags in Lexicon               | ✅ | ✅ | ❌         | ❌         |
+| Download CSV in Lexicon           | ✅ | ✅ | ✅ | ✅ |
+| Upload a Lookup Table             | ✅ | ✅ | ✅ | ✅ |
+| Map Property to Lookup Table in Lexicon | ✅ | ✅ | ❌         | ❌         |
 
 #### Owner
 
