@@ -190,3 +190,8 @@ https://help.mixpanel.com/hc/en-us/articles/7716920767124 /docs/analysis/reports
 https://help.mixpanel.com/hc/en-us/articles/7773849285780 /docs/tracking/how-tos/lookup-tables
 https://help.mixpanel.com/hc/en-us/articles/9648680824852 /docs/tracking/how-tos/identifying-users
 https://help.mixpanel.com/hc/en-us/articles/9671249667988 /docs/other-bits/community
+https://help.mixpanel.com/hc/en-us/categories/115001197266 /docs/getting-started/what-is-mixpanel
+https://help.mixpanel.com/hc/en-us/categories/115001197206 /docs/tracking/javascript-quickstart
+https://help.mixpanel.com/hc/en-us/categories/115001209063 /docs/analysis/boards
+https://help.mixpanel.com/hc/en-us/categories/115000963103 /docs/admin/organizations-projects
+https://help.mixpanel.com/hc/en-us/categories/13174726206612 /changelogs
