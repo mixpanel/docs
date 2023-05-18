@@ -1,10 +1,9 @@
-# Mixpanel / Google Tag Manager custom tag template.
+This document walks through Mixpanel's native integration with Google Tag Manager. The source code lives [here](https://github.com/mixpanel/mixpanel-gtm-template).
 
-These are the source files for the Google Tag Manager custom template designed for deploying and implementing the Mixpanel JavaScript SDK.
+## Walkthrough
+<video src="https://user-images.githubusercontent.com/556882/154125933-b584de10-b7fa-4668-b815-7429192d867a.mp4"/>
 
-[Walkthrough](https://user-images.githubusercontent.com/556882/154125933-b584de10-b7fa-4668-b815-7429192d867a.mp4)
-
-## Manual installation
+## Installation
 The easiest way to install the custom template is to locate it in the [Google Tag Manager community template gallery](https://tagmanager.google.com/gallery/#/), and you can install it via the Google Tag Manager user interface.
 
 To **manually install** the template, e.g. for debugging prior to the changes being published in the community template gallery, follow these steps.
@@ -19,7 +18,7 @@ To **manually install** the template, e.g. for debugging prior to the changes be
 8. In the GTM UI, browse to **Tags** and click **New** to create a new tag.
 9. From the list of available tag templates, choose the **Mixpanel** template you just imported to the container.
 
-## How the template works
+## How It Works
 
 The template replicates the functionality of the [Mixpanel JS SDK](https://developer.mixpanel.com/docs/javascript-full-api-reference).
 
@@ -31,7 +30,7 @@ When *any* Mixpanel GTM tag fires, it automatically tries to initialize a new in
 
 This way the user doesn't need to worry about initialization. They just need to make sure that the Initialization Options are configured consistently across the tags.
 
-### Sending Mixpanel commands
+### Sending Mixpanel Commands
 
 After adding the **Project Token** to its respective field, you need to choose what **type** of tag to use. Each type corresponds with some command you can use with the Mixpanel JS API.
 
@@ -41,12 +40,12 @@ The more complex tag types (`group`, `people`, and `track`) are elevated to the 
 
 Once you select a tag type, additional options may appear. Consult the SDK reference for details on how to configure these options.
 
-### Firing the tag
+### Firing The Tag
 
 Once you're happy with your tag, you need to add a **Trigger** to it. For example, to trigger it with every page load, add the **All Pages** trigger to it.
 
 Save the tag when done.
 
-### Test
+### Testing
 
 You can then enter **Preview** mode by clicking the blue **Preview** button in the Google Tag Manager UI. This opens a new tab with your website running the GTM container, and you can proceed to test the Mixpanel tag as if the container were published. In the Tag Assistant Preview tab, you can see additional information about the trigger events, tags, and variables that fire while you are browsing the page in Preview mode.
