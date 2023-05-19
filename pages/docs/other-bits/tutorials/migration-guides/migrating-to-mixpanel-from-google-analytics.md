@@ -48,9 +48,7 @@ Choose your current implementation method for Universal Analytics (UA) and you c
     
 - **Customer Data Platforms (CDPs) like [Segment](https://segment.com/):** CDPs have always tracked event data and synthesized them into sessions for Universal Analytics. You can add Mixpanel as a destination to your CDP and immediately start receiving the same data as your other destinations.
     
-    Since CDPs already collect all your data via 1 SDK and route to many downstream destinations, enabling Mixpanel is straightforward. Simply go to your CDP settings and add Mixpanel as a destination:
-    
-    ![Untitled](GUIDE%20Moving%20data%20from%20UA%20GA4%20%E2%86%92%20MP%20f0fa78498d564bedaabe640ccad42717/Untitled.png)
+    Since CDPs already collect all your data via 1 SDK and route to many downstream destinations, enabling Mixpanel is straightforward. Simply go to your CDP settings and add Mixpanel as a destination.
     
     Once you set up the connection to Mixpanel, you can proceed with configuring key settings like:
     
@@ -179,12 +177,7 @@ Choose your current implementation method for Google Analytics (GA4) and you can
     
 - **Customer Data Platforms (CDPs) like [Segment](https://segment.com/):**  CDPs will already be tracking events to GA4 that you want to duplicate to Mixpanel. You can add Mixpanel as a destination to your CDP and immediately start receiving the same data as your other destinations.
     
-    Since CDPs already collect all your data via 1 SDK and route to many downstream destinations, enabling Mixpanel is straightforward. Simply go to your CDP settings and add Mixpanel as a destination:
-    
-    ![Untitled](GUIDE%20Moving%20data%20from%20UA%20GA4%20%E2%86%92%20MP%20f0fa78498d564bedaabe640ccad42717/Untitled.png)
-    
-    Once you set up the connection to Mixpanel, you can proceed with configuring key settings like:
-    
+    Since CDPs already collect all your data via 1 SDK and route to many downstream destinations, enabling Mixpanel is straightforward. Simply go to your CDP settings and add Mixpanel as a destination. Once you set up the connection to Mixpanel, you can proceed with configuring key settings like:
     - which events and properties to send → only send what matters
     - edit any mappings/editing/filtering that has to be done on the data → ensure high data quality and governance
     - connection settings, or CDP specific settings for data syncs → control over how data is sent
