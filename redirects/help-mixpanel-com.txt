@@ -1,8 +1,15 @@
+# Top Level Redirects. (No Sorting. Place with intention)
 https://help.mixpanel.com/ /
+https://help.mixpanel.com/hc/en-us /
 https://help.mixpanel.com/docs/search /docs/getting-started/what-is-mixpanel
+https://help.mixpanel.com/:path(docs.*) /:path
 https://help.mixpanel.com/hc docs/getting-started/what-is-mixpanel
 https://help.mixpanel.com/hc/admin/general_settings /docs/admin/organizations-projects
-https://help.mixpanel.com/hc/en-us /
+
+# send support attachments back to original source
+https://help.mixpanel.com/:zendesk_attachment(attachments/token/.*) https://mixpanelsupport.zendesk.com/:zendesk_attachment
+
+# Help Center - Content Redirects (Sort Alphabetically)
 https://help.mixpanel.com/hc/en-us/articles/10147279357076(.*) /docs/tracking/how-tos/debugging#data-discrepancies
 https://help.mixpanel.com/hc/en-us/articles/10503460589972(.*) /changelogs
 https://help.mixpanel.com/hc/en-us/articles/10997736335892(.*) https://github.com/mixpanel/mixpanel-js/blob/master/doc/readme.io/javascript-full-api-reference.md#mixpaneltime_event
