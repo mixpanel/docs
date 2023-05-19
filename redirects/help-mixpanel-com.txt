@@ -1,4 +1,5 @@
 https://help.mixpanel.com/ /
+https://help.mixpanel.com/:zendesk_attachment(attachments/token/.*) https://mixpanelsupport.zendesk.com/:zendesk_attachment
 https://help.mixpanel.com/docs/search /docs/getting-started/what-is-mixpanel
 https://help.mixpanel.com/hc docs/getting-started/what-is-mixpanel
 https://help.mixpanel.com/hc/admin/general_settings /docs/admin/organizations-projects
