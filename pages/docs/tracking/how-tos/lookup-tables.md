@@ -12,17 +12,35 @@ Lookup Tables let you enrich your Mixpanel events with attributes about other en
 * If you have a database background, lookup tables are like dimension tables or join tables.
 * If you have an Excel background, Lookup Tables are like VLOOKUP. 
 
-Let's say you're building a media product, and you track a `Song Played` event, which contains a `song_id` property. You want to filter and breakdown this event by other attributes of the song, like `artist` and `genre`, which are not tracked as properties.
+Let's say you're building a media product, and you track a `Song Played` event, which contains a `song_id` property. 
 
-Lookup Tables let you upload a CSV of data about songs like this and map it to the `song_id` property:
-```csv
-id,artist,genre,is_platinum,name,num_listens,release_date,is_top_40,countries
-c994bb,Drake,Pop,True,Hotline Bling,1700000000,2015-10-18T22:00:00,true,[]
-d8d949,Gipsy Kings,Flamenco,False,Bamboleo,1170000,1987-07-12T05:00:00,false,"[""US"",""CA""]"
-a43fb8,Daft Punk,House,False,Aerodynamic,41000000,2001-03-12T07:30:00,false,"[""IN""]"
-```
+| event_name  | time                | user_id  | song_id |
+|-------------|---------------------|----------|---------|
+| Song Played | 2023-05-18T09:00:00 | user123  | c994bb  |
+| Song Played | 2023-05-18T10:15:00 | user456  | d8d949  |
+| Song Played | 2023-05-18T11:30:00 | user789  | a43fb8  |
 
-Then, whenever you use an event with the `song_id` property, you'll have access to all these other properties of the song as well. We also provide an [API](https://developer.mixpanel.com/reference/replace-lookup-table) to keep Lookup Tables updated.
+
+You want to filter and breakdown this event by other attributes of the song, like `artist` and `genre`, which are not tracked as properties. Lookup Tables let you upload a CSV of data about songs like this and map it to the `song_id` property:
+
+| id     | artist      | genre   | is_platinum | name          | release_date         
+|--------|-------------|---------|-------------|---------------|----------------------
+| c994bb | Drake       | Pop     | True        | Hotline Bling | 2015-10-18T22:00:00  
+| d8d949 | Gipsy Kings | Flamenco| False       | Bamboleo      | 1987-07-12T05:00:00  
+| a43fb8 | Daft Punk   | House   | False       | Aerodynamic   | 2001-03-12T07:30:00  
+
+
+Then, whenever you use an event with the `song_id` property, you'll have access to all these other properties of the song as well. Under the hood, Mixpanel joins the two tables like so:
+
+| event_name | time                 | user_id  | song_id | Artist      | Genre   | is_platinum | Name         | Release_date          |
+|------------|----------------------|----------|--------|-------------|---------|-------------|---------------|-----------------------|
+| Song Played | 2023-05-18T09:00:00 | user123  | c994bb | Drake       | Pop     | True        | Hotline Bling | 2015-10-18T22:00:00   |
+| Song Played | 2023-05-18T10:15:00 | user456  | d8d949 | Gipsy Kings | Flamenco| False       | Bamboleo      | 1987-07-12T05:00:00   |
+| Song Played | 2023-05-18T11:30:00 | user789  | a43fb8 | Daft Punk   | House   | False       | Aerodynamic   | 2001-03-12T07:30:00   |
+
+The benefit is that you don't need to change your event tracking code at all. You can upload this Lookup Table after the fact and it automatically joins onto all prior events.
+
+We also provide an [API](https://developer.mixpanel.com/reference/replace-lookup-table) to keep Lookup Tables synced on a recurring basis.
 
 ## Use Cases
 
