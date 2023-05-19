@@ -45,6 +45,7 @@ https://help.mixpanel.com/hc/en-us/articles/115004565806(.*) /docs/tracking/how-
 https://help.mixpanel.com/hc/en-us/articles/115004567503(.*) /docs/analysis/advanced/signal
 https://help.mixpanel.com/hc/en-us/articles/115004567926(.*) /docs/admin/data-governance/lexicon#hide-events-and-properties
 https://help.mixpanel.com/hc/en-us/articles/115004569183(.*) /docs/admin/data-governance/lexicon
+https://help.mixpanel.com/hc/en-us/articles/115004596186(.*) /docs/tracking/reference/android#legacy-automatically-tracked-events
 https://help.mixpanel.com/hc/en-us/articles/115004602543(.*) /docs/tracking/reference/android
 https://help.mixpanel.com/hc/en-us/articles/115004602563(.*) https://developer.mixpanel.com/reference/raw-event-export
 https://help.mixpanel.com/hc/en-us/articles/115004613766(.*) /docs/tracking/reference/default-properties
