@@ -64,11 +64,11 @@ The group rate is calculated for both control and variant groups. It is calculat
 
 If calculating using totals in Insights, then the group rate is calculated as:
 
-$$Group\,Rate= {{ (\# \,of\,events) \over (\# \,of\,users)} \over (time)}
+$Group\,Rate= {{ (\# \,of\,events) \over (\# \,of\,users)} \over (time)}$
 
 If calculating using uniques in Insights, then the group rate is calculated as:
 
-$$Group\,Rate= { (\# \,of\,users\,who\,performed\,metric\,event)  \over (\# of\,users\,in\,group)}
+$Group\,Rate= { (\# \,of\,users\,who\,performed\,metric\,event)  \over (\# of\,users\,in\,group)}$
 
 This value is  a percentage, because the maximum possible value is 1.  We therefor display the percentage of users in the control group who performed the metric event.
 
@@ -78,7 +78,7 @@ If calculating using funnels, then the rate is the overall conversion rate of t
 
 Lift is the percentage difference between the control group and variant group rates. Lift is calculated as (variant rate - control rate) / control rate.
 
-$$Lift= { (variant \,group\,rate - control \,group\,rate) \over (control \,group\,rate)}
+$Lift= { (variant \,group\,rate - control \,group\,rate) \over (control \,group\,rate)}$
 
 You can also switch between lift and the delta, which is the absolute difference in rates, variant rate minus control rate.
 
