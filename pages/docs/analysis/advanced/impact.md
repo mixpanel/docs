@@ -68,7 +68,7 @@ Adopters are users that have done the launch event. Non-adopters are users that 
 
 The Adoption Rate is the number of users that perform the launch event divided by the total user count:
 
-$$\%\,adoption = average\left( (adopters) \over (adopters + non\,adopters) \right)
+$\%\,adoption = average\left( (adopters) \over (adopters + non\,adopters) \right)$
 
 ### Impact Chart
 
@@ -82,7 +82,7 @@ Every user in the report can have a different day zero.  For users in the adopt
 
 Each data point on the chart is calculated as follows:
 
-$$metric\,event\,rate = { (metric\,event\,count) \over (total\,user\,count)}
+$metric\,event\,rate = { (metric\,event\,count) \over (total\,user\,count)}$
 
 Each point on the line is the average number of times users in the group did the metric event on that relative day.
 
@@ -110,7 +110,7 @@ The Impact Table compares users that performed the launch event and those that d
 
 The average number of times that users performed the metric event before the launch is calculated by:
 
-$$group\,average\,value = average\left( (group\,metric\,event\,count \div group\,user\,count) \over (day\,count) \right)
+$group\,average\,value = average\left( (group\,metric\,event\,count \div group\,user\,count) \over (day\,count) \right)$
 
 The average rate is calculated before the first day of the launch event, after the launch event, and the report also displays the difference between those rates. These values are reported in the three sections of the table.
 
@@ -122,7 +122,7 @@ The Pre-Launch section contains columns for adopters, non-adopters, and the rela
 
 The relative delta is calculated using the equation:
 
-$$relative\,delta= { (adopter\,average - non\,adopter\,average) \over (non\,adopter\,average)}
+$relative\,delta= { (adopter\,average - non\,adopter\,average) \over (non\,adopter\,average)}$
 
 ### Post-Launch
 
@@ -130,11 +130,11 @@ The Post-Launch section contains columns for actual adopters, non-adopters, unob
 
 The UCA value is the projected behavior of adopters if the launch event never happened. This calculation controls for any difference between the adopters and non-adopters that is not a result of the launch event. This value is calculated by the following, where NA is non-adopters, pre is pre-launch, and post is post-launch:
 
-$$UCA=\mu_{NA\,post} + ({\mu_{NA\,post}*\Delta_{relative\,pre})}
+$UCA=\mu_{NA\,post} + ({\mu_{NA\,post}*\Delta_{relative\,pre})}$
 
 The relative delta is calculated using the equation:
 
-$$relative\,delta= { (adopter\,average - non\,adopter\,average) \over (non\,adopter\,average)}
+$relative\,delta= { (adopter\,average - non\,adopter\,average) \over (non\,adopter\,average)}$
 
 ### Impact
 
@@ -166,31 +166,31 @@ The confidence variables are as follow:
 - **B - A** = The difference in number of events per day performed by non-adopters between the post-launch and pre-launch periods.
 - The mean of **Y - X** over time is denoted by:
 
-$$\mu_{Y-X}
+$\mu_{Y-X}$
 
 - The mean of of **B - A** over time is denoted by:
 
-$$\mu_{B-A}
+$\mu_{B-A}$
 
 - The standard deviation of **Y - X** over time is denoted by:
 
-$$\sigma_{Y-X}
+$\sigma_{Y-X}$
 
 - The standard deviation of **B - A** over time is denoted by:
 
-$$\sigma_{B-A}
+$\sigma_{B-A}$
 
 With the variables assigned, the calculations for confidence are as follow:
 
-$$\mu_{final} = \mu_{Y-X} - \mu_{B-A}
+$\mu_{final} = \mu_{Y-X} - \mu_{B-A}$
 
-$$\sigma_{final} =\sqrt{{\sigma_{Y-X}^2 \over N_{Y-X}} - {\sigma_{B-A}^2 \over N_{B-A}}}
+$\sigma_{final} =\sqrt{{\sigma_{Y-X}^2 \over N_{Y-X}} - {\sigma_{B-A}^2 \over N_{B-A}}}$
 
-$$z_{score} = \left|\mu_{final} \over \sigma_{final}\right|
+$z_{score} = \left|\mu_{final} \over \sigma_{final}\right|$
 
-$$p_{value} = 1-cdf(z_{score})
+$p_{value} = 1-cdf(z_{score})$
 
-$$confidence = 1 - p_{value}
+$confidence = 1 - p_{value}$
 
 ### Causal Impact
 

@@ -14,3 +14,4 @@
 /docs/tutorials/mixpanel-analysis /docs/other-bits/tutorials/mixpanel-analysis/overview
 /docs/tutorials/mixpanel-analysis/insights /docs/other-bits/tutorials/mixpanel-analysis/insights
 /docs/tutorials/mixpanel-analysis/retention /docs/other-bits/tutorials/mixpanel-analysis/retention
+/other-bits/tutorials/mixpanel-analysis/overview /docs/other-bits/tutorials/mixpanel-analysis/retention
