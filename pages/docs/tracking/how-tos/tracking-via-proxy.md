@@ -7,6 +7,8 @@ updatedAt: "2021-09-09T19:23:12.598Z"
 ---
 This guide demonstrates how to route events from Mixpanel's SDKs via a proxy in your own domain. This is useful when tracking from the web, to reduce the likelihood of ad-blockers impacting your tracking.
 
+![image](https://github.com/mixpanel/docs/assets/2077899/3ec6f3c2-aed0-4a18-9395-36838c3b53f1)
+
 There are two steps: setting up a proxy server and pointing our JavaScript SDK at your server.
 
 ## Step 1: Set up a proxy server
