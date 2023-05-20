@@ -1,6 +1,5 @@
 {
     "events": "Events",
-    "user-profiles": "User Profiles",
-    "group-profiles": "Group Profiles",
+    "profiles": "Profiles",
     "lookup-tables": "Lookup Tables"
 }
