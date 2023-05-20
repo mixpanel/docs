@@ -7,9 +7,7 @@ Even if you plan to set up Mixpanel via our SDKs, we recommend browsing this doc
 * You will need your Project Secret to import historical events or export events.
 * You will need a Service Account for all other endpoints.
 
-We describe how to find all of these [here](/docs/tracking/how-tos/api-credentials).
-
-TODO: Figure out where to put the Service Account documentation!
+TODO: Figure out where to put the Service Account documentation! And unify this with the "Find your API Credentials" page.
 
 
 ## Limits
