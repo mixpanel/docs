@@ -6,3 +6,4 @@ hidden: false
 createdAt: "2020-11-20T21:23:20.194Z"
 updatedAt: "2020-11-20T21:23:20.194Z"
 ---
+List all schemas in a project

@@ -6,3 +6,4 @@ hidden: false
 createdAt: "2020-10-20T00:41:26.252Z"
 updatedAt: "2020-10-20T00:41:26.252Z"
 ---
+Takes a JSON object containing keys and values. The value in the request is removed from the existing list on the user profile. If it does not exist, no updates are made.

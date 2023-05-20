@@ -6,3 +6,4 @@ hidden: false
 createdAt: "2020-11-20T21:23:20.200Z"
 updatedAt: "2020-11-20T21:23:20.200Z"
 ---
+Delete all schemas of a specific entity type

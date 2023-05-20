@@ -6,3 +6,4 @@ hidden: false
 createdAt: "2020-10-20T00:41:48.192Z"
 updatedAt: "2020-10-20T00:41:48.192Z"
 ---
+Get data for a funnel.

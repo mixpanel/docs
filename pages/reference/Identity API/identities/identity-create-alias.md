@@ -6,3 +6,60 @@ hidden: false
 createdAt: "2021-08-04T20:46:15.948Z"
 updatedAt: "2021-08-04T20:46:15.948Z"
 ---
+[block:callout]
+{
+  "type": "info",
+  "body": "You can also use the import endpoint: https://api.mixpanel.com/import/"
+}
+[/block]
+
+Mixpanel supports adding an alias to a distinct id. An alias is a new
+value that will be interpreted by Mixpanel as an existing value. That
+means that you can send messages to Mixpanel using the new value, and
+Mixpanel will continue to use the old value for calculating funnels and
+retention reports, or applying updates to user profiles.
+
+**Alias Criteria:**
+[block:image]
+{
+  "images": [
+    {
+      "image": [
+        "https://files.readme.io/d16f1d3-ID_management_alias_3-HTTP.png",
+        "Identity Management - Alias",
+        960,
+        697,
+        "#cad5da"
+      ]
+    }
+  ]
+}
+[/block]
+
+**Required [Event Object](doc:data-model#anatomy-of-an-event) attributes**
+
+[block:parameters]
+{
+  "data": {
+    "h-0": "Event Object property",
+    "h-1": "Type",
+    "h-2": "Description",
+    "0-0": "**event**",
+    "0-1": "<span style=\"font-family: courier\">String</span></br><span style=\"color: red\">required</span>",
+    "0-2": "value must be: `$create_alias`",
+    "1-0": "**properties**",
+    "1-1": "<span style=\"font-family: courier\">Object</span></br><span style=\"color: red\">required</span>",
+    "2-0": "**properties.distinct_id**",
+    "2-1": "<span style=\"font-family: courier\">String</span></br><span style=\"color: red\">required</span>",
+    "2-2": "A distinct_id to be merged with the alias.",
+    "3-0": "**properties.alias**",
+    "3-1": "<span style=\"font-family: courier\">String</span></br><span style=\"color: red\">required</span>",
+    "3-2": "A new distinct_id to be merged with the original distinct_id. Each alias can only map to one distinct_id.",
+    "4-0": "**properties.token**",
+    "4-1": "<span style=\"font-family: courier\">String</span></br><span style=\"color: red\">required</span>",
+    "4-2": "The project token."
+  },
+  "cols": 3,
+  "rows": 5
+}
+[/block]

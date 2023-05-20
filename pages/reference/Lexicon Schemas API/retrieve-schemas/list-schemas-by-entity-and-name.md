@@ -6,3 +6,4 @@ hidden: false
 createdAt: "2020-11-20T21:23:20.201Z"
 updatedAt: "2020-11-20T21:23:20.201Z"
 ---
+Get the schema for a specific entity type and entity name
