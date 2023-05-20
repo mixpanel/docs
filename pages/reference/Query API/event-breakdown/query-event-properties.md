@@ -6,3 +6,4 @@ hidden: false
 createdAt: "2020-10-20T00:41:48.210Z"
 updatedAt: "2020-10-20T00:41:48.210Z"
 ---
+Get unique, total, or average data for of a single event and property over days, weeks, or months.

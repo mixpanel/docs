@@ -6,3 +6,4 @@ hidden: false
 createdAt: "2022-02-18T20:12:47.076Z"
 updatedAt: "2022-02-18T20:12:47.076Z"
 ---
+This request edit the params for an export pipeline.

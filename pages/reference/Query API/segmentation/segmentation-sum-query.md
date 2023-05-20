@@ -6,3 +6,4 @@ hidden: false
 createdAt: "2020-10-20T00:41:48.200Z"
 updatedAt: "2020-10-20T00:41:48.200Z"
 ---
+Sums an expression for events per unit time.

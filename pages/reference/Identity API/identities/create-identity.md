@@ -6,3 +6,57 @@ hidden: false
 createdAt: "2021-08-04T20:56:14.330Z"
 updatedAt: "2021-08-04T20:56:14.330Z"
 ---
+[block:callout]
+{
+  "type": "info",
+  "body": "You can also use the import endpoint: https://api.mixpanel.com/import/"
+}
+[/block]
+
+**Identify Criteria:**
+[block:image]
+{
+  "images": [
+    {
+      "image": [
+        "https://files.readme.io/d0066f0-ID_management_identify_3-HTTP.png",
+        "Identity Management - Identify",
+        960,
+        697,
+        "#cad5da"
+      ]
+    }
+  ]
+}
+[/block]
+
+**Required [Event Object](doc:data-model#anatomy-of-an-event) attributes**
+
+[block:parameters]
+{
+  "data": {
+    "h-0": "Event Object property",
+    "h-1": "Type",
+    "h-2": "Description",
+    "0-0": "**event**",
+    "0-1": "<span style=\"font-family: courier\">String</span></br><span style=\"color: red\">required</span>",
+    "0-2": "value must be: `$identify`",
+    "1-0": "**properties**",
+    "1-1": "<span style=\"font-family: courier\">Object</span></br><span style=\"color: red\">required</span>",
+    "2-0": "**properties.distinct_id**",
+    "2-1": "<span style=\"font-family: courier\">String</span></br><span style=\"color: green\">optional</span>",
+    "2-2": "The distinct ID post-identification (same as $identified_id - it will be inferred from $identified_id if not included)",
+    "3-0": "**properties.$identified_id**",
+    "3-1": "<span style=\"font-family: courier\">String</span></br><span style=\"color: red\">required</span>",
+    "3-2": "A distinct_id to merge with the $anon_id.",
+    "4-0": "**properties.$anon_id**",
+    "4-1": "<span style=\"font-family: courier\">String</span></br><span style=\"color: red\">required</span>",
+    "4-2": "A distinct_id to merge with the $identified_id. The $anon_id must be [UUID v4](https://en.wikipedia.org/wiki/Universally_unique_identifier) format and not already merged to an $identified_id.",
+    "5-0": "**properties.token**",
+    "5-1": "<span style=\"font-family: courier\">String</span></br><span style=\"color: red\">required</span>",
+    "5-2": "The project token."
+  },
+  "cols": 3,
+  "rows": 6
+}
+[/block]
