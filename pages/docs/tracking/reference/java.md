@@ -22,7 +22,7 @@ You can get the library by including the following in your project's pom.xml:
 <dependency>
     <groupId>com.mixpanel</groupId>
     <artifactId>mixpanel-java</artifactId>
-    <version>1.4.4</version>
+    <version>1.5.2</version>
 </dependency>
 ```
 
