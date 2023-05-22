@@ -737,6 +737,28 @@ You can analyze the Nth time an event was performed by using a First Time Filter
 
 ![233895123-bc2dd00f-5dde-4e43-82fe-081173abf0e4.png](https://user-images.githubusercontent.com/2077899/233895123-bc2dd00f-5dde-4e43-82fe-081173abf0e4.png)
 
+## Behavioral Properties
+
+Behavioral properties allow you to use your user's activity and use it as a property in your other analysis. A behavioral property is a virtual property, meaning it's not a property that you are explicitly tracking, but a property that Mixpanel can compute and allow you to use in analysis.
+
+Behavioral properties can be used anywhere, most typically in filters and breakdowns.
+
+### Frequency per User
+
+After selecting this option, you must select an event to compute the frequency of. You can use this to segment your users by how many times the did an event, or use it to filter out users to only those who did an event a certain number of times.
+
+Only available in Insights.
+
+### Aggregate Property per User
+
+After select this option, you must select an event, and then a property on that event. Finally, you can choose an aggregation type for this property. You can use this to segment your users by this property aggregation. For example, you may want to filter only for users who have greater than 100 minutes of video watch time, or you may want to segment users by their watch time.
+
+Only available in Insights.
+
+### Time Interval
+
+Note that the time in which this computation is done is on a per interval basis. For a line chart, that will be for each individual interval plotted on the chart. For bar, table and pie, this interval is the entire date range selected in the date picker.
+
 
 ## Find Interesting Segments
 
