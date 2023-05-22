@@ -1,0 +1,77 @@
+import { Tab, Tabs } from 'nextra-theme-docs'
+
+[User Profiles](/docs/tracking/how-tos/user-profiles) let you describe users with properties like their name or email. The API is used to create, update, or delete User Profiles.
+
+## Usage
+This creates a profile with `$distinct_id` of `123`, `$name` as `Alice`, and `$email` as `alice@example.com`.
+<Tabs items={['cURL', 'Python']}>
+<Tab>
+```sh
+curl -XPOST 'https://api.mixpanel.com/engage?verbose=2' \
+     --data '[{"$token": "YOUR_PROJECT_TOKEN", "$distinct_id": "13793", "$set": {"$name": "Alice", "$email": "alice@example.com"}]'
+```
+</Tab>
+<Tab>
+```python
+import requests
+
+resp = requests.post(
+    "https://api.mixpanel.com/engage?verbose=2"
+    json=[
+        {"$token": "YOUR_PROJECT_TOKEN", "$distinct_id": "13793", "$set": {"$name": "Alice", "$email": "alice@example.com"}}
+    ]
+)
+print(resp.json())
+```
+</Tab>
+</Tabs>
+
+Note:
+* The `$op` field indicates what type of operation to perform on the user profile. `$set` is the most common one; we cover the other operations below.
+* The data field is an array, so you can batch up to 200 requests into one API call to create or update many user profiles at once.
+
+## Operations
+
+### $set
+Set properties on a User Profile. In database terminology, this API has upsert semantics.
+* If a Profile with the provided `$distinct_id` doesn't exist, it will be created.
+* If the Profile does not contain the properties provided in this API call, those properties will be created.
+* If the Profile does contain those properties, those property values will be overriden. Any other properties will remain untouched.
+
+### $set_once
+Set properties on a User Profile, if they're not already set. This is identical to `$set`, except it will not overwrite existing properties.
+
+### $unset
+Unset the provided properties on the User Profile. This operation accepts a list of property names.
+
+### $delete
+Delete the User Profile.
+
+## Group Profiles
+The [Group Profiles](/docs/analysis/advanced/group-analytics) API has only two differences from the User Profiles API:
+* The endpoint is `/groups` instead of `/engage`.
+* Each API call contains an extra field to indicate the Group you want to update.
+
+For example, suppose you are a B2B company that has 1 Group called `Accounts`. You want to update the `Name`, `ARR`, and `Type` property of the account with ID `example.com`. You could do that as follows:
+
+<Tabs items={['cURL', 'Python']}>
+<Tab>
+```sh
+curl -XPOST 'https://api.mixpanel.com/groups?verbose=2' \
+     --data '[{"$token": "YOUR_PROJECT_TOKEN", "$group_key": "Accounts", "$group_id": "example.com", "$set": {"Name": "Example Co", "ARR": 15000, "Type": "Enterprise"}]'
+```
+</Tab>
+<Tab>
+```python
+import requests
+
+resp = requests.post(
+    "https://api.mixpanel.com/groups?verbose=2"
+    json=[
+        {"$token": "YOUR_PROJECT_TOKEN", "$group_key": "Accounts", "$group_id": "example.com", "$set": {"Name": "Example Co", "ARR": 15000, "Type": "Enterprise"}}
+    ]
+)
+print(resp.json())
+```
+</Tab>
+</Tabs>

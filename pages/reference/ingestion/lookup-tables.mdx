@@ -1,3 +1,5 @@
+import { Tab, Tabs } from 'nextra-theme-docs'
+
 Lookup Tables are mutable tables that describe non-user entities like accounts, a media catalog, or geographies. This API supports replacing the contents of an existing Lookup Table, which can be used to keep Mixpanel in sync with a source-of-truth system.
 
 These APIs use [Service Accounts](ref:service-accounts) for authentication.
@@ -5,17 +7,42 @@ These APIs use [Service Accounts](ref:service-accounts) for authentication.
 ## Replace Lookup Table
 Lookup Tables must be [created via our UI](/docs/tracking/how-tos/lookup-tables). Once a Lookup Table is created, its contents can be replaced via this API.
 
-Assuming you have a file table.csv:
-```csv
-id,artist,genre,is_platinum,name,num_listens,release_date,is_top_40
+<Tabs items={['cURL', 'Python']}>
+<Tab>
+```sh
+curl -XPUT 'https://api.mixpanel.com/lookup-tables/ID?project_id=YOUR_PROJECT_ID' \
+     -u 'SERVICE_ACCOUNT_USER:SERVICE_ACCOUNT_PASS' \
+     -H 'Content-Type: text/csv' \
+     --data 'id,artist,genre,is_platinum,name,num_listens,release_date,is_top_40
 c994bb,Drake,Pop,True,Hotline Bling,1700000000,2015-10-18T22:00:00,true
 d8d949,Gipsy Kings,Flamenco,False,Bamboleo,1170000,1987-07-12T05:00:00,false
 a43fb8,Daft Punk,House,False,Aerodynamic,41000000,2001-03-12T07:30:00,false
+'
 ```
+</Tab>
+<Tab>
+```python
+import requests
 
-You can replace the contents of a Lookup Table with this CSV as follows:
-TODO: insert curl request/response here.
+data = """id,artist,genre,is_platinum,name,num_listens,release_date,is_top_40
+c994bb,Drake,Pop,True,Hotline Bling,1700000000,2015-10-18T22:00:00,true
+d8d949,Gipsy Kings,Flamenco,False,Bamboleo,1170000,1987-07-12T05:00:00,false
+a43fb8,Daft Punk,House,False,Aerodynamic,41000000,2001-03-12T07:30:00,false
+"""
 
+id = "LOOKUP_TABLE_ID"
+project_id = "PROJECT_ID"
+
+resp = requests.put(
+    f"https://api.mixpanel.com/lookup-tables/{id}?project_id={project_id}",
+    headers={"Content-Type": "text/csv",
+    auth=(SERVICE_ACCOUNT_USER, SERVICE_ACCOUNT_PASS),
+    data=data
+)
+print(resp.json()
+```
+</Tab>
+</Tabs>
 
 ### Validation
 * The first column of the lookup table is assumed to be the ID of the row. All ID values must be unique.
@@ -31,20 +58,6 @@ TODO: insert curl request/response here.
 * Comma separated, quoted strings in square brackets (`"[""Free"",""Paid"",""Enterprise""]"`) will be parsed as list of strings.
 * All other values will be treated as strings.
 
-#### Errors
-Lookup Tables are replaced in their entirety or not replaced at all. When the Lookup Table fails to meet the above validation, we return an error that looks as follows:
-[block:code]
-{
-  "codes": [
-    {
-      "code": "{\n  \"error\": \"some data points in the request failed validation\",\n  \"failed_records\": [\n    {\n      \"index\": 2,\n      \"message\": \"invalid row: row indexes 1 and 2 have the same primary key\"\n    },\n    {\n      \"index\": 3,\n      \"message\": \"invalid row: wrong number of fields\"\n    }\n  ],\n  \"status\": 0\n}",
-      "language": "json"
-    }
-  ]
-}
-[/block]
-We will return at most the first 10 rows that failed validation.
-
 ### Limits
 This endpoint will return a 429 error if called more than 100 times in a rolling 24 hour window. We recommend updating lookup tables at most hourly to stay within this limit.
 
@@ -53,4 +66,7 @@ This endpoint will return a 413 error if a Lookup Table exceeds 100MB uncompress
 ## List Lookup Tables
 This API returns the list of Lookup Tables in your project.
 
-TODO: Insert cURL request / response here.
+```sh
+curl 'https://api.mixpanel.com/lookup-tables?project_id=YOUR_PROJECT_ID' \
+     -u 'SERVICE_ACCOUNT_USER:SERVICE_ACCOUNT_PASS'
+```
