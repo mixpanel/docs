@@ -1,36 +1,20 @@
----
-title: "Identifying Users"
-slug: "identity-management"
-hidden: false
-createdAt: "2021-10-01T20:21:17.479Z"
-updatedAt: "2021-10-02T18:41:55.184Z"
----
-This guide covers how to track events performed by users that are anonymous vs identified, and how to tie these events together once a user logs in. This system is called ID Merge.
-
-Note: Mixpanel is compatible with Segment. If you use Segment, follow their [their best practices for identifying users](https://segment.com/docs/connections/spec/best-practices-identify/), set up the [Mixpanel (Actions) destination](https://segment.com/docs/connections/destinations/catalog/actions-mixpanel/), and you're all set!
-
-## Overview
-Mixpanel relies on events being accurately tied to the user who performed them. If the user is logged in, this is simple; just set the `$distinct_id` property to the User's ID on all the events you send for that user.  If you're using our Web/Mobile SDKs, this happens automatically for all events sent after you call the `.identify()` method.
-
-Sometimes, it's useful to track events about a user before you know their identity, ie: when they are anonymous. This is common if you're tracking events from parts of your product that do not require a login, like your website, blog, or documentation. In this case, the user does not have an ID, so you need to generate one for them, which we call the `$device_id`. This happens automatically in our Web/Mobile SDKs if you don't call `.identify()`. See our [guidance here](/docs/tracking/how-tos/effective-server) for how to do this from your servers.
-
-When anonymous users log in, Mixpanel needs to know that the two IDs are the same. This enables Mixpanel to join the event streams of both users, which enables you to answer questions like:
-* What % of users make it through the Signup funnel?
+Mixpanel supports stitiching user behavior pre-login (eg: traffic from your website, docs, blog) and post-login (once the user has signed up). This helps answer questions like:
+* What % of site visitors end up signing up?
+* How much of my Purchase revenue can I attribute to a particular campaign?
 * What is the conversion rate of reading a particular blog post -> signing up?
 
-## Usage
+This system is called ID Merge. In this guide, we walk through how to use ID Merge and exactly how it works under the hood.
 
-If using our Web/Mobile SDKs, there are just 2 steps:
-1. Call `.identify(<user_id>)` when a user signs up or logs in.
+## Usage
+If using our Web/Mobile SDKs or a CDP like Segment or Rudderstack, there are only 2 steps:
+1. Call `.identify(<user_id>)` when a user signs up or logs in. Pass in the user's known identifier (eg: their ID from your database).
 2. Call `.reset()` when a user logs out.
 
-If using Segment, follow their [their best practices for identifying users](https://segment.com/docs/connections/spec/best-practices-identify/) and use the [Mixpanel (Actions) destination](https://segment.com/docs/connections/destinations/catalog/actions-mixpanel/).
-
-If using our Server SDKs, HTTP API, or Reverse ETL: it depends on whether you're on Original ID Merge or Simplified ID Merge. See below for more details.
+Any events prior to calling `.identify` are considered anonymous events. Mixpanel's SDKs will generate a `$device_id` to associate these events to the same anonymous user. By calling `.identify(<user_id>)` when a user signs up or logs in, you're telling Mixpanel that `$device_id` belongs to a known user with ID `user_id>`. Under the hood, Mixpanel will stitch the event streams of those users together. This works even if a user has multiple anonymous sessions (eg: on desktop and mobile). As long as you always call `.identify` when the user logs in, all of that activity will be stitched together.
 
 ## Example User Flows
 
-Let's walk through a few user flows where ID Merge is useful and show what Mixpanel does under the hood. Note: the specific value of `distinct_id` will be different based on which [version](/docs/tracking/how-tos/identifying-users#simplified-vs-original-id-merge) of ID Merge you use, but logically both versions work the same way.
+Let's walk through a few user flows where ID Merge is useful. Under the hood, Mixpanel uses the provided values of `$device_id` and `$user_id` to generate a `distinct_id`. Note: the specific value of `distinct_id` will be different based on which [version](/docs/tracking/how-tos/identifying-users#simplified-vs-original-id-merge) of ID Merge you use, but logically both versions work the same way.
 
 ### New User Signup
 
@@ -166,14 +150,14 @@ Customer data platforms partners have their own identity management solutions. T
 We recommend using an ID that is unique to each user and does not change, for example a database ID. While using an identifier like email may be more convenient, keep in mind that you cannot merge 2 `$user_id`s or change a `$user_id`, so if the user changes their email, they will count as a separate user.
 
 ### How does this relate to User Profiles?
-[User Profiles](/docs/tracking/how-tos/user-profiles) are set directly on $distinct_ids, not on $user_ids or $device_ids. We recommend waiting until after a user is identified before setting user profile properties.
+[User Profiles](/docs/tracking/how-tos/user-profiles) are set directly on `$distinct_ids`, not on `$user_ids` or `$device_ids`. We recommend waiting until after a user is identified before setting user profile properties.
 
 It is possible to set user profile properties for un-identified users by sending the profile updates to `$distinct_id=$device:<device-id>`. However, user profile properties are not preserved when `$device_ids` are linked to `$user_ids`, so any properties set before the IDs became linked will need to be set again using `$distinct_id=<user-id>` once the user is identified.
 
 ### Is it possible to merge two `$user_ids`?
 We don't recommend doing this in general, as it adds complexity to your identity resolution strategy. Instead we recommend having a single, unchanging `$user_id` for each user and pointing all other IDs for that user to that single `$user_id`.
 
-If you are on Original ID Merge, we do have a [$merge](https://developer.mixpanel.com/reference/identity-merge) API call that can merge two `$user_id`s.
+If you are on Original ID Merge, we do have a [`$merge`](https://developer.mixpanel.com/reference/identity-merge) API call that can merge two `$user_id`s.
 
 ### What is the status of Mixpanel's legacy `alias` method?
 Prior to March 2020, the only way to connect users together was the `.alias()` method. This was very limited and was not retroactive; this meant that if a user used two devices and then logged in, you would lose activity for the user from one of the devices.
