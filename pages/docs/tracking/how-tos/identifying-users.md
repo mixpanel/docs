@@ -164,7 +164,18 @@ We don't recommend doing this in general, as it adds complexity to your identity
 
 If you are on Original ID Merge, we do have a [`$merge`](https://developer.mixpanel.com/reference/identity-merge) API call that can merge two `$user_id`s.
 
+### How to link identified IDs from 3rd-party systems?
+We recommend linking 3rd-party systems’ identified IDs by sending their value in `$device_id`:<3rd-party’s identified ID> and mapped to your main `$user_id`:<your User’s ID> in an event. Those 3rd-party systems can then send events independently using just `$device_id`:<3rd-party’s identified ID>.
+
+When exporting cohorts to 3rd-party systems (not directly integrated with Mixpanel), Mixpanel exports `distinct_id` as either the `$user_id` (for identified users) or `$device_id` (for anonymous users). It is best to designate a special user property and populate it with the 3rd-party’s identifier. This special user property can then be selected as part of the cohort export.
+
 ### What is the status of Mixpanel's legacy `alias` method?
 Prior to March 2020, the only way to connect users together was the `.alias()` method. This was very limited and was not retroactive; this meant that if a user used two devices and then logged in, you would lose activity for the user from one of the devices.
 
 If you set up Mixpanel prior to 2020, you may have implemented with the `alias()` method. Alias is still supported in its original state and we have preserved its documentation [here](https://github.com/mixpanel/docs/blob/main/legacy/aliases.md), but if you want to revisit your identity management strategy, we recommend setting up a new Mixpanel project and using the best practices outlined in this guide.
+
+### Why is there a `$identity_failure_reason` and `$distinct_id_before_identity` in my event?
+The `$identity_failure_reason` property will be populated with a value `errAnonDistinctIdAssignedAlready` if the `$device_id` passed was already linked to another `$user_id`. The `$device_id` will be ignored and the `$user_id`, in the same event, will be used as the `distinct_id` for the event. 
+
+The `$distinct_id_before_identity` property stores the original `distinct_id` (which was `$device:`<value for $device_id>) when the event was sent to Mixpanel before being mapped to the `$user_id`.
+
