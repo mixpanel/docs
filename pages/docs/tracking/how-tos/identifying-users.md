@@ -97,7 +97,7 @@ Let's walk through a few user flows where ID Merge is useful. Under the hood, Mi
 
 ## Simplified vs Original ID Merge
 
-In March 2023, Mixpanel released Simplified ID Merge as a simpler, opt-in alternative to Original ID Merge. 
+In March 2023, Mixpanel released Simplified ID Merge as a simpler, opt-in alternative to Original ID Merge.
 
 The simplified API is an easier to implement interface with the same core functionality as the original API; however, because the simplified API is newer there are a few third-party partner integrations that need to be updated to work with it (see below). Once third-party support for the simplified API is on par with the original API it will become the default for new organizations.
 
@@ -141,7 +141,7 @@ Customer data platforms partners have their own identity management solutions. T
 ### Key Changes from the Original API
 
 - **`$user_id`/`$device_id` are linked without separate `$identify`, `$merge`, or `$create_alias` events.** For projects on the original API once a user is identified you must send one of these three special event types to link the two identities. In the simplified API the `$identify`, `$merge`, and `$create_alias` events no longer have any special meaning and will be ignored. Instead, in projects on the simplified API, identities are linked using the `$user_id` and `$device_id` properties on regular events as described in the simplified API documentation.
-- **`$distinct_id` is predictable and matches `$user_id` for identified users.** In the original API IDs are grouped into identity clusters and any ID within the cluster might become the “canonical” distinct ID, which can be any ID in the cluster. In the simplified API `$user_id` and `$distinct_id` will always match once the user is identified.
+- **`$distinct_id` is predictable and matches `$user_id` for identified users.** In the original API IDs are grouped into identity clusters and any ID within the cluster might become the “canonical” distinct ID, which can be any ID in the cluster. In the simplified API, the `$distinct_id` will always be the `$user_id` that you provide, once the user is identified.
 - **There is no limit on the number of `$device_id`s that can be merged into a single `$user_id`.** In the original API a maximum of 500 IDs can be merged into a single cluster. In the simplified API there is no similar restriction, although you can only merge `$device_id`s into `$user_id`s. It is not possible to merge `$user_id`s with each other.
 
 ## FAQ
