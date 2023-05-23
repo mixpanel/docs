@@ -10,7 +10,7 @@ So let's dive in and learn how to build an effective Product Analytics Strategy 
 
 ## Importance of Analytics Strategy 
 
-https://www.loom.com/share/7d23f655e0fa4781b48434f3f719bab8
+<div style="position: relative; padding-bottom: 56.25%; height: 0;"><iframe src="https://www.loom.com/embed/7d23f655e0fa4781b48434f3f719bab8" frameborder="0" webkitallowfullscreen mozallowfullscreen allowfullscreen style="position: absolute; top: 0; left: 0; width: 100%; height: 100%;"></iframe></div>
 
 Having a solid Analytics Strategy in place will enable your business with :  
 
@@ -61,7 +61,7 @@ Mixpanel’s measurement framework is composed of a Focus metric, which typicall
 
 Now let’s dive into each of these metrics a little further and go through an example of a measurement framework together. For this exercise, we’ll be using a video streaming product as an example : 
 
-https://www.loom.com/share/e6568ba2034f431d97c19cd874fbc0d8
+<div style="position: relative; padding-bottom: 56.25%; height: 0;"><iframe src="https://www.loom.com/embed/e6568ba2034f431d97c19cd874fbc0d8" frameborder="0" webkitallowfullscreen mozallowfullscreen allowfullscreen style="position: absolute; top: 0; left: 0; width: 100%; height: 100%;"></iframe></div>
 
 **Do-It Yourself Template**
 
