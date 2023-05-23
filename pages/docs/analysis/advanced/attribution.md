@@ -28,12 +28,12 @@ Step 2 - Attribution makes sense only when distributing the conversion metric ac
 
 Step 3 - In the second layer that opens up, choose the property you want to break-down by (eg. utm_medium)  
 
-Step 4 - You have a working attribution model.  By default, Mixpanel will assign the metric and Last touch model with a 30 day lookback window. To change the model, head to the metric section
+Step 4 - You have a working attribution model.  By default, Mixpanel will assign the metric the Last touch model with a 30 day lookback window. To change the model, head to the metric section
 
 <img width="556" alt="Untitled 1" src="https://github.com/mixpanel/docs/assets/2077899/ccece38b-1a94-4516-9f4a-a6f1f2be1857">
 
 👉🏽 NOTE: if you are running attribution predominantly on utm_medium, utm_source, utm_campaign, make sure you’re tracking utm parameters as event properties on every user touchpoint. 
-If you use a Mixpanel js-sdk, we’ve updated our sdk to track utm parameters more effectively to support multi-touch attribution models. **Please go [update your js-sdk](https://developer.mixpanel.com/docs/javascript#tracking-utm-parameters) today.**
+If you use a Mixpanel js-sdk, we’ve updated our sdk to track utm parameters more effectively to support multi-touch attribution models. 
 
 ## Attribution Models
 
