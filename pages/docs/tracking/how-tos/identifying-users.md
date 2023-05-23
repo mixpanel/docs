@@ -149,6 +149,11 @@ Customer data platforms partners have their own identity management solutions. T
 ### What does Mixpanel recommend using as the `$user_id`?
 We recommend using an ID that is unique to each user and does not change, for example a database ID. While using an identifier like email may be more convenient, keep in mind that you cannot merge 2 `$user_id`s or change a `$user_id`, so if the user changes their email, they will count as a separate user.
 
+### How long does it take for the `$device_id` -> `$user_id` mapping to take effect?
+For debugging purposes, the Activity Feed view of a single user is updated in real-time (<1 minute delay). You can get to the Activity Feed by navigating to [Users](https://mixpanel.com/report/users) and selecting a given user.
+
+It may take up to 24 hours for this mapping to propogate to all other parts of the system.
+
 ### How does this relate to User Profiles?
 [User Profiles](/docs/tracking/how-tos/user-profiles) are set directly on `$distinct_ids`, not on `$user_ids` or `$device_ids`. We recommend waiting until after a user is identified before setting user profile properties.
 
