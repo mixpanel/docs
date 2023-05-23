@@ -15,7 +15,7 @@ The Marketo integration with Mixpanel is a turn-key integration that allows user
 
 ## Permissions
 
-You must be a Mixpanel project admin to use the Google Ads data integration.
+You must be a Mixpanel project admin to use the Marketo data integration.
 
 ## Enable the Integration
 
