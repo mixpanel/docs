@@ -10,9 +10,11 @@ So let's dive in and learn how to build an effective Product Analytics Strategy 
 
 ## Importance of Analytics Strategy 
 
-<div style="position: relative; padding-bottom: 56.25%; height: 0;"><iframe src="https://www.loom.com/embed/7d23f655e0fa4781b48434f3f719bab8" frameborder="0" webkitallowfullscreen mozallowfullscreen allowfullscreen style="position: absolute; top: 0; left: 0; width: 100%; height: 100%;"></iframe></div>
+<p style={{ position: 'relative', paddingBottom: '56.25%', height: 0, overflow: 'hidden' }}>
+  <iframe src="https://www.loom.com/embed/7d23f655e0fa4781b48434f3f719bab8" frameborder="0" style={{ position: 'absolute', top: 0, left: 0, width: '100%', height: '100%' }} allowfullscreen></iframe>
+</p>
 
-Having a solid Analytics Strategy in place will enable your business with :  
+Having a solid Analytics Strategy in place will enable your business with: 
 
 1. **Data-driven Decision Making**: It helps you understand how your product is performing, identify areas for improvement, and uncover opportunities for growth. With a data-driven approach, you can optimize your product, prioritize resources, and align your efforts with your product goals.
 
