@@ -84,9 +84,9 @@ import (
 func main() {
 	ctx := context.Background()
 
-	mp := mixpanel.NewClient("PROJECT_ID", "PROJECT_TOKEN", "PROJECT_SECRET")
+	mp := mixpanel.NewClient("PROJECT_TOKEN")
 	if err := mp.Track(ctx, []*mixpanel.Event{
-		mp.NewEvent("My New Event", "", map[string]any{
+		mp.NewEvent("Signed Up", "", map[string]any{
 			"Signup Type": "Referral",
 		}),
 	}); err != nil {
