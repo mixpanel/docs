@@ -85,7 +85,7 @@ Setting up your framework is a crucial first step. Below is a blank template for
 
 Now that you have an idea of what events that you’d want to track, the next question is how you’d structure these events. It’s important to consider the proper level of event depth when designing your event naming conventions. For instance, these are two extremes we steer customers away from: Events that are too broad and events that are too narrow.
 
-<img width="529" alt="bestpractices1" src="https://github.com/mixpanel/docs/assets/133952937/0180ba2c-cc07-48b0-93d3-bfee7ef88aa9">
+![bestpractices1](https://github.com/mixpanel/docs/assets/133952937/0180ba2c-cc07-48b0-93d3-bfee7ef88aa9)
 
 Where events are too broad, you’d end up having to create filters for every single disparate action you want to measure. Conversely, where events are too narrow, you need to do a lot of work every time to compare the actions against one another.
 
@@ -98,11 +98,11 @@ Consider the event `Start Signup`. Top questions we might want to answer with th
 
 Here’s an [example](https://mixpanel.com/s/35Jpng) of an implementation we *don’t* recommend.
 
-<img width="1166" alt="bestpractices2" src="https://github.com/mixpanel/docs/assets/133952937/1e4f90c6-c914-45f4-ad03-583ac26a56ff">
+![bestpractices2](https://github.com/mixpanel/docs/assets/133952937/1e4f90c6-c914-45f4-ad03-583ac26a56ff)
 
 Here, the question you’d want to answer most is: Which signup platform drives the most sign ups? If our events are too narrow, e.g. homepage/start_signup/apple, we’d have to manually add every single event where the signup occurs in order to do a comparison. It’s much easier to capture it as the event Start Signup and use event properties to describe the different originating pages / screens and signup platforms:
 
-<img width="1167" alt="bestpractices3" src="https://github.com/mixpanel/docs/assets/133952937/f09e96c8-8fa3-47c7-8a81-704e9fad3592">
+![bestpractices3](https://github.com/mixpanel/docs/assets/133952937/f09e96c8-8fa3-47c7-8a81-704e9fad3592)
 
 
 To get all signup starts via the ideal state structure, the user only needs to query the single signup event and apply the flow and platform breakdowns. Once that's complete, the user can easily see that the homepage flow drives the most traffic with Apple out-performing other platforms across the board.
