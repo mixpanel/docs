@@ -12,6 +12,7 @@ updatedAt: "2023-05-23T20:07:00.387Z"
 The Mixpanel Go library is designed to be used for scripting, or in circumstances when a client can't or won't run client side scripts
 
 The [Full API Reference](https://pkg.go.dev/github.com/mixpanel/mixpanel-go), [Library Source Code](https://github.com/mixpanel/mixpanel-go).
+Also checkout our [Examples](https://github.com/mixpanel/mixpanel-go/tree/main/examples)
 
 ## Installing the Library
 
