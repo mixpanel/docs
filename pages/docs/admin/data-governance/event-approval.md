@@ -9,7 +9,7 @@ metadata:
 
 ## Overview
 
-Event Approval is a Data Governance feature for organizations that wan't visibility and control over all new events being sent to their Mixpanel project. The feature is a project-level setting for Enterprise accounts that hides new events by default and notifies admins when those new events come in so they can then mark it as visible for everyone to see. 
+Event Approval is a Data Governance feature for organizations that want visibility and control over all new events being sent to their Mixpanel project. The feature is a project-level setting for Enterprise accounts that hides new events by default and notifies admins when those new events come in so they can then mark it as visible for everyone to see. 
 
 
 ### Enabling Event Approval
