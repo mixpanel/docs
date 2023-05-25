@@ -509,7 +509,7 @@ The way we pick the top segments differs according to the type of query. We choo
 
 **Why are we adding new limits to breakdowns in reports?**
 
-Interactive analysis is key to finding great insights [Ofrom your data - you ask a question, get an answer, ask another question building on that answer and you finally get an insight which is key, and you trust the answer because you experienced the journey to get there. If results take a long time to return, the interactivity goes away from interactive analysis, which takes away the magic.
+Interactive analysis is key to finding great insights from your data - you ask a question, get an answer, ask another question building on that answer and you finally get an insight which is key, and you trust the answer because you experienced the journey to get there. If results take a long time to return, the interactivity goes away from interactive analysis, which takes away the magic.
 
 **How will I know if my results are being pruned?**
 
