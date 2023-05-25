@@ -261,11 +261,11 @@ Steps
 
 ### FAQ
 
-- **Which all reports does Custom Buckets work on?**
+- **Which reports does Custom Buckets work on?**
 
     This feature is available in the Insights, Funnels and Retention reports.
 
-- **Which all property types does this support?**
+- **Which property types does this support?**
 
     Custom Buckets work on String, Numeric and List data type
 
@@ -313,11 +313,11 @@ Steps
 
         ![/12834113971348](/12834113971348.png)
 
-    - **How do I get not contains or not equal to?**
+    - **How do I get "not contains" or "not equal to"?**
 
-        These will auto-generate under (remaining values). So just select what should be included
+        These values will auto-generate under (remaining values). So just select what should be included
 
-        For example — In the below (remaining values) is not equal to US or India
+        For example — the (remaining values) below is not equal to US or India
 
         ![/12834082079380](/12834082079380.png)
 
@@ -615,7 +615,7 @@ Now let's assume that *"List of ProductIDs"* is mapped to a [lookup table](/d
 
         | "List of ProductIDs" | Any | = (equals) | "P1" |
         | --- | --- | --- | --- |
-    - **Answer:***PurchaseCompleted - TOTAL*: 1
+    - **Answer:** *PurchaseCompleted - TOTAL*: 1
     - **What's going on here?** The "Any" operator filters down events when the filtered value matches ANY item in the list property. So in this example, the only event in which "List of ProductIDs" has "P1" present even once is Event 1, so the total event count for this filter is 1.
 - Filter by all elements of a list property
     - **Question**: TOTAL of *PurchaseCompleted* filtered by
@@ -623,7 +623,7 @@ Now let's assume that *"List of ProductIDs"* is mapped to a [lookup table](/d
 
         | "List of ProductIDs" | All | = (equals) | "P1" |
         | --- | --- | --- | --- |
-    - **Answer:***PurchaseCompleted - TOTAL*: 0
+    - **Answer:** *PurchaseCompleted - TOTAL*: 0
     - **What's going on here?** The "All" operator filters down events when the filtered value matches ALL of the items in the list property. So in this example, there is no event in which "List of ProductIDs" has all the elements equal to "P1", so the total event count for this filter is 0.
 - Filter by list property and broken down by list property
     - **Question:** TOTAL of PurchaseCompleted filtered byBroken down by "List of ProductIDs"
