@@ -40,7 +40,7 @@ Mixpanel events are sent using an instance of the Mixpanel class.
 
 You can instantiate an instance of Mixpanel with a String containing your Mixpanel project token. You can find your project token in the settings dialog of the Mixpanel web application.
 
-Once you have an instance of the tracker, you can track events by providing the event name and properties to [Track](https://pkg.go.dev/github.com/mixpanel/mixpanel-go#Mixpanel.Track).
+Once you have an instance of the Mixpanel Client, you can track events by providing the event name and properties to [Track](https://pkg.go.dev/github.com/mixpanel/mixpanel-go#Mixpanel.Track).
 ```go
 package main
 
