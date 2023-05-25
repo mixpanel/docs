@@ -82,7 +82,23 @@ Instances of Mixpanel have a method to send profile updates.
 // create or update a profile with First Name, Last Name,
 // E-Mail Address, Phone Number, and Favorite Color
 // without updating geolocation data or $last_seen
+exampleUser := mixpanel.NewPeopleProperties("12345", map[string]any{
+	"$first_name":    "John",
+	"$last_name":     "Doe",
+	"$email":         "john.doe@example.com",
+	"$phone":         "5555555555",
+	"Favorite Color": "red",
+	"$ip":            0,
+})
 
+err := mp.PeopleSet(ctx,
+	[]*mixpanel.PeopleProperties{
+		exampleUser,
+	},
+)
 ```
 
 This call to [PeopleSet](https://pkg.go.dev/github.com/mixpanel/mixpanel-go#Mixpanel.PeopleSet)</a> will change the value of properties on user 12345's profile. If there isn't a profile with distinct_id 12345 in Mixpanel already, a new profile will be created. If user 12345 already has has any of these properties set on their profile, the old values will be overwritten with the new ones.
+
+### Other Types of Profile Updates
+There are a few other types of profile updates. You can get more information about them from the [Mixpanel Library API Reference](https://pkg.go.dev/github.com/mixpanel/mixpanel-go).
