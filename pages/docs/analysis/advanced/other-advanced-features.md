@@ -307,7 +307,7 @@ Steps
         - (not set) as explained above for string refers to property values that have not been associated to any specific property value
         - (non numeric values) refers to set values that have just been sent in as non-numeric data type. For example, you’re looking to track time spent and have coded that as a numeric property, but for some reason some values are tracked as “a”, or “b” which are not-numeric.
 - **Some Common How-do-I(s)**
-    - **How do i know is set, (not set)?**
+    - **How do I know is set, (not set)?**
 
         (not set) is automatically computed and will always show up in the UI. You don’t have to select (not set) as a segment to know how many events fall in there. So only figure how would you like to segment your (set) values.
 
@@ -321,7 +321,7 @@ Steps
 
         ![/12834082079380](/12834082079380.png)
 
-    - **In number — how do i get a bucket of just 0?**
+    - **In Number: how do I get a bucket of just 0?**
 
         If you’re purely looking for just how many people have value “0”, we would encourage you to typecast this to a string property and get that.
 
