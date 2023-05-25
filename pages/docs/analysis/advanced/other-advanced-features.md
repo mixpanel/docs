@@ -290,9 +290,9 @@ Steps
     Yes you can as long as the data-type you’ve changed the property to is supported.
 
 - **Understanding the details:**
-    - **In Numeric: Can I change the operators on the upper and lower bound?**If you are looking for more control on the operators, please create a [custom property](/docs/analysis/advanced/custom-properties#creating-a-custom-property).
+    - **In Numeric: Can I change the operators on the upper and lower bound?** 
 
-        No, the operators have been fixed. The lower bound is always strictly greater than (≥) and the upper bound is just lesser than(<)
+        No, the operators have been fixed. The lower bound is always strictly greater than (≥) and the upper bound is just lesser than (<). If you are looking for more control on the operators, please create a [custom property](/docs/analysis/advanced/custom-properties#creating-a-custom-property).
 
     - **In String: Is (not set) included in (remaining values)?**
 
