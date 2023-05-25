@@ -259,7 +259,7 @@ Steps
     ![/12833899595284](/12833899595284.png)
 
 
-### Frequently Asked Questions
+### FAQ
 
 - **Which all reports does Custom Buckets work on?**
 
