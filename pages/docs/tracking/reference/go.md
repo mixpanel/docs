@@ -148,16 +148,14 @@ To connect group information to a user profile, include the `group_key` and `gro
 // Create or update a user profile with 'first name', 'last name',
 // 'favorite color' properties, and a group_id = company
 // with a group_key = Mixpanel
-	mp.PeopleSet(ctx, []*mixpanel.PeopleProperties{
-		mixpanel.NewPeopleProperties("12345", map[string]any{
-			"$first_name":    "John",
-			"$last_name":     "Doe",
-			"$email":         "john.doe@example.com",
-			"$phone":         "5555555555",
-			"Favorite Color": "red",
-			"$ip":            0,
-		}),
-	})
+mp.PeopleSet(ctx, []*mixpanel.PeopleProperties{
+	mixpanel.NewPeopleProperties("12345", map[string]any{
+		"$first_name":    "John",
+		"$last_name":     "Doe",
+		"Favorite Color": "red",
+		"Company":        "Mixpanel",
+	}),
+})
 ```
 ### Creating Group Profiles
 It is possible to create a Group profile that is similar to a user profile. You must call a property-setting method like [GroupSet](https://pkg.go.dev/github.com/mixpanel/mixpanel-go#Mixpanel.GroupSet) to create a group profile. It is important to include the `group_key`, `group_id`, and at least one property so that the profile is not empty.
