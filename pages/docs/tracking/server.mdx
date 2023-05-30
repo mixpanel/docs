@@ -84,7 +84,7 @@ import (
 func main() {
 	ctx := context.Background()
 
-	mp := mixpanel.NewClient("PROJECT_TOKEN")
+	mp := mixpanel.NewApiClient("PROJECT_TOKEN")
 	if err := mp.Track(ctx, []*mixpanel.Event{
 		mp.NewEvent("Signed Up", "", map[string]any{
 			"Signup Type": "Referral",
@@ -93,6 +93,7 @@ func main() {
 		panic(err)
 	}
 }
+
 ```
 </Tab>
 <Tab>
