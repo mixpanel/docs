@@ -101,7 +101,7 @@ In general, if you use [identify](https://mixpanel.github.io/mixpanel-android/co
 ## Call Reset at Logout
 [Reset](https://mixpanel.github.io/mixpanel-android/com/mixpanel/android/mpmetrics/MixpanelAPI.html#reset()) generates a new random distinct_id and clears super properties. Call reset to clear data attributed to a user when that user logs out. This allows you to handle multiple users on a single device. For more information about maintaining user identity, see the [Identifying Users](/docs/tracking/how-tos/identifying-users) article.
 
-Note: Reset should only be used if multiple users share a device. Calling reset frequently can lead to users quickly exceeding the 500 distinct_id per identity cluster limit. Once the 500 limit is reached you will no longer be able to add additional distinct_ids to the users identity cluster.
+Note: Reset should only be used if multiple users share a device. If you're using our [original ID Merge](https://docs.mixpanel.com/docs/tracking/how-tos/identifying-users#simplified-vs-original-id-merge:~:text=Simplified%20vs%20Original%20ID%20Merge), calling reset frequently can lead to users quickly exceeding the 500 distinct_id per identity cluster limit. Once the 500 limit is reached you will no longer be able to add additional distinct_ids to the users identity cluster.
 
 
 ## Storing User Profiles
