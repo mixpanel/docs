@@ -52,7 +52,7 @@ import (
 func main() {
 	ctx := context.Background()
 
-	mp := mixpanel.NewClient("PROJECT_TOKEN")
+	mp := mixpanel.NewApiClient("PROJECT_TOKEN")
 	if err := mp.Track(ctx, []*mixpanel.Event{
 		mp.NewEvent("Signed Up", "", map[string]any{
 			"Signup Type": "Referral",
@@ -61,7 +61,6 @@ func main() {
 		panic(err)
 	}
 }
-
 ```
 
 Mixpanel can determine default geolocation data (\$city, $region, mp_country_code) using the IP address on the incoming request. As all server-side calls will likely originate from the same IP (that is, the IP of your server), this can have the unintended effect of setting the location of all of your users to the location of your datacenter. [Read about best practices for geolocation with server-side implementations](https://mixpanel.com/blog/2014/09/08/everything-about-server-side-updates/).
