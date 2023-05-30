@@ -24,14 +24,14 @@ go get github.com/mixpanel/mixpanel-go
 Once the library is installed, use the Mixpanel library in your applications with:
 
 ```go
-mp := mixpanel.NewClient("PROJECT_TOKEN")
+mp := mixpanel.NewApiClient("PROJECT_TOKEN")
 ```
 
 ## EU Data Residency
 
 Route data to Mixpanel's EU servers by using the EuResidency option
 ```go
-mp := mixpanel.NewClient("PROJECT_TOKEN", mixpanel.EuResidency())
+mp := mixpanel.NewApiClient("PROJECT_TOKEN", mixpanel.EuResidency())
 ```
 
 ## Sending Events
