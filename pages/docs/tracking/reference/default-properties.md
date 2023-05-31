@@ -9,6 +9,10 @@ Mixpanel's client SDKs automatically collect certain properties on every event. 
 
 | Raw Name | Display Name | Description |
 | --- | --- | --- |
+| $city | City | The city of the event sender parsed from the IP property or the Latitude and Longitude properties. |
+| $region | Region | The region (state or province) of the event sender parsed from the IP property or the Latitude and Longitude properties. Refer to Geo Source ($geo_source) below for more detail. |
+| mp_country_code | Country | The country of the event sender parsed from the IP property or the Latitude and Longitude properties. Refer to Geo Source ($geo_source) below for more detail. |
+| $geo_source | Geo Source | This defines the method used to establish the location properties on that same entity. Location properties include Country, Region, and City. |
 | $browser | Browser | Name of the browser. |
 | $browser_version | Browser Version | Version of the browser. |
 | $device | Device | Name of the event sender’s device, if they’re on mobile web. |
