@@ -87,7 +87,7 @@ All three are key/value stores that augment your event data with additional meta
 
 **[Group profiles](/docs/analysis/advanced/group-analytics)** are joined to events via an event property you specify as a group key. Once you create a new group key, we will add an additional index for your events on that property. This allows you to do funnels or retention by that property instead of by `distinct_id`.
 
-**[Lookup tables](docs/tracking/how-tos/lookup-tables)** are joined to events and user profiles using the join key that you specify. Unlike group profiles, your events are *not* indexed by the join key. You can use lookup table properties to do filtering, breakdowns, etc but you can't do things like funnels analysis using the join key for uniques. Note: Currently, group profile properties cannot be lookup table keys.
+**[Lookup tables](/docs/tracking/how-tos/lookup-tables)** are joined to events and user profiles using the join key that you specify. Unlike group profiles, your events are *not* indexed by the join key. You can use lookup table properties to do filtering, breakdowns, etc but you can't do things like funnels analysis using the join key for uniques. Note: Currently, group profile properties cannot be lookup table keys.
 
 | Profile Type | Can Specify Join Key | Can Use Join Key For Uniques Analysis | Can Be Referenced From Other Profiles |
 |---|---|---|---|
