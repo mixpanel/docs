@@ -192,7 +192,7 @@ As a result, operations such as extract, transform, and load, need a quick times
 
 Organization owners and project owners in a project can transfer that project to another organization of which they have permissions.
 
-When a user transfers a project to another organization, the project members don't transfer with the project. As a result, project members will lose access to the project if they aren't members of the organization.
+When a user transfers a project to another organization, the project members and service accounts don't transfer with the project. As a result, project members will lose access to the project if they aren't members of the target organization, and service accounts will need to be recreated.
 
 To transfer a project to another organization:
 
