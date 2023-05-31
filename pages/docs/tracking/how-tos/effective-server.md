@@ -36,7 +36,7 @@ def track_to_mp(request, event_name, properties):
     "$os": parsed["os"]["family"],
   })
 
-  properties["$ip"] = request.remote_addr
+  properties["ip"] = request.remote_addr
   mp.track(request.user_id, "Signed Up", properties)
 
 def handle_signup(request):
