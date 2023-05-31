@@ -272,7 +272,7 @@ mMixpanel.getGroup("group key", "group id").setMap((new HashMap<>()).put("SET MA
 
 Mixpanel provides other functions for working with Group Profiles, you can see the full reference [here](http://mixpanel.github.io/mixpanel-android/com/mixpanel/android/mpmetrics/MixpanelAPI.Group.html).
 
-# Debugging and Logging
+## Debugging and Logging
 
 Enabling Mixpanel debugging and logging allows you to see the debug output from the Mixpanel Android library. This may be useful in determining when track calls go out or in-app messages are fetched. To enable Mixpanel debugging and logging, you will want to add the following permission within your `AndroidManifest.xml` inside the `<application>` tag:
 ```xml Java

@@ -134,3 +134,10 @@ The following events are exempt from MTU calculations:
 - SMS Send to Carrier
 
 
+## Comparing Metrics
+
+Braze can be configured to push events to Mixpanel on actions ([review full list of events on Braze's docs](https://www.braze.com/docs/partners/data_and_infrastructure_agility/analytics/mixpanel_for_currents/#supported-currents-events)). A consideration to have is that both platforms can present measurements in different ways (although it's based on the same underlying data).
+
+For uniques specially, on the Mixpanel side, this is calculated based on the unique distinct_id values (unique user IDs) that the events are related to. This can differ on Braze; as an example, unique email opens are measured on the unique number of users/devices that opened the message on a 7-day range (so a user opening the email twice, 2 weeks apart could be considered 2 uniques).
+
+You can reference Braze's calculations [on their docs](https://www.braze.com/docs/user_guide/message_building_by_channel/email/reporting_and_analytics/analytics_glossary#:~:text=The%20total%20number%20of%20delivered%20emails%20that%20have%20been%20opened%20by%20a%20single%20user%20or%20machine%20at%20least%20once.%20This%20is%20tracked%20over%20a%207%20day%20period%20for%20Email) to understand the differences you can see in reporting.

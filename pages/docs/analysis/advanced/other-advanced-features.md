@@ -259,13 +259,13 @@ Steps
     ![/12833899595284](/12833899595284.png)
 
 
-### Frequently Asked Questions
+### FAQ
 
-- **Which all reports does Custom Buckets work on?**
+- **Which reports does Custom Buckets work on?**
 
     This feature is available in the Insights, Funnels and Retention reports.
 
-- **Which all property types does this support?**
+- **Which property types does this support?**
 
     Custom Buckets work on String, Numeric and List data type
 
@@ -290,9 +290,9 @@ Steps
     Yes you can as long as the data-type you’ve changed the property to is supported.
 
 - **Understanding the details:**
-    - **In Numeric: Can I change the operators on the upper and lower bound?**If you are looking for more control on the operators, please create a [custom property](/docs/analysis/advanced/custom-properties#creating-a-custom-property).
+    - **In Numeric: Can I change the operators on the upper and lower bound?** 
 
-        No, the operators have been fixed. The lower bound is always strictly greater than (≥) and the upper bound is just lesser than(<)
+        No, the operators have been fixed. The lower bound is always strictly greater than (≥) and the upper bound is just lesser than (<). If you are looking for more control on the operators, please create a [custom property](/docs/analysis/advanced/custom-properties#creating-a-custom-property).
 
     - **In String: Is (not set) included in (remaining values)?**
 
@@ -307,21 +307,21 @@ Steps
         - (not set) as explained above for string refers to property values that have not been associated to any specific property value
         - (non numeric values) refers to set values that have just been sent in as non-numeric data type. For example, you’re looking to track time spent and have coded that as a numeric property, but for some reason some values are tracked as “a”, or “b” which are not-numeric.
 - **Some Common How-do-I(s)**
-    - **How do i know is set, (not set)?**
+    - **How do I know is set, (not set)?**
 
         (not set) is automatically computed and will always show up in the UI. You don’t have to select (not set) as a segment to know how many events fall in there. So only figure how would you like to segment your (set) values.
 
         ![/12834113971348](/12834113971348.png)
 
-    - **How do I get not contains or not equal to?**
+    - **How do I get "not contains" or "not equal to"?**
 
-        These will auto-generate under (remaining values). So just select what should be included
+        These values will auto-generate under (remaining values). So just select what should be included
 
-        For example — In the below (remaining values) is not equal to US or India
+        For example — the (remaining values) below is not equal to US or India
 
         ![/12834082079380](/12834082079380.png)
 
-    - **In number — how do i get a bucket of just 0?**
+    - **In Number: how do I get a bucket of just 0?**
 
         If you’re purely looking for just how many people have value “0”, we would encourage you to typecast this to a string property and get that.
 
@@ -615,7 +615,7 @@ Now let's assume that *"List of ProductIDs"* is mapped to a [lookup table](/d
 
         | "List of ProductIDs" | Any | = (equals) | "P1" |
         | --- | --- | --- | --- |
-    - **Answer:***PurchaseCompleted - TOTAL*: 1
+    - **Answer:** *PurchaseCompleted - TOTAL*: 1
     - **What's going on here?** The "Any" operator filters down events when the filtered value matches ANY item in the list property. So in this example, the only event in which "List of ProductIDs" has "P1" present even once is Event 1, so the total event count for this filter is 1.
 - Filter by all elements of a list property
     - **Question**: TOTAL of *PurchaseCompleted* filtered by
@@ -623,7 +623,7 @@ Now let's assume that *"List of ProductIDs"* is mapped to a [lookup table](/d
 
         | "List of ProductIDs" | All | = (equals) | "P1" |
         | --- | --- | --- | --- |
-    - **Answer:***PurchaseCompleted - TOTAL*: 0
+    - **Answer:** *PurchaseCompleted - TOTAL*: 0
     - **What's going on here?** The "All" operator filters down events when the filtered value matches ALL of the items in the list property. So in this example, there is no event in which "List of ProductIDs" has all the elements equal to "P1", so the total event count for this filter is 0.
 - Filter by list property and broken down by list property
     - **Question:** TOTAL of PurchaseCompleted filtered byBroken down by "List of ProductIDs"

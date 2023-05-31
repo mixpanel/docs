@@ -9,7 +9,7 @@ metadata:
 
 ## Overview
 
-Event Approval is a Data Governance feature for organizations that wan't visibility and control over all new events being sent to their Mixpanel project. The feature is a project-level setting for Enterprise accounts that hides new events by default and notifies admins when those new events come in so they can then mark it as visible for everyone to see. 
+Event Approval is a Data Governance feature for organizations that want visibility and control over all new events being sent to their Mixpanel project. The feature is a project-level setting for Enterprise accounts that hides new events by default and notifies admins when those new events come in so they can then mark it as visible for everyone to see. 
 
 
 ### Enabling Event Approval
@@ -22,7 +22,7 @@ Admins can also set up a Slack channel to be notified when a new event is ingest
 
 Only Project Admins or Owners can enable this setting, and it's only available on Enterprise plans. 
 
-![data-governance](/Event-Approval.png)
+![event-approval-setup](/Event-Approval.png)
 
 
 ### Lexicon Worfklow
@@ -36,5 +36,5 @@ Events will be marked as "New" as long as the following criteria are met:
 - It is hidden
 - It was created within the last 30 days
 
-![data-governance](/Lexicon-Event-Approval.png)
+![lexicon-event-approval](/Lexicon-Event-Approval.png)
 

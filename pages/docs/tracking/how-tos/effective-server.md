@@ -77,21 +77,34 @@ def handle_signup(request):
 
 
 ## Identifying Users
-Our server libraries normally require that you specify a `user_id` parameter for each event. If you know who the user is at the time that the event is tracked, simply set this to that user's ID in your internal database (ie: that user's primary key in your "users" table).
+Our server libraries normally require that you specify the distinct_id value for each event. If you _don't_ know the user's identity at the time the event is tracked, then they're an anonymous user. When using our Web or Mobile SDKs, Mixpanel will automatically generate an ID that's local to that user's device. This ID will persist on all events tracked by that user on that device, until you call `identify()` or `reset()`. More on that in our [identity management guide](/docs/tracking/how-tos/identifying-users).
 
-If _don't_ know the user's identity at the time the event is tracked, then they're an anonymous user. When using our Web or Mobile SDKs, Mixpanel will automatically generate an ID that's local to that user's device. This ID will persist on all events tracked by that user on that device, until you call `identify()` or `reset()`. More on that in our [identity management guide](/docs/tracking/how-tos/identifying-users).
+If you're tracking from servers, you'll need to generate and manage that ID yourself. When you have hybrid implementations (events also come from the client-side), you could optionally send the ID generated on the client to the server and keep it as a session variable instead of generating a new one.
 
-If you're tracking from servers, you'll need to generate and manage that ID yourself. **Note: If you're doing this, make sure you leave the _user_id_ positional argument empty in your track calls. See the Python code sample below.**
+As an outline, you will want to follow the approach below:
 
-### Step 1: Generate an ID
+### Step 1: Generate an anonymous ID
 The key is to have an ID that is unique to each user and persists during that user's session. We recommend generating a UUID and storing that value in a cookie. All common server frameworks provide a simple way to set and retrieve cookies per request.
 
-### Step 2: Set `$device_id` to that ID
-When tracking events from your server, set the `$device_id` property of that event to the ID for the user performing that event.
+### Step 2: Leverage this ID for anonymous events
+When tracking events from your server, set the `distinct_id` property of events to the anonymous ID generated. 
 
-### Step 3: Set `$user_id` once the user logs in
-Once the user logs in, you know their true ID. Set the `$user_id` property to that ID. Continue setting `$device_id` to the ID generated in step 1. If Mixpanel receives an event with both `$device_id` and `$user_id` set, it will create a link between those two users. This is essential to track pre-login and post-login behavior accurately.
+***In case your project has Simplied ID management specifically***, and the user is anonymous, you should include a property named `$device_id` with this value. You can then optionally also include the `distinct_id` (requires for you to prefix the ID with the string `'device:'`) but do note that if you don't include it, it will be assumed. You can see more in the python code example. 
 
+### Step 3: Set the authenticated ID once users log in
+
+Once the user logs in, you know their true ID, you should leverage the new ID for the user. Depending on the ID management model on your project (see project settings), you can do the following:
+
+**If you are using the original ID merge API**
+
+Send an `$identify` event combining the anonymous and authenticated IDs. Events after this should use the authenticated ID. Learn more in our [ID Merge guide](identifying-users).
+
+**If you are using the Simplified ID merge API**
+Set the `$user_id` property to that ID. Continue setting `$device_id` to the ID generated in step 1. If Mixpanel receives an event with both `$device_id` and `$user_id` set, it will create a link between those two users. This is essential to track pre-login and post-login behavior accurately.
+
+The `distinct_id` will be assumed but if you include it, it should be the same value as the `$user_id`.
+
+**Example python code**
 
 Here's a pseudocode example using Django's [cookies](https://django-book.readthedocs.io/en/latest/chapter14.html#cookies) and [authentication](https://django-book.readthedocs.io/en/latest/chapter14.html#using-users). It assumes the client is setting and sending cookies:
 ```python
@@ -108,13 +121,17 @@ def track_to_mp(request, event_name, properties):
   
   # Note: leave the first argument blank here, since we're passing $device_id and $user_id as properties.
   mp.track("", event_name, properties)
+
+def identify_user(request):
+  properties = {
+    "$device_id": uuid.uuid4(),
+    "$identified_id": request.user.username
+
+  }
+  track_to_mp(request, "$identify", properties)
   
 def handle_pageview(request):
   response = HTTPResponse("...")
     
   track_to_mp(request, "Pageview", {"page_url": request.page_url})
 ```
-
-Note: if you're on Original ID Merge, you need to send an explicit `$identify` event to link the two IDs. Learn more in our [ID Merge guide](/docs/tracking/how-tos/identifying-users).
-
-

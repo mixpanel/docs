@@ -10,7 +10,7 @@ import { Tab, Tabs } from 'nextra-theme-docs'
 You can use Mixpanel's Server SDKs to send events from your backend servers to Mixpanel. We [recommend](/docs/getting-started/plan-your-implementation#need-to-start-tracking-product-data) server-side tracking, since it is more reliable and easier to maintain than web/mobile tracking.
 
 ## Step 1: Install the SDK
-<Tabs items={['Python', 'Node', 'Ruby', 'Java']}>
+<Tabs items={['Python', 'Node', 'Go', 'Ruby', 'Java']}>
 <Tab>
 ```shell Python
 pip install mixpanel
@@ -19,6 +19,11 @@ pip install mixpanel
 <Tab>
 ```shell Node.js
 npm install mixpanel
+```
+</Tab>
+<Tab>
+```shell Go
+go get github.com/mixpanel/mixpanel-go
 ```
 </Tab>
 <Tab>
@@ -41,7 +46,7 @@ gem install mixpanel-ruby
 ## Step 2: Track your first event
 
 You'll need your Project Token for this, which you can get [here](https://mixpanel.com/settings/project).
-<Tabs items={['Python', 'Node', 'Ruby', 'Java']}>
+<Tabs items={['Python', 'Node', 'Go', 'Ruby', 'Java']}>
 <Tab>
 ```python Python
 from mixpanel import Mixpanel
@@ -65,6 +70,29 @@ mixpanel.track('Signed Up', {
   'distinct_id': user_id,
   'Signup Type': 'Referral'
 })
+```
+</Tab>
+<Tab>
+```go Go
+package main
+
+import (
+	"context"
+	"github.com/mixpanel/mixpanel-go"
+)
+
+func main() {
+	ctx := context.Background()
+
+	mp := mixpanel.NewApiClient("PROJECT_TOKEN")
+	if err := mp.Track(ctx, []*mixpanel.Event{
+		mp.NewEvent("Signed Up", mixpanel.EmptyDistinctID, map[string]any{
+			"Signup Type": "Referral",
+		}),
+	}); err != nil {
+		panic(err)
+	}
+}
 ```
 </Tab>
 <Tab>
@@ -106,4 +134,4 @@ mixpanel.deliver(delivery);",
 
 🎉 Congratulations, you've tracked your first event! You can see it in Mixpanel via the [Events](https://mixpanel.com/report/events) page. 
 
-Don't see your language here? See all our libraries in [Github](https://www.github.com/mixpanel) and our references for [Python](/docs/tracking/reference/python), [Node](/docs/tracking/reference/nodejs), [Ruby](/docs/tracking/reference/ruby), and [Java](/docs/tracking/reference/java). We also have a simple [HTTP API](/docs/tracking/http-api) for any languages we don't support.
+Don't see your language here? See all our libraries in [Github](https://www.github.com/mixpanel) and our references for [Python](/docs/tracking/reference/python), [Node](/docs/tracking/reference/nodejs), [Go](/docs/tracking/reference/go), [Ruby](/docs/tracking/reference/ruby), and [Java](/docs/tracking/reference/java). We also have a simple [HTTP API](/docs/tracking/http-api) for any languages we don't support.

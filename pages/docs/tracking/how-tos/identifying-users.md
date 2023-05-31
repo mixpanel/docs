@@ -179,3 +179,5 @@ The `$identity_failure_reason` property will be populated with a value `errAnonD
 
 The `$distinct_id_before_identity` property stores the original `distinct_id` (which was `$device:`<value for $device_id>) when the event was sent to Mixpanel before being mapped to the `$user_id`.
 
+### Why are my users shown as dropped off even though the events are reflected in their Activity Feed/profiles?  
+Merging identities may take up to 24 hours to properly reflect in Mixpanel reports (except Activity Feed), hence users may be shown as dropped off even though they've performed the events. 
