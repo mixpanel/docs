@@ -148,7 +148,7 @@ func application(_ application: UIApplication,
                  didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
     ...
     // Replace with your Project Token
-    Mixpanel.initialize(token: "Your Token")
+    Mixpanel.initialize(token: "Your Token", trackAutomaticEvents: true)
     Mixpanel.mainInstance().track(event: "Signed Up", properties: [
         "Signup Type": "Referral", 
     ])
