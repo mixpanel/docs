@@ -9,7 +9,7 @@ The hotshard detection step runs in the ingestion pipeline. A counter is maintai
 The counter is best-effort as a result of the underlying systems used to maintain such a large keyspace. 
 
 ## How does hotshard remediation work?
-Once a given entry crosses the threshold, all subsequent matching events are updated to a new (hidden) event - `$hotshard_events` and the `distinct_id` changed to blanks to enable the system to generate a random id which spreads the event across a different shard. The original event name and distinct id are stored in the properties object under `mp_original_event_name` and `mp_original_distinct_id`, respectively.
+Once a given entry crosses the threshold, all subsequent matching events are updated to a new (hidden) event - `$hotshard_events` and the `distinct_id` changed to `""`. Setting the `distinct_id` to an empty string enables the system to generate a random id resulting in the event ending up in a different shard thereby prevening one shard from growing disproportionately larger than the others. The original event name and distinct id are stored in the properties object under `mp_original_event_name` and `mp_original_distinct_id`, respectively.
 
 Original Event - 
 ```json
@@ -23,7 +23,7 @@ Original Event -
 }
 ```
 
-Mutated Event - 
+Updated Event - 
 ```json
 {
   "event": "$hotshard_events",
@@ -36,3 +36,23 @@ Mutated Event -
   }
 }
 ```
+
+These events can be queried from the dashboard just like any other events.
+
+## Recovering from a hotshard
+There are multiple ways to recover depending on needs.
+
+# Do nothing
+Perhaps the data that contributed to a hotshard is not needed for business purposes but is useful to keep around - in such cases, the data is queryable under the `$hotshard_events` event.
+
+# Delete the hotshard data
+The data to be deleted is in two sets - the events belonging to the `distinct_id` that resulted in a hotshard and the updated events after the remediation logic kicked in.
+* For events belonging to the `distinct_id` that resulted in a hotshard, the deletion steps are detailed [here](https://docs.mixpanel.com/docs/other-bits/privacy-and-security/export-or-delete-end-user-data).
+* For `$hotshard_events` events, please [contact](https://mixpanel.com/get-support) our Support Team for the request.
+
+# Fix the data and re-import
+For cases where there is user-identifying information elsewhere in the event data that can be used to set the right values, the recommendation is to run a multi-step process to export, fix, and re-import the data.
+* Export the data using the [export API](https://developer.mixpanel.com/reference/raw-event-export).
+* Delete the existing data in the Mixpanel project by following the steps detailed above.
+* Fix the data by changing the `distinct_id` field to the expected value, updating `event`, and removing `mp_original_event_name` and `mp_original_distinct_id` fields.
+* Import the data using the [import API](https://developer.mixpanel.com/reference/import-events).
