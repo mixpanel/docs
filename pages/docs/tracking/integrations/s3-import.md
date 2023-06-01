@@ -18,6 +18,8 @@ Note: This guide assumes you are running in Amazon Web Services, and have the ne
 [Create a dedicated S3 bucket](https://docs.aws.amazon.com/AmazonS3/latest/userguide/create-bucket-overview.html) for this integration. We recommend including `mixpanel-import` in the name to make it explicit and avoid any accidental data sharing.
 
 You can create the bucket in any region, though it will need to be in the same region as your AWS Lambda function.
+
+## Step 2: Setting up Import Config
 ### Step 2a: Setup the Lambda Function
 Create a [new Lambda Function](https://docs.aws.amazon.com/lambda/latest/dg/getting-started-create-function.html). 
 * Select `Author From Scratch`.
@@ -25,7 +27,6 @@ Create a [new Lambda Function](https://docs.aws.amazon.com/lambda/latest/dg/gett
 * Select  `Create Function`.
 
 ![image](/230694620-2645c553-c898-4c98-a19c-f31eb0a23799.png)
-
 
 ### Step 2b: Write the Lambda Function
 
