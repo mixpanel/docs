@@ -42,15 +42,15 @@ These events can be queried from the dashboard just like any other events.
 ## Recovering from a hotshard
 There are multiple ways to recover depending on needs.
 
-# Do nothing
+### Do nothing
 Perhaps the data that contributed to a hotshard is not needed for business purposes but is useful to keep around - in such cases, the data is queryable under the `$hotshard_events` event.
 
-# Delete the hotshard data
+### Delete the hotshard data
 The data to be deleted is in two sets - the events belonging to the `distinct_id` that resulted in a hotshard and the updated events after the remediation logic kicked in.
 * For events belonging to the `distinct_id` that resulted in a hotshard, the deletion steps are detailed [here](https://docs.mixpanel.com/docs/other-bits/privacy-and-security/export-or-delete-end-user-data).
 * For `$hotshard_events` events, please [contact](https://mixpanel.com/get-support) our Support Team for the request.
 
-# Fix the data and re-import
+### Fix the data and re-import
 For cases where there is user-identifying information elsewhere in the event data that can be used to set the right values, the recommendation is to run a multi-step process to export, fix, and re-import the data.
 * Export the data using the [export API](https://developer.mixpanel.com/reference/raw-event-export).
 * Delete the existing data in the Mixpanel project by following the steps detailed above.
