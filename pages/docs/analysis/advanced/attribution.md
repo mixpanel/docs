@@ -50,5 +50,5 @@ If you use a Mixpanel js-sdk, we’ve updated our sdk to track utm parameters mo
 - **User journey:** Consists of touchpoints and the conversion event. It is possible for a conversion event to have no corresponding touchpoints (eg. utm parameters). In this case we consider it a ‘direct’ conversion
 - **Conversion**: The primary event you’re interested in analyzing with multi-touch attribution models. Typically some final value generating interaction such as “Signup” or “Upgrade” or “Payment”.
 - **Touchpoint**: These are actions (events) a user’s taken or exposed to along the journey before doing the conversion event.  [Eg. does event A → B → C → D (conversion event) in a 7 day period; For a lookback window of 7 days, A, B, C are all considered touchpoints]
-- **Attributed by property:** This is the property on a touchpoint ****event that we use for the attribution model. The canonical example is utm_source
+- **Attributed by property:** This is the property on a touchpoint event that we use for the attribution model. The canonical example is utm_source
 - **Lookback window:** The time window where a user's events with this attribution property are counted towards the calculation. The window ends when the conversion metric happens.
