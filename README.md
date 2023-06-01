@@ -9,6 +9,7 @@ To make an edit:
 * Go to the file you want to edit. The file hierarchy matches the hierarchy in our [docs](https://docs-mixpanel.vercel.app), starting at /pages/docs/
 * Click the pencil icon to make edits to a file’s markdown. You can swap between code and preview to see what your edits look like.
 * When you’re ready, hit “Commit” and follow the instructions to commit the changes to your branch and create a pull request review. Add a description if you like, keeping in mind that this is publicly accessible.
+    * If you're making multiple related changes, don't create a pull request right away. Continue making changes in the branch until you're ready to post all of the changes together in one PR
 * GitHub will post a message in Mixpanel's internal Slack with a link to your review.
 * One of the docs maintainers will review that request within 3 days and merge when approved (usually faster if it’s a small change).
 * Once merged, changes will go live automatically, typically within 1-2 minutes.
