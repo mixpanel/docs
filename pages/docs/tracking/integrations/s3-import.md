@@ -19,7 +19,7 @@ Note: This guide assumes you are running in Amazon Web Services, and have the ne
 
 You can create the bucket in any region, though it will need to be in the same region as your AWS Lambda function.
 
-## Step 2: Setting up Import Config
+## Step 2: Setup Import Config
 ### Step 2a: Setup the Lambda Function
 Create a [new Lambda Function](https://docs.aws.amazon.com/lambda/latest/dg/getting-started-create-function.html). 
 * Select `Author From Scratch`.
