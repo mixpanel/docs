@@ -48,11 +48,11 @@ Perhaps the data that contributed to a hotshard is not needed for business purpo
 ### Delete the hotshard data
 The data to be deleted is in two sets - the events belonging to the `distinct_id` that resulted in a hotshard and the updated events after the remediation logic kicked in.
 * For events belonging to the `distinct_id` that resulted in a hotshard, the deletion steps are detailed [here](https://docs.mixpanel.com/docs/other-bits/privacy-and-security/export-or-delete-end-user-data).
-* For `$hotshard_events` events, please [contact](https://mixpanel.com/get-support) our Support Team for the request.
+* For `$hotshard_events` events, please [contact](https://mixpanel.com/get-support) our support team.
 
 ### Fix the data and re-import
 For cases where there is user-identifying information elsewhere in the event data that can be used to set the right values, the recommendation is to run a multi-step process to export, fix, and re-import the data.
 * Export the data using the [export API](https://developer.mixpanel.com/reference/raw-event-export).
 * Delete the existing data in the Mixpanel project by following the steps detailed above.
-* Fix the data by changing the `distinct_id` field to the expected value, updating `event`, and removing `mp_original_event_name` and `mp_original_distinct_id` fields.
-* Import the data using the [import API](https://developer.mixpanel.com/reference/import-events).
+* Fix the data by changing the `distinct_id` field to the expected value, setting `event` to the value in `mp_original_event_name`, and removing the `mp_original_event_name` and `mp_original_distinct_id` fields.
+* Import the updated events using the [import API](https://developer.mixpanel.com/reference/import-events).
