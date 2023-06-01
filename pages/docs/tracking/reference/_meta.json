@@ -1,6 +1,7 @@
 {
     "data-model": "Data Model",
     "default-properties": "Default Properties",
+    "distinct-id-limits": "Distinct ID Limits",
     "javascript": "Javascript",
     "javascript-full-api-reference": {
         "title": "Javascript Full API Reference ↗",
