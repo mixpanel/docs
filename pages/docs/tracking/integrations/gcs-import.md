@@ -20,6 +20,8 @@ Note: This guide assumes you are running in Google Cloud Platform, and have the 
 
 You can create the bucket in any region, though we recommend `us-central` for highest throughput.
 
+## Step 2: Setup Import Config
+
 ### Step 2a: Setup the Cloud Function
 
 Create a [new Cloud Function](https://console.cloud.google.com/functions/add). 
