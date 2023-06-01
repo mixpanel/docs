@@ -77,11 +77,7 @@ The Mixpanel application for Slack will also automatically unfurl a preview of 
 
 ### Enable the Integration
 
-To enable the integration, log in to both Mixpanel and Slack, then click "Add to Slack" below:
-
-![/add_to_slack.png](/add_to_slack.png)
-
-Then, click "Allow:"
+To enable the integration, log in to both Mixpanel and Slack, then click [here](https://mixpanel.com/slack/oauth) to authorize the slack workspace: 
 
 ![/Screen_Shot_2020-06-15_at_10.41.00_PM.png](/Screen_Shot_2020-06-15_at_10.41.00_PM.png)
 
