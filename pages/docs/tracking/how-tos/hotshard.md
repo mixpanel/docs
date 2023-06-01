@@ -4,7 +4,7 @@ Mixpanel's UI is built for interactive exploration of event-based metrics. Event
 There are cases when an incorrect implementation results in a disproportionately high number of events sent to Mixpanel for the same `distinct_id`. This leads to shard imbalance where one shard grows larger than the rest impacting storage and query systems which in-turn results in high query latencies for the end user.
 
 ## How does hotshard detection work?
-The hotshard detection step runs in the ingestion pipeline. A counter is maintained for each `distinct_id` and `event_date` combination and incremented for each event seen with this combination. Once a pre-defined threshold is crossed, the `distinct_id` is marked as a hotshard and all subsequent events for this combination are updated to even the load across shards while keeping all the original event information intact.
+The hotshard detection step runs in the ingestion pipeline. A counter is maintained for each `distinct_id` and `event_date` (derived from `time`) combination and incremented for each event seen with this combination. Once a pre-defined threshold is crossed, the `distinct_id` is marked as a hotshard and all subsequent events for this combination are updated to even the load across shards while keeping all the original event information intact.
 
 The counter is best-effort as a result of the underlying systems used to maintain such a large keyspace.
 
