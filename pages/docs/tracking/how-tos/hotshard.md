@@ -39,7 +39,7 @@ Updated Event -
 
 These events can be queried from the dashboard just like any other events.
 
-## Recovering from a hotshard
+## Recovering from a hot shard
 Recovery is a multi-step process -
 * Break down `$hotshard_events` by `mp_original_distinct_id` and `mp_original_event_name` to spot what’s causing the issue.
 * Use the above to locate the code that is causing the issue and update it to stop the ongoing issue.
