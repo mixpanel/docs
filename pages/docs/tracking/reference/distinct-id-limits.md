@@ -4,15 +4,19 @@ title: "Distinct ID Limits"
 In order to maintain fast queries and catch implementation mistakes, we set a limit on the number of events sent to a particular `distinct_id` in a given time window. In this document, we explain how this limit works and what to do when you hit it.
 
 ## What is a hot shard?
-There are cases when an incorrect implementation results in a disproportionately high number of events sent to Mixpanel for the same `distinct_id`. This leads to shard imbalance where one shard grows larger than the rest impacting storage and query systems which in-turn results in high query latencies for the end user.
+There are cases when an incorrect implementation results in a disproportionately high number of events sent to Mixpanel for the same `distinct_id`. This leads to an imbalance when storing events across distinct_ids, where one distinct_id's events grows larger than the rest, impacting storage and query systems which in-turn results in high query latencies for the end user.
+
+Since we distribute events across shards, this imbalance is called a **hot shard**.
 
 ## How does hot shard detection work?
-The hotshard detection step runs in the ingestion pipeline. A counter is maintained for each `distinct_id` and `event_date` (derived from `time`) combination and incremented for each event seen with this combination. Once a pre-defined threshold is crossed, the `distinct_id` is marked as a hotshard and all subsequent events for this combination are updated to even the load across shards while keeping all the original event information intact.
+The hot shard detection step runs in the ingestion pipeline. A counter of events is maintained for each `distinct_id` and `event_date` combination. The counter is best-effort as a result of the underlying systems used to maintain such a large keyspace.
 
-The counter is best-effort as a result of the underlying systems used to maintain such a large keyspace.
+Once a pre-defined threshold is crossed, the `distinct_id` is marked as contributing to a hot shard and all subsequent events for this combination are updated to even the load across shards while keeping original event information intact.
 
 ## What happens when we detect a hot shard?
-Once a given entry crosses the threshold, all subsequent matching events (same `distinct_id` and `event_date`) are updated to a new (hidden) event - `$hotshard_events`. The `distinct_id` is changed to `""` - the system generates its own id resulting in the event ending up in a different (and random) target shard. This prevents one shard from growing disproportionately larger than the others. The original event name and distinct id are stored in the properties object under `mp_original_event_name` and `mp_original_distinct_id`, respectively.
+Once a given entry crosses the threshold, all subsequent matching events (same `distinct_id` and `event_date`) will have the following transformations applied to them:
+- `event` will be changed to `$hotshard_events`.  The original event name will be preserved under a property called `mp_original_event_name`. Changing the name removes the bad events from being selected for analysis yet remain accessible for debugging.
+- `distinct_id` is changed to `""`. The original value will be preserved under a property called `mp_original_distinct_id`. Removing the distinct_id allows Mixpanel backend to distribute these events evenly across shards ensuring that performance is not adversely affected while keeping the data accessible for debugging.
 
 Original Event - 
 ```json
