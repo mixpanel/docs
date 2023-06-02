@@ -20,7 +20,7 @@ Pro tip: Though your retention numbers might initially decline if you are no lon
 ## How do I… see how many users experience value in my product?
 Now that we’ve defined our value moment, we’ll want to understand how many users experience value in your product each day, and how often.
 
-See how many users are finding value in your product with the Company KPIs Template.
+See how many users are finding value in your product with the [Company KPIs Template](https://mixpanel.com/project?show-event-translator=true).
 
 ![image](https://user-images.githubusercontent.com/2077899/233904492-a5674dd3-7a18-44fb-bae5-d35af23b5c72.png)
 
@@ -31,7 +31,7 @@ If you’re a media streaming app, your product’s value moment might be “wat
 
 You can identify your most engaged users by using cohorts. Cohorts are a group of users defined by a chosen set of criteria—in this case, users who have reached the value moment three times in the last month. (P.S. If you click in and see this cohort in the “Users” page, you’ll see the full list of user names and emails). This chart uses an auto-generated cohort of your “engaged users” by grouping users who have performed your product’s value moment—in this case, “watch video”—at least 3 times a week.
 
-Mixpanel’s Company KPIs Board template automatically creates a report with a ready-made cohort of your most engaged users. Try it for free here.
+Mixpanel’s Company KPIs Board template automatically creates a report with a ready-made cohort of your most engaged users. Try it for free [here](https://mixpanel.com/project?show-event-translator=true).
 
 While the Company KPIs Board template is designed to do the heavy lifting for you, it’s easy to find your product’s power/core/casual users on your own. Here’s how:
 
