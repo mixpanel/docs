@@ -4,13 +4,14 @@ In this doc, we give step-by-step guidance on how to bring your advertising netw
 
 <img width="991" alt="Untitled" src="https://github.com/mixpanel/docs/assets/2077899/84e1c6a1-0130-4529-9be3-5574a73dffac">
 
-<aside>
-💡 If you are a Marketer reading this, we encourage you to share this with your dev team to get this one-time setup done. This should not take more than a couple of hours.
-</aside>
+
+**NOTE:** If you are a Marketer reading this, we encourage you to share this with your dev team to get this one-time setup done. This should not take more than a couple of hours.
+
 
 ## Understanding the Data Model
 
 Events are are the core of Mixpanel's data model. Fundamentally, an event is a row of data with a name, a timestamp, and a set of properties. This is how we can represent Ad Data as events.
+
 ```jsx
 {
 	event: 'Ad Data',
@@ -38,6 +39,7 @@ The crux of this How To guide is turning the data exported by Ad Networks into e
 - **No Distinct ID:** You’ll notice that our event has no Distinct ID. This is because ad performance data isn’t tied to any particular user. **This is the key difference from behavioral events.** By omitting it, we are ensuring that these events do not get erroneously included in reporting that intend to analyze user behavior such as Funnels, Retentions, Flows, unique user counts, “did not do” cohorts, etc.
 - **Event properties are aggregated:** You’ll notice the Ad-Data event in this example is scheduled to trigger only once a day. Properties are aggregated counts of all clicks through the day, all impressions through the day, all ad-spend through the day. Reason for this is ad-networks only export data at an aggregate level (without user details) and at fixed intervals (lowest granularity is generally a day)
 - **Include an Insert ID:** It’s recommended to include the Insert ID property for these kinds of events. This allows you to send the campaign data to Mixpanel more than once for a particular segment without duplicating the data in reports.
+
 The Insert ID should be made up of unique attributes in the event that separate it from other performance data. 
 Using our above event example, the uniquely identifiable properties are:
   - The ad network name
@@ -45,6 +47,7 @@ Using our above event example, the uniquely identifiable properties are:
   - The campaign ID
 
 If we were to send this data more than once to Mixpanel, we know that these 3 properties will always be constant. We can build an Insert ID from that information: 
+
     ```jsx
     // "G" = Google Ads
     // "2023-04-01" = The date of our data
@@ -52,6 +55,7 @@ If we were to send this data more than once to Mixpanel, we know that these 3 pr
     
     $insert_id = `G-2023-04-01-12345`;
     ```  
+    
 Note: Keep in mind the [Insert ID length limitations](https://developer.mixpanel.com/reference/import-events#propertiesinsert_id). If your ad network has long campaign IDs or other unique properties to use, you should use MD5 or another hashing algorithm to shorten your Insert ID.
         
 
