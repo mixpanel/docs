@@ -1,7 +1,7 @@
 Note: This feature is in beta. To access this feature please reach out to your account team or join the [waitlist](https://experiences.mixpanel.com/mixpanel-attribution-beta-waitlist/).
 
 ## Overview
-Multi-Touch attribution helps teams attribute conversion credit to the multiple touch-points in a user-journey, beyond just first or last touch which are single-touch attribution models. 
+Attribution helps teams attribute conversion credit to the touch-points in a user-journey, whether it be just to the first or last touch which are single-touch attribution models or to multiple touchpoints using a multi-touch attribution model like U-shape or Linear.  
 
 Let’s take an example user journey:
 

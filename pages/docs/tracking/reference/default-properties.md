@@ -28,7 +28,7 @@ Mixpanel's client SDKs automatically collect certain properties on every event. 
 | $screen_width | Screen Width | The width of the device screen in pixels. |
 | $search_engine | Search Engine | The search engine that the customer used when they arrived at your domain. |
 | mp_keyword | Search Keyword | Search keywords detected on the referrer from a search engine to your domain. This property is only collected when search keywords are included in a URL. |
-| utm_source, utm_medium, etc. | UTM Parameters | UTM tags derived from the URL. Mixpanel only tracks first touch UTM parameters by default. |
+| utm_source, utm_medium, etc. | UTM Parameters | UTM tags derived from the URL a customer clicked to arrive at your domain. Each utm will be collected under its own property. |
 | mp_processing_time_ms | Processing Time | UTC timestamp of when the event was processed by our servers. |
 | $mp_api_timestamp_ms | API Timestamp | Time at which the event was received by our API. |
 | $insert_id | Insert ID | A unique identifier for the event, used to deduplicate events that are accidentally sent multiple times. |
