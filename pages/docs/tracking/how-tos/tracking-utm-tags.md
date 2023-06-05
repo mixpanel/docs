@@ -7,7 +7,7 @@ When setting up your Mixpanel implementation, one issue of particular interest i
 ## Web Attribution
 
 ### UTM Properties
-Mixpanel's Javascript library tracks all [UTM tags](https://docs.mixpanel.com/docs/tracking/reference/javascript#tracking-utm-parameters) by default. This allows you to segment key actions by relevant campaign information using [attribution models](https://docs.mixpanel.com/docs/analysis/advanced/attribution#overview), so that you can quantify the effectiveness of specific campaigns.
+Mixpanel's Javascript library tracks all [UTM tags](https://docs.mixpanel.com/docs/tracking/reference/javascript#tracking-utm-parameters) by default. This allows you to segment key actions by relevant campaign information using [attribution models](https://docs.mixpanel.com/docs/analysis/advanced/multi-touch-attribution), so that you can quantify the effectiveness of specific campaigns.
 
 Mixpanel's Javascript library will also track initial_utm_parameters as a profile property, based on the first ever visit. This is helpful as if a user makes a purchase or completes some other important event, it is important to know want to know what acquisition channel brought them to your site originally.
 
