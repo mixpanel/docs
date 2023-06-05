@@ -134,6 +134,10 @@ Example Request:
 Example Return: 
 `{"status":"ok","results":[{"status":"PENDING", "disclosure_type":"DATA", "date_requested":"2020-03-09T22:28:55.078315", "tracking_id":"1583792934719392965",  "project_id":1978118, "compliance_type":"ccpa", "destination_url":null, "requesting_user":"pat.davis@mixpanel.com", "distinct_id_count":1}]}`
 
+Notes:
+GDPR data retrieval process works by dividing the job of extracting the events by the granularity of day, getting the events belonging to each distinct_id in the request for each days going back to the earliest timestamp we received. Since user activity can go back several years, this means that even a single data retrieval request might require scanning a large amount of data. We limit the maximum number of outstanding scans to 5 years and getting a 429 from our GDPR API means that our backend has already reached this limit for your project.
+In order to maximise the throughput of data retrievals, we recommend sending the maximum number of distinct-ids per request, now at 2000 distinct-ids, then retrying with exponential backoff.
+
 #### Check Status of Retrieval 
 Request Type: GET
 
