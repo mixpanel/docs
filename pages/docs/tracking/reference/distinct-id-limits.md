@@ -11,7 +11,7 @@ Since we distribute events across shards, this imbalance is called a **hot shard
 ## How does hot shard detection work?
 The hot shard detection step runs in the ingestion pipeline. A counter of events is maintained for each `distinct_id` and `event_date` combination. The counter is best-effort as a result of the underlying systems used to maintain such a large keyspace.
 
-Once a pre-defined threshold is crossed, the `distinct_id` is marked as contributing to a hot shard and all subsequent events for this combination are updated to even the load across shards while keeping original event information intact.
+Once a pre-defined threshold is crossed, the `distinct_id` is marked as contributing to a hot shard and all subsequent events for this `distinct_id` and `event_date` are updated to even the load across shards while keeping original event information intact.
 
 ## What happens when we detect a hot shard?
 Once a given entry crosses the threshold, all subsequent matching events (same `distinct_id` and `event_date`) will have the following transformations applied to them:
