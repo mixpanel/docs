@@ -1,0 +1,20 @@
+---
+title: "Track key ad metrics"
+slug: "changelog-2023-06-06-improvements"
+hidden: false
+createdAt: "2023-06-06T12:23:02.165Z"
+updatedAt: "2023-06-06T12:23:02.165Z"
+date: "2023-06-06"
+---
+![changelog Image](/ad_spend.png)
+
+It’s easier than ever to start sending ad network data to Mixpanel with our [how-to guide](https://docs.mixpanel.com/docs/tracking/how-tos/ad-spend). 
+
+We walk you through every step of implementation so you can start analyzing your ad data in no time and monitor key ad performance metrics like (CPC) cost-per-click, (CPM) cost-per-impression and (CTR) click-through-rate. It’s a one time setup for a lifetime of tracking ad metrics.
+
+It’s vital to understand whether your digital advertising is worth the money, and these metrics help inform whether your ads are driving return on investment so you can get informed on where to adjust ad spend to maximize results.
+
+Here are a few ways you can leverage ad performance metrics:
+- Compare campaigns and how they affect cost-per-click to borrow strategies from well performing campaigns into poor performing campaigns
+- Track the return-on-ad-spend across all ads to determine what channels need an increase in investment
+- Compare different versions of an ad and compare which one has the higher click-through-rate to learn what copy, imagery, or other aspects resonate most with your audience
