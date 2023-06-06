@@ -101,6 +101,11 @@ curl "https://mixpanel.com/api/app/data-retrievals/v3.0/?token=591b3354bb2bdd96f
 -H "Authorization: Bearer vZcErNw8JCq42BZUJyWoZmDWCKBxXc"
 ```
 
+Rate limit:
+We place a rate limit in place to ensure the integrity of our system as well as prevent a single project from monopolizing the avaialble resources for other projects. Getting a 429 response code from our GDPR API means that you have reached our rate-limit. We currently have a rate-limit of 1 request per second for GDPR APIs. We also limit maximum number of outstanding scans for a single project to be approximately 5 years.
+GDPR data retrieval process works by dividing the job of extracting the events by the granularity of day, getting the events belonging to each distinct_id in the request for each day going back to the first day for which we have events in Mixpanel. Since user activity can go back several years, this means that even a single data retrieval request might require scans of many hundred days.
+In order to maximize the throughput of data retrievals, we recommend sending the maximum number of distinct-ids per request, now at 2000 distinct-ids, then retrying with exponential backoff. Depending on the amount of data that needs to be scanned, retrying for several hours might sometimes be necessary.
+
 Example Return:
 `{"status":"ok","results":[{"status":"PENDING", "disclosure_type":"DATA", "date_requested":"2020-03-09T22:28:55.078315", "tracking_id":"1583792934719392965",  "project_id":1978118, "compliance_type":"ccpa", "destination_url":null, "requesting_user":"pat.davis@mixpanel.com", "distinct_id_count":1}]}`
 
