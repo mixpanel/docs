@@ -61,7 +61,7 @@ You can do this with our [Create Pipeline API](https://developer.mixpanel.com/re
 ## FAQ
 
 ### Why are some events or properties not exported to the destination?
-This normally happens when you have a thousands of unique event names or property names, which is usually an implementation mistake (eg: including a UUID in the event or property name). This causes the export process to exceed table or column limits in the destination. In these cases, we try to identify the bad patterns and exclude them from the export process. We always try to communicate this to the customers through their Customer Success Managers.
+This normally happens when you have thousands of unique event names or property names, which is usually an implementation mistake (eg: including a UUID in the event or property name). This causes the export process to exceed table or column limits in the destination. In these cases, we try to identify the bad patterns and exclude them from the export process. We always try to communicate this to the customers through their Customer Success Managers.
 
 ### Why does the number of events in Mixpanel not match the number of exported events to my destination?
 This can happen for a few reasons:
