@@ -1,0 +1,30 @@
+---
+title: "Learn how users engage with your marketing tactics"
+slug: "changelog-2023-06-06-web-tracking"
+hidden: false
+createdAt: "2023-06-06T12:51:02.165Z"
+updatedAt: "2023-06-06T12:51:02.165Z"
+date: "2023-06-06"
+---
+![webtracking](https://github.com/mixpanel/docs/assets/130083255/799423bf-aeec-431d-bbe1-08ad9e6ac9d9)
+
+Your analysis is only as good as the data you capture, and we work hard to make it easy to setup the right data tracking to get you to insights quick and easy.
+
+That’s why we’ve updated our our [Mixpanel Javascript SDK](/docs/tracking/reference/javascript) to automatically collect:
+
+- UTM Tags (default: on) — automatically adds these parameters to all events:
+    - utm_source: track the source where traffic is coming from, including a website or advertiser
+    - utm_medium: track the advertising medium, including email and banner ads
+    - utm_campaign: track the campaign name associated with the traffic
+    - utm_content: track the specific link within in an ad that a user clicked
+    - utm_term: track keywords associated with campaigns
+    - Initial UTM: tracks the first time a user reaches any of the above parameters
+    
+    Tracking UTM tags help fuel attribution analysis so you can understand which campaigns, ads, or content is contributing the most, or least, to conversion. 
+    
+- Page Views (default: off) —  auto-track page views to build metrics like:
+    1. Total Views: identify top performing pages to learn what content your users like best
+    2. Bounce Rate: percentage of visitors who leave your website within 10s of viewing it
+    3. Conversion Rate: percentage of visitors who complete a key action after visiting a page.
+    
+    Tracking the performance of your pages is the main way to understand if your website is driving value to your users and business. If you want to get started with web analytics, turning on auto-tracking pages can help you get started.
