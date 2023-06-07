@@ -741,7 +741,7 @@ Behavioral properties can be used anywhere, most typically in filters and breakd
 
 ### Frequency per User
 
-After selecting this option, you must select an event to compute the frequency of. You can use this to segment your users by how many times the did an event, or use it to filter out users to only those who did an event a certain number of times.
+After selecting this option, you must select an event to compute the frequency of. You can use this to segment your users by how many times they did an event, or use it to filter out users to only those who did an event a certain number of times.
 
 Only available in Insights.
 
