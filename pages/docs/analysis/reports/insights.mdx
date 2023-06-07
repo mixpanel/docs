@@ -134,24 +134,24 @@ Tables are useful to see the precise values of your data and to quickly scan mul
 You can configure how you want rows in the table to be sorted, with our global sorting control.
 ![Sorting.gif](https://github.com/mixpanel/docs/assets/2077899/a61948a6-3e4a-4e5d-9b75-3f4b14cb1450)
 
-###### Grouped View vs Ungrouped View 
+###### Grouped View vs Ungrouped View
 The Ungrouped View removes all hierarchy and makes the table flat. Each combination of segment values is treated as a row, independently of the other rows.
-    
+
 ![image](https://github.com/mixpanel/docs/assets/2077899/e57400a1-a86c-4d46-9ffb-379306586d8d)
 
 The Grouped View preserves hierarchy of breakdowns. It shows you segments within a breakdown as displayed below. This view is only applicable when you have 2 or more breakdowns
-    
+
 ![image](https://github.com/mixpanel/docs/assets/2077899/2a72e93c-c332-4418-83e1-91bb24e2d271)
 
 
 ###### Alphabetical vs Value-Based Sorting
-You can sort segments alphabetically or by the value of a particular metric. In the grouped view, sorting is configured on a per-breakdown level, and respects the breakdown hierarchy. 
+You can sort segments alphabetically or by the value of a particular metric. In the grouped view, sorting is configured on a per-breakdown level, and respects the breakdown hierarchy.
 
 In the below image, we sort Country *within* Item Category, which respects the hierarchy.
-<img width="1008" alt="Untitled 5" src="https://github.com/mixpanel/docs/assets/2077899/4697ce00-d394-46ce-b538-66ec91ccd6e7">
+![image](https://github.com/mixpanel/docs/assets/2077899/4697ce00-d394-46ce-b538-66ec91ccd6e7)
 
-Hierarchy is defined by the breakdown order in the query panel:    
-<img width="322" alt="Untitled 6" src="https://github.com/mixpanel/docs/assets/2077899/ff2f72b3-89bc-459e-b8b7-e81655d04bb7">
+Hierarchy is defined by the breakdown order in the query panel:
+![image](https://github.com/mixpanel/docs/assets/2077899/ff2f72b3-89bc-459e-b8b7-e81655d04bb7)
 
 ###### View “N” segments
 
@@ -160,12 +160,12 @@ The View “N” control lets you decide how many rows to display per breakdown 
 
 In the ungrouped view, choose the number of rows to display:
 ![image](https://github.com/mixpanel/docs/assets/2077899/b1b25b19-51be-4934-bbfd-7562e0f98d4a)
-    
-In the grouped view, you can choose the number of rows you want to display for each breakdown:
-    <img width="810" alt="Untitled 8" src="https://github.com/mixpanel/docs/assets/2077899/f9f8c83c-34ed-44bd-b4e7-f60b70255a6f">
 
-<img width="814" alt="Untitled 9" src="https://github.com/mixpanel/docs/assets/2077899/b09c1ad1-1392-4ec0-9358-361f677c600d">
-    
+In the grouped view, you can choose the number of rows you want to display for each breakdown:
+![image](https://github.com/mixpanel/docs/assets/2077899/f9f8c83c-34ed-44bd-b4e7-f60b70255a6f)
+
+![image](https://github.com/mixpanel/docs/assets/2077899/b09c1ad1-1392-4ec0-9358-361f677c600d)
+
 
 ###### Notes
 - View N only controls how many segments to display. To decide which segments to display i.e if it’s the top segments by value or bottom segments by value or alphabetical, please change the “Sort Order”.
@@ -174,12 +174,12 @@ In the grouped view, you can choose the number of rows you want to display for e
 
 ##### Overall and Segment Sub-Totals
 
-**Overall:** This refers to the value considering all the segments, independent of whether displayed or not based on your View N control; i.e changes to View N will not effect Overall numbers 
-<img width="721" alt="Untitled 10" src="https://github.com/mixpanel/docs/assets/2077899/3d6556a4-9468-4d1f-8979-4fdb512f2aaa">
+**Overall:** This refers to the value considering all the segments, independent of whether displayed or not based on your View N control; i.e changes to View N will not effect Overall numbers
+![image](https://github.com/mixpanel/docs/assets/2077899/3d6556a4-9468-4d1f-8979-4fdb512f2aaa)
 
 **Sub-Totals:** In the grouped view, in addition to the Overall, segment sub-totals are also displayed. Similar to “Overall”, these values are independent of the View N control
 
-<img width="816" alt="Untitled 11" src="https://github.com/mixpanel/docs/assets/2077899/ee7d8c9b-f738-4a5b-8967-300cf8322f76">
+![image](https://github.com/mixpanel/docs/assets/2077899/ee7d8c9b-f738-4a5b-8967-300cf8322f76)
 
 ### Analysis Settings
 
@@ -250,7 +250,7 @@ To add an annotation, hover your mouse over the point on the chart you want to a
 
 ![Annotations 1](/advanced-annotations-1.png)
 
-View an existing annotation by clicking on the number found at the bottom of a report. You will be able to see who submitted the annotation.
+View an existing annotation by clicking on the number found at the bottom of a report. You will be able to see who submitted the annotation.
 
 ![Annotations 2](/advanced-annotations-2.png)
 
@@ -293,7 +293,7 @@ You can find more information about each data function and how they are calculat
 
 | Function Name | Events & Cohorts Calculation | Profiles Calculation |
 | --- | --- | --- |
-| Total | Total count of [event] performed.<br />Example: How many times did my users watch a video? | N/A |
+| Total | Total count of [event] performed.<br />Example: How many times did my users watch a video? | N/A |
 | Total per user | The number of events performed per user.<br />Example: How many videos were watched per user?<br />Aggregation options: Average, distribution, median, percentiles, minimum, maximum | N/A |
 
 #### Users
@@ -313,10 +313,10 @@ You can find more information about each data function and how they are calculat
 | Sum | The total of a numeric property value across all instances of [event].<br /><br />**Example**: What's the total number of minutes of videos watched? | The total of a numeric property value across all user profiles.<br />Example: What's the total revenue across all users? |
 | Average | Average of a numeric property value across all instances of [event].<br /><br />**Example**: What's the average number of minutes per video watched? | Average of a numeric property value across all user profiles.<br />Example: What's the average revenue across all users? |
 | Distinct count | Calculates the unique count of property values across all instances of [event].<br /><br />**Example**: How many unique songs were played in the last 30 days? | Calculates the unique count of property values across all profiles.<br />Example: How many unique countries were our video watchers from? |
-| Median | Median of a numeric property value across all instances of [event].<br /><br />**Example**: What's the median number of minutes per video watched? | Median of a numeric property value across all user profiles.<br />Example: What's the median revenue across all users? |
+| Median | Median of a numeric property value across all instances of [event].<br /><br />**Example**: What's the median number of minutes per video watched? | Median of a numeric property value across all user profiles.<br />Example: What's the median revenue across all users? |
 | Percentiles (25/75/90/99) | The 25/75/90/99th percentile of a numeric property value across all instances of [event].<br /><br />**Example**: What's the 25th percentile number of minutes of videos watched? | The 25/75/90/99th percentile of a numeric property value across all user profiles.<br />Example: What's the 25th percentile revenue across all users? |
-| Minimum | Minimum of a numeric property value across all instances of [event].<br /><br />**Example**: What's the minimum number of minutes per video watched? | Minimum of a numeric property value across all user profiles.<br />Example: What's the minimum revenue across all users? |
-| Maximum | Maximum of a numeric property value across all instances of [event].<br /><br />**Example**: What's the maximum number of minutes per video watched? | Maximum of a numeric property value across all user profiles.<br />Example: What's the maximum revenue across all users? |
+| Minimum | Minimum of a numeric property value across all instances of [event].<br /><br />**Example**: What's the minimum number of minutes per video watched? | Minimum of a numeric property value across all user profiles.<br />Example: What's the minimum revenue across all users? |
+| Maximum | Maximum of a numeric property value across all instances of [event].<br /><br />**Example**: What's the maximum number of minutes per video watched? | Maximum of a numeric property value across all user profiles.<br />Example: What's the maximum revenue across all users? |
 
 #### Aggregate Property Values per User
 
@@ -324,9 +324,9 @@ You can find more information about each data function and how they are calculat
 | --- | --- | --- |
 | Sum | The total of a numeric property value across all instances of [event] per user.<br /><br />**Example**: What's the total number of hours of videos watched per user?<br />**Aggregation options**: Average, distribution, median, percentiles, minimum, maximum | N/A |
 | Average | Average of a numeric property value across all instances of [event] per user.<br /><br />**Example**: What's the average number of hours of videos watched per user?<br />**Aggregation options**: Average, distribution, median, percentiles, minimum, maximum | N/A |
-| Distinct count | The number of distinct property values per user.<br /><br />**Example**: How many different videos did each user watch?<br />**Aggregation options**: Average, distribution, median, percentiles, minimum, maximum | N/A |
-| Minimum | Minimum of a numeric property value across all instances of [event] per user.<br /><br />**Example**: What's the minimum number of hours of videos watched per user?<br />**Aggregation options**: Average, distribution, median, percentiles, minimum, maximum | N/A |
-| Maximum | Maximum of a numeric property value across all instances of [event] per user.<br /><br />**Example**: What's the maximum number of hours of videos watched per user?<br />**Aggregation options**: Average, distribution, median, percentiles, minimum, maximum | N/A |
+| Distinct count | The number of distinct property values per user.<br /><br />**Example**: How many different videos did each user watch?<br />**Aggregation options**: Average, distribution, median, percentiles, minimum, maximum | N/A |
+| Minimum | Minimum of a numeric property value across all instances of [event] per user.<br /><br />**Example**: What's the minimum number of hours of videos watched per user?<br />**Aggregation options**: Average, distribution, median, percentiles, minimum, maximum | N/A |
+| Maximum | Maximum of a numeric property value across all instances of [event] per user.<br /><br />**Example**: What's the maximum number of hours of videos watched per user?<br />**Aggregation options**: Average, distribution, median, percentiles, minimum, maximum | N/A |
 
 #### Count Sessions
 
@@ -341,7 +341,7 @@ You can find more information about each data function and how they are calculat
 | Total per user | What's the average number of songs played per user? | What is the distribution of my users by the number of songs played? | What's the median number of songs played per user? | How many songs did the 90th percentile user listen to? | How many songs did my least/most active user listen to? |
 | Sum of property value count per user | What's the average cumulative watch time per user? | What's the distribution of my users by the cumulative minutes of content watched? | What's the median of the cumulative watch time per user? | How many cumulative minutes has the 90th percentile user watched? | How much has the lowest/highest spender spent? |
 | Average of property value count per user | What's the average of the average cart value for each rider? | What's the distribution of my users by the average cart value per user? | What's the median of the average cart value per user? | What's the average cart value for the 90th percentile user? | What's the minimum/maximum average cart value? |
-| Distinct property value count per user | What's the average number of unique song titles heard by my users? | What's the distribution of my users by the number of unique song titles listened to? | How many unique songs does the median user listen to? | How many unique songs does the 90th percentile user listen to? | What's the minimum/maximum number of unique songs my users listen to? |
+| Distinct property value count per user | What's the average number of unique song titles heard by my users? | What's the distribution of my users by the number of unique song titles listened to? | How many unique songs does the median user listen to? | How many unique songs does the 90th percentile user listen to? | What's the minimum/maximum number of unique songs my users listen to? |
 | Minimum property value count per user | What's the average of the minimum ratings provided per user? | What's the distribution of my users by the minimum rating provided? | What's the median of the minimum ratings provided by users? | What's the minimum rating provided by the 90th percentile user? | What's the minimum rating across all ratings?? |
 | Maximum property value count per user | What's the average of the maximum gaming session length per user? | What's the distribution of my users by the maximum gaming session length? | What's the median of the maximum gaming session length per user? | What's the maximum gaming session length provided by the 90th percentile user? | How long has the longest gaming session lasted across our users? |
 
