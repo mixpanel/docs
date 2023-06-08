@@ -97,30 +97,33 @@ Let's walk through a few user flows where ID Merge is useful. Under the hood, Mi
 
 ## Simplified vs Original ID Merge
 
-In March 2023, Mixpanel released Simplified ID Merge (documented above) as a simpler, opt-in alternative to Original ID Merge. In June 2023, Mixpanel made the Simplified API the default for new projects.
+In March 2023, Mixpanel released Simplified ID Merge (documented above) as a simpler, opt-in alternative to Original ID Merge. In June 2023, Mixpanel made the Simplified API the default for new organizations.
 
 Due to the limited changes in functionality beyond a simpler implementation experience, we do not recommend that customers who have already implemented using the original API reimplement on the simplified API. Both APIs will remain supported and provide the same features.
 
-### TODO: How do I enable the Simplified API on a project?
+### How do I change between the Simplified and Original API?
 
 Note that:
 
-- You cannot use both the original API and the simplified API within the same Mixpanel project: enabling the simplified API on a project disables the original API on that project.
-- You cannot switch between the original and simplified APIs once a project contains data. You must choose to enable the simplified API before sending the first event to a new project.
+- You cannot switch between the original and simplified APIs once a project contains data.
+- You cannot use both the original API and the simplified API within the same Mixpanel project.
 
-To enable the simplified API on a new project with no data in it go to the “Identity Merge” section of the Project Settings Page:
+To change the version of the API used by a new project with no data in it go to the “Identity Merge” section of the Project Settings Page:
 
 ![Untitled](https://github.com/mixpanel/docs/blob/main/public/Tracking/id-merge-project-settings.png?raw=true)
 
-If you would like to make sure any new projects created within your organization default to the correct ID Merge API there is an organization-level option to configure which API you would like as the the default for any new projects.
+If you would like to make sure any new projects created within your organization default to a specific ID Merge API there is an organization-level option to configure which API you would like as the the default for new projects.
 
 ![Untitled](https://github.com/mixpanel/docs/blob/main/public/Tracking/id-merge-org-settings.png?raw=true)
 
 ### Third-Party Integration Support
 
-Most third-party integration integrations send people & event data to Mixpanel using distinct IDs provided by our SDKs and are unaffected by this API change. These integrations are not involved in identity management, they send data to the ID they are given and will continue to work the same way on the simplified API that they do on the original API.
+Most third-party integration integrations send people & event data to Mixpanel using distinct IDs provided by our SDKs and are unaffected by this API change. These integrations are not involved in identity management, they send data to the ID they are given and will work the same way on the simplified API that they do on the original API.
 
-Segment and Rudderstack integrations work out of the box. The mParticle integration requires the following change to work with the simplified API: supply `$device_id` and `$user_id` explicitly as properties on your events.
+Customer data platform integrations are involved with identity management and need to be properly configured to work with the API used on the project:
+- Segment works out of the box with both the simplified and original APIs with no special configurations.
+- Rudderstack has a [connection setting](https://www.rudderstack.com/docs/destinations/streaming-destinations/mixpanel/#connection-settings) that should match the API version configured on your Mixpanel project.
+- mParticle works out the box with the original API, but requires the following change to work with the simplified API: supply `$device_id` and `$user_id` explicitly as properties on your events.
 
 ### How does the Simplified API differ from the the Original API?
 
