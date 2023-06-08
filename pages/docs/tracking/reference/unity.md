@@ -27,7 +27,7 @@ Alternatively you can go to the [releases page](https://github.com/mixpanel/mixp
 
 To start tracking with the Mixpanel Unity library, you must first initialize it with your project token. You can find your token by clicking your name in the upper righthand corner of your Mixpanel project and selecting Settings from the dropdown.
 
-####Configuring Mixpanel
+#### Configuring Mixpanel
 To initialize the library, first open the unity project settings menu for Mixpanel. (Edit -> Project Settings -> Mixpanel) Then, enter your project token into the Token and Debug Token input fields within the inspector.
 ![image](/230697675-388145e0-bd47-42b9-8276-3be22d157529.png)
 
