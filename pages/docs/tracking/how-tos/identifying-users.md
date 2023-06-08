@@ -101,7 +101,7 @@ In March 2023, Mixpanel released Simplified ID Merge (documented above) as a sim
 
 Due to the limited changes in functionality beyond a simpler implementation experience, we do not recommend that customers who have already implemented using the original API reimplement on the simplified API. Both APIs will remain supported and provide the same features.
 
-### How do I change between the Simplified and Original API?
+### How do I switch between the Simplified and Original API?
 
 Note that:
 
