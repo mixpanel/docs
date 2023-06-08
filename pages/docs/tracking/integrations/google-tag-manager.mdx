@@ -3,7 +3,9 @@ This document walks through Mixpanel's native integration with Google Tag Manage
 ## Installation
 Note: You can also watch our video walkthrough [here](https://user-images.githubusercontent.com/556882/154125933-b584de10-b7fa-4668-b815-7429192d867a.mp4).
 
-The easiest way to install the custom template is to locate it in the [Google Tag Manager community template gallery](https://tagmanager.google.com/gallery/#/), and you can install it via the Google Tag Manager user interface.
+<video playsInline controls className="nx-rounded-lg"><source src="https://user-images.githubusercontent.com/556882/154125933-b584de10-b7fa-4668-b815-7429192d867a.mp4" type="video/mp4" /></video>
+
+The easiest way to install the custom template is to locate it in the [Google Tag Manager community template gallery](https://tagmanager.google.com/gallery/#/owners/mixpanel/templates/mixpanel-gtm-template), and you can install it via the Google Tag Manager user interface.
 
 To **manually install** the template, e.g. for debugging prior to the changes being published in the community template gallery, follow these steps.
 
@@ -19,7 +21,7 @@ To **manually install** the template, e.g. for debugging prior to the changes be
 
 ## How It Works
 
-The template replicates the functionality of the [Mixpanel JS SDK](https://developer.mixpanel.com/docs/javascript-full-api-reference).
+The template brings the functionality of the [Mixpanel JS SDK](https://developer.mixpanel.com/docs/javascript-full-api-reference) to Google Tag Manager so that you can implement Mixpanel through the Tag Manager interface instead of a direct implementation in code. You will need to define and fire tags using this template to make Mixpanel SDK calls to track events and identify users.
 
 It utilizes a custom created [JavaScript wrapper](https://github.com/mixpanel/mixpanel-js-wrapper) to overcome the restrictions GTM's templating system places on available JavaScript APIs.
 
