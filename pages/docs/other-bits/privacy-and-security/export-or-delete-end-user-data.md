@@ -134,7 +134,7 @@ Example Request:
 Example Return: 
 `{"status":"ok","results":[{"status":"PENDING", "disclosure_type":"DATA", "date_requested":"2020-03-09T22:28:55.078315", "tracking_id":"1583792934719392965",  "project_id":1978118, "compliance_type":"ccpa", "destination_url":null, "requesting_user":"pat.davis@mixpanel.com", "distinct_id_count":1}]}`
 
-##### Rate limit:
+##### Rate Limit
 
 We place a rate limit in place to ensure the integrity of our system as well as prevent a single project from monopolizing the avaialble resources for other projects. Getting a 429 response code from our GDPR API means that you have reached our rate-limit. We currently have a rate-limit of 1 request per second for GDPR APIs. We also limit maximum number of outstanding scans for a single project to be approximately 5 years.
 

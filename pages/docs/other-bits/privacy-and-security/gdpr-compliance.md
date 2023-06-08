@@ -32,3 +32,7 @@ As processors of its customers’ data and to protect the privacy of information
 This policy includes projects that were deleted or reset through the Project Settings - deleting a project through the Project Settings triggers a soft deletion. The data in the deleted or reset project will remain stored in Mixpanel for 60-90 days, after which it will be hard deleted and unrecoverable.
 
 Custom data retention windows can be set for user data by sending regular deletion requests to the Engage API. For more questions about setting custom data retention windows, [contact our support team](https://mixpanel.com/get-support).
+
+## Rate Limit
+
+We place a [rate limit](/docs/other-bits/privacy-and-security/export-or-delete-end-user-data#rate-limit) in place to ensure the integrity of our system as well as prevent a single project from monopolizing the avaialble resources for other projects
