@@ -545,7 +545,7 @@ Now let's assume that *"List of ProductIDs"* is mapped to a [lookup table](/d
 
 ****
 
-### Use-cases
+### Use Cases
 
 ### Breakdown
 
@@ -711,6 +711,12 @@ Now let's assume that *"List of ProductIDs"* is mapped to a [lookup table](/d
         - P3: 1
         - P4: 2
 
+
+## List of Objects Property Support
+
+### Use Cases
+
+### Computed Properties
 
 ## Analyzing First Time Users
 
