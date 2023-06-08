@@ -35,4 +35,4 @@ Custom data retention windows can be set for user data by sending regular deleti
 
 ## Rate Limit
 
-We place a [rate limit](https://docs.mixpanel.com/docs/other-bits/privacy-and-security/export-or-delete-end-user-data#rate-limit) in place to ensure the integrity of our system as well as prevent a single project from monopolizing the avaialble resources for other projects
+We place a [rate limit](/docs/other-bits/privacy-and-security/export-or-delete-end-user-data#rate-limit) in place to ensure the integrity of our system as well as prevent a single project from monopolizing the avaialble resources for other projects
