@@ -110,11 +110,11 @@ Note that:
 
 To change the version of the API used by a new project with no data in it go to the “Identity Merge” section of the Project Settings Page:
 
-![Untitled](https://github.com/mixpanel/docs/blob/main/public/Tracking/id-merge-project-settings.png?raw=true)
+![Untitled](/Tracking/id-merge-project-settings.png)
 
 If you would like to make sure any new projects created within your organization default to a specific ID Merge API there is an organization-level option to configure which API you would like as the the default for new projects.
 
-![Untitled](https://github.com/mixpanel/docs/blob/main/public/Tracking/id-merge-org-settings.png?raw=true)
+![Untitled](/Tracking/id-merge-org-settings.png)
 
 ### Third-Party Integration Support
 
@@ -136,6 +136,8 @@ Customer data platform integrations are involved with identity management and ne
 ### What does Mixpanel recommend using as the `$user_id`?
 We recommend using an ID that is unique to each user and does not change, for example a database ID. While using an identifier like email may be more convenient, keep in mind that you cannot merge 2 `$user_id`s or change a `$user_id`, so if the user changes their email, they will count as a separate user.
 
+If you are on Original ID Merge, we do have a [`$merge`](https://developer.mixpanel.com/reference/identity-merge) API call that can merge two `$user_id`s. Note: this can add significant complexity to your implementation, and has been removed in Simplified ID Merge.
+
 ### How long does it take for the `$device_id` -> `$user_id` mapping to take effect?
 For debugging purposes, the Activity Feed view of a single user is updated in real-time (<1 minute delay). You can get to the Activity Feed by navigating to [Users](https://mixpanel.com/report/users) and selecting a given user.
 
@@ -149,7 +151,6 @@ It is possible to set user profile properties for un-identified users by sending
 ### Is it possible to merge two `$user_ids`?
 We don't recommend doing this in general, as it adds complexity to your identity resolution strategy. Instead we recommend having a single, unchanging `$user_id` for each user and pointing all other IDs for that user to that single `$user_id`.
 
-If you are on Original ID Merge, we do have a [`$merge`](https://developer.mixpanel.com/reference/identity-merge) API call that can merge two `$user_id`s.
 
 ### How to link identified IDs from 3rd-party systems?
 We recommend linking 3rd-party systems’ identified IDs by sending their value in `$device_id`:<3rd-party’s identified ID> and mapped to your main `$user_id`:<your User’s ID> in an event. Those 3rd-party systems can then send events independently using just `$device_id`:<3rd-party’s identified ID>.
