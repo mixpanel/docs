@@ -109,9 +109,11 @@ Page view tracking must be done manually for server-side implementations. Here a
 
 - Track page views as a single event type by using a constant `event_name`
 - Track different pages as an event property and not as different events for better analysis
+- Plan ahead for handling page views from anonymous users, identified users, and connecting them to merge a user's journey
+  - Get started below with [Identifying Users](/docs/tracking/how-tos/effective-server#identifying-users)
 - Fire page view events only on successful responses to the client
 - Parse headers and the request URL for common web analytics properties such as referrer and UTM parameters
-  - See Mixpanel's [default web event properties](/docs/tracking/reference/default-properties#event-properties) for examples
+  - See above for [parsing user agent](/docs/tracking/how-tos/effective-server#tracking-browser-device-and-os) and [marketing attribution properties](/docs/tracking/how-tos/effective-server#tracking-utms-and-referrer)
 
 ## Identifying Users
 Our server libraries normally require that you specify the distinct_id value for each event. If you _don't_ know the user's identity at the time the event is tracked, then they're an anonymous user. When using our Web or Mobile SDKs, Mixpanel will automatically generate an ID that's local to that user's device. This ID will persist on all events tracked by that user on that device, until you call `identify()` or `reset()`. More on that in our [identity management guide](/docs/tracking/how-tos/identifying-users).
