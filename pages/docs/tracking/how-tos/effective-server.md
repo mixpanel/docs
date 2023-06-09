@@ -27,7 +27,7 @@ mp = mixpanel.init("YOUR_TOKEN")
 
 def track_to_mp(request, event_name, properties):
   parsed = user_agent_parser.Parse(request.headers["User-Agent"])
-  
+
   # Set parsed values as properties.
   # You can also parse out the browser/device/os versions.
   properties.update({
@@ -37,14 +37,43 @@ def track_to_mp(request, event_name, properties):
   })
 
   properties["ip"] = request.remote_addr
-  mp.track(request.user_id, "Signed Up", properties)
+  mp.track(request.user_id, event_name, properties)
 
 def handle_signup(request):
   # ... logic to process the signup ...
 
   track_to_mp(request, "Signed Up", {"Signup Type": request.form["type"]})
-  
+
   return "Signup successful!"
+```
+
+## Tracking UTMs and Referrer
+Mixpanel's Web SDK parses UTM parameters from the current URL and obtains referrer information from the browser's `document.referrer` property to enable easy marketing analytics. Since this is not automatic for server-side implementations, these properties will need to be added manually to tracked events. Below is an example in Python:
+
+```python
+from urllib.parse import urlparse
+
+from mixpanel import Mixpanel
+
+mp = mixpanel.init("YOUR_TOKEN")
+
+def track_to_mp(request, event_name, properties):
+
+  # ... handle additional event properties such as $browser, $device, and $os ...
+
+  if "Referer" in request.headers:
+    properties.update({
+      "$referrer": request.headers["Referer"]
+      "$referring_domain": urlparse(request.headers["Referer"]).hostname
+    })
+
+  # assumes query parameters are available as Flask request.args dict
+  utm_keys = ["utm_source", "utm_medium", "utm_campaign", "utm_content", "utm_term"]
+  utm_values = {key: request.args[key] for key in utm_keys if request.args.get(key)}
+  properties.update(utm_values)
+
+  properties["ip"] = request.remote_addr
+  mp.track(request.user_id, event_name, properties)
 ```
 
 ## Tracking Geolocation
@@ -71,10 +100,20 @@ def handle_signup(request):
   # ... logic to process the signup ...
 
   track_to_mp(request, "Signed Up", {"Signup Type": request.form["type"]})
-  
+
   return "Signup successful!"
 ```
 
+## Tracking Page Views
+Page view tracking must be done manually for server-side implementations. Here are some general guidelines for tracking page views.
+
+- Track page views as a single event type by using a constant `event_name`
+- Track different pages as an event property and not as different events for better analysis
+- Plan ahead for handling page views from anonymous users, identified users, and connecting them to merge a user's journey
+  - Get started below with [Identifying Users](/docs/tracking/how-tos/effective-server#identifying-users)
+- Fire page view events only on successful responses to the client
+- Parse headers and the request URL for common web analytics properties such as referrer and UTM parameters
+  - See above for [parsing user agent](/docs/tracking/how-tos/effective-server#tracking-browser-device-and-os) and [marketing attribution properties](/docs/tracking/how-tos/effective-server#tracking-utms-and-referrer)
 
 ## Identifying Users
 Our server libraries normally require that you specify the distinct_id value for each event. If you _don't_ know the user's identity at the time the event is tracked, then they're an anonymous user. When using our Web or Mobile SDKs, Mixpanel will automatically generate an ID that's local to that user's device. This ID will persist on all events tracked by that user on that device, until you call `identify()` or `reset()`. More on that in our [identity management guide](/docs/tracking/how-tos/identifying-users).
@@ -87,9 +126,9 @@ As an outline, you will want to follow the approach below:
 The key is to have an ID that is unique to each user and persists during that user's session. We recommend generating a UUID and storing that value in a cookie. All common server frameworks provide a simple way to set and retrieve cookies per request.
 
 ### Step 2: Leverage this ID for anonymous events
-When tracking events from your server, set the `distinct_id` property of events to the anonymous ID generated. 
+When tracking events from your server, set the `distinct_id` property of events to the anonymous ID generated.
 
-***In case your project has Simplied ID management specifically***, and the user is anonymous, you should include a property named `$device_id` with this value. You can then optionally also include the `distinct_id` (requires for you to prefix the ID with the string `'device:'`) but do note that if you don't include it, it will be assumed. You can see more in the python code example. 
+***In case your project has Simplied ID management specifically***, and the user is anonymous, you should include a property named `$device_id` with this value. You can then optionally also include the `distinct_id` (requires for you to prefix the ID with the string `'device:'`) but do note that if you don't include it, it will be assumed. You can see more in the python code example.
 
 ### Step 3: Set the authenticated ID once users log in
 
@@ -114,11 +153,11 @@ def track_to_mp(request, event_name, properties):
   # This assumes you've previously set a cookie called "session_id" that is local to the user's session
   # Set `$device_id` to that cookie's value
   properties["$device_id"] = uuid.uuid4()
-  
+
   # Set $user_id if the user is authenticated (logged in).
   if request.user.is_authenticated():
     properties["$user_id"] = request.user.username
-  
+
   # Note: leave the first argument blank here, since we're passing $device_id and $user_id as properties.
   mp.track("", event_name, properties)
 
@@ -129,9 +168,4 @@ def identify_user(request):
 
   }
   track_to_mp(request, "$identify", properties)
-  
-def handle_pageview(request):
-  response = HTTPResponse("...")
-    
-  track_to_mp(request, "Pageview", {"page_url": request.page_url})
 ```

@@ -30,3 +30,5 @@ For iOS, users enter the Apple App Store carrying data about where they came fro
 
 In order to track channel attribution on iOS, you'll need to use a mobile attribution tool. You can see a list of the partners we integrate with on our [tech partners page](https://mixpanel.com/partners/integrations).
 
+## Server-Side Attribution
+Unlike web tracking, server-side implementations generally don't have access to global contexts or variables that can provide attribution data. This means these data such as UTM parameters and referrer information need to be extracted manually from the request. See our [Effective Server-Side Tracking page on tracking attribution](/docs/tracking/how-tos/effective-server#tracking-attribution-from-utms-and-referer) for examples of how this could be done.
