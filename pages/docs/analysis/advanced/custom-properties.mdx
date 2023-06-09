@@ -13,14 +13,6 @@ import {Code} from 'nextra/components'
 
 Custom properties lets you combine existing properties into new properties on the fly, using a simple Excel-like formula language. You can then use these new properties almost anywhere that you can use regular properties, with the ability to save/share them for reuse across your team. For more on why we built this, check out [our blog](https://mixpanel.com/blog/introducing-the-mixpanel-modeling-layer/).
 
-Example use-cases include:
-
-- Create custom buckets for numeric properties ("low", "medium", "high")
-- Compute the days between two date properties (eg days since signup)
-- Mathematical functions on numeric properties (round, ceiling, floor..)
-- Split a string into its parts (eg: extract domain from URL or email)
-- Arbitrarily complex string manipulation with regex
-
 ## Use Cases
 
 ### Grouping Marketing Channels
@@ -36,15 +28,10 @@ You also want to name and save this bucketing as a property that everyone else i
 
 ### Compute Properties Mathematically from Other Properties
 
-Use custom properties to create a new property using the values of multiple other properties.
+If you have an e-commerce app, you can combine "price" and "quantity" properties into a "total price" property as follows:
 
-For example:
+![image](https://github.com/mixpanel/docs/assets/2077899/b514f908-6838-45ff-bdea-feb6969e0340)
 
-A marketplace company wants to track total purchase amount for an order, but the per-unit price is passed as a property and the number of items is passed as a property.
-
-They can create a custom property using “price” and “quantity” with this transformation:
-
-![/mceclip2.png](/mceclip2.png)
 
 ### Compute the Number of Days Between Two Date Properties
 
@@ -86,13 +73,13 @@ The same syntax works with objects.
 
 Click **Create Custom > Event Property or User Property** to open the property builder.
 
-![/mceclip1.png](/mceclip1.png)
+![image](https://github.com/mixpanel/docs/assets/2077899/33bafaea-8a7b-48ab-950e-b32f22cd72f0)
 
 Optionally give your property a name and click into the formula bar to start defining it. If you're new to this feature, we recommend starting with one of the examples. Click the **Insert Example** drop down to populate the box with a use-case specific custom property.
 
 When writing your formula, click **Ctrl + Space** to see a list of all the available functions and their descriptions. Click **period (.)** to search for event or user profile properties to add to the formula.
 
-![/mceclip2.png](/mceclip2.png)
+![image](https://github.com/mixpanel/docs/assets/2077899/98a4e5f0-6b9b-414b-8dfe-feecdb837078)
 
 Custom properties are local to the report by default, when you select **Apply**. To save the custom property permanently for use in other reports and to make it usable by other project members, click **Save**. We recommend Apply-ing the custom property and using it in your local analysis first, before saving and sharing, to reduce clutter in the project.
 
