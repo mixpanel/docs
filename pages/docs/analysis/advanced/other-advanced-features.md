@@ -716,7 +716,35 @@ Now let's assume that *"List of ProductIDs"* is mapped to a [lookup table](/d
 
 ### Use Cases
 
+List of objects are generally useful when tracking a list of complex things. Some examples:
+
+- items in a cart
+- search results
+- images in a slideshow
+
+In each case, the object will have multiple properties, such as "price" and "brand" for items in a cart.
+
+### Usage
+
+List of objects can be used like other properties in Mixpanel. Upon selecting a list of objects property, you will be prompted to select another property, which is is common to the objects in the list. Usage in measurements, filters and breakdowns follows the same behavior as [other list proeprties](/docs/analysis/advanced/other-advanced-features#list-property-support).
+
 ### Computed Properties
+
+We provide a few convenience computed properties after a list of objects property is selected. This does a computation on the property, and works similarly to [custom properties](/docs/analysis/advanced/custom-properties).
+
+![list computed properties](/list-computed-properties.png)
+
+#### Size
+
+The size, or length of the list as a numeric property.
+
+#### Sum
+
+Prompts a selection of a numeric property contained within the objects of the list. This will give the total for the whole list for that property.
+
+#### Distinct Count
+
+Prompts a selection of a property contained within the objects of the list. This will give the number of unique values for that property in the list.
 
 ## Analyzing First Time Users
 
