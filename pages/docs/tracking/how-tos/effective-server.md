@@ -104,6 +104,14 @@ def handle_signup(request):
   return "Signup successful!"
 ```
 
+## Tracking Page Views
+Page view tracking must be done manually for server-side implementations. Here are some general guidelines for tracking page views.
+
+- Track page views as a single event type by using a constant `event_name`
+- Track different pages as an event property and not as different events for better analysis
+- Fire page view events only on successful responses to the client
+- Parse headers and the request URL for common web analytics properties such as referrer and UTM parameters
+  - See Mixpanel's [default web event properties](/docs/tracking/reference/default-properties#event-properties) for examples
 
 ## Identifying Users
 Our server libraries normally require that you specify the distinct_id value for each event. If you _don't_ know the user's identity at the time the event is tracked, then they're an anonymous user. When using our Web or Mobile SDKs, Mixpanel will automatically generate an ID that's local to that user's device. This ID will persist on all events tracked by that user on that device, until you call `identify()` or `reset()`. More on that in our [identity management guide](/docs/tracking/how-tos/identifying-users).
@@ -158,9 +166,4 @@ def identify_user(request):
 
   }
   track_to_mp(request, "$identify", properties)
-
-def handle_pageview(request):
-  response = HTTPResponse("...")
-
-  track_to_mp(request, "Pageview", {"page_url": request.page_url})
 ```
