@@ -85,7 +85,11 @@ The types of organization and project roles a user has should be based on the re
 
 ### Organization Roles
 
-An Organization has 4 roles: Owner, Admin, Billing Admin, and Member. The table below visually breaks down all the permissions per role on an organization level.
+An Organization **may** have 4 roles: Owner, Admin, Billing Admin, and Member. The table below visually breaks down all the permissions per role on an organization level.
+
+**Paid** organizations have four roles: Owner, Admin, Billing Admin and Member.
+
+**Free** organizations have two roles: Owner and Billing Admin
 
 | **Organization Role**                                              | **Owner**          | **Admin**          | **Billing Admin**  | **Member** |
 |--------------------------------------------------------------------|--------------------|--------------------|--------------------|------------|
