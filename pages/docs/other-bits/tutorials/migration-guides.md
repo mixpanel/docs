@@ -60,7 +60,6 @@ Depending on your current setup, the steps for migrating your live data tracking
 
 - [Amplitude Migration Guide](https://docs.mixpanel.com/docs/other-bits/tutorials/migration-guides/migrating-to-mixpanel-from-amplitude)
 - [Google Analytics Migration Guide](https://docs.mixpanel.com/docs/other-bits/tutorials/migration-guides/migrating-to-mixpanel-from-google-analytics)
-- [Adobe Analytics Migration Guide](https://docs.mixpanel.com/docs/other-bits/tutorials/migration-guides/migrating-to-mixpanel-from-adobe-analytics)
 
 ### Change management migration of end users
 
