@@ -76,7 +76,7 @@ Our goal is to focus on each team individually, and we can process multiple in p
 
 In many cases, your goal in a migration will be to complete the process as quickly as possible - after all, you may be paying for multiple providers at once. Assessing your data quality and governance is likely to be less of a priority in the short term.
 
-We recommend once your data and users are migrated to utilize your learnings from these processes to assess the current state of your data trust and where you need to address data issues to gain adoption. This might mean needing to implement new datasets or improve existing tracking to increase the number of use cases which can be explored by end users.
+We recommend once your data and users are migrated to utilize your learnings from these processes to assess the current state of your data trust and where you need to address data issues to gain adoption. This might mean needing to implement new datasets or improve existing tracking to increase the number of use cases which can be explored by end users. You can read more around our recommended approach and questions to ask yourself [here](https://mixpanel.com/blog/5-questions-for-planning-your-data-architecture/).
 
 ### Ongoing success planning
 
