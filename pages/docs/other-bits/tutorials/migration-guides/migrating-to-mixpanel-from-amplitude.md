@@ -43,10 +43,10 @@ Mixpanel accepts event data from a variety of different sources. Choose your imp
 
 We support the following data collection mechanisms:
 
-- Client-side SDKs & Server-side SDKs: Simply replace Amplitude code calls to track events with Mixpanel calls instead
-- Customer Data Platforms (CDPs) like [Segment](https://segment.com/): Go into your CDP settings to add Mixpanel as a destination, and point your data stream to Mixpanel
-- Import API: Point your event ingestion pipeline to [Mixpanel’s robust API](https://developer.mixpanel.com/reference/import-events) for data ingestion
-- [Reverse ETL](https://mixpanel.com/blog/what-is-reverse-etl-product-data/) (RETL) tools like [Census](https://getcensus.com): Go into your RETL settings to add Mixpanel as a destination, and point your syncs to Mixpanel
+- [Client-side SDKs & Server-side SDKs](https://docs.mixpanel.com/docs/other-bits/tutorials/migration-guides/migrating-to-mixpanel-from-amplitude#client-side-sdks--server-side-sdks): Simply replace Amplitude code calls to track events with Mixpanel calls instead
+- [Customer Data Platforms (CDPs)](https://docs.mixpanel.com/docs/other-bits/tutorials/migration-guides/migrating-to-mixpanel-from-amplitude#customer-data-platforms-cdps) like [Segment](https://segment.com/): Go into your CDP settings to add Mixpanel as a destination, and point your data stream to Mixpanel
+- [Import API](https://docs.mixpanel.com/docs/other-bits/tutorials/migration-guides/migrating-to-mixpanel-from-amplitude#import-api): Point your event ingestion pipeline to [Mixpanel’s robust API](https://developer.mixpanel.com/reference/import-events) for data ingestion
+- [Reverse ETL](https://docs.mixpanel.com/docs/other-bits/tutorials/migration-guides/migrating-to-mixpanel-from-amplitude#reverse-etl-retl) (RETL) tools like [Census](https://getcensus.com): Go into your RETL settings to add Mixpanel as a destination, and point your syncs to Mixpanel
 
 ### Client-side SDKs & Server-side SDKs
     
@@ -78,6 +78,7 @@ mixpanel.init('new token')
 ```
 
 [Docs Reference](https://developer.mixpanel.com/docs/javascript-full-api-reference#mixpanelinit)
+
 [Initialization (init) options](https://developer.mixpanel.com/docs/javascript-full-api-reference#mixpanelset_config)
 
 #### Events
@@ -146,7 +147,7 @@ mixpanel.set_group('orgId', 15)
 
 [Docs Reference](https://developer.mixpanel.com/docs/javascript-full-api-reference#mixpanelset_group)
 
-###Customer Data Platforms (CDPs)
+### Customer Data Platforms (CDPs)
     
 Since CDPs already collect all your data via 1 SDK and route to many downstream destinations, enabling Mixpanel is straightforward. Simply go to your CDP settings and add Mixpanel as a destination:
 
@@ -164,15 +165,15 @@ We provide Mixpanel as a destination and setup guides for all of the most popula
 - [mParticle](https://docs.mparticle.com/integrations/mixpanel/audience/)
 - [Rudderstack](https://www.rudderstack.com/docs/destinations/streaming-destinations/mixpanel/)
 
-Note depending on your CDP provider, they may also be able to help with migrating historical data as well. Features like [Segment Replay](https://segment.com/docs/guides/what-is-replay/) enable you to quickly backfill historical data during your migration.
+Note depending on your CDP provider, they may also be able to help with migrating historical data as well. Features like [Segment Replay](https://segment.com/docs/guides/what-is-replay/) enable you to quickly backfill historical data during your migration versus needing to do this work with your developer resources.
     
-###Import API
+### Import API
     
 If you currently send data to Amplitude directly to their API, you can simply swap out the Amplitude API with the Mixpanel API.
 
-####Sending Events
+#### Sending Events
 
-Amplitude’s `/track` API Endpoint is [https://api2.amplitude.com/2/httpapi](https://api2.amplitude.com/2/httpapi)` (documented [here](https://www.docs.developers.amplitude.com/analytics/apis/http-v2-api/)). A sample request from your server for this API would look like:
+Amplitude’s `/track` API Endpoint is `https://api2.amplitude.com/2/httpapi` (documented [here](https://www.docs.developers.amplitude.com/analytics/apis/http-v2-api/)). A sample request from your server for this API would look like:
 
 ```bash
 curl -X POST https://api2.amplitude.com/2/httpapi \
@@ -188,7 +189,7 @@ curl -X POST https://api2.amplitude.com/2/httpapi \
     }'
 ```
 
-Mixpanel’s `/track` API endpoint is [https://api.mixpanel.com/import](https://api.mixpanel.com/import) (documented [here](https://developer.mixpanel.com/reference/import-events)). A sample request from your server for this API would look like:
+Mixpanel’s `/track` API endpoint is `https://api.mixpanel.com/import` (documented [here](https://developer.mixpanel.com/reference/import-events)). A sample request from your server for this API would look like:
 
 ```bash
 curl --request POST \
@@ -212,9 +213,9 @@ curl --request POST \
 The big difference between the APIs are:
 
 - **Authentication:** Amplitude authenticates in the request payload, whereas Mixpanel uses your project token in the request URL alongside basic auth. Mixpanel authentication can be done via a service account as described [here](https://developer.mixpanel.com/reference/ingestion-api-authentication). Be sure to move the authentication outside the payload.
-- **Event JSON Structure:** Amplitude and Mixpanel have slightly different structures (explained [here]()). You will want to remap the Amplitude event format to the expected Mixpanel JSON payload as described [here](https://www.notion.so/Migrating-to-Mixpanel-from-Amplitude-723407166fbf4f7ba9365034691502da).
+- **Event JSON Structure:** Amplitude and Mixpanel have slightly different structures (explained [here](https://docs.mixpanel.com/docs/other-bits/tutorials/migration-guides/migrating-to-mixpanel-from-amplitude#differences-in-the-data-models)). You will want to remap the Amplitude event format to the expected Mixpanel JSON payload as described [here](https://www.notion.so/Migrating-to-Mixpanel-from-Amplitude-723407166fbf4f7ba9365034691502da).
 
-###Reverse ETL (RETL)
+### Reverse ETL (RETL)
 
 If you already send data to Amplitude with your data warehouse as the source of truth using reverse ETL, sending data to Mixpanel requires adding a new destination and syncing the same models you have been syncing to Amplitude. This option is like a hybrid between the CDP and Import API options above - you can use the reverse ETL tool to set Mixpanel up simply as a destination and then the tool will handle all of the remapping at the API level for you.
 
@@ -222,10 +223,14 @@ Simply go to your RETL settings and add Mixpanel as a connection:
 
 ![Census Connection](https://user-images.githubusercontent.com/129823695/234812805-ded7dcef-9d47-4375-b52e-a229e4832477.png)
 
-
 We provide Mixpanel as a destination and setup guides for all of the most popular RETL tools:
 
 - [Census](https://docs.getcensus.com/destinations/mixpanel)
 - [Hightouch](https://hightouch.com/docs/destinations/mixpanel)
 - [Segment](https://segment.com/docs/connections/reverse-etl/)
-    
+
+### Not sure where to start or need help?
+
+If you're unsure how you currently track data, or might want to consider tracking data differently as you migrate to Mixpanel, we recommend starting [here](https://mixpanel.com/blog/guide-to-choosing-your-data-architecture/).
+
+Mixpanel Customer Success and Support have been helping thousands of customers migrate from other tools to Mixpanel over the past decade. If you need help, just [reach out here](https://mixpanel.com/get-support) and we'll be ready to assist with advice specific to your situation.
