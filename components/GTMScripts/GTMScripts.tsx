@@ -56,6 +56,18 @@ export default function insertGTMScriptTags() {
 
   const devGTMNoScript = `<iframe src="https://www.googletagmanager.com/ns.html?id=GTM-MRDR9SP&gtm_auth=u7v8Q5HaBdyQjwUCnH1m6A&gtm_preview=env-32&gtm_cookies_win=x" height="0" width="0" style="display:none;visibility:hidden" />`;
 
+  const SPRIG_SURVEY_TOEKN = isProd ? `9sZai6GO-WSS` : `nwR-Y3CwEnJH`;
+  const sprigScript = `(function(l,e,a,p) {
+    if (window.Sprig) return;
+    window.Sprig = function(){S._queue.push(arguments)}
+    var S = window.Sprig;S.appId = a;S._queue = [];window.UserLeap=S;
+    a=l.createElement('script');
+    a.async=1;a.src=e+'?id='+S.appId;
+    p=l.getElementsByTagName('script')[0];
+    p.parentNode.insertBefore(a, p);
+  })(document, 'https://cdn.sprig.com/shim.js', '${SPRIG_SURVEY_TOEKN}');
+`;
+
   // Run
   addScriptBody({ scriptBody: initMixpanelScript, tagType: `script` });
   // initMixpanelScript();
@@ -66,4 +78,5 @@ export default function insertGTMScriptTags() {
     addScriptBody({ scriptBody: devGTMScript, tagType: `script` });
     addScriptBody({ scriptBody: devGTMNoScript, tagType: `noscript` });
   }
+  addScriptBody({ scriptBody: sprigScript, tagType: `script` });
 }
