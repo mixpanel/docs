@@ -1,8 +1,8 @@
-## Migrating to Mixpanel from Amplitude
+# Migrating to Mixpanel from Amplitude
 
 If you haven't already, we recommend starting with our [Migration Guides Overview](https://docs.mixpanel.com/docs/other-bits/tutorials/migration-guides) as it details the key components of migrating to Mixpanel from other analytics tools. Below we outline specific steps and considerations when migrating from Amplitude.
 
-### Differences in the data models
+## Differences in the data models
 
 Both Mixpanel and Amplitude are product analytics tools which collect event-based behavioral data about your users. [Events](https://developer.mixpanel.com/reference/import-events) are commonly expressed as JSON which represent the name of the user action, the ID of the user, the time at which the action took place, and all associated metadata. Events are immutable, and represent data at the time of which an action takes place.
 
@@ -37,7 +37,7 @@ We also support additional data for extending your use cases with Mixpanel:
 - [Group profiles](https://developer.mixpanel.com/reference/group-set-property): Used with our Group Analytics product add-on to allow you to pivot quickly between users and other entities in your analysis. A common use case is for a B2B company to pivot between analyzing users and analyzing accounts.
 - [Lookup tables](https://developer.mixpanel.com/reference/lookup-tables): For event data which was already sent, you can use these to extend the data already sent into Mixpanel. A common use case is taking an identifier like a transaction ID, item ID, etc. and using lookup tables to enrich the data with additional information like the amount, category, etc. from your data warehouse.
 
-### Identifying your implementation method
+## Identifying your implementation method
 
 Mixpanel accepts event data from a variety of different sources. Choose your implementation method first and then you can follow the below steps for sending data to Mixpanel.
 
@@ -229,7 +229,7 @@ We provide Mixpanel as a destination and setup guides for all of the most popula
 - [Hightouch](https://hightouch.com/docs/destinations/mixpanel)
 - [Segment](https://segment.com/docs/connections/reverse-etl/)
 
-### Not sure where to start or need help?
+## Not sure where to start or need help?
 
 If you're unsure how you currently track data, or might want to consider tracking data differently as you migrate to Mixpanel, we recommend starting [here](https://mixpanel.com/blog/guide-to-choosing-your-data-architecture/).
 
