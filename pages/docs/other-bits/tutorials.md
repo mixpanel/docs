@@ -15,6 +15,9 @@ We've collated here educational resources to guide you through best practices on
   - [Migrating from Amplitude](/docs/other-bits/tutorials/migration-guides/migrating-to-mixpanel-from-amplitude)
   - [Migrating from Google Analytics](/docs/other-bits/tutorials/migration-guides/migrating-to-mixpanel-from-google-analytics)
 
+
+- [How to Clean Your Data](/docs/other-bits/tutorials/how-to-clean-your-data)
+
 - [Adoption Best Practices](/docs/other-bits/tutorials/adoption-reference-guide)
 
  
