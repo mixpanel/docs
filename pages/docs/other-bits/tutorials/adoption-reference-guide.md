@@ -1,16 +1,12 @@
-# Adoption Best Practices
-
 This guide outlines best practices for leveraging Mixpanel to establish a product analytics practice within your team. The examples and practical advice come from the experience of helping 1,000+ companies over the past 10+ years of implementing and adopting Mixpanel. Using these tips and tricks will help you get the most value out of Mixpanel.
 
 ## Start Small, Iterate
-
-### Cut Scope, Focus, Iterate
 
 Scaling Mixpanel to hundreds of use cases starts with getting one use case right. Focus on your highest impact use case and limit your scope to the key data to measure that use case. We recommend starting with your [sign up and value moments](/docs/getting-started/plan-your-implementation#what-to-track) first - for example, for an e-commerce company, this would be the signup/login actions alongside completed purchases. Getting your most important user flow right will allow you to learn and set standards before proceeding with scaling to additional use cases. The first event and use case will be hard; every subsequent one will be easier.
 
 This approach also allows you to cut down on the time needed to make product analytics successful. Instead of a 6 month long waterfall implementation you can iteratively add value over each development sprint in an agile fashion to accelerate time to value.
 
-### One (or a few) events
+## One (or a few) events can get you started
 
 One of the myths of analytics is that you need tons of data to generate meaningful insights. We find that starting with 1-3 events that are truly meaningful to the business are sufficient to generate more insights than you could imagine. The biggest thing to consider is adding more properties to your events - this is the context about an event which will allow you to self-serve analysis about your key actions in ways you were unable to quickly or easily before without an analyst or advanced knowledge of SQL.
 
@@ -36,7 +32,7 @@ Utilizing the team by team approach allows you to:
 - Show success and set the example for other teams to follow
 - Develop the first set of experts who can help scale product analytics adoption across your organization
 
-### Get the right resources involved (and excited)
+## Get the right resources involved (and excited)
 
 We’ve learned that a focused investment from a Product Manager and Software or Data Engineer early on is critical to setting the team up for success with product analytics in the long term. Here’s what we recommend on each team that is adopting product analytics:
 
@@ -46,9 +42,7 @@ We’ve learned that a focused investment from a Product Manager and Software or
 - 1-2 weeks of bandwidth to get the implementation up and running
 - Excitement to establish the foundation for self-serve product analytics
 
-## Good Data
-
-### What do we define as good data
+## Good data is the foundation to successful adoption
 
 Analytics is only as good as the data that feeds it. A great analytics setup is:
 
@@ -69,7 +63,7 @@ Over the years, we’ve made several observations that have shaped our perspecti
 | Multiple projects create issues with data governance, noise and lack of ability to cross query.                                                                                           | Suggest a single project with properties to filter out or create data views per project or team. This also reduces the load on data governance.              |
 | High costs on data that is no longer relevant or data that is not being used                                                                                                              | Utilize the data governance tools in Lexicon to drop, merge and track what events are being used across the org and remove those that aren’t giving you ROI. |
 
-### If you already have trusted data, democratize it
+## If you already have trusted data, democratize it
 
 We commonly talk to customers about having “source of truth” data, or data which your company already uses to make key decisions and report on to investors. In cases where this data already exists (likely in a data warehouse), you should not leverage Mixpanel to duplicate or replace this data. Instead, you should make sure that data is properly modeled as event behavioral data - with a user ID, timestamp, and properties - and send it to Mixpanel.
 
@@ -84,7 +78,7 @@ Note that you may only have *some* of the data you need for Mixpanel in a trustw
 - Transactional data: Data used to power your application, must be stored in the data warehouse or application database - for example, a signup
 - Clickstream data: Data from the user’s journey to analyze behavior, like viewing the homepage and clicking the signup button
 
-### If you need to create trusted data, track it server-side
+## If you need to create trusted data, track it server-side
 
 If you don’t have trustworthy data, or perhaps have an incomplete set of data (for example, you may have trustworthy data for key transactional events like signups; but be missing data for clickstream events in the user journey), you should strongly consider adding new data server-side.
 
@@ -94,13 +88,13 @@ Using server-side tracking allows you to:
 - Avoid data accuracy issues with tools like Ad Blockers and privacy extensions (which will block some or all data sent to Mixpanel based on user preferences)
 - Increase adoption (accurate data means higher adoption; if users are constantly questioning their analyses in Mixpanel they will revert to whatever habit they formed before for analysis)
 
-### Naming conventions should go with the grain
+## Naming conventions should go with the grain
 
 How you name your events, properties, boards, project, etc. should be based on the standards already adopted by your internal teams. Provided the naming has sufficient context to explain what an event means, it is preferred to go with commonly adopted and well known conventions from your team/organization.
 
 If you don’t know where to begin, we’d recommend snake case as a best practice - i.e. converting all spaces to `_` and all capital letters to lower case. The reason behind this is that in most databases, spaces and capitals are converted to snake case anyways. So when you later export your Mixpanel data or want to use it in other data applications, snake case is typically the accepted practice and what will be easiest to maintain. You can always add display names and definitions for events and properties later on within Mixpanel’s Lexicon feature.
 
-### Fewer Events, More Properties
+## Fewer Events, More Properties
 
 Tracking as many actions as possible is not the route to long-term success. Instead, you should be thinking about adding context to these actions via properties. Adding more properties not only has the added benefit of not increasing your Mixpanel bill, but it adds more dimensions by which you can segment key actions to make insights.
 
@@ -108,9 +102,7 @@ There are two extremes we steer customers away from: Events that are too broad a
 
 In general, we advise customers to group together the same actions that users take across your site / platform, and group them to the level of the most commonly asked questions. You can find relevant examples for this [here](/docs/other-bits/tutorials/analytics-strategy#best-practices).
 
-## Scaling Fast
-
-### Centralize standards in ways your org understands
+## Centralize standards in ways your org understands
 
 We’ve found that every company works differently in how they store and share knowledge internally. Despite these differences, we highly recommend that you centralize your data governance and analysis standards somewhere for your team to access. We use Notion, but for smaller companies we’ve seen Slack Bookmarks and for larger companies entire Wikis in internal sites. These can be an important place to document key standards, best practices, and key contacts in case of questions.
 
@@ -118,17 +110,17 @@ In the following link, we've consolidated a set of similar reference materials t
 
 [Mixpanel Reference Guide](https://mxpnl.notion.site/mxpnl/Mixpanel-Example-Reference-Guide-275a8a8e412e46dbbf021528ffd52f01)
 
-### Create a safe space for questions
+## Create a safe space for questions
 
 No matter your best efforts as the champion of Mixpanel, there will always be questions from end users - What is this event? What should I use for signups? Do we have a Board of our KPIs? It’s important to create a space and cadence for asking and answering these questions amongst your team. We recommend a simple Slack channel dedicated towards all things Mixpanel, but of course a Teams chat or ongoing cadence in something like a live Zoom for office hours would work.
 
 If you are working with Mixpanel on an Enterprise plan, we’re also happy to create a Slack channel between your power users and your Mixpanel account team to facilitate quicker responses and a shared library of context around our partnership. If you aren’t on an Enterprise plan, you can join our [Slack Community](https://community.mixpanel.com/) and ask questions amongst other Mixpanel users - head on in and join the #questions channel!
 
-### Make Mixpanel part of your habits and rituals
+## Make Mixpanel part of your habits and rituals
 
 Adopting Mixpanel only works if it becomes part of your routines. In the most ideal state, Mixpanel would be a part your performance review process, leveraging insights from. Mixpanel to judge the success of product releases, experiments, and more. We definitely recommend measuring all PRDs via Mixpanel once you can. At a smaller scale, getting started by using Mixpanel live in team meetings and standups can server to start building the habit of self-serve analytics and teach your EPD team how powerful Mixpanel can be in asking a question and getting a live answer quickly to move forward with a decision.
 
-### Sampling will limit your value
+## Sampling will limit your value
 
 Sampling your data seems like a logical outcome as prices increase for tools and insights are still needed by your users. Unfortunately, all of the customers we’ve ever worked with on product analytics who sample end up with limited value over time. Trying to reduce event volumes by sampling creates trust issues and more importantly will deny you the pros of using a product analytics tool. You’re better off tracking less events for full journeys than sampling many events for all your users.
 
