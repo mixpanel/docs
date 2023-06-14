@@ -6,7 +6,7 @@ This guide outlines best practices for leveraging Mixpanel to establish a produc
 
 ### Cut Scope, Focus, Iterate
 
-Scaling Mixpanel to hundreds of use cases starts with getting one use case right. Focus on your highest impact use case and limit your scope to the key data to measure that use case. We recommend starting with your [sign up and value moments](https://docs.mixpanel.com/docs/getting-started/plan-your-implementation#what-to-track) first - for example, for an e-commerce company, this would be the signup/login actions alongside completed purchases. Getting your most important user flow right will allow you to learn and set standards before proceeding with scaling to additional use cases. The first event and use case will be hard; every subsequent one will be easier.
+Scaling Mixpanel to hundreds of use cases starts with getting one use case right. Focus on your highest impact use case and limit your scope to the key data to measure that use case. We recommend starting with your [sign up and value moments](/docs/getting-started/plan-your-implementation#what-to-track) first - for example, for an e-commerce company, this would be the signup/login actions alongside completed purchases. Getting your most important user flow right will allow you to learn and set standards before proceeding with scaling to additional use cases. The first event and use case will be hard; every subsequent one will be easier.
 
 This approach also allows you to cut down on the time needed to make product analytics successful. Instead of a 6 month long waterfall implementation you can iteratively add value over each development sprint in an agile fashion to accelerate time to value.
 
@@ -106,7 +106,7 @@ Tracking as many actions as possible is not the route to long-term success. Inst
 
 There are two extremes we steer customers away from: Events that are too broad and events that are too narrow. Where events are too broad, you’d end up having to create filters for every single disparate action you want to measure. Conversely, where events are too narrow, you need to do a lot of work every time to compare the actions against one another.
 
-In general, we advise customers to group together the same actions that users take across your site / platform, and group them to the level of the most commonly asked questions. You can find relevant examples for this [here](https://docs.mixpanel.com/docs/other-bits/tutorials/analytics-strategy#best-practices).
+In general, we advise customers to group together the same actions that users take across your site / platform, and group them to the level of the most commonly asked questions. You can find relevant examples for this [here](/docs/other-bits/tutorials/analytics-strategy#best-practices).
 
 ## Scaling Fast
 
