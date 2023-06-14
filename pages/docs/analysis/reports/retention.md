@@ -247,9 +247,9 @@ From our sample data, the average value for day 1 retained users is calculated a
 
 #### When examining a Retention report in % / Retention Rate view:
 
-C_March 1 = 500 / 1000 (retention rate for March 1)
+C_March 1 = 500 (retention rate for March 1)
 
-C_March 2 = 400 / 500 (retention rate for March 2)
+C_March 2 = 400 (retention rate for March 2)
 
 W_March 1 = 1000 / 1500 (weight for March 1)
 
@@ -261,13 +261,13 @@ P_March 2 = 500 (total profiles for March 2)
 
 **Weighted Average of Retained Users = C_March 1 * W_March 1 + C_March 2 * W_March 2
 
-In our sample data, this computes to: ( 500 * 0.66 ) + ( 400 * 0.33 ) = 466.66
+In our sample data, this computes to: ( 500 * (1000 / 1500) ) + ( 400 * (500 / 1500) ) = 466.66
 
 Next, we have to get the weighted average of the total profiles that were eligible for being retained
 
 **Weighted Average of Total Users = P_March 1 * W_March 1 + P_March 2 * W_March 2
 
-In our sample data, this computes to: ( 1000 * 0.66 ) + ( 500 + 0.33 ) = 833.33
+In our sample data, this computes to: ( 1000 * (1000 / 1500) ) + ( 500 + (500 / 1500) ) = 833.33
 
 Finally,
 
