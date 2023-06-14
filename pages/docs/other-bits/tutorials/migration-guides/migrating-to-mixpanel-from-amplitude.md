@@ -1,6 +1,4 @@
-# Migrating to Mixpanel from Amplitude
-
-If you haven't already, we recommend starting with our [Migration Guides Overview](https://docs.mixpanel.com/docs/other-bits/tutorials/migration-guides) as it details the key components of migrating to Mixpanel from other analytics tools. Below we outline specific steps and considerations when migrating from Amplitude.
+If you haven't already, we recommend starting with our [Migration Guides Overview](/docs/other-bits/tutorials/migration-guides) as it details the key components of migrating to Mixpanel from other analytics tools. Below we outline specific steps and considerations when migrating from Amplitude.
 
 ## Differences in the data models
 
@@ -43,10 +41,10 @@ Mixpanel accepts event data from a variety of different sources. Choose your imp
 
 We support the following data collection mechanisms:
 
-- [Client-side SDKs & Server-side SDKs](https://docs.mixpanel.com/docs/other-bits/tutorials/migration-guides/migrating-to-mixpanel-from-amplitude#client-side-sdks--server-side-sdks): Simply replace Amplitude code calls to track events with Mixpanel calls instead
-- [Customer Data Platforms (CDPs)](https://docs.mixpanel.com/docs/other-bits/tutorials/migration-guides/migrating-to-mixpanel-from-amplitude#customer-data-platforms-cdps) like [Segment](https://segment.com/): Go into your CDP settings to add Mixpanel as a destination, and point your data stream to Mixpanel
-- [Import API](https://docs.mixpanel.com/docs/other-bits/tutorials/migration-guides/migrating-to-mixpanel-from-amplitude#import-api): Point your event ingestion pipeline to [Mixpanel’s robust API](https://developer.mixpanel.com/reference/import-events) for data ingestion
-- [Reverse ETL](https://docs.mixpanel.com/docs/other-bits/tutorials/migration-guides/migrating-to-mixpanel-from-amplitude#reverse-etl-retl) (RETL) tools like [Census](https://getcensus.com): Go into your RETL settings to add Mixpanel as a destination, and point your syncs to Mixpanel
+- [Client-side SDKs & Server-side SDKs](#client-side-sdks--server-side-sdks): Simply replace Amplitude code calls to track events with Mixpanel calls instead
+- [Customer Data Platforms (CDPs)](#customer-data-platforms-cdps) like [Segment](https://segment.com/): Go into your CDP settings to add Mixpanel as a destination, and point your data stream to Mixpanel
+- [Import API](#import-api): Point your event ingestion pipeline to [Mixpanel’s robust API](https://developer.mixpanel.com/reference/import-events) for data ingestion
+- [Reverse ETL](#reverse-etl-retl) (RETL) tools like [Census](https://getcensus.com): Go into your RETL settings to add Mixpanel as a destination, and point your syncs to Mixpanel
 
 ### Client-side SDKs & Server-side SDKs
     
@@ -213,7 +211,7 @@ curl --request POST \
 The big difference between the APIs are:
 
 - **Authentication:** Amplitude authenticates in the request payload, whereas Mixpanel uses your project token in the request URL alongside basic auth. Mixpanel authentication can be done via a service account as described [here](https://developer.mixpanel.com/reference/ingestion-api-authentication). Be sure to move the authentication outside the payload.
-- **Event JSON Structure:** Amplitude and Mixpanel have slightly different structures (explained [here](https://docs.mixpanel.com/docs/other-bits/tutorials/migration-guides/migrating-to-mixpanel-from-amplitude#differences-in-the-data-models)). You will want to remap the Amplitude event format to the expected Mixpanel JSON payload as described [here](https://www.notion.so/Migrating-to-Mixpanel-from-Amplitude-723407166fbf4f7ba9365034691502da).
+- **Event JSON Structure:** Amplitude and Mixpanel have slightly different structures (explained [here](/docs/other-bits/tutorials/migration-guides/migrating-to-mixpanel-from-amplitude#differences-in-the-data-models)). You will want to remap the Amplitude event format to the expected Mixpanel JSON payload as described [here](https://www.notion.so/Migrating-to-Mixpanel-from-Amplitude-723407166fbf4f7ba9365034691502da).
 
 ### Reverse ETL (RETL)
 
