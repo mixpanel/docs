@@ -50,7 +50,7 @@ To backfill data, we recommend:
 - If you have a data warehouse without your current provider's data: Export your data to the data warehouse so you have a record, and then Import API or Reverse ETL
 - If you do not have a data warehouse: Since there is no historical record of data, for this method you will need to export your data from your current provider and move it into Mixpanel - we provide an easy to use helper function for this [here](https://github.com/mixpanel/mixpanel-utils)
 
-It is recommended your Mixpanel champion or owner first set up your [Organization settings](https://docs.mixpanel.com/docs/other-bits/tutorials/setting-up-mixpanel#mixpanel-organization) and [Project settings](https://docs.mixpanel.com/docs/other-bits/tutorials/setting-up-mixpanel#mixpanel-projects). This will ensure the right access level for your team and enable you to prepare the workspace for ingesting data. This can be done later but doing it up front will allow for you to set key settings for data ingestion (US vs EU servers, project timezone, etc.).
+It is recommended your Mixpanel champion or owner first set up your [Organization settings](/docs/other-bits/tutorials/setting-up-mixpanel#mixpanel-organization) and [Project settings](/docs/other-bits/tutorials/setting-up-mixpanel#mixpanel-projects). This will ensure the right access level for your team and enable you to prepare the workspace for ingesting data. This can be done later but doing it up front will allow for you to set key settings for data ingestion (US vs EU servers, project timezone, etc.).
 
 It is also recommended you load the data into a test project with a limited subset (for example, a single day or data or a sample of the entire dataset) to get started. This will help you identify any errors in the end to end process before you do a full historical data load.
 
@@ -58,8 +58,8 @@ It is also recommended you load the data into a test project with a limited subs
 
 Depending on your current setup, the steps for migrating your live data tracking will differ. Please see the appropriate provider specific guides for more details on how to migrate your existing live data tracking and get started with Mixpanel.
 
-- [Amplitude Migration Guide](https://docs.mixpanel.com/docs/other-bits/tutorials/migration-guides/migrating-to-mixpanel-from-amplitude)
-- [Google Analytics Migration Guide](https://docs.mixpanel.com/docs/other-bits/tutorials/migration-guides/migrating-to-mixpanel-from-google-analytics)
+- [Amplitude Migration Guide](/docs/other-bits/tutorials/migration-guides/migrating-to-mixpanel-from-amplitude)
+- [Google Analytics Migration Guide](/docs/other-bits/tutorials/migration-guides/migrating-to-mixpanel-from-google-analytics)
 
 ### Change management migration of end users
 
