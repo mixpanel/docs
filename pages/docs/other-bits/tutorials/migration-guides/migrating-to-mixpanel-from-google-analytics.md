@@ -1,15 +1,13 @@
-# Migrating to Mixpanel from Google Analytics
-
-If you haven't already, we recommend starting with our [Migration Guides Overview](https://docs.mixpanel.com/docs/other-bits/tutorials/migration-guides) as it details the key components of migrating to Mixpanel from other analytics tools. Below we outline specific steps and considerations when migrating from Google Analytics.
+If you haven't already, we recommend starting with our [Migration Guides Overview](/docs/other-bits/tutorials/migration-guides) as it details the key components of migrating to Mixpanel from other analytics tools. Below we outline specific steps and considerations when migrating from Google Analytics.
 
 ## Differences in the data models
 
 Mixpanel’s data model is based on events and properties, rather than sessions. While this might be a shift if you come from the sessions-based model, we’ve found it to be both more flexible and easier to set up and use.
 
-- [Events](https://docs.mixpanel.com/docs/getting-started/what-is-mixpanel#events) capture granular user actions, like a Pageview, Signup, or Purchase.
-- [Properties](https://docs.mixpanel.com/docs/getting-started/what-is-mixpanel#properties) capture attributes of those events, like which page was viewed, the UTM Campaign that led to a Signup, or the Item that was purchased.
+- [Events](/docs/getting-started/what-is-mixpanel#events) capture granular user actions, like a Pageview, Signup, or Purchase.
+- [Properties](/docs/getting-started/what-is-mixpanel#properties) capture attributes of those events, like which page was viewed, the UTM Campaign that led to a Signup, or the Item that was purchased.
 
-Events let you get more granular than [sessions](https://docs.mixpanel.com/docs/analysis/advanced/sessions), so that you can deeply understand user behavior. At the same time, Mixpanel automatically constructs sessions from events, so you can answer session-level questions too.
+Events let you get more granular than [sessions](/docs/analysis/advanced/sessions), so that you can deeply understand user behavior. At the same time, Mixpanel automatically constructs sessions from events, so you can answer session-level questions too.
 
 ## Currently using Universal Analytics with Google?
 
@@ -44,7 +42,7 @@ We recommend the following steps to get started quickly:
 - Use the [Mixpanel Marketing KPI Template](https://mixpanel.com/project?show-template-selector=true) to build your initial board
     
 #### Google Tag Manager (GTM)
-Mixpanel has a [Google Tag Manager (GTM) custom template]([https://help.mixpanel.com/hc/en-us/articles/4870177097748-Implementing-Mixpanel-with-Google-Tag-Manager](https://docs.mixpanel.com/docs/tracking/integrations/google-tag-manager)) which can be leveraged to implement events within an hour. The template initializes the Mixpanel JavaScript SDK with similar calls as outlined in the above section.
+Mixpanel has a [Google Tag Manager (GTM) custom template](/docs/tracking/integrations/google-tag-manager) which can be leveraged to implement events within an hour. The template initializes the Mixpanel JavaScript SDK with similar calls as outlined in the above section.
     
 We recommend setting up the following in the custom template to get started quickly: a) Choose to auto-track pages, b) Set your conversion events. Once done, Mixpanel will start receiving page views and key conversion events.
     
@@ -76,7 +74,7 @@ To backfill data, we recommend:
     - Utilize the CDPs backfilling feature, like [Segment Replay](https://segment.com/docs/guides/what-is-replay/), to re-send historical data to Mixpanel
 - For any other implementation method
     - First, export your data to the data warehouse so you have a record of Universal Analytics
-    - Once exported, your data warehouse tables can be transformed and modeled into the [event format](https://docs.mixpanel.com/docs/tracking/how-tos/events-and-properties) Mixpanel expects
+    - Once exported, your data warehouse tables can be transformed and modeled into the [event format](/docs/tracking/how-tos/events-and-properties) Mixpanel expects
     - Leverage our [Import API](https://developer.mixpanel.com/reference/import-events) to send us the formatted events from your data warehouse
 
 The process of importing old data with a different format has many potential issues - identity management, data discrepancies, etc. - as Mixpanel is fundamentally different than UA. It may be worth considering your use cases for importing old data before proceeding, as matching users and data across the systems can be time consuming. [Mixpanel Support](https://mixpanel.com/get-support) is here to help if you need advice how to go about importing the historical data.
@@ -177,7 +175,7 @@ Keep in mind that you will need to initialize the [Mixpanel SDK](https://develop
     
 #### Google Tag Manager (GTM)
 
-Mixpanel has a [Google Tag Manager (GTM) custom template](https://docs.mixpanel.com/docs/tracking/integrations/google-tag-manager) which can be leveraged to implement events within an hour. Simply load the template, and you can send Mixpanel the same events you’ve setup for your GA4 instance.
+Mixpanel has a [Google Tag Manager (GTM) custom template](/docs/tracking/integrations/google-tag-manager) which can be leveraged to implement events within an hour. Simply load the template, and you can send Mixpanel the same events you’ve setup for your GA4 instance.
 
 This method is straightforward since you’ve already setup your SDK to track “events” and are using Google Tag Manager. You can leverage this same setup to implement Mixpanel.
     
@@ -212,7 +210,7 @@ To backfill data, we recommend:
     - Utilize the CDPs backfilling feature, like [Segment Replay](https://segment.com/docs/guides/what-is-replay/), to re-send historical data to Mixpanel
 - For any other implementation method
     - First, export your data to the data warehouse so you have a record of Universal Analytics
-    - Once exported, your data warehouse tables can be transformed and modeled into the [event format](https://docs.mixpanel.com/docs/tracking/how-tos/events-and-properties) Mixpanel expects
+    - Once exported, your data warehouse tables can be transformed and modeled into the [event format](/docs/tracking/how-tos/events-and-properties) Mixpanel expects
     - Leverage our [Import API](https://developer.mixpanel.com/reference/import-events) to send us the formatted events from your data warehouse
 
 [Mixpanel Support](https://mixpanel.com/get-support) is here to help if you need advice how to go about importing the historical data.
