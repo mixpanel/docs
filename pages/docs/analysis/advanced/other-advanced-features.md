@@ -730,7 +730,7 @@ List of objects can be used like other properties in Mixpanel. Upon selecting a 
 
 ### Computed Properties
 
-We provide a few convenience computed properties after a list of objects property is selected. This does a computation on the property, and works similarly to [custom properties](/docs/analysis/advanced/custom-properties).
+We provide a few convenient computed properties after a list of objects property is selected. This does a computation on the property, and works similarly to [custom properties](/docs/analysis/advanced/custom-properties).
 
 ![list computed properties](/list-computed-properties.png)
 
@@ -745,6 +745,13 @@ Prompts a selection of a numeric property contained within the objects of the li
 #### Distinct Count
 
 Prompts a selection of a property contained within the objects of the list. This will give the number of unique values for that property in the list.
+
+### Limits
+
+The list of objects property support will be limited to the first 5 objects within the list property. 
+
+For customer's on a paid plan, you may submit a request for approval to have this limit increased by opening a support ticket within the UI (or by sending an email to support@mixpanel.com) with the subject line: “Request for List of Objects Limit Increase”. An increase will not be guaranteed, but your project will be reviewed for feasibility of increasing this limit. 
+
 
 ## Analyzing First Time Users
 
