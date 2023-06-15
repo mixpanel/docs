@@ -160,7 +160,7 @@ The table below is an overview of the permissions per role for reports and other
 | Create and View Retention Reports | ✅ | ✅ | ✅ | ✅ |
 | Download Reports                  | ✅ | ✅ | ✅ | ❌         |
 | Create Custom Alerts              | ✅ | ✅ | ✅ | ❌         |
-| Edit Custom Alerts                | ✅ | ✅ | ❌         | ❌         |
+| Edit Custom Alerts                | ✅ | ❌ | ❌         | ❌         |
 | View Users Report                 | ✅ | ✅ | ✅ | ✅ |
 | Create/Edit Cohorts               | ✅ | ✅ | ✅ | ✅ |
 | Export Cohorts                    | ✅ | ✅ | ✅ | ❌         |
