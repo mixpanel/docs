@@ -172,7 +172,7 @@ Example Return:
 #### Create a Deletion Task
 Request Type: POST
 
-Description: Creates a task that specifies a list of users in a particular project to delete. This will schedule a deletion job that will delete all data, including events and user profile data, for the users specified by distinct_ids. This deletion job may be canceled until it reaches the STARTED stage. A task can take up to 60 days to complete.
+Description: Creates a task that specifies a list of users in a particular project to delete. This will schedule a deletion job that will delete all data, including events and user profile data, for the users specified by distinct_ids. This deletion job may be canceled until it reaches the STARTED stage. It may take up to 30 days to complete a deletion task in a customer’s Mixpanel database. Mixpanel may retain records of deletion tasks for legal compliance purposes or for a short time based on our legitimate interest in providing a service continuity.
 
 Endpoint: `https://mixpanel.com/api/app/data-deletions/v3.0/?token=<your_project_token>`
 
