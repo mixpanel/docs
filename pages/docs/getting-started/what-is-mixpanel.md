@@ -12,6 +12,8 @@ Mixpanel is an analytics tool that enables you to capture data on how users inte
 
 Our self-serve interface empowers your team to answer questions, no matter their data expertise.
 
+Vijay says hi
+
 ![image](/Mixpanel_Board.png)
 
 ## Introduction to the Data Model
