@@ -216,6 +216,10 @@ This will show how engaged users are with an action. In the example below, you c
 
 ## FAQ
 
+### Retention reports do not extend beyond 60 days. How can I look beyond the 60 day mark?
+
+Currently, when using "Day" retention, Retention reports are limited to 60 days. One way to extend it would be to switch "Each Day" to "Each Week/Month" under the Retention Criteria. 
+
 ### How is Retention calculated?
 
 When you create an unsegmented retention query (i.e. a retention query that is not segmented by a property or cohort), Mixpanel will automatically intervalize the retention calculation.
