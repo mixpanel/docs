@@ -25,6 +25,16 @@ You can filter, breakdown, and aggregate your events by their properties to answ
 * Which Song Name is most popular among my users?
 * How many Orders contain shoes? What is the sum total price that users paid for shoes in the last month?
 
+## Reserved Event Properties
+Mixpanel reserves certain event property names; these properties receive special treatment in our UI or are used for special processing.
+| Name                       | Display      | Description                                                                                                                                               |
+|----------------------------|--------------|-----------------------------------------------------------------------------------------------------------------------------------------------------------|
+| distinct_id / $distinct_id | Distinct ID  | Mixpanel's internal unique identifier for a user.  See [Identifying Users](https://docs.mixpanel.com/docs/tracking/how-tos/identifying-users)             |
+| time                       | Time or Date | A unix time epoch that is used to determine the time of an event. If no time property is provided, we will use the time the event arrives at our servers. |
+| $city                      | City         | The city of the event sender, parsed from IP.                                                                                                             |
+| $region                    | Region       | The region (state or province) of the event sender, parsed from IP.                                                                                       |
+| mp_country_code            | Country      | The country of the event sender, parsed from IP.                                                                                                          |
+
 ## Best Practices
 
 ### Keep Events Generic

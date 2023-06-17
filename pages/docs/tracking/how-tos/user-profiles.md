@@ -117,8 +117,8 @@ You'll have the opportunity to look through all columns in the CSV to preview th
 ## Deleting User Profiles
 User Profiles can be deleted either via the [Users](https://mixpanel.com/report/users) page or programmatically via our API. We provide a `people_delete` method in the mixpanel-utils library [here](https://github.com/mixpanel/mixpanel-utils#people-delete).
 
-## Reserved Properties
-Mixpanel reserves certain property names; these properties receive special treatment in our UI.
+## Reserved User Properties
+Mixpanel reserves certain user property names; these properties receive special treatment in our UI or are used for special processing.
 
 | Name          | Display   | Description                                                                                                                                                                                                                                                                                                                                                             |
 |---------------|-----------|-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
