@@ -1,15 +1,6 @@
----
-title: "Custom Events"
-slug: "custom-events"
-hidden: false
-metadata:
-  title: "Custom Events"
-  description: "Learn about Custom Events in Mixpanel."
----
-
 ## Overview
 
-A custom event is a virtual event that was created from one or more events, optionally filtered down by a particular set of properties, and given a name. Useful to:
+A custom event is a virtual event that was created from one or more events, optionally filtered down by a particular set of properties, and given a name. You can use custom events to:
 
 - Merge two events into a single event ("User Signup" + "Account Created" -> "Signup")
 - Create an event based on a filter on another event ("Purchase" where Country = "US" -> "US Purchases")
@@ -18,46 +9,27 @@ Imagine your business has two ways for users to track ads: they can convert from
 
 You can create a custom event containing "Ad Conversion" and "Ad Impression," and then save it as "Watch Ads.” Now you can use the "Watch Ads" custom event as a funnel step just like a regular event. Then, any time a user performs an "Ad Conversion" or "Ad Impression" action, they'll be included in that step. You can also use this new custom event in your other reports, such as Retention.
 
-![/mceclip3.png](/mceclip3.png)
-
 ## Create a Custom Event
 
+![image](https://github.com/mixpanel/docs/assets/2077899/1ac40a2e-2055-4dea-ba31-f0a6ea41a940)
+
 1. Expand the Event dropdown in either an Insights, Funnels, Retention, or Formulas report.
-
-    ![/mceclip0.png](/mceclip0.png)
-
 2. Select **Create Custom**.
 3. Select the events and properties you’d like to include.
 4. Name your custom event, and click **Save**.
 
-![/mceclip1.png](/mceclip1.png)
-
-When naming your custom event, note that the UI will break when the URL passes 2,083 characters. Each event and selector adds to the URL length (selectors more so than events). The easiest way to break a custom event is with an "equals" operation that selects a lot of values.
-
 ## Edit and Delete Custom Events
 
-To view your complete list of custom events to manage, edit, or delete them, you must navigate to the [Lexicon](/docs/admin/data-governance/lexicon).
+To view, edit, or delete any custom event, navigate to [Lexicon](/docs/admin/data-governance/lexicon).
 
-![/mceclip0.png](/mceclip0.png)
+![image](https://github.com/mixpanel/docs/assets/2077899/efc4b36e-d8d9-4699-8a48-98b793532b20)
 
 In Lexicon, click on the **Custom Events** tab.
 
-![/mceclip1.png](/mceclip1.png)
+![image](https://github.com/mixpanel/docs/assets/2077899/fb4e1680-3b20-4f24-90de-0101cb097c54)
 
 Here you can see a list of all the custom events in the project. Click on the **name** of the event to edit its details.
 
 To delete a custom event, check the **box** beside the title of all the custom events you want to delete, then click the **delete** button at the top of the list.
 
-![/mceclip2.png](/mceclip2.png)
-
-## Limits by Plan Type
-
-Free: 1 Custom Event
-
-Startup: 15 Custom Events
-
-Enterprise: Unlimited Custom Events
-
-MTU Growth: Unlimited Custom Events
-
-Visit our [pricing page](https://mixpanel.com/pricing/) to learn more about differences between plan types.
+![image](https://github.com/mixpanel/docs/assets/2077899/8004da2b-db3c-48c0-a494-e500e1cc5bf7)
