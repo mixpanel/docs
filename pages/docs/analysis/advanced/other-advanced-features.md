@@ -19,33 +19,33 @@ Analyze session metrics by selecting "Session Start" or "Session End" from the e
 
 Filter this event by clicking the **inline action menu** and selecting **Add filter** from the drop-down. Choose an event property, user profile property, group profile property, or cohort to filter the event by.
 
-![/mceclip2.png](/mceclip2.png)
+![image](https://github.com/mixpanel/docs/assets/2077899/9307d6c1-025c-4bb4-9ab3-12f9ab1c7ce3)
 
 You can select whether you would like your query to match any or all of the filters by clicking on **and/or** beside the filters.
 
-![/mceclip1.png](/mceclip1.png)
+![image](https://github.com/mixpanel/docs/assets/2077899/1b8cdb9d-2479-404c-b10a-f82373d03e34)
 
 ### Duplicating Events
 
 To duplicate any events or properties in your query, select the inline action menu and choose **Duplicate**. Delete any events or properties by clicking the **trash** icon.
 
-![/mceclip3.png](/mceclip3.png)
+![image](https://github.com/mixpanel/docs/assets/2077899/f496b609-47a3-4287-95f8-e9e6f2ac915d)
 
 ### Advanced Date and Time Selectors
 
 You can also choose how Mixpanel buckets the time range in Insights, Funnel Trends and Retention Trend reports (granularity may vary). To view a range in hours, you can select **Hour** as the view:
 
-![/Screen_Shot_2022-07-11_at_4.01.49_PM.png](/Screen_Shot_2022-07-11_at_4.01.49_PM.png)
+![image](https://github.com/mixpanel/docs/assets/2077899/991a0f0f-b297-4b94-8d41-7323fe6666f6)
 
 To zoom in, click on the graph and drag to highlight a specific window of time in your report. Click **Reset zoom** to return to the previous view.
 
-![/zoom.gif](/zoom.gif)
+![zoom (1)](https://github.com/mixpanel/docs/assets/2077899/3add64ad-3fea-4d74-a3bf-303fcc1f4d9d)
 
 ### Advanced Filter & Breakdown Usage
 
-To filter the results of your Insights query click the **Filter** button and select an event property, user profile property, group profile property, or cohort to filter the event or profile by.
+To filter the results of your report by any property or cohort, click the **Filter** button.
 
-To breakdown your results click the **Breakdown** button and select an event property, user profile property, group profile property, or cohort to filter the event by.
+To breakdown your results of your report by any property or cohort, click the **Breakdown**.
 
 You can breakdown your results by the "Date" event property and breakdown by Hour, Day, Week, Month, Quarter, Year, Hour of Day, or Day of Week.
 
@@ -53,17 +53,13 @@ You can breakdown your results by the "Date" event property and breakdown by Ho
 
 If you are analyzing any custom events, you can breakdown by the property "Event Name".
 
-![/Screen_Shot_2022-07-11_at_4.36.07_PM.png](/Screen_Shot_2022-07-11_at_4.36.07_PM.png)
+![image](https://github.com/mixpanel/docs/assets/2077899/dafe97ca-35a3-4dee-8285-41a115f0417d)
 
 The drop-down menus only show events/event properties that were ingested within the last 30 days. To select events/event properties that have not been ingested in the last 30 days, type the name of the event/event property in the Filter or Breakdown search bar. You must know the exact name of the event/event property you want to select because event names are case sensitive.
 
 ![/query_old_event.gif](/query_old_event.gif)
 
-To create a temporary cohort for the current report, click
-
-**Create Custom...**
-
-in the dropdown menu and select "Cohort. A window will pop up where you can specify the restrictions of your cohort. Learn more about building a cohort [here](/docs/analysis/advanced/cohorts#creating-cohorts).
+To create a temporary cohort for the current report, click **Create Custom...** in the dropdown menu and select "Cohort. A window will pop up where you can specify the restrictions of your cohort. Learn more about building a cohort [here](/docs/analysis/advanced/cohorts#creating-cohorts).
 
 ![/create_cohort_from_report.gif](/create_cohort_from_report.gif)
 
@@ -503,15 +499,11 @@ The way we pick the top segments differs according to the type of query. We choo
 
 ### FAQ
 
-**Why are we adding new limits to breakdowns in reports?**
-
-Interactive analysis is key to finding great insights [Ofrom your data - you ask a question, get an answer, ask another question building on that answer and you finally get an insight which is key, and you trust the answer because you experienced the journey to get there. If results take a long time to return, the interactivity goes away from interactive analysis, which takes away the magic.
-
 **How will I know if my results are being pruned?**
 
 You will see an indication like this:
 
-![/mceclip0.png](/mceclip0.png)
+![image](https://github.com/mixpanel/docs/assets/2077899/3935993c-0410-46e4-a9d6-2d2dfb5313cd)
 
 **Does this mean the downloaded CSV has lower limits?**
 
@@ -1005,15 +997,15 @@ If you don’t want to see “undefined” or "null" values in your report, you 
 1. Unchecking the “undefined/null” box in the visualization legend.
 2. Looking only at instances where the property in question “is set" - this will exclude values where you see "undefined" or "null":
 
-    ![/mceclip0.png](/mceclip0.png)
+![image](https://github.com/mixpanel/docs/assets/2077899/1a2465e1-da8d-4fe4-937a-5753716129b3)
 
 3. Directly exclude undefined or null values from an Insights visualization by hitting the exclude action:
 
-    ![/mceclip2.png](/mceclip2.png)
+![image](https://github.com/mixpanel/docs/assets/2077899/4d010827-cc4e-4a11-9716-cd3bfbaebadd)
 
 
 ### Troubleshooting Tips
 
-If you’re getting “undefined” property values but think you should not be, troubleshoot the issue using the events page. Click on "Filter" in the top left to look at events coming in where the property in question “is not set.” You can then use this data to look at your code and figure out why some events are being fired without that property.
+If you’re getting “undefined” property values but think you should not be, troubleshoot the issue using the Events page. Click on "Filter" in the top left to look at events coming in where the property in question “is not set.” You can then use this data to look at your code and figure out why some events are being fired without that property.
 
-![/mceclip0.png](/mceclip0.png)
+![image](https://github.com/mixpanel/docs/assets/2077899/c028c2b1-160d-4c0b-ba9a-87b74aba9c42)
