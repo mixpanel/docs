@@ -99,7 +99,7 @@ By default, Funnel calculations are based on **uniques**. To change to a diffe
 
 **Uniques**
 
-Unique funnels count a single entry per user (determined by distinct_id). Each user enters the funnel only once, and this is on the first time they perform the Step 1 event in the date range. Even if a particular user completes the funnel multiple times in the date range, they will only be counted towards conversion once, and on the first time they entered the funnel.
+Unique funnels count a single entry per user (determined by [distinct_id](/docs/tracking/how-tos/identifying-users)). Each user enters the funnel only once, and this is on the first time they perform the Step 1 event in the date range. Even if a particular user completes the funnel multiple times in the date range, they will only be counted towards conversion once, and on the first time they entered the funnel.
 
 **Totals**
 
