@@ -48,11 +48,3 @@ Note that when creating cohorts this way, the cohort will remain static, meaning
 To download your user profiles from the Users page, simply click the **Export icon.** This will download all the profile data being displayed in the current report - to download more properties, edit your columns to select more properties. You can choose to filter the list or select individual profiles to download instead of downloading the full list.
 
 ![/Screen_Shot_2022-07-12_at_2.26.45_PM.png](/Screen_Shot_2022-07-12_at_2.26.45_PM.png)
-
-### What's the difference between "Users" and "Users with Profiles"?
-![Users with Profiles](/advanced-users-with-profiles.png)
-
-Users with Profiles: Users who have properties associated with them
-Users: All Users, including those who may not have properties associated with them, but have associated events.
-
-By default, Mixpanel will display Users with [Profiles](/docs/tracking/how-tos/user-profiles) on the Users page. If you wish to see users who have no associated properties, you can switch to "Users" in the selection.
