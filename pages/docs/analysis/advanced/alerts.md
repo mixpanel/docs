@@ -1,21 +1,10 @@
----
-title: "Alerts"
-slug: "alerts"
-hidden: false
-metadata:
-  title: "Alerts"
-  description: "Learn how to use alerts in Mixpanel."
----
-
 ## Overview
 
-Create a Custom Alert for your [Insights](/docs/analysis/reports/insights) and [Funnels](/docs/analysis/reports/funnels) reports to decide which report conditions result in an alert. Alerts are sent as an email and can be sent to multiple users.
+You can create Custom Alerts to keep yourself and your team up to date on dips and spikes in a metric, via Slack or email.
 
-To create a custom alert in an Insights or Funnels report, **save your report**, click the **3 dots icon**, go to Alerts and select **Create Alert**.
+To create a custom alert, **save your report**, click the **3 dots icon**, go to Alerts and select **Create Alert**. Note: You won't be able to create alerts for unsaved reports.
 
-***Important: You won't be able to create alerts if the report hasn't been saved previously.***
-
-![/mceclip0.png](/mceclip0.png)
+![image](https://github.com/mixpanel/docs/assets/2077899/c15123a9-d73e-4c7f-84b9-3891731fc708)
 
 ## Custom Alerts in Insights
 
@@ -70,15 +59,15 @@ Custom alerts do not appear under the alert bell on your reports like automated 
 
 Click on **the gear icon** in the top right of Mixpanel and under "Organization Settings" **select "Personal Settings".
 
-![/mceclip5.png](/mceclip5.png)
+![image](https://github.com/mixpanel/docs/assets/2077899/b24719be-13ba-4a58-9e8a-0c447519d2c2)
 
 Within your personal settings, select the **Alerts** tab to view your custom alerts and automatic insights.
 
-![/mceclip6.png](/mceclip6.png)
+![image](https://github.com/mixpanel/docs/assets/2077899/a32763df-dd9e-46e4-a845-9bf7105a31cd)
 
 If you hover over an alert you have created, you can see a **trash icon** which you can click to delete the alert. Click on the **title** of the alert to edit details.
 
-![/mceclip7.png](/mceclip7.png)
+![image](https://github.com/mixpanel/docs/assets/2077899/a41766d8-19b9-4511-83c0-06ced06b1a52)
 
 You can view the details of another user’s alert, but you are not able to edit or delete it unless you're a project owner.
 
