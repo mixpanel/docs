@@ -81,7 +81,7 @@ By default, all customers have 30 days to complete a funnel from the timestamp t
 
 ![/Screen_Shot_2021-12-15_at_11.12.25_AM.png](/Screen_Shot_2021-12-15_at_11.12.25_AM.png)
 
-The maximum amount of time you can choose for the conversion window is 366 days, or otherwise equivalent (12 months, 52 weeks, etc).
+The maximum amount of time you can choose for the conversion window is 366 days, or otherwise equivalent (12 months, 52 weeks, etc). For session-based conversion windows, the maximum is 1 session.
 
 Keep in mind that the conversion window starts on the first instance of the Step 1 event per funnel entry, and will not be updated by later instances of the same event in the same funnel trial.
 
