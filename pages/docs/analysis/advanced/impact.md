@@ -28,29 +28,29 @@ Here are some of the sample questions you can answer in Impact:
 
 To build an Impact query, first select a launch event. This is the event that you are measuring as the cause of change.
 
-![/Untitled.png](/Untitled.png)
+![image](https://github.com/mixpanel/docs/assets/2077899/8ed06dad-4567-4fb0-8200-32d6a51cae0b)
 
 Select the start date of this launch event. Add any additional filters to narrow the launch event parameters by clicking the **... dropdown** and selecting the **Add filter**.
 
-![/mceclip0.png](/mceclip0.png)
+![image](https://github.com/mixpanel/docs/assets/2077899/b1ed7f9e-eea4-49ea-a80d-fb3c776b16a3)
 
 ### Step 2: Select metric events
 
 Select a metric event by clicking the **Add** button under **IMPACTED EVENTS**. You are measuring the impact of the launch event on this metric event. Add additional filters to narrow the impacted event parameters.
 
-![/Untitled2.png](/Untitled2.png)
+![image](https://github.com/mixpanel/docs/assets/2077899/d728738d-4869-4144-994f-05422772347c)
 
 ### Step 3: Add breakdown (optional)
 
 Breakdown impacted events further by clicking the **… icon**, selecting **Add Aggregation**, then selecting an event property, such as “Amount”. This will add up the value of this property for all of the times this event happened in this time range. All aggregate properties are typecast to numeric properties in order to calculate the sum of that property. For example, aggregate the property “Amount” under the event “Process Payment” to analyze revenue.
 
-![/chrome-capture__5_.gif](/chrome-capture__5_.gif)
+![gif](https://github.com/mixpanel/docs/assets/2077899/c341da61-a5c2-4b3f-aa0e-c23e8116e4d9)
 
 ### Step 4: Select user group
 
 Under **USER DEFINITION** select whether you would like to count users who did **only the impacted event** or **any event**.
 
-![/mceclip2.png](/mceclip2.png)
+![image](https://github.com/mixpanel/docs/assets/2077899/6d10e2bd-0167-4d09-b456-8aabbf49694d)
 
 ### Step 5: Select time range
 
@@ -58,7 +58,8 @@ Select the time range. The time range is a fixed period of time that determines 
 
 The chart will not necessarily change if you change the time range.
 
-![/mceclip3.png](/mceclip3.png)
+![image](https://github.com/mixpanel/docs/assets/2077899/a998a82f-0d8e-4a53-9ffb-69fdb87da137)
+
 
 ## Reference
 
@@ -76,7 +77,7 @@ The Impact Chart shows how the rate of metric event occurrence changes over time
 
 Unlike other Mixpanel charts, the Impact Chart displays time in relative time, not calendar time.  The chart centers around the first day that the launch event is available, or “day zero”. The chart displays the 15 days before and after day zero.
 
-![/mceclip4.png](/mceclip4.png)
+![image](https://github.com/mixpanel/docs/assets/2077899/3e1ebe51-eeaf-4322-bd44-04ca02518094)
 
 Every user in the report can have a different day zero.  For users in the adopter group, day zero is the first day that they perform the launch event.  For users in the non-adopter group, day zero is the day the first adopter performed the launch event (which is most likely the launch day of the feature).
 
