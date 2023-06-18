@@ -353,11 +353,11 @@ Edit the frequency interval by clicking on **Interval size** above the chart. 
 
 You can also enter the minimum and maximum number of frequencies in the interval dropdown. For example, in the image above the maximum is 10, so all frequencies above 10 are grouped at the bottom of the chart.
 
-You can switch between viewing Conversion Counts to viewing Conversion Rates or drop-off Count by clicking on **Conversion Count** at the top of the chart.
+You can switch between viewing Conversion Counts to viewing Conversion Rates or Drop-Off Count by clicking on **Conversion Count** at the top of the chart.
 
 ![/Screen_Shot_2022-07-12_at_3.27.30_PM.png](/Screen_Shot_2022-07-12_at_3.27.30_PM.png)
 
-Conversion Count shows you the number of users that converted who performed the event at a specific frequency. Conversion Rate shows you the percentage of users that converted who performed the event at a specific frequency. drop-off Count shows you the number of times a user performed a step before dropping off the funnel.
+Conversion Count shows you the number of users that converted who performed the event at a specific frequency. Conversion Rate shows you the percentage of users that converted who performed the event at a specific frequency. Drop-Off Count shows you the number of times a user performed a step before dropping off the funnel.
 
 ### Top Paths
 
