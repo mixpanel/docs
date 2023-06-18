@@ -29,7 +29,7 @@ We generally recommend having 7-day retention as a leading indicator for 30- or 
 
 This Insights report visualizes the number of unique signups in your product over time—in this case, a 3-month period. “Sign up” is the event where a user makes themselves known to your product by “creating an account.” It may look slightly different for different products but the concept is largely the same across the board.
 
-Importantly, this report uses the “first time ever” filter to ensure that only net new signups are accounted for. We also use “compare to previous year” in our analysis to better understand how signups are trending over time. If you’re an early-stage startup, you may not b
+We also use “compare to previous year” in our analysis to better understand how signups are trending over time. Note: If you're an early-stage startup, you may not have enough history for this to be useful.
 
  
 
