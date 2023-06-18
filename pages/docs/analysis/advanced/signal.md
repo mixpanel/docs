@@ -1,12 +1,3 @@
----
-title: "Signal"
-slug: "signal"
-hidden: false
-metadata:
-  title: "Signal"
-  description: "Learn about Mixpanel Signal report."
----
-
 ## Overview
 
 Signal measures the association between a correlation event and a goal event and quantifies the correlation between the two. This facilitates a deeper understanding of the behaviors that drive customer conversions, and can help guide product decisions.
@@ -19,11 +10,11 @@ The music sharing app may want to understand the correlation between top events 
 
 Building this query in Signal would involve selecting the target users, and how the "Song Purchased" goal event is correlated with the top events.
 
-![/mceclip0.png](/mceclip0.png)
+![image](https://github.com/mixpanel/docs/assets/2077899/2baec3b5-ce5e-4d7d-9726-de131d05bfd2)
 
 Values are returned after running the correlation. “Song Played” could have a strong positive correlation with purchasing a song. Most of the users who played a song later purchased a song.
 
-![/Screen_Shot_2018-07-13_at_9.19.24_AM.png](/Screen_Shot_2018-07-13_at_9.19.24_AM.png)
+![image](https://github.com/mixpanel/docs/assets/2077899/3409f91a-ca07-4cd0-84c4-9105ee9024a0)
 
 This information can be used in future product decisions. By knowing that those who play songs are more likely to purchase songs, it is possible to build tools to encourage song plays. This could lead to a dramatic increase in the amount of users purchasing songs.
 

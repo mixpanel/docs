@@ -177,15 +177,15 @@ Exclusion steps operate as a "did not do" filter for funnels. This provides the
 
 At the "Conversion Criteria" section, click on "Advanced" and then on "Exclude users who did...". A dropdown will appear to exclude a step from your funnel.
 
-![/mceclip0__2_.png](/mceclip0__2_.png)
+![image](https://github.com/mixpanel/docs/assets/2077899/fc146839-6feb-4a40-a7b7-c17217bf6c7a)
 
 Select an event from the list and choose whether you would like the event to be excluded between all steps, or between specific steps.
 
-![/mceclip1.png](/mceclip1.png)
+![image](https://github.com/mixpanel/docs/assets/2077899/d1c95913-42ca-45ba-9605-5cce51534e48)
 
 Click the **Filter icon** beside the step to filter that event by an event or user profile property.
 
-![/mceclip2__1_.png](/mceclip2__1_.png)
+![image](https://github.com/mixpanel/docs/assets/2077899/ab63bef8-3d64-4b4b-97ed-392811e185ac)
 
 For example, if your product was an e-commerce retail company and you want to understand if users who browse for additional products between adding something to their cart and checking out are less likely to complete a purchase. To answer this question, you could create a funnel with three steps:
 
@@ -211,11 +211,11 @@ Note:
 
 Click on the "three dots" icon beside a step and click **Rename** to rename it.
 
-![/mceclip3__1_.png](/mceclip3__1_.png)
+![image](https://github.com/mixpanel/docs/assets/2077899/2e2e844b-a9f6-4eb1-8532-345c7e8613e3)
 
 ### View as Flow
 
-In order to learn more about the behavior users take between funnel steps, we recommend checking the feature "View as Flow". You can see what user flows and behaviors that can increase the likelihood of conversion or dropoff. This helps to answer questions like:
+In order to learn more about the behavior users take between funnel steps, use "View as Flow". You can see what user flows and behaviors that can increase the likelihood of conversion or dropoff. This helps to answer questions like:
 
 - What flows do users take between opening an app and making a purchase?
 - Why did the successful users purchase?
@@ -223,7 +223,7 @@ In order to learn more about the behavior users take between funnel steps, we re
 - How do these two paths differ? What actions should I nudge towards or against?
 - What did the users that dropped-off do instead?
 
-![/mceclip19.png](/mceclip19.png)
+![image](https://github.com/mixpanel/docs/assets/2077899/b37e48d4-d9c8-42b7-9e79-72e7e71e47eb)
 
 #### Using Conversion and Drop-off Flows
 
@@ -283,7 +283,7 @@ Select **Funnel trends** from the drop-down list to see the percentage of succ
 
 A user that completes the funnel within the conversion window is counted on the day, week, or month corresponding to when they performed the first event in the funnel.
 
-![/mceclip0.png](/mceclip0.png)
+![image](https://github.com/mixpanel/docs/assets/2077899/10e15262-5d2f-4b77-80e2-3a7270645878)
 
 By default this chart shows the conversion rate. Click on **Conversion** to view the options Time to Convert, Top of Funnel, and Bottom of Funnel.
 
@@ -295,7 +295,7 @@ Trends charts in Funnels are accompanied with a table of values to give users an
 
 Click on a "data column" header to sort by that column. Click the header again to reverse the sort order. The table below is sorted by event counts on August 2nd:
 
-![/mceclip0__1_.png](/mceclip0__1_.png)
+![image](https://github.com/mixpanel/docs/assets/2077899/c5b5a712-4369-4c4b-831c-246c61c30bc5)
 
 #### Time to Convert Trend
 
@@ -517,25 +517,25 @@ Consider a four-step funnel where a user must Search > Item Detail Page > Add to
 
 As you can see in the below activity feed, this user's first Search event happens more than one day before any Item Detail Pages, and as such, they would not convert in this funnel.
 
-![/mceclip12.png](/mceclip12.png)
+![image](https://github.com/mixpanel/docs/assets/2077899/5d671e0b-5666-4ec5-971a-cfaf3734929a)
 
-![/mceclip11.png](/mceclip11.png)
+![image](https://github.com/mixpanel/docs/assets/2077899/eb848af7-4cef-4eb5-8a60-36c88a6fd64f)
 
 However, if I put a per step filter on the Search event and require a user to use a Brower = Safari, then I will restrict entry into the funnel to only Search events on Safari browsers.
 
 Below we see the same user's activity stream where their first Search event is with the Chrome browser, and thus this user’s first Search event **is not** included in a funnels calculation. However they have a second Search that is using Safari, and this event qualifies them to enter into the funnel. Unlike before when we did not filter, now each of their subsequent steps happens within the conversion window, and this user reaches full conversion to the end of the funnel.
 
-![/mceclip14.png](/mceclip14.png)
+![image](https://github.com/mixpanel/docs/assets/2077899/6daf8f38-afaf-48dd-994e-7f7be682cc92)
 
-![/mceclip13.png](/mceclip13.png)
+![image](https://github.com/mixpanel/docs/assets/2077899/a025b018-cecc-4798-9b95-b907ad157b5e)
 
 If we were to take it further and place a per-step filter on each and every step in this funnel, so that all steps must be completed with events where Browser = Safari, then this user would only convert to the second step of the Item Detail.
 
 This is because, as we can see below, the first Search/Safari step is followed by two steps that aren’t tracked in the funnel: *Item Detail Page/Chrome* that is filtered out of this funnel because it does not fulfill the Browser= Safari criteria, and *Add to Cart/Safari* that is not considered because it is not preceded by an Item Detail Page/Safari. The next step that is tracked in the funnel (Item Detail Page/Safari) converts the user to Step 2, but then *Add to Cart/Chrome* is filtered out of the funnel. Since there is not another Add to Cart/Safari before the Purchase event or before the 1 day conversion window runs out, this user times out of the funnel after Step 2.
 
-![/mceclip15.png](/mceclip15.png)
+![image](https://github.com/mixpanel/docs/assets/2077899/d2425bf0-5d61-4bf3-ad2f-861fa65f3563)
 
-![/mceclip16.png](/mceclip16.png)
+![image](https://github.com/mixpanel/docs/assets/2077899/c91178bc-f358-44fd-ada8-ca786d690354)
 
 #### Global Filtering (Post-Query)
 
@@ -545,9 +545,9 @@ For example, let's use the same four-step funnel where a user must Seach > Item 
 
 In the below example, the Funnels query will calculate a conversion because the user moves from Search, then Item Detail Page, then Add to Cart and lastly to Purchase within the 1 day conversion window. However, after the query is calculated, the global filter of Browser = Safari is applied. Since there are steps of this calculated funnel that have Browser = Chrome, the entire funnel will be filtered out of the aggregate results.
 
-![/mceclip18.png](/mceclip18.png)
+![image](https://github.com/mixpanel/docs/assets/2077899/ef83cca5-5108-4d06-a111-5c2b7e93a492)
 
-![/mceclip17.png](/mceclip17.png)
+![image](https://github.com/mixpanel/docs/assets/2077899/2335dc77-4dac-48d8-a56d-66deefadbc11)
 
 ### How does Mixpanel calculate statistical significance?
 

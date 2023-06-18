@@ -117,7 +117,7 @@ If you need to, you can click on the **+ Ending** button and shift back the de
 
 You can choose to filter the entire report by properties or cohorts by clicking the **Filter** button. This will filter the results of the entire report to show only data with that property or cohort.
 
-![/mceclip4.png](/mceclip4.png)
+![image](https://github.com/mixpanel/docs/assets/2077899/41eb81c5-cab0-4c1d-96f4-97f5868f3123)
 
 ### Event Inline Filters
 
@@ -125,11 +125,11 @@ You can choose to add a filter to limit the events that are included in the repo
 
 Add a filter to your query by clicking on the **…** icon beside an event, profile, cohort, or step.
 
-![/mceclip0.png](/mceclip0.png)
+![image](https://github.com/mixpanel/docs/assets/2077899/3e36bd7e-f5b8-462a-890c-bf396ff98f69)
 
 Then, select a property from the drop down list that appears and specify which values to filter.
 
-![/mceclip2.png](/mceclip2.png)
+![image](https://github.com/mixpanel/docs/assets/2077899/c7cce429-3c9c-4759-8ea1-b09345fa0b4e)
 
 In Funnels, filtering a step by a particular property will limit the data you see in the funnel to events with that property value.
 
@@ -137,7 +137,7 @@ You can choose multiple property filters for each item in your query.
 
 You can select whether you would like the query to match any of these filters, or all of the filters by clicking on **and/or** beside the filters.
 
-![/mceclip3.png](/mceclip3.png)
+![image](https://github.com/mixpanel/docs/assets/2077899/9e3bcd31-2b12-48d1-b04f-cdda85dd2584)
 
 ### Breakdowns
 
@@ -147,7 +147,7 @@ This feature is useful for determining if a group factor, such as browser type, 
 
 Select the **Breakdown** button, and select the property or cohort you want to breakdown your results by.
 
-![/mceclip5.png](/mceclip5.png)
+![image](https://github.com/mixpanel/docs/assets/2077899/65ee0e74-f5ec-4d30-afdc-f4516ed0d845)
 
 For cohorts, you will be shown groups of users both in and not in the cohort in your results.
 
