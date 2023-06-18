@@ -12,6 +12,11 @@ If using our Web/Mobile SDKs or a CDP like Segment or Rudderstack, there are onl
 
 Any events prior to calling `.identify` are considered anonymous events. Mixpanel's SDKs will generate a `$device_id` to associate these events to the same anonymous user. By calling `.identify(<user_id>)` when a user signs up or logs in, you're telling Mixpanel that `$device_id` belongs to a known user with ID `user_id`. Under the hood, Mixpanel will stitch the event streams of those users together. This works even if a user has multiple anonymous sessions (eg: on desktop and mobile). As long as you always call `.identify` when the user logs in, all of that activity will be stitched together.
 
+## Distinct ID
+Distinct ID is an identifier set by Mixpanel based on the combination of `$device_id` and `user_id`. The purpose of Distinct ID is to provide a single, unified identifier for a user across devices and sessions. This helps Mixpanel compute metrics like Daily Active Users accurately: when two events have the same value of Distinct ID, they are considered as being performed by 1 unique user. By joining on the Distinct ID, Mixpanel is also able to accurately count funnels or retention metrics that span a user's logged out behavior and logged in behavior.
+
+You don't need to set Distinct ID yourself, it's managed under the hood for you based on the combination of `$device_id` and `user_id` (or if using our SDKs, just follow the Usage guide above). The precise logic for how Distinct ID is set by Mixpanel is in the next section.
+
 ## Example User Flows
 
 Let's walk through a few user flows where ID Merge is useful. Under the hood, Mixpanel uses the provided values of `$device_id` and `$user_id` to generate a `distinct_id`. Note: the specific value of `distinct_id` will be different based on which [version](/docs/tracking/how-tos/identifying-users#simplified-vs-original-id-merge) of ID Merge you use, but logically both versions work the same way.
