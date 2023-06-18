@@ -27,21 +27,21 @@ Project Admins or Owners can change a project's session definition in Project Se
 
 In [Funnels](/docs/analysis/reports/funnels), once you have set up sessions, a “Session Start” and “Session End” event will be generated in the report based on the funnel criteria.
 
-![/mceclip7.png](/mceclip7.png)
+![image](https://github.com/mixpanel/docs/assets/2077899/e6c12438-00da-4ebe-8302-a52f5a9da511)
 
 The event properties "Session Duration (Seconds)", "Session Event Count", "Session End Event Name", and "Session Start Event Name" can be used to breakdown or filter these results.
 
-![/mceclip8.png](/mceclip8.png)
+![image](https://github.com/mixpanel/docs/assets/2077899/5608f64b-3514-406f-8a65-fe6a588f36fb)
 
 You can also choose to count Sessions instead of Uniques or Totals in the Conversion Details section. If you choose to count Sessions, the conversion window will be limited to one session.
 
 Whenever you make a change to session settings, you can then review the impact of this change in the Funnels Time to Convert Chart. If you see a large group of users doing 4+ hour sessions or just having sessions of <1 minute, you can create cohorts from these user segments and then evaluate their behavior in Flows to confirm Sessions is set up correctly.
 
-![/mceclip9.png](/mceclip9.png)
+![image](https://github.com/mixpanel/docs/assets/2077899/e986f4f1-ad96-408b-8217-2a979b66e9eb)
 
 If you choose to count Uniques or Totals, you will be able to select a conversion window as usual, including Sessions.
 
-![/mceclip15.png](/mceclip15.png)
+![image](https://github.com/mixpanel/docs/assets/2077899/d0be7cb4-9cd4-46cd-849e-af4687b6aa1c)
 
 ### Flows
 
@@ -59,7 +59,7 @@ In [Insights](/docs/analysis/reports/insights), you can use the “Session Star
 - The average number of sessions per user
 - Sessions calculated in formulas
 
-![/mceclip12.png](/mceclip12.png)
+![image](https://github.com/mixpanel/docs/assets/2077899/ee999c27-c70f-438e-a95d-6ea4925b8474)
 
 When you select sessions in Insights, you will be viewing total sessions counts, rather than uniques or totals.
 
@@ -69,7 +69,7 @@ The event properties "Session Duration (Seconds)", "Session Event Count", "Sessi
 
 In Insights, you can also count the number of sessions that contained a particular event. Select the **Total** drop down beside an event in your Insights query to select **Sessions**.
 
-![/mceclip14.png](/mceclip14.png)
+![image](https://github.com/mixpanel/docs/assets/2077899/350c4606-4366-40af-a050-21cbe01bf543)
 
 For example, select an event which determines success for your company, such as "Product Purchase". Using this aggregation you can track how many sessions contained a purchase.
 
@@ -105,9 +105,9 @@ Sessions are reset every 24 hours at midnight (according to your project timezon
 
 Use your [Time to Convert Chart in Funnels](/docs/analysis/reports/funnels#time-to-convert) to help determine an appropriate session timeout period that aligns with your users’ behavior.
 
-![/mceclip6.png](/mceclip6.png)
+![image](https://github.com/mixpanel/docs/assets/2077899/44f40194-1aff-493b-828e-f9a1c750ac03)
 
-![/mceclip5.png](/mceclip5.png)
+![image](https://github.com/mixpanel/docs/assets/2077899/2e831c9f-d3cc-4dcf-abb9-a741e22de34d)
 
 In your Funnel you can select the event that denotes a "Session Start" in your app (such as “Log In”), and the "Session End" event (such as “Log Out”). Check the time it takes users to convert from the start event to the end event in the Time to Convert Chart, and this will give you an indicator of the average amount of time a session lasts in your app.
 
