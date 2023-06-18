@@ -213,7 +213,7 @@ Top paths will show the 50 most common event sequences of up to the number of st
 
 The total percentage of users who reached the ultimate destination of a flow is indicated on the top left, while the total users that reached a given step and the percentage of users who converted from the previous step are indicated on the bottom of each step.
 
-![/mceclip0.png](/mceclip0.png)
+![image](https://github.com/mixpanel/docs/assets/2077899/c36fcfb5-edbb-4374-86fc-6e3d3f5aa316)
 
 ### Expand Event by Property
 
