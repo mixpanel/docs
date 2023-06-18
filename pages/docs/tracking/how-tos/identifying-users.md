@@ -97,57 +97,46 @@ Let's walk through a few user flows where ID Merge is useful. Under the hood, Mi
 
 ## Simplified vs Original ID Merge
 
-In March 2023, Mixpanel released Simplified ID Merge as a simpler, opt-in alternative to Original ID Merge.
+In March 2023, Mixpanel released Simplified ID Merge (documented above) as a simpler, opt-in alternative to Original ID Merge. In June 2023, Mixpanel made the Simplified API the default for new organizations.
 
-The simplified API is an easier to implement interface with the same core functionality as the original API; however, because the simplified API is newer there are a few third-party partner integrations that need to be updated to work with it (see below). Once third-party support for the simplified API is on par with the original API it will become the default for new organizations.
+Due to the limited changes in functionality beyond a simpler implementation experience, we do not recommend that customers who have already implemented using the original API reimplement on the simplified API. Both APIs will remain supported and provide the same features.
 
-Due to the limited changes in functionality beyond a simpler implementation experience we do not recommend that customers who have already implemented using the original API reimplement on the simplified API. Both APIs will remain supported and provide the same features.
-
-### Which API should I use?
-
-1. If you are an existing customer who has historically used the original API and is familiar with it we recommend continuing to use the original API.
-2. If you are a new customer and want to use the API that currently has the best third-party integration support we recommending using the original API.
-3. If you are a new customer, want an easier integration experience, and are okay with the third-party integration support limitations listed later in this document we recommend using the simplified API.
-
-### How do I enable the Simplified API on a project?
+### How do I switch between the Simplified and Original API?
 
 Note that:
 
-- You cannot use both the original API and the simplified API within the same Mixpanel project: enabling the simplified API on a project disables the original API on that project.
-- You cannot switch between the original and simplified APIs once a project contains data. You must choose to enable the simplified API before sending the first event to a new project.
+- You cannot switch between the original and simplified APIs once a project contains data.
+- You cannot use both the original API and the simplified API within the same Mixpanel project.
 
-To enable the simplified API on a new project with no data in it go to the “Identity Merge” section of the Project Settings Page:
+To change the version of the API used by a new project with no data in it go to the “Identity Merge” section of the Project Settings Page:
 
-![Untitled](https://github.com/mixpanel/docs/blob/main/public/Tracking/id-merge-project-settings.png?raw=true)
+![Untitled](/Tracking/id-merge-project-settings.png)
 
-If you would like to make sure any new projects created within your organization default to the correct ID Merge API there is an organization-level option to configure which API you would like as the the default for any new projects.
+If you would like to make sure any new projects created within your organization default to a specific ID Merge API there is an organization-level option to configure which API you would like as the the default for new projects.
 
-![Untitled](https://github.com/mixpanel/docs/blob/main/public/Tracking/id-merge-org-settings.png?raw=true)
+![Untitled](/Tracking/id-merge-org-settings.png)
 
 ### Third-Party Integration Support
 
-Most third-party integration integrations send people & event data to Mixpanel using distinct IDs provided by our SDKs and are unaffected by this API change. These integrations are not involved in identity management, they send data to the ID they are given and will continue to work the same way on the simplified API that they do on the original API.
+Most third-party integration integrations send people & event data to Mixpanel using distinct IDs provided by our SDKs and are unaffected by this API change. These integrations are not involved in identity management, they send data to the ID they are given and will work the same way on the simplified API that they do on the original API.
 
-### Customer Data Platforms (CDPs)
+Customer data platform integrations are involved with identity management and need to be properly configured to work with the API used on the project:
+- Segment works out of the box with both the simplified and original APIs with no special configurations.
+- Rudderstack has a [connection setting](https://www.rudderstack.com/docs/destinations/streaming-destinations/mixpanel/#connection-settings) that should match the API version configured on your Mixpanel project.
+- mParticle works out the box with the original API, but requires the following change to work with the simplified API: supply `$device_id` and `$user_id` explicitly as properties on your events.
 
-Customer data platforms partners have their own identity management solutions. These partners merge user identities and forward the results to Mixpanel using our ID Merge APIs. If you are using one of our CDP partners that has not been updated to support the simplified ID Merge API you will need to use the original API:
+### How does the Simplified API differ from the the Original API?
 
-| CDP Partner | Supports Original API | Supports Simplified API |
-| --- | --- | --- |
-| [Segment](https://segment.com/docs/connections/destinations/catalog/actions-mixpanel/) | Yes | Yes |
-| [Rudderstack](https://www.rudderstack.com/docs/destinations/streaming-destinations/mixpanel/) | Yes | Yes |
-| [mParticle](https://docs.mparticle.com/integrations/mixpanel/event/) | Yes | No |
-
-### Key Changes from the Original API
-
-- **`$user_id`/`$device_id` are linked without separate `$identify`, `$merge`, or `$create_alias` events.** For projects on the original API once a user is identified you must send one of these three special event types to link the two identities. In the simplified API the `$identify`, `$merge`, and `$create_alias` events no longer have any special meaning and will be ignored. Instead, in projects on the simplified API, identities are linked using the `$user_id` and `$device_id` properties on regular events as described in the simplified API documentation.
-- **`$distinct_id` is predictable and matches `$user_id` for identified users.** In the original API IDs are grouped into identity clusters and any ID within the cluster might become the “canonical” distinct ID, which can be any ID in the cluster. In the simplified API, the `$distinct_id` will always be the `$user_id` that you provide, once the user is identified.
-- **There is no limit on the number of `$device_id`s that can be merged into a single `$user_id`.** In the original API a maximum of 500 IDs can be merged into a single cluster. In the simplified API there is no similar restriction, although you can only merge `$device_id`s into `$user_id`s. It is not possible to merge `$user_id`s with each other.
+- **`$user_id`/`$device_id` are linked without separate `$identify`, `$merge`, or `$create_alias` events.** The Original API required sending one of these three special event types to link two identities. In the Simplified API the `$identify`, `$merge`, and `$create_alias` events no longer have any special meaning and will be ignored. Instead, identities are linked using the `$user_id` and `$device_id` properties on regular events as described above.
+- **`$distinct_id` is predictable and matches `$user_id` for identified users.** In the Original API, IDs are grouped into identity clusters and any ID within the cluster might become the “canonical” distinct ID. In the simplified API, the `$distinct_id` is deterministic: it will always be the `$user_id` that you provide.
+- **There is no limit on the number of `$device_id`s that can be merged into a single `$user_id`.** In the Original API a maximum of 500 IDs can be merged into a single cluster. In the Simplified API there is no similar restriction; you can merge an unlimited number of `$device_id`s into `$user_id`s. This is useful in apps where users log out and log in often.
 
 ## FAQ
 
 ### What does Mixpanel recommend using as the `$user_id`?
 We recommend using an ID that is unique to each user and does not change, for example a database ID. While using an identifier like email may be more convenient, keep in mind that you cannot merge 2 `$user_id`s or change a `$user_id`, so if the user changes their email, they will count as a separate user.
+
+If you are on Original ID Merge, we do have a [`$merge`](https://developer.mixpanel.com/reference/identity-merge) API call that can merge two `$user_id`s. Note: this can add significant complexity to your implementation, and has been removed in Simplified ID Merge.
 
 ### How long does it take for the `$device_id` -> `$user_id` mapping to take effect?
 For debugging purposes, the Activity Feed view of a single user is updated in real-time (<1 minute delay). You can get to the Activity Feed by navigating to [Users](https://mixpanel.com/report/users) and selecting a given user.
@@ -162,7 +151,6 @@ It is possible to set user profile properties for un-identified users by sending
 ### Is it possible to merge two `$user_ids`?
 We don't recommend doing this in general, as it adds complexity to your identity resolution strategy. Instead we recommend having a single, unchanging `$user_id` for each user and pointing all other IDs for that user to that single `$user_id`.
 
-If you are on Original ID Merge, we do have a [`$merge`](https://developer.mixpanel.com/reference/identity-merge) API call that can merge two `$user_id`s.
 
 ### How to link identified IDs from 3rd-party systems?
 We recommend linking 3rd-party systems’ identified IDs by sending their value in `$device_id`:<3rd-party’s identified ID> and mapped to your main `$user_id`:<your User’s ID> in an event. Those 3rd-party systems can then send events independently using just `$device_id`:<3rd-party’s identified ID>.
