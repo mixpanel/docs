@@ -215,7 +215,7 @@ Click on the "three dots" icon beside a step and click **Rename** to rename i
 
 ### View as Flow
 
-In order to learn more about the behavior users take between funnel steps, use "View as Flow". You can see what user flows and behaviors that can increase the likelihood of conversion or dropoff. This helps to answer questions like:
+In order to learn more about the behavior users take between funnel steps, use "View as Flow". You can see what user flows and behaviors that can increase the likelihood of conversion or drop-off. This helps to answer questions like:
 
 - What flows do users take between opening an app and making a purchase?
 - Why did the successful users purchase?
@@ -353,11 +353,11 @@ Edit the frequency interval by clicking on **Interval size** above the chart. 
 
 You can also enter the minimum and maximum number of frequencies in the interval dropdown. For example, in the image above the maximum is 10, so all frequencies above 10 are grouped at the bottom of the chart.
 
-You can switch between viewing Conversion Counts to viewing Conversion Rates or Dropoff Count by clicking on **Conversion Count** at the top of the chart.
+You can switch between viewing Conversion Counts to viewing Conversion Rates or drop-off Count by clicking on **Conversion Count** at the top of the chart.
 
 ![/Screen_Shot_2022-07-12_at_3.27.30_PM.png](/Screen_Shot_2022-07-12_at_3.27.30_PM.png)
 
-Conversion Count shows you the number of users that converted who performed the event at a specific frequency. Conversion Rate shows you the percentage of users that converted who performed the event at a specific frequency. Dropoff Count shows you the number of times a user performed a step before dropping off the funnel.
+Conversion Count shows you the number of users that converted who performed the event at a specific frequency. Conversion Rate shows you the percentage of users that converted who performed the event at a specific frequency. drop-off Count shows you the number of times a user performed a step before dropping off the funnel.
 
 ### Top Paths
 
@@ -458,7 +458,7 @@ You can choose to attribute a property value from any step to the whole funnel b
 
 For example, the user viewing your website encounters an error and sends in a support ticket to your business. On first touch they may have been using Safari as their browser, and used Safari to send in the support ticket at last touch, but they were using Chrome when they triggered an error-state. It is relevant for your business to know that they triggered an error on the Chrome browser and not Safari, in order to assist them in fixing the error.
 
-## Conversion & Dropoff Flows
+## Conversion & drop-off Flows
 You can click into any funnel step and select "View as Flow". This takes you to the [flows](/docs/analysis/reports/flows) report and lets you see:
 * What events did users do before or after converting?
 * What events did the users who dropped off do instead?
