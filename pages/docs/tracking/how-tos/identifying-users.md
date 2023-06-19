@@ -13,9 +13,9 @@ If using our Web/Mobile SDKs or a CDP like Segment or Rudderstack, there are onl
 Any events prior to calling `.identify` are considered anonymous events. Mixpanel's SDKs will generate a `$device_id` to associate these events to the same anonymous user. By calling `.identify(<user_id>)` when a user signs up or logs in, you're telling Mixpanel that `$device_id` belongs to a known user with ID `user_id`. Under the hood, Mixpanel will stitch the event streams of those users together. This works even if a user has multiple anonymous sessions (eg: on desktop and mobile). As long as you always call `.identify` when the user logs in, all of that activity will be stitched together.
 
 ## Distinct ID
-Distinct ID is an identifier set by Mixpanel based on the combination of `$device_id` and `user_id`. The purpose of Distinct ID is to provide a single, unified identifier for a user across devices and sessions. This helps Mixpanel compute metrics like Daily Active Users accurately: when two events have the same value of Distinct ID, they are considered as being performed by 1 unique user. By joining on the Distinct ID, Mixpanel is also able to accurately count funnels or retention metrics that span a user's logged out behavior and logged in behavior.
+Distinct ID is an identifier set by Mixpanel based on the combination of `$device_id` and `$user_id`. The purpose of Distinct ID is to provide a single, unified identifier for a user across devices and sessions. This helps Mixpanel compute metrics like Daily Active Users accurately: when two events have the same value of Distinct ID, they are considered as being performed by 1 unique user. By joining on the Distinct ID, Mixpanel is also able to accurately count funnels or retention metrics that span a user's logged out behavior and logged in behavior.
 
-You don't need to set Distinct ID yourself, it's managed under the hood for you based on the combination of `$device_id` and `user_id` (or if using our SDKs, just follow the Usage guide above). The precise logic for how Distinct ID is set by Mixpanel is in the next section.
+You don't need to set Distinct ID yourself, it's managed under the hood for you based on the combination of `$device_id` and `$user_id` (or if using our SDKs, just follow the Usage guide above). The precise logic for how Distinct ID is set by Mixpanel is in the next section.
 
 ## Example User Flows
 
@@ -108,27 +108,25 @@ Due to the limited changes in functionality beyond a simpler implementation expe
 
 ### How do I switch between the Simplified and Original API?
 
-Note that:
-
-- You cannot switch between the original and simplified APIs once a project contains data.
-- You cannot use both the original API and the simplified API within the same Mixpanel project.
-
-To change the version of the API used by a new project with no data in it go to the “Identity Merge” section of the Project Settings Page:
-
-![Untitled](/Tracking/id-merge-project-settings.png)
+Note that you cannot switch between the two APIs if your project already contains data in it.
 
 If you would like to make sure any new projects created within your organization default to a specific ID Merge API there is an organization-level option to configure which API you would like as the the default for new projects.
 
 ![Untitled](/Tracking/id-merge-org-settings.png)
 
+To change the version of the API used by a new project with no data in it go to the “Identity Merge” section of the Project Settings Page:
+
+![Untitled](/Tracking/id-merge-project-settings.png)
+
+
 ### Third-Party Integration Support
 
-Most third-party integration integrations send people & event data to Mixpanel using distinct IDs provided by our SDKs and are unaffected by this API change. These integrations are not involved in identity management, they send data to the ID they are given and will work the same way on the simplified API that they do on the original API.
-
-Customer data platform integrations are involved with identity management and need to be properly configured to work with the API used on the project:
+Customer Data Platform (CDP) integrations may require some configuration to work the Simplified API:
 - Segment works out of the box with both the simplified and original APIs with no special configurations.
 - Rudderstack has a [connection setting](https://www.rudderstack.com/docs/destinations/streaming-destinations/mixpanel/#connection-settings) that should match the API version configured on your Mixpanel project.
 - mParticle works out the box with the original API, but requires the following change to work with the simplified API: supply `$device_id` and `$user_id` explicitly as properties on your events.
+
+Most other integrations are unaffected by this API change. These integrations are not involved in identity management, they send data to the ID they are given and will work the same way on the simplified API that they do on the original API.
 
 ### How does the Simplified API differ from the the Original API?
 
@@ -146,7 +144,7 @@ If you are on Original ID Merge, we do have a [`$merge`](https://developer.mixpa
 ### How long does it take for the `$device_id` -> `$user_id` mapping to take effect?
 For debugging purposes, the Activity Feed view of a single user is updated in real-time (<1 minute delay). You can get to the Activity Feed by navigating to [Users](https://mixpanel.com/report/users) and selecting a given user.
 
-It may take up to 24 hours for this mapping to propogate to all other parts of the system.
+It may take up to 24 hours for this mapping to propogate to all other parts of the system. This means that in some cases, when analyzing a funnel that spans pre-login and post-login behavior in real-time, some may be shown as dropped-off, even though they're performed the conversion event.
 
 ### How does this relate to User Profiles?
 [User Profiles](/docs/tracking/how-tos/user-profiles) are set directly on `$distinct_ids`, not on `$user_ids` or `$device_ids`. We recommend waiting until after a user is identified before setting user profile properties.
@@ -156,11 +154,10 @@ It is possible to set user profile properties for un-identified users by sending
 ### Is it possible to merge two `$user_ids`?
 We don't recommend doing this in general, as it adds complexity to your identity resolution strategy. Instead we recommend having a single, unchanging `$user_id` for each user and pointing all other IDs for that user to that single `$user_id`.
 
+### How should I link identified IDs from 3rd-party systems?
+Attribution providers (like Appsflyer, Adjust, and Branch) use Mixpanel's SDK properly to set `$device_id` to whichever ID they use for attribution. 
 
-### How to link identified IDs from 3rd-party systems?
-We recommend linking 3rd-party systems’ identified IDs by sending their value in `$device_id`:<3rd-party’s identified ID> and mapped to your main `$user_id`:<your User’s ID> in an event. Those 3rd-party systems can then send events independently using just `$device_id`:<3rd-party’s identified ID>.
-
-When exporting cohorts to 3rd-party systems (not directly integrated with Mixpanel), Mixpanel exports `distinct_id` as either the `$user_id` (for identified users) or `$device_id` (for anonymous users). It is best to designate a special user property and populate it with the 3rd-party’s identifier. This special user property can then be selected as part of the cohort export.
+For cohort syncs out to 3rd-party systems, we recommend designating a user property with the identifier of the user in that third-party system. More details are in our integrations docs; for example, see our [doc on exporting cohorts to Braze](/docs/other-bits/cohort-syncs/braze#matching-mixpanel-and-braze-users). If those integrations are bidirectional (eg: they send events _back_ to Mixpanel), it's best to ensure that the user ID in both Mixpanel and that 3rd-party system are the same so that those events are sent to the correct user.
 
 ### What is the status of Mixpanel's legacy `alias` method?
 Prior to March 2020, the only way to connect users together was the `.alias()` method. This was very limited and was not retroactive; this meant that if a user used two devices and then logged in, you would lose activity for the user from one of the devices.
@@ -171,6 +168,3 @@ If you set up Mixpanel prior to 2020, you may have implemented with the `alias()
 The `$identity_failure_reason` property will be populated with a value `errAnonDistinctIdAssignedAlready` if the `$device_id` passed was already linked to another `$user_id`. The `$device_id` will be ignored and the `$user_id`, in the same event, will be used as the `distinct_id` for the event. 
 
 The `$distinct_id_before_identity` property stores the original `distinct_id` (which was `$device:`<value for $device_id>) when the event was sent to Mixpanel before being mapped to the `$user_id`.
-
-### Why are my users shown as dropped off even though the events are reflected in their Activity Feed/profiles?  
-Merging identities may take up to 24 hours to properly reflect in Mixpanel reports (except Activity Feed), hence users may be shown as dropped off even though they've performed the events. 
