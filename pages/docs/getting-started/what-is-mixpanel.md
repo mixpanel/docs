@@ -17,6 +17,7 @@ Our self-serve interface empowers your team to answer questions, no matter their
 ## Introduction to the Data Model
 Mixpanel's Data Model is built on three key concepts: **Events**, **Users**, and **Properties**.
 
+
 ### Events
 An event is a data point that represents an interaction between a user and your product. Events can be a wide range of interactions. For example, every time a customer purchases a coffee from your café app, there are details that describe the purchase the moment it happens. Actions like purchasing a coffee can be tracked as an event in Mixpanel.
 
