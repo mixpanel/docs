@@ -9,16 +9,16 @@ date: "2023-06-16"
 For ecommerce companies, understanding the purchase behavior of your users is vital when creating any revenue-driving strategy — whether that’s through website changes, marketing tactics, or product offerings. 
 That’s why we built Cart Analysis to allow you to surface details about the items in your user’s cart (brand, category, price, etc) at different moments in their purchase journey (viewed product, added to cart, purchased). This is made possible by being able to look at any sub-property within a list of objects.
 
-![changelog Image](changelog/cart analysis.png)
+![changelog Image](/changelog/cart_analysis.png)
 
 An example question you can ask in Mixpanel with the power of Cart Analysis might be “how many cart checkouts with a total of over $100 have a sneaker product as an item?”
 
-![changelog Image](changelog/cart analysis.gif)
+![changelog Image](/changelog/cart_analysis.gif)
 
 A key feature we used to create the above visualization was the "Sum" computed property, which select a numeric property contained within the objects of the list and sums those values together (in this case, price).
 The other computed properties available with Cart Analysis are:
-- **Size**: Prompts a selection of a numeric property contained within the objects of the list. This will give the total for the whole list for that property.
-- **Distinct Count**: Prompts a selection of a property contained within the objects of the list. This will give the number of unique values for that property in the list.
+- **Size**: Buckets carts by the number of items they contain.
+- **Distinct Count**: Count the number of carts that contain a specific brand or category.
 
 Getting the answer to this question can help inform a product offering strategy, like if you wanted to consider offering discounts or incentives for customers who purchase sneakers along with other products to encourage cart values over $75.
 
