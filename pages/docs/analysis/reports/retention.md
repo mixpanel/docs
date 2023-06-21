@@ -251,9 +251,9 @@ From our sample data, the average value for day 1 retained users is calculated a
 
 #### When examining a Retention report in % / Retention Rate view:
 
-C_March 1 = 500 / 1000 (retention rate for March 1)
+C_March 1 = 500 (count retained for March 1)
 
-C_March 2 = 400 / 500 (retention rate for March 2)
+C_March 2 = 400 (count retained for March 2)
 
 W_March 1 = 1000 / 1500 (weight for March 1)
 
