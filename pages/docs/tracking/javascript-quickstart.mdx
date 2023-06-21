@@ -40,7 +40,8 @@ You'll need your Project Token for this, which you can get [here](https://mixpan
 //import mixpanel from 'mixpanel-browser';
 
 // Replace YOUR_TOKEN with your Project Token
-mixpanel.init('YOUR_TOKEN', {debug: true});
+// Note we have initiated both the debug mode and pageview tracking by default
+mixpanel.init('YOUR_TOKEN', { debug: true, track_pageview: true });
 
 // Set this to a unique identifier for the user performing the event.
 // eg: their ID in your database or their email address.
