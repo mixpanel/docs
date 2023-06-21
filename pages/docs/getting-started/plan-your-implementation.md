@@ -31,11 +31,19 @@ It takes less than 5 minutes to track an event to Mixpanel with our Javascript, 
 In general, we recommend tracking everything you possibly via your servers, and only supplementing that with client-side tracking when necessary.
 
 ## What To Track
-If you’re just starting to track data, we suggest starting simple by tracking two events critical to your product.
+If you’re just starting to track data, we suggest starting simple by tracking three events critical to your product.
 
 > 📘
 >
 > Not sure what an event or property is? Check out [What is Mixpanel](/docs/getting-started/what-is-mixpanel) to get a quick introduction to these important concepts.
+
+### Pageview Event
+Page views help you to understand on which pages users arrive, which source brought them there and where they're going next within your product.
+
+```mixpanel.init('YOUR_TOKEN', {track_pageview: true});```
+
+The track_pageview option currently does not auto-track page views in single-page applications.
+For more info on page views please have a look at the specific [Page Views documentation](docs/tracking/reference/javascript#tracking-page-views). 
 
 ### Sign Up Event
 This is the event where a user makes themselves known to your product by “creating an account”. We recommend tracking Sign Up because it's a quick and easy way to get real insights on your product’s growth.
