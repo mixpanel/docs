@@ -88,7 +88,7 @@ To import data from a warehouse directly, make sure the tables are formatted pro
 
 Each column in the table will be mapped as property on the event. 
 
-Read more about best practices for tracking Events and Properties in Mixpanel [here](https://docs-git-snowflake-connector-mixpanel.vercel.app/docs/tracking/how-tos/events-and-properties). 
+Read more about best practices for tracking Events and Properties in Mixpanel [here](https://docs.mixpanel.com/docs/tracking/how-tos/events-and-properties). 
 
 **The following columns are required:** 
 
