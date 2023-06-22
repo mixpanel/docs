@@ -1,16 +1,15 @@
 # Snowflake
 
----
 
 > ❗Note: This connector is currently in a closed beta. If you’d like access, please sign up via [this form](https://forms.gle/PctmA2fZvwdpCRGY6).
 
 This document will walk you through step-by-step instructions to get your snowflake connector up and running.
 
-### IP
+### IP Allowed List
 
 ---
 
-If you are using [Snowflake Network policy](https://docs.snowflake.com/en/user-guide/network-policies) to restrict access to your instance, you might need to whitelist the following IP addresses 
+If you are using [Snowflake Network policy](https://docs.snowflake.com/en/user-guide/network-policies) to restrict access to your instance, you might need to add the following IP addresses to the Allowed list.
 
 ```jsx
 34.31.112.201
@@ -86,13 +85,12 @@ To connect to your warehouse, complete the following steps.
 
 ## Data format guidelines
 
----
 
 To import data from a warehouse directly, make sure the tables are formatted properly.
 
 Each column in the table will be mapped as property on the event. 
 
-ℹ️ For a full list of event properties, please refer to [Events & Properties](https://docs.mixpanel.com/docs/tracking/reference/default-properties#event-properties)
+Read more about best practices for tracking Events and Properties in Mixpanel [here](https://docs.mixpanel.com/docs/tracking/how-tos/events-and-properties). 
 
 **The following columns are required:** 
 
@@ -108,7 +106,6 @@ Each column in the table will be mapped as property on the event.
 
 ## **Ingest Events**
 
----
 
 Once you have created a warehouse source, follow the below steps to send events into Mixpanel.
 
@@ -126,3 +123,5 @@ Once you have created a warehouse source, follow the below steps to send events 
     - Distinct ID.
     - Insert ID.
 9. Check the preview to ensure that everything looks correct, and then create the event.
+
+Note: Properties with (null) in a column will not be tracked with Events.
