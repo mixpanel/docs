@@ -17,7 +17,7 @@ Any events prior to calling `.identify` are considered anonymous events. Mixpane
 
 Note: You cannot set the value of `distinct_id` yourself, it will be set by Mixpanel as follows, depending on the [version of ID Merge](/docs/tracking/how-tos/identifying-users#simplified-vs-original-id-merge) that your project uses:
 * Simplified ID Merge (default): `distinct_id` will be the `$user_id` if present, otherwise will be `$device:<$device_id>`.
-* Original ID Merge: `distinct_id` will be either the `$user_id` or `$device_id`, but is non-determinstic and chosen to optimize backend performance. We recommend setting a [user profile property](/docs/tracking/how-tos/user-profiles), such as 'User ID', that has your identified ID. This allows you to have a property that represents the identified user ID.
+* Original ID Merge: `distinct_id` will be either the `$user_id` or `$device_id`, but is non-determinstic and chosen to optimize backend performance. If you want control over a particular identifier for the user, we recommend setting a [user profile property](/docs/tracking/how-tos/user-profiles), such as 'User ID', that has your identified ID. This allows you to have a property that represents the identified user ID.
 
 
 ## Example User Flows
