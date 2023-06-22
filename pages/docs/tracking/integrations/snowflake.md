@@ -99,7 +99,7 @@ Each column in the table will be mapped as property on the event.
 - Insert ID
     - This is an optional field, but we recommend it as a best practice.
 - Insert Time
-    - We expect this to be a monotonically increasing number. We use this as a water mark to figure out which events are new and ingest them.
+    - We expect this to be a monotonically increasing TIMESTAMP_NTZ. We use this as a water mark to figure out which events are new and ingest them.
 - Event Name
     - You can specify the column which has this value.
     - Alternatively, you can specify a static value during creation.
