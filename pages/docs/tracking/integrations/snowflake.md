@@ -7,7 +7,7 @@ This document will walk you through step-by-step instructions to get your snowfl
 
 ---
 
-If you are using [Snowflake Network policy](https://docs.snowflake.com/en/user-guide/network-policies) to restrict access to your instance, you might need to add the following IP addresses to the Allowed list.
+If you are using [Snowflake Network policy](https://docs.snowflake.com/en/user-guide/network-policies) to restrict access to your instance, you might need to add the following IP addresses to the allowed list.
 
 ```jsx
 34.31.112.201
