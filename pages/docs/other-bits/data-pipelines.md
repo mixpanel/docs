@@ -58,7 +58,9 @@ Once you’ve configured your destination, you need to tell Mixpanel to start ex
 
 You can do this with our [Create Pipeline API](https://developer.mixpanel.com/reference/create-warehouse-pipeline). You can create the Pipeline directly from our developer docs UI.
 
-Note that for each project, you are only allowed to create two pipelines to export events (**data_source**: `events`), and that the starting date (**from_date**: `YYYY-MM-DD`) of your Pipelines' export window cannot be more than six months from the date you create the pipelines.
+Limits:
+* We support at most two active event export pipelines (`data_source: events`) per Mixpanel project.
+* `from_date` must be no more than 6 months in the past.
 
 ## FAQ
 
