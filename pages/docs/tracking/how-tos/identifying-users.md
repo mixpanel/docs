@@ -171,6 +171,6 @@ If you set up Mixpanel prior to 2020, you may have implemented with the `alias()
 ### Why is there a `$identity_failure_reason` and `$distinct_id_before_identity` in my event?
 The `$identity_failure_reason` property will be populated with a value `errAnonDistinctIdAssignedAlready` if the `$device_id` passed was already linked to another `$user_id`. The `$device_id` will be ignored and the `$user_id`, in the same event, will be used as the `distinct_id` for the event. 
 
-The `$distinct_id_before_identity` property stores the original `distinct_id` (which was `$device:`<value for $device_id>`) when the event was sent to Mixpanel before being mapped to the `$user_id`.
+The `$distinct_id_before_identity` property stores the original `distinct_id` (which was `$device:<value for $device_id>`) when the event was sent to Mixpanel before being mapped to the `$user_id`.
 
 
