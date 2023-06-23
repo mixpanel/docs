@@ -68,7 +68,7 @@ Note: these flows walk through how `distinct_id` is set in Simplified ID Merge; 
     | Event | $device_id | $user_id | distinct_id (set by Mixpanel) | Notes |
     | --- | --- | --- | --- | --- |
     | 1 | D1 |  | $device:D1 |  |
-2. The user logs in; call `.identify(U1)`, which links the `$device_id` to their `$user_id`.
+2. The user logs in. Call `.identify(U1)`, which links the `$device_id` to their `$user_id`.
     
     
     | Event | $device_id | $user_id | distinct_id (set by Mixpanel) | Notes |
