@@ -14,7 +14,9 @@ Any events prior to calling `.identify` are considered anonymous events. Mixpane
 
 ## Example User Flows
 
-Let's walk through a few user flows where ID Merge is useful. Note: these flows walk through how `distinct_id` is set in Simplified ID Merge; in Original ID Merge, the value of `distinct_id` is not deterministic. See the [FAQ](#what-is-distinct-id) for more details on how `distinct_id` is set.
+Let's walk through a few user flows where ID Merge is useful, and when to call `.identify()` and `.reset()` to use ID Merge properly.
+
+Note: these flows walk through how `distinct_id` is set in Simplified ID Merge; in Original ID Merge, the value of `distinct_id` is not deterministic. See the [FAQ](#what-is-distinct-id) for more details on how `distinct_id` is set.
 
 ### New User Signup
 
@@ -46,7 +48,7 @@ Let's walk through a few user flows where ID Merge is useful. Note: these flows 
     | 3 | D1 | U1 | U1 |  |
     | 4 | D2 |  | $device:D2 | New device D2. |
     | 5 | D2 |  | $device:D2 |  |
-2. The user logs in allowing us to tell that the user on this device is the same `$user_id` we have seen before.
+2. The user logs in. Call `.identify(U1)` to tell us that the user on this device is the same `$user_id` we have seen before.
     
     
     | Event | $device_id | $user_id | distinct_id (set by Mixpanel) | Notes |
@@ -66,14 +68,14 @@ Let's walk through a few user flows where ID Merge is useful. Note: these flows 
     | Event | $device_id | $user_id | distinct_id (set by Mixpanel) | Notes |
     | --- | --- | --- | --- | --- |
     | 1 | D1 |  | $device:D1 |  |
-2. The user logs in, linking the `$device_id` to their `$user_id`.
+2. The user logs in; call `.identify(U1)`, which links the `$device_id` to their `$user_id`.
     
     
     | Event | $device_id | $user_id | distinct_id (set by Mixpanel) | Notes |
     | --- | --- | --- | --- | --- |
     | 1 | D1 | U1 | U1 | Retroactively updated. |
     | 2 | D1 | U1 | U1 | Links D1 ⇒ U1. |
-3. The user logs out. At this point, you should call the “reset” function on the Mixpanel SDK, or manually generate a new `$device_id` if you are managing it yourself. A new user shows up and tracks events using this new `$device_id`.
+3. The user logs out. At this point, you should call `.reset()`, or manually generate a new `$device_id` if you are managing it yourself. A new user shows up and tracks events using this new `$device_id`.
     
     
     | Event | $device_id | $user_id | distinct_id (set by Mixpanel) | Notes |
@@ -82,7 +84,7 @@ Let's walk through a few user flows where ID Merge is useful. Note: these flows 
     | 2 | D1 | U1 | U1 |  |
     | 3 | D2 |  | $device:D2 | Reset generated new ID: D2. |
     | 4 | D2 |  | $device:D2 |  |
-4. This new user now logs in.
+4. This new user (U2) now logs in. Call `.identify(U2)`.
     
     
     | Event | $device_id | $user_id | distinct_id (set by Mixpanel) | Notes |
