@@ -12,14 +12,11 @@ If using our Web/Mobile SDKs or a CDP like Segment or Rudderstack, there are onl
 
 Any events prior to calling `.identify` are considered anonymous events. Mixpanel's SDKs will generate a `$device_id` to associate these events to the same anonymous user. By calling `.identify(<user_id>)` when a user signs up or logs in, you're telling Mixpanel that `$device_id` belongs to a known user with ID `user_id`. Under the hood, Mixpanel will stitch the event streams of those users together. This works even if a user has multiple anonymous sessions (eg: on desktop and mobile). As long as you always call `.identify` when the user logs in, all of that activity will be stitched together.
 
-## Distinct ID
-Distinct ID is an identifier set by Mixpanel based on the combination of `$device_id` and `$user_id`. The purpose of Distinct ID is to provide a single, unified identifier for a user across devices and sessions. This helps Mixpanel compute metrics like Daily Active Users accurately: when two events have the same value of Distinct ID, they are considered as being performed by 1 unique user. By joining on the Distinct ID, Mixpanel is also able to accurately count funnels or retention metrics that span a user's logged out behavior and logged in behavior.
-
-You don't need to set Distinct ID yourself, it's managed under the hood for you based on the combination of `$device_id` and `$user_id` (or if using our SDKs, just follow the Usage guide above). The precise logic for how Distinct ID is set by Mixpanel is in the next section.
-
 ## Example User Flows
 
-Let's walk through a few user flows where ID Merge is useful. Under the hood, Mixpanel uses the provided values of `$device_id` and `$user_id` to generate a `distinct_id`. Note: the specific value of `distinct_id` will be different based on which [version](/docs/tracking/how-tos/identifying-users#simplified-vs-original-id-merge) of ID Merge you use, but logically both versions work the same way.
+Let's walk through a few user flows where ID Merge is useful, and when to call `.identify()` and `.reset()` to use ID Merge properly.
+
+Note: these flows walk through how `distinct_id` is set in Simplified ID Merge; in Original ID Merge, the value of `distinct_id` is not deterministic. See the [FAQ](#what-is-distinct-id) for more details on how `distinct_id` is set.
 
 ### New User Signup
 
@@ -51,7 +48,7 @@ Let's walk through a few user flows where ID Merge is useful. Under the hood, Mi
     | 3 | D1 | U1 | U1 |  |
     | 4 | D2 |  | $device:D2 | New device D2. |
     | 5 | D2 |  | $device:D2 |  |
-2. The user logs in allowing us to tell that the user on this device is the same `$user_id` we have seen before.
+2. The user logs in. Call `.identify(U1)` to tell us that the user on this device is the same `$user_id` we have seen before.
     
     
     | Event | $device_id | $user_id | distinct_id (set by Mixpanel) | Notes |
@@ -71,14 +68,14 @@ Let's walk through a few user flows where ID Merge is useful. Under the hood, Mi
     | Event | $device_id | $user_id | distinct_id (set by Mixpanel) | Notes |
     | --- | --- | --- | --- | --- |
     | 1 | D1 |  | $device:D1 |  |
-2. The user logs in, linking the `$device_id` to their `$user_id`.
+2. The user logs in. Call `.identify(U1)`, which links the `$device_id` to their `$user_id`.
     
     
     | Event | $device_id | $user_id | distinct_id (set by Mixpanel) | Notes |
     | --- | --- | --- | --- | --- |
     | 1 | D1 | U1 | U1 | Retroactively updated. |
     | 2 | D1 | U1 | U1 | Links D1 ⇒ U1. |
-3. The user logs out. At this point, you should call the “reset” function on the Mixpanel SDK, or manually generate a new `$device_id` if you are managing it yourself. A new user shows up and tracks events using this new `$device_id`.
+3. The user logs out. At this point, you should call `.reset()`, or manually generate a new `$device_id` if you are managing it yourself. A new user shows up and tracks events using this new `$device_id`.
     
     
     | Event | $device_id | $user_id | distinct_id (set by Mixpanel) | Notes |
@@ -87,7 +84,7 @@ Let's walk through a few user flows where ID Merge is useful. Under the hood, Mi
     | 2 | D1 | U1 | U1 |  |
     | 3 | D2 |  | $device:D2 | Reset generated new ID: D2. |
     | 4 | D2 |  | $device:D2 |  |
-4. This new user now logs in.
+4. This new user (U2) now logs in. Call `.identify(U2)`.
     
     
     | Event | $device_id | $user_id | distinct_id (set by Mixpanel) | Notes |
@@ -136,6 +133,13 @@ Most other integrations are unaffected by this API change. These integrations ar
 
 ## FAQ
 
+### What is Distinct ID?
+`distinct_id` is an identifier set by Mixpanel based on the combination of `$device_id` and `$user_id`. The purpose of `distinct_id` is to provide a single, unified identifier for a user across devices and sessions. This helps Mixpanel compute metrics like Daily Active Users accurately: when two events have the same value of `distinct_id`, they are considered as being performed by 1 unique user. By joining on the `distinct_id`, Mixpanel is also able to accurately count funnels or retention metrics that span a user's logged out behavior and logged in behavior.
+
+Note: You cannot set the value of `distinct_id` yourself, it will be set by Mixpanel. How it's set depends on the [version of ID Merge](/docs/tracking/how-tos/identifying-users#simplified-vs-original-id-merge) that your project uses:
+* **Simplified ID Merge (default):** `distinct_id` will be the `$user_id` if present, otherwise will be `$device:<$device_id>`.
+* **Original ID Merge:** `distinct_id` will be either the `$user_id` or `$device_id`, but is non-determinstic and chosen to optimize backend performance. If you want control over a particular identifier for the user, we recommend setting a [user profile property](/docs/tracking/how-tos/user-profiles), such as 'User ID', that has your identified ID. This allows you to have a property that represents the identified user ID.
+
 ### What does Mixpanel recommend using as the `$user_id`?
 We recommend using an ID that is unique to each user and does not change, for example a database ID. While using an identifier like email may be more convenient, keep in mind that you cannot merge 2 `$user_id`s or change a `$user_id`, so if the user changes their email, they will count as a separate user.
 
@@ -168,3 +172,5 @@ If you set up Mixpanel prior to 2020, you may have implemented with the `alias()
 The `$identity_failure_reason` property will be populated with a value `errAnonDistinctIdAssignedAlready` if the `$device_id` passed was already linked to another `$user_id`. The `$device_id` will be ignored and the `$user_id`, in the same event, will be used as the `distinct_id` for the event. 
 
 The `$distinct_id_before_identity` property stores the original `distinct_id` (which was `$device:`<value for $device_id>) when the event was sent to Mixpanel before being mapped to the `$user_id`.
+
+
