@@ -43,6 +43,10 @@ You can find these values in your MoEngage settings page - note that MoEngage Ap
 4. The MoEngage integration will show a **Connected** tag in the UI once the connection succeeds.
 
 ## Matching Users between MoEngage and Mixpanel
+
+> **Warning:** Projects using the [simplified ID merge system](/docs/tracking/how-tos/identifying-users#simplified-vs-original-id-merge) must have the `$user_id` in Mixpanel match the user identifier in the partner service. Using any alternative partner properties to match users between tools may result in partner events not being attributed to the correct user in Mixpanel. Any partner properties mentioned in the below section are primarly applicable to projects on the original ID merge system.
+
+
 Mixpanel only exports identified user profiles to match to MoEngage - users without user profile properties (i.e. anonymous users) will not export.
 
 If the values you provide for users' distinct_id differ from the values used for MoEngage's Unique ID, the user's Mixpanel profile must contain a user property, `$moengage_user_id`, whose value is a string representing that user's Unique ID in MoEngage. Exports will include this joining key to match to corresponding the Unique ID in MoEngage.
