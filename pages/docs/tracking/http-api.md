@@ -5,10 +5,10 @@ hidden: false
 ---
 If you don't see an SDK or an integration in your language, you can send events to our API directly.
 
-Here's a sample script. Just plug in your API Secret at the top, run the script, and visit our [Events page](https://mixpanel.com/report/events) to see the events in our UI.
+Here's a sample script. Just plug in your Project Token at the top, run the script, and visit our [Events page](https://mixpanel.com/report/events) to see the events in our UI.
 ```python test.py
-# Fill this out. Note: this API requires the API Secret, not the Project Token
-API_SECRET = ""  # Get this from mixpanel.com/settings/project
+# Fill this out
+PROJECT_TOKEN = ""  # Get this from mixpanel.com/settings/project
 
 import json
 import time
@@ -22,7 +22,7 @@ events = [
 resp = requests.post(
     "https://api.mixpanel.com/import",
     params={"strict": "1"},
-    auth=(API_SECRET, ""),
+    auth=(PROJECT_TOKEN, ""),
     headers={"Content-Type": "application/json"},
     data=json.dumps(events)
 )

@@ -49,9 +49,8 @@ import boto3
 import requests
 
 
-PROJECT_ID = ""  # mixpanel.com/project/<YOUR_PROJECT_ID>
-USER = ""  # Service Account user
-PASS = ""  # Service Account password
+# Fill this out with your Project Token
+PROJECT_TOKEN = ""
 
 # Flush a batch once these limits are hit
 EVENTS_PER_BATCH = 2000
@@ -74,13 +73,13 @@ def flush(batch):
     while True:
         resp = requests.post(
             "https://api.mixpanel.com/import",
-            params={"strict": "1", "project_id": PROJECT_ID},
+            params={"strict": "1"},
             headers={
                 "Content-Type": "application/x-ndjson",
                 "Content-Encoding": "gzip",
                 "User-Agent": "mixpanel-s3"
             },
-            auth=(USER, PASS),
+            auth=(PROJECT_TOKEN, ""),
             data=payload,
         )
         if resp.status_code == 429 or resp.status_code >= 500:
