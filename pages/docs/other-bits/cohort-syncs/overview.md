@@ -9,12 +9,15 @@ There are no limits for static, or 1-time, syncs.
 
 The exported user data is limited to the following properties:
 
+```
 $distinct_id
 $first_name
 $last_name
 $partner_user_id
 $email
 $phone
+```
+
 If these properties are not present in your project, users might not be matched in the systems. If an integration partner doesn't use a property to match, it is dropped before ingestion. Please refer to the individual Cohort Sync Help Center pages for the behaviour for specific partners.
 
 The email address and phone number properties will only show in the manual CSV exports for Google Ads and Facebook integrations.
