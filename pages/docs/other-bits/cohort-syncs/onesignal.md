@@ -37,6 +37,8 @@ Follow these steps to enable the integration with OneSignal:
 
 ## Matching Users between OneSignal and Mixpanel
 
+> **Warning:** Projects using the [simplified ID merge system](/docs/tracking/how-tos/identifying-users#simplified-vs-original-id-merge) must have the `$user_id` in Mixpanel match the user identifier in the partner service. Using any alternative partner properties to match users between tools may result in partner events not being attributed to the correct user in Mixpanel. Any partner properties mentioned in the below section are primarly applicable to projects on the original ID merge system.
+
 Mixpanel only exports identified user profiles to match to OneSignal - users without user profile properties (i.e. anonymous users) will not export.
 
 In order to match an exported Mixpanel user to OneSignal, the user's Mixpanel profile must contain a user property, `$onesignal_user_id`. The value of this property is a string representing either that person's Player ID or External User ID in OneSignal. OneSignal recommends using External User ID, as it's a cross-platform user identifier and allows for OneSignal's email capabilities. In your implementation, reference the Player ID from OneSignal's SDK or reference your External User ID and set the user property `$onesignal_user_id` on the user's Mixpanel profile.
