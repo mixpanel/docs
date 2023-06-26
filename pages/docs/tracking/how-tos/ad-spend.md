@@ -196,9 +196,7 @@ const GOOGLE_ADS_CUSTOMER_ID = 'YOUR GOOGLE CUSTOMER CLIENT ID WITHOUT HYPHENS';
 
 // End of Configuration
 
-const mixpanel = Mixpanel.init(MIXPANEL_TOKEN, {
-    secret: MIXPANEL_SECRET
-});
+const mixpanel = Mixpanel.init(MIXPANEL_TOKEN);
 
 const client = new GoogleAdsApi({
     client_id: GOOGLE_CLIENT_ID,
