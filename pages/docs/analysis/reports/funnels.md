@@ -173,7 +173,7 @@ Some things to keep in mind are that you are only able to select event propertie
 
 ### Exclusion Steps (Exclude users who did...)
 
-Exclusion steps operate as a "did not do" filter for funnels. This provides the ability to create a funnel where, for example, you look for users that did event A, then event B, did not do event C, but then continue to do D.
+Exclusion steps operate as a "did not do" filter for funnels. This provides the ability to create a funnel where, for example, you look for users that did event A, then event B, did not do event C, but then continue to do D. Note that the users are excluded at that point in the funnel. So in the previous example a user that did event C would still be counted in the funnel as having A and B, but they would not qualify in the funnel for event D, by virtue of having done event C.
 
 At the "Conversion Criteria" section, click on "Advanced" and then on "Exclude users who did...". A dropdown will appear to exclude a step from your funnel.
 
@@ -204,8 +204,9 @@ Further example use cases:
 
 Note:
 1. An exclusion step can be placed between any steps in the funnel. It cannot be the first or last step.
-2. There may be any number of exclusion events between steps.
-3. Exclusion steps have the same [two second grace period](/docs/analysis/reports/funnels#how-does-mixpanel-handle-simultaneous-events) as other steps in the funnel.
+2. An exclusion step does not prevent users for qualifying into the funnel up until the exclusion step. If you want users who did a particular event at any point excluded, use a cohort filter.
+3. There may be any number of exclusion events between steps.
+4. Exclusion steps have the same [two second grace period](/docs/analysis/reports/funnels#how-does-mixpanel-handle-simultaneous-events) as other steps in the funnel.
 
 ### Rename a Step
 
