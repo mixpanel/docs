@@ -40,10 +40,8 @@ import time
 
 import requests
 
-
-PROJECT_ID = ""  # mixpanel.com/project/<YOUR_PROJECT_ID>
-USER = ""  # Service Account user
-PASS = ""  # Service Account password
+# Fill this out.
+PROJECT_TOKEN = ""
 
 
 def main(event, context):
@@ -63,8 +61,8 @@ def main(event, context):
     while True:
         resp = requests.post(
             "https://api.mixpanel.com/import",
-            params={"strict": "1", "project_id": PROJECT_ID},
-            auth=(USER, PASS),
+            params={"strict": "1"},
+            auth=(PROJECT_TOKEN, ""),
             headers={"Content-Type": "application/json", "Content-Encoding": "gzip", "User-Agent": "mixpanel-pubsub"},
             data=payload,
         )
