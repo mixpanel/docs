@@ -17,16 +17,10 @@ Note: Project Token does not let you _read_ any data from your Mixpanel project.
 
 
 ## API Secret
-The API Secret is used to backfill historical events into your project via our Import API and to export data out of your project via our Export APIs.
-
-You should not share your API Secret, since it can be used to export data from your Mixpanel project.
-
-
-You can find it in the [Project Settings](https://mixpanel.com/settings/project) page under "Access Keys", right below Project Token.
+The API Secret is used to export data out of your project via our Export APIs. You can find it in the [Project Settings](https://mixpanel.com/settings/project) page under "Access Keys", right below Project Token.
 
 
 ## Service Accounts
-
 [Service Accounts](https://developer.mixpanel.com/reference/service-accounts) are a more advanced form of authentication that is used to grant temporary access to a subset of Mixpanel projects within your organization for certain APIs.
 
 Service Accounts are not necessary to send data to Mixpanel or export data out of Mixpanel.
