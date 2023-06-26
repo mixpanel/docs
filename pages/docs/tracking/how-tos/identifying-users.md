@@ -107,11 +107,11 @@ Due to the limited changes in functionality beyond a simpler implementation expe
 
 Note that you cannot switch between the two APIs if your project already contains data in it.
 
-If you would like to make sure any new projects created within your organization default to a specific ID Merge API there is an organization-level option to configure which API you would like as the the default for new projects.
+If you would like to make sure any new projects created within your organization default to Simplified ID Merge, there is an organization setting to do so:
 
 ![Untitled](/Tracking/id-merge-org-settings.png)
 
-To change the version of the API used by a new project with no data in it go to the “Identity Merge” section of the Project Settings Page:
+If you have an existing project with no data in it, you can also switch to using Simplified ID Merge via the “Identity Merge” section of the Project Settings Page:
 
 ![Untitled](/Tracking/id-merge-project-settings.png)
 
