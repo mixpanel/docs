@@ -33,7 +33,7 @@ To enable the integration:
 ## Matching Users between Xtremepush and Mixpanel
 Mixpanel only exports identified user profiles to match to Xtremepush - users without user profile properties (i.e. anonymous users) will not export.
 
-Xtremepush use a given user's distinct_id to match the Mixpanel user profile to Xtremepush. As a result, not all exported profiles may match if these values are missing or differ from the emails and phone numbers stored on Insider.
+Xtremepush uses a given user's distinct_id to match the Mixpanel user profile to Xtremepush. As a result, not all exported profiles may match if these values are missing or differ from the emails and phone numbers stored on Insider.
 
 Note that exports are used solely for matching user identities between products - the integration will not send the full set of a user's profile properties to Xtremepush, nor will it generate new users.
 
