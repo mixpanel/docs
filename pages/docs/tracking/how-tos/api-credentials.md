@@ -13,12 +13,13 @@ You can find it in the [Project Settings](https://mixpanel.com/settings/project)
 
 You can then use your token to track events to Mixpanel. See our guides for [Javascript](/docs/tracking/javascript-quickstart), [Server](/docs/tracking/server), and [Mobile](doc:mobile).
 
-Note: Project Token does not let you _read_ any data from your Mixpanel project. It only lets you track. This is intentional because your Project Token is public and shipped to client devices as part of your website's Javascript code.
+Note: Project Token does not let you _read_ any data from your Mixpanel project. It only lets you track. This is intentional because your Project Token is public and shipped to client devices as part of your website's Javascript code. or shared with 3rd parties, like CDPs.
 
 
 ## API Secret
-The API Secret is used to export data out of your project via our Export APIs. You can find it in the [Project Settings](https://mixpanel.com/settings/project) page under "Access Keys", right below Project Token.
+The API Secret is used to export data out of your project via our Export APIs. You can find it in the [Project Settings](https://mixpanel.com/settings/project) page under "Access Keys", right below Project Token. 
 
+You should not share your API Secret, since it can be used to export data from your Mixpanel project.
 
 ## Service Accounts
 [Service Accounts](https://developer.mixpanel.com/reference/service-accounts) are a more advanced form of authentication that is used to grant temporary access to a subset of Mixpanel projects within your organization for certain APIs.
