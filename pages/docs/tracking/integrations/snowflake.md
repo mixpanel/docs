@@ -83,7 +83,7 @@ To connect to your warehouse, complete the following steps.
         ```
         
 
-## Data format guidelines
+### Data format guidelines
 
 
 To import data from a warehouse directly, make sure the tables are formatted properly.
@@ -104,7 +104,7 @@ Read more about best practices for tracking Events and Properties in Mixpanel [h
     - You can specify the column which has this value.
     - Alternatively, you can specify a static value during creation.
 
-## **Ingest Events**
+### Ingest Events
 
 
 Once you have created a warehouse source, follow the below steps to send events into Mixpanel.
