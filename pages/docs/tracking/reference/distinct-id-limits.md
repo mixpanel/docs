@@ -44,7 +44,7 @@ Updated Event -
 }
 ```
 
-These events can be queried from the dashboard just like any other events. A periodic report is sent to project owners if a hot shard was detected and remediated in the recent past. 
+These events can be queried from the dashboard just like any other events. A weekly report is sent to project owners if a new hot shard was detected and remediated in the past 7 days. 
 
 ## Recovering from a hot shard
 Recovery is a multi-step process -
