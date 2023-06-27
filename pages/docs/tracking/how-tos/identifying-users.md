@@ -21,81 +21,76 @@ Note: these flows walk through how `distinct_id` is set in Simplified ID Merge; 
 ### New User Signup
 
 1. A user lands in your product on a new device and interacts with your product before signing up. Our SDK will assign the user a random `$device_id` and persist it. All events tracked at this point will send only a `$device_id`.
-    
-    
+        
     | Event | $device_id | $user_id | distinct_id (set by Mixpanel) | Notes |
-    | --- | --- | --- | --- | --- |
-    | 1 | D1 |  | $device:D1 |  |
-    | 2 | D1 |  | $device:D1 |  |
+    | ----- | ---------- | -------- | ----------------------------- | ----- |
+    | 1     | D1         |          | $device:D1                    |       |
+    | 2     | D1         |          | $device:D1                    |       |
+
 2. The user returns later and signs up for your product. You call `.identify(<user_id>)`. All events sent after this point are tracked with both the original `$device_id` and the new `$user_id`. Mixpanel will retroactively set the `$user_id` on any prior events with the user’s `$device_id` so that both event streams are joined.
     
-    
-    | Event | $device_id | $user_id | distinct_id (set by Mixpanel) | Notes |
-    | --- | --- | --- | --- | --- |
-    | 1 | D1 | U1 | U1 | |
-    | 2 | D1 | U1 | U1 | |
-    | 3 | D1 | U1 | U1 | Links D1 ⇒ U1 |
+    | Event | $device_id | $user_id | distinct_id (set by Mixpanel) | Notes                 |
+    | ----- | ---------- | -------- | ----------------------------- | --------------------- |
+    | 1     | D1         |          | ~~*$device:D1*~~ ⇒ **U1**     | Retroactively updated |
+    | 2     | D1         |          | ~~*$device:D1*~~ ⇒ **U1**     | Retroactively updated |
+    | 3     | D1         | U1       | U1                            | Links D1 ⇒ U1         |
 
 ### Returning User
 
 1. The user from the previous flow returns, but is on a new device and has not logged in yet.
     
-    
-    | Event | $device_id | $user_id | distinct_id (set by Mixpanel) | Notes |
-    | --- | --- | --- | --- | --- |
-    | 1 | D1 | U1 | U1 |  |
-    | 2 | D1 | U1 | U1 |  |
-    | 3 | D1 | U1 | U1 |  |
-    | 4 | D2 |  | $device:D2 | New device D2. |
-    | 5 | D2 |  | $device:D2 |  |
+    | Event | $device_id | $user_id | distinct_id (set by Mixpanel) | Notes         |
+    | ----- | ---------- | -------- | ----------------------------- | ------------- |
+    | 1     | D1         |          | ~~*$device:D1*~~ ⇒ **U1**     |               |
+    | 2     | D1         |          | ~~*$device:D1*~~ ⇒ **U1**     |               |
+    | 3     | D1         | U1       | U1                            | Links D1 ⇒ U1 |
+    | 4     | D2         |          | $device:D2                    | New device D2 |
+    | 5     | D2         |          | $device:D2                    |               |
+   
 2. The user logs in. Call `.identify(U1)` to tell us that the user on this device is the same `$user_id` we have seen before.
     
-    
-    | Event | $device_id | $user_id | distinct_id (set by Mixpanel) | Notes |
-    | --- | --- | --- | --- | --- |
-    | 1 | D1 | U1 | U1 |  |
-    | 2 | D1 | U1 | U1 |  |
-    | 3 | D1 | U1 | U1 |  |
-    | 4 | D2 | U1 | U1 |  |
-    | 5 | D2 | U1 | U1 |  |
-    | 5 | D2 | U1 | U1 | Links D2 ⇒ U1. |
+    | Event | $device_id | $user_id | distinct_id (set by Mixpanel) | Notes                 |
+    | ----- | ---------- | -------- | ----------------------------- | --------------------- |
+    | 1     | D1         |          | ~~*$device:D1*~~ ⇒ **U1**     |                       |
+    | 2     | D1         |          | ~~*$device:D1*~~ ⇒ **U1**     |                       |
+    | 3     | D1         | U1       | U1                            | Links D1 ⇒ U1         |
+    | 4     | D2         |          | ~~*$device:D2*~~ ⇒ **U1**     | Retroactively updated |
+    | 5     | D2         |          | ~~*$device:D2*~~ ⇒ **U1**     | Retroactively updated |
+    | 6     | D2         | U1       | U1                            | Links D2 ⇒ U1         |
 
 ### Multiple Users, One Device
 
 1. A first user begins using a new device.
     
-    
     | Event | $device_id | $user_id | distinct_id (set by Mixpanel) | Notes |
-    | --- | --- | --- | --- | --- |
-    | 1 | D1 |  | $device:D1 |  |
+    | ----- | ---------- | -------- | ----------------------------- | ----- |
+    | 1     | D1         |          | $device:D1                    |       |
+
 2. The user logs in. Call `.identify(U1)`, which links the `$device_id` to their `$user_id`.
     
-    
-    | Event | $device_id | $user_id | distinct_id (set by Mixpanel) | Notes |
-    | --- | --- | --- | --- | --- |
-    | 1 | D1 | U1 | U1 | Retroactively updated. |
-    | 2 | D1 | U1 | U1 | Links D1 ⇒ U1. |
+    | Event | $device_id | $user_id | distinct_id (set by Mixpanel) | Notes                 |
+    | ----- | ---------- | -------- | ----------------------------- | --------------------- |    
+    | 1     | D1         |          | ~~*$device:D1*~~ ⇒ **U1**     | Retroactively updated |
+    | 2     | D1         | U1       | U1                            | Links D1 ⇒ U1         |
+   
 3. The user logs out. At this point, you should call `.reset()`, or manually generate a new `$device_id` if you are managing it yourself. A new user shows up and tracks events using this new `$device_id`.
     
-    
-    | Event | $device_id | $user_id | distinct_id (set by Mixpanel) | Notes |
-    | --- | --- | --- | --- | --- |
-    | 1 | D1 | U1 | U1 |  |
-    | 2 | D1 | U1 | U1 |  |
-    | 3 | D2 |  | $device:D2 | Reset generated new ID: D2. |
-    | 4 | D2 |  | $device:D2 |  |
+    | Event | $device_id | $user_id | distinct_id (set by Mixpanel) | Notes                      |
+    | ----- | ---------- | -------- | ----------------------------- | -------------------------- |    
+    | 1     | D1         |          | ~~*$device:D1*~~ ⇒ **U1**     |                            |
+    | 2     | D1         | U1       | U1                            | Links D1 ⇒ U1              |    
+    | 3     | D2         |          | $device:D2                    | Reset generated new ID: D2 |
+    | 4     | D2         |          | $device:D2                    |                            |
+   
 4. This new user (U2) now logs in. Call `.identify(U2)`.
-    
-    
-    | Event | $device_id | $user_id | distinct_id (set by Mixpanel) | Notes |
-    | --- | --- | --- | --- | --- |
-    | 1 | D1 | U1 | U1 |  |
-    | 2 | D1 | U1 | U1 |  |
-    | 3 | D2 | U2 | U2 | Retroactively updated. |
-    | 4 | D2 | U2 | U2 | Retroactively updated. |
-    | 5 | D2 | U2 | U2 | Links D2 ⇒ U2. |
-
-
+       
+    | Event | $device_id | $user_id | distinct_id (set by Mixpanel) | Notes                      |
+    | ----- | ---------- | -------- | ----------------------------- | -------------------------- |        
+    | 1     | D1         |          | ~~*$device:D1*~~ ⇒ **U1**     |                            |
+    | 2     | D1         | U1       | U1                            | Links D1 ⇒ U1              |    
+    | 3     | D2         |          | ~~*$device:D2*~~ ⇒ **U2**     | Retroactively updated      |
+    | 4     | D2         |          | ~~*$device:D2*~~ ⇒ **U2**     | Retroactively updated      |
+    | 5     | D2         | U2       | U2                            | Links D2 ⇒ U2              |
 
 ## Simplified vs Original ID Merge
 
