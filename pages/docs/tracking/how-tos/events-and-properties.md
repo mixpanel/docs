@@ -34,6 +34,8 @@ Mixpanel reserves certain event property names; these properties receive special
 | $city                      | City         | The city of the event sender, parsed from IP.                                                                                                             |
 | $region                    | Region       | The region (state or province) of the event sender, parsed from IP.                                                                                       |
 | mp_country_code            | Country      | The country of the event sender, parsed from IP.                                                                                                          |
+| mp_original_event_name     | mp_original_event_name  | The original event name for a hotsharded event. See [Distinct ID Limits](https://docs.mixpanel.com/docs/tracking/reference/distinct-id-limits) |
+| mp_original_distinct_id    | mp_original_distinct_id | The original distinct id for a hotsharded event. See [Distinct ID Limits](https://docs.mixpanel.com/docs/tracking/reference/distinct-id-limits)|
 
 ## Best Practices
 
