@@ -293,6 +293,6 @@ W_March 2 = 500 / 1500 (weight for March 2)
 
 In our sample data, this computes to:(500 * (1000 / 1500)) + (400 * (500 / 1500)) = 466
 
-Why does the Metric view in the Retention Trends report show?
+What does the Metric view in the Retention Trends report show?
 
 The Metric view in the Retention Trends Report shows the ***last complete bucket*** for that retention trend. Metric charts are often used to look at the most up-to-date data value, which in this case, would be the last / most recently completed cell. For days where there isn't yet a completed cell, Mixpanel uses the closest completed cell for that day.
