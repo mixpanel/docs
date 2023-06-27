@@ -10,7 +10,7 @@ updatedAt: "2022-04-19T05:29:26.723Z"
 ---
 This guide demonstrates how to set up a serverless ingest pipeline from an AWS S3 bucket into Mixpanel. Once this is set up, you can simply upload files containing events into the designated S3 bucket and the events will be ingested into Mixpanel, both one-time and on a recurring basis. Setup should take ~5-10 minutes.
 
-![image](tracking-integrations-s3-import-image-1.jpg)
+![image](/tracking-integrations-s3-import-image-1.jpg)
 
 Note: This guide assumes you are running in Amazon Web Services, and have the necessary IAM Access to have AWS Lambda read from S3.
 
