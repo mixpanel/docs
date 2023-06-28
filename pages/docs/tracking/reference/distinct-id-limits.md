@@ -15,8 +15,8 @@ Once a pre-defined threshold is crossed(currently set to 100K events), the `dist
 
 ## What happens when we detect a hot shard?
 Once a given entry crosses the threshold, all subsequent matching events (same `distinct_id` and `event_date`) will have the following transformations applied to them:
-- `event` will be changed to `$hotshard_events`.  The original event name will be preserved under a property called `mp_original_event_name`. Changing the name removes the bad events from being selected for analysis yet remain accessible for debugging.
-- `distinct_id` is changed to `""`. The original value will be preserved under a property called `mp_original_distinct_id`. Removing the distinct_id allows Mixpanel backend to distribute these events evenly across shards ensuring that performance is not adversely affected while keeping the data accessible for debugging.
+- `event` will be changed to `$hotshard_events`.  The original event name will be preserved under a property called `mp_original_event_name` (display name is `Hotshard Original Event Name`). Changing the name removes the bad events from being selected for analysis yet remain accessible for debugging.
+- `distinct_id` is changed to `""`. The original value will be preserved under a property called `mp_original_distinct_id` (display name is `Hotshard Original Distinct ID`). Removing the distinct_id allows Mixpanel backend to distribute these events evenly across shards ensuring that performance is not adversely affected while keeping the data accessible for debugging.
 
 Original Event - 
 ```json
