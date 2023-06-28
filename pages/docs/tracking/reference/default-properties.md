@@ -147,7 +147,7 @@ Mixpanel's client SDKs automatically collect certain properties on every event. 
 | $android_app_version_code | Android App Version Code | Current app version. |
 | $android_app_version | Android App Version | Current app version. |
 | $android_lib_version | Android Lib Version | Version of Mixpanel library. |
-| $android_os_version | iOS Device Model | Device model ID, in format "iPad 3,4". |
+| $android_os_version | Android OS Version | Current Android version for this device. |
 | $android_brand | Android Brand | Device brand. |
 | $android_model | Android Model | Device model. |
 | $android_manufacturer | Android Manufacturer | Device model. |
