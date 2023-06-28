@@ -22,7 +22,7 @@ To create a new Custom Webhook destination, navigate to our Integrations UI and 
 
 Optional:  Basic Authentication when calling the webhook URL provided
 
-![image](/230698306-2fa97655-7e3b-4836-87f6-f847306f146f.png)
+![image](screen_shot_webhook_cohorts.png)
 
 
 From this point onward, you can sync any cohort to this connection from our cohorts page.
@@ -110,6 +110,9 @@ Consider A, B, C, D, E, F as users. Sync interval is 30 minutes. T is when the s
 * **T+1h**: `add_members()` | `remove_members()` calls are made to the customer webhook
 
 ###  FAQ
+**How can we add custom properties?**
+Mixpanel will automatically include `email`, `mixpanel_distinct_id`, `first_name`, and `last_name` to identify the user. If you need to add extra properties, feel free to add in `Properties to Export` field where we populate some pre-existing fields for you to choose.  
+
 **What is the frequency of the syncs?**
 We sync cohorts once every 30 minutes.
 
