@@ -41,7 +41,7 @@ In addition, customers are limited to 1 date-range based pipeline creation per 2
 #### Backfilling Historical Data
 You can schedule an initial backfill when creating a pipeline. This ensures that historical data is also exported to the data warehouse. 
 
-Use the `from_date` parameter to specify the date you want to use to export historical data. 
+Use the `from_date` parameter to specify the date you want to use to export historical data. Note that the `from_date` must be no more than 6 months in the past.
 
 The completion time for a backfill depends on the number of days and the amount of data in the project. Larger backfills can take up to multiple weeks.
 
