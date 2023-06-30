@@ -128,7 +128,7 @@ The key is to have an ID that is unique to each user and persists during that us
 ### Step 2: Leverage this ID for anonymous events
 When tracking events from your server, set the `distinct_id` property of events to the anonymous ID generated.
 
-***In case your project has Simplied ID management specifically***, and the user is anonymous, you should include a property named `$device_id` with this value. You can then optionally also include the `distinct_id` (requires for you to prefix the ID with the string `'device:'`) but do note that if you don't include it, it will be assumed. You can see more in the python code example.
+***In case your project has Simplied ID management specifically***, and the user is anonymous, you should include a property named `$device_id` with this value. You can then optionally also include the `distinct_id` (requires for you to prefix the ID with the string `'$device:'`) but do note that if you don't include it, it will be assumed. You can see more in the python code example.
 
 ### Step 3: Set the authenticated ID once users log in
 
