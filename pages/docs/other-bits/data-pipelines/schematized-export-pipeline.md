@@ -63,11 +63,15 @@ Note: When using the ID mappings table, you should use the **resolved** `distinc
 Examples of how to do this are available for [BigQuery](/docs/other-bits/data-pipelines/mixpanel-bigquery-export-design#querying-the-identity-mapping-table)  and [Snowflake](/docs/other-bits/data-pipelines/mixpanel-snowflake-export#querying-the-identity-mapping-table).
 
 ## Service Level Agreement
-Mixpanel has the following policy for data latency: 
+The policy for latency on exported events is 24 hours end to end, plus an additional 24 hours for late-arriving data.
 
-1. Mixpanel adds 24 hours of end to end latency from when the data is exported from Mixpanel until the data reaches the data warehouse.
+**Note**: Mixpanel defines late data as any data point or user profile update that reaches Mixpanel servers later than two hours after the end of the export window. Late-arriving event data is only exported for pipelines with sync enabled.
 
-2. Mixpanel adds an additional 24 hours for data that reaches the pipeline, or Mixpanel servers at ingestion, late. Mixpanel defines late data as any data point or user profile update that reaches Mixpanel servers later than two hours after the end of export window. 
+For hourly pipelines, data that arrived on time would be exported in up to 24 hours from the time that Mixpanel ingests the data. For daily pipelines, the 24 hours would be counted from the start of the next calendar day in project time (ex: data ingested on Jan 1st is scheduled to be imported starting Jan 2nd at midnight and before midnight on Jan 3rd).
+
+Data that arrived late is exported during a sync process daily (if sync is enabled), the next day after the data is ingested. As an example, data for Jan 1st that arrived on Jan 3rd (a couple of days late) would be exported/synced in the sync run from Jan 4th.
+
+ 
 
 ## Data Sync
 Event data stored in Mixpanel’s datastore and event data in the data warehouse can fall out of sync. 
