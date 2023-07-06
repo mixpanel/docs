@@ -26,7 +26,6 @@ To connect to your warehouse, complete the following steps.
     
 4. In the second view, you should see that the credentials are validated and a source is added 
 
-![Screenshot 2023-07-06 at 12.31.00 PM.png](BigQuery%20fdc7935f1e4d44349f186d692ef99906/Screenshot_2023-07-06_at_12.31.00_PM.png)
 
 ## Data format guidelines
 
