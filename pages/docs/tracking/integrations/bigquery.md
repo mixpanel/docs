@@ -6,8 +6,6 @@ This document will walk you through step-by-step instructions to get your BigQue
 
 ## Connect to your Warehouse
 
----
-
 To connect to your warehouse, complete the following steps.
 
 1. Navigate to **Project Settings**, then select **Warehouse Sources**.
@@ -29,7 +27,6 @@ To connect to your warehouse, complete the following steps.
 
 ## Data format guidelines
 
----
 
 To import data from a warehouse directly, make sure the tables are formatted properly.
 
@@ -51,9 +48,7 @@ Each column in the table will be mapped as property on the event.
 - Insert ID
     - This is an optional field, but we recommend it as a best practice. It’s used to deduplicate events that are accidentally sent multiple times.
 
-## **Ingest Events**
-
----
+## Ingest Events
 
 Once you have created a warehouse source, follow the below steps to send events into Mixpanel.
 
