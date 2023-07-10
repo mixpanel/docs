@@ -182,7 +182,7 @@ This will set a "Plan" property, with a value "Premium", on user 13793's profile
 
 #### Other Types Of Profile Updates
 
-There are a few other types of profile updates. To learn more, please follow the links to the full API documentation.
+There are a few other types of profile updates. To learn more, please follow the links to the <a style="font-family: courier" href="https://mixpanel.com/help/reference/javascript-full-api-reference">full API documentation</a>.
 
   * <a style="font-family: courier" href="https://mixpanel.com/help/reference/javascript-full-api-reference#mixpanel.people.set_once">mixpanel.people.set_once</a> - set properties if they don't exist
   * <a style="font-family: courier" href="https://mixpanel.com/help/reference/javascript-full-api-reference#mixpanel.people.append">mixpanel.people.append</a> - append to a list property
