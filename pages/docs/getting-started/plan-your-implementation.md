@@ -33,9 +33,7 @@ In general, we recommend tracking everything you possibly via your servers, and 
 ## What To Track
 If you’re just starting to track data, we suggest starting simple by tracking two events critical to your product.
 
-> 📘
->
-> Not sure what an event or property is? Check out [What is Mixpanel](/docs/getting-started/what-is-mixpanel) to get a quick introduction to these important concepts.
+> 📘 Not sure what an event or property is? Check out [What is Mixpanel](/docs/getting-started/what-is-mixpanel) to get a quick introduction to these important concepts.
 
 ### Sign Up Event
 This is the event where a user makes themselves known to your product by “creating an account”. We recommend tracking Sign Up because it's a quick and easy way to get real insights on your product’s growth.

@@ -13,7 +13,7 @@ In the simplest form, the Segment libraries (“Sources”) generate messages ab
 For detailed instructions on how to install and initialize the Segment library please refer to the [Segment Getting Started Guide](https://segment.com/docs/getting-started/02-simple-install/).
 
 ## 1. Integrate with Segment
-Once you've installed and initialized a Segment library in your application, in order to get your data into Mixpanel follow the instructions for setting up the [Mixpanel (Actions) Destination](https://segment.com/docs/connections/destinations/catalog/actions-mixpanel/)
+Once you've installed and initialized a Segment library in your application, get your data into Mixpanel by following the instructions for setting up the [Mixpanel (Actions) Destination](https://segment.com/docs/connections/destinations/catalog/actions-mixpanel/)
 
 ## 2. Identify Users
 The next thing you need to do is identify your users, so that you can understand what your users are really doing. When you call [Segment's `identify` API](https://segment.com/docs/connections/spec/identify/), Mixpanel will set the specified `userId` as the Mixpanel `distinct_id` along with any additional `traits` that you provide.
