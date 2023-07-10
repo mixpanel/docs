@@ -137,6 +137,9 @@ Mixpanel's client SDKs automatically collect certain properties on every event. 
 
 ### User Properties
 
+Do note that Mixpanel's default user properties are only updated when you send or update at least one property yourself.
+Please, refer to this article to [understand how to send or update profile properties](https://docs.mixpanel.com/docs/other-bits/tutorials/developers/mixpanel-for-developers-fundamentals#updating-user-profile-properties).
+
 | Raw Name | Display Name | Description |
 | --- | --- | --- |
 | $city | City | The city of the event sender parsed from the IP property or the Latitude and Longitude properties. |
