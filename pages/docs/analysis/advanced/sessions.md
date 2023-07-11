@@ -260,3 +260,15 @@ By default, the list of associated properties is as follows:
 You can add additional properties to be associated with the session by going under Project Settings to Session Settings, and selecting the list of properties you wish to be associated. They will then be accessible for analysis in Mixpanel reports. Note that there is a limit of 4 additional properties that can be associated with session analysis.
 
 ![/10494738316692](/10494738316692.png)
+
+## FAQ
+
+### How can I find the average session duration using Mixpanel? 
+
+You can do so using the "Session Duration (seconds)" property associated with our Session Start/End events, which would measure the Session Duration in Seconds. To change it from seconds to minutes, you can use our formula and divide it by 60. To find the average session duration across all users, you may refer to this report here: [https://mixpanel.com/s/vcXKR ](https://mixpanel.com/s/3rXLmT)
+
+### How can I find the average session duration per user using Mixpanel? 
+
+Similarly, you can use the same property as above. In this case, you would need to use our aggregate properties per users feature. If you select "Aggregate Properties per User" and then "Sum", it will add up all Session Lengths for any given day and divide it by all unique users. You can then apply a formula to express the values in minutes, simply by dividing by 60: [https://mixpanel.com/s/3k1bct](https://mixpanel.com/s/3k1bct)
+
+For additional information, I've also included Formula B to show how "Sum per User by Average" works. 
