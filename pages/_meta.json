@@ -10,10 +10,8 @@
             "sidebar": false
         }
     },
-    "api-reference": {
-        "title": "API Reference ↗",
-        "type": "page",
-        "href": "https://developer.mixpanel.com/reference",
-        "newWindow": true
+    "reference": {
+        "title": "API Reference",
+        "type": "page"
     }
 }
