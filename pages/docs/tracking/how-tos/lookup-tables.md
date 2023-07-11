@@ -23,7 +23,7 @@ Let's say you're building a media product, and you track a `Song Played` event, 
 
 You want to filter and breakdown this event by other attributes of the song, like `artist` and `genre`, which are not tracked as properties. Lookup Tables let you upload a CSV of data about songs like this and map it to the `song_id` property:
 
-| id     | artist      | genre   | is_platinum | name          | release_date         
+| song_id| artist      | genre   | is_platinum | name          | release_date         
 |--------|-------------|---------|-------------|---------------|----------------------
 | c994bb | Drake       | Pop     | True        | Hotline Bling | 2015-10-18T22:00:00  
 | d8d949 | Gipsy Kings | Flamenco| False       | Bamboleo      | 1987-07-12T05:00:00  
