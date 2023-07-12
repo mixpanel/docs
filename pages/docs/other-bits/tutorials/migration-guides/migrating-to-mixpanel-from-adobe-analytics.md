@@ -89,4 +89,6 @@ For Adobe Analytics specifically, due to the complexity of the data format and t
 
 If you're unsure how you currently track data, or might want to consider tracking data differently as you migrate to Mixpanel, we recommend starting [here](https://mixpanel.com/blog/guide-to-choosing-your-data-architecture/).
 
-Mixpanel Customer Success and Support have been helping thousands of customers migrate from other tools to Mixpanel over the past decade. You can see an overview of the process we run with customers migrating from Adobe Analytics [here](https://mxpnl.notion.site/Adobe-Migration-Package-4035f7e2f62f43adb65e34b23ad14d23?pvs=4). If you need help, just [reach out here](https://mixpanel.com/get-support) and we'll be ready to assist with advice specific to your situation.
+Mixpanel Customer Success and Support have been helping thousands of customers migrate from other tools to Mixpanel over the past decade. You can see an overview of the process we run with our Enterprise plan customers migrating from Adobe Analytics [here](https://mxpnl.notion.site/Adobe-Migration-Package-4035f7e2f62f43adb65e34b23ad14d23?pvs=4).
+
+If you need help, just [reach out here](https://mixpanel.com/get-support) and we'll be ready to assist with advice specific to your situation.
