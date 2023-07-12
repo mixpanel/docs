@@ -213,4 +213,10 @@ To backfill data, we recommend:
     - Once exported, your data warehouse tables can be transformed and modeled into the [event format](/docs/tracking/how-tos/events-and-properties) Mixpanel expects
     - Leverage our [Import API](https://developer.mixpanel.com/reference/import-events) to send us the formatted events from your data warehouse
 
-[Mixpanel Support](https://mixpanel.com/get-support) is here to help if you need advice how to go about importing the historical data.
+## Not sure where to start or need help?
+
+If you're unsure how you currently track data, or might want to consider tracking data differently as you migrate to Mixpanel, we recommend starting [here](https://mixpanel.com/blog/guide-to-choosing-your-data-architecture/).
+
+Mixpanel Customer Success and Support have been helping thousands of customers migrate from other tools to Mixpanel over the past decade. You can see an overview of the process we run with our Enterprise plan customers migrating from Google Analytics [here](https://mxpnl.notion.site/Google-Analytics-Migration-Package-8020a686880a4caab4dd6653b777892e?pvs=4).
+
+If you need help, just [reach out here](https://mixpanel.com/get-support) and we'll be ready to assist with advice specific to your situation.
