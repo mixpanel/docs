@@ -1,0 +1,28 @@
+# Implement Mixpanel on Wordpress, Shopify & PrestaShop
+
+Free hosts like Wordpress, Shopify, PrestaShop, and Google Sites make it easy to get a site up and running. However, in return for simplicity and ease, these free hosts can lack customization which can make it challenging to implement analytics solutions like Mixpanel. Below are some tips for integrating Mixpanel on Wordpress, Google Sites, PrestaShop, and Shopify.
+
+## Wordpress
+Though Mixpanel does not have an official plugin to support WordPress, there are plenty of options for getting Mixpanel set up on your WordPress site.
+
+There are a variety of third-party options available that will automatically send data from your WordPress blog to your Mixpanel implementation. Some popular options include [third-party plugins](https://wordpress.org/plugins/tags/mixpanel/). Most of these third-party plugins essentially just track page loads, which means you would be tracking some data, but not really fully utilizing the potential of Mixpanel. Though none are officially supported by Mixpanel, they might be worth checking out if you’re looking for a quick and simple solution.
+
+However, to really exercise the power of Mixpanel, you can do a custom implementation, integrating Mixpanel the same way as any other platform by following the [JavaScript API integration steps](https://docs.mixpanel.com/docs/tracking/reference/javascript).
+
+[One option is to build a child theme in WordPress](https://codex.wordpress.org/Child_Themes) to be able to track events beyond page views. For example, if you have a plugin for a contact form in the page, you could modify the plugin to add the JavaScript specific to the Event within the form.
+
+## Shopify
+Even though the integration process is largely the same as the regular [JavaScript API Integration](https://docs.mixpanel.com/docs/tracking/reference/javascript#installing), there are a few things specific to Shopify that you’ll want to account for.
+
+To start, add the Mixpanel JavaScript snippet into the tag of your theme.liquid page. Then, once the library has been successfully loaded, implement mixpanel.track() calls wherever you see fit.
+
+Mixpanel users who have successfully implemented on a Shopify site [have some great recommendations and tips on key locations to place mixpanel.track() calls](https://stackoverflow.com/questions/28160415/shopify-mixpanel-integration/34442476#34442476).
+
+In order to view accurate data on conversions from shopping to checkout (a key Funnel for most ecommerce businesses), you’ll need to take a few additional steps since your shop domain is different than the Shopify checkout domain. However, as a shop, you don’t have control over the Shopify checkout page. So instead, you’ll want to pass the distinct_id to the URL on click, then on the Shopify page, parse and execute the Mixpanel methods.
+
+Another consideration with Shopify sites and Mixpanel is that because the checkout page is a separate domain with its own cookie, Initial Referring Domain Properties sent from the checkout page will come through with a referrer of your own Shopify site. You can use the same method described above of passing the $initial_referring_domain Property to the URL, parse and then execute.
+
+Though Mixpanel does not have an official plugin to support Shopify, there is a [Mixpanel app by Five Thrive](https://apps.shopify.com/mixpanel) available in the Shopify app store that will automatically send data from your Shopify store to your Mixpanel implementation. While this integration app is not officially supported by Mixpanel, it might be worth checking out if you're looking for a quick and simple solution.
+
+## PrestaShop
+To get up and running with Mixpanel on a PrestaShop site, paste the [Mixpanel JavaScript snippet](https://docs.mixpanel.com/docs/tracking/reference/javascript#installing) in the header.tpl file between {literal} {/literal} tags. Once you’ve successfully initialized the Mixpanel library, add mixpanel.track calls per the standard JavaScript integration documentation.
