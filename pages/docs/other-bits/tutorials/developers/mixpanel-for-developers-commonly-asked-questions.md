@@ -61,7 +61,7 @@ If you implement this code, you will block all userAgents with "Mozilla/4.0" in 
 If this does not work, you can start tracking this userAgent going forward so you can find the common pattern among all of the bots crawling your site.
 
 **Note**
-$ignore must have a string or at least be set to true, or else the event will fire. For example, if I have '$ignore': '', the event will still fire since it's an empty string. '$ignore': false will also fire the event.
+`$ignore` must have a string or at least be set to true, or else the event will fire. For example, if I have '$ignore': '', the event will still fire since it's an empty string. '$ignore': false will also fire the event.
 
 ### How do I remove bot data from my project?
 
