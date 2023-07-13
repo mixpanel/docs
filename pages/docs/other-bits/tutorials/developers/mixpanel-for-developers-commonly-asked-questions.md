@@ -1,4 +1,4 @@
-Below are articles related to some of the commonly asked questions around Mixpanel Implementation
+Here are some commonly asked questions that customers have on implementing Mixpanel
 
 ## Implement Mixpanel on Wordpress, Shopify & PrestaShop
 
