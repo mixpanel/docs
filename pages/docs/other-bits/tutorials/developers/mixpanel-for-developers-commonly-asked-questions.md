@@ -9,12 +9,12 @@ Though Mixpanel does not have an official plugin to support WordPress, there are
 
 There are a variety of third-party options available that will automatically send data from your WordPress blog to your Mixpanel implementation. Some popular options include [third-party plugins](https://wordpress.org/plugins/tags/mixpanel/). Most of these third-party plugins essentially just track page loads, which means you would be tracking some data, but not really fully utilizing the potential of Mixpanel. Though none are officially supported by Mixpanel, they might be worth checking out if you’re looking for a quick and simple solution.
 
-However, to really exercise the power of Mixpanel, you can do a custom implementation, integrating Mixpanel the same way as any other platform by following the [JavaScript API integration steps](pages/docs/tracking/reference/javascript).
+However, to really exercise the power of Mixpanel, you can do a custom implementation, integrating Mixpanel the same way as any other platform by following the [JavaScript API integration steps](/docs/tracking/reference/javascript).
 
 [One option is to build a child theme in WordPress](https://codex.wordpress.org/Child_Themes) to be able to track events beyond page views. For example, if you have a plugin for a contact form in the page, you could modify the plugin to add the JavaScript specific to the Event within the form.
 
 ### Shopify
-Even though the integration process is largely the same as the regular [JavaScript API Integration](pages/docs/tracking/reference/javascript), there are a few things specific to Shopify that you’ll want to account for.
+Even though the integration process is largely the same as the regular [JavaScript API Integration](/docs/tracking/reference/javascript), there are a few things specific to Shopify that you’ll want to account for.
 
 To start, add the Mixpanel JavaScript snippet into the tag of your theme.liquid page. Then, once the library has been successfully loaded, implement mixpanel.track() calls wherever you see fit.
 
@@ -27,7 +27,7 @@ Another consideration with Shopify sites and Mixpanel is that because the checko
 Though Mixpanel does not have an official plugin to support Shopify, there is a [Mixpanel app by Five Thrive](https://apps.shopify.com/mixpanel) available in the Shopify app store that will automatically send data from your Shopify store to your Mixpanel implementation. While this integration app is not officially supported by Mixpanel, it might be worth checking out if you're looking for a quick and simple solution.
 
 ### PrestaShop
-To get up and running with Mixpanel on a PrestaShop site, paste the [Mixpanel JavaScript snippet](pages/docs/tracking/reference/javascript) in the header.tpl file between {literal} {/literal} tags. Once you’ve successfully initialized the Mixpanel library, add mixpanel.track calls per the standard JavaScript integration documentation.
+To get up and running with Mixpanel on a PrestaShop site, paste the [Mixpanel JavaScript snippet](/docs/tracking/reference/javascript) in the header.tpl file between {literal} {/literal} tags. Once you’ve successfully initialized the Mixpanel library, add mixpanel.track calls per the standard JavaScript integration documentation.
 
 ## Exclude Bot Activity from Web/JavaScript
 
