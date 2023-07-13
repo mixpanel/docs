@@ -106,9 +106,14 @@ Note: If you're using our [original ID Merge](/docs/tracking/how-tos/identifying
 
 ## Storing User Profiles
 
-In addition to events, you can store user profiles in Mixpanel's [Behavioral Analytics](https://mixpanel.com/people/) product. Profiles are persistent sets of properties that describe a user - things like name, email address, and signup date. You can use profiles to explore and segment users by who they are, rather than what they did.
+In addition to events, you can store user profiles in Mixpanel's [Behavioral Analytics](https://docs.mixpanel.com/docs/tracking/how-tos/user-profiles) product. Profiles are persistent sets of properties that describe a user - things like name, email address, and signup date. You can use profiles to explore and segment users by who they are, rather than what they did.
 
-You must call `.identify()` before sending user profiles.
+We generally recommend creating user profiles for only authenticated users; with this in mind, to create user profiles, 2 requiremenst need to be met:
+
+- You must call `.identify()` at least once for each user. Normally this is done after they authenticate.
+- At least one property should be sent for a profile to be created.
+
+Note: when sending set or set_once operations, the library will also populate automatic properties like `$android_app_version`, `$android_os_version`, geo-location properties and others.
 
 ## Setting Profile Properties
 
@@ -120,9 +125,12 @@ MixpanelAPI mixpanel =
 
 // identify must be called before
 // user profile properties can be set
-mixpanel.identify("13793");
+// the first param is the user's ID
+// the second param is a flag for allowing profile updates
+mixpanel.identify("13793", true);
 
-// Sets user 13793's "Plan" attribute to "Premium"
+
+// Sets user's "Plan" attribute to "Premium"
 mixpanel.getPeople().set("Plan", "Premium");
 ```
 
