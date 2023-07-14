@@ -16,16 +16,16 @@ Event Approval is a Data Governance feature for organizations that want visibili
 
 To enable Event Approval, navigate to the Project Settings page, scroll down to the Data Governance section under Overview and click the Event Approval toggle.
 
-When enabling this setting, input email addresses or aliases to be notified when a new event is ingested. This will be gated to project admin and owner email addresses.
+When enabling this setting, input email addresses or aliases to be notified when a new event is ingested. This will be gated to project admin and owner email addresses. Admins can also set up a Slack channel to be notified when a new event is ingested.
 
-Admins can also set up a Slack channel to be notified when a new event is ingested. The notification will be sent at most once per day.
+Notifications are sent once per day. If multiple events are implemented in a project within one day, the notification will batch all these events. 
 
 Only Project Admins or Owners can enable this setting, and it's only available on Enterprise plans. 
 
 ![event-approval-setup](/Event-Approval.png)
 
 
-### Lexicon Worfklow
+### Lexicon Workflow
 
 When an admin receives a notification that new events have been ingested, they can click the "View New Events" button, which will take them to a Lexicon view of hidden events. New events will have a "New" tag and be sorted to the top of the list. 
 
