@@ -79,7 +79,7 @@ Being on Google Cloud also lets us utilize cloud primitives to ship features fas
 **What this eliminates**: Server maintenance, upgrades, and capacity provisioning.
 
 ## Open APIs
-There are [many ways to integrate](/docs/getting-started/plan-your-implementation) with Mixpanel, but all are based on our JSON-over-HTTP APIs. We believe it should be easy to bring data into or out of Mixpanel with whatever tools you already use, whether it's a CDP, a data pipeline, or a simple cURL.
+There are [many ways to integrate](/docs/getting-started/what-to-track#how-to-track) with Mixpanel, but all are based on our JSON-over-HTTP APIs. We believe it should be easy to bring data into or out of Mixpanel with whatever tools you already use, whether it's a CDP, a data pipeline, or a simple cURL.
 
 This approach allows us to plug into the broader data ecosystem, which makes it easy to both stream real-time event streams into Mixpanel and load from source-of-truth systems like data warehouses. Here is a reference, hybrid architecture for bringing data into Mixpanel, enabled by our APIs.
 
