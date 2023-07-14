@@ -95,7 +95,9 @@ Enter an event property to attribute the group key to. You can also enter a disp
 
 An event can be attributed to multiple groups. To attribute to multiple groups, track the group event property's value as a list of string-valued group ids.
 
-**mixpanel.track('Some Event', {'company_id': ['01234', '56789', '55555']});
+```javascript
+mixpanel.track('Some Event', {'company_id': ['01234', '56789', '55555']});
+```
 
 Not all of a user's events will be attributed to a group. Only the events with a defined group key will be attributed to the group and appear in the group's profile's activity feed.
 
