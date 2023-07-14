@@ -101,20 +101,15 @@ A row will start life at the minimum possible height.
 
 Creating a new board using the template.
 
-The Company KPIs Board template allows users to generate a comprehensive board containing key metrics that are applicable to most products—engagement, retention, and growth. Using only two [events](https://developer.mixpanel.com/docs/plan-your-implementation#what-to-track), the template produces nine unique reports that can be further explored, segmented, and customized.
+The Company KPIs Board template allows users to generate a comprehensive board containing key metrics that are applicable to most products—engagement, retention, and growth. Using only two [events](/docs/getting-started/what-to-track), the template produces nine unique reports that can be further explored, segmented, and customized.
 
 To get started, click the icon in the lefthand navigator to create a new board, and select `Use a Template`. Alternatively, the `Add` button will allow you to create a custom board from scratch.
 
 #### Adding Your Events
 
-The template uses two events: “Sign Up” and “Value Moment.”
+The template uses two events: “Sign Up” and “Value Moment". Learn more [here](/docs/getting-started/what-to-track).
 
-- [Sign Up](https://developer.mixpanel.com/docs/plan-your-implementation#sign-up-event): This is the event where a new user—free or paid—is acquired by creating a new account.
-- [Value Moment](https://developer.mixpanel.com/docs/plan-your-implementation#value-moment-event): This is the event that indicates that a user is experiencing value in your product. For a social media platform, it could be creating a post; for a streaming service, it's watching a video; for e-commerce, it might be completing a purchase.
-
-For projects that have already been implemented and have data, you will select your two corresponding events, at which point the `Apply` CTA will be enabled, and your board will be generated.
-
-For projects that do not have data, please refer to our [dev docs](https://developer.mixpanel.com/docs/plan-your-implementation) and [implementation](/docs/tracking/how-tos/set-up-projects) resources.
+For projects that have already been implemented and have data, you will select your two corresponding events, at which point the `Apply` CTA will be enabled, and your board will be generated. For projects that do not have data, please refer to our [tracking guidance](/docs/getting-started/what-to-track).
 
 #### What’s in the Template?
 
