@@ -114,7 +114,7 @@ Use the following functions in the **Formula** field to modify your custom prope
 | or | Returns true if either condition is met. Else, returns false. | x or y <br /> <br />Example:<br />  `if(A=="San Francisco" or B=="Chrome", "Valid user", "Invalid User")` |
 | in | Returns true if the first condition is contained in the second condition. | x in condition <br /><br />Example:<br /> `if("Facebook" in A, "Facebook Corporation", A)` <br /> <br /> This can also be used to check against a list of values:<br /> `if(A in ["Chrome","Firefox","Edge"],"Acceptable browser","Unsupported browser")` |
 | boolean | Casts the argument to a boolean. | boolean(value)->false, boolean(alternate value)-> true <br /> <br />Example:<br />  `boolean(A)` |
-| number | Casts the argument to a number. | number(value to cast) <br /> <br />Example:<br /> `number(A, B)` |
+| number | Casts the argument to a number. | number(value to cast) <br /> <br />Example:<br /> `number(A)` |
 | string | Casts the argument to a string. | string(value to cast)<br /><br /> Example:<br />`string(A)` |
 | defined | Determines if a value exists. If a property is not defined on a parent event or profile, this will return false, otherwise this will return true. | defined(variable to check for existence) <br /><br />Example:<br /> `defined(A)` |
 | has_prefix | Determines whether a string starts with another string. This comparison is case-insensitive. | has_prefix(string to check, prefix)<br /> <br />Example:<br />`has_prefix(A, "United")` |
