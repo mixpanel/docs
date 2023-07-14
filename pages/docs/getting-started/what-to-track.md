@@ -1,7 +1,7 @@
 It takes less than 5 minutes to track events to Mixpanel. In this guide, we provide some quick guidance on what to track and how to track it.
 
 ## What to Track
-If you're just getting started, it can seem overwhelming to track everything in your product. We recommend starting with just 2 key events, which can provide a lot of value right of the gate:
+We recommend starting with just two events, which can provide a lot of value with little effort.
 
 ### Step 1: Track a Sign Up event
 Track a Sign Up event when a user creates an account.
@@ -48,8 +48,9 @@ Properties let you answer questions like:
 * Which of my paid content gets the most views?
 
 ### Step 3: Use the events in our Company KPIs Template
-Once you've tracked these two events, you can use our [Company KPIs Template](https://mixpanel.com/project?show-event-translator=true) to generate nine unique reports! That's all it takes to get started with Mixpanel.
+Once you've tracked these two events, you can use our [Company KPIs Template](https://mixpanel.com/project?show-event-translator=true) to generate nine unique reports in a few clicks!
 
+🎉 Congrats on building your first Mixpanel Board!
 
 ## How to Track
 Note: This guide assumes you don't have any tracking set up yet. If you already track events via a CDP or Tag Manager, you can route those events to Mixpanel with our native integrations. See the [Segment](https://segment.com/docs/connections/destinations/catalog/actions-mixpanel/), [Rudderstack](https://rudderstack.com/integration/mixpanel/), or [GTM](https://github.com/mixpanel/mixpanel-gtm-template#readme) docs for a quick walkthrough.
