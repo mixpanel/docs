@@ -129,7 +129,7 @@ It is possible to create Group Profiles by CSV upload as an alternative to the G
 
 ### Add Group Key to User's Profile
 
-Adding `<group_key>: <group_id>` to user profiles connects user profiles to group profiles. This allows you to user group profile properties when analyzing by Users in reports, for example, when creating user cohorts based on group profile properties.
+Adding `<group_key>: <group_id>` to user profiles connects user profiles to group profiles. This allows you to view user group profile properties when analyzing by Users in reports; for example, when creating user cohorts based on group profile properties.
 
 This relationship is one-way, meaning that you cannot use user profile properties when analyzing by a Group in reports.
 
