@@ -76,7 +76,7 @@ def track_to_mp(request, event_name, properties):
   mp.track(request.user_id, event_name, properties)
 ```
 
-## Tracking Geolocation
+## Tracking Geolocation (Server-side)
 If you supply the `ip` property on an event, Mixpanel will enrich the event with `$city`, `$country`, and `$region` properties. Mixpanel's Web and Mobile SDKs automatically set `ip` to the IP address of the device that they're installed on.
 
 Note: Mixpanel drops the `ip` address at ingestion and does not store it at rest, to protect a user's privacy.
@@ -103,6 +103,23 @@ def handle_signup(request):
 
   return "Signup successful!"
 ```
+
+## Tracking Geolocation (HTTP API)
+
+As all server-side calls originate from the same IP, such as the IP of your server, it can have the unintended effect of setting the location of all of your users to the location of your datacenter.
+
+If you want to pass in your own IP address using our [HTTP API](https://developer.mixpanel.com/reference/profile-set) (`/engage#profile-set` endpoint) similar to the way you can with `track()`, pass in a property called `$ip` to the message payload.
+```
+{
+   "$token": "e3bc4100330c35722740fb8c6f5abddc",
+   "$distinct_id": "13793",
+   "$ip": "72.229.28.185",
+   "$set": {
+     "Address": "1313 Mockingbird Lane"
+   }
+}
+```
+Notice that you need to set `$ip` outside of the $set dictionary. This action overwrites the geographic data on the profile with `distinct_id = 13793` with New York, NY.
 
 ## Tracking Page Views
 Page view tracking must be done manually for server-side implementations. Here are some general guidelines for tracking page views.
