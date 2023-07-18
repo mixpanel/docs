@@ -42,6 +42,8 @@ The benefit is that you don't need to change your event tracking code at all. Yo
 
 We also provide an [API](https://developer.mixpanel.com/reference/replace-lookup-table) to keep Lookup Tables synced on a recurring basis.
 
+DISCLAIMER: Only Project Owners and Admins can create permanent lookup tables mappings. Analysts and Consumers can only create temporary mappings.
+
 ## Use Cases
 
 ### Media
