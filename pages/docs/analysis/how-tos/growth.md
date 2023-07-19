@@ -36,7 +36,7 @@ Many companies consider an active user to be someone who simply accesses their w
 
 In the case of this example, a media streaming platform, our value moment is “watch video.” This chart plots DAU and WAU counts for the “watch video” event against each other over a 30-day period so you can understand how these trends look side by side and how they evolve over time.
 
-With just two event in Mixpanel—your product’s value moment and a signup event—and a couple of clicks, you can easily find your product’s DAU & WAU. Try it here.
+With just two event in Mixpanel—your product’s value moment and a signup event—and a couple of clicks, you can easily find your product’s DAU & WAU. Try it [here](https://mixpanel.com/project/2138137/view/290551/app/boards#id=4201292&edited-bookmark=CXgj2SavNQ13).
 
  
 
