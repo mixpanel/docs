@@ -16,6 +16,8 @@ We've collated here educational resources to guide you through best practices on
   - [Migrating from Google Analytics](/docs/other-bits/tutorials/migration-guides/migrating-to-mixpanel-from-google-analytics)
 
 - [Adoption Best Practices](/docs/other-bits/tutorials/adoption-reference-guide)
+  
+- [Recommended Boards](/docs/other-bits/tutorials/recommended-boards): Get inspiration from templates built out in our demo data sets to highlight examples of how our most successful and data-mature customers monitor their implementation and drive adoption of Mixpanel across their organizations.
 
 - [How to Clean Your Data](/docs/other-bits/tutorials/how-to-clean-your-data)
 
