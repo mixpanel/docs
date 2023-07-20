@@ -11,9 +11,9 @@ This template is meant to be used largely by teams that implemented Mixpanel ins
 - Monitoring the health of your implementation and nuances to look out for that could be a sign of poor implementation health.
 - Driving consistency in naming convention best practices and a better general understanding of how to manage data governance of your Mixpanel implementation
 
-[https://mixpanel.com/s/15N8Dg](https://mixpanel.com/s/15N8Dg)
+[Example Board here](https://mixpanel.com/s/15N8Dg)
 
-![Screenshot 2023-07-11 at 9.03.02 AM.png](Recommended%20Boards%207bada889b7d848eeb5348be64a6d7490/Screenshot_2023-07-11_at_9.03.02_AM.png)
+<img width="1070" alt="Implementation and Data Governance Board" src="https://github.com/mixpanel/docs/assets/136498120/b22c54d6-e35f-4504-bd81-c8e087c3d8d0">
 
 ### Training Board for Champions to use to Educate Users
 
