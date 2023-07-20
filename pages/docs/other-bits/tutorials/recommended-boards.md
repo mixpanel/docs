@@ -11,9 +11,9 @@ This template is meant to be used largely by teams that implemented Mixpanel ins
 - Monitoring the health of your implementation and nuances to look out for that could be a sign of poor implementation health.
 - Driving consistency in naming convention best practices and a better general understanding of how to manage data governance of your Mixpanel implementation
 
-[Example Board here](https://mixpanel.com/s/15N8Dg)
+[Implementation Monitoring & Data Governance Example Board Here](https://mixpanel.com/s/15N8Dg)
 
-<img width="1070" alt="Implementation and Data Governance Board" src="https://github.com/mixpanel/docs/assets/136498120/b22c54d6-e35f-4504-bd81-c8e087c3d8d0">
+<img width="923" alt="Implementation Monitoring and Data Governance" src="https://github.com/mixpanel/docs/assets/136498120/6c21d6a2-bb33-4043-b762-6c4b64ccda1d">
 
 ### Training Board for Champions to use to Educate Users
 
@@ -23,7 +23,10 @@ This template is meant to be used by Mixpanel Champions looking to train their t
 - Summaries of each core Mixpanel report (Insights, Funnels, Flows, & Retention) and clear examples articulating which Mixpanel reports/features users can leverage given the type of metric on which they’re wanting to report.
 - Links to support articles so users can self-serve education on nuances of Mixpanel’s functionality
 
-[https://mixpanel.com/s/3niUys](https://mixpanel.com/s/3niUys)
+[Training Board for Champions Example Here](https://mixpanel.com/s/3niUys)
+
+<img width="923" alt="Training Board for Champions to use to Educate Users" src="https://github.com/mixpanel/docs/assets/136498120/1bf32c1d-1bc8-43e8-8efc-01c2ae56aea1">
+
 
 ### Data Troubleshooting Guide for End Users
 
@@ -39,5 +42,8 @@ Below are various examples of some common questions or issues that Mixpanel end 
 - Who should I talk to about reporting questions and Mixpanel UI misunderstandings?
 - Who should I report a data issue or bug to?
 
-[https://mixpanel.com/s/35CUaL](https://mixpanel.com/s/35CUaL)
+[Data Troubleshooting Guide Example Here](https://mixpanel.com/s/35CUaL)
+
+<img width="921" alt="Data Troubleshooting Guide for End Users" src="https://github.com/mixpanel/docs/assets/136498120/ed65ef6a-b080-4aa8-a54b-598d8ac2f982">
+
 
