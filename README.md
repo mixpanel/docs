@@ -3,8 +3,6 @@ If you see something off with Mixpanel's [docs](https://docs.mixpanel.com) (typo
 # Contributing Fixes
 You’ll need a [GitHub account](https://github.com/signup). It’s free and takes 1 minute to create. Not sure what to make your handle? We recommend `yourfullname-mixpanel`.
 
-Once there, email `it.help@mixpanel.com` with your Github handle to give you a Github seat in Okta. You should get automatically added to the "Mixpanel Docs" Github team, which allows you to contribute to this repository.
-
 To make an edit:
 * Go to the page in our documentation that you want to edit. On the right side, under the table of contents, you should see an "Edit This Page" link. That will take you to the file in Github that contains the contents of that doc.
 * Click the pencil icon to make edits to a file’s markdown. You can swap between code and preview to see what your edits look like.
