@@ -27,6 +27,7 @@ Certain events and API updates are non-qualifying and excluded from the Monthly 
 - $create_alias
 - $merge
 - $web_event
+- User profile creation/updates
 
 ### Estimate Events Usage
 
