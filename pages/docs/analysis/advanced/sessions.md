@@ -28,38 +28,38 @@ Each Session event comes with a "Session Duration (seconds)" property, which is 
 
 You can use any of our aggregations (sum, average, 90th percentile, etc.) to study the time spent by your users per session. Here, we look at the average time spent per session:
 
-<img width="1210" alt="image" src="https://github.com/mixpanel/docs/assets/2077899/e3e706ae-6a20-4282-b85f-986db82d431f">
+[](/session-average-duration.png)
 
 It looks like people spend ~5 minutes on average on our documentation site. Averages can hide skew, so we can also see a distribution by breaking down by the Session Duration property:
 
-<img width="1199" alt="image" src="https://github.com/mixpanel/docs/assets/2077899/95939f1d-dce9-44f2-9e10-f68e43a88c52">
+[](/session-duration-distribution.png)
 
 Now we see an bi-modal distribution -- 70% of users spend less than a minute on site while only 20% spend more than 5 minutes. From here, you can click into the > 5 minute segment, select "View Users", and see a few qualitative examples of users who spent a lot of time on your site (where did they come from and what pages did they view?)
 
-<img width="334" alt="image" src="https://github.com/mixpanel/docs/assets/2077899/9df310b4-ccc5-4b9c-aade-e9ac0d313d3c">
+[](/session-view-users.png)
 
 ### What are the average number of pages visited per session?
 You can do this by dividing the number of Page View events by the number of Session Start events, with a formula.
 
-<img width="1491" alt="image" src="https://github.com/mixpanel/docs/assets/2077899/0535a217-6def-4368-bb57-e9ffabf939bb">
+[](/pages-per-session.png)
 
 This tells us that the average number of pages per session is ~1.3 and has been fairly stable. This is fairly common, due to bounces (sessions where users just see 1 page and quickly bounce). To filter out bounces, we can filter for sessions that are longer than 10 seconds:
 
-<img width="1483" alt="image" src="https://github.com/mixpanel/docs/assets/2077899/68b0b818-be17-4d5a-b0b5-b907a4eb38f0">
+[](/pages-per-session-nobounce.png)
 
 This looks more reasonable: it seems like most users view ~3 pages per session.
 
 ### Which page is the most common landing page for a session?
 The Session Start event automatically inherits certain properties from the first event in the session (more on this [below](#session-properties)). Breaking down by the Current URL property tells you which pages are the most common landing pages for a session:
 
-<img width="1243" alt="image" src="https://github.com/mixpanel/docs/assets/2077899/f95dee95-78a8-4a56-8378-28619122b47c">
+[](/sessions-landing-pages.png)
 
 Here we see that the most common landing page is the "What is Mixpanel?" page of our docs, followed by the page on "Identifying Users". We might use this insight to decide which parts of our documentation to invest more in.
 
 ### What % of sessions end with a Purchase?
 This example uses our [E-Commerce demo dataset](https://mixpanel.com/project/3018488/view/3536632/app/funnels#bgRv2KTan2Tm) and shows how you can use Sessions in our funnels report:
 
-<img width="1194" alt="image" src="https://github.com/mixpanel/docs/assets/2077899/2f040725-3623-4967-9a11-1f22172ca159">
+[](/sessions-funnel.png)
 
 Here we see that ~22% of sessions lead to the user starting the Checkout flow. You can click into any step of the funnel to dig into specific sessions that were successful or unsuccessful to understand this more.
 
