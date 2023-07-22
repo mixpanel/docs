@@ -15,9 +15,6 @@ Sessions consist of two virtual events (Session Start and Session End) that Mixp
 
 Project Admins or Owners can choose between one of these configurations in [Project Settings](mixpanel.com/project/settings). Since Mixpanel computes sessions on the fly, you can change this definition at any time and it will apply historically. Read more [below](#session-computation-deep-dive).
 
-![/CleanShot_2022-09-16_at_13.30.32.gif](/CleanShot_2022-09-16_at_13.30.32.gif)
-
-
 ## Use Cases
 These use cases assuming that you're tracking an event for each page a user views. You can do this automatically with our [Javascript SDK](/docs/tracking/javascript-quickstart) or using a CDP like Segment.
 
