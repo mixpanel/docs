@@ -50,7 +50,7 @@ This tells us that the average number of pages per session is ~1.3 and has been 
 This looks more reasonable: it seems like most users view ~3 pages per session.
 
 ### Which page is the most common landing page for a session?
-The Session Start event automatically inherits certain properties from the first event in the session (more on this [below](#session-properties). Breaking down by the Current URL property tells you which pages are the most common landing pages for a session:
+The Session Start event automatically inherits certain properties from the first event in the session (more on this [below](#session-properties)). Breaking down by the Current URL property tells you which pages are the most common landing pages for a session:
 
 <img width="1243" alt="image" src="https://github.com/mixpanel/docs/assets/2077899/f95dee95-78a8-4a56-8378-28619122b47c">
 
