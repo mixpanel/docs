@@ -22,8 +22,8 @@ Mixpanel's client SDKs automatically collect certain properties on every event. 
 | $initial_referring_domain | Initial Referring Domain | Referring domain at first arrival. Defaults to "$direct" if the user is not referred. |
 | $os | Operating System | OS of the event sender. |
 | mp_lib | Mixpanel Library | The Mixpanel library that sent the event. |
-| $referrer | Referrer | Referring URL including your own domain. Might not be present if `document.referrer` does not return a value. As opposed to $initial_referrer and $initial_referring_domain, this property will be omitted if the user lands directly or the referring website adds the rel="noreferrer" parameter. |
-| $referring_domain | Referring Domain | Referring domain including your own domain. Might not be present if `document.referrer` does not return a value. As opposed to $initial_referrer and $initial_referring_domain, this property will be omitted if the user lands directly or the referring website adds the rel="noreferrer" parameter. |
+| $referrer | Referrer | Referring URL including your own domain. Might not be present if `document.referrer` does not return a value. As opposed to `$initial_referrer` and `$initial_referring_domain`, this property will be omitted if the user lands directly or the referring website adds the rel="noreferrer" parameter. |
+| $referring_domain | Referring Domain | Referring domain including your own domain. Might not be present if `document.referrer` does not return a value. As opposed to `$initial_referrer` and `$initial_referring_domain`, this property will be omitted if the user lands directly or the referring website adds the rel="noreferrer" parameter. |
 | $screen_height | Screen Height | The height of the device screen in pixels. |
 | $screen_width | Screen Width | The width of the device screen in pixels. |
 | $search_engine | Search Engine | The search engine that the customer used when they arrived at your domain. |
