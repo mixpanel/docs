@@ -1,27 +1,28 @@
----
-title: "Sessions"
-slug: "sessions"
-hidden: false
-metadata:
-  title: "Sessions"
-  description: "Learn about sessions in Mixpanel."
----
+Use Sessions in Mixpanel to answer questions like:
+* How much time do users spend on my site per session?
+* What are the average number of pages visited per session?
+* Which page is the most common landing page for a session?
+* What % of sessions lead to a successful purchase?
 
-## Overview
+## How Sessions Work
 
-Use Sessions in Mixpanel to track which events users perform within a session, or how many sessions it takes for a user to convert in a funnel.
+Mixpanel computes sessions automatically from the events you send us. This means you don't need to do any special tracking work on your end to make sessions work.
 
 Sessions consist of two virtual events (Session Start and Session End) that Mixpanel computes for you in one of 3 ways:
 * **Timeout Based (Default)**: The session starts when a user performs any event, and ends when the user is inactive for some period of time (default: 30 minutes).
 * **Event Based**: Provide a starting event and ending event. The session starts when the user performs the starting event and ends when the user performs the ending event.
 * **Property Based**: Provide a `session_id` property. All events that a user performs which have the same value for `session_id` are considered part of the same session.
 
-Project Admins or Owners can change a project's session definition in Project Settings. Since Mixpanel computes sessions on the fly, you can change this definition at any time and it will apply historically.
+Project Admins or Owners can choose between one of these configurations in [Project Settings](mixpanel.com/project/settings). Since Mixpanel computes sessions on the fly, you can change this definition at any time and it will apply historically. Read more [below](#session-computation-deep-dive).
 
 ![/CleanShot_2022-09-16_at_13.30.32.gif](/CleanShot_2022-09-16_at_13.30.32.gif)
 
 
-## Using Sessions
+## Use Cases
+
+### How much time do users spend on my site per session?
+
+
 
 ### Funnels
 
@@ -75,7 +76,9 @@ For example, select an event which determines success for your company, such as 
 
 
 
-## How Sessions Work
+## Session Computation Deep-Dive
+
+Here, we provide more detail on how sessions are computed under the hood.
 
 ### Timeout Based Sessions
 
