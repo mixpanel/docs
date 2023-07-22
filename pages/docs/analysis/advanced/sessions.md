@@ -21,7 +21,7 @@ Project Admins or Owners can choose between one of these configurations in [Proj
 ## Use Cases
 These use cases assuming that you're tracking an event for each page a user views. You can do this automatically with our [Javascript SDK](/docs/tracking/javascript-quickstart) or using a CDP like Segment.
 
-We're using our own tracking on our documentation site (docs.mixpanel.com).
+To make these examples more interesting, we're using our own tracking on our documentation site (docs.mixpanel.com).
 
 ### How much time do users spend on my site per session?
 Each Session event comes with a "Session Duration (seconds)" property, which is computed by Mixpanel and indicates the amount of time spent during the session.
