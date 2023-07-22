@@ -13,7 +13,7 @@ Segment is a CDP (Customer Data Platform) which lets you track event data and ro
 ## Startup Credit Program
 Mixpanel offers $50K in credits to [eligible startups](https://mixpanel.com/startups). Because of our Segment partnership, we're also able to offer startups $50k in _Segment_ credits. This gives startups the runway to use both tools for free.
 
-Once you create your Segment and Mixpaenl accounts, you can fill out [this form](TODO: link) and Segment will get back to you within 48 hours to confirm your credits are applied.
+Once you create your Segment and Mixpaenl accounts, you can fill out [this form](https://airtable.com/shrLP3GSZnxt1WT2v?prefill_Partner%20Code=Mixpanel) and Segment will get back to you within 48 hours to confirm your credits are applied.
 
 Startup eligibility requirements:
 * Founded less than 2 years ago
