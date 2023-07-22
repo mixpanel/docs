@@ -19,9 +19,29 @@ Project Admins or Owners can choose between one of these configurations in [Proj
 
 
 ## Use Cases
+These use cases assuming that you're tracking an event for each page a user views. You can do this automatically with our [Javascript SDK](/docs/tracking/javascript-quickstart) or using a CDP like Segment.
+
+We're using our own tracking on our documentation site (docs.mixpanel.com) 
 
 ### How much time do users spend on my site per session?
 
+
+### What are the average number of pages visited per session?
+You can do this by dividing the number of Page View events by the number of Session Start events, with a formula.
+
+<img width="1491" alt="image" src="https://github.com/mixpanel/docs/assets/2077899/0535a217-6def-4368-bb57-e9ffabf939bb">
+
+This tells us that the average number of pages per session is ~1.3 and has been fairly stable. This is fairly common, due to bounces (sessions where users just see 1 page and quickly bounce). To filter out bounces, we can filter for sessions that are longer than 10 seconds.
+
+
+### Which page is the most common landing page for a session?
+The Session Start event automatically inherits certain properties from the first event in the session (more on this [below](#session-properties). Breaking down by the Current URL property tells you which pages are the most common landing pages for a session:
+
+<img width="1243" alt="image" src="https://github.com/mixpanel/docs/assets/2077899/f95dee95-78a8-4a56-8378-28619122b47c">
+
+Here we see that the most common landing page is the "What is Mixpanel?" page of our docs, followed by the page on "Identifying Users". We might use this insight to decide which parts of our documentation to invest more in.
+
+### What % of sessions lead to a successful purchase?
 
 
 ### Funnels
