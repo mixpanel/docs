@@ -1,7 +1,7 @@
 If you see something off with Mixpanel's [docs](https://docs.mixpanel.com) (typo, broken link, outdated content/screenshot) you can now contribute that fix yourself!
 
 # Contributing Fixes
-You’ll need a [GitHub account](https://github.com/signup). It’s free and takes 1 minute to create. Not sure what to make your handle? We recommend `yourfullname-mixpanel`.
+You’ll need a [GitHub account](https://github.com/signup). It’s free and takes 1 minute to create. Not sure what to make your handle? We recommend `@me-mixpanel`.
 
 To make an edit:
 * Go to the page in our documentation that you want to edit. On the right side, under the table of contents, you should see an "Edit This Page" link. That will take you to the file in Github that contains the contents of that doc.
@@ -26,7 +26,7 @@ To reference an image, use a relative link to the image with the `public` stripp
 Images are hard to keep up-to-date, so please use them judiciously.
 
 # Previewing Changes
-All pull requests will generate a staging link in Vercel. Here's an [example](https://github.com/mixpanel/docs/pull/33#issuecomment-1520474996). This lets you preview your changes without changing what's actually live.
+All pull requests will generate a staging link in Vercel. Here's an [example](https://github.com/mixpanel/blob). This lets you preview your changes without changing what's actually live.
 
 # Adding new docs / changing structure
 The navigation of the docs is defined based on the directory structure in this repo. The top-level structure (getting-started, tracking, analysis, admin, other-bits) should not change very often.
@@ -34,7 +34,3 @@ The navigation of the docs is defined based on the directory structure in this r
 We have fewer, longer docs rather than many micro-docs. This helps keep navigation clean and provides confidence to the reader that everything they need to know about a topic is likely in 1 place.
 
 The exception to this rule is for How To guides (/tracking/how-tos) or Integrations (tracking/integrations). We expect these docs to be read linearly and focused on accomplishing a certain task.
-
-# Maintainers
-[Vijay](https://github.com/ranic), [Marissa](https://github.com/marissakuhrau), [Mav](https://github.com/mavlee), [Jordan](https://github.com/jordanmnunez). Eventually we’ll expand this list, but keeping it tight for now.
-
