@@ -1,0 +1,23 @@
+// Families
+$garnett: "Garnett";
+$arizona-text-variable: "Arizona Text Variable";
+$arizona-text-light: "Arizona Text Light";
+$apercu: "Apercu Mono";
+$apercu-pro: "Apercu Pro";
+
+// Stacks
+$sans-serif-stack: "Helvetica", "Segoe UI", "Arial", sans-serif;
+$serif-stack: "Book Antiqua", "Palatino", serif;
+$garnett-stack: $garnett, $sans-serif-stack;
+$arizona-text-variable-stack: $arizona-text-variable, $serif-stack;
+$arizona-text-light-stack: $arizona-text-light, $serif-stack;
+$apercu-stack: $apercu, $sans-serif-stack;
+$apercu-pro-stack: $apercu-pro, $sans-serif-stack;
+
+// Paths
+$cdn-base: "https://cdn.mxpnl.com/static/marketing/fonts";
+$garnett-medium-base: "/garnett/garnett-medium";
+$garnett-regular-base: "/garnett/garnett-regular";
+$arizona-text-base: "/arizona-text/arizona-text-variable";
+$arizona-text-light-base: "/arizona-text/arizona-text-light";
+$apercu-base: "/apercu/mono/apercu-mono-bold-pro";
