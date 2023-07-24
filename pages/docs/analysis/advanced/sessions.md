@@ -33,7 +33,7 @@ It looks like people spend ~5 minutes on average on our documentation site. Aver
 
 Now we see an bi-modal distribution -- 70% of users spend less than a minute on site while only 20% spend more than 5 minutes. From here, you can click into the > 5 minute segment, select "View Users", and see a few qualitative examples of users who spent a lot of time on your site (where did they come from and what pages did they view?)
 
-![](/session-view-users.png)
+![](/sessions-view-users.png)
 
 ### What are the average number of pages visited per session?
 You can do this by dividing the number of Page View events by the number of Session Start events, with a formula.
