@@ -1,81 +1,69 @@
----
-title: "Sessions"
-slug: "sessions"
-hidden: false
-metadata:
-  title: "Sessions"
-  description: "Learn about sessions in Mixpanel."
----
+Use Sessions in Mixpanel to answer questions like:
+* How much time do users spend on my site per session?
+* What are the average number of pages visited per session?
+* Which page is the most common landing page for a session?
+* What % of sessions lead to a key action (like signing up or purchasing)?
 
-## Overview
+## How Sessions Work
 
-Use Sessions in Mixpanel to track which events users perform within a session, or how many sessions it takes for a user to convert in a funnel.
+Mixpanel computes sessions automatically from the events you send us. This means you don't need to do any special tracking work on your end to make sessions work.
 
 Sessions consist of two virtual events (Session Start and Session End) that Mixpanel computes for you in one of 3 ways:
 * **Timeout Based (Default)**: The session starts when a user performs any event, and ends when the user is inactive for some period of time (default: 30 minutes).
 * **Event Based**: Provide a starting event and ending event. The session starts when the user performs the starting event and ends when the user performs the ending event.
 * **Property Based**: Provide a `session_id` property. All events that a user performs which have the same value for `session_id` are considered part of the same session.
 
-Project Admins or Owners can change a project's session definition in Project Settings. Since Mixpanel computes sessions on the fly, you can change this definition at any time and it will apply historically.
+Project Admins or Owners can choose between one of these configurations in [Project Settings](mixpanel.com/project/settings). Since Mixpanel computes sessions on the fly, you can change this definition at any time and it will apply historically. Read more [below](#session-computation-deep-dive).
 
-![/CleanShot_2022-09-16_at_13.30.32.gif](/CleanShot_2022-09-16_at_13.30.32.gif)
+## Use Cases
+These use cases assuming that you're tracking an event for each page a user views. You can do this automatically with our [Javascript SDK](/docs/tracking/javascript-quickstart) or using a CDP like Segment.
 
+To make these examples more interesting, we're using our own tracking on our documentation site (docs.mixpanel.com).
 
-## Using Sessions
+### How much time do users spend on my site per session?
+Each Session event comes with a "Session Duration (seconds)" property, which is computed by Mixpanel and indicates the amount of time spent during the session.
 
-### Funnels
+You can use any of our aggregations (sum, average, 90th percentile, etc.) to study the time spent by your users per session. Here, we look at the average time spent per session:
 
-In [Funnels](/docs/analysis/reports/funnels), once you have set up sessions, a “Session Start” and “Session End” event will be generated in the report based on the funnel criteria.
+[](/session-average-duration.png)
 
-![image](https://github.com/mixpanel/docs/assets/2077899/e6c12438-00da-4ebe-8302-a52f5a9da511)
+It looks like people spend ~5 minutes on average on our documentation site. Averages can hide skew, so we can also see a distribution by breaking down by the Session Duration property:
 
-The event properties "Session Duration (Seconds)", "Session Event Count", "Session End Event Name", and "Session Start Event Name" can be used to breakdown or filter these results.
+[](/session-duration-distribution.png)
 
-![image](https://github.com/mixpanel/docs/assets/2077899/5608f64b-3514-406f-8a65-fe6a588f36fb)
+Now we see an bi-modal distribution -- 70% of users spend less than a minute on site while only 20% spend more than 5 minutes. From here, you can click into the > 5 minute segment, select "View Users", and see a few qualitative examples of users who spent a lot of time on your site (where did they come from and what pages did they view?)
 
-You can also choose to count Sessions instead of Uniques or Totals in the Conversion Details section. If you choose to count Sessions, the conversion window will be limited to one session.
+[](/session-view-users.png)
 
-Whenever you make a change to session settings, you can then review the impact of this change in the Funnels Time to Convert Chart. If you see a large group of users doing 4+ hour sessions or just having sessions of <1 minute, you can create cohorts from these user segments and then evaluate their behavior in Flows to confirm Sessions is set up correctly.
+### What are the average number of pages visited per session?
+You can do this by dividing the number of Page View events by the number of Session Start events, with a formula.
 
-![image](https://github.com/mixpanel/docs/assets/2077899/e986f4f1-ad96-408b-8217-2a979b66e9eb)
+[](/pages-per-session.png)
 
-If you choose to count Uniques or Totals, you will be able to select a conversion window as usual, including Sessions.
+This tells us that the average number of pages per session is ~1.3 and has been fairly stable. This is fairly common, due to bounces (sessions where users just see 1 page and quickly bounce). To filter out bounces, we can filter for sessions that are longer than 10 seconds:
 
-![image](https://github.com/mixpanel/docs/assets/2077899/d0be7cb4-9cd4-46cd-849e-af4687b6aa1c)
+[](/pages-per-session-nobounce.png)
 
-### Flows
+This looks more reasonable: it seems like most users view ~3 pages per session.
 
-In [Flows](/docs/analysis/reports/flows), you can use the “Session Start” and “Session End” events to view the top Flows events within a session. 
+### Which page is the most common landing page for a session?
+The Session Start event automatically inherits certain properties from the first event in the session (more on this [below](#session-properties)). Breaking down by the Current URL property tells you which pages are the most common landing pages for a session:
 
-When you select sessions in Flows, the flow will be weighted by number of sessions, rather than unique users.
+[](/sessions-landing-pages.png)
 
-### Insights
+Here we see that the most common landing page is the "What is Mixpanel?" page of our docs, followed by the page on "Identifying Users". We might use this insight to decide which parts of our documentation to invest more in.
 
-In [Insights](/docs/analysis/reports/insights), you can use the “Session Start” and “Session End” events to explore a variety of metrics:
+### What % of sessions end with a Purchase?
+This example uses our [E-Commerce demo dataset](https://mixpanel.com/project/3018488/view/3536632/app/funnels#bgRv2KTan2Tm) and shows how you can use Sessions in our funnels report:
 
-- The total number of sessions over time
-- The average session length per user
-- Session duration broken down across all users
-- The average number of sessions per user
-- Sessions calculated in formulas
+[](/sessions-funnel.png)
 
-![image](https://github.com/mixpanel/docs/assets/2077899/ee999c27-c70f-438e-a95d-6ea4925b8474)
-
-When you select sessions in Insights, you will be viewing total sessions counts, rather than uniques or totals.
-
-The event properties "Session Duration (Seconds)", "Session Event Count", "Session End Event Name", and "Session Start Event Name" can be used to breakdown or filter these results.
-
-#### Aggregation by Sessions
-
-In Insights, you can also count the number of sessions that contained a particular event. Select the **Total** drop down beside an event in your Insights query to select **Sessions**.
-
-![image](https://github.com/mixpanel/docs/assets/2077899/350c4606-4366-40af-a050-21cbe01bf543)
-
-For example, select an event which determines success for your company, such as "Product Purchase". Using this aggregation you can track how many sessions contained a purchase.
+Here we see that ~22% of sessions lead to the user starting the Checkout flow. You can click into any step of the funnel to dig into specific sessions that were successful or unsuccessful to understand this more.
 
 
+## Session Computation Deep-Dive
 
-## How Sessions Work
+Here, we provide more detail on how sessions are computed under the hood.
 
 ### Timeout Based Sessions
 
@@ -260,6 +248,59 @@ By default, the list of associated properties is as follows:
 You can add additional properties to be associated with the session by going under Project Settings to Session Settings, and selecting the list of properties you wish to be associated. They will then be accessible for analysis in Mixpanel reports. Note that there is a limit of 4 additional properties that can be associated with session analysis.
 
 ![/10494738316692](/10494738316692.png)
+
+
+## Session Controls in Reports
+### Funnels
+
+In [Funnels](/docs/analysis/reports/funnels), once you have set up sessions, a “Session Start” and “Session End” event will be generated in the report based on the funnel criteria.
+
+![image](https://github.com/mixpanel/docs/assets/2077899/e6c12438-00da-4ebe-8302-a52f5a9da511)
+
+The event properties "Session Duration (Seconds)", "Session Event Count", "Session End Event Name", and "Session Start Event Name" can be used to breakdown or filter these results.
+
+![image](https://github.com/mixpanel/docs/assets/2077899/5608f64b-3514-406f-8a65-fe6a588f36fb)
+
+You can also choose to count Sessions instead of Uniques or Totals in the Conversion Details section. If you choose to count Sessions, the conversion window will be limited to one session.
+
+Whenever you make a change to session settings, you can then review the impact of this change in the Funnels Time to Convert Chart. If you see a large group of users doing 4+ hour sessions or just having sessions of <1 minute, you can create cohorts from these user segments and then evaluate their behavior in Flows to confirm Sessions is set up correctly.
+
+![image](https://github.com/mixpanel/docs/assets/2077899/e986f4f1-ad96-408b-8217-2a979b66e9eb)
+
+If you choose to count Uniques or Totals, you will be able to select a conversion window as usual, including Sessions.
+
+![image](https://github.com/mixpanel/docs/assets/2077899/d0be7cb4-9cd4-46cd-849e-af4687b6aa1c)
+
+### Flows
+
+In [Flows](/docs/analysis/reports/flows), you can use the “Session Start” and “Session End” events to view the top Flows events within a session. 
+
+When you select sessions in Flows, the flow will be weighted by number of sessions, rather than unique users.
+
+### Insights
+
+In [Insights](/docs/analysis/reports/insights), you can use the “Session Start” and “Session End” events to explore a variety of metrics:
+
+- The total number of sessions over time
+- The average session length per user
+- Session duration broken down across all users
+- The average number of sessions per user
+- Sessions calculated in formulas
+
+![image](https://github.com/mixpanel/docs/assets/2077899/ee999c27-c70f-438e-a95d-6ea4925b8474)
+
+When you select sessions in Insights, you will be viewing total sessions counts, rather than uniques or totals.
+
+The event properties "Session Duration (Seconds)", "Session Event Count", "Session End Event Name", and "Session Start Event Name" can be used to breakdown or filter these results.
+
+#### Aggregation by Sessions
+
+In Insights, you can also count the number of sessions that contained a particular event. Select the **Total** drop down beside an event in your Insights query to select **Sessions**.
+
+![image](https://github.com/mixpanel/docs/assets/2077899/350c4606-4366-40af-a050-21cbe01bf543)
+
+For example, select an event which determines success for your company, such as "Product Purchase". Using this aggregation you can track how many sessions contained a purchase.
+
 
 ## FAQ
 
