@@ -36,5 +36,5 @@ We have fewer, longer docs rather than many micro-docs. This helps keep navigati
 The exception to this rule is for How To guides (/tracking/how-tos) or Integrations (tracking/integrations). We expect these docs to be read linearly and focused on accomplishing a certain task.
 
 # Maintainers
-[Vijay](https://github.com/ranic), [Marissa](https://github.com/marissakuhrau), [Mav](https://github.com/mavlee), [Jordan](https://github.com/jordanmnunez). Eventually we’ll expand this list, but keeping it tight for now.
+[Vijay](https://github.com/ranic), [Marissa](https://github.com/marissakuhrau), [Mav](https://github.com/mavlee), [Jordan](https://github.com/jordanmnunez),  [Isha](https://github.com/ishamehramixpanel). Eventually we’ll expand this list, but keeping it tight for now.
 
