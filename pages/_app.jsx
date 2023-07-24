@@ -1,4 +1,5 @@
-import "./globals.css"
+import "./globals.css";
+import "./overrides.scss";
 import React from 'react';
 import {useEffect} from 'react';
 import { insertGTMScriptTags } from '../components/GTMScripts';
