@@ -18,7 +18,7 @@ Organization Discoverability makes it seamless for new users with a shared work 
 
 This feature is accessible to new users who have verified their email as well as existing organizations that are not an Enterprise plan and do not have SSO enabled.
 
-![Organization Discoverability 1 Image](/discoverability1.png)
+![Organization Discoverability 1 Image](/discoverabilityone.png)
 
 ### Setting Discoverability
 
