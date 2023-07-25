@@ -14,7 +14,7 @@ Tracking Sign Up is a quick way to understand your product's growth; by counting
 ### Step 2: Track a Value Moment event
 Track a Value Moment event when a user reaches value in your product. Here are some examples:
 * Social: Post Created, Friend Added
-* E-Commerce: Order Completed
+* E-Commerce: Purchase Completed
 * Media: Video Watched, Article Read
 * SaaS: Document Created, Call Started
 
