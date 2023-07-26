@@ -22,3 +22,12 @@ jobs:
       with:
         node-version: ${{ matrix.node-version }}
     - run: npm test
+
+  check_broken_links:
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v3
+    - name: Link Checker
+      uses: hashicorp/gh-action-check-broken-links@v1
+      with:
+        baseUrl: 'https://docs.mixpanel.com'
