@@ -24,7 +24,7 @@ This feature is accessible to new users who have verified their email as well as
 
 Only **organization owners** and **billing admins** can access Organization Discoverability by going to Organization Settings > Users & Teams > Organization Discoverability.
 
-![Organization Discoverability 2 Image](/discoverability2.png)
+![Organization Discoverability 2 Image](/discoverabilitytwo.png)
 
 
 They can enable Organization Discoverability by first specifying the private (i.e. work) email domain(s) that should be granted access when a new user signs up for Mixpanel. Please note that public email domains, such as Gmail or Yahoo, cannot be used.
