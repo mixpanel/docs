@@ -1,20 +1,24 @@
 <div align="center">
-	<img width="150" src="https://github.com/mixpanel/docs/assets/71290498/1f5dfccf-8ba8-481a-8faa-c6c297d7d4c6" alt="Mixpanel">
-	<h1>Mixpanel's Official Documentation</h1>
-	<p>
-		<b><a href="https://docs.mixpanel.com/">docs.mixpanel.com</a></b>
-	</p>
-	<br>
-	<br>
-	<br>
+ <img width="150" src="https://github.com/mixpanel/docs/assets/71290498/1f5dfccf-8ba8-481a-8faa-c6c297d7d4c6" alt="Mixpanel">
+ <h1>Mixpanel's Official Documentation</h1>
+ <p>
+  <b><a href="https://docs.mixpanel.com/">docs.mixpanel.com</a></b>
+ </p>
+ <br>
+ <br>
+ <br>
 </div>
+
+test
 
 If you see something off with Mixpanel's [docs](https://docs.mixpanel.com) (typo, broken link, outdated content/screenshot) you can contribute that fix yourself!
 
 # Contributing Fixes
+
 You’ll need a [GitHub account](https://github.com/signup). It’s free and takes 1 minute to create. Not sure what to make your handle? We recommend `yourfullname-mixpanel`.
 
 To make an edit:
+
 1. Go to the page in our documentation that you want to edit. On the right side, under the table of contents, you should see an "Edit This Page" link. That will take you to the file in Github that contains the contents of that doc.
 2. Click the pencil icon to make edits to a file’s markdown. You can swap between code and preview to see what your edits look like.
 3. When you’re ready, hit “Commit” and follow the instructions to commit the changes to your branch and create a pull request review. Add a description if you like, keeping in mind that this is publicly accessible.
@@ -23,19 +27,26 @@ To make an edit:
 5. Once merged, changes will go live automatically, typically within 1-2 minutes.
 
 # Testing Locally
+
 This is a bit more advanced, but makes it much faster to test the impact of your changes (no waiting for the staging deployment):
+
 1. Clone the repo
 2. Install dependencies:
+
    ```sh
    npm ci
    ```
+
 4. Run the following to start serving the docs at <http://localhost:3000>
+
    ```sh
    npm run dev
    ```
+
 6. Make whatever changes you want locally, this should automatically reflect in your local instance of the docs.
 
 # Adding Images/GIFs
+
 Upload images/GIFs to the public/ directory. You can make sub-directories within `public/` to namespace them (eg: `/public/tutorials/` for all tutorial-related images).
 
 To reference an image, use a relative link to the image with the `public` stripped out. For example, if you have an image `public/example.png`, you can reference it as follows: `[insert alt text here](/example.png)`.
@@ -43,9 +54,11 @@ To reference an image, use a relative link to the image with the `public` stripp
 Images are hard to keep up-to-date, so please use them judiciously.
 
 # Previewing Changes
+
 All pull requests will generate a staging link in Vercel. Here's an [example](https://github.com/mixpanel/docs/pull/33#issuecomment-1520474996). This lets you preview your changes without changing what's actually live.
 
 # Adding new docs / changing structure
+
 The navigation of the docs is defined based on the directory structure in this repo. The top-level structure (getting-started, tracking, analysis, admin, other-bits) should not change very often.
 
 We have fewer, longer docs rather than many micro-docs. This helps keep navigation clean and provides confidence to the reader that everything they need to know about a topic is likely in 1 place.
@@ -53,5 +66,5 @@ We have fewer, longer docs rather than many micro-docs. This helps keep navigati
 The exception to this rule is for How To guides (/tracking/how-tos) or Integrations (tracking/integrations). We expect these docs to be read linearly and focused on accomplishing a certain task.
 
 # Maintainers
-[Vijay](https://github.com/ranic), [Marissa](https://github.com/marissakuhrau), [Mav](https://github.com/mavlee), [Jordan](https://github.com/jordanmnunez), [Isha](https://github.com/ishamehramixpanel). Eventually we’ll expand this list, but keeping it tight for now.
 
+[Vijay](https://github.com/ranic), [Marissa](https://github.com/marissakuhrau), [Mav](https://github.com/mavlee), [Jordan](https://github.com/jordanmnunez), [Isha](https://github.com/ishamehramixpanel). Eventually we’ll expand this list, but keeping it tight for now.
