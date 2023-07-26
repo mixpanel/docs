@@ -27,7 +27,7 @@ Note: You won't be able to create alerts if the report has unsaved changes. Save
 <img src="https://github.com/mixpanel/docs/assets/130006730/91a2bb99-3a79-43d4-9d97-3b397aab0305" width="400" height="whatever">
 
 
-## **View & Manage Custom Alerts**
+## View & Manage Custom Alerts
 
 You can view and manage all alerts under your personal settings.
 
@@ -43,9 +43,9 @@ You can view the details of another user’s alert, but you are not able to edit
 
 ***IMPORTANT: If you need to modify alerts you didn't create, contact the project owner.***
 
-# Alert Criteria Types
+## Alert Criteria Types
 
-## Anomaly Detection
+### Anomaly Detection
 
 Anomaly Detection alerts automatically monitor your metrics and notify you when significant anomalies occur. With advanced forecasting algorithms, Mixpanel calculates thresholds based on the expected range of your metrics. If a data point falls outside of the calculated confidence interval, you'll receive an alert, allowing you to address the issue promptly. No manual threshold configuration is required, making it an effortless way to stay informed about potential problems.
 
