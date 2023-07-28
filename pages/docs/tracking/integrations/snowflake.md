@@ -23,13 +23,8 @@ If you are using [Snowflake Network policy](https://docs.snowflake.com/en/user-g
 ### Connect to your Warehouse
 
 ---
-<div style={{position: 'relative', 'padding-bottom': '64.90384615384616%', height: 0}}>
-    <iframe src="https://www.loom.com/embed/515f5cf0510b461c82b4394242af2e19"
-        frameborder="0"
-        webkitallowfullscreen mozallowfullscreen allowfullscreen
-        style={{position: 'absolute', 'top': 0, 'left': 0, 'width': 250px, 'height': 250px}}>
-    </iframe>
-</div>
+
+This [loom video](https://www.loom.com/share/515f5cf0510b461c82b4394242af2e19) should provide an overview of connecting to your snowflake warehouse.
 
 To connect to your warehouse, complete the following steps.
 
@@ -113,13 +108,8 @@ Read more about best practices for tracking Events and Properties in Mixpanel [h
 
 ### Ingest Events
 ---
-<div style={{position: 'relative', 'padding-bottom': '64.90384615384616%', height: 0}}>
-    <iframe src="https://www.loom.com/embed/881e4df38608482680e798f3a6435df5"
-        frameborder="0"
-        webkitallowfullscreen mozallowfullscreen allowfullscreen
-        style={{position: 'absolute', 'top': 0, 'left': 0, 'width': '100%', 'height': '100%'}}>
-    </iframe>
-</div>
+
+This [loom video](https://www.loom.com/share/881e4df38608482680e798f3a6435df5) should provide an overview of ingesting events into to Mixpanel.
 
 Once you have created a warehouse source, follow the below steps to send events into Mixpanel.
 
