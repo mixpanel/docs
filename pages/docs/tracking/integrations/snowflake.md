@@ -27,7 +27,7 @@ If you are using [Snowflake Network policy](https://docs.snowflake.com/en/user-g
     <iframe src="https://www.loom.com/embed/515f5cf0510b461c82b4394242af2e19"
         frameborder="0"
         webkitallowfullscreen mozallowfullscreen allowfullscreen
-        style={{position: 'absolute', 'top': 0, 'left': 0, 'width': '100%', 'height': '100%'}}>
+        style={{position: 'absolute', 'top': 0, 'left': 0, 'width': 250px, 'height': 250px}}>
     </iframe>
 </div>
 
