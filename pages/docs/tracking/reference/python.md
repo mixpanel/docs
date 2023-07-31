@@ -2,7 +2,7 @@
 title: "Python - Advanced"
 slug: "python"
 hidden: false
-metadata: 
+metadata:
   title: "SDK Integration: Python library | Mixpanel Developer Docs"
   description: "Mixpanel's Python library is designed to be used for scripting, or in circumstances when a user isn't directly interacting with your application. Learn more here."
 createdAt: "2018-04-12T18:57:57.678Z"
@@ -61,7 +61,7 @@ mp.track(user_id, 'Plan Upgraded', {
 })
 ```
 
-Mixpanel can determine default geolocation data ($city, $region, mp_country_code) using the IP address on the incoming request. As all server-side calls will likely originate from the same IP (that is, the IP of your server), this can have the unintended effect of setting the location of all of your users to the location of your datacenter. [Read about best practices for geolocation with server-side implementations](https://mixpanel.com/blog/2014/09/08/everything-about-server-side-updates/).
+Mixpanel can determine default geolocation data (\$city, \$region, mp_country_code) using the IP address on the incoming request. As all server-side calls will likely originate from the same IP (that is, the IP of your server), this can have the unintended effect of setting the location of all of your users to the location of your datacenter. [Read about best practices for geolocation with server-side implementations](https://mixpanel.com/blog/2014/09/08/everything-about-server-side-updates/).
 
 
 ## Storing User Profiles
@@ -70,7 +70,7 @@ In addition to events, you can send user profile updates to Mixpanel. Mixpanel c
 
 You can use profiles to explore and segment users by who they are, rather than what they did. You can also use profiles to send messages, such as emails, SMS, or push notifications.
 
-Mixpanel determines default geolocation data ($city, $region, mp_country_code) using the IP address on the incoming request. As all server-side calls will likely originate from the same IP (that is, the IP of your server), this can have the unintended effect of setting the location of all of your users to the location of your datacenter. [Read about best practices for geolocation with server-side implementations](https://mixpanel.com/blog/2014/09/08/everything-about-server-side-updates/).
+Mixpanel determines default geolocation data (\$city, \$region, mp_country_code) using the IP address on the incoming request. As all server-side calls will likely originate from the same IP (that is, the IP of your server), this can have the unintended effect of setting the location of all of your users to the location of your datacenter. [Read about best practices for geolocation with server-side implementations](https://mixpanel.com/blog/2014/09/08/everything-about-server-side-updates/).
 
 ### Setting Profile Properties
 Instances of Mixpanel have a method to send profile updates.
@@ -103,7 +103,7 @@ A group is identified by the `group_key` and `group_id`.
 * `group_key` is the property that connects event data for Group Analytics.
 * `group_id` is the identifier for a specific group.
 
-If the property “Company” is chosen for Group Analytics, “Company” is the `group_key`, and “Mixpanel”, “Company A”, and “13254” are all potential `group_id` values. 
+If the property “Company” is chosen for Group Analytics, “Company” is the `group_key`, and “Mixpanel”, “Company A”, and “13254” are all potential `group_id` values.
 
 A user can belong to multiple groups. All updates to a group operate on the `group_key` and `group_id`.
 
@@ -115,19 +115,19 @@ To administer group keys, navigate to your Project Settings. Click **+Add Group 
 ### Sending Group Identifiers With Events
 To send group identifiers with events, send the `group_key` as a property key and the `group_id` as the property value. The data type of the `group_key` property is a list, therefore you can add multiple values for a single user. It is also possible to pass only one value.
 
-Mixpanel can group events by the `group_id`, similar to how events are grouped with the `distinct_id`. A `group_id`, however, is a group level identifier and not a user level identifier like the `distinct_id`. 
+Mixpanel can group events by the `group_id`, similar to how events are grouped with the `distinct_id`. A `group_id`, however, is a group level identifier and not a user level identifier like the `distinct_id`.
 
 Note that sending in a `group_key` and `group_id` as event properties does not add users to the group profile or assign group membership to the user's profile. Only **events** with your chosen `group_key` property set will be available for behavioral analysis at the group level. See the sections following the code example to learn how to add users to a group profile or add a group to the user's profile.
 
 ```python
 ## Tracks an event named 'Plan Purchase',
-## with the distinct_id as user_id and a 
+## with the distinct_id as user_id and a
 ## group_key = Company with a group_id = Mixpanel
 mp.track(user_id, 'Plan Purchase', {'Plan Type' : 'Premium', 'Company' : 'mixpanel'})
 ```
 
 ### Adding Group Identifiers to Individual Users
-To connect group information to a user profile, include the `group_key` and `group_id` by sending the property as part of the <a style="font-family: courier" href="https://mixpanel.github.io/mixpanel-python/#mixpanel.Mixpanel.people_set">people_set()</a> call. 
+To connect group information to a user profile, include the `group_key` and `group_id` by sending the property as part of the <a style="font-family: courier" href="https://mixpanel.github.io/mixpanel-python/#mixpanel.Mixpanel.people_set">people_set()</a> call.
 ```python
 ## Create or update a user profile with 'first name', 'last name',
 ## 'favorite color' properties, and a group_id = company
