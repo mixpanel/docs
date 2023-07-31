@@ -2,16 +2,16 @@ If you haven't already, we recommend starting with our [Migration Guides Overvie
 
 ## Differences in the data models
 
-Mixpanel’s data model is based on events and properties, rather than Adobe which is schema based with many different configurable data types. While this might be a shift if you come from the schema model where you define your data to be captured upfront before sending any data, we’ve found [schema-on-read](/docs/other-bits/under-the-hood#schema-on-read) to be both more flexible and easier to set up and use.
+Mixpanel’s data model is based on events and properties, rather than Adobe which is schema-based with many different configurable data types. While this might be a shift if you come from the schema model where you define your data to be captured upfront before sending any data, we’ve found [schema-on-read](/docs/other-bits/under-the-hood#schema-on-read) to be both more flexible and easier to set up and use.
 
-- [Events](notion://www.notion.so/docs/getting-started/what-is-mixpanel#events) capture granular user actions, like a Pageview, Signup, or Purchase.
-- [Properties](notion://www.notion.so/docs/getting-started/what-is-mixpanel#properties) capture attributes of those events, like which page was viewed, the UTM Campaign that led to a Signup, or the Item that was purchased.
+- [Events](/docs/getting-started/what-is-mixpanel#events) capture granular user actions, like a Pageview, Signup, or Purchase.
+- [Properties](/docs/getting-started/what-is-mixpanel#properties) capture attributes of those events, like which page was viewed, the UTM Campaign that led to a Signup, or the Item that was purchased.
 
 Events and properties with schema-on-read let you get more granular than an enforced schema so you can spend your time analyzing data versus formatting it. Mixpanel automatically constructs a schema from the events and properties you send, so you can answer the same questions as before faster and with less development headaches.
 
 ## Track forward looking real-time data
 
-Choose your current implementation method for Adobe Analytics and you can follow the below steps for starting to send live data to Mixpanel.
+Choose your current implementation method for Adobe Analytics and follow the below steps for starting to send live data to Mixpanel.
 
 ### Client-side SDKs & Server-side SDKs
 
@@ -42,7 +42,7 @@ We recommend the following steps to get started quickly:
     
 - Use the [Mixpanel Marketing KPI Template](https://mixpanel.com/project?show-template-selector=true) to build your initial board
 
-This will allow you to explore Mixpanel’s capabilities with the lowest amount of lift to see value. The reporting around marketing analytics will also showcase reporting end users are used to coming over from Adobe Analytics. 
+This will allow you to explore Mixpanel’s capabilities with the lowest amount of lift to see value. The reporting around marketing analytics will also showcase reporting that end users are used to coming over from Adobe Analytics. 
 
 ### Customer Data Platforms (CDPs)
 
@@ -70,7 +70,7 @@ If you have your Adobe Analytics instance sitting on top of data that you collec
 
 ## Loading historical data
 
-For most cases, we recommend starting fresh when migrating from Adobe Analytics. In the cases where historical data is essential, we recommend loading a year’s worth (or less) of historical data during your migration. This will allow your team to review year-over-year trends easily and do historical analysis as needed.
+For most cases, we recommend starting fresh when migrating from Adobe Analytics. If you must import Adobe data, we strongly encourage loading historical data into a separate project as data structures, identity management, user cohort definitions, etc. are completely different in Adobe than in Mixpanel. In these scenarios, the point of having historical data in Mixpanel is to allow the team to be able to visualise historical data, but because this data would exist in a separate project, it will not be easy to visualize time period trends. In the cases where historical data is essential, we recommend loading a year’s worth (or less) of historical data during your migration.
 
 To backfill data, we recommend:
 
