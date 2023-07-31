@@ -35,7 +35,7 @@ To view project information:
 
 ### Project Details
 
-You can edit the name of the project and its timezone. To edit, click the Pencil icon in the "Name" and "Timezone" fields.
+You can edit the name of the project and its time zone. To edit, click the Pencil icon in the "Name" and "Timezone" fields.
 
 ![manageprojects 3 Image](/manageprojects3.png)
 
@@ -60,11 +60,11 @@ This table provides the values for the **project token** and the **API secret**.
 
 ## Reset Projects
 
-You can reset the current project in Project Settings. When you reset the project, Mixpanel deactivates the project and all its data and projects settings, then generates a new project.
+You can reset the current project in Project Settings. When you reset the project, Mixpanel deactivates the project and all its data and project settings, then generates a new project.
 
 ![manageprojects 11 Image](/manageprojects11.png)
 
-A warning indicates this reset deactivates the project and all its data and projects settings, then generates a new project.  Mixpanel stores a backup of the deactivated project. Mixpanel will delete the data based on the data retention policy.
+A warning indicates this reset deactivates the project and all its data and project settings, then generates a new project.  Mixpanel stores a backup of the deactivated project. Mixpanel will delete the data based on the data retention policy.
 
 ![manageprojects 12 Image](/manageprojects12.png)
 
@@ -85,9 +85,7 @@ Each Mixpanel account can contain multiple projects. Each project has its own un
 
 ### Locate Current Project Token
 
-Click the Settings gear in the upper right hand corner of your Mixpanel project and select Project settings to see your Project Token under the Access Keys table.
-
-![manageprojects 6 Image](/manageprojects5.png)
+Click the Settings gear in the upper right-hand corner of your Mixpanel project and select Project settings to see your Project Token under the Access Keys table.
 
 ![manageprojects 4 Image](/manageprojects4.png)
 
@@ -107,7 +105,7 @@ Mixpanel records all events in [Coordinated Universal Time (UTC)](https://www.wo
 
 Mixpanel converts the timezone to your project timezone before writing the event to Mixpanel data stores. Mixpanel sets project timezones by city or region. If a city or region observes Daylight Savings Time, the ingestion offset adjusts appropriately.
 
->Note: As of 11 Jan 2023, all new projects store their data in UTC. Changing timezone for any project under project settings only affects the timezone in which Mixpanel outputs results. You will no longer see a gap or spike in events after changing timezone now.
+>Note: As of 11 Jan 2023, all new projects store their data in UTC. Changing the timezone for any project under project settings only affects the timezone in which Mixpanel outputs results. You will no longer see a gap or spike in events after changing the timezone now.
 
 ### Changing your Timezone
 
@@ -190,7 +188,7 @@ As a result, operations such as extract, transform, and load, need a quick times
 
 ## Transfer Project to Another Organization
 
-Organization owners and project owners in a project can transfer that project to another organization of which they have permissions.
+Organization owners and project owners in a project can transfer that project to another organization to which they have permission.
 
 When a user transfers a project to another organization, the project members and service accounts don't transfer with the project. As a result, project members will lose access to the project if they aren't members of the target organization, and service accounts will need to be recreated.
 
