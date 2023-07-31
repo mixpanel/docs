@@ -3,7 +3,15 @@
 
 > ❗Note: This connector is currently in a closed beta. If you’d like access, please sign up via [this form](https://forms.gle/PctmA2fZvwdpCRGY6).
 
-This document will walk you through step-by-step instructions to get your snowflake connector up and running.
+This document will walk you through step-by-step instructions to get your Snowflake connector up and running.
+
+<div style={{position: 'relative', 'padding-bottom': '64.90384615384616%', height: 0}}>
+    <iframe src="https://www.loom.com/embed/5dbaf37d9308404393417043551aed55?sid=85ee8a07-e523-4a70-bf56-5b9b6b39186d"
+        frameborder="0"
+        webkitallowfullscreen mozallowfullscreen allowfullscreen
+        style={{position: 'absolute', 'top': 0, 'left': 0, 'width': '100%', 'height': '100%'}}>
+    </iframe>
+</div>
 
 ### IP Allowed List
 
