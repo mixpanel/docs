@@ -24,6 +24,8 @@ If you are using [Snowflake Network policy](https://docs.snowflake.com/en/user-g
 
 ---
 
+This [loom video](https://www.loom.com/share/515f5cf0510b461c82b4394242af2e19) should provide an overview of connecting to your snowflake warehouse.
+
 To connect to your warehouse, complete the following steps.
 
 1. Navigate to **Project Settings**, then select **Warehouse Sources**.
@@ -105,7 +107,9 @@ Read more about best practices for tracking Events and Properties in Mixpanel [h
     - Alternatively, you can specify a static value during creation.
 
 ### Ingest Events
+---
 
+This [loom video](https://www.loom.com/share/881e4df38608482680e798f3a6435df5) should provide an overview of ingesting events into to Mixpanel.
 
 Once you have created a warehouse source, follow the below steps to send events into Mixpanel.
 

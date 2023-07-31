@@ -46,6 +46,8 @@ https://help.mixpanel.com/hc/en-us/articles/115004547263(.*) /docs/tracking/how-
 https://help.mixpanel.com/hc/en-us/articles/115004560846(.*) /docs/tracking/integrations/segment
 https://help.mixpanel.com/hc/en-us/articles/115004561766(.*) /docs/tracking/how-tos/utm
 https://help.mixpanel.com/hc/en-us/articles/115004561786(.*) /docs/tracking/how-tos/utm
+https://help.mixpanel.com/hc/en-us/articles/115004561926(.*) /docs/analysis/reports/funnels
+https://help.mixpanel.com/hc/en-us/sections/360006013852(.*) /docs/getting-started/what-is-mixpanel
 https://help.mixpanel.com/hc/en-us/articles/115004562246(.*) /docs/analysis/advanced/custom-events
 https://help.mixpanel.com/hc/en-us/articles/115004562723(.*) /docs/analysis/advanced/other-advanced-features#downloading-reports-from-mixpanel
 https://help.mixpanel.com/hc/en-us/articles/115004565746(.*) /docs/analysis/boards

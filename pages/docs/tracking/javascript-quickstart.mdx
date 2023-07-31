@@ -1,10 +1,3 @@
----
-title: "Web"
-slug: "javascript-quickstart"
-hidden: false
-createdAt: "2021-04-08T17:03:45.051Z"
-updatedAt: "2023-03-26T23:48:49.309Z"
----
 import { Tab, Tabs } from 'nextra-theme-docs'
 
 You can use Mixpanel's JavaScript SDK to track events from your website or web application.
@@ -34,23 +27,18 @@ yarn add mixpanel-browser
 
 ## Step 2: Track your first event
 
-You'll need your Project Token for this, which you can get [here](https://mixpanel.com/settings/project).
+You'll need your Project Token for this step, which you can get [here](https://mixpanel.com/settings/project).
 ```javascript
 // Uncomment if you used npm or yarn in Step 1
 //import mixpanel from 'mixpanel-browser';
 
-// Replace YOUR_TOKEN with your Project Token
-// Note: This is configured to track an event for every page view automatically. We also recommend
-//       using localStorage instead of the default cookie for persistence.
-mixpanel.init('YOUR_TOKEN', { debug: true, track_pageview: true, persistence: 'localStorage' });
+mixpanel.init(<YOUR_TOKEN>, { debug: true, track_pageview: true, persistence: 'localStorage' });
 
 // Set this to a unique identifier for the user performing the event.
-// eg: their ID in your database or their email address.
 mixpanel.identify(/* \"<USER_ID\"> */)
 
-// Track an event. It can be anything, but in this example, we're tracking a Signed Up event.
-// Include a property about the signup, like the Signup Type
-mixpanel.track('Signed Up', {
+// Track an event. It can be anything, but in this example, we're tracking a Sign Up event.
+mixpanel.track('Sign Up', {
   'Signup Type': 'Referral'
 })
 ```
@@ -61,6 +49,9 @@ You can also follow our video walkthrough [here](https://www.loom.com/embed/fbba
 
 
 ## FAQ
+
+### Does Mixpanel automatically track pageviews?
+Yes, if you pass `track_pageview: true` in the `mixpanel.init` call, Mixpanel will automatically track a Pageview event every time a new page is loaded. Learn more [here](/docs/tracking/reference/javascript#tracking-page-views).
 
 ### Why aren't my events showing up in Mixpanel?
 Make sure you've disabled ad blockers and your Do Not Track (DNT) browser settings are set to false when testing your JavaScript implementation. If the DNT setting is set to true, then Mixpanel won't collect information from that Mixpanel instance.

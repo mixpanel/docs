@@ -48,10 +48,10 @@ Click **Export to Google Ads**. Select either one-time sync or dynamic sync. Cli
 This integration supports two types of exports: one-time export and dynamic sync. When you generate a one-time export or dynamic sync, it overwrites the previous export with an updated export that reflects users who qualify for the cohort at the time of export.
 
 ### One-Time Export
-In a one-time export, Mixpanel sends Appcues a static export of users who currently qualify for the cohort. The cohort data will not be updated in Appcues after a one-time export.
+In a one-time export, Mixpanel sends Google Ads a static export of users who currently qualify for the cohort. The cohort data will not be updated in Google Ads after a one-time export.
 
 ### Dynamic Sync
-In dynamic sync, Mixpanel initiates sync between a cohort and Appcues every two hours. The exported cohort will be updated every day to reflect the most recent list of users in a cohort.
+In dynamic sync, Mixpanel initiates sync between a cohort and Google Ads every two hours. The exported cohort will be updated every day to reflect the most recent list of users in a cohort.
 
 ## Select the Cohort in Google Ads
 
@@ -97,7 +97,7 @@ Please make sure the user setting the integrations has standard or admin access 
 Please make sure the user setting the integrations has standard or admin access in the Google Ads account.
 
 
-**User doesn't have permission to access customer. Note: If you're accessing a client customer, the manager's customer id must be set in the 'login-customer-id' header. See https://developers.google.com/google-ads/api/docs/concepts/call-structure#login-cust**
+**User doesn't have permission to access customer. Note: If you're accessing a client customer, the manager's customer id must be set in the 'login-customer-id' header. See https://developers.google.com/google-ads/api/docs/concepts/call-structure#cid**
 
 Please make sure the user setting the integrations has standard or admin access in the Google Ads account.
 

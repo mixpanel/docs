@@ -23,7 +23,7 @@ Let's say you're building a media product, and you track a `Song Played` event, 
 
 You want to filter and breakdown this event by other attributes of the song, like `artist` and `genre`, which are not tracked as properties. Lookup Tables let you upload a CSV of data about songs like this and map it to the `song_id` property:
 
-| id     | artist      | genre   | is_platinum | name          | release_date         
+| song_id| artist      | genre   | is_platinum | name          | release_date         
 |--------|-------------|---------|-------------|---------------|----------------------
 | c994bb | Drake       | Pop     | True        | Hotline Bling | 2015-10-18T22:00:00  
 | d8d949 | Gipsy Kings | Flamenco| False       | Bamboleo      | 1987-07-12T05:00:00  
@@ -41,6 +41,8 @@ Then, whenever you use an event with the `song_id` property, you'll have access 
 The benefit is that you don't need to change your event tracking code at all. You can upload this Lookup Table after the fact and it automatically joins onto all prior events.
 
 We also provide an [API](https://developer.mixpanel.com/reference/replace-lookup-table) to keep Lookup Tables synced on a recurring basis.
+
+DISCLAIMER: Only Project Owners and Admins can create permanent lookup tables mappings. Analysts and Consumers can only create temporary mappings.
 
 ## Use Cases
 

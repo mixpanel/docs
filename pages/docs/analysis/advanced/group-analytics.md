@@ -95,7 +95,9 @@ Enter an event property to attribute the group key to. You can also enter a disp
 
 An event can be attributed to multiple groups. To attribute to multiple groups, track the group event property's value as a list of string-valued group ids.
 
-**mixpanel.track('Some Event', {'company_id': ['01234', '56789', '55555']});
+```javascript
+mixpanel.track('Some Event', {'company_id': ['01234', '56789', '55555']});
+```
 
 Not all of a user's events will be attributed to a group. Only the events with a defined group key will be attributed to the group and appear in the group's profile's activity feed.
 
@@ -103,9 +105,9 @@ Not all of a user's events will be attributed to a group. Only the events with a
 
 Mixpanel's SDKs have methods to help you implement Groups Analytics.
 
-Because the client has persistence, only client-side SDKs have methods for adding and removing a user's events to a group (registering and deregistering the **group_key:group_id** as a super property to be tracked on all events).
+Because the client has persistence, only client-side SDKs have methods for adding and removing a user's events to a group (registering and deregistering the `<group_key>: <group_id>` as a super property to be tracked on all events).
 
-Without persistence on the server, you will need to track the **group_key:group_id** on all events that should be attributed to a group (or multiple groups).
+Without persistence on the server, you will need to track `<group_key>: <group_id>` on all events that should be attributed to a group (or multiple groups).
 
 Both client- and server-side SDKs have methods for creating and updating Group Profiles.
 
@@ -127,11 +129,11 @@ It is possible to create Group Profiles by CSV upload as an alternative to the G
 
 ### Add Group Key to User's Profile
 
-Adding the **group_key:group_id** to user profiles connects user profiles to group profiles. This allows you to user group profile properties when analyzing by Users in reports, for example, when creating user cohorts based on group profile properties.
+Adding `<group_key>: <group_id>` to user profiles connects user profiles to group profiles. This allows you to view user group profile properties when analyzing by Users in reports; for example, when creating user cohorts based on group profile properties.
 
 This relationship is one-way, meaning that you cannot use user profile properties when analyzing by a Group in reports.
 
-Because a user can be part of multiple groups within a group key, set the value of the user property as a list of string values, i.e., **"company_id": ["1", "2"]
+Because a user can be part of multiple groups within a group key, set the value of the user property as a list of string values, i.e., `"company_id": ["1", "2"]`
 
 ## Limits and Caveats
 

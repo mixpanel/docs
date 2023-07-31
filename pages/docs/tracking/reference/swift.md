@@ -83,6 +83,11 @@ Identify a user with a unique ID to track user activity across devices, tie a us
 
 Call `identify` when you know the identity of the current user, typically after log-in or sign-up. We recommend against using `identify` for anonymous visitors to your site. 
 
+```swift Swift
+// This example would set the identify the user with the new ID 13793
+Mixpanel.mainInstance().identify(distinctId: "13793");
+```
+
 
 ### Call Reset on Logout
 Reset generates a new random distinct_id and clears super properties. Call reset to clear data attributed to a user when that user logs out. This allows you to handle multiple users on a single device. For more information about maintaining user identity, see the [Identifying Users](/docs/tracking/how-tos/identifying-users) article.
@@ -97,14 +102,22 @@ If you want to use IFV(identifierForVendor) as the distinct_id, you can set
 
 ## Storing User Profiles
 
-In addition to events, you can store user profiles in Mixpanel. User profiles are persistent sets of properties that describe a user—things like name, email address, and signup date.
+In addition to events, you can store user profiles in Mixpanel's [Behavioral Analytics](https://docs.mixpanel.com/docs/tracking/how-tos/user-profiles) product. Profiles are persistent sets of properties that describe a user - things like name, email address, and signup date. You can use profiles to explore and segment users by who they are, rather than what they did.
 
-You can use profiles to explore and segment users by who they are, rather than what they did. You can also use profiles to send messages, such as emails, SMS, or push notifications.
+We generally recommend creating user profiles for only authenticated users; with this in mind, to create user profiles, 2 requiremenst need to be met:
+
+- You must call `.identify()` at least once for each user. Normally this is done after they authenticate.
+- At least one property should be sent for a profile to be created.
+
+Note: when sending set or set_once operations, the library will also populate automatic properties like `$ios_app_version`, `$ios_device_model`, geo-location properties and others.
 
 ### Setting Profile Properties
 You can set properties on a user profile with <a style="font-family: courier" href="https://mixpanel.github.io/mixpanel-swift/Classes/People.html#/s:FC8Mixpanel6People3setFT8propertySS2toPs9AnyObject__T_"> people.set(property:to:)</a>.
 
 ```swift Swift
+// Identify the authenticated user with the ID 13793
+// You can skip this if it was already called during authentication
+Mixpanel.mainInstance().identify(distinctId: "13793");
 // Sets user 13793's "Plan" attribute to "Premium"
 Mixpanel.mainInstance().people.set(properties: [ "plan":"Premium", "$email":"joe.doe@example.com"])
 ```
