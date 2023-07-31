@@ -97,7 +97,7 @@ Please make sure the user setting the integrations has standard or admin access 
 Please make sure the user setting the integrations has standard or admin access in the Google Ads account.
 
 
-**User doesn't have permission to access customer. Note: If you're accessing a client customer, the manager's customer id must be set in the 'login-customer-id' header. See https://developers.google.com/google-ads/api/docs/concepts/call-structure#login-cust**
+**User doesn't have permission to access customer. Note: If you're accessing a client customer, the manager's customer id must be set in the 'login-customer-id' header. See https://developers.google.com/google-ads/api/docs/concepts/call-structure#cid**
 
 Please make sure the user setting the integrations has standard or admin access in the Google Ads account.
 
