@@ -148,7 +148,7 @@ https://help.mixpanel.com/hc/en-us/articles/360033248932(.*) /docs/tracking/how-
 https://help.mixpanel.com/hc/en-us/articles/360034129112(.*) /docs/analysis/advanced/impact
 https://help.mixpanel.com/hc/en-us/articles/360035109991(.*) /docs/other-bits/tutorials/creating-a-tracking-plan
 https://help.mixpanel.com/hc/en-us/articles/360035583452(.*) /docs/other-bits/cohort-syncs/facebook-ads
-https://help.mixpanel.com/hc/en-us/articles/360036428871(.*) /docs/admin/organizations-projects/manage-organization#single-sign-on
+https://help.mixpanel.com/hc/en-us/articles/360036428871(.*) /docs/admin/sso
 https://help.mixpanel.com/hc/en-us/articles/360036438351(.*) /docs/analysis/reports/flows
 https://help.mixpanel.com/hc/en-us/articles/360038439952(.*) /docs/analysis/advanced/experiments
 https://help.mixpanel.com/hc/en-us/articles/360039135652(.*) /docs/other-bits/privacy-and-security/eu-residency
