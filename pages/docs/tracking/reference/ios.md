@@ -1,4 +1,4 @@
-# Ios
+# iOS
 
 ## Getting Started
 
