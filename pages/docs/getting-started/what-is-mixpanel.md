@@ -1,4 +1,4 @@
-# What Is Mixpanel
+# What Is Mixpanel?
 
 Mixpanel is an analytics tool that enables you to capture data on how users interact with your digital product. Mixpanel then lets you analyze this data with simple, interactive reports that let you query and visualize the data with just a few clicks.
 
