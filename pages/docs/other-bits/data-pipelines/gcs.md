@@ -1,4 +1,4 @@
-# Gcs
+# GCS
 
 The GCS schema pipeline exports [transformed data](/docs/other-bits/data-pipelines/schematized-export-pipeline#transformation-rules) to a GCS bucket. This can be useful in case you want to export Mixpanel data into your own BigQuery instance.
 
