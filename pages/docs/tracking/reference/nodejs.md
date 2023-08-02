@@ -1,4 +1,4 @@
-# Nodejs
+# Node.js
 
 The Mixpanel Node.js library will be most useful to you if you need to send data from a Node.js server, or for interacting with Mixpanel APIs in JavaScript outside of the browser (such as importing past events with a script).
 
