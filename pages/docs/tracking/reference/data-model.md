@@ -13,6 +13,68 @@ Mixpanel data is stored and isolated within a [project](/docs/admin/organization
 | **Group Profiles** | A group profile is a key/value store that holds state about member of your group. Group profiles are joined to Events on your chosen _group key_. For example, if you create a new group key for `company_id` your events will be joined on `event.company_id = group_profile.company_id` <br><br> [Learn more about profile properties](/docs/tracking/how-tos/events-and-properties) <br> [Learn more about group analytics](/docs/analysis/advanced/group-analytics) |
 | **Lookup Tables** | A lookup table is a key/value store that holds state about an entity. Lookup tables are joined to events (and other profiles) on your chosen join key. For example, if you create a lookup table for "Songs" and specify the join key as `song_id`, your events will be joined on `event.song_id = lookup_table.song_id`.<br><br>[Learn more about lookup tables](/docs/tracking/how-tos/lookup-tables) |
 
+## Example
+
+Imagine you work on a music streaming product and you want to answer questions like: 
+
+- What are the most popular songs and artists this week?
+- What is the distribution of number of songs player per week by user?
+- Which experiment performed better in an A/B test to drive a higher conversion rate from Free to Premium accounts?
+
+You want to analyze uniques by both users *and* accounts so you create a group key for `account_id`. You also want to augment your events with details about songs being played so you create a "Songs" lookup table and specify the join key as `song_id`. Your data model will look like this:
+
+![Data Model Example](/datamodel.png)
+
+Your Mixpanel data is made up of **events** and **profiles**, each of which is comprised of **properties**.  Events are data points in a time-series database. Profiles are key-value stores.
+
+
+## Anatomy of an Event
+The following event represents the fact that user "john.doe@gmail.com" played the song_id of `0wwPcA6wtMf6HUMpIRdeP7` on Tuesday, September 29, at 2020 8:42:11 PM GMT on a machine with IP 203.0.113.9.
+
+```json
+{
+  // The name of your event
+  "event": "Played Song", 
+
+   // A dictionary of properties to hold metadata about your event
+  "properties": { 
+
+    // The Mixpanel token associated with your project. You can find your Mixpanel token
+    // in the project settings dialog in the Mixpanel app. Events without a valid token
+    // will be ignored.
+    "token": "6972694d809c7390676a138834f8c890",
+
+    // The time an event occurred. If present, the value should be a Unix timestamp
+    // (milliseconds since UTC epoch). If this property is not included in your request,
+    // Mixpanel will use the time the event arrives at the server. If you're using our mobile SDKs,
+    // it will be set automatically for you.
+    "time": 1601412131000,
+
+    // An IP address string (e.g. "127.0.0.1") associated with the event. This is
+    // used for adding geolocation data to events, and should only be required if
+    // you are making requests from your backend. If IP is absent (and ip=1 is not
+    // provided as a URL parameter), Mixpanel will ignore the IP address of the request.
+    "ip": "203.0.113.9",
+
+    // A unique identifier for the event. Mixpanel uses this to deduplicate events in the case
+    // of retries or network failures. Events with the same (event, time, distinct_id, $insert_id)
+    // are considered duplicates. 
+    // We recommend generating UUIDs for $insert_ids. Our SDKs do this automatically.
+    "$insert_id": "5d958f87-542d-4c10-9422-0ed75893dc81",
+
+    // The value of distinct_id will be treated as a string, and used to uniquely 
+    // identify a user associated with your event. If you provide a distinct_id property
+    // with your events, you can track a given user through funnels and distinguish 
+    // unique users for retention analyses. You should always send the same distinct_id
+    // when an event is triggered by the same user.
+    "distinct_id": "john.doe@gmail.com",
+
+    // You can also specify any arbitrary properties you want to track as metadata
+    // about the event
+    "app_version": "1.1.34.694.gac68a2b3",
+    "song_id": "0wwPcA6wtMf6HUMpIRdeP7"
+}
+```
 
 ## User Profiles, Group Profiles & Lookup Tables
 All three are key/value stores that augment your event data with additional metadata about entities. The differences are whether the join key is customizable and whether events are copied and indexed by the join key.
