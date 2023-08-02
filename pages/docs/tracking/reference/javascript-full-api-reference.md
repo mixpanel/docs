@@ -1,8 +1,4 @@
-# Javascript Full Api Reference
-
-# mixpanel
-
-
+# JavaScript Full API Reference
 ___
 ## mixpanel.add_group
 Add a new group for this user.
