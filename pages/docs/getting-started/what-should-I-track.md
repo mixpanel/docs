@@ -1,4 +1,4 @@
-# What To Track
+# What Should I Track?
 
 It takes less than 5 minutes to track events to Mixpanel. In this guide, we provide some guidance on what to track and how to track it.
 
