@@ -1,4 +1,4 @@
-# Gdpr Compliance
+# GDPR Compliance
 
 
 ## Supporting Data Subject Rights
