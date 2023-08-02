@@ -8,7 +8,12 @@ Use Sessions in Mixpanel to answer questions like:
 
 Mixpanel computes sessions automatically from the events you send us. This means you don't need to do any special tracking work on your end to make sessions work.
 
-Sessions consist of two virtual events (Session Start and Session End) that Mixpanel computes for you in one of 3 ways:
+Sessions consist of two virtual events:
+* **Session Start** 
+* **Session End**
+  
+The way sessions are computed, and thus how the Session Start and Session End event are generated, can be configured in any of following ways:
+
 * **Timeout Based (Default)**: The session starts when a user performs any event, and ends when the user is inactive for some period of time (default: 30 minutes).
 * **Event Based**: Provide a starting event and ending event. The session starts when the user performs the starting event and ends when the user performs the ending event.
 * **Property Based**: Provide a `session_id` property. All events that a user performs which have the same value for `session_id` are considered part of the same session.
