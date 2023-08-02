@@ -1,8 +1,5 @@
----
-title: "GDPR Compliance"
-slug: "gdpr-compliance"
-hidden: false
----
+# GDPR Compliance
+
 
 ## Supporting Data Subject Rights
 

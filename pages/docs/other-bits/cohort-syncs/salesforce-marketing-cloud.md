@@ -1,13 +1,5 @@
----
-title: "Salesforce Marketing Cloud"
-slug: "salesforce-marketing-cloud-integration"
-hidden: false
-metadata: 
-  title: "Salesforce Marketing Cloud"
-  description: "Integrate Salesforce Marketing Cloud with Mixpanel."
-createdAt: "2021-10-08T22:39:06.529Z"
-updatedAt: "2023-03-25T05:52:10.102Z"
----
+# Salesforce Marketing Cloud
+
 
 ## Overview
 

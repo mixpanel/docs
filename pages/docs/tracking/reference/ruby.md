@@ -1,13 +1,5 @@
----
-title: "Ruby - Advanced"
-slug: "ruby"
-hidden: false
-metadata: 
-  title: "SDK integration: Ruby Library | Mixpanel Developer Docs"
-  description: "The Mixpanel Ruby library is designed to be used for scripting, or in circumstances when a user isn't directly interacting with your application. Learn more here."
-createdAt: "2018-04-12T18:58:37.520Z"
-updatedAt: "2023-03-26T20:07:16.780Z"
----
+# Ruby
+
 The Mixpanel Ruby library is designed to be used for scripting, or in circumstances when a user isn't directly interacting with your application on the web or a mobile device.
 
 The [Full API Reference](http://mixpanel.github.io/mixpanel-ruby), [Library Source Code](https://github.com/mixpanel/mixpanel-ruby), and an [Example Script](https://github.com/mixpanel/mixpanel-ruby/tree/master/demo) is documented in our GitHub repo.

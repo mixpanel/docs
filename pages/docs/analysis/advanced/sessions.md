@@ -1,3 +1,5 @@
+# Sessions
+
 Use Sessions in Mixpanel to answer questions like:
 * How much time do users spend on my site per session?
 * What are the average number of pages visited per session?

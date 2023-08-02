@@ -1,13 +1,5 @@
----
-title: "PHP - Advanced"
-slug: "php"
-hidden: false
-metadata:
-  title: "SDK Integration: PHP library | Mixpanel Developer Docs"
-  description: "The Mixpanel PHP library provides Mixpanel tracking functionality in server-side applications built using PHP. Read our docs to learn more."
-createdAt: "2018-12-06T23:05:14.379Z"
-updatedAt: "2023-05-07T20:07:11.147Z"
----
+# PHP
+
 The Mixpanel PHP library is designed to be used for scripting, or in circumstances when a client can't or won't run client side scripts
 
 [Github Repo with the source code](https://github.com/mixpanel/mixpanel-php)

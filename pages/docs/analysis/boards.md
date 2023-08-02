@@ -1,11 +1,5 @@
----
-title: "Boards"
-slug: "boards"
-hidden: false
-metadata:
-  title: "Boards"
-  description: "Learn about Boards in Mixpanel."
----
+# Boards
+
 
 ## Overview
 

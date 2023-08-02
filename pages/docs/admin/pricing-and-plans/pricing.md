@@ -1,7 +1,5 @@
----
-title: "Event Plans and Billing"
-hidden: false
----
+# Pricing
+
 
 Our default pricing option, events-based pricing, calculates your bill based on the number of tracked events. This transparent and self-serve model is a better option for the majority of our customers. You can [purchase any events-based plan online](https://mixpanel.com/pricing). Mixpanel also offers an MTU-based option, if it aligns best to your budget and business needs. [Our sales team can consult you](https://mixpanel.com/contact-us/sales/) to choose the best option.
 

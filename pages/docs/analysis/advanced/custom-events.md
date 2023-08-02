@@ -1,3 +1,5 @@
+# Custom Events
+
 ## Overview
 
 A custom event is a virtual event that was created from one or more events, optionally filtered down by a particular set of properties, and given a name. You can use custom events to:

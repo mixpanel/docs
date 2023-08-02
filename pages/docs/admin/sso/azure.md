@@ -1,11 +1,5 @@
----
-title: "Configure SSO with Microsoft Azure"
-slug: "configure-single-sign-on-sso-with-microsoft-azure"
-hidden: false
-metadata: 
-  title: "Configure Single Sign-On (SSO) with Microsoft Azure"
-  description: "Configure SSO with Azure"
----
+# Azure
+
 
 ## Overview
 

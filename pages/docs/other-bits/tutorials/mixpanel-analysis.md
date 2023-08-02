@@ -1,3 +1,5 @@
+# Mixpanel Analysis
+
 ## Overview of Tutorial: How to Use Mixpanel
 In this tutorial, we will explore the fundamentals of how Mixpanel works and highlight some of the key features to get you started. 
 

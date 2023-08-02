@@ -1,8 +1,5 @@
----
-title: "Set Up Projects"
-slug: "set-up-projects"
-hidden: false
----
+# Set Up Projects
+
 
 ## Separate Development Data
 

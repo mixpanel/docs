@@ -1,11 +1,5 @@
----
-title: "Impact"
-slug: "impact"
-hidden: false
-metadata:
-  title: "Impact"
-  description: "Learn about Mixpanel Impact report."
----
+# Impact
+
 
 ## Overview
 

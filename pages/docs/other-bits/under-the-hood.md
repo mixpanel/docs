@@ -1,13 +1,5 @@
----
-title: "How Mixpanel Works"
-slug: "under-the-hood"
-hidden: false
-metadata: 
-  title: "How It's Built | Mixpanel Developer Docs"
-  description: "Mixpanel's analysis UI is powered by an in-house database called Arb. This page covers the core design aspects, the pain it eliminates, and how it compares."
-createdAt: "2021-09-04T17:16:04.630Z"
-updatedAt: "2023-03-26T23:58:01.531Z"
----
+# Under The Hood
+
 Mixpanel's analysis UI is powered by an in-house database called Arb, which is built for ingesting, storing, and querying trillions of events in real-time. This page covers the core aspects of our design, the pain points it eliminates for users, and how it compares to other systems.
 ## Event-Centric
 

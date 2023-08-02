@@ -1,11 +1,5 @@
----
-title: "Event Approval"
-slug: "event-approval"
-hidden: false
-metadata:
-  title: "Event Approval"
-  description: "Event Approval Data Governance Setting"
----
+# Event Approval
+
 
 ## Overview
 

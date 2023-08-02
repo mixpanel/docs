@@ -1,13 +1,5 @@
----
-title: "Building a 3rd-Party Integration"
-slug: "partner-integration-id"
-hidden: false
-metadata:
-  title: "Build A Partner Integration | Mixpanel Developer Docs"
-  description: "Interested in building an integration with Mixpanel to provide value to your customers that also use Mixpanel? Learn about the process here."
-createdAt: "2020-10-15T23:17:34.007Z"
-updatedAt: "2023-03-27T17:15:37.834Z"
----
+# Build An Integration
+
 Building an integration with Mixpanel is a powerful way to provide value to your customers that also use Mixpanel. If your company is interested in becoming a Certified Technology Partner, building an integration is also the first step.
 
 ## Setting up a Sandbox

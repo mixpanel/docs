@@ -1,3 +1,5 @@
+# Identifying Users
+
 Mixpanel supports stitching user behavior pre-login (eg: traffic from your website, docs, blog) and post-login (once the user has signed up). This helps answer questions like:
 * What % of site visitors end up signing up?
 * How much of my Purchase revenue can I attribute to a particular campaign?

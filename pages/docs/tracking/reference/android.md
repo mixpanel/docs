@@ -1,13 +1,5 @@
----
-title: "Android - Advanced"
-slug: "android"
-hidden: false
-metadata:
-  title: "SDK Integration: Android Advanced | Mixpanel Developer Docs"
-  description: "Read our advanced documentation on Mixpanel's Android SDK integration. You'll dive deeper into additional configurations and use cases including group analytics."
-createdAt: "2018-04-12T18:57:33.400Z"
-updatedAt: "2023-02-04T01:12:42.453Z"
----
+# Android
+
 ## Getting Started
 
 Please refer to our [Quickstart Guide](../mobile).

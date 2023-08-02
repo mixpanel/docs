@@ -1,11 +1,5 @@
----
-title: "Experiments"
-slug: "experiments"
-hidden: false
-metadata:
-  title: "Experiments"
-  description: "Learn about Mixpanel Experiments report."
----
+# Experiments
+
 
 ## Overview
 

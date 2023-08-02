@@ -1,8 +1,5 @@
----
-title: "Snowplow"
-slug: "snowplow"
-hidden: false
----
+# Snowplow
+
 If you already use Snowplow to collect event data, it's easy to route that data to Mixpanel. The value of connecting Snowplow and Mixpanel is to enable fast, self-serve product analytics on the events you already collect. In this guide, we share the recommended ways to get events flowing from Snowplow → Mixpanel.
 
 

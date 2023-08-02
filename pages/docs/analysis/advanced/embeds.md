@@ -1,6 +1,5 @@
----
-title: "Embeds"
----
+# Embeds
+
 
 Mixpanel Boards and reports can be embedded in Figma, Coda, Jira, and any third-party tool that supports embedding.
 

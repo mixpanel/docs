@@ -1,8 +1,5 @@
----
-title: "EU Residency"
-slug: "eu-residency"
-hidden: false
----
+# EU Residency
+
 
 ## Overview
 Mixpanel believes in respecting and protecting people’s fundamental online privacy and data rights. Which is why we've built Mixpanel's analysis tools in compliance with industry best-practices and global data regulations like the GDPR and the CCPA.

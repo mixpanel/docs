@@ -1,3 +1,5 @@
+# Mixpanel For Developers Id Management
+
 ## Overview
 
 This section provides details on implementing Mixpanel's Identity Management called Identity Merge (ID Merge for short). Note that the [Legacy Identity Management](https://help.mixpanel.com/hc/en-us/articles/115004497803-Identity-Management-Pre-Identity-Merge-Overview) is not covered in this section as Identity Merge is enabled by default for all new organizations since March 2020.
@@ -37,15 +39,4 @@ Here are a few things to look out for:
 We encourage you to document your implementation (or create a diagram of the implementation). This will come in handy when you need to re-implement this on a new platform or troubleshoot ID management issue.
 
 Read more about [ID Merge Implementation Best Practices](https://help.mixpanel.com/hc/en-us/articles/9648680824852)
-
----
-
-## FAQs
-#### Is ID Merge retroactive?
-Yes, ID Merge is retroactive. During merging distinct IDs that are added to the same cluster will be considered as the same user going forward.
-
-#### There are two types of ID Merge?
-Yes, you can read more about the [difference between Original vs Simplified ID Merge](https://help.mixpanel.com/hc/en-us/articles/14383975110292) and for more details how each one works, see the links below:
-- [Getting Started with Original ID Merge](https://help.mixpanel.com/hc/en-us/articles/360041039771) (default for new projects)
-- [Getting Started with Simplified ID Merge](https://help.mixpanel.com/hc/en-us/articles/14377628688788)
 

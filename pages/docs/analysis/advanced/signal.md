@@ -1,3 +1,5 @@
+# Signal
+
 ## Overview
 
 Signal measures the association between a correlation event and a goal event and quantifies the correlation between the two. This facilitates a deeper understanding of the behaviors that drive customer conversions, and can help guide product decisions.

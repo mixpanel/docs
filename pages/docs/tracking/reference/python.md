@@ -1,13 +1,5 @@
----
-title: "Python - Advanced"
-slug: "python"
-hidden: false
-metadata:
-  title: "SDK Integration: Python library | Mixpanel Developer Docs"
-  description: "Mixpanel's Python library is designed to be used for scripting, or in circumstances when a user isn't directly interacting with your application. Learn more here."
-createdAt: "2018-04-12T18:57:57.678Z"
-updatedAt: "2023-03-26T20:07:00.387Z"
----
+# Python
+
 The Mixpanel Python library is designed to be used for scripting, or in circumstances when a user isn't directly interacting with your application on the web or a mobile device.
 
 The [Full API Reference](http://mixpanel.github.io/mixpanel-python), [Library Source Code](https://github.com/mixpanel/mixpanel-python), and an [Example Script](https://github.com/mixpanel/mixpanel-python/tree/master/demo) is documented in our GitHub repo.

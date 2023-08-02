@@ -1,13 +1,5 @@
----
-title: "Node.js - Advanced"
-slug: "nodejs"
-hidden: false
-metadata:
-  title: "SDK Integration: Node.js library | Mixpanel Developer Docs"
-  description: "The Mixpanel Node.js library provides Mixpanel tracking functionality in server-side applications built using Node.js. Read our docs to learn more."
-createdAt: "2018-12-06T23:05:14.379Z"
-updatedAt: "2023-03-26T20:07:11.147Z"
----
+# Node.js
+
 The Mixpanel Node.js library will be most useful to you if you need to send data from a Node.js server, or for interacting with Mixpanel APIs in JavaScript outside of the browser (such as importing past events with a script).
 
 The [Library Source Code](https://github.com/mixpanel/mixpanel-node) and an [Example Application](https://github.com/mixpanel/mixpanel-node/blob/master/example.js).

@@ -1,6 +1,5 @@
----
-title: "Overview"
----
+# Overview
+
 
 ## Limits
 Each project is limited to 60 dynamic (recurring) cohort syncs across all destinations. This limit helps ensure that syncs are fast and reliable. We recommend pruning older unused syncs to stay within the limit.

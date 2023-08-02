@@ -1,6 +1,5 @@
----
-title: "Data Model"
----
+# Data Model
+
 ## Overview
 
 Mixpanel data is stored and isolated within a [project](/docs/admin/organizations-projects/manage-projects). At this time, you cannot query data across multiple projects. Mixpanel supports a few different categories of data that can be used for analysis: events, user profiles, group profiles, and lookup tables. In data warehouse parlance, events make up the fact table while user profiles, group profiles, and lookup tables are dimension tables.
@@ -13,8 +12,6 @@ Mixpanel data is stored and isolated within a [project](/docs/admin/organization
 | **User Profiles** | A user profile is a key/value store that holds state about a user. User profiles are joined to events on `event.distinct_id = user_profile.distinct_id` <br><br> [Learn more about profile properties](/docs/tracking/how-tos/events-and-properties) |
 | **Group Profiles** | A group profile is a key/value store that holds state about member of your group. Group profiles are joined to Events on your chosen _group key_. For example, if you create a new group key for `company_id` your events will be joined on `event.company_id = group_profile.company_id` <br><br> [Learn more about profile properties](/docs/tracking/how-tos/events-and-properties) <br> [Learn more about group analytics](/docs/analysis/advanced/group-analytics) |
 | **Lookup Tables** | A lookup table is a key/value store that holds state about an entity. Lookup tables are joined to events (and other profiles) on your chosen join key. For example, if you create a lookup table for "Songs" and specify the join key as `song_id`, your events will be joined on `event.song_id = lookup_table.song_id`.<br><br>[Learn more about lookup tables](/docs/tracking/how-tos/lookup-tables) |
-
----
 
 ## Example
 
@@ -41,7 +38,7 @@ The following event represents the fact that user "john.doe@gmail.com" played th
 
    // A dictionary of properties to hold metadata about your event
   "properties": { 
-  
+
     // The Mixpanel token associated with your project. You can find your Mixpanel token
     // in the project settings dialog in the Mixpanel app. Events without a valid token
     // will be ignored.
@@ -78,7 +75,6 @@ The following event represents the fact that user "john.doe@gmail.com" played th
     "song_id": "0wwPcA6wtMf6HUMpIRdeP7"
 }
 ```
----
 
 ## User Profiles, Group Profiles & Lookup Tables
 All three are key/value stores that augment your event data with additional metadata about entities. The differences are whether the join key is customizable and whether events are copied and indexed by the join key.

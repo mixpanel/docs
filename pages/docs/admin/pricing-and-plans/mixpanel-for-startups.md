@@ -1,8 +1,5 @@
----
-title: "Mixpanel for Startups"
-slug: "mixpanel-for-startups"
-hidden: false
----
+# Mixpanel For Startups
+
 
 The startup program empowers early startups to easily track and analyze data to find product-market fit. The program is open to early-stage startups that meet the following requirements:
 

@@ -1,13 +1,5 @@
----
-title: "JQL"
-slug: "jql-overview"
-hidden: false
-metadata: 
-  title: "JQL Overview | Mixpanel Developer Docs"
-  description: "What is JQL? Read our documentation to learn what JQL is, the difference between JQL and SQL, and how to use it for custom data analysis with Mixpanel."
-createdAt: "2020-08-13T17:26:47.301Z"
-updatedAt: "2023-03-26T17:23:09.419Z"
----
+# JQL Overview
+
 
 > ❗️ JQL is in maintenance mode.
 > 

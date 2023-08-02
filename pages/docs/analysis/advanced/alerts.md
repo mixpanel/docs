@@ -1,3 +1,5 @@
+# Alerts
+
 ## Overview
 
 You can create Custom Alerts to keep yourself and your team up to date on dips and spikes in a metric, via Slack or email.

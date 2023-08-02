@@ -1,3 +1,5 @@
+# Migrating To Mixpanel From Google Analytics
+
 If you haven't already, we recommend starting with our [Migration Guides Overview](/docs/other-bits/tutorials/migration-guides) as it details the key components of migrating to Mixpanel from other analytics tools. Below we outline specific steps and considerations when migrating from Google Analytics.
 
 ## Differences in the data models

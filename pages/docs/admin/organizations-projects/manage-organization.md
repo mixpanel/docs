@@ -1,13 +1,5 @@
----
-title: "Manage Organization"
-slug: "manage-organization"
-hidden: false
-metadata: 
-  title: "Manage Organization"
-  description: "Manage your organization"
-createdAt: "2021-10-08T22:39:06.529Z"
-updatedAt: "2023-03-30T05:52:10.102Z"
----
+# Manage Organization
+
 
 ## Overview
 

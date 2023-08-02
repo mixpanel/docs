@@ -1,8 +1,5 @@
----
-title: "HTTP API"
-slug: "cloud-ingestion"
-hidden: false
----
+# HTTP API
+
 If you don't see an SDK or an integration in your language, you can send events to our API directly.
 
 Here's a sample script. Just plug in your Project Token at the top, run the script, and visit our [Events page](https://mixpanel.com/report/events) to see the events in our UI.

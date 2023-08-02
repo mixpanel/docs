@@ -1,3 +1,5 @@
+# Attribution
+
 Note: This feature is in beta. To access this feature please reach out to your account team or join the [waitlist](https://experiences.mixpanel.com/mixpanel-attribution-beta-waitlist/).
 
 ## Overview
