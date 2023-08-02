@@ -1,4 +1,4 @@
-# Mixpanel Bigquery Export Design
+# Mixpanel BigQuery Export Design
 
 This guide describes how Mixpanel exports your data to a [Google BigQuery](https://cloud.google.com/bigquery/) dataset.  
 ## Design
