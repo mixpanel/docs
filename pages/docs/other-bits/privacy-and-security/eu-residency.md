@@ -1,4 +1,4 @@
-# Eu Residency
+# EU Residency
 
 
 ## Overview
