@@ -1,4 +1,4 @@
-# Distinct Id Limits
+# Distinct ID Limits
 
 In order to maintain fast queries and catch implementation mistakes, we set a limit on the number of events sent to a particular `distinct_id` in a given time window. In this document, we explain how this limit works and what to do when you hit it.
 
