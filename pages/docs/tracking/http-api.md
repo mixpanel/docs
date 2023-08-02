@@ -1,4 +1,4 @@
-# Http Api
+# HTTP API
 
 If you don't see an SDK or an integration in your language, you can send events to our API directly.
 
