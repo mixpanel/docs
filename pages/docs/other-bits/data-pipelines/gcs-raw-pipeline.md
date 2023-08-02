@@ -1,4 +1,4 @@
-# Gcs Raw Pipeline
+# GCS Raw Pipeline
 
 To set up a raw export pipeline to Google Cloud Storage (GCS) from Mixpanel, you must configure GCS to receive the exported data, then [create a pipeline](https://developer.mixpanel.com/reference/create-warehouse-pipeline) to export the data.
 
