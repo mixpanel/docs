@@ -1,4 +1,4 @@
-# Api Credentials
+# API Credentials
 
 
 ## Project Token
