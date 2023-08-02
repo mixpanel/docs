@@ -1,3 +1,5 @@
+# Tutorials
+
 ## Mixpanel Tutorials
 We've collated here educational resources to guide you through best practices on what and how to implement on Mixpanel, and how to leverage Mixpanel to answer your analytics questions. 
 

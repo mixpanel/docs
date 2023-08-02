@@ -1,13 +1,5 @@
----
-title: "Java - Advanced"
-slug: "java"
-hidden: false
-metadata: 
-  title: "SDK Integration: Pure Java Library | Mixpanel Developer Docs"
-  description: "The Mixpanel pure Java library is designed for generality and is mostly useful in deep back-end and embedded applications. Learn more here."
-createdAt: "2018-04-12T18:58:28.930Z"
-updatedAt: "2023-03-26T20:07:24.875Z"
----
+# Java
+
 The Mixpanel Java library is useful to track events from Java servers.
 
 ## Getting Started

@@ -1,10 +1,5 @@
----
-title: "React Native - Advanced"
-slug: "react-native"
-hidden: false
-createdAt: "2020-12-04T03:36:42.560Z"
-updatedAt: "2023-02-04T01:13:34.479Z"
----
+# React Native
+
 ## Getting Started
 
 Please refer to our [Quickstart Guide](../mobile).

@@ -1,11 +1,5 @@
----
-title: "Configure Single Sign-On (SSO) with Okta"
-slug: "configure-single-sign-on-sso-with-okta"
-hidden: false
-metadata: 
-  title: "Configure Single Sign-On (SSO) with Okta"
-  description: "Configure SSO with Okta."
----
+# Okta
+
 
 ## Overview
 

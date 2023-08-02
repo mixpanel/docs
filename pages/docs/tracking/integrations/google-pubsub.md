@@ -1,8 +1,5 @@
----
-title: "Google Pub/Sub"
-slug: "google-pubsub"
-hidden: false
----
+# Google Pubsub
+
 This guide demonstrates how to plug Mixpanel into an event collection pipeline hosted in Google Cloud. Once set up, your events will route to Mixpanel and be available in real-time for analytics. This approach is serverless and open-source, and takes ~5 minutes to set up.
 
 Note: if you are on AWS, this approach is very similar using Kinesis and AWS Lambda.

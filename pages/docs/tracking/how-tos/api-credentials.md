@@ -1,8 +1,5 @@
----
-title: "Find your API Credentials"
-slug: "api-credentials"
-hidden: false
----
+# Api Credentials
+
 
 ## Project Token
 You need your Project Token to track events to Mixpanel. Mixpanel uses Project Token to ensure that events that you send are routed to your project.

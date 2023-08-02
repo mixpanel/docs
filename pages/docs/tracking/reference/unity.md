@@ -1,13 +1,5 @@
----
-title: "Unity - Advanced"
-slug: "unity"
-hidden: false
-metadata:
-  title: "SDK Integration: Unity Advanced | Mixpanel Developer Docs"
-  description: "Read our advanced documentation on Mixpanel's Unity SDK integration. You'll dive deeper into additional configurations and use cases including super properties."
-createdAt: "2018-04-12T18:58:41.198Z"
-updatedAt: "2022-07-06T22:05:49.187Z"
----
+# Unity
+
 ### Getting Started
 
 Please refer to our [Quickstart Guide](../mobile).

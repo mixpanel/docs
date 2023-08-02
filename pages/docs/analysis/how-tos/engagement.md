@@ -1,6 +1,5 @@
----
-title: "Engagement"
----
+# Engagement
+
 
 User engagement measures how users find value in a product or service. Engagement can be measured by a variety of activities such as clicks, shares, and more. Highly engaged users are more likely to contribute to stronger growth because they are more likely to share the product or service with their network.
 

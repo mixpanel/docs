@@ -1,13 +1,6 @@
----
-title: "Group Analytics"
-slug: "group-analytics"
-hidden: false
-metadata:
-  title: "Group Analytics"
-  description: "Learn how to use different groups in Mixpanel."
----
+# Group Analytics
 
-# Overview
+## Overview
 
 Mixpanel Group Analytics allows behavioral data analysis at a customized group level (such as account, device—or any other way you want to assess your business).
 
@@ -17,7 +10,7 @@ Group Analytics is available as an add-on package to customers on [Growth](http
 
 Customers on the Growth plan can buy this add-on [online](https://mixpanel.com/pricing/), while customers on the Enterprise plans can reach out to their Customer Success Manager or the [Mixpanel Sales Team](https://mixpanel.com/contact-us/sales/). Online plans allow up to 6 group keys. Enterprise customers can choose between 3 or 6 group keys. Each group can have a total 1M profiles.
 
-## Group By a Custom Identifier
+### Group By a Custom Identifier
 
 Mixpanel Group Analysis allows you to select alternative unique identifiers in reports.
 
@@ -29,7 +22,7 @@ This allows behavioral analysis from a business or group level, as opposed to an
 - In instances where there are more than one user per account, such as a video streaming service, how are events triggered at an account level?
 - What groups convert through a funnel to a goal event (as opposed to what individual users convert)?
 
-## Group Profiles
+### Group Profiles
 
 Much like a [user profile](/docs/tracking/how-tos/user-profiles), Group Profiles are a collection of properties and event history specific to a group.
 
@@ -53,7 +46,7 @@ To access a group profile:
 
 4. Groups profiles will populate the Users report.
 
-## Change the Group Identifier in a Report
+### Change the Group Identifier in a Report
 
 To change the identifier in a report:
 

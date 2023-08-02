@@ -1,13 +1,5 @@
----
-title: "Flutter - Advanced"
-slug: "flutter"
-hidden: false
-metadata:
-  title: "SDK Integration: Flutter Advanced | Mixpanel Developer Docs"
-  description: "Read our advanced documentation on Mixpanel's Flutter SDK integration. You'll dive deeper into additional configurations and use cases including group analytics."
-createdAt: "2021-02-16T18:33:30.205Z"
-updatedAt: "2023-02-04T01:14:18.355Z"
----
+# Flutter
+
 ## Getting Started
 
 Please refer to our [Quickstart Guide](../mobile).

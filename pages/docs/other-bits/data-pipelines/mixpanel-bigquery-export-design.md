@@ -1,10 +1,5 @@
----
-title: "Schematized: BigQuery"
-slug: "mixpanel-bigquery-export-design"
-hidden: false
-createdAt: "2019-01-25T19:05:42.218Z"
-updatedAt: "2023-03-26T19:16:35.229Z"
----
+# Mixpanel Bigquery Export Design
+
 This guide describes how Mixpanel exports your data to a [Google BigQuery](https://cloud.google.com/bigquery/) dataset.  
 ## Design
 

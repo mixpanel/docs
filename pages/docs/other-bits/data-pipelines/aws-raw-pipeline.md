@@ -1,13 +1,5 @@
----
-title: "Raw: Amazon S3"
-slug: "aws-raw-pipeline"
-hidden: false
-metadata: 
-  title: "Raw Export Pipeline: Amazon S3 | Mixpanel Developer Docs"
-  description: "Learn to set up a raw export pipeline to an S3 bucket from Mixpanel by configuring S3 to receive the exported data then create a pipeline to export the data."
-createdAt: "2019-08-13T16:33:47.964Z"
-updatedAt: "2023-03-26T19:17:33.098Z"
----
+# Aws Raw Pipeline
+
 To set up a raw export pipeline to an S3 bucket from Mixpanel, you must configure S3 to receive the exported data, then [create a pipeline](https://developer.mixpanel.com/reference/create-warehouse-pipeline) to export the data.
 
 The following document summarizes the steps to edit S3 bucket permissions so that it accepts the Mixpanel export. Consult [AWS documentation](https://docs.aws.amazon.com/AmazonS3/latest/gsg/GetStartedWithS3.html) for any AWS specific tasks, such as creating an [S3 bucket](https://docs.aws.amazon.com/AmazonS3/latest/userguide/creating-bucket.html) and editing [permissions](https://docs.aws.amazon.com/AmazonS3/latest/dev/using-with-s3-actions.html).

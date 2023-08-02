@@ -1,7 +1,5 @@
----
-title: "Cohorts"
-slug: "cohorts"
----
+# Cohorts
+
 
 ## Overview
 Cohorts are groups of users that share a certain set of properties or who perform a similar sequence of events. Mixpanel lets you visually define cohorts, view the list of users that comprise them, compare them in your analysis, and share them with the rest of your company.

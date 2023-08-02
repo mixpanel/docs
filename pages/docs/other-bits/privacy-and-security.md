@@ -1,13 +1,5 @@
----
-title: "Privacy & Security"
-slug: "privacy-security"
-hidden: false
-metadata:
-  title: "Privacy & Security | Mixpanel Developer Docs"
-  description: "Mixpanel believes in respecting and protecting people’s fundamental online privacy and data rights. Read how we store, manage data, and more."
-createdAt: "2021-04-28T19:22:30.616Z"
-updatedAt: "2023-02-08T20:07:20.513Z"
----
+# Privacy And Security
+
 ## Overview
 Mixpanel believes in respecting and protecting people’s fundamental online privacy and data rights. Which is why we've built Mixpanel's analysis tools in compliance with industry best-practices and global data regulations like the GDPR and the CCPA.
 

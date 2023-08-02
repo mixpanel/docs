@@ -1,13 +1,5 @@
----
-title: "JavaScript Full API Reference"
-slug: "javascript-full-api-reference"
-hidden: false
-metadata: 
-  title: "SDK Integration: Javascript Full API | Mixpanel Developer Docs"
-  description: "You can install the Mixpanel JavaScript library as an NPM package or as an HTML script snippet. View our full API reference here."
-createdAt: "2019-03-15T00:04:05.396Z"
-updatedAt: "2022-08-11T20:29:16.435Z"
----
+# Javascript Full Api Reference
+
 # mixpanel
 
 

@@ -1,10 +1,5 @@
----
-title: "iOS - Objective-C - Advanced"
-slug: "ios"
-hidden: false
-createdAt: "2018-04-12T18:56:23.972Z"
-updatedAt: "2022-10-11T21:15:03.702Z"
----
+# Ios
+
 ## Getting Started
 
 Please refer to our [Quickstart Guide](../mobile).

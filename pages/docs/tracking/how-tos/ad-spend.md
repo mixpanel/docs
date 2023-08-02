@@ -1,3 +1,5 @@
+# Ad Spend
+
 Mixpanel’s event-based-data model enables you to represent and analyze any type of data, including ad campaign performance. This guide shows you how to track this data to Mixpanel. The end result is a report that looks like this.
 
 In this doc, we give step-by-step guidance on how to bring your advertising network data into Mixpanel to look at metrics such as ROAS (Return on Ad Spend), CPC (Cost per click) in the context of in-product conversions. We also provide detailed guides for Google and Facebook Ads. The end result should look like this:

@@ -1,13 +1,5 @@
----
-title: "What Is Mixpanel?"
-slug: "what-is-mixpanel"
-hidden: false
-metadata: 
-  title: "What is Mixpanel? | Mixpanel Documentation"
-  description: "Explore Mixpanel's documentation to learn about product analytics, implementation, data structure, cohorts, SDK integrations, and more."
-createdAt: "2021-04-16T19:30:56.811Z"
-updatedAt: "2023-03-26T23:48:04.041Z"
----
+# What Is Mixpanel
+
 Mixpanel is an analytics tool that enables you to capture data on how users interact with your digital product. Mixpanel then lets you analyze this data with simple, interactive reports that let you query and visualize the data with just a few clicks.
 
 Our self-serve interface empowers your team to answer questions, no matter their data expertise.

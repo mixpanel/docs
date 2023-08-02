@@ -1,12 +1,5 @@
----
-title: "Support"
-slug: "support"
-hidden: false
-metadata:
-  title: "Support"
-createdAt: "2023-04-24T19:22:30.616Z"
-updatedAt: "2023-04-24T20:07:20.513Z"
----
+# Support
+
 
 Mixpanel Support Engineers are always ready to lend their product expertise and share tips to help you get the most out of your Mixpanel experience. This article will cover:
 

@@ -1,13 +1,5 @@
----
-title: "Data Pipelines"
-slug: "data-pipelines"
-hidden: false
-metadata: 
-  title: "Raw Export Pipeline Overview | Mixpanel Developer Docs"
-  description: "Our Data Pipeline API docs show how to use Mixpanel's Raw Export Pipeline to export your unaltered Mixpanel event data into supported destination buckets."
-createdAt: "2019-08-11T22:40:11.880Z"
-updatedAt: "2023-03-26T23:55:03.958Z"
----
+# Data Pipelines
+
 Data Pipelines is a [paid add-on](https://mixpanel.com/pricing) which continuously exports the events in your Mixpanel project to a cloud storage bucket or data warehouse of your choice. It's useful if you want to analyze Mixpanel events using SQL in your own environment.
 
 Using Data Pipelines requires 2 steps:

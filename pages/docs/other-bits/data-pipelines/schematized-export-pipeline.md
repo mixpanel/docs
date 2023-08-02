@@ -1,13 +1,5 @@
----
-title: "Schematized Export Reference"
-slug: "schematized-export-pipeline"
-hidden: false
-metadata: 
-  title: "Schematized Export Pipeline Overview | Mixpanel Developer Docs"
-  description: "Schematized Export Pipeline is designed to export your Mixpanel data into supported data warehouses or object storage solutions. Learn more here."
-createdAt: "2018-12-18T17:51:31.597Z"
-updatedAt: "2023-03-26T19:17:22.933Z"
----
+# Schematized Export Pipeline
+
 Schematized Export Pipeline is designed to export your Mixpanel data into supported data warehouses or object storage solutions. We first transform the events and user profile data in Mixpanel to be ready to be loaded into the supported data warehouses using [transformation rules](#transformation-rules). For object storage solutions, we only add the mapping of original property names to the column names to the bucket. For data warehouses, we add the schema and time-based partitions to the tables to make the queries easier to write and more efficient. 
 
 This documentation targets users with intermediate or advanced knowledge of databases and knowledge of Amazon Web Services, Google Cloud Platform, or Snowflake technology.

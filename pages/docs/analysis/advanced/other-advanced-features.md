@@ -1,11 +1,5 @@
----
-title: "Other Advanced Features"
-slug: "other-advanced-features"
-hidden: false
-metadata:
-  title: "Other Advanced Features"
-  description: "Learn about Mixpanel advanced features."
----
+# Other Advanced Features
+
 
 ## Query Builder Features
 

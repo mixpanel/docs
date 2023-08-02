@@ -1,11 +1,5 @@
----
-title: "Reports"
-slug: "reports"
-hidden: false
-metadata:
-  title: "Reports"
-  description: "Reports in Mixpanel.."
----
+# Reports
+
 
 A report is the basic unit of performing an analysis in Mixpanel.
 

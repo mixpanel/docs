@@ -1,10 +1,5 @@
----
-title: "Tracking via Proxy"
-slug: "collection-via-a-proxy"
-hidden: false
-createdAt: "2021-02-10T21:50:27.202Z"
-updatedAt: "2021-09-09T19:23:12.598Z"
----
+# Tracking Via Proxy
+
 This guide demonstrates how to route events from Mixpanel's SDKs via a proxy in your own domain. This is useful when tracking from the web, to reduce the likelihood of ad-blockers impacting your tracking.
 
 ![image](https://github.com/mixpanel/docs/assets/2077899/3ec6f3c2-aed0-4a18-9395-36838c3b53f1)

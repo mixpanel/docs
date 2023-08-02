@@ -1,6 +1,5 @@
----
-title: "Growth"
----
+# Growth
+
 
 Growth is a measure of how many people find value in your product over time. Many companies obsess over growth because they’re trying to build the best product in an increasingly crowded market. When potential customers can compare products from different companies in seconds, businesses must continuously improve their products if they want to stay competitive. If companies don’t focus on growth, they risk becoming obsolete as other companies leapfrog them with more innovative products.
 

@@ -1,11 +1,5 @@
----
-title: "Two-Factor Authentication (2FA)"
-slug: "two-factor-authentication"
-hidden: false
-metadata:
-  title: "Two Factor Authentication (2FA)"
-  description: "Learn about Two Factor Authentication."
----
+# Two Factor Authentication
+
 
 ## Overview
 

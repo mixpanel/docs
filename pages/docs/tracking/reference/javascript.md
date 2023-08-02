@@ -1,13 +1,5 @@
----
-title: "JavaScript - Advanced"
-slug: "javascript"
-hidden: false
-metadata: 
-  title: "SDK Integration: JavaScript Advanced | Mixpanel Developer Docs"
-  description: "Read our advanced documentation on Mixpanel's JavaScript SDK integration. You'll dive deeper into additional configurations and use cases."
-createdAt: "2018-04-12T18:30:29.933Z"
-updatedAt: "2023-02-04T01:08:26.006Z"
----
+# Javascript
+
 ## Getting Started
 
 Please refer to our [Quickstart Guide](../javascript-quickstart).

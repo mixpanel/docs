@@ -1,6 +1,5 @@
----
-title: "Retention"
----
+# Retention
+
 
 While there has been some debate as to which metric is the best indicator of product-market fit, retention is often cited as the single most important factor. This Primer will discuss what retention is all about, how to measure retention, and what good retention looks like.
 

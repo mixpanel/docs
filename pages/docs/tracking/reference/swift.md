@@ -1,13 +1,5 @@
----
-title: "iOS - Swift - Advanced"
-slug: "swift"
-hidden: false
-metadata: 
-  title: "SDK Integration: iOS Swift Advanced | Mixpanel Developer Docs"
-  description: "Read our advanced documentation on Mixpanel's iOS Swift SDK integration. You'll dive deeper into additional configurations, use cases, and more."
-createdAt: "2018-09-25T20:58:03.357Z"
-updatedAt: "2023-02-04T01:11:56.138Z"
----
+# Swift
+
 ## Getting Started
 
 Please refer to our [Quickstart Guide](../mobile).

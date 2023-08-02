@@ -1,10 +1,5 @@
----
-title: "Raw: Azure Blob Storage"
-slug: "azure-raw-pipeline"
-hidden: false
-createdAt: "2021-11-10T00:28:01.198Z"
-updatedAt: "2023-03-26T19:17:41.742Z"
----
+# Azure Raw Pipeline
+
 To set up a raw export pipeline to Azure Blob Storage from Mixpanel, you must first give Mixpanel permission to write to Azure. Next you can [create a pipeline](https://developer.mixpanel.com/reference/create-warehouse-pipeline) to export the data. Mixpanel then uploads the data to Azure Blob Storage on a recurring basis.
 
 The following document summarizes the steps to configure Azure permissions so that it accepts the Mixpanel export, and provides an example request to create the pipeline.

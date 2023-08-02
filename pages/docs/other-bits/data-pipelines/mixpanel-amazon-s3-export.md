@@ -1,13 +1,5 @@
----
-title: "Schematized: Amazon Web Services"
-slug: "mixpanel-amazon-s3-export"
-hidden: false
-metadata: 
-  title: "Schematized Export Pipeline: AWS | Mixpanel Developer Docs"
-  description: "AWS S3 is a Schematized Export Pipeline that exports Mixpanel data directly into an S3 bucket. Learn how to configure AWS and Mixpanel here."
-createdAt: "2019-01-25T17:27:54.264Z"
-updatedAt: "2023-03-26T19:16:30.791Z"
----
+# Mixpanel Amazon S3 Export
+
 Mixpanel's [Schematized Export Pipeline](/docs/other-bits/data-pipelines/schematized-export-pipeline) lets you export your Mixpanel data directly into an S3 bucket, allowing the use of Glue to query it. To set up the Mixpanel AWS pipeline, you must configure AWS to receive the exported data, then [create a pipeline](https://developer.mixpanel.com/reference/create-warehouse-pipeline) to export the data.
 
 ## Design

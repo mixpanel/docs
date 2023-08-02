@@ -1,10 +1,5 @@
----
-title: "User Profiles"
-slug: "user-profiles"
-hidden: false
-createdAt: "2021-10-01T20:21:17.479Z"
-updatedAt: "2021-10-02T18:41:55.184Z"
----
+# User Profiles
+
 
 User Profiles let you enrich events with properties about the users that performed those events. Profiles are optional; we recommend starting with events and only adding Profiles if you need it.
 

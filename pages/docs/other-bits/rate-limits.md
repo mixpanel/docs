@@ -1,3 +1,5 @@
+# Rate Limits
+
 ## Ingestion Endpoints
 
 See our [developer docs](https://developer.mixpanel.com/reference/import-events#rate-limits) for ingestion rate limits.

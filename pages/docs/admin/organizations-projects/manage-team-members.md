@@ -1,13 +1,5 @@
----
-title: "Manage Team Members"
-slug: "manage-team-members"
-hidden: false
-metadata: 
-  title: "Manage Team Members"
-  description: "Manage Team Members in Mixpanel"
-createdAt: "2021-10-08T22:39:06.529Z"
-updatedAt: "2023-03-30T05:52:10.102Z"
----
+# Manage Team Members
+
 
 ## Overview
 Your team members access your organization and its projects using individual user accounts which is what you use to sign into Mixpanel. An account must be part of an organization but it does not need to be part of all projects in the organization.  Each account will have a single organization role per organization and one project role for each project it is a part of. These roles can further limit what an account will have access to in Mixpanel.

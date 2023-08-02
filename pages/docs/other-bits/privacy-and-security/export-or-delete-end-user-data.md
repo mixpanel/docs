@@ -1,8 +1,5 @@
----
-title: "Export or Delete End User Data"
-slug: "export-or-delete-end-user-data"
-hidden: false
----
+# Export Or Delete End User Data
+
 
 Mixpanel supports account holders’ ability to request the deletion or export of end user data.
 

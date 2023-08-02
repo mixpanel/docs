@@ -1,6 +1,5 @@
----
-title: "Default Events & Properties"
----
+# Default Properties
+
 
 Mixpanel's client SDKs automatically collect certain properties on every event. This document describes what those properties mean.
 
