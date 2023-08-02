@@ -12,7 +12,7 @@ Sessions consist of two virtual events:
 * **Session Start** 
 * **Session End**
   
-The way sessions are are computed, and thus the Session Start and Session End event are generated, can be achieved in any of the following 3 ways:
+The way sessions are computed, and thus how the Session Start and Session End event are generated, can be configured in any of following ways:
 
 * **Timeout Based (Default)**: The session starts when a user performs any event, and ends when the user is inactive for some period of time (default: 30 minutes).
 * **Event Based**: Provide a starting event and ending event. The session starts when the user performs the starting event and ends when the user performs the ending event.
