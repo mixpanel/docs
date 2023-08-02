@@ -1,4 +1,4 @@
-# Jql Overview
+# JQL Overview
 
 
 > ❗️ JQL is in maintenance mode.
