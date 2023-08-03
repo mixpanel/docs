@@ -2,6 +2,9 @@
 @use "./theme/typography.scss" as typography;
 
 $base-spacing: 8px;
+$border-radius: 8px;
+$border-radius-md: 24px;
+$border-radius-lg: 100px;
 
 @font-face {
     font-display: swap;
@@ -162,6 +165,115 @@ $base-spacing: 8px;
         letter-spacing: 2px;
         font-size: 14px;
         font-weight: 500;
+    }
+
+    // Custom Search theming from Algolia Docsearch
+    .DocSearch {
+        --docsearch-primary-color: #{color.$purple200};
+        --docsearch-highlight-color:  #{color.$purple100};
+        --docsearch-spacing: #{$base-spacing * 3};
+        --docsearch-modal-width: 47rem;
+        --docsearch-container-background: rgba(27,11,59,.85);
+        --docsearch-modal-background: white;
+        --docsearch-footer-height: 60px;
+        --docsearch-hit-color: #{color.$purple200};
+        --docsearch-muted-color: #{color.$purple200};
+        
+        // Global Nextra theming makes the focus ring look a little nasty
+        input:focus-visible {
+            box-shadow: none;
+        }
+
+        &-SearchBar {
+            padding: 80px 88px 32px;
+        }
+
+        &-Modal {
+            border-radius: $border-radius-md;
+        }
+
+        &-Dropdown {
+            padding: 0 90px;
+            margin-bottom: 20px;
+        }
+        
+        .DocSearch-Hit-action, .DocSearch-Hit-icon, .DocSearch-Hit-Tree {
+            color: #b094ff;
+        }
+
+        &-Hit-Tree {
+            opacity: 1;
+        }
+
+        &-Hit a {
+            transition: background-color 0.1s linear;
+            border-radius: 0;
+            box-shadow: none;
+        }
+
+        &-Hits mark {
+            color: color.$purple100;
+            font-weight: bold;
+        }
+
+        &-Hit {
+            border-radius: $border-radius;
+            padding-bottom: initial;
+            margin-bottom: $base-spacing;
+            border: 2px solid #{color.$purple100};
+            overflow: hidden;
+        }
+
+        &-Form {
+            border-radius: $border-radius-md;
+            box-shadow: inset 0 0 0 2px color.$grey30;
+            transition: box-shadow 0.15s linear;
+
+            .DocSearch-MagnifierLabel {
+                color: color.$grey30;
+                transition: color 0.15s linear;
+            }
+
+            &:focus-within {
+                box-shadow: var(--docsearch-searchbox-shadow);
+
+                .DocSearch-MagnifierLabel {
+                    color: var(--docsearch-highlight-color);
+                }
+            }
+        }
+
+        &-Footer {
+            border-radius: 0 0 $border-radius-md $border-radius-md;
+        }
+
+        &-Commands-Key {
+            box-shadow: none;
+            background: transparent;
+            color: color.$grey50;
+        }
+
+        &-Label {
+            color: color.$grey50;
+        }
+
+        &-Screen-Icon {
+            display: flex;
+            justify-content: center;
+            color: unset;
+        }
+
+        &-NoResults-Prefill-List {
+            display: none;
+        }
+
+        &-StartScreen {
+            display: none;
+        }
+
+        &-NoResults {
+            color: color.$grey50;
+        }
     }
 
 }
