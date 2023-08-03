@@ -65,7 +65,7 @@ Anomaly Detection alerts automatically monitor your metrics and notify you when 
 3. Optionally, adjust the settings to tune the sensitivity of your alert. Higher confidence intervals typically result in a wider expected range and thus fewer alerts triggered. Use the alert preview to fine-tune the settings based on the context and confidence required.
 4. Configure the alert delivery settings and save.
 
-### Additional **information**
+### Additional information
 
 **Forecasting Tool**
 
