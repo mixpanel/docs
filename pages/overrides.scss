@@ -146,7 +146,7 @@ $base-spacing: 8px;
             box-shadow: unset;
         }
         .nx-bg-white {
-            background-color: unset;
+            background-color: color.$base100;
         }
 
             // Add some spacing between the sidebar sections
