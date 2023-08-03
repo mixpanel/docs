@@ -286,6 +286,26 @@ Enabling Mixpanel debugging and logging allows you to see the debug output from 
 ...
 ```
 
+## App Links Tracking
+The Mixpanel library has built in support for tracking in-bound and out-bound [App Links](https://developers.facebook.com/docs/applinks). App Links is a specification to help standardize deep-linking between apps as well as give you additional information about how users are getting to and from your own mobile app.
+
+### Requirements
+In order for Mixpanel to track App Links, your app must satisfy the following dependencies:
+- [Bolts Framework](https://github.com/BoltsFramework/Bolts-Android) >= v1.1.2
+- [Android Support Library v4](https://developer.android.com/topic/libraries/support-library/features#v4)+.
+
+> Note: If your application does not meet these requirements, the Mixpanel library will log debug messages about App Links tracking not being enabled. This is NOT an error and can be safely ignored.
+
+### Tracking In-bound App Links
+If a user comes to your app via an App Link, Mixpanel will automatically track a `$al_nav_in` event with meta information about where they came from.
+
+### Tracking Out-bound App Links
+If you're linking to other applications using the Bolts framework, Mixpanel will track a `$al_nav_out` event with additional meta information about where the user is being linked to.
+```java Java
+...
+bolts.AppLinkNavigation.navigateInBackground(this, "http://anotherapp.com/app/link");
+...
+```
 
 ## EU Data Residency
 
