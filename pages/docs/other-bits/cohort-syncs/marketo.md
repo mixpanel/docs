@@ -55,7 +55,7 @@ It is possible to export the same cohort to Marketo more than once, however each
 In order to export a user to Marketo using Cohorts, the user must have the special user profile property $email set on their user profile. If this property is not set on a user’s profile, they will not be exported to Marketo.
 
 ### How does Mixpanel handle users that exist within Mixpanel, but not in Marketo?
-If the user within Mixpanel has the $email user profile property, a new lead will be created in Marketo with the $email user profile property value and the designated custom field will be set to True.
+If the user within Mixpanel has the \$email user profile property, a new lead will be created in Marketo with the $email user profile property value and the designated custom field will be set to True.
 
 ### Is there a limitation to the number of profiles that can be exported to Marketo?
 The maximum cohort size exportable is 30 million profiles.
