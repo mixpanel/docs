@@ -1,0 +1,168 @@
+@use "./theme/colors.scss" as color;
+@use "./theme/typography.scss" as typography;
+
+$base-spacing: 8px;
+
+@font-face {
+    font-display: swap;
+    font-family: typography.$garnett;
+    font-style: normal;
+    font-weight: 500;
+    src: url("#{typography.$cdn-base}#{typography.$garnett-medium-base}.woff2")
+        format("woff2");
+}
+
+@font-face {
+    font-display: swap;
+    font-family: typography.$garnett;
+    font-style: normal;
+    font-weight: 400;
+    src: url("#{typography.$cdn-base}#{typography.$garnett-regular-base}.woff2")
+        format("woff2");
+}
+
+@font-face {
+    font-display: swap;
+    font-family: typography.$arizona-text-variable;
+    font-style: normal;
+    src: url("#{typography.$cdn-base}#{typography.$arizona-text-base}.woff2")
+        format("woff2");
+}
+
+@font-face {
+    font-display: swap;
+    font-family: typography.$arizona-text-light;
+    font-style: normal;
+    src: url("#{typography.$cdn-base}#{typography.$arizona-text-light-base}.woff2")
+        format("woff2");
+}
+
+@font-face {
+    font-display: swap;
+    font-family: typography.$apercu;
+    font-weight: 500;
+    src: url("#{typography.$cdn-base}#{typography.$apercu-base}.woff2")
+        format("woff2");
+}
+
+@font-face {
+    font-family: typography.$apercu-pro;
+    font-style: normal;
+    font-weight: 400;
+    src: url("#{typography.$cdn-base}/apercu/web/5.008/apercu-regular-pro.woff2")
+        format("woff2");
+}
+
+@font-face {
+    font-family: typography.$apercu-pro;
+    font-style: normal;
+    font-weight: 500;
+    src: url("#{typography.$cdn-base}/apercu/web/5.008/apercu-medium-pro.woff2")
+        format("woff2");
+}
+
+@font-face {
+    font-family: typography.$apercu-pro;
+    font-style: normal;
+    font-weight: 700;
+    src: url("#{typography.$cdn-base}/apercu/web/5.008/apercu-bold-pro.woff2")
+        format("woff2");
+}
+
+
+// One-off here because I think the font family definitions this was based on are messed up! 
+@font-face {
+    font-family: "Apercu Monospaced";
+    font-style: normal;
+    font-weight: 400;
+    src: url("https://cdn.mxpnl.com/static/marketing/fonts/apercu/web/5.008/apercu-mono-regular-pro.woff2")
+        format("woff2");
+}
+
+
+
+.theme-mixpanel {
+    line-height: 1.8;
+    font-size: 0.88rem;
+    letter-spacing: 0.3px;
+
+    // We'll handle our own antialiasing.
+    .nx-subpixel-antialiased {
+        -webkit-font-smoothing: unset;
+        -moz-osx-font-smoothing: unset;
+    }
+    
+
+    // We'll handle our own tracking.
+    .nx-tracking-tight {
+        letter-spacing: unset;
+    }
+
+    .nx-font-semibold,
+    p strong {
+        font-weight: 500; // Override to a weight that we actually DO support, otherwise we risk faux bold
+    }
+
+    // Get rid of all heading border-bottoms
+    h1, h2, h3, h4, h5 {
+        &.nx-border-b {
+            border-width: 0;
+        }
+    }
+
+    // Add some space underneath the text underlines
+    .\[text-underline-position\:from-font\] {
+        text-underline-offset: 3px;
+    }
+
+    body {
+        background-color: color.$base100;
+        -moz-osx-font-smoothing: grayscale;
+        -webkit-font-smoothing: antialiased;
+        overscroll-behavior-y: none;
+        font-family: typography.$garnett-stack;
+    }
+
+    // All code/mono type
+    code, kbd, samp, pre {
+        font-family: "Apercu Monospaced", monospace;
+        font-size: 15px;
+        line-height: 150%;
+        font-variant-ligatures: none;
+        font-feature-settings: normal;
+        letter-spacing: initial;
+    }
+
+    .nextra-content {
+        h1, h2, h3, h4, h5 {
+            letter-spacing: -0.3px;
+        }
+    }
+
+    // Right-hand sidebar
+    .nextra-toc {
+        // Remove all hardcoded white backgrounds and shadow filters
+        .nx-shadow-\[0_-12px_16px_white\] {
+            box-shadow: unset;
+        }
+        .nx-bg-white {
+            background-color: unset;
+        }
+
+            // Add some spacing between the sidebar sections
+            ul li {
+                margin-top: $base-spacing * 2;
+                margin-bottom: $base-spacing * 2;
+            }
+
+    }
+
+    .nextra-breadcrumb {
+        text-transform: uppercase;
+        letter-spacing: 2px;
+        font-size: 14px;
+        font-weight: 500;
+    }
+
+}
+
