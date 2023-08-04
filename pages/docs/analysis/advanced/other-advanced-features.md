@@ -712,7 +712,7 @@ In each case, the object will have multiple properties, such as "price" and "bra
 
 ### Usage
 
-List of objects can be used like other properties in Mixpanel. Upon selecting a list of objects property, you will be prompted to select another property, which is is common to the objects in the list. Usage in measurements, filters and breakdowns follows the same behavior as [other list proeprties](/docs/analysis/advanced/other-advanced-features#list-property-support).
+List of objects can be used like other properties in Mixpanel. Upon selecting a list of objects property, you will be prompted to select another property, which is is common to the objects in the list. Usage in measurements, filters and breakdowns follows the same behavior as [other list properties](/docs/analysis/advanced/other-advanced-features#list-property-support).
 
 ### Computed Properties
 
