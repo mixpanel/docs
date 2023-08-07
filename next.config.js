@@ -28,7 +28,7 @@ function parseRedirectPartsFromFile(filecontent) {
 }
 
 function formatForNextRedirect({ source, destination }) {
-  const matches = source.match("https://(?<host>.+\.mixpanel.com)(?<path>/.*)$");
+  const matches = source.match("https://(?<host>.+\\.mixpanel.com)(?<path>/.*)$");
   if (matches) { 
     const { host, path } = matches.groups;
     if (destination.startsWith(`/`)) {
