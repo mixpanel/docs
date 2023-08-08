@@ -14,5 +14,5 @@
 /docs/tutorials/mixpanel-analysis /docs/other-bits/tutorials/mixpanel-analysis/overview
 /docs/tutorials/mixpanel-analysis/insights /docs/other-bits/tutorials/mixpanel-analysis/insights
 /docs/tutorials/mixpanel-analysis/retention /docs/other-bits/tutorials/mixpanel-analysis/retention
-/docs/other-bits/tutorials/mixpanel-analysis/overview /docs/other-bits/tutorials/mixpanel-analysis/retention
+/docs/other-bits/tutorials/mixpanel-analysis/overview /docs/other-bits/tutorials/mixpanel-analysis/data-model
 /docs/tracking/how-tos/effective-server /docs/tracking/how-tos/effective-server-side-tracking
