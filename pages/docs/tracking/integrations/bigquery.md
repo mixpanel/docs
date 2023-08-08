@@ -1,7 +1,5 @@
 # BigQuery
 
-> ❗Note: This connector is currently in a closed beta. If you’d like access, please sign up via [this form](https://forms.gle/PctmA2fZvwdpCRGY6).
-
 This document will walk you through step-by-step instructions to get your BigQuery connector up and running.
 
 ## Connect to your Warehouse
