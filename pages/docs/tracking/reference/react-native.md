@@ -102,7 +102,7 @@ mixpanel.reset();
 
 ## Storing User Profiles
 
-In addition to events, you can store user profiles in Mixpanel's [Behavioral Analytics](https://mixpanel.com/people/) product. Profiles are persistent sets of properties that describe a user - things like name, email address, and signup date. You can use profiles to explore and segment users by who they are, rather than what they did. 
+In addition to events, you can store user profiles in Mixpanel's Behavioral Analytics product. Profiles are persistent sets of properties that describe a user - things like name, email address, and signup date. You can use profiles to explore and segment users by who they are, rather than what they did. 
 
 
 ### Setting Profile Properties

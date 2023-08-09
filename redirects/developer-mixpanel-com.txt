@@ -46,6 +46,7 @@
 /developer-docs-redirect/partner-integration-id /docs/other-bits/cohort-syncs/build-an-integration
 /developer-docs-redirect/php http://mixpanel.github.io/mixpanel-php/classes/Mixpanel.html
 /developer-docs-redirect/plan-your-implementation /docs/getting-started/plan-your-implementation
+/developer-docs-redirect/privacy-friendly-tracking /docs/tracking/how-tos/privacy-friendly-tracking
 /developer-docs-redirect/privacy-security /docs/other-bits/privacy-and-security
 /developer-docs-redirect/python /docs/tracking/reference/python
 /developer-docs-redirect/quick-start-guide /docs/tracking/mobile
