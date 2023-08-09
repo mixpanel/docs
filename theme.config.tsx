@@ -1,5 +1,6 @@
 import { FC, ReactNode } from "react";
 import { DocsThemeConfig } from "nextra-theme-docs";
+import Search from './components/Search/Search';
 import MixpanelLogoWordmark from "./components/svg/MixpanelLogoWordmark";
 
 function renderComponent<T>(ComponentOrNode: FC<T> | ReactNode, props?: T) {
@@ -43,6 +44,9 @@ const config: DocsThemeConfig = {
   useNextSeoProps: () => ({
     titleTemplate: '%s - Mixpanel Docs'
   }),
+  search: {
+    component: Search
+  },
   project: {
     link: "https://github.com/mixpanel/docs",
   },
