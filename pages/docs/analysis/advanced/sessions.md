@@ -20,7 +20,7 @@ The way sessions are computed, and thus how the Session Start and Session End ev
 * **Event Based**: Provide a starting event and ending event. The session starts when the user performs the starting event and ends when the user performs the ending event.
 * **Property Based**: Provide a `session_id` property. All events that a user performs which have the same value for `session_id` are considered part of the same session.
 
-Project Admins or Owners can choose between one of these configurations in [Project Settings](mixpanel.com/project/settings). Since Mixpanel computes sessions on the fly, you can change this definition at any time and it will apply historically. Read more [below](#session-computation-deep-dive).
+Project Admins or Owners can choose between one of these configurations in [Project Settings](https://mixpanel.com/project/settings). Since Mixpanel computes sessions on the fly, you can change this definition at any time and it will apply historically. Read more [below](#session-computation-deep-dive).
 
 ## Use Cases
 These use cases assuming that you're tracking an event for each page a user views. You can do this automatically with our [Javascript SDK](/docs/tracking/javascript-quickstart) or using a CDP like Segment.
