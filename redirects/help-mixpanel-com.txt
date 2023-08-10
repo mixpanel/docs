@@ -10,7 +10,7 @@ https://help.mixpanel.com/hc/admin/general_settings /docs/admin/organizations-pr
 https://help.mixpanel.com/:zendesk_attachment(attachments/token/.*) https://mixpanelsupport.zendesk.com/:zendesk_attachment
 
 # Help Center - Content Redirects (Sort Alphabetically)
-https://help.mixpanel.com/hc/articles/360000679006(.*)  /docs/tracking/how-tos/privacy-friendly-tracking
+https://help.mixpanel.com/hc/articles/360000679006(.*) /docs/tracking/how-tos/privacy-friendly-tracking
 https://help.mixpanel.com/hc/en-us/articles/10147279357076(.*) /docs/tracking/how-tos/debugging#data-discrepancies
 https://help.mixpanel.com/hc/en-us/articles/10503460589972(.*) /changelogs
 https://help.mixpanel.com/hc/en-us/articles/10997736335892(.*) https://github.com/mixpanel/mixpanel-js/blob/master/doc/readme.io/javascript-full-api-reference.md#mixpaneltime_event
