@@ -28,7 +28,7 @@ When your year in the startup program is over, our team will work with you to he
 
 #### Why is the startup program offer so generous?
 
-Startups are a part of Mixpanel’s DNA and we are dedicated to having the best startup program on the market and supporting as many founders as we can. The Mixpanel for Startups program provides the first year free, valued up to $50,000. Most of our startups' usage does not come close to \$50,000. However, we wanted to make sure we provide enough value to cover startups that experience rapid growth in their first year and need to be on a larger data plan. Startups should focus on building world-class products and not worry about short-term trials, restrictive data plans, and hidden pricing.
+Startups are a part of Mixpanel’s DNA and we are dedicated to having the best startup program on the market and supporting as many founders as we can. The Mixpanel for Startups program provides the first year free, valued up to $50,000. Most of our startups' usage does not come close to $50,000. However, we wanted to make sure we provide enough value to cover startups that experience rapid growth in their first year and need to be on a larger data plan. Startups should focus on building world-class products and not worry about short-term trials, restrictive data plans, and hidden pricing.
 
 ### Eligibility FAQ
 
