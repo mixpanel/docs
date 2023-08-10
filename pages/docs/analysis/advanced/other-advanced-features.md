@@ -1044,6 +1044,8 @@ Step 3a: Enterprise users: select ‘projects’, then select the specific proje
 
 Step 3b: Non-enterprise users: hover over the "Move To" option, and the project menu will appear immediately. From there, you can choose “Move to your Boards” or another location and select your choice. 
 
+Step 3c: You can also use Move to use Boards from a demo project in your own. Get your free Mixpanel demo account [here](https://mixpanel.com/project/2195193/view/139237/app/boards?show-demo-dataset-modal=true#id=685944) to access the demo datasets. Once you're in, you can set up a new Board easily using a [template](https://docs.mixpanel.com/docs/analysis/boards#board-templates), or you can build a report from scratch. If you like what you see and want to use the analysis in your own project, you can click the button that says "Use this Board." You'll then select the project to which you want to move the board.
+
 Step 4: If there are events and properties used in the old project but not the new project, the affected reports will remain empty or say “no data” until new events and properties are selected. 
 
 When a report can’t populate, it will display one of two states: a faded out sample report or a “no data” status. 
