@@ -195,7 +195,7 @@ https://help.mixpanel.com/hc/en-us/articles/360035583452(.*) /docs/other-bits/co
 https://help.mixpanel.com/hc/en-us/articles/360036428871(.*) /docs/admin/sso
 https://help.mixpanel.com/hc/en-us/articles/360036438351(.*) /docs/analysis/reports/flows
 https://help.mixpanel.com/hc/en-us/articles/360038439952(.*) /docs/analysis/advanced/experiments
-https://help.mixpanel.com/hc/en-us/articles/360039133851(.*) /docs/other-bits/tutorials/developers/mixpanel-for-developers-id-management
+https://help.mixpanel.com/hc/en-us/articles/360039133851(.*) /docs/tracking/how-tos/identifying-users
 https://help.mixpanel.com/hc/en-us/articles/360039135652(.*) /docs/other-bits/privacy-and-security/eu-residency
 https://help.mixpanel.com/hc/en-us/articles/360039256492(.*) /docs/other-bits/cohort-syncs/google-ads
 https://help.mixpanel.com/hc/en-us/articles/360039403631(.*) /docs/other-bits/cohort-syncs/iterable
@@ -274,7 +274,7 @@ https://help.mixpanel.com/hc/en-us/categories/115001209063(.*) /docs/analysis/bo
 https://help.mixpanel.com/hc/en-us/categories/13174726206612(.*) /changelogs
 https://help.mixpanel.com/hc/en-us/requests/new https://mixpanel.com/get-support
 https://help.mixpanel.com/hc/en-us/search /docs/getting-started/what-is-mixpanel
-https://help.mixpanel.com/hc/en-us/sections/115001299203(.*) /docs/other-bits/tutorials/developers/mixpanel-for-developers-id-management
+https://help.mixpanel.com/hc/en-us/sections/115001299203(.*) /docs/tracking/how-tos/identifying-users
 https://help.mixpanel.com/hc/en-us/sections/115001308546(.*) /docs/tracking/http-api
 https://help.mixpanel.com/hc/en-us/sections/115001308566(.*) /docs/other-bits/jql-overview
 https://help.mixpanel.com/hc/en-us/sections/115001517666(.*) /docs/other-bits/cohort-syncs/overview
