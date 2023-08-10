@@ -27,13 +27,13 @@ Step 1 - Add your conversion metric
 
 Step 2 - Attribution makes sense only when distributing the conversion metric across segments. So head to the breakdown section and choose the Mixpanel computed property - `Attributed by..`
 
-Step 3 - In the second layer that opens up, choose the property you want to break-down by (eg. utm_medium). You can also choose a custom-property to  breakdown here, for example marketing channel which generally is a combination of utm medium, utm source and referrer.    
+Step 3 - In the second layer that opens up, choose the property you want to break-down by (eg. UTM medium). You can also choose a custom property to breakdown here, for example marketing channel which generally is a combination of UTM medium, UTM source and referrer.    
 
 Step 4 - You have a working attribution model.  By default, Mixpanel will assign the metric the Last touch model with a 30 day lookback window. To change the model, head to the metric section
 
-Step 5 - If you want to inlcude only certain channels or touchpoints in your attribution analysis, you can filter touchpoints as well from the breakdown overflow menu. Some common use-cases for this include excluding organic touchpoints from attribution analysis. 
+Step 5 - If you want to include only certain channels or touchpoints in your attribution analysis, you can filter touchpoints from the breakdown overflow menu. A use-case for this is excluding organic touchpoints from attribution analysis. 
 
-👉🏽 NOTE: if you are running attribution predominantly on utm_medium, utm_source, utm_campaign, make sure you’re tracking utm parameters as event properties on every user touchpoint. 
+👉🏽 NOTE: if you are running attribution predominantly on UTM_medium, UTM_source, UTM_campaign, make sure you’re tracking UTM parameters as event properties on every user touchpoint. 
 If you use a Mixpanel js-sdk, we’ve updated our sdk to track utm parameters more effectively to support multi-touch attribution models. 
 
 ## Attribution Models
