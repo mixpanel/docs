@@ -107,3 +107,21 @@ Read more about best practices for tracking Events and Properties in Mixpanel [h
     - Alternatively, you can specify a static value during creation.
 
 ### Ingest Events
+---
+This [loom video](https://www.loom.com/share/881e4df38608482680e798f3a6435df5) should provide an overview of ingesting events into to Mixpanel.
+
+Once you have created a warehouse source, follow the below steps to send events into Mixpanel.
+1. Go to Project Settings > Warehouse Data.
+2. Click on + Add Warehouse Event.
+3. Select the source from the dropdown (e.g. Snowflake, BigQuery).
+4. Select the database and schema.
+5. Select the table.
+6. Specify the Event Name:
+    - You can specify the column which has the event name.
+    - **OR** You can specify the event name for all the events.
+7. Specify the Event Time:
+    - This is the time the event occurred.
+8. Select the columns which have the following identifiers:
+    - Distinct ID.
+    - Insert ID.
+9. Check the preview to ensure that everything looks correct, and then create the event.
