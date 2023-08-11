@@ -23,8 +23,8 @@ Navigate to Project Settings > Warehouse Sources to get started today.
 
 ## Supported Warehouses
 For more information on how to get started with your warehouse, navigate below:
-- [BigQuery](https://docs.mixpanel.com/docs/tracking/integrations/bigquery) 
-- [Snowflake](https://docs.mixpanel.com/docs/tracking/integrations/snowflake)
+- [BigQuery](https://docs.mixpanel.com/docs/tracking/data-warehouse/bigquery) 
+- [Snowflake](https://docs.mixpanel.com/docs/tracking/data-warehouse/snowflake)
 
 
 ## FAQ
