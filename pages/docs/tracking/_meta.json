@@ -3,7 +3,9 @@
     "server": "Server",
     "http-api": "HTTP API",
     "mobile": "Mobile",
+    "data-warehouse": "Data Warehouse",
     "integrations": "Integrations",
+    "supported-data-warehouses": "Supported Data Warehouses",
     "how-tos": "How Tos",
     "reference": "Reference"
 }
