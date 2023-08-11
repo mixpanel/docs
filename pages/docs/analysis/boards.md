@@ -119,7 +119,7 @@ For projects that have already been implemented and have data, you will select y
 
 For projects that do not have data, please refer to our [dev docs](https://developer.mixpanel.com/docs/plan-your-implementation) and [implementation](https://help.mixpanel.com/hc/en-us/categories/115001197206-Data-and-Implementation) resources.
 
-#### Key metrics:
+#### Key Metrics
 
 These templates monitor a number of metrics for you. A few are highlighted below.
 
