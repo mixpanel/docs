@@ -22,7 +22,7 @@ This lets you answer questions like:
 Navigate to Project Settings > Warehouse Sources to get started today.
 
 ## Supported Warehouses
-For more information on how to get started with your warehouse, navigate below:
+The following data warehouses are currently supported with Mixpanel Warehouse Connectors. For more details on how to get started with your data warehouse, navigate below:
 - [BigQuery](https://docs.mixpanel.com/docs/tracking/data-warehouse/bigquery) 
 - [Snowflake](https://docs.mixpanel.com/docs/tracking/data-warehouse/snowflake)
 
