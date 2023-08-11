@@ -118,24 +118,24 @@ If you have an existing project with no data in it, you can also switch to using
 Customer Data Platform (CDP) integrations may require some configuration to work the Simplified API:
 - Segment works out of the box with both the simplified and original APIs with no special configurations.
 - Rudderstack has a [connection setting](https://www.rudderstack.com/docs/destinations/streaming-destinations/mixpanel/#connection-settings) that should match the API version configured on your Mixpanel project.
-- mParticle works out the box with the original API, but requires the following change to work with the simplified API: supply `$device_id` and `$user_id` explicitly as properties on your events.
+- mParticle works out of the box with the original API, but requires the following change to work with the simplified API: supply `$device_id` and `$user_id` explicitly as properties on your events.
 
 Most other integrations are unaffected by this API change. These integrations are not involved in identity management, they send data to the ID they are given and will work the same way on the simplified API that they do on the original API.
 
-### How does the Simplified API differ from the the Original API?
+### How does the Simplified API differ from the Original API?
 
-- **`$user_id`/`$device_id` are linked without separate `$identify`, `$merge`, or `$create_alias` events.** The Original API required sending one of these three special event types to link two identities. In the Simplified API the `$identify`, `$merge`, and `$create_alias` events no longer have any special meaning and will be ignored. Instead, identities are linked using the `$user_id` and `$device_id` properties on regular events as described above.
+- **`$user_id`/`$device_id` are linked without separate `$identify`, `$merge`, or `$create_alias` events.** The Original API required sending one of these three special event types to link two identities. In the Simplified API, the `$identify`, `$merge`, and `$create_alias` events no longer have any special meaning and will be ignored. Instead, identities are linked using the `$user_id` and `$device_id` properties on regular events as described above.
 - **`$distinct_id` is predictable and matches `$user_id` for identified users.** In the Original API, IDs are grouped into identity clusters and any ID within the cluster might become the “canonical” distinct ID. In the simplified API, the `$distinct_id` is deterministic: it will always be the `$user_id` that you provide.
-- **There is no limit on the number of `$device_id`s that can be merged into a single `$user_id`.** In the Original API a maximum of 500 IDs can be merged into a single cluster. In the Simplified API there is no similar restriction; you can merge an unlimited number of `$device_id`s into `$user_id`s. This is useful in apps where users log out and log in often.
+- **There is no limit on the number of `$device_id`s that can be merged into a single `$user_id`.** In the Original API a maximum of 500 IDs can be merged into a single cluster. In the Simplified API, there is no similar restriction; you can merge an unlimited number of `$device_id`s into `$user_id`s. This is useful in apps where users log out and log in often.
 
 ## FAQ
 
 ### What is Distinct ID?
-`distinct_id` is an identifier set by Mixpanel based on the combination of `$device_id` and `$user_id`. The purpose of `distinct_id` is to provide a single, unified identifier for a user across devices and sessions. This helps Mixpanel compute metrics like Daily Active Users accurately: when two events have the same value of `distinct_id`, they are considered as being performed by 1 unique user. By joining on the `distinct_id`, Mixpanel is also able to accurately count funnels or retention metrics that span a user's logged out behavior and logged in behavior.
+`distinct_id` is an identifier set by Mixpanel based on the combination of `$device_id` and `$user_id`. The purpose of `distinct_id` is to provide a single, unified identifier for a user across devices and sessions. This helps Mixpanel compute metrics like Daily Active Users accurately: when two events have the same value of `distinct_id`, they are considered as being performed by 1 unique user. By joining on the `distinct_id`, Mixpanel is also able to accurately count funnels or retention metrics that span a user's logged-out behavior and logged-in behavior.
 
 Note: You cannot set the value of `distinct_id` yourself, it will be set by Mixpanel. How it's set depends on the [version of ID Merge](/docs/tracking/how-tos/identifying-users#simplified-vs-original-id-merge) that your project uses:
 * **Simplified ID Merge (default):** `distinct_id` will be the `$user_id` if present, otherwise will be `$device:<$device_id>`.
-* **Original ID Merge:** `distinct_id` will be either the `$user_id` or `$device_id`, but is non-determinstic and chosen to optimize backend performance. If you want control over a particular identifier for the user, we recommend setting a [user profile property](/docs/tracking/how-tos/user-profiles), such as 'User ID', that has your identified ID. This allows you to have a property that represents the identified user ID.
+* **Original ID Merge:** `distinct_id` will be either the `$user_id` or `$device_id`, but is non-deterministic and chosen to optimize backend performance. If you want control over a particular identifier for the user, we recommend setting a [user profile property](/docs/tracking/how-tos/user-profiles), such as 'User ID', that has your identified ID. This allows you to have a property that represents the identified user ID.
 
 ### What does Mixpanel recommend using as the `$user_id`?
 We recommend using an ID that is unique to each user and does not change, for example a database ID. While using an identifier like email may be more convenient, keep in mind that you cannot merge 2 `$user_id`s or change a `$user_id`, so if the user changes their email, they will count as a separate user.
@@ -143,27 +143,27 @@ We recommend using an ID that is unique to each user and does not change, for ex
 If you are on Original ID Merge, we do have a [`$merge`](https://developer.mixpanel.com/reference/identity-merge) API call that can merge two `$user_id`s. Note: this can add significant complexity to your implementation, and has been removed in Simplified ID Merge.
 
 ### How long does it take for the `$device_id` -> `$user_id` mapping to take effect?
-For debugging purposes, the Activity Feed view of a single user is updated in real-time (<1 minute delay). You can get to the Activity Feed by navigating to [Users](https://mixpanel.com/report/users) and selecting a given user.
+For debugging purposes, the Activity Feed view of a single user is updated in real-time (<1-minute delay). You can get to the Activity Feed by navigating to [Users](https://mixpanel.com/report/users) and selecting a given user.
 
-It may take up to 24 hours for this mapping to propogate to all other parts of the system. This means that in some cases, when analyzing a funnel that spans pre-login and post-login behavior in real-time, some may be shown as dropped-off, even though they're performed the conversion event.
+It may take up to 24 hours for this mapping to propagate to all other parts of the system. This means that, in some cases, when analyzing a funnel that spans pre-login and post-login behavior in real-time, some may be shown as dropped-off, even though they're performed the conversion event.
 
 ### How does this relate to User Profiles?
 [User Profiles](/docs/tracking/how-tos/user-profiles) are set directly on `$distinct_ids`, not on `$user_ids` or `$device_ids`. We recommend waiting until after a user is identified before setting user profile properties.
 
-It is possible to set user profile properties for un-identified users by sending the profile updates to `$distinct_id=$device:<device-id>`. However, user profile properties are not preserved when `$device_ids` are linked to `$user_ids`, so any properties set before the IDs became linked will need to be set again using `$distinct_id=<user-id>` once the user is identified.
+It is possible to set user profile properties for unidentified users by sending the profile updates to `$distinct_id=$device:<device-id>`. However, user profile properties are not preserved when `$device_ids` are linked to `$user_ids`, so any properties set before the IDs became linked will need to be set again using `$distinct_id=<user-id>` once the user is identified.
 
 ### Is it possible to merge two `$user_ids`?
-We don't recommend doing this in general, as it adds complexity to your identity resolution strategy. Instead we recommend having a single, unchanging `$user_id` for each user and pointing all other IDs for that user to that single `$user_id`.
+We don't recommend doing this in general, as it adds complexity to your identity resolution strategy. Instead, we recommend having a single, unchanging `$user_id` for each user and pointing all other IDs for that user to that single `$user_id`.
 
 ### How should I link identified IDs from 3rd-party systems?
 Attribution providers (like Appsflyer, Adjust, and Branch) use Mixpanel's SDK properly to set `$device_id` to whichever ID they use for attribution. 
 
-For cohort syncs out to 3rd-party systems, we recommend designating a user property with the identifier of the user in that third-party system. More details are in our integrations docs; for example, see our [doc on exporting cohorts to Braze](/docs/other-bits/cohort-syncs/braze#matching-mixpanel-and-braze-users). If those integrations are bidirectional (eg: they send events _back_ to Mixpanel), it's best to ensure that the user ID in both Mixpanel and that 3rd-party system are the same so that those events are sent to the correct user.
+For cohort syncs out to 3rd-party systems, we recommend designating a user property with the identifier of the user in that third-party system. More details are in our integrations docs; for example, see our [doc on exporting cohorts to Braze](/docs/other-bits/cohort-syncs/braze#matching-mixpanel-and-braze-users). If those integrations are bidirectional (eg: they send events _back_ to Mixpanel), it's best to ensure that the user ID in both Mixpanel and the 3rd-party system is the same so that those events are sent to the correct user.
 
 ### What is the status of Mixpanel's legacy `alias` method?
 Prior to March 2020, the only way to connect users together was the `.alias()` method. This was very limited and was not retroactive; this meant that if a user used two devices and then logged in, you would lose activity for the user from one of the devices.
 
-If you set up Mixpanel prior to 2020, you may have implemented with the `alias()` method. Alias is still supported in its original state and we have preserved its documentation [here](https://github.com/mixpanel/docs/blob/main/legacy/aliases.md), but if you want to revisit your identity management strategy, we recommend setting up a new Mixpanel project and using the best practices outlined in this guide.
+If you set up Mixpanel prior to 2020, you may have implemented using the `alias()` method. Alias is still supported in its original state and we have preserved its documentation [here](https://github.com/mixpanel/docs/blob/main/legacy/aliases.md), but if you want to revisit your identity management strategy, we recommend setting up a new Mixpanel project and using the best practices outlined in this guide.
 
 ### Why is there a `$identity_failure_reason` and `$distinct_id_before_identity` in my event?
 The `$identity_failure_reason` property will be populated with a value `errAnonDistinctIdAssignedAlready` if the `$device_id` passed was already linked to another `$user_id`. The `$device_id` will be ignored and the `$user_id`, in the same event, will be used as the `distinct_id` for the event. 
