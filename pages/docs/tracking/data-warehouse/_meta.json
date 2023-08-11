@@ -1,0 +1,4 @@
+{
+    "bigquery": "BigQuery",
+    "snowflake": "Snowflake"
+}
