@@ -3,7 +3,7 @@
 
 Mixpanel supports account holders’ ability to request the deletion or export of end user data.
 
-Requests can be submitted through either a form found in a Mixpanel project or through a personal data export and deletion API that is available here.
+Requests can be submitted through either a form found in a Mixpanel project or through a personal data export and deletion API that is documented below.
 
 Only organization owners and admin can access or submit end user export or deletion requests. 
 
