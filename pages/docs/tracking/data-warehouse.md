@@ -29,7 +29,7 @@ For more information on how to get started with your warehouse, navigate below:
 
 ## FAQ
 
-### What are the connector event rate limits?
+### What are the connector event ingestion rate limits?
 ~30k events per second.
 
 ### What if a table doesn’t have an Insert Time field?
