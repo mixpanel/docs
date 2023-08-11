@@ -28,7 +28,7 @@ When your year in the startup program is over, our team will work with you to he
 
 #### Why is the startup program offer so generous?
 
-Startups are a part of Mixpanel’s DNA and we are dedicated to having the best startup program on the market and supporting as many founders as we can. The Mixpanel for Startups program provides the first year free, valued up to $50,000. Most of our startups' usage does not come close to $50,000. However, we wanted to make sure we provide enough value to cover startups that experience rapid growth in their first year and need to be on a larger data plan. Startups should focus on building world-class products and not worry about short-term trials, restrictive data plans, and hidden pricing.
+Startups are a part of Mixpanel’s DNA and we are dedicated to having the best startup program on the market and supporting as many founders as we can. The Mixpanel for Startups program provides the first year free, valued up to \$50,000. Most of our startups' usage does not come close to \$50,000. However, we wanted to make sure we provide enough value to cover startups that experience rapid growth in their first year and need to be on a larger data plan. Startups should focus on building world-class products and not worry about short-term trials, restrictive data plans, and hidden pricing.
 
 ### Eligibility FAQ
 
@@ -50,17 +50,17 @@ If you have already redeemed an offer through the [Product School](https://mixpa
 
 Eligible startups can [apply directly](https://mixpanel.com/startups-apply/) for the startup program. Credits will be added to your account and automatically be applied to eligible line items when purchasing or upgrading to an annual [Growth or Enterprise plan](https://mixpanel.com/pricing/#edit-plan) via our plan builder.
 
-Once you have successfully applied, you need to click 'Redeem Now' and you will be guided to our plan builder where you can select the number of events you will need, along with adding on premium features like [Data Pipelines](https://mixpanel.com/data-pipeline/) and/or [Group Analytics](https://mixpanel.com/group-analytics/). You can also access the plan builder via the Billing section in your Organization settings.
+Once you have successfully applied, you need to click 'Redeem Now' and you will be guided to our plan builder where you can select the number of events you will need, along with adding on premium features like [Data Pipelines](https://mixpanel.com/data-pipeline/) and/or [Group Analytics](https://mixpanel.com/group-analytics/). You can also access the plan builder via the Billing section in your Organization Settings.
 
-The offer is activated as soon as you successfully apply and are approved for the program. From that date, you will begin your 1 year free of Mixpanel.
+The offer is activated as soon as you successfully apply and are approved for the program. From that date, you will begin your one free year of Mixpanel.
 
 #### How does the startup program work?
 
 Once accepted into the program, \$50,000 worth of credits will be added to your account. These credits are applied to your monthly bill, covering up to \$50,000 in total usage per year. Any additional usage costs in excess of \$50,000 are not covered by the program and charged to the credit card on file.
 
-#### When does my 1 year free begin?
+#### When does my one free year begin?
 
-The startup program offer is activated as soon as you apply and are accepted into the program. After you are accepted, you will be directed to our plan builder where you can purchase an annual plan and premium features. Your 1 year free will begin once you are accepted. If you are not ready for the startup program, you can signup for a [Free plan](https://mixpanel.com/pricing/) and then apply to the startup program when you’re ready to take advantage of the offer. Startups are in Mixpanel’s DNA — so we have the most generous free plan in the market (20M events per month) to help you get started.
+The startup program offer is activated as soon as you apply and are accepted into the program. After you are accepted, you will be directed to our plan builder where you can purchase an annual plan and premium features. Your one free year will begin once you are accepted. If you are not ready for the startup program, you can signup for a [Free plan](https://mixpanel.com/pricing/) and then apply to the startup program when you’re ready to take advantage of the offer. Startups are in Mixpanel’s DNA — so we have the most generous free plan in the market (20M events per month) to help you get started.
 
 #### What happens if my usage exceeds \$50,000 within the first year?
 
@@ -78,7 +78,7 @@ The Manage Billing & Payment section displays detailed information about the cre
 
 #### Will the credits in my account expire?
 
-Yes, the startup program provides your first year of Mixpanel for free, valued up to \$50,000. After the first year, the credits used to pay for your usage will expire and no longer be valid. You can see the expiration date in the CREDITS tab under Billing Information in the ORGANIZATION SETTINGS Overview. Once your first year elapses, the credits expire and the credit card on file will be charged to cover the subscription renewal and additional data costs.
+Yes, the startup program provides your first year of Mixpanel for free, valued up to \$50,000. After the first year, the unused credits will expire and no longer be valid. You can see the expiration date in the Credits tab under Plan Details & Billing in the Organization Settings. Once your first year elapses, the credits expire and the credit card on file will be charged to cover the subscription renewal and additional data costs.
 
 #### What happens if I send in more data than my plan allows?
 
