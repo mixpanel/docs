@@ -115,6 +115,45 @@ If you want to pass in your own IP address using our [HTTP API](https://develope
 ```
 Notice that you need to set `$ip` outside of the $set dictionary. This action overwrites the geographic data on the profile with `distinct_id = 13793` with New York, NY.
 
+## Tracking Geolocation (Latitude and Longitude)
+
+If you have access to Latitude and Longitude information, you can specify `$latitude` and `$longitude` in the payload so that Mixpanel will use these properties (instead of the IP address) to infer the closest city. 
+
+**Events**
+
+On events, the event properties must be named `$latitude` and `$longitude` and the values should be in floating point decimal degrees.
+```
+{
+    "event": "Signed Up",
+    "properties": {
+        "distinct_id": "13793",
+        "token": "mytoken",
+          "$latitude": 37.77,
+          "$longitude": -122.42
+    }
+}
+```
+
+**User Profiles**
+
+On user profile updates, the data must be named `$latitude` and `$longitude` respectively and the values should be in floating point decimal degrees.
+
+You would also need to set `$latitude` and `$longitude` outside of the `$set` dictionary.
+
+You will see profile property $geo_souce=reverse_geocoding if location proeprties were determined through `$latitude` and `$longitude`.
+Do note: Reverse geocoding for user profiles is not supported via client-side SDKs.
+```
+{
+    "$token": "mytoken",
+    "$distinct_id": "13793",
+    "$latitude": 37.77,
+    "$longitude": -122.42,
+    "$set": {
+        "My_property": "my_value"
+    }
+}
+```
+
 ## Tracking Page Views
 Page view tracking must be done manually for server-side implementations. Here are some general guidelines for tracking page views.
 
