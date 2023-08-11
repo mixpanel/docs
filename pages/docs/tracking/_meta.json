@@ -3,6 +3,7 @@
     "server": "Server",
     "http-api": "HTTP API",
     "mobile": "Mobile",
+    "data-warehouse": "Data Warehouse",
     "integrations": "Integrations",
     "how-tos": "How Tos",
     "reference": "Reference"
