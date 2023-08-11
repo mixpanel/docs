@@ -97,7 +97,7 @@ Mixpanel’s Templates make it simple for anyone to get answers to important que
 
 To get started, click the icon in the lefthand navigator to create a new Board, and select `Use a Template`. You’ll then select your desired template and click `Start from Template`.
 
-## Adding Your Events
+#### Adding Your Events
 
 The Company KPI template uses two events: “Sign Up” and “Value Moment.”
 
@@ -119,11 +119,11 @@ For projects that have already been implemented and have data, you will select y
 
 For projects that do not have data, please refer to our [dev docs](https://developer.mixpanel.com/docs/plan-your-implementation) and [implementation](https://help.mixpanel.com/hc/en-us/categories/115001197206-Data-and-Implementation) resources.
 
-## Key metrics:
+#### Key metrics:
 
 These templates monitor a number of metrics for you. A few are highlighted below.
 
-# Engagement
+**Engagement**
 
 User engagement measures how users find value in a product or service. Engagement can be measured by a variety of activities such as clicks, shares, and more. Highly engaged users are more likely to lead to higher user growth because they are more likely to share the product or service with their network. Tracking engagement helps evaluate:
 
@@ -132,14 +132,14 @@ User engagement measures how users find value in a product or service. Engagemen
 - What is your product’s activation rate?
 - What happens to users who don’t reach your product’s value moment?
 
-# Retention
+**Retention**
 
 Retention is the metric that shows whether your product has staying power. Retention measures how many people are coming back, which is also a key indicator that users are realizing value in your product. Tracking retention helps identify:
 
 - How many engaged users come back?
 - Who are your dormant users?
 
-# Growth
+**Growth**
 
 Growth is about finding people who need your product and showing them that your product can bring value to them. Tracking growth helps you answer:
 
@@ -147,7 +147,7 @@ Growth is about finding people who need your product and showing them that your 
 - Which channels are generating the most signups?
 - What is your DAU (Daily Active Users) and WAU (Weekly Active Users)?
 
-# Adoption
+**Adoption**
 
 Feature adoption is when a customer actually uses your feature. It could be purchasing an add-on, leaving a review, saving a video to a collection, or even using a new template. Tracking your feature adoption helps you answer questions like: 
 
@@ -155,7 +155,7 @@ Feature adoption is when a customer actually uses your feature. It could be purc
 - What percentage of my users have used the new feature?
 - How many times do users use the new feature in a month?
 
-# Product Impact
+**Product Impact**
 
 Product impact metrics give you a full look at how your feature is helping or hurting your overall product. At the end of the day, every feature should be working to drive growth to the product. The product impact metric can help you evaluate: 
 
@@ -163,7 +163,7 @@ Product impact metrics give you a full look at how your feature is helping or hu
 - Is this feature’s engagement hurting another part of the product?
 - Is this feature increasing product retention?
 
-# User Base
+**User Base**
 
 The Lifecycle Cohort Analysis Template breaks down your user base into the parts that make up the active user calculation: 
 
@@ -171,12 +171,12 @@ The Lifecycle Cohort Analysis Template breaks down your user base into the parts
 - Retained users: user who performed the value moment action this current period and the previous period
 - Resurrected users: user who has performed the value moment before, didn't perform it last period, but performed the value moment again this current period
 
-## Further Learning
+#### Further Learning
 
 - [Try out the templates](https://mixpanel.com/project?show-template-selector=true)
 - [The Guide to Product Analytics](https://mixpanel.com/content/guide-to-product-analytics/report/)
 
-#### Board-wide Date Ranges and Filters
+### Board-wide Date Ranges and Filters
 
 Boards allow you to alter some aspects of the queries within each of the reports on that board, making it simple to ensure every report is showing results from a consistent set of data.  Both date ranges and filters can be added by clicking "Add Filter" at the top right of the board.  This will open a row, shown below, where the date range can be selected, and filters can be applied.
 
