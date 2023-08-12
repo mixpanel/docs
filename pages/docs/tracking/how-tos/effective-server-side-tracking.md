@@ -100,7 +100,7 @@ def handle_signup(request):
 
 ## Tracking Geolocation (HTTP API)
 
-As all server-side calls originate from the same IP, such as the IP of your server, it can have the unintended effect of setting the location of all of your  to the location of your datacenter.
+As all server-side calls originate from the same IP, such as the IP of your server, it can have the unintended effect of setting the location of all of your users to the location of your datacenter.
 
 If you want to pass in your own IP address using our [HTTP API](https://developer.mixpanel.com/reference/profile-set) (`/engage#profile-set` endpoint) similar to the way you can with `track()`, pass in a property called `$ip` to the message payload.
 ```
@@ -160,14 +160,14 @@ Page view tracking must be done manually for server-side implementations. Here a
 
 - Track page views as a single event type by using a constant `event_name`
 - Track different pages as an event property and not as different events for better analysis
-- Plan ahead for handling page views from anonymous , identified , and connecting them to merge a user's journey
-  - Get started below with [Identifying ](/docs/tracking/how-tos/effective-server#identifying-)
+- Plan ahead for handling page views from anonymous users, identified users, and connecting them to merge a user's journey
+  - Get started below with [Identifying Users](/docs/tracking/how-tos/effective-server#identifying-users)
 - Fire page view events only on successful responses to the client
 - Parse headers and the request URL for common web analytics properties such as referrer and UTM parameters
   - See above for [parsing user agent](/docs/tracking/how-tos/effective-server#tracking-browser-device-and-os) and [marketing attribution properties](/docs/tracking/how-tos/effective-server#tracking-utms-and-referrer)
 
-## Identifying 
-Our server libraries normally require that you specify the distinct_id value for each event. If you _don't_ know the user's identity at the time the event is tracked, then they're an anonymous user. When using our Web or Mobile SDKs, Mixpanel will automatically generate an ID that's local to that user's device. This ID will persist on all events tracked by that user on that device, until you call `identify()` or `reset()`. More on that in our [identity management guide](/docs/tracking/how-tos/identifying-).
+## Identifying Users
+Our server libraries normally require that you specify the distinct_id value for each event. If you _don't_ know the user's identity at the time the event is tracked, then they're an anonymous user. When using our Web or Mobile SDKs, Mixpanel will automatically generate an ID that's local to that user's device. This ID will persist on all events tracked by that user on that device, until you call `identify()` or `reset()`. More on that in our [identity management guide](/docs/tracking/how-tos/identifying-users).
 
 If you're tracking from servers, you'll need to generate and manage that ID yourself. When you have hybrid implementations (events also come from the client-side), you could optionally send the ID generated on the client to the server and keep it as a session variable instead of generating a new one.
 
@@ -181,22 +181,22 @@ When tracking events from your server, set the `distinct_id` property of events 
 
 ***In case your project has Simplied ID management specifically***, and the user is anonymous, you should include a property named `$device_id` with this value. You can then optionally also include the `distinct_id` (requires for you to prefix the ID with the string `'$device:'`) but do note that if you don't include it, it will be assumed. You can see more in the python code example.
 
-### Step 3: Set the authenticated ID once  log in
+### Step 3: Set the authenticated ID once users log in
 
 Once the user logs in, you know their true ID, you should leverage the new ID for the user. Depending on the ID management model on your project (see project settings), you can do the following:
 
 **If you are using the original ID merge API**
 
-Send an `$identify` event combining the anonymous and authenticated IDs. Events after this should use the authenticated ID. Learn more in our [ID Merge guide](identifying-).
+Send an `$identify` event combining the anonymous and authenticated IDs. Events after this should use the authenticated ID. Learn more in our [ID Merge guide](identifying-users).
 
 **If you are using the Simplified ID merge API**
-Set the `$user_id` property to that ID. Continue setting `$device_id` to the ID generated in step 1. If Mixpanel receives an event with both `$device_id` and `$user_id` set, it will create a link between those two . This is essential to track pre-login and post-login behavior accurately.
+Set the `$user_id` property to that ID. Continue setting `$device_id` to the ID generated in step 1. If Mixpanel receives an event with both `$device_id` and `$user_id` set, it will create a link between those two users. This is essential to track pre-login and post-login behavior accurately.
 
 The `distinct_id` will be assumed but if you include it, it should be the same value as the `$user_id`.
 
 **Example python code**
 
-Here's a pseudocode example using Django's [cookies](https://django-book.readthedocs.io/en/latest/chapter14.html#cookies) and [authentication](https://django-book.readthedocs.io/en/latest/chapter14.html#using-). It assumes the client is setting and sending cookies:
+Here's a pseudocode example using Django's [cookies](https://django-book.readthedocs.io/en/latest/chapter14.html#cookies) and [authentication](https://django-book.readthedocs.io/en/latest/chapter14.html#using-users). It assumes the client is setting and sending cookies:
 ```python
 import uuid
 
