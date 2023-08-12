@@ -136,11 +136,12 @@ On events, the event properties must be named `$latitude` and `$longitude` and t
 
 **User Profiles**
 
-On user profile updates, the data must be named `$latitude` and `$longitude` respectively and the values should be in floating point decimal degrees.
+On user profile updates, the data must be named `$latitude` and `$longitude` and the values should be in floating point decimal degrees.
 
 You would also need to set `$latitude` and `$longitude` outside of the `$set` dictionary.
 
-You will see profile property $geo_souce=reverse_geocoding if location proeprties were determined through `$latitude` and `$longitude`.
+You will see profile property `$geo_souce=reverse_geocoding` in the Profile UI if location properties were determined through `$latitude` and `$longitude`.
+
 Do note: Reverse geocoding for user profiles is not supported via client-side SDKs.
 ```
 {
