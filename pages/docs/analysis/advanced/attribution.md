@@ -1,7 +1,5 @@
 # Attribution
 
-Note: This feature is in beta. To access this feature please reach out to your account team or join the [waitlist](https://experiences.mixpanel.com/mixpanel-attribution-beta-waitlist/).
-
 ## Overview
 Attribution helps teams attribute conversion credit to the touch-points in a user-journey, whether it be just to the first or last touch which are single-touch attribution models or to multiple touchpoints using a multi-touch attribution model like U-shape or Linear.  
 
@@ -23,18 +21,19 @@ In this example, there are two touchpoints that contribute to the successful con
 
 ## Usage 
 
+![image](/attribution.mp4)
+
 Step 1 - Add your conversion metric
 
 Step 2 - Attribution makes sense only when distributing the conversion metric across segments. So head to the breakdown section and choose the Mixpanel computed property - `Attributed by..`
-<img width="595" alt="Untitled" src="https://github.com/mixpanel/docs/assets/2077899/fdfba852-853d-45f7-b79f-716376836eb2">
 
-Step 3 - In the second layer that opens up, choose the property you want to break-down by (eg. utm_medium)  
+Step 3 - In the second layer that opens up, choose the property you want to break-down by (eg. UTM medium). You can also choose a custom property to breakdown here, for example marketing channel which generally is a combination of UTM medium, UTM source and referrer.    
 
 Step 4 - You have a working attribution model.  By default, Mixpanel will assign the metric the Last touch model with a 30 day lookback window. To change the model, head to the metric section
 
-<img width="556" alt="Untitled 1" src="https://github.com/mixpanel/docs/assets/2077899/ccece38b-1a94-4516-9f4a-a6f1f2be1857">
+Step 5 - If you want to include only certain channels or touchpoints in your attribution analysis, you can filter touchpoints from the breakdown overflow menu. A use-case for this is excluding organic touchpoints from attribution analysis. 
 
-👉🏽 NOTE: if you are running attribution predominantly on utm_medium, utm_source, utm_campaign, make sure you’re tracking utm parameters as event properties on every user touchpoint. 
+👉🏽 NOTE: if you are running attribution predominantly on UTM_medium, UTM_source, UTM_campaign, make sure you’re tracking UTM parameters as event properties on every user touchpoint. 
 If you use a Mixpanel js-sdk, we’ve updated our sdk to track utm parameters more effectively to support multi-touch attribution models. 
 
 ## Attribution Models
@@ -42,6 +41,8 @@ If you use a Mixpanel js-sdk, we’ve updated our sdk to track utm parameters mo
 - First Touch -  Gives 100% credit to the first touchpoint within the attribution lookback window
 - Last Touch - Gives 100% credit to the last touchpoint within the attribution lookback window
 - Linear - Gives equal credit to every touchpoint seen leading up to a conversion within the attribution lookback window
+- Participation - Gives 100% credit to every unique touchpoint seen within attribution window. The total number of conversions is inflated compared to other attribution models. For example with 5 property values, each would receive 100% credit showing 5 conversions.
+- Time-Decay - The weight of each channel depends on the amount of time that passed between the touch point initiation and the eventual conversion. This model follows an exponential decay with a 7 day half-life parameter. 
 - U-shaped - Gives 40% credit to the first touchpoint, 40% credit to the last touchpoint, and divides the remaining 20% to any touch points in between. With 2 touchpoints, the credit is normalized (50%, 50%). With 6 touch points the middle 4 touch points would share the 20% (40%, 5%, 5%, 5%, 5%, 40%).
 - J-shaped - Gives 20% credit to the first touchpoint, 60% credit to the last touchpoint, and divides the remaining 20% to any touch points in between. With 2 touchpoints, the credit is normalized (25%, 75%). With 6 touch points the middle 4 touch points would share the 20% (20%, 5%, 5%, 5%, 5%, 60%).
 - Inverse J-shaped - Gives 60% credit to the first touchpoint, 20% credit to the last touchpoint, and divides the remaining 20% to any touch points in between. With 2 touchpoints, the credit is normalized (75%, 25%). With 6 touch points the middle 4 touch points would share the 20% (60%, 5%, 5%, 5%, 5%, 20%).
