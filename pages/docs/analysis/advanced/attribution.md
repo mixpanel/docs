@@ -21,7 +21,9 @@ In this example, there are two touchpoints that contribute to the successful con
 
 ## Usage 
 
-![image](/attribution.mp4)
+<video>
+  <source src="/attribution.mp4" type="video/mp4" />
+</video>
 
 Step 1 - Add your conversion metric
 
