@@ -21,7 +21,7 @@ In this example, there are two touchpoints that contribute to the successful con
 
 ## Usage 
 
-![image](/attribution.mp4)
+![image](/attribution.gif)
 
 Step 1 - Add your conversion metric
 
