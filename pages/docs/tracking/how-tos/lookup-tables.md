@@ -67,3 +67,24 @@ The CSV must be valid according to RFC4180. See our [API reference](https://deve
 Lookup Tables have a limit of 100MB CSV or roughly 1M rows. We don't recommend using Lookup Tables for anything very high cardinality.
 * Don't use Lookup Tables when the ID is a User ID. Instead use [User Profiles](/docs/tracking/how-tos/user-profiles). Mixpanel is more optimized for User Profiles, so they don't have any scale limits and support more opinionated workflows in our product (like clicking into a report and seeing the list of User Profiles).
 * Don't use Lookup Tables as a way to mutate events. For example, it might be tempting to have an Orders lookup table, with 1 row per Order that a customer makes. Then, you can update the Orders table whenever an order is mutated (eg: when you issue a refund). This approach will quickly run into the 100MB scale limit and will make it difficult to do the analysis you need. Instead, we recommend modeling state changes as events, which doesn't have scale limits and preserves the history of state changes. Track an `Order Completed` event and an `Order Refunded` or `Order Modified` event. You can then use our funnels report to answer questions like: "what % of orders were refunded?"
+
+### Who has access? 
+
+All users will be able to upload and map a lookup table to an existing property temporarily from within a report, but only users with "Admin" or "Owner" roles will be able to make the mapping persistent in Lexicon for other users in the project to use.
+
+Customers on the Free plan will be able to temporarily map a property to a lookup table, but not have the option of persisting the mapping.
+
+Project Owners can delete any table in a project, and Admins can only delete their own.
+ 
+Consumers and Analysts cannot delete lookup tables even if they own them.
+
+### Can each Mixpanel property (join key) only be mapped to one lookup table?
+
+Yes. One Mixpanel property can only map to ONE lookup table.
+
+### Can multiple properties map to the same lookup table?
+
+Yes. For example, first_trip_city_id and last_trip_city_id can both map to the City lookup table, but one Mixpanel property cannot map to multiple lookup tables (if first_trip_city_id is mapped to "City" lookup table, it can't also map to "Region" lookup table, before unmapping from the "City" lookup table.)
+
+
+
