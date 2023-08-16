@@ -21,9 +21,7 @@ In this example, there are two touchpoints that contribute to the successful con
 
 ## Usage 
 
-<video>
-  <source src="https://github.com/mixpanel/docs/assets/2077899/db71ff66-8831-448c-b151-1abd1bbd4b40"/>
-</video>
+![image](/attribution.gif)
 
 Step 1 - Add your conversion metric
 
