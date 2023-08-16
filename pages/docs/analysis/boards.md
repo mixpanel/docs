@@ -91,61 +91,92 @@ A row will start life at the minimum possible height.
 
 ### Board Templates
 
-![/2022-06-01_12.31.38.gif](/2022-06-01_12.31.38.gif)
+![public/changelog/Templates.gif](public/changelog/Templates.gif)
 
-Creating a new board using the template.
+Mixpanel’s Templates make it simple for anyone to get answers to important questions as soon as data is available in Mixpanel. Our templates create out-of-the-box and fully customizable Boards designed to guide you section by section. They help you better understand your user base and monitor metrics like adoption, retention, virality, and product impact. 
 
-The Company KPIs Board template allows users to generate a comprehensive board containing key metrics that are applicable to most products—engagement, retention, and growth. Using only two [events](/docs/getting-started/what-to-track), the template produces nine unique reports that can be further explored, segmented, and customized.
-
-To get started, click the icon in the lefthand navigator to create a new board, and select `Use a Template`. Alternatively, the `Add` button will allow you to create a custom board from scratch.
+To get started, click the icon in the lefthand navigator to create a new Board, and select `Use a Template`. You’ll then select your desired template and click `Start from Template`.
 
 #### Adding Your Events
 
-The template uses two events: “Sign Up” and “Value Moment". Learn more [here](/docs/getting-started/what-to-track).
+The Company KPI template uses two events: “Sign Up” and “Value Moment.”
 
-For projects that have already been implemented and have data, you will select your two corresponding events, at which point the `Apply` CTA will be enabled, and your board will be generated. For projects that do not have data, please refer to our [tracking guidance](/docs/getting-started/what-to-track).
+- [Sign Up](https://developer.mixpanel.com/docs/plan-your-implementation#sign-up-event): Select the event where a new user—free or paid—is acquired by creating a new account. For products that do not include an account creation step, a similar “[Session Start](https://help.mixpanel.com/hc/en-us/articles/115004695223)” event can be used as a proxy.
+- [Value Moment](https://developer.mixpanel.com/docs/plan-your-implementation#value-moment-event): Select an event that indicates that a user is experiencing value in your product. For a social media platform, it could be creating a post; for a streaming service, it's watching a video; for e-commerce, it might be completing a purchase.
 
-#### What’s in the Template?
+The Lifecycle cohort analysis template uses one event: “Value Moment.”
 
-The board contains 9 reports, organized thematically by Engagement, Retention, and Growth.
+- [Value Moment](https://developer.mixpanel.com/docs/plan-your-implementation#value-moment-event): Select an event that indicates that a user is experiencing value in your product. For a social media platform, it could be creating a post; for a streaming service, it's watching a video; for e-commerce, it might be completing a purchase.
 
-#### Engagement
+The Feature Launch template uses four inputs, two of which are events: “Feature Name,” “Launch Date,” “New Feature,” and “Value Moment.”
 
-User engagement measures how users find value in a product or service. Engagement can be measured by a variety of activities such as clicks, shares, and more. Highly engaged users are more likely to lead to higher user growth because they are more likely to share the product or service with their network. These four reports track:
+- Feature Name: Whatever you want to name your feature. It will be populated throughout the template so we recommend something on the shorter side. Including the feature name will help you better keep track of your Boards when you have multiple feature launches.
+- Launch Date: Choose the date your feature went live. Some reports show the percentage of active users engaging with the feature, so be aware that if you’re doing a partial rollout, those numbers might be skewed, as the report will be using your total active user base.
+- New Feature: Pick an event that captures the adoption of your new feature. For adding reviews to a streaming service, the event could be publishing a review. For e-commerce, it might be creating a “save for later” collection.
+- [Feature Value Moment](https://developer.mixpanel.com/docs/plan-your-implementation#value-moment-event): Select an event that indicates that a user is experiencing value in your feature. For a social media platform, it could be liking a new type of content; for a streaming service, it could be sharing a playlist; for e-commerce, it might be purchasing from the “save for later” collection.
 
-- How many users are finding value in your product
-- Who are your most engaged users
-- What is your product’s activation rate
-- What happens to users who don’t reach your product’s value moment
+For projects that have already been implemented and have data, you will select your events, which will enable the `Create` CTA, and your Board will be generated.
 
-#### Retention
+For projects that do not have data, please refer to our [dev docs](https://developer.mixpanel.com/docs/plan-your-implementation) and [implementation](https://help.mixpanel.com/hc/en-us/categories/115001197206-Data-and-Implementation) resources.
 
-Retention is the metric that shows whether your product has staying power. Retention measures how many people are coming back, which is also a key indicator that users are realizing value in your product. These two reports track:
+#### Key Metrics
 
-- How many engaged users come back
-- Who are your dormant users
+These templates monitor a number of metrics for you. A few are highlighted below.
 
-#### Growth
+**Engagement**
 
-Growth is about finding people who need your product and showing them that your product can bring value to them. These three reports track:
+User engagement measures how users find value in a product or service. Engagement can be measured by a variety of activities such as clicks, shares, and more. Highly engaged users are more likely to lead to higher user growth because they are more likely to share the product or service with their network. Tracking engagement helps evaluate:
 
-- How many new users are signing up
-- Which channels are generating the most signups
-- What is your DAU (Daily Active Users) and WAU (Weekly Active Users)
+- How many users are finding value in your product?
+- Who are your most engaged users?
+- What is your product’s activation rate?
+- What happens to users who don’t reach your product’s value moment?
 
-Together, these 9 reports create a holistic overview of a product’s most important metrics and are applicable across industries and stages of growth. Notably, for startups, this board will be a vital asset for finding product-market fit as well as for sharing with investors during and post-fundraising.
+**Retention**
 
-#### Free Plan Experience
+Retention is the metric that shows whether your product has staying power. Retention measures how many people are coming back, which is also a key indicator that users are realizing value in your product. Tracking retention helps identify:
 
-While the current [free plan](http://mixpanel.com/pricing) has a limit of 5 saved reports per user, the reports in the Company KPIs Board template do not count towards this limit until you modify and save them individually. The unmodified template includes a small `Mixpanel Template` tag at the top of the template board and template reports respectively to denote that they do not count towards the saved report limit.
+- How many engaged users come back?
+- Who are your dormant users?
 
-**Takeaways**:
+**Growth**
 
-- **You only need two events** to use the template (Sign Up & Value Moment)
-- In just a few clicks Mixpanel’s Company KPIs Board template generates 9 reports, covering **key KPIs for Engagement, Retention, and Growth**
-- If you are a free plan user, the reports in the template don’t count towards your limit until you modify and save them as described above, but clicking and dragging the control under the row will resize it to any height above that minimum.
+Growth is about finding people who need your product and showing them that your product can bring value to them. Tracking growth helps you answer:
 
-#### Board-wide Date Ranges and Filters
+- How many new users are signing up?
+- Which channels are generating the most signups?
+- What is your DAU (Daily Active Users) and WAU (Weekly Active Users)?
+
+**Adoption**
+
+Feature adoption is when a customer actually uses your feature. It could be purchasing an add-on, leaving a review, saving a video to a collection, or even using a new template. Tracking your feature adoption helps you answer questions like: 
+
+- How many users used the new feature this month?
+- What percentage of my users have used the new feature?
+- How many times do users use the new feature in a month?
+
+**Product Impact**
+
+Product impact metrics give you a full look at how your feature is helping or hurting your overall product. At the end of the day, every feature should be working to drive growth to the product. The product impact metric can help you evaluate: 
+
+- Is this feature’s adoption driving product growth?
+- Is this feature’s engagement hurting another part of the product?
+- Is this feature increasing product retention?
+
+**User Base**
+
+The Lifecycle Cohort Analysis Template breaks down your user base into the parts that make up the active user calculation: 
+
+- New users: user who performed the value moment action for the first time ever during the current period
+- Retained users: user who performed the value moment action this current period and the previous period
+- Resurrected users: user who has performed the value moment before, didn't perform it last period, but performed the value moment again this current period
+
+#### Further Learning
+
+- [Try out the templates](https://mixpanel.com/project?show-template-selector=true)
+- [The Guide to Product Analytics](https://mixpanel.com/content/guide-to-product-analytics/report/)
+
+### Board-wide Date Ranges and Filters
 
 Boards allow you to alter some aspects of the queries within each of the reports on that board, making it simple to ensure every report is showing results from a consistent set of data.  Both date ranges and filters can be added by clicking "Add Filter" at the top right of the board.  This will open a row, shown below, where the date range can be selected, and filters can be applied.
 
