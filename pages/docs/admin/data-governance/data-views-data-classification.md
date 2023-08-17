@@ -147,6 +147,6 @@ Users that cannot view classified data can click on a Board card to access the f
 
 #### Analysis Reports (Insights, Funnels, Flows, and Retention)
 
-Classified properties won't be visibly different when building a report, but if used but a user without the "Can View" option enabled, the next warning will be displayed:
+Classified properties won't be visibly different when building a report, but if used by a user without the "Can View" option enabled, the next warning will be displayed:
 
 ![Analysis Reports Warning](/analysis-reports.png)
