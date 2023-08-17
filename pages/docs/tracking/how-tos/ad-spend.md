@@ -21,14 +21,20 @@ Events are are the core of Mixpanel's data model. Fundamentally, an event is a r
 		time: 1680307200000,
 		source: 'Google',
 		campaign_id: 12345,
-		campaign_name: 'Launch Commercial US',
- 
+
 		// Cost of this campaign in USD for this day
 		cost: 37.19,
 		// The total clicks of this ad campaign for this day
 		clicks: 11,
 		// The total impressions of this ad campaign for this day
-		impressions: 482
+		impressions: 482,
+
+		// metadata about the campaign; matches client side events
+		utm_source: "google",
+		utm_medium: "newsletter",
+		utm_campaign: "Launch Commercial US",
+		utm_content: "ad-text-or-variant",
+		utm_term: "ad-keywords"
 	}
 }
 ```
@@ -38,6 +44,8 @@ The crux of this How To guide is turning the data exported by Ad Networks into e
 **Best Practices**
 
 - **Only include base metrics** cost, clicks, and impressions. We don’t need to send derived metrics like Cost-per-click, because Mixpanel’s [Custom Properties](/docs/analysis/advanced/custom-properties) and Formulas allow us to calculate and alter derived metrics on the fly.
+- **Matching client side properties:** if you are using a Mixpanel client-side SDK to track user behaviors, you will want to model 
+ additional campaign metadata (source, medium, campaign, etc...) as `utm_source`, `utm_medium` etc... this matches the way mixpanel's SDKs [capture UTM params by default](https://docs.mixpanel.com/docs/tracking/reference/default-properties)
 - **No Distinct ID:** You’ll notice that our event has no Distinct ID. This is because ad performance data isn’t tied to any particular user. **This is the key difference from behavioral events.** By omitting it, we are ensuring that these events do not get erroneously included in reporting that intend to analyze user behavior such as Funnels, Retentions, Flows, unique user counts, “did not do” cohorts, etc.
 - **Event properties are aggregated:** You’ll notice the Ad-Data event in this example is scheduled to trigger only once a day. Properties are aggregated counts of all clicks through the day, all impressions through the day, all ad-spend through the day. Reason for this is ad-networks only export data at an aggregate level (without user details) and at fixed intervals (lowest granularity is generally a day)
 - **Include an Insert ID:** It’s recommended to include the Insert ID property for these kinds of events. This allows you to send the campaign data to Mixpanel more than once for a particular segment without duplicating the data in reports.
@@ -245,8 +253,12 @@ function transformCampaignToEvent(campaign) {
             time: new Date(campaign.segments.date).getTime(),
             source: 'Google',
             campaign_id: campaign.campaign.id,
-            campaign_name: campaign.campaign.name,
-						// Google's cost metric is 1 millionth of the fundamental currency specified by your Ads Account.
+
+            // metadata about the campaign; matches client side events
+            utm_source: "google",           
+            utm_campaign: campaign.campaign.name,
+            
+            // Google's cost metric is 1 millionth of the fundamental currency specified by your Ads Account.
             cost: campaign.metrics.cost_micros / 1_000_000,
             impressions: campaign.metrics.impressions,
             clicks: campaign.metrics.clicks
@@ -411,10 +423,13 @@ function transformCampaignToEvent(campaign) {
             time: new Date(campaign.date_start).getTime(),
             source: 'Facebook',
             campaign_id: campaign.campaign_id,
-            campaign_name: campaign.campaign_name,
-            cost: +campaign.spend,
-            impressions: +campaign.impressions,
-            clicks: +campaign.clicks
+            // metadata about the campaign; matches client side events
+            utm_source: "facebook",           
+            utm_campaign: campaign.campaign_name,
+
+            cost: campaign.spend,
+            impressions: campaign.impressions,
+            clicks: campaign.clicks
         }
     };
 }
