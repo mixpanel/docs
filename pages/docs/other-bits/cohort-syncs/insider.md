@@ -18,6 +18,7 @@ To enable the integration, select **Integrations** under the **Data Management**
 From the Integrations page, select the Insider dropdown, and select **Connect**.
 
 Find the Insider API Key from the Insider's Mobile App Settings > Integration tab.
+
 ![insider_APIkey](https://github.com/mixpanel/docs/assets/13739415/086ebe51-b4ab-4f55-bb13-83de81f40561)
 
 Enter the Insider API Key in Mixpanel and select **Continue**
