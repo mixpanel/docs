@@ -1,7 +1,7 @@
 # Community
 
 
-You can join our Slack Community [here](https://join.slack.com/t/mixpanelcommunity/shared_invite/zt-1syvgu76t-iSMIVersmjj_JEn3h9tpyA)! 
+You can join our Slack Community [here](https://join.slack.com/t/mixpanelcommunity/shared_invite/zt-21i246onn-yMLRuuXFs9pnqM04hld0yw)! 
 
 ## General guidelines
 Mixpanel, Inc. (“Mixpanel”) provides the Mixpanel Community (“the Community”) to you as a place to share new product ideas, ask questions, plan your analytics strategy, find technical solutions, and learn how to use Mixpanel. While we want this to be a transparent community with free-flowing discussion, we do have some guidelines.
