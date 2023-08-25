@@ -17,6 +17,8 @@ For user profile and identity mappings tables, we create a new table with a rand
 ## Partitioning
 The data in the tables is partitioned based on [`_PARTITIONTIME` pseudo column](https://cloud.google.com/bigquery/docs/querying-partitioned-tables#ingestion-time_partitioned_table_pseudo_columns) and in project timezone.
 
+Note: TIMEPARITIONING shouldn't be updated on the table. It will fail your export jobs. Create a new table/view from this table for custom paritioning.
+
 ## Queries
 You can query data with a single table schema or with a multiple table schema in BigQuery. To get more information about the table schemas, please see [Schema](/docs/other-bits/data-pipelines/schematized-export-pipeline#schema).
 
