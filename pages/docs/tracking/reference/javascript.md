@@ -23,7 +23,7 @@ All events sent from the JavaScript library will be sent over HTTPS.
 
 ### Tracking Page Views
 
-Page view tracking is turned off by default. Automatically page view events on every page load can be added using the `track_pageview` option to the `mixpanel.init` call, like so:
+Page view tracking is turned off by default. Page view events can be added automatically on every page load by using the `track_pageview` option to the `mixpanel.init` call, like so:
 
 ```javascript JavaScript
 mixpanel.init('YOUR_TOKEN', {track_pageview: true});
