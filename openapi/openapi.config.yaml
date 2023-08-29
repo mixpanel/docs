@@ -1,0 +1,22 @@
+apiDefinitions:
+  annotations: ./src/annotations.openapi.yaml
+  connectors: ./src/connectors.openapi.yaml
+  data-pipelines: ./src/data-pipelines.openapi.yaml
+  export: ./src/export.openapi.yaml
+  identity: ./src/identity.openapi.yaml
+  ingestion: ./src/ingestion.openapi.yaml
+  lexicon-schemas: ./src/lexicon-schemas.openapi.yaml
+  query: ./src/query.openapi.yaml
+  service-accounts: ./src/service-accounts.openapi.yaml
+
+lint:
+  extends:
+    - all
+  rules:
+    info-license: off
+    paths-kebab-case: off
+    boolean-parameter-prefixes: off
+
+    # Todo: fix these offenders
+    operation-tag-defined: off
+    parameter-description: off
