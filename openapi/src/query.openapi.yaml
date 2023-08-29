@@ -7,7 +7,7 @@ info:
     url: https://mixpanel.com/get-support
   version: 1.0.0
 servers:
-  - url: https://{regionAndDomain}.com/api/2.0
+  - url: https://{regionAndDomain}.com/api/query
     description: Mixpanel's calculated data API
     variables:
       regionAndDomain:
@@ -1656,7 +1656,7 @@ paths:
 
 
         ```curl
-        curl https://mixpanel.com/api/2.0/jql \
+        curl https://mixpanel.com/api/query/jql \
           -u YOUR_API_SECRET: \
           --data-urlencode script@my_query.js
         ```
