@@ -3,6 +3,7 @@
   "version": "0.0.1",
   "description": "Mixpanel's Official Documentation",
   "scripts": {
+    "api:lint": "openapi --config=./openapi/openapi.config.yaml --format=stylish lint",
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
@@ -27,10 +28,11 @@
     "nextra-theme-docs": "latest",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
-    "sharp": "^0.32.3",
-    "sass": "^1.64.0"
+    "sass": "^1.64.0",
+    "sharp": "^0.32.3"
   },
   "devDependencies": {
+    "@redocly/openapi-cli": "1.0.0-beta.16",
     "@types/node": "18.11.10",
     "autoprefixer": "^10.4.14",
     "postcss": "^8.4.21",
