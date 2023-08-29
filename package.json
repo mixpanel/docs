@@ -3,6 +3,7 @@
   "version": "0.0.1",
   "description": "Mixpanel's Official Documentation",
   "scripts": {
+    "api:build": "openapi --config=./openapi/openapi.config.yaml --output ./openapi/out/ bundle",
     "api:lint": "openapi --config=./openapi/openapi.config.yaml --format=stylish lint",
     "dev": "next dev",
     "build": "next build",

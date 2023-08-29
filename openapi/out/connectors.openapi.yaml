@@ -1,0 +1,891 @@
+openapi: 3.0.0
+info:
+  title: Connectors API
+  description: Endpoints for setting and managing connectors.
+  contact:
+    email: mixpanel-integrations@mixpanel.com
+  version: 3.0.0
+servers:
+  - url: 'https://{regionAndDomain}.com/api/app'
+    description: Mixpanel's application API server.
+    variables:
+      regionAndDomain:
+        default: mixpanel
+        enum:
+          - mixpanel
+          - eu.mixpanel
+        description: |
+          The server location to be used:
+            * `mixpanel` - The default (US) servers used for most projects
+            * `eu.mixpanel` - EU servers if you are enrolled in EU Data Residency
+security:
+  - ServiceAccount: []
+tags:
+  - name: Create Connectors
+    description: Operations to add connectors to a project
+  - name: Delete Connectors
+    description: Remove a connector from a project
+  - name: Retrieve Connectors
+    description: Get information about a project's connector(s)
+paths:
+  '/projects/{projectId}/connectors':
+    parameters:
+      - $ref: '#/components/parameters/projectId'
+    get:
+      tags:
+        - Retrieve Connectors
+      summary: List Connectors
+      description: |
+        [block:code]
+        {
+          "codes": [
+            {
+              "code": "curl -X GET https://mixpanel.com/api/app/projects/{PROJECT_ID}/connectors/ --user \"{SVC_ACCT}:{SECRET}\"",
+              "language": "curl",
+              "name": "Sample cURL command"
+            }
+          ]
+        }
+        [/block]
+
+        [block:code]
+        {
+          "codes": [
+            {
+              "code": "{\n  \"status\": \"ok\",\n  \"results\": {\n    \"url\": null,\n    \"has_more\": false,\n    \"data\": [\n      {\n        \"connector_id\": \"232f40cc-7ccc-4da3-b9c3-d8c1d14142c6\",\n        \"label\": \"\",\n        \"connector_type\": \"gcsImport\",\n        \"connector_properties\": {\n          \"gcs_bucket\": \"sample-dataset\",\n          \"gcs_prefix\": \"cloudimport/event\",\n          \"gcs_region\": \"us\"\n        },\n        \"category_properties\": {\n          \"data_format\": \"mixpanel_event\",\n          \"compression\": \"none\"\n        },\n        \"status\": null,\n        \"created_at\": \"2020-09-17T02:10:33.799738Z\",\n        \"created_by\": \"Samoyed.mp-service-account@mixpanel.org\"\n      },\n      {\n        \"connector_id\": \"2c1ca81a-695d-4412-8161-75feec489016\",\n        \"label\": \"\",\n        \"connector_type\": \"gcsImport\",\n        \"connector_properties\": {\n          \"gcs_bucket\": \"sample-dataset\",\n          \"gcs_prefix\": \"cloudimport/event\",\n          \"gcs_region\": \"us\"\n        },\n        \"category_properties\": {\n          \"data_format\": \"mixpanel_event\",\n          \"compression\": \"gzip\"\n        },\n        \"status\": null,\n        \"created_at\": \"2020-09-17T02:30:56.883983Z\",\n        \"created_by\": \"Samoyed.mp-service-account@mixpanel.org\"\n      }\n    ]\n  }\n}\n",
+              "language": "json",
+              "name": "Sample Response"
+            }
+          ]
+        }
+        [/block]
+      operationId: get-connectors
+      responses:
+        '200':
+          description: successful operation
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/connectorsListResponse'
+    post:
+      tags:
+        - Create Connectors
+      summary: Create Connector
+      description: >
+        <h3> Cloud provider-independent params</h3>
+
+
+        * `connector_type` (string enum) : `“s3Import”`, `“gcsImport”`
+
+        * `compression` (string enum) : `“none”`, `“gzip”`
+
+        * `data_format` (string enum) : `“mixpanel_event”`, `“mixpanel_group”`,
+        `“mixpanel_people”`, `"remap_event"`, `"remap_people"`, `"remap_group"`
+            this is how we know which type of data to process. Please check [Sample Data](https://developer.mixpanel.com/docs/cloud-import-data-preparation-guide#section-sample-data) for examples for each `data_format`
+
+        <h3>Cloud provider-specific params</h3>
+
+
+        * `s3/gcs_bucket` (string) : name of bucket
+
+        * `s3/gcs_prefix` (string) : prefix or directory path of files to be
+        imported. Use `“”` (empty string) to import all contents of the bucket.
+        For more details on prefix, please check [Cloud Import
+        FAQ](doc:cloud-import-faq)
+
+        * `s3_role` (string) : s3 IAM (Please refer to [Configuring Access And
+        Permissions](doc:configuring-access-and-permissions)
+
+        * `s3_region` (string) : region of the bucket. Please refer to [S3
+        Endpoint](https://docs.aws.amazon.com/general/latest/gr/s3.html) and
+        refer to column Region for accepted values
+
+
+
+        <h5>Template for each bucket type</h5>
+
+        [block:code]
+
+        {
+          "codes": [
+            {
+              "code": "{\n\t\"connector_type\": “gcsImport”,\n\t\"connector_properties\": {\n\t\t\"gcs_bucket\": \"sample-data\",\n\t\t\"gcs_prefix\": \"cloudimport/event\",\n\t},\n\t\"category_properties\": {\n\t\t\"data_format\": \"mixpanel_event\",\n\t\t\"compression\": \"none\"\n\t}\n}",
+              "language": "json",
+              "name": "Template for GCS"
+            }
+          ]
+        }
+
+        [/block]
+
+
+        [block:code]
+
+        {
+          "codes": [
+            {
+              "code": "{\n\t\"connector_type\": “s3Import”,\n\t\"connector_properties\": {\n\t\t\"s3_bucket\": \"sample-data\",\n\t\t\"s3_prefix\": \"cloudimport/event\",\n\t\t\"s3_region\": \"us\",\n\t\t“s3_role”: “arn:aws:iam::485438090326:role/test-mixpanel”,\n\t},\n\t\"category_properties\": {\n\t\t\"data_format\": \"mixpanel_event\",\n\t\t\"compression\": \"none\"\n\t}\n}",
+              "language": "json",
+              "name": "Template for S3"
+            }
+          ]
+        }
+
+        [/block]
+
+
+        [block:code]
+
+        {
+          "codes": [
+            {
+              "code": "curl -X POST https://mixpanel.com/api/app/projects/{PROJECT_ID}/connectors/ --user \"{SVC_ACCOUNT}:{SECRET}\" --data '{\"connector_type\":\"gcsImport\",  \"connector_properties\": { \"gcs_bucket\": \"sample-dataset\", \"gcs_prefix\": \"cloudimport/event\",\"gcs_region\": \"us\"}, \"category_properties\": { \"data_format\": \"mixpanel_event\", \"compression\": \"none\"}}'",
+              "language": "curl",
+              "name": "Sample cURL command"
+            }
+          ]
+        }
+
+        [/block]
+
+
+        [block:code]
+
+        {
+          "codes": [
+            {
+              "code": "{\n\t\"status\": \"ok\",\n\t\"results\": {\n\t\t\"connector_id\": \"232f40cc-7ccc-4da3-b9c3-d8c1d14142c6\",\n\t\t\"label\": \"\",\n\t\t\"connector_type\": \"gcsImport\",\n\t\t\"connector_properties\": {\n\t\t\t\"gcs_bucket\": \"sample-data\",\n\t\t\t\"gcs_prefix\": \"cloudimport/event\",\n\t\t},\n\t\t\"category_properties\": {\n\t\t\t\"data_format\": \"mixpanel_event\",\n\t\t\t\"compression\": \"none\"\n\t\t},\n\t\t\"status\": \"active\",\n\t\t\"created_at\": \"2020-09-17T02:10:33.799738Z\",\n\t\t\"created_by\": \"Samoyed.mp-service-account@mixpanel.org\"\n\t}\n}",
+              "language": "json",
+              "name": "Sample Response"
+            }
+          ]
+        }
+
+        [/block]
+      operationId: create-connector
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/createConnectorRequest'
+      responses:
+        '201':
+          description: successful operation
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/connector'
+        '400':
+          description: Invalid input
+          content:
+            application/json:
+              examples:
+                missing_parameter:
+                  summary: missing_required_property
+                  value:
+                    status: error
+                    type: missing_required_property
+                    message: The property `frequency` is missing from the payload
+                invalid_parameter:
+                  summary: invalid_property
+                  value:
+                    status: error
+                    type: invalid_property
+                    message: The property `frequency` is not valid
+  '/projects/{projectId}/connectors/{connectorId}':
+    parameters:
+      - $ref: '#/components/parameters/projectId'
+      - $ref: '#/components/parameters/connectorId'
+    get:
+      tags:
+        - Retrieve Connectors
+      summary: Get Connector
+      description: Return a Project's Connecter by Connector Id
+      operationId: get-connector
+      responses:
+        '200':
+          description: successful operation
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/connector'
+        '404':
+          description: Connector not found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/errorResponse'
+    delete:
+      tags:
+        - Delete Connectors
+      summary: Delete a Project's Connector by Connector Id
+      description: |
+        [block:code]
+        {
+          "codes": [
+            {
+              "code": "curl -X DELETE https://mixpanel.com/api/app/projects/{PROJECT_ID}/connectors/{CONNECTOR_ID} --user \"{SVC_ACCOUNT}:{SECRET}\"",
+              "language": "curl",
+              "name": "Sample cURL command"
+            }
+          ]
+        }
+        [/block]
+
+        [block:code]
+        {
+          "codes": [
+            {
+              "code": "{\n  \"status\": \"ok\",\n  \"results\": \"Successfully deleted Connector with ID:32f40cc-7ccc-4da3-b9c3-d8c1d14142c6\"\n}",
+              "language": "json",
+              "name": "Sample Response"
+            }
+          ]
+        }
+        [/block]
+      operationId: delete-connector
+      responses:
+        '200':
+          description: successful operation
+          content:
+            application/json:
+              schema:
+                type: object
+                example:
+                  status: success
+                  message: The connector with id 1235 was successfully deleted
+  '/projects/{projectId}/connectors/{connectorId}/history':
+    parameters:
+      - $ref: '#/components/parameters/projectId'
+      - $ref: '#/components/parameters/connectorId'
+    get:
+      tags:
+        - Retrieve Connectors
+      summary: List Connector Logs
+      description: >
+        <h4>Possible Statuses</h4>
+
+
+
+        * `success` : all items have been imported and available for viewing in
+        the project. Report on import statistics provided
+
+        * `queued` : request has been scheduled and is waiting to be run
+
+        * `running` : data is currently being imported
+
+        * `failed` : import could not be processed due to some non-retryable
+        error. Please refer to the error message in response for more details
+
+
+        `progress` is a float, with range `[0,1]`
+
+        [block:code]
+
+        {
+          "codes": [
+            {
+              "code": "curl -X GET https://mixpanel.com/api/app/projects/{PROJECT_ID}/connectors/{CONNECTOR_ID}/history --user \"{SVC_ACCOUNT}:{SECRET}\"",
+              "language": "curl"
+            }
+          ]
+        }
+
+        [/block]
+
+
+        [block:api-header]
+
+        {
+          "title": "Queued Job",
+          "sidebar": true
+        }
+
+        [/block]
+
+
+        [block:code]
+
+        {
+          "codes": [
+            {
+              "code": "{\n\t\"status\": \"ok\",\n\t\"results\": {\n\t\t\"url\": null,\n\t\t\"has_more\": false,\n\t\t\"data\": [{\n\t\t\t\"id\": \"\",\n\t\t\t\"start_time\": \"0001-01-01 00:00:00 +0000 UTC\",\n\t\t\t\"end_time\": \"\",\n\t\t\t\"status\": \"queued\",\n\t\t\t\"progress\": 0,\n\t\t\t\"error\": {\n\t\t\t\t\"message\": \"\",\n\t\t\t\t\"code\": \"\"\n\t\t\t},\n\t\t\t\"connector_properties\": {\n\t\t\t\t\"num_events_imported\": 0,\n\t\t\t\t\"num_events_processed\": 0,\n\t\t\t\t\"num_events_dropped\": 0,\n\t\t\t\t\"num_files_imported\": 0,\n\t\t\t\t\"size_imported\": 0\n\t\t\t}\n\t\t}]\n\t}\n}",
+              "language": "json",
+              "name": "Sample Response - Queued Job"
+            }
+          ]
+        }
+
+        [/block]
+
+
+        [block:api-header]
+
+        {
+          "title": "Running Job",
+          "sidebar": true
+        }
+
+        [/block]
+
+
+        [block:code]
+
+        {
+          "codes": [
+            {
+              "code": "{\n\t\"status\": \"ok\",\n\t\"results\": {\n\t\t\"url\": null,\n\t\t\"has_more\": false,\n\t\t\"data\": [{\n\t\t\t\"id\": \"\",\n\t\t\t\"start_time\": \"2020-09-16 07:00:00 +0000 UTC\",\n\t\t\t\"end_time\": \"\",\n\t\t\t\"status\": \"running\",\n\t\t\t\"progress\": 0.25,\n\t\t\t\"error\": {\n\t\t\t\t\"message\": \"\",\n\t\t\t\t\"code\": \"\"\n\t\t\t},\n\t\t\t\"connector_properties\": {\n\t\t\t\t\"num_events_imported\": 0,\n\t\t\t\t\"num_events_processed\": 0,\n\t\t\t\t\"num_events_dropped\": 0,\n\t\t\t\t\"num_files_imported\": 0,\n\t\t\t\t\"size_imported\": 0\n\t\t\t}\n\t\t}]\n\t}\n}\n",
+              "language": "json",
+              "name": "Sample Response - Running Job"
+            }
+          ]
+        }
+
+        [/block]
+
+
+        [block:api-header]
+
+        {
+          "title": "Completed Job (Success)",
+          "sidebar": true
+        }
+
+        [/block]
+
+
+        [block:code]
+
+        {
+          "codes": [
+            {
+              "code": "{\n\t\"status\": \"ok\",\n\t\"results\": {\n\t\t\"url\": null,\n\t\t\"has_more\": false,\n\t\t\"data\": [{\n\t\t\t\"id\": \"\",\n\t\t\t\"start_time\": \"2020-09-16 07:00:00 +0000 UTC\",\n\t\t\t\"end_time\": \"2020-09-17 02:17:49.831793 +0000 UTC\",\n\t\t\t\"status\": \"success\",\n\t\t\t\"progress\": 1,\n\t\t\t\"error\": {\n\t\t\t\t\"message\": \"\",\n\t\t\t\t\"code\": \"\"\n\t\t\t},\n\t\t\t\"connector_properties\": {\n\t\t\t\t\"num_events_imported\": 13,\n\t\t\t\t\"num_events_processed\": 13,\n\t\t\t\t\"num_events_dropped\": 0,\n\t\t\t\t\"num_files_imported\": 4,\n\t\t\t\t\"size_imported\": 1610\n\t\t\t}\n\t\t}]\n\t}\n}",
+              "language": "json",
+              "name": "Sample Response - Successfully Completed Job"
+            }
+          ]
+        }
+
+        [/block]
+
+
+        [block:api-header]
+
+        {
+          "title": "Failed Job",
+          "sidebar": true
+        }
+
+        [/block]
+
+
+        [block:code]
+
+        {
+          "codes": [
+            {
+              "code": "{\n  \"status\": \"ok\",\n  \"results\": {\n    \"url\": null,\n    \"has_more\": false,\n    \"data\": [\n      {\n        \"run_id\": \"\",\n        \"start_time\": \"2020-09-16 07:00:00 +0000 UTC\",\n        \"end_time\": \"\",\n        \"status\": \"failed\",\n\t\t\t  \"progress\": 0,\n        \"error\": {\n          \"message\": \"No compression specified but Gzip detected. Please submit a new request with correct compression as param\",\n          \"code\": \"\"\n        },\n        \"connector_properties\": {\n          \"num_events_imported\": 0,\n          \"num_events_processed\": 0,\n          \"num_events_dropped\": 0,\n          \"num_files_imported\": 0,\n          \"size_imported\": 0\n        }\n      }\n    ]\n  }\n}",
+              "language": "json",
+              "name": "Sample Response - Failed Job"
+            }
+          ]
+        }
+
+        [/block]
+      operationId: get-connector-logs
+      responses:
+        '200':
+          description: successful operation
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/runsList'
+components:
+  securitySchemes:
+    ServiceAccount:
+      type: http
+      scheme: basic
+      description: Service Account
+    ProjectSecret:
+      type: http
+      scheme: basic
+      description: Project Secret
+  parameters:
+    connectorId:
+      in: path
+      name: connectorId
+      description: Id of an existing Connector
+      style: simple
+      schema:
+        type: string
+        format: uuid
+      required: true
+    projectId:
+      in: path
+      name: projectId
+      schema:
+        type: integer
+      required: true
+      description: 'Your project id (eg: 12345)'
+  schemas:
+    connector_type:
+      type: string
+      enum:
+        - s3Import
+        - gcsImport
+    importPropertiesMixpanelEvent:
+      title: Cloud Import Mixpanel Event Properties
+      type: object
+      properties:
+        data_format:
+          type: string
+          enum:
+            - mixpanel_event
+        compression:
+          type: string
+          nullable: true
+          enum:
+            - none
+            - gzip
+    importPropertiesMixpanelPeople:
+      title: Cloud Import Mixpanel People Properties
+      type: object
+      properties:
+        data_format:
+          type: string
+          enum:
+            - mixpanel_people
+        compression:
+          type: string
+          nullable: true
+          enum:
+            - none
+            - gzip
+    importPropertiesMixpanelGroup:
+      title: Cloud Import Mixpanel Group Properties
+      type: object
+      properties:
+        data_format:
+          type: string
+          enum:
+            - mixpanel_group
+        compression:
+          type: string
+          nullable: true
+          enum:
+            - none
+            - gzip
+    importPropertiesRemapEvent:
+      title: Cloud Import Remap Event Properties
+      type: object
+      properties:
+        data_format:
+          type: string
+          enum:
+            - remap_event
+        compression:
+          type: string
+          nullable: true
+          enum:
+            - none
+            - gzip
+        property_remap:
+          type: object
+          title: Property Remap for Event
+          required:
+            - event_name
+            - time
+            - distinct_id
+          properties:
+            $insert_id:
+              type: string
+              nullable: true
+            time:
+              type: string
+              nullable: false
+            event_name:
+              type: string
+              nullable: false
+            ip:
+              type: string
+              nullable: true
+            distinct_id:
+              type: string
+              nullable: false
+    importPropertiesRemapPeople:
+      title: Cloud Import Remap People Properties
+      type: object
+      properties:
+        data_format:
+          type: string
+          enum:
+            - remap_people
+        compression:
+          type: string
+          nullable: true
+          enum:
+            - none
+            - gzip
+        property_remap:
+          type: object
+          title: Property Remap for People
+          required:
+            - $distinct_id
+          properties:
+            $distinct_id:
+              type: string
+              nullable: false
+    importPropertiesRemapGroup:
+      title: Cloud Import Remap Group Properties
+      type: object
+      properties:
+        data_format:
+          type: string
+          enum:
+            - remap_group
+        compression:
+          type: string
+          nullable: true
+          enum:
+            - none
+            - gzip
+        property_remap:
+          type: object
+          title: Property Remap for Group
+          required:
+            - $group_key
+            - $group_id
+          properties:
+            $group_key:
+              type: string
+              nullable: false
+            $group_id:
+              type: string
+              nullable: false
+    s3Import:
+      type: object
+      title: s3Import
+      required:
+        - s3_role
+        - s3_bucket
+        - s3_region
+        - s3_prefix
+      properties:
+        s3_role:
+          type: string
+        s3_bucket:
+          type: string
+        s3_region:
+          type: string
+          enum:
+            - us-east-2
+            - us-east-1
+            - us-west-1
+            - us-west-2
+            - ap-south-1
+            - ap-northeast-3
+            - ap-northeast-2
+            - ap-southeast-1
+            - ap-southeast-2
+            - ap-northeast-1
+            - ca-central-1
+            - cn-north-1
+            - cn-northwest-1
+            - eu-central-1
+            - eu-west-1
+            - eu-west-2
+            - eu-west-3
+            - eu-north-1
+            - sa-east-1
+        s3_prefix:
+          type: string
+    gcsImport:
+      type: object
+      title: gcsImport
+      required:
+        - gcs_bucket
+        - gcs_prefix
+      properties:
+        gcs_bucket:
+          type: string
+        gcs_prefix:
+          type: string
+    runsList:
+      type: object
+      properties:
+        url:
+          type: string
+          format: uuid
+          example: 123e4567-e89b-12d3-a456-426614174000
+        has_more:
+          type: boolean
+          example: false
+        data:
+          type: array
+          items:
+            $ref: '#/components/schemas/run'
+    run:
+      type: object
+      properties:
+        run_id:
+          type: string
+        start_time:
+          type: string
+          example: '1588056062'
+        end_time:
+          type: string
+          example: '1588056062'
+        status:
+          type: string
+          enum:
+            - paused
+            - running
+            - queued
+            - failed
+            - success
+        progress:
+          type: number
+          example: 0.5
+        error:
+          type: object
+          example:
+            type: invalid_permissions_gcs
+            message: Invalid permissions to access GCS bucket
+        connector_properties:
+          type: object
+          example:
+            num_user_profiles_exported: 1234
+    user:
+      type: object
+      properties:
+        email:
+          type: string
+          example: john.doe@qwerty.com
+    connectorsListResponse:
+      type: object
+      properties:
+        url:
+          type: string
+          example: /connectors
+        has_more:
+          type: boolean
+          example: false
+        data:
+          type: array
+          items:
+            $ref: '#/components/schemas/connector'
+    createConnectorRequest:
+      type: object
+      oneOf:
+        - $ref: '#/components/schemas/s3CreateConnectorRequest'
+        - $ref: '#/components/schemas/gcsCreateConnectorRequest'
+      discriminator:
+        propertyName: connector_type
+        mapping:
+          s3Import: '#/components/schemas/s3CreateConnectorRequest'
+          gcsImport: '#/components/schemas/gcsCreateConnectorRequest'
+    s3CreateConnectorRequest:
+      type: object
+      required:
+        - connector_type
+        - connector_properties
+        - category_properties
+      properties:
+        label:
+          type: string
+        connector_type:
+          $ref: '#/components/schemas/connector_type'
+        connector_properties:
+          $ref: '#/components/schemas/s3Import'
+        category_properties:
+          type: object
+          example:
+            frequency: 60
+            trial: true
+          oneOf:
+            - $ref: '#/components/schemas/importPropertiesMixpanelEvent'
+            - $ref: '#/components/schemas/importPropertiesMixpanelGroup'
+            - $ref: '#/components/schemas/importPropertiesMixpanelPeople'
+            - $ref: '#/components/schemas/importPropertiesRemapEvent'
+            - $ref: '#/components/schemas/importPropertiesRemapPeople'
+            - $ref: '#/components/schemas/importPropertiesRemapGroup'
+    gcsCreateConnectorRequest:
+      type: object
+      required:
+        - connector_type
+        - connector_properties
+        - category_properties
+      properties:
+        label:
+          type: string
+        connector_type:
+          $ref: '#/components/schemas/connector_type'
+        connector_properties:
+          $ref: '#/components/schemas/gcsImport'
+        category_properties:
+          type: object
+          example:
+            frequency: 60
+            trial: true
+          oneOf:
+            - $ref: '#/components/schemas/importPropertiesMixpanelEvent'
+            - $ref: '#/components/schemas/importPropertiesMixpanelGroup'
+            - $ref: '#/components/schemas/importPropertiesMixpanelPeople'
+            - $ref: '#/components/schemas/importPropertiesRemapEvent'
+            - $ref: '#/components/schemas/importPropertiesRemapPeople'
+            - $ref: '#/components/schemas/importPropertiesRemapGroup'
+    connector:
+      type: object
+      oneOf:
+        - $ref: '#/components/schemas/gcsConnector'
+        - $ref: '#/components/schemas/s3Connector'
+      discriminator:
+        propertyName: connector_type
+        mapping:
+          s3Import: '#/components/schemas/s3Connector'
+          gcsImport: '#/components/schemas/gcsConnector'
+    s3Connector:
+      type: object
+      required:
+        - connector_type
+        - connector_properties
+        - category_properties
+      properties:
+        connector_type:
+          $ref: '#/components/schemas/connector_type'
+        connectorId:
+          type: string
+          format: uuid
+        label:
+          type: string
+        connector_properties:
+          $ref: '#/components/schemas/s3Import'
+        category_properties:
+          type: object
+          oneOf:
+            - $ref: '#/components/schemas/importPropertiesMixpanelEvent'
+            - $ref: '#/components/schemas/importPropertiesMixpanelGroup'
+            - $ref: '#/components/schemas/importPropertiesMixpanelPeople'
+            - $ref: '#/components/schemas/importPropertiesRemapEvent'
+            - $ref: '#/components/schemas/importPropertiesRemapPeople'
+            - $ref: '#/components/schemas/importPropertiesRemapGroup'
+        status:
+          type: string
+          description: connector status
+          enum:
+            - active
+            - stopped
+            - paused
+        failure_message:
+          type: string
+          description: error message if the connector is paused
+        created_at:
+          type: string
+          example: '1588052857'
+        created_by:
+          $ref: '#/components/schemas/user'
+    gcsConnector:
+      type: object
+      required:
+        - connector_type
+        - connector_properties
+        - category_properties
+      properties:
+        connector_type:
+          $ref: '#/components/schemas/connector_type'
+        connectorId:
+          type: string
+          format: uuid
+        label:
+          type: string
+        connector_properties:
+          $ref: '#/components/schemas/gcsImport'
+        category_properties:
+          type: object
+          oneOf:
+            - $ref: '#/components/schemas/importPropertiesMixpanelEvent'
+            - $ref: '#/components/schemas/importPropertiesMixpanelGroup'
+            - $ref: '#/components/schemas/importPropertiesMixpanelPeople'
+            - $ref: '#/components/schemas/importPropertiesRemapEvent'
+            - $ref: '#/components/schemas/importPropertiesRemapPeople'
+            - $ref: '#/components/schemas/importPropertiesRemapGroup'
+        status:
+          type: string
+          description: connector status
+          enum:
+            - active
+            - stopped
+            - paused
+        failure_message:
+          type: string
+          description: error message if the connector is paused
+        created_at:
+          type: string
+          example: '1588052857'
+        created_by:
+          $ref: '#/components/schemas/user'
+    errorResponse:
+      type: object
+      properties:
+        status:
+          type: string
+          example: error
+        type:
+          type: string
+          example: invalid_permissions_gcs
+        message:
+          type: string
+          example: Invalid permissions to access GCS Bucket
+        details:
+          type: string
+    connectorsStatusRequest:
+      type: object
+      properties:
+        startTime:
+          type: string
+          example: '1588056062'
+        endTime:
+          type: string
+          example: '1588056062'
+    connectorsStatus:
+      type: object
+      properties:
+        success:
+          type: integer
+          example: 200
+        failed:
+          type: integer
+          example: 200
+        queued:
+          type: integer
+          example: 200
+        running:
+          type: integer
+          example: 200
+        paused:
+          type: integer
+          example: 200
+        messages:
+          type: array
+          items:
+            type: string
+            example: failed to open writer to GCS storage object
+    actionResponse:
+      type: object
+      properties:
+        status:
+          type: string
+          enum:
+            - failed
+            - succeeded
+        message:
+          type: string
+x-explorer-enabled: true
+x-proxy-enabled: true
+x-samples-enabled: true
+x-samples-languages:
+  - curl
+  - node
+  - ruby
+  - javascript
+  - python
