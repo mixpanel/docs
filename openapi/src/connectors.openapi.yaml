@@ -1,7 +1,7 @@
 openapi: 3.0.0
 info:
   title: Connectors API
-  description: whoooops
+  description: Endpoints for setting and managing connectors.
   contact:
     email: mixpanel-integrations@mixpanel.com
   version: 3.0.0
