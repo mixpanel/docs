@@ -58,6 +58,8 @@ Amplitude JS Docs: [https://amplitude.github.io/Amplitude-JavaScript/](https://a
 
 Mixpanel JS Docs: [https://developer.mixpanel.com/docs/javascript-full-api-reference](https://developer.mixpanel.com/docs/javascript-full-api-reference)
 
+Note: Ensure that your projects have been defaulted or updated to Simplified ID Management before any data is sent to the project. This is the ID management compatible with Amplitude’s.
+
 #### Installing the Mixpanel SDK
 
 Before getting started, initialize the Mixpanel SDK according to the directions [here](https://developer.mixpanel.com/docs/javascript-quickstart#1-initialize-the-library)
@@ -235,4 +237,4 @@ If you're unsure how you currently track data, or might want to consider trackin
 
 Mixpanel Customer Success and Support have been helping thousands of customers migrate from other tools to Mixpanel over the past decade. You can see an overview of the process we run with our Enterprise plan customers migrating from Amplitude [here](https://mxpnl.notion.site/Amplitude-Migration-Package-264ed076292e41e9b29a2c4f26851e9b?pvs=4).
 
-If you need help, just [reach out here](https://mixpanel.com/get-support) and we'll be ready to assist with advice specific to your situation.
+We’re always happy to discuss your team’s individual needs, our migration process, the support you’ll receive, or any other question you have — drop us a line at success@mixpanel.com.
