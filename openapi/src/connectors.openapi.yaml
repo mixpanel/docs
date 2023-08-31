@@ -1,0 +1,585 @@
+openapi: 3.0.0
+info:
+  title: Connectors API
+  description: Endpoints for setting and managing connectors.
+  contact:
+    email: mixpanel-integrations@mixpanel.com
+  version: 3.0.0
+servers:
+  - $ref: ./common/app-api.yaml#/server
+security:
+  - ServiceAccount: []
+tags:
+  - name: Create Connectors
+    description: Operations to add connectors to a project
+  - name: Delete Connectors
+    description: Remove a connector from a project
+  - name: Retrieve Connectors
+    description: Get information about a project's connector(s)
+paths:
+  /projects/{projectId}/connectors:
+    parameters:
+      - $ref: ./common/parameters.yaml#/path/projectId
+    get:
+      tags:
+        - Retrieve Connectors
+      summary: List Connectors
+      description:
+        $ref: './docs/connectors/list-connectors.md'
+      operationId: get-connectors
+      responses:
+        '200':
+          description: successful operation
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/connectorsListResponse'
+    post:
+      tags:
+        - Create Connectors
+      summary: Create Connector
+      description:
+        $ref: './docs/connectors/create-connector.md'
+      operationId: create-connector
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/createConnectorRequest'
+      responses:
+        '201':
+          description: successful operation
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/connector'
+        '400':
+          description: Invalid input
+          content:
+            application/json:
+              examples:
+                missing_parameter:
+                  summary: missing_required_property
+                  value:
+                    status: error
+                    type: missing_required_property
+                    message: The property `frequency` is missing from the payload
+                invalid_parameter:
+                  summary: invalid_property
+                  value:
+                    status: error
+                    type: invalid_property
+                    message: The property `frequency` is not valid
+  /projects/{projectId}/connectors/{connectorId}:
+    parameters:
+      - $ref: ./common/parameters.yaml#/path/projectId
+      - $ref: '#/components/parameters/connectorId'
+    get:
+      tags:
+        - Retrieve Connectors
+      summary: Get Connector
+      description: Return a Project's Connecter by Connector Id
+      operationId: get-connector
+      responses:
+        '200':
+          description: successful operation
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/connector'
+        '404':
+          description: Connector not found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/errorResponse'
+    delete:
+      tags:
+        - Delete Connectors
+      summary: Delete a Project's Connector by Connector Id
+      description:
+        $ref: './docs/connectors/delete-connector.md'
+      operationId: delete-connector
+      responses:
+        '200':
+          description: successful operation
+          content:
+            application/json:
+              schema:
+                type: object
+                example:
+                  status: success
+                  message: The connector with id 1235 was successfully deleted
+  /projects/{projectId}/connectors/{connectorId}/history:
+    parameters:
+      - $ref: ./common/parameters.yaml#/path/projectId
+      - $ref: '#/components/parameters/connectorId'
+    get:
+      tags:
+        - Retrieve Connectors
+      summary: List Connector Logs
+      description:
+        $ref: './docs/connectors/get-history.md'
+      operationId: get-connector-logs
+      responses:
+        '200':
+          description: successful operation
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/runsList'
+components:
+  securitySchemes:
+    $ref: ./common/securitySchemes.yaml
+  parameters:
+    connectorId:
+      in: path
+      name: connectorId
+      description: Id of an existing Connector
+      style: simple
+      schema:
+        type: string
+        format: uuid
+      required: true
+  schemas:
+    connector_type:
+      type: string
+      enum:
+        - s3Import
+        - gcsImport
+    importPropertiesMixpanelEvent:
+      title: Cloud Import Mixpanel Event Properties
+      type: object
+      properties:
+        data_format:
+          type: string
+          enum:
+            - mixpanel_event
+        compression:
+          type: string
+          nullable: true
+          enum:
+            - none
+            - gzip
+    importPropertiesMixpanelPeople:
+      title: Cloud Import Mixpanel People Properties
+      type: object
+      properties:
+        data_format:
+          type: string
+          enum:
+            - mixpanel_people
+        compression:
+          type: string
+          nullable: true
+          enum:
+            - none
+            - gzip
+    importPropertiesMixpanelGroup:
+      title: Cloud Import Mixpanel Group Properties
+      type: object
+      properties:
+        data_format:
+          type: string
+          enum:
+            - mixpanel_group
+        compression:
+          type: string
+          nullable: true
+          enum:
+            - none
+            - gzip
+    importPropertiesRemapEvent:
+      title: Cloud Import Remap Event Properties
+      type: object
+      properties:
+        data_format:
+          type: string
+          enum:
+            - remap_event
+        compression:
+          type: string
+          nullable: true
+          enum:
+            - none
+            - gzip
+        property_remap:
+          type: object
+          title: Property Remap for Event
+          required: ['event_name', 'time', 'distinct_id']
+          properties:
+            $insert_id:
+              type: string
+              nullable: true
+            time:
+              type: string
+              nullable: false
+            event_name:
+              type: string
+              nullable: false
+            ip:
+              type: string
+              nullable: true
+            distinct_id:
+              type: string
+              nullable: false
+    importPropertiesRemapPeople:
+       title: Cloud Import Remap People Properties
+       type: object
+       properties:
+          data_format:
+           type: string
+           enum:
+              - remap_people
+          compression:
+            type: string
+            nullable: true
+            enum:
+              - none
+              - gzip
+          property_remap:
+            type: object
+            title: Property Remap for People
+            required: ['$distinct_id']
+            properties:
+              $distinct_id:
+                type: string
+                nullable: false
+    importPropertiesRemapGroup:
+      title: Cloud Import Remap Group Properties
+      type: object
+      properties:
+        data_format:
+          type: string
+          enum:
+            - remap_group
+        compression:
+          type: string
+          nullable: true
+          enum:
+            - none
+            - gzip
+        property_remap:
+          type: object
+          title: Property Remap for Group
+          required: ['$group_key', '$group_id']
+          properties:
+            $group_key:
+              type: string
+              nullable: false
+            $group_id:
+              type: string
+              nullable: false
+    s3Import:
+      type: object
+      title: s3Import
+      required: ['s3_role', 's3_bucket', 's3_region', 's3_prefix']
+      properties:
+        s3_role:
+          type: string
+        s3_bucket:
+          type: string
+        s3_region:
+          type: string
+          enum:
+            - us-east-2
+            - us-east-1
+            - us-west-1
+            - us-west-2
+            - ap-south-1
+            - ap-northeast-3
+            - ap-northeast-2
+            - ap-southeast-1
+            - ap-southeast-2
+            - ap-northeast-1
+            - ca-central-1
+            - cn-north-1
+            - cn-northwest-1
+            - eu-central-1
+            - eu-west-1
+            - eu-west-2
+            - eu-west-3
+            - eu-north-1
+            - sa-east-1
+        s3_prefix:
+          type: string
+    gcsImport:
+      type: object
+      title: gcsImport
+      required: ['gcs_bucket', 'gcs_prefix']
+      properties:
+        gcs_bucket:
+          type: string
+        gcs_prefix:
+          type: string
+    runsList:
+      type: object
+      properties:
+        url:
+          type: string
+          format: uuid
+          example: 123e4567-e89b-12d3-a456-426614174000
+        has_more:
+          type: boolean
+          example: false
+        data:
+          type: array
+          items:
+            $ref: '#/components/schemas/run'
+    run:
+      type: object
+      properties:
+        run_id:
+          type: string
+        start_time:
+          type: string
+          example: '1588056062'
+        end_time:
+          type: string
+          example: '1588056062'
+        status:
+          type: string
+          enum:
+            - paused
+            - running
+            - queued
+            - failed
+            - success
+        progress:
+          type: number
+          example: 0.5
+        error:
+          type: object
+          example:
+            type: invalid_permissions_gcs
+            message: Invalid permissions to access GCS bucket
+        connector_properties:
+          type: object
+          example:
+            num_user_profiles_exported: 1234
+    user:
+      type: object
+      properties:
+        email:
+          type: string
+          example: john.doe@qwerty.com
+    connectorsListResponse:
+      type: object
+      properties:
+        url:
+          type: string
+          example: /connectors
+        has_more:
+          type: boolean
+          example: false
+        data:
+          type: array
+          items:
+            $ref: '#/components/schemas/connector'
+    createConnectorRequest:
+      type: object
+      oneOf:
+        - $ref: '#/components/schemas/s3CreateConnectorRequest'
+        - $ref: '#/components/schemas/gcsCreateConnectorRequest'
+      discriminator:
+        propertyName: connector_type
+        mapping:
+          s3Import: '#/components/schemas/s3CreateConnectorRequest'
+          gcsImport: '#/components/schemas/gcsCreateConnectorRequest'
+    s3CreateConnectorRequest:
+      type: object
+      required: ['connector_type', 'connector_properties', 'category_properties']
+      properties:
+        label:
+          type: string
+        connector_type:
+          $ref: '#/components/schemas/connector_type'
+        connector_properties:
+          $ref: '#/components/schemas/s3Import'
+        category_properties:
+          type: object
+          example:
+            frequency: 60
+            trial: true
+          oneOf:
+            - $ref: '#/components/schemas/importPropertiesMixpanelEvent'
+            - $ref: '#/components/schemas/importPropertiesMixpanelGroup'
+            - $ref: '#/components/schemas/importPropertiesMixpanelPeople'
+            - $ref: '#/components/schemas/importPropertiesRemapEvent'
+            - $ref: '#/components/schemas/importPropertiesRemapPeople'
+            - $ref: '#/components/schemas/importPropertiesRemapGroup'
+    gcsCreateConnectorRequest:
+      type: object
+      required: ['connector_type', 'connector_properties', 'category_properties']
+      properties:
+        label:
+          type: string
+        connector_type:
+          $ref: '#/components/schemas/connector_type'
+        connector_properties:
+          $ref: '#/components/schemas/gcsImport'
+        category_properties:
+          type: object
+          example:
+            frequency: 60
+            trial: true
+          oneOf:
+            - $ref: '#/components/schemas/importPropertiesMixpanelEvent'
+            - $ref: '#/components/schemas/importPropertiesMixpanelGroup'
+            - $ref: '#/components/schemas/importPropertiesMixpanelPeople'
+            - $ref: '#/components/schemas/importPropertiesRemapEvent'
+            - $ref: '#/components/schemas/importPropertiesRemapPeople'
+            - $ref: '#/components/schemas/importPropertiesRemapGroup'
+    connector:
+      type: object
+      oneOf:
+        - $ref: '#/components/schemas/gcsConnector'
+        - $ref: '#/components/schemas/s3Connector'
+      discriminator:
+        propertyName: connector_type
+        mapping:
+          s3Import: '#/components/schemas/s3Connector'
+          gcsImport: '#/components/schemas/gcsConnector'
+    s3Connector:
+      type: object
+      required: ['connector_type', 'connector_properties', 'category_properties']
+      properties:
+        connector_type:
+          $ref: '#/components/schemas/connector_type'
+        connectorId:
+          type: string
+          format: uuid
+        label:
+          type: string
+        connector_properties:
+          $ref: '#/components/schemas/s3Import'
+        category_properties:
+          type: object
+          oneOf:
+            - $ref: '#/components/schemas/importPropertiesMixpanelEvent'
+            - $ref: '#/components/schemas/importPropertiesMixpanelGroup'
+            - $ref: '#/components/schemas/importPropertiesMixpanelPeople'
+            - $ref: '#/components/schemas/importPropertiesRemapEvent'
+            - $ref: '#/components/schemas/importPropertiesRemapPeople'
+            - $ref: '#/components/schemas/importPropertiesRemapGroup'
+        status:
+          type: string
+          description: connector status
+          enum:
+            - active
+            - stopped
+            - paused
+        failure_message:
+          type: string
+          description: error message if the connector is paused
+        created_at:
+          type: string
+          example: '1588052857'
+        created_by:
+          $ref: '#/components/schemas/user'
+    gcsConnector:
+      type: object
+      required: ['connector_type', 'connector_properties', 'category_properties']
+      properties:
+        connector_type:
+          $ref: '#/components/schemas/connector_type'
+        connectorId:
+          type: string
+          format: uuid
+        label:
+          type: string
+        connector_properties:
+          $ref: '#/components/schemas/gcsImport'
+        category_properties:
+          type: object
+          oneOf:
+            - $ref: '#/components/schemas/importPropertiesMixpanelEvent'
+            - $ref: '#/components/schemas/importPropertiesMixpanelGroup'
+            - $ref: '#/components/schemas/importPropertiesMixpanelPeople'
+            - $ref: '#/components/schemas/importPropertiesRemapEvent'
+            - $ref: '#/components/schemas/importPropertiesRemapPeople'
+            - $ref: '#/components/schemas/importPropertiesRemapGroup'
+        status:
+          type: string
+          description: connector status
+          enum:
+            - active
+            - stopped
+            - paused
+        failure_message:
+          type: string
+          description: error message if the connector is paused
+        created_at:
+          type: string
+          example: '1588052857'
+        created_by:
+          $ref: '#/components/schemas/user'
+    errorResponse:
+      type: object
+      properties:
+        status:
+          type: string
+          example: error
+        type:
+          type: string
+          example: invalid_permissions_gcs
+        message:
+          type: string
+          example: Invalid permissions to access GCS Bucket
+        details:
+          type: string
+    #! Unused Components
+    # Todo: fix and remove entry from lint-ignore in ./redocly.lint-ignore.yaml
+    connectorsStatusRequest:
+      type: object
+      properties:
+        startTime:
+          type: string
+          example: '1588056062'
+        endTime:
+          type: string
+          example: '1588056062'
+    # Todo: fix and remove entry from lint-ignore in ./redocly.lint-ignore.yaml
+    connectorsStatus:
+      type: object
+      properties:
+        success:
+          type: integer
+          example: 200
+        failed:
+          type: integer
+          example: 200
+        queued:
+          type: integer
+          example: 200
+        running:
+          type: integer
+          example: 200
+        paused:
+          type: integer
+          example: 200
+        messages:
+          type: array
+          items:
+            type: string
+            example: failed to open writer to GCS storage object
+    # Todo: fix and remove entry from lint-ignore in ./redocly.lint-ignore.yaml
+    actionResponse:
+      type: object
+      properties:
+        status:
+          type: string
+          enum:
+            - failed
+            - succeeded
+        message:
+          type: string
+x-explorer-enabled: true
+x-proxy-enabled: true
+x-samples-enabled: true
+x-samples-languages:
+  - curl
+  - node
+  - ruby
+  - javascript
+  - python
