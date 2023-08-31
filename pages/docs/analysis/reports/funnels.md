@@ -462,6 +462,10 @@ For example, you might use this to discover that most users who dropped off are 
 
 ## FAQ
 
+### Why is my user shown as dropped off even though they've just completed the full funnel today? 
+
+Assuming that the user performed all actions in the funnel, on their first try, in the right sequence, within the conversion window, the user should be counted as converted. However, if you are looking at the Funnel report for today, they might be shown as dropped off. This is because there may be up to a 24 hour delay on our reports (except for Activity Feed), as we work towards linking anonymous user activity to known profiles. This would explain why the funnel displays the user as not converted, soon after ingestion. Once we account for the delay, the funnel should display the conversion, especially if the user performs the steps in the funnel in the specified sequence. 
+
 ### Can users do other actions during the funnel?
 
 Users can complete the steps you designate in your funnel in loose order. Loose order means that a customer can engage in other actions in between funnel steps, as long as they complete all the funnel steps in order. Let's start with an example where the funnel has steps: A, B, C, D, E and go through a few cases:
