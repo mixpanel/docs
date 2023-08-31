@@ -7,7 +7,7 @@ info:
   contact:
     url: 'https://mixpanel.com/get-support'
 servers:
-  - url: 'https://{server}.mixpanel.com/api/query'
+  - url: 'https://{server}.mixpanel.com/api/2.0'
     description: Mixpanel's data export server.
     variables:
       server:
