@@ -77,7 +77,7 @@ Our mobile libraries store your super properties in local storage. They will per
 
 You can handle the identity of a user using the [identify](https://mixpanel.github.io/mixpanel-iphone/Classes/Mixpanel.html#//api/name/identify:) and [alias](https://mixpanel.github.io/mixpanel-iphone/Classes/Mixpanel.html#//api/name/alias) methods. Proper use of these methods can connect events to the correct user as they move across devices, browsers, and other platforms. 
 
-####Identify
+#### Identify
 Identify a user with a unique ID to track user activity across devices, tie a user to their events, and create a user profile. If you never call this method, unique visitors are tracked using a UUID that generates the first time they use the app.
 
 Call `identify` when you know the identity of the current user, typically after log-in or sign-up. We recommend against using `identify` for anonymous visitors to your site. 
@@ -133,7 +133,7 @@ You can use <a style="font-family: courier" href="https://mixpanel.github.io/mix
 }];
 ```
 
-###Other Types of Profile Updates
+### Other Types of Profile Updates
 There are a few other types of profile updates. To learn more, please review the full [MixpanelPeople API documentation](https://mixpanel.github.io/mixpanel-iphone/Classes/MixpanelPeople.html).
 
 ## Tracking Revenue
