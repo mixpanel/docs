@@ -1,0 +1,40 @@
+# Sending Events 
+
+### Format Data for Mixpanel Ingestion
+
+To import data from a warehouse directly, you need to format tables correctly.
+
+Each column in the table will be mapped as a property on the event. 
+
+Read more about best practices for tracking Events and Properties in Mixpanel [here](https://docs.mixpanel.com/docs/tracking/how-tos/events-and-properties).
+
+**The following columns are required:** 
+
+- Event Time
+- Distinct ID
+- Insert ID
+    - This is an optional field, but we recommend it as a best practice in case duplicate events need to be reconciled.
+- Insert Time
+    - We expect this to be a monotonically increasing TIMESTAMP_NTZ. We use this as a water mark to figure out which events are new and ingest them.
+- Event Name
+    - You can specify the column that has this value.
+    - Alternatively, you can specify a static value during creation.
+
+### Event Tables
+
+Once you have created a warehouse source, follow the below steps to send events into Mixpanel.
+1. Go to Project Settings > Warehouse Data.
+2. Click on + Create and select Event Table.
+3. Select your warehouse as source from the dropdown.
+4. Navigate to the dataset or database where your Events table is.
+5. Select the Table.
+6. Specify the Event Name:
+    - You can specify the column which has the event name.
+    - **OR** You can specify the event name for all the events.
+7. Specify the Event Time:
+    - This is the time the event occurred.
+8. Select the column to be used for Insert ID.
+9. Identity Management:
+    - If your project has **Simplified ID Merge**, the warehouse connector will prompt you to map the `$device_id` and `$user_id` properties to columns in your table during setup. For more information on how we map those fields to the resulting distinct id, refer to our documentation [here](https://docs.mixpanel.com/docs/tracking/how-tos/identifying-users#usage).
+    - If your project has **Original ID Merge**, the warehouse connector will prompt you to map the Distinct ID column. This column represents the entity to which the events belong; it could be a user or a device. If you want to map two entities together you have to additionally call either `$identify`, `$merge`, `$alias` functions, along with their corresponding properties. For more information, refer to our documentation [here](https://docs.mixpanel.com/docs/tracking/how-tos/identifying-users#how-does-the-simplified-api-differ-from-the-original-api). 
+10. Check the preview to ensure that everything looks correct, and then create the event.
