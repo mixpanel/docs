@@ -75,9 +75,8 @@ paths:
       responses:
         '200':
           description: >-
-            Success. The return is format is one event per line sorted by
-            increasing timestamp. Each line is a valid JSON object, but the full
-            return itself is JSONL.
+            Success. The returned format is one event per line where each line
+            is a valid JSON object, but the full return itself is JSONL.
           content:
             text/plain:
               schema:
