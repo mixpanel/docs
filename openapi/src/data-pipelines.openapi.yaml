@@ -160,7 +160,7 @@ paths:
       operationId: cancel-warehouse-pipeline
       description: >-
         For a given pipeline name, this request deletes the pipeline and stops
-        any future jobs to be scheduled for the pipeline. 
+        any future jobs to be scheduled for the pipeline.
         Deleting the pipeline will result in the loss of all its historical data. If you wish to retain the history, it is recommended to pause the pipeline instead.
       requestBody:
         required: true
@@ -256,7 +256,7 @@ paths:
       description: |
         Given the name of the pipeline this API returns the status of the
         pipeline. It returns the summary and status of all the recent run export
-        jobs for the pipeline.
+        jobs for the pipeline. wheeee
 
 
         **Example Response:** Status with no Summary and a Filter
