@@ -252,14 +252,14 @@ Adding users to groups causes the `group_key` and `group_id` to send as a proper
 
 Similar to a `distinct_id`, the `group_key` allows Mixpanel to group events by an identifier for analysis. A `group_key`, however, is a group level identifier and not a user level identifier like the `distinct_id`.
 
-You can add users to groups by calling the [`mixpanel.set_group()`](/docs/tracking/advanced/javascript-full-api-reference#mixpanelset_group) method.
+You can add users to groups by calling the [`mixpanel.set_group()`](/docs/tracking/reference/javascript-full-api-reference#mixpanelset_group) method.
 
 ```javascript JavaScript
 //Assign Company A and Company B to a user
 mixpanel.set_group(“company”, [“Company A”, “Company B”])
 ```
 
-You can call  [`mixpanel.add_group()`](/docs/tracking/advanced/javascript-full-api-reference#mixpaneladd_group) to add any additional groups to an existing list.
+You can call  [`mixpanel.add_group()`](/docs/tracking/reference/javascript-full-api-reference#mixpaneladd_group) to add any additional groups to an existing list.
 
 ```javascript JavaScript
 //Add “Mixpanel” to the list of existing groups
@@ -267,7 +267,7 @@ mixpanel.add_group(“company”, “Mixpanel”)
 ```
 
 ### Creating Group Profiles
-It is possible to create a Group profile that is similar to a user profile. You must call [`mixpanel.set_group()`](/docs/tracking/advanced/javascript-full-api-reference#mixpanelset_group) to build a group profile. It is important to the `group_key`, `group_id`, and one property so that the profile is not empty. 
+It is possible to create a Group profile that is similar to a user profile. You must call [`mixpanel.set_group()`](/docs/tracking/reference/javascript-full-api-reference#mixpanelset_group) to build a group profile. It is important to the `group_key`, `group_id`, and one property so that the profile is not empty.
 ```javascript JavaScript
 mixpanel.get_group(group_key, group_id).set({“property_name”: property_value})
 ```
@@ -275,11 +275,11 @@ mixpanel.get_group(group_key, group_id).set({“property_name”: property_value
 ### Setting Group Profile Properties
 You can add details to Groups by adding properties to them.
 
-In order to update Group profile properties, you must specify the group that needs to be updated by calling [`get_group()`](/docs/tracking/advanced/javascript-full-api-reference#mixpanelget_group)
+In order to update Group profile properties, you must specify the group that needs to be updated by calling [`get_group()`](/docs/tracking/reference/javascript-full-api-reference#mixpanelget_group)
 ```javascript JavaScript
 mixpanel.get_group(“company”, “Mixpanel”)
 ```
-The [`get_group()`](/docs/tracking/advanced/javascript-full-api-reference#mixpanelget_group) method can be chained with other commands that edit properties specific to the group.
+The [`get_group()`](/docs/tracking/reference/javascript-full-api-reference#mixpanelget_group) method can be chained with other commands that edit properties specific to the group.
 
 You can set the property `$name` to populate the name field at the top of the group profile.
 
