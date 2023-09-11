@@ -1,4 +1,7 @@
 {
-    "bigquery": "BigQuery",
-    "snowflake": "Snowflake"
+    "bigquery": "BigQuery Setup",
+    "snowflake": "Snowflake Setup",
+    "events": "Sending Events",
+    "users": "Sending User Profiles",
+    "groups": "Sending Group Profiles"
 }

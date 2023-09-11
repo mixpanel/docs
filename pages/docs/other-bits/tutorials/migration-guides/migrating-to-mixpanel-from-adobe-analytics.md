@@ -23,7 +23,7 @@ The rest of this guide will cover the Mixpanel JavaScript SDK for brevity, but t
 
 We recommend the following steps to get started quickly:
 
-- Configure the [Mixpanel JavaScript SDK](/docs/javascript-full-api-reference) to automatically track page views, where UTM params are tracked by default
+- Configure the [Mixpanel JavaScript SDK](https://developer.mixpanel.com/docs/javascript-full-api-reference) to automatically track page views, where UTM params are tracked by default
     
     ```
     mixpanel.init('YOUR_TOKEN', {track_pageview: true});
