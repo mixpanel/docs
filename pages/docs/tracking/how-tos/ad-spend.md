@@ -207,6 +207,8 @@ const GOOGLE_ADS_CUSTOMER_ID = 'YOUR GOOGLE CUSTOMER CLIENT ID WITHOUT HYPHENS';
 // End of Configuration
 
 const mixpanel = Mixpanel.init(MIXPANEL_TOKEN);
+// Use the below line of init code instead if project in EU residency
+// const mixpanel = Mixpanel.init(MIXPANEL_TOKEN, {host: "api-eu.mixpanel.com"});
 
 const client = new GoogleAdsApi({
     client_id: GOOGLE_CLIENT_ID,
@@ -383,6 +385,11 @@ const FACEBOOK_AD_ACCOUNT = 'YOUR FACEBOOK AD ACCOUNT ID'; // ex. act_12345678
 const mixpanel = Mixpanel.init(MIXPANEL_TOKEN, {
     secret: MIXPANEL_SECRET
 });
+// Use the init code below instead if project in EU residency
+// const mixpanel = Mixpanel.init(MIXPANEL_TOKEN, {
+//    secret: MIXPANEL_SECRET,
+//    host: "api-eu.mixpanel.com"
+// });
 
 adsSdk.FacebookAdsApi.init(FACEBOOK_TOKEN);
 
