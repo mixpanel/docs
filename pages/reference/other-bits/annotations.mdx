@@ -1,0 +1,79 @@
+import CustomCallout from "../../../components/CustomCallout/CustomCallout";
+
+## Annotations
+
+### Overview
+The Annotations API lets you manage your annotations programmatically. Annotations are text descriptions tied to a time that will show up in reports such as Insights to let users know something meaningful occurred at that time. You can use this API to get a list of your project's annotations, edit them, create them or delete them.
+
+<CustomCallout type="info" title="Roles & Permissions">
+    To modify annotations (create, delete, or edit), you or the Service Account being used must have the role of at least Analyst.
+</CustomCallout>
+
+
+### Retrieve Annotations
+
+#### List Annotations
+List all annotations in a project.
+
+```sh
+curl --request GET \
+     --url https://mixpanel.com/api/app/projects/projectId/annotations \
+     --header 'accept: application/json'
+```
+
+To see this API in action, visit our [API Playground](https://developer.mixpanel.com/reference/list-all-annotations-for-project).
+
+#### Get Annotation
+Get an Annotation
+
+```sh
+curl --request GET \
+     --url https://mixpanel.com/api/app/projects/projectId/annotations/annotationId \
+     --header 'accept: application/json'
+```
+
+To see this API in action, visit our [API Playground](https://developer.mixpanel.com/reference/get-annotation-1).
+
+
+### Create Annotations
+
+#### Create Annotation
+Create an Annotation. Requires a role of at least Analyst.
+
+```sh
+curl --request POST \
+     --url https://mixpanel.com/api/app/projects/projectId/annotations \
+     --header 'accept: application/json' \
+     --header 'content-type: application/json'
+```
+
+To see this API in action, visit our [API Playground](https://developer.mixpanel.com/reference/create-annotation).
+
+
+### Patch Annotations
+
+#### Patch Annotation
+Patch an Annotation. Requires a role of at least Analyst.
+
+```sh
+curl --request PATCH \
+     --url https://mixpanel.com/api/app/projects/projectId/annotations/annotationId \
+     --header 'accept: application/json' \
+     --header 'content-type: application/json'
+```
+
+To see this API in action, visit our [API Playground](https://developer.mixpanel.com/reference/patch-annotation-1).
+
+
+### Delete Annotations
+
+#### Delete Annotation
+Delete an Annotation. Requires a role of at least Analyst.
+
+```sh
+curl --request DELETE \
+     --url https://mixpanel.com/api/app/projects/projectId/annotations/annotationId \
+     --header 'accept: application/json'
+```
+
+To see this API in action, visit our [API Playground](https://developer.mixpanel.com/reference/delete-annotation-1).
