@@ -4,6 +4,23 @@ import Image from "../../../components/Image/Image";
 ## Identities
 
 ### Create Identity
+```sh
+curl --request POST \
+     --url 'https://api.mixpanel.com/track#create-identity' \
+     --header 'accept: text/plain' \
+     --header 'content-type: application/x-www-form-urlencoded' \
+     --data 'data={
+      "event": "$identify",
+      "properties": {
+          "$identified_id": "ORIGINAL_ID",
+          "$anon_id": "NEW_ID",
+          "token": "YOUR_PROJECT_TOKEN"
+      }
+}
+'
+```
+
+To see this API in action, visit our [API Playground](https://developer.mixpanel.com/reference/create-identity).
 <CustomCallout type="info">
     You can also use the import endpoint: https://api.mixpanel.com/import/
 </CustomCallout>
@@ -11,7 +28,26 @@ import Image from "../../../components/Image/Image";
 Identify Criteria:
 <Image src="https://files.readme.io/d0066f0-ID_management_identify_3-HTTP.png" />
 
+
 ### Create Alias
+```sh
+curl --request POST \
+     --url 'https://api.mixpanel.com/track#identity-create-alias' \
+     --header 'accept: text/plain' \
+     --header 'content-type: application/x-www-form-urlencoded' \
+     --data 'data={
+    "event": "$create_alias",
+    "properties": {
+        "distinct_id": "other_distinct_id",
+        "alias": "your_id",
+        "token": "YOUR_PROJECT_TOKEN"
+    }
+}
+'
+```
+
+To see this API in action, visit our [API Playground](https://developer.mixpanel.com/reference/identity-create-alias).
+
 <CustomCallout type="info">
     You can also use the import endpoint: https://api.mixpanel.com/import/
 </CustomCallout>
@@ -21,7 +57,17 @@ Mixpanel supports adding an alias to a distinct id. An alias is a new\nvalue tha
 Alias Criteria:
 <Image src="https://files.readme.io/d16f1d3-ID_management_alias_3-HTTP.png" />
 
+
 ### Merge Identities
+```sh
+curl --request POST \
+     --url 'https://api.mixpanel.com/import?strict=1' \
+     --header 'accept: application/json' \
+     --header 'content-type: application/json'
+```
+
+To see this API in action, visit our [API Playground](https://developer.mixpanel.com/reference/identity-merge).
+
 <CustomCallout type="error" title="Merging identities is irreversible">
     `$merge` is a very powerful tool, so we will only accept `$merge` events that are sent via `https://api.mixpanel.com/import`, which is protected by the project api secret. You **cannot** unmerge `distinct_id`.
 </CustomCallout>
