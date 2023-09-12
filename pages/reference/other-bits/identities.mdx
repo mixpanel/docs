@@ -1,0 +1,30 @@
+import CustomCallout from "../../../components/CustomCallout/CustomCallout";
+import Image from "../../../components/Image/Image";
+
+## Identities
+
+### Create Identity
+<CustomCallout type="info">
+    You can also use the import endpoint: https://api.mixpanel.com/import/
+</CustomCallout>
+
+Identify Criteria:
+<Image src="https://files.readme.io/d0066f0-ID_management_identify_3-HTTP.png" />
+
+### Create Alias
+<CustomCallout type="info">
+    You can also use the import endpoint: https://api.mixpanel.com/import/
+</CustomCallout>
+
+Mixpanel supports adding an alias to a distinct id. An alias is a new\nvalue that will be interpreted by Mixpanel as an existing value. That\nmeans that you can send messages to Mixpanel using the new value, and\nMixpanel will continue to use the old value for calculating funnels and\nretention reports, or applying updates to user profiles.
+
+Alias Criteria:
+<Image src="https://files.readme.io/d16f1d3-ID_management_alias_3-HTTP.png" />
+
+### Merge Identities
+<CustomCallout type="error" title="Merging identities is irreversible">
+    `$merge` is a very powerful tool, so we will only accept `$merge` events that are sent via `https://api.mixpanel.com/import`, which is protected by the project api secret. You **cannot** unmerge `distinct_id`.
+</CustomCallout>
+
+Merge Criteria:
+<Image src="https://files.readme.io/be66940-merge_.png" />
