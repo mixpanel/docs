@@ -61,3 +61,4 @@ We have a soft limit of 2000 distinct event names in a 30 day window. If you sen
 
 Each event can have up to 2000 properties. Properties can be at most 255 characters in length (longer strings are truncated).
 
+**Note**: while events can have up to 2000 properties and batches of events can have up to 50 or 2000 events per batch depending on the ingestion endpoint, some libraries might default to sending the data through the GET protocol which would have a much lower size limit since the information is appended to the URL. If you are hitting the limits on the size of the request, first verify if the method being used is GET and can be switched to POST.
