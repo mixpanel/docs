@@ -1,11 +1,11 @@
 import { Tab, Tabs } from 'nextra-theme-docs'
 
-## Segmentation Expressions
+# Segmentation Expressions
 Segmentation Expressions are used in [Query API](https://developer.mixpanel.com/reference/query-api) and [Raw Data Export API](https://developer.mixpanel.com/reference/raw-data-export-api) to allow for more specificity when querying your data.
 
 The power of segmentation comes from the ability to define custom expressions based on property names in the where and on parameters. An expression consists of a property, combined with one or more operators that can perform mathematical operations, logical operations, or typecasts. Expression are then applied in the where and on parameters of the segmentation API. The full grammar for expressions is given here:
 
-### Expression Syntax
+## Expression Syntax
 ```txt
 <expression> ::= 'properties["' <property> '"]'
                 | <expression> <binary op> <expression>
@@ -24,7 +24,7 @@ The power of segmentation comes from the ability to define custom expressions ba
    <property> ::= 'properties["' <property name> '"]'
 ```
 
-#### Examples
+### Examples
 | Expression                                | Description |
 | ----------------------------------------- | ----------------------------- |
 | `properties["account_id"] in [1,2,3,4]`   | Returns `true` if `account_id` event property is 1, 2, 3, or 4, otherwise `false`. |
@@ -32,12 +32,12 @@ The power of segmentation comes from the ability to define custom expressions ba
 | `defined(properties["My Prop"])`          | Returns `true` if `My Prop` event property has any value, otherwise `false`. This is the same as "is set" in the UI. |
 | `not defined(properties["city"])`         | Returns `false` if `city` event property has any value, otherwise `true`. This is the same as "is not set" in the UI. |
 
-#### Typecast Operations
+### Typecast Operations
 Internally, all properties of events have a type. This type is determined when we parse the event sent to us into a JSON object. Currently, there are three types, string, number, and boolean, which may be specified directly. A property may also have the values null and undefined, which are only handled internally. The default type is string. If you wish to treat an expression as another type, you may use the typecast operators to cast a property to a different type. For example, if `properties["signed up"]` has values of `"true"` and `"false"` as strings, and you wish to intercode them as booleans, you may cast them by using the `boolean() typecast function: boolean(properties["signed up"])`.
 
 The typecasting rules are described below.
 
-#### Casting to String
+### Casting to String
 
 | Type      | Result      |
 | --------- | ----------- |
@@ -48,7 +48,7 @@ The typecasting rules are described below.
 | undefined | undefined |
 
 
-#### Casting to Number
+### Casting to Number
 
 | Type      | Result      |
 | --------- | ----------- |
@@ -58,7 +58,7 @@ The typecasting rules are described below.
 | null      | undefined |
 | undefined | undefined |
 
-#### Binary Operations
+### Binary Operations
 The arithmetic operators `"-"`, `"*"`, `"/"`, `"%"` perform the subtraction, multiplication, division, and remainder operations, respectively. The division operator will return undefined if the divisor is 0. The sign of the value of the remainder will be equivalent to the dividend. All four of these operators expect both operands to be of the type number, or else the result is undefined.
 
 The `"+"` operator behaves as addition if its two operands are of type number. However, if its two operands are of type string, it will concatenate the two strings. In other cases, the result is undefined.
@@ -72,7 +72,7 @@ The `"in"` operator returns true if both operands are of type string and the fir
 The logical operators `"and"` and `"or"` accept boolean and undefined operands. An operand with type undefined evaluates as false. Any other types will result in an error.
 
 
-#### Unary and Math Operations
+### Unary and Math Operations
 The `"-"` operator will negate an operand of type number, and return undefined otherwise.
 
 The `"not"` operator will perform the logical not on an operand of type boolean. It will also evaluate an operand of type undefined as true. All other operands will be evaluated to undefined.

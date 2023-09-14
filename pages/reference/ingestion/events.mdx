@@ -1,9 +1,9 @@
 import { Tab, Tabs } from 'nextra-theme-docs'
 
-## Import Events
+# Import Events
 Use this API to send events from your servers to Mixpanel.
 
-### Usage
+## Usage
 <Tabs items={['cURL', 'Python']}>
 <Tab>
 ```sh
@@ -38,17 +38,17 @@ print(resp.json())
 
 See our [data model guide](/docs/tracking/reference/data-model#anatomy-of-an-event) to learn about each of the fields in the event.
 
-### Advanced
+## Advanced
 * You can batch up to 2000 events per request to /import.
 * You can set the header `Content-Type: application/x-ndjson` to use ndjson instead of json.
 * You can set the header `Content-Encoding: gzip` to send gzipped events.
 * You can disable validation by removing the `strict=1` query parameter. We don't recommend this, since it makes it harder to debug errors.
 * You can use Service Account authentication, by passing `project_id=<YOUR_PROJECT_ID>` as a query parameter and using your service account username and password in the Basic Auth fields.
 
-### Validation
+## Validation
 If you provide the strict=1 parameter (recommended), /import will validate the supplied events and returns a 400 status code if _any_ of the events fail validation with details of the error. If some events pass validation and others fail, Mixpanel will ingest the events that pass validation.
 
-#### Common Issues
+### Common Issues
 
 `$insert_id` is required on all events. This makes it safe to retry /import requests. If your events don't already have a unique ID (eg: a UUID/GUID), we recommend computing a hash of some set of properties that make the event semantically unique (eg: distinct_id + timestamp + some other property) and using the first 36 characters of that hash as the `$insert_id`.
 

@@ -1,9 +1,9 @@
 import { Tab, Tabs } from 'nextra-theme-docs';
 
-import CustomCallout from "../../../components/CustomCallout/CustomCallout";
-import Image from "../../../components/Image/Image";
+import CustomCallout from "../../components/CustomCallout/CustomCallout";
+import Image from "../../components/Image/Image";
 
-## Authentication Methods
+# Authentication Methods
 
 Most of our APIs require authentication for which we recommend using [Service Accounts](ref:service-accounts) to authenticate. However, most of our [Ingestion API](ref:ingestion-api) calls such as [Import Events](ref:import-events), [Track Events](ref:track-event), [User Profiles](ref:user-profiles), and [Group Profiles](ref:group-profiles) only require a [Project Token](ref:project-token). Because these APIs are often called from our client-side SDKs, we do not want to expose credentials, but we do need to know which project to send data to so we use the Project Token for that purpose.
 
@@ -11,13 +11,13 @@ Most of our APIs require authentication for which we recommend using [Service Ac
   Our APIs will reject calls made over HTTP to protect request and response information.
 </CustomCallout>
 
-### Service Accounts
+## Service Accounts
 
 <CustomCallout type="success" title="Recommended Authentication" />
 
 A service account is a special type of Mixpanel user intended to represent a non-human entity such as a script or back end service. Similar to a normal user it can be granted access to any number of projects and workspaces within an organization. Permissions are set by defining the role of the service account for each project or workspace. A service account can only belong to one organization. 
 
-#### Authenticating with a Service Account
+### Authenticating with a Service Account
 
 Service Account authentication is performed via [HTTP Basic Auth](https://developer.mozilla.org/en-US/docs/Web/HTTP/Authentication#Basic_authentication_scheme). While the Basic access standard calls for a base64 encoding of the colon-joined credentials our authentication accepts both base64 encoding and plain-text. 
 
@@ -47,7 +47,7 @@ Provide a service account's username and secret as the basic authentication cred
     </Tab>
 </Tabs>
 
-#### Managing Service Accounts
+### Managing Service Accounts
 
 <CustomCallout type="warning" title="Owner or Admin Permissions Required">
   You must have Owner or Admin permissions to manage a project's Service Accounts. Learn more in our [permissions help doc](https://mixpanelsupport.zendesk.com/hc/en-us/articles/360024613412).
@@ -71,12 +71,12 @@ Any service account you create from the project settings page will be automatica
   It's very important you save your service account secret somewhere secure as you won't be able to access it again after creation.
 </CustomCallout>
 
-#### Service Account Expiration
+### Service Account Expiration
 By default, service accounts have no expiration. However, when you create a service account you can optionally specify how long you want it to be valid for. This may provide increased security and force a credential rotation policy. After the credentials expire, API requests using the service account will not be authorized.
 
 <Image src="https://files.readme.io/3668062-image_12.png" />
 
-### Project Token
+## Project Token
 
 Every Mixpanel project has a unique alphanumerical token for collecting data. A project's token is not a secret value. In front-end implementation, such as our javascript library, this token will be available to anyone visiting your page.
 
@@ -84,7 +84,7 @@ With that in mind, it is important to note that a project's token is not a form 
 
 Project token is solely used in our Ingestion APIs. For any events with a timestamp of more than five days, we require you to provide authentication via Project Secret along with the token.
 
-#### Sending data with a Project Token
+### Sending data with a Project Token
 
 For [Track Events](ref:track-event), tokens are provided as values inside of the data sent to Mixpanel. Where this value is stored is dependent on the API endpoint used. Information on the specific location can be found in the Ingestion API's specification.
 
@@ -153,14 +153,14 @@ For [Import Events](ref:import-events), the token is provided in the header as t
 --header 'authorization: Basic <base64 encoding of token without password>'
 ```
 
-#### Managing a Project's Token
+### Managing a Project's Token
 
 A project's token can be found in the Access Keys section of a project's settings overview page: https://mixpanel.com/settings/project/.
 
 To learn more, view our [project settings guide](https://help.mixpanel.com/hc/en-us/articles/115004490503-Project-Settings).
 
 
-### Project Secret [Deprecating]
+## Project Secret [Deprecating]
 
 <CustomCallout type="error" title="Deprecation Warning">
   This authentication method is in the process of being deprecated. Please use Service Accounts instead. We will continue to support Project Secret authentication for legacy customers indefinitely so you aren't at risk of your existing scripts breaking, but we highly recommend migrating to Service Accounts for any subsequent usage.
@@ -171,7 +171,7 @@ Before we introduced Service Accounts, Project Secret was the standard authentic
 
 Your Project Secret is very powerful so be sure to keep it secure. Do not share your secret in publicly accessible or insecure places such as source code or plain-text configs.
 
-#### Authenticating with a Project Secret
+### Authenticating with a Project Secret
 
 Project secret authentication is performed via [HTTP Basic Auth](https://developer.mozilla.org/en-US/docs/Web/HTTP/Authentication#Basic_authentication_scheme). Provide your secret as the basic auth username value with an empty password. Make sure you use HTTPS and not HTTP - our API rejects requests made over HTTP since this sends your API Secret over the internet in plain text.
 
@@ -181,13 +181,13 @@ Project secret authentication is performed via [HTTP Basic Auth](https://develop
         -d data=<encoded_event_data>
 ```
 
-#### Managing a Project's Secret
+### Managing a Project's Secret
 
 A project's secret can be found in the Access Keys section of a project's settings overview page: https://mixpanel.com/settings/project/.
 
 To learn more, view our [project settings guide](https://help.mixpanel.com/hc/en-us/articles/115004490503-Project-Settings).
 
-### Request Signature [Deprecated]
+## Request Signature [Deprecated]
 
 <CustomCallout type="error" title="Deprecation Warning">
   API authentication via request signature is an outdated authentication. The documentation below has been included for your reference. Please migrate existing code to use Service Account authentication.
@@ -195,7 +195,7 @@ To learn more, view our [project settings guide](https://help.mixpanel.com/hc/en
 
 Request signature authentication is the process of creating an encrypted token unique to a set of request parameters and their values. It was useful when requests were made insecurely or needed to be expirable. However, superior and more simplistic security practices have made this approach obsolete.
 
-#### Calculating a Signature
+### Calculating a Signature
 
 In order to generate a request signature you will need the following information:
 
@@ -231,7 +231,7 @@ for param in sorted_parameter_names:
 request_signature = md5(combined_params + api_secret)request_signature = md5(combined_params + api_secret)
 ```
 
-#### Authenticating with a Request Signature
+### Authenticating with a Request Signature
 
 The generated signature needs to be provided with the parameters you used to calculate it. It will not work if any parameters or values change and it will not be valid after the expiry time.
 

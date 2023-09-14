@@ -1,0 +1,343 @@
+import CustomCallout from "../../../components/CustomCallout/CustomCallout";
+
+# Connectors
+
+<CustomCallout type="error">
+  This API is now in maintenance mode and we are not accepting any new projects.
+</CustomCallout>
+
+<CustomCallout type="info">
+  To see this API in action, visit our [API Playground](https://developer.mixpanel.com/reference/create-connector).
+</CustomCallout>
+
+## Authentication
+
+### Project Secret
+[Project Secret Authentication Details](/reference/other-bits/authentication#project-secret)
+
+### Service Account
+[Service Account Authentication Details](/reference/other-bits/authentication#service-accounts)
+
+Note that when you use Service Account authentication, you must specify the `project_id` as a parameter.
+
+E.g.
+```sh
+curl https://data.mixpanel.com/api/2.0/nessie/pipeline/status \
+     -u "<serviceaccount_user>:<serviceaccount_secret>" \
+     -d name="<job_name>" \
+     -d project_id="<mixpanel_project_id>" \
+     -d summary="true"
+```
+
+
+## Retrieve Connectors
+
+### List Connectors
+List all connectors in a project.
+
+```sh
+curl --request GET \
+     --url https://mixpanel.com/api/app/projects/projectId/connectors \
+     --header 'accept: application/json'
+```
+
+Sample Response
+```json
+{
+  "status": "ok",
+  "results": {
+    "url": null,
+    "has_more": false,
+    "data": [
+      {
+        "connector_id": "232f40cc-7ccc-4da3-b9c3-d8c1d14142c6",
+        "label": "",
+        "connector_type": "gcsImport",
+        "connector_properties": {
+          "gcs_bucket": "sample-dataset",
+          "gcs_prefix": "cloudimport/event",
+          "gcs_region": "us"
+        },
+        "category_properties": {
+          "data_format": "mixpanel_event",
+          "compression": "none"
+        },
+        "status": null,
+        "created_at": "2020-09-17T02:10:33.799738Z",
+        "created_by": "Samoyed.mp-service-account@mixpanel.org"
+      },
+      {
+        "connector_id": "2c1ca81a-695d-4412-8161-75feec489016",
+        "label": "",
+        "connector_type": "gcsImport",
+        "connector_properties": {
+          "gcs_bucket": "sample-dataset",
+          "gcs_prefix": "cloudimport/event",
+          "gcs_region": "us"
+        },
+        "category_properties": {
+          "data_format": "mixpanel_event",
+          "compression": "gzip"
+        },
+        "status": null,
+        "created_at": "2020-09-17T02:30:56.883983Z",
+        "created_by": "Samoyed.mp-service-account@mixpanel.org"
+      }
+    ]
+  }
+}
+```
+
+### Get Connector
+Return a Project's Connecter by Connector Id
+
+```sh
+curl --request GET \
+     --url https://mixpanel.com/api/app/projects/projectId/connectors/ \
+     --header 'accept: application/json'
+```
+
+### List Connector Logs
+Possible Statuses
+- `success` : all items have been imported and available for viewing in the project. Report on import statistics provided
+- `queued` : request has been scheduled and is waiting to be run
+- `running` : data is currently being imported
+- `failed` : import could not be processed due to some non-retryable error. Please refer to the error message in response for more details
+
+`progress` is a float, with range `[0,1]`
+
+```sh
+curl --request GET \
+     --url https://mixpanel.com/api/app/projects/projectId/connectors//history \
+     --header 'accept: application/json'
+```
+
+Sample Queued Job
+```json
+{
+	"status": "ok",
+	"results": {
+		"url": null,
+		"has_more": false,
+		"data": [{
+			"id": "",
+			"start_time": "0001-01-01 00:00:00 +0000 UTC",
+			"end_time": "",
+			"status": "queued",
+			"progress": 0,
+			"error": {
+				"message": "",
+				"code": ""
+			},
+			"connector_properties": {
+				"num_events_imported": 0,
+				"num_events_processed": 0,
+				"num_events_dropped": 0,
+				"num_files_imported": 0,
+				"size_imported": 0
+			}
+		}]
+	}
+}
+```
+
+Sample Running Job
+```json
+{
+	"status": "ok",
+	"results": {
+		"url": null,
+		"has_more": false,
+		"data": [{
+			"id": "",
+			"start_time": "2020-09-16 07:00:00 +0000 UTC",
+			"end_time": "",
+			"status": "running",
+			"progress": 0.25,
+			"error": {
+				"message": "",
+				"code": ""
+			},
+			"connector_properties": {
+				"num_events_imported": 0,
+				"num_events_processed": 0,
+				"num_events_dropped": 0,
+				"num_files_imported": 0,
+				"size_imported": 0
+			}
+		}]
+	}
+}
+```
+
+Sample Completed Job (Success)
+```json
+{
+	"status": "ok",
+	"results": {
+		"url": null,
+		"has_more": false,
+		"data": [{
+			"id": "",
+			"start_time": "2020-09-16 07:00:00 +0000 UTC",
+			"end_time": "2020-09-17 02:17:49.831793 +0000 UTC",
+			"status": "success",
+			"progress": 1,
+			"error": {
+				"message": "",
+				"code": ""
+			},
+			"connector_properties": {
+				"num_events_imported": 13,
+				"num_events_processed": 13,
+				"num_events_dropped": 0,
+				"num_files_imported": 4,
+				"size_imported": 1610
+			}
+		}]
+	}
+}
+```
+
+Sample Failed Job
+```json
+{
+  "status": "ok",
+  "results": {
+    "url": null,
+    "has_more": false,
+    "data": [
+      {
+        "run_id": "",
+        "start_time": "2020-09-16 07:00:00 +0000 UTC",
+        "end_time": "",
+        "status": "failed",
+			  "progress": 0,
+        "error": {
+          "message": "No compression specified but Gzip detected. Please submit a new request with correct compression as param",
+          "code": ""
+        },
+        "connector_properties": {
+          "num_events_imported": 0,
+          "num_events_processed": 0,
+          "num_events_dropped": 0,
+          "num_files_imported": 0,
+          "size_imported": 0
+        }
+      }
+    ]
+  }
+}
+```
+
+## Create Connectors
+
+### Create Connector
+
+#### Cloud provider-independent params
+
+* `connector_type` (string enum) : `“s3Import”`, `“gcsImport”`
+* `compression` (string enum) : `“none”`, `“gzip”`
+* `data_format` (string enum) : `“mixpanel_event”`, `“mixpanel_group”`, `“mixpanel_people”`, `"remap_event"`, `"remap_people"`, `"remap_group"`
+    this is how we know which type of data to process.
+
+#### Cloud provider-specific params
+
+* `s3/gcs_bucket` (string) : name of bucket
+* `s3/gcs_prefix` (string) : prefix or directory path of files to be imported. Use `“”` (empty string) to import all contents of the bucket.
+* `s3_role` (string) : s3 IAM
+* `s3_region` (string) : region of the bucket. Please refer to [S3 Endpoint](https://docs.aws.amazon.com/general/latest/gr/s3.html) and refer to column Region for accepted values
+
+Sample request
+
+```sh
+curl --request POST \
+     --url https://mixpanel.com/api/app/projects/projectId/connectors \
+     --header 'accept: application/json' \
+     --header 'content-type: application/json' \
+     --data '
+{
+  "connector_type": "s3Import",
+  "connector_properties": {
+    "s3_region": "us-east-2"
+  }
+}
+'
+```
+
+Template for GCS
+```json
+{
+	"connector_type": "gcsImport",
+	"connector_properties": {
+		"gcs_bucket": "sample-data",
+		"gcs_prefix": "cloudimport/event",
+	},
+	"category_properties": {
+		"data_format": "mixpanel_event",
+		"compression": "none"
+	}
+}
+```
+
+Template for S3
+```json
+{
+	"connector_type": "s3Import",
+	"connector_properties": {
+		"s3_bucket": "sample-data",
+		"s3_prefix": "cloudimport/event",
+		"s3_region": "us",
+		"s3_role": "arn:aws:iam::485438090326:role/test-mixpanel",
+	},
+	"category_properties": {
+		"data_format": "mixpanel_event",
+		"compression": "none"
+	}
+}
+```
+
+Sample Response
+```json
+{
+	"status": "ok",
+	"results": {
+		"connector_id": "232f40cc-7ccc-4da3-b9c3-d8c1d14142c6",
+		"label": "",
+		"connector_type": "gcsImport",
+		"connector_properties": {
+			"gcs_bucket": "sample-data",
+			"gcs_prefix": "cloudimport/event",
+		},
+		"category_properties": {
+			"data_format": "mixpanel_event",
+			"compression": "none"
+		},
+		"status": "active",
+		"created_at": "2020-09-17T02:10:33.799738Z",
+		"created_by": "Samoyed.mp-service-account@mixpanel.org"
+	}
+}
+```
+
+
+## Delete Connectors
+
+### Delete Connector
+```sh
+curl --request DELETE \
+     --url https://mixpanel.com/api/app/projects/projectId/connectors/ \
+     --header 'accept: application/json'
+```
+
+Sample Response
+
+```json
+{
+  "status": "ok",
+  "results": "Successfully deleted Connector with ID:32f40cc-7ccc-4da3-b9c3-d8c1d14142c6"
+}
+```
+
+
+For more information, visit the [Raw Export API](reference/export/events)

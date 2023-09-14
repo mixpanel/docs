@@ -1,3 +1,4 @@
+# Overview
 Welcome to Mixpanel's API Reference! Here you'll find the specs of our core APIs for ingestion, export, and more.
 
 Even if you plan to set up Mixpanel via our SDKs, we recommend browsing this documentation (particularly our Ingestion API) to better understand the Mixpanel data model.
