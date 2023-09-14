@@ -2,7 +2,7 @@
 
 ## Ingestion Endpoints
 
-See our [developer docs](https://developer.mixpanel.com/reference/import-events#rate-limits) for ingestion rate limits.
+See our [developer docs](/reference/ingestion/events#limits) for ingestion rate limits.
 
 ## Export & Query API Rate Limits
 

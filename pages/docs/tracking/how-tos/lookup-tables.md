@@ -37,7 +37,7 @@ Then, whenever you use an event with the `song_id` property, you'll have access 
 
 The benefit is that you don't need to change your event tracking code at all. You can upload this Lookup Table after the fact and it automatically joins onto all prior events.
 
-We also provide an [API](https://developer.mixpanel.com/reference/replace-lookup-table) to keep Lookup Tables synced on a recurring basis.
+We also provide an [API](/reference/ingestion/lookup-tables#replace-lookup-table) to keep Lookup Tables synced on a recurring basis.
 
 DISCLAIMER: Only Project Owners and Admins can create permanent lookup tables mappings. Analysts and Consumers can only create temporary mappings.
 
@@ -65,7 +65,7 @@ Lookup Tables can be replaced with a fresh copy, either via our UI or via our AP
 ## FAQ
 
 ### How should my Lookup Table CSV be formatted?
-The CSV must be valid according to RFC4180. See our [API reference](https://developer.mixpanel.com/reference/replace-lookup-table) for more specific details about how we parse CSVs.
+The CSV must be valid according to RFC4180. See our [API reference](/reference/ingestion/lookup-tables#replace-lookup-table) for more specific details about how we parse CSVs.
 
 ### When _shouldn't_ I use Lookup Tables?
 Lookup Tables have a limit of 100MB CSV or roughly 1M rows. We don't recommend using Lookup Tables for anything very high cardinality.

@@ -247,5 +247,5 @@ Event and property descriptions and metadata (hidden, dropped, sensitive, etc) t
 
 ## Lexicon Schemas API
 
-Mixpanel provides a suite of API endpoints for you to Retrieve, Create, and Delete your data dictionary in Lexicon. To use these APIs, check out our [API reference docs](https://developer.mixpanel.com/reference/lexicon-schemas-api).
+Mixpanel provides a suite of API endpoints for you to Retrieve, Create, and Delete your data dictionary in Lexicon. To use these APIs, check out our [API reference docs](/reference/other-bits/lexicon).
 

@@ -88,7 +88,7 @@ def main(event, context):
 requests
 ```
 
-This code does a very simple passthrough of events from the incoming Pubsub message into Mixpanel's [Import API](https://developer.mixpanel.com/reference/import-events). You can use this function to transform events from your Pub/Sub topic into Mixpanel's format before sending them to our Import API.
+This code does a very simple passthrough of events from the incoming Pubsub message into Mixpanel's [Import API](/reference/ingestion/events). You can use this function to transform events from your Pub/Sub topic into Mixpanel's format before sending them to our Import API.
 
 ## Step 3: Test with sample events
 Now messages published to our Pubsub topic will trigger an invocation of the function and route events to Mixpanel. Let's give it a try by manually sending a message via the PubSub UI.

@@ -102,7 +102,7 @@ def handle_signup(request):
 
 As all server-side calls originate from the same IP, such as the IP of your server, it can have the unintended effect of setting the location of all of your users to the location of your datacenter.
 
-If you want to pass in your own IP address using our [HTTP API](https://developer.mixpanel.com/reference/profile-set) (`/engage#profile-set` endpoint) similar to the way you can with `track()`, pass in a property called `$ip` to the message payload.
+If you want to pass in your own IP address using our [HTTP API](/reference/ingestion/profiles#set) (`/engage#profile-set` endpoint) similar to the way you can with `track()`, pass in a property called `$ip` to the message payload.
 ```
 {
    "$token": "e3bc4100330c35722740fb8c6f5abddc",

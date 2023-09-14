@@ -12,12 +12,12 @@ You can enable this by selecting the "EU Data Residency" option when creating a 
 
 | API | Standard Server | EU Residency Server |
 |-------|-------------------------|--------------------------------|
-| [Ingestion API](https://developer.mixpanel.com/reference/ingestion-api) | `api.mixpanel.com` | `api-eu.mixpanel.com` |
-| [Query API](https://developer.mixpanel.com/reference/query-api) | `mixpanel.com/api` | `eu.mixpanel.com/api` |
-| [Raw Data Export API](https://developer.mixpanel.com/reference/raw-data-export-api) | `data.mixpanel.com/api/2.0/export` | `data-eu.mixpanel.com/api/2.0/export` |
-| [Data Pipelines API](https://developer.mixpanel.com/reference/create-warehouse-pipeline) | `data.mixpanel.com/api/2.0/export` | `data-eu.mixpanel.com/api/2.0/export` |
-| [Lexicon Schemas API](https://developer.mixpanel.com/reference/lexicon-schemas-api) | `mixpanel.com/api/app/projects` | `eu.mixpanel.com/api/app/projects` |
-| [Connectors API](https://developer.mixpanel.com/reference/connectors-api) | `mixpanel.com/api/app/projects` | `eu.mixpanel.com/api/app/projects`|
+| [Ingestion API](/reference/ingestion/events) | `api.mixpanel.com` | `api-eu.mixpanel.com` |
+| [Query API](/reference/other-bits/query-api) | `mixpanel.com/api` | `eu.mixpanel.com/api` |
+| [Raw Data Export API](/reference/export/events) | `data.mixpanel.com/api/2.0/export` | `data-eu.mixpanel.com/api/2.0/export` |
+| [Data Pipelines API](/reference/export/data-pipelines#create-pipeline) | `data.mixpanel.com/api/2.0/export` | `data-eu.mixpanel.com/api/2.0/export` |
+| [Lexicon Schemas API](/reference/other-bits/lexicon) | `mixpanel.com/api/app/projects` | `eu.mixpanel.com/api/app/projects` |
+| [Connectors API](/reference/other-bits/connectors) | `mixpanel.com/api/app/projects` | `eu.mixpanel.com/api/app/projects`|
 
 ## Using Our SDKs
 Next you'll need to set the server location to EU when initializing the Mixpanel library. You can find instructions for the required config settings for each SDK below:

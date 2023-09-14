@@ -48,7 +48,7 @@ The [Schematized Pipeline reference](/docs/other-bits/data-pipelines/schematized
 
 Once you’ve configured your destination, you need to tell Mixpanel to start exporting to that destination.
 
-You can do this with our [Create Pipeline API](https://developer.mixpanel.com/reference/create-warehouse-pipeline). You can create the Pipeline directly from our developer docs UI.
+You can do this with our [Create Pipeline API](/reference/export/data-pipelines#create-pipeline). You can create the Pipeline directly from our developer docs UI.
 
 Limits:
 * For event export pipelines (`data_source: events`) in each Mixpanel project, we support at most two recurring pipelines (`to_date` is empty) and one non-recurring pipeline (has a `to_date` that is the ending date of the export window).
@@ -78,4 +78,4 @@ Trial limitations:
 * Backfilled data will only include one day prior to the creation date.
 * Pipelines will, by default, include both event and user data (not available for raw pipelines).
 * The pipeline cannot filter by event name.
-* The “Create Pipeline” parameters will default to the values highlighted to list in the [parameters table](https://developer.mixpanel.com/reference/create-pipelines#create-warehouse-pipeline).
+* The “Create Pipeline” parameters will default to the values highlighted to list in the [parameters table](/reference/export/data-pipelines#create-pipeline).

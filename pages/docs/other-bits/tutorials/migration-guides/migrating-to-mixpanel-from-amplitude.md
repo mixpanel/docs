@@ -4,7 +4,7 @@ If you haven't already, we recommend starting with our [Migration Guides Overvie
 
 ## Differences in the data models
 
-Both Mixpanel and Amplitude are product analytics tools which collect event-based behavioral data about your users. [Events](https://developer.mixpanel.com/reference/import-events) are commonly expressed as JSON which represent the name of the user action, the ID of the user, the time at which the action took place, and all associated metadata. Events are immutable, and represent data at the time of which an action takes place.
+Both Mixpanel and Amplitude are product analytics tools which collect event-based behavioral data about your users. [Events](/reference/ingestion/events) are commonly expressed as JSON which represent the name of the user action, the ID of the user, the time at which the action took place, and all associated metadata. Events are immutable, and represent data at the time of which an action takes place.
 
 ```json
 {
@@ -20,7 +20,7 @@ Both Mixpanel and Amplitude are product analytics tools which collect event-base
 }
 ```
 
-In addition to events, Mixpanel supports an additional type of data that Amplitude does not. This data is known as [user profiles](https://developer.mixpanel.com/reference/profile-set), which represents dimensional data that is always updated to the most recent value for a user. User data allows you to segment your reporting by both historical point-in-time data as well as real-time dimensional data about your users.
+In addition to events, Mixpanel supports an additional type of data that Amplitude does not. This data is known as [user profiles](/reference/ingestion/profiles#set), which represents dimensional data that is always updated to the most recent value for a user. User data allows you to segment your reporting by both historical point-in-time data as well as real-time dimensional data about your users.
 
 ```json
 {
@@ -35,7 +35,7 @@ In addition to events, Mixpanel supports an additional type of data that Amplitu
 We also support additional data for extending your use cases with Mixpanel:
 
 - [Group profiles](https://developer.mixpanel.com/reference/group-set-property): Used with our Group Analytics product add-on to allow you to pivot quickly between users and other entities in your analysis. A common use case is for a B2B company to pivot between analyzing users and analyzing accounts.
-- [Lookup tables](https://developer.mixpanel.com/reference/lookup-tables): For event data which was already sent, you can use these to extend the data already sent into Mixpanel. A common use case is taking an identifier like a transaction ID, item ID, etc. and using lookup tables to enrich the data with additional information like the amount, category, etc. from your data warehouse.
+- [Lookup tables](/reference/ingestion/lookup-tables): For event data which was already sent, you can use these to extend the data already sent into Mixpanel. A common use case is taking an identifier like a transaction ID, item ID, etc. and using lookup tables to enrich the data with additional information like the amount, category, etc. from your data warehouse.
 
 ## Identifying your implementation method
 
@@ -45,7 +45,7 @@ We support the following data collection mechanisms:
 
 - [Client-side SDKs & Server-side SDKs](#client-side-sdks--server-side-sdks): Simply replace Amplitude code calls to track events with Mixpanel calls instead
 - [Customer Data Platforms (CDPs)](#customer-data-platforms-cdps) like [Segment](https://segment.com/): Go into your CDP settings to add Mixpanel as a destination, and point your data stream to Mixpanel
-- [Import API](#import-api): Point your event ingestion pipeline to [Mixpanel’s robust API](https://developer.mixpanel.com/reference/import-events) for data ingestion
+- [Import API](#import-api): Point your event ingestion pipeline to [Mixpanel’s robust API](/reference/ingestion/events) for data ingestion
 - [Reverse ETL](#reverse-etl-retl) (RETL) tools like [Census](https://getcensus.com): Go into your RETL settings to add Mixpanel as a destination, and point your syncs to Mixpanel
 
 ### Client-side SDKs & Server-side SDKs
@@ -191,7 +191,7 @@ curl -X POST https://api2.amplitude.com/2/httpapi \
     }'
 ```
 
-Mixpanel’s `/track` API endpoint is `https://api.mixpanel.com/import` (documented [here](https://developer.mixpanel.com/reference/import-events)). A sample request from your server for this API would look like:
+Mixpanel’s `/track` API endpoint is `https://api.mixpanel.com/import` (documented [here](/reference/ingestion/events)). A sample request from your server for this API would look like:
 
 ```bash
 curl --request POST \
@@ -214,7 +214,7 @@ curl --request POST \
 
 The big difference between the APIs are:
 
-- **Authentication:** Amplitude authenticates in the request payload, whereas Mixpanel uses your project token in the request URL alongside basic auth. Mixpanel authentication can be done via a service account as described [here](https://developer.mixpanel.com/reference/ingestion-api-authentication). Be sure to move the authentication outside the payload.
+- **Authentication:** Amplitude authenticates in the request payload, whereas Mixpanel uses your project token in the request URL alongside basic auth. Mixpanel authentication can be done via a service account as described [here](/reference/other-bits/authentication#service-accounts). Be sure to move the authentication outside the payload.
 - **Event JSON Structure:** Amplitude and Mixpanel have slightly different structures (explained [here](/docs/other-bits/tutorials/migration-guides/migrating-to-mixpanel-from-amplitude#differences-in-the-data-models)). You will want to remap the Amplitude event format to the expected Mixpanel JSON payload as described [here](https://www.notion.so/Migrating-to-Mixpanel-from-Amplitude-723407166fbf4f7ba9365034691502da).
 
 ### Reverse ETL (RETL)

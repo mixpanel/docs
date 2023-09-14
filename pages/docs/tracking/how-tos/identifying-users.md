@@ -140,7 +140,7 @@ Note: You cannot set the value of `distinct_id` yourself, it will be set by Mixp
 ### What does Mixpanel recommend using as the `$user_id`?
 We recommend using an ID that is unique to each user and does not change, for example a database ID. While using an identifier like email may be more convenient, keep in mind that you cannot merge 2 `$user_id`s or change a `$user_id`, so if the user changes their email, they will count as a separate user.
 
-If you are on Original ID Merge, we do have a [`$merge`](https://developer.mixpanel.com/reference/identity-merge) API call that can merge two `$user_id`s. Note: this can add significant complexity to your implementation, and has been removed in Simplified ID Merge.
+If you are on Original ID Merge, we do have a [`$merge`](/reference/other-bits/identities#merge-identities) API call that can merge two `$user_id`s. Note: this can add significant complexity to your implementation, and has been removed in Simplified ID Merge.
 
 ### How long does it take for the `$device_id` -> `$user_id` mapping to take effect?
 For debugging purposes, the Activity Feed view of a single user is updated in real-time (<1-minute delay). You can get to the Activity Feed by navigating to [Users](https://mixpanel.com/report/users) and selecting a given user.

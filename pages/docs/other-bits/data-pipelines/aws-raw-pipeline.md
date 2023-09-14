@@ -1,6 +1,6 @@
 # AWS Raw Pipeline
 
-To set up a raw export pipeline to an S3 bucket from Mixpanel, you must configure S3 to receive the exported data, then [create a pipeline](https://developer.mixpanel.com/reference/create-warehouse-pipeline) to export the data.
+To set up a raw export pipeline to an S3 bucket from Mixpanel, you must configure S3 to receive the exported data, then [create a pipeline](/reference/export/data-pipelines#create-pipeline) to export the data.
 
 The following document summarizes the steps to edit S3 bucket permissions so that it accepts the Mixpanel export. Consult [AWS documentation](https://docs.aws.amazon.com/AmazonS3/latest/gsg/GetStartedWithS3.html) for any AWS specific tasks, such as creating an [S3 bucket](https://docs.aws.amazon.com/AmazonS3/latest/userguide/creating-bucket.html) and editing [permissions](https://docs.aws.amazon.com/AmazonS3/latest/dev/using-with-s3-actions.html).
 
@@ -53,7 +53,7 @@ There are two options when using SSE: Encryption with Amazon S3-Managed Keys (SS
 
 This setting on your bucket encrypts data at rest using the AES-256 algorithm that uses keys managed by S3.
 
-If you are using this type of SSE, you only need to configure your pipeline by passing the `s3_encryption=aes` parameter when calling the Mixpanel Data Warehouse Export API. See [AWS S3 and Glue Parameters](https://developer.mixpanel.com/reference/create-pipelines).
+If you are using this type of SSE, you only need to configure your pipeline by passing the `s3_encryption=aes` parameter when calling the Mixpanel Data Warehouse Export API. See [AWS S3 and Glue Parameters](/reference/export/data-pipelines#create-pipeline).
 
 ### Encryption with AWS KMS-Managed Keys (SSE-KMS)
 
@@ -155,7 +155,7 @@ Mixpanel uses your project token as external ID when talking to AWS. In order to
 
 ## Use The Data Pipelines API
 
-After permissions have been granted, use the [Data Pipelines API](https://developer.mixpanel.com/reference/create-warehouse-pipeline) to create the pipeline. Here is an example request:
+After permissions have been granted, use the [Data Pipelines API](/reference/export/data-pipelines#create-pipeline) to create the pipeline. Here is an example request:
 
 ```curl cURL Example with Values
 curl https://data.mixpanel.com/api/2.0/nessie/pipeline/create \

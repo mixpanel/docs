@@ -15,7 +15,7 @@ Note: Always include your integration ID -- this will help customers better unde
 ### Event Tracking
 For event data, you will include your Integration ID as the `$source` property value.
 
-This can be added to the [Event Object](doc:data-model-deep-dive#anatomy-of-an-event)  when using the [Ingestion API](https://developer.mixpanel.com/reference/ingestion-api):
+This can be added to the [Event Object](doc:data-model-deep-dive#anatomy-of-an-event)  when using the [Ingestion API](/reference/ingestion/events):
 
 ```json
 {
@@ -43,17 +43,17 @@ curl --request GET \
 ## Integration Opportunities
 
 ### Connect to Mixpanel's EU Servers
-Give your customers the option to send data to [our EU servers](https://developer.mixpanel.com/reference/overview) when they activate your Mixpanel integration.
+Give your customers the option to send data to [our EU servers](/reference) when they activate your Mixpanel integration.
 
 ###  Receive Cohort Syncs from Mixpanel
 Use this [webhook spec](/docs/other-bits/cohort-syncs/cohort-webhooks) to process inbound cohorts Mixpanel syncs to your product, allowing your customers to engage more effectively with the right users at the right time.
-**Note**: This spec is intended for partner SaaS companies looking to build integrations with Mixpanel. If you are yourself a Mixpanel customer looking to query on Cohorts, refer to the [cohorts query API](https://developer.mixpanel.com/reference/cohorts).
+**Note**: This spec is intended for partner SaaS companies looking to build integrations with Mixpanel. If you are yourself a Mixpanel customer looking to query on Cohorts, refer to the [cohorts query API](/reference/other-bits/query-api#cohorts).
 
 ### Auto-populate Experiments
 If you are offering experiments or A/B tests to your customers, add support for [auto-populating our Experiments report](/docs/analysis/advanced/experiments) to your integration in order to reduce time-to-value for our mutual customers.
 
 ### Sync your Schemas
-Sync your internal data dictionary or tracking plan with Mixpanel using the [Lexicon Schemas API](https://developer.mixpanel.com/reference/lexicon-schemas-api). Schemas that you upload will be used to populate Lexicon and provide additional context for your data across the query UI.
+Sync your internal data dictionary or tracking plan with Mixpanel using the [Lexicon Schemas API](/reference/other-bits/lexicon). Schemas that you upload will be used to populate Lexicon and provide additional context for your data across the query UI.
 
 # Make your Integration Successful
 ### QA your Code

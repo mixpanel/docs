@@ -15,7 +15,7 @@
 /developer-docs-redirect/data-discrepancy-faq /docs/other-bits/data-pipelines#faq
 /developer-docs-redirect/data-pipelines /docs/other-bits/data-pipelines
 /developer-docs-redirect/data-structure-deep-dive /docs/tracking/reference/data-model
-/developer-docs-redirect/data-warehouse-export https://developer.mixpanel.com/reference/create-warehouse-pipeline
+/developer-docs-redirect/data-warehouse-export /reference/export/data-pipelines#create-pipeline
 /developer-docs-redirect/flutter /docs/tracking/reference/flutter
 /developer-docs-redirect/flutter-quickstart /docs/tracking/mobile
 /developer-docs-redirect/freshpaint /docs/tracking/integrations/freshpaint
@@ -54,7 +54,7 @@
 /developer-docs-redirect/privacy-security /docs/other-bits/privacy-and-security
 /developer-docs-redirect/python /docs/tracking/reference/python
 /developer-docs-redirect/quick-start-guide /docs/tracking/mobile
-/developer-docs-redirect/raw-export-pipeline https://developer.mixpanel.com/reference/raw-data-export-api
+/developer-docs-redirect/raw-export-pipeline /reference/export/events
 /developer-docs-redirect/react-native /docs/tracking/reference/react-native
 /developer-docs-redirect/react-native-quickstart /docs/tracking/mobile
 /developer-docs-redirect/ruby /docs/tracking/reference/ruby

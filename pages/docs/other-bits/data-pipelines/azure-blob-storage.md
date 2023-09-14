@@ -6,7 +6,7 @@ Azure Export enables the use of SQL to query your event data, either for express
 
 ## Integration Set Up
 
-In order to export data to Azure Blob Storage, you must first give Mixpanel permission to write to Azure. Next you can [create a pipeline](https://developer.mixpanel.com/reference/create-warehouse-pipeline) to export the data. Mixpanel then uploads the data to Azure Blob Storage on a recurring basis. The data is a slightly transformed version of the raw data stored in Mixpanel. Please see [transformation rules](/docs/other-bits/data-pipelines/schematized-export-pipeline#transformation-rules) to understand how the data is transformed.
+In order to export data to Azure Blob Storage, you must first give Mixpanel permission to write to Azure. Next you can [create a pipeline](/reference/export/data-pipelines#create-pipeline) to export the data. Mixpanel then uploads the data to Azure Blob Storage on a recurring basis. The data is a slightly transformed version of the raw data stored in Mixpanel. Please see [transformation rules](/docs/other-bits/data-pipelines/schematized-export-pipeline#transformation-rules) to understand how the data is transformed.
 
 ## Edit Mixpanel Permission
 

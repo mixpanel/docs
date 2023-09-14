@@ -24,7 +24,7 @@ Mixpanel collects information about how customers use the product, and uses this
 As processors of its customers’ data and to protect the privacy of information it stores, Mixpanel holds data no longer than is needed to provide its services. To further support this, Mixpanel has implemented the following data retention policy:
 
 - Events received over 5 years ago are automatically deleted on an ongoing basis from all projects.
-- User data is retained indefinitely. Customers are given the ability to delete profiles using the [Engage API](https://developer.mixpanel.com/reference/delete-profile).
+- User data is retained indefinitely. Customers are given the ability to delete profiles using the [Engage API](/reference/ingestion/profiles#delete).
 
 This policy includes projects that were deleted or reset through the Project Settings - deleting a project through the Project Settings triggers a soft deletion. The data in the deleted or reset project will remain stored in Mixpanel for 60-90 days, after which it will be hard deleted and unrecoverable.
 

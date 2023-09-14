@@ -19,6 +19,6 @@ The API Secret is used to export data out of your project via our Export APIs. Y
 You should not share your API Secret, since it can be used to export data from your Mixpanel project.
 
 ## Service Accounts
-[Service Accounts](https://developer.mixpanel.com/reference/service-accounts) are a more advanced form of authentication that is used to grant temporary access to a subset of Mixpanel projects within your organization for certain APIs.
+[Service Accounts](/reference/other-bits/service-accounts) are a more advanced form of authentication that is used to grant temporary access to a subset of Mixpanel projects within your organization for certain APIs.
 
 Service Accounts are not necessary to send data to Mixpanel or export data out of Mixpanel.

@@ -51,7 +51,7 @@ This data audit step is optional, but highly recommended - It is a larger upfron
 
 To backfill data, we recommend the following approaches:
 
-- If you have a data warehouse: Leverage our [data warehouse connector](/docs/tracking/data-warehouse) or our [Import API](https://developer.mixpanel.com/reference/import-events) to import to Mixpanel. 
+- If you have a data warehouse: Leverage our [data warehouse connector](/docs/tracking/data-warehouse) or our [Import API](/reference/ingestion/events) to import to Mixpanel. 
 - If you have a data warehouse without your current provider's data: Export your data to the data warehouse so you have a record, and then use our data warehouse connector or Import API
 - If you do not have a data warehouse: Since there is no historical record of data, for this method you will need to export your data from your current provider and move it into Mixpanel - we provide an easy to use helper function for this [here](https://github.com/mixpanel/mixpanel-utils)
 

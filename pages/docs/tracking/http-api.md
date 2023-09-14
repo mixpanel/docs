@@ -27,7 +27,7 @@ resp = requests.post(
 print(resp.json())
 ```
 
-See our [API reference](https://developer.mixpanel.com/reference/events) for more details.
+See our [API reference](/reference/ingestion/events) for more details.
 
 
 ## Best Practices for Scale
@@ -42,6 +42,6 @@ Here are some other best practices:
 * Log any 400 errors returned by the API. These are non-retryable and indicate something malformed with the data. This should be extremely unlikely once the API is up and running. If a batch contains a mix of valid and invalid data, we will ingest the valid data.	
 
 ## Limits
-Our Import API is built to ingest billions of events per day across our customers. That said, we do rate limit at very high scale to ensure quality of service and real-time ingestion. Please refer to our [Import API docs](https://developer.mixpanel.com/reference/import-events) for details.	
+Our Import API is built to ingest billions of events per day across our customers. That said, we do rate limit at very high scale to ensure quality of service and real-time ingestion. Please refer to our [Import API docs](/reference/ingestion/events) for details.	
 
 All of our sample code transparently retries and backoff from rate limit exceptions. If you require a higher-limit for a 1-time backfill, please reach out to us at apis@mixpanel.com.	
