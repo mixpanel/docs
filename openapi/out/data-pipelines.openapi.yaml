@@ -1130,6 +1130,7 @@ components:
             - us-east-aws
             - us-east-2-aws
             - eu-west-1-aws
+            - eu-central-1-aws
             - ap-southeast-2-aws
           description: The valid region for the Snowflake instance
       required:
