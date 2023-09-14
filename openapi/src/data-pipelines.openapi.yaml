@@ -927,6 +927,7 @@ components:
           type: string
           enum:
             - US
+            - US_CENTRAL_1
             - US_EAST_1
             - US_WEST_1
             - US_WEST_2
