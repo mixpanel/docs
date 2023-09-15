@@ -2,6 +2,10 @@ import { Tab, Tabs } from 'nextra-theme-docs';
 
 import CustomCallout from "../../components/CustomCallout/CustomCallout";
 import Image from "../../components/Image/Image";
+import OrgSettingsImage from "../../public/Authentication/service-accounts-org-settings.png";
+import ProjectSettingsImage from "../../public/Authentication/service-accounts-project-settings.png";
+import AddServiceAccount from "../../public/Authentication/add-service-account.png";
+import CreateServiceAccount from "../../public/Authentication/create-service-account.png";
 
 # Authentication Methods
 
@@ -57,15 +61,15 @@ You can view and create service accounts in your organization in the Service Acc
 
 You will be asked to select the role and granted projects of the when creating a service account from the organization's settings page. Deleting a service account from the organization will immediately revoke access to all projects in the organization.
 
-<Image src="https://files.readme.io/a77f1df-org_settings.png" width="50%"/>
+<Image src={OrgSettingsImage.src} width="50%"/>
 
 You can also manage service accounts in your [project settings](https://mixpanel.com/settings/project#serviceaccounts).
 
-<Image src="https://files.readme.io/37798c5-25f47be-Screen_Shot_2020-07-14_at_4.30.49_PM.png" width="50%" />
+<Image src={ProjectSettingsImage.src} width="50%" />
 
 Any service account you create from the project settings page will be automatically be assigned an admin role. Deleting a service account will revoke access only from that project.
 
-<Image src="https://files.readme.io/bcc971b-4f76ee5-Screen_Shot_2020-07-29_at_1.57.16_PM.png" />
+<Image src={CreateServiceAccount.src} />
 
 <CustomCallout type="warning" title="Immediately store your credentials in a safe place">
   It's very important you save your service account secret somewhere secure as you won't be able to access it again after creation.
@@ -74,7 +78,7 @@ Any service account you create from the project settings page will be automatica
 ### Service Account Expiration
 By default, service accounts have no expiration. However, when you create a service account you can optionally specify how long you want it to be valid for. This may provide increased security and force a credential rotation policy. After the credentials expire, API requests using the service account will not be authorized.
 
-<Image src="https://files.readme.io/3668062-image_12.png" />
+<Image src={AddServiceAccount.src} />
 
 ## Project Token
 
