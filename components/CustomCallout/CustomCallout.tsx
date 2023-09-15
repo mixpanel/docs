@@ -1,41 +1,37 @@
-import { Callout } from 'nextra-theme-docs';
+import clsx from "clsx";
+
+import style from "./CustomCallout.module.scss";
+import CircleCheckmark from "./icons/CircleCheckmark";
+import Info from "./icons/Info";
+import Warning from "./icons/Warning";
 
 type CalloutProps = {
-    type: string,
+    type: `error` | `warning` | `info` | `success`,
     children?: JSX.Element,
     title?: string
 }
 
-const calloutTypeDict = {
-    'error': {
-        type: `error`,
-        emoji: `❗️`,
-    },
-    'warning': {
-        type: `warning`,
-        emoji: `⚠️`,
-    },
-    'info': {
-        type: `info`,
-        emoji: `ⓘ`,
-    },
-    'success': {
-        type: `info`,
-        emoji: `👍`,
-    }
-}
-
 export default function CustomCallout(props: CalloutProps) {
-    let propsType = calloutTypeDict[`info`].type;
-    if (props.type in calloutTypeDict) {
-        propsType = props.type;
-    }
     return (
-        <Callout type={calloutTypeDict[propsType].type} emoji={calloutTypeDict[propsType].emoji}>
-            <div>
-                {props.title && <strong>{props.title}</strong>}
-                {props.children && props.children}
+        <div className={clsx(
+            style.root,
+            props.type === `error` && style.errorTheme,
+            props.type === `info` && style.infoTheme,
+            props.type === `success` && style.successTheme,
+            props.type === `warning` && style.errorTheme,
+        )}>
+            <div className={style.iconSection}>
+                <div className={style.titleIcon}>
+                    {props.type === `error` && <Warning />}
+                    {props.type === `warning` && <Warning />}
+                    {props.type === `success` && <CircleCheckmark />}
+                    {props.type === `info` && <Info />}
+                </div>
             </div>
-        </Callout>
+            <div className={style.contentSection}>
+                <div>{props.title && <strong>{props.title}</strong>}</div>
+                {props.children && <div>{props.children}</div>}
+            </div>
+        </div>
     )
 }

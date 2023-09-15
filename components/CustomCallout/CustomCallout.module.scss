@@ -1,0 +1,70 @@
+// TODO pull from heliograph
+
+// Purple
+$purple140: #5028c0;
+$purple20: #e8ddff;
+
+// Lava
+$lava140: #cc332b;
+$lava20: #ffe1d6;
+
+// Mint
+$mint140: #09b096;
+$mint20: #e0fafa;
+
+// Mustard
+$mustard140: #da6b15;
+$mustard20: #ffefdb;
+
+
+.root {
+    border-radius: 4px;
+    display: flex;
+    margin: 16px 0;
+    padding: 8px;
+
+    &.errorTheme {
+        background-color: $lava20;
+        border: 1px solid $lava140;
+
+        .titleIcon {
+            color: $lava140;
+        }
+    }
+
+    &.infoTheme {
+        background-color: $purple20;
+        border: 1px solid $purple140;
+
+        .titleIcon {
+            color: $purple140;
+        }
+    }
+
+    &.successTheme {
+        background-color: $mint20;
+        border: 1px solid $mint140;
+
+        .titleIcon {
+            color: $mint140;
+        }
+    }
+
+    &.warningTheme {
+        background-color: $mustard20;
+        border: 1px solid $mustard140;
+
+        .titleIcon {
+            color: $mustard140;
+        }
+    }
+}
+
+.iconSection {
+    margin-right: 8px;
+}
+
+.titleIcon {
+    height: 22px;
+    width: 22px;
+}
