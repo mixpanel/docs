@@ -927,6 +927,7 @@ components:
           type: string
           enum:
             - US
+            - US_CENTRAL_1
             - US_EAST_1
             - US_WEST_1
             - US_WEST_2
@@ -1098,6 +1099,7 @@ components:
             - us-east-aws
             - us-east-2-aws
             - eu-west-1-aws
+            - eu-central-1-aws
             - ap-southeast-2-aws
           description: The valid region for the Snowflake instance
       required:
