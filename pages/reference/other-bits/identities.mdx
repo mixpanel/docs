@@ -69,7 +69,7 @@ curl --request POST \
      --header 'content-type: application/json'
 ```
 
-<CustomCallout type="error" title="Merging identities is irreversible">
+<CustomCallout type="warning" title="Merging identities is irreversible">
     `$merge` is a very powerful tool, so we will only accept `$merge` events that are sent via `https://api.mixpanel.com/import`, which is protected by the project api secret. You **cannot** unmerge `distinct_id`.
 </CustomCallout>
 

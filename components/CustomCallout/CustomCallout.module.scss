@@ -4,10 +4,6 @@
 $purple140: #5028c0;
 $purple20: #e8ddff;
 
-// Lava
-$lava140: #cc332b;
-$lava20: #ffe1d6;
-
 // Mint
 $mint140: #09b096;
 $mint20: #e0fafa;
@@ -22,15 +18,6 @@ $mustard20: #ffefdb;
     display: flex;
     margin: 16px 0;
     padding: 8px;
-
-    &.errorTheme {
-        background-color: $lava20;
-        border: 1px solid $lava140;
-
-        .titleIcon {
-            color: $lava140;
-        }
-    }
 
     &.infoTheme {
         background-color: $purple20;
