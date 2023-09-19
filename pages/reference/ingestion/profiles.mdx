@@ -1,5 +1,13 @@
 import { Tab, Tabs } from 'nextra-theme-docs'
 
+import CustomCallout from "../../../components/CustomCallout/CustomCallout";
+
+# Profiles
+
+<CustomCallout type="info">
+  To see this API in action, visit our [API Playground](https://developer.mixpanel.com/reference/profile-set).
+</CustomCallout>
+
 [User Profiles](/docs/tracking/how-tos/user-profiles) let you describe users with properties like their name or email. The API is used to create, update, or delete User Profiles.
 
 ## Usage
@@ -38,14 +46,181 @@ Set properties on a User Profile. In database terminology, this API has upsert s
 * If the Profile does not contain the properties provided in this API call, those properties will be created.
 * If the Profile does contain those properties, those property values will be overriden. Any other properties will remain untouched.
 
+```sh
+curl --request POST \
+     --url 'https://api.mixpanel.com/engage#profile-set' \
+     --header 'accept: text/plain' \
+     --header 'content-type: application/json' \
+     --data '
+[
+  {
+    "$token": "YOUR_PROJECT_TOKEN",
+    "$distinct_id": "13793"
+  }
+]
+'
+```
+
 ### $set_once
 Set properties on a User Profile, if they're not already set. This is identical to `$set`, except it will not overwrite existing properties.
+```sh
+curl --request POST \
+     --url 'https://api.mixpanel.com/engage#profile-set-once' \
+     --header 'accept: text/plain' \
+     --header 'content-type: application/json' \
+     --data '
+[
+  {
+    "$token": "YOUR_PROJECT_TOKEN",
+    "$distinct_id": "13793"
+  }
+]
+'
+```
+
+### Increment Numerical Property
+Takes a JSON object containing keys and numerical values. `$add` will increment the value of a user profile property. When processed, the property values are added to the existing values of the properties on the profile. If the property is not present on the profile, the value will be added to 0. It is possible to decrement by calling "$add" with negative values. This is useful for maintaining the values of properties like "Number of Logins" or "Files Uploaded".
+
+```sh
+curl --request POST \
+     --url 'https://api.mixpanel.com/engage#profile-numerical-add' \
+     --header 'accept: text/plain' \
+     --header 'content-type: application/json' \
+     --data '
+[
+  {
+    "$token": "YOUR_PROJECT_TOKEN",
+    "$distinct_id": "13793"
+  }
+]
+'
+```
+
+### Union To List Property
+Adds the specified values to a list property on a user profile and ensures that those values only appear once. The profile is created if it does not exist.
+
+```sh
+curl --request POST \
+     --url 'https://api.mixpanel.com/engage#profile-union' \
+     --header 'accept: text/plain' \
+     --header 'content-type: application/json' \
+     --data '
+[
+  {
+    "$token": "YOUR_PROJECT_TOKEN",
+    "$distinct_id": "13793"
+  }
+]
+'
+```
+
+### Append to List Property
+Takes a JSON object containing keys and values, and appends each to a list associated with the corresponding property name. $appending to a property that doesn't exist will result in assigning a list with one element to that property.
+
+```sh
+curl --request POST \
+     --url 'https://api.mixpanel.com/engage#profile-list-append' \
+     --header 'accept: text/plain' \
+     --header 'content-type: application/json' \
+     --data '
+[
+  {
+    "$token": "YOUR_PROJECT_TOKEN",
+    "$distinct_id": "13793"
+  }
+]
+'
+```
+
+### Remove from List Property
+Takes a JSON object containing keys and values. The value in the request is removed from the existing list on the user profile. If it does not exist, no updates are made.
+
+```sh
+curl --request POST \
+     --url 'https://api.mixpanel.com/engage#profile-list-remove' \
+     --header 'accept: text/plain' \
+     --header 'content-type: application/json' \
+     --data '
+[
+  {
+    "$token": "YOUR_PROJECT_TOKEN",
+    "$distinct_id": "13793"
+  }
+]
+'
+```
 
 ### $unset
 Unset the provided properties on the User Profile. This operation accepts a list of property names.
 
+```sh
+curl --request POST \
+     --url 'https://api.mixpanel.com/engage#profile-unset' \
+     --header 'accept: text/plain' \
+     --header 'content-type: application/json' \
+     --data '
+[
+  {
+    "$token": "YOUR_PROJECT_TOKEN",
+    "$distinct_id": "13793"
+  }
+]
+'
+```
+
+### Update Multiple Profiles
+Send a batch of profile updates. Instead of sending a single JSON object as the data query parameter, send a JSON list of objects as the data parameter of an application/json POST or GET request body.
+
+```sh
+curl --request POST \
+     --url 'https://api.mixpanel.com/engage#profile-batch-update' \
+     --header 'accept: text/plain' \
+     --header 'content-type: application/json' \
+     --data '
+[
+  {
+    "$token": "YOUR_PROJECT_TOKEN",
+    "$distinct_id": "13793",
+    "$add": {
+      "Coins Gathered": 12
+    }
+  },
+  {
+    "$token": "YOUR_PROJECT_TOKEN",
+    "$distinct_id": "13794",
+    "$add": {
+      "Coins Gathered": 13
+    }
+  }
+]
+'
+```
+
 ### $delete
-Delete the User Profile.
+Permanently delete the profile from Mixpanel, along with all of its properties. The $delete object value is ignored - the profile is determined by the $distinct_id from the request itself.
+
+If you have duplicate profiles, use property $ignore_alias set to true so that you don't delete the original profile when trying to delete the duplicate (as they pass in the alias as the distinct_id).
+
+```sh
+curl --request POST \
+     --url 'https://api.mixpanel.com/engage#profile-delete' \
+     --header 'accept: text/plain' \
+     --header 'content-type: application/json' \
+     --data '
+[
+  {
+    "$token": "YOUR_PROJECT_TOKEN",
+    "$distinct_id": "13793",
+    "$delete": "null",
+    "$ignore_alias": false
+  }
+]
+'
+```
+
+### Limits
+The User Profile API imposes limits on the total number profile updates that can be sent per request to 2000 as well as limit each individual update in the request to a maximum of 1 MB. If you are running up against these limits, we suggest breaking your request into smaller batches. Usually these limits are only hit if you are attempting to do a bulk create/update.
+
 
 ## Group Profiles
 The [Group Profiles](/docs/analysis/advanced/group-analytics) API has only two differences from the User Profiles API:
@@ -55,23 +230,171 @@ The [Group Profiles](/docs/analysis/advanced/group-analytics) API has only two d
 For example, suppose you are a B2B company that has 1 Group called `Accounts`. You want to update the `Name`, `ARR`, and `Type` property of the account with ID `example.com`. You could do that as follows:
 
 <Tabs items={['cURL', 'Python']}>
-<Tab>
-```sh
-curl -XPOST 'https://api.mixpanel.com/groups?verbose=2' \
-     --data '[{"$token": "YOUR_PROJECT_TOKEN", "$group_key": "Accounts", "$group_id": "example.com", "$set": {"Name": "Example Co", "ARR": 15000, "Type": "Enterprise"}]'
-```
-</Tab>
-<Tab>
-```python
-import requests
+    <Tab>
+    ```sh
+    curl -XPOST 'https://api.mixpanel.com/groups?verbose=2' \
+        --data '[{"$token": "YOUR_PROJECT_TOKEN", "$group_key": "Accounts", "$group_id": "example.com", "$set": {"Name": "Example Co", "ARR": 15000, "Type": "Enterprise"}]'
+    ```
+    </Tab>
+    <Tab>
+    ```python
+    import requests
 
-resp = requests.post(
-    "https://api.mixpanel.com/groups?verbose=2"
-    json=[
-        {"$token": "YOUR_PROJECT_TOKEN", "$group_key": "Accounts", "$group_id": "example.com", "$set": {"Name": "Example Co", "ARR": 15000, "Type": "Enterprise"}}
-    ]
-)
-print(resp.json())
-```
-</Tab>
+    resp = requests.post(
+        "https://api.mixpanel.com/groups?verbose=2"
+        json=[
+            {"$token": "YOUR_PROJECT_TOKEN", "$group_key": "Accounts", "$group_id": "example.com", "$set": {"Name": "Example Co", "ARR": 15000, "Type": "Enterprise"}}
+        ]
+    )
+    print(resp.json())
+    ```
+    </Tab>
 </Tabs>
+
+### Update Property
+Updates or adds properties to a group profile. The profile is created if it does not exist.
+
+```sh
+curl --request POST \
+     --url 'https://api.mixpanel.com/groups#group-set' \
+     --header 'accept: text/plain' \
+     --header 'content-type: application/json' \
+     --data '
+[
+  {
+    "$token": "YOUR_PROJECT_TOKEN",
+    "$group_key": "Company",
+    "$group_id": "Mixpanel"
+  }
+]
+'
+```
+
+### Set Property Once
+Adds properties to a group only if the property is not already set. The profile is created if it does not exist.
+
+```sh
+curl --request POST \
+     --url 'https://api.mixpanel.com/groups#group-set-once' \
+     --header 'accept: text/plain' \
+     --header 'content-type: application/json' \
+     --data '
+[
+  {
+    "$token": "YOUR_PROJECT_TOKEN",
+    "$group_key": "Company",
+    "$group_id": "Mixpanel"
+  }
+]
+'
+```
+
+### Delete Property
+Unsets specific properties on the group profile.
+
+```sh
+curl --request POST \
+     --url 'https://api.mixpanel.com/groups#group-unset' \
+     --header 'accept: text/plain' \
+     --header 'content-type: application/json' \
+     --data '
+[
+  {
+    "$token": "YOUR_PROJECT_TOKEN",
+    "$group_key": "Company",
+    "$group_id": "Mixpanel"
+  }
+]
+'
+```
+
+### Remove from List Property
+Removes a specific value in a list property.
+
+```sh
+curl --request POST \
+     --url 'https://api.mixpanel.com/groups#group-remove-from-list' \
+     --header 'accept: text/plain' \
+     --header 'content-type: application/json' \
+     --data '
+[
+  {
+    "$token": "YOUR_PROJECT_TOKEN",
+    "$group_key": "Company",
+    "$group_id": "Mixpanel"
+  }
+]
+'
+```
+
+### Union To List Property
+Adds the specified values to a list property on a group profile and ensures that those values only appear once. The profile is created if it does not exist.
+
+```sh
+curl --request POST \
+     --url 'https://api.mixpanel.com/groups#group-union' \
+     --header 'accept: text/plain' \
+     --header 'content-type: application/json' \
+     --data '
+[
+  {
+    "$token": "YOUR_PROJECT_TOKEN",
+    "$group_key": "Company",
+    "$group_id": "Mixpanel"
+  }
+]
+'
+```
+
+### Batch Update Group Profiles
+Send a batch of group profile updates. Instead of sending a single JSON object as the data query parameter, send a JSON list of objects as the data parameter of an application/x-www-form-urlencoded POST or GET request body
+
+```sh
+curl --request POST \
+     --url 'https://api.mixpanel.com/groups#group-batch-update' \
+     --header 'accept: text/plain' \
+     --header 'content-type: application/json' \
+     --data '
+[
+  {
+    "$token": "YOUR_PROJECT_TOKEN",
+    "$group_key": "Company",
+    "$group_id": "Mixpanel",
+    "$set": {
+      "Address": "1313 Mockingbird Lane"
+    }
+  },
+  {
+    "$token": "YOUR_PROJECT_TOKEN",
+    "$group_key": "Company",
+    "$group_id": "Wayne Enterprises",
+    "$set_once": {
+      "Address": "Wayne Tower, Gotham City"
+    }
+  }
+]
+'
+```
+
+### Delete Group
+Deletes a group profile from Mixpanel.
+
+```sh
+curl --request POST \
+     --url 'https://api.mixpanel.com/groups#group-delete' \
+     --header 'accept: text/plain' \
+     --header 'content-type: application/json' \
+     --data '
+[
+  {
+    "$token": "YOUR_PROJECT_TOKEN",
+    "$group_key": "Company",
+    "$group_id": "Mixpanel",
+    "$delete": "null"
+  }
+]
+'
+```
+
+### Limits
+The Groups Profile API imposes limits on the total number profile updates that can be sent per request to 200 as well as limits each individual update in the request to a maximum of 1 MB. If you are running up against these limits, we suggest breaking your request into smaller batches. Usually, these limits are only hit if you are attempting to do a bulk create/update.
