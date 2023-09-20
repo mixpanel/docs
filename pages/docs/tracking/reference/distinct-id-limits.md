@@ -1,24 +1,16 @@
 # Distinct ID Limits
 
-In order to maintain fast queries and catch implementation mistakes, we set a limit on the number of events sent to a particular `distinct_id` in a given time window. In this document, we explain how this limit works and what to do when you hit it.
+In order to maintain fast queries and catch implementation mistakes, we set a limit on the number of events sent to a particular `distinct_id` in a given time window. This threshold has been stablished as **100K events per `distinct_id` per calendar day in the project**.
 
 ## What is a hot shard?
-There are cases when an incorrect implementation results in a disproportionately high number of events sent to Mixpanel for the same `distinct_id`. This leads to an imbalance when storing events across distinct_ids, where one distinct_id's events grows larger than the rest, impacting storage and query systems which in-turn results in high query latencies for the end user.
+Whenever a project goes above the threshold described above, it generates an imbalance when storing events across distinct_ids, where one distinct_id's events grows larger than the rest, impacting storage and query systems which in-turn results in high query latencies (slower reports) for the end user.
 
 Since we distribute events across shards, this imbalance is called a **hot shard**.
 
-## How does hot shard detection work?
-The hot shard detection step runs in the ingestion pipeline. A counter of events is maintained for each `distinct_id` and `event_date` combination. The counter is best-effort as a result of the underlying systems used to maintain such a large keyspace.
-
-Once a pre-defined threshold is crossed(currently set to 100K events), the `distinct_id` is marked as contributing to a hot shard and all subsequent events for this `distinct_id` and `event_date` are updated to even the load across shards. Historical events prior to the hotshard detection for the same `distinct_id` are not updated.
-
 ## What happens when we detect a hot shard?
-Once a given entry crosses the threshold, all subsequent matching events (same `distinct_id` and `event_date`) will have the following transformations applied to them:
+Once a given entry crosses the threshold, all subsequent matching events (same `distinct_id` and caledar day) will have the following transformations applied to them:
 - `event` will be changed to `$hotshard_events`.  The original event name will be preserved under a property called `mp_original_event_name` (display name is `Hotshard Original Event Name`). Changing the name removes the bad events from being selected for analysis yet remain accessible for debugging.
 - `distinct_id` is changed to `""`[^1]. The original value will be preserved under a property called `mp_original_distinct_id` (display name is `Hotshard Original Distinct ID`). Removing the distinct_id allows Mixpanel backend to distribute these events evenly across shards ensuring that performance is not adversely affected while keeping the data accessible for debugging.
-
-[^1]: Due to a side-effect on how events are serialized, some remediated entries were initially saved with a numeric distinct_id (instead of ""). This value can safely be ignored.  
-
 
 Original Event - 
 ```json
@@ -49,7 +41,119 @@ Updated Event -
 These events can be queried from the dashboard just like any other events. A weekly report is sent to project owners if a new hot shard was detected and remediated in the past 7 days. 
 
 ## Recovering from a hot shard
-Recovery is a multi-step process -
-* Break down `$hotshard_events` by `mp_original_distinct_id` and `mp_original_event_name` to spot what’s causing the issue.
-* Use the above to locate the code that is the root cause and update it to stop the ongoing issue.
-* This should fix it going forward. To fix historical data, the recommendation is to export, transform, and re-import the data.
+The process can be broken down into 3 main steps:
+* Reviewing the hot shard events in your project to identify which events and `distinct_id` values are involved
+* Change the implementation to avoid further instances of the hot shard
+* (Optionally) Fix historical data via exporting, transforming and re-importing the data
+
+### Reviewing hot shard data in your project
+A great starting point for the analysis would be to create a copy of [this board](https://mixpanel.com/project/2195193/view/139237/app/boards/#id=5651541) from our demo project into the affected project. As you open the board linked above, you will see instructions to click on "Use this board" to transfer it over to your project and to edit the default date range.
+
+![Screenshot use this board](/tracking_id_limits_copy_board.png)
+
+The board eases the proces of identifying the data marked as coming from a hot shard. Essentially, it helps you create reports to break down that data by the main `distinct_id` values affected as well as the event names. For example, you can see reports pointing to the main `distinct_id` values (by volume) generating the hot shard.
+
+![Sample hot shard report](/tracking_id_limits_sample_report.png)
+
+### Changing your implementation
+Once you have identified the cluster of `distinct_id` values related to the issue, it would be time to review your implementation and inspect the reason why a set of these IDs are getting a higher than usual number of events. In general terms, you will often find these main scenarios:
+
+#### Events that are non-attributable to users but marked with a specific ID
+In some instances, your project will have events that should not be attributed to a specific user or group, like some automated tests being tracked, or perhaps ad-spend data you're importing; it may be that when implementing, a specific ID was abritrarily chosen for those events, say the string `"0"`, `"spend_data"` or perhaps even the name of the pod/server the data is coming from. This can lead to hundreds of thousands of events with the same ID causing this issue. 
+
+If your use case is similar to this, and the event **should not be attributed to specific users or groups**, you can change your implementation to send those events with an empty string value `""`. Upon ingestion, Mixpanel will randomly store these events in different shards so you will not incur a performance hit if this is your intended use case.
+
+#### ID management issue
+Another possibility could be that the hot shard is made up of multiple separate users that are being merged together unintendedly. A quick way to check this would be to create a report filtering by one of the IDs previously identified as a hot shard, filtering for one of the days affected, and creating a breakdown by an internal property called `$distinct_id_before_identity`. This internal property holds the value of the ID the event was sent with before our ingestion pipeline remapped its value based on our ID merge functionality.
+
+As an example, let's say there is an issue in the implementation and when users sign up, the code is aliasing every user to the string `"email"` instead of aliasing the user to said user's email address. This would lead to a situation in which many users are all being aliased/merge to the same ID (in this case the string `"email"`). When breaking down the report by `$distinct_id_before_identity`, you would still have the ability to see the initial ID the event was sent with before it was remaped to `"email"`.
+
+You will want to fix the implementation to alias users correctly to avoid new users from being impacted. You can find more information on [identifying users in this doc](../how-tos/identifying-users.md).
+
+In case you've identified the problematic ID cluster, but you have not been able to identify the root cause in the implementation. Reach out to our [support team](https://mixpanel.com/get-support) and provide the details you've uncovered so far; providing your copy of the board and any details on the investigation in your code will be of great assistance helping you identify the issue.
+
+### Fix historical data
+Once the implementation has been changed and events are not being identified as part of a hot shard anymore, you can still have a situation in which some of your metrics might be temporarily down since they were tracked with a different event name (`$hotshard_events` instead of the original name) and without a distinct_id (which can make unique counts go down, although this is usually less of an impact).
+
+The great news is that since the events are still in your project, you can export them, transform them and re-import them.
+
+Below you will find an example script leveraging [our python module](https://github.com/mixpanel/mixpanel-utils) to export the `$hotshard_events` by day to a folder, transform them (in this case replace the event name with the original name the events had) and re-import them. This script is meant as a template for you to review and adjust. You will want to pay special attention to the `transform_event` function in which you can remap properties as needed for the final event to be imported. You can find the configuration options towards the start of the script within the `SETTINGS` variable.
+
+```python
+import glob
+import gzip
+import json
+from mixpanel_utils import MixpanelUtils
+
+SETTINGS = {
+    "PROJECT_ID": "<REPLACE YOUR PROJECT ID>",
+    "TOKEN": "<REPLACE PROJECT TOKEN>",
+    "SA_USERNAME": "<REPLACE SERVICE ACCOUNT USERNAME>",
+    "SA_PASSWORD": "<REPLACE SERVICE ACCOUNT PASSWORD>",
+    "EU": False, # set to TRUE if your project is in the EU
+    "EXPORT_FOLDER": "exported_files", # make sure to create the folder if it does not exist
+    "FROM": "2023-09-01",
+    "TO": "2023-09-15",
+}
+mputils = MixpanelUtils(SETTINGS["SA_PASSWORD"],token=SETTINGS["TOKEN"],service_account_username=SETTINGS["SA_USERNAME"], eu=SETTINGS["EU"], project_id=SETTINGS["PROJECT_ID"])
+
+def flush_events(events):
+    global mputils
+    if(len(events) == 0):
+        return False
+    mputils.import_events(events,timezone_offset=0)
+    return True
+
+def transform_event(event):
+    try:
+        data = json.loads(event)
+        data["event"] = data["properties"]["mp_original_event_name"]
+        del data["properties"]["mp_original_event_name"]
+        del data["properties"]["mp_original_distinct_id"]
+
+        # example if you wanted to remap the value from $user_id to distinct_id
+        # if("$user_id" in data["properties"]):
+        #     data["properties"]["distinct_id"] = data["properties"]["$user_id"]
+
+        return data
+    except:
+        return False
+#export hotshard events
+mputils.export_events(f'{SETTINGS["EXPORT_FOLDER"]}/events.json',{
+    "from_date": SETTINGS["FROM"],
+    "to_date": SETTINGS["TO"],
+    "event": '["$hotshard_events"]'
+}, add_gzip_header=True, request_per_day=True, raw_stream=True)
+
+exported_files = glob.glob(f'{SETTINGS["EXPORT_FOLDER"]}/*.json.gz')
+for file_name in exported_files:
+    events = []
+    event_queue_max = 50_000 # arbitrary max length before sending in batches
+    with gzip.open(file_name,'rt') as file:
+        for line in file:
+            event = transform_event(line)
+            if(event == False):
+                continue
+            events.append(event)
+            if(len(events) >= event_queue_max):
+                flush_events(events)
+                events = []
+        
+        #flush remaining events
+        if(len(events) > 0):
+            flush_events(events)
+            events = []
+```
+
+## Hot Shard FAQ
+
+#### How does hot shard detection work?
+The detection step runs in the ingestion pipeline. A counter of events is maintained for each `distinct_id` and `event_date` combination. The counter is best-effort as a result of the underlying systems used to maintain such a large keyspace.
+
+Once a pre-defined threshold is crossed, the `distinct_id` is marked as contributing to a hot shard and all subsequent events for this `distinct_id` and `event_date` are updated to even the load across shards. Historical events prior to the hotshard detection for the same `distinct_id` are not updated.
+
+#### I received an email about a hot shard but I don't see users with more than 100K events, why?
+
+Since the detection is done at ingestion, duplicates (potentially as a result of client-side tracking retries) are also counted as part of the hotshard threshold (roughly > 100K event volume). This means you might see <100K events in Mixpanel reports as being remediated for certain distinct_id which were only deduplicated post-ingesting these events.
+
+[^1]: Due to a side-effect on how events are serialized, some remediated entries were initially saved with a numeric distinct_id (instead of ""). This value can safely be ignored.  
