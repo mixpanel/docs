@@ -18,6 +18,13 @@ The API Secret is used to export data out of your project via our Export APIs. Y
 
 You should not share your API Secret, since it can be used to export data from your Mixpanel project.
 
+### How to rotate your API Secret
+
+To rotate a project API Secret, the [Project Owner](https://docs.mixpanel.com/docs/admin/organizations-projects/manage-team-members#owner-1) should go to Cogwheel Icon > Personal Settings > Projects > Find the project whose API Secret you want to rotate and click the Reset button.
+Also, do not forget to update any scripts or integrations that use the API Secret for authentication.
+
+![image](https://github.com/mixpanel/docs/assets/17679378/351c98cf-3c17-487a-af9f-257e14bbf299)
+
 ## Service Accounts
 [Service Accounts](https://developer.mixpanel.com/reference/service-accounts) are a more advanced form of authentication that is used to grant temporary access to a subset of Mixpanel projects within your organization for certain APIs.
 
