@@ -101,6 +101,10 @@ def handle_signup(request):
 ## Tracking Geolocation (HTTP API)
 
 As all server-side calls originate from the same IP, such as the IP of your server, it can have the unintended effect of setting the location of all of your users to the location of your datacenter.
+To prevent Ingestion API `/engage` endpoint from taking the IP of the incoming request for geolocation, you can specify the `ip=0` parameter.
+```
+api.mixpanel.com/engage?verbose=1&ip=0
+```
 
 If you want to pass in your own IP address using our [HTTP API](https://developer.mixpanel.com/reference/profile-set) (`/engage#profile-set` endpoint) similar to the way you can with `track()`, pass in a property called `$ip` to the message payload.
 ```
@@ -140,7 +144,7 @@ On user profile updates, the data must be named `$latitude` and `$longitude` and
 
 You would also need to set `$latitude` and `$longitude` outside of the `$set` dictionary.
 
-You will see profile property `$geo_souce=reverse_geocoding` in the Profile UI if location properties were determined through `$latitude` and `$longitude`.
+You will see profile property `$geo_source=reverse_geocoding` in the Profile UI if location properties were determined through `$latitude` and `$longitude`.
 
 Do note: Reverse geocoding for user profiles is not supported via client-side SDKs.
 ```
