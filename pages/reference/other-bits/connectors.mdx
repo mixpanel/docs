@@ -37,7 +37,7 @@ List all connectors in a project.
 
 ```sh
 curl --request GET \
-     --url https://mixpanel.com/api/app/projects/projectId/connectors \
+     --url https://mixpanel.com/api/app/projects/{projectId}/connectors \
      --header 'accept: application/json'
 ```
 
@@ -93,7 +93,7 @@ Return a Project's Connecter by Connector Id
 
 ```sh
 curl --request GET \
-     --url https://mixpanel.com/api/app/projects/projectId/connectors/ \
+     --url https://mixpanel.com/api/app/projects/{projectId}/connectors/{connectorId} \
      --header 'accept: application/json'
 ```
 
@@ -108,7 +108,7 @@ Possible Statuses
 
 ```sh
 curl --request GET \
-     --url https://mixpanel.com/api/app/projects/projectId/connectors//history \
+     --url https://mixpanel.com/api/app/projects/{projectId}/connectors/{connectorId}/history \
      --header 'accept: application/json'
 ```
 
@@ -252,7 +252,7 @@ Sample request
 
 ```sh
 curl --request POST \
-     --url https://mixpanel.com/api/app/projects/projectId/connectors \
+     --url https://mixpanel.com/api/app/projects/{projectId}/connectors \
      --header 'accept: application/json' \
      --header 'content-type: application/json' \
      --data '
@@ -325,9 +325,9 @@ Sample Response
 
 ### Delete Connector
 ```sh
-curl --request DELETE \
-     --url https://mixpanel.com/api/app/projects/projectId/connectors/ \
-     --header 'accept: application/json'
+curl -X DELETE https://mixpanel.com/api/app/projects/{PROJECT_ID}/connectors/{CONNECTOR_ID} \
+     --user "{SVC_ACCOUNT}:{SECRET}"
+
 ```
 
 Sample Response

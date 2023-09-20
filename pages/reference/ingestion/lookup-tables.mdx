@@ -18,7 +18,7 @@ Lookup Tables must be [created via our UI](/docs/tracking/how-tos/lookup-tables)
 <Tabs items={['cURL', 'Python']}>
 <Tab>
 ```sh
-curl -XPUT 'https://api.mixpanel.com/lookup-tables/ID?project_id=YOUR_PROJECT_ID' \
+curl -XPUT 'https://api.mixpanel.com/lookup-tables/ID?project_id={YOUR_PROJECT_ID}' \
      -u 'SERVICE_ACCOUNT_USER:SERVICE_ACCOUNT_PASS' \
      -H 'Content-Type: text/csv' \
      --data 'id,artist,genre,is_platinum,name,num_listens,release_date,is_top_40
@@ -66,6 +66,28 @@ print(resp.json()
 * Comma separated, quoted strings in square brackets (`"[""Free"",""Paid"",""Enterprise""]"`) will be parsed as list of strings.
 * All other values will be treated as strings.
 
+#### Errors
+Lookup Tables are replaced in their entirety or not replaced at all. When the Lookup Table fails to meet the above validation, we return an error that looks as follows:
+
+```json
+{
+  "error": "some data points in the request failed validation",
+  "failed_records": [
+    {
+      "index": 2,
+      "message": "invalid row: row indexes 1 and 2 have the same primary key"
+    },
+    {
+      "index": 3,
+      "message": "invalid row: wrong number of fields"
+    }
+  ],
+  "status": 0
+}
+```
+
+We will return at most the first 10 rows that failed validation.
+
 ### Limits
 This endpoint will return a 429 error if called more than 100 times in a rolling 24 hour window. We recommend updating lookup tables at most hourly to stay within this limit.
 
@@ -75,6 +97,6 @@ This endpoint will return a 413 error if a Lookup Table exceeds 100MB uncompress
 This API returns the list of Lookup Tables in your project.
 
 ```sh
-curl 'https://api.mixpanel.com/lookup-tables?project_id=YOUR_PROJECT_ID' \
+curl 'https://api.mixpanel.com/lookup-tables?project_id={YOUR_PROJECT_ID}' \
      -u 'SERVICE_ACCOUNT_USER:SERVICE_ACCOUNT_PASS'
 ```

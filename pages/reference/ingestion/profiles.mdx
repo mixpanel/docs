@@ -55,7 +55,10 @@ curl --request POST \
 [
   {
     "$token": "YOUR_PROJECT_TOKEN",
-    "$distinct_id": "13793"
+    "$distinct_id": "13793",
+    "$set": {
+      "Color": "Purple"
+    }
   }
 ]
 '
@@ -72,7 +75,10 @@ curl --request POST \
 [
   {
     "$token": "YOUR_PROJECT_TOKEN",
-    "$distinct_id": "13793"
+    "$distinct_id": "13793",
+    "$set_once": {
+      "Color": "Purple"
+    }
   }
 ]
 '
@@ -90,7 +96,10 @@ curl --request POST \
 [
   {
     "$token": "YOUR_PROJECT_TOKEN",
-    "$distinct_id": "13793"
+    "$distinct_id": "13793",
+    "$add": {
+      "Number of Coins": 0
+    }
   }
 ]
 '
@@ -108,7 +117,12 @@ curl --request POST \
 [
   {
     "$token": "YOUR_PROJECT_TOKEN",
-    "$distinct_id": "13793"
+    "$distinct_id": "13793",
+    "$union": {
+      "List of Coins": [
+        "Penny", "Dime"
+      ]
+    }
   }
 ]
 '
@@ -126,7 +140,10 @@ curl --request POST \
 [
   {
     "$token": "YOUR_PROJECT_TOKEN",
-    "$distinct_id": "13793"
+    "$distinct_id": "13793",
+    "$append": {
+      "List of Coins": "Nickel"
+    }
   }
 ]
 '
@@ -144,7 +161,10 @@ curl --request POST \
 [
   {
     "$token": "YOUR_PROJECT_TOKEN",
-    "$distinct_id": "13793"
+    "$distinct_id": "13793",
+    "$remove": {
+      "List of Coins": "Quarter"
+    }
   }
 ]
 '
@@ -162,7 +182,10 @@ curl --request POST \
 [
   {
     "$token": "YOUR_PROJECT_TOKEN",
-    "$distinct_id": "13793"
+    "$distinct_id": "13793",
+    "$unset": [
+      "Key to Remove"
+    ]
   }
 ]
 '
@@ -264,7 +287,10 @@ curl --request POST \
   {
     "$token": "YOUR_PROJECT_TOKEN",
     "$group_key": "Company",
-    "$group_id": "Mixpanel"
+    "$group_id": "Mixpanel",
+    "$set": {
+      "Color": "Purple"
+    }
   }
 ]
 '
@@ -283,7 +309,10 @@ curl --request POST \
   {
     "$token": "YOUR_PROJECT_TOKEN",
     "$group_key": "Company",
-    "$group_id": "Mixpanel"
+    "$group_id": "Mixpanel",
+    "$set_once": {
+      "Color": "Purple"
+    }
   }
 ]
 '
@@ -302,7 +331,10 @@ curl --request POST \
   {
     "$token": "YOUR_PROJECT_TOKEN",
     "$group_key": "Company",
-    "$group_id": "Mixpanel"
+    "$group_id": "Mixpanel",
+    "$unset": [
+      "Color"
+    ]
   }
 ]
 '
@@ -321,7 +353,10 @@ curl --request POST \
   {
     "$token": "YOUR_PROJECT_TOKEN",
     "$group_key": "Company",
-    "$group_id": "Mixpanel"
+    "$group_id": "Mixpanel",
+    "$remove": {
+      "Color": "Blue"
+    }
   }
 ]
 '
@@ -340,7 +375,12 @@ curl --request POST \
   {
     "$token": "YOUR_PROJECT_TOKEN",
     "$group_key": "Company",
-    "$group_id": "Mixpanel"
+    "$group_id": "Mixpanel",
+    "$union": {
+      "Color": [
+        "Red", "Orange"
+      ]
+    }
   }
 ]
 '

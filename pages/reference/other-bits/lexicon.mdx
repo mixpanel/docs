@@ -97,7 +97,7 @@ List all schemas in a project
 
 ```sh
 curl --request GET \
-     --url https://mixpanel.com/api/app/projects/projectId/schemas \
+     --url https://mixpanel.com/api/app/projects/{projectId}/schemas \
      --header 'accept: application/json'
 ```
 
@@ -106,7 +106,7 @@ Get all schemas for a specific entity type
 
 ```sh
 curl --request GET \
-     --url https://mixpanel.com/api/app/projects/projectId/schemas/event \
+     --url https://mixpanel.com/api/app/projects/{projectId}/schemas/{entityType} \
      --header 'accept: application/json'
 ```
 
@@ -115,7 +115,7 @@ Get the schema for a specific entity type and entity name
 
 ```sh
 curl --request GET \
-     --url https://mixpanel.com/api/app/projects/projectId/schemas/event/name \
+     --url https://mixpanel.com/api/app/projects/{projectId}/schemas/{entityType}/{schemaName} \
      --header 'accept: application/json'
 ```
 
@@ -138,10 +138,7 @@ curl --request POST \
      --url https://mixpanel.com/api/app/projects/projectId/schemas \
      --header 'accept: application/json' \
      --header 'content-type: application/json'
-```
-
-#### Example POST Body
-```json
+     --data '
 {
     "entries": [
         {
@@ -242,6 +239,7 @@ curl --request POST \
     ],
     "truncate": false
 }
+'
 ```
 
 ### Create/Replace One
@@ -257,23 +255,10 @@ Upload a schema for a single entity. If a schema already exists for a specified 
 
 ```sh
 curl --request POST \
-     --url https://mixpanel.com/api/app/projects/projectId/schemas/event/name \
+     --url https://mixpanel.com/api/app/projects/{projectId}/schemas/{entityType}/{schemaName} \
      --header 'accept: application/json' \
      --header 'content-type: application/json' \
      --data '
-{
-  "metadata": {
-    "com.mixpanel": {
-      "hidden": false,
-      "dropped": false
-    }
-  }
-}
-'
-```
-
-#### Example POST body
-```json
 {
     "$schema": "http://json-schema.org/draft-07/schema",
     "description": "Tracked when a user adds an item to their cart.",
@@ -374,7 +359,7 @@ Delete all schemas in a project
 
 ```sh
 curl --request DELETE \
-     --url https://mixpanel.com/api/app/projects/projectId/schemas \
+     --url https://mixpanel.com/api/app/projects/{projectId}/schemas \
      --header 'accept: application/json'
 ```
 
@@ -383,7 +368,7 @@ Delete all schemas of a specific entity type
 
 ```sh
 curl --request DELETE \
-     --url https://mixpanel.com/api/app/projects/projectId/schemas/event \
+     --url https://mixpanel.com/api/app/projects/{projectId}/schemas/{entityType} \
      --header 'accept: application/json'
 ```
 
@@ -392,7 +377,7 @@ Delete schema for an entity type and entity name
 
 ```sh
 curl --request DELETE \
-     --url https://mixpanel.com/api/app/projects/projectId/schemas/event/name \
+     --url https://mixpanel.com/api/app/projects/{projectId}/schemas/{entityType}/{schemaName} \
      --header 'accept: application/json'
 ```
 

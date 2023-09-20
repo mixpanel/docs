@@ -21,7 +21,7 @@ List all annotations in a project.
 
 ```sh
 curl --request GET \
-     --url https://mixpanel.com/api/app/projects/projectId/annotations \
+     --url https://mixpanel.com/api/app/projects/{projectId}/annotations \
      --header 'accept: application/json'
 ```
 
@@ -32,7 +32,7 @@ Get an Annotation
 
 ```sh
 curl --request GET \
-     --url https://mixpanel.com/api/app/projects/projectId/annotations/annotationId \
+     --url https://mixpanel.com/api/app/projects/{projectId}/annotations/{annotationId} \
      --header 'accept: application/json'
 ```
 
@@ -44,9 +44,15 @@ Create an Annotation. Requires a role of at least Analyst.
 
 ```sh
 curl --request POST \
-     --url https://mixpanel.com/api/app/projects/projectId/annotations \
+     --url https://mixpanel.com/api/app/projects/{projectId}/annotations \
      --header 'accept: application/json' \
-     --header 'content-type: application/json'
+     --header 'content-type: application/json' \
+     --data '
+{
+  "date": "2022-02-15 12:00:00",
+  "description": "Something interesting happened!"
+}
+'
 ```
 
 
@@ -57,9 +63,14 @@ Patch an Annotation. Requires a role of at least Analyst.
 
 ```sh
 curl --request PATCH \
-     --url https://mixpanel.com/api/app/projects/projectId/annotations/annotationId \
+     --url https://mixpanel.com/api/app/projects/{projectId}/annotations/{annotationId} \
      --header 'accept: application/json' \
-     --header 'content-type: application/json'
+     --header 'content-type: application/json' \
+     --data '
+{
+  "description": "Something interesting happened!"
+}
+'
 ```
 
 
@@ -70,6 +81,6 @@ Delete an Annotation. Requires a role of at least Analyst.
 
 ```sh
 curl --request DELETE \
-     --url https://mixpanel.com/api/app/projects/projectId/annotations/annotationId \
+     --url https://mixpanel.com/api/app/projects/{projectId}/annotations/{annotationId} \
      --header 'accept: application/json'
 ```

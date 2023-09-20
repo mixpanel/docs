@@ -51,7 +51,7 @@ Get data from your Insights reports.
 
 ```sh
 curl --request GET \
-     --url https://mixpanel.com/api/query/insights \
+     --url 'https://mixpanel.com/api/query/insights?project_id={PROJECT_ID}&bookmark_id={BOOKMARK_ID}' \
      --header 'accept: application/json'
 ```
 ## Funnels
@@ -61,7 +61,7 @@ Get data for a funnel.
 
 ```sh
 curl --request GET \
-     --url https://mixpanel.com/api/query/funnels \
+     --url 'https://mixpanel.com/api/query/funnels?project_id={PROJECT_ID}&funnel_id={FUNNEL_ID}&from_date=2023-08-20&to_date=2023-09-20' \
      --header 'accept: application/json'
 ```
 ### List Saved Funnels
@@ -69,7 +69,7 @@ Get the names and funnel_ids of your funnels.
 
 ```sh
 curl --request GET \
-     --url https://mixpanel.com/api/query/funnels/list \
+     --url 'https://mixpanel.com/api/query/funnels/list?project_id={PROJECT_ID}' \
      --header 'accept: application/json'
 ```
 ## Retention
@@ -98,7 +98,7 @@ In the Mixpanel retention UI, \"First time\" corresponds to `retention_type=birt
 
 ```sh
 curl --request GET \
-     --url https://mixpanel.com/api/query/retention \
+     --url 'https://mixpanel.com/api/query/retention?project_id={PROJECT_ID}&from_date=2023-08-20&to_date=2023-09-20&born_event=Added%20to%20cart&event=Viewed%20report&born_where=properties%5B%22%24os%22%5D%3D%3D%22Linux%22&where=properties%5B%22%24os%22%5D%3D%3D%22Linux%22&unbounded_retention=false' \
      --header 'accept: application/json'
 ```
 ### Query Frequency Report
@@ -116,7 +116,7 @@ One day's worth of data is shown for each date, split into hours. On 2012-01-02,
 
 ```sh
 curl --request GET \
-     --url 'https://mixpanel.com/api/query/retention/addiction?unit=day&addiction_unit=hour' \
+     --url 'https://mixpanel.com/api/query/retention/addiction?project_id={PROJECT_ID}&from_date=2023-08-20&to_date=2023-09-20&unit=day&addiction_unit=hour' \
      --header 'accept: application/json'
 ```
 
@@ -127,31 +127,34 @@ Get data for an event, segmented and filtered by properties.
 
 ```sh
 curl --request GET \
-     --url https://mixpanel.com/api/query/segmentation \
+     --url 'https://mixpanel.com/api/query/segmentation?project_id={PROJECT_ID}&event=Viewed%20report&from_date=2023-08-20&to_date=2023-09-20' \
      --header 'accept: application/json'
 ```
+
 ### Numerically Bucket
 Get data for an event, segmented and filtered by properties, with values placed into numeric buckets.
 
 ```sh
 curl --request GET \
-     --url https://mixpanel.com/api/query/segmentation/numeric \
+     --url 'https://mixpanel.com/api/query/segmentation/numeric?project_id={PROJECT_ID}&event=Viewed%20report&from_date=2023-08-20&to_date=2023-09-20&on=user%5B%22Number%20of%20Views%22%5D' \
      --header 'accept: application/json'
 ```
+
 ### Numerically Sum
 Sums an expression for events per unit time.
 
 ```sh
 curl --request GET \
-     --url https://mixpanel.com/api/query/segmentation/sum \
+     --url 'https://mixpanel.com/api/query/segmentation/sum?project_id={PROJECT_ID}&event=Viewed%20report&from_date=2023-08-20&to_date=2023-09-20&on=user%5B%22Number%20of%20Views%22%5D' \
      --header 'accept: application/json'
 ```
+
 ### Numerically Average
 Averages an expression for events per unit time.
 
 ```sh
 curl --request GET \
-     --url https://mixpanel.com/api/query/segmentation/average \
+     --url 'https://mixpanel.com/api/query/segmentation/average?project_id={PROJECT_ID}&event=Viewed%20report&from_date=2023-08-20&to_date=2023-09-20&on=user%5B%22Number%20of%20Views%22%5D' \
      --header 'accept: application/json'
 ```
 
@@ -162,7 +165,7 @@ This endpoint returns the activity feed for specified users.
 
 ```sh
 curl --request GET \
-     --url https://mixpanel.com/api/query/stream/query \
+     --url 'https://mixpanel.com/api/query/stream/query?project_id={PROJECT_ID}&distinct_ids=%5B%2212a34aa567eb8d-9ab1c26f345b67-89123c45-6aeaa7-89f12af345f678%22%5D&from_date=2023-08-20&to_date=2023-09-20' \
      --header 'accept: application/json'
 ```
 
@@ -175,7 +178,7 @@ If you're trying to get a list of users in a cohort, you can use the [`/engage` 
 
 ```sh
 curl --request POST \
-     --url https://mixpanel.com/api/query/cohorts/list \
+     --url 'https://mixpanel.com/api/query/cohorts/list?project_id={PROJECT_ID}' \
      --header 'accept: application/json'
 ```
 
@@ -186,7 +189,7 @@ Get unique, total, or average data for a set of events over N days, weeks, or mo
 
 ```sh
 curl --request GET \
-     --url 'https://mixpanel.com/api/query/events?type=general&unit=minute' \
+     --url 'https://mixpanel.com/api/query/events?project_id={PROJECT_ID}&event=Viewed%20Report&type=general&unit=minute&from_date=2023-08-20&to_date=2023-09-20' \
      --header 'accept: application/json'
 ```
 
@@ -195,7 +198,7 @@ Get the top events for today, with their counts and the normalized percent chang
 
 ```sh
 curl --request GET \
-     --url 'https://mixpanel.com/api/query/events/top?type=general' \
+     --url 'https://mixpanel.com/api/query/events/top?project_id={PROJECT_ID}&type=general' \
      --header 'accept: application/json'
 ```
 
@@ -204,7 +207,7 @@ Get a list of the most common events over the last 31 days.
 
 ```sh
 curl --request GET \
-     --url 'https://mixpanel.com/api/query/events/names?type=general' \
+     --url 'https://mixpanel.com/api/query/events/names?project_id={PROJECT_ID}&type=general' \
      --header 'accept: application/json'
 ```
 
@@ -213,15 +216,16 @@ Get unique, total, or average data for of a single event and property over days,
 
 ```sh
 curl --request GET \
-     --url 'https://mixpanel.com/api/query/events/properties?type=general&unit=minute' \
+     --url 'https://mixpanel.com/api/query/events/properties?project_id={PROJECT_ID}&event=Viewed%20Report&name=City&type=general&unit=minute&from_date=2023-08-20&to_date=2023-09-20' \
      --header 'accept: application/json'
 ```
+
 ### Top Event Properties
 Get the top property names for an event.
 
 ```sh
 curl --request GET \
-     --url 'https://mixpanel.com/api/query/events/properties/top' \
+     --url 'https://mixpanel.com/api/query/events/properties/top?project_id={PROJECT_ID}&event=Viewed%20Report' \
      --header 'accept: application/json'
 ```
 
@@ -230,7 +234,7 @@ Get the top values for a property.
 
 ```sh
 curl --request GET \
-     --url 'https://mixpanel.com/api/query/events/properties/values' \
+     --url 'https://mixpanel.com/api/query/events/properties/values?project_id={PROJECT_ID}&event=Viewed%20Report&name=City' \
      --header 'accept: application/json'
 ```
 
@@ -247,13 +251,26 @@ curl https://mixpanel.com/api/query/jql \
      --data-urlencode script@my_query.js
 ```
 
-Note
-- Queries will timeout after 2 minutes of run-time.
-- You cannot make remote network requests (using XMLHttpRequest) from JavaScript.
-
+Example curl with the script directly inside of the curl:
 ```sh
 curl --request POST \
      --url https://mixpanel.com/api/query/jql \
      --header 'accept: application/json' \
-     --header 'content-type: application/x-www-form-urlencoded'
+     --header 'content-type: application/x-www-form-urlencoded' \
+     --data 'script=function main(){
+  return Events(params)
+    .groupBy(
+      ["name"],
+      mixpanel.reducer.count()
+    )
+}
+' \
+     --data 'params={
+  "scriptParam": "paramValue"
+}
+'
 ```
+
+Note
+- Queries will timeout after 2 minutes of run-time.
+- You cannot make remote network requests (using XMLHttpRequest) from JavaScript.

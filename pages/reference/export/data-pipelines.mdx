@@ -14,8 +14,7 @@ The Data Pipelines API contains a list of endpoints that are supported by Mixpan
 ## Create Pipeline
 This request creates an export pipeline. The `type` parameter defines the kind of pipeline that is initiated.
 
-TODO add examples
-
+### Raw GCS Pipeline
 ``` sh
 curl --request POST \
      --url https://data.mixpanel.com/api/2.0/nessie/pipeline/create \
@@ -26,17 +25,218 @@ curl --request POST \
      --data data_source=events \
      --data frequency=daily \
      --data data_format=json \
-     --data gcs_region=northamerica-northeast1
+     --data gcs_region=northamerica-northeast1 \
+     --data from_date=2023-09-20 \
+     --data gcs_bucket=YOUR_GCS_BUCKET
 ```
+
+### Raw Amazon S3 Pipeline
+```sh
+curl --request POST \
+     --url https://data.mixpanel.com/api/2.0/nessie/pipeline/create \
+     --header 'accept: application/json' \
+     --header 'content-type: application/x-www-form-urlencoded' \
+     --data type=s3-raw \
+     --data trial=false \
+     --data data_source=events \
+     --data frequency=daily \
+     --data data_format=json \
+     --data gcs_region=northamerica-northeast1 \
+     --data s3_region=us-east-1 \
+     --data from_date=2023-09-20 \
+     --data s3_bucket=YOUR_S3_BUCKET \
+     --data s3_role=YOUR_S3_ROLE
+```
+
+### Raw Azure Pipeline
+```sh
+curl --request POST \
+     --url https://data.mixpanel.com/api/2.0/nessie/pipeline/create \
+     --header 'accept: application/json' \
+     --header 'content-type: application/x-www-form-urlencoded' \
+     --data type=azure-raw \
+     --data trial=false \
+     --data data_source=events \
+     --data frequency=daily \
+     --data data_format=json \
+     --data gcs_region=northamerica-northeast1 \
+     --data from_date=2023-09-20 \
+     --data storage_account=YOUR_STORAGE_ACCOUNT \
+     --data container_name=YOUR_CONTAINER_NAME \
+     --data client_id=YOUR_CLIENT_ID\
+     --data client_secret=YOUR_CLIENT_SECRET \
+     --data tenant_id=YOUR_TENANT_ID
+```
+
+### Schematized Bigquery Pipeline
+```sh
+curl --request POST \
+     --url https://data.mixpanel.com/api/2.0/nessie/pipeline/create \
+     --header 'accept: application/json' \
+     --header 'content-type: application/x-www-form-urlencoded' \
+     --data type=bigquery \
+     --data trial=false \
+     --data data_source=events \
+     --data frequency=daily \
+     --data data_format=json \
+     --data gcs_region=northamerica-northeast1 \
+     --data bq_region=US \
+     --data from_date=2023-09-23
+```
+
+### Schematized Snowflake Pipeline
+```sh
+curl --request POST \
+     --url https://data.mixpanel.com/api/2.0/nessie/pipeline/create \
+     --header 'accept: application/json' \
+     --header 'content-type: application/x-www-form-urlencoded' \
+     --data type=snowflake \
+     --data trial=false \
+     --data data_source=events \
+     --data frequency=daily \
+     --data data_format=json \
+     --data gcs_region=northamerica-northeast1 \
+     --data region=us-west-aws \
+     --data from_date=2023-09-23 \
+     --data snowflake_share_with=YOUR_ACCOUNT_NAME
+```
+
+### Schematized AWS Pipeline
+```sh
+curl --request POST \
+     --url https://data.mixpanel.com/api/2.0/nessie/pipeline/create \
+     --header 'accept: application/json' \
+     --header 'content-type: application/x-www-form-urlencoded' \
+     --data type=aws \
+     --data trial=false \
+     --data data_source=events \
+     --data frequency=daily \
+     --data data_format=json \
+     --data gcs_region=northamerica-northeast1 \
+     --data s3_region=us-east-1 \
+     --data from_date=2023-09-23 \
+     --data s3_bucket=YOUR_S3_BUCKET \
+     --data s3_role=YOUR_S3_ROLE
+```
+
+### Schematized Azure Pipeline
+```sh
+curl --request POST \
+     --url https://data.mixpanel.com/api/2.0/nessie/pipeline/create \
+     --header 'accept: application/json' \
+     --header 'content-type: application/x-www-form-urlencoded' \
+     --data type=azure-blob \
+     --data trial=false \
+     --data data_source=events \
+     --data frequency=daily \
+     --data data_format=json \
+     --data gcs_region=northamerica-northeast1 \
+     --data from_date=2023-09-23 \
+     --data storage_account=YOUR_STORAGE_ACCOUNT \
+     --data container_name=YOUR_CONTAINER_NAME \
+     --data client_id=YOUR_CLIENT_ID \
+     --data client_secret=YOUR_CLIENT_SECRET \
+     --data tenant_id=YOUR_TENANT_ID
+```
+
+### Schematized GCS Pipeline
+```sh
+curl --request POST \
+     --url https://data.mixpanel.com/api/2.0/nessie/pipeline/create \
+     --header 'accept: application/json' \
+     --header 'content-type: application/x-www-form-urlencoded' \
+     --data type=gcs-schema \
+     --data trial=false \
+     --data data_source=events \
+     --data frequency=daily \
+     --data data_format=json \
+     --data gcs_region=northamerica-northeast1 \
+     --data from_date=2023-09-23 \
+     --data gcs_bucket=YOUR_GCS_BUCKET
+```
+
 
 ## Edit Pipeline
 This request edit the params for an export pipeline.
 
+### Raw GCS Pipeline
 ```sh
 curl --request POST \
      --url https://data.mixpanel.com/api/2.0/nessie/pipeline/edit \
      --header 'accept: application/json' \
-     --header 'content-type: application/x-www-form-urlencoded'
+     --header 'content-type: application/x-www-form-urlencoded' \
+     --data name=YOUR_PIPELINE_NAME \
+     --data 'events=Checkout,Add to Cart'
+```
+
+### Raw Amazon S3 Pipeline
+```sh
+curl --request POST \
+     --url https://data.mixpanel.com/api/2.0/nessie/pipeline/edit \
+     --header 'accept: application/json' \
+     --header 'content-type: application/x-www-form-urlencoded' \
+     --data name=YOUR_PIPELINE_NAME \
+     --data 'events=Add to Cart,Checkout'
+```
+
+### Raw Azure Pipeline
+```sh
+curl --request POST \
+     --url https://data.mixpanel.com/api/2.0/nessie/pipeline/edit \
+     --header 'accept: application/json' \
+     --header 'content-type: application/x-www-form-urlencoded' \
+     --data name=YOUR_PIPELINE_NAME \
+     --data 'events=Add to Cart,Checkout'
+```
+
+### Schematized Bigquery Pipeline
+```sh
+curl --request POST \
+     --url https://data.mixpanel.com/api/2.0/nessie/pipeline/edit \
+     --header 'accept: application/json' \
+     --header 'content-type: application/x-www-form-urlencoded' \
+     --data name=YOUR_PIPELINE_NAME \
+     --data 'events=Add to Cart,Checkout'
+```
+
+### Schematized Snowflake Pipeline
+```sh
+curl --request POST \
+     --url https://data.mixpanel.com/api/2.0/nessie/pipeline/edit \
+     --header 'accept: application/json' \
+     --header 'content-type: application/x-www-form-urlencoded' \
+     --data name=YOUR_PIPELINE_NAME \
+     --data 'events=Add to Cart,Checkout'
+```
+
+### Schematized AWS Pipeline
+```sh
+curl --request POST \
+     --url https://data.mixpanel.com/api/2.0/nessie/pipeline/edit \
+     --header 'accept: application/json' \
+     --header 'content-type: application/x-www-form-urlencoded' \
+     --data name=YOUR_PIPELINE_NAME \
+     --data 'events=Add to Cart,Checkout'
+```
+
+### Schematized Azure Pipeline
+```sh
+curl --request POST \
+     --url https://data.mixpanel.com/api/2.0/nessie/pipeline/edit \
+     --header 'accept: application/json' \
+     --header 'content-type: application/x-www-form-urlencoded' \
+     --data name=YOUR_PIPELINE_NAME \
+     --data 'events=Add to Cart,Checkout'
+```
+
+### Schematized GCS Pipeline
+```sh
+curl --request POST \
+     --url https://data.mixpanel.com/api/2.0/nessie/pipeline/edit \
+     --header 'accept: application/json' \
+     --header 'content-type: application/x-www-form-urlencoded' \
+     --data name=YOUR_PIPELINE_NAME \
+     --data 'events=Add to Cart,Checkout'
 ```
 
 ## List Pipeline Logs
@@ -44,7 +244,7 @@ This endpoint returns the timestamps of all syncs grouped by date.
 
 ```sh
 curl --request GET \
-     --url https://data.mixpanel.com/api/2.0/nessie/pipeline/timeline \
+     --url 'https://data.mixpanel.com/api/2.0/nessie/pipeline/timeline?project_id={PROJECT_ID}' \
      --header 'accept: application/json'
 ```
 
@@ -54,7 +254,7 @@ This API endpoint returns a list of all pipelines in a project.
 
 ```sh
 curl --request GET \
-     --url https://data.mixpanel.com/api/2.0/nessie/pipeline/jobs \
+     --url 'https://data.mixpanel.com/api/2.0/nessie/pipeline/jobs?project_id={PROJECT_ID}' \
      --header 'accept: application/json'
 ```
 
@@ -65,7 +265,7 @@ jobs for the pipeline.
 
 ```sh
 curl --request GET \
-     --url https://data.mixpanel.com/api/2.0/nessie/pipeline/status \
+     --url 'https://data.mixpanel.com/api/2.0/nessie/pipeline/status?project_id={PROJECT_ID}&name={YOUR_PIPELINE_NAME}' \
      --header 'accept: application/json'
 ```
 
@@ -102,7 +302,8 @@ For a given pipeline name, this request deletes the pipeline and stops any futur
 curl --request POST \
      --url https://data.mixpanel.com/api/2.0/nessie/pipeline/cancel \
      --header 'accept: application/json' \
-     --header 'content-type: application/x-www-form-urlencoded'
+     --header 'content-type: application/x-www-form-urlencoded' \
+     --data name=YOUR_PIPELINE_NAME
 ```
 
 ## Resume Pipeline
@@ -110,9 +311,10 @@ For a given pipeline name, this request resumes the pipeline if it's paused---
 
 ```sh
 curl --request POST \
-     --url https://data.mixpanel.com/api/2.0/nessie/pipeline/pause \
+     --url https://data.mixpanel.com/api/2.0/nessie/pipeline/resume \
      --header 'accept: application/json' \
-     --header 'content-type: application/x-www-form-urlencoded'
+     --header 'content-type: application/x-www-form-urlencoded' \
+     --data name=YOUR_PIPELINE_NAME
 ```
 
 ## Pause Pipeline
@@ -120,7 +322,8 @@ Pause a currently running pipeline.
 
 ```sh
 curl --request POST \
-     --url https://data.mixpanel.com/api/2.0/nessie/pipeline/resume \
+     --url https://data.mixpanel.com/api/2.0/nessie/pipeline/pause \
      --header 'accept: application/json' \
-     --header 'content-type: application/x-www-form-urlencoded'
+     --header 'content-type: application/x-www-form-urlencoded' \
+     --data name=YOUR_PIPELINE_NAME
 ```
