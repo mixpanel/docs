@@ -60,10 +60,10 @@ MixpanelAPI mixpanelOptOutDefault = MixpanelAPI.getInstance(context, YOUR API TO
 ## Disabling Geolocation
 Mixpanel's Web and Mobile libraries use IP address to enrich events with geographic information like city, country, and region. You can disable this using the following configuration options in each of our SDKs:
 
-<Tabs items={['Javascript', 'Objective-C', 'Swift', 'Android']}>
+<Tabs items={['Javascript', 'Objective-C', 'Swift', 'Android', 'React Native']}>
 <Tab>
 ```javascript Javascript
-mixpanel.init(\"YOUR_TOKEN\", {'ip': false})
+mixpanel.init("YOUR_TOKEN", {"ip": false})
 ```
 </Tab>
 <Tab>
@@ -79,6 +79,11 @@ Mixpanel.initialize(token: "MIXPANEL_TOKEN", useIPAddressForGeoLocation: false)
 <Tab>
   ```xml Android
 <meta-data android:name="com.mixpanel.android.MPConfig.UseIpAddressForGeolocation" android:value="false" />
+```
+</Tab>
+<Tab>
+  ```reactnative React Native
+setUseIpAddressForGeolocation(false)
 ```
 </Tab>
 </Tabs>

@@ -55,6 +55,10 @@ If you have a B2B product, you likely have some key entities that are specific t
 ## How do I upload a Lookup Table?
 Lookup Tables are accessible via Lexicon. Go to Lexicon > Import > Lookup Table, and upload a CSV in the format of the example above, and map it to an event property which is the ID that the Lookup Table should join with. Mixpanel will assume the first column of the CSV is the ID and will join it with that ID.
 
+Also, you can upload Lookup Tables straight for your reports. Note: Lookup Tables uploaded in reports create only a temporary mapping that can be used while you are in the report. This mapping is not permanent and will be dismissed once you leave the report.
+
+![image](https://github.com/mixpanel/docs/assets/17679378/edb80cee-3821-4ae4-958f-c9524f8bfee7)
+
 Lookup Tables can be replaced with a fresh copy, either via our UI or via our API.
 
 

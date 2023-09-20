@@ -91,7 +91,8 @@ We recommend using the `$name` and `$email` properties if you're uploading a use
 When editing the CSV that you want to upload as profiles, you should **not** include column headers (e.g., Email, Name, etc.). Instead, you’ll identify column headers during the CSV upload wizard in the Mixpanel UI.
 
 **Note**:
-- If you upload a CSV with new information for existing users, any existing information will be overwritten by new values you've imported.
+- If you import user profiles using \$distinct_id values that already exist, those profiles will be updated with the additional user profile properties. On the other hand, if you upload user profiles that have the same email address or the same name as existing user profiles but a different \$distinct_id, you will be uploading duplicates - they will not be combined.
+- If you upload a CSV with new information for existing properties on existing users, the existing property values will be overwritten. If the new information is for new properties on existing users, it will be added as an additional property for the user. 
 - The maximum size for your CSV is 1M rows.
 
 ### Upload Your CSV
