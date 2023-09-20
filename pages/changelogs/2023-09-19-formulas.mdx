@@ -1,0 +1,19 @@
+---
+title: "Formulas now behave as metrics"
+slug: "changelog-2023-08-30-formulas"
+hidden: false
+createdAt: "2023-08-30T14:59:02.165Z"
+updatedAt: "2023-08-30T14:59:02.165Z"
+date: "2023-09-19"
+---
+Formulas have forever been an integral part of Mixpanel to create new metrics (Bounce Rate, Conversion) from existing data — and now, we’ve improved the usability of Formulas to help you encounter less roadblocks and speed up your analysis workflow. 
+
+In the past, Formulas behaved as their own entity in the query builder, and you had to create separate Formulas (A = Product Added, B = Purchase Completed) to resurface the original events in the visualization.
+![changelog Image](/changelog/formulasold.png)
+
+Now, Formulas are added through the Metric button, and they behave like a metric. This means that the original events aren’t removed from the visualization when you add a Formula (note: you can hide the original metrics to focus on just the Formula).
+![changelog Image](/changelog/formulacreation.gif)
+
+Since Formulas behave like a Metric, you can also reorder them without any adjustments and setup your ideal visualization.
+![changelog Image](/changelog/formulamove.gif)
+
