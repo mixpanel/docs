@@ -82,6 +82,14 @@ By default, Mixpanel cookies send over HTTPS requests as part of the headers. Ho
 
 To enable this, use the [`set_config()`](https://github.com/mixpanel/mixpanel-js/blob/master/doc/readme.io/javascript-full-api-reference.md#mixpanelset_config) method and change the `secure_cookie` flag from `false` to `true`. If you configure your instance to send data over HTTP instead of HTTPS but do set `secure_cookie: true`, then your cookie data is not sent to the server. 
 
+#### Mixpanel Cookies for Hosted Subdomains
+The Mixpanel JavaScript library has a default setting of `cross_subdomain_cookie: true` in the `mixpanel.init` function. This enables Mixpanel cookies to work across subdomains, keeping Mixpanel's Distinct ID and [Super Properties](https://docs.mixpanel.com/docs/tracking/reference/javascript#super-properties) consistent across these sub-domains.
+
+However, if your site is hosted on a domain like Heroku (or similar - [see a complete list of affected domains](https://publicsuffix.org/list/effective_tld_names.dat)) with a URL like XYZ.herokuapp.com, cross-subdomain cookies are not allowed for security reasons. Having Mixpanel default settings for `cross_subdomain_cookie` on these sites, results to users' Distinct IDs being reset to a new `$distinct_id` on each page load. This will cause issues with Mixpanel reports, namely broken Retention reports and Funnels. 
+
+For domains that don't allow cross-subdomain cookies, you should be setting `cross_subdomain_cookie: false`. Alternatively, you can also use a CNAME to change from yourdomain.herokuapp.com to yourdomain.com.
+
+
 ### Super Properties
 
 It's very common to have certain properties that you want to include with each event you send. Generally, these are things you know about the user rather than about a specific event - for example, the user's age, gender, source, or initial referrer.
