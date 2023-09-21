@@ -1,6 +1,6 @@
 # Distinct ID Limits
 
-In order to maintain fast queries and catch implementation mistakes, we set a limit on the number of events sent to a particular `distinct_id` in a given time window. This threshold has been stablished as **200K events per `distinct_id` per event date in the project**.
+In order to maintain fast queries and catch implementation mistakes, we set a limit on the number of events sent to a particular `distinct_id` in a given time window. This threshold has been established as **200K events per `distinct_id` per event date in the project**.
 
 ## What is a hot shard?
 Whenever a project goes above the threshold described above, it generates an imbalance when storing events across distinct_ids, where one distinct_id's events grows larger than the rest, impacting storage and query systems which in-turn results in high query latencies (slower reports) for the end user.
@@ -8,7 +8,7 @@ Whenever a project goes above the threshold described above, it generates an imb
 Since we distribute events across shards, this imbalance is called a **hot shard**.
 
 ## What happens when we detect a hot shard?
-Once a given entry crosses the threshold, all subsequent matching events (same `distinct_id` and caledar day) will have the following transformations applied to them:
+Once a given entry crosses the threshold, all subsequent matching events (same `distinct_id` and calendar day) will have the following transformations applied to them:
 - `event` will be changed to `$hotshard_events` (display name is `Hotshard Events`).  The original event name will be preserved under a property called `mp_original_event_name` (display name is `Hotshard Original Event Name`). Changing the name removes the bad events from being selected for analysis yet remain accessible for debugging.
 - `distinct_id` is changed to `""`[^1]. The original value will be preserved under a property called `mp_original_distinct_id` (display name is `Hotshard Original Distinct ID`). Removing the distinct_id allows Mixpanel backend to distribute these events evenly across shards ensuring that performance is not adversely affected while keeping the data accessible for debugging.
 
