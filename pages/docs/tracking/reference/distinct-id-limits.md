@@ -1,6 +1,6 @@
 # Distinct ID Limits
 
-In order to maintain fast queries and catch implementation mistakes, we set a limit on the number of events sent to a particular `distinct_id` in a given time window. This threshold has been stablished as **100K events per `distinct_id` per event date in the project**.
+In order to maintain fast queries and catch implementation mistakes, we set a limit on the number of events sent to a particular `distinct_id` in a given time window. This threshold has been stablished as **200K events per `distinct_id` per event date in the project**.
 
 ## What is a hot shard?
 Whenever a project goes above the threshold described above, it generates an imbalance when storing events across distinct_ids, where one distinct_id's events grows larger than the rest, impacting storage and query systems which in-turn results in high query latencies (slower reports) for the end user.
@@ -38,7 +38,7 @@ Updated Event -
 }
 ```
 
-These events can be queried from the dashboard just like any other events. A weekly report is sent to project owners if a new hot shard was detected and remediated in the past 7 days. 
+These events can be queried from the dashboard just like any other events. A monthly report is sent to project owners if a new hot shard was detected and remediated in the past 7 days. 
 
 ## Recovering from a hot shard
 The process can be broken down into 3 main steps:
@@ -160,8 +160,8 @@ The detection step runs in the ingestion pipeline. A counter of events is mainta
 
 Once a pre-defined threshold is crossed, the `distinct_id` is marked as contributing to a hot shard and all subsequent events for this `distinct_id` and `event_date` are updated to even the load across shards. Historical events prior to the hotshard detection for the same `distinct_id` are not updated.
 
-#### I received an email about a hot shard but I don't see users with more than 100K events, why?
+#### I received an email about a hot shard but I don't see users with more than 200K events, why?
 
-Since the detection is done at ingestion, duplicates (potentially as a result of client-side tracking retries) are also counted as part of the hotshard threshold (roughly > 100K event volume). This means you might see <100K events in Mixpanel reports as being remediated for certain distinct_id which were only deduplicated post-ingesting these events.
+Since the detection is done at ingestion, duplicates (potentially as a result of client-side tracking retries) are also counted as part of the hotshard threshold (roughly > 200K event volume). This means you might see <200K events in Mixpanel reports as being remediated for certain distinct_id which were only deduplicated post-ingesting these events.
 
 [^1]: Due to a side-effect on how events are serialized, some remediated entries were initially saved with a numeric distinct_id (instead of ""). This value can safely be ignored.  
