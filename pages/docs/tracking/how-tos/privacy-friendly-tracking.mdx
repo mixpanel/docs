@@ -8,7 +8,7 @@ You have full control over the data you send to Mixpanel. Here we share best pra
 ## Opting Users Out of Tracking
 You can use the opt_out method in Mixpanel's SDKs to opt users out of tracking. This state is controlled by a flag that is set as a browser cookie or localStorage. Note: because this setting is stateful, it only exists on our Web/Mobile SDKs -- if you're tracking from your servers, you will need to store this opt-out setting in a database and check it before sending any track calls.
 
-<Tabs items={['Javascript', 'Objective-C', 'Swift', 'Android']}>
+<Tabs items={['Javascript', 'Objective-C', 'Swift', 'Android', 'React Native']}>
 <Tab>
 ```javascript
 mixpanel.opt_out_tracking();
@@ -21,7 +21,7 @@ Mixpanel *mixpanel = [Mixpanel sharedInstance];\n[mixpanel optOutTracking];
 </Tab>
 <Tab>
 ```swift
-let mixpanel = Mixpanel.initialize(token: YOUR API TOKEN, trackAutomaticEvents: true, optOutTrackingByDefault: true)
+Mixpanel.mainInstance().optOutTracking();
 ```
 </Tab>
 <Tab>
@@ -29,11 +29,16 @@ let mixpanel = Mixpanel.initialize(token: YOUR API TOKEN, trackAutomaticEvents: 
 mixpanel.optOutTracking();
 ```
 </Tab>
+<Tab>
+```javascript
+mixpanel.optOutTracking();
+```
+</Tab>
 </Tabs>
 
 You can also configure our SDKs to opt users out of tracking by default:
 
-<Tabs items={['Javascript', 'Objective-C', 'Swift', 'Android']}>
+<Tabs items={['Javascript', 'Objective-C', 'Swift', 'Android', 'React Native']}>
 <Tab>
 ```javascript
 mixpanel.init(YOUR TOKEN, {opt_out_tracking_by_default: true});
@@ -41,17 +46,25 @@ mixpanel.init(YOUR TOKEN, {opt_out_tracking_by_default: true});
 </Tab>
 <Tab>
 ```objc
-Mixpanel *mixpanel = [Mixpanel sharedInstanceWithToken:@ YOUR_API_TOKEN trackAutomaticEvents:YES optOutTrackingByDefault:YES];
+Mixpanel *mixpanel = [Mixpanel sharedInstanceWithToken:@YOUR_API_TOKEN trackAutomaticEvents:NO optOutTrackingByDefault:YES];
 ```
 </Tab>
 <Tab>
 ```swift
-Mixpanel.mainInstance().optOutTracking();
+let mixpanel = Mixpanel.initialize(token: YOUR PROJECT TOKEN, trackAutomaticEvents: no, optOutTrackingByDefault: true)
 ```
 </Tab>
 <Tab>
 ```java
-MixpanelAPI mixpanelOptOutDefault = MixpanelAPI.getInstance(context, YOUR API TOKEN, true, true /* opt out by default */);
+MixpanelAPI mixpanelOptOutDefault = MixpanelAPI.getInstance(context, YOUR PROJECT TOKEN, true, true /* opt out by default */);
+```
+</Tab>
+<Tab>
+```javascript
+const trackAutomaticEvents = false;
+const optOutTrackingDefault = true;
+const mixpanel = new Mixpanel('your project token', trackAutomaticEvents, optOutTrackingDefault);
+mixpanel.init();
 ```
 </Tab>
 </Tabs>
@@ -82,7 +95,7 @@ Mixpanel.initialize(token: "MIXPANEL_TOKEN", useIPAddressForGeoLocation: false)
 ```
 </Tab>
 <Tab>
-  ```reactnative React Native
+  ```javascript React Native
 setUseIpAddressForGeolocation(false)
 ```
 </Tab>
