@@ -8,7 +8,7 @@ Whenever a project goes above the threshold described above, it generates an imb
 Since we distribute events across shards, this imbalance is called a **hot shard**.
 
 ## What happens when we detect a hot shard?
-Once a given entry crosses the threshold, all subsequent matching events (same `distinct_id` and caledar day) will have the following transformations applied to them:
+Once a given entry crosses the threshold, all subsequent matching events (same `distinct_id` and event day) will have the following transformations applied to them:
 - `event` will be changed to `$hotshard_events` (display name is `Hotshard Events`).  The original event name will be preserved under a property called `mp_original_event_name` (display name is `Hotshard Original Event Name`). Changing the name removes the bad events from being selected for analysis yet remain accessible for debugging.
 - `distinct_id` is changed to `""`[^1]. The original value will be preserved under a property called `mp_original_distinct_id` (display name is `Hotshard Original Distinct ID`). Removing the distinct_id allows Mixpanel backend to distribute these events evenly across shards ensuring that performance is not adversely affected while keeping the data accessible for debugging.
 
@@ -51,7 +51,7 @@ A great starting point for the analysis would be to create a copy of [this board
 
 ![Screenshot use this board](/tracking_id_limits_copy_board.png)
 
-The board eases the proces of identifying the data marked as coming from a hot shard. Essentially, it helps you create reports to break down that data by the main `distinct_id` values affected as well as the event names. For example, you can see reports pointing to the main `distinct_id` values (by volume) generating the hot shard.
+The board eases the process of identifying the data marked as coming from a hot shard. Essentially, it helps you create reports to break down that data by the main `distinct_id` values affected as well as the event names. For example, you can see reports pointing to the main `distinct_id` values (by volume) generating the hot shard.
 
 ![Sample hot shard report](/tracking_id_limits_sample_report.png)
 
