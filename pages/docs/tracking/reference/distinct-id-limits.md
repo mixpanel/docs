@@ -1,6 +1,6 @@
 # Distinct ID Limits
 
-In order to maintain fast queries and catch implementation mistakes, we set a limit on the number of events sent to a particular `distinct_id` in a given time window. This threshold has been stablished as **100K events per `distinct_id` per calendar day in the project**.
+In order to maintain fast queries and catch implementation mistakes, we set a limit on the number of events sent to a particular `distinct_id` in a given time window. This threshold has been stablished as **100K events per `distinct_id` per event date in the project**.
 
 ## What is a hot shard?
 Whenever a project goes above the threshold described above, it generates an imbalance when storing events across distinct_ids, where one distinct_id's events grows larger than the rest, impacting storage and query systems which in-turn results in high query latencies (slower reports) for the end user.
@@ -9,7 +9,7 @@ Since we distribute events across shards, this imbalance is called a **hot shard
 
 ## What happens when we detect a hot shard?
 Once a given entry crosses the threshold, all subsequent matching events (same `distinct_id` and caledar day) will have the following transformations applied to them:
-- `event` will be changed to `$hotshard_events`.  The original event name will be preserved under a property called `mp_original_event_name` (display name is `Hotshard Original Event Name`). Changing the name removes the bad events from being selected for analysis yet remain accessible for debugging.
+- `event` will be changed to `$hotshard_events` (display name is `Hotshard Events`).  The original event name will be preserved under a property called `mp_original_event_name` (display name is `Hotshard Original Event Name`). Changing the name removes the bad events from being selected for analysis yet remain accessible for debugging.
 - `distinct_id` is changed to `""`[^1]. The original value will be preserved under a property called `mp_original_distinct_id` (display name is `Hotshard Original Distinct ID`). Removing the distinct_id allows Mixpanel backend to distribute these events evenly across shards ensuring that performance is not adversely affected while keeping the data accessible for debugging.
 
 Original Event - 
@@ -64,16 +64,24 @@ In some instances, your project will have events that should not be attributed t
 If your use case is similar to this, and the event **should not be attributed to specific users or groups**, you can change your implementation to send those events with an empty string value `""`. Upon ingestion, Mixpanel will randomly store these events in different shards so you will not incur a performance hit if this is your intended use case.
 
 #### ID management issue
-Another possibility could be that the hot shard is made up of multiple separate users that are being merged together unintendedly. A quick way to check this would be to create a report filtering by one of the IDs previously identified as a hot shard, filtering for one of the days affected, and creating a breakdown by an internal property called `$distinct_id_before_identity`. This internal property holds the value of the ID the event was sent with before our ingestion pipeline remapped its value based on our ID merge functionality.
+Throughout the user journey, a given user might trigger events under multiple `distinct_id` values; the most frequent use case being a user initially being anonymous and then authenticating. When a user authenticates, generally, we advice changing the ID of the user to the authenticated one and for projects with ID merge enabled, and this is done through the `identify` function. Ideally this function should receive the user's authenticated ID to link it to the anonymous activity, but sometimes there can be implementation issues; as an example, the implementation may provide a static string for all users instead of the new user ID, like this:
 
-As an example, let's say there is an issue in the implementation and when users sign up, the code is aliasing every user to the string `"email"` instead of aliasing the user to said user's email address. This would lead to a situation in which many users are all being aliased/merge to the same ID (in this case the string `"email"`). When breaking down the report by `$distinct_id_before_identity`, you would still have the ability to see the initial ID the event was sent with before it was remaped to `"email"`.
+```javascript
+function authenticate_user(user_id){
+	mixpanel.identify('user_id');
+	mixpanel.track('user_authenticated');
+}
+```
+Although the code above looks almost like it should work, it could be easy to miss a static string is being passed to the function instead of the dynamic value for each user. This would mean that after this function runs, all users would actually send events with the same id value: `user_id`.
 
-You will want to fix the implementation to alias users correctly to avoid new users from being impacted. You can find more information on [identifying users in this doc](../how-tos/identifying-users.md).
+You will want to fix the implementation to identify users correctly and avoid new users being impacted. You can find more information on [identifying users in this doc](../how-tos/identifying-users.md).
 
-In case you've identified the problematic ID cluster, but you have not been able to identify the root cause in the implementation. Reach out to our [support team](https://mixpanel.com/get-support) and provide the details you've uncovered so far; providing your copy of the board and any details on the investigation in your code will be of great assistance helping you identify the issue.
+In case you've identified the problematic set of ID values, but you have not been able to identify the root cause in the implementation. Reach out to our [support team](https://mixpanel.com/get-support) and provide the details you've uncovered so far; providing your copy of the board and any details on the investigation in your code will be of great assistance helping you identify the issue.
 
 ### Fix historical data
-Once the implementation has been changed and events are not being identified as part of a hot shard anymore, you can still have a situation in which some of your metrics might be temporarily down since they were tracked with a different event name (`$hotshard_events` instead of the original name) and without a distinct_id (which can make unique counts go down, although this is usually less of an impact).
+Before re-importing, verify newly imported events will no longer create hot shards and the original issue has been solved.
+
+Once the implementation has been changed, you can still have a situation in which some of your metrics might be temporarily down since they were tracked with a different event name (`$hotshard_events` instead of the original name) and without a distinct_id (which can make unique counts go down, although this is usually less of an impact).
 
 The great news is that since the events are still in your project, you can export them, transform them and re-import them.
 
