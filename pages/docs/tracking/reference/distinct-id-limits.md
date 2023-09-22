@@ -51,7 +51,7 @@ A great starting point for the analysis would be to create a copy of [this board
 
 ![Screenshot use this board](/tracking_id_limits_copy_board.png)
 
-The board eases the proces of identifying the data marked as coming from a hot shard. Essentially, it helps you create reports to break down that data by the main `distinct_id` values affected as well as the event names. For example, you can see reports pointing to the main `distinct_id` values (by volume) generating the hot shard.
+The board eases the process of identifying the data marked as coming from a hot shard. Essentially, it helps you create reports to break down that data by the main `distinct_id` values affected as well as the event names. For example, you can see reports pointing to the main `distinct_id` values (by volume) generating the hot shard.
 
 ![Sample hot shard report](/tracking_id_limits_sample_report.png)
 
