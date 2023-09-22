@@ -1,5 +1,6 @@
 {
     "index": "Overview",
+    "authentication": "Authentication",
     "ingestion": "Ingestion",
     "export": "Export",
     "other-bits": "Other Bits"
