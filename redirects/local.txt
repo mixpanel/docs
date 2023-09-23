@@ -18,3 +18,5 @@
 /docs/other-bits/tutorials/mixpanel-analysis/overview /docs/other-bits/tutorials/mixpanel-analysis/data-model
 /docs/tracking/how-tos/effective-server /docs/tracking/how-tos/effective-server-side-tracking
 /docs/other-bits/cohort-syncs/cohort-webhooks /docs/other-bits/cohort-syncs/webhooks
+/docs/tracking/integrations/bigquery /docs/tracking/data-warehouse/bigquery
+/docs/tracking/integrations/snowflake /docs/tracking/data-warehouse/snowflake
