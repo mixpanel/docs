@@ -437,11 +437,7 @@ As you can see in the diagram above, the property of “Name” is only a proper
 
 #### Last Touch Attribution and Backfilling
 
-<<<<<<< HEAD:pages/docs/reports/funnels.md
 By default, Mixpanel “backfills” [event properties](/docs/tracking-specs/events-and-properties) in instances where properties are sent in later steps of a Funnel but not sent in the earlier steps of the same funnel. This means that the property that is present in later steps of a funnel is appended to the earlier steps of the funnel where it was previously absent.
-=======
-By default, Mixpanel “backfills” [event properties](/docs/how-it-works/events-and-properties) in instances where properties are sent in later steps of a Funnel but not sent in the earlier steps of the same funnel. This means that the property that is present in later steps of a funnel is appended to the earlier steps of the funnel where it was previously absent.
->>>>>>> add how it works:pages/docs/analysis/reports/funnels.md
 
 Select **Last touch** to attribute the last property value to the whole funnel, regardless of the property value in previous steps. Last touch is not the same as the last step of the funnel, rather it is the last time the property is given a non-null defined value.
 
