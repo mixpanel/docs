@@ -1,6 +1,6 @@
-# Creating A Tracking Plan
+# Create A Tracking Plan
 
-## Creating a Tracking Plan
+## Create a Tracking Plan
 
 ### Utilise a Tracking Plan to Tie Key Goals to Events Tracked
 Mixpanel recommends creating a tracking plan based on the key business goals identified from your analytics strategy. It should: 
