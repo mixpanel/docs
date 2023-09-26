@@ -1,0 +1,30 @@
+# Sending Group Profiles 
+
+### Format Data for Mixpanel Ingestion
+
+To import data from a warehouse directly, make sure the tables are formatted correctly.
+
+Each column in the table will be mapped as a group property for a single group key.  
+
+Read more about best practices for Group Analytics in Mixpanel [here](/docs/features/group-analytics).
+
+
+### Group Tables
+
+Once you have created a warehouse source, follow the below steps to send user profiles into Mixpanel.
+1. Go to Project Settings > Warehouse Data.
+2. Click on + Create and select Group Table.
+3. Select your warehouse as source from the dropdown.
+4. Navigate to the dataset or database where your Group table is.
+5. Select the Table.
+6. Specify what group key this table contains. See more about setting up Group keys [here](/docs/features/group-analytics#group-keys-in-project-settings).
+7. Specify which column contains the group ID.
+
+### Sync Settings
+After pointing Mixpanel at your group table, you can select a Sync Type option. The options are: 
+- Time Based: 
+    - If you select this, you will need to add a mapping to an Insert Time column. We expect this to be a monotonically increasing TIMESTAMP_NTZ. We use this as a water mark to figure out which group profile updates are new and ingest them. This allows you to only send Mixpanel delta updates, which would mean paying lower egress and compute costs.
+    - If there are groups profile with the same group ID, the profile with the latest timestamp column will take precedent.  
+- Full Sync: With this option, Mixpanel will periodically do a full sync on the entire table. This means that periodically, we will update all users' value even if there are no delta updates. 
+
+Check the preview to ensure that everything looks correct, and then create the sync.
