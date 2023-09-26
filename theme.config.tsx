@@ -64,6 +64,7 @@ const config: DocsThemeConfig = {
   },
   primaryHue: { dark: 256, light: 259 },
   sidebar: {
+    defaultMenuCollapseLevel: 1,
     toggleButton: true,
   },
 };
