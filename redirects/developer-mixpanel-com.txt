@@ -23,7 +23,7 @@
 /developer-docs-redirect/gcs-import /docs/tracking/integrations/gcs-import
 /developer-docs-redirect/gcs-raw-pipeline /docs/other-bits/data-pipelines/gcs-raw-pipeline
 /developer-docs-redirect/google-pubsub /docs/tracking/integrations/google-pubsub
-/developer-docs-redirect/implement-mixpanel /docs/getting-started/what-is-mixpanel
+/developer-docs-redirect/implement-mixpanel /docs/what-is-mixpanel
 /developer-docs-redirect/ios /docs/tracking/reference/ios
 /developer-docs-redirect/ios-objective-c /docs/tracking/reference/ios
 /developer-docs-redirect/ios-objective-c-quickstart /docs/tracking/mobile
@@ -69,5 +69,5 @@
 /developer-docs-redirect/under-the-hood /docs/other-bits/under-the-hood
 /developer-docs-redirect/unity /docs/tracking/reference/unity
 /developer-docs-redirect/unity-quickstart /docs/tracking/mobile
-/developer-docs-redirect/what-is-mixpanel /docs/getting-started/what-is-mixpanel
+/developer-docs-redirect/what-is-mixpanel /docs/what-is-mixpanel
 /developer-docs-redirect/write-jql /docs/other-bits/jql-overview
