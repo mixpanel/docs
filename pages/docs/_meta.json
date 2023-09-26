@@ -1,5 +1,9 @@
 {
-	"getting-started": "Getting Started",
+	"intro": {
+		"type": "separator",
+		"title": "INTRO"
+	},
+	"what-is-mixpanel": "What is Mixpanel?",
 	"tracking": "Tracking",
 	"analysis": "Analysis",
 	"admin": "Admin",
