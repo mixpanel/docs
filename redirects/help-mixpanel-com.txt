@@ -46,7 +46,7 @@ https://help.mixpanel.com/hc/en-us/articles/115004511803(.*) /docs/analysis/user
 https://help.mixpanel.com/hc/en-us/articles/115004519886(.*) /docs/other-bits/tutorials/creating-a-tracking-plan
 https://help.mixpanel.com/hc/en-us/articles/115004545983(.*) /docs/tracking/how-tos/events-and-properties
 https://help.mixpanel.com/hc/en-us/articles/115004546843(.*) /docs/other-bits/tutorials/developers/mixpanel-for-developers-commonly-asked-questions#implement-mixpanel-on-wordpress-shopify--prestashop
-https://help.mixpanel.com/hc/en-us/articles/115004546863(.*) /docs/tracking/javascript-quickstart
+https://help.mixpanel.com/hc/en-us/articles/115004546863(.*) /docs/tracking/web-sdk
 https://help.mixpanel.com/hc/en-us/articles/115004546883(.*) /docs/analysis/reports/retention
 https://help.mixpanel.com/hc/en-us/articles/115004546883(.*) /docs/analysis/reports/retention#overview
 https://help.mixpanel.com/hc/en-us/articles/115004547063(.*) /docs/other-bits/tutorials/developers/mixpanel-for-developers-fundamentals#supported-data-types
@@ -267,7 +267,7 @@ https://help.mixpanel.com/hc/en-us/articles/9671249667988(.*) /docs/other-bits/s
 https://help.mixpanel.com/hc/en-us/categories/115000963103(.*) /docs/admin/organizations-projects
 https://help.mixpanel.com/hc/en-us/categories/115001031023(.*) /docs/other-bits/tutorials/mixpanel-analysis
 https://help.mixpanel.com/hc/en-us/categories/115001157746(.*) /docs/other-bits/tutorials/mixpanel-analysis/data-management
-https://help.mixpanel.com/hc/en-us/categories/115001197206(.*) /docs/tracking/javascript-quickstart
+https://help.mixpanel.com/hc/en-us/categories/115001197206(.*) /docs/tracking/web-sdk
 https://help.mixpanel.com/hc/en-us/categories/115001197226(.*) /docs
 https://help.mixpanel.com/hc/en-us/categories/115001197266(.*) /docs/what-is-mixpanel
 https://help.mixpanel.com/hc/en-us/categories/115001209063(.*) /docs/analysis/boards

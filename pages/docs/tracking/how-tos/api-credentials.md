@@ -8,7 +8,7 @@ You can find it in the [Project Settings](https://mixpanel.com/settings/project)
 
 ![image](/229924656-95f4e4e5-441f-49d7-95ea-32b0979a11f8.png)
 
-You can then use your token to track events to Mixpanel. See our guides for [Javascript](/docs/tracking/javascript-quickstart), [Server](/docs/tracking/server), and [Mobile](doc:mobile).
+You can then use your token to track events to Mixpanel. See our guides for [Javascript](/docs/tracking/web-sdk), [Server](/docs/tracking/server-side-sdk), and [Mobile](doc:mobile).
 
 Note: Project Token does not let you _read_ any data from your Mixpanel project. It only lets you track. This is intentional because your Project Token is public and shipped to client devices as part of your website's Javascript code. or shared with 3rd parties, like CDPs.
 

@@ -1,6 +1,6 @@
 # Effective Server-Side Tracking
 
-This document gives tips for implementing scalable, maintainable server-side tracking. If you're just getting started, check out the [quickstart](/docs/tracking/server).
+This document gives tips for implementing scalable, maintainable server-side tracking. If you're just getting started, check out the [quickstart](/docs/tracking/server-side-sdk).
 
 ## Tracking Browser, Device, and OS
 Mixpanel's Web and Mobile SDKs parse `User-Agent` into a set of properties about the user's browser, device, and OS. This doesn't happen automatically with server-side tracking, but it's easy to add these properties yourself.
