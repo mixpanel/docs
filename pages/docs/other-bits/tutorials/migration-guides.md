@@ -57,7 +57,7 @@ To backfill data, we recommend the following approaches:
 
 To perform a successful historical data load, we recommend:
 
-- Have your Mixpanel champion or owner first set up your [Organization settings](/docs/other-bits/tutorials/setting-up-mixpanel#mixpanel-organization) and [Project settings](/docs/other-bits/tutorials/setting-up-mixpanel#mixpanel-projects). This will ensure the right access level for your team and enable you to prepare the workspace for ingesting data. This can be done later but doing it up front will allow for you to set key settings for data ingestion (US vs EU servers, project timezone, etc.).
+- Have your Mixpanel champion or owner first set up your [Organization settings](/docs/best-practices/project-setup#mixpanel-organization) and [Project settings](/docs/best-practices/project-setup#mixpanel-projects). This will ensure the right access level for your team and enable you to prepare the workspace for ingesting data. This can be done later but doing it up front will allow for you to set key settings for data ingestion (US vs EU servers, project timezone, etc.).
 - Load a limited subset of the data into a test project (for example, a single day or data or a sample of the entire dataset) to get started. This will help you identify any errors in the end to end process before you do a full historical data load.
 - Load a year’s worth (or less) of historical data during your migration. This will allow your team to review year-over-year trends easily and do historical analysis as needed, without sending a bunch of data which is stale and unlikely to be used.
 
