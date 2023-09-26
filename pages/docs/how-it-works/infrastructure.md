@@ -1,4 +1,4 @@
-# Under The Hood
+# Infrastructure
 
 Mixpanel's analysis UI is powered by an in-house database called Arb, which is built for ingesting, storing, and querying trillions of events in real-time. This page covers the core aspects of our design, the pain points it eliminates for users, and how it compares to other systems.
 ## Event-Centric

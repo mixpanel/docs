@@ -32,7 +32,7 @@ Tracking a value moment can help answer questions like:
 * What % of users that Sign Up make it to the Value Moment within their first day?
 
 #### Optional: Include Properties
-Properties provide added context to the event. Learn more [here](/docs/tracking/how-tos/events-and-properties).
+Properties provide added context to the event. Learn more [here](/docs/how-it-works/events-and-properties).
 
 Extending the above example, you might add the following properties:
 ```javascript
