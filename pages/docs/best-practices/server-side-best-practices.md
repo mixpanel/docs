@@ -1,4 +1,4 @@
-# Effective Server-Side Tracking
+# Server-Side Best Practices
 
 This document gives tips for implementing scalable, maintainable server-side tracking. If you're just getting started, check out the [quickstart](/docs/tracking/server-side-sdk).
 
