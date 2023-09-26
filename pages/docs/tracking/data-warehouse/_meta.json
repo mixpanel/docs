@@ -1,8 +1,0 @@
-{
-    "bigquery": "BigQuery Setup",
-    "snowflake": "Snowflake Setup",
-    "redshift": "Redshift Setup",
-    "events": "Sending Events",
-    "users": "Sending User Profiles",
-    "groups": "Sending Group Profiles"
-}
