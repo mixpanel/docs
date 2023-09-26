@@ -23,7 +23,7 @@ The way sessions are computed, and thus how the Session Start and Session End ev
 Project Admins or Owners can choose between one of these configurations in [Project Settings](https://mixpanel.com/settings/project). Since Mixpanel computes sessions on the fly, you can change this definition at any time and it will apply historically. Read more [below](#session-computation-deep-dive).
 
 ## Use Cases
-These use cases assuming that you're tracking an event for each page a user views. You can do this automatically with our [Javascript SDK](/docs/tracking/javascript-quickstart) or using a CDP like Segment.
+These use cases assuming that you're tracking an event for each page a user views. You can do this automatically with our [Javascript SDK](/docs/tracking/web-sdk) or using a CDP like Segment.
 
 To make these examples more interesting, we're using our own tracking on our documentation site (docs.mixpanel.com).
 
