@@ -1,7 +1,8 @@
 / /docs/what-is-mixpanel
 /docs /docs/what-is-mixpanel
-/docs/getting-started/what-is-mixpanel /docs/what-is-mixpanel
 /docs/getting-started/plan-your-implementation /docs/getting-started/what-should-I-track
+/docs/getting-started/what-is-mixpanel /docs/what-is-mixpanel
+/docs/getting-started/what-should-i-track /docs/quickstart/what-to-track
 /docs/admin/data-governance/data-audit /docs/admin/data-governance/data-views-data-classification
 /docs/admin/pricing-plans /docs/admin/pricing-and-plans/pricing
 /docs/analysis/advanced/other-advanced-features.md /docs/analysis/advanced/other-advanced-features
@@ -9,8 +10,11 @@
 /docs/other-bits/community /docs/other-bits/support-and-community/community
 /docs/other-bits/under-the-hoo /docs/other-bits/under-the-hood
 /docs/tracking/how-tos/event-properties /docs/tracking/how-tos/events-and-properties
+/docs/tracking/javascript-quickstart /docs/tracking/web-sdk
 /docs/tracking/mobile/android /docs/tracking/reference/android
+/docs/tracking/mobile /docs/tracking/reference/mobile-sdk
 /docs/tracking/reference/androi /docs/tracking/reference/android
+/docs/tracking/server /docs/tracking/server-side-sdk
 /docs/tutorials/developers /docs/other-bits/tutorials/developers/mixpanel-for-developers-fundamentals
 /docs/tutorials/migration-guides/migrating-to-mixpanel-from-google-analytics /docs/other-bits/tutorials/migration-guides/migrating-to-mixpanel-from-google-analytics
 /docs/tutorials/mixpanel-analysis /docs/other-bits/tutorials/mixpanel-analysis/overview
