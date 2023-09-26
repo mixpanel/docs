@@ -20,8 +20,8 @@ https://help.mixpanel.com/hc/en-us/articles/115004490503(.*) /docs/admin/organiz
 https://help.mixpanel.com/hc/en-us/articles/115004490583(.*) /docs/admin/pricing-and-plans/pricing#view-events-usage
 https://help.mixpanel.com/hc/en-us/articles/115004490963(.*) /docs/what-is-mixpanel
 https://help.mixpanel.com/hc/en-us/articles/115004491123(.*) /docs/admin/pricing-and-plans/pricing#troubleshoot-payment-issues
-https://help.mixpanel.com/hc/en-us/articles/115004491523(.*) /docs/tracking/how-tos/set-up-projects#send-data-to-multiple-projects
-https://help.mixpanel.com/hc/en-us/articles/115004491683(.*) /docs/tracking/how-tos/set-up-projects#when-to-use-multiple-production-projects
+https://help.mixpanel.com/hc/en-us/articles/115004491523(.*) /docs/best-practices/developer-environments#send-data-to-multiple-projects
+https://help.mixpanel.com/hc/en-us/articles/115004491683(.*) /docs/best-practices/developer-environments#when-to-use-multiple-production-projects
 https://help.mixpanel.com/hc/en-us/articles/115004493763(.*) /docs/admin/organizations-projects/manage-projects#merge-or-combine-mixpanel-projects
 https://help.mixpanel.com/hc/en-us/articles/115004494783(.*) https://mixpanel.com/legal/privacy-policy
 https://help.mixpanel.com/hc/en-us/articles/115004494803(.*) /docs/tracking/how-tos/privacy-friendly-tracking#disabling-geolocation
@@ -43,7 +43,7 @@ https://help.mixpanel.com/hc/en-us/articles/115004510946(.*) /docs/tracking/how-
 https://help.mixpanel.com/hc/en-us/articles/115004511086(.*) /docs
 https://help.mixpanel.com/hc/en-us/articles/115004511246(.*) /docs
 https://help.mixpanel.com/hc/en-us/articles/115004511803(.*) /docs/how-it-works/users#faq
-https://help.mixpanel.com/hc/en-us/articles/115004519886(.*) /docs/other-bits/tutorials/creating-a-tracking-plan
+https://help.mixpanel.com/hc/en-us/articles/115004519886(.*) /docs/best-practices/create-a-tracking-plan
 https://help.mixpanel.com/hc/en-us/articles/115004545983(.*) /docs/how-it-works/events-and-properties
 https://help.mixpanel.com/hc/en-us/articles/115004546843(.*) /docs/other-bits/tutorials/developers/mixpanel-for-developers-commonly-asked-questions#implement-mixpanel-on-wordpress-shopify--prestashop
 https://help.mixpanel.com/hc/en-us/articles/115004546863(.*) /docs/tracking/web-sdk
@@ -146,7 +146,7 @@ https://help.mixpanel.com/hc/en-us/articles/360001333826(.*) /docs/analysis/repo
 https://help.mixpanel.com/hc/en-us/articles/360001337043(.*) /docs
 https://help.mixpanel.com/hc/en-us/articles/360001337103(.*) /docs/tracking/how-tos/tracking-utm-tags
 https://help.mixpanel.com/hc/en-us/articles/360001337103(.*) /docs/tracking/how-tos/utm
-https://help.mixpanel.com/hc/en-us/articles/360001354886(.*) /docs/tracking/how-tos/set-up-projects#separate-development-data
+https://help.mixpanel.com/hc/en-us/articles/360001354886(.*) /docs/best-practices/developer-environments#separate-development-data
 https://help.mixpanel.com/hc/en-us/articles/360001355146(.*) /docs/tracking/how-tos/effective-server#tracking-browser-device-and-os
 https://help.mixpanel.com/hc/en-us/articles/360001355166(.*) /docs/tracking/integrations/google-tag-manager
 https://help.mixpanel.com/hc/en-us/articles/360001355206(.*) /docs
@@ -190,7 +190,7 @@ https://help.mixpanel.com/hc/en-us/articles/360031037172(.*) /docs/admin/organiz
 https://help.mixpanel.com/hc/en-us/articles/360031788492(.*) /docs/analysis/advanced/other-advanced-features#find-interesting-segments
 https://help.mixpanel.com/hc/en-us/articles/360033248932(.*) /docs/how-it-works/events-and-properties
 https://help.mixpanel.com/hc/en-us/articles/360034129112(.*) /docs/analysis/advanced/impact
-https://help.mixpanel.com/hc/en-us/articles/360035109991(.*) /docs/other-bits/tutorials/creating-a-tracking-plan
+https://help.mixpanel.com/hc/en-us/articles/360035109991(.*) /docs/best-practices/create-a-tracking-plan
 https://help.mixpanel.com/hc/en-us/articles/360035583452(.*) /docs/other-bits/cohort-syncs/facebook-ads
 https://help.mixpanel.com/hc/en-us/articles/360036428871(.*) /docs/admin/sso
 https://help.mixpanel.com/hc/en-us/articles/360036438351(.*) /docs/analysis/reports/flows
