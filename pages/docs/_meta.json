@@ -4,6 +4,11 @@
 		"title": "INTRO"
 	},
 	"what-is-mixpanel": "What is Mixpanel?",
+	"quickstart": "Quickstart",
+	"data-in": {
+		"type": "separator",
+		"title": "STILL WORKING ON EVERYTHING BELOW"
+	},
 	"tracking": "Tracking",
 	"analysis": "Analysis",
 	"admin": "Admin",
