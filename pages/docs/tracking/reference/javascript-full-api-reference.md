@@ -56,7 +56,7 @@ mixpanel.alias('new_id', 'newer_id');
 
 
 ### Notes:
-If your project does not have [ID Merge](/docs/tracking/how-tos/identifying-users) enabled, the best practice is to call alias once when a unique  ID is first created for a user (e.g., when a user first registers  for an account). Do not use alias multiple times for a single  user without ID Merge enabled.
+If your project does not have [ID Merge](/docs/implementation/identifying-users) enabled, the best practice is to call alias once when a unique  ID is first created for a user (e.g., when a user first registers  for an account). Do not use alias multiple times for a single  user without ID Merge enabled.
 
 
 | Argument | Type | Description |
@@ -221,7 +221,7 @@ Call identify when you know the identity of the current user,  typically after l
 
 
 ### Notes:
-If your project has [ID Merge](/docs/tracking/how-tos/identifying-users) enabled, the identify method will connect pre- and  post-authentication events when appropriate.
+If your project has [ID Merge](/docs/implementation/identifying-users) enabled, the identify method will connect pre- and  post-authentication events when appropriate.
 
 If your project does not have ID Merge enabled, identify will  change the user's local distinct_id to the unique ID you pass.  Events tracked prior to authentication will not be connected  to the same user identity. If ID Merge is disabled, alias can  be used to connect pre- and post-registration events.
 

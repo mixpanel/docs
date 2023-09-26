@@ -97,7 +97,7 @@ mixpanel.identify("13791");
 
 
 ### Call Reset at Logout
-[reset](https://mixpanel.github.io/mixpanel-flutter/mixpanel_flutter/Mixpanel/reset.html)  generates a new random distinct_id and clears super properties. Call reset to clear data attributed to a user when that user logs out. This allows you to handle multiple users on a single device. For more information about maintaining user identity, see the [Identifying Users](/docs/tracking/how-tos/identifying-users) article article.
+[reset](https://mixpanel.github.io/mixpanel-flutter/mixpanel_flutter/Mixpanel/reset.html)  generates a new random distinct_id and clears super properties. Call reset to clear data attributed to a user when that user logs out. This allows you to handle multiple users on a single device. For more information about maintaining user identity, see the [Identifying Users](/docs/implementation/identifying-users) article article.
 
 Note: Calling reset frequently can lead to users quickly exceeding the 500 distinct_id per identity cluster limit. Once the 500 limit is reached you will no longer be able to add additional distinct_ids to the users identity cluster.
 

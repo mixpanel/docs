@@ -5,7 +5,7 @@ The Mixpanel Ruby library is designed to be used for scripting, or in circumstan
 The [Full API Reference](http://mixpanel.github.io/mixpanel-ruby), [Library Source Code](https://github.com/mixpanel/mixpanel-ruby), and an [Example Script](https://github.com/mixpanel/mixpanel-ruby/tree/master/demo) is documented in our GitHub repo.
 
 ## Getting Started
-See our [server](/docs/tracking/server-side-sdk) quickstart for how to get started with the Ruby SDK.
+See our [server](/docs/implementation/server-side-sdk) quickstart for how to get started with the Ruby SDK.
 
 ## EU Data Residency
 
