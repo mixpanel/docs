@@ -7,6 +7,11 @@
 	"quickstart": "Quickstart",
 	"how-it-works": "How it works",
 	"best-practices": "Best Practices",
+	"data-in": {
+		"type": "separator",
+		"title": "DATA IN"
+	},
+	"implementation": "Implementation",
 	"placeholder": {
 		"type": "separator",
 		"title": "STILL WORKING ON EVERYTHING BELOW"

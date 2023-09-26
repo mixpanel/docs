@@ -3,26 +3,26 @@
   "http-api": {
     "type": "page",
     "title": "HTTP API",
-    "href": "/docs/tracking/http-api"
+    "href": "/docs/implementation/http-api"
   },
   "server-side-sdk": {
     "type": "page",
     "title": "Server-Side SDK",
-    "href": "/docs/tracking/server-side-sdk"
+    "href": "/docs/implementation/server-side-sdk"
   },
   "web-sdk": {
     "type": "page",
     "title": "Web SDK",
-    "href": "/docs/tracking/web-sdk"
+    "href": "/docs/implementation/web-sdk"
   },
   "mobile-sdk": {
     "type": "page",
     "title": "Mobile SDK",
-    "href": "/docs/tracking/mobile-sdk"
+    "href": "/docs/implementation/mobile-sdk"
   },
   "API Credentials": {
     "type": "page",
     "title": "API Credentials",
-    "href": "/docs/tracking/how-tos/api-credentials"
+    "href": "/docs/implementation/api-credentials"
   }
 }

@@ -1,6 +1,6 @@
 # Server-Side Best Practices
 
-This document gives tips for implementing scalable, maintainable server-side tracking. If you're just getting started, check out the [quickstart](/docs/tracking/server-side-sdk).
+This document gives tips for implementing scalable, maintainable server-side tracking. If you're just getting started, check out the [quickstart](/docs/implementation/server-side-sdk).
 
 ## Tracking Browser, Device, and OS
 Mixpanel's Web and Mobile SDKs parse `User-Agent` into a set of properties about the user's browser, device, and OS. This doesn't happen automatically with server-side tracking, but it's easy to add these properties yourself.
@@ -171,7 +171,7 @@ Page view tracking must be done manually for server-side implementations. Here a
   - See above for [parsing user agent](/docs/tracking/how-tos/effective-server#tracking-browser-device-and-os) and [marketing attribution properties](/docs/tracking/how-tos/effective-server#tracking-utms-and-referrer)
 
 ## Identifying Users
-Our server libraries normally require that you specify the distinct_id value for each event. If you _don't_ know the user's identity at the time the event is tracked, then they're an anonymous user. When using our Web or Mobile SDKs, Mixpanel will automatically generate an ID that's local to that user's device. This ID will persist on all events tracked by that user on that device, until you call `identify()` or `reset()`. More on that in our [identity management guide](/docs/tracking/how-tos/identifying-users).
+Our server libraries normally require that you specify the distinct_id value for each event. If you _don't_ know the user's identity at the time the event is tracked, then they're an anonymous user. When using our Web or Mobile SDKs, Mixpanel will automatically generate an ID that's local to that user's device. This ID will persist on all events tracked by that user on that device, until you call `identify()` or `reset()`. More on that in our [identity management guide](/docs/implementation/identifying-users).
 
 If you're tracking from servers, you'll need to generate and manage that ID yourself. When you have hybrid implementations (events also come from the client-side), you could optionally send the ID generated on the client to the server and keep it as a session variable instead of generating a new one.
 

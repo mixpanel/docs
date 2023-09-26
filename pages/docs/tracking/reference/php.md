@@ -72,7 +72,7 @@ $mp->track("sign-up", array(
 
 **Note:** For projects on our legacy ID management model (it will read as *ID Merge is not enabled* within project settings), you can read about [using $create_alias to link IDs here](https://github.com/mixpanel/docs/blob/main/legacy/aliases.md).
 
-You can read more on ID management [in our tracking guide](/docs/tracking/how-tos/identifying-users).
+You can read more on ID management [in our tracking guide](/docs/implementation/identifying-users).
 
 ## Storing User Profiles
 In addition to events, you can send user profile updates to Mixpanel. Mixpanel can maintain a profile of each of your users, storing information you know about them. An update is a message that changes the properties of a user profile.
