@@ -133,7 +133,7 @@ Most other integrations are unaffected by this API change. These integrations ar
 ### What is Distinct ID?
 `distinct_id` is an identifier set by Mixpanel based on the combination of `$device_id` and `$user_id`. The purpose of `distinct_id` is to provide a single, unified identifier for a user across devices and sessions. This helps Mixpanel compute metrics like Daily Active Users accurately: when two events have the same value of `distinct_id`, they are considered as being performed by 1 unique user. By joining on the `distinct_id`, Mixpanel is also able to accurately count funnels or retention metrics that span a user's logged-out behavior and logged-in behavior.
 
-Note: You cannot set the value of `distinct_id` yourself, it will be set by Mixpanel. How it's set depends on the [version of ID Merge](/docs/tracking/how-tos/identifying-users#simplified-vs-original-id-merge) that your project uses:
+Note: You cannot set the value of `distinct_id` yourself, it will be set by Mixpanel. How it's set depends on the [version of ID Merge](/docs/implementation/identifying-users#simplified-vs-original-id-merge) that your project uses:
 * **Simplified ID Merge (default):** `distinct_id` will be the `$user_id` if present, otherwise will be `$device:<$device_id>`.
 * **Original ID Merge:** `distinct_id` will be either the `$user_id` or `$device_id`, but is non-deterministic and chosen to optimize backend performance. If you want control over a particular identifier for the user, we recommend setting a [user profile property](/docs/how-it-works/user-profiles), such as 'User ID', that has your identified ID. This allows you to have a property that represents the identified user ID.
 

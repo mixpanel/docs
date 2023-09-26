@@ -1,0 +1,11 @@
+{
+    "api-credentials": "API Credentials",
+    "http-api": "HTTP API",
+    "server-side-sdk": "Server-Side SDK",
+    "web-sdk": "Web SDK",
+    "mobile-sdk": "Mobile SDK",
+    "identifying-users": "Identifying Users",
+    "id-management": "ID Management",
+    "data-warehouse": "Data Warehouse",
+    "integrations": "Integrations"
+}
