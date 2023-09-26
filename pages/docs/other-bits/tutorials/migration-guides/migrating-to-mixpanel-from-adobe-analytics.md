@@ -4,7 +4,7 @@ If you haven't already, we recommend starting with our [Migration Guides Overvie
 
 ## Differences in the data models
 
-Mixpanel’s data model is based on events and properties, rather than Adobe which is schema-based with many different configurable data types. While this might be a shift if you come from the schema model where you define your data to be captured upfront before sending any data, we’ve found [schema-on-read](/docs/other-bits/under-the-hood#schema-on-read) to be both more flexible and easier to set up and use.
+Mixpanel’s data model is based on events and properties, rather than Adobe which is schema-based with many different configurable data types. While this might be a shift if you come from the schema model where you define your data to be captured upfront before sending any data, we’ve found [schema-on-read](/docs/how-it-works/infrastructure#schema-on-read) to be both more flexible and easier to set up and use.
 
 - [Events](/docs/what-is-mixpanel#events) capture granular user actions, like a Pageview, Signup, or Purchase.
 - [Properties](/docs/what-is-mixpanel#properties) capture attributes of those events, like which page was viewed, the UTM Campaign that led to a Signup, or the Item that was purchased.
@@ -80,7 +80,7 @@ To backfill data, we recommend:
     - Utilize the CDPs backfilling feature, like [Segment Replay](https://segment.com/docs/guides/what-is-replay/), to re-send historical data to Mixpanel
 - For any other implementation method
     - First, export your data to the data warehouse so you have a record of Adobe Analytics
-    - Once exported, your data warehouse tables can be transformed and modeled into the [event format](/docs/tracking/how-tos/events-and-properties) Mixpanel expects
+    - Once exported, your data warehouse tables can be transformed and modeled into the [event format](/docs/how-it-works/events-and-properties) Mixpanel expects
     - Leverage our [Import API](https://developer.mixpanel.com/reference/import-events) to send us the formatted events from your data warehouse
 
 The process of importing old data with a different format has many potential issues - identity management, data discrepancies, etc. - as Mixpanel is fundamentally different than Adobe Analytics. It may be worth considering your use cases for importing old data before proceeding, as matching users and data across the systems can be time consuming.

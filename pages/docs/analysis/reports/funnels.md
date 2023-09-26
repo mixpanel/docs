@@ -417,7 +417,7 @@ Your selected choice will determine which step of your funnel determines the pro
 
 #### First Touch Attribution and Forwardfilling
 
-By default, Mixpanel “forwardfills” [event properties](/docs/tracking/how-tos/events-and-properties) in instances where properties are sent in earlier steps of a Funnel but not sent in subsequent steps of the same funnel. This means that the property that is present in early steps of a funnel is appended to the later steps of the funnel where it was previously absent.
+By default, Mixpanel “forwardfills” [event properties](/docs/how-it-works/events-and-properties) in instances where properties are sent in earlier steps of a Funnel but not sent in subsequent steps of the same funnel. This means that the property that is present in early steps of a funnel is appended to the later steps of the funnel where it was previously absent.
 
 Select **First touch** to attribute the first property value to the whole funnel, regardless of whether the property value changes in subsequent steps. First touch is not the same as the first step of the funnel, rather it is the first time the property is given a non-null defined value.
 
@@ -429,7 +429,7 @@ As you can see in the diagram above, the property of “Name” is only a proper
 
 #### Last Touch Attribution and Backfilling
 
-By default, Mixpanel “backfills” [event properties](/docs/tracking/how-tos/events-and-properties) in instances where properties are sent in later steps of a Funnel but not sent in the earlier steps of the same funnel. This means that the property that is present in later steps of a funnel is appended to the earlier steps of the funnel where it was previously absent.
+By default, Mixpanel “backfills” [event properties](/docs/how-it-works/events-and-properties) in instances where properties are sent in later steps of a Funnel but not sent in the earlier steps of the same funnel. This means that the property that is present in later steps of a funnel is appended to the earlier steps of the funnel where it was previously absent.
 
 Select **Last touch** to attribute the last property value to the whole funnel, regardless of the property value in previous steps. Last touch is not the same as the last step of the funnel, rather it is the last time the property is given a non-null defined value.
 

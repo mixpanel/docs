@@ -66,7 +66,7 @@
 /developer-docs-redirect/snowplow /docs/tracking/integrations/snowplow
 /developer-docs-redirect/swift /docs/tracking/reference/swift
 /developer-docs-redirect/tracking/reference/nodejs /docs/tracking/reference/nodejs
-/developer-docs-redirect/under-the-hood /docs/other-bits/under-the-hood
+/developer-docs-redirect/under-the-hood /docs/how-it-works/infrastructure
 /developer-docs-redirect/unity /docs/tracking/reference/unity
 /developer-docs-redirect/unity-quickstart /docs/tracking/mobile-sdk
 /developer-docs-redirect/what-is-mixpanel /docs/what-is-mixpanel
