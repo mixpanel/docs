@@ -27,8 +27,8 @@ By default, the menu shows "all properties". This includes event properties, pro
 
 You can select the following filtering options to show a subset of the properties in the menu:
 
-- Select "event properties" to show only the [Event properties](/docs/tracking/how-tos/events-and-properties).
-- Select "user properties" to show only the [Profile properties](/docs/tracking/how-tos/events-and-properties).
+- Select "event properties" to show only the [Event properties](/docs/how-it-works/events-and-properties).
+- Select "user properties" to show only the [Profile properties](/docs/how-it-works/events-and-properties).
 - Select "cohorts" to show only the [Cohorts](/docs/analysis/advanced/cohorts).
 - If you set up [Group Analytics](/docs/analysis/advanced/group-analytics), the Group keys will show up individually under their display names. You can select any Group key to show only the Group properties relevant to the selected Group key:
 

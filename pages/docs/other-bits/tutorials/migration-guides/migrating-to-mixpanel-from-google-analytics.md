@@ -76,7 +76,7 @@ To backfill data, we recommend:
     - Utilize the CDPs backfilling feature, like [Segment Replay](https://segment.com/docs/guides/what-is-replay/), to re-send historical data to Mixpanel
 - For any other implementation method
     - First, export your data to the data warehouse so you have a record of Universal Analytics
-    - Once exported, your data warehouse tables can be transformed and modeled into the [event format](/docs/tracking/how-tos/events-and-properties) Mixpanel expects
+    - Once exported, your data warehouse tables can be transformed and modeled into the [event format](/docs/how-it-works/events-and-properties) Mixpanel expects
     - Leverage our [Import API](https://developer.mixpanel.com/reference/import-events) to send us the formatted events from your data warehouse
 
 The process of importing old data with a different format has many potential issues - identity management, data discrepancies, etc. - as Mixpanel is fundamentally different than UA. It may be worth considering your use cases for importing old data before proceeding, as matching users and data across the systems can be time consuming. [Mixpanel Support](https://mixpanel.com/get-support) is here to help if you need advice how to go about importing the historical data.
@@ -212,7 +212,7 @@ To backfill data, we recommend:
     - Utilize the CDPs backfilling feature, like [Segment Replay](https://segment.com/docs/guides/what-is-replay/), to re-send historical data to Mixpanel
 - For any other implementation method
     - First, export your data to the data warehouse so you have a record of Universal Analytics
-    - Once exported, your data warehouse tables can be transformed and modeled into the [event format](/docs/tracking/how-tos/events-and-properties) Mixpanel expects
+    - Once exported, your data warehouse tables can be transformed and modeled into the [event format](/docs/how-it-works/events-and-properties) Mixpanel expects
     - Leverage our [Import API](https://developer.mixpanel.com/reference/import-events) to send us the formatted events from your data warehouse
 
 ## Not sure where to start or need help?
