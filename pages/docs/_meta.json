@@ -15,12 +15,19 @@
 	"data-types": "Data Types",
 	"tracking-plans": "Tracking Plans",
 	"debugging": "Debugging",
+	"analysis": {
+		"type": "separator",
+		"title": "ANALYSIS"
+	},
+	"reports": "Reports",
+	"boards": "Boards",
+	"cohorts": "Cohorts",
+	"features": "Features",
 	"placeholder": {
 		"type": "separator",
 		"title": "STILL WORKING ON EVERYTHING BELOW"
 	},
 	"tracking": "Tracking",
-	"analysis": "Analysis",
 	"admin": "Admin",
 	"other-bits": "Other Bits"
 }

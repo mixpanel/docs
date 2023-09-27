@@ -2,7 +2,7 @@
 
 ## Use Boards as Centers of Excellence in Mixpanel
 
-In this section, you’ll find templates built out in our demo data sets to highlight examples of how our most successful and data-mature customers monitor their implementation and drive adoption of Mixpanel across their organizations. Note Mixpanel does have several built-in [Board Templates](/docs/analysis/boards#board-templates) that you can generate based on a few simple inputs (e.g. value moment event or sign-up event). The templates in this section are meant to be used as inspiration for additional Boards you can create to make sure your team is effectively monitoring your implementation as well as enabling end users to feel confident implementing and using Mixpanel
+In this section, you’ll find templates built out in our demo data sets to highlight examples of how our most successful and data-mature customers monitor their implementation and drive adoption of Mixpanel across their organizations. Note Mixpanel does have several built-in [Board Templates](/docs/boards/templates) that you can generate based on a few simple inputs (e.g. value moment event or sign-up event). The templates in this section are meant to be used as inspiration for additional Boards you can create to make sure your team is effectively monitoring your implementation as well as enabling end users to feel confident implementing and using Mixpanel
 
 ### Implementation Monitoring & Data Governance
 
