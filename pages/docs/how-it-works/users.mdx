@@ -3,11 +3,7 @@
 
 Mixpanel's Users page allows you to filter users and gain a deeper understanding of how they interact with your website or application. By filtering your users into groups called cohorts, you can import these cohorts into other reports and perform analyses on those specific users.
 
-<<<<<<< HEAD:pages/docs/users/overview.md
 If you want to import User Profiles into Mixpanel, see our [User Profiles guide](/docs/tracking-specs/user-profiles).
-=======
-If you want to import User Profiles into Mixpanel, see our [User Profiles guide](/docs/how-it-works/user-profiles).
->>>>>>> add how it works:pages/docs/how-it-works/users.mdx
 
 ### Use Case
 
@@ -24,11 +20,7 @@ You can select **User Profiles** or **All Users** in the Users page. If yo
 
 ![/Screen_Shot_2022-07-12_at_11.55.17_AM.png](/Screen_Shot_2022-07-12_at_11.55.17_AM.png)
 
-<<<<<<< HEAD:pages/docs/users/overview.md
 By clicking the name of a user in the User tables, you can explore that user's unique history by examining their user profile. Learn more about the Users Profiles [here](/docs/tracking-specs/user-profiles).
-=======
-By clicking the name of a user in the User tables, you can explore that user's unique history by examining their user profile. Learn more about the Users Profiles [here](/docs/how-it-works/user-profiles).
->>>>>>> add how it works:pages/docs/how-it-works/users.mdx
 
 ### Cohorts
 
