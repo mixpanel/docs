@@ -23,11 +23,19 @@
 	"boards": "Boards",
 	"cohorts": "Cohorts",
 	"features": "Features",
+	"admin": {
+		"type": "separator",
+		"title": "ADMIN"
+	},
+	"orgs-and-projects": "Orgs & Projects",
+	"data-governance": "Data Governance",
+	"access-security": "Access Security",
+	"privacy": "Privacy",
+	"pricing": "Pricing",
 	"placeholder": {
 		"type": "separator",
 		"title": "STILL WORKING ON EVERYTHING BELOW"
 	},
 	"tracking": "Tracking",
-	"admin": "Admin",
 	"other-bits": "Other Bits"
 }

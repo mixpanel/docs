@@ -35,7 +35,7 @@ Mixpanel's client SDKs automatically collect certain properties on every event. 
 ### User Properties
 
 Do note that Mixpanel's default user properties are only updated when you send or update at least one property yourself.
-Please, refer to this article to [understand how to send or update profile properties](https://docs.mixpanel.com/docs/how-it-works/data-model/fundamentals#updating-user-profile-properties).
+Please, refer to this article to [understand how to send or update profile properties](/docs/how-it-works/data-model/fundamentals#updating-user-profile-properties).
 
 | Raw Name | Display Name | Description |
 | --- | --- | --- |
@@ -84,7 +84,7 @@ Please, refer to this article to [understand how to send or update profile prope
 ### User Properties
 
 Do note that Mixpanel's default user properties are only updated when you send or update at least one property yourself.
-Please, refer to this article to [understand how to send or update profile properties](https://docs.mixpanel.com/docs/how-it-works/data-model/fundamentals#updating-user-profile-properties).
+Please, refer to this article to [understand how to send or update profile properties](/docs/how-it-works/data-model/fundamentals#updating-user-profile-properties).
 
 | Raw Name | Display Name | Description |
 | --- | --- | --- |
@@ -143,7 +143,7 @@ Please, refer to this article to [understand how to send or update profile prope
 ### User Properties
 
 Do note that Mixpanel's default user properties are only updated when you send or update at least one property yourself.
-Please, refer to this article to [understand how to send or update profile properties](https://docs.mixpanel.com/docs/how-it-works/data-model/fundamentals#updating-user-profile-properties).
+Please, refer to this article to [understand how to send or update profile properties](/docs/how-it-works/data-model/fundamentals#updating-user-profile-properties).
 
 | Raw Name | Display Name | Description |
 | --- | --- | --- |

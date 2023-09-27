@@ -61,7 +61,7 @@ You must configure your Identity Provider (IDP) to connect to Mixpanel in order 
 
 **Okta**
   
-Setting up SSO with Okta requires that you configure a custom app in Okta. [Follow these instructions](/docs/admin/sso/okta) to configure a custom application.
+Setting up SSO with Okta requires that you configure a custom app in Okta. [Follow these instructions](/docs/access-security/single-sign-on/okta) to configure a custom application.
 
 **One Login**
 
@@ -69,11 +69,11 @@ One Login only requires that you get the Postback URL. The application is in the
   
 **G-Suite**
   
-Google has an official integration with Mixpanel with instructions [here.](https://support.google.com/a/answer/7553416) Unfortunately we do not have an autoprovisioning integration with G-Suite so you will need to rely on [Just In Time Provisioning.](/docs/admin/sso#just-in-time-provisioning)
+Google has an official integration with Mixpanel with instructions [here.](https://support.google.com/a/answer/7553416) Unfortunately we do not have an autoprovisioning integration with G-Suite so you will need to rely on [Just In Time Provisioning.](/docs/access-security/single-sign-on/overview#just-in-time-provisioning)
 
 **Azure**
 
-There are [instructions here to set up SSO with Azure.](/docs/admin/sso/azure) Azure also has an auto-provisioning integration with Mixpanel which you can [find more info for here.](https://learn.microsoft.com/en-us/azure/active-directory/saas-apps/mixpanel-provisioning-tutorial)
+There are [instructions here to set up SSO with Azure.](/docs/access-security/single-sign-on/azure) Azure also has an auto-provisioning integration with Mixpanel which you can [find more info for here.](https://learn.microsoft.com/en-us/azure/active-directory/saas-apps/mixpanel-provisioning-tutorial)
 
 **Other IDPs**
 

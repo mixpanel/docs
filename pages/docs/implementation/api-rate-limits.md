@@ -14,7 +14,7 @@ The Export & Query API endpoint rate limit rules _per project_ are as follows:
 
 [JQL API](https://mixpanel.com/api/2.0/jql): Queries to the JQL endpoint contribute to Query API rate limit and have their own individual limit as well. There is a maximum of 5 concurrent queries and of 60 queries per hour. There is also a 5 GB limit on data that can be processed in a single query, and a 2 GB limit on the resulting output data.
 
-[Compliance Retrieval API](/docs/other-bits/privacy-and-security/export-or-delete-end-user-data#rate-limit): We currently have a rate-limit of 1 request per second for GDPR APIs. We also limit maximum number of outstanding scans for a single project to be approximately 5 years.
+[Compliance Retrieval API](/docs/privacy/end-user-data-management#rate-limit): We currently have a rate-limit of 1 request per second for GDPR APIs. We also limit maximum number of outstanding scans for a single project to be approximately 5 years.
 
 _If you exceed the rate limit, a 429 error will be returned._
 

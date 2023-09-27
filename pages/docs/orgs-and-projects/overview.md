@@ -1,4 +1,4 @@
-# Organizations & Projects
+# Overview
 
 
 The Mixpanel administrative system includes organizations and projects.

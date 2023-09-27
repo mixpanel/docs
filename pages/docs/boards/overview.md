@@ -20,7 +20,7 @@ Before creating a board of your own, it's best to explore existing boards within
 
 **Favorites**: to favorite a board, click the "Favorite" button at the top right of that board. Once you've done so, it will appear in the favorites section at the top left of the board's page.
 
-**Pinned**: pinned boards are important boards for your organization. Mixpanel users with the [Admin or Owner roles](/docs/admin/organizations-projects/manage-team-members#organization-roles) will be able to pin a board such that it appears in the Pinned section for every project member.
+**Pinned**: pinned boards are important boards for your organization. Mixpanel users with the [Admin or Owner roles](/docs/orgs-and-projects/manage-team-members#organization-roles) will be able to pin a board such that it appears in the Pinned section for every project member.
 
 **Your Boards**: any boards you create will appear in this section. To create a new board, click "+ New Board" at the top of the directory.
 
