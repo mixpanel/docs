@@ -22,7 +22,7 @@ You can create a custom event containing "Ad Conversion" and "Ad Impression," an
 
 ## Edit and Delete Custom Events
 
-To view, edit, or delete any custom event, navigate to [Lexicon](/docs/admin/data-governance/lexicon).
+To view, edit, or delete any custom event, navigate to [Lexicon](/docs/data-governance/lexicon/guide).
 
 ![image](https://github.com/mixpanel/docs/assets/2077899/efc4b36e-d8d9-4699-8a48-98b793532b20)
 

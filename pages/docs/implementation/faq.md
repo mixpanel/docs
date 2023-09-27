@@ -71,5 +71,5 @@ Mixpanel data is write once, read forever, which means once a datapoint is writt
 
 However, there are a few other options:
 
-- [Hide the Events in question from the UI.](https://docs.mixpanel.com/docs/admin/data-governance/lexicon#hide-events-and-properties)
-- If the bot activity has a distinguishing Property value, [create a custom Event](https://docs.mixpanel.com/docs/features/advanced/custom-events) that excludes all activity with that value.
+- [Hide the Events in question from the UI.](/docs/data-governance/lexicon/guide#hide-events-and-properties)
+- If the bot activity has a distinguishing Property value, [create a custom Event](/docs/features/advanced/custom-events) that excludes all activity with that value.

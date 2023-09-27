@@ -7,7 +7,7 @@ As controllers of personal data, Mixpanel and its customers must uphold certain 
 
 ## Right to Access and Data Portability
 
-Mixpanel supports individuals’ right to access and right to portability of their personal data through individual export requests. Any Mixpanel account holder will be able to request an export of one’s own personal data, as well as the personal data of their own end-users. [The form for submitting end user personal data export requests](/docs/other-bits/privacy-and-security/export-or-delete-end-user-data) and for submitting account holder data export requests is available through Personal Settings > Data & Privacy. 
+Mixpanel supports individuals’ right to access and right to portability of their personal data through individual export requests. Any Mixpanel account holder will be able to request an export of one’s own personal data, as well as the personal data of their own end-users. [The form for submitting end user personal data export requests](/docs/privacy/end-user-data-management) and for submitting account holder data export requests is available through Personal Settings > Data & Privacy. 
  
 ## Right to Erasure
 
@@ -15,7 +15,7 @@ We support individuals’ right to erasure through a permanent deletion of perso
 
 ## Right to Object
 
-Our customers control what data is sent to Mixpanel, and may decide to halt the sending of personal data at any time. To assist with supporting individuals’ right to object to the collection of one’s personal data, Mixpanel also has built dedicated methods for our client-side SDKs that can be used to [opt end users out of tracking](/docs/tracking/how-tos/privacy-friendly-tracking).
+Our customers control what data is sent to Mixpanel, and may decide to halt the sending of personal data at any time. To assist with supporting individuals’ right to object to the collection of one’s personal data, Mixpanel also has built dedicated methods for our client-side SDKs that can be used to [opt end users out of tracking](/docs/privacy/protecting-user-data).
 
 Mixpanel collects information about how customers use the product, and uses this data to identify product gaps and improve existing products. While this information is useful, Mixpanel recognizes the importance of an individuals right to object.  Mixpanel has therefore streamlined opt-out systems for its customers, who can opt out of tracking through simple controls, located under Personal Settings > Data & Privacy.
 
@@ -32,4 +32,4 @@ Custom data retention windows can be set for user data by sending regular deleti
 
 ## Rate Limit
 
-We place a [rate limit](/docs/other-bits/privacy-and-security/export-or-delete-end-user-data#rate-limit) in place to ensure the integrity of our system as well as prevent a single project from monopolizing the avaialble resources for other projects
+We place a [rate limit](/docs/privacy/end-user-data-management#rate-limit) in place to ensure the integrity of our system as well as prevent a single project from monopolizing the avaialble resources for other projects

@@ -13,9 +13,9 @@ This article focuses on the common concepts across each report.
 
 This is the menu that appears under "Add Metric" or "Select Step".
 
-By default, the event menu shows all events, except for [hidden events](/docs/admin/data-governance/lexicon#hide-events-and-properties).
+By default, the event menu shows all events, except for [hidden events](/docs/data-governance/lexicon/guide#hide-events-and-properties).
 
-If you organize your events using [tags](/docs/admin/data-governance/lexicon) in Lexicon, the tags will show up as filtering options in the event menu. When you select a tag, a list of events that share the same tag appears:
+If you organize your events using [tags](/docs/data-governance/lexicon/guide) in Lexicon, the tags will show up as filtering options in the event menu. When you select a tag, a list of events that share the same tag appears:
 
 ![/Untitled__1_.png](/Untitled__1_.png)
 

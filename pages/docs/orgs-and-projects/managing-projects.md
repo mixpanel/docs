@@ -1,4 +1,4 @@
-# Manage Projects
+# Managing Projects
 
 ## Creating Projects
 

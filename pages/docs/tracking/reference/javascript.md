@@ -83,7 +83,7 @@ By default, Mixpanel cookies send over HTTPS requests as part of the headers. Ho
 To enable this, use the [`set_config()`](https://github.com/mixpanel/mixpanel-js/blob/master/doc/readme.io/javascript-full-api-reference.md#mixpanelset_config) method and change the `secure_cookie` flag from `false` to `true`. If you configure your instance to send data over HTTP instead of HTTPS but do set `secure_cookie: true`, then your cookie data is not sent to the server. 
 
 #### Mixpanel Cookies for Hosted Subdomains
-The Mixpanel JavaScript library has a default setting of `cross_subdomain_cookie: true` in the `mixpanel.init` function. This enables Mixpanel cookies to work across subdomains, keeping Mixpanel's Distinct ID and [Super Properties](https://docs.mixpanel.com/docs/tracking/reference/javascript#super-properties) consistent across these sub-domains.
+The Mixpanel JavaScript library has a default setting of `cross_subdomain_cookie: true` in the `mixpanel.init` function. This enables Mixpanel cookies to work across subdomains, keeping Mixpanel's Distinct ID and [Super Properties](/docs/tracking/reference/javascript#super-properties) consistent across these sub-domains.
 
 However, if your site is hosted on a domain like Heroku (or similar - [see a complete list of affected domains](https://publicsuffix.org/list/effective_tld_names.dat)) with a URL like XYZ.herokuapp.com, cross-subdomain cookies are not allowed for security reasons. Having Mixpanel default settings for `cross_subdomain_cookie` on these sites, results to users' Distinct IDs being reset to a new `$distinct_id` on each page load. This will cause issues with Mixpanel reports, namely broken Retention reports and Funnels. 
 
@@ -167,7 +167,7 @@ mixpanel.reset();
 
 In addition to events, you can store user profiles in Mixpanel. Profiles are persistent sets of properties that describe a user - things like name, email address, and signup date. You can use profiles to explore and segment users by who they are, rather than what they did.
 
-*Please take note of the [reserved profile properties](/docs/how-it-works/user-profiles.md#reserved-user-properties) (e.g. `$name`, `$email`) which receive special treatment in our UI or are used for special processing.
+*Please take note of the [reserved profile properties](/docs/data-types/user-profiles.md#reserved-user-properties) (e.g. `$name`, `$email`) which receive special treatment in our UI or are used for special processing.
 
 ### Setting Profile Properties
 
