@@ -1,11 +1,11 @@
-# Web
+# Connect Your Data
 
 import { Tab, Tabs } from 'nextra-theme-docs'
 
-You can use Mixpanel's JavaScript SDK to track events from your website or web application.
+You can use Mixpanel's SDKs to track events from your website, web application, or server.
 
 ## Step 1: Install the SDK
-<Tabs items={['Snippet', 'npm', 'yarn']}>
+<Tabs items={['JS Snippet', 'JS npm', 'JS yarn', 'Python', 'Node', 'Go', 'Ruby', 'Java', 'React Native', 'Flutter', 'iOS (Objective-C)', 'iOS (Swift)', 'Android', 'Unity']}>
   <Tab>
 ```html
 <!-- Paste this right before your closing </head> tag -->
@@ -24,6 +24,107 @@ npm install --save mixpanel-browser
 ```text
 yarn add mixpanel-browser
 ```
+</Tab>
+<Tab>
+```shell Python
+pip install mixpanel
+```
+</Tab>
+<Tab>
+```shell Node.js
+npm install mixpanel
+```
+</Tab>
+<Tab>
+```shell Go
+go get github.com/mixpanel/mixpanel-go
+```
+</Tab>
+<Tab>
+```shell Ruby
+gem install mixpanel-ruby
+```
+</Tab>
+<Tab>
+```xml Java
+<!--Include the following in your project's pom.xml-->
+<dependency>
+  <groupId>com.mixpanel</groupId>
+  <artifactId>mixpanel-java</artifactId>
+  <version>1.4.4</version>
+</dependency>
+```
+</Tab>
+<Tab>
+Under your app's root directory, run:
+
+```
+npm install mixpanel-react-native
+```
+
+Under your application's iOS folder, run:
+
+```
+pod install
+```
+
+Note: For XCode 12.5+, there is a known compile issue, please refer to this [workaround](https://github.com/mixpanel/mixpanel-react-native/issues/43#issuecomment-829599732).
+</Tab>
+<Tab>
+Add `mixpanel_flutter: ^2.0.0` to your package's pubspec.yaml file and run:
+```
+flutter pub get
+```
+</Tab>
+<Tab>
+**Swift Package Manager**
+1.  In Xcode, select File > Swift Packages > Add Package Dependency.
+2.  Follow the prompts using the URL for this repository and must select a version greater than or equal to v4.0.0
+
+**CocoaPods**
+1. Create a Podfile in your Xcode project directory by running `pod init` in your terminal, edit the Podfile generated, and add the following line: `pod 'Mixpanel'`.
+2. Run `pod install` in your Xcode project directory. CocoaPods should download and install the Mixpanel library, and create a new Xcode workspace. Open up this workspace in Xcode or typing `open *.xcworkspace` in your terminal.
+
+**Carthage**
+Add `github "mixpanel/mixpanel-iphone"` to your Cartfile.
+</Tab>
+<Tab>
+**Swift Package Manager (requires Xcode 12+)**
+1. In Xcode, select File > Swift Packages > Add Package Dependency.
+2. Paste the URL `https://github.com/mixpanel/mixpanel-swift` and a minimum semantic version of v2.8.0.
+
+**CocoaPods**
+1. Create a Podfile in your Xcode project directory by running `pod init` in your terminal, edit the Podfile generated, and add the following line: `pod 'Mixpanel-swift'`.
+2. Run `pod install` in your Xcode project directory. CocoaPods should download and install the Mixpanel library, and create a new Xcode workspace. Open up this workspace in Xcode or typing `open *.xcworkspace` in your terminal.
+
+**Carthage**
+Add `github "mixpanel/mixpanel-swift"` to your Cartfile.
+</Tab>
+<Tab>
+Add `implementation 'com.mixpanel.android:mixpanel-android:7.+'` as a dependency to your `build.gradle` file.
+
+Once you've updated `build.gradle`, you can force Android Studio to sync with your new configuration by clicking the Sync Project with Gradle Files icon at the top of the window:
+![Sync Android With Gradle](https://storage.googleapis.com/cdn-mxpnl-com/static/readme/android-sync-gradle.png)
+
+If it cannot find the dependency, you should make sure you've specified `mavenCentral()` as a repository in `build.gradle`.
+
+Next, add the following permissions in your AndroidManifest.xml:
+
+```java
+<!--Required to allow the application to send events to Mixpanel.-->
+<uses-permission android:name="android.permission.INTERNET" />
+
+<!--Optional, but recommended so we can send data intelligently based on network conditions -->
+<uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+
+<!-- Optional, but recommended so events will contain information about bluetooth state-->
+<uses-permission android:name="android.permission.BLUETOOTH" />
+```
+</Tab>
+<Tab>
+Add `https://github.com/mixpanel/mixpanel-unity.git#master` to the dependencies section of `com.mixpanel.unity`.
+
+Alternatively, you can download and install the .unitypackage file from our [releases page](https://github.com/mixpanel/mixpanel-unity/releases).
 </Tab>
 </Tabs>
 
