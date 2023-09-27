@@ -68,7 +68,7 @@ We provide Mixpanel as a destination and setup guides for all of the most popula
 
 ### Data Warehouse
 
-If you have your Adobe Analytics instance sitting on top of data that you collect and store in your data warehouse, getting started is simple. Instead of transforming and modeling that data to send to Adobe, you would model the data as [Events](/docs/tracking/reference/data-model) and send it to Mixpanel via a Reverse ETL (RETL) tool or via directly hitting our [Import API](https://developer.mixpanel.com/reference/import-events).
+If you have your Adobe Analytics instance sitting on top of data that you collect and store in your data warehouse, getting started is simple. Instead of transforming and modeling that data to send to Adobe, you would model the data as [Events](/docs/data-types/overview) and send it to Mixpanel via a Reverse ETL (RETL) tool or via directly hitting our [Import API](https://developer.mixpanel.com/reference/import-events).
 
 ## Loading historical data
 
