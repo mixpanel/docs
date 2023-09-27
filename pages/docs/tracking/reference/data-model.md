@@ -13,6 +13,14 @@ Mixpanel data is stored and isolated within a [project](/docs/admin/organization
 | **Group Profiles** | A group profile is a key/value store that holds state about member of your group. Group profiles are joined to Events on your chosen _group key_. For example, if you create a new group key for `company_id` your events will be joined on `event.company_id = group_profile.company_id` <br><br> [Learn more about profile properties](/docs/tracking/how-tos/events-and-properties) <br> [Learn more about group analytics](/docs/analysis/advanced/group-analytics) |
 | **Lookup Tables** | A lookup table is a key/value store that holds state about an entity. Lookup tables are joined to events (and other profiles) on your chosen join key. For example, if you create a lookup table for "Songs" and specify the join key as `song_id`, your events will be joined on `event.song_id = lookup_table.song_id`.<br><br>[Learn more about lookup tables](/docs/tracking/how-tos/lookup-tables) |
 
+### Event Property vs User Profile Property
+
+An event property is a detail about an event.  Event properties are incredibly important, as they provide the necessary context about events to ensure valuable analytics. Properties also facilitate the dissection of data, allowing for more detailed insight into event-driven data. Once tracked, events and their properties are immutable, meaning they cannot be changed.
+
+Profile Properties give you detail about a certain user overall. In other words, Profile Properties describe your users as they exist in this moment. A user profile property could be a static value, such as a first name, or be something more likely to change, like the date of last login or the number of songs a user has played.
+
+For example, while an Event Property or Super Property tells you whether a user had a paid or free account over time when a user did specific actions, a Profile Property would simply show you currently if they are paid or free.
+
 ## Example
 
 Imagine you work on a music streaming product and you want to answer questions like: 
