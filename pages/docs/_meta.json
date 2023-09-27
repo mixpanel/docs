@@ -12,6 +12,9 @@
 		"title": "DATA IN"
 	},
 	"implementation": "Implementation",
+	"data-types": "Data Types",
+	"tracking-plans": "Tracking Plans",
+	"debugging": "Debugging",
 	"placeholder": {
 		"type": "separator",
 		"title": "STILL WORKING ON EVERYTHING BELOW"

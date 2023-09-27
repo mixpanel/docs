@@ -11,7 +11,7 @@ https://help.mixpanel.com/:zendesk_attachment(attachments/token/.*) https://mixp
 
 # Help Center - Content Redirects (Sort Alphabetically)
 https://help.mixpanel.com/hc/articles/360000679006(.*) /docs/tracking/how-tos/privacy-friendly-tracking
-https://help.mixpanel.com/hc/en-us/articles/10147279357076(.*) /docs/tracking/how-tos/debugging#data-discrepancies
+https://help.mixpanel.com/hc/en-us/articles/10147279357076(.*) /docs/debugging#data-discrepancies
 https://help.mixpanel.com/hc/en-us/articles/10503460589972(.*) /changelogs
 https://help.mixpanel.com/hc/en-us/articles/10997736335892(.*) https://github.com/mixpanel/mixpanel-js/blob/master/doc/readme.io/javascript-full-api-reference.md#mixpaneltime_event
 https://help.mixpanel.com/hc/en-us/articles/115004474143(.*) /docs/admin/organizations-projects/manage-organization#sso-via-okta
@@ -71,7 +71,7 @@ https://help.mixpanel.com/hc/en-us/articles/115004581743(.*) /docs
 https://help.mixpanel.com/hc/en-us/articles/115004581763(.*) /docs
 https://help.mixpanel.com/hc/en-us/articles/115004596186(.*) /docs/tracking/reference/android#legacy-automatically-tracked-events
 https://help.mixpanel.com/hc/en-us/articles/115004600343(.*) /docs
-https://help.mixpanel.com/hc/en-us/articles/115004600723(.*) /docs/tracking/how-tos/tracking-utm-tags#mobile-attribution
+https://help.mixpanel.com/hc/en-us/articles/115004600723(.*) /docs/tracking-plans/utm-tags#mobile-attribution
 https://help.mixpanel.com/hc/en-us/articles/115004600763(.*) /docs/analysis/advanced/custom-events
 https://help.mixpanel.com/hc/en-us/articles/115004602503(.*) /docs
 https://help.mixpanel.com/hc/en-us/articles/115004602543(.*) /docs/tracking/reference/android
@@ -120,7 +120,7 @@ https://help.mixpanel.com/hc/en-us/articles/14202292561172(.*) /docs/analysis/ad
 https://help.mixpanel.com/hc/en-us/articles/14377628688788(.*) /docs/implementation/identifying-users
 https://help.mixpanel.com/hc/en-us/articles/14383975110292(.*) /docs/implementation/identifying-users
 https://help.mixpanel.com/hc/en-us/articles/15219555384468(.*) /docs/analysis/boards#board-templates
-https://help.mixpanel.com/hc/en-us/articles/15235786397716(.*) /docs/tracking/how-tos/ad-spend#gathering-data-from-ad-networks
+https://help.mixpanel.com/hc/en-us/articles/15235786397716(.*) /docs/tracking-plans/ad-spend#gathering-data-from-ad-networks
 https://help.mixpanel.com/hc/en-us/articles/15266196509972(.*) https://github.com/mixpanel/sheets#readme
 https://help.mixpanel.com/hc/en-us/articles/15271983688212(.*) /docs/analysis/advanced/attribution#overview
 https://help.mixpanel.com/hc/en-us/articles/15418504274580(.*) /docs/analysis/advanced/alerts
@@ -144,7 +144,7 @@ https://help.mixpanel.com/hc/en-us/articles/360001307806(.*) /docs/admin/data-go
 https://help.mixpanel.com/hc/en-us/articles/360001321243(.*) /docs
 https://help.mixpanel.com/hc/en-us/articles/360001333826(.*) /docs/analysis/reports/insights
 https://help.mixpanel.com/hc/en-us/articles/360001337043(.*) /docs
-https://help.mixpanel.com/hc/en-us/articles/360001337103(.*) /docs/tracking/how-tos/tracking-utm-tags
+https://help.mixpanel.com/hc/en-us/articles/360001337103(.*) /docs/tracking-plans/utm-tags
 https://help.mixpanel.com/hc/en-us/articles/360001337103(.*) /docs/tracking/how-tos/utm
 https://help.mixpanel.com/hc/en-us/articles/360001354886(.*) /docs/best-practices/developer-environments#separate-development-data
 https://help.mixpanel.com/hc/en-us/articles/360001355146(.*) /docs/tracking/how-tos/effective-server#tracking-browser-device-and-os
@@ -210,13 +210,13 @@ https://help.mixpanel.com/hc/en-us/articles/360043474691(.*) /docs/admin/pricing
 https://help.mixpanel.com/hc/en-us/articles/360043776692(.*) /docs/analysis/advanced/other-advanced-features#slack-integration
 https://help.mixpanel.com/hc/en-us/articles/360043782572(.*) /docs/admin/data-governance/data-views-data-classification#manage-data-view
 https://help.mixpanel.com/hc/en-us/articles/360043837132(.*) /docs/admin/data-governance/data-views-data-classification#use-cases
-https://help.mixpanel.com/hc/en-us/articles/360044139291(.*) /docs/tracking/how-tos/lookup-tables
+https://help.mixpanel.com/hc/en-us/articles/360044139291(.*) /docs/data-types/lookup-tables
 https://help.mixpanel.com/hc/en-us/articles/360044295131(.*) /docs/admin/data-governance/data-views-data-classification#data-classification
 https://help.mixpanel.com/hc/en-us/articles/360044299311(.*) /docs/admin/organizations-projects/manage-team-members#permissions
 https://help.mixpanel.com/hc/en-us/articles/360045484191(.*) /docs/analysis/reports/retention#advanced
 https://help.mixpanel.com/hc/en-us/articles/360045484191(.*) /docs/analysis/reports/retention#advanced
 https://help.mixpanel.com/hc/en-us/articles/360047094171(.*) /docs/analysis/advanced/other-advanced-features#list-property-support
-https://help.mixpanel.com/hc/en-us/articles/360048486671(.*) /docs/tracking/how-tos/debugging#inactive-events-and-properties
+https://help.mixpanel.com/hc/en-us/articles/360048486671(.*) /docs/debugging#inactive-events-and-properties
 https://help.mixpanel.com/hc/en-us/articles/360049332572(.*) /docs/other-bits/cohort-syncs/moengage
 https://help.mixpanel.com/hc/en-us/articles/360049450392(.*) /docs/analysis/reports
 https://help.mixpanel.com/hc/en-us/articles/360050608232(.*) /docs/other-bits/cohort-syncs/chameleon
@@ -236,7 +236,7 @@ https://help.mixpanel.com/hc/en-us/articles/360061218812(.*) /docs
 https://help.mixpanel.com/hc/en-us/articles/4402022733844(.*) /docs/analysis/boards#public-boards
 https://help.mixpanel.com/hc/en-us/articles/4402023147540(.*) /docs/how-it-works/users
 https://help.mixpanel.com/hc/en-us/articles/4402828400020(.*) /docs/analysis/advanced/other-advanced-features#limits-and-ordering
-https://help.mixpanel.com/hc/en-us/articles/4402837164948(.*) /docs/tracking/how-tos/debugging
+https://help.mixpanel.com/hc/en-us/articles/4402837164948(.*) /docs/debugging
 https://help.mixpanel.com/hc/en-us/articles/4405461037716(.*) /docs/admin/data-governance/lexicon#export-and-import-lexicon-data
 https://help.mixpanel.com/hc/en-us/articles/4405768833684(.*) /docs/other-bits/cohort-syncs/apptimize
 https://help.mixpanel.com/hc/en-us/articles/4408079980948(.*) /docs/other-bits/cohort-syncs/overview
@@ -261,7 +261,7 @@ https://help.mixpanel.com/hc/en-us/articles/7651639898260(.*) /docs/analysis/rep
 https://help.mixpanel.com/hc/en-us/articles/7713028610964(.*) /docs/analysis/reports/insights#advanced
 https://help.mixpanel.com/hc/en-us/articles/7715039510548(.*) /docs/analysis/advanced/other-advanced-features#query-builder-features
 https://help.mixpanel.com/hc/en-us/articles/7716920767124(.*) /docs/analysis/reports/funnels#faq
-https://help.mixpanel.com/hc/en-us/articles/7773849285780(.*) /docs/tracking/how-tos/lookup-tables
+https://help.mixpanel.com/hc/en-us/articles/7773849285780(.*) /docs/data-types/lookup-tables
 https://help.mixpanel.com/hc/en-us/articles/9648680824852(.*) /docs/implementation/identifying-users
 https://help.mixpanel.com/hc/en-us/articles/9671249667988(.*) /docs/other-bits/support-and-community/community
 https://help.mixpanel.com/hc/en-us/categories/115000963103(.*) /docs/admin/organizations-projects
