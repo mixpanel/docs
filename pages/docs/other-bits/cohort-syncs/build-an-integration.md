@@ -50,7 +50,7 @@ Use this [webhook spec](/docs/other-bits/cohort-syncs/cohort-webhooks) to proces
 **Note**: This spec is intended for partner SaaS companies looking to build integrations with Mixpanel. If you are yourself a Mixpanel customer looking to query on Cohorts, refer to the [cohorts query API](https://developer.mixpanel.com/reference/cohorts).
 
 ### Auto-populate Experiments
-If you are offering experiments or A/B tests to your customers, add support for [auto-populating our Experiments report](/docs/analysis/advanced/experiments) to your integration in order to reduce time-to-value for our mutual customers.
+If you are offering experiments or A/B tests to your customers, add support for [auto-populating our Experiments report](/docs/reports/legacy/experiments) to your integration in order to reduce time-to-value for our mutual customers.
 
 ### Sync your Schemas
 Sync your internal data dictionary or tracking plan with Mixpanel using the [Lexicon Schemas API](https://developer.mixpanel.com/reference/lexicon-schemas-api). Schemas that you upload will be used to populate Lexicon and provide additional context for your data across the query UI.
