@@ -7,5 +7,10 @@
     "identifying-users": "Identifying Users",
     "id-management": "ID Management",
     "data-warehouse": "Data Warehouse",
-    "integrations": "Integrations"
+    "integrations": "Integrations",
+    "migration": "Migration",
+    "tracking-via-proxy": "Tracking via Proxy",
+    "api-rate-limits": "API Rate Limits",
+    "faq": "FAQ",
+    "videos": "Videos"
 }
