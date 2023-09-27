@@ -118,11 +118,7 @@ To view the setup guides for implementing Groups using the Groups API, follow th
 
 ### Upload Group Profiles Using the Users Report
 
-<<<<<<< HEAD:pages/docs/features/group-analytics.md
 It is possible to create Group Profiles by CSV upload as an alternative to the Groups API. [Follow the instructions here to learn how to upload Group Profiles using the Users report](/docs/users/overview#advanced).
-=======
-It is possible to create Group Profiles by CSV upload as an alternative to the Groups API. [Follow the instructions here to learn how to upload Group Profiles using the Users report](/docs/how-it-works/users#advanced).
->>>>>>> add how it works:pages/docs/analysis/advanced/group-analytics.md
 
 ### Add Group Key to User's Profile
 
