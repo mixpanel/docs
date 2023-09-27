@@ -1,4 +1,4 @@
-# Mixpanel For Developers Commonly Asked Questions
+# Commonly Asked Questions
 
 Here are some commonly asked questions that customers have on implementing Mixpanel.
 

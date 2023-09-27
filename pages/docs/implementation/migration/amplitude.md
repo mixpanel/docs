@@ -1,6 +1,6 @@
-# Migrating To Mixpanel From Amplitude
+# Amplitude
 
-If you haven't already, we recommend starting with our [Migration Guides Overview](/docs/other-bits/tutorials/migration-guides) as it details the key components of migrating to Mixpanel from other analytics tools. Below we outline specific steps and considerations when migrating from Amplitude.
+If you haven't already, we recommend starting with our [Migration Guides Overview](/docs/implementation/migration/overview) as it details the key components of migrating to Mixpanel from other analytics tools. Below we outline specific steps and considerations when migrating from Amplitude.
 
 ## Differences in the data models
 
@@ -215,7 +215,7 @@ curl --request POST \
 The big difference between the APIs are:
 
 - **Authentication:** Amplitude authenticates in the request payload, whereas Mixpanel uses your project token in the request URL alongside basic auth. Mixpanel authentication can be done via a service account as described [here](https://developer.mixpanel.com/reference/ingestion-api-authentication). Be sure to move the authentication outside the payload.
-- **Event JSON Structure:** Amplitude and Mixpanel have slightly different structures (explained [here](/docs/other-bits/tutorials/migration-guides/migrating-to-mixpanel-from-amplitude#differences-in-the-data-models)). You will want to remap the Amplitude event format to the expected Mixpanel JSON payload as described [here](https://www.notion.so/Migrating-to-Mixpanel-from-Amplitude-723407166fbf4f7ba9365034691502da).
+- **Event JSON Structure:** Amplitude and Mixpanel have slightly different structures (explained [here](/docs/implementation/migration/amplitude#differences-in-the-data-models)). You will want to remap the Amplitude event format to the expected Mixpanel JSON payload as described [here](https://www.notion.so/Migrating-to-Mixpanel-from-Amplitude-723407166fbf4f7ba9365034691502da).
 
 ### Reverse ETL (RETL)
 

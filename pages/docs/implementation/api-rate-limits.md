@@ -1,4 +1,4 @@
-# Rate Limits
+# API Rate Limits
 
 ## Ingestion Endpoints
 
