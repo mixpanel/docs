@@ -123,7 +123,7 @@ Two systems will always track data differently due to their nature. It might ver
 
 ### Ad Blockers and Do Not Track Settings
 
-Client-Side Tracking can be unreliable, you may lose events for 30-50% of your users. You can resolve this by [sending events through a proxy](/docs/tracking/how-tos/tracking-via-proxy), but it requires a bit more effort. We [recommend](/docs/tracking/how-tos/debugging#client-side-vs-server-side-tracking) server-side tracking, since it is more reliable and easier to maintain than web/mobile tracking.
+Client-Side Tracking can be unreliable, you may lose events for 30-50% of your users. You can resolve this by [sending events through a proxy](/docs/implementation/tracking-via-proxy), but it requires a bit more effort. We [recommend](/docs/tracking/how-tos/debugging#client-side-vs-server-side-tracking) server-side tracking, since it is more reliable and easier to maintain than web/mobile tracking.
 
 ### Different Timezones
 

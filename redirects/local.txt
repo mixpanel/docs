@@ -9,11 +9,18 @@
 /docs/getting-started/what-is-mixpanel /docs/what-is-mixpanel
 /docs/getting-started/what-should-i-track /docs/quickstart/what-to-track
 /docs/other-bits/community /docs/other-bits/support-and-community/community
+/docs/other-bits/rate-limits /docs/implementation/api-rate-limits
 /docs/other-bits/tutorials/adoption-reference-guide /docs/best-practices/adoption
 /docs/other-bits/tutorials/analytics-strategy /docs/best-practices/analytics-strategy
 /docs/other-bits/tutorials/creating-a-tracking-plan /docs/best-practices/create-a-tracking-plan
+/docs/other-bits/tutorials/developers/mixpanel-for-developers-commonly-asked-questions /docs/implementation/faq
 /docs/other-bits/tutorials/developers/mixpanel-for-developers-fundamentals /docs/how-it-works/data-model/fundamentals
 /docs/other-bits/tutorials/developers/mixpanel-for-developers-id-management /docs/implementation/id-management
+/docs/other-bits/tutorials/developers/mixpanel-for-developers-implementation /docs/implementation/videos
+/docs/other-bits/tutorials/migration-guides /docs/implementation/migration/overview
+/docs/other-bits/tutorials/migration-guides/migrating-to-mixpanel-from-adobe-analytics /docs/implementation/migration/adobe-analytics
+/docs/other-bits/tutorials/migration-guides/migrating-to-mixpanel-from-amplitude /docs/implementation/migration/amplitude
+/docs/other-bits/tutorials/migration-guides/migrating-to-mixpanel-from-google-analytics /docs/implementation/migration/google-analytics
 /docs/other-bits/tutorials/mixpanel-analysis/data-model /docs/how-it-works/data-model/introduction
 /docs/other-bits/tutorials/mixpanel-analysis/overview /docs/other-bits/tutorials/mixpanel-analysis/data-model
 /docs/other-bits/tutorials/setting-up-mixpanel /docs/best-practices/project-setup
@@ -34,6 +41,7 @@
 /docs/tracking/how-tos/events-and-properties /docs/how-it-works/events-and-properties
 /docs/tracking/how-tos/identifying-users /docs/implementation/identifying-users
 /docs/tracking/how-tos/set-up-projects /docs/best-practices/developer-environments
+/docs/tracking/how-tos/tracking-via-proxy /docs/implementation/tracking-via-proxy
 /docs/tracking/how-tos/user-profiles /docs/how-it-works/user-profiles
 /docs/tracking/http-api /docs/implementation/http-api
 /docs/tracking/integrations/bigquery /docs/implementation/data-warehouse/integrations/bigquery
@@ -44,7 +52,7 @@
 /docs/tracking/reference/androi /docs/tracking/reference/android
 /docs/tracking/server /docs/implementation/server-side-sdk
 /docs/tutorials/developers /docs/how-it-works/data-model/fundamentals
-/docs/tutorials/migration-guides/migrating-to-mixpanel-from-google-analytics /docs/other-bits/tutorials/migration-guides/migrating-to-mixpanel-from-google-analytics
+/docs/tutorials/migration-guides/migrating-to-mixpanel-from-google-analytics /docs/implementation/migration/google-analytics
 /docs/tutorials/mixpanel-analysis /docs/other-bits/tutorials/mixpanel-analysis/overview
 /docs/tutorials/mixpanel-analysis/insights /docs/other-bits/tutorials/mixpanel-analysis/insights
 /docs/tutorials/mixpanel-analysis/retention /docs/other-bits/tutorials/mixpanel-analysis/retention

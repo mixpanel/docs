@@ -13,9 +13,9 @@ We've collated here educational resources to guide you through best practices on
 
 - [Mixpanel for Developers](/docs/other-bits/tutorials/developers/): Implement Mixpanel confidently and with proper identity management. Understand events and properties on Mixpanel, and the data types we support.
 
-- [Migration Guides](/docs/other-bits/tutorials/migration-guides)
-  - [Migrating from Amplitude](/docs/other-bits/tutorials/migration-guides/migrating-to-mixpanel-from-amplitude)
-  - [Migrating from Google Analytics](/docs/other-bits/tutorials/migration-guides/migrating-to-mixpanel-from-google-analytics)
+- [Migration Guides](/docs/implementation/migration/overview)
+  - [Migrating from Amplitude](/docs/implementation/migration/amplitude)
+  - [Migrating from Google Analytics](/docs/implementation/migration/google-analytics)
 
 - [Adoption Best Practices](/docs/best-practices/adoption)
   

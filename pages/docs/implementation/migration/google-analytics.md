@@ -1,6 +1,6 @@
-# Migrating To Mixpanel From Google Analytics
+# Google Analytics
 
-If you haven't already, we recommend starting with our [Migration Guides Overview](/docs/other-bits/tutorials/migration-guides) as it details the key components of migrating to Mixpanel from other analytics tools. Below we outline specific steps and considerations when migrating from Google Analytics.
+If you haven't already, we recommend starting with our [Migration Guides Overview](/docs/implementation/migration/overview) as it details the key components of migrating to Mixpanel from other analytics tools. Below we outline specific steps and considerations when migrating from Google Analytics.
 
 ## Differences in the data models
 
@@ -44,7 +44,7 @@ We recommend the following steps to get started quickly:
 - Use the [Mixpanel Marketing KPI Template](https://mixpanel.com/project?show-template-selector=true) to build your initial board
     
 #### Google Tag Manager (GTM)
-Mixpanel has a [Google Tag Manager (GTM) custom template](/docs/tracking/integrations/google-tag-manager) which can be leveraged to implement events within an hour. The template initializes the Mixpanel JavaScript SDK with similar calls as outlined in the above section.
+Mixpanel has a [Google Tag Manager (GTM) custom template](/docs/implementation/integrations/google-tag-manager) which can be leveraged to implement events within an hour. The template initializes the Mixpanel JavaScript SDK with similar calls as outlined in the above section.
     
 We recommend setting up the following in the custom template to get started quickly: a) Choose to auto-track pages, b) Set your conversion events. Once done, Mixpanel will start receiving page views and key conversion events.
     
@@ -177,7 +177,7 @@ Keep in mind that you will need to initialize the [Mixpanel SDK](https://develop
     
 #### Google Tag Manager (GTM)
 
-Mixpanel has a [Google Tag Manager (GTM) custom template](/docs/tracking/integrations/google-tag-manager) which can be leveraged to implement events within an hour. Simply load the template, and you can send Mixpanel the same events you’ve setup for your GA4 instance.
+Mixpanel has a [Google Tag Manager (GTM) custom template](/docs/implementation/integrations/google-tag-manager) which can be leveraged to implement events within an hour. Simply load the template, and you can send Mixpanel the same events you’ve setup for your GA4 instance.
 
 This method is straightforward since you’ve already setup your SDK to track “events” and are using Google Tag Manager. You can leverage this same setup to implement Mixpanel.
     

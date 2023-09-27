@@ -1,4 +1,4 @@
-# Migration Guides
+# Overview
 
 If you’re reading this, congrats on considering making the switch from another analytics provider to Mixpanel 🎊  Our migration guides are intended to outline how a migration works, what to expect, and how to mitigate the risks and switching costs of a migration whilst accelerate time to value.
 
@@ -34,8 +34,8 @@ When going through this migration, there is no better time to audit your own dat
 
 Depending on your current setup, the steps for migrating your live data tracking will differ. Please see the appropriate provider specific guides for more details on how to migrate your existing live data tracking and get started with Mixpanel.
 
-- [Amplitude Migration Guide](/docs/other-bits/tutorials/migration-guides/migrating-to-mixpanel-from-amplitude)
-- [Google Analytics Migration Guide](/docs/other-bits/tutorials/migration-guides/migrating-to-mixpanel-from-google-analytics)
+- [Amplitude Migration Guide](/docs/implementation/migration/amplitude)
+- [Google Analytics Migration Guide](/docs/implementation/migration/google-analytics)
 
 ### Data audit
 
