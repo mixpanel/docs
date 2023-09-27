@@ -12,7 +12,7 @@ In certain instances, it may make sense to [create separate production projects]
 
 In general though, if you want to track and study cross-platform user behaviour, we recommend using a single production project. Example scenarios:
 
-- Your platform teams - web, android, iOS - are separate and just need access to their own data. You can use event properties, e.g. platform = ‘web’, to create [data views](/docs/admin/data-governance/data-views-data-classification) and give relevant teams access to the views they need. The bonus in this scenario is that you for boards / reports is automatically shared with the different platform teams, and automatically filtered to their specific platform.
+- Your platform teams - web, android, iOS - are separate and just need access to their own data. You can use event properties, e.g. platform = ‘web’, to create [data views](/docs/data-governance/data-views-and-classification) and give relevant teams access to the views they need. The bonus in this scenario is that you for boards / reports is automatically shared with the different platform teams, and automatically filtered to their specific platform.
 
 <div style={{position: 'relative', paddingBottom: '64.90384615384616%', height: 0}}>
     <iframe src="https://www.loom.com/embed/4ff06748cc5f4a84a4fb6f581f2b7395"
@@ -24,7 +24,7 @@ In general though, if you want to track and study cross-platform user behaviour,
 
 
 - You have a B2B and a B2C platform and want to be able to analyze the certain users’ behaviour across both platforms. For instance, you’re a restaurant with a B2B app to manage multiple restaurants and reservations. You also have a B2C app for customers to make reservations. You want to analyze metrics across different entities: customers, restaurants, and reservations of which certain actions can be done either on the B2B or B2C platform. Being able to analyze conversions across these entities where actions can be done on either platform requires data to be in 1 project and having [Group Analytics](/docs/features/advanced/group-analytics) as an add-on.
-- You have sensitive data that you do want to send into Mixpanel, but want to prevent some users from getting access. In this case, you can still use a single project, but leverage [classified data](/docs/admin/data-governance/data-views-data-classification#mark-properties-as-classified-data) to mark those event or user properties as classified so that only users with access can query and see results on them.
+- You have sensitive data that you do want to send into Mixpanel, but want to prevent some users from getting access. In this case, you can still use a single project, but leverage [classified data](/docs/data-governance/data-views-and-classification#mark-properties-as-classified-data) to mark those event or user properties as classified so that only users with access can query and see results on them.
 
 <div style={{position: 'relative', paddingBottom: '64.90384615384616%', height: 0}}>
     <iframe src="https://www.loom.com/embed/1182410226984fc58cdc7b26d7dcdd76"
@@ -37,11 +37,11 @@ In general though, if you want to track and study cross-platform user behaviour,
 - You want to share your Mixpanel metrics perhaps with users outside your organization, who only access to consume reports but not need to be query underlying data - e.g. exec stakeholders who want to see summery metrics, or external vendors that need specific reports. For this, you could turn on and provide [public boards](/docs/boards/public-boards).
 
 ### Adding End Users to Your Mixpanel Organization and Projects
-Each Mixpanel customer is assigned an [organization](/docs/admin/organizations-projects/manage-organization) which serves as the controlling entity for managing all your Mixpanel analytics needs. Within this, organization owners and admins will have access to [monitor your pricing and billing plan and usage to date](/docs/admin/organizations-projects#billing-and-plans). They will also be able to [invite end users to the organization](/docs/admin/organizations-projects/manage-team-members#invite-users), a step they need to take before end users can be added to a project.
+Each Mixpanel customer is assigned an [organization](/docs/orgs-and-projects/manage-organization) which serves as the controlling entity for managing all your Mixpanel analytics needs. Within this, organization owners and admins will have access to [monitor your pricing and billing plan and usage to date](/docs/admin/organizations-projects#billing-and-plans). They will also be able to [invite end users to the organization](/docs/orgs-and-projects/manage-team-members#invite-users), a step they need to take before end users can be added to a project.
 
 There are two general approaches to user management in Mixpanel. 
 
-- Organization owners and admins can create [teams](/docs/admin/organizations-projects/manage-team-members#teams) at the organization level and then add teams to the different projects. Typically, larger enterprise customers prefer to use this, along with [Single Sign-On](/docs/admin/sso), for better management of users.
+- Organization owners and admins can create [teams](/docs/orgs-and-projects/manage-team-members#teams) at the organization level and then add teams to the different projects. Typically, larger enterprise customers prefer to use this, along with [Single Sign-On](/docs/access-security/single-sign-on/overview), for better management of users.
 - Organization owners and admins can also add individual users to specific projects.
 
 
@@ -56,14 +56,14 @@ Organization owners and admins can assign projects or teams directly to user acc
 
 ![image](https://github.com/mixpanel/docs/assets/50901466/8ec08b83-d0e2-47b3-92a4-5f5e98d70b52)
 
-Once [project owners and admins](/docs/admin/organizations-projects/manage-team-members#setting-a-default-role-on-a-project) are assigned, they can then add end users to projects and provision their roles. 
+Once [project owners and admins](/docs/orgs-and-projects/manage-team-members#setting-a-default-role-on-a-project) are assigned, they can then add end users to projects and provision their roles. 
 
 ![image](https://github.com/mixpanel/docs/assets/50901466/61a9099b-f07e-4bcf-9110-bf5418e7000b)
 
 ### Other Project Data Configurations
-- [Timezone](/docs/admin/organizations-projects/manage-projects#manage-timezones-for-projects)
+- [Timezone](/docs/orgs-and-projects/managing-projects#manage-timezones-for-projects)
 - [Project Token, API / Project Secret](/docs/implementation/api-credentials)
-- [Data Governance: Event Approval](/docs/admin/data-governance/event-approval)
+- [Data Governance: Event Approval](/docs/data-governance/event-approval)
 - [Group Analytics](/docs/features/advanced/group-analytics)
 - [Session Settings](/docs/features/advanced/sessions)
 - [Identity Merge](/docs/implementation/identifying-users)

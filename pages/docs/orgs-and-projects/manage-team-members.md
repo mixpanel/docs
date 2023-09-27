@@ -9,7 +9,7 @@ Your team members access your organization and its projects using individual use
 
 You can invite users users to an organization or to a project with specific role permissions.
 
->See [Permissions](https://docs-mixpanel.vercel.app/docs/admin/organizations-projects/manage-team-members#permissions) to learn more about organizaton roles and project roles.
+>See [Permissions](/docs/orgs-and-projects/manage-team-members#permissions) to learn more about organizaton roles and project roles.
 
 #### Invite Users to an Organization
 

@@ -1,4 +1,4 @@
-# Mixpanel For Startups
+# Startup Program
 
 
 The startup program empowers companies to easily track and analyze data to find product-market fit and more. The program is open to early-stage startups that meet the following requirements:

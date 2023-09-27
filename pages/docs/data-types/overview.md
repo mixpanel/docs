@@ -1,6 +1,6 @@
 # Overview
 
-Mixpanel data is stored and isolated within a [project](/docs/admin/organizations-projects/manage-projects). At this time, you cannot query data across multiple projects. Mixpanel supports a few different categories of data that can be used for analysis: events, user profiles, group profiles, and lookup tables. In data warehouse parlance, events make up the fact table while user profiles, group profiles, and lookup tables are dimension tables.
+Mixpanel data is stored and isolated within a [project](/docs/orgs-and-projects/managing-projects). At this time, you cannot query data across multiple projects. Mixpanel supports a few different categories of data that can be used for analysis: events, user profiles, group profiles, and lookup tables. In data warehouse parlance, events make up the fact table while user profiles, group profiles, and lookup tables are dimension tables.
 
 ![Data Model Overview](/Data%20Model%20Overview.png)
 
@@ -85,7 +85,7 @@ The following event represents the fact that user "john.doe@gmail.com" played th
 ## User Profiles, Group Profiles & Lookup Tables
 All three are key/value stores that augment your event data with additional metadata about entities. The differences are whether the join key is customizable and whether events are copied and indexed by the join key.
 
-**[User profiles](/docs/how-it-works/user-profiles)** are joined to events via `distinct_id` which is the default indexing for Events. 
+**[User profiles](/docs/data-types/user-profiles)** are joined to events via `distinct_id` which is the default indexing for Events. 
 
 **[Group profiles](/docs/features/advanced/group-analytics)** are joined to events via an event property you specify as a group key. Once you create a new group key, we will add an additional index for your events on that property. This allows you to do funnels or retention by that property instead of by `distinct_id`.
 

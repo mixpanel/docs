@@ -17,9 +17,9 @@ Navigate to Project Settings > Warehouse Sources to get started today.
 
 ## Supported Warehouses
 The following data warehouses are currently supported with Mixpanel Warehouse Connectors. For more details on how to connect your warehouse, navigate below:
-- [BigQuery](https://docs.mixpanel.com/docs/implementation/data-warehouse/integrations/bigquery) 
-- [Snowflake](https://docs.mixpanel.com/docs/implementation/data-warehouse/integrations/snowflake)
-- [Redshift](https://docs.mixpanel.com/docs/implementation/data-warehouse/integrations/redshift)
+- [BigQuery](/docs/implementation/data-warehouse/integrations/bigquery) 
+- [Snowflake](/docs/implementation/data-warehouse/integrations/snowflake)
+- [Redshift](/docs/implementation/data-warehouse/integrations/redshift)
 
 
 ## FAQ

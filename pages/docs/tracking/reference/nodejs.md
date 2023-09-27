@@ -12,7 +12,7 @@ Use [npm](https://www.npmjs.com/) to install Mixpanel in your project by calling
 
 Next, create a Mixpanel instance and initialize a Mixpanel client to communicate with Mixpanel servers. To do this, grab the Mixpanel factory and create an instance of the Mixpanel client by calling `mixpanel.init(YOUR_PROJECT_TOKEN)`.
 
-The project token is unique to your Mixpanel project. [Instructions for finding your project token can be found here](/docs/admin/organizations-projects/manage-projects#find-your-project-tokens).
+The project token is unique to your Mixpanel project. [Instructions for finding your project token can be found here](/docs/orgs-and-projects/managing-projects#find-your-project-tokens).
 ```javascript Javascript
 // grab the Mixpanel factory
 var Mixpanel = require('mixpanel');
@@ -71,14 +71,14 @@ mixpanel.track('event name', {
 
 You can send user profile updates to Mixpanel in addition to sending events.
 
-Mixpanel can maintain a [profile of each of your users](/docs/how-it-works/user-profiles), storing information you know about them.
+Mixpanel can maintain a [profile of each of your users](/docs/data-types/user-profiles), storing information you know about them.
 
 A profile update changes the properties of a user profile, essentially changing the details tied to that profile or creating it if it does not exist.
 
 You can use profiles and user profile properties to explore and segment users by who they are, in addition to what they did with event tracking.
 
 ### Setting Profile Properties
-You can update or create a [user profile](/docs/how-it-works/user-profiles)`. The first argument is distinct_id, and the second argument is a JSON list of the properties to add to or update the profile with.
+You can update or create a [user profile](/docs/data-types/user-profiles)`. The first argument is distinct_id, and the second argument is a JSON list of the properties to add to or update the profile with.
 
 The following example sets a "Plan" property with a value "Premium", a first name, a last name, and a created date on the user's profile that has a distinct id of `13793`.
 

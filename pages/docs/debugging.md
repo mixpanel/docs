@@ -65,8 +65,8 @@ If you're using Mixpanel in a web application, you can use your browser's develo
 1. On your website, [enable debug mode](/docs/tracking/reference/javascript#debug-mode).
 2. Open your browser's developer console and navigate to the Network > Fetch/XHR tab. 
 3. Perform an action that triggers the `mixpanel.track` call.
-4. If your project has US Data Residency, look for a request triggered to `api.mixpanel.com/track`. If your project has [EU Data Residency](/docs/other-bits/privacy-and-security/eu-residency), look for a request triggered to  `api-eu.mixpanel.com/track`. Troubleshoot any error messages.
-6. If the request is successful, check that the "token" in the data payload matches the token in your [Project Settings](/docs/admin/organizations-projects/manage-projects#access-keys). From here, you can then validate that the event was directed to the right project token and using Events, and confirm that the data is arriving correctly in Mixpanel.
+4. If your project has US Data Residency, look for a request triggered to `api.mixpanel.com/track`. If your project has [EU Data Residency](/docs/privacy/eu-residency), look for a request triggered to  `api-eu.mixpanel.com/track`. Troubleshoot any error messages.
+6. If the request is successful, check that the "token" in the data payload matches the token in your [Project Settings](/docs/orgs-and-projects/managing-projects#access-keys). From here, you can then validate that the event was directed to the right project token and using Events, and confirm that the data is arriving correctly in Mixpanel.
 
 ### Customize Flush Interval (Mobile)
 
@@ -94,7 +94,7 @@ You can also flush manually with public `void flush()`.
 
 #### Hidden in Lexicon
 
-Project Owner and Admin users can hide events, event properties, and user profile properties in your [Mixpanel project through Lexicon](/docs/admin/data-governance/lexicon#hide-events-and-properties). Check Lexicon to review if the event or property may be hidden.
+Project Owner and Admin users can hide events, event properties, and user profile properties in your [Mixpanel project through Lexicon](/docs/data-governance/lexicon/guide#hide-events-and-properties). Check Lexicon to review if the event or property may be hidden.
 
 #### Inactive Events and Properties
 
@@ -127,7 +127,7 @@ Client-Side Tracking can be unreliable, you may lose events for 30-50% of your u
 
 ### Different Timezones
 
-Mixpanel records all events in Coordinated Universal Time (UTC) at intake. By default, Mixpanel displays events times in US Pacific Time but this is adjustable in [Project Settings](/docs/admin/organizations-projects/manage-projects#manage-timezones-for-projects). Navigate to your Project Settings to determine what timezone your Mixpanel events are displayed in.
+Mixpanel records all events in Coordinated Universal Time (UTC) at intake. By default, Mixpanel displays events times in US Pacific Time but this is adjustable in [Project Settings](/docs/orgs-and-projects/managing-projects#manage-timezones-for-projects). Navigate to your Project Settings to determine what timezone your Mixpanel events are displayed in.
 
 - Are event timezones tracked in the same way?
 

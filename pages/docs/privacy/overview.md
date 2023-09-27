@@ -1,6 +1,4 @@
-# Privacy And Security
-
-## Overview
+# Overview
 Mixpanel believes in respecting and protecting people’s fundamental online privacy and data rights. Which is why we've built Mixpanel's analysis tools in compliance with industry best-practices and global data regulations like the GDPR and the CCPA.
 
 Visit our [Privacy Hub](https://mixpanel.com/legal/privacy-hub/) to see how we comply with various privacy guidelines.
@@ -56,10 +54,10 @@ While the following API can be used to delete or retrieve personal data as outli
 * [iOS - Swift](/docs/tracking/reference/swift#opting-users-out-of-tracking)
 * [Android](/docs/tracking/reference/android#opting-users-out-of-tracking)
 
-See Mixpanel’s [Managing Personal Information](/docs/tracking/how-tos/privacy-friendly-tracking) guide for more information on best practices when handling personal information in Mixpanel.
+See Mixpanel’s [Managing Personal Information](/docs/privacy/protecting-user-data) guide for more information on best practices when handling personal information in Mixpanel.
 
 ### Authentication
-Authentication occurs via a user-specific OAuth token with a scope that only includes the following deletion and retrieval APIs. Users can retrieve this token from their [Account Settings](https://mixpanel.com/settings/account#data-privacy) by selecting their initials in the top right of Mixpanel and selecting **Profile & Preferences**, and then the Data & Privacy tab. The OAuth token has a one year expiry. It should be passed in the Authentication header. Users are eligible to generate an OAuth token if they are the [project owner](/docs/admin/organizations-projects/manage-team-members#project-roles), or if they are a project owner or admin of a project that supports [team member roles](/docs/admin/organizations-projects/manage-team-members#project-roles).
+Authentication occurs via a user-specific OAuth token with a scope that only includes the following deletion and retrieval APIs. Users can retrieve this token from their [Account Settings](https://mixpanel.com/settings/account#data-privacy) by selecting their initials in the top right of Mixpanel and selecting **Profile & Preferences**, and then the Data & Privacy tab. The OAuth token has a one year expiry. It should be passed in the Authentication header. Users are eligible to generate an OAuth token if they are the [project owner](/docs/orgs-and-projects/manage-team-members#project-roles), or if they are a project owner or admin of a project that supports [team member roles](/docs/orgs-and-projects/manage-team-members#project-roles).
 
 ![](/Personal-Data-and-Privacy-Settings.png)
 
@@ -74,16 +72,16 @@ Parameters:
 
 | Parameter | Parameter Type | Data Type | Description |
 |-----------------|-------------------------|----------------|-------------------|
-| Token | URL. Passed in request URL. | Query String Parameter | Your Mixpanel [project token](/docs/admin/organizations-projects/manage-projects#find-your-project-tokens). |
+| Token | URL. Passed in request URL. | Query String Parameter | Your Mixpanel [project token](/docs/orgs-and-projects/managing-projects#find-your-project-tokens). |
 | distinct_ids | Body. Passed in JSON blob format. | Array of strings | A list of distinct IDs associated with the users whose data you would like to export. You can add up to 2000 distinct IDs. |
 | compliance_type | Body. Passed in JSON blob format. | String | Select CCPA or GDPR. Default is GDPR. |
-| disclosure_type | Body. Passed in JSON blob format. | String | Only required if compliance_type = CCPA. Can be [Data, Categories, or Sources. Default is Data](/docs/other-bits/privacy-and-security/export-or-delete-end-user-data). |
+| disclosure_type | Body. Passed in JSON blob format. | String | Only required if compliance_type = CCPA. Can be [Data, Categories, or Sources. Default is Data](/docs/privacy/end-user-data-management). |
 
 Authorization:
 
 | Authorization Type | Pass As | Description |
 |-----------------------------|-------------|-------------------|
-| Bearer | Body. Passed in JSON blob format. | Your [OAuth token](/docs/other-bits/privacy-and-security/export-or-delete-end-user-data#generate-oauth-token) for GDPR APIs. |
+| Bearer | Body. Passed in JSON blob format. | Your [OAuth token](/docs/privacy/end-user-data-management#generate-oauth-token) for GDPR APIs. |
 
 Example Request:
 ```text
@@ -143,14 +141,14 @@ Parameters:
 
 | Parameter | Parameter Type | Type | Description |
 |-----------------|-------------------------|---------|------------------|
-| Token | URL. Passed in request URL. | Query String Parameter | Your Mixpanel [project token](/docs/admin/organizations-projects/manage-projects#find-your-project-tokens). |
+| Token | URL. Passed in request URL. | Query String Parameter | Your Mixpanel [project token](/docs/orgs-and-projects/managing-projects#find-your-project-tokens). |
 | Task ID | URL. Passed in request URL. | Query String Parameter | The tracking ID shown in the response. |
 
 Authorization:
 
 | Authorization Type | Pass As | Description |
 |-----------------------------|-------------|------------------|
-| Bearer | Body. Passed in JSON blob format. | Your [OAuth token](/docs/other-bits/privacy-and-security/export-or-delete-end-user-data#generate-oauth-token) for GDPR APIs. |
+| Bearer | Body. Passed in JSON blob format. | Your [OAuth token](/docs/privacy/end-user-data-management#generate-oauth-token) for GDPR APIs. |
 
 Example Request:
 `curl "https://mixpanel.com/api/app/data-retrievals/v3.0/1583958896131033662/?token=591b3354bb2bdd96f72f23bf56911673"
@@ -170,7 +168,7 @@ Parameters:
 
 | Parameter | Parameter Type | Type | Description |
 |-----------------|-------------------------|---------|------------------|
-| Token | URL. Passed in request URL. | Query String Parameter | Your Mixpanel [project token](/docs/admin/organizations-projects/manage-projects#find-your-project-tokens). |
+| Token | URL. Passed in request URL. | Query String Parameter | Your Mixpanel [project token](/docs/orgs-and-projects/managing-projects#find-your-project-tokens). |
 | distinct_ids | Body. Passed in JSON blob format. | Array of strings | A list of distinct IDs associated with the users whose data you would like to export. You can add up to 1999 distinct IDs. |
 | compliance_type | Body. Passed in JSON blob format. | String | Select CCPA or GDPR. Default is GDPR. |
 
@@ -178,7 +176,7 @@ Authorization:
 
 | Authorization Type | Pass As | Description |
 |-----------------------------|-------------|------------------|
-| Bearer | Body. Passed in JSON blob format. | Your [OAuth token](/docs/other-bits/privacy-and-security/export-or-delete-end-user-data#generate-oauth-token) for GDPR APIs. |
+| Bearer | Body. Passed in JSON blob format. | Your [OAuth token](/docs/privacy/end-user-data-management#generate-oauth-token) for GDPR APIs. |
 
 Example Request:
 `curl "https://mixpanel.com/api/app/data-deletions/v3.0/?token=591b3354bb2bdd96f72f23bf56911673"
@@ -228,14 +226,14 @@ Parameters:
 
 | Parameter | Parameter Type | Type | Description |
 |-----------------|-------------------------|---------|------------------|
-| Token | URL. Passed in request URL. | Query String Parameter | Your Mixpanel [project token](/docs/admin/organizations-projects/manage-projects#find-your-project-tokens). |
+| Token | URL. Passed in request URL. | Query String Parameter | Your Mixpanel [project token](/docs/orgs-and-projects/managing-projects#find-your-project-tokens). |
 | Task ID | URL. Passed in request URL. | Query String Parameter | The tracking ID shown in the response. |
 
 Authorization:
 
 | Authorization Type | Pass As | Description |
 |-----------------------------|-------------|------------------|
-| Bearer | Body. Passed in JSON blob format. | Your [OAuth token](/docs/other-bits/privacy-and-security/export-or-delete-end-user-data#generate-oauth-token) for GDPR APIs. |
+| Bearer | Body. Passed in JSON blob format. | Your [OAuth token](/docs/privacy/end-user-data-management#generate-oauth-token) for GDPR APIs. |
 
 Example Request:
 `curl "https://mixpanel.com/api/app/data-deletions/v3.0/35bd8477-f71f-4088-af55-c88a6fb4ad4b/?token=591b3354bb2bdd96f72f23bf56911674" -H "Authorization: Bearer vZcErNw8JCq42BZUJyWoZmDWCKBxXc"`
@@ -256,21 +254,21 @@ Return Key:
 
 | Name | Type | Description |
 |----------|----------|------------------|
-| 204 NoContent | Query String Parameter `required` | Your Mixpanel [project token](/docs/admin/organizations-projects/manage-projects#find-your-project-tokens). |
+| 204 NoContent | Query String Parameter `required` | Your Mixpanel [project token](/docs/orgs-and-projects/managing-projects#find-your-project-tokens). |
 | 405 MethodNotAllowed | Query String Parameter `required` | Task ID returned from POST. |
 
 Parameters:
 
 | Parameter | Parameter Type | Type | Description |
 |-----------------|-------------------------|---------|------------------|
-| Token | URL. Passed in request URL. | Query String Parameter | Your Mixpanel [project token](/docs/admin/organizations-projects/manage-projects#find-your-project-tokens). |
+| Token | URL. Passed in request URL. | Query String Parameter | Your Mixpanel [project token](/docs/orgs-and-projects/managing-projects#find-your-project-tokens). |
 | distinct_ids | Body. Passed in JSON blob format. | Array of strings | A list of distinct IDs associated with the users whose data you would like to export. You can add up to 1999 distinct IDs. |
 
 Authorization:
 
 | Authorization Type | Pass As | Description |
 |-----------------------------|-------------|------------------|
-| Bearer | Body. Passed in JSON blob format. | Your [OAuth token](/docs/other-bits/privacy-and-security/export-or-delete-end-user-data#generate-oauth-token) for GDPR APIs. |
+| Bearer | Body. Passed in JSON blob format. | Your [OAuth token](/docs/privacy/end-user-data-management#generate-oauth-token) for GDPR APIs. |
 
 Example Request:
 `curl "https://mixpanel.com/api/app/data-deletions/v3.0/?token=591b3354bb2bdd96f72f23bf56911673"
