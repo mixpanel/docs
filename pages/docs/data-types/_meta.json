@@ -1,0 +1,9 @@
+{
+    "overview": "Overview",
+    "user-profiles": {
+        "type": "page",
+        "title": "User Profiles",
+        "href": "/docs/how-it-works/user-profiles"
+      },
+    "lookup-tables": "Lookup Tables"
+}
