@@ -38,10 +38,20 @@
 	},
 	"data-pipelines": "Data Pipelines",
 	"cohort-sync": "Cohort Sync",
-	"placeholder": {
+	"support": {
 		"type": "separator",
-		"title": "STILL WORKING ON EVERYTHING BELOW"
+		"title": "SUPPORT"
 	},
-	"tracking": "Tracking",
-	"other-bits": "Other Bits"
+	"community": "Community",
+	"get-help": {
+		"title": "Get Help ↗",
+		"newWindow": true,
+		"href": "https://mixpanel.com/get-support"
+	},
+	"response-times": "Response Times",
+	"hire-an-expert": {
+		"title": "Hire an Expert ↗",
+		"newWindow": true,
+		"href": "https:mixpanel.com/partners/experts/matchmaking"
+	}
 }

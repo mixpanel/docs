@@ -1,4 +1,4 @@
-# Community
+# Guidelines
 
 
 You can join our Slack Community [here](https://www.mixpanel.com/community-slack)! 
