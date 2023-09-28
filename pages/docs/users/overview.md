@@ -28,6 +28,10 @@ A cohort is a group of users who share a certain set of properties or have perfo
 
 Learn more about Cohorts [here](/docs/cohorts/overview).
 
+<p style={{ position: 'relative', paddingBottom: '56.25%', height: 0, overflow: 'hidden' }}>
+  <iframe src="https://www.loom.com/embed/c1f5c6b268f94d06877b6e05083934bb" frameborder="0" style={{ position: 'absolute', top: 0, left: 0, width: '100%', height: '100%' }} allowfullscreen></iframe>
+</p>
+
 ### Modifying Table Columns
 
 You may wish to change what data is displayed in the Users table. You can do so by clicking on **Edit Columns** and selecting / deselecting the profile properties you wish to display on the User table
