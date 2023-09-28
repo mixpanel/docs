@@ -1,6 +1,7 @@
 # Users
 
 ## Overview
+
 ![/Screen_Shot_2022-07-12_at_4.43.34_PM.png](/Screen_Shot_2022-07-12_at_4.43.34_PM.png)
 
 Mixpanel's Users page allows you to filter users and gain a deeper understanding of how they interact with your website or application. By filtering your users into groups called cohorts, you can import these cohorts into other reports and perform analyses on those specific users.
@@ -29,6 +30,10 @@ By clicking the name of a user in the User tables, you can explore that user's u
 A cohort is a group of users who share a certain set of properties or have performed a particular combination or frequency of events. You can create a cohort on the Users page by generating filtering criteria. Once a cohort is created, you can save it and use it to group and filter data in other Mixpanel reports.
 
 Learn more about Cohorts [here](/docs/analysis/advanced/cohorts).
+
+<p style={{ position: 'relative', paddingBottom: '56.25%', height: 0, overflow: 'hidden' }}>
+  <iframe src="https://www.loom.com/embed/c1f5c6b268f94d06877b6e05083934bb" frameborder="0" style={{ position: 'absolute', top: 0, left: 0, width: '100%', height: '100%' }} allowfullscreen></iframe>
+</p>
 
 ### Modifying Table Columns
 
