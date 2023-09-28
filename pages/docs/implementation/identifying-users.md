@@ -158,7 +158,7 @@ We don't recommend doing this in general, as it adds complexity to your identity
 ### How should I link identified IDs from 3rd-party systems?
 Attribution providers (like Appsflyer, Adjust, and Branch) use Mixpanel's SDK properly to set `$device_id` to whichever ID they use for attribution. 
 
-For cohort syncs out to 3rd-party systems, we recommend designating a user property with the identifier of the user in that third-party system. More details are in our integrations docs; for example, see our [doc on exporting cohorts to Braze](/docs/other-bits/cohort-syncs/braze#matching-mixpanel-and-braze-users). If those integrations are bidirectional (eg: they send events _back_ to Mixpanel), it's best to ensure that the user ID in both Mixpanel and the 3rd-party system is the same so that those events are sent to the correct user.
+For cohort syncs out to 3rd-party systems, we recommend designating a user property with the identifier of the user in that third-party system. More details are in our integrations docs; for example, see our [doc on exporting cohorts to Braze](/docs/cohort-sync/integrations/braze#matching-mixpanel-and-braze-users). If those integrations are bidirectional (eg: they send events _back_ to Mixpanel), it's best to ensure that the user ID in both Mixpanel and the 3rd-party system is the same so that those events are sent to the correct user.
 
 ### What is the status of Mixpanel's legacy `alias` method?
 Prior to March 2020, the only way to connect users together was the `.alias()` method. This was very limited and was not retroactive; this meant that if a user used two devices and then logged in, you would lose activity for the user from one of the devices.
