@@ -25,6 +25,10 @@ Imagine your product is a B2B messaging application. You might use Funnels to an
 
 ## Quick Start
 
+<p style={{ position: 'relative', paddingBottom: '56.25%', height: 0, overflow: 'hidden' }}>
+  <iframe src="https://www.loom.com/embed/085c4a16c3f74abf92db185ae55aaf6c" frameborder="0" style={{ position: 'absolute', top: 0, left: 0, width: '100%', height: '100%' }} allowfullscreen></iframe>
+</p>
+
 Building a report in Funnels takes just a few clicks, and results arrive in seconds. Let's build a simple report together. Continuing the B2B messaging example, imagine you wanted to answer the following question:
 
 > What marketing UTM medium drove the most signup conversions for users on iOS?
@@ -66,6 +70,10 @@ However, you can also visualize the funnel in any of the following chart types, 
 ## Advanced
 
 ### Conversion Criteria
+
+<p style={{ position: 'relative', paddingBottom: '56.25%', height: 0, overflow: 'hidden' }}>
+  <iframe src="https://www.loom.com/embed/56c79ac257f343d98bd9eef1f7271299" frameborder="0" style={{ position: 'absolute', top: 0, left: 0, width: '100%', height: '100%' }} allowfullscreen></iframe>
+</p>
 
 #### Conversion Window
 
