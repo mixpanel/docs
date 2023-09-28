@@ -1,4 +1,4 @@
-# Manage Organization
+# Organization
 
 
 ## Overview

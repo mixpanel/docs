@@ -78,7 +78,7 @@ Each correlation will be represented by one card in the summary view results. Th
 
 ### Scores
 
-By default, the results will be sorted by Opportunity. “Opportunity” is Mixpanel’s proprietary calculation of how important a given correlation might be. The correlation strength is calculated using the phi coefficient. [Reference here](/docs/analysis/advanced/signal#correlation) for more detail on how Opportunity and correlation strength is calculated.
+By default, the results will be sorted by Opportunity. “Opportunity” is Mixpanel’s proprietary calculation of how important a given correlation might be. The correlation strength is calculated using the phi coefficient. [Reference here](/docs/reports/legacy/signal#correlation) for more detail on how Opportunity and correlation strength is calculated.
 
 ### Key Findings
 

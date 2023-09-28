@@ -105,7 +105,7 @@ Totals funnels count multiple entries per user.  Users can re-enter the funnel 
 
 **Sessions**
 
-Sessions funnels are counted based on the number of sessions that contain a conversion. Like totals funnels, users will be allowed to re-enter the funnel in subsequent sessions; however, in sessions funnels users must convert through the funnel within the same session they entered the funnel to be counted as converted. If the session ends before they have converted, the user will time out and drop out of the funnel after the last step they reached. Learn more about Sessions [here](/docs/features/advanced/sessions).
+Sessions funnels are counted based on the number of sessions that contain a conversion. Like totals funnels, users will be allowed to re-enter the funnel in subsequent sessions; however, in sessions funnels users must convert through the funnel within the same session they entered the funnel to be counted as converted. If the session ends before they have converted, the user will time out and drop out of the funnel after the last step they reached. Learn more about Sessions [here](/docs/features/sessions).
 
 #### Ordering
 
@@ -488,7 +488,7 @@ Custom events were designed to specifically target this exact issue. With custom
 
 **Step 2:** Event C
 
-This allows users to make multiple paths to the same end goal. Learn more about creating custom events [here](/docs/features/advanced/custom-events).
+This allows users to make multiple paths to the same end goal. Learn more about creating custom events [here](/docs/features/custom-events).
 
 ### How does Mixpanel handle simultaneous events?
 

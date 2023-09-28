@@ -55,7 +55,7 @@ Once you've tracked these two events, you can use our [Company KPIs Template](ht
 
 ## How to Track
 There are two methods of tracking:
-* **Server-Side (Recommended):** In this method, you send events from your servers to Mixpanel. This approach is the most reliable and easy to maintain, since it lives in an environment that you control. It also means that you can add tracking in one place (your servers) rather than in 3 places (web, iOS, Android), which keeps tracking unified and clean. See our [quickstart](/docs/implementation/server-side-sdk) and [best practices](/docs/tracking/how-tos/effective-server) for more details on effective server-side tracking.
+* **Server-Side (Recommended):** In this method, you send events from your servers to Mixpanel. This approach is the most reliable and easy to maintain, since it lives in an environment that you control. It also means that you can add tracking in one place (your servers) rather than in 3 places (web, iOS, Android), which keeps tracking unified and clean. See our [quickstart](/docs/implementation/server-side-sdk) and [best practices](/docs/best-practices/server-side-best-practices) for more details on effective server-side tracking.
 
 * **Client-Side:** In this method, events are generated on the client device and sent to the Mixpanel API. There are two types of client-side tracking: web (Javascript) and mobile. This is less reliable than server-side due to ad-blockers. It's also harder to update tracking, since it might involve redeploying your app to web and mobile clients. You can improve reliability of client-side tracking using a [proxy](/docs/implementation/tracking-via-proxy), but this takes more effort.
 
