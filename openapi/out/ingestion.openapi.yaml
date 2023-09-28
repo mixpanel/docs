@@ -372,8 +372,8 @@ paths:
         integrate with  [Google
         Pub/Sub](https://docs.mixpanel.com/docs/implementation/integrations/google-pubsub),
         [Amazon
-        S3](https://docs.mixpanel.com/docs/implementation/integrations/amazon-s3), or
-        [Google Cloud
+        S3](https://docs.mixpanel.com/docs/implementation/integrations/amazon-s3),
+        or [Google Cloud
         Storage](https://docs.mixpanel.com/docs/implementation/integrations/google-cloud-storage).
       parameters:
         - in: query

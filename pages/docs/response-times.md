@@ -1,4 +1,4 @@
-# Support
+# Response Times
 
 
 Mixpanel Support Engineers are always ready to lend their product expertise and share tips to help you get the most out of your Mixpanel experience. This article will cover:

@@ -61,7 +61,7 @@
 /docs/other-bits/cohort-syncs/webengage /docs/cohort-sync/integrations/webengage
 /docs/other-bits/cohort-syncs/webhooks /docs/cohort-sync/webhooks
 /docs/other-bits/cohort-syncs/xtremepush /docs/cohort-sync/integrations/xtremepush
-/docs/other-bits/community /docs/other-bits/support-and-community/community
+/docs/other-bits/community /docs/community/guidelines
 /docs/other-bits/data-pipelines /docs/data-pipelines/overview
 /docs/other-bits/data-pipelines/aws-raw-pipeline /docs/data-pipelines/integrations/aws-raw-pipeline
 /docs/other-bits/data-pipelines/azure-blob-storage /docs/data-pipelines/integrations/azure-blob-storage
@@ -78,6 +78,8 @@
 /docs/other-bits/privacy-and-security/eu-residency /docs/privacy/eu-residency
 /docs/other-bits/privacy-and-security/gdpr-compliance /docs/privacy/gdpr-compliance
 /docs/other-bits/rate-limits /docs/implementation/api-rate-limits
+/docs/other-bits/support-and-community/community /docs/community/guidelines
+/docs/other-bits/support-and-community/support /docs/response-times
 /docs/other-bits/tutorials/adoption-reference-guide /docs/best-practices/adoption
 /docs/other-bits/tutorials/analytics-strategy /docs/best-practices/analytics-strategy
 /docs/other-bits/tutorials/creating-a-tracking-plan /docs/best-practices/create-a-tracking-plan
