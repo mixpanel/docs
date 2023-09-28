@@ -623,7 +623,7 @@ Please refer to our [Apple App Developer Privacy Guidance](https://mixpanel.com/
 
 </Tabs>
 
-## I don't see an SDK in my language
+### HTTP API
 
 If you don't see an SDK or an integration in your language, you can send events to our API directly.
 
@@ -671,3 +671,18 @@ Here are some other best practices:
 Our Import API is built to ingest billions of events per day across our customers. That said, we do rate limit at very high scale to ensure quality of service and real-time ingestion. Please refer to our [Import API docs](https://developer.mixpanel.com/reference/import-events) for details.
 
 All of our sample code transparently retries and backoff from rate limit exceptions. If you require a higher-limit for a 1-time backfill, please reach out to us at apis@mixpanel.com.
+
+## Step 3: Identify your users
+
+Please refer to our guide on [Identifying Users](/docs/tracking/how-tos/identifying-users) for a detailed walkthrough and example user identity flows.
+
+### Client-side tracking
+
+When using our client-side SDKs (Web or Mobile), Mixpanel will automatically generate a distinct_id value that's local to that user's device. There are only 2 steps:
+
+1. Call `.identify(<user_id>)` when a user signs up or logs in. Pass in the user's known identifier (eg: their ID from your database).
+2. Call `.reset()` when a user logs out.
+
+### Server-side tracking
+
+When using our server-side SDKs (Python, Ruby, etc.), user identification is handled by your server which means you will need to generate your own distinct_id value for each event.
