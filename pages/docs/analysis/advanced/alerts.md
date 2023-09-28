@@ -12,7 +12,7 @@ Create an alert for your Insights and Funnels reports and be notified when r
 1. **Save your report**, click the 3 dots icon, go to Alerts and select Create Alert.
 Note: You won't be able to create alerts if the report has unsaved changes. Save your report before setting up the alert.
 
-![](https://github.com/mixpanel/docs/assets/2077899/c15123a9-d73e-4c7f-84b9-3891731fc708)
+![](/246672717-c15123a9-d73e-4c7f-84b9-3891731fc708.png)
 
 3. **Enter a name** for your alert.
 4. If your report has more than one event, select an event to track. If your report has a breakdown applied, either select a segment to alert on, or select any segment to be alerted when any segment matches the alert criteria.
@@ -27,7 +27,7 @@ Note: You won't be able to create alerts if the report has unsaved changes. Save
 
     **IMPORTANT:** In order to send alerts to Slack, you may need to configure the Mixpanel Slack app if you haven’t before. Click "Add Mixpanel to Slack" and follow the prompts on the following screens. You will be brought back to this page when you have added Mixpanel to Slack.
 
-![](https://github.com/mixpanel/docs/assets/130006730/91a2bb99-3a79-43d4-9d97-3b397aab0305)
+![](/255713687-91a2bb99-3a79-43d4-9d97-3b397aab0305.png)
 
 
 ## View & Manage Custom Alerts
@@ -97,7 +97,7 @@ Custom Alerts in Insights alert you when a specified event is performed above or
     - **Above:** The alert will check if the current value is above a set threshold value and if it is, you will be sent an alert.
     - **Below:** The alert will check if the current value is below a set threshold value and if it is, you will be sent an alert.
 
-![](https://github.com/mixpanel/docs/assets/130006730/649e70d8-eb8b-492d-b5c5-9ca2461615a6)
+![](/255714383-649e70d8-eb8b-492d-b5c5-9ca2461615a6.png)
 
 
 In line chart reports, you can select relative thresholds.
@@ -105,7 +105,7 @@ In line chart reports, you can select relative thresholds.
 - **Increases by more than:** The alert will compare the current value with the previous value (frequency set by report time-series setting). If the new value has increased by the custom amount or percentage over the previous value, you will be sent an alert.
 - **Decreases by more than:** This alert will compare the current value with the previous value (frequency set by report time-series setting). If the new value has decreased by the custom amount or percentage below the previous value, you will be sent an alert.
 
-![](https://github.com/mixpanel/docs/assets/130006730/2a4921bb-0fd7-44f9-a6ba-5a88ee14358a)
+![](/255714489-2a4921bb-0fd7-44f9-a6ba-5a88ee14358a.png)
 
 3. Choose the frequency that you would like to receive these alerts, either hourly, daily, or weekly.
 4. Configure the alert delivery settings and save.

@@ -15,7 +15,7 @@ Requests to export or delete end user data can take multiple weeks to process.
 
 In order to submit a request, you must first generate a GDPR OAuth token from your Personal Settings. This token is required for requests submitted both through the Mixpanel interface and through Mixpanel's APIs. Users can retrieve this token from their [Account Settings](https://mixpanel.com/settings/account#data-privacy) by selecting their initials in the top right of Mixpanel and selecting **Profile & Preferences**, and then the Data & Privacy tab. The OAuth token has a one year expiry. For requests submitted via API, the token should be passed in the Authentication header. Users are eligible to generate an OAuth token if they are the Project Owner, or if they are a Project Owner or Admin of a project that supports team member roles.
 
-![](https://storage.googleapis.com/cdn-mxpnl-com/static/readme/Personal%20Data%20%26%20Privacy%20Settings.png)
+![](/Personal-Data-and-Privacy-Settings.png)
 
 ## Gather the Project Information and Distinct_ids
 
