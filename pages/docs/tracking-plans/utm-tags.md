@@ -6,7 +6,7 @@ When setting up your Mixpanel implementation, one issue of particular interest i
 ## Web Attribution
 
 ### UTM Properties
-Mixpanel's Javascript library tracks all [UTM tags](/docs/tracking/reference/javascript#tracking-utm-parameters) by default. This allows you to segment key actions by relevant campaign information using [attribution models](/docs/features/advanced/attribution), so that you can quantify the effectiveness of specific campaigns.
+Mixpanel's Javascript library tracks all [UTM tags](/docs/tracking/reference/javascript#tracking-utm-parameters) by default. This allows you to segment key actions by relevant campaign information using [attribution models](/docs/features/attribution), so that you can quantify the effectiveness of specific campaigns.
 
 Mixpanel's Javascript library will also track initial_utm_parameters as a profile property, based on the first ever visit. This is helpful as if a user makes a purchase or completes some other important event, it is important to know want to know what acquisition channel brought them to your site originally.
 
@@ -30,4 +30,4 @@ For iOS, users enter the Apple App Store carrying data about where they came fro
 In order to track channel attribution on iOS, you'll need to use a mobile attribution tool. You can see a list of the partners we integrate with on our [tech partners page](https://mixpanel.com/partners/integrations).
 
 ## Server-Side Attribution
-Unlike web tracking, server-side implementations generally don't have access to global contexts or variables that can provide attribution data. This means these data such as UTM parameters and referrer information need to be extracted manually from the request. See our [Effective Server-Side Tracking page on tracking attribution](/docs/tracking/how-tos/effective-server#tracking-attribution-from-utms-and-referer) for examples of how this could be done.
+Unlike web tracking, server-side implementations generally don't have access to global contexts or variables that can provide attribution data. This means these data such as UTM parameters and referrer information need to be extracted manually from the request. See our [Effective Server-Side Tracking page on tracking attribution](/docs/best-practices/server-side-best-practices#tracking-attribution-from-utms-and-referer) for examples of how this could be done.

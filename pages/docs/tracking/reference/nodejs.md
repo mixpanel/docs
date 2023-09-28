@@ -39,7 +39,7 @@ You can track events with `mixpanel.track()` after initializing a Mixpanel insta
 
 The `mixpanel.track()` method takes two arguments, an event name and a properties object which must include the [distinct_id](https://help.mixpanel.com/hc/en-us/articles/115004509406-Distinct-IDs-).
 
-You have the option to add additional event properties to the call to add detail to that event. [Read more about events and properties here](/docs/tracking/how-tos/effective-server#tracking-geolocation).
+You have the option to add additional event properties to the call to add detail to that event. [Read more about events and properties here](/docs/best-practices/server-side-best-practices#tracking-geolocation).
 ```javascript
 var Mixpanel = require('mixpanel');
 var mixpanel = Mixpanel.init('<YOUR_TOKEN>');
@@ -55,7 +55,7 @@ mixpanel.track('event name', {
 
 Mixpanel determines default geolocation data (\$city, \$region, mp_country_code) using the IP address on the incoming request. This can have the unintended effect of setting the location of all of your users to the location of your datacenter in server-side implementations.
 
-It is therefore important to pass IP as a property in server-side implementations. [Read about best practices for geolocation with server-side implementations](/docs/tracking/how-tos/effective-server).
+It is therefore important to pass IP as a property in server-side implementations. [Read about best practices for geolocation with server-side implementations](/docs/best-practices/server-side-best-practices).
 ```javascript
 var Mixpanel = require('mixpanel');
 var mixpanel = Mixpanel.init('<YOUR_TOKEN>');
@@ -131,7 +131,7 @@ There are a few other types of profile updates. You can get more information abo
 
 Mixpanel Group Analytics allows behavioral data analysis by selected groups, as opposed to individual users.
 
-Grouping by identifiers other than the `distinct_id` allows analysis at a company or group level when using Mixpanel analytics. Read [this article](/docs/features/advanced/group-analytics) to learn more about Group Analytics.
+Grouping by identifiers other than the `distinct_id` allows analysis at a company or group level when using Mixpanel analytics. Read [this article](/docs/features/group-analytics) to learn more about Group Analytics.
 
 A group is identified by the `group_key` and `group_id`.
 * `group_key` is the property that connects event data for Group Analytics.
