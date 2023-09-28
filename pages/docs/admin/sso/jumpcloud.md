@@ -34,3 +34,6 @@ Here is a screenshot of an example setup:
 
 
 Optionally toggle “Require Users to Log In using SSO” to prevent your users from using a username and password to log in. Click **Enable**. Organization owners and admins will still be able to log in using username and password if SSO is not set up correctly.
+
+### SCIM
+Use SCIM with Jumpcloud at your own risk. There have been problems reported with the Jumpcloud setup process hard deleting users unexpectedly.
