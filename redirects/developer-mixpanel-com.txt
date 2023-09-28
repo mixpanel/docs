@@ -8,7 +8,7 @@
 /developer-docs-redirect/cloud-import-overview /docs/implementation/integrations/google-cloud-storage
 /developer-docs-redirect/cloud-ingestion /docs/implementation/http-api
 /developer-docs-redirect/codeless-freshpaint /docs/implementation/integrations/freshpaint
-/developer-docs-redirect/cohort-webhooks /docs/other-bits/cohort-syncs/cohort-webhooks
+/developer-docs-redirect/cohort-webhooks /docs/cohort-sync/webhooks
 /developer-docs-redirect/cohorts /docs/cohort-sync/build-an-integration
 /developer-docs-redirect/collection-via-a-proxy /docs/implementation/tracking-via-proxy
 /developer-docs-redirect/custom-query /docs/reports/legacy/jql

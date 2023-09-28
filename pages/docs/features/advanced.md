@@ -7,7 +7,7 @@
 
 ![/Screen_Shot_2022-07-11_at_3.53.47_PM.png](/Screen_Shot_2022-07-11_at_3.53.47_PM.png)
 
-Analyze session metrics by selecting "Session Start" or "Session End" from the events list. Learn more about using Sessions in Insights, Funnels and Flows [here](/docs/features/advanced/sessions).
+Analyze session metrics by selecting "Session Start" or "Session End" from the events list. Learn more about using Sessions in Insights, Funnels and Flows [here](/docs/features/sessions).
 
 ### Inline Filtering
 
@@ -61,7 +61,7 @@ To create a temporary cohort for the current report, click **Create Custom...** 
 
 Connect Mixpanel to your Slack workspace to help share reports with your colleagues faster. You can (1) set up an alert to send a message to a Slack channel, (2) set up a Board Digest to send a message to a Slack channel, or (3) share previews of any Mixpanel report in Slack.
 
-To send an alert to a Slack Channel, see [Custom Alerts](/docs/features/advanced/alerts). To send a digest to a Slack Channel, see [Advanced Board Functionality - Digests](/docs/boards/advanced#board-digests).
+To send an alert to a Slack Channel, see [Custom Alerts](/docs/features/alerts). To send a digest to a Slack Channel, see [Advanced Board Functionality - Digests](/docs/boards/advanced#board-digests).
 
 The Mixpanel application for Slack will also automatically unfurl a preview of any Mixpanel link, including chart images for certain reports, making it easy for anyone in your Slack workspace to learn from your Mixpanel analyses.
 
@@ -257,9 +257,9 @@ Steps
 
 - **Can I save a Custom Bucket**?
 
-    No, you can’t save a custom bucket. If your custom bucket is something you or your team would like to re-use, we encourage you to instead create a [custom property](/docs/features/advanced/custom-properties#creating-a-custom-property).
+    No, you can’t save a custom bucket. If your custom bucket is something you or your team would like to re-use, we encourage you to instead create a [custom property](/docs/features/custom-properties#creating-a-custom-property).
 
-- **How is custom buckets different from [custom property](/docs/features/advanced/custom-properties)?**
+- **How is custom buckets different from [custom property](/docs/features/custom-properties)?**
 
     Custom buckets only supports the most common custom-property use-case of **`if else`** to create meaningful segments in a more simplistic UI, and a low lift way to enable quick ad-hoc exploration. You could get this same answer using custom property too, it would just be more effort and not as intuitive
 
@@ -278,7 +278,7 @@ Steps
 - **Understanding the details:**
     - **In Numeric: Can I change the operators on the upper and lower bound?** 
 
-        No, the operators have been fixed. The lower bound is always strictly greater than (≥) and the upper bound is just lesser than (<). If you are looking for more control on the operators, please create a [custom property](/docs/features/advanced/custom-properties#creating-a-custom-property).
+        No, the operators have been fixed. The lower bound is always strictly greater than (≥) and the upper bound is just lesser than (<). If you are looking for more control on the operators, please create a [custom property](/docs/features/custom-properties#creating-a-custom-property).
 
     - **In String: Is (not set) included in (remaining values)?**
 
@@ -716,7 +716,7 @@ List of objects can be used like other properties in Mixpanel. Upon selecting a 
 
 ### Computed Properties
 
-We provide a few convenient computed properties after a list of objects property is selected. This does a computation on the property, and works similarly to [custom properties](/docs/features/advanced/custom-properties).
+We provide a few convenient computed properties after a list of objects property is selected. This does a computation on the property, and works similarly to [custom properties](/docs/features/custom-properties).
 
 ![list computed properties](/list-computed-properties.png)
 
