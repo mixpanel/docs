@@ -148,7 +148,7 @@ Mixpanel.mainInstance().people.trackCharge(amount: -50)
 ## Group Analytics
 Mixpanel Group Analytics is a paid add-on that allows behavioral data analysis by selected groups, as opposed to individual users.
 
-Grouping by identifiers other than the `distinct_id` will allow analysis at a company or group level when using Mixpanel analytics. Read [this article](/docs/features/advanced/group-analytics) to learn more about Group Analytics.
+Grouping by identifiers other than the `distinct_id` will allow analysis at a company or group level when using Mixpanel analytics. Read [this article](/docs/features/group-analytics) to learn more about Group Analytics.
 
 A group is identified by the `group_key` and `group_id`.
 * `group_key` is the property that connects event data for Group Analytics.

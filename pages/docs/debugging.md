@@ -158,7 +158,7 @@ Mixpanel records all events in Coordinated Universal Time (UTC) at intake. By de
 
 ### Cohort Export
 
-A cohort might show more in Mixpanel than what is actually being exported to the partner. You can find out more about [troubleshooting this here](/docs/other-bits/cohort-syncs/cohort-webhooks).
+A cohort might show more in Mixpanel than what is actually being exported to the partner. You can find out more about [troubleshooting this here](/docs/cohort-sync/webhooks).
 
 ### Debugging Discrepancies
 

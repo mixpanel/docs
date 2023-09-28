@@ -21,7 +21,7 @@ To use Experiments you must have a board, which contains the various reports yo
 
 **Custom Experiment** - This option allows you to define the control and variant groups of the experiment. These groups can be defined by cohort, user profile property, or event property filters.
 
-**Tracked Experiments** - This option is available if you have [experiments in your implementation](/docs/analysis/advanced/experiments). Mixpanel automatically detects any experiments that began in the last 30 days, and the report detects and displays them in the dropdown.
+**Tracked Experiments** - This option is available if you have [experiments in your implementation](/docs/reports/legacy/experiments). Mixpanel automatically detects any experiments that began in the last 30 days, and the report detects and displays them in the dropdown.
 
 ### Step 3: Choose Control and Variant Group
 

@@ -30,7 +30,7 @@ You can select the following filtering options to show a subset of the propertie
 - Select "event properties" to show only the [Event properties](/docs/how-it-works/events-and-properties).
 - Select "user properties" to show only the [Profile properties](/docs/how-it-works/events-and-properties).
 - Select "cohorts" to show only the [Cohorts](/docs/cohorts/overview).
-- If you set up [Group Analytics](/docs/features/advanced/group-analytics), the Group keys will show up individually under their display names. You can select any Group key to show only the Group properties relevant to the selected Group key:
+- If you set up [Group Analytics](/docs/features/group-analytics), the Group keys will show up individually under their display names. You can select any Group key to show only the Group properties relevant to the selected Group key:
 
     ![/Mixpanel__project_3____Mixpanel_2021-11-18_12-00-58.png](/Mixpanel__project_3____Mixpanel_2021-11-18_12-00-58.png)
 
@@ -184,6 +184,6 @@ Compare to past is a shortcut for segmenting a visualization on two time periods
 
 ### Sessions
 
-This is a period of continuous user activity. Use Sessions in Mixpanel to track which events users perform within a session, how many sessions contained a key action or how many sessions it takes for a user to convert in a funnel. [Learn more](/docs/features/advanced/sessions).
+This is a period of continuous user activity. Use Sessions in Mixpanel to track which events users perform within a session, how many sessions contained a key action or how many sessions it takes for a user to convert in a funnel. [Learn more](/docs/features/sessions).
 
 ![/Screen_Shot_2022-07-11_at_3.27.25_PM.png](/Screen_Shot_2022-07-11_at_3.27.25_PM.png)

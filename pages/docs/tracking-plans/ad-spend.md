@@ -43,7 +43,7 @@ The crux of this How To guide is turning the data exported by Ad Networks into e
 
 **Best Practices**
 
-- **Only include base metrics** cost, clicks, and impressions. We don’t need to send derived metrics like Cost-per-click, because Mixpanel’s [Custom Properties](/docs/features/advanced/custom-properties) and Formulas allow us to calculate and alter derived metrics on the fly.
+- **Only include base metrics** cost, clicks, and impressions. We don’t need to send derived metrics like Cost-per-click, because Mixpanel’s [Custom Properties](/docs/features/custom-properties) and Formulas allow us to calculate and alter derived metrics on the fly.
 - **Matching client side properties:** if you are using a Mixpanel client-side SDK to track user behaviors, you will want to model
  additional campaign metadata (source, medium, campaign, etc...) as `utm_source`, `utm_medium` etc... this matches the way mixpanel's SDKs [capture UTM params by default](/docs/tracking/reference/default-properties)
 - **No Distinct ID:** You’ll notice that our event has no Distinct ID. This is because ad performance data isn’t tied to any particular user. **This is the key difference from behavioral events.** By omitting it, we are ensuring that these events do not get erroneously included in reporting that intend to analyze user behavior such as Funnels, Retentions, Flows, unique user counts, “did not do” cohorts, etc.

@@ -164,7 +164,7 @@ Totals flows count multiple entries per user.  Users can re-start the flow and 
 3. They are excluded from the current flow by an exclusion step.
 
 **Sessions**
-Sessions ensure every step in the flow is performed in the same session. Like totals flows, users will be allowed to re-start the flow in subsequent sessions. Learn more about Sessions [here](/docs/features/advanced/sessions).
+Sessions ensure every step in the flow is performed in the same session. Like totals flows, users will be allowed to re-start the flow in subsequent sessions. Learn more about Sessions [here](/docs/features/sessions).
 
 #### Conversion Window
 
