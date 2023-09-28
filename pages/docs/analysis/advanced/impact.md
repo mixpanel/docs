@@ -18,6 +18,10 @@ Here are some of the sample questions you can answer in Impact:
 
 ## Quick Start
 
+<p style={{ position: 'relative', paddingBottom: '56.25%', height: 0, overflow: 'hidden' }}>
+  <iframe src="https://www.loom.com/embed/d5e7875bbcfd46908898905a096da8e7" frameborder="0" style={{ position: 'absolute', top: 0, left: 0, width: '100%', height: '100%' }} allowfullscreen></iframe>
+</p>
+
 ### Step 1: Select a launch event
 
 To build an Impact query, first select a launch event. This is the event that you are measuring as the cause of change.
