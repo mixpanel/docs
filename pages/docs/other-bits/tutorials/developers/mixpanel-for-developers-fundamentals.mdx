@@ -1,7 +1,7 @@
 # Mixpanel For Developers Fundamentals
 
 ## Mixpanel Data Model
-Mixpanel data is stored and isolated within a project. Mixpanel recommends tracking 1 product with multiple platforms (mobile, web, etc.) into one project, but create [separate projects for development and production](https://help.mixpanel.com/hc/en-us/articles/360001354886-Automatically-Separate-Development-Data).
+Mixpanel data is stored and isolated within a project. Mixpanel recommends tracking 1 product with multiple platforms (mobile, web, etc.) into one project, but create [separate projects for development and production](/docs/tracking/how-tos/set-up-projects#separate-development-data).
 
 There may be [other factors where implementing separate projects](/docs/tracking/how-tos/set-up-projects#separate-development-data) is required, but do note that querying data across projects is not possible. Mixpanel supports a few different categories of data that can be used for analysis: events, user profiles, group profiles, and lookup tables. In data warehouse terminology, events make up the fact table while user profiles, group profiles, and lookup tables are dimension tables.
 
@@ -24,7 +24,7 @@ Mixpanel has many Properties defined in its Data Model.
 |Reserved Properties|Mixpanel reserves certain property names (for [Events](/docs/tracking/how-tos/events-and-properties#reserved-event-properties) and [User Profiles](/docs/tracking/how-tos/user-profiles#reserved-user-properties)) for special use cases, and these may or may not be automatically populated with values. The purpose of such Reserved Properties are for processing (ie event time stamping) or for specific system features (eg: cohort exports). Examples: `time`, `$email`, `$phone`, `$name`, `$created`.|
 
 ### Supported Data Types
-Mixpanel supports five [data types](/docs/other-bits/tutorials/developers/mixpanel-for-developers-fundamentals#supported-data-types) for properties: String, Numeric, Boolean, Date and List. By choosing the most suitable data type for your properties, you'd be able to apply a set of [operators](https://help.mixpanel.com/hc/en-us/articles/115004547063#data-type-operators) that are most relevant to your properties in Mixpanel reports, and this will give you richer insights about your data.
+Mixpanel supports five data types for properties: String, Numeric, Boolean, Date and List. By choosing the most suitable data type for your properties, you'd be able to apply a set of operators that are most relevant to your properties in Mixpanel reports, and this will give you richer insights about your data.
 
 **String**
 - Alphanumeric value e.g. Plan Type = "Free", Artist Name = "Bruno Mars"
@@ -52,7 +52,7 @@ Mixpanel supports five [data types](/docs/other-bits/tutorials/developers/mixpan
 ## Updating User Profile Properties
 Mixpanel user profile properties are mutable and they can be updated in a timely manner to reflect the latest state of the users.
 
-You can update user profile properties via [Mixpanel SDK](https://developer.mixpanel.com/docs/javascript#setting-profile-properties) or [Engage API](https://developer.mixpanel.com/reference/profile-set). The following are the operations supported in Mixpanel.
+You can update user profile properties via [Mixpanel SDK](/docs/tracking/reference/javascript#setting-profile-properties) or [Engage API](https://developer.mixpanel.com/reference/profile-set). The following are the operations supported in Mixpanel.
 
 **Setting profile property**
 - `$set` - Sets a profile property or update a profile property value.
