@@ -1,5 +1,4 @@
 {
-    "overview": "Overview",
     "airship": "Airship",
     "appcues": "Appcues",
     "apptimize": "Apptimize",
@@ -21,7 +20,5 @@
     "taplytics": "Taplytics",
     "vwo": "VWO",
     "webengage": "WebEngage",
-    "xtremepush": "Xtremepush",
-    "webhooks": "Custom Webhooks",
-    "build-an-integration": "Build an Integration"
+    "xtremepush": "Xtremepush"
 }

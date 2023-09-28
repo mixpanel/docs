@@ -32,6 +32,12 @@
 	"access-security": "Access Security",
 	"privacy": "Privacy",
 	"pricing": "Pricing",
+	"data-out": {
+		"type": "separator",
+		"title": "DATA OUT"
+	},
+	"data-pipelines": "Data Pipelines",
+	"cohort-sync": "Cohort Sync",
 	"placeholder": {
 		"type": "separator",
 		"title": "STILL WORKING ON EVERYTHING BELOW"
