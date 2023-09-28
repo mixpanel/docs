@@ -1,6 +1,5 @@
 # Funnels
 
-
 ## Overview
 
 ![/flows_header.png](/flows_header.png)
@@ -17,6 +16,10 @@ Here are some of the sample questions you can answer in Flows:
 - How do users navigate between account creation and sending their first message?
 
 ## Quick Start
+
+<p style={{ position: 'relative', paddingBottom: '56.25%', height: 0, overflow: 'hidden' }}>
+  <iframe src="https://www.loom.com/embed/2dc0c322fd2d4000a4507a1a9c8d6fa7" frameborder="0" style={{ position: 'absolute', top: 0, left: 0, width: '100%', height: '100%' }} allowfullscreen></iframe>
+</p>
 
 Building a Flows report follows the same high level steps as building any other report. You can read about report building basics [here](/docs/reports/overview).
 
