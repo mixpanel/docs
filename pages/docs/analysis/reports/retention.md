@@ -18,6 +18,10 @@ Here are some of the sample questions you can answer in Retention:
 
 ## Quick Start
 
+<p style={{ position: 'relative', paddingBottom: '56.25%', height: 0, overflow: 'hidden' }}>
+  <iframe src="https://www.loom.com/embed/15457e2f5d2a4d0983b535931582cd17" frameborder="0" style={{ position: 'absolute', top: 0, left: 0, width: '100%', height: '100%' }} allowfullscreen></iframe>
+</p>
+
 Building a Retention report follows the same high level steps as building any other report. You can read about report building basics [here](/docs/analysis/reports).
 
 Building a report in Retention takes just a few clicks, and results arrive in seconds. Let's build a simple report together. Continuing the B2B messaging example, imagine you wanted to answer the following question:
@@ -52,6 +56,10 @@ By default retention will display a curve chart. This shows the retention data a
 ## Basic Features
 
 ### Retention Curve
+
+<p style={{ position: 'relative', paddingBottom: '56.25%', height: 0, overflow: 'hidden' }}>
+  <iframe src="https://www.loom.com/embed/c5c83d9dd0c24d5a8ab9596c8d592e95" frameborder="0" style={{ position: 'absolute', top: 0, left: 0, width: '100%', height: '100%' }} allowfullscreen></iframe>
+</p>
 
 The retention curve chart displays retention data as both a line chart, and a table. Data is identical between the two. The line chart provides a visual representation of users becoming inactive over time, while the table provides a heat map to show which groups have the best retention.
 
@@ -128,7 +136,13 @@ Both the modes are extremely useful. It totally depends on the use-case you’re
 
 Above said, general expectation is product use-cases which focus on user stickiness are likely to use rolling interval mode. Marketing & Revenue teams which focus on calendar dates for their activities, are likely to use calendar interval model
 
-### Retention Criteria - On time interval
+### Retention Criteria - Overview
+
+<p style={{ position: 'relative', paddingBottom: '56.25%', height: 0, overflow: 'hidden' }}>
+  <iframe src="https://www.loom.com/embed/565ed521880d4d7e9f68c821645b99cc" frameborder="0" style={{ position: 'absolute', top: 0, left: 0, width: '100%', height: '100%' }} allowfullscreen></iframe>
+</p>
+
+#### Retention Criteria - On time interval
 
 "On" Retention calculates the percentage of users who come back on a specific time unit (e.g. day, week, month).
 
@@ -138,7 +152,7 @@ For example, day 5 retention is the percentage of users who “came back and did
 
 "On" retention is useful to understand high-level usage patterns.  We also recommend using "on" retention when your product relies on users returning in each and every time unit.
 
-### Retention Criteria - On or After time interval
+#### Retention Criteria - On or After time interval
 
 ![/qjcz6kqfb4.png](/qjcz6kqfb4.png)
 
@@ -183,6 +197,10 @@ Then, select the size of each bracket for the given time unit. In this example, 
 Each of these intervals is its own retention bucket, and if the user does the "come back and did B" event anytime inside that bucket they are counted as retained. Now I will be able to understand what percent of users come back to play at least one game in any day between day 15 and day 30 from signing up.
 
 ### Frequency View
+
+<p style={{ position: 'relative', paddingBottom: '56.25%', height: 0, overflow: 'hidden' }}>
+  <iframe src="https://www.loom.com/embed/f70e5ef9f6c0439ab558a5181d89bb51" frameborder="0" style={{ position: 'absolute', top: 0, left: 0, width: '100%', height: '100%' }} allowfullscreen></iframe>
+</p>
 
 You can use the Frequency report to learn how frequently users return to use your product or service.
 
