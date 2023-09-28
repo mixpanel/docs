@@ -1,0 +1,210 @@
+# Concepts
+
+## Mixpanel Data Model
+
+Mixpanel data is stored and isolated within a project. Mixpanel recommends tracking 1 product with multiple platforms (mobile, web, etc.) into one project, but create [separate projects for development and production](https://help.mixpanel.com/hc/en-us/articles/360001354886-Automatically-Separate-Development-Data).
+
+There may be [other factors where implementing separate projects](https://help.mixpanel.com/hc/en-us/articles/115004491683-When-To-Use-Multiple-Projects#factors-to-consider) is required, but do note that querying data across projects is not possible. Mixpanel supports a few different categories of data that can be used for analysis: events, user profiles, group profiles, and lookup tables. In data warehouse terminology, events make up the fact table while user profiles, group profiles, and lookup tables are dimension tables.
+
+<p
+  style={{
+    position: "relative",
+    paddingBottom: "56.25%",
+    height: 0,
+    overflow: "hidden",
+  }}
+>
+  <iframe
+    src="https://www.loom.com/embed/fc9390690f1e4d84ab926dcf54914118"
+    frameborder="0"
+    style={{
+      position: "absolute",
+      top: 0,
+      left: 0,
+      width: "100%",
+      height: "100%",
+    }}
+    allowfullscreen
+  ></iframe>
+</p>
+
+## Events
+
+### Overview
+
+Events are the core of Mixpanel's Data Model. All events have a name, a timestamp, and a user ID. Events can optionally have a set of properties, which describe the event in more detail.
+
+- If you're familiar with databases, events are like tables and properties are like columns.
+- If you're familiar with Google Analytics, events are like hits and properties are like dimensions.
+
+### Examples
+
+- A `Page Viewed` event might have a property called `Page URL`, which is set to the URL of the page that was viewed.
+- A `Signed Up` event might have a property called `Signup Type`, which indicates whether the signup was `organic` vs `referral`.
+- A `Song Played` event might have a property called `Song Name`, which is set to the name of the song that was played.
+- A `Order Completed` event might have a property called `Items`, which is a list of objects, each of which contains details about an item, like its name, category, and price.
+
+### Use cases
+
+You can filter, breakdown, and aggregate your events by their properties to answer more questions:
+
+- Which pages do users look at before they visit the pricing page?
+- How many Signups did I get that were organic vs referral?
+- Which Song Name is most popular among my users?
+- How many Orders contain shoes? What is the sum total price that users paid for shoes in the last month?
+
+### Reserved Event Properties
+
+Mixpanel reserves certain event property names; these properties receive special treatment in our UI or are used for special processing.
+| Name | Display | Description |
+|----------------------------|--------------|-----------------------------------------------------------------------------------------------------------------------------------------------------------|
+| distinct_id / $distinct_id | Distinct ID | Mixpanel's internal unique identifier for a user. See [Identifying Users](https://docs.mixpanel.com/docs/tracking/how-tos/identifying-users) |
+| time | Time or Date | A unix time epoch that is used to determine the time of an event. If no time property is provided, we will use the time the event arrives at our servers. |
+| $city | City | The city of the event sender, parsed from IP. |
+| $region | Region | The region (state or province) of the event sender, parsed from IP. |
+| mp_country_code | Country | The country of the event sender, parsed from IP. |
+| mp_original_event_name | Hotshard Original Event Name | The original event name for a hotsharded event. See [Distinct ID Limits](https://docs.mixpanel.com/docs/tracking/reference/distinct-id-limits) |
+| mp_original_distinct_id | Hotshard Original Distinct ID | The original distinct id for a hotsharded event. See [Distinct ID Limits](https://docs.mixpanel.com/docs/tracking/reference/distinct-id-limits)|
+
+### Best Practices
+
+**Keep Events Generic**
+
+We recommend keeping event names generic and using properties for all context. For example:
+
+- Instead of tracking events called `Home Page Viewed` and `Pricing Page Viewed`, track a `Page Viewed` event with a `Page Name` property set to `/home` or `/pricing`.
+- Instead of tracking `Blue Button Clicked` or `Checkout Button Clicked`, track `Button Clicked` with a `Color` property set to `Blue` and `Button Name` set to `Checkout`.
+
+**Name Events and Properties Consistently**
+
+We recommend having a consistent naming convention for your events and properties. For example:
+
+- Use camel case for your event names.
+- Use the `(Object) (Verb)` format for event names. Like "Song Played" or "Page Viewed".
+
+**Avoid Creating Event or Property Names Dynamically**
+
+For example, don't create an event name like `Purchase (11-01-2019)`. Instead, create an event called Purchase and have some property (eg: `Return Date`) set to the dynamic value `11-01-2019`).
+
+### FAQ
+
+**What types of data can I send as properties?**
+
+Mixpanel accepts arbitrary JSON as properties, including strings, numbers, booleans, lists, and objects. See our [API docs](https://developer.mixpanel.com/reference/import-events) for more details.
+
+**What are the limits of events and properties?**
+
+We don't have a limit on the total number of events you can send to Mixpanel, but it will factor into your [pricing](https://mixpanel.com/pricing).
+
+We have a soft limit of 2000 distinct event names in a 30 day window. If you send more event names, we'll still ingest them, but those event names will not be indexed and will not appear in our autocomplete menus.
+
+Each event can have up to 2000 properties. Properties can be at most 255 characters in length (longer strings are truncated).
+
+**Note**: while events can have up to 2000 properties and batches of events can have up to 50 or 2000 events per batch depending on the ingestion endpoint, some libraries might default to sending the data through the GET protocol which would have a much lower size limit since the information is appended to the URL. If you are hitting the limits on the size of the request, first verify if the method being used is GET and can be switched to POST.
+
+## User Profiles
+
+User Profiles let you enrich events with properties about the users that performed those events. Profiles are optional; we recommend starting with events and only adding Profiles if you need it.
+
+### Overview
+
+A User Profile is a set of properties associated with a given user. Under the hood, Mixpanel stores user profiles for your project in a table:
+
+| Distinct ID | Name  | Email            | Department  |
+| ----------- | ----- | ---------------- | ----------- |
+| 123         | Alice | alice@linear.app | Engineering |
+| 456         | Bob   | bob@notion.so    | Product     |
+| 789         | Carol | carol@figma.com  | Design      |
+
+User Profiles are joined onto your Events based on their Distinct ID, which is the ID of the user. This lets you join the events performed by a user with properties about who that user is. It's very important that you use the same Distinct ID for both your events and your users.
+
+### Reserved User Properties
+
+Mixpanel reserves certain user property names; these properties receive special treatment in our UI or are used for special processing.
+
+| Name                             | Display  | Description                                                                                                                                                                                                                                                                                                                                                                                                                                      |
+| -------------------------------- | -------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
+| $email                           | Email    | The user's email address. You must set this property if you want to send users email from Mixpanel.                                                                                                                                                                                                                                                                                                                                              |
+| $phone                           | Phone    | The user's phone number. You must set this property if you want to send users SMS from Mixpanel. Note that a '+' needs to precede phone numbers. This is especially useful for international numbers. If the user does not import a phone number with the '+' sign in front of the number, the country code will be prefixed to the front of the number based on the $country_code property, resulting in a phone number with two country codes. |
+| \$first_name, \$last_name, $name | Name     | User's first and last names, as well as a general name. These are primarily useful because we will use them, if available, in a few spots in our reports.                                                                                                                                                                                                                                                                                        |
+| $avatar                          | Avatar   | Set this property to a url resource of a gif, jpg, jpeg, or png to update the profile picture in a profile. This property will override a profile picture pulled from Gravatar.                                                                                                                                                                                                                                                                  |
+| $created                         | Created  | The time that the profile was created.                                                                                                                                                                                                                                                                                                                                                                                                           |
+| $city                            | City     | The city of the event sender, parsed from IP.                                                                                                                                                                                                                                                                                                                                                                                                    |
+| $region                          | Region   | The region (state or province) of the event sender, parsed from IP.                                                                                                                                                                                                                                                                                                                                                                              |
+| $country_code                    | Country  | The country of the event sender, parsed from IP.                                                                                                                                                                                                                                                                                                                                                                                                 |
+| $timezone                        | Timezone | The timezone of the event sender, parsed from IP. If set, messages can be scheduled to be sent based on a user's timezone.                                                                                                                                                                                                                                                                                                                       |
+| $bucket                          | Bucket   | A reserved property that is hidden from the Mixpanel interface, and will cause other events to not appear in the interface. Do not name any property bucket or $bucket.                                                                                                                                                                                                                                                                          |
+
+### FAQ
+
+**What should I send as a User Profile Property vs an Event Property?**
+
+We recommend primarily using User Profile Properties to track demographic attributes of the user, like their name, email, and domain. Most other properties are better tracked as [Event Properties](/docs/tracking/how-tos/events-and-properties).
+
+That said, User Profile Properties are as flexible as any other properties in Mixpanel, so you can send arbitrary JSON.
+
+**How does Mixpanel join Events and User Profiles?**
+
+Mixpanel stores Events and User Profiles in two separate tables under the hood. These two tables are joined at query-time, rather than ingestion-time. This means that when you make a report in our UI that uses User Profiles, we run a query that joins the Events table with the User Profiles table. This has two implications:
+
+- If you track User Profiles after you track events, they'll still join retroactively with all past events. This means that you don't need to worry about tracking Events and User Profiles in lockstep with each other. As long as they have the same values for Distinct ID, they'll join with each other.
+- All Events join with the latest state of a User Profile, rather than its state at a point in time. If there are aspects of a user's state that change over time (for example, their plan type), we recommend tracking that as a property on their events, so that you can analyze that change over time.
+
+**How can I update User Profile Properties?**
+
+User Profiles are mutable; Mixpanel only stores the latest value of each profile property. We have methods to update profile properties via our [HTTP API](https://developer.mixpanel.com/reference/profile-set).
+
+**How can I send User Profiles if I use Segment?**
+
+Mixpanel is 100% compatible with Segment; just follow Segment's best practices. If you call the [`analytics.identify()`](https://segment.com/docs/connections/spec/identify/) method, Segment will create a User Profile in Mixpanel. You can learn more about our integration in Segment's [docs](https://segment.com/docs/connections/destinations/catalog/actions-mixpanel/#identify-user).
+
+**What does the Updated At property mean?**
+
+User Profiles are mutable, which means new ones can be added and existing ones can be updated or deleted. Mixpanel automatically maintains an Updated At property, which contains the last timestamp that a user profile was updated. Updated At does not change if the user does a new event; it only changes when the profile is updated. Updated At also does not change for profile updates made via the UI.
+
+## Property Types
+
+Properties are attributes that help you define the specifics of an **Event** or a **User.**
+Mixpanel has many Properties defined in its Data Model.
+
+| Property Type                                                                                                                            | Description                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                       |
+| :--------------------------------------------------------------------------------------------------------------------------------------- | :---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| [Event Properties](https://help.mixpanel.com/hc/en-us/articles/360001355266)                                                             | Event Properties describes the events that are tracked within your product.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                       |
+| [Super Properties](https://help.mixpanel.com/hc/en-us/articles/360001355266#super-properties-for-events)                                 | Super Properties are a type of Event Property that you can initialise to automatically attach to every subsequent Event you’re tracking at client side.                                                                                                                                                                                                                                                                                                                                                                                                           |
+| [User Profile Properties](https://help.mixpanel.com/hc/en-us/articles/115004708186)                                                      | User Profile Properties describe your users (they typically store current demographical information). User profiles are joined to events on `event.distinct_id = user_profile.distinct_id`.                                                                                                                                                                                                                                                                                                                                                                       |
+| [Group Profile Properties](https://help.mixpanel.com/hc/en-us/articles/360025333632-Group-Analytics#group-profiles)                      | Group Profile Properties describe group level information (similar to User Profiles Properties at user level). With Mixpanel’s [Group Analytics](https://help.mixpanel.com/hc/en-us/articles/360025333632), multiple users can be grouped and behavioural data analysed at a customised group level (such as company, account). Group profiles are joined to events on your chosen group key. For example, if you create a new group key for `company_id` your events will be joined on `event.company_id = group_profile.company_id`.                            |
+| [Lookup Tables](https://help.mixpanel.com/hc/en-us/articles/360044139291-Lookup-tables)                                                  | Lookup Tables allow you to dynamically extend additional properties mapped to an existing Event or User Property. For example, if you create a lookup table for "Songs" (with additional properties like `hash_tags`, `top_10`, `all_time_favorite`) and specify the mapped event property as `song_id`; you can use these additional properties when doing filtering or breakdowns for events that has `song_id` as an event property.                                                                                                                           |
+| [Default Properties](https://help.mixpanel.com/hc/en-us/articles/115004613766-What-properties-do-Mixpanel-s-libraries-store-by-default-) | Default Properties (for Events and User Profiles) are collected and populated with values automatically in Mixpanel. This can happen upon data ingestion or when using certain Mixpanel client-side SDKs. Typically, they have a dollar sign ($) or “mp\_” as prefix to distinguish them from normal properties.                                                                                                                                                                                                                                                  |
+| Reserved Properties                                                                                                                      | Mixpanel reserves certain property names (for [Events](https://help.mixpanel.com/hc/en-us/articles/360001355266#reserved-properties-for-events) and [User Profiles](https://help.mixpanel.com/hc/en-us/articles/115004708186#reserved-properties-for-user-profiles)) for special use cases, and these may or may not be automatically populated with values. The purpose of such Reserved Properties are for processing (ie event time stamping) or for specific system features (eg: cohort exports). Examples: `time`, `$email`, `$phone`, `$name`, `$created`. |
+
+### Supported Data Types
+
+Mixpanel supports five [data types](https://help.mixpanel.com/hc/en-us/articles/115004547063) for properties: String, Numeric, Boolean, Date and List. By choosing the most suitable data type for your properties, you'd be able to apply a set of [operators](https://help.mixpanel.com/hc/en-us/articles/115004547063#data-type-operators) that are most relevant to your properties in Mixpanel reports, and this will give you richer insights about your data.
+
+**String**
+
+- Alphanumeric value e.g. Plan Type = "Free", Artist Name = "Bruno Mars"
+- String properties have a character limit of 255 bytes.
+- Mixpanel will treat any property value that doesn’t match any other data type as a String.
+
+**Numeric**
+
+- Numeric (integer or decimal) value e.g. Cost = 15.00, Quantity = 5
+- You can apply operators such as sum, median and percentile on numeric properties.
+
+**Boolean**
+
+- Mixpanel treats properties as boolean if the value is either the JSON constant `true` or `false` e.g. Favorited = true, Bookmarked = false.
+- On Mixpanel, you can typecast any non-boolean property to boolean,
+- "false", 0, null, undefined, and empty string will be typecasted to boolean `false`
+- "true" and any set value that is not 0 or empty string will be typecasted to boolean `true`
+
+**Date**
+
+- An ISO formatted date `YYYY-MM-DDTHH:MM:SS` in UTC e.g. Last Purchase = "2022-10-30T13:30:25", Last Login = "2022-10-29". Note that all timestamps need to be sent in UTC timezone in an ISO format.
+- Mixpanel treats unix timestamps as Numeric property, however, you can typecast it to Date data type.
+
+**List**
+
+- A list of values as a JSON array e.g Favourite Genres = ["Folk","Alternative"] or Favourite Numbers = [1,5,10.0]
+- Limits of a List property: Event Property = 8KB, User Profile Property = 256KB, Each item in the list: 255 bytes
