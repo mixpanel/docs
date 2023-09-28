@@ -2,6 +2,7 @@ import { FC, ReactNode } from "react";
 import { DocsThemeConfig } from "nextra-theme-docs";
 import Search from './components/Search/Search';
 import MixpanelLogoWordmark from "./components/svg/MixpanelLogoWordmark";
+import { AdminIcon, AnalysisIcon, DataInIcon, DataOutIcon, IntroIcon, SupportIcon } from "./pages/theme/icons";
 
 function renderComponent<T>(ComponentOrNode: FC<T> | ReactNode, props?: T) {
   if (!ComponentOrNode) return null;
@@ -54,6 +55,30 @@ const config: DocsThemeConfig = {
   sidebar: {
     defaultMenuCollapseLevel: 1,
     toggleButton: true,
+    titleComponent: ({ title, type }) => {
+      if (type === `separator`) {
+        let icon;
+        switch (title) {
+          case `INTRO`:
+            icon = <IntroIcon />
+          case `DATA IN`:
+            icon = <DataInIcon />
+          case `ANALYSIS`:
+            icon = <AnalysisIcon />
+          case `ADMIN`:
+            icon = <AdminIcon />
+          case `DATA OUT`:
+            icon = <DataOutIcon />
+          case `SUPPORT`:
+            icon = <SupportIcon />
+          }
+          return (
+            <div style={{display: `flex`, gridGap: 8}}>{icon} {title}</div>
+          )
+        } else {
+        return <>{title}</>;
+      }
+    },
   },
 };
 
