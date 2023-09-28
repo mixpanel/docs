@@ -113,11 +113,7 @@ Totals funnels count multiple entries per user.  Users can re-enter the funnel 
 
 **Sessions**
 
-<<<<<<< HEAD:pages/docs/reports/funnels.md
 Sessions funnels are counted based on the number of sessions that contain a conversion. Like totals funnels, users will be allowed to re-enter the funnel in subsequent sessions; however, in sessions funnels users must convert through the funnel within the same session they entered the funnel to be counted as converted. If the session ends before they have converted, the user will time out and drop out of the funnel after the last step they reached. Learn more about Sessions [here](/docs/features/sessions).
-=======
-Sessions funnels are counted based on the number of sessions that contain a conversion. Like totals funnels, users will be allowed to re-enter the funnel in subsequent sessions; however, in sessions funnels users must convert through the funnel within the same session they entered the funnel to be counted as converted. If the session ends before they have converted, the user will time out and drop out of the funnel after the last step they reached. Learn more about Sessions [here](/docs/features/advanced/sessions).
->>>>>>> update analysis:pages/docs/reports/funnels/guide.md
 
 #### Ordering
 
@@ -212,11 +208,7 @@ Note:
 1. An exclusion step can be placed between any steps in the funnel. It cannot be the first or last step.
 2. An exclusion step does not prevent users for qualifying into the funnel up until the exclusion step. If you want users who did a particular event at any point excluded, use a cohort filter.
 3. There may be any number of exclusion events between steps.
-<<<<<<< HEAD:pages/docs/reports/funnels.md
 4. Exclusion steps have the same [two second grace period](/docs/reports/funnels#how-does-mixpanel-handle-simultaneous-events) as other steps in the funnel.
-=======
-4. Exclusion steps have the same [two second grace period](/docs/reports/funnels/guide#how-does-mixpanel-handle-simultaneous-events) as other steps in the funnel.
->>>>>>> update analysis:pages/docs/reports/funnels/guide.md
 
 ### Rename a Step
 
@@ -400,11 +392,7 @@ This behavior matches how users are counted when filtering by property: if a use
 
 Statistical significance in funnels validates an increase or decrease in conversion rate for a property or cohort segment. It attempts to identify random chance with respect to overall conversion. A p-value indicating statistical significance is calculated in the overview table when you choose a property or cohort to group by.
 
-<<<<<<< HEAD:pages/docs/reports/funnels.md
 In statistical hypothesis testing, the p-value or probability value is the probability that the variation in a segment’s conversion rate, compared to the overall conversion rate, is not driven by a random chance. This value is shown for every segment by default. To learn more about how this is calculated, click [here](/docs/reports/funnels#how-does-mixpanel-calculate-statistical-significance).
-=======
-In statistical hypothesis testing, the p-value or probability value is the probability that the variation in a segment’s conversion rate, compared to the overall conversion rate, is not driven by a random chance. This value is shown for every segment by default. To learn more about how this is calculated, click [here](/docs/reports/funnels/guide#how-does-mixpanel-calculate-statistical-significance).
->>>>>>> update analysis:pages/docs/reports/funnels/guide.md
 
 In order to clarify this statistical significance, the segmentation chart shows the confidence level of each segment. Confidence level is defined as 1 - p.
 
@@ -474,11 +462,7 @@ You can choose to attribute a property value from any step to the whole funnel b
 For example, the user viewing your website encounters an error and sends in a support ticket to your business. On first touch they may have been using Safari as their browser, and used Safari to send in the support ticket at last touch, but they were using Chrome when they triggered an error-state. It is relevant for your business to know that they triggered an error on the Chrome browser and not Safari, in order to assist them in fixing the error.
 
 ## Conversion & drop-off Flows
-<<<<<<< HEAD:pages/docs/reports/funnels.md
 You can click into any funnel step and select "View as Flow". This takes you to the [flows](/docs/reports/flows) report and lets you see:
-=======
-You can click into any funnel step and select "View as Flow". This takes you to the [flows](/docs/reports/flows/guide) report and lets you see:
->>>>>>> update analysis:pages/docs/reports/funnels/guide.md
 * What events did users do before or after converting?
 * What events did the users who dropped off do instead?
 
@@ -502,11 +486,7 @@ Users can complete the steps you designate in your funnel in loose order. Loose 
 
 Funnels and Insights have different default counting methods. Insights by default counts events using "Totals", whereas Funnels are by default calculated with the Conversion Criteria in "Uniques".
 
-<<<<<<< HEAD:pages/docs/reports/funnels.md
 Funnels uses "Uniques" as its default as it is intended to help you gauge your product's effectiveness in urging your users to complete certain flows (e.g. Registration, Purchase). If the numbers were in Totals, a few select power users could skew your data. Each user will only be counted once for a funnel within any given time period you set. The Funnels report with 'Unique' conversion criteria will show only the conversion rates/steps the first time a user enters the funnel, even if they complete or drop out of the funnel multiple times, hence giving a 'Unique' count.You can toggle the conversion criteria to 'Total' or 'Sessions' counting method. Please note that not every Step 1 event will enter a 'Total' conversion funnel. Learn more about counting methods [here](/docs/reports/funnels#counting-method).
-=======
-Funnels uses "Uniques" as its default as it is intended to help you gauge your product's effectiveness in urging your users to complete certain flows (e.g. Registration, Purchase). If the numbers were in Totals, a few select power users could skew your data. Each user will only be counted once for a funnel within any given time period you set. The Funnels report with 'Unique' conversion criteria will show only the conversion rates/steps the first time a user enters the funnel, even if they complete or drop out of the funnel multiple times, hence giving a 'Unique' count.You can toggle the conversion criteria to 'Total' or 'Sessions' counting method. Please note that not every Step 1 event will enter a 'Total' conversion funnel. Learn more about counting methods [here](/docs/reports/funnels/guide#counting-method).
->>>>>>> update analysis:pages/docs/reports/funnels/guide.md
 
 ### Can multiple events count towards the same Funnel step?
 
@@ -516,11 +496,7 @@ Custom events were designed to specifically target this exact issue. With custom
 
 **Step 2:** Event C
 
-<<<<<<< HEAD:pages/docs/reports/funnels.md
 This allows users to make multiple paths to the same end goal. Learn more about creating custom events [here](/docs/features/custom-events).
-=======
-This allows users to make multiple paths to the same end goal. Learn more about creating custom events [here](/docs/features/advanced/custom-events).
->>>>>>> update analysis:pages/docs/reports/funnels/guide.md
 
 ### How does Mixpanel handle simultaneous events?
 
