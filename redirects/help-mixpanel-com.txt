@@ -180,7 +180,7 @@ https://help.mixpanel.com/hc/en-us/articles/360025670271(.*) /docs/cohorts/overv
 https://help.mixpanel.com/hc/en-us/articles/360027359672(.*) /docs/reports/insights
 https://help.mixpanel.com/hc/en-us/articles/360027754631(.*) /docs/features/advanced#query-result-caching
 https://help.mixpanel.com/hc/en-us/articles/360028142571(.*) /docs/features/alerts
-https://help.mixpanel.com/hc/en-us/articles/360028380611(.*) /docs/other-bits/tutorials/mixpanel-analysis/overview
+https://help.mixpanel.com/hc/en-us/articles/360028380611(.*) /docs/how-it-works/data-model/introduction
 https://help.mixpanel.com/hc/en-us/articles/360028823552(.*) /docs/admin/data-governance/data-audit
 https://help.mixpanel.com/hc/en-us/articles/360028823552(.*) /docs/data-governance/data-views-and-classification
 https://help.mixpanel.com/hc/en-us/articles/360029126351(.*) /docs/features/advanced#query-time-sampling

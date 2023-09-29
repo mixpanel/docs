@@ -10,6 +10,28 @@ Group Analytics is available as an add-on package to customers on [Growth](http
 
 Customers on the Growth plan can buy this add-on [online](https://mixpanel.com/pricing/), while customers on the Enterprise plans can reach out to their Customer Success Manager or the [Mixpanel Sales Team](https://mixpanel.com/contact-us/sales/). Online plans allow up to 6 group keys. Enterprise customers can choose between 3 or 6 group keys. Each group can have a total 1M profiles.
 
+<div
+  style={{
+    position: "relative",
+    paddingBottom: "56.25%",
+    height: 0,
+    overflow: "hidden",
+  }}
+>
+  <iframe
+    src="https://www.loom.com/embed/c97b10f9443941a38c3ea649c714d5b3"
+    frameborder="0"
+    style={{
+      position: "absolute",
+      top: 0,
+      left: 0,
+      width: "100%",
+      height: "100%",
+    }}
+    allowfullscreen
+  ></iframe>
+</div>
+
 ### Group By a Custom Identifier
 
 Mixpanel Group Analysis allows you to select alternative unique identifiers in reports.
@@ -89,7 +111,7 @@ Enter an event property to attribute the group key to. You can also enter a disp
 An event can be attributed to multiple groups. To attribute to multiple groups, track the group event property's value as a list of string-valued group ids.
 
 ```javascript
-mixpanel.track('Some Event', {'company_id': ['01234', '56789', '55555']});
+mixpanel.track("Some Event", { company_id: ["01234", "56789", "55555"] });
 ```
 
 Not all of a user's events will be attributed to a group. Only the events with a defined group key will be attributed to the group and appear in the group's profile's activity feed.
