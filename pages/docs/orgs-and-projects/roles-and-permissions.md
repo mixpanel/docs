@@ -9,11 +9,7 @@ Your team members access your organization and its projects using individual use
 
 You can invite users users to an organization or to a project with specific role permissions.
 
-<<<<<<< HEAD:pages/docs/orgs-and-projects/roles-and-permissions.md
->See [Permissions](/docs/orgs-and-projects/roles-and-permissions#permissions) to learn more about organizaton roles and project roles.
-=======
->See [Permissions](/docs/orgs-and-projects/manage-team-members#permissions) to learn more about organizaton roles and project roles.
->>>>>>> update admin:pages/docs/orgs-and-projects/manage-team-members.md
+See [Permissions](/docs/orgs-and-projects/roles-and-permissions#permissions) to learn more about organizaton roles and project roles.
 
 #### Invite Users to an Organization
 
