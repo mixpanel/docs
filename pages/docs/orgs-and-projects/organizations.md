@@ -1,4 +1,4 @@
-# Organization
+# Organizations
 
 
 ## Overview
