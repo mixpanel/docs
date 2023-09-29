@@ -9,9 +9,10 @@ Mixpanel provides the ability to create alerts for your Insights and Funnels rep
 Create an alert for your Insights and Funnels reports and be notified when report conditions reach certain thresholds. Alerts are sent as an email or Slack message and can be sent to multiple users.
 **To create an alert follow these steps:**
 
-1. **Save your report**, click the 3 dots icon, go to Alerts and select Create Alert. 
+1. **Save your report**, click the 3 dots icon, go to Alerts and select Create Alert.
 Note: You won't be able to create alerts if the report has unsaved changes. Save your report before setting up the alert.
-<img src="https://github.com/mixpanel/docs/assets/2077899/c15123a9-d73e-4c7f-84b9-3891731fc708" width="600" height="whatever">
+
+![](/246672717-c15123a9-d73e-4c7f-84b9-3891731fc708.png)
 
 3. **Enter a name** for your alert.
 4. If your report has more than one event, select an event to track. If your report has a breakdown applied, either select a segment to alert on, or select any segment to be alerted when any segment matches the alert criteria.
@@ -23,10 +24,10 @@ Note: You won't be able to create alerts if the report has unsaved changes. Save
 7. **Set your notification delivery preferences.** When alert conditions are met, we can send notification via email or Slack.
     - For email, enter the recipient emails that you would like to receive this alert. You can enter any email here, not just internal users.
     - For slack, select any Slack channels you want to send this alert to. *Note: private Slack channels are not available at this time.*
-    
+
     **IMPORTANT:** In order to send alerts to Slack, you may need to configure the Mixpanel Slack app if you haven’t before. Click "Add Mixpanel to Slack" and follow the prompts on the following screens. You will be brought back to this page when you have added Mixpanel to Slack.
 
-<img src="https://github.com/mixpanel/docs/assets/130006730/91a2bb99-3a79-43d4-9d97-3b397aab0305" width="400" height="whatever">
+![](/255713687-91a2bb99-3a79-43d4-9d97-3b397aab0305.png)
 
 
 ## View & Manage Custom Alerts
@@ -35,8 +36,8 @@ You can view and manage all alerts under your personal settings.
 
 1. Click on **the gear icon** in the top right of Mixpanel and under "Organization Settings" **select "Personal Settings".
 2. Within your personal settings, select the **Alerts** tab to view your custom alerts and automatic insights.
-    
-    **to delete:** If you hover over an alert you have created, you can see a **trash icon** which you can click to delete the alert. 
+
+    **to delete:** If you hover over an alert you have created, you can see a **trash icon** which you can click to delete the alert.
     **to modify:** Click on the title of the alert to edit details.
 
 ![image](https://github.com/mixpanel/docs/assets/130006730/be35a381-b090-4fd4-86e0-7281dd291d64)
@@ -60,10 +61,10 @@ Anomaly Detection alerts automatically monitor your metrics and notify you when 
 **To set up anomaly detection alerts in a report, follow these steps:**
 
 1. Click the **3 dots icon**, go to **Alerts** and select **Create Alert**
-2. In the alert creation modal, select **Anomaly Detection** as the alert type. 
-    
+2. In the alert creation modal, select **Anomaly Detection** as the alert type.
+
     *Note: If Anomaly Detection is not available, it means it is not supported for your report or chart type. Please refer to the "Before you begin" section of this help doc for more information.*
-    
+
 3. Optionally, adjust the settings to tune the sensitivity of your alert. Higher confidence intervals typically result in a wider expected range and thus fewer alerts triggered. Use the alert preview to fine-tune the settings based on the context and confidence required.
 4. Configure the alert delivery settings and save.
 
@@ -95,8 +96,8 @@ Custom Alerts in Insights alert you when a specified event is performed above or
 2. In the alert creation modal, select **Custom Threshold** as the alert type and configure the conditions.
     - **Above:** The alert will check if the current value is above a set threshold value and if it is, you will be sent an alert.
     - **Below:** The alert will check if the current value is below a set threshold value and if it is, you will be sent an alert.
-  
-<img src="https://github.com/mixpanel/docs/assets/130006730/649e70d8-eb8b-492d-b5c5-9ca2461615a6" width="400" height="whatever">
+
+![](/255714383-649e70d8-eb8b-492d-b5c5-9ca2461615a6.png)
 
 
 In line chart reports, you can select relative thresholds.
@@ -104,7 +105,7 @@ In line chart reports, you can select relative thresholds.
 - **Increases by more than:** The alert will compare the current value with the previous value (frequency set by report time-series setting). If the new value has increased by the custom amount or percentage over the previous value, you will be sent an alert.
 - **Decreases by more than:** This alert will compare the current value with the previous value (frequency set by report time-series setting). If the new value has decreased by the custom amount or percentage below the previous value, you will be sent an alert.
 
-<img src="https://github.com/mixpanel/docs/assets/130006730/2a4921bb-0fd7-44f9-a6ba-5a88ee14358a" width="400" height="whatever">
+![](/255714489-2a4921bb-0fd7-44f9-a6ba-5a88ee14358a.png)
 
 3. Choose the frequency that you would like to receive these alerts, either hourly, daily, or weekly.
 4. Configure the alert delivery settings and save.
@@ -114,8 +115,8 @@ In line chart reports, you can select relative thresholds.
 Custom Alerts in Funnels track the overall conversion rate.
 
 1. In the alert creation modal, select **Custom Threshold** as the alert type select whether you would like to track when the conversion rate is **above** or **below** a percentage you set.
-    
+
     *Note: at the moment, anomaly detection alerts are not supported in Funnels*
-    
+
 2. Choose the frequency that you would like to receive these alerts, either hourly, daily, or weekly.
 3. Configure the alert delivery settings and save.
