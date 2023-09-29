@@ -61,19 +61,25 @@ const config: DocsThemeConfig = {
         switch (title) {
           case `INTRO`:
             icon = <IntroIcon />
+            break;
           case `DATA IN`:
             icon = <DataInIcon />
+            break;
           case `ANALYSIS`:
             icon = <AnalysisIcon />
+            break;
           case `ADMIN`:
             icon = <AdminIcon />
+            break;
           case `DATA OUT`:
             icon = <DataOutIcon />
+            break;
           case `SUPPORT`:
             icon = <SupportIcon />
+            break;
           }
           return (
-            <div style={{display: `flex`, gridGap: 8}}>{icon} {title}</div>
+            <>{icon} {title}</>
           )
         } else {
         return <>{title}</>;
