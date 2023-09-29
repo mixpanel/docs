@@ -20,7 +20,7 @@ You should not share your API Secret, since it can be used to export data from y
 
 ### How to rotate your API Secret
 
-To rotate a project API Secret, the [Project Owner](/docs/orgs-and-projects/manage-team-members#owner-1) should go to ⚙️ > Personal Settings > Projects > Find the project whose API Secret you want to rotate and click the Reset button.
+To rotate a project API Secret, the [Project Owner](/docs/orgs-and-projects/roles-and-permissions#owner-1) should go to ⚙️ > Personal Settings > Projects > Find the project whose API Secret you want to rotate and click the Reset button.
 Also, do not forget to update any scripts or integrations that use the API Secret for authentication.
 
 ![image](https://github.com/mixpanel/docs/assets/17679378/351c98cf-3c17-487a-af9f-257e14bbf299)
