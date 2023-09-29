@@ -105,3 +105,6 @@ setUseIpAddressForGeolocation(false)
 Mixpanel does not know, or need to know, any identifying information about users (like email or phone number). Mixpanel only needs to know that a set of events were performed by a particular user ID. You choose the ID and you choose how you want to send that ID to Mixpanel.
 
 If you want to analyze aggregate user behavior without being able to drill down into any particular user, we recommend generating a hash of some unique ID of the user and using that hash as the user's ID when you call the `.identify()` method in our SDKs.
+
+## Blacklisting Default Properties
+Our JavaScript library automatically captures default properties to help enrich your data (full list of default properties available [here](https://docs.mixpanel.com/docs/tracking/reference/default-properties)), your team has the choice to remove these if you'd like. Within our JavaScript library, there's the opportunity to blacklist properties on library load. This is done through a property_blacklist config option. For the correct syntax please reference our [GitHub](https://github.com/mixpanel/mixpanel-js/releases/tag/v2.7.1)
