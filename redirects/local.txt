@@ -5,9 +5,9 @@
 /docs/admin/data-governance/event-approval /docs/data-governance/event-approval
 /docs/admin/data-governance/lexicon /docs/data-governance/lexicon/guide
 /docs/admin/organizations-projects /docs/orgs-and-projects/overview
-/docs/admin/organizations-projects/manage-organization /docs/orgs-and-projects/organization
+/docs/admin/organizations-projects/manage-organization /docs/orgs-and-projects/organizations
 /docs/admin/organizations-projects/manage-projects /docs/orgs-and-projects/managing-projects
-/docs/admin/organizations-projects/manage-team-members /docs/orgs-and-projects/manage-team-members
+/docs/admin/organizations-projects/manage-team-members /docs/orgs-and-projects/roles-and-permissions
 /docs/admin/pricing-plans /docs/pricing/billing
 /docs/admin/pricing-and-plans/mixpanel-for-startups /docs/pricing/startup-program
 /docs/admin/pricing-and-plans/pricing /docs/pricing/billing
@@ -92,6 +92,7 @@
 /docs/other-bits/tutorials/adoption-reference-guide /docs/best-practices/adoption
 /docs/other-bits/tutorials/analytics-strategy /docs/best-practices/analytics-strategy
 /docs/other-bits/tutorials/creating-a-tracking-plan /docs/best-practices/create-a-tracking-plan
+/docs/other-bits/tutorials/recommended-boards /docs/boards/templates
 /docs/other-bits/tutorials/developers/mixpanel-for-developers-commonly-asked-questions /docs/implementation/faq
 /docs/other-bits/tutorials/developers/mixpanel-for-developers-fundamentals /docs/how-it-works/data-model/fundamentals
 /docs/other-bits/tutorials/developers/mixpanel-for-developers-id-management /docs/implementation/id-management
