@@ -23,11 +23,11 @@ An initial referrer is equal to $direct when a user first lands on a site withou
 ## Mobile Attribution
 Mobile attribution, or tracking campaign source for app installs on iOS/Android, can be more complex than the web due to the way mobile devices store attribution information.
 
-For Android, Google provides a referrer property so you know where your installations came from. You can then send that data to Mixpanel (with the exception of data from Facebook and Twitter). To set up automatic referrer tracking on Android, see the [Android library](/docs/tracking/reference/android#referrer_tracking).
+For Android, Google provides a [Play Install Referrer Library](https://developer.android.com/google/play/installreferrer/library) so you know where your installations came from. You can use the [getInstallReferrer ( )](https://developer.android.com/reference/com/android/installreferrer/api/ReferrerDetails#getinstallreferrer) method to retrieve the referrer URL string, parse it and send that data to Mixpanel as properties in events.
 
 For iOS, users enter the Apple App Store carrying data about where they came from, but the App Store strips that data once the user arrives in the store. Therefore, users who download your application don’t come with any data showing where they were before arriving at the App Store.
 
-In order to track channel attribution on iOS, you'll need to use a mobile attribution tool. You can see a list of the partners we integrate with on our [tech partners page](https://mixpanel.com/partners/integrations).
+In order to track channel attribution on iOS, you'll need to use a mobile attribution tool. You can see a list of the partners we integrate with on our [tech partners page](https://mixpanel.com/partners/integrations?categories=attribution-deep-linking).
 
 ## Server-Side Attribution
 Unlike web tracking, server-side implementations generally don't have access to global contexts or variables that can provide attribution data. This means these data such as UTM parameters and referrer information need to be extracted manually from the request. See our [Effective Server-Side Tracking page on tracking attribution](/docs/tracking/how-tos/effective-server#tracking-attribution-from-utms-and-referer) for examples of how this could be done.
