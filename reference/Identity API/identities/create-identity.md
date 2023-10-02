@@ -1,8 +1,45 @@
 ---
 title: "Create Identity"
 slug: "create-identity"
-excerpt: "[block:callout]\n{\n  \"type\": \"info\",\n  \"body\": \"You can also use the import endpoint: https://api.mixpanel.com/import/\"\n}\n[/block]\n\n**Identify Criteria:**\n[block:image]\n{\n  \"images\": [\n    {\n      \"image\": [\n        \"https://files.readme.io/d0066f0-ID_management_identify_3-HTTP.png\",\n        \"Identity Management - Identify\",\n        960,\n        697,\n        \"#cad5da\"\n      ]\n    }\n  ]\n}\n[/block]\n\n**Required [Event Object](https://docs.mixpanel.com/docs/tracking/reference/data-model#anatomy-of-an-event) attributes**\n\n[block:parameters]\n{\n  \"data\": {\n    \"h-0\": \"Event Object property\",\n    \"h-1\": \"Type\",\n    \"h-2\": \"Description\",\n    \"0-0\": \"**event**\",\n    \"0-1\": \"<span style=\\\"font-family: courier\\\">String</span></br><span style=\\\"color: red\\\">required</span>\",\n    \"0-2\": \"value must be: `$identify`\",\n    \"1-0\": \"**properties**\",\n    \"1-1\": \"<span style=\\\"font-family: courier\\\">Object</span></br><span style=\\\"color: red\\\">required</span>\",\n    \"2-0\": \"**properties.distinct_id**\",\n    \"2-1\": \"<span style=\\\"font-family: courier\\\">String</span></br><span style=\\\"color: green\\\">optional</span>\",\n    \"2-2\": \"The distinct ID post-identification (same as $identified_id - it will be inferred from $identified_id if not included)\",\n    \"3-0\": \"**properties.$identified_id**\",\n    \"3-1\": \"<span style=\\\"font-family: courier\\\">String</span></br><span style=\\\"color: red\\\">required</span>\",\n    \"3-2\": \"A distinct_id to merge with the $anon_id.\",\n    \"4-0\": \"**properties.$anon_id**\",\n    \"4-1\": \"<span style=\\\"font-family: courier\\\">String</span></br><span style=\\\"color: red\\\">required</span>\",\n    \"4-2\": \"A distinct_id to merge with the $identified_id. The $anon_id must be [UUID v4](https://en.wikipedia.org/wiki/Universally_unique_identifier) format and not already merged to an $identified_id.\",\n    \"5-0\": \"**properties.token**\",\n    \"5-1\": \"<span style=\\\"font-family: courier\\\">String</span></br><span style=\\\"color: red\\\">required</span>\",\n    \"5-2\": \"The project token.\"\n  },\n  \"cols\": 3,\n  \"rows\": 6\n}\n[/block]"
 hidden: false
 createdAt: "2021-08-04T20:56:14.330Z"
 updatedAt: "2023-09-26T21:06:37.368Z"
 ---
+
+[block:callout]
+{
+  "type": "info",
+  "body": "You can also use the import endpoint: https://api.mixpanel.com/import/"
+}
+[/block]
+
+```sh
+curl --request POST \
+     --url 'https://api.mixpanel.com/track#create-identity' \
+     --header 'accept: text/plain' \
+     --header 'content-type: application/x-www-form-urlencoded' \
+     --data 'data={
+      "event": "$identify",
+      "properties": {
+          "$identified_id": "ORIGINAL_ID",
+          "$anon_id": "NEW_ID",
+          "token": "YOUR_PROJECT_TOKEN"
+      }
+}
+'
+```
+
+**Identify Criteria:**
+![Identity Management - Identify](https://files.readme.io/d0066f0-ID_management_identify_3-HTTP.png)
+
+
+**Required [Event Object](https://docs.mixpanel.com/docs/tracking/reference/data-model#anatomy-of-an-event) attributes**
+
+| Event Object property         | Type                    | Description                                                         |
+| ----------------------------- | ----------------------- | ------------------------------------------------------------------- |
+| **event**                     | `<span style="font-family: courier">String</span></br><span style="color: red">required</span>`| value must be: `$identify`                                         |
+| **properties**                | `<span style="font-family: courier">Object</span></br><span style="color: red">required</span>`|                                                                   |
+| **properties.distinct_id**    | `<span style="font-family: courier">String</span></br><span style="color: green">optional</span>`| The distinct ID post-identification (same as $identified_id - it will be inferred from $identified_id if not included)|
+| **properties.$identified_id** | `<span style="font-family: courier">String</span></br><span style="color: red">required</span>`| A distinct_id to merge with the $anon_id.                           |
+| **properties.$anon_id**       | `<span style="font-family: courier">String</span></br><span style="color: red">required</span>`| A distinct_id to merge with the $identified_id. The $anon_id must be [UUID v4](https://en.wikipedia.org/wiki/Universally_unique_identifier) format and not already merged to an $identified_id.|
+| **properties.token**          | `<span style="font-family: courier">String</span></br><span style="color: red">required</span>`| The project token.                                                 |

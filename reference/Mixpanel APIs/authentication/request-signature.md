@@ -32,17 +32,25 @@ Calculating the signature is done in parts:
 3) md5 hash the final string
 
 The resulting hash is the request signature.
-[block:code]
-{
-  "codes": [
-    {
-      "code": "# all query parameters going to be sent out with the request\nrequest_parameters = {\n   api_key: '123',\n   unit: 'hour',\n   interval: '24',\n   event: '[\"pages\"]',\n   expire: '1248499222',\n}\n\nsorted_parameter_names = sort(keys(request_parameters))\ncombined_params = ''\n\nfor param in sorted_parameter_names:\n\tcombined_params += \tparam + \"=\" + request_parameters[param]\n\nrequest_signature = md5(combined_params + api_secret)",
-      "language": "shell",
-      "name": "Pseudo Code"
-    }
-  ]
+
+```sh
+# all query parameters going to be sent out with the request
+request_parameters = {
+   api_key: '123',
+   unit: 'hour',
+   interval: '24',
+   event: '["pages"]',
+   expire: '1248499222',
 }
-[/block]
+
+sorted_parameter_names = sort(keys(request_parameters))
+combined_params = ''
+
+for param in sorted_parameter_names:
+	combined_params += 	param + "=" + request_parameters[param]
+
+request_signature = md5(combined_params + api_secret)request_signature = md5(combined_params + api_secret)
+```
 
 [block:api-header]
 {
@@ -53,15 +61,14 @@ The generated signature needs to be provided with the parameters you used to cal
 
 Your URL should look similar to this however varying on the endpoint you are requesting data from:
 
-
-[block:code]
-{
-  "codes": [
-    {
-      "code": "https://mixpanel.com/api/2.0/events/\n\t\t&interval=7\n\t\t&expire=1275624968\n\t\t&api_key=f0aa34668dsadsa231\n\t\t&type=average\n\t\t&event=%5B%22splash+features<%22%2C+%22account-page%22%5D\n\t\t&unit=day\n    &sig=046ceec93983811dad0fb20f842c351a\n",
-      "language": "text",
-      "name": "Request with Signature"
-    }
-  ]
-}
-[/block]
+Request with Signature
+``txt
+https://mixpanel.com/api/2.0/events/
+		&interval=7
+		&expire=1275624968
+		&api_key=f0aa34668dsadsa231
+		&type=average
+		&event=%5B%22splash+features<%22%2C+%22account-page%22%5D
+		&unit=day
+    &sig=046ceec93983811dad0fb20f842c351a
+```

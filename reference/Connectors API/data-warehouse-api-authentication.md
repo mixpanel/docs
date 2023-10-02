@@ -21,4 +21,12 @@ updatedAt: "2021-08-18T17:03:34.593Z"
 
 Note that when you use Service Account authentication, you must specify the project_id as a  parameter.
 
-E.g. `curl  https://data.mixpanel.com/api/2.0/nessie/pipeline/status -u "<serviceaccount_user>:<serviceaccount_secret>"    -d name="<job_name>"  -d project_id="<mixpanel_project_id>"  -d summary="true"`
+E.g.
+```sh
+curl https://data.mixpanel.com/api/2.0/nessie/pipeline/status \
+     -u "<serviceaccount_user>:<serviceaccount_secret>" \
+     -d name="<job_name>" \
+     -d project_id="<mixpanel_project_id>" \
+     -d summary="true"
+```
+ 
