@@ -94,8 +94,8 @@
 /docs/other-bits/tutorials/creating-a-tracking-plan /docs/best-practices/create-a-tracking-plan
 /docs/other-bits/tutorials/recommended-boards /docs/boards/templates
 /docs/other-bits/tutorials/developers/mixpanel-for-developers-commonly-asked-questions /docs/tracking-methods/faq
-/docs/other-bits/tutorials/developers/mixpanel-for-developers-fundamentals /docs/how-it-works/data-model/fundamentals
-/docs/other-bits/tutorials/developers/mixpanel-for-developers-id-management /docs/tracking-methods/id-management
+/docs/other-bits/tutorials/developers/mixpanel-for-developers-fundamentals /docs/how-it-works/concepts
+/docs/other-bits/tutorials/developers/mixpanel-for-developers-id-management /docs/tracking-methods/identifying-users
 /docs/other-bits/tutorials/developers/mixpanel-for-developers-implementation /docs/quickstart/connect-your-data
 /docs/other-bits/tutorials/how-to-clean-your-data /docs/data-governance/data-clean-up
 /docs/other-bits/tutorials/migration-guides /docs/tracking-methods/migration/overview
@@ -105,12 +105,12 @@
 /docs/other-bits/tutorials/mixpanel-analysis/board /docs/boards/overview
 /docs/other-bits/tutorials/mixpanel-analysis/cohort /docs/users/cohorts
 /docs/other-bits/tutorials/mixpanel-analysis/data-management /docs/data-governance/lexicon
-/docs/other-bits/tutorials/mixpanel-analysis/data-model /docs/how-it-works/data-model/introduction
+/docs/other-bits/tutorials/mixpanel-analysis/data-model /docs/how-it-works/concepts
 /docs/other-bits/tutorials/mixpanel-analysis/flows /docs/reports/flows
 /docs/other-bits/tutorials/mixpanel-analysis/funnels /docs/reports/funnels
 /docs/other-bits/tutorials/mixpanel-analysis/impact /docs/reports/legacy/impact
 /docs/other-bits/tutorials/mixpanel-analysis/insights /docs/reports/insights
-/docs/other-bits/tutorials/mixpanel-analysis/overview /docs/how-it-works/data-model/introduction
+/docs/other-bits/tutorials/mixpanel-analysis/overview /docs/how-it-works/concepts
 /docs/other-bits/tutorials/mixpanel-analysis/retention /docs/reports/retention
 /docs/other-bits/tutorials/mixpanel-analysis/signal /docs/reports/legacy/signal
 /docs/other-bits/tutorials/setting-up-mixpanel /docs/best-practices/project-setup
@@ -136,7 +136,7 @@
 /docs/tracking/how-tos/privacy-friendly-tracking /docs/privacy/protecting-user-data
 /docs/tracking/how-tos/set-up-projects /docs/best-practices/developer-environments
 /docs/tracking/how-tos/tracking-utm-tags /docs/tracking-plans/utm-tags
-/docs/tracking/how-tos/tracking-via-proxy /docs/tracking-methods/tracking-via-proxy
+/docs/tracking/how-tos/tracking-via-proxy /docs/tracking-methods/sdks/javascript
 /docs/tracking/how-tos/user-profiles /docs/tracking-specs/user-profiles
 /docs/tracking/http-api /docs/quickstart/connect-your-data#http-api
 /docs/tracking/bigquery /docs/tracking-methods/data-warehouse/bigquery
@@ -150,7 +150,7 @@
 /docs/tracking/reference/distinct-id-limits /docs/debugging/distinct-id-limits
 /docs/tracking/reference/javascript-full-api-reference /docs/tracking-methods/sdks/javascript
 /docs/tracking/server /docs/quickstart/connect-your-data
-/docs/tutorials/developers /docs/how-it-works/data-model/fundamentals
+/docs/tutorials/developers /docs/how-it-works/concepts
 /docs/tutorials/migration-guides/migrating-to-mixpanel-from-google-analytics /docs/tracking-methods/migration/google-analytics
 /docs/tutorials/mixpanel-analysis /docs/other-bits/tutorials/mixpanel-analysis/overview
 /docs/tutorials/mixpanel-analysis/insights /docs/reports/insights
