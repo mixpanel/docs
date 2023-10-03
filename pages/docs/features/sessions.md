@@ -23,7 +23,7 @@ The way sessions are computed, and thus how the Session Start and Session End ev
 Project Admins or Owners can choose between one of these configurations in [Project Settings](https://mixpanel.com/settings/project). Since Mixpanel computes sessions on the fly, you can change this definition at any time and it will apply historically. Read more [below](#session-computation-deep-dive).
 
 ## Use Cases
-These use cases assuming that you're tracking an event for each page a user views. You can do this automatically with our [Javascript SDK](/docs/implementation/web-sdk) or using a CDP like Segment.
+These use cases assuming that you're tracking an event for each page a user views. You can do this automatically with our [Javascript SDK](/docs/quickstart/connect-your-data) or using a CDP like Segment.
 
 To make these examples more interesting, we're using our own tracking on our documentation site (docs.mixpanel.com).
 
@@ -98,7 +98,7 @@ Sessions are reset every 24 hours at midnight (according to your project timezon
 
 #### Estimating Ideal Session Length
 
-Use your [Time to Convert Chart in Funnels](/docs/reports/funnels/guide#time-to-convert) to help determine an appropriate session timeout period that aligns with your users’ behavior.
+Use your [Time to Convert Chart in Funnels](/docs/reports/funnels#time-to-convert) to help determine an appropriate session timeout period that aligns with your users’ behavior.
 
 ![image](https://github.com/mixpanel/docs/assets/2077899/44f40194-1aff-493b-828e-f9a1c750ac03)
 
@@ -260,7 +260,7 @@ You can add additional properties to be associated with the session by going und
 ## Session Controls in Reports
 ### Funnels
 
-In [Funnels](/docs/reports/funnels/guide), once you have set up sessions, a “Session Start” and “Session End” event will be generated in the report based on the funnel criteria.
+In [Funnels](/docs/reports/funnels), once you have set up sessions, a “Session Start” and “Session End” event will be generated in the report based on the funnel criteria.
 
 ![image](https://github.com/mixpanel/docs/assets/2077899/e6c12438-00da-4ebe-8302-a52f5a9da511)
 
@@ -280,13 +280,13 @@ If you choose to count Uniques or Totals, you will be able to select a conversio
 
 ### Flows
 
-In [Flows](/docs/reports/flows/guide), you can use the “Session Start” and “Session End” events to view the top Flows events within a session. 
+In [Flows](/docs/reports/flows), you can use the “Session Start” and “Session End” events to view the top Flows events within a session. 
 
 When you select sessions in Flows, the flow will be weighted by number of sessions, rather than unique users.
 
 ### Insights
 
-In [Insights](/docs/reports/insights/guide), you can use the “Session Start” and “Session End” events to explore a variety of metrics:
+In [Insights](/docs/reports/insights), you can use the “Session Start” and “Session End” events to explore a variety of metrics:
 
 - The total number of sessions over time
 - The average session length per user
