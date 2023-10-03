@@ -6,7 +6,7 @@ When setting up your Mixpanel implementation, one issue of particular interest i
 ## Web Attribution
 
 ### UTM Properties
-Mixpanel's Javascript library tracks all [UTM tags](/docs/tracking/reference/javascript#tracking-utm-parameters) by default. This allows you to segment key actions by relevant campaign information using [attribution models](/docs/features/attribution), so that you can quantify the effectiveness of specific campaigns.
+Mixpanel's Javascript library tracks all [UTM tags](/docs/tracking-methods/sdks/javascript#tracking-utm-parameters) by default. This allows you to segment key actions by relevant campaign information using [attribution models](/docs/features/attribution), so that you can quantify the effectiveness of specific campaigns.
 
 Mixpanel's Javascript library will also track initial_utm_parameters as a profile property, based on the first ever visit. This is helpful as if a user makes a purchase or completes some other important event, it is important to know want to know what acquisition channel brought them to your site originally.
 
@@ -23,7 +23,7 @@ An initial referrer is equal to $direct when a user first lands on a site withou
 ## Mobile Attribution
 Mobile attribution, or tracking campaign source for app installs on iOS/Android, can be more complex than the web due to the way mobile devices store attribution information.
 
-For Android, Google provides a referrer property so you know where your installations came from. You can then send that data to Mixpanel (with the exception of data from Facebook and Twitter). To set up automatic referrer tracking on Android, see the [Android library](/docs/tracking/reference/android#referrer_tracking).
+For Android, Google provides a referrer property so you know where your installations came from. You can then send that data to Mixpanel (with the exception of data from Facebook and Twitter). To set up automatic referrer tracking on Android, see the [Android library](/docs/tracking-methods/sdks/android#referrer_tracking).
 
 For iOS, users enter the Apple App Store carrying data about where they came from, but the App Store strips that data once the user arrives in the store. Therefore, users who download your application don’t come with any data showing where they were before arriving at the App Store.
 

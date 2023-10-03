@@ -1,4 +1,4 @@
-# Debugging
+# Overview
 
 
 This document walks through best practices for data validation and debugging your Mixpanel implementation.
@@ -51,18 +51,18 @@ User Profiles allow you to see the events feed and all user properties for a spe
 
 If you are using one of Mixpanel's client-side SDKs, you can enable debug mode to confirm that requests are sending to Mixpanel: 
 
-- [JavaScript Debug Mode](/docs/tracking/reference/javascript#debug-mode)
-- [iOS - Objective-C Debugging and Logging](/docs/tracking/reference/ios#debugging-and-logging)
-- [iOS - Swift Debugging and Logging](/docs/tracking/reference/swift#debugging-and-logging)
-- [Android - Debugging and Logging](/docs/tracking/reference/android#debugging-and-logging)
-- [React Native - Debugging and Logging](/docs/tracking/reference/react-native#debugging-and-logging)
-- [Flutter - Debugging and Logging](/docs/tracking/reference/flutter#debugging-and-logging)
+- [JavaScript Debug Mode](/docs/tracking-methods/sdks/javascript#debug-mode)
+- [iOS - Objective-C Debugging and Logging](/docs/tracking-methods/sdks/ios#debugging-and-logging)
+- [iOS - Swift Debugging and Logging](/docs/tracking-methods/sdks/swift#debugging-and-logging)
+- [Android - Debugging and Logging](/docs/tracking-methods/sdks/android#debugging-and-logging)
+- [React Native - Debugging and Logging](/docs/tracking-methods/sdks/react-native#debugging-and-logging)
+- [Flutter - Debugging and Logging](/docs/tracking-methods/sdks/flutter#debugging-and-logging)
 
 ### Debugging with the Browser Console (Web)
 
 If you're using Mixpanel in a web application, you can use your browser's developer console to view Mixpanel API calls being made from each page. 
 
-1. On your website, [enable debug mode](/docs/tracking/reference/javascript#debug-mode).
+1. On your website, [enable debug mode](/docs/tracking-methods/sdks/javascript#debug-mode).
 2. Open your browser's developer console and navigate to the Network > Fetch/XHR tab. 
 3. Perform an action that triggers the `mixpanel.track` call.
 4. If your project has US Data Residency, look for a request triggered to `api.mixpanel.com/track`. If your project has [EU Data Residency](/docs/privacy/eu-residency), look for a request triggered to  `api-eu.mixpanel.com/track`. Troubleshoot any error messages.
@@ -123,7 +123,7 @@ Two systems will always track data differently due to their nature. It might ver
 
 ### Ad Blockers and Do Not Track Settings
 
-Client-Side Tracking can be unreliable, you may lose events for 30-50% of your users. You can resolve this by [sending events through a proxy](/docs/tracking-methods/tracking-via-proxy), but it requires a bit more effort. We [recommend](/docs/debugging#client-side-vs-server-side-tracking) server-side tracking, since it is more reliable and easier to maintain than web/mobile tracking.
+Client-Side Tracking can be unreliable, you may lose events for 30-50% of your users. You can resolve this by [sending events through a proxy](/docs/tracking-methods/tracking-via-proxy), but it requires a bit more effort. We [recommend](/docs/debugging/overview#client-side-vs-server-side-tracking) server-side tracking, since it is more reliable and easier to maintain than web/mobile tracking.
 
 ### Different Timezones
 
