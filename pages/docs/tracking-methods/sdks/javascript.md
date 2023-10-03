@@ -83,7 +83,7 @@ By default, Mixpanel cookies send over HTTPS requests as part of the headers. Ho
 To enable this, use the [`set_config()`](https://github.com/mixpanel/mixpanel-js/blob/master/doc/readme.io/javascript-full-api-reference.md#mixpanelset_config) method and change the `secure_cookie` flag from `false` to `true`. If you configure your instance to send data over HTTP instead of HTTPS but do set `secure_cookie: true`, then your cookie data is not sent to the server. 
 
 #### Mixpanel Cookies for Hosted Subdomains
-The Mixpanel JavaScript library has a default setting of `cross_subdomain_cookie: true` in the `mixpanel.init` function. This enables Mixpanel cookies to work across subdomains, keeping Mixpanel's Distinct ID and [Super Properties](/docs/tracking/reference/javascript#super-properties) consistent across these sub-domains.
+The Mixpanel JavaScript library has a default setting of `cross_subdomain_cookie: true` in the `mixpanel.init` function. This enables Mixpanel cookies to work across subdomains, keeping Mixpanel's Distinct ID and [Super Properties](/docs/tracking-methods/sdks/javascript#super-properties) consistent across these sub-domains.
 
 However, if your site is hosted on a domain like Heroku (or similar - [see a complete list of affected domains](https://publicsuffix.org/list/effective_tld_names.dat)) with a URL like XYZ.herokuapp.com, cross-subdomain cookies are not allowed for security reasons. Having Mixpanel default settings for `cross_subdomain_cookie` on these sites, results to users' Distinct IDs being reset to a new `$distinct_id` on each page load. This will cause issues with Mixpanel reports, namely broken Retention reports and Funnels. 
 
@@ -260,14 +260,14 @@ Adding users to groups causes the `group_key` and `group_id` to send as a proper
 
 Similar to a `distinct_id`, the `group_key` allows Mixpanel to group events by an identifier for analysis. A `group_key`, however, is a group level identifier and not a user level identifier like the `distinct_id`.
 
-You can add users to groups by calling the [`mixpanel.set_group()`](/docs/tracking/reference/javascript-full-api-reference#mixpanelset_group) method.
+You can add users to groups by calling the [`mixpanel.set_group()`](/docs/tracking-methods/sdks/javascript#setting-group-profile-properties) method.
 
 ```javascript JavaScript
 //Assign Company A and Company B to a user
 mixpanel.set_group(“company”, [“Company A”, “Company B”])
 ```
 
-You can call  [`mixpanel.add_group()`](/docs/tracking/reference/javascript-full-api-reference#mixpaneladd_group) to add any additional groups to an existing list.
+You can call  [`mixpanel.add_group()`](/docs/tracking-methods/sdks/javascript#creating-group-profiles) to add any additional groups to an existing list.
 
 ```javascript JavaScript
 //Add “Mixpanel” to the list of existing groups
@@ -275,7 +275,7 @@ mixpanel.add_group(“company”, “Mixpanel”)
 ```
 
 ### Creating Group Profiles
-It is possible to create a Group profile that is similar to a user profile. You must call [`mixpanel.set_group()`](/docs/tracking/reference/javascript-full-api-reference#mixpanelset_group) to build a group profile. It is important to the `group_key`, `group_id`, and one property so that the profile is not empty.
+It is possible to create a Group profile that is similar to a user profile. You must call [`mixpanel.set_group()`](/docs/tracking-methods/sdks/javascript#setting-group-profile-properties) to build a group profile. It is important to the `group_key`, `group_id`, and one property so that the profile is not empty.
 ```javascript JavaScript
 mixpanel.get_group(group_key, group_id).set({“property_name”: property_value})
 ```
@@ -283,11 +283,11 @@ mixpanel.get_group(group_key, group_id).set({“property_name”: property_value
 ### Setting Group Profile Properties
 You can add details to Groups by adding properties to them.
 
-In order to update Group profile properties, you must specify the group that needs to be updated by calling [`get_group()`](/docs/tracking/reference/javascript-full-api-reference#mixpanelget_group)
+In order to update Group profile properties, you must specify the group that needs to be updated by calling [`get_group()`](/docs/tracking-methods/sdks/javascript#group-analytics)
 ```javascript JavaScript
 mixpanel.get_group(“company”, “Mixpanel”)
 ```
-The [`get_group()`](/docs/tracking/reference/javascript-full-api-reference#mixpanelget_group) method can be chained with other commands that edit properties specific to the group.
+The [`get_group()`](/docs/tracking-methods/sdks/javascript#group-analytics) method can be chained with other commands that edit properties specific to the group.
 
 You can set the property `$name` to populate the name field at the top of the group profile.
 
