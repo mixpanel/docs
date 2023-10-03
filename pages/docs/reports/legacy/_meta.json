@@ -1,8 +1,6 @@
 {
     "experiments": "Experiments",
     "impact": "Impact",
-    "impact-tutorial": "Impact Tutorial",
     "signal": "Signal",
-    "signal-tutorial": "Signal Tutorial",
     "jql": "JQL"
 }
