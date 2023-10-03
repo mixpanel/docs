@@ -1,10 +1,6 @@
 # Adobe Analytics
 
-<<<<<<< HEAD:pages/docs/tracking-methods/migration/adobe-analytics.md
 If you haven't already, we recommend starting with our [Migration Guides Overview](/docs/tracking-methods/migration/overview) as it details the key components of migrating to Mixpanel from other analytics tools. Below we outline specific steps and considerations when migrating from Adobe Analytics.
-=======
-If you haven't already, we recommend starting with our [Migration Guides Overview](/docs/implementation/migration/overview) as it details the key components of migrating to Mixpanel from other analytics tools. Below we outline specific steps and considerations when migrating from Adobe Analytics.
->>>>>>> add rest of implementation:pages/docs/implementation/migration/adobe-analytics.md
 
 ## Differences in the data models
 
