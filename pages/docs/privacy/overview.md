@@ -20,17 +20,17 @@ You can enable this by selecting the "EU Data Residency" option when creating a 
 ## Using Our SDKs
 Next you'll need to set the server location to EU when initializing the Mixpanel library. You can find instructions for the required config settings for each SDK below:
 
-- [JavaScript](/docs/tracking/reference/javascript#eu-data-residency)
-- [Objective-C](/docs/tracking/reference/ios#eu-data-residency)
-- [Swift](/docs/tracking/reference/ios#eu-data-residency)
-- [Android](/docs/tracking/reference/android#eu-data-residency)
-- [Python](/docs/tracking/reference/python#eu-data-residency)
-- [Java](/docs/tracking/reference/java#eu-data-residencyy)
-- [PHP](/docs/tracking/reference/php#eu-data-residency)
-- [Ruby](/docs//tracking/reference/ruby#eu-data-residency)
-- [Node.js](/docs/tracking/reference/nodejs#eu-data-residency)
-- [React Native](/docs/tracking/reference/react-native)
-- [Flutter](/docs/tracking/reference/flutter#eu-data-residency)
+- [JavaScript](/docs/tracking-methods/sdks/javascript#eu-data-residency)
+- [Objective-C](/docs/tracking-methods/sdks/ios#eu-data-residency)
+- [Swift](/docs/tracking-methods/sdks/ios#eu-data-residency)
+- [Android](/docs/tracking-methods/sdks/android#eu-data-residency)
+- [Python](/docs/tracking-methods/sdks/python#eu-data-residency)
+- [Java](/docs/tracking-methods/sdks/java#eu-data-residencyy)
+- [PHP](/docs/tracking-methods/sdks/php#eu-data-residency)
+- [Ruby](/docs//tracking-methods/sdks/ruby#eu-data-residency)
+- [Node.js](/docs/tracking-methods/sdks/nodejs#eu-data-residency)
+- [React Native](/docs/tracking-methods/sdks/react-native)
+- [Flutter](/docs/tracking-methods/sdks/flutter#eu-data-residency)
 
 ## Querying Mixpanel Data in the EU
 Once you've set the server location to EU, please notify Mixpanel so we can set your project's cluster to `mixpanel-prod-eu`.
@@ -49,10 +49,10 @@ Mixpanel deletion and retrieval APIs are in place to help Mixpanel implementatio
 
 ### User Opt-Out
 While the following API can be used to delete or retrieve personal data as outlined by the GPDR, it is important to also opt users out of subsequent tracking. If tracking using a client-side Mixpanel library, you can opt users out of tracking using Mixpanel's opt-out methods. These are available in the following client-side libraries:
-* [JavaScript](/docs/tracking/reference/javascript#opting-users-out-of-tracking)
-* [iOS - Objective-C](/docs/tracking/reference/ios#opting-users-out-of-tracking)
-* [iOS - Swift](/docs/tracking/reference/swift#opting-users-out-of-tracking)
-* [Android](/docs/tracking/reference/android#opting-users-out-of-tracking)
+* [JavaScript](/docs/tracking-methods/sdks/javascript#opting-users-out-of-tracking)
+* [iOS - Objective-C](/docs/tracking-methods/sdks/ios#opting-users-out-of-tracking)
+* [iOS - Swift](/docs/tracking-methods/sdks/swift#opting-users-out-of-tracking)
+* [Android](/docs/tracking-methods/sdks/android#opting-users-out-of-tracking)
 
 See Mixpanel’s [Managing Personal Information](/docs/privacy/protecting-user-data) guide for more information on best practices when handling personal information in Mixpanel.
 
