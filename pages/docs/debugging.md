@@ -9,7 +9,7 @@ This document walks through best practices for data validation and debugging you
 Mixpanel recommends that you create a [separate development Mixpanel project](/docs/best-practices/developer-environments#separate-development-data) to validate your event data. This ensures that your testing data does not contaminate your production environment. 
 
 ### Send Events
-Mixpanel doesn't receive any data until you start sending events. If you haven't started sending data to Mixpanel, check out our quickstart guides for [JavaScript](/docs/implementation/web-sdk), [Server](/docs/implementation/server-side-sdk), and [Mobile](/docs/implementation/mobile-sdk). We have a simple [HTTP API](/docs/implementation/http-api) for any languages we don't support.
+Mixpanel doesn't receive any data until you start sending events. If you haven't started sending data to Mixpanel, check out our quickstart guides for [JavaScript](/docs/quickstart/connect-your-data), [Server](/docs/quickstart/connect-your-data), and [Mobile](/docs/quickstart/connect-your-data). We have a simple [HTTP API](/docs/quickstart/connect-your-data#http-api) for any languages we don't support.
 
 🎉 Congratulations, you're ready to debug! Theres are two primary places to inspect your raw events as they flow into your Mixpanel project: Events and User Profiles. 
 
@@ -94,7 +94,7 @@ You can also flush manually with public `void flush()`.
 
 #### Hidden in Lexicon
 
-Project Owner and Admin users can hide events, event properties, and user profile properties in your [Mixpanel project through Lexicon](/docs/data-governance/lexicon/guide#hide-events-and-properties). Check Lexicon to review if the event or property may be hidden.
+Project Owner and Admin users can hide events, event properties, and user profile properties in your [Mixpanel project through Lexicon](/docs/data-governance/lexicon#hide-events-and-properties). Check Lexicon to review if the event or property may be hidden.
 
 #### Inactive Events and Properties
 
@@ -123,7 +123,7 @@ Two systems will always track data differently due to their nature. It might ver
 
 ### Ad Blockers and Do Not Track Settings
 
-Client-Side Tracking can be unreliable, you may lose events for 30-50% of your users. You can resolve this by [sending events through a proxy](/docs/implementation/tracking-via-proxy), but it requires a bit more effort. We [recommend](/docs/debugging#client-side-vs-server-side-tracking) server-side tracking, since it is more reliable and easier to maintain than web/mobile tracking.
+Client-Side Tracking can be unreliable, you may lose events for 30-50% of your users. You can resolve this by [sending events through a proxy](/docs/tracking-methods/tracking-via-proxy), but it requires a bit more effort. We [recommend](/docs/debugging#client-side-vs-server-side-tracking) server-side tracking, since it is more reliable and easier to maintain than web/mobile tracking.
 
 ### Different Timezones
 

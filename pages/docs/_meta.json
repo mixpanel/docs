@@ -11,8 +11,8 @@
 		"type": "separator",
 		"title": "DATA IN"
 	},
-	"implementation": "Implementation",
-	"data-types": "Data Types",
+	"tracking-methods": "Tracking Methods",
+	"tracking-specs": "Tracking Specs",
 	"tracking-plans": "Tracking Plans",
 	"debugging": "Debugging",
 	"analysis": {
@@ -21,7 +21,7 @@
 	},
 	"reports": "Reports",
 	"boards": "Boards",
-	"cohorts": "Cohorts",
+	"users": "Users",
 	"features": "Features",
 	"admin": {
 		"type": "separator",

@@ -1,6 +1,6 @@
 # Server-Side Best Practices
 
-This document gives tips for implementing scalable, maintainable server-side tracking. If you're just getting started, check out the [quickstart](/docs/implementation/server-side-sdk).
+This document gives tips for implementing scalable, maintainable server-side tracking. If you're just getting started, check out the [quickstart](/docs/quickstart/connect-your-data).
 
 ## Tracking Browser, Device, and OS
 Mixpanel's Web and Mobile SDKs parse `User-Agent` into a set of properties about the user's browser, device, and OS. This doesn't happen automatically with server-side tracking, but it's easy to add these properties yourself.
@@ -171,7 +171,7 @@ Page view tracking must be done manually for server-side implementations. Here a
   - See above for [parsing user agent](#tracking-browser-device-and-os) and [marketing attribution properties](#tracking-utms-and-referrer)
 
 ## Identifying Users
-Our server libraries normally require that you specify the distinct_id value for each event. If you _don't_ know the user's identity at the time the event is tracked, then they're an anonymous user. When using our Web or Mobile SDKs, Mixpanel will automatically generate an ID that's local to that user's device. This ID will persist on all events tracked by that user on that device, until you call `identify()` or `reset()`. More on that in our [identity management guide](/docs/implementation/identifying-users).
+Our server libraries normally require that you specify the distinct_id value for each event. If you _don't_ know the user's identity at the time the event is tracked, then they're an anonymous user. When using our Web or Mobile SDKs, Mixpanel will automatically generate an ID that's local to that user's device. This ID will persist on all events tracked by that user on that device, until you call `identify()` or `reset()`. More on that in our [identity management guide](/docs/tracking-methods/identifying-users).
 
 If you're tracking from servers, you'll need to generate and manage that ID yourself. When you have hybrid implementations (events also come from the client-side), you could optionally send the ID generated on the client to the server and keep it as a session variable instead of generating a new one.
 
@@ -191,7 +191,7 @@ Once the user logs in, you know their true ID, you should leverage the new ID fo
 
 **If you are using the original ID merge API**
 
-Send an `$identify` event combining the anonymous and authenticated IDs. Events after this should use the authenticated ID. Learn more in our [ID Merge guide](/docs/implementation/identifying-users).
+Send an `$identify` event combining the anonymous and authenticated IDs. Events after this should use the authenticated ID. Learn more in our [ID Merge guide](/docs/tracking-methods/identifying-users).
 
 **If you are using the Simplified ID merge API**
 Set the `$user_id` property to that ID. Continue setting `$device_id` to the ID generated in step 1. If Mixpanel receives an event with both `$device_id` and `$user_id` set, it will create a link between those two users. This is essential to track pre-login and post-login behavior accurately.
