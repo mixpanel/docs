@@ -126,7 +126,7 @@
 /docs/tracking/data-warehouse/users /docs/tracking-methods/data-warehouse/sending-user-profiles
 /docs/tracking/how-tos/ad-spend /docs/tracking-plans/ad-spend
 /docs/tracking/how-tos/api-credentials /docs/tracking-methods/api-credentials
-/docs/tracking/how-tos/debugging /docs/debugging
+/docs/tracking/how-tos/debugging /docs/debugging/overview
 /docs/tracking/how-tos/effective-server /docs/best-practices/server-side-best-practices
 /docs/tracking/how-tos/effective-server-side-tracking /docs/best-practices/server-side-best-practices
 /docs/tracking/how-tos/event-properties /docs/tracking-specs/events-and-properties
@@ -142,11 +142,13 @@
 /docs/tracking/bigquery /docs/tracking-methods/data-warehouse/bigquery
 /docs/tracking/snowflake /docs/tracking-methods/data-warehouse/snowflake
 /docs/tracking/javascript-quickstart /docs/quickstart/connect-your-data
-/docs/tracking/mobile/android /docs/tracking/reference/android
+/docs/tracking/mobile/android /docs/tracking-methods/sdks/android
 /docs/tracking/mobile /docs/tracking/reference/mobile-sdk
-/docs/tracking/reference/androi /docs/tracking/reference/android
+/docs/tracking/reference/androi /docs/tracking-methods/sdks/android
 /docs/tracking/reference/data-model /docs/tracking-specs/overview
 /docs/tracking/reference/default-properties /docs/tracking-plans/default-properties
+/docs/tracking/reference/distinct-id-limits /docs/debugging/distinct-id-limits
+/docs/tracking/reference/javascript-full-api-reference /docs/tracking-methods/sdks/javascript
 /docs/tracking/server /docs/quickstart/connect-your-data
 /docs/tutorials/developers /docs/how-it-works/data-model/fundamentals
 /docs/tutorials/migration-guides/migrating-to-mixpanel-from-google-analytics /docs/tracking-methods/migration/google-analytics
