@@ -1,12 +1,9 @@
 {
-    "id-management": "ID Management",
     "sdks": "SDKs",
     "data-warehouse": "Data Warehouse",
     "integrations": "Integrations",
     "migration": "Migration",
     "identifying-users": "Identifying Users",
-    "tracking-via-proxy": "Tracking via Proxy",
     "api-rate-limits": "API Rate Limits",
-    "faq": "FAQ",
-    "videos": "Videos"
+    "faq": "FAQ"
 }
