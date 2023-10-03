@@ -150,52 +150,58 @@ $border-radius-lg: 100px;
 
         // styles the separator / category titles
         // padding also overrites .nx-py-1\.5
-        .nx-text-gray-900 {
-            color: colors.$grey80;
-            display: flex;
-            grid-gap: 8px;
-            padding-bottom: 0;
-            padding-top: 24px;
-        }
-
-        // modify the focused nav item
-        .nx-text-primary-800 {
-            background-color: color.adjust(colors.$purple40, $alpha: -0.6);
-            color: colors.$purple140;
-        }
-
-        // modify the non-focused nav items
-        .nx-text-gray-500 {
-            color: colors.$purple200;
-        }
-
-        // bold the parent links
-        .nextra-scrollbar >.nx-transform-gpu > .nx-transition-opacity > .nx-flex > li > button,
-        .nextra-scrollbar >.nx-transform-gpu > .nx-transition-opacity > .nx-flex > li > a {
-            font-weight: 500;
-        }
-
-        // remove the vertical rule within dropdowns
-        .before\:nx-w-px:before {
-            width: 0;
-        }
-
-        .hover\:nx-bg-gray-100:hover {
-            background-color: colors.$purple20;
-            color: colors.$purple140;
-        }
-
-        li > a:focus-visible, li > button:focus-visible {
-            background-color: colors.$white;
-        }
-
-        li {
-            margin-left: 4px;
-            margin-right: 4px;
-        }
-
-        .nx-pt-1 {
-            padding-bottom: 0.25rem;
+        .nextra-scrollbar >.nx-transform-gpu > .nx-transition-opacity {
+            .nx-text-gray-900 {
+                color: colors.$grey80;
+                display: flex;
+                grid-gap: 8px;
+                padding-bottom: 0;
+                padding-top: 24px;
+            }
+    
+            // modify the focused nav item
+            .nx-text-primary-800 {
+                background-color: color.adjust(colors.$purple40, $alpha: -0.6);
+                color: colors.$purple140;
+            }
+    
+            // modify the non-focused nav items
+            .nx-text-gray-500 {
+                color: colors.$purple200;
+            }
+    
+            // bold the parent links
+            > .nx-flex > li > button,
+            > .nx-flex > li > a {
+                font-weight: 500;
+            }
+    
+            // remove the vertical rule within dropdowns
+            .before\:nx-w-px:before {
+                width: 0;
+            }
+    
+            // modify hover states
+            .hover\:nx-bg-gray-100:hover {
+                background-color: colors.$purple20;
+                color: colors.$purple140;
+            }
+    
+            // add background color to focus states
+            li > a:focus-visible, li > button:focus-visible {
+                background-color: colors.$white;
+            }
+    
+            // add more spacing to focused states
+            li {
+                margin-left: 4px;
+                margin-right: 4px;
+            }
+    
+            // add more spacing to focused states
+            .nx-pt-1 {
+                padding-bottom: 0.25rem;
+            }
         }
     }
 
