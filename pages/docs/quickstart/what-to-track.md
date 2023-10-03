@@ -32,7 +32,7 @@ Tracking a value moment can help answer questions like:
 * What % of users that Sign Up make it to the Value Moment within their first day?
 
 #### Optional: Include Properties
-Properties provide added context to the event. Learn more [here](/docs/how-it-works/events-and-properties).
+Properties provide added context to the event. Learn more [here](/docs/tracking-specs/events-and-properties).
 
 Extending the above example, you might add the following properties:
 ```javascript
@@ -55,10 +55,10 @@ Once you've tracked these two events, you can use our [Company KPIs Template](ht
 
 ## How to Track
 There are two methods of tracking:
-* **Server-Side (Recommended):** In this method, you send events from your servers to Mixpanel. This approach is the most reliable and easy to maintain, since it lives in an environment that you control. It also means that you can add tracking in one place (your servers) rather than in 3 places (web, iOS, Android), which keeps tracking unified and clean. See our [quickstart](/docs/implementation/server-side-sdk) and [best practices](/docs/best-practices/server-side-best-practices) for more details on effective server-side tracking.
+* **Server-Side (Recommended):** In this method, you send events from your servers to Mixpanel. This approach is the most reliable and easy to maintain, since it lives in an environment that you control. It also means that you can add tracking in one place (your servers) rather than in 3 places (web, iOS, Android), which keeps tracking unified and clean. See our [quickstart](/docs/quickstart/connect-your-data) and [best practices](/docs/best-practices/server-side-best-practices) for more details on effective server-side tracking.
 
-* **Client-Side:** In this method, events are generated on the client device and sent to the Mixpanel API. There are two types of client-side tracking: web (Javascript) and mobile. This is less reliable than server-side due to ad-blockers. It's also harder to update tracking, since it might involve redeploying your app to web and mobile clients. You can improve reliability of client-side tracking using a [proxy](/docs/implementation/tracking-via-proxy), but this takes more effort.
+* **Client-Side:** In this method, events are generated on the client device and sent to the Mixpanel API. There are two types of client-side tracking: web (Javascript) and mobile. This is less reliable than server-side due to ad-blockers. It's also harder to update tracking, since it might involve redeploying your app to web and mobile clients. You can improve reliability of client-side tracking using a [proxy](/docs/tracking-methods/tracking-via-proxy), but this takes more effort.
 
 We recommend tracking everything you possibly can via your servers, and only supplementing that with client-side tracking when necessary.
 
-Note: If you already track events via a CDP, Tag Manager, or via your DWH using something like Snowplow, you can route those events to Mixpanel with our native integrations. See the [Segment](https://segment.com/docs/connections/destinations/catalog/actions-mixpanel/), [Rudderstack](https://rudderstack.com/integration/mixpanel/), or [GTM](https://github.com/mixpanel/mixpanel-gtm-template#readme) docs for a walkthrough. We can also load data directly from data warehouses like [Snowflake](/docs/implementation/data-warehouse/integrations/snowflake) and [BigQuery](/docs/implementation/data-warehouse/integrations/bigquery).
+Note: If you already track events via a CDP, Tag Manager, or via your DWH using something like Snowplow, you can route those events to Mixpanel with our native integrations. See the [Segment](https://segment.com/docs/connections/destinations/catalog/actions-mixpanel/), [Rudderstack](https://rudderstack.com/integration/mixpanel/), or [GTM](https://github.com/mixpanel/mixpanel-gtm-template#readme) docs for a walkthrough. We can also load data directly from data warehouses like [Snowflake](/docs/tracking-methods/data-warehouse/snowflake) and [BigQuery](/docs/tracking-methods/data-warehouse/bigquery).

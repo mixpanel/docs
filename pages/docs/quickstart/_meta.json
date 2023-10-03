@@ -1,28 +1,4 @@
 {
-  "what-to-track": "What to Track?",
-  "http-api": {
-    "type": "page",
-    "title": "HTTP API",
-    "href": "/docs/implementation/http-api"
-  },
-  "server-side-sdk": {
-    "type": "page",
-    "title": "Server-Side SDK",
-    "href": "/docs/implementation/server-side-sdk"
-  },
-  "web-sdk": {
-    "type": "page",
-    "title": "Web SDK",
-    "href": "/docs/implementation/web-sdk"
-  },
-  "mobile-sdk": {
-    "type": "page",
-    "title": "Mobile SDK",
-    "href": "/docs/implementation/mobile-sdk"
-  },
-  "API Credentials": {
-    "type": "page",
-    "title": "API Credentials",
-    "href": "/docs/implementation/api-credentials"
-  }
+  "what-to-track": "What to Track",
+  "connect-your-data": "Connect Your Data"
 }

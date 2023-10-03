@@ -154,7 +154,7 @@ mixpanel.identify("13793");
 ```
 
 ### Call Reset at Logout
-[`Reset()`](https://github.com/mixpanel/mixpanel-js/blob/master/doc/readme.io/javascript-full-api-reference.md#mixpanelreset) generates a new random distinct_id and clears super properties. Call `reset()` to clear data attributed to a user when that user logs out. This allows you to handle multiple users on a single device. For more information about maintaining user identity, see the [Identifying Users](/docs/implementation/identifying-users) article.
+[`Reset()`](https://github.com/mixpanel/mixpanel-js/blob/master/doc/readme.io/javascript-full-api-reference.md#mixpanelreset) generates a new random distinct_id and clears super properties. Call `reset()` to clear data attributed to a user when that user logs out. This allows you to handle multiple users on a single device. For more information about maintaining user identity, see the [Identifying Users](/docs/tracking-methods/identifying-users) article.
 
 Note: Calling reset frequently can lead to users quickly exceeding the 500 distinct_id per identity cluster limit. Once the 500 limit is reached you will no longer be able to add additional distinct_ids to the users identity cluster.
 
@@ -167,7 +167,7 @@ mixpanel.reset();
 
 In addition to events, you can store user profiles in Mixpanel. Profiles are persistent sets of properties that describe a user - things like name, email address, and signup date. You can use profiles to explore and segment users by who they are, rather than what they did.
 
-*Please take note of the [reserved profile properties](/docs/data-types/user-profiles#reserved-user-properties) (e.g. `$name`, `$email`) which receive special treatment in our UI or are used for special processing.
+*Please take note of the [reserved profile properties](/docs/tracking-specs/user-profiles#reserved-user-properties) (e.g. `$name`, `$email`) which receive special treatment in our UI or are used for special processing.
 
 ### Setting Profile Properties
 
