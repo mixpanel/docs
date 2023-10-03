@@ -29,7 +29,7 @@ https://help.mixpanel.com/hc/en-us/articles/115004495783(.*) /docs/tracking-meth
 https://help.mixpanel.com/hc/en-us/articles/115004497803(.*) /docs/tracking-methods/identifying-users
 https://help.mixpanel.com/hc/en-us/articles/115004499343(.*) /docs/best-practices/server-side-best-practices#tracking-geolocation
 https://help.mixpanel.com/hc/en-us/articles/115004499403(.*) /docs/features/advanced#undefined-and-null-properties
-https://help.mixpanel.com/hc/en-us/articles/115004499463(.*) /docs/tracking-methods/tracking-via-proxy#how-to-set-up-a-proxy
+https://help.mixpanel.com/hc/en-us/articles/115004499463(.*) /docs/tracking-methods/sdks/javascript#how-to-set-up-a-proxy
 https://help.mixpanel.com/hc/en-us/articles/115004501926(.*) /docs/pricing/billing#what-if-i-go-over-my-event-plan-allowance
 https://help.mixpanel.com/hc/en-us/articles/115004501966(.*) /docs/tracking-specs/user-profiles
 https://help.mixpanel.com/hc/en-us/articles/115004502206(.*) /docs/pricing/billing#what-if-i-go-over-my-event-plan-allowance
@@ -49,7 +49,7 @@ https://help.mixpanel.com/hc/en-us/articles/115004546843(.*) /docs/tracking-meth
 https://help.mixpanel.com/hc/en-us/articles/115004546863(.*) /docs/quickstart/connect-your-data
 https://help.mixpanel.com/hc/en-us/articles/115004546883(.*) /docs/reports/retention
 https://help.mixpanel.com/hc/en-us/articles/115004546883(.*) /docs/reports/retention#overview
-https://help.mixpanel.com/hc/en-us/articles/115004547063(.*) /docs/how-it-works/data-model/fundamentals#supported-data-types
+https://help.mixpanel.com/hc/en-us/articles/115004547063(.*) /docs/how-it-works/concepts#supported-data-types
 https://help.mixpanel.com/hc/en-us/articles/115004547203(.*) /docs/orgs-and-projects/managing-projects#manage-timezones-for-projects
 https://help.mixpanel.com/hc/en-us/articles/115004547263(.*) /docs/tracking-specs/user-profiles#faq
 https://help.mixpanel.com/hc/en-us/articles/115004551583(.*) /docs
@@ -130,7 +130,7 @@ https://help.mixpanel.com/hc/en-us/articles/360000664223(.*) /docs/pricing/billi
 https://help.mixpanel.com/hc/en-us/articles/360000679006(.*) /docs/privacy/protecting-user-data
 https://help.mixpanel.com/hc/en-us/articles/360000791746(.*) /docs/privacy/protecting-user-data
 https://help.mixpanel.com/hc/en-us/articles/360000857366(.*) /docs/other-bits/tutorials/mixpanel-analysis/overview
-https://help.mixpanel.com/hc/en-us/articles/360000865566(.*) /docs/how-it-works/data-model/fundamentals
+https://help.mixpanel.com/hc/en-us/articles/360000865566(.*) /docs/how-it-works/concepts
 https://help.mixpanel.com/hc/en-us/articles/360000881023(.*) /docs/privacy/end-user-data-management
 https://help.mixpanel.com/hc/en-us/articles/360000894623(.*) /docs/other-bits/tutorials/mixpanel-analysis/overview
 https://help.mixpanel.com/hc/en-us/articles/360000902886(.*) /docs/users/overview
