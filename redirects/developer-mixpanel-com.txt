@@ -10,7 +10,7 @@
 /developer-docs-redirect/codeless-freshpaint /docs/tracking-methods/integrations/freshpaint
 /developer-docs-redirect/cohort-webhooks /docs/cohort-sync/webhooks
 /developer-docs-redirect/cohorts /docs/cohort-sync/build-an-integration
-/developer-docs-redirect/collection-via-a-proxy /docs/tracking-methods/tracking-via-proxy
+/developer-docs-redirect/collection-via-a-proxy /docs/tracking-methods/sdks/javascript
 /developer-docs-redirect/custom-query /docs/reports/legacy/jql
 /developer-docs-redirect/data-discrepancy-faq /docs/other-bits/data-pipelines/overview#faq
 /developer-docs-redirect/data-pipelines /docs/other-bits/data-pipelines/overview
