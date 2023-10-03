@@ -1,8 +1,4 @@
-<<<<<<< HEAD:pages/docs/reports/flows.md
-# Funnels
-=======
-# Guide
->>>>>>> update analysis:pages/docs/reports/flows/guide.md
+# Flows
 
 ## Overview
 
@@ -110,11 +106,7 @@ For example, below Flows is showing the event that happened directly before a Pu
 
 ### Viewing More Event Flows
 
-<<<<<<< HEAD:pages/docs/reports/flows.md
 By default, flows only shows you the top 3 events performed by users ordered by the number of users who performed them. Less common events performed by fewer users are combined into an "Other events" section. ([Click here](/docs/reports/flows). To view more events, simply right click the other events node and `Add a row of events`.
-=======
-By default, flows only shows you the top 3 events performed by users ordered by the number of users who performed them. Less common events performed by fewer users are combined into an "Other events" section. ([Click here](/docs/reports/flows/guide). To view more events, simply right click the other events node and `Add a row of events`.
->>>>>>> update analysis:pages/docs/reports/flows/guide.md
 
 ![/Screen_Shot_2021-07-20_at_7.46.45_PM.png](/Screen_Shot_2021-07-20_at_7.46.45_PM.png)
 
@@ -140,11 +132,7 @@ Once an event is selected, Mixpanel calculates the most common events performed 
 
 In the above example, Install or Open is a custom event, while Experiment Started is a regular event.
 
-<<<<<<< HEAD:pages/docs/reports/flows.md
 [Click here](/docs/reports/flows#custom-events-in-flows) to learn more about custom events in flows.
-=======
-[Click here](/docs/reports/flows/guide#custom-events-in-flows) to learn more about custom events in flows.
->>>>>>> update analysis:pages/docs/reports/flows/guide.md
 
 #### Other Events
 
@@ -179,11 +167,7 @@ Totals flows count multiple entries per user.  Users can re-start the flow and 
 3. They are excluded from the current flow by an exclusion step.
 
 **Sessions**
-<<<<<<< HEAD:pages/docs/reports/flows.md
 Sessions ensure every step in the flow is performed in the same session. Like totals flows, users will be allowed to re-start the flow in subsequent sessions. Learn more about Sessions [here](/docs/features/sessions).
-=======
-Sessions ensure every step in the flow is performed in the same session. Like totals flows, users will be allowed to re-start the flow in subsequent sessions. Learn more about Sessions [here](/docs/features/advanced/sessions).
->>>>>>> update analysis:pages/docs/reports/flows/guide.md
 
 #### Conversion Window
 

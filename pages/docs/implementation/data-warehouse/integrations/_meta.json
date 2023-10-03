@@ -1,5 +1,0 @@
-{
-    "bigquery": "BigQuery",
-    "snowflake": "Snowflake",
-    "redshift": "Redshift"
-}
