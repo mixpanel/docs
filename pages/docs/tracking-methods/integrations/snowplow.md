@@ -17,11 +17,7 @@ Snowplow's main responsibility is to collect and validate events before storing 
 - A streaming system like Amazon Kinesis, Google PubSub, or ElasticSearch.
 - A data lake like Amazon S3 or Google Cloud Storage.
 
-<<<<<<< HEAD:pages/docs/tracking-methods/integrations/snowplow.md
 Depending on which of the above destinations you've configured in Snowplow, you can follow our guides for ingesting *from* that destination into Mixpanel. We provide guides for [Amazon S3](/docs/tracking-methods/integrations/amazon-s3), [Google Cloud Storage](/docs/tracking-methods/integrations/google-cloud-storage), and [Google Pub/Sub](/docs/tracking-methods/integrations/google-pubsub). The process for Kinesis is very similar. Similar to Snowplow itself, these guides run fully in your own cloud and give you granular control over what exactly what gets sent to Mixpanel.
-=======
-Depending on which of the above destinations you've configured in Snowplow, you can follow our guides for ingesting *from* that destination into Mixpanel. We provide guides for [Amazon S3](/docs/implementation/integrations/amazon-s3), [Google Cloud Storage](/docs/implementation/integrations/google-cloud-storage), and [Google Pub/Sub](/docs/implementation/integrations/google-pubsub). The process for Kinesis is very similar. Similar to Snowplow itself, these guides run fully in your own cloud and give you granular control over what exactly what gets sent to Mixpanel.
->>>>>>> add rest of implementation:pages/docs/implementation/integrations/snowplow.md
 
 If you're using Snowplow to ingest events directly into a data warehouse like Snowflake or BigQuery, we recommend leveraging our Reverse ETL integrations with [Census](https://www.getcensus.com/integrations/mixpanel) and [HighTouch](https://hightouch.io/integrations/destinations/mixpanel). Reverse ETL tools let you model events using a SQL query and push them to all the tools in your stack, including Mixpanel.
 
