@@ -86,9 +86,10 @@
 /docs/other-bits/privacy-and-security/export-or-delete-end-user-data /docs/privacy/end-user-data-management
 /docs/other-bits/privacy-and-security/eu-residency /docs/privacy/eu-residency
 /docs/other-bits/privacy-and-security/gdpr-compliance /docs/privacy/gdpr-compliance
-/docs/other-bits/rate-limits /docs/tracking-methods/api-rate-limits
+/docs/other-bits/rate-limits https://developer.mixpanel.com/reference/query-api#rate-limits
 /docs/other-bits/support-and-community/community /docs/community/guidelines
 /docs/other-bits/support-and-community/support /docs/response-times
+/docs/other-bits/tutorials /docs/what-is-mixpanel
 /docs/other-bits/tutorials/adoption-reference-guide /docs/best-practices/adoption
 /docs/other-bits/tutorials/analytics-strategy /docs/best-practices/analytics-strategy
 /docs/other-bits/tutorials/creating-a-tracking-plan /docs/best-practices/create-a-tracking-plan
@@ -152,6 +153,6 @@
 /docs/tracking/server /docs/quickstart/connect-your-data
 /docs/tutorials/developers /docs/how-it-works/concepts
 /docs/tutorials/migration-guides/migrating-to-mixpanel-from-google-analytics /docs/tracking-methods/migration/google-analytics
-/docs/tutorials/mixpanel-analysis /docs/other-bits/tutorials/mixpanel-analysis/overview
+/docs/tutorials/mixpanel-analysis /docs/how-it-works/concepts#overview
 /docs/tutorials/mixpanel-analysis/insights /docs/reports/insights
 /docs/tutorials/mixpanel-analysis/retention /docs/reports/retention
