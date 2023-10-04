@@ -148,9 +148,9 @@ $border-radius-lg: 100px;
         // nextra currently doesn't name anything in the sidebar properly and only has tailwind functional
         // names, and so this is hacked together so that we get the view that we want
 
-        // styles the separator / category titles
-        // padding also overrites .nx-py-1\.5
         .nextra-scrollbar >.nx-transform-gpu > .nx-transition-opacity {
+            // styles the separator / category titles
+            // padding also overrites .nx-py-1\.5
             .nx-text-gray-900 {
                 color: colors.$grey80;
                 display: flex;
@@ -158,14 +158,19 @@ $border-radius-lg: 100px;
                 padding-bottom: 0;
                 padding-top: 24px;
             }
-    
-            // modify the focused nav item
-            .nx-text-primary-800 {
+
+            // modify pressed state
+            a:active {
                 background-color: color.adjust(colors.$purple40, $alpha: -0.6);
+            }
+    
+            // modify the selected nav item
+            .nx-text-primary-800 {
+                background-color: colors.$purple20;
                 color: colors.$purple140;
             }
     
-            // modify the non-focused nav items
+            // modify the non-selected nav items
             .nx-text-gray-500 {
                 color: colors.$purple200;
             }
@@ -201,6 +206,11 @@ $border-radius-lg: 100px;
             // add more spacing to focused states
             .nx-pt-1 {
                 padding-bottom: 0.25rem;
+            }
+
+            // decrease the indent in the nav
+            ul {
+                margin-left: 0;
             }
         }
     }
