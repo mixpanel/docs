@@ -128,6 +128,24 @@ Most other integrations are unaffected by this API change. These integrations ar
 - **`$distinct_id` is predictable and matches `$user_id` for identified users.** In the Original API, IDs are grouped into identity clusters and any ID within the cluster might become the “canonical” distinct ID. In the simplified API, the `$distinct_id` is deterministic: it will always be the `$user_id` that you provide.
 - **There is no limit on the number of `$device_id`s that can be merged into a single `$user_id`.** In the Original API a maximum of 500 IDs can be merged into a single cluster. In the Simplified API, there is no similar restriction; you can merge an unlimited number of `$device_id`s into `$user_id`s. This is useful in apps where users log out and log in often.
 
+## Best Practices
+#### Call mixpanel.identify upon a successful sign-up / login or when an app is re-opened in a logged-in state
+By calling mixpanel.identify at these specific points in user journeys, you would be able to link the pre and post-login events to the same user on Mixpanel. Besides, calling mixpanel.identify when the users re-open the app in a logged-in state ensures that all events in the session are tracked with the user's identifier such as user id.
+
+#### Track the unique identifier as a super property and user property to assist in troubleshooting
+You can track the user's unique identifier as a [super property via mixpanel.register](https://developer.mixpanel.com/docs/javascript#super-properties) and [user property via mixpanel.people.set](https://developer.mixpanel.com/docs/javascript#setting-profile-properties) as soon as it is available in the app i.e. on a successful sign-up / login or when an app is re-opened in a logged in state.
+In the cases when ID Merge is not implemented properly, you can rely on these properties for troubleshooting purposes.
+
+#### Avoid creating profiles for anonymous users
+Avoid creating profiles for anonymous users. If possible, cache user profile properties update in cookie or local storage and only send them to Mixpanel after the user is identified (ie logged-in state).
+
+#### QA your ID management implementation during the development phase
+Here are a few things to look out for:
+- Ensure that cross-platform, pre and post-registration events are linked to the same user on Mixpanel.
+- Ensure that no duplicate profiles are created as the users go through the onboarding, registration, login, and cross-platform user journey.
+- Ensure that all the user’s identifiers are stored in the same Identity Cluster and that all their events are displayed on a single profile on Mixpanel.
+
+
 ## FAQ
 
 ### What is Distinct ID?
