@@ -1,4 +1,4 @@
-# Jumpcloud
+# JumpCloud
 
 
 ## Overview
@@ -11,8 +11,8 @@ Follow the general SSO set-up instructions.
 
 Make sure to collect your postback URL and successfully claim your domain.
 
-### Configure the Mixpanel App in Jumpcloud
-Go to Jumpcloud and create a custom application with the following values:
+### Configure the Mixpanel App in JumpCloud
+Go to JumpCloud and create a custom application with the following values:
 
 SP Entity ID: https://mixpanel.com/security/sso/v2/authorize/
 
@@ -30,10 +30,10 @@ Make sure to pass through the attributes: email, firstName and lastName.
 Only email is required but the other two are useful if you want to provision new users with SSO via IDP Managed Access.
 
 Here is a screenshot of an example setup:
-![Jumpcloud Info Image](/jumpcloud1.png)
+![JumpCloud Info Image](/jumpcloud1.png)
 
 
 Optionally toggle “Require Users to Log In using SSO” to prevent your users from using a username and password to log in. Click **Enable**. Organization owners and admins will still be able to log in using username and password if SSO is not set up correctly.
 
 ### SCIM
-Use SCIM with Jumpcloud at your own risk. There have been problems reported with the Jumpcloud setup process hard deleting users unexpectedly.
+Use SCIM with JumpCloud at your own risk. There have been problems reported with the JumpCloud setup process hard deleting users unexpectedly.

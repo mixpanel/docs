@@ -129,10 +129,10 @@ https://help.mixpanel.com/hc/en-us/articles/360000345423(.*) /docs/privacy/gdpr-
 https://help.mixpanel.com/hc/en-us/articles/360000664223(.*) /docs/pricing/billing#downgrade-your-plan
 https://help.mixpanel.com/hc/en-us/articles/360000679006(.*) /docs/privacy/protecting-user-data
 https://help.mixpanel.com/hc/en-us/articles/360000791746(.*) /docs/privacy/protecting-user-data
-https://help.mixpanel.com/hc/en-us/articles/360000857366(.*) /docs/other-bits/tutorials/mixpanel-analysis/overview
+https://help.mixpanel.com/hc/en-us/articles/360000857366(.*) /docs/how-it-works/concepts
 https://help.mixpanel.com/hc/en-us/articles/360000865566(.*) /docs/how-it-works/concepts
 https://help.mixpanel.com/hc/en-us/articles/360000881023(.*) /docs/privacy/end-user-data-management
-https://help.mixpanel.com/hc/en-us/articles/360000894623(.*) /docs/other-bits/tutorials/mixpanel-analysis/overview
+https://help.mixpanel.com/hc/en-us/articles/360000894623(.*) /docs/how-it-works/concepts
 https://help.mixpanel.com/hc/en-us/articles/360000902886(.*) /docs/users/overview
 https://help.mixpanel.com/hc/en-us/articles/360000953003(.*) /docs
 https://help.mixpanel.com/hc/en-us/articles/360001113426(.*) /docs/privacy/protecting-user-data
@@ -168,7 +168,7 @@ https://help.mixpanel.com/hc/en-us/articles/360021085271(.*) /docs/admin/organiz
 https://help.mixpanel.com/hc/en-us/articles/360021115871(.*) /docs/tracking-specs/user-profiles#faq
 https://help.mixpanel.com/hc/en-us/articles/360021748752(.*) /docs/reports/retention
 https://help.mixpanel.com/hc/en-us/articles/360021749032(.*) /docs/reports/retention
-https://help.mixpanel.com/hc/en-us/articles/360021916032(.*) /docs/other-bits/tutorials/mixpanel-analysis/overview
+https://help.mixpanel.com/hc/en-us/articles/360021916032(.*) /docs/how-it-works/concepts
 https://help.mixpanel.com/hc/en-us/articles/360022537091(.*) /docs/reports/retention
 https://help.mixpanel.com/hc/en-us/articles/360024613412(.*) /docs/orgs-and-projects/roles-and-permissions#project-roles
 https://help.mixpanel.com/hc/en-us/articles/360024815311(.*) /docs/orgs-and-projects/managing-projects#transfer-project-to-another-organization
@@ -265,7 +265,7 @@ https://help.mixpanel.com/hc/en-us/articles/7773849285780(.*) /docs/tracking-spe
 https://help.mixpanel.com/hc/en-us/articles/9648680824852(.*) /docs/tracking-methods/identifying-users
 https://help.mixpanel.com/hc/en-us/articles/9671249667988(.*) /docs/community/guidelines
 https://help.mixpanel.com/hc/en-us/categories/115000963103(.*) /docs/admin/organizations-projects
-https://help.mixpanel.com/hc/en-us/categories/115001031023(.*) /docs/other-bits/tutorials/mixpanel-analysis
+https://help.mixpanel.com/hc/en-us/categories/115001031023(.*) /docs/how-it-works/concepts#overview
 https://help.mixpanel.com/hc/en-us/categories/115001157746(.*) /docs/data-governance/lexicon
 https://help.mixpanel.com/hc/en-us/categories/115001197206(.*) /docs/quickstart/connect-your-data
 https://help.mixpanel.com/hc/en-us/categories/115001197226(.*) /docs
