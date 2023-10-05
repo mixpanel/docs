@@ -73,3 +73,9 @@ However, there are a few other options:
 
 - [Hide the Events in question from the UI.](/docs/data-governance/lexicon#hide-events-and-properties)
 - If the bot activity has a distinguishing Property value, [create a custom Event](/docs/features/custom-events) that excludes all activity with that value.
+
+## Reduce Rate Limiting Errors
+
+You can reduce rate-limiting errors (429) using one of the two approaches:
+- Spread your queries out over a longer period of time.
+- Consolidate multiple queries into a single query (for example, multiple queries filtering on a single property may be combined into a single segmentation query).
