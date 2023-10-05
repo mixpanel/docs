@@ -44,7 +44,7 @@ If you want the IdP initiated flow to direct to [eu.mixpanel.com](https://eu.mix
 
 ## EU Residency and CDPs
 
-If you are coming to use it from a Customer Data Platform (CDP), Mixpanel cannot guarantee that data ingestion, processing and storage will always stay within the EU region. Please work with your CDP to make sure they are sending your data to the EU endpoint. 
+If you are coming to use Mixpanel from a Customer Data Platform (CDP), we cannot guarantee that data ingestion, processing and storage will always stay within the EU region. Please work with your CDP to make sure they are sending your data to the EU endpoint. 
 
 The following diagram shows how Mixpanel's Data Residency works:
 
