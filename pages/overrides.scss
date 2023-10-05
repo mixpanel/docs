@@ -148,13 +148,14 @@ $border-radius-lg: 100px;
         // nextra currently doesn't name anything in the sidebar properly and only has tailwind functional
         // names, and so this is hacked together so that we get the view that we want
 
-        .nextra-scrollbar >.nx-transform-gpu > .nx-transition-opacity {
+        .nx-transform-gpu > .nx-transition-opacity {
             // styles the separator / category titles
-            // padding also overrites .nx-py-1\.5
-            .nx-text-gray-900 {
+            .first\:nx-mt-0 {
+                align-items: center;
                 color: colors.$grey80;
                 display: flex;
                 grid-gap: 8px;
+                letter-spacing: 0.16rem;
                 padding-bottom: 0;
                 padding-top: 24px;
             }
