@@ -1,6 +1,7 @@
 ---
 title: "Delete Profile"
 slug: "delete-profile"
+excerpt: ""
 hidden: false
 createdAt: "2020-10-20T00:41:26.255Z"
 updatedAt: "2023-09-26T21:06:38.970Z"

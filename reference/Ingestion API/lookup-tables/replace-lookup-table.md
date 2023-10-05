@@ -1,6 +1,7 @@
 ---
 title: "Replace a Lookup Table"
 slug: "replace-lookup-table"
+excerpt: ""
 hidden: false
 createdAt: "2021-10-05T01:49:31.011Z"
 updatedAt: "2023-09-26T21:06:39.089Z"

@@ -1,6 +1,7 @@
 ---
 title: "Create Connector"
 slug: "create-connector"
+excerpt: ""
 hidden: false
 createdAt: "2021-11-23T19:28:56.439Z"
 updatedAt: "2023-09-26T21:06:38.049Z"
@@ -20,22 +21,7 @@ updatedAt: "2023-09-26T21:06:38.049Z"
 * `s3_role` (string) : s3 IAM
 * `s3_region` (string) : region of the bucket. Please refer to [S3 Endpoint](https://docs.aws.amazon.com/general/latest/gr/s3.html) and refer to column Region for accepted values
 
-Sample request
-
-```sh
-curl --request POST \
-     --url https://mixpanel.com/api/app/projects/{projectId}/connectors \
-     --header 'accept: application/json' \
-     --header 'content-type: application/json' \
-     --data '
-{
-  "connector_type": "s3Import",
-  "connector_properties": {
-    "s3_region": "us-east-2"
-  }
-}
-'
-```
+#### Template for each bucket type
 
 Template for GCS
 ```json
@@ -67,6 +53,23 @@ Template for S3
 		"compression": "none"
 	}
 }
+```
+
+Sample cURL command
+
+```sh
+curl --request POST \
+     --url https://mixpanel.com/api/app/projects/{projectId}/connectors \
+     --header 'accept: application/json' \
+     --header 'content-type: application/json' \
+     --data '
+{
+  "connector_type": "s3Import",
+  "connector_properties": {
+    "s3_region": "us-east-2"
+  }
+}
+'
 ```
 
 Sample Response

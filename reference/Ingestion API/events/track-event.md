@@ -1,17 +1,11 @@
 ---
 title: "Track Events"
 slug: "track-event"
+excerpt: ""
 hidden: false
 createdAt: "2021-07-27T00:06:02.814Z"
 updatedAt: "2023-09-26T21:06:38.693Z"
 ---
-
-```sh
-curl https://api.mixpanel.com/track
-    -u "YOUR_API_SECRET:" \
-    -H "Content-Type: application/json"
-    -d '[{"event": "Signed Up", "properties": {"time": 1618716477000, "distinct_id": "91304156-cafc-4673-a237-623d1129c801", "$insert_id": "29fc2962-6d9c-455d-95ad-95b84f09b9e4", "Referred By": "Friend"}]'
-```
 
 Prefer to use /import over /track where you can. We only recommend /track for client-side tracking in an environment for which we don't have SDK support or if you're sending data via some other untrusted environment (eg: third-party webhooks that send data to Mixpanel).
 

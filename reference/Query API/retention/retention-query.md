@@ -1,6 +1,7 @@
 ---
 title: "Query Retention Report"
 slug: "retention-query"
+excerpt: ""
 hidden: false
 createdAt: "2020-10-20T00:41:48.195Z"
 updatedAt: "2023-09-26T21:06:38.986Z"

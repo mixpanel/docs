@@ -1,6 +1,7 @@
 ---
 title: "Delete a Project's Connector by Connector Id"
 slug: "delete-connector"
+excerpt: ""
 hidden: false
 createdAt: "2021-11-23T19:28:56.440Z"
 updatedAt: "2023-09-26T21:06:38.068Z"

@@ -1,6 +1,7 @@
 ---
 title: "List Connector Logs"
 slug: "get-connector-logs"
+excerpt: ""
 hidden: false
 createdAt: "2021-11-23T19:28:56.441Z"
 updatedAt: "2023-09-26T21:06:38.075Z"
@@ -20,7 +21,7 @@ curl --request GET \
      --header 'accept: application/json'
 ```
 
-Sample Queued Job
+### Queued Job
 ```json
 {
 	"status": "ok",
@@ -49,7 +50,7 @@ Sample Queued Job
 }
 ```
 
-Sample Running Job
+### Running Job
 ```json
 {
 	"status": "ok",
@@ -78,7 +79,7 @@ Sample Running Job
 }
 ```
 
-Sample Completed Job (Success)
+### Completed Job (Success)
 ```json
 {
 	"status": "ok",
@@ -107,7 +108,7 @@ Sample Completed Job (Success)
 }
 ```
 
-Sample Failed Job
+### Failed Job
 ```json
 {
   "status": "ok",

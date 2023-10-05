@@ -1,11 +1,13 @@
 ---
 title: "List Connectors"
 slug: "get-connectors"
+excerpt: ""
 hidden: false
 createdAt: "2021-11-23T19:28:56.439Z"
 updatedAt: "2023-09-26T21:06:38.041Z"
 ---
 
+Sample cURL Command
 ```sh
 curl --request GET \
      --url https://mixpanel.com/api/app/projects/{projectId}/connectors \

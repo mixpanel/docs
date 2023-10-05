@@ -34,6 +34,7 @@ Calculating the signature is done in parts:
 The resulting hash is the request signature.
 
 ```sh
+# (psuedo code)
 # all query parameters going to be sent out with the request
 request_parameters = {
    api_key: '123',
@@ -62,7 +63,7 @@ The generated signature needs to be provided with the parameters you used to cal
 Your URL should look similar to this however varying on the endpoint you are requesting data from:
 
 Request with Signature
-``txt
+```txt
 https://mixpanel.com/api/2.0/events/
 		&interval=7
 		&expire=1275624968

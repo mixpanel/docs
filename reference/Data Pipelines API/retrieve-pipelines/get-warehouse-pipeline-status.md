@@ -1,19 +1,13 @@
 ---
 title: "Get Pipeline"
 slug: "get-warehouse-pipeline-status"
+excerpt: ""
 hidden: false
 createdAt: "2022-02-18T20:12:47.078Z"
 updatedAt: "2023-09-26T21:06:38.030Z"
 ---
 
 Given the name of the pipeline this API returns the status of the pipeline. It returns the summary and status of all the recent run export jobs for the pipeline.
-
-```sh
-curl --request GET \
-     --url 'https://data.mixpanel.com/api/2.0/nessie/pipeline/status?project_id={PROJECT_ID}&name={YOUR_PIPELINE_NAME}' \
-     --header 'accept: application/json'
-```
-
 
 **Example Response:** Status with no Summary and a Filter
 

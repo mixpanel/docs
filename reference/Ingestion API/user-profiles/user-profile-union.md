@@ -1,6 +1,7 @@
 ---
 title: "Union To List Property"
 slug: "user-profile-union"
+excerpt: ""
 hidden: false
 createdAt: "2021-09-15T18:16:59.818Z"
 updatedAt: "2023-09-26T21:06:38.756Z"

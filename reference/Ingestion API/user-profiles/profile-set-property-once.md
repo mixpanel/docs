@@ -1,6 +1,7 @@
 ---
 title: "Set Property Once"
 slug: "profile-set-property-once"
+excerpt: ""
 hidden: false
 createdAt: "2020-10-20T00:41:26.249Z"
 updatedAt: "2023-09-26T21:06:38.722Z"

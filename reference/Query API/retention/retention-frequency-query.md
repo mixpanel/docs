@@ -1,12 +1,15 @@
 ---
 title: "Query Frequency Report"
 slug: "retention-frequency-query"
+excerpt: ""
 hidden: false
 createdAt: "2020-10-20T00:41:48.196Z"
 updatedAt: "2023-09-26T21:06:39.027Z"
 ---
 
-Get data about how frequently users are performing events.\n\nLet's breakdown an example response. If you specify `day` as \"unit\" and `hour` as \"addiction_unit\", you will get a response that looks like this:
+Get data about how frequently users are performing events.
+
+Let's breakdown an example response. If you specify `day` as \"unit\" and `hour` as \"addiction_unit\", you will get a response that looks like this:
 
 ```json
     {
