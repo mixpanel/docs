@@ -2,8 +2,6 @@
 
 ## Getting Started
 
-Please refer to our [Quickstart Guide](../javascript-quickstart).
-
 The [Full API Reference](https://github.com/mixpanel/mixpanel-js/blob/master/doc/readme.io/javascript-full-api-reference.md#mixpanel), [Library Source Code](https://github.com/mixpanel/mixpanel-js), and an [Example Application](https://github.com/mixpanel/mixpanel-js/tree/master/examples) is documented in our GitHub repo.
 
 ## Track Events
