@@ -6,6 +6,7 @@ Mixpanel data is stored and isolated within a project. Mixpanel recommends track
 
 There may be [other factors where implementing separate projects](https://help.mixpanel.com/hc/en-us/articles/115004491683-When-To-Use-Multiple-Projects#factors-to-consider) is required, but do note that querying data across projects is not possible. Mixpanel supports a few different categories of data that can be used for analysis: events, user profiles, group profiles, and lookup tables. In data warehouse terminology, events make up the fact table while user profiles, group profiles, and lookup tables are dimension tables.
 
+
 <p
   style={{
     position: "relative",
@@ -29,8 +30,6 @@ There may be [other factors where implementing separate projects](https://help.m
 </p>
 
 ## Events
-
-### Overview
 
 Events are the core of Mixpanel's Data Model. All events have a name, a timestamp, and a user ID. Events can optionally have a set of properties, which describe the event in more detail.
 
@@ -104,9 +103,7 @@ Each event can have up to 2000 properties. Properties can be at most 255 charact
 
 ## User Profiles
 
-User Profiles let you enrich events with properties about the users that performed those events. Profiles are optional; we recommend starting with events and only adding Profiles if you need it.
-
-### Overview
+User Profiles lets you enrich events with properties about the users that performed those events. Profiles are optional; we recommend starting with events and only adding Profiles if you need them.
 
 A User Profile is a set of properties associated with a given user. Under the hood, Mixpanel stores user profiles for your project in a table:
 
