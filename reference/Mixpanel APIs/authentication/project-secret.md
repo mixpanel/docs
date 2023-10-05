@@ -22,16 +22,12 @@ Your Project Secret is very powerful so be sure to keep it secure. Do not share 
 [/block]
 
 Project secret authentication is performed via [HTTP Basic Auth](https://developer.mozilla.org/en-US/docs/Web/HTTP/Authentication#Basic_authentication_scheme). Provide your secret as the basic auth username value with an empty password. Make sure you use HTTPS and not HTTP - our API rejects requests made over HTTP since this sends your API Secret over the internet in plain text.
-[block:code]
-{
-  "codes": [
-    {
-      "code": "curl https://api.mixpanel.com/import \\\n    -u <api_secret>: \\ # trailing colon prevents a password prompt\n    -d data=<encoded_event_data>",
-      "language": "curl"
-    }
-  ]
-}
-[/block]
+
+```curl
+    curl https://api.mixpanel.com/import
+        -u <api_secret>: \\ # trailing colon prevents a password prompt
+        -d data=<encoded_event_data>
+```
 
 [block:api-header]
 {

@@ -19,13 +19,9 @@ updatedAt: "2021-09-16T19:25:23.569Z"
 }
 [/block]
 [Service Account Authentication Details](ref:authentication#service-accounts)
-[block:code]
-{
-  "codes": [
-    {
-      "code": "curl --request GET \\\n     --url https://mixpanel.com/api/app/organizations/12345/service-accounts \\\n     --header 'Accept: application/json' \\\n     --header 'Authorization: Basic dGVzdDp0ZXN0'",
-      "language": "curl"
-    }
-  ]
-}
-[/block]
+```sh
+curl --request GET \
+     --url https://mixpanel.com/api/app/organizations/12345/service-accounts \
+     --header 'Accept: application/json' \
+     --header 'Authorization: Basic dGVzdDp0ZXN0'
+```
