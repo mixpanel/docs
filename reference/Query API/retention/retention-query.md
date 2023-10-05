@@ -9,7 +9,9 @@ updatedAt: "2023-09-26T21:06:38.986Z"
 
 Get cohort analysis.
 
-If you specify neither an `interval` nor a `unit`, the `interval` is 1 day. This means that each user gets 24 hours in each interval to do the specified event.\n\nAn example response with a `born_event` of 'event integration' and `event` of 'viewed report' might look like this:
+If you specify neither an `interval` nor a `unit`, the `interval` is 1 day. This means that each user gets 24 hours in each interval to do the specified event.
+
+An example response with a `born_event` of 'event integration' and `event` of 'viewed report' might look like this:
 ```json
     {
         "2012-01-01": {
