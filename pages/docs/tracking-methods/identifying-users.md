@@ -145,6 +145,9 @@ Here are a few things to look out for:
 - Ensure that no duplicate profiles are created as the users go through the onboarding, registration, login, and cross-platform user journey.
 - Ensure that all the user’s identifiers are stored in the same Identity Cluster and that all their events are displayed on a single profile on Mixpanel.
 
+#### Keep a record of your ID management implementation
+We encourage you to document your implementation (or create a diagram of the implementation). This will come in handy when you need to re-implement this on a new platform or troubleshoot ID management issue.
+
 
 ## FAQ
 
