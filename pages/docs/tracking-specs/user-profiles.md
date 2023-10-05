@@ -22,8 +22,25 @@ You can track User Profiles to Mixpanel in all the same ways you track events: f
 
 We recommend tracking user profiles from as close as possible to the source of truth for those profiles, which is usually your application database or your CRM. One common approach is to run an hourly or daily script on your servers that pulls the list of profiles from your database and pushes them to Mixpanel.
 
+### Operators
+**Setting profile property**
+- `$set` - Sets a profile property or update a profile property value.
+- `$set_once` - Sets a profile property only if they do not yet exist on Mixpanel. This ensures that the previous profile property value is not overwritten.
 
-Here's some sample code to get you started:
+**Updating numeric profile property**
+- `$add` - Increments or decrements a numeric profile property.
+
+**Updating list profile property**
+- `$union` - Merges a given list into a List profile property and it ensures there are no duplicate values in the profile property.
+- `$append` - Appends a value to the end of a List profile property.
+- `$remove` - Removes a value from a List profile property.
+
+**Removing profile properties**
+- `$unset` - Remove a profile property from the user profile
+- `$delete` - Remove all profile properties from the user profile.
+
+
+Here's some sample code to get you started, utilizing the `$set` operator:
 
 ```python
 # Fill this out. You can get it from https://mixpanel.com/settings/project
