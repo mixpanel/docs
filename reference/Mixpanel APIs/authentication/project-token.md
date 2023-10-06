@@ -9,8 +9,6 @@ Every Mixpanel project has a unique alphanumerical token for collecting data. A 
 
 With that in mind, it is important to note that a project's token is not a form of authorization. It is an identification sent along with each piece of data you send to your project.
 
-Project token is solely used in our Ingestion APIs. For any events with a timestamp of more than five days, we require you to provide authentication via Project Secret along with the token.
-
 ## Sending data with a Project Token
 
 For [Track Events](ref:track-event), tokens are provided as values inside of the data sent to Mixpanel. Where this value is stored is dependent on the API endpoint used. Information on the specific location can be found in the Ingestion API's specification.
