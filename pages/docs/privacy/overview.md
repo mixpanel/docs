@@ -27,7 +27,7 @@ Next you'll need to set the server location to EU when initializing the Mixpanel
 - [Python](/docs/tracking-methods/sdks/python#eu-data-residency)
 - [Java](/docs/tracking-methods/sdks/java#eu-data-residencyy)
 - [PHP](/docs/tracking-methods/sdks/php#eu-data-residency)
-- [Ruby](/docs//tracking-methods/sdks/ruby#eu-data-residency)
+- [Ruby](/docs/tracking-methods/sdks/ruby#eu-data-residency)
 - [Node.js](/docs/tracking-methods/sdks/nodejs#eu-data-residency)
 - [React Native](/docs/tracking-methods/sdks/react-native)
 - [Flutter](/docs/tracking-methods/sdks/flutter#eu-data-residency)
