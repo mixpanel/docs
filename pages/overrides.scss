@@ -148,6 +148,15 @@ $border-radius-lg: 100px;
         // nextra currently doesn't name anything in the sidebar properly and only has tailwind functional
         // names, and so this is hacked together so that we get the view that we want
 
+        // bold the parent links, first two are desktop version, second two are mobile version
+        // extra specificity is required because we want to distinguish between the top level and nested files
+        .nextra-scrollbar > .nx-transform-gpu > .nx-transition-opacity > ul > li > a,
+        .nextra-scrollbar > .nx-transform-gpu > .nx-transition-opacity > ul > li > button,
+        .nextra-scrollbar > ul > li.open > .nx-transform-gpu > .nx-transition-opacity > ul > li > a,
+        .nextra-scrollbar > ul > li.open > .nx-transform-gpu > .nx-transition-opacity > ul > li > button {
+            font-weight: 500;
+        }
+
         .nx-transform-gpu > .nx-transition-opacity {
             // styles the separator / category titles
             .first\:nx-mt-0 {
@@ -175,13 +184,7 @@ $border-radius-lg: 100px;
             .nx-text-gray-500 {
                 color: colors.$purple200;
             }
-    
-            // bold the parent links
-            > .nx-flex > li > button,
-            > .nx-flex > li > a {
-                font-weight: 500;
-            }
-    
+
             // remove the vertical rule within dropdowns
             .before\:nx-w-px:before {
                 width: 0;
