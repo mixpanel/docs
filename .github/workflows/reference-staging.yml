@@ -6,6 +6,7 @@ on:
   push:
     branches-ignore:
       - main
+  pull_request:
     paths:
       - 'reference/**'
 
@@ -24,11 +25,13 @@ jobs:
       - name: Run `versions` command
         uses: readmeio/rdme@v8
         with:
-          rdme: versions:create ${{ github.event.number }} --fork=v3.26 --main=false --beta=false --deprecated=false --hidden=false
+          rdme: versions:create ${{ github.event.pull_request.number }} --key=${{ secrets.README_API_KEY }} --fork=v3.26 --main=false --beta=false --deprecated=false --isPublic=true
 
   # Push branch content onto that ReadMe Version
   rdme-docs:
     runs-on: ubuntu-latest
+    needs:
+      - rdme-version
     steps:
       - name: Check out repo 📚
         uses: actions/checkout@v3
@@ -36,4 +39,4 @@ jobs:
       - name: Run `docs` command 🚀
         uses: readmeio/rdme@v8
         with:
-          rdme: docs ./reference --key=${{ secrets.README_API_KEY }} --version=${{ github.event.number }}
+          rdme: docs ./reference --key=${{ secrets.README_API_KEY }} --version=${{ github.event.pull_request.number }}
