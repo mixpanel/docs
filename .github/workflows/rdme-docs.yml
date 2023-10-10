@@ -9,6 +9,8 @@ on:
       # Check out GitHub's docs for more info on configuring this:
       # https://docs.github.com/actions/using-workflows/events-that-trigger-workflows
       - main
+    paths:
+      - 'reference/**'
 
 jobs:
   rdme-docs:
@@ -20,4 +22,4 @@ jobs:
       - name: Run `docs` command 🚀
         uses: readmeio/rdme@v8
         with:
-          rdme: docs ./reference --key=${{ secrets.README_API_KEY }} --version=3.27
+          rdme: docs ./reference --key=${{ secrets.README_API_KEY }} --version=3.26
