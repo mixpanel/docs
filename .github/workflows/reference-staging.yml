@@ -32,7 +32,7 @@ jobs:
       - name: Check if the readme version exists
         id: check-readme-version
         run: |
-          if rdme versions --version=${{ github.event.pull_request.number }} --key=${{ secrets.README_API_KEY }}; then
+          if rdme versions --version=${{ github.event.number }} --key=${{ secrets.README_API_KEY }}; then
             echo "has-version=true" >> $GITHUB_ENV
           else
             echo "has-version=false" >> $GITHUB_ENV
@@ -43,12 +43,12 @@ jobs:
         if: steps.has-version.outputs.has-version == 'false'
         uses: readmeio/rdme@v8
         with:
-          rdme: versions:create ${{ github.event.pull_request.number }} --key=${{ secrets.README_API_KEY }} --fork=v3.26 --main=false --beta=false --deprecated=false --isPublic=true
+          rdme: versions:create ${{ github.event.number }} --key=${{ secrets.README_API_KEY }} --fork=v3.26 --main=false --beta=false --deprecated=false --isPublic=true
 
       - name: Push docs to staging env 🚀
         uses: readmeio/rdme@v8
         with:
-          rdme: docs ./reference --key=${{ secrets.README_API_KEY }} --version=${{ github.event.pull_request.number }}
+          rdme: docs ./reference --key=${{ secrets.README_API_KEY }} --version=${{ github.event.number }}
 
   # build and update comment with the proper link
   preview-notify:
@@ -76,8 +76,8 @@ jobs:
             result-encoding: string
             script: |
               return `
-                # READMe Reference Preview
-                :rocket: https://https://developer.mixpanel.com/v${{ github.event.number }}/reference/overview
+                # API Reference Preview
+                :rocket: https://developer.mixpanel.com/v${{ github.event.number }}/reference/overview
                 Last updated: ${new Date().toLocaleString("en-US", {timeZone: "America/Los_Angeles"})} PT from ${{github.sha}}
               `
 
