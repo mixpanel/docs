@@ -1,0 +1,23 @@
+name: Create Staging link versions on ReadMe from non-main branches
+
+on:
+  # when a PR is created in any branch except main that have made changes to the
+  # reference folder, run this workflow
+  push:
+    branches-ignore:
+      - main
+
+jobs:
+  # ////////////////////////////////////////////////////////////////////////
+  # Pull Request
+  # ////////////////////////////////////////////////////////////////////////
+
+  test:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Check out code
+        uses: actions/checkout@v2
+      
+      - name: Run a test command
+        run: echo "Test workflow is running!"
