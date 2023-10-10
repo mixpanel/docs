@@ -8,17 +8,23 @@ updatedAt: "2021-11-03T19:36:47.214Z"
 Segmentation Expressions are used in [Query API](ref:query-api) and [Raw Data Export API](raw-data-export-api) to allow for more specificity when querying your data.
 
 The power of segmentation comes from the ability to define custom expressions based on property names in the where and on parameters. An expression consists of a property, combined with one or more operators that can perform mathematical operations, logical operations, or typecasts. Expression are then applied in the where and on parameters of the segmentation API. The full grammar for expressions is given here:
-[block:code]
-{
-  "codes": [
-    {
-      "code": "<expression> ::= 'properties[\"' <property> '\"]'\n                | <expression> <binary op> <expression>\n                | <unary op> <expression>\n                | <math op> '(' <expression> ')'\n                | <typecast op> '(' <expression> ')'\n                | '(' <expression> ')'\n                | <boolean literal>\n                | <numeric literal>\n                | <string literal>\n  <binary op> ::= '+' | '-' | '*' | '/' | '%' | '==' | '!=' |\n                  '>' | '>=' | '<' | '<=' | 'in' | 'and' | 'or'\n   <unary op> ::= '-' | 'not'\n    <math op> ::= 'floor' | 'round' | 'ceil'\n<typecast op> ::= 'boolean' | 'number' | 'string'\n   <property> ::= 'properties[\"' <property name> '\"]'",
-      "language": "text",
-      "name": "Expression Syntax"
-    }
-  ]
-}
-[/block]
+```txt
+<expression> ::= 'properties["' <property> '"]'
+                | <expression> <binary op> <expression>
+                | <unary op> <expression>
+                | <math op> '(' <expression> ')'
+                | <typecast op> '(' <expression> ')'
+                | '(' <expression> ')'
+                | <boolean literal>
+                | <numeric literal>
+                | <string literal>
+  <binary op> ::= '+' | '-' | '*' | '/' | '%' | '==' | '!=' |
+                  '>' | '>=' | '<' | '<=' | 'in' | 'and' | 'or'
+   <unary op> ::= '-' | 'not'
+    <math op> ::= 'floor' | 'round' | 'ceil'
+<typecast op> ::= 'boolean' | 'number' | 'string'
+   <property> ::= 'properties["' <property name> '"]'
+```
 
 [block:api-header]
 {

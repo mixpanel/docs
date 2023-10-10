@@ -13,6 +13,7 @@ To access SSO settings in Mixpanel, navigate to your **Organization Settings** l
 
 **Require Users to Log In Using SSO**
 Optionally toggle “Require Users to Log In using SSO” to prevent your users from using a username and password to log in. Click Enable. Please note that organization owners and admins will still be able to log in using username and password in the case that SSO is not set up correctly.
+Do note that external users who were invited to projects will still be able to log in using username and password.
 
 ## Claim a Domain
 
