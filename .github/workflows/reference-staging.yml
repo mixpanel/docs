@@ -1,4 +1,4 @@
-name: Create Staging link versions on ReadMe from non-main branches
+name: Generate ReadMe Staging 🦉
 
 on:
   # when a PR is created in any branch except main that have made changes to the
@@ -6,18 +6,34 @@ on:
   push:
     branches-ignore:
       - main
+    paths:
+      - 'reference/**'
 
 jobs:
   # ////////////////////////////////////////////////////////////////////////
   # Pull Request
   # ////////////////////////////////////////////////////////////////////////
 
-  test:
+  # Create a new ReadMe Version
+  rdme-version:
     runs-on: ubuntu-latest
-
     steps:
-      - name: Check out code
-        uses: actions/checkout@v2
-      
-      - name: Run a test command
-        run: echo "Test workflow is running!"
+      - name: Check out repo 📚
+        uses: actions/checkout@v3
+
+      - name: Run `versions` command
+        uses: readmeio/rdme@v8
+        with:
+          rdme: versions:create ${{ github.event.number }} --fork=v3.26 --main=false --beta=false --deprecated=false --hidden=false
+
+  # Push branch content onto that ReadMe Version
+  rdme-docs:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out repo 📚
+        uses: actions/checkout@v3
+
+      - name: Run `docs` command 🚀
+        uses: readmeio/rdme@v8
+        with:
+          rdme: docs ./reference --key=${{ secrets.README_API_KEY }} --version=${{ github.event.number }}
