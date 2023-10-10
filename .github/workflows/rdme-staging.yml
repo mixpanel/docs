@@ -23,26 +23,19 @@ jobs:
         run: |
           npm install -g rdme
 
-      - name: Check if the readme version exists
-        id: check-readme-version
+      # Try to create the readme version, if it errors it's ok we keep going since it was already created
+      - name: Create readme version
         run: |
-          if rdme versions --version=0.0-pr-${{ github.event.number }} --key=${{ secrets.README_API_KEY }}; then
-            echo "has-version=true" >> "$GITHUB_OUTPUT"
+          if rdme versions:create 0.0-pr-${{ github.event.number }} --key=${{ secrets.README_API_KEY }} --fork=v3.26 --main=false --beta=false --deprecated=false --isPublic=true; then
+            echo "Version created successfully"
           else
-            echo "has-version=false" >> "$GITHUB_OUTPUT"
+            echo "Errors because the version already exists, and so we can continue to the next step"
           fi
-
-      # if it's a new PR, we'll have to create the readme, otherwise we can skip this step
-      - name: Run create readme version
-        if: steps.check-readme-version.has-version == 'false'
-        uses: readmeio/rdme@v8
-        with:
-          rdme: versions:create ${{ github.event.number }} --key=${{ secrets.README_API_KEY }} --fork=v3.26 --main=false --beta=false --deprecated=false --isPublic=true
 
       - name: Push docs to staging env 🚀
         uses: readmeio/rdme@v8
         with:
-          rdme: docs ./reference --key=${{ secrets.README_API_KEY }} --version=${{ github.event.number }}
+          rdme: docs ./reference --key=${{ secrets.README_API_KEY }} --version=0.0-pr-${{ github.event.number }}
 
   # build and update comment with the proper link
   preview-notify:
@@ -56,28 +49,28 @@ jobs:
       issues: write
       pull-requests: write
     steps:
-        - uses: actions/checkout@v4
-          with:
-            sparse-checkout: |
-              .github
-              reference
+      - uses: actions/checkout@v4
+        with:
+          sparse-checkout: |
+            .github
+            reference
 
-        # Build PR Comment
-        - name: Build PR comment
-          id: build-pr-comment
-          uses: actions/github-script@v6
-          with:
-            result-encoding: string
-            script: |
-              return `
-                # API Reference Preview
-                :rocket: https://developer.mixpanel.com/v0.0-pr-${{ github.event.number }}/reference/overview
-                Last updated: ${new Date().toLocaleString("en-US", {timeZone: "America/Los_Angeles"})} PT from ${{github.sha}}
-              `
+      # Build PR Comment
+      - name: Build PR comment
+        id: build-pr-comment
+        uses: actions/github-script@v6
+        with:
+          result-encoding: string
+          script: |
+            return `
+              # API Reference Preview
+              :rocket: https://developer.mixpanel.com/v0.0-pr-${{ github.event.number }}/reference/overview
+              Last updated: ${new Date().toLocaleString("en-US", {timeZone: "America/Los_Angeles"})} PT from ${{github.sha}}
+            `
 
-        # Update PR Comment
-        - uses: ./.github/actions/create-or-update-comment
-          with:
-            issue-number: ${{ github.event.number }}
-            key: reference-pr-preview
-            body: ${{ steps.build-pr-comment.outputs.result }}
+      # Update PR Comment
+      - uses: ./.github/actions/create-or-update-comment
+        with:
+          issue-number: ${{ github.event.number }}
+          key: reference-pr-preview
+          body: ${{ steps.build-pr-comment.outputs.result }}
