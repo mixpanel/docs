@@ -26,7 +26,7 @@ jobs:
       - name: Check if the readme version exists
         id: check-readme-version
         run: |
-          if rdme versions --version=pr${{ github.event.number }} --key=${{ secrets.README_API_KEY }}; then
+          if rdme versions --version=0.0-pr-${{ github.event.number }} --key=${{ secrets.README_API_KEY }}; then
             echo "has-version=true" >> "$GITHUB_OUTPUT"
           else
             echo "has-version=false" >> "$GITHUB_OUTPUT"
@@ -34,7 +34,7 @@ jobs:
 
       # if it's a new PR, we'll have to create the readme, otherwise we can skip this step
       - name: Run create readme version
-        if: steps.has-version.outputs.has-version == 'false'
+        if: steps.check-readme-version.has-version == 'false'
         uses: readmeio/rdme@v8
         with:
           rdme: versions:create ${{ github.event.number }} --key=${{ secrets.README_API_KEY }} --fork=v3.26 --main=false --beta=false --deprecated=false --isPublic=true
@@ -71,7 +71,7 @@ jobs:
             script: |
               return `
                 # API Reference Preview
-                :rocket: https://developer.mixpanel.com/vpr${{ github.event.number }}/reference/overview
+                :rocket: https://developer.mixpanel.com/v0.0-pr-${{ github.event.number }}/reference/overview
                 Last updated: ${new Date().toLocaleString("en-US", {timeZone: "America/Los_Angeles"})} PT from ${{github.sha}}
               `
 
