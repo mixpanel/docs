@@ -23,9 +23,9 @@ If you really want to measure and manage your growth, you need to keep track of 
 
 Once you understand what an “active user” looks like in your product, it’s a straightforward process to calculate these metrics with product analytics. But first, you need to understand:
 
-How to define and measure DAU/WAU/MAU
-When to use DAU/WAU/MAU (and when not to)
-The pitfalls of measuring active usage
+* How to define and measure DAU/WAU/MAU
+* When to use DAU/WAU/MAU (and when not to)
+* The pitfalls of measuring active usage
  
 
 ## How do I… find my product’s DAU & WAU?

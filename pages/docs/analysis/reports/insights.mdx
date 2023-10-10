@@ -76,6 +76,10 @@ You now have a full analysis that you can use and add onto a Board, or use as a 
 
 ## Basic Features
 
+### Rename an Event within a Report
+
+Click on the "three dots" icon beside an event and click Rename to rename it. This will only affect the current report, and will not change the name of the event in other reports.
+
 ### Chart Types
 
 Insights features multiple visualizations to help you view the query results in the clearest chart type. By default, Insights displays the results on the line chart, which helps you understand how metrics trend over time. However, another chart type might present the results with more clarity. In Insights, you can choose to get a metric calculated either across the entire time period selected in the date picker or on a time-segmented view of the metric (e.g. daily breakdown).
@@ -175,15 +179,12 @@ In the grouped view, you can choose the number of rows you want to display for e
 
 ![image](https://github.com/mixpanel/docs/assets/2077899/ee7d8c9b-f738-4a5b-8967-300cf8322f76)
 
-### Analysis Settings
+### Visualization Settings
 
-The Analysis options will determine the way the chart is calculated and visualized. The options are:
+The visualization options allow you to choose how the data is visualized. The options are:
 
 - **Linear:** This is the standard view for the chart.
 - **Logarithmic:** A nonlinear scale based on orders of magnitude, rather than a standard linear scale, so the value represented by each equidistant mark on the scale is the value at the previous mark multiplied by a constant.
-- **Rolling:** Rolling analysis calculates the rolling average of the data set. A rolling average curve is a series of averages from subsets of data. Use rolling average analysis to remove noise or spikes from data and smooth out trends over time. Mixpanel calculates the rolling average based on the selected time interval (hour, day, week, month or quarter) for each data point in the graph.<br />
-For example, if you make a rolling analysis query for the past 30 days, Mixpanel calculates the rolling 7-day average by default. The value reported at each day in the line graph is the average of the values from the 7 days leading to that day. In the case of the first 6 days in your selected time period, the 7-day-average calculation will include days before the selected time period.
-- **Cumulative:** Adds up the values of each point on the graph as it goes along, so the height of the line will increase over time.
 
 ## Advanced
 
@@ -199,11 +200,11 @@ Mixpanel supports the following operators:
 - / : Divide
 - () : Use parentheses to influence the order of operations
 
-Click the **Formula** button. Each event in the query shows a letter next to it, which indicates its variable name. Use these letters in combination with the operators to calculate a more advanced query. For example, you can use the DAU, WAU, and MAU functions in Formulas to calculate the stickiness of your product:
+Click the **Metrics** button, then select Formula.. Each event in the query shows a letter next to it, which indicates its variable name. Use these letters in combination with the operators to calculate a more advanced query. For example, you can use the DAU, WAU, and MAU functions in Formulas to calculate the stickiness of your product:
 
 ![Formulas 1](/advanced-formulas-1.png)
 
-Enter a name for the formula (optional), and click **Apply Formula** to see the formula output. You can also use numbers as constants in a formula. Multiply a ratio by 100 to display as a percentage, for example. Divide a property value tracked in seconds by 3,600 to display the value in hours.
+You can also use numbers as constants in a formula. Multiply a ratio by 100 to display as a percentage, for example. Divide a property value tracked in seconds by 3,600 to display the value in hours. You can rename a formula by selecting Rename in the overflow menu of the formula.
 
 ### Custom Bucketing
 
@@ -230,9 +231,7 @@ When you have multiple metrics, or have broken down a metric by a property, you 
 
 ### Profile Analysis
 
-Choose to explore either **Events & Cohorts** or **Profiles**. Events & Cohorts allows you to examine user behaviors, while Profiles allows you access profile data and visualize your users with filters and breakdowns based on their profile properties. When exploring Profiles, you are always analyzing all user profiles. Select the [Data Function](/docs/analysis/reports/insights#insights-data-functions-operators-and-calculations) you want to use to calculate results by clicking on **Total** and selecting an option from the drop-down. You can calculate based on users or profile property value.
-
-![Explore User Profiles](/advanced-profile-analysis.gif)
+Profiles metrics allows you access profile data and visualize your users with filters and breakdowns based on their profile properties. When exploring Profiles, you are always analyzing all user profiles. Select the [Data Function](/docs/analysis/reports/insights#insights-data-functions-operators-and-calculations) you want to use to calculate results by clicking on **Total** and selecting an option from the drop-down. You can calculate based on users or profile property value.
 
 ### Annotations
 
@@ -258,7 +257,7 @@ Data Functions in Mixpanel reports allow you to perform more complex calculation
 
 The following data functions are only available in Insights, and are separated into groups based on what is being calculated: Total, Unique, Count users, aggregate property values, aggregate property values per user, and count sessions.
 
-Select the Data Function you want to use to calculate results by clicking on **Total** and selecting an option from the drop-down. You can calculate based on events, users, event property value, event property value per user, and sessions.
+Select the Data Function you want to use to calculate results by clicking on **Unique Users** and selecting an option from the drop-down. You can calculate based on events, users, event property value, event property value per user, and sessions.
 
 ![Data Functions 1](/advanced-data-functions-1.png)
 
@@ -266,10 +265,9 @@ The following functions have additional aggregation options which you will be pr
 
 | Function | Aggregation options |
 | --- | --- |
-| Events | Total Per User |
-| Aggregate Properties | Sum<br />Average<br />Median<br />[Distinct Count](https://www.loom.com/share/7d0e42f847c24b3c8720d5b6a6bedeb4)<br />Percentiles (P25,P75,P90,P99)<br />Minimum<br />Maximum |
-| Count Users | Daily Active Users (DAU)<br />Weekly Active Users (WAU)<br />Monthly Active Users (MAU) |
-| Event property value per user | Sum<br />Average<br />Distinct value count<br />Minimum<br />Maximum |
+| Frequency per User | Total Per User |
+| Aggregate Property | Sum<br />Average<br />Median<br />[Distinct Count](https://www.loom.com/share/7d0e42f847c24b3c8720d5b6a6bedeb4)<br />Percentiles (P25,P75,P90,P99)<br />Minimum<br />Maximum |
+| Aggregate Property per User | Sum<br />Average<br />Distinct value count<br />Minimum<br />Maximum |
 
 These functions provide additional aggregation options following the initial calculation because they are “per user” calculations. “Per user” calculations first calculate the value per user, which is an unhelpful query in its raw form, but becomes useful when you perform an aggregation on that calculation.
 
@@ -277,32 +275,35 @@ Selecting any of these functions gives you the option to choose different ways t
 
 ![Data Functions 2](/advanced-data-functions-2.png)
 
-If the data function you select calculates based on property (“Event Property Values” or “Event Property Values Per User”), you will be prompted to select an event property.
-
-![Data Functions 3](/advanced-data-functions-3.gif)
-
-You can find more information about each data function and how they are calculated below:
+If the data function you select calculates based on property (“Event Property Values” or “Event Property Values Per User”), you will be prompted to select an event property. You can find more information about each data function and how they are calculated below:
 
 #### Events
 
-| Function Name | Events & Cohorts Calculation | Profiles Calculation |
+| Function Name | Events Calculation | Profiles Calculation |
 | --- | --- | --- |
-| Total | Total count of [event] performed.<br />Example: How many times did my users watch a video? | N/A |
-| Total per user | The number of events performed per user.<br />Example: How many videos were watched per user?<br />Aggregation options: Average, distribution, median, percentiles, minimum, maximum | N/A |
+| Total Events | Total count of [event] performed.<br />Example: How many times did my users watch a video? | N/A |
+| Frequency per User | The number of events performed per user.<br />Example: How many videos were watched per user?<br />Aggregation options: Average, distribution, median, percentiles, minimum, maximum | N/A |
 
 #### Users
 
-| Function Name | Events & Cohorts Calculation | Profiles Calculation |
+This can refer to measuring the total number of user profiles, as well as the number of unique users that performed an event.
+DAU, WAU and MAU are accessed through the advanced settings of uniques users. Select the > arrow to choose any XAU options.
+
+If you select the DAU, WAU, or MAU function for a date range that includes the current day, the query will take the end of the current day as the end of the query’s time segment (even though it’s in the future). For example, today is April 25th, and it’s 4:22 PM. If you make a query to show WAU and you select “current day” as your date range, the query will return the count of unique users between April 19 at 12:00:00 AM and April 25 at 11:59:59.
+
+![Data Functions 3](/advanced-data-functions-3.png)
+
+| Function Name | Events Calculation | Profiles Calculation |
 | --- | --- | --- |
-| Total | N/A | Total count of user profiles.<br /><br />**Example**: What's my total number of users? |
-| Uniques | The number of users who performed [event].<br /><br />**Example**: What's the count of users who watched a video? | N/A |
+| Total | N/A | Total count of user profiles. <br /><br />**Example**: What's my total number of users? |
+| Unique Users | The number of users who performed [event] or are a part of the cohort.<br /><br />**Example**: What's the count of users who watched a video? | N/A |
 | Daily Active Users (DAU) | The number of users who performed [event] within the last 24 hours.<br /><br />**Example**: What's the count of users who watched a video in the last day? | N/A |
 | Weekly Active Users (WAU) | The number of users who performed [event] within the last 7 days.<br /><br />**Example**: What's the count of users who watched a video in the week? | N/A |
 | Monthly Active Users (MAU) | The number of users who performed [event] within the last 30 days.<br /><br />**Example**: What's the count of users who watched a video in the last month? | N/A |
 
-#### Aggregate Property Values
+#### Aggregate Property
 
-| Function Name | Events & Cohorts Calculation | Profiles Calculation |
+| Function Name | Events Calculation | Profiles Calculation |
 | --- | --- | --- |
 | Sum | The total of a numeric property value across all instances of [event].<br /><br />**Example**: What's the total number of minutes of videos watched? | The total of a numeric property value across all user profiles.<br />Example: What's the total revenue across all users? |
 | Average | Average of a numeric property value across all instances of [event].<br /><br />**Example**: What's the average number of minutes per video watched? | Average of a numeric property value across all user profiles.<br />Example: What's the average revenue across all users? |
@@ -312,9 +313,9 @@ You can find more information about each data function and how they are calculat
 | Minimum | Minimum of a numeric property value across all instances of [event].<br /><br />**Example**: What's the minimum number of minutes per video watched? | Minimum of a numeric property value across all user profiles.<br />Example: What's the minimum revenue across all users? |
 | Maximum | Maximum of a numeric property value across all instances of [event].<br /><br />**Example**: What's the maximum number of minutes per video watched? | Maximum of a numeric property value across all user profiles.<br />Example: What's the maximum revenue across all users? |
 
-#### Aggregate Property Values per User
+#### Aggregate Property per User
 
-| Function Name | Events & Cohorts Calculation | Profiles Calculation |
+| Function Name | Events Calculation | Profiles Calculation |
 | --- | --- | --- |
 | Sum | The total of a numeric property value across all instances of [event] per user.<br /><br />**Example**: What's the total number of hours of videos watched per user?<br />**Aggregation options**: Average, distribution, median, percentiles, minimum, maximum | N/A |
 | Average | Average of a numeric property value across all instances of [event] per user.<br /><br />**Example**: What's the average number of hours of videos watched per user?<br />**Aggregation options**: Average, distribution, median, percentiles, minimum, maximum | N/A |
@@ -322,9 +323,9 @@ You can find more information about each data function and how they are calculat
 | Minimum | Minimum of a numeric property value across all instances of [event] per user.<br /><br />**Example**: What's the minimum number of hours of videos watched per user?<br />**Aggregation options**: Average, distribution, median, percentiles, minimum, maximum | N/A |
 | Maximum | Maximum of a numeric property value across all instances of [event] per user.<br /><br />**Example**: What's the maximum number of hours of videos watched per user?<br />**Aggregation options**: Average, distribution, median, percentiles, minimum, maximum | N/A |
 
-#### Count Sessions
+#### Total Sessions
 
-| Function Name | Events & Cohorts Calculation | Profiles Calculation |
+| Function Name | Events Calculation | Profiles Calculation |
 | --- | --- | --- |
 | Sessions with event | The number of sessions that contain [event].<br /><br />**Example**: What's the total number of sessions in which users watched a video? | N/A |
 
@@ -347,13 +348,15 @@ Here are some use-cases that are now possible with "Distinct count" of property 
 - How many **unique songs / videos** were played in the last 30 days?
 - How many **unique files** were worked on in the last week?
 
-### Daily, Weekly, and Monthly Active Users
+### Analysis Settings
 
-**Daily Active Users (DAU)**: Select DAU to calculate the number of unique users in the previous day (24-hour) period that have performed the selected event.
-**Weekly Active Users (WAU)**: Select WAU to calculate the number of unique users in the previous week (7-day) period that have performed the selected event.
-**Monthly Active Users (MAU)**: Select MAU to calculate the number of unique users in the previous month (30-day) period that have performed the selected event.
+Allows you to change the metric being measured. Access by going into the advanced section of the measurement menu.
 
-If you select the DAU, WAU, or MAU function for a date range that includes the current day, the query will take the end of the current day as the end of the query’s time segment (even though it’s in the future). For example, today is April 25th, and it’s 4:22 PM. If you make a query to show WAU and you select “current day” as your date range, the query will return the count of unique users between April 19 at 12:00:00 AM and April 25 at 11:59:59.
+![Rolling and Cumulative](/rolling-cumulative.png)
+
+- **Rolling Average:** Rolling analysis calculates the rolling average of the data set. A rolling average curve is a series of averages from subsets of data. Use rolling average analysis to remove noise or spikes from data and smooth out trends over time. Mixpanel calculates the rolling average based on the selected time interval (hour, day, week, month or quarter) for each data point in the graph.<br />
+For example, if you make a rolling analysis query for the past 30 days, Mixpanel calculates the rolling 7-day average by default. The value reported at each day in the line graph is the average of the values from the 7 days leading to that day. In the case of the first 6 days in your selected time period, the 7-day-average calculation will include days before the selected time period.
+- **Cumulative:** Adds up the values of each point on the graph as it goes along, so the height of the line will increase over time.
 
 ### View Users
 

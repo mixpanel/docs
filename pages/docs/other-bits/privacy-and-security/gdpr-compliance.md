@@ -17,13 +17,14 @@ We support individuals’ right to erasure through a permanent deletion of perso
 
 Our customers control what data is sent to Mixpanel, and may decide to halt the sending of personal data at any time. To assist with supporting individuals’ right to object to the collection of one’s personal data, Mixpanel also has built dedicated methods for our client-side SDKs that can be used to [opt end users out of tracking](/docs/tracking/how-tos/privacy-friendly-tracking).
 
-Mixpanel collects information about how customers use the product, and uses this data to identify product gaps and improve existing products. While this information is useful, Mixpanel recognizes the importance of an individuals right to object.  Mixpanel has therefore streamlined opt-out systems for its customers, who can opt out of tracking through simple controls, located under Personal Settings > Data & Privacy.
+Mixpanel collects information about how customers use the product, and uses this data to identify product gaps and improve existing products. While this information is useful, Mixpanel recognizes the importance of an individual's right to object.  Mixpanel has therefore streamlined opt-out systems for its customers, who can opt out of tracking through simple controls, located under Personal Settings > Data & Privacy.
 
 ## Data Retention Policy
 
 As processors of its customers’ data and to protect the privacy of information it stores, Mixpanel holds data no longer than is needed to provide its services. To further support this, Mixpanel has implemented the following data retention policy:
 
-- Events received over 5 years ago are automatically deleted on an ongoing basis from all projects.
+- Events are automatically deleted after 5 years on an ongoing basis from all projects.
+  - The start of the retention period is the date that is transferred to Mixpanel with an Event (i.e., the “Event Date”), which typically corresponds to the date an user completed an action on a web or mobile application. In the event that an Event Date is not transferred to Mixpanel with an Event by our Customer, the Event Date is recorded as the date we received the Event.
 - User data is retained indefinitely. Customers are given the ability to delete profiles using the [Engage API](https://developer.mixpanel.com/reference/delete-profile).
 
 This policy includes projects that were deleted or reset through the Project Settings - deleting a project through the Project Settings triggers a soft deletion. The data in the deleted or reset project will remain stored in Mixpanel for 60-90 days, after which it will be hard deleted and unrecoverable.
@@ -32,4 +33,4 @@ Custom data retention windows can be set for user data by sending regular deleti
 
 ## Rate Limit
 
-We place a [rate limit](/docs/other-bits/privacy-and-security/export-or-delete-end-user-data#rate-limit) in place to ensure the integrity of our system as well as prevent a single project from monopolizing the avaialble resources for other projects
+We place a [rate limit](/docs/other-bits/privacy-and-security/export-or-delete-end-user-data#rate-limit) in place to ensure the integrity of our system as well as prevent a single project from monopolizing the available resources for other projects

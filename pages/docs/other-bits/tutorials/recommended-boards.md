@@ -13,7 +13,7 @@ This template is meant to be used largely by teams that implemented Mixpanel ins
 
 [Implementation Monitoring & Data Governance Example Board Here](https://mixpanel.com/s/15N8Dg)
 
-<img width="923" alt="Implementation Monitoring and Data Governance" src="https://github.com/mixpanel/docs/assets/136498120/6c21d6a2-bb33-4043-b762-6c4b64ccda1d">
+![Implementation Monitoring and Data Governance](https://github.com/mixpanel/docs/assets/136498120/6c21d6a2-bb33-4043-b762-6c4b64ccda1d)
 
 ### Training Board for Champions to use to Educate Users
 
@@ -25,7 +25,7 @@ This template is meant to be used by Mixpanel Champions looking to train their t
 
 [Training Board for Champions Example Here](https://mixpanel.com/s/3niUys)
 
-<img width="923" alt="Training Board for Champions to use to Educate Users" src="https://github.com/mixpanel/docs/assets/136498120/1bf32c1d-1bc8-43e8-8efc-01c2ae56aea1">
+![Training Board for Champions to use to Educate Users](https://github.com/mixpanel/docs/assets/136498120/1bf32c1d-1bc8-43e8-8efc-01c2ae56aea1)
 
 
 ### Data Troubleshooting Guide for End Users
@@ -44,6 +44,6 @@ Below are various examples of some common questions or issues that Mixpanel end 
 
 [Data Troubleshooting Guide Example Here](https://mixpanel.com/s/35CUaL)
 
-<img width="921" alt="Data Troubleshooting Guide for End Users" src="https://github.com/mixpanel/docs/assets/136498120/ed65ef6a-b080-4aa8-a54b-598d8ac2f982">
+![Data Troubleshooting Guide for End Users](https://github.com/mixpanel/docs/assets/136498120/ed65ef6a-b080-4aa8-a54b-598d8ac2f982)
 
 

@@ -20,9 +20,4 @@ jobs:
       - name: Run `docs` command 🚀
         uses: readmeio/rdme@v8
         with:
-          rdme: docs ./pages --key=${{ secrets.README_API_KEY }} --version=3.19
-
-      - name: Run `changelogs` command 🚀
-        uses: readmeio/rdme@v8
-        with:
-          rdme: changelogs ./changelogs --key=${{ secrets.README_API_KEY }}
+          rdme: docs ./reference --key=${{ secrets.README_API_KEY }} --version=3.27

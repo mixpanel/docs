@@ -4,7 +4,7 @@ Mixpanel’s event-based-data model enables you to represent and analyze any typ
 
 In this doc, we give step-by-step guidance on how to bring your advertising network data into Mixpanel to look at metrics such as ROAS (Return on Ad Spend), CPC (Cost per click) in the context of in-product conversions. We also provide detailed guides for Google and Facebook Ads. The end result should look like this:
 
-<img width="991" alt="Untitled" src="https://github.com/mixpanel/docs/assets/2077899/84e1c6a1-0130-4529-9be3-5574a73dffac">
+![](https://github.com/mixpanel/docs/assets/2077899/84e1c6a1-0130-4529-9be3-5574a73dffac)
 
 
 **NOTE:** If you are a Marketer reading this, we encourage you to share this with your dev team to get this one-time setup done. This should not take more than a couple of hours.
@@ -44,30 +44,30 @@ The crux of this How To guide is turning the data exported by Ad Networks into e
 **Best Practices**
 
 - **Only include base metrics** cost, clicks, and impressions. We don’t need to send derived metrics like Cost-per-click, because Mixpanel’s [Custom Properties](/docs/analysis/advanced/custom-properties) and Formulas allow us to calculate and alter derived metrics on the fly.
-- **Matching client side properties:** if you are using a Mixpanel client-side SDK to track user behaviors, you will want to model 
+- **Matching client side properties:** if you are using a Mixpanel client-side SDK to track user behaviors, you will want to model
  additional campaign metadata (source, medium, campaign, etc...) as `utm_source`, `utm_medium` etc... this matches the way mixpanel's SDKs [capture UTM params by default](https://docs.mixpanel.com/docs/tracking/reference/default-properties)
 - **No Distinct ID:** You’ll notice that our event has no Distinct ID. This is because ad performance data isn’t tied to any particular user. **This is the key difference from behavioral events.** By omitting it, we are ensuring that these events do not get erroneously included in reporting that intend to analyze user behavior such as Funnels, Retentions, Flows, unique user counts, “did not do” cohorts, etc.
 - **Event properties are aggregated:** You’ll notice the Ad-Data event in this example is scheduled to trigger only once a day. Properties are aggregated counts of all clicks through the day, all impressions through the day, all ad-spend through the day. Reason for this is ad-networks only export data at an aggregate level (without user details) and at fixed intervals (lowest granularity is generally a day)
 - **Include an Insert ID:** It’s recommended to include the Insert ID property for these kinds of events. This allows you to send the campaign data to Mixpanel more than once for a particular segment without duplicating the data in reports.
 
-The Insert ID should be made up of unique attributes in the event that separate it from other performance data. 
+The Insert ID should be made up of unique attributes in the event that separate it from other performance data.
 Using our above event example, the uniquely identifiable properties are:
   - The ad network name
   - The date of the performance data
   - The campaign ID
 
-If we were to send this data more than once to Mixpanel, we know that these 3 properties will always be constant. We can build an Insert ID from that information: 
+If we were to send this data more than once to Mixpanel, we know that these 3 properties will always be constant. We can build an Insert ID from that information:
 
     ```jsx
     // "G" = Google Ads
     // "2023-04-01" = The date of our data
     // "12345" = The specific campaign ID
-    
+
     $insert_id = `G-2023-04-01-12345`;
-    ```  
-    
+    ```
+
 Note: Keep in mind the [Insert ID length limitations](https://developer.mixpanel.com/reference/import-events#propertiesinsert_id). If your ad network has long campaign IDs or other unique properties to use, you should use MD5 or another hashing algorithm to shorten your Insert ID.
-        
+
 
 ## Gathering Data from Ad Networks
 
@@ -155,7 +155,7 @@ It should look something like: `123-456-7890`.
 
 #### Creating the function
 
-Now that we have all of the information we need, we can create our Google Cloud Function. 
+Now that we have all of the information we need, we can create our Google Cloud Function.
 
 The function will run once a day, export the previous day’s campaign metrics, transform them into Mixpanel events, and import them our Mixpanel project.
 
@@ -207,6 +207,8 @@ const GOOGLE_ADS_CUSTOMER_ID = 'YOUR GOOGLE CUSTOMER CLIENT ID WITHOUT HYPHENS';
 // End of Configuration
 
 const mixpanel = Mixpanel.init(MIXPANEL_TOKEN);
+// Use the below line of init code instead if project in EU residency
+// const mixpanel = Mixpanel.init(MIXPANEL_TOKEN, {host: "api-eu.mixpanel.com"});
 
 const client = new GoogleAdsApi({
     client_id: GOOGLE_CLIENT_ID,
@@ -225,14 +227,14 @@ function fetchGoogleAdsCampaigns() {
 
 		// Find metrics for all Google Ads campaigns that ran yesterday
     return customer.query(`
-        SELECT 
+        SELECT
             segments.date,
-            campaign.id, 
+            campaign.id,
             campaign.name,
             metrics.cost_micros,
             metrics.clicks,
             metrics.impressions
-        FROM 
+        FROM
             campaign
         WHERE
             metrics.cost_micros > 0
@@ -255,9 +257,9 @@ function transformCampaignToEvent(campaign) {
             campaign_id: campaign.campaign.id,
 
             // metadata about the campaign; matches client side events
-            utm_source: "google",           
+            utm_source: "google",
             utm_campaign: campaign.campaign.name,
-            
+
             // Google's cost metric is 1 millionth of the fundamental currency specified by your Ads Account.
             cost: campaign.metrics.cost_micros / 1_000_000,
             impressions: campaign.metrics.impressions,
@@ -282,7 +284,7 @@ functions.http('handler', async (req, res) => {
         if (err) {
 					throw err;
 				}
-				
+
 				res.status(200).send(`Imported ${events.length} events.`);
     });
 	} catch (err) {
@@ -383,6 +385,11 @@ const FACEBOOK_AD_ACCOUNT = 'YOUR FACEBOOK AD ACCOUNT ID'; // ex. act_12345678
 const mixpanel = Mixpanel.init(MIXPANEL_TOKEN, {
     secret: MIXPANEL_SECRET
 });
+// Use the init code below instead if project in EU residency
+// const mixpanel = Mixpanel.init(MIXPANEL_TOKEN, {
+//    secret: MIXPANEL_SECRET,
+//    host: "api-eu.mixpanel.com"
+// });
 
 adsSdk.FacebookAdsApi.init(FACEBOOK_TOKEN);
 
@@ -424,7 +431,7 @@ function transformCampaignToEvent(campaign) {
             source: 'Facebook',
             campaign_id: campaign.campaign_id,
             // metadata about the campaign; matches client side events
-            utm_source: "facebook",           
+            utm_source: "facebook",
             utm_campaign: campaign.campaign_name,
 
             cost: campaign.spend,
@@ -450,7 +457,7 @@ functions.http('handler', async (req, res) => {
         if (err) {
 					throw err;
 				}
-				
+
 				res.status(200).send(`Imported ${events.length} events.`);
     });
 	} catch (err) {
