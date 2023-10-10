@@ -4,6 +4,16 @@ This guide demonstrates how to route events from Mixpanel's SDKs via a proxy in 
 
 ![image](https://github.com/mixpanel/docs/assets/2077899/3ec6f3c2-aed0-4a18-9395-36838c3b53f1)
 
+<br />
+<div style={{position: 'relative', 'padding-bottom': '64.90384615384616%', height: 0}}>
+    <iframe src="https://www.youtube.com/embed/8Pv6tmRfqr8"
+        frameborder="0"
+        webkitallowfullscreen mozallowfullscreen allowfullscreen
+        style={{position: 'absolute', 'top': 0, 'left': 0, 'width': '100%', 'height': '100%'}}>
+    </iframe>
+</div>
+<br />
+
 There are two steps: setting up a proxy server and pointing our JavaScript SDK at your server.
 
 ## Step 1: Set up a proxy server
