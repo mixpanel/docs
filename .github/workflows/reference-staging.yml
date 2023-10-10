@@ -15,28 +15,35 @@ jobs:
   # Pull Request
   # ////////////////////////////////////////////////////////////////////////
 
-  # Create a new ReadMe Version
-  rdme-version:
+  # Create a new ReadMe Version if it needs to
+  rdme-staging:
     runs-on: ubuntu-latest
+    outputs:
+      has-version: ${{ steps.check-readme-version.outputs.has-version }}
     steps:
       - name: Check out repo 📚
         uses: actions/checkout@v3
 
-      - name: Run `versions` command
+      - name: Install rdme
+        run: |
+          npm install -g rdme
+
+      - name: Check if the readme version exists
+        id: check-readme-version
+        run: |
+          if rdme versions --version=${{ github.event.pull_request.number }} --key=${{ secrets.README_API_KEY }}; then
+            echo "has-version=true" >> $GITHUB_ENV
+          else
+            echo "has-version=false" >> $GITHUB_ENV
+          fi
+
+      - name: Run create readme version
+        if: steps.has-version.outputs.has-version == 'false'
         uses: readmeio/rdme@v8
         with:
           rdme: versions:create ${{ github.event.pull_request.number }} --key=${{ secrets.README_API_KEY }} --fork=v3.26 --main=false --beta=false --deprecated=false --isPublic=true
 
-  # Push branch content onto that ReadMe Version
-  rdme-docs:
-    runs-on: ubuntu-latest
-    needs:
-      - rdme-version
-    steps:
-      - name: Check out repo 📚
-        uses: actions/checkout@v3
-
-      - name: Run `docs` command 🚀
+      - name: Push docs to staging env 🚀
         uses: readmeio/rdme@v8
         with:
           rdme: docs ./reference --key=${{ secrets.README_API_KEY }} --version=${{ github.event.pull_request.number }}
