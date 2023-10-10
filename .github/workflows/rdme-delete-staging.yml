@@ -12,4 +12,4 @@ jobs:
     runs-on: ubuntu-latest
     uses: readmeio/rdme@v8
     with:
-      rdme: versions:delete ${{ github.event.number }} --key=${{ secrets.README_API_KEY }}
+      rdme: versions:delete 0.0-pr-${{ github.event.number }} --key=${{ secrets.README_API_KEY }}
