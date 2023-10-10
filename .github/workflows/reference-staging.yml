@@ -15,7 +15,7 @@ jobs:
   # Pull Request
   # ////////////////////////////////////////////////////////////////////////
 
-  # Create a new ReadMe Version if it needs to
+  # Create a new ReadMe Version if it needs to and pushes content to the version
   rdme-staging:
     runs-on: ubuntu-latest
     outputs:
@@ -24,6 +24,7 @@ jobs:
       - name: Check out repo 📚
         uses: actions/checkout@v3
 
+      # installs readme so that we can run `rdme` in the conditional step
       - name: Install rdme
         run: |
           npm install -g rdme
@@ -37,6 +38,7 @@ jobs:
             echo "has-version=false" >> $GITHUB_ENV
           fi
 
+      # if it's a new PR, we'll have to create the readme, otherwise we can skip this step
       - name: Run create readme version
         if: steps.has-version.outputs.has-version == 'false'
         uses: readmeio/rdme@v8
@@ -47,3 +49,41 @@ jobs:
         uses: readmeio/rdme@v8
         with:
           rdme: docs ./reference --key=${{ secrets.README_API_KEY }} --version=${{ github.event.pull_request.number }}
+
+  # build and update comment with the proper link
+  preview-notify:
+    name: Preview / Notify
+    runs-on: ubuntu-20.04
+    needs:
+      - rdme-staging
+    timeout-minutes: 15
+    permissions:
+      contents: read
+      issues: write
+      pull-requests: write
+    steps:
+        - uses: actions/checkout@v4
+          with:
+            sparse-checkout: |
+              .github
+              reference
+
+        # Build PR Comment
+        - name: Build PR comment
+          id: build-pr-comment
+          uses: actions/github-script@v6
+          with:
+            result-encoding: string
+            script: |
+              return `
+                # READMe Reference Preview
+                :rocket: https://https://developer.mixpanel.com/v${{ github.event.number }}/reference/overview
+                Last updated: ${new Date().toLocaleString("en-US", {timeZone: "America/Los_Angeles"})} PT from ${{github.sha}}
+              `
+
+        # Update PR Comment
+        - uses: ./.github/actions/create-or-update-comment
+          with:
+            issue-number: ${{ github.event.number }}
+            key: reference-pr-preview
+            body: ${{ steps.build-pr-comment.outputs.result }}
