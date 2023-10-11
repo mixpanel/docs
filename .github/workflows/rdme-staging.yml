@@ -16,12 +16,14 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Check out repo 📚
-        uses: actions/checkout@v3
-
-      # installs readme so that we can run `rdme` in the conditional step
-      - name: Install rdme
-        run: |
-          npm install -g rdme
+        uses: actions/checkout@v4
+      - uses: actions/setup-node@v3
+        with:
+          node-version: 18
+          cache: 'npm'
+      - run: npm ci
+      - name: Add node_modules to PATH
+        run: echo "$PWD/node_modules/.bin" >> $GITHUB_PATH
 
       # Try to create the readme version, if it errors it's ok we keep going since it was already created
       - name: Create readme version
