@@ -3,8 +3,10 @@ on:
   pull_request:
     types:
       - closed
-      paths:
+    paths:
       - 'reference/**'
+      - '.github/actions/**'
+      - '.github/workflows/rdme-staging.yml'
 
 jobs:
   delete-staging:
