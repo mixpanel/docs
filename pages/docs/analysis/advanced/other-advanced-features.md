@@ -39,9 +39,9 @@ To zoom in, click on the graph and drag to highlight a specific window of time i
 
 To filter the results of your report by any property or cohort, click the **Filter** button.
 
-To breakdown your results of your report by any property or cohort, click the **Breakdown**.
+To break down your results of your report by any property or cohort, click the **Breakdown**.
 
-You can breakdown your results by the "Date" event property and breakdown by Hour, Day, Week, Month, Quarter, Year, Hour of Day, or Day of Week.
+You can break down your results by the "Time" event property and breakdown by Hour, Day, Week, Month, Quarter, Year, Hour of Day, or Day of Week.
 
 ![/breakdown_by_date.gif](/breakdown_by_date.gif)
 
@@ -184,7 +184,7 @@ Goal: You want to distribute this in various ways
 2. Go to the overflow and open the custom buckets modal
 3. Since looking for even buckets of “30 mins”, choose **Even Bucketing**
 4. Modify the min and max values of the desired range, and the bucket size, and click apply
-    - To note — both a lower end and upper end bucket will be auto-generated to ensure your breakdown always adds up to a 100%
+    - To note — both a lower end and upper end bucket will be auto-generated to ensure your breakdown always adds up to 100%
     - Here these buckets are <50 mins and ≥ 100 mins
 
         ![/14342575096724](/14342575096724.png)
@@ -924,9 +924,9 @@ While all reports in Mixpanel utilize your event data and properties to deliver 
 
 Reports use events and properties to target users, segment data, and filter data. This guide will clarify which reports can use which event types and properties.
 
-**Insights:** All event types and properties are available in Insights to breakdown and filter data.
+**Insights:** All event types and properties are available in Insights to break down and filter data.
 
-**Funnels:** Funnels can be calculated by unique or total events. All event types and properties are available to breakdown and filter data.
+**Funnels:** Funnels can be calculated by unique or total events. All event types and properties are available to break down and filter data.
 
 **Retention:** Retention only counts total users, not unique. However, all event types and properties are available to filter data.
 
