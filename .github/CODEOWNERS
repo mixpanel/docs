@@ -1,1 +1,5 @@
-*    @mixpanel/docs-reviewers
+# Default to docs-reviewers
+*                 @mixpanel/docs-reviewers
+
+# Engineering related PRs go to engineering reviewers
+.github/          @mixpanel/docs-engineering-reviewers
