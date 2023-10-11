@@ -13,6 +13,8 @@ jobs:
     if: github.event.pull_request.merged == true
     runs-on: ubuntu-latest
     steps:
+      - name: Check out repo 📚
+        uses: actions/checkout@v4
       - uses: actions/setup-node@v3
         with:
           node-version: 18
@@ -20,6 +22,7 @@ jobs:
       - run: npm ci
       - name: Add node_modules to PATH
         run: echo "$PWD/node_modules/.bin" >> $GITHUB_PATH
+
       - name: Delete staging version
         run: |
           if rdme versions:delete 0.0-pr-${{ github.event.number }} --key=${{ secrets.README_API_KEY }}; then
