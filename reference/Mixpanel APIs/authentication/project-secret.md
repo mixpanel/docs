@@ -34,6 +34,6 @@ Project secret authentication is performed via [HTTP Basic Auth](https://develop
   "title": "Managing a Project's Secret"
 }
 [/block]
-A project's secret can be found in the Access Keys section of a project's settings overview page: https://mixpanel.com/settings/project/.
+A project's secret can be found in the Access Keys section of a [project's settings overview page](https://mixpanel.com/settings/project/).
 
  To learn more, view our [project settings guide](https://help.mixpanel.com/hc/en-us/articles/115004490503-Project-Settings).
