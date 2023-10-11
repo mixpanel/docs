@@ -43,7 +43,7 @@ Please, refer to this article to [understand how to send or update profile prope
 | $region | Region | The region (state or province) of the event sender parsed from the IP property or the Latitude and Longitude properties. |
 | mp_country_code | Country | The country of the event sender parsed from the IP property or the Latitude and Longitude properties. |
 | $geo_source | Geo Source | This defines the method used to establish the location properties on that same entity. Location properties include Country, Region, and City. |
-| $timezone | BrowserTimezone | Timezone of the event sender, parsed from IP. |
+| $timezone | Timezone | Timezone of the event sender, parsed from IP. |
 | $browser | Browser | Name of the browser. |
 | $browser_version | Browser Version | Version of the browser. |
 | $initial_referrer | Initial Referrer | Referring URL when the user first arrived on your site. Defaults to "$direct" if the user is not referred. |
@@ -92,7 +92,7 @@ Please, refer to this article to [understand how to send or update profile prope
 | $region | Region | The region (state or province) of the event sender parsed from the IP property or the Latitude and Longitude properties. |
 | mp_country_code | Country | The country of the event sender parsed from the IP property or the Latitude and Longitude properties. |
 | $geo_source | Geo Source | This defines the method used to establish the location properties on that same entity. Location properties include Country, Region, and City. |
-| $timezone | BrowserTimezone | Timezone of the event sender, parsed from IP. |
+| $timezone | Timezone | Timezone of the event sender, parsed from IP. |
 | $os | Operating System | OS of the event sender. |
 | $mp_api_timestamp_ms | API Timestamp | Time at which the event was received by our API. |
 | $ios_app_release | iOS App Release | General build of this app |
@@ -151,7 +151,7 @@ Please, refer to this article to [understand how to send or update profile prope
 | $region | Region | The region (state or province) of the event sender parsed from the IP property or the Latitude and Longitude properties. |
 | mp_country_code | Country | The country of the event sender parsed from the IP property or the Latitude and Longitude properties. |
 | $geo_source | Geo Source | This defines the method used to establish the location properties on that same entity. Location properties include Country, Region, and City. |
-| $timezone | BrowserTimezone | Timezone of the event sender, parsed from IP. |
+| $timezone | Timezone | Timezone of the event sender, parsed from IP. |
 | $android_app_version_code | Android App Version Code | Current app version. |
 | $android_app_version | Android App Version | Current app version. |
 | $android_lib_version | Android Lib Version | Version of Mixpanel library. |
