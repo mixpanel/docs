@@ -10,6 +10,18 @@ jobs:
   delete-staging:
     if: github.event.pull_request.merged == true
     runs-on: ubuntu-latest
-    uses: readmeio/rdme@v8
-    with:
-      rdme: versions:delete 0.0-pr-${{ github.event.number }} --key=${{ secrets.README_API_KEY }}
+    steps:
+      - uses: actions/setup-node@v3
+        with:
+          node-version: 18
+          cache: 'npm'
+      - run: npm ci
+      - name: Add node_modules to PATH
+        run: echo "$PWD/node_modules/.bin" >> $GITHUB_PATH
+      - name: Delete staging version
+        run: |
+          if rdme versions:delete 0.0-pr-${{ github.event.number }} --key=${{ secrets.README_API_KEY }}; then
+            echo "Version deleted successfully"
+          else
+            echo "Version doesn't exist, no need to delete"
+          fi
