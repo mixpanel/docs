@@ -1,0 +1,80 @@
+name: Generate ReadMe Staging 🦉
+
+on:
+  # run this workflow on all PRs that have reference/ changed
+  pull_request:
+    paths:
+      - 'reference/**'
+      - '.github/actions/**'
+      - '.github/workflows/rdme-staging.yml'
+
+jobs:
+  # ////////////////////////////////////////////////////////////////////////
+  # Pull Request
+  # ////////////////////////////////////////////////////////////////////////
+
+  # Create a new ReadMe Version if it needs to and pushes content to the version
+  rdme-staging:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out repo 📚
+        uses: actions/checkout@v4
+      - uses: actions/setup-node@v3
+        with:
+          node-version: 18
+          cache: 'npm'
+      - run: npm ci
+      - name: Add node_modules to PATH
+        run: echo "$PWD/node_modules/.bin" >> $GITHUB_PATH
+
+      # Try to create the readme version, if it errors it's ok we keep going since it was already created
+      - name: Create readme version
+        run: |
+          if rdme versions:create 0.0-pr-${{ github.event.number }} --key=${{ secrets.README_API_KEY }} --fork=v3.26 --main=false --beta=false --deprecated=false --isPublic=true; then
+            echo "Version created successfully"
+          else
+            echo "Errors because the version already exists, and so we can continue to the next step"
+          fi
+
+      - name: Push docs to staging env 🚀
+        uses: readmeio/rdme@v8
+        with:
+          rdme: docs ./reference --key=${{ secrets.README_API_KEY }} --version=0.0-pr-${{ github.event.number }}
+
+  # build and update comment with the proper link
+  preview-notify:
+    name: Preview / Notify
+    runs-on: ubuntu-20.04
+    needs:
+      - rdme-staging
+    timeout-minutes: 15
+    permissions:
+      contents: read
+      issues: write
+      pull-requests: write
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          sparse-checkout: |
+            .github
+            reference
+
+      # Build PR Comment
+      - name: Build PR comment
+        id: build-pr-comment
+        uses: actions/github-script@v6
+        with:
+          result-encoding: string
+          script: |
+            return `
+              # API Reference Preview
+              :rocket: https://developer.mixpanel.com/v0.0-pr-${{ github.event.number }}/reference/overview
+              Last updated: ${new Date().toLocaleString("en-US", {timeZone: "America/Los_Angeles"})} PT from ${{github.sha}}
+            `
+
+      # Update PR Comment
+      - uses: ./.github/actions/create-or-update-comment
+        with:
+          issue-number: ${{ github.event.number }}
+          key: reference-pr-preview
+          body: ${{ steps.build-pr-comment.outputs.result }}

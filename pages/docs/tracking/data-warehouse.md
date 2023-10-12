@@ -4,7 +4,7 @@ Mixpanel Warehouse Connectors allows you to natively import data from Snowflake,
 
 Example data you can bring into Mixpanel:
 
-- **Appplication database tables**: Signups, Reports Created, Dashboards Created
+- **Application database tables**: Signups, Reports Created, Dashboards Created
 - **Salesforce data**: Opportunity Created, Account Created, Account Upsell
 - **Support data**: Ticket Created, Ticket Resolved
 - **Billing/Consumption data:** Invoice paid, subscription renewed
