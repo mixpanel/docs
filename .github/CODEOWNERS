@@ -1,17 +1,11 @@
-# Default to docs-reviewers
-# =========================
-*                    @mixpanel/docs-reviewers
+# Default to engineering
+# ======================
+*                    @mixpanel/docs-engineering-reviewers
 
-# Engineering related PRs go to engineering reviewers
-# ===================================================
-/.github/            @mixpanel/docs-engineering-reviewers
-/utils/              @mixpanel/docs-engineering-reviewers
-# root level config files
-# -----------------------
-/embeddings.json.gz  @mixpanel/docs-engineering-reviewers
-/.gitignore          @mixpanel/docs-engineering-reviewers
-/*.json              @mixpanel/docs-engineering-reviewers
-/*.js                @mixpanel/docs-engineering-reviewers
-/*.py                @mixpanel/docs-engineering-reviewers
-/*.tsx               @mixpanel/docs-engineering-reviewers
-/*.ts                @mixpanel/docs-engineering-reviewers
+# Content related changes route to docs reviewers
+# ===============================================
+*.md                 @mixpanel/docs-reviewers
+*.mdx                @mixpanel/docs-reviewers
+*.txt                @mixpanel/docs-reviewers
+_meta.json           @mixpanel/docs-reviewers
+/public/             @mixpanel/docs-reviewers
