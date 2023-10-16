@@ -4,7 +4,9 @@
 ## Limits
 Each project is limited to 60 dynamic (recurring) cohort syncs across all destinations. This limit helps ensure that syncs are fast and reliable. We recommend pruning older unused syncs to stay within the limit.
 
-There are no limits for static, or 1-time, syncs.
+There are no limit on the number of cohorts for static, or 1-time, syncs.
+
+When exporting, each cohort is limited to 10 million users.
 
 The exported user data is limited to the following properties:
 
