@@ -1,9 +1,13 @@
 # Mobile
 
-import { Tab, Tabs } from 'nextra-theme-docs'
+import { Tab, Tabs } from 'nextra-theme-docs';
+
+import ExtendedTabs from '../../../components/ExtendedTabs/ExtendedTabs';
+import { urlToItemsMap } from '../../../utils/mobileUrlParams';
+
 
 ## Step 1: Install the SDK
-<Tabs items={['React Native', 'Flutter', 'iOS (Objective-C)', 'iOS (Swift)', 'Android', 'Unity']}>
+<ExtendedTabs urlParam="sdk" urlToItemsMap={urlToItemsMap}>
 
 <Tab>
 Under your app's root directory, run:
@@ -76,12 +80,12 @@ Add `https://github.com/mixpanel/mixpanel-unity.git#master` to the dependencies 
 
 Alternatively, you can download and install the .unitypackage file from our [releases page](https://github.com/mixpanel/mixpanel-unity/releases).
 </Tab>
-</Tabs>
+</ExtendedTabs>
 
 ## Step 2: Track your first event
 You'll need your Project Token for this, which you can get [here](https://mixpanel.com/settings/project).
 
-<Tabs items={['React Native', 'Flutter', 'iOS (Objective-C)', 'iOS (Swift)', 'Android', 'Unity']}>
+<ExtendedTabs urlParam="sdk" urlToItemsMap={urlToItemsMap}>
 
 <Tab>
 ```javascript
@@ -195,7 +199,7 @@ props["Signup Type"] =  "Referral";
 Mixpanel.Track('Signup', props);
 ```
 </Tab>
-</Tabs>
+</ExtendedTabs>
 
 🎉 Congratulations, you've tracked your first event! You can see it in Mixpanel via the [Events](https://mixpanel.com/report/events) page.
 
