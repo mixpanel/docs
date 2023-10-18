@@ -1,6 +1,6 @@
 /developer-docs-redirect/android /docs/tracking/reference/android
 /developer-docs-redirect/android-push-notifications /docs
-/developer-docs-redirect/android-quickstart /docs/tracking/mobile
+/developer-docs-redirect/android-quickstart /docs/tracking/mobile?sdk=android
 /developer-docs-redirect/aws-raw-pipeline /docs/other-bits/data-pipelines/aws-raw-pipeline
 /developer-docs-redirect/azure-blob-storage /docs/other-bits/data-pipelines/azure-blob-storage
 /developer-docs-redirect/azure-raw-pipeline /docs/other-bits/data-pipelines/azure-raw-pipeline
@@ -17,7 +17,7 @@
 /developer-docs-redirect/data-structure-deep-dive /docs/tracking/reference/data-model
 /developer-docs-redirect/data-warehouse-export https://developer.mixpanel.com/reference/create-warehouse-pipeline
 /developer-docs-redirect/flutter /docs/tracking/reference/flutter
-/developer-docs-redirect/flutter-quickstart /docs/tracking/mobile
+/developer-docs-redirect/flutter-quickstart /docs/tracking/mobile?sdk=flutter
 /developer-docs-redirect/freshpaint /docs/tracking/integrations/freshpaint
 /developer-docs-redirect/gcs /docs/other-bits/data-pipelines/gcs
 /developer-docs-redirect/gcs-import /docs/tracking/integrations/gcs-import
@@ -26,9 +26,9 @@
 /developer-docs-redirect/implement-mixpanel /docs/getting-started/what-is-mixpanel
 /developer-docs-redirect/ios /docs/tracking/reference/ios
 /developer-docs-redirect/ios-objective-c /docs/tracking/reference/ios
-/developer-docs-redirect/ios-objective-c-quickstart /docs/tracking/mobile
+/developer-docs-redirect/ios-objective-c-quickstart /docs/tracking/mobile?sdk=ios
 /developer-docs-redirect/ios-swift /docs/tracking/reference/swift
-/developer-docs-redirect/ios-swift-quickstart /docs/tracking/mobile
+/developer-docs-redirect/ios-swift-quickstart /docs/tracking/mobile?sdk=swift
 /developer-docs-redirect/java /docs/tracking/reference/java
 /developer-docs-redirect/javascript /docs/tracking/reference/javascript
 /developer-docs-redirect/javascript-full-api-reference /docs/tracking/reference/javascript-full-api-reference
@@ -56,7 +56,7 @@
 /developer-docs-redirect/quick-start-guide /docs/tracking/mobile
 /developer-docs-redirect/raw-export-pipeline https://developer.mixpanel.com/reference/raw-data-export-api
 /developer-docs-redirect/react-native /docs/tracking/reference/react-native
-/developer-docs-redirect/react-native-quickstart /docs/tracking/mobile
+/developer-docs-redirect/react-native-quickstart /docs/tracking/mobile?sdk=reactnative
 /developer-docs-redirect/ruby /docs/tracking/reference/ruby
 /developer-docs-redirect/rudderstack /docs/tracking/integrations/rudderstack
 /developer-docs-redirect/s3-import /docs/tracking/integrations/s3-import
@@ -68,6 +68,6 @@
 /developer-docs-redirect/tracking/reference/nodejs /docs/tracking/reference/nodejs
 /developer-docs-redirect/under-the-hood /docs/other-bits/under-the-hood
 /developer-docs-redirect/unity /docs/tracking/reference/unity
-/developer-docs-redirect/unity-quickstart /docs/tracking/mobile
+/developer-docs-redirect/unity-quickstart /docs/tracking/mobile?sdk=unity
 /developer-docs-redirect/what-is-mixpanel /docs/getting-started/what-is-mixpanel
 /developer-docs-redirect/write-jql /docs/other-bits/jql-overview
