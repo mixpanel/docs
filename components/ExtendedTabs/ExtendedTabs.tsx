@@ -18,12 +18,17 @@ export default function ExtendedTabs(props: ExtendedTabsType) {
             const index = Object.keys(props.urlToItemsMap).indexOf(item);
             setSelectedIndex(index);
         }
-    })
+    }, []);
+
+    function onChange(idx) {
+        setSelectedIndex(idx);
+    };
 
     return (
         <Tabs
             items={Object.values(props.urlToItemsMap)}
             selectedIndex={selectedIndex}
+            onChange={onChange}
         >
             {props.children}
         </Tabs>
