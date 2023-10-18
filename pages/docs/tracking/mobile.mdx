@@ -3,11 +3,11 @@
 import { Tab, Tabs } from 'nextra-theme-docs';
 
 import ExtendedTabs from '../../../components/ExtendedTabs/ExtendedTabs';
-import { urlToItemsMap } from '../../../utils/mobileUrlParams';
+import { mobileItems } from '../../../utils/constants';
 
 
 ## Step 1: Install the SDK
-<ExtendedTabs urlParam="sdk" urlToItemsMap={urlToItemsMap}>
+<ExtendedTabs urlParam="sdk" urlToItemsMap={mobileItems}>
 
 <Tab>
 Under your app's root directory, run:
@@ -85,7 +85,7 @@ Alternatively, you can download and install the .unitypackage file from our [rel
 ## Step 2: Track your first event
 You'll need your Project Token for this, which you can get [here](https://mixpanel.com/settings/project).
 
-<ExtendedTabs urlParam="sdk" urlToItemsMap={urlToItemsMap}>
+<ExtendedTabs urlParam="sdk" urlToItemsMap={mobileItems}>
 
 <Tab>
 ```javascript

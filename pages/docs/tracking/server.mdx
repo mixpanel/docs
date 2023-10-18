@@ -2,10 +2,14 @@
 
 import { Tab, Tabs } from 'nextra-theme-docs'
 
+import ExtendedTabs from '../../../components/ExtendedTabs/ExtendedTabs';
+import { serverItems } from '../../../utils/constants';
+
+
 You can use Mixpanel's Server SDKs to send events from your backend servers to Mixpanel. We [recommend](/docs/getting-started/what-should-I-track#how-to-track) server-side tracking, since it is more reliable and easier to maintain than web/mobile tracking.
 
 ## Step 1: Install the SDK
-<Tabs items={['Python', 'Node', 'Go', 'Ruby', 'Java']}>
+<ExtendedTabs urlParam="sdk" urlToItemsMap={serverItems}>
 <Tab>
 ```shell Python
 pip install mixpanel
@@ -36,12 +40,12 @@ gem install mixpanel-ruby
 </dependency>
 ```
 </Tab>
-</Tabs>
+</ExtendedTabs>
 
 ## Step 2: Track your first event
 
 You'll need your Project Token for this, which you can get [here](https://mixpanel.com/settings/project).
-<Tabs items={['Python', 'Node', 'Go', 'Ruby', 'Java']}>
+<ExtendedTabs urlParam="sdk" urlToItemsMap={serverItems}>
 <Tab>
 ```python Python
 from mixpanel import Mixpanel
@@ -124,7 +128,7 @@ MixpanelAPI mixpanel = new MixpanelAPI();
 mixpanel.deliver(delivery);",
 ```
 </Tab>
-</Tabs>
+</ExtendedTabs>
 
 
 🎉 Congratulations, you've tracked your first event! You can see it in Mixpanel via the [Events](https://mixpanel.com/report/events) page. 
