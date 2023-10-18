@@ -33,6 +33,12 @@ paths:
         [block:callout]
         {
           "type": "info",
+          "body": "Please note that the events here may not be compatible with our Simplified ID Merge"
+        }
+        [/block]
+        [block:callout]
+        {
+          "type": "info",
           "body": "You can also use the import endpoint: https://api.mixpanel.com/import/"
         }
         [/block]
