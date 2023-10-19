@@ -7,6 +7,10 @@ Mixpanel supports stitching user behavior pre-login (eg: traffic from your websi
 
 This system is called ID Merge. In this guide, we walk through how to use ID Merge and exactly how it works under the hood.
 
+<p style={{ position: 'relative', paddingBottom: '56.25%', height: 0, overflow: 'hidden' }}>
+  <iframe src="https://www.loom.com/embed/01dcff45ee91473a9e6ddb1670fd6cba" frameBorder="0" style={{ position: 'absolute', top: 0, left: 0, width: '100%', height: '100%' }} allowFullScreen></iframe>
+</p>
+
 ## Usage
 If using our Web/Mobile SDKs or a CDP like Segment or Rudderstack, there are only 2 steps:
 1. Call `.identify(<user_id>)` when a user signs up or logs in. Pass in the user's known identifier (eg: their ID from your database).
