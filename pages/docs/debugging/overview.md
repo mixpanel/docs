@@ -9,7 +9,7 @@ This document walks through best practices for data validation and debugging you
 Mixpanel recommends that you create a [separate development Mixpanel project](/docs/best-practices/developer-environments#separate-development-data) to validate your event data. This ensures that your testing data does not contaminate your production environment. 
 
 ### Send Events
-Mixpanel doesn't receive any data until you start sending events. If you haven't started sending data to Mixpanel, check out our quickstart guides for [JavaScript](/docs/quickstart/connect-your-data), [Server](/docs/quickstart/connect-your-data), and [Mobile](/docs/quickstart/connect-your-data). We have a simple [HTTP API](/docs/quickstart/connect-your-data#http-api) for any languages we don't support.
+Mixpanel doesn't receive any data until you start sending events. If you haven't started sending data to Mixpanel, check out our quickstart guides for [JavaScript](/docs/quickstart/connect-your-data?sdk=javascript), [Server](/docs/quickstart/connect-your-data?sdk=python), and [Mobile](/docs/quickstart/connect-your-data?sdk=ios). We have a simple [HTTP API](/docs/quickstart/connect-your-data?sdk=httpapi) for any languages we don't support.
 
 🎉 Congratulations, you're ready to debug! Theres are two primary places to inspect your raw events as they flow into your Mixpanel project: Events and User Profiles. 
 

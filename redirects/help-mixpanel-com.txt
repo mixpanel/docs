@@ -275,7 +275,7 @@ https://help.mixpanel.com/hc/en-us/categories/13174726206612(.*) /changelogs
 https://help.mixpanel.com/hc/en-us/requests/new https://mixpanel.com/get-support
 https://help.mixpanel.com/hc/en-us/search /docs/what-is-mixpanel
 https://help.mixpanel.com/hc/en-us/sections/115001299203(.*) /docs/tracking-methods/identifying-users
-https://help.mixpanel.com/hc/en-us/sections/115001308546(.*) /docs/quickstart/connect-your-data#http-api
+https://help.mixpanel.com/hc/en-us/sections/115001308546(.*) /docs/quickstart/connect-your-data?sdk=httpapi
 https://help.mixpanel.com/hc/en-us/sections/115001308566(.*) /docs/reports/legacy/jql
 https://help.mixpanel.com/hc/en-us/sections/115001517666(.*) /docs/cohort-sync/overview
 https://help.mixpanel.com/hc/en-us/sections/360006013852(.*) /docs/what-is-mixpanel

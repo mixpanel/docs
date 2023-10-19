@@ -2,13 +2,16 @@
 
 import { Tab, Tabs } from 'nextra-theme-docs'
 
+import ExtendedTabs from '../../../components/ExtendedTabs/ExtendedTabs';
+import { dataItems } from '../../../utils/constants';
+
 ## Track your first event
 
 You can use Mixpanel's SDKs to track events from your website, web application, or backend servers. We [recommend](/docs/tracking-methods/choosing-the-right-method) server-side tracking, since it is more reliable and easier to maintain than web/mobile tracking. 
 
 If you do not see an SDK or an integration in your language, you can send events to our HTTP API directly.
 
-<Tabs items={['Javascript', 'Python', 'Node', 'Go', 'Ruby', 'Java', 'React Native', 'Flutter', 'iOS (Objective-C)', 'iOS (Swift)', 'Android', 'Unity', 'HTTP API']}>
+<ExtendedTabs urlParam="sdk" urlToItemsMap={dataItems}>
 
 <Tab>
 
@@ -718,7 +721,7 @@ Our Import API is built to ingest billions of events per day across our customer
 All of our sample code transparently retries and backoff from rate limit exceptions. If you require a higher-limit for a 1-time backfill, please reach out to us at apis@mixpanel.com.
 </Tab>
 
-</Tabs>
+</ExtendedTabs>
 
 ## Identify your users
 

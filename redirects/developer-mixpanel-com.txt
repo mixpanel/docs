@@ -6,7 +6,7 @@
 /developer-docs-redirect/azure-raw-pipeline /docs/data-pipelines/integrations/azure-raw-pipeline
 /developer-docs-redirect/client-side-vs-server-side-tracking /docs/getting-started/plan-your-implementation#need-to-start-tracking-product-data
 /developer-docs-redirect/cloud-import-overview /docs/tracking-methods/integrations/google-cloud-storage
-/developer-docs-redirect/cloud-ingestion /docs/quickstart/connect-your-data#http-api
+/developer-docs-redirect/cloud-ingestion /docs/quickstart/connect-your-data?sdk=httpapi
 /developer-docs-redirect/codeless-freshpaint /docs/tracking-methods/integrations/freshpaint
 /developer-docs-redirect/cohort-webhooks /docs/cohort-sync/webhooks
 /developer-docs-redirect/cohorts /docs/cohort-sync/build-an-integration
@@ -32,7 +32,7 @@
 /developer-docs-redirect/java /docs/tracking-methods/sdks/java
 /developer-docs-redirect/javascript /docs/tracking-methods/sdks/javascript
 /developer-docs-redirect/javascript-full-api-reference /docs/tracking-methods/sdks/javascript
-/developer-docs-redirect/javascript-quickstart /docs/quickstart/connect-your-data
+/developer-docs-redirect/javascript-quickstart /docs/quickstart/connect-your-data?sdk=javascript
 /developer-docs-redirect/jql /docs/reports/legacy/jql
 /developer-docs-redirect/jql-api-reference /docs/reports/legacy/jql
 /developer-docs-redirect/jql-examples /docs/reports/legacy/jql
@@ -62,7 +62,7 @@
 /developer-docs-redirect/amazon-s3 /docs/tracking-methods/integrations/amazon-s3
 /developer-docs-redirect/schematized-export-pipeline /docs/data-pipelines/schematized-export-pipeline
 /developer-docs-redirect/segment /docs/tracking-methods/integrations/segment
-/developer-docs-redirect/server /docs/quickstart/connect-your-data
+/developer-docs-redirect/server /docs/quickstart/connect-your-data?sdk=python
 /developer-docs-redirect/snowplow /docs/tracking-methods/integrations/snowplow
 /developer-docs-redirect/swift /docs/tracking-methods/sdks/swift
 /developer-docs-redirect/tracking/reference/nodejs /docs/tracking-methods/sdks/nodejs
