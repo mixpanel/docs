@@ -42,8 +42,8 @@
 /developer-docs-redirect/jql-overview /docs/reports/legacy/jql
 /developer-docs-redirect/jql-tutorial-building-an-application /docs/reports/legacy/jql
 /developer-docs-redirect/mixpanel-amazon-s3-export /docs/data-pipelines/integrations/amazon-s3
-/developer-docs-redirect/mixpanel-bigquery-export-design /docs/data-pipelines/bigquery
-/developer-docs-redirect/mixpanel-snowflake-export /docs/data-pipelines/snowflake
+/developer-docs-redirect/mixpanel-bigquery-export-design /docs/data-pipelines/integrations/bigquery
+/developer-docs-redirect/mixpanel-snowflake-export /docs/data-pipelines/integrations/snowflake
 /developer-docs-redirect/mparticle /docs/tracking-methods/integrations/mparticle
 /developer-docs-redirect/node.js /docs/tracking-methods/sdks/nodejs
 /developer-docs-redirect/nodejs /docs/tracking-methods/sdks/nodejs

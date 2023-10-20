@@ -107,7 +107,7 @@ Mixpanel does not know, or need to know, any identifying information about users
 If you want to analyze aggregate user behavior without being able to drill down into any particular user, we recommend generating a hash of some unique ID of the user and using that hash as the user's ID when you call the `.identify()` method in our SDKs.
 
 ## Blacklisting Default Properties
-Our JavaScript library [automatically captures default properties](https://docs.mixpanel.com/docs/tracking/reference/default-properties) to help enrich your data, but you can choose to prevent the setting of default properties using the property_blacklist config option. To prevent default event properties from being sent, specify a list of properties to blacklist on library load, for example:
+Our JavaScript library [automatically captures default properties](/docs/data-structure/default-properties) to help enrich your data, but you can choose to prevent the setting of default properties using the property_blacklist config option. To prevent default event properties from being sent, specify a list of properties to blacklist on library load, for example:
 
 ```javascript Javascript
 mixpanel.init("YOUR_TOKEN", {

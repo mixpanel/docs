@@ -9,8 +9,8 @@ You must first configure your destination to accept the data before you can expo
 
 For additional information on configuring the Mixpanel export for different destinations, see:
   * [Exporting to Amazon](/docs/data-pipelines/integrations/amazon-s3)
-  * [Exporting to BigQuery](/docs/data-pipelines/bigquery)
-  * [Exporting to Snowflake](/docs/data-pipelines/snowflake) 
+  * [Exporting to BigQuery](/docs/data-pipelines/integrations/bigquery)
+  * [Exporting to Snowflake](/docs/data-pipelines/integrations/snowflake) 
   * [Exporting to Google Cloud Storage](/docs/data-pipelines/integrations/google-cloud-storage)
   * [Exporting to Azure Blob Storage](/docs/data-pipelines/integrations/azure-blob-storage)  
 
@@ -52,7 +52,7 @@ Mixpanel automatically exports the ID mapping table when you create a people exp
 Note: When using the ID mappings table, you should use the **resolved** `distinct_id` in place of the non-resolved `distinct_id` whenever present. If there is no resolved `distinct_id`, you can then use the `distinct_id` from the existing people or events table.
 }
 
-Examples of how to do this are available for [BigQuery](/docs/data-pipelines/bigquery#querying-the-identity-mapping-table)  and [Snowflake](/docs/data-pipelines/snowflake#querying-the-identity-mapping-table).
+Examples of how to do this are available for [BigQuery](/docs/data-pipelines/integrations/bigquery#querying-the-identity-mapping-table)  and [Snowflake](/docs/data-pipelines/integrations/snowflake#querying-the-identity-mapping-table).
 
 ## Service Level Agreement
 The policy for latency on exported events is 24 hours end to end, plus an additional 24 hours for late-arriving data.

@@ -291,33 +291,33 @@ You can set the property `$name` to populate the name field at the top of the gr
 
 These operations are similar to the corresponding operations for user profile property updates.
 #### set
-[`mixpanel.get_group().set`](/docs/tracking/advanced/javascript-full-api-reference#mixpanelgroupset) updates or adds a property to a group.
+`mixpanel.get_group().set` updates or adds a property to a group.
 
 ```javascript JavaScript
 mixpanel.get_group(group_key, group_id).set({“property_name”: property_value})
 ```
 #### set once
-[`mixpanel.get_group().set_once`](/docs/tracking/advanced/javascript-full-api-reference#mixpanelgroupset_once) adds a property value to a group only if it has not been set before.
+`mixpanel.get_group().set_once` adds a property value to a group only if it has not been set before.
 
 ```javascript JavaScript
 mixpanel.get_group(group_key, group_id).set_once({“property_name”: property_value})
 ```
 
 #### unset
-[`mixpanel.get_group().unset`](/docs/tracking/advanced/javascript-full-api-reference#mixpanelgroupunset)  unsets a specific property in the group.
+`mixpanel.get_group().unset` unsets a specific property in the group.
 
 ```javascript JavaScript
 mixpanel.get_group(group_key, group_id).unset(“property_name”)
 ```
 
 #### remove
-[`mixpanel.get_group().remove`](/docs/tracking/advanced/javascript-full-api-reference#mixpanelgroupremove)  removes a specific value in a list property.
+`mixpanel.get_group().remove` removes a specific value in a list property.
 ```javascript JavaScript
 mixpanel.get_group(group_key, group_id).remove(“property_name”, “property_value”)
 ```
 
 #### union
-[`mixpanel.get_group().union`](/docs/tracking/advanced/javascript-full-api-reference#mixpanelgroupunion) adds the specified values to a list property and ensures that those values only appear once.
+`mixpanel.get_group().union` adds the specified values to a list property and ensures that those values only appear once.
 ```javascript JavaScript
 mixpanel.get_group(group_key, group_id).union(“property_name”, [property_value1, … [property_valueN])
 ```
