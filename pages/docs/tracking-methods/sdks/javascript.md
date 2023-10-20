@@ -165,7 +165,7 @@ mixpanel.reset();
 
 In addition to events, you can store user profiles in Mixpanel. Profiles are persistent sets of properties that describe a user - things like name, email address, and signup date. You can use profiles to explore and segment users by who they are, rather than what they did.
 
-*Please take note of the [reserved profile properties](/docs/tracking-specs/user-profiles#reserved-user-properties) (e.g. `$name`, `$email`) which receive special treatment in our UI or are used for special processing.
+*Please take note of the [reserved profile properties](/docs/data-structure/user-profiles#reserved-user-properties) (e.g. `$name`, `$email`) which receive special treatment in our UI or are used for special processing.
 
 ### Setting Profile Properties
 
@@ -238,7 +238,7 @@ SDK errors and warnings, such as calling `track` without an event name and `alia
 ## Group Analytics
 Mixpanel Group Analytics is a paid add-on that allows behavioral data analysis by selected groups, as opposed to individual users.
 
-Grouping by identifiers other than the `distinct_id` will allow analysis at a company or group level when using Mixpanel analytics. Read [this article](/docs/features/group-analytics) to learn more about Group Analytics.
+Grouping by identifiers other than the `distinct_id` will allow analysis at a company or group level when using Mixpanel analytics. Read [this article](/docs/data-structure/advanced/group-analytics) to learn more about Group Analytics.
 
 A group is identified by the `group_key` and `group_id`.
 * `group_key` is the property that connects event data for Group Analytics.

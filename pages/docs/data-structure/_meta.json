@@ -1,6 +1,8 @@
 {
     "overview": "Overview",
+    "default-properties": "Default Properties",
     "events-and-properties": "Events & Properties",
     "user-profiles": "User Profiles",
-    "lookup-tables": "Lookup Tables"
+    "lookup-tables": "Lookup Tables",
+    "advanced": "Advanced"
 }

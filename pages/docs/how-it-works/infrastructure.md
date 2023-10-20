@@ -52,7 +52,7 @@ Mixpanel solves both problems with schema-on-read. Events are ingested and store
 **What this eliminates**: Schema migrations.
 
 ## Star Schema
-Mixpanel's [data model](/docs/tracking-specs/overview) is fundamentally a star-schema: events are facts and user profiles/lookup tables are dimensions. Events are typically streamed in from client devices and server logs, while dimensional data is periodically loaded from a system of record and provides enrichment to the events for analysis.
+Mixpanel's [data model](/docs/data-structure/overview) is fundamentally a star-schema: events are facts and user profiles/lookup tables are dimensions. Events are typically streamed in from client devices and server logs, while dimensional data is periodically loaded from a system of record and provides enrichment to the events for analysis.
 
 Arb's query and storage engine can run star-schema joins on the fly. This means events and dimensions can be loaded at any time without any coordination, rather than needing to be joined at ingestion. This query-time approach also enables backfills of events and dimensions to be done retroactively.
 

@@ -65,5 +65,5 @@ All in all, building the best, most valuable product for your customers is the m
 
  
 ## Where can I learn more?
-* Read our Primers on [Engagement](/docs/reports/finding-value/engagement) and [Growth](/docs/reports/finding-value/growth) to learn why those metrics matter, what they mean, and how to measure them.
+* Read our Primers on [Engagement](/docs/best-practices/analytics-strategy/engagement) and [Growth](/docs/best-practices/analytics-strategy/growth) to learn why those metrics matter, what they mean, and how to measure them.
 * Take our [Company KPI Dashboard Template](https://mixpanel.com/project?show-event-translator=true) for a spin to start measuring and optimizing your product’s retention with only two events and four easy clicks. Read more about how to use a template here.

@@ -94,7 +94,7 @@ If you want to use IFV(identifierForVendor) as the distinct_id, you can set
 
 ## Storing User Profiles
 
-In addition to events, you can store user profiles in Mixpanel's [Behavioral Analytics](/docs/tracking-specs/user-profiles) product. Profiles are persistent sets of properties that describe a user - things like name, email address, and signup date. You can use profiles to explore and segment users by who they are, rather than what they did.
+In addition to events, you can store user profiles in Mixpanel's [Behavioral Analytics](/docs/data-structure/user-profiles) product. Profiles are persistent sets of properties that describe a user - things like name, email address, and signup date. You can use profiles to explore and segment users by who they are, rather than what they did.
 
 We generally recommend creating user profiles for only authenticated users; with this in mind, to create user profiles, 2 requiremenst need to be met:
 
@@ -148,7 +148,7 @@ Mixpanel.mainInstance().people.trackCharge(amount: -50)
 ## Group Analytics
 Mixpanel Group Analytics is a paid add-on that allows behavioral data analysis by selected groups, as opposed to individual users.
 
-Grouping by identifiers other than the `distinct_id` will allow analysis at a company or group level when using Mixpanel analytics. Read [this article](/docs/features/group-analytics) to learn more about Group Analytics.
+Grouping by identifiers other than the `distinct_id` will allow analysis at a company or group level when using Mixpanel analytics. Read [this article](/docs/data-structure/advanced/group-analytics) to learn more about Group Analytics.
 
 A group is identified by the `group_key` and `group_id`.
 * `group_key` is the property that connects event data for Group Analytics.

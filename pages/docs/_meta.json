@@ -12,8 +12,8 @@
 		"title": "DATA IN"
 	},
 	"tracking-methods": "Tracking Methods",
-	"tracking-specs": "Tracking Specs",
-	"tracking-plans": "Tracking Plans",
+	"data-structure": "Data Structure",
+	"migration": "Migration",
 	"debugging": "Debugging",
 	"analysis": {
 		"type": "separator",

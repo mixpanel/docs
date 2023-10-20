@@ -1,6 +1,6 @@
 # Google Analytics
 
-If you haven't already, we recommend starting with our [Migration Guides Overview](/docs/tracking-methods/migration/overview) as it details the key components of migrating to Mixpanel from other analytics tools. Below we outline specific steps and considerations when migrating from Google Analytics.
+If you haven't already, we recommend starting with our [Migration Guides Overview](/docs/migration/overview) as it details the key components of migrating to Mixpanel from other analytics tools. Below we outline specific steps and considerations when migrating from Google Analytics.
 
 ## Differences in the data models
 
@@ -76,7 +76,7 @@ To backfill data, we recommend:
     - Utilize the CDPs backfilling feature, like [Segment Replay](https://segment.com/docs/guides/what-is-replay/), to re-send historical data to Mixpanel
 - For any other implementation method
     - First, export your data to the data warehouse so you have a record of Universal Analytics
-    - Once exported, your data warehouse tables can be transformed and modeled into the [event format](/docs/tracking-specs/events-and-properties) Mixpanel expects
+    - Once exported, your data warehouse tables can be transformed and modeled into the [event format](/docs/data-structure/events-and-properties) Mixpanel expects
     - Leverage our [Import API](https://developer.mixpanel.com/reference/import-events) to send us the formatted events from your data warehouse
 
 The process of importing old data with a different format has many potential issues - identity management, data discrepancies, etc. - as Mixpanel is fundamentally different than UA. It may be worth considering your use cases for importing old data before proceeding, as matching users and data across the systems can be time consuming. [Mixpanel Support](https://mixpanel.com/get-support) is here to help if you need advice how to go about importing the historical data.
@@ -212,7 +212,7 @@ To backfill data, we recommend:
     - Utilize the CDPs backfilling feature, like [Segment Replay](https://segment.com/docs/guides/what-is-replay/), to re-send historical data to Mixpanel
 - For any other implementation method
     - First, export your data to the data warehouse so you have a record of Universal Analytics
-    - Once exported, your data warehouse tables can be transformed and modeled into the [event format](/docs/tracking-specs/events-and-properties) Mixpanel expects
+    - Once exported, your data warehouse tables can be transformed and modeled into the [event format](/docs/data-structure/events-and-properties) Mixpanel expects
     - Leverage our [Import API](https://developer.mixpanel.com/reference/import-events) to send us the formatted events from your data warehouse
 
 ## Not sure where to start or need help?

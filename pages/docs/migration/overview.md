@@ -34,8 +34,8 @@ When going through this migration, there is no better time to audit your own dat
 
 Depending on your current setup, the steps for migrating your live data tracking will differ. Please see the appropriate provider specific guides for more details on how to migrate your existing live data tracking and get started with Mixpanel.
 
-- [Amplitude Migration Guide](/docs/tracking-methods/migration/amplitude)
-- [Google Analytics Migration Guide](/docs/tracking-methods/migration/google-analytics)
+- [Amplitude Migration Guide](/docs/migration/amplitude)
+- [Google Analytics Migration Guide](/docs/migration/google-analytics)
 
 ### Data audit
 

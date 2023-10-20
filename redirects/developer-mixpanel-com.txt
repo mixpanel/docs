@@ -14,7 +14,7 @@
 /developer-docs-redirect/custom-query /docs/reports/legacy/jql
 /developer-docs-redirect/data-discrepancy-faq /docs/other-bits/data-pipelines/overview#faq
 /developer-docs-redirect/data-pipelines /docs/other-bits/data-pipelines/overview
-/developer-docs-redirect/data-structure-deep-dive /docs/tracking-specs/overview
+/developer-docs-redirect/data-structure-deep-dive /docs/data-structure/overview
 /developer-docs-redirect/data-warehouse-export https://developer.mixpanel.com/reference/create-warehouse-pipeline
 /developer-docs-redirect/flutter /docs/tracking-methods/sdks/flutter
 /developer-docs-redirect/flutter-quickstart /docs/quickstart/connect-your-data?sdk=flutter

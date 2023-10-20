@@ -4,6 +4,6 @@
     "sending-user-profiles": "Sending User Profiles",
     "sending-group-profiles": "Sending Group Profiles",
     "bigquery": "BigQuery",
-    "snowflake": "Snowflake",
-    "redshift": "Redshift"
+    "redshift": "Redshift",
+    "snowflake": "Snowflake"
 }

@@ -1,16 +1,16 @@
 {
-  "segment": "Segment",
   "amazon-s3": "Amazon S3",
-  "rudderstack": "Rudderstack",
+  "freshpaint": "Freshpaint",
   "google-cloud-storage": "Google Cloud Storage",
   "google-pubsub": "Google Pubsub",
-  "google-tag-manager": "Google Tag Manager",
-  "mparticle": "mParticle",
-  "snowplow": "Snowplow",
-  "freshpaint": "Freshpaint",
   "google-sheets": {
     "title": "Google Sheets ↗",
     "href": "https://workspace.google.com/marketplace/app/sheets_%E2%87%94_mixpanel/1078767167468",
     "newWindow": true
-  }
+  },
+  "google-tag-manager": "Google Tag Manager",
+  "mparticle": "mParticle",
+  "rudderstack": "Rudderstack",
+  "segment": "Segment",
+  "snowplow": "Snowplow"
 }

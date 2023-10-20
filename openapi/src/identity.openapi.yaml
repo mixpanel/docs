@@ -54,7 +54,7 @@ paths:
         }
         [/block]
 
-        **Required [Event Object](https://docs.mixpanel.com/docs/tracking-specs/overview#anatomy-of-an-event) attributes**
+        **Required [Event Object](https://docs.mixpanel.com/docs/data-structure/overview#anatomy-of-an-event) attributes**
 
         [block:parameters]
         {
@@ -153,7 +153,7 @@ paths:
         }
         [/block]
 
-        **Required [Event Object](https://docs.mixpanel.com/docs/tracking-specs/overview#anatomy-of-an-event) attributes**
+        **Required [Event Object](https://docs.mixpanel.com/docs/data-structure/overview#anatomy-of-an-event) attributes**
 
         [block:parameters]
         {

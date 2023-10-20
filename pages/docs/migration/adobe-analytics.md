@@ -1,6 +1,6 @@
 # Adobe Analytics
 
-If you haven't already, we recommend starting with our [Migration Guides Overview](/docs/tracking-methods/migration/overview) as it details the key components of migrating to Mixpanel from other analytics tools. Below we outline specific steps and considerations when migrating from Adobe Analytics.
+If you haven't already, we recommend starting with our [Migration Guides Overview](/docs/migration/overview) as it details the key components of migrating to Mixpanel from other analytics tools. Below we outline specific steps and considerations when migrating from Adobe Analytics.
 
 ## Differences in the data models
 
@@ -68,7 +68,7 @@ We provide Mixpanel as a destination and setup guides for all of the most popula
 
 ### Data Warehouse
 
-If you have your Adobe Analytics instance sitting on top of data that you collect and store in your data warehouse, getting started is simple. Instead of transforming and modeling that data to send to Adobe, you would model the data as [Events](/docs/tracking-specs/overview) and send it to Mixpanel via a Reverse ETL (RETL) tool or via directly hitting our [Import API](https://developer.mixpanel.com/reference/import-events).
+If you have your Adobe Analytics instance sitting on top of data that you collect and store in your data warehouse, getting started is simple. Instead of transforming and modeling that data to send to Adobe, you would model the data as [Events](/docs/data-structure/overview) and send it to Mixpanel via a Reverse ETL (RETL) tool or via directly hitting our [Import API](https://developer.mixpanel.com/reference/import-events).
 
 ## Loading historical data
 
@@ -80,7 +80,7 @@ To backfill data, we recommend:
     - Utilize the CDPs backfilling feature, like [Segment Replay](https://segment.com/docs/guides/what-is-replay/), to re-send historical data to Mixpanel
 - For any other implementation method
     - First, export your data to the data warehouse so you have a record of Adobe Analytics
-    - Once exported, your data warehouse tables can be transformed and modeled into the [event format](/docs/tracking-specs/events-and-properties) Mixpanel expects
+    - Once exported, your data warehouse tables can be transformed and modeled into the [event format](/docs/data-structure/events-and-properties) Mixpanel expects
     - Leverage our [Import API](https://developer.mixpanel.com/reference/import-events) to send us the formatted events from your data warehouse
 
 The process of importing old data with a different format has many potential issues - identity management, data discrepancies, etc. - as Mixpanel is fundamentally different than Adobe Analytics. It may be worth considering your use cases for importing old data before proceeding, as matching users and data across the systems can be time consuming.

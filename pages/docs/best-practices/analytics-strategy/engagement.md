@@ -107,5 +107,5 @@ The first step of our flow is our signup event and the last step is our value mo
  
 
 ### Where can I learn more? 
-* Read our Primers on [Retention](/docs/reports/finding-value/retention) and [Growth](/docs/reports/finding-value/growth) to learn why those metrics matter, what they mean, and how to measure them.
+* Read our Primers on [Retention](/docs/best-practices/analytics-strategy/retention) and [Growth](/docs/best-practices/analytics-strategy/growth) to learn why those metrics matter, what they mean, and how to measure them.
 * Take our [Company KPIs Board Template](https://mixpanel.com/project?show-template-selector=true) for a spin to start measuring and optimizing your product’s engagement with only two events and four easy clicks.

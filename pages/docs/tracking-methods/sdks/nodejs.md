@@ -71,14 +71,14 @@ mixpanel.track('event name', {
 
 You can send user profile updates to Mixpanel in addition to sending events.
 
-Mixpanel can maintain a [profile of each of your users](/docs/tracking-specs/user-profiles), storing information you know about them.
+Mixpanel can maintain a [profile of each of your users](/docs/data-structure/user-profiles), storing information you know about them.
 
 A profile update changes the properties of a user profile, essentially changing the details tied to that profile or creating it if it does not exist.
 
 You can use profiles and user profile properties to explore and segment users by who they are, in addition to what they did with event tracking.
 
 ### Setting Profile Properties
-You can update or create a [user profile](/docs/tracking-specs/user-profiles)`. The first argument is distinct_id, and the second argument is a JSON list of the properties to add to or update the profile with.
+You can update or create a [user profile](/docs/data-structure/user-profiles)`. The first argument is distinct_id, and the second argument is a JSON list of the properties to add to or update the profile with.
 
 The following example sets a "Plan" property with a value "Premium", a first name, a last name, and a created date on the user's profile that has a distinct id of `13793`.
 
@@ -131,7 +131,7 @@ There are a few other types of profile updates. You can get more information abo
 
 Mixpanel Group Analytics allows behavioral data analysis by selected groups, as opposed to individual users.
 
-Grouping by identifiers other than the `distinct_id` allows analysis at a company or group level when using Mixpanel analytics. Read [this article](/docs/features/group-analytics) to learn more about Group Analytics.
+Grouping by identifiers other than the `distinct_id` allows analysis at a company or group level when using Mixpanel analytics. Read [this article](/docs/data-structure/advanced/group-analytics) to learn more about Group Analytics.
 
 A group is identified by the `group_key` and `group_id`.
 * `group_key` is the property that connects event data for Group Analytics.

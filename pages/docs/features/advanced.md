@@ -520,7 +520,7 @@ Let's assume an e-commerce platform has these 3 events:
 - Event 3: *PurchaseCompleted*
     - *List of ProductIDs* = ["P3", "P4"]
 
-Now let's assume that *"List of ProductIDs"* is mapped to a [lookup table](/docs/tracking-specs/lookup-tables) called *Products* which looks like this:
+Now let's assume that *"List of ProductIDs"* is mapped to a [lookup table](/docs/data-structure/lookup-tables) called *Products* which looks like this:
 
 | ProductID | Category | Price |
 | --- | --- | --- |
@@ -547,7 +547,7 @@ Now let's assume that *"List of ProductIDs"* is mapped to a [lookup table](/d
         | P3 | 2 |
         | P4 | 3 |
     - **What's going on here?** When breaking down, each of the list's contents is evaluated as a single item. So for example, P2 is present in Event 1 and Event 2, so the TOTAL (of the *PurchaseCompleted* event) where "P2" is present is 2.
-- Breakdown by [lookup profile property](/docs/tracking-specs/lookup-tables) that's joined to a list property
+- Breakdown by [lookup profile property](/docs/data-structure/lookup-tables) that's joined to a list property
     - **Question:** TOTAL of *PurchaseCompleted* broken down by *"List of ProductIDs"* → *Category*
     - **Answer:**
 

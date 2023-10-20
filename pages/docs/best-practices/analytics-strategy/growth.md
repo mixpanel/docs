@@ -80,7 +80,7 @@ The goal of growth is to identify all the people out there who can benefit from 
 When you find your product-market fit, measuring growth and value becomes even more important. Given the costs of ads and the fracture of channels and media, a core challenge will be to scale your reach beyond the niche market you’ve already captured. At this point, you’ve hopefully collected enough data that will guide your acquisition in terms of who those users are, where to find them, and how to educate them about your product’s value. Product analytics will help you stay the course and spend your budget wisely.
 
 ## Where can I learn more?
-* Read our Primers on [Engagement](/docs/reports/finding-value/engagement) and [Retention](/docs/reports/finding-value/retention) to learn why those metrics matter, what they mean, and how to measure them.
+* Read our Primers on [Engagement](/docs/best-practices/analytics-strategy/engagement) and [Retention](/docs/best-practices/analytics-strategy/retention) to learn why those metrics matter, what they mean, and how to measure them.
 * Take our [Company KPI Board Template](https://mixpanel.com/project?show-event-translator=true) for a spin to start measuring and optimizing your product’s growth with only two events and four easy clicks.
 
 
