@@ -11,7 +11,7 @@ Given the name of the pipeline this API returns the status of the pipeline. It r
 
 **Example Response:** Status with no Summary and a Filter
 
-```curl
+```sh
 curl https://data.mixpanel.com/api/2.0/nessie/pipeline/status \
   -u API_SECRET: \
   -d name="YOUR_PIPELINE_NAME" \
