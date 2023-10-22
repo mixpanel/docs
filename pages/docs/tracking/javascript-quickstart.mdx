@@ -30,11 +30,39 @@ yarn add mixpanel-browser
 ## Step 2: Track your first event
 
 You'll need your Project Token for this step, which you can get [here](https://mixpanel.com/settings/project).
+
+import { useRef } from 'react'
+import { useRouter } from 'next/router';
+
+export function DynamicCode({ children }) {
+  const ref = useRef()
+  const tokenRef = useRef()
+  const router = useRouter();
+  const valueFromURL = router.query.projectToken;
+
+  if (ref.current) {
+    if (valueFromURL) {
+      const token = [...ref.current.querySelectorAll('code span')].find(
+        el => el.innerText === '\'YOUR_TOKEN\''
+      )
+      token.innerText = '\'' + valueFromURL + '\''
+    }
+  }
+  return (
+    <>
+      <div ref={ref}>
+        {children}
+      </div>
+    </>
+  )
+}
+
+<DynamicCode>
 ```javascript
 // Uncomment if you used npm or yarn in Step 1
 //import mixpanel from 'mixpanel-browser';
 
-mixpanel.init(<YOUR_TOKEN>, { debug: true, track_pageview: true, persistence: 'localStorage' });
+mixpanel.init('YOUR_TOKEN', { debug: true, track_pageview: true, persistence: 'localStorage' });
 
 // Set this to a unique identifier for the user performing the event.
 mixpanel.identify(/* \"<USER_ID\"> */)
@@ -44,6 +72,7 @@ mixpanel.track('Sign Up', {
   'Signup Type': 'Referral'
 })
 ```
+</DynamicCode>
 
 🎉 Congratulations, you've tracked your first event! You can see it in Mixpanel via the [Events page](https://mixpanel.com/report/events). For more options, see our [JavaScript reference](/docs/tracking/reference/javascript).
 
