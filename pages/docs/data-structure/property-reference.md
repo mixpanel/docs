@@ -1,4 +1,4 @@
-#Property Reference
+# Property Reference
 
 ## Property Types
 Properties are attributes that help you define the specifics of an **Event**, a **User**, or a **Group**.

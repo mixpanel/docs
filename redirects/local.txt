@@ -147,7 +147,7 @@
 /docs/tracking/mobile /docs/tracking/reference/mobile-sdk
 /docs/tracking/reference/androi /docs/tracking-methods/sdks/android
 /docs/tracking/reference/data-model /docs/data-structure/overview
-/docs/tracking/reference/default-properties /docs/data-structure/default-properties
+/docs/tracking/reference/default-properties /docs/data-structure/property-reference
 /docs/tracking/reference/distinct-id-limits /docs/debugging/distinct-id-limits
 /docs/tracking/reference/javascript-full-api-reference /docs/tracking-methods/sdks/javascript
 /docs/tracking/server /docs/quickstart/connect-your-data?sdk=python

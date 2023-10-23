@@ -1,4 +1,6 @@
-# Overview
+# Concepts
+
+## Overview
 
 Mixpanel data is stored and isolated within a [project](/docs/orgs-and-projects/managing-projects). At this time, you cannot query data across multiple projects. Mixpanel supports a few different categories of data that can be used for analysis: events, user profiles, group profiles, and lookup tables. In data warehouse parlance, events make up the fact table while user profiles, group profiles, and lookup tables are dimension tables.
 

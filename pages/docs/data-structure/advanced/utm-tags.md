@@ -1,7 +1,7 @@
 # UTM Tags
 
 
-When setting up your Mixpanel implementation, one issue of particular interest is tracking users by their original source of traffic. By default, Mixpanel does some of this tracking for you on the web in the form of several [default properties](/docs/data-structure/default-properties).
+When setting up your Mixpanel implementation, one issue of particular interest is tracking users by their original source of traffic. By default, Mixpanel does some of this tracking for you on the web in the form of several [default properties](/docs/data-structure/property-reference).
 
 ## Web Attribution
 
