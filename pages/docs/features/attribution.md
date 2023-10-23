@@ -55,3 +55,81 @@ If you use a Mixpanel js-sdk, we’ve updated our sdk to track utm parameters mo
 - **Touchpoint**: These are actions (events) a user’s taken or exposed to along the journey before doing the conversion event.  [Eg. does event A → B → C → D (conversion event) in a 7 day period; For a lookback window of 7 days, A, B, C are all considered touchpoints]
 - **Attributed by property:** This is the property on a touchpoint event that we use for the attribution model. The canonical example is utm_source
 - **Lookback window:** The time window where a user's events with this attribution property are counted towards the calculation. The window ends when the conversion metric happens.
+
+## Frequently Asked Questions
+
+**1. How does Mixpanel compute attribution under the hood?**
+
+Please watch [this video](https://www.loom.com/share/1cebcd9687df4046af53ac90980907f7) to better understand 
+
+
+
+**2. What does attribution on ‘unique users’ mean? Why do I see additional text there?**
+
+We need one single conversion event which we can use to “qualify” a user unique. 
+
+For example: between May 1 and May 15, Jack made 3 purchases
+- May 1: Purchase 1: Computer [came from instagram]
+- May 7: Purchase 2: Laptop [came from instagram]
+- May 10: Purchase 3: TV [came from facebook]
+
+Now note, while 3 purchases have been made, only one unique user has been converted   
+
+How will attribution with uniques work?  
+There will be 2 options depending on the use-case
+- **Option 1 :** When running attribution on Jack, we want to consider Jack unique on May 10, his last qualifying conversion, and run a lookback window starting at this point and consider all attribution prior to it which influenced the 3 purchases.
+    - So Last Touch for Jack would be : Facebook
+    - When would this option be useful? In-ecomm companies when looking at cost of acquiring a user, you want to consider all the purchases until their last purchase  
+- **Option 2:**  Consider Jack unique on May 1, his first qualifying conversion, and run a lookback before it.
+    - So Last Touch for Jack would be: Instagram
+    - When would this option be useful? For acquisition teams looking at getting a user to the experience the first time, you want to consider their first qualifying event
+    
+Some nuances to note 
+- In a time-series chart, the first and last qualifying conversion is within the chart interval. For example if you have a 6M chart with a monthly interval, you’re looking at first and last conversion within a month, NOT 6M
+    - ![image](/Attribution uniques - 1.png)    
+- In non-time series charts, the chart interval and the qualifying conversion interval are the same. If your chart is for 6M, the first and last conversion is also seen within the 6M period
+    - ![image](/Attribution uniques - 2.png)    
+
+   
+
+**3. What does filtering do in attribution?**
+
+Once attribution is computed, filtering narrows total conversion events to only include/exclude those with the associated attribution property. 
+
+
+To make this real, let’s take a scenario - 
+- Purchase 1:
+    - 15th Jan: Made purchase (visited via Linkedin ad)
+    - 10th Jan: visited via Google
+    Last Touch: Linkedin
+    All Sources: Linkedin, Google
+- Purchase 2:
+    - 18th Jan: Made Purchase (came directly)
+    - 12th Jan: visited via Facebook
+    Last Touch: Direct
+    All Sources: Direct, Facebook
+- Purchase 3:
+    - 20th Jan: Made Purchase (came via Google)
+    Last Touch: Google
+    All Sources: Google
+
+
+On 30th Jan, doing some attribution analysis 
+- Use-Case 1: I want to look at only Purchases that have come from a non Direct Channel?
+    - Answer: 2 - Purchases 1 & 3
+    - ![image](/Attribution filtering - 1.png)    
+- Use-Case 2: I want to look at how many Purchases have come via Last Touch Google?
+    - Answer: 1 - Purchase 3
+    - ![image](/Attribution filtering - 2.png)    
+- Use-Case 3: I want to look at how many purchases have come via Google? (can be any touch in the last 30 days)
+    - Answer: 2 - Purchases 1 & 3
+    - ![image](/Attribution filtering - 3.png)    
+
+    
+NOTE: You can apply a filter on an attribution property only after an attribution breakdown has been applied. Read above for steps to turn on an attribution analysis
+- Step 1: Turn on Attribution analysis by going to the breakdown section and choosing `Attributed by..` and property `XYZ`
+- Step 2 (a): Once attribution model has been applied, go to the filter section and choose the computed property `Attributed by XXX`. You can apply an attribution filter only on the property used in the attribution breakdown
+- Step 2 (b): Once attribution model has been applied, click on the chart bar and filter/exclude the segments as needed
+
+
+
