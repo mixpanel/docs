@@ -14,13 +14,13 @@ However, to really exercise the power of Mixpanel, you can do a custom implement
 ## Shopify
 Even though the integration process is largely the same as the regular [JavaScript API Integration](/docs/tracking-methods/sdks/javascript), there are a few things specific to Shopify that you’ll want to account for.
 
-To start, add the Mixpanel JavaScript snippet into the tag of your theme.liquid page. Then, once the library has been successfully loaded, implement mixpanel.track() calls wherever you see fit.
+To start, add the Mixpanel JavaScript snippet into the tag of your theme.liquid page. Then, once the library has been successfully loaded, implement `mixpanel.track()` calls wherever you see fit.
 
 Mixpanel users who have successfully implemented on a Shopify site [have some great recommendations and tips on key locations to place mixpanel.track() calls](https://stackoverflow.com/questions/28160415/shopify-mixpanel-integration/34442476#34442476).
 
 In order to view accurate data on conversions from shopping to checkout (a key Funnel for most ecommerce businesses), you’ll need to take a few additional steps since your shop domain is different than the Shopify checkout domain. However, as a shop, you don’t have control over the Shopify checkout page. So instead, you’ll want to pass the distinct_id to the URL on click, then on the Shopify page, parse and execute the Mixpanel methods.
 
-Another consideration with Shopify sites and Mixpanel is that because the checkout page is a separate domain with its own cookie, Initial Referring Domain Properties sent from the checkout page will come through with a referrer of your own Shopify site. You can use the same method described above of passing the $initial_referring_domain Property to the URL, parse and then execute.
+Another consideration with Shopify sites and Mixpanel is that because the checkout page is a separate domain with its own cookie, Initial Referring Domain Properties sent from the checkout page will come through with a referrer of your own Shopify site. You can use the same method described above of passing the `$initial_referring_domain` Property to the URL, parse and then execute.
 
 Though Mixpanel does not have an official plugin to support Shopify, there is a [Mixpanel app by Five Thrive](https://apps.shopify.com/mixpanel) available in the Shopify app store that will automatically send data from your Shopify store to your Mixpanel implementation. While this integration app is not officially supported by Mixpanel, it might be worth checking out if you're looking for a quick and simple solution.
 
