@@ -78,7 +78,7 @@ There are [instructions here to set up SSO with Azure.](/docs/admin/sso/azure) A
 
 **Other IDPs**
 
-It is possible to set up Mixpanel with IDPs not listed above. Email sso-support@mixpanel.com to get the required information to set up SSO with an IDP not listed.
+It is possible to set up Mixpanel SSO with IDPs not listed above. [Contact support](https://mixpanel.com/get-support) for further assistance in such cases.
 
 **Postback URL**
  
