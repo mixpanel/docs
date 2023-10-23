@@ -138,14 +138,14 @@ Note: You cannot set the value of `distinct_id` yourself, it will be set by Mixp
 * **Original ID Merge:** `distinct_id` will be either the `$user_id` or `$device_id`, but is non-deterministic and chosen to optimize backend performance. If you want control over a particular identifier for the user, we recommend setting a [user profile property](/docs/tracking/how-tos/user-profiles), such as 'User ID', that has your identified ID. This allows you to have a property that represents the identified user ID.
 
 ### What does Mixpanel recommend using as the `$user_id`?
-We recommend using an ID that is unique to each user and does not change, for example a database ID. While using an identifier like email may be more convenient, keep in mind that you cannot merge 2 `$user_id`s or change a `$user_id`, so if the user changes their email, they will count as a separate user.
+We recommend using an ID that is unique to each user and does not change, for example, a database ID. While using an identifier like email may be more convenient, keep in mind that you cannot merge 2 `$user_id`s or change a `$user_id`, so if the user changes their email, they will count as a separate user.
 
 If you are on Original ID Merge, we do have a [`$merge`](https://developer.mixpanel.com/reference/identity-merge) API call that can merge two `$user_id`s. Note: this can add significant complexity to your implementation, and has been removed in Simplified ID Merge.
 
 ### How long does it take for the `$device_id` -> `$user_id` mapping to take effect?
 For debugging purposes, the Activity Feed view of a single user is updated in real-time (<1-minute delay). You can get to the Activity Feed by navigating to [Users](https://mixpanel.com/report/users) and selecting a given user.
 
-It may take up to 24 hours for this mapping to propagate to all other parts of the system. This means that, in some cases, when analyzing a funnel that spans pre-login and post-login behavior in real-time, some may be shown as dropped-off, even though they're performed the conversion event.
+It may take up to 24 hours for this mapping to propagate to all other parts of the system. This means that, in some cases, when analyzing a funnel that spans pre-login and post-login behavior in real-time, some may be shown as dropped-off, even though they've performed the conversion event.
 
 ### How does this relate to User Profiles?
 [User Profiles](/docs/tracking/how-tos/user-profiles) are set directly on `$distinct_ids`, not on `$user_ids` or `$device_ids`. We recommend waiting until after a user is identified before setting user profile properties.
