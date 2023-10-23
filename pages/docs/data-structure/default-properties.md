@@ -1,10 +1,25 @@
-# Default Properties
+#Property Reference
 
+## Property Types
+Properties are attributes that help you define the specifics of an **Event**, a **User**, or a **Group**.
+Mixpanel has many Properties defined in its Data Model.
 
+| Property Type                                                                                                                            | Description                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                       |
+| :--------------------------------------------------------------------------------------------------------------------------------------- | :---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| [Event Properties](https://help.mixpanel.com/hc/en-us/articles/360001355266)                                                             | Event Properties describes the events that are tracked within your product.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                       |
+| [Super Properties](https://help.mixpanel.com/hc/en-us/articles/360001355266#super-properties-for-events)                                 | Super Properties are a type of Event Property that you can initialise to automatically attach to every subsequent Event you’re tracking at client side.                                                                                                                                                                                                                                                                                                                                                                                                           |
+| [User Profile Properties](https://help.mixpanel.com/hc/en-us/articles/115004708186)                                                      | User Profile Properties describe your users (they typically store current demographical information). User profiles are joined to events on `event.distinct_id = user_profile.distinct_id`.                                                                                                                                                                                                                                                                                                                                                                       |
+| [Group Profile Properties](https://help.mixpanel.com/hc/en-us/articles/360025333632-Group-Analytics#group-profiles)                      | Group Profile Properties describe group level information (similar to User Profiles Properties at user level). With Mixpanel’s [Group Analytics](https://help.mixpanel.com/hc/en-us/articles/360025333632), multiple users can be grouped and behavioural data analysed at a customised group level (such as company, account). Group profiles are joined to events on your chosen group key. For example, if you create a new group key for `company_id` your events will be joined on `event.company_id = group_profile.company_id`.                            |
+| [Lookup Tables](https://help.mixpanel.com/hc/en-us/articles/360044139291-Lookup-tables)                                                  | Lookup Tables allow you to dynamically extend additional properties mapped to an existing Event or User Property. For example, if you create a lookup table for "Songs" (with additional properties like `hash_tags`, `top_10`, `all_time_favorite`) and specify the mapped event property as `song_id`; you can use these additional properties when doing filtering or breakdowns for events that has `song_id` as an event property.                                                                                                                           |
+| [Default Properties](https://help.mixpanel.com/hc/en-us/articles/115004613766-What-properties-do-Mixpanel-s-libraries-store-by-default-) | Default Properties (for Events and User Profiles) are collected and populated with values automatically in Mixpanel. This can happen upon data ingestion or when using certain Mixpanel client-side SDKs. Typically, they have a dollar sign ($) or “mp\_” as prefix to distinguish them from normal properties.                                                                                                                                                                                                                                                  |
+| Reserved Properties                                                                                                                      | Mixpanel reserves certain property names (for [Events](https://help.mixpanel.com/hc/en-us/articles/360001355266#reserved-properties-for-events) and [User Profiles](https://help.mixpanel.com/hc/en-us/articles/115004708186#reserved-properties-for-user-profiles)) for special use cases, and these may or may not be automatically populated with values. The purpose of such Reserved Properties are for processing (ie event time stamping) or for specific system features (eg: cohort exports). Examples: `time`, `$email`, `$phone`, `$name`, `$created`. |
+
+ 
+## Default Properties
 Mixpanel's client SDKs automatically collect certain properties on every event. This document describes what those properties mean.
 
-## Web
-### Event Properties
+### Web
+#### Event Properties
 
 | Raw Name | Display Name | Description |
 | --- | --- | --- |
@@ -32,7 +47,7 @@ Mixpanel's client SDKs automatically collect certain properties on every event. 
 | $mp_api_timestamp_ms | API Timestamp | Time at which the event was received by our API. |
 | $insert_id | Insert ID | A unique identifier for the event, used to deduplicate events that are accidentally sent multiple times. |
 
-### User Properties
+#### User Properties
 
 Do note that Mixpanel's default user properties are only updated when you send or update at least one property yourself.
 Please, refer to this article to [understand how to send or update profile properties](/docs/how-it-works/concepts#user-profiles).
@@ -53,9 +68,9 @@ Please, refer to this article to [understand how to send or update profile prope
 | $last_seen | Updated at | The last time a user profile property was set or updated (this should not be set manually). |
 
 
-## iOS
+### iOS
 
-### Event Properties
+#### Event Properties
 
 | Raw Name | Display Name | Description |
 | --- | --- | --- |
@@ -81,7 +96,7 @@ Please, refer to this article to [understand how to send or update profile prope
 | $mp_api_timestamp_ms | API Timestamp | Time at which the event was received by our API. |
 | $insert_id | Insert ID | A unique identifier for the event, used to deduplicate events that are accidentally sent multiple times. |
 
-### User Properties
+#### User Properties
 
 Do note that Mixpanel's default user properties are only updated when you send or update at least one property yourself.
 Please, refer to this article to [understand how to send or update profile properties](/docs/how-it-works/concepts#user-profiles).
@@ -104,9 +119,9 @@ Please, refer to this article to [understand how to send or update profile prope
 | First App Open Date | First App Open Date | The date the app was first opened on a user’s device. |
 
 
-## Android
+### Android
 
-### Event Properties
+#### Event Properties
 
 | Raw Name | Display Name | Description |
 | --- | --- | --- |
@@ -140,7 +155,7 @@ Please, refer to this article to [understand how to send or update profile prope
 | $mp_api_timestamp_ms | API Timestamp | Time at which the event was received by our API. |
 | $insert_id | Insert ID | A unique identifier for the event, used to deduplicate events that are accidentally sent multiple times. |
 
-### User Properties
+#### User Properties
 
 Do note that Mixpanel's default user properties are only updated when you send or update at least one property yourself.
 Please, refer to this article to [understand how to send or update profile properties](/docs/how-it-works/concepts#user-profiles).
@@ -161,3 +176,34 @@ Please, refer to this article to [understand how to send or update profile prope
 | $android_manufacturer | Android Manufacturer | Device model. |
 | $last_seen | Updated at | The last time a user profile property was set or updated (this cannot be set manually). |
 
+## Supported Data Types
+
+Mixpanel supports five [data types](https://help.mixpanel.com/hc/en-us/articles/115004547063) for properties: String, Numeric, Boolean, Date and List. By choosing the most suitable data type for your properties, you'd be able to apply a set of [operators](https://help.mixpanel.com/hc/en-us/articles/115004547063#data-type-operators) that are most relevant to your properties in Mixpanel reports, and this will give you richer insights about your data.
+
+### String
+
+- Alphanumeric value e.g. Plan Type = "Free", Artist Name = "Bruno Mars"
+- String properties have a character limit of 255 bytes.
+- Mixpanel will treat any property value that doesn’t match any other data type as a String.
+
+### Numeric
+
+- Numeric (integer or decimal) value e.g. Cost = 15.00, Quantity = 5
+- You can apply operators such as sum, median and percentile on numeric properties.
+
+### Boolean
+
+- Mixpanel treats properties as boolean if the value is either the JSON constant `true` or `false` e.g. Favorited = true, Bookmarked = false.
+- On Mixpanel, you can typecast any non-boolean property to boolean,
+- "false", 0, null, undefined, and empty string will be typecasted to boolean `false`
+- "true" and any set value that is not 0 or empty string will be typecasted to boolean `true`
+
+### Date
+
+- An ISO formatted date `YYYY-MM-DDTHH:MM:SS` in UTC e.g. Last Purchase = "2022-10-30T13:30:25", Last Login = "2022-10-29". Note that all timestamps need to be sent in UTC timezone in an ISO format.
+- Mixpanel treats unix timestamps as Numeric property, however, you can typecast it to Date data type.
+
+### List
+
+- A list of values as a JSON array e.g Favourite Genres = ["Folk","Alternative"] or Favourite Numbers = [1,5,10.0]
+- Limits of a List property: Event Property = 8KB, User Profile Property = 256KB, Each item in the list: 255 bytes
