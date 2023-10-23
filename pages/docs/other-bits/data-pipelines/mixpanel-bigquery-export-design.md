@@ -94,8 +94,7 @@ We need two permissions to manage the dataset.
   * Add new principle "export-upload@mixpanel-prod-1.iam.gserviceaccount.com" and set role as "BigQuery Job User", and save.
 ![image](/230698732-4dadbccf-1eeb-4e64-a6c7-8926eb49e5cc.png)
 
-**BigQuery Data Owner **
-      ]
+**BigQuery Data Owner**
   * Go to **BigQuery** in your Google cloud Console.
   * Open the dataset you want mixpanel to export to.
   * Click on **sharing** and **permissions** in the drop down. 
