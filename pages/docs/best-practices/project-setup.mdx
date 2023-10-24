@@ -1,9 +1,8 @@
 # Project Setup
 
-## Setting Up Mixpanel
 This tutorial walks you through best practices of how to set up Mixpanel, and the considerations to take into account for how and when to create projects, data views, and classified data.
 
-### Creating Your Mixpanel Projects
+## Creating Your Mixpanel Projects
 Within your Mixpanel organization, we recommend at the minimum having [separate development and production projects](/docs/best-practices/developer-environments). Keeping your development data separate is important to maintain the integrity of your Mixpanel data. It's easy to prevent development data from cluttering your production project, but hard to detangle in later stages of a project.
 
 ![image](https://github.com/mixpanel/docs/assets/50901466/8d6d81cf-0e55-4bef-a743-b38d316e0db4)
@@ -35,7 +34,7 @@ In general though, if you want to track and study cross-platform user behaviour,
 
 - You want to share your Mixpanel metrics perhaps with users outside your organization, who only access to consume reports but not need to be query underlying data - e.g. exec stakeholders who want to see summery metrics, or external vendors that need specific reports. For this, you could turn on and provide [public boards](/docs/boards/public-boards).
 
-### Adding End Users to Your Mixpanel Organization and Projects
+## Adding End Users to Your Mixpanel Organization and Projects
 Each Mixpanel customer is assigned an [organization](/docs/orgs-and-projects/organizations) which serves as the controlling entity for managing all your Mixpanel analytics needs. Within this, organization owners and admins will have access to [monitor your pricing and billing plan and usage to date](/docs/admin/organizations-projects#billing-and-plans). They will also be able to [invite end users to the organization](/docs/orgs-and-projects/roles-and-permissions#invite-users), a step they need to take before end users can be added to a project.
 
 There are two general approaches to user management in Mixpanel. 
@@ -50,11 +49,11 @@ There are two general approaches to user management in Mixpanel.
 
 ![image](https://github.com/mixpanel/docs/assets/50901466/9b42d818-cc77-4f02-9025-90456a557c6a)
 
-#### Creating Mixpanel Teams at the Organizational Level
+### Creating Mixpanel Teams at the Organizational Level
 
 ![image](https://github.com/mixpanel/docs/assets/50901466/de43d48b-4fef-4292-b835-f1d5682345b1)
 
-#### Adding Teams and / or End Users to Projects
+### Adding Teams and / or End Users to Projects
 Organization owners and admins can assign projects or teams directly to user accounts at the organization level by minimally provisioning them with an organization membership.
 
 ![image](https://github.com/mixpanel/docs/assets/50901466/8ec08b83-d0e2-47b3-92a4-5f5e98d70b52)
@@ -63,7 +62,7 @@ Once [project owners and admins](/docs/orgs-and-projects/roles-and-permissions#s
 
 ![image](https://github.com/mixpanel/docs/assets/50901466/61a9099b-f07e-4bcf-9110-bf5418e7000b)
 
-### Other Project Data Configurations
+## Other Project Data Configurations
 - [Timezone](/docs/orgs-and-projects/managing-projects#manage-timezones-for-projects)
 - [Project Token, API / Project Secret](/docs/tracking-methods/api-credentials)
 - [Data Governance: Event Approval](/docs/data-governance/event-approval)
