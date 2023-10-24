@@ -370,11 +370,11 @@ paths:
 
         See our Cloud Ingestion guides for example usage of this API to
         integrate with  [Google
-        Pub/Sub](https://docs.mixpanel.com/docs/tracking/integrations/google-pubsub),
+        Pub/Sub](https://docs.mixpanel.com/docs/tracking-methods/integrations/google-pubsub),
         [Amazon
-        S3](https://docs.mixpanel.com/docs/tracking/integrations/s3-import), or
-        [Google Cloud
-        Storage](https://docs.mixpanel.com/docs/tracking/integrations/gcs-import).
+        S3](https://docs.mixpanel.com/docs/tracking-methods/integrations/amazon-s3),
+        or [Google Cloud
+        Storage](https://docs.mixpanel.com/docs/tracking-methods/integrations/google-cloud-storage).
       parameters:
         - in: query
           name: strict
