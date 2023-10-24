@@ -212,7 +212,7 @@ paths:
           "title": "Guides"
         }
         [/block]
-        See our Cloud Ingestion guides for example usage of this API to integrate with  [Google Pub/Sub](https://docs.mixpanel.com/docs/tracking/integrations/google-pubsub), [Amazon S3](https://docs.mixpanel.com/docs/tracking/integrations/s3-import), or [Google Cloud Storage](https://docs.mixpanel.com/docs/tracking/integrations/gcs-import).
+        See our Cloud Ingestion guides for example usage of this API to integrate with  [Google Pub/Sub](https://docs.mixpanel.com/docs/tracking-methods/integrations/google-pubsub), [Amazon S3](https://docs.mixpanel.com/docs/tracking-methods/integrations/amazon-s3), or [Google Cloud Storage](https://docs.mixpanel.com/docs/tracking-methods/integrations/google-cloud-storage).
       parameters:
         - in: query
           name: strict
@@ -401,6 +401,10 @@ paths:
         - User Profiles
       summary: Set Property
       description: >-
+        Takes a JSON object containing names and values of profile properties.
+        If the profile does not exist, it creates it with these properties. If
+        it does exist, it sets the properties to these values, overwriting
+        existing values.
         [block:callout]
         {
           "type": "info",
@@ -413,10 +417,6 @@ paths:
           "body": "This API does not support gzip encoding."
         }
         [/block]
-        Takes a JSON object containing names and values of profile properties.
-        If the profile does not exist, it creates it with these properties. If
-        it does exist, it sets the properties to these values, overwriting
-        existing values.
       parameters:
         - $ref: ./common/ingestion-api.yaml#/OptionalRequestParameter/ResponseType/Verbose
         - $ref: ./common/ingestion-api.yaml#/OptionalRequestParameter/ResponseType/Redirect
@@ -1211,7 +1211,7 @@ paths:
         * RFC3339 timestamps (`2021-08-21T05:36:01Z`) will parsed as datetimes.
         * `true` or `false` (case-insensitive) will be parsed as boolean.
         * Empty fields (two adjacent commas) will be treated as `undefined`
-        * Comma separated, quoted strings in square brackets (`"[""Free"",""Paid"",""Enterprise""]"`) will be parsed as list of strings.
+        * Comma separated, quoted strings in square brackets (`"["Free","Paid","Enterprise"]"`) will be parsed as list of strings.
         * All other values will be treated as strings.
 
         [block:code]

@@ -370,11 +370,11 @@ paths:
 
         See our Cloud Ingestion guides for example usage of this API to
         integrate with  [Google
-        Pub/Sub](https://docs.mixpanel.com/docs/tracking/integrations/google-pubsub),
+        Pub/Sub](https://docs.mixpanel.com/docs/tracking-methods/integrations/google-pubsub),
         [Amazon
-        S3](https://docs.mixpanel.com/docs/tracking/integrations/s3-import), or
-        [Google Cloud
-        Storage](https://docs.mixpanel.com/docs/tracking/integrations/gcs-import).
+        S3](https://docs.mixpanel.com/docs/tracking-methods/integrations/amazon-s3),
+        or [Google Cloud
+        Storage](https://docs.mixpanel.com/docs/tracking-methods/integrations/google-cloud-storage).
       parameters:
         - in: query
           name: strict
@@ -607,16 +607,16 @@ paths:
         - User Profiles
       summary: Set Property
       description: >-
-        [block:callout] {
+        Takes a JSON object containing names and values of profile properties.
+        If the profile does not exist, it creates it with these properties. If
+        it does exist, it sets the properties to these values, overwriting
+        existing values. [block:callout] {
           "type": "info",
           "body": "This API will return a `200 OK` even if there are data validation issues. To ensure the request actually succeeded, you need to check the response body."
         } [/block] [block:callout] {
           "type": "info",
           "body": "This API does not support gzip encoding."
-        } [/block] Takes a JSON object containing names and values of profile
-        properties. If the profile does not exist, it creates it with these
-        properties. If it does exist, it sets the properties to these values,
-        overwriting existing values.
+        } [/block]
       parameters:
         - $ref: '#/components/parameters/Verbose'
         - $ref: '#/components/parameters/Redirect'
@@ -1461,8 +1461,7 @@ paths:
         * Empty fields (two adjacent commas) will be treated as `undefined`
 
         * Comma separated, quoted strings in square brackets
-        (`"[""Free"",""Paid"",""Enterprise""]"`) will be parsed as list of
-        strings.
+        (`"["Free","Paid","Enterprise"]"`) will be parsed as list of strings.
 
         * All other values will be treated as strings.
 
