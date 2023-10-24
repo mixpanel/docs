@@ -1,7 +1,9 @@
 # Bot Traffic
 
-## Exclude Bot Activity from Web/JavaScript
+In this guide, we describe how to avoid bot traffic from affecting your tracking.
 
+
+## Exclude Bot Traffic From Javascript SDK
 By default, the following bots are filtered out by the Mixpanel JavaScript library:
 - Yahoo! Slurp
 - bingbot/2.0
@@ -31,14 +33,8 @@ If you implement this code, you will block all userAgents with "Mozilla/4.0" in 
 
 If this does not work, you can start tracking this userAgent going forward so you can find the common pattern among all of the bots crawling your site.
 
-**Note**
-`$ignore` must have a string or at least be set to true, or else the event will fire. For example, if I have `'$ignore': ''`, the event will still fire since it's an empty string. `'$ignore': false` will also fire the event.
+Note: `$ignore` must have a string or at least be set to true, or else the event will fire. For example, if I have `'$ignore': ''`, the event will still fire since it's an empty string. `'$ignore': false` will also fire the event.
 
-### How do I remove bot data from my project?
+## Remove Bot Traffic Historically
 
-Mixpanel data is write once, read forever, which means once a datapoint is written to a project, there isn't a way to selectively remove it.
-
-However, there are a few other options:
-
-- [Hide the Events in question from the UI.](/docs/data-governance/lexicon#hide-events-and-properties)
-- If the bot activity has a distinguishing Property value, [create a custom Event](/docs/features/custom-events) that excludes all activity with that value.
+Events in Mixpanel are immutable, which means they cannot be removed. However, they can be filtered out. If there are some events that have been sent in with bots and you can identify those events based on some property value (eg: the device type or location), we recommend creating a [custom event](/docs/features/custom-events) that applies that filter.  You can also [hide](/docs/data-governance/lexicon#hide-events-and-properties) the original event. That way, when you use the custom event, all bot traffic will automatically be filtered out.
