@@ -1,0 +1,10 @@
+{
+    "aws-raw-pipeline": "AWS Raw Pipeline",
+    "amazon-s3": "Amazon S3",
+    "azure-raw-pipeline": "Azure Raw Pipeline",
+    "azure-blob-storage": "Azure Blob Storage",
+    "bigquery": "BigQuery",
+    "google-cloud-storage-raw-pipeline": "Google Cloud Storage Raw Pipeline",
+    "google-cloud-storage": "Google Cloud Storage",
+    "snowflake": "Snowflake"
+}

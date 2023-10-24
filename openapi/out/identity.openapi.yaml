@@ -62,7 +62,7 @@ paths:
 
 
         **Required [Event
-        Object](https://docs.mixpanel.com/docs/tracking/reference/data-model#anatomy-of-an-event)
+        Object](https://docs.mixpanel.com/docs/data-structure/overview#anatomy-of-an-event)
         attributes**
 
 
@@ -179,7 +179,7 @@ paths:
 
 
         **Required [Event
-        Object](https://docs.mixpanel.com/docs/tracking/reference/data-model#anatomy-of-an-event)
+        Object](https://docs.mixpanel.com/docs/data-structure/overview#anatomy-of-an-event)
         attributes**
 
 
