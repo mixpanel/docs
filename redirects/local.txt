@@ -94,7 +94,7 @@
 /docs/other-bits/tutorials/analytics-strategy /docs/best-practices/analytics-strategy/overview
 /docs/other-bits/tutorials/creating-a-tracking-plan /docs/best-practices/create-a-tracking-plan
 /docs/other-bits/tutorials/recommended-boards /docs/boards/templates
-/docs/other-bits/tutorials/developers/mixpanel-for-developers-commonly-asked-questions /docs/tracking-methods/faq
+/docs/other-bits/tutorials/developers/mixpanel-for-developers-commonly-asked-questions /docs/debugging/overview
 /docs/other-bits/tutorials/developers/mixpanel-for-developers-fundamentals /docs/how-it-works/concepts
 /docs/other-bits/tutorials/developers/mixpanel-for-developers-id-management /docs/tracking-methods/identifying-users
 /docs/other-bits/tutorials/developers/mixpanel-for-developers-implementation /docs/quickstart/connect-your-data

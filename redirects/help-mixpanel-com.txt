@@ -45,7 +45,7 @@ https://help.mixpanel.com/hc/en-us/articles/115004511246(.*) /docs
 https://help.mixpanel.com/hc/en-us/articles/115004511803(.*) /docs/users/overview#faq
 https://help.mixpanel.com/hc/en-us/articles/115004519886(.*) /docs/best-practices/create-a-tracking-plan
 https://help.mixpanel.com/hc/en-us/articles/115004545983(.*) /docs/data-structure/events-and-properties
-https://help.mixpanel.com/hc/en-us/articles/115004546843(.*) /docs/tracking-methods/faq#implement-mixpanel-on-wordpress-shopify--prestashop
+https://help.mixpanel.com/hc/en-us/articles/115004546843(.*) /docs/tracking-methods/integrations/cms-ecommerce
 https://help.mixpanel.com/hc/en-us/articles/115004546863(.*) /docs/quickstart/connect-your-data
 https://help.mixpanel.com/hc/en-us/articles/115004546883(.*) /docs/reports/retention
 https://help.mixpanel.com/hc/en-us/articles/115004546883(.*) /docs/reports/retention#overview
