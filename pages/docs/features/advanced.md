@@ -53,7 +53,7 @@ The drop-down menus only show events/event properties that were ingested within 
 
 ![/query_old_event.gif](/query_old_event.gif)
 
-To create a temporary cohort for the current report, click **Create Custom...** in the dropdown menu and select "Cohort. A window will pop up where you can specify the restrictions of your cohort. Learn more about building a cohort [here](/docs/cohorts/overview#creating-cohorts).
+To create a temporary cohort for the current report, click **Create Custom...** in the dropdown menu and select "Cohort. A window will pop up where you can specify the restrictions of your cohort. Learn more about building a cohort [here](/docs/users/cohorts#creating-cohorts).
 
 ![/create_cohort_from_report.gif](/create_cohort_from_report.gif)
 

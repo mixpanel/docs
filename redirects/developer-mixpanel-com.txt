@@ -14,7 +14,7 @@
 /developer-docs-redirect/custom-query /docs/reports/legacy/jql
 /developer-docs-redirect/data-discrepancy-faq /docs/other-bits/data-pipelines/overview#faq
 /developer-docs-redirect/data-pipelines /docs/other-bits/data-pipelines/overview
-/developer-docs-redirect/data-structure-deep-dive /docs/data-structure/overview
+/developer-docs-redirect/data-structure-deep-dive /docs/how-it-works/concepts
 /developer-docs-redirect/data-warehouse-export https://developer.mixpanel.com/reference/create-warehouse-pipeline
 /developer-docs-redirect/flutter /docs/tracking-methods/sdks/flutter
 /developer-docs-redirect/flutter-quickstart /docs/quickstart/connect-your-data?sdk=flutter
@@ -59,7 +59,7 @@
 /developer-docs-redirect/react-native-quickstart /docs/quickstart/connect-your-data?sdk=reactnative
 /developer-docs-redirect/ruby /docs/tracking-methods/sdks/ruby
 /developer-docs-redirect/rudderstack /docs/tracking-methods/integrations/rudderstack
-/developer-docs-redirect/amazon-s3 /docs/tracking-methods/integrations/amazon-s3
+/developer-docs-redirect/s3-import /docs/tracking-methods/integrations/amazon-s3
 /developer-docs-redirect/schematized-export-pipeline /docs/data-pipelines/schematized-export-pipeline
 /developer-docs-redirect/segment /docs/tracking-methods/integrations/segment
 /developer-docs-redirect/server /docs/quickstart/connect-your-data?sdk=python
