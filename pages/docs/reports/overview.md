@@ -29,7 +29,7 @@ You can select the following filtering options to show a subset of the propertie
 
 - Select "event properties" to show only the [Event properties](/docs/data-structure/events-and-properties).
 - Select "user properties" to show only the [Profile properties](/docs/data-structure/events-and-properties).
-- Select "cohorts" to show only the [Cohorts](/docs/cohorts/overview).
+- Select "cohorts" to show only the [Cohorts](/docs/users/cohorts).
 - If you set up [Group Analytics](/docs/data-structure/advanced/group-analytics), the Group keys will show up individually under their display names. You can select any Group key to show only the Group properties relevant to the selected Group key:
 
     ![/Mixpanel__project_3____Mixpanel_2021-11-18_12-00-58.png](/Mixpanel__project_3____Mixpanel_2021-11-18_12-00-58.png)
