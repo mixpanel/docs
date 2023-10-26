@@ -2,7 +2,7 @@
 
 ## Getting Started
 
-Please refer to our [Quickstart Guide](../mobile).
+Please refer to our [Quickstart Guide](/docs/quickstart/connect-your-data?sdk=android).
 
 The [Full API Reference](http://mixpanel.github.io/mixpanel-android/index.html), [Library Source Code](https://github.com/mixpanel/mixpanel-android), and an [Example Application](https://github.com/mixpanel/sample-android-mixpanel-integration) is documented in our GitHub repo.
 

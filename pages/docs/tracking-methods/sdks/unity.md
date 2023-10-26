@@ -2,7 +2,7 @@
 
 ### Getting Started
 
-Please refer to our [Quickstart Guide](../mobile).
+Please refer to our [Quickstart Guide](/docs/quickstart/connect-your-data?sdk=unity).
 
 The [Full API Reference](http://mixpanel.github.io/mixpanel-unity/api-reference/annotated.html), [Library Source Code](https://github.com/mixpanel/mixpanel-unity), and an [Example Application](https://github.com/mixpanel/mixpanel-unity#examples) is documented in our GitHub repo.
 

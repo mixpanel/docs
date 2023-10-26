@@ -11,7 +11,7 @@
 /developer-docs-redirect/cohort-webhooks /docs/cohort-sync/webhooks
 /developer-docs-redirect/cohorts /docs/cohort-sync/build-an-integration
 /developer-docs-redirect/collection-via-a-proxy /docs/tracking-methods/sdks/javascript
-/developer-docs-redirect/custom-query /docs/reports/legacy/jql
+/developer-docs-redirect/custom-query /docs/reports/apps/jql
 /developer-docs-redirect/data-discrepancy-faq /docs/other-bits/data-pipelines/overview#faq
 /developer-docs-redirect/data-pipelines /docs/other-bits/data-pipelines/overview
 /developer-docs-redirect/data-structure-deep-dive /docs/how-it-works/concepts
@@ -33,14 +33,14 @@
 /developer-docs-redirect/javascript /docs/tracking-methods/sdks/javascript
 /developer-docs-redirect/javascript-full-api-reference /docs/tracking-methods/sdks/javascript
 /developer-docs-redirect/javascript-quickstart /docs/quickstart/connect-your-data?sdk=javascript
-/developer-docs-redirect/jql /docs/reports/legacy/jql
-/developer-docs-redirect/jql-api-reference /docs/reports/legacy/jql
-/developer-docs-redirect/jql-examples /docs/reports/legacy/jql
-/developer-docs-redirect/jql-get-started-guide /docs/reports/legacy/jql
-/developer-docs-redirect/jql-getting-started /docs/reports/legacy/jql
-/developer-docs-redirect/jql-language-reference /docs/reports/legacy/jql
-/developer-docs-redirect/jql-overview /docs/reports/legacy/jql
-/developer-docs-redirect/jql-tutorial-building-an-application /docs/reports/legacy/jql
+/developer-docs-redirect/jql /docs/reports/apps/jql
+/developer-docs-redirect/jql-api-reference /docs/reports/apps/jql
+/developer-docs-redirect/jql-examples /docs/reports/apps/jql
+/developer-docs-redirect/jql-get-started-guide /docs/reports/apps/jql
+/developer-docs-redirect/jql-getting-started /docs/reports/apps/jql
+/developer-docs-redirect/jql-language-reference /docs/reports/apps/jql
+/developer-docs-redirect/jql-overview /docs/reports/apps/jql
+/developer-docs-redirect/jql-tutorial-building-an-application /docs/reports/apps/jql
 /developer-docs-redirect/mixpanel-amazon-s3-export /docs/data-pipelines/integrations/amazon-s3
 /developer-docs-redirect/mixpanel-bigquery-export-design /docs/data-pipelines/integrations/bigquery
 /developer-docs-redirect/mixpanel-snowflake-export /docs/data-pipelines/integrations/snowflake
@@ -70,4 +70,4 @@
 /developer-docs-redirect/unity /docs/tracking-methods/sdks/unity
 /developer-docs-redirect/unity-quickstart /docs/quickstart/connect-your-data?sdk=unity
 /developer-docs-redirect/what-is-mixpanel /docs/what-is-mixpanel
-/developer-docs-redirect/write-jql /docs/reports/legacy/jql
+/developer-docs-redirect/write-jql /docs/reports/apps/jql

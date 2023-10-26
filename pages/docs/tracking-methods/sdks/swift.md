@@ -2,7 +2,7 @@
 
 ## Getting Started
 
-Please refer to our [Quickstart Guide](../mobile).
+Please refer to our [Quickstart Guide](/docs/quickstart/connect-your-data?sdk=swift).
 
 The [Full API Reference](https://mixpanel.github.io/mixpanel-swift/), [Library Source Code](https://github.com/mixpanel/mixpanel-swift), and an [Example Application](https://github.com/mixpanel/mixpanel-swift/tree/master/MixpanelDemo/MixpanelDemo) is documented in our GitHub repo.
 
