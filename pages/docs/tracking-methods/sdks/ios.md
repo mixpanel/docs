@@ -2,7 +2,7 @@
 
 ## Getting Started
 
-Please refer to our [Quickstart Guide](../mobile).
+Please refer to our [Quickstart Guide](/docs/quickstart/connect-your-data?sdk=ios).
 
 The [Full API Reference](https://mixpanel.github.io/mixpanel-iphone/index.html), [Library Source Code](https://github.com/mixpanel/mixpanel-iphone/), and an [Example Application](https://github.com/mixpanel/mixpanel-iphone/tree/master/HelloMixpanel) is documented in our GitHub repo.
 

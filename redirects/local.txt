@@ -36,6 +36,7 @@
 /docs/analysis/how-tos/engagement /docs/best-practices/analytics-strategy/engagement
 /docs/analysis/how-tos/growth /docs/best-practices/analytics-strategy/growth
 /docs/analysis/how-tos/retention /docs/best-practices/analytics-strategy/retention
+/docs/analysis/reports /docs/reports/overview
 /docs/analysis/reports/flows /docs/reports/flows
 /docs/analysis/reports/funnels /docs/reports/funnels
 /docs/analysis/reports/insights /docs/reports/insights
@@ -104,6 +105,7 @@
 /docs/other-bits/tutorials/migration-guides/migrating-to-mixpanel-from-adobe-analytics /docs/migration/adobe-analytics
 /docs/other-bits/tutorials/migration-guides/migrating-to-mixpanel-from-amplitude /docs/migration/amplitude
 /docs/other-bits/tutorials/migration-guides/migrating-to-mixpanel-from-google-analytics /docs/migration/google-analytics
+/docs/other-bits/tutorials/mixpanel-analysis /docs/how-it-works/concepts#overview
 /docs/other-bits/tutorials/mixpanel-analysis/board /docs/boards/overview
 /docs/other-bits/tutorials/mixpanel-analysis/cohort /docs/users/cohorts
 /docs/other-bits/tutorials/mixpanel-analysis/data-management /docs/data-governance/lexicon
@@ -146,6 +148,7 @@
 /docs/tracking/http-api /docs/quickstart/connect-your-data?sdk=httpapi
 /docs/tracking/integrations/freshpaint /docs/tracking-methods/integrations/freshpaint
 /docs/tracking/integrations/gcs-import /docs/tracking-methods/integrations/google-tag-manager
+/docs/tracking/integrations/google-pubsub /docs/tracking-methods/integrations/google-pubsub
 /docs/tracking/integrations/google-tag-manager /docs/tracking-methods/integrations/google-tag-manager
 /docs/tracking/integrations/mparticle /docs/tracking-methods/integrations/mparticle
 /docs/tracking/integrations/rudderstack /docs/tracking-methods/integrations/rudderstack
