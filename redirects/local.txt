@@ -179,6 +179,7 @@
 /docs/tracking/reference/swift /docs/tracking-methods/sdks/swift
 /docs/tracking/reference/unity /docs/tracking-methods/sdks/unity
 /docs/tracking/server /docs/quickstart/connect-your-data?sdk=python
+/docs/tracking/bigquery /docs/tracking-methods/data-warehouse/bigquery
 /docs/tracking/snowflake /docs/tracking-methods/data-warehouse/snowflake
 /docs/tutorials/developers /docs/how-it-works/concepts
 /docs/tutorials/migration-guides/migrating-to-mixpanel-from-google-analytics /docs/migration/google-analytics
