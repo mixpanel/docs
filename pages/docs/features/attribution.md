@@ -61,11 +61,11 @@ If you use a Mixpanel js-sdk, we’ve updated our sdk to track utm parameters mo
 ### How does Mixpanel compute attribution under the hood?
 
 Please watch this video to better understand
-<div style="position: relative; padding-bottom: 57.14285714285714%; height: 0;">
+<div style={{position: 'relative', padding-bottom: '57.14285714285714%', height: 0}}>
     <iframe src="https://www.loom.com/embed/1cebcd9687df4046af53ac90980907f7?sid=4d6d0920-8cc2-43f2-8361-bdb5a034969f" 
         frameborder="0" 
-        webkitallowfullscreen mozallowfullscreen allowfullscreen 
-        style="position: absolute; top: 0; left: 0; width: 100%; height: 100%;">
+        webkitallowfullscreen="true" mozallowfullscreen="true" allowfullscreen 
+        style={{position: 'absolute', 'top': 0; 'left': 0; 'width': '100%'; 'height': '100%'}}>
     </iframe>
 </div>
 
@@ -92,11 +92,11 @@ There will be 2 options depending on the use-case
 Some nuances to note 
 - In a time-series chart, the first and last qualifying conversion is within the chart interval. For example if you have a 6M chart with a monthly interval, you’re looking at first and last conversion within a month, NOT 6M
 
-![image](/Attribution uniques - 1.png)  
+![image](/Attribution_uniques_1.png)  
 
 - In non-time series charts, the chart interval and the qualifying conversion interval are the same. If your chart is for 6M, the first and last conversion is also seen within the 6M period
 
-![image](/Attribution uniques - 2.png)    
+![image](/Attribution_uniques_2.png)    
 
 ### What does filtering do in attribution?
 
@@ -122,17 +122,17 @@ On 30th Jan, doing some attribution analysis
 - Use-Case 1: I want to look at only Purchases that have come from a non Direct Channel?
     - Answer: 2 - Purchases 1 & 3
       
-![image](/Attribution filtering - 1.png)  
+![image](/Attribution_filtering_1.png)  
 
 - Use-Case 2: I want to look at how many Purchases have come via Last Touch Google?
     - Answer: 1 - Purchase 3
 
-![image](/Attribution filtering - 2.png)  
+![image](/Attribution_filtering_2.png)  
 
 - Use-Case 3: I want to look at how many purchases have come via Google? (can be any touch in the last 30 days)
     - Answer: 2 - Purchases 1 & 3
 
-![image](/Attribution filtering - 3.png)    
+![image](/Attribution_filtering_3.png)    
     
 NOTE: You can apply a filter on an attribution property only after an attribution breakdown has been applied. Read above for steps to turn on an attribution analysis
 - Step 1: Turn on Attribution analysis by going to the breakdown section and choosing `Attributed by..` and property `XYZ`
