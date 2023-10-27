@@ -146,6 +146,7 @@
 /docs/tracking/how-tos/utm /docs/data-structure/advanced/utm-tags
 /docs/tracking/how-tos/user-profiles /docs/data-structure/user-profiles
 /docs/tracking/http-api /docs/quickstart/connect-your-data?sdk=httpapi
+/docs/tracking/integrations/bigquery /docs/tracking-methods/integrations/bigquery
 /docs/tracking/integrations/freshpaint /docs/tracking-methods/integrations/freshpaint
 /docs/tracking/integrations/gcs-import /docs/tracking-methods/integrations/google-tag-manager
 /docs/tracking/integrations/google-pubsub /docs/tracking-methods/integrations/google-pubsub
@@ -179,8 +180,6 @@
 /docs/tracking/reference/swift /docs/tracking-methods/sdks/swift
 /docs/tracking/reference/unity /docs/tracking-methods/sdks/unity
 /docs/tracking/server /docs/quickstart/connect-your-data?sdk=python
-/docs/tracking/bigquery /docs/tracking-methods/data-warehouse/bigquery
-/docs/tracking/snowflake /docs/tracking-methods/data-warehouse/snowflake
 /docs/tutorials/developers /docs/how-it-works/concepts
 /docs/tutorials/migration-guides/migrating-to-mixpanel-from-google-analytics /docs/migration/google-analytics
 /docs/tutorials/mixpanel-analysis /docs/how-it-works/concepts#overview
