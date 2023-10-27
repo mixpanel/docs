@@ -1,8 +1,10 @@
 {
     "overview": "Overview",
+    "column-types": "Column Types",
     "sending-events": "Sending Events",
     "sending-user-profiles": "Sending User Profiles",
     "sending-group-profiles": "Sending Group Profiles",
+    "sending-lookup-table": "Sending Lookup Tables",
     "bigquery": "BigQuery",
     "redshift": "Redshift",
     "snowflake": "Snowflake"
