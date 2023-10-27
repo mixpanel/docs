@@ -21,7 +21,7 @@ In this example, there are two touchpoints that contribute to the successful con
 
 ## Usage 
 
-![Attribution.gif] (/attribution.gif)
+![Attribution.gif](/attribution.gif)
 
 Step 1 - Add your conversion metric
 
@@ -58,11 +58,18 @@ If you use a Mixpanel js-sdk, we’ve updated our sdk to track utm parameters mo
 
 ## Frequently Asked Questions
 
-### 1. How does Mixpanel compute attribution under the hood?**
+### How does Mixpanel compute attribution under the hood?
 
-[![Please watch this video to better understand](<div style="position: relative; padding-bottom: 57.14285714285714%; height: 0;"><iframe src="https://www.loom.com/embed/1cebcd9687df4046af53ac90980907f7?sid=4d6d0920-8cc2-43f2-8361-bdb5a034969f" frameborder="0" webkitallowfullscreen mozallowfullscreen allowfullscreen style="position: absolute; top: 0; left: 0; width: 100%; height: 100%;"></iframe></div>)]
+Please watch this video to better understand
+<div style="position: relative; padding-bottom: 57.14285714285714%; height: 0;">
+    <iframe src="https://www.loom.com/embed/1cebcd9687df4046af53ac90980907f7?sid=4d6d0920-8cc2-43f2-8361-bdb5a034969f" 
+        frameborder="0" 
+        webkitallowfullscreen mozallowfullscreen allowfullscreen 
+        style="position: absolute; top: 0; left: 0; width: 100%; height: 100%;">
+    </iframe>
+</div>
 
-### 2. What does attribution on ‘unique users’ mean? Why do I see additional text there?
+### What does attribution on ‘unique users’ mean?
 
 We need one single conversion event which we can use to “qualify” a user unique. 
 
@@ -91,7 +98,7 @@ Some nuances to note
 
 ![image](/Attribution uniques - 2.png)    
 
-### 3. What does filtering do in attribution?
+### What does filtering do in attribution?
 
 Once attribution is computed, filtering narrows total conversion events to only include/exclude those with the associated attribution property. 
 
