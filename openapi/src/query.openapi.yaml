@@ -49,7 +49,7 @@ paths:
       summary: Query Saved Report
       tags:
         - Insights
-      description: Get data from your Insights reports.
+      description: Get data from your Insights reports all the time, right now every time.
       parameters:
         - $ref: ./common/parameters.yaml#/query/projectId
         - $ref: '#/components/parameters/workspaceId'
