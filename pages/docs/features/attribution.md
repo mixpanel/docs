@@ -61,7 +61,7 @@ If you use a Mixpanel js-sdk, we’ve updated our sdk to track utm parameters mo
 ### How does Mixpanel compute attribution under the hood?
 
 Please watch this video to better understand
-<div style={{position: 'relative', padding-bottom: '57.14285714285714%', height: 0}}>
+<div style={{position: 'relative', paddingBottom: '57.14285714285714%', height: 0}}>
     <iframe src="https://www.loom.com/embed/1cebcd9687df4046af53ac90980907f7?sid=4d6d0920-8cc2-43f2-8361-bdb5a034969f"
         frameborder="0"
         webkitallowfullscreen="true" mozallowfullscreen="true" allowfullscreen
