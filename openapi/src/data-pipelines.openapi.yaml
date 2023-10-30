@@ -955,7 +955,7 @@ components:
           description: Group account email address to share the data-set with if managed by mixpanel. e.g. bq-access-alias@somecompany.com
         bq_prefix:
           type: string
-          description: The table prefix to be added to all the tables exported as part of the this pipeline
+          description: The table prefix to be added to all the tables exported as part of the this pipeline. Only alphanumeric characters and underscores can be used.
         gcp_project:
           type: string
           description: Customer's project id where bigquery dataset is present. If this field isn't provided the default dataset will be created on mixpanel managed bigquery.
