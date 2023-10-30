@@ -311,6 +311,22 @@ If you select the DAU, WAU, or MAU function for a date range that includes the c
 | Weekly Active Users (WAU) | The number of users who performed [event] within the last 7 days.<br /><br />**Example**: What's the count of users who watched a video in the week? | N/A |
 | Monthly Active Users (MAU) | The number of users who performed [event] within the last 30 days.<br /><br />**Example**: What's the count of users who watched a video in the last month? | N/A |
 
+**How do breakdowns work with Uniques?**
+
+When you apply a breakdown to a metric, by default today, Mixpanel tells you how many unique users contributed to each segment. For example, in the below image you can see there were a total of 2441 unique users. But the sum of individual segments > 3000. This is correct. That is because say User Joey while one user in total, could have seen both a Home Page and a Shop Page, and so they get counted as a user towards both segments. 
+
+By default, Mixpanel answers the question: per segment, tell me the number of unique users, NOT tell me how the 2441 users are distributed across the various pages with a user being counted only towards one segment, which will require assigning a user to one segment even if they contributed towards multiple segments. 
+
+![image](/uniques_default.png)
+
+There are some case though, where you want to know how the 2441 users are distributed, generally either by their first or last action. For example, based on the last page (segment) a user saw, tell me the distribution of users. You can enable this now via the advanced control for Uniques, by choosing which one segment to associate a user to: either the first segment or the last segment in the chart date-range (7D in the below image) 
+
+![image](/uniques_count_once.png)
+
+To note - in a line chart, there are two concepts of time period: chart date-range (3M below) and time interval (weekly interval below). When advanced controls are used in a line chart, it assigns a segment based on the first/ last segment for each time-interval, NOT across all time-intervals in the chart-range. For eg. User Joey could count towards Contact Page Wk of Feb 27 and Shop Page Wk of March 6. But in the same time-interval, they would count only towards one segment
+
+![image](/uniques_count_once_line.png)
+
 #### Aggregate Property
 
 | Function Name | Events Calculation | Profiles Calculation |
