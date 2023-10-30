@@ -161,7 +161,8 @@ The table below is an overview of the permissions per role for reports and other
 | Create and View Boards            | ✅ | ✅ | ✅ | ✅ |
 | Create Digests for Boards         | ✅ | ✅ | ✅ | ❌         |
 | Edit Digests for Boards           | ✅ | Only the Creator | Only the Creator | Only the Creator |                               
-| Create/Edit Custom Events         | ✅ | ✅ | ✅ | ❌         |
+| Create/Edit Custom Events         | ✅ | ✅ | ✅ | ✅ Can save only for self        |
+| Create/Edit Saved Formulas        | ✅ | ✅ | ✅ | ✅ Can save only for self        |
 | Hide Data in Lexicon              | ✅ | ✅ | ❌         | ❌         |
 | Merge Data in Lexicon             | ✅ | ❌         | ❌         | ❌         |
 | Drop Data in Lexicon              | ✅ | ❌         | ❌         | ❌         |
