@@ -208,7 +208,27 @@ Click the **Metrics** button, then select Formula.. Each event in the query show
 
 ![Formulas 1](/advanced-formulas-1.png)
 
-You can also use numbers as constants in a formula. Multiply a ratio by 100 to display as a percentage, for example. Divide a property value tracked in seconds by 3,600 to display the value in hours. You can rename a formula by selecting Rename in the overflow menu of the formula.
+Couple of notes
+- You can also use numbers as constants in a formula. Multiply a ratio by 100 to display as a percentage, for example. Divide a property value tracked in seconds by 3,600 to display the value in hours. You can rename a formula by selecting Rename in the overflow menu of the formula.
+- You cannot nest a formula metric when constucting another formula. e
+
+#### Save formulas for re-use
+
+Use existing events to create calculated formulas, like Bounce Rate & % Active Users, that can be saved and reused by others within the project. This in turn enables everyone use the same ‘blessed’ metrics and removes uncertainty if the formula metric is the correct calculation.
+
+![saveformula.gif](/saveformula.gif)
+
+Some nuances to note
+- Once you save a formula, A,B,C refer to what’s **within** the saved formula modal
+- To edit a saved formula, expand the metric and edit inline, and then save
+- When a saved metric is updated, it will update across all reports it’s being used in
+- A saved formula can’t reference another formula
+
+To access and re-use saved formulas, click on “+Formula”, and then see the list of saved formulas. You can also look at all the saved formulas in Lexicon tab “Formulas”. Some callouts regarding permissions
+- All roles can create a saved formula, but only some roles can share them with the whole project for re-use
+- You can only look at saved-formulas created by you or shared with you
+
+![reuseformula.gif](/reuseformula.gif)
 
 ### Custom Bucketing
 
