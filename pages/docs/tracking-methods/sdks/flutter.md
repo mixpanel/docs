@@ -2,7 +2,7 @@
 
 ## Getting Started
 
-Please refer to our [Quickstart Guide](../mobile).
+Please refer to our [Quickstart Guide](/docs/quickstart/connect-your-data?sdk=flutter).
 
 The [Full API Reference](https://mixpanel.github.io/mixpanel-flutter), [Library Source Code](https://github.com/mixpanel/mixpanel-flutter), and an [Example Application](https://github.com/mixpanel/mixpanel-flutter/tree/main/example) is documented in our GitHub repo.
 
