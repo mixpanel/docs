@@ -49,7 +49,7 @@ paths:
       summary: Query Saved Report
       tags:
         - Insights
-      description: Get data from your Insights reports.
+      description: Get data from your Insights reports. The Query API has a rate limit of 60 queries per hour and a maximum of 5 concurrent queries.
       parameters:
         - $ref: ./common/parameters.yaml#/query/projectId
         - $ref: '#/components/parameters/workspaceId'
@@ -122,7 +122,7 @@ paths:
       summary: Query Saved Report
       tags:
         - Funnels
-      description: Get data for a funnel.
+      description: Get data for a funnel. The Query API has a rate limit of 60 queries per hour and a maximum of 5 concurrent queries.
       parameters:
         - $ref: ./common/parameters.yaml#/query/projectId
         - $ref: '#/components/parameters/workspaceId'
@@ -426,6 +426,8 @@ paths:
         In the Mixpanel retention UI, "First time" corresponds to
         `retention_type=birth`, and "Recurring" corresponds to
         `retention_type=compounded`.
+
+        The Query API has a rate limit of 60 queries per hour and a maximum of 5 concurrent queries.
       parameters:
         - $ref: ./common/parameters.yaml#/query/projectId
         - $ref: '#/components/parameters/workspaceId'
@@ -588,6 +590,8 @@ paths:
         hour out of the next 24 hour period (the period specified by "unit").
         204 users did the event during at least 2 hours. 117 users did the event
         during at least 3 hours.
+
+        The Query API has a rate limit of 60 queries per hour and a maximum of 5 concurrent queries.
       parameters:
         - $ref: ./common/parameters.yaml#/query/projectId
         - $ref: '#/components/parameters/workspaceId'
@@ -706,7 +710,7 @@ paths:
       summary: Query Segmentation Report
       tags:
         - Segmentation
-      description: 'Get data for an event, segmented and filtered by properties.'
+      description: 'Get data for an event, segmented and filtered by properties. The Query API has a rate limit of 60 queries per hour and a maximum of 5 concurrent queries.'
       parameters:
         - $ref: ./common/parameters.yaml#/query/projectId
         - $ref: '#/components/parameters/workspaceId'
@@ -811,6 +815,8 @@ paths:
       description: >-
         Get data for an event, segmented and filtered by properties, with values
         placed into numeric buckets.
+
+        The Query API has a rate limit of 60 queries per hour and a maximum of 5 concurrent queries.
       parameters:
         - $ref: ./common/parameters.yaml#/query/projectId
         - $ref: '#/components/parameters/workspaceId'
@@ -915,7 +921,7 @@ paths:
       summary: Numerically Sum
       tags:
         - Segmentation
-      description: Sums an expression for events per unit time.
+      description: Sums an expression for events per unit time. The Query API has a rate limit of 60 queries per hour and a maximum of 5 concurrent queries.
       parameters:
         - $ref: ./common/parameters.yaml#/query/projectId
         - $ref: '#/components/parameters/workspaceId'
@@ -975,7 +981,7 @@ paths:
       summary: Numerically Average
       tags:
         - Segmentation
-      description: Averages an expression for events per unit time.
+      description: Averages an expression for events per unit time. The Query API has a rate limit of 60 queries per hour and a maximum of 5 concurrent queries.
       parameters:
         - $ref: ./common/parameters.yaml#/query/projectId
         - $ref: '#/components/parameters/workspaceId'
@@ -1035,7 +1041,7 @@ paths:
       summary: Profile Event Activity
       tags:
         - Activity Feed
-      description: This endpoint returns the activity feed for specified users.
+      description: This endpoint returns the activity feed for specified users. The Query API has a rate limit of 60 queries per hour and a maximum of 5 concurrent queries.
       parameters:
         - $ref: ./common/parameters.yaml#/query/projectId
         - $ref: '#/components/parameters/workspaceId'
@@ -1111,6 +1117,8 @@ paths:
         If you're trying to get a list of users in a cohort, you can use the
         [`/engage` endpoint with the `filter_by_cohort`
         parameter](ref:engage#engage-query).
+
+        The Query API has a rate limit of 60 queries per hour and a maximum of 5 concurrent queries.
       parameters:
         - $ref: ./common/parameters.yaml#/query/projectId
         - $ref: '#/components/parameters/workspaceId'
@@ -1203,6 +1211,8 @@ paths:
             this_page = query_api(where=YOUR_SELECTOR_EXPRESSION, session_id=this_page.session_id, page=next_page_number)
             do_something_with_response(this_page)
         ```
+
+        The Query API has a rate limit of 60 queries per hour and a maximum of 5 concurrent queries.
       parameters:
         - $ref: ./common/parameters.yaml#/query/projectId
         - $ref: '#/components/parameters/workspaceId'
@@ -1352,6 +1362,8 @@ paths:
       description: >-
         Get unique, total, or average data for a set of events over N days,
         weeks, or months.
+
+        The Query API has a rate limit of 60 queries per hour and a maximum of 5 concurrent queries.
       parameters:
         - $ref: ./common/parameters.yaml#/query/projectId
         - $ref: '#/components/parameters/workspaceId'
@@ -1421,6 +1433,8 @@ paths:
       description: >-
         Get the top events for today, with their counts and the normalized
         percent change from yesterday.
+
+        The Query API has a rate limit of 60 queries per hour and a maximum of 5 concurrent queries.
       parameters:
         - $ref: ./common/parameters.yaml#/query/projectId
         - $ref: '#/components/parameters/workspaceId'
@@ -1475,7 +1489,7 @@ paths:
       summary: Top Events
       tags:
         - Event Breakdown
-      description: Get a list of the most common events over the last 31 days.
+      description: Get a list of the most common events over the last 31 days. The Query API has a rate limit of 60 queries per hour and a maximum of 5 concurrent queries.
       parameters:
         - $ref: ./common/parameters.yaml#/query/projectId
         - $ref: '#/components/parameters/workspaceId'
@@ -1508,6 +1522,8 @@ paths:
       description: >-
         Get unique, total, or average data for of a single event and property
         over days, weeks, or months.
+
+        The Query API has a rate limit of 60 queries per hour and a maximum of 5 concurrent queries.
       parameters:
         - $ref: ./common/parameters.yaml#/query/projectId
         - $ref: '#/components/parameters/workspaceId'
@@ -1581,7 +1597,7 @@ paths:
       summary: Top Event Properties
       tags:
         - Event Breakdown
-      description: Get the top property names for an event.
+      description: Get the top property names for an event. The Query API has a rate limit of 60 queries per hour and a maximum of 5 concurrent queries.
       parameters:
         - $ref: ./common/parameters.yaml#/query/projectId
         - $ref: '#/components/parameters/workspaceId'
@@ -1614,7 +1630,7 @@ paths:
       summary: Top Event Property Values
       tags:
         - Event Breakdown
-      description: Get the top values for a property.
+      description: Get the top values for a property. The Query API has a rate limit of 60 queries per hour and a maximum of 5 concurrent queries.
       parameters:
         - $ref: ./common/parameters.yaml#/query/projectId
         - $ref: '#/components/parameters/workspaceId'
@@ -1663,6 +1679,8 @@ paths:
 
 
         **Note**
+
+        * The Query API has a rate limit of 60 queries per hour and a maximum of 5 concurrent queries.
 
         * Queries will timeout after 2 minutes of run-time.
 
