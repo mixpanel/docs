@@ -2,7 +2,7 @@
 title: "Rate Limits"
 slug: "rate-limits"
 hidden: false
-category: "6515aa250b2819006f5da275"
+categorySlug: "mixpanel-apis"
 createdAt: "2023-10-31T15:28:39.814Z"
 updatedAt: "2023-10-31T15:38:48.152Z"
 ---
