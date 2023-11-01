@@ -11,7 +11,7 @@ We enforce a rate limit on our API to ensure the integrity of our system as well
 The rate limits are as follows:
 
 ### [**Ingestion API**](ref:ingestion-api) 
-2GB of uncompressed JSON/minute or ~30k events per second, measured on a rolling 1 minute basis. Please click [here] (https://developer.mixpanel.com/reference/import-events#rate-limits) for more details.
+2GB of uncompressed JSON/minute or ~30k events per second, measured on a rolling 1 minute basis. Please click [here](https://developer.mixpanel.com/reference/import-events#rate-limits) for more details.
 
 
 ### [**Query API**](ref:query-api) 
@@ -25,7 +25,7 @@ A maximum of 100 concurrent queries, 60 queries per hour, and 3 queries per seco
 The Lexicon Schemas API imposes an 8mb body size limit and the request cannot take longer than two minutes. If you are running up against these limits, we suggest breaking your request into smaller batches. Usually these limits are only hit if you are attempting to do a bulk create/update.
 
 
-### You can reduce rate limiting errors using one of the two approaches:
+### You can reduce rate-limiting errors using one of the two approaches:
 
 * Spread your queries out over a longer period of time.
 * Consolidate multiple queries into a single query (for example, multiple queries filtering on a single property may be combined into a single segmentation query).
