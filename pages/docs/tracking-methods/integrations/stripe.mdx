@@ -6,7 +6,7 @@ This guide demonstrates how to stream events from Stripe Webhooks to Mixpanel, v
 
 Note: This guide assumes you are running in Google Cloud Platform, and have the necessary IAM Access to have Cloud Functions read from GCS. An equivalent process works using AWS Lambda.
 
-## Step 1: Create a Cloud Function to Handle Stripe Webhooks
+## Step 1: Create a Cloud Function
 
 Create a [new Cloud Function](https://console.cloud.google.com/functions/add), set the trigger to `HTTPS`, and check the box to Allow Unauthenticated Invocations, since this will be called from Stripe. Copy the URL, which should look something like `https://<zone>-<your-gcp-project>.cloudfunctions.net/stripe-demo`.
 
@@ -56,7 +56,7 @@ Paste in the following code, which accepts Stripe's webhook format, and forwards
 
 Click `Deploy`, which enables your Cloud Function to listen for new events. 
 
-## Step 2: Point Stripe Webhooks at the Function
+## Step 2: Create a Stripe Webhook
 Create a [Stripe Webhook](https://dashboard.stripe.com/webhooks/create) and paste in the URL of your Cloud Function, with your [Project Token](https://mixpanel.com/report/settings) as the `token` query parameter. So it should look something like `<function_url>.cloudfunctions.net?token=<your_token>`.
 
 We recommend selecting all events, since it affords the most flexibility and you can filter them down easily in Mixpanel. 
