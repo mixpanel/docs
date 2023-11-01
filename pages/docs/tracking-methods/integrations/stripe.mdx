@@ -57,7 +57,7 @@ Paste in the following code, which accepts Stripe's webhook format, and forwards
 Click `Deploy`, which enables your Cloud Function to listen for new events. 
 
 ## Step 2: Point Stripe Webhooks at the Function
-Create a [Stripe Webhook](https://dashboard.stripe.com/webhooks/create) and paste in the URL of your Cloud Function, with your [Project Token](https://mixpanel.com/project/settings) as the `token` query parameter. So it should look something like `<zone>-<gcp-project>.cloudfunctions.net/stripe-demo?token=<your_token>`.
+Create a [Stripe Webhook](https://dashboard.stripe.com/webhooks/create) and paste in the URL of your Cloud Function, with your [Project Token](https://mixpanel.com/report/settings) as the `token` query parameter. So it should look something like `<function_url>.cloudfunctions.net?token=<your_token>`.
 
 We recommend selecting all events, since it affords the most flexibility and you can filter them down easily in Mixpanel. 
 
