@@ -444,12 +444,9 @@ components:
             the projects timezone). **frequency** should only be passed if your
             export window is indefinite.
         events:
-          type: array
-          items:
-            type: string
-          description: >
-            A whitelist for the event you intend to export. It is okay to pass
-            this multiple times to whitelist multiple events.
+          type: string
+          description: |
+            A whitelist for the event(s) you intend to export, encoded as a JSON array.
 
 
             All events in the project will be exported if no events are
@@ -587,12 +584,9 @@ components:
             the projects timezone). **frequency** should only be passed if your
             export window is indefinite.
         events:
-          type: array
-          items:
-            type: string
-          description: >
-            A whitelist for the event you intend to export. It is okay to pass
-            this multiple times to whitelist multiple events.
+          type: string
+          description: |
+            A whitelist for the event(s) you intend to export, encoded as a JSON array.
 
 
             All events in the project will be exported if no events are
@@ -746,12 +740,9 @@ components:
             the projects timezone). **frequency** should only be passed if your
             export window is indefinite.
         events:
-          type: array
-          items:
-            type: string
-          description: >
-            A whitelist for the event you intend to export. It is okay to pass
-            this multiple times to whitelist multiple events.
+          type: string
+          description: |
+            A whitelist for the event(s) you intend to export, encoded as a JSON array.
 
 
             All events in the project will be exported if no events are
@@ -906,12 +897,9 @@ components:
             the projects timezone). **frequency** should only be passed if your
             export window is indefinite.
         events:
-          type: array
-          items:
-            type: string
-          description: >
-            A whitelist for the event you intend to export. It is okay to pass
-            this multiple times to whitelist multiple events.
+          type: string
+          description: |
+            A whitelist for the event(s) you intend to export, encoded as a JSON array.
 
 
             All events in the project will be exported if no events are
@@ -1069,12 +1057,9 @@ components:
             the projects timezone). **frequency** should only be passed if your
             export window is indefinite.
         events:
-          type: array
-          items:
-            type: string
-          description: >
-            A whitelist for the event you intend to export. It is okay to pass
-            this multiple times to whitelist multiple events.
+          type: string
+          description: |
+            A whitelist for the event(s) you intend to export, encoded as a JSON array.
 
 
             All events in the project will be exported if no events are
@@ -1210,12 +1195,9 @@ components:
             the projects timezone). **frequency** should only be passed if your
             export window is indefinite.
         events:
-          type: array
-          items:
-            type: string
-          description: >
-            A whitelist for the event you intend to export. It is okay to pass
-            this multiple times to whitelist multiple events.
+          type: string
+          description: |
+            A whitelist for the event(s) you intend to export, encoded as a JSON array.
 
 
             All events in the project will be exported if no events are
@@ -1422,12 +1404,9 @@ components:
             the projects timezone). **frequency** should only be passed if your
             export window is indefinite.
         events:
-          type: array
-          items:
-            type: string
-          description: >
-            A whitelist for the event you intend to export. It is okay to pass
-            this multiple times to whitelist multiple events.
+          type: string
+          description: |
+            A whitelist for the event(s) you intend to export, encoded as a JSON array.
 
 
             All events in the project will be exported if no events are
@@ -1566,12 +1545,10 @@ components:
             the projects timezone). **frequency** should only be passed if your
             export window is indefinite.
         events:
-          type: array
-          items:
-            type: string
-          description: >
-            A whitelist for the event you intend to export. It is okay to pass
-            this multiple times to whitelist multiple events.
+          type: string
+          description: |
+            A whitelist for the event(s) you intend to export, encoded as a JSON array.
+            
             All events in the project will be exported if no events are
             specified.
         where:
@@ -1651,12 +1628,9 @@ components:
         project_id:
           $ref: '#/components/schemas/ProjectId'
         events:
-          type: array
-          items:
-            type: string
-          description: >
-            The events you want add to your current event whitelist for this export. It is okay
-            to pass this multiple times to whitelist multiple events.
+          type: string
+          description: |
+            A whitelist for the event(s) you intend to export, encoded as a JSON array.
 
 
             Please note that after this update, the sync of older dates to your data warehouse
