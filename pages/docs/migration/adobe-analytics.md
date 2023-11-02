@@ -74,6 +74,8 @@ If you have your Adobe Analytics instance sitting on top of data that you collec
 
 For most cases, we recommend starting fresh when migrating from Adobe Analytics. If you must import Adobe data, we strongly encourage loading historical data into a separate project as data structures, identity management, user cohort definitions, etc. are completely different in Adobe than in Mixpanel. In these scenarios, the point of having historical data in Mixpanel is to allow the team to be able to visualise historical data, but because this data would exist in a separate project, it will not be easy to visualize time period trends. In the cases where historical data is essential, we recommend loading a year’s worth (or less) of historical data during your migration.
 
+### Undertaking discovery: Why and what is historical data for
+
 To backfill data, we recommend:
 
 - If you have a CDP, this should be straightforward
