@@ -3,6 +3,10 @@
         "title": "Docs",
         "type": "page"
     },
+    "onboarding": {
+        "title": "Onboarding Guides",
+        "type": "page"
+    },
     "changelogs": {
         "title": "Changelog",
         "type": "page",
