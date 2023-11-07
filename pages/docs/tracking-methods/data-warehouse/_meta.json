@@ -1,9 +1,11 @@
 {
     "overview": "Overview",
+    "bigquery": "BigQuery Setup",
+    "redshift": "Redshift Setup",
+    "snowflake": "Snowflake Setup"
     "sending-events": "Sending Events",
     "sending-user-profiles": "Sending User Profiles",
     "sending-group-profiles": "Sending Group Profiles",
-    "bigquery": "BigQuery",
-    "redshift": "Redshift",
-    "snowflake": "Snowflake"
+    "sending-lookup-table": "Sending Lookup Tables"
+
 }
