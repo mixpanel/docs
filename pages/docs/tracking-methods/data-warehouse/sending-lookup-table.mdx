@@ -1,4 +1,4 @@
-# Sending Lookup Table
+# Sending Lookup Tables
 
 ### Format Data for Mixpanel Ingestion
 
@@ -9,15 +9,15 @@ Each column in the table will be mapped as a property on the Lookup Table.
 **The following columns are required:** 
 
 - Join Key
-    - This is the key where we will join the value of this key to the mixpanel property key to enhance your data. 
+    - This is the key where we will join the value of this key to the Mixpanel property key to enhance your data. 
     - We recommend you keep this key unique for each record. If it is not unique, we will choose a single record randomly. 
 
-Read more about best practices for Lookup Table in Mixpanel [here](/docs/data-structure/lookup-tables).
+Read more about best practices for Lookup Tables in Mixpanel [here](/docs/data-structure/lookup-tables).
 
 
-### Lookup Table
+### Lookup Tables
 
-Once you have created a warehouse source, follow the below steps to send Lookup Table into Mixpanel.
+Once you have created a warehouse source, follow these steps to send Lookup Tables into Mixpanel.
 1. Go to Project Settings > Warehouse Data.
 2. Click on + Create and select Lookup Table.
 3. Select your warehouse as source from the dropdown.
@@ -28,6 +28,6 @@ Once you have created a warehouse source, follow the below steps to send Lookup 
 
 ### Sync Settings
 After pointing Mixpanel at your group table, you can select a Sync Type option. The options are:   
-- Full Sync: With this option, Mixpanel will periodically do a full sync on the entire table. This means that periodically, we will replace entire Lookup Table in its entirety with the current state of the table in your data warehouse. 
+- Full Sync: With this option, Mixpanel will periodically do a full sync on the entire table. This means that periodically, we will replace the  Lookup Table in its entirety with the current state of the table in your data warehouse. 
 
 Check the preview to ensure that everything looks correct, and then create the sync.
