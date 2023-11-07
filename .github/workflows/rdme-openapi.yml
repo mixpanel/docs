@@ -17,3 +17,4 @@ jobs:
     - run: npm run api:publish
       env:
         README_API_KEY: ${{ secrets.README_API_KEY }}
+        README_VERSION: '3.26'
