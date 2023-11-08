@@ -2,7 +2,8 @@
     "overview": "Overview",
     "bigquery": "BigQuery Setup",
     "redshift": "Redshift Setup",
-    "snowflake": "Snowflake Setup"
+    "snowflake": "Snowflake Setup",
+    "databricks": "Databricks Setup",
     "column-types": "Column Types",
     "sending-events": "Sending Events",
     "sending-user-profiles": "Sending User Profiles",
