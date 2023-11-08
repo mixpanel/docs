@@ -8,17 +8,17 @@ Each column in the table will be mapped as a property on the event.
 
 Read more about best practices for tracking Events and Properties in Mixpanel [here](/docs/data-structure/events-and-properties).
 
-**The following columns are required:** 
+**The following columns should be mapped from your warehouse table:** 
 
-- Event Time
-- Distinct ID
-- Insert ID
-    - This is an optional field, but we recommend it as a best practice in case duplicate events need to be reconciled.
-- Insert Time
-    - We expect this to be a monotonically increasing TIMESTAMP_NTZ. We use this as a water mark to figure out which events are new and ingest them.
-- Event Name
-    - You can specify the column that has this value.
-    - Alternatively, you can specify a static value during creation.
+| Name | Type | Description |
+| - | - | - |
+| Event Name | STRING | The name of the event that occurred. This can be specified as a table column that contains the event name, or as a static value (one event name for the whole table). |
+| Event Time | TIMESTAMP | The time when an event occurred. |
+| Distinct ID | STRING, INT | The identifier of the user that performed the event. Learn more about [identifying users](/docs/tracking-methods/identifying-users). |
+| Insert Time | TIMESTAMP | The time when the event was inserted into the warehouse. This is used as a watermark to figure out which events are new and ingest them. |
+| Insert ID _Optional_ | STRING | A unique identifier of the event. We recommend this as a best practice in case duplicate events need to be reconciled. | 
+| JSON Properties _Optional_ | JSON | If your table stores data in a JSON column, you may chose to ingest that data as event properties. If there is a conflict between the name of a table column and one of the keys in the JSON column, the table column will take precedence.
+
 
 ### Event Tables
 
