@@ -50,3 +50,6 @@ All pull requests will generate a staging link in Vercel. Here's an [example](ht
 # Maintainers
 [Vijay](https://github.com/ranic), [Marissa](https://github.com/marissakuhrau), [Mav](https://github.com/mavlee), [Isha](https://github.com/ishamehramixpanel). Eventually we’ll expand this list, but keeping it tight for now.
 
+## Review Process
+For simple content changes, the reviewer will merge the PR for expediency. For code changes, the original author will merge changes.
+
