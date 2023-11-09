@@ -37,15 +37,13 @@ To set super properties, call <a style="font-family: courier" href="https://mixp
 ```swift Swift
 // Send a "Plan: Mega" property will be sent
 // with all future track calls.
-Mixpanel.mainInstance().track(event: "Signup",
-    properties:["Source": "Twitter"])
+Mixpanel.mainInstance().registerSuperProperties(["Plan": "Mega"])
 ```
 
 Going forward, whenever you track an event, super properties will be included as properties. For instance, if you call:
 ```swift Swift
-// Send a "Plan: Mega" property will be sent
-// with all future track calls.
-Mixpanel.mainInstance().registerSuperProperties(["Plan": "Mega"])
+Mixpanel.mainInstance().track(event: "Signup",
+    properties:["Source": "Twitter"])
 ```
 
 after making the above call to registerSuperProperties, it is just like adding the properties directly:
