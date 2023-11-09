@@ -40,6 +40,8 @@ Upload images/GIFs to the public/ directory. You can make sub-directories within
 
 To reference an image, use a relative link to the image with the `public` stripped out. For example, if you have an image `public/example.png`, you can reference it as follows: `[insert alt text here](/example.png)`.
 
+If you're making a diagram, please add it to this [Figjam](https://www.figma.com/file/m4XseN6oAiu2yGN18qfamD/Docs-Toolkit?type=whiteboard&node-id=0-1&t=j3TBgane3MsYReF2-0). That way, if others want to make small tweaks, they can discover the original.
+
 Images are hard to keep up-to-date, so please use them judiciously.
 
 # Previewing Changes
@@ -47,4 +49,7 @@ All pull requests will generate a staging link in Vercel. Here's an [example](ht
 
 # Maintainers
 [Vijay](https://github.com/ranic), [Marissa](https://github.com/marissakuhrau), [Mav](https://github.com/mavlee), [Isha](https://github.com/ishamehramixpanel). Eventually we’ll expand this list, but keeping it tight for now.
+
+## Review Process
+For simple content changes, the reviewer will merge the PR for expediency. For code changes, the original author will merge changes.
 
