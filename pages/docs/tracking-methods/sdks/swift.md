@@ -12,7 +12,7 @@ We recommend tracking only five to seven events in your application instead of t
 
 Once you've initialized the library, you can track an event by calling <a style="font-family: courier" href="https://mixpanel.github.io/mixpanel-swift/Classes/MixpanelInstance.html#/s:FC8Mixpanel16MixpanelInstance5trackFT5eventGSqSS_10propertiesGSqGVs10DictionarySSPs9AnyObject____T_"> track(event:properties:) </a> with the event name and properties.
 ```swift Swift
-Mixpanel.mainInstance().track(event: "Plan Selected",
+Mixpanel.mainInstance().track(event: "Plan Selected")
 ```
 
 ## Timing Events
