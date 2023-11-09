@@ -16,7 +16,7 @@ Here are some of the sample questions you can answer in Insights:
 - Product Analytics
     - How is my WAU changing over time? (unique users)
     - How often are my users getting value? (frequency analysis)
-    - What is the distribution of my users across regions / devices etc? (property breakdown)
+    - What is the distribution of my users across regions/devices etc? (property breakdown)
     - [Lifecycle analysis](https://mixpanel.com/blog/growth-through-segmentation-lifecycle-analysis-to-understand-your-users/)
 - B2B (in this case, a messaging application)
     - How many messages were sent in the US in the past 30 days? (total events, filtered)
@@ -39,7 +39,7 @@ It's important to know what's the natural frequency at which your users use your
 
 Building a report in Insights takes just a few clicks, and results arrive in seconds. Let's build a simple report together. Continuing the B2B messaging example, imagine you want to answer the following question:
 
-> Which cities in the United States have the most users who sent messages via the iOS platform?
+> Which cities in the United States have the most users who send messages via the iOS platform?
 >
 
 Feel free to follow along and create your own report right in our demo project, [here](https://mixpanel.com/register/?next=%2Fproject%2F2195193%2Fview%2F139237%2Fapp%2Finsights). To skip ahead and see the final result, click [here](https://mixpanel.com/register/?next=/project/2195193/view/139237/app/insights#BhixoRC626vx).
@@ -64,7 +64,7 @@ Filters exclude unwanted data. In this case, we only care about events performed
 
 ### Step 4: Choose Breakdowns
 
-Breakdowns segment data into groups. In this case, we want to count message sending users in different cities. Therefore, add a "City" breakdown. At this point, your query should look like this:
+Breakdowns segment data into groups. In this case, we want to count message-sending users in different cities. Therefore, add a "City" breakdown. At this point, your query should look like this:
 
 ![Choose Breakdowns](/choose-breakdowns.gif)
 
@@ -82,11 +82,11 @@ You now have a full analysis that you can use and add onto a Board, or use as a 
 
 ### Rename an Event within a Report
 
-Click on the "three dots" icon beside an event and click Rename to rename it. This will only affect the current report, and will not change the name of the event in other reports.
+Click on the "three dots" icon beside an event and click Rename to rename it. This will only affect the current report, and will not change the event's name in other reports.
 
 ### Chart Types
 
-Insights features multiple visualizations to help you view the query results in the clearest chart type. By default, Insights displays the results on the line chart, which helps you understand how metrics trend over time. However, another chart type might present the results with more clarity. In Insights, you can choose to get a metric calculated either across the entire time period selected in the date picker or on a time-segmented view of the metric (e.g. daily breakdown).
+Insights feature multiple visualizations to help you view the query results in the clearest chart type. By default, Insights displays the results on the line chart, which helps you understand how metrics trend over time. However, another chart type might present the results with more clarity. In Insights, you can choose to get a metric calculated either across the entire time period selected in the date picker or on a time-segmented view of the metric (e.g. daily breakdown).
 
 - Metric calculated across the entire time period
     - Bar chart
@@ -102,7 +102,7 @@ Insights features multiple visualizations to help you view the query results in 
 
 #### Bar chart
 
-When you view a bar chart, you have four different sorting options: A-Z Ascending, Z-A Descending, Value Ascending, or Value Descending. To switch sorting view, select the **Events** or **property name** column header in the upper left hand of the results and then select which sorting order you would like to see.
+When you view a bar chart, you have four different sorting options: A-Z Ascending, Z-A Descending, Value Ascending, or Value Descending. To switch the sorting view, select the **Events** or **property name** column header in the upper left hand of the results and then select which sorting order you would like to see.
 
 ![Sorting Bar Chart](/sorting-bar-chart.png)
 
@@ -121,7 +121,7 @@ Results that are segmented (from one or more "group by" clauses in your query) h
 - Value Ascending: sort by segment value in ascending order
 - Value Descending. sort by segment value in descending order
 
-When sorting by segments, the sort is carried out left to right.
+When sorting by segments, the sort is carried out from left to right.
 
 ![Sorting Line Chart](/sorting-line-chart-2.gif)
 
@@ -141,13 +141,13 @@ The Ungrouped View removes all hierarchy and makes the table flat. Each combinat
 
 ![image](https://github.com/mixpanel/docs/assets/2077899/e57400a1-a86c-4d46-9ffb-379306586d8d)
 
-The Grouped View preserves hierarchy of breakdowns. It shows you segments within a breakdown as displayed below. This view is only applicable when you have 2 or more breakdowns
+The Grouped View preserves the hierarchy of breakdowns. It shows you segments within a breakdown as displayed below. This view is only applicable when you have 2 or more breakdowns
 
 ![image](https://github.com/mixpanel/docs/assets/2077899/2a72e93c-c332-4418-83e1-91bb24e2d271)
 
 
 ###### Alphabetical vs Value-Based Sorting
-You can sort segments alphabetically or by the value of a particular metric. In the grouped view, sorting is configured on a per-breakdown level, and respects the breakdown hierarchy.
+You can sort segments alphabetically or by the value of a particular metric. In the grouped view, sorting is configured on a per-breakdown level and respects the breakdown hierarchy.
 
 In the below image, we sort Country *within* Item Category, which respects the hierarchy.
 ![image](https://github.com/mixpanel/docs/assets/2077899/4697ce00-d394-46ce-b538-66ec91ccd6e7)
@@ -176,7 +176,7 @@ In the grouped view, you can choose the number of rows you want to display for e
 
 ##### Overall and Segment Sub-Totals
 
-**Overall:** This refers to the value considering all the segments, independent of whether displayed or not based on your View N control; i.e changes to View N will not effect Overall numbers
+**Overall:** This refers to the value considering all the segments, independent of whether displayed or not based on your View N control; i.e changes to View N will not affect Overall numbers
 ![image](https://github.com/mixpanel/docs/assets/2077899/3d6556a4-9468-4d1f-8979-4fdb512f2aaa)
 
 **Sub-Totals:** In the grouped view, in addition to the Overall, segment sub-totals are also displayed. Similar to “Overall”, these values are independent of the View N control
@@ -210,7 +210,7 @@ Click the **Metrics** button, then select Formula.. Each event in the query show
 
 ![Formulas 1](/advanced-formulas-1.png)
 
-To note, you cannot nest a formula metric when constucting another formula.
+To note, you cannot nest a formula metric when constructing another formula.
 
 #### Save formulas for re-use
 
@@ -218,15 +218,15 @@ Use existing events to create calculated formulas, like Bounce Rate & % Active U
 
 ![saveformula.gif](/saveformula.gif)
 
-Some nuances to note
+Some nuances to note:
 - Once you save a formula, A,B,C refer to what’s **within** the saved formula modal
 - To edit a saved formula, expand the metric and edit inline, and then save
 - When a saved metric is updated, it will update across all reports it’s being used in
 - A saved formula can’t reference another formula
 
-To access and re-use saved formulas, click on “+Formula”, and then see the list of saved formulas. You can also look at all the saved formulas in Lexicon tab “Formulas”. Some callouts regarding permissions
+To access and re-use saved formulas, click on “+Formula”, and then see the list of saved formulas. You can also look at all the saved formulas in the Lexicon tab “Formulas”. Some callouts regarding permissions:
 - All roles can create a saved formula, but only some roles can share them with the whole project for re-use
-- You can only look at saved-formulas created by you or shared with you
+- You can only look at saved formulas created by you or shared with you
 
 ![reuseformula.gif](/reuseformula.gif)
 
@@ -239,9 +239,9 @@ You can choose "Even" to get buckets of uniform size, and you can choose "Varied
 
 ### Time Period Comparisons
 
-Compare the current period of time to previous periods of time in order to track trends and growth in your product’s use. Compare traffic from a specific campaign period or event from one year to the next, or compare the success of that campaignto your normal traffic.
+Compare the current period of time to previous periods to track trends and growth in your product’s use. Compare traffic from a specific campaign period or event from one year to the next, or compare the success of that campaign to your normal traffic.
 
-Note that if a data point for a previous year falls on a weekend, the data point is automatically moved to the next Monday to give a more clear picture of the data change from one year to the next.
+Note that if a data point for a previous year falls on a weekend, the data point is automatically moved to the next Monday to give a clearer picture of the data change from one year to the next.
 
 Click on the **Compare to past** button at the top of your Insights graph and select the time period you wish to compare to. You can also select a custom date range.
 
@@ -249,13 +249,13 @@ Click on the **Compare to past** button at the top of your Insights graph and se
 
 ### Value Comparisons
 
-When you have multiple metrics, or have broken down a metric by a property, you can compare them against each and the relative value. Click on **Compare** -> **Overall**. This works for all data functions. For a "totals" data function, you can see the percentage that a particular segment makes up. For non summable aggregations, it compares the segment value to the whole, unsegmented value.
+When you have multiple metrics, or have broken down a metric by a property, you can compare them against each and the relative value. Click on **Compare** -> **Overall**. This works for all data functions. For a "totals" data function, you can see the percentage that a particular segment makes up. For non-sumable aggregations, it compares the segment value to the whole, unsegmented value.
 
 ![Value Setting](/advanced-value-comparison.png)
 
 ### Profile Analysis
 
-Profiles metrics allows you access profile data and visualize your users with filters and breakdowns based on their profile properties. When exploring Profiles, you are always analyzing all user profiles. Select the [Data Function](/docs/reports/insights#insights-data-functions-operators-and-calculations) you want to use to calculate results by clicking on **Total** and selecting an option from the drop-down. You can calculate based on users or profile property value.
+Profile metrics allow you to access profile data and visualize your users with filters and breakdowns based on their profile properties. When exploring Profiles, you are always analyzing all user profiles. Select the [Data Function](/docs/reports/insights#insights-data-functions-operators-and-calculations) you want to use to calculate results by clicking on **Total** and selecting an option from the drop-down. You can calculate based on users or profile property value.
 
 <p style={{ position: 'relative', paddingBottom: '56.25%', height: 0, overflow: 'hidden' }}>
   <iframe src="https://www.loom.com/embed/dc5e909f2d7f427ca962e493e87894ad" frameborder="0" style={{ position: 'absolute', top: 0, left: 0, width: '100%', height: '100%' }} allowfullscreen></iframe>
@@ -263,7 +263,7 @@ Profiles metrics allows you access profile data and visualize your users with fi
 
 ### Annotations
 
-In order to clarify the results in your Insights report add detailed annotations directly to the line chart. Annotations are tied to a specific date on the chart, rather than a specific data point on the chart.
+To clarify the results in your Insights report, add detailed annotations directly to the line chart. Annotations are tied to a specific date on the chart, rather than a specific data point on the chart.
 
 To add an annotation, hover your mouse over the point on the chart you want to annotate, and click the blue **+** button that appears. Enter a description for the annotation, such as a holiday that occurred on that day or the end date of your fiscal year, then click **Save**. If you accidentally selected the incorrect date on the chart, you can edit the date and time of the annotation in this window.
 
@@ -301,7 +301,7 @@ The following functions have additional aggregation options which you will be pr
 
 These functions provide additional aggregation options following the initial calculation because they are “per user” calculations. “Per user” calculations first calculate the value per user, which is an unhelpful query in its raw form, but becomes useful when you perform an aggregation on that calculation.
 
-Selecting any of these functions gives you the option to choose different ways to aggregate this data. The default aggregation is **Average**, which you can click on to select a different option such as distribution, median, 25/75/90th percentiles, minimum and maximum.
+Selecting any of these functions gives you the option to choose different ways to aggregate this data. The default aggregation is **Average**, which you can click on to select a different option such as distribution, median, 25/75/90th percentiles, minimum, and maximum.
 
 ![Data Functions 2](/advanced-data-functions-2.png)
 
@@ -317,7 +317,7 @@ If the data function you select calculates based on property (“Event Property 
 #### Users
 
 This can refer to measuring the total number of user profiles, as well as the number of unique users that performed an event.
-DAU, WAU and MAU are accessed through the advanced settings of uniques users. Select the > arrow to choose any XAU options.
+DAU, WAU, and MAU are accessed through the advanced settings of unique users. Select the > arrow to choose any XAU options.
 
 If you select the DAU, WAU, or MAU function for a date range that includes the current day, the query will take the end of the current day as the end of the query’s time segment (even though it’s in the future). For example, today is April 25th, and it’s 4:22 PM. If you make a query to show WAU and you select “current day” as your date range, the query will return the count of unique users between April 19 at 12:00:00 AM and April 25 at 11:59:59.
 
@@ -327,23 +327,23 @@ If you select the DAU, WAU, or MAU function for a date range that includes the c
 | --- | --- | --- |
 | Total | N/A | Total count of user profiles. <br /><br />**Example**: What's my total number of users? |
 | Unique Users | The number of users who performed [event] or are a part of the cohort.<br /><br />**Example**: What's the count of users who watched a video? | N/A |
-| Daily Active Users (DAU) | The number of users who performed [event] within the last 24 hours.<br /><br />**Example**: What's the count of users who watched a video in the last day? | N/A |
+| Daily Active Users (DAU) | The number of users who performed [event] within the last 24 hours.<br /><br />**Example**: What's the count of users who watched a video on the last day? | N/A |
 | Weekly Active Users (WAU) | The number of users who performed [event] within the last 7 days.<br /><br />**Example**: What's the count of users who watched a video in the week? | N/A |
 | Monthly Active Users (MAU) | The number of users who performed [event] within the last 30 days.<br /><br />**Example**: What's the count of users who watched a video in the last month? | N/A |
 
 **How do breakdowns work with Uniques?**
 
-When you apply a breakdown to a metric, by default today, Mixpanel tells you how many unique users contributed to each segment. For example, in the below image you can see there were a total of 2441 unique users. But the sum of individual segments > 3000. This is correct. That is because say User Joey while one user in total, could have seen both a Home Page and a Shop Page, and so they get counted as a user towards both segments. 
+When you apply a breakdown to a metric, by default, Mixpanel tells you how many unique users contributed to each segment. For example, in the image below, you can see there were a total of 2441 unique users, while the sum of individual segments is more than 3000. This is correct. That is because one user could have seen both a Home Page and a Shop Page, so they get counted as a user towards both segments. 
 
-By default, Mixpanel answers the question: per segment, tell me the number of unique users, NOT tell me how the 2441 users are distributed across the various pages with a user being counted only towards one segment, which will require assigning a user to one segment even if they contributed towards multiple segments. 
+By default, Mixpanel answers the question: per segment, tell me the number of unique users, DON'T tell me how the 2441 users are distributed across the various pages with a user being counted only towards one segment, which will require assigning a user to one segment even if they contributed towards multiple segments. 
 
 ![image](/uniques_default.png)
 
-There are some case though, where you want to know how the 2441 users are distributed, generally either by their first or last action. For example, based on the last page (segment) a user saw, tell me the distribution of users. You can enable this now via the advanced control for Uniques, by choosing which one segment to associate a user to: either the first segment or the last segment in the chart date-range (7D in the below image) 
+There are some cases though, where you want to know how the 2441 users are distributed, generally either by their first or last action. For example, based on the last page (segment) a user saw, tell me the distribution of users. You can enable this now via the advanced control for Uniques, by choosing which segment to associate a user to: either the first segment or the last segment in the chart date range (7D in the below image) 
 
 ![image](/uniques_count_once.png)
 
-To note - in a line chart, there are two concepts of time period: chart date-range (3M below) and time interval (weekly interval below). When advanced controls are used in a line chart, it assigns a segment based on the first/ last segment for each time-interval, NOT across all time-intervals in the chart-range. For eg. User Joey could count towards Contact Page Wk of Feb 27 and Shop Page Wk of March 6. But in the same time-interval, they would count only towards one segment
+To note - in a line chart, there are two concepts of time period: chart date range (3M below) and time interval (weekly interval below). When advanced controls are used in a line chart, it assigns a segment based on the first/last segment for each time interval, NOT across all time intervals in the chart range. For eg. user Joey could count towards Contact Page Wk of Feb 27 and Shop Page Wk of March 6. But in the same time interval, they would count only towards one segment.
 
 ![image](/uniques_count_once_line.png)
 
@@ -386,12 +386,12 @@ To note - in a line chart, there are two concepts of time period: chart date-ran
 | Minimum property value count per user | What's the average of the minimum ratings provided per user? | What's the distribution of my users by the minimum rating provided? | What's the median of the minimum ratings provided by users? | What's the minimum rating provided by the 90th percentile user? | What's the minimum rating across all ratings?? |
 | Maximum property value count per user | What's the average of the maximum gaming session length per user? | What's the distribution of my users by the maximum gaming session length? | What's the median of the maximum gaming session length per user? | What's the maximum gaming session length provided by the 90th percentile user? | How long has the longest gaming session lasted across our users? |
 
-Here's a quick overview on "Distinct count" of property values, and how that differs from "Distinct count" of property values per-user:
+Here's a quick overview on "Distinct count" of property values, and how that differs from "Distinct count" of property values per user:
 
-Here are some use-cases that are now possible with "Distinct count" of property values:
+Here are some use cases that are now possible with "Distinct count" of property values:
 
 - How many **unique items** were added to cart yesterday?
-- How many **unique songs / videos** were played in the last 30 days?
+- How many **unique songs/videos** were played in the last 30 days?
 - How many **unique files** were worked on in the last week?
 
 ### Analysis Settings
@@ -400,8 +400,8 @@ Allows you to change the metric being measured. Access by going into the advance
 
 ![Rolling and Cumulative](/rolling-cumulative.png)
 
-- **Rolling Average:** Rolling analysis calculates the rolling average of the data set. A rolling average curve is a series of averages from subsets of data. Use rolling average analysis to remove noise or spikes from data and smooth out trends over time. Mixpanel calculates the rolling average based on the selected time interval (hour, day, week, month or quarter) for each data point in the graph.<br />
-For example, if you make a rolling analysis query for the past 30 days, Mixpanel calculates the rolling 7-day average by default. The value reported at each day in the line graph is the average of the values from the 7 days leading to that day. In the case of the first 6 days in your selected time period, the 7-day-average calculation will include days before the selected time period.
+- **Rolling Average:** Rolling analysis calculates the rolling average of the data set. A rolling average curve is a series of averages from subsets of data. Use rolling average analysis to remove noise or spikes from data and smooth out trends over time. Mixpanel calculates the rolling average based on the selected time interval (hour, day, week, month, or quarter) for each data point in the graph.<br />
+For example, if you make a rolling analysis query for the past 30 days, Mixpanel calculates the rolling 7-day average by default. The value reported on each day in the line graph is the average of the values from the 7 days leading to that day. In the case of the first 6 days in your selected time period, the 7-day-average calculation will include days before the selected time period.
 - **Cumulative:** Adds up the values of each point on the graph as it goes along, so the height of the line will increase over time.
 
 <p style={{ position: 'relative', paddingBottom: '56.25%', height: 0, overflow: 'hidden' }}>
@@ -422,7 +422,7 @@ Click on a chart segment in Insights and view the raw events that made up that m
 
 ### View Sample Events
 
-You can hover over any event and in the context panel, you now have the ability to "View Sample Events", which redirects you to the Events page with 100 most recent samples of that hovered event:
+You can hover over any event and in the context panel, you now have the ability to "View Sample Events", which redirects you to the Events page with the 100 most recent samples of that hovered event:
 You can see a few samples of an event to help you decide whether that's the right event you want for your analysis or which property you should use for filters/breakdowns.
 
 ![View Sample Events](/advanced-view-sample-events.gif)
