@@ -128,6 +128,7 @@
 /docs/tracking/data-warehouse/events /docs/tracking-methods/data-warehouse/sending-events
 /docs/tracking/data-warehouse/groups /docs/tracking-methods/data-warehouse/sending-group-profiles
 /docs/tracking/data-warehouse/redshift /docs/tracking-methods/data-warehouse/redshift
+/docs/tracking/data-warehouse/databricks /docs/tracking-methods/data-warehouse/databricks
 /docs/tracking/data-warehouse/snowflake /docs/tracking-methods/data-warehouse/snowflake
 /docs/tracking/data-warehouse/users /docs/tracking-methods/data-warehouse/sending-user-profiles
 /docs/tracking/how-tos/ad-spend /docs/data-structure/advanced/ad-spend
