@@ -1,0 +1,35 @@
+.buttonContainer {
+    display: flex;
+    flex-direction: row;
+}
+
+.button {
+    border: 1px solid #c0c0c0;
+    border-radius: 8px;
+    display: flex;
+    font-weight: 500;
+    margin-right: 16px;
+    margin-top: 16px;
+    padding: 16px 32px;
+    transition: 0.5s;
+
+    &:hover {
+        background-color: #e8ddff;
+        border: 1px solid #b094ff;
+        transition: 0.5s;
+    }
+}
+
+.thumbsUp {
+    color: green;
+}
+
+.thumbsDown {
+    color: #cc332b;
+}
+
+.inlineIcon {
+    display: inline-block;
+    margin-left: 8px;
+    width: 22px;
+}

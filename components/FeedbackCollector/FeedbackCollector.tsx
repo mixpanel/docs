@@ -1,4 +1,9 @@
+import clsx from "clsx";
 import { track } from "../../utils/tracking";
+import ThumbsDownIcon from "../svg/ThumbsDown";
+import ThumbsUpIcon from "../svg/ThumbsUp";
+
+import style from "./FeedbackCollector.module.scss";
 
 export function FeedbackCollector() {
   const handleFeedback = function (value: boolean) {
@@ -10,9 +15,21 @@ export function FeedbackCollector() {
 
   return (
     <>
-    Was this page useful?
-      <button onClick={() => handleFeedback(true)}>Yes 👍</button>
-      <button onClick={() => handleFeedback(false)}>Could be better 👎</button>
+      <p className="nx-text-lg nx-font-medium">Was this page useful?</p>
+      <div className={style.buttonContainer}>
+        <button className={style.button} onClick={() => handleFeedback(true)}>
+          Yes
+          <span className={clsx(style.thumbsUp, style.inlineIcon)}>
+            <ThumbsUpIcon />
+          </span>
+        </button>
+        <button className={style.button} onClick={() => handleFeedback(false)}>
+          Could be better
+          <span className={clsx(style.thumbsDown, style.inlineIcon)}>
+            <ThumbsDownIcon />
+          </span>
+        </button>
+      </div>
     </>
   );
 }
