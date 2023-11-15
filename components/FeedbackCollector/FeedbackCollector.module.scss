@@ -1,4 +1,3 @@
-@use "../../pages/theme/breakpoints.scss" as breakpoints;
 @use "../../pages/theme/colors.scss" as colors;
 @use "sass:color";
 
@@ -19,10 +18,7 @@
 
 .buttonContainer {
     display: inline-flex;
-
-    @include breakpoints.small {
-        display: block;
-    }
+    flex-wrap: wrap;
 }
 
 .button {
