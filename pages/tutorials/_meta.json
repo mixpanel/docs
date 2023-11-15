@@ -1,2 +1,27 @@
 {
+	"onboarding": {
+		"type": "separator",
+		"title": "ONBOARDING"
+	},
+	"overview": "Overview",
+	"plan": "Plan",
+	"implement": "Implement",
+	"launch": "Launch",
+
+	"support": {
+		"type": "separator",
+		"title": "SUPPORT"
+	},
+	"community": "Community",
+	"get-help": {
+		"title": "Get Help ↗",
+		"newWindow": true,
+		"href": "https://mixpanel.com/get-support"
+	},
+	"response-times": "Response Times",
+	"hire-an-expert": {
+		"title": "Hire an Expert ↗",
+		"newWindow": true,
+		"href": "https://mixpanel.com/partners/experts/matchmaking"
+	}
 }
