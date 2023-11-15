@@ -6,9 +6,6 @@ If you haven't already, we recommend starting with our [Migration Guides Overvie
 
 ### Data Model
 
-Adobe’s data model is based on the concept of Hits which contains the event names and the relevant properties associated with a particular event. Depending on how your Adobe instance is set up, you could have a different eVar name to signify the name of the event that is being triggered. When an event is being triggered regards of which event it is, it will all appear on Adobe as a Hit whereas on Mixpanel’s UI it will show up with the exact name of the event. eVars are custom variables that can be designed accordingly to the metrics required by the organisations and works the same way as Mixpanel’s event properties. By default, eVars persist beyond the Hit they are set on although their expiration is customisable. 
-
-The concatenation of post_visid_high and post_visid_low are typically used as the standard of identifying unique visitors on Adobe where on Mixpanel its determined by the cannonical ID associated with the user.
 
 Mixpanel’s data model is based on events and properties, rather than Adobe which is schema-based with many different configurable data types. While this might be a shift if you come from the schema model where you define your data to be captured upfront before sending any data, we’ve found [schema-on-read](/docs/how-it-works/infrastructure#schema-on-read) to be both more flexible and easier to set up and use.
 
@@ -17,9 +14,15 @@ Mixpanel’s data model is based on events and properties, rather than Adobe whi
 
 Events and properties with schema-on-read let you get more granular than an enforced schema so you can spend your time analyzing data versus formatting it. Mixpanel automatically constructs a schema from the events and properties you send, so you can answer the same questions as before faster and with less development headaches.
 
-### Frequently used key metrics on Adobe
+In contrast, on Adobe, every user interaction comes across as a “hit”. Within “hits”, there are what Adobe terms “eVars”, which are variables that can be customized to the organization’s requirements. The following diagram helps to illustrate the key differences between Adobe and Mixpanel’s instrumentation: on Adobe, an administrator needs to manually instrument every metric before it can be used in the platform. For example, the administrator would need to create a separate metric for “Total Page Views” and “Unique Page Views” before an end user can query it. Whereas on Mixpanel, once the event “Page View” is sent, the end user easily, on the fly, whip up a report to show the page views by total vs. unique users.  
 
-A visit: Always tied to a time period, so you know whether to count a new visit if the same user returns to your site. A visit ends when they meet any of the following criteria:
+![image](/adobe vs MP instrumentation.png)
+
+In Mixpanel, we also have a separate table for users and user properties. If using Mixpanel’s SDK, unique users are identified by a $device_id to associate events to the same anonymous user. Once a user signs up or logs in, you’ll call .identify(<user_id>) to map users’ known user_id to their $device_id. In Adobe on the other hand, unique users are identified by the concatenation of post_visid_high and post_visid_low properties on the “hit”. Adobe will take the first ID present from in the “hit” as the official visitor ID, and then use the concatenation of post_visid_high and post_visid_low as the standard of identifying unique visitors regardless of how they were identified as a [unique visitor](https://experienceleague.adobe.com/docs/analytics/export/analytics-data-feed/data-feed-contents/datafeeds-calculate.html?lang=en). For example, if you are setting a custom visitor ID (included in the "vid" query parameter), that ID will be used before other IDs that might be present on that same hit. 
+
+### Frequently used key metrics on Adobe and how they differ on Mixpanel
+
+**A visit**: Always tied to a time period, so you know whether to count a new visit if the same user returns to your site. A visit ends when they meet any of the following criteria:
 
 - **30 minutes of inactivity**: Almost all sessions end in this manner. If more than 30 minutes lapse between hits, a new visit begins.
 - **12 hours of activity**: If a user consistently fires image requests without any 30-minute gaps for more than 12 hours, a new visit automatically starts.
@@ -40,14 +43,11 @@ If a visitor performs any of these actions, a new visit starts:
 - Opens a different browser and navigates to your site on the same computer
 - The same person browsing your site on different devices
 
-> No visibility of full end user journey across platforms:
-> Adobe was highly popularised during a period where web was dominant which explains why adobe customers find it difficult when trying to understand the end to end user journey on the UI itself because there isn't really a way of identifying user across various platform in an era where omni channel experience is the baseline for more organisations. The workaround for this which Nykaa did was to export out aggregated data through pipelines into their tableau instance where their data then had to manually merge the numbers together.
+**Page Views**: Not to be confused with Visits. Page views count the number of times a page is being viewed. Visits count the number of sessions for visitors. One visit can consist of one or more page views.
 
-- Page Views: Not to be confused with Visits. Page views count the number of times a page is being viewed. Visits count the number of sessions for visitors. One visit can consist of one or more page views.
+**Unique visitors**: Adobe has a rather complicated mechanism of identifying unique user as illustrated in the table on their help docs [here](https://experienceleague.adobe.com/docs/analytics/components/metrics/unique-visitors.html?lang=en). It lists the ways a visitor is identified, along with its priority. Some hits can have multiple visitor identification methods; in these cases the higher priority method is used.
 
-- Unique visitors: Adobe has a rather complicated mechanism of identifying unique user as illustrated in the table on their help docs [here] (https://experienceleague.adobe.com/docs/analytics/components/metrics/unique-visitors.html?lang=en). It lists the ways a visitor is identified, along with its priority. Some hits can have multiple visitor identification methods; in these cases the higher priority method is used.
-
-  ** As unique visitor identifiers are typically stored in a browser cookie. A new unique visitor is counted if they perform any of the following:
+** As unique visitor identifiers are typically stored in a browser cookie, a new unique visitor is counted if they perform any of the following:
 
 - Clears their cache at any time
 - Opens a different browser on the same computer. One unique visitor is counted per browser.
@@ -56,8 +56,6 @@ If a visitor performs any of these actions, a new visit starts:
 
 As a result, many internal Adobe users aren't too sure of how unique visitors are actually calculated given that it’s also dependent on how their data set up is done by the consultants they hire, eventually making these calculations somewhat a blackbox.
 
-> Caveat when Identifying users
-> In many instances you might see 2 or 3 different IDs in a HIT, but the way Adobe will read it is to use the first ID present from that list as the official visitor ID, and then use the concatenation of `post_visid_high and post_visid_low` as the standard of identifying unique visitors regardless of how they were identified as a [unique visitor](https://experienceleague.adobe.com/docs/analytics/export/analytics-data-feed/data-feed-contents/datafeeds-calculate.html?lang=en). For example, if you are setting a custom visitor ID (included in the "vid" query parameter), that ID will be used before other IDs that might be present on that same hit.
 
 ## Track forward looking real-time data
 
@@ -130,7 +128,7 @@ For most cases, we recommend starting fresh when migrating from Adobe Analytics.
 
 1. **Whats the purpose of bringing in historical data?**
     
-    It’s KEY to understand if you would just like a place to store historical data once Adobe is sunset or would you actually need those historical for key metrics analysis. If its the former, the recommendation would be to send those data into a warehouse rather than Mixpanel.
+    It’s key to understand if you would just like a place to store historical data once Adobe is sunset or would you actually need those historical data for key metrics analysis. If its the former, the recommendation would be to send those data into a warehouse rather than Mixpanel.
     
 2. **What is the time frame which you are looking at for historical data?**
     
@@ -140,7 +138,7 @@ For most cases, we recommend starting fresh when migrating from Adobe Analytics.
     
     Instead of running the full load which would take a long time for the data to be available in the Mixpanel project, are there specific events and properties which are considered P0 for your team? In that case when running the script the data will be available in a much shorter period of time.
     
-4. **Given the complexity of unique identifiers in Adobe (also dependent on consultants have implemented for the organisation), what is the logic for the main identifier for your unique visitors.** 
+4. **Given the complexity of unique identifiers in Adobe (also dependent on consultants have implemented for the organization), what is the logic for the main identifier for your unique visitors.** 
     
 5. **What is the limit to the % of discrepancies in which they are willing to accept**
     
@@ -178,6 +176,4 @@ If you're unsure how you currently track data, or might want to consider trackin
 Mixpanel Customer Success and Support have been helping thousands of customers migrate from other tools to Mixpanel over the past decade. You can see an overview of the process we run with our Enterprise plan customers migrating from Adobe Analytics [here](https://mxpnl.notion.site/Adobe-Migration-Package-4035f7e2f62f43adb65e34b23ad14d23?pvs=4).
 
 If you need help, just [reach out here](https://mixpanel.com/get-support) and we'll be ready to assist with advice specific to your situation.
-
-
 
