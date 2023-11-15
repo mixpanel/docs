@@ -3,10 +3,10 @@
 		"type": "separator",
 		"title": "ONBOARDING"
 	},
-	"overview": "Overview",
-	"plan": "Plan",
-	"implement": "Implement",
-	"launch": "Launch",
+	"onboarding-overview": "Overview",
+	"onboarding-plan": "Plan",
+	"onboarding-implement": "Implement",
+	"onboarding-launch": "Launch",
 
 	"support": {
 		"type": "separator",
