@@ -124,17 +124,63 @@ We provide Mixpanel as a destination and setup guides for all of the most popula
 - [mParticle](https://docs.mparticle.com/integrations/mixpanel/audience/)
 - [Rudderstack](https://www.rudderstack.com/docs/destinations/streaming-destinations/mixpanel/)
 
-### Loading historical data
+### Loading historical data 
 
 Given GA4 has a similar data format to Mixpanel, it is possible to migrate some of your historical data to see trends. In the cases where historical data is essential, we recommend loading a year’s worth (or less) of historical data during your migration. This will allow your team to review year-over-year trends easily and do historical analysis as needed.
 
 To backfill data, we recommend:
 - If you have a CDP, this should be straightforward
     - Utilize the CDPs backfilling feature, like [Segment Replay](https://segment.com/docs/guides/what-is-replay/), to re-send historical data to Mixpanel
-- For any other implementation method
-    - First, export your data to the data warehouse so you have a record of Universal Analytics
-    - Once exported, your data warehouse tables can be transformed and modeled into the [event format](/docs/data-structure/events-and-properties) Mixpanel expects
-    - Leverage our [Import API](https://developer.mixpanel.com/reference/import-events) to send us the formatted events from your data warehouse
+- If your data is stored in GA4, leverage the [Mixpanel Warehouse Connector feature](https://docs.mixpanel.com/docs/tracking-methods/data-warehouse/overview) to import the data into Mixpanel. Below we outline steps for the migration.
+
+#### Syncing GA4 data to Google BigQuery
+
+You can export your data to BigQuery for free. Consequently, this is the preferred method for migrating GA4 data into Mixpanel. Here's the migration overview,  
+
+##### GA4 event schema in BigQuery
+
+While GA4 event data model is similar to Mixpanel, its BigQuery schema is not entirely compatible with Mixpanel. For example, event properties are stored in `event_params`(RECORD data type) in Bigquery. Sending them directly to Mixpanel will result in nested data, which is not ideal for data analysis. To address this, data needs to be transformed in BigQuery before ingesting it into Mixpanel.  
+
+##### GA4 user schema in BigQuery 
+
+GA4 exports 2 types of user tables to BigQuery, 
+1. `pseudonymous_users_YYYYMMDD` - This table contains only anonymous users updated on the specific day.
+2. `users_YYYYMMDD` - This table contains only known users updated on the specific day. 
+
+We would just need to import `users_YYYYMMDD` to Mixpanel (and not the `pseudonymous_users_YYYYMMDD` table) as we don’t recommend setting user properties for anonymous users in Mixpanel. 
+
+#### Pre-migration data audit
+Before migrating your data to Mixpanel, you can conduct a data audit to quickly identify the key events / properties that you want to migrate over. You can learn more about the importance of pre-migration data audit [here](https://docs.mixpanel.com/docs/migration/overview#data-audit).  
+
+Here are some sample SQL queries to help you conduct a data audit
+
+```jsx
+SELECT 
+event_name, 
+COUNT(event_name) AS total_rows
+FROM `bigquery-public-data.ga4_obfuscated_sample_ecommerce.events_20210131` 
+GROUP BY event_name
+ORDER BY total_rows DESC
+```
+
+```jsx
+SELECT DISTINCT
+    event_name,
+    ep.key  AS event_properties,
+COUNT(event_name) as total_rows
+FROM `bigquery-public-data.ga4_obfuscated_sample_ecommerce.events_20210131` , UNNEST(event_params) as ep
+GROUP BY event_name, ep.key
+ORDER BY event_name ASC
+```
+
+```jsx
+SELECT 
+  event_name,
+  ep.key,
+  COALESCE(ep.value.int_value, ep.value.float_value, ep.value.double_value) AS value
+FROM `bigquery-public-data.ga4_obfuscated_sample_ecommerce.events_20210131`, UNNEST(event_params) AS ep
+LIMIT 100
+```
 
 ## Currently using Universal Analytics with Google?
 
