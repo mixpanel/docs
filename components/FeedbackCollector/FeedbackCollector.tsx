@@ -10,20 +10,20 @@ import style from "./FeedbackCollector.module.scss";
 export function FeedbackCollector() {
   const [gaveFeedback, setGaveFeedback] = useState(false);
 
-  const handleFeedback = function (value: boolean) {
+  const handleFeedback = function (isPositive: boolean) {
     const props = {
       title: document.querySelector(`h1`).textContent,
     }
-    track(value ? `Docs Promoter` : `Docs Detractor`, props);
+    track(isPositive ? `Docs Promoter` : `Docs Detractor`, props);
     setGaveFeedback(true);
   };
 
   return (
-    <>
+    <div className={style.root}>
       {gaveFeedback ?
-        <p className="nx-text-lg nx-font-medium">Thanks for your feedback!</p> : (
+        <p className={clsx(style.title, style.feedback)}>Thanks for your feedback!</p> : (
           <>
-            <p className="nx-text-lg nx-font-medium">Was this page useful?</p>
+            <p className={style.title}>Was this page useful?</p>
             <div className={style.buttonContainer}>
               <button className={style.button} onClick={() => handleFeedback(true)}>
                 Yes
@@ -41,6 +41,6 @@ export function FeedbackCollector() {
           </>
         )
       }
-    </>
+    </div>
   );
 }

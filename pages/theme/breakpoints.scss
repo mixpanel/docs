@@ -1,0 +1,95 @@
+$large-screen: 1440px;
+$medium-screen: 1135px;
+$small-screen-extended: 800px; // Optional breakpoint that will not always be used
+$small-screen: 600px;
+$xs-screen: 360px;
+
+/*
+* We have four primary viewport widths design and engineering work within:
+*    Small
+*    0 - 600 (0 — $small-screen)
+*
+*    Medium
+*    601 - 1135 ($small-screen — $medium-screen)
+*
+*    Large
+*    1136 — 1440 ($medium-screen — $large-screen)
+*
+*    X-Large (used rarely, goes beyond maximum grid width)
+*    1441+ ($large-screen — Infinity)
+*
+*/
+
+// Helpers
+
+@mixin smaller-than($max-width) {
+    @media (max-width: $max-width) {
+        @content;
+    }
+}
+
+@mixin between($min-width, $max-width) {
+    @media (min-width: $min-width + 1px) and (max-width: $max-width) {
+        @content;
+    }
+}
+
+@mixin larger-than($min-width) {
+    @media (min-width: $min-width + 1px) {
+        @content;
+    }
+}
+
+@mixin column-full-width() {
+    flex-basis: 100%;
+}
+
+// Exclusive viewports
+@mixin small {
+    @include smaller-than($small-screen) {
+        @content;
+    }
+}
+
+@mixin medium {
+    @include between($small-screen, $medium-screen) {
+        @content;
+    }
+}
+
+@mixin large {
+    @include between($medium-screen, $large-screen) {
+        @content;
+    }
+}
+
+@mixin medium-and-large {
+    @include between($small-screen, $large-screen) {
+        @content;
+    }
+}
+
+@mixin x-large {
+    @include larger-than($large-screen) {
+        @content;
+    }
+}
+
+// Inclusive viewports
+@mixin medium-down {
+    @include smaller-than($medium-screen) {
+        @content;
+    }
+}
+
+@mixin medium-up {
+    @include larger-than($small-screen) {
+        @content;
+    }
+}
+
+@mixin large-up {
+    @include larger-than($medium-screen) {
+        @content;
+    }
+}

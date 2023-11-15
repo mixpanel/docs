@@ -1,22 +1,51 @@
+@use "../../pages/theme/breakpoints.scss" as breakpoints;
+@use "../../pages/theme/colors.scss" as colors;
+@use "sass:color";
+
+.root {
+    border-top-width: 1px;
+}
+
+.title {
+    font-weight: 500;
+    font-size: 16px;
+}
+
+.feedback {
+    margin-bottom: 36px;
+    margin-top: 36px;
+}
+
 .buttonContainer {
     display: flex;
     flex-direction: row;
 }
 
 .button {
-    border: 1px solid #c0c0c0;
-    border-radius: 8px;
+    background-color: colors.$base80;
+    border-radius: 100px;
+    box-shadow: 0 6px 12px color.adjust(colors.$black, $alpha: -0.95);
     display: flex;
     font-weight: 500;
     margin-right: 16px;
     margin-top: 16px;
-    padding: 16px 32px;
+    padding: 16px 24px;
     transition: 0.5s;
 
+    @include breakpoints.small {
+        padding: 16px;
+    }
+
     &:hover {
-        background-color: #e8ddff;
-        border: 1px solid #b094ff;
+        background-color: colors.$purple20;
+        box-shadow: 0 6px 12px color.adjust(colors.$purple140, $alpha: -0.95);
         transition: 0.5s;
+
+        .thumbsDown, .thumbsUp {
+            color: colors.$purple200;
+            transition: 0.5s;
+        }
+
     }
 }
 
@@ -25,7 +54,7 @@
 }
 
 .thumbsDown {
-    color: #cc332b;
+    color: colors.$lava140;
 }
 
 .inlineIcon {
