@@ -4,6 +4,7 @@
 
 .root {
     border-top-width: 1px;
+    padding-top: 28px;
 }
 
 .title {
@@ -17,13 +18,16 @@
 }
 
 .buttonContainer {
-    display: flex;
-    flex-direction: row;
+    display: inline-flex;
+
+    @include breakpoints.small {
+        display: block;
+    }
 }
 
 .button {
     background-color: colors.$base80;
-    border-radius: 100px;
+    border-radius: 16px;
     box-shadow: 0 6px 12px color.adjust(colors.$black, $alpha: -0.95);
     display: flex;
     font-weight: 500;
@@ -31,10 +35,6 @@
     margin-top: 16px;
     padding: 16px 24px;
     transition: 0.5s;
-
-    @include breakpoints.small {
-        padding: 16px;
-    }
 
     &:hover {
         background-color: colors.$purple20;
