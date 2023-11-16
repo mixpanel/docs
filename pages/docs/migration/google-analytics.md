@@ -133,26 +133,34 @@ To backfill data, we recommend:
     - Utilize the CDPs backfilling feature, like [Segment Replay](https://segment.com/docs/guides/what-is-replay/), to re-send historical data to Mixpanel
 - If your data is stored in GA4, leverage [Mixpanel Warehouse Connector](https://docs.mixpanel.com/docs/tracking-methods/data-warehouse/overview) to import the data into Mixpanel. Below we outline steps for the migration process.
 
-#### Syncing GA4 data to Google BigQuery
+### Loading historical data via Mixpanel Bigquery Warehouse Connector 
 
-You can export your data to BigQuery for free. Consequently, this is the preferred method for migrating GA4 data into Mixpanel. Here's the migration overview,  
+You can export your data to BigQuery for free. Consequently, this is the preferred method for migrating GA4 data into Mixpanel. Here's the migration overview,
 
-##### GA4 event schema in BigQuery
+![image](/ga4_event_overview.png)
+
+At a high-level, the migration consists of 4 steps:
+1. Set up a new Mixpanel project which is on [Simplified ID Merge system](https://docs.mixpanel.com/docs/tracking-methods/identifying-users#simplified-vs-original-id-merge). 
+2. Set up GA4 Bigquery Export following the instructions [here](https://support.google.com/analytics/answer/9823238?hl=en#zippy=%2Cin-this-article). 
+3. Transform GA4 data in Bigquery.   
+4. Set up [Mixpanel Warehouse Connector](https://docs.mixpanel.com/docs/tracking-methods/data-warehouse/overview) to initiate data sync from BigQuery to Mixpanel  
+
+#### GA4 event schema
 
 While GA4 event data model is similar to Mixpanel, its BigQuery schema is not entirely compatible with Mixpanel. For example, event properties are stored in `event_params`(RECORD data type) in Bigquery. Sending them directly to Mixpanel will result in nested data structure which is not ideal for data analysis. To address this, data needs to be transformed in BigQuery before ingesting it into Mixpanel.  
 
-##### GA4 user schema in BigQuery 
+#### GA4 user schema 
 
 GA4 exports 2 types of user tables to BigQuery, 
 1. `pseudonymous_users_YYYYMMDD` - This table contains only anonymous users updated on the specific day.
 2. `users_YYYYMMDD` - This table contains only known users updated on the specific day. 
 
-We would just need to import `users_YYYYMMDD` to Mixpanel (and not the `pseudonymous_users_YYYYMMDD` table) as we don’t recommend setting user properties for anonymous users in Mixpanel. 
+You would just need to import `users_YYYYMMDD` to Mixpanel (and not the `pseudonymous_users_YYYYMMDD` table) as Mixpanel doesn’t recommend setting user properties for anonymous users. Similar to event properties, user properties are stored in `user_properties`(RECORD data type) in Bigquery, which needs to be transformed into a compatible data stucture before sending them to Mixapnel. 
 
 #### Pre-migration data audit
 Before migrating your data to Mixpanel, you can conduct a data audit to quickly identify the key events and properties that you want to migrate over. You can learn more about the importance of pre-migration data audit [here](https://docs.mixpanel.com/docs/migration/overview#data-audit).  
 
-You can use the following SQL queries to conduct a data audit.  
+The following SQL queries can be used to conduct a data audit in BigQuery. 
 
 SQL query to return events by volume: 
 
@@ -200,7 +208,9 @@ GROUP BY up.value.user_property_name
 
 #### Transforming GA4 data in Bigquery 
 
-##### Example of how to construct your event table in BigQuery 
+The following SQL queries help to transform the event and user tables exported by GA4, ensuring that they are aligned with Mixpanel data model and our Warehouse Connector. Please note that the SQL queries serve as an example and are not exhaustive. Please check the query against your Bigquery schema to ensure that all required data is mapped accordingly. For example, you may need to add extra SQL lines to `UNNEST` your custom event properties or remove unwanted data mappings. 
+
+Example of how to construct your event table in BigQuery:  
 
 ```jsx
 SELECT
@@ -321,7 +331,7 @@ SELECT
   WHERE _TABLE_SUFFIX BETWEEN FORMAT_DATE('%Y%m%d',DATE_SUB(CURRENT_DATE(), INTERVAL 30 DAY)) AND FORMAT_DATE('%Y%m%d',CURRENT_DATE());
 ```
 
-##### Example of how to construct your user table in BigQuery 
+Example of how to construct your user table in BigQuery:  
 
 ```jsx
 SELECT 
@@ -375,6 +385,9 @@ Historical events older than 30 days ago will not show up on Lexicon, Events pag
 - Source = warehouse-import (`$source`)
 
 Please filter by tracked name, $warehouse_import_id instead of the display name, “Warehouse Import ID”. You can find the properties values on the Warehouse Connector’ sync logs,
+
+![image](/ga4_event_validation.jpg)
+
 
 ## Currently using Universal Analytics with Google?
 
