@@ -1,6 +1,5 @@
 {
-	"onboarding-overview": "Onboarding Overview",
-	"plan": "Plan",
-	"implement": "Implement",
-	"launch": "Launch",
+	"setup": "Setup",
+	"framework": "Framework",
+	"tracking-strategy": "Tracking Strategy",
 }
