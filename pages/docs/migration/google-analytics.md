@@ -133,19 +133,19 @@ To backfill data, we recommend:
     - Utilize the CDPs backfilling feature, like [Segment Replay](https://segment.com/docs/guides/what-is-replay/), to re-send historical data to Mixpanel
 - If you don't have a CDP, you can leverage our [Warehouse Connector](/docs/tracking-methods/data-warehouse/overview) to import your GA4 data from Google BigQuery into Mixpanel. Below we outline steps for the migration process.
 
-#### Loading historical data via Mixpanel Bigquery Warehouse Connector 
+#### Loading historical data via Mixpanel BigQuery Warehouse Connector 
 
 ![image](/public/ga4_overview.png)
 
 At a high-level, the migration consists of 4 steps:
 1. Set up a new Mixpanel project which is on [Simplified ID Merge system](/docs/tracking-methods/identifying-users#simplified-vs-original-id-merge). 
-2. Set up GA4 Bigquery Export following the instructions [here](https://support.google.com/analytics/answer/9823238?hl=en#zippy=%2Cin-this-article). 
-3. Transform GA4 data in Bigquery.   
+2. Set up GA4 BigQuery Export following the instructions [here](https://support.google.com/analytics/answer/9823238?hl=en#zippy=%2Cin-this-article). 
+3. Transform GA4 data in BigQuery.   
 4. Set up [Mixpanel Warehouse Connector](/docs/tracking-methods/data-warehouse/overview) to initiate data sync from BigQuery to Mixpanel  
 
 ##### GA4 event schema
 
-While GA4 event data model is similar to Mixpanel, its schema in BigQuery is not entirely compatible with Mixpanel and needs to be first transformed before ingesting into Mixpanel. For example, event properties are stored in `event_params`(RECORD data type) in Bigquery. Sending them directly to Mixpanel will result in nested data structure which is not ideal for data analysis. 
+While GA4 event data model is similar to Mixpanel, its schema in BigQuery is not entirely compatible with Mixpanel and needs to be first transformed before ingesting into Mixpanel. For example, event properties are stored in `event_params`(RECORD data type) in BigQuery. Sending them directly to Mixpanel will result in nested data structure which is not ideal for data analysis. 
 
 ##### GA4 user schema 
 
@@ -153,7 +153,7 @@ GA4 exports 2 types of user tables to BigQuery,
 1. `pseudonymous_users_YYYYMMDD` - This table contains only anonymous users updated on the specific day.
 2. `users_YYYYMMDD` - This table contains only known users updated on the specific day. 
 
-As [Mixpanel doesn't recommend setting user properties for anonymous users](/docs/tracking-methods/identifying-users#avoid-creating-profiles-for-anonymous-users), you would just need to import the `users_YYYYMMDD` table to Mixpanel (and not the `pseudonymous_users_YYYYMMDD` table). Similar to event properties, user properties are stored in `user_properties`(RECORD data type) in Bigquery, which needs to be transformed into a compatible data stucture before sending them to Mixpanel. 
+As [Mixpanel doesn't recommend setting user properties for anonymous users](/docs/tracking-methods/identifying-users#avoid-creating-profiles-for-anonymous-users), you would just need to import the `users_YYYYMMDD` table to Mixpanel (and not the `pseudonymous_users_YYYYMMDD` table). Similar to event properties, user properties are stored in `user_properties`(RECORD data type) in BigQuery, which needs to be transformed into a compatible data stucture before sending them to Mixpanel. 
 
 ##### Pre-migration data audit
 Before migrating your data to Mixpanel, you should conduct a data audit to quickly identify the key events and properties that you want to migrate over. You can learn more about the importance of pre-migration data audit [here](/docs/migration/overview#data-audit).  
@@ -204,9 +204,9 @@ FROM `mixpanel-sa.analytics_406874950.users_20231002` , UNNEST(user_properties) 
 GROUP BY up.value.user_property_name
 ```
 
-##### Transforming GA4 data in Bigquery 
+##### Transforming GA4 data in BigQuery 
 
-You can reference the following SQL queries to transform the event and user tables exported by GA4 so that they are aligned with our Mixpanel data model and our Warehouse Connector. Please note that the SQL queries serve as an example and are not exhaustive. Please check the query against your Bigquery schema to ensure that all required data is mapped accordingly. For example, you may need to add extra SQL lines to `UNNEST` your custom event properties or remove unwanted data mappings. 
+You can reference the following SQL queries to transform the event and user tables exported by GA4 so that they are aligned with our Mixpanel data model and our Warehouse Connector. Please note that the SQL queries serve as an example and are not exhaustive. Please check the query against your BigQuery schema to ensure that all required data is mapped accordingly. For example, you may need to add extra SQL lines to `UNNEST` your custom event properties or remove unwanted data mappings. 
 
 Example of how to construct your event table in BigQuery:  
 
@@ -374,7 +374,7 @@ FROM `mixpanel-sa.analytics_406874950.users_*`
 WHERE _TABLE_SUFFIX BETWEEN FORMAT_DATE('%Y%m%d',DATE_SUB(CURRENT_DATE(), INTERVAL 30 DAY)) AND FORMAT_DATE('%Y%m%d',CURRENT_DATE());
 ```
 
-##### Setting up Bigquery Warehouse Connectors 
+##### Setting up BigQuery Warehouse Connectors 
 Once you've transformed your data in BigQuery, you can set up the [Mixpanel Warehouse Connector](/docs/tracking-methods/data-warehouse/overview) to migrate your historical data from BigQuery into Mixpanel. We'd recommend first sending a month of data into a test project for validation. 
 
 You can learn more about event mappings [here](/docs/tracking-methods/data-warehouse/sending-events). Here's an example of mappings for event table generated from the SQL query provided above: 
