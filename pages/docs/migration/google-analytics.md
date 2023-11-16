@@ -2,7 +2,7 @@
 
 If you haven't already, we recommend starting with our [Migration Guides Overview](/docs/migration/overview) as it details the key components of migrating to Mixpanel from other analytics tools. Below we outline specific steps and considerations when migrating from Google Analytics.
 
-## Currently using Google Analytics 4 (GA4)?
+## Currently using Google Analytics 4 (GA4) and not seeing value?
 
 ### Track forward looking real-time data
 
@@ -131,23 +131,21 @@ Given GA4 has a similar data format to Mixpanel, it is possible to migrate some 
 To backfill data, we recommend:
 - If you have a CDP, this should be straightforward
     - Utilize the CDPs backfilling feature, like [Segment Replay](https://segment.com/docs/guides/what-is-replay/), to re-send historical data to Mixpanel
-- If your data is stored in GA4, leverage [Mixpanel Warehouse Connector](https://docs.mixpanel.com/docs/tracking-methods/data-warehouse/overview) to import the data into Mixpanel. Below we outline steps for the migration process.
+- If you don't have a CDP, you can leverage our [Warehouse Connector](/docs/tracking-methods/data-warehouse/overview) to import your GA4 data from Google BigQuery into Mixpanel. Below we outline steps for the migration process.
 
-### Loading historical data via Mixpanel Bigquery Warehouse Connector 
-
-You can export your data to BigQuery for free. Consequently, this is the preferred method for migrating GA4 data into Mixpanel. Here's the migration overview,
+#### Loading historical data via Mixpanel Bigquery Warehouse Connector 
 
 ![image](/ga4_event_overview.png)
 
 At a high-level, the migration consists of 4 steps:
-1. Set up a new Mixpanel project which is on [Simplified ID Merge system](https://docs.mixpanel.com/docs/tracking-methods/identifying-users#simplified-vs-original-id-merge). 
+1. Set up a new Mixpanel project which is on [Simplified ID Merge system](/docs/tracking-methods/identifying-users#simplified-vs-original-id-merge). 
 2. Set up GA4 Bigquery Export following the instructions [here](https://support.google.com/analytics/answer/9823238?hl=en#zippy=%2Cin-this-article). 
 3. Transform GA4 data in Bigquery.   
-4. Set up [Mixpanel Warehouse Connector](https://docs.mixpanel.com/docs/tracking-methods/data-warehouse/overview) to initiate data sync from BigQuery to Mixpanel  
+4. Set up [Mixpanel Warehouse Connector](/docs/tracking-methods/data-warehouse/overview) to initiate data sync from BigQuery to Mixpanel  
 
 #### GA4 event schema
 
-While GA4 event data model is similar to Mixpanel, its BigQuery schema is not entirely compatible with Mixpanel. For example, event properties are stored in `event_params`(RECORD data type) in Bigquery. Sending them directly to Mixpanel will result in nested data structure which is not ideal for data analysis. To address this, data needs to be transformed in BigQuery before ingesting it into Mixpanel.  
+While GA4 event data model is similar to Mixpanel, its schema in BigQuery is not entirely compatible with Mixpanel and needs to be first transformed before ingesting into Mixpanel. For example, event properties are stored in `event_params`(RECORD data type) in Bigquery. Sending them directly to Mixpanel will result in nested data structure which is not ideal for data analysis. 
 
 #### GA4 user schema 
 
@@ -155,10 +153,10 @@ GA4 exports 2 types of user tables to BigQuery,
 1. `pseudonymous_users_YYYYMMDD` - This table contains only anonymous users updated on the specific day.
 2. `users_YYYYMMDD` - This table contains only known users updated on the specific day. 
 
-You would just need to import `users_YYYYMMDD` to Mixpanel (and not the `pseudonymous_users_YYYYMMDD` table) as Mixpanel doesn’t recommend setting user properties for anonymous users. Similar to event properties, user properties are stored in `user_properties`(RECORD data type) in Bigquery, which needs to be transformed into a compatible data stucture before sending them to Mixpanel. 
+As [Mixpanel doesn't recommend setting user properties for anonymous users](/docs/tracking-methods/identifying-users#avoid-creating-profiles-for-anonymous-users), you would just need to import the `users_YYYYMMDD` table to Mixpanel (and not the `pseudonymous_users_YYYYMMDD` table). Similar to event properties, user properties are stored in `user_properties`(RECORD data type) in Bigquery, which needs to be transformed into a compatible data stucture before sending them to Mixpanel. 
 
 #### Pre-migration data audit
-Before migrating your data to Mixpanel, you can conduct a data audit to quickly identify the key events and properties that you want to migrate over. You can learn more about the importance of pre-migration data audit [here](https://docs.mixpanel.com/docs/migration/overview#data-audit).  
+Before migrating your data to Mixpanel, you should conduct a data audit to quickly identify the key events and properties that you want to migrate over. You can learn more about the importance of pre-migration data audit [here](/docs/migration/overview#data-audit).  
 
 The following SQL queries can be used to conduct a data audit in BigQuery. 
 
@@ -208,7 +206,7 @@ GROUP BY up.value.user_property_name
 
 #### Transforming GA4 data in Bigquery 
 
-The following SQL queries help to transform the event and user tables exported by GA4, ensuring that they are aligned with Mixpanel data model and our Warehouse Connector. Please note that the SQL queries serve as an example and are not exhaustive. Please check the query against your Bigquery schema to ensure that all required data is mapped accordingly. For example, you may need to add extra SQL lines to `UNNEST` your custom event properties or remove unwanted data mappings. 
+You can reference the following SQL queries to transform the event and user tables exported by GA4 so that they are aligned with our Mixpanel data model and our Warehouse Connector. Please note that the SQL queries serve as an example and are not exhaustive. Please check the query against your Bigquery schema to ensure that all required data is mapped accordingly. For example, you may need to add extra SQL lines to `UNNEST` your custom event properties or remove unwanted data mappings. 
 
 Example of how to construct your event table in BigQuery:  
 
@@ -377,14 +375,16 @@ WHERE _TABLE_SUFFIX BETWEEN FORMAT_DATE('%Y%m%d',DATE_SUB(CURRENT_DATE(), INTERV
 ```
 
 #### Post-migration validation
-Historical events older than 30 days ago will not show up on Lexicon, Events page or in the event dropdown menu across all reports. To validate the historical events, you can query them within the imported timeframe along with the following default properties: 
+Once you've transformed your data, you can set up the [Mixpanel Warehouse Connector](/docs/tracking-methods/data-warehouse/overview) to migrate your historical data from BigQuery into Mixpanel. We'd recommend first sending a month of data into a test project for validation. 
+
+You can use our [Lexicon](/docs/data-governance/lexicon) or Events page to check that your data has successfully been ingested. However, if your historical events are older than 30 days, they will not show up on Lexicon, Events page or in the event dropdown menu across all reports. In this case, you can leverage our [Insights report](docs/reports/insights) to validate the historical events, by selecting the import time frame and filtering by the following default properties: 
 
 - Warehouse Import ID (tracked as `$warehouse_import_id`)
 - Warehouse Import Job ID (`$warehouse_import_job_id`)
 - Import = true (`$import`)
 - Source = warehouse-import (`$source`)
 
-Please filter by tracked name, $warehouse_import_id instead of the display name, “Warehouse Import ID”. You can find the properties values on the Warehouse Connector’ sync logs,
+Please filter by tracked name, $warehouse_import_id instead of the display name, “Warehouse Import ID”. You can find the properties values on the Warehouse Connector’ sync logs:
 
 ![image](/ga4_event_validation.jpg)
 
@@ -456,7 +456,9 @@ We provide Mixpanel as a destination and setup guides for all of the most popula
 
 ### Loading historical data
 
-For most cases, we recommend starting fresh when migrating from UA. In the cases where historical data is essential, we recommend loading a year’s worth (or less) of historical data during your migration. This will allow your team to review year-over-year trends easily and do historical analysis as needed.
+Mixpanel's data model is fundamentally different from UA. As such, the process of importing old data with a different format has many potential issues - identity management, data discrepancies, etc. It may be worth considering your use cases for importing old data before proceeding, as matching users and data across the systems can be time consuming. [Mixpanel Support](https://mixpanel.com/get-support) is here to help if you need advice how to go about importing the historical data.
+
+Consequently, for most cases, we recommend starting fresh when migrating from UA. In the cases where historical data is essential, we recommend loading a year’s worth (or less) of historical data during your migration. This will allow your team to review year-over-year trends easily and do historical analysis as needed.
 
 To backfill data, we recommend:
 - If you have a CDP, this should be straightforward
@@ -465,8 +467,6 @@ To backfill data, we recommend:
     - First, export your data to the data warehouse so you have a record of Universal Analytics
     - Once exported, your data warehouse tables can be transformed and modeled into the [event format](/docs/data-structure/events-and-properties) Mixpanel expects
     - Leverage our [Import API](https://developer.mixpanel.com/reference/import-events) to send us the formatted events from your data warehouse
-
-The process of importing old data with a different format has many potential issues - identity management, data discrepancies, etc. - as Mixpanel is fundamentally different than UA. It may be worth considering your use cases for importing old data before proceeding, as matching users and data across the systems can be time consuming. [Mixpanel Support](https://mixpanel.com/get-support) is here to help if you need advice how to go about importing the historical data.
 
 ## Not sure where to start or need help?
 
