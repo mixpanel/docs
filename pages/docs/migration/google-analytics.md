@@ -135,7 +135,7 @@ To backfill data, we recommend:
 
 #### Loading historical data via Mixpanel BigQuery Warehouse Connector 
 
-![image](/public/ga4_overview.png)
+![image](/ga4_overview.png)
 
 At a high-level, the migration consists of 4 steps:
 1. Set up a new Mixpanel project which is on [Simplified ID Merge system](/docs/tracking-methods/identifying-users#simplified-vs-original-id-merge). 
@@ -379,11 +379,11 @@ Once you've transformed your data in BigQuery, you can set up the [Mixpanel Ware
 
 You can learn more about event mappings [here](/docs/tracking-methods/data-warehouse/sending-events). Here's an example of mappings for event table generated from the SQL query provided above: 
 
-![image](/public/ga4_event_warehouse_connector.png)
+![image](/ga4_event_warehouse_connector.png)
 
 You can learn more about user mappings [here](/docs/tracking-methods/data-warehouse/sending-user-profiles). Here's an example of mappings for user table generated from the SQL query provided above: 
 
-![image](/public/ga4_user_warehouse_connector.png)
+![image](/ga4_user_warehouse_connector.png)
 
 ##### Post-migration data validation
 You can use our [Lexicon](/docs/data-governance/lexicon) or Events page to check that your data has successfully been ingested. However, if your historical events are older than 30 days, they will not show up on Lexicon, Events page or in the event dropdown menu across all reports. In this case, you can leverage our [Insights report](docs/reports/insights) to validate the historical events, by selecting the import time frame and filtering by the following default properties: 
@@ -395,7 +395,7 @@ You can use our [Lexicon](/docs/data-governance/lexicon) or Events page to check
 
 Please filter by tracked name, $warehouse_import_id instead of the display name, “Warehouse Import ID”. You can find the properties values on the Warehouse Connector’ sync logs:
 
-![image](/public/ga4_event_validation.png)
+![image](/ga4_event_validation.png)
 
 ## Currently using Universal Analytics with Google?
 
@@ -470,7 +470,7 @@ Consequently, for most cases, we recommend starting fresh when migrating from UA
 
 To backfill data, we recommend:
 - If you have a CDP, this should be straightforward
-    - Utilize the CDPs backfilling feature, like [Segment Replay](https://segment.com/docs/guides/what-is-replay/), to re-send historical data to Mixpanel
+    - Utilize the CDP's backfilling feature, like [Segment Replay](https://segment.com/docs/guides/what-is-replay/), to re-send historical data to Mixpanel
 - For any other implementation method
     - First, export your data to the data warehouse so you have a record of Universal Analytics
     - Once exported, your data warehouse tables can be transformed and modeled into the [event format](/docs/data-structure/events-and-properties) Mixpanel expects
