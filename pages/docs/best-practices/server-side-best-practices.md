@@ -205,9 +205,9 @@ Here's a pseudocode example using Django's [cookies](https://django-book.readthe
 import uuid
 
 def track_to_mp(request, event_name, properties):
-  # This assumes you've previously set a cookie called "session_id" that is local to the user's session
+  # This assumes you've previously set a cookie called "SESSION_ID" that is local to the user's session
   # Set `$device_id` to that cookie's value
-  properties["$device_id"] = uuid.uuid4()
+  properties["$device_id"] = request.cookies.get('SESSION_ID')
 
   # Set $user_id if the user is authenticated (logged in).
   if request.user.is_authenticated():
