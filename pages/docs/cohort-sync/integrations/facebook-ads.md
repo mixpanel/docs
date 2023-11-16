@@ -67,7 +67,7 @@ Facebook excludes cohort members from the audience if they are unable to match t
 
 ## Troubleshooting Errors
 
-Below are some common blocking errors that may occur when authorizing or using this connection:
+Below are some common blocking errors (e.g. Error Message: Invalid OAuth 2.0 Access Token) that may occur when authorizing or using this connection:
 
 #### Login Token Expired. Please disconnect and reconnect from Integrations Page.
 
