@@ -135,7 +135,7 @@ To backfill data, we recommend:
 
 #### Loading historical data via Mixpanel Bigquery Warehouse Connector 
 
-![image](/public/ga4_event_overview.png)
+![image](/public/ga4_overview.png)
 
 At a high-level, the migration consists of 4 steps:
 1. Set up a new Mixpanel project which is on [Simplified ID Merge system](/docs/tracking-methods/identifying-users#simplified-vs-original-id-merge). 
@@ -395,7 +395,7 @@ You can use our [Lexicon](/docs/data-governance/lexicon) or Events page to check
 
 Please filter by tracked name, $warehouse_import_id instead of the display name, “Warehouse Import ID”. You can find the properties values on the Warehouse Connector’ sync logs:
 
-![image](/public/ga4_event_validation.jpg)
+![image](/public/ga4_event_validation.png)
 
 ## Currently using Universal Analytics with Google?
 
