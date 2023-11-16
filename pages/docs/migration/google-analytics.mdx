@@ -374,12 +374,18 @@ FROM `mixpanel-sa.analytics_406874950.users_*`
 WHERE _TABLE_SUFFIX BETWEEN FORMAT_DATE('%Y%m%d',DATE_SUB(CURRENT_DATE(), INTERVAL 30 DAY)) AND FORMAT_DATE('%Y%m%d',CURRENT_DATE());
 ```
 
-#### Post-migration 
-
-
-#### Post-migration validation
+#### Setting up Bigquery Warehouse Connectors 
 Once you've transformed your data, you can set up the [Mixpanel Warehouse Connector](/docs/tracking-methods/data-warehouse/overview) to migrate your historical data from BigQuery into Mixpanel. We'd recommend first sending a month of data into a test project for validation. 
 
+You can learn more about event mappings [here](/docs.mixpanel.com/docs/tracking-methods/data-warehouse/sending-events). Here's an example of mappings for event table: 
+
+![image](/public/ga4_event_warehouse_connector.png)
+
+You can learn more about user mappings [here](/docs.mixpanel.com/docs/tracking-methods/data-warehouse/sending-user-profiles). Here's an example of mappings for user table: 
+
+![image](/public/ga4_user_warehouse_connector.png)
+
+#### Post-migration validation
 You can use our [Lexicon](/docs/data-governance/lexicon) or Events page to check that your data has successfully been ingested. However, if your historical events are older than 30 days, they will not show up on Lexicon, Events page or in the event dropdown menu across all reports. In this case, you can leverage our [Insights report](docs/reports/insights) to validate the historical events, by selecting the import time frame and filtering by the following default properties: 
 
 - Warehouse Import ID (tracked as `$warehouse_import_id`)
@@ -390,7 +396,6 @@ You can use our [Lexicon](/docs/data-governance/lexicon) or Events page to check
 Please filter by tracked name, $warehouse_import_id instead of the display name, “Warehouse Import ID”. You can find the properties values on the Warehouse Connector’ sync logs:
 
 ![image](/ga4_event_validation.jpg)
-
 
 ## Currently using Universal Analytics with Google?
 
