@@ -2,11 +2,11 @@
 
 If you haven't already, we recommend starting with our [Migration Guides Overview](/docs/migration/overview) as it details the key components of migrating to Mixpanel from other analytics tools. Below we outline specific steps and considerations when migrating from Google Analytics.
 
-## Currently using GA4 and not seeing value?
+## Currently using Google Analytics 4 (GA4)?
 
 ### Track forward looking real-time data
 
-Choose your current implementation method for Google Analytics (GA4) and you can follow the below steps for starting to send live data to Mixpanel.
+Choose your current implementation method for GA4 and you can follow the below steps for starting to send live data to Mixpanel.
 
 #### Client-side SDKs & Server-side SDKs
 
@@ -131,7 +131,7 @@ Given GA4 has a similar data format to Mixpanel, it is possible to migrate some 
 To backfill data, we recommend:
 - If you have a CDP, this should be straightforward
     - Utilize the CDPs backfilling feature, like [Segment Replay](https://segment.com/docs/guides/what-is-replay/), to re-send historical data to Mixpanel
-- If your data is stored in GA4, leverage [Mixpanel Warehouse Connector](https://docs.mixpanel.com/docs/tracking-methods/data-warehouse/overview) to import the data into Mixpanel. Below we outline steps for the migration.
+- If your data is stored in GA4, leverage [Mixpanel Warehouse Connector](https://docs.mixpanel.com/docs/tracking-methods/data-warehouse/overview) to import the data into Mixpanel. Below we outline steps for the migration process.
 
 #### Syncing GA4 data to Google BigQuery
 
