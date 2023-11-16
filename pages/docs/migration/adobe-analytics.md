@@ -6,7 +6,6 @@ If you haven't already, we recommend starting with our [Migration Guides Overvie
 
 ### Data Model
 
-
 Mixpanel’s data model is based on events and properties, rather than Adobe which is schema-based with many different configurable data types. While this might be a shift if you come from the schema model where you define your data to be captured upfront before sending any data, we’ve found [schema-on-read](/docs/how-it-works/infrastructure#schema-on-read) to be both more flexible and easier to set up and use.
 
 - [Events](/docs/what-is-mixpanel#events) capture granular user actions, like a Pageview, Signup, or Purchase.
@@ -16,7 +15,7 @@ Events and properties with schema-on-read let you get more granular than an enfo
 
 In contrast, on Adobe, every user interaction comes across as a “hit”. Within “hits”, there are what Adobe terms “eVars”, which are variables that can be customized to the organization’s requirements. The following diagram helps to illustrate the key differences between Adobe and Mixpanel’s instrumentation: on Adobe, an administrator needs to manually instrument every metric before it can be used in the platform. For example, the administrator would need to create a separate metric for “Total Page Views” and “Unique Page Views” before an end user can query it. Whereas on Mixpanel, once the event “Page View” is sent, the end user easily, on the fly, whip up a report to show the page views by total vs. unique users.  
 
-![image](/adobe vs MP instrumentation.png)
+![image](/adobe-vs-MP-instrumentation.png)
 
 In Mixpanel, we also have a separate table for users and user properties. If using Mixpanel’s SDK, unique users are identified by a $device_id to associate events to the same anonymous user. Once a user signs up or logs in, you’ll call .identify(<user_id>) to map users’ known user_id to their $device_id. In Adobe on the other hand, unique users are identified by the concatenation of post_visid_high and post_visid_low properties on the “hit”. Adobe will take the first ID present from in the “hit” as the official visitor ID, and then use the concatenation of post_visid_high and post_visid_low as the standard of identifying unique visitors regardless of how they were identified as a [unique visitor](https://experienceleague.adobe.com/docs/analytics/export/analytics-data-feed/data-feed-contents/datafeeds-calculate.html?lang=en). For example, if you are setting a custom visitor ID (included in the "vid" query parameter), that ID will be used before other IDs that might be present on that same hit. 
 
