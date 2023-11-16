@@ -216,22 +216,22 @@ SELECT
     event_name as event,
     TIMESTAMP_MILLIS(CAST(event_timestamp / 1000 as INT)) as time,
     
-		-- id mgmt
-		user_id as user_id, 
-		user_pseudo_id as device_id,
-    
-		-- $insert_id
-		TO_HEX(SHA1(CONCAT(
-      CONCAT('[GA4v4] ', event_name),
-      COALESCE(user_pseudo_id, ""), 
-      "-",
-      CAST(TIMESTAMP_MICROS(event_timestamp) as STRING),
-      "-",
-      COALESCE(CAST(event_bundle_sequence_id as STRING), "")
+    -- id mgmt
+    user_id as user_id, 
+    user_pseudo_id as device_id,
+
+    -- $insert_id
+    TO_HEX(SHA1(CONCAT(
+    CONCAT('[GA4v4] ', event_name),
+    COALESCE(user_pseudo_id, ""), 
+    "-",
+    CAST(TIMESTAMP_MICROS(event_timestamp) as STRING),
+    "-",
+    COALESCE(CAST(event_bundle_sequence_id as STRING), "")
     ))) AS insert_id,
 
-		-- $insert_time
-		TIMESTAMP_MILLIS(CAST(event_timestamp / 1000 as INT)) as insert_time,
+    -- $insert_time
+    TIMESTAMP_MILLIS(CAST(event_timestamp / 1000 as INT)) as insert_time,
 
     -- Mixpanel reserved properties
     JSON_OBJECT(
@@ -245,7 +245,7 @@ SELECT
       "$os", IFNULL(device.operating_system, "")) as mixpanel_reserved_properties,       
 
     -- GA4 top level defaults
-		event_date,
+    event_date,
     event_value_in_usd,
     event_previous_timestamp
     event_bundle_sequence_id,
@@ -263,16 +263,16 @@ SELECT
     user_ltv.revenue as user_ltv_revenue,
     user_ltv.currency as user_ltv_currency,
 
-		-- demographics
-		geo.continent as geo_continent,
+    -- demographics
+    geo.continent as geo_continent,
     geo.sub_continent as geo_sub_continent,
     geo.country as geo_country,
     geo.region as geo_region,
     geo.metro as geo_metro,
     geo.city as geo_city,
 
-		-- device infos
-		device.category as device_category,
+    -- device infos
+    device.category as device_category,
     device.mobile_brand_name as device_mobile_brand_name,
     device.mobile_model_name as device_mobile_model_name,
     device.mobile_marketing_name as device_mobile_marketing_name,
@@ -287,21 +287,21 @@ SELECT
     device.web_info.browser as device_web_info_browser,
     device.web_info.browser_version as device_web_info_browser_version,
 
-		-- ecommerce infos 
-	  ecommerce.total_item_quantity as ecommerce_total_item_quantity,
-	  ecommerce.purchase_revenue_in_usd as ecommerce_purchase_revenue_in_usd,
-	  ecommerce.purchase_revenue as ecommerce_purchase_revenue,
-	  ecommerce.refund_value_in_usd as ecommerce_refund_value_in_usd,
-	  ecommerce.refund_value as ecommerce_refund_value,
-	  ecommerce.shipping_value_in_usd as ecommerce_shipping_value_in_usd,
-	  ecommerce.shipping_value as ecommerce_shipping_value,
-	  ecommerce.tax_value_in_usd as ecommerce_tax_value_in_usd,
-	  ecommerce.tax_value as ecommerce_tax_value,
-	  ecommerce.unique_items as ecommerce_unique_items,
-	  ecommerce.transaction_id as ecommerce_transaction_id,
+    -- ecommerce infos 
+    ecommerce.total_item_quantity as ecommerce_total_item_quantity,
+    ecommerce.purchase_revenue_in_usd as ecommerce_purchase_revenue_in_usd,
+    ecommerce.purchase_revenue as ecommerce_purchase_revenue,
+    ecommerce.refund_value_in_usd as ecommerce_refund_value_in_usd,
+    ecommerce.refund_value as ecommerce_refund_value,
+    ecommerce.shipping_value_in_usd as ecommerce_shipping_value_in_usd,
+    ecommerce.shipping_value as ecommerce_shipping_value,
+    ecommerce.tax_value_in_usd as ecommerce_tax_value_in_usd,
+    ecommerce.tax_value as ecommerce_tax_value,
+    ecommerce.unique_items as ecommerce_unique_items,
+    ecommerce.transaction_id as ecommerce_transaction_id,
 
-		-- ecommerce items 
-		items as cart_items,     
+    -- ecommerce items 
+    items as cart_items,     
 
     -- GA4 event_param defaults
     (SELECT value.string_value FROM UNNEST(event_params) where key = 'page_location') as page_location,
@@ -333,9 +333,9 @@ Example of how to construct your user table in BigQuery:
 
 ```jsx
 SELECT 
-		user_id, 
-		occurrence_date, 
-		last_updated_date, 
+    user_id, 
+    occurrence_date, 
+    last_updated_date, 
 
     -- insert_time
     PARSE_TIMESTAMP('%Y%m%d', _TABLE_SUFFIX) as insert_time, 
@@ -348,25 +348,25 @@ SELECT
       "$device", IFNULL(device.mobile_model_name, ""),       
       "$os", IFNULL(device.operating_system, "")) as mixpanel_reserved_properties,
 
-		-- GA4 defaults
-		user_info.last_active_timestamp_micros as user_info_last_active_timestamp_micros,
+    -- GA4 defaults
+    user_info.last_active_timestamp_micros as user_info_last_active_timestamp_micros,
     user_info.user_first_touch_timestamp_micros as user_info_user_first_touch_timestamp_micros,
     user_info.first_purchase_date as  user_info_first_purchase_date,
 
-		-- device info 
+    -- device info 
     device.operating_system as device_operating_system,
     device.mobile_brand_name as device_mobile_brand_name,
     device.mobile_model_name as device_mobile_model_name,
     device.category as device_category,  
     device.unified_screen_name as device_unified_screen_name,  
     
-		-- demographics
-		geo.continent as geo_continent,
+    -- demographics
+    geo.continent as geo_continent,
     geo.country as geo_country,
     geo.region as geo_region,
     geo.city as geo_city,
 
-		-- GA4 user properties     
+    -- GA4 user properties     
     (SELECT value.string_value FROM UNNEST(user_properties) where value.user_property_name = 'favorite_composer') as favorite_composer, 
     (SELECT value.string_value FROM UNNEST(user_properties) where value.user_property_name = 'favorite_instrument') as favorite_instrument, 
     (SELECT value.string_value FROM UNNEST(user_properties) where value.user_property_name = 'season_ticketholder') as season_ticketholder
@@ -375,17 +375,17 @@ WHERE _TABLE_SUFFIX BETWEEN FORMAT_DATE('%Y%m%d',DATE_SUB(CURRENT_DATE(), INTERV
 ```
 
 ##### Setting up Bigquery Warehouse Connectors 
-Once you've transformed your data, you can set up the [Mixpanel Warehouse Connector](/docs/tracking-methods/data-warehouse/overview) to migrate your historical data from BigQuery into Mixpanel. We'd recommend first sending a month of data into a test project for validation. 
+Once you've transformed your data in BigQuery, you can set up the [Mixpanel Warehouse Connector](/docs/tracking-methods/data-warehouse/overview) to migrate your historical data from BigQuery into Mixpanel. We'd recommend first sending a month of data into a test project for validation. 
 
-You can learn more about event mappings [here](/docs.mixpanel.com/docs/tracking-methods/data-warehouse/sending-events). Here's an example of mappings for event table: 
+You can learn more about event mappings [here](/docs/tracking-methods/data-warehouse/sending-events). Here's an example of mappings for event table generated from the SQL query provided above: 
 
 ![image](/public/ga4_event_warehouse_connector.png)
 
-You can learn more about user mappings [here](/docs.mixpanel.com/docs/tracking-methods/data-warehouse/sending-user-profiles). Here's an example of mappings for user table: 
+You can learn more about user mappings [here](/docs/tracking-methods/data-warehouse/sending-user-profiles). Here's an example of mappings for user table generated from the SQL query provided above: 
 
 ![image](/public/ga4_user_warehouse_connector.png)
 
-##### Post-migration validation
+##### Post-migration data validation
 You can use our [Lexicon](/docs/data-governance/lexicon) or Events page to check that your data has successfully been ingested. However, if your historical events are older than 30 days, they will not show up on Lexicon, Events page or in the event dropdown menu across all reports. In this case, you can leverage our [Insights report](docs/reports/insights) to validate the historical events, by selecting the import time frame and filtering by the following default properties: 
 
 - Warehouse Import ID (tracked as `$warehouse_import_id`)
