@@ -11,7 +11,7 @@ Prefer to use /import over /track where you can. We only recommend /track for cl
 
 |  | /track | /import |
 |---|---|---|
-| Events per request | 50 | 2000 |
+| Events per request | 200 | 2000 |
 | Authentication | Project Token, intended for untrusted clients. | Project Secret, intended for server-side integration. |
 | Compression | None | Gzip allowed |
 | Content-Type | application/x-www-form-urlencoded | application/json or application/x-ndjson |
