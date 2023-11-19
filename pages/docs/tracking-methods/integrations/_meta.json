@@ -13,5 +13,6 @@
   "mparticle": "mParticle",
   "rudderstack": "Rudderstack",
   "segment": "Segment",
-  "snowplow": "Snowplow"
+  "snowplow": "Snowplow",
+  "stripe": "Stripe"
 }

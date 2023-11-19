@@ -1,0 +1,9 @@
+# Supported Column Types
+
+Mixpanel requires certain columns to be mapped when importing data. The following table shows the supported data types for each column type.
+
+| | String | Integer | Timestamp | JSON |
+| :- | - | - | - | - |
+| BigQuery | STRING | INT64 | TIMESTAMP | JSON, STRUCT, RECORD |
+| Snowflake | VARCHAR | NUMBER | TIMESTAMP_NTZ | OBJECT |
+| Redshift | VARCHAR, CHAR | INT | TIMESTAMP, TIMESTAMPTZ | _Not supported_ |
