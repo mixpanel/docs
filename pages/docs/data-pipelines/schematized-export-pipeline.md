@@ -75,9 +75,9 @@ The discrepancy can be attributed to several different causes:
 
 Mixpanel is able to detect any changes in your data with the granularity of a day and replaces the old data with the latest version both in object storage and data warehouse, if applicable. 
 
-Data sync helps keep the data fresh, minimizes missing data points, and most importantly keeps your data warehouse GDPR compliant.
+Data sync helps keep the data fresh and minimizes missing data points.
 
-Note: We start checking for late arriving data 24 hours after the data for a day is exported. It may take more than 2 days for the data in the destination to be in sync with the data in Mixpanel.
+Do Note: Data sync does not fully guarantee syncing GDPR Data Deletions. It is recommended to implement a strategy to remove all records of GDPR Deleted Users in your data warehouse. Additionally, we start checking for late arriving data 24 hours after the data for a day is exported. It may take more than 2 days for the data in the destination to be in sync with the data in Mixpanel.
 
 ## Transformation Rules
 Some characters are not legal for table or column names, or when collisions can occur in the dataset. Mixpanel cleans, or transforms, the data to account for this. This section provides the rules on how Mixpanel cleans data.
