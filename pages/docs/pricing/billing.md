@@ -195,7 +195,7 @@ Monthly Tracked User (MTU) is a way to calculate your billing based on the numbe
 
 ### MTU Calculation
 
-An MTU is a visitor that tracks at least one qualifying event within your projects within the calendar month, independent of whether they have a user profile in Explore. Mixpanel determines unique users using the `$distinct_id`. Users are only counted once per month, even if they perform multiple actions across devices.
+An MTU is a visitor that tracks at least one qualifying event within your projects within the calendar month, independent of whether they have a user profile in [Users](/docs/users/overview.md#basic-features). Mixpanel determines unique users using the `$distinct_id`. Users are only counted once per month, even if they perform multiple actions across devices.
 
 An organization is charged based on the total number of MTUs across all projects. This means that if a user performs a qualifying event in multiple projects, they are counted once per project. MTUs are *not* User Profiles – the number of MTUs in your project will not match the number of User Profiles in your project.
 
