@@ -11,13 +11,14 @@ Lexicon is a data dictionary that stores descriptions of events and their proper
 
 To open Lexicon, select the **Data Management** icon on the right side of the top navigation menu and then select **Lexicon**.
 
-When you open Lexicon, you see five tabs:
+When you open Lexicon, you see six tabs:
 
 1. Events
 2. Custom Events
 3. Event Properties
 4. Profile Properties
 5. Lookup Tables
+6. Formulas
 
 ### Event Definitions
 
@@ -29,12 +30,15 @@ This table contains descriptions for each field in the “Events” view.
 
 | Field | Description |
 | --- | --- |
-| Event Name | The database name of the event. |
+| Event Name | The database name of the event. Status Icons indicate whether event is hidden or visible in the Mixpanel project |
 | Display Name | The event name that displays in the Mixpanel interface. |
 | Description | The information that describes the event, such as what triggers it or what properties are sent with it. |
-| Status | The event is either hidden or visible in the Mixpanel project. |
-| Volume | The total number of events that users fired in the last 30 days. |
-| Queries | The total number of API and UI queries that project members executed in the last 30 days. |
+| 30-Day Volume | The total number of events that users fired in the last 30 days. |
+| 30-Day Queries | The total number of API and UI queries that project members executed in the last 30 days. |
+| Last Queried | The user that last used this event in the Mixpanel UI. |
+| First Queried | The user that first used this event in the Mixpanel UI. |
+| Owners | The user(s) that are points-of-contact for this event. |
+
 
 ### Custom Event Definitions
 
@@ -52,7 +56,7 @@ This table contains descriptions for each field in the “Event Properties” vi
 
 | Field | Description |
 | --- | --- |
-| Name | The database name of the property. |
+| Event Name | The database name of the property. |
 | Display Name | The property name that displays in the Mixpanel interface. |
 | Description | The information that describes the property, such as what events it is sent with. |
 | Status | Indicates whether the property is visible or hidden from the Mixpanel interface. Also indicates if the property is dropped, merged, or marked as sensitive. |
