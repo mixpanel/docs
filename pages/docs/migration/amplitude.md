@@ -110,7 +110,7 @@ GROUP BY user_id
 on t1.user_id=t2.user_id AND t1.event_time=t2.max_event_time
 ```
 
-## Setting up BigQuery Warehouse Connectors
+## Setting up Warehouse Connectors
 Once you've transformed your data in your data warehouse, you can set up the [Mixpanel Warehouse Connector](/docs/tracking-methods/data-warehouse/overview) to migrate your historical data into Mixpanel. We'd recommend first sending a month of data into a test project for validation.
 
 You can learn more about event mappings [here](/docs/tracking-methods/data-warehouse/sending-events). Here's an example of mappings for event table:
