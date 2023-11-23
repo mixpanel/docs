@@ -33,16 +33,6 @@ OptionalRequestParameter:
         with a string-valued error message if the request wasn't
         successful. This is useful for debugging during
         implementation.
-    Redirect:
-      in: query
-      name: redirect
-      required: false
-      schema:
-          type: string
-      description: >-
-        If present, Mixpanel will serve a redirect to the given url
-        as a response to the request. This is useful to add link tracking
-        in notifications.
     PNGPixel:
       in: query
       name: img

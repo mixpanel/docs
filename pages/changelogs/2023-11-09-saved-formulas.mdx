@@ -1,0 +1,30 @@
+---
+title: "Save Formulas for reuse and metric standardization"
+slug: "changelog-2023-11-09-saved-formulas"
+hidden: false
+createdAt: "2023-11-09T14:59:02.165Z"
+updatedAt: "2023-11-09T14:59:02.165Z"
+date: "2023-11-09"
+---
+<div style={{position: 'relative', paddingBottom: '64.90384615384616%', height: 0}}>
+    <iframe src="https://www.loom.com/embed/8579c1ac4e2a4b06a0a12e4416b07918?sid=7a3ccce7-5513-455f-8397-fb1269c807f1"
+        frameBorder="0"
+        webkitallowfullscreen="true" mozallowfullscreen="true" allowFullScreen
+        style={{position: 'absolute', 'top': 0, 'left': 0, 'width': '100%', 'height': '100%'}}>
+    </iframe>
+</div>
+
+Sometimes your analysis calls for a calculated metric, meaning a metric that’s computed from existing metrics or data. An example would be Bounce Rate (Total Sessions less than 10s / Total Session Starts), where we are trying to calculate the percent of site visitors who left without reaching any value. In analytics tools, a typical workflow is to use a “formula” to create a metric like Bounce Rate, but there are some issues with that route:
+- Every time you need to calculate Bounce Rate in a new report, you have to create a formula from scratch
+- Other people in your organization don’t know how to define Bounce Rate, so they will figure out their own definition that might not fit the context of your business
+- There’s no way for the person in your organization that manages the analytics tool to set a standardized Bounce Rate metric that everyone can trust is accurate
+
+To solve these pain points, Mixpanel is introducing Saved Formulas, which allows you to save a Formula for reuse across your organization.
+
+After creating a new metric using a Formula, you can save it. This allows you and others to reuse it once you start a new analysis - no need to rebuild it from scratch. Simply navigate to Metric, click on Formulas, and you’ll find you Saved Formula.
+![changelog Image](/changelog/formulacreate.gif)
+
+You can also expand the Saved Formula to see the components that contribute to the calculation. Other tools might come with calculated metrics built in (like Bounce Rate), but you can’t see how they’re calculated or adjust the calculation to your use case. 
+![changelog Image](/changelog/formulachange.gif)
+
+Once you have your Saved Formulas, your organization can trust them as standardized metrics. There’s no pressure for you and your team to have to figure out how to build this metric again and again, simply add it to the visualization just like you’d do any other event, metric, or cohort. 

@@ -11,7 +11,9 @@
   },
   "google-tag-manager": "Google Tag Manager",
   "mparticle": "mParticle",
+  "mobile-attribution-tracking": "Mobile Attribution Tracking",
   "rudderstack": "Rudderstack",
   "segment": "Segment",
-  "snowplow": "Snowplow"
+  "snowplow": "Snowplow",
+  "stripe": "Stripe"
 }

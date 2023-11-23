@@ -315,7 +315,7 @@ paths:
               "h-1": "/track",
               "h-2": "/import",
               "0-0": "Events per request",
-              "0-1": "50",
+              "0-1": "200",
               "0-2": "2000",
               "1-0": "Authentication",
               "1-1": "Project Token, intended for untrusted clients.",
@@ -345,7 +345,6 @@ paths:
       parameters:
         - $ref: ./common/ingestion-api.yaml#/OptionalRequestParameter/UseIpAsDistinctId
         - $ref: ./common/ingestion-api.yaml#/OptionalRequestParameter/ResponseType/Verbose
-        - $ref: ./common/ingestion-api.yaml#/OptionalRequestParameter/ResponseType/Redirect
         - $ref: ./common/ingestion-api.yaml#/OptionalRequestParameter/ResponseType/PNGPixel
         - $ref: ./common/ingestion-api.yaml#/OptionalRequestParameter/ResponseType/JavascriptWithCallback
       requestBody:
@@ -419,7 +418,6 @@ paths:
         [/block]
       parameters:
         - $ref: ./common/ingestion-api.yaml#/OptionalRequestParameter/ResponseType/Verbose
-        - $ref: ./common/ingestion-api.yaml#/OptionalRequestParameter/ResponseType/Redirect
         - $ref: ./common/ingestion-api.yaml#/OptionalRequestParameter/ResponseType/JavascriptWithCallback
       requestBody:
         required: true
@@ -462,7 +460,6 @@ paths:
         values. This is useful for properties like "First login date".
       parameters:
         - $ref: ./common/ingestion-api.yaml#/OptionalRequestParameter/ResponseType/Verbose
-        - $ref: ./common/ingestion-api.yaml#/OptionalRequestParameter/ResponseType/Redirect
         - $ref: ./common/ingestion-api.yaml#/OptionalRequestParameter/ResponseType/JavascriptWithCallback
       requestBody:
         required: true
@@ -510,7 +507,6 @@ paths:
         like "Number of Logins" or "Files Uploaded".
       parameters:
         - $ref: ./common/ingestion-api.yaml#/OptionalRequestParameter/ResponseType/Verbose
-        - $ref: ./common/ingestion-api.yaml#/OptionalRequestParameter/ResponseType/Redirect
         - $ref: ./common/ingestion-api.yaml#/OptionalRequestParameter/ResponseType/JavascriptWithCallback
       requestBody:
         required: true
@@ -555,7 +551,6 @@ paths:
         ensures that those values only appear once. The profile is created if it does not exist.
       parameters:
         - $ref: ./common/ingestion-api.yaml#/OptionalRequestParameter/ResponseType/Verbose
-        - $ref: ./common/ingestion-api.yaml#/OptionalRequestParameter/ResponseType/Redirect
         - $ref: ./common/ingestion-api.yaml#/OptionalRequestParameter/ResponseType/JavascriptWithCallback
       requestBody:
         required: true
@@ -611,7 +606,6 @@ paths:
         element to that property.
       parameters:
         - $ref: ./common/ingestion-api.yaml#/OptionalRequestParameter/ResponseType/Verbose
-        - $ref: ./common/ingestion-api.yaml#/OptionalRequestParameter/ResponseType/Redirect
         - $ref: ./common/ingestion-api.yaml#/OptionalRequestParameter/ResponseType/JavascriptWithCallback
       requestBody:
         required: true
@@ -655,7 +649,6 @@ paths:
         exist, no updates are made.
       parameters:
         - $ref: ./common/ingestion-api.yaml#/OptionalRequestParameter/ResponseType/Verbose
-        - $ref: ./common/ingestion-api.yaml#/OptionalRequestParameter/ResponseType/Redirect
         - $ref: ./common/ingestion-api.yaml#/OptionalRequestParameter/ResponseType/JavascriptWithCallback
       requestBody:
         required: true
@@ -698,7 +691,6 @@ paths:
         properties and their values from a profile.
       parameters:
         - $ref: ./common/ingestion-api.yaml#/OptionalRequestParameter/ResponseType/Verbose
-        - $ref: ./common/ingestion-api.yaml#/OptionalRequestParameter/ResponseType/Redirect
         - $ref: ./common/ingestion-api.yaml#/OptionalRequestParameter/ResponseType/JavascriptWithCallback
       requestBody:
         required: true
@@ -747,7 +739,6 @@ paths:
         body
       parameters:
         - $ref: ./common/ingestion-api.yaml#/OptionalRequestParameter/ResponseType/Verbose
-        - $ref: ./common/ingestion-api.yaml#/OptionalRequestParameter/ResponseType/Redirect
         - $ref: ./common/ingestion-api.yaml#/OptionalRequestParameter/ResponseType/JavascriptWithCallback
       requestBody:
         required: true
@@ -796,7 +787,6 @@ paths:
         duplicate (as they pass in the alias as the distinct_id).
       parameters:
         - $ref: ./common/ingestion-api.yaml#/OptionalRequestParameter/ResponseType/Verbose
-        - $ref: ./common/ingestion-api.yaml#/OptionalRequestParameter/ResponseType/Redirect
         - $ref: ./common/ingestion-api.yaml#/OptionalRequestParameter/ResponseType/JavascriptWithCallback
       requestBody:
         required: true

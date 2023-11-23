@@ -128,6 +128,7 @@
 /docs/tracking/data-warehouse/events /docs/tracking-methods/data-warehouse/sending-events
 /docs/tracking/data-warehouse/groups /docs/tracking-methods/data-warehouse/sending-group-profiles
 /docs/tracking/data-warehouse/redshift /docs/tracking-methods/data-warehouse/redshift
+/docs/tracking/data-warehouse/databricks /docs/tracking-methods/data-warehouse/databricks
 /docs/tracking/data-warehouse/snowflake /docs/tracking-methods/data-warehouse/snowflake
 /docs/tracking/data-warehouse/users /docs/tracking-methods/data-warehouse/sending-user-profiles
 /docs/tracking/how-tos/ad-spend /docs/data-structure/advanced/ad-spend
@@ -146,7 +147,8 @@
 /docs/tracking/how-tos/utm /docs/data-structure/advanced/utm-tags
 /docs/tracking/how-tos/user-profiles /docs/data-structure/user-profiles
 /docs/tracking/http-api /docs/quickstart/connect-your-data?sdk=httpapi
-/docs/tracking/integrations/bigquery /docs/tracking-methods/integrations/bigquery
+/docs/tracking/integrations/bigquery /docs/tracking-methods/data-warehouse/bigquery
+/docs/tracking/integrations/snowflake /docs/tracking-methods/data-warehouse/snowflake
 /docs/tracking/integrations/freshpaint /docs/tracking-methods/integrations/freshpaint
 /docs/tracking/integrations/gcs-import /docs/tracking-methods/integrations/google-tag-manager
 /docs/tracking/integrations/google-pubsub /docs/tracking-methods/integrations/google-pubsub
@@ -155,7 +157,6 @@
 /docs/tracking/integrations/rudderstack /docs/tracking-methods/integrations/rudderstack
 /docs/tracking/integrations/s3-import /docs/tracking-methods/integrations/amazon-s3
 /docs/tracking/integrations/segment /docs/tracking-methods/integrations/segment
-/docs/tracking/integrations/snowflake /docs/tracking-methods/integrations/snowflake
 /docs/tracking/integrations/snowplow /docs/tracking-methods/integrations/snowplow
 /docs/tracking/javascript-quickstart /docs/quickstart/connect-your-data?sdk=javascript
 /docs/tracking/mobile/android /docs/tracking-methods/sdks/android

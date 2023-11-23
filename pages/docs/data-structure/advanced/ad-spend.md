@@ -12,7 +12,7 @@ In this doc, we give step-by-step guidance on how to bring your advertising netw
 
 ## Understanding the Data Model
 
-Events are are the core of Mixpanel's data model. Fundamentally, an event is a row of data with a name, a timestamp, and a set of properties. This is how we can represent Ad Data as events.
+Events are the core of Mixpanel's data model. Fundamentally, an event is a row of data with a name, a timestamp, and a set of properties. This is how we can represent Ad Data as events.
 
 ```jsx
 {
@@ -206,9 +206,9 @@ const GOOGLE_ADS_CUSTOMER_ID = 'YOUR GOOGLE CUSTOMER CLIENT ID WITHOUT HYPHENS';
 
 // End of Configuration
 
-const mixpanel = Mixpanel.init(MIXPANEL_TOKEN);
+const mixpanel = Mixpanel.init(MIXPANEL_TOKEN, {secret: MIXPANEL_SECRET});
 // Use the below line of init code instead if project in EU residency
-// const mixpanel = Mixpanel.init(MIXPANEL_TOKEN, {host: "api-eu.mixpanel.com"});
+// const mixpanel = Mixpanel.init(MIXPANEL_TOKEN, {host: "api-eu.mixpanel.com", secret: MIXPANEL_SECRET});
 
 const client = new GoogleAdsApi({
     client_id: GOOGLE_CLIENT_ID,
