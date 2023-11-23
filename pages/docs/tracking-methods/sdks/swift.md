@@ -13,6 +13,7 @@ We recommend tracking only five to seven events in your application instead of t
 Once you've initialized the library, you can track an event by calling <a style="font-family: courier" href="https://mixpanel.github.io/mixpanel-swift/Classes/MixpanelInstance.html#/s:FC8Mixpanel16MixpanelInstance5trackFT5eventGSqSS_10propertiesGSqGVs10DictionarySSPs9AnyObject____T_"> track(event:properties:) </a> with the event name and properties.
 ```swift Swift
 Mixpanel.mainInstance().track(event: "Plan Selected",
+    properties:["Plan": "Premium"])
 ```
 
 ## Timing Events
@@ -36,15 +37,13 @@ To set super properties, call <a style="font-family: courier" href="https://mixp
 ```swift Swift
 // Send a "Plan: Mega" property will be sent
 // with all future track calls.
-Mixpanel.mainInstance().track(event: "Signup",
-    properties:["Source": "Twitter"])
+Mixpanel.mainInstance().registerSuperProperties(["Plan": "Mega"])
 ```
 
 Going forward, whenever you track an event, super properties will be included as properties. For instance, if you call:
 ```swift Swift
-// Send a "Plan: Mega" property will be sent
-// with all future track calls.
-Mixpanel.mainInstance().registerSuperProperties(["Plan": "Mega"])
+Mixpanel.mainInstance().track(event: "Signup",
+    properties:["Source": "Twitter"])
 ```
 
 after making the above call to registerSuperProperties, it is just like adding the properties directly:
