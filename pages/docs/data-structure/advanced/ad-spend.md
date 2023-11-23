@@ -12,7 +12,7 @@ In this doc, we give step-by-step guidance on how to bring your advertising netw
 
 ## Understanding the Data Model
 
-Events are are the core of Mixpanel's data model. Fundamentally, an event is a row of data with a name, a timestamp, and a set of properties. This is how we can represent Ad Data as events.
+Events are the core of Mixpanel's data model. Fundamentally, an event is a row of data with a name, a timestamp, and a set of properties. This is how we can represent Ad Data as events.
 
 ```jsx
 {
