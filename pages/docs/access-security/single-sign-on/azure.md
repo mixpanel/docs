@@ -45,3 +45,4 @@ Make sure to clear out the Namespace field as well or it won't work!
 ### SCIM Provisioning
   
 Azure has an autoprovisioning integration with Mixpanel that lets you automatically add users to Mixpanel upon giving them access in Azure, and likewise removing access within Mixpanel when you remove access in Azure. You can find more information [here](https://learn.microsoft.com/en-us/azure/active-directory/saas-apps/mixpanel-provisioning-tutorial). Note that it is advised you turn on IDP Managed Access if you are using SCIM Provisioning.
+Tenant URL: https://mixpanel.com/api/app/scim/v2
