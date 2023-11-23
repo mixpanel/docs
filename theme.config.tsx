@@ -3,6 +3,7 @@ import { DocsThemeConfig } from "nextra-theme-docs";
 import Search from "./components/Search/Search";
 import MixpanelLogoWordmark from "./components/svg/MixpanelLogoWordmark";
 import { AdminIcon, AnalysisIcon, DataInIcon, DataOutIcon, IntroIcon, SupportIcon } from "./components/svg/NavIcon";
+import MainContent from "./components/MainContent/MainContent";
 
 function renderComponent<T>(ComponentOrNode: FC<T> | ReactNode, props?: T) {
   if (!ComponentOrNode) return null;
@@ -54,6 +55,7 @@ const config: DocsThemeConfig = {
   },
   logo: <MixpanelLogoWordmark width={125} />,
   logoLink: "https://mixpanel.com/home",
+  main: MainContent,
   useNextSeoProps: () => ({
     titleTemplate: "%s - Mixpanel Docs",
   }),

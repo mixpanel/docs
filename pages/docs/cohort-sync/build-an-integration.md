@@ -57,7 +57,7 @@ Sync your internal data dictionary or tracking plan with Mixpanel using the [Lex
 
 # Make your Integration Successful
 ### QA your Code
-For integrations sending events to Mixpanel, our [Events](/docs/users/overview) page can be a great way to test if everything is working as expected.
+For integrations sending events to Mixpanel, our [Events page](https://mixpanel.com/report/events) can be a great way to test if everything is working as expected.
 
 ### Document Your Integration
 Customer-facing documentation that explains, which use cases your integration helps to solve and how to set it up, will increase the utilization of your integration.
