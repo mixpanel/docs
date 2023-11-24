@@ -1,6 +1,12 @@
 ## Overview
 
-As an Organization Admin, you may create and manage security processes that dictate the requirements needed for your users to access your organization.
+As an Organization Admin, you may create and manage security processes that dictate the requirements needed for your users to access your organization. 
+
+Here are some suggested steps to take for you to get started:
+1. Configure Your Organization Discoverability settings 
+2. Create Your Mixpanel Projects 
+3. Set up Data Views or Classified Data 
+4. Invite Users or Teams to Your Projects
 
 ## Organization Discoverability
 Organization Discoverability makes it seamless for new users with a shared work email domain to connect with teammates in an existing organization in Mixpanel, allowing them to access their team’s projects, data, and reports, instead of joining a new, empty org.
@@ -11,7 +17,7 @@ This feature is accessible to new users who have verified their email as well as
 
 ### Setting Discoverability
 
-Only **organization owners** and **billing admins** can access Organization Discoverability by going to Organization Settings > Users & Teams > Organization Discoverability.
+Only **organization owners** and **billing admins** can access [Organization Discoverability](/docs/orgs-and-projects/organizations#organization-discoverability) by going to Organization Settings > Users & Teams > Organization Discoverability.
 
 ![Organization Discoverability 2 Image](/discoverabilitytwo.png)
 
@@ -20,11 +26,6 @@ They can enable Organization Discoverability by first specifying the private (i.
 
 The org owner or admin can then designate the level of discoverability of their organization; **open to join**, **subject to admin approval**, or **invite only**.
 
-**Open Organization:** An organization designated “open to join” is discoverable and joinable to any new users with an admin-specified email domain(s).
-
-**Admin Approval:** An organization designated as requiring “admin approval” is discoverable to any new user signing up with a specified email domain, but can only be joined upon request. Admins will receive an email notification to authorize access.
-
-**Invite Only:** An organization designated “invite only” is undiscoverable regardless of email domain. New users must be invited by the admin.
 
 ## Project Setup
 
@@ -44,22 +45,31 @@ In general though, if you want to track and study cross-platform user behaviour,
 
 ### Data Views and Data Classification
 
-Data Views allow Project Owners and Admins to manage or filter data access for a group of users within a single Mixpanel project for privacy and productivity purposes. Data View Filters can be applied to multiple events, event properties, and user profile properties. Do note that applying any user profile property as a filter will remove the ability to analyze by [Group Identifiers](/docs/data-structure/advanced/group-analytics#group-by-a-custom-identifier). A detailed guide on how to go about the process can be found [here](/docs/data-governance/data-views-and-classification#create-data-view).
+Data Views allow you to manage or filter data access for a group of users within a single Mixpanel project for privacy and productivity purposes. Data View Filters can be applied to multiple events, event properties, and user profile properties. A detailed guide on how to go about setting up Data Views can be found [here](/docs/data-governance/data-views-and-classification#create-data-view).
+**Do note that applying any user profile property as a filter will remove the ability to analyze by [Group Identifiers](/docs/data-structure/advanced/group-analytics#group-by-a-custom-identifier) 
 
+_Loom Video to be inserted below once ready_
+<p style={{ position: ‘relative’, paddingBottom: ’56.25%’, height: 0, overflow: ‘hidden’ }}>
+  <iframe src=“https://www.loom.com/embed/<Loom ID>” frameborder=“0"
+    style={{ position: ‘absolute’, top: 0, left: 0, width: ’100%’, height: ‘100%’ }}
+    allowfullscreen>
+  </iframe>
+</p>
 
-(**Insert Data view video**[ How to set up data views])
+On the other hand, classified data would be more suitable in scenarios where sensitive data are being sent to Mixpanel and should only be accessible to certain users. Data Classification allows you to mark event or user properties as classified and grant view access to only specific users or teams. A detailed guide on how to go about setting up classified data can be found[here](/docs/data-governance/data-views-and-classification#create-data-view).
 
-On the other hand, classified data would be more suitable in scenarios where sensitive data are being sent to Mixpanel and should only be accessible to certain users. Data Classification allows Project Owners and Admins to mark event or user properties as classified and grant view access to only specific users or teams. A detailed guide on how to go about setting up classified data can be found[here](/docs/data-governance/data-views-and-classification#create-data-view).
+_Loom Video to be inserted below once ready_
+<p style={{ position: ‘relative’, paddingBottom: ’56.25%’, height: 0, overflow: ‘hidden’ }}>
+  <iframe src=“https://www.loom.com/embed/<Loom ID>” frameborder=“0"
+    style={{ position: ‘absolute’, top: 0, left: 0, width: ’100%’, height: ‘100%’ }}
+    allowfullscreen>
+  </iframe>
+</p>
 
-(**Insert classified data video**[ How to set up classified data])
 
 ### Adding End Users to Your Mixpanel Organization and Projects
-Each Mixpanel customer is assigned an [organization](/docs/orgs-and-projects/organizations) which serves as the controlling entity for managing all your Mixpanel analytics needs. Within this, organization owners and admins will have access to [monitor your pricing and billing plan and usage to date](/docs/admin/organizations-projects#billing-and-plans). They will also be able to [invite end users to the organization](/docs/orgs-and-projects/roles-and-permissions#invite-users), a step they need to take before end users can be added to a project.
+Organisation Owners and Admins would need to [invite end users to the organization](/docs/orgs-and-projects/roles-and-permissions#invite-users), before they can add end users to a project.
 
-There are two general approaches to user management in Mixpanel. 
-
-- Organization owners and admins can create [teams](/docs/orgs-and-projects/roles-and-permissions#teams) at the organization level and then add teams to the different projects. Typically, larger enterprise customers prefer to use this, along with [Single Sign-On](/docs/access-security/single-sign-on/overview), for better management of users.
-Each Mixpanel customer is assigned an [organization](/docs/orgs-and-projects/manage-organization) which serves as the controlling entity for managing all your Mixpanel analytics needs. Within this, organization owners and admins will have access to [monitor your pricing and billing plan and usage to date](/docs/admin/organizations-projects#billing-and-plans). They will also be able to [invite end users to the organization](/docs/orgs-and-projects/manage-team-members#invite-users), a step they need to take before end users can be added to a project.
 
 There are two general approaches to user management in Mixpanel. 
 
@@ -77,7 +87,7 @@ Organization owners and admins can assign projects or teams directly to user acc
 
 ![image](https://github.com/mixpanel/docs/assets/50901466/8ec08b83-d0e2-47b3-92a4-5f5e98d70b52)
 
-###Invite Users to Specific Projects
+### Invite Users to Specific Projects
 
 Once [project owners and admins](/docs/orgs-and-projects/roles-and-permissions#setting-a-default-role-on-a-project) are assigned, they can then add end users to projects and provision their roles.  A default project role can also be set for All Users in the Organization as a baseline access.
 
