@@ -57,7 +57,7 @@ This table contains descriptions for each field in the “Event Properties” vi
 | Description | The information that describes the property, such as what events it is sent with. |
 | Status | Indicates whether the property is visible or hidden from the Mixpanel interface. Also indicates if the property is dropped, merged, or marked as sensitive. |
 | Events With Property | The total number of events that contain this property in the last 30 days. |
-| Queries | The total number of API and UI queries that project members executed in the last 30 days. |
+| Queries | The total number of UI queries that project members executed in the last 30 days. Includes queries from selecting events in reports, viewing reports, and queries in "Users" and "Events" tabs.|
 
 Lexicon contains property definitions for the default properties that Mixpanel’s client-side libraries automatically send with each event across web and mobile platforms.
 
@@ -253,3 +253,18 @@ Event and property descriptions and metadata (hidden, dropped, sensitive, etc) t
 
 Mixpanel provides a suite of API endpoints for you to Retrieve, Create, and Delete your data dictionary in Lexicon. To use these APIs, check out our [API reference docs](https://developer.mixpanel.com/reference/lexicon-schemas-api).
 
+## Lexicon Event Details 
+
+Mixpanel provides a variety of tools to make it easier for teams to better understand what specific events mean. 
+
+| Field | Description |
+| --- | --- |
+| Name | The database name of the event. |
+| Display Name | The event name that displays in the Mixpanel interface. |
+| Description | The information that describes the event, such as what triggers it or what properties are sent with it. |
+| Status | The event is either hidden or visible in the Mixpanel project. |
+| Tags | Allows your team to categorize events by different themes. |
+| Platforms | Allows your team to categorize which platforms this event is fired in. |
+| Owners | Allows your team to assign a point-of-contact to events in case team members have follow-up questions about an event. |
+| First Tracked | The earliest event timestamp for this event in Mixpanel. First tracked dates are only recorded after 01/01/2021. |
+| Image | Allows your team to upload a JPG, PNG, or GIF that helps to describe the event. This will show up throughout the platform wherever the event appears. |

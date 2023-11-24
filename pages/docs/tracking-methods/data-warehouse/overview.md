@@ -20,6 +20,7 @@ The following data warehouses are currently supported with Mixpanel Warehouse Co
 - [BigQuery](/docs/tracking-methods/data-warehouse/bigquery) 
 - [Snowflake](/docs/tracking-methods/data-warehouse/snowflake)
 - [Redshift](/docs/tracking-methods/data-warehouse/redshift)
+- [Databricks](/docs/tracking-methods/data-warehouse/databricks)
 
 
 ## FAQ

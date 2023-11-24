@@ -24,7 +24,7 @@
   "homepage": "https://github.com/mixpanel/docs#readme",
   "dependencies": {
     "@docsearch/js": "^3.5.1",
-    "@docsearch/react": "^3.5.1",
+    "@docsearch/react": "^3.5.2",
     "clsx": "^1.2.1",
     "next": "^13.0.6",
     "nextra": "latest",
@@ -32,11 +32,11 @@
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
     "sass": "^1.64.0",
-    "sharp": "^0.32.3"
+    "sharp": "^0.32.6"
   },
   "devDependencies": {
     "@redocly/openapi-cli": "1.0.0-beta.16",
-    "@types/node": "18.11.10",
+    "@types/node": "20.8.9",
     "autoprefixer": "^10.4.14",
     "postcss": "^8.4.31",
     "rdme": "8.6.6",
