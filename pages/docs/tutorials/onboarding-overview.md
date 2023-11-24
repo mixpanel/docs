@@ -1,0 +1,43 @@
+# Onboarding Tutorial Overview
+
+Welcome to Mixpanel Onbaording Tutorials, Let’s set you up for success by getting the foundations right from the start.
+
+_Loom Video to be inserted below once ready_
+<p style={{ position: 'relative', paddingBottom: '56.25%', height: 0, overflow: 'hidden' }}>
+  <iframe src="https://www.loom.com/embed/<Loom ID>" frameborder="0" 
+    style={{ position: 'absolute', top: 0, left: 0, width: '100%', height: '100%' }} 
+    allowfullscreen>
+  </iframe>
+</p>
+
+## Onboarding Methodology
+
+![image](/public/tutorials/plan-implement-launch-sprint.png "Plan, Implement, Launch")
+
+We recommend an iterative 3-step sprint approach to implementing Mixpanel, with each sprint ideally ranging between 1 to 3 weeks. Once you've completed the onboarding, this same process should be repeated in subsequent sprints where you refine and expand your Mixpanel tracking.
+
+1. [Plan](/docs/tutorials/plan/setup) - Starts off with helping you to define the metrics and KPIs (*what you should measure*) that align to your company or product objectives. Mapping these metrics and guiding you on the best practices of defining the events and properties in a [Tracking Plan](/docs/best-practices/create-a-tracking-plan). We’ll also cover setting up your Mixpanel [Organization](/docs/orgs-and-projects/organizations) and [Projects](/docs/orgs-and-projects/managing-projects), especially if this is your first time [signing up](https://mixpanel.com/register).
+  
+2. [Implement](/docs/tutorials/implement/send-your-data) - We’ll guide you through sending your first data into Mixpanel, and best practices around Quality Assurance Testing and how to audit your data. We’ll also guide you in establishing a data governance framework to help keep your Mixpanel implementation clean, concise, and consistent.
+
+3. [Launch](/docs/tutorials/launch/create-boards) - Once your data is in Mixpanel, we’ll teach you how to create your first Mixpanel [Boards](/docs/boards/overview), walking through each Mixpanel Core Report ([Insights](/docs/reports/insights), [Funnels](/docs/reports/funnels), [Flows](/docs/reports/flows), and [Retention](/docs/reports/retention)) to help you start gainining insights; and finally, guiding you to define user [Cohorts](/docs/users/cohorts) that will help you track and monitor your key users.
+
+## Onboarding Goals, Objectives, and Stakeholders
+
+![image](/public/tutorials/onboarding-goals-objectives.png "Onbaording Goals and Obectives")
+
+As you plan for Mixpanel onboarding, here are some key pointers to help you succeed:
+
+1. Set a target go-live date; working backwards, plan your sprints and scope your implementation accordingly.
+2. Start with your critical use cases or user journeys that you want to gain insights on in order to help you meet your business / product goals.
+3. Identify the teams and users who would be using Mixpanel, and start to appoint champions to help drive adoption within each team. Make sure champions are also involved in the onboarding process.
+4. Scope your implementation, key is to start small: Top 2 to 3 critical use cases, start with your primary platform - the one with the most user base, and identify any potential 3rd-party integrations with Mixpanel that may be required.
+5. Appoint key stakeholders that will drive a successful onboarding process.
+
+![image](/public/tutorials/onboarding-stakeholders.png "Onbaording Stakeholders")
+
+## Getting Help
+
+For the finer details, do refer to our [Mixpanel Docs](docs.mixpanel.com); and if you have any questions do reach out to our [Mixpanel Support](https://docs.mixpanel.com/docs/response-times#contacting-mixpanel-support) team who are always ready to lend their product expertise and share tips to help you get the most out of your Mixpanel experience.
+
+We do have an active [Mixpanel Community Slack](https://www.mixpanel.com/community-slack) as well, where you can ask other experienced Mixpanel users for help. Do refer to the [General guidelines](/docs/community/guidelines#general-guidelines).
