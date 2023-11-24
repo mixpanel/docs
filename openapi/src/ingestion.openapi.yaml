@@ -315,7 +315,7 @@ paths:
               "h-1": "/track",
               "h-2": "/import",
               "0-0": "Events per request",
-              "0-1": "50",
+              "0-1": "200",
               "0-2": "2000",
               "1-0": "Authentication",
               "1-1": "Project Token, intended for untrusted clients.",
