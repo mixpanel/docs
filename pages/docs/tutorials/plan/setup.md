@@ -1,4 +1,4 @@
-## Overviews
+## Overview
 
 As an Organization Admin, you may create and manage security processes that dictate the requirements needed for your users to access your organization. 
 
