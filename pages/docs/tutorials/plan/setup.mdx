@@ -33,6 +33,8 @@ Refer to docs on [Project Setup](docs/best-practices/project-setup) for more det
 
 ## Plan Data Access and Visibility
 
+> Note: Data Views and Classfied Data settings are at project level. You would need to have data in your Mixpanel project to be able to configure these settings.
+
 ### Data Views
 Data Views allow Project Owners and Admins to manage data access for a group of users within a single Mixpanel project for privacy and productivity purposes. 
 
@@ -45,9 +47,7 @@ A combination of filters can be applied depending upon the data access required:
 > Note: Filtering by User Profile Properties removes the ability to analyze by [Groups](/docs/data-structure/advanced/group-analytics#group-by-a-custom-identifier) 
 
 _Loom Video to be inserted below once ready_
-<p style={{ position: 'relative', paddingBottom: '56.25%', height: 0, overflow: 'hidden' }}>
-  <iframe src="https://www.loom.com/embed/_Loom ID_" frameborder="0" style={{ position: 'absolute', top: 0, left: 0, width: '100%', height: '100%' }} allowfullscreen></iframe>
-</p>
+
 
 The key to managing data access is to ensure that you plan your tracking data around the data access controls that your project requires. Example, to be able to segregate data access by different countries, you would need to track a global `country` event property in all your events.
 
@@ -63,9 +63,6 @@ In scenarios where you are allowed to send data that may be partially sensitive 
 ![image](manage-classified-data-viewing-perms.png "Mark Classified Viewing Perms")
 
 _Loom Video to be inserted below once ready_
-<p style={{ position: 'relative', paddingBottom: '56.25%', height: 0, overflow: 'hidden' }}>
-  <iframe src="https://www.loom.com/embed/_Loom ID_" frameborder="0" style={{ position: 'absolute', top: 0, left: 0, width: '100%', height: '100%' }} allowfullscreen></iframe>
-</p>
 
 Once data is in your project, ensure that you have marked all relevant event and user properties as classified before you start granting access to users.
 
