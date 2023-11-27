@@ -4,38 +4,34 @@
 
 You should have a Mixpanel [Organization](/docs/orgs-and-projects/organizations) assigned if you have signed up as the main Mixpanel [Owner](/docs/orgs-and-projects/roles-and-permissions#owner). To get you quickly setup, here are some suggested steps:
 
-1. Configure Your Organization's Discoverability *(Enterprise Plan non-SSO accounts Only)*
-2. Create Your Mixpanel Projects 
-3. Set up Data Views or Classified Data 
-4. Invite Users or Teams to Your Projects
+1. Configure your Organization's Discoverability *(Enterprise Plan non-SSO accounts Only)*
+2. Create separate *Development and Production* Mixpanel Projects
+3. Manage Data Access and Visibility *(using Mixpanel's [Data Views & Classfication](/docs/data-governance/data-views-and-classification))*
+5. Invite Users or Teams to Your Projects
 
 ## Organization Discoverability
-By default, an organization is setup as **Invite Only**, which means new users must be explicitly invited by an admin to be part of the organization. If you are on an [Enterprise Plan](https://mixpanel.com/settings/org/plan) and do not plan to setup [SSO](/docs/access-security/single-sign-on/overview), Mixpanel recommends setting one of the following organisation discoverability, by specifying the email domain(s) that should be granted access when a new user signs up for Mixpanel:
+By default, an organization is setup as __Invite Only__, which means new users must be explicitly invited by an admin to be part of the organization. If you are on an [Enterprise Plan](https://mixpanel.com/settings/org/plan) and do not plan to setup [SSO](/docs/access-security/single-sign-on/overview), Mixpanel recommends setting one of the following organisation discoverability, by specifying the email domain(s) that should be granted access when a new user signs up for Mixpanel:
 
 1. **Open Organization** - any new user with maching email domain(s) can join
 2. **Admin Approval** - admins will receieve email notification (and approve) for users who made a request to join
 
-![Organization Discoverability 2 Image](/discoverabilitytwo.png)
+![image](/discoverabilitytwo.png "Organization Discoverability")
 
-For more information refer to docs on [Organization Discoverability](/docs/orgs-and-projects/organizations#organization-discoverability)
+Click [here](https://mixpanel.com/settings/org/users-and-teams/find-your-org) to setup, or for more information refer to docs on [Organization Discoverability](/docs/orgs-and-projects/organizations#organization-discoverability)
 
-## Project Setup
+## Development and Production Project Setup
+We recommend that you minimally setup 2 Mixpanel projects, one for Development data and another for Production data. This is to ensure that you keep development test data separate from actual live user behavioural data. Read more details about [Developer Environments](/docs/best-practices/developer-environments).
 
-### Creating Your Mixpanel Projects
-Within your Mixpanel organization, we recommend at the minimum having [separate development and production projects](/docs/best-practices/developer-environments). Keeping your development data separate is important to maintain the integrity of your Mixpanel data. It's easy to prevent development data from cluttering your production project, but hard to detangle in later stages of a project.
+![image](/public/tutorials/create-projects.png "Create Projects")
 
-![image](https://github.com/mixpanel/docs/assets/50901466/8d6d81cf-0e55-4bef-a743-b38d316e0db4)
+1. Go to the **Projects** under your **Organization Settings**, click [here](https://mixpanel.com/settings/org/projects)
+2. Click **Create Project** to create each project
+   - We recommend choosing **United States** as *Where To Store Your Data* (unless you have [EU Residency](/docs/privacy/eu-residency) requirements)
+   - Select the **Timezone** with which you want to analyze your data (more information on [Project Timezones](/docs/orgs-and-projects/managing-projects#manage-timezones-for-projects))
 
-In certain instances, it may make sense to [create separate production projects](/docs/best-practices/developer-environments) as well. For example, if your app or web offers fundamentally different functionality and the user journey is drastically varied, it may make sense to use separate projects so as not to clutter your analytics. 
+Refer to docs on [Project Setup](docs/best-practices/project-setup) for more detailed steps and best practices.
 
-In general though, if you want to track and study cross-platform user behaviour, we recommend using a single production project. Example scenarios:
-
-- Your platform teams - web, android, iOS - are separate and just need access to their own data. You can use event properties, e.g. platform = ‘web’, to create [data views](/docs/data-governance/data-views-and-classification) and give relevant teams access to the views they need. The bonus in this scenario is that you for boards / reports is automatically shared with the different platform teams, and automatically filtered to their specific platform.
-- You have a B2B and a B2C platform and want to be able to analyze certain users’ behaviour across both platforms. For instance, you’re a restaurant with a B2B app to manage multiple restaurants and reservations. You also have a B2C app for customers to make reservations. You want to analyze metrics across different entities: customers, restaurants, and reservations of which certain actions can be done either on the B2B or B2C platform. Being able to analyze conversions across these entities where actions can be done on either platform requires data to be in 1 project and having [Group Analytics](/docs/data-structure/advanced/group-analytics) as an add-on.
-- You have sensitive data that you do want to send into Mixpanel, but want to prevent some users from getting access. In this case, you can still use a single project, but leverage [classified data](/docs/data-governance/data-views-and-classification#mark-properties-as-classified-data) to mark those event or user properties as classified so that only users with access can query and see results on them.
-- You want to share your Mixpanel metrics perhaps with users outside your organization, who only access to consume reports but not need query underlying data - e.g. exec stakeholders who want to see summary metrics, or external vendors that need specific reports. For this, you could turn on and provide [public boards](/docs/boards/public-boards).
-
-### Data Views and Data Classification
+## Manage Data Access and Visibility
 
 Data Views allow you to manage or filter data access for a group of users within a single Mixpanel project for privacy and productivity purposes. Data View Filters can be applied to multiple events, event properties, and user profile properties. A detailed guide on how to go about setting up Data Views can be found [here](/docs/data-governance/data-views-and-classification#create-data-view).
 **Do note that applying any user profile property as a filter will remove the ability to analyze by [Group Identifiers](/docs/data-structure/advanced/group-analytics#group-by-a-custom-identifier) 
