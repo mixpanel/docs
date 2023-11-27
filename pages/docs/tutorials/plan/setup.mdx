@@ -6,8 +6,8 @@ You should have a Mixpanel [Organization](/docs/orgs-and-projects/organizations)
 
 1. Configure your Organization's Discoverability *(Enterprise Plan non-SSO accounts Only)*
 2. Create separate *Development and Production* Mixpanel Projects
-4. Plan Users' Data Access and Visibility using Mixpanel's [Data Views & Classfication](/docs/data-governance/data-views-and-classification) *(Enterprise Plan Only)*
-5. Invite Users or Teams to Your Projects
+4. Plan users' Data Access and Visibility using Mixpanel's [Data Views & Classfication](/docs/data-governance/data-views-and-classification) *(Enterprise Plan Only)*
+5. Setup Teams or Add Users to Mixpanel Projects
 
 ## Organization Discoverability
 By default, an organization is setup as __Invite Only__, which means new users must be explicitly invited by an admin to be part of the organization. If you are on an [Enterprise Plan](https://mixpanel.com/settings/org/plan) and do not plan to setup [SSO](/docs/access-security/single-sign-on/overview), Mixpanel recommends setting one of the following organisation discoverability, by specifying the email domain(s) that should be granted access when a new user signs up for Mixpanel:
@@ -33,6 +33,8 @@ Refer to docs on [Project Setup](docs/best-practices/project-setup) for more det
 
 ## Plan Data Access and Visibility
 
+By default, all data in a Mixpanel project is accessible to all your users in the Mixpanel organization. However, you might have requrements to segregate data visibility or restrict access to certain data that might be considered more sensitive and should not viewable by the entire organization.
+
 > Note: Data Views and Classfied Data settings are at project level. You would need to have data in your Mixpanel project to be able to configure these settings.
 
 ### Data Views
@@ -47,7 +49,9 @@ A combination of filters can be applied depending upon the data access required:
 > Note: Filtering by User Profile Properties removes the ability to analyze by [Groups](/docs/data-structure/advanced/group-analytics#group-by-a-custom-identifier) 
 
 _Loom Video to be inserted below once ready_
-
+<p style={{ position: 'relative', paddingBottom: '56.25%', height: 0, overflow: 'hidden' }}>
+  <iframe src="https://www.loom.com/embed/_Loom ID_" frameborder="0" style={{ position: 'absolute', top: 0, left: 0, width: '100%', height: '100%' }} allowfullscreen></iframe>
+</p>
 
 The key to managing data access is to ensure that you plan your tracking data around the data access controls that your project requires. Example, to be able to segregate data access by different countries, you would need to track a global `country` event property in all your events.
 
@@ -63,44 +67,31 @@ In scenarios where you are allowed to send data that may be partially sensitive 
 ![image](/manage-classified-data-viewing-perms.png "Mark Classified Viewing Perms")
 
 _Loom Video to be inserted below once ready_
+<p style={{ position: 'relative', paddingBottom: '56.25%', height: 0, overflow: 'hidden' }}>
+  <iframe src="https://www.loom.com/embed/_Loom ID_" frameborder="0" style={{ position: 'absolute', top: 0, left: 0, width: '100%', height: '100%' }} allowfullscreen></iframe>
+</p>
 
 Once data is in your project, ensure that you have marked all relevant event and user properties as classified before you start granting access to users.
 
 Refer to docs for a detailed guide on setting up [Classified Data](/docs/data-governance/data-views-and-classification#data-classification).
 
-### Adding End Users to Your Mixpanel Organization and Projects
-Organisation Owners and Admins would need to [invite end users to the organization](/docs/orgs-and-projects/roles-and-permissions#invite-users), before they can add end users to a project.
-
+## Setup Teams or Add Users to Mixpanel Projects
 
 There are two general approaches to user management in Mixpanel. 
 
-- Organization owners and admins can create [teams](/docs/orgs-and-projects/manage-team-members#teams) at the organization level and then add teams to the different projects. Typically, larger enterprise customers prefer to use this, along with [Single Sign-On](/docs/access-security/single-sign-on/overview), for better management of users.
+- [Teams](/docs/orgs-and-projects/roles-and-permissions#teams) - organization owners and admins create teams at the organization level, grant projects and permissions, and assign users to teams.
+- [Project based](/docs/orgs-and-projects/roles-and-permissions#invite-users-to-a-project) - organization admins appoint project level admins who grant permissions to users.
 
+![image](/tutorials/user-access-approach.png "User Access Approach")
 
-![image](https://github.com/mixpanel/docs/assets/50901466/9b42d818-cc77-4f02-9025-90456a557c6a)
+Users are required to be part of your Mixpanel Organization (either through [self-joining](/docs/orgs-and-projects/organizations#organization-discoverability) or via an [invitation from the admin](/docs/orgs-and-projects/roles-and-permissions#invite-users-to-an-organization)), before they can be granted access to any Mixpanel Project.
 
-### Creating Mixpanel Teams at the Organizational Level
+1. Go to the **Users & Teams** under **Organization Settings** to setup your **Teams**, click [here](https://mixpanel.com/settings/org/users-and-teams/teams) _(Optional)_
+2. Invite users to your [organization](/docs/orgs-and-projects/roles-and-permissions#invite-users-to-an-organization), either add them to teams or directly add them into your [projects](/docs/orgs-and-projects/roles-and-permissions#invite-users-to-a-project)
+3. Assign the appropriate [Organization](/docs/orgs-and-projects/roles-and-permissions#organization-roles) and [Project](/docs/orgs-and-projects/roles-and-permissions#project-roles) roles; a default project role can also be set for All Users in the Organization as a baseline access. 
 
-![image](https://github.com/mixpanel/docs/assets/50901466/de43d48b-4fef-4292-b835-f1d5682345b1)
+![image](/tutorials/default-project-role.png "Default Project Role")
 
-### Adding Teams and / or End Users to Projects
-Organization owners and admins can assign projects or teams directly to user accounts at the organization level by minimally provisioning them with an organization membership.
-
-![image](https://github.com/mixpanel/docs/assets/50901466/8ec08b83-d0e2-47b3-92a4-5f5e98d70b52)
-
-### Invite Users to Specific Projects
-
-Once [project owners and admins](/docs/orgs-and-projects/roles-and-permissions#setting-a-default-role-on-a-project) are assigned, they can then add end users to projects and provision their roles.  A default project role can also be set for All Users in the Organization as a baseline access.
-
-![image](https://github.com/mixpanel/docs/assets/50901466/61a9099b-f07e-4bcf-9110-bf5418e7000b) 
-
-
-## Roles and Permissions
-For a better understanding of the 4 roles in an organisation: Owner, Admin, Billing Admin & member and its respective permissions, you could refer to a detailed documentation on [Organisation Roles](/docs/orgs-and-projects/roles-and-permissions#organization-roles). Similarly, every project in an organisation has 4 roles: Owner, Admin, Analyst, Consumer and the respective permissions per role is further explained in [Project Roles](/docs/orgs-and-projects/roles-and-permissions#project-roles). 
-
-
-
-
-
+Refer to docs for a detailed guide on [Project Setup](/docs/best-practices/project-setup).
 
 
