@@ -6,7 +6,7 @@ You should have a Mixpanel [Organization](/docs/orgs-and-projects/organizations)
 
 1. Configure your Organization's Discoverability *(Enterprise Plan non-SSO accounts Only)*
 2. Create separate *Development and Production* Mixpanel Projects
-3. Manage Data Access and Visibility using Mixpanel's [Data Views & Classfication](/docs/data-governance/data-views-and-classification) *(Enterprise Plan Only)*
+4. Plan Users' Data Access and Visibility using Mixpanel's [Data Views & Classfication](/docs/data-governance/data-views-and-classification) *(Enterprise Plan Only)*
 5. Invite Users or Teams to Your Projects
 
 ## Organization Discoverability
@@ -31,8 +31,9 @@ We recommend that you minimally setup 2 Mixpanel projects, one for Development d
 
 Refer to docs on [Project Setup](docs/best-practices/project-setup) for more detailed steps and best practices.
 
-## Manage Data Access and Visibility
+## Plan Data Access and Visibility
 
+### Data Views
 Data Views allow Project Owners and Admins to manage data access for a group of users within a single Mixpanel project for privacy and productivity purposes. 
 
 ![image](/manage-data-view-filters.png "Data View Filters")
@@ -41,22 +42,34 @@ A combination of filters can be applied depending upon the data access required:
 1. Events - include or exclude specific events names
 2. Event Properties - filter explicit property values across events *(example: Mixpanel Library = web)*
 3. User Profile Properties - filter explicit users based on their user property value *(example: Staff User = true)*
-
 > Note: Filtering by User Profile Properties removes the ability to analyze by [Groups](/docs/data-structure/advanced/group-analytics#group-by-a-custom-identifier) 
+
+_Loom Video to be inserted below once ready_
+<p style={{ position: 'relative', paddingBottom: '56.25%', height: 0, overflow: 'hidden' }}>
+  <iframe src="https://www.loom.com/embed/_Loom ID_" frameborder="0" style={{ position: 'absolute', top: 0, left: 0, width: '100%', height: '100%' }} allowfullscreen></iframe>
+</p>
+
+The key to managing data access is to ensure that you plan your tracking data around the data access controls that your project requires. Example, to be able to segregate data access by different countries, you would need to track a global `country` event property in all your events.
 
 Refer to docs for a detailed guide on setting up [Data Views](/docs/data-governance/data-views-and-classification#data-views-overview).
 
+### Classified Data
+In general, you should **_not be sending_** data that are considered sensitive (ie: Personal Identifiable Information, Secured Data, etc.) to your Mixpanel projects. Do consult your company's legal, security, or compliance teams before you send any potential sensitive data. Also refer to Mixpanel's [Legal Hub](https://mixpanel.com/legal/privacy-policy) for our Privacy Program.
+
+In scenarios where you are allowed to send data that may be partially sensitive and accessible only to certain priviledge users in your company, you can mark event and user properties as [Classified Data](/docs/data-governance/data-views-and-classification#mark-properties-as-classified-data) allowing you to grant view access to only specific users.
+
+![image](mark-classified.png "Mark Classified")
+
+![image](manage-classified-data-viewing-perms.png "Mark Classified Viewing Perms")
+
 _Loom Video to be inserted below once ready_
 <p style={{ position: 'relative', paddingBottom: '56.25%', height: 0, overflow: 'hidden' }}>
   <iframe src="https://www.loom.com/embed/_Loom ID_" frameborder="0" style={{ position: 'absolute', top: 0, left: 0, width: '100%', height: '100%' }} allowfullscreen></iframe>
 </p>
 
-On the other hand, classified data would be more suitable in scenarios where sensitive data are being sent to Mixpanel and should only be accessible to certain users. Data Classification allows you to mark event or user properties as classified and grant view access to only specific users or teams. A detailed guide on how to go about setting up classified data can be found[here](/docs/data-governance/data-views-and-classification#create-data-view).
+Once data is in your project, ensure that you have marked all relevant event and user properties as classified before you start granting access to users.
 
-_Loom Video to be inserted below once ready_
-<p style={{ position: 'relative', paddingBottom: '56.25%', height: 0, overflow: 'hidden' }}>
-  <iframe src="https://www.loom.com/embed/_Loom ID_" frameborder="0" style={{ position: 'absolute', top: 0, left: 0, width: '100%', height: '100%' }} allowfullscreen></iframe>
-</p>
+Refer to docs for a detailed guide on setting up [Classified Data](/docs/data-governance/data-views-and-classification#data-classification).
 
 ### Adding End Users to Your Mixpanel Organization and Projects
 Organisation Owners and Admins would need to [invite end users to the organization](/docs/orgs-and-projects/roles-and-permissions#invite-users), before they can add end users to a project.
