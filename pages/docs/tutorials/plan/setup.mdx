@@ -1,31 +1,23 @@
 ## Overview
 
-As an Organization Admin, you may create and manage security processes that dictate the requirements needed for your users to access your organization. 
+> Note: this section is for Organization Owners and Organization Admins who are responsible for setting up your Organisation and Projects.
 
-Here are some suggested steps to take for you to get started:
-1. Configure Your Organization Discoverability settings 
+You should have a Mixpanel [Organization](/docs/orgs-and-projects/organizations) assigned if you have signed up as the main Mixpanel [Owner](/docs/orgs-and-projects/roles-and-permissions#owner). To get you quickly setup, here are some suggested steps:
+
+1. Configure Your Organization's Discoverability *(Enterprise Plan non-SSO accounts Only)*
 2. Create Your Mixpanel Projects 
 3. Set up Data Views or Classified Data 
 4. Invite Users or Teams to Your Projects
 
 ## Organization Discoverability
-Organization Discoverability makes it seamless for new users with a shared work email domain to connect with teammates in an existing organization in Mixpanel, allowing them to access their team’s projects, data, and reports, instead of joining a new, empty org.
+By default, an organization is setup as **Invite-Only**, which means new users must be explicitly invited by an admin to be part of the organization. If you are on an [Enterprise Plan](https://mixpanel.com/settings/org/plan) and do not plan to setup [SSO](/docs/access-security/single-sign-on/overview), Mixpanel recommends setting one of the following organisation discoverability, by specifying the email domain(s) that should be granted access when a new user signs up for Mixpanel:
 
-This feature is accessible to new users who have verified their email as well as existing organizations that are not on Enterprise plan and do not have SSO enabled.
-
-![Organization Discoverability 1 Image](/discoverabilityone.png)
-
-### Setting Discoverability
-
-Only **organization owners** and **billing admins** can access [Organization Discoverability](/docs/orgs-and-projects/organizations#organization-discoverability) by going to Organization Settings > Users & Teams > Organization Discoverability.
+1. **Open Organization** - any new user with maching email domain(s) can join
+2. **Admin Approval** - admins will receieve email notification (and approve) for users who made a request to join
 
 ![Organization Discoverability 2 Image](/discoverabilitytwo.png)
 
-
-They can enable Organization Discoverability by first specifying the private (i.e. work) email domain(s) that should be granted access when a new user signs up for Mixpanel. Please note that public email domains, such as Gmail or Yahoo, cannot be used.
-
-The org owner or admin can then designate the level of discoverability of their organization; **open to join**, **subject to admin approval**, or **invite only**.
-
+For more information refer to docs on [Organization Discoverability](/docs/orgs-and-projects/organizations#organization-discoverability)
 
 ## Project Setup
 
