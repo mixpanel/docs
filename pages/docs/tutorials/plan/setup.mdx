@@ -6,7 +6,7 @@ You should have a Mixpanel [Organization](/docs/orgs-and-projects/organizations)
 
 1. Configure your Organization's Discoverability *(Enterprise Plan non-SSO accounts Only)*
 2. Create separate *Development and Production* Mixpanel Projects
-3. Manage Data Access and Visibility *(using Mixpanel's [Data Views & Classfication](/docs/data-governance/data-views-and-classification))*
+3. Manage Data Access and Visibility using Mixpanel's [Data Views & Classfication](/docs/data-governance/data-views-and-classification) *(Enterprise Plan Only)*
 5. Invite Users or Teams to Your Projects
 
 ## Organization Discoverability
@@ -33,8 +33,18 @@ Refer to docs on [Project Setup](docs/best-practices/project-setup) for more det
 
 ## Manage Data Access and Visibility
 
-Data Views allow you to manage or filter data access for a group of users within a single Mixpanel project for privacy and productivity purposes. Data View Filters can be applied to multiple events, event properties, and user profile properties. A detailed guide on how to go about setting up Data Views can be found [here](/docs/data-governance/data-views-and-classification#create-data-view).
-**Do note that applying any user profile property as a filter will remove the ability to analyze by [Group Identifiers](/docs/data-structure/advanced/group-analytics#group-by-a-custom-identifier) 
+Data Views allow Project Owners and Admins to manage data access for a group of users within a single Mixpanel project for privacy and productivity purposes. 
+
+![image](/manage-data-view-filters.png "Data View Filters")
+
+A combination of filters can be applied depending upon the data access required:
+1. Events - include or exclude specific events names
+2. Event Properties - filter explicit property values across events *(example: Mixpanel Library = web)*
+3. User Profile Properties - filter explicit users based on their user property value *(example: Staff User = true)*
+
+> Note: Filtering by User Profile Properties removes the ability to analyze by [Groups](/docs/data-structure/advanced/group-analytics#group-by-a-custom-identifier) 
+
+Refer to docs for a detailed guide on setting up [Data Views](/docs/data-governance/data-views-and-classification#data-views-overview).
 
 _Loom Video to be inserted below once ready_
 <p style={{ position: 'relative', paddingBottom: '56.25%', height: 0, overflow: 'hidden' }}>
