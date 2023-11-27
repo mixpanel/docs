@@ -4,126 +4,6 @@ If you haven't already, we recommend starting with our [Migration Guides Overvie
 
 ## Currently using Google Analytics 4 (GA4) and not seeing value?
 
-### Track forward looking real-time data
-
-Choose your current implementation method for GA4 and you can follow the below steps for starting to send live data to Mixpanel.
-
-#### Client-side SDKs & Server-side SDKs
-
-Mixpanel and GA4’s client-side SDKs have *very similar* developer facing APIs. This makes it fairly easy to “find and replace” embedded GA4 calls and swap them for Mixpanel calls.
-    
-This section will detail the Javascript SDKs (for the sake of brevity), although both analytics platforms have fairly uniform tracking APIs for other SDKs (mobile, server-side, etc.)
-
-##### Events
-
-GA4 method
-
-```jsx
-gtag('event', 'event_name', {
-    'param1': 'value1',
-    'param2': 'value2'
-});
-```
-
-Mixpanel method
-
-```jsx
-mixpanel.track('event_name', {
-    'param1': 'value1',
-    'param2': 'value2'
-});
-```
-
-##### Identity Management
-
-GA4 method
-
-```jsx
-gtag('config', 'GA_MEASUREMENT_ID', {
-    'user_id': 'USER_ID'
-});
-```
-
-Mixpanel method
-
-```jsx
-mixpanel.identify('USER_ID');
-```
-
-##### User Properties
-
-GA4 method
-
-```jsx
-gtag('set', 'user_properties', {
-    'property1': 'value1',
-    'property2': 'value2'
-});
-```
-
-Mixpanel method
-
-```jsx
-mixpanel.people.set({
-    'property1': 'value1',
-    'property2': 'value2'
-});
-```
-
-##### Super Properties
-
-GA4 method → GA4 doesn't have a direct equivalent, but you can set global properties on the SDK config we recommend moving to Mixpanel
-
-```jsx
-gtag('config', 'GA_MEASUREMENT_ID', {
-    'custom_map': {
-        'dimension1': 'property1',
-        'dimension2': 'property2'
-    },
-    'property1': 'value1',
-    'property2': 'value2'
-});
-```
-
-Mixpanel method
-
-```jsx
-mixpanel.register({
-    'property1': 'value1',
-    'property2': 'value2'
-});
-```
-
-Keep in mind that you will need to initialize the [Mixpanel SDK](https://developer.mixpanel.com/docs/javascript-full-api-reference) by adding the Mixpanel snippet to your website before using these tracking calls. Replace the placeholders (e.g., 'event_name', 'USER_ID', 'value1', etc.) with the appropriate values from GA4 in your code as you migrate the code.
-    
-#### Google Tag Manager (GTM)
-
-Mixpanel has a [Google Tag Manager (GTM) custom template](/docs/tracking-methods/integrations/google-tag-manager) which can be leveraged to implement events within an hour. Simply load the template, and you can send Mixpanel the same events you’ve setup for your GA4 instance.
-
-This method is straightforward since you’ve already setup your SDK to track “events” and are using Google Tag Manager. You can leverage this same setup to implement Mixpanel.
-    
-#### Customer Data Platforms (CDPs)
-
-CDPs like [Segment](https://segment.com/) will already be tracking events to GA4 that you want to duplicate to Mixpanel. You can add Mixpanel as a destination to your CDP and immediately start receiving the same data as your other destinations.
-    
-CDPs like [Segment](https://segment.com/) have always tracked event data and synthesized them into sessions for Universal Analytics. You can add Mixpanel as a destination to your CDP and immediately start receiving the same data as your other destinations.
-    
-Since CDPs already collect all your data via 1 SDK and route to many downstream destinations, enabling Mixpanel is straightforward. Simply go to your CDP settings and add Mixpanel as a destination:
-
-![Segment Connection](https://user-images.githubusercontent.com/129823695/234812593-dffee962-bb34-49b8-9686-96bc0f0565d8.png)
-
-Once you set up the connection to Mixpanel, you can proceed with configuring key settings like:
-
-- Which events and properties to send → only send what matters
-- Edit any mappings/editing/filtering that has to be done on the data → ensure high data quality and governance
-- Connection settings, or CDP specific settings for data syncs → control over how data is sent
-
-We provide Mixpanel as a destination and setup guides for all of the most popular CDPs:
-
-- [Segment](https://segment.com/docs/connections/destinations/catalog/actions-mixpanel/)
-- [mParticle](https://docs.mparticle.com/integrations/mixpanel/audience/)
-- [Rudderstack](https://www.rudderstack.com/docs/destinations/streaming-destinations/mixpanel/)
-
 ### Loading historical data 
 
 Given GA4 has a similar data format to Mixpanel, it is possible to migrate some of your historical data to see trends. In the cases where historical data is essential, we recommend loading a year’s worth (or less) of historical data during your migration. This will allow your team to review year-over-year trends easily and do historical analysis as needed.
@@ -396,6 +276,126 @@ You can use our [Lexicon](/docs/data-governance/lexicon) or Events page to check
 Please filter by tracked name, $warehouse_import_id instead of the display name, “Warehouse Import ID”. You can find the properties values on the Warehouse Connector’ sync logs:
 
 ![image](/ga4_event_validation.png)
+
+### Track forward looking real-time data
+
+Choose your current implementation method for GA4 and you can follow the below steps for starting to send live data to Mixpanel.
+
+#### Client-side SDKs & Server-side SDKs
+
+Mixpanel and GA4’s client-side SDKs have *very similar* developer facing APIs. This makes it fairly easy to “find and replace” embedded GA4 calls and swap them for Mixpanel calls.
+    
+This section will detail the Javascript SDKs (for the sake of brevity), although both analytics platforms have fairly uniform tracking APIs for other SDKs (mobile, server-side, etc.)
+
+##### Events
+
+GA4 method
+
+```jsx
+gtag('event', 'event_name', {
+    'param1': 'value1',
+    'param2': 'value2'
+});
+```
+
+Mixpanel method
+
+```jsx
+mixpanel.track('event_name', {
+    'param1': 'value1',
+    'param2': 'value2'
+});
+```
+
+##### Identity Management
+
+GA4 method
+
+```jsx
+gtag('config', 'GA_MEASUREMENT_ID', {
+    'user_id': 'USER_ID'
+});
+```
+
+Mixpanel method
+
+```jsx
+mixpanel.identify('USER_ID');
+```
+
+##### User Properties
+
+GA4 method
+
+```jsx
+gtag('set', 'user_properties', {
+    'property1': 'value1',
+    'property2': 'value2'
+});
+```
+
+Mixpanel method
+
+```jsx
+mixpanel.people.set({
+    'property1': 'value1',
+    'property2': 'value2'
+});
+```
+
+##### Super Properties
+
+GA4 method → GA4 doesn't have a direct equivalent, but you can set global properties on the SDK config we recommend moving to Mixpanel
+
+```jsx
+gtag('config', 'GA_MEASUREMENT_ID', {
+    'custom_map': {
+        'dimension1': 'property1',
+        'dimension2': 'property2'
+    },
+    'property1': 'value1',
+    'property2': 'value2'
+});
+```
+
+Mixpanel method
+
+```jsx
+mixpanel.register({
+    'property1': 'value1',
+    'property2': 'value2'
+});
+```
+
+Keep in mind that you will need to initialize the [Mixpanel SDK](https://developer.mixpanel.com/docs/javascript-full-api-reference) by adding the Mixpanel snippet to your website before using these tracking calls. Replace the placeholders (e.g., 'event_name', 'USER_ID', 'value1', etc.) with the appropriate values from GA4 in your code as you migrate the code.
+    
+#### Google Tag Manager (GTM)
+
+Mixpanel has a [Google Tag Manager (GTM) custom template](/docs/tracking-methods/integrations/google-tag-manager) which can be leveraged to implement events within an hour. Simply load the template, and you can send Mixpanel the same events you’ve setup for your GA4 instance.
+
+This method is straightforward since you’ve already setup your SDK to track “events” and are using Google Tag Manager. You can leverage this same setup to implement Mixpanel.
+    
+#### Customer Data Platforms (CDPs)
+
+CDPs like [Segment](https://segment.com/) will already be tracking events to GA4 that you want to duplicate to Mixpanel. You can add Mixpanel as a destination to your CDP and immediately start receiving the same data as your other destinations.
+    
+CDPs like [Segment](https://segment.com/) have always tracked event data and synthesized them into sessions for Universal Analytics. You can add Mixpanel as a destination to your CDP and immediately start receiving the same data as your other destinations.
+    
+Since CDPs already collect all your data via 1 SDK and route to many downstream destinations, enabling Mixpanel is straightforward. Simply go to your CDP settings and add Mixpanel as a destination:
+
+![Segment Connection](https://user-images.githubusercontent.com/129823695/234812593-dffee962-bb34-49b8-9686-96bc0f0565d8.png)
+
+Once you set up the connection to Mixpanel, you can proceed with configuring key settings like:
+
+- Which events and properties to send → only send what matters
+- Edit any mappings/editing/filtering that has to be done on the data → ensure high data quality and governance
+- Connection settings, or CDP specific settings for data syncs → control over how data is sent
+
+We provide Mixpanel as a destination and setup guides for all of the most popular CDPs:
+
+- [Segment](https://segment.com/docs/connections/destinations/catalog/actions-mixpanel/)
+- [mParticle](https://docs.mparticle.com/integrations/mixpanel/audience/)
+- [Rudderstack](https://www.rudderstack.com/docs/destinations/streaming-destinations/mixpanel/)
 
 ## Currently using Universal Analytics with Google?
 
