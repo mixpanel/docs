@@ -29,14 +29,14 @@ As you go deeper in your analytics strategy, you can progress to using [Mixpanel
 
 ### Measure your Product's Value
 
-Your product's metrics and KPIs should be defined around your product's value to your target users. The more value your users derive from your product, the higher their adoption and engament which leads to higher retention.
+Your product's metrics and KPIs should be defined around your product's value to your target users. The more value your users derive from your product, the higher their adoption and engagement which leads to higher retention.
 
 In order to measure your product's value *(i.e. what is the problem that your solution is trying to solve)*, you need to:
 
 1. Identify the **key actions** that indicate a user is getting value out of your product
 2. Match these key actions to their expected **natural frequency** (daily / weekly / monthly) at solving your user’s problem
 
-These key actions + natural frequency is what we call ***Value Moments***. The more value moments means more opportunities for users to build a habit *(i.e. product stickiness)* around your product and remain long term customer. Using value moments as metrics helps you set tangible goals and measure what really matters.
+These key actions + natural frequency is what we call **Value Moments**. The more value moments means more opportunities for users to build a habit *(i.e. product stickiness)* around your product and remain long term customer. Using value moments as metrics helps you set tangible goals and measure what really matters.
 
 ![image](/tutorials/value-moment.png "Value Moment")
 
