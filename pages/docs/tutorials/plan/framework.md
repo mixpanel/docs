@@ -49,7 +49,23 @@ For more details on Measuring Value read [Chapter 1 of The Guide to Product Anal
 
 ### Monitor your Product’s Reach
 
+Product **Reach** is defined as the total number of users who have used your product in a recent time period *(before you consider them as churned)*.
+
+- For consumer companies, it could be the number of paid accounts, or users who have made purchases in the past three months. 
+- For B2B companies, this key metric is often product install base or number of paid licenses within the past quarter or year. 
+
 ![image](/tutorials/product-reach.png "Product Reach")
+
+Reach is important because it represents the maximum amount of users who could reasonably become active and engaged, whether organically or through re-engagement campaigns. The goal is to focus on growing and retaining your Reach, and in order to do that, you need to:
+
+- Track the growth of newly acquired users
+- Eliminate the barriers to Activation
+- Resurrect the users who have gone dormant
+
+_Loom Video to be inserted below once ready_
+<p style={{ position: 'relative', paddingBottom: '56.25%', height: 0, overflow: 'hidden' }}>
+  <iframe src="https://www.loom.com/embed/_Loom ID_" frameborder="0" style={{ position: 'absolute', top: 0, left: 0, width: '100%', height: '100%' }} allowfullscreen></iframe>
+</p>
 
 
 ### Activate your Users
