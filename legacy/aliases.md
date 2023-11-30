@@ -1,6 +1,6 @@
 This article reflects a legacy version of identity management in Mixpanel, for projects that were created prior to 2020. In 2020, we released hourly merge. If you have ID Merge enabled, you will see it in your Mixpanel [project settings](https://mixpanel.com/settings/project):
 
-![image](/230244606-e12422cd-d937-4328-ac58-8cc60f919df7.png)
+![image](https://github.com/mixpanel/docs/assets/2077899/2b366ab9-e837-4f19-bf1f-85872a93f75e)
 
 If you're using ID Merge, see our latest recommendations [here](https://developer.mixpanel.com/docs/identity-management).
 
