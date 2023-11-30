@@ -22,9 +22,9 @@ If you're not using Maven to build your project, you can browse and download the
 
 ## Sending Events
 
-Track events in the mixpanel-java library by creating messages using an instance of <a style="font-family: courier" href="http://mixpanel.github.io/mixpanel-java/com/mixpanel/mixpanelapi/MessageBuilder.html">MessageBuilder</a> using your project token, bundling messages together using an instance of <a style="font-family: courier" href="http://mixpanel.github.io/mixpanel-java/com/mixpanel/mixpanelapi/ClientDelivery.html">ClientDelivery</a>, and then pushing the bundle to Mixpanel using an instance of <a style="font-family: courier" href="http://mixpanel.github.io/mixpanel-java/com/mixpanel/mixpanelapi/MixpanelAPI.html">MixpanelAPI</a>.
+Track events in the mixpanel-java library by creating messages using an instance of [`MessageBuilder`](http://mixpanel.github.io/mixpanel-java/com/mixpanel/mixpanelapi/MessageBuilder.html) using your project token, bundling messages together using an instance of [`ClientDelivery`](http://mixpanel.github.io/mixpanel-java/com/mixpanel/mixpanelapi/ClientDelivery.html), and then pushing the bundle to Mixpanel using an instance of [`MixpanelAPI`](http://mixpanel.github.io/mixpanel-java/com/mixpanel/mixpanelapi/MixpanelAPI.html).
 
-The JSONObjects produced by <a style="font-family: courier" href="http://mixpanel.github.io/mixpanel-java/com/mixpanel/mixpanelapi/MessageBuilder.html">MessageBuilder</a> are completely self-contained, and can be sent over a network or enqueued for later processing.
+The JSONObjects produced by `MessageBuilder` are completely self-contained, and can be sent over a network or enqueued for later processing.
 
 ```java
 import com.mixpanel.mixpanelapi.ClientDelivery;
@@ -87,7 +87,7 @@ In addition to events, you can send user profile updates to Mixpanel. Mixpanel c
 You can use profiles to explore and segment users by who they are, rather than what they did. You can also use profiles to send messages, such as emails, SMS, or push notifications.
 
 ### Setting Profile Properties
-You can prepare a profile update message with <a style="font-family: courier" href="http://mixpanel.github.io/mixpanel-java/com/mixpanel/mixpanelapi/MessageBuilder.html#set(java.lang.String,%20org.json.JSONObject)">MessageBuilder.set</a> 
+You can prepare a profile update message with [`MessageBuilder.set`](http://mixpanel.github.io/mixpanel-java/com/mixpanel/mixpanelapi/MessageBuilder.html#set(java.lang.String,%20org.json.JSONObject))
 
 ```java
 import com.mixpanel.mixpanelapi.MessageBuilder;
@@ -114,7 +114,7 @@ This will set a "Plan" property, with a value "Premium", on user 13793's profile
 
 ### Incrementing Numeric Properties
 
-You can use <a style="font-family: courier" href="http://mixpanel.github.io/mixpanel-java/com/mixpanel/mixpanelapi/MessageBuilder.html#increment(java.lang.String,%20java.util.Map)">MessageBuilder.increment</a> to create a message that will change the current value of numeric properties. This is useful when you want to keep a running tally of things, such as games played, emails sent, or points earned.
+You can use [`MessageBuilder.increment`](http://mixpanel.github.io/mixpanel-java/com/mixpanel/mixpanelapi/MessageBuilder.html#increment(java.lang.String,%20java.util.Map)) to create a message that will change the current value of numeric properties. This is useful when you want to keep a running tally of things, such as games played, emails sent, or points earned.
 
 ```java
 import com.mixpanel.mixpanelapi.MessageBuilder;
@@ -138,7 +138,7 @@ mixpanel.sendMessage(update);
 ```
 
 ### Appending to List Properties
-<a style="font-family: courier" href="http://mixpanel.github.io/mixpanel-java/com/mixpanel/mixpanelapi/MessageBuilder.html#append(java.lang.String,%20org.json.JSONObject)">MessageBuilder.append</a> creates an update that adds an item to a list-valued property. The value you send with the append is added to the end of the list. If the property doesn't exist, it will be created with a one element list as its value.
+[`MessageBuilder.append`](http://mixpanel.github.io/mixpanel-java/com/mixpanel/mixpanelapi/MessageBuilder.html#append(java.lang.String,%20org.json.JSONObject)) creates an update that adds an item to a list-valued property. The value you send with the append is added to the end of the list. If the property doesn't exist, it will be created with a one element list as its value.
 
 ```java
 import com.mixpanel.mixpanelapi.MessageBuilder;
@@ -204,7 +204,7 @@ mixpanel.sendMessage(planEvent);
 ```
 
 ### Adding Group Identifiers to Individual Users
-To connect group information to a user profile, include the `group_key` and `group_id` by sending the property as part of the <a style="font-family: courier" href="http://mixpanel.github.io/mixpanel-java/">set()</a> call. 
+To connect group information to a user profile, include the `group_key` and `group_id` by sending the property as part of the [`set()`](http://mixpanel.github.io/mixpanel-java/) call. 
 
 ```java
 import com.mixpanel.mixpanelapi.MessageBuilder;
@@ -227,7 +227,7 @@ mixpanel.sendMessage(update);
 ```
 
 ### Creating Group Profiles
-It is possible to create a Group profile that is similar to a user profile. You must call a property-setting method like <a style="font-family: courier" href="http://mixpanel.github.io/mixpanel-java/">set()</a> (described below) to create a group profile. It is important to include the `group_key`, `group_id`, and at least one property so that the profile is not empty.
+It is possible to create a Group profile that is similar to a user profile. You must call a property-setting method like [`set()`](http://mixpanel.github.io/mixpanel-java/) (described below) to create a group profile. It is important to include the `group_key`, `group_id`, and at least one property so that the profile is not empty.
 
 ### Setting Group Properties
 You can add details to Group Profiles by adding properties to them. You can set the property `$name` to populate the name field at the top of the group profile.
@@ -235,7 +235,7 @@ You can add details to Group Profiles by adding properties to them. You can set 
 These operations are similar to the corresponding operations for user profile property updates.
 
 #### set
-<a style="font-family: courier" href="http://mixpanel.github.io/mixpanel-java/">groupSet()</a> updates or adds properties to a group profile. The profile is created if it does not exist.
+[`groupSet()`](http://mixpanel.github.io/mixpanel-java/) updates or adds properties to a group profile. The profile is created if it does not exist.
 
 ```java
 import com.mixpanel.mixpanelapi.MessageBuilder;
@@ -267,7 +267,7 @@ For all Group methods, see our [reference](http://mixpanel.github.io/mixpanel-ja
 
 Mixpanel makes it easy to analyze the revenue you make from individual customers. By associating charges with user profiles, you can compare revenue across different customer segments and calculate things like lifetime value.
 
-You can track a single transaction with <a style="font-family: courier" href="http://mixpanel.github.io/mixpanel-java/com/mixpanel/mixpanelapi/MessageBuilder.html#trackCharge(java.lang.String,%20double,%20org.json.JSONObject)">MessageBuilder.trackCharge</a>. Sending a message created with `trackCharge` will add transactions to the individual user profile, which will also be reflected in the Mixpanel Revenue report.
+You can track a single transaction with [`MessageBuilder.trackCharge`](http://mixpanel.github.io/mixpanel-java/com/mixpanel/mixpanelapi/MessageBuilder.html#trackCharge(java.lang.String,%20double,%20org.json.JSONObject)). Sending a message created with `trackCharge` will add transactions to the individual user profile, which will also be reflected in the Mixpanel Revenue report.
 
 ```javascript
 import com.mixpanel.mixpanelapi.MessageBuilder;
