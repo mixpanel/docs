@@ -3,12 +3,12 @@
 
 ## Overview
 
-As an Organization Admin, you may create and manage security processes that dictates the requirements needed for your users to access your organization.
+As an Organization Admin, you may create and manage security processes that dictate the requirements needed for your users to access your organization.
 
 ## Organization Discoverability
 Organization Discoverability makes it seamless for new users with a shared work email domain to connect with teammates in an existing organization in Mixpanel, allowing them to access their team’s projects, data, and reports, instead of joining a new, empty org.
 
-This feature is accessible to new users who have verified their email as well as existing organizations that are not an Enterprise plan and do not have SSO enabled.
+This feature is accessible to new users who have verified their email as well as existing organizations that are on an Enterprise plan and do not have SSO enabled.
 
 ![Organization Discoverability 1 Image](/discoverabilityone.png)
 
