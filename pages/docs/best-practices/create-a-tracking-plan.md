@@ -1,6 +1,6 @@
-# The Self-Serve Guide: Create A Tracking Plan
+# Create A Tracking Plan
 
-By going through this guide, you should be able to understand the necessary concepts and steps to effectively build out a tracking plan that aligns to your business goals.
+By going through this guide, you should be able to understand the necessary concepts and steps to build out a tracking plan that aligns to your business goals.
 
 ## Overview
 Mixpanel recommends creating a tracking plan based on the key business goals identified from your analytics strategy. It should:
@@ -11,34 +11,20 @@ Mixpanel recommends creating a tracking plan based on the key business goals ide
 - Be treated as a living and shared document that is continuously updated with any implementation changes
 - Include notes that are referenced across teams (product, marketing, data science, tech / dev teams, etc.)
 
-This will be important for team members who are involved in defining use cases to be implemented in Mixpanel as well as, tech teams involved in the actual implementation of the codes.
+The tracking plan will be important for both team members who are involved in defining use cases to be implemented in Mixpanel and the technical teams involved in the actual implementation of the code.
 
 ### Importance of Data Governance
-
 Building your Mixpanel Tracking Plan should be part of your larger effort in establishing practical and sustainable Data Management and Governance procedures. 
 
-Making sure you have a clearly defined framework, roles and ownership, quality assurance and review procedures, and overall best practices will lead to better decisions that foster trust and accuracy in your data. 
-
-If you already have an established process, we suggest incorporating existing tools and processes into how you document and track your product analytics data for long-term success. 
-
-If you do not have this established for your organization, it is worth starting with internal discussions on how to define how Data Governance and how it can be integrated as part of your data journey. To help you with this, you can take a look at our [Mixpanel Data Governance Guide](https://mixpanel.com/blog/data-governance-an-8-step-program/).
-
-*can condense or directly link to data governance section*
-
-Of course, every organization will be different in terms of maturity, size, and business needs so you will need to figure out what solution will work best for your team.
+If you do not have this established for your organization or want to review your current data governance procedures, it is worth having internal discussions on how to define how Data Governance and how to integrate this as part of your data journey. To help you start, you can take a look at our [Mixpanel Data Governance Guide](https://mixpanel.com/blog/data-governance-an-8-step-program/).
 
 ## Prioritize for Your Onboarding
-
-In the context of your Mixpanel onboarding, our goal is to get you and your team to value and start answering your most critical business questions as quickly as possible. 
-
-For an overview of the Onboarding Overview, please visit the Onboarding Tutorial section. *link to the Onboarding Overview section*
+In the context of your Mixpanel onboarding, our goal is to get you and your team to value and start answering your most critical business questions as quickly as possible. For an overview of the Onboarding Overview, please visit the Onboarding Tutorial section. *link to the Onboarding Overview section*
 
 ## Tracking Plan Methodology
+Prioritize and be intentional with your data based on your business goals and key use cases. You can create a comprehensive tracking plan, but make sure to identify the key objectives, the KPIs, and the events and properties for your onboarding. Having a clear alignment on priorities will allow you to move quickly in a phased approach to your implementation. 
 
-### Design from a Business Perspective Rather than an Application Perspective. 
-Be intentional with your data. Prioritize your data based on your business goals and focus on prioritizing key use cases. You can create a comprehensive tracking plan, but make sure to identify the key objectives, the KPIs, and the events and properties for your onboarding.
-
-Successful onboarding generally focus on one or two key use cases such as:
+A successful onboarding typically focuses on one or two key use cases. Some examples can be: 
 
 - the registration or sign up process
 - a required activation or account set up journey
@@ -59,8 +45,26 @@ As you are building out your tracking plan, make sure to consider where you will
 ### Translate Flows into Events / Properties
 Breakdown your user flows into events (actions) and properties (context of these actions) in your tracking plan. This will ensure that you have scoped out the data you need to achieve your KPIs / metrics in Mixpanel.
 
-### Naming Convention
+### Define a Naming Convention
+Defining a naming convention will help maintain data quality and trust over time. Having an intuitive and easy to understand naming convention helps end users more easily make sense of the data. Also, remember that Mixpanel is case sensitive (e.g., sign up completed vs. Sign Up Completed will show up as two separate events). 
 
+It can be helpful to document the naming convention guidelines so everyone can be aware and adhere to these. 
+
+Here are a few simple guidelines to help you think through how to structure your naming convention:
+- Consistent: make sure the name is standard across your different event names and properties as well as across your platforms. 
+- Concise: keep things short and simple but informative.  
+- Clean: the data should be easily understood that is case-sensitive. 
+
+You may want to avoid abbreviations or specific jargon that may not be immediately or easily understandable.
+
+You can find more information on events and properties naming convention [best practices](https://docs.mixpanel.com/docs/data-structure/events-and-properties#best-practices).
+
+### Designing Event Depth 
+When designing your data schema, you will also want to determine the proper level of event depth. As you determine what user actions to track, you'll want to strike the right balance to make sure events are not too specific or too broad. 
+
+![image](https://github.com/mixpanel/docs/assets/38046769/1d0375d1-5426-48bd-a740-98394b13e189)
+
+### Tracking Plan Templates 
 Mixpanel provides the following templates for vertical-specific tracking plans:
 
 - [Retail and E-commerce](https://docs.google.com/spreadsheets/d/1Kyys37m_GEL79_1BKKEnU5KxK91NF04kY-L_bFfcfqE/edit#gid=1484002407)
@@ -69,3 +73,11 @@ Mixpanel provides the following templates for vertical-specific tracking plans:
 - [Financial Services](https://docs.google.com/spreadsheets/d/1oGv6vbIFiYbima9IX4ItpBJvuChs-zzh83MRt_dSPgg/edit?usp=sharing)
 
 You can also access a copy of a [blank Tracking Plan from here](https://docs.google.com/spreadsheets/d/1ZdOZ6TMtRPxy7qRxiLsvH9HWcHJM6nZydWKoThRxFKc/edit#gid=1641519238). Save a copy to your device to get started on your tracking plan.
+
+### Build out Visual User Flows
+Along with the tracking plan templates in your traditional spreadsheet, another helpful exercise is to build out a visual user journey. You can use tools like FigJam, Miro, or other similar type of tools. 
+
+This is helpful because you can really understand the specific screens or page views and the exact steps in the user journey and what actions trigger the user behavior to be tracked as an event. 
+
+Here is an example of a [FigJam User Journey](https://www.figma.com/file/tYEeeRE0Xz6IampBhGLotw/Media-and-Entertainment-Tracking-Plan?type=whiteboard&node-id=0-1&t=eRjXS1u4RcmGGFLX-0)https://www.figma.com/file/tYEeeRE0Xz6IampBhGLotw/Media-and-Entertainment-Tracking-Plan?type=whiteboard&node-id=0-1&t=eRjXS1u4RcmGGFLX-0.
+
