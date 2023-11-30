@@ -164,7 +164,7 @@ mixpanel.track('Plan Purchase', {
 ```
 
 ### Adding Group Identifiers to Individual Users
-To connect group information to a user profile, include the `group_key` and `group_id` by sending the property as part of the <a style="font-family: courier" href="#setting-profile-properties">people.set()</a> call.
+To connect group information to a user profile, include the `group_key` and `group_id` by sending the property as part of the [`people.set()`]("#setting-profile-properties") call.
 
 ```javascript
 // Create or update a user profile with group_id = Company,
