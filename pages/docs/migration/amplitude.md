@@ -44,7 +44,7 @@ If you have access to your Amplitude data in your data warehouse, the simplest w
 3. Set up [Mixpanel Warehouse Connector](/docs/tracking-methods/data-warehouse/overview) to initiate data sync from your data warehouse to Mixpanel. 
 
 ##### Amplitude event schema
-SQL query to to flatten the JSON columns into individual columns: 
+SQL query to flatten the JSON columns into individual columns: 
 
 ```jsx
 SELECT
