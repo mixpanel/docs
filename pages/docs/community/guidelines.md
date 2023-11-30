@@ -20,11 +20,11 @@ Mixpanel, Inc. (“Mixpanel”) provides the Mixpanel Community (“the Communit
  
 
 ## What happens if someone breaks the rules?
-While Mixpanel does not regularly review posted content, if you violate these guidelines, Mixpanel may take whatever action Mixpanel determines, in its sole discretion, is appropriate in response, including, but not limited to: removing the offending content, suspending your account, terminating your account, or even notifying law enforcement. If your account is terminated for violating these Community Terms of Use, you may not use the Community again. Please take these guidelines seriously and honor them in the spirit in which they are intended. We’ll do our best to enforce them consistently and fairly, and ultimately we’ll try to do what we think is best in each situation. To report inappropriate behavior or content, please write to community@mixpanel.com. 
+While Mixpanel does not regularly review posted content, if you violate these guidelines, Mixpanel may take whatever action Mixpanel determines, in its sole discretion, is appropriate in response, including, but not limited to: removing the offending content, suspending your account, terminating your account, or even notifying law enforcement. If your account is terminated for violating these Community Terms of Use, you may not use the Community again. Please take these guidelines seriously and honor them in the spirit in which they are intended. We’ll do our best to enforce them consistently and fairly, and ultimately we’ll try to do what we think is best in each situation. To report inappropriate behavior or content, please write to [community@mixpanel.com](mailto:community@mixpanel.com). 
 
 
 ## Copyright Infringement
-If you believe that work belonging to you has been copied onto the Community without your permission, please review Mixpanel’s DMCA Copyright Policy and notify us at legal@mixpanel.com.
+If you believe that work belonging to you has been copied onto the Community without your permission, please review Mixpanel’s DMCA Copyright Policy and notify us at [legal@mixpanel.com](mailto:egal@mixpanel.com).
 
 ## Legal Notices
 By posting content to the Community, you grant Mixpanel any license necessary, including any sublicense rights, to use, reproduce, modify, adapt, publish, translate, create derivative works from, distribute, and display such content in connection with the Community or Mixpanel’s legitimate business purposes.

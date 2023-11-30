@@ -333,4 +333,4 @@ If you're unsure how you currently track data, or might want to consider trackin
 
 Mixpanel Customer Success and Support have been helping thousands of customers migrate from other tools to Mixpanel over the past decade. You can see an overview of the process we run with our Enterprise plan customers migrating from Amplitude [here](https://mxpnl.notion.site/Amplitude-Migration-Package-264ed076292e41e9b29a2c4f26851e9b?pvs=4).
 
-We’re always happy to discuss your team’s individual needs, our migration process, the support you’ll receive, or any other question you have — drop us a line at success@mixpanel.com.
+We’re always happy to discuss your team’s individual needs, our migration process, the support you’ll receive, or any other question you have — drop us a line at [success@mixpanel.com](mailto:success@mixpanel.com).

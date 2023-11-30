@@ -54,7 +54,7 @@ When you call reset, all events for logged out users will appear anonymous until
 In addition, because you remove super properties, you will need to again register these for each user on login. The tradeoff for the above drawbacks is that each profile is one unique user within your implementation.
 
 # Existing User Identification Example
-If you’ve already mapped your identifier (such as “sally@gmail.com”) to a Mixpanel distinct_id (such as “12345”), any attempt to map your identifier to a different Mixpanel distinct_id fails.
+If you’ve already mapped your identifier (such as `sally@gmail.com`) to a Mixpanel distinct_id (such as “12345”), any attempt to map your identifier to a different Mixpanel distinct_id fails.
 
 In the previous example, Sally came to your website, not your mobile application. Suppose she decides to download your app on her phone and logs in.
 

@@ -140,7 +140,7 @@ Sales tax is determined using the zip code associated with the credit card you h
 ![image](https://user-images.githubusercontent.com/2077899/233918715-aab79c75-5fc8-4c09-ada6-c5d165aaf400.png)
 
 ### Non-Profit Liability
-If you are a non-profit company, you may not be liable for sales tax regardless of this change. Contact AR@mixpanel.com with any tax-exemption certification documents to confirm and verify your tax-exemption.
+If you are a non-profit company, you may not be liable for sales tax regardless of this change. Contact [AR@mixpanel.com](mailto:AR@mixpanel.com) with any tax-exemption certification documents to confirm and verify your tax-exemption.
 
 ## FAQ
 
