@@ -12,9 +12,7 @@ Events are the core of Mixpanel's Data Model. All events have a name, a timestam
 * If you're familiar with Google Analytics, events are like hits and properties are like dimensions.
 
 ## Examples
-This is an example of what a Mixpanel event might have.
-The event name describes the user action or behavior that triggers this event.
-The event properties help add descriptions and context to the action.
+Here are some examples of what a Mixpanel event might look like. The event name describes the user action or behavior that triggers this event. The event properties help add descriptions and context to the action.
 
 ![signupcompleted](https://github.com/mixpanel/docs/assets/38046769/ce0c346a-268b-439d-aa05-c645ac260343)
 ![songplayed](https://github.com/mixpanel/docs/assets/38046769/da8423db-faf2-4a43-bf53-af895ffc7d69)
