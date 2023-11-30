@@ -10,7 +10,7 @@ The [Full API Reference](https://mixpanel.github.io/mixpanel-iphone/index.html),
 
 We recommend tracking only five to seven events in your application instead of tracking too many things to start. Ideally, you track users going through your initial user experience and one key metric that matters for your application (e.g. a video streaming service might choose "Watched Video" as a key metric).
 
-Once you've initialized the library, you can track an event by calling <a style="font-family: courier" href="https://mixpanel.github.io/mixpanel-iphone/Classes/Mixpanel.html#//api/name/track:properties:">track:properties:</a> with the event name and properties.
+Once you've initialized the library, you can track an event by calling [`track:properties:`](https://mixpanel.github.io/mixpanel-iphone/Classes/Mixpanel.html#//api/name/track:properties:) with the event name and properties.
 
 ```objc Objective-C
 Mixpanel *mixpanel = [Mixpanel sharedInstance];
@@ -21,7 +21,7 @@ Mixpanel *mixpanel = [Mixpanel sharedInstance];
 
 ## Timing Events
 
-You can track the time it took for an action to occur, such as an image upload or a comment post, using <a style="font-family: courier" href="https://mixpanel.github.io/mixpanel-iphone/Classes/Mixpanel.html#//api/name/timeEvent:">timeEvent:</a>. This will mark the "start" of your action, which you can then finish with a track call. The time duration is then recorded in the "Duration" property.
+You can track the time it took for an action to occur, such as an image upload or a comment post, using [`timeEvent:`](https://mixpanel.github.io/mixpanel-iphone/Classes/Mixpanel.html#//api/name/timeEvent:). This will mark the "start" of your action, which you can then finish with a track call. The time duration is then recorded in the "Duration" property.
 ```objc Objective-C
 Mixpanel *mixpanel = [Mixpanel sharedInstance];
 [mixpanel timeEvent:@"Image Upload"];
@@ -36,7 +36,7 @@ It's very common to have certain properties that you want to include with each e
 
 To make things easier, you can register these properties as super properties. If you do, we will automatically include them with all tracked events. Super properties are saved to device storage, and will persist across invocations of your app. Mixpanel already stores some information as super properties by default; see a full list of Mixpanel default properties [here](https://help.mixpanel.com/hc/en-us/articles/115004613766).
 
-To set super properties, call <a style="font-family: courier" href="https://mixpanel.github.io/mixpanel-iphone/Classes/Mixpanel.html#//api/name/registerSuperProperties:">registerSuperProperties:</a>
+To set super properties, call [`registerSuperProperties:`](https://mixpanel.github.io/mixpanel-iphone/Classes/Mixpanel.html#//api/name/registerSuperProperties:)
 
 ```objc Objective-C
 // Send a "Plan: Mega" property will be sent
@@ -52,7 +52,7 @@ Going forward, whenever you track an event, super properties will be included as
 }];
 ```
 
-after making the above call to <a style="font-family: courier" href="https://mixpanel.github.io/mixpanel-iphone/Classes/Mixpanel.html#//api/name/registerSuperProperties:">registerSuperProperties:</a>, it is just like adding the properties directly:
+after making the above call to [`registerSuperProperties:`](https://mixpanel.github.io/mixpanel-iphone/Classes/Mixpanel.html#//api/name/registerSuperProperties:), it is just like adding the properties directly:
 
 ```objc Objective-C
 [mixpanel track:@"Signup" properties:@{
@@ -62,12 +62,12 @@ after making the above call to <a style="font-family: courier" href="https://mix
 ```
 
 ### Setting Super Properties Only Once
-If you want to store a super property only once (often for things like ad campaign or source), you can use <a style="font-family: courier" href="https://mixpanel.github.io/mixpanel-iphone/Classes/Mixpanel.html#//api/name/registerSuperPropertiesOnce:">registerSuperPropertiesOnce:</a>. This function behaves like <a style="font-family: courier" href="https://mixpanel.github.io/mixpanel-iphone/Classes/Mixpanel.html#//api/name/registerSuperProperties:">registerSuperProperties:</a> and has the same interface, but it doesn't override super properties you've already saved.
+If you want to store a super property only once (often for things like ad campaign or source), you can use [`registerSuperPropertiesOnce:`](https://mixpanel.github.io/mixpanel-iphone/Classes/Mixpanel.html#//api/name/registerSuperPropertiesOnce:). This function behaves like `registerSuperProperties` and has the same interface, but it doesn't override super properties you've already saved.
 ```objc Objective-C
 [mixpanel registerSuperPropertiesOnce:@{@"Source": @"ad-01"}];
 ```
 
-This means that it's safe to call <a style="font-family: courier" href="https://mixpanel.github.io/mixpanel-iphone/Classes/Mixpanel.html#//api/name/registerSuperPropertiesOnce:">registerSuperPropertiesOnce:</a> with the same property on every app load, and it will only set it if the super property doesn't exist.
+This means that it's safe to call `registerSuperPropertiesOnce:` with the same property on every app load, and it will only set it if the super property doesn't exist.
 
 ### Super Properties Live in Local Storage
 Our mobile libraries store your super properties in local storage. They will persist so long as the app is installed (between launches and updates). Uninstalling the app will remove that customers super properties.
@@ -108,9 +108,9 @@ In addition to events, you can store user profiles in Mixpanel. Profiles are per
 You can use profiles to explore and segment users by who they are, rather than what they did. 
 
 ### Setting Profile Properties
-You can set properties on a user profile with <a style="font-family: courier" href="https://mixpanel.github.io/mixpanel-iphone/Classes/MixpanelPeople.html#//api/name/set:">people.set:</a>.
+You can set properties on a user profile with [`people.set:`](https://mixpanel.github.io/mixpanel-iphone/Classes/MixpanelPeople.html#//api/name/set:).
 
-Updates to user profiles are queued on the device until <a style="font-family: courier" href="https://mixpanel.github.io/mixpanel-iphone/Classes/Mixpanel.html#//api/name/identify:">identify</a> is called.
+Updates to user profiles are queued on the device until [`identify`](https://mixpanel.github.io/mixpanel-iphone/Classes/Mixpanel.html#//api/name/identify:) is called.
 
 ```objc Objective-C
 // Sets user 13793's "Plan" attribute to "Premium"
@@ -120,7 +120,7 @@ Updates to user profiles are queued on the device until <a style="font-family: c
 This will set a "Plan" property, with a value "Premium", on user 13793's profile. If there isn't a profile with distinct_id 13793 in Mixpanel already, a new profile will be created. If user 13793 already has a property named "Plan" in their profile, the old value will be overwritten with "Premium".
 
 ### Incrementing Numeric Properties
-You can use <a style="font-family: courier" href="https://mixpanel.github.io/mixpanel-iphone/Classes/MixpanelPeople.html#//api/name/increment:">people increment:</a> to change the current value of numeric properties. This is useful when you want to keep a running tally of things, such as games played, messages sent, or points earned.
+You can use [`people increment:`](https://mixpanel.github.io/mixpanel-iphone/Classes/MixpanelPeople.html#//api/name/increment:) to change the current value of numeric properties. This is useful when you want to keep a running tally of things, such as games played, messages sent, or points earned.
 
 ```objc Objective-C
 // Here we increment the user's point count by 500.
@@ -140,7 +140,7 @@ There are a few other types of profile updates. To learn more, please review the
 
 Mixpanel makes it easy to analyze the revenue you earn from individual customers. By associating charges with user profiles, you can compare revenue across different customer segments and calculate things like lifetime value.
 
-You can track a single transaction with <a style="font-family: courier" href="https://mixpanel.github.io/mixpanel-iphone/Classes/MixpanelPeople.html#//api/name/trackCharge:">people trackCharge:</a>. This call will add transactions to the individual user profile, which will also be reflected in the Mixpanel Revenue report.
+You can track a single transaction with [`people trackCharge:`](https://mixpanel.github.io/mixpanel-iphone/Classes/MixpanelPeople.html#//api/name/trackCharge:). This call will add transactions to the individual user profile, which will also be reflected in the Mixpanel Revenue report.
 ```objc Objective-C
 // Tracks $100.77 in revenue for user 13793
 [mixpanel.people trackCharge:@(100.77)];
@@ -174,7 +174,7 @@ Administer group keys through your Project Settings. Group keys are event proper
 To administer group keys, navigate to your Project Settings. Click **+Add Group Key** under the *GROUP KEYS* section.
 
 ### Creating Group Profiles
-It is possible to create a Group profile that is similar to a user profile. You must call <a style="font-family: courier" href="https://mixpanel.github.io/mixpanel-iphone/Classes/Mixpanel.html#//api/name/getGroup:groupID:">getGroup().set()</a> to build a group profile. It is important to the `group_key`, `group_id`, and one property so that the profile is not empty. 
+It is possible to create a Group profile that is similar to a user profile. You must call [`getGroup().set()`](https://mixpanel.github.io/mixpanel-iphone/Classes/Mixpanel.html#//api/name/getGroup:groupID:) to build a group profile. It is important to the `group_key`, `group_id`, and one property so that the profile is not empty. 
 
 ```objc Objective-C
 [[self.mixpanel getGroup:@"Company", groupID:@“Mixpanel”] set:@{@"h": @"yo”}]；
@@ -183,9 +183,9 @@ It is possible to create a Group profile that is similar to a user profile. You 
 ### Setting Group Profile Properties
 You can add details to Groups by adding properties to them.
 
-In order to update Group profile properties, you must specify the group that needs to be updated by calling <a style="font-family: courier" href="https://mixpanel.github.io/mixpanel-swift/Classes/Group.html#/s:8Mixpanel5GroupC3set10propertiesySDySSAA0A4Type_pG_tF">getGroup():groupID()</a>.
+In order to update Group profile properties, you must specify the group that needs to be updated by calling [`getGroup():groupID()`](https://mixpanel.github.io/mixpanel-swift/Classes/Group.html#/s:8Mixpanel5GroupC3set10propertiesySDySSAA0A4Type_pG_tF).
 
-The <a style="font-family: courier" href="https://mixpanel.github.io/mixpanel-swift/Classes/Group.html#/s:8Mixpanel5GroupC3set10propertiesySDySSAA0A4Type_pG_tF">getGroup():groupID()</a> method can be chained with other commands that edit properties specific to the group.
+The `getGroup():groupID()` method can be chained with other commands that edit properties specific to the group.
 
 You can set the property `$name` to populate the name field at the top of the group profile.
 
