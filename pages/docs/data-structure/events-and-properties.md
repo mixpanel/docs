@@ -1,6 +1,10 @@
 # Events And Properties
 
+For a comprehensive overview of events and properties, please find this introduction to the **Mixpanel Data Model [here](https://docs.mixpanel.com/docs/what-is-mixpanel#introduction-to-the-data-model).**
 
+In this section, we will be walking through a more in-depth breakdown of the structure of events and properties as the building block of your product analytics journey. 
+
+This step is about understanding the data structure for your user actions so you can start thinking about how you will design your events and event properties for your business.
 
 ## Overview
 Events are the core of Mixpanel's Data Model. All events have a name, a timestamp, and a user ID. Events can optionally have a set of properties, which describe the event in more detail.
@@ -8,12 +12,19 @@ Events are the core of Mixpanel's Data Model. All events have a name, a timestam
 * If you're familiar with Google Analytics, events are like hits and properties are like dimensions.
 
 ## Examples
-* A `Page Viewed` event might have a property called `Page URL`, which is set to the URL of the page that was viewed.
-* A `Signed Up` event might have a property called `Signup Type`, which indicates whether the signup was `organic` vs `referral`.
-* A `Song Played` event might have a property called `Song Name`, which is set to the name of the song that was played.
-* A `Order Completed` event might have a property called `Items`, which is a list of objects, each of which contains details about an item, like its name, category, and price.
+This is an example of what a Mixpanel event might have.
+The event name describes the user action or behavior that triggers this event.
+The event properties help add descriptions and context to the action.
+
+![signupcompleted](https://github.com/mixpanel/docs/assets/38046769/ce0c346a-268b-439d-aa05-c645ac260343)
+![songplayed](https://github.com/mixpanel/docs/assets/38046769/da8423db-faf2-4a43-bf53-af895ffc7d69)
+![ordercompleted](https://github.com/mixpanel/docs/assets/38046769/64bfff2e-f6b2-4c88-94fc-79998f40402b)
+![pageviewed](https://github.com/mixpanel/docs/assets/38046769/067ab6fe-d37f-448d-81ad-a5b781e4e122)
+
 
 ## Use cases
+Once you have defined all the events and event properties as it aligns to your Analytics Strategy, [do we link to specific reports] you can start to measure and answer your important use cases. *need to still link to specific reports?*
+
 You can filter, breakdown, and aggregate your events by their properties to answer more questions:
 * Which pages do users look at before they visit the pricing page?
 * How many Signups did I get that were organic vs referral?
