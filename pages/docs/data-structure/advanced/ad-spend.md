@@ -378,7 +378,8 @@ const Mixpanel = require('mixpanel');
 const MIXPANEL_TOKEN = 'YOUR MIXPANEL TOKEN';
 const MIXPANEL_SECRET = 'YOUR MIXPANEL SECRET';
 const FACEBOOK_TOKEN = 'YOUR FACEBOOK DEVELOPER APP TOKEN';
-const FACEBOOK_AD_ACCOUNT = 'YOUR FACEBOOK AD ACCOUNT ID'; // ex. act_12345678
+const FACEBOOK_AD_ACCOUNT_ID = 123456789012345; // Your Facebook Ad account ID here. e.g. 123456789012345
+const FACEBOOK_AD_API_ACCOUNT = 'act_' + FACEBOOK_AD_ACCOUNT_ID;
 
 // End of Configuration
 
@@ -397,7 +398,7 @@ adsSdk.FacebookAdsApi.init(FACEBOOK_TOKEN);
  * Gets campaign data from Facebook.
  */
 function fetchFacebookCampaigns() {
-    const account = new adsSdk.AdAccount(FACEBOOK_AD_ACCOUNT);
+    const account = new adsSdk.AdAccount(FACEBOOK_AD_API_ACCOUNT);
 
 		// Find metrics for all Facebook Ads campaigns that ran yesterday
     return account.getInsights([
@@ -496,6 +497,3 @@ We want the function to run by itself every day so we can regularly inspect the 
 #### Wrapping up
 
 That’s it! We’ve made a Google Cloud Function that syncs Facebook Ads data to Mixpanel every morning.
-
-
-
