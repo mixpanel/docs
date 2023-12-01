@@ -36,7 +36,7 @@ export default function insertGTMScriptTags() {
             api_payload_format: 'json',
             debug: ${!isProd},
             persistence: 'localStorage',
-            track_pageview: true,
+            track_pageview: false,
         })
     `;
 
