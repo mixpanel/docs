@@ -755,12 +755,12 @@ paths:
                     {
                         "$token": "YOUR_PROJECT_TOKEN",
                         "$distinct_id": "13793",
-                        "$add": { "Coins Gathered": 12 }
+                        "$set": { "Coins Gathered": 12 }
                     },
                     {
                         "$token": "YOUR_PROJECT_TOKEN",
                         "$distinct_id": "13794",
-                        "$add": { "Coins Gathered": 13 }
+                        "$set": { "Coins Gathered": 13 }
                     }
                 ]
       responses:
