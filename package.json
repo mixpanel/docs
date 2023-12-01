@@ -26,7 +26,7 @@
     "@docsearch/js": "^3.5.1",
     "@docsearch/react": "^3.5.2",
     "clsx": "^1.2.1",
-    "next": "^13.0.6",
+    "next": "^13.5.1",
     "nextra": "latest",
     "nextra-theme-docs": "latest",
     "react": "^18.2.0",
