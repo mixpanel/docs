@@ -6,7 +6,7 @@ Despite the abundance of data available to product teams, in a [survey](https://
 
 ## Importance of Analytics Strategy
 
-Product managers are riddled with buzzwords, metrics, and frameworks that overwhelm attempts to understand the users and make better products for them. However, strip away the jargons, and the problem that every product manager is trying to solve today becomes very clear; that is: to build products that customers find valuable. Thus, the foundation of any product analytics strategy is essentially, to measure a product’s value against a user’s desire to exchange something for it.
+Product managers are riddled with buzzwords, metrics, and frameworks that overwhelm attempts to understand the users and make better products for them. However, strip away the jargons, and the problem that every product manager is trying to solve today becomes very clear; that is: to build products that customers find valuable. Thus, the foundation of any product analytics strategy is essentially, to ***measure a product’s value against a user’s desire to exchange something for it***.
 
 ![image](/tutorials/product-value-exchange.png "Product Value Exchange")
 
@@ -17,7 +17,7 @@ _Loom Video to be inserted below once ready_
   <iframe src="https://www.loom.com/embed/_Loom ID_" frameborder="0" style={{ position: 'absolute', top: 0, left: 0, width: '100%', height: '100%' }} allowfullscreen></iframe>
 </p>
 
-How does your product analytics strategy stack up? [Take the quiz](https://mixpanel.com/content/product-analytics-strategy/quiz/) and we'll give you a rating and share tips to advance.
+How does your product analytics strategy stack up? 💡[Take the quiz](https://mixpanel.com/content/product-analytics-strategy/quiz/) and we'll give you a rating and share tips to advance.
 
 ## The RAE Framework
 
@@ -59,7 +59,7 @@ _Loom Video to be inserted below once ready_
   <iframe src="https://www.loom.com/embed/_Loom ID_" frameborder="0" style={{ position: 'absolute', top: 0, left: 0, width: '100%', height: '100%' }} allowfullscreen></iframe>
 </p>
 
-Reach is important because it represents the maximum amount of users who could reasonably become active and engaged, whether organically or through re-engagement campaigns. The goal is to focus on retaining your Reach, and in order to do that, you need to track:
+Reach is important because it represents the maximum amount of users who could reasonably become [active](/docs/tutorials/plan/framework#activate-your-users) and [engaged](/docs/tutorials/plan/framework#increase-level-of-user-engagement), whether organically or through re-engagement campaigns. The goal is to focus on retaining your Reach, and in order to do that, you need to track:
 
 - Rate of activating your New User - getting them to value as quickly as possible
 - Percentage of Non-Activated to Activated Users - eliminating the barriers causing non-activation
@@ -71,9 +71,49 @@ The goal is to ensure that a majority of your Reach are active users who are con
 
 ### Activate your Users
 
+User Activation is not about a user creating their account or signing-up on your product. It is the process of taking a user from sign-up to establishing a habit around your product’s core value proposition.
+
+sign-up
+
+
+Key points why Activation is important
+Bridge that takes the user from a marketing touchpoint to a great experience using the product
+Touches 100% of your acquired users - no other part of a product funnel that touches 100% of acquired users
+The user’s first impression of your product that influences every step that follows, including further engagement and upgrades
+
+Activation does not start after sign-up, it is the process of taking a user from sign-up to establishing habit around your product’s core value proposition. As user’s go through activation they are asking:
+Is this product for me?
+Does it do what I want?
+Is it easy enough to get what I want?
+Do I know how to get what I want?
+
+When working with activation start with the end engaged state (the “habit” moment) where we want users to end up, and work your way backward through “aha” and setup moments
+Habit Moment - define the metric as XaYZ, where X stands for the number of times the user has done the core action for every time period Y within the initial time window Z. To do this:
+Start by exploring your retention for various X within a Y period for the same Z time window
+You can use correlation analysis against long term retained users to further narrow down the metric
+Finally run experiments to establish causation of the metric against long term retention
+Aha Moment - define the metric as fXaY, where it’s the first number of times X the user has done the core action within the initial time period Y. To do this:
+Layout the key action that might signal a user experiencing the core value proposition for the first time (it should highly correlate with the habit moment metric and long term retention)
+Identify the number of “first times” users did those key action within its natural frequency. Use correlation analysis against the habit moment and long term retention
+Look for noticeable differences across the core actions and drill down to specific key action to find if there’s significant correlation against 
+Number of times doing the core action within its natural frequency Y
+Doing the core action across different time periods Y - 1, Y - 2, Y- n
+Key is to not overcomplicate as it tends to be more intuitive than most people think. Instead focus on the following point: target persona, problem being solved (use case), natural frequency, retention metric, habit moment / metric
+Setup Moment - define the metric as XaY, where it’s the number of times X the user has done the setup action within the initial time period Y. To do this:
+Ask the question: What is the absolute MUST HAVE action / information that gives us a highly probable chance of the user experiencing that core value prop?
+Come up with a number of action hypotheses for the setup moment, use correlation analysis against the aha moment, habit moment and long term retention.
+Also possibly look at correlation by varying the:
+Time period for the same action
+Number of times the action was done
+
+Note: Products with really long activation periods will need to be broken down further into even smaller pieces. For example, signing up for a home loan has an extremely long activation period and funnel
+
+
 ### Increase Level of User Engagement
 
 ## Crafting your Metrics and KPIs
+
+## Summary and Action
 
 ## Reading Resources
 - [The Guide to Product Analytics](https://mixpanel.com/content/guide-to-product-analytics)
