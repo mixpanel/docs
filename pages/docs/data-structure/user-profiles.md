@@ -9,9 +9,9 @@ A User Profile is a set of properties associated with a given user. Under the ho
 
 | Distinct ID | Name | Email | Department
 | --- | --- | --- | --- |
-| 123 | Alice | alice@linear.app | Engineering
-| 456 | Bob | bob@notion.so | Product
-| 789 | Carol | carol@figma.com | Design
+| 123 | Alice | `alice@linear.app` | Engineering
+| 456 | Bob | `bob@notion.so` | Product
+| 789 | Carol | `carol@figma.com` | Design
 
 User Profiles are joined onto your Events based on their Distinct ID, which is the ID of the user. This lets you join the events performed by a user with properties about who that user is. It's very important that you use the same Distinct ID for both your events and your users.
 

@@ -33,7 +33,7 @@ You can use profiles to explore and segment users by who they are, rather than w
 Mixpanel determines default geolocation data ($city, $region, mp_country_code) using the IP address on the incoming request. As all server-side calls will likely originate from the same IP (that is, the IP of your server), this can have the unintended effect of setting the location of all of your users to the location of your datacenter. [Read about best practices for geolocation with server-side implementations](https://mixpanel.com/blog/2014/09/08/everything-about-server-side-updates/).
 
 ###Setting Profile Properties
-Instances of <a style="font-family: courier" href="http://mixpanel.github.io/mixpanel-ruby/Mixpanel/Tracker.html">Mixpanel::Tracker</a> have a property called `people` that is an instance of <a style="font-family: courier" href="http://mixpanel.github.io/mixpanel-ruby/Mixpanel/People.html">Mixpanel::People</a>. You can use `people` to send profile updates.
+Instances of [`Mixpanel::Tracker`](http://mixpanel.github.io/mixpanel-ruby/Mixpanel/Tracker.html) have a property called `people` that is an instance of [`Mixpanel::People`](http://mixpanel.github.io/mixpanel-ruby/Mixpanel/People.html). You can use `people` to send profile updates.
 
 ```ruby
 // create or update a profile with First Name, Last Name,
@@ -48,10 +48,10 @@ tracker.people.set('12345', {
 }, ip = 0, {'$ignore_time' => 'true'});
 ```
 
-This call to <a style="font-family: courier" href="http://mixpanel.github.io/mixpanel-ruby/Mixpanel/People.html#method-i-set">Mixpanel::People#set</a> will change the value of properties on user 12345's profile. If there isn't a profile with distinct_id 12345 in Mixpanel already, a new profile will be created. If user 12345 already has has any of these properties set on their profile, the old values will be overwritten with the new ones.
+This call to [`Mixpanel::People#set`](http://mixpanel.github.io/mixpanel-ruby/Mixpanel/People.html#method-i-set) will change the value of properties on user 12345's profile. If there isn't a profile with distinct_id 12345 in Mixpanel already, a new profile will be created. If user 12345 already has has any of these properties set on their profile, the old values will be overwritten with the new ones.
 
 ### Incrementing Numeric Properties
-You can change the current value of numeric properties using <a style="font-family: courier" href="http://mixpanel.github.io/mixpanel-ruby/Mixpanel/People.html#method-i-increment">people.increment</a>. This is useful when you want to keep a running tally of things, such as games played, emails sent, or points earned.
+You can change the current value of numeric properties using [`people.increment`](http://mixpanel.github.io/mixpanel-ruby/Mixpanel/People.html#method-i-increment). This is useful when you want to keep a running tally of things, such as games played, emails sent, or points earned.
 
 ```ruby
 tracker.people.increment('12345', {
@@ -62,7 +62,7 @@ tracker.people.increment('12345', {
 ```
 
 ### Appending to List Properties
-Use <a style="font-family: courier" href="http://mixpanel.github.io/mixpanel-ruby/Mixpanel/People.html#method-i-append">people.append</a> to add an item to an existing list-valued property. The values you send with the append will be added to the end of the list for each named property. If the property doesn't exist, it will be created with a one element list as its value.
+Use [`people.append`](http://mixpanel.github.io/mixpanel-ruby/Mixpanel/People.html#method-i-append) to add an item to an existing list-valued property. The values you send with the append will be added to the end of the list for each named property. If the property doesn't exist, it will be created with a one element list as its value.
 
 ```ruby
 tracker.people.append('12345', {
@@ -71,7 +71,7 @@ tracker.people.append('12345', {
 ```
 
 ### Other Types of Profile Updates
-There are a few other types of profile updates. They're exposed as members of <a style="font-family: courier" href="http://mixpanel.github.io/mixpanel-ruby/Mixpanel/People.html">Mixpanel::People</a>.
+There are a few other types of profile updates. They're exposed as members of [`Mixpanel::People`](http://mixpanel.github.io/mixpanel-ruby/Mixpanel/People.html).
 
 
 ## Group Analytics
@@ -155,7 +155,7 @@ For all Group methods, see our [reference](http://mixpanel.github.io/mixpanel-ru
 
 Mixpanel makes it easy to analyze the revenue you make from individual customers. By associating charges with user profiles, you can compare revenue across different customer segments and calculate things like lifetime value.
 
-You can track a single transaction with the <a style="font-family: courier" href="http://mixpanel.github.io/mixpanel-ruby/Mixpanel/People.html#method-i-track_charge">track_charge method of Mixpanel::Tracker#people</a>. Sending a message created with <a style="font-family: courier" href="http://mixpanel.github.io/mixpanel-ruby/Mixpanel/People.html#method-i-track_charge">track_charge</a> will add transactions to the individual user profile, which will also be reflected in the Mixpanel Revenue report.
+You can track a single transaction with the [`track_charge method of Mixpanel::Tracker#people`](http://mixpanel.github.io/mixpanel-ruby/Mixpanel/People.html#method-i-track_charge). Sending a message created with `track_charge` will add transactions to the individual user profile, which will also be reflected in the Mixpanel Revenue report.
 
 ```ruby
 ## Records a charge of $9.99 from user '12345'

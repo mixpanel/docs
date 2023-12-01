@@ -672,7 +672,7 @@ We provide a set of useful helper functions for use with the `groupBy()`,` group
 
 Some of built-in reducers, e.g. `avg()` or `sum()`, compute statistics over numeric collections. Each of the numeric built-in reducers accepts an optional first argument - an accessor - that instructs it how to convert the input object to a numeric value.
 
-An accessor can be a JavaScript function, a string with a dot-separated property path, or a built-in mapper function, like <a style="font-family: courier" href="https://developer.mixpanel.com/docs/write-jql#hrspan-stylefont-family-couriermixpanelnumeric_bucketaccessor-buckets-specspan">mixpanel.numeric_bucket()</a>.
+An accessor can be a JavaScript function, a string with a dot-separated property path, or a built-in mapper function, like `mixpanel.numeric_bucket()`.
 
 For example, the following query computes the average age of your users:
 
