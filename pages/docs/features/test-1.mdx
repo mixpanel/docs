@@ -2,5 +2,4 @@ Use the following functions in the **Formula** field to modify your custom prope
 
 | Function | Definition | Syntax & Example |
 | --- | --- | --- |
-| regex_extract | If haystack is a string and pattern matches at least one substring, extracts the result from the first pattern match in haystack. The result is a string equal to the entire regex match, or if capture group is specified, only that portion of the match. | regex_extract(haystack, pattern, &lt;optional capture group#&gt;)<br /><br />Example:<br />`regex_extract("iPhone5.1","iPhone(...)",1)` ->5.1 |
-| regex_match | Returns true if the pattern matches any part of the string. | regex_match(haystack, pattern)<br /><br />Example:<br />`regex_match("zzhaystackzz", "ha(..)ack")` -> true <br /> // Use (?-i) for case-sensitive matching: `regex_match("HAYSTACK", "(?-i)haystack")` -> false |
+| regex_replace | Replaces the parts of a string that match a regular expression with a different string. | regex_replace(haystack, pattern, replacement)<br /><br />Example:<br />  // convert currency string to number: `regex_replace("$1,234,567", "[^.0-9]\*", ""))` -> 1234567 |

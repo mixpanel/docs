@@ -2,5 +2,4 @@ Use the following functions in the **Formula** field to modify your custom prope
 
 | Function | Definition | Syntax & Example |
 | --- | --- | --- |
-| regex_replace | Replaces the parts of a string that match a regular expression with a different string. | regex_replace(haystack, pattern, replacement)<br /><br />Example:<br />  // convert currency string to number: `regex_replace("$1,234,567", "[^.0-9]\*", ""))` -> 1234567 |
 | datedif | Subtract two dates. Units:<br />D: days.<br />M:  months.<br />Y: years<br />MD:  days remaining after subtracting whole months.<br />YM:  months remaining after subtracting whole years.<br />YD:  days, assuming start_date and end_date are within 1 year.<br />Use TODAY() for current day. |<br />datedif(start_date,end_date,unit)<br /><br />Example:<br />`datedif(registrationdate,TODAY(), "M")` -> 5 |

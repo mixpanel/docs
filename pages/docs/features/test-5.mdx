@@ -1,6 +1,0 @@
-Use the following functions in the **Formula** field to modify your custom property:
-
-| Function | Definition | Syntax & Example |
-| --- | --- | --- |
-| split | Splits a string into different parts based on a user-specified delimiter, and lets you select a particular split. Delimiter must be a single ASCII character. To fetch a list of all splits, don't pass a third argument. The first split is accessible by passing n=1 (second with n=2, ...) | split(input string, delimiter, [n: optional]) → string <br /> <br />Examples with 1 split:<br />`split("dwight@dm.com","@",2)` -> "dm.com"<br />`split("dwight@dm.com","@",4)` -> undefined<br />`split("dwight@dm.com","/",2)` -> `dwight@dm.com` <br />`split("empty//string/","/",2)` -> "" <br /> <br />Examples with all splits:<br />`split("dwight@dm.com","@")` -> ["dwight", "dm.com"]<br />`split("a/b/c/d", "/")` -> ["a", "b", "c", "d"]<br />`split("a/b/c/d", "-")` -> ["a/b/c/d"]<br />`split("a//b/c/d", "/")` -> ["a", "", "b", "c", "d"] |
-| let | Define a variable and use it in an expression. This helps keep the custom property definition neat and non-repetitive. Variables are only active within the scope of the LET function. You can nest multiple let functions to define multiple variables. | let(name, definition, expression)<br /><br />letExpression<br /> _Note: \<price> and \<quantity> are event properties._ |
