@@ -6,6 +6,7 @@ This guide covers Lookup Tables and how to use them effectively. Lookup Tables a
 ## Overview
 
 Lookup Tables let you enrich your Mixpanel events with attributes about other entities.
+Lookup Tables are useful if these attributes either are not available at the point of ingesting your data or if you have attributed from another external data source you would like to bring into Mixpanel.
 * If you have a database background, lookup tables are like dimension tables or join tables.
 * If you have an Excel background, Lookup Tables are like VLOOKUP. 
 
