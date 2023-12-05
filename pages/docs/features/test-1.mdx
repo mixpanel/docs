@@ -1,21 +1,6 @@
-import {Code} from 'nextra/components'
+Use the following functions in the **Formula** field to modify your custom property:
 
-## Reference
-
-### Functions
-
-export const letExpression = `
-// define a variable "spend" and use it in an expression
-
-let(
-  spend, <price> * <quantity>,
-  ifs(
-    spend < 50, "no discount",
-    spend < 200, "gold discount",
-    spend > 200, "platinum discount",
-    TRUE, "invalid"
-  )
-)
-`.trim()
-
-<Code style={{display: 'block', whiteSpace: 'pre-wrap'}}>{letExpression}</Code>
+| Function | Definition | Syntax & Example |
+| --- | --- | --- |
+| regex_extract | If haystack is a string and pattern matches at least one substring, extracts the result from the first pattern match in haystack. The result is a string equal to the entire regex match, or if capture group is specified, only that portion of the match. | regex_extract(haystack, pattern, &lt;optional capture group#&gt;)<br /><br />Example:<br />`regex_extract("iPhone5.1","iPhone(...)",1)` ->5.1 |
+| regex_match | Returns true if the pattern matches any part of the string. | regex_match(haystack, pattern)<br /><br />Example:<br />`regex_match("zzhaystackzz", "ha(..)ack")` -> true <br /> // Use (?-i) for case-sensitive matching: `regex_match("HAYSTACK", "(?-i)haystack")` -> false |

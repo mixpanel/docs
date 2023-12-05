@@ -2,12 +2,5 @@ Use the following functions in the **Formula** field to modify your custom prope
 
 | Function | Definition | Syntax & Example |
 | --- | --- | --- |
-| has_prefix | Determines whether a string starts with another string. This comparison is case-insensitive. | has_prefix(string to check, prefix)<br /> <br />Example:<br />`has_prefix(A, "United")` |
-| has_suffix | Determines whether a string ends with another string. This comparison is case-insensitive. | has_suffix(string to check, suffix)<br /><br />Example:<br />`has_suffix(A,"States")` |
-| min | Determines the minimum value between two numbers. | min(number, number)<br /><br />Example:<br />`min(A,B)` |
-| max | Determines the maximum value between two numbers. | max(number, number)<br /><br />Example:<br />`max(A,B)` |
-| floor | Returns the largest integer that is smaller than or equal to the input (ie: rounds down to the nearest integer). | floor(number)<br /><br />Example:<br />`floor(A)` |
-| ceil | Returns the smallest integer value greater than or equal to the input (ie: rounds up to the nearest integer). | ceil(number)<br /><br />Example:<br />`ceil(A)` |
-| round | Returns the nearest integer value of the input value. | round(number)<br /><br />Example:<br />`round(A)` |
-| upper | Cast string property values to uppercase. | upper(string property)<br /><br />Example:<br />`upper(A); upper("hello")` -> "HELLO" |
-| lower | Cast string property values to lowercase. | lower(string property)<br /><br />Example:<br />`lower(A); lower("FacEBook")` -> "facebook" |
+| len | Returns the length of the string or the list. | len(string) or len(list)<br /><br />Example:<br /> `len("Canada")` -> 6 |
+| left | Returns characters from the beginning of a given string. | left(string, num_of_characters)<br /><br />Example:<br />`left("Canada",3)` -> "Can" |

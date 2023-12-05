@@ -2,13 +2,5 @@ Use the following functions in the **Formula** field to modify your custom prope
 
 | Function | Definition | Syntax & Example |
 | --- | --- | --- |
-| if | Evaluates if an expression is true or false. | if(condition, value if true, value if false) <br /> <br /> Example: <br /> `if(A=="Facebook" or A=="Twitter", "Social", A)` <br /> |
-| ifs | Runs multiple checks and returns a value corresponding to the first true result. If no conditions are true, undefined is returned. | ifs(condition1, value1, condition2, value2, …) <br /> <br /> Example: <br /> `ifs( A<60,"Less than 1 hour",` <br /> `A<120, "More than 1 hour but less than 2 hours",` <br /> `A>=120, "More than 2 hours")` |
-| not | Returns values that are not true. | not(condition) <br /> <br />Example:<br /> `not(A == "Facebook")` |
-| and | Returns true if both conditions are met. Else, returns false. | x and y <br /> <br />Example:<br /> `if(A=="San Francisco" and B=="Chrome", "Valid user", "Invalid User")` |
-| or | Returns true if either condition is met. Else, returns false. | x or y <br /> <br />Example:<br />  `if(A=="San Francisco" or B=="Chrome", "Valid user", "Invalid User")` |
-| in | Returns true if the first condition is contained in the second condition. | x in condition <br /><br />Example:<br /> `if("Facebook" in A, "Facebook Corporation", A)` <br /> <br /> This can also be used to check against a list of values:<br /> `if(A in ["Chrome","Firefox","Edge"],"Acceptable browser","Unsupported browser")` |
-| boolean | Casts the argument to a boolean. | boolean(value)->false, boolean(alternate value)-> true <br /> <br />Example:<br />  `boolean(A)` |
-| number | Casts the argument to a number. | number(value to cast) <br /> <br />Example:<br /> `number(A)` |
-| string | Casts the argument to a string. | string(value to cast)<br /><br /> Example:<br />`string(A)` |
-| defined | Determines if a value exists. If a property is not defined on a parent event or profile, this will return false, otherwise this will return true. | defined(variable to check for existence) <br /><br />Example:<br /> `defined(A)` |
+| regex_replace | Replaces the parts of a string that match a regular expression with a different string. | regex_replace(haystack, pattern, replacement)<br /><br />Example:<br />  // convert currency string to number: `regex_replace("$1,234,567", "[^.0-9]\*", ""))` -> 1234567 |
+| datedif | Subtract two dates. Units:<br />D: days.<br />M:  months.<br />Y: years<br />MD:  days remaining after subtracting whole months.<br />YM:  months remaining after subtracting whole years.<br />YD:  days, assuming start_date and end_date are within 1 year.<br />Use TODAY() for current day. |<br />datedif(start_date,end_date,unit)<br /><br />Example:<br />`datedif(registrationdate,TODAY(), "M")` -> 5 |
