@@ -1,27 +1,21 @@
-# Custom Properties
-
-
 import {Code} from 'nextra/components'
 
-## Overview
+## Reference
 
-Custom properties lets you combine existing properties into new properties on the fly, using a simple Excel-like formula language. You can then use these new properties almost anywhere that you can use regular properties, with the ability to save/share them for reuse across your team. For more on why we built this, check out [our blog](https://mixpanel.com/blog/introducing-the-mixpanel-modeling-layer/).
+### Functions
 
-## Use Cases
+export const letExpression = `
+// define a variable "spend" and use it in an expression
 
-### Grouping Marketing Channels
+let(
+  spend, <price> * <quantity>,
+  ifs(
+    spend < 50, "no discount",
+    spend < 200, "gold discount",
+    spend > 200, "platinum discount",
+    TRUE, "invalid"
+  )
+)
+`.trim()
 
-If you're a marketer, using Mixpanel to show the impact of various channels on acquisition, you might want to group your UTM Sources into higher level buckets. For example:
-* Facebook, Instagram, Twitter → Social
-* Google, Bing → Search
-* Everything else → Organic
-
-You also want to name and save this bucketing as a property that everyone else in your company can use. You can do this with custom properties:
-
-![image](https://github.com/mixpanel/docs/assets/2077899/dbfa1a8d-5d8b-441a-8017-bd182615b964)
-
-### Compute Properties Mathematically from Other Properties
-
-If you have an e-commerce app, you can combine "price" and "quantity" properties into a "total price" property as follows:
-
-![image](https://github.com/mixpanel/docs/assets/2077899/b514f908-6838-45ff-bdea-feb6969e0340)
+<Code style={{display: 'block', whiteSpace: 'pre-wrap'}}>{letExpression}</Code>

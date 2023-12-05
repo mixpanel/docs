@@ -1,53 +1,14 @@
-### Compute the Number of Days Between Two Date Properties
+Use the following functions in the **Formula** field to modify your custom property:
 
-Use custom properties to compute the date/time difference between two date properties. You can also use the special "TODAY()" function to find the difference between a date property and the current date/time. This is ideal when you want to transform a "DateofBirth" property into “age” or a "Created" property into “days active since registration”.
-
-A new custom property can be defined by taking into account the “Created” property and using the following transformation:
-
-![image](https://github.com/mixpanel/docs/assets/2077899/3f099385-9b2c-4e5c-9f73-e72a807e133e)
-
-### Compare Different Properties
-
-Use custom properties to create a new property if two property values are the same.
-
-For example:
-
-A company wants to find out what percentage of purchases are being made by users that have changed countries since sign up.
-
-They can create a custom property to determine whether the two country values are the same with this transformation:
-
-![image](https://github.com/mixpanel/docs/assets/2077899/c9b2a70a-60d7-4563-9b59-b21d3c5b86cc)
-
-### Extract Domain from Email Address
-
-Extract the domain of the email from an email address. You can parse out parts of a string after "@" using the SPLIT function:
-
-![image](https://github.com/mixpanel/docs/assets/2077899/daf38804-4bfc-40a4-bed2-8d391bd4ebda)
-
-### Query a List with an Index
-
-Let’s say you have a list of recommendations as a property, and you’d like to parse out the first recommendation as another string property.
-
-You can parse out the first delivery ID in a list property with several DeliveryIDs:
-
-![image](https://github.com/mixpanel/docs/assets/2077899/7532e7ea-d9cb-44c1-aa8b-48a343ec3d9a)
-
-The same syntax works with objects.
-
-## Creating a Custom Property
-
-Click **Create Custom > Event Property or User Property** to open the property builder.
-
-![image](https://github.com/mixpanel/docs/assets/2077899/33bafaea-8a7b-48ab-950e-b32f22cd72f0)
-
-Optionally give your property a name and click into the formula bar to start defining it. If you're new to this feature, we recommend starting with one of the examples. Click the **Insert Example** drop down to populate the box with a use-case specific custom property.
-
-When writing your formula, click **Ctrl + Space** to see a list of all the available functions and their descriptions. Click **period (.)** to search for event or user profile properties to add to the formula.
-
-![image](https://github.com/mixpanel/docs/assets/2077899/98a4e5f0-6b9b-414b-8dfe-feecdb837078)
-
-Custom properties are local to the report by default, when you select **Apply**. To save the custom property permanently for use in other reports and to make it usable by other project members, click **Save**. We recommend Apply-ing the custom property and using it in your local analysis first, before saving and sharing, to reduce clutter in the project.
-
-When you create custom properties and select **Save as Custom Property**, your created custom property will be private by default. You can also add a description at this stage, so you and your colleagues can know what the custom property is for. You can also decide to save the custom property and **share** that custom property with specific colleagues, teams or the entire organization by clicking "**Save and Share**":
-
-Also note that the formula used to compose your custom property can't be longer than 20,000 characters.
+| Function | Definition | Syntax & Example |
+| --- | --- | --- |
+| if | Evaluates if an expression is true or false. | if(condition, value if true, value if false) <br /> <br /> Example: <br /> `if(A=="Facebook" or A=="Twitter", "Social", A)` <br /> |
+| ifs | Runs multiple checks and returns a value corresponding to the first true result. If no conditions are true, undefined is returned. | ifs(condition1, value1, condition2, value2, …) <br /> <br /> Example: <br /> `ifs( A<60,"Less than 1 hour",` <br /> `A<120, "More than 1 hour but less than 2 hours",` <br /> `A>=120, "More than 2 hours")` |
+| not | Returns values that are not true. | not(condition) <br /> <br />Example:<br /> `not(A == "Facebook")` |
+| and | Returns true if both conditions are met. Else, returns false. | x and y <br /> <br />Example:<br /> `if(A=="San Francisco" and B=="Chrome", "Valid user", "Invalid User")` |
+| or | Returns true if either condition is met. Else, returns false. | x or y <br /> <br />Example:<br />  `if(A=="San Francisco" or B=="Chrome", "Valid user", "Invalid User")` |
+| in | Returns true if the first condition is contained in the second condition. | x in condition <br /><br />Example:<br /> `if("Facebook" in A, "Facebook Corporation", A)` <br /> <br /> This can also be used to check against a list of values:<br /> `if(A in ["Chrome","Firefox","Edge"],"Acceptable browser","Unsupported browser")` |
+| boolean | Casts the argument to a boolean. | boolean(value)->false, boolean(alternate value)-> true <br /> <br />Example:<br />  `boolean(A)` |
+| number | Casts the argument to a number. | number(value to cast) <br /> <br />Example:<br /> `number(A)` |
+| string | Casts the argument to a string. | string(value to cast)<br /><br /> Example:<br />`string(A)` |
+| defined | Determines if a value exists. If a property is not defined on a parent event or profile, this will return false, otherwise this will return true. | defined(variable to check for existence) <br /><br />Example:<br /> `defined(A)` |

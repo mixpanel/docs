@@ -1,26 +1,14 @@
+Use the following functions in the **Formula** field to modify your custom property:
 
-### Numeric Operators
-
-Use the following numeric operators in the **Formula** field to modify your custom property using:
-
-- `+`: Addition. Can also be used to create a concatenation.
-- `-`: Subtraction
-- `*`: Multiplication
-- `/`: Division
-- `%`: Modulo
-
-### Comparison Operators
-
-Use the following comparison operators in the **Formula** field to modify your custom property:
-
-- `<`: The first number is strictly less than the second number.
-- `>`: The first number is strictly greater than the second number.
-- `>=`: The first number is greater than or equal to the second number.
-- `<=`: The first number is less than or equal to the second number.
-- `==`: The first argument is equal to the second argument. If both arguments are strings, the comparison is case-insensitive.
-- `!=`: The first argument is not equal to the second argument. If both arguments are strings, the comparison is case-insensitive.
-
-### Constants
-- `false`: Represents the literal value of boolean false.
-- `true`: Represents the literal value of boolean true.
-- `undefined`: Represents the literal value of cases that aren’t defined.
+| Function | Definition | Syntax & Example |
+| --- | --- | --- |
+| regex_extract | If haystack is a string and pattern matches at least one substring, extracts the result from the first pattern match in haystack. The result is a string equal to the entire regex match, or if capture group is specified, only that portion of the match. | regex_extract(haystack, pattern, &lt;optional capture group#&gt;)<br /><br />Example:<br />`regex_extract("iPhone5.1","iPhone(...)",1)` ->5.1 |
+| regex_match | Returns true if the pattern matches any part of the string. | regex_match(haystack, pattern)<br /><br />Example:<br />`regex_match("zzhaystackzz", "ha(..)ack")` -> true <br /> // Use (?-i) for case-sensitive matching: `regex_match("HAYSTACK", "(?-i)haystack")` -> false |
+| regex_replace | Replaces the parts of a string that match a regular expression with a different string. | regex_replace(haystack, pattern, replacement)<br /><br />Example:<br />  // convert currency string to number: `regex_replace("$1,234,567", "[^.0-9]\*", ""))` -> 1234567 |
+| datedif | Subtract two dates. Units:<br />D: days.<br />M:  months.<br />Y: years<br />MD:  days remaining after subtracting whole months.<br />YM:  months remaining after subtracting whole years.<br />YD:  days, assuming start_date and end_date are within 1 year.<br />Use TODAY() for current day. |<br />datedif(start_date,end_date,unit)<br /><br />Example:<br />`datedif(registrationdate,TODAY(), "M")` -> 5 |
+| len | Returns the length of the string or the list. | len(string) or len(list)<br /><br />Example:<br /> `len("Canada")` -> 6 |
+| left | Returns characters from the beginning of a given string. | left(string, num_of_characters)<br /><br />Example:<br />`left("Canada",3)` -> "Can" |
+| right | Returns characters from the end of a given string | right(string, num_of_characters)<br /><br />Example:<br />`right("Canada",3)` -> "ada" |
+| mid | Returns characters from the middle of a given string | mid(string, first_index, num_of_characters)<br /><br />Example:<br />`mid("Canada",1,4)` -> "Cana" |
+| split | Splits a string into different parts based on a user-specified delimiter, and lets you select a particular split. Delimiter must be a single ASCII character. To fetch a list of all splits, don't pass a third argument. The first split is accessible by passing n=1 (second with n=2, ...) | split(input string, delimiter, [n: optional]) → string <br /> <br />Examples with 1 split:<br />`split("dwight@dm.com","@",2)` -> "dm.com"<br />`split("dwight@dm.com","@",4)` -> undefined<br />`split("dwight@dm.com","/",2)` -> `dwight@dm.com` <br />`split("empty//string/","/",2)` -> "" <br /> <br />Examples with all splits:<br />`split("dwight@dm.com","@")` -> ["dwight", "dm.com"]<br />`split("a/b/c/d", "/")` -> ["a", "b", "c", "d"]<br />`split("a/b/c/d", "-")` -> ["a/b/c/d"]<br />`split("a//b/c/d", "/")` -> ["a", "", "b", "c", "d"] |
+| let | Define a variable and use it in an expression. This helps keep the custom property definition neat and non-repetitive. Variables are only active within the scope of the LET function. You can nest multiple let functions to define multiple variables. | let(name, definition, expression)<br /><br />letExpression<br /> _Note: \<price> and \<quantity> are event properties._ |
