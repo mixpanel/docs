@@ -10,7 +10,7 @@ The startup program empowers companies to easily track and analyze data to find 
 
 Eligible startups receive their first year of Mixpanel free, valued up to \$50,000. Startups are able to purchase an annual Growth or Enterprise* plan as well as add-ons such as Group Analytics and Data Pipelines. The program allows startups to track up to 100M events per month, or 1.2B events per year. All the power of Mixpanel you need to launch, grow, and scale your product.
 
-Participants will be invited to join our exclusive Mixpanel for Startups Community in Slack where you’ll have access to curated content, workshops, resources, and opportunities to learn from other startups as well as the team at Mixpanel.
+Participants will be invited to join our exclusive Mixpanel for Startups Community in Slack where you'll have access to curated content, workshops, resources, and opportunities to learn from other startups as well as the team at Mixpanel.
 
 *Enterprise plans purchased through the Mixpanel for Startups program do not include a dedicated CSM or priority response times.
 
@@ -20,7 +20,7 @@ Participants will be invited to join our exclusive Mixpanel for Startups Communi
 
 #### Will I receive help getting started with Mixpanel?
 
-Yes! We will provide self-serve resources to help with your onboarding, invite you to attend implementation webinars, provide access to our Mixpanel Community where you’ll be able to engage with other users as well as our team, and of course, our Support team is on hand to assist with technical questions.
+Yes! We will provide self-serve resources to help with your onboarding, invite you to attend implementation webinars, provide access to our Mixpanel Community where you'll be able to engage with other users as well as our team, and of course, our Support team is on hand to assist with technical questions.
 
 #### What happens after my 12 months in the startup program?
 
@@ -28,7 +28,7 @@ When your year in the startup program is over, our team will work with you to he
 
 #### Why is the startup program offer so generous?
 
-Startups are a part of Mixpanel’s DNA and we are dedicated to having the best startup program on the market and supporting as many founders as we can. The Mixpanel for Startups program provides the first year free, valued up to \$50,000. Most of our startups' usage does not come close to \$50,000. However, we wanted to make sure we provide enough value to cover startups that experience rapid growth in their first year and need to be on a larger data plan. Startups should focus on building world-class products and not worry about short-term trials, restrictive data plans, and hidden pricing.
+Startups are a part of Mixpanel's DNA and we are dedicated to having the best startup program on the market and supporting as many founders as we can. The Mixpanel for Startups program provides the first year free, valued up to \$50,000. Most of our startups' usage does not come close to \$50,000. However, we wanted to make sure we provide enough value to cover startups that experience rapid growth in their first year and need to be on a larger data plan. Startups should focus on building world-class products and not worry about short-term trials, restrictive data plans, and hidden pricing.
 
 ### Eligibility FAQ
 
@@ -60,7 +60,7 @@ Once accepted into the program, \$50,000 worth of credits will be added to your 
 
 #### When does my one free year begin?
 
-The startup program offer is activated as soon as you apply and are accepted into the program. After you are accepted, you will be directed to our plan builder where you can purchase an annual plan and premium features. Your one free year will begin once you are accepted. If you are not ready for the startup program, you can signup for a [Free plan](https://mixpanel.com/pricing/) and then apply to the startup program when you’re ready to take advantage of the offer. Startups are in Mixpanel’s DNA — so we have the most generous free plan in the market (20M events per month) to help you get started.
+The startup program offer is activated as soon as you apply and are accepted into the program. After you are accepted, you will be directed to our plan builder where you can purchase an annual plan and premium features. Your one free year will begin once you are accepted. If you are not ready for the startup program, you can signup for a [Free plan](https://mixpanel.com/pricing/) and then apply to the startup program when you're ready to take advantage of the offer. Startups are in Mixpanel's DNA — so we have the most generous free plan in the market (20M events per month) to help you get started.
 
 #### What happens if my usage exceeds \$50,000 within the first year?
 
@@ -82,7 +82,7 @@ Yes, the startup program provides your first year of Mixpanel for free, valued u
 
 #### What happens if I send in more data than my plan allows?
 
-For startups on an event-based plan, any event above the purchased event limit is billed at the standard base rate. We guarantee a fair price, always. We’re not going to over-charge you for events. We want you to keep your costs predictable and manageable as your business grows.
+For startups on an event-based plan, any event above the purchased event limit is billed at the standard base rate. We guarantee a fair price, always. We're not going to over-charge you for events. We want you to keep your costs predictable and manageable as your business grows.
 
 For startups on a legacy MTU plan, any monthly tracked user (MTU) above the purchased MTU limit would be billed at a metered additional data rate (120% of base rate).
 

@@ -9,7 +9,7 @@ You have two setup options in order to use Single Sign-On (SSO) for Mixpanel thr
 
 A.  For most use cases, you can use the "Mixpanel" app within the OIN (Okta's app store). 
 
-B.  If you have a more custom setup, follow Okta’s documentation on setting up a new application to create the Mixpanel App.
+B.  If you have a more custom setup, follow Okta's documentation on setting up a new application to create the Mixpanel App.
 
 ### Configure SSO in Mixpanel
 
@@ -21,7 +21,7 @@ Make sure to collect your postback URL and successfully claim your domain.
 
 A.  Use the ["Mixpanel" app within the OIN (Okta's app store)](https://www.okta.com/integrations/mixpanel/), or
 
-B.  Follow [Okta’s documentation on setting up a new application](https://help.okta.com/en-us/Content/Topics/Apps/Apps_Apps_Page.htm) to create the Mixpanel App.
+B.  Follow [Okta's documentation on setting up a new application](https://help.okta.com/en-us/Content/Topics/Apps/Apps_Apps_Page.htm) to create the Mixpanel App.
 
 #### Configure SAML
 
@@ -82,7 +82,7 @@ The following prerequisites must be met to set up SCIM provisioning:
 
 - You must have an active Enterprise plan subscription with Mixpanel. 
 - You must have Okta SSO set up with Mixpanel.
-- The "Username" value in Okta must be an email address with a domain that you’ve claimed.
+- The "Username" value in Okta must be an email address with a domain that you've claimed.
 - You need to have generated a SCIM OAuth token to use with the app. This token is located in the "Access Security" tab of your organization settings. You will need to be an organization admin to access this.
 
 ![Okta SCIM 1 Image](/okta_scim1.png)
@@ -92,7 +92,7 @@ The following provisioning features are supported:
 - **Push New Users:** New users created through Okta and assigned to the application will be created in Mixpanel.
 - **Push Profile Updates:** Updates made to the assigned user's supported profile attributes (First Name, Last Name, Email) through Okta will be pushed to Mixpanel.
 - **Push User Deactivation:** Deactivating the user or removing the user from the application through Okta will deactivate the user in Mixpanel (or delete the account if specified).
-- **Reactivate Users:** Reassigning a previously unassigned user to the application will reactivate the user’s account in Mixpanel.
+- **Reactivate Users:** Reassigning a previously unassigned user to the application will reactivate the user's account in Mixpanel.
 
 #### Configuration Setup
 
@@ -123,7 +123,7 @@ Select and assign the users you wish to provision:
 
 In Mixpanel, upon account creation, a SCIM-provisioned user will be added to the organization with the organization member role. The organization role for provisioned users can be changed by an organization admin within Mixpanel.
 
-If a Mixpanel account has already been created with the Okta user’s email (their Okta Username) and that account is **not a member** of your Mixpanel organization, provisioning setup for that Okta user will fail. It will also fail if the domain of the user’s email has not been claimed by your organization.
+If a Mixpanel account has already been created with the Okta user's email (their Okta Username) and that account is **not a member** of your Mixpanel organization, provisioning setup for that Okta user will fail. It will also fail if the domain of the user's email has not been claimed by your organization.
 
 To resolve this, manually invite the existing user to your organization.
 

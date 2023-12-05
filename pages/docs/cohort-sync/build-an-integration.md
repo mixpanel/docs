@@ -6,9 +6,9 @@ Building an integration with Mixpanel is a powerful way to provide value to your
 Sign up for a [free Mixpanel account](https://mixpanel.com/pricing), which you can use as a sandbox when building and testing your integration.
 
 ## Create an Integration ID
-In order to properly understand API usage and provide you with resources as part of our Technology Partner Program, you must first define your **Integration ID** and pass it along when sending event data or calling Mixpanel’s APIs.
+In order to properly understand API usage and provide you with resources as part of our Technology Partner Program, you must first define your **Integration ID** and pass it along when sending event data or calling Mixpanel's APIs.
 
-Your Integration ID should be a string representing your company’s or solution’s name. If Mixpanel were a developer, our Integration ID would be "mixpanel".
+Your Integration ID should be a string representing your company's or solution's name. If Mixpanel were a developer, our Integration ID would be "mixpanel".
 
 Note: Always include your integration ID -- this will help customers better understand the soruce of their event data in Mixpanel.
 
@@ -36,8 +36,8 @@ If you choose to leverage our APIs for your integration, you must pass along you
 ```curl
 curl --request GET \
   --url https://mixpanel.com/api/app/projects/12345/schemas/event/my_event/1-0-0 \
-  --header ‘accept: application/json’ \
-  --header ‘X-Mixpanel-Integration-ID: your_integration_id’
+  --header ‘accept: application/json' \
+  --header ‘X-Mixpanel-Integration-ID: your_integration_id'
 ```
 
 ## Integration Opportunities

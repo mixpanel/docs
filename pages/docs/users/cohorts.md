@@ -52,7 +52,7 @@ You can also access the builder directly from the property picker in any of our 
 ### Note on cohorts whose filters contain user properties
 Because user profile properties only store the most recent value, cohorts involving user profile properties will use the current value for those properties (even if the value changed over time).
 
-For example, suppose the cohort’s filter criteria is: users where user["City"] == "SF" and "Did Event: Order Ride 3 times in Last 7 days".
+For example, suppose the cohort's filter criteria is: users where user["City"] == "SF" and "Did Event: Order Ride 3 times in Last 7 days".
 
 Mixpanel computes the above over the last 30 days and then groups the set of users who have property user["City"] == "SF" as of right now and intersect that with the daily cohort of users who did Order Ride 3 times in the last 7 days.
 

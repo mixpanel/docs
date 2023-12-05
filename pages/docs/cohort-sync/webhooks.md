@@ -30,7 +30,7 @@ Our webhook format has the following structure in the body of a `POST` request:
   * **mixpanel_cohort_name**: The cohort name, editable via the Mixpanel UI.
   * **mixpanel_cohort_description**: The cohort description, editable via the Mixpanel UI.
   * **mixpanel_session_id**: An identifier for this export. Mixpanel sends large cohorts over multiple messages; mixpanel_session_id uniquely identifies a set of requests that correspond to the same export.
-  * **page_info**: An object containing "total_pages", i.e. the number of total messages for the given session ID, and "page_count", the index of which page this message is (e.g. message 6 of 10, in the example below). You may use this value to know if/when you’ve collected the full set of messages for an export.
+  * **page_info**: An object containing "total_pages", i.e. the number of total messages for the given session ID, and "page_count", the index of which page this message is (e.g. message 6 of 10, in the example below). You may use this value to know if/when you've collected the full set of messages for an export.
   * **members**: The list of users being added or removed from the cohort. We include `email`, `mixpanel_distinct_id`, `first_name`, and `last_name` to help identify the user.
 
 You can download the Swagger spec [here](https://mxpnl.notion.site/Cohort-Webhook-Yaml-17d35e8ca78245fdbfa0aa4fcbb56596).

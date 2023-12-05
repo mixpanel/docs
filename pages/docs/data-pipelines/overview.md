@@ -46,7 +46,7 @@ The [Schematized Pipeline reference](/docs/data-pipelines/schematized-export-pip
 
 ## Step 2: Creating the Pipeline
 
-Once you’ve configured your destination, you need to tell Mixpanel to start exporting to that destination.
+Once you've configured your destination, you need to tell Mixpanel to start exporting to that destination.
 
 You can do this with our [Create Pipeline API](https://developer.mixpanel.com/reference/create-warehouse-pipeline). You can create the Pipeline directly from our developer docs UI.
 

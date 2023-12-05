@@ -32,7 +32,7 @@ If the above step is successful, go to the Azure. Navigate to a blob storage con
 
 Mixpanel needs the clientId, clientSecret, and tenantId to access the blob container as the Service Principal. You must provide the blob account name, container name, and (optional) path prefix you want to choose for the export.
 
-You can share the Service Principal’s credentials over the TLS encrypted API at the time that you create your Mixpanel to Azure pipeline.
+You can share the Service Principal's credentials over the TLS encrypted API at the time that you create your Mixpanel to Azure pipeline.
 
 ## Use the Data Pipelines API
 

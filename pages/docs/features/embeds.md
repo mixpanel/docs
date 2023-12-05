@@ -27,12 +27,12 @@ In Safari, you must have "Prevent cross-site tracking" off in order for any embe
 ## Supporting Embeds in your Platform
 
 ### oEmbed
-[oEmbed](https://oembed.com/) is a format for allowing an embedded representation of a URL on third-party sites. It’s a way to embed content from one website onto another website without having to manually copy and paste code.
+[oEmbed](https://oembed.com/) is a format for allowing an embedded representation of a URL on third-party sites. It's a way to embed content from one website onto another website without having to manually copy and paste code.
 
-If your platform supports the oEmbed format, you should be able to support Mixpanel’s Embeddable reports right out of the box.
+If your platform supports the oEmbed format, you should be able to support Mixpanel's Embeddable reports right out of the box.
 
 ### Embedly or Iframely
-If you don’t currently support oEmbed, [Embedly](https://embed.ly/) or [Iframely](https://iframely.com/) are platforms that can help you get started.
+If you don't currently support oEmbed, [Embedly](https://embed.ly/) or [Iframely](https://iframely.com/) are platforms that can help you get started.
 
 Embedly provides a way to embed content from a variety of sources, including YouTube, Vimeo, SoundCloud, and more. It offers an API that developers can use to embed content on their websites. Embedly also offers a variety of tools and features, including the ability to customize the appearance of embedded content.
 

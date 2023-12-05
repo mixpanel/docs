@@ -28,5 +28,5 @@ The following data warehouses are currently supported with Mixpanel Warehouse Co
 ### What are the connector event ingestion rate limits?
 ~30k events per second.
 
-### What if a table doesn’t have an Insert Time field?
-You can use event time or you can add an UpdatedAt timestamp to your table, which should be the time at which a row was modified. We’ll use this as a watermark to import new events for subsequent syncs.
+### What if a table doesn't have an Insert Time field?
+You can use event time or you can add an UpdatedAt timestamp to your table, which should be the time at which a row was modified. We'll use this as a watermark to import new events for subsequent syncs.

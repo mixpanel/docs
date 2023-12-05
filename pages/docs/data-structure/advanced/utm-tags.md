@@ -36,7 +36,7 @@ Mobile attribution, or tracking campaign source for app installs on iOS/Android,
 
 For Android, Google provides a [Play Install Referrer Library](https://developer.android.com/google/play/installreferrer/library) so you know where your installations came from. You can use the [getInstallReferrer ( )](https://developer.android.com/reference/com/android/installreferrer/api/ReferrerDetails#getinstallreferrer) method to retrieve the referrer URL string, parse it and send that data to Mixpanel as properties in events.
 
-For iOS, users enter the Apple App Store carrying data about where they came from, but the App Store strips that data once the user arrives in the store. Therefore, users who download your application don’t come with any data showing where they were before arriving at the App Store.
+For iOS, users enter the Apple App Store carrying data about where they came from, but the App Store strips that data once the user arrives in the store. Therefore, users who download your application don't come with any data showing where they were before arriving at the App Store.
 
 In order to track channel attribution on iOS, you'll need to use a mobile attribution tool. You can see a list of the partners we integrate with on our [tech partners page](https://mixpanel.com/partners/integrations?categories=attribution-deep-linking).
 

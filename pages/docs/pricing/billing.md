@@ -29,7 +29,7 @@ Certain events and API updates are non-qualifying and excluded from the Monthly 
 
 ### Estimate Events Usage
 
-If you haven’t implemented tracking yet, you can estimate your current event usage by multiplying the number of MAUs (Monthly Active Users) you have to engage with your product by the estimated number of interactions (events you plan to track) each user performs every month. For reference, only a few companies track more than 200 events/user on our free plans. We typically see around 50 events/user.
+If you haven't implemented tracking yet, you can estimate your current event usage by multiplying the number of MAUs (Monthly Active Users) you have to engage with your product by the estimated number of interactions (events you plan to track) each user performs every month. For reference, only a few companies track more than 200 events/user on our free plans. We typically see around 50 events/user.
 
 ### View Events Usage
 
@@ -47,14 +47,14 @@ To view detailed historical data usage or download a CSV of historical usage for
 
 ## Billing & Payment
 
-Mixpanel runs on a subscription service in which your card is charged at the beginning of every month or every year (depending on the plan you’ve purchased) to cover reporting services for that period of time.
+Mixpanel runs on a subscription service in which your card is charged at the beginning of every month or every year (depending on the plan you've purchased) to cover reporting services for that period of time.
 
-- For example, if you sign up for the monthly Growth plan, you’ll be charged $24 each month at the beginning of the month.
-- If you sign up for the annual Growth plan, you’ll be charged upfront $199 for the entire year.
+- For example, if you sign up for the monthly Growth plan, you'll be charged $24 each month at the beginning of the month.
+- If you sign up for the annual Growth plan, you'll be charged upfront $199 for the entire year.
 
 ### Update Billing Information
 
-If you’re an organization members with Billing permission (Billing Admins and Owners), you can update billing information by: 
+If you're an organization members with Billing permission (Billing Admins and Owners), you can update billing information by: 
 
 1. Click on the gear in the upper right corner of Mixpanel, and select your organization under ORGANIZATION SETTINGS.
 2. Click on Plan Details & Billing > Manage Billing & Payment.
@@ -154,9 +154,9 @@ If you are on an Events Plan, view the top events contributing towards your even
 
 If you send more data than your paid monthly or annual plan allows, additional data charges will be charged at the beginning of the following month. So, if you go over your data cap one month, you will be charged your base price at the beginning of the next month plus additional data rate charges from the previous month's excess. 
 
-Once you’ve finished using your prepaid amount of events, you’ll be charged our regular monthly rate for each additional event tracked that month. Alerts are in place to notify Organization Owners and Billing Admins of potential additional data charges.
+Once you've finished using your prepaid amount of events, you'll be charged our regular monthly rate for each additional event tracked that month. Alerts are in place to notify Organization Owners and Billing Admins of potential additional data charges.
 
-We don’t charge punitive overages but we do provide volume discounts – if your volume exceeds your projections you can save money by committing to a larger volume and locking in a lower average cost per event.
+We don't charge punitive overages but we do provide volume discounts - if your volume exceeds your projections you can save money by committing to a larger volume and locking in a lower average cost per event.
 
 #### Alerts for Additional Data Charges
 
@@ -176,14 +176,14 @@ If you send more data points than your free plan allows:
 
 ### What are the benefits of events over an MTU plan?
 
-Starting small with just a few events saves money and can lead to greater data trust over time – We’ve found that most healthy implementations start with a couple of key events and add more events and use cases as teams find value. 
+Starting small with just a few events saves money and can lead to greater data trust over time - We've found that most healthy implementations start with a couple of key events and add more events and use cases as teams find value. 
 
-You don’t need unlimited events to gain key insights, KPIs, and business metrics. In fact, you can get a tremendous amount of value with just a couple of events — our [KPI Template](https://mixpanel.com/blog/company-kpis-dashboard-template-release-metrics/) requires just two events to get started!
+You don't need unlimited events to gain key insights, KPIs, and business metrics. In fact, you can get a tremendous amount of value with just a couple of events — our [KPI Template](https://mixpanel.com/blog/company-kpis-dashboard-template-release-metrics/) requires just two events to get started!
 
 Event plans can be simpler to understand and avoid several "gotchas" that can lead to sudden spikes in MTU usage
 
 1. **Anonymous/Logged out users.** Tracking users who visit marketing landing pages and help docs can blow up your MTU count. These users typically have much lower activity than logged-in users and constitute a trivial increase in event volume.
-2. **Messaging events.** Tracking email/push delivery events would also increase your MTU since these messages are often targeting dormant/inactive users. While some would convert, you’d get charged for a large portion of inactive users as additional MTUs (despite getting one event).
+2. **Messaging events.** Tracking email/push delivery events would also increase your MTU since these messages are often targeting dormant/inactive users. While some would convert, you'd get charged for a large portion of inactive users as additional MTUs (despite getting one event).
 3. **Backfills.** Often, customers backfill additional events that they begin tracking later in their implementation. For example, you may choose to backfill sign-ups from server-side logs instead of relying on SDKs. These additional events would create MTUs in previous months that would increase the number of billed MTUs.
 
 
@@ -197,7 +197,7 @@ Monthly Tracked User (MTU) is a way to calculate your billing based on the numbe
 
 An MTU is a visitor that tracks at least one qualifying event within your projects within the calendar month, independent of whether they have a user profile in [Users](/docs/users/overview.md#basic-features). Mixpanel determines unique users using the `$distinct_id`. Users are only counted once per month, even if they perform multiple actions across devices.
 
-An organization is charged based on the total number of MTUs across all projects. This means that if a user performs a qualifying event in multiple projects, they are counted once per project. MTUs are *not* User Profiles – the number of MTUs in your project will not match the number of [User Profiles](/docs/data-structure/user-profiles) in your project.
+An organization is charged based on the total number of MTUs across all projects. This means that if a user performs a qualifying event in multiple projects, they are counted once per project. MTUs are *not* User Profiles - the number of MTUs in your project will not match the number of [User Profiles](/docs/data-structure/user-profiles) in your project.
 
 ### MTU Guardrail
 
@@ -260,7 +260,7 @@ View the top events contributing towards your MTU count by creating a monthly In
 
 If you go over your prepaid amount, Mixpanel won't stop collecting your data. Once you've finished using your prepaid amount of MTUs you'll be charged the additional data rate for each additional user tracked that month. Alerts are in place to notify Organization Owners and Billing Admins of potential additional data charges. 
 
-For example, let’s say you are on a \$24/month Growth plan, but in the month of January, you went over your 1,000 MTU allotment by 500 MTU. Around January 1, you would have paid your base monthly fee for January of \$24. Then around February 1, you will pay your base monthly fee for February of \$24 plus the January additional data rate charges you incurred. If you purchase an annual plan in January, you will be charged an additional data rate fee each following month for the data used was in excess of the purchased plan.
+For example, let's say you are on a \$24/month Growth plan, but in the month of January, you went over your 1,000 MTU allotment by 500 MTU. Around January 1, you would have paid your base monthly fee for January of \$24. Then around February 1, you will pay your base monthly fee for February of \$24 plus the January additional data rate charges you incurred. If you purchase an annual plan in January, you will be charged an additional data rate fee each following month for the data used was in excess of the purchased plan.
 
 To maximize saving and avoid additional data rate charges, we recommend [taking a look at pricing options](https://mixpanel.com/pricing/) and upgrading to a pricing plan that better fits your traffic. View the additional data rate for your paid plan in Organization Settings > Plan Details & Billing:
 

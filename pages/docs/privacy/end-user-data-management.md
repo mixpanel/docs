@@ -1,7 +1,7 @@
 # End User Data Management
 
 
-Mixpanel supports account holders’ ability to request the deletion or export of end user data.
+Mixpanel supports account holders' ability to request the deletion or export of end user data.
 
 Requests can be submitted through either a form found in a Mixpanel project or through a personal data export and deletion API that is documented below.
 
@@ -21,7 +21,7 @@ In order to submit a request, you must first generate a GDPR OAuth token from yo
 
 Mixpanel exports or deletes end user data according to the user's distinct_id. To export or delete end user data, first select a project that you own and collect the distinct_id of the user(s). Like all data in Mixpanel, the distinct_id can be custom specified in a tracking implementation. As this is the case, it is necessary to ensure that any provided distinct_id is accurate and stored in a project. Any incorrect identifiers submitted as part of export or deletion requests will result in inability to process the request.
 
-It is possible to submit a request from Mixpanel once you gather the distinct_ids of end users requesting exports or deletions. If you implemented Mixpanel before 2020 and are using the alias method to manage user identity, it is possible to submit either the end user’s alias or their distinct_id as part of a deletion request. All data associated with a submitted alias will be deleted. In addition, all data associated with the distinct_id(s) that the alias maps to will be deleted.
+It is possible to submit a request from Mixpanel once you gather the distinct_ids of end users requesting exports or deletions. If you implemented Mixpanel before 2020 and are using the alias method to manage user identity, it is possible to submit either the end user's alias or their distinct_id as part of a deletion request. All data associated with a submitted alias will be deleted. In addition, all data associated with the distinct_id(s) that the alias maps to will be deleted.
 
 ## Submit Requests via Request Form in Mixpanel
 
@@ -92,7 +92,7 @@ While the following API can be used to delete or retrieve personal data as outli
 * [iOS - Swift](https://developer.mixpanel.com/reference/swift#opting-users-out-of-tracking)
 * [Android](https://developer.mixpanel.com/reference/android#opting-users-out-of-tracking)
 
-See Mixpanel’s [Privacy-Friendly Tracking](https://developer.mixpanel.com/docs/privacy-friendly-tracking) guide for more information on best practices when handling personal information in Mixpanel.
+See Mixpanel's [Privacy-Friendly Tracking](https://developer.mixpanel.com/docs/privacy-friendly-tracking) guide for more information on best practices when handling personal information in Mixpanel.
 
 ## Submit Requests via API
 Mixpanel deletion and retrieval APIs are in place to help Mixpanel implementations meet the requirements outlined by the General Data Protection Regulation (GDPR) legislation.
@@ -197,7 +197,7 @@ Example Return:
 #### Create a Deletion Task
 Request Type: POST
 
-Description: Creates a task that specifies a list of users in a particular project to delete. This will schedule a deletion job that will delete all data, including events and user profile data, for the users specified by distinct_ids. This deletion job may be canceled until it reaches the STARTED stage. It may take up to 30 days to complete a deletion task in a customer’s Mixpanel database. Mixpanel may retain records of deletion tasks for legal compliance purposes or for a short time based on our legitimate interest in providing a service continuity.
+Description: Creates a task that specifies a list of users in a particular project to delete. This will schedule a deletion job that will delete all data, including events and user profile data, for the users specified by distinct_ids. This deletion job may be canceled until it reaches the STARTED stage. It may take up to 30 days to complete a deletion task in a customer's Mixpanel database. Mixpanel may retain records of deletion tasks for legal compliance purposes or for a short time based on our legitimate interest in providing a service continuity.
 
 Endpoint: `https://mixpanel.com/api/app/data-deletions/v3.0/?token=<your_project_token>`
 

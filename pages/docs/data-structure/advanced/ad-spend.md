@@ -1,6 +1,6 @@
 # Ad Spend
 
-Mixpanel’s event-based-data model enables you to represent and analyze any type of data, including ad campaign performance. This guide shows you how to track this data to Mixpanel. The end result is a report that looks like this.
+Mixpanel's event-based-data model enables you to represent and analyze any type of data, including ad campaign performance. This guide shows you how to track this data to Mixpanel. The end result is a report that looks like this.
 
 In this doc, we give step-by-step guidance on how to bring your advertising network data into Mixpanel to look at metrics such as ROAS (Return on Ad Spend), CPC (Cost per click) in the context of in-product conversions. We also provide detailed guides for Google and Facebook Ads. The end result should look like this:
 
@@ -43,12 +43,12 @@ The crux of this How To guide is turning the data exported by Ad Networks into e
 
 **Best Practices**
 
-- **Only include base metrics** cost, clicks, and impressions. We don’t need to send derived metrics like Cost-per-click, because Mixpanel’s [Custom Properties](/docs/features/custom-properties) and Formulas allow us to calculate and alter derived metrics on the fly.
+- **Only include base metrics** cost, clicks, and impressions. We don't need to send derived metrics like Cost-per-click, because Mixpanel's [Custom Properties](/docs/features/custom-properties) and Formulas allow us to calculate and alter derived metrics on the fly.
 - **Matching client side properties:** if you are using a Mixpanel client-side SDK to track user behaviors, you will want to model
  additional campaign metadata (source, medium, campaign, etc...) as `utm_source`, `utm_medium` etc... this matches the way mixpanel's SDKs [capture UTM params by default](/docs/data-structure/property-reference)
-- **No Distinct ID:** You’ll notice that our event has no Distinct ID. This is because ad performance data isn’t tied to any particular user. **This is the key difference from behavioral events.** By omitting it, we are ensuring that these events do not get erroneously included in reporting that intend to analyze user behavior such as Funnels, Retentions, Flows, unique user counts, "did not do" cohorts, etc.
-- **Event properties are aggregated:** You’ll notice the Ad-Data event in this example is scheduled to trigger only once a day. Properties are aggregated counts of all clicks through the day, all impressions through the day, all ad-spend through the day. Reason for this is ad-networks only export data at an aggregate level (without user details) and at fixed intervals (lowest granularity is generally a day)
-- **Include an Insert ID:** It’s recommended to include the Insert ID property for these kinds of events. This allows you to send the campaign data to Mixpanel more than once for a particular segment without duplicating the data in reports.
+- **No Distinct ID:** You'll notice that our event has no Distinct ID. This is because ad performance data isn't tied to any particular user. **This is the key difference from behavioral events.** By omitting it, we are ensuring that these events do not get erroneously included in reporting that intend to analyze user behavior such as Funnels, Retentions, Flows, unique user counts, "did not do" cohorts, etc.
+- **Event properties are aggregated:** You'll notice the Ad-Data event in this example is scheduled to trigger only once a day. Properties are aggregated counts of all clicks through the day, all impressions through the day, all ad-spend through the day. Reason for this is ad-networks only export data at an aggregate level (without user details) and at fixed intervals (lowest granularity is generally a day)
+- **Include an Insert ID:** It's recommended to include the Insert ID property for these kinds of events. This allows you to send the campaign data to Mixpanel more than once for a particular segment without duplicating the data in reports.
 
 The Insert ID should be made up of unique attributes in the event that separate it from other performance data.
 Using our above event example, the uniquely identifiable properties are:
@@ -71,7 +71,7 @@ Note: Keep in mind the [Insert ID length limitations](https://developer.mixpanel
 
 ## Gathering Data from Ad Networks
 
-Different ad networks provide different ways to access their raw data. Some allow you to manually download a CSV export that can be transformed into the above format and sent to Mixpanel. Most networks also have APIs that allow you to automate exporting the metrics that you’re interested in.
+Different ad networks provide different ways to access their raw data. Some allow you to manually download a CSV export that can be transformed into the above format and sent to Mixpanel. Most networks also have APIs that allow you to automate exporting the metrics that you're interested in.
 
 <aside>
 💡 Note: Some of these APIs require registration and permissions with the underlying platform, please read their docs to set this up.
@@ -125,7 +125,7 @@ We need to allow our new credential to access the Google Ads API by enabling it.
 
 ##### Generating a Refresh Token
 
-The credential you created allows Google to track access to the Google Ads API, but it doesn’t specify which Google user its acting on behalf of to retrieve the correct ad performance data. We will need to give the credential access to your Google Ads account so that it can export metrics on your behalf.
+The credential you created allows Google to track access to the Google Ads API, but it doesn't specify which Google user its acting on behalf of to retrieve the correct ad performance data. We will need to give the credential access to your Google Ads account so that it can export metrics on your behalf.
 
 - Go to the [Google OAuth Playground](https://developers.google.com/oauthplayground#step1&scopes=https%3A//www.googleapis.com/auth/adwords&url=https%3A//&content_type=application/json&http_method=GET&useDefaultOauthCred=checked&oauthEndpointSelect=Google&oauthAuthEndpointValue=https%3A//accounts.google.com/o/oauth2/v2/auth&oauthTokenEndpointValue=https%3A//oauth2.googleapis.com/token&includeCredentials=unchecked&accessTokenType=bearer&autoRefreshToken=unchecked&accessType=offline&forceAprovalPrompt=checked&response_type=code)
 - Click the Settings cog in the upper right corner
@@ -157,7 +157,7 @@ It should look something like: `123-456-7890`.
 
 Now that we have all of the information we need, we can create our Google Cloud Function.
 
-The function will run once a day, export the previous day’s campaign metrics, transform them into Mixpanel events, and import them our Mixpanel project.
+The function will run once a day, export the previous day's campaign metrics, transform them into Mixpanel events, and import them our Mixpanel project.
 
 - Go to the [Google Cloud Functions](https://console.cloud.google.com/functions/) page
 - Click ******************************Create function******************************
@@ -182,11 +182,11 @@ We will need to specify the dependencies for the function to use. Open the Inlin
 ```
 
 <aside>
-💡 Google doesn’t provide a first-party Ads API client for Node.js. The one we are using is third-party. More information can be found [here](https://www.npmjs.com/package/google-ads-api).
+💡 Google doesn't provide a first-party Ads API client for Node.js. The one we are using is third-party. More information can be found [here](https://www.npmjs.com/package/google-ads-api).
 
 </aside>
 
-For the function’s code, select ****************index.js**************** in the file tree and replace its contents with this snippet:
+For the function's code, select ****************index.js**************** in the file tree and replace its contents with this snippet:
 
 ```jsx
 const functions = require('@google-cloud/functions-framework');
@@ -297,11 +297,11 @@ Change the variables at the top of the snippet to use the information we collect
 
 After deployment, you will see a ******URL****** at the top of the **********************************Function details********************************** screen. Save that for the next step.
 
-Your function is now ready! When it’s triggered, it will pull your Google Ad network data and send it to Mixpanel.
+Your function is now ready! When it's triggered, it will pull your Google Ad network data and send it to Mixpanel.
 
 #### Schedule your function
 
-We want the function to run by itself every day so we can regularly inspect the data in Mixpanel. We’ll do this by using Google Cloud Scheduler to run our Google Cloud Function every morning at 8 AM UTC.
+We want the function to run by itself every day so we can regularly inspect the data in Mixpanel. We'll do this by using Google Cloud Scheduler to run our Google Cloud Function every morning at 8 AM UTC.
 
 - Navigate to the [Google Cloud Schedule](https://console.cloud.google.com/cloudscheduler) page in your project
 - Click ********************Create job******************** at the top of the page
@@ -322,7 +322,7 @@ We want the function to run by itself every day so we can regularly inspect the 
 
 #### Wrapping up
 
-That’s it! We’ve made a Google Cloud Function that syncs Google Ads data to Mixpanel every morning.
+That's it! We've made a Google Cloud Function that syncs Google Ads data to Mixpanel every morning.
 
 ### Facebook
 This guide will go through setting up a serverless Google Cloud Function that will export individual ad campaign performance data from Facebook, transform them into Mixpanel events, and send them to your Mixpanel project every day.
@@ -341,7 +341,7 @@ In order to follow this guide, you will need:
 
 #### Creating the function
 
-The function will run once a day, export the previous day’s campaign metrics, transform them into Mixpanel events, and import them our Mixpanel project.
+The function will run once a day, export the previous day's campaign metrics, transform them into Mixpanel events, and import them our Mixpanel project.
 
 - Go to the [Google Cloud Functions](https://console.cloud.google.com/functions/) page
 - Click ******************************Create function******************************
@@ -365,7 +365,7 @@ We will need to specify the dependencies for the function to use. Open the Inlin
 }
 ```
 
-For the function’s code, select ****************index.js**************** in the file tree and replace its contents with this snippet:
+For the function's code, select ****************index.js**************** in the file tree and replace its contents with this snippet:
 
 ```jsx
 const functions = require('@google-cloud/functions-framework');
@@ -470,11 +470,11 @@ Change the variables at the top of the snippet to use the information we collect
 
 After deployment, you will see a ******URL****** at the top of the **********************************Function details********************************** screen. Save that for the next step.
 
-Your function is now ready! When it’s triggered, it will pull your Facebook Ad network data and send it to Mixpanel.
+Your function is now ready! When it's triggered, it will pull your Facebook Ad network data and send it to Mixpanel.
 
 #### Schedule your function
 
-We want the function to run by itself every day so we can regularly inspect the data in Mixpanel. We’ll do this by using Google Cloud Scheduler to run our Google Cloud Function every morning at 8 AM UTC.
+We want the function to run by itself every day so we can regularly inspect the data in Mixpanel. We'll do this by using Google Cloud Scheduler to run our Google Cloud Function every morning at 8 AM UTC.
 
 - Navigate to the [Google Cloud Schedule](https://console.cloud.google.com/cloudscheduler) page in your project
 - Click ********************Create job******************** at the top of the page
@@ -495,7 +495,7 @@ We want the function to run by itself every day so we can regularly inspect the 
 
 #### Wrapping up
 
-That’s it! We’ve made a Google Cloud Function that syncs Facebook Ads data to Mixpanel every morning.
+That's it! We've made a Google Cloud Function that syncs Facebook Ads data to Mixpanel every morning.
 
 
 

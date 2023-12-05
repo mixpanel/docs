@@ -94,7 +94,7 @@ The saved content you create in Mixpanel is not contained to the Data View in wh
 
 The following are limitations to be aware of when using Data Views:
 
-- JQL features are only available in ‘All Project Data’ Data View.
+- JQL features are only available in ‘All Project Data' Data View.
 - Any Mixpanel APIs that use Project Token or Secret (e.g. Export API), work at a project level and are not the Data View level. That said, any APIs that use OAuth (e.g. Query API) work at the Data View level.
 - Lexicon shows events and properties filtered based upon the Data View you have selected. However if you edit an event or property in Lexicon in one Data View, the changes will persist across the project. All Data Views will be impacted.
 - Applying any User Profile Property filter will remove the ability to analyze by all Group Identifiers except User
@@ -123,7 +123,7 @@ When you mark a property as classified, the Status column will indicate that the
 
 Go to your Project Settings, and then to the tab "Project Users" in order to manage which users can access the events and properties marked as classified.
 
-In the **Current Users** table, the Classified Data column indicates which users have permission to view classified data. Click the Can View check box in a user’s row to update their classified data viewing permission.
+In the **Current Users** table, the Classified Data column indicates which users have permission to view classified data. Click the Can View check box in a user's row to update their classified data viewing permission.
 
 ![Mark Classified Viewing Perms](/manage-classified-data-viewing-perms.png)
 
@@ -132,7 +132,7 @@ Click on **All Data Permissions** to filter the current users table to display o
 ![All Data Permissions](/all-data-permissions.png)
 ### Manage Classified Data Viewing Permissions for Teams
 
-Navigate to Organization Settings from the gear icon at the top-right corner of the navigation bar. Go to the Users & Teams tab and click on the team for which you wish to manage permissions. You can manage the team’s access to Classified Data for each of the projects to which they have access.
+Navigate to Organization Settings from the gear icon at the top-right corner of the navigation bar. Go to the Users & Teams tab and click on the team for which you wish to manage permissions. You can manage the team's access to Classified Data for each of the projects to which they have access.
 
 ![Manage Classified Data Viewing for Teams](/manage-classified-data-viewing-teams.png)
 ### Analysis Experience for Users that Cannot View Properties Marked as Classified Data

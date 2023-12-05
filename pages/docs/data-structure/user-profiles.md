@@ -105,7 +105,7 @@ We recommend using the `$name` and `$email` properties if you're uploading a use
 
 ## Importing a CSV
 
-When editing the CSV that you want to upload as profiles, you should **not** include column headers (e.g., Email, Name, etc.). Instead, you’ll identify column headers during the CSV upload wizard in the Mixpanel UI.
+When editing the CSV that you want to upload as profiles, you should **not** include column headers (e.g., Email, Name, etc.). Instead, you'll identify column headers during the CSV upload wizard in the Mixpanel UI.
 
 **Note**:
 - If you import user profiles using \$distinct_id values that already exist, those profiles will be updated with the additional user profile properties. On the other hand, if you upload user profiles that have the same email address or the same name as existing user profiles but a different \$distinct_id, you will be uploading duplicates - they will not be combined.
@@ -120,7 +120,7 @@ Go the the Import from CSV mode and select your prepared csv to begin the proces
 
 The most important column in your spreadsheet is the `$distinct_id` column for user profiles or `$group_id`, the group identifier, for group profiles, as these are the canonical identifiers in Mixpanel.
 
-If you do not assign an identifier column, Mixpanel will use your `$email` column as the `$distinct_id` value; if you don’t have an `$email` column either, then the `$distinct_id` value will be assigned randomly by default as described above.
+If you do not assign an identifier column, Mixpanel will use your `$email` column as the `$distinct_id` value; if you don't have an `$email` column either, then the `$distinct_id` value will be assigned randomly by default as described above.
 
 ### Choose Desired CSV Columns
 ![/Screen_Shot_2021-12-01_at_12.24.00_PM.png](/Screen_Shot_2021-12-01_at_12.24.00_PM.png)

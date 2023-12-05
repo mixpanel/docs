@@ -7,7 +7,7 @@ If you want to import User Profiles into Mixpanel, see our [User Profiles guide]
 
 ### Use Case
 
-Mixpanel’s Users page aggregates and organizes a collection of user profiles. This facilitates a granular view into the behavior of individual users or groups of users. The Users page can be used to:
+Mixpanel's Users page aggregates and organizes a collection of user profiles. This facilitates a granular view into the behavior of individual users or groups of users. The Users page can be used to:
 
 - Count users based on behavior.
 - Explore their unique history.

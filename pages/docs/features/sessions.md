@@ -98,7 +98,7 @@ Sessions are reset every 24 hours at midnight (according to your project timezon
 
 #### Estimating Ideal Session Length
 
-Use your [Time to Convert Chart in Funnels](/docs/reports/funnels#time-to-convert) to help determine an appropriate session timeout period that aligns with your users’ behavior.
+Use your [Time to Convert Chart in Funnels](/docs/reports/funnels#time-to-convert) to help determine an appropriate session timeout period that aligns with your users' behavior.
 
 ![image](https://github.com/mixpanel/docs/assets/2077899/44f40194-1aff-493b-828e-f9a1c750ac03)
 
@@ -108,11 +108,11 @@ In your Funnel you can select the event that denotes a "Session Start" in your a
 
 Be sure to exclude API-related events in your funnel to ensure that your conversion time is accurate. For example, if a user is receiving notifications from you every 25 minutes, and session timeout is every 30 minutes, then session length will be 24 hours.
 
-Exclude events that don’t denote an action made by the user from your funnel to ensure that your conversion time is accurate. For example, if a user is receiving notifications from you every 25 minutes, and session timeout is every 30 minutes, then session length will be 24 hours.
+Exclude events that don't denote an action made by the user from your funnel to ensure that your conversion time is accurate. For example, if a user is receiving notifications from you every 25 minutes, and session timeout is every 30 minutes, then session length will be 24 hours.
 
 #### Excluded Events
 
-Exclude events from being tracked as part of a session (such as backend API events that don’t denote an action made by the user on the site), to ensure the validity of session metrics. Mixpanel API events will be excluded by default, but external API events, such as a message sent through another program, would not be excluded.
+Exclude events from being tracked as part of a session (such as backend API events that don't denote an action made by the user on the site), to ensure the validity of session metrics. Mixpanel API events will be excluded by default, but external API events, such as a message sent through another program, would not be excluded.
 
 For example, you should exclude events triggered when a message is sent to a user or when a user is added to an A/B test, as the user did not cause those events.
 

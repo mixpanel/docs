@@ -45,7 +45,7 @@ On their second login, Mixpanel Users will be prompted to set up two-factor auth
 
 ![2FA Authentication App 2 Image](/2fa_authentication_app2.png)
 
-If you are unable to scan the QR code, click on "Can’t scan QR code?" This will provide you a two-factor secret to set up your authentication app manually.
+If you are unable to scan the QR code, click on "Can't scan QR code?" This will provide you a two-factor secret to set up your authentication app manually.
 
 ![2FA Authentication App 2b Image](/2fa_authentication_app2b.png)
 
@@ -103,13 +103,13 @@ Users can switch their method via the following steps:
 
 ### Login via backup methods
 
-If you are unable to log in due to two-factor authentication because you have either lost your phone or don’t have access to your number, we have a couple backup methods you can use to log in depending on your authentication method.
+If you are unable to log in due to two-factor authentication because you have either lost your phone or don't have access to your number, we have a couple backup methods you can use to log in depending on your authentication method.
 
 **Note: Contact support if none of these backup methods work for you.**
 
 #### Login via recovery codes (authentication app)
 
-If an authentication app is your preferred method of authentication, you can login via your saved recovery codes if you don’t have access to your phone. A user can login via a recovery code by doing the following:
+If an authentication app is your preferred method of authentication, you can login via your saved recovery codes if you don't have access to your phone. A user can login via a recovery code by doing the following:
 
 1. Click on "Need help? Use a recovery code to sign in"
 

@@ -47,7 +47,7 @@ In dynamic sync, Mixpanel initiates sync between a cohort and Google Ads every t
 
 ## Select the Cohort in Google Ads
 
-You must log in to Google Business Manager to use the Mixpanel Cohort in Google Ads. Select the **Menu** in Google Business Manager’s top navigation. 
+You must log in to Google Business Manager to use the Mixpanel Cohort in Google Ads. Select the **Menu** in Google Business Manager's top navigation. 
 
 Click on **Tools & Settings** and launch Audience Manager.
 

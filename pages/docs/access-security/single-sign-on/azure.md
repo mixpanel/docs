@@ -3,7 +3,7 @@
 
 ## Overview
 
-You can set up Microsoft Azure Single Sign-On to use with your Mixpanel account. Before using this document, read the general Mixpanel SSO set-up instructions as well as Azure’s documentation on setting up a new application. 
+You can set up Microsoft Azure Single Sign-On to use with your Mixpanel account. Before using this document, read the general Mixpanel SSO set-up instructions as well as Azure's documentation on setting up a new application. 
 
 ### Add Mixpanel as a New Application
 

@@ -5,7 +5,7 @@
 
 ![/funnels_result_header.png](/funnels_result_header.png)
 
-Mixpanel’s Funnels allows you to examine how end-users perform events in a series. Funnels calculate and display the amount of users who convert from one event to another within a particular time window. This allows you to identify where your users drop off, what segments convert the most, and other important facets of the user journey.
+Mixpanel's Funnels allows you to examine how end-users perform events in a series. Funnels calculate and display the amount of users who convert from one event to another within a particular time window. This allows you to identify where your users drop off, what segments convert the most, and other important facets of the user journey.
 
 ## Use Cases
 
@@ -19,7 +19,7 @@ Imagine your product is a B2B messaging application. You might use Funnels to an
 - What departments complete the payment funnel most often?
 - What flows do users take between opening an app and making a purchase?
 - Why did the successful users purchase?
-- What flows do users take that don’t lead to a purchase?
+- What flows do users take that don't lead to a purchase?
 - How do these two paths differ? What actions should I nudge towards or against?
 - What did the users that dropped-off do instead?
 
@@ -222,7 +222,7 @@ In order to learn more about the behavior users take between funnel steps, use "
 
 - What flows do users take between opening an app and making a purchase?
 - Why did the successful users purchase?
-- What flows do users take that don’t lead to a purchase?
+- What flows do users take that don't lead to a purchase?
 - How do these two paths differ? What actions should I nudge towards or against?
 - What did the users that dropped-off do instead?
 
@@ -392,7 +392,7 @@ This behavior matches how users are counted when filtering by property: if a use
 
 Statistical significance in funnels validates an increase or decrease in conversion rate for a property or cohort segment. It attempts to identify random chance with respect to overall conversion. A p-value indicating statistical significance is calculated in the overview table when you choose a property or cohort to group by.
 
-In statistical hypothesis testing, the p-value or probability value is the probability that the variation in a segment’s conversion rate, compared to the overall conversion rate, is not driven by a random chance. This value is shown for every segment by default. To learn more about how this is calculated, click [here](/docs/reports/funnels#how-does-mixpanel-calculate-statistical-significance).
+In statistical hypothesis testing, the p-value or probability value is the probability that the variation in a segment's conversion rate, compared to the overall conversion rate, is not driven by a random chance. This value is shown for every segment by default. To learn more about how this is calculated, click [here](/docs/reports/funnels#how-does-mixpanel-calculate-statistical-significance).
 
 In order to clarify this statistical significance, the segmentation chart shows the confidence level of each segment. Confidence level is defined as 1 - p.
 
@@ -518,7 +518,7 @@ Next, let's expand on the differences between per-step (pre-query) and global (p
 
 Per-step filters allow you to apply event or user property filters to each step of your funnel. This adds granularity and specificity to your conversion criteria. In selecting a per-step filter, you are tightening the parameters of events that qualify for conversion.
 
-Per-step filters are performed pre-query. Thus, these filters will impact your funnel’s conversion by removing events that don’t qualify from consideration of being included in a funnel calculation.
+Per-step filters are performed pre-query. Thus, these filters will impact your funnel's conversion by removing events that don't qualify from consideration of being included in a funnel calculation.
 
 Let's illustrate this with some examples.
 
@@ -532,7 +532,7 @@ As you can see in the below activity feed, this user's first Search event happen
 
 However, if I put a per step filter on the Search event and require a user to use a Brower = Safari, then I will restrict entry into the funnel to only Search events on Safari browsers.
 
-Below we see the same user's activity stream where their first Search event is with the Chrome browser, and thus this user’s first Search event **is not** included in a funnels calculation. However they have a second Search that is using Safari, and this event qualifies them to enter into the funnel. Unlike before when we did not filter, now each of their subsequent steps happens within the conversion window, and this user reaches full conversion to the end of the funnel.
+Below we see the same user's activity stream where their first Search event is with the Chrome browser, and thus this user's first Search event **is not** included in a funnels calculation. However they have a second Search that is using Safari, and this event qualifies them to enter into the funnel. Unlike before when we did not filter, now each of their subsequent steps happens within the conversion window, and this user reaches full conversion to the end of the funnel.
 
 ![image](https://github.com/mixpanel/docs/assets/2077899/6daf8f38-afaf-48dd-994e-7f7be682cc92)
 
@@ -540,7 +540,7 @@ Below we see the same user's activity stream where their first Search event is w
 
 If we were to take it further and place a per-step filter on each and every step in this funnel, so that all steps must be completed with events where Browser = Safari, then this user would only convert to the second step of the Item Detail.
 
-This is because, as we can see below, the first Search/Safari step is followed by two steps that aren’t tracked in the funnel: *Item Detail Page/Chrome* that is filtered out of this funnel because it does not fulfill the Browser= Safari criteria, and *Add to Cart/Safari* that is not considered because it is not preceded by an Item Detail Page/Safari. The next step that is tracked in the funnel (Item Detail Page/Safari) converts the user to Step 2, but then *Add to Cart/Chrome* is filtered out of the funnel. Since there is not another Add to Cart/Safari before the Purchase event or before the 1 day conversion window runs out, this user times out of the funnel after Step 2.
+This is because, as we can see below, the first Search/Safari step is followed by two steps that aren't tracked in the funnel: *Item Detail Page/Chrome* that is filtered out of this funnel because it does not fulfill the Browser= Safari criteria, and *Add to Cart/Safari* that is not considered because it is not preceded by an Item Detail Page/Safari. The next step that is tracked in the funnel (Item Detail Page/Safari) converts the user to Step 2, but then *Add to Cart/Chrome* is filtered out of the funnel. Since there is not another Add to Cart/Safari before the Purchase event or before the 1 day conversion window runs out, this user times out of the funnel after Step 2.
 
 ![image](https://github.com/mixpanel/docs/assets/2077899/d2425bf0-5d61-4bf3-ad2f-861fa65f3563)
 
@@ -564,9 +564,9 @@ In the below example, the Funnels query will calculate a conversion because the 
 
 This section is intended for users who want to understand the mathematics involved in statistical significance in depth.
 
-To determine whether a particular segment’s conversion rate is significantly different from the overall conversion rate, we use a hypergeometric distribution to calculate statistical significance. The hypergeometric distribution is used to model the probability of picking k items of a particular type in n attempts without replacement from a population of size N having K items of the same type.
+To determine whether a particular segment's conversion rate is significantly different from the overall conversion rate, we use a hypergeometric distribution to calculate statistical significance. The hypergeometric distribution is used to model the probability of picking k items of a particular type in n attempts without replacement from a population of size N having K items of the same type.
 
-For example, let’s say we have a sock drawer with 20 socks, 10 blue and 10 red. If we randomly picked 10 socks one at time from the drawer without putting them back between picks, and we wanted to know the probability of 9 of those socks being red and 1 of them being blue, we would use a hypergeometric distribution to calculate that.
+For example, let's say we have a sock drawer with 20 socks, 10 blue and 10 red. If we randomly picked 10 socks one at time from the drawer without putting them back between picks, and we wanted to know the probability of 9 of those socks being red and 1 of them being blue, we would use a hypergeometric distribution to calculate that.
 
 This is applied to funnels by considering the total number of users who enter the funnel to be a finite population of size N, out of which a subset of users convert (K). We then estimate the probability of getting k conversions in a particular segment (given that there were n users who entered the funnel in that segment) if users in that particular segment were picked at random from the overall user set. The higher the probability, the higher likelihood that variations we see in conversion rate are due to random chance.
 

@@ -16,16 +16,16 @@ Note: You won't be able to create alerts if the report has unsaved changes. Save
 
 3. **Enter a name** for your alert.
 4. If your report has more than one event, select an event to track. If your report has a breakdown applied, either select a segment to alert on, or select any segment to be alerted when any segment matches the alert criteria.
-5. **Set your alert criteria.** Depending on the report you’re working from, choose between anomaly detection or custom alert types. More details on each criteria type can be found below.
-6. **Set your notification frequency.** Depending on your alert criteria, you can choose a notification frequency spanning from an hour to at most a month. This frequency informs how often *at most* you’ll receive an alert.
+5. **Set your alert criteria.** Depending on the report you're working from, choose between anomaly detection or custom alert types. More details on each criteria type can be found below.
+6. **Set your notification frequency.** Depending on your alert criteria, you can choose a notification frequency spanning from an hour to at most a month. This frequency informs how often *at most* you'll receive an alert.
      <br> *Note:*
-    - *for time-series reports, alert query frequency (how often we check if your data matches your alert condition) is determined by the time bucket of your report visualization. For instance, if you’re chart is hourly, the alert will be checked for at an hourly interval.*
-    - *if you have an hourly chart, but set the alert frequency to daily, we’ll check your report for an alert condition match every hour. If we find a match, we’ll send you the alert message and will stop checking your report for a match until the next day.*
+    - *for time-series reports, alert query frequency (how often we check if your data matches your alert condition) is determined by the time bucket of your report visualization. For instance, if you're chart is hourly, the alert will be checked for at an hourly interval.*
+    - *if you have an hourly chart, but set the alert frequency to daily, we'll check your report for an alert condition match every hour. If we find a match, we'll send you the alert message and will stop checking your report for a match until the next day.*
 7. **Set your notification delivery preferences.** When alert conditions are met, we can send notification via email or Slack.
     - For email, enter the recipient emails that you would like to receive this alert. You can enter any email here, not just internal users.
     - For Slack, select any Slack channels you want to send this alert to. *Note: private Slack channels are not available at this time.*
 
-    **IMPORTANT:** In order to send alerts to Slack, you may need to configure the Mixpanel Slack app if you haven’t before. Click "Add Mixpanel to Slack" and follow the prompts on the following screens. You will be brought back to this page when you have added Mixpanel to Slack.
+    **IMPORTANT:** In order to send alerts to Slack, you may need to configure the Mixpanel Slack app if you haven't before. Click "Add Mixpanel to Slack" and follow the prompts on the following screens. You will be brought back to this page when you have added Mixpanel to Slack.
 
 ![](/255713687-91a2bb99-3a79-43d4-9d97-3b397aab0305.png)
 
@@ -42,7 +42,7 @@ You can view and manage all alerts under your personal settings.
 
 ![image](https://github.com/mixpanel/docs/assets/130006730/be35a381-b090-4fd4-86e0-7281dd291d64)
 
-You can view the details of another user’s alert, but you are not able to edit or delete it unless you're a project owner.
+You can view the details of another user's alert, but you are not able to edit or delete it unless you're a project owner.
 
 ***IMPORTANT: If you need to modify alerts you didn't create, contact the project owner.***
 

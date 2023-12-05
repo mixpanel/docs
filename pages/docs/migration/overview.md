@@ -1,6 +1,6 @@
 # Overview
 
-If you’re reading this, congrats on considering making the switch from another analytics provider to Mixpanel 🎊  Our migration guides are intended to outline how a migration works, what to expect, and how to mitigate the risks and switching costs of a migration whilst accelerate time to value.
+If you're reading this, congrats on considering making the switch from another analytics provider to Mixpanel 🎊  Our migration guides are intended to outline how a migration works, what to expect, and how to mitigate the risks and switching costs of a migration whilst accelerate time to value.
 
 ## What a migration will solve
 
@@ -8,7 +8,7 @@ If you’re reading this, congrats on considering making the switch from another
 - Historical backfill of existing data (subject to what data can be modeled as events)
 - Integrates easily with existing event data collection methods - SDKs, CDPs, DWH, RETL
 
-## What a migration won’t solve
+## What a migration won't solve
 
 - Existing issues with data trust/quality or data governance → As part of the migration, we recommend a data audit as the first step to only transfer your valuable data and clean up trust/quality issues
 - Reporting, Dashboards, and Saved Entities → As part of the migration, you should review your top used reports and dashboards from other tools and sit down with each team to re-build them in Mixpanel
@@ -39,11 +39,11 @@ Depending on your current setup, the steps for migrating your live data tracking
 
 ### Data audit
 
-We’ve found from experience that <20% of the data in a product analytics tool is used for 80%+ of the queries. This is especially true the longer you have been using a tool - over time teams add more and more tracking for new events and properties, and without strong data governance practices, you will inevitably have some messy data in your current analytics tool(s).
+We've found from experience that <20% of the data in a product analytics tool is used for 80%+ of the queries. This is especially true the longer you have been using a tool - over time teams add more and more tracking for new events and properties, and without strong data governance practices, you will inevitably have some messy data in your current analytics tool(s).
 
 In the spirit of making sense of the mess, we don't recommended that you bring all historical data into Mixpanel. A common practice is to leverage your current providers' tooling to understand which reports, events, and properties are queried by your users. No queries in the past 30 days? These events and properties have probably gone stale - there is low value and high effort in bringing them to Mixpanel, so cut them from your import and do not migrate the existing tracking.
 
-After you’ve gotten rid of the obvious (the reports, events, and properties no one uses), you can fine tune this approach by doing user interviews with your top users/champions. These users can help you explicitly define the data they need brought along to Mixpanel (mapped to their key questions and KPIs) so you can focus on what matters. Because these users are the ones building reporting others use, capturing their use cases and making them change agents can be highly beneficial to your migration.
+After you've gotten rid of the obvious (the reports, events, and properties no one uses), you can fine tune this approach by doing user interviews with your top users/champions. These users can help you explicitly define the data they need brought along to Mixpanel (mapped to their key questions and KPIs) so you can focus on what matters. Because these users are the ones building reporting others use, capturing their use cases and making them change agents can be highly beneficial to your migration.
 
 This data audit step is optional, but highly recommended - It is a larger upfront investment to make it easier for your users to find useful metrics / reports and avoid higher maintenance costs in the future.
 
@@ -59,7 +59,7 @@ To perform a successful historical data load, we recommend:
 
 - Have your Mixpanel champion or owner first set up your [Organization settings](/docs/best-practices/project-setup#mixpanel-organization) and [Project settings](/docs/best-practices/project-setup#mixpanel-projects). This will ensure the right access level for your team and enable you to prepare the workspace for ingesting data. This can be done later but doing it up front will allow for you to set key settings for data ingestion (US vs EU servers, project timezone, etc.).
 - Load a limited subset of the data into a test project (for example, a single day or data or a sample of the entire dataset) to get started. This will help you identify any errors in the end to end process before you do a full historical data load.
-- Load a year’s worth (or less) of historical data during your migration. This will allow your team to review year-over-year trends easily and do historical analysis as needed, without sending a bunch of data which is stale and unlikely to be used.
+- Load a year's worth (or less) of historical data during your migration. This will allow your team to review year-over-year trends easily and do historical analysis as needed, without sending a bunch of data which is stale and unlikely to be used.
 
 ## Change management migration of end users
 
@@ -89,4 +89,4 @@ You can read more about how we do this [here](https://mixpanel.com/blog/establis
 
 ## Not sure where to start or need help?
 
-Mixpanel’s Customer Success team has worked with 10,000+ customers over the past 10+ years to help drive outcomes with product analytics. We’re always happy to discuss your team’s individual needs, our migration process, the support you’ll receive, or any other question you have — drop us a line at [success@mixpanel.com](mailto:success@mixpanel.com).
+Mixpanel's Customer Success team has worked with 10,000+ customers over the past 10+ years to help drive outcomes with product analytics. We're always happy to discuss your team's individual needs, our migration process, the support you'll receive, or any other question you have — drop us a line at [success@mixpanel.com](mailto:success@mixpanel.com).

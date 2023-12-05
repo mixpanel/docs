@@ -70,7 +70,7 @@ If you're using Mixpanel in a web application, you can use your browser's develo
 
 ### Customize Flush Interval (Mobile)
 
-Both the Mixpanel iOS and Android libraries employ queueing to optimize battery and data use on the end user’s device. Calling track does not send the event immediately, Events and User data sent to Mixpanel gets queued and flushed at certain intervals by default. This interval can be adjusted to flush more or less frequently.
+Both the Mixpanel iOS and Android libraries employ queueing to optimize battery and data use on the end user's device. Calling track does not send the event immediately, Events and User data sent to Mixpanel gets queued and flushed at certain intervals by default. This interval can be adjusted to flush more or less frequently.
 
 #### iOS
 
@@ -98,9 +98,9 @@ Project Owner and Admin users can hide events, event properties, and user profil
 
 #### Inactive Events and Properties
 
-Mixpanel’s report dropdown menus hide events that have not been fired within the last 30 days. The only exception are events that have been modified via the Lexicon interface, eg: by adding a description, hiding the event, changing the display name, etc. The events will still be available in the project's raw data, but will not be visible in the UI. We do this to reduce clutter from events that are no longer firing. Event properties and property values that have not been sent to your project in the last 28 days will also be hidden from dropdowns.
+Mixpanel's report dropdown menus hide events that have not been fired within the last 30 days. The only exception are events that have been modified via the Lexicon interface, eg: by adding a description, hiding the event, changing the display name, etc. The events will still be available in the project's raw data, but will not be visible in the UI. We do this to reduce clutter from events that are no longer firing. Event properties and property values that have not been sent to your project in the last 28 days will also be hidden from dropdowns.
 
-To have an imported event, event property, or property value that’s older than 30 days show in the dropdowns, you can fire a single instance of that event, property, or property value and the data will resurface it in the UI. If you know the name of the event, you can also search for it by typing the name in the dropdown menu (case sensitive).
+To have an imported event, event property, or property value that's older than 30 days show in the dropdowns, you can fire a single instance of that event, property, or property value and the data will resurface it in the UI. If you know the name of the event, you can also search for it by typing the name in the dropdown menu (case sensitive).
 
 ## Data Discrepancies
 
@@ -173,7 +173,7 @@ Once you have established this, we recommend drilling down into the data, for ex
 
 You can also compare the total event count versus the unique user count in the affected systems. If the totals match, but the unique user count shows discrepancies, it likely points to an ID management issue. 
 
-A 'last resort' to get to the bottom of things is to implement your own server-side tracking of the data. This will be more reliable as it’s less prone to issues and is independent of Mixpanel and other systems. It would give you a source of truth to compare any other system to and go from there. While this is resource-intense, it’s a good way to get to a source of truth.
+A 'last resort' to get to the bottom of things is to implement your own server-side tracking of the data. This will be more reliable as it's less prone to issues and is independent of Mixpanel and other systems. It would give you a source of truth to compare any other system to and go from there. While this is resource-intense, it's a good way to get to a source of truth.
 
 ### Discrepancies with Segment
 
@@ -182,8 +182,8 @@ The first step here would be to check if you are tracking with a cloud-mode or d
 If the discrepancy is between Mixpanel and another source, but you're tracking via Segment in cloud-mode, you can do the following to troubleshoot:
 
 - If Segment and Mixpanel show the same data, we recommend reaching out to Segment Support, as this likely points to an issue with Segment tracking.
-- If Mixpanel and Segment don’t show the same data, and both have a discrepancy with a third source, we also recommend reaching out to Segment Support to troubleshoot the discrepancy between the 3rd party and Segment. In Mixpanel, you can check for specific distinct_ids that should have events in Mixpanel, or specific events that should be in Mixpanel but might’ve been ingested with a different distinct_id.
+- If Mixpanel and Segment don't show the same data, and both have a discrepancy with a third source, we also recommend reaching out to Segment Support to troubleshoot the discrepancy between the 3rd party and Segment. In Mixpanel, you can check for specific distinct_ids that should have events in Mixpanel, or specific events that should be in Mixpanel but might've been ingested with a different distinct_id.
 
 If the discrepancy is between Segment and Mixpanel only, keep in mind that device-mode tracking will send the data to Mixpanel directly. If there are discrepancies, you can check for data by searching for specific events, or specific distinct_ids, depending on what you have available from Segment, as it might be that the data has been ingested but allocated to the wrong distinct_id.
 
-If you are tracking via cloud-mode, data will be sent from Segment to Mixpanel. It would basically be the same approach as above, whereas you’d need information from Segment Support when data has been sent. If in cloud-mode, then the issue is the communication between the two systems and Segment would need to provide information on when and how data has been sent.
+If you are tracking via cloud-mode, data will be sent from Segment to Mixpanel. It would basically be the same approach as above, whereas you'd need information from Segment Support when data has been sent. If in cloud-mode, then the issue is the communication between the two systems and Segment would need to provide information on when and how data has been sent.

@@ -5,7 +5,7 @@
 
 The Experiments report analyzes how A/B test variants impact your metrics.  Experiments does this by calculating the difference between variant groups and the effects of the variants on selected events.
 
-Experiments requires an A/B test, its variant, and a dashboard that contains the metrics you are measuring. An experiment query calculates the variants’ effects on the dashboard metrics by calculating the delta and the lift between the two variants.
+Experiments requires an A/B test, its variant, and a dashboard that contains the metrics you are measuring. An experiment query calculates the variants' effects on the dashboard metrics by calculating the delta and the lift between the two variants.
 
 To access Experiments, click on **Applications** in the top right navigation, then select **Experiments**.
 
@@ -124,7 +124,7 @@ If you are using our color-coded thresholds of 95%, there is a 5% chance that an
 
 Mixpanel will automatically populate the Experiment, Control, and Variant dropdowns within the report if sent in the proper format.
 
-Mixpanel scans for experiments that began in the date range you’ve selected for the report.  If any are found, then they will appear under the "Tracked Experiments" sub-header. To do this you must send data in the following format:
+Mixpanel scans for experiments that began in the date range you've selected for the report.  If any are found, then they will appear under the "Tracked Experiments" sub-header. To do this you must send data in the following format:
 
 **Event Name:** "$experiment_started"
 

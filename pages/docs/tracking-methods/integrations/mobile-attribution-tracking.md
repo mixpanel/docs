@@ -1,8 +1,8 @@
 # Mobile Attribution
 
-Determining the source and channels for your mobile traffic can be complex to set up yourself, specially for installs since the user journey goes mainly through the Google Play Store or the Apple App Store before continuing the journey and mapping that journey can be a challenge. In our view, it’s best to partner with a service that can focus on reliably mapping that journey and [we have a list of partners](https://mixpanel.com/partners/integrations?categories=attribution-deep-linking) that we encourage customers to review for this purpose.
+Determining the source and channels for your mobile traffic can be complex to set up yourself, specially for installs since the user journey goes mainly through the Google Play Store or the Apple App Store before continuing the journey and mapping that journey can be a challenge. In our view, it's best to partner with a service that can focus on reliably mapping that journey and [we have a list of partners](https://mixpanel.com/partners/integrations?categories=attribution-deep-linking) that we encourage customers to review for this purpose.
 
-> Specifically for Android installs, the Android SDK itself supports a function called [getInstallReferrer](https://developer.android.com/reference/com/android/installreferrer/api/ReferrerDetails#getInstallReferrer()) which you can leverage to parse some of the source data if you’d prefer to not implement through a partner, although for a smaller subset of the attribution data.
+> Specifically for Android installs, the Android SDK itself supports a function called [getInstallReferrer](https://developer.android.com/reference/com/android/installreferrer/api/ReferrerDetails#getInstallReferrer()) which you can leverage to parse some of the source data if you'd prefer to not implement through a partner, although for a smaller subset of the attribution data.
 
 Mobile attribution partner integrations work in 3 main ways: 
 
@@ -14,7 +14,7 @@ All have their benefits and drawbacks, although **usually Webhooks or the SDK �
 
 ## Webhooks
 
-Some of our partners support webhooks (or callbacks); the idea being that you can set up the partner so that when there’s new data for an install/re-engagement, said data is sent from the partner to your server or a service of your choosing (if you want to offload processing it). The data you receive will have a install/device ID and the attribution data. You can then either choose to send that data directly to Mixpanel ([through our ingestion APIs](https://developer.mixpanel.com/reference/events)) or, better yet, store it in a data warehouse so you have that on your end, and leverage [our data warehouse connectors](https://docs.mixpanel.com/docs/tracking-methods/data-warehouse/overview) to import that data to Mixpanel.
+Some of our partners support webhooks (or callbacks); the idea being that you can set up the partner so that when there's new data for an install/re-engagement, said data is sent from the partner to your server or a service of your choosing (if you want to offload processing it). The data you receive will have a install/device ID and the attribution data. You can then either choose to send that data directly to Mixpanel ([through our ingestion APIs](https://developer.mixpanel.com/reference/events)) or, better yet, store it in a data warehouse so you have that on your end, and leverage [our data warehouse connectors](https://docs.mixpanel.com/docs/tracking-methods/data-warehouse/overview) to import that data to Mixpanel.
 
 > **Note**: Adjust is just selected alphabetically from the list of partners. We encourage customers to review the list and choose based on the ones that fit your requirements best.
 
@@ -29,11 +29,11 @@ To fully illustrate the workflow, you could create a table in your DB that holds
 
 **Disadvantages**:
 
-- Requires setup in your server (or another 3rd party service) to receive the partner’s webhook and process it.
+- Requires setup in your server (or another 3rd party service) to receive the partner's webhook and process it.
 
 ## SDK to SDK
 
-Another recommended way to approach this which is highly configurable would be to leverage the partner’s SDK (which you need to install in any of the solutions), and when the app launches for the first time, you you would user their SDK to query the attribution data asynchronously. Once you receive it on the device, assuming you also have Mixpanel’s SDK installed, you can then track the attribution through both sending your own install event with that data and, potentially, also send it to your server or storing it in local storage (that way, if the user authenticates, you can also choose to store it in the profile from the value you had already saved).
+Another recommended way to approach this which is highly configurable would be to leverage the partner's SDK (which you need to install in any of the solutions), and when the app launches for the first time, you you would user their SDK to query the attribution data asynchronously. Once you receive it on the device, assuming you also have Mixpanel's SDK installed, you can then track the attribution through both sending your own install event with that data and, potentially, also send it to your server or storing it in local storage (that way, if the user authenticates, you can also choose to store it in the profile from the value you had already saved).
 
 > **Note**: Adjust is just selected alphabetically from the list of partners. We encourage customers to review the list and choose based on the ones that fit your requirements best.
 
@@ -74,15 +74,15 @@ private void insertJsonProperty(JSONObject props, String name, String value) {
 
 ## Partner Server to Mixpanel
 
-Most of our attribution partners support a form of server to server integration. The main idea is that you will install the partner’s SDK in your app and follow their configuration instructions. Part of those instructions usually involve querying Mixpanel’s distinct_id (unique ID for the user) in the device and sending that over to their server. Once the partner has the attribution data, as well as know which is the distinct_id for that user in that device, they will send said data in the form of events and properties (as well as profile properties) directly from the partner server to Mixpanel.
+Most of our attribution partners support a form of server to server integration. The main idea is that you will install the partner's SDK in your app and follow their configuration instructions. Part of those instructions usually involve querying Mixpanel's distinct_id (unique ID for the user) in the device and sending that over to their server. Once the partner has the attribution data, as well as know which is the distinct_id for that user in that device, they will send said data in the form of events and properties (as well as profile properties) directly from the partner server to Mixpanel.
 
 **Advantages**:
 
-- These kind of integrations usually require the least amount of setup on the app. If you don’t track events in Mixpanel from the app directly (just from the server) could sometimes even be done without an app update.
-- Once set up, you can enable/disable the functionality from the partner’s page without another app update, and change some settings
+- These kind of integrations usually require the least amount of setup on the app. If you don't track events in Mixpanel from the app directly (just from the server) could sometimes even be done without an app update.
+- Once set up, you can enable/disable the functionality from the partner's page without another app update, and change some settings
 
 **Disadvantages**:
 
-- ID management issues; by default, the partner will send the data with an ID of their choosing which will be different to the one you’re tracking events with, so you can get into a state in which the data sent from the integration is not connected to the user data you’ve tracked otherwise.
+- ID management issues; by default, the partner will send the data with an ID of their choosing which will be different to the one you're tracking events with, so you can get into a state in which the data sent from the integration is not connected to the user data you've tracked otherwise.
 - Hidden profiles; even when setting up ID management correctly, if sending profile data is enabled, anonymous profiles can be created for users which can be problematic as (on ID merge enabled projects) you can merge events, but merging profiles is not supported, which can lead to 1 (or more) profiles to be hidden if you have multiple profiles for the user.
 - Not as configurable; events and properties will be sent with the defaults sent by the partner which some partners have configuration options for, but can be limited.

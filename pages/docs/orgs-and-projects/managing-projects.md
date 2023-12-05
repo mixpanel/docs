@@ -23,7 +23,7 @@ To create a new Mixpanel project:
 To view project information:
 
 1. In Organization Settings, click **Projects**.
-2. Click a project. You’ll see information about project details, usage statistics, and access keys.
+2. Click a project. You'll see information about project details, usage statistics, and access keys.
 
 ### Project Details
 
@@ -66,7 +66,7 @@ To delete a project:
 
 1. In Organization Settings, click **Projects**.
 2. Select the project you want to delete.
-3. Above the "Project Details" section, click **Delete Project**. A delete box appears and indicates you won’t be able to access the project in the Mixpanel interface or API. Mixpanel will store a backup of the deleted project and will delete the data based on the data retention policy.
+3. Above the "Project Details" section, click **Delete Project**. A delete box appears and indicates you won't be able to access the project in the Mixpanel interface or API. Mixpanel will store a backup of the deleted project and will delete the data based on the data retention policy.
 4. Click **Delete Project** to remove the project.
 
 ![manageprojects 5 Image](/manageprojects5.png)
@@ -105,7 +105,7 @@ By default, Mixpanel sets your timezone to UTC.
 
 Only project owners and admins can change project settings.
 
-To change the project’s timezone:
+To change the project's timezone:
 
 1. In **Project Settings**, select the project.
 
@@ -123,7 +123,7 @@ To change the project’s timezone:
 
 After you set your timezone correctly, you should send any dates or times to Mixpanel as Coordinated Universal Time (UTC).
 
-By default, Mixpanel’s integration libraries work with API ingestion endpoints to automatically convert the UTC timestamp or date to your project timezone before storing your data.
+By default, Mixpanel's integration libraries work with API ingestion endpoints to automatically convert the UTC timestamp or date to your project timezone before storing your data.
 
 >If you overwrite the default timestamp, import old data, or set a property that is in date format (e.g. Account Created Date), be sure to send the timestamp or date in UTC.
 
@@ -155,26 +155,26 @@ Mixpanel.track("Account Created Date", props);
 ```
 #### Exporting Data from Mixpanel
 
-When you’re exporting raw data from Mixpanel, your request requires the date parameters "from_date" and "to_date" to determine which date range of data to return.
+When you're exporting raw data from Mixpanel, your request requires the date parameters "from_date" and "to_date" to determine which date range of data to return.
 
-Mixpanel's raw export machines interpret the "from_date" and "to_date" values to your project’s timezone. As a result, if you request a single day of data, you receive one full day in your project’s timezone, not one full day in UTC.
+Mixpanel's raw export machines interpret the "from_date" and "to_date" values to your project's timezone. As a result, if you request a single day of data, you receive one full day in your project's timezone, not one full day in UTC.
 
-As mentioned earlier, Mixpanel hardcodes event timestamps to your project’s timezone. However, the "$time" property from a raw export returns with a Unix timestamp, not a UTC timestamp.
+As mentioned earlier, Mixpanel hardcodes event timestamps to your project's timezone. However, the "$time" property from a raw export returns with a Unix timestamp, not a UTC timestamp.
 
-The Unix timestamp represents the number of seconds that have elapsed since 00:00:00 on January 1, 1970 in your project’s timezone.
+The Unix timestamp represents the number of seconds that have elapsed since 00:00:00 on January 1, 1970 in your project's timezone.
 
-In the example below, if your project’s timezone is US/Pacific, the below parameters return:
+In the example below, if your project's timezone is US/Pacific, the below parameters return:
 
 
 ```
-00:00:00 Aug. 1 to 11:59:59 Aug. 1 PDT, or 07:00:00 Aug. 1 – 06:59:59 Aug. 2 UTC. from_date = "2015-08-01" to_date = "2015-08-01"
+00:00:00 Aug. 1 to 11:59:59 Aug. 1 PDT, or 07:00:00 Aug. 1 - 06:59:59 Aug. 2 UTC. from_date = "2015-08-01" to_date = "2015-08-01"
 ```
 
 #### Importing Data into Mixpanel
 
 Always send imported data to Mixpanel in UTC to ensure it displays correctly in your project.
 
-Mixpanel hardcodes timestamps of exported data to your project’s timezone. The exported data can be events and any date properties on events and users.
+Mixpanel hardcodes timestamps of exported data to your project's timezone. The exported data can be events and any date properties on events and users.
 
 As a result, operations such as extract, transform, and load, need a quick timestamp and date property offset to reset the data back to UTC before importing it back to Mixpanel.
 
@@ -201,7 +201,7 @@ To transfer a project to another organization:
 
 If for any reason you need to combine two or more Mixpanel projects, it is possible to do so. Here are a few things to consider before proceeding with the merge to ensure you maintain data integrity:
 
-- If you're using the alias method, bear in mind that aliases are project-specific. As such, before importing data into the new project from the old project, you'd need to recreate the aliases from your old project. Mixpanel does not have the ability to provide a historical table of your project’s aliases.
+- If you're using the alias method, bear in mind that aliases are project-specific. As such, before importing data into the new project from the old project, you'd need to recreate the aliases from your old project. Mixpanel does not have the ability to provide a historical table of your project's aliases.
 
 - Merging projects involves exporting and importing data, so to make sure you only have to go through the process once, ensure you have stopped sending data to the old project(s) before beginning to export.
 
@@ -210,7 +210,7 @@ To merge projects:
 
 1. Stop sending data to the old project(s).
 2. Begin sending all data to the new project.
-3. Once the old project has completely stopped receiving data, export that data via the [raw data export API](https://developer.mixpanel.com/reference/raw-event-export) and import the data into the new project via Mixpanel’s [import API](https://developer.mixpanel.com/reference/import-events).
+3. Once the old project has completely stopped receiving data, export that data via the [raw data export API](https://developer.mixpanel.com/reference/raw-event-export) and import the data into the new project via Mixpanel's [import API](https://developer.mixpanel.com/reference/import-events).
 
 ### Additional Tips
 - When you export raw event data, the timestamps on those events will be in the timezone of your project.

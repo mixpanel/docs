@@ -3,7 +3,7 @@
 ## Overview
 Attribution helps teams attribute conversion credit to the touch-points in a user-journey, whether it be just to the first or last touch which are single-touch attribution models or to multiple touchpoints using a multi-touch attribution model like U-shape or Linear.
 
-Let’s take an example user journey:
+Let's take an example user journey:
 
 1. A user sees an ad for a product on Facebook
 2. The user clicks on the ad and is taken to the product page on the company's website
@@ -33,8 +33,8 @@ Step 4 - You have a working attribution model.  By default, Mixpanel will assign
 
 Step 5 - If you want to include only certain channels or touchpoints in your attribution analysis, you can filter touchpoints from the breakdown overflow menu. A use-case for this is excluding organic touchpoints from attribution analysis.
 
-👉🏽 NOTE: if you are running attribution predominantly on UTM_medium, UTM_source, UTM_campaign, make sure you’re tracking UTM parameters as event properties on every user touchpoint.
-If you use a Mixpanel js-sdk, we’ve updated our sdk to track utm parameters more effectively to support multi-touch attribution models.
+👉🏽 NOTE: if you are running attribution predominantly on UTM_medium, UTM_source, UTM_campaign, make sure you're tracking UTM parameters as event properties on every user touchpoint.
+If you use a Mixpanel js-sdk, we've updated our sdk to track utm parameters more effectively to support multi-touch attribution models.
 
 ## Attribution Models
 
@@ -50,9 +50,9 @@ If you use a Mixpanel js-sdk, we’ve updated our sdk to track utm parameters mo
 
 ## Glossary
 
-- **User journey:** Consists of touchpoints and the conversion event. It is possible for a conversion event to have no corresponding touchpoints (eg. utm parameters). In this case we consider it a ‘direct’ conversion
-- **Conversion**: The primary event you’re interested in analyzing with multi-touch attribution models. Typically some final value generating interaction such as "Signup" or "Upgrade" or "Payment".
-- **Touchpoint**: These are actions (events) a user’s taken or exposed to along the journey before doing the conversion event.  [Eg. does event A → B → C → D (conversion event) in a 7 day period; For a lookback window of 7 days, A, B, C are all considered touchpoints]
+- **User journey:** Consists of touchpoints and the conversion event. It is possible for a conversion event to have no corresponding touchpoints (eg. utm parameters). In this case we consider it a ‘direct' conversion
+- **Conversion**: The primary event you're interested in analyzing with multi-touch attribution models. Typically some final value generating interaction such as "Signup" or "Upgrade" or "Payment".
+- **Touchpoint**: These are actions (events) a user's taken or exposed to along the journey before doing the conversion event.  [Eg. does event A → B → C → D (conversion event) in a 7 day period; For a lookback window of 7 days, A, B, C are all considered touchpoints]
 - **Attributed by property:** This is the property on a touchpoint event that we use for the attribution model. The canonical example is utm_source
 - **Lookback window:** The time window where a user's events with this attribution property are counted towards the calculation. The window ends when the conversion metric happens.
 
@@ -70,7 +70,7 @@ Please watch this video to better understand.
     </iframe>
 </div>
 
-### What does attribution on ‘unique users’ mean?
+### What does attribution on ‘unique users' mean?
 
 We need one single conversion event which we can use to "qualify" a user unique.
 
@@ -91,7 +91,7 @@ There will be 2 options depending on the use-case
     - When would this option be useful? For acquisition teams looking at getting a user to the experience the first time, you want to consider their first qualifying event
 
 Some nuances to note
-- In a time-series chart, the first and last qualifying conversion is within the chart interval. For example if you have a 6M chart with a monthly interval, you’re looking at first and last conversion within a month, NOT 6M
+- In a time-series chart, the first and last qualifying conversion is within the chart interval. For example if you have a 6M chart with a monthly interval, you're looking at first and last conversion within a month, NOT 6M
 
 ![image](/Attribution_uniques_1.png)
 
@@ -103,7 +103,7 @@ Some nuances to note
 
 Once attribution is computed, filtering narrows total conversion events to only include/exclude those with the associated attribution property.
 
-To make this real, let’s take a scenario -
+To make this real, let's take a scenario -
 - Purchase 1:
     - 15th Jan: Made purchase (visited via Linkedin ad)
     - 10th Jan: visited via Google 

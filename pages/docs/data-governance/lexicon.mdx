@@ -63,7 +63,7 @@ This table contains descriptions for each field in the "Event Properties" view.
 | Events With Property | The total number of events that contain this property in the last 30 days. |
 | Queries | The total number of UI queries that project members executed in the last 30 days. Includes queries from selecting events in reports, viewing reports, and queries in "Users" and "Events" tabs.|
 
-Lexicon contains property definitions for the default properties that Mixpanel’s client-side libraries automatically send with each event across web and mobile platforms.
+Lexicon contains property definitions for the default properties that Mixpanel's client-side libraries automatically send with each event across web and mobile platforms.
 
 ![Lexicon Event Properties](/lexicon-default-properties.png)
 
@@ -106,7 +106,7 @@ This data lets you easily discover the parts of your implementation that are mos
 
 ## Dropping and Hiding Data
 
-In Lexicon, you can intercept and drop incoming events or properties. Mixpanel won’t store any **new data** for the event or property you select to drop. **Warning: You cannot recover event data after you drop it.**
+In Lexicon, you can intercept and drop incoming events or properties. Mixpanel won't store any **new data** for the event or property you select to drop. **Warning: You cannot recover event data after you drop it.**
 
 When an event is dropped, all events of that type that have previously been ingested (before dropping it) will still show in the interface. Only project owners can drop events and properties. **Note: It takes a few hours for Mixpanel to process the dropped event.**
 
@@ -120,7 +120,7 @@ Sample use cases for dropping events and properties are:
 
 ### Dropping Events
 
-By dropping an event, you can intercept and drop incoming events. Mixpanel won’t store any new data for the event you select to drop. 
+By dropping an event, you can intercept and drop incoming events. Mixpanel won't store any new data for the event you select to drop. 
 
 To drop an event in Lexicon:
 
@@ -132,7 +132,7 @@ To drop an event in Lexicon:
 
 ### Dropping Properties
 
-By dropping a property, you can intercept and drop incoming property. Mixpanel won’t store any new data for the property you select to drop. 
+By dropping a property, you can intercept and drop incoming property. Mixpanel won't store any new data for the property you select to drop. 
 
 To drop a property in Lexicon:
 
@@ -165,7 +165,7 @@ To hide an event or property:
 2. Select **Hide**. A message appears to allow you to confirm hiding the event(s). After you select **Hide**, the event or property status changes to "Hidden".
 ![Lexicon Hide Events Warning](/lexicon-hide-events2.png)
 
-Another option for hiding an event, property, or property value is to let it inactivate until it is hidden in report dropdown menus. Mixpanel’s report dropdown menus hide events that have not been fired within the last 30 days. Event properties and property values that have not been sent to your project in 28 days be hidden from dropdown menus.
+Another option for hiding an event, property, or property value is to let it inactivate until it is hidden in report dropdown menus. Mixpanel's report dropdown menus hide events that have not been fired within the last 30 days. Event properties and property values that have not been sent to your project in 28 days be hidden from dropdown menus.
 
 ### Show Events and Properties
 
@@ -183,7 +183,7 @@ Let's suppose your iOS app sends an event named "Purchase", and your Android app
 
 By merging "Purchase" and "purchase item" into a single event named "Purchase", you would no longer need to query each event separately since Mixpanel would recognize both "Purchase" and "purchase item" as a unique event.
 
-Being able to merge events can help streamline your implementation, reduce your costs by eliminating redundant events being sent to Mixpanel, and simplify report analysis because you’re only using optimal events and properties.
+Being able to merge events can help streamline your implementation, reduce your costs by eliminating redundant events being sent to Mixpanel, and simplify report analysis because you're only using optimal events and properties.
 Do note however that user profile properties cannot be merged at this time.
 
 ### Merging Events

@@ -1,6 +1,6 @@
 # Azure Blob Storage
 
-Mixpanel’s Azure Blob Export is one type of [Schematized Export Pipeline](/docs/data-pipelines/schematized-export-pipeline) that exports Mixpanel events and people data and imports them into an Azure Blob storage instance. 
+Mixpanel's Azure Blob Export is one type of [Schematized Export Pipeline](/docs/data-pipelines/schematized-export-pipeline) that exports Mixpanel events and people data and imports them into an Azure Blob storage instance. 
 
 Azure Export enables the use of SQL to query your event data, either for expressing new types of queries or for joining against other data already present in your data environment.
 
@@ -34,4 +34,4 @@ If the above step is successful, go to the Azure. Navigate to a blob storage con
 
 Mixpanel needs the `clientId`, `clientSecret`, and `tenantId` to access the blob container as the Service Principal. You must provide the blob account name, container name, and (optional) path prefix you want to choose for the export.
 
-You can share the Service Principal’s credentials over the TLS encrypted API at the time that you create your Mixpanel to Azure pipeline.
+You can share the Service Principal's credentials over the TLS encrypted API at the time that you create your Mixpanel to Azure pipeline.

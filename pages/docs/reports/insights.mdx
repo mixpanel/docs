@@ -170,7 +170,7 @@ In the grouped view, you can choose the number of rows you want to display for e
 
 
 ###### Notes
-- View N only controls how many segments to display. To decide which segments to display i.e if it’s the top segments by value or bottom segments by value or alphabetical, please change the "Sort Order".
+- View N only controls how many segments to display. To decide which segments to display i.e if it's the top segments by value or bottom segments by value or alphabetical, please change the "Sort Order".
 - View N will show the minimum of N and how many segments are in your report. For example, if you set N=10 but you only have 7 segments, we will only show 7 rows.
 - When selecting "Show All", the maximum number of segments displayed in the UI will be 3000 given cardinality limits. If your breakdown has more than 3000 segments, you'll only see the top 3000, dictated by the sort order.
 
@@ -219,10 +219,10 @@ Use existing events to create calculated formulas, like Bounce Rate & % Active U
 ![saveformula.gif](/saveformula.gif)
 
 Some nuances to note:
-- Once you save a formula, A,B,C refer to what’s **within** the saved formula modal
+- Once you save a formula, A,B,C refer to what's **within** the saved formula modal
 - To edit a saved formula, expand the metric and edit inline, and then save
-- When a saved metric is updated, it will update across all reports it’s being used in
-- A saved formula can’t reference another formula
+- When a saved metric is updated, it will update across all reports it's being used in
+- A saved formula can't reference another formula
 
 To access and re-use saved formulas, click on "+Formula", and then see the list of saved formulas. You can also look at all the saved formulas in the Lexicon tab "Formulas". Some callouts regarding permissions:
 - All roles can create a saved formula, but only some roles can share them with the whole project for re-use
@@ -239,7 +239,7 @@ You can choose "Even" to get buckets of uniform size, and you can choose "Varied
 
 ### Time Period Comparisons
 
-Compare the current period of time to previous periods to track trends and growth in your product’s use. Compare traffic from a specific campaign period or event from one year to the next, or compare the success of that campaign to your normal traffic.
+Compare the current period of time to previous periods to track trends and growth in your product's use. Compare traffic from a specific campaign period or event from one year to the next, or compare the success of that campaign to your normal traffic.
 
 Note that if a data point for a previous year falls on a weekend, the data point is automatically moved to the next Monday to give a clearer picture of the data change from one year to the next.
 
@@ -319,7 +319,7 @@ If the data function you select calculates based on property ("Event Property Va
 This can refer to measuring the total number of user profiles, as well as the number of unique users that performed an event.
 DAU, WAU, and MAU are accessed through the advanced settings of unique users. Select the > arrow to choose any XAU options.
 
-If you select the DAU, WAU, or MAU function for a date range that includes the current day, the query will take the end of the current day as the end of the query’s time segment (even though it’s in the future). For example, today is April 25th, and it’s 4:22 PM. If you make a query to show WAU and you select "current day" as your date range, the query will return the count of unique users between April 19 at 12:00:00 AM and April 25 at 11:59:59.
+If you select the DAU, WAU, or MAU function for a date range that includes the current day, the query will take the end of the current day as the end of the query's time segment (even though it's in the future). For example, today is April 25th, and it's 4:22 PM. If you make a query to show WAU and you select "current day" as your date range, the query will return the count of unique users between April 19 at 12:00:00 AM and April 25 at 11:59:59.
 
 ![Data Functions 3](/advanced-data-functions-3.png)
 

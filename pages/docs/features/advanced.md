@@ -118,7 +118,7 @@ Once you define your segment buckets, click **Apply.** Only then will the cust
 
 ![/14342458667924](/14342458667924.png)
 
-To modify the segment buckets, click on the **under-item** and the custom buckets model will open. Once you’ve made the changes, click **Apply**
+To modify the segment buckets, click on the **under-item** and the custom buckets model will open. Once you've made the changes, click **Apply**
 
 To remove all grouping and revert to the default, open the custom buckets modal and click **Reset**
 
@@ -137,7 +137,7 @@ Goal: You want to group the countries into meaningful segments
 
 Steps
 
-1. Add a breakdown - Country. Below is the default you’ll see
+1. Add a breakdown - Country. Below is the default you'll see
 
     ![/12828869626644](/12828869626644.png)
 
@@ -196,7 +196,7 @@ Goal: You want to distribute this in various ways
 
 1. Open the custom buckets modal
 2. Since looking for specific buckets with varied bucket ranges, choose **Varied Bucketing**
-3. Enter the ‘segment’ break point values in each row and click apply. You can preview the bucket as you enter values in the line-item below
+3. Enter the ‘segment' break point values in each row and click apply. You can preview the bucket as you enter values in the line-item below
     - To note — both a lower end and upper end bucket will be auto-generated to ensure your buckets always adds up to a 100%
 
 ![/14342546138516](/14342546138516.png)
@@ -257,7 +257,7 @@ Steps
 
 - **Can I save a Custom Bucket**?
 
-    No, you can’t save a custom bucket. If your custom bucket is something you or your team would like to re-use, we encourage you to instead create a [custom property](/docs/features/custom-properties#creating-a-custom-property).
+    No, you can't save a custom bucket. If your custom bucket is something you or your team would like to re-use, we encourage you to instead create a [custom property](/docs/features/custom-properties#creating-a-custom-property).
 
 - **How is custom buckets different from [custom property](/docs/features/custom-properties)?**
 
@@ -273,7 +273,7 @@ Steps
 
 - **What happens if I change data-type, can I still use custom buckets?**
 
-    Yes you can as long as the data-type you’ve changed the property to is supported.
+    Yes you can as long as the data-type you've changed the property to is supported.
 
 - **Understanding the details:**
     - **In Numeric: Can I change the operators on the upper and lower bound?** 
@@ -284,18 +284,18 @@ Steps
 
         No, (not set) is not included in remaining values
 
-        - (remaining values): refers to ‘set’ values that just don’t fall into any of your defined segments
-        - (not set) refers to the events where a property value has not been set at tracking/ ingestion. For example a new video (MixFun) is has been added. But during tracking, you forget to send the name of this video. So the count of this video is being tracked, but it’s being associated to a property value (not set) vs (MixFun)
+        - (remaining values): refers to ‘set' values that just don't fall into any of your defined segments
+        - (not set) refers to the events where a property value has not been set at tracking/ ingestion. For example a new video (MixFun) is has been added. But during tracking, you forget to send the name of this video. So the count of this video is being tracked, but it's being associated to a property value (not set) vs (MixFun)
 
         More details can be found in [this help doc](/docs/features/advanced#undefined-and-null-properties)
 
     - **In Numeric: What is the difference between (not set) and (non-numeric values)?**
         - (not set) as explained above for string refers to property values that have not been associated to any specific property value
-        - (non numeric values) refers to set values that have just been sent in as non-numeric data type. For example, you’re looking to track time spent and have coded that as a numeric property, but for some reason some values are tracked as "a", or "b" which are not-numeric.
+        - (non numeric values) refers to set values that have just been sent in as non-numeric data type. For example, you're looking to track time spent and have coded that as a numeric property, but for some reason some values are tracked as "a", or "b" which are not-numeric.
 - **Some Common How-do-I(s)**
     - **How do I know is set, (not set)?**
 
-        (not set) is automatically computed and will always show up in the UI. You don’t have to select (not set) as a segment to know how many events fall in there. So only figure how would you like to segment your (set) values.
+        (not set) is automatically computed and will always show up in the UI. You don't have to select (not set) as a segment to know how many events fall in there. So only figure how would you like to segment your (set) values.
 
         ![/12834113971348](/12834113971348.png)
 
@@ -309,9 +309,9 @@ Steps
 
     - **In Number: how do I get a bucket of just 0?**
 
-        If you’re purely looking for just how many people have value "0", we would encourage you to typecast this to a string property and get that.
+        If you're purely looking for just how many people have value "0", we would encourage you to typecast this to a string property and get that.
 
-        If you’re looking to get the count of 0, in reference to the other numeric buckets, go ahead and create a **Varied Bucketing** custom buckets modal
+        If you're looking to get the count of 0, in reference to the other numeric buckets, go ahead and create a **Varied Bucketing** custom buckets modal
 
         - If the numeric values are integers:
             - Choose Varied bucket values 0, 1, 2…
@@ -345,8 +345,8 @@ View Users can help you:
 
 ![/View_Users_Funnels_gif.gif](/View_Users_Funnels_gif.gif)
 
-- Finding the **exact group of users who dropped off** after **Sign Up** is possible through View Users in Funnels. While in a Funnels report, click on the section of the chart that displays non-converting users and select View Users - this displays the list of those who didn’t convert after signup.
-- **Save this group as a cohort** by clicking the Create Cohort button. Now, you can learn more about their product usage or find the root cause of why they didn’t convert after Sign Up.
+- Finding the **exact group of users who dropped off** after **Sign Up** is possible through View Users in Funnels. While in a Funnels report, click on the section of the chart that displays non-converting users and select View Users - this displays the list of those who didn't convert after signup.
+- **Save this group as a cohort** by clicking the Create Cohort button. Now, you can learn more about their product usage or find the root cause of why they didn't convert after Sign Up.
 
 ### Retention
 
@@ -948,13 +948,13 @@ Mixpanel maintains breakdown limits for CSV, PNG, and PDF report downloads.
 
 ### CSV
 
-For property values that exceed 10,000, Mixpanel only returns the top 10,000 breakdowns of that property. Here’s an example CSV export of an Insights report. The first column contains the date of when each event was sent. The columns contain the event name and the rows contain the number of each event sent to Mixpanel.
+For property values that exceed 10,000, Mixpanel only returns the top 10,000 breakdowns of that property. Here's an example CSV export of an Insights report. The first column contains the date of when each event was sent. The columns contain the event name and the rows contain the number of each event sent to Mixpanel.
 
 ![/CSV-download.png](/CSV-download.png)
 
 ### PNG and PDF
 
-PNG and PDF downloads display up to 30 segments in the Insights table, Insights bar, Retention table, and Retention line; and up to 12 segments for the Insights line. Here’s an example of a chart in PNG format.
+PNG and PDF downloads display up to 30 segments in the Insights table, Insights bar, Retention table, and Retention line; and up to 12 segments for the Insights line. Here's an example of a chart in PNG format.
 
 ![/PNG-example.png](/PNG-example.png)
 
@@ -980,13 +980,13 @@ It is possible (only in the Funnels report) to download "CSV Trends", which down
 
 There are several reasons why you might see "undefined" in your properties list throughout Mixpanel reports when segmenting:
 
-- ***The specific property you’re segmenting by isn’t always sent along with the event you’re analyzing.*** For example, let’s say you’re segmenting the event "App Open" by the property "Account type" If there are instances where App Open fires without the Account type property getting sent with it, these will be categorized as "undefined" when you segment by Account type. Another common example is UTM parameters - "undefined" represents users who fired an event without any UTM in the URL that brought the user to your site.
-- When segmenting an event by a User Profile property, ***you’ll see "undefined" if there are User Profile profiles that don’t contain that property or if the event was triggered by a user without a User Profile at all.*** For example, let’s say you’re segmenting the event "Song Play" by the User Profile property "Favorite Genre." If there are profiles that have triggered Song Play but don’t have the Favorite Genre property, that value will be "undefined." Triggers of Song Play by users without a User Profile will also show up under "undefined."
-- ***For geolocation data (City, Region, Country), the user’s IP couldn’t be mapped to a location, or their IP was not included with the request.*** For JavaScript implementations, City, Region, and Country are [default properties](https://help.mixpanel.com/hc/en-us/articles/115004613766-What-properties-do-Mixpanel-s-libraries-store-by-default-). However, if the IP address of the user is not in Mixpanel’s geolocation database and can’t be mapped to a city, region, or country, they will be "undefined" in reports. For server-side implementations, City, Region, and Country can be "undefined" if the IP address is not included with the request. [Read more about how Mixpanel maps IP to location.](/docs/privacy/protecting-user-data#disabling-geolocation)
+- ***The specific property you're segmenting by isn't always sent along with the event you're analyzing.*** For example, let's say you're segmenting the event "App Open" by the property "Account type" If there are instances where App Open fires without the Account type property getting sent with it, these will be categorized as "undefined" when you segment by Account type. Another common example is UTM parameters - "undefined" represents users who fired an event without any UTM in the URL that brought the user to your site.
+- When segmenting an event by a User Profile property, ***you'll see "undefined" if there are User Profile profiles that don't contain that property or if the event was triggered by a user without a User Profile at all.*** For example, let's say you're segmenting the event "Song Play" by the User Profile property "Favorite Genre." If there are profiles that have triggered Song Play but don't have the Favorite Genre property, that value will be "undefined." Triggers of Song Play by users without a User Profile will also show up under "undefined."
+- ***For geolocation data (City, Region, Country), the user's IP couldn't be mapped to a location, or their IP was not included with the request.*** For JavaScript implementations, City, Region, and Country are [default properties](https://help.mixpanel.com/hc/en-us/articles/115004613766-What-properties-do-Mixpanel-s-libraries-store-by-default-). However, if the IP address of the user is not in Mixpanel's geolocation database and can't be mapped to a city, region, or country, they will be "undefined" in reports. For server-side implementations, City, Region, and Country can be "undefined" if the IP address is not included with the request. [Read more about how Mixpanel maps IP to location.](/docs/privacy/protecting-user-data#disabling-geolocation)
 
 ### Remove "undefined" & "null" values from reports
 
-If you don’t want to see "undefined" or "null" values in your report, you can remove them by:
+If you don't want to see "undefined" or "null" values in your report, you can remove them by:
 
 1. Unchecking the "undefined/null" box in the visualization legend.
 2. Looking only at instances where the property in question "is set" - this will exclude values where you see "undefined" or "null":
@@ -1000,7 +1000,7 @@ If you don’t want to see "undefined" or "null" values in your report, you can 
 
 ### Troubleshooting Tips
 
-If you’re getting "undefined" property values but think you should not be, troubleshoot the issue using the Events page. Click on "Filter" in the top left to look at events coming in where the property in question "is not set." You can then use this data to look at your code and figure out why some events are being fired without that property.
+If you're getting "undefined" property values but think you should not be, troubleshoot the issue using the Events page. Click on "Filter" in the top left to look at events coming in where the property in question "is not set." You can then use this data to look at your code and figure out why some events are being fired without that property.
 
 ![image](https://github.com/mixpanel/docs/assets/2077899/c028c2b1-160d-4c0b-ba9a-87b74aba9c42)
 
@@ -1010,13 +1010,13 @@ If you’re getting "undefined" property values but think you should not be, tro
 
 Move helps teams organize their work and easily replicate Boards across projects and organizations. Using Move, you can find a Board you want to copy, duplicate it, and move it to a different project.  
 
-Let’s take an example situation:
+Let's take an example situation:
 
 1. An organization has Project A and Project B that support different products and teams within the organization.
 2. Team A has some fantastic Boards that have been well received by leadership, executives, and investors.
 3. Team B would like to replicate these reports without having to build them all from scratch. 
 
-This is where Move comes in. With the right permissions, Team A can move copies of their Boards to Team B’s project, allowing Team B to fill in their events and be up and running quickly. 
+This is where Move comes in. With the right permissions, Team A can move copies of their Boards to Team B's project, allowing Team B to fill in their events and be up and running quickly. 
 
 ### Turning Move Off and On
 
@@ -1040,7 +1040,7 @@ Step 1: Go to the Board you wish to move.
 
 Step 2: Hover over the `Move to` option.
 
-Step 3a: Enterprise users: select ‘projects’, then select the specific project that you want to move the board to. Once you’ve selected a project, then list will populate with Boards you can place the current Board in if you wish. 
+Step 3a: Enterprise users: select ‘projects', then select the specific project that you want to move the board to. Once you've selected a project, then list will populate with Boards you can place the current Board in if you wish. 
 
 Step 3b: Non-enterprise users: hover over the "Move To" option, and the project menu will appear immediately. From there, you can choose "Move to your Boards" or another location and select your choice. 
 
@@ -1048,7 +1048,7 @@ Step 3c: You can also use Move to use Boards from a demo project in your own. Ge
 
 Step 4: If there are events and properties used in the old project but not the new project, the affected reports will remain empty or say "no data" until new events and properties are selected. 
 
-When a report can’t populate, it will display one of two states: a faded out sample report or a "no data" status. 
+When a report can't populate, it will display one of two states: a faded out sample report or a "no data" status. 
 
 - Charts that show "no data" occur when an event has been tracked in the last 30 days, but a filter or date range result in no data for the report.
 - For the sample report to appear, the report would have to be configured with an event that hasn't existed or at least hasn't been tracked in past 30 days.

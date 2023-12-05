@@ -33,7 +33,7 @@ Note: these flows walk through how `distinct_id` is set in Simplified ID Merge; 
     | 1     | D1         |          | $device:D1                    |       |
     | 2     | D1         |          | $device:D1                    |       |
 
-2. The user returns later and signs up for your product. You call `.identify(<user_id>)`. All events sent after this point are tracked with both the original `$device_id` and the new `$user_id`. Mixpanel will retroactively set the `$user_id` on any prior events with the user’s `$device_id` so that both event streams are joined.
+2. The user returns later and signs up for your product. You call `.identify(<user_id>)`. All events sent after this point are tracked with both the original `$device_id` and the new `$user_id`. Mixpanel will retroactively set the `$user_id` on any prior events with the user's `$device_id` so that both event streams are joined.
     
     | Event | $device_id | $user_id | distinct_id (set by Mixpanel) | Notes                 |
     | ----- | ---------- | -------- | ----------------------------- | --------------------- |
@@ -147,7 +147,7 @@ Avoid creating profiles for anonymous users. If possible, cache user profile pro
 Here are a few things to look out for:
 - Ensure that cross-platform, pre and post-registration events are linked to the same user on Mixpanel.
 - Ensure that no duplicate profiles are created as the users go through the onboarding, registration, login, and cross-platform user journey.
-- Ensure that all the user’s identifiers are stored in the same Identity Cluster and that all their events are displayed on a single profile on Mixpanel.
+- Ensure that all the user's identifiers are stored in the same Identity Cluster and that all their events are displayed on a single profile on Mixpanel.
 
 #### Keep a record of your ID management implementation
 We encourage you to document your implementation (or create a diagram of the implementation). This will come in handy when you need to re-implement this on a new platform or troubleshoot ID management issue.

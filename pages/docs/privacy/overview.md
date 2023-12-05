@@ -1,5 +1,5 @@
 # Overview
-Mixpanel believes in respecting and protecting people’s fundamental online privacy and data rights. Which is why we've built Mixpanel's analysis tools in compliance with industry best-practices and global data regulations like the GDPR and the CCPA.
+Mixpanel believes in respecting and protecting people's fundamental online privacy and data rights. Which is why we've built Mixpanel's analysis tools in compliance with industry best-practices and global data regulations like the GDPR and the CCPA.
 
 Visit our [Privacy Hub](https://mixpanel.com/legal/privacy-hub/) to see how we comply with various privacy guidelines.
 
@@ -54,7 +54,7 @@ While the following API can be used to delete or retrieve personal data as outli
 * [iOS - Swift](/docs/tracking-methods/sdks/swift#opting-users-out-of-tracking)
 * [Android](/docs/tracking-methods/sdks/android#opting-users-out-of-tracking)
 
-See Mixpanel’s [Managing Personal Information](/docs/privacy/protecting-user-data) guide for more information on best practices when handling personal information in Mixpanel.
+See Mixpanel's [Managing Personal Information](/docs/privacy/protecting-user-data) guide for more information on best practices when handling personal information in Mixpanel.
 
 ### Authentication
 Authentication occurs via a user-specific OAuth token with a scope that only includes the following deletion and retrieval APIs. Users can retrieve this token from their [Account Settings](https://mixpanel.com/settings/account#data-privacy) by selecting their initials in the top right of Mixpanel and selecting **Profile & Preferences**, and then the Data & Privacy tab. The OAuth token has a one year expiry. It should be passed in the Authentication header. Users are eligible to generate an OAuth token if they are the [project owner](/docs/orgs-and-projects/roles-and-permissions#project-roles), or if they are a project owner or admin of a project that supports [team member roles](/docs/orgs-and-projects/roles-and-permissions#project-roles).
@@ -160,7 +160,7 @@ Example Return:
 #### Create a Deletion Task
 Request Type: POST
 
-Description: Creates a task that specifies a list of users in a particular project to delete. This will schedule a deletion job that will delete all data, including events and user profile data, for the users specified by distinct_ids. This deletion job may be canceled until it reaches the STARTED stage. It may take up to 30 days to complete a deletion task in a customer’s Mixpanel database. Mixpanel may retain records of deletion tasks for legal compliance purposes or for a short time based on our legitimate interest in providing a service continuity.
+Description: Creates a task that specifies a list of users in a particular project to delete. This will schedule a deletion job that will delete all data, including events and user profile data, for the users specified by distinct_ids. This deletion job may be canceled until it reaches the STARTED stage. It may take up to 30 days to complete a deletion task in a customer's Mixpanel database. Mixpanel may retain records of deletion tasks for legal compliance purposes or for a short time based on our legitimate interest in providing a service continuity.
 
 Endpoint: `https://mixpanel.com/api/app/data-deletions/v3.0/?token=<your_project_token>`
 

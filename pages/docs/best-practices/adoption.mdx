@@ -25,11 +25,11 @@ This approach also allows you to cut down on the time needed to make product ana
 
 One of the myths of analytics is that you need tons of data to generate meaningful insights. We find that starting with 1-3 events that are truly meaningful to the business are sufficient to generate more insights than you could imagine. The biggest thing to consider is adding more properties to your events - this is the context about an event which will allow you to self-serve analysis about your key actions in ways you were unable to quickly or easily before without an analyst or advanced knowledge of SQL.
 
-If you can work backwards from a key question to the events you need to track, this will minimize the need to overly track events across the user’s journey. We highly recommend all events be tied into some core KPI or question for your team, as otherwise the data will just be noise. This will also allow you to get a feel for how implementation works to drive data that answers a question, which will teach your team the workflow for product analytics and influence your future tracking efforts.
+If you can work backwards from a key question to the events you need to track, this will minimize the need to overly track events across the user's journey. We highly recommend all events be tied into some core KPI or question for your team, as otherwise the data will just be noise. This will also allow you to get a feel for how implementation works to drive data that answers a question, which will teach your team the workflow for product analytics and influence your future tracking efforts.
 
 ### Rollout Team by Team
 
-We’ve seen all sorts of rollout strategies from pilot teams to big bang approaches to hundreds of employees at once. It’s best to define our units of scale to understand at which level and unit we can best establish a product analytics practice:
+We've seen all sorts of rollout strategies from pilot teams to big bang approaches to hundreds of employees at once. It's best to define our units of scale to understand at which level and unit we can best establish a product analytics practice:
 
 - **User:** Single person, 1 Mixpanel account, Individual needs and goals
 - **Team:** Collection of people focused around a common goal, 1 Mixpanel Workspace, Team metrics and goals
@@ -49,7 +49,7 @@ Utilizing the team by team approach allows you to:
 
 ## Get the right resources involved (and excited)
 
-We’ve learned that a focused investment from a Product Manager and Software or Data Engineer early on is critical to setting the team up for success with product analytics in the long term. Here’s what we recommend on each team that is adopting product analytics:
+We've learned that a focused investment from a Product Manager and Software or Data Engineer early on is critical to setting the team up for success with product analytics in the long term. Here's what we recommend on each team that is adopting product analytics:
 
 - A PM and Engineer from the team
 - Key metrics and questions that the team is eager to answer
@@ -66,17 +66,17 @@ Analytics is only as good as the data that feeds it. A great analytics setup is:
 - **Maintainable:** You can set up, maintain, evolve, and scale the system with minimal effort.
 - **Usable:** The event structure allows you to answer the questions you need.
 
-Over the years, we’ve made several observations that have shaped our perspective:
+Over the years, we've made several observations that have shaped our perspective:
 
 | **Observation**                                                                                                                                                                           | **Our Perspective**                                                                                                                                          |
 |-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|--------------------------------------------------------------------------------------------------------------------------------------------------------------|
 | Event data is used for more than just analytics (eg: personalization, marketing automation).  Teams want to use the best tool for each of the above jobs, without vendor lock-in.         | Decouple event  collection from the tools in which those events are used.                                                                                    |
 | Transactional systems (eg: MySQL) are the most trustworthy source of data. The data warehouse (DWH) is the most scalable and effective way to transform transactional data into events.   | When possible, use the DWH to model and push events to all your tools. This is especially true for enrichment of data done post ingestion.                   |
-| Web tracking is lossy due to ad-blockers. Mobile tracking is hard to maintain, since iOS and Android tracking code will diverge and old app versions will remain out in the wild forever. | Prefer server-side tracking to client-side SDKs, whenever possible. CDPs can also help with data collection here depending on your team’s data maturity.     |
+| Web tracking is lossy due to ad-blockers. Mobile tracking is hard to maintain, since iOS and Android tracking code will diverge and old app versions will remain out in the wild forever. | Prefer server-side tracking to client-side SDKs, whenever possible. CDPs can also help with data collection here depending on your team's data maturity.     |
 | Business questions often neglected or separated from product analytics data.                                                                                                              | Enrich with as much data you can. On both event level and user level. LTV, CPA, Salesforce, Hubspot, Zendesk etc. Those can help paint a better picture.     |
 | Issues with pre auth and post authentication and not able to track the user throughout the whole funnel                                                                                   | Make sure to implement identity management within best practices                                                                                             |
 | Multiple projects create issues with data governance, noise and lack of ability to cross query.                                                                                           | Suggest a single project with properties to filter out or create data views per project or team. This also reduces the load on data governance.              |
-| High costs on data that is no longer relevant or data that is not being used                                                                                                              | Utilize the data governance tools in Lexicon to drop, merge and track what events are being used across the org and remove those that aren’t giving you ROI. |
+| High costs on data that is no longer relevant or data that is not being used                                                                                                              | Utilize the data governance tools in Lexicon to drop, merge and track what events are being used across the org and remove those that aren't giving you ROI. |
 
 ## If you already have trusted data, democratize it
 
@@ -91,11 +91,11 @@ Appropriate methods for ingestion include:
 Note that you may only have *some* of the data you need for Mixpanel in a trustworthy state. We often refer to these types of data separately:
 
 - Transactional data: Data used to power your application, must be stored in the data warehouse or application database - for example, a signup
-- Clickstream data: Data from the user’s journey to analyze behavior, like viewing the homepage and clicking the signup button
+- Clickstream data: Data from the user's journey to analyze behavior, like viewing the homepage and clicking the signup button
 
 ## If you need to create trusted data, track it server-side
 
-If you don’t have trustworthy data, or perhaps have an incomplete set of data (for example, you may have trustworthy data for key transactional events like signups; but be missing data for clickstream events in the user journey), you should strongly consider adding new data server-side.
+If you don't have trustworthy data, or perhaps have an incomplete set of data (for example, you may have trustworthy data for key transactional events like signups; but be missing data for clickstream events in the user journey), you should strongly consider adding new data server-side.
 
 Using server-side tracking allows you to:
 
@@ -107,19 +107,19 @@ Using server-side tracking allows you to:
 
 How you name your events, properties, boards, project, etc. should be based on the standards already adopted by your internal teams. Provided the naming has sufficient context to explain what an event means, it is preferred to go with commonly adopted and well known conventions from your team/organization.
 
-If you don’t know where to begin, we’d recommend snake case as a best practice - i.e. converting all spaces to `_` and all capital letters to lower case. The reason behind this is that in most databases, spaces and capitals are converted to snake case anyways. So when you later export your Mixpanel data or want to use it in other data applications, snake case is typically the accepted practice and what will be easiest to maintain. You can always add display names and definitions for events and properties later on within Mixpanel’s Lexicon feature.
+If you don't know where to begin, we'd recommend snake case as a best practice - i.e. converting all spaces to `_` and all capital letters to lower case. The reason behind this is that in most databases, spaces and capitals are converted to snake case anyways. So when you later export your Mixpanel data or want to use it in other data applications, snake case is typically the accepted practice and what will be easiest to maintain. You can always add display names and definitions for events and properties later on within Mixpanel's Lexicon feature.
 
 ## Fewer Events, More Properties
 
 Tracking as many actions as possible is not the route to long-term success. Instead, you should be thinking about adding context to these actions via properties. Adding more properties not only has the added benefit of not increasing your Mixpanel bill, but it adds more dimensions by which you can segment key actions to make insights.
 
-There are two extremes we steer customers away from: Events that are too broad and events that are too narrow. Where events are too broad, you’d end up having to create filters for every single disparate action you want to measure. Conversely, where events are too narrow, you need to do a lot of work every time to compare the actions against one another.
+There are two extremes we steer customers away from: Events that are too broad and events that are too narrow. Where events are too broad, you'd end up having to create filters for every single disparate action you want to measure. Conversely, where events are too narrow, you need to do a lot of work every time to compare the actions against one another.
 
 In general, we advise customers to group together the same actions that users take across your site / platform, and group them to the level of the most commonly asked questions. You can find relevant examples for this [here](/docs/best-practices/analytics-strategy/overview#best-practices).
 
 ## Centralize standards in ways your org understands
 
-We’ve found that every company works differently in how they store and share knowledge internally. Despite these differences, we highly recommend that you centralize your data governance and analysis standards somewhere for your team to access. We use Notion, but for smaller companies we’ve seen Slack Bookmarks and for larger companies entire Wikis in internal sites. These can be an important place to document key standards, best practices, and key contacts in case of questions.
+We've found that every company works differently in how they store and share knowledge internally. Despite these differences, we highly recommend that you centralize your data governance and analysis standards somewhere for your team to access. We use Notion, but for smaller companies we've seen Slack Bookmarks and for larger companies entire Wikis in internal sites. These can be an important place to document key standards, best practices, and key contacts in case of questions.
 
 In the following link, we've consolidated a set of similar reference materials that you can leverage to similarly help your teams onboard and self-serve with Mixpanel. Contained in this guide are support, training, project-specific resources, metrics, and objective stores and resources to request additional data.  
 
@@ -127,9 +127,9 @@ In the following link, we've consolidated a set of similar reference materials t
 
 ## Create a safe space for questions
 
-No matter your best efforts as the champion of Mixpanel, there will always be questions from end users - What is this event? What should I use for signups? Do we have a Board of our KPIs? It’s important to create a space and cadence for asking and answering these questions amongst your team. We recommend a simple Slack channel dedicated towards all things Mixpanel, but of course a Teams chat or ongoing cadence in something like a live Zoom for office hours would work.
+No matter your best efforts as the champion of Mixpanel, there will always be questions from end users - What is this event? What should I use for signups? Do we have a Board of our KPIs? It's important to create a space and cadence for asking and answering these questions amongst your team. We recommend a simple Slack channel dedicated towards all things Mixpanel, but of course a Teams chat or ongoing cadence in something like a live Zoom for office hours would work.
 
-If you are working with Mixpanel on an Enterprise plan, we’re also happy to create a Slack channel between your power users and your Mixpanel account team to facilitate quicker responses and a shared library of context around our partnership. If you aren’t on an Enterprise plan, you can join our [Slack Community](https://community.mixpanel.com/) and ask questions amongst other Mixpanel users - head on in and join the #questions channel!
+If you are working with Mixpanel on an Enterprise plan, we're also happy to create a Slack channel between your power users and your Mixpanel account team to facilitate quicker responses and a shared library of context around our partnership. If you aren't on an Enterprise plan, you can join our [Slack Community](https://community.mixpanel.com/) and ask questions amongst other Mixpanel users - head on in and join the #questions channel!
 
 ## Make Mixpanel part of your habits and rituals
 
@@ -137,7 +137,7 @@ Adopting Mixpanel only works if it becomes part of your routines. In the most id
 
 ## Sampling will limit your value
 
-Sampling your data seems like a logical outcome as prices increase for tools and insights are still needed by your users. Unfortunately, all of the customers we’ve ever worked with on product analytics who sample end up with limited value over time. Trying to reduce event volumes by sampling creates trust issues and more importantly will deny you the pros of using a product analytics tool. You’re better off tracking less events for full journeys than sampling many events for all your users.
+Sampling your data seems like a logical outcome as prices increase for tools and insights are still needed by your users. Unfortunately, all of the customers we've ever worked with on product analytics who sample end up with limited value over time. Trying to reduce event volumes by sampling creates trust issues and more importantly will deny you the pros of using a product analytics tool. You're better off tracking less events for full journeys than sampling many events for all your users.
 
 Key benefits of product analytics lost when sampling include:
 

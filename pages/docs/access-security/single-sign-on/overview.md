@@ -19,7 +19,7 @@ Do note that external users who were invited to projects will still be able to l
 
 Claiming a domain will add security to an SSO implementation by only allowing members with a claimed domain in their email address to access Mixpanel. SSO only works on domains that are claimed. 
 
-To claim a domain, add a TXT record to your domain’s DNS records with a verification key provided by Mixpanel. The verification key is available after you claim a domain from your Organization Settings.
+To claim a domain, add a TXT record to your domain's DNS records with a verification key provided by Mixpanel. The verification key is available after you claim a domain from your Organization Settings.
 
 **Generate Verification Key by Claiming Domain**
 To claim a domain, click Access Security in your Organization Settings.
@@ -50,7 +50,7 @@ It will be indicated as verified after Mixpanel verifies the domain.
 
 **Add Verification Token to your DNS**
 
-The verification token is available in the Domain Claiming menu after you claim a domain. Use the token as part of the TXT record that you add to your domain’s DNS record.
+The verification token is available in the Domain Claiming menu after you claim a domain. Use the token as part of the TXT record that you add to your domain's DNS record.
 
 Add `mixpanel-domain-verify=<your-token>` as the TXT record.
 

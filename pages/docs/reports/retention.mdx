@@ -108,30 +108,30 @@ This [loom video](https://www.loom.com/share/5484c7bdd61a4332818ceef20f475176)�
 
 ![/5484c7bdd61a4332818ceef20f475176-with-play.gif](/5484c7bdd61a4332818ceef20f475176-with-play.gif)
 
-**[Basic] Rolling interval retention** - Considers time intervals based on user’s time of birth; i.e
+**[Basic] Rolling interval retention** - Considers time intervals based on user's time of birth; i.e
 
-- Day 1 retention = 24-48 hrs since person’s birth
-- Week 1 retention = 7-14 days since person’s birth
-- Month 1 retention = 30-60 days since person’s birth
+- Day 1 retention = 24-48 hrs since person's birth
+- Week 1 retention = 7-14 days since person's birth
+- Month 1 retention = 30-60 days since person's birth
 
-**[Advanced] Calendar interval retention** - Considers time intervals based on ‘calendar’ time; i.e
+**[Advanced] Calendar interval retention** - Considers time intervals based on ‘calendar' time; i.e
 
-- Day 1 retention = next ‘calendar’ day since person’s birth.If a person did an activity at 8pm on Monday and then 6am on Tuesday, person is counted under Day 1 retention even though it’s just 10 hrs later
-- Week 1 retention = next ‘calendar’ week since person’s birthIf a person did an activity on Friday and then Monday, person is counted under Week 1 retention even though it’s just 3 days, since the ‘calendar’ week changed
-- Month 1 retention = next ‘calendar’ month since person’s birthSimilarly, if a person made a purchase on 25th Feb and then again on 3rd March, person will be counted under Month 1 retention metrics
+- Day 1 retention = next ‘calendar' day since person's birth.If a person did an activity at 8pm on Monday and then 6am on Tuesday, person is counted under Day 1 retention even though it's just 10 hrs later
+- Week 1 retention = next ‘calendar' week since person's birthIf a person did an activity on Friday and then Monday, person is counted under Week 1 retention even though it's just 3 days, since the ‘calendar' week changed
+- Month 1 retention = next ‘calendar' month since person's birthSimilarly, if a person made a purchase on 25th Feb and then again on 3rd March, person will be counted under Month 1 retention metrics
 
 NOTE — All the above cases would NOT qualify under Day 1 or Week 1 or Month 1 rolling interval retention
 
 **When should you the calendar vs rolling interval retention mode?
 
-Both the modes are extremely useful. It totally depends on the use-case you’re trying to answer. Some examples -
+Both the modes are extremely useful. It totally depends on the use-case you're trying to answer. Some examples -
 
 | Use-Case | Which mode to use? |
 | --- | --- |
 | Day 1 retention for apps focused on "daily engagement" like music, meditation or workout apps | Calendar-interval |
 | How many users come back after month 1 (30 days)? How many comes back after 3 months (90 days)? | Rolling-interval |
 | Understanding the effect of a marketing promotion, how many people came back the week after the promotion ended? | Calendar-interval |
-| What’s Mixpanel's quarterly revenue retention? How was gross and net retention in Q4 vs Q3? | Calendar-interval |
+| What's Mixpanel's quarterly revenue retention? How was gross and net retention in Q4 vs Q3? | Calendar-interval |
 | How many users renewed their Netflix subscription? To note, renewals happen 30 days after last payment | Rolling-interval |
 
 Above said, general expectation is product use-cases which focus on user stickiness are likely to use rolling interval mode. Marketing & Revenue teams which focus on calendar dates for their activities, are likely to use calendar interval model
@@ -160,7 +160,7 @@ For example, day 5 retention is the percentage of users who "came back and did B
 
 "On or After" Retention gives you a better sense of how long you are holding on to your users in an absolute sense. It will tell you how many users used your app and then ever returned to find more value. In other words, it's the opposite of the overall churn of your user base.
 
-We think "On or After" retention is a better fit for most businesses and it is the default calculation for the Retention report. This is because it’s more common that a product doesn’t require users to come back in each time unit to achieve the product’s value proposition, and more often than not when doing retention analysis we don’t only value the user coming back in a specific time unit as long as they eventually do. However, if this is important to you and your business, please utilize "On" Retention.
+We think "On or After" retention is a better fit for most businesses and it is the default calculation for the Retention report. This is because it's more common that a product doesn't require users to come back in each time unit to achieve the product's value proposition, and more often than not when doing retention analysis we don't only value the user coming back in a specific time unit as long as they eventually do. However, if this is important to you and your business, please utilize "On" Retention.
 
 ### Custom Retention Brackets
 

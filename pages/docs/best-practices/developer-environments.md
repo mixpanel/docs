@@ -27,14 +27,14 @@ if (window.location.hostname.toLowerCase().search(productionHost) < 0) { mixpane
  ```
 ## When to Use Multiple Production Projects
  
-You can choose to send production data from multiple sources (for example, your website and mobile app) to the same Mixpanel project or to two separate projects. It’s up to you to determine which is best for your business, but here are a few tips to help you decide:
+You can choose to send production data from multiple sources (for example, your website and mobile app) to the same Mixpanel project or to two separate projects. It's up to you to determine which is best for your business, but here are a few tips to help you decide:
 
 ### Factors to Consider
 
 **Do you want to track and study cross-platform user behavior?**
  
 - For example, do you foresee leveraging either platform to convert users to another platform or contributing to the other platform's retention? Or is it common for users to begin a flow on your web app and complete that flow on your mobile app?
-- If so, then you probably do want to study behavior cross-platform and should send the data to the same project. Sending data to two different projects means you won’t be able to easily compare any behavior from the app to the website or vice versa.
+- If so, then you probably do want to study behavior cross-platform and should send the data to the same project. Sending data to two different projects means you won't be able to easily compare any behavior from the app to the website or vice versa.
 
 **Do your app and website offer fundamentally different functionality?**
  
@@ -48,15 +48,15 @@ An organization is charged based on data across all projects. This means that if
 
 Generally speaking, Mixpanel users have more flexibility and get more valuable insights when combining the tracking of multiple platforms into a single project to study their overall user experience across platforms.
 
-While we generally recommend sending data from all platforms to a single project, it’s also best practice to create separate development and production projects to avoid cluttering production data with test data, regardless of platform. If you send events from all platforms to one project, you can still differentiate actions taken on your app vs. website via segmentation and filtering using the Operating System property (the Mixpanel JavaScript, iOS, and Android libraries store the Operating System property by default.
+While we generally recommend sending data from all platforms to a single project, it's also best practice to create separate development and production projects to avoid cluttering production data with test data, regardless of platform. If you send events from all platforms to one project, you can still differentiate actions taken on your app vs. website via segmentation and filtering using the Operating System property (the Mixpanel JavaScript, iOS, and Android libraries store the Operating System property by default.
 
 If you decide to send events from multiple platforms to the same Mixpanel projects, follow these guidelines for the best results:
 
-- Make sure events that are the same across platforms are named the same way. For example, you wouldn’t want to create an Event on your website called Sign in and an Event on your app called Log in if they represent the same user action.
+- Make sure events that are the same across platforms are named the same way. For example, you wouldn't want to create an Event on your website called Sign in and an Event on your app called Log in if they represent the same user action.
 
 - Capitalization matters: calling one event "Purchase" and one "purchase" will show as two different events in your report dropdowns!
 
-- Ensure you’re handling user identity properly so that you can track users across platforms without counting them as a different user on each platform. Learn more about [identifying users](/docs/tracking-methods/identifying-users).
+- Ensure you're handling user identity properly so that you can track users across platforms without counting them as a different user on each platform. Learn more about [identifying users](/docs/tracking-methods/identifying-users).
 
 - Advanced tip: You can initialize multiple instances of Mixpanel on the same app to send certain events to their own, different project. This would allow you to send some events to a different project if you have some different functionality on certain platforms and want to analyze that activity separately.
  

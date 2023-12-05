@@ -363,7 +363,7 @@ Mixpanel's SDKs have a legacy feature to automatically collect common mobile eve
 | $screen_dpi | Screen DPI | Pixel density of the screen. |
 | $screen_height | Screen Height | Height, in pixels, of the device screen. |
 | $screen_width | Screen Width | Width, in pixels, of the device screen. |
-| $wifi | Wifi | Set to true if user’s device has an active, available Wifi connection, false if not. |
+| $wifi | Wifi | Set to true if user's device has an active, available Wifi connection, false if not. |
 | mp_processing_time_ms | Processing Time | UTC timestamp of when the event was processed by our servers. |
 | $mp_api_timestamp_ms | API Timestamp | Time at which the event was received by our API. |
 | $insert_id | Insert ID | A unique identifier for the event, used to deduplicate events that are accidentally sent multiple times. |

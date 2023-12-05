@@ -6,18 +6,18 @@ If you haven't already, we recommend starting with our [Migration Guides Overvie
 
 ### Data Model
 
-Mixpanel’s data model is based on events and properties, rather than Adobe which is schema-based with many different configurable data types. While this might be a shift if you come from the schema model where you define your data to be captured upfront before sending any data, we’ve found [schema-on-read](/docs/how-it-works/infrastructure#schema-on-read) to be both more flexible and easier to set up and use.
+Mixpanel's data model is based on events and properties, rather than Adobe which is schema-based with many different configurable data types. While this might be a shift if you come from the schema model where you define your data to be captured upfront before sending any data, we've found [schema-on-read](/docs/how-it-works/infrastructure#schema-on-read) to be both more flexible and easier to set up and use.
 
 - [Events](/docs/what-is-mixpanel#events) capture granular user actions, like a Pageview, Signup, or Purchase.
 - [Properties](/docs/what-is-mixpanel#properties) capture attributes of those events, like which page was viewed, the UTM Campaign that led to a Signup, or the Item that was purchased.
 
 Events and properties with schema-on-read let you get more granular than an enforced schema so you can spend your time analyzing data versus formatting it. Mixpanel automatically constructs a schema from the events and properties you send, so you can answer the same questions as before faster and with less development headaches.
 
-In contrast, on Adobe, every user interaction comes across as a "hit". Within "hits", there are what Adobe terms "eVars", which are variables that can be customized to the organization’s requirements. The following diagram helps to illustrate the key differences between Adobe and Mixpanel’s instrumentation: on Adobe, an administrator needs to manually instrument every metric before it can be used in the platform. For example, the administrator would need to create a separate metric for "Total Page Views" and "Unique Page Views" before an end user can query it. Whereas on Mixpanel, once the event "Page View" is sent, the end user easily, on the fly, whip up a report to show the page views by total vs. unique users.  
+In contrast, on Adobe, every user interaction comes across as a "hit". Within "hits", there are what Adobe terms "eVars", which are variables that can be customized to the organization's requirements. The following diagram helps to illustrate the key differences between Adobe and Mixpanel's instrumentation: on Adobe, an administrator needs to manually instrument every metric before it can be used in the platform. For example, the administrator would need to create a separate metric for "Total Page Views" and "Unique Page Views" before an end user can query it. Whereas on Mixpanel, once the event "Page View" is sent, the end user easily, on the fly, whip up a report to show the page views by total vs. unique users.  
 
 ![image](/adobe-vs-MP-instrumentation.png)
 
-In Mixpanel, we also have a separate table for users and user properties. If using Mixpanel’s SDK, unique users are identified by a `$device_id` to associate events to the same anonymous user. Once a user signs up or logs in, you’ll call .identify(<user_id>) to map users’ known user_id to their `$device_id`. In Adobe on the other hand, unique users are identified by the concatenation of post_visid_high and post_visid_low properties on the "hit". Adobe will take the first ID present from in the "hit" as the official visitor ID, and then use the concatenation of post_visid_high and post_visid_low as the standard of identifying unique visitors regardless of how they were identified as a [unique visitor](https://experienceleague.adobe.com/docs/analytics/export/analytics-data-feed/data-feed-contents/datafeeds-calculate.html?lang=en). For example, if you are setting a custom visitor ID (included in the "vid" query parameter), that ID will be used before other IDs that might be present on that same hit. 
+In Mixpanel, we also have a separate table for users and user properties. If using Mixpanel's SDK, unique users are identified by a `$device_id` to associate events to the same anonymous user. Once a user signs up or logs in, you'll call .identify(<user_id>) to map users' known user_id to their `$device_id`. In Adobe on the other hand, unique users are identified by the concatenation of post_visid_high and post_visid_low properties on the "hit". Adobe will take the first ID present from in the "hit" as the official visitor ID, and then use the concatenation of post_visid_high and post_visid_low as the standard of identifying unique visitors regardless of how they were identified as a [unique visitor](https://experienceleague.adobe.com/docs/analytics/export/analytics-data-feed/data-feed-contents/datafeeds-calculate.html?lang=en). For example, if you are setting a custom visitor ID (included in the "vid" query parameter), that ID will be used before other IDs that might be present on that same hit. 
 
 ### Frequently used key metrics on Adobe and how they differ on Mixpanel
 
@@ -51,9 +51,9 @@ If a visitor performs any of these actions, a new visit starts:
 - Clears their cache at any time
 - Opens a different browser on the same computer. One unique visitor is counted per browser.
 - The same person browsing your site on different devices. A separate unique visitor is counted per device.
-- Opens a private browsing session (such as Chrome’s Incognito tab).
+- Opens a private browsing session (such as Chrome's Incognito tab).
 
-As a result, many internal Adobe users aren't too sure of how unique visitors are actually calculated given that it’s also dependent on how their data set up is done by the consultants they hire, eventually making these calculations somewhat a blackbox.
+As a result, many internal Adobe users aren't too sure of how unique visitors are actually calculated given that it's also dependent on how their data set up is done by the consultants they hire, eventually making these calculations somewhat a blackbox.
 
 
 ## Track forward looking real-time data
@@ -66,7 +66,7 @@ Choose your current implementation method for Adobe Analytics and follow the bel
 
 ### Client-side SDKs & Server-side SDKs
 
-You’ll have to setup Mixpanel fresh given Mixpanel leverages an event-based model that does not exist in Adobe Analytics. Depending on your current setup and how you’ve enabled data capture in Adobe, these steps will likely be as if you are starting an [entirely new implementation](/docs/getting-started/plan-your-implementation).
+You'll have to setup Mixpanel fresh given Mixpanel leverages an event-based model that does not exist in Adobe Analytics. Depending on your current setup and how you've enabled data capture in Adobe, these steps will likely be as if you are starting an [entirely new implementation](/docs/getting-started/plan-your-implementation).
 
 The rest of this guide will cover the Mixpanel JavaScript SDK for brevity, but the steps apply for any of our libraries.
 
@@ -93,7 +93,7 @@ We recommend the following steps to get started quickly:
     
 - Use the [Mixpanel Marketing KPI Template](https://mixpanel.com/project?show-template-selector=true) to build your initial board
 
-This will allow you to explore Mixpanel’s capabilities with the lowest amount of lift to see value. The reporting around marketing analytics will also showcase reporting that end users are used to coming over from Adobe Analytics. 
+This will allow you to explore Mixpanel's capabilities with the lowest amount of lift to see value. The reporting around marketing analytics will also showcase reporting that end users are used to coming over from Adobe Analytics. 
 
 ### Customer Data Platforms (CDPs)
 
@@ -121,13 +121,13 @@ If you have your Adobe Analytics instance sitting on top of data that you collec
 
 ## Loading historical data
 
-For most cases, we recommend starting fresh when migrating from Adobe Analytics. If you must import Adobe data, we strongly encourage loading historical data into a separate project as data structures, identity management, user cohort definitions, etc. are completely different in Adobe than in Mixpanel. In these scenarios, the point of having historical data in Mixpanel is to allow the team to be able to visualise historical data, but because this data would exist in a separate project, it will not be easy to visualize time period trends. In the cases where historical data is essential, we recommend loading a year’s worth (or less) of historical data during your migration. Before 
+For most cases, we recommend starting fresh when migrating from Adobe Analytics. If you must import Adobe data, we strongly encourage loading historical data into a separate project as data structures, identity management, user cohort definitions, etc. are completely different in Adobe than in Mixpanel. In these scenarios, the point of having historical data in Mixpanel is to allow the team to be able to visualise historical data, but because this data would exist in a separate project, it will not be easy to visualize time period trends. In the cases where historical data is essential, we recommend loading a year's worth (or less) of historical data during your migration. Before 
 
 ### Undertaking discovery: Why and what is historical data for
 
 1. **Whats the purpose of bringing in historical data?**
     
-    It’s key to understand if you would just like a place to store historical data once Adobe is sunset or would you actually need those historical data for key metrics analysis. If its the former, the recommendation would be to send those data into a warehouse rather than Mixpanel.
+    It's key to understand if you would just like a place to store historical data once Adobe is sunset or would you actually need those historical data for key metrics analysis. If its the former, the recommendation would be to send those data into a warehouse rather than Mixpanel.
     
 2. **What is the time frame which you are looking at for historical data?**
     

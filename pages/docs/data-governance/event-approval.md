@@ -26,7 +26,7 @@ When an admin receives a notification that new events have been ingested, they c
 From there, an admin can take any number of actions such as marking the event as visible, adding a description or a tag. 
 
 Events will be marked as "New" as long as the following criteria are met:
-- It hasn’t been modified
+- It hasn't been modified
 - It is hidden
 - It was created within the last 30 days
 

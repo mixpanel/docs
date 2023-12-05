@@ -62,11 +62,11 @@ If you are using this type of SSE, you only need to configure your pipeline by p
 ##### Encryption with AWS KMS-Managed Keys (SSE-KMS)
 You have a choice of keys if you use the Key Management Service (KMS).
 
-For S3 buckets, you can pick a default key named ```aws/s3```. If you opt to use the default key you don’t need any further configuration on AWS, and only need to configure your pipeline by passing ```s3_encryption=kms``` when calling the Mixpanel Data Pipelines API.
+For S3 buckets, you can pick a default key named ```aws/s3```. If you opt to use the default key you don't need any further configuration on AWS, and only need to configure your pipeline by passing ```s3_encryption=kms``` when calling the Mixpanel Data Pipelines API.
 
 If you choose to use your own custom keys for encrypting the contents of your bucket, you will need to allow Mixpanel to use the key to encrypt the data properly as it is written to your bucket.
 
-To achieve this, create an IAM policy that gives permission to Mixpanel to use the KMS key. Use the following JSON snippet and replace ``<KEY_ARN>`` with your custom key’s ARN: 
+To achieve this, create an IAM policy that gives permission to Mixpanel to use the KMS key. Use the following JSON snippet and replace ``<KEY_ARN>`` with your custom key's ARN: 
 
 ```json
 {
@@ -259,7 +259,7 @@ Mixpanel partitions the Glue table by default if it has the proper AWS permissio
 You can configure Glue to crawl the S3 bucket with Mixpanel data. Glue crawlers are convenient because they automatically extract the schema from the data files and update the Glue schema. 
 
 This convenience, however, can also pose issues, such as:
-* The run time of the crawlers could be out of sync with Mixpanel’s export schedule. As a result, it can prevent you from using your data as soon as new properties are available. 
+* The run time of the crawlers could be out of sync with Mixpanel's export schedule. As a result, it can prevent you from using your data as soon as new properties are available. 
 * The time column is interpreted as an integer. As a result, it is more difficult to perform timestamp operations. 
 * When using the one table per event schema option, Glue crawlers can merge data from multiple events in one table based on similarity.
 

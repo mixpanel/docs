@@ -103,7 +103,7 @@ If you are planning to also enable sending engagement events from Braze to Mixpa
 
 ## Braze Events into Mixpanel & MTU exemptions
 
-You can export events from your Braze integration to Mixpanel to perform deeper analysis. For detailed instructions on how to do this, please refer to [Braze’s Technology Partner’s documentation](https://www.braze.com/docs/partners/data_and_infrastructure_agility/analytics/mixpanel_for_currents/).
+You can export events from your Braze integration to Mixpanel to perform deeper analysis. For detailed instructions on how to do this, please refer to [Braze's Technology Partner's documentation](https://www.braze.com/docs/partners/data_and_infrastructure_agility/analytics/mixpanel_for_currents/).
 
 Events coming from Braze are marked with the property `$partner_id`.
 

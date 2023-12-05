@@ -52,7 +52,7 @@ The Custom Field will be updated every two hours to reflect the status of the Mi
 It is possible to export the same cohort to Marketo more than once, however each export will require a new custom field within Marketo. Mixpanel disallows exporting to the same custom field so that the custom field you have created in Marketo is up-to-date with only the latest export.
 
 ### Why is the cohort user count larger in Mixpanel than in Marketo?
-In order to export a user to Marketo using Cohorts, the user must have the special user profile property $email set on their user profile. If this property is not set on a user’s profile, they will not be exported to Marketo.
+In order to export a user to Marketo using Cohorts, the user must have the special user profile property $email set on their user profile. If this property is not set on a user's profile, they will not be exported to Marketo.
 
 ### How does Mixpanel handle users that exist within Mixpanel, but not in Marketo?
 If the user within Mixpanel has the \$email user profile property, a new lead will be created in Marketo with the $email user profile property value and the designated custom field will be set to True.

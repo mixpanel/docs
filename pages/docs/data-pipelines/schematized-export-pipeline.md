@@ -66,7 +66,7 @@ Data that arrived late is exported during a sync process daily (if sync is enabl
  
 
 ## Data Sync
-Event data stored in Mixpanel’s datastore and event data in the data warehouse can fall out of sync. 
+Event data stored in Mixpanel's datastore and event data in the data warehouse can fall out of sync. 
 
 The discrepancy can be attributed to several different causes: 
   * Late data can arrive multiple days later due to a mobile client being offline. 
@@ -139,7 +139,7 @@ In this schema, all your Mixpanel data exists in a single table. Mixpanel recomm
 
 If you select the single table schema, the export pipeline creates a *mp_master_event *table. The table has one column per unique property name across all events in the history of the dataset. 
   
-Suppose you have an event with a `purchase_amount` property and one with a `referrer` property, the table will have a *purchase_amount* column and a *referrer* column. Events that don’t have a property contain a NULL value in that column.
+Suppose you have an event with a `purchase_amount` property and one with a `referrer` property, the table will have a *purchase_amount* column and a *referrer* column. Events that don't have a property contain a NULL value in that column.
 
 For examples of one table for all events, see [One Table for All Events](#section-one-table-for-all-events).
 

@@ -97,12 +97,12 @@ To send group identifiers with events, send the `group_key` as a property key an
 ```ruby
 Tracker = Mixpanel::Tracker.new(YOUR_MIXPANEL_TOKEN)
 tracker.track("user_id1", "App Open", {
-  ‘GROUP KEY’ => 1234,
+  ‘GROUP KEY' => 1234,
 })
  
 ## event will be attributed to multiple groups with IDs 1000, 1234
 tracker.track("user_id1", "App Open", {
-  ‘GROUP KEY’ => [1000, 1234],
+  ‘GROUP KEY' => [1000, 1234],
 })
 ```
 
@@ -119,7 +119,7 @@ To connect group information to a user profile, include the `group_key` and `gro
 tracker = Mixpanel::Tracker.new(YOUR_MIXPANEL_TOKEN)
 tracker.people.set("user_id1", {
   '$name' => 'Steph Curry',
-  ‘Company’ => 'Mixpanel',
+  ‘Company' => 'Mixpanel',
 })
 ```
 

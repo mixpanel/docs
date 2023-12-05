@@ -76,7 +76,7 @@ There are other less common ways to send data to Mixpanel. To learn more, please
 [`mixpanel.track_forms()`](https://github.com/mixpanel/mixpanel-js/blob/master/doc/readme.io/javascript-full-api-reference.md#mixpaneltrack_forms) - similar to `mixpanel.track_links()`, but tracks form submissions.
 
 ### Mixpanel Cookie 
-By default, Mixpanel cookies send over HTTPS requests as part of the headers. However, Mixpanel’s JavaScript library provides a configuration to completely prevent the browser from transmitting your cookies with non-HTTPS requests.
+By default, Mixpanel cookies send over HTTPS requests as part of the headers. However, Mixpanel's JavaScript library provides a configuration to completely prevent the browser from transmitting your cookies with non-HTTPS requests.
 
 To enable this, use the [`set_config()`](https://github.com/mixpanel/mixpanel-js/blob/master/doc/readme.io/javascript-full-api-reference.md#mixpanelset_config) method and change the `secure_cookie` flag from `false` to `true`. If you configure your instance to send data over HTTP instead of HTTPS but do set `secure_cookie: true`, then your cookie data is not sent to the server. 
 
