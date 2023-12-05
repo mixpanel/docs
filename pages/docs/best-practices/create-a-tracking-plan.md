@@ -32,12 +32,12 @@ A successful onboarding typically focuses on one or two key use cases. Some exam
 - an important engagement journey (watching content, creating a playlist, planning a route, importing files to your platform, setting up an integration)
 
 ### Define and prioritize KPIs
-Define the top KPIs and metrics that will help measure success and inform decisions about your product. 
+Define the top KPIs and metrics that will help measure success and inform decisions about your product.
 
-Please find the link to our Analytics Strategy documents that can help guide you in measuring what success looks like for you. *add link to RAE Framework*. 
+Please find the link to our [Analytics Strategy Framework](https://discover.mixpanel.com/rs/461-OYV-624/images/Guidetoproductmetrics-Mixpanel.pdf) that can guide you in measuring what success looks like for you.
 
 ### Map KPIs to User Flows
-Map each KPI / metric to the steps or actions that users take to influence each KPI / metric. For example, sign up flow will be important when measuring KPIs related to new user acquisition. Consider also the different paths that users can take to achieve the same outcomes.
+Map each of your metrics to the steps or specific actions that users take to influence each metric. For example, sign up flow will be important when measuring KPIs related to new user acquisition. Consider all the different user paths users can take and what specific measures will allow you to track, measure, and improve the expected desired user outcomes across activation, engagement, and/or retention.
 
 ### Identity Management
 As you are building out your tracking plan, make sure to consider where you will need to manage user identity. In summary, when a user goes from being anonymous to when that user completes registration and/or logs in, you will need to properly identify this user with a distinct ID.  For a full understanding of this critical concept, please review our [Identity Management guide here](https://docs.mixpanel.com/docs/tracking-methods/identifying-users)
@@ -75,9 +75,9 @@ Mixpanel provides the following templates for vertical-specific tracking plans:
 You can also access a copy of a [blank Tracking Plan from here](https://docs.google.com/spreadsheets/d/1ZdOZ6TMtRPxy7qRxiLsvH9HWcHJM6nZydWKoThRxFKc/edit#gid=1641519238). Save a copy to your device to get started on your tracking plan.
 
 ### Build out Visual User Flows
-Along with the tracking plan templates in your traditional spreadsheet, another helpful exercise is to build out a visual user journey. You can use tools like FigJam, Miro, or other similar type of tools. 
+Along with the tracking plan templates in your traditional spreadsheet format, you can also build out a visual user journey flow version of a tracking plan using tools like FigJam, Miro, or other similar products.
 
-This is helpful because you can really understand the specific screens or page views and the exact steps in the user journey and what actions trigger the user behavior to be tracked as an event. 
+This can be a helpful exercise because you can visually understand the specific screens or page views, the exact steps in the user journey, and which actions trigger the user behavior to be tracked as an event. 
 
-Here is an example of a [FigJam User Journey](https://www.figma.com/file/tYEeeRE0Xz6IampBhGLotw/Media-and-Entertainment-Tracking-Plan?type=whiteboard&node-id=0-1&t=eRjXS1u4RcmGGFLX-0)https://www.figma.com/file/tYEeeRE0Xz6IampBhGLotw/Media-and-Entertainment-Tracking-Plan?type=whiteboard&node-id=0-1&t=eRjXS1u4RcmGGFLX-0.
+Here is an example of a **[Figma User Journey](https://www.figma.com/file/tYEeeRE0Xz6IampBhGLotw/Media-and-Entertainment-Tracking-Plan?type=whiteboard&node-id=0%3A1&t=ShUKEHAG2PlL9wNa-1).**
 
