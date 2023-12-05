@@ -3,6 +3,7 @@
 
 User Profiles let you enrich events with properties about the users that performed those events. Profiles are optional; we recommend starting with events and only adding Profiles if you need it.
 
+As a fundamental part of the Mixpanel Data Model, you can find more information on Users [here](https://docs.mixpanel.com/docs/what-is-mixpanel#users).
 
 ## Overview
 A User Profile is a set of properties associated with a given user. Under the hood, Mixpanel stores user profiles for your project in a table:
