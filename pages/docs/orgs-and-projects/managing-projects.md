@@ -66,7 +66,7 @@ To delete a project:
 
 1. In Organization Settings, click **Projects**.
 2. Select the project you want to delete.
-3. Above the “Project Details” section, click **Delete Project**. A delete box appears and indicates you won’t be able to access the project in the Mixpanel interface or API. Mixpanel will store a backup of the deleted project and will delete the data based on the data retention policy.
+3. Above the "Project Details" section, click **Delete Project**. A delete box appears and indicates you won’t be able to access the project in the Mixpanel interface or API. Mixpanel will store a backup of the deleted project and will delete the data based on the data retention policy.
 4. Click **Delete Project** to remove the project.
 
 ![manageprojects 5 Image](/manageprojects5.png)

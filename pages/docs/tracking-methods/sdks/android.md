@@ -204,7 +204,7 @@ A group is identified by the `group_key` and `group_id`.
 * `group_key` is the property that connects event data for Group Analytics.
 * `group_id` is the identifier for a specific group.
 
-If the property “company” is chosen for Group Analytics, “company” is the `group_key`, and “Mixpanel”, “Company A”, and “13254” are all potential `group_id` values.
+If the property "company" is chosen for Group Analytics, "company" is the `group_key`, and "Mixpanel", "Company A", and "13254" are all potential `group_id` values.
 
 A user can belong to multiple groups. All updates to a group operate on the `group_key` and `group_id`.
 
@@ -347,7 +347,7 @@ Mixpanel's SDKs have a legacy feature to automatically collect common mobile eve
 | $app_build_number | App Build Number | General build of this app. |
 | $app_version_string | App Version | Current app version. |
 | $bluetooth_enabled | Bluetooth | True if bluetooth is enabled. |
-| $bluetooth_version | Bluetooth Version | "none”, “ble”, or “classic” |
+| $bluetooth_version | Bluetooth Version | "none", "ble", or "classic" |
 | $brand | Brand | Device brand. |
 | $carrier | Carrier | Wireless carrier of the device owner. |
 | $google_play_services | Google Play Services | True if Google Play Services is installed and enabled on the device. |
@@ -357,7 +357,7 @@ Mixpanel's SDKs have a legacy feature to automatically collect common mobile eve
 | $lib_version | Lib Version | Mixpanel library version. |
 | mp_lib | Mixpanel Library | Mixpanel Library that sent the event. |
 | $manufacturer | Manufacturer | Device manufacturer. |
-| $model | Model | Device model ID, in format “iPad 3,4”.  |
+| $model | Model | Device model ID, in format "iPad 3,4".  |
 | $os | Operating System | OS of the event sender. |
 | $radio | Radio | Current https://www.objc.io/issues/5-ios7/iOS7-hidden-gems-and-workarounds/#know-your-radio (3G, 4G, LTE, etc). |
 | $screen_dpi | Screen DPI | Pixel density of the screen. |
@@ -376,7 +376,7 @@ Mixpanel's SDKs have a legacy feature to automatically collect common mobile eve
 | $android_app_version_code | Android App Version Code | Current app version. |
 | $android_app_version | Android App Version | Current app version. |
 | $android_lib_version | Android Lib Version | Version of Mixpanel library. |
-| $android_os_version | iOS Device Model | Device model ID, in format “iPad 3,4” |
+| $android_os_version | iOS Device Model | Device model ID, in format "iPad 3,4" |
 | $android_brand | Android Brand | Device brand |
 | $android_model | Android Model | Device model |
 | $android_manufacturer | Android Manufacturer | Device model |

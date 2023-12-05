@@ -244,7 +244,7 @@ A group is identified by the `group_key` and `group_id`.
 * `group_key` is the property that connects event data for Group Analytics.
 * `group_id` is the identifier for a specific group.
 
-If the property “company” is chosen for Group Analytics, “company” is the `group_key`, and “Mixpanel”, “Company A”, and “13254” are all potential `group_id` values. 
+If the property "company" is chosen for Group Analytics, "company" is the `group_key`, and "Mixpanel", "Company A", and "13254" are all potential `group_id` values. 
 
 A user can belong to multiple groups. All updates to a group operate on the `group_key` and `group_id`.
 
@@ -262,20 +262,20 @@ You can add users to groups by calling the [`mixpanel.set_group()`](/docs/tracki
 
 ```javascript JavaScript
 //Assign Company A and Company B to a user
-mixpanel.set_group(“company”, [“Company A”, “Company B”])
+mixpanel.set_group("company", ["Company A", "Company B"])
 ```
 
 You can call  [`mixpanel.add_group()`](/docs/tracking-methods/sdks/javascript#creating-group-profiles) to add any additional groups to an existing list.
 
 ```javascript JavaScript
-//Add “Mixpanel” to the list of existing groups
-mixpanel.add_group(“company”, “Mixpanel”)
+//Add "Mixpanel" to the list of existing groups
+mixpanel.add_group("company", "Mixpanel")
 ```
 
 ### Creating Group Profiles
 It is possible to create a Group profile that is similar to a user profile. You must call [`mixpanel.set_group()`](/docs/tracking-methods/sdks/javascript#setting-group-profile-properties) to build a group profile. It is important to the `group_key`, `group_id`, and one property so that the profile is not empty.
 ```javascript JavaScript
-mixpanel.get_group(group_key, group_id).set({“property_name”: property_value})
+mixpanel.get_group(group_key, group_id).set({"property_name": property_value})
 ```
 
 ### Setting Group Profile Properties
@@ -283,7 +283,7 @@ You can add details to Groups by adding properties to them.
 
 In order to update Group profile properties, you must specify the group that needs to be updated by calling [`get_group()`](/docs/tracking-methods/sdks/javascript#group-analytics)
 ```javascript JavaScript
-mixpanel.get_group(“company”, “Mixpanel”)
+mixpanel.get_group("company", "Mixpanel")
 ```
 The [`get_group()`](/docs/tracking-methods/sdks/javascript#group-analytics) method can be chained with other commands that edit properties specific to the group.
 
@@ -294,32 +294,32 @@ These operations are similar to the corresponding operations for user profile pr
 `mixpanel.get_group().set` updates or adds a property to a group.
 
 ```javascript JavaScript
-mixpanel.get_group(group_key, group_id).set({“property_name”: property_value})
+mixpanel.get_group(group_key, group_id).set({"property_name": property_value})
 ```
 #### set once
 `mixpanel.get_group().set_once` adds a property value to a group only if it has not been set before.
 
 ```javascript JavaScript
-mixpanel.get_group(group_key, group_id).set_once({“property_name”: property_value})
+mixpanel.get_group(group_key, group_id).set_once({"property_name": property_value})
 ```
 
 #### unset
 `mixpanel.get_group().unset` unsets a specific property in the group.
 
 ```javascript JavaScript
-mixpanel.get_group(group_key, group_id).unset(“property_name”)
+mixpanel.get_group(group_key, group_id).unset("property_name")
 ```
 
 #### remove
 `mixpanel.get_group().remove` removes a specific value in a list property.
 ```javascript JavaScript
-mixpanel.get_group(group_key, group_id).remove(“property_name”, “property_value”)
+mixpanel.get_group(group_key, group_id).remove("property_name", "property_value")
 ```
 
 #### union
 `mixpanel.get_group().union` adds the specified values to a list property and ensures that those values only appear once.
 ```javascript JavaScript
-mixpanel.get_group(group_key, group_id).union(“property_name”, [property_value1, … [property_valueN])
+mixpanel.get_group(group_key, group_id).union("property_name", [property_value1, … [property_valueN])
 ```
 ## EU Data Residency
 

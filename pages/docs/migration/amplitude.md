@@ -129,7 +129,7 @@ You can use our [Lexicon](/docs/data-governance/lexicon) or Events page to check
 - Import = true (`$import`)
 - Source = warehouse-import (`$source`)
 
-Please filter by tracked name, $warehouse_import_id instead of the display name, “Warehouse Import ID”. You can find the properties values on the Warehouse Connector’ sync logs:
+Please filter by tracked name, $warehouse_import_id instead of the display name, "Warehouse Import ID". You can find the properties values on the Warehouse Connector’ sync logs:
 
 ![image](/amp_event_validation.png)
 
@@ -146,7 +146,7 @@ We support the following data collection mechanisms:
 
 ### Client-side SDKs & Server-side SDKs
     
-Fortunately, Mixpanel and Amplitude’s client side SDKs have *very similar* developer facing APIs. This makes it fairly easy to “find and replace” embedded Amplitude calls and swap them for Mixpanel calls.
+Fortunately, Mixpanel and Amplitude’s client side SDKs have *very similar* developer facing APIs. This makes it fairly easy to "find and replace" embedded Amplitude calls and swap them for Mixpanel calls.
 
 This section will detail the Javascript SDKs (for the sake of brevity), although both analytics platforms have fairly uniform tracking APIs for other SDKs (mobile, server-side).
 

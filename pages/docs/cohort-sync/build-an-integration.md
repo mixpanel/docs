@@ -8,7 +8,7 @@ Sign up for a [free Mixpanel account](https://mixpanel.com/pricing), which you c
 ## Create an Integration ID
 In order to properly understand API usage and provide you with resources as part of our Technology Partner Program, you must first define your **Integration ID** and pass it along when sending event data or calling Mixpanel’s APIs.
 
-Your Integration ID should be a string representing your company’s or solution’s name. If Mixpanel were a developer, our Integration ID would be “mixpanel”.
+Your Integration ID should be a string representing your company’s or solution’s name. If Mixpanel were a developer, our Integration ID would be "mixpanel".
 
 Note: Always include your integration ID -- this will help customers better understand the soruce of their event data in Mixpanel.
 
@@ -19,12 +19,12 @@ This can be added to the [Event Object](doc:data-model-deep-dive#anatomy-of-an-e
 
 ```json
 {
-    “event”: “Sign up”,
-    “properties”: {
-        “distinct_id”: “123”,
-        “time”: 1321499371,
-        “$source”: “your_integration_id”,
-        “token”: “<YOUR_PROJECT_TOKEN>”
+    "event": "Sign up",
+    "properties": {
+        "distinct_id": "123",
+        "time": 1321499371,
+        "$source": "your_integration_id",
+        "token": "<YOUR_PROJECT_TOKEN>"
     }
 }
 ```

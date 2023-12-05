@@ -13,11 +13,11 @@ Mixpanel’s data model is based on events and properties, rather than Adobe whi
 
 Events and properties with schema-on-read let you get more granular than an enforced schema so you can spend your time analyzing data versus formatting it. Mixpanel automatically constructs a schema from the events and properties you send, so you can answer the same questions as before faster and with less development headaches.
 
-In contrast, on Adobe, every user interaction comes across as a “hit”. Within “hits”, there are what Adobe terms “eVars”, which are variables that can be customized to the organization’s requirements. The following diagram helps to illustrate the key differences between Adobe and Mixpanel’s instrumentation: on Adobe, an administrator needs to manually instrument every metric before it can be used in the platform. For example, the administrator would need to create a separate metric for “Total Page Views” and “Unique Page Views” before an end user can query it. Whereas on Mixpanel, once the event “Page View” is sent, the end user easily, on the fly, whip up a report to show the page views by total vs. unique users.  
+In contrast, on Adobe, every user interaction comes across as a "hit". Within "hits", there are what Adobe terms "eVars", which are variables that can be customized to the organization’s requirements. The following diagram helps to illustrate the key differences between Adobe and Mixpanel’s instrumentation: on Adobe, an administrator needs to manually instrument every metric before it can be used in the platform. For example, the administrator would need to create a separate metric for "Total Page Views" and "Unique Page Views" before an end user can query it. Whereas on Mixpanel, once the event "Page View" is sent, the end user easily, on the fly, whip up a report to show the page views by total vs. unique users.  
 
 ![image](/adobe-vs-MP-instrumentation.png)
 
-In Mixpanel, we also have a separate table for users and user properties. If using Mixpanel’s SDK, unique users are identified by a `$device_id` to associate events to the same anonymous user. Once a user signs up or logs in, you’ll call .identify(<user_id>) to map users’ known user_id to their `$device_id`. In Adobe on the other hand, unique users are identified by the concatenation of post_visid_high and post_visid_low properties on the “hit”. Adobe will take the first ID present from in the “hit” as the official visitor ID, and then use the concatenation of post_visid_high and post_visid_low as the standard of identifying unique visitors regardless of how they were identified as a [unique visitor](https://experienceleague.adobe.com/docs/analytics/export/analytics-data-feed/data-feed-contents/datafeeds-calculate.html?lang=en). For example, if you are setting a custom visitor ID (included in the "vid" query parameter), that ID will be used before other IDs that might be present on that same hit. 
+In Mixpanel, we also have a separate table for users and user properties. If using Mixpanel’s SDK, unique users are identified by a `$device_id` to associate events to the same anonymous user. Once a user signs up or logs in, you’ll call .identify(<user_id>) to map users’ known user_id to their `$device_id`. In Adobe on the other hand, unique users are identified by the concatenation of post_visid_high and post_visid_low properties on the "hit". Adobe will take the first ID present from in the "hit" as the official visitor ID, and then use the concatenation of post_visid_high and post_visid_low as the standard of identifying unique visitors regardless of how they were identified as a [unique visitor](https://experienceleague.adobe.com/docs/analytics/export/analytics-data-feed/data-feed-contents/datafeeds-calculate.html?lang=en). For example, if you are setting a custom visitor ID (included in the "vid" query parameter), that ID will be used before other IDs that might be present on that same hit. 
 
 ### Frequently used key metrics on Adobe and how they differ on Mixpanel
 
@@ -78,7 +78,7 @@ We recommend the following steps to get started quickly:
     mixpanel.init('YOUR_TOKEN', {track_pageview: true});
     ```
     
-- Track a few key [“value moment” events](/docs/getting-started/plan-your-implementation#value-moment-event) of interest
+- Track a few key ["value moment" events](/docs/getting-started/plan-your-implementation#value-moment-event) of interest
     
     ```
     // Send a "Played song" event to Mixpanel

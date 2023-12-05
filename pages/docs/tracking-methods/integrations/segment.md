@@ -12,7 +12,7 @@ Startup eligibility requirements:
 * Raised no more than $8MM USD in total funding
 
 ## How the Integration Works
-In the simplest form, the Segment libraries (“Sources”) generate messages about what’s happening in your site or app, and send them to the Segment servers. Segment then translates the content of those messages into different formats for use by other tools (which we call ‘Destinations’), and sends the translated messages to those tools. The Segment servers also archive a copy of the data, and can send data to your storage systems (such as databases, warehouses, or bulk-storage buckets).
+In the simplest form, the Segment libraries ("Sources") generate messages about what’s happening in your site or app, and send them to the Segment servers. Segment then translates the content of those messages into different formats for use by other tools (which we call ‘Destinations’), and sends the translated messages to those tools. The Segment servers also archive a copy of the data, and can send data to your storage systems (such as databases, warehouses, or bulk-storage buckets).
 
 For detailed instructions on how to install and initialize the Segment library please refer to the [Segment Getting Started Guide](https://segment.com/docs/getting-started/02-simple-install/).
 

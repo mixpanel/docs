@@ -43,8 +43,8 @@ All events tracked by users within the date range will be included in the Experi
 
 Experiments will run calculations on the following supported metrics:
 
-- Insights - line charts with “Total” count, including charts with breakdowns.
-- Insights - line charts with “Unique” count, including charts with breakdowns.
+- Insights - line charts with "Total" count, including charts with breakdowns.
+- Insights - line charts with "Unique" count, including charts with breakdowns.
 - Insights - line chart with "Sum of property values", including charts with breakdowns.
 - Funnels - funnels with "Unique" count, including charts with breakdowns and any number of steps.
 
@@ -124,14 +124,14 @@ If you are using our color-coded thresholds of 95%, there is a 5% chance that an
 
 Mixpanel will automatically populate the Experiment, Control, and Variant dropdowns within the report if sent in the proper format.
 
-Mixpanel scans for experiments that began in the date range you’ve selected for the report.  If any are found, then they will appear under the “Tracked Experiments” sub-header. To do this you must send data in the following format:
+Mixpanel scans for experiments that began in the date range you’ve selected for the report.  If any are found, then they will appear under the "Tracked Experiments" sub-header. To do this you must send data in the following format:
 
-**Event Name:** “$experiment_started”
+**Event Name:** "$experiment_started"
 
 **Event Properties:**
 
-- “Experiment name” - the name of the experiment to which the user has been exposed
-- “Variant name” - the name of the variant into which the user was bucketed, for that experiment
+- "Experiment name" - the name of the experiment to which the user has been exposed
+- "Variant name" - the name of the variant into which the user was bucketed, for that experiment
 
 An example track call would appear like this:
 

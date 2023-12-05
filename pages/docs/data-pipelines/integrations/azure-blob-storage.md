@@ -30,7 +30,7 @@ $ az ad sp create-for-rbac --sdk-auth
 }
 ```
 
-If the above step is successful, go to the Azure. Navigate to a blob storage container of your choice and assign the “Storage Blob Data Contributor” to the Service Principal from above.
+If the above step is successful, go to the Azure. Navigate to a blob storage container of your choice and assign the "Storage Blob Data Contributor" to the Service Principal from above.
 
 Mixpanel needs the `clientId`, `clientSecret`, and `tenantId` to access the blob container as the Service Principal. You must provide the blob account name, container name, and (optional) path prefix you want to choose for the export.
 

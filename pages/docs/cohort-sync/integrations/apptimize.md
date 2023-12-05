@@ -23,7 +23,7 @@ Follow these steps to enable the integration with Apptimize:
 
 ![Apptimize 2 Image](/apptimize2.png)
 
-3. You will need to provide an Apptimize Token (generated from the Apptimize dashboard) to authorize the connection. To generate an Apptimize token, go to the Tokens page on Apptimize Dashboard and click “New Token”. Give the token a memorable name and click Generate.
+3. You will need to provide an Apptimize Token (generated from the Apptimize dashboard) to authorize the connection. To generate an Apptimize token, go to the Tokens page on Apptimize Dashboard and click "New Token". Give the token a memorable name and click Generate.
 
 ![Apptimize 3 Image](/apptimize3.png)
 

@@ -79,7 +79,7 @@ In order to build a Braze Segment after importing a cohort:
 
 ![Braze 12 Image](/braze12.png)
 
-5. Select the “includes” value from the dropdown. Click **Search for a value** from the dropdown.
+5. Select the "includes" value from the dropdown. Click **Search for a value** from the dropdown.
 
 ![Braze 13 Image](/braze13.png)
 

@@ -23,8 +23,8 @@ They can enable Organization Discoverability by first specifying the private (i.
 
 The org owner or admin can then designate the level of discoverability of their organization; **open to join**, **subject to admin approval**, or **invite only**.
 
-**Open Organization:** An organization designated “open to join” is discoverable and joinable to any new users with an admin-specified email domain(s).
+**Open Organization:** An organization designated "open to join" is discoverable and joinable to any new users with an admin-specified email domain(s).
 
-**Admin Approval:** An organization designated as requiring “admin approval” is discoverable to any new user signing up with a specified email domain, but can only be joined upon request. Admins will receive an email notification to authorize access.
+**Admin Approval:** An organization designated as requiring "admin approval" is discoverable to any new user signing up with a specified email domain, but can only be joined upon request. Admins will receive an email notification to authorize access.
 
-**Invite Only:** An organization designated “invite only” is undiscoverable regardless of email domain. New users must be invited by the admin.
+**Invite Only:** An organization designated "invite only" is undiscoverable regardless of email domain. New users must be invited by the admin.

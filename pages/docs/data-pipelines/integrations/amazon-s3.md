@@ -296,14 +296,14 @@ To query a single table schema, use this snippet.
 ```sql
 SELECT count(*)
 FROM mixpanel.mp_master_event
-WHERE mp_event_name = “<CLEANED_EVENT_NAME>”
+WHERE mp_event_name = "<CLEANED_EVENT_NAME>"
 ```
 
 To query a multiple table schema, use this snippet.
 ```sql
 SELECT count(*)
 FROM mixpanel.mp_master_event
-WHERE mp_event_name = “<CLEANED_EVENT_NAME>”
+WHERE mp_event_name = "<CLEANED_EVENT_NAME>"
 ```
 
 `CLEANED_EVENT_NAME` is the transformed event name based on [transformation rules](/docs/data-pipelines/schematized-export-pipeline#transformation-rules).

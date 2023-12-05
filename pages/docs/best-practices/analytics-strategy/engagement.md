@@ -6,7 +6,7 @@ User engagement measures how users find value in a product or service. Engagemen
 ## Engagement should be defined by value, not just usage
 How do you define your product’s value moment so that you can measure engagement accordingly? One common strategy is to track every single user event, come up with an array of metrics, and consider them all equally. This can give a false sense of how many active users you have and how often they receive value from your product.
 
-Let’s say you have a delivery app. Is every login, settings change, and menu click a value moment? If not, it may be easier and more effective to prioritize a single value moment to track, like “completed order.”
+Let’s say you have a delivery app. Is every login, settings change, and menu click a value moment? If not, it may be easier and more effective to prioritize a single value moment to track, like "completed order."
 
 Prioritizing a single value moment is hard, but it’s a more straightforward way of gauging the value that your product brings to market. Value moments will look different for different products and industries, but here are some examples to help you assess what your product’s unique value moment is:
 
@@ -23,19 +23,19 @@ See how many users are finding value in your product with the [Company KPIs Temp
 
 ![image](https://user-images.githubusercontent.com/2077899/233904492-a5674dd3-7a18-44fb-bae5-d35af23b5c72.png)
 
-If you’re a media streaming app, your product’s value moment might be “watch video.” In this chart, you can see the unique number of users as well as the total number of value moments across all users. “Unique” counts each user once—regardless of where they watched a single video or five—while “total” count every time a video was watched across all users. By seeing both, you can observe how many individual users experience value and what timeframe they are reaching that value moment.
+If you’re a media streaming app, your product’s value moment might be "watch video." In this chart, you can see the unique number of users as well as the total number of value moments across all users. "Unique" counts each user once—regardless of where they watched a single video or five—while "total" count every time a video was watched across all users. By seeing both, you can observe how many individual users experience value and what timeframe they are reaching that value moment.
 
 ## How do I… see who my most engaged users are?
 ![image](https://user-images.githubusercontent.com/2077899/233904557-2d15bdb5-3e41-4353-9cc1-05ac33613b48.png)
 
-You can identify your most engaged users by using cohorts. Cohorts are a group of users defined by a chosen set of criteria—in this case, users who have reached the value moment three times in the last month. (P.S. If you click in and see this cohort in the “Users” page, you’ll see the full list of user names and emails). This chart uses an auto-generated cohort of your “engaged users” by grouping users who have performed your product’s value moment—in this case, “watch video”—at least 3 times a week.
+You can identify your most engaged users by using cohorts. Cohorts are a group of users defined by a chosen set of criteria—in this case, users who have reached the value moment three times in the last month. (P.S. If you click in and see this cohort in the "Users" page, you’ll see the full list of user names and emails). This chart uses an auto-generated cohort of your "engaged users" by grouping users who have performed your product’s value moment—in this case, "watch video"—at least 3 times a week.
 
 Mixpanel’s Company KPIs Board template automatically creates a report with a ready-made cohort of your most engaged users. Try it for free [here](https://mixpanel.com/project?show-event-translator=true).
 
 While the Company KPIs Board template is designed to do the heavy lifting for you, it’s easy to find your product’s power/core/casual users on your own. Here’s how:
 
-* In the Insights report, select an event that you define as your value moment (e.g., “watch video”).
-* Highlight “total” to bring up all the different ways you can group your users. Select “total per user.”
+* In the Insights report, select an event that you define as your value moment (e.g., "watch video").
+* Highlight "total" to bring up all the different ways you can group your users. Select "total per user."
 * Select your level of aggregation. Median (50th percentile) will be your core users. 90th percentile will be your power users. 25th percentile will be your casual users. By highlighting the line graph, you can view how many videos each group typically watches hourly, daily, weekly, or monthly.
 * Customize the date range. Mixpanel will default your line graph over time to a look back of the last 30 days (from the active day) and a day-by-day count.
  
@@ -65,13 +65,13 @@ The dimension you end up picking depends on how people get the most value out of
 
  
 ### How do I… determine how many users are getting to a value moment?
-Next, let’s find your product’s activation rate, which shows how quickly and effectively users are getting to a predetermined value moment within a set period of time. We can find ours by measuring how many users are going from your “sign up” (or “session start”) event to your value moment event within a given timeframe.
+Next, let’s find your product’s activation rate, which shows how quickly and effectively users are getting to a predetermined value moment within a set period of time. We can find ours by measuring how many users are going from your "sign up" (or "session start") event to your value moment event within a given timeframe.
 
 ![image](https://user-images.githubusercontent.com/2077899/233904890-ca7d3cfc-7544-4031-8761-3c965dee1472.png)
 
-The Funnels report allows us to look at behaviors preformed in a series. It’s how we build “conversion” or “completion” metrics and quantify the overall health of any customer acquisition strategy.
+The Funnels report allows us to look at behaviors preformed in a series. It’s how we build "conversion" or "completion" metrics and quantify the overall health of any customer acquisition strategy.
 
-In the query builder, we add the behaviors, or steps, in a user journey we wish to measure in order—in this case, our signup event and our value moment event. The “conversion window,” the amount of time that each user has to complete all these actions in order to count at each step, is set to 30 days.
+In the query builder, we add the behaviors, or steps, in a user journey we wish to measure in order—in this case, our signup event and our value moment event. The "conversion window," the amount of time that each user has to complete all these actions in order to count at each step, is set to 30 days.
 
 The funnel shows that in the last 30 days, 75.34% of users who signed up went on to watch a video within 30 days. You can also see that it took an average of 6.8 days for users to watch a video after signing up. That’s valuable intel if you’re trying to tighten that window and help users find value even sooner.
 
@@ -81,13 +81,13 @@ Discover your product’s activation rate in just a few clicks with the Company 
 ## What is my product usage interval?
 To group your users based on how engaged they are, you need to know how frequently they typically use your product. Daily? Weekly? Monthly? Every few months?
 
-With popular “concierge medicine” apps like One Medical, Forward, or Parsley Health, the key value proposition is the convenience of booking medical appointments; so somebody who books an appointment once every six months on may well be “very active.” And somebody who books an appointment every year could still be considered “quite active.”
+With popular "concierge medicine" apps like One Medical, Forward, or Parsley Health, the key value proposition is the convenience of booking medical appointments; so somebody who books an appointment once every six months on may well be "very active." And somebody who books an appointment every year could still be considered "quite active."
 
-Now, let’s look at the other extreme—a social media app like TikTok. The value moment here might be watching a video and “hearting” it. Every day, a typical “active” user can “heart” 10, 20, even 30 videos. That’s a far cry from once a year!
+Now, let’s look at the other extreme—a social media app like TikTok. The value moment here might be watching a video and "hearting" it. Every day, a typical "active" user can "heart" 10, 20, even 30 videos. That’s a far cry from once a year!
 
-In short, there’s no standard “good” product usage interval, and you will need a combination of product intuition and product analytics to figure out the right one for your product.
+In short, there’s no standard "good" product usage interval, and you will need a combination of product intuition and product analytics to figure out the right one for your product.
 
-Reforge pioneered this way of thinking about product usage intervals with their “habit zone” framework.
+Reforge pioneered this way of thinking about product usage intervals with their "habit zone" framework.
 
 ![image](https://user-images.githubusercontent.com/2077899/233904941-ce9d308b-f9c0-40c1-b037-dbc958980149.png)
  
@@ -103,7 +103,7 @@ In Mixpanel, you can easily move from a Funnel to our Flows report to better und
 
 The Flows report is an alternative to Funnels and is useful when you don’t know the exact path your users take to arrive at some destination, and you want to map out all possible journeys. In Flows, once we choose a couple of key milestones in our user journey, we’ll be able to unfold their behaviors in-between specific anchoring steps.
 
-The first step of our flow is our signup event and the last step is our value moment, “watch video.” Because our query is set to “1 step after” the first event and “1 step before” the last, we can see what users most commonly did immediately following the signup event and immediately before reaching their value moment. It looks like most users subscribed to a channel and then liked a piece of content before reaching their value moment.
+The first step of our flow is our signup event and the last step is our value moment, "watch video." Because our query is set to "1 step after" the first event and "1 step before" the last, we can see what users most commonly did immediately following the signup event and immediately before reaching their value moment. It looks like most users subscribed to a channel and then liked a piece of content before reaching their value moment.
  
 
 ### Where can I learn more? 

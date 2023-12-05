@@ -78,4 +78,4 @@ Trial limitations:
 * Backfilled data will only include one day prior to the creation date.
 * Pipelines will, by default, include both event and user data (not available for raw pipelines).
 * The pipeline cannot filter by event name.
-* The “Create Pipeline” parameters will default to the values highlighted to list in the [parameters table](https://developer.mixpanel.com/reference/create-pipelines#create-warehouse-pipeline).
+* The "Create Pipeline" parameters will default to the values highlighted to list in the [parameters table](https://developer.mixpanel.com/reference/create-pipelines#create-warehouse-pipeline).

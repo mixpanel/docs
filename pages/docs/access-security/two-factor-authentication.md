@@ -13,13 +13,13 @@ If you are an organization admin, you can enable two-factor authentication by do
 
 ![2FA Access Security Image](/2fa_access_security.png)
 
-2. In “Two Factor Authentication”, if the icon is gray, click it to enable. If the icon is purple, click it to disable.
+2. In "Two Factor Authentication", if the icon is gray, click it to enable. If the icon is purple, click it to disable.
 
 **Note: If your organization has SSO enabled, your organization will not have access to 2FA.**
 
 ![2FA Enable Image](/2fa_enable_2fa.png)
 
-3. The “Verify Mixpanel password” box will appear.
+3. The "Verify Mixpanel password" box will appear.
 
 **Note: If you do not have a password because you use Magic Link or Google Sign In, please go to your personal settings to set up your password.**
 
@@ -45,7 +45,7 @@ On their second login, Mixpanel Users will be prompted to set up two-factor auth
 
 ![2FA Authentication App 2 Image](/2fa_authentication_app2.png)
 
-If you are unable to scan the QR code, click on “Can’t scan QR code?” This will provide you a two-factor secret to set up your authentication app manually.
+If you are unable to scan the QR code, click on "Can’t scan QR code?" This will provide you a two-factor secret to set up your authentication app manually.
 
 ![2FA Authentication App 2b Image](/2fa_authentication_app2b.png)
 
@@ -111,7 +111,7 @@ If you are unable to log in due to two-factor authentication because you have ei
 
 If an authentication app is your preferred method of authentication, you can login via your saved recovery codes if you don’t have access to your phone. A user can login via a recovery code by doing the following:
 
-1. Click on “Need help? Use a recovery code to sign in”
+1. Click on "Need help? Use a recovery code to sign in"
 
 ![2FA Backup 1 Image](/2fa_backup1.png)
 

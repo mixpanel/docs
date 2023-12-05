@@ -84,7 +84,7 @@ A group is identified by the `group_key` and `group_id`.
 * `group_key` is the property that connects event data for Group Analytics.
 * `group_id` is the identifier for a specific group.
 
-If the property “Company” is chosen for Group Analytics, “Company” is the `group_key`, and “Mixpanel”, “Company A”, and “13254” are all potential `group_id` values. 
+If the property "Company" is chosen for Group Analytics, "Company" is the `group_key`, and "Mixpanel", "Company A", and "13254" are all potential `group_id` values. 
 
 A user can belong to multiple groups. All updates to a group operate on the `group_key` and `group_id`.
 
@@ -96,12 +96,12 @@ To send group identifiers with events, send the `group_key` as a property key an
 
 ```ruby
 Tracker = Mixpanel::Tracker.new(YOUR_MIXPANEL_TOKEN)
-tracker.track("user_id1", “App Open”, {
+tracker.track("user_id1", "App Open", {
   ‘GROUP KEY’ => 1234,
 })
  
 ## event will be attributed to multiple groups with IDs 1000, 1234
-tracker.track(“user_id1”, “App Open”, {
+tracker.track("user_id1", "App Open", {
   ‘GROUP KEY’ => [1000, 1234],
 })
 ```

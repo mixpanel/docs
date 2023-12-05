@@ -39,9 +39,9 @@ Navigate to Project Settings, and select at the left-hand menu  Data Views.
 ![Manage Data View Project Settings](/manage-data-view-project-settings.png)
 
 #### Default Data View
-All projects have a global Data View called “All Project Data.” This Data View has no data filters and gives users access to all the data in a project. The global Data View in a project is equivalent to a Mixpanel project without Data Views.
+All projects have a global Data View called "All Project Data." This Data View has no data filters and gives users access to all the data in a project. The global Data View in a project is equivalent to a Mixpanel project without Data Views.
 
-The “All Project Data” Data View starts as the default Data View of a project for any new users added to the project. You can decide which Data View you want to set as default by checking the box next to the Workspace name and selecting **Set Default**.
+The "All Project Data" Data View starts as the default Data View of a project for any new users added to the project. You can decide which Data View you want to set as default by checking the box next to the Workspace name and selecting **Set Default**.
 
 ![Manage Data View Project Settings](/set-default-data-view.png)
 

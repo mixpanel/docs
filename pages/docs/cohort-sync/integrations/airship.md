@@ -26,11 +26,11 @@ In order to integrate Airship with Mixpanel for anonymous mobile audience identi
 
 ## How does Mixpanel export data to Airship?
 
-**For one-time exports:** Mixpanel will send a static export of users who currently qualify for the cohort. This is exported to Airship as a Tag Group that allows you to create an audience to target users. You will be able to name the Tag Group that appears in Airship. These names will only be added to the Tag Group with the Group Key called “mixpanel” (Group Keys are case sensitive).
+**For one-time exports:** Mixpanel will send a static export of users who currently qualify for the cohort. This is exported to Airship as a Tag Group that allows you to create an audience to target users. You will be able to name the Tag Group that appears in Airship. These names will only be added to the Tag Group with the Group Key called "mixpanel" (Group Keys are case sensitive).
 
 _It is not recommended to use the same tag name for two static exports, as users who qualified at each time of export will be included in the tag within Airship._
 
-**For dynamically syncing exports:** Every 15 minutes, Mixpanel will initiate a sync between the Mixpanel cohort and the Airship tag. At the time of the sync, Mixpanel will add the tag for newly-qualified users, and remove the tag for users who have exited the cohort. Users can move into and out of the cohort depending on if they meet the cohort criteria. Note that these tags only apply to the “mixpanel” Tag Group Key, which must be created within Airship.
+**For dynamically syncing exports:** Every 15 minutes, Mixpanel will initiate a sync between the Mixpanel cohort and the Airship tag. At the time of the sync, Mixpanel will add the tag for newly-qualified users, and remove the tag for users who have exited the cohort. Users can move into and out of the cohort depending on if they meet the cohort criteria. Note that these tags only apply to the "mixpanel" Tag Group Key, which must be created within Airship.
 
 ## How are users matched between Airship and Mixpanel?
 > **Warning:** Projects using the [simplified ID merge system](/docs/tracking-methods/identifying-users#simplified-vs-original-id-merge) must have the $user_id in Mixpanel match the user identifier in the partner service. Using any alternative partner properties to match users between tools may result in partner events not being attributed to the correct user in Mixpanel. Any partner properties mentioned in the below section are primarly applicable to projects on the original ID merge system.

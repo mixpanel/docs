@@ -16,8 +16,8 @@ You can find the exact list on our [GitHub](https://github.com/mixpanel/mixpanel
 Any other bot hitting your site will affect your Mixpanel data. That being said, it’s possible to set up some code to filter out these users:
 
 1. Find the user agent information of the individual accessing the site.
-2. Look for the word “bot” anywhere in the user agent information.
-3. If you find “bot,” set the $ignore property to true.
+2. Look for the word "bot" anywhere in the user agent information.
+3. If you find "bot," set the $ignore property to true.
 
 If you can, identify a common pattern in the bots to block them all in one shot by filtering out any interaction with your site that comes from a web framework that is not a consumer-facing browser. As an example, for GTM bots, this code would look like this:
 

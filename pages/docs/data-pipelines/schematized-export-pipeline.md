@@ -96,17 +96,17 @@ There are several naming transformations that happen as a result of character co
 
 Capitalized letters are converted to lower case. Any duplicate strings has a numeric value appended to them to differentiate.
 
-For example if values “XY” and “Xy” are sent in: 
-* Both are transformed to “xy”.  
-* If “Xy” is sent in after "XY", it becomes “xy_1”. 
-* Any subsequent  “xy” values inherit incremental numeric values (i.e. xy_2, xy_3, etc.).
+For example if values "XY" and "Xy" are sent in: 
+* Both are transformed to "xy".  
+* If "Xy" is sent in after "XY", it becomes "xy_1". 
+* Any subsequent  "xy" values inherit incremental numeric values (i.e. xy_2, xy_3, etc.).
 
 #### Type Conflicts 
 Mixpanel transforms values to resolve type conflicts.
 
 If a property value is passed with a particular data type and is passed subsequently with a different data type, then the new data type appends to the property name.
 
-For example, if  “X” appears with type INT first, then subsequently appears as type STRING (or VARCHAR), then the property name will be transformed to "x_string" with a data type of string. 
+For example, if  "X" appears with type INT first, then subsequently appears as type STRING (or VARCHAR), then the property name will be transformed to "x_string" with a data type of string. 
 
 #### New Properties
 New properties that were not present in previous imports will append to the old rows with a `NULL` value.
@@ -162,31 +162,31 @@ Here is an example dataset to view different schema options in either one table 
 
 ```json
 {
-       “event”: “Signup”, 
-       “properties”: {
-       “plan”: “free”, 
-       “browser”: “chrome”, 
-       “distinct_id”: 1, 
-       “time”: 123
+       "event": "Signup", 
+       "properties": {
+       "plan": "free", 
+       "browser": "chrome", 
+       "distinct_id": 1, 
+       "time": 123
        }
 }
 {
-       “event”: “Purchase”, 
-       “properties”: {
-       “product_id”: “123”, 
-       “browser”: “chrome”, 
-       “distinct_id”: 1, 
-       “time”: 124
+       "event": "Purchase", 
+       "properties": {
+       "product_id": "123", 
+       "browser": "chrome", 
+       "distinct_id": 1, 
+       "time": 124
        }
 }
 {
-       “event”: “Signup”, 
-       “properties”: {
-       “plan”: “paid”, 
-       “browser”: “firefox”, 
-       “ab_test”: 1, 
-       “distinct_id”: 2, 
-       “time”: 125
+       "event": "Signup", 
+       "properties": {
+       "plan": "paid", 
+       "browser": "firefox", 
+       "ab_test": 1, 
+       "distinct_id": 2, 
+       "time": 125
 }
 ```
 ##### One Table for All Events
@@ -195,9 +195,9 @@ Single table: _mixpanel_events_
 
 | mp_event_name | time | distinct_id | plan   | browser   | product_id | ab_test |
 | :------------ | :--- | :---------- | :----- | :-------- | :--------- | :------ |
-| “Signup”      | 123  | 1           | "free" | "chrome"  | NULL       | NULL    |
-| “Purchase”    | 124  | 1           | NULL   | "chrome"  | 123        | NULL    |
-| “Signup”      | 125  | 2           | "paid" | "firefox" | NULL       | 1       |
+| "Signup"      | 123  | 1           | "free" | "chrome"  | NULL       | NULL    |
+| "Purchase"    | 124  | 1           | NULL   | "chrome"  | 123        | NULL    |
+| "Signup"      | 125  | 2           | "paid" | "firefox" | NULL       | 1       |
 
 ##### One Table for Each Event
 

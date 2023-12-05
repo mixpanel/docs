@@ -9,7 +9,7 @@ Retention is the metric that shows whether your product has staying power. Reten
 
 A common mistake made when defining a retention metric is tying it to revenue (i.e., a paying customer is a retained customer). Why? Revenue is a lagging indicator, it’s really hard to predict churn and get in front of it. Just because somebody is paying for a product right now doesn’t mean they will next month or even next year.
 
-A retention metric tied to product usage, however, is a more accurate predictor of churn, and a more useful KPI for teams to act on. It’s important to track an event or action that represents that your users are repeatedly getting value from your product. This event or action is something meaningful that your users do after they log in, such as “Send a message” in a messaging app, or “Watch a video” in a media streaming app. The depth and frequency of engagement will depend on the product usage interval. For example, you’ll expect users to come back more frequently to a social media app (daily), compared to a travel booking app (quarterly, or twice a year).
+A retention metric tied to product usage, however, is a more accurate predictor of churn, and a more useful KPI for teams to act on. It’s important to track an event or action that represents that your users are repeatedly getting value from your product. This event or action is something meaningful that your users do after they log in, such as "Send a message" in a messaging app, or "Watch a video" in a media streaming app. The depth and frequency of engagement will depend on the product usage interval. For example, you’ll expect users to come back more frequently to a social media app (daily), compared to a travel booking app (quarterly, or twice a year).
 
 Of course, some products can deliver a ton, if not all, of their value in one single value moment. Say you want to buy a couch, so you download a virtual measuring app, use it once, and then delete it for good. Or maybe you open a dating app, fall in love with the first person you swipe on, and never look back. But for most digital products, the only way to bring a lot of value to users is to keep them coming back regularly to engage with your product.
 
@@ -26,26 +26,26 @@ We generally recommend having 7-day retention as a leading indicator for 30- or 
 
 ![image](https://user-images.githubusercontent.com/2077899/233905319-4cb2064b-35ce-48d2-acc1-c3df7f54775a.png)
 
-This Insights report visualizes the number of unique signups in your product over time—in this case, a 3-month period. “Sign up” is the event where a user makes themselves known to your product by “creating an account.” It may look slightly different for different products but the concept is largely the same across the board.
+This Insights report visualizes the number of unique signups in your product over time—in this case, a 3-month period. "Sign up" is the event where a user makes themselves known to your product by "creating an account." It may look slightly different for different products but the concept is largely the same across the board.
 
-We also use “compare to previous year” in our analysis to better understand how signups are trending over time. Note: If you're an early-stage startup, you may not have enough history for this to be useful.
+We also use "compare to previous year" in our analysis to better understand how signups are trending over time. Note: If you're an early-stage startup, you may not have enough history for this to be useful.
 
  
 
 ### How do I…identify my dormant users?
-While it may not be as fruitful to focus on churned users, it’s good to keep an eye on your dormant ones. You can use cohorts to find not only your most engaged users but also your most “at-risk” users.
+While it may not be as fruitful to focus on churned users, it’s good to keep an eye on your dormant ones. You can use cohorts to find not only your most engaged users but also your most "at-risk" users.
 
 ![image](https://user-images.githubusercontent.com/2077899/233905339-68e40986-3331-48e0-9c9e-67ddac1b8419.png)
 
-In the previous chart, we defined our engaged users as users who reached a value moment twice in a set timeframe. Here, we define our dormant, or “driftaway” users as users who reached a value moment once, but did not reach it again within 30 days.
+In the previous chart, we defined our engaged users as users who reached a value moment twice in a set timeframe. Here, we define our dormant, or "driftaway" users as users who reached a value moment once, but did not reach it again within 30 days.
 
 
-If you notice that you have a lot of dormant users, you can think about re-engagement strategies to bring them back. In Mixpanel, you can even click into your driftaway cohort with the “View Users” feature to see who those users are, so you can reach out for an interview or with an offer. The goal is, of course, to decrease your dormant users, but if you’re not seeing a boost in engaged users alongside it, those users may be completely inactive or have churned altogether.
+If you notice that you have a lot of dormant users, you can think about re-engagement strategies to bring them back. In Mixpanel, you can even click into your driftaway cohort with the "View Users" feature to see who those users are, so you can reach out for an interview or with an offer. The goal is, of course, to decrease your dormant users, but if you’re not seeing a boost in engaged users alongside it, those users may be completely inactive or have churned altogether.
 
 The best way to move metrics is to measure them. Keep track of your engaged and dormant users with the Company KPI Template.
 
 
-## What does “good” retention look like?
+## What does "good" retention look like?
 While there are no hard and fast rules, we like [Lenny Rachitsky’s take](https://www.lennysnewsletter.com/p/what-is-good-retention-issue-29), which looks at both good and great user retention by industry:
 
 GOOD and GREAT User Retention

@@ -197,7 +197,7 @@ Event 2: Add to Cart
 
 Event 3: Purchase
 
-You can exclude users who did another “Browse product” event between Event 2 and Event 3 to and see how that affects your funnel's conversion rate.
+You can exclude users who did another "Browse product" event between Event 2 and Event 3 to and see how that affects your funnel's conversion rate.
 
 Further example use cases:
 
@@ -384,7 +384,7 @@ Check out the video below for more information and an example use case.
 
 When grouping or filtering the results of your funnel, user count will be determined by the number of unique users for each property combination.
 
-For example, if you are an e-commerce site grouping by the property “item” to determine what users are searching for and purchasing, users will appear in the table once for each property they use. In a funnel where Event A is “Search”, Event B is “Add to Cart”, and Event C is “Purchase”, a user may complete the funnel twice, once with the property “hat”, and once with the property “shirt”. This user would convert through the funnel, and be counted in the Group By table for both “hat” and “shirt” when grouping by property “item”. They would be counted in the “overall” row as completing the funnel once.
+For example, if you are an e-commerce site grouping by the property "item" to determine what users are searching for and purchasing, users will appear in the table once for each property they use. In a funnel where Event A is "Search", Event B is "Add to Cart", and Event C is "Purchase", a user may complete the funnel twice, once with the property "hat", and once with the property "shirt". This user would convert through the funnel, and be counted in the Group By table for both "hat" and "shirt" when grouping by property "item". They would be counted in the "overall" row as completing the funnel once.
 
 This behavior matches how users are counted when filtering by property: if a user goes through the entire funnel X times with Y distinct event property values, the user will be counted Y times.
 
@@ -401,13 +401,13 @@ In order to clarify this statistical significance, the segmentation chart shows 
 
 ![/Screen_Shot_2019-10-28_at_2.28.54_PM.png](/Screen_Shot_2019-10-28_at_2.28.54_PM.png)
 
-Scrolling further down the table takes you to the statistically insignificant segments. If a segment has less than 30 samples, p-value is not shown, as the sample size is too low to detect difference from overall population. This is indicated by “Insufficient samples”.
+Scrolling further down the table takes you to the statistically insignificant segments. If a segment has less than 30 samples, p-value is not shown, as the sample size is too low to detect difference from overall population. This is indicated by "Insufficient samples".
 
 The number of samples is the same as the count of entries into the funnel. If the funnel is looking at the unique count, this is the number of unique users who entered the funnel in that segment. If the funnel is looking at total count, this is the total number of entries into the funnel in that segment.
 
 You can choose to sort by any of the columns of the overall table in descending or ascending order by clicking on the header. If you sort by statistical significance, values with confidence level of > 0.95 are shown first, and then values with confidence level < 0.95. The secondary sorting is determined by the overall conversion rate for the funnel.
 
-Click on the **dot** beside the statistical significance number to make that property value the Control value that the other property values are compared to. To return to the default view, click the **dot** beside “Overall”.
+Click on the **dot** beside the statistical significance number to make that property value the Control value that the other property values are compared to. To return to the default view, click the **dot** beside "Overall".
 
 ![/Oct-28-2019_10-35-23.gif](/Oct-28-2019_10-35-23.gif)
 
@@ -417,7 +417,7 @@ Click on the **dot** beside the statistical significance number to make that p
 
 Event property values can vary from step to step in your funnel. For example, a user may select a blue shirt in step 1, but put a red shirt in their cart in step 3. If you want to control when the property value is locked in for all steps of your funnel, you can use property attribution.
 
-To access this feature, filter or breakdown by a property in the funnel chart below the query builder. Click on **Last touch** to select either “Last touch”, “First touch”, or a specific step number.
+To access this feature, filter or breakdown by a property in the funnel chart below the query builder. Click on **Last touch** to select either "Last touch", "First touch", or a specific step number.
 
 ![/Screen_Shot_2022-07-12_at_3.33.03_PM.png](/Screen_Shot_2022-07-12_at_3.33.03_PM.png)
 
@@ -425,27 +425,27 @@ Your selected choice will determine which step of your funnel determines the pro
 
 #### First Touch Attribution and Forwardfilling
 
-By default, Mixpanel “forwardfills” [event properties](/docs/data-structure/events-and-properties) in instances where properties are sent in earlier steps of a Funnel but not sent in subsequent steps of the same funnel. This means that the property that is present in early steps of a funnel is appended to the later steps of the funnel where it was previously absent.
+By default, Mixpanel "forwardfills" [event properties](/docs/data-structure/events-and-properties) in instances where properties are sent in earlier steps of a Funnel but not sent in subsequent steps of the same funnel. This means that the property that is present in early steps of a funnel is appended to the later steps of the funnel where it was previously absent.
 
 Select **First touch** to attribute the first property value to the whole funnel, regardless of whether the property value changes in subsequent steps. First touch is not the same as the first step of the funnel, rather it is the first time the property is given a non-null defined value.
 
-For example, say that the user is shopping on your website and you want to track a funnel from Log In to Purchase. There are three events in this journey: Log In, Item View, and Purchase. Each event has its own properties, and the “Name” property is only sent with the “Log In” event. This property will be added to the subsequent events, where it was previously absent:
+For example, say that the user is shopping on your website and you want to track a funnel from Log In to Purchase. There are three events in this journey: Log In, Item View, and Purchase. Each event has its own properties, and the "Name" property is only sent with the "Log In" event. This property will be added to the subsequent events, where it was previously absent:
 
 ![/ForwardfillingDiagram.png](/ForwardfillingDiagram.png)
 
-As you can see in the diagram above, the property of “Name” is only a property for the event “Log In”, but that property is forwardfilled to the subsequent events.
+As you can see in the diagram above, the property of "Name" is only a property for the event "Log In", but that property is forwardfilled to the subsequent events.
 
 #### Last Touch Attribution and Backfilling
 
-By default, Mixpanel “backfills” [event properties](/docs/data-structure/events-and-properties) in instances where properties are sent in later steps of a Funnel but not sent in the earlier steps of the same funnel. This means that the property that is present in later steps of a funnel is appended to the earlier steps of the funnel where it was previously absent.
+By default, Mixpanel "backfills" [event properties](/docs/data-structure/events-and-properties) in instances where properties are sent in later steps of a Funnel but not sent in the earlier steps of the same funnel. This means that the property that is present in later steps of a funnel is appended to the earlier steps of the funnel where it was previously absent.
 
 Select **Last touch** to attribute the last property value to the whole funnel, regardless of the property value in previous steps. Last touch is not the same as the last step of the funnel, rather it is the last time the property is given a non-null defined value.
 
-For example, the user shopping on your website chooses to buy a shirt that costs $5. In this instance, properties of the item that is purchased are not sent until the “Purchase” event, so the property is backfilled and added to the “Item View” and “Log In” events:
+For example, the user shopping on your website chooses to buy a shirt that costs $5. In this instance, properties of the item that is purchased are not sent until the "Purchase" event, so the property is backfilled and added to the "Item View" and "Log In" events:
 
 ![/11544922524820.png](/11544922524820.png)
 
-As you can see, the property of “Item Price” is only a property of the event “Purchase”, but that property backfilled to the previous two steps. Also, the properties sent with the event “Item View” are backfilled to “Log In”.
+As you can see, the property of "Item Price" is only a property of the event "Purchase", but that property backfilled to the previous two steps. Also, the properties sent with the event "Item View" are backfilled to "Log In".
 
 If an event property is sent with all steps of a funnel but the value of the property changes across steps, then the most recent value is applied to all steps of the Funnel.
 
@@ -453,7 +453,7 @@ For example, the user shopping on your website views a blue shirt and adds it to
 
 ![/BackfillingReplaceDiagram.png](/BackfillingReplaceDiagram.png)
 
-As you can see, the property of “Item Color” is Blue for Event 2, but changes to Red for Event 3. As a result of backfilling, the property of “Item Color” will be appended to Red in the “Item View” event, and further backfilled to “Log In”  as well.
+As you can see, the property of "Item Color" is Blue for Event 2, but changes to Red for Event 3. As a result of backfilling, the property of "Item Color" will be appended to Red in the "Item View" event, and further backfilled to "Log In"  as well.
 
 #### Per-Step Attribution
 

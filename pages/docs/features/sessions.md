@@ -88,11 +88,11 @@ This is the length of time that defines a session timeout after a period of inac
 
 Any non-excluded event performed within the timeout range of the session will restart the session timeout period on the session.
 
-For example, say you set a session timeout length of 15 minutes. A user begins a session when they log into your app and perform the event “Log In.”
+For example, say you set a session timeout length of 15 minutes. A user begins a session when they log into your app and perform the event "Log In."
 
-- The “Log In” event marks the beginning of the session, because that user has not performed other events before.
-- The user then performs the “Start Game” event on your app after 14 minutes. This will restart the clock on the session timeout.
-- If they then perform no events for 16 minutes, however, the session will end. The session ends at the moment that the “Start Game” event was performed, because it was the last event before a complete session timeout period elapsed.
+- The "Log In" event marks the beginning of the session, because that user has not performed other events before.
+- The user then performs the "Start Game" event on your app after 14 minutes. This will restart the clock on the session timeout.
+- If they then perform no events for 16 minutes, however, the session will end. The session ends at the moment that the "Start Game" event was performed, because it was the last event before a complete session timeout period elapsed.
 
 Sessions are reset every 24 hours at midnight (according to your project timezone), so the maximum session timeout length is 24 hours. The minimum session timeout length is one minute.
 
@@ -104,7 +104,7 @@ Use your [Time to Convert Chart in Funnels](/docs/reports/funnels#time-to-conve
 
 ![image](https://github.com/mixpanel/docs/assets/2077899/2e831c9f-d3cc-4dcf-abb9-a741e22de34d)
 
-In your Funnel you can select the event that denotes a "Session Start" in your app (such as “Log In”), and the "Session End" event (such as “Log Out”). Check the time it takes users to convert from the start event to the end event in the Time to Convert Chart, and this will give you an indicator of the average amount of time a session lasts in your app.
+In your Funnel you can select the event that denotes a "Session Start" in your app (such as "Log In"), and the "Session End" event (such as "Log Out"). Check the time it takes users to convert from the start event to the end event in the Time to Convert Chart, and this will give you an indicator of the average amount of time a session lasts in your app.
 
 Be sure to exclude API-related events in your funnel to ensure that your conversion time is accurate. For example, if a user is receiving notifications from you every 25 minutes, and session timeout is every 30 minutes, then session length will be 24 hours.
 
@@ -133,13 +133,13 @@ Custom events are not supported for exclusions. If you want to exclude a custom 
 
 Session timeout length is set for 30 minutes.
 
-1. A user performs “Event A” at 1:00pm, starting the session and triggering the "Session Start" event.
-2. They then wait 10 minutes and perform “Event B” at 1:10pm.
-3. They do not perform any other events for 30 minutes, and the session ends and the "Session End" event is triggered. The time of Session End is the time of the last event performed at 1:10pm. Therefore the session length for “Session 1” is 10 minutes.
-4. The same user then returns after 40 minutes and performs “Event C” at 1:50pm. As the previous session has already timed out, this triggers a new "Session Start" event and starts a new session.
-5. The user then performs “Event D” 20 minutes later at 2:10pm.
-6. They perform “Event E” 15 minutes later at 2:25pm.
-7. When they do not perform any more events in the next 30 minutes, "Session End" is triggered. The time of the "Session End" is the last event performed at 2:25pm. Therefore the session length for “Session 2” is 35 minutes.
+1. A user performs "Event A" at 1:00pm, starting the session and triggering the "Session Start" event.
+2. They then wait 10 minutes and perform "Event B" at 1:10pm.
+3. They do not perform any other events for 30 minutes, and the session ends and the "Session End" event is triggered. The time of Session End is the time of the last event performed at 1:10pm. Therefore the session length for "Session 1" is 10 minutes.
+4. The same user then returns after 40 minutes and performs "Event C" at 1:50pm. As the previous session has already timed out, this triggers a new "Session Start" event and starts a new session.
+5. The user then performs "Event D" 20 minutes later at 2:10pm.
+6. They perform "Event E" 15 minutes later at 2:25pm.
+7. When they do not perform any more events in the next 30 minutes, "Session End" is triggered. The time of the "Session End" is the last event performed at 2:25pm. Therefore the session length for "Session 2" is 35 minutes.
 
 ##### Example 2
 
@@ -147,12 +147,12 @@ Session timeout length is set for 30 minutes.
 
 Session timeout length is set for 30 minutes.
 
-1. A user performs “Event A” at 11:30pm, starting the session and triggering the "Session Start" event.
-2. They then wait 20 minutes and perform “Event B” at 11:50pm.
-3. While this session is not timed to expire until 30 minutes after this event, all sessions are reset at midnight. Therefore, when the user performs “Event C” at 12:05am, it triggers a new "Session Start". The "Session End" time is the time that “Event B” was performed. Therefore the length of “Session 1” is 20 minutes.
-4. “Event C” performed at 12:05am starts the session and triggers the "Session Start" event.
-5. The user then waits 5 minutes and performs “Event D” at 12:10am.
-6. They do not perform any other events for 30 minutes, and the session ends. The time of "Session End" is the time of the last event performed at 12:10am. Therefore the session length for “Session 2” is 5 minutes.
+1. A user performs "Event A" at 11:30pm, starting the session and triggering the "Session Start" event.
+2. They then wait 20 minutes and perform "Event B" at 11:50pm.
+3. While this session is not timed to expire until 30 minutes after this event, all sessions are reset at midnight. Therefore, when the user performs "Event C" at 12:05am, it triggers a new "Session Start". The "Session End" time is the time that "Event B" was performed. Therefore the length of "Session 1" is 20 minutes.
+4. "Event C" performed at 12:05am starts the session and triggers the "Session Start" event.
+5. The user then waits 5 minutes and performs "Event D" at 12:10am.
+6. They do not perform any other events for 30 minutes, and the session ends. The time of "Session End" is the time of the last event performed at 12:10am. Therefore the session length for "Session 2" is 5 minutes.
 
 ### Event Based Sessions
 
@@ -172,9 +172,9 @@ Sessions are reset every 24 hours at midnight (according to your project timezon
 
 Session Start Event is set to `Login` and Session End Event is set to `Logout`.
 
-1. A user performs “Login” at 11:15 pm triggering the “Session Start” event.
-2. They then wait 30 minutes and perform “Event B” at 11:45 pm.
-3. When the user performs “Logout” at 12:15 am, it triggers new “Session End”. The "Session End" time is the time that “Logout” was performed. However, since all sessions are reset at midnight, the previous “Session Start” event is no longer associated with the “Session End Event”, and the session duration is not calculated for “Session 1”. Similarly, the “Session End Event” does not have an associated “Session Start Event” and session duration is not calculated for “Session 2”.
+1. A user performs "Login" at 11:15 pm triggering the "Session Start" event.
+2. They then wait 30 minutes and perform "Event B" at 11:45 pm.
+3. When the user performs "Logout" at 12:15 am, it triggers new "Session End". The "Session End" time is the time that "Logout" was performed. However, since all sessions are reset at midnight, the previous "Session Start" event is no longer associated with the "Session End Event", and the session duration is not calculated for "Session 1". Similarly, the "Session End Event" does not have an associated "Session Start Event" and session duration is not calculated for "Session 2".
 
 ##### Example 2
 
@@ -182,16 +182,16 @@ Session Start Event is set to `Login` and Session End Event is set to `Logout
 
 Session Start Event is set to `Login` and Session End Event is set to `Logout`.
 
-1. A user performs “Login” at 11:00 am triggering the “Session Start” event.
-2. They then wait 15 minutes and perform a second “Login” at 11:15 am. Since the user is already in a session, a new “Session Start” event is not triggered.
-3. They then wait 30 minutes and perform a “Logout” at 11:45 am, ending “Session 1” and triggering a new “Session End” event. The duration for “Session 1” will be 45 minutes.
-4. Finally, after 30 minutes, another “Logout” event is received at 12:15. Since there is no previous “Session Start” event, a “Session End” event is not created.
+1. A user performs "Login" at 11:00 am triggering the "Session Start" event.
+2. They then wait 15 minutes and perform a second "Login" at 11:15 am. Since the user is already in a session, a new "Session Start" event is not triggered.
+3. They then wait 30 minutes and perform a "Logout" at 11:45 am, ending "Session 1" and triggering a new "Session End" event. The duration for "Session 1" will be 45 minutes.
+4. Finally, after 30 minutes, another "Logout" event is received at 12:15. Since there is no previous "Session Start" event, a "Session End" event is not created.
 
 ### Property Based Sessions
 
-A Property Based Session in Mixpanel is defined by a property you choose as the "Session Id" (such as "session_id") and the session persists as long as the value of the “Session Id” property remains constant. As soon as the value for “Session Id" changes, another session is started.
+A Property Based Session in Mixpanel is defined by a property you choose as the "Session Id" (such as "session_id") and the session persists as long as the value of the "Session Id" property remains constant. As soon as the value for "Session Id" changes, another session is started.
 
-Events that do not contain a “Session Id” value are not used in calculating Session Start and End events. Events that contain an empty “Session Id” value (i.e. “session_id”: “”) will be tracked and session events created upon transition.
+Events that do not contain a "Session Id" value are not used in calculating Session Start and End events. Events that contain an empty "Session Id" value (i.e. "session_id": "") will be tracked and session events created upon transition.
 
 Like Event Based Sessions, Sessions are reset every 24 hours at midnight (according to your project timezone), so the maximum session length is 24 hours.
 
@@ -203,11 +203,11 @@ Like Event Based Sessions, Sessions are reset every 24 hours at midnight (accord
 
 Session ID Property is set to `session_id`
 
-1. A user performs “Event A” at 11:15 pm with the `session_id` property set to value `456` and triggering the “Session Start” event.
-2. They then wait 30 minutes and perform “Event B” at 11:45 pm.
-3. Since all sessions are reset at midnight, when the user performs “Event C” at 12:15 am, it triggers new “Session End” and "Session Start" events despite the `session_id` value remaining constant. The "Session End" time is the time that “Event B” was performed resulting in a session length of 30 minutes for “Session 1”.
-4. The user then waits 15 minutes and performs “Event D” at 12:30am.
-5. Assuming the next event has a different `session_id` or no other events occur before the second day ends, then another "Session End" event will be triggered. The time of the "Session End" is the last event performed at 12:30 am. Therefore the session length for “Session 2” is 15 minutes.
+1. A user performs "Event A" at 11:15 pm with the `session_id` property set to value `456` and triggering the "Session Start" event.
+2. They then wait 30 minutes and perform "Event B" at 11:45 pm.
+3. Since all sessions are reset at midnight, when the user performs "Event C" at 12:15 am, it triggers new "Session End" and "Session Start" events despite the `session_id` value remaining constant. The "Session End" time is the time that "Event B" was performed resulting in a session length of 30 minutes for "Session 1".
+4. The user then waits 15 minutes and performs "Event D" at 12:30am.
+5. Assuming the next event has a different `session_id` or no other events occur before the second day ends, then another "Session End" event will be triggered. The time of the "Session End" is the last event performed at 12:30 am. Therefore the session length for "Session 2" is 15 minutes.
 
 ##### Example 2
 
@@ -215,11 +215,11 @@ Session ID Property is set to `session_id`
 
 Session ID Property is set to `session_id`
 
-1. A user performs “Event A” at 11:00 am with the `session_id` property set to value `123` and triggering the “Session Start” event.
-2. They then wait 15 minutes and perform “Event B” at 11:15 am with the `session_id` property set to value `456`. Since the `session_id` property has changed, “Session End” and “Session Start” events are triggered. The "Session End" time is the time that “Event A” was performed resulting in a session length of 0 minutes for “Session 1”.
-3. The user then waits 15 minutes and performs “Event C” at 12:45 am.
-4. The user then waits 15 minutes and performs “Event D” at 12:15 pm.
-5. Assuming the next event has a different `session_id` or no other events occur for the remainder of the day, another "Session End" event will be triggered. The time of the "Session End" is the last event performed at 12:15 pm. Therefore the session length for “Session 2” is 60 minutes.
+1. A user performs "Event A" at 11:00 am with the `session_id` property set to value `123` and triggering the "Session Start" event.
+2. They then wait 15 minutes and perform "Event B" at 11:15 am with the `session_id` property set to value `456`. Since the `session_id` property has changed, "Session End" and "Session Start" events are triggered. The "Session End" time is the time that "Event A" was performed resulting in a session length of 0 minutes for "Session 1".
+3. The user then waits 15 minutes and performs "Event C" at 12:45 am.
+4. The user then waits 15 minutes and performs "Event D" at 12:15 pm.
+5. Assuming the next event has a different `session_id` or no other events occur for the remainder of the day, another "Session End" event will be triggered. The time of the "Session End" is the last event performed at 12:15 pm. Therefore the session length for "Session 2" is 60 minutes.
 
 ## Session Properties
 
@@ -260,7 +260,7 @@ You can add additional properties to be associated with the session by going und
 ## Session Controls in Reports
 ### Funnels
 
-In [Funnels](/docs/reports/funnels), once you have set up sessions, a “Session Start” and “Session End” event will be generated in the report based on the funnel criteria.
+In [Funnels](/docs/reports/funnels), once you have set up sessions, a "Session Start" and "Session End" event will be generated in the report based on the funnel criteria.
 
 ![image](https://github.com/mixpanel/docs/assets/2077899/e6c12438-00da-4ebe-8302-a52f5a9da511)
 
@@ -280,13 +280,13 @@ If you choose to count Uniques or Totals, you will be able to select a conversio
 
 ### Flows
 
-In [Flows](/docs/reports/flows), you can use the “Session Start” and “Session End” events to view the top Flows events within a session. 
+In [Flows](/docs/reports/flows), you can use the "Session Start" and "Session End" events to view the top Flows events within a session. 
 
 When you select sessions in Flows, the flow will be weighted by number of sessions, rather than unique users.
 
 ### Insights
 
-In [Insights](/docs/reports/insights), you can use the “Session Start” and “Session End” events to explore a variety of metrics:
+In [Insights](/docs/reports/insights), you can use the "Session Start" and "Session End" events to explore a variety of metrics:
 
 - The total number of sessions over time
 - The average session length per user

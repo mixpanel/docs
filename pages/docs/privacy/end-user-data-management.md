@@ -7,7 +7,7 @@ Requests can be submitted through either a form found in a Mixpanel project or t
 
 Only organization owners and admin can access or submit end user export or deletion requests.
 
-These tools can be used to exercise Right to Access, Right to Portability, and Right to be Forgotten for end users or “data subjects” as part of the General Data Protection Regulation (GDPR). [Learn more about GDPR here](https://mixpanel.com/legal/mixpanel-gdpr/). These tools also can help satisfy requirements stated in the California Consumer Privacy Act (CCPA). [Learn more about CCPA here](https://mixpanel.com/legal/mixpanel-ccpa/).
+These tools can be used to exercise Right to Access, Right to Portability, and Right to be Forgotten for end users or "data subjects" as part of the General Data Protection Regulation (GDPR). [Learn more about GDPR here](https://mixpanel.com/legal/mixpanel-gdpr/). These tools also can help satisfy requirements stated in the California Consumer Privacy Act (CCPA). [Learn more about CCPA here](https://mixpanel.com/legal/mixpanel-ccpa/).
 
 Requests to export or delete end user data can take multiple weeks to process.
 
@@ -36,11 +36,11 @@ To access the "Data & Privacy" modal containing the end user data request form:
 
 You must submit an export request to export end user data. This is done to satisfy a GDPR right to access request from your users.
 
-1. In the “Data and Privacy” section, click Request Export.
-2. In the “Export User Data” box:
+1. In the "Data and Privacy" section, click Request Export.
+2. In the "Export User Data" box:
 - Select the either CCPA or GDPR under type of export.
 - Select a project in the "Project" dropdown.
-- Under “User Data To Export”, select to export data for a single user or multiple users.
+- Under "User Data To Export", select to export data for a single user or multiple users.
    - For a single user, provide the distinct_id of the user.
    - For multiple users, upload a list of distinct_ids as a .csv file. There is a limit of 2000 Users.
 3. Click Submit Request. Note that requests can take multiple weeks to process.
@@ -51,8 +51,8 @@ You must submit an export request to export end user data. This is done to satis
 
 You must submit a deletion request to delete end user data. This is done to satisfy a GDPR right to erasure request from your users.
 
-1. In the “Data and Privacy” section, click Request Deletion.
-2. In the “Request User Data Deletion” box:
+1. In the "Data and Privacy" section, click Request Deletion.
+2. In the "Request User Data Deletion" box:
 - Select the either CCPA or GDPR under type of export.
 - Select a project in the "Project" dropdown.
 - Select to delete data for a single user or multiple users.
@@ -83,7 +83,7 @@ A CCPA export contains all data from the previous year connected to the requeste
 A CCPA deletion includes all data connected to the requested distinct_id.
 
 **Disclosure types**
-There are three different disclosure types as outlined in the CCPA. To export or delete everything, you can select “Data” as the disclosure type. Select “Categories” to export or delete the data table headers. Select “Sources” to export or delete data connected to the means of data collection.
+There are three different disclosure types as outlined in the CCPA. To export or delete everything, you can select "Data" as the disclosure type. Select "Categories" to export or delete the data table headers. Select "Sources" to export or delete data connected to the means of data collection.
 
 ## Opt Out Users
 While the following API can be used to delete or retrieve personal data as outlined by the GPDR, it is important to also opt users out of subsequent tracking. Deleting data from Mixpanel will remove it permanently, but it will not prevent the data from being collected moving forward. If tracking using a client-side Mixpanel library, you can opt users out of tracking using Mixpanel's opt-out methods. These are available in the following client-side libraries:

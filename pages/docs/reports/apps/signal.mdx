@@ -14,7 +14,7 @@ Building this query in Signal would involve selecting the target users, and how 
 
 ![image](https://github.com/mixpanel/docs/assets/2077899/2baec3b5-ce5e-4d7d-9726-de131d05bfd2)
 
-Values are returned after running the correlation. “Song Played” could have a strong positive correlation with purchasing a song. Most of the users who played a song later purchased a song.
+Values are returned after running the correlation. "Song Played" could have a strong positive correlation with purchasing a song. Most of the users who played a song later purchased a song.
 
 ![image](https://github.com/mixpanel/docs/assets/2077899/3409f91a-ca07-4cd0-84c4-9105ee9024a0)
 
@@ -26,7 +26,7 @@ This information can be used in future product decisions. By knowing that those 
   <iframe src="https://www.loom.com/embed/53f01027582b4b8f891a0da0bb6a05b3" frameborder="0" style={{ position: 'absolute', top: 0, left: 0, width: '100%', height: '100%' }} allowfullscreen></iframe>
 </p>
 
-By default, Mixpanel will build a query to show how your top 50 events correlate with 2nd week retention in the last quarter for all users. This translates to, “How do the top events correlate with two week retention in the last quarter for all users?"
+By default, Mixpanel will build a query to show how your top 50 events correlate with 2nd week retention in the last quarter for all users. This translates to, "How do the top events correlate with two week retention in the last quarter for all users?"
 
 ![/Screen_Shot_2022-07-13_at_10.13.57_PM.png](/Screen_Shot_2022-07-13_at_10.13.57_PM.png)
 
@@ -34,7 +34,7 @@ To build a new query with Signal, enter the Signal report in the desired Mixpane
 
 Signal queries require a minimum of 60 days worth of data. Queries with any less data history will return a calculation error.Signal currently supports filtering only by event properties. Custom events with profile property filters will now be shown in the event dropdown.
 
-1. Determine and specify the target users. “All users” is the default.
+1. Determine and specify the target users. "All users" is the default.
 
 ![/Screen_Shot_2022-07-13_at_10.13.57_PM.png](/Screen_Shot_2022-07-13_at_10.13.57_PM.png)
 
@@ -82,7 +82,7 @@ Each correlation will be represented by one card in the summary view results. Th
 
 ### Scores
 
-By default, the results will be sorted by Opportunity. “Opportunity” is Mixpanel’s proprietary calculation of how important a given correlation might be. The correlation strength is calculated using the phi coefficient. [Reference here](/docs/reports/apps/signal#correlation) for more detail on how Opportunity and correlation strength is calculated.
+By default, the results will be sorted by Opportunity. "Opportunity" is Mixpanel’s proprietary calculation of how important a given correlation might be. The correlation strength is calculated using the phi coefficient. [Reference here](/docs/reports/apps/signal#correlation) for more detail on how Opportunity and correlation strength is calculated.
 
 ### Key Findings
 
@@ -119,7 +119,7 @@ The x-axis represents the velocity, or the number of days it took users to compl
 
 The optimal action will be highlighted in green on the heat map.
 
-The optimal action tells you how many times and in how many days your customers should do the event in order to achieve your optimal correlation. Frequency labels are listed below the action and provide precise information, based on the correlation, about when your users should complete the event. For example, if you are a music streaming app and wanted to see how a “Play Song” event correlates with two week retention, you might see something like, “Play song once within ten days” as an optimal action.
+The optimal action tells you how many times and in how many days your customers should do the event in order to achieve your optimal correlation. Frequency labels are listed below the action and provide precise information, based on the correlation, about when your users should complete the event. For example, if you are a music streaming app and wanted to see how a "Play Song" event correlates with two week retention, you might see something like, "Play song once within ten days" as an optimal action.
 
 ### Supporting Statistics
 
@@ -181,11 +181,11 @@ The phi coefficient is a single number between -1 and 1 and it indicates how clo
 
 #### Opportunity Score
 
-“Opportunity” is Mixpanel’s proprietary calculation of how important a given correlation might be. Opportunity helps pare down results by eliminating false positives and highlighting weak correlations that may be actionable. Based on this assessment, which determines how much an event impacts conversion on your goal, Mixpanel will tell you if there is an opening to make a change in your product or not.
+"Opportunity" is Mixpanel’s proprietary calculation of how important a given correlation might be. Opportunity helps pare down results by eliminating false positives and highlighting weak correlations that may be actionable. Based on this assessment, which determines how much an event impacts conversion on your goal, Mixpanel will tell you if there is an opening to make a change in your product or not.
 
 Once we have the correlation, the results on the summary page will display the optimal action, correlation with the goal event, and our key findings about that optimal action.
 
-The optimal action tells you how many times and in how many days your customers should do the event in order to achieve your optimal correlation. Frequency labels are listed below the action and provide precise information, based on the correlation, about when your users should complete the event. For example, if you are a music streaming app and wanted to see how a “Play Song” event correlates with two week retention, you might see something like, “Play song once within ten days” as an optimal action.
+The optimal action tells you how many times and in how many days your customers should do the event in order to achieve your optimal correlation. Frequency labels are listed below the action and provide precise information, based on the correlation, about when your users should complete the event. For example, if you are a music streaming app and wanted to see how a "Play Song" event correlates with two week retention, you might see something like, "Play song once within ten days" as an optimal action.
 
 **Frequency Labels** -- \*these will be supplemented with temporal labels, i.e. At least 4 times in 10 days.\*
 
@@ -221,7 +221,7 @@ Unlikely to be useful.
 
 Associated almost perfectly with not converting. Something might be off here.
 
-- Example: Users who trigger an “uninstall” event are not going to complete your Goal event.
+- Example: Users who trigger an "uninstall" event are not going to complete your Goal event.
 
 Associated almost perfectly with . Too good to be true?
 

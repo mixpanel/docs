@@ -26,7 +26,7 @@ To query a single table schema, use this snippet.
 ```sql
 SELECT count(*)
 FROM mixpanel_nessie_day_partitioned_<PROJECT_ID>.mp_master_event
-WHERE mp_event_name = “<CLEANED_EVENT_NAME>”
+WHERE mp_event_name = "<CLEANED_EVENT_NAME>"
 ```
 
 To query a multiple table schema, use this snippet.

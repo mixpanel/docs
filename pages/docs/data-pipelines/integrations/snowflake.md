@@ -25,7 +25,7 @@ Here is an example of how you can query the raw table when using one table for a
 ```sql
 SELECT count(*)
 FROM mixpanel.mp_master_event_raw
-WHERE data:mp_event_name::string = “Signup”;
+WHERE data:mp_event_name::string = "Signup";
 ```
 
 
@@ -35,7 +35,7 @@ Here is an example of how you can query the view when using one table for all th
 ```sql
 SELECT count(*)
 FROM mixpanel.mp_master_event
-WHERE mp_event_name = “Signup”;
+WHERE mp_event_name = "Signup";
 ```
 
 
@@ -45,7 +45,7 @@ Here is an example of how you can query the raw table when using multiple tables
 ```sql
 SELECT count(*)
 FROM mixpanel.signup_raw
-WHERE data:distinct_id::string = “1”;
+WHERE data:distinct_id::string = "1";
 ```
 
 
@@ -55,7 +55,7 @@ Here is an example of how you can query the view when using multiple tables for 
 ```sql
 SELECT count(*)
 FROM mixpanel.signup
-WHERE distinct_id = “1”;
+WHERE distinct_id = "1";
 ```
 
 

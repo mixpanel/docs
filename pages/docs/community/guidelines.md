@@ -4,15 +4,15 @@
 You can join our Slack Community [here](https://www.mixpanel.com/community-slack)! 
 
 ## General guidelines
-Mixpanel, Inc. (“Mixpanel”) provides the Mixpanel Community (“the Community”) to you as a place to share new product ideas, ask questions, plan your analytics strategy, find technical solutions, and learn how to use Mixpanel. While we want this to be a transparent community with free-flowing discussion, we do have some guidelines.
+Mixpanel, Inc. ("Mixpanel") provides the Mixpanel Community ("the Community") to you as a place to share new product ideas, ask questions, plan your analytics strategy, find technical solutions, and learn how to use Mixpanel. While we want this to be a transparent community with free-flowing discussion, we do have some guidelines.
 
 1. ID yourself. When creating an account, please edit your profile to include your company, title, and a photo (if you can). Try to use your Mixpanel @business address so the Community can better identify you.
-2. Become a power user. Have the answer to someone’s question? Jump in and share your knowledge. There is no stigma in being a “know-it-all” here. In fact, we encourage it!
+2. Become a power user. Have the answer to someone’s question? Jump in and share your knowledge. There is no stigma in being a "know-it-all" here. In fact, we encourage it!
 3. One you, one account. Please create only one account per person. Don’t misrepresent yourself (e.g., lie about your identity, affiliations, or age). Don’t pretend to be someone that you’re not, or intentionally give misleading or false information. 
 4. Keep it clean. Cursing, harassment, threatening language, violent content, nudity, and sexually explicit obscene material or the like are not permitted in the Community.
 5. No spam. We have zero tolerance for it. Posted content should be related to sharing knowledge about Mixpanel. Don’t post irrelevant content.
 6. No selling. If it is relevant to the conversation, you are free to share information about products and services that you love. However, do not use the Community to prospect or link out to your website for commercial or promotional purposes or for political campaigning.
-7. Ownership/Confidentiality. Do not post content that you do not have the right to publish. Additionally, do not post information that is confidential or that may be considered “Customer Content” under Mixpanel’s Terms of Use or separate Master Services Agreement.
+7. Ownership/Confidentiality. Do not post content that you do not have the right to publish. Additionally, do not post information that is confidential or that may be considered "Customer Content" under Mixpanel’s Terms of Use or separate Master Services Agreement.
 8. Privacy. Do not post other people's personal information, such as phone numbers, private email addresses, physical addresses, credit card numbers, Social Security/National Identity numbers, or passwords. Your use of the Community is subject to Mixpanel’s Privacy Statement.  
 9. No bullying, harassment, or trolling. We do not tolerate bullying, harassment, or trolling. This means any habitual badgering, or intimidation targeted at a specific person or group of people or trying to get a rise out of someone for the sake of it.
 10. No hate speech. Don’t post any content that demeans, defames, or promotes discrimination on the basis of race, ethnicity, national origin, religion, sexual identity or orientation, gender identity or expression, disability, or veteran status. 

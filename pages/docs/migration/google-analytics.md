@@ -273,7 +273,7 @@ You can use our [Lexicon](/docs/data-governance/lexicon) or Events page to check
 - Import = true (`$import`)
 - Source = warehouse-import (`$source`)
 
-Please filter by tracked name, $warehouse_import_id instead of the display name, “Warehouse Import ID”. You can find the properties values on the Warehouse Connector’ sync logs:
+Please filter by tracked name, $warehouse_import_id instead of the display name, "Warehouse Import ID". You can find the properties values on the Warehouse Connector’ sync logs:
 
 ![image](/ga4_event_validation.png)
 
@@ -283,7 +283,7 @@ Choose your current implementation method for GA4 and you can follow the below s
 
 #### Client-side SDKs & Server-side SDKs
 
-Mixpanel and GA4’s client-side SDKs have *very similar* developer facing APIs. This makes it fairly easy to “find and replace” embedded GA4 calls and swap them for Mixpanel calls.
+Mixpanel and GA4’s client-side SDKs have *very similar* developer facing APIs. This makes it fairly easy to "find and replace" embedded GA4 calls and swap them for Mixpanel calls.
     
 This section will detail the Javascript SDKs (for the sake of brevity), although both analytics platforms have fairly uniform tracking APIs for other SDKs (mobile, server-side, etc.)
 
@@ -373,7 +373,7 @@ Keep in mind that you will need to initialize the [Mixpanel SDK](https://develop
 
 Mixpanel has a [Google Tag Manager (GTM) custom template](/docs/tracking-methods/integrations/google-tag-manager) which can be leveraged to implement events within an hour. Simply load the template, and you can send Mixpanel the same events you’ve setup for your GA4 instance.
 
-This method is straightforward since you’ve already setup your SDK to track “events” and are using Google Tag Manager. You can leverage this same setup to implement Mixpanel.
+This method is straightforward since you’ve already setup your SDK to track "events" and are using Google Tag Manager. You can leverage this same setup to implement Mixpanel.
     
 #### Customer Data Platforms (CDPs)
 
@@ -413,7 +413,7 @@ Events let you get more granular than [sessions](/docs/features/sessions), so th
 Choose your current implementation method for Universal Analytics (UA) and you can follow the below steps for starting to send live data to Mixpanel.
 
 #### Client-side SDKs & Server-side SDKs
-You’ll have to setup Mixpanel fresh given Mixpanel leverages an event-based model that does not exist in Universal Analytics. The good news is you can get started within an hour, which is lesser or equivalent work to setting up GA4 from an SDK perspective, since both need a fresh implementation to be setup on an “events” model vs UA’s “sessions” model.
+You’ll have to setup Mixpanel fresh given Mixpanel leverages an event-based model that does not exist in Universal Analytics. The good news is you can get started within an hour, which is lesser or equivalent work to setting up GA4 from an SDK perspective, since both need a fresh implementation to be setup on an "events" model vs UA’s "sessions" model.
     
 We recommend the following steps to get started quickly:
 

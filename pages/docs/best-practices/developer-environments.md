@@ -54,7 +54,7 @@ If you decide to send events from multiple platforms to the same Mixpanel projec
 
 - Make sure events that are the same across platforms are named the same way. For example, you wouldn’t want to create an Event on your website called Sign in and an Event on your app called Log in if they represent the same user action.
 
-- Capitalization matters: calling one event “Purchase” and one “purchase” will show as two different events in your report dropdowns!
+- Capitalization matters: calling one event "Purchase" and one "purchase" will show as two different events in your report dropdowns!
 
 - Ensure you’re handling user identity properly so that you can track users across platforms without counting them as a different user on each platform. Learn more about [identifying users](/docs/tracking-methods/identifying-users).
 

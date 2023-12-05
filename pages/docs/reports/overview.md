@@ -67,7 +67,7 @@ The events and properties in the menu are prefixed to provide additional context
 
 Determine the time range of a query by clicking on the time selector. The time selector is common across all reports. This article details the options in the time selector.
 
-All dates and times in Mixpanel reflect the project timezone. The default on most reports is “Last 30 days” (displayed as "30D"), but there are a variety of pre-set options, as well as the option to select a custom date range.
+All dates and times in Mixpanel reflect the project timezone. The default on most reports is "Last 30 days" (displayed as "30D"), but there are a variety of pre-set options, as well as the option to select a custom date range.
 
 ![](/230281466-11bfdbf7-0820-41c0-a4e8-b802faabaf20.png)
 
@@ -89,7 +89,7 @@ The **Select date range** menu opens up some additional options, "Last", "Fixe
 
 #### Last
 
-“In the last” allows you to select a rolling time range similar to the default “last 30 days” but you have the flexibility to choose the time value and scale, either days, weeks, or months.
+"In the last" allows you to select a rolling time range similar to the default "last 30 days" but you have the flexibility to choose the time value and scale, either days, weeks, or months.
 
 ![/Screen_Shot_2022-07-11_at_3.17.05_PM.png](/Screen_Shot_2022-07-11_at_3.17.05_PM.png)
 
@@ -99,13 +99,13 @@ If you need to, you can click on the **+ Ending** button and shift back the de
 
 #### Fixed
 
-“Fixed” allows you to select two dates to query between or a select particular day to query by entering the same start & end date. If you save this report as a bookmark or add it to the dashboard, the date range selection will always persist.
+"Fixed" allows you to select two dates to query between or a select particular day to query by entering the same start & end date. If you save this report as a bookmark or add it to the dashboard, the date range selection will always persist.
 
 ![/Screen_Shot_2022-07-11_at_3.21.03_PM.png](/Screen_Shot_2022-07-11_at_3.21.03_PM.png)
 
 #### Since
 
-“Since” allows you to select a specific date to query for all data since that start date.
+"Since" allows you to select a specific date to query for all data since that start date.
 
 #### Filters
 

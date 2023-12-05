@@ -16,7 +16,7 @@ See [Permissions](/docs/orgs-and-projects/roles-and-permissions#permissions) to 
 To invite a user to an organization:
 
 1. Under "Organization Settings", click **Users & Teams** and you will land on the Users tab.
-2. Click **Invite Users**. The “Invite New Users” box appears.
+2. Click **Invite Users**. The "Invite New Users" box appears.
 3. Enter the email address of the user and select their **Organization Role**, **Projects** to add them to, and **Project Role**.
 4. Click **Add another user** to invite additional users.
 5. Click **Invite** to complete the process.

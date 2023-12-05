@@ -26,7 +26,7 @@ Events are actions a user performs in your application or website.
 
 ![Lexicon Events](/lexicon-events.png)
 
-This table contains descriptions for each field in the “Events” view. 
+This table contains descriptions for each field in the "Events" view. 
 
 | Field | Description |
 | --- | --- |
@@ -42,7 +42,7 @@ This table contains descriptions for each field in the “Events” view.
 
 ### Custom Event Definitions
 
-Custom events are events and properties you combine into one event to use in Mixpanel reports. The fields for custom events are “Name”, “Display Name”, “Description”, and “Queries” (defined above).
+Custom events are events and properties you combine into one event to use in Mixpanel reports. The fields for custom events are "Name", "Display Name", "Description", and "Queries" (defined above).
 
 ![Lexicon Custom Events](/lexicon-custom-events.png)
 
@@ -52,7 +52,7 @@ Event properties describe details about events, such as distinct_id or browser.
 
 ![Lexicon Event Properties](/lexicon-event-properties.png)
 
-This table contains descriptions for each field in the “Event Properties” view. 
+This table contains descriptions for each field in the "Event Properties" view. 
 
 | Field | Description |
 | --- | --- |
@@ -73,7 +73,7 @@ Profile properties describe details about your users, such as username or email 
 
 ![Lexicon Profile Properties](/lexicon-profile-properties.png)
 
-This table contains descriptions for each field in the “Profile Properties” view.
+This table contains descriptions for each field in the "Profile Properties" view.
 
 | Field | Description |
 | --- | --- |
@@ -126,7 +126,7 @@ To drop an event in Lexicon:
 
 1. Select an event to drop. The Drop icon appears.
 ![Lexicon Drop Events](/lexicon-drop-events.png)
-2. Click Drop. A “Confirm dropping your event(s)” warning indicates you cannot recover the data associated with the event.
+2. Click Drop. A "Confirm dropping your event(s)" warning indicates you cannot recover the data associated with the event.
 ![Lexicon Drop Events Warning](/lexicon-drop-events-warning.png)
 3. Click Drop. The status of the event indicates **Dropped**.
 
@@ -146,23 +146,23 @@ You can undrop events and properties when you decide you need them again.
 
 To undrop an event:
 
-1. Select a dropped event. The “Status” column indicates if an event is dropped.
+1. Select a dropped event. The "Status" column indicates if an event is dropped.
 ![Lexicon Undrop Events](/lexicon-undrop-events.png)
-2. Click **Undrop**. The “Status” column no longer contains “Dropped”.
+2. Click **Undrop**. The "Status" column no longer contains "Dropped".
 
 ### Undropping Properties
 
-1. Select a dropped property. The “Status” column indicates if a property is dropped.
+1. Select a dropped property. The "Status" column indicates if a property is dropped.
 ![Lexicon Undrop Properties](/lexicon-undrop-properties.png)
-2. Click **Undrop**. The “Status” column no longer contains “Dropped”.
+2. Click **Undrop**. The "Status" column no longer contains "Dropped".
 
 ### Hide Events and Properties
 
 To hide an event or property:
 
-1. Select one or more visible events, event properties, or profile properties. The “Hide” icon appears. You can check the “Status” field to determine whether an event or property is visible or hidden.
+1. Select one or more visible events, event properties, or profile properties. The "Hide" icon appears. You can check the "Status" field to determine whether an event or property is visible or hidden.
 ![Lexicon Hide Events](/hide-events.png)
-2. Select **Hide**. A message appears to allow you to confirm hiding the event(s). After you select **Hide**, the event or property status changes to “Hidden”.
+2. Select **Hide**. A message appears to allow you to confirm hiding the event(s). After you select **Hide**, the event or property status changes to "Hidden".
 ![Lexicon Hide Events Warning](/lexicon-hide-events2.png)
 
 Another option for hiding an event, property, or property value is to let it inactivate until it is hidden in report dropdown menus. Mixpanel’s report dropdown menus hide events that have not been fired within the last 30 days. Event properties and property values that have not been sent to your project in 28 days be hidden from dropdown menus.
@@ -171,17 +171,17 @@ Another option for hiding an event, property, or property value is to let it ina
 
 To show an event or property:
 
-1. Select one or more hidden events, event properties, or profile properties. The “Unhide” icon appears. You can check the “Status” field to determine whether an event or property is visible or hidden.
-2. Select **Unhide**. After you select **Unhide**, the event or property status changes to “Visible”.
+1. Select one or more hidden events, event properties, or profile properties. The "Unhide" icon appears. You can check the "Status" field to determine whether an event or property is visible or hidden.
+2. Select **Unhide**. After you select **Unhide**, the event or property status changes to "Visible".
 ![Lexicon Show Events and Properties](/show-events-and-properties.png)
 
 ## Merging Events and Properties
 
 In Lexicon, project owners can merge events and event properties.
 
-Let's suppose your iOS app sends an event named “Purchase”, and your Android app sends an event named “purchase item”. Even though both events have the same function, you have to individually select them every time you build a report.
+Let's suppose your iOS app sends an event named "Purchase", and your Android app sends an event named "purchase item". Even though both events have the same function, you have to individually select them every time you build a report.
 
-By merging “Purchase” and “purchase item” into a single event named “Purchase”, you would no longer need to query each event separately since Mixpanel would recognize both “Purchase” and “purchase item” as a unique event.
+By merging "Purchase" and "purchase item" into a single event named "Purchase", you would no longer need to query each event separately since Mixpanel would recognize both "Purchase" and "purchase item" as a unique event.
 
 Being able to merge events can help streamline your implementation, reduce your costs by eliminating redundant events being sent to Mixpanel, and simplify report analysis because you’re only using optimal events and properties.
 Do note however that user profile properties cannot be merged at this time.
@@ -190,17 +190,17 @@ Do note however that user profile properties cannot be merged at this time.
 
 To merge events:
 
-1. Select the events to merge. The “Merge” icon appears.
-2. Click Merge. The “Merge Events” window appears. It shows the events you selected and explains that merging the selected events combines them into a single event, which does not affect the raw data.
+1. Select the events to merge. The "Merge" icon appears.
+2. Click Merge. The "Merge Events" window appears. It shows the events you selected and explains that merging the selected events combines them into a single event, which does not affect the raw data.
 ![Lexicon Merge Events](/lexicon-merge-events.png)
-3. In the “MERGE SELECTED EVENTS INTO…” section, specify which event Mixpanel should consider as the new unique event.
-4. Click **Merge**. The merged event appears and the “Status” column indicates “Merged”.
+3. In the "MERGE SELECTED EVENTS INTO…" section, specify which event Mixpanel should consider as the new unique event.
+4. Click **Merge**. The merged event appears and the "Status" column indicates "Merged".
 
 ### Unmerging Events
  
 To unmerge events:
 
-1. Select the merged event to unmerge. The “Unmerge” icon appears.
+1. Select the merged event to unmerge. The "Unmerge" icon appears.
 ![Lexicon Unmerge Events](/unmerge-events.png)
 2. Click Unmerge. The merged event appears as the original two distinct events.
 
@@ -208,17 +208,17 @@ To unmerge events:
 
 To merge properties:
 
-1. Select the properties to merge. The “Merge” icon appears.
-2. Click Merge. The “Merge Properties” window appears. It shows the properties you selected and explains that merging the selected properties combines them into a single property, which does not affect the raw data.
+1. Select the properties to merge. The "Merge" icon appears.
+2. Click Merge. The "Merge Properties" window appears. It shows the properties you selected and explains that merging the selected properties combines them into a single property, which does not affect the raw data.
 ![Lexicon Merge Events](/merge-properties.png)
-3. In the “MERGE SELECTED PROPERTIES INTO…” section, specify which property Mixpanel should recognize as the newly merged property name.
-4. Click **Merge**. The merged property appears and the “Status” column indicates “Merged”.
+3. In the "MERGE SELECTED PROPERTIES INTO…" section, specify which property Mixpanel should recognize as the newly merged property name.
+4. Click **Merge**. The merged property appears and the "Status" column indicates "Merged".
 
 ### Unmerging Properties
 
 To unmerge properties:
 
-1. Select the merged property to unmerge. The “Unmerge” icon appears.
+1. Select the merged property to unmerge. The "Unmerge" icon appears.
 ![Lexicon Unmerge Events](/unmerge-properties.png)
 2. Click Unmerge. The merged property appears as the original two distinct properties.
 

@@ -59,8 +59,8 @@ To find more details on Failure errors, you can click in the Cohort within the I
 
 1. Under the integration section, select the cohort:
 ![image](https://user-images.githubusercontent.com/13734965/233539867-3bd94f9f-b50c-4939-9eb9-5879e0b2e8cf.png)
-2. If an error is available you will see the “View Error” button:
+2. If an error is available you will see the "View Error" button:
 ![image](https://user-images.githubusercontent.com/13734965/233539900-58b14423-bdfd-4fb7-98ff-17576d54a5d8.png)
-3. Click on the “View Error” button to get more details.
+3. Click on the "View Error" button to get more details.
 
-Currently the “View Error” button will only display if there is an error available. In the case that you do not see a “View Error” button but the sync did not finish successfully, you can reach out to the Support team to help get more details on the error.
+Currently the "View Error" button will only display if there is an error available. In the case that you do not see a "View Error" button but the sync did not finish successfully, you can reach out to the Support team to help get more details on the error.

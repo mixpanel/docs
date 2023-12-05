@@ -153,7 +153,7 @@ A group is identified by the `group_key` and `group_id`.
 * `group_key` is the property that connects event data for Group Analytics.
 * `group_id` is the identifier for a specific group.
 
-If the property “company” is chosen for Group Analytics, “company” is the `group_key`, and “Mixpanel”, “Company A”, and “13254” are all potential `group_id` values. 
+If the property "company" is chosen for Group Analytics, "company" is the `group_key`, and "Mixpanel", "Company A", and "13254" are all potential `group_id` values. 
 
 A user can belong to multiple groups. All updates to a group operate on the `group_key` and `group_id`.
 
@@ -169,26 +169,26 @@ Similar to a `distinct_id`, the `group_key` allows Mixpanel to group events by a
 
 You can add users to groups by calling the [`setGroup()`](https://mixpanel.github.io/mixpanel-swift/Classes/MixpanelInstance.html#/s:8Mixpanel0A8InstanceC8setGroup8groupKey0E3IDsySS_SayAA0A4Type_pGtF) method. 
 ```swift Swift
-Mixpanel.mainInstance().setGroup(groupKey: "Company", groupID: “Mixpanel”)
+Mixpanel.mainInstance().setGroup(groupKey: "Company", groupID: "Mixpanel")
 ```
 
 You can call [`addGroup()`](https://mixpanel.github.io/mixpanel-swift/Classes/MixpanelInstance.html#/s:8Mixpanel0A8InstanceC8addGroup8groupKey0E2IDySS_AA0A4Type_ptF) to add any additional groups to an existing list.
 
 ```swift Swift
-Mixpanel.mainInstance().addGroup(groupKey: "Company", groupID: “Mixpanel”)
+Mixpanel.mainInstance().addGroup(groupKey: "Company", groupID: "Mixpanel")
 ```
 
 You can call [`removeGroup()`](https://mixpanel.github.io/mixpanel-swift/Classes/MixpanelInstance.html#/s:8Mixpanel0A8InstanceC11removeGroup8groupKey0E2IDySS_AA0A4Type_ptF) to remove any additional groups from an existing list.
 
 ```swift Swift
-Mixpanel.mainInstance().removeGroup(groupKey: "Company", groupID: “Mixpanel”)
+Mixpanel.mainInstance().removeGroup(groupKey: "Company", groupID: "Mixpanel")
 ```
 
 ### Creating Group Profiles
 It is possible to create a Group profile that is similar to a user profile. You must call [`getGroup().set()`](https://mixpanel.github.io/mixpanel-swift/Classes/Group.html) to build a group profile. It is important to the `group_key`, `group_id`, and one property so that the profile is not empty. 
 
 ```swift Swift
-Mixpanel.mainInstance().getGroup(groupKey: "Company", groupID: “Mixpanel”).set(property: "g", to: "yo")
+Mixpanel.mainInstance().getGroup(groupKey: "Company", groupID: "Mixpanel").set(property: "g", to: "yo")
 ```
 
 ### Setting Group Profile Properties
@@ -197,7 +197,7 @@ You can add details to Groups by adding properties to them.
 In order to update Group profile properties, you must specify the group that needs to be updated by calling [`getGroup().set()`](https://mixpanel.github.io/mixpanel-swift/Classes/MixpanelInstance.html#/s:8Mixpanel0A8InstanceC8getGroup8groupKey0E2IDAA0D0CSS_AA0A4Type_ptF).
 
 ```swift Swift
-Mixpanel.mainInstance().getGroup(groupKey: "Company", groupID: “Mixpanel”)
+Mixpanel.mainInstance().getGroup(groupKey: "Company", groupID: "Mixpanel")
 ```
 
 The [`getGroup()`](http://mixpanel.github.io/mixpanel-android/index.html) method can be chained with other commands that edit properties specific to the group.
@@ -210,7 +210,7 @@ These operations are similar to the corresponding operations for user profile pr
 [`mixpanel.getGroup().set()`](https://mixpanel.github.io/mixpanel-swift/Classes/Group.html) updates or adds a property to a group.
 
 ```swift Swift
-Mixpanel.mainInstance().getGroup(groupKey: "Company", groupID: “Mixpanel”).set(property: "g", to: "yo")
+Mixpanel.mainInstance().getGroup(groupKey: "Company", groupID: "Mixpanel").set(property: "g", to: "yo")
 ```
 
 For all Group functions, see the [reference](https://mixpanel.github.io/mixpanel-swift/Classes/Group.html)

@@ -12,7 +12,7 @@ To access SSO settings in Mixpanel, navigate to your **Organization Settings** l
 ![SSO Org Setting Image](/sso_org_setting.png)
 
 **Require Users to Log In Using SSO**
-Optionally toggle “Require Users to Log In using SSO” to prevent your users from using a username and password to log in. Click Enable. Please note that organization owners and admins will still be able to log in using username and password in the case that SSO is not set up correctly.
+Optionally toggle "Require Users to Log In using SSO" to prevent your users from using a username and password to log in. Click Enable. Please note that organization owners and admins will still be able to log in using username and password in the case that SSO is not set up correctly.
 Do note that external users who were invited to projects will still be able to log in using username and password.
 
 ## Claim a Domain
@@ -96,7 +96,7 @@ Just in Time (JIT) provisioning using SAML will let users sign in automatically 
 
 You must complete the steps above to enable JIT provisioning. 
 
-To turn on JIT provisioning, go to Access Security, and click on the “IDP Managed Access” toggle. The toggle will be blue if it is enabled.
+To turn on JIT provisioning, go to Access Security, and click on the "IDP Managed Access" toggle. The toggle will be blue if it is enabled.
 
 Users added in this way will have first names and last names populated by the firstName and lastName profile attributes provided via SAML at login time. They will also have no roles to start off except those given to all users in your organization. To give these provisioned users default access to projects, invite All Users in the Organization to the project.
   

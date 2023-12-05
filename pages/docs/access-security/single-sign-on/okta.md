@@ -25,7 +25,7 @@ B.  Follow [Okta’s documentation on setting up a new application](https://help
 
 #### Configure SAML
 
-You must fill the form found in the “Configure SAML” menu in Okta. The following highlights what you should place in the fields.
+You must fill the form found in the "Configure SAML" menu in Okta. The following highlights what you should place in the fields.
 
 ![Okta Configure SAML 1 Image](/okta_configure_saml1.png)
 
@@ -72,7 +72,7 @@ You will find your Issuer URL in the third entry labeled "Identity Provider Issu
 
 From Mixpanel, navigate to your **Organization Settings**. From the SSO menu, insert your Public Certificate, Authentication URL, and Issuer URL.
 
-Optionally toggle “Require Users to Log In using SSO” to prevent your users from using a username and password to log in. Click **Enable**. Organization owners and admins will still be able to log in using username and password if SSO is not set up correctly.
+Optionally toggle "Require Users to Log In using SSO" to prevent your users from using a username and password to log in. Click **Enable**. Organization owners and admins will still be able to log in using username and password if SSO is not set up correctly.
 
 ### Configuring SCIM Provisioning
 
@@ -82,8 +82,8 @@ The following prerequisites must be met to set up SCIM provisioning:
 
 - You must have an active Enterprise plan subscription with Mixpanel. 
 - You must have Okta SSO set up with Mixpanel.
-- The “Username” value in Okta must be an email address with a domain that you’ve claimed.
-- You need to have generated a SCIM OAuth token to use with the app. This token is located in the “Access Security” tab of your organization settings. You will need to be an organization admin to access this.
+- The "Username" value in Okta must be an email address with a domain that you’ve claimed.
+- You need to have generated a SCIM OAuth token to use with the app. This token is located in the "Access Security" tab of your organization settings. You will need to be an organization admin to access this.
 
 ![Okta SCIM 1 Image](/okta_scim1.png)
 

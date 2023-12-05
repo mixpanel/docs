@@ -126,7 +126,7 @@ To remove all grouping and revert to the default, open the custom buckets modal 
 
 **Use Case:** You want to compare # videos watched between core markets - North America, Europe & China
 
-Current: You have a property “Country”
+Current: You have a property "Country"
 
 Goal: You want to group the countries into meaningful segments
 
@@ -142,8 +142,8 @@ Steps
     ![/12828869626644](/12828869626644.png)
 
 2. Choose to bucket segments, by opening the custom buckets model and click Apply
-    - For each segment, choose the operator “is” and select one or more values
-    - “Rest of the World” is auto generated as **remaining values**
+    - For each segment, choose the operator "is" and select one or more values
+    - "Rest of the World" is auto generated as **remaining values**
     - To note — if two segments have the same value, the first segment will consider the value. Custom buckets are non-overlapping and sum up to 100% by definition
 
 ![/14342715436052](/14342715436052.png)
@@ -163,7 +163,7 @@ Steps
 
 **Use Case:** You want to compare #users based on duration of video watched
 
-Current: You have a property “watch time (mins)”
+Current: You have a property "watch time (mins)"
 
 Goal: You want to distribute this in various ways
 
@@ -173,7 +173,7 @@ Goal: You want to distribute this in various ways
 
 **Deep Dive: Use Case A**: Evenly in 10 min buckets for the range 50-100 mins
 
-1. Add a breakdown - “watch time (mins)”
+1. Add a breakdown - "watch time (mins)"
     - To note — every numeric property is **auto-bucketed into even sized buckets as the default**
     - Here the default seems to be even buckets of 10 mins across the range
 
@@ -182,7 +182,7 @@ Goal: You want to distribute this in various ways
         ![/12828860268692](/12828860268692.png)
 
 2. Go to the overflow and open the custom buckets modal
-3. Since looking for even buckets of “30 mins”, choose **Even Bucketing**
+3. Since looking for even buckets of "30 mins", choose **Even Bucketing**
 4. Modify the min and max values of the desired range, and the bucket size, and click apply
     - To note — both a lower end and upper end bucket will be auto-generated to ensure your breakdown always adds up to 100%
     - Here these buckets are <50 mins and ≥ 100 mins
@@ -206,7 +206,7 @@ Goal: You want to distribute this in various ways
 **Deep Dive: Use Case C:** Want to see all the durations as-is (No bucketing)
 
 1. Open the custom buckets modal
-2. Since looking for “No bucketing”, choose **None —** This lays out all the numeric property values as-is
+2. Since looking for "No bucketing", choose **None —** This lays out all the numeric property values as-is
 
 ![/14342547991956](/14342547991956.png)
 
@@ -291,7 +291,7 @@ Steps
 
     - **In Numeric: What is the difference between (not set) and (non-numeric values)?**
         - (not set) as explained above for string refers to property values that have not been associated to any specific property value
-        - (non numeric values) refers to set values that have just been sent in as non-numeric data type. For example, you’re looking to track time spent and have coded that as a numeric property, but for some reason some values are tracked as “a”, or “b” which are not-numeric.
+        - (non numeric values) refers to set values that have just been sent in as non-numeric data type. For example, you’re looking to track time spent and have coded that as a numeric property, but for some reason some values are tracked as "a", or "b" which are not-numeric.
 - **Some Common How-do-I(s)**
     - **How do I know is set, (not set)?**
 
@@ -309,7 +309,7 @@ Steps
 
     - **In Number: how do I get a bucket of just 0?**
 
-        If you’re purely looking for just how many people have value “0”, we would encourage you to typecast this to a string property and get that.
+        If you’re purely looking for just how many people have value "0", we would encourage you to typecast this to a string property and get that.
 
         If you’re looking to get the count of 0, in reference to the other numeric buckets, go ahead and create a **Varied Bucketing** custom buckets modal
 
@@ -736,7 +736,7 @@ Prompts a selection of a property contained within the objects of the list. This
 
 The list of objects property support will be limited to the first 5 objects within the list property. 
 
-For customer's on a paid plan, you may submit a request for approval to have this limit increased by opening a support ticket within the UI (or by sending an email to [support@mixpanel.com](mailto:support@mixpanel.com)) with the subject line: “Request for List of Objects Limit Increase”. An increase will not be guaranteed, but your project will be reviewed for feasibility of increasing this limit. 
+For customer's on a paid plan, you may submit a request for approval to have this limit increased by opening a support ticket within the UI (or by sending an email to [support@mixpanel.com](mailto:support@mixpanel.com)) with the subject line: "Request for List of Objects Limit Increase". An increase will not be guaranteed, but your project will be reviewed for feasibility of increasing this limit. 
 
 
 ## Analyzing First Time Users
@@ -785,7 +785,7 @@ Note that the time in which this computation is done is on a per interval basis.
 
 ## Find Interesting Segments
 
-Determine which users are either driving conversion and retention or behaving as outliers by using the built in “Find Interesting Segments” feature.
+Determine which users are either driving conversion and retention or behaving as outliers by using the built in "Find Interesting Segments" feature.
 
 Find Interesting Segments can help you discover:
 
@@ -841,7 +841,7 @@ An email that breaks down the top and bottom retaining segments of your Retentio
 
 ### Interpret Email Results
 
-When your analysis email says “no interesting segments”, this means that none of the segments you analyzed were behaving significantly differently from the overall population at a large enough volume. To resolve this issue, try extending the date range of the report or try a different report.
+When your analysis email says "no interesting segments", this means that none of the segments you analyzed were behaving significantly differently from the overall population at a large enough volume. To resolve this issue, try extending the date range of the report or try a different report.
 
 If the analysis request included dates in the past five days, and is sent from mobile SDK, data may be delayed and therefore not included at the time of the analysis. Likewise, the date window selected might still fall under conversion window, and more conversions have yet to come through.
 
@@ -980,16 +980,16 @@ It is possible (only in the Funnels report) to download "CSV Trends", which down
 
 There are several reasons why you might see "undefined" in your properties list throughout Mixpanel reports when segmenting:
 
-- ***The specific property you’re segmenting by isn’t always sent along with the event you’re analyzing.*** For example, let’s say you’re segmenting the event “App Open” by the property “Account type” If there are instances where App Open fires without the Account type property getting sent with it, these will be categorized as “undefined” when you segment by Account type. Another common example is UTM parameters - “undefined” represents users who fired an event without any UTM in the URL that brought the user to your site.
-- When segmenting an event by a User Profile property, ***you’ll see “undefined” if there are User Profile profiles that don’t contain that property or if the event was triggered by a user without a User Profile at all.*** For example, let’s say you’re segmenting the event “Song Play” by the User Profile property “Favorite Genre.” If there are profiles that have triggered Song Play but don’t have the Favorite Genre property, that value will be “undefined.” Triggers of Song Play by users without a User Profile will also show up under “undefined.”
-- ***For geolocation data (City, Region, Country), the user’s IP couldn’t be mapped to a location, or their IP was not included with the request.*** For JavaScript implementations, City, Region, and Country are [default properties](https://help.mixpanel.com/hc/en-us/articles/115004613766-What-properties-do-Mixpanel-s-libraries-store-by-default-). However, if the IP address of the user is not in Mixpanel’s geolocation database and can’t be mapped to a city, region, or country, they will be “undefined” in reports. For server-side implementations, City, Region, and Country can be “undefined” if the IP address is not included with the request. [Read more about how Mixpanel maps IP to location.](/docs/privacy/protecting-user-data#disabling-geolocation)
+- ***The specific property you’re segmenting by isn’t always sent along with the event you’re analyzing.*** For example, let’s say you’re segmenting the event "App Open" by the property "Account type" If there are instances where App Open fires without the Account type property getting sent with it, these will be categorized as "undefined" when you segment by Account type. Another common example is UTM parameters - "undefined" represents users who fired an event without any UTM in the URL that brought the user to your site.
+- When segmenting an event by a User Profile property, ***you’ll see "undefined" if there are User Profile profiles that don’t contain that property or if the event was triggered by a user without a User Profile at all.*** For example, let’s say you’re segmenting the event "Song Play" by the User Profile property "Favorite Genre." If there are profiles that have triggered Song Play but don’t have the Favorite Genre property, that value will be "undefined." Triggers of Song Play by users without a User Profile will also show up under "undefined."
+- ***For geolocation data (City, Region, Country), the user’s IP couldn’t be mapped to a location, or their IP was not included with the request.*** For JavaScript implementations, City, Region, and Country are [default properties](https://help.mixpanel.com/hc/en-us/articles/115004613766-What-properties-do-Mixpanel-s-libraries-store-by-default-). However, if the IP address of the user is not in Mixpanel’s geolocation database and can’t be mapped to a city, region, or country, they will be "undefined" in reports. For server-side implementations, City, Region, and Country can be "undefined" if the IP address is not included with the request. [Read more about how Mixpanel maps IP to location.](/docs/privacy/protecting-user-data#disabling-geolocation)
 
-### Remove “undefined” & "null" values from reports
+### Remove "undefined" & "null" values from reports
 
-If you don’t want to see “undefined” or "null" values in your report, you can remove them by:
+If you don’t want to see "undefined" or "null" values in your report, you can remove them by:
 
-1. Unchecking the “undefined/null” box in the visualization legend.
-2. Looking only at instances where the property in question “is set" - this will exclude values where you see "undefined" or "null":
+1. Unchecking the "undefined/null" box in the visualization legend.
+2. Looking only at instances where the property in question "is set" - this will exclude values where you see "undefined" or "null":
 
 ![image](https://github.com/mixpanel/docs/assets/2077899/1a2465e1-da8d-4fe4-937a-5753716129b3)
 
@@ -1000,7 +1000,7 @@ If you don’t want to see “undefined” or "null" values in your report, you 
 
 ### Troubleshooting Tips
 
-If you’re getting “undefined” property values but think you should not be, troubleshoot the issue using the Events page. Click on "Filter" in the top left to look at events coming in where the property in question “is not set.” You can then use this data to look at your code and figure out why some events are being fired without that property.
+If you’re getting "undefined" property values but think you should not be, troubleshoot the issue using the Events page. Click on "Filter" in the top left to look at events coming in where the property in question "is not set." You can then use this data to look at your code and figure out why some events are being fired without that property.
 
 ![image](https://github.com/mixpanel/docs/assets/2077899/c028c2b1-160d-4c0b-ba9a-87b74aba9c42)
 
@@ -1042,17 +1042,17 @@ Step 2: Hover over the `Move to` option.
 
 Step 3a: Enterprise users: select ‘projects’, then select the specific project that you want to move the board to. Once you’ve selected a project, then list will populate with Boards you can place the current Board in if you wish. 
 
-Step 3b: Non-enterprise users: hover over the "Move To" option, and the project menu will appear immediately. From there, you can choose “Move to your Boards” or another location and select your choice. 
+Step 3b: Non-enterprise users: hover over the "Move To" option, and the project menu will appear immediately. From there, you can choose "Move to your Boards" or another location and select your choice. 
 
 Step 3c: You can also use Move to use Boards from a demo project in your own. Get your free Mixpanel demo account [here](https://mixpanel.com/project/2195193/view/139237/app/boards?show-demo-dataset-modal=true#id=685944) to access the demo datasets. Once you're in, you can set up a new Board easily using a [template](/docs/boards/templates), or you can build a report from scratch. If you like what you see and want to use the analysis in your own project, you can click the button that says "Use this Board." You'll then select the project to which you want to move the board.
 
-Step 4: If there are events and properties used in the old project but not the new project, the affected reports will remain empty or say “no data” until new events and properties are selected. 
+Step 4: If there are events and properties used in the old project but not the new project, the affected reports will remain empty or say "no data" until new events and properties are selected. 
 
-When a report can’t populate, it will display one of two states: a faded out sample report or a “no data” status. 
+When a report can’t populate, it will display one of two states: a faded out sample report or a "no data" status. 
 
 - Charts that show "no data" occur when an event has been tracked in the last 30 days, but a filter or date range result in no data for the report.
 - For the sample report to appear, the report would have to be configured with an event that hasn't existed or at least hasn't been tracked in past 30 days.
 
-For example: a join membership club event happened 100 times yesterday, but 0 so far today. If you create a report for today, it will show “no data”. But if this is day one of the program and it has never been tracked before, it will show a dummy sample report. From this empty state, you can set up your new reports like any other report. 
+For example: a join membership club event happened 100 times yesterday, but 0 so far today. If you create a report for today, it will show "no data". But if this is day one of the program and it has never been tracked before, it will show a dummy sample report. From this empty state, you can set up your new reports like any other report. 
 
 👉🏽 NOTE: If you would like a version of the Board to stay in the parent project, duplicate it and move the new duplicate Board.

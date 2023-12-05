@@ -180,7 +180,7 @@ Starting small with just a few events saves money and can lead to greater data t
 
 You don’t need unlimited events to gain key insights, KPIs, and business metrics. In fact, you can get a tremendous amount of value with just a couple of events — our [KPI Template](https://mixpanel.com/blog/company-kpis-dashboard-template-release-metrics/) requires just two events to get started!
 
-Event plans can be simpler to understand and avoid several “gotchas” that can lead to sudden spikes in MTU usage
+Event plans can be simpler to understand and avoid several "gotchas" that can lead to sudden spikes in MTU usage
 
 1. **Anonymous/Logged out users.** Tracking users who visit marketing landing pages and help docs can blow up your MTU count. These users typically have much lower activity than logged-in users and constitute a trivial increase in event volume.
 2. **Messaging events.** Tracking email/push delivery events would also increase your MTU since these messages are often targeting dormant/inactive users. While some would convert, you’d get charged for a large portion of inactive users as additional MTUs (despite getting one event).

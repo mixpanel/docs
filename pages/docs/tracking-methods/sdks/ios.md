@@ -164,7 +164,7 @@ A group is identified by the `group_key` and `group_id`.
 * `group_key` is the property that connects event data for Group Analytics.
 * `group_id` is the identifier for a specific group.
 
-If the property “company” is chosen for Group Analytics, “company” is the `group_key`, and “Mixpanel”, “Company A”, and “13254” are all potential `group_id` values. 
+If the property "company" is chosen for Group Analytics, "company" is the `group_key`, and "Mixpanel", "Company A", and "13254" are all potential `group_id` values. 
 
 A user can belong to multiple groups. All updates to a group operate on the `group_key` and `group_id`.
 
@@ -177,7 +177,7 @@ To administer group keys, navigate to your Project Settings. Click **+Add Group 
 It is possible to create a Group profile that is similar to a user profile. You must call [`getGroup().set()`](https://mixpanel.github.io/mixpanel-iphone/Classes/Mixpanel.html#//api/name/getGroup:groupID:) to build a group profile. It is important to the `group_key`, `group_id`, and one property so that the profile is not empty. 
 
 ```objc Objective-C
-[[self.mixpanel getGroup:@"Company", groupID:@“Mixpanel”] set:@{@"h": @"yo”}]；
+[[self.mixpanel getGroup:@"Company", groupID:@"Mixpanel"] set:@{@"h": @"yo"}]；
 ```
 
 ### Setting Group Profile Properties
@@ -191,7 +191,7 @@ You can set the property `$name` to populate the name field at the top of the gr
 
 These operations are similar to the corresponding operations for user profile property updates.
 ```objc Objective-C
-[[self.mixpanel getGroup:@"Company", groupID:@“Mixpanel”] set:@{@"h": @"yo”}]；
+[[self.mixpanel getGroup:@"Company", groupID:@"Mixpanel"] set:@{@"h": @"yo"}]；
 ```
 
 You can see other Group methods in the [reference](https://mixpanel.github.io/mixpanel-swift/Classes/Group.html).

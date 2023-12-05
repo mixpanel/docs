@@ -112,7 +112,7 @@ If you would like to make sure any new projects created within your organization
 
 ![Untitled](/Tracking/id-merge-org-settings.png)
 
-If you have an existing project with no data in it, you can also switch to using Simplified ID Merge via the “Identity Merge” section of the Project Settings Page:
+If you have an existing project with no data in it, you can also switch to using Simplified ID Merge via the "Identity Merge" section of the Project Settings Page:
 
 ![Untitled](/Tracking/id-merge-project-settings.png)
 
@@ -129,7 +129,7 @@ Most other integrations are unaffected by this API change. These integrations ar
 ### How does the Simplified API differ from the Original API?
 
 - **`$user_id`/`$device_id` are linked without separate `$identify`, `$merge`, or `$create_alias` events.** The Original API required sending one of these three special event types to link two identities. In the Simplified API, the `$identify`, `$merge`, and `$create_alias` events no longer have any special meaning and will be ignored. Instead, identities are linked using the `$user_id` and `$device_id` properties on regular events as described above.
-- **`$distinct_id` is predictable and matches `$user_id` for identified users.** In the Original API, IDs are grouped into identity clusters and any ID within the cluster might become the “canonical” distinct ID. In the simplified API, the `$distinct_id` is deterministic: it will always be the `$user_id` that you provide.
+- **`$distinct_id` is predictable and matches `$user_id` for identified users.** In the Original API, IDs are grouped into identity clusters and any ID within the cluster might become the "canonical" distinct ID. In the simplified API, the `$distinct_id` is deterministic: it will always be the `$user_id` that you provide.
 - **There is no limit on the number of `$device_id`s that can be merged into a single `$user_id`.** In the Original API a maximum of 500 IDs can be merged into a single cluster. In the Simplified API, there is no similar restriction; you can merge an unlimited number of `$device_id`s into `$user_id`s. This is useful in apps where users log out and log in often.
 
 ## Best Practices
