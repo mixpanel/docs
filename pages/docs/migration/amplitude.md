@@ -44,15 +44,15 @@ If you have access to your Amplitude data in your data warehouse, the simplest w
 3. Set up [Mixpanel Warehouse Connector](/docs/tracking-methods/data-warehouse/overview) to initiate data sync from your data warehouse to Mixpanel. 
 
 ##### Amplitude event schema
-SQL query to to flatten the JSON columns into individual columns: 
+SQL query to flatten the JSON columns into individual columns: 
 
 ```jsx
 SELECT
---required field--
-event_type,          --to map Event Name
-event_time,          --to map Event Time
+-- required fields
+event_type,          -- to map Event Name
+event_time,          -- to map Event Time
 
---to map Insert ID
+-- to map Insert ID
 TO_HEX(SHA1(CONCAT(
       CONCAT('[amp] ', event_type),
       COALESCE(user_id, ""), 
@@ -62,19 +62,19 @@ TO_HEX(SHA1(CONCAT(
       COALESCE(CAST(amplitude_id as STRING), "")
 ))) AS insert_id,
 
---ID managment--
-user_id,         --to map User ID
-amplitude_id,    --to map Distinct ID
-device_id,       --to map Device ID
+-- ID management
+user_id,         -- to map User ID
+amplitude_id,    -- to map Distinct ID
+device_id,       -- to map Device ID
 
--- event properties--
+-- event properties
 JSON_EXTRACT_SCALAR(event_properties, "$['artist']") AS artist,
 JSON_EXTRACT_SCALAR(event_properties, "$['genre']") AS genre,
 JSON_EXTRACT_SCALAR(event_properties, "$['song_title']") AS song_title,
 JSON_EXTRACT_SCALAR(event_properties, "$['song_name']") AS song_name,
 JSON_EXTRACT_SCALAR(event_properties, "$['page_name']") AS page_name,
 
--- user properties as event properties--
+-- user properties as event properties
 JSON_EXTRACT_SCALAR(user_properties, "$['$email']") AS email,
 JSON_EXTRACT_SCALAR(user_properties, "$['$name']") AS name,
 JSON_EXTRACT_SCALAR(user_properties, "$['last_genre']") AS last_genre,
@@ -91,23 +91,23 @@ For Users too, it would be important to flatten the JSON columns into individual
 
 ```jsx
 SELECT
-event_time,
-user_id,
--- user properties--
-JSON_EXTRACT_SCALAR(user_properties, "$['$email']") AS email,
-JSON_EXTRACT_SCALAR(user_properties, "$['$name']") AS name,
-JSON_EXTRACT_SCALAR(user_properties, "$['last_genre']") AS last_genre,
-JSON_EXTRACT_SCALAR(user_properties, "$['lifetime_purchase']") AS lifetime_purchase
+    event_time,
+    user_id,
+    -- user properties
+    JSON_EXTRACT_SCALAR(user_properties, "$['$email']") AS email,
+    JSON_EXTRACT_SCALAR(user_properties, "$['$name']") AS name,
+    JSON_EXTRACT_SCALAR(user_properties, "$['last_genre']") AS last_genre,
+    JSON_EXTRACT_SCALAR(user_properties, "$['lifetime_purchase']") AS lifetime_purchase
 FROM `project.dataset.tablename` t1
 INNER JOIN (
-SELECT
-user_id,
-MAX(event_time) as max_event_time,
-FROM `project.dataset.tablename`
-WHERE user_id IS NOT NULL
-GROUP BY user_id
+    SELECT
+        user_id,
+        MAX(event_time) as max_event_time
+    FROM `project.dataset.tablename`
+    WHERE user_id IS NOT NULL
+    GROUP BY user_id
 ) t2
-on t1.user_id=t2.user_id AND t1.event_time=t2.max_event_time
+ON t1.user_id = t2.user_id AND t1.event_time = t2.max_event_time
 ```
 
 ## Setting up Warehouse Connectors

@@ -15,9 +15,9 @@ You must be a Mixpanel project admin to enable the SFMC integration.
 
 This process will require setup on both SFMC and Mixpanel.
 
-### SFMC
+### SFMC Setup
 
-1. Navigate to **Setup => Apps => Installed packages**. Then create a package with with a Scope that provides **read/write access to DataExtensions**. Keep track of the following information (highlighted above) -- it will be useful to connect Mixpanel to SFMC:
+1. Navigate to **Setup → Apps → Installed packages**. Then create a package with with a Scope that provides **read/write access to DataExtensions**. Keep track of the following information (highlighted above) -- it will be useful to connect Mixpanel to SFMC:
 
 - **Client Id**
 - **Client Secret**
@@ -25,7 +25,7 @@ This process will require setup on both SFMC and Mixpanel.
 
 ![SFMC 1 Image](/sfmc1.png)
 
-2. Navigate to **Audience Builder => Contact Builder => Data Extensions** to Create a New Data Extension.
+2. Navigate to **Audience Builder → Contact Builder → Data Extensions** to Create a New Data Extension.
 
 ![SFMC 2 Image](/sfmc2.png)
 
@@ -37,9 +37,9 @@ This process will require setup on both SFMC and Mixpanel.
 
 ![SFMC 4 Image](/sfmc4.png)
 
-### Mixpanel
+### Mixpanel Setup
 
-1. Navigate to **Data Management => Integrations** in Mixpanel.
+1. Navigate to **Data Management → Integrations** in Mixpanel.
 
 ![SFMC 5 Image](/sfmc5.png)
 
@@ -92,10 +92,3 @@ The cohort data will be exported to the SFMC Data Extension that was set up abov
 Each record in the Data Extension is a user and its properties show the membership of this user in different cohorts.
 
 ![SFMC 10 Image](/sfmc10.png)
-
-
-
-
-
-
-

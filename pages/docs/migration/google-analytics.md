@@ -4,6 +4,8 @@ If you haven't already, we recommend starting with our [Migration Guides Overvie
 
 ## Currently using Google Analytics 4 (GA4) and not seeing value?
 
+Try unifying your marketing and product data in one place. This guide will outline the steps needed in order to bring your GA4 data into Mixpanel allowing you to dig deeper into how users across different channels are interacting with your product, learn where the points of friction are, and where you should be investing your marketing spend to maximize engagement with your product.
+
 ### Loading historical data 
 
 Given GA4 has a similar data format to Mixpanel, it is possible to migrate some of your historical data to see trends. In the cases where historical data is essential, we recommend loading a year’s worth (or less) of historical data during your migration. This will allow your team to review year-over-year trends easily and do historical analysis as needed.
