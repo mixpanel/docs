@@ -3,16 +3,19 @@
 ## Data Model
 
 ### The Building Blocks: Events and Event Properties
-Events are the foundation of the Mixpanel Data Model. In order to conduct analysis and gather meaningful insights from Mixpanel reports, you will need to understand and design events and event properties based on your business requirements and specific use  cases.
+Events are the foundation of the Mixpanel Data Model. In order to conduct meaningful analysis and gather insights from Mixpanel reports, you will need to understand and intentionally design your events and event properties based on business objectives, specific use cases, and key metrics.
 
-To summarize: 
-* In Mixpanel, all events have a name, a timestamp, and a user ID. 
-* Events represent an interaction between the user and your product. 
-* Event properties provide description or add context to the event. 
+The main components of the events and event properties are outlined below: 
+* All events should have a name, a timestamp, and a distinct user ID. 
+* Events represent an interaction between the user and your product. Include only relevant events that align to your use cases.    
+* Event properties provide description or add context to the event. Similarly, include only relevant event properties that will enable you drill deeper into the analysis.
 
-Below is an example of the structure of Mixpanel event along with event properties. The event name should intuitively describe the user action or behavior that triggers this event. 
+Below are some examples of the Mixpanel event structure along with relevant event properties. The event name should intuitively describe the user action or behavior that triggers this event. 
 
 ![image](/tutorials/signupcompleted.png "Sign Up Completed Event Example")
+![image](/tutorials/songplayed.png "Song Played Event Example")
+![image](/tutorials/ordercompleted.png "Order Completed Event Example")
+![image](/tutorials/pageviewed.png "Page Viewed Event Example")
 
 [update Loom Link for Mixpanel Data Model]
 <p style={{ position: 'relative', paddingBottom: '56.25%', height: 0, overflow: 'hidden' }}>
