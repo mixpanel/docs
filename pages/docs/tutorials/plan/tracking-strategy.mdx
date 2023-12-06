@@ -1,14 +1,14 @@
  # Build Your Tracking Strategy
 
-## Data Model
+## The Mixpanel Data Model
 
 ### The Building Blocks: Events and Event Properties
-Events are the foundation of the Mixpanel Data Model. In order to conduct meaningful analysis and gather insights from Mixpanel reports, you will need to understand and intentionally design your events and event properties based on business objectives, specific use cases, and key metrics.
+Events are the foundation of the Mixpanel Data Model. In order to conduct meaningful analysis and gather insights from Mixpanel reports, you should understand and intentionally design your events and event properties based on business objectives, specific use cases, and key metrics.
 
 The main components of the events and event properties are outlined below: 
 * All events should have a name, a timestamp, and a distinct user ID. 
 * Events represent an interaction between the user and your product. Include only relevant events that align to your use cases.    
-* Event properties provide description or add context to the event. Similarly, include only relevant event properties that will enable you drill deeper into the analysis.
+* Event properties provide description or add context to the event. Include only relevant event properties that will enable you drill deeper into the analysis.
 
 Below are some examples of the Mixpanel event structure along with relevant event properties. The event name should intuitively describe the user action or behavior that triggers this event. 
 
@@ -22,21 +22,19 @@ Below are some examples of the Mixpanel event structure along with relevant even
   <iframe src="https://www.loom.com/share/fc9390690f1e4d84ab926dcf54914118?sid=22442ac2-544d-47be-9edc-d1a18aadcdff" frameborder="0" style={{ position: 'absolute', top: 0, left: 0, width: '100%', height: '100%' }} allowfullscreen></iframe>
 </p>
 
-Along with the Data Model Overview video, you can find this [Mixpanel Data Model Board](https://mixpanel.com/project/2195193/view/139237/app/boards/#id=4600772/) in our sample Mixpanel project which offers an in-depth explanation to see events and event properties live-in-action within the platform. 
+Along with the Data Model Overview video, you can find this [Mixpanel Data Model Board](https://mixpanel.com/project/2195193/view/139237/app/boards/#id=4600772/) in a sample Mixpanel project which offers an in-depth explanation to see events and event properties live-in-action within the platform. 
 
 For a comprehensive overview of events and properties, please find 
 [Events and Properties](/docs/data-structure/events-and-properties).
 
-### Deeper Understanding of Properties 
+### Understanding Special Properties 
 
 **Super Properties**: In some cases, you may have certain properties that are relevant in which you may want to include with every event you send. These attributes are typically more about the user such as age, gender, source, or subscription plan type. Mixpanel allows you to register these properties as super properties so you can just let us know once, and these properties will be included in all subsequent events. Check out the link to find more information on 
 [Super Properties](https://docs.mixpanel.com/docs/tracking-methods/sdks/javascript#super-properties).
 
-- **Reserved Properties**: Mixpanel have some properties that are reserved for special use or processing within our UI. Check out the link to find more information on [Reserved Properties](https://docs.mixpanel.com/docs/data-structure/events-and-properties#reserved-event-properties).
+**Reserved Properties**: Mixpanel have some properties that are reserved for special use or processing within our UI. Check out the link to find more information on [Reserved Properties](https://docs.mixpanel.com/docs/data-structure/events-and-properties#reserved-event-properties).
 
-- **Default Properties**: If you are specifically using the Mixpanel client-side SDKs, we will automatically collect certain properties on every event where possible. Check out the link to find more information on [Default Properties](https://docs.mixpanel.com/docs/data-structure/property-reference).
-
-[explain Super Properties] 
+**Default Properties**: If you are specifically using the Mixpanel client-side SDKs, we will automatically collect certain properties on every event where possible. Check out the link to find more information on [Default Properties](https://docs.mixpanel.com/docs/data-structure/property-reference).
 
 ### User Profile
 User Profiles let you enrich events with properties about the users that performed those events. 
