@@ -2,15 +2,15 @@
 
 ## Data Model
 
-### Events and Event Properties
-In order to get into what data we need to track to measure and improve the KPIs aligned to our business objectives, we need to build our understanding of the Mixpanel Data Model. The foundation of the Data Model are the events and event properties. Events and event properties will be used comprehensively as the building blocks across all your Mixpanel reports. 
+### The Building Blocks: Events and Event Properties
+Events are the foundation of the Mixpanel Data Model. In order to conduct analysis and gather meaningful insights from Mixpanel reports, you will need to understand and design events and event properties based on your business requirements and specific use  cases.
 
 To summarize: 
+* In Mixpanel, all events have a name, a timestamp, and a user ID. 
 * Events represent an interaction between the user and your product. 
 * Event properties provide description or add context to the event. 
-* In Mixpanel, all events have a name, a timestamp, and a user ID. 
 
-Below is an example of what a Mixpanel event might look like. The event name should intuitively describe the user action or behavior that triggers this event. 
+Below is an example of the structure of Mixpanel event along with event properties. The event name should intuitively describe the user action or behavior that triggers this event. 
 
 ![image](/tutorials/signupcompleted.png "Sign Up Completed Event Example")
 
@@ -19,14 +19,15 @@ Below is an example of what a Mixpanel event might look like. The event name sho
   <iframe src="https://www.loom.com/share/fc9390690f1e4d84ab926dcf54914118?sid=22442ac2-544d-47be-9edc-d1a18aadcdff" frameborder="0" style={{ position: 'absolute', top: 0, left: 0, width: '100%', height: '100%' }} allowfullscreen></iframe>
 </p>
 
-Along with the video overview, you can also take a look at this [Mixpanel Data Model Board](https://mixpanel.com/project/2195193/view/139237/app/boards/#id=4600772/) in a sample Mixpanel project for an in-depth explanation and to see how events and event properties can look within the platform. 
-
+Along with the Data Model Overview video, this [Mixpanel Data Model Board](https://mixpanel.com/project/2195193/view/139237/app/boards/#id=4600772/) in a sample Mixpanel project offeres an in-depth explanation and to see how events and event properties can look within the platform. 
 
 For a comprehensive overview of events and properties, please find 
 [Events and Properties](/docs/data-structure/events-and-properties).
 
 ### Understanding Properties 
 [update]
+Reserved Properties [Reserved Properties](https://docs.mixpanel.com/docs/data-structure/events-and-properties#reserved-event-properties)
+
 Default Properties [Default Properties](https://docs.mixpanel.com/docs/data-structure/property-reference)
 
 [explain Super Properties] 
@@ -45,11 +46,12 @@ For more information on users, you can find more information [here](https://docs
 ## Creating a Tracking Plan
 
 ### Overview 
-We recommend creating a tracking plan based on the key business goals identified from your analytics strategy. It should:
+Going through this guide should help you understand the necessary concepts and steps to build out your tracking plan as it aligns to your business goals from your Analytics Strategy Framework. 
 
-- Serve as a centralized document that should serve as the source of truth on your Mixpanel implementation
-- Define your business goals / KPIs and analytics strategy metrics. For a deeper dive into how you can map your KPIs to your specific user flows, you may want to explore our [Analytics Strategy Measurement Framework guide](https://docs.mixpanel.com/docs/best-practices/analytics-strategy/overview)
-- Outline the events, event properties, and user profile properties aligned to your metrics. To dive deeper into understanding your events and properties, take a look at our [Events and Properties](https://docs.mixpanel.com/docs/data-structure/events-and-properties)
+Your completed tracking plan will help you to: 
+- Serve as a centralized document that should serve as the source of truth for your Mixpanel implementation
+- Define your business goals / KPIs and analytics strategy metrics. 
+- Outline the events, event properties, and user profile properties aligned to your metrics. 
 - Be treated as a living and shared document that is continuously updated with any implementation changes
 - Include notes that are referenced across teams (product, marketing, data science, tech / dev teams, etc.)
 
