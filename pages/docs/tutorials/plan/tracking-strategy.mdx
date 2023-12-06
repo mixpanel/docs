@@ -8,7 +8,7 @@ Events are the foundation of the Mixpanel Data Model. In order to conduct meanin
 The main components of the events and event properties are outlined below: 
 * All events should have an event name, a timestamp, and a distinct user ID. 
 * Events represent an interaction between the user and your product. Include only relevant events that align to your use cases.    
-* Event properties provide description or add context to the event. Include only relevant event properties that will enable you drill deeper into the analysis.
+* Event properties provide additional context or details about the event. Include only relevant event properties that will enable you drill deeper into the analysis.
 
 Below are some examples of the Mixpanel event structure along with some relevant event properties. The event name should intuitively describe the user action or behavior that triggers this event. 
 
@@ -32,7 +32,9 @@ For a comprehensive overview of events and properties, please find
 
 ### Understanding Special Properties 
 
-**Super Properties**: In some cases, you may have certain relevant properties in which you may want to include with every event you send. These attributes are typically more about the user such as age, gender, source, or perhaps subscription plan type. Mixpanel allows you to register these properties as super properties so you can just let us know once, and these properties will be included in all subsequent events. 
+**Super Properties**: In some cases, you may have certain relevant properties in which you may want to include with every event you send.  Unlike regular event properties, which are tied to individual events, super properties remain constant across multiple events, providing overarching context or information about the user or their environment.
+
+These attributes are typically more about the user such as age, gender, source, or perhaps subscription plan type. Mixpanel allows you to register these properties as super properties so you can just let us know once, and these properties will be included in all subsequent events. 
 
 Check out the link to find more information on 
 [Super Properties](https://docs.mixpanel.com/docs/tracking-methods/sdks/javascript#super-properties).
@@ -50,7 +52,7 @@ In addition to your events and event properties, User Profiles allow you to capt
 
 User Profiles are a separate table that uses the distinct user ID to thread all the user events or behaviors along with the user properties. 
 
-Some common user properties may include user age, email address, subscription plan type, company role, or lifetime value. 
+Some common user properties are usually demographic information or user preferences and may include attributes such as user age, email address, subscription plan type, company role, or lifetime value. 
 
 Check out the link to find more information on [User Profiles](https://docs.mixpanel.com/docs/data-structure/user-profiles).
 
