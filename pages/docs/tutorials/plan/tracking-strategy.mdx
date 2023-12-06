@@ -57,12 +57,13 @@ Check out the link to find more information on [User Profiles](https://docs.mixp
 ### Group Analytics
 At the fundamental level, Mixpanel allows behavioral data analysis at the individual user level. Group Analytics is an add-on feature that allows you to conduct analysis at a customized group level such as company, account, device, or any other group entity that makes sense for your business use case. 
 
-Similar to how individual users have a distinct ID, every relevant event associated to the given group should have a distinct group ID, such as Company ID or an Account ID. Mixpanel will then thread all group level behaviors to enable you to conduct analysis at the group level. 
+Similar to how each individual user event must have a distinct ID sent as an event property, **every relevant group event should also have a distinct group ID, such as Company ID or an Account ID sent along as a event property with each event**. Mixpanel will then thread all group level behaviors to enable you to conduct analysis at the group level. 
 
-Just like each user can have a User Profile, each group can also have a Group Profile that capture and store meaningful group attributes to better understand the group level attributes. For example, a Company Profile may include group properties such as industry, company size, annual spend, or number of seats.
+Additionally, just like each user can have a User Profile, each group can also have a Group Profile that capture and store meaningful group attributes to better understand the group level attributes. For example, a Company Profile may include group properties such as industry, company size, annual spend, or number of seats.
 
 [insert group analytics video link]
 
+Keep in mind that not every business necessarily has use cases that may require Group Analytics. 
 Check out the link to find more information on [Group Analytics](https://docs.mixpanel.com/docs/data-structure/advanced/group-analytics#overview).
 
 ----------
