@@ -4,11 +4,6 @@
 
 There are a variety of methods available to you and your team to get your data into Mixpanel. Before you explore the available methods, it is important to note that there is no “right” or “wrong” answer when it comes to collecting data. The implementation method you utilize may change throughout your company’s lifecycle, and each method will have its pros and cons. Your initial implementation choice will depend on several factors such as available development resources, existing infrastructure, and the type of data your team is trying to collect.
 
-<p style={{ position: 'relative', paddingBottom: '56.25%', height: 0, overflow: 'hidden' }}>
-  <iframe src="LOOM LINK HERE" frameborder="0" style={{ position: 'absolute', top: 0, left: 0, width: '100%', height: '100%' }} allowfullscreen></iframe>
-</p>
-
-
 ![Image](/git.png)
 
 Mixpanel can work with numerous ingestion models, such as tracking data to Mixpanel via our SDKs, a third-party Customer Data Platform (CDP), an in-house pipeline event stream, or collecting data in a data warehouse and then reverse ETLing the data into Mixpanel for analysis. Analytics, however, is only as good as the data that is being provided. It is important to choose an ingestion method that is trustworthy, comprehensive, and scalable with the growth of your organization at all points of your company’s lifecycle.
@@ -26,10 +21,6 @@ Our recommendation from years of experience working with our customers is, if po
 
 
 ## Pros & Cons
-
-<p style={{ position: 'relative', paddingBottom: '56.25%', height: 0, overflow: 'hidden' }}>
-  <iframe src="LOOM LINK HERE" frameborder="0" style={{ position: 'absolute', top: 0, left: 0, width: '100%', height: '100%' }} allowfullscreen></iframe>
-</p>
 
 **Client Side SDKs**
 
@@ -65,10 +56,6 @@ Consider this method of implementation if your team is already gathering source-
 
 ## Mixpanel SDKs
 
-<p style={{ position: 'relative', paddingBottom: '56.25%', height: 0, overflow: 'hidden' }}>
-  <iframe src="LOOM LINK HERE" frameborder="0" style={{ position: 'absolute', top: 0, left: 0, width: '100%', height: '100%' }} allowfullscreen></iframe>
-</p>
-
 Pros to utilizing client-side SDKs are that they can be simpler to initially set up, offer easier tracking of clickstream data than other methods, and simplify the process of tracking users from an anonymous to an identified state. 
 
 Cons to utilizing client-side SDKs are that ad blockers can affect the ability to track data leading to potential mistrust in the data, it can be difficult to keep metrics consistent when utilizing client-side SDKs across multiple platforms such as across both a website and mobile app, and in regards to mobile apps it can be difficult to fix implementation mistakes quickly.
@@ -93,19 +80,11 @@ Consider implementing via Server Side SDK if you are either able to or have no n
 
 ## CDP
 
-<p style={{ position: 'relative', paddingBottom: '56.25%', height: 0, overflow: 'hidden' }}>
-  <iframe src="LOOM LINK HERE" frameborder="0" style={{ position: 'absolute', top: 0, left: 0, width: '100%', height: '100%' }} allowfullscreen></iframe>
-</p>
-
 CDPs are Customer Data Platforms that allow you to instrument tracking code once, route data through a single centralized source, and then forward the data onwards to other tools. The pros of utilizing a CDP is that it helps simplify your implementation across your entire tech stack, switching costs are low when changing downstream providers, and you can manage all your data in one centralized location. The cons of utilizing a CDP is that there is a cost to consider with adding another tool to your tech stack and you must maintain any transformations and enrichment of your data before passing the data to Mixpanel.
 
 Please refer to the documentation provided by your respective CDP provider for more information on how to connect your CDP to Mixpanel.
 
 ## API
-
-<p style={{ position: 'relative', paddingBottom: '56.25%', height: 0, overflow: 'hidden' }}>
-  <iframe src="LOOM LINK HERE" frameborder="0" style={{ position: 'absolute', top: 0, left: 0, width: '100%', height: '100%' }} allowfullscreen></iframe>
-</p>
 
 If you would like to send data directly to Mixpanel servers without the need of any sort of intermediary layer, you can utilize our Ingestion API. Our Ingestion API has a few different endpoints depending on whether you are sending us Event data or User data. 
 The pros of sending data directly to our APIs is that your team will have full control of exactly what data to send and you can quickly fix any implementation mistakes. Cons of implementing directly via our APIs is that the implementation can be a bit more complex as your team will have to manually create each API call to track data. 
@@ -120,10 +99,6 @@ You can also pass user data to Mixpanel via the Engage endpoint of the Ingestion
 
 ## Data Warehouse
 
-<p style={{ position: 'relative', paddingBottom: '56.25%', height: 0, overflow: 'hidden' }}>
-  <iframe src="LOOM LINK HERE" frameborder="0" style={{ position: 'absolute', top: 0, left: 0, width: '100%', height: '100%' }} allowfullscreen></iframe>
-</p>
-
 If you currently store data in a data warehouse, Mixpanel provides a method to natively import data from Bigquery, Snowflake, Redshift, or Databricks into Mixpanel. The [Warehouse Sync](https://docs.mixpanel.com/docs/tracking-methods/data-warehouse/overview) integration allows you to import both event and user data into your Mixpanel project via recurring syncs to ensure that your data in Mixpanel matches your trusted data source.
 
 There are a few high-level limitations for your team to be aware of when utilizing the Mixpanel Warehouse Sync. The Warehouse Sync integration has an ingestion rate limit of about 30,000 events per second. Also, we identify new events to import into your project based on an Insert Time field that should reflect a timestamp of when that event was added to your warehouse. If you do not have a separate Insert Time value to map to or are unable to include one, you can also map to the event timestamp or you can add an UpdatedAt timestamp to your table, which should be the time at which a row was modified. We’ll use this as a watermark to import new events for subsequent syncs. Check out [our docs](https://docs.mixpanel.com/docs/tracking-methods/data-warehouse/overview) for guidance on how to connect your respective warehouse to Mixpanel and begin syncing data into your project.
@@ -132,10 +107,6 @@ Another option to send data from your data warehouse to Mixpanel would be to uti
 
 ## Cloud Ingestion
 
-<p style={{ position: 'relative', paddingBottom: '56.25%', height: 0, overflow: 'hidden' }}>
-  <iframe src="LOOM LINK HERE" frameborder="0" style={{ position: 'absolute', top: 0, left: 0, width: '100%', height: '100%' }} allowfullscreen></iframe>
-</p>
-
 There is an option to set up a serverless ingest pipeline from a Cloud Storage bucket into Mixpanel. Once this is set up, you can upload files containing events into the designated storage bucket and the events will be ingested into Mixpanel, either as a one-time import or on a recurring basis.
 
 The pros of implementing via cloud ingestion for an event streaming pipeline is that it leverages existing data infrastructure and provides trustworthy data. The cons of implementing in this way is that it requires an existing data pipeline and transformations will be required to send the data to Mixpanel.
@@ -143,10 +114,6 @@ The pros of implementing via cloud ingestion for an event streaming pipeline is 
 At a high level, the steps necessary to achieve this process are to first create a cloud storage bucket. The next step is to create an import config made up of a function to handle necessary transformations and a trigger for when to send new data over. After setting up that config you would then test a sample batch of data to ensure the data looks correct in your Mixpanel project and, if everything looks correct, you can then directly connect your real data to push to your project. Our [documentation](https://docs.mixpanel.com/docs/tracking-methods/choosing-the-right-method) contains step-by-step instructions on how to set up an ingestion pipeline from either Amazon S3, Google Cloud Storage, or Google Pub/Sub. The instructions in the guides can also provide relevant context in case you want to set up an ingest pipeline from another cloud storage provider.
 
 ## Identity Management Best practices
-
-<p style={{ position: 'relative', paddingBottom: '56.25%', height: 0, overflow: 'hidden' }}>
-  <iframe src="LOOM LINK HERE" frameborder="0" style={{ position: 'absolute', top: 0, left: 0, width: '100%', height: '100%' }} allowfullscreen></iframe>
-</p>
 
 As users navigate through your website or application, it is common for them to move from anonymous to identified states, as well as, logged out to logged-in states. When utilizing SDKs, especially client-side, it is important to manage all the identifiers belonging to a user correctly to ensure that all of their pre-auth and post-auth activity is tracked as one user.
 
