@@ -15,9 +15,30 @@ to-dos:
 - Add User profiles section on this
     - Ensure we add the part that unless we call people.set() [after identify() in SDKs], profile will not be created.
 
+There are a variety of methods available to you and your team to get your data into Mixpanel. Before you explore the available methods, it is important to note that there is no “right” or “wrong” answer when it comes to collecting data. The implementation method you utilize may change throughout your company’s lifecycle, and each method will have its pros and cons. Your initial implementation choice will depend on several factors such as available development resources, existing infrastructure, and the type of data your team is trying to collect.
+
+
+
+Mixpanel is able to work with numerous ingestion models, such as tracking data to Mixpanel via our SDKs, a third-party Customer Data Platform (CDP), an in-house pipeline event stream, or collecting data in a data warehouse and then reverse ETLing the data into Mixpanel for analysis. Analytics, however, is only as good as the data that is being provided. It is important to choose an ingestion method that is trustworthy, comprehensive, and scalable with the growth of your organization at all points of your company’s lifecycle.
+
+Some questions you should consider when choosing an ingestion method are:
+
+1. Does your company already have a source of truth data that is used in reporting?
+2. Do you already have an event stream, Customer Data Platform (CDP), or Reverse ETL tool set up?
+3. Do you have any clickstream data? Are you already collecting that clickstream data, and if not, do you have the ability to collect that clickstream data?
+4. What available dev resources does your team have to implement a CDP, Event Stream, or DWH type implementation?
+
+The video above shows a decision flowchart that is a great resource to help you and your team logically narrow down your ingestion options. 
+
+Our recommendation from years of experience working with our customers is, if possible, to utilize your source of truth data for analysis in Mixpanel. Analyzing data you can trust is a cornerstone of building a reliable long-term analytics strategy.
+
+If you have any questions about choosing an ingestion method, check out our docs, leave a comment on our videos, or join our Slack community. 
+
 ## Identity Management Best practices
 to-do: focus on simplified id + video to talk through
 
 - ensuring that anon events are linked to the right user profile
 - What are some of the caveats?
 - point links to legacy ID management ( original API and v1)
+
+
