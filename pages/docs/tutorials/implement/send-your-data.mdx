@@ -142,7 +142,7 @@ Identity Management Best Practices
 - Avoid creating anonymous user profiles and only call the identify method when the user is known or logged in.
 - Call mixpanel.identify upon a successful sign-up / login or when an app is re-opened in a logged-in state
 - QA your identity management implementation during development
-- If you are setting your own $device_id, best practice is to set the ID in a UUIDv4 format
+- If you are setting your own `$device_id`, best practice is to set the ID in a UUIDv4 format
 - For implementations not leveraging a client-side SDK, ensure every event is sent with a `$distinct_id` or the components that make up `$distinct_id`, such as `$device_id` and/or `$user-id`
 
 
