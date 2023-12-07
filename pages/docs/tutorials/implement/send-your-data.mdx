@@ -8,6 +8,7 @@ There are a variety of methods available to you and your team to get your data i
   <iframe src="LOOM LINK HERE" frameborder="0" style={{ position: 'absolute', top: 0, left: 0, width: '100%', height: '100%' }} allowfullscreen></iframe>
 </p>
 
+
 ![Image](/git.png)
 
 Mixpanel can work with numerous ingestion models, such as tracking data to Mixpanel via our SDKs, a third-party Customer Data Platform (CDP), an in-house pipeline event stream, or collecting data in a data warehouse and then reverse ETLing the data into Mixpanel for analysis. Analytics, however, is only as good as the data that is being provided. It is important to choose an ingestion method that is trustworthy, comprehensive, and scalable with the growth of your organization at all points of your company’s lifecycle.
@@ -23,7 +24,8 @@ The video above shows a decision flowchart that is a great resource to help you 
 
 Our recommendation from years of experience working with our customers is, if possible, to utilize your source of truth data for analysis in Mixpanel. Analyzing data you can trust is a cornerstone of building a reliable long-term analytics strategy.
 
-###Pros & Cons
+
+## Pros & Cons
 
 <p style={{ position: 'relative', paddingBottom: '56.25%', height: 0, overflow: 'hidden' }}>
   <iframe src="LOOM LINK HERE" frameborder="0" style={{ position: 'absolute', top: 0, left: 0, width: '100%', height: '100%' }} allowfullscreen></iframe>
@@ -61,7 +63,7 @@ The pros of implementing via your data warehouse are that it leverages your exis
 
 Consider this method of implementation if your team is already gathering source-of-truth data in a data warehouse.
 
-##Mixpanel SDKs
+## Mixpanel SDKs
 
 <p style={{ position: 'relative', paddingBottom: '56.25%', height: 0, overflow: 'hidden' }}>
   <iframe src="LOOM LINK HERE" frameborder="0" style={{ position: 'absolute', top: 0, left: 0, width: '100%', height: '100%' }} allowfullscreen></iframe>
@@ -89,7 +91,7 @@ The pros of utilizing server-side SDKs are that they are not susceptible to ad b
 
 Consider implementing via Server Side SDK if you are either able to or have no need to track clickstream data and have an existing backend framework with the resources to implement within that framework.
 
-##CDP
+## CDP
 
 <p style={{ position: 'relative', paddingBottom: '56.25%', height: 0, overflow: 'hidden' }}>
   <iframe src="LOOM LINK HERE" frameborder="0" style={{ position: 'absolute', top: 0, left: 0, width: '100%', height: '100%' }} allowfullscreen></iframe>
@@ -99,7 +101,7 @@ CDPs are Customer Data Platforms that allow you to instrument tracking code once
 
 Please refer to the documentation provided by your respective CDP provider for more information on how to connect your CDP to Mixpanel.
 
-##API
+## API
 
 <p style={{ position: 'relative', paddingBottom: '56.25%', height: 0, overflow: 'hidden' }}>
   <iframe src="LOOM LINK HERE" frameborder="0" style={{ position: 'absolute', top: 0, left: 0, width: '100%', height: '100%' }} allowfullscreen></iframe>
@@ -116,7 +118,7 @@ The first step in using the Import endpoint is to authenticate your request. You
 
 You can also pass user data to Mixpanel via the Engage endpoint of the Ingestion API. The Engage endpoint allows you to create new profiles, update existing profiles, or delete existing profiles. It also gives you the ability to set, update, or delete a single property on profiles. Much like sending event data in, user properties must be passed in as proper JSON. Unlike for events, the only authentication needed to pass user updates is your project API token. 
 
-##Data Warehouse
+## Data Warehouse
 
 <p style={{ position: 'relative', paddingBottom: '56.25%', height: 0, overflow: 'hidden' }}>
   <iframe src="LOOM LINK HERE" frameborder="0" style={{ position: 'absolute', top: 0, left: 0, width: '100%', height: '100%' }} allowfullscreen></iframe>
@@ -128,7 +130,7 @@ There are a few high-level limitations for your team to be aware of when utilizi
 
 Another option to send data from your data warehouse to Mixpanel would be to utilize a Reverse ETL tool. These third-party tools will allow you to make any necessary transformations to the data and set up sync schedules to import data from your warehouse to Mixpanel. Please refer to the respective documentation of whichever reverse ETL tool your team chooses to utilize.
 
-##Cloud Ingestion
+## Cloud Ingestion
 
 <p style={{ position: 'relative', paddingBottom: '56.25%', height: 0, overflow: 'hidden' }}>
   <iframe src="LOOM LINK HERE" frameborder="0" style={{ position: 'absolute', top: 0, left: 0, width: '100%', height: '100%' }} allowfullscreen></iframe>
@@ -165,7 +167,7 @@ Let’s cover an example from a client-side SDK to show how each of these elemen
 3. Charlie returns the next day from his mobile device and installs your mobile app. Upon opening the mobile app for the first time, Mixpanel treats Charlie as an anonymous user and assigns him a new device ID stored in local storage.
 4. Charlie logs in to his existing account. At the login step would make an Identify() call passing in Charlie's User ID. The SDK will change Charlie's distinct ID in local storage to the User ID value and will merge the new device ID into the existing cluster. Now, both device IDs and Charlie's User ID exist as one identity cluster and data sent with any of the IDs in the cluster will be properly attributed to Charlie.
 
-From a server-side implementation utilizing unique pre-auth and post-auth IDs, the changes you would make are at step 1 you would assign the user a random UUIDv4 formatted device ID and pass it as $device_id on all of their anonymous actions. At this point, you can pass distinct ID as an empty string and we will use the $device_id as the distinct ID. When the user signs up or registers at step 2, instead of calling the Identify() method, you would pass an event with both the anonymous $device_id and $user_id attached as properties. Our system will parse that the event has both a device and user ID, will merge the two IDs into an identity cluster, and will set the canonical distinct ID for the user equal to the user ID value. Going forward you can pass data with either ID and it will be attributed to the correct user.
+From a server-side implementation utilizing unique pre-auth and post-auth IDs, the changes you would make are at step 1 you would assign the user a random UUIDv4 formatted device ID and pass it as `$device_id` on all of their anonymous actions. At this point, you can pass distinct ID as an empty string and we will use the `$device_id` as the distinct ID. When the user signs up or registers at step 2, instead of calling the Identify() method, you would pass an event with both the anonymous `$device_id` and `$user_id` attached as properties. Our system will parse that the event has both a device and user ID, will merge the two IDs into an identity cluster, and will set the canonical distinct ID for the user equal to the user ID value. Going forward you can pass data with either ID and it will be attributed to the correct user.
 
 Identity Management Best Practices
 
@@ -174,7 +176,7 @@ Identity Management Best Practices
 - Call mixpanel.identify upon a successful sign-up / login or when an app is re-opened in a logged-in state
 - QA your identity management implementation during development
 - If you are setting your own $device_id, best practice is to set the ID in a UUIDv4 format
-- For implementations not leveraging a client-side SDK, ensure every event is sent with a $distinct_id or the components that make up $distinct_id, such as $device_id and/or $user-id
+- For implementations not leveraging a client-side SDK, ensure every event is sent with a `$distinct_id` or the components that make up `$distinct_id`, such as `$device_id` and/or `$user-id`
 
 
 If you have any questions, check out our [docs](https://docs.mixpanel.com/docs) or join our [Slack community](https://mixpanelcommunity.slack.com/join/shared_invite/zt-21i246onn-yMLRuuXFs9pnqM04hld0yw#/shared-invite/email). 
