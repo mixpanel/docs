@@ -14,15 +14,15 @@ To quickly get you setup, here's an outline of what we'll be covering in this se
 ## Organization Discoverability
 By default, an organization is setup as **Invite Only**, which means new users must be explicitly invited by an owner or admin to be part of the organization. If you are on an [Enterprise Plan](https://mixpanel.com/settings/org/plan) and do not plan to setup [SSO](/docs/access-security/single-sign-on/overview), Mixpanel recommends setting one of the following organisation discoverability, by specifying the email domain(s) that should be granted access when a new user signs up for Mixpanel:
 
-1. **Open Organization** - any new user with maching email domain(s) can join
-2. **Admin Approval** - admins will an receieve email notification (and approve) for users who made a request to join
+1. **Open Organization** - any new user with maching email domain(s) can join (without approval)
+2. **Admin Approval** - admins will receieve an email notification (and approve) for users who made a request to join
 
-Click [here](https://mixpanel.com/settings/org/users-and-teams/find-your-org) to setup, or for more information refer to docs on [Organization Discoverability](/docs/orgs-and-projects/organizations#organization-discoverability)
+Click [here](https://mixpanel.com/settings/org/users-and-teams/find-your-org) to setup, or for more information refer to docs on [Organization Discoverability](/docs/orgs-and-projects/organizations#organization-discoverability).
 
 ![image](/tutorials/organization-discoverability.png "Organization Discoverability")
 
 ## Development and Production Project Setup
-We recommend that you minimally setup 2 Mixpanel projects, one for Development data and another for Production data. This is to ensure that you keep development test data separate from actual live user behavioural data. Read more details about [Developer Environments](/docs/best-practices/developer-environments).
+We recommend that you minimally setup two Mixpanel projects, one for **Development** data and another for **Production** data. This is to ensure that you keep development test data separate from actual live user behavioural data. Read more details about [Developer Environments](/docs/best-practices/developer-environments).
 
 ![image](/tutorials/create-projects.png "Create Projects")
 
@@ -31,7 +31,7 @@ We recommend that you minimally setup 2 Mixpanel projects, one for Development d
    - We recommend choosing **United States** as *Where To Store Your Data* (unless you have [EU Residency](/docs/privacy/eu-residency) requirements)
    - Select the **Timezone** with which you want to analyze your data (more information on [Project Timezones](/docs/orgs-and-projects/managing-projects#manage-timezones-for-projects))
 
-Refer to docs on [Project Setup](docs/best-practices/project-setup) for more detailed steps and best practices.
+Refer to docs on [Project Setup](/docs/best-practices/project-setup) for more detailed steps and best practices.
 
 ## Plan Data Access and Visibility
 
