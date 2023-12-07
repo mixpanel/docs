@@ -1,27 +1,12 @@
 # Send Your Data: Implement Your Tracking Plan
 
 ## Choosing an Ingestion Method
-to-dos:
-- Have the following videos:
-    - Choosing the right ingestion method (talk about CDP and recommend referring CDP docs)
-    - Sample for Client and server side SDKs
-    - API
-    - DWH Connectors
-    - Cloud ingestion
-- General advice on what are the different ways to get data in Mixpanel
-- Flowchart or Diagram in video
-- Page has links to different types of ingestion  methods
-
-[Image](docs/git.png)
-
-- Add User profiles section on this
-    - Ensure we add the part that unless we call people.set() [after identify() in SDKs], profile will not be created.
 
 There are a variety of methods available to you and your team to get your data into Mixpanel. Before you explore the available methods, it is important to note that there is no “right” or “wrong” answer when it comes to collecting data. The implementation method you utilize may change throughout your company’s lifecycle, and each method will have its pros and cons. Your initial implementation choice will depend on several factors such as available development resources, existing infrastructure, and the type of data your team is trying to collect.
 
+![Image](/git.png)
 
-
-Mixpanel is able to work with numerous ingestion models, such as tracking data to Mixpanel via our SDKs, a third-party Customer Data Platform (CDP), an in-house pipeline event stream, or collecting data in a data warehouse and then reverse ETLing the data into Mixpanel for analysis. Analytics, however, is only as good as the data that is being provided. It is important to choose an ingestion method that is trustworthy, comprehensive, and scalable with the growth of your organization at all points of your company’s lifecycle.
+Mixpanel can work with numerous ingestion models, such as tracking data to Mixpanel via our SDKs, a third-party Customer Data Platform (CDP), an in-house pipeline event stream, or collecting data in a data warehouse and then reverse ETLing the data into Mixpanel for analysis. Analytics, however, is only as good as the data that is being provided. It is important to choose an ingestion method that is trustworthy, comprehensive, and scalable with the growth of your organization at all points of your company’s lifecycle.
 
 Some questions you should consider when choosing an ingestion method are:
 
@@ -34,13 +19,130 @@ The video above shows a decision flowchart that is a great resource to help you 
 
 Our recommendation from years of experience working with our customers is, if possible, to utilize your source of truth data for analysis in Mixpanel. Analyzing data you can trust is a cornerstone of building a reliable long-term analytics strategy.
 
-If you have any questions about choosing an ingestion method, check out our docs, leave a comment on our videos, or join our Slack community. 
+###Pros & Cons
+
+**Client Side SDKs**
+
+Pros to utilizing client-side SDKs are that they can be simpler to initially set up, offer easier tracking of clickstream data than other methods, and simplify the process of tracking users from an anonymous to an identified state. 
+
+Cons to utilizing client-side SDKs are that ad blockers can affect the ability to track data leading to potential mistrust in the data, and it can be difficult to keep metrics consistent when utilizing client-side SDKs across multiple platforms such as across both a website and mobile app, and in regards to mobile apps it can be difficult to fix implementation mistakes quickly.
+
+Consider implementing via Client-Side SDK if you have limited development resources, no existing data collection infrastructure, or no reliable method to track clickstream data.
+
+**Server Side SDKs**
+
+The pros of utilizing server-side SDKs are that they are not susceptible to ad blockers, provide more consistency when tracking users across platforms, and implementation mistakes can be quickly fixed. The cons of utilizing server-side SDKs are that they can be more difficult when trying to track clickstream data and custom code may be required to track users from anonymous to identified states.
+
+Consider implementing via Server Side SDK if you are either able to or have no need to track clickstream data and have an existing backend infrastructure and the dev resources to implement within that infrastructure.
+
+**CDP**
+
+Customer Data Platforms allow you to instrument tracking code once, route data through a single centralized platform, and then forward the data onward to multiple downstream tools. The pros of utilizing a CDP is that it helps simplify your implementation across your entire tech stack, switching costs are low when changing downstream providers, and you can manage all your data in one centralized location. The cons of utilizing a CDP is that there is a cost to consider with adding another tool to your tech stack and you must maintain any transformations and enrichment of your data before passing the data to Mixpanel.
+
+If your team is already utilizing a CDP to collect data, we recommend utilizing this method and connecting Mixpanel as a downstream destination. Please refer to the respective documentation to add Mixpanel as a destination from whichever CDP provider you choose to utilize.
+
+**Event Streaming/Cloud Ingestion**
+
+The pros of implementing via cloud ingestion for an event streaming pipeline is that it leverages existing data infrastructure, centralizes data governance, and provides validated, trustworthy data. The cons of of implementing in this way are minimal but it will an existing data pipeline or one to be built and transformations will be required to send the data to Mixpanel.
+
+If your team already has an existing event stream pipeline, we recommend adding Mixpanel to your ingestion pipeline to send us data as you receive it. 
+
+**Reverse ETL/DWH**
+
+The pros of implementing via your data warehouse are that it leverages your existing data infrastructure, provides high data trust, and allows your team to centralize data governance. The cons of implementing via your data warehouse is that the data warehouse will require regular maintenance to transform and enrich data and there is a cost to consider by adding extra tools to your tech stack.
+
+Consider this method of implementation if your team is already gathering source-of-truth data in a data warehouse.
+
+##Mixpanel SDKs
+
+Pros to utilizing client-side SDKs are that they can be simpler to initially set up, offer easier tracking of clickstream data than other methods, and simplify the process of tracking users from an anonymous to an identified state. 
+
+Cons to utilizing client-side SDKs are that ad blockers can affect the ability to track data leading to potential mistrust in the data, it can be difficult to keep metrics consistent when utilizing client-side SDKs across multiple platforms such as across both a website and mobile app, and in regards to mobile apps it can be difficult to fix implementation mistakes quickly.
+
+Consider implementing via Client-Side SDK if you have limited dev resources, no existing data collection infrastructure, or no reliable method to track clickstream data.
+
+**Client-side SDKs**
+
+Let’s begin by discussing client-side SDKs. You can find a list of available client-side SDKs in our [documentation](https://docs.mixpanel.com/docs/tracking-methods/choosing-the-right-method#client-side-tracking). Client-side SDKs allow you to track data directly from a user’s device to Mixpanel’s servers. If you will be implementing via our web-based Javascript SDK, we recommend utilizing a [proxy server](https://docs.mixpanel.com/docs/tracking-methods/sdks/javascript#tracking-via-proxy). Since our JS SDK relies on cookies making API calls to an external domain from your website, ad blockers can, at times, block those calls. A proxy server works by proxying the API call to your own domain before passing the data on to Mixpanel ensuring that you minimize those API calls being blocked. Please refer to the documentation provided in this section for more assistance with setting up a proxy server.
+
+Once you have initialized the SDK in your website or app you can then begin tracking data. The following are examples of calls to track event and user data on a website. 
+
+It’s important to note that the mixpanel.identify() call does not create a User Profile in Mixpanel. The people.set() method is the required call to set user properties on a user profile. However, the people.set() call also requires an identify() call at some point in the same session so that Mixpanel knows which User ID to associate the profile properties to. If there is no identify() call in a user’s session where people.set() is called, we store the profile properties locally until that user hits an identify() call. 
+
+**Server-side SDKs**
+
+A list of available server-side SDKs can be found in our [documentation](https://docs.mixpanel.com/docs/tracking-methods/choosing-the-right-method#server-side-tracking). Server-side SDKs allow you to instrument code on your server to track actions to Mixpanel as they are performed by users. 
+
+The pros of utilizing server-side SDKs are that they are not susceptible to ad blockers, provide more consistency when tracking users across platforms, and implementation mistakes can be quickly fixed. The cons of utilizing server-side SDKs are that it can be harder to track user interactions that only happen on the client and custom code may be required to track users from anonymous to identified states.
+
+Consider implementing via Server Side SDK if you are either able to or have no need to track clickstream data and have an existing backend framework with the resources to implement within that framework.
+
+##CDP
+
+CDPs are Customer Data Platforms that allow you to instrument tracking code once, route data through a single centralized source, and then forward the data onwards to other tools. The pros of utilizing a CDP is that it helps simplify your implementation across your entire tech stack, switching costs are low when changing downstream providers, and you can manage all your data in one centralized location. The cons of utilizing a CDP is that there is a cost to consider with adding another tool to your tech stack and you must maintain any transformations and enrichment of your data before passing the data to Mixpanel.
+
+Please refer to the documentation provided by your respective CDP provider for more information on how to connect your CDP to Mixpanel.
+
+##API
+
+If you would like to send data directly to Mixpanel servers without the need of any sort of intermediary layer, you can utilize our Ingestion API. Our Ingestion API has a few different endpoints depending on whether you are sending us Event data or User data. 
+The pros of sending data directly to our APIs is that your team will have full control of exactly what data to send and you can quickly fix any implementation mistakes. Cons of implementing directly via our APIs is that the implementation can be a bit more complex as your team will have to manually create each API call to track data. 
+
+To send event data to Mixpanel via our Ingestion API, you should utilize the [Import endpoint](https://developer.mixpanel.com/reference/import-events).
+
+The first step in using the Import endpoint is to authenticate your request. You can authenticate utilizing either a service account or your project’s API token which can be found on your project settings page in the Mixpanel UI. You must also pass your Project ID in the URL of the API request. When passing event data into the API request, there are some high-level requirements that you must follow for the event to be accepted. The event data must be in proper JSON. Each event must contain an event name, a UNIX timestamp, the distinct ID of the user who triggered the event, and an insert ID which is a unique identifier attached to each unique event. You can read the rest of the limitations in the respective documentation.
+
+[Here](https://developer.mixpanel.com/reference/profile-set) is a sample API request to send data to Mixpanel via the Import endpoint.
+
+You can also pass user data to Mixpanel via the Engage endpoint of the Ingestion API. The Engage endpoint allows you to create new profiles, update existing profiles, or delete existing profiles. It also gives you the ability to set, update, or delete a single property on profiles. Much like sending event data in, user properties must be passed in as proper JSON. Unlike for events, the only authentication needed to pass user updates is your project API token. 
+
+##Data Warehouse
+
+If you currently store data in a data warehouse, Mixpanel provides a method to natively import data from Bigquery, Snowflake, Redshift, or Databricks into Mixpanel. The [Warehouse Sync](https://docs.mixpanel.com/docs/tracking-methods/data-warehouse/overview) integration allows you to import both event and user data into your Mixpanel project via recurring syncs to ensure that your data in Mixpanel matches your trusted data source.
+
+There are a few high-level limitations for your team to be aware of when utilizing the Mixpanel Warehouse Sync. The Warehouse Sync integration has an ingestion rate limit of about 30,000 events per second. Also, we identify new events to import into your project based on an Insert Time field that should reflect a timestamp of when that event was added to your warehouse. If you do not have a separate Insert Time value to map to or are unable to include one, you can also map to the event timestamp or you can add an UpdatedAt timestamp to your table, which should be the time at which a row was modified. We’ll use this as a watermark to import new events for subsequent syncs. Check out [our docs](https://docs.mixpanel.com/docs/tracking-methods/data-warehouse/overview) for guidance on how to connect your respective warehouse to Mixpanel and begin syncing data into your project.
+
+Another option to send data from your data warehouse to Mixpanel would be to utilize a Reverse ETL tool. These third-party tools will allow you to make any necessary transformations to the data and set up sync schedules to import data from your warehouse to Mixpanel. Please refer to the respective documentation of whichever reverse ETL tool your team chooses to utilize.
+
+##Cloud Ingestion
+There is an option to set up a serverless ingest pipeline from a Cloud Storage bucket into Mixpanel. Once this is set up, you can upload files containing events into the designated storage bucket and the events will be ingested into Mixpanel, either as a one-time import or on a recurring basis.
+
+The pros of implementing via cloud ingestion for an event streaming pipeline is that it leverages existing data infrastructure and provides trustworthy data. The cons of implementing in this way is that it requires an existing data pipeline and transformations will be required to send the data to Mixpanel.
+
+At a high level, the steps necessary to achieve this process are to first create a cloud storage bucket. The next step is to create an import config made up of a function to handle necessary transformations and a trigger for when to send new data over. After setting up that config you would then test a sample batch of data to ensure the data looks correct in your Mixpanel project and, if everything looks correct, you can then directly connect your real data to push to your project. Our [documentation](https://docs.mixpanel.com/docs/tracking-methods/choosing-the-right-method) contains step-by-step instructions on how to set up an ingestion pipeline from either Amazon S3, Google Cloud Storage, or Google Pub/Sub. The instructions in the guides can also provide relevant context in case you want to set up an ingest pipeline from another cloud storage provider.
 
 ## Identity Management Best practices
-to-do: focus on simplified id + video to talk through
 
-- ensuring that anon events are linked to the right user profile
-- What are some of the caveats?
-- point links to legacy ID management ( original API and v1)
+As users navigate through your website or application, it is common for them to move from anonymous to identified states, as well as, logged out to logged-in states. When utilizing SDKs, especially client-side, it is important to manage all the identifiers belonging to a user correctly to ensure that all of their pre-auth and post-auth activity is tracked as one user.
 
+The various elements of [Identity Management](https://docs.mixpanel.com/docs/tracking-methods/identifying-users) and what they refer to are below. It is important to remember that all IDs in Mixpanel are case-sensitive. 
+
+Device ID - Device ID is a random hash we assign a user through our client-side SDKs. This ID gets stored locally or in the Mixpanel cookie and is how we keep track of an anonymous user's activity.
+
+User ID - User ID is the ID you assign to the user as a means of identifying them. This value should be something along the lines of an internal ID or database ID and should never change for a user once applied to them. 
+
+Distinct ID - Distinct ID is an identifier set by Mixpanel based on the combination of `$device_id` and `$user_id`. The purpose of `distinct_id` is to provide a single, unified identifier for a user across devices and sessions.
+
+Identity Cluster - An Identity Cluster refers to a cluster of the various IDs assigned to a single user across their entire life. Identity Clusters will have a canonical ID equal to the User ID you pass.
+
+Let’s cover an example from a client-side SDK to show how each of these elements plays a role in Identity Management.
+
+1. Charlie visits your website as an anonymous user from his computer. Mixpanel generates a random hash to assign Charlie as his Device ID which is stored in his Mixpanel browser cookie. Any actions Charlie takes in this anonymous state will be attributed to this Device ID.
+2. Charlie signs up for an account on your website. At this point, Charlie moves from an anonymous state to an identified state. Here you can call the Identify() method and pass in a User ID for Charlie. Mixpanel will merge the device and user IDs into the same identity cluster. His User ID will become his canonical ID in Mixpanel.
+3. Charlie returns the next day from his mobile device and installs your mobile app. Upon opening the mobile app for the first time, Mixpanel treats Charlie as an anonymous user and assigns him a new device ID stored in local storage.
+4. Charlie logs in to his existing account. At the login step would make an Identify() call passing in Charlie's User ID. The SDK will change Charlie's distinct ID in local storage to the User ID value and will merge the new device ID into the existing cluster. Now, both device IDs and Charlie's User ID exist as one identity cluster and data sent with any of the IDs in the cluster will be properly attributed to Charlie.
+
+From a server-side implementation utilizing unique pre-auth and post-auth IDs, the changes you would make are at step 1 you would assign the user a random UUIDv4 formatted device ID and pass it as $device_id on all of their anonymous actions. At this point, you can pass distinct ID as an empty string and we will use the $device_id as the distinct ID. When the user signs up or registers at step 2, instead of calling the Identify() method, you would pass an event with both the anonymous $device_id and $user_id attached as properties. Our system will parse that the event has both a device and user ID, will merge the two IDs into an identity cluster, and will set the canonical distinct ID for the user equal to the user ID value. Going forward you can pass data with either ID and it will be attributed to the correct user.
+
+Identity Management Best Practices
+
+- Populate your unique user ID as a super property and user property to assist in troubleshooting
+- Avoid creating anonymous user profiles and only call the identify method when the user is known or logged in.
+- Call mixpanel.identify upon a successful sign-up / login or when an app is re-opened in a logged-in state
+- QA your identity management implementation during development
+- If you are setting your own $device_id, best practice is to set the ID in a UUIDv4 format
+- For implementations not leveraging a client-side SDK, ensure every event is sent with a $distinct_id or the components that make up $distinct_id, such as $device_id and/or $user-id
+
+
+If you have any questions, check out our [docs](https://docs.mixpanel.com/docs) or join our [Slack community](https://mixpanelcommunity.slack.com/join/shared_invite/zt-21i246onn-yMLRuuXFs9pnqM04hld0yw#/shared-invite/email). 
 
