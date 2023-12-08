@@ -19,8 +19,33 @@ Some questions you should consider when choosing an ingestion method are:
 
 The video above shows a decision flowchart that is a great resource to help you and your team logically narrow down your ingestion options. 
 
+## Data Warehouse or Reverse ETL
 
-## Pros & Cons
+If you currently store data in a data warehouse, this is our recommended method to bring in data into Mixpanel. Our [Warehouse Sync](/docs/tracking-methods/data-warehouse/overview) integration allows you to import both event and user data into your Mixpanel project via recurring syncs to ensure that your data in Mixpanel matches your trusted data source.
+
+<p style={{ position: 'relative', paddingBottom: '56.25%', height: 0, overflow: 'hidden' }}>
+  <iframe src="https://www.loom.com/embed/317e10177af04a3f8ca2656ce1aeae91?sid=e4968f03-b57a-47d2-b270-28e6a4e131ed" frameborder="0" style={{ position: 'absolute', top: 0, left: 0, width: '100%', height: '100%' }} allowfullscreen></iframe>
+</p>
+
+Another option to send data from your data warehouse to Mixpanel would be to utilize a Reverse ETL tool. These third-party tools will allow you to make any necessary transformations to the data and set up sync schedules to import data from your warehouse to Mixpanel. Please refer to the respective documentation of whichever reverse ETL tool your team chooses to utilize.
+
+## CDP
+If you currently utitilise a Customer Data Platform (CDP), you can also use this to send your data to Mixpanel. If you're switching to Mixpanel from another analytics tool, CDPs will also allow you to easily migrate your historical data into Mixpanel.
+
+<p style={{ position: 'relative', paddingBottom: '56.25%', height: 0, overflow: 'hidden' }}>
+  <iframe src="https://www.loom.com/embed/86d60bf289c04914b1a32e59bd4e9ad9?sid=e26eb440-a87e-4984-9122-fb69d0929109" frameborder="0" style={{ position: 'absolute', top: 0, left: 0, width: '100%', height: '100%' }} allowfullscreen></iframe>
+</p>
+
+## API
+
+If you would like to send data directly to Mixpanel servers without the need of any sort of intermediary layer, you can utilize our Ingestion API to send in [events](https://developer.mixpanel.com/reference/import-events). and add / update / delete existing [user profiles](https://developer.mixpanel.com/reference/profile-set). 
+
+<p style={{ position: 'relative', paddingBottom: '56.25%', height: 0, overflow: 'hidden' }}>
+  <iframe src="https://www.loom.com/embed/4ed2664e3cda48d1ac0ed544efca2466?sid=c22af6aa-43a5-45e7-bc68-069ed9170c3e" frameborder="0" style={{ position: 'absolute', top: 0, left: 0, width: '100%', height: '100%' }} allowfullscreen></iframe>
+</p>
+
+
+## SDKs
 
 **Client Side SDKs**
 
@@ -96,30 +121,7 @@ CDPs are Customer Data Platforms that allow you to instrument tracking code once
 
 Please refer to the documentation provided by your respective CDP provider for more information on how to connect your CDP to Mixpanel.
 
-## API
 
-If you would like to send data directly to Mixpanel servers without the need of any sort of intermediary layer, you can utilize our Ingestion API. Our Ingestion API has a few different endpoints depending on whether you are sending us Event data or User data. 
-The pros of sending data directly to our APIs is that your team will have full control of exactly what data to send and you can quickly fix any implementation mistakes. Cons of implementing directly via our APIs is that the implementation can be a bit more complex as your team will have to manually create each API call to track data. 
-
-To send event data to Mixpanel via our Ingestion API, you should utilize the [Import endpoint](https://developer.mixpanel.com/reference/import-events).
-
-The first step in using the Import endpoint is to authenticate your request. You can authenticate utilizing either a service account or your project’s API token which can be found on your project settings page in the Mixpanel UI. You must also pass your Project ID in the URL of the API request. When passing event data into the API request, there are some high-level requirements that you must follow for the event to be accepted. The event data must be in proper JSON. Each event must contain an event name, a UNIX timestamp, the distinct ID of the user who triggered the event, and an insert ID which is a unique identifier attached to each unique event. You can read the rest of the limitations in the respective documentation.
-
-[Here](https://developer.mixpanel.com/reference/profile-set) is a sample API request to send data to Mixpanel via the Import endpoint.
-
-You can also pass user data to Mixpanel via the Engage endpoint of the Ingestion API. The Engage endpoint allows you to create new profiles, update existing profiles, or delete existing profiles. It also gives you the ability to set, update, or delete a single property on profiles. Much like sending event data in, user properties must be passed in as proper JSON. Unlike for events, the only authentication needed to pass user updates is your project API token. 
-
-<p style={{ position: 'relative', paddingBottom: '56.25%', height: 0, overflow: 'hidden' }}>
-  <iframe src="https://www.loom.com/embed/4ed2664e3cda48d1ac0ed544efca2466?sid=c22af6aa-43a5-45e7-bc68-069ed9170c3e" frameborder="0" style={{ position: 'absolute', top: 0, left: 0, width: '100%', height: '100%' }} allowfullscreen></iframe>
-</p>
-
-## Data Warehouse
-
-If you currently store data in a data warehouse, Mixpanel provides a method to natively import data from Bigquery, Snowflake, Redshift, or Databricks into Mixpanel. The [Warehouse Sync](https://docs.mixpanel.com/docs/tracking-methods/data-warehouse/overview) integration allows you to import both event and user data into your Mixpanel project via recurring syncs to ensure that your data in Mixpanel matches your trusted data source.
-
-There are a few high-level limitations for your team to be aware of when utilizing the Mixpanel Warehouse Sync. The Warehouse Sync integration has an ingestion rate limit of about 30,000 events per second. Also, we identify new events to import into your project based on an Insert Time field that should reflect a timestamp of when that event was added to your warehouse. If you do not have a separate Insert Time value to map to or are unable to include one, you can also map to the event timestamp or you can add an UpdatedAt timestamp to your table, which should be the time at which a row was modified. We’ll use this as a watermark to import new events for subsequent syncs. Check out [our docs](https://docs.mixpanel.com/docs/tracking-methods/data-warehouse/overview) for guidance on how to connect your respective warehouse to Mixpanel and begin syncing data into your project.
-
-Another option to send data from your data warehouse to Mixpanel would be to utilize a Reverse ETL tool. These third-party tools will allow you to make any necessary transformations to the data and set up sync schedules to import data from your warehouse to Mixpanel. Please refer to the respective documentation of whichever reverse ETL tool your team chooses to utilize.
 
 ## Cloud Ingestion
 
