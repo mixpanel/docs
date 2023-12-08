@@ -64,40 +64,28 @@ Check out the link to find more information on [Group Analytics](https://docs.mi
 
 Now that we have an understanding of the Mixpanel Data Model, going through this following guide should help you understand the necessary concepts and steps to build out your own tracking plan as it aligns to your business goals defined from your [Analytics Strategy Framework](/docs/tutorials/plan/framework). 
 
-Your completed tracking plan will help you to: 
-- Define your business goals / KPIs and analytics strategy metrics. 
-- Outline the events, event properties, and user profile properties aligned to your metrics. 
-- Be treated as a living and shared document that is continuously updated with any implementation changes
-- Include notes that are referenced across all key stakeholders
+<p style={{ position: 'relative', paddingBottom: '56.25%', height: 0, overflow: 'hidden' }}>
+  <iframe src="https://www.loom.com/embed/78bca8ab574f4803a2d68b7c5bfa1bce?sid=373c2f06-a223-4078-a85d-e56fef538741" frameborder="0" style={{ position: 'absolute', top: 0, left: 0, width: '100%', height: '100%' }} allowfullscreen></iframe>
+</p>
+
+We encourage you to keep this tracking plan as a living and shared document that is continuously updated with any implementation changes.
 
 ### Tracking Plan Methodology
 Prioritize and be intentional with your data based on your business goals and key use cases. You can create a comprehensive tracking plan, but make sure to identify the key objectives, the KPIs, and the events and properties for your onboarding. 
 
 Having a clear alignment on priorities will allow you to move quickly in a phased approach to your implementation.
 
-#### Example of Focused Use Cases 
-A successful onboarding typically focuses on one or two key use cases. Some examples can be:
-- the registration or sign up process
-- a required activation or account set up journey
-- the purchase funnel
-- an important engagement journey (watching content, creating a playlist, planning a route, importing files to your platform, setting up an integration)
-
 #### Map KPIs to User Flows
 Map each of your metrics to the steps or specific actions that users take to influence each metric. For example, sign up flow will be important when measuring KPIs related to new user acquisition. Consider all the different user paths users can take and what specific measures will allow you to track, measure, and improve the expected desired user outcomes across activation, engagement, and/or retention. 
 
 Having specific questions that you want to answer will help you think through which specific events are relevant and important to include. 
 
-#### Identity Management 
-As you go through building out your tracking plan, be sure to consider where you will need to manage user identity.
-
-In short summary, when a user goes from being anonymous to when that user completes registration or and logs in, you will want to properly identify this user with a distinct ID.  For a full understanding of this critical concept, please review our [Identity Management guide here](/docs/tracking-methods/identifying-users)
+> Note on Identity Management: As you go through building out your tracking plan, it's also important to consider where you will need to measure user identity. For instance, when a user goes from being anonymous to when that user completes registration or and logs in, you will want to properly identify this user with a distinct ID.  For a full understanding of this critical concept, please review our [Identity Management guide here](/docs/tracking-methods/identifying-users)
 
 #### Translate Flows into Event/Properties
-Breakdown your user flows into events (actions) and properties (context of these actions) in your tracking plan. This will ensure that you have scoped out the data you need to achieve your KPIs / metrics in Mixpanel.
+If you use a tool like FigJam, Miro, or similar design products to track your user journey, you can use it to help capture the events and properties you want to track as well. It's a lot easier to understand the specific screens or page views, the exact steps in your user journey, and the actions that trigger your user behaviour, if you can see what the flow looks like. 
 
-<p style={{ position: 'relative', paddingBottom: '56.25%', height: 0, overflow: 'hidden' }}>
-  <iframe src="https://www.loom.com/embed/78bca8ab574f4803a2d68b7c5bfa1bce?sid=373c2f06-a223-4078-a85d-e56fef538741" frameborder="0" style={{ position: 'absolute', top: 0, left: 0, width: '100%', height: '100%' }} allowfullscreen></iframe>
-</p>
+Here is an example of a [User Journey in Figma](https://www.figma.com/file/tYEeeRE0Xz6IampBhGLotw/Media-and-Entertainment-Tracking-Plan?type=whiteboard&node-id=0%3A1&t=ShUKEHAG2PlL9wNa-1)**.**
 
 #### Define Naming Convention
 Defining a naming convention will help maintain data quality and trust over time. Having an intuitive and easy to understand naming convention helps end users more easily make sense of the data. Also, remember that Mixpanel is case sensitive (e.g., sign up completed vs. Sign Up Completed will show up as two separate events).
@@ -119,7 +107,7 @@ When designing your data schema, you will also want to determine the proper leve
 
 ![image](/tutorials/eventdepth.png "Designing Event Depth")
 
-### Building Your Tracking Plan
+### Examples of Tracking Plans by Verticals
 Mixpanel provides the following templates for vertical-specific tracking plans:
 
 - [Retail and E-commerce](https://docs.google.com/spreadsheets/d/1Kyys37m_GEL79_1BKKEnU5KxK91NF04kY-L_bFfcfqE/edit#gid=1484002407)
@@ -128,11 +116,4 @@ Mixpanel provides the following templates for vertical-specific tracking plans:
 - [Financial Services](https://docs.google.com/spreadsheets/d/1oGv6vbIFiYbima9IX4ItpBJvuChs-zzh83MRt_dSPgg/edit?usp=sharing)
 
 You can also access a copy of a [blank Tracking Plan from here](https://docs.google.com/spreadsheets/d/1ZdOZ6TMtRPxy7qRxiLsvH9HWcHJM6nZydWKoThRxFKc/edit#gid=1641519238). Save a copy to your device to get started on your tracking plan.
-
-### Building Your Visual User Flow 
-Along with the tracking plan templates in your traditional spreadsheet format, you can also build out a visual user journey flow version of a tracking plan using tools like FigJam, Miro, or other similar products.
-
-This can be a helpful exercise because you can visually understand the specific screens or page views, the exact steps in the user journey, and which actions trigger the user behavior to be tracked as an event. 
-
-Here is an example of a [User Journey in Figma](https://www.figma.com/file/tYEeeRE0Xz6IampBhGLotw/Media-and-Entertainment-Tracking-Plan?type=whiteboard&node-id=0%3A1&t=ShUKEHAG2PlL9wNa-1)**.**
 
