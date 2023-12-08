@@ -36,6 +36,8 @@ If you currently utitilise a Customer Data Platform (CDP), you can also use this
   <iframe src="https://www.loom.com/embed/86d60bf289c04914b1a32e59bd4e9ad9?sid=e26eb440-a87e-4984-9122-fb69d0929109" frameborder="0" style={{ position: 'absolute', top: 0, left: 0, width: '100%', height: '100%' }} allowfullscreen></iframe>
 </p>
 
+Please refer to the documentation provided by your respective CDP provider for more information on how to connect your CDP to Mixpanel.
+
 ## API
 
 If you would like to send data directly to Mixpanel servers without the need of any sort of intermediary layer, you can utilize our Ingestion API to send in [events](https://developer.mixpanel.com/reference/import-events). and add / update / delete existing [user profiles](https://developer.mixpanel.com/reference/profile-set). 
@@ -44,96 +46,34 @@ If you would like to send data directly to Mixpanel servers without the need of 
   <iframe src="https://www.loom.com/embed/4ed2664e3cda48d1ac0ed544efca2466?sid=c22af6aa-43a5-45e7-bc68-069ed9170c3e" frameborder="0" style={{ position: 'absolute', top: 0, left: 0, width: '100%', height: '100%' }} allowfullscreen></iframe>
 </p>
 
+## Event Streaming / Cloud Ingestion
 
-## SDKs
-
-**Client Side SDKs**
-
-Pros to utilizing client-side SDKs are that they can be simpler to initially set up, offer easier tracking of clickstream data than other methods, and simplify the process of tracking users from an anonymous to an identified state. 
-
-Cons to utilizing client-side SDKs are that ad blockers can affect the ability to track data leading to potential mistrust in the data, and it can be difficult to keep metrics consistent when utilizing client-side SDKs across multiple platforms such as across both a website and mobile app, and in regards to mobile apps it can be difficult to fix implementation mistakes quickly.
-
-Consider implementing via Client-Side SDK if you have limited development resources, no existing data collection infrastructure, or no reliable method to track clickstream data.
-
-<p style={{ position: 'relative', paddingBottom: '56.25%', height: 0, overflow: 'hidden' }}>
-  <iframe src="https://www.loom.com/embed/6417dae512154ff1a04ec70c896686e6?sid=c96a190a-9f44-41ad-a223-7dd9a9bf1b24" frameborder="0" style={{ position: 'absolute', top: 0, left: 0, width: '100%', height: '100%' }} allowfullscreen></iframe>
-</p>
-
-**Server Side SDKs**
-
-The pros of utilizing server-side SDKs are that they are not susceptible to ad blockers, provide more consistency when tracking users across platforms, and implementation mistakes can be quickly fixed. The cons of utilizing server-side SDKs are that they can be more difficult when trying to track clickstream data and custom code may be required to track users from anonymous to identified states.
-
-Consider implementing via Server Side SDK if you are either able to or have no need to track clickstream data and have an existing backend infrastructure and the dev resources to implement within that infrastructure.
-
-**CDP**
-
-Customer Data Platforms allow you to instrument tracking code once, route data through a single centralized platform, and then forward the data onward to multiple downstream tools. The pros of utilizing a CDP is that it helps simplify your implementation across your entire tech stack, switching costs are low when changing downstream providers, and you can manage all your data in one centralized location. The cons of utilizing a CDP is that there is a cost to consider with adding another tool to your tech stack and you must maintain any transformations and enrichment of your data before passing the data to Mixpanel.
-
-If your team is already utilizing a CDP to collect data, we recommend utilizing this method and connecting Mixpanel as a downstream destination. Please refer to the respective documentation to add Mixpanel as a destination from whichever CDP provider you choose to utilize.
-
-<p style={{ position: 'relative', paddingBottom: '56.25%', height: 0, overflow: 'hidden' }}>
-  <iframe src="https://www.loom.com/embed/86d60bf289c04914b1a32e59bd4e9ad9?sid=356d94ce-8fda-4e6f-8b17-6bfc396f98ff" frameborder="0" style={{ position: 'absolute', top: 0, left: 0, width: '100%', height: '100%' }} allowfullscreen></iframe>
-</p>
-
-**Event Streaming/Cloud Ingestion**
-
-The pros of implementing via cloud ingestion for an event streaming pipeline is that it leverages existing data infrastructure, centralizes data governance, and provides validated, trustworthy data. The cons of of implementing in this way are minimal but it will an existing data pipeline or one to be built and transformations will be required to send the data to Mixpanel.
-
-If your team already has an existing event stream pipeline, we recommend adding Mixpanel to your ingestion pipeline to send us data as you receive it. 
+If your team already has an existing event stream pipeline, you could use it to send data into  Mixpanel as you receive it. 
 
 <p style={{ position: 'relative', paddingBottom: '56.25%', height: 0, overflow: 'hidden' }}>
   <iframe src="https://www.loom.com/embed/4c5f2a61e3b94bf28df3e69f676561a0?sid=00f9c9d6-4ce8-4f4d-bc98-9053e5af7992" frameborder="0" style={{ position: 'absolute', top: 0, left: 0, width: '100%', height: '100%' }} allowfullscreen></iframe>
 </p>
 
-**Reverse ETL/DWH**
+## SDKs
+We do also support a wide range of SDKs that you can utilize. You can find a list of available client-side SDKs in our [documentation](/docs/tracking-methods/choosing-the-right-method#client-side-tracking).
 
-The pros of implementing via your data warehouse are that it leverages your existing data infrastructure, provides high data trust, and allows your team to centralize data governance. The cons of implementing via your data warehouse is that the data warehouse will require regular maintenance to transform and enrich data and there is a cost to consider by adding extra tools to your tech stack.
+In general, we recommend utilizing Clien-Side SDKs if you have limited development resources, no existing data collection infrastructure, or have no reliable method to track clickstream data. Whilst they might be initially the easiest to set up, ad blockers can impact your ability to track data accurately. Furthermore, it can be difficult to keep metrics consistent when utilizing client-side SDKs across multiple platforms such as across both a website and mobile app.
 
-Consider this method of implementation if your team is already gathering source-of-truth data in a data warehouse.
+Alternatively, you may want to consider using Server-Side SDKs, which are not susceptible to ad blockers, and provide more consistency when tracking users across platforms. It does require some custom code to track your anonymous (non-logged in) users.
 
-## Mixpanel SDKs
+As an in between, consider tracking Client-Side via a Proxy. This will help [reduce the likelihood of ad-blockers impacting your tracking](https://www.youtube.com/watch?v=8Pv6tmRfqr8), while allowing you to automatically capture certain default client-side actions. For more details, please see [this article](/docs/tracking-methods/sdks/javascript#tracking-via-proxy) on how to set up a proxy.
 
-Pros to utilizing client-side SDKs are that they can be simpler to initially set up, offer easier tracking of clickstream data than other methods, and simplify the process of tracking users from an anonymous to an identified state. 
-
-Cons to utilizing client-side SDKs are that ad blockers can affect the ability to track data leading to potential mistrust in the data, it can be difficult to keep metrics consistent when utilizing client-side SDKs across multiple platforms such as across both a website and mobile app, and in regards to mobile apps it can be difficult to fix implementation mistakes quickly.
-
-Consider implementing via Client-Side SDK if you have limited dev resources, no existing data collection infrastructure, or no reliable method to track clickstream data.
-
-**Client-side SDKs**
-
-Let’s begin by discussing client-side SDKs. You can find a list of available client-side SDKs in our [documentation](https://docs.mixpanel.com/docs/tracking-methods/choosing-the-right-method#client-side-tracking). Client-side SDKs allow you to track data directly from a user’s device to Mixpanel’s servers. If you will be implementing via our web-based Javascript SDK, we recommend utilizing a [proxy server](https://docs.mixpanel.com/docs/tracking-methods/sdks/javascript#tracking-via-proxy). Since our JS SDK relies on cookies making API calls to an external domain from your website, ad blockers can, at times, block those calls. A proxy server works by proxying the API call to your own domain before passing the data on to Mixpanel ensuring that you minimize those API calls being blocked. Please refer to the documentation provided in this section for more assistance with setting up a proxy server.
-
-Once you have initialized the SDK in your website or app you can then begin tracking data. The following are examples of calls to track event and user data on a website. 
-
-It’s important to note that the mixpanel.identify() call does not create a User Profile in Mixpanel. The people.set() method is the required call to set user properties on a user profile. However, the people.set() call also requires an identify() call at some point in the same session so that Mixpanel knows which User ID to associate the profile properties to. If there is no identify() call in a user’s session where people.set() is called, we store the profile properties locally until that user hits an identify() call. 
-
-**Server-side SDKs**
-
-A list of available server-side SDKs can be found in our [documentation](https://docs.mixpanel.com/docs/tracking-methods/choosing-the-right-method#server-side-tracking). Server-side SDKs allow you to instrument code on your server to track actions to Mixpanel as they are performed by users. 
-
-The pros of utilizing server-side SDKs are that they are not susceptible to ad blockers, provide more consistency when tracking users across platforms, and implementation mistakes can be quickly fixed. The cons of utilizing server-side SDKs are that it can be harder to track user interactions that only happen on the client and custom code may be required to track users from anonymous to identified states.
-
-Consider implementing via Server Side SDK if you are either able to or have no need to track clickstream data and have an existing backend framework with the resources to implement within that framework.
-
-## CDP
-
-CDPs are Customer Data Platforms that allow you to instrument tracking code once, route data through a single centralized source, and then forward the data onwards to other tools. The pros of utilizing a CDP is that it helps simplify your implementation across your entire tech stack, switching costs are low when changing downstream providers, and you can manage all your data in one centralized location. The cons of utilizing a CDP is that there is a cost to consider with adding another tool to your tech stack and you must maintain any transformations and enrichment of your data before passing the data to Mixpanel.
-
-Please refer to the documentation provided by your respective CDP provider for more information on how to connect your CDP to Mixpanel.
-
-
-
-## Cloud Ingestion
-
-There is an option to set up a serverless ingest pipeline from a Cloud Storage bucket into Mixpanel. Once this is set up, you can upload files containing events into the designated storage bucket and the events will be ingested into Mixpanel, either as a one-time import or on a recurring basis.
-
-The pros of implementing via cloud ingestion for an event streaming pipeline is that it leverages existing data infrastructure and provides trustworthy data. The cons of implementing in this way is that it requires an existing data pipeline and transformations will be required to send the data to Mixpanel.
-
-At a high level, the steps necessary to achieve this process are to first create a cloud storage bucket. The next step is to create an import config made up of a function to handle necessary transformations and a trigger for when to send new data over. After setting up that config you would then test a sample batch of data to ensure the data looks correct in your Mixpanel project and, if everything looks correct, you can then directly connect your real data to push to your project. Our [documentation](https://docs.mixpanel.com/docs/tracking-methods/choosing-the-right-method) contains step-by-step instructions on how to set up an ingestion pipeline from either Amazon S3, Google Cloud Storage, or Google Pub/Sub. The instructions in the guides can also provide relevant context in case you want to set up an ingest pipeline from another cloud storage provider.
+<p style={{ position: 'relative', paddingBottom: '56.25%', height: 0, overflow: 'hidden' }}>
+  <iframe src="https://www.loom.com/embed/6417dae512154ff1a04ec70c896686e6?sid=c96a190a-9f44-41ad-a223-7dd9a9bf1b24" frameborder="0" style={{ position: 'absolute', top: 0, left: 0, width: '100%', height: '100%' }} allowfullscreen></iframe>
+</p>
 
 ## Identity Management Best practices
 
 As users navigate through your website or application, it is common for them to move from anonymous to identified states, as well as, logged out to logged-in states. When utilizing SDKs, especially client-side, it is important to manage all the identifiers belonging to a user correctly to ensure that all of their pre-auth and post-auth activity is tracked as one user.
+
+<p style={{ position: 'relative', paddingBottom: '56.25%', height: 0, overflow: 'hidden' }}>
+  <iframe src="https://www.loom.com/embed/b0065e1bea294d2b8181205302633923?sid=547419d8-feee-400d-a18f-911f41b41692" frameborder="0" style={{ position: 'absolute', top: 0, left: 0, width: '100%', height: '100%' }} allowfullscreen></iframe>
+</p>
 
 The various elements of [Identity Management](https://docs.mixpanel.com/docs/tracking-methods/identifying-users) and what they refer to are below. It is important to remember that all IDs in Mixpanel are case-sensitive. 
 
@@ -153,6 +93,9 @@ Let’s cover an example from a client-side SDK to show how each of these elemen
 4. Charlie logs in to his existing account. At the login step would make an Identify() call passing in Charlie's User ID. The SDK will change Charlie's distinct ID in local storage to the User ID value and will merge the new device ID into the existing cluster. Now, both device IDs and Charlie's User ID exist as one identity cluster and data sent with any of the IDs in the cluster will be properly attributed to Charlie.
 
 From a server-side implementation utilizing unique pre-auth and post-auth IDs, the changes you would make are at step 1 you would assign the user a random UUIDv4 formatted device ID and pass it as `$device_id` on all of their anonymous actions. At this point, you can pass distinct ID as an empty string and we will use the `$device_id` as the distinct ID. When the user signs up or registers at step 2, instead of calling the Identify() method, you would pass an event with both the anonymous `$device_id` and `$user_id` attached as properties. Our system will parse that the event has both a device and user ID, will merge the two IDs into an identity cluster, and will set the canonical distinct ID for the user equal to the user ID value. Going forward you can pass data with either ID and it will be attributed to the correct user.
+
+It’s important to note that the mixpanel.identify() call does not create a User Profile in Mixpanel. The people.set() method is the required call to set user properties on a user profile. However, the people.set() call also requires an identify() call at some point in the same session so that Mixpanel knows which User ID to associate the profile properties to. If there is no identify() call in a user’s session where people.set() is called, we store the profile properties locally until that user hits an identify() call. 
+
 
 Identity Management Best Practices
 
