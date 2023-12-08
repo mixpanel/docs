@@ -4,6 +4,10 @@
 
 There are a variety of methods available to you and your team to get your data into Mixpanel. Before you explore the available methods, it is important to note that there is no “right” or “wrong” answer when it comes to collecting data. The implementation method you utilize may change throughout your company’s lifecycle, and each method will have its pros and cons. Your initial implementation choice will depend on several factors such as available development resources, existing infrastructure, and the type of data your team is trying to collect.
 
+<p style={{ position: 'relative', paddingBottom: '56.25%', height: 0, overflow: 'hidden' }}>
+  <iframe src="https://www.loom.com/embed/21afb3020ebe4f38bb760e5d49c68af1?sid=c1528edf-54d5-4af6-98cb-2f715ab801b0" frameborder="0" style={{ position: 'absolute', top: 0, left: 0, width: '100%', height: '100%' }} allowfullscreen></iframe>
+</p>
+
 ![image](/tutorials/ingestionmethod.png)
 
 Mixpanel can work with numerous ingestion models, such as tracking data to Mixpanel via our SDKs, a third-party Customer Data Platform (CDP), an in-house pipeline event stream, or collecting data in a data warehouse and then reverse ETLing the data into Mixpanel for analysis. Analytics, however, is only as good as the data that is being provided. It is important to choose an ingestion method that is trustworthy, comprehensive, and scalable with the growth of your organization at all points of your company’s lifecycle.
@@ -30,6 +34,10 @@ Cons to utilizing client-side SDKs are that ad blockers can affect the ability t
 
 Consider implementing via Client-Side SDK if you have limited development resources, no existing data collection infrastructure, or no reliable method to track clickstream data.
 
+<p style={{ position: 'relative', paddingBottom: '56.25%', height: 0, overflow: 'hidden' }}>
+  <iframe src="https://www.loom.com/embed/6417dae512154ff1a04ec70c896686e6?sid=c96a190a-9f44-41ad-a223-7dd9a9bf1b24" frameborder="0" style={{ position: 'absolute', top: 0, left: 0, width: '100%', height: '100%' }} allowfullscreen></iframe>
+</p>
+
 **Server Side SDKs**
 
 The pros of utilizing server-side SDKs are that they are not susceptible to ad blockers, provide more consistency when tracking users across platforms, and implementation mistakes can be quickly fixed. The cons of utilizing server-side SDKs are that they can be more difficult when trying to track clickstream data and custom code may be required to track users from anonymous to identified states.
@@ -42,11 +50,19 @@ Customer Data Platforms allow you to instrument tracking code once, route data t
 
 If your team is already utilizing a CDP to collect data, we recommend utilizing this method and connecting Mixpanel as a downstream destination. Please refer to the respective documentation to add Mixpanel as a destination from whichever CDP provider you choose to utilize.
 
+<p style={{ position: 'relative', paddingBottom: '56.25%', height: 0, overflow: 'hidden' }}>
+  <iframe src="https://www.loom.com/embed/86d60bf289c04914b1a32e59bd4e9ad9?sid=356d94ce-8fda-4e6f-8b17-6bfc396f98ff" frameborder="0" style={{ position: 'absolute', top: 0, left: 0, width: '100%', height: '100%' }} allowfullscreen></iframe>
+</p>
+
 **Event Streaming/Cloud Ingestion**
 
 The pros of implementing via cloud ingestion for an event streaming pipeline is that it leverages existing data infrastructure, centralizes data governance, and provides validated, trustworthy data. The cons of of implementing in this way are minimal but it will an existing data pipeline or one to be built and transformations will be required to send the data to Mixpanel.
 
 If your team already has an existing event stream pipeline, we recommend adding Mixpanel to your ingestion pipeline to send us data as you receive it. 
+
+<p style={{ position: 'relative', paddingBottom: '56.25%', height: 0, overflow: 'hidden' }}>
+  <iframe src="https://www.loom.com/embed/4c5f2a61e3b94bf28df3e69f676561a0?sid=00f9c9d6-4ce8-4f4d-bc98-9053e5af7992" frameborder="0" style={{ position: 'absolute', top: 0, left: 0, width: '100%', height: '100%' }} allowfullscreen></iframe>
+</p>
 
 **Reverse ETL/DWH**
 
@@ -96,6 +112,10 @@ The first step in using the Import endpoint is to authenticate your request. You
 [Here](https://developer.mixpanel.com/reference/profile-set) is a sample API request to send data to Mixpanel via the Import endpoint.
 
 You can also pass user data to Mixpanel via the Engage endpoint of the Ingestion API. The Engage endpoint allows you to create new profiles, update existing profiles, or delete existing profiles. It also gives you the ability to set, update, or delete a single property on profiles. Much like sending event data in, user properties must be passed in as proper JSON. Unlike for events, the only authentication needed to pass user updates is your project API token. 
+
+<p style={{ position: 'relative', paddingBottom: '56.25%', height: 0, overflow: 'hidden' }}>
+  <iframe src="https://www.loom.com/embed/4ed2664e3cda48d1ac0ed544efca2466?sid=c22af6aa-43a5-45e7-bc68-069ed9170c3e" frameborder="0" style={{ position: 'absolute', top: 0, left: 0, width: '100%', height: '100%' }} allowfullscreen></iframe>
+</p>
 
 ## Data Warehouse
 
