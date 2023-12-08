@@ -1,10 +1,10 @@
-# Setting Up Your Mixpanel
+# Setting Up Mixpanel
 
 > Note: this section is for Organization Owners and Organization Admins who are responsible for setting up your Organisation and Projects.
 
-You should have a Mixpanel [Organization](/docs/orgs-and-projects/organizations) already assigned to your login if you had signed up as the main Mixpanel [Owner](/docs/orgs-and-projects/roles-and-permissions#owner). In case you don't, please contact our [Mixpanel Support](/docs/response-times#contacting-mixpanel-support) team for assistance.
+You should have a Mixpanel [Organization](/docs/orgs-and-projects/organizations) already assigned to your login if you had signed up as the main Mixpanel [Owner](/docs/orgs-and-projects/roles-and-permissions#owner). If not, please contact our [Mixpanel Support](/docs/response-times#contacting-mixpanel-support) team for assistance.
 
-To quickly get you setup, here's an outline of what we'll be covering in this section:
+Here's an outline of what we'll be covering in this section:
 
 1. Configuring your Mixpanel **Organization's Discoverability** *(Enterprise Plan non-SSO accounts only)*
 2. Creating separate **Development and Production Mixpanel Projects**
@@ -13,12 +13,12 @@ To quickly get you setup, here's an outline of what we'll be covering in this se
 
 ## Organization Discoverability
 
-By default, an organization is setup as ****Invite Only****, which means new users must be explicitly invited by an owner or admin to be part of the organization. If you are on an [Enterprise Plan](https://mixpanel.com/settings/org/plan) and do not plan to setup [SSO](/docs/access-security/single-sign-on/overview), Mixpanel recommends setting one of the following organisation discoverability, by specifying the email domain(s) that should be granted access when a new user signs up for Mixpanel:
+By default, an organization is setup as ****Invite Only****, which means new users must be explicitly invited by an owner or admin to be part of the organization. If you are on an [Enterprise Plan](https://mixpanel.com/settings/org/plan) and do not plan to setup [SSO](/docs/access-security/single-sign-on/overview), Mixpanel recommends setting one of the following organization discoverability, by specifying the email domain(s) that should be granted access when a new user signs up for Mixpanel:
 
 1. **Open Organization** - any new user with maching email domain(s) can join (without approval)
 2. **Admin Approval** - admins will receieve an email notification (and approve) for users who made a request to join
 
-Click [here](https://mixpanel.com/settings/org/users-and-teams/find-your-org) to setup, or for more information refer to docs on [Organization Discoverability](/docs/orgs-and-projects/organizations#organization-discoverability).
+Click [here](https://mixpanel.com/settings/org/users-and-teams/find-your-org) to setup your organization, or for more information, refer to our documentation on [Organization Discoverability](/docs/orgs-and-projects/organizations#organization-discoverability).
 
 ![image](/tutorials/organization-discoverability.png "Organization Discoverability")
 
@@ -37,35 +37,34 @@ Refer to docs on [Project Setup](/docs/best-practices/project-setup) for more de
 
 ## Plan Data Access and Visibility
 
-By default, all data in a Mixpanel project is accessible to all your users in the Mixpanel organization. However, you might have requrements to segregate data visibility or restrict access to certain data that might be considered more sensitive and should not viewable by the entire organization.
+By default, all data in a Mixpanel project is accessible to all your users in the Mixpanel organization. However, you may have requirements to segregate data visibility or restrict access to certain data that might be considered more sensitive and should not viewable by the entire organization. In these instances, you might be able to use Data Views and Classified Data within your Mixpanel project to restrict access.
 
 > Note: Data Views and Classfied Data settings are at project level. You would need to have data in your Mixpanel project to be able to configure these settings.
 
 ### Data Views
 
-Data Views allow Project Owners and Admins to manage data access for a group of users within a single Mixpanel project for privacy and productivity purposes. 
+If for instance, you want to provide the web team only with access to web events, and the iOS and Android teams access to their specific events, but still want the business teams to have a single customer view of the customer's behaviour across the different platforms. [Data Views](/docs/data-governance/data-views-and-classification) can help with this. It enables Project Owners and Admins to manage data access for a group of users within a single Mixpanel project for privacy and productivity purposes. 
 
 ![image](/tutorials/data-views-filter.png "Data Views Filter")
 
-A combination of filters can be applied depending upon the data access required:
+You can add data views within your project settings. A combination of filters can be applied depending upon the data access required:
 1. Events - include or exclude specific events names
 2. Event Properties - filter explicit property values across events *(example: Mixpanel Library = web)*
 3. User Profile Properties - filter explicit users based on their user property value *(example: Staff User = true)*
+
 > Note: Filtering by User Profile Properties removes the ability to analyze by [Groups](/docs/data-structure/advanced/group-analytics#group-by-a-custom-identifier) 
 
 <p style={{ position: 'relative', paddingBottom: '56.25%', height: 0, overflow: 'hidden' }}>
   <iframe src="https://www.loom.com/embed/5140b66295a34446a71b910d7baaef56?sid=089e8b18-19ef-4cb9-a3d1-08ccd39c3acd" frameborder="0" style={{ position: 'absolute', top: 0, left: 0, width: '100%', height: '100%' }} allowfullscreen></iframe>
 </p>
 
-The key to managing data access is to ensure that you plan your tracking data around the data access controls that your project requires. Example, to be able to segregate data access by different countries, you would need to track a global `country` event property in all your events.
-
-Refer to docs for a detailed guide on setting up [Data Views](/docs/data-governance/data-views-and-classification#data-views-overview).
+Refer to docs for a more detailed guide on setting up [Data Views](/docs/data-governance/data-views-and-classification#data-views-overview).
 
 ### Classified Data
 
 In general, you should **_not be sending_** data that are considered sensitive (ie: Personal Identifiable Information, Secured Data, etc.) to your Mixpanel projects. Do consult your company's legal, security, or compliance teams before you send any potential sensitive data. Also refer to Mixpanel's [Legal Hub](https://mixpanel.com/legal/privacy-policy) for our Privacy Program.
 
-In scenarios where you are allowed to send data that may be partially sensitive and accessible only to certain privilege users in your company, you can mark event and user properties as [Classified Data](/docs/data-governance/data-views-and-classification#mark-properties-as-classified-data) allowing you to grant view access to only specific users.
+In scenarios where you want to send non-PII data but want to limit only certain users within the project access, you can do so using Classified Data](/docs/data-governance/data-views-and-classification#mark-properties-as-classified-data). This allows you to mark those specific event and user properties as classified, and only users who have been granted access to classified data can view them.
 
 ![image](/tutorials/mark-classified.png "Mark Classified")
 
