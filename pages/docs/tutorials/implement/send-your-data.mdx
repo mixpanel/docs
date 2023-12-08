@@ -69,13 +69,15 @@ As an in between, consider tracking Client-Side via a Proxy. This will help [red
 
 ## Identity Management Best practices
 
-As users navigate through your website or application, it is common for them to move from anonymous to identified states, as well as, logged out to logged-in states. When utilizing SDKs, especially client-side, it is important to manage all the identifiers belonging to a user correctly to ensure that all of their pre-auth and post-auth activity is tracked as one user.
+As users navigate through your website or application, it is common for them to move from anonymous to identified states, as well as, logged out to logged-in states. 
+
+If you're utilizing our Mixpanel SDKs, especially client-side, you should carefully manage all the identifiers belonging to a user correctly to ensure that all of their pre-auth and post-auth activity is tracked as one user.
 
 <p style={{ position: 'relative', paddingBottom: '56.25%', height: 0, overflow: 'hidden' }}>
   <iframe src="https://www.loom.com/embed/b0065e1bea294d2b8181205302633923?sid=547419d8-feee-400d-a18f-911f41b41692" frameborder="0" style={{ position: 'absolute', top: 0, left: 0, width: '100%', height: '100%' }} allowfullscreen></iframe>
 </p>
 
-The various elements of [Identity Management](https://docs.mixpanel.com/docs/tracking-methods/identifying-users) and what they refer to are below. It is important to remember that all IDs in Mixpanel are case-sensitive. 
+The various elements of [Identity Management](/docs/tracking-methods/identifying-users) and what they refer to are below. It is important to remember that all IDs in Mixpanel are case-sensitive. 
 
 Device ID - Device ID is a random hash we assign a user through our client-side SDKs. This ID gets stored locally or in the Mixpanel cookie and is how we keep track of an anonymous user's activity.
 
