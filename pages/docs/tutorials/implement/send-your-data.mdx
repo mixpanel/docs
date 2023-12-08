@@ -57,7 +57,7 @@ If your team already has an existing event stream pipeline, you could use it to 
 ## SDKs
 We do also support a wide range of SDKs that you can utilize. You can find a list of available client-side SDKs in our [documentation](/docs/tracking-methods/choosing-the-right-method#client-side-tracking).
 
-In general, we recommend utilizing Clien-Side SDKs if you have limited development resources, no existing data collection infrastructure, or have no reliable method to track clickstream data. Whilst they might be initially the easiest to set up, ad blockers can impact your ability to track data accurately. Furthermore, it can be difficult to keep metrics consistent when utilizing client-side SDKs across multiple platforms such as across both a website and mobile app.
+In general, we recommend utilizing Client-Side SDKs if you have limited development resources, no existing data collection infrastructure, or have no reliable method to track clickstream data. Whilst they might be initially the easiest to set up, ad blockers can impact your ability to track data accurately. Furthermore, it can be difficult to keep metrics consistent when utilizing client-side SDKs across multiple platforms such as across both a website and mobile app.
 
 Alternatively, you may want to consider using Server-Side SDKs, which are not susceptible to ad blockers, and provide more consistency when tracking users across platforms. It does require some custom code to track your anonymous (non-logged in) users.
 
@@ -73,41 +73,11 @@ As users navigate through your website or application, it is common for them to 
 
 If you're utilizing our Mixpanel SDKs, especially client-side, you should carefully manage all the identifiers belonging to a user correctly to ensure that all of their pre-auth and post-auth activity is tracked as one user.
 
+In the following video, we walk through how you [identify users](/docs/tracking-methods/identifying-users) in Mixpanel, using the Simplified ID Merge method.
+
 <p style={{ position: 'relative', paddingBottom: '56.25%', height: 0, overflow: 'hidden' }}>
   <iframe src="https://www.loom.com/embed/b0065e1bea294d2b8181205302633923?sid=547419d8-feee-400d-a18f-911f41b41692" frameborder="0" style={{ position: 'absolute', top: 0, left: 0, width: '100%', height: '100%' }} allowfullscreen></iframe>
 </p>
 
-The various elements of [Identity Management](/docs/tracking-methods/identifying-users) and what they refer to are below. It is important to remember that all IDs in Mixpanel are case-sensitive. 
-
-Device ID - Device ID is a random hash we assign a user through our client-side SDKs. This ID gets stored locally or in the Mixpanel cookie and is how we keep track of an anonymous user's activity.
-
-User ID - User ID is the ID you assign to the user as a means of identifying them. This value should be something along the lines of an internal ID or database ID and should never change for a user once applied to them. 
-
-Distinct ID - Distinct ID is an identifier set by Mixpanel based on the combination of `$device_id` and `$user_id`. The purpose of `distinct_id` is to provide a single, unified identifier for a user across devices and sessions.
-
-Identity Cluster - An Identity Cluster refers to a cluster of the various IDs assigned to a single user across their entire life. Identity Clusters will have a canonical ID equal to the User ID you pass.
-
-Let’s cover an example from a client-side SDK to show how each of these elements plays a role in Identity Management.
-
-1. Charlie visits your website as an anonymous user from his computer. Mixpanel generates a random hash to assign Charlie as his Device ID which is stored in his Mixpanel browser cookie. Any actions Charlie takes in this anonymous state will be attributed to this Device ID.
-2. Charlie signs up for an account on your website. At this point, Charlie moves from an anonymous state to an identified state. Here you can call the Identify() method and pass in a User ID for Charlie. Mixpanel will merge the device and user IDs into the same identity cluster. His User ID will become his canonical ID in Mixpanel.
-3. Charlie returns the next day from his mobile device and installs your mobile app. Upon opening the mobile app for the first time, Mixpanel treats Charlie as an anonymous user and assigns him a new device ID stored in local storage.
-4. Charlie logs in to his existing account. At the login step would make an Identify() call passing in Charlie's User ID. The SDK will change Charlie's distinct ID in local storage to the User ID value and will merge the new device ID into the existing cluster. Now, both device IDs and Charlie's User ID exist as one identity cluster and data sent with any of the IDs in the cluster will be properly attributed to Charlie.
-
-From a server-side implementation utilizing unique pre-auth and post-auth IDs, the changes you would make are at step 1 you would assign the user a random UUIDv4 formatted device ID and pass it as `$device_id` on all of their anonymous actions. At this point, you can pass distinct ID as an empty string and we will use the `$device_id` as the distinct ID. When the user signs up or registers at step 2, instead of calling the Identify() method, you would pass an event with both the anonymous `$device_id` and `$user_id` attached as properties. Our system will parse that the event has both a device and user ID, will merge the two IDs into an identity cluster, and will set the canonical distinct ID for the user equal to the user ID value. Going forward you can pass data with either ID and it will be attributed to the correct user.
-
-It’s important to note that the mixpanel.identify() call does not create a User Profile in Mixpanel. The people.set() method is the required call to set user properties on a user profile. However, the people.set() call also requires an identify() call at some point in the same session so that Mixpanel knows which User ID to associate the profile properties to. If there is no identify() call in a user’s session where people.set() is called, we store the profile properties locally until that user hits an identify() call. 
-
-
-Identity Management Best Practices
-
-- Populate your unique user ID as a super property and user property to assist in troubleshooting
-- Avoid creating anonymous user profiles and only call the identify method when the user is known or logged in.
-- Call mixpanel.identify upon a successful sign-up / login or when an app is re-opened in a logged-in state
-- QA your identity management implementation during development
-- If you are setting your own `$device_id`, best practice is to set the ID in a UUIDv4 format
-- For implementations not leveraging a client-side SDK, ensure every event is sent with a `$distinct_id` or the components that make up `$distinct_id`, such as `$device_id` and/or `$user-id`
-
-
-If you have any questions, check out our [docs](https://docs.mixpanel.com/docs) or join our [Slack community](https://mixpanelcommunity.slack.com/join/shared_invite/zt-21i246onn-yMLRuuXFs9pnqM04hld0yw#/shared-invite/email). 
+Do note that the mixpanel.identify() call does not create a User Profile in Mixpanel. The people.set() method is the required call to set user properties on a user profile. However, the people.set() call also requires an identify() call at some point in the same session so that Mixpanel knows which User ID to associate the profile properties to. If there is no identify() call in a user’s session where people.set() is called, we store the profile properties locally until that user hits an identify() call. 
 
