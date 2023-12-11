@@ -67,7 +67,7 @@ The Mixpanel application for Slack will also automatically unfurl a preview of 
 
 ### Enable the Integration
 
-To enable the integration, log in to both Mixpanel and Slack, then click [here](https://mixpanel.com/slack/oauth) to authorize the slack workspace: 
+To enable the integration, log in to both Mixpanel and Slack, then click [here](https://mixpanel.com/slack/oauth?slack_v2=true) to authorize the slack workspace: 
 
 ![/Screen_Shot_2020-06-15_at_10.41.00_PM.png](/Screen_Shot_2020-06-15_at_10.41.00_PM.png)
 
@@ -736,7 +736,7 @@ Prompts a selection of a property contained within the objects of the list. This
 
 The list of objects property support will be limited to the first 5 objects within the list property. 
 
-For customer's on a paid plan, you may submit a request for approval to have this limit increased by opening a support ticket within the UI (or by sending an email to support@mixpanel.com) with the subject line: “Request for List of Objects Limit Increase”. An increase will not be guaranteed, but your project will be reviewed for feasibility of increasing this limit. 
+For customer's on a paid plan, you may submit a request for approval to have this limit increased by opening a support ticket within the UI (or by sending an email to [support@mixpanel.com](mailto:support@mixpanel.com)) with the subject line: “Request for List of Objects Limit Increase”. An increase will not be guaranteed, but your project will be reviewed for feasibility of increasing this limit. 
 
 
 ## Analyzing First Time Users

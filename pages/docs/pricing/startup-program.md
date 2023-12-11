@@ -34,7 +34,7 @@ Startups are a part of Mixpanel’s DNA and we are dedicated to having the best 
 
 #### What do you consider a startup?
 
-To be eligible for the program and considered a startup, you cannot have raised more than $8 million USD and must have been founded less than 5 years ago. If you have questions about your eligibility status, please reach out to our team at startups@mixpanel.com.
+To be eligible for the program and considered a startup, you cannot have raised more than $8 million USD and must have been founded less than 5 years ago. If you have questions about your eligibility status, please reach out to our team at [startups@mixpanel.com](mailto:startups@mixpanel.com).
 
 #### Do I have to be a new customer to receive a credit?
 
@@ -104,4 +104,4 @@ Note: These prices are illustrative only, please visit the [pricing page](https:
 
 #### Other questions about Mixpanel for Startups?
 
-Please reach out to the Mixpanel for Startups team at startups@mixpanel.com.
+Please reach out to the Mixpanel for Startups team at [startups@mixpanel.com](mailto:startups@mixpanel.com).

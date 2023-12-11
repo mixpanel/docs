@@ -37,7 +37,7 @@ Your Mixpanel data is made up of **events** and **profiles**, each of which is c
 
 
 ## Anatomy of an Event
-The following event represents the fact that user "john.doe@gmail.com" played the song_id of `0wwPcA6wtMf6HUMpIRdeP7` on Tuesday, September 29, at 2020 8:42:11 PM GMT on a machine with IP 203.0.113.9.
+The following event represents the fact that user `john.doe@gmail.com` played the song_id of `0wwPcA6wtMf6HUMpIRdeP7` on Tuesday, September 29, at 2020 8:42:11 PM GMT on a machine with IP 203.0.113.9.
 
 ```json
 {

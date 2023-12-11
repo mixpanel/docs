@@ -9,21 +9,21 @@ Mixpanel provides the ability to create alerts for your Insights and Funnels rep
 Create an alert for your Insights and Funnels reports and be notified when report conditions reach certain thresholds. Alerts are sent as an email or Slack message and can be sent to multiple users.
 **To create an alert follow these steps:**
 
-1. **Save your report**, click the 3 dots icon, go to Alerts and select Create Alert.
+1. **Save your report**, click the 3 dots icon, go to Alerts, and select Create Alert.
 Note: You won't be able to create alerts if the report has unsaved changes. Save your report before setting up the alert.
 
 ![](/246672717-c15123a9-d73e-4c7f-84b9-3891731fc708.png)
 
 3. **Enter a name** for your alert.
 4. If your report has more than one event, select an event to track. If your report has a breakdown applied, either select a segment to alert on, or select any segment to be alerted when any segment matches the alert criteria.
-5. **Set your alert criteria.** Depending on the report you’re working from, choose between anomaly detection or custom alert types. More detail on each criteria type can be found below.
+5. **Set your alert criteria.** Depending on the report you’re working from, choose between anomaly detection or custom alert types. More details on each criteria type can be found below.
 6. **Set your notification frequency.** Depending on your alert criteria, you can choose a notification frequency spanning from an hour to at most a month. This frequency informs how often *at most* you’ll receive an alert.
      <br> *Note:*
     - *for time-series reports, alert query frequency (how often we check if your data matches your alert condition) is determined by the time bucket of your report visualization. For instance, if you’re chart is hourly, the alert will be checked for at an hourly interval.*
     - *if you have an hourly chart, but set the alert frequency to daily, we’ll check your report for an alert condition match every hour. If we find a match, we’ll send you the alert message and will stop checking your report for a match until the next day.*
 7. **Set your notification delivery preferences.** When alert conditions are met, we can send notification via email or Slack.
     - For email, enter the recipient emails that you would like to receive this alert. You can enter any email here, not just internal users.
-    - For slack, select any Slack channels you want to send this alert to. *Note: private Slack channels are not available at this time.*
+    - For Slack, select any Slack channels you want to send this alert to. *Note: private Slack channels are not available at this time.*
 
     **IMPORTANT:** In order to send alerts to Slack, you may need to configure the Mixpanel Slack app if you haven’t before. Click "Add Mixpanel to Slack" and follow the prompts on the following screens. You will be brought back to this page when you have added Mixpanel to Slack.
 
@@ -62,7 +62,6 @@ Anomaly Detection alerts automatically monitor your metrics and notify you when 
 
 1. Click the **3 dots icon**, go to **Alerts** and select **Create Alert**
 2. In the alert creation modal, select **Anomaly Detection** as the alert type.
-
     *Note: If Anomaly Detection is not available, it means it is not supported for your report or chart type. Please refer to the "Before you begin" section of this help doc for more information.*
 
 3. Optionally, adjust the settings to tune the sensitivity of your alert. Higher confidence intervals typically result in a wider expected range and thus fewer alerts triggered. Use the alert preview to fine-tune the settings based on the context and confidence required.

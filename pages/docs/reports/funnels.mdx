@@ -488,9 +488,7 @@ Users can complete the steps you designate in your funnel in loose order. Loose 
 
 ### Why do I get differing numbers when comparing Funnels and Insights?
 
-Funnels and Insights have different default counting methods. Insights by default counts events using "Totals", whereas Funnels are by default calculated with the Conversion Criteria in "Uniques".
-
-Funnels uses "Uniques" as its default as it is intended to help you gauge your product's effectiveness in urging your users to complete certain flows (e.g. Registration, Purchase). If the numbers were in Totals, a few select power users could skew your data. Each user will only be counted once for a funnel within any given time period you set. The Funnels report with 'Unique' conversion criteria will show only the conversion rates/steps the first time a user enters the funnel, even if they complete or drop out of the funnel multiple times, hence giving a 'Unique' count.You can toggle the conversion criteria to 'Total' or 'Sessions' counting method. Please note that not every Step 1 event will enter a 'Total' conversion funnel. Learn more about counting methods [here](/docs/reports/funnels#counting-method).
+Funnels and Insights are fundamentally different when it comes to counting events. In the Funnels report, users will need to perform Step 1 event, in order for their Step 2 event to be counted. Insights, on the other hand, will count the Step 2 event, even if the user does not perform the Step 1 event. This will create some discrepancy between the Insights and Funnels report, as users are expected to trigger events in sequence in the Funnels report, whereas, they are not expected to do so in the Insights report. 
 
 ### Can multiple events count towards the same Funnel step?
 

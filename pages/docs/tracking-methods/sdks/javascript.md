@@ -169,7 +169,7 @@ In addition to events, you can store user profiles in Mixpanel. Profiles are per
 
 ### Setting Profile Properties
 
-You can set properties on a user profile with <a style="font-family: courier" href="https://mixpanel.com/help/reference/javascript-full-api-reference#mixpanel.people.set">mixpanel.people.set</a>.
+You can set properties on a user profile with `mixpanel.people.set`.
 ```javascript JavaScript
 // mixpanel.identify must be called in order to associate the profile properties you set 
 // with that user. You only need to call it once per page load for a given user.
@@ -182,15 +182,15 @@ This will set a "Plan" property, with a value "Premium", on user 13793's profile
 
 #### Other Types Of Profile Updates
 
-There are a few other types of profile updates. To learn more, please follow the links to the <a style="font-family: courier" href="https://mixpanel.com/help/reference/javascript-full-api-reference">full API documentation</a>.
+There are a few other types of profile updates
 
-  * <a style="font-family: courier" href="https://mixpanel.com/help/reference/javascript-full-api-reference#mixpanel.people.set_once">mixpanel.people.set_once</a> - set properties if they don't exist
-  * <a style="font-family: courier" href="https://mixpanel.com/help/reference/javascript-full-api-reference#mixpanel.people.append">mixpanel.people.append</a> - append to a list property
-  * <a style="font-family: courier" href="https://mixpanel.com/help/reference/javascript-full-api-reference#mixpanel.people.union">mixpanel.people.union</a> - append to a list property, excluding duplicates
+  * `mixpanel.people.set_once` - set properties if they don't exist
+  * `mixpanel.people.append` - append to a list property
+  * `mixpanel.people.union` - append to a list property, excluding duplicates
 
 ### Incrementing Numeric Properties
 
-You can use <a style="font-family: courier" href="https://mixpanel.com/help/reference/javascript-full-api-reference#mixpanel.people.increment">mixpanel.people.increment</a> to change the current value of numeric properties. This is useful when you want to keep a running tally of things, such as games played, messages sent, or points earned.
+You can use `mixpanel.people.increment` to change the current value of numeric properties. This is useful when you want to keep a running tally of things, such as games played, messages sent, or points earned.
 
 ```javascript JavaScript
 // If no number is passed, the default is to increment by 1

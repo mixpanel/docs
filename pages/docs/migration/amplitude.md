@@ -37,6 +37,102 @@ We also support additional data for extending your use cases with Mixpanel:
 - [Group profiles](https://developer.mixpanel.com/reference/group-set-property): Used with our Group Analytics product add-on to allow you to pivot quickly between users and other entities in your analysis. A common use case is for a B2B company to pivot between analyzing users and analyzing accounts.
 - [Lookup tables](https://developer.mixpanel.com/reference/lookup-tables): For event data which was already sent, you can use these to extend the data already sent into Mixpanel. A common use case is taking an identifier like a transaction ID, item ID, etc. and using lookup tables to enrich the data with additional information like the amount, category, etc. from your data warehouse.
 
+## Loading historical data
+If you have access to your Amplitude data in your data warehouse, the simplest way to bring this historical data into Mixpanel is by using our warehouse connector. At a high-level, the migration consists of 3 steps:
+1. Set up a new Mixpanel project which is on [Simplified ID Merge system](/docs/tracking-methods/identifying-users#simplified-vs-original-id-merge). 
+2. Transform Amplitude data in your data warehouse (sample SQL transformation included below).   
+3. Set up [Mixpanel Warehouse Connector](/docs/tracking-methods/data-warehouse/overview) to initiate data sync from your data warehouse to Mixpanel. 
+
+##### Amplitude event schema
+SQL query to flatten the JSON columns into individual columns: 
+
+```jsx
+SELECT
+-- required fields
+event_type,          -- to map Event Name
+event_time,          -- to map Event Time
+
+-- to map Insert ID
+TO_HEX(SHA1(CONCAT(
+      CONCAT('[amp] ', event_type),
+      COALESCE(user_id, ""), 
+      "-",
+      CAST(event_time as STRING),
+      "-",
+      COALESCE(CAST(amplitude_id as STRING), "")
+))) AS insert_id,
+
+-- ID management
+user_id,         -- to map User ID
+amplitude_id,    -- to map Distinct ID
+device_id,       -- to map Device ID
+
+-- event properties
+JSON_EXTRACT_SCALAR(event_properties, "$['artist']") AS artist,
+JSON_EXTRACT_SCALAR(event_properties, "$['genre']") AS genre,
+JSON_EXTRACT_SCALAR(event_properties, "$['song_title']") AS song_title,
+JSON_EXTRACT_SCALAR(event_properties, "$['song_name']") AS song_name,
+JSON_EXTRACT_SCALAR(event_properties, "$['page_name']") AS page_name,
+
+-- user properties as event properties
+JSON_EXTRACT_SCALAR(user_properties, "$['$email']") AS email,
+JSON_EXTRACT_SCALAR(user_properties, "$['$name']") AS name,
+JSON_EXTRACT_SCALAR(user_properties, "$['last_genre']") AS last_genre,
+JSON_EXTRACT_SCALAR(user_properties, "$['lifetime_purchase']") AS lifetime_purchase
+
+FROM `project.dataset.tablename`
+```
+Note: Make the `event_time` column as NOT NULLABLE so that it can be chosen to be a Full Sync.
+
+Amplitude does not export `insert_id` column but even when it is an optional field in Mixpanel, it is recommended to generate it and pass it as best practice.
+
+##### Amplitude user schema
+For Users too, it would be important to flatten the JSON columns into individual columns. It is also important to reduce unnecessary engage calls hence, we’ll be extracting the latest event time of that user_id to get all the user properties.
+
+```jsx
+SELECT
+    event_time,
+    user_id,
+    -- user properties
+    JSON_EXTRACT_SCALAR(user_properties, "$['$email']") AS email,
+    JSON_EXTRACT_SCALAR(user_properties, "$['$name']") AS name,
+    JSON_EXTRACT_SCALAR(user_properties, "$['last_genre']") AS last_genre,
+    JSON_EXTRACT_SCALAR(user_properties, "$['lifetime_purchase']") AS lifetime_purchase
+FROM `project.dataset.tablename` t1
+INNER JOIN (
+    SELECT
+        user_id,
+        MAX(event_time) as max_event_time
+    FROM `project.dataset.tablename`
+    WHERE user_id IS NOT NULL
+    GROUP BY user_id
+) t2
+ON t1.user_id = t2.user_id AND t1.event_time = t2.max_event_time
+```
+
+## Setting up Warehouse Connectors
+Once you've transformed your data in your data warehouse, you can set up the [Mixpanel Warehouse Connector](/docs/tracking-methods/data-warehouse/overview) to migrate your historical data into Mixpanel. We'd recommend first sending a month of data into a test project for validation.
+
+You can learn more about event mappings [here](/docs/tracking-methods/data-warehouse/sending-events). Here's an example of mappings for event table:
+
+![image](/amp_event_warehouse_connector.png)
+
+You can learn more about user mappings [here](/docs/tracking-methods/data-warehouse/sending-user-profiles). Here's an example of mappings for user table: 
+
+![image](/amp_user_warehouse_connector.png)
+
+##### Post-migration data validation
+You can use our [Lexicon](/docs/data-governance/lexicon) or Events page to check that your data has successfully been ingested. However, if your historical events are older than 30 days, they will not show up on Lexicon, Events page or in the event dropdown menu across all reports. In this case, you can leverage our [Insights report](docs/reports/insights) to validate the historical events, by selecting the import time frame and filtering by the following default properties: 
+
+- Warehouse Import ID (tracked as `$warehouse_import_id`)
+- Warehouse Import Job ID (`$warehouse_import_job_id`)
+- Import = true (`$import`)
+- Source = warehouse-import (`$source`)
+
+Please filter by tracked name, $warehouse_import_id instead of the display name, “Warehouse Import ID”. You can find the properties values on the Warehouse Connector’ sync logs:
+
+![image](/amp_event_validation.png)
+
 ## Identifying your implementation method
 
 Mixpanel accepts event data from a variety of different sources. Choose your implementation method first and then you can follow the below steps for sending data to Mixpanel.
@@ -237,4 +333,4 @@ If you're unsure how you currently track data, or might want to consider trackin
 
 Mixpanel Customer Success and Support have been helping thousands of customers migrate from other tools to Mixpanel over the past decade. You can see an overview of the process we run with our Enterprise plan customers migrating from Amplitude [here](https://mxpnl.notion.site/Amplitude-Migration-Package-264ed076292e41e9b29a2c4f26851e9b?pvs=4).
 
-We’re always happy to discuss your team’s individual needs, our migration process, the support you’ll receive, or any other question you have — drop us a line at success@mixpanel.com.
+We’re always happy to discuss your team’s individual needs, our migration process, the support you’ll receive, or any other question you have — drop us a line at [success@mixpanel.com](mailto:success@mixpanel.com).
