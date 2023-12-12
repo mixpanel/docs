@@ -26,8 +26,7 @@ Building a Retention report follows the same high level steps as building any ot
 
 Building a report in Retention takes just a few clicks, and results arrive in seconds. Let's build a simple report together. Continuing the B2B messaging example, imagine you wanted to answer the following question:
 
-> Which app version promotes the best retention after signup, for users on iOS?
->
+> Which app version promotes the best retention after signup, for users on Chrome?
 
 Feel free to follow along and create your own report right in our demo project, [here](https://mixpanel.com/register/?next=%2Fproject%2F2195193%2Fview%2F139237%2Fapp%2Fretention%3Fredirect%3Dborn_event%3A%27%24mp_anything_event%27%2Cborn_filters%3A%21%28). To skip ahead to see the final result, click [here](https://mixpanel.com/register/?next=%2Fproject%2F2195193%2Fview%2F139237%2Fapp%2Fretention%3Fredirect%3Dreport%2F11945585%2Fi-os-retention-by-onboarding-variant%2Ftitle%3A%27iOS%2520Retention%2520by%2520Onboarding%2520Variant%27).
 
@@ -39,13 +38,13 @@ In this case, since we want to know retention after signup, choose "Sign Up" in 
 
 ### Step 2: Choose Filters
 
-Filters exclude unwanted data. In this case, we only care about events performed on the iOS platform. Therefore, add a "Platform" filter, where Platform equals "iOS". At this point, your query should look like this:
+Filters exclude unwanted data. In this case, we only care about events performed on the iOS platform. Therefore, add a "Browser" filter, where Browser equals "Chrome". At this point, your query should look like this:
 
 ![/Retention_Filter.png](/Retention_Filter.png)
 
 ### Step 3: Choose Breakdowns
 
-Breakdowns segment data into groups. In this case, we want to break our report down based on the app version they are using to Sign Up. Therefore, add an "App Version" breakdown. At this point, your query should look like this:
+Breakdowns segment data into groups. In this case, we want to break our report down based on the browser version they are using to Sign Up. Therefore, add an "Browser Version" breakdown. At this point, your query should look like this:
 
 ![/Retention_Breakdown.png](/Retention_Breakdown.png)
 
@@ -71,11 +70,11 @@ Boxes with an asterisk (\*) indicate that the data is still in flux and not set 
 **Color Mapping**
 Each box within a row is assigned a shade of purple. The shading gets darker the higher the retention percentage. It's important to note that the scale is relative to each cohort row.
 
-### Retention Trends
+### Line chart
 
-![/ehvdhy2if3.png](/ehvdhy2if3.png)
+![/Retention Line Chart](/Retention_Trend.png)
 
-Select **Trends** from the report drop-down list to see how the percentage of retained users has changed over time for any of the retention time unit buckets. You can change between the different time unit buckets (i.e. < 1 Day, Day 1, Day 2, ...) to see if your retention metrics are improving or declining along your retention curve.
+Select **Line** from the visualization drop-down list to see how your retention metrics are changing over time. You can see how your retention rate or number of users retained are trending. You can see this trend for any of the retention time unit buckets. You can change between the different time unit buckets (i.e. < 1 Day, Day 1, Day 2, ...) to see if your retention metrics are improving or declining along your retention curve.
 
 ### User Cohort Buckets
 
@@ -154,7 +153,7 @@ For example, day 5 retention is the percentage of users who “came back and did
 
 #### Retention Criteria - On or After time interval
 
-![/qjcz6kqfb4.png](/qjcz6kqfb4.png)
+![/Retention_Criteria](/Retention_Criteria.png)
 
 "On or After" Retention calculates the percentage of users who come back on a specific time unit (e.g. day, week, month) **or any time unit afterward**. A user can fulfill the "came back and did B criteria" on a specific time unit or any time in the future to be counted as retained in "On or After" Retention.
 
