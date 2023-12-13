@@ -37,26 +37,38 @@ As a best practice, think of event properties that you track under events which 
 
 For more details and examples refer to our documentation on [User Profiles](/docs/data-structure/user-profiles).
 
+### Special Types of Properties 
+
+#### Global / Super Properties
+
+These are event properties that you track with almost every *(typically >80%)* distinct event that you send. Unlike regular event properties, which only provide specific information to the event its associated to, global / super properties provide an overarching context on information about the user or their environment that you plan to analyze across different events. The value of a global / super property typical persists for a prolonged period and changes only due to certain user action or product functionality
+
+> Examples: App User ID, Subscription / User Type, Favorite Genre, App Source,
+
+Mixpanel's client-side SDKs provide a method that allows you to register / save the property in a cookie or local storage and auto-appends it in subsequent event tracking calls.
+
+For more details and examples refer to our documentation on [Super Properties](/docs/tracking-methods/sdks/javascript#super-properties).
+
+#### Default Mixpanel Properties
+
+These are event or user properties that Mixpanel auto-populate with a value if available, either through using our client-side SDKs or through information received when data is being ingested into our servers. These properties are typically useful when you are interested in general locations *(Country, Region, City)*, device level information *(OS, Browser, Model, App Version)*, or Marketing Attribution Parameters *(UTM tags, Google / Facebook Click ID)* but you do not wish to instrument code to manually track them.
+
+Refer to the list of [Default Properties](/docs/data-structure/property-reference#default-properties) and [Tracking UTM Parameters](/docs/tracking-methods/sdks/javascript#tracking-utm-parameters) for more information.
+
+#### Reserved Mixpanel Properties
+
+Mixpanel reserves certain property names for special use cases and system processing. Unlike default Mixpanel properties, which are auto-populated with a value, reserved properties may or may not be auto-populated.
+
+> Examples:
+>> time - event property used to denote the timestamp of events, auto-populated by client-side SDKs
+>> $email - user property containing user's e-mail exported as part of cohort exports, manually-populated as part of your codes
+
+Refer to the list of [Reserved Event Properties](docs/data-structure/events-and-properties#reserved-event-properties) and [Reserved User Properties](/docs/data-structure/user-profiles#reserved-user-properties) in our documentation.
+
 ----
 
 Along with the Data Model Overview video above, you can refer to this [Mixpanel Data Model Board](https://mixpanel.com/project/2195193/view/139237/app/boards/#id=4600772/) in our Mixpanel demo project which offers both an in-depth explanation as well as a glimpse into events and event properties live-in-action within the platform. 
 
-### Understanding Special Properties 
-
-**Super Properties**: In some cases, you may have certain relevant properties in which you may want to include with every event you send.  Unlike regular event properties, which are tied to individual events, super properties remain constant across multiple events, providing overarching context or information about the user or their environment.
-
-These attributes are typically more about the user such as age, gender, source, or perhaps subscription plan type. Mixpanel allows you to register these properties as super properties so you can just let us know once, and these properties will be included in all subsequent events. 
-
-Check out the link to find more information on 
-[Super Properties](/docs/tracking-methods/sdks/javascript#super-properties).
-
-**Reserved Properties**: Mixpanel have some properties that are reserved for special use or processing within our UI. 
-
-Check out the link to find more information on [Reserved Properties](/docs/data-structure/events-and-properties#reserved-event-properties).
-
-**Default Properties**: If you are specifically using the Mixpanel client-side SDKs, we will automatically collect certain properties on every event where possible. 
-
-Check out the link to find more information on [Default Properties](/docs/data-structure/property-reference).
 
 ### Group Analytics
 At the fundamental level, Mixpanel allows behavioral data analysis at the individual user level. Group Analytics is an add-on feature that allows you to conduct analysis at a customized group level such as company, account, device, or any other group entity that makes sense for your business use case. 
