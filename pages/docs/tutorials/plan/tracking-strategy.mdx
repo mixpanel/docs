@@ -9,13 +9,31 @@ It's important to first understand Mixpanel's Data Model and then create a Track
 </p> 
 
 ### Behaviours: Events and Event Properties
+
 Events are the foundation of Mixpanel's Data Model. In order to conduct meaningful analysis and gather insights using Mixpanel reports, you should understand and intentionally design your events and event properties based on your business objectives, specific use cases, and key metrics.
 
-* All events should have an **Event Name**, a **Timestamp** of when that event has occured, and a **Distinct ID** to tie all events belonging to the same user. 
-* An event represent an interaction between the user and your product; it's important to only track events that align to the metrics you want to measure.
-* Event properties provide additional context or details about the event; always include relevant event properties that will enable you to drill deeper into the analysis.
+Events represent interactions between the user and your product and are fundamentally immutable *(eg for historical snapshot)*:
+
+* All events should have an **Event Name**, a **Timestamp** of when that event has occured, and a **Distinct ID** to tie all events belonging to the same user
+* Events have event properties that provide additional context or details about the event
+
+It's important to only track events that align to the metrics you want to measure, and always include relevant event properties that will enable you to drill deeper into the analysis.
 
 For more details and examples refer to our documentation on [Events and Properties](/docs/data-structure/events-and-properties).
+
+### Demographics: User Profile and User Properties
+
+While events capture behaviours or user actions, user profiles capture demographical attributes which help in cohorting users based on their latest characteristics such as users' details *(e-mail, phone)*, device information *(brand, model)*, users' geographical locations *(country, region, city)*, product related details *(current subscriptions, customer type)*  etc. 
+
+User profiles are in a separate object from events and are mutable *(eg for current snapshot)*:
+
+* All user profiles should have a **Distinct ID** that can be used to tie to events belonging to the same user
+* User profiles have user properties that capture these demographical attributes
+* A user that has events, can exist in Mixpanel without having a user profile, especially when they are anonymous *(eg not logged in)*
+
+As a best practice, think of event properties that you track under events which might also be useful as user properties. This would allow you to analyse a user property which provides the latest state or value against the same event property that records a value in the past. Example use case: I want to analyze users who are currently in country = "Singapore" *(user property)* did these users also used my product in another country *(event property)*.
+
+For more details and examples refer to our documentation on [User Profiles](/docs/data-structure/user-profiles).
 
 ----
 
@@ -37,15 +55,6 @@ Check out the link to find more information on [Reserved Properties](/docs/data-
 **Default Properties**: If you are specifically using the Mixpanel client-side SDKs, we will automatically collect certain properties on every event where possible. 
 
 Check out the link to find more information on [Default Properties](/docs/data-structure/property-reference).
-
-### User Profile and User Properties
-In addition to your events and event properties, User Profiles allow you to capture and store user attributes as user properties which can help with better understanding the persona and relevant characteristics about individual users. Again, you will only want to include relevant attributes that serve the purpose of helping you in meaningful analysis aligned to your key use cases. 
-
-User Profiles are a separate table that uses the distinct user ID to thread all the user events or behaviors along with the user properties. 
-
-Some common user properties are usually demographic information or user preferences and may include attributes such as user age, email address, subscription plan type, company role, or lifetime value. 
-
-Check out the link to find more information on [User Profiles](https://docs.mixpanel.com/docs/data-structure/user-profiles).
 
 ### Group Analytics
 At the fundamental level, Mixpanel allows behavioral data analysis at the individual user level. Group Analytics is an add-on feature that allows you to conduct analysis at a customized group level such as company, account, device, or any other group entity that makes sense for your business use case. 
