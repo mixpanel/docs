@@ -1,6 +1,5 @@
 # Funnels
 
-
 ## Overview
 
 ![/funnels_result_header.png](/funnels_result_header.png)
@@ -156,7 +155,7 @@ A step will either appear with a number beside it, indicating where it must fall
 
 In the above example, Steps 1, 4, and 6 must occur as the 1st, 4th, and 6th steps the user performs.Any of the * steps can occur at any time within those boundaries.
 
-### Hold Property Constant
+#### Hold Property Constant
 
 Holding a property constant in a funnel requires that a user retains the same value for a given event property for each step in order to convert. In other words, a user must not only perform the funnel events in the order you specified, but also perform these events with the same property value.
 
@@ -474,9 +473,9 @@ For example, you might use this to discover that most users who dropped off are 
 
 ## FAQ
 
-### Why is my user shown as dropped off even though they've just completed the full funnel today? 
+### Why is my user shown as dropped off even though they've just completed the full funnel today?
 
-Assuming that the user performed all actions in the funnel, on their first try, in the right sequence, within the conversion window, the user should be counted as converted. However, if you are looking at the Funnel report for today, they might be shown as dropped off. This is because there may be up to a 24 hour delay on our reports (except for Activity Feed), as we work towards linking anonymous user activity to known profiles. This would explain why the funnel displays the user as not converted, soon after ingestion. Once we account for the delay, the funnel should display the conversion, especially if the user performs the steps in the funnel in the specified sequence. 
+Assuming that the user performed all actions in the funnel, on their first try, in the right sequence, within the conversion window, the user should be counted as converted. However, if you are looking at the Funnel report for today, they might be shown as dropped off. This is because there may be up to a 24 hour delay on our reports (except for Activity Feed), as we work towards linking anonymous user activity to known profiles. This would explain why the funnel displays the user as not converted, soon after ingestion. Once we account for the delay, the funnel should display the conversion, especially if the user performs the steps in the funnel in the specified sequence.
 
 ### Can users do other actions during the funnel?
 
@@ -488,7 +487,7 @@ Users can complete the steps you designate in your funnel in loose order. Loose 
 
 ### Why do I get differing numbers when comparing Funnels and Insights?
 
-Funnels and Insights are fundamentally different when it comes to counting events. In the Funnels report, users will need to perform Step 1 event, in order for their Step 2 event to be counted. Insights, on the other hand, will count the Step 2 event, even if the user does not perform the Step 1 event. This will create some discrepancy between the Insights and Funnels report, as users are expected to trigger events in sequence in the Funnels report, whereas, they are not expected to do so in the Insights report. 
+Funnels and Insights are fundamentally different when it comes to counting events. In the Funnels report, users will need to perform Step 1 event, in order for their Step 2 event to be counted. Insights, on the other hand, will count the Step 2 event, even if the user does not perform the Step 1 event. This will create some discrepancy between the Insights and Funnels report, as users are expected to trigger events in sequence in the Funnels report, whereas, they are not expected to do so in the Insights report.
 
 ### Can multiple events count towards the same Funnel step?
 
