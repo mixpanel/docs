@@ -2,11 +2,9 @@
 
 Before you start sending data into your Mixpanel project, it's important to take some time to setup your Mixpanel instance and plan out what actions or behaviours you want to track, in order to achieve your product or business goals.
 
-<br>
 - [ ] [Setup](/docs/tutorials/plan/setup#setting-up-mixpanel) *(for Organization Owners and Admins)* - takes you through how you should go about setting up your Mixpanel Organization and the underlying Projects. 
 - [ ] [Framework](/docs/tutorials/plan/framework) - if you need guidance on defining your metrics and KPIs to help you achieve your business and product objectives, this tutorial should help you. 
 - [ ] [Tracking Strategy](/docs/tutorials/plan/tracking-strategy) - this tutorial helps you understand Mixpanel's data model so you're equipped with building out your tracking plan to measure your metrics and KPIs.
-<br>
 
 # Setting Up Mixpanel
 
