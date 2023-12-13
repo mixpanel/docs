@@ -66,7 +66,7 @@ However, you can also visualize the funnel in any of the following chart types, 
 - Time to Convert - view a distribution of the time it takes users to convert through the funnel
 - Frequency - view the number of times users complete any step before converting or dropping off
 
-### Quick Start - Beta
+### Quick Start - New Funnels
 
 If you are on the beta funnels experience, follow this guide. The core concepts all stay the same, but some things are slightly rearranged. You can watch the video below to get a preview of what's changed.
 
@@ -251,74 +251,6 @@ Note:
 2. An exclusion step does not prevent users for qualifying into the funnel up until the exclusion step. If you want users who did a particular event at any point excluded, use a cohort filter.
 3. There may be any number of exclusion events between steps.
 4. Exclusion steps have the same [two second grace period](/docs/reports/funnels#how-does-mixpanel-handle-simultaneous-events) as other steps in the funnel.
-
-### Rename a Step
-
-Click on the "three dots" icon beside a step and click **Rename** to rename it.
-
-![image](https://github.com/mixpanel/docs/assets/2077899/2e2e844b-a9f6-4eb1-8532-345c7e8613e3)
-
-### View as Flow
-
-In order to learn more about the behavior users take between funnel steps, use "View as Flow". You can see what user flows and behaviors that can increase the likelihood of conversion or drop-off. This helps to answer questions like:
-
-- What flows do users take between opening an app and making a purchase?
-- Why did the successful users purchase?
-- What flows do users take that don’t lead to a purchase?
-- How do these two paths differ? What actions should I nudge towards or against?
-- What did the users that dropped-off do instead?
-
-![image](https://github.com/mixpanel/docs/assets/2077899/b37e48d4-d9c8-42b7-9e79-72e7e71e47eb)
-
-#### Using Conversion and Drop-off Flows
-
-First, go to the Mixpanel Funnels Report, and create any funnel you like by selecting 2 or more events steps.
-
-Next, click on the conversion or drop-off population you wish to examine further and select View As Flow.
-
-![/cr8695o49k.png](/cr8695o49k.png)
-
-In this example, I want to see what events lead to better conversion or more drop-off between Step 1 Browse and Step 2 Add To Cart. This will send me to the Sankey visualization to see these event streams in a Flows report.
-
-I can see that all of the Funnel's criteria is still maintained. In my example, I still am counting a Unique funnel, within 30 days, holding the Item Name property constant, and excluding users that Abandon Cart at any stage. I can also go back to the Funnel to change my criteria at any time.
-
-The Sankey is automatically broken down by users that eventually converted or did not convert to Add to Cart (Users may not convert because of hitting exclusion steps, or failing to complete the funnel within the conversion window).
-
-![/Screen_Shot_2021-05-26_at_7.13.34_AM.png](/Screen_Shot_2021-05-26_at_7.13.34_AM.png)
-
-Hovering over any path I can see the size of the population and the percent converted to this action from the previous one.
-
-![/rjgjxun5bz.png](/rjgjxun5bz.png)
-
-In the example, I can see here that 10.6% converted immediately to Adding to their Cart.
-
-#### Lift Actions: What paths are performed more often by users who convert compared those who drop off?
-
-With the recently added lift actions feature, we have made it possible to quickly tell which actions and paths had a higher or lower conversion rate compared to the funnel as a whole.
-
-![/Screen_Shot_2021-05-26_at_7.38.50_AM.png](/Screen_Shot_2021-05-26_at_7.38.50_AM.png)
-
-In this example, I can see that Users who performed Search Results, had a +24% higher conversion rate compared to overall (51.1% vs. 41.2%). Whereas, users who performed Experiment Started had a -82.4% reduction in conversion rate compared to overall (7.2% vs. 41.2%).By looking at the positive (green) and negative (red) lift actions, you should be able to quickly form hypothesis on which paths and events are likely to result in more or less conversions.
-
-#### Filter by Conversion: What are the common paths taken by users who convert?
-
-If you want to do an isolated analysis of conversions, I can apply a filter so that the report will include only conversions.  This is done by clicking on Filter in the query builder and selecting the Conversion property. Setting it to Converted, will filter only to users who have converted.
-
-![/l387g5uhw1_1_.png](/l387g5uhw1_1_.png)
-
-![/Screen_Shot_2021-05-26_at_7.55.31_AM.png](/Screen_Shot_2021-05-26_at_7.55.31_AM.png)
-
-In this example, we can see that 35.6% of conversions happened in the first step.
-
-#### Filter by drop off: What do users do right before dropping off?
-
-To view what users did before dropping off, change the filter to "Did not Convert", and add more steps before the drop off step
-
-![/Screen_Shot_2021-05-26_at_7.58.29_AM.png](/Screen_Shot_2021-05-26_at_7.58.29_AM.png)
-
-![/Screen_Shot_2021-05-26_at_7.59.51_AM.png](/Screen_Shot_2021-05-26_at_7.59.51_AM.png)
-
-Now, I can see that 33.7% of users who did not convert, did the "Join Loyalty Program" before dropping off. I can use this hypothesis to evaluate the business impact of the loyalty program, and perhaps make some changes to the product.
 
 ### Funnel Trends
 
@@ -513,6 +445,74 @@ For example, you might use this to discover that most users who dropped off are 
 <p style={{ position: 'relative', paddingBottom: '56.25%', height: 0, overflow: 'hidden' }}>
   <iframe src="https://www.loom.com/embed/1c5da3ec08cd4aa090b90359cbcd8a34" frameborder="0" style={{ position: 'absolute', top: 0, left: 0, width: '100%', height: '100%' }} allowfullscreen></iframe>
 </p>
+
+### Rename a Step
+
+Click on the "three dots" icon beside a step and click **Rename** to rename it.
+
+![image](https://github.com/mixpanel/docs/assets/2077899/2e2e844b-a9f6-4eb1-8532-345c7e8613e3)
+
+### View as Flow
+
+In order to learn more about the behavior users take between funnel steps, use "View as Flow". You can see what user flows and behaviors that can increase the likelihood of conversion or drop-off. This helps to answer questions like:
+
+- What flows do users take between opening an app and making a purchase?
+- Why did the successful users purchase?
+- What flows do users take that don’t lead to a purchase?
+- How do these two paths differ? What actions should I nudge towards or against?
+- What did the users that dropped-off do instead?
+
+![image](https://github.com/mixpanel/docs/assets/2077899/b37e48d4-d9c8-42b7-9e79-72e7e71e47eb)
+
+#### Using Conversion and Drop-off Flows
+
+First, go to the Mixpanel Funnels Report, and create any funnel you like by selecting 2 or more events steps.
+
+Next, click on the conversion or drop-off population you wish to examine further and select View As Flow.
+
+![/cr8695o49k.png](/cr8695o49k.png)
+
+In this example, I want to see what events lead to better conversion or more drop-off between Step 1 Browse and Step 2 Add To Cart. This will send me to the Sankey visualization to see these event streams in a Flows report.
+
+I can see that all of the Funnel's criteria is still maintained. In my example, I still am counting a Unique funnel, within 30 days, holding the Item Name property constant, and excluding users that Abandon Cart at any stage. I can also go back to the Funnel to change my criteria at any time.
+
+The Sankey is automatically broken down by users that eventually converted or did not convert to Add to Cart (Users may not convert because of hitting exclusion steps, or failing to complete the funnel within the conversion window).
+
+![/Screen_Shot_2021-05-26_at_7.13.34_AM.png](/Screen_Shot_2021-05-26_at_7.13.34_AM.png)
+
+Hovering over any path I can see the size of the population and the percent converted to this action from the previous one.
+
+![/rjgjxun5bz.png](/rjgjxun5bz.png)
+
+In the example, I can see here that 10.6% converted immediately to Adding to their Cart.
+
+#### Lift Actions: What paths are performed more often by users who convert compared those who drop off?
+
+With the recently added lift actions feature, we have made it possible to quickly tell which actions and paths had a higher or lower conversion rate compared to the funnel as a whole.
+
+![/Screen_Shot_2021-05-26_at_7.38.50_AM.png](/Screen_Shot_2021-05-26_at_7.38.50_AM.png)
+
+In this example, I can see that Users who performed Search Results, had a +24% higher conversion rate compared to overall (51.1% vs. 41.2%). Whereas, users who performed Experiment Started had a -82.4% reduction in conversion rate compared to overall (7.2% vs. 41.2%).By looking at the positive (green) and negative (red) lift actions, you should be able to quickly form hypothesis on which paths and events are likely to result in more or less conversions.
+
+#### Filter by Conversion: What are the common paths taken by users who convert?
+
+If you want to do an isolated analysis of conversions, I can apply a filter so that the report will include only conversions.  This is done by clicking on Filter in the query builder and selecting the Conversion property. Setting it to Converted, will filter only to users who have converted.
+
+![/l387g5uhw1_1_.png](/l387g5uhw1_1_.png)
+
+![/Screen_Shot_2021-05-26_at_7.55.31_AM.png](/Screen_Shot_2021-05-26_at_7.55.31_AM.png)
+
+In this example, we can see that 35.6% of conversions happened in the first step.
+
+#### Filter by drop off: What do users do right before dropping off?
+
+To view what users did before dropping off, change the filter to "Did not Convert", and add more steps before the drop off step
+
+![/Screen_Shot_2021-05-26_at_7.58.29_AM.png](/Screen_Shot_2021-05-26_at_7.58.29_AM.png)
+
+![/Screen_Shot_2021-05-26_at_7.59.51_AM.png](/Screen_Shot_2021-05-26_at_7.59.51_AM.png)
+
+Now, I can see that 33.7% of users who did not convert, did the "Join Loyalty Program" before dropping off. I can use this hypothesis to evaluate the business impact of the loyalty program, and perhaps make some changes to the product.
 
 ## FAQ
 
