@@ -43,7 +43,11 @@ For more details and examples refer to our documentation on [User Profiles](/doc
 
 These are event properties that you track with almost every *(typically >80%)* distinct event that you send. Unlike regular event properties, which only provide specific information to the event its associated to, global / super properties provide an overarching context on information about the user or their environment that you plan to analyze across different events. The value of a global / super property typical persists for a prolonged period and changes only due to certain user action or product functionality
 
-> Examples: App User ID, Subscription / User Type, Favorite Genre, App Source,
+Examples: 
+- App User ID - useful to have in all events where user is logged in for identity management troubleshooting
+- Subscription / User Type - useful for tracking change in subscriptions or user types over time in different events
+- Favorite Genre - useful in comparing a user's favorite genre against other music genres they played, and how they change their favorite
+- App Source - useful when you are tracking mulitple apps into one single Mixpanel project, which can be used for data segregation (see [Data Views](/docs/data-governance/data-views-and-classification#data-views-overview))
 
 Mixpanel's client-side SDKs provide a method that allows you to register / save the property in a cookie or local storage and auto-appends it in subsequent event tracking calls.
 
@@ -59,10 +63,10 @@ Refer to the list of [Default Properties](/docs/data-structure/property-referenc
 
 Mixpanel reserves certain property names for special use cases and system processing. Unlike default Mixpanel properties, which are auto-populated with a value, reserved properties may or may not be auto-populated. You would need to ensure that these properties are populated for the specific Mixpanel functions to work.
 
-> Examples:
-> - time - event property used to denote the timestamp of events, auto-populated by client-side SDKs
-> - mp_original_distinct_id - event property used in [hot shard](/docs/debugging/distinct-id-limits#what-is-a-hot-shard) detection
-> - $email - user property containing user's e-mail exported as part of cohort exports, manually-populated as part of your codes
+Examples:
+- time - event property used to denote the timestamp of events, auto-populated by client-side SDKs
+- mp_original_distinct_id - event property used in [hot shard](/docs/debugging/distinct-id-limits#what-is-a-hot-shard) detection
+- $email - user property containing user's e-mail exported as part of cohort exports, manually-populated as part of your codes
 
 Refer to the list of [Reserved Event Properties](docs/data-structure/events-and-properties#reserved-event-properties) and [Reserved User Properties](/docs/data-structure/user-profiles#reserved-user-properties) in our documentation for their usage.
 
