@@ -1,17 +1,15 @@
 # Overview
-If you have already created your tracking plan and know what you want to track, the next step is to start implementing. In this section of the tutorial, we will walk through the different ways you can send data into Mixpanel, and what we recommend; how to do a QA and audit of your data before you send it to production; and how to establish good data governance beyond the initial onboarding.
 
-*Send Your Data*
+If you have already created your tracking plan and know what you want to track, the next step is to start implementing. However, if you have not done so, it's good to catch-up reading on [Plan](/docs/tutorials/plan/setup) first.
 
+<br />
+- [x] [Send Your Data](/docs/tutorials/implement/send-your-data#send-your-data-implement-your-tracking-plan) - walkthrough the different ways you can send data into Mixpanel and guide you on choosing the most suitable approach. 
+- [x] [QA and Data Audit](/docs/tutorials/implement/qa-data-audit) - covers QA *(Quality Assurance testing)* and auditing of your implementation before you send live data into your Mixpanel production project. 
+- [x] [Establish Governance](/docs/tutorials/implement/establish-governance) - guide you in establishing good data governance practices beyond the initial onboarding to you keep your implementation clean, concise and consistent.
 
-*QA and Data Audit*
+# Send Your Data: Implement Your Tracking Plan
 
-
-*Establish Governance*
-
-## Send Your Data: Implement Your Tracking Plan
-
-### Choosing an Ingestion Method
+## Choosing an Ingestion Method
 
 There are a variety of methods available to you and your team to get your data into Mixpanel. We'd note that there is no “right” or “wrong” answer when it comes to collecting data. The implementation method you utilize may change throughout your company’s lifecycle, and each method will have its pros and cons. Your initial implementation choice will depend on several factors such as available development resources, existing infrastructure, and the type of data your team is trying to collect.
 
@@ -78,7 +76,7 @@ As an in between, consider tracking Client-Side via a Proxy. This will help [red
   <iframe src="https://www.loom.com/embed/6417dae512154ff1a04ec70c896686e6?sid=c96a190a-9f44-41ad-a223-7dd9a9bf1b24" frameborder="0" style={{ position: 'absolute', top: 0, left: 0, width: '100%', height: '100%' }} allowfullscreen></iframe>
 </p>
 
-### Identity Management Best practices
+## Identity Management Best practices
 
 As users navigate through your website or application, it is common for them to move from anonymous to identified states, as well as, logged out to logged-in states. 
 
