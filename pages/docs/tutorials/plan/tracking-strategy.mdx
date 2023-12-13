@@ -31,7 +31,9 @@ User profiles are in a separate object from events and are mutable *(eg for curr
 * User profiles have user properties that capture these demographical attributes
 * A user that has events, can exist in Mixpanel without having a user profile, especially when they are anonymous *(eg not logged in)*
 
-As a best practice, think of event properties that you track under events which might also be useful as user properties. This would allow you to analyse a user property which provides the latest state or value against the same event property that records a value in the past. Example use case: I want to analyze users who are currently in country = "Singapore" *(user property)* did these users also used my product in another country *(event property)*.
+As a best practice, think of event properties that you track under events which might also be useful as user properties. This would allow you to analyse a user property which provides the latest state or value against the same event property that records a value in the past. 
+
+⋅⋅⋅Example use case: I want to analyze users who are currently in country = "Singapore" *(user property)* did these users also used my product in another country *(event property)*.
 
 For more details and examples refer to our documentation on [User Profiles](/docs/data-structure/user-profiles).
 
