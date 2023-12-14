@@ -336,6 +336,16 @@ You can switch between viewing Conversion Counts to viewing Conversion Rates or 
 
 Conversion Count shows you the number of users that converted who performed the event at a specific frequency. Conversion Rate shows you the percentage of users that converted who performed the event at a specific frequency. Drop-Off Count shows you the number of times a user performed a step before dropping off the funnel.
 
+### Property Sum
+
+This measurement type allows you to visualize revenue through a funnel. Instead of seeing how many users move through your flow, you can select an event property that exists on each step of the funnel. Mixpanel will sum up the total value of this property at each stage of the funnel and visualize the total ammount converted, or the dropoff at each step if "Funnel Steps" visualization is selected.
+
+**Note**: For many e-commerce flows, you will want to pair property sum with [hold property constant](/docs/reports/funnels#hold-property-constant) on item ID so you can track each individual item.
+
+To use property sum, select property sum from the measurement menu, and select a numeric property. In this case, we're seeing our 5 step purchase funnel, and we can see that our biggest dropoff is between viewing an item and adding it to cart.
+
+![Revenue Funnel](/funnels_property_sum.png)
+
 ### Top Paths
 
 If you have selected **any order** for your funnels steps, you have the option to select **Top paths** from the drop-down list to view a Sankey visualization of how your users are performing the steps in your funnel.
