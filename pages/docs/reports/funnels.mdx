@@ -296,7 +296,7 @@ Note that if you use the step counter at the top to view only "Step 2 to Step 3"
 
 ![/Screen_Shot_2022-07-12_at_3.17.26_PM.png](/Screen_Shot_2022-07-12_at_3.17.26_PM.png)
 
-### Time to Convert
+### Time to Convert (Old)
 
 Select **Time to convert** from the drop-down list to see how long users take to convert through your funnel
 
@@ -316,7 +316,21 @@ Click on a segment of the bar chart to view users or zoom in on that segment. A
 
 ![/Screen_Shot_2022-07-12_at_3.20.22_PM.png](/Screen_Shot_2022-07-12_at_3.20.22_PM.png)
 
-### Frequency
+### Time to Convert (New)
+
+Use the Time to Convert breakdown to see a distribution of time users took between any two steps in the funnel or all steps. The steps selected in the breakdown are independent of the step of the metric you are measuring, for example you can measure overall conversion rate broken down by Time to Convert between Steps 1 and 2.
+
+![/funnels_ttc_selection.png](/funnels_ttc_selection.png)
+
+![/funnels_ttc_step_selection.png](/funnels_ttc_step_selection.png)
+
+Time to Convert works like any other property in that you can filter to specific range of times or customize the bucketing of the breakdown. You cannot use it as a step filter as it is used to filter funnels which have been measured rather than changing the per step conversion window.
+
+![/funnels_ttc_filter.png](/funnels_ttc_filter.png)
+
+![/funnels_ttc_custom_buckets.png](/funnels_ttc_custom_buckets.png)
+
+### Frequency (Old)
 
 Select **Frequency** from the drop-down list to see the number of times users performed a step before moving to the next step. For example, see the number of times a user listened to a song before purchasing the song.
 
@@ -335,6 +349,32 @@ You can switch between viewing Conversion Counts to viewing Conversion Rates or 
 ![/Screen_Shot_2022-07-12_at_3.27.30_PM.png](/Screen_Shot_2022-07-12_at_3.27.30_PM.png)
 
 Conversion Count shows you the number of users that converted who performed the event at a specific frequency. Conversion Rate shows you the percentage of users that converted who performed the event at a specific frequency. Drop-Off Count shows you the number of times a user performed a step before dropping off the funnel.
+
+### Frequency (New)
+
+Use the Frequency per User breakdown to see the number of times users performed an event between any two funnel steps. For example, see the number of times a user listened to a song between sign up and purchasing the song.
+
+![/funnels_frequency_per_user_selection.png](/funnels_frequency_per_user_selection.png)
+
+You can select the steps between which you want to measure frequency from the breakdown, this is different from the step you are deriving the metric from, for example you can measure overall conversion rate but breakdown by frequency of an event between Step 1 and 2. 
+
+![/funnels_frequency_per_user_finished.png](/funnels_frequency_per_user_finished.png)
+
+Frequency per user works like any other numeric property in that you are able to filter to a specific range of frequencies or customize how it is bucketed.
+
+![/funnels_frquency_per_user_filter.png](/funnels_frquency_per_user_filter.png)
+
+![/frequency_per_user_custom_buckets.png](/frequency_per_user_custom_buckets.png)
+
+To measure the frequency of a particular funnel step between that step and the next one, use selected step from the event selection in the Frequency per user breakdown. If the user does not do the step again before the next one the frequency will be 0.
+
+![/funnels_frequency_per_user_selected_step.png](/funnels_frequency_per_user_selected_step.png)
+
+Similar to Frequency per User if you want to instead breakdown by an aggregation on an event property between steps, like the sum of video watched time between sign up and purchase you can use Aggregate Property per user.
+
+![/funnels_aggregate_property_per_user_select_aggregation.png](/funnels_aggregate_property_per_user_select_aggregation.png)
+
+![/funnels_aggregate_property_per_user_finished.png](/funnels_aggregate_property_per_user_finished.png)
 
 ### Property Sum
 
