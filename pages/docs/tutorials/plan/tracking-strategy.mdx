@@ -132,6 +132,7 @@ Now that you have an understanding of Mixpanel's Data Model, let's walk you thro
    For example, a sign up journey will be important when measuring metrics related to newly acquired user *(part of Reach)*. 
    If you used the [RAE Framework](/docs/tutorials/plan/framework#the-rae-framework), make sure you cover the journeys that will help you track and measure your (R)each, (A)ctivation, and (E)ngagement.
 
+<br />
 2. Map the key actions within these journeys into events and capture event properties to provide additional information about the action. As you define your events, think about whether certain event properties should be global / super properties and user properties. 
 
    If you have screenflows in tools like [Figjam](https://www.figma.com/figjam) or [Miro](https://miro.com), use them to visualise the steps and actions in a user's journey to define the events and properties. Here is an example of a [User Journey in Figma](https://www.figma.com/file/tYEeeRE0Xz6IampBhGLotw/Media-and-Entertainment-Tracking-Plan?type=whiteboard&node-id=0-1&t=5GQDQsaqLeOTB8zU-0). 
@@ -144,12 +145,14 @@ Now that you have an understanding of Mixpanel's Data Model, let's walk you thro
 
    Having specific questions (eg hypothesis, influencing factors, current / target numbers) around the metrics you're measuring also helps you decide on the events and properties to include. Think of the answers you want to arrived at, and how an action (event), an information of an action (event properties), or a recent state (user property) can help lead you to that answer.
 
+<br />
 3. As you map your events and properties, it's also important to ensure that you have factored [identifying users](/docs/tracking-methods/identifying-users) in your product *(eg website, app, devices)*. 
 
    For instance, when a user goes from being anonymous, to completing the sign-up or registration process or simply logging in with a valid user account, you would want to properly identify the user with their user ID as the Distinct ID. This would ensure that events triggered across devices, while the user is anonymous, are tied to their events when they are logged in. 
 
    If you are not specifically tracking a sign-up journey or login event, make sure you work with your developers to have them understand how identity management works in Mixpanel.
 
+<br />
 4. Define and document your naming standards, approaches to data types and values in your properties, and how you should deal with nullable or not-applicable values; this will help ensure data quality and data trust over time.
 
    Here are guidelines to help you think through:
@@ -158,6 +161,7 @@ Now that you have an understanding of Mixpanel's Data Model, let's walk you thro
    - Use the appropriate [property data types](/docs/tutorials/plan/tracking-strategy#property-data-types) and ensure that values within properties are consistent *(eg `subscription_type` = "Premium" vs "premium" vs "Paid" are considered different values)
    - If certain property values *(eg null, N/A, "" - empty string)* are essentially considered unavailable, Mixpanel generally recommends that for those instances the property should not be sent with the event or user profile.
 
+<br />
 5. Document your events and properties in a tracking plan, access and make a copy of the [blank Tracking Plan template here](https://docs.google.com/spreadsheets/d/1ZdOZ6TMtRPxy7qRxiLsvH9HWcHJM6nZydWKoThRxFKc/edit#gid=1641519238). Keep your tracking plan as a living and shared document that is continuously updated with any implementation or product changes.
 
 ### Examples of Tracking Plans by Verticals
