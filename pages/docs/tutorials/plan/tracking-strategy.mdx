@@ -123,6 +123,8 @@ Now that you have an understanding of Mixpanel's Data Model, let's walk you thro
   <iframe src="https://www.loom.com/embed/78bca8ab574f4803a2d68b7c5bfa1bce?sid=373c2f06-a223-4078-a85d-e56fef538741" frameborder="0" style={{ position: 'absolute', top: 0, left: 0, width: '100%', height: '100%' }} allowfullscreen></iframe>
 </p>
 
+> [User Journey Figma](https://www.figma.com/file/tYEeeRE0Xz6IampBhGLotw/Media-and-Entertainment-Tracking-Plan?type=whiteboard&node-id=523-159&t=5GQDQsaqLeOTB8zU-4) show in video.
+
 ### Tracking Plan Methodology
 
 1. Prioritize on the key user journeys that are pertinent to the metrics and KPIs you want to measure. 
@@ -132,7 +134,7 @@ Now that you have an understanding of Mixpanel's Data Model, let's walk you thro
 
 2. Map the key actions within these journeys into events and capture event properties to provide additional information about the action. As you define your events, think about whether certain event properties should be global / super properties and user properties. 
 
-   If you have screenflows in tools like [Figjam](https://www.figma.com/figjam) or [Miro](https://miro.com), use them to visualise the steps and actions in a user's journey to define the events and properties.
+   If you have screenflows in tools like [Figjam](https://www.figma.com/figjam) or [Miro](https://miro.com), use them to visualise the steps and actions in a user's journey to define the events and properties. Here is an example of a [User Journey in Figma](https://www.figma.com/file/tYEeeRE0Xz6IampBhGLotw/Media-and-Entertainment-Tracking-Plan?type=whiteboard&node-id=0-1&t=5GQDQsaqLeOTB8zU-0). 
 
    As you determine what user actions to track, you'll want to strike the right balance to make sure events are not too broad nor too specific.   
 
@@ -140,11 +142,11 @@ Now that you have an understanding of Mixpanel's Data Model, let's walk you thro
 
    Having specific questions (eg hypothesis, influencing factors, current / target numbers) around the metrics you're measuring also helps you decide on the events and properties to include. Think of the answers you want to arrived at, and how an action (event), an information of an action (event properties), or a recent state (user property) can help lead you to that answer.
 
-3. As you map your events and properties, it's also important to ensure that you have factored [identifying users](/docs/tracking-methods/identifying-users) in your product *(website, app, devices)*. 
+3. As you map your events and properties, it's also important to ensure that you have factored [identifying users](/docs/tracking-methods/identifying-users) in your product *(eg website, app, devices)*. 
 
-  For instance, when a user goes from being anonymous, to completing the sign-up or registration process or simply logging in with a valid user account, you would want to properly identify the user with their user ID as the Distinct ID. This would ensure that events triggered across devices, while the user is anonymous, are tied to their events when they are logged in. 
+   For instance, when a user goes from being anonymous, to completing the sign-up or registration process or simply logging in with a valid user account, you would want to properly identify the user with their user ID as the Distinct ID. This would ensure that events triggered across devices, while the user is anonymous, are tied to their events when they are logged in. 
 
-  If you are not specifically tracking a sign-up journey or login event, make sure you work with your developers to have them understand how identity management works in Mixpanel.
+   If you are not specifically tracking a sign-up journey or login event, make sure you work with your developers to have them understand how identity management works in Mixpanel.
 
 4. Define and document your naming standards, approaches to data types and values in your properties, and how you should deal with nullable or not-applicable values; this will help ensure data quality and data trust over time.
 
@@ -164,8 +166,3 @@ Mixpanel provides the following templates for vertical-specific tracking plans:
 - [Media and Entertainment](https://docs.google.com/spreadsheets/d/1K9t53kJJjaBG36kCIbZn_qKjXR9Iy306zYZAqDrv_AM/edit#gid=1641519238)
 - [SaaS](https://docs.google.com/spreadsheets/d/1A5wm5MKzRfSOZfUfCAg8YpePiz8Jn3Ar_u8KBo5lD6g/edit#gid=1641519238)
 - [Financial Services](https://docs.google.com/spreadsheets/d/1oGv6vbIFiYbima9IX4ItpBJvuChs-zzh83MRt_dSPgg/edit#gid=1641519238)
-
-----------
-
-Here is an example of a [User Journey in Figma](https://www.figma.com/file/tYEeeRE0Xz6IampBhGLotw/Media-and-Entertainment-Tracking-Plan?type=whiteboard&node-id=0%3A1&t=ShUKEHAG2PlL9wNa-1)**.**
-
