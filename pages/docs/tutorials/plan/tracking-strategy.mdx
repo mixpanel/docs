@@ -4,8 +4,12 @@ It's important to first understand Mixpanel's Data Model and then create a Track
 
 ## The Mixpanel Data Model
 
+![image](/tutorials/base-data-model.png "Mixpanel Data Model")
+
+Mixpanel's data model is composed of Events, User Profiles, and Properties that provide more details about the events and profiles they belong to.
+
 <p style={{ position: 'relative', paddingBottom: '56.25%', height: 0, overflow: 'hidden' }}>
-  <iframe src="https://www.loom.com/embed/9383fa96b831416ab23ff3b9f759a923?sid=a27b96b7-a88a-4b3a-96de-7a1eeda9c004" frameborder="0" style={{ position: 'absolute', top: 0, left: 0, width: '100%', height: '100%' }} allowfullscreen></iframe>
+  <iframe src="https://www.loom.com/embed/9383fa96b831416ab23ff3b9f759a923" frameborder="0" style={{ position: 'absolute', top: 0, left: 0, width: '100%', height: '100%' }} allowfullscreen></iframe>
 </p> 
 
 ### Behaviours: Events and Event Properties
@@ -36,8 +40,6 @@ As a best practice, think of event properties that you track under events which 
 > Use case: I want to analyze users who are currently in country = "Singapore" *(user property)*, did these same users also use my product in another country *(event property)*.
 
 For more details and examples refer to our documentation on [User Profiles](/docs/data-structure/user-profiles).
-
-![image](/tutorials/base-data-model.png "Mixpanel Data Model")
 
 ### Special Types of Properties 
 
@@ -76,15 +78,31 @@ Refer to the list of [Reserved Event Properties](docs/data-structure/events-and-
 
 ### Property Data Types
 
+Mixpanel supports five data types for properties: String, Numeric, Boolean, Date and List. You should choose the most suitable data type for your properties, since each type has a specific set of [operations](/docs/reports/insights#insights-data-functions-operators-and-calculations) that enables richer analysis *(eg numeric data types allows for aggregated)*.
+
+- String - useful in capturing textual values *(suppports double-byte characters)*
+- Numeric - meant for whole numbers or decimals where numeric calculations are expected to be performed *(supports up to 16 decimals)*
+- Boolean - used when a property is always a `true` or `false` state, avoid using when you expect your property to have other states in the future
+- Date - used to capture both date and/or timestamp, example: Jun 20, 2009 14:20:30
+- List - meant for capturing an array / collection of similar or related values, example: ["Shoes", "Clothing", "Cosmetics"]
+
+A property's default data type can be [typecasted](/docs/reports/overview#typecasting) to another data type in Mixpanel reports. However, it's always an important best practice that you keep a property's data type consistent during implementation to avoid any confusion.
+
+Mixpanel also supports object and [list of objects](/docs/features/advanced#list-of-objects-property-support) data types for specific use cases like in e-commerce. It is highly encourage that you use the five primary data types as they are fully supported in the Mixpanel UI.
+
+For more details and examples refer to our documentation on [Supported Dta Types](/docs/data-structure/property-reference#supported-data-types).
+
+### Group Level Behaviours and Demographics
+
+Mixpanel's core behavioural data analysis is at the individual user level; there are however, use cases where behavioral data needs to be analysed at a customized group level *(eg company, subscription, etc.)*. A add-on [Group Analytics](/docs/data-structure/advanced/group-analytics) package available to customers on [Growth](https://mixpanel.com/pricing/) and [Enterprise plans](https://mixpanel.com/pricing/) enables this functionality.
+
+
 
 
 Checkout our [Mixpanel Data Model Board](https://mixpanel.com/project/2195193/view/139237/app/boards/#id=4600772/) in the demo project to explore how our data model works.
 
 ----
 
-
-### Group Analytics
-At the fundamental level, Mixpanel allows behavioral data analysis at the individual user level. Group Analytics is an add-on feature that allows you to conduct analysis at a customized group level such as company, account, device, or any other group entity that makes sense for your business use case. 
 
 Similar to how each individual user event must have a distinct ID sent as an event property, **every relevant group event should also have a distinct group ID, such as Company ID or an Account ID sent along as a event property with each event**. Mixpanel will then thread all group level behaviors to enable you to conduct analysis at the group level. 
 
