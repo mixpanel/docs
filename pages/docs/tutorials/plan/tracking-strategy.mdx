@@ -94,26 +94,26 @@ For more details and examples refer to our documentation on [Supported Dta Types
 
 ### Group Level Behaviours and Demographics
 
-Mixpanel's core behavioural data analysis is at the individual user level; there are however, use cases where behavioral data needs to be analysed at a customized group level *(eg company, subscription, etc.)*. A add-on [Group Analytics](/docs/data-structure/advanced/group-analytics) package available to customers on [Growth](https://mixpanel.com/pricing/) and [Enterprise plans](https://mixpanel.com/pricing/) enables this functionality.
+> Note: read this section only if you have [Group Analytics](/docs/data-structure/advanced/group-analytics) add-on.
 
+Mixpanel's core behavioural data analysis is at the individual user level; there are however, use cases where behavioral data needs to be analysed at a customized group level *(eg company, subscription, account)*. An add-on Group Analytics package available to customers on [Growth](https://mixpanel.com/pricing/) and [Enterprise plans](https://mixpanel.com/pricing/) enables this functionality.
 
+![image](/tutorials/group-data-model.png "Group Analytics Data Model")
 
-
-Checkout our [Mixpanel Data Model Board](https://mixpanel.com/project/2195193/view/139237/app/boards/#id=4600772/) in the demo project to explore how our data model works.
-
-----
-
-
-Similar to how each individual user event must have a distinct ID sent as an event property, **every relevant group event should also have a distinct group ID, such as Company ID or an Account ID sent along as a event property with each event**. Mixpanel will then thread all group level behaviors to enable you to conduct analysis at the group level. 
-
-Additionally, just like each user can have a User Profile, each group can also have a Group Profile that capture and store meaningful group attributes to better understand the group level attributes. For example, a Company Profile may include group properties such as industry, company size, annual spend, or number of seats.
+* Similar to how each individual user's event must have a **Distinct ID**; each group would require a **Group ID** *(eg company_id, subscription_id, account_id)* that will allow Mixpanel to group events across users belong to the same group to enable group level analysis.
+* Additionally, just like each user can have a user profile; each group can also have a group profile that captures demographical group attributes to enable cohorting of groups based on their latest characteristics such as industry, company size, subscription information, account type.
 
 <p style={{ position: 'relative', paddingBottom: '56.25%', height: 0, overflow: 'hidden' }}>
-  <iframe src="https://www.loom.com/embed/d74f556113fa4c81a459c3900dbadb3c?sid=acb36147-a761-4872-bed3-34d126febda6" frameborder="0" style={{ position: 'absolute', top: 0, left: 0, width: '100%', height: '100%' }} allowfullscreen></iframe>
+  <iframe src="https://www.loom.com/embed/d74f556113fa4c81a459c3900dbadb3c" frameborder="0" style={{ position: 'absolute', top: 0, left: 0, width: '100%', height: '100%' }} allowfullscreen></iframe>
 </p> 
 
-Keep in mind that not every business necessarily has use cases that may require Group Analytics. 
-Check out the link to find more information on [Group Analytics](https://docs.mixpanel.com/docs/data-structure/advanced/group-analytics#overview).
+Keep in mind that not every business necessarily has use cases that may require group level analysis, refer to our documentation on [Group Analytics](/docs/data-structure/advanced/group-analytics) for more information. 
+
+<dl>
+  <dt>For more information about Mixpanel's Data Model</dt>
+  <dd>Checkout our [Mixpanel Data Model Board](https://mixpanel.com/project/2195193/view/139237/app/boards/#id=4600772/) in the demo project.</dd>
+  <dd>Read about Mixpanel [Infrastructure](/docs/how-it-works/infrastructure)</dd>
+</dl>
 
 ----------
 ## Creating a Tracking Plan
