@@ -1,7 +1,30 @@
 # Check Your Implementation
 
 ## QA and Data Audit
-to-dos: 
-Debug page + video ( both update)
+As a best practice, we recommend always creating two separate projects when first implementing Mixpanel: a Development project and a Production project. Before pushing any data to your production project it is always best practice to QA the data in your dev environment.
 
-link to audit boards (this will need to be created in demo project, currently in naitik's onboarding tool kit project only)
+When QAing your implementation, there are two different levels of QAing your team should conduct, a code level QA and a user flows QA. 
+
+Code level QAs consist of developers QAing individual events, properties, and their values by triggering calls and monitoring the results for any errors in the data or errors thrown by the Mixpanel API.
+
+User Flows QA should consist of product and data teams utilizing your website or mobile app to focus on user flows by triggering events and creating user profiles and then checking in the Mixpanel UI for data accuracy and identity management issues across platforms and users.
+
+We have a debug mode that can be enabled during code level QA if you are using our client-side SDKs. Debug mode will log any client-side errors thrown while making a Mixpanel call, any errors thrown by our API when trying to ingest the data, and all successful API calls. You can access these logs in the browser console or from your mobile device or simulator via development platforms like Xcode and Android Studio. Please take a look at the SDK documentation for more information on how to enable debug mode for the specific SDK you have implemented. If you are not utilizing our client-side SDKs, your dev team should include code to handle error responses thrown by our API. An example would be utilizing code to retry events with an exponential backoff when receiving a 429 rate limited error response.
+
+Another helpful tool that can be utilized at both the code level and user flows QA is the Events report in the Mixpanel UI. You can utilize the Events report to see events as they flow into your Mixpanel project as well as the properties attached to those events to identify any tracking discrepancies. You can also enable JSON mode on the events to see the raw structure of the underlying data being ingested into Mixpanel.
+
+When conducting User Flows QA, you can also view user profiles to view a user's event feed and user properties. From this view, you can perform the following:
+
+- Examine the identity cluster to see all the Distinct IDs linked to the user
+- Search and validate all user properties and their values
+- Use the activity feed to search through all events with the most recent one listed on top
+- Adjust the date range or selectively hide certain events for easier troubleshooting
+- Expand any event to see its event properties
+- Click “View in Insights” to do further analysis using our Insights report
+
+
+Once you have confirmed the cleanliness of your implementation by QAing in your dev environment, you should begin pushing live data into your production environment.
+
+
+Here is an example of an audit board that you can recreate within your project.
+
