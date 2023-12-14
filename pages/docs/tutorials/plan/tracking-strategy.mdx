@@ -115,31 +115,33 @@ For more information about Mixpanel's Data Model:
 - Checkout our [Mixpanel Data Model Board](https://mixpanel.com/project/2195193/view/139237/app/boards/#id=4600772/) in the demo project to experience it
 - Read about Mixpanel [Infrastructure](/docs/how-it-works/infrastructure)
 
-----------
 ## Creating a Tracking Plan
 
-Now that we have an understanding of the Mixpanel Data Model, going through this following guide should help you understand the necessary concepts and steps to build out your own tracking plan as it aligns to your business goals defined from your [Analytics Strategy Framework](/docs/tutorials/plan/framework). 
+Now that you have an understanding of Mixpanel's Data Model, let's walk you through the steps and best practices on building your own Tracking Plan to define the events, profiles, and properties to help you track and measure your metrics and KPIs.
 
 <p style={{ position: 'relative', paddingBottom: '56.25%', height: 0, overflow: 'hidden' }}>
   <iframe src="https://www.loom.com/embed/78bca8ab574f4803a2d68b7c5bfa1bce?sid=373c2f06-a223-4078-a85d-e56fef538741" frameborder="0" style={{ position: 'absolute', top: 0, left: 0, width: '100%', height: '100%' }} allowfullscreen></iframe>
 </p>
 
+### Tracking Plan Methodology
+
+1. Prioritize on the key user journeys that are pertinent to the metrics and KPIs you want to measure. 
+
+   For example, a sign up journey will be important when measuring metrics related to newly aquired user *(part of Reach)*. 
+   If you used the [RAE Framework](/docs/tutorials/plan/framework#the-rae-framework) make sure you cover the journeys that will help you track and measure your (R)each, (A)ctivation, and (E)ngagement.
+
+2. Map the key actions within these journeys into events and capture event properties to provide additional information about the action. If you have screenflows in tools like [Figjam](https://www.figma.com/figjam) or [Miro](https://miro.com), use them to visualise the steps and actions in a user's journey to define the events and properties.
+
+As you define your events, think about whether certain event properties should be global / super properties and user properties. Having specific questions (eg hypothesis, influencing factors, current / target numbers) around the metrics you're measuring helps you decide on the events and properties to include. Think of the answers you want to arrived at, and how an action (event), an information of an action (event properties), or a recent state (user property) can help lead you to that answer.
+
+3. As you map your events and properties, it's also important to ensure that you have factored [identifying users](/docs/tracking-methods/identifying-users) in your product *(website, app, devices)*. For instance, when a user goes from being anonymous, to completing the sign-up or registration process or simply logging in with a valid user account, you would want to properly identify the user with their user ID as the Distinct ID. This would ensure that events triggered across devices, while the user is anonymous are tied to their events when they are logged in. If you are not specifically tracking a sign-up journey or login event, make sure you work with your developers to have them understand how identity management works in Mixpanel.
+
+
+----------
+
 We encourage you to keep this tracking plan as a living and shared document that is continuously updated with any implementation changes.
 
-### Tracking Plan Methodology
-Prioritize and be intentional with your data based on your business goals and key use cases. You can create a comprehensive tracking plan, but make sure to identify the key objectives, the KPIs, and the events and properties for your onboarding. 
-
-Having a clear alignment on priorities will allow you to move quickly in a phased approach to your implementation.
-
 #### Map KPIs to User Flows
-Map each of your metrics to the steps or specific actions that users take to influence each metric. For example, sign up flow will be important when measuring KPIs related to new user acquisition. Consider all the different user paths users can take and what specific measures will allow you to track, measure, and improve the expected desired user outcomes across activation, engagement, and/or retention. 
-
-Having specific questions that you want to answer will help you think through which specific events are relevant and important to include. 
-
-> Note on Identity Management: As you go through building out your tracking plan, it's also important to consider where you will need to measure user identity. For instance, when a user goes from being anonymous to when that user completes registration or and logs in, you will want to properly identify this user with a distinct ID.  For a full understanding of this critical concept, please review our [Identity Management guide here](/docs/tracking-methods/identifying-users)
-
-#### Translate Flows into Event/Properties
-If you use a tool like FigJam, Miro, or similar design products to track your user journey, you can use it to help capture the events and properties you want to track as well. It's a lot easier to understand the specific screens or page views, the exact steps in your user journey, and the actions that trigger your user behaviour, if you can see what the flow looks like. 
 
 Here is an example of a [User Journey in Figma](https://www.figma.com/file/tYEeeRE0Xz6IampBhGLotw/Media-and-Entertainment-Tracking-Plan?type=whiteboard&node-id=0%3A1&t=ShUKEHAG2PlL9wNa-1)**.**
 
