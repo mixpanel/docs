@@ -1,14 +1,14 @@
-import { Tabs } from 'nextra-theme-docs'
-import { useEffect, useState } from 'react';
+import { Tabs } from "nextra-theme-docs";
+import { useEffect, useState } from "react";
 
 type ExtendedTabsType = {
     children: JSX.Element;
     urlParam: string;
     urlToItemsMap: Record<string, string>;
-}
+};
 
 export default function ExtendedTabs(props: ExtendedTabsType) {
-    const [selectedIndex, setSelectedIndex] = useState(0);
+    const [selectedIndex, setSelectedIndex] = useState<number>(0);
 
     useEffect(() => {
         const queryString = window.location.search;
@@ -18,11 +18,12 @@ export default function ExtendedTabs(props: ExtendedTabsType) {
             const index = Object.keys(props.urlToItemsMap).indexOf(item);
             setSelectedIndex(index);
         }
+        // eslint-disable-next-line react-hooks/exhaustive-deps
     }, []);
 
-    function onChange(idx) {
+    function onChange(idx: number) {
         setSelectedIndex(idx);
-    };
+    }
 
     return (
         <Tabs
@@ -32,5 +33,5 @@ export default function ExtendedTabs(props: ExtendedTabsType) {
         >
             {props.children}
         </Tabs>
-    )
+    );
 }
