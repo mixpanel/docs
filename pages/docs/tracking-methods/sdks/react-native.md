@@ -211,7 +211,7 @@ mixpanel.removeGroup("group key", "group id");
 It is possible to create a Group profile that is similar to a user profile. You must call [`getGroup().set()`](https://mixpanel.github.io/mixpanel-react-native/MixpanelGroup.html#set) to build a group profile. It is important to the group_key, group_id, and one property so that the profile is not empty.
 
 ```javascript Javascript
-mixpanel.getGroup(MixpanelToken, "company_id", 12345).set("SET NAME", "SET VALUE");
+mixpanel.getGroup("company_id", 12345).set("SET NAME", "SET VALUE");
 ```
 
 ### Setting Group Profile Properties
