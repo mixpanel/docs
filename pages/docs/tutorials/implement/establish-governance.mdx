@@ -1,8 +1,8 @@
 # Establish Data Governance
-Assuming you've successfully sent in your first events and user properties into Mixpanel already, how do you continue to keep your data clean as you add more events? Or as your application changes and you need to hide no longer relevant events? In this tutorial, we guide you in establishing good data governance practices to keep your implementation clean, concise and consistent.
+Assuming you've successfully sent in your first events and user properties into Mixpanel, how do you continue to keep your data clean as you add more events? Or as your application changes and you need to hide no longer relevant events? In this tutorial, we guide you in establishing good data governance practices to keep your implementation clean, concise and consistent.
 
 ## Events Approval
-[Event Approval](/docs/data-governance/event-approval) is a Data Governance feature for organizations that want visibility and control over all new events being sent to their Mixpanel project so as to maintain data trust. The feature is a project-level setting for Enterprise accounts that hides new events by default and notifies admins when those new events come in so they can then mark it as visible for everyone to see. Only events that have been given “stamp of approval” by the admins would be visible to users on the core reports. 
+Our customers with the best data governance do this today, either via our [Event Approval](/docs/data-governance/event-approval) feature, or their internal processes. Essentially, this feature enables project owners or admins to first review any new events that are being sent to their Mixpanel project. They can ensure the proper event naming conventions and clear descriptions are put in place before making these events visible for everyone else in the project. 
 
 <br />
 <p style={{ position: 'relative', paddingBottom: '56.25%', height: 0, overflow: 'hidden' }}>
@@ -11,15 +11,15 @@ Assuming you've successfully sent in your first events and user properties into 
 
 ## Lexicon Overview and Data Clean Up
 
-[Lexicon](/docs/data-governance/lexicon) is a data dictionary that stores descriptions of all unique events and their corresponding properties. Project owners and admins can add/manage descriptions for all events and properties and organize data for clarity and discoverability. Event and property definitions - i.e. your metadata - help your entire team understand what your data means, so everyone is aligned. 
+For data already existing in Mixpanel, you can also leverage [Lexicon](/docs/data-governance/lexicon), which is what we call our data dictionary, to audit and manage your events, event and user properties, and their corresponding metadata.
 
-You can now see event usage context in Lexicon, such as:
-- Who first queried an event? When?
+We've included some useful statistics to help you dive into your event usage context, such as:
+- Who first queried an event and when?
 - When was it first tracked?
-- Which people queried it most recently? When?
+- Which people queried it most recently and when?
 - What is the number of queries in the last 30 days?
 
-In this view, you can see the total UI and API queries in the last 30 days for any of these data types and sort by it. You can thereby revisit the relevance of events that have a high 30 day volume and low 30 day query volume. Similarly, you could sort the events by last queried time to understand which events have not been queried for an extended period of time.
+For example, in the following image, you can see the total UI and API queries in the last 30 days for any of these data types and sort by it. You can thereby revisit the relevance of events that have a high 30 day volume and low 30 day query volume. Similarly, you could sort the events by last queried time to understand which events have not been queried for an extended period of time.
 
 ![image](//tutorials/events-metadata.png)
 
