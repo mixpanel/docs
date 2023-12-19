@@ -1,16 +1,17 @@
 # Establish Data Governance
+Assuming you've successfully sent in your first events and user properties into Mixpanel already, how do you continue to keep your data clean as you add more events? Or as your application changes and you need to hide no longer relevant events? In this tutorial, we guide you in establishing good data governance practices to keep your implementation clean, concise and consistent.
+
+## Events Approval
+[Event Approval](/docs/data-governance/event-approval) is a Data Governance feature for organizations that want visibility and control over all new events being sent to their Mixpanel project so as to maintain data trust. The feature is a project-level setting for Enterprise accounts that hides new events by default and notifies admins when those new events come in so they can then mark it as visible for everyone to see. Only events that have been given “stamp of approval” by the admins would be visible to users on the core reports. 
+
+<br />
+<p style={{ position: 'relative', paddingBottom: '56.25%', height: 0, overflow: 'hidden' }}>
+  <iframe src="https://www.youtube.com/embed/tVm9BYeuzPs?rel=0" title="Lexicon Overview and Data Clean Up" frameborder="0" webkitallowfullscreen="true" mozallowfullscreen="true" allowFullScreen style={{position: 'absolute', top: 0, left: 0, width: '100%', height: '100%'}}></iframe>
+</p>
 
 ## Lexicon Overview and Data Clean Up
 
-## Overview
-
-[Lexicon](/docs/data-governance/lexicon) is a data dictionary that stores descriptions of all unique events and their corresponding properties. Project owners and admins can add/manage descriptions for all events and properties and organize data for clarity and discoverability. Event and property definitions help your entire team understand what your data means, so everyone is aligned. 
-
-_Loom Video to be inserted below once ready_
-
-###  Event Metadata
-
-Mixpanel’s Event Metadata makes it easier to investigate and fix data discrepancies, with peace of mind that you’re not disrupting your team’s workflows.
+[Lexicon](/docs/data-governance/lexicon) is a data dictionary that stores descriptions of all unique events and their corresponding properties. Project owners and admins can add/manage descriptions for all events and properties and organize data for clarity and discoverability. Event and property definitions - i.e. your metadata - help your entire team understand what your data means, so everyone is aligned. 
 
 You can now see event usage context in Lexicon, such as:
 - Who first queried an event? When?
@@ -24,15 +25,12 @@ In this view, you can see the total UI and API queries in the last 30 days for a
 
 Such metadata lets you easily discover the parts of your implementation that are most valuable and the parts that are not being used. You can use this information to determine which events you should [drop](/docs/data-governance/lexicon#dropping-events). 
 
-### Organising events using Tags on Lexicon
-
 In the event where you are seeing a lot of events on Lexicon and there aren't sufficient engineering resources for your team to do a data clean up, Project Owners and Admins can always leverage on our Tags feature on Lexicon to group events belonging to a specific user journey (e.g. checkout) or belonging to specific categories such as KPIs. With that, users would be able to easily filter out the events related to the metrics or user journey they are keen to query by selecting the events parked under any of the pre-built “Tags” in any of the core reports. 
 
-_Loom Video to be inserted below once ready_
-
-
-## Events Approval
-[Event Approval](/docs/data-governance/event-approval) is a Data Governance feature for organizations that want visibility and control over all new events being sent to their Mixpanel project so as to maintain data trust. The feature is a project-level setting for Enterprise accounts that hides new events by default and notifies admins when those new events come in so they can then mark it as visible for everyone to see. Only events that have been given “stamp of approval” by the admins would be visible to users on the core reports. 
+<br />
+<p style={{ position: 'relative', paddingBottom: '56.25%', height: 0, overflow: 'hidden' }}>
+  <iframe src="https://www.youtube.com/embed/mf_AaDt4Hzw?rel=0" title="Lexicon Overview and Data Clean Up" frameborder="0" webkitallowfullscreen="true" mozallowfullscreen="true" allowFullScreen style={{position: 'absolute', top: 0, left: 0, width: '100%', height: '100%'}}></iframe>
+</p>
 
 ## Implementation Monitoring Hub
 Repurpose your [Mixpanel Board](https://mixpanel.com/s/3oqDsG) for heightened utility. Originally designed for QA and Audit, transform it into a robust Monitoring Dashboard. Leverage existing documentation to guide users seamlessly through the transition. Optimize real-time data visibility, ensuring customers harness the full potential of Mixpanel's analytics. Enhance their experience by empowering them to monitor key metrics effortlessly. This course distills complex processes into digestible steps, fostering user independence and maximizing the value of their Mixpanel investment.
