@@ -15,20 +15,43 @@ Mixpanel provides a variety of methods to send your data. Depending on your exis
 
 When it comes to deciding which ingestion approach to use, there are no fixed rules; and each approach comes with its own advantages and limitations.
 
+<br />
 <p style={{ position: 'relative', paddingBottom: '56.25%', height: 0, overflow: 'hidden' }}>
   <iframe src="https://www.loom.com/embed/21afb3020ebe4f38bb760e5d49c68af1?sid=c1528edf-54d5-4af6-98cb-2f715ab801b0" frameborder="0" style={{ position: 'absolute', top: 0, left: 0, width: '100%', height: '100%' }} allowfullscreen></iframe>
 </p>
 
 Here are the key considerations that would guide you along in choosing the right approach as we go through each one:
 
-- **Source of Truth**: Does your company already have a *"source of truth"* data that is used in reporting?
+- **Source of Truth**: Does your company have data that is considered the *"source of truth"* when it comes to business reporting?
 - **Data Tools**: Do you use any existing Event Streaming, Customer Data Platform (CDP), or Reverse ETL tools?
 - **Clickstream Data**: Are you already collecting any clickstream data, and if not, do you have the ability to collect them?
 - **Development Team**: What available development resources does your company have to implement the ingestion approaches?
 
 It is important to choose an ingestion method that fits your current needs and available resources, at the same time, factoring for some flexibility in scaling your approach as your product evolves. Most of our customers tend to start with the simplest approach of using our SDKs and slowly migrate to more complex architectures like CDPs or Reverse ETLs.
 
+This table provides a quick overview of the different approaches
+
+![image](/tutorials/data-collection-maturity-matrix.png "Data Collection Maturity Matrix")
+
+### SDKs (Client-Side vs Proxy vs Server-Side)
+
+Mixpanel supports a wide range of [Client-Side](/docs/tracking-methods/choosing-the-right-method#client-side-tracking) and [Server-Side](/docs/tracking-methods/choosing-the-right-method#server-side-tracking) SDKs.
+
+<p style={{ position: 'relative', paddingBottom: '56.25%', height: 0, overflow: 'hidden' }}>
+  <iframe src="https://www.loom.com/embed/6417dae512154ff1a04ec70c896686e6?sid=c96a190a-9f44-41ad-a223-7dd9a9bf1b24" frameborder="0" style={{ position: 'absolute', top: 0, left: 0, width: '100%', height: '100%' }} allowfullscreen></iframe>
+</p>
+
+In general, we recommend utilizing Client-Side SDKs if you have limited development resources, no existing data collection infrastructure, or have no reliable method to track clickstream data. Whilst they might be initially the easiest to set up, ad-blockers can impact your ability to track data accurately. Furthermore, it can be difficult to keep metrics consistent when utilizing client-side SDKs across multiple platforms such as across both a website and mobile app.
+
+Alternatively, you may want to consider using Server-Side SDKs, which are not susceptible to ad blockers, and provide more consistency when tracking users across platforms. It does require some custom code to track your anonymous (non-logged in) users.
+
+As an in-between, consider client-side tracking via a proxy. This will help [reduce the likelihood of ad-blockers impacting your tracking](https://www.youtube.com/watch?v=8Pv6tmRfqr8), while allowing you to automatically capture certain default client-side properties. For more details, please see [this article](/docs/tracking-methods/sdks/javascript#tracking-via-proxy) on how to set up a proxy.
+
+A full list of Mixpanel SDKs can be found in our [documentation](/docs/tracking-methods/choosing-the-right-method).
+
 ===
+
+
 
 ### Data Warehouse or Reverse ETL
 
@@ -63,19 +86,6 @@ If your team already has an existing event stream pipeline, you could use it to 
 
 <p style={{ position: 'relative', paddingBottom: '56.25%', height: 0, overflow: 'hidden' }}>
   <iframe src="https://www.loom.com/embed/4c5f2a61e3b94bf28df3e69f676561a0?sid=00f9c9d6-4ce8-4f4d-bc98-9053e5af7992" frameborder="0" style={{ position: 'absolute', top: 0, left: 0, width: '100%', height: '100%' }} allowfullscreen></iframe>
-</p>
-
-### SDKs
-We do also support a wide range of SDKs that you can utilize. You can find a list of available client-side SDKs in our [documentation](/docs/tracking-methods/choosing-the-right-method#client-side-tracking).
-
-In general, we recommend utilizing Client-Side SDKs if you have limited development resources, no existing data collection infrastructure, or have no reliable method to track clickstream data. Whilst they might be initially the easiest to set up, ad blockers can impact your ability to track data accurately. Furthermore, it can be difficult to keep metrics consistent when utilizing client-side SDKs across multiple platforms such as across both a website and mobile app.
-
-Alternatively, you may want to consider using Server-Side SDKs, which are not susceptible to ad blockers, and provide more consistency when tracking users across platforms. It does require some custom code to track your anonymous (non-logged in) users.
-
-As an in between, consider tracking Client-Side via a Proxy. This will help [reduce the likelihood of ad-blockers impacting your tracking](https://www.youtube.com/watch?v=8Pv6tmRfqr8), while allowing you to automatically capture certain default client-side actions. For more details, please see [this article](/docs/tracking-methods/sdks/javascript#tracking-via-proxy) on how to set up a proxy.
-
-<p style={{ position: 'relative', paddingBottom: '56.25%', height: 0, overflow: 'hidden' }}>
-  <iframe src="https://www.loom.com/embed/6417dae512154ff1a04ec70c896686e6?sid=c96a190a-9f44-41ad-a223-7dd9a9bf1b24" frameborder="0" style={{ position: 'absolute', top: 0, left: 0, width: '100%', height: '100%' }} allowfullscreen></iframe>
 </p>
 
 ## Identity Management Best practices
