@@ -33,7 +33,7 @@ This table provides a quick overview of the different approaches
 
 ![image](/tutorials/data-collection-maturity-matrix.png "Data Collection Maturity Matrix")
 
-### SDKs (Client-Side vs Proxy vs Server-Side)
+### SDKs: Client-Side vs Proxy vs Server-Side
 
 Mixpanel supports a wide range of [Client-Side](/docs/tracking-methods/choosing-the-right-method#client-side-tracking) and [Server-Side](/docs/tracking-methods/choosing-the-right-method#server-side-tracking) SDKs.
 
@@ -49,28 +49,29 @@ As an in-between, consider client-side tracking via a proxy. This will help [red
 
 A full list of Mixpanel SDKs can be found in our [documentation](/docs/tracking-methods/choosing-the-right-method).
 
-===
+### Client Data Platforms (CDP)
 
-
-
-### Data Warehouse or Reverse ETL
-
-If you currently store data in a data warehouse, this is our recommended method to bring in data into Mixpanel. Our [Warehouse Sync](/docs/tracking-methods/data-warehouse/overview) integration allows you to import both event and user data into your Mixpanel project via recurring syncs to ensure that your data in Mixpanel matches your trusted data source.
-
-<p style={{ position: 'relative', paddingBottom: '56.25%', height: 0, overflow: 'hidden' }}>
-  <iframe src="https://www.loom.com/embed/317e10177af04a3f8ca2656ce1aeae91?sid=e4968f03-b57a-47d2-b270-28e6a4e131ed" frameborder="0" style={{ position: 'absolute', top: 0, left: 0, width: '100%', height: '100%' }} allowfullscreen></iframe>
-</p>
-
-Another option to send data from your data warehouse to Mixpanel would be to utilize a Reverse ETL tool. These third-party tools will allow you to make any necessary transformations to the data and set up sync schedules to import data from your warehouse to Mixpanel. Please refer to the respective documentation of whichever reverse ETL tool your team chooses to utilize.
-
-### CDP
-If you currently utitilise a Customer Data Platform (CDP), you can also use this to send your data to Mixpanel. If you're switching to Mixpanel from another analytics tool, CDPs will also allow you to easily migrate your historical data into Mixpanel.
+If you currently utitilise a Customer Data Platform (eg mParticle, Rudderstack, Segment), you can also use this to send your data to Mixpanel. If you're switching to Mixpanel from another analytics tool, CDPs will also allow you to easily migrate your historical data into Mixpanel.
 
 <p style={{ position: 'relative', paddingBottom: '56.25%', height: 0, overflow: 'hidden' }}>
   <iframe src="https://www.loom.com/embed/86d60bf289c04914b1a32e59bd4e9ad9?sid=e26eb440-a87e-4984-9122-fb69d0929109" frameborder="0" style={{ position: 'absolute', top: 0, left: 0, width: '100%', height: '100%' }} allowfullscreen></iframe>
 </p>
 
-Please refer to the documentation provided by your respective CDP provider for more information on how to connect your CDP to Mixpanel.
+Please refer to the documentation by your respective CDP provider for more information on how to connect your data to Mixpanel.
+
+### Reverse ETL: Data Warehouse
+
+If your data is already stored in a data warehouse, our [Warehouse Sync](/docs/tracking-methods/data-warehouse/overview) allows you to import [events](/docs/tracking-methods/data-warehouse/sending-events), [user profiles](/docs/tracking-methods/data-warehouse/sending-user-profiles), and [group profiles](/docs/tracking-methods/data-warehouse/sending-group-profiles) into your Mixpanel project via recurring syncs to ensure that your data in Mixpanel matches your trusted data source.
+
+<p style={{ position: 'relative', paddingBottom: '56.25%', height: 0, overflow: 'hidden' }}>
+  <iframe src="https://www.loom.com/embed/317e10177af04a3f8ca2656ce1aeae91?sid=e4968f03-b57a-47d2-b270-28e6a4e131ed" frameborder="0" style={{ position: 'absolute', top: 0, left: 0, width: '100%', height: '100%' }} allowfullscreen></iframe>
+</p>
+
+Another option to send data from your data warehouse to Mixpanel would be to utilize a Reverse ETL tool (eg Census, Hightouch). These third-party tools will allow you to make any necessary transformations to the data and set up sync schedules to import data from your warehouse to Mixpanel. Please refer to the respective documentation of whichever reverse ETL tool your team chooses to utilize.
+
+===
+
+
 
 ### API
 
