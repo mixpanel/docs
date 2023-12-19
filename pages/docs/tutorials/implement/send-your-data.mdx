@@ -69,11 +69,15 @@ If your data is already stored in a data warehouse, our [Warehouse Sync](/docs/t
 
 Another option to send data from your data warehouse to Mixpanel would be to utilize a Reverse ETL tool (eg Census, Hightouch). These third-party tools will allow you to make any necessary transformations to the data and set up sync schedules to import data from your warehouse to Mixpanel. Please refer to the respective documentation of whichever reverse ETL tool your team chooses to utilize.
 
-===
+### Event Streaming / Cloud Ingestion
 
+If your company already has an existing event stream pipeline, you could use it to send data into Mixpanel as you receive it. You can refer to our documentation for examples on how to setup a pipeline from [Amazon S3](/docs/tracking-methods/integrations/amazon-s3), [Google Cloud Storage](/docs/tracking-methods/integrations/google-cloud-storage), [Google Pubsub](/docs/tracking-methods/integrations/google-pubsub).
 
+<p style={{ position: 'relative', paddingBottom: '56.25%', height: 0, overflow: 'hidden' }}>
+  <iframe src="https://www.loom.com/embed/4c5f2a61e3b94bf28df3e69f676561a0?sid=00f9c9d6-4ce8-4f4d-bc98-9053e5af7992" frameborder="0" style={{ position: 'absolute', top: 0, left: 0, width: '100%', height: '100%' }} allowfullscreen></iframe>
+</p>
 
-### API
+### Direct API Ingestion
 
 If you would like to send data directly to Mixpanel servers without the need of any sort of intermediary layer, you can utilize our Ingestion API to send in [events](https://developer.mixpanel.com/reference/import-events). and add / update / delete existing [user profiles](https://developer.mixpanel.com/reference/profile-set). 
 
@@ -81,13 +85,9 @@ If you would like to send data directly to Mixpanel servers without the need of 
   <iframe src="https://www.loom.com/embed/4ed2664e3cda48d1ac0ed544efca2466?sid=c22af6aa-43a5-45e7-bc68-069ed9170c3e" frameborder="0" style={{ position: 'absolute', top: 0, left: 0, width: '100%', height: '100%' }} allowfullscreen></iframe>
 </p>
 
-### Event Streaming / Cloud Ingestion
 
-If your team already has an existing event stream pipeline, you could use it to send data into  Mixpanel as you receive it. 
+===
 
-<p style={{ position: 'relative', paddingBottom: '56.25%', height: 0, overflow: 'hidden' }}>
-  <iframe src="https://www.loom.com/embed/4c5f2a61e3b94bf28df3e69f676561a0?sid=00f9c9d6-4ce8-4f4d-bc98-9053e5af7992" frameborder="0" style={{ position: 'absolute', top: 0, left: 0, width: '100%', height: '100%' }} allowfullscreen></iframe>
-</p>
 
 ## Identity Management Best practices
 
