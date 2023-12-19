@@ -1,13 +1,80 @@
 # Reports
 
-
 A report is the basic unit of performing an analysis in Mixpanel.
 
 Mixpanel has several types of reports: [Insights](/docs/reports/insights), [Funnels](/docs/reports/funnels), [Flows](/docs/reports/flows), [Retention](/docs/reports/retention) and other advanced reports, each with their specialized use.
 
 This article focuses on the common concepts across each report.
 
-## Report Concepts
+## Concepts
+
+### Report
+
+A report is the basic unit of performing an analysis in Mixpanel. A report can be saved to a board, and a board can contain many reports. Each report is made up of at least one **metric** and is displayed using the chosen **visualization**.
+
+### Metrics
+
+A metric is a some sort of **measuremnt** on a **behavior**. An example of a metric is "Unique Users" doing "Sign up", which is the measurement of unique users, on the behavior of "Sign up".
+
+### Behaviors
+
+A behavior is an event or a sequence of events performed within some criteria. A behavior can be something simple like a single event, or it can be something more complex like doing a multi step funnel.
+
+### Measurements
+
+A measurement is a selection on how to summarize behaviors. Depending on the behavior, certain measurements may be not be possible. For example, for a single event, you cannot measure the conversion rate of it. Some examples of measurements are: total events, unique users, total sessions, conversion rate, retention rate and aggregate property. The measurement is chosen at the bottom left area of the metric.
+
+![measurement](/report-measurement.png)
+
+### Visualizations
+
+In the top right, you can change the type of visualization for your report. The options available will depend on the type of report that you started with. In this case, we switched to a bar view, allowing us to see the total number of "Log In" across the entire time range, allowing us a summarized view that is easily scanned.
+
+![/Screen_Shot_2022-07-11_at_3.07.02_PM.png](/Screen_Shot_2022-07-11_at_3.07.02_PM.png)
+
+### Filters
+
+Filters are used to narrow events or behaviors that qualify for analysis. For example, you may want to only consider "Sign Up" events that came from Android. In this case you would you be filtering the "Sign Up" event to only include the "Sign Up" events where the property "Device" is equal to "Android".
+
+#### Global Filters
+
+A global filter applies to the entire report. by properties or cohorts by clicking the **Filter** button. This will filter the results of the entire report to show only data with that property or cohort.
+
+![image](/global-filter.png)
+
+#### Inline Filters
+
+An inline filter applies to one particular event in the report.
+
+Add a filter to your query by clicking on the **…** icon beside an event, profile, cohort, or step.
+
+![image](https://github.com/mixpanel/docs/assets/2077899/3e36bd7e-f5b8-462a-890c-bf396ff98f69)
+
+Then, select a property from the drop down list that appears and specify which values to filter.
+
+![image](https://github.com/mixpanel/docs/assets/2077899/c7cce429-3c9c-4759-8ea1-b09345fa0b4e)
+
+In Funnels, filtering a step by a particular property will limit the data you see in the funnel to events with that property value.
+
+You can choose multiple property filters for each item in your query.
+
+You can select whether you would like the query to match any of these filters, or all of the filters by clicking on **and/or** beside the filters.
+
+![image](https://github.com/mixpanel/docs/assets/2077899/9e3bcd31-2b12-48d1-b04f-cdda85dd2584)
+
+### Breakdowns
+
+Breakdown groups the results of your metrics in Insights, Funnels, Flows, or Retention reports by a property or cohort, allowing you to examine which properties or cohorts have a significant impact on your query.
+
+This feature is useful for determining if a group factor, such as browser type, is having an impact on the way users interact with your product. Breakdown will display counts, such as the number of events performed or the conversion rates with that property value.
+
+Select the **Breakdown** button, and select the property or cohort you want to breakdown your results by.
+
+![image](/report-breakdown.png)
+
+For cohorts, you will be shown groups of users both in and not in the cohort in your results.
+
+It is only possible to either group by properties or group by cohorts, but not both.
 
 ### Events Menu
 
@@ -62,10 +129,9 @@ The events and properties in the menu are prefixed to provide additional context
 
     ![/Screen_Shot_2021-11-18_at_12.29.06_PM.png](/Screen_Shot_2021-11-18_at_12.29.06_PM.png)
 
+### Date Range
 
-### Date and Time Selector
-
-Determine the time range of a query by clicking on the time selector. The time selector is common across all reports. This article details the options in the time selector.
+Determine the time range of a query by clicking on the date range selector. The date range selector is common across all reports.
 
 All dates and times in Mixpanel reflect the project timezone. The default on most reports is “Last 30 days” (displayed as "30D"), but there are a variety of pre-set options, as well as the option to select a custom date range.
 
@@ -83,9 +149,9 @@ In Insights Previous day only includes the last complete 24 hour period. |
 | Last 6 months | Last 6 months and the query count from the current incomplete day up to the current second. |
 | Last 12 months | Last 12 months and the query count from the current incomplete day up to the current second. |
 
-### Select a Date Range
+#### Select a Date Range
 
-The **Select date range** menu opens up some additional options, "Last", "Fixed" and "Since".
+Selecting **Custom** on the date range selector opens up some additional options, "Last", "Fixed" and "Since".
 
 #### Last
 
@@ -106,52 +172,6 @@ If you need to, you can click on the **+ Ending** button and shift back the de
 #### Since
 
 “Since” allows you to select a specific date to query for all data since that start date.
-
-#### Filters
-
-You can choose to filter the entire report by properties or cohorts by clicking the **Filter** button. This will filter the results of the entire report to show only data with that property or cohort.
-
-![image](https://github.com/mixpanel/docs/assets/2077899/41eb81c5-cab0-4c1d-96f4-97f5868f3123)
-
-### Event Inline Filters
-
-You can choose to add a filter to limit the events that are included in the report.
-
-Add a filter to your query by clicking on the **…** icon beside an event, profile, cohort, or step.
-
-![image](https://github.com/mixpanel/docs/assets/2077899/3e36bd7e-f5b8-462a-890c-bf396ff98f69)
-
-Then, select a property from the drop down list that appears and specify which values to filter.
-
-![image](https://github.com/mixpanel/docs/assets/2077899/c7cce429-3c9c-4759-8ea1-b09345fa0b4e)
-
-In Funnels, filtering a step by a particular property will limit the data you see in the funnel to events with that property value.
-
-You can choose multiple property filters for each item in your query.
-
-You can select whether you would like the query to match any of these filters, or all of the filters by clicking on **and/or** beside the filters.
-
-![image](https://github.com/mixpanel/docs/assets/2077899/9e3bcd31-2b12-48d1-b04f-cdda85dd2584)
-
-### Breakdowns
-
-Breakdown groups the results of your Insights, Funnels, Flows, or Retention report by a property or cohort, allowing you to examine which properties or cohorts have a significant impact on your query.
-
-This feature is useful for determining if a group factor, such as browser type, is having an impact on the way users interact with your product. Breakdown will display counts, such as the number of events performed or the conversion rates with that property value.
-
-Select the **Breakdown** button, and select the property or cohort you want to breakdown your results by.
-
-![image](https://github.com/mixpanel/docs/assets/2077899/65ee0e74-f5ec-4d30-afdc-f4516ed0d845)
-
-For cohorts, you will be shown groups of users both in and not in the cohort in your results.
-
-It is only possible to either group by properties or group by cohorts, but not both.
-
-### Changing Visualization
-
-In the top right, you can change the type of visualization and analysis being performed. The options available will depend on the type of report that you started with. In this case, we switched to a bar view, allowing us to see the total number of "Log In" across the entire time range, allowing us a summarized view that is easily scanned.
-
-![/Screen_Shot_2022-07-11_at_3.07.02_PM.png](/Screen_Shot_2022-07-11_at_3.07.02_PM.png)
 
 ### Saving to a Board
 
