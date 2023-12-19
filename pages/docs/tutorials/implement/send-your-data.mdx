@@ -9,24 +9,26 @@ If you have already created your tracking plan and know what you want to track, 
 
 # Send Your Data: Implement Your Tracking Plan
 
+Mixpanel provides a variety of methods to send your data. Depending on your existing infrastructure, availability of development team resources, and the type of data you plan to collect, this section will help guide you in selecting the right ingestion method to implement your tracking plan.
+
 ## Choosing an Ingestion Method
 
-There are a variety of methods available to you and your team to get your data into Mixpanel. We'd note that there is no “right” or “wrong” answer when it comes to collecting data. The implementation method you utilize may change throughout your company’s lifecycle, and each method will have its pros and cons. Your initial implementation choice will depend on several factors such as available development resources, existing infrastructure, and the type of data your team is trying to collect.
+When it comes to deciding which ingestion approach to use, there are no fixed rules; and each approach comes with its own advantages and limitations.
 
 <p style={{ position: 'relative', paddingBottom: '56.25%', height: 0, overflow: 'hidden' }}>
   <iframe src="https://www.loom.com/embed/21afb3020ebe4f38bb760e5d49c68af1?sid=c1528edf-54d5-4af6-98cb-2f715ab801b0" frameborder="0" style={{ position: 'absolute', top: 0, left: 0, width: '100%', height: '100%' }} allowfullscreen></iframe>
 </p>
 
-Mixpanel can work with numerous ingestion models, such as syncing to your data warehouse, tracking via a Customer Data Platform (CDP), an in-house pipeline event stream, or via our SDKs. Analytics, however, is only as good as the data that is being provided. It is important to choose an ingestion method that is trustworthy, comprehensive, and scalable with the growth of your organization at all points of your company’s lifecycle.
+Here are the key considerations that would guide you along in choosing the right approach as we go through each one:
 
-Some questions you should consider when choosing an ingestion method are:
+- **Source of Truth**: Does your company already have a *"source of truth"* data that is used in reporting?
+- **Data Tools**: Do you use any existing Event Streaming, Customer Data Platform (CDP), or Reverse ETL tools?
+- **Clickstream Data**: Are you already collecting any clickstream data, and if not, do you have the ability to collect them?
+- **Development Team**: What available development resources does your company have to implement the ingestion approaches?
 
-1. Does your company already have a source of truth data that is used in reporting?
-2. Do you already have an event stream, Customer Data Platform (CDP), or Reverse ETL tool set up?
-3. Do you have any clickstream data? Are you already collecting that clickstream data, and if not, do you have the ability to collect that clickstream data?
-4. What available dev resources does your team have to implement a CDP, Event Stream, or DWH type implementation?
+It is important to choose an ingestion method that fits your current needs and available resources, at the same time, factoring for some flexibility in scaling your approach as your product evolves. Most of our customers tend to start with the simplest approach of using our SDKs and slowly migrate to more complex architectures like CDPs or Reverse ETLs.
 
-The video above shows a decision flowchart that is a great resource to help you and your team logically narrow down your ingestion options. 
+===
 
 ### Data Warehouse or Reverse ETL
 
