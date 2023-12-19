@@ -249,13 +249,13 @@ Click on the **Compare to past** button at the top of your Insights graph and se
 
 ### Value Comparisons
 
-When you have multiple metrics, or have broken down a metric by a property, you can compare them against each and the relative value. Click on **Compare** -> **Overall**. This works for all data functions. For a "totals" data function, you can see the percentage that a particular segment makes up. For non-sumable aggregations, it compares the segment value to the whole, unsegmented value.
+When you have multiple metrics, or have broken down a metric by a property, you can compare them against each and the relative value. Click on **Compare** -> **Overall**. This works for all measurements. For a "totals" measurement, you can see the percentage that a particular segment makes up. For non-sumable aggregations, it compares the segment value to the whole, unsegmented value.
 
 ![Value Setting](/advanced-value-comparison.png)
 
 ### Profile Analysis
 
-Profile metrics allow you to access profile data and visualize your users with filters and breakdowns based on their profile properties. When exploring Profiles, you are always analyzing all user profiles. Select the [Data Function](/docs/reports/insights#insights-data-functions-operators-and-calculations) you want to use to calculate results by clicking on **Total** and selecting an option from the drop-down. You can calculate based on users or profile property value.
+Profile metrics allow you to access profile data and visualize your users with filters and breakdowns based on their profile properties. When exploring Profiles, you are always analyzing all user profiles. Select the [Measurement](/docs/reports/insights#measurements) you want to use to calculate results by clicking on **Total** and selecting an option from the drop-down. You can calculate based on users or profile property value.
 
 <p style={{ position: 'relative', paddingBottom: '56.25%', height: 0, overflow: 'hidden' }}>
   <iframe src="https://www.loom.com/embed/dc5e909f2d7f427ca962e493e87894ad" frameborder="0" style={{ position: 'absolute', top: 0, left: 0, width: '100%', height: '100%' }} allowfullscreen></iframe>
@@ -277,19 +277,19 @@ Hover the cursor over the annotation to edit or delete it. Click on the **pencil
 
 ![Annotations 3](/advanced-annotations-3.png)
 
-### Insights Data Functions, Operators and Calculations
+### Measurements
 
 <p style={{ position: 'relative', paddingBottom: '56.25%', height: 0, overflow: 'hidden' }}>
   <iframe src="https://www.loom.com/embed/22d760d014234a1eb566f68dda79c58f" frameborder="0" style={{ position: 'absolute', top: 0, left: 0, width: '100%', height: '100%' }} allowfullscreen></iframe>
 </p>
 
-Data Functions in Mixpanel reports allow you to perform more complex calculations on your queries - this includes computing aggregate values of your event and property data, including totals, uniques, and averages.
+Measurements in Mixpanel reports allow you to perform more complex calculations on your queries - this includes computing aggregate values of your event and property data, including totals, uniques, and averages.
 
-The following data functions are only available in Insights, and are separated into groups based on what is being calculated: Total, Unique, Count users, aggregate property values, aggregate property values per user, and count sessions.
+The following measurements are only available in Insights, and are separated into groups based on what is being calculated: Total, Unique, Count users, aggregate property values, aggregate property values per user, and count sessions.
 
-Select the Data Function you want to use to calculate results by clicking on **Unique Users** and selecting an option from the drop-down. You can calculate based on events, users, event property value, event property value per user, and sessions.
+Select the measurement you want to use to calculate results by clicking on **Unique Users** and selecting an option from the drop-down. You can calculate based on events, users, event property value, event property value per user, and sessions.
 
-![Data Functions 1](/advanced-data-functions-1.png)
+![Measurements 1](/advanced-data-functions-1.png)
 
 The following functions have additional aggregation options which you will be prompted to select:
 
@@ -303,9 +303,9 @@ These functions provide additional aggregation options following the initial cal
 
 Selecting any of these functions gives you the option to choose different ways to aggregate this data. The default aggregation is **Average**, which you can click on to select a different option such as distribution, median, 25/75/90th percentiles, minimum, and maximum.
 
-![Data Functions 2](/advanced-data-functions-2.png)
+![Measurements 2](/advanced-data-functions-2.png)
 
-If the data function you select calculates based on property (“Event Property Values” or “Event Property Values Per User”), you will be prompted to select an event property. You can find more information about each data function and how they are calculated below:
+If the measurement you select calculates based on property (“Event Property Values” or “Event Property Values Per User”), you will be prompted to select an event property. You can find more information about each measurement and how they are calculated below:
 
 #### Events
 
@@ -321,7 +321,7 @@ DAU, WAU, and MAU are accessed through the advanced settings of unique users. Se
 
 If you select the DAU, WAU, or MAU function for a date range that includes the current day, the query will take the end of the current day as the end of the query’s time segment (even though it’s in the future). For example, today is April 25th, and it’s 4:22 PM. If you make a query to show WAU and you select “current day” as your date range, the query will return the count of unique users between April 19 at 12:00:00 AM and April 25 at 11:59:59.
 
-![Data Functions 3](/advanced-data-functions-3.png)
+![Measurements 3](/advanced-data-functions-3.png)
 
 | Function Name | Events Calculation | Profiles Calculation |
 | --- | --- | --- |
@@ -333,13 +333,13 @@ If you select the DAU, WAU, or MAU function for a date range that includes the c
 
 **How do breakdowns work with Uniques?**
 
-When you apply a breakdown to a metric, by default, Mixpanel tells you how many unique users contributed to each segment. For example, in the image below, you can see there were a total of 2441 unique users, while the sum of individual segments is more than 3000. This is correct. That is because one user could have seen both a Home Page and a Shop Page, so they get counted as a user towards both segments. 
+When you apply a breakdown to a metric, by default, Mixpanel tells you how many unique users contributed to each segment. For example, in the image below, you can see there were a total of 2441 unique users, while the sum of individual segments is more than 3000. This is correct. That is because one user could have seen both a Home Page and a Shop Page, so they get counted as a user towards both segments.
 
-By default, Mixpanel answers the question: per segment, tell me the number of unique users, DON'T tell me how the 2441 users are distributed across the various pages with a user being counted only towards one segment, which will require assigning a user to one segment even if they contributed towards multiple segments. 
+By default, Mixpanel answers the question: per segment, tell me the number of unique users, DON'T tell me how the 2441 users are distributed across the various pages with a user being counted only towards one segment, which will require assigning a user to one segment even if they contributed towards multiple segments.
 
 ![image](/uniques_default.png)
 
-There are some cases though, where you want to know how the 2441 users are distributed, generally either by their first or last action. For example, based on the last page (segment) a user saw, tell me the distribution of users. You can enable this now via the advanced control for Uniques, by choosing which segment to associate a user to: either the first segment or the last segment in the chart date range (7D in the below image) 
+There are some cases though, where you want to know how the 2441 users are distributed, generally either by their first or last action. For example, based on the last page (segment) a user saw, tell me the distribution of users. You can enable this now via the advanced control for Uniques, by choosing which segment to associate a user to: either the first segment or the last segment in the chart date range (7D in the below image)
 
 ![image](/uniques_count_once.png)
 
@@ -377,7 +377,7 @@ To note - in a line chart, there are two concepts of time period: chart date ran
 
 #### Additional Aggregation Option Examples
 
-| Data Function | Average | Distribution | Median | Percentiles (25/75/90) | Minimum/Maximum |
+| Measurement | Average | Distribution | Median | Percentiles (25/75/90) | Minimum/Maximum |
 | --- | --- | --- | --- | --- | --- |
 | Total per user | What's the average number of songs played per user? | What is the distribution of my users by the number of songs played? | What's the median number of songs played per user? | How many songs did the 90th percentile user listen to? | How many songs did my least/most active user listen to? |
 | Sum of property value count per user | What's the average cumulative watch time per user? | What's the distribution of my users by the cumulative minutes of content watched? | What's the median of the cumulative watch time per user? | How many cumulative minutes has the 90th percentile user watched? | How much has the lowest/highest spender spent? |

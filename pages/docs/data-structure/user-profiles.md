@@ -9,9 +9,9 @@ A User Profile is a set of properties associated with a given user. Under the ho
 
 | Distinct ID | Name | Email | Department
 | --- | --- | --- | --- |
-| 123 | Alice | alice@linear.app | Engineering
-| 456 | Bob | bob@notion.so | Product
-| 789 | Carol | carol@figma.com | Design
+| 123 | Alice | `alice@linear.app` | Engineering
+| 456 | Bob | `bob@notion.so` | Product
+| 789 | Carol | `carol@figma.com` | Design
 
 User Profiles are joined onto your Events based on their Distinct ID, which is the ID of the user. This lets you join the events performed by a user with properties about who that user is. It's very important that you use the same Distinct ID for both your events and your users.
 
@@ -142,7 +142,7 @@ Mixpanel reserves certain user property names; these properties receive special 
 | $created      | Created   | The time that the profile was created.                                                                                                                                                                                                                                                                                                                                  |
 | $city         | City      | The city of the event sender, parsed from IP.                                                                                                                                                                                                                                                                                                                           |
 | $region       | Region    | The region (state or province) of the event sender, parsed from IP.                                                                                                                                                                                                                                                                                                     |
-| $country_code | Country   | The country of the event sender, parsed from IP.                                                                                                                                                                                                                                                                                                                        |
+| $country_code | Country   | The country of the event sender, parsed from IP. The value is stored as a 2-letter country code in the raw data and parsed into the country name in the UI.                                                                                                                                                                                                                                                                                                                      |
 | $timezone     | Timezone  | The timezone of the event sender, parsed from IP. If set, messages can be scheduled to be sent based on a user's timezone.                                                                                                                                                                                                                                              |
 | $bucket       | Bucket    | A reserved property that is hidden from the Mixpanel interface, and will cause other events to not appear in the interface. Do not name any property bucket or $bucket.                                                                                                                                                                                                   |
 

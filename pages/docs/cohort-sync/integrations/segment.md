@@ -12,7 +12,7 @@ You must be a Mixpanel project admin to enable the Segment integration.
 
 This connection requires set up on both Segment and Mixpanel.
 
-### Segment
+### Segment Setup
 
 The connection requires a Segment Write Key. You can obtain this key via Segment's UI: 
 
@@ -32,7 +32,7 @@ The connection requires a Segment Write Key. You can obtain this key via Segment
 
 ![Segment 3 Image](/segment3.png)
 
-### Mixpanel
+### Mixpanel Setup
 
 We will use the Write Key from Segment to enable the connection in Mixpanel.
 

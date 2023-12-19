@@ -10,7 +10,7 @@ The [Full API Reference](https://mixpanel.github.io/mixpanel-swift/), [Library S
 
 We recommend tracking only five to seven events in your application instead of tracking too many things to start. Ideally, you track users going through your initial user experience and one key metric that matters for your application (e.g. YouTube might choose "Watched Video" as a key metric).
 
-Once you've initialized the library, you can track an event by calling <a style="font-family: courier" href="https://mixpanel.github.io/mixpanel-swift/Classes/MixpanelInstance.html#/s:FC8Mixpanel16MixpanelInstance5trackFT5eventGSqSS_10propertiesGSqGVs10DictionarySSPs9AnyObject____T_"> track(event:properties:) </a> with the event name and properties.
+Once you've initialized the library, you can track an event by calling [`track(event:properties:) `](https://mixpanel.github.io/mixpanel-swift/Classes/MixpanelInstance.html#/s:FC8Mixpanel16MixpanelInstance5trackFT5eventGSqSS_10propertiesGSqGVs10DictionarySSPs9AnyObject____T_) with the event name and properties.
 ```swift Swift
 Mixpanel.mainInstance().track(event: "Plan Selected",
     properties:["Plan": "Premium"])
@@ -18,7 +18,7 @@ Mixpanel.mainInstance().track(event: "Plan Selected",
 
 ## Timing Events
 
-You can track the time it took for an action to occur, such as an image upload or a comment post, using <a style="font-family: courier" href="https://mixpanel.github.io/mixpanel-swift/Classes/MixpanelInstance.html#/s:FC8Mixpanel16MixpanelInstance4timeFT5eventSS_T_"> time(event:)</a>. This will mark the "start" of your action, which you can then finish with a track call. The time duration is then recorded in the "Duration" property.
+You can track the time it took for an action to occur, such as an image upload or a comment post, using [`time(event:)`](https://mixpanel.github.io/mixpanel-swift/Classes/MixpanelInstance.html#/s:FC8Mixpanel16MixpanelInstance4timeFT5eventSS_T_). This will mark the "start" of your action, which you can then finish with a track call. The time duration is then recorded in the "Duration" property.
 ```swift Swift
 Mixpanel.mainInstance().time(event: "Image Upload")
 //...some time later
@@ -32,7 +32,7 @@ It's very common to have certain properties that you want to include with each e
 
 To make things easier, you can register these properties as super properties. If you do, we will automatically include them with all tracked events. Super properties are saved to device storage, and will persist across invocations of your app. Mixpanel already stores some information as super properties by default; see a full list of Mixpanel default properties [here](https://help.mixpanel.com/hc/en-us/articles/115004613766).
 
-To set super properties, call <a style="font-family: courier" href="https://mixpanel.github.io/mixpanel-swift/Classes/MixpanelInstance.html#/s:FC8Mixpanel16MixpanelInstance23registerSuperPropertiesFGVs10DictionarySSPs9AnyObject__T_"> registerSuperProperties(_:) </a>
+To set super properties, call [`registerSuperProperties(_:)`](https://mixpanel.github.io/mixpanel-swift/Classes/MixpanelInstance.html#/s:FC8Mixpanel16MixpanelInstance23registerSuperPropertiesFGVs10DictionarySSPs9AnyObject__T_)
 
 ```swift Swift
 // Send a "Plan: Mega" property will be sent
@@ -53,13 +53,13 @@ Mixpanel.mainInstance().track(event: "Signup",
 ```
 
 ### Setting Super Properties Only Once
-If you want to store a super property only once (often for things like ad campaign or source), you can use <a style="font-family: courier" href="https://mixpanel.github.io/mixpanel-swift/Classes/MixpanelInstance.html#/s:FC8Mixpanel16MixpanelInstance27registerSuperPropertiesOnceFTGVs10DictionarySSPs9AnyObject__12defaultValueGSqPS2____T_"> registerSuperPropertiesOnce(_:defaultValue:)</a>. This function behaves like <a style="font-family: courier" href="https://mixpanel.github.io/mixpanel-swift/Classes/MixpanelInstance.html#/s:8Mixpanel0A8InstanceC23registerSuperPropertiesyySDySSAA0A4Type_pGF"> registerSuperProperties(_:)</a> and has the same interface, but it doesn't override super properties you've already saved.
+If you want to store a super property only once (often for things like ad campaign or source), you can use [`registerSuperPropertiesOnce(_:defaultValue:)`](https://mixpanel.github.io/mixpanel-swift/Classes/MixpanelInstance.html#/s:FC8Mixpanel16MixpanelInstance27registerSuperPropertiesOnceFTGVs10DictionarySSPs9AnyObject__12defaultValueGSqPS2____T_). This function behaves like [`registerSuperProperties(_:)`](https://mixpanel.github.io/mixpanel-swift/Classes/MixpanelInstance.html#/s:8Mixpanel0A8InstanceC23registerSuperPropertiesyySDySSAA0A4Type_pGF) and has the same interface, but it doesn't override super properties you've already saved.
 
 ```swift Swift
 Mixpanel.mainInstance().registerSuperPropertiesOnce(["Source": "ad-01"])
 ```
 
-This means that it's safe to call <a style="font-family: courier" href="https://mixpanel.github.io/mixpanel-swift/Classes/MixpanelInstance.html#/s:FC8Mixpanel16MixpanelInstance27registerSuperPropertiesOnceFTGVs10DictionarySSPs9AnyObject__12defaultValueGSqPS2____T_"> registerSuperPropertiesOnce(_:defaultValue:)</a> with the same property on every app load, and it will only set it if the super property doesn't exist.
+This means that it's safe to call [`registerSuperPropertiesOnce(_:defaultValue:)`](https://mixpanel.github.io/mixpanel-swift/Classes/MixpanelInstance.html#/s:FC8Mixpanel16MixpanelInstance27registerSuperPropertiesOnceFTGVs10DictionarySSPs9AnyObject__12defaultValueGSqPS2____T_) with the same property on every app load, and it will only set it if the super property doesn't exist.
 
 ### Super Properties Live in Local Storage
 Our mobile libraries store your super properties in local storage. They will persist so long as the app is installed (between launches and updates). Uninstalling the app will remove that customers super properties.
@@ -103,7 +103,7 @@ We generally recommend creating user profiles for only authenticated users; with
 Note: when sending set or set_once operations, the library will also populate automatic properties like `$ios_app_version`, `$ios_device_model`, geo-location properties and others.
 
 ### Setting Profile Properties
-You can set properties on a user profile with <a style="font-family: courier" href="https://mixpanel.github.io/mixpanel-swift/Classes/People.html#/s:FC8Mixpanel6People3setFT8propertySS2toPs9AnyObject__T_"> people.set(property:to:)</a>.
+You can set properties on a user profile with [`people.set(property:to:)`](https://mixpanel.github.io/mixpanel-swift/Classes/People.html#/s:FC8Mixpanel6People3setFT8propertySS2toPs9AnyObject__T_).
 
 ```swift Swift
 // Identify the authenticated user with the ID 13793
@@ -116,7 +116,7 @@ Mixpanel.mainInstance().people.set(properties: [ "plan":"Premium", "$email":"joe
 This will set a "Plan" property, with a value "Premium", on user 13793's profile. If there isn't a profile with distinct_id 13793 in Mixpanel already, a new profile will be created. If user 13793 already has a property named "Plan" in their profile, the old value will be overwritten with "Premium".
 
 ### Incrementing Numeric Properties
-You can use <a style="font-family: courier" href="https://mixpanel.github.io/mixpanel-swift/Classes/People.html#/s:FC8Mixpanel6People9incrementFT8propertySS2bySd_T_">people.increment(property:by:)</a> to change the current value of numeric properties. This is useful when you want to keep a running tally of things, such as games played, messages sent, or points earned.
+You can use [`people.increment(property:by:)`](https://mixpanel.github.io/mixpanel-swift/Classes/People.html#/s:FC8Mixpanel6People9incrementFT8propertySS2bySd_T_) to change the current value of numeric properties. This is useful when you want to keep a running tally of things, such as games played, messages sent, or points earned.
 ```swift Swift
 // Here we increment the user's point count by 500.
 Mixpanel.mainInstance().people.increment(property: "point count",
@@ -134,7 +134,7 @@ There are a few other types of profile updates. To learn more, please review the
 
 Mixpanel makes it easy to analyze the revenue you earn from individual customers. By associating charges with user profiles, you can compare revenue across different customer segments and calculate things like lifetime value.
 
-You can track a single transaction with <a style="font-family: courier" href="https://mixpanel.github.io/mixpanel-swift/Classes/People.html#/s:FC8Mixpanel6People11trackChargeFT6amountSd10propertiesGSqGVs10DictionarySSPs9AnyObject____T_"> people.trackCharge(amount:)</a>. This call will add transactions to the individual user profile, which will also be reflected in the Mixpanel Revenue report.
+You can track a single transaction with [`people.trackCharge(amount:)`](https://mixpanel.github.io/mixpanel-swift/Classes/People.html#/s:FC8Mixpanel6People11trackChargeFT6amountSd10propertiesGSqGVs10DictionarySSPs9AnyObject____T_). This call will add transactions to the individual user profile, which will also be reflected in the Mixpanel Revenue report.
 
 ```swift Swift
 // Tracks $100.77 in revenue for user 13793
@@ -167,25 +167,25 @@ Adding users to groups causes the `group_key` and `group_id` to send as a proper
 
 Similar to a `distinct_id`, the `group_key` allows Mixpanel to group events by an identifier for analysis. A `group_key`, however, is a group level identifier and not a user level identifier like the `distinct_id`.
 
-You can add users to groups by calling the <a style="font-family: courier" href="https://mixpanel.github.io/mixpanel-swift/Classes/MixpanelInstance.html#/s:8Mixpanel0A8InstanceC8setGroup8groupKey0E3IDsySS_SayAA0A4Type_pGtF">setGroup()</a> method. 
+You can add users to groups by calling the [`setGroup()`](https://mixpanel.github.io/mixpanel-swift/Classes/MixpanelInstance.html#/s:8Mixpanel0A8InstanceC8setGroup8groupKey0E3IDsySS_SayAA0A4Type_pGtF) method. 
 ```swift Swift
 Mixpanel.mainInstance().setGroup(groupKey: "Company", groupID: “Mixpanel”)
 ```
 
-You can call <a style="font-family: courier" href="https://mixpanel.github.io/mixpanel-swift/Classes/MixpanelInstance.html#/s:8Mixpanel0A8InstanceC8addGroup8groupKey0E2IDySS_AA0A4Type_ptF">addGroup()</a> to add any additional groups to an existing list.
+You can call [`addGroup()`](https://mixpanel.github.io/mixpanel-swift/Classes/MixpanelInstance.html#/s:8Mixpanel0A8InstanceC8addGroup8groupKey0E2IDySS_AA0A4Type_ptF) to add any additional groups to an existing list.
 
 ```swift Swift
 Mixpanel.mainInstance().addGroup(groupKey: "Company", groupID: “Mixpanel”)
 ```
 
-You can call <a style="font-family: courier" href="https://mixpanel.github.io/mixpanel-swift/Classes/MixpanelInstance.html#/s:8Mixpanel0A8InstanceC11removeGroup8groupKey0E2IDySS_AA0A4Type_ptF">removeGroup()</a> to remove any additional groups from an existing list.
+You can call [`removeGroup()`](https://mixpanel.github.io/mixpanel-swift/Classes/MixpanelInstance.html#/s:8Mixpanel0A8InstanceC11removeGroup8groupKey0E2IDySS_AA0A4Type_ptF) to remove any additional groups from an existing list.
 
 ```swift Swift
 Mixpanel.mainInstance().removeGroup(groupKey: "Company", groupID: “Mixpanel”)
 ```
 
 ### Creating Group Profiles
-It is possible to create a Group profile that is similar to a user profile. You must call <a style="font-family: courier" href="https://mixpanel.github.io/mixpanel-swift/Classes/Group.html">getGroup().set()</a> to build a group profile. It is important to the `group_key`, `group_id`, and one property so that the profile is not empty. 
+It is possible to create a Group profile that is similar to a user profile. You must call [`getGroup().set()`](https://mixpanel.github.io/mixpanel-swift/Classes/Group.html) to build a group profile. It is important to the `group_key`, `group_id`, and one property so that the profile is not empty. 
 
 ```swift Swift
 Mixpanel.mainInstance().getGroup(groupKey: "Company", groupID: “Mixpanel”).set(property: "g", to: "yo")
@@ -194,20 +194,20 @@ Mixpanel.mainInstance().getGroup(groupKey: "Company", groupID: “Mixpanel”).s
 ### Setting Group Profile Properties
 You can add details to Groups by adding properties to them.
 
-In order to update Group profile properties, you must specify the group that needs to be updated by calling <a style="font-family: courier" href="https://mixpanel.github.io/mixpanel-swift/Classes/MixpanelInstance.html#/s:8Mixpanel0A8InstanceC8getGroup8groupKey0E2IDAA0D0CSS_AA0A4Type_ptF">getGroup().set()</a>.
+In order to update Group profile properties, you must specify the group that needs to be updated by calling [`getGroup().set()`](https://mixpanel.github.io/mixpanel-swift/Classes/MixpanelInstance.html#/s:8Mixpanel0A8InstanceC8getGroup8groupKey0E2IDAA0D0CSS_AA0A4Type_ptF).
 
 ```swift Swift
 Mixpanel.mainInstance().getGroup(groupKey: "Company", groupID: “Mixpanel”)
 ```
 
-The <a style="font-family: courier" href="http://mixpanel.github.io/mixpanel-android/index.html">getGroup()</a> method can be chained with other commands that edit properties specific to the group.
+The [`getGroup()`](http://mixpanel.github.io/mixpanel-android/index.html) method can be chained with other commands that edit properties specific to the group.
 
 You can set the property `$name` to populate the name field at the top of the group profile.
 
 These operations are similar to the corresponding operations for user profile property updates.
 
 #### set
-<a style="font-family: courier" href="https://mixpanel.github.io/mixpanel-swift/Classes/Group.html">mixpanel.getGroup().set()</a> updates or adds a property to a group.
+[`mixpanel.getGroup().set()`](https://mixpanel.github.io/mixpanel-swift/Classes/Group.html) updates or adds a property to a group.
 
 ```swift Swift
 Mixpanel.mainInstance().getGroup(groupKey: "Company", groupID: “Mixpanel”).set(property: "g", to: "yo")

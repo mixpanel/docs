@@ -35,7 +35,7 @@ Mixpanel events are sent using an instance of the Mixpanel class.
 
 You can instantiate an instance of Mixpanel with a String containing your Mixpanel project token. You can find your project token in the settings dialog of the Mixpanel web application.
 
-Once you have an instance of the tracker, you can track events by providing the event name and properties to <a style="font-family: courier" href="http://mixpanel.github.io/mixpanel-python/#mixpanel.Mixpanel.track">Mixpanel.track()</a>.
+Once you have an instance of the tracker, you can track events by providing the event name and properties to [`Mixpanel.track()`](http://mixpanel.github.io/mixpanel-python/#mixpanel.Mixpanel.track).
 ```python
 from mixpanel import Mixpanel
 
@@ -80,7 +80,7 @@ mp.people_set('12345', {
 }, meta = {'$ignore_time' : True, '$ip' : 0})
 ```
 
-This call to <a style="font-family: courier" href="http://mixpanel.github.io/mixpanel-python/#mixpanel.Mixpanel.people_set">people_set()</a> will change the value of properties on user 12345's profile. If there isn't a profile with distinct_id 12345 in Mixpanel already, a new profile will be created. If user 12345 already has has any of these properties set on their profile, the old values will be overwritten with the new ones.
+This call to [`people_set()`](http://mixpanel.github.io/mixpanel-python/#mixpanel.Mixpanel.people_set) will change the value of properties on user 12345's profile. If there isn't a profile with distinct_id 12345 in Mixpanel already, a new profile will be created. If user 12345 already has has any of these properties set on their profile, the old values will be overwritten with the new ones.
 
 ### Other Types of Profile Updates
 There are a few other types of profile updates. You can get more information about them from the [Mixpanel Library API Reference](https://mixpanel.github.io/mixpanel-python).
@@ -119,7 +119,7 @@ mp.track(user_id, 'Plan Purchase', {'Plan Type' : 'Premium', 'Company' : 'mixpan
 ```
 
 ### Adding Group Identifiers to Individual Users
-To connect group information to a user profile, include the `group_key` and `group_id` by sending the property as part of the <a style="font-family: courier" href="https://mixpanel.github.io/mixpanel-python/#mixpanel.Mixpanel.people_set">people_set()</a> call.
+To connect group information to a user profile, include the `group_key` and `group_id` by sending the property as part of the [`people_set()`](https://mixpanel.github.io/mixpanel-python/#mixpanel.Mixpanel.people_set) call.
 ```python
 ## Create or update a user profile with 'first name', 'last name',
 ## 'favorite color' properties, and a group_id = company
@@ -132,7 +132,7 @@ mp.people_set('12345', {
 }, meta = {'$ignore_time' : True, '$ip' : 0})
 ```
 ### Creating Group Profiles
-It is possible to create a Group profile that is similar to a user profile. You must call a property-setting method like <a style="font-family: courier" href="https://mixpanel.github.io/mixpanel-python/#mixpanel.Mixpanel.group_set">group_set()</a> to create a group profile. It is important to include the `group_key`, `group_id`, and at least one property so that the profile is not empty.
+It is possible to create a Group profile that is similar to a user profile. You must call a property-setting method like [`group_set()`](https://mixpanel.github.io/mixpanel-python/#mixpanel.Mixpanel.group_set) to create a group profile. It is important to include the `group_key`, `group_id`, and at least one property so that the profile is not empty.
 
 ```py Python
 ## Create a group profile with group_key = Company,
@@ -148,7 +148,7 @@ You can add details to Group Profiles by adding properties to them. These operat
 You can set the property `$name` to populate the name field at the top of the group profile.
 
 #### set
-<a style="font-family: courier" href="https://mixpanel.github.io/mixpanel-python/#mixpanel.Mixpanel.group_set">group_set()</a> updates or adds properties to a group profile. The profile is created if it does not exist.
+[`group_set()`](https://mixpanel.github.io/mixpanel-python/#mixpanel.Mixpanel.group_set) updates or adds properties to a group profile. The profile is created if it does not exist.
 
 ```py Python
 ## Create a group profile with group_key = Company,

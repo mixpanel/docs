@@ -10,7 +10,7 @@ The [Full API Reference](https://mixpanel.github.io/mixpanel-react-native/Mixpan
 
 We recommend tracking only five to seven events in your application instead of tracking too many things to start. Ideally, you track users going through your initial user experience and one key metric that matters for your application (e.g. YouTube might choose "Watched Video" as a key metric).
 
-Once you've initialized the library, you can track an event using <a style="font-family: courier" href="https://mixpanel.github.io/mixpanel-react-native/Mixpanel.html#track">track</a> with the event name and properties.
+Once you've initialized the library, you can track an event using [`track`](https://mixpanel.github.io/mixpanel-react-native/Mixpanel.html#track) with the event name and properties.
 
 ```javascript Javascript
 //Track an event with a property
@@ -18,7 +18,7 @@ mixpanel.track('Plan Selected', {'Plan': 'Premium'});
 ```
 ## Timing Events
 
-You can track the time it took for an action to occur, such as an image upload or a comment post, using <a style="font-family: courier" href="https://mixpanel.github.io/mixpanel-react-native/Mixpanel.html#timeEvent">timeEvent</a>. This will mark the "start" of your action, which will be timed until you finish with a track call. The time duration is then recorded in the "Duration" property.
+You can track the time it took for an action to occur, such as an image upload or a comment post, using [`timeEvent`](https://mixpanel.github.io/mixpanel-react-native/Mixpanel.html#timeEvent). This will mark the "start" of your action, which will be timed until you finish with a track call. The time duration is then recorded in the "Duration" property.
 
 ```javascript Javascript
 // start the timer for the event "Image Upload"
@@ -33,7 +33,7 @@ It's common to have certain properties that you want to include with each event 
 
 To make things easier, you can register these properties as super properties. If you tell us just once that these properties are important, we will automatically include them with all events sent. Super properties are saved to local storage, and will persist across invocations of your app. Mixpanel already stores some information as super properties by default; see a full list of Mixpanel default properties [here](https://help.mixpanel.com/hc/en-us/articles/115004613766).
 
-To set super properties, call <a style="font-family: courier" href="https://mixpanel.github.io/mixpanel-react-native/Mixpanel.html#registerSuperProperties">registerSuperProperties</a>
+To set super properties, call [`registerSuperProperties`](https://mixpanel.github.io/mixpanel-react-native/Mixpanel.html#registerSuperProperties)
 
 ```javascript Javascript
 mixpanel.registerSuperProperties({'Plan': 'Mega', 'Cost': '2000'});
@@ -45,9 +45,9 @@ Super properties are saved to local storage, and will persist between executions
 
 ## Setting Super Properties Once and Only Once
 
-If you want to store a super property only once (for example, a date of first login), you can use <a style="font-family: courier" href="https://mixpanel.github.io/mixpanel-react-native/Mixpanel.html#registerSuperPropertiesOnce">registerSuperPropertiesOnce</a>. <a style="font-family: courier" href="https://mixpanel.github.io/mixpanel-react-native/Mixpanel.html#registerSuperPropertiesOnce">registerSuperPropertiesOnce</a> behaves like <a style="font-family: courier" href="https://mixpanel.github.io/mixpanel-react-native/Mixpanel.html#registerSuperProperties">registerSuperProperties</a> and has the same interface, but it doesn't override super properties you've already saved.
+If you want to store a super property only once (for example, a date of first login), you can use [`registerSuperPropertiesOnce`](https://mixpanel.github.io/mixpanel-react-native/Mixpanel.html#registerSuperPropertiesOnce). `registerSuperPropertiesOnce` behaves like `registerSuperProperties` and has the same interface, but it doesn't override super properties you've already saved.
 
-This means it's safe to call <a style="font-family: courier" href="https://mixpanel.github.io/mixpanel-react-native/Mixpanel.html#registerSuperPropertiesOnce">registerSuperPropertiesOnce</a> with the same property multiple times, and it will only set properties if the super property doesn't exist.
+This means it's safe to call `registerSuperPropertiesOnce` with the same property multiple times, and it will only set properties if the super property doesn't exist.
 
 ```javascript Javascript
 mixpanel.registerSuperPropertiesOnce({'Role': 'Admin'});
@@ -55,19 +55,19 @@ mixpanel.registerSuperPropertiesOnce({'Role': 'Admin'});
 
 ## More for Super Properties
 
-Remove a previously registered super property. <a style="font-family: courier" href="https://mixpanel.github.io/mixpanel-react-native/Mixpanel.html#unregisterSuperProperty">unregisterSuperProperty</a> is an alternative to clear all properties, unregistering specific super properties prevents them from being recorded on future events. This operation does not affect the value of other super properties. Any property name that is not registered is ignored.
+Remove a previously registered super property. [`unregisterSuperProperty`](https://mixpanel.github.io/mixpanel-react-native/Mixpanel.html#unregisterSuperProperty) is an alternative to clear all properties, unregistering specific super properties prevents them from being recorded on future events. This operation does not affect the value of other super properties. Any property name that is not registered is ignored.
 
 ```javascript Javascript
 mixpanel.unregisterSuperProperty('propertyName');
 ```
 
-Get user's super properties. <a style="font-family: courier" href="https://mixpanel.github.io/mixpanel-react-native/Mixpanel.html#getSuperProperties">getSuperProperties</a>
+Get user's super properties. [`getSuperProperties`](https://mixpanel.github.io/mixpanel-react-native/Mixpanel.html#getSuperProperties)
 
 ```javascript Javascript
 const superProperties = await mixpanel.getSuperProperties();
 ```
 
-Clear all registered properties of user. <a style="font-family: courier" href="https://mixpanel.github.io/mixpanel-react-native/Mixpanel.html#clearSuperProperties">clearSuperProperties</a>
+Clear all registered properties of user. [`clearSuperProperties`](https://mixpanel.github.io/mixpanel-react-native/Mixpanel.html#clearSuperProperties)
 ```javascript Javascript
 mixpanel.clearSuperProperties();
 ```
@@ -106,7 +106,7 @@ In addition to events, you can store user profiles in Mixpanel's Behavioral Anal
 
 
 ### Setting Profile Properties
-You can set properties on a user profile with <a style="font-family: courier" href="https://mixpanel.github.io/mixpanel-react-native/People.html#set">mixpanel.getPeople().set</a>.
+You can set properties on a user profile with [`mixpanel.getPeople().set`](https://mixpanel.github.io/mixpanel-react-native/People.html#set).
 
 ```javascript Javascript
 // identify must be called before
@@ -120,7 +120,7 @@ mixpanel.getPeople().set("Plan", "Premium");
 This will set a "Plan" property, with a value "Premium", on user 13793's profile. If there isn't a profile with distinct_id 13793 in Mixpanel already, a new profile will be created. If user 13793 already has a property named "Plan" in their profile, the old value will be overwritten with "Premium".
 
 ### Incrementing Numeric Properties
-You can use <a style="font-family: courier" href="https://mixpanel.github.io/mixpanel-react-native/People.html#increment">mixpanel.getPeople().increment</a> to change the current value of numeric properties. This is useful when you want to keep a running tally of things, such as games played, messages sent, or points earned.
+You can use [`mixpanel.getPeople().increment`](https://mixpanel.github.io/mixpanel-react-native/People.html#increment) to change the current value of numeric properties. This is useful when you want to keep a running tally of things, such as games played, messages sent, or points earned.
 ```javascript Javascript
 // Add 500 to the current value of
 // "points earned" in Mixpanel
@@ -130,7 +130,7 @@ mixpanel.getPeople().increment(properties);
 ```
 
 ### Appending to List Properties
-<a style="font-family: courier" href="https://mixpanel.github.io/mixpanel-react-native/People.html#append">mixpanel.getPeople().append</a> creates an update that adds an item to a list-valued property. The value you send with the append is added to the end of the list. If the property doesn't exist, it will be created with one element list as its value.
+[`mixpanel.getPeople().append`](https://mixpanel.github.io/mixpanel-react-native/People.html#append) creates an update that adds an item to a list-valued property. The value you send with the append is added to the end of the list. If the property doesn't exist, it will be created with one element list as its value.
 
 ```javascript Javascript
 //Identify the user profile that is going to be updated
@@ -142,13 +142,13 @@ mixpanel.getPeople().append("Favorite Colors", "Green");
 ```
 
 ### Other Types of Profile Updates
-There are a few other types of profile updates. They can be accessed through the <a style="font-family: courier" href="https://mixpanel.github.io/mixpanel-react-native/People.html">People</a>  class, which is accessible via <a style="font-family: courier" href="https://mixpanel.github.io/mixpanel-react-native/Mixpanel.html#getPeople">mixpanel.getPeople()</a>.
+There are a few other types of profile updates. They can be accessed through the [`People`](https://mixpanel.github.io/mixpanel-react-native/People.html) class, which is accessible via [`mixpanel.getPeople()`](https://mixpanel.github.io/mixpanel-react-native/Mixpanel.html#getPeople).
 
 ## Tracking Revenue
 
 Mixpanel makes it easy to analyze the revenue you make from individual customers. By associating charges with User Analytics profiles, you can compare revenue across different customer segments and calculate customer lifetime value.
 
-You can track a single transaction with <a style="font-family: courier" href="https://mixpanel.github.io/mixpanel-react-native/People.html#trackCharge">mixpanel.getPeople().trackCharge</a>. This call will add transactions to the individual user profile, which will also be reflected in the Mixpanel Revenue report.
+You can track a single transaction with [`mixpanel.getPeople().trackCharge`](https://mixpanel.github.io/mixpanel-react-native/People.html#trackCharge). This call will add transactions to the individual user profile, which will also be reflected in the Mixpanel Revenue report.
 
 ```javascript Javascript
 // Make identify has been
@@ -189,26 +189,26 @@ Adding users to groups causes the `group_key` and `group_id` to send as a proper
 
 Similar to a `distinct_id`, the `group_key` allows Mixpanel to group events by an identifier for analysis. A `group_key`, however, is a group level identifier and not a user level identifier like the `distinct_id`.
 
-You can add users to groups by calling the <a style="font-family: courier" href="https://mixpanel.github.io/mixpanel-react-native/Mixpanel.html#setGroup">setGroup</a> method. 
+You can add users to groups by calling the [`setGroup`](https://mixpanel.github.io/mixpanel-react-native/Mixpanel.html#setGroup) method. 
 
 ```javascript Javascript
 mixpanel.setGroup("group key", "group id");
 ```
 
-You can call <a style="font-family: courier" href="https://mixpanel.github.io/mixpanel-react-native/Mixpanel.html#addGroup">addGroup</a> to add any additional groups to an existing list.
+You can call [`addGroup`](https://mixpanel.github.io/mixpanel-react-native/Mixpanel.html#addGroup) to add any additional groups to an existing list.
 
 ```javascript Javascript
 mixpanel.addGroup("group key", "group id");
 ```
 
-You can call <a style="font-family: courier" href="https://mixpanel.github.io/mixpanel-react-native/Mixpanel.html#removeGroup">removeGroup</a> to remove any additional groups from an existing list.
+You can call [`removeGroup`](https://mixpanel.github.io/mixpanel-react-native/Mixpanel.html#removeGroup) to remove any additional groups from an existing list.
 
 ```javascript Javascript
 mixpanel.removeGroup("group key", "group id");
 ```
 
 ### Creating Group Profiles
-It is possible to create a Group profile that is similar to a user profile. You must call <a style="font-family: courier" href="https://mixpanel.github.io/mixpanel-react-native/MixpanelGroup.html#set">getGroup().set()</a>to build a group profile. It is important to the group_key, group_id, and one property so that the profile is not empty.
+It is possible to create a Group profile that is similar to a user profile. You must call [`getGroup().set()`](https://mixpanel.github.io/mixpanel-react-native/MixpanelGroup.html#set) to build a group profile. It is important to the group_key, group_id, and one property so that the profile is not empty.
 
 ```javascript Javascript
 mixpanel.getGroup(MixpanelToken, "company_id", 12345).set("SET NAME", "SET VALUE");
@@ -217,7 +217,7 @@ mixpanel.getGroup(MixpanelToken, "company_id", 12345).set("SET NAME", "SET VALUE
 ### Setting Group Profile Properties
 You can add details to Groups by adding properties to them.
 
-In order to update Group profile properties, you must specify the group that needs to be updated by calling <a style="font-family: courier" href="https://mixpanel.github.io/mixpanel-react-native/MixpanelGroup.html#set">getGroup().set()</a>.
+In order to update Group profile properties, you must specify the group that needs to be updated by calling [`getGroup().set()`](https://mixpanel.github.io/mixpanel-react-native/MixpanelGroup.html#set).
 
 ```javascript Javascript
 mixpanel.getGroup("group key", "group id").set("SET NAME", "SET VALUE");
@@ -230,7 +230,7 @@ You can set the property $name to populate the name field at the top of the grou
 These operations are similar to the corresponding operations for user profile property updates.
 
 #### set
-<a style="font-family: courier" href="https://mixpanel.github.io/mixpanel-react-native/MixpanelGroup.html#set">getGroup().set()</a> updates or adds a property to a group.
+[`getGroup().set()`](https://mixpanel.github.io/mixpanel-react-native/MixpanelGroup.html#set) updates or adds a property to a group.
 
 ```javascript Javascript
 mixpanel.getGroup("group key", "group id").set("SET NAME", "SET VALUE");
@@ -251,7 +251,7 @@ Enabling Mixpanel debugging and logging allows you to see the debug output from 
 
 ## Flushing Events
 
-To preserve battery life and customer bandwidth, the Mixpanel library doesn't send the events you record immediately. Instead, it sends batches to the Mixpanel servers every 60 seconds while your application is running, as well as when the application transitions to the background. You can call <a style="font-family: courier" href="https://mixpanel.github.io/mixpanel-react-native/Mixpanel.html#flush">flush</a> manually if you want to force a flush at a particular moment.
+To preserve battery life and customer bandwidth, the Mixpanel library doesn't send the events you record immediately. Instead, it sends batches to the Mixpanel servers every 60 seconds while your application is running, as well as when the application transitions to the background. You can call [`flush`](https://mixpanel.github.io/mixpanel-react-native/Mixpanel.html#flush) manually if you want to force a flush at a particular moment.
 ```javascript Javascript
 mixpanel.flush();
 ```
