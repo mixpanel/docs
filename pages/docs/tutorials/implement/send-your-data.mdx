@@ -17,7 +17,7 @@ When it comes to deciding which ingestion approach to use, there are no fixed ru
 
 <br />
 <p style={{ position: 'relative', paddingBottom: '56.25%', height: 0, overflow: 'hidden' }}>
-  <iframe src="https://www.loom.com/embed/21afb3020ebe4f38bb760e5d49c68af1" frameborder="0" style={{ position: 'absolute', top: 0, left: 0, width: '100%', height: '100%' }} allowfullscreen></iframe>
+  <iframe src="https://www.youtube.com/embed/DupNeU23dTg?rel=0" title="Choosing Your Implementation Method" frameborder="0" webkitallowfullscreen="true" mozallowfullscreen="true" allowFullScreen style={{position: 'absolute', top: 0, left: 0, width: '100%', height: '100%'}}></iframe>
 </p>
 
 Here are the key considerations that would guide you along in choosing the right approach as we go through each one:
@@ -39,14 +39,16 @@ Mixpanel supports a wide range of [Client-Side](/docs/tracking-methods/choosing-
 
 In general, we recommend utilizing Client-Side SDKs if you have limited development resources, no existing data collection infrastructure, or have no reliable method to track clickstream data. Whilst they might be initially the easiest to set up, ad-blockers can impact your ability to track data accurately. Furthermore, it can be difficult to keep metrics consistent when utilizing client-side SDKs across multiple platforms such as across both a website and mobile app.
 
+<br />
 <p style={{ position: 'relative', paddingBottom: '56.25%', height: 0, overflow: 'hidden' }}>
-  <iframe src="https://www.loom.com/embed/082c7af9c0514ebdbb30a1fe15880b02" frameborder="0" style={{ position: 'absolute', top: 0, left: 0, width: '100%', height: '100%' }} allowfullscreen></iframe>
+  <iframe src="https://www.youtube.com/embed/FL7wGgfTVoo?rel=0" title="Implement Via Client-Side SDK" frameborder="0" webkitallowfullscreen="true" mozallowfullscreen="true" allowFullScreen style={{position: 'absolute', top: 0, left: 0, width: '100%', height: '100%'}}></iframe>
 </p>
 
 Alternatively, you may want to consider using Server-Side SDKs, which are not susceptible to ad blockers, and provide more consistency when tracking users across platforms. It does require some custom code to track your anonymous (non-logged in) users.
 
+<br />
 <p style={{ position: 'relative', paddingBottom: '56.25%', height: 0, overflow: 'hidden' }}>
-  <iframe src="https://www.loom.com/embed/b86d28ab811245b08e7fe3ffbe78e379" frameborder="0" style={{ position: 'absolute', top: 0, left: 0, width: '100%', height: '100%' }} allowfullscreen></iframe>
+  <iframe src="https://www.youtube.com/embed/tmGWU6R2-g8?rel=0" title="Implement Via Server-Side SDK" frameborder="0" webkitallowfullscreen="true" mozallowfullscreen="true" allowFullScreen style={{position: 'absolute', top: 0, left: 0, width: '100%', height: '100%'}}></iframe>
 </p>
 
 As an in-between, consider client-side tracking via a proxy. This will help [reduce the likelihood of ad-blockers impacting your tracking](https://www.youtube.com/watch?v=8Pv6tmRfqr8), while allowing you to automatically capture certain default client-side properties. For more details, please see [this article](/docs/tracking-methods/sdks/javascript#tracking-via-proxy) on how to set up a proxy.
@@ -57,8 +59,9 @@ A full list of Mixpanel SDKs can be found in our [documentation](/docs/tracking-
 
 If you currently utitilise a Customer Data Platform (eg mParticle, Rudderstack, Segment), you can also use this to send your data to Mixpanel. If you're switching to Mixpanel from another analytics tool, CDPs will also allow you to easily migrate your historical data into Mixpanel.
 
+<br />
 <p style={{ position: 'relative', paddingBottom: '56.25%', height: 0, overflow: 'hidden' }}>
-  <iframe src="https://www.loom.com/embed/86d60bf289c04914b1a32e59bd4e9ad9" frameborder="0" style={{ position: 'absolute', top: 0, left: 0, width: '100%', height: '100%' }} allowfullscreen></iframe>
+  <iframe src="https://www.youtube.com/embed/whd8guBgXnE?rel=0" title="Implement Via a CDP" frameborder="0" webkitallowfullscreen="true" mozallowfullscreen="true" allowFullScreen style={{position: 'absolute', top: 0, left: 0, width: '100%', height: '100%'}}></iframe>
 </p>
 
 Please refer to the documentation by your respective CDP provider for more information on how to connect your data to Mixpanel.
@@ -67,8 +70,9 @@ Please refer to the documentation by your respective CDP provider for more infor
 
 If your data is already stored in a data warehouse, our [Warehouse Sync](/docs/tracking-methods/data-warehouse/overview) allows you to import [events](/docs/tracking-methods/data-warehouse/sending-events), [user profiles](/docs/tracking-methods/data-warehouse/sending-user-profiles), and [group profiles](/docs/tracking-methods/data-warehouse/sending-group-profiles) into your Mixpanel project via recurring syncs to ensure that your data in Mixpanel matches your trusted data source.
 
+<br />
 <p style={{ position: 'relative', paddingBottom: '56.25%', height: 0, overflow: 'hidden' }}>
-  <iframe src="https://www.loom.com/embed/317e10177af04a3f8ca2656ce1aeae91" frameborder="0" style={{ position: 'absolute', top: 0, left: 0, width: '100%', height: '100%' }} allowfullscreen></iframe>
+  <iframe src="https://www.youtube.com/embed/3miXogffar0?rel=0" title="Implement Via a Data Warehouse" frameborder="0" webkitallowfullscreen="true" mozallowfullscreen="true" allowFullScreen style={{position: 'absolute', top: 0, left: 0, width: '100%', height: '100%'}}></iframe>
 </p>
 
 Another option to send data from your data warehouse to Mixpanel would be to utilize a Reverse ETL tool (eg Census, Hightouch). These third-party tools will allow you to make any necessary transformations to the data and set up sync schedules to import data from your warehouse to Mixpanel. Please refer to the respective documentation of whichever reverse ETL tool your team chooses to utilize.
@@ -77,16 +81,18 @@ Another option to send data from your data warehouse to Mixpanel would be to uti
 
 If your company already has an existing event stream pipeline, you could use it to send data into Mixpanel as you receive it. You can refer to our documentation for examples on how to setup a pipeline from [Amazon S3](/docs/tracking-methods/integrations/amazon-s3), [Google Cloud Storage](/docs/tracking-methods/integrations/google-cloud-storage), [Google Pubsub](/docs/tracking-methods/integrations/google-pubsub).
 
+<br />
 <p style={{ position: 'relative', paddingBottom: '56.25%', height: 0, overflow: 'hidden' }}>
-  <iframe src="https://www.loom.com/embed/4c5f2a61e3b94bf28df3e69f676561a0" frameborder="0" style={{ position: 'absolute', top: 0, left: 0, width: '100%', height: '100%' }} allowfullscreen></iframe>
+  <iframe src="https://www.youtube.com/embed/S9HJrVr1an0?rel=0" title="Implement Via Event Streaming" frameborder="0" webkitallowfullscreen="true" mozallowfullscreen="true" allowFullScreen style={{position: 'absolute', top: 0, left: 0, width: '100%', height: '100%'}}></iframe>
 </p>
 
 ### Direct API Ingestion
 
 If you would like to send data directly to Mixpanel servers without the need of any sort of intermediary layer, you can utilize our Ingestion API to send in [events](https://developer.mixpanel.com/reference/import-events). and add / update / delete existing [user profiles](https://developer.mixpanel.com/reference/profile-set). 
 
+<br />
 <p style={{ position: 'relative', paddingBottom: '56.25%', height: 0, overflow: 'hidden' }}>
-  <iframe src="https://www.loom.com/embed/4ed2664e3cda48d1ac0ed544efca2466" frameborder="0" style={{ position: 'absolute', top: 0, left: 0, width: '100%', height: '100%' }} allowfullscreen></iframe>
+  <iframe src="https://www.youtube.com/embed/QpDpdN88Lus?rel=0" title="Implement Via a API" frameborder="0" webkitallowfullscreen="true" mozallowfullscreen="true" allowFullScreen style={{position: 'absolute', top: 0, left: 0, width: '100%', height: '100%'}}></iframe>
 </p>
 
 ## Identity Management Best Practices
