@@ -1,5 +1,18 @@
 # Establish Data Governance
-Assuming you've successfully sent in your first events and user properties into Mixpanel, how do you continue to keep your data clean as you add more events? Or as your application changes and you need to hide no longer relevant events? In this tutorial, we guide you in establishing good data governance practices to keep your implementation clean, concise and consistent.
+
+Implementing your tracking plan by sending data into Mixpanel and conducting Quality Assurance test is your first step to getting insights about your users' behaviours. Keeping your data in production clean, concise, and consistent as you add more tracking, requires you to establish a data governance framework.
+
+Data governance involves key data stakeholders establishing a methodology, process, or strategy to ensure Mixpanel implementation continues to be consistent, accurate, and trustworthy. It need not be complex, but should focus on the following principles:
+
+![image](/tutorials/data-governance-principles.png "Data Governance Principles")
+
+Setting up a data governance framework can be as simple as:
+
+1. **Owner**: designating an owner or governance team *(eg leads from each business unit Product, Marketing, Analytics, Data Science)*
+2. **Standards**: document your standards, conventions, taxonomy, and processes for defining metrics / KPIs and instrumenting your tracking plan
+3. **Controls**: establish review and sign-off processes before rolling out to production
+
+In this tutorial, we'll cover some tools to help you keep up with data governance controls, as well as, tips on how to fix potential data issues that may fall through the cracks.
 
 ## Events Approval
 Our customers with the best data governance do this today, either via our [Event Approval](/docs/data-governance/event-approval) feature, or their internal processes. Essentially, this feature enables project owners or admins to first review any new events that are being sent to their Mixpanel project. They can ensure the proper event naming conventions and clear descriptions are put in place before making these events visible for everyone else in the project. 
