@@ -6,21 +6,30 @@ Data governance involves key data stakeholders establishing a methodology, proce
 
 ![image](/tutorials/data-governance-principles.png "Data Governance Principles")
 
-Setting up a data governance framework can be as simple as:
+Setting up a data governance framework can be as simple as having:
 
-1. **Owner**: designating an owner or governance team *(eg leads from each business unit Product, Marketing, Analytics, Data Science)*
-2. **Standards**: document your standards, conventions, taxonomy, and processes for defining metrics / KPIs and instrumenting your tracking plan
-3. **Controls**: establish review and sign-off processes before rolling out to production
+1. **Ownership**: designating an owner or governance team *(eg leads from each business unit Product, Marketing, Analytics, Data Science)* responsible for this task
+2. **Standards**: documenting your standards, conventions, taxonomy, and processes for defining metrics / KPIs and instrumenting your tracking plan
+3. **Controls**: establishing review and sign-off processes before rolling out to production to maintain data trust
 
 In this tutorial, we'll cover some tools to help you keep up with data governance controls, as well as, tips on how to fix potential data issues that may fall through the cracks.
 
-## Events Approval
-Our customers with the best data governance do this today, either via our [Event Approval](/docs/data-governance/event-approval) feature, or their internal processes. Essentially, this feature enables project owners or admins to first review any new events that are being sent to their Mixpanel project. They can ensure the proper event naming conventions and clear descriptions are put in place before making these events visible for everyone else in the project. 
+## Event Approval
+
+Mixpanel's Event Approval feature enables project owners or admins to first review any new events or properties sent to a Mixpanel project before it is released for use. This feature is available to all our [Enterprise Plan](https://mixpanel.com/settings/org/plan) customers.
 
 <br />
 <p style={{ position: 'relative', paddingBottom: '56.25%', height: 0, overflow: 'hidden' }}>
   <iframe src="https://www.youtube.com/embed/tVm9BYeuzPs?rel=0" title="Lexicon Overview and Data Clean Up" frameborder="0" webkitallowfullscreen="true" mozallowfullscreen="true" allowFullScreen style={{position: 'absolute', top: 0, left: 0, width: '100%', height: '100%'}}></iframe>
 </p>
+
+You can enable this feature at a project level to receive alerts via e-mail or Slack messages whenever a new event or property is received; thereby, allowing you to take timely appropriate actions. We recommend enabling this for your production project.
+
+![image](/tutorials/event-approval.png "Events Approval")
+
+For more details refer to our documentation on [Event Approval](/docs/data-governance/event-approval)
+
+====
 
 ## Lexicon Overview and Data Clean Up
 
