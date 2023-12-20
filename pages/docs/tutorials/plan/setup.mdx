@@ -31,6 +31,16 @@ Click [here](https://mixpanel.com/settings/org/users-and-teams/find-your-org) to
 
 ![image](/tutorials/organization-discoverability.png "Organization Discoverability")
 
+## Simplified Identity Management
+
+Since June 2023, Mixpanel has made the [Simplified API](/docs/tracking-methods/identifying-users#how-does-the-simplified-api-differ-from-the-original-api) as the default identity management setting for newly created organizations. If your Mixpanel organization was created prior to this, it might not have this enabled.
+
+We recommend using the **Simplied API** option as it is a straightforward simpler way of managing your users' identity in Mixpanel. More details about how Simplified API handles identity management can be found in our documentation under [Identifying Users](/docs/tracking-methods/identifying-users#how-does-the-simplified-api-differ-from-the-original-api). We will also cover a tutorial around this under the [Identity Management Best Practice](/docs/tutorials/implement/send-your-data#identity-management-best-practices) section.
+
+![image](/tutorials/simplified-id-merge.png "Simplified ID Merge")
+
+click [here](https://mixpanel.com/settings/org/id-management) to configure your organization to default to **Simplified API**. Also make sure that any new Mixpanel projects that does not have data tracked  choose to use **Simplied API**.
+
 ## Development and Production Project Setup
 
 We recommend that you minimally setup two Mixpanel projects, one for **Development** data and another for **Production** data. This is to ensure that you keep development test data separate from actual live user behavioural data. Read more details about [Developer Environments](/docs/best-practices/developer-environments).
