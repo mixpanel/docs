@@ -23,23 +23,23 @@ Mixpanel provides the following tools that enable you to conduct QA:
 
    Outside of the Client-Side SDKs, development teams should consider including code to handle error responses thrown by our Server-Side SDKs, APIs, or by the other tools you use to send data to Mixpanel (eg CDP, Revese ETL or Cloud Ingestion scripts).
 
+<br />
 2. Events - Mixpanel's **Events** report enables reviewing of events and their properties as they flow into your Mixpanel project. There is also a *JSON mode* feature which can come in handy if you are checking for data type inconsistencies.
 
    ![image](/tutorials/events-report.png "Events Report")
 
-3. Users -> Profile Activity Feed - 
+3. Users -> Profile Activity Feed - Mixpanel's **User Profile Activity Feed** report contains all the information about a specific user that you are tracking. Using this report you can:
+
+   - Examine the Identity Cluster to see all the Distinct IDs linked to a user
+   - Search and validate all User Profile Properties and their values
+   - Use the Activity Feed section to search through all events with the most recent one listed on top
+
+   ![image](/tutorials/profile-activity-feed.png "Profile Activity Feed")
+
+   Note: The User Profile Activity Feed report is the only report with query-time identity management merging. All other reports in Mixpanel may still show separate Distinct IDs while merging is still being processed. Refer to this [FAQ](/docs/tracking-methods/identifying-users#how-long-does-it-take-for-the-device_id---user_id-mapping-to-take-effect) for more details.
+
 
 ===
-
-When conducting User Flows QA, you can also view user profiles to view a user's event feed and user properties. From this view, you can perform the following:
-
-- Examine the identity cluster to see all the Distinct IDs linked to the user
-- Search and validate all user properties and their values
-- Use the activity feed to search through all events with the most recent one listed on top
-- Adjust the date range or selectively hide certain events for easier troubleshooting
-- Expand any event to see its event properties
-- Click “View in Insights” to do further analysis using our Insights report
-
 
 Once you have confirmed the cleanliness of your implementation by QAing in your dev environment, you should begin pushing live data into your production environment.
 
