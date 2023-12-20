@@ -97,6 +97,8 @@ If you would like to send data directly to Mixpanel servers without the need of 
 
 ## Identity Management Best Practices
 
+> Note: This section explains identity management using the Simplified Identity Management setting. If you are unsure, do refer to the [Setup](/docs/tutorials/plan/setup#simplified-identity-management) section to check your organization and project settings.
+
 As users navigate through your website or application, it is common for them to move between anonymous (logged out) to identified (logged in) states. Users can also use multiple devices or platforms that you may provide for your product. As such, it is crucial that you ensure correct identity management throughout in order to accurately track your users.
 
 <br />
@@ -106,10 +108,13 @@ As users navigate through your website or application, it is common for them to 
 
 If you're utilizing our Mixpanel SDKs, especially Client-Side, you should carefully manage all the identifiers belonging to a user correctly to ensure that all of their pre-auth and post-auth activity is tracked as one user.
 
-In the following video, we walkthrough how you [identify users](/docs/tracking-methods/identifying-users) in Mixpanel, using the Simplified ID Merge method.
+In the following video, we walkthrough how you should manage identifying your users using the Simplified Identity Management method.
+
 <br />
 <p style={{ position: 'relative', paddingBottom: '56.25%', height: 0, overflow: 'hidden' }}>
   <iframe src="https://www.youtube.com/embed/RySdeuu-eD4?rel=0" title="Example of Simplified ID Management" frameborder="0" webkitallowfullscreen="true" mozallowfullscreen="true" allowFullScreen style={{position: 'absolute', top: 0, left: 0, width: '100%', height: '100%'}}></iframe>
 </p>
 
 Do note that the mixpanel.identify() call does not create a User Profile in Mixpanel. The people.set() method is the required call to set user properties on a user profile. However, the people.set() call also requires an identify() call at some point in the same session, so that Mixpanel knows which User ID to associate the profile properties to. If there is no identify() call in a user’s session where people.set() is called, we store the user profile properties locally until that user hits an identify() call. 
+
+For more detailed user flows and FAQs refer to our documentation on [Identifying Users](/docs/tracking-methods/identifying-users).
