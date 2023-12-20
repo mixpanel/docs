@@ -12,19 +12,24 @@ There are generally two levels of Quality Assurance tests that your teams should
 
 - **User Flows** - consists of product and data teams navigating through your website / app focusing on testing the key journeys being tracked, and checking on events, user / group profiles, and their properties for accuracy in relation to the entrire journey. Identity management is also a key focus here to ensure users are being correctly identified across devices and platforms.
 
+<br />
+<p style={{ position: 'relative', paddingBottom: '56.25%', height: 0, overflow: 'hidden' }}>
+  <iframe src="https://www.youtube.com/embed/uYDEYHIUW4E?rel=0" title="How to QA and Audit Your Data" frameborder="0" webkitallowfullscreen="true" mozallowfullscreen="true" allowFullScreen style={{position: 'absolute', top: 0, left: 0, width: '100%', height: '100%'}}></iframe>
+</p>
+
 Mixpanel provides the following tools that enable you to conduct QA:
 
-1. Debug Mode - Mixpanel Client-Side SDKs can be configured to [Enable Debug Mode](docs/debugging/overview#enable-debug-mode) which logs any Mixpanel client-side calls to the browser console or development platforms (eg Xcode, Android Studio). 
+1. Debug Mode - Mixpanel Client-Side SDKs can be configured to [Enable Debug Mode](/docs/debugging/overview#enable-debug-mode) which logs any Mixpanel client-side calls to the browser console or development platforms (eg Xcode, Android Studio). 
 
-   Outside of the Client-Side SDKs, development teams should consider including code to handle error responses thrown by our Server-Side SDKs, APIs, or by the other tools you use to send data to Mixpanel (eg CDP, Revese ETL or Cloud Ingestion scripts). An example would be utilizing code to retry events with an exponential backoff when receiving a 429 rate limited error response.
+   Outside of the Client-Side SDKs, development teams should consider including code to handle error responses thrown by our Server-Side SDKs, APIs, or by the other tools you use to send data to Mixpanel (eg CDP, Revese ETL or Cloud Ingestion scripts).
 
-<br />
-2. Events report - 
+2. Events - Mixpanel's **Events** report enables reviewing of events and their properties as they flow into your Mixpanel project. There is also a *JSON mode* feature which can come in handy if you are checking for data type inconsistencies.
+
+   ![image](/tutorials/events-report.png "Events Report")
+
+3. Users -> Profile Activity Feed - 
 
 ===
-
-
-Another helpful tool that can be utilized at both the code level and user flows QA is the Events report in the Mixpanel UI. You can utilize the Events report to see events as they flow into your Mixpanel project as well as the properties attached to those events to identify any tracking discrepancies. You can also enable JSON mode on the events to see the raw structure of the underlying data being ingested into Mixpanel.
 
 When conducting User Flows QA, you can also view user profiles to view a user's event feed and user properties. From this view, you can perform the following:
 
@@ -38,10 +43,7 @@ When conducting User Flows QA, you can also view user profiles to view a user's 
 
 Once you have confirmed the cleanliness of your implementation by QAing in your dev environment, you should begin pushing live data into your production environment.
 
-<br />
-<p style={{ position: 'relative', paddingBottom: '56.25%', height: 0, overflow: 'hidden' }}>
-  <iframe src="https://www.youtube.com/embed/uYDEYHIUW4E?rel=0" title="How to QA and Audit Your Data" frameborder="0" webkitallowfullscreen="true" mozallowfullscreen="true" allowFullScreen style={{position: 'absolute', top: 0, left: 0, width: '100%', height: '100%'}}></iframe>
-</p>
+
 
 ## Data Audit
 
