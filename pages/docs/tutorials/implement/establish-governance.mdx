@@ -16,43 +16,52 @@ In this tutorial, we'll cover some tools to help you keep up with data governanc
 
 ## Event Approval
 
-Mixpanel's Event Approval feature enables project owners or admins to first review any new events or properties sent to a Mixpanel project before it is released for use. This feature is available to all our [Enterprise Plan](https://mixpanel.com/settings/org/plan) customers.
+Mixpanel's **Event Approval** feature enables project owners or admins to first review any new events or properties sent to a Mixpanel project before it is released for use. This feature is available to all our [Enterprise Plan](https://mixpanel.com/settings/org/plan) customers.
 
 <br />
 <p style={{ position: 'relative', paddingBottom: '56.25%', height: 0, overflow: 'hidden' }}>
   <iframe src="https://www.youtube.com/embed/tVm9BYeuzPs?rel=0" title="Lexicon Overview and Data Clean Up" frameborder="0" webkitallowfullscreen="true" mozallowfullscreen="true" allowFullScreen style={{position: 'absolute', top: 0, left: 0, width: '100%', height: '100%'}}></iframe>
 </p>
 
-You can enable this feature at a project level to receive alerts via e-mail or Slack messages whenever a new event or property is received; thereby, allowing you to take timely appropriate actions. We recommend enabling this for your production project.
+You can enable this feature at a project level to receive alerts via e-mail or Slack messages whenever a new event or property is received; thereby, allowing you to take timely appropriate actions. We recommend enabling this for your production project to catch any event or property that may be sent without prior sign-off in development.
 
 ![image](/tutorials/event-approval.png "Events Approval")
 
-For more details refer to our documentation on [Event Approval](/docs/data-governance/event-approval)
+For more details, refer to our documentation on [Event Approval](/docs/data-governance/event-approval).
 
-====
+## Lexicon: Data Clean Up
 
-## Lexicon Overview and Data Clean Up
+Mixpanel's data dictionary is called Lexicon. It contains metadata about your events and properties, as well as, other Mixpanel UI element created along the way, such as [Custom Events](/docs/features/custom-events), [Custom Properties](/docs/features/custom-properties), [Lookup Tables](/docs/data-structure/lookup-tables), and [Formulas](/changelogs/2023-11-09-saved-formulas).
 
-For data already existing in Mixpanel, you can also leverage [Lexicon](/docs/data-governance/lexicon), which is what we call our data dictionary, to audit and manage your events, event and user properties, and their corresponding metadata.
+![image](/tutorials/events-metadata.png "Events Metadata")
 
-We've included some useful statistics to help you dive into your event usage context, such as:
-- Who first queried an event and when?
-- When was it first tracked?
-- Which people queried it most recently and when?
-- What is the number of queries in the last 30 days?
+Metadata includes statistical information to help you review events and properties usage, such as:
 
-For example, in the following image, you can see the total UI and API queries in the last 30 days for any of these data types and sort by it. You can thereby revisit the relevance of events that have a high 30 day volume and low 30 day query volume. Similarly, you could sort the events by last queried time to understand which events have not been queried for an extended period of time.
+- Who's the owner of the event?
+- Who first / last queried an event and when?
+- When was the event first tracked?
+- Which reports use the event?
+- What is the last 30 days volume against number of queries for an event / property?
 
-![image](//tutorials/events-metadata.png)
-
-Such metadata lets you easily discover the parts of your implementation that are most valuable and the parts that are not being used. You can use this information to determine which events you should [drop](/docs/data-governance/lexicon#dropping-events) - i.e. stop sending into Mixpanel. 
-
-In the event where you are seeing a lot of events on Lexicon and you don't have the engineering resources to do a data clean up, Project Owners and Admins can always leverage our Tags feature on Lexicon to group events belonging to a specific user journey (e.g. checkout) or belonging to specific categories such as KPIs. With that, users would be able to easily filter out the events related to the metrics or user journey they are keen to query by selecting the events parked under any of the pre-built “Tags” in any of the core reports. 
+Such metadata lets you easily discover the data that is most valuable to your colleagues who are using Mixpanel. It enables you to make a data driven decisions on either further improving tracking for certain journeys or to entirely deprecate any events or properties to mimimize data noise.
 
 <br />
 <p style={{ position: 'relative', paddingBottom: '56.25%', height: 0, overflow: 'hidden' }}>
   <iframe src="https://www.youtube.com/embed/mf_AaDt4Hzw?rel=0" title="Lexicon Overview and Data Clean Up" frameborder="0" webkitallowfullscreen="true" mozallowfullscreen="true" allowFullScreen style={{position: 'absolute', top: 0, left: 0, width: '100%', height: '100%'}}></iframe>
 </p>
+
+Lexicon also includes tools that allow you to fix or manage events and properties that were already ingested into Mixpanel:
+
+- Hiding events and properties that may still be useful, but should not be generally accessible to users
+- Dropping events and event properties that are no longer useful
+- Merge events and event properties potentially sent with different naming
+- Upload Lookup Tables to augment or extend existing tracked properties
+- Manage existing Custom Events, Custom Properties, and saved Formulas
+- Manage Data Classfications for sensitive properties
+
+For more information about these features, refer to our documentation on [Lexicon](/docs/data-governance/lexicon).
+
+- 
 
 ## Create an Implementation Monitoring Hub in Your Project
 You can use the [board template](https://mixpanel.com/s/3oqDsG) you previously saw in the [QA and Audit](/docs/tutorials/implement/qa-data-audit) tutorial as a Monitoring Board going forward. Leverage existing documentation to guide users seamlessly through the transition. Optimize real-time data visibility, ensuring customers harness the full potential of Mixpanel's analytics. Enhance their experience by empowering them to monitor key metrics effortlessly. This course distills complex processes into digestible steps, fostering user independence and maximizing the value of their Mixpanel investment.
