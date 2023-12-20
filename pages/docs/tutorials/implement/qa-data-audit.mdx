@@ -12,9 +12,17 @@ There are generally two levels of Quality Assurance tests that your teams should
 
 - **User Flows** - consists of product and data teams navigating through your website / app focusing on testing the key journeys being tracked, and checking on events, user / group profiles, and their properties for accuracy in relation to the entrire journey. Identity management is also a key focus here to ensure users are being correctly identified across devices and platforms.
 
+Mixpanel provides the following tools that enable you to conduct QA:
+
+1. Debug Mode - Mixpanel Client-Side SDKs can be configured to [Enable Debug Mode](docs/debugging/overview#enable-debug-mode) which logs any Mixpanel client-side calls to the browser console or development platforms (eg Xcode, Android Studio). 
+
+   Outside of the Client-Side SDKs, development teams should consider including code to handle error responses thrown by our Server-Side SDKs, APIs, or by the other tools you use to send data to Mixpanel (eg CDP, Revese ETL or Cloud Ingestion scripts). An example would be utilizing code to retry events with an exponential backoff when receiving a 429 rate limited error response.
+
+<br />
+2. Events report - 
+
 ===
 
-We have a debug mode that can be enabled during code level QA if you are using our client-side SDKs. Debug mode will log any client-side errors thrown while making a Mixpanel call, any errors thrown by our API when trying to ingest the data, and all successful API calls. You can access these logs in the browser console or from your mobile device or simulator via development platforms like Xcode and Android Studio. Please take a look at the SDK documentation for more information on how to enable debug mode for the specific SDK you have implemented. If you are not utilizing our client-side SDKs, your dev team should include code to handle error responses thrown by our API. An example would be utilizing code to retry events with an exponential backoff when receiving a 429 rate limited error response.
 
 Another helpful tool that can be utilized at both the code level and user flows QA is the Events report in the Mixpanel UI. You can utilize the Events report to see events as they flow into your Mixpanel project as well as the properties attached to those events to identify any tracking discrepancies. You can also enable JSON mode on the events to see the raw structure of the underlying data being ingested into Mixpanel.
 
