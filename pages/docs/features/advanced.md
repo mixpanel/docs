@@ -756,7 +756,7 @@ You can do this by adding a First Time Filter to any event in Mixpanel. This fil
 Mixpanel computes this on-the-fly by scanning each user's history to determine if this was the first instance of the event performed by the user, based on timestamp.
 
 ### Nth Time
-You can analyze the Nth time an event was performed by using a First Time Filter in funnels. For example, this shows you the number of users that do Tutorial Complete 4 times:
+You can analyze the Nth time an event was performed by using a First Time Filter in funnels. For example, this shows you the number of users that do Tutorial Complete 3 times:
 
 ![233895123-bc2dd00f-5dde-4e43-82fe-081173abf0e4.png](https://user-images.githubusercontent.com/2077899/233895123-bc2dd00f-5dde-4e43-82fe-081173abf0e4.png)
 
