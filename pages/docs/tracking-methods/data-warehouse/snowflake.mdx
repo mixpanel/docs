@@ -1,5 +1,6 @@
 # Snowflake
 
+import { Callout } from 'nextra/components'
 
 <div style={{position: 'relative', paddingBottom: '64.90384615384616%', height: 0}}>
     <iframe src="https://www.loom.com/embed/5dbaf37d9308404393417043551aed55"
@@ -79,10 +80,10 @@ If you are using [Snowflake Network policy](https://docs.snowflake.com/en/user-g
 
 ### Mirror Sync Readiness
 
-<CustomCallout type="info">
+<Callout type="info">
   Mirror syncing is in early access and not available on all projects. Request access
   <a href="https://forms.gle/x8mbU6FVe5uHiVXF6">here</a>.
-</CustomCallout>
+</Callout>
 
 Mirror syncs from Snowflake use [Snowflake streams](https://docs.snowflake.com/en/user-guide/streams-intro) to track changes to source tables.
 [`CHANGE_TRACKING`](https://docs.snowflake.com/en/sql-reference/sql/alter-table) must be enabled on a Snowflake table in order for a Mirror

@@ -1,5 +1,7 @@
 # Sending Events
 
+import { Callout } from 'nextra/components'
+
 ### Format Data for Mixpanel Ingestion
 
 To import data from a warehouse directly, you need to format tables correctly.
@@ -51,10 +53,10 @@ Time-based syncs are suitable for append-only tables with an "insert timestamp" 
 
 ### Mirror sync
 
-<CustomCallout type="info">
+<Callout type="info">
   Mirror syncing is in early access and not available on all projects. Request access
   <a href="https://forms.gle/x8mbU6FVe5uHiVXF6">here</a>.
-</CustomCallout>
+</Callout>
 
 Mirror syncs track all changes to event data in the data warehouse (inserts, updates, and deletes) and mirrors them to Mixpanel.
 
