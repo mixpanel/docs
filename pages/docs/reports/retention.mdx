@@ -68,7 +68,7 @@ If you are on the beta retention experience, follow this guide. The core concept
   <iframe src="https://www.loom.com/embed/c5c83d9dd0c24d5a8ab9596c8d592e95" frameborder="0" style={{ position: 'absolute', top: 0, left: 0, width: '100%', height: '100%' }} allowfullscreen></iframe>
 </p>
 
-The retention curve chart displays retention data as both a line chart, and a table. Data is identical between the two. The line chart provides a visual representation of users becoming inactive over time, while the table provides a heat map to show which groups have the best retention.
+The retention curve chart displays retention data as both a line chart and a table. Data is identical between the two. The line chart provides a visual representation of users becoming inactive over time, while the table provides a heat map to show which groups have the best retention.
 
 ![/Screen_Shot_2021-05-27_at_7.49.12_AM.png](/Screen_Shot_2021-05-27_at_7.49.12_AM.png)
 
@@ -82,11 +82,11 @@ Each box within a row is assigned a shade of purple. The shading gets darker the
 
 ![/Retention Line Chart](/Retention_Trend.png)
 
-Select **Line** from the visualization drop-down list to see how your retention metrics are changing over time. You can see how your retention rate or number of users retained are trending. You can see this trend for any of the retention time unit buckets. You can change between the different time unit buckets (i.e. < 1 Day, Day 1, Day 2, ...) to see if your retention metrics are improving or declining along your retention curve.
+Select **Line** from the visualization drop-down list to see how your retention metrics are changing over time. You can see how your retention rate or number of users retained is trending. You can see this trend for any of the retention time unit buckets. You can change between the different time unit buckets (i.e. < 1 Day, Day 1, Day 2, ...) to see if your retention metrics are improving or declining along your retention curve.
 
 ### User Cohort Buckets
 
-Retention counts users; not event totals. In other words, each of the user cohort buckets will include every unique user that did the "A event" criteria in that time window, starting at 0:00 of the first day of the bucket and ending midnight of the last day. A customer can only be counted once per bucket, but can be included in more than one bucket.
+Retention counts users, not event totals. In other words, each of the user cohort buckets will include every unique user that did the "A event" criteria in that time window, starting at 0:00 of the first day of the bucket and ending midnight of the last day. A customer can only be counted once per bucket, but can be included in more than one bucket.
 
 The first column (Date) indicates the day/week/month when the user performed the "A event". The Size column indicates the number of users that performed the "A event" within the time period.
 
@@ -123,9 +123,9 @@ This [loom video](https://www.loom.com/share/5484c7bdd61a4332818ceef20f475176)�
 
 **[Advanced] Calendar interval retention** - Considers time intervals based on ‘calendar’ time; i.e
 
-- Day 1 retention = next ‘calendar’ day since person’s birth.If a person did an activity at 8pm on Monday and then 6am on Tuesday, person is counted under Day 1 retention even though it’s just 10 hrs later
-- Week 1 retention = next ‘calendar’ week since person’s birthIf a person did an activity on Friday and then Monday, person is counted under Week 1 retention even though it’s just 3 days, since the ‘calendar’ week changed
-- Month 1 retention = next ‘calendar’ month since person’s birthSimilarly, if a person made a purchase on 25th Feb and then again on 3rd March, person will be counted under Month 1 retention metrics
+- Day 1 retention = next ‘calendar’ day since person’s birth. If a person did an activity at 8pm on Monday and then 6am on Tuesday, person is counted under Day 1 retention even though it’s just 10 hrs later
+- Week 1 retention = next ‘calendar’ week since person’s birth. If a person did an activity on Friday and then Monday, person is counted under Week 1 retention even though it’s just 3 days, since the ‘calendar’ week changed
+- Month 1 retention = next ‘calendar’ month since person’s birth. Similarly, if a person made a purchase on 25th Feb and then again on 3rd March, person will be counted under Month 1 retention metrics
 
 NOTE — All the above cases would NOT qualify under Day 1 or Week 1 or Month 1 rolling interval retention
 
@@ -193,7 +193,7 @@ Typical "exact day" retention buckets don't quite solve for this use case becaus
 
 #### Setting Custom Brackets
 
-First, go into the time unit drop-down in the Retention query builder and select **Custom
+First, go into the time unit drop-down in the Retention query builder and select **Custom**
 
 ![Setting Custom Buckets](/Retention_Setting_Custom.png)
 
