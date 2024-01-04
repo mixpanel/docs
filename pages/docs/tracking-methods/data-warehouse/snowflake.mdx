@@ -1,5 +1,6 @@
 # Snowflake
 
+import { Callout } from 'nextra/components'
 
 <div style={{position: 'relative', paddingBottom: '64.90384615384616%', height: 0}}>
     <iframe src="https://www.loom.com/embed/5dbaf37d9308404393417043551aed55"
@@ -76,4 +77,33 @@ If you are using [Snowflake Network policy](https://docs.snowflake.com/en/user-g
 35.204.164.122
 35.204.177.251
 ```
-        
+
+### Mirror Sync Readiness
+
+<Callout type="info">
+  Mirror syncing is in early access and not available on all projects. Request access
+  <a href="https://forms.gle/x8mbU6FVe5uHiVXF6">here</a>.
+</Callout>
+
+Mirror syncs use [Snowflake streams](https://docs.snowflake.com/en/user-guide/streams-intro) to track all changes (inserts, updates, and deletes) to source tables. [`CHANGE_TRACKING`](https://docs.snowflake.com/en/sql-reference/sql/alter-table) must be enabled on a Snowflake table in order for a Mirror sync to be created from it.
+```jsx
+ALTER TABLE <database>.<schema>.<table> SET CHANGE_TRACKING = TRUE;
+```
+
+When using Mirror syncs Mixpanel creates and manages Snowflake streams in the source warehouse and needs the `CREATE STREAM` permission on a Snowflake schema to store these streams. We recommend creating a new empty schema solely for Mixpanel. For example:
+```jsx
+CREATE DATABASE IF NOT EXISTS MIXPANEL_STREAM_DATABASE;
+CREATE SCHEMA IF NOT EXISTS MIXPANEL_STREAM_DATABASE.MIXPANEL_STREAM_SCHEMA;
+
+-- Grant your Mixpanel role access to create streams in the schema
+GRANT USAGE ON DATABASE MIXPANEL_STREAM_DATABASE TO ROLE MIXPANEL_IMPORT_ROLE;
+GRANT USAGE ON SCHEMA MIXPANEL_STREAM_DATABASE.MIXPANEL_STREAM_SCHEMA TO ROLE MIXPANEL_IMPORT_ROLE;
+GRANT CREATE STREAM ON SCHEMA MIXPANEL_STREAM_DATABASE.MIXPANEL_STREAM_SCHEMA TO ROLE MIXPANEL_IMPORT_ROLE;
+```
+
+To create a new Mirror-ready Snowflake source follow the steps above and fill out the additional two fields "Stream Database" and "Stream Schema" in step 4.
+
+To update an existing source to be Mirror-ready:
+1. Navigate to **Project Settings**, then select **Warehouse Sources**.
+2. Find the source to update. The source's card should include a note **Mirror: Additional Setup Required**. Click "Additional Setup Required" to be taken to the source configuration page.
+3. Fill in the two fields "Stream Database" and "Stream Schema". Press Save.
