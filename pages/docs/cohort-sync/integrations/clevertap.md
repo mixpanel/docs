@@ -24,7 +24,9 @@ To enable the integration with CleverTap:
 
 3. Specify a **Connector Name** and enter the CleverTap **Project ID**, **Passcode**, and **Datacenter** details to authorize the connection.
 
-4. The CleverTap integration will show a **Connected** tag in the UI once the connection establishes.
+4. You can optionally select the user properties to export by clicking on the ***Edit Columns*** and selecting the user properties you wish to be included in the export. The default user properties that are exported can be found [here](/docs/cohort-sync/overview#limits).
+   
+5. The CleverTap integration will show a **Connected** tag in the UI once the connection establishes.
 
 ## Matching Users between CleverTap and Mixpanel
 Mixpanel only exports identified user profiles to match to CleverTap - users without user profile properties (i.e. anonymous users) will not be exported.
