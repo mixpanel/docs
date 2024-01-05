@@ -14,7 +14,7 @@ A report is the basic unit of performing an analysis in Mixpanel. A report can b
 
 ### Metrics
 
-A metric is a some sort of **measuremnt** on a **behavior**. An example of a metric is "Unique Users" doing "Sign up", which is the measurement of unique users, on the behavior of "Sign up".
+A metric is a some sort of **measurement** on a **behavior**. An example of a metric is "Unique Users" doing "Sign up", which is the measurement of unique users, on the behavior of "Sign up".
 
 ### Behaviors
 
