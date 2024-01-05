@@ -169,8 +169,6 @@ Each User Profile can contain up to 2000 properties each. User property names ca
 
 Attempts to add more than 2000 user properties for a user profile will fail. You can remove user profile properties using the [$unset](https://developer.mixpanel.com/reference/profile-delete-property) engage operation if you find yourself close to the 2000 per profile limit.
 
-Property names can be at most 255 characters in length (longer strings are truncated).
-
 ### How can I send User Profiles if I use Segment?
 Mixpanel is 100% compatible with Segment; just follow Segment's best practices. If you call the [`analytics.identify()`](https://segment.com/docs/connections/spec/identify/) method, Segment will create a User Profile in Mixpanel. You can learn more about our integration in Segment's [docs](https://segment.com/docs/connections/destinations/catalog/actions-mixpanel/#identify-user).
 
