@@ -61,7 +61,7 @@ Time-based syncs are suitable for append-only tables with an "insert timestamp" 
 Mirror syncs track all changes to event data in the data warehouse (inserts, updates, and deletes) and mirrors them to Mixpanel.
 
 Warehouse sources need extra configuration to be Mirror-ready. See warehouse source documentation for supported warehouses for more details:
-- [Snowflake](/docs/tracking-methods/data-warehouse/snowflake)
+- [Snowflake](/docs/tracking-methods/data-warehouse/snowflake#mirror-sync-readiness)
 
 **Note:** For billing purposes updates and deletes performed by Mirror syncs are tracked separately from events ingested.
 During early access there is no charge for updates or deletes performed by mirror mode, however high volumes of updates
