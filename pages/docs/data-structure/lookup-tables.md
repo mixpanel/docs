@@ -52,6 +52,8 @@ If you sell products online, can load your product catalog into Mixpanel as a Lo
 ### B2B
 If you have a B2B product, you likely have some key entities that are specific to your product. For example, Github has repositories, Figma has design components, Slack has channels. If they track repository_id, component_id, or channel_id as properties on their events, they can use Lookup Tables to enrich those events with information about those repositories, components, and channels.
 
+Do refer to the FAQ section on [When shouldn't I use Lookup Tables?](/docs/data-structure/lookup-tables#when-shouldnt-i-use-lookup-tables)
+
 ## How do I upload a Lookup Table?
 Lookup Tables are accessible via Lexicon. Go to Lexicon > Import > Lookup Table, and upload a CSV in the format of the example above, and map it to an event property which is the ID that the Lookup Table should join with. Mixpanel will assume the first column of the CSV is the ID and will join it with that ID.
 
@@ -67,10 +69,13 @@ Lookup Tables can be replaced with a fresh copy, either via our UI or via our AP
 ### How should my Lookup Table CSV be formatted?
 The CSV must be valid according to RFC4180. See our [API reference](https://developer.mixpanel.com/reference/replace-lookup-table) for more specific details about how we parse CSVs.
 
-### When _shouldn't_ I use Lookup Tables?
-Lookup Tables have a limit of 100MB CSV or roughly 1M rows. We don't recommend using Lookup Tables for anything very high cardinality.
+### When _shouldn't_  I use Lookup Tables?
+Lookup Tables have a limit of 100MB CSV or roughly 1M rows. We don't recommend using Lookup Tables for anything with very high cardinality IDs. For event properties with high cardinal IDs, we recommend that you track the metadata as event properties.
+
 * Don't use Lookup Tables when the ID is a User ID. Instead use [User Profiles](/docs/data-structure/user-profiles). Mixpanel is more optimized for User Profiles, so they don't have any scale limits and support more opinionated workflows in our product (like clicking into a report and seeing the list of User Profiles).
 * Don't use Lookup Tables as a way to mutate events. For example, it might be tempting to have an Orders lookup table, with 1 row per Order that a customer makes. Then, you can update the Orders table whenever an order is mutated (eg: when you issue a refund). This approach will quickly run into the 100MB scale limit and will make it difficult to do the analysis you need. Instead, we recommend modeling state changes as events, which doesn't have scale limits and preserves the history of state changes. Track an `Order Completed` event and an `Order Refunded` or `Order Modified` event. You can then use our funnels report to answer questions like: "what % of orders were refunded?"
+
+A good use case for Lookup Tables are for mapping metadata that changes over time, since lookup tables can be replaced via the Mixpanel UI or programatically via [API](https://developer.mixpanel.com/reference/replace-lookup-table) and changes are retroactive. A currency exchange rate table mapped to `Order Currency` property which can be used to convert `Order Amount`; or a region territory grouping table mapped to `Country` are good examples.
 
 ### Who has access? 
 
@@ -89,6 +94,3 @@ Yes. One Mixpanel property can only map to ONE lookup table.
 ### Can multiple properties map to the same lookup table?
 
 Yes. For example, first_trip_city_id and last_trip_city_id can both map to the City lookup table, but one Mixpanel property cannot map to multiple lookup tables (if first_trip_city_id is mapped to "City" lookup table, it can't also map to "Region" lookup table, before unmapping from the "City" lookup table.)
-
-
-
