@@ -207,3 +207,4 @@ Mixpanel supports five [data types](https://help.mixpanel.com/hc/en-us/articles/
 
 - A list of values as a JSON array e.g Favourite Genres = ["Folk","Alternative"] or Favourite Numbers = [1,5,10.0]
 - Limits of a List property: Event Property = 8KB, User Profile Property = 256KB, Each item in the list: 255 bytes
+- Mixpanel lists are not ordered (i.e. position of values in a list are not significant in Mixpanel reports) and are useful for grouping or analysing similar values across events. Read more details on [List Property Support](/docs/features/advanced#list-property-support) in reports.
