@@ -1,9 +1,9 @@
 {
-	"Onboarding": {
+	"onboarding": {
 		"type": "separator",
 		"title": "ONBOARDING"
 	},
-	"tutorials": "Onboarding Tutorial",
+	"onboarding-overview": "Onboarding Overview",
 	"support": {
 		"type": "separator",
 		"title": "SUPPORT"
