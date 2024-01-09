@@ -18,7 +18,7 @@ Notifications are sent once per day. If multiple events are implemented in a pro
 
 Only Project Admins or Owners can enable this setting, and it's only available on Enterprise plans. 
 
-<img width="1254" alt="event-approval-settings" src="https://github.com/mixpanel/docs/assets/35301701/dee55ca1-d4f1-4e8d-9ee6-2606eae10f13">
+![event-approval-settings](/event-approval-settings.png)
 
 
 ### Lexicon Workflow
