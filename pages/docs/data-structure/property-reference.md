@@ -35,6 +35,8 @@ Mixpanel's client SDKs automatically collect certain properties on every event. 
 | $initial_referrer | Initial Referrer | Referring URL when the user first arrived on your site. Defaults to "$direct" if the user is not referred. |
 | $initial_referring_domain | Initial Referring Domain | Referring domain at first arrival. Defaults to "$direct" if the user is not referred. |
 | $os | Operating System | OS of the event sender. |
+| $lib_version | Lib Version | Mixpanel library version. |
+| mp_sent_by_lib_version | | Mixpanel library version that sent a queued event (for troubleshooting purpose) |
 | mp_lib | Mixpanel Library | The Mixpanel library that sent the event. |
 | $referrer | Referrer | Referring URL including your own domain. Might not be present if `document.referrer` does not return a value. As opposed to `$initial_referrer` and `$initial_referring_domain`, this property will be omitted if the user lands directly or the referring website adds the rel="noreferrer" parameter. |
 | $referring_domain | Referring Domain | Referring domain including your own domain. Might not be present if `document.referrer` does not return a value. As opposed to `$initial_referrer` and `$initial_referring_domain`, this property will be omitted if the user lands directly or the referring website adds the rel="noreferrer" parameter. |
