@@ -234,19 +234,19 @@ Update your tech stack with the new project’s token and service accounts crede
 - You should not call `.alias`, as this method will not trigger ID Merge in Simplified ID project. It is only provided as a backward-compatible solution for users who are on Legacy/Original ID Merge.
 2. For Mixpanel API integration:
     - If you are sending data from server via Mixpanel Import API, update the API token to point to the new project.
-    - You should not send `$identify`, `$merge`, and `$create_alias` events as part of ID management since they will be ignored in Simplified projects and will not trigger ID Merge.
-    - Update your Import API payload to include  `$device_id` and `$user_id` properties in the events. A single instance of such event is adequate to trigger ID Merge. You can learn more about Simplified ID implementation [here](https://www.notion.so/Migration-to-Simplified-ID-Merge-386d204f640b476b905e7f248e2c70c4?pvs=21).
-        - If your current implementation doesn’t allow including both `$device_id` and `$user_id` in a single user event, you can still trigger ID Merge by sending a dummy event that includes both `$device_id` and `$user_id` .
-        - Choose any name for the dummy event (e.g. login) except for `$identify`, `$merge`, and `$create_alias`.
+    - You should not send \$identify, \$merge, and \$create_alias events as part of ID management since they will be ignored in Simplified projects and will not trigger ID Merge.
+    - Update your Import API payload to include  `$device_id` and `$user_id` properties in the events. A single instance of such event is adequate to trigger ID Merge. You can learn more about Simplified ID's requirements [here](#understanding-simplified-id-merge).
+        - If it's not feasible to include both `$device_id` and `$user_id` in a single user event, you can still trigger ID Merge by sending a dummy event that includes both `$device_id` and `$user_id`.
+        - Choose any name for the dummy event (e.g. login) except for \$identify, \$merge, and \$create_alias.
 4. For CDP integration:
     - Ensure that your CDP is updated with new Mixpanel project token.
     - Check out the CDP support for Simplified ID Merge [here](https://docs.mixpanel.com/docs/tracking-methods/identifying-users#third-party-integration-support).
 5. For other 3rd-party integrations: 
-    - If you are sending a subset of events through 3rd-party platforms i.e. attribution and messaging tools, make sure to update the Mixpanel project token there and [ensure that the platforms send events in compliance with Simplified ID to Mixpanel](https://www.notion.so/Migration-to-Simplified-ID-Merge-386d204f640b476b905e7f248e2c70c4?pvs=21).
+    - If you are sending a subset of events through 3rd-party platforms i.e. attribution and messaging tools, make sure to update the Mixpanel project token there and [ensure that the platforms send events that are compatible with Simplified ID to Mixpanel](#understanding-simplified-id-merge).
 6. For data warehouse integration: 
     - Consider using our [Mixpanel Warehouse Connector](https://docs.mixpanel.com/docs/tracking-methods/data-warehouse/overview) which supports Simplified ID implementation. Make sure that events in data warehouse contains the reserved properties (`$device_id` and `$user_id`) as shown in the example above before setting up the connector in Mixpanel.
 
-For mobile apps, the adoption of latest app version may take some time. This means that users who have upgraded to the latest app version will start sending data to the new project, whereas users on the older apps continue sending data to the old project. To capture the full data, consider migrating the residual data in the old project to the new one, and repeat the process until latest app adoption reaches a satisfactory level. You can find additional information about backfilling and key considerations in [this section](https://www.notion.so/Migration-to-Simplified-ID-Merge-386d204f640b476b905e7f248e2c70c4?pvs=21).
+For mobile apps, the adoption of latest app version may take some time. This means that users who have upgraded to the latest app version will start sending data to the new project, whereas users on the older apps continue sending data to the old project. To capture the full data, consider migrating the residual data in the old project to the new one, and repeat the process until latest app adoption reaches a satisfactory level. You can find additional information about backfilling and key considerations in [this section](#backfilling-historical-data).
 
 #### Backfilling Historical Data
 > This is an optional step. If your original project did not have that much data and you don’t mind starting from scratch, you can skip backfilling.
