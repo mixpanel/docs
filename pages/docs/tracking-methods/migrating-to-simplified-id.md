@@ -5,7 +5,7 @@ In March 2020, we released Original ID Merge which supports retroactive ID Merge
 
 In March 2023, we released the current Simplified ID Merge. It requires a simpler implementation and doesn’t have the limitation of 500 IDs per ID cluster found in the Original ID Merge. 
 
-To determine your current ID Management version, navigate to `Organisation/Project Settings > Identity Merge`. Organisation Settings indicate the default version for every new project (Legacy ID Management is marked as "Disabled"). You can toggle the ID Management version for a specific project via Project Settings if no data has been ingested into that project yet.
+To determine your current ID Management version, navigate to `Organisation/Project Settings > Identity Merge`. `Organisation Settings` indicate the default version for every new project (Legacy ID Management is marked as "Disabled"). You can toggle the ID Management version for a specific project via `Project Settings` if no data has been ingested into that project yet.
 
 # Deciding When Migrating Makes Sense
 It is not possible to convert an existing project using Legacy/Original ID Merge to Simplified ID Merge. **To adopt Simplified ID, you need to set up a new project from scratch**. This guide aims to help you in evaluating whether the migration will benefit your project based on your current ID management requirements and future plans. It outlines the pros and cons of each ID Management system and guides you through key considerations to make an informed decision. It also provides details on the tasks and resources required on your end should you decide to proceed with the migration. 
@@ -46,8 +46,7 @@ Unlike Legacy ID Management, which requires an explicit alias call to connect mu
         "$device_id": "anonymous111", 		
       }
     }
-    ```
-    
+    ```    
 2. As soon as the users are identified, the events should include both `$device_id` and `$user_id` properties. A single instance of such event is adequate to trigger ID Merge which merges “anonymous111” and “charlie”, but sending more instances of such events won't result in any ID Merge errors. Make sure that all authenticated events thereafter include at least the `$user_id` property.     
     ```
     {
@@ -58,8 +57,7 @@ Unlike Legacy ID Management, which requires an explicit alias call to connect mu
         "$user_id": "charlie"
       }
     }
-    ```
-    
+    ```    
 3. Upon user logout, re-generate a new anonymous ID. This allows for storing the events under a new anonymous ID, and later merge them with the next user who logs in, whether it's the same user, or different users sharing the same device. Unlike Original ID, Simplified ID Merge does not have limit on the number of identifiers allowed in an ID cluster.    
     ```
     //after user logout 
@@ -70,10 +68,8 @@ Unlike Legacy ID Management, which requires an explicit alias call to connect mu
     	"$device_id": "anonymous222"		
       }
     }
-    ```
-    
-4. Upon user (re)identification, send events containing both the `$device_id` and `$user_id` properties to trigger ID Merge.
-    
+    ```    
+4. Upon user (re)identification, send events containing both the `$device_id` and `$user_id` properties to trigger ID Merge.    
     ```
     //same user 
     {
@@ -95,7 +91,6 @@ Unlike Legacy ID Management, which requires an explicit alias call to connect mu
       }
     }
     ```    
-
 Simplified ID Merge can retroactively merge an unlimited number of anonymous IDs (`$device_id`) to a user (`$user_id`). This ensures that anonymous events across multiple platforms and sessions can always be merged to the respective user. The sample implementation above results in a group of IDs being linked to Charlie on Mixpanel as shown below,
 ![image](/Tracking/charlie_id_cluster.png)
 
@@ -168,63 +163,57 @@ Take note of the following details when planning for the migration from Legacy/O
         }
         ```        
         Results of Simplified ID Merge:
-3. If you are sending events via third-party integrations, ensure that they are compatible with Simplified ID Merge by including reserved properties, `$device_id` and `$user_id` on the events. In terms of backward compatibility, Simplified ID still supports events with only the `distinct_id` property.  
-    - In the cases when events only contain the `distinct_id` property, the value of distinct_id will be included as `$user_id` in the event; if distinct_id is prefixed with `$device:`, it will be added as `$device_id` to the event. Ensure that the distinct_id of anonymous events are prefixed with `$device:`. 
-    (Note that `distinct_id` will be overridden if either `$device_id` or `$user_id` exists on the event.)
-        
-        Example 1: 
-        
-        ```json
+        ![image](/Tracking/charlie_two_user_ids.png)
+2. If you are sending events via third-party integrations, ensure that they are compatible with Simplified ID Merge by including reserved properties, `$device_id` and `$user_id` on the events. In terms of backward compatibility, Simplified ID still supports events with only the `distinct_id` property.  
+    - In the cases when events only contain the `distinct_id` property, the value of distinct_id will be included as `$user_id` in the event; if distinct_id is prefixed with `$device:`, it will be added as `$device_id` to the event. Ensure that the distinct_id of anonymous events are prefixed with `$device:`.         
+        Example 1:         
+        ```
         //Triggered event 
         {
             "event": "Message Sent",
             "properties": {
                 "token": "{{token}}",
-                **"distinct_id": "charlie"**
+                "distinct_id": "charlie"
             }
         }
         
         ```
-        
-        Example 2: 
-        
-        ```json
-        //Triggered event 
-        {
-            "event": "App Install",
-            "properties": {
-                "token": "{{token}}",
-                **"distinct_id": "$device:anoymous111"**
-            }
-        }
-        
         ```
-        
-        ```json
-        //on Mixpanel 
+        //$user_id is set by Mixpanel 
         {
             "event": "Message Sent",
             "properties": {
                 "token": "{{token}}",
                 "distinct_id": "charlie", 
-        				**"$user_id": "charlie"**
+        		"$user_id": "charlie"
             }
         }
         ```
-        
-        ```json
-        //on Mixpanel 
+        Example 2:         
+        ```
+        //Triggered event 
+        {
+            "event": "App Install",
+            "properties": {
+                "token": "{{token}}",
+                "distinct_id": "$device:anoymous111"
+            }
+        }        
+        ```        
+        ```
+        //$device_id is set by Mixpanel 
         {
             "event": "App Install",
             "properties": {
                 "token": "{{token}}",
                 "distinct_id": "$device:anoymous111",
-                **"$device_id": "anonymous111"**
+                "$device_id": "anonymous111"
             }
         }
-        ```
-        
+        ```  
 
-1. If you are implementing Mixpanel in your mobile apps, you’ll need to ship a new version of the mobile app with the updated ID management implementation and new project’s token as part of the migration process. Without a force update, it may take awhile for all users to upgrade to the latest app version. During this period, some events may still be sent to the old project. Be prepared for data backfilling if you want these events, as well as the historical data to be included in the new project.
-2. With the introduction of the retroactive ID Merge feature in Original and Simplified ID Merge, it may take up to 24 hours for the ID Merge (merging 2 unique users into 1 unique user) to be fully reflected in all Mixpanel reports.
+3. If you are implementing Mixpanel in your mobile apps, you’ll need to ship a new version of the mobile app with the updated ID management implementation and new project’s token as part of the migration process. Without a force update, it may take awhile for all users to upgrade to the latest app version. During this period, some events may still be sent to the old project. Be prepared for data backfilling if you want these events, as well as the historical data to be included in the new project.
+4. With the introduction of the retroactive ID Merge feature in Original and Simplified ID Merge, it may take up to 24 hours for the ID Merge (merging 2 unique users into 1 unique user) to be fully reflected in all Mixpanel reports.
+
+
    
