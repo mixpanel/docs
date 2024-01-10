@@ -55,7 +55,7 @@ Unlike Legacy ID Management, which requires an explicit alias call to connect mu
       }
     }
     ```    
-3. Upon user logout, re-generate a new anonymous ID. This allows for storing the events under a new anonymous ID, and later merge them with the next user who logs in, whether it's the same user, or different users sharing the same device. Unlike Original ID, Simplified ID Merge does not have limit on the number of identifiers allowed in an ID cluster.    
+3. Upon user logout, re-generate a new anonymous ID. This allows for storing the events under a new anonymous ID, and later merge them with the next user who logs in, whether it's the same user, or different users sharing the same device. Unlike Original ID, Simplified ID Merge does not have a limit on the number of identifiers allowed in an ID cluster.    
     ```
     //after user logout 
     {
