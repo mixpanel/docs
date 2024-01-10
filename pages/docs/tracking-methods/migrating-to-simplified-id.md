@@ -92,7 +92,7 @@ Simplified ID Merge can retroactively merge an unlimited number of anonymous IDs
 - Any ID provided as `$device_id` will be prefixed with `$device:` in Mixpanel.
 - You can merge unlimited number of `$device_id` into `$user_id`
 
-`distinct_id` is optional on event because Mixpanel automatically updates or overrides it whenever `$user_id` or `$device_id` is present on the events. It takes the value of `$user_id` if present; otherwise, it takes `$device_id` and prefixes it with `$device:` 
+`distinct_id` is optional on event because Mixpanel automatically updates or overrides it whenever `$user_id` or `$device_id` is present on the events. It takes the value of `$user_id` if present; otherwise, it takes `$device_id` and prefixes it with `$device:` <br> 
 Example 1: 
 ```
 //Triggered event 
@@ -117,7 +117,6 @@ Example 1:
   }
 }
 ```
-
 Example 2: 
 ```
 //Triggered event 
