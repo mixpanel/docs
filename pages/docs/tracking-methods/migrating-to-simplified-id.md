@@ -7,8 +7,8 @@ To determine your current ID Management version, navigate to Organisation/Projec
 ## Deciding When Migrating Makes Sense
 It is not possible to convert an existing project using Legacy/Original ID Merge to Simplified ID Merge. **To adopt Simplified ID, you need to set up a new project from scratch**. This guide helps you in evaluating whether the migration will benefit your project based on your current ID management requirements and future plans. It outlines the pros and cons of each ID Management version and guides you through key considerations to make an informed decision. It also provides details on the tasks and resources required on your end should you decide to proceed with the migration. 
 
-### Customers on Legacy ID Management
-The main limitation of the Legacy ID Management system was that users could become orphaned. This could happen if they were initially tracked on one platform or device, creating a user on Mixpanel, and later moved on to another platform or device, triggering various anonymous events before logging in. The anonymous events on the second platform would be orphaned, resulting in the creation of a duplicate user on Mixpanel. Only upon the user's login would their events with the user ID be properly linked back to the main user. Here’s the flow chart illustrating how an orphaned user can be created throughout the user journey, 
+### On Legacy ID Management
+The main limitation of Legacy ID Management was that users could become orphaned. This could happen if they were initially tracked on one platform or device, creating a user on Mixpanel, and later moved on to another platform or device, triggering various anonymous events before logging in. The anonymous events on the second platform would be orphaned, resulting in duplicate users on Mixpanel. Only upon the user's login would their events with the user ID be properly linked back to the main user. Here’s the flow chart illustrating how an orphaned user can be created throughout the user journey, 
 ![image](/Tracking/legacy-id-management.png)
 
 The lack of a retroactive ID merge feature in this system means that orphaned users are created whenever new anonymous IDs are introduced during user interactions across multiple sessions, devices, and platforms. This prevents you from getting a holistic view of the user journeys, as events from the same user are split among multiple users on Mixpanel.
@@ -16,7 +16,7 @@ The lack of a retroactive ID merge feature in this system means that orphaned us
 >When it’s ok to keep Legacy ID management: 
 If you are solely tracking authenticated users (you do not track anonymous events and do not need the retroactive ID Merge feature in Simplified ID Merge for users merging), you are not running into any limitation in this system and should not consider the migration. We have preserved the documentation on the Legacy ID Management [here](https://github.com/mixpanel/docs/blob/main/legacy/aliases.md). 
 
-### Customers on Original ID Merge
+### On Original ID Merge
 While retroactive ID Merge is supported in Original ID Merge, the main limitation of this system is that each user can have a ID cluster limited to a maximum of 500 IDs. Upon reaching this limit, any new Distinct ID cannot be merged into the same ID cluster. They become orphaned (duplicate users on Mixpanel), preventing you from getting a holistic view of the user journeys, as events from the same user are split among multiple users on Mixpanel.
 
 Hitting the 500 IDs per ID cluster limit is possible when the process of generating new anonymous IDs through `.reset()` call on logout and adding them to the ID cluster repeats 500 times. The `.reset()` call is commonly implemented in product with multiple users sharing the same device. This ensures that anonymous events upon logout are linked to the next users who login, rather than the last users who logout. Examples where customers may mandate logging their users out:
