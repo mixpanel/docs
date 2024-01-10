@@ -52,7 +52,7 @@ Unlike Legacy ID Management, which requires an explicit alias call to connect mu
       }
     }
     ```    
-3. Upon user logout, re-generate a new anonymous ID. This allows for storing the events under a new anonymous ID, and later merge them with the next user who logs in, whether it's the same user, or different users sharing the same device. Unlike Original ID, Simplified ID Merge does not have a limit on the number of identifiers allowed in an ID cluster.    
+3. Upon user logout, re-generate a new anonymous ID to store the anonymous events, and later merge them with the next user who logs in (could be the same user, or different users sharing the same device). Unlike Original ID, Simplified ID Merge does not have a limit on the number of identifiers allowed in an ID cluster.    
     ```
     //after user logout 
     {
@@ -85,7 +85,7 @@ Unlike Legacy ID Management, which requires an explicit alias call to connect mu
       }
     }
     ```    
-Simplified ID Merge can retroactively merge an unlimited number of anonymous IDs (`$device_id`) to a user (`$user_id`). This ensures that anonymous events across multiple platforms and sessions can always be merged to the respective user. The implementation above results in a group of IDs linked to Charlie on Mixpanel as shown below,
+Simplified ID Merge can retroactively merge an unlimited number of anonymous IDs (`$device_id`) to a user (`$user_id`). This ensures that anonymous events across multiple platforms and sessions can always be merged to the respective user. The implementation above results in the following ID cluster, 
 
 ![image](/Tracking/charlie_id_cluster.png)
 
@@ -93,7 +93,6 @@ Simplified ID Merge can retroactively merge an unlimited number of anonymous IDs
 - You can merge unlimited number of `$device_id` into `$user_id`
 
 `distinct_id` is optional on event because Mixpanel automatically updates or overrides it whenever `$user_id` or `$device_id` is present on the events. It takes the value of `$user_id` if present; otherwise, it takes `$device_id` and prefixes it with `$device:` 
-
 Example 1: 
 ```
 //Triggered event 
