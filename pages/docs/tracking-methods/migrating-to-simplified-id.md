@@ -1,4 +1,4 @@
-# Overview
+## Overview
 Mixpanel has three versions of ID Management versions to date. Prior to March 2020, customers were on Legacy ID Management. 
 
 In March 2020, we released Original ID Merge which supports retroactive ID Merge. This feature allows the merging of events triggered both before and after authentication across multiple devices and platforms.
@@ -7,10 +7,10 @@ In March 2023, we released the current Simplified ID Merge. It requires a simple
 
 To determine your current ID Management version, navigate to `Organisation/Project Settings > Identity Merge`. `Organisation Settings` indicate the default version for every new project (Legacy ID Management is marked as "Disabled"). You can toggle the ID Management version for a specific project via `Project Settings` if no data has been ingested into that project yet.
 
-# Deciding When Migrating Makes Sense
+## Deciding When Migrating Makes Sense
 It is not possible to convert an existing project using Legacy/Original ID Merge to Simplified ID Merge. **To adopt Simplified ID, you need to set up a new project from scratch**. This guide aims to help you in evaluating whether the migration will benefit your project based on your current ID management requirements and future plans. It outlines the pros and cons of each ID Management system and guides you through key considerations to make an informed decision. It also provides details on the tasks and resources required on your end should you decide to proceed with the migration. 
 
-## Customers on Legacy ID Management
+### Customers on Legacy ID Management
 The main limitation of the Legacy ID Management system was that users could become orphaned. This could happen if they were initially tracked on one platform or device, creating a user on Mixpanel, and later moved on to another platform or device, triggering various anonymous events before logging in. The anonymous events on the second platform would be orphaned, resulting in the creation of a duplicate user on Mixpanel. Only upon the user's login would their events with the user ID be properly linked back to the main user. Here’s the flow chart illustrating how an orphaned user can be created throughout the user journey, 
 ![image](/Tracking/legacy-id-management.png)
 
@@ -19,7 +19,7 @@ The lack of a retroactive ID merge feature in this system means that orphaned us
 >When it’s ok to keep Legacy ID management: 
 If you are solely tracking authenticated users (you do not track anonymous events and do not need the retroactive ID Merge feature in Simplified ID Merge for users merging), you are not running into any limitation in this system and should not consider the migration. We have preserved the documentation on the Legacy ID Management [here](https://github.com/mixpanel/docs/blob/main/legacy/aliases.md). 
 
-## Customers on Original ID Merge
+### Customers on Original ID Merge
 While retroactive ID Merge is supported in Original ID Merge, the main limitation of this system is that each user can have a ID cluster limited to a maximum of 500 IDs. Upon reaching this limit, any new Distinct ID cannot be merged into the same ID cluster. They become orphaned (duplicate users on Mixpanel), preventing you from getting a holistic view of the user journeys, as events from the same user are split among multiple users on Mixpanel.
 
 Hitting the 500 IDs per ID cluster limit is possible when the process of generating new anonymous IDs through `.reset()` call on logout and adding them to the ID cluster repeats 500 times. The `.reset()` call is commonly implemented in product with multiple users sharing the same device. This ensures that anonymous events upon logout are linked to the next users who login, rather than the last users who logout. Examples where customers may mandate logging their users out:
@@ -34,7 +34,7 @@ Also, if you are considering Simplified ID Merge, it's important to note that it
 >- If you don’t generally support multiple users sharing the same device, and don’t have a compelling use case requiring `.reset()` call on logout (or if you are implementing via server-side and do not generate new anonymous IDs for the same user), you are unlikely to run into the limit of 500 IDs per ID cluster, and should not consider the migration.  
 >- You have ID management requirements which are not supported in Simplified ID Merge e.g. need the support of multiple identified IDs (User IDs) per user.
 
-# Understanding Simplified ID Merge implementation
+## Understanding Simplified ID Merge implementation
 Unlike Legacy ID Management, which requires an explicit alias call to connect multiple identifiers, or Original ID Merge, which requires special events such as $identify, $merge, and $create_alias to initiate ID Merge, Simplified ID Merge simply requires including reserved properties, `$device_id` and `$user_id` on the events for ID Merge to take place. You can learn more about Simplified ID Merge [here](https://docs.mixpanel.com/docs/tracking-methods/identifying-users). Here’s a quick example to illustrate the difference: 
 
 1. When the users are anonymous, the events should include a `$device_id` property that stores the anonymous ID.     
@@ -147,7 +147,7 @@ Example 2:
 }
 ```
 
-## Gotchas in migrating from Legacy/Original to Simplified ID Merge
+### Gotchas in migrating from Legacy/Original to Simplified ID Merge
 Take note of the following details when planning for the migration from Legacy/Original ID Merge to Simplified ID Merge:  
 
 1. Simplified ID Merge only supports one user ID (`$user_id`) per user to maintain simplicity in the implementation. If you need an ID management solution that supports multiple user IDs per user, such as both a email address and a phone number, it’s recommended to remain on Original ID Merge which provides features such as `$create_alias` and `$merge` to merge multiple user IDs.
@@ -215,10 +215,10 @@ Take note of the following details when planning for the migration from Legacy/O
 3. If you are implementing Mixpanel in your mobile apps, you’ll need to ship a new version of the mobile app with the updated ID management implementation and new project’s token as part of the migration process. Without a force update, it may take awhile for all users to upgrade to the latest app version. During this period, some events may still be sent to the old project. Be prepared for data backfilling if you want these events, as well as the historical data to be included in the new project.
 4. With the introduction of the retroactive ID Merge feature in Original and Simplified ID Merge, it may take up to 24 hours for the ID Merge (merging 2 unique users into 1 unique user) to be fully reflected in all Mixpanel reports.
 
-# Migration to Simplified ID Merge
+## Migration to Simplified ID Merge
 The following guide outlines the steps required to set up the new project from scratch and populate it with data in compliance with Simplified ID. This will help you estimate the time and resources required on your end to complete the migration. 
 
-## Set up a new Simplified ID project 
+### Set up a new Simplified ID project 
 >You need to set up the new Simplified project from scratch as none of the configurations from the existing project can be carried over.
 1. Create a new project in your existing organization via `Organization Settings`. 
 2. Enable Simplified ID Merge in the project via `Project Settings > Identity Merge`. Please note that new project follows the organisation’s default, either Legacy or Original ID Merge. You have to switch the project to Simplified ID Merge *before* sending any data to the project. Make sure to override the default selection in every new project. 
@@ -226,10 +226,10 @@ The following guide outlines the steps required to set up the new project from s
 
 3. Set up the new project by following the guide [here](https://docs.mixpanel.com/docs/best-practices/project-setup). Configure the project settings by referring to the existing project’s settings. Some of the setup tasks include inviting users to the project, adding group keys, creating data views and service accounts, configuring session settings etc. Note that the new project comes with newly generated project tokens, service accounts credentials etc. Update the tokens in your implementations with the new ones to start sending data to this new project.
 
-## Populating data in new Simplified ID project
+### Populating data in new Simplified ID project
 This process typically involves populating both the live data and historical data in the new project. Coming from Legacy or Original ID Merge system, you will find that the implementation for Simplified ID is different but generally simpler and more robust (learn more about Simplified ID Merge [here](https://docs.mixpanel.com/docs/tracking-methods/identifying-users#usage)). It’s important to review and modify your ID Management implementation as needed to receive expected outcome in terms of user merging. 
 
-### Sending live data to new project
+#### Sending live data to new project
 Update your tech stack with the new project’s token and service accounts credentials to redirect data to the new project. 
 
 1. For Mixpanel SDK integration:
@@ -255,7 +255,7 @@ Update your tech stack with the new project’s token and service accounts crede
 
 For mobile apps, the adoption of latest app version may take some time. This means that users who have upgraded to the latest app version will start sending data to the new project, whereas users on the older apps continue sending data to the old project. To capture the full data, consider migrating the residual data in the old project to the new one, and repeat the process until latest app adoption reaches a satisfactory level. You can find additional information about backfilling and key considerations in [this section](https://www.notion.so/Migration-to-Simplified-ID-Merge-386d204f640b476b905e7f248e2c70c4?pvs=21).
 
-### Backfilling historical data to new project
+#### Backfilling historical data to new project
 > This is an optional step. If your original project did not have that much data and you don’t mind starting from scratch, you can skip backfilling.
 
 Before starting the backfilling process, it’s essential to have a discussion internally to determine the volume of data that needs to be migrated. It’s advisable to migrate only what you need i.e. recent data actively queried by the team, as this is more manageable and resource-efficient. 
@@ -273,19 +273,19 @@ Please make sure that the historical data is properly formatted and adheres to S
 
 If your historical data doesn't have any event with both `$device_id` and `$user_id` that are required in Simplified ID for ID Merge, check if you can retrieve these IDs mappings from your system - if so, you can still trigger ID Merge by sending a dummy event that includes both `$device_id` and `$user_id` based on your IDs mappings. You can choose any name for the dummy event except for `$identify`, `$merge`, and `$create_alias`.
 
-#### Migrating from Legacy ID Management
+##### Migrating from Legacy ID Management
 
 If you are implementing via Mixpanel SDK and have been making an alias call to link anonymous ID to user ID, the SDK should have already populated `$device_id` and `$user_id` on your events (please verify this in your Mixpanel project events). These historical events can be directly imported into Simplified ID project as they include reserved properties required for ID Merge to take place in Simplified ID. 
 
 However, in the case of a custom implementation without the reserved properties `$device_id` and `$user_id` on the events (e.g. server implementation), it’s necessary to transform the events before backfilling it to new project. For example, you can derive the reserved properties from other relevant properties on the events. 
 
-#### Migrating from Original ID Merge system
+##### Migrating from Original ID Merge system
 
 If you are implementing via Mixpanel SDK and have been calling identify to merge pre and post-registration events, the SDK should have already populated `$device_id` and `$user_id` on your events (please verify this in your Mixpanel project events). These historical events can be directly imported into Simplified ID project as they include reserved properties required for ID Merge in Simplified ID. 
 
 If you are also calling alias or merge (using special events, `$create_alias` and `$merge`) to merge multiple user IDs per user, it's important to note that this functionality is not supported in Simplified ID. Additional details can be found [here](#understanding-simplified-id-merge-implementation).
 
-### Data migration flow
+#### Data migration flow
 
 Discuss internally to decide the ideal data migration flow with minimal interruption to the analysis activities on Mixpanel. 
 
@@ -293,7 +293,7 @@ Discuss internally to decide the ideal data migration flow with minimal interrup
 2. Prepare for the official transition to the new project as soon as live data is re-directed there. Make sure that your project is well-setup by then. If data delays or incomplete data are expected in the new project, clearly communicate this to your end users as their analysis will be impacted. For example, having a data backfilling plan in place and sharing details such as “X months of data will be available in new project within Y hours”. This proactive approach will help manage expectations with your end users and ensure a seamless transition. Please check the cost implication of having overlapping data across multiple projects. If you have any questions, do not hesitate to contact support@mixpanel.com for assistance.
 3. In cases of a more intricate migration involving a larger data volume coming from different sources, or having bigger impact to your end users, consider conducting data backfilling before updating the live implementation. This approach allows for ample time to configure your new project, replicate reports and non-data entities in the new project against the backfilled data. While this may require multiple backfills, you have the option to deploy the live data implementation when you are ready. 
 
-## Migrating reports and non-data entities
+### Migrating reports and non-data entities
 
 When creating net new projects, you might have a lot of boards, reports, custom events, properties etc that you may want recreated in the new projects as well. Below, we list some suggested ways to do this work:
 
@@ -306,7 +306,7 @@ When creating net new projects, you might have a lot of boards, reports, custom 
 4. Boards & Reports
     - Native Move Feature : Since December 2023, Mixpanel offers a native "Move" feature allowing you to directly [transfer boards between projects](https://docs.mixpanel.com/changelogs/2023-07-27-move). This option preserves everything within the board, including reports, filters, and text annotations.
 
-# Validating Data and Boards
+## Validating Data and Boards
 - Distinct ID Matching Verify that Simplified ID Merge correctly identifies and merges users across devices and sessions based on $user_id and $device_id. Compare historical data with expected outcomes under Simplified ID Merge logic.
 - Missing Data: Check for instances where $user_id and $device_id are missing or incorrectly mapped during the merge process.
 
