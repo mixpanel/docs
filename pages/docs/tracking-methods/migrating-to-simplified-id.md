@@ -159,52 +159,52 @@ Take note of the following details when planning for the migration from Legacy/O
      ![image](/Tracking/charlie_two_user_ids.png)
 
 2. If you are sending events via third-party integrations, ensure that they are compatible with Simplified ID Merge by having reserved properties, `$device_id` and `$user_id` on the events. For backward compatibility, Simplified ID still supports events with only the `distinct_id` property.  
-- If events only contain the `distinct_id` property, the value of distinct_id will be added as `$user_id` to the event; if distinct_id is prefixed with `$device:`, it will be added as `$device_id` to the event (ensure that the distinct_id of anonymous events are prefixed with `$device:`).
-  Example 1:
-  ```
-    //Triggered event 
-    {
-        "event": "Message Sent",
-        "properties": {
-            "token": "{{token}}",
-            "distinct_id": "charlie"
+    - If events only contain the `distinct_id` property, the value of distinct_id will be added as `$user_id` to the event; if distinct_id is prefixed with `$device:`, it will be added as `$device_id` to the event (ensure that the distinct_id of anonymous events are prefixed with `$device:`).
+      Example 1:
+      ```
+        //Triggered event 
+        {
+            "event": "Message Sent",
+            "properties": {
+                "token": "{{token}}",
+                "distinct_id": "charlie"
+            }
         }
-    }
-    
-    ```
-    ```
-    //$user_id is set by Mixpanel 
-    {
-        "event": "Message Sent",
-        "properties": {
-            "token": "{{token}}",
-            "distinct_id": "charlie", 
-            "$user_id": "charlie"
+        
+        ```
+        ```
+        //$user_id is set by Mixpanel 
+        {
+            "event": "Message Sent",
+            "properties": {
+                "token": "{{token}}",
+                "distinct_id": "charlie", 
+                "$user_id": "charlie"
+            }
         }
-    }
-    ```
-    Example 2:         
-    ```
-    //Triggered event 
-    {
-        "event": "App Install",
-        "properties": {
-            "token": "{{token}}",
-            "distinct_id": "$device:anoymous111"
+        ```
+        Example 2:         
+        ```
+        //Triggered event 
+        {
+            "event": "App Install",
+            "properties": {
+                "token": "{{token}}",
+                "distinct_id": "$device:anoymous111"
+            }
+        }        
+        ```        
+        ```
+        //$device_id is set by Mixpanel 
+        {
+            "event": "App Install",
+            "properties": {
+                "token": "{{token}}",
+                "distinct_id": "$device:anoymous111",
+                "$device_id": "anonymous111"
+            }
         }
-    }        
-    ```        
-    ```
-    //$device_id is set by Mixpanel 
-    {
-        "event": "App Install",
-        "properties": {
-            "token": "{{token}}",
-            "distinct_id": "$device:anoymous111",
-            "$device_id": "anonymous111"
-        }
-    }
-    ```  
+        ```  
 4. If you are implementing Mixpanel in your mobile apps, you’ll need to ship a new version of the app with the updated ID management implementation and new project’s token as part of the migration process. Without a force update, it may take awhile for all users to upgrade to the latest app version. During this period, some events may still be sent to the old project. Be prepared for data backfilling if you want these events, as well as the historical data to be included in the new project.
 5. With the introduction of the retroactive ID Merge feature in Original and Simplified ID Merge, it may take up to 24 hours for the ID Merge (merging 2 unique users into 1 unique user) to be fully reflected in all Mixpanel reports.
 
