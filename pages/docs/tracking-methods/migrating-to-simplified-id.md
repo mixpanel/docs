@@ -145,17 +145,17 @@ Example 2:
 Take note of the following details when planning for the migration from Legacy/Original ID Merge to Simplified ID Merge:  
 
 1. Simplified ID Merge only supports one user ID (`$user_id`) per user to maintain simplicity in the implementation. If you need an ID management solution that supports multiple user IDs per user, such as both a email address and a phone number, it’s recommended to remain on Original ID Merge which provides features such as \$create_alias and \$merge to merge multiple user IDs.
-- For example, here’s an unsuccessful attempt to merge `+6512345678` (additional user ID) with `charlie` on Simplified ID Merge:
-  ```
-    {
-      "event": "Add phone number as user ID",
-      "properties": {
-        "token": "{{token}}",
-        "$device_id": "+6512345678", 
-        "$user_id": "charlie"
-      }
-    }
-  ```
+    - For example, here’s an unsuccessful attempt to merge `+6512345678` (additional user ID) with `charlie` on Simplified ID Merge:
+      ```
+        {
+          "event": "Add phone number as user ID",
+          "properties": {
+            "token": "{{token}}",
+            "$device_id": "+6512345678", 
+            "$user_id": "charlie"
+          }
+        }
+      ```
  Results of Simplified ID Merge
  
  ![image](/Tracking/charlie_two_user_ids.png)
