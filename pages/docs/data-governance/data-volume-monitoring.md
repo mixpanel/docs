@@ -8,7 +8,7 @@ Data Volume Monitoring is a Data Governance feature for organizations that want 
 
 ### Enabling Data Volume Monitoring
 
-To enable Data Volume Monitoring, navigate to the Project Settings page, scroll down to the Data Governance section under Overview and click the Data Volume Monitoring toggle.
+To enable Data Volume Monitoring, navigate to the Project Settings page, select at the left-hand menu Data Governance, and click the Data Volume Monitoring toggle.
 
 When enabling this setting, input email addresses or aliases to be notified when a new event is ingested. This will be gated to project admin and owner email addresses. Admins can also set up a Slack channel to be notified when a new event is ingested.
 
@@ -16,3 +16,5 @@ Notifications are sent once per day. If multiple spikes or drops are found for a
 
 Only Project Admins or Owners can enable this setting, and it's only available on Enterprise plans. 
 
+
+![data-volume-monitoring-settings](/data-governance/data-volume-monitoring-settings.png)
