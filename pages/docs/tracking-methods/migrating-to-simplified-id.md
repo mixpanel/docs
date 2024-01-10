@@ -255,4 +255,86 @@ Update your tech stack with the new project’s token and service accounts crede
 
 For mobile apps, the adoption of latest app version may take some time. This means that users who have upgraded to the latest app version will start sending data to the new project, whereas users on the older apps continue sending data to the old project. To capture the full data, consider migrating the residual data in the old project to the new one, and repeat the process until latest app adoption reaches a satisfactory level. You can find additional information about backfilling and key considerations in [this section](https://www.notion.so/Migration-to-Simplified-ID-Merge-386d204f640b476b905e7f248e2c70c4?pvs=21).
 
+### **Backfilling historical data to new project**
 
+<aside>
+⚠️ This is an optional step. If your original project did not have that much data and you don’t mind starting from scratch, you can skip backfilling.
+
+</aside>
+
+Before starting the backfilling process, it’s essential to have a discussion internally to determine the volume of data that needs to be migrated. It’s advisable to migrate only what you need i.e. recent data actively queried by the team, as this is more manageable and resource-efficient. 
+
+Mixpanel accepts data up to 5 days old, so it is advisable to initiate the backfill process only after the data for a given day has stabilized to avoid the need for multiple backfills. If waiting is not feasible, consider using `mp_processing_time_ms` property (UTC timestamp of when the event was processed by our servers) to identify late-arriving events and selectively backfill them into the new project. To prevent data duplication caused by backfilling, ensure that each imported event includes a `$insert_id` which provides a unique identifier for the event and is used for deduplication. [Events with identical values for event, time, distinct_id and $insert_id are considered duplicates](https://developer.mixpanel.com/reference/import-events#propertiesinsert_id) and only one of them will be surfaced in Mixpanel queries. 
+
+There are different ways to backfill historical data into the new project, depending on where your data resides: 
+
+1. Mixpanel APIs - If Mixpanel is your single source of truth, export data from existing project via [Raw Export API](https://developer.mixpanel.com/reference/raw-event-export) and then import it into the new project via [Import API](https://developer.mixpanel.com/reference/import-events). Ensure that the data is in compliance with Simplified ID before importing it to Mixpanel. 
+    - You can use Engage API to migrate user data (APIs for both [user export](https://developer.mixpanel.com/reference/engage-query) and [user import](https://developer.mixpanel.com/reference/profile-set) are available).
+    - Consider incorporating the export and import functions from [Mixpanel-utils open source library](https://github.com/mixpanel/mixpanel-utils) in your migration script.
+2. Mixpanel Warehouse Connector - If you’ve been storing your data in a data warehouse, you can import them into Mixpanel via [Warehouse Connector](https://docs.mixpanel.com/docs/tracking-methods/data-warehouse/overview) which supports both events and user data. 
+3. Customer Data Platform (CDP) - Replay the historical data from CDP to Mixpanel.  
+
+Please make sure that the historical data is properly formatted and adheres to Simplified ID Merge’s requirements before backfilling it to a new project via any of the methods mentioned above. Familiarize yourself with the Simplified ID implementation [here](https://www.notion.so/Migration-to-Simplified-ID-Merge-386d204f640b476b905e7f248e2c70c4?pvs=21) to plan out the required data transformation tasks for your historical data. 
+
+If your historical data doesn't have any event with both `$device_id` and `$user_id` that are required in Simplified ID for ID Merge, check if you can retrieve these IDs mappings from your system - if so, you can still trigger ID Merge by sending a dummy event that includes both `$device_id` and `$user_id` based on your IDs mappings. You can choose any name for the dummy event except for `$identify`, `$merge`, and `$create_alias`.
+
+**Migrating from Legacy ID Management** 
+
+If you are implementing via Mixpanel SDK and have been making an alias call to link anonymous ID to user ID, the SDK should have already populated `$device_id` and `$user_id` on your events (please verify this in your Mixpanel project events). These historical events can be directly imported into Simplified ID project as they include reserved properties required for ID Merge to take place in Simplified ID. 
+
+(Internal) Testing: 
+
+1. Importing profile from [legacy](https://mixpanel.com/project/2152647/view/136463/app/profile#distinct_id=18cb48272b6cf9-0e3b76506a605a-1f525637-1fa400-18cb48272b714b4) (using JS SDK < v2.46.0) to [simplified](https://mixpanel.com/project/2998687/view/3517467/app/profile#distinct_id=version%202.40) 
+2. Importing profile from [legacy](https://mixpanel.com/project/2152647/view/136463/app/profile#distinct_id=%24device%3A18cb47d1578890e9-032f4ecf36593d-1f525637-1fa400-18cb47d1578890e9) (using JS SDK ≥ v2.46.0) to [simplified](https://mixpanel.com/project/2998687/view/3517467/app/profile#distinct_id=legacy1) 
+
+However, in the case of a custom implementation without the reserved properties `$device_id` and `$user_id` on the events (e.g. server implementation), it’s necessary to transform the events before backfilling it to new project. For example, you can derive the reserved properties from other relevant properties on the events. 
+
+(Internal) Testing: 
+1. Importing profile from [legacy](https://mixpanel.com/project/2152647/view/136463/app/profile#distinct_id=server1_anon) (server implementation) to [simplified](https://mixpanel.com/project/2998687/view/3517467/app/profile#distinct_id=server1_taylor). 
+
+**Migrating from Original ID Merge system** 
+
+If you are implementing via Mixpanel SDK and have been calling identify to merge pre and post-registration events, the SDK should have already populated `$device_id` and `$user_id` on your events (please verify this in your Mixpanel project events). These historical events can be directly imported into Simplified ID project as they include reserved properties required for ID Merge in Simplified ID. 
+
+If you are also calling alias or merge (using special events, `$create_alias` and `$merge`) to merge multiple user IDs per user, it's important to note that this functionality is not supported in Simplified ID. Additional details can be found [here](https://www.notion.so/Migration-to-Simplified-ID-Merge-386d204f640b476b905e7f248e2c70c4?pvs=21).
+
+(Internal) Testing: 
+
+1. Importing profile from [original](https://mixpanel.com/project/2172376/view/136467/app/profile#distinct_id=18cb4b011e9ffa-0de64a12f761aa-1f525637-1fa400-18cb4b011ea119a) to [simplified](https://mixpanel.com/project/2998687/view/3517467/app/profile#distinct_id=ycv.20) 
+
+### Data migration flow
+
+Discuss internally to decide the ideal data migration flow with minimal interruption to the analysis activities on Mixpanel. 
+
+1. Test both live and historical data migration thoroughly in staging environment before deploying to production. For historical data, you only need a subset of them in the new project for testing and verification.
+2. Prepare for the official transition to the new project as soon as live data is re-directed there. Make sure that your project is well-setup by then. If data delays or incomplete data are expected in the new project, clearly communicate this to your end users as their analysis will be impacted. For example, having a data backfilling plan in place and sharing details such as “X months of data will be available in new project within Y hours”. This proactive approach will help manage expectations with your end users and ensure a seamless transition. Please check the cost implication of having overlapping data across multiple projects. If you have any questions, do not hesitate to contact support@mixpanel.com for assistance.
+3. In cases of a more intricate migration involving a larger data volume coming from different sources, or having bigger impact to your end users, consider conducting data backfilling before updating the live implementation. This approach allows for ample time to configure your new project, replicate reports and non-data entities in the new project against the backfilled data. While this may require multiple backfills, you have the option to deploy the live data implementation when you are ready. 
+
+## Migrating reports and non-data entities
+
+When creating net new projects, you might have a lot of boards, reports, custom events, properties etc that you may want recreated in the new projects as well. Below, we list some suggested ways to do this work:
+
+1. **Cohorts, Custom Events & Custom Properties** 
+    - **Manual Recreation** : This involves manually copying and pasting the logic from the old project into the new project's cohorts, custom events & custom property definitions. For example with custom properties, follow steps to [create a new custom property](https://docs.mixpanel.com/docs/features/custom-properties#:~:text=works%20with%20objects.-,Creating%20a%20Custom%20Property,-Click%20Create%20Custom) and copy over the definition from the old project instead of starting from scratch. 
+    
+    While straightforward, this method can be tedious for complex projects. We have reached out to Product to see if they might be able to support bulk migrate in the future, but as of October 6, 2023, this is not in the roadmap. See: https://mixpanel.slack.com/archives/C0W91MX2Q/p1695028396386909?thread_ts=1694747188.345929&cid=C0W91MX2Q ***(Remove this section from external docs)
+    - **[mp-migrate](https://github.com/ak--47/mpMigrate/blob/main/README.md) script** : mp-migrate supports most saved entities in any Mixpanel project including: events, user profiles, schemas (lexicon), custom events, custom properties ***(Remove this section from external docs)
+    
+2. **Lookup Tables**
+    - **Manual Recreation** : If your old project is heavily reliant on Lookup tables for reports, manually [re-upload](https://docs.mixpanel.com/docs/data-structure/lookup-tables#how-do-i-upload-a-lookup-table:~:text=components%2C%20and%20channels.-,How%20do%20I%20upload%20a%20Lookup%20Table%3F,-Lookup%20Tables%20are) the lookup tables to the new project via Lexicon.
+
+1. **Lexicon** 
+    - **Lexicon Schema API or CSV Export/Import** : To migrate the definitions of your events, properties, and custom properties from the old project to the new one. Make sure that the events, properties, and custom properties that you're migrating are still relevant to your new project. You may want to take this opportunity to clean up your schema and remove any unused or deprecated elements.
+
+1. **Boards & Reports** 
+    - **Native Move Feature :** Since December 2023, Mixpanel offers a native "Move" feature allowing you to directly [transfer boards between projects](https://docs.mixpanel.com/changelogs/2023-07-27-move). This option preserves everything within the board, including reports, filters, and text annotations.
+    - **[mp-migrate](https://github.com/ak--47/mpMigrate/blob/main/README.md) script** : Easiest way to bulk copy and migrate boards & reports across projects. Note you will require to authenticate using a service accounts or a bearer token.  ***(Remove this section from external docs)
+
+# Validating Data and Boards
+
+### QA
+
+- **Distinct ID Matching:** Verify that Simplified ID Merge correctly identifies and merges users across devices and sessions based on $user_id and $device_id. Compare historical data with expected outcomes under Simplified ID Merge logic.
+- **Missing Data:** Check for instances where $user_id and $device_id are missing or incorrectly mapped during the merge process.
+
+Link to recommended boards for Simplified ID Merge monitoring - https://mixpanel.com/s/1tTEMJ ***(Remove this section from external docs)
