@@ -165,7 +165,7 @@ Mixpanel stores Events and User Profiles in two separate tables under the hood. 
 User Profiles are mutable; Mixpanel only stores the latest value of each profile property. We have methods to update profile properties via our [HTTP API](https://developer.mixpanel.com/reference/profile-set).
 
 ### What are the limits of User Profile Properties?
-Each User Profile can contain up to 2000 properties. User property names can be at most 255 characters in length (longer strings are truncated).
+Each User Profile can contain up to 2000 properties. User property names can be at most 255 characters in length (longer names are truncated). Each property's data type have their respective limits, refer to these limits under [Supported Data Types](/docs/data-structure/property-reference#supported-data-types).
 
 Attempts to add more than 2000 user properties for a user profile will fail. You can remove user profile properties using the [$unset](https://developer.mixpanel.com/reference/profile-delete-property) engage operation if you find yourself close to the 2000 per profile limit.
 
