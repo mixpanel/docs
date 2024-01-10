@@ -155,9 +155,9 @@ Take note of the following details when planning for the migration from Legacy/O
           }
         }
       ```
- Results of Simplified ID Merge
- 
- ![image](/Tracking/charlie_two_user_ids.png)
+   - Results of Simplified ID Merge:  
+     ![image](/Tracking/charlie_two_user_ids.png)
+
 2. If you are sending events via third-party integrations, ensure that they are compatible with Simplified ID Merge by including reserved properties, `$device_id` and `$user_id` on the events. In terms of backward compatibility, Simplified ID still supports events with only the `distinct_id` property.  
 - In the cases when events only contain the `distinct_id` property, the value of distinct_id will be included as `$user_id` in the event; if distinct_id is prefixed with `$device:`, it will be added as `$device_id` to the event. Ensure that the distinct_id of anonymous events are prefixed with `$device:`.
   Example 1:
