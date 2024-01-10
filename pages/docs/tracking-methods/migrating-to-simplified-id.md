@@ -215,41 +215,40 @@ Take note of the following details when planning for the migration from Legacy/O
 5. With the introduction of the retroactive ID Merge feature in Original and Simplified ID Merge, it may take up to 24 hours for the ID Merge (merging 2 unique users into 1 unique user) to be fully reflected in all Mixpanel reports.
 
 ## Migration to Simplified ID Merge
-The following guide outlines the steps required to set up the new project from scratch and populate it with data in compliance with Simplified ID. This will help you estimate the time and resources required on your end to complete the migration. 
+The following guide outlines the steps required to set up the new project from scratch and populate it with data aligned with Simplified ID. This will help you estimate the time and resources required on your end to complete the migration. 
 
 ### Set Up a New Simplified ID Project 
 >You need to set up the new Simplified project from scratch as none of the configurations from the existing project can be carried over.
-1. Create a new project in your existing organization via `Organization Settings`. 
-2. Enable Simplified ID Merge in the project via `Project Settings > Identity Merge`. Please note that new project follows the organisation’s default, either Legacy or Original ID Merge. You have to switch the project to Simplified ID Merge *before* sending any data to the project. Make sure to override the default selection in every new project. 
+1. Create a new project in your existing organization via Organization Settings. 
+2. Enable Simplified ID Merge in the project via Project Settings > Identity Merge. Please note that new project follows the organisation’s default, either Legacy or Original ID Merge. You have to switch the project to Simplified ID Merge *before* sending any data to the project. Make sure to override the default selection in every newly created project. 
 ![image](/Tracking/simplified_project_settings.png)
-
 3. Set up the new project by following the guide [here](https://docs.mixpanel.com/docs/best-practices/project-setup). Configure the project settings by referring to the existing project’s settings. Some of the setup tasks include inviting users to the project, adding group keys, creating data views and service accounts, configuring session settings etc. Note that the new project comes with newly generated project tokens, service accounts credentials etc. Update the tokens in your implementations with the new ones to start sending data to this new project.
 
 ### Populating data in Simplified ID Project
-This process typically involves populating both the live data and historical data in the new project. Coming from Legacy or Original ID Merge system, you will find that the implementation for Simplified ID is different but generally simpler and more robust (learn more about Simplified ID Merge [here](https://docs.mixpanel.com/docs/tracking-methods/identifying-users#usage)). It’s important to review and modify your ID Management implementation as needed to receive expected outcome in terms of user merging. 
+This process typically involves populating both the live data and historical data in the new project. Coming from Legacy or Original ID Merge system, you will find that the implementation for Simplified ID is different but generally simpler and more robust. It’s important to review and modify your ID Management implementation as needed to receive expected outcome in terms of user merging. 
 
 #### Sending Live Data
 Update your tech stack with the new project’s token and service accounts credentials to redirect data to the new project. 
 
 1. For Mixpanel SDK integration:
-    - Upgrade to the latest SDK version supporting Simplified ID and initialise the SDK with new project’s token:
-        - [Javascript SDK ≥ v2.46.0](https://github.com/mixpanel/mixpanel-js/releases/tag/v2.46.0)
-        - [Swift SDK ≥ v4.0.5](https://github.com/mixpanel/mixpanel-swift/releases/tag/v4.0.5)
-        - [Android SDK ≥ v7.3.0](https://github.com/mixpanel/mixpanel-android/releases/tag/v7.3.0)
-    - Find the implementation guide [here](https://docs.mixpanel.com/docs/tracking-methods/identifying-users#usage). You only need to call `.identify` and `.reset` methods at specific points in the user journeys, as the SDK will automatically add the reserved properties, `$device_id` and `$user_id` to the events accordingly before sending them to Mixpanel.
-    - You should not call `.alias`, as this method will not trigger ID Merge in Simplified ID project and is provided as a backward-compatible solution for users who are on Legacy/Original ID Merge.
-2. For Mixpanel API integration:
+- Upgrade to the latest SDK version supporting Simplified ID and initialise the SDK with new project’s token:
+    - [Javascript SDK ≥ v2.46.0](https://github.com/mixpanel/mixpanel-js/releases/tag/v2.46.0)
+    - [Swift SDK ≥ v4.0.5](https://github.com/mixpanel/mixpanel-swift/releases/tag/v4.0.5)
+    - [Android SDK ≥ v7.3.0](https://github.com/mixpanel/mixpanel-android/releases/tag/v7.3.0)
+- Find the implementation guide [here](https://docs.mixpanel.com/docs/tracking-methods/identifying-users#usage). You only need to call `.identify` and `.reset` methods at specific points in the user journeys, as the SDK will automatically add the reserved properties, `$device_id` and `$user_id` to the events before sending them to Mixpanel.
+- You should not call `.alias`, as this method will not trigger ID Merge in Simplified ID project. It is only provided as a backward-compatible solution for users who are on Legacy/Original ID Merge.
+3. For Mixpanel API integration:
     - If you are sending data from server via Mixpanel Import API, update the API token to point to the new project.
     - You should not send `$identify`, `$merge`, and `$create_alias` events as part of ID management since they will be ignored in Simplified projects and will not trigger ID Merge.
     - Update your Import API payload to include  `$device_id` and `$user_id` properties in the events. A single instance of such event is adequate to trigger ID Merge. You can learn more about Simplified ID implementation [here](https://www.notion.so/Migration-to-Simplified-ID-Merge-386d204f640b476b905e7f248e2c70c4?pvs=21).
         - If your current implementation doesn’t allow including both `$device_id` and `$user_id` in a single user event, you can still trigger ID Merge by sending a dummy event that includes both `$device_id` and `$user_id` .
         - Choose any name for the dummy event (e.g. login) except for `$identify`, `$merge`, and `$create_alias`.
-3. For CDP integration:
+4. For CDP integration:
     - Ensure that your CDP is updated with new Mixpanel project token.
     - Check out the CDP support for Simplified ID Merge [here](https://docs.mixpanel.com/docs/tracking-methods/identifying-users#third-party-integration-support).
-4. For other 3rd-party integrations: 
+5. For other 3rd-party integrations: 
     - If you are sending a subset of events through 3rd-party platforms i.e. attribution and messaging tools, make sure to update the Mixpanel project token there and [ensure that the platforms send events in compliance with Simplified ID to Mixpanel](https://www.notion.so/Migration-to-Simplified-ID-Merge-386d204f640b476b905e7f248e2c70c4?pvs=21).
-5. For data warehouse integration: 
+6. For data warehouse integration: 
     - Consider using our [Mixpanel Warehouse Connector](https://docs.mixpanel.com/docs/tracking-methods/data-warehouse/overview) which supports Simplified ID implementation. Make sure that events in data warehouse contains the reserved properties (`$device_id` and `$user_id`) as shown in the example above before setting up the connector in Mixpanel.
 
 For mobile apps, the adoption of latest app version may take some time. This means that users who have upgraded to the latest app version will start sending data to the new project, whereas users on the older apps continue sending data to the old project. To capture the full data, consider migrating the residual data in the old project to the new one, and repeat the process until latest app adoption reaches a satisfactory level. You can find additional information about backfilling and key considerations in [this section](https://www.notion.so/Migration-to-Simplified-ID-Merge-386d204f640b476b905e7f248e2c70c4?pvs=21).
