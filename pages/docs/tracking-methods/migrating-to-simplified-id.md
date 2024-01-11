@@ -1,8 +1,12 @@
 ## Overview
-Mixpanel has three versions of ID Management versions to date. Prior to March 2020, customers were on Legacy ID Management.<br> 
-In March 2020, we released Original ID Merge which supports retroactive ID Merge. This allows the merging of events triggered both before and after authentication across multiple devices and platforms.<br>
-In March 2023, we released the current Simplified ID Merge. It has a simpler implementation and doesn’t have the limitation of 500 IDs per ID cluster found in the Original ID Merge.<br> 
+Mixpanel has release three versions of ID management to date. Prior to March 2020, customers were on Legacy ID Management system.<br> 
+In March 2020, we released Original ID Merge system which supports retroactive ID Merge. This allows the merging of events triggered both before and after authentication across multiple devices and platforms.<br>
+In March 2023, we released the current Simplified ID Merge system. It has a simpler implementation and doesn’t have the limitation of 500 IDs per ID cluster found in the Original ID Merge.<br> 
 To determine your current ID Management version, navigate to Organisation/Project Settings > Identity Merge. Organisation Settings indicate the default version for every new project (Legacy ID Management is marked as "Disabled" there). You can switch the ID Management version for a specific project via Project Settings provided no data has been ingested into the project. 
+
+![image](/Tracking/org-setting.png)
+
+![image](/Tracking/project-setting.png)
 
 ## Deciding When Migrating Makes Sense
 It is not possible to convert an existing project using Legacy/Original ID Merge to Simplified ID Merge. **To adopt Simplified ID, you need to set up a new project from scratch**. This guide helps you in evaluating whether the migration will benefit your project based on your current ID management requirements and future plans. It outlines the pros and cons of each ID Management version and guides you through key considerations to make an informed decision. It also provides details on the resources required on your end should you decide to proceed with the migration. 
