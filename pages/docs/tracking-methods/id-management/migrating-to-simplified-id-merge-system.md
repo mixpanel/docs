@@ -273,15 +273,15 @@ If your historical events do not include both `$device_id` and `$user_id` that a
 
 ##### Migrating from Legacy ID Management
 
-If you are implementing via Mixpanel SDK and have been making an alias call to link anonymous ID to user ID, the SDK should have already populated `$device_id` and `$user_id` on your events (please verify this in your Mixpanel project events). These historical events can be directly imported into Simplified ID project as they include reserved properties required for ID Merge to take place in Simplified ID. 
+If you are implementing via Mixpanel SDK and have been making an alias call to link anonymous ID to user ID, the SDK should have already populated `$device_id` and `$user_id` on your events (please verify this in your Mixpanel project). These historical events can be directly imported into Simplified ID project as they include reserved properties required for ID Merge to take place. 
 
-However, in the case of a custom implementation without the reserved properties `$device_id` and `$user_id` on the events (e.g. server implementation), it’s necessary to transform the events before backfilling it to new project. For example, you can derive the reserved properties from other relevant properties on the events. 
+However, in the case of a custom implementation without the reserved properties `$device_id` and `$user_id` on the events (e.g. server implementation), it’s necessary to transform the events before backfilling it to new project. For example, you can derive the reserved properties from other relevant properties on the events or from IDs mappings maintained in your system. 
 
 ##### Migrating from Original ID Merge
 
-If you are implementing via Mixpanel SDK and have been calling identify to merge pre and post-registration events, the SDK should have already populated `$device_id` and `$user_id` on your events (please verify this in your Mixpanel project events). These historical events can be directly imported into Simplified ID project as they include reserved properties required for ID Merge in Simplified ID. 
+If you are implementing via Mixpanel SDK and have been calling identify to merge pre and post-registration events, the SDK should have already populated `$device_id` and `$user_id` on your events (please verify this in your Mixpanel project). These historical events can be directly imported into Simplified ID project as they include reserved properties required for ID Merge. 
 
-If you are also calling alias or merge (using special events, `$create_alias` and `$merge`) to merge multiple user IDs per user, it's important to note that this functionality is not supported in Simplified ID. Additional details can be found [here](#understanding-simplified-id-merge-implementation).
+If you are also calling alias or merge (using special events, \$create_alias and \$merge) to merge multiple user IDs per user, it's important to note that this functionality is not supported in Simplified ID. Additional details can be found in this [section](#gotchas-in-migrating-from-legacyoriginal-to-simplified-id-merge).
 
 #### Data Migration Flow
 
