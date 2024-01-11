@@ -700,6 +700,31 @@ Now let's assume that *"List of ProductIDs"* is mapped to a [lookup table](/d
 
 ## List of Objects Property Support
 
+### Data
+
+Let's assume you have a Checkout Started event with a list of products. We recommend the below strcuture for sending the list of objects:
+
+```
+{
+    "event": "Checkout Started",
+    "properties": {
+        "distinct_id": "13793",
+        "cart": [
+            {
+                "brand": "Puma",
+                "category": "Jacket",
+                "price": 30
+            },
+            {
+                "brand": "Adidas",
+                "category": "Hats",
+                "price": 15
+            }
+        ]
+    }
+}
+```
+
 ### Use Cases
 
 List of objects are generally useful when tracking a list of complex things. Some examples:
