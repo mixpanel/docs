@@ -225,18 +225,18 @@ The following guide outlines the steps required to set up the new Simplified pro
 3. Set up the new project by following the guide [here](https://docs.mixpanel.com/docs/best-practices/project-setup). Configure the project settings by referring to your existing project’s settings. Some of the setup tasks include inviting users to the project, adding group keys, creating data views and service accounts, configuring session settings etc. Note that the new project comes with newly generated project tokens, service accounts credentials etc. Replace the tokens in your implementations with the new ones to start sending data to this new project.
 
 ### Populating Data in Simplified ID Project
-This process typically involves populating both the live data and historical data in the new project. Coming from Legacy or Original ID Merge system, you will find that the implementation for Simplified ID is different but generally simpler and more robust. It’s important to review and modify your ID Management implementation as needed to get expected outcome in terms of user merging. 
+This process typically involves populating both the live data and historical data in the new project. Coming from Legacy or Original ID Merge system, you will find that the implementation for Simplified ID is generally simpler and more robust. It’s important to review and modify your ID Management implementation as needed to get expected outcome in terms of user merging. 
 
 #### Sending Live Data
 Update your tech stack with the new project’s token and service accounts credentials to redirect data to the new project. 
 
 1. For Mixpanel SDK integration:
-- Upgrade to the latest SDK version supporting Simplified ID and initialise the SDK with new project’s token:
-    - [Javascript SDK ≥ v2.46.0](https://github.com/mixpanel/mixpanel-js/releases/tag/v2.46.0)
-    - [Swift SDK ≥ v4.0.5](https://github.com/mixpanel/mixpanel-swift/releases/tag/v4.0.5)
-    - [Android SDK ≥ v7.3.0](https://github.com/mixpanel/mixpanel-android/releases/tag/v7.3.0)
-- Find the implementation guide [here](https://docs.mixpanel.com/docs/tracking-methods/identifying-users#usage). You only need to call `.identify` and `.reset` methods at specific points in the user journeys as the SDK will automatically add the reserved properties, `$device_id` and `$user_id` to the events before sending them to Mixpanel.
-- You should not call `.alias`, as this method will not trigger ID Merge in Simplified ID project. It is only provided as a backward-compatible solution for users who are on Legacy/Original ID Merge.
+    - Upgrade to the latest SDK version supporting Simplified ID Merge and initialise the SDK with new project’s token:
+        - [Javascript SDK ≥ v2.46.0](https://github.com/mixpanel/mixpanel-js/releases/tag/v2.46.0)
+        - [Swift SDK ≥ v4.0.5](https://github.com/mixpanel/mixpanel-swift/releases/tag/v4.0.5)
+        - [Android SDK ≥ v7.3.0](https://github.com/mixpanel/mixpanel-android/releases/tag/v7.3.0)
+    - Find the implementation guide [here](https://docs.mixpanel.com/docs/tracking-methods/identifying-users#usage). You only need to call `.identify` and `.reset` methods at specific points in the user journeys as the SDK will automatically add the reserved properties, `$device_id` and `$user_id` to the events before sending them to Mixpanel.
+    - You should not call `.alias`, as this method will not trigger ID Merge in Simplified ID project. It is only provided as a backward-compatible solution for users who are on Legacy/Original ID Merge.
 2. For Mixpanel API integration:
     - If you are sending data from server via Mixpanel Import API, update the API token to point to the new project.
     - You should not send \$identify, \$merge, and \$create_alias events as part of ID management since they will be ignored in Simplified projects and will not trigger ID Merge.
