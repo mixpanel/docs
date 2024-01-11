@@ -15,7 +15,32 @@ Mixpanel has many Properties defined in its Data Model.
 | Reserved Properties | Mixpanel reserves certain property names (for [Events](/docs/data-structure/events-and-properties#reserved-event-properties) and [User Profiles](/docs/data-structure/user-profiles#reserved-user-properties)) for special use cases, and these may or may not be automatically populated with values. The purpose of such Reserved Properties are for processing (ie event time stamping) or for specific system features (eg: cohort exports). Examples: `time`, `$email`, `$phone`, `$name`, `$created`. |
  
 ## Default Properties
-Mixpanel's client SDKs automatically collect certain properties on every event. This document describes what those properties mean.
+Mixpanel's Data Ingestion APIs and client-side SDKs ([JavaScript](/docs/tracking-methods/sdks/javascript), [iOS - Objective-C](/docs/tracking-methods/sdks/ios), [iOS - Swift](/docs/tracking-methods/sdks/swift), and [Android](/docs/tracking-methods/sdks/android).) automatically collect certain properties on every event or user profile. This document describes what those properties mean.
+
+### Ingestion APIs
+#### Event Properties
+
+| Raw Name | Display Name | Description |
+| $city | City | The city of the event sender parsed from the IP property or the Latitude and Longitude properties. |
+| $region | Region | The region (state or province) of the event sender parsed from the IP property or the Latitude and Longitude properties. |
+| mp_country_code | Country | The country of the event sender parsed from the IP property or the Latitude and Longitude properties. The value is stored as a 2-letter country code in the raw data and parsed into the country name in the UI. |
+| $mp_api_endpoint | API Endpoint | Mixpanel property to record the API endpoint the data was sent to:
+api.mixpanel.com - Mixpanel's default ingestion service
+api-eu.mixpanel.com - Mixpanel's EU data ingestion service
+api-js.mixpanel.com - Mixpanel's data ingestion for the Javascript SDK |
+| $mp_api_timestamp_ms | API Timestamp | UTC timestamp in milliseconds when the event was received by our API. |
+| mp_processing_time_ms | Time Processed (UTC) | UTC timestamp in milliseconds when the event was processed by Mixpanel servers. |
+
+#### User Properties
+
+| Raw Name | Display Name | Description |
+| $city | City | The city of the user parsed from the IP property or the Latitude and Longitude properties. |
+| $region | Region | The region (state or province) of the user parsed from the IP property or the Latitude and Longitude properties. |
+| $country_code | Country Code | The country of the user parsed from the IP property or the Latitude and Longitude properties. The value is stored as a 2-letter country code in the raw data and parsed into the country name in the UI. |
+| $geo_source | Geo Source | Set to "reverse_geocoding" if profile location properties (Country, Region, and City) were determined through [Latitude and Longitude](/docs/best-practices/server-side-best-practices#tracking-geolocation-latitude-and-longitude). |
+| $timezone | Timezone | Timezone of the user parsed from the IP property or the Latitude and Longitude properties. |
+| $last_seen | Updated at | The last time a user profile property was set or updated (this should not be set manually). |
+
 
 ### Web
 #### Event Properties
