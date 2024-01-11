@@ -1,5 +1,5 @@
 ## Overview
-Mixpanel has released three versions of ID management to date. Prior to March 2020, we've Legacy ID Management system.<br> 
+Mixpanel has released three versions of ID management to date. Prior to March 2020, we have Legacy ID Management system.<br> 
 In March 2020, we released Original ID Merge system which supports retroactive ID Merge. This allows the merging of events triggered both before and after authentication across multiple devices and platforms.<br>
 In March 2023, we released the current Simplified ID Merge system. It has a simpler implementation and doesn’t have the limitation of 500 IDs per ID cluster found in the Original ID Merge.<br> 
 
@@ -10,7 +10,7 @@ To determine your current ID Management version, navigate to Organisation/Projec
 ![image](/Tracking/project-setting.png)
 
 ## Deciding When Migrating Makes Sense
-It is not possible to convert an existing project using Legacy/Original ID Merge to Simplified ID Merge. **To adopt Simplified ID, you need to set up a new project from scratch**. This guide helps you in evaluating whether the migration will benefit your project based on your current ID management requirements and future plans. It outlines the pros and cons of each ID Management version and guides you through key considerations to make an informed decision. It also provides details on the resources required on your end should you decide to proceed with the migration. 
+It is not possible to convert an existing project using Legacy/Original ID Merge to Simplified ID Merge. **To adopt Simplified ID Merge, you need to set up a new project from scratch**. This guide helps you in evaluating whether the migration will benefit your project based on your current ID management requirements and future plans. It outlines the pros and cons of each ID Management version and guides you through key considerations to make an informed decision. It also provides details on the resources required on your end should you decide to proceed with the migration. 
 
 ### On Legacy ID Management
 The main limitation of Legacy ID Management was that users could become orphaned. This could happen if they were initially tracked on one platform or device, creating a user on Mixpanel, and later moved on to another platform or device, triggering various anonymous events before logging in. The anonymous events on the second platform would be orphaned, resulting in duplicate users on Mixpanel. Only upon the user's login would their events with the user ID be properly linked back to the main user. Here’s the flow chart illustrating how an orphaned user can be created throughout the user journey, 
@@ -20,7 +20,7 @@ The main limitation of Legacy ID Management was that users could become orphaned
 The lack of a retroactive ID merge feature here means that orphaned users are created whenever new anonymous IDs are introduced during user interactions across multiple sessions, devices, and platforms. This prevents you from getting a holistic view of the user journeys. 
 
 >When it’s ok to keep Legacy ID management: 
-If you are only tracking authenticated users (you do not track anonymous events), you do not need the retroactive ID Merge feature in Simplified ID Merge and should not consider the migration. We have preserved the documentation on the Legacy ID Management [here](https://github.com/mixpanel/docs/blob/main/legacy/aliases.md). 
+If you are only tracking authenticated users (you do not track anonymous events), you don't need the retroactive ID Merge feature in Simplified ID Merge and should not consider the migration. We have preserved the documentation on the Legacy ID Management [here](https://github.com/mixpanel/docs/blob/main/legacy/aliases.md). 
 
 ### On Original ID Merge
 While retroactive ID Merge is supported in Original ID Merge, the main limitation is that each user can have a ID cluster limited to a maximum of 500 IDs. Upon reaching this limit, any new Distinct ID can no longer be merged into the same ID cluster. They will become orphaned (duplicate users on Mixpanel), preventing you from getting a holistic view of the user journeys. 
@@ -34,7 +34,7 @@ Also, if you are considering Simplified ID Merge, it's important to note that it
 >- You have ID management requirements which are not supported in Simplified ID Merge e.g. need the support of multiple identified IDs (User IDs) per user.
 
 ## Understanding Simplified ID Merge
-Unlike Legacy ID Management, which requires an explicit alias call to connect multiple identifiers, or Original ID Merge, which requires special events such as \$identify, \$merge, and \$create_alias to initiate ID Merge, Simplified ID Merge simply requires including reserved properties, `$device_id` and `$user_id` on the events for ID Merge to take place. You can learn more about Simplified ID Merge [here](https://docs.mixpanel.com/docs/tracking-methods/identifying-users). Here’s a quick example to illustrate the difference: 
+Unlike Legacy ID Management, which requires an explicit alias call to connect multiple identifiers, or Original ID Merge, which requires special events such as \$identify, \$merge, and \$create_alias to initiate ID Merge, **Simplified ID Merge simply requires including reserved properties, `$device_id` and `$user_id` on the events for ID Merge to take place**. You can learn more about Simplified ID Merge [here](https://docs.mixpanel.com/docs/tracking-methods/identifying-users). Here’s a quick example to illustrate the difference: 
 
 1. When the users are anonymous, the events should include a `$device_id` property that stores the anonymous ID.     
     ```
@@ -148,7 +148,7 @@ Example 2:
 ### Gotchas in Migrating from Legacy/Original to Simplified ID Merge
 Take note of the following details when planning for the migration from Legacy/Original ID Merge to Simplified ID Merge:  
 
-1. Simplified ID Merge only supports one user ID (`$user_id`) per user to maintain simplicity in the implementation. If you need an ID management solution that supports multiple user IDs per user, such as both a email address and a phone number, it’s recommended to remain on Original ID Merge which provides features such as \$create_alias and \$merge to merge multiple user IDs.
+1. Simplified ID Merge only supports one user ID (`$user_id`) per user to maintain simplicity in the implementation. If you need an ID management solution that supports multiple user IDs per user, such as both a email address and a phone number, it’s recommended to remain on Legacy or Original ID Merge which provides features such as \$create_alias and \$merge to merge multiple user IDs.
     - For example, here’s an unsuccessful attempt to merge `+6512345678` (additional user ID) with `charlie` on Simplified ID Merge:
       ```
         {
