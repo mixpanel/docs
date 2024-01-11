@@ -65,6 +65,25 @@ Please, refer to this article to [understand how to send or update profile prope
 | $screen_height | Screen Height | The height of the device screen in pixels / points (iOS). |  ✅ | ✅ | ✅ | ✅ | 
 | $screen_width | Screen Width | The width of the device screen in pixels / points (iOS). |  ✅ | ✅ | ✅ | ✅ | 
 | $screen_dpi | Screen DPI | Pixel density of the device screen. |  ❌ | ❌ | ✅ | ✅ | 
+| $current_url | Current URL | The URL of the page on which the event was tracked. |  ✅ | ❌ | ❌ | ❌ | 
+| $initial_referrer | Initial Referrer | Referring URL when the user first arrived on your site. Defaults to "$direct" if the user is not referred. |  ✅ | ❌ | ❌ | ❌ | 
+| $initial_referring_domain | Initial Referring Domain | Referring domain at first arrival. Defaults to "$direct" if the user is not referred. |  ✅ | ❌ | ❌ | ❌ | 
+$referrer | Referrer | Referring URL including your own domain. Might not be present if document.referrer does not return a value. As opposed to $initial_referrer and $initial_referring_domain, this property will be omitted if the user lands directly or the referring website adds the rel="noreferrer" parameter. |  ✅ | ❌ | ❌ | ❌ | 
+| $referring_domain | Referring Domain | Referring domain including your own domain. Might not be present if document.referrer does not return a value. As opposed to $initial_referrer and $initial_referring_domain, this property will be omitted if the user lands directly or the referring website adds the rel="noreferrer" parameter. |  ✅ | ❌ | ❌ | ❌ | 
+| $search_engine | Search Engine | The search engine that the customer used when they arrived at your domain. |  ✅ | ❌ | ❌ | ❌ |
+| mp_keyword | Search Keyword | Search keywords detected on the referrer from a search engine to your domain. This property is only collected when search keywords are included in a URL. |  ✅ | ❌ | ❌ | ❌ |
+| utm_source, utm_medium, etc. | UTM Parameters | UTM tags derived from the URL a customer clicked to arrive at your domain. Each UTM will be collected under its own property. More details [here](/docs/tracking-methods/sdks/javascript#tracking-utm-parameters). |  ✅ | ❌ | ❌ | ❌ |
+| $manufacturer | Manufacturer | Device manufacturer. |  ❌ | ✅ | ✅ | ✅ |
+| $brand | Brand | Device brand. |  ❌ | ❌ | ✅ | ❌ |
+| $model | Model | The model of the device. |  ❌ | ✅ | ✅ | ✅ |
+| $carrier | Carrier | Wireless carrier of the device owner. |  ❌ | ✅ | ✅ | ❌ | 
+| $radio | Radio | Current [cellular network communication standard](https://www.objc.io/issues/5-ios7/iOS7-hidden-gems-and-workarounds/#know-your-radio)(opens in a new tab) (3G, 4G, LTE, etc). |  ❌ | ✅ | ✅ | ✅ | 
+| $wifi | Wifi | Set to true if the user’s device has an active, available Wifi connection, false if not. |  ❌ | ✅ | ✅ | ✅ | 
+| $bluetooth_enabled | Bluetooth | Set to true if Bluetooth is enabled, false if not. |  ❌ | ✅ | ❌ | ❌ | 
+| $bluetooth_version | Bluetooth Version | Set to "none", "ble", or "classic". |  ❌ | ✅ | ❌ | ❌ | 
+| $has_nfc | Has NFC | Set to true if Near Field Communication is being used, false if not. |  ❌ | ✅ | ❌ | ❌ | 
+| $has_telephone | Has Telephone | Set to true if this device has telephone functionality, false if not. |  ❌ | ✅ | ❌ | ❌ | 
+| $google_play_services | Google Play Services | Verifies that Google Play services is installed and enabled on this device, and that the version installed on this device is no older than the one required by this client. |  ❌ | ✅ | ❌ | ❌ | 
 
 #### User Properties
 
