@@ -25,10 +25,7 @@ Mixpanel's Data Ingestion APIs and client-side SDKs ([JavaScript](/docs/tracking
 | $city | City | The city of the event sender parsed from the IP property or the Latitude and Longitude properties. |
 | $region | Region | The region (state or province) of the event sender parsed from the IP property or the Latitude and Longitude properties. |
 | mp_country_code | Country | The country of the event sender parsed from the IP property or the Latitude and Longitude properties. The value is stored as a 2-letter country code in the raw data and parsed into the country name in the UI. |
-| $mp_api_endpoint | API Endpoint | Mixpanel property to record the API endpoint the data was sent to:
-api.mixpanel.com - Mixpanel's default ingestion service
-api-eu.mixpanel.com - Mixpanel's EU data ingestion service
-api-js.mixpanel.com - Mixpanel's data ingestion for the Javascript SDK |
+| $mp_api_endpoint | API Endpoint | Mixpanel property to record the API endpoint the data was sent to: <br /> api.mixpanel.com - default ingestion service <br /> api-eu.mixpanel.com - EU data ingestion service <br /> api-js.mixpanel.com - data ingestion for the Javascript SDK |
 | $mp_api_timestamp_ms | API Timestamp | UTC timestamp in milliseconds when the event was received by our API. |
 | mp_processing_time_ms | Time Processed (UTC) | UTC timestamp in milliseconds when the event was processed by Mixpanel servers. |
 
