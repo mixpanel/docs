@@ -1,8 +1,9 @@
 ## Overview
-Mixpanel has release three versions of ID management to date. Prior to March 2020, customers were on Legacy ID Management system.<br> 
+Mixpanel has released three versions of ID management to date. Prior to March 2020, we've Legacy ID Management system.<br> 
 In March 2020, we released Original ID Merge system which supports retroactive ID Merge. This allows the merging of events triggered both before and after authentication across multiple devices and platforms.<br>
 In March 2023, we released the current Simplified ID Merge system. It has a simpler implementation and doesn’t have the limitation of 500 IDs per ID cluster found in the Original ID Merge.<br> 
-To determine your current ID Management version, navigate to Organisation/Project Settings > Identity Merge. Organisation Settings indicate the default version for every new project (Legacy ID Management is marked as "Disabled" there). You can switch the ID Management version for a specific project via Project Settings provided no data has been ingested into the project. 
+
+To determine your current ID Management version, navigate to Organisation/Project Settings > Identity Merge. Organisation Settings indicate the default version for every new project (Legacy ID Management is marked as "Disabled" there). **You can switch the ID Management version for a specific project via Project Settings provided no data has been ingested into the project.**
 
 ![image](/Tracking/org-setting.png)
 
