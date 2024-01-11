@@ -293,20 +293,19 @@ Discuss internally to decide the ideal data migration flow with minimal interrup
 
 ### Migrating Reports and Non-data Entities
 
-When creating net new projects, you might have a lot of boards, reports, custom events, properties etc that you may want recreated in the new projects as well. Below, we list some suggested ways to do this work:
+When creating new projects, you might have a lot of boards, reports, custom events, properties etc that you may want to recreate in the new projects as well. Below, we list some suggested ways to do this work:
 
-1. Cohorts, Custom Events & Custom Properties
-    - Manual Recreation: This involves manually copying and pasting the logic from the old project into the new project's cohorts, custom events & custom property definitions. For example with custom properties, follow steps to [create a new custom property](https://docs.mixpanel.com/docs/features/custom-properties#:~:text=works%20with%20objects.-,Creating%20a%20Custom%20Property,-Click%20Create%20Custom) and copy over the definition from the old project instead of starting from scratch. \   
-2. Lookup Tables
-    - Manual Recreation: If your old project is heavily reliant on Lookup tables for reports, manually [re-upload](https://docs.mixpanel.com/docs/data-structure/lookup-tables#how-do-i-upload-a-lookup-table:~:text=components%2C%20and%20channels.-,How%20do%20I%20upload%20a%20Lookup%20Table%3F,-Lookup%20Tables%20are) the lookup tables to the new project via Lexicon.
+1. Boards & Reports
+    - Native Move Feature : Since December 2023, Mixpanel offers a native "Move" feature allowing you to directly [transfer boards between projects](https://docs.mixpanel.com/changelogs/2023-07-27-move). This option preserves everything within the board, including reports, filters, and text annotations.
+2. Cohorts, Custom Events & Custom Properties
+    - Manual Recreation: This involves manually copying and pasting the logic from the old project into the new project's cohorts, custom events & custom property definitions. For example with custom properties, follow steps to [create a new custom property](https://docs.mixpanel.com/docs/features/custom-properties#:~:text=works%20with%20objects.-,Creating%20a%20Custom%20Property,-Click%20Create%20Custom) and copy over the definition from the old project instead of starting from scratch.
 3. Lexicon 
     - Lexicon Schema API or CSV Export/Import: To migrate the definitions of your events, properties, and custom properties from the old project to the new one. Make sure that the events, properties, and custom properties that you're migrating are still relevant to your new project. You may want to take this opportunity to clean up your schema and remove any unused or deprecated elements.
-4. Boards & Reports
-    - Native Move Feature : Since December 2023, Mixpanel offers a native "Move" feature allowing you to directly [transfer boards between projects](https://docs.mixpanel.com/changelogs/2023-07-27-move). This option preserves everything within the board, including reports, filters, and text annotations.
+4. Lookup Tables
+    - Manual Recreation: If your old project is heavily reliant on Lookup tables for reports, manually [re-upload](https://docs.mixpanel.com/docs/data-structure/lookup-tables#how-do-i-upload-a-lookup-table:~:text=components%2C%20and%20channels.-,How%20do%20I%20upload%20a%20Lookup%20Table%3F,-Lookup%20Tables%20are) the lookup tables to the new project via Lexicon.
 
 ## Validating Data and Boards
-- Distinct ID Matching Verify that Simplified ID Merge correctly identifies and merges users across devices and sessions based on $user_id and $device_id. Compare historical data with expected outcomes under Simplified ID Merge logic.
-- Missing Data: Check for instances where $user_id and $device_id are missing or incorrectly mapped during the merge process.
+- Distinct ID Matching: Verify that Simplified ID Merge correctly identifies and merges users across devices and sessions based on `$user_id` and `$device_id`. Compare historical data with expected outcomes under Simplified ID Merge logic.
+- Missing Data: Check for instances where `$user_id` and `$device_id` are missing or incorrectly mapped during the merge process.
 
-  
-
+If you have any questions, do not hesitate to contact support@mixpanel.com for assistance.
