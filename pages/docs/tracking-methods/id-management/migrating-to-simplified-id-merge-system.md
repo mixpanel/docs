@@ -148,7 +148,7 @@ Example 2:
 ### Gotchas in Migrating from Legacy/Original to Simplified ID Merge
 Take note of the following details when planning for the migration from Legacy/Original ID Merge to Simplified ID Merge:  
 
-1. Simplified ID Merge only supports one user ID (`$user_id`) per user to maintain simplicity in the implementation. If you need an ID management solution that supports multiple user IDs per user, such as both a email address and a phone number, it’s recommended to remain on Legacy or Original ID Merge which provides features such as \$create_alias and \$merge to merge multiple user IDs.
+1. Simplified ID Merge only supports one user ID (`$user_id`) per user to maintain simplicity in the implementation. If you need an ID management solution that supports multiple user IDs per user, such as both a email address and a phone number, it’s recommended to remain on Legacy or Original ID Merge which provide features such as \$create_alias and \$merge to merge multiple user IDs.
     - For example, here’s an unsuccessful attempt to merge `+6512345678` (additional user ID) with `charlie` on Simplified ID Merge:
       ```
         {
@@ -163,7 +163,7 @@ Take note of the following details when planning for the migration from Legacy/O
    - Results of Simplified ID Merge:
      
      ![image](/Tracking/charlie_two_user_ids.png)
-     
+     <br>     
 2. If you are sending events via third-party integrations, ensure that they are compatible with Simplified ID Merge by having reserved properties, `$device_id` and `$user_id` on the events. For backward compatibility, Simplified ID still supports events with only the `distinct_id` property.  
     - If events only contain the `distinct_id` property, the value of distinct_id will be added as `$user_id` to the event; if distinct_id is prefixed with `$device:`, it will be added as `$device_id` to the event (ensure that the distinct_id of anonymous events are prefixed with `$device:`).
       Example 1:
