@@ -12,11 +12,13 @@ To enable Event Approval, navigate to the Project Settings page, scroll down to 
 
 When enabling this setting, input email addresses or aliases to be notified when a new event is ingested. This will be gated to project admin and owner email addresses. Admins can also set up a Slack channel to be notified when a new event is ingested.
 
+You can also enable new property detection, which will notify the same email addresses or slack channels about new properties that have been detected on new or existing events.
+
 Notifications are sent once per day. If multiple events are implemented in a project within one day, the notification will batch all these events. 
 
 Only Project Admins or Owners can enable this setting, and it's only available on Enterprise plans. 
 
-![event-approval-setup](/Event-Approval.png)
+![event-approval-settings](/event-approval-settings.png)
 
 
 ### Lexicon Workflow
@@ -32,3 +34,5 @@ Events will be marked as "New" as long as the following criteria are met:
 
 ![lexicon-event-approval](/Lexicon-Event-Approval.png)
 
+If new property detection is enabled, notifications will also include a "View New Properties" button, which will take them to a Lexicon view of new properties.  Properties will be marked as "New" as long as the following criteria are met:
+- It was created within the last 30 days
