@@ -45,6 +45,11 @@ Please, refer to this article to [understand how to send or update profile prope
 
 
 ### Client-side SDKs
+
+Note that the following SDKs wraps around our other client-side SDKs, and as such would also inherit the appropriate default properties indicated in the tables.
+- [React Native](/docs/tracking-methods/sdks/react-native) wraps around Android and Swift SDK; `mp_lib` will be set to `react-native` with `$lib_version` set as the library's version.
+- [Flutter](/docs/tracking-methods/sdks/flutter) wraps around Javscript, Android, and Swift SDK; `mp_lib` will be set to `flutter` with `$lib_version` set as the library's version.
+
 #### Event Properties
 
 | **Raw Name** | **Display Name** | **Description** | **[JavaScript](/docs/tracking-methods/sdks/javascript)** | **[Android](/docs/tracking-methods/sdks/android)** | **iOS [Objective-C](/docs/tracking-methods/sdks/ios) / [Swift](/docs/tracking-methods/sdks/swift)** | **[Unity](/docs/tracking-methods/sdks/unity)** | 
