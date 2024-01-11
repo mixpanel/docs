@@ -55,6 +55,16 @@ Please, refer to this article to [understand how to send or update profile prope
 | mp_lib | Mixpanel Library | The Mixpanel library that sent the event. | `web` | `android` | `iphone` / `swift` | `unity` |
 | $lib_version | Library Version | Mixpanel library version. |  ✅ | ✅ | ✅ | ✅ | 
 | mp_sent_by_lib_version | Sent By Library Version | Mixpanel library version used to send data (not necessarily the same as the version which enqueued the data). |  ✅ | ❌ | ❌ | ❌ | 
+| $os | Operating System | OS of the event sender. |  ✅ | ✅ | ✅ | ✅ |
+| $os_version | OS Version | The current version of operating system on the device. |  ❌ | ✅ | ✅ | ✅ |
+| $browser | Browser | Name of the browser. |  ✅ | ❌ | ❌ | ❌ | 
+| $browser_version | Browser Version | Version of the browser. |  ✅ | ❌ | ❌ | ❌ | 
+| $app_build_number | App Build Number | General build of the app. |  ❌ | ✅ | ✅ | ❌ |
+| $app_version_string | App Version | Current app version. |  ❌ | ✅ | ✅ | ✅ |
+| $device | Device | Name of the event sender’s device, if they’re on mobile web. |  ✅ | ❌ | ❌ | ✅ |
+| $screen_height | Screen Height | The height of the device screen in pixels / points (iOS). |  ✅ | ✅ | ✅ | ✅ | 
+| $screen_width | Screen Width | The width of the device screen in pixels / points (iOS). |  ✅ | ✅ | ✅ | ✅ | 
+| $screen_dpi | Screen DPI | Pixel density of the device screen. |  ❌ | ❌ | ✅ | ✅ | 
 
 #### User Properties
 
