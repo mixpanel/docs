@@ -32,7 +32,7 @@ The Leanplum integration will show a **Connected** tag in the UI once the connec
 
 ## Matching Users Between Leanplum and Mixpanel
 
-> **Warning:** Projects using the [simplified ID merge system](/docs/tracking-methods/identifying-users#simplified-vs-original-id-merge) must have the `$user_id` in Mixpanel match the user identifier in the partner service. Using any alternative partner properties to match users between tools may result in partner events not being attributed to the correct user in Mixpanel. Any partner properties mentioned in the below section are primarly applicable to projects on the original ID merge system.
+> **Warning:** Projects using the [simplified ID merge system](/docs/tracking-methods/identifying-users#simplified-vs-original-id-merge) must have the `$user_id` in Mixpanel match the user identifier in the partner service. Using any alternative partner properties to match users between tools may result in partner events not being attributed to the correct user in Mixpanel. Any partner properties mentioned in the below section are primarily applicable to projects on the original ID merge system.
 
 Mixpanel only exports identified user profiles to match to Leanplum - users without user profile properties (i.e. anonymous users) will not export.
 
@@ -56,7 +56,7 @@ Click Export to > Insider. Select either one-time sync or dynamic sync. Click St
 
 ## Sync Types
 
-This integration supports two types of exports: one-time export and dynamic sync. When you generate a one-time export, it overwrites the previous export with an updated export that reflects users who qualify for the cohort at the time of export. In case of dynamic sync we compute a diff of users added and removed from the cohort's current state compared to the cohort state present on Leanplum and send the diff over to Leanplum to apply these changes.
+This integration supports two types of exports: one-time export and dynamic sync. When you generate a one-time export, it overwrites the previous export with an updated export that reflects users who qualify for the cohort at the time of export. In case of dynamic sync, we compute a diff of users added and removed from the cohort's current state compared to the cohort state present on Leanplum and send the diff over to Leanplum to apply these changes.
 
 ### One-Time Export
 In a one-time export, Mixpanel sends Leanplum a static export of users who currently qualify for the cohort. The cohort data will not be updated in Leanplum after a one-time export.
