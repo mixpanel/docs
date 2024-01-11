@@ -164,6 +164,11 @@ Mixpanel stores Events and User Profiles in two separate tables under the hood. 
 ### How can I update User Profile Properties?
 User Profiles are mutable; Mixpanel only stores the latest value of each profile property. We have methods to update profile properties via our [HTTP API](https://developer.mixpanel.com/reference/profile-set).
 
+### What are the limits of User Profile Properties?
+Each User Profile can contain up to 2000 properties. User property names can be at most 255 characters in length (longer names are truncated). User property values are limited based on data type, refer to these limits under [Supported Data Types](/docs/data-structure/property-reference#supported-data-types).
+
+Attempts to add more than 2000 user properties for a user profile will fail. You can remove user profile properties using the [$unset](https://developer.mixpanel.com/reference/profile-delete-property) engage operation if you find yourself close to the 2000 per profile limit.
+
 ### How can I send User Profiles if I use Segment?
 Mixpanel is 100% compatible with Segment; just follow Segment's best practices. If you call the [`analytics.identify()`](https://segment.com/docs/connections/spec/identify/) method, Segment will create a User Profile in Mixpanel. You can learn more about our integration in Segment's [docs](https://segment.com/docs/connections/destinations/catalog/actions-mixpanel/#identify-user).
 
