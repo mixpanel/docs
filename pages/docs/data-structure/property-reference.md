@@ -21,6 +21,7 @@ Mixpanel's Data Ingestion APIs and client-side SDKs ([JavaScript](/docs/tracking
 #### Event Properties
 
 | Raw Name | Display Name | Description |
+| -------- | ------------ | ----------- |
 | $city | City | The city of the event sender parsed from the IP property or the Latitude and Longitude properties. |
 | $region | Region | The region (state or province) of the event sender parsed from the IP property or the Latitude and Longitude properties. |
 | mp_country_code | Country | The country of the event sender parsed from the IP property or the Latitude and Longitude properties. The value is stored as a 2-letter country code in the raw data and parsed into the country name in the UI. |
@@ -34,6 +35,7 @@ api-js.mixpanel.com - Mixpanel's data ingestion for the Javascript SDK |
 #### User Properties
 
 | Raw Name | Display Name | Description |
+| -------- | ------------ | ----------- |
 | $city | City | The city of the user parsed from the IP property or the Latitude and Longitude properties. |
 | $region | Region | The region (state or province) of the user parsed from the IP property or the Latitude and Longitude properties. |
 | $country_code | Country Code | The country of the user parsed from the IP property or the Latitude and Longitude properties. The value is stored as a 2-letter country code in the raw data and parsed into the country name in the UI. |
