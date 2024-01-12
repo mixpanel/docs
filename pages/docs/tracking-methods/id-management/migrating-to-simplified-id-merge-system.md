@@ -268,7 +268,7 @@ There are different ways to backfill historical data into the new project, depen
 2. Mixpanel Warehouse Connector - If you’ve been storing your data in a data warehouse, you can import them into Mixpanel via [Warehouse Connector](https://docs.mixpanel.com/docs/tracking-methods/data-warehouse/overview) which supports both events and user data. 
 3. Customer Data Platform (CDP) - Replay the historical data from CDP to Mixpanel.  
 
-Please make sure that the historical data is properly formatted before backfilling it to a new project via any of the methods mentioned above. Familiarize yourself with the Simplified ID implementation in this [section](#understanding-simplified-id-merge-implementation) to plan out the required data transformation tasks for your historical data. 
+Please make sure that the historical data is properly formatted before backfilling it to a new project via any of the methods mentioned above. Familiarize yourself with the Simplified ID implementation in this [section](#understanding-simplified-id-merge) to plan out the required data transformation tasks for your historical data. 
 
 If your historical events do not include both `$device_id` and `$user_id` that are required in Simplified ID for ID Merge, check if you can retrieve these IDs mappings from your system - if so, you can still trigger ID Merge by sending a dummy event that includes both `$device_id` and `$user_id` based on your IDs mappings. You can choose any name for the dummy event except for \$identify, \$merge, and \$create_alias.
 
