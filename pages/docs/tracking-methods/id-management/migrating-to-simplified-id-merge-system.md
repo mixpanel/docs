@@ -211,8 +211,9 @@ Take note of the following details when planning for the migration from Legacy/O
             }
         }
         ```  
-4. If you have Mixpanel in your mobile apps, you’ll need to ship a new version of the app with the updated ID management implementation and new project’s token as part of the migration process. Without a force update, it may take awhile for all users to upgrade to the latest app version. During this period, some events are still being sent to the old project. Be prepared for data backfilling if you want these events as well as the historical data to be included in the new project.
-5. With the introduction of the retroactive ID Merge feature in Original and Simplified ID Merge, it may take up to 24 hours for the ID Merge (merging 2 unique users into 1 unique user) to be fully reflected in all Mixpanel reports.
+3. If you have Mixpanel in your mobile apps, you’ll need to ship a new version of the app with the updated ID management implementation and new project’s token as part of the migration process. Without a force update, it may take awhile for all users to upgrade to the latest app version. During this period, some events are still being sent to the old project. Be prepared for data backfilling if you want these events as well as the historical data to be included in the new project.
+4. With the introduction of the retroactive ID Merge feature in Original and Simplified ID Merge, it may take up to 24 hours for the ID Merge (merging 2 unique users into 1 unique user) to be fully reflected in all Mixpanel reports.
+5. All Mixpanel client-side SDKs support Simplified ID Merge except for [Mixpanel Unity SDK](https://github.com/mixpanel/mixpanel-unity). 
 
 ## Migration to Simplified ID Merge
 The following guide outlines the steps required to set up the new Simplified project from scratch and populate it with data compatible with Simplified ID Merge. This will help you estimate the time and resources required on your end to complete the migration. 
@@ -235,7 +236,7 @@ Update your tech stack with the new project’s token and service accounts crede
         - [Javascript SDK ≥ v2.46.0](https://github.com/mixpanel/mixpanel-js/releases/tag/v2.46.0)
         - [Swift SDK ≥ v4.0.5](https://github.com/mixpanel/mixpanel-swift/releases/tag/v4.0.5)
         - [Android SDK ≥ v7.3.0](https://github.com/mixpanel/mixpanel-android/releases/tag/v7.3.0)
-    - Find the implementation guide [here](https://docs.mixpanel.com/docs/tracking-methods/identifying-users#usage). You only need to call `.identify` and `.reset` methods at specific points in the user journeys as the SDK will automatically add the reserved properties, `$device_id` and `$user_id` to the events before sending them to Mixpanel.
+    - Find the implementation guide [here](https://docs.mixpanel.com/docs/tracking-methods/identifying-users#usage). You only need to call `.identify` and `.reset` methods at specific points in the user journeys as the SDK will automatically add the reserved properties, `$device_id` and `$user_id` to the events before sending them to Mixpanel (note that Mixpanel Unity SDK does not support Simplified ID Merge as of now). 
     - You should not call `.alias`, as this method will not trigger ID Merge in Simplified ID project. It is only provided as a backward-compatible solution for users who are on Legacy/Original ID Merge.
 2. For Mixpanel API integration:
     - If you are sending data from server via Mixpanel Import API, update the API token to point to the new project.
