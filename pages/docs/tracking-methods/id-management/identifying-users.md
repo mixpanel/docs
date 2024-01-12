@@ -12,11 +12,11 @@ If using our Web/Mobile SDKs or a CDP like Segment or Rudderstack, there are onl
 1. Call `.identify(<user_id>)` when a user signs up or logs in. Pass in the user's known identifier (eg: their ID from your database).
 2. Call `.reset()` when a user logs out.
 
-Any events prior to calling `.identify` are considered anonymous events. Mixpanel's SDKs will generate a `$device_id` to associate these events to the same anonymous user. By calling `.identify(<user_id>)` when a user signs up or logs in, you're telling Mixpanel that `$device_id` belongs to a known user with ID `user_id`. Under the hood, Mixpanel will stitch the event streams of those users together. This works even if a user has multiple anonymous sessions (eg: on desktop and mobile). As long as you always call `.identify` when the user logs in, all of that activity will be stitched together.
+_Any_ events prior to calling `.identify` are considered anonymous events. Mixpanel's SDKs will generate a `$device_id` to associate these events to the same anonymous user. By calling `.identify(<user_id>)` when a user signs up or logs in, you're telling Mixpanel that `$device_id` belongs to a known user with ID `user_id`. Under the hood, Mixpanel will stitch the event streams of those users together. This works even if a user has multiple anonymous sessions (eg: on desktop and mobile). As long as you always call `.identify` when the user logs in, all of that activity will be stitched together.
 
 ## Example User Flows
 
-Let's walk through a few user flows where ID Merge is useful, and when to call `.identify()` and `.reset()` to use ID Merge properly.
+Let's wlk through a few user flows where ID Merge is useful, and when to call `.identify()` and `.reset()` to use ID Merge properly.
 
 Note: these flows walk through how `distinct_id` is set in Simplified ID Merge; in Original ID Merge, the value of `distinct_id` is not deterministic. See the [FAQ](#what-is-distinct-id) for more details on how `distinct_id` is set.
 
