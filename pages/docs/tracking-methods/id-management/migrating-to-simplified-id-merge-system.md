@@ -1,9 +1,9 @@
 ## Overview
 Mixpanel has released three versions of ID management to date. Prior to March 2020, we have Legacy ID Management system.<br> 
-In March 2020, we released Original ID Merge system which supports retroactive ID Merge. This allows the merging of events triggered both before and after authentication across multiple devices and platforms.<br>
+In March 2020, we released the Original ID Merge system which supports retroactive ID Merge. This allows the merging of events triggered both before and after authentication across multiple devices and platforms.<br>
 In March 2023, we released the current Simplified ID Merge system. It has a simpler implementation and doesn’t have the limitation of 500 IDs per ID cluster found in the Original ID Merge.<br> 
 
-To determine your current ID Management version, navigate to Organisation/Project Settings > Identity Merge. Organisation Settings indicate the default version for every new project (Legacy ID Management is marked as "Disabled" there). **You can switch the ID Management version for a specific project via Project Settings provided no data has been ingested into the project.**
+To determine your current ID Management version, navigate to Organization/Project Settings > Identity Merge. Organization Settings indicate the default version for every new project (Legacy ID Management is marked as "Disabled" there). **You can switch the ID Management version for a specific project via Project Settings provided no data has been ingested into the project.**
 
 ![image](/Tracking/org-setting.png)
 
@@ -220,7 +220,7 @@ The following guide outlines the steps required to set up the new Simplified pro
 ### Set Up a New Simplified ID Project 
 >You need to set up the new Simplified project from scratch as none of the configurations from the existing project can be carried over.
 1. Create a new project in your existing organization via Organization Settings. 
-2. Enable Simplified ID Merge in the project via Project Settings > Identity Merge. Please note that new project follows the organisation’s default (Legacy or Original ID Merge). You have to switch the project to Simplified ID Merge *before* sending any data to the project. Make sure to override the default selection in every newly created project. 
+2. Enable Simplified ID Merge in the project via Project Settings > Identity Merge. Please note that new project follows the organization’s default (Legacy or Original ID Merge). You have to switch the project to Simplified ID Merge *before* sending any data to the project. Make sure to override the default selection in every newly created project. 
 ![image](/Tracking/simplified_project_settings.png)
 3. Set up the new project by following the guide [here](https://docs.mixpanel.com/docs/best-practices/project-setup). Configure the project settings by referring to your existing project’s settings. Some of the setup tasks include inviting users to the project, adding group keys, creating data views and service accounts, configuring session settings etc. Note that the new project comes with newly generated project tokens, service accounts credentials etc. Replace the tokens in your implementations with the new ones to start sending data to this new project.
 
@@ -258,7 +258,7 @@ For mobile apps, the adoption of latest app version may take some time. This mea
 
 Before starting the backfilling process, it’s important to have a discussion internally to determine the volume of historical data that needs to be migrated. It’s advisable to migrate only what you need i.e. recent data actively queried by the team, as this is more manageable and resource-efficient. 
 
-Mixpanel accepts data up to 5 days old, so it is advisable to initiate the backfill process only after the data for a given day has stabilized to avoid the need for multiple backfills. If waiting is not feasible, consider using `mp_processing_time_ms` property (UTC timestamp of when the event was processed by our servers) to identify late-arriving events and selectively backfill them into the new project. To prevent data duplication caused by backfilling, ensure that each imported event includes a [`$insert_id`](https://developer.mixpanel.com/reference/import-events#propertiesinsert_id) which provides a unique identifier for the event and is used for deduplication.
+Mixpanel client-side SDKs, by default, use the /track API endpoint which accepts events up to 5 days old, so it is advisable to initiate the backfill process only after the data for a given day has stabilized to avoid the need for multiple backfills. If waiting is not feasible, consider using `mp_processing_time_ms` property (UTC timestamp of when the event was processed by our servers) to identify late-arriving events and selectively backfill them into the new project. To prevent data duplication caused by backfilling, ensure that each imported event includes a [`$insert_id`](https://developer.mixpanel.com/reference/import-events#propertiesinsert_id) which provides a unique identifier for the event and is used for deduplication.
 
 There are different ways to backfill historical data into the new project, depending on where your data resides: 
 1. Mixpanel APIs - If Mixpanel is your single source of truth, export data from existing project via [Raw Export API](https://developer.mixpanel.com/reference/raw-event-export) and then import it into the new project via [Import API](https://developer.mixpanel.com/reference/import-events). Ensure that the data is compatible with Simplified ID Merge before importing it to Mixpanel. 
@@ -288,7 +288,7 @@ If you are also calling alias or merge (using special events, \$create_alias and
 Discuss internally to decide the ideal data migration flow with minimal interruption to the analysis activities on Mixpanel. 
 
 1. Test both live and historical data migration thoroughly in staging environment before deploying to production. For historical data, you only need a subset of them in the new project for testing and verification.
-2. Prepare for the official transition to the new project as soon as live data is re-directed there. Make sure that your project is well-setup by then. If data delays or incomplete data are expected in the new project, clearly communicate this to your end users as their analysis will be impacted. For example, having a data backfilling plan in place and sharing details such as “X months of data will be available in new project within Y hours”. This proactive approach will help manage expectations with your end users and ensure a seamless transition. Please check the cost implication of having overlapping data across multiple projects. If you have any questions, do not hesitate to contact support@mixpanel.com for assistance.
+2. Prepare for the official transition to the new project as soon as live data is re-directed there. Make sure that your project is well-setup by then. If data delays or incomplete data are expected in the new project, clearly communicate this to your end users as their analysis will be impacted. For example, having a data backfilling plan in place and sharing details such as “X months of data will be available in new project within Y hours”. This proactive approach will help manage expectations with your end users and ensure a seamless transition. Please check the cost implication of having overlapping data across multiple projects. If you have any questions, do not hesitate to contact https://mixpanel.com/get-support for assistance.
 3. In cases of a more intricate migration involving a larger data volume coming from different sources or posing a higher risk to the end-user experience, consider doing data backfilling before updating the live implementation. This approach allows for ample time to configure your new project, replicate reports and non-data entities in the new project against the backfilled data. While this may require multiple backfills, you have the option to deploy the live data implementation when you are ready. 
 
 ### Migrating Reports and Non-data Entities
@@ -308,4 +308,4 @@ When creating new projects, you might have a lot of boards, reports, custom even
 - Distinct ID Matching: Verify that Simplified ID Merge correctly identifies and merges users across devices and sessions based on `$user_id` and `$device_id`. Compare historical data with expected outcomes under Simplified ID Merge logic.
 - Missing Data: Check for instances where `$user_id` and `$device_id` are missing or incorrectly mapped during the merge process.
 
-If you have any questions, do not hesitate to contact support@mixpanel.com for assistance.
+If you have any questions, do not hesitate to contact https://mixpanel.com/get-support for assistance.
