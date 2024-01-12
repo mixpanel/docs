@@ -16,9 +16,9 @@ This connection requires set up on both Segment and Mixpanel.
 
 The connection requires a Segment Write Key. You can obtain this key via Segment's UI: 
 
-1. Login into your Segment workspace and click **Sources** under **Connections** in the menu bar on the left.
+1. Log into your Segment workspace and click **Sources** under **Connections** in the menu bar on the left.
 
-2. Click **Add Source** button the right side above the sources table.
+2. Click **Add Source** button on the right side above the sources table.
 
 3. Search for **Mixpanel Cohorts**, select and hit next
 
