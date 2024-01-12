@@ -17,7 +17,7 @@ For user profile and identity mappings tables, we create a new table with a rand
 ## Partitioning
 The data in the tables is partitioned based on [`_PARTITIONTIME` pseudo column](https://cloud.google.com/bigquery/docs/querying-partitioned-tables#ingestion-time_partitioned_table_pseudo_columns) and in project timezone.
 
-Note: TIMEPARITIONING shouldn't be updated on the table. It will fail your export jobs. Create a new table/view from this table for custom paritioning.
+Note: TIMEPARITIONING shouldn't be updated on the table. It will fail your export jobs. Create a new table/view from this table for custom partitioning.
 
 ## Queries
 You can query data with a single table schema or with a multiple table schema in BigQuery. To get more information about the table schemas, please see [Schema](/docs/data-pipelines/schematized-export-pipeline#schema).
@@ -107,6 +107,6 @@ We need two permissions to manage the dataset.
 
 ## Exporting into Mixpanel managed BigQuery
 
-This is not a recommended approach anymore. But if you choose to export into Mixpanel manged BigQuery then you must provide a Google group email address to use the BigQuery export when you [create your pipeline](https://developer.mixpanel.com/reference/create-warehouse-pipeline). Mixpanel exports transformed data into BigQuery at a specified interval. 
+This is not a recommended approach anymore. But if you choose to export into Mixpanel managed BigQuery then you must provide a Google group email address to use the BigQuery export when you [create your pipeline](https://developer.mixpanel.com/reference/create-warehouse-pipeline). Mixpanel exports transformed data into BigQuery at a specified interval. 
 
 Note: Mixpanel creates a dataset in its own BigQuery instance and gives \"View\" access to the account(s) provided at the time of creating the pipeline. As a result, there is no storage cost associated with exporting data to BigQuery, but standard compute costs will occur when querying on this data.\n\nIf you choose to copy the dataset into your own BigQuery instance, you will additionally start accruing storage costs from BigQuery.
