@@ -1,0 +1,15 @@
+{
+  "$schema": "https://unpkg.com/@floe/config@0.1.0-beta.8/schema.json",
+  "reviews": {
+    "maxFileEvaluations": 10,
+    "maxDiffEvaluations": 20
+  },
+  "rulesets": {
+    "docs": {
+      "include": ["**/*.md", "**/*.mdx"],
+      "rules": {
+        "spelling-and-grammar": "warn"
+      }
+    }
+  }
+}
