@@ -97,7 +97,7 @@ Please, refer to this article to [understand how to send or update profile prope
 
 | **Raw Name** | **Display Name** | **Description** | **[Javascript](/docs/tracking-methods/sdks/javascript)** | **[Android](/docs/tracking-methods/sdks/android)** | **iOS [Objective-C](/docs/tracking-methods/sdks/ios) / [Swift](/docs/tracking-methods/sdks/swift)** | **[Unity](/docs/tracking-methods/sdks/unity)** | 
 | -------- | ------------ | ----------- | :-----------: | :-----------: | :-----------: | :-----------: |
-| $lib_version | Library Version | Last used Mixpanel library version (applies also to React Native and Flutter wrapper SDKs). | ❌ | ❌ | ❌ | ✅ |
+| $lib_version | Library Version | Last used Mixpanel library version (also applies to React Native and Flutter wrapper SDKs). | ❌ | ❌ | ❌ | ✅ |
 | $android_lib_version | Android Lib Version | Last used Mixpanel Android / Unity library version. | ❌ | ✅ | ❌ | ✅ |
 | $ios_lib_version | iOS Lib Version | Last used Mixpanel iOS / Unity library version. | ❌ | ✅ | ❌ | ✅ |
 | $swift_lib_version | Swift Lib Version | Last used Mixpanel Swift library version. | ❌ | ✅ | ❌ | ❌ |
@@ -107,10 +107,17 @@ Please, refer to this article to [understand how to send or update profile prope
 | $ios_version | iOS Version | Last version of iOS on the device. | ❌ | ❌ | ✅ | ✅ |
 | $browser | Browser | Name of the browser. | ✅ | ❌ | ❌ | ❌ | 
 | $browser_version | Browser Version | Version of the browser. | ✅ | ❌ | ❌ | ❌ | 
-| $android_app_version_code | Android App Version Code | Current Android app version code ([versionCode](https://developer.android.com/studio/publish/versioning)). | ❌ | ✅ | ❌ | ❌ |
 | $android_app_version | Android App Version | Current Android app version ([versionName](https://developer.android.com/studio/publish/versioning)). | ❌ | ✅ | ❌ | ✅ |
+| $android_app_version_code | Android App Version Code | Current Android app version code ([versionCode](https://developer.android.com/studio/publish/versioning)). | ❌ | ✅ | ❌ | ❌ |
 | $ios_app_release | iOS App Release | The release or version number of the iOS app ([CFBundleShortVersionString](https://developer.apple.com/documentation/bundleresources/information_property_list/cfbundleshortversionstring)). | ❌ | ❌ | ✅ | ✅ |
 | $ios_app_version | iOS App Version | The version of the build that identifies an iteration of the iOS app ([CFBundleVersion](https://developer.apple.com/documentation/bundleresources/information_property_list/cfbundleversion)). | ❌ | ❌ | ✅ | ❌ |
+| $initial_referrer | Initial Referrer | Referring URL when the user first arrived on your site. Defaults to "$direct" if the user is not referred. | ✅ | ❌ | ❌ | ❌ | 
+| $initial_referring_domain | Initial Referring Domain | Referring domain at first arrival. Defaults to "$direct" if the user is not referred. | ✅ | ❌ | ❌ | ❌ | 
+| initial_utm_source, initial_utm_medium, etc. | Initial UTM Parameters | UTM tags seen for the first time from the URL a customer clicked to arrive at your domain. Each UTM will be collected under its own property. More details [here](/docs/tracking-methods/sdks/javascript#tracking-utm-parameters). | ✅ | ❌ | ❌ | ❌ |
+| $android_manufacturer | Android Manufacturer | Android device manufacturer. | ❌ | ✅ | ❌ | ❌ |
+| $android_brand | Android Brand | Android device brand. | ❌ | ✅ | ❌ | ❌ |
+| $android_model | Android Model | The model of the Anroid device. | ❌ | ✅ | ❌ | ✅ |
+| $ios_device_model | iOS Device Model | The model of the iOS device. | ❌ | ❌ | ✅ | ✅ |
 
 ## Supported Data Types
 
