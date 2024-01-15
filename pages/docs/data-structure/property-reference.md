@@ -99,8 +99,8 @@ Please, refer to this article to [understand how to send or update profile prope
 | -------- | ------------ | ----------- | :-----------: | :-----------: | :-----------: | :-----------: |
 | $lib_version | Library Version | Last used Mixpanel library version (also applies to React Native and Flutter wrapper SDKs). | ❌ | ❌ | ❌ | ✅ |
 | $android_lib_version | Android Lib Version | Last used Mixpanel Android / Unity library version. | ❌ | ✅ | ❌ | ✅ |
-| $ios_lib_version | iOS Lib Version | Last used Mixpanel iOS / Unity library version. | ❌ | ✅ | ❌ | ✅ |
-| $swift_lib_version | Swift Lib Version | Last used Mixpanel Swift library version. | ❌ | ✅ | ❌ | ❌ |
+| $ios_lib_version | iOS Lib Version | Last used Mixpanel iOS / Unity library version. | ❌ | ❌ | ✅ | ✅ |
+| $swift_lib_version | Swift Lib Version | Last used Mixpanel Swift library version. | ❌ | ❌ | ✅ | ❌ |
 | $os | Operating System | Last OS of the event sender. | ✅ | ✅ | ✅ | ✅ |
 | $android_os | Android OS | Set when Android operating system was used. | ❌ | ✅ | ❌ | ✅ |
 | $android_os_version | Android OS Version | Last version of Android on the device. | ❌ | ✅ | ❌ | ✅ |
