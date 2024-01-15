@@ -15,9 +15,12 @@ Mixpanel has many Properties defined in its Data Model.
 | Reserved Properties | Mixpanel reserves certain property names (for [Events](/docs/data-structure/events-and-properties#reserved-event-properties) and [User Profiles](/docs/data-structure/user-profiles#reserved-user-properties)) for special use cases, and these may or may not be automatically populated with values. The purpose of such Reserved Properties are for processing (ie event time stamping) or for specific system features (eg: cohort exports). Examples: `time`, `$email`, `$phone`, `$name`, `$created`. |
  
 ## Default Properties
-Mixpanel's Data Ingestion APIs and [client-side SDKs](/docs/tracking-methods/choosing-the-right-method#client-side-tracking) automatically collect certain properties on every event or user profile. This document describes what those properties mean.
+Mixpanel's Data Ingestion APIs and [client-side SDKs](/docs/tracking-methods/choosing-the-right-method#client-side-tracking) automatically collect certain properties on every event or user profile. Do also note that some Customer Data Platforms (CDPs) that integrate with Mixpanel may also map their own properties to Mixpanel default properties. This document describes what those properties mean.
 
 ### Ingestion APIs
+
+To disable capturing of geolocation properties (i.e. City, Region, Country) refer to the respective SDKs or API documentation. For a quick reference, refer to examples on [disabling geolocation on client-side SDKs](/docs/privacy/protecting-user-data#disabling-geolocation) and [server-side best practice on tracking geolocation](/docs/best-practices/server-side-best-practices#tracking-geolocation-http-api).
+
 #### Event Properties
 
 | **Raw Name** | **Display Name** | **Description** |
@@ -152,4 +155,18 @@ Mixpanel supports five data types for properties: String, Numeric, Boolean, Date
 - Limits of a List property: Event Property = 8KB, User Profile Property = 256KB, Each item in the list: 255 bytes
 - Mixpanel lists are not ordered (i.e. position of values in a list are not significant in Mixpanel reports) and are useful for grouping or analysing similar values across events. Read more details on [List Property Support](/docs/features/advanced#list-property-support) in reports.
 
-Note: Mixpanel also supports object and [list of objects](https://docs-git-kurbycchua-update-property-reference-mixpanel.vercel.app/docs/features/advanced#list-of-objects-property-support) data types for specific use cases like in e-commerce. It is highly encourage that you use the five primary data types as they are fully supported in the Mixpanel UI.
+## Object and List of Objects Data Types
+
+Mixpanel also supports object (in a limited capacity) and [list of objects](https://docs-git-kurbycchua-update-property-reference-mixpanel.vercel.app/docs/features/advanced#list-of-objects-property-support) data types for specific use cases like in e-commerce. It is highly encourage that you use the five primary data types as they are fully supported in the Mixpanel UI.
+
+### Objects
+
+- Arbitrarily-nested groups of JSON key-value pairs (max size 2KB, each object <255 keys with max nesting depth of 3), example: Experiments = {"Exp Onboarding" : "Quick", "Exp Checkout" : "Without Coupon"}
+- Mainly supported in core reports (i.e. Insights, Funnels, Flows, Retention, Users / Cohorts, Events) as filters and breakdowns.
+- Properties (ie keys) within an object are not supported in Lexicon and when searching in properties downdown
+
+### List of Objects
+
+- A JSON array of 1 level JSON object with each object having exactly the same set of key-value pairs
+- Limited to 8KB 
+
