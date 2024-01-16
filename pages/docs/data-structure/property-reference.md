@@ -157,19 +157,17 @@ Mixpanel supports five data types for properties: String, Numeric, Boolean, Date
 
 ## Object and List of Objects Data Types
 
-Mixpanel also supports object (in a limited capacity) and [list of objects](https://docs-git-kurbycchua-update-property-reference-mixpanel.vercel.app/docs/features/advanced#list-of-objects-property-support) data types for specific use cases like in e-commerce. It is highly encouraged that you use the five primary data types as they are fully supported in the Mixpanel UI.
+Mixpanel also supports object and [list of objects](https://docs-git-kurbycchua-update-property-reference-mixpanel.vercel.app/docs/features/advanced#list-of-objects-property-support) data types in a limited capacity. These are typically for very specific use cases such as in e-commerce (eg Cart Items, Search Filters). It is highly encouraged that you use the five primary data types as they are fully supported in the Mixpanel UI.
 
-### Objects
+### Object
 
-- Arbitrarily-nested groups of JSON key-value pairs (max size 2KB, each object max 255 keys, with a max nesting depth of 3), example:
-
-    `Experiments = {"Exp Onboarding" : "Quick", "Exp Checkout" : "Without Coupon"}`
-
-- Mainly supported in core reports (i.e. Insights, Funnels, Flows, Retention, Users / Cohorts, Events) as filters and breakdowns.
-- Properties (ie keys) within an object are not supported in Lexicon and when searching in properties downdown.
+- Arbitrarily-nested groups of JSON key-value pairs `Experiments = {"Exp Onboarding" : "Quick", "Exp Checkout" : "Without Coupon"}`
+- Limits of a Object property: Event Property = 8KB, User Profile Property = 256KB, max 255 keys per nested object with a max nesting depth of 3
+- Mainly supported in core reports (i.e. Insights, Funnels, Flows, Retention, Users / Cohorts, Events) as filters and breakdowns. Property Names (ie keys) within an object are not supported in Lexicon.
 
 ### List of Objects
 
-- A JSON array of 1 level JSON objects with each object having the same set of key-value pairs.
-- Limits of a List of Objects: Event Property = 8KB, User Profile Property = 256KB, max 255 keys.
+- A JSON array of 1 level JSON objects with each object having similar set of key-value pairs.
+- Limits of a List of Objects: Event Property = 8KB, User Profile Property = 256KB, max 255 keys and no nesting
 - By default, only the first 5 objects within the list will be parsed in Mixpanel UI, more details [here](/docs/features/advanced#limits-1).
+- Mainly supported in core reports (i.e. Insights, Funnels, Flows, Retention, Users / Cohorts, Events) as filters and breakdowns. Property Names (ie keys) within an object are not supported in Lexicon.
