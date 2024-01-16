@@ -44,7 +44,7 @@ Please, refer to this article to [understand how to send or update profile prope
 | $country_code | Country Code | The country of the user parsed from the IP property or the Latitude and Longitude properties. The value is stored as a 2-letter country code in the raw data and parsed into the country name in the UI. |
 | $geo_source | Geo Source | Set to "reverse_geocoding" if profile geolocation properties (Country Code, Region, and City) were determined through [Latitude and Longitude](/docs/best-practices/server-side-best-practices#tracking-geolocation-latitude-and-longitude). |
 | $timezone | Timezone | Timezone of the user parsed from the IP property or the Latitude and Longitude properties. |
-| $last_seen | Updated at | The last time a user profile property was set or updated **(this should not be set manually)**. Passing `$ignore_time` as `true`, typically for server-side updates, will skip updating the $last_seen property. See example [here](docs/tracking-methods/sdks/php#setting-profile-properties). |
+| $last_seen | Updated at | The last time a user profile property was set or updated **(this should not be set manually)**. Passing `$ignore_time` as `true`, typically for server-side updates, will skip updating the $last_seen property. See example [here](/docs/tracking-methods/sdks/php#setting-profile-properties). |
 
 
 ### Client-side SDKs
@@ -161,13 +161,13 @@ Mixpanel also supports object and [list of objects](https://docs-git-kurbycchua-
 
 ### Object
 
-- Arbitrarily-nested groups of JSON key-value pairs Experiments = {"Exp Onboarding":"Quick","Exp Checkout":"Without Coupon"}
+- Arbitrarily-nested groups of JSON key-value pairs e.g. Experiments = {"Exp Onboarding":"Quick","Exp Checkout":"Without Coupon"}
 - Limits of a Object property: Event Property = 8KB, User Profile Property = 256KB, max 255 keys per nested object with a max nesting depth of 3
 - Mainly supported in core reports (i.e. Insights, Funnels, Flows, Retention, Users / Cohorts, Events) as filters and breakdowns. Property Names (ie keys) within an object are not supported in Lexicon.
 
 ### List of Objects
 
-- A JSON array of 1 level JSON objects with each object having similar set of key-value pairs. Cart = [{"Brand":"Puma","Category":"Jacket","Price":30}, {"Brand":"Adidas","Category":"Hats","Price":15}]
+- A JSON array of 1 level JSON objects with each object having similar set of key-value pairs e.g. Cart = [{"Brand":"Puma","Category":"Jacket","Price":30}, {"Brand":"Adidas","Category":"Hats","Price":15}]
 - Limits of a List of Objects: Event Property = 8KB, User Profile Property = 256KB, max 255 keys and no nesting
 - By default, only the first 5 objects within the list will be parsed in Mixpanel UI, more details [here](/docs/features/advanced#limits-1).
 - Mainly supported in core reports (i.e. Insights, Funnels, Flows, Retention, Users / Cohorts, Events) as filters and breakdowns. Property Names (ie keys) within an object are not supported in Lexicon.
