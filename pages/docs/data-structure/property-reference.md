@@ -161,13 +161,13 @@ Mixpanel also supports object and [list of objects](https://docs-git-kurbycchua-
 
 ### Object
 
-- Arbitrarily-nested groups of JSON key-value pairs `Experiments = {"Exp Onboarding" : "Quick", "Exp Checkout" : "Without Coupon"}`
+- Arbitrarily-nested groups of JSON key-value pairs Experiments = {"Exp Onboarding":"Quick", "Exp Checkout":"Without Coupon"}
 - Limits of a Object property: Event Property = 8KB, User Profile Property = 256KB, max 255 keys per nested object with a max nesting depth of 3
 - Mainly supported in core reports (i.e. Insights, Funnels, Flows, Retention, Users / Cohorts, Events) as filters and breakdowns. Property Names (ie keys) within an object are not supported in Lexicon.
 
 ### List of Objects
 
-- A JSON array of 1 level JSON objects with each object having similar set of key-value pairs.
+- A JSON array of 1 level JSON objects with each object having similar set of key-value pairs. Cart = [{"Brand":"Puma", "Category":"Jacket", "Price":30}, {"Brand":"Adidas", "Category":"Hats", "Price":15}]
 - Limits of a List of Objects: Event Property = 8KB, User Profile Property = 256KB, max 255 keys and no nesting
 - By default, only the first 5 objects within the list will be parsed in Mixpanel UI, more details [here](/docs/features/advanced#limits-1).
 - Mainly supported in core reports (i.e. Insights, Funnels, Flows, Retention, Users / Cohorts, Events) as filters and breakdowns. Property Names (ie keys) within an object are not supported in Lexicon.
