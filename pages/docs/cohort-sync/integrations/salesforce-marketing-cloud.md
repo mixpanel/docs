@@ -29,7 +29,7 @@ This process will require setup on both SFMC and Mixpanel.
 
 ![SFMC 2 Image](/sfmc2.png)
 
-3. Create a new **Data Extention** with a primary key of the name **SubscriberKey**. The key type for most use-cases will stay as **Text** and size of 250 characters unless you are selecting email or phone number as the id in which you can find corresponding data types. This field will contain ids that map to the unique user property in Mixpanel.
+3. Create a new **Data Extension** with a primary key of the name **SubscriberKey**. The key type for most use-cases will stay as **Text** and size of 250 characters unless you are selecting email or phone number as the id in which you can find corresponding data types. This field will contain ids that map to the unique user property in Mixpanel.
 
 ![SFMC 3 Image](/sfmc3.png)
 

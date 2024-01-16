@@ -402,8 +402,9 @@ public class MainActivity extends ActionBarActivity {
     super.onCreate(savedInstanceState);
     setContentView(R.layout.activity_main);
 
+    trackAutomaticEvents = false;
     // Replace with your Project Token
-    mp = MixpanelAPI.getInstance(this, "YOUR_TOKEN");
+    mp = MixpanelAPI.getInstance(this, "YOUR_TOKEN", trackAutomaticEvents);
   }
 
   private void sendToMixpanel() throws JSONException {

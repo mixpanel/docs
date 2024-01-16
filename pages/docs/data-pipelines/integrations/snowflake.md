@@ -73,7 +73,7 @@ GROUP BY ttime
 
 
 
-This example returns the number of events in each day in project timezone for a monoschema export pipeline and an example daterange. `PROJECT_TIMEZONE` and `DB_NAME` should be replaced by your Mixpnael project timezone and your snowflake database name. You can adjust the query for multischema by putting the right table name in the query.
+This example returns the number of events in each day in project timezone for a monoschema export pipeline and an example daterange. `PROJECT_TIMEZONE` and `DB_NAME` should be replaced by your Mixpanel project timezone and your snowflake database name. You can adjust the query for multischema by putting the right table name in the query.
 
 ### Querying the identity mapping table
 
