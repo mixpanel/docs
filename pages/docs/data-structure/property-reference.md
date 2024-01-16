@@ -10,12 +10,12 @@ Mixpanel has many Properties defined in its Data Model.
 | [Super Properties](/docs/tracking-methods/sdks/javascript#super-properties) | Super Properties are a logical term for global Event Property that you can initialise to automatically attach to every subsequent Event you’re tracking at client side. |
 | [User Profile Properties](/docs/data-structure/user-profiles) | User Profile Properties describe your users (they typically store current demographical information). User profiles are joined to events based on [Distinct ID](/docs/tracking-methods/identifying-users#what-is-distinct-id). |
 | [Group Profile Properties](/docs/data-structure/advanced/group-analytics#group-profiles) | Group Profile Properties describe group level information (similar to User Profiles Properties at user level). With Mixpanel’s [Group Analytics](/docs/data-structure/advanced/group-analytics), multiple users can be grouped and behavioural data analysed at a customised group level (such as company, account). Group profiles are joined to events on your chosen [Group Key](/docs/data-structure/advanced/group-analytics#group-keys-tracked-as-event-properties). |
-| [Lookup Tables](/docs/data-structure/lookup-tables) | Lookup Tables allow you to dynamically extend additional properties mapped to an existing Event or User Property. For example, if you create a lookup table for "Songs" (with additional properties like `hash_tags`, `top_10`, `all_time_favorite`) and specify the mapped event property as `song_id`; you can use these additional properties when doing filtering or breakdowns for events that has `song_id` as an event property. |
+| [Lookup Tables](/docs/data-structure/lookup-tables) | Lookup Tables allow you to dynamically extend additional properties mapped to an existing Event or User Property. For example, if you create a lookup table for "Songs" (that contains additional properties like `hash_tags`, `top_10`, `all_time_favorite`) and map it to an event property `song_id`; you can use these additional properties when doing filtering or breakdowns for events that has `song_id` as an event property. |
 | [Default Properties](/docs/data-structure/property-reference#default-properties) | Default Properties (for Events and User Profiles) are collected and populated with values automatically in Mixpanel. This can happen upon data ingestion or when using certain Mixpanel client-side SDKs. Typically, they have a dollar sign ($) or “mp\_” as prefix to distinguish them from normal properties. |
 | Reserved Properties | Mixpanel reserves certain property names (for [Events](/docs/data-structure/events-and-properties#reserved-event-properties) and [User Profiles](/docs/data-structure/user-profiles#reserved-user-properties)) for special use cases, and these may or may not be automatically populated with values. The purpose of such Reserved Properties are for processing (ie event time stamping) or for specific system features (eg: cohort exports). Examples: `time`, `$email`, `$phone`, `$name`, `$created`. |
  
 ## Default Properties
-Mixpanel's Data Ingestion APIs and [client-side SDKs](/docs/tracking-methods/choosing-the-right-method#client-side-tracking) automatically collect certain properties on every event or user profile. Do also note that some Customer Data Platforms (CDPs) that integrate with Mixpanel may also map their own properties to Mixpanel default properties. This document describes what those properties mean.
+Mixpanel's [Data Ingestion APIs](https://developer.mixpanel.com/reference/ingestion-api) and [Client-Side SDKs](/docs/tracking-methods/choosing-the-right-method#client-side-tracking) automatically collect certain properties on every event or user profile. Do also note that some Customer Data Platforms (CDPs) that integrate with Mixpanel may also map their own properties to Mixpanel default properties. This document describes what those properties mean.
 
 ### Ingestion APIs
 
@@ -42,16 +42,16 @@ Please, refer to this article to [understand how to send or update profile prope
 | $city | City | The city of the user parsed from the IP property or the Latitude and Longitude properties. |
 | $region | Region | The region (state or province) of the user parsed from the IP property or the Latitude and Longitude properties. |
 | $country_code | Country Code | The country of the user parsed from the IP property or the Latitude and Longitude properties. The value is stored as a 2-letter country code in the raw data and parsed into the country name in the UI. |
-| $geo_source | Geo Source | Set to "reverse_geocoding" if profile location properties (Country, Region, and City) were determined through [Latitude and Longitude](/docs/best-practices/server-side-best-practices#tracking-geolocation-latitude-and-longitude). |
+| $geo_source | Geo Source | Set to "reverse_geocoding" if profile geolocation properties (Country Code, Region, and City) were determined through [Latitude and Longitude](/docs/best-practices/server-side-best-practices#tracking-geolocation-latitude-and-longitude). |
 | $timezone | Timezone | Timezone of the user parsed from the IP property or the Latitude and Longitude properties. |
-| $last_seen | Updated at | The last time a user profile property was set or updated (this should not be set manually). |
+| $last_seen | Updated at | The last time a user profile property was set or updated **(this should not be set manually)**. Passing `$ignore_time` as `true`, typically for server-side updates, will skip updating the $last_seen property. See example [here](docs/tracking-methods/sdks/php#setting-profile-properties). |
 
 
 ### Client-side SDKs
 
-Note that the following SDKs wraps around our other client-side SDKs, and as such would also inherit the appropriate default properties indicated in the tables.
-- [React Native](/docs/tracking-methods/sdks/react-native) wraps around Android and Swift SDK; `mp_lib` will be set to `react-native` with `$lib_version` set as the library's version.
-- [Flutter](/docs/tracking-methods/sdks/flutter) wraps around Javscript, Android, and Swift SDK; `mp_lib` will be set to `flutter` with `$lib_version` set as the library's version.
+Note that the following SDKs wrap around our other SDKs; and as such, would also inherit the appropriate default properties from these wrapped SDKs indicated in the tables below:
+- [React Native](/docs/tracking-methods/sdks/react-native) wraps around Android and Swift SDK; `mp_lib` will be set to `react-native` with `$lib_version` set as React Native's library version.
+- [Flutter](/docs/tracking-methods/sdks/flutter) wraps around Javscript, Android, and Swift SDK; `mp_lib` will be set to `flutter` with `$lib_version` set as the Flutter's library version.
 
 #### Event Properties
 
