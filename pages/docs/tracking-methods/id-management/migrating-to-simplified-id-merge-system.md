@@ -2,7 +2,7 @@
 Mixpanel currently has three versions of ID management:
 - Prior to March 2020, we only had 1 version that leverages primarily on aliasing to join the 1st anonymous state to the identified state. We will refer to this as **Legacy ID Management**.
 -  In March 2020, we released the **Original ID Merge** (formerly known as just "ID Merge") approach which supports retroactive identity merging stored in an ID cluster. This enabled the merging of multiple anonymous states to an identified state across multiple devices and platforms.
-- In March 2023, we released the **Simplified ID Merge** approach to remove the complexities of having to rely on different [identity methods](https://developer.mixpanel.com/reference/create-identity) (i.e. $identify, $create_alias, $merge) for different merging scenarios. This also removed the need to cap Distinct IDs to 500 in an ID cluster.
+- In March 2023, we released the **Simplified ID Merge** approach to remove the complexities of having to rely on different [identity methods](https://developer.mixpanel.com/reference/create-identity) (i.e. \$identify, \$create_alias, \$merge) for different merging scenarios. This also removed the need to cap Distinct IDs to 500 in an ID cluster.
 
 To determine your current ID Management version, navigate to [Organization Settings](https://mixpanel.com/settings/org/id-management) or [Project Settings](https://mixpanel.com/settings/project/id-management) -> **Identity Merge**. 
 
@@ -19,7 +19,9 @@ You can change the identity management version for a specific project via Projec
 ![image](/Tracking/project-setting.png)
 
 ## Deciding When Migrating Makes Sense
-It is not possible to convert an existing project using Legacy/Original ID Merge to Simplified ID Merge. **To adopt Simplified ID Merge, you need to set up a new project from scratch**. This guide helps you in evaluating whether the migration will benefit your project based on your current ID management requirements and future plans. It outlines the pros and cons of each ID Management version and guides you through key considerations to make an informed decision. It also provides details on the resources required on your end should you decide to proceed with the migration. 
+It is currently not possible to automatically convert an existing project (with data) on Legacy or Original ID Merge to Simplified ID Merge. **To adopt Simplified ID Merge, you would need to set up a new project from scratch**. 
+
+This guide assists you in evaluating whether a migration to Simplified ID Merge will benefit your tracking based on your current identity management requirements and future product plans. It outlines the pros and cons of each ID Management version and guides you through key considerations to make an informed decision. It also provides details on the resources required on your end should you decide to proceed with the migration. 
 
 ### On Legacy ID Management
 The main limitation of Legacy ID Management was that users could become orphaned. This could happen if they were initially tracked on one platform or device, creating a user on Mixpanel, and later moved on to another platform or device, triggering various anonymous events before logging in. The anonymous events on the second platform would be orphaned, resulting in duplicate users on Mixpanel. Only upon the user's login would their events with the user ID be properly linked back to the main user. Here’s the flow chart illustrating how an orphaned user can be created throughout the user journey, 
