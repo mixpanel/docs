@@ -35,7 +35,7 @@ Also, if you are considering Simplified ID Merge, it's important to note that it
 >- You have ID management requirements which are not supported in Simplified ID Merge e.g. need the support of multiple identified IDs (User IDs) per user.
 
 ## Understanding Simplified ID Merge
-Unlike Legacy ID Management, which requires an explicit alias call to connect multiple identifiers, or Original ID Merge, which requires special events such as \$identify, \$merge, and \$create_alias to initiate ID Merge, **Simplified ID Merge simply requires including reserved properties, `$device_id` and `$user_id` on the events for ID Merge to take place**. You can learn more about Simplified ID Merge [here](https://docs.mixpanel.com/docs/tracking-methods/identifying-users). Here’s a quick example to illustrate the difference: 
+Unlike Legacy ID Management, which requires an explicit alias call to connect multiple identifiers, or Original ID Merge, which requires special events such as \$identify, \$merge, and \$create_alias to initiate ID Merge, **Simplified ID Merge simply requires including reserved properties, `$device_id` and `$user_id` on the events for ID Merge to take place**. You can learn more about Simplified ID Merge [here](/docs/tracking-methods/id-management/identifying-users). Here’s a quick example to illustrate the difference: 
 
 1. When the users are anonymous, the events should include a `$device_id` property that stores the anonymous ID.     
     ```
@@ -237,7 +237,7 @@ Update your tech stack with the new project’s token and service accounts crede
         - [Javascript SDK ≥ v2.46.0](https://github.com/mixpanel/mixpanel-js/releases/tag/v2.46.0)
         - [Swift SDK ≥ v4.0.5](https://github.com/mixpanel/mixpanel-swift/releases/tag/v4.0.5)
         - [Android SDK ≥ v7.3.0](https://github.com/mixpanel/mixpanel-android/releases/tag/v7.3.0)
-    - Find the implementation guide [here](https://docs.mixpanel.com/docs/tracking-methods/identifying-users#usage). You only need to call `.identify` and `.reset` methods at specific points in the user journeys as the SDK will automatically add the reserved properties, `$device_id` and `$user_id` to the events before sending them to Mixpanel (note that Mixpanel Unity SDK does not support Simplified ID Merge as of now). 
+    - Find the implementation guide [here](/docs/tracking-methods/id-management/identifying-users#usage). You only need to call `.identify` and `.reset` methods at specific points in the user journeys as the SDK will automatically add the reserved properties, `$device_id` and `$user_id` to the events before sending them to Mixpanel (note that Mixpanel Unity SDK does not support Simplified ID Merge as of now). 
     - You should not call `.alias`, as this method will not trigger ID Merge in Simplified ID project. It is only provided as a backward-compatible solution for users who are on Legacy/Original ID Merge.
 2. For Mixpanel API integration:
     - If you are sending data from server via Mixpanel Import API, update the API token to point to the new project.
@@ -247,7 +247,7 @@ Update your tech stack with the new project’s token and service accounts crede
         - You can choose any name for the dummy event (e.g. login) except for \$identify, \$merge, and \$create_alias.
 4. For CDP integration:
     - Ensure that your CDP is updated with new Mixpanel project token.
-    - Check out the CDP support for Simplified ID Merge [here](https://docs.mixpanel.com/docs/tracking-methods/identifying-users#third-party-integration-support).
+    - Check out the CDP support for Simplified ID Merge [here](/docs/tracking-methods/id-management/identifying-users#third-party-integration-support).
 5. For other 3rd-party integrations: 
     - If you are sending a subset of events through 3rd-party platforms i.e. attribution and messaging tools, make sure to update the Mixpanel project token there and ensure that 3rd-party events sent to us are compatible with Simplified ID Merge. Refer to this [section](#understanding-simplified-id-merge) for more information. 
 6. For data warehouse integration: 
