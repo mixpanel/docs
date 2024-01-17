@@ -303,7 +303,7 @@ Update your tech stack with the new project’s token, API secret, and service a
       - [React Native ≥ v2.2.0](https://github.com/mixpanel/mixpanel-react-native/releases/tag/v2.2.0)
       - [Flutter ≥ v2.1.0](https://github.com/mixpanel/mixpanel-flutter/releases/tag/v2.1.0)
 
-   > Note: Mixpanel [Unity](/docs/tracking-methods/sdks/unity) SDK currently does not support Simplified ID Merge.
+      *Note: Mixpanel [Unity](/docs/tracking-methods/sdks/unity) SDK currently does not support Simplified ID Merge.*
 
    - Refer to the implementation guide [here](/docs/tracking-methods/id-management/identifying-users#usage). You only need to call `identify` and `reset` methods at specific points in the user journeys as the SDK will automatically add the reserved properties `$device_id` and `$user_id` to the events before sending them to Mixpanel.
    - You should not call `alias`, as this method will not trigger identity merging in a Simplified ID Merge project. It is only provided as a backward-compatible solution for users who are on Legacy / Original ID Merge.
@@ -317,41 +317,61 @@ Update your tech stack with the new project’s token, API secret, and service a
    - Update your Import API payload to include `$device_id` and `$user_id` properties in the events. A single instance of such event is adequate to trigger identity merging. You can learn more about Simplified ID Merge in this [section](#understanding-simplified-id-merge).
    - If it's not feasible to include both `$device_id` and `$user_id` in a single user event, you can still trigger identity merging by sending a dummy event that includes both `$device_id` and `$user_id`. You can choose any name for the dummy event (e.g. login) except for \$identify, \$merge, and \$create_alias.
 
+<br />
+
 3. Customer Data Platform (CDP) integration:
-    - Ensure that your CDP is updated with new Mixpanel project token.
-    - Check out the CDP support for Simplified ID Merge [here](/docs/tracking-methods/id-management/identifying-users#third-party-integration-support).
 
-4. For other 3rd-party integrations: 
-    - If you are sending a subset of events through 3rd-party platforms i.e. attribution and messaging tools, make sure to update the Mixpanel project token there and ensure that 3rd-party events sent to us are compatible with Simplified ID Merge. Refer to this [section](#understanding-simplified-id-merge) for more information. 
+   - Ensure that your CDP is updated with new Mixpanel project token or API secret.
+   - Check the CDP's support for Simplified ID Merge [here](/docs/tracking-methods/id-management/identifying-users#third-party-integration-support).
 
-5. For data warehouse integration: 
-    - Consider using our [Mixpanel Warehouse Connector](https://docs.mixpanel.com/docs/tracking-methods/data-warehouse/overview) which supports Simplified ID Merge. Make sure that events in data warehouse contains the reserved properties (`$device_id` and `$user_id`) before setting up the connector in Mixpanel.
+<br />
 
-For mobile apps, the adoption of latest app version may take some time. This means that users who have upgraded to the latest app version will start sending data to the new project, whereas users on the older apps continue sending data to the old project. To capture the full data, consider migrating the residual data in the old project to the new one, and repeat the process until the app adoption reaches a satisfactory level. You can find additional information about backfilling and key considerations in [this section](#backfilling-historical-data).
+4. Other 3rd-party integration: 
+
+   If you are sending a subset of events through 3rd-party platforms i.e. attribution and messaging tools, make sure to update the Mixpanel project token (or API secret) and ensure that 3rd-party events sent to Mixpanel are compatible with Simplified ID Merge. Refer to this [section](#understanding-simplified-id-merge) for more information. 
+
+<br />
+
+5. Data Warehouse integration: 
+
+   Consider using our [Mixpanel Warehouse Connector](/docs/tracking-methods/data-warehouse/overview) which supports Simplified ID Merge. Make sure that events from the data warehouse contains information that can be mapped to the reserved properties `$device_id` and `$user_id` before setting up the connector in Mixpanel.
+
+For mobile apps, adoption of the latest app version may take some time. This means that users who have upgraded to the latest app version will start sending data to the new project (with Simplified ID Merge), whereas users on the older apps will continue to send data to the old project. To capture the full data, consider migrating the residual data in the old project to the new one, and repeat the process until the app adoption reaches a satisfactory level. You can find additional information about backfilling and key considerations in the [next section](#backfilling-historical-data).
 
 #### Backfilling Historical Data
-> This is an optional step. If your existing project did not have that much data and you don’t mind starting from scratch, you can skip backfilling.
 
-Before starting the backfilling process, it’s important to have a discussion internally to determine the volume of historical data that needs to be migrated. It’s advisable to migrate only what you need i.e. recent data actively queried by the team, as this is more manageable and resource-efficient. 
+> Note: This is an optional step. If your existing project did not have that much data and you don’t mind starting your analysis from scratch, you can skip this section on backfilling.
 
-Mixpanel client-side SDKs, by default, use the /track API endpoint which accepts events up to 5 days old, so it is advisable to initiate the backfill process only after the data for a given day has stabilized to avoid the need for multiple backfills. If waiting is not feasible, consider using `mp_processing_time_ms` property (UTC timestamp of when the event was processed by our servers) to identify late-arriving events and selectively backfill them into the new project. To prevent data duplication caused by backfilling, ensure that each imported event includes a [`$insert_id`](https://developer.mixpanel.com/reference/import-events#propertiesinsert_id) which provides a unique identifier for the event and is used for deduplication.
+Before starting the backfilling process, it’s important to have a discussion internally to determine the volume of historical data that needs to be migrated. It’s advisable to migrate only what you need (i.e. recent data actively queried by the team) as this is more manageable and resource-efficient. 
 
-There are different ways to backfill historical data into the new project, depending on where your data resides: 
-1. Mixpanel APIs - If Mixpanel is your single source of truth, export data from existing project via [Raw Export API](https://developer.mixpanel.com/reference/raw-event-export) and then import it into the new project via [Import API](https://developer.mixpanel.com/reference/import-events). Ensure that the data is compatible with Simplified ID Merge before importing it to Mixpanel. 
-    - You can use Engage API to migrate user data (APIs for both [user export](https://developer.mixpanel.com/reference/engage-query) and [user import](https://developer.mixpanel.com/reference/profile-set) are available).
-    - Consider incorporating the export and import functions from [Mixpanel-utils open source library](https://github.com/mixpanel/mixpanel-utils) in your migration script.
-2. Mixpanel Warehouse Connector - If you’ve been storing your data in a data warehouse, you can import them into Mixpanel via [Warehouse Connector](https://docs.mixpanel.com/docs/tracking-methods/data-warehouse/overview) which supports both events and user data. 
+- Mixpanel Client-Side SDKs, by default, use the /track API endpoint which accepts events up to 5 days old, so it is advisable to initiate the backfill process only after the data for a given day has stabilized to avoid the need for multiple backfills.
+- If waiting data to stabilize is not feasible, consider using `mp_processing_time_ms` property (UTC timestamp of when the event was processed by our servers) to identify late-arriving events and selectively backfill them into the new project.
+- To prevent data duplication caused by backfilling, ensure that each imported event includes a [`$insert_id`](https://developer.mixpanel.com/reference/import-events#propertiesinsert_id) which provides a unique identifier for the event and is used for deduplication.
+
+Depending on where you data resides, there are different ways to backfill historical data into the new project:
+
+1. Mixpanel APIs - If Mixpanel is your single source of truth, export data from the existing project using [Raw Export API](https://developer.mixpanel.com/reference/raw-event-export) and then import it into the new project via [Import API](https://developer.mixpanel.com/reference/import-events). Ensure that the data is compatible with Simplified ID Merge before importing it to Mixpanel.
+
+   - You can use Engage API to migrate user data (APIs for both [user export](https://developer.mixpanel.com/reference/engage-query) and [user import](https://developer.mixpanel.com/reference/profile-set) are available).
+   - Consider incorporating the export and import functions from [Mixpanel-utils open source library](https://github.com/mixpanel/mixpanel-utils) in your migration script.
+
+<br />
+
+2. Mixpanel Warehouse Connector - If you’ve been storing your data in a data warehouse, you can import them into Mixpanel using [Warehouse Connector](https://docs.mixpanel.com/docs/tracking-methods/data-warehouse/overview) which supports both events and user data. 
+
 3. Customer Data Platform (CDP) - Replay the historical data from CDP to Mixpanel.  
 
-Please make sure that the historical data is properly formatted before backfilling it to a new project via any of the methods mentioned above. Familiarize yourself with the Simplified ID implementation in this [section](#understanding-simplified-id-merge) to plan out the required data transformation tasks for your historical data. 
+Please make sure that the historical data is properly formatted before backfilling it to a new project via any of the methods mentioned above. Familiarize yourself with the Simplified ID Merge implementation in this [section](#understanding-simplified-id-merge) to plan out the required data transformation tasks for your historical data. 
 
-If your historical events do not include both `$device_id` and `$user_id` that are required in Simplified ID for ID Merge, check if you can retrieve these IDs mappings from your system - if so, you can still trigger ID Merge by sending a dummy event that includes both `$device_id` and `$user_id` based on your IDs mappings. You can choose any name for the dummy event except for \$identify, \$merge, and \$create_alias.
+If your historical events do not include both `$device_id` and `$user_id` that are required in Simplified ID Merge for identity merging, check if you can retrieve this ID mapping information from your system through other means. Instrument a dummy event that includes both `$device_id` and `$user_id` based on your ID mappings and send that to the new project to enable identity merging. You can choose any name for the dummy event except for \$identify, \$merge, and \$create_alias.
 
 ##### Migrating from Legacy ID Management
 
 If you are implementing via Mixpanel SDK and have been making an alias call to link anonymous ID to user ID, the SDK should have already populated `$device_id` and `$user_id` on your events (please verify this in your Mixpanel project). These historical events can be directly imported into Simplified ID project as they include reserved properties required for ID Merge to take place. 
 
 However, in the case of a custom implementation without the reserved properties `$device_id` and `$user_id` on the events (e.g. server implementation), it’s necessary to transform the events before backfilling it to new project. For example, you can derive the reserved properties from other relevant properties on the events or from IDs mappings maintained in your system. 
+
+//<HERE>
 
 ##### Migrating from Original ID Merge
 
