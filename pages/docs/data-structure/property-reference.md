@@ -34,7 +34,7 @@ To disable capturing of geolocation properties (i.e. City, Region, Country) refe
 
 #### User Properties
 
-Do note that Mixpanel's default user properties are only updated when you send or update at least one property yourself (via [$set](https://developer.mixpanel.com/reference/profile-set) or [$set_once](https://developer.mixpanel.com/reference/profile-set-property-once) operations). Please, refer to this article to [understand how to send or update profile properties](/docs/data-structure/user-profiles).
+Do note that Mixpanel's default user properties are only updated when you send or update at least one property yourself (via [\$set](https://developer.mixpanel.com/reference/profile-set) or [\$set_once](https://developer.mixpanel.com/reference/profile-set-property-once) operations). Please, refer to this article to [understand how to send or update profile properties](/docs/data-structure/user-profiles).
 
 | **Raw Name** | **Display Name** | **Description** |
 | ------------ | ---------------- | --------------- |
@@ -94,7 +94,7 @@ $referrer | Referrer | Referring URL including your own domain. Might not be pre
 
 #### User Properties
 
-Do note that Mixpanel's default user properties are only updated when you send or update at least one property yourself (via [$set](https://developer.mixpanel.com/reference/profile-set) or [$set_once](https://developer.mixpanel.com/reference/profile-set-property-once) operations). Please, refer to this article to [understand how to send or update profile properties](/docs/data-structure/user-profiles).
+Do note that Mixpanel's default user properties are only updated when you send or update at least one property yourself (via [\$set](https://developer.mixpanel.com/reference/profile-set) or [\$set_once](https://developer.mixpanel.com/reference/profile-set-property-once) operations). Please, refer to this article to [understand how to send or update profile properties](/docs/data-structure/user-profiles).
 
 | **Raw Name** | **Display Name** | **Description** | **[Javascript](/docs/tracking-methods/sdks/javascript)** | **[Android](/docs/tracking-methods/sdks/android)** | **iOS [Objective-C](/docs/tracking-methods/sdks/ios) / [Swift](/docs/tracking-methods/sdks/swift)** | **[Unity](/docs/tracking-methods/sdks/unity)** | 
 | -------- | ------------ | ----------- | :-----------: | :-----------: | :-----------: | :-----------: |
