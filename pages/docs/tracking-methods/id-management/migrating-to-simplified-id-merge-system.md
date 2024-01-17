@@ -260,15 +260,25 @@ Take note of the following details when planning for the migration from Legacy I
 
 ## Migration to Simplified ID Merge
 
-The following guide outlines the steps required to set up the new Simplified project from scratch and populate it with data compatible with Simplified ID Merge. This will help you estimate the time and resources required on your end to complete the migration. 
+The following guide outlines the steps required to set up the new Simplified ID Merge project and populate it with data compatible with Simplified ID Merge. This will help you estimate the time and resources required on your end to complete the migration. 
 
-### Set Up a New Simplified ID Project 
+### Set Up a New Project (with Simplified ID Merge)
 
->You need to set up the new Simplified project from scratch as none of the configurations from the existing project can be carried over.
-1. Create a new project in your existing organization via Organization Settings. 
-2. Enable Simplified ID Merge in the project via Project Settings > Identity Merge. Please note that new project follows the organization’s default (Legacy or Original ID Merge). You have to switch the project to Simplified ID Merge *before* sending any data to the project. Make sure to override the default selection in every newly created project. 
+>Note: You need to set up a new Simplified ID Merge project as none of the configurations from any existing project(s) can be carried over.
+
+1. Create a new project in your existing organization via **Projects** under [Organization Settings](https://mixpanel.com/settings/org/projects). You can refer to [Creating Projects](/docs/orgs-and-projects/managing-projects#creating-projects) section in our documentation.
+   
+2. Enable **Simplified API** in the new project via **Identity Merge** under the Project Settings. Refer to [this](/docs/tracking-methods/id-management/identifying-users#how-do-i-switch-between-the-simplified-and-original-api) section in our documentation.
+
+   Please note that the new project follows the organization’s default (Legacy or Original ID Merge). You have to switch the project to Simplified ID Merge ***before*** sending any data to the project. Make sure to override the default selection in every newly created project.
+
+<br />
+
 ![image](/Tracking/simplified_project_settings.png)
-3. Set up the new project by following the guide [here](https://docs.mixpanel.com/docs/best-practices/project-setup). Configure the project settings by referring to your existing project’s settings. Some of the setup tasks include inviting users to the project, adding group keys, creating data views and service accounts, configuring session settings etc. Note that the new project comes with newly generated project tokens, service accounts credentials etc. Replace the tokens in your implementations with the new ones to start sending data to this new project.
+
+<br />
+
+4. Set up the new project by following the guide [here](https://docs.mixpanel.com/docs/best-practices/project-setup). Configure the project settings by referring to your existing project’s settings. Some of the setup tasks include inviting users to the project, adding group keys, creating data views and service accounts, configuring session settings etc. Note that the new project comes with newly generated project tokens, service accounts credentials etc. Replace the tokens in your implementations with the new ones to start sending data to this new project.
 
 ### Populating Data in Simplified ID Project
 This process typically involves populating both the live data and historical data in the new project. Coming from Legacy or Original ID Merge system, you will find that the implementation for Simplified ID is generally simpler and more robust. It’s important to review and modify your ID Management implementation as needed to get expected outcome in terms of user merging. 
