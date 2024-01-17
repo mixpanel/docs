@@ -35,7 +35,7 @@ Aliasing on Legacy ID Management can only be done once, linking the identified U
 
 The lack of a retroactive identity merging feature means that orphaned users are created whenever new Anonymous IDs are introduced during user interactions across multiple sessions, devices, and platforms. This prevents you from getting a holistic view of the user's journey. 
 
->**Staying on Legacy ID Management** <br />
+>**Staying on Legacy ID Management** <br /><br />
 > Note: If you are only tracking authenticated users (i.e. no tracked events while user is anonymous), you don't need the retroactive identity merging feature in Simplified ID Merge and should not consider the migration. We have preserved the documentation on the Legacy ID Management [here](https://github.com/mixpanel/docs/blob/main/legacy/aliases.md). 
 
 ### On Original ID Merge
@@ -51,9 +51,10 @@ Also, if you are considering Simplified ID Merge, it's important to note that it
 >- You have ID management requirements which are not supported in Simplified ID Merge (i.e. the need the support of multiple identified IDs per user.)
 
 ## Understanding Simplified ID Merge
-Unlike Legacy ID Management, which requires an explicit alias call to connect multiple identifiers, or Original ID Merge, which requires special events such as \$identify, \$merge, and \$create_alias to initiate ID Merge, **Simplified ID Merge simply requires including reserved properties, `$device_id` and `$user_id` on the events for ID Merge to take place**. You can learn more about Simplified ID Merge [here](/docs/tracking-methods/id-management/identifying-users). Here’s a quick example to illustrate the difference: 
 
-1. When the users are anonymous, the events should include a `$device_id` property that stores the anonymous ID.     
+Unlike Legacy ID Management, which requires an explicit alias call to connect multiple identifiers, or Original ID Merge, which requires special identity events (i.e. \$identify, \$merge, and \$create_alias) to initiate identity merging, **Simplified ID Merge only requires including reserved event properties, `$device_id` and `$user_id` on the events for identity merging to take place**. You can learn more about Simplified ID Merge [here](/docs/tracking-methods/id-management/identifying-users). Here’s a quick example to illustrate the difference: 
+
+1. When a user is anonymous, the events should include a `$device_id` property that stores the Anonymous ID.     
     ```
     {
       "event": "View Anonymous Page",
@@ -62,8 +63,9 @@ Unlike Legacy ID Management, which requires an explicit alias call to connect mu
         "$device_id": "anonymous111", 		
       }
     }
-    ```    
-2. As soon as the users are identified, the events should include both `$device_id` and `$user_id` properties. A single instance of such event is adequate to trigger ID Merge which merges “anonymous111” and “charlie”, but sending more instances of such events won't result in any ID Merge errors. Make sure that all authenticated events thereafter include at least the `$user_id` property.     
+    ```
+
+2. As soon as the user is identified (i.e. logged in), the events should include both `$device_id` (user's Anonymous ID) and `$user_id` (user's User ID) properties. A single instance of such event is adequate to trigger identity merging which merges “anonymous111” and “charlie”. Subsequent events can continue to have the same `$device_id` and `$user_id` values or minimally just the `$user_id` property.
     ```
     {
       "event": "Sign Up",
@@ -74,7 +76,8 @@ Unlike Legacy ID Management, which requires an explicit alias call to connect mu
       }
     }
     ```    
-3. Upon user logout, re-generate a new anonymous ID to store the anonymous events, and later merge them with the next user who logs in (could be the same user, or different users sharing the same device). Unlike Original ID, Simplified ID Merge does not have a limit on the number of identifiers allowed in an ID cluster.    
+
+3. Upon user logging out, you can generate a new Anonymous ID for `$device_id` to temporarily store the anonymous events, and then later merge them with the next user who logs in (could be the same user, or a different user sharing the same device). Unlike Original ID Merge, Simplified ID Merge does not have a limit on the number of identifiers allowed in an ID cluster.    
     ```
     //after user logout 
     {
@@ -85,6 +88,7 @@ Unlike Legacy ID Management, which requires an explicit alias call to connect mu
       }
     }
     ```    
+
 4. Upon user (re)identification, send events containing both the `$device_id` and `$user_id` properties to trigger ID Merge.    
     ```
     //same user 
@@ -106,15 +110,18 @@ Unlike Legacy ID Management, which requires an explicit alias call to connect mu
         "$user_id": "taylor"
       }
     }
-    ```    
-Simplified ID Merge can retroactively merge an unlimited number of anonymous IDs (`$device_id`) to a user (`$user_id`). This ensures that anonymous events across multiple platforms and sessions can always be merged to the respective user. The implementation above results in the following ID cluster, 
+    ```
+
+Simplified ID Merge can retroactively merge an unlimited number of anonymous IDs (`$device_id`) to a user (`$user_id`). This ensures that anonymous events across multiple platforms, devices, or sessions can always be merged to the respective user. The implementation above results in the following ID cluster if charlie is the one who re-logged in.
 
 ![image](/Tracking/charlie_id_cluster.png)
 
-- Any ID provided as `$device_id` will be prefixed with `$device:` in Mixpanel.
-- You can merge unlimited number of `$device_id` into `$user_id`
+- Any ID provided as `$device_id` will be prefixed with `$device:` in the ID cluster.
+- You can merge unlimited number of `$device_id` into a `$user_id`
 
-`distinct_id` is optional on event because Mixpanel automatically updates or overrides it whenever `$user_id` or `$device_id` is present on the events. It takes the value of `$user_id` if present; otherwise, it takes `$device_id` and prefixes it with `$device:` <br> 
+`distinct_id` is optional on events because Mixpanel automatically updates or overrides it whenever `$user_id` or `$device_id` is present on the events. It takes the value of `$user_id` if present; otherwise, it takes `$device_id` and prefixes it with `$device:` 
+<br> 
+
 Example 1: 
 ```
 //Triggered event 
