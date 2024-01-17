@@ -355,8 +355,6 @@ Depending on where you data resides, there are different ways to backfill histor
    - You can use Engage API to migrate user data (APIs for both [user export](https://developer.mixpanel.com/reference/engage-query) and [user import](https://developer.mixpanel.com/reference/profile-set) are available).
    - Consider incorporating the export and import functions from [Mixpanel-utils open source library](https://github.com/mixpanel/mixpanel-utils) in your migration script.
 
-<br />
-
 2. Mixpanel Warehouse Connector - If you’ve been storing your data in a data warehouse, you can import them into Mixpanel using [Warehouse Connector](https://docs.mixpanel.com/docs/tracking-methods/data-warehouse/overview) which supports both events and user data. 
 
 3. Customer Data Platform (CDP) - Replay the historical data from CDP to Mixpanel.  
@@ -365,13 +363,13 @@ Please make sure that the historical data is properly formatted before backfilli
 
 If your historical events do not include both `$device_id` and `$user_id` that are required in Simplified ID Merge for identity merging, check if you can retrieve this ID mapping information from your system through other means. Instrument a dummy event that includes both `$device_id` and `$user_id` based on your ID mappings and send that to the new project to enable identity merging. You can choose any name for the dummy event except for \$identify, \$merge, and \$create_alias.
 
+//<HERE>
+
 ##### Migrating from Legacy ID Management
 
 If you are implementing via Mixpanel SDK and have been making an alias call to link anonymous ID to user ID, the SDK should have already populated `$device_id` and `$user_id` on your events (please verify this in your Mixpanel project). These historical events can be directly imported into Simplified ID project as they include reserved properties required for ID Merge to take place. 
 
 However, in the case of a custom implementation without the reserved properties `$device_id` and `$user_id` on the events (e.g. server implementation), it’s necessary to transform the events before backfilling it to new project. For example, you can derive the reserved properties from other relevant properties on the events or from IDs mappings maintained in your system. 
-
-//<HERE>
 
 ##### Migrating from Original ID Merge
 
