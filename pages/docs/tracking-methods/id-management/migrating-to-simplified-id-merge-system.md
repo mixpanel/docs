@@ -272,15 +272,21 @@ The following guide outlines the steps required to set up the new Simplified ID 
 
    Please note that the new project follows the organization’s default (Legacy or Original ID Merge). You have to switch the project to Simplified ID Merge ***before*** sending any data to the project. Make sure to override the default selection in every newly created project.
 
-<br />
-
 ![image](/Tracking/simplified_project_settings.png)
 
-<br />
+3. Continue to set up the new project by following the guide [here](/docs/best-practices/project-setup). Configure the project settings by referring to your existing project’s settings. Some of the setup tasks may include:
 
-4. Set up the new project by following the guide [here](https://docs.mixpanel.com/docs/best-practices/project-setup). Configure the project settings by referring to your existing project’s settings. Some of the setup tasks include inviting users to the project, adding group keys, creating data views and service accounts, configuring session settings etc. Note that the new project comes with newly generated project tokens, service accounts credentials etc. Replace the tokens in your implementations with the new ones to start sending data to this new project.
+   - [Inviting users]([/docs/orgs-and-projects/roles-and-permissions#invite-users-to-a-project) to the project
+   - Creating [Teams](/docs/orgs-and-projects/roles-and-permissions#teams) and adding users to them
+   -  Adding [group keys](/docs/data-structure/advanced/group-analytics#group-keys-in-project-settings) from Group Analytics
+   -  Creating [data views](/docs/data-governance/data-views-and-classification#create-data-view) and adding users or teams to them
+   -  Creating or granting [service accounts](https://developer.mixpanel.com/reference/service-accounts) access to this project
+   -  Configuring [session settings](/docs/features/sessions)
+   
+   Note that the new project comes with newly generated project tokens, API secret, and potentially new set of service account credentials. Replace the project tokens in your implementations with the new ones to start sending data to this new project. Ensure that any backend scripts using API secret or service accounts are updated as well.
 
 ### Populating Data in Simplified ID Project
+
 This process typically involves populating both the live data and historical data in the new project. Coming from Legacy or Original ID Merge system, you will find that the implementation for Simplified ID is generally simpler and more robust. It’s important to review and modify your ID Management implementation as needed to get expected outcome in terms of user merging. 
 
 #### Sending Live Data
