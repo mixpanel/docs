@@ -35,23 +35,20 @@ Aliasing on Legacy ID Management can only be done once, linking the identified U
 
 The lack of a retroactive identity merging feature means that orphaned users are created whenever new Anonymous IDs are introduced during user interactions across multiple sessions, devices, and platforms. This prevents you from getting a holistic view of the user's journey. 
 
-<CustomCallout type="info" title="Roles & Permissions">
-    test
-</CustomCallout>
-
->**Is it ok to stay on Legacy ID Management?**<br />
-If you are only tracking authenticated users (i.e. you do not track anonymous events), you don't need the retroactive identity merging feature in Simplified ID Merge and should not consider the migration. We have preserved the documentation on the Legacy ID Management [here](https://github.com/mixpanel/docs/blob/main/legacy/aliases.md). 
+>**Staying on Legacy ID Management** <br />
+> Note: If you are only tracking authenticated users (i.e. no tracked events while user is anonymous), you don't need the retroactive identity merging feature in Simplified ID Merge and should not consider the migration. We have preserved the documentation on the Legacy ID Management [here](https://github.com/mixpanel/docs/blob/main/legacy/aliases.md). 
 
 ### On Original ID Merge
-While retroactive ID Merge is supported in Original ID Merge, the main limitation is that each user can have a ID cluster limited to a maximum of 500 IDs. Upon reaching this limit, any new Distinct ID can no longer be merged into the same ID cluster. They will become orphaned (duplicate users on Mixpanel), preventing you from getting a holistic view of the user journeys. 
 
-Hitting the 500 IDs per ID cluster limit is possible when the process of generating new anonymous IDs through `.reset()` call on logout and adding them to the ID cluster repeats 500 times. The `.reset()` call is commonly implemented in product with multiple users sharing the same device. This ensures that anonymous events upon logout are linked to the next users who login, rather than the last users who logout. If some of your users are approaching this cluster limit, you should revisit your implementation and consider removing the `.reset()` call, unless there is a compelling use case where the benefits outweigh the implications of reaching the ID cluster limit. 
+While retroactive identity merging is supported on Original ID Merge, the main limitation is that each user's ID cluster is limited to a maximum of 500 Distinct IDs. Upon reaching this limit, any new Distinct ID can no longer be merged into the same ID cluster. They will then become orphaned (duplicate users on Mixpanel), preventing you from getting a holistic view of the user's journey. 
 
-Also, if you are considering Simplified ID Merge, it's important to note that it does not support multiple identified IDs (e.g. User IDs) per ID cluster. This is supported on Original ID Merge via special events such as \$merge and \$create_alias but they have been removed from Simplified ID Merge for simplicity.
+Reaching the 500 Distinct IDs per ID cluster limit is possible when the process of generating new anonymous IDs through `reset()` call on logout and adding them to the ID cluster repeats 500 times. The `reset()` call is commonly implemented in products with multiple users sharing the same device. This ensures that anonymous events post logout are linked to the next users who logins in, rather than the last users who logout. If some of your users are approaching this cluster limit, you should revisit your implementation and consider removing the `reset()` call, unless there is a compelling use case where the benefits outweigh the implications of reaching the ID cluster limit. 
 
->When it’s ok to keep Original ID Merge: 
->- If you don’t generally support multiple users sharing the same device, and don’t have a compelling use case requiring `.reset()` call on logout (or if you are implementing via server-side and do not generate new anonymous IDs for the same user), you are unlikely to run into the limit of 500 IDs per ID cluster, and should not consider the migration.  
->- You have ID management requirements which are not supported in Simplified ID Merge e.g. need the support of multiple identified IDs (User IDs) per user.
+Also, if you are considering Simplified ID Merge, it's important to note that it does not support multiple identified IDs (e.g. User IDs) per ID cluster. This is supported on Original ID Merge via special events such as \$merge and \$create_alias but they are not supported on Simplified ID Merge as the approch to identity management is different, more details [here](/docs/tracking-methods/id-management/identifying-users#example-user-flows).
+
+>**Staying on Original ID Merge**
+>- If you don’t generally support multiple users sharing the same device, and don’t have a compelling use case requiring `reset()` calls on logout (or if you are implementing via server-side and do not generate new anonymous IDs for the same user), you are unlikely to run into the limit of 500 IDs per ID cluster, and should not consider the migration.  
+>- You have ID management requirements which are not supported in Simplified ID Merge (i.e. the need the support of multiple identified IDs per user.)
 
 ## Understanding Simplified ID Merge
 Unlike Legacy ID Management, which requires an explicit alias call to connect multiple identifiers, or Original ID Merge, which requires special events such as \$identify, \$merge, and \$create_alias to initiate ID Merge, **Simplified ID Merge simply requires including reserved properties, `$device_id` and `$user_id` on the events for ID Merge to take place**. You can learn more about Simplified ID Merge [here](/docs/tracking-methods/id-management/identifying-users). Here’s a quick example to illustrate the difference: 
