@@ -141,7 +141,7 @@ If you select the single table schema, the export pipeline creates a *mp_master_
   
 Suppose you have an event with a `purchase_amount` property and one with a `referrer` property, the table will have a *purchase_amount* column and a *referrer* column. Events that don’t have a property contain a NULL value in that column.
 
-For examples of one table for all events, see [One Table for All Events](#section-one-table-for-all-events).
+For examples of one table for all events, see [One Table for All Events](#one-table-for-all-events).
 
 #### Using One Table for Each Event
 
@@ -151,7 +151,7 @@ If you select the multi-table option, Mixpanel creates one table per unique even
 
 Each table for each event has one column per unique property name across all events in the history of the dataset. 
 
-For an example of one table for each event, see [One Table for Each Event](#section-one-table-for-each-event).
+For an example of one table for each event, see [One Table for Each Event](#one-table-for-each-event).
 > 📘 
 > 
 > One table for each event is not available during the trial period.
