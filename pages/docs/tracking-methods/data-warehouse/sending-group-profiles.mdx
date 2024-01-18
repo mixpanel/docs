@@ -20,6 +20,26 @@ Once you have created a warehouse source, follow the below steps to send user pr
 6. Specify what group key this table contains. See more about setting up Group keys [here](/docs/data-structure/advanced/group-analytics#group-keys-in-project-settings).
 7. Specify which column contains the group ID.
 
+#### Profile History via Slowly Changing Dimensions Type 2 Tables
+
+<Callout type="info">
+  Profile History is in early access and not available on all projects. Request access
+  <a href="https://forms.gle/x8mbU6FVe5uHiVXF6">here</a>.
+</Callout>
+
+Profile History allows you to point Mixpanel at a group table formatted as [Slowly Changing Dimensions Type 2](https://en.wikipedia.org/wiki/Slowly_changing_dimension#Type_2:_add_new_row). This allows you to set up reports to analyze the historic values of group properties, in addition to latest value.
+
+Setup instructions:
+1. When creating a new Group Table, there will be a Type option. Select History Table.
+2. Map the Group Key to the appropriate group, Group ID to the Group ID column and Start Time to the Start Time column.
+3. You will only have the option for a Time Based sync for a History Table. See below for further setup information.
+
+
+**Note:** For billing purposes each update in the SCD Type 2 table are processed as events.
+During early access there is no charge for updates, however high volumes of updates
+relative to a project's event plan limit may make the project unsuitable for early access. Also, there is a 90 day lookback limit for updates during early access so we recommend doing daily or monthly snapshots even if there are no delta updates to ensure profile history values do not show as (not set). This restriction will be lifted when the feature becomes generally available.
+
+
 ### Sync Settings
 After pointing Mixpanel at your group table, you can select a Sync Type option. The options are: 
 - Time Based: 
