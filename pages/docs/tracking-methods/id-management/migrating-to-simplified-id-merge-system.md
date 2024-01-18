@@ -35,7 +35,7 @@ Aliasing on Legacy ID Management can only be done once, linking the identified U
 
 The lack of a retroactive identity merging feature means that orphaned users are created whenever new Anonymous IDs are introduced during user interactions across multiple sessions, devices, and platforms. This prevents you from getting a holistic view of the user's journey. 
 
-><b>Staying on Legacy ID Management</b>
+><b>Staying on Legacy ID Management</b> <br />
 > Note: If you are only tracking authenticated users (i.e. no tracked events while user is anonymous), you don't need the retroactive identity merging feature in Simplified ID Merge and should not consider the migration. We have preserved the documentation on the Legacy ID Management [here](https://github.com/mixpanel/docs/blob/main/legacy/aliases.md). 
 
 ### On Original ID Merge
@@ -46,13 +46,13 @@ Reaching the 500 Distinct IDs per ID cluster limit is possible, when the process
 
 Also, if you are considering Simplified ID Merge, it's important to note that it does not support multiple identified IDs (i.e. User IDs) per ID cluster. This is supported on Original ID Merge via special events such as \$merge and \$create_alias but they are not supported on Simplified ID Merge as the approch to identity management is completely different, more details [here](/docs/tracking-methods/id-management/identifying-users#example-user-flows).
 
-><b>**Staying on Original ID Merge**</b>
+><b>Staying on Original ID Merge</b>
 >- If you don’t generally support multiple users sharing the same device, and don’t have a compelling use case requiring `reset()` calls on logout (or if you are implementing via server-side and do not generate new anonymous IDs for the same user), you are unlikely to run into the limit of 500 IDs per ID cluster, and should not consider the migration.  
 >- You have ID management requirements which are not supported in Simplified ID Merge (i.e. the need the support of multiple identified IDs per user.)
 
 ## Understanding Simplified ID Merge
 
-Unlike Legacy ID Management, which requires an explicit alias call to connect multiple identifiers, or Original ID Merge, which requires special identity events (i.e. \$identify, \$merge, and \$create_alias) to initiate identity merging, **Simplified ID Merge only requires including reserved event properties, `$device_id` and `$user_id` on the events for identity merging to take place**. You can learn more about Simplified ID Merge [here](/docs/tracking-methods/id-management/identifying-users). Here’s a quick example to illustrate the difference: 
+Unlike Legacy ID Management, which requires an explicit alias call to connect anonymous to identified state, or Original ID Merge, which requires special identity events (i.e. \$identify, \$create_alias, and \$merge) to initiate identity merging; <b>Simplified ID Merge only requires including reserved event properties `$device_id` and `$user_id` on the events for identity merging to take place</b>. You can learn more about Simplified ID Merge [here](/docs/tracking-methods/id-management/identifying-users). Here’s a quick examples to illustrate: 
 
 1. When a user is anonymous, the events should include a `$device_id` property that stores the Anonymous ID.
 ```
@@ -60,12 +60,12 @@ Unlike Legacy ID Management, which requires an explicit alias call to connect mu
   "event": "View Anonymous Page",
   "properties": {
     "token": "{{token}}",
-    "$device_id": "anonymous111", 		
+    "$device_id": "anonymous111" 		
   }
 }
 ```
 
-2. As soon as the user is identified (i.e. logged in), the events should include both `$device_id` (user's Anonymous ID) and `$user_id` (user's User ID) properties. A single instance of such event is adequate to trigger identity merging which merges “anonymous111” and “charlie”. Subsequent events can continue to have the same `$device_id` and `$user_id` values or minimally just the `$user_id` property.
+2. As soon as the user is identified (i.e. logged in), the events should include both `$device_id` (user's Anonymous ID) and `$user_id` (user's User ID) properties. A single instance of such event is adequate to trigger identity merging which merges “anonymous111” and “charlie”. Subsequent events can continue to have the same `$device_id` and `$user_id` properties or minimally just the `$user_id` property.
 ```
 {
   "event": "Sign Up",
@@ -89,7 +89,7 @@ Unlike Legacy ID Management, which requires an explicit alias call to connect mu
 }
 ```    
 
-4. Upon user (re)identification, send events containing both the `$device_id` and `$user_id` properties to trigger ID Merge.    
+4. Upon user (re)identification, send events containing both the `$device_id` and `$user_id` properties to trigger identity merging.    
 ```
 //same user 
 {
@@ -142,7 +142,7 @@ Example 1:
   "properties": {
     "token": "{{token}}",
     "$device_id": "anonymous111", 
-    "$user_id": "charlie"
+    "$user_id": "charlie",
     "distinct_id": "charlie"
   }
 }
