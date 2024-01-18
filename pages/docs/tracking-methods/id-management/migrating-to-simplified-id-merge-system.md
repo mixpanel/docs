@@ -122,7 +122,7 @@ Simplified ID Merge can retroactively merge an unlimited number of anonymous IDs
 - `distinct_id` is optional on events because Mixpanel automatically updates or overrides it whenever `$user_id` or `$device_id` is present on the events. It takes the value of `$user_id` if present; otherwise, it takes `$device_id` and prefixes it with `$device:` 
 <br /> 
 
-Example 1: 
+**Example 1:**
 ```
 //Triggered event 
 {
@@ -148,7 +148,7 @@ Example 1:
 }
 ```
 
-Example 2: 
+**Example 2:** 
 ```
 //Triggered event 
 {
@@ -204,7 +204,7 @@ Take note of the following details when planning for the migration from Legacy I
    Ensure that the `distinct_id` value of an anonymous user's events are always prefixed with `$device:` if this approach is used.
    <br />
    
-   Example 1:
+   **Example 1:**
    ```
    //Triggered event 
    {
@@ -228,7 +228,7 @@ Take note of the following details when planning for the migration from Legacy I
    }
    ```
    
-    Example 2:         
+    **Example 2:**
     ```
     //Triggered event 
     {
