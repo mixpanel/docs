@@ -13,10 +13,10 @@ You can create a custom event containing "Ad Conversion" and "Ad Impression," an
 
 ## Create a Custom Event
 
-![image](https://github.com/mixpanel/docs/assets/2077899/1ac40a2e-2055-4dea-ba31-f0a6ea41a940)
+![image](/create-custom-event.png)
 
-1. Expand the Event dropdown in either an Insights, Funnels, Retention, or Formulas report.
-2. Select **Create Custom**.
+1. Expand the Event dropdown in either an Insights, Funnels or Retention report.
+2. Select the plus button to the right of the search bar.
 3. Select the events and properties you’d like to include.
 4. Name your custom event, and click **Save**.
 

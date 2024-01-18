@@ -10,7 +10,7 @@ In order to properly understand API usage and provide you with resources as part
 
 Your Integration ID should be a string representing your company’s or solution’s name. If Mixpanel were a developer, our Integration ID would be “mixpanel”.
 
-Note: Always include your integration ID -- this will help customers better understand the soruce of their event data in Mixpanel.
+Note: Always include your integration ID -- this will help customers better understand the source of their event data in Mixpanel.
 
 ### Event Tracking
 For event data, you will include your Integration ID as the `$source` property value.
