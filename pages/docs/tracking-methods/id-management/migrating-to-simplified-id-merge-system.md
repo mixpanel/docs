@@ -350,18 +350,18 @@ Before starting the backfilling process, it’s important to have a discussion i
 
 Depending on where you data resides, there are different ways to backfill historical data into the new project:
 
-1. Mixpanel APIs - If Mixpanel is your single source of truth, export data from the existing project using [Raw Export API](https://developer.mixpanel.com/reference/raw-event-export) and then import it into the new project via [Import API](https://developer.mixpanel.com/reference/import-events). Ensure that the data is compatible with Simplified ID Merge before importing it to Mixpanel.
+1. Mixpanel APIs - if Mixpanel is your single source of truth, export data from the existing project using [Raw Export API](https://developer.mixpanel.com/reference/raw-event-export) and then import it into the new project via [Import API](https://developer.mixpanel.com/reference/import-events). Ensure that the data is compatible with Simplified ID Merge before importing it to Mixpanel.
 
-   - You can use Engage API to migrate user data (APIs for both [user export](https://developer.mixpanel.com/reference/engage-query) and [user import](https://developer.mixpanel.com/reference/profile-set) are available).
+   - You can use Engage API to migrate user data (APIs for both [user export](https://developer.mixpanel.com/reference/engage-query) and batched [user import](https://developer.mixpanel.com/reference/profile-batch-update) are available).
    - Consider incorporating the export and import functions from [Mixpanel-utils open source library](https://github.com/mixpanel/mixpanel-utils) in your migration script.
 
-2. Mixpanel Warehouse Connector - If you’ve been storing your data in a data warehouse, you can import them into Mixpanel using [Warehouse Connector](https://docs.mixpanel.com/docs/tracking-methods/data-warehouse/overview) which supports both events and user data. 
+2. Mixpanel Warehouse Connector - if you’ve been storing your data in a data warehouse, you can import them into Mixpanel using [Warehouse Connector](https://docs.mixpanel.com/docs/tracking-methods/data-warehouse/overview) which supports both events and user data. 
 
-3. Customer Data Platform (CDP) - Replay the historical data from CDP to Mixpanel.  
+3. Customer Data Platform (CDP) - replay the historical data from CDP to Mixpanel.  
 
 Please make sure that the historical data is properly formatted before backfilling it to a new project via any of the methods mentioned above. Familiarize yourself with the Simplified ID Merge implementation in this [section](#understanding-simplified-id-merge) to plan out the required data transformation tasks for your historical data. 
 
-If your historical events do not include both `$device_id` and `$user_id` that are required in Simplified ID Merge for identity merging, check if you can retrieve this ID mapping information from your system through other means. Instrument a dummy event that includes both `$device_id` and `$user_id` based on your ID mappings and send that to the new project to enable identity merging. You can choose any name for the dummy event except for \$identify, \$merge, and \$create_alias.
+If your historical events do not include both `$device_id` and `$user_id` that are required in Simplified ID Merge for identity merging, check if you can retrieve this ID mapping information from your system through other means. Instrument a dummy event that includes both `$device_id` and `$user_id` based on your ID mappings and send that to the new project to enable identity merging. You can choose any name for the dummy event except for \$identify, \$create_alias, and \$merge.
 
 ##### Legacy ID Management
 
@@ -373,7 +373,7 @@ However, in the case of a custom implementation without the reserved properties 
 
 If you had implemented using Mixpanel Client-Side SDKs (except for Unity) and have been calling identify to merge pre and post-login states, the SDK should have already populated `$device_id` and `$user_id` on your events (please verify this in your existing Mixpanel project). These historical events can be directly imported into the new Simplified ID Merge project as they include reserved properties required for identity merging. 
 
-If you are also calling alias or merge (using special events, \$create_alias and \$merge) to merge multiple user IDs per user, it's important to note that this functionality is not supported in Simplified ID Merge. Additional details can be found in this [section](#considerations-when-migrating-from-legacy--original-to-simplified-id-merge).
+If you are also calling alias or merge (using special events, \$create_alias or \$merge) to merge multiple user IDs per user, it's important to note that this functionality is not supported in Simplified ID Merge. Additional details can be found in this [section](#considerations-when-migrating).
 
 #### Validating Identity Management
 
