@@ -330,7 +330,7 @@ Update your tech stack with the new project’s token, API secret, and service a
 
 <br />
 
-4. Other <b>3rd-party platforms</b> integration: 
+4. Other <b>3rd-party Platforms</b> integration: 
 
    If you are sending events from 3rd-party platforms (i.e. attribution and messaging tools), make sure to update the Mixpanel project token (or API secret) and ensure that 3rd-party events sent to Mixpanel are compatible with Simplified ID Merge. Refer to this [section](docs/tracking-methods/id-management/identifying-users#how-should-i-link-identified-ids-from-3rd-party-systems) for more information. 
 
