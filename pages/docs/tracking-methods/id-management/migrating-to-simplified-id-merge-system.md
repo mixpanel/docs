@@ -15,6 +15,8 @@ The Organization Settings for Identity Merge determines the default identity man
 
 ![image](/Tracking/org-setting.png "Organization ID Merge Setting")
 
+<br />
+
 You can change the identity management version for a specific project (without affecting other projects) via Project Settings, provided no data has been ingested into the project. For new projects, we recommend setting the Simplied ID Merge (<b>Simplified API</b>) option as it is a straightforward simpler way of managing your users' identity in Mixpanel. 
 
 ![image](/Tracking/project-setting.png)
@@ -32,6 +34,8 @@ The main limitation of Legacy ID Management was that anonymous user states could
 Aliasing on Legacy ID Management can only be done once, linking the identified User ID to the 1st Anonymous ID. Subsequent logins on a different platform or device where a user is identified again with the same User ID will tag subsequent events to the 1st Anonymous ID (from the 1st platform / device). Here’s a diagram illustrating how a typical user journey on different devices ends up creating an ophaned user.
 
 ![image](/Tracking/legacy-id-management.png)
+
+<br />
 
 The lack of a retroactive identity merging feature means that orphaned users are created whenever new Anonymous IDs are introduced during user interactions across multiple sessions, devices, and platforms. This prevents you from getting a holistic view of the user's journey. 
 
@@ -293,7 +297,7 @@ This process typically involves populating both the live data and historical dat
 
 Update your tech stack with the new project’s token, API secret, and service accounts credentials to redirect data to the new project. 
 
-1. Mixpanel [Client-Side SDK](/docs/tracking-methods/choosing-the-right-method#client-side-tracking) integration:
+1. Mixpanel <b>[Client-Side SDK](/docs/tracking-methods/choosing-the-right-method#client-side-tracking)</b> integration:
 
    - Upgrade to the latest SDK version supporting Simplified ID Merge and initialise the SDK with new project’s token:
       - [Javascript ≥ v2.46.0](https://github.com/mixpanel/mixpanel-js/releases/tag/v2.46.0)
@@ -310,7 +314,7 @@ Update your tech stack with the new project’s token, API secret, and service a
 
 <br />
 
-2. Mixpanel API / [Server-Side SDK](/docs/tracking-methods/choosing-the-right-method#server-side-tracking) integration:
+2. Mixpanel <b>API / [Server-Side SDK](/docs/tracking-methods/choosing-the-right-method#server-side-tracking)</b> integration:
 
    - If you are sending data from server via Mixpanel's [Import API](https://developer.mixpanel.com/reference/import-events), update the project token or service account to point to the new project.
    - You should not send \$identify, \$create_alias, and \$merge events since they will be ignored in Simplified ID Merge projects and will not trigger identity merging.
@@ -319,20 +323,20 @@ Update your tech stack with the new project’s token, API secret, and service a
 
 <br />
 
-3. Customer Data Platform (CDP) integration:
+3. <b>Customer Data Platform (CDP)</b> integration:
 
    - Ensure that your CDP is updated with new Mixpanel project token or API secret.
    - Check the CDP's support for Simplified ID Merge [here](/docs/tracking-methods/id-management/identifying-users#third-party-integration-support).
 
 <br />
 
-4. Other 3rd-party integration: 
+4. Other <b>3rd-party platforms</b> integration: 
 
    If you are sending events from 3rd-party platforms (i.e. attribution and messaging tools), make sure to update the Mixpanel project token (or API secret) and ensure that 3rd-party events sent to Mixpanel are compatible with Simplified ID Merge. Refer to this [section](docs/tracking-methods/id-management/identifying-users#how-should-i-link-identified-ids-from-3rd-party-systems) for more information. 
 
 <br />
 
-5. Data Warehouse integration: 
+5. <b>Data Warehouse</b> integration: 
 
    Consider using our [Mixpanel Warehouse Connector](/docs/tracking-methods/data-warehouse/overview) which supports Simplified ID Merge. Make sure that events from the data warehouse contains information that can be mapped to the reserved properties `$device_id` and `$user_id` before setting up the connector in Mixpanel.
 
@@ -342,22 +346,26 @@ For mobile apps, adoption of the latest app version may take some time. This mea
 
 > Note: This is an optional step. If your existing project did not have that much data and you don’t mind starting your analysis from scratch, you can skip this section on backfilling.
 
+<br />
+
 Before starting the backfilling process, it’s important to have a discussion internally to determine the volume of historical data that needs to be migrated. It’s advisable to migrate only what you need (i.e. recent data actively queried by the team) as this is more manageable and resource-efficient. 
 
 - Mixpanel Client-Side SDKs, by default, use the /track API endpoint which accepts events up to 5 days old, so it is advisable to initiate the backfill process only after the data for a given day has stabilized to avoid the need for multiple backfills.
 - If waiting data to stabilize is not feasible, consider using `mp_processing_time_ms` property (UTC timestamp of when the event was processed by our servers) to identify late-arriving events and selectively backfill them into the new project.
 - To prevent data duplication caused by backfilling, ensure that each imported event includes a [`$insert_id`](https://developer.mixpanel.com/reference/import-events#propertiesinsert_id) which provides a unique identifier for the event and is used for deduplication.
 
+<br />
+
 Depending on where you data resides, there are different ways to backfill historical data into the new project:
 
-1. Mixpanel APIs - if Mixpanel is your single source of truth, export data from the existing project using [Raw Export API](https://developer.mixpanel.com/reference/raw-event-export) and then import it into the new project via [Import API](https://developer.mixpanel.com/reference/import-events). Ensure that the data is compatible with Simplified ID Merge before importing it to Mixpanel.
+1. <b>Mixpanel APIs</b> - if Mixpanel is your single source of truth, export data from the existing project using [Raw Export API](https://developer.mixpanel.com/reference/raw-event-export) and then import it into the new project via [Import API](https://developer.mixpanel.com/reference/import-events). Ensure that the data is compatible with Simplified ID Merge before importing it to Mixpanel.
 
    - You can use Engage API to migrate user data (APIs for both [user export](https://developer.mixpanel.com/reference/engage-query) and batched [user import](https://developer.mixpanel.com/reference/profile-batch-update) are available).
    - Consider incorporating the export and import functions from [Mixpanel-utils open source library](https://github.com/mixpanel/mixpanel-utils) in your migration script.
 
-2. Mixpanel Warehouse Connector - if you’ve been storing your data in a data warehouse, you can import them into Mixpanel using [Warehouse Connector](https://docs.mixpanel.com/docs/tracking-methods/data-warehouse/overview) which supports both events and user data. 
+2. <b>Mixpanel Warehouse Connector</b> - if you’ve been storing your data in a data warehouse, you can import them into Mixpanel using [Warehouse Connector](https://docs.mixpanel.com/docs/tracking-methods/data-warehouse/overview) which supports both events and user data. 
 
-3. Customer Data Platform (CDP) - replay the historical data from CDP to Mixpanel.  
+3. <b>Customer Data Platform (CDP)</b> - replay the historical data from CDP to Mixpanel.  
 
 Please make sure that the historical data is properly formatted before backfilling it to a new project via any of the methods mentioned above. Familiarize yourself with the Simplified ID Merge implementation in this [section](#understanding-simplified-id-merge) to plan out the required data transformation tasks for your historical data. 
 
@@ -390,39 +398,45 @@ Discuss internally and decide on the best data migration approach with minimal i
 
 2. Prepare for the official transition to the new project as soon as live data is re-directed there. Make sure that your project is well-setup by then.
 
-   - If data delays or incomplete data are expected in the new project, clearly communicate this to your end users as their analysis will be impacted. For example, having a data backfilling plan in place and sharing details such as “X months of data will be available in new project within Y hours”. This proactive approach will help manage expectations with your end users and ensure a seamless transition.
-   - Do check the cost implication of having overlapping data across multiple projects. If you have any questions, do reach out to our [Mixpanel Support](/docs/response-times#contacting-mixpanel-support) team for assistance.
+   - If data delays or incomplete data are expected in the new project, clearly communicate this to your Mixpanel users as their analysis will be impacted. For example, having a data backfilling plan in place and sharing details such as “X months of data will be available in new project within Y hours”. This proactive approach will help manage expectations with your Mixpanel users and ensure a seamless transition.
+   - Do check the [cost implication](/docs/pricing/billing) of having overlapping data across multiple projects. If you have any questions, do reach out to our [Mixpanel Support](/docs/response-times#contacting-mixpanel-support) team for assistance.
 
-3. In cases of a more intricate migration, involving larger data volumes coming from different sources that potentially pose a higher risk to Mixpanel user's experience, you might want to consider doing historical backfilling before updating the live implementation. This approach enables you to have ample time to configure your new project, replicate existing reports and non-data entities into the new project, and test them against the backfilled data. While this may require multiple backfills, you have the option to only deploy the live data implementation when you are ready. 
+3. In cases of a more intricate migration, involving larger data volumes coming from different sources that potentially pose a higher risk to Mixpanel users' experience, you might want to consider doing historical backfilling before updating the live implementation. This approach enables you to have ample time to configure your new project, replicate existing reports and non-data entities into the new project, and test them against the backfilled data. While this may require multiple backfills, you have the option to only deploy the live data implementation when you are ready. 
 
 ### Migrating Reports and Non-Data Entities
 
-As part of creating the new Simplfied ID Merge project, you would also need to migrate existing boards, reports and non-data entities (e.g. cohorts, custom events, custom properties, lookup tables, etc.) into the new project. Below is a recommended approach on how to go about doing this work:
+As part of creating the new Simplfied ID Merge project, you would also need to migrate existing boards, reports, and non-data entities (e.g. cohorts, custom events, custom properties, lookup tables, etc.) into the new project. Below is a recommended approach on how to go about doing this work:
 
-1. Cohorts, Custom Events, and Custom Properties
+1. <b>Cohorts, Custom Events, and Custom Properties</b>
    
    Manual Recreation: This involves manually copying and pasting / replicating the logic from the existing project into the new project's [cohorts](/docs/users/cohorts#creating-cohorts), [custom events](/docs/features/custom-events#create-a-custom-event), and [custom properties](/docs/features/custom-properties#creating-a-custom-property) definitions.
 
    For example for custom properties, follow steps to [Creating a Custom Property](/docs/features/custom-properties#creating-a-custom-property) and copy over the definition from the old project instead of starting from scratch.
 
-2. Lookup Tables
+<br />
 
-   Manual Recreation: If your existing project is heavily reliant on [Lookup Tables](/docs/data-structure/lookup-tables) for reports, manually [re-upload](/docs/data-structure/lookup-tables#how-do-i-upload-a-lookup-table) the lookup tables to the new project via Lexicon and re-map them to the relevant properties.
+2. <b>Lookup Tables</b>
 
-3. Boards & Reports
+   Manual Recreation: If your existing project is heavily reliant on [Lookup Tables](/docs/data-structure/lookup-tables) for reports, manually [re-upload](/docs/data-structure/lookup-tables#how-do-i-upload-a-lookup-table) the lookup tables to the new project via Lexicon and map them to the relevant event / user properties.
+
+<br />
+
+3. <b>Boards & Reports</b>
 
    Move Board: Mixpanel provides a [Move Board](/docs/boards/advanced#move-board) feature that allows you to directly [transfer Boards between projects](/changelogs/2023-07-27-move) preserving reports, filters, and text annotations.
 
    Before you move any Board, it's important to note the following:
-   - Duplicate the existing Board and move the new copy into the new project. This would minimise impact where users are still using Boards and reports in the current project.
+   - Duplicate the existing Board and move the new copy into the new project. This would minimise impact where users are still using Boards and reports in the old project.
    - Any saved cohorts, custom events, custom properties, lookup tables would need to be created first as they don't get automatically moved as part of the Move Board. 
    - You may need to replicate the permissions for the moved Board should you have very specific [sharing permissions](docs/boards/advanced#sharing) set in the existing project.
    - Double check that all reports (especially those that use cohorts, custom events, custom properties, lookup tables) are working properly.
-   
-4. Lexicon
+
+<br />
+
+4. <b>Lexicon</b>
 
    Schemas API or CSV Export/Import: Migrate the Lexicon schema definitions (i.e. display name, descriptions, etc.) of your events, event properties, and user properties from the existing project to the new project using either the [Lexicon Schemas API](https://developer.mixpanel.com/reference/lexicon-schemas-api) or [Lexicon CSV Export/Import](/docs/data-governance/lexicon#export-and-import-lexicon-data).
 
    Make sure that the events, event properties, and user properties that you're migrating are still relevant to your new project. You may want to take this opportunity to clean up your schema and remove any unused or deprecated elements before executing the import.
 
-If you have any questions or encounter any issues, do reach out to our [Mixpanel Support](/docs/response-times#contacting-mixpanel-support) team for assistance.
+***If you have any questions or encounter any issues along the way, do reach out to our [Mixpanel Support](/docs/response-times#contacting-mixpanel-support) team for assistance.***
