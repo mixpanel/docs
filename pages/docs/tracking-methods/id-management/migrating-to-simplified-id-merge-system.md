@@ -180,17 +180,17 @@ Take note of the following details when planning for the migration from Legacy I
 
    - For example, here’s an attempt to merge `+6512345678` (additional User ID) with `charlie` on Simplified ID Merge:
    ```
-     {
-       "event": "Add phone number as user ID",
-       "properties": {
-         "token": "{{token}}",
-         "$device_id": "+6512345678", 
-         "$user_id": "charlie"
-       }
+   {
+     "event": "Add phone number as user ID",
+     "properties": {
+       "token": "{{token}}",
+       "$device_id": "+6512345678", 
+       "$user_id": "charlie"
      }
+   }
    ```
       
-   - This results to phone number `+6512345678` being treated as one of the Anonymous IDs and prefixed with `$device:`. As such, if you subsequently send events with `$user_id` as `+6512345678` it will not be associated to `charlie` and would result to a new ID cluster:
+   - This results to phone number `+6512345678` being treated as one of the Anonymous IDs and prefixed with `$device:`. As such, if you subsequently send events with `$user_id` as `+6512345678` it will not be associated to `charlie` and would result to creating a completely different new ID cluster where `+6512345678` is the main User ID.
      
      ![image](/Tracking/charlie_two_user_ids.png)
      <br />
@@ -198,10 +198,10 @@ Take note of the following details when planning for the migration from Legacy I
 2. If you are sending events via third-party integrations, ensure that they are compatible with Simplified ID Merge by having reserved properties, `$device_id` and `$user_id` on the events.
 
    For backward compatibility, Simplified ID Merge still supports events that are only sent with `distinct_id` property (i.e. no `$device_id` and `$user_id` properties):
-   - `distinct_id` value prefixed with a `$device:` will be used as `$device_id`, while
-   - `distinct_id` value without the `$device:` prefix will be used as `$user_id`
+   - `distinct_id` values prefixed with a `$device:` will be used as `$device_id`, while
+   - `distinct_id` values without the `$device:` prefix will be used as `$user_id`
 
-   Ensure that the `distinct_id` value of an anonymous user's events are prefixed with `$device:` if this approach is used.
+   Ensure that the `distinct_id` value of an anonymous user's events are always prefixed with `$device:` if this approach is used.
    <br />
    
    Example 1:
@@ -252,9 +252,9 @@ Take note of the following details when planning for the migration from Legacy I
     }
     ```
 
-3. If you have Mixpanel in your mobile apps, you’ll need to ship a new version of the app with the updated ID management implementation and and the new project’s token as part of the migration process. Without a force update, it may take awhile for all users to upgrade to the latest app version. During this period, some events will still be tracked to the old project. Be prepared for data backfilling if you want these events as well as the historical data to be included in the new project.
+3. If you have Mixpanel in your mobile apps, you’ll need to ship a new version of the app with the updated ID management implementation, and the new project’s token as part of the migration process. Without a forced app update, it may take awhile for all users to upgrade to the latest app version. During this period, some events will still be tracked to the old project. Be prepared for data backfilling if you want these events, as well as the historical data to be included in the new project.
    
-4. With the introduction of the retroactive identity merging feature in Original and Simplified ID Merge, it may take up to 24 hours for the ID Merge (merging 2 unique users into 1 unique user) to be fully reflected in all Mixpanel reports. More details [here](/docs/tracking-methods/id-management/identifying-users#how-long-does-it-take-for-the-device_id---user_id-mapping-to-take-effect).
+4. With the introduction of the retroactive identity merging feature in Original and Simplified ID Merge, it may take up to 24 hours for identity merging (merging 2 unique users into 1 unique user) to be fully reflected in all Mixpanel reports. More details [here](/docs/tracking-methods/id-management/identifying-users#how-long-does-it-take-for-the-device_id---user_id-mapping-to-take-effect).
    
 5. All Mixpanel [Client-Side SDKs](/docs/tracking-methods/choosing-the-right-method#client-side-tracking) support Simplified ID Merge except for [Unity SDK](/docs/tracking-methods/sdks/unity). 
 
