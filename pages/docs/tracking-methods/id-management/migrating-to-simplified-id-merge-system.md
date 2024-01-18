@@ -363,36 +363,41 @@ Please make sure that the historical data is properly formatted before backfilli
 
 If your historical events do not include both `$device_id` and `$user_id` that are required in Simplified ID Merge for identity merging, check if you can retrieve this ID mapping information from your system through other means. Instrument a dummy event that includes both `$device_id` and `$user_id` based on your ID mappings and send that to the new project to enable identity merging. You can choose any name for the dummy event except for \$identify, \$merge, and \$create_alias.
 
-//<HERE>
+##### Backfilling from Legacy ID Management
 
-##### Migrating from Legacy ID Management
+If you had implemented using Mixpanel Client-Side SDKs (except for Unity) and have been making alias calls to link Anonymous ID to User ID, the Client-Side SDKs should have already populated `$device_id` and `$user_id` on your events (please verify this in your exiting Mixpanel project). These historical events can be directly imported into the new Simplified ID Merge project as they include reserved properties required for identity merging. 
 
-If you are implementing via Mixpanel SDK and have been making an alias call to link anonymous ID to user ID, the SDK should have already populated `$device_id` and `$user_id` on your events (please verify this in your Mixpanel project). These historical events can be directly imported into Simplified ID project as they include reserved properties required for ID Merge to take place. 
+However, in the case of a custom implementation without the reserved properties `$device_id` and `$user_id` present on your events (e.g. server-side implementation), it’s necessary to transform these events before backfilling it to the new project. For example, you can derive the reserved properties from other relevant properties on the events or from ID mappings maintained in your system. 
 
-However, in the case of a custom implementation without the reserved properties `$device_id` and `$user_id` on the events (e.g. server implementation), it’s necessary to transform the events before backfilling it to new project. For example, you can derive the reserved properties from other relevant properties on the events or from IDs mappings maintained in your system. 
+##### Backfilling from Original ID Merge
 
-##### Migrating from Original ID Merge
+If you had implemented using Mixpanel Client-Side SDKs (except for Unity) and have been calling identify to merge pre and post-login states, the SDK should have already populated `$device_id` and `$user_id` on your events (please verify this in your existing Mixpanel project). These historical events can be directly imported into the new Simplified ID Merge project as they include reserved properties required for identity merging. 
 
-If you are implementing via Mixpanel SDK and have been calling identify to merge pre and post-registration events, the SDK should have already populated `$device_id` and `$user_id` on your events (please verify this in your Mixpanel project). These historical events can be directly imported into Simplified ID project as they include reserved properties required for ID Merge. 
+If you are also calling alias or merge (using special events, \$create_alias and \$merge) to merge multiple user IDs per user, it's important to note that this functionality is not supported in Simplified ID Merge. Additional details can be found in this [section](#considerations-when-migrating-from-legacy--original-to-simplified-id-merge).
 
-If you are also calling alias or merge (using special events, \$create_alias and \$merge) to merge multiple user IDs per user, it's important to note that this functionality is not supported in Simplified ID. Additional details can be found in this [section](#gotchas-in-migrating-from-legacyoriginal-to-simplified-id-merge).
+#### Data Migration Approach
 
-#### Data Migration Flow
+Discuss internally and decide on the best data migration approach with minimal interruption to the analysis activities on Mixpanel. 
 
-Discuss internally to decide the ideal data migration flow with minimal interruption to the analysis activities on Mixpanel. 
+1. Test both live and historical backfilled data thoroughly in a development environment before deploying to production. For historical data, you only need a subset of them in the new project for testing and verification purposes.
 
-1. Test both live and historical data migration thoroughly in staging environment before deploying to production. For historical data, you only need a subset of them in the new project for testing and verification.
-2. Prepare for the official transition to the new project as soon as live data is re-directed there. Make sure that your project is well-setup by then. If data delays or incomplete data are expected in the new project, clearly communicate this to your end users as their analysis will be impacted. For example, having a data backfilling plan in place and sharing details such as “X months of data will be available in new project within Y hours”. This proactive approach will help manage expectations with your end users and ensure a seamless transition. Please check the cost implication of having overlapping data across multiple projects. If you have any questions, do not hesitate to contact https://mixpanel.com/get-support for assistance.
-3. In cases of a more intricate migration involving a larger data volume coming from different sources or posing a higher risk to the end-user experience, consider doing data backfilling before updating the live implementation. This approach allows for ample time to configure your new project, replicate reports and non-data entities in the new project against the backfilled data. While this may require multiple backfills, you have the option to deploy the live data implementation when you are ready. 
+2. Prepare for the official transition to the new project as soon as live data is re-directed there. Make sure that your project is well-setup by then.
 
-### Migrating Reports and Non-data Entities
+   - If data delays or incomplete data are expected in the new project, clearly communicate this to your end users as their analysis will be impacted. For example, having a data backfilling plan in place and sharing details such as “X months of data will be available in new project within Y hours”. This proactive approach will help manage expectations with your end users and ensure a seamless transition.
+   - Do check the cost implication of having overlapping data across multiple projects. If you have any questions, do reach out to our [Mixpanel Support](/docs/response-times#contacting-mixpanel-support) team for assistance.
 
-When creating new projects, you might have a lot of boards, reports, custom events, properties etc that you may want to recreate in the new projects as well. Below, we list some suggested ways to do this work:
+3. In cases of a more intricate migration, involving larger data volumes coming from different sources that potentially pose a higher risk to Mixpanel user's experience, you might want to consider doing historical backfilling before updating the live implementation. This approach enables you to have ample time to configure your new project, replicate existing reports and non-data entities into the new project, and test them against the backfilled data. While this may require multiple backfills, you have the option to only deploy the live data implementation when you are ready. 
+
+### Migrating Reports and Non-Data Entities
+
+When creating new projects, you might have a lot of existing boards, reports, custom events, custom properties etc that you may want to recreate in the new projects as well. Below, we list some suggested ways to do this work:
 
 1. Boards & Reports
     - Native Move Feature : Since December 2023, Mixpanel offers a native "Move" feature allowing you to directly [transfer boards between projects](https://docs.mixpanel.com/changelogs/2023-07-27-move). This option preserves everything within the board, including reports, filters, and text annotations.
+
 2. Cohorts, Custom Events & Custom Properties
     - Manual Recreation: This involves manually copying and pasting the logic from the old project into the new project's cohorts, custom events & custom property definitions. For example with custom properties, follow steps to [create a new custom property](https://docs.mixpanel.com/docs/features/custom-properties#:~:text=works%20with%20objects.-,Creating%20a%20Custom%20Property,-Click%20Create%20Custom) and copy over the definition from the old project instead of starting from scratch.
+
 3. Lexicon 
     - Lexicon Schema API or CSV Export/Import: To migrate the definitions of your events, properties, and custom properties from the old project to the new one. Make sure that the events, properties, and custom properties that you're migrating are still relevant to your new project. You may want to take this opportunity to clean up your schema and remove any unused or deprecated elements.
 4. Lookup Tables
