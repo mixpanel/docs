@@ -15,13 +15,13 @@ The Organization Settings for Identity Merge determines the default identity man
 
 ![image](/Tracking/org-setting.png "Organization ID Merge Setting")
 
-You can change the identity management version for a specific project (without affecting other projects) via Project Settings, provided no data has been ingested into the project. For new projects, we recommend setting the Simplied ID Merge (****Simplified API****) option as it is a straightforward simpler way of managing your users' identity in Mixpanel. 
+You can change the identity management version for a specific project (without affecting other projects) via Project Settings, provided no data has been ingested into the project. For new projects, we recommend setting the Simplied ID Merge (<b>Simplified API</b>) option as it is a straightforward simpler way of managing your users' identity in Mixpanel. 
 
 ![image](/Tracking/project-setting.png)
 
 ## Deciding to Migrate
 
-It is currently not possible to automatically convert an existing project, already populated with data, on Legacy or Original ID Merge to Simplified ID Merge. This is because Simplified ID Merge has a very different backend architecture. ***To adopt Simplified ID Merge, you would need to set up a new empty Mixpanel project***. 
+It is currently not possible to automatically convert an existing project, already populated with data, on Legacy or Original ID Merge to Simplified ID Merge. This is because Simplified ID Merge has a very different backend architecture. <b>To adopt Simplified ID Merge, you would need to set up a new empty Mixpanel project</b>. 
 
 This guide assists you in evaluating whether a migration to Simplified ID Merge will benefit your tracking based on your current identity management requirements and future product plans. We'll outline the pros and cons of each ID Management version and guide you through key considerations to make an informed decision. We'll also provide details on the resources required at your end should you decide to proceed with the migration. 
 
@@ -35,7 +35,7 @@ Aliasing on Legacy ID Management can only be done once, linking the identified U
 
 The lack of a retroactive identity merging feature means that orphaned users are created whenever new Anonymous IDs are introduced during user interactions across multiple sessions, devices, and platforms. This prevents you from getting a holistic view of the user's journey. 
 
->**Staying on Legacy ID Management** <br /><br />
+><b>Staying on Legacy ID Management</b> <br /><br />
 > Note: If you are only tracking authenticated users (i.e. no tracked events while user is anonymous), you don't need the retroactive identity merging feature in Simplified ID Merge and should not consider the migration. We have preserved the documentation on the Legacy ID Management [here](https://github.com/mixpanel/docs/blob/main/legacy/aliases.md). 
 
 ### On Original ID Merge
