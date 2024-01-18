@@ -390,20 +390,36 @@ Discuss internally and decide on the best data migration approach with minimal i
 
 ### Migrating Reports and Non-Data Entities
 
-When creating new projects, you might have a lot of existing boards, reports, custom events, custom properties etc that you may want to recreate in the new projects as well. Below, we list some suggested ways to do this work:
+As part of creating the new Simplfied ID Merge project, you would also need to migrate existing boards, reports and non-data entities (e.g. cohorts, custom events, custom properties, lookup tables, etc.) into the new project. Below is a recommended approach on how to go about doing this work:
 
-1. Boards & Reports
-    - Native Move Feature : Since December 2023, Mixpanel offers a native "Move" feature allowing you to directly [transfer boards between projects](https://docs.mixpanel.com/changelogs/2023-07-27-move). This option preserves everything within the board, including reports, filters, and text annotations.
+1. Cohorts, Custom Events, and Custom Properties
+   
+   Manual Recreation: This involves manually copying and pasting / replicating the logic from the existing project into the new project's [cohorts](/docs/users/cohorts#creating-cohorts), [custom events](/docs/features/custom-events#create-a-custom-event), and [custom properties](/docs/features/custom-properties#creating-a-custom-property) definitions.
 
-2. Cohorts, Custom Events & Custom Properties
-    - Manual Recreation: This involves manually copying and pasting the logic from the old project into the new project's cohorts, custom events & custom property definitions. For example with custom properties, follow steps to [create a new custom property](https://docs.mixpanel.com/docs/features/custom-properties#:~:text=works%20with%20objects.-,Creating%20a%20Custom%20Property,-Click%20Create%20Custom) and copy over the definition from the old project instead of starting from scratch.
+   For example for custom properties, follow steps to [Creating a Custom Property](/docs/features/custom-properties#creating-a-custom-property) and copy over the definition from the old project instead of starting from scratch.
 
-3. Lexicon 
-    - Lexicon Schema API or CSV Export/Import: To migrate the definitions of your events, properties, and custom properties from the old project to the new one. Make sure that the events, properties, and custom properties that you're migrating are still relevant to your new project. You may want to take this opportunity to clean up your schema and remove any unused or deprecated elements.
-4. Lookup Tables
-    - Manual Recreation: If your old project is heavily reliant on Lookup tables for reports, manually [re-upload](https://docs.mixpanel.com/docs/data-structure/lookup-tables#how-do-i-upload-a-lookup-table:~:text=components%2C%20and%20channels.-,How%20do%20I%20upload%20a%20Lookup%20Table%3F,-Lookup%20Tables%20are) the lookup tables to the new project via Lexicon.
+2. Lookup Tables
+
+   Manual Recreation: If your existing project is heavily reliant on [Lookup Tables](/docs/data-structure/lookup-tables) for reports, manually [re-upload](/docs/data-structure/lookup-tables#how-do-i-upload-a-lookup-table) the lookup tables to the new project via Lexicon and re-map them to the relevant properties.
+
+3. Boards & Reports
+
+   Move Board: Mixpanel provides a [Move Board](/docs/boards/advanced#move-board) feature that allows you to directly [transfer Boards between projects](/changelogs/2023-07-27-move) preserving reports, filters, and text annotations.
+
+   Before you move any Board, it's important to note the following:
+   - Duplicate the existing Board and move the new copy into the new project. This would minimise impact where users are still using Boards and reports in the current project.
+   - Any saved cohorts, custom events, custom properties, lookup tables would need to be created first as they don't get automatically moved as part of the Move Board. 
+   - You may need to replicate the permissions for the moved Board should you have very specific [sharing permissions](docs/boards/advanced#sharing) set in the existing project.
+   - Double check that all reports (especially those that use cohorts, custom events, custom properties, lookup tables) are working properly.
+   
+4. Lexicon
+
+   Schemas API or CSV Export/Import: Migrate the Lexicon schema definitions (i.e. display name, descriptions, etc.) of your events, event properties, and user properties from the existing project to the new project using either the [Lexicon Schemas API](https://developer.mixpanel.com/reference/lexicon-schemas-api) or [Lexicon CSV Export/Import](/docs/data-governance/lexicon#export-and-import-lexicon-data).
+
+   Make sure that the events, event properties, and user properties that you're migrating are still relevant to your new project. You may want to take this opportunity to clean up your schema and remove any unused or deprecated elements before executing the import.
 
 ## Validating Data and Boards
+
 - Distinct ID Matching: Verify that Simplified ID Merge correctly identifies and merges users across devices and sessions based on `$user_id` and `$device_id`. Compare historical data with expected outcomes under Simplified ID Merge logic.
 - Missing Data: Check for instances where `$user_id` and `$device_id` are missing or incorrectly mapped during the merge process.
 
