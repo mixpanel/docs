@@ -375,6 +375,13 @@ If you had implemented using Mixpanel Client-Side SDKs (except for Unity) and ha
 
 If you are also calling alias or merge (using special events, \$create_alias and \$merge) to merge multiple user IDs per user, it's important to note that this functionality is not supported in Simplified ID Merge. Additional details can be found in this [section](#considerations-when-migrating-from-legacy--original-to-simplified-id-merge).
 
+#### Validating Identity Management
+
+As you migrate your data (both live and historical) into the new Simplified ID Merge project, it's important to check if identity merging is working properly.
+
+- Verify that users who are using your product across multiple platforms, devices, or sessions are being merged correctly and reserved properties `$user_id` and `$device_id` are being populated.
+- Sample a couple of key users and compare their events and user profiles between existing and new project to check for any missing events / user profiles or events being merged to the wrong user.
+
 #### Data Migration Approach
 
 Discuss internally and decide on the best data migration approach with minimal interruption to the analysis activities on Mixpanel. 
@@ -418,9 +425,4 @@ As part of creating the new Simplfied ID Merge project, you would also need to m
 
    Make sure that the events, event properties, and user properties that you're migrating are still relevant to your new project. You may want to take this opportunity to clean up your schema and remove any unused or deprecated elements before executing the import.
 
-## Validating Data and Boards
-
-- Distinct ID Matching: Verify that Simplified ID Merge correctly identifies and merges users across devices and sessions based on `$user_id` and `$device_id`. Compare historical data with expected outcomes under Simplified ID Merge logic.
-- Missing Data: Check for instances where `$user_id` and `$device_id` are missing or incorrectly mapped during the merge process.
-
-If you have any questions, do not hesitate to contact https://mixpanel.com/get-support for assistance.
+If you have any questions or encounter any issues, do reach out to our [Mixpanel Support](/docs/response-times#contacting-mixpanel-support) team for assistance.
