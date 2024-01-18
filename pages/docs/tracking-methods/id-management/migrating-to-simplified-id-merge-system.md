@@ -303,7 +303,7 @@ Update your tech stack with the new project’s token, API secret, and service a
       - [React Native ≥ v2.2.0](https://github.com/mixpanel/mixpanel-react-native/releases/tag/v2.2.0)
       - [Flutter ≥ v2.1.0](https://github.com/mixpanel/mixpanel-flutter/releases/tag/v2.1.0)
 
-      **Note: Mixpanel [Unity](/docs/tracking-methods/sdks/unity) SDK currently does not support Simplified ID Merge.**
+      <b>Note: Mixpanel [Unity](/docs/tracking-methods/sdks/unity) SDK currently does not support Simplified ID Merge.</b>
 
    - Refer to the implementation guide [here](/docs/tracking-methods/id-management/identifying-users#usage). You only need to call `identify` and `reset` methods at specific points in the user journeys as the SDK will automatically add the reserved properties `$device_id` and `$user_id` to the events before sending them to Mixpanel.
    - You should not call `alias`, as this method will not trigger identity merging in a Simplified ID Merge project. It is only provided as a backward-compatible solution for users who are on Legacy / Original ID Merge.
@@ -313,9 +313,9 @@ Update your tech stack with the new project’s token, API secret, and service a
 2. Mixpanel API / [Server-Side SDK](/docs/tracking-methods/choosing-the-right-method#server-side-tracking) integration:
 
    - If you are sending data from server via Mixpanel's [Import API](https://developer.mixpanel.com/reference/import-events), update the project token or service account to point to the new project.
-   - You should not send \$identify, \$merge, and \$create_alias events since they will be ignored in Simplified ID Merge projects and will not trigger identity merging.
+   - You should not send \$identify, \$create_alias, and \$merge events since they will be ignored in Simplified ID Merge projects and will not trigger identity merging.
    - Update your Import API payload to include `$device_id` and `$user_id` properties in the events. A single instance of such event is adequate to trigger identity merging. You can learn more about Simplified ID Merge in this [section](#understanding-simplified-id-merge).
-   - If it's not feasible to include both `$device_id` and `$user_id` in a single user event, you can still trigger identity merging by sending a dummy event that includes both `$device_id` and `$user_id`. You can choose any name for the dummy event (e.g. login) except for \$identify, \$merge, and \$create_alias.
+   - If it's not feasible to include both `$device_id` and `$user_id` in events triggered typically from a user interacting with your product; you can still trigger identity merging by sending a dummy event that includes both `$device_id` and `$user_id` at the point when user is switching from anonymous to identified state. You can choose any name for the dummy event (e.g. login) except for \$identify, \$create_alias, and \$merge.
 
 <br />
 
@@ -328,7 +328,7 @@ Update your tech stack with the new project’s token, API secret, and service a
 
 4. Other 3rd-party integration: 
 
-   If you are sending a subset of events through 3rd-party platforms i.e. attribution and messaging tools, make sure to update the Mixpanel project token (or API secret) and ensure that 3rd-party events sent to Mixpanel are compatible with Simplified ID Merge. Refer to this [section](#understanding-simplified-id-merge) for more information. 
+   If you are sending events from 3rd-party platforms (i.e. attribution and messaging tools), make sure to update the Mixpanel project token (or API secret) and ensure that 3rd-party events sent to Mixpanel are compatible with Simplified ID Merge. Refer to this [section](docs/tracking-methods/id-management/identifying-users#how-should-i-link-identified-ids-from-3rd-party-systems) for more information. 
 
 <br />
 
