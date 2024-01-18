@@ -266,17 +266,17 @@ The following guide outlines the steps required to set up the new Mixpanel proje
 
 > <b>Note: You need to set up a new Mixpanel project and enable Simplified ID Merge as none of the configurations from any existing project(s) can be carried over.</b>
 
-1. Create a new project in your existing organization via **Projects** under [Organization Settings](https://mixpanel.com/settings/org/projects). You can refer to [Creating Projects](/docs/orgs-and-projects/managing-projects#creating-projects) section in our documentation.
+1. Create a new Mixpanel project in your existing organization by navigating to <b>Projects</b> setting under [Organization Settings](https://mixpanel.com/settings/org/projects). You can refer to [Creating Projects](/docs/orgs-and-projects/managing-projects#creating-projects) section in our documentation.
    
-2. Enable **Simplified API** in the new project via **Identity Merge** under the Project Settings. Refer to [this](/docs/tracking-methods/id-management/identifying-users#how-do-i-switch-between-the-simplified-and-original-api) section in our documentation.
+2. Enable <b>Simplified API</b> in the new project by navigating to <b>Identity Merge</b> setting under this new Project's Settings. Refer to [this](/docs/tracking-methods/id-management/identifying-users#how-do-i-switch-between-the-simplified-and-original-api) section in our documentation.
 
-   Please note that the new project follows the organization’s default (Legacy or Original ID Merge). You have to switch the project to Simplified ID Merge ***before*** sending any data to the project. Make sure to override the default selection in every newly created project.
+   Please note that the new project follows the organization’s default (Legacy or Original ID Merge). You have to switch the project to Simplified ID Merge <b><i>before</i></b> sending any data to the project. Make sure to override the default selection in every newly created project.
 
 ![image](/Tracking/simplified_project_settings.png)
 
-3. Continue to set up the new project by following the guide [here](/docs/best-practices/project-setup). Configure the project settings by referring to your existing project’s settings. Some of the setup tasks may include:
+3. Continue to set up the new project by following the guide [here](/docs/best-practices/project-setup). Configure the new project's settings by referring to your existing project’s settings. Some of the setup tasks may include:
 
-   - [Inviting users]([/docs/orgs-and-projects/roles-and-permissions#invite-users-to-a-project) to the project
+   - [Inviting users]([/docs/orgs-and-projects/roles-and-permissions#invite-users-to-a-project) to the project and granting them [Roles and Permissions](/docs/orgs-and-projects/roles-and-permissions#permissions)
    - Creating [Teams](/docs/orgs-and-projects/roles-and-permissions#teams) and adding users to them
    -  Adding [group keys](/docs/data-structure/advanced/group-analytics#group-keys-in-project-settings) from Group Analytics
    -  Creating [data views](/docs/data-governance/data-views-and-classification#create-data-view) and adding users or teams to them
@@ -287,7 +287,7 @@ The following guide outlines the steps required to set up the new Mixpanel proje
 
 ### Populating Data into New Project
 
-This process typically involves populating both the live data and historical data into the new project. Coming from Legacy or Original ID Merge, you will find that the implementation for Simplified ID is generally much simpler and more robust. It’s important to review and modify your ID Management implementation to get the expected result in terms of user identity merging. 
+This process typically involves populating both the live data and historical data into the new project. Coming from Legacy or Original ID Merge, you will find that the implementation for Simplified ID Merge is generally more straightforward and robust. It’s important to review and modify your ID management implementation to get the expected result in terms of user identity merging. 
 
 #### Sending Live Data
 
@@ -303,7 +303,7 @@ Update your tech stack with the new project’s token, API secret, and service a
       - [React Native ≥ v2.2.0](https://github.com/mixpanel/mixpanel-react-native/releases/tag/v2.2.0)
       - [Flutter ≥ v2.1.0](https://github.com/mixpanel/mixpanel-flutter/releases/tag/v2.1.0)
 
-      *Note: Mixpanel [Unity](/docs/tracking-methods/sdks/unity) SDK currently does not support Simplified ID Merge.*
+      **Note: Mixpanel [Unity](/docs/tracking-methods/sdks/unity) SDK currently does not support Simplified ID Merge.**
 
    - Refer to the implementation guide [here](/docs/tracking-methods/id-management/identifying-users#usage). You only need to call `identify` and `reset` methods at specific points in the user journeys as the SDK will automatically add the reserved properties `$device_id` and `$user_id` to the events before sending them to Mixpanel.
    - You should not call `alias`, as this method will not trigger identity merging in a Simplified ID Merge project. It is only provided as a backward-compatible solution for users who are on Legacy / Original ID Merge.
