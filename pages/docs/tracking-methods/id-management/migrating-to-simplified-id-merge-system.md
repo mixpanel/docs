@@ -260,11 +260,12 @@ Take note of the following details when planning for the migration from Legacy I
 
 ## Migrating to Simplified ID Merge
 
-The following guide outlines the steps required to set up the new Simplified ID Merge project and populate it with data compatible with Simplified ID Merge. This will help you estimate the time and resources required on your end to complete the migration. 
+The following guide outlines the steps required to set up the new Mixpanel project and populate it with data compatible with Simplified ID Merge. This will help you estimate the time and resources required on your end to complete the migration. 
 
 ### Set Up a New Mixpanel Project
 
->Note: You need to set up a new project and enable Simplified ID Merge as none of the configurations from any existing project(s) can be carried over.
+> [!IMPORTANT]
+> You need to set up a new Mixpanel project and enable Simplified ID Merge as none of the configurations from any existing project(s) can be carried over.
 
 1. Create a new project in your existing organization via **Projects** under [Organization Settings](https://mixpanel.com/settings/org/projects). You can refer to [Creating Projects](/docs/orgs-and-projects/managing-projects#creating-projects) section in our documentation.
    
