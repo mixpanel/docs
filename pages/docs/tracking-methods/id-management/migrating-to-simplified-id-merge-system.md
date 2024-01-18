@@ -19,9 +19,9 @@ You can change the identity management version for a specific project (without a
 
 ![image](/Tracking/project-setting.png)
 
-## Deciding When Migrating Makes Sense
+## Deciding to Migrate
 
-It is currently not possible to automatically convert an existing project already populated with data on Legacy or Original ID Merge to Simplified ID Merge. This is because Simplified ID Merge has a very different backend architecture. **To adopt Simplified ID Merge, you would need to set up a new empty project**. 
+It is currently not possible to automatically convert an existing project already populated with data on Legacy or Original ID Merge to Simplified ID Merge. This is because Simplified ID Merge has a very different backend architecture. **To adopt Simplified ID Merge, you would need to set up a new empty Mixpanel project**. 
 
 This guide assists you in evaluating whether a migration to Simplified ID Merge will benefit your tracking based on your current identity management requirements and future product plans. We'll outline the pros and cons of each ID Management version and guide you through key considerations to make an informed decision. We'll also provide details on the resources required at your end should you decide to proceed with the migration. 
 
@@ -172,7 +172,7 @@ Example 2:
 }
 ```
 
-### Considerations when Migrating from Legacy / Original to Simplified ID Merge
+## Considerations when Migrating
 
 Take note of the following details when planning for the migration from Legacy ID Management or Original ID Merge to Simplified ID Merge:  
 
@@ -258,11 +258,11 @@ Take note of the following details when planning for the migration from Legacy I
    
 5. All Mixpanel [Client-Side SDKs](/docs/tracking-methods/choosing-the-right-method#client-side-tracking) support Simplified ID Merge except for [Unity SDK](/docs/tracking-methods/sdks/unity). 
 
-## Migration to Simplified ID Merge
+## Migrating to Simplified ID Merge
 
 The following guide outlines the steps required to set up the new Simplified ID Merge project and populate it with data compatible with Simplified ID Merge. This will help you estimate the time and resources required on your end to complete the migration. 
 
-### Set Up a New Project (with Simplified ID Merge)
+### Set Up a New Mixpanel Project
 
 >Note: You need to set up a new project and enable Simplified ID Merge as none of the configurations from any existing project(s) can be carried over.
 
@@ -285,7 +285,7 @@ The following guide outlines the steps required to set up the new Simplified ID 
    
    Note that the new project comes with newly generated project tokens, API secret, and potentially new sets of service account credentials. Replace the project tokens in your implementations with the new ones to start sending data to this new project. Ensure that any backend scripts using API secret or service accounts are updated as well.
 
-### Populating Data into New Simplified ID Merge Project
+### Populating Data into New Project
 
 This process typically involves populating both the live data and historical data into the new project. Coming from Legacy or Original ID Merge, you will find that the implementation for Simplified ID is generally much simpler and more robust. It’s important to review and modify your ID Management implementation to get the expected result in terms of user identity merging. 
 
@@ -363,13 +363,13 @@ Please make sure that the historical data is properly formatted before backfilli
 
 If your historical events do not include both `$device_id` and `$user_id` that are required in Simplified ID Merge for identity merging, check if you can retrieve this ID mapping information from your system through other means. Instrument a dummy event that includes both `$device_id` and `$user_id` based on your ID mappings and send that to the new project to enable identity merging. You can choose any name for the dummy event except for \$identify, \$merge, and \$create_alias.
 
-##### Backfilling from Legacy ID Management
+##### Legacy ID Management
 
 If you had implemented using Mixpanel Client-Side SDKs (except for Unity) and have been making alias calls to link Anonymous ID to User ID, the Client-Side SDKs should have already populated `$device_id` and `$user_id` on your events (please verify this in your exiting Mixpanel project). These historical events can be directly imported into the new Simplified ID Merge project as they include reserved properties required for identity merging. 
 
 However, in the case of a custom implementation without the reserved properties `$device_id` and `$user_id` present on your events (e.g. server-side implementation), it’s necessary to transform these events before backfilling it to the new project. For example, you can derive the reserved properties from other relevant properties on the events or from ID mappings maintained in your system. 
 
-##### Backfilling from Original ID Merge
+##### Original ID Merge
 
 If you had implemented using Mixpanel Client-Side SDKs (except for Unity) and have been calling identify to merge pre and post-login states, the SDK should have already populated `$device_id` and `$user_id` on your events (please verify this in your existing Mixpanel project). These historical events can be directly imported into the new Simplified ID Merge project as they include reserved properties required for identity merging. 
 
