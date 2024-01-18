@@ -122,7 +122,7 @@ Simplified ID Merge can retroactively merge an unlimited number of anonymous IDs
 - `distinct_id` is optional on events because Mixpanel automatically updates or overrides it whenever `$user_id` or `$device_id` is present on the events. It takes the value of `$user_id` if present; otherwise, it takes `$device_id` and prefixes it with `$device:` 
 <br /> 
 
-**Example 1:**
+<b>Example 1:</b>
 ```
 //Triggered event 
 {
@@ -148,7 +148,7 @@ Simplified ID Merge can retroactively merge an unlimited number of anonymous IDs
 }
 ```
 
-**Example 2:** 
+<b>Example 2:</b>
 ```
 //Triggered event 
 {
@@ -204,7 +204,7 @@ Take note of the following details when planning for the migration from Legacy I
    Ensure that the `distinct_id` value of an anonymous user's events are always prefixed with `$device:` if this approach is used.
    <br />
    
-   **Example 1:**
+   <b>Example 1:</b>
    ```
    //Triggered event 
    {
@@ -228,7 +228,7 @@ Take note of the following details when planning for the migration from Legacy I
    }
    ```
    
-    **Example 2:**
+    <b>Example 2:</b>
     ```
     //Triggered event 
     {
@@ -264,8 +264,7 @@ The following guide outlines the steps required to set up the new Mixpanel proje
 
 ### Set Up a New Mixpanel Project
 
-> [!IMPORTANT]
-> You need to set up a new Mixpanel project and enable Simplified ID Merge as none of the configurations from any existing project(s) can be carried over.
+> <b>Note: You need to set up a new Mixpanel project and enable Simplified ID Merge as none of the configurations from any existing project(s) can be carried over.</b>
 
 1. Create a new project in your existing organization via **Projects** under [Organization Settings](https://mixpanel.com/settings/org/projects). You can refer to [Creating Projects](/docs/orgs-and-projects/managing-projects#creating-projects) section in our documentation.
    
