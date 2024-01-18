@@ -5,7 +5,7 @@ Mixpanel currently has three versions of ID management:
 -  In March 2020, we released **Original ID Merge** (formerly known as just "ID Merge"), which supports retroactive identity merging by storing multiple Distinct IDs in an ID cluster. This enabled the merging of multiple anonymous states to an identified state across multiple devices and platforms.
 - In March 2023, we released **Simplified ID Merge** to remove the complexities of having to rely on different [identity methods](https://developer.mixpanel.com/reference/create-identity) (i.e. \$identify, \$create_alias, \$merge) for different merging scenarios. This also removed the need to cap Distinct IDs at 500 in an ID cluster.
 
-To determine your current ID Management version, navigate to ****Identity Merge**** setting under your [Organization Settings](https://mixpanel.com/settings/org/id-management) (for Organization Owners/Admins) or [Project Settings](https://mixpanel.com/settings/project/id-management) (for Project Owners/Admins). 
+To determine your current ID Management version, navigate to <b>Identity Merge</b> setting under your [Organization Settings](https://mixpanel.com/settings/org/id-management) (for Organization Owners/Admins) or [Project Settings](https://mixpanel.com/settings/project/id-management) (for Project Owners/Admins). 
 
 The Organization Settings for Identity Merge determines the default identity management for every new subsequent project created:
 
