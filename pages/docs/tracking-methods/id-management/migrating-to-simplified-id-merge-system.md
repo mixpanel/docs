@@ -21,13 +21,13 @@ You can change the identity management version for a specific project (without a
 
 ## Deciding to Migrate
 
-It is currently not possible to automatically convert an existing project already populated with data on Legacy or Original ID Merge to Simplified ID Merge. This is because Simplified ID Merge has a very different backend architecture. **To adopt Simplified ID Merge, you would need to set up a new empty Mixpanel project**. 
+It is currently not possible to automatically convert an existing project, already populated with data, on Legacy or Original ID Merge to Simplified ID Merge. This is because Simplified ID Merge has a very different backend architecture. ***To adopt Simplified ID Merge, you would need to set up a new empty Mixpanel project***. 
 
 This guide assists you in evaluating whether a migration to Simplified ID Merge will benefit your tracking based on your current identity management requirements and future product plans. We'll outline the pros and cons of each ID Management version and guide you through key considerations to make an informed decision. We'll also provide details on the resources required at your end should you decide to proceed with the migration. 
 
 ### On Legacy ID Management
 
-The main limitation of Legacy ID Management was that anonymous user states could become orphaned. This happens if they were initially tracked on one platform or device, creating a user on Mixpanel, and later moved on to another platform or device, triggering various anonymous events before logging in. The anonymous events on the second platform would be orphaned, resulting in duplicated users on Mixpanel. 
+The main limitation of Legacy ID Management was that anonymous user states could become orphaned. This happens when an anonymous user was initially tracked on one platform or device, signs up as a user, and later moved on to another platform or device, triggering various anonymous events before logging in. The anonymous events on the second platform would be orphaned, resulting in duplicated users on Mixpanel. 
 
 Aliasing on Legacy ID Management can only be done once, linking the identified User ID to the 1st Anonymous ID. Subsequent logins on a different platform or device where a user is identified again with the same User ID will tag subsequent events to the 1st Anonymous ID (from the 1st platform / device). Here’s a diagram illustrating how a typical user journey on different devices ends up creating an ophaned user.
 
