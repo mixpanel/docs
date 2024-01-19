@@ -42,7 +42,7 @@ Aliasing on Legacy ID Management can only be done once, linking the identified U
 The lack of a retroactive identity merging feature means that orphaned users are created whenever new Anonymous IDs are introduced during user interactions across multiple sessions, devices, and platforms. This prevents you from getting a holistic view of the user's journey. 
 
 ><b>Staying on Legacy ID Management</b> <br />
-> Note: If you are only tracking authenticated users (i.e. no tracked events while user is anonymous), you don't need the retroactive identity merging feature in Simplified ID Merge and should not consider the migration. We have preserved the documentation on the Legacy ID Management [here](https://github.com/mixpanel/docs/blob/main/legacy/aliases.md). 
+> Note: If you are only tracking authenticated users (i.e. don't track events while user is anonymous), you don't need the retroactive identity merging feature in Simplified ID Merge and should not consider the migration. We have preserved the documentation on the Legacy ID Management [here](https://github.com/mixpanel/docs/blob/main/legacy/aliases.md). 
 
 ### On Original ID Merge
 
@@ -182,7 +182,7 @@ Simplified ID Merge can retroactively merge an unlimited number of anonymous IDs
 
 Take note of the following details when planning for the migration from Legacy ID Management or Original ID Merge to Simplified ID Merge:  
 
-1. Simplified ID Merge supports only one User ID (`$user_id`) per ID cluster as the canonical Distinct ID. If you need an ID management solution that supports multiple User IDs per user, such as both a email address and a phone number, it’s recommended to remain on Legacy ID Management or Original ID Merge which provide methods such as \$create_alias or \$merge to merge multiple User IDs.
+1. Simplified ID Merge supports only one User ID (`$user_id`) per ID cluster, and this User ID will serve as the user's canonical Distinct ID. If you need an ID management solution that supports multiple User IDs per user, such as both a email address and a phone number, it’s recommended to remain on Legacy ID Management or Original ID Merge which provide methods such as \$create_alias or \$merge to merge multiple User IDs.
 
    - For example, here’s an attempt to merge `+6512345678` (additional User ID) with `charlie` on Simplified ID Merge:
    ```
