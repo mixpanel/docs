@@ -51,7 +51,7 @@ We recommend having a consistent naming convention for your events and propertie
 
 For example, don't create an event name like `Purchase (11-01-2019)`. Instead, create an event called Purchase and have some property (eg: `Return Date`) set to the dynamic value `11-01-2019`).
 
-Learn more best practices around defining your events and properties under our tutorials for [Creating a Tracking Plan](/docs/tutorials/plan/tracking-strategy#tracking-plan-methodology).
+> Learn more best practices around defining your events and properties under our tutorials for [Creating a Tracking Plan](/docs/tutorials/plan/tracking-strategy#tracking-plan-methodology).
 
 ## Reserved Event Properties
 
