@@ -710,6 +710,24 @@ List of objects are generally useful when tracking a list of complex things. Som
 
 In each case, the object will have multiple properties, such as "price" and "brand" for items in a cart.
 
+```
+"event": "Product Added",
+"properties": {
+    "cart": [
+        {
+            "brand": "Puma",
+            "category": "Jacket",
+            "price": 30
+        },
+        {
+            "brand": "Adidas",
+            "category": "Hats",
+            "price": 15
+        }
+    ]
+}
+```
+
 ### Usage
 
 List of objects can be used like other properties in Mixpanel. Upon selecting a list of objects property, you will be prompted to select another property, which is is common to the objects in the list. Usage in measurements, filters and breakdowns follows the same behavior as [other list properties](/docs/features/advanced#list-property-support).
@@ -734,7 +752,7 @@ Prompts a selection of a property contained within the objects of the list. This
 
 ### Limits
 
-The list of objects property support will be limited to the first 5 objects within the list property. 
+The list of objects property support will be limited to the first 5 objects within the list property. More details on [Object and List of Objects Data Types](/docs/data-structure/property-reference#object-and-list-of-objects-data-types) support in our docs.
 
 For customer's on a paid plan, you may submit a request for approval to have this limit increased by opening a support ticket within the UI (or by sending an email to [support@mixpanel.com](mailto:support@mixpanel.com)) with the subject line: “Request for List of Objects Limit Increase”. An increase will not be guaranteed, but your project will be reviewed for feasibility of increasing this limit. 
 
