@@ -289,7 +289,7 @@ The following guide outlines the steps required to set up the new Mixpanel proje
    -  Creating or granting [service accounts](https://developer.mixpanel.com/reference/service-accounts) access to this project
    -  Configuring [session settings](/docs/features/sessions)
    
-   Note that the new project comes with newly generated project tokens, API secret, and potentially new sets of service account credentials. Replace the project tokens in your implementations with the new ones to start sending data to this new project. Ensure that any backend scripts using API secret or service accounts are updated as well.
+   Note that the new project comes with newly generated project token, API secret, and new sets of service account credentials (if you had created new service account in the new project). Replace the project token in your implementations with the new ones to start sending data to this new project. Ensure that any backend scripts using API secret or service accounts are updated as well.
 
 ### Populating Data into New Project
 
