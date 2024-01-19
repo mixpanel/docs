@@ -1,13 +1,14 @@
 # Events And Properties
 
-
-
 ## Overview
-Events are the core of Mixpanel's Data Model. All events have a name, a timestamp, and a user ID. Events can optionally have a set of properties, which describe the event in more detail.
+
+Events are the core of [Mixpanel's Data Model](/docs/tutorials/plan/tracking-strategy#the-mixpanel-data-model). All events should have an **Event Name**, a **Timestamp** of when that event has occured, and a **[Distinct ID](/docs/tracking-methods/id-management/identifying-users#what-is-distinct-id)** (Mixpanel's identifier for a user) to tie all events belonging to the same user. Events can optionally have a set of properties, which describe the event in more detail.
+
 * If you're familiar with databases, events are like tables and properties are like columns.
 * If you're familiar with Google Analytics, events are like hits and properties are like dimensions.
 
 ## Examples
+
 * A `Page Viewed` event might have a property called `Page URL`, which is set to the URL of the page that was viewed.
 * A `Signed Up` event might have a property called `Signup Type`, which indicates whether the signup was `organic` vs `referral`.
 * A `Song Played` event might have a property called `Song Name`, which is set to the name of the song that was played.
