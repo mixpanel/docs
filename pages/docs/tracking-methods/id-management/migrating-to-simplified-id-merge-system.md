@@ -19,7 +19,7 @@ The Organization Settings for Identity Merge determines the default identity man
 
 <br />
 
-You can change the identity management version for a specific project (without affecting other projects) via Project Settings, provided no data has been ingested into the project. For new projects, we recommend setting the Simplied ID Merge (<b>Simplified API</b>) option as it is a straightforward simpler way of managing your users' identity in Mixpanel. 
+You can change the identity management version for a specific project (without affecting other projects) via Project Settings, provided no data has been ingested into the project. For new projects, we recommend setting the Simplied ID Merge (<b>Simplified API</b>) option as it is a generally more straightforward, simpler way of managing your users' identity in Mixpanel. 
 
 ![image](/Tracking/project-setting.png)
 
