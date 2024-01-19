@@ -375,7 +375,7 @@ If your historical events do not include both `$device_id` and `$user_id` that a
 
 ##### Legacy ID Management
 
-If you had implemented using Mixpanel Client-Side SDKs (except for Unity) and have been making alias calls to link Anonymous ID to User ID, the Client-Side SDKs should have already populated `$device_id` and `$user_id` on your events (please verify this in your exiting Mixpanel project). These historical events can be directly imported into the new Simplified ID Merge project as they include reserved properties required for identity merging. 
+If you had implemented using Mixpanel Client-Side SDKs (except for Unity) and have been making alias calls to link Anonymous ID to User ID, the Client-Side SDKs should have already populated `$device_id` and `$user_id` on your events (please verify this in your existing Mixpanel project). These historical events can be directly imported into the new Simplified ID Merge project as they include reserved properties required for identity merging. 
 
 However, in the case of a custom implementation without the reserved properties `$device_id` and `$user_id` present on your events (e.g. server-side implementation), it’s necessary to transform these events before backfilling it to the new project. For example, you can derive the reserved properties from other relevant properties on the events or from ID mappings maintained in your system. 
 
@@ -413,7 +413,7 @@ As part of creating the new Simplfied ID Merge project, you would also need to m
    
    Manual Recreation: This involves manually copying and pasting / replicating the logic from the existing project into the new project's [cohorts](/docs/users/cohorts#creating-cohorts), [custom events](/docs/features/custom-events#create-a-custom-event), and [custom properties](/docs/features/custom-properties#creating-a-custom-property) definitions.
 
-   For example for custom properties, follow steps to [Creating a Custom Property](/docs/features/custom-properties#creating-a-custom-property) and copy over the definition from the old project instead of starting from scratch.
+   For example for custom properties, follow steps to [Creating a Custom Property](/docs/features/custom-properties#creating-a-custom-property) and copy over the definition from the old project.
 
 <br />
 
