@@ -1,4 +1,4 @@
-#Migrating to Simplified ID Merge
+# Migrating to Simplified ID Merge
 
 ## Overview
 Mixpanel currently has three versions of ID management:
