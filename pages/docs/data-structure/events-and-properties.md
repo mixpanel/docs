@@ -2,7 +2,7 @@
 
 ## Overview
 
-Events are the core of [Mixpanel's Data Model](/docs/tutorials/plan/tracking-strategy#the-mixpanel-data-model). All events should have an **Event Name**, a **Timestamp** of when that event has occured, and a **[Distinct ID](/docs/tracking-methods/id-management/identifying-users#what-is-distinct-id)** (Mixpanel's identifier for a user) to tie all events belonging to the same user. Events can optionally have a set of properties, which describe the event in more detail.
+Events are the core of [Mixpanel's Data Model](/docs/tutorials/plan/tracking-strategy#the-mixpanel-data-model). All events should have an <b>Event Name</b>, a <b>Timestamp</b> of when that event has occured, and a <b>[Distinct ID](/docs/tracking-methods/id-management/identifying-users#what-is-distinct-id)</b> (Mixpanel's identifier for a user) to tie all events belonging to the same user. Events can optionally have a set of properties, which describe the event in more detail.
 
 * If you're familiar with databases, events are like tables and properties are like columns.
 * If you're familiar with Google Analytics, events are like hits and properties are like dimensions.
@@ -14,15 +14,24 @@ Events are the core of [Mixpanel's Data Model](/docs/tutorials/plan/tracking-str
 * A `Song Played` event might have a property called `Song Name`, which is set to the name of the song that was played.
 * A `Order Completed` event might have a property called `Items`, which is a list of objects, each of which contains details about an item, like its name, category, and price.
 
-## Use cases
+## Use Cases
+
 You can filter, breakdown, and aggregate your events by their properties to answer more questions:
+
 * Which pages do users look at before they visit the pricing page?
-* How many Signups did I get that were organic vs referral?
-* Which Song Name is most popular among my users?
-* How many Orders contain shoes? What is the sum total price that users paid for shoes in the last month?
+* How many Sign-ups did I get that were organic vs referral?
+* Which song name is most popular among my users?
+* How many orders contain shoes? What is the sum total price that users paid for shoes in the last month?
 
 ## Reserved Event Properties
-Mixpanel reserves certain event property names; these properties receive special treatment in our UI or are used for special processing.
+
+Mixpanel reserves certain event property names for special processing or for specific system features. These properties, when populated, will affect the way Mixpanel processes your data.
+
+
+| **Raw Name** | **Display Name** | **Description** |
+
+
+
 | Name                       | Display      | Description                                                                                                                                               |
 |----------------------------|--------------|-----------------------------------------------------------------------------------------------------------------------------------------------------------|
 | distinct_id / $distinct_id | Distinct ID  | Mixpanel's internal unique identifier for a user.  See [Identifying Users](/docs/tracking-methods/identifying-users)             |
