@@ -62,6 +62,8 @@ Mixpanel reserves certain event property names for special processing or for spe
 
 | **Raw Name** | **Display Name** | **Description** |
 | ------------ | ---------------- | --------------- |
+| token | - | The project's token when sending data via [/track API](https://developer.mixpanel.com/reference/track-event). Not visible via Mixpanel UI reports. |
+| ip | - | The IP address that will resolve to `$city`, `$region`, and `mp_country_code` properties during ingestion of the event and thereafter discarded. By default, Mixpanel will pull ip from the source of the API request; if you don't want this resolved, set ip to "0". Refer to [Tracking Geolocation](/docs/best-practices/server-side-best-practices#tracking-geolocation-http-api) for example. |
 | $distinct_id / distinct_id | Distinct ID | Mixpanel's internal unique identifier for a user. See [Identifying Users](/docs/tracking-methods/id-management/identifying-users). |
 | $device_id | Device ID | In [Simplified ID Merge](/docs/tracking-methods/id-management/identifying-users#example-user-flows): unique identifier used to track a device while the user is in anynymous state. |
 | $user_id | User ID | In [Simplified ID Merge](/docs/tracking-methods/id-management/identifying-users#example-user-flows): unique identifier used to track a user across devices when user is in identified state. |
