@@ -81,14 +81,11 @@ Mixpanel reserves certain event property names for special processing or for spe
 | $warehouse_type | Warehouse Type | The type of the warehouse sync setup to send the event. See [Supported Warehouses](/docs/tracking-methods/data-warehouse/overview#supported-warehouses). |
 | $warehouse_import_id | Warehouse Import ID | The ID of the warehouse sync setup to send this event. See [Data Warehouse](/docs/tracking-methods/data-warehouse/overview). |
 | $warehouse_import_job_id | Warehouse Import Job ID | The internal Mixpanel Job ID of the warehouse sync setup to send this event. See [Data Warehouse](/docs/tracking-methods/data-warehouse/overview). |
-| $warehouse_import_run_id | Warehouse Import Run ID | The internal Mixpanel Run ID of the warehouse sync setup to send this event. See [Data Warehouse](/docs/tracking-methods/data-warehouse/overview).![image](https://github.com/mixpanel/docs/assets/50901466/c3a88f3a-af75-4019-be4e-301eaa9e5a54) |
-
+| $warehouse_import_run_id | Warehouse Import Run ID | The internal Mixpanel Run ID of the warehouse sync setup to send this event. See [Data Warehouse](/docs/tracking-methods/data-warehouse/overview). |
 | $duration_s | Session Duration (Seconds) | The duration between Session Start and Session End events in seconds. See [How Sessions Work](/docs/features/sessions#how-sessions-work). |
 | $event_count | Session Event Count | The number of events during a session (i.e. Session Start and Session End). This does not include [Excluded Events](/docs/features/sessions#excluded-events) and [Hidden Events](/docs/data-governance/lexicon#hide-events-and-properties) in Lexicon. See [How Sessions Work](/docs/features/sessions#how-sessions-work). | 
 | $origin_start | Session Start Event Name | The original event name that triggered Session Start event. See [How Sessions Work](/docs/features/sessions#how-sessions-work). | 
 | $origin_end | Session End Event Name | The original event name that triggered Session End event. See [How Sessions Work](/docs/features/sessions#how-sessions-work). | 
-
-
 
 ## FAQ
 
