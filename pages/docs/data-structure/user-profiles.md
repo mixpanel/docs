@@ -2,17 +2,17 @@
 
 ## Overview
 
-User Profiles let you enrich events with demographic attributes / properties about the users that performed those events. Profiles are optional; we recommend starting with events and only adding Profiles if you need them.
+User Profiles let you enrich events with demographic attributes / properties about the users that performed those events. Profiles are optional; we recommend starting with events and only adding user profiles if you need them.
 
-A User Profile is a set of properties associated with a given user. Under the hood, Mixpanel stores user profiles for your project in a table:
+A User Profile has a set of properties associated with a given user. Under the hood, Mixpanel stores user profiles for your project in a table:
 
-| Distinct ID | Name | Email | Department |
-| ----------- | ---- | ----- | ---------- |
-| 123 | Alice | `alice@linear.app` | Engineering
-| 456 | Bob | `bob@notion.so` | Product
-| 789 | Carol | `carol@figma.com` | Design
+| **Distinct ID** | **Name** | **Email** | **Department** |
+| --------------- | -------- | --------- | -------------- |
+| 123 | Alice | `alice@linear.app` | Engineering |
+| 456 | Bob | `bob@notion.so` | Product |
+| 789 | Carol | `carol@figma.com` | Design |
 
-User Profiles are joined onto your Events based on their <b>[Distinct ID](/docs/tracking-methods/id-management/identifying-users#what-is-distinct-id)</b> (Mixpanel's identifier for a user), which is the ID of the user. This lets you join the events performed by a user with properties about who that user is. It's very important that you use the same Distinct ID for both your events and your users.
+User Profiles are joined onto your events based on their <b>[Distinct ID](/docs/tracking-methods/id-management/identifying-users#what-is-distinct-id)</b> (Mixpanel's identifier for a user). This lets you join the events performed by a user with properties about who that user is. It's very important that you use the same Distinct ID for both the events and user profile for the same user.
 
 For more information about user profiles refer to the documentation on [The Mixpanel Data Model](/docs/tutorials/plan/tracking-strategy#the-mixpanel-data-model).
 
