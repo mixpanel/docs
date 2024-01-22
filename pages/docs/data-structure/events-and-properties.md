@@ -2,7 +2,7 @@
 
 ## Overview
 
-Events are the core of [Mixpanel's Data Model](/docs/tutorials/plan/tracking-strategy#the-mixpanel-data-model). All events should have an <b>Event Name</b>, a <b>Timestamp</b> of when that event has occured, and a <b>[Distinct ID](/docs/tracking-methods/id-management/identifying-users#what-is-distinct-id)</b> (Mixpanel's identifier for a user) to tie all events belonging to the same user. Events can optionally have a set of properties, which describe the event in more detail.
+Events are the core of [Mixpanel's Data Model](/docs/tutorials/plan/tracking-strategy#the-mixpanel-data-model). All events should have an <b>Event Name</b>, a <b>Timestamp</b> of when that event has occured, and a <b>[Distinct ID](/docs/tracking-methods/id-management/identifying-users#what-is-distinct-id)</b> (Mixpanel's identifier for a user) to tie all events belonging to the same user. Events can optionally have a set of properties, which describes the event in more detail.
 
 * If you're familiar with databases, events are like tables and properties are like columns.
 * If you're familiar with Google Analytics, events are like hits and properties are like dimensions.
@@ -19,7 +19,7 @@ Events are the core of [Mixpanel's Data Model](/docs/tutorials/plan/tracking-str
 You can filter, breakdown, and aggregate your events by their properties to answer more questions:
 
 * Which pages do users look at before they visit the pricing page?
-* How many Sign-ups did I get that were organic vs referral?
+* How many sign-ups did I get that were organic vs referral?
 * Which song name is most popular among my users?
 * How many orders contain shoes? What is the sum total price that users paid for shoes in the last month?
 
@@ -27,17 +27,17 @@ You can filter, breakdown, and aggregate your events by their properties to answ
 
 ### Keep Events as Actions
 
-We recommend striking the right balance when defining your events. Events should neither be too broad nor too specific, and should be defined at the level of how you plan to analyse the user's behaviour. Also keeping in mind to use event properties to provide context or details about an event, instead of creating different events to capture similar actions. 
+We recommend striking the right balance when defining your events. Events should neither be too broad nor too specific, and should be defined at the level of how you plan to analyse the user's action or behaviour. Also keeping in mind to use event properties to provide context or details about an event, instead of creating different events to capture similar actions. 
 
-For example:
+**For example:**
 
-* If your goal is to analyse at high-level how users traverse through different pages: instead of tracking events `Home Page Viewed` and `Pricing Page Viewed`, track a `Page Viewed` event with a `Page Name` property set to `/home` or `/pricing`.
+* If your goal is to analyse at high-level how users traverse through different pages: instead of tracking events `Home Page Viewed` and `Pricing Page Viewed`, track a `Page Viewed` event with a `Page Name` property set to **"/home"** or **"/pricing"**.
 
-* If your goal is to track users adding items to a shopping cart: instead of tracking events `Add Shirt to Cart`, `Add Hoodie to Cart`, and `Add Socks to Cart`, track a `Add to Cart` event with a `Item` property set to `Shirt` or `Hoodie` or `Socks`.
+* If your goal is to track users adding items to a shopping cart: instead of tracking events `Add Shirt to Cart`, `Add Hoodie to Cart`, and `Add Socks to Cart`, track a `Add to Cart` event with a `Item` property set to **"Shirt"** or **"Hoodie"** or **"Socks"**.
 
-* If your goal is to track 1 button on a specific screen: instead of tracking events `Blue Button Clicked` and `Checkout Button Clicked`, track a `Button Clicked` event with a `Color` property set to `Blue` and `Button Name` set to `Checkout`.
+* If your goal is to track 1 button on a specific screen: instead of tracking events `Blue Button Clicked` and `Checkout Button Clicked`, track a `Button Clicked` event with a `Color` property set to **"Blue"** and `Button Name` set to **"Checkout"**.
   
-* If your goal is to track different buttons from different user journeys: instead of tracking event `Button Clicked` with `Button Name` property set to `Play` or `Profile` or `X`, track events `Song Played` and `Profile Updated` and `Logout` with specific properties for each event to provide more context.
+* If your goal is to track different buttons from different user journeys: instead of tracking event `Button Clicked` with `Button Name` property set to **"Play"** or **"Profile"** or **"X"**, track events `Song Played` and `Profile Updated` and `Logout` with specific properties for each event to provide richer context.
 
 ### Name Events and Properties Consistently
 
