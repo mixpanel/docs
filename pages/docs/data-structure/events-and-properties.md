@@ -29,15 +29,15 @@ You can filter, breakdown, and aggregate your events by their properties to answ
 
 We recommend striking the right balance when defining your events. Events should neither be too broad nor too specific, and should be defined at the level of how you plan to analyse the user's action or behaviour. Also keeping in mind to use event properties to provide context or details about an event, instead of creating different events to capture similar actions. 
 
-**For example:**
+<b>For example:</b>
 
-* If your goal is to analyse at high-level how users traverse through different pages: instead of tracking events `Home Page Viewed` and `Pricing Page Viewed`, track a `Page Viewed` event with a `Page Name` property set to **"/home"** or **"/pricing"**.
+* If your goal is to analyse at high-level how users traverse through different pages: instead of tracking events `Home Page Viewed` and `Pricing Page Viewed`, track a `Page Viewed` event with a `Page Name` property set to <b>"/home"</b> or <b>"/pricing"</b>.
 
-* If your goal is to track users adding items to a shopping cart: instead of tracking events `Add Shirt to Cart`, `Add Hoodie to Cart`, and `Add Socks to Cart`, track a `Add to Cart` event with a `Item` property set to **"Shirt"** or **"Hoodie"** or **"Socks"**.
+* If your goal is to track users adding items to a shopping cart: instead of tracking events `Add Shirt to Cart`, `Add Hoodie to Cart`, and `Add Socks to Cart`, track a `Add to Cart` event with a `Item` property set to <b>"Shirt"</b> or <b>"Hoodie"</b> or <b>"Socks"</b>.
 
-* If your goal is to track 1 button on a specific screen: instead of tracking events `Blue Button Clicked` and `Checkout Button Clicked`, track a `Button Clicked` event with a `Color` property set to **"Blue"** and `Button Name` set to **"Checkout"**.
+* If your goal is to track 1 button on a specific screen: instead of tracking events `Blue Button Clicked` and `Checkout Button Clicked`, track a `Button Clicked` event with a `Color` property set to <b>"Blue"</b> and `Button Name` set to <b>"Checkout"</b>.
   
-* If your goal is to track different buttons from different user journeys: instead of tracking event `Button Clicked` with `Button Name` property set to **"Play"** or **"Profile"** or **"X"**, track events `Song Played` and `Profile Updated` and `Logout` with specific properties for each event to provide richer context.
+* If your goal is to track different buttons from different user journeys: instead of tracking event `Button Clicked` with `Button Name` property set to <b>"Play"</b> or <b>"Profile"</b> or <b>"X"</b>, track events `Song Played` and `Profile Updated` and `Logout` with specific properties for each event to provide richer context.
 
 ### Name Events and Properties Consistently
 
@@ -45,13 +45,15 @@ We recommend having a consistent naming convention for your events and propertie
 
 * Generally, adopting snake_case for your event and property names tend to be more robust, especially if you plan to export your Mixpanel data to downstream processes such as data warehouses. Do also note that Mixpanel is case-sensitive (eg `sign_up_completed` vs `Sign Up Completed` are considered two separate events).
 
-* Use the `(Object) (Verb)` format for event names. Like "Song Played" or "Page Viewed".
+* Use the `(Object) (Verb)` format for event names. Like `song_played` or `page_viewed`.
+
+* Mixpanel [Lexicon](/docs/data-governance/lexicon) provides a means for you to change an event's or property's display name (if needed).
 
 ### Avoid Creating Events or Property Names Dynamically
 
-For example, don't create an event name like `Purchase (11-01-2019)`. Instead, create an event called Purchase and have some property (eg: `Return Date`) set to the dynamic value `11-01-2019`).
+For example, don't create an event name like `Purchase (11-01-2019)`. Instead, create an event called Purchase and have some property (eg: `Return Date`) set to the dynamic value <b>"11-01-2019"</b>).
 
-> Learn more best practices around defining your events and properties under our tutorials for [Creating a Tracking Plan](/docs/tutorials/plan/tracking-strategy#tracking-plan-methodology).
+> <b>Learn more best practices around defining your events and properties under our tutorials for [Creating a Tracking Plan](/docs/tutorials/plan/tracking-strategy#tracking-plan-methodology)</b>.
 
 ## Reserved Event Properties
 
@@ -80,4 +82,4 @@ We have a soft limit of 2000 distinct event names in a 30 day window. If you sen
 
 Each event can have up to 2000 properties. Event property names can be at most 255 characters in length (longer names are truncated). Event property values are limited based on data type, refer to these limits under [Supported Data Types](/docs/data-structure/property-reference#supported-data-types).
 
-**Note**: while events can have up to 2000 properties and batches of events can have up to 2000 events per ingestion batch, some libraries might default to sending the data through the GET protocol which would have a much lower size limit since the information is appended to the URL. If you are hitting the limits on the size of the request, first verify if the method being used is GET and can be switched to POST.
+<b>Note</b>: while events can have up to 2000 properties and batches of events can have up to 2000 events per ingestion batch, some libraries might default to sending the data through the GET protocol which would have a much lower size limit since the information is appended to the URL. If you are hitting the limits on the size of the request, first verify if the method being used is GET and can be switched to POST.
