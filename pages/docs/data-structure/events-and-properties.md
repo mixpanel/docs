@@ -60,8 +60,8 @@ Mixpanel reserves certain event property names for special processing or for spe
 
 | **Raw Name** | **Display Name** | **Description** |
 | ------------ | ---------------- | --------------- |
-| distinct_id / $distinct_id | Distinct ID | Mixpanel's internal unique identifier for a user.  See [Identifying Users](/docs/tracking-methods/id-management/identifying-users)  
-| time | Time or Date | A unix time epoch that is used to determine the time of an event. If no time property is provided, we will use the time the event arrives at our servers. |
+| $distinct_id / distinct_id | Distinct ID | Mixpanel's internal unique identifier for a user. See [Identifying Users](/docs/tracking-methods/id-management/identifying-users). |
+| $time / time | Time or Date | A unix time epoch that is used to determine the time of an event. If no time property is provided, we will use the time the event arrives at our servers. |
 
 
 | mp_original_event_name     | Hotshard Original Event Name  | The original event name for a hotsharded event. See [Distinct ID Limits](/docs/debugging/distinct-id-limits) |
