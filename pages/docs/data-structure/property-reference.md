@@ -29,6 +29,7 @@ To disable capturing of geolocation properties (i.e. City, Region, Country) refe
 | $region | Region | The region (state or province) of the event sender parsed from the IP property or the Latitude and Longitude properties. |
 | mp_country_code | Country | The country of the event sender parsed from the IP property or the Latitude and Longitude properties. The value is stored as a 2-letter country code in the raw data and parsed into the country name in the UI. |
 | $mp_api_endpoint | API Endpoint | Mixpanel property to record the API endpoint the data was sent to: <br /> **api.mixpanel.com** - default ingestion <br /> **api-eu.mixpanel.com** - EU data ingestion <br /> **api-js.mixpanel.com** - Javascript SDK |
+| $import | Import | Internal Mixpanel property set to `true` to indicate that events were sent through [/import API](https://developer.mixpanel.com/reference/import-events). |
 | $mp_api_timestamp_ms | API Timestamp | UTC timestamp in milliseconds when the event was received by our API. |
 | mp_processing_time_ms | Time Processed (UTC) | UTC timestamp in milliseconds when the event was processed by Mixpanel servers. |
 
