@@ -117,4 +117,4 @@ In the following video, we walkthrough how you should manage identifying your us
 
 Do note that the mixpanel.identify() call does not create a User Profile in Mixpanel. The people.set() method is the required call to set user properties on a user profile. However, the people.set() call also requires an identify() call at some point in the same session, so that Mixpanel knows which User ID to associate the profile properties to. If there is no identify() call in a user’s session where people.set() is called, we store the user profile properties locally until that user hits an identify() call. 
 
-For more detailed user flows and FAQs refer to our documentation on [Identifying Users](/docs/tracking-methods/identifying-users).
+For more detailed user flows and FAQs refer to our documentation on [Identifying Users](/docs/tracking-methods/id-management/identifying-users).
