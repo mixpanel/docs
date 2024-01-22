@@ -12,9 +12,12 @@ A User Profile is a set of properties associated with a given user. Under the ho
 | 456 | Bob | `bob@notion.so` | Product
 | 789 | Carol | `carol@figma.com` | Design
 
-User Profiles are joined onto your Events based on their Distinct ID (Mixpanel's identifier for a user), which is the ID of the user. This lets you join the events performed by a user with properties about who that user is. It's very important that you use the same Distinct ID for both your events and your users.
+User Profiles are joined onto your Events based on their <b>[Distinct ID](/docs/tracking-methods/id-management/identifying-users#what-is-distinct-id)</b> (Mixpanel's identifier for a user), which is the ID of the user. This lets you join the events performed by a user with properties about who that user is. It's very important that you use the same Distinct ID for both your events and your users.
+
+For more information about user profiles refer to the documentation on [The Mixpanel Data Model](/docs/tutorials/plan/tracking-strategy#the-mixpanel-data-model).
 
 ## Importing User Profiles via our API
+
 You can track User Profiles to Mixpanel in all the same ways you track events: from our SDKs, via our HTTP API, or via our Integrations.
 
 We recommend tracking user profiles from as close as possible to the source of truth for those profiles, which is usually your application database or your CRM. One common approach is to run an hourly or daily script on your servers that pulls the list of profiles from your database and pushes them to Mixpanel.
