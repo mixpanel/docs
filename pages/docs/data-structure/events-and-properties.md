@@ -1,52 +1,71 @@
 # Events And Properties
 
-
-
 ## Overview
-Events are the core of Mixpanel's Data Model. All events have a name, a timestamp, and a user ID. Events can optionally have a set of properties, which describe the event in more detail.
+
+Events are the core of [Mixpanel's Data Model](/docs/tutorials/plan/tracking-strategy#the-mixpanel-data-model). All events should have an <b>Event Name</b>, a <b>Timestamp</b> of when that event has occured, and a <b>[Distinct ID](/docs/tracking-methods/id-management/identifying-users#what-is-distinct-id)</b> (Mixpanel's identifier for a user) to tie all events belonging to the same user. Events can optionally have a set of properties, which describe the event in more detail.
+
 * If you're familiar with databases, events are like tables and properties are like columns.
 * If you're familiar with Google Analytics, events are like hits and properties are like dimensions.
 
 ## Examples
+
 * A `Page Viewed` event might have a property called `Page URL`, which is set to the URL of the page that was viewed.
 * A `Signed Up` event might have a property called `Signup Type`, which indicates whether the signup was `organic` vs `referral`.
 * A `Song Played` event might have a property called `Song Name`, which is set to the name of the song that was played.
 * A `Order Completed` event might have a property called `Items`, which is a list of objects, each of which contains details about an item, like its name, category, and price.
 
-## Use cases
-You can filter, breakdown, and aggregate your events by their properties to answer more questions:
-* Which pages do users look at before they visit the pricing page?
-* How many Signups did I get that were organic vs referral?
-* Which Song Name is most popular among my users?
-* How many Orders contain shoes? What is the sum total price that users paid for shoes in the last month?
+## Use Cases
 
-## Reserved Event Properties
-Mixpanel reserves certain event property names; these properties receive special treatment in our UI or are used for special processing.
-| Name                       | Display      | Description                                                                                                                                               |
-|----------------------------|--------------|-----------------------------------------------------------------------------------------------------------------------------------------------------------|
-| distinct_id / $distinct_id | Distinct ID  | Mixpanel's internal unique identifier for a user.  See [Identifying Users](/docs/tracking-methods/id-management/identifying-users)             |
-| time                       | Time or Date | A unix time epoch that is used to determine the time of an event. If no time property is provided, we will use the time the event arrives at our servers. |
-| $city                      | City         | The city of the event sender, parsed from IP.                                                                                                             |
-| $region                    | Region       | The region (state or province) of the event sender, parsed from IP.                                                                                       |
-| mp_country_code            | Country      | The country of the event sender parsed from the IP property or the Latitude and Longitude properties. The value is stored as a 2-letter country code in the raw data and parsed into the country name in the UI.                                                                                                          |
-| mp_original_event_name     | Hotshard Original Event Name  | The original event name for a hotsharded event. See [Distinct ID Limits](/docs/debugging/distinct-id-limits) |
-| mp_original_distinct_id    | Hotshard Original Distinct ID | The original distinct id for a hotsharded event. See [Distinct ID Limits](/docs/debugging/distinct-id-limits)|
+You can filter, breakdown, and aggregate your events by their properties to answer more questions:
+
+* Which pages do users look at before they visit the pricing page?
+* How many Sign-ups did I get that were organic vs referral?
+* Which song name is most popular among my users?
+* How many orders contain shoes? What is the sum total price that users paid for shoes in the last month?
 
 ## Best Practices
 
-### Keep Events Generic
-We recommend keeping event names generic and using properties for all context. For example:
-* Instead of tracking events called `Home Page Viewed` and `Pricing Page Viewed`, track a `Page Viewed` event with a `Page Name` property set to `/home` or `/pricing`.
-* Instead of tracking `Blue Button Clicked` or `Checkout Button Clicked`, track `Button Clicked` with a `Color` property set to `Blue` and `Button Name` set to `Checkout`.
+### Keep Events as Actions
+
+We recommend striking the right balance when defining your events. Events should neither be too broad nor too specific, and should be defined at the level of how you plan to analyse the user's behaviour. Also keeping in mind to use event properties to provide context or details about an event, instead of creating different events to capture similar actions. 
+
+For example:
+
+* If your goal is to analyse at high-level how users traverse through different pages: instead of tracking events `Home Page Viewed` and `Pricing Page Viewed`, track a `Page Viewed` event with a `Page Name` property set to `/home` or `/pricing`.
+
+* If your goal is to track users adding items to a shopping cart: instead of tracking events `Add Shirt to Cart`, `Add Hoodie to Cart`, and `Add Socks to Cart`, track a `Add to Cart` event with a `Item` property set to `Shirt` or `Hoodie` or `Socks`.
+
+* If your goal is to track 1 button on a specific screen: instead of tracking events `Blue Button Clicked` and `Checkout Button Clicked`, track a `Button Clicked` event with a `Color` property set to `Blue` and `Button Name` set to `Checkout`.
+  
+* If your goal is to track different buttons from different user journeys: instead of tracking event `Button Clicked` with `Button Name` property set to `Play` or `Profile` or `X`, track events `Song Played` and `Profile Updated` and `Logout` with specific properties for each event to provide more context.
 
 ### Name Events and Properties Consistently
-We recommend having a consistent naming convention for your events and properties. For example:
-* Use camel case for your event names.
+
+We recommend having a consistent naming convention for your events and properties:
+
+* Generally, adopting snake_case for your event and property names tend to be more robust, especially if you plan to export your Mixpanel data to downstream processes such as data warehouses. Do also note that Mixpanel is case-sensitive (eg `sign_up_completed` vs `Sign Up Completed` are considered two separate events).
+
 * Use the `(Object) (Verb)` format for event names. Like "Song Played" or "Page Viewed".
 
+### Avoid Creating Events or Property Names Dynamically
 
-### Avoid Creating Event or Property Names Dynamically
 For example, don't create an event name like `Purchase (11-01-2019)`. Instead, create an event called Purchase and have some property (eg: `Return Date`) set to the dynamic value `11-01-2019`).
+
+> Learn more best practices around defining your events and properties under our tutorials for [Creating a Tracking Plan](/docs/tutorials/plan/tracking-strategy#tracking-plan-methodology).
+
+## Reserved Event Properties
+
+Mixpanel reserves certain event property names for special processing or for specific system features. These properties, when populated, will affect the way Mixpanel processes your data.
+
+
+| **Raw Name** | **Display Name** | **Description** |
+| ------------ | ---------------- | --------------- |
+| $distinct_id / distinct_id | Distinct ID | Mixpanel's internal unique identifier for a user. See [Identifying Users](/docs/tracking-methods/id-management/identifying-users). |
+| $time / time | Time or Date | A unix time epoch that is used to determine the time of an event. If no time property is provided, we will use the time the event arrives at our servers. |
+
+
+| mp_original_event_name     | Hotshard Original Event Name  | The original event name for a hotsharded event. See [Distinct ID Limits](/docs/debugging/distinct-id-limits) |
+| mp_original_distinct_id    | Hotshard Original Distinct ID | The original distinct id for a hotsharded event. See [Distinct ID Limits](/docs/debugging/distinct-id-limits)|
 
 
 ## FAQ
