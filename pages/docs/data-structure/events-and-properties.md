@@ -7,6 +7,8 @@ Events are the core of [Mixpanel's Data Model](/docs/tutorials/plan/tracking-str
 * If you're familiar with databases, events are like tables and properties are like columns.
 * If you're familiar with Google Analytics, events are like hits and properties are like dimensions.
 
+For more information about events refer to the documentation on [The Mixpanel Data Model](/docs/tutorials/plan/tracking-strategy#the-mixpanel-data-model).
+
 ## Examples
 
 * A `Page Viewed` event might have a property called `Page URL`, which is set to the URL of the page that was viewed.
