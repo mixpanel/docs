@@ -20,7 +20,7 @@ To backfill data, we recommend:
 ![image](/ga4_overview.png)
 
 At a high-level, the migration consists of 4 steps:
-1. Set up a new Mixpanel project which is on [Simplified ID Merge system](/docs/tracking-methods/identifying-users#simplified-vs-original-id-merge). 
+1. Set up a new Mixpanel project which is on [Simplified ID Merge system](/docs/tracking-methods/id-management/identifying-users#simplified-vs-original-id-merge). 
 2. Set up GA4 BigQuery Export following the instructions [here](https://support.google.com/analytics/answer/9823238?hl=en#zippy=%2Cin-this-article). 
 3. Transform GA4 data in BigQuery.   
 4. Set up [Mixpanel Warehouse Connector](/docs/tracking-methods/data-warehouse/overview) to initiate data sync from BigQuery to Mixpanel  
@@ -35,7 +35,7 @@ GA4 exports 2 types of user tables to BigQuery,
 1. `pseudonymous_users_YYYYMMDD` - This table contains only anonymous users updated on the specific day.
 2. `users_YYYYMMDD` - This table contains only known users updated on the specific day. 
 
-As [Mixpanel doesn't recommend setting user properties for anonymous users](/docs/tracking-methods/identifying-users#avoid-creating-profiles-for-anonymous-users), you would just need to import the `users_YYYYMMDD` table to Mixpanel (and not the `pseudonymous_users_YYYYMMDD` table). Similar to event properties, user properties are stored in `user_properties`(RECORD data type) in BigQuery, which needs to be transformed into a compatible data stucture before sending them to Mixpanel. 
+As [Mixpanel doesn't recommend setting user properties for anonymous users](/docs/tracking-methods/id-management/identifying-users#avoid-creating-profiles-for-anonymous-users), you would just need to import the `users_YYYYMMDD` table to Mixpanel (and not the `pseudonymous_users_YYYYMMDD` table). Similar to event properties, user properties are stored in `user_properties`(RECORD data type) in BigQuery, which needs to be transformed into a compatible data stucture before sending them to Mixpanel. 
 
 ##### Pre-migration data audit
 Before migrating your data to Mixpanel, you should conduct a data audit to quickly identify the key events and properties that you want to migrate over. You can learn more about the importance of pre-migration data audit [here](/docs/migration/overview#data-audit).  
