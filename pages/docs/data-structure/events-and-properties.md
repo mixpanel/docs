@@ -76,9 +76,12 @@ Mixpanel reserves certain event property names for special processing or for spe
 | $failure_description | Failure Description | Mixpanel property explaining in detail why identity merging was not executed. Used in [Original ID Merge](/docs/tracking-methods/id-management/migrating-to-simplified-id-merge-system#on-original-id-merge). | 
 | $failure_reason | Failure Reason | Mixpanel property summarizing why identity merging was not executed. Used in [Original ID Merge](/docs/tracking-methods/id-management/migrating-to-simplified-id-merge-system#on-original-id-merge). | 
 | $identity_failure_reason | Identity Failure Reason | Mixpanel property summarizing why identity merging was not executed. Used in [Simplified ID Merge](/docs/tracking-methods/id-management/migrating-to-simplified-id-merge-system#understanding-simplified-id-merge) |
-
 |mp_original_distinct_id | Hotshard Original Distinct ID | Original $distinct_id for an event that was identified as contributing to a [hot shard](https://docs.mixpanel.com/docs/debugging/distinct-id-limits#what-is-a-hot-shard). |
 | mp_original_event_name | Hotshard Original Event Name | Original $event_name for an event that was identified as contributing to [hot shard](https://docs.mixpanel.com/docs/debugging/distinct-id-limits#what-is-a-hot-shard). |
+| $duration_s | Session Duration (Seconds) | The duration between Session Start and Session End events in seconds. See [How Sessions Work](/docs/features/sessions#how-sessions-work). |
+| $event_count | Session Event Count | The number of events during a session (i.e. Session Start and Session End). This does not include [Excluded Events](/docs/features/sessions#excluded-events) and [Hidden Events](/docs/data-governance/lexicon#hide-events-and-properties) in Lexicon. See [How Sessions Work](/docs/features/sessions#how-sessions-work). | 
+| $origin_start | Session Start Event Name | The original event name that triggered Session Start event. See [How Sessions Work](/docs/features/sessions#how-sessions-work). | 
+| $origin_end | Session End Event Name | The original event name that triggered Session End event. See [How Sessions Work](/docs/features/sessions#how-sessions-work). | 
 
 
 
