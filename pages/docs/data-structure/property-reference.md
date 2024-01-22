@@ -93,7 +93,7 @@ $referrer | Referrer | Referring URL including your own domain. Might not be pre
 | $has_nfc | Has NFC | Set to true if Near Field Communication is being used, false if not. | ❌ | ✅ | ❌ | ❌ | 
 | $has_telephone | Has Telephone | Set to true if this device has telephone functionality, false if not. | ❌ | ✅ | ❌ | ❌ | 
 | $google_play_services | Google Play Services | Verifies that Google Play services is installed and enabled on this device, and that the version installed on this device is no older than the one required by this client. | ❌ | ✅ | ❌ | ❌ | 
-| $duration | Duration	A property that is appended to an event to capture the elapsed time (in seconds) between a 'time_event' and a 'track' call. See [time_event](https://github.com/mixpanel/mixpanel-js/blob/master/doc/readme.io/javascript-full-api-reference.md#mixpaneltime_event) in Javascript SDK for example. | ✅ | ✅ | ✅ | ✅ | 
+| $duration | Duration	| A property that is appended to an event to capture the elapsed time (in seconds) between a 'time_event' and a 'track' call. See [time_event](https://github.com/mixpanel/mixpanel-js/blob/master/doc/readme.io/javascript-full-api-reference.md#mixpaneltime_event) in Javascript SDK for example. | ✅ | ✅ | ✅ | ✅ | 
 
 #### User Properties
 
