@@ -63,11 +63,23 @@ Mixpanel reserves certain event property names for special processing or for spe
 | **Raw Name** | **Display Name** | **Description** |
 | ------------ | ---------------- | --------------- |
 | $distinct_id / distinct_id | Distinct ID | Mixpanel's internal unique identifier for a user. See [Identifying Users](/docs/tracking-methods/id-management/identifying-users). |
-| $time / time | Time or Date | A unix time epoch that is used to determine the time of an event. If no time property is provided, we will use the time the event arrives at our servers. |
+| $device_id | Device ID | In [Simplified ID Merge](/docs/tracking-methods/id-management/identifying-users#example-user-flows): unique identifier used to track a device while the user is in anynymous state. |
+| $user_id | User ID | In [Simplified ID Merge](/docs/tracking-methods/id-management/identifying-users#example-user-flows): unique identifier used to track a user across devices when user is in identified state. |
+| $event_name | Event Name | Name of the tracked event. |
+| $time / time | Time or Date | A unix time epoch that is used to determine the time of an event. If no time property is provided, we will use the time when the event arrives at our servers. |
+| $insert_id | Insert ID | A unique identifier for the event, used to deduplicate events that are accidentally sent multiple times. More details [here](https://developer.mixpanel.com/reference/import-events#propertiesinsert_id). |
+| $identified_id | Identified ID | Internal Mixpanel property to track the identifier passed into the `[$identify](https://developer.mixpanel.com/reference/create-identity)` event. Used in [Original ID Merge](/docs/tracking-methods/id-management/migrating-to-simplified-id-merge-system#on-original-id-merge). |
+| $anon_id | Anonymous ID | Internal Mixpanel property to track the anonymous ID passed into the `[$identify](https://developer.mixpanel.com/reference/create-identity)` event. Used in [Original ID Merge](/docs/tracking-methods/id-management/migrating-to-simplified-id-merge-system#on-original-id-merge). |
+| alias | Alias | Internal Mixpanel property to track the alias passed into the `[$create_alias](https://developer.mixpanel.com/reference/identity-create-alias)` event. Used in [Original ID Merge](/docs/tracking-methods/id-management/migrating-to-simplified-id-merge-system#on-original-id-merge). |
+| $distinct_id_before_identity | Distinct ID Before Identity | Internal Mixpanel property to track an event's original $distinct_id before it was updated due to identity merging. Used in [Original ID Merge](/docs/tracking-methods/id-management/migrating-to-simplified-id-merge-system#on-original-id-merge) and [Simplified ID Merge](/docs/tracking-methods/id-management/migrating-to-simplified-id-merge-system#understanding-simplified-id-merge). |
+| $is_reshuffled | Is Reshuffled | Internal Mixpanel property to denote an event was reshuffled (sets to true if original $distinct_id was updated) due to identity merging. Used in [Original ID Merge](/docs/tracking-methods/id-management/migrating-to-simplified-id-merge-system#on-original-id-merge) and [Simplified ID Merge](/docs/tracking-methods/id-management/migrating-to-simplified-id-merge-system#understanding-simplified-id-merge). |
+| $failure_description | Failure Description | Mixpanel property explaining in detail why identity merging was not executed. Used in [Original ID Merge](/docs/tracking-methods/id-management/migrating-to-simplified-id-merge-system#on-original-id-merge). | 
+| $failure_reason | Failure Reason | Mixpanel property summarizing why identity merging was not executed. Used in [Original ID Merge](/docs/tracking-methods/id-management/migrating-to-simplified-id-merge-system#on-original-id-merge). | 
+| $identity_failure_reason | Identity Failure Reason | Mixpanel property summarizing why identity merging was not executed. Used in [Simplified ID Merge](/docs/tracking-methods/id-management/migrating-to-simplified-id-merge-system#understanding-simplified-id-merge) |
 
+|mp_original_distinct_id | Hotshard Original Distinct ID | Original $distinct_id for an event that was identified as contributing to a [hot shard](https://docs.mixpanel.com/docs/debugging/distinct-id-limits#what-is-a-hot-shard). |
+| mp_original_event_name | Hotshard Original Event Name | Original $event_name for an event that was identified as contributing to [hot shard](https://docs.mixpanel.com/docs/debugging/distinct-id-limits#what-is-a-hot-shard). |
 
-| mp_original_event_name     | Hotshard Original Event Name  | The original event name for a hotsharded event. See [Distinct ID Limits](/docs/debugging/distinct-id-limits) |
-| mp_original_distinct_id    | Hotshard Original Distinct ID | The original distinct id for a hotsharded event. See [Distinct ID Limits](/docs/debugging/distinct-id-limits)|
 
 
 ## FAQ
