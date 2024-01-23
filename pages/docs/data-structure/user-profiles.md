@@ -28,7 +28,7 @@ For more information about user profiles refer to the documentation on [The Mixp
 
 You can create or update User Profiles in similar ways you track events: from our [SDKs](/docs/tracking-methods/sdks/javascript#storing-user-profiles), via our [HTTP Engage API](https://developer.mixpanel.com/reference/profile-set), [Warehous Connectors](/docs/tracking-methods/data-warehouse/sending-user-profiles), or via our integrations partners.
 
-We recommend tracking user profiles from as close as possible to the source of truth, which is usually your application database or your CRM. One typical approach (especially for [Server-Side Tracking](/docs/tracking-methods/choosing-the-right-method#server-side-tracking)) is to run an hourly or daily script on your servers that pulls the list of user profiles from your database and pushes them to Mixpanel.
+We recommend tracking user profiles from as close as possible to the source of truth, which is usually your application database or your CRM. One typical approach (especially for [Server-Side Tracking](/docs/tracking-methods/choosing-the-right-method#server-side-tracking) is to run an hourly or daily script on your servers that pulls the list of user profiles from your database and pushes them to Mixpanel.
 
 Similiarly for [Group Profiles](/docs/data-structure/advanced/group-analytics#group-profiles), they can be created or updated using our [SDKs](/docs/tracking-methods/sdks/javascript#creating-group-profiles), via our [HTTP Groups API](https://developer.mixpanel.com/reference/group-set-property), [Warehous Connectors](/docs/tracking-methods/data-warehouse/sending-group-profiles), or via our integration partners.
 
