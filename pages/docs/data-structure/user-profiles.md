@@ -178,5 +178,5 @@ Attempts to add more than 2000 user properties for a user profile will fail. You
 ### How can I send User Profiles if I use Segment?
 Mixpanel is 100% compatible with Segment; just follow Segment's best practices. If you call the [`analytics.identify()`](https://segment.com/docs/connections/spec/identify/) method, Segment will create a User Profile in Mixpanel. You can learn more about our integration in Segment's [docs](https://segment.com/docs/connections/destinations/catalog/actions-mixpanel/#identify-user).
 
-### What does the Updated At property mean?
-User Profiles are mutable, which means new ones can be added and existing ones can be updated or deleted. Mixpanel automatically maintains an Updated At property, which contains the last timestamp that a user profile was updated. Updated At does not change if the user does a new event; it only changes when the profile is updated. Updated At also does not change for profile updates made via the UI.
+### What does the Updated At ($last_seen) property mean?
+User Profiles are mutable, which means new ones can be added and existing ones can be updated or deleted. Mixpanel automatically maintains an Updated At (`$last_seen`) property, which contains the last timestamp that a user profile was updated. Updated At does not change if the user does a new event; it only changes when the profile is updated. Updated At also does not change for profile updates made via the UI.
