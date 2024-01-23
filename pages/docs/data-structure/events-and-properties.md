@@ -33,13 +33,13 @@ We recommend striking the right balance when defining your events. Events should
 
 <b>For example:</b>
 
-* If your goal is to analyse at high-level how users traverse through different pages: instead of tracking events `Home Page Viewed` and `Pricing Page Viewed`, track a `Page Viewed` event with a `Page Name` property set to <b>"/home"</b> or <b>"/pricing"</b>.
+* If your goal is to analyse at high-level how users traverse through different pages: instead of tracking multiple events `Home Page Viewed` and `Pricing Page Viewed`, track a `Page Viewed` event with a `Page Name` property set to <b>"/home"</b> or <b>"/pricing"</b>. See [Tracking Page Views](/docs/tracking-methods/sdks/javascript#tracking-page-views) in our Javascript SDK documentation on how to instrument this.
 
-* If your goal is to track users adding items to a shopping cart: instead of tracking events `Add Shirt to Cart`, `Add Hoodie to Cart`, and `Add Socks to Cart`, track a `Add to Cart` event with a `Item` property set to <b>"Shirt"</b> or <b>"Hoodie"</b> or <b>"Socks"</b>.
+* If your goal is to track users adding items to a shopping cart: instead of tracking multiple events `Add Shirt to Cart`, `Add Hoodie to Cart`, and `Add Socks to Cart`, track a `Add to Cart` event with a `Item` property set to <b>"Shirt"</b>, or <b>"Hoodie"</b>, or <b>"Socks"</b>.
 
-* If your goal is to track 1 button on a specific screen: instead of tracking events `Blue Button Clicked` and `Checkout Button Clicked`, track a `Button Clicked` event with a `Color` property set to <b>"Blue"</b> and `Button Name` set to <b>"Checkout"</b>.
+* If your goal is to track 1 button on a specific screen: instead of tracking multiple events `Blue Button Clicked` and `Checkout Button Clicked`, track a `Button Clicked` event with a `Color` property set to <b>"Blue"</b> and `Button Name` set to <b>"Checkout"</b>.
   
-* If your goal is to track different buttons from different user journeys: instead of tracking event `Button Clicked` with `Button Name` property set to <b>"Play"</b> or <b>"Profile"</b> or <b>"X"</b>, track events `Song Played` and `Profile Updated` and `Logout` with specific properties for each event to provide richer context.
+* If your goal is to track different buttons from different user journeys: instead of tracking 1 event `Button Clicked` with `Button Name` property set to <b>"Play"</b>, or <b>"Profile"</b>, or <b>"X"</b>, track them as different events `Song Played` and `Profile Updated` and `Logout` with specific properties for each event to provide richer context.
 
 ### Name Events and Properties Consistently
 
