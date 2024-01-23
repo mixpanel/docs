@@ -88,25 +88,25 @@ print(resp.json())
 
 ## Importing User Profiles via our UI
 
-To get started, click on **Add/Edit Profile** from the [Users](https://mixpanel.com/report/users) page and follow the workflow:
+To get started, click on <b>Add/Edit Profile</b> from the [Users](https://mixpanel.com/report/users) page and follow the workflow below:
 
 ![/Screen_Shot_2021-12-01_at_11.44.03_AM.png](/Screen_Shot_2021-12-01_at_11.44.03_AM.png)
 
-## Importing Individual User Profiles
+### Importing (Create or Modify) Individual User Profiles
 
-### Set an Identifier Column
+#### Set an Identifier Column
 
-The most important column is `$distinct_id`. This ID needs to match the distinct_id property that you're sending on your events.
+The most important column is `$distinct_id`. The value needs to match the distinct_id property's value that you're sending on your events.
 
-### Add Additional Properties
+#### Add Additional Properties
 
-After `$distinct_id`, you can add additional properties to the profile by pressing the "Add Property" button. Mixpanel will help autocomplete profile properties that you may want to set.
+After `$distinct_id`, you can add additional properties to the profile by pressing the <b>"+ Add Property"</b> button. Mixpanel will help autocomplete profile properties that you may want to set.
 
 ![/Screen_Shot_2021-12-01_at_12.20.27_PM.png](/Screen_Shot_2021-12-01_at_12.20.27_PM.png)
 
-We recommend using the `$name` and `$email` properties if you're uploading a user's name or email. Mixpanel shows these properties by default in various parts of our UI.
+We recommend using the `$first_name`, `$last_name`, `$email`, and `$phone` [Reserved User Properties](#reserved-user-properties) if you're uploading a user's name, email or phone. Mixpanel shows these properties by default in various parts of our UI and are used for [Cohort Syncs](/docs/cohort-sync/overview) as well.
 
-## Importing a CSV
+### Importing a CSV
 
 When editing the CSV that you want to upload as profiles, you should **not** include column headers (e.g., Email, Name, etc.). Instead, you’ll identify column headers during the CSV upload wizard in the Mixpanel UI.
 
