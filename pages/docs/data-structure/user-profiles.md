@@ -92,11 +92,11 @@ To get started, click on <b>Add/Edit Profile</b> from the [Users](https://mixpa
 
 ![/Screen_Shot_2021-12-01_at_11.44.03_AM.png](/Screen_Shot_2021-12-01_at_11.44.03_AM.png)
 
-### Importing (Create or Modify) Individual User Profiles
+### Importing (Create or Modify) a Single User Profile
 
 #### Set an Identifier Column
 
-The most important column is `$distinct_id`. The value needs to match the distinct_id property's value that you're sending on your events.
+The most important column is `$distinct_id` for user profiles (or `$group_id` for [Group Profiles](/docs/data-structure/advanced/group-analytics#group-profiles)). The value needs to match the `distinct_id` property's value (or the value for the [Group Key](/docs/data-structure/advanced/group-analytics#implementation)) that you're sending on your events.
 
 #### Add Additional Properties
 
@@ -104,36 +104,39 @@ After `$distinct_id`, you can add additional properties to the profile by press
 
 ![/Screen_Shot_2021-12-01_at_12.20.27_PM.png](/Screen_Shot_2021-12-01_at_12.20.27_PM.png)
 
-We recommend using the `$first_name`, `$last_name`, `$email`, and `$phone` [Reserved User Properties](#reserved-user-properties) if you're uploading a user's name, email or phone. Mixpanel shows these properties by default in various parts of our UI and are used for [Cohort Syncs](/docs/cohort-sync/overview) as well.
+We recommend using the `$name` (or `$first_name`, `$last_name`), `$email`, and `$phone` [Reserved User Properties](#reserved-user-properties) if you're uploading a user's name, email, or phone. Mixpanel shows these properties by default in various parts of our UI and are used for [Cohort Syncs](/docs/cohort-sync/overview) as well.
 
-### Importing a CSV
+### Importing from CSV
 
-When editing the CSV that you want to upload as profiles, you should **not** include column headers (e.g., Email, Name, etc.). Instead, you’ll identify column headers during the CSV upload wizard in the Mixpanel UI.
+When preparing the CSV that you want to upload as profiles, you should <b>not</b> include column headers (e.g., $name, $email,  etc.). Instead, you’ll identify column headers through the CSV upload wizard in the Mixpanel UI.
 
-**Note**:
+<b>Note</b>:
 - If you import user profiles using \$distinct_id values that already exist, those profiles will be updated with the additional user profile properties. On the other hand, if you upload user profiles that have the same email address or the same name as existing user profiles but a different \$distinct_id, you will be uploading duplicates - they will not be combined.
 - If you upload a CSV with new information for existing properties on existing users, the existing property values will be overwritten. If the new information is for new properties on existing users, it will be added as an additional property for the user. 
-- The maximum size for your CSV is 1M rows.
+- The maximum size for your CSV should be 1M rows.
 
-### Upload Your CSV
+#### Upload Your CSV
 
-Go the the Import from CSV mode and select your prepared csv to begin the process.
+Go the the <b>Import from CSV</b> tab and select your prepared CSV to begin the process.
 
-### Choose an Identifier Column
+#### Choose an Identifier Column
 
-The most important column in your spreadsheet is the `$distinct_id` column for user profiles or `$group_id`, the group identifier, for group profiles, as these are the canonical identifiers in Mixpanel.
+The most important column in your CSV is the `$distinct_id` for user profiles (or `$group_id` for [Group Profiles](/docs/data-structure/advanced/group-analytics#group-profiles)). The value needs to match the `distinct_id` property's value (or the value for the [Group Key](/docs/data-structure/advanced/group-analytics#implementation)) that you're sending on your events.
 
 If you do not assign an identifier column, Mixpanel will use your `$email` column as the `$distinct_id` value; if you don’t have an `$email` column either, then the `$distinct_id` value will be assigned randomly by default as described above.
 
-### Choose Desired CSV Columns
+#### Choose Desired CSV Columns
+
 ![/Screen_Shot_2021-12-01_at_12.24.00_PM.png](/Screen_Shot_2021-12-01_at_12.24.00_PM.png)
 
-You'll have the opportunity to look through all columns in the CSV to preview the values. In this step you must uncheck all of the columns you wish to NOT import. You must also choose the associated Mixpanel profile property that each CSV column will be associated with. When you done selecting the columns you wish to import along with their associated properties, press the Import profiles button.
+You'll have the opportunity to look through all columns in the CSV to preview their values. In this step, you must <b>uncheck all columns that you DO NOT wish to import</b>. You must also choose the associated Mixpanel profile property that each CSV column will be associated with. When you're done selecting the columns, and mapping their associated properties, press the <b>Import profiles</b> button to proceed.
 
 ## Deleting User Profiles
-User Profiles can be deleted either via the [Users](https://mixpanel.com/report/users) page or programmatically via our API. We provide a `people_delete` method in the mixpanel-utils library [here](https://github.com/mixpanel/mixpanel-utils#people-delete).
+
+User Profiles can be deleted either via the [Users](https://mixpanel.com/report/users) page or programmatically via our [API](https://developer.mixpanel.com/reference/delete-profile). We also provide a `people_delete` method in the mixpanel-utils library [here](https://github.com/mixpanel/mixpanel-utils#people-delete).
 
 ## Reserved User Properties
+
 Mixpanel reserves certain user property names; these properties receive special treatment in our UI or are used for special processing.
 
 | Name          | Display   | Description                                                                                                                                                                                                                                                                                                                                                             |
