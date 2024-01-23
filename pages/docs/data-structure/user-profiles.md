@@ -139,7 +139,9 @@ User Profiles can be deleted either via the [Users](https://mixpanel.com/report/
 
 ## Reserved User Properties
 
-Mixpanel reserves certain user property names; these properties receive special treatment in our UI or are used for special processing.
+Mixpanel reserves certain user property names for special processing or for specific system features. These properties, when populated, will affect the way Mixpanel processes your data.
+
+> <b>Note:</b> Also refer to a list of Mixpanel [Default Properties](/docs/data-structure/property-reference#default-properties) indicated in our documentation.
 
 | **Raw Name** | **Display Name** | **Description** |
 | ------------ | ---------------- | --------------- |
