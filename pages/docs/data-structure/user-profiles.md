@@ -98,7 +98,9 @@ print(resp.json())
 
 ## Importing User Profiles via our UI
 
-To get started, click on <b>Add/Edit Profile</b> from the [Users](https://mixpanel.com/report/users) page and follow the workflow below:
+To get started, click on <b>Add/Edit Profile</b> from the [Users](https://mixpanel.com/report/users) page and follow the workflow below.
+
+> <b>Note</b>: For customers with [Group Analytics](/docs/data-structure/advanced/group-analytics) make sure you first choose either <b>User</b> or the <b>[Group Key](/docs/data-structure/advanced/group-analytics#group-keys-in-project-settings) name</b> depending on which type of profile you wish to import.
 
 ![/Screen_Shot_2021-12-01_at_11.44.03_AM.png](/Screen_Shot_2021-12-01_at_11.44.03_AM.png)
 
@@ -137,9 +139,9 @@ If you do not assign an identifier column, Mixpanel will use your `$email` colum
 
 #### Choose Desired CSV Columns
 
-![/Screen_Shot_2021-12-01_at_12.24.00_PM.png](/Screen_Shot_2021-12-01_at_12.24.00_PM.png)
-
 You'll have the opportunity to look through all columns in the CSV to preview their values. In this step, you must <b>uncheck all columns that you DO NOT wish to import</b>. You must also choose the associated Mixpanel profile property that each CSV column will be associated with. When you're done selecting the columns, and mapping their associated properties, press the <b>Import profiles</b> button to proceed.
+
+![/Screen_Shot_2021-12-01_at_12.24.00_PM.png](/Screen_Shot_2021-12-01_at_12.24.00_PM.png)
 
 ## Deleting User Profiles
 
