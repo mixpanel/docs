@@ -64,7 +64,7 @@ Mixpanel reserves certain event property names for special processing or for spe
 > <b>Note:</b> Also refer to the list of Mixpanel [Default Properties](/docs/data-structure/property-reference#default-properties) indicated in our documentation.
 
 | **Raw Name** | **Display Name** | **Description** |
-| ------------ | ---------------- | --------------- |
+| ------------ | :--------------- | --------------- |
 | token | - | The project's token when sending data via [/track API](https://developer.mixpanel.com/reference/track-event). Not visible via Mixpanel UI reports. |
 | ip | - | The IP address that will resolve to `$city`, `$region`, and `mp_country_code` properties during ingestion of the event and thereafter discarded. By default, Mixpanel will pull ip from the source of the API request; if you don't want this resolved, set ip to "0". Refer to [Tracking Geolocation](/docs/best-practices/server-side-best-practices#tracking-geolocation-http-api) for example. |
 | $bucket / bucket | - | A reserved property that is hidden from the Mixpanel interface, and will cause other events to not appear in the interface. Do not name any property bucket or $bucket. |
