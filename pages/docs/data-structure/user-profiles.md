@@ -1,14 +1,16 @@
 # User Profiles
 
-> <b>Note:</b> The following terms in this section are used interchangeably:
-> - user profile properties and user properties
-> - group profile properties and group properties
+> <b>Note:</b> The following terms are used in this section:
+> - "User Profile Properties" and "User Properties" are used interchangeable to refer to properties under a User Profile
+> - "Group Profile Properties" and "Group Properties" are used interchangeable to refer to properties under a Group Profile
+> - "Profiles" is used to refer to both "User Profiles" and "Group Profiles" (unless otherwise specified)
+> - "Profile Properties" is used to refer to both "User Profile Properties" and "Group Profile Properties" (unless otherwise specified)
 
 ## Overview
 
 User Profiles let you enrich events with demographic attributes (i.e. user properties) about the users that performed those events. User profiles are optional and we recommend starting with events and only adding user profiles if you need them.
 
-A user profile has a set of properties associated with a given user. Under the hood, Mixpanel stores user profiles for your project in a table wherein each user's profile is 1 row with profile / user properties (e.g. Name, Email, Department) that can be updated:
+A user profile has a set of properties associated with a given user. Under the hood, Mixpanel stores user profiles for your project in a table wherein each user's profile is 1 row with user properties (e.g. Name, Email, Department) that can be updated:
 
 | **Distinct ID** | **Name** | **Email** | **Department** |
 | --------------- | -------- | --------- | -------------- |
