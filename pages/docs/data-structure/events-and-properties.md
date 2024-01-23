@@ -2,10 +2,12 @@
 
 ## Overview
 
-Events are the core of [Mixpanel's Data Model](/docs/tutorials/plan/tracking-strategy#the-mixpanel-data-model). All events should have an <b>Event Name</b>, a <b>Timestamp</b> of when that event has occured, and a <b>[Distinct ID](/docs/tracking-methods/id-management/identifying-users#what-is-distinct-id)</b> (Mixpanel's identifier for a user) to tie all events belonging to the same user (note there are a few use cases, such as tracking [Ad Spend](/docs/data-structure/advanced/ad-spend), in which the event should not be tied to specific users; as such, these events should be sent without a Distinct ID, but this is the exception). Events can optionally have a set of properties, which describes the event in more detail.
+Events are the core of [Mixpanel's Data Model](/docs/tutorials/plan/tracking-strategy#the-mixpanel-data-model). All events should have an <b>Event Name</b>, a <b>Timestamp</b> of when that event has occured, and a <b>[Distinct ID](/docs/tracking-methods/id-management/identifying-users#what-is-distinct-id)</b> (Mixpanel's identifier for a user) to tie all events belonging to the same user. Events can optionally have a set of properties, which describes the event in more detail.
 
 * If you're familiar with databases, events are like tables and properties are like columns.
 * If you're familiar with Google Analytics, events are like hits and properties are like dimensions.
+
+> <b>Note:</b> There are a few use cases, such as tracking [Ad Spend](/docs/data-structure/advanced/ad-spend), in which the event should not be tied to specific users; as such, these events should be sent without a Distinct ID, but this is the exception.
 
 For more information about events refer to the documentation on [The Mixpanel Data Model](/docs/tutorials/plan/tracking-strategy#the-mixpanel-data-model).
 
