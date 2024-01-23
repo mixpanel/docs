@@ -12,6 +12,8 @@ A user profile has a set of properties associated with a given user. Under the h
 | 456 | Bob | `bob@notion.so` | Product |
 | 789 | Carol | `carol@figma.com` | Design |
 
+> <b>Note:</b> The following terms are used interchangeably: user profile properties, profile properties, and user properties
+
 User profiles are joined onto your events based on their <b>[Distinct ID](/docs/tracking-methods/id-management/identifying-users#what-is-distinct-id)</b> (Mixpanel's identifier for a user). This lets you join the events performed by a user with properties about who that user is. Thus, it's very important that you use the same Distinct ID for both the events and user profile for the same user.
 
 For more information about user profiles refer to the documentation on [The Mixpanel Data Model](/docs/tutorials/plan/tracking-strategy#the-mixpanel-data-model).
