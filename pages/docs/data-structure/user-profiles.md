@@ -1,10 +1,10 @@
 # User Profiles
 
 > <b>Note:</b> The following terms are used in this section:
-> - "User Profile Properties" and "User Properties" are used interchangeable to refer to properties under a User Profile
-> - "Group Profile Properties" and "Group Properties" are used interchangeable to refer to properties under a Group Profile
-> - "Profiles" is used to refer to both "User Profiles" and "Group Profiles" (unless otherwise specified)
-> - "Profile Properties" is used to refer to both "User Profile Properties" and "Group Profile Properties" (unless otherwise specified)
+> - "User Profile Properties" and "User Properties" are used interchangeableaby to refer to properties under a User Profile
+> - "Group Profile Properties" and "Group Properties" are used interchangeableaby to refer to properties under a Group Profile
+> - "Profiles" is used to refer to both "User Profiles" and "Group Profiles"
+> - "Profile Properties" is used to refer to both "User Profile Properties" and "Group Profile Properties"
 
 ## Overview
 
@@ -26,11 +26,11 @@ For more information about user profiles refer to the documentation on [The Mixp
 
 ## Importing User Profiles via our API
 
-You can create or update User Profiles to Mixpanel in similar ways you track events: from our [SDKs](//docs/tracking-methods/sdks/javascript#storing-user-profiles)), via our [HTTP Engage API](https://developer.mixpanel.com/reference/profile-set), [Warehous Connectors](/docs/tracking-methods/data-warehouse/sending-user-profiles), or via our integrations partners.
+You can create or update User Profiles in similar ways you track events: from our [SDKs](/docs/tracking-methods/sdks/javascript#storing-user-profiles), via our [HTTP Engage API](https://developer.mixpanel.com/reference/profile-set), [Warehous Connectors](/docs/tracking-methods/data-warehouse/sending-user-profiles), or via our integrations partners.
 
 We recommend tracking user profiles from as close as possible to the source of truth, which is usually your application database or your CRM. One typical approach (especially for [Server-Side Tracking](/docs/tracking-methods/choosing-the-right-method#server-side-tracking)) is to run an hourly or daily script on your servers that pulls the list of user profiles from your database and pushes them to Mixpanel.
 
-Similiarly for [Group Profiles](/docs/data-structure/advanced/group-analytics#group-profiles), they can be created or updated using our [SDKs]([/docs/tracking-methods/sdks/javascript#creating-group-profiles)), via our [HTTP Groups API](https://developer.mixpanel.com/reference/group-set-property), [Warehous Connectors](/docs/tracking-methods/data-warehouse/sending-group-profiles)), or via our integration partners.
+Similiarly for [Group Profiles](/docs/data-structure/advanced/group-analytics#group-profiles), they can be created or updated using our [SDKs](/docs/tracking-methods/sdks/javascript#creating-group-profiles), via our [HTTP Groups API](https://developer.mixpanel.com/reference/group-set-property), [Warehous Connectors](/docs/tracking-methods/data-warehouse/sending-group-profiles), or via our integration partners.
 
 ### Operators
 
