@@ -141,12 +141,12 @@ User Profiles can be deleted either via the [Users](https://mixpanel.com/report/
 
 Mixpanel reserves certain property names for special processing or for specific system features. These properties, when populated, will affect the way Mixpanel processes your data.
 
-> <b>Note:</b> Also refer to a list of Mixpanel [Default Properties](/docs/data-structure/property-reference#default-properties) indicated in our documentation.
+> <b>Note:</b> Also refer to the list of Mixpanel [Default Properties](/docs/data-structure/property-reference#default-properties) indicated in our documentation.
 
 | **Raw Name** | **Display Name** | **Description** |
 | ------------ | ---------------- | --------------- |
 | $distinct_id | Distinct ID | Mixpanel's internal unique identifier for a user / group profile. See [Identifying Users](/docs/tracking-methods/id-management/identifying-users) and [Group Profiles](/docs/data-structure/advanced/group-analytics#group-profiles) | 
-| $name<br />$first_name<br />$last_name | Name<br />First Name<br />Last Name | The user's / group's general name, as well as, first and last names. These are primarily useful because they are used, if available, in various Mixpanel UI / reports. For user [Cohort Syncs](/docs/cohort-sync/overview) only `$first_name` and `$last_name` is exported. |
+| $name <br /> $first_name <br /> $last_name | Name <br /> First Name <br /> Last Name | The user's / group's general name, as well as, first and last names. These are primarily useful because they are used, if available, in various Mixpanel UI / reports. For user [Cohort Syncs](/docs/cohort-sync/overview) only `$first_name` and `$last_name` is exported. |
 | $email | Email | The user's / group's email address. You must set this property if you want to send users email via partners receiving our user [Cohort Syncs](/docs/cohort-sync/overview). | $phone | Phone | The user's / group's phone number. You must set this property if you want to send users SMS via partners receiving our user [Cohort Syncs](/docs/cohort-sync/overview). Note that a '+' needs to precede international phone numbers. If the user does not import a phone number with the '+' sign in front, the country code will be prefixed to the front of the number based on the $country_code default property, resulting in a phone number with two country codes. |
 | $avatar | Avatar URL | Set this property to a url resource of a gif, jpg, jpeg, or png to update the profile picture in a user / group profile. This property will override a profile picture pulled from [Gravatar](https://gravatar.com/). |
 | $created | Created | The time that the profile was created. Note that this is not auto-populated. |
