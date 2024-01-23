@@ -28,7 +28,7 @@ For more information about user profiles refer to the documentation on [The Mixp
 
 You can create or update User Profiles in similar ways you track events: from our [SDKs](/docs/tracking-methods/sdks/javascript#storing-user-profiles), via our [HTTP Engage API](https://developer.mixpanel.com/reference/profile-set), [Warehous Connectors](/docs/tracking-methods/data-warehouse/sending-user-profiles), or via our integrations partners.
 
-We recommend tracking user profiles from as close as possible to the source of truth, which is usually your application database or your CRM. One typical approach (especially for [Server-Side Tracking](/docs/tracking-methods/choosing-the-right-method#server-side-tracking) is to run an hourly or daily script on your servers that pulls the list of user profiles from your database and pushes them to Mixpanel.
+We recommend tracking user profiles from as close as possible to the source of truth, which is usually your application database or your CRM. One typical approach (especially for [Server-Side Tracking](/docs/tracking-methods/choosing-the-right-method#server-side-tracking)) is to run an hourly or daily script on your servers that pulls the list of user profiles from your database and pushes them to Mixpanel.
 
 Similiarly for [Group Profiles](/docs/data-structure/advanced/group-analytics#group-profiles), they can be created or updated using our [SDKs](/docs/tracking-methods/sdks/javascript#creating-group-profiles), via our [HTTP Groups API](https://developer.mixpanel.com/reference/group-set-property), [Warehous Connectors](/docs/tracking-methods/data-warehouse/sending-group-profiles), or via our integration partners.
 
@@ -50,8 +50,8 @@ Similiarly for [Group Profiles](/docs/data-structure/advanced/group-analytics#gr
 - `$remove` - Removes a value from a [List](/docs/data-structure/property-reference#list) data type profile property.
 
 <b>Removing profile properties</b>
-- `$unset` - Removes a profile property from the user / group profile.
-- `$delete` - Removes all profile properties from the user / group profile.
+- `$unset` - Removes a profile property from the profile.
+- `$delete` - Removes all profile properties from the profile.
 
 Here's some sample code to get you started, utilizing the `$set` operator to update user profiles:
 
@@ -114,7 +114,7 @@ After `$distinct_id`, you can add additional properties to the profile by press
 
 ![/Screen_Shot_2021-12-01_at_12.20.27_PM.png](/Screen_Shot_2021-12-01_at_12.20.27_PM.png)
 
-We recommend using the `$name` (or `$first_name`, `$last_name`), `$email`, and `$phone` [Reserved User Properties](#reserved-user-properties) if you're uploading a user's name, email, or phone. Mixpanel shows these properties by default in various parts of our UI and are used for [Cohort Syncs](/docs/cohort-sync/overview) as well.
+We recommend using the `$name` (or `$first_name`, `$last_name`), `$email`, and `$phone` [Reserved Profile Properties](/docs/data-structure/user-profiles#reserved-profile-properties)) if you're uploading a user's name, email, or phone. Mixpanel shows these properties by default in various parts of our UI and are used for [Cohort Syncs](/docs/cohort-sync/overview) as well.
 
 ### Importing from CSV
 
@@ -147,7 +147,7 @@ User Profiles can be deleted either via the [Users](https://mixpanel.com/report/
 
 Similiarly, [Group Profiles](/docs/data-structure/advanced/group-analytics#group-profiles) can also be deleted either via the [Users](https://mixpanel.com/report/users) page or programmatically via our [Groups API](https://developer.mixpanel.com/reference/delete-group).
 
-## Reserved User / Group Properties
+## Reserved Profile Properties
 
 Mixpanel reserves certain profile property names for special processing or for specific system features. These properties, when populated, will affect the way Mixpanel processes your data.
 
