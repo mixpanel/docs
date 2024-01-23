@@ -61,6 +61,7 @@ For example, don't create an event name like `Purchase (11-01-2019)`. Instead, c
 
 Mixpanel reserves certain event property names for special processing or for specific system features. These properties, when populated, will affect the way Mixpanel processes your data.
 
+> <b>Note:</b> Also refer to a list of Mixpanel [Default Properties](/docs/data-structure/property-reference#default-properties) indicated in our documentation.
 
 | **Raw Name** | **Display Name** | **Description** |
 | ------------ | ---------------- | --------------- |
