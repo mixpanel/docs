@@ -2,9 +2,9 @@
 
 ## Overview
 
-User Profiles let you enrich events with demographic attributes / properties about the users that performed those events. Profiles are optional; we recommend starting with events and only adding user profiles if you need them.
+User Profiles let you enrich events with demographic attributes (i.e. user properties) about the users that performed those events. User profiles are optional and we recommend starting with events and only adding user profiles if you need them.
 
-A User Profile has a set of properties associated with a given user. Under the hood, Mixpanel stores user profiles for your project in a table:
+A user profile has a set of properties associated with a given user. Under the hood, Mixpanel stores user profiles for your project in a table wherein each user's profile is 1 row with profile / user properties (e.g. Name, Email, Department) that can be updated:
 
 | **Distinct ID** | **Name** | **Email** | **Department** |
 | --------------- | -------- | --------- | -------------- |
@@ -12,33 +12,36 @@ A User Profile has a set of properties associated with a given user. Under the h
 | 456 | Bob | `bob@notion.so` | Product |
 | 789 | Carol | `carol@figma.com` | Design |
 
-User Profiles are joined onto your events based on their <b>[Distinct ID](/docs/tracking-methods/id-management/identifying-users#what-is-distinct-id)</b> (Mixpanel's identifier for a user). This lets you join the events performed by a user with properties about who that user is. It's very important that you use the same Distinct ID for both the events and user profile for the same user.
+User profiles are joined onto your events based on their <b>[Distinct ID](/docs/tracking-methods/id-management/identifying-users#what-is-distinct-id)</b> (Mixpanel's identifier for a user). This lets you join the events performed by a user with properties about who that user is. Thus, it's very important that you use the same Distinct ID for both the events and user profile for the same user.
 
 For more information about user profiles refer to the documentation on [The Mixpanel Data Model](/docs/tutorials/plan/tracking-strategy#the-mixpanel-data-model).
 
 ## Importing User Profiles via our API
 
-You can track User Profiles to Mixpanel in all the same ways you track events: from our SDKs, via our HTTP API, or via our Integrations.
+You can track User Profiles to Mixpanel in similar ways you track events: from our [SDKs](/docs/tracking-methods/sdks/javascript), via our [HTTP API](https://developer.mixpanel.com/reference/profile-set), [Warehous Connectors](/docs/tracking-methods/data-warehouse/sending-user-profiles), or via our [Integrations](/docs/tracking-methods/integrations/amazon-s3).
 
-We recommend tracking user profiles from as close as possible to the source of truth for those profiles, which is usually your application database or your CRM. One common approach is to run an hourly or daily script on your servers that pulls the list of profiles from your database and pushes them to Mixpanel.
+We recommend tracking user profiles from as close as possible to the source of truth, which is usually your application database or your CRM. One typical approach (especially for [Server-Side Tracking(/docs/tracking-methods/choosing-the-right-method#server-side-tracking)) is to run an hourly or daily script on your servers that pulls the list of profiles from your database and pushes them to Mixpanel.
 
 ### Operators
-**Setting profile property**
-- `$set` - Sets a profile property or update a profile property value.
+
+<b>Setting profile property</b>
+
+- `$set` - Sets a profile property or updates a profile property value (if it already exists).
 - `$set_once` - Sets a profile property only if they do not yet exist on Mixpanel. This ensures that the previous profile property value is not overwritten.
 
-**Updating numeric profile property**
-- `$add` - Increments or decrements a numeric profile property.
+<b>Updating numeric profile property</b>
 
-**Updating list profile property**
-- `$union` - Merges a given list into a List profile property and it ensures there are no duplicate values in the profile property.
-- `$append` - Appends a value to the end of a List profile property.
-- `$remove` - Removes a value from a List profile property.
+- `$add` - Increments or decrements a numeric profile property. To increment, pass in a positive numeric value, and to decrement pass in a negative numeric value. If the property does not yet exist, it will set the value passed in as the initial value.
 
-**Removing profile properties**
-- `$unset` - Remove a profile property from the user profile
-- `$delete` - Remove all profile properties from the user profile.
+<b>Updating list profile property</b>
 
+- `$union` - Merges a given value or list into a [List](/docs/data-structure/property-reference#list) data type profile property and ensures there are no duplicate values.
+- `$append` - Appends a value to the end of a [List](/docs/data-structure/property-reference#list) data type profile property. Does not check for duplicate values.
+- `$remove` - Removes a value from a [List](/docs/data-structure/property-reference#list) data type profile property.
+
+<b>Removing profile properties</b>
+- `$unset` - Removes a profile property from the user profile.
+- `$delete` - Removes all profile properties from the user profile.
 
 Here's some sample code to get you started, utilizing the `$set` operator:
 
