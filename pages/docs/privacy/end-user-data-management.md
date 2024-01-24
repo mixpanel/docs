@@ -220,7 +220,7 @@ Example Request:
 -H "Authorization: Bearer vZcErNw8JCq42BZUJyWoZmDWCKBxXc" -d '{"compliance_type":"CCPA", "distinct_ids":["1"]}'`
 
 Example Return:
-`{"status":"ok","results":[{"status":"PENDING", "disclosure_type":"DATA", "date_requested":"2020-03-09T22:28:55.078315", "tracking_id":"1583792934719392965",  "project_id":1978118, "compliance_type":"ccpa", "destination_url":null, "requesting_user":"pat.davis@mixpanel.com", "distinct_id_count":1}]}`
+`{"status": "ok", "results": {"task_id": "35bd8477-f71f-4088-af55-c88a6fb4ad4a"}}`
 
 #### Check Status of a Deletion Task
 Request Type: **GET**
@@ -276,7 +276,7 @@ Example Request:
 `curl "https://mixpanel.com/api/app/data-deletions/v3.0/35bd8477-f71f-4088-af55-c88a6fb4ad4b/?token=591b3354bb2bdd96f72f23bf56911674" -H "Authorization: Bearer vZcErNw8JCq42BZUJyWoZmDWCKBxXc"
 
 Example Return:
-`{"status": "ok", "results": {"status": "PENDING", "result": "", "distinct_ids": ["1"]}}`
+`{"status": "ok", "results": {"tracking_id": "35bd8477-f71f-4088-af55-c88a6fb4ad4a", "status": "PENDING", "requesting_user": "pat.davis@mixpanel.com", "compliance_type": "ccpa", "project_id": 1978118, "date_requested": "2024-01-24T08:00:03.672120", "distinct_ids": ["1"]}}`
 
 #### Cancel Deletion
 Request Type: **DELETE**
