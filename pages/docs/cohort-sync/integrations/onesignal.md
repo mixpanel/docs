@@ -65,8 +65,16 @@ Once the export completes, you will see a Segment reflecting the set of users fr
 
 ![OneSignal 5 Image](/onesignal5.png)
 
-## OneSignal events into Mixpanel & MTU exemptions
+## OneSignal Events into Mixpanel & MTU exemptions
 
 OneSignal offers the ability to forward campaign interaction events to Mixpanel. For more detail, [please refer to OneSignal's integration guide](https://documentation.onesignal.com/docs/mixpanel).
 
+Events coming from OneSignal are marked with the property `$source`.
+
 Because OneSignal's event structure follows Mixpanel's naming convention for messaging events, it will have the same exemptions outlined in the MTU calculation guide for which events do not count towards MTU tallies. Message delivery events will not count towards a user being in MTU counts, while message engagement events will.
+
+The following OneSignal events are exempt from MTU calculations:
+- $app_open (App Opened from Push)
+- $campaign_delivery (Message Sent)*
+- $campaign_received (Message Received)*
+- $campaign_open (Message Opened) 
