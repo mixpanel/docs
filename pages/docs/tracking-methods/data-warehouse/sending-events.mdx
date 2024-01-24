@@ -51,7 +51,7 @@ Time-based syncs are suitable for append-only tables with an "insert timestamp" 
 | Insert Time | TIMESTAMP | The time when the event was inserted into the warehouse. This is used as a watermark to figure out which events are new and ingest them. |
 | Insert ID _Optional_ | STRING | A unique identifier of the event. We recommend this as a best practice in case duplicate events need to be reconciled. | 
 
-### Mirror sync
+#### Mirror sync
 
 <Callout type="info">
   Mirror syncing is in early access and not available on all projects. Request access
