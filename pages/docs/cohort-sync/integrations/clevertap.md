@@ -61,3 +61,33 @@ Once the export completes, you will see a segment reflecting the set of users fr
 ![CleverTap 4 Image](/clevertap4.png)
 
 You can also refer to CleverTap's [Mixpanel Import (Cohort)](https://docs.clevertap.com/docs/mixpanel-integration) documentation.
+
+## CleverTap Events into Mixpanel & MTU exemptions
+
+You can use events from your CleverTap integration to perform deeper analysis in Mixpanel.
+
+Events coming from CleverTap are marked with the property `$source`.
+
+Mixpanel will exempt certain messaging outreach events from MTU calculations, meaning you're free to send campaigns to dormant users without them counting towards MTU billing (only once a user engages with a message will they then be counted towards that tally).
+
+The following CleverTap events are exempt from MTU calculations:
+- Notification Sent
+- Notification Viewed
+- Notification Clicked
+- Push Impressions
+- Notification Replied
+- Push Unregistered
+- Control Group
+- Channel Unsubscribed
+- Reachable By
+- Notification Delivered
+- AB Experiment Rendered
+- AB Experiment Stopped
+- AB Experiment Rolled Out
+- Geocluster Entered
+- Geocluster Exited
+- Reply Sent
+- App Uninstalled
+- Webhook Delivered
+- State Transitioned
+- UTM Visited
