@@ -75,6 +75,6 @@ Because OneSignal's event structure follows Mixpanel's naming convention for mes
 
 The following OneSignal events are exempt from MTU calculations:
 - $app_open (App Opened from Push)
-- $campaign_delivery (Message Sent)*
-- $campaign_received (Message Received)*
+- $campaign_delivery (Message Sent)
+- $campaign_received (Message Received)
 - $campaign_open (Message Opened) 
