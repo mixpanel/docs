@@ -37,7 +37,7 @@ In order to match an exported Mixpanel user to OneSignal, the user's Mixpanel pr
 
 User profiles without this user property will **not** export to OneSignal - it is a requirement for user matching.
 
-In addition, when its ingestion service detects calls setting this user property, Mixpanel will also alias the value of `$onesignal_user_id` to the user's distinct_id when setting the `$onesignal_user_id` user property. This ensures that messaging events passed from OneSignal campaigns to Mixpanel still attribute to the correct user.
+In addition, when our ingestion service detects calls setting this user property, Mixpanel will also auto-alias the value of `$onesignal_user_id` to the user's distinct_id. This ensures that messaging data passed from OneSignal to Mixpanel still attributes to the correct user.
 
 ## Export a Cohort
 To export a cohort to OneSignal: 
