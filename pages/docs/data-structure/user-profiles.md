@@ -1,6 +1,6 @@
 # User Profiles
 
-> <b>Note:</b> The following terms are used in this section:
+> **Note:** The following terms are used in this section:
 > - "User Profile Properties" and "User Properties" are used interchangeableaby to refer to properties under a User Profile
 > - "Group Profile Properties" and "Group Properties" are used interchangeableaby to refer to properties under a Group Profile
 > - "Profiles" is used to refer to both "User Profiles" and "Group Profiles"
@@ -18,11 +18,11 @@ A user profile has a set of properties associated with a given user. Under the h
 | 456 | Bob | `bob@notion.so` | Product |
 | 789 | Carol | `carol@figma.com` | Design |
 
-User profiles are joined onto your events based on their <b>[Distinct ID](/docs/tracking-methods/id-management/identifying-users#what-is-distinct-id)</b> (Mixpanel's identifier for a user). This lets you join the events performed by a user with properties about who that user is. Thus, it's very important that you use the same Distinct ID for both the events and user profile for the same user.
+User profiles are joined onto your events based on their **[Distinct ID](/docs/tracking-methods/id-management/identifying-users#what-is-distinct-id)** (Mixpanel's identifier for a user). This lets you join the events performed by a user with properties about who that user is. Thus, it's very important that you use the same Distinct ID for both the events and user profile for the same user.
 
 For more information about user profiles refer to the documentation on [The Mixpanel Data Model](/docs/tutorials/plan/tracking-strategy#the-mixpanel-data-model). 
 
-> <b>Note:</b> If you have [Group Analytics](/docs/data-structure/advanced/group-analytics) as an add-on, this section also applies to [Group Profiles](/docs/data-structure/advanced/group-analytics#group-profiles).
+> **Note:** If you have [Group Analytics](/docs/data-structure/advanced/group-analytics) as an add-on, this section also applies to [Group Profiles](/docs/data-structure/advanced/group-analytics#group-profiles).
 
 ## Importing User Profiles via our API
 
@@ -34,22 +34,22 @@ Similiarly for [Group Profiles](/docs/data-structure/advanced/group-analytics#gr
 
 ### Operators
 
-<b>Setting profile property</b>
+**Setting profile property**
 
 - `$set` - Sets a profile property or updates a profile property value (if it already exists).
 - `$set_once` - Sets a profile property only if they do not yet exist on Mixpanel. This ensures that the previous profile property value is not overwritten.
 
-<b>Updating numeric user profile property</b>
+**Updating numeric user profile property**
 
 - `$add` - Increments or decrements a numeric user profile property <i>(not supported in group profiles)</i>. To increment, pass in a positive numeric value, and to decrement pass in a negative numeric value. If the property does not yet exist, it will set the value passed in as the initial value.
 
-<b>Updating list profile property</b>
+**Updating list profile property**
 
 - `$union` - Merges a given value or list into a [List](/docs/data-structure/property-reference#list) data type profile property and ensures there are no duplicate values.
 - `$append` - Appends a value to the end of a [List](/docs/data-structure/property-reference#list) data type user profile property <i>(not supported in group profiles)</i>. Does not check for duplicate values.
 - `$remove` - Removes a value from a [List](/docs/data-structure/property-reference#list) data type profile property.
 
-<b>Removing profile properties</b>
+**Removing profile properties**
 - `$unset` - Removes a profile property from the profile.
 - `$delete` - Removes all profile properties from the profile.
 
@@ -98,9 +98,9 @@ print(resp.json())
 
 ## Importing User Profiles via our UI
 
-To get started, click on <b>Add/Edit Profile</b> from the [Users](https://mixpanel.com/report/users) page and follow the workflow below.
+To get started, click on **Add/Edit Profile** from the [Users](https://mixpanel.com/report/users) page and follow the workflow below.
 
-> <b>Note</b>: For customers with [Group Analytics](/docs/data-structure/advanced/group-analytics) make sure you first choose either <b>User</b> or the <b>[Group Key](/docs/data-structure/advanced/group-analytics#group-keys-in-project-settings) name</b> depending on which type of profile you wish to import.
+> **Note**: For customers with [Group Analytics](/docs/data-structure/advanced/group-analytics) make sure you first choose either **User** or the **[Group Key](/docs/data-structure/advanced/group-analytics#group-keys-in-project-settings) name** depending on which type of profile you wish to import.
 
 ![/Screen_Shot_2021-12-01_at_11.44.03_AM.png](/Screen_Shot_2021-12-01_at_11.44.03_AM.png)
 
@@ -112,7 +112,7 @@ The most important column is `$distinct_id` for user profiles (or `$group_id` f
 
 #### Add Additional Properties
 
-After `$distinct_id`, you can add additional properties to the profile by pressing the <b>"+ Add Property"</b> button. Mixpanel will help autocomplete profile properties that you may want to set.
+After `$distinct_id`, you can add additional properties to the profile by pressing the **"+ Add Property"** button. Mixpanel will help autocomplete profile properties that you may want to set.
 
 ![/Screen_Shot_2021-12-01_at_12.20.27_PM.png](/Screen_Shot_2021-12-01_at_12.20.27_PM.png)
 
@@ -120,16 +120,16 @@ We recommend using the `$name` (or `$first_name`, `$last_name`), `$email`, and `
 
 ### Importing from CSV
 
-When preparing the CSV that you want to upload as profiles, you should <b>not</b> include column headers (e.g., \$name, \$email,  etc.). Instead, you’ll identify column headers through the CSV upload wizard in the Mixpanel UI.
+When preparing the CSV that you want to upload as profiles, you should **not** include column headers (e.g., \$name, \$email,  etc.). Instead, you’ll identify column headers through the CSV upload wizard in the Mixpanel UI.
 
-<b>Note</b>:
+**Note**:
 - If you import profiles using `$distinct_id` (or `$group_id`) values that already exist, those profiles will be updated with the additional profile properties. On the other hand, if you upload a profile that has the same email address or the same name as another existing profile, but a different `$distinct_id` (or `$group_id`), you will be uploading duplicates - they will not be combined.
 - If you upload a CSV with new information for existing properties on existing profiles, the existing property values will be overwritten. If the new information is for new properties on existing profiles, it will be added as additional properties for the profiles. 
 - The maximum size for your CSV should be 1M rows.
 
 #### Upload Your CSV
 
-Go the the <b>Import from CSV</b> tab and select your prepared CSV to begin the process.
+Go the the **Import from CSV** tab and select your prepared CSV to begin the process.
 
 #### Choose an Identifier Column
 
@@ -139,7 +139,7 @@ If you do not assign an identifier column, Mixpanel will use your `$email` colum
 
 #### Choose Desired CSV Columns
 
-You'll have the opportunity to look through all columns in the CSV to preview their values. In this step, you must <b>uncheck all columns that you DO NOT wish to import</b>. You must also choose the associated Mixpanel profile property that each CSV column will be associated with. When you're done selecting the columns, and mapping their associated properties, press the <b>Import profiles</b> button to proceed.
+You'll have the opportunity to look through all columns in the CSV to preview their values. In this step, you must **uncheck all columns that you DO NOT wish to import**. You must also choose the associated Mixpanel profile property that each CSV column will be associated with. When you're done selecting the columns, and mapping their associated properties, press the **Import profiles** button to proceed.
 
 ![/Screen_Shot_2021-12-01_at_12.24.00_PM.png](/Screen_Shot_2021-12-01_at_12.24.00_PM.png)
 
@@ -153,7 +153,7 @@ Similiarly, [Group Profiles](/docs/data-structure/advanced/group-analytics#group
 
 Mixpanel reserves certain profile property names for special processing or for specific system features. These properties, when populated, will affect the way Mixpanel processes your data.
 
-> <b>Note:</b> Also refer to the list of Mixpanel [Default Properties](/docs/data-structure/property-reference#default-properties) indicated in our documentation.
+> **Note:** Also refer to the list of Mixpanel [Default Properties](/docs/data-structure/property-reference#default-properties) indicated in our documentation.
 
 | **Raw Name** | **Display Name** | **Description** |
 | ------------ | ---------------- | --------------- |
