@@ -41,12 +41,12 @@ Similiarly for [Group Profiles](/docs/data-structure/advanced/group-analytics#gr
 
 **Updating numeric user profile property**
 
-- `$add` - Increments or decrements a numeric user profile property <i>(not supported in group profiles)</i>. To increment, pass in a positive numeric value, and to decrement pass in a negative numeric value. If the property does not yet exist, it will set the value passed in as the initial value.
+- `$add` - Increments or decrements a numeric user profile property *(not supported in group profiles)*. To increment, pass in a positive numeric value, and to decrement pass in a negative numeric value. If the property does not yet exist, it will set the value passed in as the initial value.
 
 **Updating list profile property**
 
 - `$union` - Merges a given value or list into a [List](/docs/data-structure/property-reference#list) data type profile property and ensures there are no duplicate values.
-- `$append` - Appends a value to the end of a [List](/docs/data-structure/property-reference#list) data type user profile property <i>(not supported in group profiles)</i>. Does not check for duplicate values.
+- `$append` - Appends a value to the end of a [List](/docs/data-structure/property-reference#list) data type user profile property *(not supported in group profiles)*. Does not check for duplicate values.
 - `$remove` - Removes a value from a [List](/docs/data-structure/property-reference#list) data type profile property.
 
 **Removing profile properties**
