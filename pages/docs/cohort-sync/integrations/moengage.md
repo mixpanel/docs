@@ -41,7 +41,7 @@ Mixpanel only exports identified user profiles to match to MoEngage - users with
 
 If the values you provide for users' distinct_id differ from the values used for MoEngage's Unique ID, the user's Mixpanel profile must contain a user property, `$moengage_user_id`, whose value is a string representing that user's Unique ID in MoEngage. Exports will include this joining key to match the corresponding Unique ID in MoEngage.
 
-In addition, when its ingestion service detects calls setting this user property, Mixpanel will also [alias](https://developer.mixpanel.com/reference/import-events#create_alias) the value of `$moengage_user_id` to the user's distinct_id when setting that user property. This ensures that messaging events passed from MoEngage to Mixpanel still attribute to the correct user.
+In addition, when our ingestion service detects calls setting this user property, Mixpanel will also auto-alias the value of `$moengage_user_id` to the user's distinct_id. This ensures that messaging data passed from MoEngage to Mixpanel still attributes to the correct user.
 
 Note that exports are used solely for matching user identities between products - the integration will not send the full set of a user's profile properties to MoEngage, nor will it generate new user profiles in MoEngage.
 
