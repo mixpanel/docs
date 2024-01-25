@@ -230,7 +230,17 @@ Description: Checks the status of an existing deletion task.
 Endpoint: `https://mixpanel.com/api/app/data-deletions/v3.0/<tracking_id>?token=<your_project_token>`
 
 Return Format:
-`{"status": "ok", "results": {"tracking_id": <id>, "status": oneOf [ "PENDING", "STAGING", "STARTED", "SUCCESS", "FAILURE", "REVOKED", "NOT_FOUND", "UNKNOWN", ], "requesting_user": <email>, "compliance_type": oneOf [ "ccpa", "gdpr", ], "project_id": <project_id>, "date_requested": <MM-DD-YYYYTHH:MM:SS.ssssss>, "distinct_ids": [<distinct_id_1>,<distinct_id_2>,<etc.>]}
+`{
+    "status": "ok",
+    "results": {
+        "tracking_id": <id>,
+        "status": oneOf [ "PENDING", "STAGING", "STARTED", "SUCCESS", "FAILURE", "REVOKED", "NOT_FOUND", "UNKNOWN", ],
+        "requesting_user": <email>,
+        "compliance_type": oneOf [ "ccpa", "gdpr", ],
+        "project_id": <project_id>,
+        "date_requested": <MM-DD-YYYYTHH:MM:SS.ssssss>,
+        "distinct_ids": [<distinct_id_1>,<distinct_id_2>,<etc.>]
+    }
 }`
 
 Return Key:
