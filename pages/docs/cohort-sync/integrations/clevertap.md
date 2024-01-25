@@ -33,6 +33,8 @@ Mixpanel only exports identified user profiles to match to CleverTap - users wit
 
 It is recommended to set a `$CleverTap_user_id` user property with the ID that you use to identify users in Mixpanel. CleverTap will use this property as the first option to match user profiles in CleverTap and include them in the segments. For more information on how CleverTap matches exported cohorts from Mixpanel, refer to [CleverTap's User Identity Management](https://docs.clevertap.com/docs/mixpanel-integration#user-identity-management).
 
+In addition, when our ingestion service detects calls setting this user property, Mixpanel will also auto-alias the value of `$CleverTap_user_id` to the user's distinct_id. This ensures that messaging and experiment data passed from CleverTap to Mixpanel still attributes to the correct user.
+
 ## Export a Cohort
 
 To export a Cohort to CleverTap:
