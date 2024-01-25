@@ -33,6 +33,8 @@ Mixpanel only exports identified user profiles with the user property `$vwo_user
 
 If you have the VWO SDK present in your application, it will automatically declare the `$vwo_user_id` property on users' Mixpanel profiles. If the VWO SDK is not on your application, you can declare the user properties either through Mixpanel's own SDKs or HTTP API. VWO will attempt to match users from inbound cohorts based on the value seen on `$vwo_user_id`.
 
+In addition, when its ingestion service detects calls setting this user property, Mixpanel will also alias the value of `$vwo_user_id` to the user's distinct_id when setting that user property. This ensures that experiment events passed from VWO to Mixpanel still attribute to the correct user.
+
 ## Export a Cohort
 
 To export a Cohort to VWO: 
