@@ -157,6 +157,12 @@ $border-radius-lg: 100px;
             font-weight: 500;
         }
 
+        // Bottom scroll mask
+        > .nx-sticky.nx-bottom-0 {
+            background-color: colors.$base100;
+            box-shadow: 0px -7px 6px -8px rgba(0, 0, 0, 0.1);
+        }
+
         .nx-transform-gpu > .nx-transition-opacity {
             // styles the separator / category titles
             .first\:nx-mt-0 {
