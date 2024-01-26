@@ -59,7 +59,7 @@ paths:
             type: integer
           description: >-
             The ID of your Insights report can be found from the url:
-            `https://mixpanel.com/report/1/insights#report/<YOUR_BOOKMARK_ID>/example-report`
+            `https://mixpanel.com/project/<YOUR_PROJECT_ID>/view/<YOUR_WORKSPACE_ID>/app/boards#id=12345&editor-card-id=%22report-<YOUR_BOOKMARK_ID>%22`
           required: true
       responses:
         '200':
