@@ -402,8 +402,9 @@ public class MainActivity extends ActionBarActivity {
     super.onCreate(savedInstanceState);
     setContentView(R.layout.activity_main);
 
+    trackAutomaticEvents = false;
     // Replace with your Project Token
-    mp = MixpanelAPI.getInstance(this, "YOUR_TOKEN");
+    mp = MixpanelAPI.getInstance(this, "YOUR_TOKEN", trackAutomaticEvents);
   }
 
   private void sendToMixpanel() throws JSONException {
@@ -523,4 +524,4 @@ mixpanel.set_config({ persistence: "localStorage" });
 ### How do I connect events from logged out vs logged in users?
 If tracking client-side, just call `.identify(<user_id>)` when a user logs in and `.reset()` when they log out. Mixpanel will automatically stitch the user journey across logged out and logged in.
 
-If tracking server-side, check out our [server-side best practices guide](/docs/best-practices/server-side-best-practices). For more information, read our comprehensive guide on [Identifying Users](/docs/tracking-methods/identifying-users).
+If tracking server-side, check out our [server-side best practices guide](/docs/best-practices/server-side-best-practices). For more information, read our comprehensive guide on [Identifying Users](/docs/tracking-methods/id-management/identifying-users).
