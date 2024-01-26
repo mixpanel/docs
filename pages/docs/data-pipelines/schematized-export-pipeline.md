@@ -43,7 +43,7 @@ User data is exported to a single table named `mp_people_data`  (user data is ac
 Since user profiles are mutable, the data in the table is replaced every time an export happens based on the schedule (daily or hourly) with the latest user profiles.
 
 ## User Identity Resolution
-Exports from projects with [ID merge enabled](/docs/tracking-methods/identifying-users#how-do-i-enable-the-simplified-api-on-a-project) will need to use the identity mapping table to replicate the user counts seen in UI reporting. When ID merge is enabled, Mixpanel assigns multiple identifiers to an individual. Mixpanel resolves these into one identifier, and uses that for reporting unique user counts. Read more about how Mixpanel resolves IDs [here](/docs/tracking-methods/identifying-users#example-user-flows).
+Exports from projects with [ID merge enabled](/docs/tracking-methods/id-management/identifying-users#how-do-i-switch-between-the-simplified-and-original-api) will need to use the identity mapping table to replicate the user counts seen in UI reporting. When ID merge is enabled, Mixpanel assigns multiple identifiers to an individual. Mixpanel resolves these into one identifier, and uses that for reporting unique user counts. Read more about how Mixpanel resolves IDs [here](/docs/tracking-methods/id-management/identifying-users#example-user-flows).
 
 Pipelines export event data as they appear when Mixpanel ingests them. This means exported event data before sending alias event has the original user identifier, **not** the resolved identifier. Use the identity mappings table to accurately count unique users. This will allow you to recreate the identity cluster that Mixpanel creates.
 
@@ -141,7 +141,7 @@ If you select the single table schema, the export pipeline creates a *mp_master_
   
 Suppose you have an event with a `purchase_amount` property and one with a `referrer` property, the table will have a *purchase_amount* column and a *referrer* column. Events that don’t have a property contain a NULL value in that column.
 
-For examples of one table for all events, see [One Table for All Events](#section-one-table-for-all-events).
+For examples of one table for all events, see [One Table for All Events](#one-table-for-all-events).
 
 #### Using One Table for Each Event
 
@@ -151,7 +151,7 @@ If you select the multi-table option, Mixpanel creates one table per unique even
 
 Each table for each event has one column per unique property name across all events in the history of the dataset. 
 
-For an example of one table for each event, see [One Table for Each Event](#section-one-table-for-each-event).
+For an example of one table for each event, see [One Table for Each Event](#one-table-for-each-event).
 > 📘 
 > 
 > One table for each event is not available during the trial period.
