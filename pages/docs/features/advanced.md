@@ -710,6 +710,24 @@ List of objects are generally useful when tracking a list of complex things. Som
 
 In each case, the object will have multiple properties, such as "price" and "brand" for items in a cart.
 
+```
+"event": "Product Added",
+"properties": {
+    "cart": [
+        {
+            "brand": "Puma",
+            "category": "Jacket",
+            "price": 30
+        },
+        {
+            "brand": "Adidas",
+            "category": "Hats",
+            "price": 15
+        }
+    ]
+}
+```
+
 ### Usage
 
 List of objects can be used like other properties in Mixpanel. Upon selecting a list of objects property, you will be prompted to select another property, which is is common to the objects in the list. Usage in measurements, filters and breakdowns follows the same behavior as [other list properties](/docs/features/advanced#list-property-support).
@@ -734,7 +752,7 @@ Prompts a selection of a property contained within the objects of the list. This
 
 ### Limits
 
-The list of objects property support will be limited to the first 5 objects within the list property. 
+The list of objects property support will be limited to the first 5 objects within the list property. More details on [Object and List of Objects Data Types](/docs/data-structure/property-reference#object-and-list-of-objects-data-types) support in our docs.
 
 For customer's on a paid plan, you may submit a request for approval to have this limit increased by opening a support ticket within the UI (or by sending an email to [support@mixpanel.com](mailto:support@mixpanel.com)) with the subject line: “Request for List of Objects Limit Increase”. An increase will not be guaranteed, but your project will be reviewed for feasibility of increasing this limit. 
 
@@ -1003,56 +1021,3 @@ If you don’t want to see “undefined” or "null" values in your report, you 
 If you’re getting “undefined” property values but think you should not be, troubleshoot the issue using the Events page. Click on "Filter" in the top left to look at events coming in where the property in question “is not set.” You can then use this data to look at your code and figure out why some events are being fired without that property.
 
 ![image](https://github.com/mixpanel/docs/assets/2077899/c028c2b1-160d-4c0b-ba9a-87b74aba9c42)
-
-## Move
-
-### Overview
-
-Move helps teams organize their work and easily replicate Boards across projects and organizations. Using Move, you can find a Board you want to copy, duplicate it, and move it to a different project.  
-
-Let’s take an example situation:
-
-1. An organization has Project A and Project B that support different products and teams within the organization.
-2. Team A has some fantastic Boards that have been well received by leadership, executives, and investors.
-3. Team B would like to replicate these reports without having to build them all from scratch. 
-
-This is where Move comes in. With the right permissions, Team A can move copies of their Boards to Team B’s project, allowing Team B to fill in their events and be up and running quickly. 
-
-### Turning Move Off and On
-
-1. Go to Project Settings
-2. Select Moving Boards from the left hand menu
-3. If you are an organization admin, you will be able to select the how freely you want boards to be able to be moved: not at all, within the organization, or between organizations. 
-    - Not at all: no Board can be moved to any other project, no matter the organization
-    - Within organization: a Board can be moved to any other project in the same organization
-    - Any organization: a Board can be moved to any other project, even one in a different organization
-  This setting does not affect whether you can move a Board into a project, only whether you can move a Board out of a project.
-    
-4. On this page, you can also see who last updated the permissions and when.
-
-![Move-screenshot.png](/Move-screenshot.png)
-
-### Using Move
-
-![Demo_mv_x_proj.gif](/Demo_mv_x_proj.gif)
-
-Step 1: Go to the Board you wish to move. 
-
-Step 2: Hover over the `Move to` option.
-
-Step 3a: Enterprise users: select ‘projects’, then select the specific project that you want to move the board to. Once you’ve selected a project, then list will populate with Boards you can place the current Board in if you wish. 
-
-Step 3b: Non-enterprise users: hover over the "Move To" option, and the project menu will appear immediately. From there, you can choose “Move to your Boards” or another location and select your choice. 
-
-Step 3c: You can also use Move to use Boards from a demo project in your own. Get your free Mixpanel demo account [here](https://mixpanel.com/project/2195193/view/139237/app/boards?show-demo-dataset-modal=true#id=685944) to access the demo datasets. Once you're in, you can set up a new Board easily using a [template](/docs/boards/templates), or you can build a report from scratch. If you like what you see and want to use the analysis in your own project, you can click the button that says "Use this Board." You'll then select the project to which you want to move the board.
-
-Step 4: If there are events and properties used in the old project but not the new project, the affected reports will remain empty or say “no data” until new events and properties are selected. 
-
-When a report can’t populate, it will display one of two states: a faded out sample report or a “no data” status. 
-
-- Charts that show "no data" occur when an event has been tracked in the last 30 days, but a filter or date range result in no data for the report.
-- For the sample report to appear, the report would have to be configured with an event that hasn't existed or at least hasn't been tracked in past 30 days.
-
-For example: a join membership club event happened 100 times yesterday, but 0 so far today. If you create a report for today, it will show “no data”. But if this is day one of the program and it has never been tracked before, it will show a dummy sample report. From this empty state, you can set up your new reports like any other report. 
-
-👉🏽 NOTE: If you would like a version of the Board to stay in the parent project, duplicate it and move the new duplicate Board.

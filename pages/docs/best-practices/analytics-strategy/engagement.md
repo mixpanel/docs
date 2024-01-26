@@ -69,7 +69,7 @@ Next, let’s find your product’s activation rate, which shows how quickly and
 
 ![image](https://user-images.githubusercontent.com/2077899/233904890-ca7d3cfc-7544-4031-8761-3c965dee1472.png)
 
-The Funnels report allows us to look at behaviors preformed in a series. It’s how we build “conversion” or “completion” metrics and quantify the overall health of any customer acquisition strategy.
+The Funnels report allows us to look at behaviors performed in a series. It’s how we build “conversion” or “completion” metrics and quantify the overall health of any customer acquisition strategy.
 
 In the query builder, we add the behaviors, or steps, in a user journey we wish to measure in order—in this case, our signup event and our value moment event. The “conversion window,” the amount of time that each user has to complete all these actions in order to count at each step, is set to 30 days.
 
