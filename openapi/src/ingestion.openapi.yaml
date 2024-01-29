@@ -601,7 +601,7 @@ paths:
       summary: Append to List Property
       description: >-
         Takes a JSON object containing keys and values, and appends each to a
-        list associated with the corresponding property name. $appending to a
+        list associated with the corresponding property name. Appending to a
         property that doesn't exist will result in assigning a list with one
         element to that property.
       parameters:
