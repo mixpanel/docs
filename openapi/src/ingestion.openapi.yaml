@@ -724,7 +724,8 @@ paths:
         Send a batch of profile updates. Instead of sending a single JSON object
         as the data query parameter, send a JSON list of objects as the data
         parameter of an application/json POST or GET request
-        body
+        body.
+
 
         Refer to the respective commands ($set, $set_once, $add, $union, $append. $remove, $unset, and $delete) on syntax for their parameters.
       parameters:
