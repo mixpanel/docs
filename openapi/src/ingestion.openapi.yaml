@@ -399,7 +399,7 @@ paths:
       tags:
         - User Profiles
       summary: Set Property
-      description: 
+      description: ""
       parameters:
         - $ref: ./common/ingestion-api.yaml#/OptionalRequestParameter/ResponseType/Verbose
         - $ref: ./common/ingestion-api.yaml#/OptionalRequestParameter/ResponseType/JavascriptWithCallback
