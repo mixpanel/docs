@@ -727,7 +727,7 @@ paths:
         body.
 
 
-        Refer to the respective commands ($set, $set_once, $add, $union, $append, $remove, $unset, and $delete) on syntax for their parameters.
+        Refer to the respective user profile update commands ($set, $set_once, $add, $union, $append, $remove, $unset, and $delete) on syntax for their parameters.
       parameters:
         - $ref: ./common/ingestion-api.yaml#/OptionalRequestParameter/ResponseType/Verbose
         - $ref: ./common/ingestion-api.yaml#/OptionalRequestParameter/ResponseType/JavascriptWithCallback
@@ -1062,7 +1062,10 @@ paths:
         Send a batch of group profile updates. Instead of sending a single JSON object
         as the data query parameter, send a JSON list of objects as the data
         parameter of an application/x-www-form-urlencoded POST or GET request
-        body
+        body.
+
+        Refer to the respective group profile update commands ($set, $set_once, $add, $union, $remove, $unset, and $delete) on syntax for their parameters.
+        
       parameters:
         - $ref: ./common/ingestion-api.yaml#/OptionalRequestParameter/ResponseType/Verbose
       requestBody:
