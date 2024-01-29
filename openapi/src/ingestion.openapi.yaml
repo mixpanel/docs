@@ -725,6 +725,8 @@ paths:
         as the data query parameter, send a JSON list of objects as the data
         parameter of an application/json POST or GET request
         body
+
+        Refer to the respective commands ($set, $set_once, $add, $union, $append. $remove, $unset, and $delete) on syntax for their parameters.
       parameters:
         - $ref: ./common/ingestion-api.yaml#/OptionalRequestParameter/ResponseType/Verbose
         - $ref: ./common/ingestion-api.yaml#/OptionalRequestParameter/ResponseType/JavascriptWithCallback
@@ -743,12 +745,17 @@ paths:
                     {
                         "$token": "YOUR_PROJECT_TOKEN",
                         "$distinct_id": "13793",
-                        "$add": { "Coins Gathered": 12 }
+                        "$set": { "$email": "user1@mail.com" }
                     },
                     {
                         "$token": "YOUR_PROJECT_TOKEN",
                         "$distinct_id": "13794",
                         "$add": { "Coins Gathered": 13 }
+                    },
+                    {
+                        "$token": "YOUR_PROJECT_TOKEN",
+                        "$distinct_id": "13795",
+                        "$unset": ["$email"]
                     }
                 ]
       responses:
