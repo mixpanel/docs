@@ -34,6 +34,7 @@ When going through this migration, there is no better time to audit your own dat
 
 Depending on your current setup, the steps for migrating your live data tracking will differ. Please see the appropriate provider specific guides for more details on how to migrate your existing live data tracking and get started with Mixpanel.
 
+- [Adobe Analytics Migration Guide](/docs/migration/adobe-analytics)
 - [Amplitude Migration Guide](/docs/migration/amplitude)
 - [Google Analytics Migration Guide](/docs/migration/google-analytics)
 
@@ -89,4 +90,4 @@ You can read more about how we do this [here](https://mixpanel.com/blog/establis
 
 ## Not sure where to start or need help?
 
-Mixpanel’s Customer Success team has worked with 10,000+ customers over the past 10+ years to help drive outcomes with product analytics. We’re always happy to discuss your team’s individual needs, our migration process, the support you’ll receive, or any other question you have — drop us a line at success@mixpanel.com.
+Mixpanel’s Customer Success team has worked with 10,000+ customers over the past 10+ years to help drive outcomes with product analytics. We’re always happy to discuss your team’s individual needs, our migration process, the support you’ll receive, or any other question you have — drop us a line at [success@mixpanel.com](mailto:success@mixpanel.com).

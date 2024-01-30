@@ -1,0 +1,31 @@
+---
+title: "Measure how long users view webpages"
+slug: "changelog-2023-11-09-duration"
+hidden: false
+createdAt: "2023-11-16T14:59:02.165Z"
+updatedAt: "2023-11-16T14:59:02.165Z"
+date: "2023-11-16"
+---
+
+<div style={{position: 'relative', paddingBottom: '64.90384615384616%', height: 0}}>
+    <iframe src="https://www.loom.com/embed/19461fe6014c48c3806721e735daac30?sid=3b6a69c3-3618-4300-8ce8-25d437ba32d4"
+        frameBorder="0"
+        webkitallowfullscreen="true" mozallowfullscreen="true" allowFullScreen
+        style={{position: 'absolute', 'top': 0, 'left': 0, 'width': '100%', 'height': '100%'}}>
+    </iframe>
+</div>
+
+Tracking the number of views your website pages get is a useful way to learn if users have landed on your page. But, it doesn’t tell the complete story of whether these users got value from their visit:
+
+- Your blog might have 100s of views, but how do you know if users are actually reading all the content?
+- Users are reaching your signup page, but are they moving through that experience quickly or getting stuck?
+- Two different pages are getting similar views, but one is converting more sales than the other - are users finding content more engaging on that page?
+
+The missing piece of the puzzle is understanding how long users visit your page, and to access this data **we’ve added a *Duration* property on your *Page View* event** that tracks your users’ “time spent on a page”. 
+
+It takes no additional setup — *Duration* is auto-computed by calculating the time between *Page View* events. 
+
+Checkout the video above to learn how you can answer questions like:
+
+- What blog content are our users finding the most engaging? (find the average time spent on blog pages)
+- Which pages are users not finding any value from? (find the pages that have an average visit time of less than 10 seconds)

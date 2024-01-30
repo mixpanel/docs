@@ -10,7 +10,7 @@ The following document summarizes the steps to edit GCS permissions so that it a
 
 Create a destination bucket, or use an existing one.
 
-"export-upload@mixpanel-prod-1.iam.gserviceaccount.com" needs to be given a "Storage Object Admin" role on the bucket you are creating or intending to reuse for this purpose.
+`export-upload@mixpanel-prod-1.iam.gserviceaccount.com` needs to be given a "Storage Object Admin" role on the bucket you are creating or intending to reuse for this purpose.
 
 ## Use the Data Pipelines API
 

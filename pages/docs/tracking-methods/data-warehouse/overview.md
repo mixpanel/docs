@@ -1,6 +1,6 @@
 # Overview
 
-Mixpanel Warehouse Connectors allows you to natively import data from Snowflake, BigQuery or Redshift into Mixpanel. With this feature, you can set up recurring syncs from your data warehouse and ensure that Mixpanel is always in sync with your trusted data.
+Mixpanel Warehouse Connectors allows you to natively import data from Snowflake, BigQuery, Redshift, & Databricks into Mixpanel. With this feature, you can set up recurring syncs from your data warehouse and ensure that Mixpanel is always in sync with your trusted data.
 
 Example data you can bring into Mixpanel:
 

@@ -32,7 +32,7 @@ using mixpanel;
 Mixpanel.Track("Plan Selected");
 ```
 
-Once you've initialized the library, you can track an event using <a style="font-family: courier" href="http://mixpanel.github.io/mixpanel-unity/api-reference/classmixpanel_1_1_mixpanel.html#a6a0f4b79670d7bbd50c849af2b12a8e1">Mixpanel.Track()</a> with the event name and properties.
+Once you've initialized the library, you can track an event using [`Mixpanel.Track()`](http://mixpanel.github.io/mixpanel-unity/api-reference/classmixpanel_1_1_mixpanel.html#a6a0f4b79670d7bbd50c849af2b12a8e1) with the event name and properties.
 
 ```csharp
 var props = new Value();
@@ -47,7 +47,7 @@ To preserve battery life and customer bandwidth, the Mixpanel library doesn't se
 
 ## Timing Events
 
-You can track the time it took for an action to occur, such as an image upload or a comment post, using <a style="font-family: courier" href="http://mixpanel.github.io/mixpanel-unity/api-reference/classmixpanel_1_1_mixpanel.html#ab1a62f4c9b0e28915dfdc57e7810bc78">Mixpanel.StartTimedEvent</a> This will mark the "start" of your action, which you can then finish with a track call. The time duration is then recorded in the "Duration" property.
+You can track the time it took for an action to occur, such as an image upload or a comment post, using [`Mixpanel.StartTimedEvent`](http://mixpanel.github.io/mixpanel-unity/api-reference/classmixpanel_1_1_mixpanel.html#ab1a62f4c9b0e28915dfdc57e7810bc78) This will mark the "start" of your action, which you can then finish with a track call. The time duration is then recorded in the "Duration" property.
 
 ```csharp
 Mixpanel.StartTimedEvent("Image Upload");
@@ -61,7 +61,7 @@ It's very common to have certain properties that you want to include with each e
 
 To make things easier, you can register these properties as **super properties**. If you do, we will automatically include them with all tracked events. Super properties are saved to device storage, and will persist across invocations of your app.
 
-To set super properties, call <a style="font-family: courier" href="http://mixpanel.github.io/mixpanel-unity/api-reference/classmixpanel_1_1_mixpanel.html#acf2fccd7625dfb2a15ef54fcaf8ddfe4">Mixpanel.Register.</a>
+To set super properties, call [`Mixpanel.Register.`](http://mixpanel.github.io/mixpanel-unity/api-reference/classmixpanel_1_1_mixpanel.html#acf2fccd7625dfb2a15ef54fcaf8ddfe4)
 
 ```csharp
 // Send a "User Type: Paid" property will be sent
@@ -89,13 +89,13 @@ Mixpanel.Track("signup", props);
 ```
 
 #### Setting Super Properties Only Once
-If you want to store a super property only once (often for things like ad campaign or source), you can use <a style="font-family: courier" href="http://mixpanel.github.io/mixpanel-unity/api-reference/classmixpanel_1_1_mixpanel.html#a148783e1cfca22df973a6a6b0eba1641">Mixpanel.RegisterOnce</a>. This function behaves like <a style="font-family: courier" href="http://mixpanel.github.io/mixpanel-unity/api-reference/classmixpanel_1_1_mixpanel.html#acf2fccd7625dfb2a15ef54fcaf8ddfe4">Mixpanel.Register</a> and has the same interface, but it doesn't override super properties you've already saved.
+If you want to store a super property only once (often for things like ad campaign or source), you can use [`Mixpanel.RegisterOnce`](http://mixpanel.github.io/mixpanel-unity/api-reference/classmixpanel_1_1_mixpanel.html#a148783e1cfca22df973a6a6b0eba1641). This function behaves like [`Mixpanel.Register`](http://mixpanel.github.io/mixpanel-unity/api-reference/classmixpanel_1_1_mixpanel.html#acf2fccd7625dfb2a15ef54fcaf8ddfe4) and has the same interface, but it doesn't override super properties you've already saved.
 
 ```csharp
 Mixpanel.RegisterOnce("source", "ad-01");
 ```
 
-This means that it's safe to call <a style="font-family: courier" href="http://mixpanel.github.io/mixpanel-unity/api-reference/classmixpanel_1_1_mixpanel.html#a148783e1cfca22df973a6a6b0eba1641">Mixpanel.RegisterOnce</a> with the same property on every app load, and it will only set it if the super property doesn't exist.
+This means that it's safe to call `Mixpanel.RegisterOnce` with the same property on every app load, and it will only set it if the super property doesn't exist.
 
 #### Super Properties Live in Local Storage
 
@@ -117,18 +117,18 @@ Mixpanel.Identify('13793');
 ```
 
 ### Call Reset at Logout
-[Reset](http://mixpanel.github.io/mixpanel-unity/api-reference/classmixpanel_1_1_mixpanel.html#af80b55f985b94780ec983dc6c1210d6b) generates a new random distinct_id and clears super properties. Call reset to clear data attributed to a user when that user logs out. This allows you to handle multiple users on a single device. For more information about maintaining user identity, see the [Identifying Users](/docs/tracking-methods/identifying-users) article.
+[Reset](http://mixpanel.github.io/mixpanel-unity/api-reference/classmixpanel_1_1_mixpanel.html#af80b55f985b94780ec983dc6c1210d6b) generates a new random distinct_id and clears super properties. Call reset to clear data attributed to a user when that user logs out. This allows you to handle multiple users on a single device. For more information about maintaining user identity, see the [Identifying Users](/docs/tracking-methods/id-management/identifying-users) article.
 
 Note: Calling reset frequently can lead to users quickly exceeding the 500 distinct_id per identity cluster limit. Once the 500 limit is reached you will no longer be able to add additional distinct_ids to the users identity cluster.
 
 
 ## Storing User Profiles
 
-In addition to events, you can store user profiles in Mixpanel's <a style="font-family: courier" href="https://mixpanel.com/people/">User Analytics</a> product. Profiles are persistent sets of properties that describe a user—things like name, email address, and signup date. You can use profiles to explore and segment users by who they are, rather than what they did. You can also use profiles to send messages, such as emails, SMS, or push notifications.
+In addition to events, you can store user profiles in Mixpanel's [User Analytics](https://mixpanel.com/people/) product. Profiles are persistent sets of properties that describe a user—things like name, email address, and signup date. You can use profiles to explore and segment users by who they are, rather than what they did. You can also use profiles to send messages, such as emails, SMS, or push notifications.
 
 #### Setting Profile Properties
 
-You can set properties on a user profile with <a style="font-family: courier" href="http://mixpanel.github.io/mixpanel-unity/api-reference/classmixpanel_1_1_mixpanel_1_1_people.html#aa8eaa02cc76fc8ad1076b00ca1772dc6">Mixpanel.people.Set</a>.
+You can set properties on a user profile with [`Mixpanel.people.Set`](http://mixpanel.github.io/mixpanel-unity/api-reference/classmixpanel_1_1_mixpanel_1_1_people.html#aa8eaa02cc76fc8ad1076b00ca1772dc6).
 
 ```csharp
 // mixpanel identify: must be called before
@@ -143,7 +143,7 @@ This will set a "Plan" property, with a value "Premium," on user 13793's profile
 
 #### Incrementing Numeric Properties
 
-You can use <a style="font-family: courier" href="http://mixpanel.github.io/mixpanel-unity/api-reference/classmixpanel_1_1_mixpanel_1_1_people.html#a3f019d6f12504f7b4c565cfc747041fd">Mixpanel.people.Increment</a> to change the current value of numeric properties. This is useful when you want to keep a running tally of things, such as games played, messages sent, or points earned.
+You can use [`Mixpanel.people.Increment`](http://mixpanel.github.io/mixpanel-unity/api-reference/classmixpanel_1_1_mixpanel_1_1_people.html#a3f019d6f12504f7b4c565cfc747041fd) to change the current value of numeric properties. This is useful when you want to keep a running tally of things, such as games played, messages sent, or points earned.
 
 ```csharp
 // Here we increment the user's point count by 500.
@@ -158,7 +158,7 @@ There are a few other types of profile updates. To learn more, please see the [f
 
 Mixpanel makes it easy to analyze the revenue you earn from individual customers. By associating charges with user profiles, you can compare revenue across different customer segments and calculate things like lifetime value.
 
-You can track a single transaction with <a style="font-family: courier" href="http://mixpanel.github.io/mixpanel-unity/api-reference/classmixpanel_1_1_mixpanel_1_1_people.html#ae0f80a6831618f591542f230f821e665">Mixpanel.people.TrackCharge</a>. This call will add transactions to the individual user profile, which will also be reflected in the Mixpanel Revenue report.
+You can track a single transaction with [`Mixpanel.people.TrackCharge`](http://mixpanel.github.io/mixpanel-unity/api-reference/classmixpanel_1_1_mixpanel_1_1_people.html#ae0f80a6831618f591542f230f821e665). This call will add transactions to the individual user profile, which will also be reflected in the Mixpanel Revenue report.
 
 ```csharp
 // Make sure identify has been called before making revenue

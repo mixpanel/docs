@@ -28,7 +28,7 @@ Paste in the following code, which accepts Stripe's webhook format, and forwards
           'event': req['type'],
           'properties': {
             '$insert_id': req['id'],
-            '$device_id': req['data']['object'].get('customer', ''),
+            '$device_id': req['data']['object'].get('customer', ''), # If your project is on Original ID Merge, you would specify distinct_id for the user identifier
             'time': req['created'],
             **req['data']['object']
           }

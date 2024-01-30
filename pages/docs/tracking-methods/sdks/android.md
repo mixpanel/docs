@@ -91,9 +91,9 @@ In general, if you use [identify](https://mixpanel.github.io/mixpanel-android/co
 
 
 ## Call Reset at Logout
-[Reset](https://mixpanel.github.io/mixpanel-android/com/mixpanel/android/mpmetrics/MixpanelAPI.html#reset()) generates a new random distinct_id and clears super properties. Call reset to clear data attributed to a user when that user logs out. This allows you to handle multiple users on a single device. For more information about maintaining user identity, see the [Identifying Users](/docs/tracking-methods/identifying-users) article.
+[Reset](https://mixpanel.github.io/mixpanel-android/com/mixpanel/android/mpmetrics/MixpanelAPI.html#reset()) generates a new random distinct_id and clears super properties. Call reset to clear data attributed to a user when that user logs out. This allows you to handle multiple users on a single device. For more information about maintaining user identity, see the [Identifying Users](/docs/tracking-methods/id-management/identifying-users) article.
 
-Note: If you're using our [original ID Merge](/docs/tracking-methods/identifying-users#simplified-vs-original-id-merge), calling reset frequently can lead to users quickly exceeding the 500 distinct_id per identity cluster limit. Once the 500 limit is reached you will no longer be able to add additional distinct_ids to the users identity cluster. In that case, reset should only be used if multiple users share a device. 
+Note: If you're using our [original ID Merge](/docs/tracking-methods/id-management/identifying-users#simplified-vs-original-id-merge), calling reset frequently can lead to users quickly exceeding the 500 distinct_id per identity cluster limit. Once the 500 limit is reached you will no longer be able to add additional distinct_ids to the users identity cluster. In that case, reset should only be used if multiple users share a device. 
 
 
 ## Storing User Profiles
@@ -109,7 +109,7 @@ Note: when sending set or set_once operations, the library will also populate au
 
 ## Setting Profile Properties
 
-You can set properties on a user profile with <a style="font-family: courier" href="http://mixpanel.github.io/mixpanel-android/com/mixpanel/android/mpmetrics/MixpanelAPI.People.html#set-java.lang.String-java.lang.Object-">MixpanelAPI.getPeople().set</a>.
+You can set properties on a user profile with [`MixpanelAPI.getPeople().set`](http://mixpanel.github.io/mixpanel-android/com/mixpanel/android/mpmetrics/MixpanelAPI.People.html#set-java.lang.String-java.lang.Object-).
 
 ```java Java
 MixpanelAPI mixpanel =
@@ -130,7 +130,7 @@ This will set a "Plan" property, with a value "Premium", on user 13793's profile
 
 ## Incrementing Numeric Properties
 
-You can use <a style="font-family: courier" href="http://mixpanel.github.io/mixpanel-android/com/mixpanel/android/mpmetrics/MixpanelAPI.People.html#set-java.lang.String-java.lang.Object-">MixpanelAPI.getPeople().increment</a> to change the current value of numeric properties. This is useful when you want to keep a running tally of things, such as games played, messages sent, or points earned.
+You can use [`MixpanelAPI.getPeople().increment`](http://mixpanel.github.io/mixpanel-android/com/mixpanel/android/mpmetrics/MixpanelAPI.People.html#set-java.lang.String-java.lang.Object-) to change the current value of numeric properties. This is useful when you want to keep a running tally of things, such as games played, messages sent, or points earned.
 
 ```java Java
 // Add 500 to the current value of
@@ -247,7 +247,7 @@ mMixpanel.getGroup("group key", "group id").set("SET NAME", "SET VALUE");
 ## Setting Group Profile Properties
 You can add details to Groups by adding properties to them.
 
-In order to update Group profile properties, you must specify the group that needs to be updated by calling <a style="font-family: courier" href="http://mixpanel.github.io/mixpanel-android/index.html">getGroup().set()</a>.
+In order to update Group profile properties, you must specify the group that needs to be updated by calling [`getGroup().set()`](http://mixpanel.github.io/mixpanel-android/index.html).
 
 ```java Java
 mMixpanel.getGroup("group key", "group id").set("SET NAME", "SET VALUE");
@@ -255,14 +255,14 @@ mMixpanel.getGroup("group key", "group id").set("SET NAME", "SET VALUE");
 mMixpanel.getGroup("group key", "group id").setMap((new HashMap<>()).put("SET MAP INT", 1));
 ```
 
-The <a style="font-family: courier" href="http://mixpanel.github.io/mixpanel-android/index.html">getGroup()</a> method can be chained with other commands that edit properties specific to the group.
+The [`getGroup()`](http://mixpanel.github.io/mixpanel-android/index.html) method can be chained with other commands that edit properties specific to the group.
 
 You can set the property `$name` to populate the name field at the top of the group profile.
 
 These operations are similar to the corresponding operations for user profile property updates.
 
 ### set
-<a style="font-family: courier" href="http://mixpanel.github.io/mixpanel-android/index.html">mixpanel.getGroup().set()</a> updates or adds a property to a group.
+[`mixpanel.getGroup().set()`](http://mixpanel.github.io/mixpanel-android/index.html) updates or adds a property to a group.
 
 ```java Java
 mMixpanel.getGroup("group key", "group id").set("SET NAME", "SET VALUE");

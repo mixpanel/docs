@@ -1,12 +1,12 @@
 # Overview
-Mixpanel believes in respecting and protecting people’s fundamental online privacy and data rights. Which is why we've built Mixpanel's analysis tools in compliance with industry best-practices and global data regulations like the GDPR and the CCPA.
+Mixpanel believes in respecting and protecting people’s fundamental online privacy and data rights. This is why we've built Mixpanel's analysis tools in compliance with industry best practices and global data regulations like the GDPR and the CCPA.
 
 Visit our [Privacy Hub](https://mixpanel.com/legal/privacy-hub/) to see how we comply with various privacy guidelines.
 
 ## Storing Your Data in the European Union
-By default Mixpanel stores user data on its US Servers via the Google Cloud Platform.
+By default, Mixpanel stores user data on its US Servers via the Google Cloud Platform.
 However, Mixpanel also provides you with the option to process and store your customers' personal data in Europe via our [EU Data Residency Program](https://mixpanel.com/topics/data-residency-for-mixpanel/).
-You can enable this by selecting the "EU Data Residency" option when creating a new project, and using our EU subdomain during all API calls.
+You can enable this by selecting the "EU Data Residency" option when creating a new project and using our EU subdomain during all API calls.
 
 | API | Standard Server | EU Residency Server |
 |-------|-------------------------|--------------------------------|
@@ -18,7 +18,7 @@ You can enable this by selecting the "EU Data Residency" option when creating a 
 | [Connectors API](https://developer.mixpanel.com/reference/connectors-api) | `mixpanel.com/api/app/projects` | `eu.mixpanel.com/api/app/projects`|
 
 ## Using Our SDKs
-Next you'll need to set the server location to EU when initializing the Mixpanel library. You can find instructions for the required config settings for each SDK below:
+Next, you'll need to set the server location to EU when initializing the Mixpanel library. You can find instructions for the required config settings for each SDK below:
 
 - [JavaScript](/docs/tracking-methods/sdks/javascript#eu-data-residency)
 - [Objective-C](/docs/tracking-methods/sdks/ios#eu-data-residency)
@@ -57,7 +57,7 @@ While the following API can be used to delete or retrieve personal data as outli
 See Mixpanel’s [Managing Personal Information](/docs/privacy/protecting-user-data) guide for more information on best practices when handling personal information in Mixpanel.
 
 ### Authentication
-Authentication occurs via a user-specific OAuth token with a scope that only includes the following deletion and retrieval APIs. Users can retrieve this token from their [Account Settings](https://mixpanel.com/settings/account#data-privacy) by selecting their initials in the top right of Mixpanel and selecting **Profile & Preferences**, and then the Data & Privacy tab. The OAuth token has a one year expiry. It should be passed in the Authentication header. Users are eligible to generate an OAuth token if they are the [project owner](/docs/orgs-and-projects/roles-and-permissions#project-roles), or if they are a project owner or admin of a project that supports [team member roles](/docs/orgs-and-projects/roles-and-permissions#project-roles).
+Authentication occurs via a user-specific OAuth token with a scope that only includes the following deletion and retrieval APIs. Users can retrieve this token from their [Account Settings](https://mixpanel.com/settings/account#data-privacy) by selecting their initials in the top right of Mixpanel and selecting **Profile & Preferences**, and then the Data & Privacy tab. The OAuth token has a one-year expiry. It should be passed in the Authentication header. Users are eligible to generate an OAuth token if they are the [project owner](/docs/orgs-and-projects/roles-and-permissions#project-roles), or if they are a project owner or admin of a project that supports [team member roles](/docs/orgs-and-projects/roles-and-permissions#project-roles).
 
 ![](/Personal-Data-and-Privacy-Settings.png)
 
@@ -91,11 +91,11 @@ curl "https://mixpanel.com/api/app/data-retrievals/v3.0/?token=591b3354bb2bdd96f
 
 ##### Rate Limit
 
-We place a rate limit in place to ensure the integrity of our system as well as prevent a single project from monopolizing the avaialble resources for other projects. Getting a 429 response code from our GDPR API means that you have reached our rate-limit. We currently have a rate-limit of 1 request per second for GDPR APIs. We also limit maximum number of outstanding scans for a single project to be approximately 5 years.
+We place a rate limit in place to ensure the integrity of our system as well as prevent a single project from monopolizing the available resources for other projects. Getting a 429 response code from our GDPR API means that you have reached our rate limit. We currently have a rate limit of 1 request per second for GDPR APIs. We also limit the maximum number of outstanding scans for a single project to approximately 5 years.
 
-GDPR data retrieval process works by dividing the job of extracting the events by the granularity of day, getting the events belonging to each distinct_id in the request for each day going back to the first day for which we have events in Mixpanel. Since user activity can go back several years, this means that even a single data retrieval request might require scans of many hundred days.
+GDPR data retrieval process works by dividing the job of extracting the events by the granularity of the day, getting the events belonging to each distinct_id in the request for each day going back to the first day for which we have events in Mixpanel. Since user activity can go back several years, this means that even a single data retrieval request might require scans of many hundred days.
 
-In order to maximize the throughput of data retrievals, we recommend sending the maximum number of distinct-ids per request, now at 2000 distinct-ids, then retrying with exponential backoff. Depending on the amount of data that needs to be scanned, retrying for several hours might sometimes be necessary.
+To maximize the throughput of data retrievals, we recommend sending the maximum number of distinct IDs per request, now at 2000, and then retrying with exponential backoff. Depending on the amount of data that needs to be scanned, retrying for several hours might sometimes be necessary.
 
 Example Return:
 `{"status":"ok","results":[{"status":"PENDING", "disclosure_type":"DATA", "date_requested":"2020-03-09T22:28:55.078315", "tracking_id":"1583792934719392965",  "project_id":1978118, "compliance_type":"ccpa", "destination_url":null, "requesting_user":"pat.davis@mixpanel.com", "distinct_id_count":1}]}`
