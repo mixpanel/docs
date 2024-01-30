@@ -446,7 +446,7 @@ components:
         events:
           type: string
           description: |
-            A whitelist for the event(s) you intend to export, encoded as a JSON array.
+            A whitelist for the event(s) you intend to export. For multiple events, you will need to pass in each event name as separate `events` parameters like so: `--data 'events=event1' \ --data 'events=event2'`
 
 
             All events in the project will be exported if no events are
@@ -586,7 +586,7 @@ components:
         events:
           type: string
           description: |
-            A whitelist for the event(s) you intend to export, encoded as a JSON array.
+            A whitelist for the event(s) you intend to export. For multiple events, you will need to pass in each event name as separate `events` parameters like so: `--data 'events=event1' \ --data 'events=event2'`
 
 
             All events in the project will be exported if no events are
@@ -742,7 +742,7 @@ components:
         events:
           type: string
           description: |
-            A whitelist for the event(s) you intend to export, encoded as a JSON array.
+            A whitelist for the event(s) you intend to export. For multiple events, you will need to pass in each event name as separate `events` parameters like so: `--data 'events=event1' \ --data 'events=event2'`
 
 
             All events in the project will be exported if no events are
@@ -899,7 +899,7 @@ components:
         events:
           type: string
           description: |
-            A whitelist for the event(s) you intend to export, encoded as a JSON array.
+            A whitelist for the event(s) you intend to export. For multiple events, you will need to pass in each event name as separate `events` parameters like so: `--data 'events=event1' \ --data 'events=event2'`
 
 
             All events in the project will be exported if no events are
@@ -1059,7 +1059,7 @@ components:
         events:
           type: string
           description: |
-            A whitelist for the event(s) you intend to export, encoded as a JSON array.
+            A whitelist for the event(s) you intend to export. For multiple events, you will need to pass in each event name as separate `events` parameters like so: `--data 'events=event1' \ --data 'events=event2'`
 
 
             All events in the project will be exported if no events are
@@ -1197,7 +1197,7 @@ components:
         events:
           type: string
           description: |
-            A whitelist for the event(s) you intend to export, encoded as a JSON array.
+            A whitelist for the event(s) you intend to export. For multiple events, you will need to pass in each event name as separate `events` parameters like so: `--data 'events=event1' \ --data 'events=event2'`
 
 
             All events in the project will be exported if no events are
@@ -1406,7 +1406,7 @@ components:
         events:
           type: string
           description: |
-            A whitelist for the event(s) you intend to export, encoded as a JSON array.
+            A whitelist for the event(s) you intend to export. For multiple events, you will need to pass in each event name as separate `events` parameters like so: `--data 'events=event1' \ --data 'events=event2'`
 
 
             All events in the project will be exported if no events are
@@ -1547,7 +1547,7 @@ components:
         events:
           type: string
           description: |
-            A whitelist for the event(s) you intend to export, encoded as a JSON array.
+            A whitelist for the event(s) you intend to export. For multiple events, you will need to pass in each event name as separate `events` parameters like so: `--data 'events=event1' \ --data 'events=event2'`
             
             All events in the project will be exported if no events are
             specified.
@@ -1630,7 +1630,7 @@ components:
         events:
           type: string
           description: |
-            A whitelist for the event(s) you intend to export, encoded as a JSON array.
+            A whitelist for the event(s) you intend to export. For multiple events, you will need to pass in each event name as separate `events` parameters like so: `--data 'events=event1' \ --data 'events=event2'`
 
 
             Please note that after this update, the sync of older dates to your data warehouse

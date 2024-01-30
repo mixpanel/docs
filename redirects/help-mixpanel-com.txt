@@ -25,8 +25,8 @@ https://help.mixpanel.com/hc/en-us/articles/115004491683(.*) /docs/best-practice
 https://help.mixpanel.com/hc/en-us/articles/115004493763(.*) /docs/orgs-and-projects/managing-projects#merge-or-combine-mixpanel-projects
 https://help.mixpanel.com/hc/en-us/articles/115004494783(.*) https://mixpanel.com/legal/privacy-policy
 https://help.mixpanel.com/hc/en-us/articles/115004494803(.*) /docs/privacy/protecting-user-data#disabling-geolocation
-https://help.mixpanel.com/hc/en-us/articles/115004495783(.*) /docs/tracking-methods/identifying-users
-https://help.mixpanel.com/hc/en-us/articles/115004497803(.*) /docs/tracking-methods/identifying-users
+https://help.mixpanel.com/hc/en-us/articles/115004495783(.*) /docs/tracking-methods/id-management/identifying-users
+https://help.mixpanel.com/hc/en-us/articles/115004497803(.*) /docs/tracking-methods/id-management/identifying-users
 https://help.mixpanel.com/hc/en-us/articles/115004499343(.*) /docs/best-practices/server-side-best-practices#tracking-geolocation
 https://help.mixpanel.com/hc/en-us/articles/115004499403(.*) /docs/features/advanced#undefined-and-null-properties
 https://help.mixpanel.com/hc/en-us/articles/115004499463(.*) /docs/tracking-methods/sdks/javascript#how-to-set-up-a-proxy
@@ -37,9 +37,9 @@ https://help.mixpanel.com/hc/en-us/articles/115004502806(.*) /docs/quickstart/co
 https://help.mixpanel.com/hc/en-us/articles/115004505106(.*) /docs/orgs-and-projects/managing-projects#creating-projects
 https://help.mixpanel.com/hc/en-us/articles/115004507523(.*) https://mixpanel.com/compare-to/google-analytics
 https://help.mixpanel.com/hc/en-us/articles/115004507543(.*) /docs/quickstart/what-to-track
-https://help.mixpanel.com/hc/en-us/articles/115004509406(.*) /docs/tracking-methods/identifying-users
-https://help.mixpanel.com/hc/en-us/articles/115004509426(.*) /docs/tracking-methods/identifying-users
-https://help.mixpanel.com/hc/en-us/articles/115004510946(.*) /docs/tracking-methods/identifying-users
+https://help.mixpanel.com/hc/en-us/articles/115004509406(.*) /docs/tracking-methods/id-management/identifying-users
+https://help.mixpanel.com/hc/en-us/articles/115004509426(.*) /docs/tracking-methods/id-management/identifying-users
+https://help.mixpanel.com/hc/en-us/articles/115004510946(.*) /docs/tracking-methods/id-management/identifying-users
 https://help.mixpanel.com/hc/en-us/articles/115004511086(.*) /docs
 https://help.mixpanel.com/hc/en-us/articles/115004511246(.*) /docs
 https://help.mixpanel.com/hc/en-us/articles/115004511803(.*) /docs/users/overview#faq
@@ -117,8 +117,8 @@ https://help.mixpanel.com/hc/en-us/articles/13395328448404(.*) /changelogs/2022-
 https://help.mixpanel.com/hc/en-us/articles/13530857626132(.*) /docs/pricing/billing
 https://help.mixpanel.com/hc/en-us/articles/13756463065492(.*) /changelogs/2023-02-28-retention-calendar-interval
 https://help.mixpanel.com/hc/en-us/articles/14202292561172(.*) /docs/features/embeds
-https://help.mixpanel.com/hc/en-us/articles/14377628688788(.*) /docs/tracking-methods/identifying-users
-https://help.mixpanel.com/hc/en-us/articles/14383975110292(.*) /docs/tracking-methods/identifying-users
+https://help.mixpanel.com/hc/en-us/articles/14377628688788(.*) /docs/tracking-methods/id-management/identifying-users
+https://help.mixpanel.com/hc/en-us/articles/14383975110292(.*) /docs/tracking-methods/id-management/identifying-users
 https://help.mixpanel.com/hc/en-us/articles/15219555384468(.*) /docs/boards/templates
 https://help.mixpanel.com/hc/en-us/articles/15235786397716(.*) /docs/data-structure/advanced/ad-spend#gathering-data-from-ad-networks
 https://help.mixpanel.com/hc/en-us/articles/15266196509972(.*) https://github.com/mixpanel/sheets#readme
@@ -195,12 +195,12 @@ https://help.mixpanel.com/hc/en-us/articles/360035583452(.*) /docs/cohort-sync/i
 https://help.mixpanel.com/hc/en-us/articles/360036428871(.*) /docs/access-security/single-sign-on/overview
 https://help.mixpanel.com/hc/en-us/articles/360036438351(.*) /docs/reports/flows
 https://help.mixpanel.com/hc/en-us/articles/360038439952(.*) /docs/reports/apps/experiments
-https://help.mixpanel.com/hc/en-us/articles/360039133851(.*) /docs/tracking-methods/identifying-users
+https://help.mixpanel.com/hc/en-us/articles/360039133851(.*) /docs/tracking-methods/id-management/identifying-users
 https://help.mixpanel.com/hc/en-us/articles/360039135652(.*) /docs/privacy/eu-residency
 https://help.mixpanel.com/hc/en-us/articles/360039256492(.*) /docs/cohort-sync/integrations/google-ads
 https://help.mixpanel.com/hc/en-us/articles/360039403631(.*) /docs/cohort-sync/integrations/iterable
 https://help.mixpanel.com/hc/en-us/articles/360040323292(.*) /docs/orgs-and-projects/organizations#sso-via-microsoft-azure
-https://help.mixpanel.com/hc/en-us/articles/360041039771(.*) /docs/tracking-methods/identifying-users
+https://help.mixpanel.com/hc/en-us/articles/360041039771(.*) /docs/tracking-methods/id-management/identifying-users
 https://help.mixpanel.com/hc/en-us/articles/360041693771(.*) /docs/data-structure/user-profiles
 https://help.mixpanel.com/hc/en-us/articles/360041989072(.*) /docs/what-is-mixpanel
 https://help.mixpanel.com/hc/en-us/articles/360041995352(.*) /docs/data-structure/events-and-properties
@@ -262,7 +262,7 @@ https://help.mixpanel.com/hc/en-us/articles/7713028610964(.*) /docs/reports/insi
 https://help.mixpanel.com/hc/en-us/articles/7715039510548(.*) /docs/features/advanced#query-builder-features
 https://help.mixpanel.com/hc/en-us/articles/7716920767124(.*) /docs/reports/funnels#faq
 https://help.mixpanel.com/hc/en-us/articles/7773849285780(.*) /docs/data-structure/lookup-tables
-https://help.mixpanel.com/hc/en-us/articles/9648680824852(.*) /docs/tracking-methods/identifying-users
+https://help.mixpanel.com/hc/en-us/articles/9648680824852(.*) /docs/tracking-methods/id-management/identifying-users
 https://help.mixpanel.com/hc/en-us/articles/9671249667988(.*) /docs/community/guidelines
 https://help.mixpanel.com/hc/en-us/categories/115000963103(.*) /docs/admin/organizations-projects
 https://help.mixpanel.com/hc/en-us/categories/115001031023(.*) /docs/how-it-works/concepts#overview
@@ -274,7 +274,7 @@ https://help.mixpanel.com/hc/en-us/categories/115001209063(.*) /docs/boards/over
 https://help.mixpanel.com/hc/en-us/categories/13174726206612(.*) /changelogs
 https://help.mixpanel.com/hc/en-us/requests/new https://mixpanel.com/get-support
 https://help.mixpanel.com/hc/en-us/search /docs/what-is-mixpanel
-https://help.mixpanel.com/hc/en-us/sections/115001299203(.*) /docs/tracking-methods/identifying-users
+https://help.mixpanel.com/hc/en-us/sections/115001299203(.*) /docs/tracking-methods/id-management/identifying-users
 https://help.mixpanel.com/hc/en-us/sections/115001308546(.*) /docs/quickstart/connect-your-data?sdk=httpapi
 https://help.mixpanel.com/hc/en-us/sections/115001308566(.*) /docs/reports/apps/jql
 https://help.mixpanel.com/hc/en-us/sections/115001517666(.*) /docs/cohort-sync/overview
