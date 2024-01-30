@@ -29,7 +29,7 @@ mixpanel.init('YOUR_TOKEN', {track_pageview: true});
 
 The `track_pageview` option currently does not auto-track page views in single-page applications. For single-page applications or other manual page view tracking, Mixpanel offers the standard page view event through `mixpanel.track_pageview()`. This call can be inserted into any hooks or listeners for your framework of choice.
 
-The standard page view event includes the page title, URL components, and marketing parameters described below. Additional page view event properties can also be added as event properties.
+The standard page view event (`$mp_web_page_view`) includes the page title (`current_page_title`), URL components (`current_domain`, `current_url_path`, `current_url_protocol`, `current_url_search`), and [marketing parameters](/docs/tracking-methods/sdks/javascript#tracking-utm-parameters) described below. Additional page view event properties can also be added as event properties.
 
 ```javascript JavaScript
 // Send a default page view event
