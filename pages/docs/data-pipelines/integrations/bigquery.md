@@ -83,7 +83,6 @@ Counting number of times a user has done a specific behavior is also possible by
 We recommend exporting Mixpanel data into customer-managed BigQuery, for this the customer needs to follow these steps.
 
 1. Create a dataset in their BigQuery
-<br />
 
    ![image](/230698727-1216833e-8321-46de-a388-8b554a00938c.png)
 
@@ -108,6 +107,8 @@ We recommend exporting Mixpanel data into customer-managed BigQuery, for this th
      * In the Data Permissions window click on **Add Principal** 
      * Add new principle "export-upload@mixpanel-prod-1.iam.gserviceaccount.com" and set role as "BigQuery Data Owner", and save.    
        ![image](/230698735-972aedb5-1352-4ebc-82c4-ef075679779b.png)
+
+<br />
 
 3. You need to pass this dataset and gcp project id as params when you [create your pipeline](https://developer.mixpanel.com/reference/create-warehouse-pipeline)
 
