@@ -212,7 +212,7 @@ paths:
           "title": "Guides"
         }
         [/block]
-        See our Cloud Ingestion guides for example usage of this API to integrate with  [Google Pub/Sub](https://docs.mixpanel.com/docs/tracking/integrations/google-pubsub), [Amazon S3](https://docs.mixpanel.com/docs/tracking/integrations/s3-import), or [Google Cloud Storage](https://docs.mixpanel.com/docs/tracking/integrations/gcs-import).
+        See our Cloud Ingestion guides for example usage of this API to integrate with  [Google Pub/Sub](https://docs.mixpanel.com/docs/tracking-methods/integrations/google-pubsub), [Amazon S3](https://docs.mixpanel.com/docs/tracking-methods/integrations/amazon-s3), or [Google Cloud Storage](https://docs.mixpanel.com/docs/tracking-methods/integrations/google-cloud-storage).
       parameters:
         - in: query
           name: strict
@@ -315,7 +315,7 @@ paths:
               "h-1": "/track",
               "h-2": "/import",
               "0-0": "Events per request",
-              "0-1": "50",
+              "0-1": "2000",
               "0-2": "2000",
               "1-0": "Authentication",
               "1-1": "Project Token, intended for untrusted clients.",
@@ -345,7 +345,6 @@ paths:
       parameters:
         - $ref: ./common/ingestion-api.yaml#/OptionalRequestParameter/UseIpAsDistinctId
         - $ref: ./common/ingestion-api.yaml#/OptionalRequestParameter/ResponseType/Verbose
-        - $ref: ./common/ingestion-api.yaml#/OptionalRequestParameter/ResponseType/Redirect
         - $ref: ./common/ingestion-api.yaml#/OptionalRequestParameter/ResponseType/PNGPixel
         - $ref: ./common/ingestion-api.yaml#/OptionalRequestParameter/ResponseType/JavascriptWithCallback
       requestBody:
@@ -401,6 +400,10 @@ paths:
         - User Profiles
       summary: Set Property
       description: >-
+        Takes a JSON object containing names and values of profile properties.
+        If the profile does not exist, it creates it with these properties. If
+        it does exist, it sets the properties to these values, overwriting
+        existing values.
         [block:callout]
         {
           "type": "info",
@@ -413,13 +416,8 @@ paths:
           "body": "This API does not support gzip encoding."
         }
         [/block]
-        Takes a JSON object containing names and values of profile properties.
-        If the profile does not exist, it creates it with these properties. If
-        it does exist, it sets the properties to these values, overwriting
-        existing values.
       parameters:
         - $ref: ./common/ingestion-api.yaml#/OptionalRequestParameter/ResponseType/Verbose
-        - $ref: ./common/ingestion-api.yaml#/OptionalRequestParameter/ResponseType/Redirect
         - $ref: ./common/ingestion-api.yaml#/OptionalRequestParameter/ResponseType/JavascriptWithCallback
       requestBody:
         required: true
@@ -462,7 +460,6 @@ paths:
         values. This is useful for properties like "First login date".
       parameters:
         - $ref: ./common/ingestion-api.yaml#/OptionalRequestParameter/ResponseType/Verbose
-        - $ref: ./common/ingestion-api.yaml#/OptionalRequestParameter/ResponseType/Redirect
         - $ref: ./common/ingestion-api.yaml#/OptionalRequestParameter/ResponseType/JavascriptWithCallback
       requestBody:
         required: true
@@ -510,7 +507,6 @@ paths:
         like "Number of Logins" or "Files Uploaded".
       parameters:
         - $ref: ./common/ingestion-api.yaml#/OptionalRequestParameter/ResponseType/Verbose
-        - $ref: ./common/ingestion-api.yaml#/OptionalRequestParameter/ResponseType/Redirect
         - $ref: ./common/ingestion-api.yaml#/OptionalRequestParameter/ResponseType/JavascriptWithCallback
       requestBody:
         required: true
@@ -555,7 +551,6 @@ paths:
         ensures that those values only appear once. The profile is created if it does not exist.
       parameters:
         - $ref: ./common/ingestion-api.yaml#/OptionalRequestParameter/ResponseType/Verbose
-        - $ref: ./common/ingestion-api.yaml#/OptionalRequestParameter/ResponseType/Redirect
         - $ref: ./common/ingestion-api.yaml#/OptionalRequestParameter/ResponseType/JavascriptWithCallback
       requestBody:
         required: true
@@ -611,7 +606,6 @@ paths:
         element to that property.
       parameters:
         - $ref: ./common/ingestion-api.yaml#/OptionalRequestParameter/ResponseType/Verbose
-        - $ref: ./common/ingestion-api.yaml#/OptionalRequestParameter/ResponseType/Redirect
         - $ref: ./common/ingestion-api.yaml#/OptionalRequestParameter/ResponseType/JavascriptWithCallback
       requestBody:
         required: true
@@ -655,7 +649,6 @@ paths:
         exist, no updates are made.
       parameters:
         - $ref: ./common/ingestion-api.yaml#/OptionalRequestParameter/ResponseType/Verbose
-        - $ref: ./common/ingestion-api.yaml#/OptionalRequestParameter/ResponseType/Redirect
         - $ref: ./common/ingestion-api.yaml#/OptionalRequestParameter/ResponseType/JavascriptWithCallback
       requestBody:
         required: true
@@ -698,7 +691,6 @@ paths:
         properties and their values from a profile.
       parameters:
         - $ref: ./common/ingestion-api.yaml#/OptionalRequestParameter/ResponseType/Verbose
-        - $ref: ./common/ingestion-api.yaml#/OptionalRequestParameter/ResponseType/Redirect
         - $ref: ./common/ingestion-api.yaml#/OptionalRequestParameter/ResponseType/JavascriptWithCallback
       requestBody:
         required: true
@@ -747,7 +739,6 @@ paths:
         body
       parameters:
         - $ref: ./common/ingestion-api.yaml#/OptionalRequestParameter/ResponseType/Verbose
-        - $ref: ./common/ingestion-api.yaml#/OptionalRequestParameter/ResponseType/Redirect
         - $ref: ./common/ingestion-api.yaml#/OptionalRequestParameter/ResponseType/JavascriptWithCallback
       requestBody:
         required: true
@@ -796,7 +787,6 @@ paths:
         duplicate (as they pass in the alias as the distinct_id).
       parameters:
         - $ref: ./common/ingestion-api.yaml#/OptionalRequestParameter/ResponseType/Verbose
-        - $ref: ./common/ingestion-api.yaml#/OptionalRequestParameter/ResponseType/Redirect
         - $ref: ./common/ingestion-api.yaml#/OptionalRequestParameter/ResponseType/JavascriptWithCallback
       requestBody:
         required: true
@@ -1211,7 +1201,7 @@ paths:
         * RFC3339 timestamps (`2021-08-21T05:36:01Z`) will parsed as datetimes.
         * `true` or `false` (case-insensitive) will be parsed as boolean.
         * Empty fields (two adjacent commas) will be treated as `undefined`
-        * Comma separated, quoted strings in square brackets (`"[""Free"",""Paid"",""Enterprise""]"`) will be parsed as list of strings.
+        * Comma separated, quoted strings in square brackets (`"["Free","Paid","Enterprise"]"`) will be parsed as list of strings.
         * All other values will be treated as strings.
 
         [block:code]

@@ -1,0 +1,68 @@
+# Sending Events
+
+import { Callout } from 'nextra/components'
+
+### Format Data for Mixpanel Ingestion
+
+To import data from a warehouse directly, you need to format tables correctly.
+
+Each column in the table will be mapped as a property on the event. 
+
+Read more about best practices for tracking Events and Properties in Mixpanel [here](/docs/data-structure/events-and-properties).
+
+**The following columns should be mapped from your warehouse table:** 
+
+| Name | Type | Description |
+| - | - | - |
+| Event Name | STRING | The name of the event that occurred. This can be specified as a table column that contains the event name, or as a static value (one event name for the whole table). |
+| Event Time | TIMESTAMP | The time when an event occurred. |
+| Distinct ID | STRING, INT | The identifier of the user that performed the event. Learn more about [identifying users](/docs/tracking-methods/id-management/identifying-users). |
+| JSON Properties _Optional_ | JSON | If your table stores data in a JSON column, you may chose to ingest that data as event properties. If there is a conflict between the name of a table column and one of the keys in the JSON column, the table column will take precedence.
+
+### Event Tables
+
+Once you have created a warehouse source, follow the below steps to send events into Mixpanel.
+1. Go to Project Settings > Warehouse Data.
+2. Click on + Create and select Event Table.
+3. Select your warehouse as source from the dropdown.
+4. Navigate to the dataset or database where your Events table is.
+5. Select the Table.
+6. Specify the Event Name:
+    - You can specify the column which has the event name.
+    - **OR** You can specify the event name for all the events.
+7. Specify the Event Time:
+    - This is the time the event occurred.
+8. Identity Management:
+    - If your project has **Simplified ID Merge**, the warehouse connector will prompt you to map the `$device_id` and `$user_id` properties to columns in your table during setup. For more information on how we map those fields to the resulting distinct id, refer to our documentation [here](/docs/tracking-methods/id-management/identifying-users#usage).
+    - If your project has **Original ID Merge**, the warehouse connector will prompt you to map the Distinct ID column. This column represents the entity to which the events belong; it could be a user or a device. If you want to map two entities together you have to additionally call either `$identify`, `$merge`, `$alias` functions, along with their corresponding properties. For more information, refer to our documentation [here](/docs/tracking-methods/id-management/identifying-users#how-does-the-simplified-api-differ-from-the-original-api).
+9. Specify sync settings (see below)
+10. Check the preview to ensure that everything looks correct, and then create the event.
+
+### Sync Settings
+
+**Sync Mode** determines how Mixpanel finds new or changed data in the warehouse to send to Mixpanel. The two options for event data are:
+
+#### Time Based Sync
+
+Time-based syncs are suitable for append-only tables with an "insert timestamp" column. When the sync runs it will query the warehouse for rows where "insert timestamp" is greater than the highest value seen last time the sync ran. The following additional columns must be mapped from the warehouse when using a time based sync:
+
+| Name | Type | Description |
+| - | - | - |
+| Insert Time | TIMESTAMP | The time when the event was inserted into the warehouse. This is used as a watermark to figure out which events are new and ingest them. |
+| Insert ID _Optional_ | STRING | A unique identifier of the event. We recommend this as a best practice in case duplicate events need to be reconciled. | 
+
+#### Mirror sync
+
+<Callout type="info">
+  Mirror syncing is in early access and not available on all projects. Request access
+  <a href="https://forms.gle/x8mbU6FVe5uHiVXF6">here</a>.
+</Callout>
+
+Mirror syncs track all changes to event data in the data warehouse (inserts, updates, and deletes) and mirrors them to Mixpanel.
+
+Warehouse sources need extra configuration to be Mirror-ready. See warehouse source documentation for supported warehouses for more details:
+- [Snowflake](/docs/tracking-methods/data-warehouse/snowflake#mirror-sync-readiness)
+
+**Note:** For billing purposes updates and deletes performed by Mirror syncs are tracked separately from events ingested.
+During early access there is no charge for updates or deletes performed by mirror mode, however high volumes of updates
+relative to a project's event plan limit may make the project unsuitable for early access.

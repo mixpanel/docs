@@ -1,0 +1,120 @@
+# Overview
+
+If you have already created your tracking plan and know what you want to track, the next step is to start implementing. However, if you have not done so, it's good to catch-up reading on [Plan](/docs/tutorials/plan/setup) first.
+
+<br />
+- [x] [Send Your Data](/docs/tutorials/implement/send-your-data#send-your-data-implement-your-tracking-plan) - walkthrough the different ways you can send data into Mixpanel and guide you on choosing the most suitable approach. 
+- [x] [QA and Data Audit](/docs/tutorials/implement/qa-data-audit) - covers QA *(Quality Assurance testing)* and auditing of your implementation before you send live data into your Mixpanel production project. 
+- [x] [Establish Governance](/docs/tutorials/implement/establish-governance) - guide you in establishing good data governance practices beyond the initial onboarding to you keep your implementation clean, concise and consistent.
+
+# Send Your Data: Implement Your Tracking Plan
+
+Mixpanel provides a variety of methods to send your data. Depending on your existing infrastructure, availability of development team resources, and the type of data you plan to collect, this section will help guide you in selecting the right ingestion method to implement your tracking plan.
+
+## Choosing an Ingestion Method
+
+When it comes to deciding which ingestion approach to use, there are no fixed rules; and each approach comes with its own advantages and limitations.
+
+<br />
+<p style={{ position: 'relative', paddingBottom: '56.25%', height: 0, overflow: 'hidden' }}>
+  <iframe src="https://www.youtube.com/embed/DupNeU23dTg?rel=0" title="Choosing Your Implementation Method" frameborder="0" webkitallowfullscreen="true" mozallowfullscreen="true" allowFullScreen style={{position: 'absolute', top: 0, left: 0, width: '100%', height: '100%'}}></iframe>
+</p>
+
+Here are the key considerations that would guide you along in choosing the right approach as we go through each one:
+
+- **Source of Truth**: Does your company have data that is considered the *"source of truth"* when it comes to business reporting?
+- **Data Tools**: Do you use any existing Event Streaming, Customer Data Platform (CDP), or Reverse ETL tools?
+- **Clickstream Data**: Are you already collecting any clickstream data, and if not, do you have the ability to collect them?
+- **Development Team**: What available development resources does your company have to implement the ingestion approaches?
+
+It is important to choose an ingestion method that fits your current needs and available resources, at the same time, factoring for some flexibility in scaling your approach as your product evolves. Most of our customers tend to start with the simplest approach of using our SDKs and slowly migrate to more complex architectures like CDPs or Reverse ETLs.
+
+This table provides a quick overview of the different approaches
+
+![image](/tutorials/data-collection-maturity-matrix.png "Data Collection Maturity Matrix")
+
+### SDKs: Client-Side vs Proxy vs Server-Side
+
+Mixpanel supports a wide range of [Client-Side](/docs/tracking-methods/choosing-the-right-method#client-side-tracking) and [Server-Side](/docs/tracking-methods/choosing-the-right-method#server-side-tracking) SDKs.
+
+In general, we recommend utilizing Client-Side SDKs if you have limited development resources, no existing data collection infrastructure, or have no reliable method to track clickstream data. Whilst they might be initially the easiest to set up, ad-blockers can impact your ability to track data accurately. Furthermore, it can be difficult to keep metrics consistent when utilizing client-side SDKs across multiple platforms such as across both a website and mobile app.
+
+<br />
+<p style={{ position: 'relative', paddingBottom: '56.25%', height: 0, overflow: 'hidden' }}>
+  <iframe src="https://www.youtube.com/embed/FL7wGgfTVoo?rel=0" title="Implement Via Client-Side SDK" frameborder="0" webkitallowfullscreen="true" mozallowfullscreen="true" allowFullScreen style={{position: 'absolute', top: 0, left: 0, width: '100%', height: '100%'}}></iframe>
+</p>
+
+Alternatively, you may want to consider using Server-Side SDKs, which are not susceptible to ad blockers, and provide more consistency when tracking users across platforms. It does require some custom code to track your anonymous (non-logged in) users.
+
+<br />
+<p style={{ position: 'relative', paddingBottom: '56.25%', height: 0, overflow: 'hidden' }}>
+  <iframe src="https://www.youtube.com/embed/tmGWU6R2-g8?rel=0" title="Implement Via Server-Side SDK" frameborder="0" webkitallowfullscreen="true" mozallowfullscreen="true" allowFullScreen style={{position: 'absolute', top: 0, left: 0, width: '100%', height: '100%'}}></iframe>
+</p>
+
+As an in-between, consider client-side tracking via a proxy. This will help [reduce the likelihood of ad-blockers impacting your tracking](https://www.youtube.com/watch?v=8Pv6tmRfqr8), while allowing you to automatically capture certain default client-side properties. For more details, please see [this article](/docs/tracking-methods/sdks/javascript#tracking-via-proxy) on how to set up a proxy.
+
+A full list of Mixpanel SDKs can be found in our [documentation](/docs/tracking-methods/choosing-the-right-method).
+
+### Client Data Platforms (CDP)
+
+If you currently utitilise a Customer Data Platform (eg mParticle, Rudderstack, Segment), you can also use this to send your data to Mixpanel. If you're switching to Mixpanel from another analytics tool, CDPs will also allow you to easily migrate your historical data into Mixpanel.
+
+<br />
+<p style={{ position: 'relative', paddingBottom: '56.25%', height: 0, overflow: 'hidden' }}>
+  <iframe src="https://www.youtube.com/embed/whd8guBgXnE?rel=0" title="Implement Via a CDP" frameborder="0" webkitallowfullscreen="true" mozallowfullscreen="true" allowFullScreen style={{position: 'absolute', top: 0, left: 0, width: '100%', height: '100%'}}></iframe>
+</p>
+
+Please refer to the documentation by your respective CDP provider for more information on how to connect your data to Mixpanel.
+
+### Reverse ETL: Data Warehouse
+
+If your data is already stored in a data warehouse, our [Warehouse Sync](/docs/tracking-methods/data-warehouse/overview) allows you to import [events](/docs/tracking-methods/data-warehouse/sending-events), [user profiles](/docs/tracking-methods/data-warehouse/sending-user-profiles), and [group profiles](/docs/tracking-methods/data-warehouse/sending-group-profiles) into your Mixpanel project via recurring syncs to ensure that your data in Mixpanel matches your trusted data source.
+
+<br />
+<p style={{ position: 'relative', paddingBottom: '56.25%', height: 0, overflow: 'hidden' }}>
+  <iframe src="https://www.youtube.com/embed/3miXogffar0?rel=0" title="Implement Via a Data Warehouse" frameborder="0" webkitallowfullscreen="true" mozallowfullscreen="true" allowFullScreen style={{position: 'absolute', top: 0, left: 0, width: '100%', height: '100%'}}></iframe>
+</p>
+
+Another option to send data from your data warehouse to Mixpanel would be to utilize a Reverse ETL tool (eg Census, Hightouch). These third-party tools will allow you to make any necessary transformations to the data and set up sync schedules to import data from your warehouse to Mixpanel. Please refer to the respective documentation of whichever reverse ETL tool your team chooses to utilize.
+
+### Event Streaming / Cloud Ingestion
+
+If your company already has an existing event stream pipeline, you could use it to send data into Mixpanel as you receive it. You can refer to our documentation for examples on how to setup a pipeline from [Amazon S3](/docs/tracking-methods/integrations/amazon-s3), [Google Cloud Storage](/docs/tracking-methods/integrations/google-cloud-storage), [Google Pubsub](/docs/tracking-methods/integrations/google-pubsub).
+
+<br />
+<p style={{ position: 'relative', paddingBottom: '56.25%', height: 0, overflow: 'hidden' }}>
+  <iframe src="https://www.youtube.com/embed/S9HJrVr1an0?rel=0" title="Implement Via Event Streaming" frameborder="0" webkitallowfullscreen="true" mozallowfullscreen="true" allowFullScreen style={{position: 'absolute', top: 0, left: 0, width: '100%', height: '100%'}}></iframe>
+</p>
+
+### Direct API Ingestion
+
+If you would like to send data directly to Mixpanel servers without the need of any sort of intermediary layer, you can utilize our Ingestion API to send in [events](https://developer.mixpanel.com/reference/import-events). and add / update / delete existing [user profiles](https://developer.mixpanel.com/reference/profile-set). 
+
+<br />
+<p style={{ position: 'relative', paddingBottom: '56.25%', height: 0, overflow: 'hidden' }}>
+  <iframe src="https://www.youtube.com/embed/QpDpdN88Lus?rel=0" title="Implement Via a API" frameborder="0" webkitallowfullscreen="true" mozallowfullscreen="true" allowFullScreen style={{position: 'absolute', top: 0, left: 0, width: '100%', height: '100%'}}></iframe>
+</p>
+
+## Identity Management Best Practices
+
+> Note: This section explains identity management using the Simplified Identity Management setting. If you are unsure, do refer to the [Setup](/docs/tutorials/plan/setup#simplified-identity-management) section to check your organization and project settings.
+
+As users navigate through your website or application, it is common for them to move between anonymous (logged out) to identified (logged in) states. Users can also use multiple devices or platforms that you may provide for your product. As such, it is crucial that you ensure correct identity management throughout in order to accurately track your users.
+
+<br />
+<p style={{ position: 'relative', paddingBottom: '56.25%', height: 0, overflow: 'hidden' }}>
+  <iframe src="https://www.youtube.com/embed/thJHTcDhToA?rel=0" title="Identity Management Best Practices" frameborder="0" webkitallowfullscreen="true" mozallowfullscreen="true" allowFullScreen style={{position: 'absolute', top: 0, left: 0, width: '100%', height: '100%'}}></iframe>
+</p>
+
+If you're utilizing our Mixpanel SDKs, especially Client-Side, you should carefully manage all the identifiers belonging to a user correctly to ensure that all of their pre-auth and post-auth activity is tracked as one user.
+
+In the following video, we walkthrough how you should manage identifying your users using the Simplified Identity Management method.
+
+<br />
+<p style={{ position: 'relative', paddingBottom: '56.25%', height: 0, overflow: 'hidden' }}>
+  <iframe src="https://www.youtube.com/embed/RySdeuu-eD4?rel=0" title="Example of Simplified ID Management" frameborder="0" webkitallowfullscreen="true" mozallowfullscreen="true" allowFullScreen style={{position: 'absolute', top: 0, left: 0, width: '100%', height: '100%'}}></iframe>
+</p>
+
+Do note that the mixpanel.identify() call does not create a User Profile in Mixpanel. The people.set() method is the required call to set user properties on a user profile. However, the people.set() call also requires an identify() call at some point in the same session, so that Mixpanel knows which User ID to associate the profile properties to. If there is no identify() call in a user’s session where people.set() is called, we store the user profile properties locally until that user hits an identify() call. 
+
+For more detailed user flows and FAQs refer to our documentation on [Identifying Users](/docs/tracking-methods/id-management/identifying-users).

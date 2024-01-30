@@ -1,0 +1,19 @@
+---
+title: "Count a Unique user towards one segment "
+slug: "changelog-2023-09-25-uniques"
+hidden: false
+createdAt: "2023-11-02T14:59:02.165Z"
+updatedAt: "2023-11-02T14:59:02.165Z"
+date: "2023-11-02"
+---
+In the past, when breaking down an event counted by *Uniques*, you often came across this question: why is the sum of users in segments not equating the the overall uniques? 
+In the below example, unique users is 1760, but sum of users in segments Chrome + Firefox + all others = 1900. Why don’t these numbers match?
+![changelog Image](/changelog/uniquescount.png)
+While there are 1,760 unique users who made a purchase, one of those unique users might make a purchase on two different browsers, and so the user gets counted in both the browsers (segments). The focus was on the segment, so you were looking at how many users were part of each segment.
+
+With this new feature addition, you can choose to associate a user to only one segment, either their first or last segment in the time interval. This way your sum of users across segments will total to the overall 1760. The focus with this counting type is on the user, so you are looking at how are these 1760 users distributed across the segment. This approach also reduces ambiguity and ensures that users aren't double-counted across multiple segments.
+
+How do you choose which approach to use? 
+- If you are looking to answer questions focused on the segment - how many users watched Taylor Swift’s Movie or watched Squid Game, you want to count a user across every video they have watched. Choosing the count “per segment” option here
+- If you want to understand the "last value of" - what was the last item that my users purchased in the past seven days? You would select the "last time" option within Uniques to answer this question.
+- If you are looking to answer how your users are distributed across segments - I have 2000 users, how are they distributed across video category? Also, I’d like to consider their last watched category as their most recent preference to target them? Choose the count “last time” option here

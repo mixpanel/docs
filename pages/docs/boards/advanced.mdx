@@ -1,0 +1,173 @@
+# Advanced
+
+## Board-wide Date Ranges and Filters
+
+Boards allow you to alter some aspects of the queries within each of the reports on that board, making it simple to ensure every report is showing results from a consistent set of data.  Both date ranges and filters can be added by clicking "Add Filter" at the top right of the board.  This will open a row, shown below, where the date range can be selected, and filters can be applied.
+
+![/Screen_Shot_2022-01-07_at_2.35.49_PM.png](/Screen_Shot_2022-01-07_at_2.35.49_PM.png)
+
+By default, date ranges and filters are temporary, allowing you to explore the data without overwriting the board. But, if you wish to save the date range and filter selections you've made to the board, so they'll appear for other users as well, click "Save to Board."
+
+**Note**
+Applying date ranges and filters on a board does not change the queries saved in each individual report; instead, it only changes the data displayed when you view those reports in the current board. If you click into a report from the board, however, Mixpanel will maintain the date range and filters to ensure you see data consistent between the board and report. Navigate to the report on its own, though, and you'll see the report's original saved date range and filters.
+
+## Board Digests
+
+Board Digests are a snapshot of a board sent as an email or a slack message. Digests allow members to share recent data with both project members and external audiences, providing quick and meaningful insight into a Mixpanel project.
+
+You must be a Project Owner, Admin, or Analyst to create digests.
+
+Digests can be sent once or sent repeatedly, presenting the option to send pertinent information once or to send data updates on a recurring basis. They can easily be built and managed as part of a Mixpanel Board report. Note that digests only show the 8 reports that are on the top of a board.
+
+To create a Board Digest:
+
+1. Select **Digests** from the overflow menu at the top right of the board.
+
+    ![/14250933536404.png](/14250933536404.png)
+
+2. The Digest Settings Control Center will display all active Digests. To create a new Digest, click **+ Create Digest** in the top right corner.
+3. Fill out the resulting form, including the name of the digest, the board upon which the digest is based (note: the digest will only contain the first 8 reports in the board due to email size limitations), the intended email recipients or Slack channel, and the sending frequency (one time ASAP, daily, weekly, or monthly).
+    - Any email address will receive the digest, whether or not they are internal or external to your organization
+    - Private Slack Channels are not available, at this time.
+4. Click 'Send'.
+
+## Digests for Private Boards
+
+It is possible to share a digest for a private board. However, there are some restrictions to what will be visible or accessible.
+
+1. If you convert a regular board with digests into a private board, existing digests will still work with existing recipients. However, if they click **View Board**, they will not be able to access your private board. Creating new digests or editing existing digests within the private board will force you to limit recipients to yourself.
+2. You cannot edit digests of someone else’s private board without selecting a different board that you have access to (regardless of your permissions or role). You can still delete the digest or select a different board.
+3. You cannot see the title of someone else’s private board in a digest. The private board will appear as “Unknown Private Board”.
+
+## Sharing
+
+Sharing and permissions are set at the board level, and all reports saved on a board inherit the same set of sharing and permissions settings of that board.
+
+To share a board, and therefore all reports contained within it, click the Share button at the top right of the board. From here, sharing works as before, but remember, sharing a board now shares all of that board's reports as well. 
+
+![/GIF3__light_.gif](/GIF3__light_.gif)
+
+Both reports and boards can also be shared via the "Copy URL" button at the top right. Clicking this button will immediately copy the short link to the report or board, so you can quickly paste it into your application of choice.
+
+![/Screen_Shot_2021-11-08_at_11.01.00_AM.png](/Screen_Shot_2021-11-08_at_11.01.00_AM.png)
+
+So long as the recipient has access to the project, they will be able to see the shared report or board. However, unless they have specifically given Editor permissions, they will only be able to view it, not edit it.
+
+## Permissions
+
+Sharing and permissions are set at the board level, and all reports saved on a board inherit the same set of sharing and permissions settings of that board.
+
+In the sharing process, you can choose the permissions level granted to the individual with whom you're sharing the board. Teammates with access to a board can either be Viewers (any changes made will not be saved) or Editors (changes made will be saved). 
+
+As with sharing, setting a user's permission level on a board will give them the same permission level for all reports on that board.
+
+## Move Board
+
+Move helps teams organize their work and easily replicate Boards across projects and organizations. Using Move, you can find a Board you want to copy, duplicate it, and move it to a different project.  
+
+Let’s take an example situation:
+
+1. An organization has Project A and Project B that support different products and teams within the organization.
+2. Team A has some fantastic Boards that have been well received by leadership, executives, and investors.
+3. Team B would like to replicate these reports without having to build them all from scratch. 
+
+This is where Move comes in. With the right permissions, Team A can move copies of their Boards to Team B’s project, allowing Team B to fill in their events and be up and running quickly. 
+
+*Please note: Moving boards from projects based in the US -> EU as well as EU -> US is unavailable at this time.
+
+### Turning Move Off and On
+
+1. Go to Project Settings
+2. Select Moving Boards from the left hand menu
+3. If you are an organization admin, you will be able to select the how freely you want boards to be able to be moved: not at all, within the organization, or between organizations. 
+    - Not at all: no Board can be moved to any other project, no matter the organization
+    - Within organization: a Board can be moved to any other project in the same organization
+    - Any organization: a Board can be moved to any other project, even one in a different organization
+  This setting does not affect whether you can move a Board into a project, only whether you can move a Board out of a project.
+    
+4. On this page, you can also see who last updated the permissions and when.
+
+![Move-screenshot.png](/Move-screenshot.png)
+
+### Using Move
+
+![Demo_mv_x_proj.gif](/Demo_mv_x_proj.gif)
+
+Step 1: Go to the Board you wish to move. 
+
+Step 2: Hover over the `Move to` option.
+
+Step 3a: Enterprise users: select ‘projects’, then select the specific project that you want to move the board to. Once you’ve selected a project, then list will populate with Boards you can place the current Board in if you wish. 
+
+Step 3b: Non-enterprise users: hover over the "Move To" option, and the project menu will appear immediately. From there, you can choose “Move to your Boards” or another location and select your choice. 
+
+Step 3c: You can also use Move to use Boards from a demo project in your own. Get your free Mixpanel demo account [here](https://mixpanel.com/project/2195193/view/139237/app/boards?show-demo-dataset-modal=true#id=685944) to access the demo datasets. Once you're in, you can set up a new Board easily using a [template](/docs/boards/templates), or you can build a report from scratch. If you like what you see and want to use the analysis in your own project, you can click the button that says "Use this Board." You'll then select the project to which you want to move the board.
+
+Step 4: If there are events and properties used in the old project but not the new project, the affected reports will remain empty or say “no data” until new events and properties are selected. 
+
+When a report can’t populate, it will display one of two states: a faded out sample report or a “no data” status. 
+
+- Charts that show "no data" occur when an event has been tracked in the last 30 days, but a filter or date range result in no data for the report.
+- For the sample report to appear, the report would have to be configured with an event that hasn't existed or at least hasn't been tracked in past 30 days.
+
+For example: a join membership club event happened 100 times yesterday, but 0 so far today. If you create a report for today, it will show “no data”. But if this is day one of the program and it has never been tracked before, it will show a dummy sample report. From this empty state, you can set up your new reports like any other report. 
+
+👉🏽 NOTE: If you would like a version of the Board to stay in the parent project, duplicate it and move the new duplicate Board.
+
+## FAQ
+
+### Where are reports saved to?
+
+Reports are always saved to boards. Previously, reports were separately saved and added to boards. In boards now, when you save a report, you'll be prompted to save it to a specific board. In essence, the board now acts as a folder, with many potential purposes, including:
+
+- A centralized place to track numerous metrics related to a product launch
+- A chain of analyses digging into a particular behaviour or issue
+- A set of draft reports you're working on
+
+This will make it easy to keep reports organized, and reduce time wasted recreating the same reports again and again.
+
+Note: This change only applies to the reports that can be added to boards—Mixpanel's core reports: Insights, Flows, Funnels, and Retention. Advanced reports like Signal, Experiments, and Impact have been moved to the Applications folder at the top right of the page.
+
+![/Screen_Shot_2022-01-05_at_9.18.06_PM.png](/Screen_Shot_2022-01-05_at_9.18.06_PM.png)
+
+### Where are sharing and permissions set?
+
+Previously, sharing and permissions were editable at both the report and board levels. This made managing sharing and permissions tedious due to the sheer number of items requiring individual settings.
+
+Now, all reports saved on the same board will have the same sharing and permissions settings. This means sharing multiple reports with your team is a simple matter of sharing the board. As before, however, any report or board can be shared by simply clicking the "Copy URL" button, and sharing the resulting short link.
+
+![/Screen_Shot_2022-01-05_at_9.20.44_PM.png](/Screen_Shot_2022-01-05_at_9.20.44_PM.png)
+
+### What happens to reports on multiple boards?
+
+All copies of reports have a source location. This can be seen when looking at the report details.
+
+![/Screen_Shot_2022-07-11_at_6.06.58_PM.png](/Screen_Shot_2022-07-11_at_6.06.58_PM.png)
+
+However, the same report can be viewed from multiple different boards.
+
+![/Screen_Shot_2022-07-11_at_6.06.20_PM.png](/Screen_Shot_2022-07-11_at_6.06.20_PM.png)
+
+On boards, the arrow icon on the top left indicates of the report lives on this board, or is a linked view.
+
+### What is a linked report?
+
+Every report in Mixpanel has a board where it was originally saved to. This is called the original board. However, in the interest of being able to use the same report across a variety of boards and sharing the same insight across your team and company, Mixpanel has introduced the concept of a "linked report". A linked report is denoted by the arrow in the icon of the report. Any time an existing report is added to a board or a copy is made, a linked report is made. Any changes to the report will get reflected in all of the linked reports associated with the report.
+
+![/Screen_Shot_2022-07-11_at_6.06.58_PM.png](/Screen_Shot_2022-07-11_at_6.06.58_PM.png)
+
+### What is TV Mode?
+
+The **Enter TV Mode** option enables displaying a Board on a big screen (such as a TV in the office) where top-level company metrics / KPIs can be constantly monitored. The Board will auto-refresh every 10 minutes when in TV mode.
+
+![image](/boards-tv-mode.png "Enter TV Mode")
+
+### How do I standardize the color of segments across reports on the same dashboard?
+
+1. On the report, de-select all segments.
+2. Click the down arrow button next to segment name in the table below and select "Segment A->Z" for each report.
+3. Select all segments.
+In all reports, the segments colors should match.
+
+This should allow you to standardize across your reports as long as they have the same segment names.
+ 

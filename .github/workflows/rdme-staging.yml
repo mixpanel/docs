@@ -1,9 +1,10 @@
 name: Generate ReadMe Staging 🦉
 
 on:
-  # run this workflow on all PRs that have reference/ changed
+  # run this workflow on all PRs that have reference dirs changed
   pull_request:
     paths:
+      - 'openapi/**'
       - 'reference/**'
       - '.github/actions/**'
       - '.github/workflows/rdme-staging.yml'
@@ -41,6 +42,13 @@ jobs:
         with:
           rdme: docs ./reference --key=${{ secrets.README_API_KEY }} --version=0.0-pr-${{ github.event.number }}
 
+      # Push openapi specs to staging env
+      - run: npm run api:build
+      - run: npm run api:publish
+        env:
+          README_API_KEY: ${{ secrets.README_API_KEY }}
+          README_VERSION: 0.0-pr-${{ github.event.number }}
+
   # build and update comment with the proper link
   preview-notify:
     name: Preview / Notify
@@ -62,7 +70,7 @@ jobs:
       # Build PR Comment
       - name: Build PR comment
         id: build-pr-comment
-        uses: actions/github-script@v6
+        uses: actions/github-script@v7
         with:
           result-encoding: string
           script: |
