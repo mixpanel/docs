@@ -255,13 +255,11 @@ Mixpanel's SDKs have a legacy feature to automatically collect common mobile eve
 
 | Raw Name | Display Name | Description |
 | --- | --- | --- |
-| $ae_first_open | First App Open | Tracks the first time the user has opened the app. This event is retriggered if the user reinstalls the app or clears local storage. |
-| $ae_updated | App Updated | Executes when a user updates the app from the previous version. |
-| $ae_crashed | App Crashed | Executes when Mixpanel receives either an exception or a signal that indicated the app has crashed. |
-| $ae_session | App Session | Executes when a user spends more than 10 seconds in the app. |
-| $ae_iap | In App Purchase (IAP) | Executes when a user conducts an in-app purchase through your app. |
-
-
+| $ae_first_open | First App Open | Tracks the first time the user has opened the app. This event is retriggered if the user reinstalls the app or clears local storage. A user property First App Open Date (`$ae_first_app_open_date`) is tracked to indicate the date when app was first opened. |
+| $ae_updated | App Updated | Executes when a user updates the app from the previous version. A Version Updated (`$ae_updated_version`) property is tracked to store the new app version. |
+| $ae_crashed | App Crashed | Executes when Mixpanel receives either an exception or a signal that indicated the app has crashed. A Crash Reason (`$ae_crashed_reason`) property is tracked to help identify the type of crash. |
+| $ae_session | App Session | Executes when a user spends more than 10 seconds in the app. A Session Length (`$ae_session_length`) property is tracked to reflect the number of seconds user spent in the session. In addition, there are two user properties tracked: Total App Sessions (`$ae_total_app_sessions`) and Total App Session Length (`$ae_total_app_session_length`). |
+| $ae_iap | In App Purchase (IAP) | Executes when a user conducts an in-app purchase through your app. Mixpanel provides three properties for this event: Product Name (`$ae_iap_name`), Product Quantity (`$ae_iap_quantity`), and Product Price (`$ae_iap_price`). |
 
 ## Release History
 [See All Releases](https://github.com/mixpanel/mixpanel-iphone/releases).
