@@ -29,7 +29,7 @@ mixpanel.init('YOUR_TOKEN', {track_pageview: true});
 
 The `track_pageview` option currently does not auto-track page views in single-page applications. For single-page applications or other manual page view tracking, Mixpanel offers the standard page view event through `mixpanel.track_pageview()`. This call can be inserted into any hooks or listeners for your framework of choice.
 
-The standard page view event includes the page title, URL components, and marketing parameters described below. Additional page view event properties can also be added as event properties.
+The standard page view event (`$mp_web_page_view`) includes the page title (`current_page_title`), URL components (`current_domain`, `current_url_path`, `current_url_protocol`, `current_url_search`), and [marketing parameters](/docs/tracking-methods/sdks/javascript#tracking-utm-parameters) described below. Additional page view event properties can also be added as event properties.
 
 ```javascript JavaScript
 // Send a default page view event
@@ -92,7 +92,7 @@ For domains that don't allow cross-subdomain cookies, you should be setting `cro
 
 It's very common to have certain properties that you want to include with each event you send. Generally, these are things you know about the user rather than about a specific event - for example, the user's age, gender, source, or initial referrer.
 
-To make things easier, you can register these properties as super properties. If you tell us just once that these properties are important, we will automatically include them with all events sent. Super properties are stored in a browser cookie, and will persist between visits to your site.
+To make things easier, you can register these properties as super properties. If you tell us just once that these properties are important, we will automatically include them with all events sent. Super properties are stored in a browser cookie, and will persist between visits to your site. Mixpanel already stores some information as super properties by default; see a full list of Mixpanel default properties [here](/docs/data-structure/property-reference#default-properties).
 
 To set super properties, call [`mixpanel.register()`](https://github.com/mixpanel/mixpanel-js/blob/master/doc/readme.io/javascript-full-api-reference.md#mixpanelregister).
 
