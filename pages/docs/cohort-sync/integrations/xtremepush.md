@@ -50,3 +50,20 @@ In dynamic sync, Mixpanel initiates sync between a cohort and Xtremepush every t
 
 ## Select the Custom Segment in Xtremepush
 Once the export completes, you will see a custom segment reflecting the set of users from your Mixpanel cohort (e.g. "7days-cart-abandoners"):
+
+## Xtremepush Events into Mixpanel & MTU exemptions
+
+You can use events from your Xtremepush integration to perform deeper analysis in Mixpanel.
+
+Events coming from Xtremepush are marked with the property `$source`.
+
+Mixpanel will exempt certain messaging outreach events from MTU calculations, meaning you're free to send campaigns to dormant users without them counting towards MTU billing (only once a user engages with a message will they then be counted towards that tally).
+
+The following Xtremepush events are exempt from MTU calculations:
+- xp.message.send.batch (EVENT_MESSAGE_SEND_BATCH)
+- xp.message.delivery (EVENT_MESSAGE_DELIVERY)
+- xp.message.bounce (EVENT_MESSAGE_BOUNCE)
+- xp.message.open (EVENT_MESSAGE_OPEN)
+- xp.message.click (EVENT_MESSAGE_CLICK)
+- xp.message.unsubscribe (EVENT_MESSAGE_UNSUBSCRIBE)
+- xp.message.complaint (EVENT_MESSAGE_COMPLAINT)
