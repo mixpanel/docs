@@ -88,7 +88,7 @@ We recommend exporting Mixpanel data into customer-managed BigQuery, for this th
 
 2. Give Mixpanel the necessary permissions to export into this dataset.
 
-   > **Note:** If your organizationg uses [domain restriction constraint](https://cloud.google.com/resource-manager/docs/organization-policy/restricting-domains) you will have to update the policy to allow Mixpanel domain `mixpanel.com` and Google Workspace customer ID: `C00m5wrjz`.
+   > **Note:** If your organization uses [domain restriction constraint](https://cloud.google.com/resource-manager/docs/organization-policy/restricting-domains) you will have to update the policy to allow Mixpanel domain `mixpanel.com` and Google Workspace customer ID: `C00m5wrjz`.
 
    We need two permissions to manage the dataset. 
 
