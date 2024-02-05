@@ -1241,12 +1241,13 @@ paths:
         This endpoint will return a 429 error if called more than 100 times in a rolling 24 hour window. We recommend updating lookup tables at most hourly to stay within this limit.
 
         This endpoint will return a 413 error if a Lookup Table exceeds 100MB uncompressed. In practice, this translates to 1-2M rows. If you have a lookup table that exceeds the limit, we recommend pruning the number of columns to those that are useful to analysis. Removing long URLs or user-generated content can bring a lookup table within this limit. If you still exceed the limit, please reach out to us at apis@mixpanel.com -- we'd love to hear your use case!
-        [block:api-header]
-        {
-          "title": "Legacy API"
-        }
-        [/block]
-        Our [legacy lookup tables API](https://developer.mixpanel.com/v2.60/reference/lookup-tables) is now deprecated; we strongly recommend transitioning to this API.
+        #Removed (no longer exist since migrating Dev Docs to Docs): 
+        #[block:api-header]
+        #{
+        #  "title": "Legacy API"
+        #}
+        #[/block]
+        #Our [legacy lookup tables API](https://developer.mixpanel.com/v2.60/reference/lookup-tables) is now deprecated; we strongly recommend transitioning to this API.
       parameters:
         - in: path
           name: id
