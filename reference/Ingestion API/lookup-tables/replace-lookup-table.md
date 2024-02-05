@@ -6,7 +6,7 @@ hidden: false
 createdAt: "2021-10-05T01:49:31.011Z"
 updatedAt: "2023-09-26T21:06:39.089Z"
 ---
-Lookup Tables must be [created via our UI](../pages/docs/data-structure/lookup-tables#how-do-i-upload-a-lookup-table). Once a Lookup Table is created, its contents can be replaced via this API.
+Lookup Tables must be [created via our UI](https://docs.mixpanel.com/docs/data-structure/lookup-tables#how-do-i-upload-a-lookup-table). Once a Lookup Table is created, its contents can be replaced via this API.
 
 ```sh
 curl -XPUT 'https://api.mixpanel.com/lookup-tables/ID?project_id={YOUR_PROJECT_ID}' \
