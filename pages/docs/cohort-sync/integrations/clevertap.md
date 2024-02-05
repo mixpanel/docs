@@ -33,6 +33,8 @@ Mixpanel only exports identified user profiles to match to CleverTap - users wit
 
 It is recommended to set a `$CleverTap_user_id` user property with the ID that you use to identify users in Mixpanel. CleverTap will use this property as the first option to match user profiles in CleverTap and include them in the segments. For more information on how CleverTap matches exported cohorts from Mixpanel, refer to [CleverTap's User Identity Management](https://docs.clevertap.com/docs/mixpanel-integration#user-identity-management).
 
+In addition, when our ingestion service detects calls setting this user property, Mixpanel will also auto-alias the value of `$CleverTap_user_id` to the user's distinct_id. This ensures that messaging and experiment data passed from CleverTap to Mixpanel still attributes to the correct user.
+
 ## Export a Cohort
 
 To export a Cohort to CleverTap:
@@ -61,3 +63,33 @@ Once the export completes, you will see a segment reflecting the set of users fr
 ![CleverTap 4 Image](/clevertap4.png)
 
 You can also refer to CleverTap's [Mixpanel Import (Cohort)](https://docs.clevertap.com/docs/mixpanel-integration) documentation.
+
+## CleverTap Events into Mixpanel & MTU exemptions
+
+You can use events from your CleverTap integration to perform deeper analysis in Mixpanel.
+
+Events coming from CleverTap are marked with the property `$source`.
+
+Mixpanel will exempt certain messaging outreach events from MTU calculations, meaning you're free to send campaigns to dormant users without them counting towards MTU billing (only once a user engages with a message will they then be counted towards that tally).
+
+The following CleverTap events are exempt from MTU calculations:
+- Notification Sent
+- Notification Viewed
+- Notification Clicked
+- Push Impressions
+- Notification Replied
+- Push Unregistered
+- Control Group
+- Channel Unsubscribed
+- Reachable By
+- Notification Delivered
+- AB Experiment Rendered
+- AB Experiment Stopped
+- AB Experiment Rolled Out
+- Geocluster Entered
+- Geocluster Exited
+- Reply Sent
+- App Uninstalled
+- Webhook Delivered
+- State Transitioned
+- UTM Visited
