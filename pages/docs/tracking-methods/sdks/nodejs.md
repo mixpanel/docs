@@ -68,7 +68,7 @@ mixpanel.track('event name', {
 });
 ```
 
-Additionally, the geolocate boolean setting needs to be 'true' for Mixpanel to infer the ip property provided in the event payload.
+The geolocate boolean setting needs to be `true` for Mixpanel to infer the location based on the ip property provided in the event payload.
 
 ## Storing User Profiles
 
