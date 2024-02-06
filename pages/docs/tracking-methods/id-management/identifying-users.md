@@ -118,7 +118,7 @@ If you have an existing project with no data in it, you can also switch to using
 Customer Data Platform (CDP) integrations may require some configuration to work the Simplified API:
 - Segment works out of the box with both the simplified and original APIs with no special configurations.
 - Rudderstack has a [connection setting](https://www.rudderstack.com/docs/destinations/streaming-destinations/mixpanel/#connection-settings) that should match the API version configured on your Mixpanel project.
-- mParticle works out of the box with the original API, but requires the following change to work with the simplified API: supply `$device_id` and `$user_id` explicitly as properties on your events.
+- mParticle works out of the box with both the original API, and the Simplified API; when using the Simplified API (for new projects) ensure the "Simplified ID Merge" option is checked in mParticle's connection details
 
 Most other integrations are unaffected by this API change. These integrations are not involved in identity management, they send data to the ID they are given and will work the same way on the simplified API that they do on the original API.
 
