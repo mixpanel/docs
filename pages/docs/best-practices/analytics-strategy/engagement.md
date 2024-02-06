@@ -35,7 +35,7 @@ Mixpanel’s Company KPIs Board template automatically creates a report with a r
 While the Company KPIs Board template is designed to do the heavy lifting for you, it’s easy to find your product’s power/core/casual users on your own. Here’s how:
 
 * In the Insights report, select an event that you define as your value moment (e.g., “watch video”).
-* Highlight “total” to bring up all the different ways you can group your users. Select “total per user.”
+* Highlight “Unique Users” to bring up all the different ways you can group your users. Select “total per user.”
 * Select your level of aggregation. Median (50th percentile) will be your core users. 90th percentile will be your power users. 25th percentile will be your casual users. By highlighting the line graph, you can view how many videos each group typically watches hourly, daily, weekly, or monthly.
 * Customize the date range. Mixpanel will default your line graph over time to a look back of the last 30 days (from the active day) and a day-by-day count.
  
