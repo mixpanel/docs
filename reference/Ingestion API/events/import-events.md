@@ -35,7 +35,7 @@ resp = requests.post(
 print(resp.json())
 ```
 
-See our [data model guide](/docs/tracking/reference/data-model#anatomy-of-an-event) to learn about each of the fields in the event.
+See our [data model guide](https://docs.mixpanel.com/docs/how-it-works/concepts) to learn about each of the fields in the event.
 
 ## Advanced
 * You can batch up to 2000 events per request to /import.
