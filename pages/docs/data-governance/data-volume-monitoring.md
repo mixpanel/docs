@@ -24,4 +24,5 @@ Only Project Admins or Owners can enable this setting, and it's only available o
 - We will check once a day as long as Data Volume Monitoring is enabled
 - We inspect event volume for the previous day
 - We use up to 24 months of event volume history to determine an "expected" range
+- We analyze up to 1,000 of most-active events which have volume of 100+ for at least half of the last month
 - Volume needs to be at least 50% higher or lower than the expected range for a change in volume to generate a notification
