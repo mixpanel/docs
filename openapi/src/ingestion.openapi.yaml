@@ -79,7 +79,7 @@ paths:
           "title": "Validation"
         }
         [/block]
-        /import validates the supplied events and returns a 400 status code if _any_ of the events fail validation with details of the error. If some events pass validation and others fail, we will ingest the events that pass validation. When you encounter a 400 error in production, simply log the JSON response, as it will contain the `$insert_id`s of the invalid events, which can be used to debug.
+        If you provide the strict=1 parameter (recommended), /import will validate the supplied events and returns a 400 status code if _any_ of the events fail validation with details of the error. If some events pass validation and others fail, Mixpanel will ingest the events that pass validation. When you encounter a 400 error in production, simply log the JSON response, as it will contain the `$insert_id`s of the invalid events, which can be used to debug.
 
         ### High-level requirements
 
