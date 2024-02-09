@@ -36,3 +36,5 @@ Events will be marked as "New" as long as the following criteria are met:
 
 If new property detection is enabled, notifications will also include a "View New Properties" button, which will take them to a Lexicon view of new properties.  Properties will be marked as "New" as long as the following criteria are met:
 - It was created within the last 30 days
+
+*Please note that all custom properties will **not** be marked as "New". 
