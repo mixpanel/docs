@@ -9,6 +9,8 @@
     </iframe>
 </div>
 
+> **Considerations:** the connection to Databricks is only supported **directly to clusters**. Connecting directly to jobs or SQL warehouses **is not currently supported**. The account used for the connection should have `can attach to` permissions to the cluster (and `can restart` if it auto-suspends), and `can use` to the warehouse the cluster leverages.
+
 Complete the following steps to get your Databricks connector up and running:
 
 1. Navigate to **Project Settings**, then select **Warehouse Sources**.
