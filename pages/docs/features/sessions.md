@@ -26,7 +26,7 @@ Since Mixpanel computes sessions on the fly, you can change this definition at a
 ## Use Cases
 These use cases assume that you're tracking an event for each page a user views. You can do this automatically with our [Javascript SDK](/docs/quickstart/connect-your-data?sdk=javascript) or using a CDP like Segment.
 
-To make these examples more interesting, we're using our own tracking on our [documentation site](https://docs.mixpanel.com/docs/what-is-mixpanel).
+To make these examples more interesting, we're using our own tracking on our [documentation site](/docs/what-is-mixpanel).
 
 ### How much time do users spend on my site per session?
 Each Session event comes with a "Session Duration (seconds)" property, which is computed by Mixpanel and indicates the amount of time spent during the session.
