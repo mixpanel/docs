@@ -79,7 +79,7 @@ paths:
           "title": "Validation"
         }
         [/block]
-        /import validates the supplied events and returns a 400 status code if _any_ of the events fail validation with details of the error. If some events pass validation and others fail, we will ingest the events that pass validation. When you encounter a 400 error in production, simply log the JSON response, as it will contain the `$insert_id`s of the invalid events, which can be used to debug.
+        If you provide the strict=1 parameter (recommended), /import will validate the supplied events and returns a 400 status code if _any_ of the events fail validation with details of the error. If some events pass validation and others fail, Mixpanel will ingest the events that pass validation. When you encounter a 400 error in production, simply log the JSON response, as it will contain the `$insert_id`s of the invalid events, which can be used to debug.
 
         ### High-level requirements
 
@@ -1240,12 +1240,6 @@ paths:
         This endpoint will return a 429 error if called more than 100 times in a rolling 24 hour window. We recommend updating lookup tables at most hourly to stay within this limit.
 
         This endpoint will return a 413 error if a Lookup Table exceeds 100MB uncompressed. In practice, this translates to 1-2M rows. If you have a lookup table that exceeds the limit, we recommend pruning the number of columns to those that are useful to analysis. Removing long URLs or user-generated content can bring a lookup table within this limit. If you still exceed the limit, please reach out to us at apis@mixpanel.com -- we'd love to hear your use case!
-        [block:api-header]
-        {
-          "title": "Legacy API"
-        }
-        [/block]
-        Our [legacy lookup tables API](https://developer.mixpanel.com/v2.60/reference/lookup-tables) is now deprecated; we strongly recommend transitioning to this API.
       parameters:
         - in: path
           name: id

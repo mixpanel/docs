@@ -14,6 +14,11 @@
   "mobile-attribution-tracking": "Mobile Attribution Tracking",
   "rudderstack": "Rudderstack",
   "segment": "Segment",
+  "shopify": {
+    "title": "Shopify ↗",
+    "href": "https://growtham.notion.site/a5eae6b9c89e4a8195ac6ad8cba11999?v=4e5e9f3071f64e1bb21a6091a8c75884",
+    "newWindow": true
+  },
   "snowplow": "Snowplow",
   "stripe": "Stripe"
 }

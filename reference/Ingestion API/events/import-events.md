@@ -44,8 +44,6 @@ See our [data model guide](https://docs.mixpanel.com/docs/how-it-works/concepts)
 * You can disable validation by removing the `strict=1` query parameter. We don't recommend this, since it makes it harder to debug errors.
 * You can use Service Account authentication, by passing `project_id=<YOUR_PROJECT_ID>` as a query parameter and using your service account username and password in the Basic Auth fields.
 
-## Validation
-If you provide the strict=1 parameter (recommended), /import will validate the supplied events and returns a 400 status code if _any_ of the events fail validation with details of the error. If some events pass validation and others fail, Mixpanel will ingest the events that pass validation.
 
 ### Common Issues
 
