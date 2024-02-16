@@ -27,9 +27,7 @@ Page view tracking is turned off by default. Page view events can be added autom
 mixpanel.init('YOUR_TOKEN', {track_pageview: true});
 ```
 
-The default `track_pageview` setting does not auto-track page views in single-page applications. For manual page view tracking, Mixpanel can send the standard page view event through `mixpanel.track_pageview()`. This call can be inserted into any hooks or listeners for your framework of choice.
-
-For tracking dynamic page views in single-page applications, the `track_pageview` option can also accept the following values for tracking.
+The default `track_pageview` setting does not auto-track page views in single-page applications. For tracking dynamic page views in single-page applications, the `track_pageview` option can also accept the following values for tracking.
 
 ```javascript JavaScript
 // Track when the path changes, ignoring any query string or hash changes
