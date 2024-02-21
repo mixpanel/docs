@@ -163,14 +163,16 @@ The table below is an overview of the permissions per role for reports and other
 | Edit Digests for Boards           | ✅ | Only the Creator | Only the Creator | Only the Creator |                               
 | Create/Edit Custom Events         | ✅ | ✅ | ✅ | ✅ Can save only for self        |
 | Create/Edit Saved Formulas        | ✅ | ✅ | ✅ | ✅ Can save only for self        |
+| Create/Edit Custom Properties     | ✅ | ✅ | ✅ | ✅ Can save only for self        |
+| Create/Edit Borrowed Properties   | ✅ | ✅ | ❌ | ❌ |
+| Map Property to Lookup Table in Lexicon | ✅ | ✅ | ❌         | ❌         |
 | Hide Data in Lexicon              | ✅ | ✅ | ❌         | ❌         |
-| Merge Data in Lexicon             | ✅ | ❌         | ❌         | ❌         |
-| Drop Data in Lexicon              | ✅ | ❌         | ❌         | ❌         |
 | Edit Descriptions in Lexicon      | ✅ | ✅ | ❌         | ❌         |
 | Add Tags in Lexicon               | ✅ | ✅ | ❌         | ❌         |
+| Merge Data in Lexicon             | ✅ | ❌         | ❌         | ❌         |
+| Drop Data in Lexicon              | ✅ | ❌         | ❌         | ❌         |
 | Download CSV in Lexicon           | ✅ | ✅ | ✅ | ✅ |
 | Upload a Lookup Table             | ✅ | ✅ | ✅ | ✅ |
-| Map Property to Lookup Table in Lexicon | ✅ | ✅ | ❌         | ❌         |
 
 #### Owner
 
