@@ -62,7 +62,7 @@ Mixpanel supports stitching user behaviour pre-login (e.g. traffic from your web
 - How much of my Purchase revenue can I attribute to a particular campaign?
 - What is the conversion rate of reading a particular blog post → signing up?
 
-This system is called [ID Merge](https://docs.mixpanel.com/docs/tracking-methods/id-management/identifying-users). If using our Web / Mobile SDKs or a CDP, once your user signs up or logs in, call `.identify(<user_id>)`. Any events prior to calling `.identify` are considered anonymous events. Mixpanel's SDKs will generate a `$device_id` to associate these events to the same anonymous user. By calling `.identify(<user_id>)` when a user signs up or logs in, you're telling Mixpanel that `$device_id` belongs to a known user with ID `user_id`. Under the hood, Mixpanel will stitch the event streams of those users together. This works even if a user has multiple anonymous sessions (eg: on desktop and mobile). As long as you always call `.identify` when the user logs in, all of that activity will be stitched together.
+This system is called [ID Merge](/docs/tracking-methods/id-management/identifying-users). If using our Web / Mobile SDKs or a CDP, once your user signs up or logs in, call `.identify(<user_id>)`. Any events prior to calling `.identify` are considered anonymous events. Mixpanel's SDKs will generate a `$device_id` to associate these events to the same anonymous user. By calling `.identify(<user_id>)` when a user signs up or logs in, you're telling Mixpanel that `$device_id` belongs to a known user with ID `user_id`. Under the hood, Mixpanel will stitch the event streams of those users together. This works even if a user has multiple anonymous sessions (eg: on desktop and mobile). As long as you always call `.identify` when the user logs in, all of that activity will be stitched together.
 
 ![simplified id merge example.png](Migrating%20from%20Flurry%201f10648f83b948c7a7994bf117018627/simplified_id_merge_example.png)
 
@@ -73,7 +73,7 @@ Anonymous users on Flurry are also identified based on their device IDs. Similar
 Two key areas where Mixpanel differs from Flurry in data capture:
 
 1. In Mixpanel, we have no limits on the events we capture. Whereas in Flurry, [no more than 1000 events will be captured in a given session. If you capture more than 1000, the first to be captured are lost.](https://developer.yahoo.com/flurry/docs/analytics/lexicon/eventsbestpractice/)
-2. In Mixpanel, [sessions are virtual events that you can configure, and apply the changes retroactively](https://docs.mixpanel.com/docs/features/sessions). Whereas in Flurry, [if the app pauses or moves to the background for more than 10 seconds, the next time the app runs, Flurry will automatically create a new session and end the prior session](https://developer.yahoo.com/flurry/docs/faq/general/#how-are-sessions-counted).
+2. In Mixpanel, [sessions are virtual events that you can configure, and apply the changes retroactively](/docs/features/sessions). Whereas in Flurry, [if the app pauses or moves to the background for more than 10 seconds, the next time the app runs, Flurry will automatically create a new session and end the prior session](https://developer.yahoo.com/flurry/docs/faq/general/#how-are-sessions-counted).
 
 ## Historical Backfill of Existing Data
 
@@ -83,7 +83,7 @@ If you must import historical Flurry data for reference purposes, we strongly re
 
 To backfill data, we recommend the following approaches:
 
-- If you have a data warehouse, we recommend [exporting your raw data from Flurry](https://developer.yahoo.com/flurry/docs/analytics/rdd/api/) to that data warehouse, and then use our [data warehouse connector](https://docs.mixpanel.com/docs/tracking-methods/data-warehouse/overview) or [Import API](https://developer.mixpanel.com/reference/import-events) to import to Mixpanel
+- If you have a data warehouse, we recommend [exporting your raw data from Flurry](https://developer.yahoo.com/flurry/docs/analytics/rdd/api/) to that data warehouse, and then use our [data warehouse connector](/docs/tracking-methods/data-warehouse/overview) or [Import API](https://developer.mixpanel.com/reference/import-events) to import to Mixpanel
 - If you do not have a data warehouse: you can export your raw data from Flurry and leverage our [helper function](https://github.com/mixpanel/mixpanel-utils) to move it into MIxpanel
 
 ## Sending Live Data to Mixpanel
@@ -102,11 +102,11 @@ Mixpanel accepts event data from a variety of different sources. Choose your imp
 
 We support the following data collection mechanisms:
 
-- [Client-side SDKs & Server-side SDKs](https://docs.mixpanel.com/docs/migration/amplitude#client-side-sdks--server-side-sdks): Simply replace Flurry code calls to track events with Mixpanel calls instead
-- [Customer Data Platforms (CDPs)](https://docs.mixpanel.com/docs/migration/amplitude#customer-data-platforms-cdps) like [Segment](https://segment.com/): Go into your CDP settings to add Mixpanel as a destination, and point your data stream to Mixpanel
-- [Warehouse Connectors](https://docs.mixpanel.com/docs/tracking-methods/data-warehouse/overview): If you have data already in Snowflake, BigQuery, Redshift, and Databricks, you can set up recurring syncs from your data warehouse.
-- [Import API](https://docs.mixpanel.com/docs/migration/amplitude#import-api): Point your event ingestion pipeline to [Mixpanel’s robust API](https://developer.mixpanel.com/reference/import-events) for data ingestion
-- [Reverse ETL](https://docs.mixpanel.com/docs/migration/amplitude#reverse-etl-retl) (RETL) tools like [Census](https://getcensus.com/): Go into your RETL settings to add Mixpanel as a destination, and point your syncs to Mixpanel
+- [Client-side SDKs & Server-side SDKs](/docs/migration/amplitude#client-side-sdks--server-side-sdks): Simply replace Flurry code calls to track events with Mixpanel calls instead
+- [Customer Data Platforms (CDPs)](/docs/migration/amplitude#customer-data-platforms-cdps) like [Segment](https://segment.com/): Go into your CDP settings to add Mixpanel as a destination, and point your data stream to Mixpanel
+- [Warehouse Connectors](/docs/tracking-methods/data-warehouse/overview): If you have data already in Snowflake, BigQuery, Redshift, and Databricks, you can set up recurring syncs from your data warehouse.
+- [Import API](/docs/migration/amplitude#import-api): Point your event ingestion pipeline to [Mixpanel’s robust API](https://developer.mixpanel.com/reference/import-events) for data ingestion
+- [Reverse ETL](/docs/migration/amplitude#reverse-etl-retl) (RETL) tools like [Census](https://getcensus.com/): Go into your RETL settings to add Mixpanel as a destination, and point your syncs to Mixpanel
 
 Below, we go through how you can update your Flurry SDKs to Mixpanel SDKs.
 
@@ -118,11 +118,11 @@ This section will detail the iOS Swift SDKs (for the sake of brevity), although 
 
 Flurry iOS Docs: [https://github.com/flurry/flurry-ios-sdk/tree/master?tab=readme-ov-file#examples](https://github.com/flurry/flurry-ios-sdk/tree/master?tab=readme-ov-file#examples)
 
-Mixpanel iOS Docs: [https://docs.mixpanel.com/docs/tracking-methods/sdks/swift](https://docs.mixpanel.com/docs/tracking-methods/sdks/swift)
+Mixpanel iOS Docs: [/docs/tracking-methods/sdks/swift](/docs/tracking-methods/sdks/swift)
 
 ### **Installing the Mixpanel SDK**
 
-Before getting started, initialize the Mixpanel SDK according to the directions [here](https://docs.mixpanel.com/docs/quickstart/connect-your-data?sdk=swift)
+Before getting started, initialize the Mixpanel SDK according to the directions [here](/docs/quickstart/connect-your-data?sdk=swift)
 
 **Initialization** 
 
@@ -219,7 +219,7 @@ If you're unsure how you currently track data, or might want to consider trackin
 
 Once you have live data in Mixpanel, the next step is to start helping your existing end users of Flurry learn to use Mixpanel.
 
-To give everyone a foundation of how to use Mixpanel, we recommend checking our our tutorials [here](https://docs.mixpanel.com/docs/tutorials/launch/create-boards).
+To give everyone a foundation of how to use Mixpanel, we recommend checking our our tutorials [here](/docs/tutorials/launch/create-boards).
 
 We’ve found also that the best way to get end users to adopt a new tool is to appoint a champion to help drive change. A great champion would be someone on your team who is data savvy, and can help the team assess the the top used reports in Flurry, and run targeted trainings where you work with end users to re-build these reports side by side in Mixpanel. 
 
