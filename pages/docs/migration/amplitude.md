@@ -146,7 +146,8 @@ We support the following data collection mechanisms:
 - [Reverse ETL](#reverse-etl-retl) (RETL) tools like [Census](https://getcensus.com): Go into your RETL settings to add Mixpanel as a destination, and point your syncs to Mixpanel
 
 ### Data Warehouse Connectors
-Need to add this
+
+You can set up the [Mixpanel Warehouse Connector](/docs/tracking-methods/data-warehouse/overview) to set your implementation to Mixpanel. You can learn more about event mappings [here](/docs/tracking-methods/data-warehouse/sending-events) and about user mappings [here](/docs/tracking-methods/data-warehouse/sending-user-profiles).
 
 ### Client-side SDKs & Server-side SDKs
     
