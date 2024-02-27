@@ -34,11 +34,6 @@ Next you'll need to set the server location to EU when initializing the Mixpanel
 - [React Native](/docs/tracking-methods/sdks/react-native#eu-data-residency)
 - [Flutter](/docs/tracking-methods/sdks/flutter#eu-data-residency)
 
-## Querying Mixpanel Data in the EU
-Once you've set the server location to EU, please notify Mixpanel so we can set your project's cluster to `mixpanel-prod-eu`.
-
-To do so, reach out to your Relationship Manager, Customer Success Manager, or Account Executive and they can help coordinate this change. Once the setup is complete, you can log into your account at `eu.mixpanel.com` and query data in any Mixpanel report.
-
 ## Log in via SSO
 If you want the IdP initiated flow to direct to [eu.mixpanel.com](https://eu.mixpanel.com/), prepend "eu." to your postback URL. For example, [mixpanel.com/security/login/1](https://mixpanel.com/security/login/1) would need to be changed to [eu.mixpanel.com/security/login/1](https://eu-mixpanel.com/security/login/1). 
 

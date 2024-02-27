@@ -8,11 +8,10 @@ The startup program empowers companies to easily track and analyze data to find 
 - Hasn't previously redeemed other Mixpanel offers
 - Is not on a paid plan
 
-Eligible startups receive their first year of Mixpanel free, valued up to \$50,000. Startups are able to purchase an annual Growth or Enterprise* plan as well as add-ons such as Group Analytics and Data Pipelines. The program allows startups to track up to 100M events per month, or 1.2B events per year. All the power of Mixpanel you need to launch, grow, and scale your product.
+Eligible startups receive their first year of Mixpanel free, valued up to \$50,000. Startups are able to purchase an annual Growth plan as well as add-ons such as Group Analytics and Data Pipelines. The program allows startups to track up to 100M events per month, or 1.2B events per year. All the power of Mixpanel you need to launch, grow, and scale your product.
 
 Participants will be invited to join our exclusive Mixpanel for Startups Community in Slack where you’ll have access to curated content, workshops, resources, and opportunities to learn from other startups as well as the team at Mixpanel.
 
-*Enterprise plans purchased through the Mixpanel for Startups program do not include a dedicated CSM or priority response times.
 
 [Apply for the startup program](https://mixpanel.com/startups/)
 
@@ -48,7 +47,7 @@ If you have already redeemed an offer through the [Product School](https://mixpa
 
 #### How do I redeem the startup program offer?
 
-Eligible startups can [apply directly](https://mixpanel.com/startups-apply/) for the startup program. Credits will be added to your account and automatically be applied to eligible line items when purchasing or upgrading to an annual [Growth or Enterprise plan](https://mixpanel.com/pricing/#edit-plan) via our plan builder.
+Eligible startups can [apply directly](https://mixpanel.com/startups-apply/) for the startup program. Credits will be added to your account and automatically be applied to eligible line items when purchasing or upgrading to an annual [Growth plan](https://mixpanel.com/pricing/#edit-plan) via our plan builder.
 
 Once you have successfully applied, you need to click 'Redeem Now' and you will be guided to our plan builder where you can select the number of events you will need, along with adding on premium features like [Data Pipelines](https://mixpanel.com/data-pipeline/) and/or [Group Analytics](https://mixpanel.com/group-analytics/). You can also access the plan builder via the Billing section in your Organization Settings.
 
@@ -74,7 +73,7 @@ No, the Mixpanel for Startups program offers eligible companies their first year
 
 When you join the program, \$50,000 worth of credits will be added to your account to apply to eligible purchases and upgrades made in your first year. You can see these credits in Organization Settings > Plan Details & Billing. 
 
-The Manage Billing & Payment section displays detailed information about the credits that are used to cover your first year of Mixpanel. Eligible credits will also appear in the checkout process when purchasing a Growth or Enterprise plan and premium features.
+The Manage Billing & Payment section displays detailed information about the credits that are used to cover your first year of Mixpanel. Eligible credits will also appear in the checkout process when purchasing a Growth plan and premium features.
 
 #### Will the credits in my account expire?
 

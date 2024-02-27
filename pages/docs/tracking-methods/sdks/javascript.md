@@ -17,7 +17,7 @@ mixpanel.track(
 );
 ```
 
-All events sent from the JavaScript library will be sent over HTTPS. 
+All events sent from the JavaScript library will be sent over HTTPS.
 
 ### Tracking Page Views
 
@@ -27,9 +27,20 @@ Page view tracking is turned off by default. Page view events can be added autom
 mixpanel.init('YOUR_TOKEN', {track_pageview: true});
 ```
 
-The `track_pageview` option currently does not auto-track page views in single-page applications. For single-page applications or other manual page view tracking, Mixpanel offers the standard page view event through `mixpanel.track_pageview()`. This call can be inserted into any hooks or listeners for your framework of choice.
+The default `track_pageview` setting does not auto-track page views in single-page applications. For tracking dynamic page views in single-page applications, the `track_pageview` option can also accept the following values for tracking.
 
-The standard page view event includes the page title, URL components, and marketing parameters described below. Additional page view event properties can also be added as event properties.
+```javascript JavaScript
+// Track when the path changes, ignoring any query string or hash changes
+mixpanel.init('YOUR_TOKEN', {track_pageview: "url-with-path"});
+
+// Track when the path or query string change, ignoring hash changes
+mixpanel.init('YOUR_TOKEN', {track_pageview: "url-with-path-and-query-string"});
+
+// Track any URL changes in the path, query string, or hash
+mixpanel.init('YOUR_TOKEN', {track_pageview: "full-url"});
+```
+
+The standard page view event (`$mp_web_page_view`) includes the page title (`current_page_title`), URL components (`current_domain`, `current_url_path`, `current_url_protocol`, `current_url_search`), and [marketing parameters](/docs/tracking-methods/sdks/javascript#tracking-utm-parameters) described below. Additional page view event properties can also be added as event properties.
 
 ```javascript JavaScript
 // Send a default page view event
@@ -43,7 +54,7 @@ mixpanel.track_pageview({"page": "Pricing"});
 
 The JavaScript library will automatically add any UTM parameters (`utm_source`, `utm_campaign`, `utm_medium`, `utm_term`, `utm_content`) present on the page to events fired from that page load.
 
-When UTM parameters for an identified user are seen for the first time, these will also be stored on the user profile as `initial_utm_source`, `initial_utm_campaign`, `initial_utm_medium`, `initial_utm_term`, and `initial_utm_content`. 
+When UTM parameters for an identified user are seen for the first time, these will also be stored on the user profile as `initial_utm_source`, `initial_utm_campaign`, `initial_utm_medium`, `initial_utm_term`, and `initial_utm_content`.
 
 In addition to UTM parameters, Mixpanel will also add any advertising click IDs to events fired. These include `dclid`, `fbclid`, `gclid`, `ko_click_id`, `li_fat_id`, `msclkid`, `ttclid`, `twclid`, `wbraid`
 
@@ -75,15 +86,15 @@ There are other less common ways to send data to Mixpanel. To learn more, please
 
 [`mixpanel.track_forms()`](https://github.com/mixpanel/mixpanel-js/blob/master/doc/readme.io/javascript-full-api-reference.md#mixpaneltrack_forms) - similar to `mixpanel.track_links()`, but tracks form submissions.
 
-### Mixpanel Cookie 
+### Mixpanel Cookie
 By default, Mixpanel cookies send over HTTPS requests as part of the headers. However, Mixpanel’s JavaScript library provides a configuration to completely prevent the browser from transmitting your cookies with non-HTTPS requests.
 
-To enable this, use the [`set_config()`](https://github.com/mixpanel/mixpanel-js/blob/master/doc/readme.io/javascript-full-api-reference.md#mixpanelset_config) method and change the `secure_cookie` flag from `false` to `true`. If you configure your instance to send data over HTTP instead of HTTPS but do set `secure_cookie: true`, then your cookie data is not sent to the server. 
+To enable this, use the [`set_config()`](https://github.com/mixpanel/mixpanel-js/blob/master/doc/readme.io/javascript-full-api-reference.md#mixpanelset_config) method and change the `secure_cookie` flag from `false` to `true`. If you configure your instance to send data over HTTP instead of HTTPS but do set `secure_cookie: true`, then your cookie data is not sent to the server.
 
 #### Mixpanel Cookies for Hosted Subdomains
 The Mixpanel JavaScript library has a default setting of `cross_subdomain_cookie: true` in the `mixpanel.init` function. This enables Mixpanel cookies to work across subdomains, keeping Mixpanel's Distinct ID and [Super Properties](/docs/tracking-methods/sdks/javascript#super-properties) consistent across these sub-domains.
 
-However, if your site is hosted on a domain like Heroku (or similar - [see a complete list of affected domains](https://publicsuffix.org/list/effective_tld_names.dat)) with a URL like XYZ.herokuapp.com, cross-subdomain cookies are not allowed for security reasons. Having Mixpanel default settings for `cross_subdomain_cookie` on these sites, results to users' Distinct IDs being reset to a new `$distinct_id` on each page load. This will cause issues with Mixpanel reports, namely broken Retention reports and Funnels. 
+However, if your site is hosted on a domain like Heroku (or similar - [see a complete list of affected domains](https://publicsuffix.org/list/effective_tld_names.dat)) with a URL like XYZ.herokuapp.com, cross-subdomain cookies are not allowed for security reasons. Having Mixpanel default settings for `cross_subdomain_cookie` on these sites, results to users' Distinct IDs being reset to a new `$distinct_id` on each page load. This will cause issues with Mixpanel reports, namely broken Retention reports and Funnels.
 
 For domains that don't allow cross-subdomain cookies, you should be setting `cross_subdomain_cookie: false`. Alternatively, you can also use a CNAME to change from yourdomain.herokuapp.com to yourdomain.com.
 
@@ -92,7 +103,7 @@ For domains that don't allow cross-subdomain cookies, you should be setting `cro
 
 It's very common to have certain properties that you want to include with each event you send. Generally, these are things you know about the user rather than about a specific event - for example, the user's age, gender, source, or initial referrer.
 
-To make things easier, you can register these properties as super properties. If you tell us just once that these properties are important, we will automatically include them with all events sent. Super properties are stored in a browser cookie, and will persist between visits to your site.
+To make things easier, you can register these properties as super properties. If you tell us just once that these properties are important, we will automatically include them with all events sent. Super properties are stored in a browser cookie, and will persist between visits to your site. Mixpanel already stores some information as super properties by default; see a full list of Mixpanel default properties [here](/docs/data-structure/property-reference#default-properties).
 
 To set super properties, call [`mixpanel.register()`](https://github.com/mixpanel/mixpanel-js/blob/master/doc/readme.io/javascript-full-api-reference.md#mixpanelregister).
 
@@ -135,16 +146,16 @@ If you want to store a super property only once (often for things like initial r
 This means that it's safe to call `mixpanel.register_once()` with the same property on every page load, and it will only set it if the super property doesn't exist.
 
 #### Super Properties Live in Local Storage
-Our JS library uses a cookie (created in the domain of the page loading the lib) to store super properties. These are stored as JSON in the cookie. They will persist for the life of that cookie, which by default is 365 days. If you wish to change the life of the cookie, you may do so using [`set_config()`](https://github.com/mixpanel/mixpanel-js/blob/master/doc/readme.io/javascript-full-api-reference.md#mixpanelset_config) to adjust the value for the `cookie_expiration` (an integer in days). 
+Our JS library uses a cookie (created in the domain of the page loading the lib) to store super properties. These are stored as JSON in the cookie. They will persist for the life of that cookie, which by default is 365 days. If you wish to change the life of the cookie, you may do so using [`set_config()`](https://github.com/mixpanel/mixpanel-js/blob/master/doc/readme.io/javascript-full-api-reference.md#mixpanelset_config) to adjust the value for the `cookie_expiration` (an integer in days).
 
 ## Managing User Identity
 
-You can handle the identity of a user using the `identify()` and `alias()` methods. Proper use of these methods can connect events to the correct user as they move across devices, browsers, and other platforms. 
+You can handle the identity of a user using the `identify()` and `alias()` methods. Proper use of these methods can connect events to the correct user as they move across devices, browsers, and other platforms.
 
 ### Identify
 Identify a user with a unique ID to track user activity across devices, tie a user to their events, and create a user profile. If you never call this method, unique visitors are tracked using a UUID that generates the first time they visit the site.
 
-Call `identify()` when you know the identity of the current user, typically after log-in or sign-up. We recommend against using `identify()` for anonymous visitors to your site. 
+Call `identify()` when you know the identity of the current user, typically after log-in or sign-up. We recommend against using `identify()` for anonymous visitors to your site.
 
 ```javascript JavaScript
 // after log-in or sign-up:
@@ -171,7 +182,7 @@ In addition to events, you can store user profiles in Mixpanel. Profiles are per
 
 You can set properties on a user profile with `mixpanel.people.set`.
 ```javascript JavaScript
-// mixpanel.identify must be called in order to associate the profile properties you set 
+// mixpanel.identify must be called in order to associate the profile properties you set
 // with that user. You only need to call it once per page load for a given user.
 mixpanel.identify("13793");
 
@@ -244,7 +255,7 @@ A group is identified by the `group_key` and `group_id`.
 * `group_key` is the property that connects event data for Group Analytics.
 * `group_id` is the identifier for a specific group.
 
-If the property “company” is chosen for Group Analytics, “company” is the `group_key`, and “Mixpanel”, “Company A”, and “13254” are all potential `group_id` values. 
+If the property “company” is chosen for Group Analytics, “company” is the `group_key`, and “Mixpanel”, “Company A”, and “13254” are all potential `group_id` values.
 
 A user can belong to multiple groups. All updates to a group operate on the `group_key` and `group_id`.
 
@@ -342,7 +353,7 @@ There are two steps: setting up a proxy server and pointing our JavaScript SDK a
 
 **Step 1: Set up a proxy server**
 The simplest way is to use our [sample nginx config](https://github.com/mixpanel/tracking-proxy). This config redirects any calls made to your proxy server to Mixpanel.
-   
+
 **Step 2: Point our JavaScript SDK at your server**
 Add the following line before the Mixpanel JS snippet, replacing `YOUR_PROXY_DOMAIN` with your proxy server's domain. This is not required if you use npm or yarn instead of the snippet:
 ```js
