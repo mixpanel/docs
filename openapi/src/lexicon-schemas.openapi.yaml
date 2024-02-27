@@ -272,7 +272,7 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/ListSchemasResponse'
+                $ref: '#/components/schemas/Schema'
         '401':
           $ref: ./common/responses.yaml#/401Unauthorized
         '403':

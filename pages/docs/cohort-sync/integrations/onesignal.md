@@ -37,7 +37,7 @@ In order to match an exported Mixpanel user to OneSignal, the user's Mixpanel pr
 
 User profiles without this user property will **not** export to OneSignal - it is a requirement for user matching.
 
-In addition, when its ingestion service detects calls setting this user property, Mixpanel will also alias the value of `$onesignal_user_id` to the user's distinct_id when setting the `$onesignal_user_id` user property. This ensures that messaging events passed from OneSignal campaigns to Mixpanel still attribute to the correct user.
+In addition, when our ingestion service detects calls setting this user property, Mixpanel will also auto-alias the value of `$onesignal_user_id` to the user's distinct_id. This ensures that messaging data passed from OneSignal to Mixpanel still attributes to the correct user.
 
 ## Export a Cohort
 To export a cohort to OneSignal: 
@@ -65,8 +65,16 @@ Once the export completes, you will see a Segment reflecting the set of users fr
 
 ![OneSignal 5 Image](/onesignal5.png)
 
-## OneSignal events into Mixpanel & MTU exemptions
+## OneSignal Events into Mixpanel & MTU exemptions
 
 OneSignal offers the ability to forward campaign interaction events to Mixpanel. For more detail, [please refer to OneSignal's integration guide](https://documentation.onesignal.com/docs/mixpanel).
 
+Events coming from OneSignal are marked with the property `$source`.
+
 Because OneSignal's event structure follows Mixpanel's naming convention for messaging events, it will have the same exemptions outlined in the MTU calculation guide for which events do not count towards MTU tallies. Message delivery events will not count towards a user being in MTU counts, while message engagement events will.
+
+The following OneSignal events are exempt from MTU calculations:
+- $app_open (App Opened from Push)
+- $campaign_delivery (Message Sent)
+- $campaign_received (Message Received)
+- $campaign_open (Message Opened) 
