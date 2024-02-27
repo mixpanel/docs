@@ -1,8 +1,8 @@
 # User Profiles
 
 > **Note:** The following terms are used in this section:
-> - "User Profile Properties" and "User Properties" are used interchangeableaby to refer to properties under a User Profile
-> - "Group Profile Properties" and "Group Properties" are used interchangeableaby to refer to properties under a Group Profile
+> - "User Profile Properties" and "User Properties" are used interchangeably to refer to properties under a User Profile
+> - "Group Profile Properties" and "Group Properties" are used interchangeably to refer to properties under a Group Profile
 > - "Profiles" is used to refer to both "User Profiles" and "Group Profiles"
 > - "Profile Properties" is used to refer to both "User Profile Properties" and "Group Profile Properties"
 
@@ -28,9 +28,9 @@ For more information about user profiles refer to the documentation on [The Mixp
 
 You can create or update User Profiles in similar ways you track events: from our [SDKs](/docs/tracking-methods/sdks/javascript#storing-user-profiles), via our [HTTP Engage API](https://developer.mixpanel.com/reference/profile-set), [Warehous Connectors](/docs/tracking-methods/data-warehouse/sending-user-profiles), or via our integrations partners.
 
-We recommend tracking user profiles from as close as possible to the source of truth, which is usually your application database or your CRM. One typical approach (especially for [Server-Side Tracking](/docs/tracking-methods/choosing-the-right-method#server-side-tracking)) is to run an hourly or daily script on your servers that pulls the list of user profiles from your database and pushes them to Mixpanel.
+We recommend tracking user profiles from as close as possible to the source of truth, which is usually your application database or your CRM. One typical approach (especially for [Server-Side Tracking](/docs/tracking-methods/choosing-the-right-method#server-side-tracking)) is to run an hourly or daily script on your servers that pull the list of user profiles from your database and pushes them to Mixpanel.
 
-Similiarly for [Group Profiles](/docs/data-structure/advanced/group-analytics#group-profiles), they can be created or updated using our [SDKs](/docs/tracking-methods/sdks/javascript#creating-group-profiles), via our [HTTP Groups API](https://developer.mixpanel.com/reference/group-set-property), [Warehous Connectors](/docs/tracking-methods/data-warehouse/sending-group-profiles), or via our integration partners.
+Similarly for [Group Profiles](/docs/data-structure/advanced/group-analytics#group-profiles), they can be created or updated using our [SDKs](/docs/tracking-methods/sdks/javascript#creating-group-profiles), via our [HTTP Groups API](https://developer.mixpanel.com/reference/group-set-property), [Warehous Connectors](/docs/tracking-methods/data-warehouse/sending-group-profiles), or via our integration partners.
 
 ### Operators
 
@@ -75,7 +75,7 @@ def get_users_from_database():
 def transform_to_mp_format(user):
     """Transform the above into Mixpanel's format"""
     # It's important to set this to the same distinct_id that you use when tracking events.
-    # We recommend using the primary key of your users table for this.
+    # We recommend using the primary key of your users' table for this.
     distinct_id = user.pop("user_id")
 
     # Note: we set `$ip` to 0 here to tell Mixpanel not to look up the IP of this user.
@@ -129,7 +129,7 @@ When preparing the CSV that you want to upload as profiles, you shouldÂ **not**Â
 
 #### Upload Your CSV
 
-Go the the **Import from CSV** tab and select your prepared CSV to begin the process.
+Go to the **Import from CSV** tab and select your prepared CSV to begin the process.
 
 #### Choose an Identifier Column
 
@@ -147,7 +147,7 @@ You'll have the opportunity to look through all columns in the CSV to preview th
 
 User Profiles can be deleted either via the [Users](https://mixpanel.com/report/users) page or programmatically via our [Engage API](https://developer.mixpanel.com/reference/delete-profile). We also provide a `people_delete` method in the mixpanel-utils library [here](https://github.com/mixpanel/mixpanel-utils#people-delete).
 
-Similiarly, [Group Profiles](/docs/data-structure/advanced/group-analytics#group-profiles) can also be deleted either via the [Users](https://mixpanel.com/report/users) page or programmatically via our [Groups API](https://developer.mixpanel.com/reference/delete-group).
+Similarly, [Group Profiles](/docs/data-structure/advanced/group-analytics#group-profiles) can also be deleted either via the [Users](https://mixpanel.com/report/users) page or programmatically via our [Groups API](https://developer.mixpanel.com/reference/delete-group).
 
 ## Reserved Profile Properties
 
@@ -161,7 +161,7 @@ Mixpanel reserves certain profile property names for special processing or for s
 | \$name, <br /> \$first_name, <br /> \$last_name | Name, <br /> First Name, <br /> Last Name | The user's / group's general name, as well as, first and last names. These are primarily useful because they are used, if available, in various Mixpanel UI / reports. For user [Cohort Syncs](/docs/cohort-sync/overview), only `$first_name` and `$last_name` is exported. |
 | $email | Email | The user's / group's email address. You must set this property if you want to send emails to users via partners receiving cohorts from our [Cohort Syncs](/docs/cohort-sync/overview). | 
 | $phone | Phone | The user's / group's phone number. You must set this property if you want to send SMS to users via partners receiving cohorts from our [Cohort Syncs](/docs/cohort-sync/overview). Note that a '+' needs to precede international phone numbers. If the user does not import a phone number with the '+' sign in front, the country code will be prefixed to the front of the number based on the $country_code default property, resulting in a phone number with two country codes. |
-| $avatar | Avatar URL | Set this property to a url resource of a gif, jpg, jpeg, or png to update the profile picture in a profile. This property will override a profile picture pulled from [Gravatar](https://gravatar.com/). |
+| $avatar | Avatar URL | Set this property to a URL resource of a gif, jpg, jpeg, or png to update the profile picture in a profile. This property will override a profile picture pulled from [Gravatar](https://gravatar.com/). |
 | $created | Created | The time that the profile was created. Note that this is not auto-populated. |
 | $mp_first_event_time | First Seen | Mixpanel calculated property that represents the time of the user's (or group's) very first event in Mixpanel. This can be used to filter/segment reports by users (or groups) who were "new" in a particular timeframe. |
 
@@ -190,7 +190,7 @@ Attempts to add more than 2000 user properties for a user profile will fail. You
 Mixpanel is 100% compatible with Segment; just follow Segment's best practices. If you call the [`analytics.identify()`](https://segment.com/docs/connections/spec/identify/) method, Segment will create a User Profile in Mixpanel. You can learn more about our integration in Segment's [docs](https://segment.com/docs/connections/destinations/catalog/actions-mixpanel/#identify-user).
 
 ### What does the "Updated at" ($last_seen) property mean?
-User Profiles are mutable, which means new ones can be added and existing ones can be updated or deleted. Mixpanel automatically maintains an "Updated at" (`$last_seen`) property, which contains the last timestamp that a user profile was updated. "Updated at" does not change if the user does a new event; it only changes when the profile is updated. "Updated at" also does not change for profile updates made via the UI or if `$ignore_time` paramater is set to `true` (see example from [PHP SDK](/docs/tracking-methods/sdks/php#setting-profile-properties)).
+User Profiles are mutable, which means new ones can be added and existing ones can be updated or deleted. Mixpanel automatically maintains an "Updated at" (`$last_seen`) property, which contains the last timestamp that a user profile was updated. "Updated at" does not change if the user does a new event; it only changes when the profile is updated. "Updated at" also does not change for profile updates made via the UI or if the `$ignore_time` parameter is set to `true` (see example from [PHP SDK](/docs/tracking-methods/sdks/php#setting-profile-properties)).
 
 ### Where can I learn more about Group Profiles?
 You can get an overview of how Group Profiles relate to Mixpanel's Data Model under the section [Group Level Behaviours and Demographics](/docs/tutorials/plan/tracking-strategy#group-level-behaviours-and-demographics) in our tutorials. A more detailed explanation of [Group Profiles](/docs/data-structure/advanced/group-analytics#group-profiles) is documented under our [Group Analytics](/docs/data-structure/advanced/group-analytics) page.
