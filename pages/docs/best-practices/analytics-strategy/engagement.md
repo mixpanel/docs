@@ -35,7 +35,7 @@ Mixpanel’s Company KPIs Board template automatically creates a report with a r
 While the Company KPIs Board template is designed to do the heavy lifting for you, it’s easy to find your product’s power/core/casual users on your own. Here’s how:
 
 * In the Insights report, select an event that you define as your value moment (e.g., “watch video”).
-* Highlight “total” to bring up all the different ways you can group your users. Select “total per user.”
+* Highlight “Unique Users” to bring up all the different ways you can group your users. Select “total per user.”
 * Select your level of aggregation. Median (50th percentile) will be your core users. 90th percentile will be your power users. 25th percentile will be your casual users. By highlighting the line graph, you can view how many videos each group typically watches hourly, daily, weekly, or monthly.
 * Customize the date range. Mixpanel will default your line graph over time to a look back of the last 30 days (from the active day) and a day-by-day count.
  
@@ -69,7 +69,7 @@ Next, let’s find your product’s activation rate, which shows how quickly and
 
 ![image](https://user-images.githubusercontent.com/2077899/233904890-ca7d3cfc-7544-4031-8761-3c965dee1472.png)
 
-The Funnels report allows us to look at behaviors preformed in a series. It’s how we build “conversion” or “completion” metrics and quantify the overall health of any customer acquisition strategy.
+The Funnels report allows us to look at behaviors performed in a series. It’s how we build “conversion” or “completion” metrics and quantify the overall health of any customer acquisition strategy.
 
 In the query builder, we add the behaviors, or steps, in a user journey we wish to measure in order—in this case, our signup event and our value moment event. The “conversion window,” the amount of time that each user has to complete all these actions in order to count at each step, is set to 30 days.
 

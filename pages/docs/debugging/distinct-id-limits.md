@@ -38,7 +38,7 @@ Updated Event -
 }
 ```
 
-These events can be queried from the dashboard just like any other events. A monthly report is sent to project owners if a new hot shard was detected and remediated in the past month. 
+These events can be queried from the dashboard just like any other events. An email is sent to organisation owners and the specific project's owners to alert them of the hot shard. In addition, a monthly report (per project) is sent as well for hot shards that were detected and remediated in the past month.
 
 ## Recovering from a hot shard
 The process can be broken down into 3 main steps:
@@ -74,7 +74,7 @@ function authenticate_user(user_id){
 ```
 Although the code above looks almost like it should work, it could be easy to miss a static string is being passed to the function instead of the dynamic value for each user. This would mean that after this function runs, all users would actually send events with the same id value: `user_id`.
 
-You will want to fix the implementation to identify users correctly and avoid new users being impacted. You can find more information on [identifying users in this doc](/docs/tracking-methods/identifying-users).
+You will want to fix the implementation to identify users correctly and avoid new users being impacted. You can find more information on [identifying users in this doc](/docs/tracking-methods/id-management/identifying-users).
 
 In case you've identified the problematic set of ID values, but you have not been able to identify the root cause in the implementation. Reach out to our [support team](https://mixpanel.com/get-support) and provide the details you've uncovered so far; providing your copy of the board and any details on the investigation in your code will be of great assistance helping you identify the issue.
 

@@ -16,9 +16,9 @@ If you're a marketer, using Mixpanel to show the impact of various channels on a
 * Google, Bing → Search
 * Everything else → Organic
 
-You also want to name and save this bucketing as a property that everyone else in your company can use. You can do this with custom properties:
+You can also use the [Channel Classifier](/changelogs/2023-11-16-channel-classifier) template in custom properties as a starting point.
 
-![image](https://github.com/mixpanel/docs/assets/2077899/dbfa1a8d-5d8b-441a-8017-bd182615b964)
+![image](/channel-classifier.png "Channel Classifier")
 
 ### Compute Properties Mathematically from Other Properties
 
@@ -63,11 +63,27 @@ You can parse out the first delivery ID in a list property with several Delivery
 
 The same syntax works with objects.
 
+### Borrow properties from one event onto subsequent events
+
+![image](/borrowed_property_functionality.png)
+
+For events that cannot have certain properties easily tracked, borrowed properties comes into the picture. This functionality allows you to borrow the specific property from a preceding action
+
+![image](/Borrowed_property_discovery.png)
+
+Some scenarios where this functionality could be used: 
+- **When merging events from 2 different systems, like server side & client side:** 
+  Use Case: You want to know transactions processed (which is a server side event), broken down by restaurant category (which is a property on a client side event order placed)
+- **When one team/ app wants to leverage tracking from 2+ teams/ apps:** 
+  Use Case: You want to know whether launch of Dark Mode, driven by the central team, impacted overall time spent on the page, which is your core KPI. Instead of adding the property - dark mode setting onto all the page view events, you can borrow this from existing tracking setup by the central launch team (dark mode toggle event) 
+- **When wanting to join event properties within a product session**: 
+  Use Case: You want to know which in product banners led to most purchase conversions
+
 ## Creating a Custom Property
 
-Click **Create Custom > Event Property or User Property** to open the property builder.
+Click the plus button to the right of the search bar, then select Event Property or User Property to open the property builder.
 
-![image](https://github.com/mixpanel/docs/assets/2077899/33bafaea-8a7b-48ab-950e-b32f22cd72f0)
+![image](/create-custom-property.png)
 
 Optionally give your property a name and click into the formula bar to start defining it. If you're new to this feature, we recommend starting with one of the examples. Click the **Insert Example** drop down to populate the box with a use-case specific custom property.
 
@@ -163,3 +179,22 @@ Use the following comparison operators in the **Formula** field to modify your c
 - `false`: Represents the literal value of boolean false.
 - `true`: Represents the literal value of boolean true.
 - `undefined`: Represents the literal value of cases that aren’t defined.
+
+### Borrowed Properties
+How to create a borrowed property is demonstrated in this video
+
+<div style={{position: 'relative', paddingBottom: '64.90384615384616%', height: 0}}>
+    <iframe src="https://www.loom.com/embed/d45c325a7ee544a9965e90c3a5127257?sid=a52205f3-31d1-4928-9a64-ae937295fa40"
+        frameBorder="0"
+        webkitallowfullscreen="true" mozallowfullscreen="true" allowFullScreen
+        style={{position: 'absolute', 'top': 0, 'left': 0, 'width': '100%', 'height': '100%'}}>
+    </iframe>
+</div>
+
+Some key notes
+- Borrowed property creation is limited to Admin & Owner Roles only
+- A project can have a maximum of 20 borrowed properties. Hence you are encouraged to only create borrowed properties useful to the larger team
+- A borrowed property once created is like any other custom property. It can be accessed by all in the project depending on permissions
+- Borrowing of a property is strictly from the most recent event in the 7 day lookback window. To elaborate
+    - Say on event “purchase”, you want to borrow property “search term” from an event “search product”. If there are multiple events “search product” before “purchase”, the property will be borrowed from the most recent “search product” event
+    - Lookback is also fixed to a 7 day window. Say the “purchase” event occurred on 31st Jan, if the  most recent “search product” occurred on 20th Jan, the borrow functionality will return “search term” = (not set), since this event happened 11 days ago which is outside the lookback window range.

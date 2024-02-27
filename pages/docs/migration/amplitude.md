@@ -39,7 +39,7 @@ We also support additional data for extending your use cases with Mixpanel:
 
 ## Loading historical data
 If you have access to your Amplitude data in your data warehouse, the simplest way to bring this historical data into Mixpanel is by using our warehouse connector. At a high-level, the migration consists of 3 steps:
-1. Set up a new Mixpanel project which is on [Simplified ID Merge system](/docs/tracking-methods/identifying-users#simplified-vs-original-id-merge). 
+1. Set up a new Mixpanel project which is on [Simplified ID Merge system](/docs/tracking-methods/id-management/identifying-users#simplified-vs-original-id-merge). 
 2. Transform Amplitude data in your data warehouse (sample SQL transformation included below).   
 3. Set up [Mixpanel Warehouse Connector](/docs/tracking-methods/data-warehouse/overview) to initiate data sync from your data warehouse to Mixpanel. 
 
@@ -139,10 +139,15 @@ Mixpanel accepts event data from a variety of different sources. Choose your imp
 
 We support the following data collection mechanisms:
 
+- [Data Warehouse Connectors](#data-warehouse-connectors): Natively import data from Snowflake, BigQuery, Redshift, & Databricks into Mixpanel. Set up recurring syncs from your data warehouse and ensure that Mixpanel is always in sync with your trusted data.
 - [Client-side SDKs & Server-side SDKs](#client-side-sdks--server-side-sdks): Simply replace Amplitude code calls to track events with Mixpanel calls instead
 - [Customer Data Platforms (CDPs)](#customer-data-platforms-cdps) like [Segment](https://segment.com/): Go into your CDP settings to add Mixpanel as a destination, and point your data stream to Mixpanel
 - [Import API](#import-api): Point your event ingestion pipeline to [Mixpanel’s robust API](https://developer.mixpanel.com/reference/import-events) for data ingestion
 - [Reverse ETL](#reverse-etl-retl) (RETL) tools like [Census](https://getcensus.com): Go into your RETL settings to add Mixpanel as a destination, and point your syncs to Mixpanel
+
+### Data Warehouse Connectors
+
+You can set up the [Mixpanel Warehouse Connector](/docs/tracking-methods/data-warehouse/overview) to set your implementation to Mixpanel. You can learn more about event mappings [here](/docs/tracking-methods/data-warehouse/sending-events) and about user mappings [here](/docs/tracking-methods/data-warehouse/sending-user-profiles).
 
 ### Client-side SDKs & Server-side SDKs
     

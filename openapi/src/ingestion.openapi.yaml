@@ -79,7 +79,7 @@ paths:
           "title": "Validation"
         }
         [/block]
-        /import validates the supplied events and returns a 400 status code if _any_ of the events fail validation with details of the error. If some events pass validation and others fail, we will ingest the events that pass validation. When you encounter a 400 error in production, simply log the JSON response, as it will contain the `$insert_id`s of the invalid events, which can be used to debug.
+        If you provide the strict=1 parameter (recommended), /import will validate the supplied events and returns a 400 status code if _any_ of the events fail validation with details of the error. If some events pass validation and others fail, Mixpanel will ingest the events that pass validation. When you encounter a 400 error in production, simply log the JSON response, as it will contain the `$insert_id`s of the invalid events, which can be used to debug.
 
         ### High-level requirements
 
@@ -315,7 +315,7 @@ paths:
               "h-1": "/track",
               "h-2": "/import",
               "0-0": "Events per request",
-              "0-1": "200",
+              "0-1": "2000",
               "0-2": "2000",
               "1-0": "Authentication",
               "1-1": "Project Token, intended for untrusted clients.",
@@ -404,18 +404,6 @@ paths:
         If the profile does not exist, it creates it with these properties. If
         it does exist, it sets the properties to these values, overwriting
         existing values.
-        [block:callout]
-        {
-          "type": "info",
-          "body": "This API will return a `200 OK` even if there are data validation issues. To ensure the request actually succeeded, you need to check the response body."
-        }
-        [/block]
-        [block:callout]
-        {
-          "type": "info",
-          "body": "This API does not support gzip encoding."
-        }
-        [/block]
       parameters:
         - $ref: ./common/ingestion-api.yaml#/OptionalRequestParameter/ResponseType/Verbose
         - $ref: ./common/ingestion-api.yaml#/OptionalRequestParameter/ResponseType/JavascriptWithCallback
@@ -601,7 +589,7 @@ paths:
       summary: Append to List Property
       description: >-
         Takes a JSON object containing keys and values, and appends each to a
-        list associated with the corresponding property name. $appending to a
+        list associated with the corresponding property name. Appending to a
         property that doesn't exist will result in assigning a list with one
         element to that property.
       parameters:
@@ -736,7 +724,10 @@ paths:
         Send a batch of profile updates. Instead of sending a single JSON object
         as the data query parameter, send a JSON list of objects as the data
         parameter of an application/json POST or GET request
-        body
+        body.
+
+
+        Refer to the respective user profile update commands ($set, $set_once, $add, $union, $append, $remove, $unset, and $delete) on syntax for their parameters.
       parameters:
         - $ref: ./common/ingestion-api.yaml#/OptionalRequestParameter/ResponseType/Verbose
         - $ref: ./common/ingestion-api.yaml#/OptionalRequestParameter/ResponseType/JavascriptWithCallback
@@ -755,12 +746,17 @@ paths:
                     {
                         "$token": "YOUR_PROJECT_TOKEN",
                         "$distinct_id": "13793",
-                        "$add": { "Coins Gathered": 12 }
+                        "$set": { "$email": "user1@mail.com" }
                     },
                     {
                         "$token": "YOUR_PROJECT_TOKEN",
                         "$distinct_id": "13794",
                         "$add": { "Coins Gathered": 13 }
+                    },
+                    {
+                        "$token": "YOUR_PROJECT_TOKEN",
+                        "$distinct_id": "13795",
+                        "$unset": ["$email"]
                     }
                 ]
       responses:
@@ -1066,7 +1062,10 @@ paths:
         Send a batch of group profile updates. Instead of sending a single JSON object
         as the data query parameter, send a JSON list of objects as the data
         parameter of an application/x-www-form-urlencoded POST or GET request
-        body
+        body.
+
+
+        Refer to the respective group profile update commands ($set, $set_once, $add, $union, $remove, $unset, and $delete) on syntax for their parameters.
       parameters:
         - $ref: ./common/ingestion-api.yaml#/OptionalRequestParameter/ResponseType/Verbose
       requestBody:
@@ -1241,12 +1240,6 @@ paths:
         This endpoint will return a 429 error if called more than 100 times in a rolling 24 hour window. We recommend updating lookup tables at most hourly to stay within this limit.
 
         This endpoint will return a 413 error if a Lookup Table exceeds 100MB uncompressed. In practice, this translates to 1-2M rows. If you have a lookup table that exceeds the limit, we recommend pruning the number of columns to those that are useful to analysis. Removing long URLs or user-generated content can bring a lookup table within this limit. If you still exceed the limit, please reach out to us at apis@mixpanel.com -- we'd love to hear your use case!
-        [block:api-header]
-        {
-          "title": "Legacy API"
-        }
-        [/block]
-        Our [legacy lookup tables API](https://developer.mixpanel.com/v2.60/reference/lookup-tables) is now deprecated; we strongly recommend transitioning to this API.
       parameters:
         - in: path
           name: id

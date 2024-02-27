@@ -1,6 +1,5 @@
 # Funnels
 
-
 ## Overview
 
 ![/funnels_result_header.png](/funnels_result_header.png)
@@ -67,6 +66,49 @@ However, you can also visualize the funnel in any of the following chart types, 
 - Time to Convert - view a distribution of the time it takes users to convert through the funnel
 - Frequency - view the number of times users complete any step before converting or dropping off
 
+### Quick Start - New Funnels
+
+If you are on the beta funnels experience, follow this guide. The core concepts all stay the same, but some things are slightly rearranged. You can watch the video below to get a preview of what's changed.
+
+<p style={{ position: 'relative', paddingBottom: '56.25%', height: 0, overflow: 'hidden' }}>
+  <iframe src="https://www.loom.com/embed/7905e588beea48c5bc757ce8c43aae8b" frameborder="0" style={{ position: 'absolute', top: 0, left: 0, width: '100%', height: '100%' }} allowfullscreen></iframe>
+</p>
+
+#### Step 1: Define your Funnel
+
+A funnel is the basic building block of the Funnels report. A funnel is sequence of events done within a certain period of time. Using the example above, imagine we know the signup flow contains five steps. Within the funnel definition, add one event for each step, in the following order: "Landing Page," "Download Page," "App Install," "App Open," "Sign Up." At this point, your query should look like this.
+
+![/funnels_beta_1.png](/funnels_beta_1.png)
+
+#### Step 2: Choose your Measurement
+
+After your funnel is defined, you can choose how you want to measure the funnel. By default, Funnels report will select conversion rate of the funnel as the measurement, but you can also measure the number of users converting, total conversions, and more. You can change the measurement by selecting "Conversion Rate" in the bottom left of the funnel metric definition. In this case, we don't want to change the measurement, so it can be left alone.
+
+![/funnels_beta_2.png](/funnels_beta_2.png)
+
+#### Step 3: Choose Filters
+
+Filters exclude unwanted data. In this case, we only care about events performed on the iOS platform. Therefore, add a "Platform" filter, where Platform equals "iOS Native". At this point, your query should look like this:
+
+![/funnels_beta_3.png](/funnels_beta_3.png)
+
+#### Step 4: Choose Breakdowns
+
+Breakdowns segment data into groups. In this case, we want to break our funnel down by marketing medium, tracked via UTM tags. Therefore, add a "UTM Medium" breakdown. At this point, your query should look like this:
+
+![/funnels_beta_4.png](/funnels_beta_4.png)
+
+#### Step 5: Choose Visualization
+
+You can visualize your metric in a variety of ways. Mixpanel allows you to choose how you would like to visualize your data. Select "Funnel Steps" in the top right to change your visualization. In Funnels, you can choose:
+
+- Funnel Steps - see how users are progressing through the funnel
+- Line - see how your metric is trending over time
+- Bar - see a summary view of your metric
+- Metric - see a summary view of your metric
+
+![/funnels_beta_5.png](/funnels_beta_5.png)
+
 ## Advanced
 
 ### Conversion Criteria
@@ -101,7 +143,7 @@ By default, Funnel calculations are based on **uniques**. To change to a diffe
 
 **Uniques**
 
-Unique funnels count a single entry per user (determined by [distinct_id](/docs/tracking-methods/identifying-users#distinct-id)). Each user enters the funnel only once, and this is on the first time they perform the Step 1 event in the date range. Even if a particular user completes the funnel multiple times in the date range, they will only be counted towards conversion once, and on the first time they entered the funnel.
+Unique funnels count a single entry per user (determined by [distinct_id](/docs/tracking-methods/id-management/identifying-users#what-is-distinct-id)). Each user enters the funnel only once, and this is on the first time they perform the Step 1 event in the date range. Even if a particular user completes the funnel multiple times in the date range, they will only be counted towards conversion once, and on the first time they entered the funnel.
 
 **Totals**
 
@@ -156,7 +198,7 @@ A step will either appear with a number beside it, indicating where it must fall
 
 In the above example, Steps 1, 4, and 6 must occur as the 1st, 4th, and 6th steps the user performs.Any of the * steps can occur at any time within those boundaries.
 
-### Hold Property Constant
+#### Hold Property Constant
 
 Holding a property constant in a funnel requires that a user retains the same value for a given event property for each step in order to convert. In other words, a user must not only perform the funnel events in the order you specified, but also perform these events with the same property value.
 
@@ -210,74 +252,6 @@ Note:
 3. There may be any number of exclusion events between steps.
 4. Exclusion steps have the same [two second grace period](/docs/reports/funnels#how-does-mixpanel-handle-simultaneous-events) as other steps in the funnel.
 
-### Rename a Step
-
-Click on the "three dots" icon beside a step and click **Rename** to rename it.
-
-![image](https://github.com/mixpanel/docs/assets/2077899/2e2e844b-a9f6-4eb1-8532-345c7e8613e3)
-
-### View as Flow
-
-In order to learn more about the behavior users take between funnel steps, use "View as Flow". You can see what user flows and behaviors that can increase the likelihood of conversion or drop-off. This helps to answer questions like:
-
-- What flows do users take between opening an app and making a purchase?
-- Why did the successful users purchase?
-- What flows do users take that don’t lead to a purchase?
-- How do these two paths differ? What actions should I nudge towards or against?
-- What did the users that dropped-off do instead?
-
-![image](https://github.com/mixpanel/docs/assets/2077899/b37e48d4-d9c8-42b7-9e79-72e7e71e47eb)
-
-#### Using Conversion and Drop-off Flows
-
-First, go to the Mixpanel Funnels Report, and create any funnel you like by selecting 2 or more events steps.
-
-Next, click on the conversion or drop-off population you wish to examine further and select View As Flow.
-
-![/cr8695o49k.png](/cr8695o49k.png)
-
-In this example, I want to see what events lead to better conversion or more drop-off between Step 1 Browse and Step 2 Add To Cart. This will send me to the Sankey visualization to see these event streams in a Flows report.
-
-I can see that all of the Funnel's criteria is still maintained. In my example, I still am counting a Unique funnel, within 30 days, holding the Item Name property constant, and excluding users that Abandon Cart at any stage. I can also go back to the Funnel to change my criteria at any time.
-
-The Sankey is automatically broken down by users that eventually converted or did not convert to Add to Cart (Users may not convert because of hitting exclusion steps, or failing to complete the funnel within the conversion window).
-
-![/Screen_Shot_2021-05-26_at_7.13.34_AM.png](/Screen_Shot_2021-05-26_at_7.13.34_AM.png)
-
-Hovering over any path I can see the size of the population and the percent converted to this action from the previous one.
-
-![/rjgjxun5bz.png](/rjgjxun5bz.png)
-
-In the example, I can see here that 10.6% converted immediately to Adding to their Cart.
-
-#### Lift Actions: What paths are performed more often by users who convert compared those who drop off?
-
-With the recently added lift actions feature, we have made it possible to quickly tell which actions and paths had a higher or lower conversion rate compared to the funnel as a whole.
-
-![/Screen_Shot_2021-05-26_at_7.38.50_AM.png](/Screen_Shot_2021-05-26_at_7.38.50_AM.png)
-
-In this example, I can see that Users who performed Search Results, had a +24% higher conversion rate compared to overall (51.1% vs. 41.2%). Whereas, users who performed Experiment Started had a -82.4% reduction in conversion rate compared to overall (7.2% vs. 41.2%).By looking at the positive (green) and negative (red) lift actions, you should be able to quickly form hypothesis on which paths and events are likely to result in more or less conversions.
-
-#### Filter by Conversion: What are the common paths taken by users who convert?
-
-If you want to do an isolated analysis of conversions, I can apply a filter so that the report will include only conversions.  This is done by clicking on Filter in the query builder and selecting the Conversion property. Setting it to Converted, will filter only to users who have converted.
-
-![/l387g5uhw1_1_.png](/l387g5uhw1_1_.png)
-
-![/Screen_Shot_2021-05-26_at_7.55.31_AM.png](/Screen_Shot_2021-05-26_at_7.55.31_AM.png)
-
-In this example, we can see that 35.6% of conversions happened in the first step.
-
-#### Filter by drop off: What do users do right before dropping off?
-
-To view what users did before dropping off, change the filter to "Did not Convert", and add more steps before the drop off step
-
-![/Screen_Shot_2021-05-26_at_7.58.29_AM.png](/Screen_Shot_2021-05-26_at_7.58.29_AM.png)
-
-![/Screen_Shot_2021-05-26_at_7.59.51_AM.png](/Screen_Shot_2021-05-26_at_7.59.51_AM.png)
-
-Now, I can see that 33.7% of users who did not convert, did the "Join Loyalty Program" before dropping off. I can use this hypothesis to evaluate the business impact of the loyalty program, and perhaps make some changes to the product.
-
 ### Funnel Trends
 
 Select **Funnel trends** from the drop-down list to see the percentage of successful conversions from the first event in the funnel to the last event in the funnel for a day, week, or month.
@@ -323,6 +297,7 @@ Note that if you use the step counter at the top to view only "Step 2 to Step 3"
 ![/Screen_Shot_2022-07-12_at_3.17.26_PM.png](/Screen_Shot_2022-07-12_at_3.17.26_PM.png)
 
 ### Time to Convert
+#### Time to Convert (Old)
 
 Select **Time to convert** from the drop-down list to see how long users take to convert through your funnel
 
@@ -342,7 +317,22 @@ Click on a segment of the bar chart to view users or zoom in on that segment. A
 
 ![/Screen_Shot_2022-07-12_at_3.20.22_PM.png](/Screen_Shot_2022-07-12_at_3.20.22_PM.png)
 
+#### Time to Convert (New)
+
+Use the Time to Convert breakdown to see a distribution of time users took between any two steps in the funnel or all steps. The steps selected in the breakdown are independent of the step of the metric you are measuring, for example you can measure overall conversion rate broken down by Time to Convert between Steps 1 and 2.
+
+![/funnels_ttc_selection.png](/funnels_ttc_selection.png)
+
+![/funnels_ttc_step_selection.png](/funnels_ttc_step_selection.png)
+
+Time to Convert works like any other property in that you can filter to specific range of times or customize the bucketing of the breakdown. You cannot use it as a step filter as it is used to filter funnels which have been measured rather than changing the per step conversion window.
+
+![/funnels_ttc_filter.png](/funnels_ttc_filter.png)
+
+![/funnels_ttc_custom_buckets.png](/funnels_ttc_custom_buckets.png)
+
 ### Frequency
+#### Frequency (Old)
 
 Select **Frequency** from the drop-down list to see the number of times users performed a step before moving to the next step. For example, see the number of times a user listened to a song before purchasing the song.
 
@@ -362,6 +352,42 @@ You can switch between viewing Conversion Counts to viewing Conversion Rates or 
 
 Conversion Count shows you the number of users that converted who performed the event at a specific frequency. Conversion Rate shows you the percentage of users that converted who performed the event at a specific frequency. Drop-Off Count shows you the number of times a user performed a step before dropping off the funnel.
 
+#### Frequency (New)
+
+Use the Frequency per User breakdown to see the number of times users performed an event between any two funnel steps. For example, see the number of times a user listened to a song between sign up and purchasing the song.
+
+![/funnels_frequency_per_user_selection.png](/funnels_frequency_per_user_selection.png)
+
+You can select the steps between which you want to measure frequency from the breakdown, this is different from the step you are deriving the metric from, for example you can measure overall conversion rate but breakdown by frequency of an event between Step 1 and 2.
+
+![/funnels_frequency_per_user_finished.png](/funnels_frequency_per_user_finished.png)
+
+Frequency per user works like any other numeric property in that you are able to filter to a specific range of frequencies or customize how it is bucketed.
+
+![/funnels_frquency_per_user_filter.png](/funnels_frquency_per_user_filter.png)
+
+![/frequency_per_user_custom_buckets.png](/frequency_per_user_custom_buckets.png)
+
+To measure the frequency of a particular funnel step between that step and the next one, use selected step from the event selection in the Frequency per user breakdown. If the user does not do the step again before the next one the frequency will be 0.
+
+![/funnels_frequency_per_user_selected_step.png](/funnels_frequency_per_user_selected_step.png)
+
+Similar to Frequency per User if you want to instead breakdown by an aggregation on an event property between steps, like the sum of video watched time between sign up and purchase you can use Aggregate Property per user.
+
+![/funnels_aggregate_property_per_user_select_aggregation.png](/funnels_aggregate_property_per_user_select_aggregation.png)
+
+![/funnels_aggregate_property_per_user_finished.png](/funnels_aggregate_property_per_user_finished.png)
+
+### Property Sum
+
+This measurement type allows you to visualize revenue through a funnel. Instead of seeing how many users move through your flow, you can select an event property that exists on each step of the funnel. Mixpanel will sum up the total value of this property at each stage of the funnel and visualize the total ammount converted, or the dropoff at each step if "Funnel Steps" visualization is selected.
+
+**Note**: For many e-commerce flows, you will want to pair property sum with [hold property constant](/docs/reports/funnels#hold-property-constant) on item ID so you can track each individual item.
+
+To use property sum, select property sum from the measurement menu, and select a numeric property. In this case, we're seeing our 5 step purchase funnel, and we can see that our biggest dropoff is between viewing an item and adding it to cart.
+
+![Revenue Funnel](/funnels_property_sum.png)
+
 ### Top Paths
 
 If you have selected **any order** for your funnels steps, you have the option to select **Top paths** from the drop-down list to view a Sankey visualization of how your users are performing the steps in your funnel.
@@ -375,8 +401,6 @@ You can select multiple events at a particular step in a funnel, and Mixpanel w
 To do this, click on the "..." and select "add event comparison"
 
 ![/xvjcq1dbb2_1_.png](/xvjcq1dbb2_1_.png)
-
-Check out the video below for more information and an example use case.
 
 ### Advanced Breakdown Functionality
 
@@ -472,11 +496,79 @@ For example, you might use this to discover that most users who dropped off are 
   <iframe src="https://www.loom.com/embed/1c5da3ec08cd4aa090b90359cbcd8a34" frameborder="0" style={{ position: 'absolute', top: 0, left: 0, width: '100%', height: '100%' }} allowfullscreen></iframe>
 </p>
 
+### Rename a Step
+
+Click on the "three dots" icon beside a step and click **Rename** to rename it.
+
+![image](https://github.com/mixpanel/docs/assets/2077899/2e2e844b-a9f6-4eb1-8532-345c7e8613e3)
+
+### View as Flow
+
+In order to learn more about the behavior users take between funnel steps, use "View as Flow". You can see what user flows and behaviors that can increase the likelihood of conversion or drop-off. This helps to answer questions like:
+
+- What flows do users take between opening an app and making a purchase?
+- Why did the successful users purchase?
+- What flows do users take that don’t lead to a purchase?
+- How do these two paths differ? What actions should I nudge towards or against?
+- What did the users that dropped-off do instead?
+
+![image](https://github.com/mixpanel/docs/assets/2077899/b37e48d4-d9c8-42b7-9e79-72e7e71e47eb)
+
+#### Using Conversion and Drop-off Flows
+
+First, go to the Mixpanel Funnels Report, and create any funnel you like by selecting 2 or more events steps.
+
+Next, click on the conversion or drop-off population you wish to examine further and select View As Flow.
+
+![/cr8695o49k.png](/cr8695o49k.png)
+
+In this example, I want to see what events lead to better conversion or more drop-off between Step 1 Browse and Step 2 Add To Cart. This will send me to the Sankey visualization to see these event streams in a Flows report.
+
+I can see that all of the Funnel's criteria is still maintained. In my example, I still am counting a Unique funnel, within 30 days, holding the Item Name property constant, and excluding users that Abandon Cart at any stage. I can also go back to the Funnel to change my criteria at any time.
+
+The Sankey is automatically broken down by users that eventually converted or did not convert to Add to Cart (Users may not convert because of hitting exclusion steps, or failing to complete the funnel within the conversion window).
+
+![/Screen_Shot_2021-05-26_at_7.13.34_AM.png](/Screen_Shot_2021-05-26_at_7.13.34_AM.png)
+
+Hovering over any path I can see the size of the population and the percent converted to this action from the previous one.
+
+![/rjgjxun5bz.png](/rjgjxun5bz.png)
+
+In the example, I can see here that 10.6% converted immediately to Adding to their Cart.
+
+#### Lift Actions: What paths are performed more often by users who convert compared those who drop off?
+
+With the recently added lift actions feature, we have made it possible to quickly tell which actions and paths had a higher or lower conversion rate compared to the funnel as a whole.
+
+![/Screen_Shot_2021-05-26_at_7.38.50_AM.png](/Screen_Shot_2021-05-26_at_7.38.50_AM.png)
+
+In this example, I can see that Users who performed Search Results, had a +24% higher conversion rate compared to overall (51.1% vs. 41.2%). Whereas, users who performed Experiment Started had a -82.4% reduction in conversion rate compared to overall (7.2% vs. 41.2%).By looking at the positive (green) and negative (red) lift actions, you should be able to quickly form hypothesis on which paths and events are likely to result in more or less conversions.
+
+#### Filter by Conversion: What are the common paths taken by users who convert?
+
+If you want to do an isolated analysis of conversions, I can apply a filter so that the report will include only conversions.  This is done by clicking on Filter in the query builder and selecting the Conversion property. Setting it to Converted, will filter only to users who have converted.
+
+![/l387g5uhw1_1_.png](/l387g5uhw1_1_.png)
+
+![/Screen_Shot_2021-05-26_at_7.55.31_AM.png](/Screen_Shot_2021-05-26_at_7.55.31_AM.png)
+
+In this example, we can see that 35.6% of conversions happened in the first step.
+
+#### Filter by drop off: What do users do right before dropping off?
+
+To view what users did before dropping off, change the filter to "Did not Convert", and add more steps before the drop off step
+
+![/Screen_Shot_2021-05-26_at_7.58.29_AM.png](/Screen_Shot_2021-05-26_at_7.58.29_AM.png)
+
+![/Screen_Shot_2021-05-26_at_7.59.51_AM.png](/Screen_Shot_2021-05-26_at_7.59.51_AM.png)
+
+Now, I can see that 33.7% of users who did not convert, did the "Join Loyalty Program" before dropping off. I can use this hypothesis to evaluate the business impact of the loyalty program, and perhaps make some changes to the product.
+
 ## FAQ
 
-### Why is my user shown as dropped off even though they've just completed the full funnel today? 
+### Why is my user shown as dropped off even though they've just completed the full funnel today?
 
-Assuming that the user performed all actions in the funnel, on their first try, in the right sequence, within the conversion window, the user should be counted as converted. However, if you are looking at the Funnel report for today, they might be shown as dropped off. This is because there may be up to a 24 hour delay on our reports (except for Activity Feed), as we work towards linking anonymous user activity to known profiles. This would explain why the funnel displays the user as not converted, soon after ingestion. Once we account for the delay, the funnel should display the conversion, especially if the user performs the steps in the funnel in the specified sequence. 
+Assuming that the user performed all actions in the funnel, on their first try, in the right sequence, within the conversion window, the user should be counted as converted. However, if you are looking at the Funnel report for today, they might be shown as dropped off. This is because there may be up to a 24 hour delay on our reports (except for Activity Feed), as we work towards linking anonymous user activity to known profiles. This would explain why the funnel displays the user as not converted, soon after ingestion. Once we account for the delay, the funnel should display the conversion, especially if the user performs the steps in the funnel in the specified sequence.
 
 ### Can users do other actions during the funnel?
 
@@ -488,9 +580,7 @@ Users can complete the steps you designate in your funnel in loose order. Loose 
 
 ### Why do I get differing numbers when comparing Funnels and Insights?
 
-Funnels and Insights have different default counting methods. Insights by default counts events using "Totals", whereas Funnels are by default calculated with the Conversion Criteria in "Uniques".
-
-Funnels uses "Uniques" as its default as it is intended to help you gauge your product's effectiveness in urging your users to complete certain flows (e.g. Registration, Purchase). If the numbers were in Totals, a few select power users could skew your data. Each user will only be counted once for a funnel within any given time period you set. The Funnels report with 'Unique' conversion criteria will show only the conversion rates/steps the first time a user enters the funnel, even if they complete or drop out of the funnel multiple times, hence giving a 'Unique' count.You can toggle the conversion criteria to 'Total' or 'Sessions' counting method. Please note that not every Step 1 event will enter a 'Total' conversion funnel. Learn more about counting methods [here](/docs/reports/funnels#counting-method).
+Funnels and Insights are fundamentally different when it comes to counting events. In the Funnels report, users will need to perform Step 1 event, in order for their Step 2 event to be counted. Insights, on the other hand, will count the Step 2 event, even if the user does not perform the Step 1 event. This will create some discrepancy between the Insights and Funnels report, as users are expected to trigger events in sequence in the Funnels report, whereas, they are not expected to do so in the Insights report.
 
 ### Can multiple events count towards the same Funnel step?
 

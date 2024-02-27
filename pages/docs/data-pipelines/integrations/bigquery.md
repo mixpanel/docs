@@ -17,7 +17,7 @@ For user profile and identity mappings tables, we create a new table with a rand
 ## Partitioning
 The data in the tables is partitioned based on [`_PARTITIONTIME` pseudo column](https://cloud.google.com/bigquery/docs/querying-partitioned-tables#ingestion-time_partitioned_table_pseudo_columns) and in project timezone.
 
-Note: TIMEPARITIONING shouldn't be updated on the table. It will fail your export jobs. Create a new table/view from this table for custom paritioning.
+Note: TIMEPARITIONING shouldn't be updated on the table. It will fail your export jobs. Create a new table/view from this table for custom partitioning.
 
 ## Queries
 You can query data with a single table schema or with a multiple table schema in BigQuery. To get more information about the table schemas, please see [Schema](/docs/data-pipelines/schematized-export-pipeline#schema).
@@ -81,32 +81,35 @@ Counting number of times a user has done a specific behavior is also possible by
 
 ## Exporting into Customer managed BigQuery (Recommended)
 We recommend exporting Mixpanel data into customer-managed BigQuery, for this the customer needs to follow these steps.
+
 1. Create a dataset in their BigQuery
-![image](/230698727-1216833e-8321-46de-a388-8b554a00938c.png)
+
+   ![image](/230698727-1216833e-8321-46de-a388-8b554a00938c.png)
 
 2. Give Mixpanel the necessary permissions to export into this dataset.
 
-We need two permissions to manage the dataset. 
+   > **Note:** If your organization uses [domain restriction constraint](https://cloud.google.com/resource-manager/docs/organization-policy/restricting-domains) you will have to update the policy to allow Mixpanel domain `mixpanel.com` and Google Workspace customer ID: `C00m5wrjz`.
 
-**BigQuery Job User**
-  * Go to **IAM &Admin** in your Google Cloud Console.
-  * Click **+ ADD** to add principals
-  * Add new principle "export-upload@mixpanel-prod-1.iam.gserviceaccount.com" and set role as "BigQuery Job User", and save.
-![image](/230698732-4dadbccf-1eeb-4e64-a6c7-8926eb49e5cc.png)
+   We need two permissions to manage the dataset. 
 
-**BigQuery Data Owner**
-  * Go to **BigQuery** in your Google cloud Console.
-  * Open the dataset you want mixpanel to export to.
-  * Click on **sharing** and **permissions** in the drop down. 
-  * In the Data Permissions window click on **Add Principal** 
-  * Add new principle "export-upload@mixpanel-prod-1.iam.gserviceaccount.com" and set role as "BigQuery Data Owner", and save.
-
-![image](/230698735-972aedb5-1352-4ebc-82c4-ef075679779b.png)
+   **BigQuery Job User**
+     * Go to **IAM &Admin** in your Google Cloud Console.
+     * Click **+ ADD** to add principals
+     * Add new principle "export-upload@mixpanel-prod-1.iam.gserviceaccount.com" and set role as "BigQuery Job User", and save.
+       ![image](/230698732-4dadbccf-1eeb-4e64-a6c7-8926eb49e5cc.png)
+    
+   **BigQuery Data Owner**
+     * Go to **BigQuery** in your Google cloud Console.
+     * Open the dataset you want mixpanel to export to.
+     * Click on **sharing** and **permissions** in the drop down. 
+     * In the Data Permissions window click on **Add Principal** 
+     * Add new principle "export-upload@mixpanel-prod-1.iam.gserviceaccount.com" and set role as "BigQuery Data Owner", and save.    
+       ![image](/230698735-972aedb5-1352-4ebc-82c4-ef075679779b.png)
 
 3. You need to pass this dataset and gcp project id as params when you [create your pipeline](https://developer.mixpanel.com/reference/create-warehouse-pipeline)
 
 ## Exporting into Mixpanel managed BigQuery
 
-This is not a recommended approach anymore. But if you choose to export into Mixpanel manged BigQuery then you must provide a Google group email address to use the BigQuery export when you [create your pipeline](https://developer.mixpanel.com/reference/create-warehouse-pipeline). Mixpanel exports transformed data into BigQuery at a specified interval. 
+This is not a recommended approach anymore. But if you choose to export into Mixpanel managed BigQuery then you must provide a Google group email address to use the BigQuery export when you [create your pipeline](https://developer.mixpanel.com/reference/create-warehouse-pipeline). Mixpanel exports transformed data into BigQuery at a specified interval. 
 
 Note: Mixpanel creates a dataset in its own BigQuery instance and gives \"View\" access to the account(s) provided at the time of creating the pipeline. As a result, there is no storage cost associated with exporting data to BigQuery, but standard compute costs will occur when querying on this data.\n\nIf you choose to copy the dataset into your own BigQuery instance, you will additionally start accruing storage costs from BigQuery.

@@ -29,3 +29,14 @@ Complete the following steps to get your Redshift connector up and running:
     - **Grant Access to Schema** - Enter the name of the schema you want to grant Mixpanel access to. 
     - Copy the command generated and run in your Redshift worksheet. Once that command is run successfully, the connection will be established and you will be able to send data from Redshift tables to Mixpanel.
     
+### IP Allowed List
+If you are using [AWS PrivateLink](https://docs.aws.amazon.com/redshift/latest/mgmt/security-private-link.html) to restrict access to your instance, you might need to add the following IP addresses to the allowed list.
+
+```jsx
+34.31.112.201
+34.147.68.192
+35.184.21.33
+35.225.176.74
+35.204.164.122
+35.204.177.251
+```

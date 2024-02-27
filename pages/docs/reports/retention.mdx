@@ -26,8 +26,7 @@ Building a Retention report follows the same high level steps as building any ot
 
 Building a report in Retention takes just a few clicks, and results arrive in seconds. Let's build a simple report together. Continuing the B2B messaging example, imagine you wanted to answer the following question:
 
-> Which app version promotes the best retention after signup, for users on iOS?
->
+> Which app version promotes the best retention after signup, for users on Chrome?
 
 Feel free to follow along and create your own report right in our demo project, [here](https://mixpanel.com/register/?next=%2Fproject%2F2195193%2Fview%2F139237%2Fapp%2Fretention%3Fredirect%3Dborn_event%3A%27%24mp_anything_event%27%2Cborn_filters%3A%21%28). To skip ahead to see the final result, click [here](https://mixpanel.com/register/?next=%2Fproject%2F2195193%2Fview%2F139237%2Fapp%2Fretention%3Fredirect%3Dreport%2F11945585%2Fi-os-retention-by-onboarding-variant%2Ftitle%3A%27iOS%2520Retention%2520by%2520Onboarding%2520Variant%27).
 
@@ -39,19 +38,27 @@ In this case, since we want to know retention after signup, choose "Sign Up" in 
 
 ### Step 2: Choose Filters
 
-Filters exclude unwanted data. In this case, we only care about events performed on the iOS platform. Therefore, add a "Platform" filter, where Platform equals "iOS". At this point, your query should look like this:
+Filters exclude unwanted data. In this case, we only care about events performed on Chrome browser. Therefore, add a "Browser" filter, where Browser equals "Chrome". At this point, your query should look like this:
 
 ![/Retention_Filter.png](/Retention_Filter.png)
 
 ### Step 3: Choose Breakdowns
 
-Breakdowns segment data into groups. In this case, we want to break our report down based on the app version they are using to Sign Up. Therefore, add an "App Version" breakdown. At this point, your query should look like this:
+Breakdowns segment data into groups. In this case, we want to break our report down based on the browser version they are using to Sign Up. Therefore, add an "Browser Version" breakdown. At this point, your query should look like this:
 
 ![/Retention_Breakdown.png](/Retention_Breakdown.png)
 
 ### Step 4: Analyze Results
 
 By default retention will display a curve chart. This shows the retention data across all users, regardless of their time of entry. This gives a holistic view of how users are retaining over time. You can go to the table below to get a more fine grained view to see if there are certain user cohorts that are retaining better or worse based on when they first entered.
+
+### Quick Start - New Retention
+
+If you are on the beta retention experience, follow this guide. The core concepts all stay the same, but some things are slightly rearranged. You can watch the video below to get a preview of what's changed.
+
+<p style={{ position: 'relative', paddingBottom: '56.25%', height: 0, overflow: 'hidden' }}>
+  <iframe src="https://www.loom.com/embed/45ddc28851aa494ead99bccafe1f9a37" frameborder="0" style={{ position: 'absolute', top: 0, left: 0, width: '100%', height: '100%' }} allowfullscreen></iframe>
+</p>
 
 ## Basic Features
 
@@ -61,7 +68,7 @@ By default retention will display a curve chart. This shows the retention data a
   <iframe src="https://www.loom.com/embed/c5c83d9dd0c24d5a8ab9596c8d592e95" frameborder="0" style={{ position: 'absolute', top: 0, left: 0, width: '100%', height: '100%' }} allowfullscreen></iframe>
 </p>
 
-The retention curve chart displays retention data as both a line chart, and a table. Data is identical between the two. The line chart provides a visual representation of users becoming inactive over time, while the table provides a heat map to show which groups have the best retention.
+The retention curve chart displays retention data as both a line chart and a table. Data is identical between the two. The line chart provides a visual representation of users becoming inactive over time, while the table provides a heat map to show which groups have the best retention.
 
 ![/Screen_Shot_2021-05-27_at_7.49.12_AM.png](/Screen_Shot_2021-05-27_at_7.49.12_AM.png)
 
@@ -71,15 +78,15 @@ Boxes with an asterisk (\*) indicate that the data is still in flux and not set 
 **Color Mapping**
 Each box within a row is assigned a shade of purple. The shading gets darker the higher the retention percentage. It's important to note that the scale is relative to each cohort row.
 
-### Retention Trends
+### Line chart
 
-![/ehvdhy2if3.png](/ehvdhy2if3.png)
+![/Retention Line Chart](/Retention_Trend.png)
 
-Select **Trends** from the report drop-down list to see how the percentage of retained users has changed over time for any of the retention time unit buckets. You can change between the different time unit buckets (i.e. < 1 Day, Day 1, Day 2, ...) to see if your retention metrics are improving or declining along your retention curve.
+Select **Line** from the visualization drop-down list to see how your retention metrics are changing over time. You can see how your retention rate or number of users retained is trending. You can see this trend for any of the retention time unit buckets. You can change between the different time unit buckets (i.e. < 1 Day, Day 1, Day 2, ...) to see if your retention metrics are improving or declining along your retention curve.
 
 ### User Cohort Buckets
 
-Retention counts users; not event totals. In other words, each of the user cohort buckets will include every unique user that did the "A event" criteria in that time window, starting at 0:00 of the first day of the bucket and ending midnight of the last day. A customer can only be counted once per bucket, but can be included in more than one bucket.
+Retention counts users, not event totals. In other words, each of the user cohort buckets will include every unique user that did the "A event" criteria in that time window, starting at 0:00 of the first day of the bucket and ending midnight of the last day. A customer can only be counted once per bucket, but can be included in more than one bucket.
 
 The first column (Date) indicates the day/week/month when the user performed the "A event". The Size column indicates the number of users that performed the "A event" within the time period.
 
@@ -116,9 +123,9 @@ This [loom video](https://www.loom.com/share/5484c7bdd61a4332818ceef20f475176)�
 
 **[Advanced] Calendar interval retention** - Considers time intervals based on ‘calendar’ time; i.e
 
-- Day 1 retention = next ‘calendar’ day since person’s birth.If a person did an activity at 8pm on Monday and then 6am on Tuesday, person is counted under Day 1 retention even though it’s just 10 hrs later
-- Week 1 retention = next ‘calendar’ week since person’s birthIf a person did an activity on Friday and then Monday, person is counted under Week 1 retention even though it’s just 3 days, since the ‘calendar’ week changed
-- Month 1 retention = next ‘calendar’ month since person’s birthSimilarly, if a person made a purchase on 25th Feb and then again on 3rd March, person will be counted under Month 1 retention metrics
+- Day 1 retention = next ‘calendar’ day since person’s birth. If a person did an activity at 8pm on Monday and then 6am on Tuesday, person is counted under Day 1 retention even though it’s just 10 hrs later
+- Week 1 retention = next ‘calendar’ week since person’s birth. If a person did an activity on Friday and then Monday, person is counted under Week 1 retention even though it’s just 3 days, since the ‘calendar’ week changed
+- Month 1 retention = next ‘calendar’ month since person’s birth. Similarly, if a person made a purchase on 25th Feb and then again on 3rd March, person will be counted under Month 1 retention metrics
 
 NOTE — All the above cases would NOT qualify under Day 1 or Week 1 or Month 1 rolling interval retention
 
@@ -154,7 +161,7 @@ For example, day 5 retention is the percentage of users who “came back and did
 
 #### Retention Criteria - On or After time interval
 
-![/qjcz6kqfb4.png](/qjcz6kqfb4.png)
+![/Retention_Criteria](/Retention_Criteria.png)
 
 "On or After" Retention calculates the percentage of users who come back on a specific time unit (e.g. day, week, month) **or any time unit afterward**. A user can fulfill the "came back and did B criteria" on a specific time unit or any time in the future to be counted as retained in "On or After" Retention.
 
@@ -178,21 +185,21 @@ Typical "exact day" retention buckets don't quite solve for this use case becaus
 
 **Free trials:** If you want to understand how many users come back to use the product during a 7-day free trial and also who came back and kept using the product in the 30 days after the free trial is up, you could do something like this:
 
-![/0chp5po3fv.png](/0chp5po3fv.png)
+![Retention 7 30](/Retention_7_30.png)
 
 **In between cadences:** Are you somewhere in between a DAU or WAU product? You can group daily buckets to understand how your users retain every 3 days (bi-weekly).
 
-![/4f3rn68q1x.png](/4f3rn68q1x.png)
+![Retention 3 3](/Retention_3_3.png)
 
 #### Setting Custom Brackets
 
-First, go into the time unit drop-down in the Retention query builder and select **Custom
+First, go into the time unit drop-down in the Retention query builder and select **Custom**
 
-![/yp4a6vkobl.png](/yp4a6vkobl.png)
+![Setting Custom Buckets](/Retention_Setting_Custom.png)
 
 Then, select the size of each bracket for the given time unit. In this example, we are selecting the number of days that are in each custom bracket. Apply.
 
-![/wjw8b9kfg0.png](/wjw8b9kfg0.png)
+![Retention 3 3](/Retention_3_3.png)
 
 Each of these intervals is its own retention bucket, and if the user does the "come back and did B" event anytime inside that bucket they are counted as retained. Now I will be able to understand what percent of users come back to play at least one game in any day between day 15 and day 30 from signing up.
 

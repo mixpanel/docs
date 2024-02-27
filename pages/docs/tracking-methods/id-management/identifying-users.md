@@ -7,10 +7,6 @@ Mixpanel supports stitching user behavior pre-login (eg: traffic from your websi
 
 This system is called ID Merge. In this guide, we walk through how to use ID Merge and exactly how it works under the hood.
 
-<p style={{ position: 'relative', paddingBottom: '56.25%', height: 0, overflow: 'hidden' }}>
-  <iframe src="https://www.loom.com/embed/01dcff45ee91473a9e6ddb1670fd6cba" frameBorder="0" style={{ position: 'absolute', top: 0, left: 0, width: '100%', height: '100%' }} allowFullScreen></iframe>
-</p>
-
 ## Usage
 If using our Web/Mobile SDKs or a CDP like Segment or Rudderstack, there are only 2 steps:
 1. Call `.identify(<user_id>)` when a user signs up or logs in. Pass in the user's known identifier (eg: their ID from your database).
@@ -122,7 +118,7 @@ If you have an existing project with no data in it, you can also switch to using
 Customer Data Platform (CDP) integrations may require some configuration to work the Simplified API:
 - Segment works out of the box with both the simplified and original APIs with no special configurations.
 - Rudderstack has a [connection setting](https://www.rudderstack.com/docs/destinations/streaming-destinations/mixpanel/#connection-settings) that should match the API version configured on your Mixpanel project.
-- mParticle works out of the box with the original API, but requires the following change to work with the simplified API: supply `$device_id` and `$user_id` explicitly as properties on your events.
+- mParticle works out of the box with both the original API, and the Simplified API; when using the Simplified API (for new projects) ensure the "Simplified ID Merge" option is checked in mParticle's connection details
 
 Most other integrations are unaffected by this API change. These integrations are not involved in identity management, they send data to the ID they are given and will work the same way on the simplified API that they do on the original API.
 
@@ -158,7 +154,7 @@ We encourage you to document your implementation (or create a diagram of the imp
 ### What is Distinct ID?
 `distinct_id` is an identifier set by Mixpanel based on the combination of `$device_id` and `$user_id`. The purpose of `distinct_id` is to provide a single, unified identifier for a user across devices and sessions. This helps Mixpanel compute metrics like Daily Active Users accurately: when two events have the same value of `distinct_id`, they are considered as being performed by 1 unique user. By joining on the `distinct_id`, Mixpanel is also able to accurately count funnels or retention metrics that span a user's logged-out behavior and logged-in behavior.
 
-Note: You cannot set the value of `distinct_id` yourself, it will be set by Mixpanel. How it's set depends on the [version of ID Merge](/docs/tracking-methods/identifying-users#simplified-vs-original-id-merge) that your project uses:
+Note: You cannot set the value of `distinct_id` yourself, it will be set by Mixpanel. How it's set depends on the [version of ID Merge](/docs/tracking-methods/id-management/identifying-users#simplified-vs-original-id-merge) that your project uses:
 * **Simplified ID Merge (default):** `distinct_id` will be the `$user_id` if present, otherwise will be `$device:<$device_id>`.
 * **Original ID Merge:** `distinct_id` will be either the `$user_id` or `$device_id`, but is non-deterministic and chosen to optimize backend performance. If you want control over a particular identifier for the user, we recommend setting a [user profile property](/docs/data-structure/user-profiles), such as 'User ID', that has your identified ID. This allows you to have a property that represents the identified user ID.
 

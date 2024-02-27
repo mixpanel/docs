@@ -292,7 +292,7 @@ import React from "react";
 import { Button, SafeAreaView } from "react-native";
 import { Mixpanel } from "mixpanel-react-native";
 
-const trackAutomaticEvents = true;
+const trackAutomaticEvents = false;
 const mixpanel = new Mixpanel("Your Token", trackAutomaticEvents);
 mixpanel.init();
 
@@ -333,7 +333,7 @@ class _YourClassState extends State<YourClass> {
   Future<void> initMixpanel() async {
     // Replace with your Project Token
     // Once you've called this method once, you can access `mixpanel` throughout the rest of your application.
-    mixpanel = await Mixpanel.init("Your Token", trackAutomaticEvents: true);
+    mixpanel = await Mixpanel.init("Your Token", trackAutomaticEvents: false);
   }
 ```
 
@@ -350,7 +350,7 @@ For more options, see the reference and code for each SDK in [Github](https://gi
 
 - (BOOL)application:(UIApplication _)application didFinishLaunchingWithOptions:(NSDictionary _)launchOptions {
   ...
-  Mixpanel *mixpanel = [Mixpanel sharedInstanceWithToken:@"YOUR_TOKEN" trackAutomaticEvents: YES];
+  Mixpanel *mixpanel = [Mixpanel sharedInstanceWithToken:@"YOUR_TOKEN" trackAutomaticEvents: NO];
   [mixpanel track:@"Signed Up" properties:@{
   @"Signup Type": @"Referral"
   }];
@@ -375,7 +375,7 @@ func application(_ application: UIApplication,
                  didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
     ...
     // Replace with your Project Token
-    Mixpanel.initialize(token: "Your Token", trackAutomaticEvents: true)
+    Mixpanel.initialize(token: "Your Token", trackAutomaticEvents: false)
     Mixpanel.mainInstance().track(event: "Signed Up", properties: [
         "Signup Type": "Referral",
     ])
@@ -402,8 +402,9 @@ public class MainActivity extends ActionBarActivity {
     super.onCreate(savedInstanceState);
     setContentView(R.layout.activity_main);
 
+    trackAutomaticEvents = false;
     // Replace with your Project Token
-    mp = MixpanelAPI.getInstance(this, "YOUR_TOKEN");
+    mp = MixpanelAPI.getInstance(this, "YOUR_TOKEN", trackAutomaticEvents);
   }
 
   private void sendToMixpanel() throws JSONException {
@@ -523,4 +524,4 @@ mixpanel.set_config({ persistence: "localStorage" });
 ### How do I connect events from logged out vs logged in users?
 If tracking client-side, just call `.identify(<user_id>)` when a user logs in and `.reset()` when they log out. Mixpanel will automatically stitch the user journey across logged out and logged in.
 
-If tracking server-side, check out our [server-side best practices guide](/docs/best-practices/server-side-best-practices). For more information, read our comprehensive guide on [Identifying Users](/docs/tracking-methods/identifying-users).
+If tracking server-side, check out our [server-side best practices guide](/docs/best-practices/server-side-best-practices). For more information, read our comprehensive guide on [Identifying Users](/docs/tracking-methods/id-management/identifying-users).

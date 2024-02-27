@@ -5,7 +5,7 @@ Mixpanel's [Schematized Export Pipeline](/docs/data-pipelines/schematized-export
 ## Design
 ![image](/230698348-abb2656e-fe2a-4d9c-ad61-8f80793e9c07.png)
 
-Mixpanel applies [transformation rules](/docs/data-pipelines/schematized-export-pipeline#transformation-rules) to make the data compatible with data warehouses and then transfers the transformed data to your S3 bucket. You can then choose to use a glue crawler to create the schema out of the transformed data or let Mixpanel to directly create the schema in your glue database. Having the data and the glue schema in place, you can use SQL with multiple AWS products, including [Amazon Athena](https://aws.amazon.com/athena/) and [Redshift Spectrum](https://docs.aws.amazon.com/redshift/latest/dg/c-getting-started-using-spectrum.html), to query the imported data. 
+Mixpanel applies [transformation rules](/docs/data-pipelines/schematized-export-pipeline#transformation-rules) to make the data compatible with data warehouses and then transfers the transformed data to your S3 bucket. You can then choose to use a Glue crawler to create the schema out of the transformed data or let Mixpanel to directly create the schema in your glue database. Having the data and the glue schema in place, you can use SQL with multiple AWS products, including [Amazon Athena](https://aws.amazon.com/athena/) and [Redshift Spectrum](https://docs.aws.amazon.com/redshift/latest/dg/c-getting-started-using-spectrum.html), to query the imported data. 
 
 We recommend the use of [Spectrum](https://docs.aws.amazon.com/redshift/latest/dg/c-getting-started-using-spectrum.html) and [Glue](https://aws.amazon.com/glue/) to query the imported data. 
 
