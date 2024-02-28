@@ -11,6 +11,7 @@ on:
 
 jobs:
   delete-staging:
+    if: github.repository == 'mixpanel/docs'
     runs-on: ubuntu-latest
     steps:
       - name: Check out repo 📚

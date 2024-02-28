@@ -16,6 +16,7 @@ jobs:
 
   # Create a new ReadMe Version if it needs to and pushes content to the version
   rdme-staging:
+    if: github.repository == 'mixpanel/docs'
     runs-on: ubuntu-latest
     steps:
       - name: Check out repo 📚
