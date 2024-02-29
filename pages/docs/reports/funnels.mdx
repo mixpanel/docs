@@ -372,6 +372,22 @@ To measure the frequency of a particular funnel step between that step and the n
 
 ![/funnels_frequency_per_user_selected_step.png](/funnels_frequency_per_user_selected_step.png)
 
+Q: What is the difference between the old and new frequency? 
+
+A: The new frequency will only count the _extra_ event in between Step 1 and 2, if we are counting the frequency of the Step 1 event. 
+
+For example, if a user performs "Step 1 -> Step 2": 
+- Old Frequency: "1 time"; 
+-- we will count " *Step 1* -> Step 2"
+- New Frequency: "0 times" 
+-- there is no extra "Step 1" event, so it will be "0 times"
+
+For example, if a user performs "Step 1 -> Step 1 -> Step 2":
+- Old Frequency: "2 times"; 
+-- we will count " *Step 1 -> Step 1* -> Step 2"
+- New Frequency: "1 time" 
+-- we will count "Step 1 -> *Step 1* -> Step 2"
+
 Similar to Frequency per User if you want to instead breakdown by an aggregation on an event property between steps, like the sum of video watched time between sign up and purchase you can use Aggregate Property per user.
 
 ![/funnels_aggregate_property_per_user_select_aggregation.png](/funnels_aggregate_property_per_user_select_aggregation.png)
