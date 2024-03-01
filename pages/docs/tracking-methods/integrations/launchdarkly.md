@@ -10,7 +10,7 @@ Doing this involves sending impression events from LaunchDarkly to Mixpanel and 
 
 ## Exporting data from LaunchDarkly
 
-In order to perform its analyses, Mixpanel needs impression events. These events tell Mixpanel which user was exposed to which variant at which time. The shape of events must look as follows:
+In order to perform its analyses, Mixpanel needs impression events. These events tell Mixpanel which user was exposed to which variant at which time. These events must look like this:
 
 ```json
 {
