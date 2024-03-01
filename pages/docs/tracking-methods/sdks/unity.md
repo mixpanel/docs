@@ -119,9 +119,6 @@ Mixpanel.Identify('13793');
 ### Call Reset at Logout
 [Reset](http://mixpanel.github.io/mixpanel-unity/api-reference/classmixpanel_1_1_mixpanel.html#af80b55f985b94780ec983dc6c1210d6b) generates a new random distinct_id and clears super properties. Call reset to clear data attributed to a user when that user logs out. This allows you to handle multiple users on a single device. For more information about maintaining user identity, see the [Identifying Users](/docs/tracking-methods/id-management/identifying-users) article.
 
-Note: Calling reset frequently can lead to users quickly exceeding the 500 distinct_id per identity cluster limit. Once the 500 limit is reached you will no longer be able to add additional distinct_ids to the users identity cluster.
-
-
 ## Storing User Profiles
 
 In addition to events, you can store user profiles in Mixpanel's [User Analytics](https://mixpanel.com/people/) product. Profiles are persistent sets of properties that describe a user—things like name, email address, and signup date. You can use profiles to explore and segment users by who they are, rather than what they did. You can also use profiles to send messages, such as emails, SMS, or push notifications.
