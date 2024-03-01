@@ -10,13 +10,13 @@ Doing this involves sending impression events from LaunchDarkly to Mixpanel and 
 
 ## Exporting data from LaunchDarkly
 
-In order to perform its analyses, Mixpanel needs impression events. These events tell Mixpanel which user was exposed to which variant at which time. These events must look like this:
+In order to perform its analyses, Mixpanel needs impression events. These events tell Mixpanel which user was exposed to which variant at which time. 
 
+These events must be called `$experiment_started` and must have the `Experiment name` and `Variant name` properties:
 ```json
 {
   "event": "$experiment_started",
   "properties": {
-    "$user_id": "alice@example.com",
     "Experiment name": "my_experiment",
     "Variant name": "new_experience"
   }
