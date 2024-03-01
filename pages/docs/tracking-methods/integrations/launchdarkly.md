@@ -17,8 +17,10 @@ These events must be called `$experiment_started` and must have the `Experiment 
 {
   "event": "$experiment_started",
   "properties": {
+    "distinct_id": "alice@example.com",
+    "time": 1709275888,
     "Experiment name": "my_experiment",
-    "Variant name": "new_experience"
+    "Variant name": "control"
   }
 }
 ```
