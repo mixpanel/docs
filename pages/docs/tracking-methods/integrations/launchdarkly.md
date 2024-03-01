@@ -71,7 +71,7 @@ function checkFeatureEnabled(experimentKey, defaultValue) {
 It is possible that an engineer on your team could call this new function before showing the new feature to the user. Be sure that the assignment event is only sent once the user experiences the feature you are experimenting on.
 
 ## Using the events in Mixpanel
-If you track events according to the above spec, you can use the [Experiments report](/docs/reports/apps/experiments) to get a birds eye view of all experiments you have running.
+If you track events according to the above spec, you can use the [Experiments report](/docs/reports/apps/experiments) to get a bird's eye view of all experiments you have running.
 
 You can also build [cohorts](/docs/users/cohorts) of users in each variant, and then filter/breakdown by those cohorts in any report in Mixpanel.
 
