@@ -10,6 +10,7 @@
     "newWindow": true
   },
   "google-tag-manager": "Google Tag Manager",
+  "launchdarkly": "LaunchDarkly",
   "mparticle": "mParticle",
   "mobile-attribution-tracking": "Mobile Attribution Tracking",
   "rudderstack": "Rudderstack",
