@@ -35,13 +35,13 @@ You can find these values in your MoEngage settings page - note that MoEngage Ap
 
 ## Matching Users between MoEngage and Mixpanel
 
-> **Warning:** Projects using the [simplified ID merge system](/docs/tracking-methods/identifying-users#simplified-vs-original-id-merge) must have the `$user_id` in Mixpanel match the user identifier in the partner service. Using any alternative partner properties to match users between tools may result in partner events not being attributed to the correct user in Mixpanel. Any partner properties mentioned in the below section are primarily applicable to projects on the original ID merge system.
+> **Warning:** Projects using the [simplified ID merge system](/docs/tracking-methods/id-management/identifying-users#simplified-vs-original-id-merge) must have the `$user_id` in Mixpanel match the user identifier in the partner service. Using any alternative partner properties to match users between tools may result in partner events not being attributed to the correct user in Mixpanel. Any partner properties mentioned in the below section are primarily applicable to projects on the original ID merge system.
 
 Mixpanel only exports identified user profiles to match to MoEngage - users without user profile properties (i.e. anonymous users) will not export.
 
 If the values you provide for users' distinct_id differ from the values used for MoEngage's Unique ID, the user's Mixpanel profile must contain a user property, `$moengage_user_id`, whose value is a string representing that user's Unique ID in MoEngage. Exports will include this joining key to match the corresponding Unique ID in MoEngage.
 
-In addition, when its ingestion service detects calls setting this user property, Mixpanel will also [alias](https://developer.mixpanel.com/reference/import-events#create_alias) the value of `$moengage_user_id` to the user's distinct_id when setting that user property. This ensures that messaging events passed from MoEngage to Mixpanel still attribute to the correct user.
+In addition, when our ingestion service detects calls setting this user property, Mixpanel will also auto-alias the value of `$moengage_user_id` to the user's distinct_id. This ensures that messaging data passed from MoEngage to Mixpanel still attributes to the correct user.
 
 Note that exports are used solely for matching user identities between products - the integration will not send the full set of a user's profile properties to MoEngage, nor will it generate new user profiles in MoEngage.
 
@@ -81,7 +81,7 @@ Once the export completes, you will see a custom segment reflecting the set of u
 
 You can use events from your MoEngage integration to perform deeper analysis in Mixpanel.
 
-Events coming from MoEngage are marked with the property `$partner_id`.
+Events coming from MoEngage are marked with the property `$source`.
 
 Mixpanel will exempt certain messaging outreach events from MTU calculations, meaning you're free to send campaigns to dormant users without them counting towards MTU billing (only once a user engages with a message will they then be counted towards that tally).
 

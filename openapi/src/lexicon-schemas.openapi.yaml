@@ -272,7 +272,7 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/ListSchemasResponse'
+                $ref: '#/components/schemas/Schema'
         '401':
           $ref: ./common/responses.yaml#/401Unauthorized
         '403':
@@ -442,6 +442,9 @@ components:
       type: object
       description: The schema for the entity
       properties:
+        description:
+          type: string
+          description: The entity description
         properties:
           type: object
           description: >-
@@ -464,6 +467,7 @@ components:
                   - string
               description:
                 type: string
+                description: The property description
               metadata:
                 type: object
                 properties:

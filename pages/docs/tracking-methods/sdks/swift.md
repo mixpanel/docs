@@ -30,7 +30,7 @@ Mixpanel.mainInstance().track(event: "Image Upload")
 
 It's very common to have certain properties that you want to include with each event you send. Generally, these are things you know about the user rather than about a specific event—for example, the user's age, gender, or source.
 
-To make things easier, you can register these properties as super properties. If you do, we will automatically include them with all tracked events. Super properties are saved to device storage, and will persist across invocations of your app. Mixpanel already stores some information as super properties by default; see a full list of Mixpanel default properties [here](https://help.mixpanel.com/hc/en-us/articles/115004613766).
+To make things easier, you can register these properties as super properties. If you do, we will automatically include them with all tracked events. Super properties are saved to device storage, and will persist across invocations of your app. Mixpanel already stores some information as super properties by default; see a full list of Mixpanel default properties [here](/docs/data-structure/property-reference#default-properties).
 
 To set super properties, call [`registerSuperProperties(_:)`](https://mixpanel.github.io/mixpanel-swift/Classes/MixpanelInstance.html#/s:FC8Mixpanel16MixpanelInstance23registerSuperPropertiesFGVs10DictionarySSPs9AnyObject__T_)
 
@@ -81,9 +81,7 @@ Mixpanel.mainInstance().identify(distinctId: "13793");
 
 
 ### Call Reset on Logout
-Reset generates a new random distinct_id and clears super properties. Call reset to clear data attributed to a user when that user logs out. This allows you to handle multiple users on a single device. For more information about maintaining user identity, see the [Identifying Users](/docs/tracking-methods/identifying-users) article.
-
-Note: Calling reset frequently can lead to users quickly exceeding the 500 distinct_id per identity cluster limit. Once the 500 limit is reached you will no longer be able to add additional distinct_ids to the users identity cluster.
+Reset generates a new random distinct_id and clears super properties. Call reset to clear data attributed to a user when that user logs out. This allows you to handle multiple users on a single device. For more information about maintaining user identity, see the [Identifying Users](/docs/tracking-methods/id-management/identifying-users) article.
 
 Beginning with version v2.7.7, Mixpanel no longer uses the IFA(ID for Advertisers) but uses a randomly generated UUID as the default distinct ID instead. After you call reset, Mixpanel generates a new distinct_id.
 
@@ -238,10 +236,10 @@ Mixpanel's SDKs have a legacy feature to automatically collect common mobile eve
 
 | Raw Name | Display Name | Description |
 | --- | --- | --- |
-| $ae_first_open | First App Open | Tracks the first time the user has opened the app. This event is retriggered if the user reinstalls the app or clears local storage. |
-| $ae_updated | App Updated | Executes when a user updates the app from the previous version. |
-| $ae_session | App Session | Executes when a user spends more than 10 seconds in the app. |
-| $ae_iap | In App Purchase (IAP) | Executes when a user conducts an in-app purchase through your app. |
+| $ae_first_open | First App Open | Tracks the first time the user has opened the app. This event is retriggered if the user reinstalls the app or clears local storage. A user property First App Open Date (`$ae_first_app_open_date`) is tracked to indicate the date when app was first opened. |
+| $ae_updated | App Updated | Executes when a user updates the app from the previous version. A Version Updated (`$ae_updated_version`) property is tracked to store the new app version. |
+| $ae_session | App Session | Executes when a user spends more than 10 seconds in the app. A Session Length (`$ae_session_length`) property is tracked to reflect the number of seconds user spent in the session. In addition, there are two user properties tracked: Total App Sessions (`$ae_total_app_sessions`) and Total App Session Length (`$ae_total_app_session_length`). |
+| $ae_iap | In App Purchase (IAP) | Executes when a user conducts an in-app purchase through your app. Mixpanel provides three properties for this event: Product Name (`$ae_iap_name`), Product Quantity (`$ae_iap_quantity`), and Product Price (`$ae_iap_price`). |
 
 ## Release History
 [See All Releases](https://github.com/mixpanel/mixpanel-swift/releases).

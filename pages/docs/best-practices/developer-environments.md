@@ -56,7 +56,7 @@ If you decide to send events from multiple platforms to the same Mixpanel projec
 
 - Capitalization matters: calling one event “Purchase” and one “purchase” will show as two different events in your report dropdowns!
 
-- Ensure you’re handling user identity properly so that you can track users across platforms without counting them as a different user on each platform. Learn more about [identifying users](/docs/tracking-methods/identifying-users).
+- Ensure you’re handling user identity properly so that you can track users across platforms without counting them as a different user on each platform. Learn more about [identifying users](/docs/tracking-methods/id-management/identifying-users).
 
 - Advanced tip: You can initialize multiple instances of Mixpanel on the same app to send certain events to their own, different project. This would allow you to send some events to a different project if you have some different functionality on certain platforms and want to analyze that activity separately.
  

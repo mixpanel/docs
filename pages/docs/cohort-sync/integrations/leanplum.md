@@ -32,13 +32,13 @@ The Leanplum integration will show a **Connected** tag in the UI once the connec
 
 ## Matching Users Between Leanplum and Mixpanel
 
-> **Warning:** Projects using the [simplified ID merge system](/docs/tracking-methods/identifying-users#simplified-vs-original-id-merge) must have the `$user_id` in Mixpanel match the user identifier in the partner service. Using any alternative partner properties to match users between tools may result in partner events not being attributed to the correct user in Mixpanel. Any partner properties mentioned in the below section are primarily applicable to projects on the original ID merge system.
+> **Warning:** Projects using the [simplified ID merge system](/docs/tracking-methods/id-management/identifying-users#simplified-vs-original-id-merge) must have the `$user_id` in Mixpanel match the user identifier in the partner service. Using any alternative partner properties to match users between tools may result in partner events not being attributed to the correct user in Mixpanel. Any partner properties mentioned in the below section are primarily applicable to projects on the original ID merge system.
 
 Mixpanel only exports identified user profiles to match to Leanplum - users without user profile properties (i.e. anonymous users) will not export.
 
 If you use a different system of user identifiers for Mixpanel's distinct_id as compared to Leanplum's user ID, the user's Mixpanel profile must contain a user property, `$leanplum_user_id`, whose value is a string representing that person's user ID in Leanplum. Use this joining key if your user identifiers in Mixpanel are different from the identifiers used in Leanplum (for example, if you identify Mixpanel users on internal user ID, but identify Leanplum users on device ID).
 
-In addition, when its ingestion service detects calls setting this user property, Mixpanel will also alias the value of `$leanplum_user_id` to the user's distinct_id when setting that user property. This ensures that messaging data passed from Leanplum to Mixpanel still attributes to the correct user.
+In addition, when our ingestion service detects calls setting this user property, Mixpanel will also auto-alias the value of `$leanplum_user_id` to the user's distinct_id. This ensures that messaging data passed from Leanplum to Mixpanel still attributes to the correct user.
 
 If you use the same system of user identifiers in both tools, meaning a user has the same ID string in both products, you do **not** have to declare `$leanplum_user_id`. The users' Mixpanel distinct_id will still be sent in the cohort export, and Leanplum will attempt to match users on this value instead.
 

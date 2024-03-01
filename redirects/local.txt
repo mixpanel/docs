@@ -98,7 +98,7 @@
 /docs/other-bits/tutorials/recommended-boards /docs/boards/templates
 /docs/other-bits/tutorials/developers/mixpanel-for-developers-commonly-asked-questions /docs/debugging/overview
 /docs/other-bits/tutorials/developers/mixpanel-for-developers-fundamentals /docs/how-it-works/concepts
-/docs/other-bits/tutorials/developers/mixpanel-for-developers-id-management /docs/tracking-methods/identifying-users
+/docs/other-bits/tutorials/developers/mixpanel-for-developers-id-management /docs/tracking-methods/id-management/identifying-users
 /docs/other-bits/tutorials/developers/mixpanel-for-developers-implementation /docs/quickstart/connect-your-data
 /docs/other-bits/tutorials/how-to-clean-your-data /docs/data-governance/data-clean-up
 /docs/other-bits/tutorials/migration-guides /docs/migration/overview
@@ -138,7 +138,7 @@
 /docs/tracking/how-tos/effective-server-side-tracking /docs/best-practices/server-side-best-practices
 /docs/tracking/how-tos/event-properties /docs/data-structure/events-and-properties
 /docs/tracking/how-tos/events-and-properties /docs/data-structure/events-and-properties
-/docs/tracking/how-tos/identifying-users /docs/tracking-methods/identifying-users
+/docs/tracking/how-tos/identifying-users /docs/tracking-methods/id-management/identifying-users
 /docs/tracking/how-tos/lookup-tables /docs/data-structure/lookup-tables
 /docs/tracking/how-tos/privacy-friendly-tracking /docs/privacy/protecting-user-data
 /docs/tracking/how-tos/set-up-projects /docs/best-practices/developer-environments
@@ -186,3 +186,4 @@
 /docs/tutorials/mixpanel-analysis /docs/how-it-works/concepts#overview
 /docs/tutorials/mixpanel-analysis/insights /docs/reports/insights
 /docs/tutorials/mixpanel-analysis/retention /docs/reports/retention
+/docs/tracking-methods/identifying-users /docs/tracking-methods/id-management/identifying-users

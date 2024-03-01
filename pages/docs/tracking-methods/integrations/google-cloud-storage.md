@@ -2,7 +2,7 @@
 
 This guide demonstrates how to set up a serverless ingest pipeline from a Google Cloud Storage bucket into Mixpanel. Once this is set up, you can simply upload files containing events into the designated GCS bucket and the events will be ingested into Mixpanel, both one-time and on a recurring basis. Setup should take ~10 minutes.
 
-![image](/230694781-cac5df9f-c731-432e-a155-f38861cdcf43.png)
+![image](/gcs-integration-architecture.png)
 
 Note: This guide assumes you are running in Google Cloud Platform, and have the necessary IAM Access to have Cloud Functions read from GCS.
 

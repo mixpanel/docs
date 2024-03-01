@@ -81,27 +81,30 @@ Counting number of times a user has done a specific behavior is also possible by
 
 ## Exporting into Customer managed BigQuery (Recommended)
 We recommend exporting Mixpanel data into customer-managed BigQuery, for this the customer needs to follow these steps.
+
 1. Create a dataset in their BigQuery
-![image](/230698727-1216833e-8321-46de-a388-8b554a00938c.png)
+
+   ![image](/230698727-1216833e-8321-46de-a388-8b554a00938c.png)
 
 2. Give Mixpanel the necessary permissions to export into this dataset.
 
-We need two permissions to manage the dataset. 
+   > **Note:** If your organization uses [domain restriction constraint](https://cloud.google.com/resource-manager/docs/organization-policy/restricting-domains) you will have to update the policy to allow Mixpanel domain `mixpanel.com` and Google Workspace customer ID: `C00m5wrjz`.
 
-**BigQuery Job User**
-  * Go to **IAM &Admin** in your Google Cloud Console.
-  * Click **+ ADD** to add principals
-  * Add new principle "export-upload@mixpanel-prod-1.iam.gserviceaccount.com" and set role as "BigQuery Job User", and save.
-![image](/230698732-4dadbccf-1eeb-4e64-a6c7-8926eb49e5cc.png)
+   We need two permissions to manage the dataset. 
 
-**BigQuery Data Owner**
-  * Go to **BigQuery** in your Google cloud Console.
-  * Open the dataset you want mixpanel to export to.
-  * Click on **sharing** and **permissions** in the drop down. 
-  * In the Data Permissions window click on **Add Principal** 
-  * Add new principle "export-upload@mixpanel-prod-1.iam.gserviceaccount.com" and set role as "BigQuery Data Owner", and save.
-
-![image](/230698735-972aedb5-1352-4ebc-82c4-ef075679779b.png)
+   **BigQuery Job User**
+     * Go to **IAM &Admin** in your Google Cloud Console.
+     * Click **+ ADD** to add principals
+     * Add new principle "export-upload@mixpanel-prod-1.iam.gserviceaccount.com" and set role as "BigQuery Job User", and save.
+       ![image](/230698732-4dadbccf-1eeb-4e64-a6c7-8926eb49e5cc.png)
+    
+   **BigQuery Data Owner**
+     * Go to **BigQuery** in your Google cloud Console.
+     * Open the dataset you want mixpanel to export to.
+     * Click on **sharing** and **permissions** in the drop down. 
+     * In the Data Permissions window click on **Add Principal** 
+     * Add new principle "export-upload@mixpanel-prod-1.iam.gserviceaccount.com" and set role as "BigQuery Data Owner", and save.    
+       ![image](/230698735-972aedb5-1352-4ebc-82c4-ef075679779b.png)
 
 3. You need to pass this dataset and gcp project id as params when you [create your pipeline](https://developer.mixpanel.com/reference/create-warehouse-pipeline)
 

@@ -143,7 +143,7 @@ By default, Funnel calculations are based on **uniques**. To change to a diffe
 
 **Uniques**
 
-Unique funnels count a single entry per user (determined by [distinct_id](/docs/tracking-methods/identifying-users#distinct-id)). Each user enters the funnel only once, and this is on the first time they perform the Step 1 event in the date range. Even if a particular user completes the funnel multiple times in the date range, they will only be counted towards conversion once, and on the first time they entered the funnel.
+Unique funnels count a single entry per user (determined by [distinct_id](/docs/tracking-methods/id-management/identifying-users#what-is-distinct-id)). Each user enters the funnel only once, and this is on the first time they perform the Step 1 event in the date range. Even if a particular user completes the funnel multiple times in the date range, they will only be counted towards conversion once, and on the first time they entered the funnel.
 
 **Totals**
 
@@ -371,6 +371,22 @@ Frequency per user works like any other numeric property in that you are able to
 To measure the frequency of a particular funnel step between that step and the next one, use selected step from the event selection in the Frequency per user breakdown. If the user does not do the step again before the next one the frequency will be 0.
 
 ![/funnels_frequency_per_user_selected_step.png](/funnels_frequency_per_user_selected_step.png)
+
+Q: What is the difference between the old and new frequency? 
+
+A: The new frequency will only count the _extra_ event in between Step 1 and 2, if we are counting the frequency of the Step 1 event. 
+
+For example, if a user performs "Step 1 -> Step 2": 
+- Old Frequency: "1 time"; 
+-- we will count " *Step 1* -> Step 2"
+- New Frequency: "0 times" 
+-- there is no extra "Step 1" event, so it will be "0 times"
+
+For example, if a user performs "Step 1 -> Step 1 -> Step 2":
+- Old Frequency: "2 times"; 
+-- we will count " *Step 1 -> Step 1* -> Step 2"
+- New Frequency: "1 time" 
+-- we will count "Step 1 -> *Step 1* -> Step 2"
 
 Similar to Frequency per User if you want to instead breakdown by an aggregation on an event property between steps, like the sum of video watched time between sign up and purchase you can use Aggregate Property per user.
 
