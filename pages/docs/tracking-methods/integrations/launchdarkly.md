@@ -61,8 +61,8 @@ function checkFeatureEnabled(experimentKey, defaultValue) {
   // This assumes the Mixpanel SDK is initialized
   // Note: Use this precise event name
   mixpanel.track("$experiment_started", {
-      Experiment name: experimentKey,
-      Variant name: variation,
+      "Experiment name": experimentKey,
+      "Variant name": variation,
   });
 
   // return the variation
