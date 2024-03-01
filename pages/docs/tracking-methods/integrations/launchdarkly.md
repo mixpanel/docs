@@ -27,7 +27,7 @@ These events must be called `$experiment_started` and must have the `Experiment 
 
 LaunchDarkly does not export this by default, so there are two options:
 1. Pay to [export](https://docs.launchdarkly.com/home/getting-started) from LaunchDarkly to Pubsub. If you go this route, you will need to write some code that pulls from PubSub and pushes to Mixpanel. We have a sample guide [here](/docs/tracking-methods/integrations/google-pubsub). This is server-side, so will likely be more accurate, but requires more work to integrate.
-2. Log assignments with wrapper code (see below). This is more convenient, but can be less reliable due to the limitations of client-side tracking.
+2. Log assignments with wrapper code (see [below](#logging-assignments-with-wrapper-code)). This is more convenient, but can be less reliable due to the limitations of client-side tracking.
 
 
 ## Logging assignments with wrapper code
