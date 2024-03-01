@@ -12,7 +12,7 @@ Doing this involves sending impression events from LaunchDarkly to Mixpanel and 
 
 In order to perform its analyses, Mixpanel needs impression events. These events tell Mixpanel which user was exposed to which variant at which time. 
 
-These events must be called `$experiment_started` and must have the `Experiment name` and `Variant name` properties:
+These events must be called `$experiment_started` and must have the `Experiment name` and `Variant name` properties -- Mixpanel recognizes these events and uses them to autopopulate the Experiments report](/docs/reports/apps/experiments).
 ```json
 {
   "event": "$experiment_started",
