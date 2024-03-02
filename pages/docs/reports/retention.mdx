@@ -94,56 +94,7 @@ For example, if you are bucketing based on your "Item Purchased" event and creat
 
 ## Advanced
 
-### Calendar Retention Mode
-
-You can go into advanced menu under Retention Criteria to switch the retention mode from the default rolling time windows to calendar defined time windows. This aligns the retention calculation so that all users entering within a time bucket get calculated together.
-
-![/13599603833876.png](/13599603833876.png)
-
-This may be useful in scenarios where you want to check engagement on a strict day basis, OR if you want to check retention of your user base for the entire month and when they return, regardless of when in the month they first entered or when in the next month they returned.
-
-![/13599765981076.png](/13599765981076.png)
-
-In the above example, we're looking at retention on a calendar week basis.
-
-- In the < Week 1 bucket, there were 6 users who did "Sign Up" at any point of the week of Dec 23 - Dec 30, and returned to do "Post Content" in that same week of Dec 23 - Dec 30.
-- In the Week 1 bucket, there were 10 users who did "Sign Up" in the same Dec 23 - Dec 30 interval, but returned to do "Post Content" only some time between Dec 30 - Jan 6.
-
-#### How is this different than the basic retention mode?
-
-This [loom video](https://www.loom.com/share/5484c7bdd61a4332818ceef20f475176) should provide an overview of what is calendar interval retention and how it works vs the default rolling window retention
-
-![/5484c7bdd61a4332818ceef20f475176-with-play.gif](/5484c7bdd61a4332818ceef20f475176-with-play.gif)
-
-**[Basic] Rolling interval retention** - Considers time intervals based on user’s time of birth; i.e
-
-- Day 1 retention = 24-48 hrs since person’s birth
-- Week 1 retention = 7-14 days since person’s birth
-- Month 1 retention = 30-60 days since person’s birth
-
-**[Advanced] Calendar interval retention** - Considers time intervals based on ‘calendar’ time; i.e
-
-- Day 1 retention = next ‘calendar’ day since person’s birth. If a person did an activity at 8pm on Monday and then 6am on Tuesday, person is counted under Day 1 retention even though it’s just 10 hrs later
-- Week 1 retention = next ‘calendar’ week since person’s birth. If a person did an activity on Friday and then Monday, person is counted under Week 1 retention even though it’s just 3 days, since the ‘calendar’ week changed
-- Month 1 retention = next ‘calendar’ month since person’s birth. Similarly, if a person made a purchase on 25th Feb and then again on 3rd March, person will be counted under Month 1 retention metrics
-
-NOTE — All the above cases would NOT qualify under Day 1 or Week 1 or Month 1 rolling interval retention
-
-**When should you the calendar vs rolling interval retention mode?
-
-Both the modes are extremely useful. It totally depends on the use-case you’re trying to answer. Some examples -
-
-| Use-Case | Which mode to use? |
-| --- | --- |
-| Day 1 retention for apps focused on “daily engagement” like music, meditation or workout apps | Calendar-interval |
-| How many users come back after month 1 (30 days)? How many comes back after 3 months (90 days)? | Rolling-interval |
-| Understanding the effect of a marketing promotion, how many people came back the week after the promotion ended? | Calendar-interval |
-| What’s Mixpanel's quarterly revenue retention? How was gross and net retention in Q4 vs Q3? | Calendar-interval |
-| How many users renewed their Netflix subscription? To note, renewals happen 30 days after last payment | Rolling-interval |
-
-Above said, general expectation is product use-cases which focus on user stickiness are likely to use rolling interval mode. Marketing & Revenue teams which focus on calendar dates for their activities, are likely to use calendar interval model
-
-### Retention Criteria - Overview
+### Retention Criteria
 
 <p style={{ position: 'relative', paddingBottom: '56.25%', height: 0, overflow: 'hidden' }}>
   <iframe src="https://www.loom.com/embed/565ed521880d4d7e9f68c821645b99cc" frameborder="0" style={{ position: 'absolute', top: 0, left: 0, width: '100%', height: '100%' }} allowfullscreen></iframe>
@@ -202,6 +153,55 @@ Then, select the size of each bracket for the given time unit. In this example, 
 ![Retention 3 3](/Retention_3_3.png)
 
 Each of these intervals is its own retention bucket, and if the user does the "come back and did B" event anytime inside that bucket they are counted as retained. Now I will be able to understand what percent of users come back to play at least one game in any day between day 15 and day 30 from signing up.
+
+#### Calendar Retention Mode
+
+You can go into advanced menu under Retention Criteria to switch the retention mode from the default rolling time windows to calendar defined time windows. This aligns the retention calculation so that all users entering within a time bucket get calculated together.
+
+![/13599603833876.png](/13599603833876.png)
+
+This may be useful in scenarios where you want to check engagement on a strict day basis, OR if you want to check retention of your user base for the entire month and when they return, regardless of when in the month they first entered or when in the next month they returned.
+
+![/13599765981076.png](/13599765981076.png)
+
+In the above example, we're looking at retention on a calendar week basis.
+
+- In the < Week 1 bucket, there were 6 users who did "Sign Up" at any point of the week of Dec 23 - Dec 30, and returned to do "Post Content" in that same week of Dec 23 - Dec 30.
+- In the Week 1 bucket, there were 10 users who did "Sign Up" in the same Dec 23 - Dec 30 interval, but returned to do "Post Content" only some time between Dec 30 - Jan 6.
+
+##### How is this different than the basic retention mode?
+
+This [loom video](https://www.loom.com/share/5484c7bdd61a4332818ceef20f475176) should provide an overview of what is calendar interval retention and how it works vs the default rolling window retention
+
+![/5484c7bdd61a4332818ceef20f475176-with-play.gif](/5484c7bdd61a4332818ceef20f475176-with-play.gif)
+
+**[Basic] Rolling interval retention** - Considers time intervals based on user’s time of birth; i.e
+
+- Day 1 retention = 24-48 hrs since person’s birth
+- Week 1 retention = 7-14 days since person’s birth
+- Month 1 retention = 30-60 days since person’s birth
+
+**[Advanced] Calendar interval retention** - Considers time intervals based on ‘calendar’ time; i.e
+
+- Day 1 retention = next ‘calendar’ day since person’s birth. If a person did an activity at 8pm on Monday and then 6am on Tuesday, person is counted under Day 1 retention even though it’s just 10 hrs later
+- Week 1 retention = next ‘calendar’ week since person’s birth. If a person did an activity on Friday and then Monday, person is counted under Week 1 retention even though it’s just 3 days, since the ‘calendar’ week changed
+- Month 1 retention = next ‘calendar’ month since person’s birth. Similarly, if a person made a purchase on 25th Feb and then again on 3rd March, person will be counted under Month 1 retention metrics
+
+NOTE — All the above cases would NOT qualify under Day 1 or Week 1 or Month 1 rolling interval retention
+
+**When should you the calendar vs rolling interval retention mode?
+
+Both the modes are extremely useful. It totally depends on the use-case you’re trying to answer. Some examples -
+
+| Use-Case | Which mode to use? |
+| --- | --- |
+| Day 1 retention for apps focused on “daily engagement” like music, meditation or workout apps | Calendar-interval |
+| How many users come back after month 1 (30 days)? How many comes back after 3 months (90 days)? | Rolling-interval |
+| Understanding the effect of a marketing promotion, how many people came back the week after the promotion ended? | Calendar-interval |
+| What’s Mixpanel's quarterly revenue retention? How was gross and net retention in Q4 vs Q3? | Calendar-interval |
+| How many users renewed their Netflix subscription? To note, renewals happen 30 days after last payment | Rolling-interval |
+
+Above said, general expectation is product use-cases which focus on user stickiness are likely to use rolling interval mode. Marketing & Revenue teams which focus on calendar dates for their activities, are likely to use calendar interval model
 
 ### Frequency View
 
