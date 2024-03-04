@@ -184,54 +184,33 @@ Note:
 3. There may be any number of exclusion events between steps.
 4. Exclusion steps have the same [two second grace period](/docs/reports/funnels#how-does-mixpanel-handle-simultaneous-events) as other steps in the funnel.
 
-### Funnel Trends
+### Measurements
 
-Select **Funnel trends** from the drop-down list to see the percentage of successful conversions from the first event in the funnel to the last event in the funnel for a day, week, or month.
+You have a variety of options to measure your funnel behavior.
 
-A user that completes the funnel within the conversion window is counted on the day, week, or month corresponding to when they performed the first event in the funnel.
+| Measurement | Description |
+| --- | --- |
+| Conversion Rate | The rate at which funnels are completed for the selected steps of the funnel. The conversion rate can be based off of unique users, total funnel entries or sessions. |
+| Unique Users | The number of users who completed the selected steps of the funnel. |
+| Total Conversions | The total number of funnels that have reached the selected step of the funnel. This measurement allows for users to re-enter the funnel multiple times. |
+| Total Sessions | The total number of unique users sessions that reached the selected step of the funnel |
+| Time to Convert | Allows for selection of an aggregation: Average, Median, Percentile, Min and Max. Measueres the aggregated time to convert for the selected steps of the funnel. [See more](#time-to-convert-measurement) |
+| Property Sum | Sums up a chosen property value for each step of the funnel, and measures the total amount of the property converted for the selected step of the funnel. [See more](#property-sum) |
 
-![image](https://github.com/mixpanel/docs/assets/2077899/10e15262-5d2f-4b77-80e2-3a7270645878)
+#### Step Selection
 
-By default this chart shows the conversion rate. Click on **Conversion** to view the options Time to Convert, Top of Funnel, and Bottom of Funnel.
+You can select which step of the funnel you would like to measure. By default this is set to All Steps. To change your step selection, press "All Steps" and choose the desired range.
 
-![/Screen_Shot_2022-07-12_at_3.13.13_PM.png](/Screen_Shot_2022-07-12_at_3.13.13_PM.png)
+![step selection](/step-selection.png)
 
-#### Data Table
-
-Trends charts in Funnels are accompanied with a table of values to give users another way to consume the trends information. This data table can also be sorted by clicking column headers.
-
-Click on a "data column" header to sort by that column. Click the header again to reverse the sort order. The table below is sorted by event counts on August 2nd:
-
-![image](https://github.com/mixpanel/docs/assets/2077899/c5b5a712-4369-4c4b-831c-246c61c30bc5)
-
-#### Time to Convert Trend
-
-**Time to Convert** allows you to see how the amount of time it takes users to convert through your funnel has changed over time.
-
-![/Screen_Shot_2022-07-12_at_3.14.29_PM.png](/Screen_Shot_2022-07-12_at_3.14.29_PM.png)
-
-Generally speaking, a shorter conversion time is ideal. If your Trends chart shows that your conversion time is increasing, there may be a usability issue on your app making it more difficult for users toconvert.
-
-#### Top of Funnel
-
-**Top of Funnel** allows you to see the trend of the count of users who entered the funnel.
-
-Note that if you use the step counter at the top to view only "Step 2 to Step 3" for example, rather than All Steps, then the top of the funnel would be the count of users who entered step 2 over time.
-
-![/Screen_Shot_2022-07-12_at_3.15.04_PM.png](/Screen_Shot_2022-07-12_at_3.15.04_PM.png)
-
-#### Bottom of Funnel
-
-**Bottom of Funnel** allows you to see the trend of the count of users who converted through the funnel.
-
-Note that if you use the step counter at the top to view only "Step 2 to Step 3" for example, rather than All Steps, then the bottom of the funnel would be the count of users who converted to step 3 over time.
-
-![/Screen_Shot_2022-07-12_at_3.17.26_PM.png](/Screen_Shot_2022-07-12_at_3.17.26_PM.png)
+When measuring "Unique Users", "Total Conversions" or "Total Sessions", you can select "Entering Funnel" in order to get a top of funnel count. Similarly, if you would like to get the bottom of funnel count, you choose "All Steps" or any other step range to get the bottom of funnel count for that step.
 
 ### Time to Convert
 #### Time to Convert Measurement
 
-TODO
+![Time to Convert Measurements](/ttc-measurements.png)
+
+You can select a Time to Convert aggregation to see how quickly or slowly your funnel converts. You can see this as a summarized value by selecting "Metric" or "Bar" visualizations, or you can see it as a trend using the "Line" visualization. You can also see the time to convert for a particular chosen step selection.
 
 #### Time to Convert Breakdown
 
