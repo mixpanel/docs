@@ -4,6 +4,19 @@ import { Tab, Tabs } from 'nextra-theme-docs'
 
 import ExtendedTabs from '../../../components/ExtendedTabs/ExtendedTabs';
 import { dataItems } from '../../../utils/constants';
+import { useRef, useEffect } from 'react'
+
+export function DynamicCode({ children }) {
+  const ref = useRef()
+  useEffect(() => {
+    const projToken = new URLSearchParams(window.location.search).get("projectToken");
+    if (ref.current && projToken) {
+      const token = [...ref.current.querySelectorAll('code span')].find(el => (el.innerText === '\"YOUR_TOKEN\"' || el.innerText === '@\"YOUR_TOKEN\"'))
+      if (token) { token.innerText = '\"' + projToken + '\"' }
+    }
+  });
+  return <div ref={ref}>{children}</div>
+}
 
 You can use Mixpanel's SDKs to track events from your website, web application, or backend servers. We [recommend](/docs/tracking-methods/choosing-the-right-method) server-side tracking, since it is more reliable and easier to maintain than web/mobile tracking.
 
@@ -153,10 +166,11 @@ Alternatively, you can download and install the .unitypackage file from our [rel
 <ExtendedTabs urlParam="sdk" urlToItemsMap={dataItems}>
 
 <Tab>
+<DynamicCode>
 ```js Javascript
 import mixpanel from 'mixpanel-browser';
 
-mixpanel.init('YOUR_TOKEN', {debug: true, track_pageview: true, persistence: 'localStorage'});
+mixpanel.init("YOUR_TOKEN", {debug: true, track_pageview: true, persistence: 'localStorage'});
 
 // Set this to a unique identifier for the user performing the event.
 mixpanel.identify('USER_ID')
@@ -170,7 +184,7 @@ mixpanel.track('Sign Up', {
 🎉 Congratulations, you've tracked your first event! You can see it in Mixpanel via the [Events page](https://mixpanel.com/report/events).
 
 You can also follow our video walkthrough [here](https://www.loom.com/embed/fbba03274dc441b49b578e8a734b1d99).
-
+</DynamicCode>
 </Tab>
 
 <Tab>
@@ -344,6 +358,7 @@ For more options, see the reference and code for each SDK in [Github](https://gi
 </Tab>
 
 <Tab>
+<DynamicCode>
 ```objc
 
 #import "Mixpanel/Mixpanel.h"
@@ -362,10 +377,11 @@ For more options, see the reference and code for each SDK in [Github](https://gi
 🎉 Congratulations, you've tracked your first event! You can see it in Mixpanel via the [Events](https://mixpanel.com/report/events) page.
 
 For more options, see the reference and code for each SDK in [Github](https://github.com/mixpanel).
-
+</DynamicCode>
 </Tab>
 
 <Tab>
+<DynamicCode>
 Import Mixpanel into `AppDelegate.swift`, and initialize Mixpanel within `application:didFinishLaunchingWithOptions`:
 
 ```swift
@@ -375,7 +391,7 @@ func application(_ application: UIApplication,
                  didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
     ...
     // Replace with your Project Token
-    Mixpanel.initialize(token: "Your Token", trackAutomaticEvents: false)
+    Mixpanel.initialize(token: "YOUR_TOKEN", trackAutomaticEvents: false)
     Mixpanel.mainInstance().track(event: "Signed Up", properties: [
         "Signup Type": "Referral",
     ])
@@ -388,9 +404,11 @@ func application(_ application: UIApplication,
 For more options, see the reference and code for each SDK in [Github](https://github.com/mixpanel).
 
 
+</DynamicCode>
 </Tab>
 
 <Tab>
+<DynamicCode>
 ```java
 import com.mixpanel.android.mpmetrics.MixpanelAPI;
 
@@ -419,6 +437,7 @@ public class MainActivity extends ActionBarActivity {
 
 For more options, see the reference and code for each SDK in [Github](https://github.com/mixpanel).
 
+</DynamicCode>
 </Tab>
 
 <Tab>
