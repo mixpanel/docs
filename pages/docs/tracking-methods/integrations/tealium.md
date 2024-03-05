@@ -1,6 +1,12 @@
 # Tealium
 
-This guide demonstrates how to set up Mixpanel event tracking and identity management with [Tealium's IQ Tag Management Platform](https://tealium.com/resource/datasheet/tealium-iq/).
+This guide demonstrates how to set up Mixpanel event tracking and identity management with [Tealium's IQ Tag Management Platform](https://tealium.com/resource/datasheet/tealium-iq/). Setup should take about 10 minutes, and will go over the following 5 steps:
+
+  1. Configuring Tag Hooks (one-time)
+  2. Connecting Mixpanel to Tealium (one-time)
+  3. Sending Events
+  4. Adding Event Properties
+  5. Identifying Users (one-time)
 
 ### Prerequisite: Tag Hooks
 
@@ -20,34 +26,33 @@ var utag_data = {
 }
 ```
 
-In order to *trigger* Mixpanel events based on the *values* of `tealium_event`s, you’ll need to create a **variable** in Tealium’s **data layer** for `tealium_event` (the *key* not the *value*).
+In order to trigger Mixpanel events based on the values of `tealium_event`s, you’ll need to create a variable in Tealium’s data layer for `tealium_event` (the key not the value).
 
 **This is a very common implementation pattern in Tealium**; if you’ve been using tealium for a while, you most likely have already mapped a UDO for `tealium_event` ... if you haven’t, here are the steps:
 
-find "data layer" in the main menu:
+Find "data layer" in the main menu:
 
 ![01-dataLayerMenu](https://github.com/mixpanel/docs/assets/3978760/c99badbe-8755-42c6-8052-0af1dd873a44)
 
-click "add variable":
+Click "add variable":
 
 ![02-addVar](https://github.com/mixpanel/docs/assets/3978760/ec812663-885f-4568-95c6-f61cfb22315c)
 
-
-the type is "UDO Variable"; the source is "tealium_event" ... then click apply:
+The type is "UDO Variable"; the source is "tealium_event" ... then click apply:
 
 ![03-UDOVar](https://github.com/mixpanel/docs/assets/3978760/b810e6f3-8316-4045-9aab-b4a1f05163e8)
 
-now save and publish!
+Now save and publish!
 
 ![04-SavePublish](https://github.com/mixpanel/docs/assets/3978760/976a8c20-ef40-4c0b-9d7d-d5cfdb1baec2)
 
-you should now see a "tealium_event" variable in your UDOs:
+You should now see a "tealium_event" variable in your UDOs:
 
 ![05-TealiumEvent](https://github.com/mixpanel/docs/assets/3978760/d4d4f6e3-7ee2-4ac3-a6a7-cdb5c6c1b12f)
 
 ( ^ it should look exactly like this! ^)
 
-we’re now ready to setup mixpanel events with *triggers* based on the *values* passed to `tealium_event` ... these *values* are usually strings like `page_view` , `product_view`, `search` etc...
+You are now ready to setup mixpanel events with triggers based on the *values* passed to `tealium_event` ... these values are usually strings like `page_view` , `product_view`, `search` etc...
 
 ## Connecting Mixpanel to Tealium
 
@@ -92,81 +97,81 @@ That the goal of this guide is to turn something of this form:
 var utag_data = {	"tealium_event": "page_view" }
 ```
 
-into the equivalent javascript:
+Into the equivalent javascript:
 
 ```javascript
 mixpanel.track('hello from tealium!')
 ```
 
-*when* a user **loads** the page.
+When a user loads the page.
 
 Here’s how you can setup this mapping:
 
-- first, we need to use the `tealium_event` UDO variable to tell Tealium to pass `tealium_event` *values* to the mixpanel tag:
+- Use the `tealium_event` UDO variable to tell Tealium to pass `tealium_event` *values* to the mixpanel tag:
 
-- click "variables" dropdown and choose "tealium_event"
+- Click "variables" dropdown and choose "tealium_event"
 
 ![11-Variables](https://github.com/mixpanel/docs/assets/3978760/c8c32537-50ac-4af1-ba36-a8be34bd9180)
 
-- next, in the **events** menu, we bind the trigger `page_view` (from the UDO `tealium_event`) *to* the mixpanel method `track`:
+- Bind the trigger `page_view` (from the UDO `tealium_event`) *to* the mixpanel method `track`:
 
-- click 'add’ when it looks like this... and then done
+- Click 'add’ when it looks like this... and then done
 
 ![12-Categories](https://github.com/mixpanel/docs/assets/3978760/e98f5fa3-8cf6-4be8-8a21-8ebcacdff277)
 
-- we should now have this binding:
+- You should now have this binding:
 
 ![13-Binding](https://github.com/mixpanel/docs/assets/3978760/96d8e794-0979-441a-be68-c2cfb471630b)
 
-this will track the UDO `page_view` whever it appears on our site.
+This will track the UDO `page_view` whever it appears on our site.
 
-next, we’ll need to give our **event** a **name** in mixpanel... 
+Next, give the event a name in mixpanel... 
 
-for this tutorial, we’ll use a **[custom value](https://community.tealiumiq.com/t5/iQ-Tag-Management/Data-Mappings/ta-p/10645#toc-hId-1471722208)** ... this is added as another variable in tealium’s data mapper:
+For this tutorial, we’ll use a **[custom value](https://community.tealiumiq.com/t5/iQ-Tag-Management/Data-Mappings/ta-p/10645#toc-hId-1471722208)** ... this is added as another variable in tealium’s data mapper:
 
-- click "variables" drop down and choose use custom value:
+- Click "variables" drop down and choose use custom value:
 
 ![14-CustomValue](https://github.com/mixpanel/docs/assets/3978760/523c41dd-fe1f-42a5-b960-7212f7889693)
 
-- define your "custom value"
+- Define your "custom value"
 
 ![15-CustomText](https://github.com/mixpanel/docs/assets/3978760/11e51314-042e-41a8-ad06-eae042cd1747)
 
-- now, in the **event parameters** menu we need to bind our custom value `hello... from tealium` to the `eventName` *for* `track`:
+- Now, in the **event parameters** menu bind our custom value `hello... from tealium` to the `eventName` for `track`:
 
 ![16-AddAndDone](https://github.com/mixpanel/docs/assets/3978760/31a484d3-247f-4dfc-8c48-f0bf1dc78ad2)
 
-- click "add" and "done" when you’ve mapped your custom value to Track : Event Name
+- Click "add" and "done" when you’ve mapped your custom value to Track : Event Name
 
-our final mapping now looks like this:
+Our final mapping now looks like this:
 
 ![17-FinalMapping](https://github.com/mixpanel/docs/assets/3978760/c5c1f92b-2c74-4313-8df0-f76a5c046e41)
 
-if your screen looks similar, you’re ready to save and publish!
+If your screen looks similar, you’re ready to save and publish!
 
 ![18-SaveAndDone](https://github.com/mixpanel/docs/assets/3978760/e18e645a-58ff-479e-b731-062d2f346b0a)
 
-we’re almost there! wait a couple moments for tealium to apply the updates to your environment, and then load one of your pages (that has this tag deployed) 
+Wait a couple moments for tealium to apply the updates to your environment, and then load one of your pages (that has this tag deployed) 
 
-if you pop open the developer console in your browser... you can see two requests to mixpanel:
+Pop open the developer console in your browser... you can see two requests to mixpanel:
 
 ![19-debugging](https://github.com/mixpanel/docs/assets/3978760/4b41ba9a-d669-4ac7-80de-00b273644d95)
 
-if you’re using a [tealium browser extension debugger,](https://chrome.google.com/webstore/detail/tealium-tools/gidnphnamcemailggkemcgclnjeeokaa?hl=en-US) or have forced the utag into [debug mode by modifying the cookie](https://docs.tealium.com/platforms/javascript/debugging/#debug-mode):
+If you’re using a [tealium browser extension debugger,](https://chrome.google.com/webstore/detail/tealium-tools/gidnphnamcemailggkemcgclnjeeokaa?hl=en-US) or have forced the utag into [debug mode by modifying the cookie](https://docs.tealium.com/platforms/javascript/debugging/#debug-mode):
 
 ```jsx
 document.cookie="utagdb=true";
 ```
 
-you can see the tag’s rendering states:
+You can see the tag’s rendering states:
 
 ![20-debugStates](https://github.com/mixpanel/docs/assets/3978760/ac51bae7-d4b4-45d0-817a-1053a6ef7763)
 
-or... you can skip all that debugging noise and just go to mixpanel, and click into the [events report](https://help.mixpanel.com/hc/en-us/articles/4402837164948-Events-formerly-Live-View-) to see your new fresh event!
+Or... you can skip all that debugging noise and just go to mixpanel, and click into the [events report](https://help.mixpanel.com/hc/en-us/articles/4402837164948-Events-formerly-Live-View-) to see your new fresh event!
 
 ![21-MixpanelEvents](https://github.com/mixpanel/docs/assets/3978760/28dfb81d-4a72-4177-938c-109a6194e981)
 
-🥳 congrats! you just implemented Tealium → Mixpanel. You will repeat this process for additional events you wish to create.
+You just implemented Tealium → Mixpanel. You will repeat this process for additional events you wish to create.
 
 
 ## Adding Event Properties
@@ -185,42 +190,42 @@ Adding event properties is as simple as modifying the exsiting mapping to an eve
 
 ![24-SuccesfulEvent](https://github.com/mixpanel/docs/assets/3978760/41d27add-4d89-424d-830e-ba978e3b17f6)
 
-note: you can always rename property keys' display labels [in lexicon](https://help.mixpanel.com/hc/en-us/articles/360001307806-Lexicon-Overview#adding-or-changing-descriptions)
+Note: you can always rename property keys' display labels [in lexicon](https://help.mixpanel.com/hc/en-us/articles/360001307806-Lexicon-Overview#adding-or-changing-descriptions)
        
-## Cross-device Tracking
+## Identifying Users
 
-**important:** cross device tracking assumes you know the identity of the current user.. **`identify()`** should *only* be called on "authenticated" (logged in) pages/actions.
+**Important:** cross device tracking assumes you know the identity of the current user.. **`identify()`** should *only* be called on "authenticated" (logged in) pages/actions.
 
-ultimately, we are trying to get Tealium to render this tag:
+Ultimately, we are trying to get Tealium to render this tag:
 
 ```
 mixpanel.identify(uniqueUserId)
 ```
 
-where `uniqueUserId` is a **string** value that refers to the **canonical user id for the current ("logged in") user.**
+Where `uniqueUserId` is a string value that refers to the canonical user id for the current ("logged in") user.
 
-it’s *critically* important that this value *uniquely* identifies the end-user, across all devices they may have.
+It’s critically important that this value uniquely identifies the end-user, across all devices they may have.
 
-**as a side note:** some customer are tempted to use an *email address* as a unique identifier; this is (generally) not a good identifier, especially if users can change their email address... the value you pass to `identify` should never *change* for a single user.
+**Note:** some customer are tempted to use an email address as a unique identifier; this is (generally) not a good identifier, especially if users can change their email address... the value you pass to `identify` should never change for a single user.
 
-- first, i’ll assume we have a UDO (or other javascript variable) that points to our UUID (unique user identifier)
+- Assuming we have a UDO (or other javascript variable) that points to our UUID (unique user identifier)
 
 ![25-IdentityStart](https://github.com/mixpanel/docs/assets/3978760/d916c42d-5055-48ee-9fc1-11c547ac3b03)
 
-- next, we have to tell tealium *when* to use our `identify` tag... this is similar to how we used `page_view:track` directive to tell tealium to call `.track()` on the "tealium event" "page_view" ... you will probably use some other UDO event here (like `log in` or `sign in`):
+- Next, instruct Tealium when to use our `identify` tag... this is similar to how we used `page_view:track` directive to tell tealium to call `.track()` on the "tealium event" "page_view" ... you will probably use some other UDO event here (like `log in` or `sign in`):
     
 ![26-IdentityMap](https://github.com/mixpanel/docs/assets/3978760/a1cc3d9e-ff89-4491-a9b5-6d565ac68b4a)
 
     
-- next, we’ll select our `id_of_user` UDO (or whatever value represents our UUID for the end user) in the dropdown and proceed to **SELECT DESTINATION**
+- Select the `id_of_user` UDO (or whatever value represents our UUID for the end user) in the dropdown and proceed to **SELECT DESTINATION**
     
 ![27-IdentityAdd](https://github.com/mixpanel/docs/assets/3978760/202e8a8c-8229-4c20-b8e8-5bf468e1d95b)
 
-- finally, we map the `id_of_user` value to `event parameters` for the `identify` event and choose the specific parameter `unique ID` ... then click **ADD**
+- Finally, map the `id_of_user` value to `event parameters` for the `identify` event and choose the specific parameter `unique ID` ... then click **ADD**
 
 ![28-IdentityFinish](https://github.com/mixpanel/docs/assets/3978760/89ae1139-7c65-4cf7-af0c-d8f6076a351c)
 
-a final implementation of mixpanel within Tealium might look like this:
+A final implementation of mixpanel within Tealium might look like this:
 
 ![29-SampleComplete](https://github.com/mixpanel/docs/assets/3978760/7f5426d4-bbe3-4686-bfcd-e776b4475482)
 
