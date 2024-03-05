@@ -26,7 +26,7 @@ var utag_data = {
 }
 ```
 
-In order to trigger Mixpanel events based on the values of `tealium_event`s, you’ll need to create a variable in Tealium’sdata layer for `tealium_event` (the key not the value).
+In order to trigger Mixpanel events based on the values of `tealium_event`s, you’ll need to create a variable in Tealium’s data layer for `tealium_event` (the key not the value).
 
 **This is a very common implementation pattern in Tealium**; if you’ve been using tealium for a while, you most likely have already mapped a UDO for `tealium_event` ... if you haven’t, here are the steps:
 
