@@ -35,7 +35,7 @@ We recommend striking the right balance when defining your events. Events should
 
 **For example:**
 
-* If your goal is to analyse at high-level how users traverse through different pages: instead of tracking multiple events `Home Page Viewed` and `Pricing Page Viewed`, track a `Page Viewed` event with a `Page Name` property set to `/home` or `/pricing`. See [Tracking Page Views](/docs/tracking-methods/sdks/javascript#tracking-page-views) in our Javascript SDK documentation on how to instrument this.
+* If your goal is to analyse at high-level how users traverse through different pages: instead of tracking multiple events `Home Page Viewed` and `Pricing Page Viewed`, track a `Page Viewed` event with a `Page Name` property set to **"\/home"** or **"\/pricing"**. See [Tracking Page Views](/docs/tracking-methods/sdks/javascript#tracking-page-views) in our Javascript SDK documentation on how to instrument this.
 
 * If your goal is to track users adding items to a shopping cart: instead of tracking multiple events `Add Shirt to Cart`, `Add Hoodie to Cart`, and `Add Socks to Cart`, track a `Add to Cart` event with a `Item` property set to **"Shirt"**, or **"Hoodie"**, or **"Socks"**.
 
