@@ -405,6 +405,7 @@ paths:
         it does exist, it sets the properties to these values, overwriting
         existing values.
       parameters:
+        - $ref: ./common/ingestion-api.yaml#/OptionalRequestParameter/ResponseType/Strict
         - $ref: ./common/ingestion-api.yaml#/OptionalRequestParameter/ResponseType/Verbose
         - $ref: ./common/ingestion-api.yaml#/OptionalRequestParameter/ResponseType/JavascriptWithCallback
       requestBody:
@@ -447,6 +448,7 @@ paths:
         Works just like "$set", except it will not overwrite existing property
         values. This is useful for properties like "First login date".
       parameters:
+        - $ref: ./common/ingestion-api.yaml#/OptionalRequestParameter/ResponseType/Strict
         - $ref: ./common/ingestion-api.yaml#/OptionalRequestParameter/ResponseType/Verbose
         - $ref: ./common/ingestion-api.yaml#/OptionalRequestParameter/ResponseType/JavascriptWithCallback
       requestBody:
@@ -494,6 +496,7 @@ paths:
         negative values. This is useful for maintaining the values of properties
         like "Number of Logins" or "Files Uploaded".
       parameters:
+        - $ref: ./common/ingestion-api.yaml#/OptionalRequestParameter/ResponseType/Strict
         - $ref: ./common/ingestion-api.yaml#/OptionalRequestParameter/ResponseType/Verbose
         - $ref: ./common/ingestion-api.yaml#/OptionalRequestParameter/ResponseType/JavascriptWithCallback
       requestBody:
@@ -538,6 +541,7 @@ paths:
         Adds the specified values to a list property on a user profile and
         ensures that those values only appear once. The profile is created if it does not exist.
       parameters:
+        - $ref: ./common/ingestion-api.yaml#/OptionalRequestParameter/ResponseType/Strict
         - $ref: ./common/ingestion-api.yaml#/OptionalRequestParameter/ResponseType/Verbose
         - $ref: ./common/ingestion-api.yaml#/OptionalRequestParameter/ResponseType/JavascriptWithCallback
       requestBody:
@@ -593,6 +597,7 @@ paths:
         property that doesn't exist will result in assigning a list with one
         element to that property.
       parameters:
+        - $ref: ./common/ingestion-api.yaml#/OptionalRequestParameter/ResponseType/Strict
         - $ref: ./common/ingestion-api.yaml#/OptionalRequestParameter/ResponseType/Verbose
         - $ref: ./common/ingestion-api.yaml#/OptionalRequestParameter/ResponseType/JavascriptWithCallback
       requestBody:
@@ -636,6 +641,7 @@ paths:
         is removed from the existing list on the user profile. If it does not
         exist, no updates are made.
       parameters:
+        - $ref: ./common/ingestion-api.yaml#/OptionalRequestParameter/ResponseType/Strict
         - $ref: ./common/ingestion-api.yaml#/OptionalRequestParameter/ResponseType/Verbose
         - $ref: ./common/ingestion-api.yaml#/OptionalRequestParameter/ResponseType/JavascriptWithCallback
       requestBody:
@@ -678,6 +684,7 @@ paths:
         Takes a JSON list of string property names, and permanently removes the
         properties and their values from a profile.
       parameters:
+        - $ref: ./common/ingestion-api.yaml#/OptionalRequestParameter/ResponseType/Strict
         - $ref: ./common/ingestion-api.yaml#/OptionalRequestParameter/ResponseType/Verbose
         - $ref: ./common/ingestion-api.yaml#/OptionalRequestParameter/ResponseType/JavascriptWithCallback
       requestBody:
@@ -729,6 +736,7 @@ paths:
 
         Refer to the respective user profile update commands ($set, $set_once, $add, $union, $append, $remove, $unset, and $delete) on syntax for their parameters.
       parameters:
+        - $ref: ./common/ingestion-api.yaml#/OptionalRequestParameter/ResponseType/Strict
         - $ref: ./common/ingestion-api.yaml#/OptionalRequestParameter/ResponseType/Verbose
         - $ref: ./common/ingestion-api.yaml#/OptionalRequestParameter/ResponseType/JavascriptWithCallback
       requestBody:
@@ -782,6 +790,7 @@ paths:
         so that you don't delete the original profile when trying to delete the
         duplicate (as they pass in the alias as the distinct_id).
       parameters:
+        - $ref: ./common/ingestion-api.yaml#/OptionalRequestParameter/ResponseType/Strict
         - $ref: ./common/ingestion-api.yaml#/OptionalRequestParameter/ResponseType/Verbose
         - $ref: ./common/ingestion-api.yaml#/OptionalRequestParameter/ResponseType/JavascriptWithCallback
       requestBody:
