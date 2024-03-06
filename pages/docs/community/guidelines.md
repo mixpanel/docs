@@ -24,7 +24,7 @@ While Mixpanel does not regularly review posted content, if you violate these gu
 
 
 ## Copyright Infringement
-If you believe that work belonging to you has been copied onto the Community without your permission, please review Mixpanel’s DMCA Copyright Policy and notify us at [legal@mixpanel.com](mailto:egal@mixpanel.com).
+If you believe that work belonging to you has been copied onto the Community without your permission, please review Mixpanel’s DMCA Copyright Policy and notify us at [legal@mixpanel.com](mailto:legal@mixpanel.com).
 
 ## Legal Notices
 By posting content to the Community, you grant Mixpanel any license necessary, including any sublicense rights, to use, reproduce, modify, adapt, publish, translate, create derivative works from, distribute, and display such content in connection with the Community or Mixpanel’s legitimate business purposes.

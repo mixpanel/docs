@@ -34,7 +34,7 @@ mixpanel.track("Image Upload");
 
 It's common to have certain properties that you want to include with each event you send. Generally, these are things you know about the user rather than about a specific event - for example, the user's age, gender, source, or initial referrer.
 
-To make things easier, you can register these properties as super properties. If you tell us just once that these properties are important, we will automatically include them with all events sent. Super properties are saved to local storage, and will persist across invocations of your app. Mixpanel already stores some information as super properties by default; see a full list of Mixpanel default properties [here](https://help.mixpanel.com/hc/en-us/articles/115004613766).
+To make things easier, you can register these properties as super properties. If you tell us just once that these properties are important, we will automatically include them with all events sent. Super properties are saved to local storage, and will persist across invocations of your app. Mixpanel already stores some information as super properties by default; see a full list of Mixpanel default properties [here](/docs/data-structure/property-reference#default-properties).
 
 To set super properties, call [`registerSuperProperties`](https://mixpanel.github.io/mixpanel-flutter/mixpanel_flutter/Mixpanel/registerSuperProperties.html)
 
@@ -98,8 +98,6 @@ mixpanel.identify("13791");
 
 ### Call Reset at Logout
 [reset](https://mixpanel.github.io/mixpanel-flutter/mixpanel_flutter/Mixpanel/reset.html)  generates a new random distinct_id and clears super properties. Call reset to clear data attributed to a user when that user logs out. This allows you to handle multiple users on a single device. For more information about maintaining user identity, see the [Identifying Users](/docs/tracking-methods/id-management/identifying-users) article article.
-
-Note: Calling reset frequently can lead to users quickly exceeding the 500 distinct_id per identity cluster limit. Once the 500 limit is reached you will no longer be able to add additional distinct_ids to the users identity cluster.
 
 ## Storing User Profiles
 

@@ -20,6 +20,3 @@ updatedAt: "2023-09-28T17:17:26.122Z"
     "body": "This API does not support gzip encoding."
 }
 [/block] 
-
-Takes a JSON object containing names and values of profile properties. If the profile does not exist, it creates it with these properties. If it does exist, it sets the properties to these values, overwriting existing values.
-

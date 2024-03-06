@@ -9,6 +9,8 @@
     </iframe>
 </div>
 
+> **Considerations:** the connection to Databricks is only supported **directly to clusters**. Connecting directly to jobs or SQL warehouses **is not currently supported**. The account used for the connection should have `can attach to` permissions to the cluster (and `can restart` if it auto-suspends), and `can use` to the warehouse the cluster leverages.
+
 Complete the following steps to get your Databricks connector up and running:
 
 1. Navigate to **Project Settings**, then select **Warehouse Sources**.
@@ -19,3 +21,14 @@ Complete the following steps to get your Databricks connector up and running:
     - ** Access Token ** - This is the Personal access token used to authenticate with your Databricks cluster. Here are the instructions on [how to create an access token](https://docs.databricks.com/en/dev-tools/auth.html#databricks-personal-access-tokens-for-workspace-users)
 4. In the second view, you should see that the credentials are validated and a source is added. 
     
+### IP Allowed List
+If you are using [IP Access List](https://docs.databricks.com/en/security/network/front-end/ip-access-list.html) to restrict access to your instance, you might need to add the following IP addresses to the allowed list.
+
+```jsx
+34.31.112.201
+34.147.68.192
+35.184.21.33
+35.225.176.74
+35.204.164.122
+35.204.177.251
+```

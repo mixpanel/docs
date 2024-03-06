@@ -38,7 +38,7 @@ Updated Event -
 }
 ```
 
-These events can be queried from the dashboard just like any other events. A monthly report is sent to project owners if a new hot shard was detected and remediated in the past month. 
+These events can be queried from the dashboard just like any other events. An email is sent to organisation owners and the specific project's owners to alert them of the hot shard. In addition, a monthly report (per project) is sent as well for hot shards that were detected and remediated in the past month.
 
 ## Recovering from a hot shard
 The process can be broken down into 3 main steps:

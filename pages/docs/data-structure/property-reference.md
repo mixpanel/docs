@@ -29,6 +29,7 @@ To disable capturing of geolocation properties (i.e. City, Region, Country) refe
 | $region | Region | The region (state or province) of the event sender parsed from the IP property or the Latitude and Longitude properties. |
 | mp_country_code | Country | The country of the event sender parsed from the IP property or the Latitude and Longitude properties. The value is stored as a 2-letter country code in the raw data and parsed into the country name in the UI. |
 | $mp_api_endpoint | API Endpoint | Mixpanel property to record the API endpoint the data was sent to: <br /> **api.mixpanel.com** - default ingestion <br /> **api-eu.mixpanel.com** - EU data ingestion <br /> **api-js.mixpanel.com** - Javascript SDK |
+| $import | Import | Internal Mixpanel property set to `true` to indicate that events were sent through [/import API](https://developer.mixpanel.com/reference/import-events). |
 | $mp_api_timestamp_ms | API Timestamp | UTC timestamp in milliseconds when the event was received by our API. |
 | mp_processing_time_ms | Time Processed (UTC) | UTC timestamp in milliseconds when the event was processed by Mixpanel servers. |
 
@@ -83,6 +84,7 @@ $referrer | Referrer | Referring URL including your own domain. Might not be pre
 | $manufacturer | Manufacturer | Device manufacturer. | ❌ | ✅ | ✅ | ✅ |
 | $brand | Brand | Device brand. | ❌ | ✅ | ❌ | ❌ |
 | $model | Model | The model of the device. | ❌ | ✅ | ✅ | ✅ |
+| $watch_model	| Watch Model | The model of the iOS watch. | ❌ | ❌ | ✅ | ❌ |
 | $carrier | Carrier | Wireless carrier of the device owner. | ❌ | ✅ | ✅ | ❌ | 
 | $radio | Radio | Current [cellular network communication standard](https://www.objc.io/issues/5-ios7/iOS7-hidden-gems-and-workarounds/#know-your-radio)(opens in a new tab) (3G, 4G, LTE, etc). | ❌ | ✅ | ✅ | ✅ | 
 | $wifi | Wifi | Set to true if the user’s device has an active, available Wifi connection, false if not. | ❌ | ✅ | ✅ | ✅ | 
@@ -91,6 +93,7 @@ $referrer | Referrer | Referring URL including your own domain. Might not be pre
 | $has_nfc | Has NFC | Set to true if Near Field Communication is being used, false if not. | ❌ | ✅ | ❌ | ❌ | 
 | $has_telephone | Has Telephone | Set to true if this device has telephone functionality, false if not. | ❌ | ✅ | ❌ | ❌ | 
 | $google_play_services | Google Play Services | Verifies that Google Play services is installed and enabled on this device, and that the version installed on this device is no older than the one required by this client. | ❌ | ✅ | ❌ | ❌ | 
+| $duration | Duration	| A property that is appended to an event to capture the elapsed time (in seconds) between a `time_event` and a `track` call. See [time_event](https://github.com/mixpanel/mixpanel-js/blob/master/doc/readme.io/javascript-full-api-reference.md#mixpaneltime_event) in Javascript SDK for example. | ✅ | ✅ | ✅ | ✅ | 
 
 #### User Properties
 
