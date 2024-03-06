@@ -54,3 +54,11 @@ OptionalRequestParameter:
         If present, Mixpanel will return a `content-type: text/javascript`
         with a body that calls a function by value provided. This is useful
         for creating local callbacks to a successful track call in JavaScript.
+     Strict:
+      in: query
+      name: strict
+      required: false
+      schema:
+        $ref: ./schemas.yaml#/IntegerPropertyAsBooleanFlag
+        - description: >-
+            If present and equal to 1, Mixpanel will validate the provided records and return a JSON object with per-record error messages for records that fail validation.
