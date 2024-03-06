@@ -54,7 +54,7 @@ OptionalRequestParameter:
         If present, Mixpanel will return a `content-type: text/javascript`
         with a body that calls a function by value provided. This is useful
         for creating local callbacks to a successful track call in JavaScript.
-     Strict:
+    Strict:
       in: query
       name: strict
       required: false
