@@ -456,7 +456,7 @@ components:
           description: >-
             A selector expression used to filter by events data, such as event
             properties. Learn more about how to construct event selector
-            expressions here.
+            expressions [here](ref:segmentation-expressions).
         data_format:
           type: string
           default: json
