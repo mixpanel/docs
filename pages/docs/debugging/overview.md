@@ -106,7 +106,7 @@ To have an imported event, event property, or property value that’s older than
 
 ### Discrepancies in Mixpanel Reports
 
-Mixpanel reports calculate data in different ways. While the Insights report defaults to the total event count ('totals'), the funnel report defaults to unique user count ('uniques'). So if you are seeing discrepancies between a Funnel and an Insights report, take a step back and look at the filtering for the events. It's important to note that the 'totals' in Funnels show total conversions, not total event count.
+Mixpanel reports calculate data in different ways. While the Insights report may be counting the total event count ('Total Events'), the funnel report may be counting based on unique user count ('Uniques'). So if you are seeing discrepancies between a Funnel and an Insights report, take a step back and look at the filtering for the events. It's important to note that the 'totals' in Funnels show total conversions, not total event count.
 
 With discrepancies within the Mixpanel interface, it's important to look out for:
 

@@ -1,6 +1,5 @@
 # Advanced
 
-
 ## Query Builder Features
 
 ### Session Metric Analysis
@@ -788,17 +787,23 @@ Behavioral properties can be used anywhere, most typically in filters and breakd
 
 After selecting this option, you must select an event to compute the frequency of. You can use this to segment your users by how many times they did an event, or use it to filter out users to only those who did an event a certain number of times.
 
-Only available in Insights.
-
 ### Aggregate Property per User
 
 After select this option, you must select an event, and then a property on that event. Finally, you can choose an aggregation type for this property. You can use this to segment your users by this property aggregation. For example, you may want to filter only for users who have greater than 100 minutes of video watch time, or you may want to segment users by their watch time.
 
-Only available in Insights.
+### Time Range
 
-### Time Interval
+#### Per Interval
 
-Note that the time in which this computation is done is on a per interval basis. For a line chart, that will be for each individual interval plotted on the chart. For bar, table and pie, this interval is the entire date range selected in the date picker.
+In insights, the time in which this computation is done is on a per interval basis. For a line chart, that will be for each individual interval plotted on the chart. For bar, table and pie, this interval is the entire date range selected in the date picker.
+
+#### Between Steps
+
+In funnels, the behavioral property is computed in the time range between 2 steps in your funnel. You can specify which steps in the funnel this applies to. In the case of doing "Frequency per User", the event count does not include the events that make up the funnel itself, and **only** the events between the funnel steps.
+
+#### After Step 1
+
+In retention, the behavioral property is computed in the chosen time range after the entry event, up until the retaining action. For example, there may be a 7 day window in which we're looking for an event, but if the retaining action happens before the 7 days are up, we no longer count an additional events.
 
 
 ## Find Interesting Segments

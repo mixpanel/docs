@@ -135,19 +135,23 @@ Determine the time range of a query by clicking on the date range selector. The 
 
 All dates and times in Mixpanel reflect the project timezone. The default on most reports is “Last 30 days” (displayed as "30D"), but there are a variety of pre-set options, as well as the option to select a custom date range.
 
-![](/230281466-11bfdbf7-0820-41c0-a4e8-b802faabaf20.png)
+![date rate](/date-range.png)
 
 For these date ranges, the output shows results from the last complete 30 days, plus any results from the current incomplete day.
 
-| Current day | Current incomplete day up to the current second. |
+| Preset | Description |
 | --- | --- |
-| Previous day | Last complete 24 hour period and the query count from the current incomplete day up to the current second.
-In Insights Previous day only includes the last complete 24 hour period. |
+| Today | Includes the current incomplete day up to the current second. |
+| Yesterday | Includes the whole of the previous day from midnight to midnight. |
 | Last 7 days | Last 7 days and the query count from the current incomplete day up to the current second. |
 | Last 30 days | Last 30 days and the query count from the current incomplete day up to the current second. |
 | Last 3 months | Last 3 months and the query count from the current incomplete day up to the current second. |
 | Last 6 months | Last 6 months and the query count from the current incomplete day up to the current second. |
 | Last 12 months | Last 12 months and the query count from the current incomplete day up to the current second. |
+| Week to Date | From midnight of the start of the current week up to the current second. |
+| Month to Date | From midnight of the start of the current month up to the current second. |
+| Quarter to Date | From midnight of the start of the current quarter up to the current second. |
+| Year to Date | From midnight of the start of the current year up to the current second. |
 
 #### Select a Date Range
 
@@ -172,6 +176,11 @@ If you need to, you can click on the **+ Ending** button and shift back the de
 #### Since
 
 “Since” allows you to select a specific date to query for all data since that start date.
+
+#### To Date
+
+"To Date" allows you select a date rnge that will update dynamically to fit the current internval. You can choose Week to Date, Month to Date, Quarter to Date and Year to Date. When the boundary of interval is passed, the date range will automatically update to include only the current interval. For example, if "Month to Date" was selected, and the date was February 27, the date range would include Feb 1 - Feb 27. The next week, after the month boundary has passed the date range would include Mar 1 - Mar 4.
+To Date respects start of week and start of quarter settings under project settings.
 
 ### Saving to a Board
 
