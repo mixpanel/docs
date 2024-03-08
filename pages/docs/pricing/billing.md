@@ -1,7 +1,7 @@
 # Billing
 
 
-Our default pricing option, events-based pricing, calculates your bill based on the number of tracked events. This transparent and self-serve model is a better option for the majority of our customers. You can [purchase any events-based plan online](https://mixpanel.com/pricing). Mixpanel also offers an MTU-based option, if it aligns best to your budget and business needs. [Our sales team can consult you](https://mixpanel.com/contact-us/sales/) to choose the best option.
+Our default pricing option, events-based pricing, calculates your bill based on the number of tracked events. This transparent and self-serve model is a better option for the majority of our customers. You can [purchase any events-based plan online](https://mixpanel.com/pricing). Mixpanel also offers an MTU-based option, if it aligns best to your budget and business needs. MTU plans start at $10,000 per year and are not available self-serve. [Our sales team can consult you](https://mixpanel.com/contact-us/sales/) to choose the best option.
 
 ### What is an Event?
 
@@ -190,7 +190,7 @@ Event plans can be simpler to understand and avoid several “gotchas” that ca
 
 ### What is an MTU?
 
-Monthly Tracked User (MTU) is a way to calculate your billing based on the number of visitors that perform a qualifying event each month, rather than individual user profiles or events. 
+Monthly Tracked User (MTU) is a way to calculate your billing based on the number of visitors that perform a qualifying event each month, rather than individual user profiles or events. MTU plans start at $10,000 per year and are not available self-serve. [Our sales team can consult you](https://mixpanel.com/contact-us/sales/) to choose the best option.
 
 ### MTU Calculation
 
