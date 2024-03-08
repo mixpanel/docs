@@ -456,7 +456,7 @@ components:
           description: >-
             A selector expression used to filter by events data, such as event
             properties. Learn more about how to construct event selector
-            expressions here.
+            expressions [here](ref:segmentation-expressions).
         data_format:
           type: string
           default: json
@@ -596,7 +596,7 @@ components:
           description: >-
             A selector expression used to filter by events data, such as event
             properties. Learn more about how to construct event selector
-            expressions here.
+            expressions [here](ref:segmentation-expressions).
         data_format:
           type: string
           default: json
@@ -752,7 +752,7 @@ components:
           description: >-
             A selector expression used to filter by events data, such as event
             properties. Learn more about how to construct event selector
-            expressions here.
+            expressions [here](ref:segmentation-expressions).
         data_format:
           type: string
           default: json
@@ -909,7 +909,7 @@ components:
           description: >-
             A selector expression used to filter by events data, such as event
             properties. Learn more about how to construct event selector
-            expressions here. This parameter is only valid when **data_source**
+            expressions [here](ref:segmentation-expressions). This parameter is only valid when **data_source**
             is `events`.
         bq_region:
           type: string
@@ -1069,7 +1069,7 @@ components:
           description: >-
             A selector expression used to filter by events data, such as event
             properties. Learn more about how to construct event selector
-            expressions here. This parameter is only valid when **data_source**
+            expressions [here](ref:segmentation-expressions). This parameter is only valid when **data_source**
             is `events`.
         snowflake_prefix:
           type: string
@@ -1207,7 +1207,7 @@ components:
           description: >-
             A selector expression used to filter by events data, such as event
             properties. Learn more about how to construct event selector
-            expressions here. This parameter is only valid when **data_source**
+            expressions [here](ref:segmentation-expressions). This parameter is only valid when **data_source**
             is `events`.
         data_format:
           type: string
@@ -1416,7 +1416,7 @@ components:
           description: >-
             A selector expression used to filter by events data, such as event
             properties. Learn more about how to construct event selector
-            expressions here. This parameter is only valid when **data_source**
+            expressions [here](ref:segmentation-expressions). This parameter is only valid when **data_source**
             is `events`.
         data_format:
           type: string
@@ -1556,7 +1556,7 @@ components:
           description: >-
             A selector expression used to filter by events data, such as event
             properties. Learn more about how to construct event selector
-            expressions here. This parameter is only valid when **data_source**
+            expressions [here](ref:segmentation-expressions). This parameter is only valid when **data_source**
             is `events`.
         data_format:
           type: string
