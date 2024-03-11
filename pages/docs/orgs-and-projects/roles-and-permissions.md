@@ -159,8 +159,8 @@ The table below is an overview of the permissions per role for reports and other
 | Create/Edit User Profiles         | ✅ | ✅ | ✅ | ❌         |
 | Delete User Profiles              | ✅ | ✅ | ❌         | ❌         |
 | Create and View Boards            | ✅ | ✅ | ✅ | ✅ |
-| Create Digests for Boards         | ✅ | ✅ | ✅ | ❌         |
-| Edit Digests for Boards           | ✅ | Only the Creator | Only the Creator | Only the Creator |                               
+| Create Subscriptions for Boards   | ✅ | ✅ | ✅ | ❌         |
+| Edit Subscriptions for Boards     | ✅ | Only the Creator | Only the Creator | Only the Creator |                               
 | Create/Edit Custom Events         | ✅ | ✅ | ✅ | ✅ Can save only for self        |
 | Create/Edit Saved Formulas        | ✅ | ✅ | ✅ | ✅ Can save only for self        |
 | Create/Edit Custom Properties     | ✅ | ✅ | ✅ | ✅ Can save only for self        |
