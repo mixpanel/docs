@@ -75,4 +75,27 @@ Click the “Validate” button in the top right corner and choose “Mixpanel�
 
 You can then copy the data payload and decode it in a [base64 decoder](https://www.base64decode.org/) to see the JSON event that was sent to Mixpanel.
 
+## FAQ
+### I can’t see my Segment data in Mixpanel
+This could be due to several reasons:
+* Storing data in the EU: A common issue is that the data in Segment is enabled to be sent to an EU endpoint but the Mixpanel data is still being stored outside of the EU. Both endpoints for Segment and Mixpanel need to point to the EU as described [here](https://segment.com/docs/connections/destinations/catalog/mixpanel/#enable-european-union-endpoint). If you have an existing Mixpanel project, you might need to have your data migrated to the EU. Please find further information [here](https://docs.mixpanel.com/docs/privacy/eu-residency#existing-customers).
 
+* [Cloud implementation vs. device implementation](https://segment.com/docs/connections/destinations/#connection-modes): Segment can be implemented via a cloud-based implementation or as an SDK on the device directly. Device implementation will send the data to Mixpanel directly while the cloud implementation will send it to Segment first. You can confirm your implementation by querying for the Mixpanel library property of the events in your project:
+
+Cloud Mode will show as Mixpanel Library: Segment: analytics.js
+Device Mode will show as Mixpanel Library: Segment: web
+
+* No user profile data in Mixpanel: [Segment doesn’t track Mixpanel People by default;](https://segment.com/docs/connections/destinations/catalog/mixpanel/#people) this is a setting you need to enable in your Segment settings. To enable Mixpanel People, change the “Use Mixpanel People” setting in your Segment Settings UI.
+
+### I see events counted multiple times in Mixpanel
+Mixpanel SDKs assign an [$insert_id](https://developer.mixpanel.com/reference/import-events#propertiesinsert_id) to each tracked event.
+
+This allows Mixpanel to ensure no event is tracked more than once and events will be deduplicated based on the insert_id. Segment does not assign an insert_id to events. If the ingestion of an event is not confirmed by Mixpanel’s servers fast enough, Segment will retry to send the event.
+
+This can lead to duplicate events in Mixpanel, they will likely have different insert_ids as Mixpanel assigns each event without an insert_id a unique new one. This behavior can be caused by sending huge batches of data at the same time and can be avoided by reducing the batch size and frequency of event sending from Segment to Mixpanel.
+
+### Register super properties with Mixpanel
+Super properties can only be set when you are running in device mode. The super properties are automatically set with every property you pass into the analytics.identify() method. To have more control over the super properties you set, you can explicitly set super properties in your [Segment settings](https://segment.com/docs/connections/destinations/catalog/mixpanel/#explicitly-set-people-properties-and-super-properties).
+
+### Page tracks from Segment to Mixpanel
+Page calls are automatically tracked via Segment. These can be tracked from Segment to Mixpanel as Loaded a Page or Loaded a Screen. To turn them off, you need to [configure this in your Segment settings](https://segment.com/docs/connections/destinations/catalog/mixpanel/#page).
