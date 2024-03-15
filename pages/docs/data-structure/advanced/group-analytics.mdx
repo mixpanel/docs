@@ -165,7 +165,7 @@ Having the group key present as a user profile property does not automatically a
 Mixpanel does not backfill historical data to groups before the group key was implemented. This means that Mixpanel is only able to attribute group data from the date that the group key was set up in your Project Settings. Historical events that contain the group key as an event property sent prior to the implementation of the group key in Project Settings will not be attributed to a group.
 
 ### Group Analysis in Reports
-[Session events](/docs/features/sessions) are not supported when analyzing by groups in a report.
+[Session events](/docs/features/sessions) are not supported when analyzed by groups in a report.
 
 Group properties are supported when analyzing by users, but user properties are not supported when analyzing by groups.
 
@@ -183,4 +183,4 @@ curl --request POST \
 
 The `data_group_id` can be found in the URL of the group profile page:
 
-https://mixpanel.com/project/2888952/view/3418364/app/profile#distinct_id=<distinct_id>&data_group_id=-<data_group_id>
+`https://mixpanel.com/project/2888952/view/3418364/app/profile#distinct_id=<distinct_id>&data_group_id=-<data_group_id>`
