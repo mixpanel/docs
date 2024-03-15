@@ -27,3 +27,52 @@ Lastly, track your users' actions using [Segment's `track` API call](https://seg
 
 ### 4. Check for Success
 [Open up Events View in Mixpanel](http://mixpanel.com/report/events) to view incoming events.
+
+## Integrating Group Analytics using Segment
+There are 4 parts to Implementing Group Analytics via Segment.
+
+### 1. Define the Group Key in Mixpanel and Segment
+Create the Group Key in Mixpanel Project Settings.
+![1groupkey_projectsettings](https://github.com/mixpanel/docs/assets/97630035/835de9fa-eea2-47b0-9965-4a922ebd39ab)
+
+Create the Group Identifier Trait in [Segment’s Mixpanel Destination Settings](https://segment.com/docs/connections/destinations/catalog/mixpanel/#group).
+![2segment_groupkey](https://github.com/mixpanel/docs/assets/97630035/e747d204-edb6-495f-afba-0e7b0b9435f9)
+
+Make sure the value placed in Segment’s “Group Identifier Trait” row matches Mixpanel’s “Group Key”.
+
+### 2. Create Group Profiles
+[analytics.group()](https://segment.com/docs/connections/spec/group/) will create Group Profile/Group Profile Properties in Mixpanel. Mixpanel uses the key specified in the second argument of the group method.
+![3groupcall (5)](https://github.com/mixpanel/docs/assets/97630035/704ef559-65ec-4958-bc72-b997e0dbcf31)
+
+Example Group Profile/Group Profile Properties created from the group method:
+![4groupprofile](https://github.com/mixpanel/docs/assets/97630035/b8b7ab18-4c65-4dff-965a-d532ae49cffc)
+
+### 3. Add Group Key as a User Profile Property
+In order to use Group Profile Properties when analyzing User Profiles, the user profile must have the Group Key/Group ID Value as a profile property.
+
+Declare the Group Key in the identify method as a profile property (trait):
+![5identify](https://github.com/mixpanel/docs/assets/97630035/41cc54c4-2e52-4e77-833d-cc178d1fb107)
+
+### 4. Add Group Key as an Event Property to Events
+In order to connect events to a Group, the event must have the Group Key/Group ID Value as an event property.
+
+If you are using [Segment Device Mode](https://segment.com/docs/connections/destinations/catalog/mixpanel/#group-using-device-mode):
+
+* Declare the Group Key as a [Super Property](https://segment.com/docs/connections/destinations/catalog/mixpanel/#register-super-properties) so that the Group Key is sent in as an Event Property to client-side events.
+* By default, all traits specified in the identify call will be registered as super properties. This means if you have the [“Automatically set all Traits as Super Properties and People Properties”](https://segment.com/docs/connections/destinations/catalog/mixpanel/#settings) setting turned on, all traits specified in the identify call will be added as both a super property and profile property for the user.
+
+If you are using [Segment Cloud Mode](https://segment.com/docs/connections/destinations/catalog/mixpanel/#group-using-cloud-mode):
+
+* The Group Key must be explicitly declared as an event property on every event track call in order for the event to be compatible with Group Analytics.
+![6trackcall](https://github.com/mixpanel/docs/assets/97630035/9609917d-f00b-4450-a9d5-7d77bd338f9d)
+
+## Debugging
+For debugging purposes, it can be useful to see exactly what Segment is sending to Mixpanel. You can validate this data through the [Segment Source Debugger](https://segment.com/docs/connections/sources/debugger/). In the Segment Source Debugger, you can select the event you are looking to validate:
+<img width="1080" alt="yGK1yH7zGy_cv5hLBEHgdU9oMyALishD6S0kObRRJANGxbjIEL" src="https://github.com/mixpanel/docs/assets/97630035/6ee0bbcd-8bf2-4f86-83a7-b0a3c39108e4">
+
+Click the “Validate” button in the top right corner and choose “Mixpanel” as the destination. After the event has been sent, you can click to view the request from Segment to grab the data payload:
+![pasted image 0 (1)](https://github.com/mixpanel/docs/assets/97630035/0344decc-dc96-4569-ac3d-cc530c63bdb3)
+
+You can then copy the data payload and decode it in a [base64 decoder](https://www.base64decode.org/) to see the JSON event that was sent to Mixpanel.
+
+
