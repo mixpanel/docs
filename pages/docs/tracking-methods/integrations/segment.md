@@ -82,9 +82,9 @@ This could be due to several reasons:
 
 * [Cloud implementation vs. device implementation](https://segment.com/docs/connections/destinations/#connection-modes): Segment can be implemented via a cloud-based implementation or as an SDK on the device directly. Device implementation will send the data to Mixpanel directly while the cloud implementation will send it to Segment first. You can confirm your implementation by querying for the Mixpanel library property of the events in your project:
 
-Cloud Mode will show as Mixpanel Library: Segment: analytics.js
+- Cloud Mode will show as Mixpanel Library: Segment: analytics.js
 
-Device Mode will show as Mixpanel Library: Segment: web
+- Device Mode will show as Mixpanel Library: Segment: web
 
 * No user profile data in Mixpanel: [Segment doesn’t track Mixpanel People by default;](https://segment.com/docs/connections/destinations/catalog/mixpanel/#people) this is a setting you need to enable in your Segment settings. To enable Mixpanel People, change the “Use Mixpanel People” setting in your Segment Settings UI.
 
