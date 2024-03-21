@@ -142,28 +142,6 @@ mixpanel.getPeople().append("Favorite Colors", "Green");
 ### Other Types of Profile Updates
 There are a few other types of profile updates. They can be accessed through the [`People`](https://mixpanel.github.io/mixpanel-react-native/People.html) class, which is accessible via [`mixpanel.getPeople()`](https://mixpanel.github.io/mixpanel-react-native/Mixpanel.html#getPeople).
 
-## Tracking Revenue
-
-Mixpanel makes it easy to analyze the revenue you make from individual customers. By associating charges with User Analytics profiles, you can compare revenue across different customer segments and calculate customer lifetime value.
-
-You can track a single transaction with [`mixpanel.getPeople().trackCharge`](https://mixpanel.github.io/mixpanel-react-native/People.html#trackCharge). This call will add transactions to the individual user profile, which will also be reflected in the Mixpanel Revenue report.
-
-```javascript Javascript
-// Make identify has been
-// called before making revenue updates
-mixpanel.identify("13793");
-
-// Tracks $100 in revenue for user 13793
-mixpanel.getPeople().trackCharge(100);
-
-// Refund this user 50 dollars
-mixpanel.getPeople().trackCharge(-50);
-
-// Tracks $25 in revenue for user 13793
-// on the 2nd of january
-mixpanel.getPeople().trackCharge(25, {"$time": "2012-01-02T00:00:00"});
-```
-
 ## Group Analytics
 Mixpanel Group Analytics is a paid add-on allows behavioral data analysis by selected groups, as opposed to individual users.
 
