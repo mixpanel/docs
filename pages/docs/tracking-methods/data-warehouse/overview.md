@@ -1,3 +1,9 @@
+import { Tab, Tabs } from 'nextra-theme-docs'
+
+import ExtendedTabs from '../../../components/ExtendedTabs/ExtendedTabs';
+import { dwhItems } from '../../../utils/constants';
+
+
 ## Overview
 
 Warehouse Connectors allow you to import tables from data warehouses (DWHs) into Mixpanel. This lets you use Mixpanel to analyze all the backend and business data in your DWH without writing any code to integrate. Warehouse Connectors supports Snowflake, BigQuery, Databricks, and Redshift.
@@ -19,15 +25,225 @@ Navigate to [Project Settings → Warehouse Sources](https://mixpanel.com/report
 
 ### Step 2: Load a warehouse table
 
-Once you’ve established a warehouse connection, it’s time to load a table from that warehouse to Mixpanel. Navigate to [Project Settings → Warehouse Data](https://mixpanel.com/report/settings) and click +Event Table.
+Navigate to [Project Settings → Warehouse Data](https://mixpanel.com/report/settings) and click +Event Table.
 
 Select a table (or view) representing an event from your warehouse and tell Mixpanel about the table. Once satisfied with the preview, click run and we’ll establish the sync. The initial load may take a few minutes depending on the size of the table, we show you progress as it’s happening.
 
 🎉 Congrats, you’ve loaded your first warehouse table into Mixpanel! From this point onward, the table will be kept in sync with Mixpanel. You can now use this event throughout Mixpanel’s interface.
 
-### Warehouse-Specific Setup
+### Warehouse-Specific Walkthroughs
 
-Below are some instructions specific to each warehouse, along with a video that walks through the setup.
+<ExtendedTabs urlParam="dwh" urlToItemsMap=dwhItems>
+
+<Tab>
+        The BigQuery connector works by giving a Mixpanel service account the permission to read/write from BigQuery in your GCP project. You will need your GCP Project ID, which you can find in the URL of Google Cloud Console (https://console.cloud.google.com/bigquery?project=YOUR_GCP_PROJECT). You will also need the `gcloud` CLI.
+    <div style={{position: 'relative', paddingBottom: '64.90384615384616%', height: 0}}>
+        <iframe src="https://www.loom.com/embed/04f4ea75310744cdab477e1b47684db3?sid=3728258e-b860-431f-bdf2-cff508b2b19e"
+            frameBorder="0"
+            webkitallowfullscreen="true" mozallowfullscreen="true" allowFullScreen
+            style={{position: 'absolute', 'top': 0, 'left': 0, 'width': '100%', 'height': '100%'}}>
+        </iframe>
+    </div>
+</Tab>
+<Tab>
+    Complete the following steps to get your Snowflake connector up and running:
+    1. Navigate to **Project Settings**, then select **Warehouse Sources**.
+    2. Click on `+ Add Connection` and select **Snowflake**.
+    3. You should see a new page to create your snowflake connector. In the first view, fill out the following fields before clicking  `Next`: 
+        - Snowflake Account Name / URL
+        - Username
+        - Role
+        - Authentication Type. We support both Password and Key Pair.
+        Ensure that the corresponding commands have been successfully completed in your Snowflake instance.
+            - For Password authentication:
+                - Fill out the password field.
+                - Copy the commands and run them within your Snowflake instance.
+                - Be sure to fill out the password field in your command.
+            - For Key Pair authentication:
+                - Mixpanel will generate a secure key pair for your source per the Snowflake requirements.
+                - The private key will be encrypted and stored securely, and used only when we need to communicate with your Snowflake instance.
+                - Public key can be found in the suggested SQL to create your user.
+    4. In the second view, you can click `Create Source` after completing the following:
+        - Warehouse
+            - Enter the name of your warehouse (default value: **MIXPANEL_IMPORT_WAREHOUSE**).
+            - We recommend creating a separate warehouse for Mixpanel, and ensuring that Mixpanel has the appropriate role permissions to access it.
+            - Run the commands below in Snowflake.
+    <div style={{position: 'relative', paddingBottom: '64.90384615384616%', height: 0}}>
+        <iframe src="https://www.loom.com/embed/5dbaf37d9308404393417043551aed55"
+            frameBorder="0"
+            webkitallowfullscreen="true" mozallowfullscreen="true" allowFullScreen
+            style={{position: 'absolute', 'top': 0, 'left': 0, 'width': '100%', 'height': '100%'}}>
+        </iframe>
+    </div>
+    3. You should see a new page to create your snowflake connector. In the first view, fill out the following fields before clicking  `Next`: 
+        - Snowflake Account Name / URL
+        - Username
+        - Role
+        - Authentication Type. We support both Password and Key Pair.
+        Ensure that the corresponding commands have been successfully completed in your Snowflake instance.
+            - For Password authentication:
+                - Fill out the password field.
+                - Copy the commands and run them within your Snowflake instance.
+                - Be sure to fill out the password field in your command.
+            - For Key Pair authentication:
+                - Mixpanel will generate a secure key pair for your source per the Snowflake requirements.
+                - The private key will be encrypted and stored securely, and used only when we need to communicate with your Snowflake instance.
+                - Public key can be found in the suggested SQL to create your user.
+    4. In the second view, you can click `Create Source` after completing the following:
+        - Warehouse
+            - Enter the name of your warehouse (default value: **MIXPANEL_IMPORT_WAREHOUSE**).
+            - We recommend creating a separate warehouse for Mixpanel, and ensuring that Mixpanel has the appropriate role permissions to access it.
+            - Run the commands below in Snowflake.
+                ```jsx
+                CREATE WAREHOUSE MIXPANEL_IMPORT_WAREHOUSE WITH WAREHOUSE_SIZE = XSMALL AUTO_SUSPEND = 60 AUTO_RESUME = TRUE INITIALLY_SUSPENDED = FALSE;
+                GRANT USAGE ON WAREHOUSE MIXPANEL_IMPORT_WAREHOUSE TO ROLE MIXPANEL_IMPORT_ROLE;
+                GRANT OPERATE ON WAREHOUSE MIXPANEL_IMPORT_WAREHOUSE TO ROLE MIXPANEL_IMPORT_ROLE;
+                GRANT MONITOR ON WAREHOUSE MIXPANEL_IMPORT_WAREHOUSE TO ROLE MIXPANEL_IMPORT_ROLE; 
+                ``` 
+        - Storage Integration
+            - This is required because Mixpanel will export the query results into a GCS bucket.
+            - Default value: **MIXPANEL_IMPORT_STORAGE_INTEGRATION**
+            
+            ```jsx
+            CREATE STORAGE INTEGRATION MIXPANEL_IMPORT_STORAGE_INTEGRATION
+              TYPE = EXTERNAL_STAGE
+              STORAGE_PROVIDER = 'GCS'
+              ENABLED = TRUE
+              STORAGE_ALLOWED_LOCATIONS = ("gcs://mixpanel-2946576-ca470bce1e1ed2ec");
+            GRANT USAGE ON INTEGRATION MIXPANEL_IMPORT_STORAGE_INTEGRATION TO MIXPANEL_IMPORT_ROLE; 
+            ```
+            
+        - Database (optional)
+            - Enter the name of the database you want to grant permission to.
+            - By default, we request read-only access.
+            - Mixpanel does not store the access information. However, you can choose to provide more granular access if you desire.
+            
+            ```jsx
+            GRANT USAGE ON DATABASE "<your_data_base>" TO ROLE MIXPANEL_IMPORT_ROLE;
+            GRANT USAGE ON ALL SCHEMAS IN DATABASE "<your_data_base>" TO ROLE MIXPANEL_IMPORT_ROLE;
+            GRANT SELECT ON ALL TABLES IN DATABASE "<your_data_base>" TO ROLE MIXPANEL_IMPORT_ROLE;
+            GRANT SELECT ON ALL VIEWS IN DATABASE "<your_data_base>" TO ROLE MIXPANEL_IMPORT_ROLE;
+            GRANT SELECT ON ALL MATERIALIZED VIEWS IN DATABASE "<your_data_base>" TO ROLE MIXPANEL_IMPORT_ROLE;
+            ```
+    
+    *IP Allowed List*
+    If you are using [Snowflake Network policy](https://docs.snowflake.com/en/user-guide/network-policies) to restrict access to your instance, you might need to add the following IP addresses to the allowed list.
+    
+    ```jsx
+    34.31.112.201
+    34.147.68.192
+    35.184.21.33
+    35.225.176.74
+    35.204.164.122
+    35.204.177.251
+    ```
+    
+    *Mirror Sync Readiness*
+    
+    <Callout type="info">
+      Mirror syncing is in early access and not available on all projects. Request access
+      <a href="https://forms.gle/x8mbU6FVe5uHiVXF6">here</a>.
+    </Callout>
+    
+    Mirror syncs use [Snowflake streams](https://docs.snowflake.com/en/user-guide/streams-intro) to track all changes (inserts, updates, and deletes) to source tables. [`CHANGE_TRACKING`](https://docs.snowflake.com/en/sql-reference/sql/alter-table) must be enabled on a Snowflake table in order for a Mirror sync to be created from it.
+    ```jsx
+    ALTER TABLE <database>.<schema>.<table> SET CHANGE_TRACKING = TRUE;
+    ```
+    
+    When using Mirror syncs Mixpanel creates and manages Snowflake streams in the source warehouse and needs the `CREATE STREAM` permission on a Snowflake schema to store these streams. We recommend creating a new empty schema solely for Mixpanel. For example:
+    ```jsx
+    CREATE DATABASE IF NOT EXISTS MIXPANEL_STREAM_DATABASE;
+    CREATE SCHEMA IF NOT EXISTS MIXPANEL_STREAM_DATABASE.MIXPANEL_STREAM_SCHEMA;
+    
+    -- Grant your Mixpanel role access to create streams in the schema
+    GRANT USAGE ON DATABASE MIXPANEL_STREAM_DATABASE TO ROLE MIXPANEL_IMPORT_ROLE;
+    GRANT USAGE ON SCHEMA MIXPANEL_STREAM_DATABASE.MIXPANEL_STREAM_SCHEMA TO ROLE MIXPANEL_IMPORT_ROLE;
+    GRANT CREATE STREAM ON SCHEMA MIXPANEL_STREAM_DATABASE.MIXPANEL_STREAM_SCHEMA TO ROLE MIXPANEL_IMPORT_ROLE;
+    ```
+    
+    To create a new Mirror-ready Snowflake source follow the steps above and fill out the additional two fields "Stream Database" and "Stream Schema" in step 4.
+    
+    To update an existing source to be Mirror-ready:
+    1. Navigate to **Project Settings**, then select **Warehouse Sources**.
+    2. Find the source to update. The source's card should include a note **Mirror: Additional Setup Required**. Click "Additional Setup Required" to be taken to the source configuration page.
+    3. Fill in the two fields "Stream Database" and "Stream Schema". Press Save.
+</Tab>
+<Tab>
+    <div style={{position: 'relative', paddingBottom: '64.90384615384616%', height: 0}}>
+    <iframe src="https://www.loom.com/embed/56a21b31e75342498317cbb6f31285eb"
+        frameBorder="0"
+        webkitallowfullscreen="true" mozallowfullscreen="true" allowFullScreen
+        style={{position: 'absolute', 'top': 0, 'left': 0, 'width': '100%', 'height': '100%'}}>
+    </iframe>
+</div>
+
+The connection to Databricks only supports connecting directly to clusters. Connecting directly to jobs or SQL warehouses is not supported. The account used for the connection should have `can attach to` permissions to the cluster (and `can restart` if it auto-suspends), and `can use` to the warehouse the cluster leverages.
+
+Complete the following steps to get your Databricks connector up and running:
+
+1. Navigate to **Project Settings**, then select **Warehouse Sources**.
+2. Click on `+ Add Connection` and select **Databricks**.
+3. You should see a new page to create your databricks connector. In the first view, fill out the following fields before clicking  `Create Source`: 
+    - ** Server Hostname ** - This is the hostname of your Databricks cluster. This can be found in your workspace URL, or by navigating to [JDBC/ODBC connection settings](https://docs.databricks.com/en/integrations/jdbc-odbc-bi.html#step)
+    - ** HTTP Path ** - This is the HTTP path of the cluster you would like to connect to. This can be found in your cluster [JDBC/ODBC connection settings](https://docs.databricks.com/en/integrations/jdbc-odbc-bi.html#step)
+    - ** Access Token ** - This is the Personal access token used to authenticate with your Databricks cluster. Here are the instructions on [how to create an access token](https://docs.databricks.com/en/dev-tools/auth.html#databricks-personal-access-tokens-for-workspace-users)
+4. In the second view, you should see that the credentials are validated and a source is added. 
+    
+*IP Allowed List*
+If you are using [IP Access List](https://docs.databricks.com/en/security/network/front-end/ip-access-list.html) to restrict access to your instance, you might need to add the following IP addresses to the allowed list.
+
+```jsx
+34.31.112.201
+34.147.68.192
+35.184.21.33
+35.225.176.74
+35.204.164.122
+35.204.177.251
+```
+
+</Tab>
+<Tab>
+    
+<div style={{position: 'relative', paddingBottom: '64.90384615384616%', height: 0}}>
+    <iframe src="https://www.loom.com/embed/76f4658dd850457e9634c706ee0d9430"
+        frameBorder="0"
+        webkitallowfullscreen="true" mozallowfullscreen="true" allowFullScreen
+        style={{position: 'absolute', 'top': 0, 'left': 0, 'width': '100%', 'height': '100%'}}>
+    </iframe>
+</div>
+
+Complete the following steps to get your Redshift connector up and running:
+
+1. Navigate to **Project Settings**, then select **Warehouse Sources**.
+2. Click on `+ Add Connection` and select **Redshift**.
+3. You should see a new page to create your Redshift connector. In the first view, fill out the following fields before clicking  `Next`: 
+    - **AWS Account ID**  - This is the AWS account ID that can be found in the dropdown in the AWS Redshift Console.
+    - **Cluster ID**  - This is the name of the Redshift cluster.
+4. In the second view, you will need to add the following. 
+    - **AWS Region** - The region code in which your Redshift cluster resides.
+    - **S3 Staging Bucket** - This is the name of S3 staging bucket you need to create. We'll use it to extract data from your Redshift tables before importing the data into Mixpanel.
+    - Copy the command generated below in the AWS CLI to create the S3 Staging Bucket with the name you specified.
+    - **Database Name** - Input the name of the Database where the tables you want to import are stored.
+    - (Optional) **Policy Name** - This is an optional name for the policy, which contains role permissions that you need to grant the Mixpanel Service Account. After inputting a policy name, you can either copy paste the JSON in the AWS UI or copy paste the inline command line version that we generate and run in the AWS CLI.
+    - **Role Name** - Input the name of the role. After inputting a role name, you can either copy paste the JSON in the AWS UI or copy paste the inline command line version that we generate and run in the AWS CLI. Running this command grants the Mixpanel Service Account the necessary permissions to read and export data from your Redshift tables.
+    - Finally, attach the policy you created to the role you created by copy pasting the command in the AWS CLI.
+    - Then, click Create Source.
+5. In the third view, you should see a confirmation that your source was created. To establish the source connection, we need to ping your Redshift instance to actually create the service account user.
+    - **Grant Access to Schema** - Enter the name of the schema you want to grant Mixpanel access to. 
+    - Copy the command generated and run in your Redshift worksheet. Once that command is run successfully, the connection will be established and you will be able to send data from Redshift tables to Mixpanel.
+    
+### IP Allowed List
+If you are using [AWS PrivateLink](https://docs.aws.amazon.com/redshift/latest/mgmt/security-private-link.html) to restrict access to your instance, you might need to add the following IP addresses to the allowed list.
+
+```jsx
+34.31.112.201
+34.147.68.192
+35.184.21.33
+35.225.176.74
+35.204.164.122
+35.204.177.251
+```
+</Tab>
 
 ## Table Types
 
