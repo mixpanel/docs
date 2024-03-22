@@ -13,3 +13,10 @@ export const dataItems = {
     'unity': `Unity`,
     'httpapi': `HTTP API`,
 }
+
+export const dwhItems = {
+    'bigquery': 'BigQuery',
+    'snowflake': 'Snowflake',
+    'databricks': 'Databricks',
+    'redshift': 'Redshift',
+}
