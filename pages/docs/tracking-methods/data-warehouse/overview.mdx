@@ -7,16 +7,13 @@ import { dwhItems } from '../../../../utils/constants';
 
 ## Overview
 
-Warehouse Connectors allow you to import tables from data warehouses (DWHs) into Mixpanel. This lets you use Mixpanel to analyze all the backend and business data in your DWH without writing any code to integrate. Warehouse Connectors supports Snowflake, BigQuery, Databricks, and Redshift.
+Warehouse Connectors lets you load Mixpanel with data from data warehouses (DWH) like BigQuery, Snowflake, Databricks, and Redshift. By unifying the business data in your DWH with product usage events, you can answer many more questions in Mixpanel:
+* What percentage of our Enterprise revenue uses the features we shipped last year?
+* Did our app redesign reduce support tickets?
+* Which account demographics have the best retention?
+* We spent $50,000 on a marketing campaign, did the users we acquire stick around a month later?
 
-Here are a few examples of tables you can load from your DWH to analyze in Mixpanel:
-
-- **Backend**: Signups, Reports Created, Dashboards Created
-- **CRM**: Opportunity Created, Account Created, Account Upsell
-- **Support**: Ticket Created, Ticket Resolved
-- **Billing:** Invoice paid, subscription renewed
-- **Ad Spend:** Click-through rate, cost per click, Google Ads spend
-- **Clickstream Logs:** Views, clicks, errors, etc.
+In this guide, we'll walk through how to set up Warehouse Connectors. The integration is completely codeless, but you will need someone with access to your DWH to help with the initial set up.
 
 ## Getting Started
 
@@ -37,7 +34,6 @@ Select a table (or view) representing an event from your warehouse and tell Mixp
 <ExtendedTabs urlParam="dwh" urlToItemsMap={dwhItems}>
 
 <Tab>
-        The BigQuery connector works by giving a Mixpanel service account the permission to read/write from BigQuery in your GCP project. You will need your GCP Project ID, which you can find in the URL of Google Cloud Console (https://console.cloud.google.com/bigquery?project=YOUR_GCP_PROJECT). You will also need the `gcloud` CLI.
     <div style={{position: 'relative', paddingBottom: '64.90384615384616%', height: 0}}>
         <iframe src="https://www.loom.com/embed/04f4ea75310744cdab477e1b47684db3?sid=3728258e-b860-431f-bdf2-cff508b2b19e"
             frameBorder="0"
@@ -45,8 +41,19 @@ Select a table (or view) representing an event from your warehouse and tell Mixp
             style={{position: 'absolute', 'top': 0, 'left': 0, 'width': '100%', 'height': '100%'}}>
         </iframe>
     </div>
+
+        The BigQuery connector works by giving a Mixpanel service account the permission to read/write from BigQuery in your GCP project. You will need your GCP Project ID, which you can find in the URL of Google Cloud Console (https://console.cloud.google.com/bigquery?project=YOUR_GCP_PROJECT). You will also need the `gcloud` CLI.
+
 </Tab>
 <Tab>
+    <div style={{position: 'relative', paddingBottom: '64.90384615384616%', height: 0}}>
+        <iframe src="https://www.loom.com/embed/5dbaf37d9308404393417043551aed55"
+            frameBorder="0"
+            webkitallowfullscreen="true" mozallowfullscreen="true" allowFullScreen
+            style={{position: 'absolute', 'top': 0, 'left': 0, 'width': '100%', 'height': '100%'}}>
+        </iframe>
+    </div>
+
     Complete the following steps to get your Snowflake connector up and running:
     1. Navigate to **Project Settings**, then select **Warehouse Sources**.
     2. Click on `+ Add Connection` and select **Snowflake**.
@@ -69,13 +76,6 @@ Select a table (or view) representing an event from your warehouse and tell Mixp
             - Enter the name of your warehouse (default value: **MIXPANEL_IMPORT_WAREHOUSE**).
             - We recommend creating a separate warehouse for Mixpanel, and ensuring that Mixpanel has the appropriate role permissions to access it.
             - Run the commands below in Snowflake.
-    <div style={{position: 'relative', paddingBottom: '64.90384615384616%', height: 0}}>
-        <iframe src="https://www.loom.com/embed/5dbaf37d9308404393417043551aed55"
-            frameBorder="0"
-            webkitallowfullscreen="true" mozallowfullscreen="true" allowFullScreen
-            style={{position: 'absolute', 'top': 0, 'left': 0, 'width': '100%', 'height': '100%'}}>
-        </iframe>
-    </div>
     3. You should see a new page to create your snowflake connector. In the first view, fill out the following fields before clicking  `Next`: 
         - Snowflake Account Name / URL
         - Username
@@ -284,7 +284,9 @@ Here’s an example table that illustrates what can be loaded as user profiles i
 | 12345 | grace@example.com | Grace Hopper | Pro |
 | 45678 | bob@example.com | Bob Noyce | Free |
 
-🆕 Profile History is in beta. While Profiles typically only store the state of a user *as of now*, Profile History enables storing the state of a user *over time*. When creating a User Profile sync, set the Table Type to “History Table” — this will require you to supply a Start Time column in the sync configuration. Request beta access [here](https://forms.gle/x8mbU6FVe5uHiVXF6).
+<Callout type="info">
+Profile History is in beta. While Profiles typically only store the state of a user *as of now*, Profile History enables storing the state of a user *over time*. When creating a User Profile sync, set the Table Type to “History Table” — this will require you to supply a Start Time column in the sync configuration. Request beta access [here](https://forms.gle/x8mbU6FVe5uHiVXF6).
+</Callout>
 
 ### Group Profiles
 
@@ -312,28 +314,47 @@ Here’s an example table that illustrates what can be loaded as group profiles 
 
 Warehouse Connectors continuously detect new data from your warehouse tables to load into Mixpanel. The Sync Type determines the method of detecting new rows:
 
-- **Time-Based**: This mode requires there to be an Insert Time column in your table. Mixpanel remembers the maximum Insert Time it saw in the previous run of the sync and looks for only rows that have an Insert Time greater than that. This is useful and efficient for append-only tables (usually events) that have a column indicating when the data was appended.
-- **Full Sync:** This mode takes a snapshot of the source table and syncs it entirely to Mixpanel periodically. It has upsert semantics in Mixpanel — that is, if a row has new properties in your warehouse, the corresponding profile in Mixpanel will be overridden with those new properties. This mode is only available for non-event tables.
-- **Mirror:** This mode leverages warehouse CDC capabilities to mirror insert, updates, and deletes from your warehouse to Mixpanel. It provides the efficiency of time-based syncs with the simplicity of full syncs and works for all table types.
-    - Mirror is in beta for Snowflake, with support for other warehouses coming soon. Request access [here](https://forms.gle/x8mbU6FVe5uHiVXF6).
+### Time-Based
+Time-Based syncs there to be an Insert Time column in your table. Mixpanel remembers the maximum Insert Time it saw in the previous run of the sync and looks for only rows that have an Insert Time greater than that. This is useful and efficient for append-only tables (usually events) that have a column indicating when the data was appended.
+
+### Full
+Full syncs a snapshot of the source table and syncs it entirely to Mixpanel periodically. It has upsert semantics in Mixpanel — that is, if a row has new properties in your warehouse, the corresponding profile in Mixpanel will be overridden with those new properties. This mode is available for all tables except events.
+
+### Mirror
+Mirror syncs leverage warehouse change-data-capture (CDC) capabilities to mirror insert, updates, and deletes from your warehouse to Mixpanel. It provides the efficiency of time-based syncs with the simplicity/reliability of full syncs and works for all table types.
+
+<Callout type="info">
+Mirror is in beta for Snowflake only. Request access [here](https://forms.gle/x8mbU6FVe5uHiVXF6).
+</Callout>
+
 
 ## FAQ
 
-### **How fast do syncs run?**
+### What are examples of tables that would be valuable to load into Mixpanel?
+Anything that is event-based (has a user_id and timestamp) and that you want to analyze in Mixpanel is a good candidate. Examples, by data source are:
+* CRM: Opportunity Created, Opportunity Closed
+* Support: Ticket Created, Ticket Closed
+* Billing: Subscription Created, Subscription Upgraded, Subscription Canceled, Payment Made
+* Appplication Database: Signup, Purchased Item, Invited Teammate
+
+We also recommend loading your user and account tables, to enrich events with demographic attributes about the users and accounts who performed them.
+
+### How fast do syncs run?
 
 Syncs have a throughput of ~30K events/second or ~100M events/hour.
 
-### **I already track data to Mixpanel via SDK or CDP, can I still use Warehouse Connectors?**
+### I already track data to Mixpanel via SDK or CDP, can I still use Warehouse Connectors?
 
-Yes! You can send some events (eg: web and app data) directly via our SDKs and send other data (eg: user profiles from CRM or logs from your backend) from your warehouse and analyze them together in Mixpanel. There are no downsides to this approach.
+Yes! You can send some events (eg: web and app data) directly via our SDKs and send other data (eg: user profiles from CRM or logs from your backend) from your warehouse and analyze them together in Mixpanel.
 
 ### How much does Warehouse Connectors cost?
+The events generated by Warehouse Connectors are billed identically to all other events you track to Mixpanel. Learn more about Mixpanel’s event-based billing [here](https://docs.mixpanel.com/docs/pricing/billing). Otherwise, there is no special cost for using Warehouse Connectors.
 
-There is no additional cost specifically for using Warehouse Connectors. The events generated by Warehouse Connectors are billed identically to all other events you track to Mixpanel. Learn more about Mixpanel’s event-based billing [here](link to billing docs).
-
-### Will this increase my DWH bill?
+### What will be the impact of this on my existing DWH bill?
 
 Very little. We’ve designed Warehouse Connectors to make highly efficient queries to extract new data from your warehouse. In general, the continuous cost savings of using Mixpanel to analyze the data will dwarf the cost of extracting data by 10-100x.
+
+If you'd like to be extra careful with costs, we recommend provisioning the smallest possible warehouse you can for the purposes of Warehouse Connectors. If syncs run slowly with this size, you can scale up to trade cost for speed.
 
 ### How can I get help setting up a warehouse sync?
 
