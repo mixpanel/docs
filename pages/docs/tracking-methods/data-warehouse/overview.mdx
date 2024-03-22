@@ -33,7 +33,7 @@ Select a table (or view) representing an event from your warehouse and tell Mixp
 
 ### Warehouse-Specific Walkthroughs
 
-<ExtendedTabs urlParam="dwh" urlToItemsMap=dwhItems>
+<ExtendedTabs urlParam="dwh" urlToItemsMap={dwhItems}>
 
 <Tab>
         The BigQuery connector works by giving a Mixpanel service account the permission to read/write from BigQuery in your GCP project. You will need your GCP Project ID, which you can find in the URL of Google Cloud Console (https://console.cloud.google.com/bigquery?project=YOUR_GCP_PROJECT). You will also need the `gcloud` CLI.
