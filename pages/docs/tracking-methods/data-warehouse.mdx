@@ -4,10 +4,11 @@ import { Callout } from 'nextra/components'
 import ExtendedTabs from '../../../components/ExtendedTabs/ExtendedTabs';
 import { dwhItems } from '../../../utils/constants';
 
+# Data Warehouse
 
 ## Overview
 
-Warehouse Connectors lets you load Mixpanel with data from data warehouses (DWH) like BigQuery, Snowflake, Databricks, and Redshift. By unifying the business data in your DWH with product usage events, you can answer many more questions in Mixpanel:
+Warehouse Connectors enable you to load Mixpanel with data from data warehouses (DWH) like BigQuery, Snowflake, Databricks, and Redshift. By unifying business data with product usage events, you can answer many more questions in Mixpanel:
 * What percentage of our Enterprise revenue uses the features we shipped last year?
 * Did our app redesign reduce support tickets?
 * Which account demographics have the best retention?
@@ -330,8 +331,8 @@ Mirror is in beta for Snowflake only. Request access [here](https://forms.gle/x8
 
 ## FAQ
 
-### What are examples of tables that would be valuable to load into Mixpanel?
-Anything that is event-based (has a user_id and timestamp) and that you want to analyze in Mixpanel is a good candidate. Examples, by data source are:
+### What tables are valuable to load into Mixpanel?
+Anything that is event-based (has a user_id and timestamp) and that you want to analyze in Mixpanel. Examples, by data source are:
 * CRM: Opportunity Created, Opportunity Closed
 * Support: Ticket Created, Ticket Closed
 * Billing: Subscription Created, Subscription Upgraded, Subscription Canceled, Payment Made
