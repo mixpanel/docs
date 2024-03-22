@@ -270,7 +270,7 @@ Here are more details about the schema we expect for events:
 | Event Name | Yes | String | The name of the event. Eg: Purchase Completed or Support Ticket Filed. Note: you can specify this value statically, it doesn’t need to be a column in the table. |
 | Time | Yes | Timestamp | The time at which the event occurred. |
 | User ID | No | String or Integer | The unique identifier of the user who performed the event. Eg: 12345 or grace@example.com. |
-| Device ID | No | String or Integer | An identifier for anonymous users, useful for tracking pre-login data. Learn more [here] |
+| Device ID | No | String or Integer | An identifier for anonymous users, useful for tracking pre-login data. Learn more [here](/docs/tracking-methods/id-management/identifying-users) |
 | JSON Properties | No | JSON or Variant | A field that contains key-value properties in JSON format. If provided, Mixpanel will flatten this field out into properties. |
 | All other columns | No | Any | These can be anything. Mixpanel will auto-detect these columns and attach them to the event as properties. |
 
