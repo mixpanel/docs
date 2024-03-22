@@ -30,19 +30,19 @@ Building a report in Funnels takes just a few clicks, and results arrive in seco
   <iframe src="https://www.loom.com/embed/7905e588beea48c5bc757ce8c43aae8b" frameborder="0" style={{ position: 'absolute', top: 0, left: 0, width: '100%', height: '100%' }} allowfullscreen></iframe>
 </p>
 
-#### Step 1: Define your Funnel Behavior
+### Step 1: Define your Funnel Behavior
 
 A funnel is the basic building block of the Funnels report. A funnel is sequence of events done within a certain period of time. Using the example above, imagine we know the signup flow contains five steps. Within the funnel definition, add one event for each step, in the following order: "Landing Page," "Download Page," "App Install," "App Open," "Sign Up." At this point, your query should look like this.
 
 ![/funnels_beta_1.png](/funnels_beta_1.png)
 
-#### Step 2: Choose your Measurement
+### Step 2: Choose your Measurement
 
 After your funnel is defined, you can choose how you want to measure the funnel. By default, Funnels report will select conversion rate of the funnel as the measurement, but you can also measure the number of users converting, total conversions, and more. You can change the measurement by selecting "Conversion Rate" in the bottom left of the funnel metric definition. In this case, we don't want to change the measurement, so it can be left alone.
 
 ![/funnels_beta_2.png](/funnels_beta_2.png)
 
-#### Step 3: Choose Filters
+### Step 3: Choose Filters
 
 Filters exclude unwanted data. In this case, we only care about events performed on the iOS platform. Therefore, add a "Platform" filter, where Platform equals "iOS Native". At this point, your query should look like this:
 
@@ -54,7 +54,7 @@ Breakdowns segment data into groups. In this case, we want to break our funnel d
 
 ![/funnels_beta_4.png](/funnels_beta_4.png)
 
-#### Step 5: Choose Visualization
+### Step 5: Choose Visualization
 
 You can visualize your metric in a variety of ways. Mixpanel allows you to choose how you would like to visualize your data. Select "Funnel Steps" in the top right to change your visualization. In Funnels, you can choose:
 
@@ -191,8 +191,8 @@ You have a variety of options to measure your funnel behavior.
 | Measurement | Description |
 | --- | --- |
 | Conversion Rate | The rate at which funnels are completed for the selected steps of the funnel. The conversion rate can be based off of unique users, total funnel entries or sessions. |
-| Unique Users | The number of users who completed the selected steps of the funnel. |
-| Total Conversions | The total number of funnels that have reached the selected step of the funnel. This measurement allows for users to re-enter the funnel multiple times. |
+| Unique Users | The number of users who completed the selected steps of the funnel; based on their first attempt at entering the funnel within the timeframe of the report. |
+| Total Conversions | The total number of funnels that have reached the selected step of the funnel. This measurement allows for users to re-enter the funnel multiple times, if they exit the funnel by either fully converting or dropping out. |
 | Total Sessions | The total number of unique users sessions that reached the selected step of the funnel |
 | Time to Convert | Allows for selection of an aggregation: Average, Median, Percentile, Min and Max. Measueres the aggregated time to convert for the selected steps of the funnel. [See more](#time-to-convert-measurement) |
 | Property Sum | Sums up a chosen property value for each step of the funnel, and measures the total amount of the property converted for the selected step of the funnel. [See more](#property-sum) |

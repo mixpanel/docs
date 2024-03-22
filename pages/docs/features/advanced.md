@@ -58,15 +58,15 @@ To create a temporary cohort for the current report, click **Create Custom...** 
 
 ## Slack Integration
 
-Connect Mixpanel to your Slack workspace to help share reports with your colleagues faster. You can (1) set up an alert to send a message to a Slack channel, (2) set up a Board Digest to send a message to a Slack channel, or (3) share previews of any Mixpanel report in Slack.
+Connect Mixpanel to your Slack workspace to help share reports with your colleagues faster. You can (1) set up an alert to send a message to a Slack channel, (2) set up a Board Subscription to send a message to a Slack channel, or (3) share previews of any Mixpanel report in Slack.
 
-To send an alert to a Slack Channel, see [Custom Alerts](/docs/features/alerts). To send a digest to a Slack Channel, see [Advanced Board Functionality - Digests](/docs/boards/advanced#board-digests).
+To send an alert to a Slack Channel, see [Custom Alerts](/docs/features/alerts). To set up a board subscription to a Slack Channel, see [Advanced Board Functionality - Subscriptions](/docs/boards/advanced#board-subscriptions).
 
 The Mixpanel application for Slack will also automatically unfurl a preview of any Mixpanel link, including chart images for certain reports, making it easy for anyone in your Slack workspace to learn from your Mixpanel analyses.
 
 ### Enable the Integration
 
-To enable the integration, log in to both Mixpanel and Slack, then click [here](https://mixpanel.com/slack/oauth?slack_v2=true) to authorize the slack workspace: 
+To enable the integration, log in to both Mixpanel and Slack, then click [here](https://mixpanel.com/slack/oauth?slack_v2=true) to authorize the slack workspace:
 
 ![/Screen_Shot_2020-06-15_at_10.41.00_PM.png](/Screen_Shot_2020-06-15_at_10.41.00_PM.png)
 
@@ -275,7 +275,7 @@ Steps
     Yes you can as long as the data-type you’ve changed the property to is supported.
 
 - **Understanding the details:**
-    - **In Numeric: Can I change the operators on the upper and lower bound?** 
+    - **In Numeric: Can I change the operators on the upper and lower bound?**
 
         No, the operators have been fixed. The lower bound is always strictly greater than (≥) and the upper bound is just lesser than (<). If you are looking for more control on the operators, please create a [custom property](/docs/features/custom-properties#creating-a-custom-property).
 
@@ -753,7 +753,7 @@ Prompts a selection of a property contained within the objects of the list. This
 
 The list of objects property support will be limited to the first 5 objects within the list property. More details on [Object and List of Objects Data Types](/docs/data-structure/property-reference#object-and-list-of-objects-data-types) support in our docs.
 
-For customer's on a paid plan, you may submit a request for approval to have this limit increased by opening a support ticket within the UI (or by sending an email to [support@mixpanel.com](mailto:support@mixpanel.com)) with the subject line: “Request for List of Objects Limit Increase”. An increase will not be guaranteed, but your project will be reviewed for feasibility of increasing this limit. 
+For customer's on a paid plan, you may submit a request for approval to have this limit increased by opening a support ticket within the UI (or by sending an email to [support@mixpanel.com](mailto:support@mixpanel.com)) with the subject line: “Request for List of Objects Limit Increase”. An increase will not be guaranteed, but your project will be reviewed for feasibility of increasing this limit.
 
 
 ## Analyzing First Time Users
@@ -773,7 +773,7 @@ You can do this by adding a First Time Filter to any event in Mixpanel. This fil
 Mixpanel computes this on-the-fly by scanning each user's history to determine if this was the first instance of the event performed by the user, based on timestamp.
 
 ### Nth Time
-You can analyze the Nth time an event was performed by using a First Time Filter in funnels. For example, this shows you the number of users that do Tutorial Complete 4 times:
+You can analyze the Nth time an event was performed by using a First Time Filter in funnels. For example, this shows you the number of users that do Tutorial Complete 3 times:
 
 ![233895123-bc2dd00f-5dde-4e43-82fe-081173abf0e4.png](https://user-images.githubusercontent.com/2077899/233895123-bc2dd00f-5dde-4e43-82fe-081173abf0e4.png)
 
