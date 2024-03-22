@@ -316,10 +316,10 @@ Here’s an example table that illustrates what can be loaded as group profiles 
 Warehouse Connectors continuously detect new data from your warehouse tables to load into Mixpanel. The Sync Type determines the method of detecting new rows:
 
 ### Time-Based
-Time-Based syncs there to be an Insert Time column in your table. Mixpanel remembers the maximum Insert Time it saw in the previous run of the sync and looks for only rows that have an Insert Time greater than that. This is useful and efficient for append-only tables (usually events) that have a column indicating when the data was appended.
+Time-Based syncs require an Insert Time column in your table. Mixpanel remembers the maximum Insert Time it saw in the previous run of the sync and looks for only rows that have an Insert Time greater than that. This is useful and efficient for append-only tables (usually events) that have a column indicating when the data was appended.
 
 ### Full
-Full syncs a snapshot of the source table and syncs it entirely to Mixpanel periodically. It has upsert semantics in Mixpanel — that is, if a row has new properties in your warehouse, the corresponding profile in Mixpanel will be overridden with those new properties. This mode is available for all tables except events.
+Full syncs periodically make a snapshot of the source table and sync it entirely to Mixpanel. If a row has new properties in your warehouse, the corresponding profile in Mixpanel will be overridden with those new properties. This mode is available for all tables except events.
 
 ### Mirror
 Mirror syncs leverage warehouse change-data-capture (CDC) capabilities to mirror insert, updates, and deletes from your warehouse to Mixpanel. It provides the efficiency of time-based syncs with the simplicity/reliability of full syncs and works for all table types.
