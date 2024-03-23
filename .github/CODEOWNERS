@@ -1,3 +1,4 @@
 # Default to docs reviewers
 # ======================
 *                    @mixpanel/docs-reviewers
+package*.json        @mixpanel/interactive
