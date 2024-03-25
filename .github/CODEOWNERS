@@ -1,12 +1,4 @@
-# Default to engineering
+# Default to docs reviewers
 # ======================
-*                    @mixpanel/docs-engineering-reviewers @mixpanel/interactive
+*                    @mixpanel/docs-reviewers
 package*.json        @mixpanel/interactive
-
-# Content related changes route to docs reviewers
-# ===============================================
-*.md                 @mixpanel/docs-reviewers
-*.mdx                @mixpanel/docs-reviewers
-*.txt                @mixpanel/docs-reviewers
-_meta.json           @mixpanel/docs-reviewers
-/public/             @mixpanel/docs-reviewers
