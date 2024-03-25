@@ -226,7 +226,7 @@ Mixpanel.mainInstance().loggingEnabled = true
 Route data to Mixpanel's EU servers by setting the `serverURL` property after initializing the client. 
 
 ```swift
-mixpanel = Mixpanel.initialize(token: "MIXPANEL_TOKEN")
+let mixpanel = Mixpanel.initialize(token: "MIXPANEL_TOKEN")
 mixpanel.serverURL = "https://api-eu.mixpanel.com"
 ```
 

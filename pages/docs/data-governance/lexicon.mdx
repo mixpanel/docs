@@ -34,7 +34,7 @@ This table contains descriptions for each field in the “Events” view.
 | Display Name | The event name that displays in the Mixpanel interface. |
 | Description | The information that describes the event, such as what triggers it or what properties are sent with it. |
 | 30-Day Volume | The total number of events that users fired in the last 30 days. |
-| 30-Day Queries | The total number of API and UI queries that project members executed in the last 30 days. |
+| 30-Day Queries | The total number of UI queries that project members executed in the last 30 days. Includes queries from selecting events in reports, viewing reports, and queries in "Users" and "Events" tabs. Excludes dashboard views.|
 | Last Queried | The user that last used this event in the Mixpanel UI. |
 | First Queried | The user that first used this event in the Mixpanel UI. |
 | Owners | The user(s) that are points-of-contact for this event. |
@@ -61,7 +61,7 @@ This table contains descriptions for each field in the “Event Properties” vi
 | Description | The information that describes the property, such as what events it is sent with. |
 | Status | Indicates whether the property is visible or hidden from the Mixpanel interface. Also indicates if the property is dropped, merged, or marked as sensitive. |
 | Events With Property | The total number of events that contain this property in the last 30 days. |
-| Queries | The total number of UI queries that project members executed in the last 30 days. Includes queries from selecting events in reports, viewing reports, and queries in "Users" and "Events" tabs.|
+| Queries | The total number of UI queries that project members executed in the last 30 days. Includes queries from selecting events in reports, viewing reports, and queries in "Users" and "Events" tabs. Excludes dashboard views.|
 
 Lexicon contains property definitions for the default properties that Mixpanel’s client-side libraries automatically send with each event across web and mobile platforms.
 
@@ -82,7 +82,7 @@ This table contains descriptions for each field in the “Profile Properties” 
 | Description | The information that describes the property, such as when it is added or updated in a user profile. |
 | Status | Indicates whether the property is visible or hidden from the Mixpanel interface. Also indicates if the property is dropped, merged, or marked as sensitive. |
 | Users With Property | The total number of profiles that contain this property. |
-| Queries | The total number of API and UI queries that project members executed in the last 30 days. |
+| Queries | The total number of UI queries that project members executed in the last 30 days. |
 
 If you have Group Analytics enabled, you will see a dropdown on the Profile Properties tab that will let you select any Group Types that you may have configured. The default selection will be "User Profiles" which correspond to User properties.
 

@@ -1,48 +1,48 @@
 # Reports
 
+## Overview
+
 A report is the basic unit of performing an analysis in Mixpanel.
 
 Mixpanel has several types of reports: [Insights](/docs/reports/insights), [Funnels](/docs/reports/funnels), [Flows](/docs/reports/flows), [Retention](/docs/reports/retention) and other advanced reports, each with their specialized use.
 
 This article focuses on the common concepts across each report.
 
-## Concepts
-
-### Report
+## Report
 
 A report is the basic unit of performing an analysis in Mixpanel. A report can be saved to a board, and a board can contain many reports. Each report is made up of at least one **metric** and is displayed using the chosen **visualization**.
 
-### Metrics
+## Metrics
 
 A metric is a some sort of **measurement** on a **behavior**. An example of a metric is "Unique Users" doing "Sign up", which is the measurement of unique users, on the behavior of "Sign up".
 
-### Behaviors
+## Behaviors
 
 A behavior is an event or a sequence of events performed within some criteria. A behavior can be something simple like a single event, or it can be something more complex like doing a multi step funnel.
 
-### Measurements
+## Measurements
 
 A measurement is a selection on how to summarize behaviors. Depending on the behavior, certain measurements may be not be possible. For example, for a single event, you cannot measure the conversion rate of it. Some examples of measurements are: total events, unique users, total sessions, conversion rate, retention rate and aggregate property. The measurement is chosen at the bottom left area of the metric.
 
 ![measurement](/report-measurement.png)
 
-### Visualizations
+## Visualizations
 
 In the top right, you can change the type of visualization for your report. The options available will depend on the type of report that you started with. In this case, we switched to a bar view, allowing us to see the total number of "Log In" across the entire time range, allowing us a summarized view that is easily scanned.
 
 ![/Screen_Shot_2022-07-11_at_3.07.02_PM.png](/Screen_Shot_2022-07-11_at_3.07.02_PM.png)
 
-### Filters
+## Filters
 
 Filters are used to narrow events or behaviors that qualify for analysis. For example, you may want to only consider "Sign Up" events that came from Android. In this case you would you be filtering the "Sign Up" event to only include the "Sign Up" events where the property "Device" is equal to "Android".
 
-#### Global Filters
+### Global Filters
 
 A global filter applies to the entire report. by properties or cohorts by clicking the **Filter** button. This will filter the results of the entire report to show only data with that property or cohort.
 
 ![image](/global-filter.png)
 
-#### Inline Filters
+### Inline Filters
 
 An inline filter applies to one particular event in the report.
 
@@ -62,7 +62,7 @@ You can select whether you would like the query to match any of these filters, o
 
 ![image](https://github.com/mixpanel/docs/assets/2077899/9e3bcd31-2b12-48d1-b04f-cdda85dd2584)
 
-### Breakdowns
+## Breakdowns
 
 Breakdown groups the results of your metrics in Insights, Funnels, Flows, or Retention reports by a property or cohort, allowing you to examine which properties or cohorts have a significant impact on your query.
 
@@ -76,7 +76,7 @@ For cohorts, you will be shown groups of users both in and not in the cohort in 
 
 It is only possible to either group by properties or group by cohorts, but not both.
 
-### Events Menu
+## Events Menu
 
 This is the menu that appears under "Add Metric" or "Select Step".
 
@@ -86,7 +86,7 @@ If you organize your events using [tags](/docs/data-governance/lexicon) in Lex
 
 ![/Untitled__1_.png](/Untitled__1_.png)
 
-### Properties Menu
+## Properties Menu
 
 This menu appears when adding a filter, an inline filter on an event or breakdown.
 
@@ -101,7 +101,7 @@ You can select the following filtering options to show a subset of the propertie
 
     ![/Mixpanel__project_3____Mixpanel_2021-11-18_12-00-58.png](/Mixpanel__project_3____Mixpanel_2021-11-18_12-00-58.png)
 
-#### Understanding Prefixes in the Menu
+### Understanding Prefixes in the Menu
 
 The events and properties in the menu are prefixed to provide additional context about the properties' type. They will be removed when additional context is not needed.
 
@@ -129,7 +129,7 @@ The events and properties in the menu are prefixed to provide additional context
 
     ![/Screen_Shot_2021-11-18_at_12.29.06_PM.png](/Screen_Shot_2021-11-18_at_12.29.06_PM.png)
 
-### Date Range
+## Date Range
 
 Determine the time range of a query by clicking on the date range selector. The date range selector is common across all reports.
 
@@ -153,11 +153,11 @@ For these date ranges, the output shows results from the last complete 30 days, 
 | Quarter to Date | From midnight of the start of the current quarter up to the current second. |
 | Year to Date | From midnight of the start of the current year up to the current second. |
 
-#### Select a Date Range
+### Select a Date Range
 
 Selecting **Custom** on the date range selector opens up some additional options, "Last", "Fixed" and "Since".
 
-#### Last
+### Last
 
 “In the last” allows you to select a rolling time range similar to the default “last 30 days” but you have the flexibility to choose the time value and scale, either days, weeks, or months.
 
@@ -167,29 +167,54 @@ If you need to, you can click on the **+ Ending** button and shift back the de
 
 ![/Screen_Shot_2022-07-11_at_3.18.03_PM.png](/Screen_Shot_2022-07-11_at_3.18.03_PM.png)
 
-#### Fixed
+### Fixed
 
 “Fixed” allows you to select two dates to query between or a select particular day to query by entering the same start & end date. If you save this report as a bookmark or add it to the dashboard, the date range selection will always persist.
 
 ![/Screen_Shot_2022-07-11_at_3.21.03_PM.png](/Screen_Shot_2022-07-11_at_3.21.03_PM.png)
 
-#### Since
+### Since
 
 “Since” allows you to select a specific date to query for all data since that start date.
 
-#### To Date
+### To Date
 
 "To Date" allows you select a date rnge that will update dynamically to fit the current internval. You can choose Week to Date, Month to Date, Quarter to Date and Year to Date. When the boundary of interval is passed, the date range will automatically update to include only the current interval. For example, if "Month to Date" was selected, and the date was February 27, the date range would include Feb 1 - Feb 27. The next week, after the month boundary has passed the date range would include Mar 1 - Mar 4.
 To Date respects start of week and start of quarter settings under project settings.
 
-### Saving to a Board
+## Comparisons
+
+Comparisons allow you to compare metrics, or broken down segments of metrics against each other. Depending on the type of comparison type, you are also able see the lift of a segment or metric against another.
+
+### Compare to Past
+
+Compare to past allows for comparing a metric against itself on a different time period. You are able to compare against the previous day, week, month, quarter and year. You are also able choose a custom time comparison window.
+
+![/compare_to_past.png](/compare_to_past.png)
+
+By default, Mixpanel will visualize the values for both time periods. If you wish to see the lift of the current time period against the past time period, you can select the "Percent Change over Baseline" option to see the lift of your metric over time.
+
+![/compare_to_past_lift.png](/compare_to_past_lift.png)
+
+### Compare to Segment
+
+Compare to segment allows you to set a property value as a baseline and see how every other property compares.
+
+![/compare_to_segment.png](/compare_to_segment.png)
+
+### Compare to Overall
+
+Compare to overall allows you compare each segment value and see what proportion it makes of the overall value.
+
+![/compare_to_overall.png](/compare_to_overall.png)
+
+## Saving to a Board
 
 When you are satisfied with the analysis, and decide that this is something that you are likely to revisit, Mixpanel recommends that you save the report to a [Board](/docs/boards/overview). You can do this by pressing "Save" in the top right and selecting the Board you would like to save to, or creating a new Board.
 
 ![/Screen_Shot_2022-07-08_at_5.40.30_PM.png](/Screen_Shot_2022-07-08_at_5.40.30_PM.png)
 
-
-### Typecasting
+## Typecasting
 
 Mixpanel allows you to force Properties into another [data type](https://help.mixpanel.com/hc/en-us/articles/115004547063) by using the **"Data Type"** option in the overflow menu for property filters and breakdowns.
 
@@ -205,13 +230,7 @@ You can either customize the ranges by clicking "[Customize Range](/docs/feature
 
 Or alternatively, if you'd like to see the exact numeric values you can typecast the Number property to a String to remove the range bucketing.
 
-### Compare to Past
-
-Compare to past is a shortcut for segmenting a visualization on two time periods (current and past).
-
-![/compare_to_past.gif](/compare_to_past.gif)
-
-### Sessions
+## Sessions
 
 This is a period of continuous user activity. Use Sessions in Mixpanel to track which events users perform within a session, how many sessions contained a key action or how many sessions it takes for a user to convert in a funnel. [Learn more](/docs/features/sessions).
 
