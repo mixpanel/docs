@@ -1,0 +1,30 @@
+---
+title: "Merge data from different events on-the-fly with Borrowed Properties"
+slug: "changelog-2024-03-14-borrowed-properties"
+hidden: false
+createdAt: "2024-03-14T14:59:02.165Z"
+updatedAt: "2024-03-14T14:59:02.165Z"
+date: "2024-03-14"
+---
+<div style={{position: "relative", paddingBottom: "56.25%", height: 0}}><iframe src="https://www.loom.com/embed/d45c325a7ee544a9965e90c3a5127257?sid=0cc8f226-72a4-4817-bd6d-13732a3b4237" frameBorder="0" webkitallowfullscreen="true" mozallowfullscreen="true" allowFullScreen style={{position: "absolute", top: 0, left: 0, width: "100%", height: "100%"}}></iframe></div>
+
+Introducing Borrowed Properties, where you can ‘borrow’ a property from another event on-the-fly and leverage it for analysis as though you’ve tracked it all along. No re-tracking or complicated joins required.
+
+Here’s some scenarios where Borrowed Properties makes life a whole lot easier:
+
+### Merging data from client-side to server-side
+
+- **Scenario**: You want to understand which restaurant category leads to the most confirmed purchases.
+  - “Order placed” is a client-side event that has a property called restaurant category.
+  - “Transaction completed” is the server-side event of interest that you’d like to break down by restaurant category.
+- **Solution**: Borrow the restaurant category property from “Order placed” onto “Transaction completed” and poof! It’s like “Transaction completed” always had the restaurant category property.
+
+### Analyzing across two different teams
+
+- **Scenario**: One team created a “Speed Mode” feature that runs the app faster. There’s a “Speed Mode” event with the property Speed Mode Enabled.
+  - Another team wants to know how Speed Mode impacts how many pages are viewed. But the “Page View” event doesn’t have the Speed Mode Enabled property.
+- **Solution**: Borrow the Speed Mode Enabled property onto “Page View” and teams can instantly understand how page views differed when Speed Mode was turned on.
+
+All these use cases, without engineers needing to retrack data or develop complicated workarounds.
+
+Borrowed Properties is available for customers on Growth & Enterprise plans. For more information, check out our [help docs.](/docs/features/custom-properties#borrowed-properties)
