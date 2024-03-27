@@ -23,7 +23,7 @@
   },
   "homepage": "https://github.com/mixpanel/docs#readme",
   "dependencies": {
-    "@docsearch/js": "^3.5.2",
+    "@docsearch/js": "^3.6.0",
     "@docsearch/react": "^3.6.0",
     "clsx": "^2.1.0",
     "next": "^14.0.3",
