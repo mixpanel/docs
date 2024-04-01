@@ -43,6 +43,6 @@
     "rdme": "8.6.6",
     "tailwindcss": "^3.4.1",
     "typescript": "^5.4.3",
-    "yaml": "2.4.0"
+    "yaml": "2.4.1"
   }
 }
