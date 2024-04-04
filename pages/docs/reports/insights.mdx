@@ -1,6 +1,5 @@
 # Insights
 
-
 ## Overview
 
 ![Insights Overview Image](/overview.png)
@@ -37,24 +36,23 @@ It's important to know what's the natural frequency at which your users use your
   <iframe src="https://www.loom.com/embed/c223230fd46d432880f6bcf804b07cac" frameborder="0" style={{ position: 'absolute', top: 0, left: 0, width: '100%', height: '100%' }} allowfullscreen></iframe>
 </p>
 
-Building a report in Insights takes just a few clicks, and results arrive in seconds. Let's build a simple report together. Continuing the B2B messaging example, imagine you want to answer the following question:
+### Step 1: Choose or Define your Behavior
 
-> Which cities in the United States have the most users who send messages via the iOS platform?
->
+Metrics are basing building blocks of an Insights report. A metric is made up of a behavior, and a way to measure that behavior. By default, Insights will prompt you to select the most basic form of a behavior: an event. However, you can also press the "+ Metrics" button to select add a metric based on a different type of behavior. You can also add a formula, which is a metric that is a function of other metrics.
 
-Feel free to follow along and create your own report right in our demo project, [here](https://mixpanel.com/register/?next=%2Fproject%2F2195193%2Fview%2F139237%2Fapp%2Finsights). To skip ahead and see the final result, click [here](https://mixpanel.com/register/?next=/project/2195193/view/139237/app/insights#BhixoRC626vx).
-
-### Step 1: Choose Events
-
-Events, cohorts, or profiles can be the basic building block of an Insights report. In this case, we want to know about users who sent messages, so within the "Events and Cohorts" section, add the "Send Message" event. At this point, your query should look like this:
+To select an event and start with an event based metric, press "Select Event".
 
 ![Choose Events](/choose-events.png)
 
-### Step 2: Choose Count Type
+To select a different type of metric, press "+ Metrics" and choose your metric type from the list. See [Metric Types](/docs/reports/insights#metric-types) for a full list of supported metric types.
 
-Next to your selected event, you can choose how to count that event. By default, Insights will count Total events, which, as the name implies, will count every occurrence of the event. In this case, we want to know how many users sent messages, so choose "Unique." Unique counts one event per user. At this point, your query should look like this:
+![Choose Metrics](/choose-metrics.png)
 
-![Choose Count Type](/choose-count-type.gif)
+### Step 2: Choose your Measurement
+
+Once you've selected your behavior, you can choose how to measure that behavior. Depending on the type of behavior selected, Insights will default to a different measurement. If you're measuring a basic event, Insights will default to measuring the nubmer of unique users who have done that event.
+
+![Choose Measurement](/choose-measurement.png)
 
 ### Step 3: Choose Filters
 
@@ -80,9 +78,18 @@ You now have a full analysis that you can use and add onto a Board, or use as a 
 
 ## Basic Features
 
-### Rename an Event within a Report
+### Metric Types
 
-Click on the "three dots" icon beside an event and click Rename to rename it. This will only affect the current report, and will not change the event's name in other reports.
+| Metric Type | Description |
+| --- | --- |
+| Event | A metric based off of a single event. The metric could measure the total number of occurences, unique users, or aggregates a property of this event. |
+| Profile | A metric based off of the user or group profiles. You can measure the number of profiles, or an aggregate on properties of the profiles. |
+| Formula | A metric that is a function of other metrics. You can select a saved formula, or create a new formula based on the existing metrics in the report. |
+| Funnel | A metric based off a funnel behavior. You can select a saved funnel behavior or define a new funnel, then choose a measurement on that funnel to form a funnel metric. By default measures conversion rate on all steps of the funnel. |
+| Retention | A metric based off a retention behavior. You can select a saved retention behavior or define a new retention, then choose a measurement to form a retention metric. By default, measures retention rate. |
+| Cohort | A metric based off of a defined cohort. Measures the number of users who are part of that cohort. |
+
+If choosing Formula, Funnel, Retention or Cohort, you will be prompted first to selected a saved definition. If you wish to start by defining your own behavior, press "Create" in the top right of the menu.
 
 ### Chart Types
 
@@ -97,6 +104,10 @@ Insights feature multiple visualizations to help you view the query results in t
 - Metric time-segmented
     - Line chart
     - Stacked line chart
+
+### Rename an Event within a Report
+
+Click on the "three dots" icon beside an event and click Rename to rename it. This will only affect the current report, and will not change the event's name in other reports.
 
 ### Sorting
 
@@ -145,7 +156,6 @@ The Grouped View preserves the hierarchy of breakdowns. It shows you segments wi
 
 ![image](https://github.com/mixpanel/docs/assets/2077899/2a72e93c-c332-4418-83e1-91bb24e2d271)
 
-
 ###### Alphabetical vs Value-Based Sorting
 You can sort segments alphabetically or by the value of a particular metric. In the grouped view, sorting is configured on a per-breakdown level and respects the breakdown hierarchy.
 
@@ -168,8 +178,7 @@ In the grouped view, you can choose the number of rows you want to display for e
 
 ![image](https://github.com/mixpanel/docs/assets/2077899/b09c1ad1-1392-4ec0-9358-361f677c600d)
 
-
-###### Notes
+**Notes**
 - View N only controls how many segments to display. To decide which segments to display i.e if it’s the top segments by value or bottom segments by value or alphabetical, please change the “Sort Order”.
 - View N will show the minimum of N and how many segments are in your report. For example, if you set N=10 but you only have 7 segments, we will only show 7 rows.
 - When selecting “Show All”, the maximum number of segments displayed in the UI will be 3000 given cardinality limits. If your breakdown has more than 3000 segments, you'll only see the top 3000, dictated by the sort order.
@@ -214,7 +223,7 @@ To note, you cannot nest a formula metric when constructing another formula.
 
 #### Save formulas for re-use
 
-Use existing events to create calculated formulas, like Bounce Rate & % Active Users, that can be saved and reused by others within the project. 
+Use existing events to create calculated formulas, like Bounce Rate & % Active Users, that can be saved and reused by others within the project.
 
 ![saveformula.gif](/saveformula.gif)
 

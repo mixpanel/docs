@@ -126,7 +126,7 @@ In order for a user to have access to project(s) and/or team(s), they must first
 
 ### Project Roles
 
-A Project has 4 roles: Owner, Admin, Analyst, and Consumer. 
+A Project has 4 roles: Owner, Admin, Analyst, and Consumer.
 The table below is an overview of the permissions per role on an project level.
 
 | **Project Roles**              | **Owner**          | **Admin**          | **Analyst** | **Consumer** |
@@ -160,8 +160,9 @@ The table below is an overview of the permissions per role for reports and other
 | Delete User Profiles              | ✅ | ✅ | ❌         | ❌         |
 | Create and View Boards            | ✅ | ✅ | ✅ | ✅ |
 | Create Subscriptions for Boards   | ✅ | ✅ | ✅ | ❌         |
-| Edit Subscriptions for Boards     | ✅ | Only the Creator | Only the Creator | Only the Creator |                               
+| Edit Subscriptions for Boards     | ✅ | Only the Creator | Only the Creator | Only the Creator |
 | Create/Edit Custom Events         | ✅ | ✅ | ✅ | ✅ Can save only for self        |
+| Create/Edit Saved Behaviors       | ✅ | ✅ | ✅ | ✅ Can save only for self        |
 | Create/Edit Saved Formulas        | ✅ | ✅ | ✅ | ✅ Can save only for self        |
 | Create/Edit Custom Properties     | ✅ | ✅ | ✅ | ✅ Can save only for self        |
 | Create/Edit Borrowed Properties   | ✅ | ✅ | ❌ | ❌ |
@@ -219,7 +220,7 @@ For example:
 
 ## Teams
 
-Mixpanel enables you to create and delete Teams within an organization. Teams make it easier to manage roles and permissions for a group of users. Users who are a member of a Team will be provisioned with the same role and permission that is assigned to the team. 
+Mixpanel enables you to create and delete Teams within an organization. Teams make it easier to manage roles and permissions for a group of users. Users who are a member of a Team will be provisioned with the same role and permission that is assigned to the team.
 
 ### Creating Teams
 
