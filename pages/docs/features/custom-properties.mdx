@@ -196,5 +196,5 @@ Some key notes
 - A project can have a maximum of 20 borrowed properties. Hence you are encouraged to only create borrowed properties useful to the larger team
 - A borrowed property once created is like any other custom property. It can be accessed by all in the project depending on permissions
 - Borrowing of a property is strictly from the most recent event in the 7 day lookback window. To elaborate
-    - Say on event “purchase”, you want to borrow property “search term” from an event “search product”. If there are multiple events “search product” before “purchase”, the property will be borrowed from the most recent “search product” event
+    - Say on event “purchase”, you want to borrow property “search term” from an event “search product”. If there are multiple events “search product” before “purchase”, the property will be borrowed from the most recent “search product” event where the property is set.
     - Lookback is also fixed to a 7 day window. Say the “purchase” event occurred on 31st Jan, if the  most recent “search product” occurred on 20th Jan, the borrow functionality will return “search term” = (not set), since this event happened 11 days ago which is outside the lookback window range.
