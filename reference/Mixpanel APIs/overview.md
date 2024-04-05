@@ -39,7 +39,3 @@ Use the Schemas API to manage your data definitions in Lexicon and Data Audit
 **Standard Server:** `mixpanel.com/api/app/projects`
 **EU Residency Server:** `eu.mixpanel.com/api/app/projects`
 Batch import large volumes of data into Mixpanel from a cloud bucket
-
--------------------------------------------------------------
-
-Find us on IRC: #mixpanel on freenode.org

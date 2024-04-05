@@ -18,47 +18,45 @@ Here are some of the sample questions you can answer in Retention:
 
 ## Quick Start
 
-<p style={{ position: "relative", paddingBottom: "56.25%", height: 0, overflow: "hidden" }}>
-  <iframe src="https://www.loom.com/embed/15457e2f5d2a4d0983b535931582cd17" frameborder="0" style={{ position: "absolute", top: 0, left: 0, width: "100%", height: "100%" }} allowfullscreen></iframe>
+<p style={{ position: 'relative', paddingBottom: '56.25%', height: 0, overflow: 'hidden' }}>
+  <iframe src="https://www.loom.com/embed/45ddc28851aa494ead99bccafe1f9a37" frameborder="0" style={{ position: 'absolute', top: 0, left: 0, width: '100%', height: '100%' }} allowfullscreen></iframe>
 </p>
 
 Building a Retention report follows the same high level steps as building any other report. You can read about report building basics [here](/docs/reports/overview).
 
-Building a report in Retention takes just a few clicks, and results arrive in seconds. Let's build a simple report together. Continuing the B2B messaging example, imagine you wanted to answer the following question:
+### Step 1: Define your Retention Behavior
 
-> Which app version promotes the best retention after signup, for users on Chrome?
+The retention behavior is the basic building block of a Retention report. A retention behavior is doing an event and then coming back to do another event. In this case, since we want to know retention after signup, choose "Sign Up Completed" in the first event slot. Then, we want to know if users are coming back and using the product, so choose "Any Event" in the second event slot. At this point, your query should look like this:
 
-Feel free to follow along and create your own report right in our demo project, [here](https://mixpanel.com/register/?next=%2Fproject%2F2195193%2Fview%2F139237%2Fapp%2Fretention%3Fredirect%3Dborn_event%3A%27%24mp_anything_event%27%2Cborn_filters%3A%21%28). To skip ahead to see the final result, click [here](https://mixpanel.com/register/?next=%2Fproject%2F2195193%2Fview%2F139237%2Fapp%2Fretention%3Fredirect%3Dreport%2F11945585%2Fi-os-retention-by-onboarding-variant%2Ftitle%3A%27iOS%2520Retention%2520by%2520Onboarding%2520Variant%27).
+![/retention_beta_1.png](/retention_beta_1.png)
 
-### Step 1: Choose Events
+### Step 2: Choose your Measurement
 
-In this case, since we want to know retention after signup, choose "Sign Up" in the first event slot. Then, we want to know if users are coming back and using the product, so choose "Any Event" in the second event slot. At this point, your query should look like this:
+After your retention behavior is defined, you can choose how you want to measure it. By default, Retention report will select retention rate as the measurement, but you can also measure the number of users retaining. You can change the measurement by selecting "Retention Rate" in the bottom left of the retention metric definition. In this case, we don't want to change the measurement, so it can be left alone.
 
-![/Retention_2_Events.png](/Retention_2_Events.png)
+![/retention_beta_2.png](/retention_beta_2.png)
 
-### Step 2: Choose Filters
+### Step 3: Choose Filters
 
 Filters exclude unwanted data. In this case, we only care about events performed on Chrome browser. Therefore, add a "Browser" filter, where Browser equals "Chrome". At this point, your query should look like this:
 
 ![/Retention_Filter.png](/Retention_Filter.png)
 
-### Step 3: Choose Breakdowns
+### Step 4: Choose Breakdowns
 
 Breakdowns segment data into groups. In this case, we want to break our report down based on the browser version they are using to Sign Up. Therefore, add an "Browser Version" breakdown. At this point, your query should look like this:
 
 ![/Retention_Breakdown.png](/Retention_Breakdown.png)
 
-### Step 4: Analyze Results
+### Step 5: Choose Visualization
 
-By default retention will display a curve chart. This shows the retention data across all users, regardless of their time of entry. This gives a holistic view of how users are retaining over time. You can go to the table below to get a more fine grained view to see if there are certain user cohorts that are retaining better or worse based on when they first entered.
+You can visualize your metric in a variety of ways. Mixpanel allows you to choose how you would like to visualize your data. Select "Retention Curve" in the top right to change your visualization. In Retention, you can choose:
 
-### Quick Start - New Retention
+- Retention Curve - see how users retaining over time. Users are bucketed by when they initally entered the product.
+- Line - see how your metric is trending over time. Used to see a particular retention group rate is trending over time.
+- Metric - see a summary view of your metric
 
-If you are on the beta retention experience, follow this guide. The core concepts all stay the same, but some things are slightly rearranged. You can watch the video below to get a preview of what's changed.
-
-<p style={{ position: 'relative', paddingBottom: '56.25%', height: 0, overflow: 'hidden' }}>
-  <iframe src="https://www.loom.com/embed/45ddc28851aa494ead99bccafe1f9a37" frameborder="0" style={{ position: 'absolute', top: 0, left: 0, width: '100%', height: '100%' }} allowfullscreen></iframe>
-</p>
+![/retention_beta_5.png](/retention_beta_5.png)
 
 ## Basic Features
 
@@ -203,6 +201,18 @@ Both the modes are extremely useful. It totally depends on the use-case you’re
 
 Above said, general expectation is product use-cases which focus on user stickiness are likely to use rolling interval mode. Marketing & Revenue teams which focus on calendar dates for their activities, are likely to use calendar interval model
 
+### Saved Retention Behaviors
+
+You can define a retention behavior and save and share it. Press "Save as New" button to save your retention behavior definition. You can change the name and add a description.
+
+![save retention](/save-retention-1.png)
+
+You can also load existing retention behavior definitions by clicking the name of retention behavior.
+
+![save retention](/save-retention-2.png)
+
+See more about saved behaviors [here](/docs/features/saved-behaviors).
+
 ### Frequency View
 
 <p style={{ position: 'relative', paddingBottom: '56.25%', height: 0, overflow: 'hidden' }}>
@@ -237,7 +247,7 @@ This will show how engaged users are with an action. In the example below, you c
 
 ### Retention reports do not extend beyond 60 days. How can I look beyond the 60 day mark?
 
-Currently, when using "Day" retention, Retention reports are limited to 60 days. One way to extend it would be to switch "Each Day" to "Each Week/Month" under the Retention Criteria. 
+Currently, when using "Day" retention, Retention reports are limited to 60 days. One way to extend it would be to switch "Each Day" to "Each Week/Month" under the Retention Criteria.
 
 ### How is Retention calculated?
 

@@ -39,7 +39,7 @@ paths:
           name: limit
           schema:
             type: integer
-          description: The max number of events to be returned.
+          description: The max number of events to be returned. Cannot be over 100000.
         - in: query
           name: event
           schema:

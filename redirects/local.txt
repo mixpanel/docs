@@ -187,3 +187,11 @@
 /docs/tutorials/mixpanel-analysis/insights /docs/reports/insights
 /docs/tutorials/mixpanel-analysis/retention /docs/reports/retention
 /docs/tracking-methods/identifying-users /docs/tracking-methods/id-management/identifying-users
+/docs/tracking-methods/data-warehouse/overview /docs/tracking-methods/data-warehouse
+/docs/tracking-methods/data-warehouse/bigquery /docs/tracking-methods/data-warehouse
+/docs/tracking-methods/data-warehouse/redshift /docs/tracking-methods/data-warehouse
+/docs/tracking-methods/data-warehouse/snowflake /docs/tracking-methods/data-warehouse
+/docs/tracking-methods/data-warehouse/databricks /docs/tracking-methods/data-warehouse
+/docs/tracking-methods/data-warehouse/column-types /docs/tracking-methods/data-warehouse
+/docs/tracking-methods/data-warehouse/sending-events /docs/tracking-methods/data-warehouse
+/docs/tracking-methods/data-warehouse/sending-user-profiles /docs/tracking-methods/data-warehouse

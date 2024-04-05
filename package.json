@@ -23,26 +23,26 @@
   },
   "homepage": "https://github.com/mixpanel/docs#readme",
   "dependencies": {
-    "@docsearch/js": "^3.5.2",
-    "@docsearch/react": "^3.5.2",
+    "@docsearch/js": "^3.6.0",
+    "@docsearch/react": "^3.6.0",
     "clsx": "^2.1.0",
     "next": "^14.0.3",
     "nextra": "latest",
     "nextra-theme-docs": "latest",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
-    "sass": "^1.71.1",
+    "sass": "^1.72.0",
     "sharp": "^0.32.6"
   },
   "devDependencies": {
     "@redocly/openapi-cli": "1.0.0-beta.16",
     "@types/mixpanel": "^2.14.8",
     "@types/node": "20.11.25",
-    "autoprefixer": "^10.4.17",
-    "postcss": "^8.4.35",
+    "autoprefixer": "^10.4.19",
+    "postcss": "^8.4.38",
     "rdme": "8.6.6",
-    "tailwindcss": "^3.4.1",
-    "typescript": "^5.3.2",
-    "yaml": "2.4.0"
+    "tailwindcss": "^3.4.3",
+    "typescript": "^5.4.3",
+    "yaml": "2.4.1"
   }
 }

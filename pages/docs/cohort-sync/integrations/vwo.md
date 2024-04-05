@@ -44,6 +44,7 @@ To export a Cohort to VWO:
 2. Select the cohort that you want to export. Click on the three-dot icon on the right side of the cohort.
 
 3. Click **Export to > VWO**. Select either one-time sync or dynamic sync. Click **Start Sync**.
+Do note: VWO has a 15MB export limit for profiles in the cohort.
 
 ![VWO 3 Image](/vwo3.png)
 
