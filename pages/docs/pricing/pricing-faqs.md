@@ -1,3 +1,4 @@
+# Pricing FAQs
 
 ## What are the top events contributing to my bill?
 
