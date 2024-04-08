@@ -47,6 +47,8 @@ Images are hard to keep up-to-date, so please use them judiciously.
 # Previewing Changes
 All pull requests will generate a staging link in Vercel. Here's an [example](https://github.com/mixpanel/docs/pull/33#issuecomment-1520474996). This lets you preview your changes without changing what's actually live.
 
+You may also preview changes by [testing locally](#testing-locally)
+
 # Maintainers
 [Vijay](https://github.com/ranic), [Marissa](https://github.com/marissakuhrau), [Mav](https://github.com/mavlee), [Isha](https://github.com/ishamehramixpanel). Eventually we’ll expand this list, but keeping it tight for now.
 
