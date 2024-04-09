@@ -15,11 +15,5 @@
         "type": "page",
         "href": "https://developer.mixpanel.com/reference",
         "newWindow": true
-    },
-    "hire-an-expert": {
-        "title": "Hire an Expert ↗",
-        "type": "page",
-        "href": "https://mixpanel.com/partners/experts/matchmaking",
-        "newWindow": true
     }
 }
