@@ -3,6 +3,10 @@
         "title": "Docs",
         "type": "page"
     },
+    "Guides": {
+        "title": "Guides",
+        "type": "page"
+    },
     "changelogs": {
         "title": "Changelog",
         "type": "page",
