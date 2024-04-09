@@ -1,6 +1,7 @@
 # Managing Projects
 
 ## Creating Projects
+Your first project will be created automatically when you create an Organization in Mixpanel. You can create additional projects as follows -- we recommend creating a Development project to test any tracking changes before pushing them to production.
 
 ![manageprojects 1 Image](/manageprojects1.png)
 
