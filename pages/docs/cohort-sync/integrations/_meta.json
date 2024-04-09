@@ -8,6 +8,12 @@
     "facebook-ads": "Facebook Ads",
     "google-ads": "Google Ads",
     "insider": "Insider",
+    "intercom": {
+        "title": "Intercom ↗",
+        "type": "page",
+        "href": "https://www.intercom.com/help/en/articles/299-import-your-mixpanel-contacts",
+        "newWindow": true
+    },
     "iterable": "Iterable",
     "kameleoon": "Kameleoon",
     "leanplum": "Leanplum",
