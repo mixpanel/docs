@@ -91,6 +91,9 @@ const config: DocsThemeConfig = {
           case `SUPPORT`:
             icon = <SupportIcon />
             break;
+          case `ENTERPRISE`:
+            icon = <IntroIcon />
+            break;
           }
           return (
             <>{icon} {title}</>
