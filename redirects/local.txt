@@ -50,6 +50,8 @@
 /docs/getting-started/what-is-mixpanel /docs/what-is-mixpanel
 /docs/getting-started/what-should-i-track /docs/quickstart/what-to-track
 /docs/getting-started/what-should-i-track#how-to-track /docs/quickstart/what-to-track#how-to-track
+/docs/how-it-works/concepts /docs/data-structure/concepts
+/docs/how-it-works/infrastructure https://engineering.mixpanel.com/under-the-hood-of-mixpanels-infrastructure-0c7682125e9b
 /docs/implement-mixpanel /docs/what-is-mixpanel
 /docs/other-bits/cohort-syncs/airship /docs/cohort-sync/integrations/airship
 /docs/other-bits/cohort-syncs/appcues /docs/cohort-sync/integrations/appcues
