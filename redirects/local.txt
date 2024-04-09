@@ -33,9 +33,6 @@
 /docs/analysis/boards/boards-on-boards /docs/boards/boards-on-boards
 /docs/analysis/boards/public-boards /docs/boards/public-boards
 /docs/analysis/boards/templates /docs/boards/templates
-/docs/analysis/how-tos/engagement /docs/best-practices/analytics-strategy/engagement
-/docs/analysis/how-tos/growth /docs/best-practices/analytics-strategy/growth
-/docs/analysis/how-tos/retention /docs/best-practices/analytics-strategy/retention
 /docs/analysis/reports /docs/reports/overview
 /docs/analysis/reports/flows /docs/reports/flows
 /docs/analysis/reports/funnels /docs/reports/funnels
@@ -50,6 +47,8 @@
 /docs/getting-started/what-is-mixpanel /docs/what-is-mixpanel
 /docs/getting-started/what-should-i-track /docs/quickstart/what-to-track
 /docs/getting-started/what-should-i-track#how-to-track /docs/quickstart/what-to-track#how-to-track
+/docs/how-it-works/concepts /docs/data-structure/concepts
+/docs/how-it-works/infrastructure https://engineering.mixpanel.com/under-the-hood-of-mixpanels-infrastructure-0c7682125e9b
 /docs/implement-mixpanel /docs/what-is-mixpanel
 /docs/other-bits/cohort-syncs/airship /docs/cohort-sync/integrations/airship
 /docs/other-bits/cohort-syncs/appcues /docs/cohort-sync/integrations/appcues
@@ -201,3 +200,16 @@
 /docs/tutorials/mixpanel-analysis/retention /docs/reports/retention
 /docs/best-practices/create-a-tracking-plan /docs/tracking-best-practices/tracking-plan
 /docs/best-practices/developer-environments /docs/tracking-best-practices/developer-environments
+/docs/tracking-methods/identifying-users /docs/tracking-methods/id-management/identifying-users
+/docs/tracking-methods/data-warehouse/overview /docs/tracking-methods/data-warehouse
+/docs/tracking-methods/data-warehouse/bigquery /docs/tracking-methods/data-warehouse
+/docs/tracking-methods/data-warehouse/redshift /docs/tracking-methods/data-warehouse
+/docs/tracking-methods/data-warehouse/snowflake /docs/tracking-methods/data-warehouse
+/docs/tracking-methods/data-warehouse/databricks /docs/tracking-methods/data-warehouse
+/docs/tracking-methods/data-warehouse/column-types /docs/tracking-methods/data-warehouse
+/docs/tracking-methods/data-warehouse/sending-events /docs/tracking-methods/data-warehouse
+/docs/tracking-methods/data-warehouse/sending-user-profiles /docs/tracking-methods/data-warehouse
+/docs/best-practices/analytics-strategy/overview /docs/best-practices/analytics-strategy
+/docs/analysis/how-tos/engagement https://mixpanel.com/content/guide-to-product-analytics/chapter_3/
+/docs/analysis/how-tos/growth https://mixpanel.com/content/guide-to-product-analytics/chapter_5/
+/docs/analysis/how-tos/retention https://mixpanel.com/content/guide-to-product-analytics/chapter_4/
