@@ -253,9 +253,9 @@ https://help.mixpanel.com/hc/en-us/articles/6861234702484(.*) /docs/orgs-and-pro
 https://help.mixpanel.com/hc/en-us/articles/7001673006612(.*) /docs/reports/insights#view-users
 https://help.mixpanel.com/hc/en-us/articles/7079801425428(.*) /docs/cohort-sync/overview
 https://help.mixpanel.com/hc/en-us/articles/7412632533524(.*) /docs/boards/overview#step-4-arrange-board-content
-https://help.mixpanel.com/hc/en-us/articles/7646382971796(.*) /docs/best-practices/analytics-strategy/engagement
-https://help.mixpanel.com/hc/en-us/articles/7647069378196(.*) /docs/best-practices/analytics-strategy/retention
-https://help.mixpanel.com/hc/en-us/articles/7647365321620(.*) /docs/best-practices/analytics-strategy/engagement
+https://help.mixpanel.com/hc/en-us/articles/7646382971796(.*) https://mixpanel.com/content/guide-to-product-analytics/chapter_3/
+https://help.mixpanel.com/hc/en-us/articles/7647069378196(.*) https://mixpanel.com/content/guide-to-product-analytics/chapter_4/
+https://help.mixpanel.com/hc/en-us/articles/7647365321620(.*) https://mixpanel.com/content/guide-to-product-analytics/chapter_5/
 https://help.mixpanel.com/hc/en-us/articles/7651210894740(.*) /docs/reports/overview
 https://help.mixpanel.com/hc/en-us/articles/7651639898260(.*) /docs/reports/overview
 https://help.mixpanel.com/hc/en-us/articles/7713028610964(.*) /docs/reports/insights#advanced
