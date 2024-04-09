@@ -119,7 +119,7 @@ If you want to pass in your own IP address using our [HTTP API](https://develope
 ```
 Notice that you need to set `$ip` outside of the $set dictionary. This action overwrites the geographic data on the profile with `distinct_id = 13793` with New York, NY.
 
-> **Note:** default geolocation tracking is based on IP addresses, which are meant to be approximations and **should not be considered fully accurate**, specially at the Region and City level. For use cases in which a high degree of location accuracy is required, you'll want to review the possibility of leveraging latitude and longitude coordinates as specified below.
+> **Note:** default geolocation tracking is based on IP addresses, which are meant to be approximations and **should not be considered fully accurate**, especially at the Region and City level. For use cases in which a high degree of location accuracy is required, you'll want to review the possibility of leveraging latitude and longitude coordinates as specified below.
 
 ## Tracking Geolocation (Latitude and Longitude)
 
