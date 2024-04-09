@@ -1,4 +1,8 @@
 {
+	"enterprise-onboarding": {
+		"type": "separator",
+		"title": "ENTERPRISE"
+	},
 	"onboarding-overview": "Onboarding Overview",
 	"plan": "Plan",
 	"implement": "Implement",
