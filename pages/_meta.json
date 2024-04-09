@@ -3,9 +3,12 @@
         "title": "Docs",
         "type": "page"
     },
-    "Guides": {
+    "guides": {
         "title": "Guides",
-        "type": "page"
+        "type": "page",
+        "theme": {
+            "sidebar": true
+        }
     },
     "changelogs": {
         "title": "Changelog",
