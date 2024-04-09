@@ -98,4 +98,3 @@ All three are key/value stores that augment your event data with additional meta
 | User Profiles | ❌ |  ✅  | ❌ |
 | Group Profiles |  ✅  |  ✅  | ❌ |
 | Lookup Tables |  ✅  | ❌ |  ✅  |
-

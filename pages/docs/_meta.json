@@ -5,7 +5,6 @@
 	},
 	"what-is-mixpanel": "What is Mixpanel?",
 	"quickstart": "Quickstart",
-	"how-it-works": "How it works",
 	"best-practices": "Best Practices",
 	"tutorials": "Onboarding Tutorial",
 	"data-in": {
@@ -15,7 +14,7 @@
 	"tracking-methods": "Tracking Methods",
 	"data-structure": "Data Structure",
 	"migration": "Migration",
-	"debugging": "Debugging",
+	"tracking-best-practices": "Best Practices",
 	"analysis": {
 		"type": "separator",
 		"title": "ANALYSIS"

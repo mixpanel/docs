@@ -1,4 +1,4 @@
-# Overview
+# Debugging
 
 
 This document walks through best practices for data validation and debugging your Mixpanel implementation.
