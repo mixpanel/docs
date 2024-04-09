@@ -199,3 +199,5 @@
 /docs/tutorials/mixpanel-analysis /docs/how-it-works/concepts#overview
 /docs/tutorials/mixpanel-analysis/insights /docs/reports/insights
 /docs/tutorials/mixpanel-analysis/retention /docs/reports/retention
+/docs/best-practices/create-a-tracking-plan /docs/tracking-best-practices/tracking-plan
+/docs/best-practices/developer-environments /docs/tracking-best-practices/developer-environments
