@@ -213,3 +213,4 @@
 /docs/analysis/how-tos/engagement https://mixpanel.com/content/guide-to-product-analytics/chapter_3/
 /docs/analysis/how-tos/growth https://mixpanel.com/content/guide-to-product-analytics/chapter_5/
 /docs/analysis/how-tos/retention https://mixpanel.com/content/guide-to-product-analytics/chapter_4/
+/docs/best-practices/analytics-strategy /docs/tutorials/analytics-strategy
