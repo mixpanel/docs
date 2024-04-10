@@ -25,9 +25,8 @@ jobs:
           echo "url=$URL" >> "$GITHUB_OUTPUT"
   Link-Checker:
     runs-on: ubuntu-latest
-    needs: Deploy-Preview
     steps:
       - name: HashiCorp's Link Checker
         uses: hashicorp/gh-action-check-broken-links@v1
         with:
-          baseUrl: ${{ steps.Deploy-Preview.outputs.url }}
+          baseUrl: 'https://docs-git-vijay-stuff-mixpanel.vercel.app/docs/what-is-mixpanel'
