@@ -3,6 +3,13 @@
         "title": "Docs",
         "type": "page"
     },
+    "guides": {
+        "title": "Guides",
+        "type": "page",
+        "theme": {
+            "sidebar": true
+        }
+    },
     "changelogs": {
         "title": "Changelog",
         "type": "page",
