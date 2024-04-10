@@ -73,6 +73,13 @@ function trackPageview() {
 }
 
 
+export function getStaticPaths() {
+  return {
+    paths: [],
+    fallback: 'blocking',
+  }
+}
+
 export default function MyApp({ Component, pageProps }: AppProps) {
   const router = useRouter();
 
