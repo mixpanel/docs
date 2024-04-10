@@ -1,6 +1,13 @@
 import { Html, Head, Main, NextScript } from "next/document";
 import Script from "next/script";
 
+export async function getStaticPaths() {
+  return {
+    paths: [],
+    fallback: 'blocking',
+  }
+}
+
 export default function Document() {
     return (
         <Html>
