@@ -27,7 +27,12 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
+      - name: Find MDX Files
+        run: |
+          FILES=$(find . -name "*.mdx")
+          echo "files=$FILES" >> "$GITHUB_ENV"
       - name: HashiCorp's Link Checker
         uses: hashicorp/gh-action-check-broken-links@v1
         with:
-          baseUrl: 'https://docs-git-vijay-stuff-mixpanel.vercel.app/docs/what-is-mixpanel'
+          baseUrl: 'https://docs-git-vijay-stuff-mixpanel.vercel.app/'
+          files: '${{ env.files }}'
