@@ -2,7 +2,6 @@
 
 ## Overview
 
-![/funnels_result_header.png](/funnels_result_header.png)
 
 Mixpanel’s Funnels allows you to examine how end-users perform events in a series. Funnels calculate and display the amount of users who convert from one event to another within a particular time window. This allows you to identify where your users drop off, what segments convert the most, and other important facets of the user journey.
 
@@ -32,25 +31,21 @@ Imagine your product is a B2B messaging application. You might use Funnels to an
 
 A funnel is the basic building block of the Funnels report. A funnel is sequence of events done within a certain period of time. Using the example above, imagine we know the signup flow contains five steps. Within the funnel definition, add one event for each step, in the following order: "Landing Page," "Download Page," "App Install," "App Open," "Sign Up." At this point, your query should look like this.
 
-![/funnels_beta_1.png](/funnels_beta_1.png)
 
 ### Step 2: Choose your Measurement
 
 After your funnel is defined, you can choose how you want to measure the funnel. By default, Funnels report will select conversion rate of the funnel as the measurement, but you can also measure the number of users converting, total conversions, and more. You can change the measurement by selecting "Conversion Rate" in the bottom left of the funnel metric definition. In this case, we don't want to change the measurement, so it can be left alone.
 
-![/funnels_beta_2.png](/funnels_beta_2.png)
 
 ### Step 3: Choose Filters
 
 Filters exclude unwanted data. In this case, we only care about events performed on the iOS platform. Therefore, add a "Platform" filter, where Platform equals "iOS Native". At this point, your query should look like this:
 
-![/funnels_beta_3.png](/funnels_beta_3.png)
 
 #### Step 4: Choose Breakdowns
 
 Breakdowns segment data into groups. In this case, we want to break our funnel down by marketing medium, tracked via UTM tags. Therefore, add a "UTM Medium" breakdown. At this point, your query should look like this:
 
-![/funnels_beta_4.png](/funnels_beta_4.png)
 
 ### Step 5: Choose Visualization
 
@@ -61,7 +56,6 @@ You can visualize your metric in a variety of ways. Mixpanel allows you to choos
 - Bar - see a summary view of your metric
 - Metric - see a summary view of your metric
 
-![/funnels_beta_5.png](/funnels_beta_5.png)
 
 ## Advanced
 
@@ -77,7 +71,6 @@ The Conversion Window determines how much time a user has to convert through all
 
 By default, all customers have 30 days to complete a funnel from the timestamp they perform the Step 1 event. To adjust this conversion window, click on the words **30 days** in the conversion criteria. You will be able to adjust both the unit of time and the amount.
 
-![/Screen_Shot_2021-12-15_at_11.12.25_AM.png](/Screen_Shot_2021-12-15_at_11.12.25_AM.png)
 
 The maximum amount of time you can choose for the conversion window is 366 days, or otherwise equivalent (12 months, 52 weeks, etc). For session-based conversion windows, the maximum is 1 session.
 
@@ -93,7 +86,6 @@ The order control determines how much flexibility there can be to the sequence o
 
 By default, funnels are based on a **specific order**. To change order designation, click on the words **Advanced** next to Conversion Criteria, and toggle on **Any Order** from the drop-down list.
 
-![/Screen_Shot_2021-12-15_at_10.20.13_AM.png](/Screen_Shot_2021-12-15_at_10.20.13_AM.png)
 
 **Specific Order**
 
@@ -114,11 +106,9 @@ A good example of this could be a job application flow, where a user must input 
 
 To switch to **Any Order**, expand the "Advanced" menu in the Conversion Criteria and toggle on "Any Order".
 
-![/Screen_Shot_2022-07-12_at_3.35.33_PM.png](/Screen_Shot_2022-07-12_at_3.35.33_PM.png)
 
 When you switch to **Any Order,** you have the option to anchor specific steps in your funnel by clicking on the step number.
 
-![/CleanShot_2021-12-15_at_11.03.46.gif](/CleanShot_2021-12-15_at_11.03.46.gif)
 
 A step will either appear with a number beside it, indicating where it must fall in the funnel, or with an asterix (\*), indicating that it can be performed in any order before the next anchored step.
 
@@ -141,7 +131,6 @@ The way this is counted depends on whether you have selected a counting method t
 
 To add a property constant to your funnel, expand the "Advanced" menu in the Conversion Criteria and click on "Holding property constant".
 
-![/Screen_Shot_2021-12-15_at_11.10.42_AM.png](/Screen_Shot_2021-12-15_at_11.10.42_AM.png)
 
 Some things to keep in mind are that you are only able to select event properties that apply to all of the events in your funnel. Also, you can select multiple properties, but when you do ALL must be kept constant. A maximum of 3 properties can be held constant at the same time.
 
@@ -186,11 +175,9 @@ Note:
 
 You can define a funnel behavior and save and share it. Press "Save as New" button to save your funnel behavior definition. You can change the name and add a description.
 
-![save funnel](/save-funnel-1.png)
 
 You can also load existing funnel definitions by clicking the name of funnel.
 
-![save funnel](/save-funnel-2.png)
 
 See more about saved behaviors [here](/docs/features/saved-behaviors).
 
@@ -211,14 +198,12 @@ You have a variety of options to measure your funnel behavior.
 
 You can select which step of the funnel you would like to measure. By default this is set to All Steps. To change your step selection, press "All Steps" and choose the desired range.
 
-![step selection](/step-selection.png)
 
 When measuring "Unique Users", "Total Conversions" or "Total Sessions", you can select "Entering Funnel" in order to get a top of funnel count. Similarly, if you would like to get the bottom of funnel count, you choose "All Steps" or any other step range to get the bottom of funnel count for that step.
 
 ### Time to Convert
 #### Time to Convert Measurement
 
-![Time to Convert Measurements](/ttc-measurements.png)
 
 You can select a Time to Convert aggregation to see how quickly or slowly your funnel converts. You can see this as a summarized value by selecting "Metric" or "Bar" visualizations, or you can see it as a trend using the "Line" visualization. You can also see the time to convert for a particular chosen step selection.
 
@@ -226,15 +211,11 @@ You can select a Time to Convert aggregation to see how quickly or slowly your f
 
 Use the Time to Convert breakdown to see a distribution of time users took between any two steps in the funnel or all steps. The steps selected in the breakdown are independent of the step of the metric you are measuring, for example you can measure overall conversion rate broken down by Time to Convert between Steps 1 and 2.
 
-![/funnels_ttc_selection.png](/funnels_ttc_selection.png)
 
-![/funnels_ttc_step_selection.png](/funnels_ttc_step_selection.png)
 
 Time to Convert works like any other property in that you can filter to specific range of times or customize the bucketing of the breakdown. You cannot use it as a step filter as it is used to filter funnels which have been measured rather than changing the per step conversion window.
 
-![/funnels_ttc_filter.png](/funnels_ttc_filter.png)
 
-![/funnels_ttc_custom_buckets.png](/funnels_ttc_custom_buckets.png)
 
 You can can use this in combination with measuring total conversion to get a distribution of conversions, based on how long they took to convert. You can also use this to see how other metrics such as conversion rate are affected based on how quickly users convert on a particular step range.
 
@@ -242,27 +223,20 @@ You can can use this in combination with measuring total conversion to get a dis
 
 Use the Frequency per User breakdown to see the number of times users performed an event between any two funnel steps. For example, see the number of times a user listened to a song between sign up and purchasing the song.
 
-![/funnels_frequency_per_user_selection.png](/funnels_frequency_per_user_selection.png)
 
 You can select the steps between which you want to measure frequency from the breakdown, this is different from the step you are deriving the metric from, for example you can measure overall conversion rate but breakdown by frequency of an event between Step 1 and 2.
 
-![/funnels_frequency_per_user_finished.png](/funnels_frequency_per_user_finished.png)
 
 Frequency per user works like any other numeric property in that you are able to filter to a specific range of frequencies or customize how it is bucketed.
 
-![/funnels_frquency_per_user_filter.png](/funnels_frquency_per_user_filter.png)
 
-![/frequency_per_user_custom_buckets.png](/frequency_per_user_custom_buckets.png)
 
 To measure the frequency of a particular funnel step between that step and the next one, use *Selected Step* from the event selection in the Frequency per user breakdown. If the user does not do the step again before the next one the frequency will be 0.
 
-![/funnels_frequency_per_user_selected_step.png](/funnels_frequency_per_user_selected_step.png)
 
 Similar to Frequency per User if you want to instead breakdown by an aggregation on an event property between steps, like the sum of video watched time between sign up and purchase you can use Aggregate Property per user.
 
-![/funnels_aggregate_property_per_user_select_aggregation.png](/funnels_aggregate_property_per_user_select_aggregation.png)
 
-![/funnels_aggregate_property_per_user_finished.png](/funnels_aggregate_property_per_user_finished.png)
 
 Note: The frequency breakdown will only count the events in between the chosen range. The event that original satisfied the funnel definition does not count towards the frequency between steps. If you get 0 in your breakdown, it means that that event did not occur again before the next step in the funnel.
 
@@ -282,13 +256,11 @@ This measurement type allows you to visualize revenue through a funnel. Instead 
 
 To use property sum, select property sum from the measurement menu, and select a numeric property. In this case, we're seeing our 5 step purchase funnel, and we can see that our biggest dropoff is between viewing an item and adding it to cart.
 
-![Revenue Funnel](/funnels_property_sum.png)
 
 ### Top Paths
 
 If you have selected **any order** for your funnels steps, you have the option to select **Top paths** from the drop-down list to view a Sankey visualization of how your users are performing the steps in your funnel.
 
-![/Screen_Shot_2022-07-12_at_3.30.32_PM.png](/Screen_Shot_2022-07-12_at_3.30.32_PM.png)
 
 ### Comparison Events
 
@@ -296,7 +268,6 @@ You can select multiple events at a particular step in a funnel, and Mixpanel w
 
 To do this, click on the "..." and select "add event comparison"
 
-![/xvjcq1dbb2_1_.png](/xvjcq1dbb2_1_.png)
 
 ### Advanced Breakdown Functionality
 
@@ -319,7 +290,6 @@ In order to clarify this statistical significance, the segmentation chart shows 
 - > 0.95 = statistically significant, indicated in green. This variation in conversion rate is likely **not** driven by random chance.
 - < 0.95 = not statistically significant, indicated in red. This variation in conversion rate is likely driven by random chance.
 
-![/Screen_Shot_2019-10-28_at_2.28.54_PM.png](/Screen_Shot_2019-10-28_at_2.28.54_PM.png)
 
 Scrolling further down the table takes you to the statistically insignificant segments. If a segment has less than 30 samples, p-value is not shown, as the sample size is too low to detect difference from overall population. This is indicated by “Insufficient samples”.
 
@@ -329,7 +299,6 @@ You can choose to sort by any of the columns of the overall table in descending 
 
 Click on the **dot** beside the statistical significance number to make that property value the Control value that the other property values are compared to. To return to the default view, click the **dot** beside “Overall”.
 
-![/Oct-28-2019_10-35-23.gif](/Oct-28-2019_10-35-23.gif)
 
 ### Property Attribution
 
@@ -339,7 +308,6 @@ Event property values can vary from step to step in your funnel. For example, a 
 
 To access this feature, filter or breakdown by a property in the funnel chart below the query builder. Click on **Last touch** to select either “Last touch”, “First touch”, or a specific step number.
 
-![/Screen_Shot_2022-07-12_at_3.33.03_PM.png](/Screen_Shot_2022-07-12_at_3.33.03_PM.png)
 
 Your selected choice will determine which step of your funnel determines the property value for the whole funnel.
 
@@ -351,7 +319,6 @@ Select **First touch** to attribute the first property value to the whole funn
 
 For example, say that the user is shopping on your website and you want to track a funnel from Log In to Purchase. There are three events in this journey: Log In, Item View, and Purchase. Each event has its own properties, and the “Name” property is only sent with the “Log In” event. This property will be added to the subsequent events, where it was previously absent:
 
-![/ForwardfillingDiagram.png](/ForwardfillingDiagram.png)
 
 As you can see in the diagram above, the property of “Name” is only a property for the event “Log In”, but that property is forwardfilled to the subsequent events.
 
@@ -363,7 +330,6 @@ Select **Last touch** to attribute the last property value to the whole funnel
 
 For example, the user shopping on your website chooses to buy a shirt that costs $5. In this instance, properties of the item that is purchased are not sent until the “Purchase” event, so the property is backfilled and added to the “Item View” and “Log In” events:
 
-![/11544922524820.png](/11544922524820.png)
 
 As you can see, the property of “Item Price” is only a property of the event “Purchase”, but that property backfilled to the previous two steps. Also, the properties sent with the event “Item View” are backfilled to “Log In”.
 
@@ -371,7 +337,6 @@ If an event property is sent with all steps of a funnel but the value of the pro
 
 For example, the user shopping on your website views a blue shirt and adds it to their cart. However, when they make their purchase, they have changed their mind and decided to get a red shirt instead:
 
-![/BackfillingReplaceDiagram.png](/BackfillingReplaceDiagram.png)
 
 As you can see, the property of “Item Color” is Blue for Event 2, but changes to Red for Event 3. As a result of backfilling, the property of “Item Color” will be appended to Red in the “Item View” event, and further backfilled to “Log In”  as well.
 
@@ -416,7 +381,6 @@ First, go to the Mixpanel Funnels Report, and create any funnel you like by sele
 
 Next, click on the conversion or drop-off population you wish to examine further and select View As Flow.
 
-![/cr8695o49k.png](/cr8695o49k.png)
 
 In this example, I want to see what events lead to better conversion or more drop-off between Step 1 Browse and Step 2 Add To Cart. This will send me to the Sankey visualization to see these event streams in a Flows report.
 
@@ -424,11 +388,9 @@ I can see that all of the Funnel's criteria is still maintained. In my example, 
 
 The Sankey is automatically broken down by users that eventually converted or did not convert to Add to Cart (Users may not convert because of hitting exclusion steps, or failing to complete the funnel within the conversion window).
 
-![/Screen_Shot_2021-05-26_at_7.13.34_AM.png](/Screen_Shot_2021-05-26_at_7.13.34_AM.png)
 
 Hovering over any path I can see the size of the population and the percent converted to this action from the previous one.
 
-![/rjgjxun5bz.png](/rjgjxun5bz.png)
 
 In the example, I can see here that 10.6% converted immediately to Adding to their Cart.
 
@@ -436,7 +398,6 @@ In the example, I can see here that 10.6% converted immediately to Adding to the
 
 With the recently added lift actions feature, we have made it possible to quickly tell which actions and paths had a higher or lower conversion rate compared to the funnel as a whole.
 
-![/Screen_Shot_2021-05-26_at_7.38.50_AM.png](/Screen_Shot_2021-05-26_at_7.38.50_AM.png)
 
 In this example, I can see that Users who performed Search Results, had a +24% higher conversion rate compared to overall (51.1% vs. 41.2%). Whereas, users who performed Experiment Started had a -82.4% reduction in conversion rate compared to overall (7.2% vs. 41.2%).By looking at the positive (green) and negative (red) lift actions, you should be able to quickly form hypothesis on which paths and events are likely to result in more or less conversions.
 
@@ -444,9 +405,7 @@ In this example, I can see that Users who performed Search Results, had a +24%�
 
 If you want to do an isolated analysis of conversions, I can apply a filter so that the report will include only conversions.  This is done by clicking on Filter in the query builder and selecting the Conversion property. Setting it to Converted, will filter only to users who have converted.
 
-![/l387g5uhw1_1_.png](/l387g5uhw1_1_.png)
 
-![/Screen_Shot_2021-05-26_at_7.55.31_AM.png](/Screen_Shot_2021-05-26_at_7.55.31_AM.png)
 
 In this example, we can see that 35.6% of conversions happened in the first step.
 
@@ -454,9 +413,7 @@ In this example, we can see that 35.6% of conversions happened in the first step
 
 To view what users did before dropping off, change the filter to "Did not Convert", and add more steps before the drop off step
 
-![/Screen_Shot_2021-05-26_at_7.58.29_AM.png](/Screen_Shot_2021-05-26_at_7.58.29_AM.png)
 
-![/Screen_Shot_2021-05-26_at_7.59.51_AM.png](/Screen_Shot_2021-05-26_at_7.59.51_AM.png)
 
 Now, I can see that 33.7% of users who did not convert, did the "Join Loyalty Program" before dropping off. I can use this hypothesis to evaluate the business impact of the loyalty program, and perhaps make some changes to the product.
 
@@ -558,7 +515,6 @@ This is applied to funnels by considering the total number of users who enter th
 
 To calculate the actual p-value, we estimate the hypergeometric cumulative distribution function (CDF) for N, K, n.
 
-![/Screen_Shot_2019-03-14_at_1.49.33_PM.png](/Screen_Shot_2019-03-14_at_1.49.33_PM.png)
 
 In the CDF, the value of any point (X) represents the probability that a random draw would result in fewer conversions P(k < X). 1 - P(k < X) represents the probability that a random draw would result in more conversions P(k >= X).
 

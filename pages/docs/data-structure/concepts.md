@@ -4,7 +4,6 @@
 
 Mixpanel data is stored and isolated within a [project](/docs/orgs-and-projects/managing-projects). At this time, you cannot query data across multiple projects. Mixpanel supports a few different categories of data that can be used for analysis: events, user profiles, group profiles, and lookup tables. In data warehouse parlance, events make up the fact table while user profiles, group profiles, and lookup tables are dimension tables.
 
-![Data Model Overview](/Data%20Model%20Overview.png)
 
 | Types | Description |
 |----------|-------------------|
@@ -31,7 +30,6 @@ Imagine you work on a music streaming product and you want to answer questions l
 
 You want to analyze uniques by both users *and* accounts so you create a group key for `account_id`. You also want to augment your events with details about songs being played so you create a "Songs" lookup table and specify the join key as `song_id`. Your data model will look like this:
 
-![Data Model Example](/datamodel.png)
 
 Your Mixpanel data is made up of **events** and **profiles**, each of which is comprised of **properties**.  Events are data points in a time-series database. Profiles are key-value stores.
 

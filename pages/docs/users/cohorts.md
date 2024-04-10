@@ -21,31 +21,22 @@ The [Cohort Builder](https://mixpanel.com/report/users) lets you define cohorts 
 Let's walk through some of cohorts you can create with the builder.
 
 #### Filter by users who watched more than 10 videos in the last 7 days
-![/Kapture_2021-04-06_at_13.43.06.gif](/Kapture_2021-04-06_at_13.43.06.gif)
 
 #### Filter to only users who watched a video for the very first time in the past 30 days
-![/Kapture_2021-04-06_at_13.52.43.gif](/Kapture_2021-04-06_at_13.52.43.gif)
 
 #### Filter to users that watched more than 300 mins of video in the previous 30 days
-![/Kapture_2021-04-06_at_13.54.25.gif](/Kapture_2021-04-06_at_13.54.25.gif)
 
 #### Filter to users whose average video watch time was over 15 minutes in the previous 30 days
-![/Kapture_2021-04-06_at_13.57.34.gif](/Kapture_2021-04-06_at_13.57.34.gif)
 
 #### Filter to users that purchased items in 3 unique categories in the last 30 days
-![/Kapture_2021-04-06_at_14.00.02.gif](/Kapture_2021-04-06_at_14.00.02.gif)
 
 #### Filter to users that watched a video on at least 3 unique days in the previous 30 days
-![/Kapture_2021-04-06_at_14.05.11.gif](/Kapture_2021-04-06_at_14.05.11.gif)
 
 #### Filter to users that made a purchase on 4 or more unique weeks in the last 3 months
-![/Kapture_2021-04-06_at_14.09.03.gif](/Kapture_2021-04-06_at_14.09.03.gif)
   
 #### Filter to users that are above the age of 60
-![/Kapture_2021-04-06_at_14.13.40.gif](/Kapture_2021-04-06_at_14.13.40.gif)
 
 #### Chaining cohorts together using the AND/OR operators
-![/Kapture_2021-04-06_at_14.31.41.gif](/Kapture_2021-04-06_at_14.31.41.gif)
 
 You can also access the builder directly from the property picker in any of our reports, by clicking Create Custom > Cohort. This will create a temporary cohort that only persists for your analysis session.
 

@@ -4,7 +4,6 @@
 
 If you are on an Events Plan, view the top events contributing towards your event count by creating a monthly Insights report filtering out excluded events:
 
-![Top Events Contributing to Bill](/events-contributing-to-billing.png)
 
 ## What if I go over my event plan allowance?
 
@@ -48,7 +47,6 @@ Once you’ve hit the limit of your Mixpanel plan the additional usage will be c
 
 You can check the price of each additional event/MTU in the “Plan Details & Billing” section of your Organization Settings.
 
-![image](/Plan_Details_Billing.png)
 
 So, what options do I have now?
 1. **Upgrade your plan before the end of the current billing cycle.** Let’s say your plan includes 100k events but you’ve used 178k. If you upgrade to a plan including 200k events before the next invoice is issued those $178k will be charged against the new plan, avoiding overages.

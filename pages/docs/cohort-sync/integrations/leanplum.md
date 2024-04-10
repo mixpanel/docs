@@ -15,11 +15,9 @@ You must be a Mixpanel project admin to enable the Leanplum integration.
 
 To enable the integration, select **Integrations** under the **Data Management** tab in the top navigation bar.
 
-![Leanplum 1 Image](/leanplum1.png)
 
 From the Integrations page, select the Leanplum dropdown, and select **Connect**.
 
-![Leanplum 2 Image](/leanplum2.png)
 
 The connection uses a Basic Authorization Username/Password system. You will need to provide two credentials to authorize the connection:
 
@@ -52,7 +50,6 @@ Select the cohort that you want to export. Click on the three-dot icon on the ri
 
 Click Export to > Insider. Select either one-time sync or dynamic sync. Click Start Sync.
 
-![Leanplum 3 Image](/leanplum3.png)
 
 ## Sync Types
 
@@ -68,7 +65,6 @@ In dynamic sync, Mixpanel exports the cohort to Leanplum every 15 minutes. The e
 
 Once the export completes, you will see an Audience reflecting the set of users from your Mixpanel cohort. (e.g. "Recent Signups who haven't hit a Value Moment")
 
-![Leanplum 4 Image](/leanplum4.png)
 
 ## Leanplum events into Mixpanel & MTU exemptions
 

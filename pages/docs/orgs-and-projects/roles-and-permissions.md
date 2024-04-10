@@ -21,7 +21,6 @@ To invite a user to an organization:
 4. Click **Add another user** to invite additional users.
 5. Click **Invite** to complete the process.
 
-![image](/Add_Org_Users.png)
 
 You may bulk invite users via CSV by selecting **Bulk invite** and following the provided **CSV template**.
 
@@ -55,7 +54,6 @@ To remove a user from a project:
 2. Find user(s) to remove and click the checkbox next to their name.
 3. Click the **Delete** button that appears at the top of the table.
 
-![image](/Del_Proj_Users.png)
 
 >Note: An organization user may be a member of multiple projects. Deleting a user from one project does not affect their access to other projects within the organization.
 
@@ -67,7 +65,6 @@ To remove a user from a project:
 
 >Note: Deleting a user from an organization will remove them from all projects and teams within the organization and is non-reversible.
 
-![image](/Del_Org_Users.png)
 
 ## Permissions
 

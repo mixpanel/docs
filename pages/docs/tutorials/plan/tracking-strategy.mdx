@@ -6,7 +6,6 @@ It's important to first understand Mixpanel's Data Model and then create a Track
 
 Mixpanel's data model is composed of Events, User Profiles, and Properties that provide more details about the events and profiles they belong to.
 
-![image](/tutorials/base-data-model.png "Mixpanel Data Model")
 
 ### Behaviours: Events and Event Properties
 
@@ -97,7 +96,6 @@ For more details and examples refer to our documentation on [Supported Dta Types
 
 Mixpanel's core behavioural data analysis is at the individual user level; there are however, use cases where behavioral data needs to be analysed at a customized group level *(eg company, subscription, account)*. An add-on Group Analytics package available to customers on [Growth](https://mixpanel.com/pricing/) and [Enterprise plans](https://mixpanel.com/pricing/) enables this functionality.
 
-![image](/tutorials/group-data-model.png "Group Analytics Data Model")
 
 * Similar to how each individual user's event must have a **Distinct ID**; each group would require a **Group ID** *(eg company_id, subscription_id, account_id)* that will allow Mixpanel to group events across users belong to the same group to enable group level analysis.
 * Additionally, just like each user can have a user profile; each group can also have a group profile that captures demographical group attributes to enable cohorting of groups based on their latest characteristics such as industry, company size, subscription information, account type.
@@ -139,7 +137,6 @@ Now that you have an understanding of Mixpanel's Data Model, let's walk you thro
 
    As you determine what user actions to track, you'll want to strike the right balance to make sure events are not too broad nor too specific.   
 
-   ![image](/tutorials/event-depth.png "Designing Event Depth")
 
    It is important to adhere to best practices when managing personal information (PI) that you might potentially capture in the properties you define. Refer to our [Privacy](https://docs.mixpanel.com/docs/privacy/overview) documentation for details on how Mixpanel respects and protects people’s fundamental online privacy and data rights.
 

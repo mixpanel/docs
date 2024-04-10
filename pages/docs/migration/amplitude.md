@@ -115,11 +115,9 @@ Once you've transformed your data in your data warehouse, you can set up the [Mi
 
 You can learn more about event mappings [here](/docs/tracking-methods/data-warehouse/sending-events). Here's an example of mappings for event table:
 
-![image](/amp_event_warehouse_connector.png)
 
 You can learn more about user mappings [here](/docs/tracking-methods/data-warehouse/sending-user-profiles). Here's an example of mappings for user table: 
 
-![image](/amp_user_warehouse_connector.png)
 
 ##### Post-migration data validation
 You can use our [Lexicon](/docs/data-governance/lexicon) or Events page to check that your data has successfully been ingested. However, if your historical events are older than 30 days, they will not show up on Lexicon, Events page or in the event dropdown menu across all reports. In this case, you can leverage our [Insights report](docs/reports/insights) to validate the historical events, by selecting the import time frame and filtering by the following default properties: 
@@ -131,7 +129,6 @@ You can use our [Lexicon](/docs/data-governance/lexicon) or Events page to check
 
 Please filter by tracked name, $warehouse_import_id instead of the display name, “Warehouse Import ID”. You can find the properties values on the Warehouse Connector’ sync logs:
 
-![image](/amp_event_validation.png)
 
 ## Identifying your implementation method
 
@@ -254,7 +251,6 @@ mixpanel.set_group('orgId', 15)
     
 Since CDPs already collect all your data via 1 SDK and route to many downstream destinations, enabling Mixpanel is straightforward. Simply go to your CDP settings and add Mixpanel as a destination:
 
-![Segment Connection](https://user-images.githubusercontent.com/129823695/234812593-dffee962-bb34-49b8-9686-96bc0f0565d8.png)
 
 Once you set up the connection to Mixpanel, you can proceed with configuring key settings like:
 
@@ -324,7 +320,6 @@ If you already send data to Amplitude with your data warehouse as the source of 
 
 Simply go to your RETL settings and add Mixpanel as a connection:
 
-![Census Connection](https://user-images.githubusercontent.com/129823695/234812805-ded7dcef-9d47-4375-b52e-a229e4832477.png)
 
 We provide Mixpanel as a destination and setup guides for all of the most popular RETL tools:
 

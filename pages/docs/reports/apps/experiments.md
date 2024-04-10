@@ -9,7 +9,6 @@ Experiments requires an A/B test, its variant, and a dashboard that contains the
 
 To access Experiments, click on **Applications** in the top right navigation, then select **Experiments**.
 
-![/Screen_Shot_2022-06-30_at_2.44.36_PM.png](/Screen_Shot_2022-06-30_at_2.44.36_PM.png)
 
 ## Quick Start
 
@@ -98,7 +97,6 @@ The Experiments report locates significant differences between the Control and V
 - Negative differences, where the variant rate is lower than the control rate, are highlighted red.
 - Statistically insignificant results remain gray.
 
-![/Screen_Shot_2020-01-14_at_5.38.54_PM.png](/Screen_Shot_2020-01-14_at_5.38.54_PM.png)
 
 ## Advanced
 

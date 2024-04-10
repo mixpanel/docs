@@ -30,7 +30,6 @@ Make sure to pass through the attributes: email, firstName and lastName.
 Only email is required but the other two are useful if you want to provision new users with SSO via IDP Managed Access.
 
 Here is a screenshot of an example setup:
-![JumpCloud Info Image](/jumpcloud1.png)
 
 
 Optionally toggle “Require Users to Log In using SSO” to prevent your users from using a username and password to log in. Click **Enable**. Organization owners and admins will still be able to log in using username and password if SSO is not set up correctly.

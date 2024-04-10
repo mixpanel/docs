@@ -13,11 +13,9 @@ You must be a Mixpanel project admin to use the Iterable data integration.
 
 To enable the integration, select Integrations under the Data Management tab in the top navigation bar.
 
-![iterable 1 Image](/iterable1.png)
 
 From the Integrations page, select the Insider dropdown, and select **Connect**.
 
-![iterable 2 Image](/iterable2.png)
 
 The Iterable integration page will show a green export icon and details about the integration after it is connected.
 
@@ -31,7 +29,6 @@ Select the cohort that you want to export. Click on the three-dot icon on the ri
 
 Click Export to > Iterable. Select either one-time sync or dynamic sync. Click **Start Sync**.
 
-![iterable 3 Image](/iterable3.png)
 
 ## Sync Types
 
@@ -49,7 +46,6 @@ You must log in to Iterable to use the Mixpanel Cohorts to send campaigns.
 
 The Mixpanel Cohort is available in the Audience list. Mixpanel exports cohort data as `mixpanel_<Cohort Name>_<Cohort ID>`.
 
-![iterable 4 Image](/Iterable4.png)
 
 ## Matching Users between Mixpanel and Iterable
 

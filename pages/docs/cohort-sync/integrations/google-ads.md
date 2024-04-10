@@ -15,11 +15,9 @@ Follow these steps to enable the integration with Google Ads:
 
 1. Select **Integrations** under the **Data Management** tab in the top navigation bar of Mixpanel.
 
-![GoogleAds 1 Image](/googleads1.png)
 
 2. From the Integrations page, select the Google Ads dropdown, and select **Sign In with Google**.
 
-![GoogleAds 2 Image](/googleads2.png)
 
 3. The Google Ads integration page shows a green export icon and details about the integration after it is connected.
 
@@ -27,13 +25,11 @@ Follow these steps to enable the integration with Google Ads:
 
 To export a cohort to Google Ads, navigate to Cohorts by clicking in the **Data Management** tab and select **Cohorts**.
 
-![GoogleAds 3 Image](/googleads3.png)
 
 Select the cohort that you want to export. Click on the three-dot icon on the right side of the cohort.
 
 Click **Export to Google Ads**. Select either one-time sync or dynamic sync. Click **Start Sync**.
 
-![GoogleAds 4 Image](/googleads4.png)
 
 ## Sync Types
 
@@ -51,11 +47,9 @@ You must log in to Google Business Manager to use the Mixpanel Cohort in Google 
 
 Click on **Tools & Settings** and launch Audience Manager.
 
-![GoogleAds 5 Image](/googleads5.png)
 
 The Mixpanel Cohort is available under Audience Manager. Cohorts are exported to Google Ads as mixpanel_<Cohort Name>_<Cohort ID>.
 
-![GoogleAds 6 Image](/googleads6.png)
 
 ## Data Requirements
   

@@ -38,11 +38,9 @@ Click on the gear icon in the upper right corner of Mixpanel, and select your or
 
 From here, you can quickly view the usage this billing period as well as the current plan under Plan Details & Billing:
 
-![Plan Details and Billing](/plan-details-and-billing.png)
 
 To view detailed historical data usage or download a CSV of historical usage for each project, click on View Historical Usage in the top right of Plan Details & Billing. This will show you a graph of your usage over time, as well usage for each project in your organization for the last 12 months. This feature is accessible by all users and can be downloaded to a CSV file.
 
-![Events Usage](/events-usage.png)
 
 ## Billing & Payment
 
@@ -58,25 +56,20 @@ If you’re an organization members with Billing permission (Billing Admins and 
 1. Click on the gear in the upper right corner of Mixpanel, and select your organization under ORGANIZATION SETTINGS.
 2. Click on Plan Details & Billing > Manage Billing & Payment.
 
-![Manage Billing & Payment](/manage-billing-and-payment.png)
 
 ### Troubleshoot Payment Issues
 
 If you received a notification that your payment did not go through (via email, within the product or both), don't worry, it's quick and easy to get back up and running.
 
-![Card Declined](/card-declined.png)
 
 Clicking "Update Payment Method" in both the email and the banner will take you to the Payment & Invoices tab of the Billing & Payment section in your organization settings.
 
-![Update Payment Method](/update-payment-method.png)
 
 In most cases, the payment method will need to be updated. To do this, select the pencil icon (edit) next to your credit card information and enter updated card information.
 
-![Edit Payment Method](/edit-payment-method.png)
 
 Once you have updated the card on file, the system will automatically attempt to run your payment again.
 
-![Rerun Payment](/rerun-payment.png)
 
 If your payment method is up to date and new funds were recently added or you contacted your bank to whitelist Mixpanel, select "Rerun Payment".
 
@@ -111,7 +104,6 @@ To submit a downgrade request:
 
 1. In ORGANIZATION SETTINGS or the dropdown menu below, you can select Plan Details & Billing. Please note that this option will only be visible for Organization Owners and Billing Admins.
 2. In Overview, click "Switch to Free" at the bottom of the Plan Details & Billing section.
-![Switch to Free](/switch-to-free.png)
 3. When you click Submit, a request will be sent to Mixpanel's Billing Team for processing.
 
 ## Sales Tax
@@ -136,7 +128,6 @@ Mixpanel collects city taxes from the following cities (not the whole state):
 ### Check & Change Billing Information
 Sales tax is determined using the zip code associated with the credit card you have on file for billing for an Organization. You can update your credit card information and corresponding zip code through your [organization settings](https://mixpanel.com/settings/org):
 
-![image](https://user-images.githubusercontent.com/2077899/233918715-aab79c75-5fc8-4c09-ada6-c5d165aaf400.png)
 
 ### Non-Profit Liability
 If you are a non-profit company, you may not be liable for sales tax regardless of this change. Contact [AR@mixpanel.com](mailto:AR@mixpanel.com) with any tax-exemption certification documents to confirm and verify your tax-exemption.
@@ -147,7 +138,6 @@ If you are a non-profit company, you may not be liable for sales tax regardless 
 
 If you are on an Events Plan, view the top events contributing towards your event count by creating a monthly Insights report filtering out excluded events:
 
-![Top Events Contributing to Bill](/events-contributing-to-billing.png)
 
 ### What if I go over my event plan allowance?
 
@@ -249,11 +239,9 @@ From here, you can quickly view the usage for the billing period as well as the 
 
 To view detailed historical data usage, or download a CSV of historical usage for each project, click on View Historical Usage in the top right of Plan Details & Billing. This will show you a graph of your usage over time, as well as usage for each project in your organization for the last 12 months. This feature is accessible by all users and can be downloaded to a CSV file.
 
-![Plan Details and Billing](/mtu-usage-details.png)
 
 View the top events contributing towards your MTU count by creating a monthly Insights report and typing in `$all_mtu_events` which filters out event names excluded from Mixpanel's MTU calculation (also refer to section below if you have [unexpected spikes in MTU count](/docs/pricing/billing#what-caused-an-unexpected-spike-in-my-mtu-count)):
 
-![All MTU Events Contributing to Bill](/all-mtu-events.png)
 
 ### What if I go over my MTU plan allowance?
 
@@ -263,7 +251,6 @@ For example, let’s say you are on a \$24/month Growth plan, but in the month o
 
 To maximize saving and avoid additional data rate charges, we recommend [taking a look at pricing options](https://mixpanel.com/pricing/) and upgrading to a pricing plan that better fits your traffic. View the additional data rate for your paid plan in Organization Settings > Plan Details & Billing:
 
-![Additional Data Rate](/additional-data-rate.png)
 
 ### What caused an unexpected spike in my MTU count?
 

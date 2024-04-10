@@ -29,7 +29,6 @@ By default, an organization is setup as ****Invite Only****, which means new use
 
 Click [here](https://mixpanel.com/settings/org/users-and-teams/find-your-org) to setup your organization, or for more information, refer to our documentation on [Organization Discoverability](/docs/orgs-and-projects/organizations#organization-discoverability).
 
-![image](/tutorials/organization-discoverability.png "Organization Discoverability")
 
 ## Simplified Identity Management
 
@@ -37,7 +36,6 @@ Since June 2023, Mixpanel has made the [Simplified API](/docs/tracking-methods/i
 
 Click [here](https://mixpanel.com/settings/org/id-management) to check and configure your organization to default to **Simplified API**. Also make sure that any new Mixpanel projects, that does not have data tracked yet, choose to use **Simplied API**.
 
-![image](/tutorials/simplified-id-merge.png "Simplified ID Merge")
 
 We recommend using the **Simplied API** option as it is a straightforward simpler way of managing your users' identity in Mixpanel. More details about how Simplified API handles identity management can be found in our documentation under [Identifying Users](/docs/tracking-methods/id-management/identifying-users#how-does-the-simplified-api-differ-from-the-original-api). We will also cover a tutorial around this under the [Identity Management Best Practice](/docs/tutorials/implement/send-your-data#identity-management-best-practices) section.
 
@@ -45,7 +43,6 @@ We recommend using the **Simplied API** option as it is a straightforward simple
 
 We recommend that you minimally setup two Mixpanel projects, one for **Development** data and another for **Production** data. This is to ensure that you keep development test data separate from actual live user behavioural data. Read more details about [Developer Environments](/docs/best-practices/developer-environments).
 
-![image](/tutorials/create-projects.png "Create Projects")
 
 1. Go to the **Projects** under your **Organization Settings**, click [here](https://mixpanel.com/settings/org/projects)
 2. Click **Create Project** to create each project
@@ -64,7 +61,6 @@ By default, all data in a Mixpanel project is accessible to all your users in th
 
 If for instance, you want to provide the web team only with access to web events, and the iOS and Android teams access to their specific events, but still want the business teams to have a single customer view of the customer's behaviour across the different platforms. [Data Views](/docs/data-governance/data-views-and-classification) can help with this. It enables Project Owners and Admins to manage data access for a group of users within a single Mixpanel project for privacy and productivity purposes. 
 
-![image](/tutorials/data-views-filter.png "Data Views Filter")
 
 You can add data views within your project settings. A combination of filters can be applied depending upon the data access required:
 1. Events - include or exclude specific events names
@@ -85,9 +81,7 @@ In general, you should **_not be sending_** data that are considered sensitive (
 
 In scenarios where you want to send non-PII data but want to limit only certain users within the project access, you can do so using Classified Data](/docs/data-governance/data-views-and-classification#mark-properties-as-classified-data). This allows you to mark those specific event and user properties as classified, and only users who have been granted access to classified data can view them.
 
-![image](/tutorials/mark-classified.png "Mark Classified")
 
-![image](/tutorials/can-view-classified.png "Mark Classified - Can View")
 
 <br />
 <p style={{ position: 'relative', paddingBottom: '56.25%', height: 0, overflow: 'hidden' }}>
@@ -105,7 +99,6 @@ There are two general approaches to user management in Mixpanel.
 - [Teams](/docs/orgs-and-projects/roles-and-permissions#teams) - organization owners and admins create teams at the organization level, grant projects and permissions, and assign users to teams.
 - [Project based](/docs/orgs-and-projects/roles-and-permissions#invite-users-to-a-project) - organization admins appoint project level admins who grant permissions to users.
 
-![image](/tutorials/user-access-approach.png "User Access Approach")
 
 Users are required to be part of your Mixpanel Organization (either through [self-joining](/docs/orgs-and-projects/organizations#organization-discoverability) or via an [invitation from the admin](/docs/orgs-and-projects/roles-and-permissions#invite-users-to-an-organization)), before they can be granted access to any Mixpanel Project.
 
@@ -115,6 +108,5 @@ Users are required to be part of your Mixpanel Organization (either through [sel
 
 Refer to docs for a detailed guide on [Project Setup](/docs/best-practices/project-setup).
 
-![image](/tutorials/default-project-role.png "Default Project Role")
 
 

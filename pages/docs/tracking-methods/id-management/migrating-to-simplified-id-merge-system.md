@@ -15,13 +15,11 @@ The Organization Settings for Identity Merge determines the default identity man
 - **Original API**: Original ID Merge
 - **Simplified API**: Simplified ID Merge
 
-![image](/Tracking/org-setting.png "Organization ID Merge Setting")
 
 <br />
 
 You can change the identity management version for a specific project (without affecting other projects) via Project Settings, provided no data has been ingested into the project. For new projects, we recommend setting the Simplied ID Merge (<b>Simplified API</b>) option as it is a generally more straightforward, simpler way of managing your users' identity in Mixpanel. 
 
-![image](/Tracking/project-setting.png)
 
 ## Deciding to Migrate
 
@@ -35,7 +33,6 @@ The main limitation of Legacy ID Management was that anonymous user states could
 
 Aliasing on Legacy ID Management can only be done once. Once a User ID is aliased to an Anonymous ID (typically on the 1st device where they started using your product), subsequent attempts to alias the same User ID to a different Anonymous ID (generate from a different platform or device) will fail. Here’s a diagram illustrating how a typical user journey on different devices ends up creating an ophaned user.
 
-![image](/Tracking/legacy-id-management.png)
 
 <br />
 
@@ -121,7 +118,6 @@ Unlike Legacy ID Management, which requires an explicit alias call to connect an
 
 Simplified ID Merge can retroactively merge an unlimited number of anonymous IDs (`$device_id`) to a user (`$user_id`). This ensures that anonymous events across multiple platforms, devices, or sessions can always be merged to the respective user. The implementation above results in the following ID cluster if **charlie** is the one who re-logged in.
 
-![image](/Tracking/charlie_id_cluster.png)
 
 - Any ID provided as `$device_id` will be prefixed with `$device:` in the ID cluster.
 - You can merge unlimited number of `$device_id` into a `$user_id`
@@ -198,7 +194,6 @@ Take note of the following details when planning for the migration from Legacy I
       
    - This results to phone number `+6512345678` being treated as one of the Anonymous IDs and prefixed with `$device:`. As such, if you subsequently send events with `$user_id` as `+6512345678` it will not be associated to `charlie` and would result to creating a completely different new ID cluster where `+6512345678` is the main User ID.
      
-     ![image](/Tracking/charlie_two_user_ids.png)
      <br />
      
 2. If you are sending events via third-party integrations, ensure that they are compatible with Simplified ID Merge by having reserved properties, `$device_id` and `$user_id` on the events.
@@ -278,7 +273,6 @@ The following guide outlines the steps required to set up the new Mixpanel proje
 
    Please note that the new project follows the organization’s default (Legacy or Original ID Merge). You have to switch the project to Simplified ID Merge <b><i>before</i></b> sending any data to the project. Make sure to override the default selection in every newly created project.
 
-![image](/Tracking/simplified_project_settings.png)
 
 3. Continue to set up the new project by following the guide [here](/docs/best-practices/project-setup). Configure the new project's settings by referring to your existing project’s settings. Some of the setup tasks may include:
 

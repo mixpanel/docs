@@ -15,7 +15,6 @@ Requests to export or delete end user data can take multiple weeks to process.
 
 In order to submit a request, you must first generate a GDPR OAuth token from your Personal Settings. This token is required for requests submitted both through the Mixpanel interface and through Mixpanel's APIs. Users can retrieve this token from their [Account Settings](https://mixpanel.com/settings/account#data-privacy) by selecting their initials in the top right of Mixpanel and selecting **Profile & Preferences**, and then the Data & Privacy tab. The OAuth token has a one year expiry. For requests submitted via API, the token should be passed in the Authentication header. Users are eligible to generate an OAuth token if they are the Project Owner, or if they are a Project Owner or Admin of a project that supports team member roles.
 
-![](/Personal-Data-and-Privacy-Settings.png)
 
 ## Gather the Project Information and Distinct_ids
 
@@ -30,7 +29,6 @@ To access the "Data & Privacy" modal containing the end user data request form:
 1. Navigate to "Data & Privacy" by clicking on the settings gear in the upper-right corner and navigating to Organization Settings.
 2. Select Data & Privacy on the left hand side.
 
-![Data & Privacy](/export-deletion-request-form.png)
 
 ### Exporting User Data
 
@@ -45,7 +43,6 @@ You must submit an export request to export end user data. This is done to satis
    - For multiple users, upload a list of distinct_ids as a .csv file. There is a limit of 2000 Users.
 3. Click Submit Request. Note that requests can take multiple weeks to process.
 
-![Data & Privacy](/export-user-data-form.png)
 
 ### Deleting User Data
 
@@ -60,7 +57,6 @@ You must submit a deletion request to delete end user data. This is done to sati
    - For multiple users, upload a list of distinct_ids as a CSV file. There is a limit of 2000 users per request.
  3. Click Submit Request. Note that requests can take up to several weeks to process.
 
-![Data & Privacy](/delete-user-data-form.png)
 
 ### GDPR Requests
 

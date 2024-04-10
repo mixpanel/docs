@@ -43,4 +43,3 @@ If you are coming to use Mixpanel from a Customer Data Platform (CDP), we cannot
 
 The following diagram shows how Mixpanel's Data Residency works:
 
-![image](/230121513-b3a8bb84-4a64-45d9-ad41-f38b3fe977ea.png)

@@ -13,7 +13,6 @@ You must be a Mixpanel project admin to enable the Insider integration.
 
 To enable the integration, select **Integrations** under the **Data Management** tab in the top navigation bar.
 
-![insider 1 Image](/insider1.png)
 
 From the Integrations page, select the Insider dropdown, and select **Connect**.
 
@@ -23,7 +22,6 @@ Find the Insider API Key from the Insider's Mobile App Settings > Integration ta
 
 Enter the Insider API Key in Mixpanel and select **Continue**
 
-![insider 2 Image](/insider2.png)
 
 The Insider integration will show a **Connected** tag in the UI once the connection succeeds.
 
@@ -43,7 +41,6 @@ Select the cohort that you want to export. Click on the three-dot icon on the ri
 
 Click Export to > Insider. Select either one-time sync or dynamic sync. Click **Start Sync**.
 
-![insider 3 Image](/insider3.png)
 
 ## Sync Types
 
@@ -59,4 +56,3 @@ In dynamic sync, Mixpanel initiates sync between a cohort and Insider every 15 m
 
 Once the export completes, you will see a custom segment reflecting the set of users from your Mixpanel cohort. (e.g. "7days-cart-abandoners")
 
-![insider 4 Image](/insider4.png)

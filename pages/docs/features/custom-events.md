@@ -13,7 +13,6 @@ You can create a custom event containing "Ad Conversion" and "Ad Impression," an
 
 ## Create a Custom Event
 
-![image](/create-custom-event.png)
 
 1. Expand the Event dropdown in either an Insights, Funnels or Retention report.
 2. Select the plus button to the right of the search bar.

@@ -18,7 +18,6 @@ Notifications are sent once per day. If multiple events are implemented in a pro
 
 Only Project Admins or Owners can enable this setting, and it's only available on Enterprise plans. 
 
-![event-approval-settings](/event-approval-settings.png)
 
 
 ### Lexicon Workflow
@@ -32,7 +31,6 @@ Events will be marked as "New" as long as the following criteria are met:
 - It is hidden
 - It was created within the last 30 days
 
-![lexicon-event-approval](/Lexicon-Event-Approval.png)
 
 If new property detection is enabled, notifications will also include a "View New Properties" button, which will take them to a Lexicon view of new properties.  Properties will be marked as "New" as long as the following criteria are met:
 - It was created within the last 30 days

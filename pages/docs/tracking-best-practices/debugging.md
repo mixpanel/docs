@@ -17,12 +17,10 @@ Mixpanel doesn't receive any data until you start sending events. If you haven't
 
 Use [Events](https://mixpanel.com/report/events) to confirm that events are arriving to your Mixpanel project, so you can troubleshoot your Mixpanel setup quickly. With Events, you can see a feed of events along with all of their properties coming into Mixpanel.
 
-![Events Report](/eventheader.png)
 
 ### Find Yourself
 The next step to validating your events is to manually trigger some of those events on your own device. After you have fired some events, navigate to Events and search or filter using any user-level information you know is available in the event's raw payload. Search by `$user_id`, `$device_id`, `distinct_id`, or user property values. If you are using Mixpanel's JavaScript SDK, you can use [`mixpanel.get_distinct_id`](https://github.com/mixpanel/mixpanel-js/blob/master/doc/readme.io/javascript-full-api-reference.md#mixpanelget_distinct_id) to return your own distinct_id in your browser console and copy the distinct_id value into the Events search bar.
 
-![Events Filter](/events-filter.png)
 
 Once you have identified one of your own events in Events, you can inspect all of the properties that were sent with your event by clicking on > to expand it. Toggle between the _Your Properties_ and _Mixpanel Properties_ tabs to determine which properties are custom to your Mixpanel implementation and which are sent default by Mixpanel. Toggle _JSON mode_ to view the complete JSON object Mixpanel received from the calls you sent. We recommend checking that:
 
@@ -33,7 +31,6 @@ Once you have identified one of your own events in Events, you can inspect all o
 
 To locate your User Profile from Events, click the User icon on the left to view your User Profile.
 
-![View User Profile in Events](/view-profile.png)
 
 ### Debugging with User Profiles
 
@@ -43,7 +40,6 @@ User Profiles allow you to see the events feed and all user properties for a spe
 2. Whether the expected events are appearing in the Activity Feed correctly and in order. For example, if you only trigger an event onces but two instances of the event appear in the event stream, you should check your initialization and the logic triggering the event for errors.
 3. If user property names are in the correct taxonomy and casing **(Mixpanel is CaSe Sensitive)**
 
-![User Profile](/user-profile.png)
 
 ## Missing or Incomplete Events
 

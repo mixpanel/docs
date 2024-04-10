@@ -102,7 +102,6 @@ To get started, click on **Add/Edit Profile** from the [Users](https://mixpanel
 
 > **Note**: For customers with [Group Analytics](/docs/data-structure/advanced/group-analytics) make sure you first choose either **User** or the **[Group Key](/docs/data-structure/advanced/group-analytics#group-keys-in-project-settings) name** depending on which type of profile you wish to import.
 
-![/Screen_Shot_2021-12-01_at_11.44.03_AM.png](/Screen_Shot_2021-12-01_at_11.44.03_AM.png)
 
 ### Importing (Create or Modify) a Single User Profile
 
@@ -114,7 +113,6 @@ The most important column is `$distinct_id` for user profiles (or `$group_id` f
 
 After `$distinct_id`, you can add additional properties to the profile by pressing the **"+ Add Property"** button. Mixpanel will help autocomplete profile properties that you may want to set.
 
-![/Screen_Shot_2021-12-01_at_12.20.27_PM.png](/Screen_Shot_2021-12-01_at_12.20.27_PM.png)
 
 We recommend using the `$name` (or `$first_name`, `$last_name`), `$email`, and `$phone` [Reserved Profile Properties](/docs/data-structure/user-profiles#reserved-profile-properties)) if you're uploading a user's name, email, or phone. Mixpanel shows these properties by default in various parts of our UI and are used for [Cohort Syncs](/docs/cohort-sync/overview) as well.
 
@@ -141,7 +139,6 @@ If you do not assign an identifier column, Mixpanel will use your `$email` colum
 
 You'll have the opportunity to look through all columns in the CSV to preview their values. In this step, you must **uncheck all columns that you DO NOT wish to import**. You must also choose the associated Mixpanel profile property that each CSV column will be associated with. When you're done selecting the columns, and mapping their associated properties, press the **Import profiles** button to proceed.
 
-![/Screen_Shot_2021-12-01_at_12.24.00_PM.png](/Screen_Shot_2021-12-01_at_12.24.00_PM.png)
 
 ## Deleting User Profiles
 
@@ -161,7 +158,6 @@ Mixpanel reserves certain profile property names for special processing or for s
 | \$name, <br /> \$first_name, <br /> \$last_name | Name, <br /> First Name, <br /> Last Name | The user's / group's general name, as well as, first and last names. These are primarily useful because they are used, if available, in various Mixpanel UI / reports. For user [Cohort Syncs](/docs/cohort-sync/overview), only `$first_name` and `$last_name` is exported. |
 | $email | Email | The user's / group's email address. You must set this property if you want to send emails to users via partners receiving cohorts from our [Cohort Syncs](/docs/cohort-sync/overview). | 
 | $phone | Phone | The user's / group's phone number. You must set this property if you want to send SMS to users via partners receiving cohorts from our [Cohort Syncs](/docs/cohort-sync/overview). Note that a '+' needs to precede international phone numbers. If the user does not import a phone number with the '+' sign in front, the country code will be prefixed to the front of the number based on the $country_code default property, resulting in a phone number with two country codes. |
-| $avatar | Avatar URL | Set this property to a URL resource of a gif, jpg, jpeg, or png to update the profile picture in a profile. This property will override a profile picture pulled from [Gravatar](https://gravatar.com/). |
 | $created | Created | The time that the profile was created. Note that this is not auto-populated. |
 | $mp_first_event_time | First Seen | Mixpanel calculated property that represents the time of the user's (or group's) very first event in Mixpanel. This can be used to filter/segment reports by users (or groups) who were "new" in a particular timeframe. |
 

@@ -8,7 +8,6 @@ date: "2023-11-02"
 ---
 In the past, when breaking down an event counted by *Uniques*, you often came across this question: why is the sum of users in segments not equating the the overall uniques? 
 In the below example, unique users is 1760, but sum of users in segments Chrome + Firefox + all others = 1900. Why don’t these numbers match?
-![changelog Image](/changelog/uniquescount.png)
 While there are 1,760 unique users who made a purchase, one of those unique users might make a purchase on two different browsers, and so the user gets counted in both the browsers (segments). The focus was on the segment, so you were looking at how many users were part of each segment.
 
 With this new feature addition, you can choose to associate a user to only one segment, either their first or last segment in the time interval. This way your sum of users across segments will total to the overall 1760. The focus with this counting type is on the user, so you are looking at how are these 1760 users distributed across the segment. This approach also reduces ambiguity and ensures that users aren't double-counted across multiple segments.

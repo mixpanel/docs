@@ -7,7 +7,6 @@ There are currently two ways to export mixpanel data into big.
 1. Exporting into Customer managed BigQuery (recommended)
 2. Exporting into Mixpanel managed BigQuery  
 
-![image](/230698685-c02cb9a1-d66f-42a7-8063-8e78b79e7b1f.png)
 
 
 As part of the export pipeline, a new dataset `mixpanel_nessie_day_partitioned_<PROJECT_ID>` will be created if the customer chose to export into Mixpanel managed BigQuery or a dataset should be created with appropriate permissions on customer-managed BigQuery and provide us with a name. We also apply [transformation rules](/docs/data-pipelines/schematized-export-pipeline#transformation-rules) to make the data compatible with data warehouses. 
@@ -84,7 +83,6 @@ We recommend exporting Mixpanel data into customer-managed BigQuery, for this th
 
 1. Create a dataset in their BigQuery
 
-   ![image](/230698727-1216833e-8321-46de-a388-8b554a00938c.png)
 
 2. Give Mixpanel the necessary permissions to export into this dataset.
 
@@ -96,7 +94,6 @@ We recommend exporting Mixpanel data into customer-managed BigQuery, for this th
      * Go to **IAM &Admin** in your Google Cloud Console.
      * Click **+ ADD** to add principals
      * Add new principle "export-upload@mixpanel-prod-1.iam.gserviceaccount.com" and set role as "BigQuery Job User", and save.
-       ![image](/230698732-4dadbccf-1eeb-4e64-a6c7-8926eb49e5cc.png)
     
    **BigQuery Data Owner**
      * Go to **BigQuery** in your Google cloud Console.
@@ -104,7 +101,6 @@ We recommend exporting Mixpanel data into customer-managed BigQuery, for this th
      * Click on **sharing** and **permissions** in the drop down. 
      * In the Data Permissions window click on **Add Principal** 
      * Add new principle "export-upload@mixpanel-prod-1.iam.gserviceaccount.com" and set role as "BigQuery Data Owner", and save.    
-       ![image](/230698735-972aedb5-1352-4ebc-82c4-ef075679779b.png)
 
 3. You need to pass this dataset and gcp project id as params when you [create your pipeline](https://developer.mixpanel.com/reference/create-warehouse-pipeline)
 

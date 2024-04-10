@@ -106,11 +106,9 @@ Note that you cannot switch between the two APIs if your project already contain
 
 If you would like to make sure any new projects created within your organization default to Simplified ID Merge, there is an organization setting to do so:
 
-![Untitled](/Tracking/id-merge-org-settings.png)
 
 If you have an existing project with no data in it, you can also switch to using Simplified ID Merge via the “Identity Merge” section of the Project Settings Page:
 
-![Untitled](/Tracking/id-merge-project-settings.png)
 
 
 ### Third-Party Integration Support

@@ -4,7 +4,6 @@
 
 ### Session Metric Analysis
 
-![/Screen_Shot_2022-07-11_at_3.53.47_PM.png](/Screen_Shot_2022-07-11_at_3.53.47_PM.png)
 
 Analyze session metrics by selecting "Session Start" or "Session End" from the events list. Learn more about using Sessions in Insights, Funnels and Flows [here](/docs/features/sessions).
 
@@ -42,7 +41,6 @@ To break down your results of your report by any property or cohort, click the 
 
 You can break down your results by the "Time" event property and breakdown by Hour, Day, Week, Month, Quarter, Year, Hour of Day, or Day of Week.
 
-![/breakdown_by_date.gif](/breakdown_by_date.gif)
 
 If you are analyzing any custom events, you can breakdown by the property "Event Name".
 
@@ -50,11 +48,9 @@ If you are analyzing any custom events, you can breakdown by the property "Event
 
 The drop-down menus only show events/event properties that were ingested within the last 30 days. To select events/event properties that have not been ingested in the last 30 days, type the name of the event/event property in the Filter or Breakdown search bar. You must know the exact name of the event/event property you want to select because event names are case sensitive.
 
-![/query_old_event.gif](/query_old_event.gif)
 
 To create a temporary cohort for the current report, click **Create Custom...** in the dropdown menu and select "Cohort. A window will pop up where you can specify the restrictions of your cohort. Learn more about building a cohort [here](/docs/users/cohorts#creating-cohorts).
 
-![/create_cohort_from_report.gif](/create_cohort_from_report.gif)
 
 ## Slack Integration
 
@@ -68,11 +64,9 @@ The Mixpanel application for Slack will also automatically unfurl a preview of 
 
 To enable the integration, log in to both Mixpanel and Slack, then click [here](https://mixpanel.com/slack/oauth?slack_v2=true) to authorize the slack workspace:
 
-![/Screen_Shot_2020-06-15_at_10.41.00_PM.png](/Screen_Shot_2020-06-15_at_10.41.00_PM.png)
 
 After clicking allow, you'll return to Mixpanel, where you'll see a success banner:
 
-![/Screen_Shot_2020-06-15_at_10.42.06_PM.png](/Screen_Shot_2020-06-15_at_10.42.06_PM.png)
 
 At this point, Mixpanel is a part of your Slack workspace, and any Mixpanel links you send in Slack will unfurl with metadata, and if applicable a chart preview.
 
@@ -82,7 +76,6 @@ Once at least one member of your Mixpanel organization has set up the Mixpanel I
 
 Once you've set up the integration, Mixpanel links pasted in Slack will unfurl. Most links will provide some basic link metadata, and links to Insights, Flows, Funnels, or Retention reports will also include a chart preview, for example:
 
-![/slack_app_demo.png](/slack_app_demo.png)
 
 ### Permissions
 
@@ -109,13 +102,11 @@ Example use-cases include:
 
 Add a property in Breakdown, then select the **Customize Buckets** option from the overflow menu
 
-![/14342458665748](/14342458665748.png)
 
 Depending on your added property data type - string vs numeric, you will see a different custom buckets modal, designed based on the data-type use-cases **(more detail below)**
 
 Once you define your segment buckets, click **Apply.** Only then will the custom buckets reflect in the visualization. You will also see the custom buckets as an under-item on the property
 
-![/14342458667924](/14342458667924.png)
 
 To modify the segment buckets, click on the **under-item** and the custom buckets model will open. Once you’ve made the changes, click **Apply**
 
@@ -138,25 +129,20 @@ Steps
 
 1. Add a breakdown - Country. Below is the default you’ll see
 
-    ![/12828869626644](/12828869626644.png)
 
 2. Choose to bucket segments, by opening the custom buckets model and click Apply
     - For each segment, choose the operator “is” and select one or more values
     - “Rest of the World” is auto generated as **remaining values**
     - To note — if two segments have the same value, the first segment will consider the value. Custom buckets are non-overlapping and sum up to 100% by definition
 
-![/14342715436052](/14342715436052.png)
 
-![/12828860042132](/12828860042132.png)
 
 **You can also re-name these segments to make them meaningful to you**
 
 1. On the same line of the segment, choose to rename it using the pencil icon
 2. Click Apply after creating and naming your segments as desired
 
-![/14342752741140](/14342752741140.png)
 
-![/12828869956628](/12828869956628.png)
 
 ### Numeric property Use Cases
 
@@ -176,9 +162,7 @@ Goal: You want to distribute this in various ways
     - To note — every numeric property is **auto-bucketed into even sized buckets as the default**
     - Here the default seems to be even buckets of 10 mins across the range
 
-        ![/14342489051028](/14342489051028.png)
 
-        ![/12828860268692](/12828860268692.png)
 
 2. Go to the overflow and open the custom buckets modal
 3. Since looking for even buckets of “30 mins”, choose **Even Bucketing**
@@ -186,9 +170,7 @@ Goal: You want to distribute this in various ways
     - To note — both a lower end and upper end bucket will be auto-generated to ensure your breakdown always adds up to 100%
     - Here these buckets are <50 mins and ≥ 100 mins
 
-        ![/14342575096724](/14342575096724.png)
 
-        ![/12828860573204](/12828860573204.png)
 
 
 **Deep Dive: Use Case B**: Specific groups <10, 10-20, 20-50, 50-100, ≥100
@@ -198,18 +180,14 @@ Goal: You want to distribute this in various ways
 3. Enter the ‘segment’ break point values in each row and click apply. You can preview the bucket as you enter values in the line-item below
     - To note — both a lower end and upper end bucket will be auto-generated to ensure your buckets always adds up to a 100%
 
-![/14342546138516](/14342546138516.png)
 
-![/12828860758676](/12828860758676.png)
 
 **Deep Dive: Use Case C:** Want to see all the durations as-is (No bucketing)
 
 1. Open the custom buckets modal
 2. Since looking for “No bucketing”, choose **None —** This lays out all the numeric property values as-is
 
-![/14342547991956](/14342547991956.png)
 
-![/12833587659028](/12833587659028.png)
 
 ### Typecasting property Use Cases
 
@@ -230,18 +208,13 @@ Steps
 3. Change **Data Type** of age(years) to String. Once changed you will see the type-casted property type as an under-item
     - To note - only type-casted data types show as an under-item. If the data-type was the same as ingested, no under-item for data type will be seen
 
-        ![/14342634016660](/14342634016660.png)
 
-        ![/12833644608148](/12833644608148.png)
 
 4. Post changing data-type, open the custom buckets modal. This will now open a modal meant for string property data type
 5. Follow steps as elaborated for String property use-case above, and achieve the goal
 
-    ![/14342637801748](/14342637801748.png)
 
-    ![/14342707763604](/14342707763604.png)
 
-    ![/12833899595284](/12833899595284.png)
 
 
 ### FAQ
@@ -268,7 +241,6 @@ Steps
 
     If you really need to answer a question like this, the right way here is to create these as two metrics leveraging [inline filters](/docs/reports/overview) and NOT use breakdowns.
 
-    ![/12834111393684](/12834111393684.png)
 
 - **What happens if I change data-type, can I still use custom buckets?**
 
@@ -296,7 +268,6 @@ Steps
 
         (not set) is automatically computed and will always show up in the UI. You don’t have to select (not set) as a segment to know how many events fall in there. So only figure how would you like to segment your (set) values.
 
-        ![/12834113971348](/12834113971348.png)
 
     - **How do I get "not contains" or "not equal to"?**
 
@@ -304,7 +275,6 @@ Steps
 
         For example — the (remaining values) below is not equal to US or India
 
-        ![/12834082079380](/12834082079380.png)
 
     - **In Number: how do I get a bucket of just 0?**
 
@@ -334,7 +304,6 @@ View Users can help you:
 
 ### Insights
 
-![/View_Users_Insights_gif.gif](/View_Users_Insights_gif.gif)
 
 - To learn more about your users who recently **Signed Up** at a specific point in time, you can click any point on a chart or line to access View Users. The View Users overlay **displays the list of users contributing to your chosen point on the chart**.
 - By clicking on one of these users, you can further **explore their User Properties** like experiment group, purchase count, last event and many more.
@@ -342,14 +311,12 @@ View Users can help you:
 
 ### Funnels
 
-![/View_Users_Funnels_gif.gif](/View_Users_Funnels_gif.gif)
 
 - Finding the **exact group of users who dropped off** after **Sign Up** is possible through View Users in Funnels. While in a Funnels report, click on the section of the chart that displays non-converting users and select View Users - this displays the list of those who didn’t convert after signup.
 - **Save this group as a cohort** by clicking the Create Cohort button. Now, you can learn more about their product usage or find the root cause of why they didn’t convert after Sign Up.
 
 ### Retention
 
-![/View_Users_Retention_gif.gif](/View_Users_Retention_gif.gif)
 
 - View Users in Retention report presents you with two options - view retained users and view dropped off users. This is helpful to **find the specific group of users who were engaged or dropped off** after **Sign Up** over a period of time.
 - **Export your group of choice to a CSV with one click**. This data can guide meaningful actions, like emailing your user group a note that helps them get unstuck and engaged.
@@ -360,7 +327,6 @@ View Users can help you:
 
 Undo / redo shortcuts allow for fast adjustments to your analysis. `Cmd + Z` to undo; `Cmd + Shift + Z` to redo. Change filters, date ranges, line vs bar chart, and go back in one second to compare before and after, or fix the view.
 
-![/Undo_Redo_gif.gif](/Undo_Redo_gif.gif)
 
 - **Navigate different report versions**: add a new event, filter or breakdown and undo that change with `Cmd + Z` . This makes iterating between different versions of your report quick and easy.
 - **Compare visualizations**: go from a bar chart, to a line chart, to a pie chart and all the way back while only using the undo / redo keyboard shortcuts.
@@ -371,13 +337,11 @@ Once you have visualized a metric you are interested in, you want want to compar
 
 ### Time Comparisons
 
-![/Screen_Shot_2021-09-22_at_4.38.05_PM.png](/Screen_Shot_2021-09-22_at_4.38.05_PM.png)
 
 The compare to past menu has been modified to include the new comparison options, but users can continue to find the same time comparison options that existed before under the new "Compare" menu.
 
 ### Time Comparison - Absolute Values
 
-![/Screen_Shot_2021-09-22_at_4.40.26_PM.png](/Screen_Shot_2021-09-22_at_4.40.26_PM.png)
 
 This is the same default behavior that existed previously. When you compare to a time period users will see a solid line for the present data, and a dashed line for data in the time comparison period.
 
@@ -385,11 +349,9 @@ This is the same default behavior that existed previously. When you compare to a
 
 This can be activated by selecting the "Percent change over Baseline" option in the controller next to the comparison menu.
 
-![/Screen_Shot_2021-09-22_at_4.40.41_PM.png](/Screen_Shot_2021-09-22_at_4.40.41_PM.png)
 
 When this view is activated, users will see the percentage difference from the one time period to another. This is the same value that was shown in the tooltip, but now users are able to show how segments are shrinking and growing over time. This also makes it easier to see relative performance between different segments.
 
-![/Screen_Shot_2021-09-22_at_4.50.52_PM.png](/Screen_Shot_2021-09-22_at_4.50.52_PM.png)
 
 These values are also reflected into the segmentation table below the chart.
 
@@ -397,13 +359,10 @@ These values are also reflected into the segmentation table below the chart.
 
 Another comparison type that is now natively supported in Mixpanel is the ability to set a segment as a baseline from which other segments are compared against. This allows users to compare different segments across the same time period.
 
-![/Screen_Shot_2021-09-22_at_4.50.28_PM.png](/Screen_Shot_2021-09-22_at_4.50.28_PM.png)
 
-![/Screen_Shot_2021-09-22_at_4.50.36_PM.png](/Screen_Shot_2021-09-22_at_4.50.36_PM.png)
 
 To enable, choose the "Increase over Baseline" option in the compare menu, then choose the segment that you wish to be the baseline.
 
-![/Screen_Shot_2021-09-22_at_4.53.21_PM.png](/Screen_Shot_2021-09-22_at_4.53.21_PM.png)
 
 Notice that because "Home supplies" is chosen at the baseline, it appears on the chart as a flat 0 line - this is because "Home supplies" always has a 0% difference against itself in the same time period.
 
@@ -413,11 +372,9 @@ Also note that the y axis can go below 0, because segments can perform better or
 
 This option allows users to see how segments perform as a percentage of the total. Mixpanel will proactively disable this option when this comparison option won't give meaningful results.
 
-![/Screen_Shot_2021-09-22_at_5.10.53_PM.png](/Screen_Shot_2021-09-22_at_5.10.53_PM.png)
 
 To enable, open the Compare menu and select "Percentage of Overall"
 
-![/Screen_Shot_2021-09-22_at_5.17.27_PM.png](/Screen_Shot_2021-09-22_at_5.17.27_PM.png)
 
 ### Why do the values in Compare to Overall not add up to 100%?
 
@@ -735,7 +692,6 @@ List of objects can be used like other properties in Mixpanel. Upon selecting a 
 
 We provide a few convenient computed properties after a list of objects property is selected. This does a computation on the property, and works similarly to [custom properties](/docs/features/custom-properties).
 
-![list computed properties](/list-computed-properties.png)
 
 #### Size
 
@@ -768,14 +724,12 @@ Sometimes, you might want to filter an event to only the first time that it's pe
 
 You can do this by adding a First Time Filter to any event in Mixpanel. This filters the event down to only the first instance of the event performed by a user:
 
-![233894752-93851682-9d83-4c87-937d-8fd90db465c6.png](https://user-images.githubusercontent.com/2077899/233894752-93851682-9d83-4c87-937d-8fd90db465c6.png)
 
 Mixpanel computes this on-the-fly by scanning each user's history to determine if this was the first instance of the event performed by the user, based on timestamp.
 
 ### Nth Time
 You can analyze the Nth time an event was performed by using a First Time Filter in funnels. For example, this shows you the number of users that do Tutorial Complete 3 times:
 
-![233895123-bc2dd00f-5dde-4e43-82fe-081173abf0e4.png](https://user-images.githubusercontent.com/2077899/233895123-bc2dd00f-5dde-4e43-82fe-081173abf0e4.png)
 
 ## Behavioral Properties
 
@@ -824,7 +778,6 @@ User properties are not yet supported.
 
 View the top and bottom converting segments in your funnel by clicking the **Find interesting segments** button at the bottom of the segmentation chart.
 
-![/10038188905364](/10038188905364.png)
 
 Rather than searching through multiple property breakdowns to find significant data, this feature automatically identifies this data for you. Mixpanel combs through your event properties and cohorts to show you which of those segments convert higher or lower than average, and are therefore statistically significant.
 
@@ -856,7 +809,6 @@ Mixpanel automatically compares the currently selected date period to the previo
 
 View the top and bottom converting segments in your retention report by clicking the **Find interesting segments** button at the bottom of the retention chart. This feature is not currently available for Frequency Retention.
 
-![/10037069627156](/10037069627156.png)
 
 Rather than searching through multiple segment breakdowns to find significant data, this feature automatically identifies that data for you. Mixpanel combs through your event properties and cohorts, and show you which of those segments retain at a higher or lower rate than average.
 
@@ -884,7 +836,6 @@ Navigate to the report where you would like to enable or disable sampling at tim
 
 From the report in which you would like to use sampling, click the **lightning bolt** in the upper right corner of the query builder.
 
-![/13109650264596](/13109650264596.png)
 
 This will enable sampling on the report, and will be indicated by the lightning bolt symbol turning blue. The percentage of the total that is included in the query calculations will be indicated in the top right corner of the query builder.
 
@@ -923,21 +874,17 @@ Mixpanel stores the results from a report query in cache, and presents these res
 
 You can see While this highlights the default cache behavior, you can always refresh a report to include the most current data.
 
-![/Cache_Update.png](/Cache_Update.png)
 
 You can also view when the most recent update was in Boards by hovering over report cards.
 
-![/Dashboard_Cache.png](/Dashboard_Cache.png)
 
 ### Refreshing the Query Results Cache
 
 To refresh the query results cache, navigate to an Insights report and click the **Refresh** button at the top of the query builder.
 
-![/Refresh_Cache.png](/Refresh_Cache.png)
 
 To refresh query results cache in a Board, click the three dots in the top of the Board, and then click the **Refresh all cards** button.
 
-![/Dashboard_Refresh.png](/Dashboard_Refresh.png)
 
 If the cached result is less than 1 min old, we always serve from cache without running a new background query.
 
@@ -973,13 +920,11 @@ Mixpanel maintains breakdown limits for CSV, PNG, and PDF report downloads.
 
 For property values that exceed 10,000, Mixpanel only returns the top 10,000 breakdowns of that property. Here’s an example CSV export of an Insights report. The first column contains the date of when each event was sent. The columns contain the event name and the rows contain the number of each event sent to Mixpanel.
 
-![/CSV-download.png](/CSV-download.png)
 
 ### PNG and PDF
 
 PNG and PDF downloads display up to 30 segments in the Insights table, Insights bar, Retention table, and Retention line; and up to 12 segments for the Insights line. Here’s an example of a chart in PNG format.
 
-![/PNG-example.png](/PNG-example.png)
 
 ### Downloading Reports
 
@@ -987,17 +932,14 @@ To download Insights, Funnels, and Retention reports, click the "..." icon on th
 
 #### Insights Download Menu
 
-![/Screen_Shot_2020-02-14_at_10.31.33_AM.png](/Screen_Shot_2020-02-14_at_10.31.33_AM.png)
 
 #### Funnels Download Menu
 
-![/Screen_Shot_2020-02-14_at_10.32.18_AM.png](/Screen_Shot_2020-02-14_at_10.32.18_AM.png)
 
 It is possible (only in the Funnels report) to download "CSV Trends", which downloads funnels by date.
 
 #### Retention Download Menu
 
-![/Screen_Shot_2020-02-14_at_10.32.36_AM.png](/Screen_Shot_2020-02-14_at_10.32.36_AM.png)
 
 ## Undefined and Null Properties
 

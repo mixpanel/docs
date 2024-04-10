@@ -15,13 +15,11 @@ To enable the integration:
 
 1. Select Integrations under the Data Management tab in the top navigation bar.
 
-![Webengage 1 Image](/webengage1.png)
 
 2. From the Integrations page, select the WebEngage dropdown, and select **Connect**.
 
 3. Enter the [WebEngage API Key](https://docs.webengage.com/docs/rest-api-getting-started#getting-your-credentials) from your WebEngage dashboard.
 
-![Webengage 2 Image](/webengage2.png)
 
 4. The WebEngage integration will show a **Connected** tag in the UI once the connection succeeds.
 
@@ -40,7 +38,6 @@ To export a Mixpanel Cohort to WebEngage:
 
 3. Click **Export to WebEngage**. Select either one-time sync or dynamic sync. Click **Start Sync**.
 
-![Webengage 3 Image](/webengage3.png)
 
 ## Sync Types
 This integration supports two types of exports: one-time export and dynamic sync. When you generate a one-time export or dynamic sync, it overwrites the previous export with an updated export that reflects users who qualify for the cohort at the time of export.
@@ -51,5 +48,4 @@ In a one-time export, Mixpanel sends WebEngage a static export of users who curr
 ### Dynamic Sync
 In dynamic sync, Mixpanel initiates sync between a cohort and WebEngage every two hours. The exported cohort will be updated every two hours to reflect the most recent list of users in a cohort.
 
-![Webengage 4 Image](/webengage4.png)
 
