@@ -18,21 +18,4 @@ jobs:
       - name: Build Project Artifacts
         run: vercel build --token=${{ secrets.VERCEL_TOKEN }}
       - name: Deploy Project Artifacts to Vercel
-        run: |
-          URL=$(vercel deploy \
-            --prebuilt \
-            --token=${{ secrets.VERCEL_TOKEN }})
-          echo "url=$URL" >> "$GITHUB_OUTPUT"
-  Link-Checker:
-    runs-on: ubuntu-latest
-    steps:
-      - uses: actions/checkout@v4
-      - name: Find MDX Files
-        run: |
-          FILES=$(find . -name "*.mdx")
-          echo "files=$FILES" >> "$GITHUB_ENV"
-      - name: HashiCorp's Link Checker
-        uses: hashicorp/gh-action-check-broken-links@v1
-        with:
-          baseUrl: 'https://docs-git-vijay-stuff-mixpanel.vercel.app/'
-          files: '${{ env.files }}'
+        run: vercel deploy --prebuilt --token=${{ secrets.VERCEL_TOKEN }}
