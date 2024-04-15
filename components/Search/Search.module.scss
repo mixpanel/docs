@@ -1,0 +1,14 @@
+.icon {
+    width: 14px;
+    margin-right: 6px;
+}
+
+.searchBar:focus {
+    box-shadow: none;
+    
+}
+
+.inputContainer {
+    display: flex;
+    flex-direction: row;
+}
