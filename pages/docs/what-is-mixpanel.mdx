@@ -18,17 +18,17 @@ Mixpanel is built on three key concepts: **Events**, **Users**, and **Properties
 ### Events
 An event is a data point that represents an interaction between a user and your product. Events can be a wide range of interactions. 
 
-Imagine you run cafe, every time a customer purchases a coffee from your café app, there are details that describe the purchase the moment it happens. Actions like purchasing a coffee can be tracked as an event in Mixpanel.
+Imagine you run a cafe, every time a customer purchases a coffee from your café app, there are details that describe the purchase the moment it happens. Actions like purchasing a coffee can be tracked as an event in Mixpanel.
 
 ![image](/event-1.svg)
 ### Users
-On the other side of an event is a user — the specific individual that completed an interaction with your product.
+On the other side of an event is a user — the specific individual who completed an interaction with your product.
 
 Because each user is unique, Mixpanel tracks which users completed what events and marries the two distinct data points by joining them. `event.distinct_id = user_profile.distinct_id`
 
 ![image](/events-and-users.svg)
 ### Properties
-You can track additional information about **users** and **events**. These details are called a **properties**.
+You can track additional information about **users** and **events**. These details are called **properties**.
 
 An **Event Property** describes an event. For a coffee purchase, the event would be *Purchased Item* and the event properties could be *type* (in this case a Coffee) and *price* (in this case $2.50).
 
