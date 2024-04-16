@@ -72,7 +72,7 @@ private void insertJsonProperty(JSONObject props, String name, String value) {
 
 ## Partner Server to Mixpanel
 
-Most of our attribution partners support a form of server-to-server integration. The main idea is that you will install the partner’s SDK in your app and follow their configuration instructions. Part of those instructions usually involve querying Mixpanel’s distinct_id (unique ID for the user) in the device and sending that over to their server. Once the partner has the attribution data, as well as knowing which is the distinct_id for that user in that device, they will send said data in the form of events and properties (as well as profile properties) directly from the partner server to Mixpanel.
+Most of our attribution partners support a form of server-to-server integration. The main idea is that you will install the partner’s SDK in your app and follow their configuration instructions. Part of those instructions usually involve querying Mixpanel’s distinct_id (unique ID for the user) in the device and sending that over to their server. Once the partner has the attribution data, as well as knows which is the distinct_id for that user in that device, they will send said data in the form of events and properties (as well as profile properties) directly from the partner server to Mixpanel.
 
 **Advantages**:
 
