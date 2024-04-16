@@ -1,10 +1,19 @@
-import style from "./Search.module.scss";
-import clsx from "clsx";
+// TODO: Mixpanel. Uncomment for KAPA AI rollout
+// import style from "./Search.module.scss";
+// import clsx from "clsx";
+import { DocSearch } from "@docsearch/react";
+import "@docsearch/css";
 
 export default function Search() {
   return (
     <>
-      <div className={style.inputContainer}>
+      <DocSearch
+        appId="MQIQQRKVX5"
+        indexName="mixpanel_Docs v2"
+        apiKey="d6267db26ac89477a9a87ea82da493b7"
+        insights={true}
+      />
+      {/* <div className={style.inputContainer}>
         <svg viewBox="0 0 24 24" focusable="false" className={style.icon}>
           <path
             fill="currentColor"
@@ -15,7 +24,7 @@ export default function Search() {
           className={clsx("top-nav-search-bar", style.searchBar)}
           placeholder={`Search...`}
         />
-      </div>
+      </div> */}
     </>
   );
 }
