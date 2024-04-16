@@ -12,11 +12,13 @@ Our self-serve interface empowers your team to answer questions, no matter their
     </iframe></p>
 </div>
 
-## Introduction to the Data Model
-Mixpanel's Data Model is built on three key concepts: **Events**, **Users**, and **Properties**.
+## Key Mixpanel Concepts
+Mixpanel is built on three key concepts: **Events**, **Users**, and **Properties**.
 
 ### Events
-An event is a data point that represents an interaction between a user and your product. Events can be a wide range of interactions. For example, every time a customer purchases a coffee from your café app, there are details that describe the purchase the moment it happens. Actions like purchasing a coffee can be tracked as an event in Mixpanel.
+An event is a data point that represents an interaction between a user and your product. Events can be a wide range of interactions. 
+
+Imagine you run cafe, every time a customer purchases a coffee from your café app, there are details that describe the purchase the moment it happens. Actions like purchasing a coffee can be tracked as an event in Mixpanel.
 
 ![image](/event-1.svg)
 ### Users
@@ -26,14 +28,15 @@ Because each user is unique, Mixpanel tracks which users completed what events a
 
 ![image](/events-and-users.svg)
 ### Properties
-Properties are attributes that help you define the specifics of an **Event** or a **User**.
+You can track additional information about **users** and **events**. These details are called a **properties**.
 
-An **Event Property** describes an event. For a coffee purchase, the event would be Purchase and the event properties could be *Item Type* (in this case a Coffee) and *Item Price* (in this case $2.50).
+An **Event Property** describes an event. For a coffee purchase, the event would be *Purchased Item* and the event properties could be *type* (in this case a Coffee) and *price* (in this case $2.50).
 
 ![image](/event.svg)
 
-A **User Property** describes a User. This could be their name, email, or age.
+A **User Property** describes a User. This could be their name, email, age, last visit, etc.
 
 ![image](/user-profile.svg)
+
 
 [Mixpanel's different reports](/docs/reports/overview) allow you to view data about various users or events and slice and dice that data by any property.
