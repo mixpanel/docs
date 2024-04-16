@@ -5,8 +5,13 @@ import { DocSearch } from "@docsearch/react";
 import "@docsearch/css";
 
 export default function Search() {
-  const isMacOS = () => window.navigator.appVersion.includes(`Mac`);
-  const shortCutPlaceholder = isMacOS ? `(⌘ + K)` : `(ctrl + K)`;
+  const isMacOS = () => window.navigator.userAgent.includes(`Mac`);
+  let shortCutPlaceholder = ``;
+  try {
+    shortCutPlaceholder = isMacOS ? `(⌘ + K)` : `(ctrl + K)`;
+  } catch (e) {
+    console.error(`couldn't determine the operating system`);
+  }
 
   return (
     <>
