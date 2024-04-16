@@ -1,8 +1,6 @@
-// TODO: Mixpanel. Uncomment for KAPA AI rollout
-// import style from "./Search.module.scss";
-// import clsx from "clsx";
-import { DocSearch } from "@docsearch/react";
-import "@docsearch/css";
+
+import style from "./Search.module.scss";
+import clsx from "clsx";
 
 export default function Search() {
   const isMacOS = () => window.navigator.userAgent.includes(`Mac`);
@@ -27,7 +25,7 @@ export default function Search() {
           readOnly={true}
           placeholder={`Search ${shortCutPlaceholder}`}
         />
-      </div> */}
+      </div>
     </>
   );
 }
