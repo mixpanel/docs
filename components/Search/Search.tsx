@@ -1,19 +1,19 @@
-// TODO: Mixpanel. Uncomment for KAPA AI rollout
-// import style from "./Search.module.scss";
-// import clsx from "clsx";
-import { DocSearch } from "@docsearch/react";
-import "@docsearch/css";
+
+import style from "./Search.module.scss";
+import clsx from "clsx";
 
 export default function Search() {
+  const isMacOS = () => window.navigator.userAgent.includes(`Mac`);
+  let shortCutPlaceholder = ``;
+  try {
+    shortCutPlaceholder = isMacOS ? `(⌘ + K)` : `(ctrl + K)`;
+  } catch (e) {
+    console.error(`couldn't determine the operating system`);
+  }
+
   return (
     <>
-      <DocSearch
-        appId="MQIQQRKVX5"
-        indexName="mixpanel_Docs v2"
-        apiKey="d6267db26ac89477a9a87ea82da493b7"
-        insights={true}
-      />
-      {/* <div className={style.inputContainer}>
+      <div className={clsx("top-nav-search-bar", style.inputContainer)}>
         <svg viewBox="0 0 24 24" focusable="false" className={style.icon}>
           <path
             fill="currentColor"
@@ -21,10 +21,11 @@ export default function Search() {
           ></path>
         </svg>
         <input
-          className={clsx("top-nav-search-bar", style.searchBar)}
-          placeholder={`Search...`}
+          className={clsx(style.searchBar)}
+          readOnly={true}
+          placeholder={`Search ${shortCutPlaceholder}`}
         />
-      </div> */}
+      </div>
     </>
   );
 }
