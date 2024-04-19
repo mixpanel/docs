@@ -54,7 +54,7 @@ const config: DocsThemeConfig = {
     text: "© Mixpanel 2023",
   },
   logo: <MixpanelLogoWordmark width={125} />,
-  logoLink: "https://mixpanel.com/home",
+  logoLink: "https://docs.mixpanel.com",
   main: MainContent,
   useNextSeoProps: () => ({
     titleTemplate: "%s - Mixpanel Docs",
