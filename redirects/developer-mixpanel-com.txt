@@ -23,7 +23,7 @@
 /developer-docs-redirect/google-cloud-storage /docs/tracking-methods/integrations/google-cloud-storage
 /developer-docs-redirect/gcs-raw-pipeline /docs/data-pipelines/integrations/google-cloud-storage-raw-pipeline
 /developer-docs-redirect/google-pubsub /docs/tracking-methods/integrations/google-pubsub
-/developer-docs-redirect/implement-mixpanel /docs/what-is-mixpanel
+/developer-docs-redirect/implement-mixpanel /docs/start-here
 /developer-docs-redirect/ios /docs/tracking-methods/sdks/ios
 /developer-docs-redirect/ios-objective-c /docs/tracking-methods/sdks/ios
 /developer-docs-redirect/ios-objective-c-quickstart /docs/quickstart/connect-your-data?sdk=ios
@@ -69,5 +69,5 @@
 /developer-docs-redirect/under-the-hood /docs/how-it-works/infrastructure
 /developer-docs-redirect/unity /docs/tracking-methods/sdks/unity
 /developer-docs-redirect/unity-quickstart /docs/quickstart/connect-your-data?sdk=unity
-/developer-docs-redirect/what-is-mixpanel /docs/what-is-mixpanel
+/developer-docs-redirect/start-here /docs/start-here
 /developer-docs-redirect/write-jql /docs/reports/apps/jql

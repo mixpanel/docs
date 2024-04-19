@@ -1,9 +1,12 @@
 {
-  "what-to-track": "What to Track",
-  "connect-your-data": "Connect Your Data",
-  "install-mixpanel": "Install Mixpanel",
-  "identify-users": "Identify Users",
-  "send-events": "Send Events",
-  "company-analytics": "Company Analytics",
-  "tips-and-tricks": "Tips and Tricks"
+  "install-mixpanel": "1. Install Mixpanel",
+  "identify-users": "2. Identify Users",
+  "send-events": "3. Send Events",
+  "tips-and-tricks": "Tips and Tricks",
+  "company-analytics": {
+    "display": "hidden"
+  },
+  "connect-your-data": {
+    "display": "hidden"
+  }
 }

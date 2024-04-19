@@ -3,7 +3,8 @@
 		"type": "separator",
 		"title": "INTRO"
 	},
-	"what-is-mixpanel": "What is Mixpanel?",
+	"start-here": "Start Here",
+	"what-to-track": "What to Track",
 	"quickstart": "Quickstart",
 	"data-in": {
 		"type": "separator",

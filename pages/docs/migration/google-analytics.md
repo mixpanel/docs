@@ -405,8 +405,8 @@ We provide Mixpanel as a destination and setup guides for all of the most popula
 
 Mixpanel’s data model is based on events and properties, rather than sessions. While this might be a shift if you come from the sessions-based model, we’ve found it to be both more flexible and easier to set up and use.
 
-- [Events](/docs/what-is-mixpanel#events) capture granular user actions, like a Pageview, Signup, or Purchase.
-- [Properties](/docs/what-is-mixpanel#properties) capture attributes of those events, like which page was viewed, the UTM Campaign that led to a Signup, or the Item that was purchased.
+- [Events](/docs/start-here#events) capture granular user actions, like a Pageview, Signup, or Purchase.
+- [Properties](/docs/start-here#properties) capture attributes of those events, like which page was viewed, the UTM Campaign that led to a Signup, or the Item that was purchased.
 
 Events let you get more granular than [sessions](/docs/features/sessions), so that you can deeply understand user behavior. At the same time, Mixpanel automatically constructs sessions from events, so you can answer session-level questions too.
 
