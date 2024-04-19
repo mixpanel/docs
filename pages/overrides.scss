@@ -114,9 +114,8 @@ $border-radius-lg: 100px;
         }
     }
 
-    // Add some space underneath the text underlines
-    .\[text-underline-position\:from-font\] {
-        text-underline-offset: 3px;
+    h1, h2, h3, h4, h5 {
+        color:colors.$purple200;
     }
 
     body {
