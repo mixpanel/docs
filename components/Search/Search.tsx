@@ -1,6 +1,7 @@
+import clsx from "clsx";
 
 import style from "./Search.module.scss";
-import clsx from "clsx";
+import { track } from "../../utils/tracking";
 
 export default function Search() {
   const isMacOS = () => window.navigator.userAgent.includes(`Mac`);
@@ -11,9 +12,16 @@ export default function Search() {
     console.error(`couldn't determine the operating system`);
   }
 
+  const trackSearchBarClick = () => {
+    track(`Search bar clicked`, {});
+  };
+
   return (
     <>
-      <div className={clsx("top-nav-search-bar", style.inputContainer)}>
+      <div
+        className={clsx("top-nav-search-bar", style.inputContainer)}
+        onClick={trackSearchBarClick}
+      >
         <svg viewBox="0 0 24 24" focusable="false" className={style.icon}>
           <path
             fill="currentColor"
