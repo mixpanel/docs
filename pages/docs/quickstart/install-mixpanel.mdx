@@ -8,14 +8,13 @@ import ExtendedButton from '/components/ExtendedButton/ExtendedButton'
 import ExtendedTabs from '/components/ExtendedTabs/ExtendedTabs';
 import { dataItems } from '/utils/constants';
 
-
 <Callout type="info" emoji>
-  **Tip** If you already collect product data, checkout our guides for connecting your [Data Warehouse](/docs/tracking-methods/data-warehouse) or via [3rd Party Integrations]().
+  **Tip** If you already collect product data, checkout our guides to connect with Mixpanel via your [Data Warehouse](/docs/tracking-methods/data-warehouse) or [3rd Party Integrations]().
 </Callout>
 
 ## Install
 
-Installing Mixpanel is easy. We recommend serverside methods, especially for web. Not sure which method to choose? [Read our guide](/docs/tracking-method/choosing-the-right-method)
+Installing Mixpanel is easy. We recommend serverside methods, especially for the web. Not sure which method to choose? [Read our guide](/docs/tracking-method/choosing-the-right-method)
 
 
 {/* TABS */}
@@ -23,8 +22,7 @@ Installing Mixpanel is easy. We recommend serverside methods, especially for web
 <ExtendedTabs urlParam="sdk" urlToItemsMap={dataItems}>
 
 <Tab>
-
-Install Mixpanel with the method you prefer below.
+##### Install the SDK
 
 <Tabs items={['snippet', 'npm', 'yarn']}>
 	<Tab>
@@ -46,31 +44,76 @@ Install Mixpanel with the method you prefer below.
 	```
 	</Tab>
 </Tabs>
+##### Configure the SDK
+Replace `YOUR_TOKEN` with your project token. You can find your token [here](https://mixpanel.com/settings/project).
+
+```js Javascript
+//Import Mixpanel SDK
+import mixpanel from 'mixpanel-browser';
+
+// Near entry of your product, init Mixpanel
+mixpanel.init('YOUR_TOKEN', {debug: true, track_pageview: true, persistence: 'localStorage'});
+```
+
 </Tab>
 
 <Tab>
+##### Install the SDK
 ```shell Python
 pip install mixpanel
 ```
+##### Configure the SDK
+Replace `YOUR_TOKEN` with your project token. You can find your token [here](https://mixpanel.com/settings/project).
+```python Python
+from mixpanel import Mixpanel
+
+mp = Mixpanel("YOUR_TOKEN")
+```
 </Tab>
 
 <Tab>
+##### Install the SDK
 ```shell Node.js
 npm install mixpanel
 ```
+##### Configure the SDK
+Replace `YOUR_TOKEN` with your project token. You can find your token [here](https://mixpanel.com/settings/project).
+```js Node.js
+// Grab the Mixpanel factory
+var Mixpanel = require('mixpanel');
+
+// Create an instance of the mixpanel client
+var mixpanel = Mixpanel.init('YOUR_TOKEN');
+```
 </Tab>
 
 <Tab>
+##### Install the SDK
 ```shell Go
 go get github.com/mixpanel/mixpanel-go
 ```
+##### Configure the SDK
+Replace `YOUR_TOKEN` with your project token. You can find your token [here](https://mixpanel.com/settings/project).
+```shell Go
+mp := mixpanel.NewApiClient("YOUR_TOKEN")
+```
 </Tab>
+
 <Tab>
+##### Install the SDK
 ```shell Ruby
 gem install mixpanel-ruby
 ```
+##### Configure the SDK
+Replace `YOUR_TOKEN` with your project token. You can find your token [here](https://mixpanel.com/settings/project).
+```ruby Ruby
+require 'mixpanel-ruby'
+mp = Mixpanel::Tracker.new(PROJECT_TOKEN)
+```
 </Tab>
+
 <Tab>
+##### Install the SDK
 ```xml Java
 <!--Include the following in your project's pom.xml-->
 <dependency>
@@ -79,8 +122,19 @@ gem install mixpanel-ruby
   <version>1.4.4</version>
 </dependency>
 ```
+##### Configure the SDK
+Replace `YOUR_TOKEN` with your project token. You can find your token [here](https://mixpanel.com/settings/project).
+```java Java
+//Import Mixpanel API
+import com.mixpanel.mixpanelapi.MixpanelAPI;
+
+// Set up an instance of MixpanelAPI 
+MixpanelAPI mixpanel = new MixpanelAPI();
+```
 </Tab>
+
 <Tab>
+##### Install the SDK
 Under your app's root directory, run:
 
 ```
@@ -94,44 +148,123 @@ pod install
 ```
 
 Note: For XCode 12.5+, there is a known compile issue, please refer to this [workaround](https://github.com/mixpanel/mixpanel-react-native/issues/43#issuecomment-829599732).
+##### Configure the SDK
+Replace `YOUR_TOKEN` with your project token. You can find your token [here](https://mixpanel.com/settings/project).
+```javascript
+//Import Mixpanel API
+import { Mixpanel } from "mixpanel-react-native";
+
+// Set up an instance of Mixpanel
+const trackAutomaticEvents = false;
+const mixpanel = new Mixpanel("YOUR_TOKEN", trackAutomaticEvents);
+mixpanel.init();
+```
 </Tab>
+
 <Tab>
+##### Install the SDK
 Add `mixpanel_flutter: ^2.0.0` to your package's pubspec.yaml file and run:
 
 ```
 flutter pub get
 ```
+##### Configure the SDK
+Replace `YOUR_TOKEN` with your project token. You can find your token [here](https://mixpanel.com/settings/project).
+```dart
+import 'package:mixpanel_flutter/mixpanel_flutter.dart';
+class _YourClassState extends State<YourClass> {
+  Mixpanel mixpanel;
 
+  @override
+  void initState() {
+    super.initState();
+    initMixpanel();
+  }
+
+  Future<void> initMixpanel() async {
+    // Replace with your Project Token
+    // Once you've called this method once, you can access `mixpanel` throughout the rest of your application.
+    mixpanel = await Mixpanel.init("YOUR_TOKEN", trackAutomaticEvents: false);
+  }
+```
 </Tab>
-<Tab>
-**Swift Package Manager**
 
+<Tab>
+##### Install the SDK
+<Tabs items={['Swift Package Manager', 'Cocoapods', 'Carthage']}>
+
+<Tab>
+Note: Swift Package Manager requires Xcode 12+
 1.  In Xcode, select File > Swift Packages > Add Package Dependency.
 2.  Follow the prompts using the URL for this repository and must select a version greater than or equal to v4.0.0
+</Tab>
 
-**CocoaPods**
-
+<Tab>
 1. Create a Podfile in your Xcode project directory by running `pod init` in your terminal, edit the Podfile generated, and add the following line: `pod 'Mixpanel'`.
 2. Run `pod install` in your Xcode project directory. CocoaPods should download and install the Mixpanel library, and create a new Xcode workspace. Open up this workspace in Xcode or typing `open *.xcworkspace` in your terminal.
+</Tab>
 
-**Carthage**
+<Tab>
 Add `github "mixpanel/mixpanel-iphone"` to your Cartfile.
 </Tab>
-<Tab>
-**Swift Package Manager (requires Xcode 12+)**
 
+</Tabs>
+##### Configure the SDK
+Replace `YOUR_TOKEN` with your project token. You can find your token [here](https://mixpanel.com/settings/project).
+```objc
+#import "Mixpanel/Mixpanel.h"
+
+- (BOOL)application:(UIApplication _)application 
+	didFinishLaunchingWithOptions:(NSDictionary _)launchOptions {
+  ...
+  Mixpanel *mixpanel = [Mixpanel sharedInstanceWithToken:@"YOUR_TOKEN" 
+  									trackAutomaticEvents: NO];
+  ...
+}
+```
+</Tab>
+
+<Tab>
+##### Install the SDK
+<Tabs items={['Swift Package Manager', 'Cocoapods', 'Carthage']}>
+
+<Tab>
+Note: Swift Package Manager requires Xcode 12+
 1. In Xcode, select File > Swift Packages > Add Package Dependency.
 2. Paste the URL `https://github.com/mixpanel/mixpanel-swift` and a minimum semantic version of v2.8.0.
+</Tab>
 
-**CocoaPods**
-
+<Tab>
 1. Create a Podfile in your Xcode project directory by running `pod init` in your terminal, edit the Podfile generated, and add the following line: `pod 'Mixpanel-swift'`.
 2. Run `pod install` in your Xcode project directory. CocoaPods should download and install the Mixpanel library, and create a new Xcode workspace. Open up this workspace in Xcode or typing `open *.xcworkspace` in your terminal.
+</Tab>
 
-**Carthage**
+<Tab>
 Add `github "mixpanel/mixpanel-swift"` to your Cartfile.
 </Tab>
+
+</Tabs>
+##### Configure the SDK
+1. Import Mixpanel into `AppDelegate.swift`
+2. Initialize Mixpanel within `application:didFinishLaunchingWithOptions` as seen below
+
+Replace `YOUR_TOKEN` with your project token. You can find your token [here](https://mixpanel.com/settings/project).
+
+```swift
+import Mixpanel
+
+func application(_ application: UIApplication,
+                 didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
+    ...
+    // Replace with your Project Token
+    Mixpanel.initialize(token: "YOUR_TOKEN", trackAutomaticEvents: false)
+    ...
+}
+```
+</Tab>
+
 <Tab>
+##### Install the SDK
 Add `implementation 'com.mixpanel.android:mixpanel-android:7.+'` as a dependency to your `build.gradle` file.
 
 Once you've updated `build.gradle`, you can force Android Studio to sync with your new configuration by clicking the Sync Project with Gradle Files icon at the top of the window:
@@ -151,30 +284,61 @@ Next, add the following permissions in your AndroidManifest.xml:
 <!-- Optional, but recommended so events will contain information about bluetooth state-->
 <uses-permission android:name="android.permission.BLUETOOTH" />
 ```
-</Tab>
-<Tab>
+##### Configure the SDK
+Replace `YOUR_TOKEN` with your project token. You can find your token [here](https://mixpanel.com/settings/project).
+```java
+import com.mixpanel.android.mpmetrics.MixpanelAPI;
 
+public class MainActivity extends ActionBarActivity {
+  private MixpanelAPI mp;
+
+  @Override
+  protected void onCreate(Bundle savedInstanceState) {
+    super.onCreate(savedInstanceState);
+    setContentView(R.layout.activity_main);
+
+    trackAutomaticEvents = false;
+    // Replace with your Project Token
+    mp = MixpanelAPI.getInstance(this, "YOUR_TOKEN", trackAutomaticEvents);
+  }
+}
+```
+</Tab>
+
+<Tab>
+##### Install the SDK
 Add `https://github.com/mixpanel/mixpanel-unity.git#master` to the dependencies section of `com.mixpanel.unity`.
 
 Alternatively, you can download and install the .unitypackage file from our [releases page](https://github.com/mixpanel/mixpanel-unity/releases).
+##### Configure the SDK
+To initialize the library, first open the unity project settings menu for Mixpanel. (Edit -> Project Settings -> Mixpanel) 
+Then, enter your project token into the Token and Debug Token input fields within the inspector. 
+You can find your token [here](https://mixpanel.com/settings/project).
+
+
+![unity_screenshots](https://user-images.githubusercontent.com/36679208/152408022-62440f50-04c7-4ff3-b331-02d3d3122c9e.jpg)
+
+Note: If you prefer to initialize Mixpanel manually, you can select the `Manual Initialization` in the settings and 
+call `Mixpanel.Init()` to initialize.
 </Tab>
 <Tab>
-Sending data to Mixpanel via our API doesn't require an installation. 
+##### Install the SDK
 
-You're ready to move onto the next step.
+<Callout type="info" emoji>
+  No install required
+</Callout>
+Sending data to Mixpanel via HTTP does not require an installation. **You're ready to move to the next step.**
+
 </Tab>
 </ExtendedTabs>
 
 
-<br></br><br></br><br></br><br></br>
+<br></br><br></br><br></br>
 
 {/* Next Section */}
 
 <hr></hr>
 <br></br>
-
-
-
 
 <div class="bg-base100 p-5 rounded-xl">
     <h2 class="text-2xl font-medium mb-2 color:bg-purple200">Next: Identify Your Users</h2>

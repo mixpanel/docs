@@ -2,12 +2,57 @@
 
 import { Tab, Tabs } from 'nextra-theme-docs'
 
-import ExtendedTabs from '../../../components/ExtendedTabs/ExtendedTabs';
-import { dataItems } from '../../../utils/constants';
+import ExtendedButton from '/components/ExtendedButton/ExtendedButton'
+import ExtendedTabs from '/components/ExtendedTabs/ExtendedTabs';
+import { dataItems } from '/utils/constants';
 
-You can use Mixpanel's SDKs to track events from your website, web application, or backend servers. We [recommend](/docs/tracking-methods/choosing-the-right-method) server-side tracking, since it is more reliable and easier to maintain than web/mobile tracking.
+## Overview
 
-Note: You'll need your Project Token to authenticate, which you can get [here](https://mixpanel.com/settings/project).
+This section provides guidance on using the `identify` method to identify your product's users. 
+This will show you which users are triggering events in Mixpanel. 
+
+It is recommended to include this code snippet in the section of your code where user sign-ups, logins, or account details updates are handled.
 
 
-## Step 1: Install the SDK
+## Code
+
+Replace `USER_ID` with a unique identifier, preferably the user ID from your database. Including the user's email is 
+also suggested, along with any additional "user properties" like name, avatar, email, created_at, etc. This information
+ will appear on the user's profile and can be used to filter users in reports.
+
+<ExtendedTabs urlParam="sdk" urlToItemsMap={dataItems}>
+
+<Tab>
+```js Javascript
+import mixpanel from 'mixpanel-browser';
+
+mixpanel.init('YOUR_TOKEN', {debug: true, track_pageview: true, persistence: 'localStorage'});
+
+// Set this to a unique identifier for the user performing the event.
+mixpanel.identify('USER_ID')
+
+// Track an event. It can be anything, but in this example, we're tracking a Sign Up event.
+mixpanel.track('Sign Up', {
+  'Signup Type': 'Referral'
+})
+```
+
+
+
+</Tab>
+
+</ExtendedTabs>
+
+<br></br><br></br><br></br><br></br>
+
+{/* Next Section */}
+
+<hr></hr>
+<br></br>
+
+<div class="bg-base100 p-5 rounded-xl">
+    <h2 class="text-2xl font-medium mb-2 color:bg-purple200">Next: Track Events</h2>
+    <p>Once you've implemented the `identify` method, it's time to track what your users are doing in your product.</p>
+    <br></br>
+    <ExtendedButton title="Track events in your product" link="/docs/quickstart/identify-users/"></ExtendedButton>
+</div>
