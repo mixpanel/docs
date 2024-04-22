@@ -102,8 +102,13 @@ $border-radius-lg: 100px;
         letter-spacing: unset;
     }
 
-    .nx-font-semibold, .nx-font-bold, 
+    .nx-font-semibold, .nx-font-bold,
     p strong {
+        font-weight: 500; // Override to a weight that we actually DO support, otherwise we risk faux bold
+    }
+
+    .nx-font-semibold, .nx-font-bold,
+    li strong {
         font-weight: 500; // Override to a weight that we actually DO support, otherwise we risk faux bold
     }
   

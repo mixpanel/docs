@@ -1,0 +1,63 @@
+import ExtendedButton from '/components/ExtendedButton/ExtendedButton'
+
+# What to Track?
+
+In this guide, we provide some guidance on what to track and how to track it.
+
+## Start with 2 Events
+We recommend starting with just 2 events, which can provide a lot of value with little effort:
+
+* **Sign Up** - Tracking Sign Up is a quick way to understand your product's growth; by counting the number 
+of Sign Ups, you can answer "How many new users am I acquiring every day, week, and month?".
+
+* **A Value Moment** - Tracking a value moment can help you access how well your product is doing. You can
+answer questions like "How many users experience value in my product each day/week/month?" or
+"How many users come back (retain) and experience the moment again?".
+
+### Choose a Value Moment
+
+Value moments are often use of important features or taking a critical action. Here are some examples:
+* **Social**: Post Created, Friend Added
+* **E-Commerce**: Purchase Completed
+* **Media**: Video Watched, Article Read
+* **SaaS**: Document Created, Call Started
+
+We recommend keeping your event names short and descriptive. We like to use is the Object-Action convention:
+```python
+    e.g. 'Video Watched', 'Message Liked', 'Friend Added'
+```
+
+### Include Properties
+Properties add context to the event. We recommend these properties for your two events:
+
+**Sign Up**
+  * **Source** (e.g Referral, Organic, Paid)
+  * **Country** (e.g. United States, Vietnam, Germany) 
+  * **OS** (e.g. Windows, iOS, Android) 
+
+**Value Moment**
+  * Up to you! This will depend greatly on your value moment. A `Video Watched` event may benefit from a `Duration` property.
+  A `Message Liked` event may benefit from a `Message Type` property.
+
+### We recommend server side tracking
+Adblockers and browsers are making it harder and harder to track users on the client-side. 
+If you want to make sure the data you're collecting is accurate, you'll want to do most of 
+your tracking server-side.
+
+**Frontend event tracking (especially on web) loses between 15% and 30% of events**. 
+If you're only tracking on the client-side, you're missing out on a lot of data, even if you're 
+using a reverse proxy.
+
+<br></br><br></br><br></br>
+
+{/* Next Section */}
+
+<hr></hr>
+<br></br>
+
+<div class="bg-base100 p-0 rounded-xl">
+    <h2 class="text-2xl font-medium mb-2 color:bg-purple200">Next Steps</h2>
+    <p>Once you've chosen a few events to track first, you're ready to set up Mixpanel.</p>
+    <br></br>
+    <ExtendedButton title="Start Quickstart Guide" link="/docs/quickstart/install-mixpanel"></ExtendedButton>
+</div>
