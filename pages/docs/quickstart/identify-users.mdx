@@ -16,28 +16,210 @@ It is recommended to include this snippet in the section of your code where sign
 ## Code
 
 Replace `USER_ID` with a unique identifier, preferably the user ID from your database. Including the user's email is 
-also suggested, along with any additional "user properties" like name, avatar, email, created_at, etc. This information
+also suggested, along with any additional "user properties" like name, avatar, email, created, etc. This information
  will appear on the user's profile and can be used to filter users in reports.
 
 <ExtendedTabs urlParam="sdk" urlToItemsMap={dataItems}>
 
 <Tab>
 ```js Javascript
-import mixpanel from 'mixpanel-browser';
-
-mixpanel.init('YOUR_TOKEN', {debug: true, track_pageview: true, persistence: 'localStorage'});
-
-// Set this to a unique identifier for the user performing the event.
+// Set USER_ID to a unique identifier for the user 
 mixpanel.identify('USER_ID')
 
-// Track an event. It can be anything, but in this example, we're tracking a Sign Up event.
-mixpanel.track('Sign Up', {
-  'Signup Type': 'Referral'
+// Optional, add properties
+mixpanel.people.set({ '$name': 'Jane Doe',
+                      '$email': 'jane.doe@example.com',
+                      '$created': dateString,
+                      'plan' : 'Premium'
+                      // Add anything else about the user here
+                      });
+```
+</Tab>
+
+<Tab>
+```python
+// Set USER_ID to a unique identifier for the user 
+mp.people_set('USER_ID', {'$name'  : 'Jane Doe',
+                          '$email' : 'jane.doe@example.com',
+                          '$created': date_string,
+                          'plan' : 'Premium'
+                          # Add anything else about the user here
 })
 ```
+</Tab>
 
+<Tab>
+```javascript
+// Set USER_ID to a unique identifier for the user 
+mixpanel.people.set('USER_ID', {
+    $name: 'Jane Doe',
+    $email: 'jane.doe@example.com',
+    $created: dateString,
+    plan: 'premium'
+    // Add anything else about the user here
+});
+```
+</Tab>
 
+<Tab>
+```go
+// Set USER_ID to a unique identifier for the user 
+exampleUser := mixpanel.NewPeopleProperties("USER_ID", map[string]any{
+  "$name": "Jane Doe",
+  "$email": "jane.doe@example.com",
+  "$created": dateString,
+  "plan": "Premium"
+  // Add anything else about the user here
+})
+```
+</Tab>
 
+<Tab>
+```ruby
+# Set USER_ID to a unique identifier for the user 
+tracker.people.set('USER_ID', {
+    '$name' => 'Jane Doe',
+    '$email' => 'jane.doe@example.com',
+    '$created' => date_string,
+    'plan' => 'Premium'
+    # Add anything else about the user here
+});
+```
+</Tab>
+
+<Tab>
+```java
+import com.mixpanel.mixpanelapi.MessageBuilder;
+import com.mixpanel.mixpanelapi.MixpanelAPI;
+
+MessageBuilder messageBuilder = new MessageBuilder('YOUR_TOKEN');
+
+// Set USER_ID to a unique identifier for the user 
+JSONObject props = new JSONObject();
+props.put("$name", "Jane Doe");
+props.put("$email", "jane.doe@example.com");
+props.put("$created", dateString);
+props.put("plan", "Premium");
+JSONObject update = messageBuilder.set("USER_ID", props);
+
+// Send the update to mixpanel
+MixpanelAPI mixpanel = new MixpanelAPI();
+mixpanel.sendMessage(update);
+```
+</Tab>
+
+<Tab>
+```javascript Javascript
+// Set USER_ID to a unique identifier for the user 
+mixpanel.identify("USER_ID");
+
+// Identify must be called before properties are set
+mixpanel.getPeople().set("$name", "Jane Doe");
+mixpanel.getPeople().set("$email", "jane.doe@example.com");
+mixpanel.getPeople().set("$created", dateString);
+mixpanel.getPeople().set("plan", "Premium");
+```
+</Tab>
+
+<Tab>
+```java
+// Set USER_ID to a unique identifier for the user 
+mixpanel.identify("USER_ID");
+
+// Identify must be called before properties are set
+mixpanel.getPeople().set("$name", "Jane Doe");
+mixpanel.getPeople().set("$email", "jane.doe@example.com");
+mixpanel.getPeople().set("$created", dateString);
+mixpanel.getPeople().set("plan", "Premium");
+```
+</Tab>
+
+<Tab>
+```objc Objective-C
+// Set USER_ID to a unique identifier for the user 
+[mixpanel identify:@"USER_ID"];
+
+[mixpanel.people set:@{@"$name": @"Jane Doe"}];
+[mixpanel.people set:@{@"$email": @"jane.deo@example.com"}];
+[mixpanel.people set:@{@"$created": dateString}];
+[mixpanel.people set:@{@"plan": @"Premium"}];
+```
+</Tab>
+
+<Tab>
+```swift Swift
+// Set USER_ID to a unique identifier for the user 
+Mixpanel.mainInstance().identify(distinctId: "USER_ID")
+
+Mixpanel.mainInstance().people.set(properties: [ "$name":"Jane Doe", 
+                                                 "$email":"jane.doe@example.com",
+                                                 "$created":dateString,
+                                                 "$plan":"Premium"])
+```
+</Tab>
+
+<Tab>
+```java Java
+MixpanelAPI mixpanel =
+    MixpanelAPI.getInstance(context, "YOUR_TOKEN", false);
+
+// Set USER_ID to a unique identifier for the user 
+// The second param is a flag for allowing profile updates
+mixpanel.identify("USER_ID", true);
+
+// Identify must be called before properties are set
+mixpanel.getPeople().set("$name", "Jane Doe");
+mixpanel.getPeople().set("$email", "jane.doe@example.com");
+mixpanel.getPeople().set("$created", dateString);
+mixpanel.getPeople().set("plan", "Premium");
+```
+</Tab>
+
+<Tab>
+```csharp
+// Set USER_ID to a unique identifier for the user 
+Mixpanel.Identify("USER_ID");
+
+// Identify must be called before properties are set
+Mixpanel.People.Set("$name", "Jane Doe");
+Mixpanel.People.Set("$email", "jane.doe@example.com");
+Mixpanel.People.Set("$created", dateString);
+Mixpanel.People.Set("plan", "Premium");
+```
+</Tab>
+
+<Tab>
+If you don't see an SDK or an integration in your language, you can send events to our API directly. 
+
+Here's a sample script. Replace `YOUR_TOKEN` with your project token. You can find your token [here](https://mixpanel.com/settings/project).
+
+```python test.py
+import requests
+
+url = "https://api.mixpanel.com/engage#profile-set"
+
+payload = [
+    {
+        "$token": "YOUR_TOKEN",
+        # Set USER_ID to a unique identifier for the user =
+        "$distinct_id": "USER_ID",
+        "$set": {
+            "$name": "Jane Doe",
+            "$email": "jane.doe@example.com",
+            "$created": DATE_STRING,
+            "plan": "Premium"
+        }
+    }
+]
+headers = {
+    "accept": "text/plain",
+    "content-type": "application/json"
+}
+
+response = requests.post(url, json=payload, headers=headers)
+
+print(response.text)
+```
 </Tab>
 
 </ExtendedTabs>
