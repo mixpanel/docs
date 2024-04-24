@@ -1,5 +1,5 @@
-/ /docs/start-here
-/docs /docs/start-here
+/ /docs/what-is-mixpanel
+/docs /docs/what-is-mixpanel
 /docs/admin/data-governance/data-audit /docs/data-governance/data-views-and-classification
 /docs/admin/data-governance/data-views-data-classification /docs/data-governance/data-views-and-classification
 /docs/admin/data-governance/event-approval /docs/data-governance/event-approval
@@ -44,12 +44,12 @@
 /docs/debugging/distinct-id-limits /docs/tracking-best-practices/distinct-id-limits
 /docs/debugging/overview /docs/tracking-best-practices/debugging
 /docs/getting-started/plan-your-implementation /docs/what-to-track
-/docs/getting-started/what-is-mixpanel /docs/start-here
+/docs/getting-started/what-is-mixpanel /docs/what-is-mixpanel
 /docs/getting-started/what-should-i-track /docs/what-to-track
 /docs/getting-started/what-should-i-track#how-to-track /docs/what-to-track#how-to-track
 /docs/how-it-works/concepts /docs/data-structure/concepts
 /docs/how-it-works/infrastructure https://engineering.mixpanel.com/under-the-hood-of-mixpanels-infrastructure-0c7682125e9b
-/docs/implement-mixpanel /docs/start-here
+/docs/implement-mixpanel /docs/what-is-mixpanel
 /docs/other-bits/cohort-syncs/airship /docs/cohort-sync/integrations/airship
 /docs/other-bits/cohort-syncs/appcues /docs/cohort-sync/integrations/appcues
 /docs/other-bits/cohort-syncs/apptimize /docs/cohort-sync/integrations/apptimize
@@ -95,7 +95,7 @@
 /docs/other-bits/rate-limits https://developer.mixpanel.com/reference/query-api#rate-limits
 /docs/other-bits/support-and-community/community /docs/community/guidelines
 /docs/other-bits/support-and-community/support /docs/response-times
-/docs/other-bits/tutorials /docs/start-here
+/docs/other-bits/tutorials /docs/what-is-mixpanel
 /docs/other-bits/tutorials/adoption-reference-guide /docs/best-practices/adoption
 /docs/other-bits/tutorials/analytics-strategy /docs/best-practices/analytics-strategy/overview
 /docs/other-bits/tutorials/creating-a-tracking-plan /docs/best-practices/create-a-tracking-plan
