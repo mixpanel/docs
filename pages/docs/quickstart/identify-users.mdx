@@ -4,6 +4,8 @@ import { Tab, Tabs } from 'nextra-theme-docs'
 
 import ExtendedButton from '/components/ExtendedButton/ExtendedButton'
 import ExtendedTabs from '/components/ExtendedTabs/ExtendedTabs';
+import FAQBox from '/components/FAQBox/FAQBox'
+
 import { dataItems } from '/utils/constants';
 
 ## Overview
@@ -254,3 +256,17 @@ All of our sample code transparently retries and backoff from rate limit excepti
     <br></br>
     <ExtendedButton title="Track Events in Your Product" link="/docs/quickstart/track-events/"></ExtendedButton>
 </div>
+
+
+<br></br><br></br>
+
+## FAQ
+
+<FAQBox title="How do I connect events from logged out to logged in users?">
+If tracking client-side, just call `.identify(<user_id>)` when a user logs in and `.reset()`
+ when they log out. Mixpanel will automatically stitch the user journey across
+  logged out and logged in.
+
+  If tracking server-side, check out our [server-side best practices guide](/docs/best-practices/server-side-best-practices). 
+  For more information, read our comprehensive guide on [Identifying Users](/docs/tracking-methods/id-management/identifying-users).
+</FAQBox>

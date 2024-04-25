@@ -5,7 +5,9 @@ import { Card, Cards } from 'nextra-theme-docs'
 import { Callout } from 'nextra-theme-docs'
 
 import ExtendedButton from '/components/ExtendedButton/ExtendedButton'
-import ExtendedTabs from '/components/ExtendedTabs/ExtendedTabs';
+import ExtendedTabs from '/components/ExtendedTabs/ExtendedTabs'
+import FAQBox from '/components/FAQBox/FAQBox'
+
 import { dataItems } from '/utils/constants';
 
 <Callout type="info" emoji>
@@ -367,3 +369,31 @@ Using the HTTP API does not require an installation. **You're ready to move to t
     <br></br>
     <ExtendedButton title="Identify Your Users" link="/docs/quickstart/identify-users/"></ExtendedButton>
 </div>
+
+<br></br><br></br>
+
+## FAQ
+
+<FAQBox title="Does Mixpanel automatically track page views?">
+  Yes, if you pass `track_pageview: true` in the `mixpanel.init()` call,
+   Mixpanel will automatically track a "Page View" event every time a new 
+   page is loaded. 
+   Learn more [here](/docs/tracking-methods/sdks/javascript#tracking-page-views).
+</FAQBox>
+
+<FAQBox title="What are the recommended web configuration options?">
+  When tracking on web, we recommend using localStorage, as this is more reliable:
+
+```javascript
+mixpanel.set_config({ persistence: "localStorage" }); 
+```
+</FAQBox>
+
+<FAQBox title="Does Mixpanel use third-party cookies?">
+  No, our Mixpanel JavaScript SDK does not set or use any third-party cookies. If you wish 
+  to disable cookies entirely, you can set the disable_persistence option to true when initializing 
+  your Mixpanel JS instance. Note that disabling persistence will disable the use of super properties 
+  and anonymous -> identified user tracking.
+</FAQBox>
+
+
