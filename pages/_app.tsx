@@ -5,7 +5,7 @@ import { useEffect } from "react";
 import { insertGTMScriptTags } from "../components/GTMScripts";
 import type { AppProps } from "next/app";
 import { useRouter } from "next/router";
-import {KapaEventNames} from "../utils/constants";
+import { KapaEventNames } from "../utils/constants";
 import { track, DocsAIPrefix } from "../utils/tracking";
 
 export type URLSearchGet = string | null;
