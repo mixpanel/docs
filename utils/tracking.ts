@@ -10,3 +10,5 @@ export function track(eventName: string, properties: TrackingProperties) {
     console.error(e);
   }
 }
+
+export const DocsAIPrefix = `[Docs AI]`
