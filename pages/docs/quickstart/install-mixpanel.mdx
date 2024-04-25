@@ -95,7 +95,17 @@ go get github.com/mixpanel/mixpanel-go
 ##### Configure the SDK
 Replace `YOUR_TOKEN` with your project token. You can find your token [here](https://mixpanel.com/settings/project).
 ```shell Go
-mp := mixpanel.NewApiClient("YOUR_TOKEN")
+package main
+
+import (
+	"context"
+	"github.com/mixpanel/mixpanel-go"
+)
+
+func main() {
+	ctx := context.Background()
+	mp := mixpanel.NewApiClient("YOUR_TOKEN")
+}
 ```
 </Tab>
 
@@ -108,7 +118,8 @@ gem install mixpanel-ruby
 Replace `YOUR_TOKEN` with your project token. You can find your token [here](https://mixpanel.com/settings/project).
 ```ruby Ruby
 require 'mixpanel-ruby'
-mp = Mixpanel::Tracker.new(PROJECT_TOKEN)
+
+mp = Mixpanel::Tracker.new(YOUR_TOKEN)
 ```
 </Tab>
 
@@ -126,6 +137,7 @@ mp = Mixpanel::Tracker.new(PROJECT_TOKEN)
 Replace `YOUR_TOKEN` with your project token. You can find your token [here](https://mixpanel.com/settings/project).
 ```java Java
 //Import Mixpanel API
+import com.mixpanel.mixpanelapi.MessageBuilder;
 import com.mixpanel.mixpanelapi.MixpanelAPI;
 
 // Set up an instance of MixpanelAPI 
@@ -184,10 +196,10 @@ class _YourClassState extends State<YourClass> {
   }
 
   Future<void> initMixpanel() async {
-    // Replace with your Project Token
     // Once you've called this method once, you can access `mixpanel` throughout the rest of your application.
     mixpanel = await Mixpanel.init("YOUR_TOKEN", trackAutomaticEvents: false);
   }
+}
 ```
 </Tab>
 
@@ -217,7 +229,7 @@ Replace `YOUR_TOKEN` with your project token. You can find your token [here](htt
 #import "Mixpanel/Mixpanel.h"
 
 - (BOOL)application:(UIApplication _)application 
-	didFinishLaunchingWithOptions:(NSDictionary _)launchOptions {
+  didFinishLaunchingWithOptions:(NSDictionary _)launchOptions {
   ...
   Mixpanel *mixpanel = [Mixpanel sharedInstanceWithToken:@"YOUR_TOKEN" 
   									trackAutomaticEvents: NO];
@@ -322,6 +334,13 @@ You can find your token [here](https://mixpanel.com/settings/project).
 
 Note: If you prefer to initialize Mixpanel manually, you can select the `Manual Initialization` in the settings and 
 call `Mixpanel.Init()` to initialize.
+
+To use mixpanel, add the following sample code to a part of your application:
+
+```csharp
+using mixpanel;
+```
+You're
 </Tab>
 <Tab>
 ##### Install the SDK
@@ -329,7 +348,7 @@ call `Mixpanel.Init()` to initialize.
 <Callout type="info" emoji>
   No install required
 </Callout>
-Sending data to Mixpanel via HTTP does not require an installation. **You're ready to move to the next step.**
+Using the HTTP API does not require an installation. **You're ready to move to the next step.**
 
 </Tab>
 </ExtendedTabs>

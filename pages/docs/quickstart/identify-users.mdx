@@ -8,7 +8,7 @@ import { dataItems } from '/utils/constants';
 
 ## Overview
 
-This section introduces the `identify` method, which allows you to see which users triggered each event in Mixpanel. 
+This step introduces the `identify` method, which allows you to see which users triggered each event in Mixpanel. 
 
 It is recommended to include this snippet in the section of your code where sign-ups, logins, or account details updates are handled.
 
@@ -38,7 +38,7 @@ mixpanel.people.set({ '$name': 'Jane Doe',
 
 <Tab>
 ```python
-// Set USER_ID to a unique identifier for the user 
+# Set USER_ID to a unique identifier for the user 
 mp.people_set('USER_ID', {'$name'  : 'Jane Doe',
                           '$email' : 'jane.doe@example.com',
                           '$created': date_string,
@@ -64,20 +64,25 @@ mixpanel.people.set('USER_ID', {
 <Tab>
 ```go
 // Set USER_ID to a unique identifier for the user 
-exampleUser := mixpanel.NewPeopleProperties("USER_ID", map[string]any{
+exampleUser := mp.NewPeopleProperties("USER_ID", map[string]any{
   "$name": "Jane Doe",
   "$email": "jane.doe@example.com",
   "$created": dateString,
   "plan": "Premium"
   // Add anything else about the user here
 })
+
+err := mp.PeopleSet(ctx, []*mixpanel.PeopleProperties{
+		exampleUser,
+	},
+)
 ```
 </Tab>
 
 <Tab>
 ```ruby
 # Set USER_ID to a unique identifier for the user 
-tracker.people.set('USER_ID', {
+mp.people.set('USER_ID', {
     '$name' => 'Jane Doe',
     '$email' => 'jane.doe@example.com',
     '$created' => date_string,
@@ -89,11 +94,6 @@ tracker.people.set('USER_ID', {
 
 <Tab>
 ```java
-import com.mixpanel.mixpanelapi.MessageBuilder;
-import com.mixpanel.mixpanelapi.MixpanelAPI;
-
-MessageBuilder messageBuilder = new MessageBuilder('YOUR_TOKEN');
-
 // Set USER_ID to a unique identifier for the user 
 JSONObject props = new JSONObject();
 props.put("$name", "Jane Doe");
@@ -103,7 +103,6 @@ props.put("plan", "Premium");
 JSONObject update = messageBuilder.set("USER_ID", props);
 
 // Send the update to mixpanel
-MixpanelAPI mixpanel = new MixpanelAPI();
 mixpanel.sendMessage(update);
 ```
 </Tab>
@@ -160,18 +159,15 @@ Mixpanel.mainInstance().people.set(properties: [ "$name":"Jane Doe",
 
 <Tab>
 ```java Java
-MixpanelAPI mixpanel =
-    MixpanelAPI.getInstance(context, "YOUR_TOKEN", false);
-
 // Set USER_ID to a unique identifier for the user 
 // The second param is a flag for allowing profile updates
-mixpanel.identify("USER_ID", true);
+mp.identify("USER_ID", true);
 
 // Identify must be called before properties are set
-mixpanel.getPeople().set("$name", "Jane Doe");
-mixpanel.getPeople().set("$email", "jane.doe@example.com");
-mixpanel.getPeople().set("$created", dateString);
-mixpanel.getPeople().set("plan", "Premium");
+mp.getPeople().set("$name", "Jane Doe");
+mp.getPeople().set("$email", "jane.doe@example.com");
+mp.getPeople().set("$created", dateString);
+mp.getPeople().set("plan", "Premium");
 ```
 </Tab>
 
@@ -220,9 +216,30 @@ response = requests.post(url, json=payload, headers=headers)
 
 print(response.text)
 ```
+🎉 Congratulations, you've tracked your first user! You can see them in Mixpanel via the [Users page](https://mixpanel.com/report/users).
+
+**Best Practices for Scale**
+
+You can use this API at scale, for example to backfill historical data into Mixpanel or as part of a high-throughput streaming pipeline. We provide walkthroughs for [Amazon S3](/docs/data-pipelines/integrations/amazon-s3) and [Google Cloud Storage](/docs/data-pipelines/integrations/google-cloud-storage) to provide a more production-grade example of how to use this API at scale.
+
+Here are some other best practices:
+
+- Be explicit about what is tracked to Mixpanel rather than implicitly tracking everything, both for performance and security reasons. Avoid sending user generated content, high-cardinality IDs, or large semi-structured objects.
+- Import a more recent time window first (last 7 days or last 30 days) before backfilling historical data. Mixpanel's autocomplete menus populate events and properties based on the last 30 days of data, so this is the best way to test that data looks as expected.
+- Leverage batching and compression. Each request to /import can send 2000 events to Mixpanel and can be sent compressed using gzip. The sample code in this guide does both.
+- When using Cloud Storage, partition files into ~200MB of JSON (or ~200K records) each. Each file is processed in parallel by Cloud Functions/Lambda and must be ingested by the function within the configured timeout.
+- Log any 400 errors returned by the API. These are non-retryable and indicate something malformed with the data. This should be extremely unlikely once the API is up and running. If a batch contains a mix of valid and invalid data, we will ingest the valid data.
+
+**Limits**
+
+Our Import API is built to ingest billions of events per day across our customers. That said, we do rate limit at very high scale to ensure quality of service and real-time ingestion. Please refer to our [Import API docs](https://developer.mixpanel.com/reference/import-events) for details.
+
+All of our sample code transparently retries and backoff from rate limit exceptions. If you require a higher-limit for a 1-time backfill, please reach out to us at apis@mixpanel.com.
 </Tab>
 
 </ExtendedTabs>
+
+🎉 Congratulations, you've tracked your first user! You can see them in Mixpanel via the [Users page](https://mixpanel.com/report/users).
 
 <br></br><br></br><br></br><br></br>
 
@@ -231,9 +248,9 @@ print(response.text)
 <hr></hr>
 <br></br>
 
-<div class="bg-base100 p-5 rounded-xl">
+<div class="bg-base100 rounded-xl">
     <h2 class="text-2xl font-medium mb-2 color:bg-purple200">Next: Track Events</h2>
-    <p>Once you've implemented the `identify` method, it's time to track what your users are doing in your product.</p>
+    <p>Once you've implemented `identify`, it's time to track what your users are doing in your product.</p>
     <br></br>
-    <ExtendedButton title="Track events in your product" link="/docs/quickstart/identify-users/"></ExtendedButton>
+    <ExtendedButton title="Track Events in Your Product" link="/docs/quickstart/track-events/"></ExtendedButton>
 </div>
