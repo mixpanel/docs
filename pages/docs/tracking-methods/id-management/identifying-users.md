@@ -96,7 +96,7 @@ Note: these flows walk through how `distinct_id` is set in Simplified ID Merge; 
 
 ## Simplified vs Original ID Merge
 
-In March 2023, Mixpanel released Simplified ID Merge (documented above) as a simpler, opt-in alternative to Original ID Merge. In June 2023, Mixpanel made the Simplified API the default for new organizations.
+In March 2023, Mixpanel released Simplified ID Merge (documented above) as a simpler, opt-in alternative to Original ID Merge. In April 2024, Mixpanel made the Simplified API the default for new organizations.
 
 Due to the limited changes in functionality beyond a simpler implementation experience, we do not recommend that customers who have already implemented using the original API reimplement on the simplified API. Both APIs will remain supported and provide the same features.
 
