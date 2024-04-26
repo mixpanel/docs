@@ -58,7 +58,7 @@ Select a table (or view) representing an event from your warehouse and tell Mixp
     Complete the following steps to get your Snowflake connector up and running:
     1. Navigate to **Project Settings**, then select **Warehouse Sources**.
     2. Click on `+ Add Connection` and select **Snowflake**.
-    3. You should see a new page to create your snowflake connector. In the first view, fill out the following fields before clicking  `Next`: 
+    3. You should see a new page to create your snowflake connector. In the first view, fill out the following fields before clicking  `Next`:
         - Snowflake Account Name / URL
         - Username
         - Role
@@ -77,7 +77,7 @@ Select a table (or view) representing an event from your warehouse and tell Mixp
             - Enter the name of your warehouse (default value: **MIXPANEL_IMPORT_WAREHOUSE**).
             - We recommend creating a separate warehouse for Mixpanel, and ensuring that Mixpanel has the appropriate role permissions to access it.
             - Run the commands below in Snowflake.
-    3. You should see a new page to create your snowflake connector. In the first view, fill out the following fields before clicking  `Next`: 
+    3. You should see a new page to create your snowflake connector. In the first view, fill out the following fields before clicking  `Next`:
         - Snowflake Account Name / URL
         - Username
         - Role
@@ -100,26 +100,26 @@ Select a table (or view) representing an event from your warehouse and tell Mixp
                 CREATE WAREHOUSE MIXPANEL_IMPORT_WAREHOUSE WITH WAREHOUSE_SIZE = XSMALL AUTO_SUSPEND = 60 AUTO_RESUME = TRUE INITIALLY_SUSPENDED = FALSE;
                 GRANT USAGE ON WAREHOUSE MIXPANEL_IMPORT_WAREHOUSE TO ROLE MIXPANEL_IMPORT_ROLE;
                 GRANT OPERATE ON WAREHOUSE MIXPANEL_IMPORT_WAREHOUSE TO ROLE MIXPANEL_IMPORT_ROLE;
-                GRANT MONITOR ON WAREHOUSE MIXPANEL_IMPORT_WAREHOUSE TO ROLE MIXPANEL_IMPORT_ROLE; 
-                ``` 
+                GRANT MONITOR ON WAREHOUSE MIXPANEL_IMPORT_WAREHOUSE TO ROLE MIXPANEL_IMPORT_ROLE;
+                ```
         - Storage Integration
             - This is required because Mixpanel will export the query results into a GCS bucket.
             - Default value: **MIXPANEL_IMPORT_STORAGE_INTEGRATION**
-            
+
             ```jsx
             CREATE STORAGE INTEGRATION MIXPANEL_IMPORT_STORAGE_INTEGRATION
               TYPE = EXTERNAL_STAGE
               STORAGE_PROVIDER = 'GCS'
               ENABLED = TRUE
               STORAGE_ALLOWED_LOCATIONS = ("gcs://mixpanel-2946576-ca470bce1e1ed2ec");
-            GRANT USAGE ON INTEGRATION MIXPANEL_IMPORT_STORAGE_INTEGRATION TO MIXPANEL_IMPORT_ROLE; 
+            GRANT USAGE ON INTEGRATION MIXPANEL_IMPORT_STORAGE_INTEGRATION TO MIXPANEL_IMPORT_ROLE;
             ```
-            
+
         - Database (optional)
             - Enter the name of the database you want to grant permission to.
             - By default, we request read-only access.
             - Mixpanel does not store the access information. However, you can choose to provide more granular access if you desire.
-            
+
             ```jsx
             GRANT USAGE ON DATABASE "<your_data_base>" TO ROLE MIXPANEL_IMPORT_ROLE;
             GRANT USAGE ON ALL SCHEMAS IN DATABASE "<your_data_base>" TO ROLE MIXPANEL_IMPORT_ROLE;
@@ -127,10 +127,10 @@ Select a table (or view) representing an event from your warehouse and tell Mixp
             GRANT SELECT ON ALL VIEWS IN DATABASE "<your_data_base>" TO ROLE MIXPANEL_IMPORT_ROLE;
             GRANT SELECT ON ALL MATERIALIZED VIEWS IN DATABASE "<your_data_base>" TO ROLE MIXPANEL_IMPORT_ROLE;
             ```
-    
+
     *IP Allowed List*
     If you are using [Snowflake Network policy](https://docs.snowflake.com/en/user-guide/network-policies) to restrict access to your instance, you might need to add the following IP addresses to the allowed list.
-    
+
     ```jsx
     34.31.112.201
     34.147.68.192
@@ -139,32 +139,32 @@ Select a table (or view) representing an event from your warehouse and tell Mixp
     35.204.164.122
     35.204.177.251
     ```
-    
+
     *Mirror Sync Readiness*
-    
+
     <Callout type="info">
       Mirror syncing is in early access and not available on all projects. Request access
       <a href="https://forms.gle/x8mbU6FVe5uHiVXF6">here</a>.
     </Callout>
-    
+
     Mirror syncs use [Snowflake streams](https://docs.snowflake.com/en/user-guide/streams-intro) to track all changes (inserts, updates, and deletes) to source tables. [`CHANGE_TRACKING`](https://docs.snowflake.com/en/sql-reference/sql/alter-table) must be enabled on a Snowflake table in order for a Mirror sync to be created from it.
     ```jsx
     ALTER TABLE <database>.<schema>.<table> SET CHANGE_TRACKING = TRUE;
     ```
-    
+
     When using Mirror syncs Mixpanel creates and manages Snowflake streams in the source warehouse and needs the `CREATE STREAM` permission on a Snowflake schema to store these streams. We recommend creating a new empty schema solely for Mixpanel. For example:
     ```jsx
     CREATE DATABASE IF NOT EXISTS MIXPANEL_STREAM_DATABASE;
     CREATE SCHEMA IF NOT EXISTS MIXPANEL_STREAM_DATABASE.MIXPANEL_STREAM_SCHEMA;
-    
+
     -- Grant your Mixpanel role access to create streams in the schema
     GRANT USAGE ON DATABASE MIXPANEL_STREAM_DATABASE TO ROLE MIXPANEL_IMPORT_ROLE;
     GRANT USAGE ON SCHEMA MIXPANEL_STREAM_DATABASE.MIXPANEL_STREAM_SCHEMA TO ROLE MIXPANEL_IMPORT_ROLE;
     GRANT CREATE STREAM ON SCHEMA MIXPANEL_STREAM_DATABASE.MIXPANEL_STREAM_SCHEMA TO ROLE MIXPANEL_IMPORT_ROLE;
     ```
-    
+
     To create a new Mirror-ready Snowflake source follow the steps above and fill out the additional two fields "Stream Database" and "Stream Schema" in step 4.
-    
+
     To update an existing source to be Mirror-ready:
     1. Navigate to **Project Settings**, then select **Warehouse Sources**.
     2. Find the source to update. The source's card should include a note **Mirror: Additional Setup Required**. Click "Additional Setup Required" to be taken to the source configuration page.
@@ -185,12 +185,12 @@ Complete the following steps to get your Databricks connector up and running:
 
 1. Navigate to **Project Settings**, then select **Warehouse Sources**.
 2. Click on `+ Add Connection` and select **Databricks**.
-3. You should see a new page to create your databricks connector. In the first view, fill out the following fields before clicking  `Create Source`: 
+3. You should see a new page to create your databricks connector. In the first view, fill out the following fields before clicking  `Create Source`:
     - ** Server Hostname ** - This is the hostname of your Databricks cluster. This can be found in your workspace URL, or by navigating to [JDBC/ODBC connection settings](https://docs.databricks.com/en/integrations/jdbc-odbc-bi.html#step)
     - ** HTTP Path ** - This is the HTTP path of the cluster you would like to connect to. This can be found in your cluster [JDBC/ODBC connection settings](https://docs.databricks.com/en/integrations/jdbc-odbc-bi.html#step)
     - ** Access Token ** - This is the Personal access token used to authenticate with your Databricks cluster. Here are the instructions on [how to create an access token](https://docs.databricks.com/en/dev-tools/auth.html#databricks-personal-access-tokens-for-workspace-users)
-4. In the second view, you should see that the credentials are validated and a source is added. 
-    
+4. In the second view, you should see that the credentials are validated and a source is added.
+
 *IP Allowed List*
 If you are using [IP Access List](https://docs.databricks.com/en/security/network/front-end/ip-access-list.html) to restrict access to your instance, you might need to add the following IP addresses to the allowed list.
 
@@ -205,7 +205,7 @@ If you are using [IP Access List](https://docs.databricks.com/en/security/networ
 
 </Tab>
 <Tab>
-    
+
 <div style={{position: 'relative', paddingBottom: '64.90384615384616%', height: 0}}>
     <iframe src="https://www.loom.com/embed/76f4658dd850457e9634c706ee0d9430"
         frameBorder="0"
@@ -218,10 +218,10 @@ Complete the following steps to get your Redshift connector up and running:
 
 1. Navigate to **Project Settings**, then select **Warehouse Sources**.
 2. Click on `+ Add Connection` and select **Redshift**.
-3. You should see a new page to create your Redshift connector. In the first view, fill out the following fields before clicking  `Next`: 
+3. You should see a new page to create your Redshift connector. In the first view, fill out the following fields before clicking  `Next`:
     - **AWS Account ID**  - This is the AWS account ID that can be found in the dropdown in the AWS Redshift Console.
     - **Cluster ID**  - This is the name of the Redshift cluster.
-4. In the second view, you will need to add the following. 
+4. In the second view, you will need to add the following.
     - **AWS Region** - The region code in which your Redshift cluster resides.
     - **S3 Staging Bucket** - This is the name of S3 staging bucket you need to create. We'll use it to extract data from your Redshift tables before importing the data into Mixpanel.
     - Copy the command generated below in the AWS CLI to create the S3 Staging Bucket with the name you specified.
@@ -231,9 +231,9 @@ Complete the following steps to get your Redshift connector up and running:
     - Finally, attach the policy you created to the role you created by copy pasting the command in the AWS CLI.
     - Then, click Create Source.
 5. In the third view, you should see a confirmation that your source was created. To establish the source connection, we need to ping your Redshift instance to actually create the service account user.
-    - **Grant Access to Schema** - Enter the name of the schema you want to grant Mixpanel access to. 
+    - **Grant Access to Schema** - Enter the name of the schema you want to grant Mixpanel access to.
     - Copy the command generated and run in your Redshift worksheet. Once that command is run successfully, the connection will be established and you will be able to send data from Redshift tables to Mixpanel.
-    
+
 ### IP Allowed List
 If you are using [AWS PrivateLink](https://docs.aws.amazon.com/redshift/latest/mgmt/security-private-link.html) to restrict access to your instance, you might need to add the following IP addresses to the allowed list.
 
@@ -315,14 +315,14 @@ Here’s an example table that illustrates what can be loaded as group profiles 
 
 Warehouse Connectors continuously detect new data from your warehouse tables to load into Mixpanel. The Sync Type determines the method of detecting new rows:
 
-### Time-Based
-Time-Based syncs require an Insert Time column in your table. Mixpanel remembers the maximum Insert Time it saw in the previous run of the sync and looks for only rows that have an Insert Time greater than that. This is useful and efficient for append-only tables (usually events) that have a column indicating when the data was appended.
+### Append
+Append syncs require an Insert Time column in your table. Mixpanel remembers the maximum Insert Time it saw in the previous run of the sync and looks for only rows that have an Insert Time greater than that. This is useful and efficient for append-only tables (usually events) that have a column indicating when the data was appended.
 
 ### Full
 Full syncs periodically make a snapshot of the source table and sync it entirely to Mixpanel. If a row has new properties in your warehouse, the corresponding profile in Mixpanel will be overridden with those new properties. This mode is available for all tables except events.
 
 ### Mirror
-Mirror syncs leverage warehouse change-data-capture (CDC) capabilities to mirror insert, updates, and deletes from your warehouse to Mixpanel. It provides the efficiency of time-based syncs with the simplicity/reliability of full syncs and works for all table types.
+Mirror syncs leverage warehouse change-data-capture (CDC) capabilities to mirror insert, updates, and deletes from your warehouse to Mixpanel. It provides the efficiency of append syncs with the simplicity/reliability of full syncs and works for all table types.
 
 <Callout type="info">
 Mirror is in beta for Snowflake only. Request access [here](https://forms.gle/x8mbU6FVe5uHiVXF6).
@@ -336,7 +336,7 @@ Anything that is event-based (has a user_id and timestamp) and that you want to 
 * CRM: Opportunity Created, Opportunity Closed
 * Support: Ticket Created, Ticket Closed
 * Billing: Subscription Created, Subscription Upgraded, Subscription Canceled, Payment Made
-* Appplication Database: Signup, Purchased Item, Invited Teammate
+* Application Database: Sign-up, Purchased Item, Invited Teammate
 
 We also recommend loading your user and account tables, to enrich events with demographic attributes about the users and accounts who performed them.
 

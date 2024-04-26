@@ -321,7 +321,7 @@ paths:
               "1-1": "Project Token, intended for untrusted clients.",
               "1-2": "Project Secret, intended for server-side integration.",
               "2-0": "Compression",
-              "2-1": "None",
+              "2-1": "Gzip allowed",
               "2-2": "Gzip allowed",
               "3-0": "Content-Type",
               "3-1": "application/x-www-form-urlencoded",
