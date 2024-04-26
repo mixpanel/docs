@@ -333,21 +333,21 @@ Click on the **dot** beside the statistical significance number to make that p
 
 ### Property Attribution
 
-#### First Touch vs Last Touch
+#### First Step Defined vs Last Step Defined
 
 Event property values can vary from step to step in your funnel. For example, a user may select a blue shirt in step 1, but put a red shirt in their cart in step 3. If you want to control when the property value is locked in for all steps of your funnel, you can use property attribution.
 
-To access this feature, filter or breakdown by a property in the funnel chart below the query builder. Click on **Last touch** to select either “Last touch”, “First touch”, or a specific step number.
+To access this feature, filter or breakdown by a property in the funnel chart below the query builder. Click on **Step 1** to select either “Last Step Defined”, “First Step Defined”, or a specific step number.
 
 ![/Screen_Shot_2022-07-12_at_3.33.03_PM.png](/Screen_Shot_2022-07-12_at_3.33.03_PM.png)
 
 Your selected choice will determine which step of your funnel determines the property value for the whole funnel.
 
-#### First Touch Attribution and Forwardfilling
+#### First Step Defined Attribution and Forwardfilling
 
 By default, Mixpanel “forwardfills” [event properties](/docs/data-structure/events-and-properties) in instances where properties are sent in earlier steps of a Funnel but not sent in subsequent steps of the same funnel. This means that the property that is present in early steps of a funnel is appended to the later steps of the funnel where it was previously absent.
 
-Select **First touch** to attribute the first property value to the whole funnel, regardless of whether the property value changes in subsequent steps. First touch is not the same as the first step of the funnel, rather it is the first time the property is given a non-null defined value.
+Select **First Step Defined** to attribute the first property value to the whole funnel, regardless of whether the property value changes in subsequent steps. First Step Defined is not the same as the first step of the funnel, rather it is the first time the property is given a non-null defined value.
 
 For example, say that the user is shopping on your website and you want to track a funnel from Log In to Purchase. There are three events in this journey: Log In, Item View, and Purchase. Each event has its own properties, and the “Name” property is only sent with the “Log In” event. This property will be added to the subsequent events, where it was previously absent:
 
@@ -355,11 +355,11 @@ For example, say that the user is shopping on your website and you want to track
 
 As you can see in the diagram above, the property of “Name” is only a property for the event “Log In”, but that property is forwardfilled to the subsequent events.
 
-#### Last Touch Attribution and Backfilling
+#### Last Step Defined Attribution and Backfilling
 
 By default, Mixpanel “backfills” [event properties](/docs/data-structure/events-and-properties) in instances where properties are sent in later steps of a Funnel but not sent in the earlier steps of the same funnel. This means that the property that is present in later steps of a funnel is appended to the earlier steps of the funnel where it was previously absent.
 
-Select **Last touch** to attribute the last property value to the whole funnel, regardless of the property value in previous steps. Last touch is not the same as the last step of the funnel, rather it is the last time the property is given a non-null defined value.
+Select **Last Step Defined** to attribute the last property value to the whole funnel, regardless of the property value in previous steps. Last Step Defined is not the same as the last step of the funnel, rather it is the last time the property is given a non-null defined value.
 
 For example, the user shopping on your website chooses to buy a shirt that costs $5. In this instance, properties of the item that is purchased are not sent until the “Purchase” event, so the property is backfilled and added to the “Item View” and “Log In” events:
 
@@ -379,7 +379,7 @@ As you can see, the property of “Item Color” is Blue for Event 2, but change
 
 You can choose to attribute a property value from any step to the whole funnel by selecting the step number. Note that with this option you may see an "undefined" null value for the property, as this option is not tied to when the property value was defined.
 
-For example, the user viewing your website encounters an error and sends in a support ticket to your business. On first touch they may have been using Safari as their browser, and used Safari to send in the support ticket at last touch, but they were using Chrome when they triggered an error-state. It is relevant for your business to know that they triggered an error on the Chrome browser and not Safari, in order to assist them in fixing the error.
+For example, the user viewing your website encounters an error and sends in a support ticket to your business. On First Step Defined they may have been using Safari as their browser, and used Safari to send in the support ticket at Last Step Defined, but they were using Chrome when they triggered an error-state. It is relevant for your business to know that they triggered an error on the Chrome browser and not Safari, in order to assist them in fixing the error.
 
 ## Conversion & drop-off Flows
 You can click into any funnel step and select "View as Flow". This takes you to the [flows](/docs/reports/flows) report and lets you see:
