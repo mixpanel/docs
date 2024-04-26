@@ -43,6 +43,9 @@ export default function Document() {
                     data-modal-override-open-class-search="top-nav-search-bar"
                     data-search-include-source-names='["Documentation","Query API Reference"]'
                     ></script>
+                <script>
+                    {`(function(){let k=window.Kapa;if(!k){let i=function(){i.c(arguments)};i.q=[];i.c=function(args){i.q.push(args)};window.Kapa=i}})();`}
+                </script>
                 {/* Empty script tag as chrome bug fix, see https://stackoverflow.com/a/42969608/943337 */}
                 <script> </script>
             </body>
