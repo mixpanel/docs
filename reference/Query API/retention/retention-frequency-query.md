@@ -1,7 +1,6 @@
 ---
 title: "Query Frequency Report"
 slug: "retention-frequency-query"
-excerpt: ""
 hidden: false
 createdAt: "2020-10-20T00:41:48.196Z"
 updatedAt: "2023-09-26T21:06:39.027Z"

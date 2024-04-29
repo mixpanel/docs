@@ -1,7 +1,6 @@
 ---
 title: "Track Events"
 slug: "track-event"
-excerpt: ""
 hidden: false
 createdAt: "2021-07-27T00:06:02.814Z"
 updatedAt: "2023-09-26T21:06:38.693Z"

@@ -1,7 +1,6 @@
 ---
 title: "Create Identity"
 slug: "create-identity"
-excerpt: ""
 hidden: false
 createdAt: "2021-08-04T20:56:14.330Z"
 updatedAt: "2023-09-26T21:06:37.368Z"

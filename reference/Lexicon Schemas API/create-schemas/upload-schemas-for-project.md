@@ -1,7 +1,6 @@
 ---
 title: "Create/Replace Multiple"
 slug: "upload-schemas-for-project"
-excerpt: ""
 hidden: false
 createdAt: "2020-11-20T21:23:20.196Z"
 updatedAt: "2023-09-26T21:06:38.963Z"

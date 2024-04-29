@@ -1,7 +1,6 @@
 ---
 title: "List Connector Logs"
 slug: "get-connector-logs"
-excerpt: ""
 hidden: false
 createdAt: "2021-11-23T19:28:56.441Z"
 updatedAt: "2023-09-26T21:06:38.075Z"
