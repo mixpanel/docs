@@ -4,7 +4,7 @@ export default function ExtendedButton({ title, link }) {
     }
   
     return (
-      <button onClick={handleClick} class="text-white 
+      <button onClick={handleClick} className="text-white 
       
       // Background
       bg-gradient-to-b from-purple50 to-purple100 hover:from-purple50 hover:to-purple100 active:from-purple50 active:to-purple140
