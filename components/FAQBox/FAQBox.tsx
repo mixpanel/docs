@@ -1,7 +1,7 @@
 export default function FAQBox({ title, children }) {
     return (
       <details
-        closed
+        open={false}
         className="last-of-type:mb-0 rounded-xl bg-[#f5f2f2] dark:bg-neutral-800 p-0 mt-6"
       >
         <summary>
