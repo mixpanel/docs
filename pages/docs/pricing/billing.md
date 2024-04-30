@@ -278,6 +278,6 @@ There are also some scenarios in which MTU numbers may be higher than expected b
 - the user clears their cookies
 - If the user goes from one page to another, and each page has a different domain - in this case, the second page will have a different anonymousId by default
 
-To assist in analysing potential sources of MTU spikes, create a copy of [this board](https://mixpanel.com/project/2195193/view/139237/app/boards#id=5762529) from our demo project into the main project contributing to MTU charges (typically your main production project). As you open the board linked above, you will see instructions to click on "Use this board" to transfer it over to your project and to edit the default date range.
+To assist in analysing potential sources of MTU spikes, create a copy of [this board](https://mixpanel.com/project/3187769/view/3699049/app/boards#id=7126504) from our demo project into the main project contributing to MTU charges (typically your main production project). As you open the board linked above, you will see instructions to click on "Use this board" to transfer it over to your project and to edit the default date range.
 
 If you suspect there is an implementation error causing your MTU number to rise contact us immediately. We are happy to help you resolve the issue.
