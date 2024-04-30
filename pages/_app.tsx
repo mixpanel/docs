@@ -5,6 +5,8 @@ import { useEffect } from "react";
 import { insertGTMScriptTags } from "../components/GTMScripts";
 import type { AppProps } from "next/app";
 import { useRouter } from "next/router";
+import { KapaEventNames } from "../utils/constants";
+import { track, DocsAIPrefix } from "../utils/tracking";
 
 export type URLSearchGet = string | null;
 
@@ -79,7 +81,19 @@ export default function MyApp({ Component, pageProps }: AppProps) {
   useEffect(() => {
     insertGTMScriptTags();
     trackPageview();
-    // @ts-ignore
+    Object.values(KapaEventNames).forEach((eventName) => {
+      // @ts-ignore
+      Kapa(eventName, function (args) {
+        // prefix kapa's property names to distinguish them from mixpanel's
+        const properties = {};
+        if (args) {
+          Object.keys(args).forEach((keyName) => {
+            properties[`${DocsAIPrefix} ${keyName}`] = args[keyName];
+          }) 
+        }
+        track(`${DocsAIPrefix} ${eventName}`, properties);
+      });
+    })
   }, []);
 
   useEffect(() => {
