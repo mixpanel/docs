@@ -147,7 +147,7 @@ If you want to store a super property only once (often for things like initial r
 
 This means that it's safe to call `mixpanel.register_once()` with the same property on every page load, and it will only set it if the super property doesn't exist.
 
-#### Super Properties Live in Local Storage
+#### Super Properties Live in a Cookie
 Our JS library uses a cookie (created in the domain of the page loading the lib) to store super properties. These are stored as JSON in the cookie. They will persist for the life of that cookie, which by default is 365 days. If you wish to change the life of the cookie, you may do so using [`set_config()`](https://github.com/mixpanel/mixpanel-js/blob/master/doc/readme.io/javascript-full-api-reference.md#mixpanelset_config) to adjust the value for the `cookie_expiration` (an integer in days).
 
 ## Managing User Identity
