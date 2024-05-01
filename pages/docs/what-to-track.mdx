@@ -1,16 +1,16 @@
 import ExtendedButton from '/components/ExtendedButton/ExtendedButton'
 
-# What to Track?
+# What to Track
 
 In this guide, we provide some guidance on what to track and how to track it.
 
-## Start with 2 Events
+## Start With 2 Events
 We recommend starting with just 2 events, which can provide a lot of value with little effort:
 
 * **Sign Up** - Tracking Sign Up is a quick way to understand your product's growth; by counting the number 
 of Sign Ups, you can answer "How many new users am I acquiring every day, week, and month?".
 
-* **A Value Moment** - Tracking a value moment can help you assess how well your product is doing. You can
+* **Value Moment** - Tracking a value moment can help you assess how well your product is doing. You can
 answer questions like "How many users experience value in my product each day/week/month?" or
 "How many users come back (retain) and experience the moment again?".
 
@@ -22,10 +22,8 @@ Value moments are often the use of important features or taking a critical actio
 * **Media**: Video Watched, Article Read
 * **SaaS**: Document Created, Call Started
 
-We recommend keeping your event names short and descriptive. We like to use the Object-Action convention:
-```python
-    e.g. 'Video Watched', 'Message Liked', 'Friend Added'
-```
+We recommend keeping your event names short and descriptive. We like to use the Object-Action convention, as you can see
+in the above examples.
 
 ### Include Properties
 Properties add context to the event. We recommend these properties for your two events:
@@ -39,7 +37,7 @@ Properties add context to the event. We recommend these properties for your two 
   * Up to you! This will depend greatly on your value moment. A `Video Watched` event may benefit from a `Duration` property.
   A `Message Liked` event may benefit from a `Message Type` property.
 
-### We recommend server-side tracking
+## We Recommend Server-Side Tracking
 Adblockers and browsers are making it harder and harder to track users on the client-side. 
 If you want to make sure the data you're collecting is accurate, you'll want to do most of 
 your tracking server-side.
@@ -57,8 +55,8 @@ Want to learn more? [Read our full guide](/docs/tracking-methods/choosing-the-ri
 <hr></hr>
 <br></br>
 
-<div class="bg-base100 p-0 rounded-xl">
-    <h2 class="text-2xl font-medium mb-2 color:bg-purple200">Next Steps</h2>
+<div className="bg-base100 rounded-xl">
+    <h2 className="text-2xl font-medium mb-2 color:bg-purple200">Next Steps</h2>
     <p>Once you've chosen a few events to track first, you're ready to set up Mixpanel.</p>
     <br></br>
     <ExtendedButton title="Start Quickstart Guide" link="/docs/quickstart/install-mixpanel"></ExtendedButton>

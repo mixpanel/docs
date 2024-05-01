@@ -1,7 +1,7 @@
 {
-  "install-mixpanel": "1. Install Mixpanel",
-  "identify-users": "2. Identify Users",
-  "track-events": "3. Track Events",
+  "install-mixpanel": "Install Mixpanel",
+  "identify-users": "Identify Users",
+  "track-events": "Track Events",
   "tips-and-tricks": {
     "display": "hidden"
   },
