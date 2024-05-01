@@ -17,9 +17,11 @@ It is recommended to include this snippet in the section of your code where sign
 
 ## Code
 
-Replace `USER_ID` with a unique identifier, preferably the user ID from your database. Including the user's email is 
-also suggested, along with any additional "user properties" like name, avatar, email, created, etc. This information
- will appear on the user's profile and can be used to filter users in reports.
+Replace `USER_ID` with a unique identifier, preferably the user ID from your database. 
+
+Including the user's email is also suggested, along with any additional **User Properties** such as name, avatar, created date, etc. 
+Tracking this information allows you to create groups of users, aka **Cohorts**, and filter for certain users, which will aid you in identifying 
+trends and insights.
 
 <ExtendedTabs urlParam="sdk" urlToItemsMap={dataItems}>
 
@@ -28,10 +30,8 @@ also suggested, along with any additional "user properties" like name, avatar, e
 // Set USER_ID to a unique identifier for the user 
 mixpanel.identify('USER_ID')
 
-// Optional, add properties
 mixpanel.people.set({ '$name': 'Jane Doe',
                       '$email': 'jane.doe@example.com',
-                      '$created': dateString,
                       'plan' : 'Premium'
                       // Add anything else about the user here
                       });
@@ -43,11 +43,13 @@ mixpanel.people.set({ '$name': 'Jane Doe',
 # Set USER_ID to a unique identifier for the user 
 mp.people_set('USER_ID', {'$name'  : 'Jane Doe',
                           '$email' : 'jane.doe@example.com',
-                          '$created': date_string,
                           'plan' : 'Premium'
                           # Add anything else about the user here
 })
 ```
+
+You may want to disable ip geolocation when using a server-side SDK. You can learn more in [Server-Side Best Practices](/docs/tracking-best-practices/server-side-best-practices)
+
 </Tab>
 
 <Tab>
@@ -56,7 +58,6 @@ mp.people_set('USER_ID', {'$name'  : 'Jane Doe',
 mixpanel.people.set('USER_ID', {
     $name: 'Jane Doe',
     $email: 'jane.doe@example.com',
-    $created: dateString,
     plan: 'premium'
     // Add anything else about the user here
 });
@@ -69,7 +70,6 @@ mixpanel.people.set('USER_ID', {
 exampleUser := mp.NewPeopleProperties("USER_ID", map[string]any{
   "$name": "Jane Doe",
   "$email": "jane.doe@example.com",
-  "$created": dateString,
   "plan": "Premium"
   // Add anything else about the user here
 })
@@ -79,6 +79,8 @@ err := mp.PeopleSet(ctx, []*mixpanel.PeopleProperties{
 	},
 )
 ```
+
+You may want to disable ip geolocation when using a server-side SDK. You can learn more in [Server-Side Best Practices](/docs/tracking-best-practices/server-side-best-practices)
 </Tab>
 
 <Tab>
@@ -87,11 +89,12 @@ err := mp.PeopleSet(ctx, []*mixpanel.PeopleProperties{
 mp.people.set('USER_ID', {
     '$name' => 'Jane Doe',
     '$email' => 'jane.doe@example.com',
-    '$created' => date_string,
     'plan' => 'Premium'
     # Add anything else about the user here
 });
 ```
+
+You may want to disable ip geolocation when using a server-side SDK. You can learn more in [Server-Side Best Practices](/docs/tracking-best-practices/server-side-best-practices)
 </Tab>
 
 <Tab>
@@ -100,7 +103,6 @@ mp.people.set('USER_ID', {
 JSONObject props = new JSONObject();
 props.put("$name", "Jane Doe");
 props.put("$email", "jane.doe@example.com");
-props.put("$created", dateString);
 props.put("plan", "Premium");
 JSONObject update = messageBuilder.set("USER_ID", props);
 
@@ -117,9 +119,10 @@ mixpanel.identify("USER_ID");
 // Identify must be called before properties are set
 mixpanel.getPeople().set("$name", "Jane Doe");
 mixpanel.getPeople().set("$email", "jane.doe@example.com");
-mixpanel.getPeople().set("$created", dateString);
 mixpanel.getPeople().set("plan", "Premium");
 ```
+
+You may want to disable ip geolocation when using a server-side SDK. You can learn more in [Server-Side Best Practices](/docs/tracking-best-practices/server-side-best-practices)
 </Tab>
 
 <Tab>
@@ -130,7 +133,6 @@ mixpanel.identify("USER_ID");
 // Identify must be called before properties are set
 mixpanel.getPeople().set("$name", "Jane Doe");
 mixpanel.getPeople().set("$email", "jane.doe@example.com");
-mixpanel.getPeople().set("$created", dateString);
 mixpanel.getPeople().set("plan", "Premium");
 ```
 </Tab>
@@ -142,7 +144,6 @@ mixpanel.getPeople().set("plan", "Premium");
 
 [mixpanel.people set:@{@"$name": @"Jane Doe"}];
 [mixpanel.people set:@{@"$email": @"jane.deo@example.com"}];
-[mixpanel.people set:@{@"$created": dateString}];
 [mixpanel.people set:@{@"plan": @"Premium"}];
 ```
 </Tab>
@@ -154,7 +155,6 @@ Mixpanel.mainInstance().identify(distinctId: "USER_ID")
 
 Mixpanel.mainInstance().people.set(properties: [ "$name":"Jane Doe", 
                                                  "$email":"jane.doe@example.com",
-                                                 "$created":dateString,
                                                  "$plan":"Premium"])
 ```
 </Tab>
@@ -168,7 +168,6 @@ mp.identify("USER_ID", true);
 // Identify must be called before properties are set
 mp.getPeople().set("$name", "Jane Doe");
 mp.getPeople().set("$email", "jane.doe@example.com");
-mp.getPeople().set("$created", dateString);
 mp.getPeople().set("plan", "Premium");
 ```
 </Tab>
@@ -181,7 +180,6 @@ Mixpanel.Identify("USER_ID");
 // Identify must be called before properties are set
 Mixpanel.People.Set("$name", "Jane Doe");
 Mixpanel.People.Set("$email", "jane.doe@example.com");
-Mixpanel.People.Set("$created", dateString);
 Mixpanel.People.Set("plan", "Premium");
 ```
 </Tab>
@@ -204,7 +202,6 @@ payload = [
         "$set": {
             "$name": "Jane Doe",
             "$email": "jane.doe@example.com",
-            "$created": DATE_STRING,
             "plan": "Premium"
         }
     }
@@ -269,4 +266,12 @@ If tracking client-side, just call `.identify(<user_id>)` when a user logs in an
 
   If tracking server-side, check out our [server-side best practices guide](/docs/best-practices/server-side-best-practices). 
   For more information, read our comprehensive guide on [Identifying Users](/docs/tracking-methods/id-management/identifying-users).
+</FAQBox>
+
+<FAQBox title="What does Mixpanel track automatically?">
+Mixpanel's Data Ingestion APIs and Client-Side SDKs automatically collect certain properties on every event 
+or user profile update. Examples include: location, operating system, device, etc. Mixpanel calls this automatically
+generated data "Default Properties".
+
+[Read More About Default Properties](/docs/data-structure/property-reference#default-properties)
 </FAQBox>
