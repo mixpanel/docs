@@ -42,26 +42,29 @@ We also support additional data for extending your use cases with Mixpanel:
 ### Mixpanel's Migration Service
 If you have under 15M events in Amplitude, you can migrate your historical Amplitude data using Mixpanel's free migration service. 
 
-In order to user the service, make a `POST` request to `https://amplitude-to-mixpanel-lmozz6xkha-uc.a.run.app` with the following params in the request body: `AMPLITUDE_API_KEY`, `AMPLITUDE_API_SECRET`, and `MIXPANEL_TOKEN`. Optionally, provide a `START_DATE` or `END_DATE` to constrain which data is extrated. If no dates are provided, the service defaults to a 30 day duration relative to the present.
-
 Here's an example request to the migration service which you can customize:
 
 ```bash
 curl --request POST \
   --url https://amplitude-to-mixpanel-lmozz6xkha-uc.a.run.app \
-  --data '{ "AMPLITUDE_API_KEY": "YOUR_AMP_KEY", "AMPLITUDE_API_SECRET": "YOUR_AMP_SECRET", "MIXPANEL_TOKEN": "YOUR_MP_TOKEN", "START_DATE": "YYYY-MM-DD", "END_DATE": "YYYY-MM-DD" }'
+  --data '{
+	"AMPLITUDE_API_KEY": "YOUR_AMP_KEY",
+	"AMPLITUDE_API_SECRET": "YOUR_AMP_SECRET",
+	"MIXPANEL_TOKEN": "YOUR_MP_TOKEN",
+	"START_DATE": "YYYY-MM-DD",
+	"END_DATE": "YYYY-MM-DD"
+  }'
 ```
 
-This service will use your provided credentials to export Amplitude data, transform the data, and load event + user profiles into your Mixpanel project.
-
-A successful response from the service looks like this:
-```json
-{"events_imported": 195823, "users_imported": 1800, "clock_time": "32.29 seconds", "duration": 32293 }
-```
+This service will use your provided credentials to export Amplitude data, transform the data, and load event + user profiles into your Mixpanel project. If no dates are provided, the service defaults to a 30 day duration relative to the present.
 
 [Watch the demo tutorial](https://www.loom.com/share/f947d42db01541a0b74953461e3c6cc0?sid=43c1ef52-d008-4b6d-9015-afa14b05901c) for more in-depth instructions on how to use the migration service.
 
-### Datawarehouse Connectors 
+Note:
+* Any events ingested via this method in the current month will count toward your plan. We recommend testing this while on a Free plan first.
+* This migration service is in beta -- if you have questions or run into issues, please reach out to us [here](mailto:amplitude-migration@mixpanel.com).
+
+### Data Warehouse Connectors 
 If you have access to your Amplitude data in your data warehouse, the most scalable way to bring this historical data into Mixpanel is by using our warehouse connector. At a high-level, the migration consists of 3 steps:
 1. Set up a new Mixpanel project which is on [Simplified ID Merge system](/docs/tracking-methods/id-management/identifying-users#simplified-vs-original-id-merge). 
 2. Transform Amplitude data in your data warehouse (sample SQL transformation included below).   
