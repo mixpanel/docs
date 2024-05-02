@@ -9,24 +9,20 @@ import { dataItems } from '/utils/constants';
 
 ## Overview
 
-This step introduces the `identify` method, which allows you to see which users triggered each event in Mixpanel. 
+This step introduces the `identify` method, which allows you to see which users triggered each event in Mixpanel.
 
-It is recommended to include this snippet in the section of your code where sign-ups, logins, or account detail updates are handled.
-
+It also introduces the `people.set` method, which allows you to define the attributes of each user.
 
 ## Code
 
 Replace `USER_ID` with a unique identifier, preferably the user ID from your database. 
 
 Including the user's email is also suggested, along with any additional **User Properties** such as name, avatar, created date, etc. 
-Tracking this information allows you to create groups of users (aka **Cohorts**) and filter for certain users, enabling you to
-uncover new trends and insights.
 
 <ExtendedTabs urlParam="sdk" urlToItemsMap={dataItems}>
 
 <Tab>
 ```js Javascript
-// Set USER_ID to a unique identifier for the user 
 mixpanel.identify('USER_ID')
 
 mixpanel.people.set({ '$name': 'Jane Doe',
@@ -39,7 +35,6 @@ mixpanel.people.set({ '$name': 'Jane Doe',
 
 <Tab>
 ```python
-# Set USER_ID to a unique identifier for the user 
 mp.people_set('USER_ID', {'$name'  : 'Jane Doe',
                           '$email' : 'jane.doe@example.com',
                           'plan' : 'Premium'
@@ -53,7 +48,6 @@ You may want to disable ip geolocation when using a server-side SDK. You can lea
 
 <Tab>
 ```javascript
-// Set USER_ID to a unique identifier for the user 
 mixpanel.people.set('USER_ID', {
     $name: 'Jane Doe',
     $email: 'jane.doe@example.com',
@@ -65,7 +59,6 @@ mixpanel.people.set('USER_ID', {
 
 <Tab>
 ```go
-// Set USER_ID to a unique identifier for the user 
 exampleUser := mp.NewPeopleProperties("USER_ID", map[string]any{
   "$name": "Jane Doe",
   "$email": "jane.doe@example.com",
@@ -84,7 +77,6 @@ You may want to disable ip geolocation when using a server-side SDK. You can lea
 
 <Tab>
 ```ruby
-# Set USER_ID to a unique identifier for the user 
 mp.people.set('USER_ID', {
     '$name' => 'Jane Doe',
     '$email' => 'jane.doe@example.com',
@@ -98,7 +90,6 @@ You may want to disable ip geolocation when using a server-side SDK. You can lea
 
 <Tab>
 ```java
-// Set USER_ID to a unique identifier for the user 
 JSONObject props = new JSONObject();
 props.put("$name", "Jane Doe");
 props.put("$email", "jane.doe@example.com");
@@ -112,7 +103,6 @@ mixpanel.sendMessage(update);
 
 <Tab>
 ```javascript Javascript
-// Set USER_ID to a unique identifier for the user 
 mixpanel.identify("USER_ID");
 
 // Identify must be called before properties are set
@@ -126,7 +116,6 @@ You may want to disable ip geolocation when using a server-side SDK. You can lea
 
 <Tab>
 ```java
-// Set USER_ID to a unique identifier for the user 
 mixpanel.identify("USER_ID");
 
 // Identify must be called before properties are set
@@ -138,7 +127,6 @@ mixpanel.getPeople().set("plan", "Premium");
 
 <Tab>
 ```objc Objective-C
-// Set USER_ID to a unique identifier for the user 
 [mixpanel identify:@"USER_ID"];
 
 [mixpanel.people set:@{@"$name": @"Jane Doe"}];
@@ -149,7 +137,6 @@ mixpanel.getPeople().set("plan", "Premium");
 
 <Tab>
 ```swift Swift
-// Set USER_ID to a unique identifier for the user 
 Mixpanel.mainInstance().identify(distinctId: "USER_ID")
 
 Mixpanel.mainInstance().people.set(properties: [ "$name":"Jane Doe", 
@@ -160,7 +147,6 @@ Mixpanel.mainInstance().people.set(properties: [ "$name":"Jane Doe",
 
 <Tab>
 ```java Java
-// Set USER_ID to a unique identifier for the user 
 // The second param is a flag for allowing profile updates
 mp.identify("USER_ID", true);
 
@@ -173,7 +159,6 @@ mp.getPeople().set("plan", "Premium");
 
 <Tab>
 ```csharp
-// Set USER_ID to a unique identifier for the user 
 Mixpanel.Identify("USER_ID");
 
 // Identify must be called before properties are set
@@ -196,7 +181,6 @@ url = "https://api.mixpanel.com/engage#profile-set"
 payload = [
     {
         "$token": "YOUR_TOKEN",
-        # Set USER_ID to a unique identifier for the user =
         "$distinct_id": "USER_ID",
         "$set": {
             "$name": "Jane Doe",
@@ -214,7 +198,6 @@ response = requests.post(url, json=payload, headers=headers)
 
 print(response.text)
 ```
-🎉 Congratulations, you've tracked your first user! You can see them in Mixpanel via the [Users page](https://mixpanel.com/report/users).
 
 **Best Practices for Scale**
 
