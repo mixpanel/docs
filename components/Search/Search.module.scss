@@ -12,3 +12,13 @@
     display: flex;
     flex-direction: row;
 }
+
+@media (max-width: 768px) {
+    .searchBar {
+        display: none;
+    }
+    
+    .icon {
+        width: 20px;
+    }
+}
