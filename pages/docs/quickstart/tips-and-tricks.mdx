@@ -1,7 +1,5 @@
 # Tips and Tricks
 
-import FAQBox from '/components/FAQBox/FAQBox'
-
 You can use Mixpanel's SDKs to track events from your website, web application, or backend servers. We [recommend](/docs/tracking-methods/choosing-the-right-method) server-side tracking, since it is more reliable and easier to maintain than web/mobile tracking.
 
 Note: You'll need your Project Token to authenticate, which you can get [here](https://mixpanel.com/settings/project).
@@ -10,6 +8,20 @@ Note: You'll need your Project Token to authenticate, which you can get [here](h
 ## Step 1: Install the SDK
 
 ## FAQ
+
+export function FAQBox({ title, children }) {
+  return (
+    <details
+      open={false}
+      className="last-of-type:mb-0 rounded-xl bg-[#f5f2f2] dark:bg-neutral-800 p-0 mt-6"
+    >
+      <summary>
+        <strong className="text-lg font-medium text-[#1b0b3b]">{title}</strong>
+      </summary>
+      <div className="nx-p-2">{children}</div>
+    </details>
+  )
+}
 
 <FAQBox title="Does Mixpanel automatically track page views?">
   Yes, if you pass `track_pageview: true` in the `mixpanel.init()` call,

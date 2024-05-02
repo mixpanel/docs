@@ -3,7 +3,6 @@
 import { Tab, Tabs } from 'nextra-theme-docs'
 
 import ExtendedTabs from '../../../components/ExtendedTabs/ExtendedTabs';
-import FAQBox from '/components/FAQBox/FAQBox'
 
 import { dataItems } from '../../../utils/constants';
 
@@ -499,6 +498,20 @@ All of our sample code transparently retries and backoff from rate limit excepti
 
 
 ## FAQ
+
+export function FAQBox({ title, children }) {
+  return (
+    <details
+      open={false}
+      className="last-of-type:mb-0 rounded-xl bg-[#f5f2f2] dark:bg-neutral-800 p-0 mt-6"
+    >
+      <summary>
+        <strong className="text-lg font-medium text-[#1b0b3b]">{title}</strong>
+      </summary>
+      <div className="nx-p-2">{children}</div>
+    </details>
+  )
+}
 
 <FAQBox title="Does Mixpanel automatically track page views?">
   Yes, if you pass `track_pageview: true` in the `mixpanel.init()` call,
