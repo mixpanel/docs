@@ -4,7 +4,6 @@ import { Tab, Tabs } from 'nextra-theme-docs'
 
 import ExtendedButton from '/components/ExtendedButton/ExtendedButton'
 import ExtendedTabs from '/components/ExtendedTabs/ExtendedTabs';
-import FAQBox from '/components/FAQBox/FAQBox'
 
 import { dataItems } from '/utils/constants';
 
@@ -258,6 +257,20 @@ All of our sample code transparently retries and backoff from rate limit excepti
 <br></br><br></br>
 
 ## FAQ
+
+export function FAQBox({ title, children }) {
+  return (
+    <details
+      open={false}
+      className="last-of-type:mb-0 rounded-xl bg-[#f5f2f2] dark:bg-neutral-800 p-0 mt-6"
+    >
+      <summary>
+        <strong className="text-lg font-medium text-[#1b0b3b]">{title}</strong>
+      </summary>
+      <div className="nx-p-2">{children}</div>
+    </details>
+  )
+}
 
 <FAQBox title="How do I connect events from logged out to logged in users?">
 If tracking client-side, just call `.identify(<user_id>)` when a user logs in and `.reset()`

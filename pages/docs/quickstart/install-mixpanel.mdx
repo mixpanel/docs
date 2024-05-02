@@ -6,7 +6,6 @@ import { Callout } from 'nextra-theme-docs'
 
 import ExtendedButton from '/components/ExtendedButton/ExtendedButton'
 import ExtendedTabs from '/components/ExtendedTabs/ExtendedTabs'
-import FAQBox from '/components/FAQBox/FAQBox'
 
 import { dataItems } from '/utils/constants';
 
@@ -390,6 +389,20 @@ Using the HTTP API does not require an installation. **You're ready to move to t
 <br></br><br></br>
 
 ## FAQ
+
+export function FAQBox({ title, children }) {
+  return (
+    <details
+      open={false}
+      className="last-of-type:mb-0 rounded-xl bg-[#f5f2f2] dark:bg-neutral-800 p-0 mt-6"
+    >
+      <summary>
+        <strong className="text-lg font-medium text-[#1b0b3b]">{title}</strong>
+      </summary>
+      <div className="nx-p-2">{children}</div>
+    </details>
+  )
+}
 
 <FAQBox title="Does Mixpanel automatically track page views?">
   Yes, if you pass `track_pageview: true` in the `mixpanel.init()` call,
