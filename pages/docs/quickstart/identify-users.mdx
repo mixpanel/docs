@@ -12,7 +12,7 @@ import { dataItems } from '/utils/constants';
 
 This step introduces the `identify` method, which allows you to see which users triggered each event in Mixpanel. 
 
-It is recommended to include this snippet in the section of your code where sign-ups, logins, or account details updates are handled.
+It is recommended to include this snippet in the section of your code where sign-ups, logins, or account detail updates are handled.
 
 
 ## Code
@@ -20,8 +20,8 @@ It is recommended to include this snippet in the section of your code where sign
 Replace `USER_ID` with a unique identifier, preferably the user ID from your database. 
 
 Including the user's email is also suggested, along with any additional **User Properties** such as name, avatar, created date, etc. 
-Tracking this information allows you to create groups of users, aka **Cohorts**, and filter for certain users, which will aid you in identifying 
-trends and insights.
+Tracking this information allows you to create groups of users (aka **Cohorts**) and filter for certain users, enabling you to
+uncover new trends and insights.
 
 <ExtendedTabs urlParam="sdk" urlToItemsMap={dataItems}>
 
@@ -270,8 +270,7 @@ If tracking client-side, just call `.identify(<user_id>)` when a user logs in an
 
 <FAQBox title="What does Mixpanel track automatically?">
 Mixpanel's Data Ingestion APIs and Client-Side SDKs automatically collect certain properties on every event 
-or user profile update. Examples include: location, operating system, device, etc. Mixpanel calls this automatically
-generated data "Default Properties".
+or user profile update. Examples include: location, operating system, device, etc. Mixpanel calls this auto-generated data "Default Properties".
 
-[Read More About Default Properties](/docs/data-structure/property-reference#default-properties)
+[Learn More About Default Properties](/docs/data-structure/property-reference#default-properties)
 </FAQBox>
