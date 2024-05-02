@@ -112,4 +112,6 @@ We recommend exporting Mixpanel data into customer-managed BigQuery, for this th
 
 This is not a recommended approach anymore. But if you choose to export into Mixpanel managed BigQuery then you must provide a Google group email address to use the BigQuery export when you [create your pipeline](https://developer.mixpanel.com/reference/create-warehouse-pipeline). Mixpanel exports transformed data into BigQuery at a specified interval. 
 
-Note: Mixpanel creates a dataset in its own BigQuery instance and gives \"View\" access to the account(s) provided at the time of creating the pipeline. As a result, there is no storage cost associated with exporting data to BigQuery, but standard compute costs will occur when querying on this data.\n\nIf you choose to copy the dataset into your own BigQuery instance, you will additionally start accruing storage costs from BigQuery.
+Note: Mixpanel creates a dataset in its own BigQuery instance and gives \"View\" access to the account(s) provided at the time of creating the pipeline. As a result, there is no storage cost associated with exporting data to BigQuery, but standard compute costs will occur when querying on this data.
+
+If you choose to copy the dataset into your own BigQuery instance, you will additionally start accruing storage costs from BigQuery.
