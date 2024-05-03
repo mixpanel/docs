@@ -20,3 +20,21 @@ export const dwhItems = {
     'databricks': 'Databricks',
     'redshift': 'Redshift',
 }
+
+export const KapaEventNames = {
+    OnModalOpen: `onModalOpen`,
+    OnModalClose: `onModalClose`,
+    onAskAIQuerySubmit : `onAskAIQuerySubmit`,
+    onAskAIExampleQuerySubmit : `onAskAIExampleQuerySubmit`,
+    onAskAIAnswerCompleted : `onAskAIAnswerCompleted`,
+    onAskAIFeedbackSubmit : `onAskAIFeedbackSubmit`,
+    onAskAILinkClick : `onAskAILinkClick`,
+    onAskAISourceClick : `onAskAISourceClick`,
+    onAskAIAnswerCopy : `onAskAIAnswerCopy`,
+    onAskAIGenerationStop : `onAskAIGenerationStop`,
+    onAskAIConversationReset : `onAskAIConversationReset`,
+    onModeSwitch : `onModeSwitch`,
+    onSearchResultsCompleted : `onSearchResultsCompleted`,
+    onSearchResultsShowMoreClick : `onSearchResultsShowMoreClick`,
+    onSearchResultClick : `onSearchResultClick`,
+}
