@@ -36,7 +36,7 @@ https://help.mixpanel.com/hc/en-us/articles/115004502206(.*) /docs/pricing/billi
 https://help.mixpanel.com/hc/en-us/articles/115004502806(.*) /docs/quickstart/connect-your-data
 https://help.mixpanel.com/hc/en-us/articles/115004505106(.*) /docs/orgs-and-projects/managing-projects#creating-projects
 https://help.mixpanel.com/hc/en-us/articles/115004507523(.*) https://mixpanel.com/compare-to/google-analytics
-https://help.mixpanel.com/hc/en-us/articles/115004507543(.*) /docs/quickstart/what-to-track
+https://help.mixpanel.com/hc/en-us/articles/115004507543(.*) /docs/what-to-track
 https://help.mixpanel.com/hc/en-us/articles/115004509406(.*) /docs/tracking-methods/id-management/identifying-users
 https://help.mixpanel.com/hc/en-us/articles/115004509426(.*) /docs/tracking-methods/id-management/identifying-users
 https://help.mixpanel.com/hc/en-us/articles/115004510946(.*) /docs/tracking-methods/id-management/identifying-users
@@ -87,7 +87,7 @@ https://help.mixpanel.com/hc/en-us/articles/115004695223(.*) /docs/features/sess
 https://help.mixpanel.com/hc/en-us/articles/115004695283(.*) /docs/tracking-methods/sdks/ios#tracking-revenue
 https://help.mixpanel.com/hc/en-us/articles/115004695323(.*) /docs/users/overview#advanced
 https://help.mixpanel.com/hc/en-us/articles/115004708186(.*) /docs/data-structure/user-profiles
-https://help.mixpanel.com/hc/en-us/articles/115004723526(.*) /docs/quickstart/what-to-track
+https://help.mixpanel.com/hc/en-us/articles/115004723526(.*) /docs/what-to-track
 https://help.mixpanel.com/hc/en-us/articles/115004723646(.*) /docs/data-structure/user-profiles
 https://help.mixpanel.com/hc/en-us/articles/115004734463(.*) /docs/quickstart/connect-your-data#http-api
 https://help.mixpanel.com/hc/en-us/articles/115004958823(.*) /docs

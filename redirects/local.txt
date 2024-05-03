@@ -43,10 +43,10 @@
 /docs/debugging/bot-traffic /docs/tracking-best-practices/bot-traffic
 /docs/debugging/distinct-id-limits /docs/tracking-best-practices/distinct-id-limits
 /docs/debugging/overview /docs/tracking-best-practices/debugging
-/docs/getting-started/plan-your-implementation /docs/quickstart/what-to-track
+/docs/getting-started/plan-your-implementation /docs/what-to-track
 /docs/getting-started/what-is-mixpanel /docs/what-is-mixpanel
-/docs/getting-started/what-should-i-track /docs/quickstart/what-to-track
-/docs/getting-started/what-should-i-track#how-to-track /docs/quickstart/what-to-track#how-to-track
+/docs/getting-started/what-should-i-track /docs/what-to-track
+/docs/getting-started/what-should-i-track#how-to-track /docs/what-to-track#how-to-track
 /docs/how-it-works/concepts /docs/data-structure/concepts
 /docs/how-it-works/infrastructure https://engineering.mixpanel.com/under-the-hood-of-mixpanels-infrastructure-0c7682125e9b
 /docs/implement-mixpanel /docs/what-is-mixpanel
