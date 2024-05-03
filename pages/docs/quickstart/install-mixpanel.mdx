@@ -415,4 +415,14 @@ mixpanel.set_config({ persistence: "localStorage" });
   and anonymous -> identified user tracking.
 </FAQBox>
 
+<FAQBox title="How can I track in a privacy compliant way?">
+  If a user opts out of tracking, you can call the `.optOutTracking()` method on any of our 
+  client-side SDKs; this prevents any subsequent data being tracked from that user's device. 
+  Learn more [here](/docs/privacy/protecting-user-data).
+
+  For iOS specifically: Mixpanel does not use IDFA, so it does not require user permission 
+  through the AppTrackingTransparency(ATT) framework. For more details, refer to our 
+  [Apple App Developer Privacy Guidance](https://mixpanel.com/legal/app-store-privacy-details).
+</FAQBox>
+
 
