@@ -46,7 +46,7 @@
 /docs/getting-started/plan-your-implementation /docs/what-to-track
 /docs/getting-started/what-is-mixpanel /docs/what-is-mixpanel
 /docs/getting-started/what-should-i-track /docs/what-to-track
-/docs/getting-started/what-should-i-track#how-to-track /docs/what-to-track#how-to-track
+/docs/getting-started/what-should-i-track#how-to-track /docs/what-to-track#we-recommend-server-side-tracking
 /docs/how-it-works/concepts /docs/data-structure/concepts
 /docs/how-it-works/infrastructure https://engineering.mixpanel.com/under-the-hood-of-mixpanels-infrastructure-0c7682125e9b
 /docs/implement-mixpanel /docs/what-is-mixpanel
@@ -102,7 +102,7 @@
 /docs/other-bits/tutorials/developers/mixpanel-for-developers-commonly-asked-questions /docs/debugging/overview
 /docs/other-bits/tutorials/developers/mixpanel-for-developers-fundamentals /docs/how-it-works/concepts
 /docs/other-bits/tutorials/developers/mixpanel-for-developers-id-management /docs/tracking-methods/id-management/identifying-users
-/docs/other-bits/tutorials/developers/mixpanel-for-developers-implementation /docs/quickstart/connect-your-data
+/docs/other-bits/tutorials/developers/mixpanel-for-developers-implementation /docs/quickstart/install-mixpanel
 /docs/other-bits/tutorials/how-to-clean-your-data /docs/data-governance/data-clean-up
 /docs/other-bits/tutorials/migration-guides /docs/migration/overview
 /docs/other-bits/tutorials/migration-guides/migrating-to-mixpanel-from-adobe-analytics /docs/migration/adobe-analytics
@@ -124,6 +124,8 @@
 /docs/other-bits/tutorials/setting-up-mixpanel /docs/best-practices/project-setup
 /docs/other-bits/under-the-hoo /docs/how-it-works/infrastructure
 /docs/other-bits/under-the-hood /docs/how-it-works/infrastructure
+/docs/quickstart/what-to-track /docs/what-to-track
+/docs/quickstart/connect-your-data /docs/quickstart/install-mixpanel
 /docs/tracking-methods/data-warehouse/bigquery /docs/tracking-methods/data-warehouse
 /docs/tracking-methods/data-warehouse/column-types /docs/tracking-methods/data-warehouse
 /docs/tracking-methods/data-warehouse/databricks /docs/tracking-methods/data-warehouse
@@ -144,7 +146,7 @@
 /docs/tracking/data-warehouse/snowflake /docs/tracking-methods/data-warehouse/snowflake
 /docs/tracking/data-warehouse/users /docs/tracking-methods/data-warehouse/sending-user-profiles
 /docs/tracking/how-tos/ad-spend /docs/data-structure/advanced/ad-spend
-/docs/tracking/how-tos/api-credentials /docs/quickstart/connect-your-data
+/docs/tracking/how-tos/api-credentials /docs/quickstart/install-mixpanel
 /docs/tracking/how-tos/debugging /docs/debugging/overview
 /docs/tracking/how-tos/effective-server /docs/best-practices/server-side-best-practices
 /docs/tracking/how-tos/effective-server-side-tracking /docs/best-practices/server-side-best-practices
@@ -158,7 +160,7 @@
 /docs/tracking/how-tos/tracking-via-proxy /docs/tracking-methods/sdks/javascript
 /docs/tracking/how-tos/user-profiles /docs/data-structure/user-profiles
 /docs/tracking/how-tos/utm /docs/data-structure/advanced/utm-tags
-/docs/tracking/http-api /docs/quickstart/connect-your-data?sdk=httpapi
+/docs/tracking/http-api /docs/quickstart/track-events?sdk=httpapi
 /docs/tracking/integrations/bigquery /docs/tracking-methods/data-warehouse/bigquery
 /docs/tracking/integrations/freshpaint /docs/tracking-methods/integrations/freshpaint
 /docs/tracking/integrations/gcs-import /docs/tracking-methods/integrations/google-tag-manager
@@ -170,7 +172,7 @@
 /docs/tracking/integrations/segment /docs/tracking-methods/integrations/segment
 /docs/tracking/integrations/snowflake /docs/tracking-methods/data-warehouse/snowflake
 /docs/tracking/integrations/snowplow /docs/tracking-methods/integrations/snowplow
-/docs/tracking/javascript-quickstart /docs/quickstart/connect-your-data?sdk=javascript
+/docs/tracking/javascript-quickstart /docs/quickstart/install-mixpanel?sdk=javascript
 /docs/tracking/mobile /docs/tracking/reference/mobile-sdk
 /docs/tracking/mobile/android /docs/tracking-methods/sdks/android
 /docs/tracking/reference/androi /docs/tracking-methods/sdks/android
@@ -192,7 +194,7 @@
 /docs/tracking/reference/ruby /docs/tracking-methods/sdks/ruby
 /docs/tracking/reference/swift /docs/tracking-methods/sdks/swift
 /docs/tracking/reference/unity /docs/tracking-methods/sdks/unity
-/docs/tracking/server /docs/quickstart/connect-your-data?sdk=python
+/docs/tracking/server /docs/quickstart/install-mixpanel?sdk=python
 /docs/tutorials/developers /docs/how-it-works/concepts
 /docs/tutorials/migration-guides/migrating-to-mixpanel-from-google-analytics /docs/migration/google-analytics
 /docs/tutorials/mixpanel-analysis /docs/how-it-works/concepts#overview
