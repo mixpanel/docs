@@ -181,6 +181,10 @@ curl --request POST \
   --data data_group_id=<data_group_id_here>
 ```
 
-The `data_group_id` can be found in the URL of the group profile page:
+The `<data_group_id>` can be found in the URL of the [Group Profile](/docs/data-structure/advanced/group-analytics#group-profiles) page:
 
-`https://mixpanel.com/project/2888952/view/3418364/app/profile#distinct_id=<distinct_id>&data_group_id=-<data_group_id>`
+`https://mixpanel.com/project/<project_id>/view/<workspace_id>/app/profile#distinct_id=<distinct_id>&data_group_id=<data_group_id>`
+
+Here's an actual example with `data_group_id` = `1405123841946871899`: 
+
+https://mixpanel.com/project/3187769/view/3699049/app/profile#distinct_id=company_id_8889&data_group_id=-1405123841946871899
