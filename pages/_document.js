@@ -42,6 +42,7 @@ export default function Document() {
                     data-modal-example-questions='What is the first event I should track?,How do I migrate off Google Analytics?,How do I calculate time spent?,How do I import Snowflake data?'
                     data-modal-override-open-class-search="top-nav-search-bar"
                     data-search-include-source-names='["Documentation","Query API Reference"]'
+                    data-modal-command-k-search-mode-default="true"
                     ></script>
                 <script>
                     {`(function(){let k=window.Kapa;if(!k){let i=function(){i.c(arguments)};i.q=[];i.c=function(args){i.q.push(args)};window.Kapa=i}})();`}
