@@ -159,7 +159,7 @@ Mixpanel supports five data types for properties: String, Numeric, Boolean, Date
 
 ## Object and List of Objects Data Types
 
-Mixpanel also supports object and [list of objects](https://docs-git-kurbycchua-update-property-reference-mixpanel.vercel.app/docs/features/advanced#list-of-objects-property-support) data types in a limited capacity. These are typically for very specific use cases such as in e-commerce (eg Cart Items, Search Filters). It is highly encouraged that you use the five primary data types as they are fully supported in the Mixpanel UI.
+Mixpanel also supports object and [list of objects](/docs/features/advanced#list-of-objects-property-support) data types in a limited capacity. These are typically for very specific use cases such as in e-commerce (eg Cart Items, Search Filters). It is highly encouraged that you use the five primary data types as they are fully supported in the Mixpanel UI.
 
 ### Object
 
