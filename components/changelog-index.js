@@ -52,7 +52,7 @@ export default function ChangelogIndex({ more = "Read more" }) {
   };
 
   return (
-    <div>
+    <div style={{display: 'block', maxWidth: '560px', width:'100%', marginLeft: 'auto', marginRight: 'auto',  alignItems: 'center' }}>
       {displayedPages.map((page) => (
         <div key={page.route} className="mb-10">
           <h3>
