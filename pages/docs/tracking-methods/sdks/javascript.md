@@ -368,7 +368,7 @@ mixpanel.init("<YOUR_PROJECT_TOKEN>", {api_host: "https://<YOUR_PROXY_DOMAIN>"})
 
 🎉 Congratulations, you've set up tracking through a proxy server! Here's a [full code sample](https://gist.github.com/ranic/80459104def4e4bcd73d5c77b817ee43).
 
-## Replay (Beta)
+## Session Replay (Beta)
 
 Record and track how a user interacts with your application. Recordings are disabled by default, and the Recorder SDK will not be loaded into your application until specified.
 
@@ -392,8 +392,8 @@ Start with a smaller percentage and tune to fit your analytics needs.
 | Option | Description | Default | 
 | --- | --- | --- |
 | `record_sessions_percent` | Percentage of SDK initializations that will qualify for a recording. | `0` |
-| `record_idle_timeout_ms` | Duration of inactivity in milliseconds before ending a recording. | `1800000`<br/>(30 minutes) |
-| `record_max_ms` | Maximum length of a single recording in milliseconds. Up to 24 hours is supported. | `86400000`<br/>(24 hours) |
+| `record_idle_timeout_ms` | Duration of inactivity in milliseconds before ending a recording. A new recording will start when active again. | `1800000`<br/>(30 minutes) |
+| `record_max_ms` | Maximum length of a single recording in milliseconds. Up to 24 hours is supported. Once a recording has reached the maximum length, a new one will begin. | `86400000`<br/>(24 hours) |
 | `record_mask_text_selector` | CSS selector for elements that will have their text contents masked. | `"*"` |
 
 
@@ -417,7 +417,7 @@ This will have no effect if there is no recording in progress.
 ### Privacy
 
 #### User Data
-The Mixpanel SDK will always mask all inputs. By default, all text on a page will also be masked unless a different blacklist CSS selector is specified.
+The Mixpanel SDK will always mask all inputs. By default, all text on a page will also be masked unless a different `record_mask_text_selector` is specified.
 
 Along with other data, the recorder respects all Do Not Track (DNT) settings as well as manual opt-out. 
 
