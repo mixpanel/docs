@@ -370,11 +370,11 @@ mixpanel.init("<YOUR_PROJECT_TOKEN>", {api_host: "https://<YOUR_PROXY_DOMAIN>"})
 
 ## Session Replay (Beta)
 
-Record and track how a user interacts with your application. Recordings are disabled by default, and the Recorder SDK will not be loaded into your application until specified.
+Capture data how a user interacts with your application. Replay collection is disabled by default, and the Replay SDK will not be loaded into your application until specified.
 
 ### Sampling Method
 
-The recommended way to record is by sampling a subset of users, specified during initialization:
+The recommended way to capture session replays is by sampling a subset of users, specified during initialization:
 
 ```javascript
 mixpanel.init(
@@ -419,7 +419,7 @@ This will have no effect if there is no replay data collection in progress.
 #### User Data
 The Mixpanel SDK will always mask all inputs. By default, all text on a page will also be masked unless a different `record_mask_text_selector` is specified.
 
-Along with other data, the recorder respects all Do Not Track (DNT) settings as well as manual opt-out. 
+Along with other data, the SDK respects all Do Not Track (DNT) settings as well as manual opt-out for any replay data. 
 
 #### Retention
 User replays are stored for 30 days after the time of ingestion. There is no way to view a replay older than 30 days old.
