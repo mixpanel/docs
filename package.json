@@ -31,18 +31,18 @@
     "nextra-theme-docs": "latest",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
-    "sass": "^1.74.1",
+    "sass": "^1.77.0",
     "sharp": "^0.32.6"
   },
   "devDependencies": {
     "@redocly/openapi-cli": "1.0.0-beta.16",
     "@types/mixpanel": "^2.14.8",
-    "@types/node": "20.12.5",
+    "@types/node": "20.12.8",
     "autoprefixer": "^10.4.19",
     "postcss": "^8.4.38",
     "rdme": "8.6.6",
     "tailwindcss": "^3.4.3",
-    "typescript": "^5.4.4",
+    "typescript": "^5.4.5",
     "yaml": "2.4.1"
   }
 }
