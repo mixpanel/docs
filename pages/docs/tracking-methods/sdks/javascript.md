@@ -391,28 +391,28 @@ Start with a smaller percentage and tune to fit your analytics needs.
 
 | Option | Description | Default | 
 | --- | --- | --- |
-| `record_sessions_percent` | Percentage of SDK initializations that will qualify for a recording. | `0` |
-| `record_idle_timeout_ms` | Duration of inactivity in milliseconds before ending a recording. A new recording will start when active again. | `1800000`<br/>(30 minutes) |
-| `record_max_ms` | Maximum length of a single recording in milliseconds. Up to 24 hours is supported. Once a recording has reached the maximum length, a new one will begin. | `86400000`<br/>(24 hours) |
+| `record_sessions_percent` | Percentage of SDK initializations that will qualify for replay data capture. | `0` |
+| `record_idle_timeout_ms` | Duration of inactivity in milliseconds before ending a contiguous replay. A new replay collection will start when active again. | `1800000`<br/>(30 minutes) |
+| `record_max_ms` | Maximum length of a single replay in milliseconds. Up to 24 hours is supported. Once a replay has reached the maximum length, a new one will begin. | `86400000`<br/>(24 hours) |
 | `record_mask_text_selector` | CSS selector for elements that will have their text contents masked. | `"*"` |
 
 
 ### Recorder Methods
 
-#### Start a recording
+#### Start capturing replay data
 
 ```javascript
 mixpanel.start_session_recording()
 ```
-This will have no effect if there is already a recording in progress.
+This will have no effect if replay data collection is in progress.
 
 
-#### Stop a recording
+#### Stop capturing replay data
 
 ```javascript
 mixpanel.stop_session_recording()
 ```
-This will have no effect if there is no recording in progress.
+This will have no effect if there is no replay data collection in progress.
 
 ### Privacy
 
@@ -422,7 +422,7 @@ The Mixpanel SDK will always mask all inputs. By default, all text on a page wil
 Along with other data, the recorder respects all Do Not Track (DNT) settings as well as manual opt-out. 
 
 #### Retention
-User recordings are stored for 30 days after the time of ingestion. There is no way to view a recording older than 30 days old.
+User replays are stored for 30 days after the time of ingestion. There is no way to view a replay older than 30 days old.
 
 #### Data Residency
 EU residency is not supported yet, check back soon!
