@@ -28,19 +28,19 @@ Session Replay can be accessed in two places:
 
 In any user’s profile page, Click the ‘View Replays’ button to watch replays from that user. From here, you will be taken to our Replay Player.
 
-![Untitled](https://prod-files-secure.s3.us-west-2.amazonaws.com/675c76ea-9344-43f8-957f-719aaedf54ce/506375a2-294e-4a09-a122-ad4201f88437/Untitled.png)
+![replayProfileEntry](/replayProfileEntryPoint.png)
 
 **From Mixpanel reports**
 
 Click any point on a chart for Event and Funnel metrics, and select ‘View Replays’ to view replays that show that event being fired. From here, you will be taken to our Replay Player. 
 
-![Untitled](https://prod-files-secure.s3.us-west-2.amazonaws.com/675c76ea-9344-43f8-957f-719aaedf54ce/d2fa8f92-6058-4ade-bee1-cff3e0009790/Untitled.png)
+![replayReportEntry](/replayReportEntryPoint.png)
 
-*Note: reports entry point is currently supported for Event and Funnel metric types only. Currently this excludes users, cohorts, retention reports, and flows reports.*
+*Note: reports entry point is currently supported for Event and Funnel metrics only.*
 
 ## **Replay Player**
 
-![Untitled](https://prod-files-secure.s3.us-west-2.amazonaws.com/675c76ea-9344-43f8-957f-719aaedf54ce/a4fb7ed5-8021-405f-9d4b-d9979608d2d2/Untitled.png)
+![replayHeroImage](/replayHeroImage.png)
 
 The Replay Player allows you to watch replays, as well as:
 
@@ -52,7 +52,7 @@ The Replay Player allows you to watch replays, as well as:
 The Replay Feed on the left of the player also allows you to:
 
 - sort replays by recency
-- search for replays by user name
+- search for replays by user's name / email, replay date, or user ID
 
 ## **Privacy**
 
