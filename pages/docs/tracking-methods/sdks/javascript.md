@@ -370,7 +370,7 @@ mixpanel.init("<YOUR_PROJECT_TOKEN>", {api_host: "https://<YOUR_PROXY_DOMAIN>"})
 
 ## Session Replay (Beta)
 
-Capture data how a user interacts with your application. Replay collection is disabled by default, and the Replay SDK will not be loaded into your application until specified.
+Capture and replay data on how a user interacts with your application. Replay collection is disabled by default, and the Replay portion of the SDK will not be loaded into your application until specified.
 
 ### Sampling Method
 
