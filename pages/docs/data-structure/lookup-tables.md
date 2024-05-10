@@ -18,7 +18,7 @@ Let's say you're building a media product, and you track a `Song Played` event, 
 | Song Played | 2023-05-18T11:30:00 | user789  | a43fb8  |
 
 
-You want to filter and breakdown this event by other attributes of the song, like `artist` and `genre`, which are not tracked as properties. Lookup Tables let you upload a CSV of data about songs like this and map it to the `song_id` property:
+You want to filter and breakdown this event by other attributes of the song, like `artist` and `genre`, which are not tracked as properties. Lookup Tables let you upload a CSV of data about songs like the table below and map it to the `song_id` property:
 
 | song_id| artist      | genre   | is_platinum | name          | release_date         
 |--------|-------------|---------|-------------|---------------|----------------------
