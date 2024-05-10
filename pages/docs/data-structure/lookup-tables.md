@@ -5,7 +5,7 @@ This guide covers Lookup Tables and how to use them effectively. Lookup Tables a
 
 ## Overview
 
-Lookup Tables let you enrich your Mixpanel events with attributes about other entities.
+Lookup Tables let you enrich your Mixpanel properties ([event properties](/docs/data-structure/events-and-properties) or [user profile properties](/docs/data-structure/user-profiles)) with additional attributes or metadata about these properties.
 * If you have a database background, lookup tables are like dimension tables or join tables.
 * If you have an Excel background, Lookup Tables are like VLOOKUP. 
 
@@ -35,11 +35,9 @@ Then, whenever you use an event with the `song_id` property, you'll have access 
 | Song Played | 2023-05-18T10:15:00 | user456  | d8d949 | Gipsy Kings | Flamenco| False       | Bamboleo      | 1987-07-12T05:00:00   |
 | Song Played | 2023-05-18T11:30:00 | user789  | a43fb8 | Daft Punk   | House   | False       | Aerodynamic   | 2001-03-12T07:30:00   |
 
-The benefit is that you don't need to change your event tracking code at all. You can upload this Lookup Table after the fact and it automatically joins onto all prior events.
+The benefit is that you don't need to change your tracking code at all. You can upload this Lookup Table after the fact and it automatically joins onto all prior events or user profiles with the mapped property.
 
-We also provide an [API](https://developer.mixpanel.com/reference/replace-lookup-table) to keep Lookup Tables synced on a recurring basis.
-
-DISCLAIMER: Only Project Owners and Admins can create permanent lookup tables mappings. Analysts and Consumers can only create temporary mappings.
+We also provide an [API](https://developer.mixpanel.com/reference/replace-lookup-table) and [Warehouse Connectors](/docs/tracking-methods/data-warehouse#lookup-tables) to keep Lookup Tables synced on a recurring basis.
 
 ## Use Cases
 
@@ -55,15 +53,23 @@ If you have a B2B product, you likely have some key entities that are specific t
 Do refer to the FAQ section on [When shouldn't I use Lookup Tables?](/docs/data-structure/lookup-tables#when-shouldnt-i-use-lookup-tables)
 
 ## How do I upload a Lookup Table?
-Lookup Tables are accessible via Lexicon. Go to Lexicon > Import > Lookup Table, and upload a CSV in the format of the example above, and map it to an event property which is the ID that the Lookup Table should join with. Mixpanel will assume the first column of the CSV is the ID and will join it with that ID.
+Lookup Tables are accessible via Lexicon. Go to **Lexicon > Import > Lookup Table**, and upload a CSV in the format of the example below, and map it to an event or user profile property which is the ID (eg song_id) that the Lookup Table should join with. Mixpanel will assume the first column of the CSV is the ID and will join it with that property.
 
-Also, you can upload Lookup Tables straight for your reports. Note: Lookup Tables uploaded in reports create only a temporary mapping that can be used while you are in the report. This mapping is not permanent and will be dismissed once you leave the report.
+```
+song_id,artist,genre,is_platinum,name,release_date
+c994bb,Drake,Pop,True,Hotline Bling,2015-10-18T22:00:00Z
+d8d949,Gipsy Kings,Flamenco,False,Bamboleo,1987-07-12T05:00:00Z
+a43fb8,Daft Punk,House,False,Aerodynamic,2001-03-12T07:30:00Z
+```
+
+You can also upload Lookup Tables straight from your reports. Lookup Tables uploaded directly in reports create a local (or temporary) mapping that can only be used while you are in the report. This mapping is not global, and can't be used in other reports. This feature can be useful if you need to have the lookup table mapping only for a specific report or if you wish to override an existing globally mapped lookup table for a property within a report.
 
 ![image](https://github.com/mixpanel/docs/assets/17679378/edb80cee-3821-4ae4-958f-c9524f8bfee7)
 
-Lookup Tables can be replaced with a fresh copy, either via our UI or via our API.
+Lookup Tables can be replaced with a fresh copy, either via our UI, [API](https://developer.mixpanel.com/reference/replace-lookup-table), or [Warehouse Connectors](/docs/tracking-methods/data-warehouse#lookup-tables).
 
-
+> Note: Only Project Owners and Admins can create global(or permanent) lookup tables mappings. Analysts and Consumers can only create local (or temporary) mappings within reports.
+ 
 ## FAQ
 
 ### How should my Lookup Table CSV be formatted?
