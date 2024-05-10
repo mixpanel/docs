@@ -1,4 +1,4 @@
-# Session Replay
+# Session Replay (Docs)
 
 ## Overview
 
