@@ -53,6 +53,10 @@ If you have a B2B product, you likely have some key entities that are specific t
 In general, it is still best to have metadata that don't change over time and you analyse often to be tracked as event or user properties. Do refer to the FAQ section on [When shouldn't I use Lookup Tables?](/docs/data-structure/lookup-tables#when-shouldnt-i-use-lookup-tables)
 
 ## How do I upload a Lookup Table?
+
+> Note: Only Project Owners and Admins can create global lookup tables mappings. Analysts and Consumers can only create local mappings within reports.
+
+### Globally using Lexicon
 Lookup Tables are accessible via Lexicon. Go to **Lexicon > Import > Lookup Table** to upload a CSV file or manage existing lookup tables.
 
 ![image](/lexicon-lookup-table.png "Lexicon Lookup Tables")
@@ -70,18 +74,27 @@ Once you have uploaded the CSV file for the lookup table, map it to an event or 
 
 ![image](/lexicon-import-lookup-table.png "Lexicon Import Lookup Table Modal")
 
+### Locally within a Report
 You can also upload Lookup Tables straight from your reports. Lookup Tables uploaded directly in reports create a local mapping that can only be used while you are in the report. This mapping is not global, and can't be used in other reports. 
 
-![image](/map-ephemeral-lookup-table.png "Lexicon Lookup Tables")
+![image](/map-ephemeral-lookup-table.png "Ephemeral Lookup Tables")
 
-![image](/create-ephemeral-lookup-table-modal.png "Lexicon Lookup Tables")
+![image](/create-ephemeral-lookup-table-modal.png "Ephemeral Lookup Table Modal")
 
 This feature can be useful if you need to have the lookup table mapping only for a specific report or if you wish to override an existing globally mapped lookup table for a property within a report.
 
 Lookup Tables can be replaced with a fresh copy, either via our UI, [API](https://developer.mixpanel.com/reference/replace-lookup-table), or [Warehouse Connectors](/docs/tracking-methods/data-warehouse#lookup-tables).
 
-> Note: Only Project Owners and Admins can create global lookup tables mappings. Analysts and Consumers can only create local mappings within reports.
- 
+## How do I use a Lookup Table?
+
+Once a lookup table is mapped, you can access if by simply clicking on the mapped property and it will expand the columns from the lookup table as if they are nested properties.
+
+![image](/lookup-table-properties.png "Lookup Tables Properties")
+
+These nested properties can be used like any normal property in reports as filters or breakdowns or even in [custom properties](/docs/features/custom-properties).
+
+![image](/lookup-table-insights.png "Lookup Table in Insights")
+
 ## FAQ
 
 ### How should my Lookup Table CSV be formatted?
