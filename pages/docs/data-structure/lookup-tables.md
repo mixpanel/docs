@@ -62,6 +62,9 @@ d8d949,Gipsy Kings,Flamenco,False,Bamboleo,1987-07-12T05:00:00Z
 a43fb8,Daft Punk,House,False,Aerodynamic,2001-03-12T07:30:00Z
 ```
 
+![image](/lexicon-lookup-table.png "Lexicon Lookup Tables")
+![image](/lexicon-import-lookup-table.png "Lexicon Import Lookup Table Modal")
+
 You can also upload Lookup Tables straight from your reports. Lookup Tables uploaded directly in reports create a local (or temporary) mapping that can only be used while you are in the report. This mapping is not global, and can't be used in other reports. This feature can be useful if you need to have the lookup table mapping only for a specific report or if you wish to override an existing globally mapped lookup table for a property within a report.
 
 ![image](https://github.com/mixpanel/docs/assets/17679378/edb80cee-3821-4ae4-958f-c9524f8bfee7)
