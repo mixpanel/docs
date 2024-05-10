@@ -70,9 +70,13 @@ Once you have uploaded the CSV file for the lookup table map it to an event or u
 
 ![image](/lexicon-import-lookup-table.png "Lexicon Import Lookup Table Modal")
 
-You can also upload Lookup Tables straight from your reports. Lookup Tables uploaded directly in reports create a local (or temporary) mapping that can only be used while you are in the report. This mapping is not global, and can't be used in other reports. This feature can be useful if you need to have the lookup table mapping only for a specific report or if you wish to override an existing globally mapped lookup table for a property within a report.
+You can also upload Lookup Tables straight from your reports. Lookup Tables uploaded directly in reports create a local (or temporary) mapping that can only be used while you are in the report. This mapping is not global, and can't be used in other reports. 
 
-![image](https://github.com/mixpanel/docs/assets/17679378/edb80cee-3821-4ae4-958f-c9524f8bfee7)
+![image](/map-ephemeral-lookup-table.png "Lexicon Lookup Tables")
+
+![image](/create-ephemeral-lookup-table-modal.png "Lexicon Lookup Tables")
+
+This feature can be useful if you need to have the lookup table mapping only for a specific report or if you wish to override an existing globally mapped lookup table for a property within a report.
 
 Lookup Tables can be replaced with a fresh copy, either via our UI, [API](https://developer.mixpanel.com/reference/replace-lookup-table), or [Warehouse Connectors](/docs/tracking-methods/data-warehouse#lookup-tables).
 
