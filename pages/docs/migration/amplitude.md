@@ -60,9 +60,11 @@ This service will use your provided credentials to export Amplitude data, transf
 
 [Watch the demo tutorial](https://www.loom.com/share/f947d42db01541a0b74953461e3c6cc0?sid=43c1ef52-d008-4b6d-9015-afa14b05901c) for more in-depth instructions on how to use the migration service.
 
-Note:
-* Any events ingested via this method in the current month will count toward your plan. We recommend testing this while on a Free plan first.
+Notes:
+* Any events ingested via this method in the current month will count toward your plan. We recommend testing this while on a Free plan first. You may also pass a `"DRY_RUN" : true` param in the JSON which will show you how many events will be migrated.
+* If you are using Mixpanel or Amplitude's EU data residency, pass `"REGION": "EU"` with your request.
 * This migration service is in beta -- if you have questions or run into issues, please reach out to us [here](mailto:amplitude-migration@mixpanel.com).
+
 
 ### Data Warehouse Connectors 
 If you have access to your Amplitude data in your data warehouse, the most scalable way to bring this historical data into Mixpanel is by using our warehouse connector. At a high-level, the migration consists of 3 steps:
