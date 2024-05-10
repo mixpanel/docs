@@ -42,15 +42,15 @@ We also provide an [API](https://developer.mixpanel.com/reference/replace-lookup
 ## Use Cases
 
 ### Media
-One good use case for Lookup Tables is to load metadata about your content (songs, podcasts, articles) into Mixpanel. If you track some content identifier (eg: song_id, podcast_id, article_id) as a property on your events, you can then upload a Lookup Table with other properties of that content, like name, category, author, or creation date. You can then use any of those properties on any events that have the ID properties.
+One possible use case for Lookup Tables is to load metadata about your content (songs, podcasts, articles) into Mixpanel. If you track some content identifier (eg: song_id, podcast_id, article_id) as a property on your events, you can then upload a Lookup Table with other properties of that content, like name, category, author, or creation date. You can then use any of those properties on any events that have the ID properties.
 
 ### E-Commerce
-If you sell products online, can load your product catalog into Mixpanel as a Lookup Table. As long as you track a product_id or sku_id property on your events, you'll be able to enrich those events with other properties about those products, like their name, category, and price.
+If you sell products online, you can load your product catalog into Mixpanel as a Lookup Table. As long as you track a product_id or sku_id property on your events, you'll be able to enrich those events with other properties about those products, like their name, category, and price.
 
 ### B2B
 If you have a B2B product, you likely have some key entities that are specific to your product. For example, Github has repositories, Figma has design components, Slack has channels. If they track repository_id, component_id, or channel_id as properties on their events, they can use Lookup Tables to enrich those events with information about those repositories, components, and channels.
 
-Do refer to the FAQ section on [When shouldn't I use Lookup Tables?](/docs/data-structure/lookup-tables#when-shouldnt-i-use-lookup-tables)
+In general, it is still best to have metadata that don't change over time and you analyse often to be tracked as event or user properties. Do refer to the FAQ section on [When shouldn't I use Lookup Tables?](/docs/data-structure/lookup-tables#when-shouldnt-i-use-lookup-tables)
 
 ## How do I upload a Lookup Table?
 Lookup Tables are accessible via Lexicon. Go to **Lexicon > Import > Lookup Table**, and upload a CSV in the format of the example below, and map it to an event or user profile property which is the ID (eg song_id) that the Lookup Table should join with. Mixpanel will assume the first column of the CSV is the ID and will join it with that property.
