@@ -61,7 +61,9 @@ Lookup Tables are accessible via Lexicon. Go to **Lexicon > Import > Lookup Tabl
 
 ![image](/lexicon-lookup-table.png "Lexicon Lookup Tables")
 
-Here's an example of what a CSV file should look like:
+Here's an example of what a CSV file should look like
+- The first row is the header and will serve as names for the lookup table properties.
+- The fist column's value will be use to join to the property you map to. The first columnn's header is unimportant and can be any text.
 
 ```
 song_id,artist,genre,is_platinum,name,release_date
@@ -87,7 +89,7 @@ Lookup Tables can be replaced with a fresh copy, either via our UI, [API](https:
 
 ## How do I use a Lookup Table?
 
-Once a lookup table is mapped, you can access if by simply clicking on the mapped property and it will expand the columns from the lookup table as if they are nested properties.
+Once a lookup table is mapped, you can access if by simply clicking on the mapped property and it will expand the columns from the lookup table as if they are nested properties. Lookup table property names are derive from the header (1st row) in the CSV file; these labels cannot be renamed (i.e. using a Lexicon Display Name) within the Mixpanel UI.
 
 ![image](/lookup-table-properties.png "Lookup Tables Properties")
 
