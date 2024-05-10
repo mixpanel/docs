@@ -100,7 +100,9 @@ These nested properties can be used like any normal property in reports as filte
 ## FAQ
 
 ### How should my Lookup Table CSV be formatted?
-The CSV must be valid according to RFC4180. See our [API reference](https://developer.mixpanel.com/reference/replace-lookup-table) for more specific details about how we parse CSVs.
+The CSV must be valid according to [RFC4180](https://datatracker.ietf.org/doc/html/rfc4180). See our [API reference](https://developer.mixpanel.com/reference/replace-lookup-table) for more specific details about how we parse CSVs.
+
+Lookup tables do not support [Objects and List of Objects](https://docs-git-kurbycchua-lookup-table-updates-mixpanel.vercel.app/docs/data-structure/property-reference#object-and-list-of-objects-data-types).
 
 ### When _shouldn't_  I use Lookup Tables?
 Lookup Tables have a limit of **100MB** per CSV file or roughly 1M rows. You can use multiple lookup tables in your projects, but the total count of rows has to be less than **5 million rows** across all uploaded CSVs. We don't recommend using Lookup Tables for anything with very high cardinality IDs. For properties with high cardinal IDs, we recommend that you track the metadata as event properties.
