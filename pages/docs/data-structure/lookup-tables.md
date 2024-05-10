@@ -66,11 +66,11 @@ d8d949,Gipsy Kings,Flamenco,False,Bamboleo,1987-07-12T05:00:00Z
 a43fb8,Daft Punk,House,False,Aerodynamic,2001-03-12T07:30:00Z
 ```
 
-Once you have uploaded the CSV file for the lookup table map it to an event or user profile property which is the ID (eg song_id) that the Lookup Table should join with. Mixpanel will assume the first column of the CSV is the ID and will join it with that property.
+Once you have uploaded the CSV file for the lookup table, map it to an event or user profile property, which is the ID (eg song_id) that the Lookup Table should join with. Mixpanel will assume the first column of the CSV is the ID and will join it with that property.
 
 ![image](/lexicon-import-lookup-table.png "Lexicon Import Lookup Table Modal")
 
-You can also upload Lookup Tables straight from your reports. Lookup Tables uploaded directly in reports create a local (or temporary) mapping that can only be used while you are in the report. This mapping is not global, and can't be used in other reports. 
+You can also upload Lookup Tables straight from your reports. Lookup Tables uploaded directly in reports create a local mapping that can only be used while you are in the report. This mapping is not global, and can't be used in other reports. 
 
 ![image](/map-ephemeral-lookup-table.png "Lexicon Lookup Tables")
 
@@ -80,7 +80,7 @@ This feature can be useful if you need to have the lookup table mapping only for
 
 Lookup Tables can be replaced with a fresh copy, either via our UI, [API](https://developer.mixpanel.com/reference/replace-lookup-table), or [Warehouse Connectors](/docs/tracking-methods/data-warehouse#lookup-tables).
 
-> Note: Only Project Owners and Admins can create global(or permanent) lookup tables mappings. Analysts and Consumers can only create local (or temporary) mappings within reports.
+> Note: Only Project Owners and Admins can create global lookup tables mappings. Analysts and Consumers can only create local mappings within reports.
  
 ## FAQ
 
@@ -88,27 +88,27 @@ Lookup Tables can be replaced with a fresh copy, either via our UI, [API](https:
 The CSV must be valid according to RFC4180. See our [API reference](https://developer.mixpanel.com/reference/replace-lookup-table) for more specific details about how we parse CSVs.
 
 ### When _shouldn't_  I use Lookup Tables?
-Lookup Tables have a limit of **100MB** per CSV file or roughly 1M rows. You can use multiple lookup tables in your projects, but the total count of rows has to be less than **5 million rows** across all uploaded CSVs. We don't recommend using Lookup Tables for anything with very high cardinality IDs. For event properties with high cardinal IDs, we recommend that you track the metadata as event properties.
+Lookup Tables have a limit of **100MB** per CSV file or roughly 1M rows. You can use multiple lookup tables in your projects, but the total count of rows has to be less than **5 million rows** across all uploaded CSVs. We don't recommend using Lookup Tables for anything with very high cardinality IDs. For properties with high cardinal IDs, we recommend that you track the metadata as event properties.
 
 * Don't use Lookup Tables when the ID is a User ID. Instead use [User Profiles](/docs/data-structure/user-profiles). Mixpanel is more optimized for User Profiles, so they don't have any scale limits and support more opinionated workflows in our product (like clicking into a report and seeing the list of User Profiles).
 * Don't use Lookup Tables as a way to mutate events. For example, it might be tempting to have an Orders lookup table, with 1 row per Order that a customer makes. Then, you can update the Orders table whenever an order is mutated (eg: when you issue a refund). This approach will quickly run into the 100MB scale limit and will make it difficult to do the analysis you need. Instead, we recommend modeling state changes as events, which doesn't have scale limits and preserves the history of state changes. Track an `Order Completed` event and an `Order Refunded` or `Order Modified` event. You can then use our funnels report to answer questions like: "what % of orders were refunded?"
 
-A good use case for Lookup Tables are for mapping metadata that changes over time, since lookup tables can be replaced via the Mixpanel UI or programatically via [API](https://developer.mixpanel.com/reference/replace-lookup-table) and changes are retroactive. A currency exchange rate table mapped to `Order Currency` property which can be used to convert `Order Amount`; or a region territory grouping table mapped to `Country` are good examples.
+A good use case for Lookup Tables are for mapping metadata that changes over time, since lookup tables can be replaced via the Mixpanel UI or programatically via [API](https://developer.mixpanel.com/reference/replace-lookup-table) or [Warehouse Connectors](/docs/tracking-methods/data-warehouse#lookup-tables), and changes are retroactive. A currency exchange rate table mapped to `Order Currency` property which can be used to convert `Order Amount`; or a region territory grouping table mapped to `Country` are good examples.
 
 ### Who has access? 
 
-All users will be able to upload and map a lookup table to an existing property temporarily from within a report, but only users with "Admin" or "Owner" roles will be able to make the mapping persistent in Lexicon for other users in the project to use.
+All users will be able to upload and map a lookup table to an existing property locally from within a report. Only users with "Admin" or "Owner" roles will be able to make the mapping persistent in Lexicon for other users in the project to use.
 
-Customers on the Free plan will be able to temporarily map a property to a lookup table, but not have the option of persisting the mapping.
+Project Owners can delete any lookup table in a project while Admins can only delete their own. Consumers and Analysts cannot delete lookup tables even if they own them.
 
-Project Owners can delete any table in a project, and Admins can only delete their own.
- 
-Consumers and Analysts cannot delete lookup tables even if they own them.
+Customers on the Free plan will be able to locally map a property to a lookup table, but not have the option of persisting the mapping.
 
 ### Can each Mixpanel property (join key) only be mapped to one lookup table?
 
-Yes. One Mixpanel property can only map to ONE lookup table.
+Yes. A Mixpanel property can only be mapped to 1 lookup table in Lexicon. However, should you need to map different lookup tables for the same property, you can opt for either one of these approach:
+1. Locally map your lookup table to the property within the report. This option allows you to have multiple local lookup tables across different reports, where their context and usage are only relevant to these reports.
+2. Create multiple custom properties that contain the property you want to map to. Then map the different lookup tables to each custom property in Lexicon. This option allows you to map different groups of values of the same property (using some custom property logic) to different lookup tables. Since this would be a global mapping, other Mixpanel users in your project can also re-use these lookup tables via the custom properties.
 
 ### Can multiple properties map to the same lookup table?
 
-Yes. For example, first_trip_city_id and last_trip_city_id can both map to the City lookup table, but one Mixpanel property cannot map to multiple lookup tables (if first_trip_city_id is mapped to "City" lookup table, it can't also map to "Region" lookup table, before unmapping from the "City" lookup table.)
+Yes. For example, first_trip_city_id and last_trip_city_id can both map to the "City" lookup table, but one Mixpanel property cannot map to multiple lookup tables (e.g. if first_trip_city_id is already mapped to "City" lookup table, it cannot be map to "Region" lookup table, before unmapping it from the "City" lookup table).
