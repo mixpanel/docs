@@ -129,3 +129,9 @@ Do note that the [limits](/docs/data-structure/lookup-tables#when-shouldnt--i-us
 ### Can multiple properties map to the same lookup table?
 
 Yes. For example, first_trip_city_id and last_trip_city_id can both map to the "City" lookup table, but one Mixpanel property cannot map to multiple lookup tables (e.g. if first_trip_city_id is already mapped to "City" lookup table, it cannot be map to "Region" lookup table, before unmapping it from the "City" lookup table).
+
+### Where can I find the `id` of the lookup table for API's Path Params?
+
+When replacing a lookup table using the [API](https://developer.mixpanel.com/reference/replace-lookup-table), you would need to pass the lookup table's ID as part of the URL in the API call. This `id` can be found in Lexicon under the Lookup Table's Details. See below screenshot as example:
+
+![image](/lookup-table-id.png "Lookup Table ID")
