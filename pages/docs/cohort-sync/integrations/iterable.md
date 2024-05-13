@@ -21,6 +21,8 @@ From the Integrations page, select the Insider dropdown, and select **Connect**.
 
 The Iterable integration page will show a green export icon and details about the integration after it is connected.
 
+If you select the US or EU Iterable data center, data will be sent to the corresponding Iterable project. Note: Every Iterable API key is associated with a specific Iterable project, which means that it's also associated with a specific data center. Further reading: https://support.iterable.com/hc/en-us/articles/360043464871-API-Keys#api-keys-projects-and-data-centers
+
 To disable the connector, select the Iterable dropdown and click **Disconnect**.
 
 ## Export a Cohort
