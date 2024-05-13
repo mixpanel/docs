@@ -7,7 +7,7 @@ This guide covers Lookup Tables and how to use them effectively. Lookup Tables a
 
 Lookup Tables let you enrich your Mixpanel properties ([event properties](/docs/data-structure/events-and-properties) or [user profile properties](/docs/data-structure/user-profiles)) with additional attributes or metadata about these properties.
 * If you have a database background, lookup tables are like dimension tables or join tables.
-* If you have an Excel background, Lookup Tables are like VLOOKUP. 
+* If you have an Excel / Google Sheets background, Lookup Tables are like VLOOKUP. 
 
 Let's say you're building a media product, and you track a `Song Played` event, which contains a `song_id` property. 
 
@@ -50,7 +50,7 @@ If you sell products online, you can load your product catalog into Mixpanel as 
 ### B2B
 If you have a B2B product, you likely have some key entities that are specific to your product. For example, Github has repositories, Figma has design components, Slack has channels. If they track repository_id, component_id, or channel_id as properties on their events, they can use Lookup Tables to enrich those events with information about those repositories, components, and channels.
 
-In general, it is still best to have metadata that don't change over time and you analyse often to be tracked as event or user properties. Do refer to the FAQ section on [When shouldn't I use Lookup Tables?](/docs/data-structure/lookup-tables#when-shouldnt-i-use-lookup-tables)
+In general, it is still best to have metadata that don't change over time, and you analyse often, to be tracked as event or user properties. Do refer to the FAQ section on [When shouldn't I use Lookup Tables?](/docs/data-structure/lookup-tables#when-shouldnt-i-use-lookup-tables)
 
 ## How do I upload a Lookup Table?
 
@@ -62,8 +62,8 @@ Lookup Tables are accessible via Lexicon. Go to **Lexicon > Import > Lookup Tabl
 ![image](/lexicon-lookup-table.png "Lexicon Lookup Tables")
 
 Here's an example of what a CSV file should look like
-- The first row is the header and will serve as names for the lookup table properties.
-- The fist column's value will be use to join to the property you map to. The first columnn's header is unimportant and can be any text.
+- The first row is the header and will serve as names for the lookup table properties for each column.
+- The first column's value will be use to join to the property you map to (i.e. song_id). The first columnn's header is unimportant and can be any text.
 
 ```
 song_id,artist,genre,is_platinum,name,release_date
@@ -72,12 +72,12 @@ d8d949,Gipsy Kings,Flamenco,False,Bamboleo,1987-07-12T05:00:00Z
 a43fb8,Daft Punk,House,False,Aerodynamic,2001-03-12T07:30:00Z
 ```
 
-Once you have uploaded the CSV file for the lookup table, map it to an event or user profile property, which is the ID (eg song_id) that the Lookup Table should join with. Mixpanel will assume the first column of the CSV is the ID and will join it with that property.
+Once you have uploaded the CSV file for the lookup table, map it to an event or user profile property, which is the ID (e.g. song_id) that the lookup table should join with. Mixpanel will assume the first column of the CSV is the ID and will join it with that property.
 
 ![image](/lexicon-import-lookup-table.png "Lexicon Import Lookup Table Modal")
 
 ### Locally within a Report
-You can also upload Lookup Tables straight from your reports. Lookup Tables uploaded directly in reports create a local mapping that can only be used while you are in the report. This mapping is not global, and can't be used in other reports. 
+You can also upload Lookup Tables straight from your reports. Lookup tables uploaded directly in reports create a local mapping that can only be used while you are in the report. This mapping is not global, and can't be used in other reports. 
 
 ![image](/map-ephemeral-lookup-table.png "Ephemeral Lookup Tables")
 
@@ -100,11 +100,9 @@ These nested properties can be used like any normal property in reports as filte
 ## FAQ
 
 ### How should my Lookup Table CSV be formatted?
-The CSV must be valid according to [RFC4180](https://datatracker.ietf.org/doc/html/rfc4180). See our [API reference](https://developer.mixpanel.com/reference/replace-lookup-table) for more specific details about how we parse CSVs.
+The CSV must be valid according to [RFC4180](https://datatracker.ietf.org/doc/html/rfc4180). See our [API reference](https://developer.mixpanel.com/reference/replace-lookup-table) for more specific details about how we parse CSVs. Lookup tables do not support [Objects and List of Objects](https://docs-git-kurbycchua-lookup-table-updates-mixpanel.vercel.app/docs/data-structure/property-reference#object-and-list-of-objects-data-types) data types.
 
-Lookup tables do not support [Objects and List of Objects](https://docs-git-kurbycchua-lookup-table-updates-mixpanel.vercel.app/docs/data-structure/property-reference#object-and-list-of-objects-data-types).
-
-### When _shouldn't_  I use Lookup Tables?
+### When shouldn't I use Lookup Tables?
 Lookup Tables have a limit of **100MB** per CSV file or roughly 1M rows. You can use multiple lookup tables in your projects, but the total count of rows has to be less than **5 million rows** across all uploaded CSVs. We don't recommend using Lookup Tables for anything with very high cardinality IDs. For properties with high cardinal IDs, we recommend that you track the metadata as event properties.
 
 * Don't use Lookup Tables when the ID is a User ID. Instead use [User Profiles](/docs/data-structure/user-profiles). Mixpanel is more optimized for User Profiles, so they don't have any scale limits and support more opinionated workflows in our product (like clicking into a report and seeing the list of User Profiles).
@@ -122,9 +120,12 @@ Customers on the Free plan will be able to locally map a property to a lookup ta
 
 ### Can each Mixpanel property (join key) only be mapped to one lookup table?
 
-Yes. A Mixpanel property can only be mapped to 1 lookup table in Lexicon. However, should you need to map different lookup tables for the same property, you can opt for either one of these approach:
+Yes. A Mixpanel property can only be mapped to one lookup table in Lexicon. However, should you need to map different lookup tables for the same property, you can opt for either one of these approach:
+
 1. Locally map your lookup table to the property within the report. This option allows you to have multiple local lookup tables across different reports, where their context and usage are only relevant to these reports.
 2. Create multiple custom properties that contain the property you want to map to. Then map the different lookup tables to each custom property in Lexicon. This option allows you to map different groups of values of the same property (using some custom property logic) to different lookup tables. Since this would be a global mapping, other Mixpanel users in your project can also re-use these lookup tables via the custom properties.
+
+Do note that the [limits](/docs/data-structure/lookup-tables#when-shouldnt--i-use-lookup-tables) of **100MB** per CSV and **5 million rows** still applies for both approach.
 
 ### Can multiple properties map to the same lookup table?
 
