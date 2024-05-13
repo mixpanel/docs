@@ -1193,7 +1193,7 @@ paths:
         ***
         [block:api-header]
         {
-          "title": "Validation"
+          "title": "Validations"
         }
         [/block]
         * The first column of the lookup table is assumed to be the ID of the row. All ID values must be unique.
@@ -1206,7 +1206,7 @@ paths:
         }
         [/block]
         * Integers or floats will be parsed as numbers.
-        * [RFC3339](https://datatracker.ietf.org/doc/html/rfc3339) timestamps (`2021-08-21T05:36:01Z`) will parsed as datetimes.
+        * RFC3339 timestamps (`2021-08-21T05:36:01Z`) will parsed as datetimes.
         * `true` or `false` (case-insensitive) will be parsed as boolean.
         * Empty fields (two adjacent commas) will be treated as `undefined`
         * Comma separated, quoted strings in square brackets (`"["Free","Paid","Enterprise"]"`) will be parsed as list of strings.
