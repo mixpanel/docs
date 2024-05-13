@@ -1193,12 +1193,12 @@ paths:
         ***
         [block:api-header]
         {
-          "title": "Validations"
+          "title": "Validation"
         }
         [/block]
         * The first column of the lookup table is assumed to be the ID of the row. All ID values must be unique.
         * The first row of the lookup table is a header row. The values in the header must be unique, as each one uniquely identifies a column of the table. These will appear as properties of the lookup table in Mixpanel's UI.
-        * The CSV must be valid according to RFC4180.
+        * The CSV must be valid according to [RFC4180](https://datatracker.ietf.org/doc/html/rfc4180).
         * If the `Content-Encoding: gzip` header is supplied, the table will be decompressed before parsing.
         [block:api-header]
         {
