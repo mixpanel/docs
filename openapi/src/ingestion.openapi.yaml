@@ -1251,14 +1251,6 @@ paths:
         This endpoint will return a 429 error if called more than 100 times in a rolling 24 hour window. We recommend updating lookup tables at most hourly to stay within this limit.
 
         This endpoint will return a 413 error if a Lookup Table exceeds 100MB uncompressed. In practice, this translates to 1-2M rows. If you have a lookup table that exceeds the limit, we recommend pruning the number of columns to those that are useful to analysis. Removing long URLs or user-generated content can bring a lookup table within this limit. If you still exceed the limit, please reach out to us at apis@mixpanel.com -- we'd love to hear your use case!
-
-        [block:api-header]
-        {
-          "title": "Lookup Table ID"
-        }
-        [/block]
-        The `id` in the path params can be retreived from Lexicon under the lookup table's details, see screenshot as an example
-        ![image](/lookup-table-id.png "Lookup Table ID")
         
       parameters:
         - in: path
@@ -1267,7 +1259,7 @@ paths:
           schema:
             type: string
             format: uuid
-          description: The ID of the lookup table to replace.
+          description: The ID of the lookup table to replace which can be retreived from Lexicon under the lookup table's details.
         - in: query
           name: project_id
           required: True
