@@ -1259,7 +1259,7 @@ paths:
           schema:
             type: string
             format: uuid
-          description: The ID of the lookup table to replace which can be retreived from Lexicon under the lookup table's details, more details [here](https://docs.mixpanel.com/docs/data-structure/lookup-tables#where-can-i-find-the-id-of-the-lookup-table-for-apis-path-params).
+          description: The ID of the lookup table to replace which can be retreived from Lexicon under the lookup table's details, click [here](https://docs.mixpanel.com/docs/data-structure/lookup-tables#where-can-i-find-the-id-of-the-lookup-table-for-apis-path-params) for more info.
         - in: query
           name: project_id
           required: True
