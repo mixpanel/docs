@@ -62,9 +62,8 @@ Lookup Tables are accessible via Lexicon. Go to **Lexicon > Import > Lookup Tabl
 ![image](/lexicon-lookup-table.png "Lexicon Lookup Tables")
 
 Here's an example of what a CSV file should look like
-- The first row is the header and will serve as names for the lookup table properties for each column.
-- The first column's value will be use to join to the property you map to (i.e. song_id). The first columnn's header is unimportant and can be any text.
-
+- The first row is the header and will serve as names for the lookup table properties for each column. Header names must be unique. The first columnn's header is unimportant and can be any text.
+- The first column's value will be use to join to the property you map to (i.e. song_id). Values in this column must be unique.
 ```
 song_id,artist,genre,is_platinum,name,release_date
 c994bb,Drake,Pop,True,Hotline Bling,2015-10-18T22:00:00Z
