@@ -39,3 +39,8 @@ Use the Schemas API to manage your data definitions in Lexicon and Data Audit
 **Standard Server:** `mixpanel.com/api/app/projects`
 **EU Residency Server:** `eu.mixpanel.com/api/app/projects`
 Batch import large volumes of data into Mixpanel from a cloud bucket
+
+### [**GDPR API**](ref:overview-3) 
+**Standard Server:** `mixpanel.com/api/app/data-retrievals`
+**EU Residency Server:** `eu.mixpanel.com/api/app/data-retrievals`
+The retrieval and deletion API calls are updated for version 3 and are made for GDPR and CCPA compliance.
