@@ -1285,10 +1285,7 @@ paths:
 
 
                     `request for page in uncached query for params`
-                properties:
-                  type: object
-                  title: cohort filtering
-                  description: Filter a cohort based on cohort ID.
+                cohort_filter:
                   filter_by_cohort:
                     type: string
                     description: >
