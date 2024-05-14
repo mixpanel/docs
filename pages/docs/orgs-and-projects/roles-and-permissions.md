@@ -2,12 +2,12 @@
 
 
 ## Overview
-Your team members access your organization and its projects using individual user accounts which is what you use to sign into Mixpanel. An account must be part of an organization but it does not need to be part of all projects in the organization.  Each account will have a single organization role per organization and one project role for each project it is a part of. These roles can further limit what an account will have access to in Mixpanel.
+Your team members access your organization and its projects using individual user accounts which is what you use to sign into Mixpanel. An account must be part of an organization but it does not need to be part of all projects in the organization.  Each account will have a single organization role per organization and one or more project roles for each project it is a part of. These roles can further limit what an account will have access to in Mixpanel.
 
 
 ### Invite Users
 
-You can invite users users to an organization or to a project with specific role permissions.
+You can invite users to an organization or to a project with specific role permissions.
 
 See [Permissions](/docs/orgs-and-projects/roles-and-permissions#permissions) to learn more about organizaton roles and project roles.
 
@@ -23,7 +23,7 @@ To invite a user to an organization:
 
 ![image](/Add_Org_Users.png)
 
-You may bulk invite users via CSV by selecting **Bulk invite** and following the provided **CSV template**.
+You may also bulk invite users by selecting **Bulk invite** and uploading a CSV file following the format of the provided **CSV template**.
 
 #### Invite Users to a Project
 
