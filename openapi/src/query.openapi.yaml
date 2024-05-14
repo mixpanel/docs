@@ -1232,6 +1232,10 @@ paths:
                     A JSON array of distinct_ids to retrieve profiles for.
 
                     Example: `distinct_ids=["id1", "id2"]`
+                data_group_id:
+                  type: string
+                  description: >-
+                    The ID of the group key, used when querying group profiles.
                 where:
                   type: string
                   description: >-
