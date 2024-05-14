@@ -1239,7 +1239,7 @@ paths:
                 where:
                   type: string
                   description: >-
-                    An expression to filter users by. See the [expressions
+                    An expression to filter users (or groups) by. See the [expressions
                     section](ref:segmentation-expressions)
                     above.
                 output_properties:
