@@ -21,7 +21,7 @@ To invite a user to an organization:
 4. Click **Add another user** to invite additional users.
 5. Click **Invite** to complete the process.
 
-![image](/Add_Org_Users.png)
+![image](/Add_Org_Users.png "Add Org Users")
 
 You may also bulk invite users by selecting **Bulk invite** and uploading a CSV file following the format of the provided **CSV template**.
 
