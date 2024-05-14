@@ -1235,7 +1235,7 @@ paths:
                 data_group_id:
                   type: string
                   description: >-
-                    The ID of the group key, used when querying group profiles.
+                    The ID of the group key, used when querying group profiles, click here for more info.
                 where:
                   type: string
                   description: >-
