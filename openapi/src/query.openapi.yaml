@@ -1294,21 +1294,20 @@ paths:
 
 
                     Example: `filter_by_cohort='{"id":12345}'`
-                include_all_users:
-                  type: boolean
-                  default: true
-                  description: >
-                    *this parameter is only applied when combined with
-                    `filter_by_cohort`*
+                  include_all_users:
+                    type: boolean
+                    description: >
+                      * \*this parameter is only applied when combined with
+                      `filter_by_cohort`*
+                      
                     
-                  
-                    `include_all_users=True` means that the Engage API will
-                    include distinct_ids that don’t have a user (or group) profile. This is
-                    the default.
-
-
-                    `include_all_users=False` means that the Engage API will
-                    only include distinct_ids with user (or group) profiles.
+                      `include_all_users=True` means that the Engage API will
+                      include distinct_ids that don’t have a user (or group) profile. This is
+                      the default.
+  
+  
+                      `include_all_users=False` means that the Engage API will
+                      only include distinct_ids with user (or group) profiles.
       responses:
         '200':
           description: Success.
