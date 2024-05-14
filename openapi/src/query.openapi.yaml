@@ -1300,13 +1300,10 @@ paths:
                     *\*only applicable with `filter_by_cohort` parameter*
 
 
-                    `include_all_users=true` means that the Engage API will
-                    include distinct_ids that don’t have a user (or group) profile. This is
-                    the default.
+                    `include_all_users=true` (default) include all distinct_ids even if they don’t have a user (or group) profile.
 
 
-                    `include_all_users=false` means that the Engage API will
-                    only include distinct_ids with user (or group) profiles.
+                    `include_all_users=false` include only distinct_ids with user (or group) profile.
       responses:
         '200':
           description: Success.
