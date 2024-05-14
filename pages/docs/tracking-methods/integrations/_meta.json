@@ -1,6 +1,11 @@
 {
   "amazon-s3": "Amazon S3",
   "cms-ecommerce": "CMS & E-Commerce",
+  "customer-io": {
+    "title": "Customer.io ↗",
+    "href": "https://customer.io/docs/cdp/destinations/connections/mixpanel?utm_source=mixpanel&utm_medium=partner",
+    "newWindow": true
+  },
   "freshpaint": "Freshpaint",
   "google-cloud-storage": "Google Cloud Storage",
   "google-pubsub": "Google Pubsub",
