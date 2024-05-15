@@ -9,7 +9,7 @@ info:
 servers:
   - $ref: ./common/app-api.yaml#/server
 security:
-  - ServiceAccount: []
+  - OAuthToken: []
 tags:
   - name: Cancel Deletion
     description: Cancels an existing deletion task
