@@ -2,9 +2,6 @@
 title: "Overview"
 slug: "overview-3"
 hidden: false
-createdAt: "2024-05-15T12:13:39.241Z"
-updatedAt: "2024-05-15T12:13:39.241Z"
-category: "664525c90bcbf000596d973f"
 ---
 
 ## GDPR and CCPA API (v3)
