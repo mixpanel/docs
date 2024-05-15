@@ -22,7 +22,7 @@ tags:
   - name: Create a Deletion Task
     description: Creates a task that specifies a list of users in a particular project to delete
 paths:
-  /api/app/data-retrievals/v3.0:
+  /data-retrievals/v3.0:
     post:
       parameters:
       - name: token
@@ -57,7 +57,7 @@ paths:
           $ref: ./common/responses.yaml#/401Unauthorized
         '403':
           $ref: ./common/responses.yaml#/403Forbidden
-  /api/app/data-retrievals/v3.0/{tracking_id}:
+  /data-retrievals/v3.0/{tracking_id}:
     parameters:
     - name: tracking_id
       in: path
@@ -89,7 +89,7 @@ paths:
           $ref: ./common/responses.yaml#/401Unauthorized
         '403':
           $ref: ./common/responses.yaml#/403Forbidden
-  /api/app/data-deletions/v3.0:
+  /data-deletions/v3.0:
     post:
       parameters:
       - name: token
@@ -157,7 +157,7 @@ paths:
           $ref: ./common/responses.yaml#/401Unauthorized
         '403':
           $ref: ./common/responses.yaml#/403Forbidden
-  /api/app/data-deletions/v3.0/{tracking_id}:
+  /data-deletions/v3.0/{tracking_id}:
     parameters:
     - name: tracking_id
       in: path
