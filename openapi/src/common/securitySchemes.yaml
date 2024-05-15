@@ -9,3 +9,4 @@ ProjectSecret:
 OAuthToken:
   type: http
   scheme: bearer
+  description: OAuth Token
