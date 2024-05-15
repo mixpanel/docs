@@ -70,7 +70,7 @@ mixpanel.track('event name', {
 
 The geolocate boolean setting needs to be `true` for Mixpanel to infer the location based on the ip property provided in the event payload.
 
-Note that tracking with node in an async serverless implementation requires you to wait for the Mixpanel request to complete. The easiest way to do this would be to pass in in a callback as a 3rd parameter into `track` and return a promise that is resolved when the request is sent.
+Note that tracking with Node in an async serverless implementation requires you to wait for the Mixpanel request to complete. The easiest way to do this would be to pass in in a callback as a 3rd parameter into `track` and return a promise that is resolved when the request is sent.
 
 ## Storing User Profiles
 
