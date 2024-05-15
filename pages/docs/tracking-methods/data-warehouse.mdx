@@ -302,9 +302,9 @@ Here’s an example table that illustrates what can be loaded as group profiles 
 
 ### Lookup Tables
 
-A Lookup Table is a table that describes an entity. It’s useful for enriching events with metadata about other concepts in your product, like content or skus. Learn more about Lookup Tables [here](https://docs.mixpanel.com/docs/data-structure/lookup-tables).
+A Lookup Table is useful for enriching Mixpanel properties (e.g. content, skus, currencies) with additional metadata. Learn more about Lookup Tables [here](https://docs.mixpanel.com/docs/data-structure/lookup-tables). Do note the limits of lookup tables indicated [here](https://docs.mixpanel.com/docs/data-structure/lookup-tables#when-shouldnt--i-use-lookup-tables).
 
-Here’s an example table that illustrates what can be loaded as group profiles in Mixpanel. The only important column is the ID, which is the primary key of the table.
+Here’s an example table that illustrates what can be loaded as lookup table in Mixpanel. The only important column is the ID, which is the primary key of the table that is eventually mapped to a Mixpanel property
 
 | ID | Song Name | Artist | Genre |
 | --- | --- | --- | --- |
