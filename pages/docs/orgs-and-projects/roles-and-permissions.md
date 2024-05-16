@@ -23,7 +23,9 @@ To invite a user to an organization:
 
 ![image](/Add_Org_Users.png "Add Org Users")
 
-You may also bulk invite users by selecting **Bulk invite** and uploading a CSV file following the format of the provided **CSV template**.
+You may also bulk invite users by selecting **Bulk invite** and uploading a CSV file following the format of the provided **CSV template** linked in the UI.
+
+![image](/Bulk_Invite_Org_Users.png "Bulk Invite Org Users")
 
 #### Invite Users to a Project
 
@@ -36,10 +38,11 @@ To invite a user to a project:
 5. Click **Add another user** to invite additional users.
 6. Click **Invite** to complete the process.
 
-Need new invite box image
+![image](/Add_Proj_Users.png "Add_Proj_Users")
 
->If there are projects that you wish everyone in your organization have some baseline access to as a certain role, you may set default roles by choose All Users in the Organization and select a role in the **Invite Users module** to provide all current and future users in your organization with access.
+If there are projects that you wish everyone in your organization to have some baseline access, you can choose **All Users in the Organization** from the **Users** dropdown menu and then select a default role to provide all current and future users in your organization with this default access.
 
+![image](/Add_All_Users_In_Org.png "Add_All Users In Org")
 
 ### Remove Users
 
