@@ -391,7 +391,7 @@ Start with a smaller percentage and tune to fit your analytics needs.
 
 | Option | Description | Default | 
 | --- | --- | --- |
-| `record_sessions_percent` | Percentage of SDK initializations that will qualify for replay data capture. A value of "1" = 100%. | `0` |
+| `record_sessions_percent` | Percentage of SDK initializations that will qualify for replay data capture. A value of "1" = 1%. | `0` |
 | `record_idle_timeout_ms` | Duration of inactivity in milliseconds before ending a contiguous replay. A new replay collection will start when active again. | `1800000`<br/>(30 minutes) |
 | `record_max_ms` | Maximum length of a single replay in milliseconds. Up to 24 hours is supported. Once a replay has reached the maximum length, a new one will begin. | `86400000`<br/>(24 hours) |
 | `record_mask_text_selector` | CSS selector for elements that will have their text contents masked. | `"*"` |
