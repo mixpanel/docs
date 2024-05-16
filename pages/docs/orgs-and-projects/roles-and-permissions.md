@@ -46,31 +46,31 @@ If there are projects that you wish everyone in your organization to have some b
 
 ### Remove Users
 
-You can remove users from a project or organization.
-
-#### Remove User from a Project
-
->Note: Only users with Organization Owners and Organization Admins can remove users that have access to a project granted through a Team.
-
-To remove a user from a project:
-
-1. Under "Project Settings", click **Project Users**.
-2. Find user(s) to remove and click the checkbox next to their name.
-3. Click the **Delete** button that appears at the top of the table.
-
-![image](/Del_Proj_Users.png)
-
->Note: An organization user may be a member of multiple projects. Deleting a user from one project does not affect their access to other projects within the organization.
+You can remove users from an organization or project.
 
 #### Remove User from an Organization
 
 1. Under "Organization Settings", click **Users & Teams**.
-2. Find user(s) to remove and click the checkbox next to their name.
+2. Find the user(s) to remove and click the checkbox next to their name.
 3. Click the **Delete** button that appears at the top of the table.
 
 >Note: Deleting a user from an organization will remove them from all projects and teams within the organization and is non-reversible.
 
 ![image](/Del_Org_Users.png)
+
+#### Remove User from a Project
+
+>Note: Only users with Organization Owner or Organization Admin roles can remove users that have access to a project granted through a [Team](/docs/orgs-and-projects/roles-and-permissions#teams).
+
+To remove a user from a project:
+
+1. Under "Project Settings", click **Project Users**.
+2. Find the user(s) to remove and click the checkbox next to their name.
+3. Click the **Delete** button that appears at the top of the table.
+
+![image](/Del_Proj_Users.png)
+
+>Note: A user may be a member of multiple projects. Deleting a user from one project does not affect their access to other projects within the organization.
 
 ## Permissions
 
