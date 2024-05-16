@@ -9,20 +9,20 @@ info:
 servers:
   - $ref: ./common/app-api.yaml#/server
 security:
-  - ServiceAccount: []
+  - OAuthToken: []
 tags:
-  - name: Create Retrieval
-    description: Creates a data retrieval job
-  - name: Check Status of Retrieval
-    description: Checks the status of a data retrieval job
-  - name: Create a Deletion Task
-    description: Creates a task that specifies a list of users in a particular project to delete
-  - name: Check Status of a Deletion Task
-    description: Checks the status of an existing deletion task
   - name: Cancel Deletion
     description: Cancels an existing deletion task
+  - name: Check Status of Retrieval
+    description: Checks the status of a data retrieval job
+  - name: Check Status of a Deletion Task
+    description: Checks the status of an existing deletion task
+  - name: Create Retrieval
+    description: Creates a data retrieval job
+  - name: Create a Deletion Task
+    description: Creates a task that specifies a list of users in a particular project to delete
 paths:
-  /api/app/data-retrievals/v3.0:
+  /data-retrievals/v3.0:
     post:
       parameters:
       - name: token
@@ -42,14 +42,10 @@ paths:
                   $ref: '#/components/schemas/DistinctIds'
                 compliance_type:
                   description: 'Select CCPA or GDPR. Default is GDPR.'
-                  required: true
-                  schema:
-                    type: string
+                  type: string
                 disclosure_type:
                   description: 'Only required if compliance_type = CCPA. Can be Data, Categories, or Sources. Default is Data.'
-                  required: true
-                  schema:
-                    type: string
+                  type: string
       tags:
         - Create Retrieval
       summary: Create Retrieval
@@ -61,11 +57,12 @@ paths:
           $ref: ./common/responses.yaml#/401Unauthorized
         '403':
           $ref: ./common/responses.yaml#/403Forbidden
-  api/app/data-retrievals/v3.0/{tracking_id}:
+  /data-retrievals/v3.0/{tracking_id}:
     parameters:
     - name: tracking_id
       in: path
-      schema: string
+      schema:
+        type: string
       required: true
       description: 'The tracking ID shown in the response'
     get:
@@ -92,7 +89,7 @@ paths:
           $ref: ./common/responses.yaml#/401Unauthorized
         '403':
           $ref: ./common/responses.yaml#/403Forbidden
-  api/app/data-deletions/v3.0:
+  /data-deletions/v3.0:
     post:
       parameters:
       - name: token
@@ -112,9 +109,7 @@ paths:
                   $ref: '#/components/schemas/DistinctIds'
                 compliance_type:
                   description: 'Select CCPA or GDPR. Default is GDPR.'
-                  required: true
-                  schema:
-                    type: string
+                  type: string
       tags:
         - Create a Deletion Task
       summary: Create a Deletion Task
@@ -162,11 +157,12 @@ paths:
           $ref: ./common/responses.yaml#/401Unauthorized
         '403':
           $ref: ./common/responses.yaml#/403Forbidden
-  api/app/data-deletions/v3.0/{tracking_id}:
+  /data-deletions/v3.0/{tracking_id}:
     parameters:
     - name: tracking_id
       in: path
-      schema: string
+      schema: 
+        type: string
       required: true
       description: 'The tracking ID shown in the response'
     get:
@@ -207,7 +203,7 @@ components:
         - results
       properties:
         status:
-          type: '#/components/schemas/ResponseStatus'
+          $ref: '#/components/schemas/ResponseStatus'
         results:
           type: object
           properties:
@@ -224,7 +220,7 @@ components:
         - results
       properties:
         status:
-          type: '#/components/schemas/ResponseStatus'
+          $ref: '#/components/schemas/ResponseStatus'
         results:
           type: object
           properties:
@@ -243,7 +239,7 @@ components:
             results:
               type: string
             distinct_ids:
-              type: '#/components/schemas/DistinctIds'
+              $ref: '#/components/schemas/DistinctIds'
     CreateDeletionTaskResponse:
       title: CreateDeletionTaskResponse
       description: "A JSON response object containing data about a data deletion job"
@@ -254,7 +250,7 @@ components:
         - results
       properties:
         status:
-          type: '#/components/schemas/ResponseStatus'
+          $ref: '#/components/schemas/ResponseStatus'
         results:
           type: array
           items: 
