@@ -42,7 +42,6 @@ export default function ChangelogIndex({ more = "Read more" }) {
 
   // Load initial or additional pages
   useEffect(() => {
-    console.log(pageIndex);  // Check the current page index
     const morePages = allPages.slice(pageIndex, pageIndex + itemsPerPage);
     setDisplayedPages(prev => [...prev, ...morePages]);
   }, [pageIndex]);
