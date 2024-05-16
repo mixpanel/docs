@@ -40,7 +40,7 @@ Click any point on a chart for Event and Funnel metrics, and select ‘View Repl
 
 ## **Replay Player**
 
-![replayHeroImage](/replayHeroImage.png)
+![replayHeroImageWithPrivacy](/replayHeroImageWithPrivacy.png)
 
 The Replay Player allows you to watch replays, as well as:
 
@@ -60,7 +60,7 @@ Our Session Replay Beta Service Addendum can be found [here](https://mixpanel.co
 
 ## **FAQ**
 
-### **Is Session Replay available for mobile?**
+### Is Session Replay available for mobile?
 
 To start, Session Replay is available only for web-based applications (including mobile web). We hope to offer mobile support in the near future. 
 
