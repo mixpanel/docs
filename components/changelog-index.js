@@ -18,7 +18,7 @@ const renderMedia = (page) => {
       embedURL = `https://www.youtube.com/embed/${videoId}`;
     } else if (videoURL.includes("loom.com")) {
       const videoId = videoURL.split('/').pop();
-      embedURL = `https://www.loom.com/embed/${videoId}`;
+      embedURL = `https://www.loom.com/embed/${videoId}?hideEmbedTopBar=true`;
     }
 
     return (
