@@ -80,8 +80,6 @@ Not currently, but we plan to add support soon.
 
 There is about a ~1 minute delay between when recordings are captured and when they appear in Mixpanel.  
 
----  
-<br>
 
 ## Appendix: Session Replay Privacy Controls
 **Last updated May 9th, 2024**
@@ -161,11 +159,11 @@ To restart replay collection, call `mixpanel.start_session_recording()` to re-ad
 
 ### User Opt-Out
 
-Mixpanel’s Session Replay follows Mixpanel’s [standard SDK opt-out setting](https://docs.mixpanel.com/docs/privacy/end-user-data-management#opt-out-users).
+Mixpanel’s Session Replay follows Mixpanel’s [standard SDK opt-out setting](/docs/privacy/end-user-data-management#opt-out-users).
 
 ### Data Deletion
 
-Deletion requests for Session Replay use Mixpanel’s standard end user management process for events documented [here](https://docs.mixpanel.com/docs/privacy/end-user-data-management).
+Deletion requests for Session Replay use Mixpanel’s standard end user management process for events documented [here](/docs/privacy/end-user-data-management).
 
 ### Data Retention
 
