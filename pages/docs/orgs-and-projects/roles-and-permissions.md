@@ -56,7 +56,7 @@ You can remove users from an organization or project.
 
 >Note: Deleting a user from an organization will remove them from all projects and teams within the organization and is non-reversible.
 
-![image](/Del_Org_Users.png)
+![image](/Del_Org_Users.png "Delete Org Users")
 
 #### Remove User from a Project
 
@@ -70,7 +70,7 @@ A user may be a member of multiple projects. Deleting a user from one project do
 
 >Note: Only users with Organization Owner or Organization Admin roles can remove users that have access to a project granted through a [Team](/docs/orgs-and-projects/roles-and-permissions#teams).
 
-![image](/Del_Proj_Users.png)
+![image](/Del_Proj_Users.png "Delete Project Users")
 
 ## Permissions
 
@@ -202,9 +202,7 @@ Project Consumers do not have permissions to manage project user roles.
 
 #### Multiple Roles at Once
 
-It is possible to have multiple or conflicting roles on a project via teams or organization roles. Within Mixpanel all roles are additive and strictly give permissions to an action. They do not remove any abilities.
-
-For example:
+It is possible to have multiple or conflicting roles on a project via teams or organization roles. Within Mixpanel all roles are additive and strictly give permissions to an action. They do not remove any abilities. For example:
 
 1. A project Owner who is an organization Admin will have both project Owner and project Admin permissions in the project. For all intents and purposes, this is the same as having just the project Owner role.
 
@@ -213,6 +211,8 @@ For example:
 ## Teams
 
 Mixpanel enables you to create and delete Teams within an organization. Teams make it easier to manage roles and permissions for a group of users. Users who are a member of a Team will be provisioned with the same role and permission that is assigned to the team.
+
+![image](/Teams_List.png "Teams_List")
 
 ### Creating Teams
 
