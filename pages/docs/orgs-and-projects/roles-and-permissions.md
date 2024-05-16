@@ -60,42 +60,40 @@ You can remove users from an organization or project.
 
 #### Remove User from a Project
 
->Note: Only users with Organization Owner or Organization Admin roles can remove users that have access to a project granted through a [Team](/docs/orgs-and-projects/roles-and-permissions#teams).
-
 To remove a user from a project:
 
 1. Under "Project Settings", click **Project Users**.
 2. Find the user(s) to remove and click the checkbox next to their name.
 3. Click the **Delete** button that appears at the top of the table.
 
-![image](/Del_Proj_Users.png)
+A user may be a member of multiple projects. Deleting a user from one project does not affect their access to other projects within the organization.
 
->Note: A user may be a member of multiple projects. Deleting a user from one project does not affect their access to other projects within the organization.
+>Note: Only users with Organization Owner or Organization Admin roles can remove users that have access to a project granted through a [Team](/docs/orgs-and-projects/roles-and-permissions#teams).
+
+![image](/Del_Proj_Users.png)
 
 ## Permissions
 
-In Mixpanel, users have roles in an organization and in a project.
-
-The types of organization and project roles a user has should be based on the required permissions users need for specific levels.
+In Mixpanel, users have roles in an organization and in a project. The types of organization and project roles a user has should be based on the required permissions users need for specific levels.
 
 ### Organization Roles
 
 Paid Organizations have four roles: Owner, Admin, Billing Admin and Member. Free Organizations have two roles: Owner and Billing Admin. The table below breaks down the roles and permissions of each role:
 
-| **Organization Role**                                              | **Owner**          | **Admin**          | **Billing Admin**  | **Member** |
-|--------------------------------------------------------------------|--------------------|--------------------|--------------------|------------|
-| Manage Billing Plans                                               | ✅ | ❌                | ✅ | ❌        |
-| Create Projects                                                    | ✅ | ✅ | ❌                | ❌        |
-| Delete Projects                                                    | ✅ | ❌                | ❌                | ❌        |
-| Create/Delete Teams                                                | ✅ | ✅ | ❌                | ❌        |
-| Transfer Projects Between Organizations                            | ✅ | ❌                | ❌                | ❌        |
-| Add/Invite/Remove users to an Organization and or Projects         | ✅ | ✅ | ❌                | ❌        |
-| Add/Modify/Remove Service Accounts to Organization and or Projects | ✅ | ✅ | ❌                | ❌        |
-| Modify Roles - Organization Level                                  | ✅ | ✅ | ❌                | ❌        |
-| Modify Roles - Make themselves an Owner                            | ✅ | ❌                | ❌                | ❌        |
-| Modify Roles - Project/Team Level                                  | ✅ | ✅ | ❌                | ❌        |
-| Modify 2-FA and SSO                                                | ✅ | ✅ | ❌                | ❌        |
-| Request Organization Deletion                                      | ✅ | ❌                | ❌                | ❌        |
+| **Organization Role** | **Owner** | **Admin** | **Billing Admin** | **Member** |
+|-----------------------|-----------|-----------|-------------------|------------|
+| Manage Billing Plans                                               | ✅ | ❌ | ✅ | ❌ |
+| Create Projects                                                    | ✅ | ✅ | ❌ | ❌ |
+| Delete Projects                                                    | ✅ | ❌ | ❌ | ❌ |
+| Create/Delete Teams                                                | ✅ | ✅ | ❌ | ❌ |
+| Transfer Projects Between Organizations                            | ✅ | ❌ | ❌ | ❌ |
+| Add/Invite/Remove users to an Organization and or Projects         | ✅ | ✅ | ❌ | ❌ |
+| Add/Modify/Remove Service Accounts to Organization and or Projects | ✅ | ✅ | ❌ | ❌ |
+| Modify Roles - Organization Level                                  | ✅ | ✅ | ❌ | ❌ |
+| Modify Roles - Make themselves an Owner                            | ✅ | ❌ | ❌ | ❌ |
+| Modify Roles - Project/Team Level                                  | ✅ | ✅ | ❌ | ❌ |
+| Modify 2-FA and SSO                                                | ✅ | ✅ | ❌ | ❌ |
+| Request Organization Deletion                                      | ✅ | ❌ | ❌ | ❌ |
 
 #### Owner
 
@@ -123,93 +121,84 @@ Billing admins can view organization settings solely to:
 
 #### Member
 
-Organization Members have no permissions to control or manage organization settings.
-
-In order for a user to have access to project(s) and/or team(s), they must first be added to the organization as a Member.
+Organization Members have no permissions to control or manage organization settings. In order for a user to have access to project(s) and/or team(s), they must first be added to the organization as a Member.
 
 ### Project Roles
 
-A Project has 4 roles: Owner, Admin, Analyst, and Consumer.
+Users in a Project can be assigned to 4 roles: Owner, Admin, Analyst, and Consumer.
 The table below is an overview of the permissions per role on an project level.
 
-| **Project Roles**              | **Owner**          | **Admin**          | **Analyst** | **Consumer** |
-|--------------------------------|--------------------|--------------------|-------------|-------------|
-| Transfer/Reset/Delete Projects | ✅ | ❌                | ❌         | ❌         |
-| Edit Project Timezones         | ✅ | ✅ | ❌         | ❌         |
-| Edit Project Name              | ✅ | ✅ | ❌         | ❌         |
-| View Access Keys               | ✅ | ✅ | ❌         | ❌         |
-| View Usage Statistics          | ✅ | ✅ | ❌         | ❌         |
-| Access Time Period Settings    | Edit               | Edit               | View Only   | View Only   |
-| Invite Project Users           | ✅ | ✅ | ❌         | ❌         |
-| Change Project Users Role      | ✅ | ✅ | ❌         | ❌         |
-| Approve Access Requests        | ✅ | ✅ | ❌         | ❌         |
-| Create Service Accounts        | ✅ | ✅ | ❌         | ❌         |
+| **Project Roles**              | **Owner** | **Admin** | **Analyst** | **Consumer** |
+|--------------------------------|-----------|-----------|-------------|--------------|
+| Transfer/Reset/Delete Projects | ✅ | ❌ | ❌ | ❌ |
+| Edit Project Timezones         | ✅ | ✅ | ❌ | ❌ |
+| Edit Project Name              | ✅ | ✅ | ❌ | ❌ |
+| View Access Keys               | ✅ | ✅ | ❌ | ❌ |
+| View Usage Statistics          | ✅ | ✅ | ❌ | ❌ |
+| Access Time Period Settings    | Edit | Edit | View Only | View Only |
+| Invite Project Users           | ✅ | ✅ | ❌ | ❌ |
+| Change Project Users Role      | ✅ | ✅ | ❌ | ❌ |
+| Approve Access Requests        | ✅ | ✅ | ❌ | ❌ |
+| Create Service Accounts        | ✅ | ✅ | ❌ | ❌ |
 
 The table below is an overview of the permissions per role for reports and other features.
 
-| **Project Roles**                 | **Owner**          | **Admin**          | **Analyst** | **Consumer** |
-|-----------------------------------|--------------------|--------------------|-------------|--------------|
-| Create and View Insights Reports  | ✅ | ✅ | ✅ | ✅ |
-| Create and View Flows Reports     | ✅ | ✅ | ✅ | ✅ |
-| Create and View Funnels Reports   | ✅ | ✅ | ✅ | ✅ |
-| Create and View Retention Reports | ✅ | ✅ | ✅ | ✅ |
-| Download Reports                  | ✅ | ✅ | ✅ | ❌         |
-| Create Custom Alerts              | ✅ | ✅ | ✅ | ❌         |
-| Edit Custom Alerts                | ✅ | ❌ | ❌         | ❌         |
-| View Users Report                 | ✅ | ✅ | ✅ | ✅ |
-| Create/Edit Cohorts               | ✅ | ✅ | ✅ | ✅ |
-| Export Cohorts                    | ✅ | ✅ | ✅ | ❌         |
-| Create/Edit User Profiles         | ✅ | ✅ | ✅ | ❌         |
-| Delete User Profiles              | ✅ | ✅ | ❌         | ❌         |
-| Create and View Boards            | ✅ | ✅ | ✅ | ✅ |
-| Create Subscriptions for Boards   | ✅ | ✅ | ✅ | ❌         |
-| Edit Subscriptions for Boards     | ✅ | Only the Creator | Only the Creator | Only the Creator |
-| Create/Edit Custom Events         | ✅ | ✅ | ✅ | ✅ Can save only for self        |
-| Create/Edit Saved Behaviors       | ✅ | ✅ | ✅ | ✅ Can save only for self        |
-| Create/Edit Saved Formulas        | ✅ | ✅ | ✅ | ✅ Can save only for self        |
-| Create/Edit Custom Properties     | ✅ | ✅ | ✅ | ✅ Can save only for self        |
-| Create/Edit Borrowed Properties   | ✅ | ✅ | ❌ | ❌ |
-| Map Property to Lookup Table in Lexicon | ✅ | ✅ | ❌         | ❌         |
-| Hide Data in Lexicon              | ✅ | ✅ | ❌         | ❌         |
-| Edit Descriptions in Lexicon      | ✅ | ✅ | ❌         | ❌         |
-| Add Tags in Lexicon               | ✅ | ✅ | ❌         | ❌         |
-| Merge Data in Lexicon             | ✅ | ❌         | ❌         | ❌         |
-| Drop Data in Lexicon              | ✅ | ❌         | ❌         | ❌         |
-| Download CSV in Lexicon           | ✅ | ✅ | ✅ | ✅ |
-| Upload a Lookup Table             | ✅ | ✅ | ✅ | ✅ |
+| **Project Roles**                 | **Owner** | **Admin** | **Analyst** | **Consumer** |
+|-----------------------------------|-----------|-----------|-------------|--------------|
+| Create and View Insights Reports        | ✅ | ✅ | ✅ | ✅ |
+| Create and View Flows Reports           | ✅ | ✅ | ✅ | ✅ |
+| Create and View Funnels Reports         | ✅ | ✅ | ✅ | ✅ |
+| Create and View Retention Reports       | ✅ | ✅ | ✅ | ✅ |
+| Download Reports                        | ✅ | ✅ | ✅ | ❌ |
+| Create Custom Alerts                    | ✅ | ✅ | ✅ | ❌ |
+| Edit Custom Alerts                      | ✅ | ❌ | ❌ | ❌ |
+| View Users Report                       | ✅ | ✅ | ✅ | ✅ |
+| Create/Edit Cohorts                     | ✅ | ✅ | ✅ | ✅ |
+| Export Cohorts                          | ✅ | ✅ | ✅ | ❌ |
+| Create/Edit User Profiles               | ✅ | ✅ | ✅ | ❌ |
+| Delete User Profiles                    | ✅ | ✅ | ❌ | ❌ |
+| Create and View Boards                  | ✅ | ✅ | ✅ | ✅ |
+| Create Subscriptions for Boards         | ✅ | ✅ | ✅ | ❌ |
+| Edit Subscriptions for Boards           | ✅ | Only the Creator | Only the Creator | Only the Creator |
+| Create/Edit Custom Events               | ✅ | ✅ | ✅ | ✅ Can save only for self |
+| Create/Edit Saved Behaviors             | ✅ | ✅ | ✅ | ✅ Can save only for self |
+| Create/Edit Saved Formulas              | ✅ | ✅ | ✅ | ✅ Can save only for self |
+| Create/Edit Custom Properties           | ✅ | ✅ | ✅ | ✅ Can save only for self |
+| Create/Edit Borrowed Properties         | ✅ | ✅ | ❌ | ❌ |
+| Map Property to Lookup Table in Lexicon | ✅ | ✅ | ❌ | ❌ |
+| Hide Data in Lexicon                    | ✅ | ✅ | ❌ | ❌ |
+| Edit Descriptions in Lexicon            | ✅ | ✅ | ❌ | ❌ |
+| Add Tags in Lexicon                     | ✅ | ✅ | ❌ | ❌ |
+| Merge Data in Lexicon                   | ✅ | ❌ | ❌ | ❌ |
+| Drop Data in Lexicon                    | ✅ | ❌ | ❌ | ❌ |
+| Download CSV in Lexicon                 | ✅ | ✅ | ✅ | ✅ |
+| Upload a Lookup Table                   | ✅ | ✅ | ✅ | ✅ |
 
 #### Owner
 
-When a user creates a project, they own and have complete control over it. They have all permissions at the project level.
+When a user creates a project, they own and have complete control over it. They have all permissions at the project level and can provision project ownership to other project users.
 
-They can provision project ownership to other project users.
-
-Organization owners have administrative permissions to assume an owner role in a project.
+Organization Owners, by default, have administrative permissions to assume an owner role in a project.
 
 #### Admin
 
-Project admins have the same set of permissions as project owners. However, they cannot delete or reset the project or manage its security.
+Project Admins have the same set of permissions as project owners. However, they cannot delete or reset the project or manage its security.
 
-Organization admins have administrative permissions to assume an admin role in a project.
+Organization Admins, by default, have administrative permissions to assume an admin role in a project.
 
 #### Analyst
 
-Project analysts can create and save Mixpanel reports and Boards. They can also share their saved reports and Boards, along with reports and Boards in which they have editor permissions.
-
-Project analysts cannot manage team member roles.
+Project Analysts can create and save Mixpanel reports and Boards. They can also share their saved reports and Boards, along with reports and Boards in which they have editor permissions. They however do not have permissions to manage project user roles.
 
 #### Consumer
 
-Project consumers can view and save their own reports and Boards. Consumers cannot share their saved reports and Boards with their team members as they will be marked as private.
+Project Consumers can view and save their own reports and Boards. However, they cannot share their saved reports and Boards with other project users as these will be marked as private.
 
-Consumers can add saved reports to their own Boards. Consumers can also duplicate another user's Board and view it as a private Board.
+- Add saved reports to their own Boards. Duplicate another user's Board and view it as a private Board.
+- Edit reports and Boards on which they have been added as an editor. However, they cannot share these reports and Boards.
+- Cannot create public Boards.
 
-Consumers can edit reports and Boards on which they have been added as an editor. However, consumers cannot share these reports and Boards.
-
-Consumers cannot create public Boards.
-
-Project consumers cannot manage team member roles.
-
+Project Consumers do not have permissions to manage project user roles.
 
 #### Multiple Roles at Once
 
