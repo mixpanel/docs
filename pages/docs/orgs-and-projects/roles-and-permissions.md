@@ -232,17 +232,20 @@ All users added to a team will receive the same role and permissions that is ass
 3. Click **Add Users** to select users to add to the team.
 4. Click **Done** to complete the process.
 
+[Service Accounts](https://developer.mixpanel.com/reference/service-accounts) can also be added to teams, similar to how you would add a user to teams.
+
 ### Managing Team Permission
 
 #### Adding Projects to Teams
 
-Adding projects to a team gives all individuals in the team access to that project with the specified role. To add projects to a team:
+Adding projects to a team gives all individuals in the team access to that project with the specified project role. To add projects to a team:
 
 1. Under "Organization Settings", click **Users & Teams** and you will land on the Users tab.
 2. Select the **Teams** tab and select the team to manage.
-3. Click **Add Project** and select the project(s) and permission role.
+3. Click **Add Projects** and select the project(s) and appropriate project role.
 4. Click **Add** to complete the process.
+5. You can also grant [Classified Data](/docs/data-governance/data-views-and-classification#data-classification) access by checking the checkbox under **Classified Data** column.
 
-#### Other Team Permissions
+#### Adding Data Views to Teams
 
-Adding Data Views and Service Accounts to a team will give all individuals in the team access to the Data View and Service Accounts.
+Adding project [Data Views](/docs/data-governance/data-views-and-classification#data-views-overview) to a team will filter data access to all individuals within the team. Click [here](/docs/data-governance/data-views-and-classification#add-users-or-teams) for instructions on how to add a team to a Data View under Project Settings --> Data Views.
