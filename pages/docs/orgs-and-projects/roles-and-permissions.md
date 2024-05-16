@@ -208,6 +208,17 @@ It is possible to have multiple or conflicting roles on a project via teams or o
 
 2. If a user is assigned both the Consumer role individually and the Analyst role via a team. The user would be able to do both anything a Consumer can do and anything an Analyst can do.
 
+#### Grant Types
+
+A user's project role(s) can be granted in different ways:
+
+- Organization Role - Project Owner or Admin role was granted because the user is an Organization Owner or Admin
+- Team Grant (Team Name) - user is part of the indicated team where the project role was granted
+- Individual Grant - role was explicitly granted to the user at the project level
+- All Users Grant - current project has enabled "All Users in the Organization" to have the default indicated role
+
+![image](/Grant_Types.png "Grant Types")
+
 ## Teams
 
 Mixpanel enables you to create and delete Teams within an organization. Teams make it easier to manage roles and permissions for a group of users. Users who are a member of a Team will be provisioned with the same role and permission that is assigned to the team.
@@ -236,6 +247,8 @@ All users added to a team will receive the same role and permissions that is ass
 
 ### Managing Team Permission
 
+![image](/Manage_Team.png "Manage Team")
+
 #### Adding Projects to Teams
 
 Adding projects to a team gives all individuals in the team access to that project with the specified project role. To add projects to a team:
@@ -244,8 +257,8 @@ Adding projects to a team gives all individuals in the team access to that proje
 2. Select the **Teams** tab and select the team to manage.
 3. Click **Add Projects** and select the project(s) and appropriate project role.
 4. Click **Add** to complete the process.
-5. You can also grant [Classified Data](/docs/data-governance/data-views-and-classification#data-classification) access by checking the checkbox under **Classified Data** column.
+5. You can also grant [Classified Data](/docs/data-governance/data-views-and-classification#data-classification) access by ticking the checkbox under **Classified Data** column.
 
 #### Adding Data Views to Teams
 
-Adding project [Data Views](/docs/data-governance/data-views-and-classification#data-views-overview) to a team will filter data access to all individuals within the team. Click [here](/docs/data-governance/data-views-and-classification#add-users-or-teams) for instructions on how to add a team to a Data View under Project Settings --> Data Views.
+Adding project [Data Views](/docs/data-governance/data-views-and-classification#data-views-overview) to a team will filter data access to all individuals within the team. Click [here](/docs/data-governance/data-views-and-classification#add-users-or-teams) for instructions on how to add a team to a Data View under **Project Settings --> Data Views**.
