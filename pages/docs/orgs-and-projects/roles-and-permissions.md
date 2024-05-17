@@ -106,6 +106,8 @@ Organization Admins have permissions to manage projects, members and roles in th
 - Transfer Projects between Organizations
 - Manage Billing Plans
 
+In addition, an Organization Admin would not be able to assign any user to anything higher than Admin (i.e. Organization Owner).
+
 #### Billing Admin
 
 Organization Billing Admins can only manage billing plans for your company. The Billing Admin does not have to belong to a team or project. A user can be a Billing Admin and also a member of a Project or a Team simultaneously.
@@ -180,7 +182,7 @@ Organization Owners, by default, have administrative permissions to assume an ow
 
 #### Admin
 
-Project Admins have the same set of permissions as project owners. However, they cannot delete or reset the project or manage its security.
+Project Admins have the same set of permissions as project owners. However, they cannot delete or reset the project or manage its security. In addition, a Project Admin would not be able to assign any user to anything higher than Admin (i.e. Project Owner).
 
 Organization Admins, by default, have administrative permissions to assume an admin role in a project.
 
