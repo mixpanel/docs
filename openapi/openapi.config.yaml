@@ -3,6 +3,7 @@ apiDefinitions:
   connectors: ./src/connectors.openapi.yaml
   data-pipelines: ./src/data-pipelines.openapi.yaml
   export: ./src/export.openapi.yaml
+  gdpr: ./src/gdpr.openapi.yaml
   identity: ./src/identity.openapi.yaml
   ingestion: ./src/ingestion.openapi.yaml
   lexicon-schemas: ./src/lexicon-schemas.openapi.yaml

@@ -21,6 +21,11 @@ export const dwhItems = {
     'redshift': 'Redshift',
 }
 
+export const mirrorItems = {
+    'bigquery': 'BigQuery',
+    'snowflake': 'Snowflake',
+}
+
 export const KapaEventNames = {
     OnModalOpen: `onModalOpen`,
     OnModalClose: `onModalClose`,

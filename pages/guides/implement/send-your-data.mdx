@@ -118,3 +118,13 @@ In the following video, we walkthrough how you should manage identifying your us
 Do note that the mixpanel.identify() call does not create a User Profile in Mixpanel. The people.set() method is the required call to set user properties on a user profile. However, the people.set() call also requires an identify() call at some point in the same session, so that Mixpanel knows which User ID to associate the profile properties to. If there is no identify() call in a user’s session where people.set() is called, we store the user profile properties locally until that user hits an identify() call. 
 
 For more detailed user flows and FAQs refer to our documentation on [Identifying Users](/docs/tracking-methods/id-management/identifying-users).
+
+## Backfilling Historical Data 
+
+If you've previously collected data in other systems and wish to analyze it in Mixpanel, you have the option to backfill it into Mixpanel. We recommend backfilling a year’s worth (or less) of historical data. 
+
+Given that different systems may adopt different data models, it's essential to understand [Mixpanel Data Model](/guides/plan/tracking-strategy#the-mixpanel-data-model) and identify any required data transformations before backfilling the data into Mixpanel. For detailed guidance on migrating data from platforms such as Amplitude and Google Analytics, refer to our guide [here](/docs/migration/overview). 
+
+If your historical data is stored in a data warehouse, you can import it into Mixpanel through [Mixpanel Warehouse Connector](/docs/tracking-methods/data-warehouse). 
+
+Alternatively, if your historical data is stored in a system without Mixpanel native support for migration, you can still import it into Mixpanel via Mixpanel APIs. Learn more about this option [here](/guides/implement/send-your-data#direct-api-ingestion).

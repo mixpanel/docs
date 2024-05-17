@@ -1175,7 +1175,7 @@ paths:
       tags:
         - Engage
       description: >
-        Query user profile data and return list of users that fit specified
+        Query user (or group) profile data and return list of users (or groups) that fit specified
         parameters.
 
 
@@ -1232,10 +1232,14 @@ paths:
                     A JSON array of distinct_ids to retrieve profiles for.
 
                     Example: `distinct_ids=["id1", "id2"]`
+                data_group_id:
+                  type: string
+                  description: >-
+                    The ID of the group key, used when querying group profiles, click [here](https://docs.mixpanel.com/docs/data-structure/advanced/group-analytics#exporting-group-profiles-via-api) for more info.
                 where:
                   type: string
                   description: >-
-                    An expression to filter users by. See the [expressions
+                    An expression to filter users (or groups) by. See the [expressions
                     section](ref:segmentation-expressions)
                     above.
                 output_properties:
@@ -1293,17 +1297,13 @@ paths:
                 include_all_users:
                   type: boolean
                   description: >
-                    `include_all_users=True` means that the Engage API will
-                    include distinct_ids that don’t have a user profile. This is
-                    the default.
+                    *\*only applicable with `filter_by_cohort` parameter*
 
 
-                    `include_all_users=False` means that the Engage API will
-                    only include distinct_ids with user profiles.
+                    `include_all_users=true` (default) include all distinct_ids even if they don’t have a user (or group) profile.
 
 
-                    *this parameter is only applied when combined with
-                    `filter_by_cohort`
+                    `include_all_users=false` include only distinct_ids with user (or group) profile.
       responses:
         '200':
           description: Success.
