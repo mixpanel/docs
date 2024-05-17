@@ -7,9 +7,7 @@ Your team members access your organization and its projects using individual use
 
 ### Invite Users
 
-You can invite users to an organization or to a project with specific role permissions.
-
-See [Permissions](/docs/orgs-and-projects/roles-and-permissions#permissions) to learn more about organizaton roles and project roles.
+You can invite users to an organization or to a project with specific role permissions. See [Permissions](/docs/orgs-and-projects/roles-and-permissions#permissions) to learn more about organizaton roles and project roles.
 
 #### Invite Users to an Organization
 
@@ -40,7 +38,7 @@ To invite a user to a project:
 
 ![image](/Add_Proj_Users.png "Add_Proj_Users")
 
-If there are projects that you wish everyone in your organization to have some baseline access, you can choose **All Users in the Organization** from the **Users** dropdown menu and then select a default role to provide all current and future users in your organization with this default access.
+If there are projects that you wish for everyone in your organization to have some baseline access, you can choose **All Users in the Organization** from the **User** dropdown menu and then select a default role to provide all current and future users in your organization with this default access.
 
 ![image](/Add_All_Users_In_Org.png "Add_All Users In Org")
 
@@ -92,7 +90,7 @@ Paid Organizations have four roles: Owner, Admin, Billing Admin and Member. Free
 | Modify Roles - Organization Level                                  | ✅ | ✅ | ❌ | ❌ |
 | Modify Roles - Make themselves an Owner                            | ✅ | ❌ | ❌ | ❌ |
 | Modify Roles - Project/Team Level                                  | ✅ | ✅ | ❌ | ❌ |
-| Modify 2-FA and SSO                                                | ✅ | ✅ | ❌ | ❌ |
+| Modify 2FA and SSO                                                 | ✅ | ✅ | ❌ | ❌ |
 | Request Organization Deletion                                      | ✅ | ❌ | ❌ | ❌ |
 
 #### Owner
@@ -262,3 +260,16 @@ Adding projects to a team gives all individuals in the team access to that proje
 #### Adding Data Views to Teams
 
 Adding project [Data Views](/docs/data-governance/data-views-and-classification#data-views-overview) to a team will filter data access to all individuals within the team. Click [here](/docs/data-governance/data-views-and-classification#add-users-or-teams) for instructions on how to add a team to a Data View under **Project Settings --> Data Views**.
+
+### Deleting Teams
+
+Deleting a team will revoke all access permissions that were granted to users and service accounts as part of their team assignments. Permissions given through other [grant types](/docs/orgs-and-projects/roles-and-permissions#grant-types) will be retained.
+
+To delete a team in Mixpanel:
+
+1. Under "Organization Settings", click **Users & Teams** and you will land on the Users tab.
+2. Click **Teams** to see a list of current teams in your organization.
+3. Find the team(s) to remove and click the checkbox next to the team name.
+4. Click the **Delete** button that appears at the top of the table.
+
+![image](/Del_Team.png "Delete Team")
