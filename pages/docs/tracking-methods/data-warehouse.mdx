@@ -446,6 +446,20 @@ in future data sent to Mixpanel but the Stream will not update historical data w
 ### Append
 Append syncs require an Insert Time column in your table. Mixpanel remembers the maximum Insert Time it saw in the previous run of the sync and looks for only rows that have an Insert Time greater than that. This is useful and efficient for append-only tables (usually events) that have a column indicating when the data was appended.
 
+**Considerations when using Append with large BigQuery tables:**
+
+Each time an Append sync runs it will query the source table with a `WHERE <insert_time_column> > <previous_max_insert_time>` clause. In
+an un-partitioned BigQuery table this results in a full scan of all data in the source table each time the sync runs. To minimize
+BigQuery costs we recommend
+[partitioning the source table by the `<insert_time_column>`](https://cloud.google.com/bigquery/docs/partitioned-tables#date_timestamp_partitioned_tables).
+Doing so will ensure that each incremental sync run [only scans the most recent partitions](https://cloud.google.com/bigquery/docs/partitioned-tables).
+
+To understand the potential savings consider a 100 GB source table with 100 days of data (approximately 1 GB of data per day):
+- If this table is not partitioned and is synced daily the Append sync will scan the whole table (100 GB of data) each time it runs, or 3,000 GB of data per month.
+- If this table is partitioned by day and is synced daily with an Append sync the Append sync only scan the current day and previous day's partitions (2 GB of data) each time it runs, or 60 GB of data per day, a 50x improvement over the unpartitioned table.
+
+---
+
 ### Full
 Full syncs periodically make a snapshot of the source table and sync it entirely to Mixpanel. If a row has new properties in your warehouse, the corresponding profile in Mixpanel will be overridden with those new properties. This mode is available for all tables except events.
 
