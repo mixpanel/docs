@@ -62,6 +62,10 @@ This is a recommended feature for all B2B products that want answers to question
 
 The Data Pipelines Add-On exports the events in your Mixpanel project to a cloud storage bucket or data warehouse of your choice. It's useful if you want to analyze Mixpanel events using SQL in your own environment. We offer a 30-day free trial of this feature, see the [FAQ](https://docs.mixpanel.com/docs/data-pipelines/overview#how-does-the-free-trial-work) on how to enable it.
 
+
+## Reverse Trial (Beta)
+...
+
 ## Billing & Payment
 
 Mixpanel runs on a subscription service in which your card is charged at the beginning of every month or every year (depending on the plan you’ve purchased) to cover reporting services for that period of time.
