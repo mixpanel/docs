@@ -2,7 +2,7 @@ openapi: 3.0.2
 info:
   title: GDPR API
   description: >-
-    The following retrieval and deletion API is made for GDPR and CCPA compliance.
+    The following retrieval and deletion API is made for GDPR and CCPA compliance. Test
   contact:
     url: 'https://mixpanel.com/get-support'
   version: 3.0.0
