@@ -56,7 +56,7 @@ async function updateSpecs() {
     const spec = YAML.parse(yamlStr);
     const specMeta = remoteSpecMetas.find((m) => m.title === spec.info.title);
     if (!specMeta) {
-      console.log(`!!! No spec found for "${spec.info.title}"`);
+      console.log(`!!! No spec found for "${spec.info.title}". Please upload it first via the command line as found in the developer runbook.`);
       continue;
     }
     const specId = specMeta.id;
