@@ -55,18 +55,21 @@ async function updateSpecs() {
     const yamlStr = fs.readFileSync(fullPath, "utf8");
     const spec = YAML.parse(yamlStr);
     const specMeta = remoteSpecMetas.find((m) => m.title === spec.info.title);
-    if (!specMeta) {
-      console.log(`!!! No spec found for "${spec.info.title}"`);
-      continue;
-    }
-    const specId = specMeta.id;
-
-    // validate and publish spec
-    console.log(`Updating ${spec.info.title} (${specFile}, ID ${specId})`);
     await execAndLog(`npx rdme openapi:validate ${fullPath}`);
-    await execAndLog(
-      `npx rdme openapi ${fullPath} --id=${specId} --key=${README_API_KEY}`
-    );
+
+    // no spec is found, will need to upload the new spec
+    if (!specMeta) {
+      console.log(`Creating a new spec for ${spec.info.title}`)
+      await execAndLog(`npx rdme openapi ${fullPath} --key=${README_API_KEY}`);
+    } else {
+      const specId = specMeta.id;
+
+      // validate and publish spec
+      console.log(`Updating ${spec.info.title} (${specFile}, ID ${specId})`);
+      await execAndLog(
+        `npx rdme openapi ${fullPath} --id=${specId} --key=${README_API_KEY}`
+      );
+    }
   }
 }
 
