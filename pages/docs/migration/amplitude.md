@@ -46,7 +46,8 @@ Here's an example request to the migration service which you can customize:
 
 ```bash
 curl --request POST \
-  --url http://migrate.api.mixpanel.com/amplitude \
+  --url https://migrate.api.mixpanel.com/amplitude \
+  --header "Content-Type: application/json" \
   --data '{
 	"AMPLITUDE_API_KEY": "YOUR_AMP_KEY",
 	"AMPLITUDE_API_SECRET": "YOUR_AMP_SECRET",
