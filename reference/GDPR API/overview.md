@@ -1,3 +1,11 @@
+---
+title: "Overview"
+slug: "overview-3"
+hidden: false
+createdAt: "2024-05-14T00:38:44.555Z"
+updatedAt: "2024-05-14T00:38:54.824Z"
+---
+
 ## GDPR and CCPA API (v3)
 The following retrieval and deletion API calls are updated for version 3 and are made for GDPR and CCPA compliance.
 
