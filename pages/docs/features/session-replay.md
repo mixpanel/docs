@@ -141,6 +141,7 @@ The example below demonstrates how you can override certain elements in your HTM
 
 `<img src="https://image.com" class="rr-block"/>`
 
+_Note: while the contents of blocked elements will not be captured, mouse interactions above these blocked elements will still be captured, so replays will still display where users click on these elements._
 
 ### Other Elements (e.g., images, video)
 
