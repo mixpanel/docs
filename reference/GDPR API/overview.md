@@ -4,6 +4,7 @@ slug: "overview-3"
 hidden: false
 createdAt: "2024-05-14T00:38:44.555Z"
 updatedAt: "2024-05-14T00:38:54.824Z"
+categorySlug: "gdpr-api"
 ---
 
 ## GDPR and CCPA API (v3)
