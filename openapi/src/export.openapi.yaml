@@ -1,7 +1,7 @@
 openapi: 3.0.2
 info:
   title: Event Export API
-  description: Export events as JSON.
+  description: Export events as JSON..
   version: 1.0.0
   contact:
     url: https://mixpanel.com/get-support
