@@ -111,9 +111,9 @@ In line chart reports, you can select relative thresholds.
 
 ### Setting a custom alert for Funnel reports
 
-Custom Alerts in Funnels track the overall conversion rate.
+Custom Alerts in Funnels track the overall conversion rate (%) or absolute conversion counts.
 
-1. In the alert creation modal, select **Custom Threshold** as the alert type select whether you would like to track when the conversion rate is **above** or **below** a percentage you set.
+1. In the alert creation modal, select **Custom Threshold** as the alert type select whether you would like to track when the conversion rate is **above** or **below** a percentage or the count you set.
 
     *Note: at the moment, anomaly detection alerts are not supported in Funnels*
 
