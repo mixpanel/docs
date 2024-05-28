@@ -9,6 +9,8 @@ Whenever a project goes above the threshold described above, it generates an imb
 
 Since we distribute events across shards, this imbalance is called a **hot shard**.
 
+Group analytics has a different storage sharding of events separate from the user analytics. A hot shard that appears in an analytics may not appear in user analytics.
+
 ## What happens when we detect a hot shard?
 Once a given entry crosses the threshold, all subsequent matching events (same `distinct_id` and calendar day) will have the following transformations applied to them:
 - `event` will be changed to `$hotshard_events` (display name is `Hotshard Events`).  The original event name will be preserved under a property called `mp_original_event_name` (display name is `Hotshard Original Event Name`). Changing the name removes the bad events from being selected for analysis yet remain accessible for debugging.
