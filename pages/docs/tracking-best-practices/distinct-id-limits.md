@@ -9,7 +9,7 @@ Whenever a project goes above the threshold described above, it generates an imb
 
 Since we distribute events across shards, this imbalance is called a **hot shard**.
 
-Group analytics has a different storage sharding of events separate from the user analytics. A hot shard that appears in an analytics may not appear in user analytics.
+Group analytics has a different storage sharding of events separate from the user analytics. A hot shard that appears in an analytic group may or may not not appear in user analytics.
 
 ## What happens when we detect a hot shard?
 Once a given entry crosses the threshold, all subsequent matching events (same `distinct_id` and calendar day) will have the following transformations applied to them:
