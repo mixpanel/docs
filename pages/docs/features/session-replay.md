@@ -54,6 +54,9 @@ The Replay Feed on the left of the player also allows you to:
 - sort replays by recency
 - search for replays by user's name / email, replay date, or user ID
 
+## Implementation
+Our documentation on how to implement Session Replay can be found [here](https://docs.mixpanel.com/docs/tracking-methods/sdks/javascript#session-replay-beta).
+
 ## Legal (Beta Terms)
 
 Our Session Replay Beta Service Addendum can be found [here](https://mixpanel.com/legal/session-replay-beta-service-addendum/).
