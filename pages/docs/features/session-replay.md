@@ -83,6 +83,97 @@ Not currently, but we plan to add support soon.
 
 There is about a ~1 minute delay between when recordings are captured and when they appear in Mixpanel.  
 
+### Can I use Session Replay with a CDP?
+
+Yes. You can use Session Replay with CDPs like Segment and mParticle.
+
+In order to use Session Replay, your app must include the Mixpanel SDK. [Consult the quickstart](https://docs.mixpanel.com/docs/quickstart/install-mixpanel) to ensure you have the Mixpanel SDK installed, and the [setup guide](https://docs.mixpanel.com/docs/tracking-methods/sdks/javascript#session-replay-beta) to make sure you have Session Replay enabled.
+
+Once you have included the Mixpanel SDK in your app add the following code snippets in order to connect your CDP's data stream with Mixpanel's Session Replay.
+
+##### Segment: Analytics.js
+
+By [adding middleware to Segment's SDK](https://segment.com/docs/connections/sources/catalog/libraries/website/javascript/middleware/) we can ensure that all event calls include the session replay properties. We can also ensure that any identify calls are also passed to Mixpanel.
+
+```javascript
+// Middleware to add Mixpanel's session recording properties to Segment events
+analytics.addSourceMiddleware(({ payload, next, integrations }) => {
+	if (payload.type === 'track' || payload.type === 'page') {
+		if (window.mixpanel) {
+			const segmentDeviceId = payload.obj.anonymousId;
+			mixpanel.register({ $device_id: segmentDeviceId });
+			const sessionReplayProperties = mixpanel.get_session_recording_properties();
+			payload.obj.properties = {
+				...payload.obj.properties,
+				...sessionReplayProperties
+			};
+		}
+	}
+	if (payload.type === 'identify') {
+		if (window.mixpanel) {
+			const userId = payload.obj.userId;
+			mixpanel.identify(userId);
+		}
+	}
+	next(payload);
+});
+```
+
+##### mParticle: Web SDK
+
+mParticle's Web SDK has a `.getDeviceId()` [method which can be used to retrieve the device_id](https://docs.mparticle.com/developers/sdk/web/initialization/#device-id-device-application-stamp). In the following example, we use this method to bind mParticle's device_id to Mixpanel's device_id, as wall as [patching `logEvent` and `logPageView`](https://docs.mparticle.com/developers/sdk/web/core-apidocs/classes/mParticle%20&%20mParticleInstance.html#index) to include session replay properties.
+
+```javascript
+mixpanel.init('MIXPANEL-PROJECT-TOKEN', {
+	record_sessions_percent: 10,
+	loaded: function (mixpanel) {
+		//when mixpanel has loaded, check for mParticle device_id
+		const pollInterval = 500;
+		const maxAttempts = 10;
+		let attempts = 0;
+
+		const mParticleHasLoaded = setInterval(() => {
+			if (window.mParticle && window.mParticle.isInitialized()) {
+				const mParticle_device_id = mParticle.getDeviceId();
+				if (mParticle_device_id) {
+					mixpanel.register({
+						$device_id: mparticle_device_id
+					});
+					clearInterval(mParticleHasLoaded);
+				}
+
+				//patch logEvent + logPageView so they include sessionReplayProperties
+				const originalLogEvent = mParticle.logEvent;
+				mParticle.logEvent = function (eventName, eventType, eventAttributes, flags, opts) {
+					const sessionReplayProperties = mixpanel.get_session_recording_properties();
+					eventAttributes = {
+						...eventAttributes,
+						...sessionReplayProperties,
+					};
+					originalLogEvent(eventName, eventType, eventAttributes, flags, opts);
+				};
+				const originalLogPageView = mParticle.logPageView;
+				mParticle.logPageView = function (eventName, eventAttributes, flags, opts) {
+					const sessionReplayProperties = mixpanel.get_session_recording_properties();
+					eventAttributes = {
+						...eventAttributes,
+						...sessionReplayProperties,
+					};
+					originalLogPageView(eventName, eventAttributes, flags, opts);
+				};
+			}
+
+			else {
+				attempts++;
+				if (attempts >= maxAttempts) {
+					clearInterval(mParticleHasLoaded);
+					console.log('mixpanel: max attempts reached for segment device_id');
+				}
+			}
+		}, pollInterval);
+	}
+});
+```
 
 ## Appendix: Session Replay Privacy Controls
 **Last updated May 9th, 2024**
