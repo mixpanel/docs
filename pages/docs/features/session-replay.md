@@ -127,50 +127,32 @@ mParticle's Web SDK has a `.getDeviceId()` [method which can be used to retrieve
 mixpanel.init('MIXPANEL-PROJECT-TOKEN', {
 	record_sessions_percent: 10,
 	loaded: function (mixpanel) {
-		//when mixpanel has loaded, check for mParticle device_id
-		const pollInterval = 500;
-		const maxAttempts = 10;
-		let attempts = 0;
-
-		const mParticleHasLoaded = setInterval(() => {
-			if (window.mParticle && window.mParticle.isInitialized()) {
-				const mParticle_device_id = mParticle.getDeviceId();
-				if (mParticle_device_id) {
-					mixpanel.register({
-						$device_id: mparticle_device_id
-					});
-					clearInterval(mParticleHasLoaded);
-				}
-
-				//patch logEvent + logPageView so they include sessionReplayProperties
-				const originalLogEvent = mParticle.logEvent;
-				mParticle.logEvent = function (eventName, eventType, eventAttributes, flags, opts) {
-					const sessionReplayProperties = mixpanel.get_session_recording_properties();
-					eventAttributes = {
-						...eventAttributes,
-						...sessionReplayProperties,
-					};
-					originalLogEvent(eventName, eventType, eventAttributes, flags, opts);
-				};
-				const originalLogPageView = mParticle.logPageView;
-				mParticle.logPageView = function (eventName, eventAttributes, flags, opts) {
-					const sessionReplayProperties = mixpanel.get_session_recording_properties();
-					eventAttributes = {
-						...eventAttributes,
-						...sessionReplayProperties,
-					};
-					originalLogPageView(eventName, eventAttributes, flags, opts);
-				};
+		window.mParticle.ready(function() {
+			const mParticle_device_id = mParticle.getDeviceId();
+			if (mParticle_device_id) {
+				mixpanel.register({	$device_id: mParticle_device_id	});
 			}
 
-			else {
-				attempts++;
-				if (attempts >= maxAttempts) {
-					clearInterval(mParticleHasLoaded);
-					console.log('mixpanel: max attempts reached for segment device_id');
-				}
-			}
-		}, pollInterval);
+			// Patch logEvent and logPageView to include sessionReplayProperties
+			const originalLogEvent = mParticle.logEvent;
+			mParticle.logEvent = function (eventName, eventType, eventAttributes, flags, opts) {
+				const sessionReplayProperties = mixpanel.get_session_recording_properties();
+				eventAttributes = {
+					...eventAttributes,
+					...sessionReplayProperties,
+				};
+				originalLogEvent(eventName, eventType, eventAttributes, flags, opts);
+			};
+			const originalLogPageView = mParticle.logPageView;
+			mParticle.logPageView = function (eventName, eventAttributes, flags, opts) {
+				const sessionReplayProperties = mixpanel.get_session_recording_properties();
+				eventAttributes = {
+					...eventAttributes,
+					...sessionReplayProperties,
+				};
+				originalLogPageView(eventName, eventAttributes, flags, opts);
+			};
+		});
 	}
 });
 ```
