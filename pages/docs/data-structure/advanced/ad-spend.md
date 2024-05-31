@@ -176,7 +176,7 @@ We will need to specify the dependencies for the function to use. Open the Inlin
   "dependencies": {
     "@google-cloud/functions-framework": "^3.0.0",
     "mixpanel": "^0.17.0",
-		"google-ads-api": "^13.0.0"
+		"google-ads-api": "^16.0.0"
   }
 }
 ```
