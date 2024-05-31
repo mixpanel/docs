@@ -86,7 +86,7 @@ $referrer | Referrer | Referring URL including your own domain. Might not be pre
 | $model | Model | The model of the device. | ❌ | ✅ | ✅ | ✅ |
 | $watch_model	| Watch Model | The model of the iOS watch. | ❌ | ❌ | ✅ | ❌ |
 | $carrier | Carrier | Wireless carrier of the device owner. | ❌ | ✅ | ✅ | ❌ | 
-| $radio | Radio | Current [cellular network communication standard](https://www.objc.io/issues/5-ios7/iOS7-hidden-gems-and-workarounds/#know-your-radio)(opens in a new tab) (3G, 4G, LTE, etc). | ❌ | ✅ | ✅ | ✅ | 
+| $radio | Radio | Current [cellular network communication standard](https://www.objc.io/issues/5-ios7/iOS7-hidden-gems-and-workarounds/#know-your-radio)(opens in a new tab) (3G, 4G, LTE, etc). | ❌ | ❌ | ✅ | ✅ | 
 | $wifi | Wifi | Set to true if the user’s device has an active, available Wifi connection, false if not. | ❌ | ✅ | ✅ | ✅ | 
 | $bluetooth_enabled | Bluetooth | Set to true if Bluetooth is enabled, false if not. | ❌ | ✅ | ❌ | ❌ | 
 | $bluetooth_version | Bluetooth Version | Set to "none", "ble", or "classic". | ❌ | ✅ | ❌ | ❌ | 

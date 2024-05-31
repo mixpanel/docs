@@ -54,6 +54,9 @@ The Replay Feed on the left of the player also allows you to:
 - sort replays by recency
 - search for replays by user's name / email, replay date, or user ID
 
+## Implementation
+Our documentation on how to implement Session Replay can be found [here](https://docs.mixpanel.com/docs/tracking-methods/sdks/javascript#session-replay-beta).
+
 ## Legal (Beta Terms)
 
 Our Session Replay Beta Service Addendum can be found [here](https://mixpanel.com/legal/session-replay-beta-service-addendum/).
@@ -141,6 +144,7 @@ The example below demonstrates how you can override certain elements in your HTM
 
 `<img src="https://image.com" class="rr-block"/>`
 
+_Note: while the contents of blocked elements will not be captured, mouse interactions above these blocked elements will still be captured, so replays will still display where users click on these elements._
 
 ### Other Elements (e.g., images, video)
 

@@ -1,11 +1,15 @@
-# Distinct ID Limits
+# Hot Shard Limits
 
-In order to maintain fast queries and catch implementation mistakes, we set a limit on the number of events sent to a particular `distinct_id` in a given time window. This threshold has been established as **200K events per `distinct_id` per event date in the project**.
+In order to maintain fast queries and catch implementation mistakes, we set a limit on the number of events sent to a particular identifier in a given time window. This threshold has been established for a project as:
+- 200K events per `distinct_id` per event date in the project's user analytics.
+- 1M events per `group identifier` per event date (still represented as distinct_id in the rest of this doc) in each of the project's [analytic groups](/docs/data-structure/advanced/group-analytics).
 
 ## What is a hot shard?
 Whenever a project goes above the threshold described above, it generates an imbalance when storing events across distinct_ids, where one distinct_id's events grows larger than the rest, impacting storage and query systems which in-turn results in high query latencies (slower reports) for the end user.
 
 Since we distribute events across shards, this imbalance is called a **hot shard**.
+
+Group analytics has a different storage sharding of events separate from the user analytics. A hot shard that appears in an analytic group may or may not not appear in user analytics.
 
 ## What happens when we detect a hot shard?
 Once a given entry crosses the threshold, all subsequent matching events (same `distinct_id` and calendar day) will have the following transformations applied to them:

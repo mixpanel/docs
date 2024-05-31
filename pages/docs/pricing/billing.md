@@ -62,6 +62,50 @@ This is a recommended feature for all B2B products that want answers to question
 
 The Data Pipelines Add-On exports the events in your Mixpanel project to a cloud storage bucket or data warehouse of your choice. It's useful if you want to analyze Mixpanel events using SQL in your own environment. We offer a 30-day free trial of this feature, see the [FAQ](https://docs.mixpanel.com/docs/data-pipelines/overview#how-does-the-free-trial-work) on how to enable it.
 
+## Reverse Trial (Beta)
+When you sign up for Mixpanel, your organization is automatically enrolled in a 30-day free trial of our paid Growth plan, including our [Group Analytics and Data Pipeline add-ons](https://docs.mixpanel.com/docs/pricing/billing), with unlimited events.
+
+This provides your organization with the opportunity to explore the paid functionality of Mixpanel, while also sending as many events as you need at no charge for 30 days.
+
+During your trial, you will receive emails from Mixpanel highlighting the features you are using and the event volumes you are sending. These emails are meant to inform your event estimation and plan selection at the end of your trial. At the end of your 30 day trial, you will have the option to continue with a paid plan, or move to our Free plan.
+
+At any time during your trial if you have questions, you can reach out at [trial@mixpanel.com](mailto:trial@mixpanel.com).
+
+### When exactly does my trial start?
+
+Your trial starts when your first organization member signs up for Mixpanel, and expires 30 days after.
+
+***What if I’m unable to start using Mixpanel right away? Can I get an extension?***
+
+Unfortunately, we are unable to grant extensions at this time.
+
+### What happens when my trial ends?
+
+At the end of your 30 day trial, you will have the option to continue with a paid plan, or move to our Free plan.
+
+During the 30 day trial, you will receive emails from Mixpanel informing you of paid features you are using, along with how many events you are using. These emails are designed to help you decide the right Mixpanel plan for your organization upon trial expiration.
+
+***Selecting your post-trial plan***
+
+At the end of your trial, you will have 2 options:
+
+- Continue using Mixpanel at no cost on our Free plan, with the corresponding feature and event volume limits
+- Select a paid plan — either our Growth or Enterprise plan. You can purchase a Growth plan online at any time during the trial; you will not be billed until the end of your trial period. To upgrade to an Enterprise plan, you can contact sales.
+
+Learn more about our plans on our [pricing page](https://mixpanel.com/pricing/).
+
+***Will I be automatically billed when the trial ends?***
+
+You will not be billed unless you have selected a paid plan to purchase upon trial completion. Otherwise, your organization will be automatically downgraded to our Free plan.
+
+***I selected a paid plan for when my trial ends, but I’d like to cancel it or change it. How do I do this?***
+
+To change this, reach out to [support@mixpanel.com](mailto:support@mixpanel.com).
+
+### Where do I go if I have questions or need help?
+
+At any time, you can reach out to [trial@mixpanel.com](mailto:trial@mixpanel.com).
+
 ## Billing & Payment
 
 Mixpanel runs on a subscription service in which your card is charged at the beginning of every month or every year (depending on the plan you’ve purchased) to cover reporting services for that period of time.
