@@ -11,10 +11,6 @@ To access SSO settings in Mixpanel, navigate to your **Organization Settings** l
 
 ![SSO Org Setting Image](/sso_org_setting.png)
 
-**Require Users to Log In Using SSO**
-Optionally toggle “Require Users to Log In using SSO” to prevent your users from using a username and password to log in. Click Enable. Please note that organization owners and admins will still be able to log in using username and password in the case that SSO is not set up correctly.
-Do note that external users who were invited to projects will still be able to log in using username and password.
-
 ## Claim a Domain
 
 Claiming a domain will add security to an SSO implementation by only allowing members with a claimed domain in their email address to access Mixpanel. SSO only works on domains that are claimed. 
@@ -89,6 +85,10 @@ You likely will need to provide your IDP with a postback URL. The postback URL i
 **SAML Certificate**
 
 This needs to be a .cert or .pem file for a valid X509 certificate. Note that .xml files are not valid, if you have downloaded one from your IDP it will not work. Also it's important to note that this certificate will expire after some number of years. At the moment we do not send any notifications when it is about to expire, so make sure you have a system set up to cycle them every so often if you wish to avoid disruption.
+
+**Require Users to Log In Using SSO**
+Optionally toggle “Require Users to Log In using SSO” to prevent your users from using a username and password to log in. Click Enable. Please note that organization owners and admins will still be able to log in using username and password in the case that SSO is not set up correctly.
+Do note that external users who were invited to projects will still be able to log in using username and password.
 
 ## Just in Time Provisioning
 
