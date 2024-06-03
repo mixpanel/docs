@@ -79,7 +79,7 @@ export default function MyApp({ Component, pageProps }: AppProps) {
   const router = useRouter();
 
   useEffect(() => {
-    insertGTMScriptTags();
+    // insertGTMScriptTags();
     trackPageview();
   //   Object.values(KapaEventNames).forEach((eventName) => {
   //     // @ts-ignore
