@@ -173,7 +173,13 @@ Mixpanel’s default pricing option is based on events because it is a better op
 
 If you are an existing customer on an MTU plan, refer to our legacy MTU Pricing Guide.
 
-### Is old data billed when imported to Mixpanel?
+### Is old event data billed when imported to Mixpanel?
 
-We will only apply charges to data points with timestamps within the current billing cycle. Importing older data will incur no additional cost. For example: if April 1st - April 30th is the current billing cycle, importing data from March will be free of charge.
+We will only apply charges to event data points with timestamps within the current billing cycle. Importing older data will incur no additional cost. For example: if April 1st - April 30th is the current billing cycle, importing data from March will be free of charge.
+
+### I am using the Warehouse add-on for ingesting data. How does this impact billing? 
+
+The warehouse is just another source of data, just more accurate as it allows you to send updated data to Mixpanel at all times. Warehouse data, similar to other sources, is billed in accordance with general Mixpanel pricing policies. 
+
+The one additional field you will see in the Billing Page on your Data Usage Table is "Updates". Updates (updating existing event or deleting event) from the warehouse are tracked separately from event volume. Each update is counted as one event towards billing. You can read more [here](https://docs.mixpanel.com/docs/tracking-methods/data-warehouse#faq)
 
