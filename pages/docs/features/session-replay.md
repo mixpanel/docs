@@ -170,21 +170,24 @@ Data privacy regulations are rapidly evolving and vary considerably across state
 
 Session Replay captures the Document Object Model (DOM) structure and changes to it. Mixpanel then reconstructs the web page, applying recorded events at the time an end user completed them. Within Mixpanel’s platform, you can view a reconstruction of your end user’s screen as they navigate your website. However, Session Replay is not a video recording of your end user’s screen and end user actions are not literally video-recorded.
 
-### How does masking work? What are the high-level technical details?
+### How does masking and blocking work? What are the high-level technical details?
 
 Masked data is suppressed client-side, meaning it is not collected in its original form by Mixpanel’s SDK, and the data is not stored on Mixpanel servers. Masked data appears in Mixpanel as [****].
+
+Blocked data is similarly suppressed client-side. Blocked data will be rendered with a placeholder element (e.g., an empty box of similar size).
+
 
 ### Configuring Privacy Controls
 
 Mixpanel offers its customers a range of privacy controls to limit the data captured by Session Replay, which are summarized in the table below and detailed further on this page.
 
-| Element | Description | Mask Text Mode (Mixpanel’s Default) | Mask User Input Mode |
+| Element | Description | Mask Everything Mode (Mixpanel’s Default) | Mask User Input Mode |
 | --- | --- | --- | --- |
 | Input | Textareas, select | Masked (cannot be unmasked) | Masked (cannot be unmasked) |
 | text | Non-input text | Masked (cannot be unmasked) | Unmasked, with the ability to mask specific text elements |
-| Non-text elements | Video and image elements | Ingested by default (not masked) with the ability to block specific non-text elements | Ingested by default (not masked) with the ability to block specific non-text elements |
+| Non-text elements | Video and image elements | Blocked by default, with the ability to unblock specific non-text elements | Blocked by default, with the ability to unblock specific non-text elements |
 
-### Mask Text Mode (Mixpanel’s Session Replay default privacy setting)
+### Mask Everything Mode (Mixpanel’s Session Replay default privacy setting)
 
 By default, Mixpanel attempts to mask all HTML text and user input text when you enable Session Replay. This masked content on your webpage is replaced with [****].
 
@@ -221,7 +224,7 @@ _Note: while the contents of blocked elements will not be captured, mouse intera
 
 ### Other Elements (e.g., images, video)
 
-If you would like to block Mixpanel’s Session Replay from capturing video, images, or other non-text elements, you should add the CSS class name “.rr-block” to elements that should not be captured. This will cause the element's contents to no longer be captured. In subsequent playback, this element will be rendered with a placeholder element (e.g., an empty box of similar size).
+Mixpanel’s Session Replay automatically blocks video, images, and other non-text elements. In subsequent playback, this element will be rendered with a placeholder element (e.g., an empty box of similar size). Note: interactions above blocked elements will be captured (i.e., mouse-clicks).
 
 ### Disabling replay collection
 
@@ -233,6 +236,13 @@ Once enabled, Session Replay runs on your site until either:
 Call mixpanel.stop_session_recording() before a user navigates to a restricted area of your site to disable replay collection while the user is in that area.
 
 To restart replay collection, call `mixpanel.start_session_recording()` to re-add the plugin.
+
+### Additional Considerations
+
+WebComponents that utilize HTML attributes may be ingested and stored by Session Replay, regardless of whether they are displayed in an individual recording as text. Customers should utilize the block functionality outlined above to the extent specific areas of a webpage should not be ingested.
+
+Placeholder attributes in input elements will be captured and not masked.
+
 
 ### User Opt-Out
 
