@@ -404,8 +404,9 @@ Start with a smaller percentage and tune to fit your analytics needs.
 ```javascript
 mixpanel.start_session_recording()
 ```
-This will have no effect if replay data collection is in progress.
+This will have no effect if replay data collection is in progress. 
 
+This is optional, and can be used primarily to programmatically start and stop recording, or exclude something specific from recording. We recommend using the [sampling method](/docs/tracking-methods/sdks/javascript#sampling-method) detailed above unless you need to customize when you capture replay data. 
 
 #### Stop capturing replay data
 
