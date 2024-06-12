@@ -57,7 +57,7 @@ Limits:
 ## FAQ
 
 ### Why are some events or properties not exported to the destination?
-This normally happens when you have thousands of unique event names or property names, which is usually an implementation mistake (eg: including a UUID in the event or property name). This causes the export process to exceed table or column limits in the destination. Mixpanel itself imposes a limit of 10K unique properties in your schema after tranformation rules have been applied. Any projects exceeding this limit will have their pipelines paused until the issue can be remediated. If you notice an error in your pipelines around exceeding this limitation please try to identify a regex selector that selects some properties you would like the filter out of your schema and reach out to our support team for assistance.
+This normally happens when you have thousands of unique event names or property names, which is usually an implementation mistake (eg: including a UUID in the event or property name). This causes the export process to exceed table or column limits in the destination. Mixpanel itself imposes a limit of 10K unique properties in your schema after tranformation rules have been applied. Any projects exceeding this limit will have their pipelines paused until the issue can be remediated. If you notice an error in your pipelines around exceeding this limitation please try to identify a regex selector that selects some properties you would like to filter out of your schema and reach out to our support team for assistance.
 
 ### Why does the number of events in Mixpanel not match the number of exported events to my destination?
 This can happen for a few reasons:
