@@ -231,9 +231,10 @@ There are two steps: setting up a proxy server and pointing the SDK at your serv
 The simplest way is to use our [sample nginx config](https://github.com/mixpanel/tracking-proxy). This config redirects any calls made to your proxy server to Mixpanel.
 
 **Step 2: Point React Native SDK at your server**
-Add the following line, replacing `YOUR_PROXY_DOMAIN` with your proxy server's domain.
+When initializing, replace `YOUR_PROXY_DOMAIN` with your proxy server's domain for serverURL.
 ```javascript Javascript
-mixpanel.setServerURL("https://<YOUR_PROXY_DOMAIN>");
+// parameters:  optOutTrackingDefault, superProperties, serverURL
+mixpanel.init(false, {}, "https://<YOUR_PROXY_DOMAIN>"); 
 ```
 
 ## Debugging and Logging
