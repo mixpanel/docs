@@ -221,7 +221,22 @@ Route data to Mixpanel's EU servers by setting the `serverURL` property after in
 mixpanel.setServerURL("https://api-eu.mixpanel.com");
 ```
 
-### Debugging and Logging
+## Tracking Via Proxy
+
+This guide demonstrates how to route events from Mixpanel's React Native SDK via a proxy in your own domain. This is useful to reduce the likelihood of ad-blockers impacting your tracking.
+
+There are two steps: setting up a proxy server and pointing the SDK at your server.
+
+**Step 1: Set up a proxy server**
+The simplest way is to use our [sample nginx config](https://github.com/mixpanel/tracking-proxy). This config redirects any calls made to your proxy server to Mixpanel.
+
+**Step 2: Point React Native SDK at your server**
+Add the following line, replacing `YOUR_PROXY_DOMAIN` with your proxy server's domain.
+```javascript Javascript
+mixpanel.setServerURL("https://<YOUR_PROXY_DOMAIN>");
+```
+
+## Debugging and Logging
 
 Enabling Mixpanel debugging and logging allows you to see the debug output from the Mixpanel library. This may be useful in determining when track calls go out. To enable Mixpanel debugging and logging, you can call [setLoggingEnabled(true)](https://mixpanel.github.io/mixpanel-react-native/Mixpanel.html#setLoggingEnabled) with `true`, then run your iOS project with Xcode or android project with Android Studio. The logs should be available in the console.
 
