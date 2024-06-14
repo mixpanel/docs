@@ -9,7 +9,7 @@ import style from "./FeedbackCollector.module.scss";
 
 export function FeedbackCollector() {
   const [gaveFeedback, setGaveFeedback] = useState(false);
-
+  console.log(`hi`);
   const handleFeedback = function (isPositive: boolean) {
     // changelogs don't have h1s
     const props = {
