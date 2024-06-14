@@ -43,7 +43,7 @@ export default function Document() {
                     data-modal-open-on-command-k="true"
                     data-modal-example-questions='What is the first event I should track?,How do I migrate off Google Analytics?,How do I calculate time spent?,How do I import Snowflake data?'
                     data-modal-override-open-class-search="top-nav-search-bar"
-                    data-search-include-source-names='["Documentation","Query API Reference"]'
+                    data-search-include-source-names='["Documentation"]'
                     data-modal-command-k-search-mode-default="true"
                     ></script>
                 <script>
