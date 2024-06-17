@@ -35,7 +35,7 @@ export default function insertGTMScriptTags() {
         mixpanel.init('${PROJECT_3_MIXPANEL_TOKEN}', {
             api_payload_format: 'json',
             debug: ${!isProd},
-            persistence: 'localStorage',
+            persistence: 'cookie',
             track_pageview: false,
             record_sessions_percent: 100,
             record_mask_text_selector: '',
