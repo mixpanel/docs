@@ -225,7 +225,7 @@ mixpanel.setServerURL("https://api-eu.mixpanel.com");
 
 Mixpanel's SDKs have a legacy feature to automatically collect common mobile events. We don't recommend enabling this, as these events rely on client-side state and can be unreliable compared to tracking server-side. You can still enable this feature by turning the flag `trackAutomaticEvents: true` when initializing Mixpanel. More details [here](https://github.com/mixpanel/mixpanel-flutter?tab=readme-ov-file#2-initialize-mixpanel). 
 
-You can see a list of events tracked automatically for [iOS here](https://docs.mixpanel.com/docs/tracking-methods/sdks/swift#legacy-automatically-tracked-events) and [Android here](https://docs.mixpanel.com/docs/tracking-methods/sdks/android#legacy-automatically-tracked-events).
+You can see a list of events tracked automatically for [iOS here](/docs/tracking-methods/sdks/swift#legacy-automatically-tracked-events) and [Android here](/docs/tracking-methods/sdks/android#legacy-automatically-tracked-events).
 
 ## Tracking Via Proxy
 
