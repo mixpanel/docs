@@ -4,7 +4,7 @@ Json Pipeline is designed to export your Mixpanel data to supported data warehou
 
 This documentation is intended for users with intermediate or advanced knowledge of databases and familiarity with Amazon Web Services, Google Cloud Platform, or Snowflake technology.
 
-## Craete Json Pipelines
+## Create Json Pipelines
 
 Before exporting data from Mixpanel to a destination, you must configure the destination to accept the data.
 

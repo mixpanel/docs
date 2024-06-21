@@ -33,7 +33,7 @@ To export data from Mixpanel to AWS S3, assign the following data modification p
 
 ### Step 2: Server-Side Encryption (optional)
 
-Mixpanel ensures data transfer to your S3 bucket over a TLS encrypted connection. To secure your data at rest in S3, you can enable [Server-Side Encryption (SSE)](https://docs.aws.amazon.com/AmazonS3/latest/dev/serv-side-encryption.html), which offers two options: **Encryption with Amazon S3-Managed Keys (SSE-S3)** and **Encryption with AWS KMS-Managed Keys (SSE-KMS)**
+Mixpanel ensures data transfer to your S3 bucket over a TLS encrypted connection. To secure your data at rest in S3, enable [Server-Side Encryption (SSE)](https://docs.aws.amazon.com/AmazonS3/latest/dev/serv-side-encryption.html), which offers two options: **Encryption with Amazon S3-Managed Keys (SSE-S3)** and **Encryption with AWS KMS-Managed Keys (SSE-KMS)**
 
 #### Encryption with Amazon S3-Managed Keys (SSE-S3)
 
