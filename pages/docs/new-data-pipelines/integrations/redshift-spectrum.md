@@ -10,7 +10,7 @@ Mixpanel exports data to your S3 bucket and simultaneously updates the necessary
 
 ## Setting S3 Permissions
 
-See [Setting S3 Permissions](/docs/json-pipelines/integrations/aws-s3#setting-s3-permissions)
+See [Setting S3 Permissions](/docs/new-data-pipelines/integrations/aws-s3#setting-s3-permissions)
 
 ## Setting Glue Permissions
 
