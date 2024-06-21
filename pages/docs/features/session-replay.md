@@ -79,6 +79,16 @@ By default, all on-screen text elements are masked in replays. Additionally, you
 
 Not currently, but we plan to add support soon.
 
+### Am I able to sample our session replay collection rate?
+
+Yes, you can configure the percentage of total replays that our SDK will capture with as little as [one line of code in your SDK implementation](https://docs.mixpanel.com/docs/tracking-methods/sdks/javascript#sampling-method). 
+
+This out-of-the-box sampling method is random sampling: your SDK will decide randomly whether the currently SDK instance load falls into the sample or not. 
+
+If you want additional logic, like deciding based on certain criteria whether to record or not, then your application code can come up with its own yes/no decision, and then initialize Mixpanel with a value of either 100 or 0 (to force recording on or off for the current SDK instance load). 
+
+If you want to only record certain parts of a single-page application with no new mixpanel.init calls, you can also use our [Start / Stop recorder methods](https://docs.mixpanel.com/docs/tracking-methods/sdks/javascript#recorder-methods). 
+
 ### How soon are Replays available for viewing after a session begins?
 
 There is about a ~1 minute delay between when recordings are captured and when they appear in Mixpanel.  
