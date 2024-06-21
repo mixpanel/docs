@@ -380,7 +380,7 @@ The recommended way to capture session replays is by sampling a subset of users,
 mixpanel.init(
     "<YOUR_PROJECT_TOKEN>", 
     {
-        record_sessions_percent: 1
+        record_sessions_percent: 1  //records 1% of all sessions
     }
 )
 ```

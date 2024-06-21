@@ -230,7 +230,7 @@ let mixpanel = Mixpanel.initialize(token: "MIXPANEL_TOKEN")
 mixpanel.serverURL = "https://api-eu.mixpanel.com"
 ```
 
-### [Legacy] Automatically Tracked Events
+## [Legacy] Automatically Tracked Events
 
 Mixpanel's SDKs have a legacy feature to automatically collect common mobile events. We don't recommend enabling this, as these events rely on client-side state and can be unreliable.
 

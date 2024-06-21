@@ -10,6 +10,13 @@ updatedAt: "2023-09-26T21:06:37.385Z"
 [block:callout]
 {
   "type": "info",
+  "body": "The $create_alias event payload is only useful for projects using the Original ID Merge system and the Legacy ID Management System; it has no functionality in the Simplified ID Merge system. Please review [this section of our documentation](https://docs.mixpanel.com/docs/tracking-methods/id-management/identifying-users#simplified-vs-original-id-merge) for more information."
+}
+[/block]
+
+[block:callout]
+{
+  "type": "info",
   "body": "You can also use the import endpoint: https://api.mixpanel.com/import/"
 }
 [/block]
