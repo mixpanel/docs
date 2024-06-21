@@ -11,11 +11,17 @@ export function FeedbackCollector() {
   const [gaveFeedback, setGaveFeedback] = useState(false);
 
   const handleFeedback = function (isPositive: boolean) {
+    // changelogs don't have h1s
     const props = {
-      title: document.querySelector(`h1`).textContent,
+      title: document.querySelector(`h1`)?.textContent || document.title,
     }
     track(isPositive ? `Docs Promoter` : `Docs Detractor`, props);
     setGaveFeedback(true);
+
+    // reset feedback to 5 seconds
+    setTimeout(() => {
+      setGaveFeedback(false);
+    }, 5000);
   };
 
   return (
