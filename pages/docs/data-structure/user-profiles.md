@@ -26,7 +26,7 @@ For more information about user profiles refer to the documentation on [The Mixp
 
 ## Importing User Profiles via our API
 
-You can create or update User Profiles in similar ways you track events: from our [SDKs](/docs/tracking-methods/sdks/javascript#storing-user-profiles), via our [HTTP Engage API](https://developer.mixpanel.com/reference/profile-set), [Warehouse Connectors](/docs/tracking-methods/data-Warehouse/sending-user-profiles), or via our integrations partners.
+You can create or update User Profiles in similar ways you track events: from our [SDKs](/docs/tracking-methods/sdks/javascript#storing-user-profiles), via our [HTTP Engage API](https://developer.mixpanel.com/reference/profile-set), [Warehouse Connectors](/docs/tracking-methods/data-warehouse/sending-user-profiles), or via our integrations partners.
 
 We recommend tracking user profiles from as close as possible to the source of truth, which is usually your application database or your CRM. One typical approach (especially for [Server-Side Tracking](/docs/tracking-methods/choosing-the-right-method#server-side-tracking)) is to run an hourly or daily script on your servers that pull the list of user profiles from your database and pushes them to Mixpanel.
 
