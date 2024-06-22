@@ -278,7 +278,7 @@ Here’s an example table that illustrates what can be loaded as user profiles i
 | 45678 | bob@example.com | Bob Noyce | Free |
 
 <Callout type="info">
-Profile History is in beta. While Profiles typically only store the state of a user *as of now*, Profile History enables storing the state of a user *over time*. When creating a User Profile sync, set the Table Type to “History Table” — this will require you to supply a Start Time column in the sync configuration. Request beta access [here](https://forms.gle/x8mbU6FVe5uHiVXF6).
+Profile History is in beta. While Profiles typically only store the state of a user *as of now*, Profile History enables storing the state of a user *over time*. When creating a User Profile sync, set the Table Type to “History Table”. We expect tables to be modeled as a SCD (Slowly Changing Dimensions) Type 2 table. You will need to supply a Start Time column in the sync configuration. Mixpanel will infer a row's end time if a new row with a more recent start time for the same user is detected. Request beta access [here](https://forms.gle/x8mbU6FVe5uHiVXF6).
 </Callout>
 
 ### Group Profiles
