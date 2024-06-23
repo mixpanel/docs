@@ -104,13 +104,13 @@ To get started, click on **Add/Edit Profile** from the [Users](https://mixpanel
 
 ![/Screen_Shot_2021-12-01_at_11.44.03_AM.png](/Screen_Shot_2021-12-01_at_11.44.03_AM.png)
 
-### Importing (Create or Modify) a Single Profile
+### Create/Update a Single Profile
 
-#### Set an Identifier Column
+**Set an Identifier Column**
 
 The most important column is `$distinct_id` for user profiles (or `$group_id` for [Group Profiles](/docs/data-structure/advanced/group-analytics#group-profiles)). The value needs to match the `distinct_id` property's value (or the value for the [Group Key](/docs/data-structure/advanced/group-analytics#implementation)'s Group ID) that you're sending on your events.
 
-#### Add Additional Properties
+**Add Additional Properties**
 
 After `$distinct_id`, you can add additional properties to the profile by pressing the **"+ Add Property"** button. Mixpanel will help autocomplete profile properties that you may want to set.
 
@@ -118,7 +118,7 @@ After `$distinct_id`, you can add additional properties to the profile by press
 
 We recommend using the `$name` (or `$first_name`, `$last_name`), `$email`, and `$phone` [Reserved Profile Properties](/docs/data-structure/user-profiles#reserved-profile-properties)) if you're uploading a user's name, email, or phone. Mixpanel shows these properties by default in various parts of our UI and are used for [Cohort Syncs](/docs/cohort-sync/overview) as well.
 
-### Importing from CSV
+### Bulk Import from CSV
 
 When preparing the CSV that you want to upload as profiles, you should **not** include column headers (e.g., \$name, \$email,  etc.). Instead, you’ll identify column headers through the CSV upload wizard in the Mixpanel UI.
 
@@ -134,6 +134,8 @@ Go to the **Import from CSV** tab and select your prepared CSV to begin the proc
 #### Choose an Identifier Column
 
 The most important column in your CSV is the `$distinct_id` for user profiles (or `$group_id` for [Group Profiles](/docs/data-structure/advanced/group-analytics#group-profiles)). The value needs to match the `distinct_id` property's value (or the value for the [Group Key](/docs/data-structure/advanced/group-analytics#implementation)'s Group ID) that you're sending on your events.
+
+The import module will preview the column values from your CSV on the right, corresponding to the property name you are currently defining.
 
 If you do not assign an identifier column, Mixpanel will use your `$email` column as the `$distinct_id` (or `$group_id`) value; if you don’t have an `$email` column either, then the `$distinct_id` (or `$group_id`) value will be assigned randomly by default. Thus, it is highly recommended that you assign an identifier column to avoid unexpected results.
 
@@ -180,6 +182,12 @@ Mixpanel stores Events and User Profiles in two separate tables under the hood. 
 
 ### How can I update User Properties?
 User Profiles are mutable; Mixpanel only stores the latest value of each profile property. We have methods to update profile properties via our [HTTP API](https://developer.mixpanel.com/reference/profile-set).
+
+### Why are empty profiles created when I import profiles from a CSV?
+This may occur if you set the incorrect column from your CSV as the `$distinct_id` during your import. You can see which column was erroneously set as the `$distinct_id` by checking the distinct_id value set on these empty profiles. As a best practice, always check the sample values shown in the import module for each selected profile property.
+
+### How do I bulk delete profiles?
+We recommend deleting profiles programmatically via our [Engage API](https://developer.mixpanel.com/reference/delete-profile). We also provide a `people_delete` method in the mixpanel-utils library [here](https://github.com/mixpanel/mixpanel-utils#people-delete).
 
 ### What are the limits of User Properties?
 Each User Profile can contain up to 2000 properties. User property names can be at most 255 characters in length (longer names are truncated). User property values are limited based on data type, refer to these limits under [Supported Data Types](/docs/data-structure/property-reference#supported-data-types).
