@@ -11,7 +11,7 @@ When digging into customer journeys in Mixpanel’s analytics, you can understan
 Currently, Session Replay is currently in invite-only beta access for:
 
 - customers on our [Enterprise plan](https://www.notion.so/Session-Replay-Docs-v1-c32c9817ec1b49798d1ca7d1ccc5880c?pvs=21)
-- projects without [EU Data Residency](https://docs.mixpanel.com/docs/privacy/eu-residency) enabled
+- projects without [EU Data Residency](/docs/privacy/eu-residency) enabled
 
 You can join the waitlist for beta access [here](https://mixpanel.com/m/session-replay-beta/).
 
@@ -55,7 +55,7 @@ The Replay Feed on the left of the player also allows you to:
 - search for replays by user's name / email, replay date, or user ID
 
 ## Implementation
-Our documentation on how to implement Session Replay can be found [here](https://docs.mixpanel.com/docs/tracking-methods/sdks/javascript#session-replay-beta).
+Our documentation on how to implement Session Replay can be found [here](/docs/tracking-methods/sdks/javascript#session-replay-beta).
 
 ## Legal (Beta Terms)
 
@@ -69,7 +69,7 @@ To start, Session Replay is available only for web-based applications (including
 
 ### Can I prevent Session Replay from recording sensitive content?
 
-By default, all on-screen text elements are masked in replays. Additionally, you can customize how you initialize our SDK to fully control (1) where to record and (2) whom to record. For more details, please see our [implementation docs](https://docs-k17v3wqal-mixpanel.vercel.app/docs/tracking-methods/sdks/javascript#session-replay-beta).
+By default, all on-screen text elements are masked in replays. Additionally, you can customize how you initialize our SDK to fully control (1) where to record and (2) whom to record. For more details, please see our [implementation docs](/docs/tracking-methods/sdks/javascript#session-replay-beta).
 
 ### How long are replays stored?
 
@@ -79,6 +79,16 @@ By default, all on-screen text elements are masked in replays. Additionally, you
 
 Not currently, but we plan to add support soon.
 
+### Am I able to sample our session replay collection rate?
+
+Yes, you can configure the percentage of total replays that our SDK will capture with as little as [one line of code in your SDK implementation](/docs/tracking-methods/sdks/javascript#sampling-method). 
+
+This out-of-the-box sampling method is random sampling: your SDK will decide randomly whether the currently SDK instance load falls into the sample or not. 
+
+If you want additional logic, like deciding based on certain criteria whether to record or not, then your application code can come up with its own yes/no decision, and then initialize Mixpanel with a value of either 100 or 0 (to force recording on or off for the current SDK instance load). 
+
+If you want to only record certain parts of a single-page application with no new mixpanel.init calls, you can also use our [Start / Stop recorder methods](/docs/tracking-methods/sdks/javascript#recorder-methods). 
+
 ### How soon are Replays available for viewing after a session begins?
 
 There is about a ~1 minute delay between when recordings are captured and when they appear in Mixpanel.  
@@ -87,7 +97,7 @@ There is about a ~1 minute delay between when recordings are captured and when t
 
 Yes. You can use Session Replay with CDPs like Segment and mParticle.
 
-In order to use Session Replay, your app must include the Mixpanel SDK. [Consult the quickstart](https://docs.mixpanel.com/docs/quickstart/install-mixpanel) to ensure you have the Mixpanel SDK installed, and the [setup guide](https://docs.mixpanel.com/docs/tracking-methods/sdks/javascript#session-replay-beta) to make sure you have Session Replay enabled.
+In order to use Session Replay, your app must include the Mixpanel SDK. [Consult the quickstart](/docs/quickstart/install-mixpanel) to ensure you have the Mixpanel SDK installed, and the [setup guide](/docs/tracking-methods/sdks/javascript#session-replay-beta) to make sure you have Session Replay enabled.
 
 Once you have included the Mixpanel SDK in your app add the following code snippets in order to connect your CDP's data stream with Mixpanel's Session Replay.
 
@@ -121,7 +131,7 @@ analytics.addSourceMiddleware(({ payload, next, integrations }) => {
 
 ##### mParticle: Web SDK
 
-mParticle's Web SDK has a `.getDeviceId()` [method which can be used to retrieve the device_id](https://docs.mparticle.com/developers/sdk/web/initialization/#device-id-device-application-stamp). In the following example, we use this method to bind mParticle's device_id to Mixpanel's device_id, as wall as [patching `logEvent` and `logPageView`](https://docs.mparticle.com/developers/sdk/web/core-apidocs/classes/mParticle%20&%20mParticleInstance.html#index) to include session replay properties.
+mParticle's Web SDK has a `.getDeviceId()` [method which can be used to retrieve the device_id](https://docs.mparticle.com/developers/sdk/web/initialization/#device-id-device-application-stamp). In the following example, we use this method to bind mParticle's device_id to Mixpanel's device_id, as well as [patching `logEvent` and `logPageView`](https://docs.mparticle.com/developers/sdk/web/core-apidocs/classes/mParticle%20&%20mParticleInstance.html#index) to include session replay properties.
 
 ```javascript
 mixpanel.init('MIXPANEL-PROJECT-TOKEN', {
@@ -162,13 +172,13 @@ mixpanel.init('MIXPANEL-PROJECT-TOKEN', {
 
 ### Introduction
 
-Mixpanel offers a privacy-first approach to Session Replay, including features such as data masking. Mixpanel’s Session Replay privacy controls were designed to assist customers in protecting end user privacy.
+Mixpanel offers a privacy-first approach to Session Replay, including features such as data masking. Mixpanel’s Session Replay privacy controls were designed to assist customers in protecting end-user privacy.
 
 Data privacy regulations are rapidly evolving and vary considerably across states and countries. A consistent requirement across many data privacy regulations for website operators is disclosing to end users that their personal information is being collected, often in a privacy notice. Before implementing Session Replay on your website, a best practice is to review your privacy notice with legal counsel to ensure it remains accurate and compliant with data privacy laws.
 
 ### How does Session Replay work?
 
-Session Replay captures the Document Object Model (DOM) structure and changes to it. Mixpanel then reconstructs the web page, applying recorded events at the time an end user completed them. Within Mixpanel’s platform, you can view a reconstruction of your end user’s screen as they navigate your website. However, Session Replay is not a video recording of your end user’s screen and end user actions are not literally video-recorded.
+Session Replay captures the Document Object Model (DOM) structure and changes to it. Mixpanel then reconstructs the web page, applying recorded events when an end-user completes them. Within Mixpanel’s platform, you can view a reconstruction of your end user’s screen as they navigate your website. However, Session Replay is not a video recording of your end user’s screen; end-user actions are not literally video-recorded.
 
 ### How does masking and blocking work? What are the high-level technical details?
 
@@ -179,7 +189,7 @@ Blocked data is similarly suppressed client-side. Blocked data will be rendered 
 
 ### Configuring Privacy Controls
 
-Mixpanel offers its customers a range of privacy controls to limit the data captured by Session Replay, which are summarized in the table below and detailed further on this page.
+Mixpanel offers its customers a range of privacy controls to limit the data captured by Session Replay, summarized in the table below and detailed further on this page.
 
 | Element | Description | Mask Everything Mode (Mixpanel’s Default) | Mask User Input Mode |
 | --- | --- | --- | --- |
@@ -187,9 +197,9 @@ Mixpanel offers its customers a range of privacy controls to limit the data capt
 | text | Non-input text | Masked (cannot be unmasked) | Unmasked, with the ability to mask specific text elements |
 | Non-text elements | Video and image elements | Blocked by default, with the ability to unblock specific non-text elements | Blocked by default, with the ability to unblock specific non-text elements |
 
-### Mask Everything Mode (Mixpanel’s Session Replay default privacy setting)
+### Mask Everything Mode (Session Replay default privacy setting)
 
-By default, Mixpanel attempts to mask all HTML text and user input text when you enable Session Replay. This masked content on your webpage is replaced with [****].
+By default, Mixpanel attempts to mask all HTML texts and user input text when you enable Session Replay. This masked content on your webpage is replaced with [****].
 
 Here is an example of what “Mask Text Mode” could look like:
 
