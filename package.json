@@ -31,7 +31,7 @@
     "nextra-theme-docs": "latest",
     "react": "^18.3.1",
     "react-dom": "^18.3.1",
-    "sass": "^1.77.4",
+    "sass": "^1.77.6",
     "sharp": "^0.32.6"
   },
   "devDependencies": {
