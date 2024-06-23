@@ -9,7 +9,7 @@ import { dataItems } from '/utils/constants';
 
 ## Overview
 
-This step introduces the `identify` method, which allows you to assign an ID to your users.
+This step introduces the `identify` method, which allows you to see which users triggered each event in Mixpanel.
 
 It also introduces the `people.set` method, which allows you to define the attributes of each user.
 
@@ -41,8 +41,8 @@ mp.people_set('USER_ID', {'$name'  : 'Jane Doe',
                           # Add anything else about the user here
 })
 ```
-Server-side SDKs do not have an `identify` function as the ID management is handled by your server. Read our full guide on [Server Side ID Management].
-You may want to disable ip geolocation when using a server-side SDK. You can learn more about [geolocation in server-side implementations].
+
+You may want to disable ip geolocation when using a server-side SDK. You can learn more in [Server-Side Best Practices](/docs/tracking-best-practices/server-side-best-practices)
 
 </Tab>
 
@@ -55,8 +55,6 @@ mixpanel.people.set('USER_ID', {
     // Add anything else about the user here
 });
 ```
-Server-side SDKs do not have an `identify` function as the ID management is handled by your server. Read our full guide on [Server Side ID Management].
-You may want to disable ip geolocation when using a server-side SDK. You can learn more about [geolocation in server-side implementations].
 </Tab>
 
 <Tab>
@@ -74,8 +72,8 @@ err := mp.PeopleSet(ctx, []*mixpanel.PeopleProperties{
 )
 ```
 
-Server-side SDKs do not have an `identify` function as the ID management is handled by your server. Read our full guide on [Server Side ID Management].
-You may want to disable ip geolocation when using a server-side SDK. You can learn more about [geolocation in server-side implementations].</Tab>
+You may want to disable ip geolocation when using a server-side SDK. You can learn more in [Server-Side Best Practices](/docs/tracking-best-practices/server-side-best-practices)
+</Tab>
 
 <Tab>
 ```ruby
@@ -87,8 +85,8 @@ mp.people.set('USER_ID', {
 });
 ```
 
-Server-side SDKs do not have an `identify` function as the ID management is handled by your server. Read our full guide on [Server Side ID Management].
-You may want to disable ip geolocation when using a server-side SDK. You can learn more about [geolocation in server-side implementations].</Tab>
+You may want to disable ip geolocation when using a server-side SDK. You can learn more in [Server-Side Best Practices](/docs/tracking-best-practices/server-side-best-practices)
+</Tab>
 
 <Tab>
 ```java
@@ -101,8 +99,6 @@ JSONObject update = messageBuilder.set("USER_ID", props);
 // Send the update to mixpanel
 mixpanel.sendMessage(update);
 ```
-Server-side SDKs do not have an `identify` function as the ID management is handled by your server. Read our full guide on [Server Side ID Management].
-You may want to disable ip geolocation when using a server-side SDK. You can learn more about [geolocation in server-side implementations].
 </Tab>
 
 <Tab>
