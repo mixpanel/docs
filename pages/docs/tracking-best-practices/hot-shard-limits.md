@@ -45,6 +45,20 @@ Updated Event -
 
 These events can be queried from the dashboard just like any other events. An email is sent to organisation owners and the specific project's owners to alert them of the hot shard. In addition, a monthly report (per project) is sent as well for hot shards that were detected and remediated in the past month.
 
+Starting in June 2024, we are also limitedly emitting a new type of events called `$hotshard_record`. The purpose is to keep track of all user-analytics and group-analytics hotshard remediation history that has happend inside your project in a central event type.
+
+```json
+{
+  "event": "$hotshard_record",
+  "properties": {
+    "time": 1618716477000,
+    "hotshard_distinct_id": "hotshard@mixpanel.com",
+    "hotshard_group_key": "group_key",
+    "hotshard_group_display_name": "group_display_name",
+  }
+}
+```
+
 ## Recovering from a hot shard
 The process can be broken down into 3 main steps:
 * Reviewing the hot shard events in your project to identify which events, and `distinct_id` or (analytics groups and `group identifier`) values are involved
