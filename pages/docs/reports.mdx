@@ -122,12 +122,16 @@ If you organize your events using [tags](/docs/data-governance/lexicon) in Lex
 
 ![/Untitled__1_.png](/Untitled__1_.png)
 
-#### View Sample Events
+**View Sample Events**
 
 You can hover over any event and in the context panel, you now have the ability to "View Sample Events", which redirects you to the Events page with the 100 most recent samples of that hovered event:
 You can see a few samples of an event to help you decide whether that's the right event you want for your analysis or which property you should use for filters/breakdowns.
 
 ![View Sample Events](/advanced-view-sample-events.gif)
+
+#### Rename an Event within a Report
+
+Click on the "three dots" icon beside an event and click Rename to rename it. This will only affect the current report, and will not change the event's name in other reports.
 
 ### Properties Menu
 
@@ -172,7 +176,7 @@ The events and properties in the menu are prefixed to provide additional context
 
     ![/Screen_Shot_2021-11-18_at_12.29.06_PM.png](/Screen_Shot_2021-11-18_at_12.29.06_PM.png)
 
-### Typecasting
+#### Typecasting
 
 Mixpanel allows you to force Properties into another [data type](https://help.mixpanel.com/hc/en-us/articles/115004547063) by using the **"Data Type"** option in the overflow menu for property filters and breakdowns.
 
@@ -180,23 +184,12 @@ Mixpanel allows you to force Properties into another [data type](https://help.m
 
 Typecasting is helpful when one of your properties is a number but is sent to Mixpanel as a string and you want to see histogram data for that property. Or if one of your properties is a unix timestamp and got sent as a number, and you want it to be treated as a date Property instead.
 
-**How do I see the exact numeric values when applying a breakdown to a number data type in Insights?**
-
-Insights will automatically bucket high-cardinality segments of number data types into ranges.
-
-You can either customize the ranges by clicking "[Customize Range](/docs/features/advanced#custom-buckets)".
-
-Or alternatively, if you'd like to see the exact numeric values you can typecast the Number property to a String to remove the range bucketing.
-
 ### Duplicating Query Elements
 
 To duplicate any events or properties in your query, select the inline action menu and choose **Duplicate**. Delete any events or properties by clicking the **trash** icon.
 
 ![image](https://github.com/mixpanel/docs/assets/2077899/f496b609-47a3-4287-95f8-e9e6f2ac915d)
 
-### Rename an Event within a Report
-
-Click on the "three dots" icon beside an event and click Rename to rename it. This will only affect the current report, and will not change the event's name in other reports.
 
 ### Undo and Redo
 
@@ -238,7 +231,7 @@ For these date ranges, the output shows results from the last complete 30 days, 
 
 Selecting **Custom** on the date range selector opens up some additional options, "Last", "Fixed" and "Since".
 
-#### Last
+**Last**
 
 “In the last” allows you to select a rolling time range similar to the default “last 30 days” but you have the flexibility to choose the time value and scale, either days, weeks, or months.
 
@@ -248,28 +241,29 @@ If you need to, you can click on the **+ Ending** button and shift back the de
 
 ![/Screen_Shot_2022-07-11_at_3.18.03_PM.png](/Screen_Shot_2022-07-11_at_3.18.03_PM.png)
 
-#### Fixed
+**Fixed**
 
 “Fixed” allows you to select two dates to query between or a select particular day to query by entering the same start & end date. If you save this report as a bookmark or add it to the dashboard, the date range selection will always persist.
 
 ![/Screen_Shot_2022-07-11_at_3.21.03_PM.png](/Screen_Shot_2022-07-11_at_3.21.03_PM.png)
 
-#### Since
+**Since**
 
 “Since” allows you to select a specific date to query for all data since that start date.
 
-#### To Date
+**To Date**
 
 "To Date" allows you select a date rnge that will update dynamically to fit the current internval. You can choose Week to Date, Month to Date, Quarter to Date and Year to Date. When the boundary of interval is passed, the date range will automatically update to include only the current interval. For example, if "Month to Date" was selected, and the date was February 27, the date range would include Feb 1 - Feb 27. The next week, after the month boundary has passed the date range would include Mar 1 - Mar 4.
 To Date respects start of week and start of quarter settings under project settings.
 
-### Line Chart Interval
+### Line Chart Time Selector
 
+**Line Chart Intervals**
 You can also choose how Mixpanel buckets the time range in Insights, Funnel Trends and Retention Trend reports (granularity may vary). To view a range in hours, you can select **Hour** as the view:
 
 ![image](https://github.com/mixpanel/docs/assets/2077899/991a0f0f-b297-4b94-8d41-7323fe6666f6)
 
-### Line Chart Zoom
+**Line Chart Zoom**
 To zoom in, click on the graph and drag to highlight a specific window of time in your report. Click **Reset zoom** to return to the previous view.
 
 ![zoom (1)](https://github.com/mixpanel/docs/assets/2077899/3add64ad-3fea-4d74-a3bf-303fcc1f4d9d)
@@ -311,7 +305,7 @@ You can download reports in four formats:
 - PDF
 - Formatted API
 
-To download Insights, Funnels, and Retention reports, click the "..." icon on the upper right corner of each report.
+To download Insights, Funnels, and Retention reports, click the "..." icon on the upper right corner of each report. Note the [limitations on downloads](/docs/reports#report-exports).
 
 ## Limits and Ordering
 
@@ -331,7 +325,7 @@ Hover over your table of visible segments to check if your report has reached th
 
 ![image](https://github.com/mixpanel/docs/assets/2077899/3935993c-0410-46e4-a9d6-2d2dfb5313cd)
 
-### Downloaded Reports
+### Report Exports
 **CSV** - CSV export supports up to 50,000 breakdown segments. 
 **API** - The Query API supports up to 10,000 breakdown segments.
 **PNG and PDF** - PNG and PDF export supports up to 30 segments in the Insights table, Insights bar, Retention table, and Retention line; and up to 12 segments for the Insights line.
