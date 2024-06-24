@@ -1,6 +1,6 @@
 # Simplified ID Merge
 
-> Call out to check ID management version in settings and link to Simplified doc
+> Call out to check ID management version in settings and link to Original doc
 
 ## Overview
 - System use $device_id and $user_id to manipulate distinct_id
