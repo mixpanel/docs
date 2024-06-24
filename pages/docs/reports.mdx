@@ -1,16 +1,30 @@
 # Reports
 
+import { Card, Cards } from 'nextra/components'
+
 ## Overview
 
-A report is the basic unit of performing an analysis in Mixpanel.
+A report is the basic unit of performing an analysis in Mixpanel. A report can be saved to a [Board](docs/boards/), and a board can contain many reports. Each report is made up of at least one **metric** and is displayed using a **visualization**.
 
-Mixpanel has several types of reports: [Insights](/docs/reports/insights), [Funnels](/docs/reports/funnels), [Flows](/docs/reports/flows), [Retention](/docs/reports/retention) and other advanced reports, each with their specialized use.
+Mixpanel has four core reports, along with other advanced apps.
 
-This article focuses on the common concepts across each report.
+## Core Reports
+<Cards>
+  <Card icon title="Insights" href="/docs/reports/insights" />
+  <Card icon title="Funnels" href="/docs/reports/funnels" />
+  <Card icon title="Retention" href="/docs/reports/retention" />
+  <Card icon title="Flows" href="/docs/reports/flows" />
+</Cards>
 
-## Report
+## Apps
+<Cards>
+  <Card icon title="Experiments" href="/docs/reports/apps/experiments" />
+  <Card icon title="Impact" href="/docs/reports/apps/impact" />
+  <Card icon title="Signal" href="/docs/reports/apps/signal" />
+  <Card icon title="JQL" href="/docs/reports/apps/jql" />
+</Cards>
 
-A report is the basic unit of performing an analysis in Mixpanel. A report can be saved to a board, and a board can contain many reports. Each report is made up of at least one **metric** and is displayed using the chosen **visualization**.
+This article focuses on the common concepts across the core reports.
 
 ## Metrics
 
