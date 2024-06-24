@@ -18,21 +18,6 @@ You can select whether you would like your query to match any or all of the filt
 
 ![image](https://github.com/mixpanel/docs/assets/2077899/1b8cdb9d-2479-404c-b10a-f82373d03e34)
 
-### Duplicating Events
-
-To duplicate any events or properties in your query, select the inline action menu and choose **Duplicate**. Delete any events or properties by clicking the **trash** icon.
-
-![image](https://github.com/mixpanel/docs/assets/2077899/f496b609-47a3-4287-95f8-e9e6f2ac915d)
-
-### Advanced Date and Time Selectors
-
-You can also choose how Mixpanel buckets the time range in Insights, Funnel Trends and Retention Trend reports (granularity may vary). To view a range in hours, you can select **Hour** as the view:
-
-![image](https://github.com/mixpanel/docs/assets/2077899/991a0f0f-b297-4b94-8d41-7323fe6666f6)
-
-To zoom in, click on the graph and drag to highlight a specific window of time in your report. Click **Reset zoom** to return to the previous view.
-
-![zoom (1)](https://github.com/mixpanel/docs/assets/2077899/3add64ad-3fea-4d74-a3bf-303fcc1f4d9d)
 
 ### Advanced Filter & Breakdown Usage
 
@@ -322,48 +307,6 @@ Steps
             - ≥0 & <0.0001 would approximate to bucket 0
 
 
-## View Users
-
-View Users is a streamlined process for exploring the users contributing to a specific metric or point on a chart. By interacting with the chart, you can view a group of users experiencing friction or dig deep into which users are driving feature adoption.
-
-View Users can help you:
-
-- See the users contributing to any metric and view their recent activities & properties.
-- Save these users as a cohort.
-- Export these users to a CSV file.
-
-### Insights
-
-![/View_Users_Insights_gif.gif](/View_Users_Insights_gif.gif)
-
-- To learn more about your users who recently **Signed Up** at a specific point in time, you can click any point on a chart or line to access View Users. The View Users overlay **displays the list of users contributing to your chosen point on the chart**.
-- By clicking on one of these users, you can further **explore their User Properties** like experiment group, purchase count, last event and many more.
-- While viewing a specific user, you can also **discover their recent activities** (\*Like, Comment, Message Sent, Ad Conversion,\* etc) after **Sign Up** through the Activities menu.
-
-### Funnels
-
-![/View_Users_Funnels_gif.gif](/View_Users_Funnels_gif.gif)
-
-- Finding the **exact group of users who dropped off** after **Sign Up** is possible through View Users in Funnels. While in a Funnels report, click on the section of the chart that displays non-converting users and select View Users - this displays the list of those who didn’t convert after signup.
-- **Save this group as a cohort** by clicking the Create Cohort button. Now, you can learn more about their product usage or find the root cause of why they didn’t convert after Sign Up.
-
-### Retention
-
-![/View_Users_Retention_gif.gif](/View_Users_Retention_gif.gif)
-
-- View Users in Retention report presents you with two options - view retained users and view dropped off users. This is helpful to **find the specific group of users who were engaged or dropped off** after **Sign Up** over a period of time.
-- **Export your group of choice to a CSV with one click**. This data can guide meaningful actions, like emailing your user group a note that helps them get unstuck and engaged.
-
-## Keyboard Shortcuts
-
-### Undo / Redo Shortcuts
-
-Undo / redo shortcuts allow for fast adjustments to your analysis. `Cmd + Z` to undo; `Cmd + Shift + Z` to redo. Change filters, date ranges, line vs bar chart, and go back in one second to compare before and after, or fix the view.
-
-![/Undo_Redo_gif.gif](/Undo_Redo_gif.gif)
-
-- **Navigate different report versions**: add a new event, filter or breakdown and undo that change with `Cmd + Z` . This makes iterating between different versions of your report quick and easy.
-- **Compare visualizations**: go from a bar chart, to a line chart, to a pie chart and all the way back while only using the undo / redo keyboard shortcuts.
 
 ## Comparison: Time, Baseline and Overall
 
@@ -444,63 +387,7 @@ Comparisons are supported across all insights chart types. Depending on the exac
 | Retention Curve | No | Yes | No |
 | Retention Trends | Yes | Yes | No |
 
-## Limits and Ordering
 
-### Summary
-
-In order to keep the interactive analysis experience snappy for projects of all sizes, we've made 2 changes:
-
-- Added maximum limits to how many segments are returned when breaking down a metric by properties
-- Changed the logic for the top segments that are returned
-
-### Limits
-
-### UI
-
-We're changing how many segments are returned back to the report (**visible limit**), how many segments can be selected at a time for visualization (**selection limit**) as well as the number of segments selected by default (**default selection**).
-
-Here's the breakdown per report + visualization type:
-
-| Report Viz | Default Selection | Selection Limit | Visible Limit |
-| --- | --- | --- | --- |
-| Insights (bar) | 12 | 300 | 3000 |
-| Insights (line) | 12 | 50 | 3000 |
-| Retention | 6 | 12 | 200 |
-| Funnels | 6 | 12 | 200 |
-
-### Downloaded CSV and API
-
-When downloading results as CSV or when querying our APIs, the limits remain unchanged.
-
-### Top Segments logic
-
-The way we pick the top segments differs according to the type of query. We choose the top segments based on the value shown in the second column.
-
-| Query type | How we select top segments |
-| --- | --- |
-| Total | Total number of occurrences of the chosen event |
-| Unique | Number of unique users who performed the chosen event |
-| Sum of property values | Sum of the chosen property |
-| Min/max of property values | Lowest/highest value of the chosen property |
-| Average | Number of events (or users) that contribute to the average |
-| Median/Percentile/Distribution | Number of events (or users) that contribute to the distribution |
-| Distinct count | Number of distinct values of the chosen property |
-| DAU/WAU/MAU | Number of unique users |
-| Sessions | Number of sessions that contain the chosen event |
-| Funnels | Total number of times the first funnel step was completed |
-| Retention | Total number of times the first event was completed |
-
-### FAQ
-
-**How will I know if my results are being pruned?**
-
-You will see an indication like this:
-
-![image](https://github.com/mixpanel/docs/assets/2077899/3935993c-0410-46e4-a9d6-2d2dfb5313cd)
-
-**Does this mean the downloaded CSV has lower limits?**
-
-No, limits for CSV downloads remain unchanged across Insights, Funnels and Retention.
 
 ## List Property Support
 
@@ -756,26 +643,7 @@ The list of objects property support will be limited to the first 5 objects with
 For customer's on a paid plan, you may submit a request for approval to have this limit increased by opening a support ticket within the UI (or by sending an email to [support@mixpanel.com](mailto:support@mixpanel.com)) with the subject line: “Request for List of Objects Limit Increase”. An increase will not be guaranteed, but your project will be reviewed for feasibility of increasing this limit.
 
 
-## Analyzing First Time Users
 
-Sometimes, you might want to filter an event to only the first time that it's performed by a user. This helps answer the following questions:
-
-* How many users sign up or perform another key event for the first time each week?
-* Which referrers do most first time users come from?
-* How quickly do users make a purchase after their first time engaging with the app?
-* How well do users retain after performing a key event for the first time?
-* What events do users perform before and after doing their first purchase?
-
-You can do this by adding a First Time Filter to any event in Mixpanel. This filters the event down to only the first instance of the event performed by a user:
-
-![233894752-93851682-9d83-4c87-937d-8fd90db465c6.png](https://user-images.githubusercontent.com/2077899/233894752-93851682-9d83-4c87-937d-8fd90db465c6.png)
-
-Mixpanel computes this on-the-fly by scanning each user's history to determine if this was the first instance of the event performed by the user, based on timestamp.
-
-### Nth Time
-You can analyze the Nth time an event was performed by using a First Time Filter in funnels. For example, this shows you the number of users that do Tutorial Complete 3 times:
-
-![233895123-bc2dd00f-5dde-4e43-82fe-081173abf0e4.png](https://user-images.githubusercontent.com/2077899/233895123-bc2dd00f-5dde-4e43-82fe-081173abf0e4.png)
 
 ## Behavioral Properties
 
@@ -957,47 +825,7 @@ Reports use events and properties to target users, segment data, and filter data
 
 **Users:** All event types and properties are available in Users.
 
-## Downloading Reports from Mixpanel
 
-Users can download reports in three formats:
-
-- CSV
-- PNG
-- PDF
-
-### Breakdown Limits in Report Downloads
-
-Mixpanel maintains breakdown limits for CSV, PNG, and PDF report downloads.
-
-### CSV
-
-For property values that exceed 10,000, Mixpanel only returns the top 10,000 breakdowns of that property. Here’s an example CSV export of an Insights report. The first column contains the date of when each event was sent. The columns contain the event name and the rows contain the number of each event sent to Mixpanel.
-
-![/CSV-download.png](/CSV-download.png)
-
-### PNG and PDF
-
-PNG and PDF downloads display up to 30 segments in the Insights table, Insights bar, Retention table, and Retention line; and up to 12 segments for the Insights line. Here’s an example of a chart in PNG format.
-
-![/PNG-example.png](/PNG-example.png)
-
-### Downloading Reports
-
-To download Insights, Funnels, and Retention reports, click the "..." icon on the upper right corner of each report.
-
-#### Insights Download Menu
-
-![/Screen_Shot_2020-02-14_at_10.31.33_AM.png](/Screen_Shot_2020-02-14_at_10.31.33_AM.png)
-
-#### Funnels Download Menu
-
-![/Screen_Shot_2020-02-14_at_10.32.18_AM.png](/Screen_Shot_2020-02-14_at_10.32.18_AM.png)
-
-It is possible (only in the Funnels report) to download "CSV Trends", which downloads funnels by date.
-
-#### Retention Download Menu
-
-![/Screen_Shot_2020-02-14_at_10.32.36_AM.png](/Screen_Shot_2020-02-14_at_10.32.36_AM.png)
 
 ## Undefined and Null Properties
 
