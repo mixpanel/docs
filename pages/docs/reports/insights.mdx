@@ -93,23 +93,20 @@ If choosing Formula, Funnel, Retention or Cohort, you will be prompted first to 
 
 ### Chart Types
 
-Insights feature multiple visualizations to help you view the query results in the clearest chart type. By default, Insights displays the results on the line chart, which helps you understand how metrics trend over time. However, another chart type might present the results with more clarity. In Insights, you can choose to get a metric calculated either across the entire time period selected in the date picker or on a time-segmented view of the metric (e.g. daily breakdown).
+Insights feature multiple visualizations to help you view the query results in the clearest chart type. By default, Insights displays the results on the line chart, which visualize how metrics trend over time. However, another chart type might present the results with more clarity. In Insights, you can choose visualizations that aggregate your metric across an entire date range or per time interval (e.g. hour, day, week, etc.)
 
-- Metric calculated across the entire time period
+These visualizations aggregate your metric across the entire date range:
     - Bar chart
     - Stacked bar chart
     - Pie chart
     - Metric chart
     - Table chart
-- Metric time-segmented
+
+These visualizations aggregate your metric per each time interval:
     - Line chart
     - Stacked line chart
     - Column chart
     - Stacked Column chart
-
-### Rename an Event within a Report
-
-Click on the "three dots" icon beside an event and click Rename to rename it. This will only affect the current report, and will not change the event's name in other reports.
 
 ### Sorting
 
@@ -247,22 +244,6 @@ Insights will automatically group your high-cardinality segments into buckets. B
 You can choose "Even" to get buckets of uniform size, and you can choose "Varied" to get buckets of different sizes. This helps with organizing outliers, or with drilling deeper into particular ranges.
 
 ![Bucketing](/advanced-bucketing.png)
-
-### Time Period Comparisons
-
-Compare the current period of time to previous periods to track trends and growth in your product’s use. Compare traffic from a specific campaign period or event from one year to the next, or compare the success of that campaign to your normal traffic.
-
-Note that if a data point for a previous year falls on a weekend, the data point is automatically moved to the next Monday to give a clearer picture of the data change from one year to the next.
-
-Click on the **Compare to past** button at the top of your Insights graph and select the time period you wish to compare to. You can also select a custom date range.
-
-![Time Period Comparison](/advanced-time-period-comparison.gif)
-
-### Value Comparisons
-
-When you have multiple metrics, or have broken down a metric by a property, you can compare them against each and the relative value. Click on **Compare** -> **Overall**. This works for all measurements. For a "totals" measurement, you can see the percentage that a particular segment makes up. For non-sumable aggregations, it compares the segment value to the whole, unsegmented value.
-
-![Value Setting](/advanced-value-comparison.png)
 
 ### Profile Analysis
 
@@ -419,21 +400,9 @@ For example, if you make a rolling analysis query for the past 30 days, Mixpanel
   <iframe src="https://www.loom.com/embed/4d49fe9a64e24fb2b6cac44f86839fd2" frameborder="0" style={{ position: 'absolute', top: 0, left: 0, width: '100%', height: '100%' }} allowfullscreen></iframe>
 </p>
 
-### View Users
-
-Click a segment in an Insights report to see the list of users that underlie that data point. This helps see a representative sample of users from any analysis, so you can drill into anomalies or simply get to know your users. You can also save this user list as a cohort to either export or use for message targeting.
-
-See this [video walkthrough](https://www.loom.com/embed/5568e266532b4804a1c2d36d678eb1a2) for examples of how View Users can help you understand users contributing to a specific metric.
 
 ### View Events
 
 Click on a chart segment in Insights and view the raw events that made up that metric. You will be redirected to the Events page.
 
 ![View Events](/advanced-view-events.gif)
-
-### View Sample Events
-
-You can hover over any event and in the context panel, you now have the ability to "View Sample Events", which redirects you to the Events page with the 100 most recent samples of that hovered event:
-You can see a few samples of an event to help you decide whether that's the right event you want for your analysis or which property you should use for filters/breakdowns.
-
-![View Sample Events](/advanced-view-sample-events.gif)
