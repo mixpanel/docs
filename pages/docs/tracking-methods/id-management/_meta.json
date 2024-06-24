@@ -1,6 +1,9 @@
 {
     "original-id-merge": "Original ID Merge",
-    "simplified-id-merge":"Simplified ID Merge",
-    "server-side-id-management":"Server-side ID Management",
-    "migrating-to-simplified-id-merge-system": "Migrating to Simplified ID Merge"
+    "simplified-id-merge": "Simplified ID Merge",
+    "server-side-id-management": "Server-side ID Management",
+    "migrating-to-simplified-id-merge-system": "Migrating to Simplified ID Merge",
+    "identifying-users": {
+        "display": "hidden"
+    }
 }
