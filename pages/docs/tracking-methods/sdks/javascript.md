@@ -60,6 +60,7 @@ When UTM parameters for an identified user are seen for the first time, these wi
 
 In addition to UTM parameters, Mixpanel will also add any advertising click IDs to events fired. These include `dclid`, `fbclid`, `gclid`, `ko_click_id`, `li_fat_id`, `msclkid`, `ttclid`, `twclid`, `wbraid`
 
+[Read our full guide](/docs/tracking-best-practices/traffic-attribution) on traffic attribution.
 
 ### Tracking Website Links
 
