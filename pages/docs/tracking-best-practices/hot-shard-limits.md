@@ -83,7 +83,7 @@ You will want to fix the implementation to identify users correctly and avoid ne
 
 In case you've identified the problematic set of ID values, but you have not been able to identify the root cause in the implementation. Reach out to our [support team](https://mixpanel.com/get-support) and provide the details you've uncovered so far; providing your copy of the board and any details on the investigation in your code will be of great assistance helping you identify the issue.
 
-#### Group Analytics issue
+#### Group Analytics implementation issue
 Adding users to groups causes the group_key and group_id to send as a property key and value for all events triggered by that user on the device.
 
 ```javascript
