@@ -62,6 +62,22 @@ You can select whether you would like the query to match any of these filters, o
 
 ![image](https://github.com/mixpanel/docs/assets/2077899/9e3bcd31-2b12-48d1-b04f-cdda85dd2584)
 
+### First Time Ever Filter
+
+Sometimes, you might want to filter an event to only the first time that it's performed by a user. This helps answer the following questions:
+
+* How many users sign up or perform another key event for the first time each week?
+* Which referrers do most first time users come from?
+* How quickly do users make a purchase after their first time engaging with the app?
+* How well do users retain after performing a key event for the first time?
+* What events do users perform before and after doing their first purchase?
+
+You can do this by adding a First Time Filter to any event in Mixpanel. This filters the event down to only the first instance of the event in a **user's entire history**. (not the first time they tracked the event inside the report date range)
+
+![233894752-93851682-9d83-4c87-937d-8fd90db465c6.png](https://user-images.githubusercontent.com/2077899/233894752-93851682-9d83-4c87-937d-8fd90db465c6.png)
+
+Mixpanel computes this on-the-fly by scanning each user's history to determine if this was the first instance of the event performed by the user, based on timestamp.
+
 ## Breakdowns
 
 Breakdown groups the results of your metrics in Insights, Funnels, Flows, or Retention reports by a property or cohort, allowing you to examine which properties or cohorts have a significant impact on your query.
@@ -76,7 +92,22 @@ For cohorts, you will be shown groups of users both in and not in the cohort in 
 
 It is only possible to either group by properties or group by cohorts, but not both.
 
-## Events Menu
+## View Users
+
+View Users is a streamlined process for exploring the users contributing to a specific metric or point on a chart. By interacting with the chart, you can view a group of users experiencing friction or dig deep into which users are driving feature adoption.
+
+View Users can help you:
+
+- See the users contributing to any metric and view their recent activities & properties.
+- Save these users as a cohort.
+- Export these users to a CSV file.
+
+![/View_Users_Insights_gif.gif](/View_Users_Insights_gif.gif)
+
+
+## Query Builder Features
+
+### Events Menu
 
 This is the menu that appears under "Add Metric" or "Select Step".
 
@@ -86,7 +117,14 @@ If you organize your events using [tags](/docs/data-governance/lexicon) in Lex
 
 ![/Untitled__1_.png](/Untitled__1_.png)
 
-## Properties Menu
+#### View Sample Events
+
+You can hover over any event and in the context panel, you now have the ability to "View Sample Events", which redirects you to the Events page with the 100 most recent samples of that hovered event:
+You can see a few samples of an event to help you decide whether that's the right event you want for your analysis or which property you should use for filters/breakdowns.
+
+![View Sample Events](/advanced-view-sample-events.gif)
+
+### Properties Menu
 
 This menu appears when adding a filter, an inline filter on an event or breakdown.
 
@@ -101,7 +139,7 @@ You can select the following filtering options to show a subset of the propertie
 
     ![/Mixpanel__project_3____Mixpanel_2021-11-18_12-00-58.png](/Mixpanel__project_3____Mixpanel_2021-11-18_12-00-58.png)
 
-### Understanding Prefixes in the Menu
+#### Understanding Prefixes in the Menu
 
 The events and properties in the menu are prefixed to provide additional context about the properties' type. They will be removed when additional context is not needed.
 
@@ -129,7 +167,45 @@ The events and properties in the menu are prefixed to provide additional context
 
     ![/Screen_Shot_2021-11-18_at_12.29.06_PM.png](/Screen_Shot_2021-11-18_at_12.29.06_PM.png)
 
-## Date Range
+### Typecasting
+
+Mixpanel allows you to force Properties into another [data type](https://help.mixpanel.com/hc/en-us/articles/115004547063) by using the **"Data Type"** option in the overflow menu for property filters and breakdowns.
+
+![/Kapture_2022-01-04_at_11.38.41.gif](/Kapture_2022-01-04_at_11.38.41.gif)
+
+Typecasting is helpful when one of your properties is a number but is sent to Mixpanel as a string and you want to see histogram data for that property. Or if one of your properties is a unix timestamp and got sent as a number, and you want it to be treated as a date Property instead.
+
+**How do I see the exact numeric values when applying a breakdown to a number data type in Insights?**
+
+Insights will automatically bucket high-cardinality segments of number data types into ranges.
+
+You can either customize the ranges by clicking "[Customize Range](/docs/features/advanced#custom-buckets)".
+
+Or alternatively, if you'd like to see the exact numeric values you can typecast the Number property to a String to remove the range bucketing.
+
+### Duplicating Query Elements
+
+To duplicate any events or properties in your query, select the inline action menu and choose **Duplicate**. Delete any events or properties by clicking the **trash** icon.
+
+![image](https://github.com/mixpanel/docs/assets/2077899/f496b609-47a3-4287-95f8-e9e6f2ac915d)
+
+### Rename an Event within a Report
+
+Click on the "three dots" icon beside an event and click Rename to rename it. This will only affect the current report, and will not change the event's name in other reports.
+
+### Undo and Redo
+
+The undo/redo keyboard shortcuts allow for fast adjustments to your analysis. `Cmd + Z` to undo; `Cmd + Shift + Z` to redo. Change filters, date ranges, line vs bar chart, and go back in one second to compare before and after, or fix the view.
+
+![/Undo_Redo_gif.gif](/Undo_Redo_gif.gif)
+
+- **Navigate different report versions**: add a new event, filter or breakdown and undo that change with `Cmd + Z` . This makes iterating between different versions of your report quick and easy.
+- **Compare visualizations**: go from a bar chart, to a line chart, to a pie chart and all the way back while only using the undo / redo keyboard shortcuts.
+
+
+
+
+## Date and Time Selector
 
 Determine the time range of a query by clicking on the date range selector. The date range selector is common across all reports.
 
@@ -157,7 +233,7 @@ For these date ranges, the output shows results from the last complete 30 days, 
 
 Selecting **Custom** on the date range selector opens up some additional options, "Last", "Fixed" and "Since".
 
-### Last
+#### Last
 
 “In the last” allows you to select a rolling time range similar to the default “last 30 days” but you have the flexibility to choose the time value and scale, either days, weeks, or months.
 
@@ -167,28 +243,44 @@ If you need to, you can click on the **+ Ending** button and shift back the de
 
 ![/Screen_Shot_2022-07-11_at_3.18.03_PM.png](/Screen_Shot_2022-07-11_at_3.18.03_PM.png)
 
-### Fixed
+#### Fixed
 
 “Fixed” allows you to select two dates to query between or a select particular day to query by entering the same start & end date. If you save this report as a bookmark or add it to the dashboard, the date range selection will always persist.
 
 ![/Screen_Shot_2022-07-11_at_3.21.03_PM.png](/Screen_Shot_2022-07-11_at_3.21.03_PM.png)
 
-### Since
+#### Since
 
 “Since” allows you to select a specific date to query for all data since that start date.
 
-### To Date
+#### To Date
 
 "To Date" allows you select a date rnge that will update dynamically to fit the current internval. You can choose Week to Date, Month to Date, Quarter to Date and Year to Date. When the boundary of interval is passed, the date range will automatically update to include only the current interval. For example, if "Month to Date" was selected, and the date was February 27, the date range would include Feb 1 - Feb 27. The next week, after the month boundary has passed the date range would include Mar 1 - Mar 4.
 To Date respects start of week and start of quarter settings under project settings.
+
+### Line Chart Interval
+
+You can also choose how Mixpanel buckets the time range in Insights, Funnel Trends and Retention Trend reports (granularity may vary). To view a range in hours, you can select **Hour** as the view:
+
+![image](https://github.com/mixpanel/docs/assets/2077899/991a0f0f-b297-4b94-8d41-7323fe6666f6)
+
+### Line Chart Zoom
+To zoom in, click on the graph and drag to highlight a specific window of time in your report. Click **Reset zoom** to return to the previous view.
+
+![zoom (1)](https://github.com/mixpanel/docs/assets/2077899/3add64ad-3fea-4d74-a3bf-303fcc1f4d9d)
+
 
 ## Comparisons
 
 Comparisons allow you to compare metrics, or broken down segments of metrics against each other. Depending on the type of comparison type, you are also able see the lift of a segment or metric against another.
 
-### Compare to Past
+### Time Period Comparison
 
 Compare to past allows for comparing a metric against itself on a different time period. You are able to compare against the previous day, week, month, quarter and year. You are also able choose a custom time comparison window.
+
+> Note that if a data point for a previous year falls on a weekend, the data point is automatically moved to the next Monday to give a clearer picture of the data change from one year to the next.
+
+Hover over a segment to see the details on the time-period selected.
 
 ![/compare_to_past.png](/compare_to_past.png)
 
@@ -196,42 +288,70 @@ By default, Mixpanel will visualize the values for both time periods. If you wis
 
 ![/compare_to_past_lift.png](/compare_to_past_lift.png)
 
-### Compare to Segment
+### Value Comparison
 
-Compare to segment allows you to set a property value as a baseline and see how every other property compares.
+**Compare to segment** allows you to set a property value as a baseline and see how every other property compares.
 
 ![/compare_to_segment.png](/compare_to_segment.png)
 
-### Compare to Overall
-
-Compare to overall allows you compare each segment value and see what proportion it makes of the overall value.
+**Compare to overall** allows you compare each segment value and see what proportion it makes of the overall value.
 
 ![/compare_to_overall.png](/compare_to_overall.png)
 
+## Downloading Reports
+
+You can download reports in four formats:
+- CSV
+- PNG
+- PDF
+- Formatted API
+
+To download Insights, Funnels, and Retention reports, click the "..." icon on the upper right corner of each report.
+
+## Limits and Ordering
+
+### UI
+In order to keep the interactive analysis experience snappy for projects of all sizes, we imposed limits on how many segments are returned back to the report (**visible limit**) and how many segments can be selected at a time for visualization (**selection limit**), as well as the number of segments selected by default (**default selection**).
+
+Here's the breakdown per report + visualization type:
+
+| Report Viz | Default Selection | Selection Limit | Visible Limit |
+| --- | --- | --- | --- |
+| Insights (bar) | 12 | 300 | 3000 |
+| Insights (line) | 12 | 50 | 3000 |
+| Retention | 6 | 12 | 200 |
+| Funnels | 6 | 12 | 200 |
+
+Hover over your table of visible segments to check if your report has reached the segmentation limit.
+
+![image](https://github.com/mixpanel/docs/assets/2077899/3935993c-0410-46e4-a9d6-2d2dfb5313cd)
+
+### Downloaded Reports
+**CSV** - CSV export supports up to 50,000 breakdown segments. 
+**API** - The Query API supports up to 10,000 breakdown segments.
+**PNG and PDF** - PNG and PDF export supports up to 30 segments in the Insights table, Insights bar, Retention table, and Retention line; and up to 12 segments for the Insights line.
+
+### Top Segments logic
+
+The way we pick the top segments differs according to the type of query. We choose the top segments based on the value shown in the second column.
+
+| Query type | How we select top segments |
+| --- | --- |
+| Total | Total number of occurrences of the chosen event |
+| Unique | Number of unique users who performed the chosen event |
+| Sum of property values | Sum of the chosen property |
+| Min/max of property values | Lowest/highest value of the chosen property |
+| Average | Number of events (or users) that contribute to the average |
+| Median/Percentile/Distribution | Number of events (or users) that contribute to the distribution |
+| Distinct count | Number of distinct values of the chosen property |
+| DAU/WAU/MAU | Number of unique users |
+| Sessions | Number of sessions that contain the chosen event |
+| Funnels | Total number of times the first funnel step was completed |
+| Retention | Total number of times the first event was completed |
+
+
 ## Saving to a Board
 
-When you are satisfied with the analysis, and decide that this is something that you are likely to revisit, Mixpanel recommends that you save the report to a [Board](/docs/boards/overview). You can do this by pressing "Save" in the top right and selecting the Board you would like to save to, or creating a new Board.
+When you are satisfied with the analysis, and decide that this is something that you are likely to revisit, Mixpanel recommends that you save the report to a [Board](/docs/boards/overview). You can do this by pressing "Save" in the top right and selecting the Board you would like to save to, or creating a new Board. Sharing and permissions are set at the Board level. Learn more about [Sharing and Permissions](/docs/boards/sharing-and-permission).
 
 ![/Screen_Shot_2022-07-08_at_5.40.30_PM.png](/Screen_Shot_2022-07-08_at_5.40.30_PM.png)
-
-## Typecasting
-
-Mixpanel allows you to force Properties into another [data type](https://help.mixpanel.com/hc/en-us/articles/115004547063) by using the **"Data Type"** option in the overflow menu for property filters and breakdowns.
-
-![/Kapture_2022-01-04_at_11.38.41.gif](/Kapture_2022-01-04_at_11.38.41.gif)
-
-Typecasting is helpful when one of your properties is a number but is sent to Mixpanel as a string and you want to see histogram data for that property. Or if one of your properties is a unix timestamp and got sent as a number, and you want it to be treated as a date Property instead.
-
-**How do I see the exact numeric values when applying a breakdown to a number data type in Insights?**
-
-Insights will automatically bucket high-cardinality segments of number data types into ranges.
-
-You can either customize the ranges by clicking "[Customize Range](/docs/features/advanced#custom-buckets)".
-
-Or alternatively, if you'd like to see the exact numeric values you can typecast the Number property to a String to remove the range bucketing.
-
-## Sessions
-
-This is a period of continuous user activity. Use Sessions in Mixpanel to track which events users perform within a session, how many sessions contained a key action or how many sessions it takes for a user to convert in a funnel. [Learn more](/docs/features/sessions).
-
-![/Screen_Shot_2022-07-11_at_3.27.25_PM.png](/Screen_Shot_2022-07-11_at_3.27.25_PM.png)
