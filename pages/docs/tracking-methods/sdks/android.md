@@ -6,6 +6,28 @@ Please refer to our [Quickstart Guide](/docs/quickstart/connect-your-data?sdk=an
 
 The [Full API Reference](http://mixpanel.github.io/mixpanel-android/index.html), [Library Source Code](https://github.com/mixpanel/mixpanel-android), and an [Example Application](https://github.com/mixpanel/sample-android-mixpanel-integration) is documented in our GitHub repo.
 
+## Initialize the Library
+Replace `YOUR_TOKEN` with your project token. You can find your token [here](https://mixpanel.com/settings/project).
+```java
+import com.mixpanel.android.mpmetrics.MixpanelAPI;
+
+public class MainActivity extends ActionBarActivity {
+  private MixpanelAPI mp;
+
+  @Override
+  protected void onCreate(Bundle savedInstanceState) {
+    super.onCreate(savedInstanceState);
+    setContentView(R.layout.activity_main);
+
+    trackAutomaticEvents = false;
+    // Replace with your Project Token
+    mp = MixpanelAPI.getInstance(this, "YOUR_TOKEN", trackAutomaticEvents);
+  }
+}
+```
+### Configuration Options
+See all [config options](https://mixpanel.github.io/mixpanel-android/com/mixpanel/android/mpmetrics/MPConfig.html).
+
 ## Sending Events
 
 Once you've initialized the library, you can track an event using `.track()` with the event name and properties.
@@ -43,7 +65,9 @@ if(imageUpload()){
 
 It's very common to have certain properties that you want to include with each event you send. Generally, these are things you know about the user rather than about a specific event - for example, the user's age, gender, source, or initial referrer.
 
-To make things easier, you can register these properties as super properties. If you tell us just once that these properties are important, we will automatically include them with all events sent. Super properties are saved to device storage, and will persist across invocations of your app. Mixpanel already stores some information as super properties by default; see a full list of Mixpanel default properties [here](/docs/data-structure/property-reference#default-properties).
+To make things easier, you can register these properties as super properties. If you tell us just once that these properties are important, we will automatically include them with all events sent. Super properties are saved to device storage, and will persist across invocations of your app. Super properties are indistinguishable from other event properties once ingested in your project.
+
+Mixpanel already stores some information as super properties by default; see a full list of Mixpanel default properties [here](/docs/data-structure/property-reference/default-properties).
 
 To set super properties, call `.registerSuperProperties()`
 ```
@@ -165,33 +189,6 @@ mixpanel.getPeople().append("Favorite Colors", "Green")
 There are a few other types of profile updates. They can be accessed through the [MixpanelPeople class](http://mixpanel.github.io/mixpanel-android/com/mixpanel/android/mpmetrics/MixpanelAPI.People.html).
 
 
-## Tracking Revenue
-
-Mixpanel makes it easy to analyze the revenue you make from individual customers. By associating charges with User Analytics profiles, you can compare revenue across different customer segments and calculate customer lifetime value.
-
-You can track a single transaction with `MixpanelAPI.getPeople().trackCharge()`. This call will add transactions to the individual user profile, which will also be reflected in the Mixpanel Revenue report.
-
-```java Java
-MixpanelAPI mixpanel =
-    MixpanelAPI.getInstance(context, MIXPANEL_TOKEN, true);
-
-// Make getPeople() identify has been
-// called before making revenue updates
-mixpanel.identify("13793");
-
-// Tracks $100 in revenue for user 13793
-mixpanel.getPeople().trackCharge(100, null);
-
-// Refund this user 50 dollars
-mixpanel.getPeople().trackCharge(-50, null);
-
-// Tracks $25 in revenue for user 13793
-// on the 2nd of january
-JSONObject properties = new JSONObject()
-properties.put("$time", "2012-01-02T00:00:00");
-mixpanel.getPeople().trackCharge(25, properties);
-```
-
 ## Group Analytics
 Mixpanel Group Analytics is a paid add-on that allows behavioral data analysis by selected groups, as opposed to individual users.
 
@@ -304,6 +301,20 @@ bolts.AppLinkNavigation.navigateInBackground(this, "http://anotherapp.com/app/li
 ...
 ```
 
+## Flushing Events
+
+To preserve battery life and customer bandwidth, the Mixpanel library doesn't send the events you record immediately. Instead, it sends batches to the Mixpanel servers every 60 seconds while your application is running, as well as when the application transitions to the background. You can call `flush` manually if you want to force a flush at a particular moment.
+
+```java Java
+MixpanelAPI mixpanel =
+    MixpanelAPI.getInstance(context, MIXPANEL_TOKEN, true);
+
+// Push all queued Mixpanel events and
+// profile changes to Mixpanel servers
+mixpanel.flush();
+```
+
+
 ## EU Data Residency
 
 Route data to Mixpanel's EU servers by adding meta-data entries under the `<application>` tag of your app's `AndroidManifest.xml`.
@@ -318,6 +329,9 @@ Route data to Mixpanel's EU servers by adding meta-data entries under the `<appl
 <meta-data android:name="com.mixpanel.android.MPConfig.DecideEndpoint"
            android:value="https://api-eu.mixpanel.com/decide" />
 ```
+
+## Mobile Attribution
+Learn more about [mobile attribution here](/docs/tracking-best-practices/traffic-attribution).
 
 ## [Legacy] Automatically Tracked Events
 
