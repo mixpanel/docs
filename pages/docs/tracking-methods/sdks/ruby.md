@@ -1,11 +1,22 @@
 # Ruby
 
+## Getting Started
+
+Please refer to our [Quickstart Guide](/docs/quickstart/connect-your-data?sdk=ruby).
+
 The Mixpanel Ruby library is designed to be used for scripting, or in circumstances when a user isn't directly interacting with your application on the web or a mobile device.
 
 The [Full API Reference](http://mixpanel.github.io/mixpanel-ruby), [Library Source Code](https://github.com/mixpanel/mixpanel-ruby), and an [Example Script](https://github.com/mixpanel/mixpanel-ruby/tree/master/demo) is documented in our GitHub repo.
 
-## Getting Started
-See our [server](/docs/quickstart/connect-your-data?sdk=ruby) quickstart for how to get started with the Ruby SDK.
+## Initialize the Library
+
+Replace `YOUR_TOKEN` with your project token. You can find your token [here](https://mixpanel.com/settings/project).
+
+```ruby Ruby
+require 'mixpanel-ruby'
+
+mp = Mixpanel::Tracker.new(YOUR_TOKEN)
+```
 
 ## EU Data Residency
 
@@ -149,20 +160,3 @@ tracker.groups.set('Company', 'Acme', {
 ```
 
 For all Group methods, see our [reference](http://mixpanel.github.io/mixpanel-ruby/Mixpanel/Groups.html).
-
-
-## Tracking Revenue
-
-Mixpanel makes it easy to analyze the revenue you make from individual customers. By associating charges with user profiles, you can compare revenue across different customer segments and calculate things like lifetime value.
-
-You can track a single transaction with the [`track_charge method of Mixpanel::Tracker#people`](http://mixpanel.github.io/mixpanel-ruby/Mixpanel/People.html#method-i-track_charge). Sending a message created with `track_charge` will add transactions to the individual user profile, which will also be reflected in the Mixpanel Revenue report.
-
-```ruby
-## Records a charge of $9.99 from user '12345'
-tracker.people.track_charge('12345', 9.99)
-
-## records a charge of $30.50 on the 2nd of January
-mixpanel.people.track_charge("12345", 30.50, {
-    '$time' => DateTime.parse("Jan 2 2013"),
-})
-```

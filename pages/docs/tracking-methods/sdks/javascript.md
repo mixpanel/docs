@@ -6,6 +6,20 @@ Please refer to our [Quickstart Guide](/docs/quickstart/connect-your-data?sdk=ja
 
 The [Full API Reference](https://github.com/mixpanel/mixpanel-js/blob/master/doc/readme.io/javascript-full-api-reference.md#mixpanel), [Library Source Code](https://github.com/mixpanel/mixpanel-js), and an [Example Application](https://github.com/mixpanel/mixpanel-js/tree/master/examples) is documented in our GitHub repo.
 
+## Initialize the Library
+
+Replace `YOUR_TOKEN` with your project token. You can find your token [here](https://mixpanel.com/settings/project).
+
+```js Javascript
+//Import Mixpanel SDK
+import mixpanel from 'mixpanel-browser';
+
+// Near entry of your product, init Mixpanel
+mixpanel.init('YOUR_TOKEN', {debug: true, track_pageview: true, persistence: 'localStorage'});
+```
+### Configuration Options
+See library [config options here](https://github.com/mixpanel/mixpanel-js/blob/v2.46.0/src/mixpanel-core.js#L88-L127).
+
 ## Track Events
 
 ### Sending Events
@@ -60,6 +74,7 @@ When UTM parameters for an identified user are seen for the first time, these wi
 
 In addition to UTM parameters, Mixpanel will also add any advertising click IDs to events fired. These include `dclid`, `fbclid`, `gclid`, `ko_click_id`, `li_fat_id`, `msclkid`, `ttclid`, `twclid`, `wbraid`
 
+[Read our full guide](/docs/tracking-best-practices/traffic-attribution) on traffic attribution.
 
 ### Tracking Website Links
 
@@ -105,7 +120,9 @@ For domains that don't allow cross-subdomain cookies, you should be setting `cro
 
 It's very common to have certain properties that you want to include with each event you send. Generally, these are things you know about the user rather than about a specific event - for example, the user's age, gender, source, or initial referrer.
 
-To make things easier, you can register these properties as super properties. If you tell us just once that these properties are important, we will automatically include them with all events sent. Super properties are stored in a browser cookie, and will persist between visits to your site. Mixpanel already stores some information as super properties by default; see a full list of Mixpanel default properties [here](/docs/data-structure/property-reference#default-properties).
+To make things easier, you can register these properties as super properties. If you tell us just once that these properties are important, we will automatically include them with all events sent. Super properties are stored in a browser cookie, and will persist between visits to your site. Super properties are indistinguishable from other event properties once ingested in your project. 
+
+Mixpanel already stores some information as super properties by default; see a full list of Mixpanel default properties [here](/docs/data-structure/property-reference#default-properties).
 
 To set super properties, call [`mixpanel.register()`](https://github.com/mixpanel/mixpanel-js/blob/master/doc/readme.io/javascript-full-api-reference.md#mixpanelregister).
 

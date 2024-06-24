@@ -1,15 +1,8 @@
 # Segment
+>Eligible startups receive their first year of Mixpanel free, valued up to $50,000. Learn more about the [Startup Program](/docs/pricing/startup-program) and [apply today](https://mixpanel.com/startups/).
 
+## Overview
 Segment is a CDP (Customer Data Platform) which lets you track event data and route it to various downstream destinations. Mixpanel integrates seamlessly with Segment -- if you use Segment, it takes just a few clicks to set up Mixpanel.
-
-## Startup Credit Program
-Mixpanel offers \$50K in credits to [eligible startups](https://mixpanel.com/startups). Because of our Segment partnership, we're also able to offer startups \$50k in Segment credits. This gives startups the runway to use both tools for free.
-
-Once you create your Segment and Mixpanel accounts, you can fill out [this form](https://airtable.com/shrLP3GSZnxt1WT2v?prefill_Partner%20Code=Mixpanel) and Segment will get back to you within 48 hours to confirm your credits are applied.
-
-Startup eligibility requirements:
-* Founded less than 2 years ago
-* Raised no more than $8MM USD in total funding
 
 ## How the Integration Works
 In the simplest form, the Segment libraries (“Sources”) generate messages about what’s happening in your site or app, and send them to the Segment servers. Segment then translates the content of those messages into different formats for use by other tools (which we call ‘Destinations’), and sends the translated messages to those tools. The Segment servers also archive a copy of the data, and can send data to your storage systems (such as databases, warehouses, or bulk-storage buckets).
@@ -70,6 +63,7 @@ If you are using [Segment Device Mode](https://segment.com/docs/connections/dest
 * By default, all traits specified in the identify call will be registered as super properties. This means if you have the [“Automatically set all Traits as Super Properties and People Properties”](https://segment.com/docs/connections/destinations/catalog/mixpanel/#settings) setting turned on, all traits specified in the identify call will be added as both a super property and profile property for the user.
 
 ## Debugging
+### Segment Source Debugger
 For debugging purposes, it can be useful to see exactly what Segment is sending to Mixpanel. You can validate this data through the [Segment Source Debugger](https://segment.com/docs/connections/sources/debugger/). In the Segment Source Debugger, you can select the event you are looking to validate:
 <img width="1080" alt="yGK1yH7zGy_cv5hLBEHgdU9oMyALishD6S0kObRRJANGxbjIEL" src="https://github.com/mixpanel/docs/assets/97630035/6ee0bbcd-8bf2-4f86-83a7-b0a3c39108e4">
 
@@ -77,6 +71,15 @@ Click the “Validate” button in the top right corner and choose “Mixpanel�
 ![pasted image 0 (1)](https://github.com/mixpanel/docs/assets/97630035/0344decc-dc96-4569-ac3d-cc530c63bdb3)
 
 You can then copy the data payload and decode it in a [base64 decoder](https://www.base64decode.org/) to see the JSON event that was sent to Mixpanel.
+
+### Delivery Overview
+
+Content about delivery overview
+
+### Event Tester
+
+Content about event tester
+
 
 ## FAQ
 ### Why are my Segment data not appearing in my project?
@@ -103,3 +106,6 @@ Super properties can only be set when you are running in device mode. The super 
 
 ### How do I track page views using Segment?
 Page calls are automatically tracked via Segment. These can be tracked from Segment to Mixpanel as Loaded a Page or Loaded a Screen. To turn them off, you need to [configure this in your Segment settings](https://segment.com/docs/connections/destinations/catalog/mixpanel/#page).
+
+### Why is Boardman, Oregon appearing in my user's geolocation properties?
+If you are seeing high traffic coming from Boardman, Oregon, your Segment Source might be sending server-side requests to your Mixpanel destination. To correct this, manually pass in the IP information to your payloads, or set the IP to `0` which will cause Mixpanel API to ignore the location.
