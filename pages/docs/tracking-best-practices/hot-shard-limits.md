@@ -188,14 +188,14 @@ import time
 from mixpanel_utils import MixpanelUtils
 
 SETTINGS = {
-    "PROJECT_ID": "3337524",
-    "TOKEN": "c7c830e5e2ac84f31e02316c6e31f769",
-    "SA_USERNAME": "anquoc_service_account.7475e0.mp-service-account",
-    "SA_PASSWORD": "BCaxrU2vyaDPsCqEQzdkhfHO3iwMtvPf",
+    "PROJECT_ID": "<REPLACE YOUR PROJECT ID>",
+    "TOKEN": "<REPLACE PROJECT TOKEN>",
+    "SA_USERNAME": "<REPLACE SERVICE ACCOUNT USERNAME>",
+    "SA_PASSWORD": "<REPLACE SERVICE ACCOUNT PASSWORD>",
     "EU": False, # set to TRUE if your project is in the EU
     "EXPORT_FOLDER": "exported_files", # make sure to create the folder if it does not exist
-    "FROM": "2024-06-20",
-    "TO": "2024-06-22",
+    "FROM": "2023-09-01",
+    "TO": "2023-09-15",
 }
 
 mputils = MixpanelUtils(SETTINGS["SA_PASSWORD"],token=SETTINGS["TOKEN"],service_account_username=SETTINGS["SA_USERNAME"], eu=SETTINGS["EU"], project_id=SETTINGS["PROJECT_ID"])
@@ -282,14 +282,14 @@ import time
 from mixpanel_utils import MixpanelUtils
 
 SETTINGS = {
-    "PROJECT_ID": "3337524",
-    "TOKEN": "c7c830e5e2ac84f31e02316c6e31f769",
-    "SA_USERNAME": "anquoc_service_account.7475e0.mp-service-account",
-    "SA_PASSWORD": "BCaxrU2vyaDPsCqEQzdkhfHO3iwMtvPf",
-    "EU": False,  # set to TRUE if your project is in the EU
-    "EXPORT_FOLDER": "exported_files",
-    "FROM": "2024-06-20",
-    "TO": "2024-06-22",
+    "PROJECT_ID": "<REPLACE YOUR PROJECT ID>",
+    "TOKEN": "<REPLACE PROJECT TOKEN>",
+    "SA_USERNAME": "<REPLACE SERVICE ACCOUNT USERNAME>",
+    "SA_PASSWORD": "<REPLACE SERVICE ACCOUNT PASSWORD>",
+    "EU": False, # set to TRUE if your project is in the EU
+    "EXPORT_FOLDER": "exported_files", # make sure to create the folder if it does not exist
+    "FROM": "2023-09-01",
+    "TO": "2023-09-15",
     # unique tuples acquired from export script run
     "UNIQUE_HOTSHARD_GROUP_TUPLES": [
         ("test_hot_shard_group_test_key_A", "test_key"),
