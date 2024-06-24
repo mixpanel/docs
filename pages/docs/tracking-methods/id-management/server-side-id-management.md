@@ -27,7 +27,7 @@ If your project is using [Original ID Merge API](/docs/tracking-methods/id-manag
 
 If your project is using [Simplified ID Merge API](/docs/tracking-methods/id-management/simplified-id-merge/), set the `$user_id` property to the authenticated ID and continue setting `$device_id` to the anonymous ID generated in step 1, including both the `$user_id` and `$device_id` in your events moving forward. If Mixpanel receives an event with both `$device_id` and `$user_id` set, it will merge the two IDs together. This is essential to track pre-login and post-login behavior accurately. The `distinct_id` will be assumed to the `$user_id`. If you choose to manually define the `distinct_id` property, it should be the same value as the `$user_id`.
 
-**Example python code**
+### Example python code**
 
 Here's a pseudocode example using Django's [cookies](https://django-book.readthedocs.io/en/latest/chapter14.html#cookies) and [authentication](https://django-book.readthedocs.io/en/latest/chapter14.html#using-users). It assumes the client is setting and sending cookies:
 ```python
@@ -53,3 +53,6 @@ def identify_user(request):
   }
   track_to_mp(request, "$identify", properties)
 ```
+
+## Hybrid implementations
+- add short call out for best practices
