@@ -15,7 +15,7 @@ Group analytics has a different storage sharding of events separate from the use
 Once a given entry crosses the threshold, all subsequent matching events (same `distinct_id` and calendar day) will have the following transformations applied to them:
 - `event` will be changed to `$hotshard_events` (display name is `Hotshard Events`).  The original event name will be preserved under a property called `mp_original_event_name` (display name is `Hotshard Original Event Name`). Changing the name removes the bad events from being selected for analysis yet remain accessible for debugging.
 - `distinct_id` is changed to `""`[^1]. The original value will be preserved under a property called `mp_original_distinct_id` (display name is `Hotshard Original Distinct ID`). Removing the distinct_id allows Mixpanel backend to distribute these events evenly across shards ensuring that performance is not adversely affected while keeping the data accessible for debugging.
-- If the hot shard comes from a `group identifier`, these transformations would only appear for the events showing up when you analyze by `Group` in Insights report. 
+- If the hot shard comes from a `group identifier`, these transformed events would show up when you analyze by the respect `Group` in Insights report. 
 
 Original Event - 
 ```json
