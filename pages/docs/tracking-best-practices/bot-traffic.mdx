@@ -17,7 +17,9 @@ Any other bot hitting your site will affect your Mixpanel data. That being said,
 
 1. Find the user agent information of the individual accessing the site.
 2. Look for the word “bot” anywhere in the user agent information.
-3. If you find “bot,” set the $ignore property to true.
+3. If you find “bot,” set the $ignore property to true and register it as a super property.
+
+Any time $ignore is set to true in an event payload, our API drops the payload and prevents it from getting ingested.
 
 If you can, identify a common pattern in the bots to block them all in one shot by filtering out any interaction with your site that comes from a web framework that is not a consumer-facing browser. As an example, for GTM bots, this code would look like this:
 
@@ -32,6 +34,8 @@ if (/(Mozilla\/4.0)/i.test(userAgentBotTest)) {
 If you implement this code, you will block all userAgents with "Mozilla/4.0" in the userAgent. This does include some older browsers, but modern browsers such as Chrome, Safari, and Firefox will never include this in their userAgent strings. See a [common list of bot userAgents](https://www.useragentstring.com/pages/useragentstring.php?typ=Crawler) and [common bot browsers](https://www.useragentstring.com/pages/useragentstring.php?typ=Browser).
 
 If this does not work, you can start tracking this userAgent going forward so you can find the common pattern among all of the bots crawling your site.
+
+It is also common for bots and crawlers to stem from a specific IP address. In this case, you will want to set conditional logic in your implementation to set the $ignore event property to true, then register it as a super property.
 
 Note: `$ignore` must have a string or at least be set to true, or else the event will fire. For example, if I have `'$ignore': ''`, the event will still fire since it's an empty string. `'$ignore': false` will also fire the event.
 
