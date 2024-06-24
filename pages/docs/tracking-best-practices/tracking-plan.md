@@ -30,4 +30,6 @@ Mixpanel provides the following templates for vertical-specific tracking plans:
 - [SaaS](https://docs.google.com/spreadsheets/d/1A5wm5MKzRfSOZfUfCAg8YpePiz8Jn3Ar_u8KBo5lD6g/#gid=1641519238)
 - [Financial Services](https://docs.google.com/spreadsheets/d/1oGv6vbIFiYbima9IX4ItpBJvuChs-zzh83MRt_dSPgg/#gid=1641519238)
 
-You can also access a copy of a [blank Tracking Plan from here](https://docs.google.com/spreadsheets/d/1ZdOZ6TMtRPxy7qRxiLsvH9HWcHJM6nZydWKoThRxFKc/edit#gid=1641519238). Save a copy to your device to get started on your tracking plan.
+You can access a copy of a [blank Tracking Plan from here](https://docs.google.com/spreadsheets/d/1ZdOZ6TMtRPxy7qRxiLsvH9HWcHJM6nZydWKoThRxFKc/edit#gid=1641519238). Save a copy to your device to get started on your tracking plan.
+
+Consider hiring a [Mixpanel Expert](https://mixpanel.com/partners/experts). All consultancies, agencies, and freelancers in our directory have been trained by Mixpanel and earned a Certified Partner badge.
