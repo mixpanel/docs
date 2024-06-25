@@ -18,7 +18,7 @@ By default, Mixpanel stores user data on its US Servers via the Google Cloud Pla
 | [Lexicon Schemas API](https://developer.mixpanel.com/reference/lexicon-schemas-api) | `mixpanel.com/api/app/projects` | `eu.mixpanel.com/api/app/projects` |
 | [Connectors API](https://developer.mixpanel.com/reference/connectors-api) | `mixpanel.com/api/app/projects` | `eu.mixpanel.com/api/app/projects`|
 
-You can find where your data is stored under Project Settings > Data Residency for existing projects. Additionally, projects stored in the EU will have a URL that starts with 'eu.mixpanel.com', whereas projects stored in the US will have a 'mixpanel.com' URL. If the wrong Data Residency location was chosen before implementation, you will need to create a new project with the applicable data storage option and migrate all your existing data. Mixpanel cannot assist with migrating an existing project with the wrong residency location. You can find out more about creating a new project [here](https://docs.mixpanel.com/docs/orgs-and-projects/managing-projects#creating-projects).
+You can find where your data is stored under Project Settings > Data Residency for existing projects. Additionally, projects stored in the EU will have a URL that starts with 'eu.mixpanel.com', whereas projects stored in the US will have a 'mixpanel.com' URL. If the wrong Data Residency location was chosen before implementation, you will need to create a new project with the applicable data storage option and migrate all your existing data. Mixpanel cannot assist with migrating an existing project with the wrong residency location. You can find out more about creating a new project [here](/docs/orgs-and-projects/managing-projects#creating-projects).
 
 
 ## Using Our SDKs
