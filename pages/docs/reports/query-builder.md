@@ -1,5 +1,9 @@
 # Query Builder
 
+## Overview
+
+The Query Builder allows you to build complex queries using a simple drag-and-drop interface. This article goes over the query builder features common across our [core reports](/docs/reports).
+
 ## Events Menu
 
 This is the menu that appears under "Add Metric" or "Select Step".
