@@ -47,6 +47,22 @@ By default your Funnels is set to measure Conversion Rate using the Uniques coun
 
 You can select a Time to Convert aggregation to see how quickly or slowly your funnel converts. You can see this as a summarized value by selecting "Metric" or "Bar" visualizations, or you can see it as a trend using the "Line" visualization. You can also see the time to convert for a particular chosen step selection.
 
+#### Time to Convert Breakdown and Filter
+
+Use the Time to Convert breakdown to see a distribution of time users took between any two steps in the funnel or all steps. The steps selected in the breakdown are independent of the step of the metric you are measuring, for example you can measure overall conversion rate broken down by Time to Convert between Steps 1 and 2.
+
+![/funnels_ttc_selection.png](/funnels_ttc_selection.png)
+
+![/funnels_ttc_step_selection.png](/funnels_ttc_step_selection.png)
+
+Time to Convert works like any other property in that you can filter to specific range of times or customize the bucketing of the breakdown. You cannot use it as a step filter as it is used to filter funnels which have been measured rather than changing the per step conversion window.
+
+![/funnels_ttc_filter.png](/funnels_ttc_filter.png)
+
+![/funnels_ttc_custom_buckets.png](/funnels_ttc_custom_buckets.png)
+
+You can can use this in combination with measuring total conversion to get a distribution of conversions, based on how long they took to convert. You can also use this to see how other metrics such as conversion rate are affected based on how quickly users convert on a particular step range.
+
 ## Property Sum
 
 This measurement type allows you to visualize revenue through a funnel. Instead of seeing how many users move through your flow, you can select an event property that exists on each step of the funnel. Mixpanel will sum up the total value of this property at each stage of the funnel and visualize the total ammount converted, or the dropoff at each step if "Funnel Steps" visualization is selected.
