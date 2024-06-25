@@ -62,5 +62,14 @@ A step will either appear with a number beside it, indicating where it must fall
 
 In the above example, Steps 1, 4, and 6 must occur as the 1st, 4th, and 6th steps the user performs.Any of the * steps can occur at any time within those boundaries.
 
-## Saved Funnels Behavior
-You can save your funnels as a saved behavior, which allows you to reuse the funnels definition in another Funnels report or visualize the funnel in an Insights report along with other metrics. learn more about [Saved Behaviors](docs/features/saved-behaviors).
+## Saved Funnel Behaviors
+
+You can define a funnel behavior and save and share it. Press "Save as New" button to save your funnel behavior definition. You can change the name and add a description.
+
+![save funnel](/save-funnel-1.png)
+
+You can also load existing funnel definitions by clicking the name of funnel.
+
+![save funnel](/save-funnel-2.png)
+
+See more about saved behaviors [here](/docs/features/saved-behaviors).
