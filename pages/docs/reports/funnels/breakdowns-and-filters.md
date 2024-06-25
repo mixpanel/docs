@@ -108,3 +108,25 @@ When grouping or filtering the results of your funnel, the user count will be de
 For example, if you are an e-commerce site grouping by the property “item” to determine what users are searching for and purchasing, users will appear in the table once for each property they use. In a funnel where Event A is “Search”, Event B is “Add to Cart”, and Event C is “Purchase”, a user may complete the funnel twice, once with the property “hat”, and once with the property “shirt”. This user would convert through the funnel, and be counted in the Group By table for both “hat” and “shirt” when grouping by property “item”. They would be counted in the “overall” row as completing the funnel once.
 
 This behavior matches how users are counted when filtering by property: if a user goes through the entire funnel X times with Y distinct event property values, the user will be counted Y times.
+
+### Statistical Significance
+Statistical significance in funnels validates an increase or decrease in conversion rate for a breakdown segment. It attempts to identify random chance with respect to overall conversion. A p-value indicating statistical significance is calculated in the overview table when you choose a property or cohort to group by.
+
+In statistical hypothesis testing, the p-value or probability value is the probability that the variation in a segment’s conversion rate, compared to the overall conversion rate, is not driven by a random chance. This value is shown for every segment by default. To learn more about how this is calculated, click [here](/docs/reports/funnels#how-does-mixpanel-calculate-statistical-significance).
+
+In order to clarify this statistical significance, the segmentation chart shows the confidence level of each segment. Confidence level is defined as 1 - p.
+
+- > 0.95 = statistically significant, indicated in green. This variation in conversion rate is likely **not** driven by random chance.
+- < 0.95 = not statistically significant, indicated in red. This variation in conversion rate is likely driven by random chance.
+
+![/Screen_Shot_2019-10-28_at_2.28.54_PM.png](/Screen_Shot_2019-10-28_at_2.28.54_PM.png)
+
+Scrolling further down the table takes you to the statistically insignificant segments. If a segment has less than 30 samples, p-value is not shown, as the sample size is too low to detect difference from overall population. This is indicated by “Insufficient samples”.
+
+The number of samples is the same as the count of entries into the funnel. If the funnel is looking at the unique count, this is the number of unique users who entered the funnel in that segment. If the funnel is looking at total count, this is the total number of entries into the funnel in that segment.
+
+You can choose to sort by any of the columns of the overall table in descending or ascending order by clicking on the header. If you sort by statistical significance, values with confidence level of > 0.95 are shown first, and then values with confidence level < 0.95. The secondary sorting is determined by the overall conversion rate for the funnel.
+
+Click on the **dot** beside the statistical significance number to make that property value the Control value that the other property values are compared to. To return to the default view, click the **dot** beside “Overall”.
+
+![/Oct-28-2019_10-35-23.gif](/Oct-28-2019_10-35-23.gif)
