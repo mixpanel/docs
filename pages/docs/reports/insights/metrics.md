@@ -18,7 +18,19 @@ If choosing [Formula](/docs/reports/insights/metrics#formulas), Funnel, Retentio
 
 Learn more about [Saved Behaviors](/docs/features/saved-behaviors) and [Cohorts](/docs/users/cohorts).
 
-## Formulas
+### Event
+
+Event metrics allow you to measure a single event. You can aggregate multiple events using a single event metric by using a custom event [custom events](/docs/features/custom-events).
+
+### Profile
+
+Profile metrics allow you to access profile data and visualize your users with filters and breakdowns based on their profile properties. When exploring Profiles, you are always analyzing all user profiles. Select the [Measurement](/docs/reports/insights#measurements) you want to use to calculate results by clicking on **Total** and selecting an option from the drop-down. You can calculate based on users or profile property value.
+
+<p style={{ position: 'relative', paddingBottom: '56.25%', height: 0, overflow: 'hidden' }}>
+  <iframe src="https://www.loom.com/embed/dc5e909f2d7f427ca962e493e87894ad" frameborder="0" style={{ position: 'absolute', top: 0, left: 0, width: '100%', height: '100%' }} allowfullscreen></iframe>
+</p>
+
+### Formulas
 
 Use Formulas to make calculations between multiple metrics.
 
@@ -38,7 +50,7 @@ Click the **Metrics** button, then select Formula.. Each event in the query show
 
 To note, you cannot nest a formula metric when constructing another formula.
 
-### Save formulas for re-use
+#### Save formulas for re-use
 
 Use existing events to create calculated formulas, like Bounce Rate & % Active Users, that can be saved and reused by others within the project.
 
@@ -55,3 +67,11 @@ To access and re-use saved formulas, click on “+Formula”, and then see the l
 - You can only look at saved formulas created by you or shared with you
 
 ![reuseformula.gif](/reuseformula.gif)
+
+### Funnel and Retention Metric
+
+You can use a saved funnel or retention definition as a metric in your report. Learn more about [Funnels](docs/reports/funnels), [Retention](docs/reports/retention), and [Saved Behaviors](/docs/features/saved-behaviors).
+
+## Cohorts
+
+Cohort metrics allow you to measure the size of your cohort and how it changes over time. Learn more about [Cohorts](/docs/users/cohorts).
