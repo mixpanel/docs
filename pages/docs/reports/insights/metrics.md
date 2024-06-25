@@ -1,6 +1,7 @@
 # Metrics
 
-The Insights Report supports 6 different metric types and allows you to combine them in a single report for analysis.
+## Overview
+The Insights Report supports 6 different metric types, which you can combine under a single report for your analysis.
 
 ## Metric Types
 
