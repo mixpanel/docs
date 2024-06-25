@@ -1,14 +1,14 @@
 # Measurements
 
 ## Overview
-You have a variety of options to measure your funnel behavior. The table below summarizes the measurement options.
+Funnels report supports a variety of measurements. You can configure your funnel measurement using one of the options in the table below.
 
 | Measurement | Description |
 | --- | --- |
-| Conversion Rate | The rate at which funnels are completed for the selected steps of the funnel. The conversion rate can be based off of unique users, total funnel entries or sessions. |
-| Unique Users | The number of users who completed the selected steps of the funnel; based on their first attempt at entering the funnel within the timeframe of the report. |
-| Total Conversions | The total number of funnels that have reached the selected step of the funnel. This measurement allows for users to re-enter the funnel multiple times, if they exit the funnel by either fully converting or dropping out. |
-| Total Sessions | The total number of unique users sessions that reached the selected step of the funnel |
+| Conversion Rate | The rate at which funnels are completed for the selected steps of the funnel. The conversion rate can be based off of [unique users](/docs/reports/funnels/measurements#uniques-count), [total](/docs/reports/funnels/measurements#totals-count) funnel entries or [sessions](/docs/reports/funnels/measurements#sessions-count). |
+| Unique Users | The number of users who completed the selected steps of the funnel; based on their first attempt at entering the funnel within the timeframe of the report using [Uniques](/docs/reports/funnels/measurements#uniques-count) counting method.|
+| Total Conversions | The total number of funnels that have reached the selected step of the funnel using the [Totals counting method](/docs/reports/funnels/measurements#totals-count). This measurement allows for users to re-enter the funnel multiple times, if they exit the funnel by either fully converting or dropping out. |
+| Total Sessions | The total number of unique users sessions that reached the selected step of the funnel using the [Sessions counting method](/docs/reports/funnels/measurements#sessions-count). |
 | Time to Convert | Allows for selection of an aggregation: Average, Median, Percentile, Min and Max. Measures the aggregated time to convert for the selected steps of the funnel. [See more](#time-to-convert-measurement) |
 | Property Sum | Sums up a chosen property value for each step of the funnel, and measures the total amount of the property converted for the selected step of the funnel. [See more](#property-sum) |
 
