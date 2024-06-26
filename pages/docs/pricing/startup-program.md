@@ -41,7 +41,7 @@ New and current customers who have not received any other exclusive offer and ar
 
 #### What offers prevent me from qualifying for the startup program?
 
-If you have already redeemed an offer through the [Product School](https://mixpanel.com/productschool/) or another partner, you will not be eligible for the startup program.
+If you have already redeemed an offer through the [Product School](https://productschool.teachable.com/p/productanalytics) or another partner, you will not be eligible for the startup program.
 
 ### Offer Details
 
@@ -49,7 +49,7 @@ If you have already redeemed an offer through the [Product School](https://mixpa
 
 Eligible startups can [apply directly](https://mixpanel.com/startups-apply/) for the startup program. Credits will be added to your account and automatically be applied to eligible line items when purchasing or upgrading to an annual [Growth plan](https://mixpanel.com/pricing/#edit-plan) via our plan builder.
 
-Once you have successfully applied, you need to click 'Redeem Now' and you will be guided to our plan builder where you can select the number of events you will need, along with adding on premium features like [Data Pipelines](https://mixpanel.com/data-pipeline/) and/or [Group Analytics](https://mixpanel.com/group-analytics/). You can also access the plan builder via the Billing section in your Organization Settings.
+Once you have successfully applied, you need to click 'Redeem Now' and you will be guided to our plan builder where you can select the number of events you will need, along with adding on premium features like [Data Pipelines](https://docs.mixpanel.com/docs/data-pipelines/overview) and/or [Group Analytics](https://docs.mixpanel.com/docs/data-structure/advanced/group-analytics). You can also access the plan builder via the Billing section in your Organization Settings.
 
 The offer is activated as soon as you successfully apply and are approved for the program. From that date, you will begin your one free year of Mixpanel.
 
