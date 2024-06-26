@@ -119,8 +119,8 @@ This setup utilizes an external ID to prevent [the confused deputy problem](http
 
 When configuring your json pipeline in Mixpanel, it is essential to provide specific details to ensure that Mixpanel can accurately direct the data exports to your S3 bucket:
 
-- Bucket: Specify the S3 bucket where Mixpanel data should be exported.
-- Role: Provide the AWS Role ARN that Mixpanel should assume when writing to your S3, e.g., `arn:aws:iam:::role/example-s3-role`.
-- Region: Indicate the AWS region where your S3 bucket is located.
-- Encryption (optional): Specify the type of at-rest encryption used by the S3 bucket.
-- KMS Key ID (optional): If using KMS encryption, you can provide the custom key ID that you wish to use.
+- **Bucket**: Specify the S3 bucket where Mixpanel data should be exported.
+- **Rol**e: Provide the AWS Role ARN that Mixpanel should assume when writing to your S3, e.g., `arn:aws:iam:::role/example-s3-role`.
+- **Region**: Indicate the AWS region where your S3 bucket is located.
+- **Encryption (optional)**: Specify the type of at-rest encryption used by the S3 bucket.
+- **KMS Key ID (optional)**: If using KMS encryption, you can provide the custom key ID that you wish to use.
