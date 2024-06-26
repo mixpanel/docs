@@ -23,4 +23,4 @@ Sample Response
 ```
 
 
-For more information, visit the [Raw Export API](reference/export/events)
+For more information, visit the [Raw Export API](raw-data-export-api)
