@@ -4,9 +4,9 @@ Mixpanel allows you to export events and poeple data into AWS S3 through [Json P
 
 ## Setting S3 Permissions
 
-Mixpanel supports various configurations to securely manage your data on AWS S3. For resource access, Mixpanel utilizes AWS cross-account roles.
+Before detailing the steps necessary to configure permissions, it's important to note that you need to create your AWS S3 bucket.
 
-This section details the necessary permissions Mixpanel requires based on your S3 bucket configuration.
+Mixpanel supports various configurations to securely manage your data on AWS S3. For resource access, Mixpanel utilizes AWS cross-account roles. This section details the necessary permissions Mixpanel requires based on your S3 bucket configuration.
 
 ### Step 1: Create Data Modification Policy
 
