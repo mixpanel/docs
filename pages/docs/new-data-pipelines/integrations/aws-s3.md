@@ -81,7 +81,7 @@ After establishing the necessary policies, create a cross-account IAM Role to at
 
 - Go to the **IAM** service on the AWS console.
 - Select **Roles** in the sidebar and click **Create role**.
-- On the trusted entity page, choose **AWS Account**, then click **Another AWS account**, and enter `485438090326` for the **Account ID**.
+- On the trusted entity page, choose **AWS Account**, then click **Another AWS account**, and enter `485438090326` for the **Account ID** and click **Next**.
 - On the permissions page, locate and attach the policies you created in previous steps (data modification and, if appliable, KMS).
 - On the review page, provide a name and description for this role and click **Create role**.
 
@@ -114,3 +114,13 @@ To ensure secure operations, limit the trust relationship to the Mixpanel export
 - Click **Update policy** and save.
 
 This setup utilizes an external ID to prevent [the confused deputy problem](https://docs.aws.amazon.com/IAM/latest/UserGuide/confused-deputy.html), enhancing the security of cross-account access as Mixpanel interacts with AWS using your project token.
+
+### Step 4: Provide Mixpanel with S3 Details
+
+When configuring your json pipeline in Mixpanel, it is essential to provide specific details to ensure that Mixpanel can accurately direct the data exports to your S3 bucket:
+
+- Bucket: Specify the S3 bucket where Mixpanel data should be exported.
+- Role: Provide the AWS Role ARN that Mixpanel should assume when writing to your S3, e.g., `arn:aws:iam:::role/example-s3-role`.
+- Region: Indicate the AWS region where your S3 bucket is located.
+- Encryption (optional): Specify the type of at-rest encryption used by the S3 bucket.
+- KMS Key ID (optional): If using KMS encryption, you can provide the custom key ID that you wish to use.
