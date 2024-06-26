@@ -175,9 +175,7 @@ If you are an existing customer on an MTU plan, refer to our legacy MTU Pricing 
 
 ### Is old event data billed when imported to Mixpanel?
 
-Our data consumption tally system locks in your tally at the end of every calendar month regardless of your billing bucket. Importing older data with timestamps outside of the current calendar month will incur no additional cost. For example: if April 1st - April 30th is the current calendar month, importing data from March will be free of charge whether you are on a monthly bucket, a quarterly bucket, or a yearly bucket.
-
-We will only apply charges to event data points with timestamps within the current billing cycle. Importing older data outside will incur no additional cost. This principle applies whether you are on a plan that is billed in a
+Our data consumption tally system locks in your tally at the end of every calendar month regardless of your billing bucket. Importing older data with timestamps outside the current calendar month will incur no additional cost. For example: if April 1st - April 30th is the current calendar month, importing data from March will not be billed whether you are on a monthly bucket, a quarterly bucket, or a yearly bucket.
 
 ### I am using the Warehouse add-on for ingesting data. How does this impact billing? 
 
