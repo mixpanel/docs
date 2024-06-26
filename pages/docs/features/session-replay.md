@@ -131,7 +131,7 @@ analytics.addSourceMiddleware(({ payload, next, integrations }) => {
 
 ##### mParticle: Web SDK
 
-mParticle's Web SDK has a `.getDeviceId()` [method which can be used to retrieve the device_id](https://docs.mparticle.com/developers/sdk/web/initialization/#device-id-device-application-stamp). In the following example, we use this method to bind mParticle's device_id to Mixpanel's device_id, as well as [patching `logEvent` and `logPageView`](https://docs.mparticle.com/developers/sdk/web/core-apidocs/classes/mParticle%20&%20mParticleInstance.html#index) to include session replay properties.
+mParticle's Web SDK has a `.getDeviceId()` method which can be used to [retrieve the device_id](https://docs.mparticle.com/developers/sdk/web/initialization/#device-id-device-application-stamp). In the following example, we use this method to bind mParticle's device_id to Mixpanel's device_id, as wall as [patching `logEvent` and `logPageView`](https://docs.mparticle.com/developers/sdk/web/core-apidocs/classes/mParticle%20&%20mParticleInstance.html#index) to include session replay properties on all mParticle events. This configuration assumes you are [forwarding web requests server side](https://docs.mparticle.com/integrations/mixpanel/event/#:~:text=Forward%20Web%20Requests,bool) in the connection settings.
 
 ```javascript
 mixpanel.init('MIXPANEL-PROJECT-TOKEN', {
@@ -164,6 +164,46 @@ mixpanel.init('MIXPANEL-PROJECT-TOKEN', {
 			};
 		});
 	}
+});
+```
+
+##### Rudderstack: Cloud Mode
+
+Rudderstack's Javascript SDK has a `.getAnonymousId()` method which can be used to [retrieve the device_id](https://www.rudderstack.com/docs/sources/event-streams/sdks/rudderstack-javascript-sdk/supported-api/#retrieving-anonymous-id). In the following example, we use this method to bind Rudderstack's anonymousId to Mixpanel's device_id, as well as [patching `track` and `page`](https://www.rudderstack.com/docs/sources/event-streams/sdks/rudderstack-javascript-sdk/supported-api/#page) event methods to include session replay properties on every Rudderstack event.
+
+```javascript
+mixpanel.init('MIXPANEL-PROJECT-TOKEN', {
+  record_sessions_percent: 10,
+  loaded: function (mixpanel) {
+    window.rudderanalytics.ready(function() {
+      const rudderAnonymousId = rudderanalytics.getAnonymousId();
+      if (rudderAnonymousId) {
+        mixpanel.register({ $device_id: rudderAnonymousId });
+      }
+
+      // Patch track method to include sessionReplayProperties
+      const originalTrack = rudderanalytics.track;
+      rudderanalytics.track = function (eventName, eventProperties, options, callback) {
+        const sessionReplayProperties = mixpanel.get_session_recording_properties();
+        eventProperties = {
+          ...eventProperties,
+          ...sessionReplayProperties,
+        };
+        originalTrack(eventName, eventProperties, options, callback);
+      };
+
+      // Patch page method to include sessionReplayProperties
+      const originalPage = rudderanalytics.page;
+      rudderanalytics.page = function (category, name, properties, options, callback) {
+        const sessionReplayProperties = mixpanel.get_session_recording_properties();
+        properties = {
+          ...properties,
+          ...sessionReplayProperties,
+        };
+        originalPage(category, name, properties, options, callback);
+      };
+    });
+  }
 });
 ```
 
