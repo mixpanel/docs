@@ -13,7 +13,7 @@ Funnels report supports a variety of measurements. You can configure your funnel
 | Property Sum | Sums up a chosen property value for each step of the funnel, and measures the total amount of the property converted for the selected step of the funnel. [See more](#property-sum) |
 
 ## Conversion Measurements
-You can configure your Funnels report to calculate your conversions as a percentage using **Conversion Rate** measurements or return the number of users/entries using** Total Conversion**/**Unique Users**/**Total Session** measurements.
+You can configure your Funnels report to calculate your conversions as a percentage using **Conversion Rate** measurements or return the number of users/entries using **Total Conversion**/**Unique Users**/**Total Session** measurements.
 
 Regardless of your selection, the conversions are measured using one of these counting methods.
 
