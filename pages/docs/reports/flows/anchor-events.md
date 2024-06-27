@@ -21,22 +21,6 @@ For example, below Flows is showing the event that happened directly before a Pu
 
 ![/Screen_Shot_2021-07-20_at_7.53.04_PM.png](/Screen_Shot_2021-07-20_at_7.53.04_PM.png)
 
-## View More Steps
-
-By default, flows shows you the first 3 events performed by users after the selected event. If you wish to see what users did further along in the path, you can adjust the number of steps directly in the Sankey visualization as shown below.
-
-Use the "+" on the right of the visualization to add steps after your selected events of interest to see what paths your users took following these key events.
-
-![/Screen_Shot_2021-07-20_at_7.34.41_PM.png](/Screen_Shot_2021-07-20_at_7.34.41_PM.png)
-
-The "+" on the left of the visualization will add steps before the events you've added in the query builder. This will allow you to see what paths your users took that led up to these events of interest.
-
-![/Screen_Shot_2021-07-20_at_7.35.06_PM.png](/Screen_Shot_2021-07-20_at_7.35.06_PM.png)
-
-To add steps in larger quantities, you can adjust the number of steps directly in the query builder section as well.
-
-![/Screen_Shot_2022-07-11_at_3.19.59_PM.png](/Screen_Shot_2022-07-11_at_3.19.59_PM.png)
-
 ## Custom Events in Flows
 
 You may pick [custom events](/docs/features/custom-events) as the starting or ending anchor events directly in the query. For custom events that are composed of multiple events, paths consisting of either event are combined into a single flow.
