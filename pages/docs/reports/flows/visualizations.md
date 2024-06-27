@@ -20,9 +20,19 @@ Once an event is selected, Mixpanel calculates the most common events performed 
 
 ![/Screen_Shot_2021-07-20_at_7.27.00_PM.png](/Screen_Shot_2021-07-20_at_7.27.00_PM.png)
 
-In the above example, Install or Open is a custom event, while Experiment Started is a regular event.
+In the above example, Install or Open is a [custom event](/docs/features/custom-events/), while Experiment Started is a regular event.
 
-[Click here](/docs/reports/flows#custom-events-in-flows) to learn more about custom events in flows.
+### Custom events as intermediate events
+
+Mixpanel automatically considers the most used and common custom events in your project, displaying them in intermediate steps instead of showing the underlying events. When a custom event is shown instead of the underlying event, it is annotated with the custom event icon to indicate that the event displayed is a custom event.
+
+![/Screen_Shot_2021-07-20_at_7.04.29_PM.png](/Screen_Shot_2021-07-20_at_7.04.29_PM.png)
+
+Mixpanel uses the following criteria to decide which custom events are shown in user flows:
+
+1. Custom events that are shared with all users in the projects are the only ones picked to be shown in flows right now
+2. Only the 50 most frequently queried custom events in the project are used in flows analysis.
+3. If custom events have overlapping definitions (e.g. both custom events operate on the same event), we will choose the more frequently queried custom event to show in the report.
 
 ### Other Events
 
