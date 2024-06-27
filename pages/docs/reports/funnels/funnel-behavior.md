@@ -9,11 +9,13 @@ A funnel is a sequence of events performed within a certain time period and is t
 A funnel consists of multiple steps anchored by events. Each funnel requires at least 2 events; an entry event and a conversion event.
 
 **Entry Event**
+
 An entry event lives at the top of the funnel in the first step. Any users who track this event within your date range will be included in your enter your funnel and included in your report. 
 
 Users who did not track the entry event will be excluded from the report even if they tracked other events defined in your funnel.
 
 **Conversion Event**
+
 A conversion event is any event that follows the entry event, defined after the first step of the funnel. A funnel with multiple steps will have multiple conversion events.
 
 ## Building a Funnel
