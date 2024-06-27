@@ -1,6 +1,6 @@
 {
     "retention-behavior": "Retention Behavior",
-    "measurements": "Measurements",
+    "retention-criteria": "Retention Criteria",
     "visualizations": "Visualizations",
     "frequency": "Frequency",
 }
