@@ -1,7 +1,7 @@
 # Flows Breakdown
 
 ## Overview
-Flows report cannot use
+Flows report is an exploratory report where the events that are returned in the flows are often unpredictable. For this reason, standard property breakdown is not used for this report, but there are other ways to segment your flows.
 
 ## Breakdown by Cohorts
 
