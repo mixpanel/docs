@@ -315,6 +315,7 @@ SETTINGS = {
     ],
 }
 
+mputils = MixpanelUtils(SETTINGS["SA_PASSWORD"],token=SETTINGS["TOKEN"],service_account_username=SETTINGS["SA_USERNAME"], eu=SETTINGS["EU"], project_id=SETTINGS["PROJECT_ID"])
 
 def flush_events(events):
     global mputils
