@@ -6,6 +6,7 @@
     "custom-buckets": "Custom Buckets",
     "custom-properties": "Custom Properties",
     "saved-behaviors": "Saved Behaviors",
+    "query-sampling-and-caching": "Query Sampling and Caching",
     "session-replay": "Session Replay",    
     "sessions": "Sessions",    
     "spark": "Spark",
