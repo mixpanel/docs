@@ -47,6 +47,8 @@ You may wish to change what data is displayed in the Users table. You can do so 
 
 To download your profiles from the Users page, simply click the **Export icon.** This will download all the profile data being displayed in the current report - to download more properties, edit your columns to select more properties. You can choose to filter the list or select individual profiles to download instead of downloading the full list.
 
+This is helpful for quickly creating a CSV template to use for [CSV profile imports](/docs/data-structure/user-profiles#importing-from-csv).
+
 ![/Screen_Shot_2022-07-12_at_2.26.45_PM.png](/Screen_Shot_2022-07-12_at_2.26.45_PM.png)
 
 
