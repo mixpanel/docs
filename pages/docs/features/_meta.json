@@ -5,6 +5,7 @@
     "custom-events": "Custom Events",
     "custom-buckets": "Custom Buckets",
     "custom-properties": "Custom Properties",
+    "computed-properties": "Computed Properties",
     "saved-behaviors": "Saved Behaviors",
     "query-sampling-and-caching": "Query Sampling and Caching",
     "session-replay": "Session Replay",    
