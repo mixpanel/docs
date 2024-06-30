@@ -1,5 +1,6 @@
 # Cohorts
 
+## Overview
 Cohorts are groups of users that share a certain set of properties or who perform a similar sequence of events. Mixpanel lets you visually define cohorts, view the list of users that comprise them, compare them in your analysis, and share them with the rest of your company.
 
 Here are some examples of cohorts you can create in Mixpanel:
@@ -15,53 +16,67 @@ You can create cohorts via any of our report visualizations or explicitly using 
 ### Creating a Cohort via a Report
 Click any bar or point in an Insights, Funnels, or Retention report and select "View Users". The side panel will show the list of users that belong to that bar or point you selected. You can save that group of users as a cohort.
 
-### Creating a Cohort via the Cohort Builder
-The [Cohort Builder](https://mixpanel.com/report/users) lets you define cohorts based on a precise set of conditions. These conditions are either of the form "Users who did `<event>` more/less than `<some threshold>`" or "Users where `<profile property>` is equal to/more/less than `<value>`".
+### Creating a Cohort via the Users page
+The [Cohort Builder in the Users page](/docs/users/users-page#cohort-builder) lets you define cohorts based on a precise set of conditions. These conditions are either of the form "Users who did `<event>` more/less than `<some threshold>`" or "Users where `<profile property>` is equal to/more/less than `<value>`".
  
 Let's walk through some of cohorts you can create with the builder.
 
-#### Filter by users who watched more than 10 videos in the last 7 days
+**Filter by users who watched more than 10 videos in the last 7 days**
 ![/Kapture_2021-04-06_at_13.43.06.gif](/Kapture_2021-04-06_at_13.43.06.gif)
 
-#### Filter to only users who watched a video for the very first time in the past 30 days
+**Filter to only users who watched a video for the very first time in the past 30 days**
 ![/Kapture_2021-04-06_at_13.52.43.gif](/Kapture_2021-04-06_at_13.52.43.gif)
 
-#### Filter to users that watched more than 300 mins of video in the previous 30 days
+**Filter to users that watched more than 300 mins of video in the previous 30 days**
 ![/Kapture_2021-04-06_at_13.54.25.gif](/Kapture_2021-04-06_at_13.54.25.gif)
 
-#### Filter to users whose average video watch time was over 15 minutes in the previous 30 days
+**Filter to users whose average video watch time was over 15 minutes in the previous 30 days**
 ![/Kapture_2021-04-06_at_13.57.34.gif](/Kapture_2021-04-06_at_13.57.34.gif)
 
-#### Filter to users that purchased items in 3 unique categories in the last 30 days
+**Filter to users that purchased items in 3 unique categories in the last 30 days**
 ![/Kapture_2021-04-06_at_14.00.02.gif](/Kapture_2021-04-06_at_14.00.02.gif)
 
-#### Filter to users that watched a video on at least 3 unique days in the previous 30 days
+**Filter to users that watched a video on at least 3 unique days in the previous 30 days**
 ![/Kapture_2021-04-06_at_14.05.11.gif](/Kapture_2021-04-06_at_14.05.11.gif)
 
-#### Filter to users that made a purchase on 4 or more unique weeks in the last 3 months
+**Filter to users that made a purchase on 4 or more unique weeks in the last 3 months**
 ![/Kapture_2021-04-06_at_14.09.03.gif](/Kapture_2021-04-06_at_14.09.03.gif)
   
-#### Filter to users that are above the age of 60
+Filter to users that are above the age of 60
 ![/Kapture_2021-04-06_at_14.13.40.gif](/Kapture_2021-04-06_at_14.13.40.gif)
 
-#### Chaining cohorts together using the AND/OR operators
+**Chaining cohorts together using the AND/OR operators**
 ![/Kapture_2021-04-06_at_14.31.41.gif](/Kapture_2021-04-06_at_14.31.41.gif)
 
 You can also access the builder directly from the property picker in any of our reports, by clicking Create Custom > Cohort. This will create a temporary cohort that only persists for your analysis session.
 
-### Note on cohorts whose filters contain user properties
+#### Multiple Cohort Definitions
+Click the "+ group" in the bottom left corner of the cohort builder to add additional definitions to your cohorts. Each group contains a separate cohort definition, and you may toggle between using the AND/OR operator to combine your definitions.
+
+<SCREENTSHOT_FOR_ADDING_GROUP_AND_OPERATORS>
+
+#### Cohorts definitions with user profile properties
 Because user profile properties only store the most recent value, cohorts involving user profile properties will use the current value for those properties (even if the value changed over time).
 
 For example, suppose the cohort’s filter criteria is: users where user[“City”] == “SF” and “Did Event: Order Ride 3 times in Last 7 days”.
 
 Mixpanel computes the above over the last 30 days and then groups the set of users who have property user[“City”] == “SF” as of right now and intersect that with the daily cohort of users who did Order Ride 3 times in the last 7 days.
 
+#### Cohort definitions with a long list of unique values
+If you have a specific list of users that you want to include in a cohort definition, it is not recommended to manually define them by their unique property values (list of 10K emails, user IDs, etc.). Parsing lists of values may affect your query performance and lead to some queries failing. As a best practice, you should add a profile property that identifies these users cohort membership, and then build a cohort definition using that profile property instead.
+
+To upload a group of user (or group) profiles and easily sort them into a cohort, add a value to the CSV which sorts the profiles into a cohort as a property. For example, give each profile the unique property of "Cohort = Android Users". Next, go to the [Cohorts](/docs/users/cohorts#creating-cohorts) tab to create a cohort as usual, and filter to user profiles with that property and save. This will create a cohort of users with that matching property.
+
+Note that when creating cohorts this way, the cohort will remain static, meaning that it will not update over time like other cohorts as the property is unchanging.
+
 ## Using Cohorts in Analysis
 You can visualize how cohorts size over time, use cohorts to filter your reports, or compare how cohorts perform a metric.
 
 ### Visualizing Cohort Size Over Time
 
-In Insights, you can define a metric based on the size of a cohort over time. This is useful to understand how key subsets of your user base (like your Power Users) are trending over time. Select a cohort from the "Events and Cohorts" menu in the Insights report; this will generate a line chart that shows the size of the cohort over time. Each point is the size of the cohort as of the end of that time interval.
+In Insights, you can define a metric based on the size of a cohort over time. This is useful to understand how key subsets of your user base (like your Power Users) are trending over time. Select a cohort from the "Events and Cohorts" menu in the Insights report; this will generate a line chart that shows the size of the cohort over time. Each point is the size of the cohort as of the end of that time interval. 
+
+Note that [cohort definitions that only contain user profile properties will appear static](/docs/users/cohorts#cohorts-definitions-with-user-profile-properties).
 
 ### Filtering by a Cohort
 
@@ -96,3 +111,5 @@ We recommend sharing a set of key cohorts with your organization, to ensure that
 ## Exporting Cohorts
 
 You can download the list of users in any Cohort as a CSV via the Cohort Builder. You can also push cohorts to 3rd-party destinations like [Segment](/docs/cohort-sync/integrations/segment), [Braze](/docs/cohort-sync/integrations/braze), or a [Custom Webhook](/docs/cohort-sync/webhooks).
+
+Learn more about [cohort syncs](/docs/cohort-sync/).
