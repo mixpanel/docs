@@ -1,4 +1,4 @@
-# Overview
+# Data Pipelines
 
 Data Pipelines is a [paid add-on](https://mixpanel.com/pricing) which continuously exports the events in your Mixpanel project to a cloud storage bucket or data warehouse of your choice. It's useful if you want to analyze Mixpanel events using SQL in your own environment.
 
