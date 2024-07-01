@@ -1,0 +1,234 @@
+openapi: 3.0.2
+info:
+  title: Test API
+  description: >-
+    A test API
+  contact:
+    url: 'https://mixpanel.com/get-support'
+  version: 3.0.0
+servers:
+  - $ref: ./common/app-api.yaml#/server
+security:
+  - ServiceAccount: []
+tags:
+  - name: Create test
+    description: Create a test for a project
+  - name: Delete test
+    description: Delete test for a project
+  - name: Retrieve tests
+    description: List all tests for the project
+  - name: Update test
+    description: Change an existing tests
+paths:
+  /projects/{projectId}/tests:
+    parameters:
+      - $ref: ./common/parameters.yaml#/path/projectId
+    get:
+      operationId: list-all-tests-for-project
+      parameters:
+        - $ref: ./common/parameters.yaml#/query/fromDate
+          name: fromDate
+          required: false
+        - $ref: ./common/parameters.yaml#/query/toDate
+          name: toDate
+          required: false
+      tags:
+        - Retrieve tests
+      summary: List tests
+      description: List all tests in a project.
+      responses:
+        '200':
+          description: Success
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ListTestsResponse'
+        '401':
+          $ref: ./common/responses.yaml#/401Unauthorized
+        '403':
+          $ref: ./common/responses.yaml#/403Forbidden
+    post:
+      operationId: create-test
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              properties:
+                date:
+                  $ref: '#/components/schemas/InputDate'
+                description:
+                  $ref: '#/components/schemas/InputDescription'
+      tags:
+        - Create Tests
+      summary: Create Tests
+      description: Create a Test. Requires a role of at least Analyst.
+      responses:
+        '201':
+          description: Success
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GetTestsResponse'
+        '401':
+          $ref: ./common/responses.yaml#/401Unauthorized
+        '403':
+          $ref: ./common/responses.yaml#/403Forbidden
+  /projects/{projectId}/tests/{testId}:
+    parameters:
+      - $ref: ./common/parameters.yaml#/path/projectId
+      - 
+        name: testId
+        in: path
+        description: 'The id of the test'
+        required: true
+        schema:
+          type: number
+    get:
+      operationId: get-test
+      tags:
+        - Retrieve Tests
+      summary: Get Test
+      description: Get an Test
+      responses:
+        '200':
+          description: Success
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GetTestsResponse'
+        '401':
+          $ref: ./common/responses.yaml#/401Unauthorized
+        '403':
+          $ref: ./common/responses.yaml#/403Forbidden
+    patch:
+      operationId: patch-test
+      tags:
+        - Patch Test
+      summary: Patch Test
+      description: Patch an Test. Requires a role of at least Analyst.
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              properties:
+                description:
+                  $ref: '#/components/schemas/InputDescription'
+      responses:
+        '200':
+          description: Success
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GetTestsResponse'
+        '401':
+          $ref: ./common/responses.yaml#/401Unauthorized
+        '403':
+          $ref: ./common/responses.yaml#/403Forbidden
+    delete:
+      operationId: delete-test
+      tags:
+        - Delete Test
+      summary: Delete Test
+      description: Delete an Test. Requires a role of at least Analyst.
+      responses:
+        '200':
+          description: Success
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DeleteTestsResponse'
+        '401':
+          $ref: ./common/responses.yaml#/401Unauthorized
+        '403':
+          $ref: ./common/responses.yaml#/403Forbidden
+components:
+  securitySchemes:
+    $ref: ./common/securitySchemes.yaml
+  schemas:
+    GetTestsResponse:
+      title: GetTestsResponse
+      description: "A JSON response object containing an test'"
+      type: object
+      additionalProperties: false
+      required:
+        - status
+        - results
+      properties:
+        status:
+          $ref: '#/components/schemas/ResponseStatus'
+        results:
+          $ref: '#/components/schemas/TestsEntry'
+    DeleteTestsResponse:
+      title: DeleteTestsResponse
+      description: "A JSON response object containing the id of the deleted test'"
+      type: object
+      additionalProperties: false
+      required:
+        - status
+        - results
+      properties:
+        status:
+          $ref: '#/components/schemas/ResponseStatus'
+        results:
+          type: object
+          properties:
+            id:
+              type: number
+              description: 'The id of the deleted test'
+
+    ListTestsResponse:
+      title: ListTestsResponse
+      description: "A JSON response object containing all tests in the project'"
+      type: object
+      additionalProperties: false
+      required:
+        - status
+        - results
+      properties:
+        status:
+          $ref: '#/components/schemas/ResponseStatus'
+        results:
+          type: array
+          items:
+            $ref: '#/components/schemas/TestsEntry'
+    TestsEntry:
+      title: TestsEntry
+      description: Representation of a single test
+      type: object
+      additionalProperties: false
+      properties:
+        date:
+          $ref: '#/components/schemas/InputDate'
+        description:
+          $ref: '#/components/schemas/InputDescription'
+        id:
+          type: number
+        user:
+          $ref: '#/components/schemas/UserInfo'
+    UserInfo:
+      title: UserInfo
+      description: Info about the creator of the test
+      type: object
+      properties:
+        id:
+          type: number
+        first_name:
+          example: John
+          type: string
+        last_name:
+          example: Smith
+          type: string
+    InputDate:
+      type: string
+      description: 'A string representation of a date in "YYYY-MM-DD HH:mm:ss" format' 
+      example: '2022-02-15 12:00:00'
+    InputDescription:
+      type: string
+      description: 'The text that will be shown when looking at the test'
+      example: 'Something interesting happened!'
+    ResponseStatus:
+      type: string
+      description: The status of the response
+      example: ok
