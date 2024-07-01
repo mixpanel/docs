@@ -44,3 +44,32 @@ Select **Line** from the visualization drop-down list to see how your retentio
 ## Metric chart
 
 Select **Metric** from the visualization drop-down list to see the performance of your retention metric aggregated across the entire date range. You can target a specific retention time unit bucket by [selecting a retention group]((/docs/reports/retention/retention-criteria#retention-groups)).
+
+## Find Interesting Segments
+
+Determine which users are either driving retention or behaving as outliers by using the built-in “Find Interesting Segments” feature.
+
+Find Interesting Segments can help you discover:
+
+- Whether certain property segments outperform the overall retention rates.
+- Which cohorts perform the best to get ideas on optimizing cohort behavior.
+- Which segments are under-performing.
+- Changes in the retention rates of segments.
+
+User properties are not yet supported.
+
+View the top and bottom converting segments in your retention report by clicking the **Find interesting segments** button at the bottom of the retention chart. This feature is not currently available for Frequency Retention.
+
+![/10037069627156](/10037069627156.png)
+
+Rather than searching through multiple segment breakdowns to find significant data, this feature automatically identifies that data for you. Mixpanel combs through your event properties and cohorts, and show you which of those segments retain at a higher or lower rate than average.
+
+An email that breaks down the top and bottom retaining segments of your Retention report based on changes on retention rates is automatically sent after you click the button.
+
+### Interpret Email Results
+
+When your analysis email says “no interesting segments”, this means that none of the segments you analyzed were behaving significantly differently from the overall population at a large enough volume. To resolve this issue, try extending the date range of the report or try a different report.
+
+If the analysis request included dates in the past five days, and is sent from mobile SDK, data may be delayed and therefore not included at the time of the analysis. Likewise, the date window selected might still fall under conversion window, and more conversions have yet to come through.
+
+Results are sorted by taking into consideration the property, the number of users in the report, as well as the deviation from overall retention behavior to surface the most meaningful segments to you.
