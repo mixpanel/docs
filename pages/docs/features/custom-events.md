@@ -20,6 +20,11 @@ You can create a custom event containing "Ad Conversion" and "Ad Impression," an
 3. Select the events and properties you’d like to include.
 4. Name your custom event, and click **Save**.
 
+## Breakdown by Event Name
+If you are analyzing any custom events, you can breakdown by the property "Event Name" to better understand which events inside of your Custom Event is contributing to your metrics.
+
+![image](https://github.com/mixpanel/docs/assets/2077899/dafe97ca-35a3-4dee-8285-41a115f0417d)
+
 ## Edit and Delete Custom Events
 
 To view, edit, or delete any custom event, navigate to [Lexicon](/docs/data-governance/lexicon).
