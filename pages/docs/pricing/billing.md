@@ -173,10 +173,6 @@ Mixpanel’s default pricing option is based on events because it is a better op
 
 If you are an existing customer on an MTU plan, refer to our legacy MTU Pricing Guide.
 
-### Is old event data billed when imported to Mixpanel?
-
-Our data consumption tally system locks in your tally at the end of every calendar month regardless of your billing bucket. Importing older data with timestamps outside the current calendar month will incur no additional cost. For example: if April 1st - April 30th is the current calendar month, importing data from March will not be billed whether you are on a monthly bucket, a quarterly bucket, or a yearly bucket.
-
 ### I am using the Warehouse add-on for ingesting data. How does this impact billing? 
 
 From the Mixpanel perspective, the warehouse is just another source of data. Warehouse data, similar to other sources, is billed in accordance with general Mixpanel pricing policies. 
