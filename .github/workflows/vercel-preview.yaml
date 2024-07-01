@@ -18,4 +18,7 @@ jobs:
       - name: Build Project Artifacts
         run: vercel build --token=${{ secrets.VERCEL_TOKEN }}
       - name: Deploy Project Artifacts to Vercel
+        # TODO: figure out why we hit rate limits at this step
+        # https://mixpanel.slack.com/archives/C04D27P4P45/p1719849055757199
+        continue-on-error: true
         run: vercel deploy --prebuilt --token=${{ secrets.VERCEL_TOKEN }}
