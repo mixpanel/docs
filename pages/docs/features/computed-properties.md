@@ -1,6 +1,41 @@
-# Attribution
+# Computed Properties
 
 ## Overview
+- Can see them easily in properties menu under "Computed" tag
+- behavioral
+- attribution
+- duration
+- reference funnels specific ones briefly
+
+## Behavioral Properties
+
+Behavioral properties allow you to use your user's activity and use it as a property in your other analysis. A behavioral property is a virtual property, meaning it's not a property that you are explicitly tracking, but a property that Mixpanel can compute and allow you to use in analysis.
+
+Behavioral properties can be used anywhere, most typically in filters and breakdowns.
+
+### Frequency per User
+
+After selecting this option, you must select an event to compute the frequency of. You can use this to segment your users by how many times they did an event, or use it to filter out users to only those who did an event a certain number of times.
+
+### Aggregate Property per User
+
+After select this option, you must select an event, and then a property on that event. Finally, you can choose an aggregation type for this property. You can use this to segment your users by this property aggregation. For example, you may want to filter only for users who have greater than 100 minutes of video watch time, or you may want to segment users by their watch time.
+
+### Time Range
+
+#### Per Interval
+
+In insights, the time in which this computation is done is on a per interval basis. For a line chart, that will be for each individual interval plotted on the chart. For bar, table and pie, this interval is the entire date range selected in the date picker.
+
+#### Between Steps
+
+In funnels, the behavioral property is computed in the time range between 2 steps in your funnel. You can specify which steps in the funnel this applies to. In the case of doing "Frequency per User", the event count does not include the events that make up the funnel itself, and **only** the events between the funnel steps.
+
+#### After Step 1
+
+In retention, the behavioral property is computed in the chosen time range after the entry event, up until the retaining action. For example, there may be a 7 day window in which we're looking for an event, but if the retaining action happens before the 7 days are up, we no longer count an additional events.
+
+## Attribution
 Attribution helps teams attribute conversion credit to the touchpoints in a user journey, whether it's to the first or last touch (single-touch attribution models) or to multiple touchpoints using a multi-touch attribution model like U-shape or Linear. 
 
 Let’s consider an example user journey:
@@ -18,7 +53,7 @@ In this example, two touchpoints contribute to the successful conversion: the Fa
 - Using last touch model, the complete conversion can be attributed to the Instagram ad
 - Using first touch model, the complete conversion can be attributed to the Facebook ad
 
-## Usage
+### Usage
 
 ![Attribution.gif](/attribution.gif)
 
@@ -35,7 +70,7 @@ Step 5 - If you want to include only certain channels or touchpoints in your att
 👉🏽 NOTE: if you are running attribution predominantly on UTM_medium, UTM_source, UTM_campaign, make sure you’re tracking UTM parameters as event properties on every user touchpoint.
 If you use a Mixpanel js-sdk, we’ve updated our sdk to track utm parameters more effectively to support multi-touch attribution models.
 
-## Attribution Models
+### Attribution Models
 
 - First Touch -  Gives 100% credit to the first touchpoint within the attribution lookback window
 - Last Touch - Gives 100% credit to the last touchpoint within the attribution lookback window
@@ -47,7 +82,7 @@ If you use a Mixpanel js-sdk, we’ve updated our sdk to track utm parameters mo
 - Inverse J-shaped - Gives 60% credit to the first touchpoint, 20% credit to the last touchpoint, and divides the remaining 20% to any touch points in between. With 2 touchpoints, the credit is normalized (75%, 25%). With 6 touch points the middle 4 touch points would share the 20% (60%, 5%, 5%, 5%, 5%, 20%).
 - Custom - Customize the weightage to be given to the first and last touchpoint, and all other touchpoints in between based on your use-case.
 
-## Glossary
+### Attribution Glossary
 
 - **User journey:** Consists of touchpoints and the conversion event. It is possible for a conversion event to have no corresponding touchpoints (eg. utm parameters). In this case we consider it a ‘direct’ conversion
 - **Conversion**: The primary event you’re interested in analyzing with multi-touch attribution models. Typically some final value generating interaction such as “Signup” or “Upgrade” or “Payment”.
@@ -55,9 +90,9 @@ If you use a Mixpanel js-sdk, we’ve updated our sdk to track utm parameters mo
 - **Attributed by property:** This is the property on a touchpoint event that we use for the attribution model. The canonical example is utm_source
 - **Lookback window:** The time window where a user's events with this attribution property are counted towards the calculation. The window ends when the conversion metric happens.
 
-## Frequently Asked Questions
+### Attribution FAQ
 
-### How does Mixpanel compute attribution under the hood?
+**How does Mixpanel compute attribution under the hood?**
 
 Please watch this video to better understand.
 
@@ -69,7 +104,7 @@ Please watch this video to better understand.
     </iframe>
 </div>
 
-### What does attribution on ‘unique users’ mean?
+**What does attribution on ‘unique users’ mean?**
 
 We need one single conversion event which we can use to “qualify” a user unique.
 
@@ -98,7 +133,7 @@ Some nuances to note
 
 ![image](/Attribution_uniques_2.png)
 
-### What does filtering do in attribution?
+**What does filtering do in attribution?**
 
 Once attribution is computed, filtering narrows total conversion events to only include/exclude those with the associated attribution property.
 
@@ -137,3 +172,9 @@ NOTE: You can apply a filter on an attribution property only after an attributio
 - Step 1: Turn on Attribution analysis by going to the breakdown section and choosing `Attributed by..` and property `XYZ`
 - Step 2 (a): Once attribution model has been applied, go to the filter section and choose the computed property `Attributed by XXX`. You can apply an attribution filter only on the property used in the attribution breakdown
 - Step 2 (b): Once attribution model has been applied, click on the chart bar and filter/exclude the segments as needed
+
+## Duration
+The duration property returns the duration between 2 instances of an event. This works best for events that occur continuously during a session such as Page View or Screen View. Users that did not track the same event again will appear in the "Did not convert" segment.
+
+#### Funnels-specific Computed Properties
+The Funnel reports support two unique computed properties. The [Time to Convert](/docs/reports/funnels/measurements#time-to-convert) property returns the time in seconds needed to convert between funnels steps, and the [Property Sum](/docs/reports/funnels/measurements#property-sum) property allows you to sum up a numeric property as a user moves through funnel steps.

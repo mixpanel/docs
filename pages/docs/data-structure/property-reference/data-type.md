@@ -275,9 +275,9 @@ In each case, the object will have multiple properties, such as "price" and "bra
 ### Breakdown and Filter
 List of objects can be used like other properties in Mixpanel. Upon selecting a list of objects property, you will be prompted to select another property common to the objects in the list. Usage in measurements, filters, and breakdowns follows the same behavior as other [list properties](/docs/data-structure/property-reference/data-type#list-property-support).
 
-### Computed Properties
+### Property Computation
 
-We provide a few convenient computed properties after a list of objects property is selected. This does a computation on the property, and works similarly to [custom properties](/docs/features/custom-properties).
+We provide a few convenient property computation after a list of objects property is selected. This does a computation on the property, and works similarly to [custom properties](/docs/features/custom-properties).
 
 ![list computed properties](/list-computed-properties.png)
 

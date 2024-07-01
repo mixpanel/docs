@@ -100,6 +100,12 @@ Do note: Reverse geocoding for user profiles is not supported via client-side SD
 - Mixpanel drops IP address at ingestion. If you want to store it, name the property something else
 - Events uses "ip", engage uses "$ip"
 
+If you're tracking from your servers, you need to set the `ip` property of the events to the _client's_ IP address. Most server frameworks provide this out of the box.
+* [Django](https://docs.djangoproject.com/en/4.1/ref/request-response/#django.http.HttpRequest.META) exposes this in the request object with `request.META['REMOTE_ADDR']`.
+* [Flask](https://flask.palletsprojects.com/en/2.2.x/api/?highlight=remote_addr#flask.Request.remote_addr) exposes this as `request.remote_addr`.
+* [Go](https://pkg.go.dev/net/http#Request) exposes this as the `RemoteAddr` field on the http.Request struct.
+* [Nginx](http://nginx.org/en/docs/http/ngx_http_log_module.html) exposes this as `$remote_addr`.
+
 **Events**
 - Events use "ip" inside properties object
 ```

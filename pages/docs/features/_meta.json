@@ -1,12 +1,14 @@
 {
-    "alerts": "Alerts",
-    "attribution": "Attribution",
     "embeds": "Embeds",
+    "alerts": "Custom Alerts",
     "custom-events": "Custom Events",
+    "custom-buckets": "Custom Buckets",
     "custom-properties": "Custom Properties",
+    "computed-properties": "Computed Properties",
+    "query-sampling-and-caching": "Query Sampling and Caching",
     "saved-behaviors": "Saved Behaviors",
     "session-replay": "Session Replay",    
     "sessions": "Sessions",    
-    "spark": "Spark",
-    "advanced": "Advanced"
+    "spark": "Spark AI",
+    "slack-integration": "Slack Integration"
 }
