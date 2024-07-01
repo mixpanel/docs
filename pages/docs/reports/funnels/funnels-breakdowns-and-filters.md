@@ -1,4 +1,4 @@
-# Breakdowns and Filters
+# Funnels Breakdowns and Filters
 
 ## Overview
 Funnels measure sequences of events as a behavior, which adds complexity when filters and breakdowns are applied. This article will go over the Funnels property attribution mechanism, as well as the impact of filters and breakdowns on your funnel results. 
