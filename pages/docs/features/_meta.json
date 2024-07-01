@@ -11,5 +11,6 @@
     "session-replay": "Session Replay",    
     "sessions": "Sessions",    
     "spark": "Spark",
+    "slack-integration": "Slack Integration",
     "advanced": "Advanced"
 }
