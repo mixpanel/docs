@@ -44,7 +44,7 @@ If there are projects that you wish for everyone in your organization to have so
 
 ### Remove Users
 
-You can remove users from an organization or project.
+You can remove users from an organization or project. You can only remove users with role permission below your own.
 
 #### Remove User from an Organization
 
@@ -94,6 +94,8 @@ Paid Organizations have four roles: Owner, Admin, Billing Admin and Member. Free
 | Request Organization Deletion                                      | ✅ | ❌ | ❌ | ❌ |
 
 #### Owner
+
+>As a best practice, it is recommended to have at least 2 Organization Owners at all times, in case an owner loses access to their account or is no longer working with the company.
 
 Organization Owners have administrative permissions for the organization and all the projects in the organization. Multiple users can be Owners. However, each organization must have at least one Owner.
 
