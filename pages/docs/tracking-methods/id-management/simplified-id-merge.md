@@ -1,6 +1,7 @@
 # Simplified ID Merge
 
-> Call out to check ID management version in settings and link to Original doc
+> > [Check your project's ID Merge version](/docs/tracking-methods/id-management#check-your-id-management-version) before proceeding. If your project is using Original ID Merge, refer to the documentation on [Simplified ID Merge here](/docs/tracking-methods/id-management/original-id-merge).
+
 
 ## Overview
 - System use $device_id and $user_id to manipulate distinct_id
