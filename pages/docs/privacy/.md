@@ -1,4 +1,6 @@
-# Overview
+# Privacy
+
+## Overview
 Mixpanel believes in respecting and protecting people’s fundamental online privacy and data rights. This is why we've built Mixpanel's analysis tools in compliance with industry best practices and global data regulations like the GDPR and the CCPA.
 
 Visit our [Privacy Hub](https://mixpanel.com/legal/privacy-hub/) to see how we comply with various privacy guidelines.
