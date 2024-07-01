@@ -99,6 +99,10 @@ To duplicate any events or properties in your query, select the inline action me
 
 ![image](https://github.com/mixpanel/docs/assets/2077899/f496b609-47a3-4287-95f8-e9e6f2ac915d)
 
+### Event and Properties Indexing
+The drop-down menus only show events/event properties that were ingested within the last 30 days. To select events/event properties that have not been ingested in the last 30 days, type the name of the event/event property in the Filter or Breakdown search bar. You must know the exact name of the event/event property you want to select because event names are case-sensitive.
+
+![/query_old_event.gif](/query_old_event.gif)
 
 ## Date and Time Selector
 
