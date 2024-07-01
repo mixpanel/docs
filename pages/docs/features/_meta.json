@@ -1,7 +1,6 @@
 {
-    "alerts": "Alerts",
-    "attribution": "Attribution",
     "embeds": "Embeds",
+    "alerts": "Custom Alerts",
     "custom-events": "Custom Events",
     "custom-buckets": "Custom Buckets",
     "custom-properties": "Custom Properties",
@@ -11,6 +10,5 @@
     "session-replay": "Session Replay",    
     "sessions": "Sessions",    
     "spark": "Spark",
-    "slack-integration": "Slack Integration",
-    "advanced": "Advanced"
+    "slack-integration": "Slack Integration"
 }
