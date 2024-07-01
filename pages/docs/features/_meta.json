@@ -5,10 +5,10 @@
     "custom-buckets": "Custom Buckets",
     "custom-properties": "Custom Properties",
     "computed-properties": "Computed Properties",
-    "saved-behaviors": "Saved Behaviors",
     "query-sampling-and-caching": "Query Sampling and Caching",
+    "saved-behaviors": "Saved Behaviors",
     "session-replay": "Session Replay",    
     "sessions": "Sessions",    
-    "spark": "Spark",
+    "spark": "Spark AI",
     "slack-integration": "Slack Integration"
 }
