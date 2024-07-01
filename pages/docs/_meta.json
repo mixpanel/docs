@@ -35,6 +35,7 @@
 		"type": "separator",
 		"title": "DATA OUT"
 	},
+		"exporting-methods": "Exporting Methods",
 		"data-pipelines": "Data Pipelines",
 		"cohort-sync": "Cohort Sync",
 	"support": {

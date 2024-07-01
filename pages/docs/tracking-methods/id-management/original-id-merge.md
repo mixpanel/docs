@@ -1,6 +1,6 @@
 # Original ID Merge
 
-> Call out to check ID management version in settings and link to Simplified doc
+> [Check your project's ID Merge version](/docs/tracking-methods/id-management#check-your-id-management-version) before proceeding. If your project is using Simplified ID Merge, refer to the documentation on [Simplified ID Merge here](/docs/tracking-methods/id-management/simplified-id-merge).
 
 ## Overview
 - System use 3 events to manipulate distinct_id

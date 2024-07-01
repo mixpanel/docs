@@ -1,4 +1,4 @@
-# Overview
+# Data Pipelines
 
 Data Pipelines is a [paid add-on](https://mixpanel.com/pricing) which continuously exports the events in your Mixpanel project to a cloud storage bucket or data warehouse of your choice. It's useful if you want to analyze Mixpanel events using SQL in your own environment.
 
@@ -64,6 +64,9 @@ This can happen for a few reasons:
 - [Data Sync](/docs/data-pipelines/schematized-export-pipeline#data-sync) is not enabled or not supported for your pipeline.
 - Data Delay: it can take up to 1 day for late arriving data to be synced from Mixpanel to your destination.
 - Hidden Events: Mixpanel exports all events to your destination, even ones that are hidden in the UI via Lexicon. We recommend checking whether the count in your destination is mostly due to events that have been hidden in the Mixpanel UI.
+
+### What timezone is used for my event exports?
+Pipeline exports raw data from your project so all exported events so it will be whatever timestamp was supplied at the time of ingestion. This means that the timestamp for exported events from your pipeline will be in the UTC timezone, unless your project was created before 11 Jan 2023. Learn more about [managing timezones here](/docs/orgs-and-projects/managing-projects#manage-timezones-for-projects).
 
 ### How can I count events exported by Mixpanel in the warehouse?
 Counting events can be slightly different for each warehouse, since we use different partitioning methods. Here are examples for [BigQuery](/docs/data-pipelines/integrations/bigquery#getting-the-number-of-events-in-each-day) and [Snowflake](/docs/data-pipelines/integrations/snowflake#getting-the-number-of-events-in-each-day).

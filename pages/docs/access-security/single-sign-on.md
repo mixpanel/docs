@@ -1,4 +1,4 @@
-# SSO
+# Single Sign-On
 
 
 ## Overview

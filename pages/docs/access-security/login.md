@@ -4,17 +4,17 @@
 
 Mixpanel users access Mixpanel's UI by authenticating through a login process. Mixpanel supports a few different methods for login.
 
-## Magic Link
+## Magic Link Login
 - is the default for all users when they sign up for a new account
 - Unless domain is claimed or other access security settings (see 2FA and SSO)
 - When you click sign in, an email is sent to the email associated with your account. Click the link in the email to login.
 
-## Password login
+## Password Login
 - Can override default magic link login by navigating to Personal Settings and defining a password.
 - After defining a password, login defaults to password moving forward and magic link option will no longer be used.
 - Change password in the same personal settings page
 
-## Organization Access Security
+## Organization-wide Access Security Settings
 - org owners/admins can enforce requirements for access security to safeguard data.
 - 2FA: Whenever users sign in with a username and password, they also need to enter a security code generated on their mobile device. Users do not need a security code when signing in through the organization's identity provider (SSO).
 - SSO: Enable users of your organization to log in with single sign-on. Can also require users to login using SSO and assign roles/permissions via IdP.
