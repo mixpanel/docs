@@ -1,5 +1,6 @@
-# Overview
+# Migration
 
+## Overview
 If you’re reading this, congrats on considering making the switch from another analytics provider to Mixpanel 🎊  Our migration guides are intended to outline how a migration works, what to expect, and how to mitigate the risks and switching costs of a migration whilst accelerate time to value.
 
 ## What a migration will solve
