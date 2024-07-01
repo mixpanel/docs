@@ -406,6 +406,9 @@ export function FAQBox({ title, children }) {
 ```javascript
 mixpanel.set_config({ persistence: "localStorage" }); 
 ```
+
+Please note that cross-subdomain tracking is not possible when using local storage. If your implementation requires cross-subdomain tracking, remove the persistence flag and use the default "cookie" persistence option.
+
 </FAQBox>
 
 <FAQBox title="Does Mixpanel use third-party cookies?">

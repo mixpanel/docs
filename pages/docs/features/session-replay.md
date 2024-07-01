@@ -83,9 +83,9 @@ Not currently, but we plan to add support soon.
 
 Yes, you can configure the percentage of total replays that our SDK will capture with as little as [one line of code in your SDK implementation](/docs/tracking-methods/sdks/javascript#sampling-method). 
 
-This out-of-the-box sampling method is random sampling: your SDK will decide randomly whether the currently SDK instance load falls into the sample or not. 
+This out-of-the-box sampling method is random sampling: your SDK will decide randomly whether the currently SDK instance load falls into the sample or not. We recommend starting at 1% and increasing from there. Please note: if you expect low traffic, you can increase the starting sampling percentage. If you're still unsure about what sampling percentage to use, you can utilize a proxy metric like [Page Views](/docs/tracking-methods/sdks/javascript#tracking-page-views) to estimate how many recordings you'll be ingesting and base the sampling off that.
 
-If you want additional logic, like deciding based on certain criteria whether to record or not, then your application code can come up with its own yes/no decision, and then initialize Mixpanel with a value of either 100 or 0 (to force recording on or off for the current SDK instance load). 
+If instead of random sampling, you want to use conditional logic to control which sessions to record, then your application code can derive its own yes/no decision, and then force a session recording to start after SDK initialization by calling `mixpanel.start_session_recording()`.
 
 If you want to only record certain parts of a single-page application with no new mixpanel.init calls, you can also use our [Start / Stop recorder methods](/docs/tracking-methods/sdks/javascript#recorder-methods). 
 
