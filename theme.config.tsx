@@ -12,10 +12,10 @@ function renderComponent<T>(ComponentOrNode: FC<T> | ReactNode, props?: T) {
 }
 
 const config: DocsThemeConfig = {
-  darkMode: false,
+  darkMode: true,
   nextThemes: {
     defaultTheme: `theme-mixpanel`,
-    forcedTheme: `theme-mixpanel`,
+    // forcedTheme: `theme-mixpanel`,
   },
   docsRepositoryBase: "https://github.com/mixpanel/docs/tree/main",
   head: (
