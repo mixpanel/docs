@@ -1,5 +1,5 @@
 import { FC, ReactNode } from "react";
-import { DocsThemeConfig } from "nextra-theme-docs";
+import { DocsThemeConfig, useTheme } from "nextra-theme-docs";
 import Search from "./components/Search/Search";
 import MixpanelLogoWordmark from "./components/svg/MixpanelLogoWordmark";
 import { AdminIcon, AnalysisIcon, DataInIcon, DataOutIcon, IntroIcon, SupportIcon } from "./components/svg/NavIcon";
@@ -14,10 +14,21 @@ function renderComponent<T>(ComponentOrNode: FC<T> | ReactNode, props?: T) {
 const config: DocsThemeConfig = {
   darkMode: false,
   nextThemes: {
-    defaultTheme: `theme-mixpanel`,
-    forcedTheme: `theme-mixpanel`,
+    defaultTheme: `theme-mixpanel-light`,
+    forcedTheme: `theme-mixpanel-dark`,
   },
+  storageKey: `mpDocsTheme`,
+  attribute: "data-theme",
   docsRepositoryBase: "https://github.com/mixpanel/docs/tree/main",
+  // ThemeSwitch: {
+  //   useOptions() {
+  //     return {
+  //       "theme-mixpanel-light": `Light`,
+  //       "theme-mixpanel-dark": `Dark`,
+  //       system: `System`,
+  //     };
+  //   },
+  // },
   head: (
     <>
       <link
@@ -65,7 +76,8 @@ const config: DocsThemeConfig = {
   project: {
     link: "https://github.com/mixpanel/docs",
   },
-  primaryHue: { dark: 256, light: 259 },
+  primaryHue: { dark: 258, light: 258 },
+  primarySaturation: { dark: 30, light: 70 },
   sidebar: {
     defaultMenuCollapseLevel: 1,
     toggleButton: true,
