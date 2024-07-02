@@ -111,6 +111,11 @@ $border-radius-lg: 100px;
     font-weight: 500; // Override to a weight that we actually DO support, otherwise we risk faux bold
   }
 
+  //set color of hyperlinks
+  .nx-underline[href] {
+    color: colors.$purple40;
+  }
+
   // Get rid of all heading border-bottoms
   h1,
   h2,
@@ -431,6 +436,11 @@ $border-radius-lg: 100px;
   .nx-font-bold,
   li strong {
     font-weight: 500; // Override to a weight that we actually DO support, otherwise we risk faux bold
+  }
+
+  //set color of hyperlinks
+  .nx-underline[href] {
+    color: colors.$purple40;
   }
 
   // Get rid of all heading border-bottoms
