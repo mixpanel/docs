@@ -83,9 +83,9 @@ Not currently, but we plan to add support soon.
 
 Yes, you can configure the percentage of total replays that our SDK will capture with as little as [one line of code in your SDK implementation](/docs/tracking-methods/sdks/javascript#sampling-method). 
 
-This out-of-the-box sampling method is random sampling: your SDK will decide randomly whether the currently SDK instance load falls into the sample or not. 
+This out-of-the-box sampling method is random sampling: your SDK will decide randomly whether the currently SDK instance load falls into the sample or not. We recommend starting at 1% and increasing from there. Please note: if you expect low traffic, you can increase the starting sampling percentage. If you're still unsure about what sampling percentage to use, you can utilize a proxy metric like [Page Views](/docs/tracking-methods/sdks/javascript#tracking-page-views) to estimate how many recordings you'll be ingesting and base the sampling off that.
 
-If you want additional logic, like deciding based on certain criteria whether to record or not, then your application code can come up with its own yes/no decision, and then initialize Mixpanel with a value of either 100 or 0 (to force recording on or off for the current SDK instance load). 
+If instead of random sampling, you want to use conditional logic to control which sessions to record, then your application code can derive its own yes/no decision, and then force a session recording to start after SDK initialization by calling `mixpanel.start_session_recording()`.
 
 If you want to only record certain parts of a single-page application with no new mixpanel.init calls, you can also use our [Start / Stop recorder methods](/docs/tracking-methods/sdks/javascript#recorder-methods). 
 
@@ -131,7 +131,7 @@ analytics.addSourceMiddleware(({ payload, next, integrations }) => {
 
 ##### mParticle: Web SDK
 
-mParticle's Web SDK has a `.getDeviceId()` [method which can be used to retrieve the device_id](https://docs.mparticle.com/developers/sdk/web/initialization/#device-id-device-application-stamp). In the following example, we use this method to bind mParticle's device_id to Mixpanel's device_id, as well as [patching `logEvent` and `logPageView`](https://docs.mparticle.com/developers/sdk/web/core-apidocs/classes/mParticle%20&%20mParticleInstance.html#index) to include session replay properties.
+mParticle's Web SDK has a `.getDeviceId()` method which can be used to [retrieve the device_id](https://docs.mparticle.com/developers/sdk/web/initialization/#device-id-device-application-stamp). In the following example, we use this method to bind mParticle's device_id to Mixpanel's device_id, as wall as [patching `logEvent` and `logPageView`](https://docs.mparticle.com/developers/sdk/web/core-apidocs/classes/mParticle%20&%20mParticleInstance.html#index) to include session replay properties on all mParticle events. This configuration assumes you are [forwarding web requests server side](https://docs.mparticle.com/integrations/mixpanel/event/#:~:text=Forward%20Web%20Requests,bool) in the connection settings.
 
 ```javascript
 mixpanel.init('MIXPANEL-PROJECT-TOKEN', {
@@ -164,6 +164,46 @@ mixpanel.init('MIXPANEL-PROJECT-TOKEN', {
 			};
 		});
 	}
+});
+```
+
+##### Rudderstack: Cloud Mode
+
+Rudderstack's Javascript SDK has a `.getAnonymousId()` method which can be used to [retrieve the device_id](https://www.rudderstack.com/docs/sources/event-streams/sdks/rudderstack-javascript-sdk/supported-api/#retrieving-anonymous-id). In the following example, we use this method to bind Rudderstack's anonymousId to Mixpanel's device_id, as well as [patching `track` and `page`](https://www.rudderstack.com/docs/sources/event-streams/sdks/rudderstack-javascript-sdk/supported-api/#page) event methods to include session replay properties on every Rudderstack event.
+
+```javascript
+mixpanel.init('MIXPANEL-PROJECT-TOKEN', {
+  record_sessions_percent: 10,
+  loaded: function (mixpanel) {
+    window.rudderanalytics.ready(function() {
+      const rudderAnonymousId = rudderanalytics.getAnonymousId();
+      if (rudderAnonymousId) {
+        mixpanel.register({ $device_id: rudderAnonymousId });
+      }
+
+      // Patch track method to include sessionReplayProperties
+      const originalTrack = rudderanalytics.track;
+      rudderanalytics.track = function (eventName, eventProperties, options, callback) {
+        const sessionReplayProperties = mixpanel.get_session_recording_properties();
+        eventProperties = {
+          ...eventProperties,
+          ...sessionReplayProperties,
+        };
+        originalTrack(eventName, eventProperties, options, callback);
+      };
+
+      // Patch page method to include sessionReplayProperties
+      const originalPage = rudderanalytics.page;
+      rudderanalytics.page = function (category, name, properties, options, callback) {
+        const sessionReplayProperties = mixpanel.get_session_recording_properties();
+        properties = {
+          ...properties,
+          ...sessionReplayProperties,
+        };
+        originalPage(category, name, properties, options, callback);
+      };
+    });
+  }
 });
 ```
 
