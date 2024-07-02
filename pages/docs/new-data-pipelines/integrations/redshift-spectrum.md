@@ -223,6 +223,7 @@ When configuring your json pipeline in Mixpanel, it is essential to provide spec
 **Glue**
 
 - **Database**: Glue database to which the schema needs to be exported.
+- **Region**: AWS region where your Glue Database is created.
 - **Role**: AWS Role ARN that needs to be assumed for updating glue, e.g., `arn:aws:iam:::role/example-glue-role`.
 
 **Redshift**
