@@ -4,9 +4,9 @@ Mixpanel's JSON pipelines enable direct export of your Mixpanel data into an S3 
 
 ## Design
 
-![image](/230698348-abb2656e-fe2a-4d9c-ad61-8f80793e9c07.png)
+![image](/redshift-spectrum.png)
 
-Mixpanel exports data to your S3 bucket and simultaneously updates the necessary schema in the AWS Glue Data Catalog. This allows seamless integration with various AWS services like [Redshift Spectrum](https://docs.aws.amazon.com/redshift/latest/dg/c-getting-started-using-spectrum.html), for querying your data.
+Mixpanel exports data to your S3 bucket and simultaneously updates the necessary schema in the AWS Glue Data Catalog. This allows seamless integration with [Redshift Spectrum](https://docs.aws.amazon.com/redshift/latest/dg/c-getting-started-using-spectrum.html) for querying your data.
 
 ## Setting S3 Permissions
 
@@ -28,7 +28,7 @@ Mixpanel writes and updates schemas in your Glue instance, ensuring that new dat
 
 ### Step 2: Create Data Modification Policy
 
-Mixpanel partitions the Glue table by default if it has the proper AWS permissions. The partition key type and name are `string` and `mp_date` respectively and the partition values are dates in the project timezone e.g. `2024-05-01`. To enable partitioning in Glue, the policy must include partition-related permissions.
+Mixpanel partitions the Glue table by default if it has the proper AWS permissions. The partition key type and name are `string` and `mp_date` respectively and the partition values are dates in the **UTC timezone** e.g. `2024-05-01`. To enable partitioning in Glue, the policy must include partition-related permissions.
 
 To enable Mixpanel to manage partitions (e.g., `mp_date`) and schemas in Glue, you need to grant specific AWS permissions:
 
@@ -119,8 +119,8 @@ Create a policy in IAM with the necessary permissions to enable Mixpanel to inte
         "redshift-data:BatchExecuteStatement",
         "redshift-data:ExecuteStatement",
         "redshift-serverless:GetCredentials",
-        "redshift-serverless:GetWorkgroup",
-        "redshift:GetClusterCredentialsWithIAM"
+        "redshift:GetClusterCredentialsWithIAM",
+        "redshift:GetClusterCredentials"
       ],
       "Resource": "*"
     },
@@ -129,9 +129,9 @@ Create a policy in IAM with the necessary permissions to enable Mixpanel to inte
       "Effect": "Allow",
       "Action": [
         "glue:GetDatabase",
-        "glue:GetTables",
         "glue:GetDatabases",
         "glue:GetTable",
+        "glue:GetTables",
         "glue:GetPartition",
         "glue:GetPartitions"
       ],
@@ -181,8 +181,6 @@ To ensure secure operations, limit the trust relationship to the Mixpanel export
 
 Once you've established the IAM role that enables Mixpanel to access both the external Data Catalog and Amazon S3, it's essential to link this role with your Amazon Redshift cluster or serverless instance.
 
-After creating the IAM role that authorizes Mixpanel to access the external Data Catalog and Amazon S3 for you, you must associate that role in Step 2 with your Amazon Redshift sluster or serverless.
-
 For Redshift Cluster Users: Follow the detailed steps provided in the [official guide to adding roles to Redshift](https://docs.aws.amazon.com/redshift/latest/dg/c-getting-started-using-spectrum-add-role.html):
 
 For Redshift Serverless Users: Use the steps below, and refer to [IAM in Redshift Serverless](https://docs.aws.amazon.com/redshift/latest/mgmt/serverless-iam.html) for additional details:
@@ -194,14 +192,45 @@ For Redshift Serverless Users: Use the steps below, and refer to [IAM in Redshif
 
 ### Step 4: Create Database and Grant Previlege
 
-To facilitate Mixpanel's ability to write external schemas, either create a new database or utilize an existing one. Once your database is set up, proceed as follows:
+To facilitate Mixpanel's ability to write external schemas, either create a new database or utilize an existing one. Here is how to create a new Redshift database:
 
-- Open the **Query Editor** in the Amazon Redshift service.
-- Execute the SQL command below, substituting `<REDSHIFT_DATABASE>` with your database name and `<IAM_ROLE_NAME>` (use the role name only, not the full ARN) with the role you established in Step 2. This command grants the necessary creation permissions:
+![image](/create-redshift-database-1.png)
+![image](/create-redshift-database-2.png)
+
+### Step 5: Grant Previlege to Database User
+
+AWS recommends using [federated identity](https://docs.aws.amazon.com/redshift/latest/mgmt/authorization-fas-spectrum.html) to manage Redshift Database resources. Federated identity in Redshift allows you to use your organization's identity system (such as AWS IAM) to authenticate and authorize users, eliminating the need to create and manage separate database user accounts. When you first connect to the database using the IAM role created in Step 2, Redshift automatically creates a corresponding database user named `IAMR:<IAM_ROLE_NAME>` with prefix `IAMR:`. To allow Mixpanel to create external schemas when running pipelines, you need to grant this user the `CREATE` privilege. Follow these steps:
+
+- Open the **Query Editor** in the Amazon Redshift console.
+- Execute the following SQL command, replacing `<REDSHIFT_DATABASE>` with your database name and `<IAM_ROLE_NAME>` with the role name (not the full ARN) you created in Step 2:
 
 ```sql
 GRANT CREATE ON DATABASE "<REDSHIFT_DATABASE>" TO "IAMR:<IAM_ROLE_NAME>";
 ```
+
+## Provide Necessary Details for Pipeline Creation
+
+When configuring your json pipeline in Mixpanel, it is essential to provide specific details to Mixpanel.
+
+**S3**
+
+- **Bucket**: S3 bucket where Mixpanel data should be exported.
+- **Region**: AWS region where your S3 bucket is located.
+- **Role**: AWS Role ARN that Mixpanel should assume when writing to your S3, e.g., `arn:aws:iam:::role/example-s3-role`.
+- **Encryption (optional)**: Specify the type of at-rest encryption used by the S3 bucket.
+- **KMS Key ID (optional)**: If using KMS encryption, you can provide the custom key ID that you wish to use.
+
+**Glue**
+
+- **Database**: Glue database to which the schema needs to be exported.
+- **Role**: AWS Role ARN that needs to be assumed for updating glue, e.g., `arn:aws:iam:::role/example-glue-role`.
+
+**Redshift**
+
+- **Cluster Identifier** or **Workgroup Arn**: Either the Cluster Identifier (for provisioned Redshift clusters) or the Workgroup ARN (for Redshift Serverless), depending on which type of Redshift you're using.
+- **Database**: Redshift database where the external schema is created.
+- **Region**: AWS region where your Redshift is located.
+- **Role**: AWS Role ARN that Mixpanel should assume when creating schema to your database, e.g., `arn:aws:iam:::role/example-redshift-role`.
 
 ## Queries
 
