@@ -4,7 +4,7 @@ Mixpanel's JSON pipelines enable direct export of your Mixpanel data into an S3 
 
 ## Design
 
-![image](/redshift-spectrum.png)
+![image](/dad7fe54-caf6-4952-bedc-90da7a4650da.png)
 
 Mixpanel exports data to your S3 bucket and simultaneously updates the necessary schema in the AWS Glue Data Catalog. This allows seamless integration with [Redshift Spectrum](https://docs.aws.amazon.com/redshift/latest/dg/c-getting-started-using-spectrum.html) for querying your data.
 
@@ -194,8 +194,8 @@ For Redshift Serverless Users: Use the steps below, and refer to [IAM in Redshif
 
 To facilitate Mixpanel's ability to write external schemas, either create a new database or utilize an existing one. Here is how to create a new Redshift database:
 
-![image](/create-redshift-database-1.png)
-![image](/create-redshift-database-2.png)
+![image](/48198342-27dc-43b1-bab8-434b31f97e34.png)
+![image](/a860a7f8-ad9b-4855-9d88-2f4b8f17398e.png)
 
 ### Step 5: Grant Previlege to Database User
 
