@@ -17,7 +17,6 @@ const config: DocsThemeConfig = {
     defaultTheme: `theme-mixpanel-light`,
     forcedTheme: `theme-mixpanel-dark`,
   },
-  attribute: "data-theme",
   docsRepositoryBase: "https://github.com/mixpanel/docs/tree/main",
   // ThemeSwitch: {
   //   useOptions() {
