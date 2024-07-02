@@ -262,39 +262,3 @@ try {
 ```
 
 For all Group methods, see our [reference](http://mixpanel.github.io/mixpanel-java/).
-
-## Tracking Revenue
-
-Mixpanel makes it easy to analyze the revenue you make from individual customers. By associating charges with user profiles, you can compare revenue across different customer segments and calculate things like lifetime value.
-
-You can track a single transaction with [`MessageBuilder.trackCharge`](http://mixpanel.github.io/mixpanel-java/com/mixpanel/mixpanelapi/MessageBuilder.html#trackCharge(java.lang.String,%20double,%20org.json.JSONObject)). Sending a message created with `trackCharge` will add transactions to the individual user profile, which will also be reflected in the Mixpanel Revenue report.
-
-```javascript
-import com.mixpanel.mixpanelapi.MessageBuilder;
-import com.mixpanel.mixpanelapi.MixpanelAPI;
-
-MessageBuilder messageBuilder =
-    new MessageBuilder(PROJECT_TOKEN);
-
-// Track a charge of $29.99 for the user identified by 13793
-JSONObject update =
-    messageBuilder.trackCharge("13793", 29.99, null);
-
-// Send the update to mixpanel
-MixpanelAPI mixpanel = new MixpanelAPI();
-mixpanel.sendMessage(update);
-
-// Track a refund of $50 for the user identified by 13793
-JSONObject update =
-    messageBuilder.trackCharge("13793", -50, null);
-mixpanel.sendMessage(update);
-
-// Track a charge of 25 dollars on January 2, 2012
-JSONObject properties = new JSONObject()
-properties.put("$time", "2012-01-02T00:00:00");
-JSONObject update =
-    messageBuilder.trackCharge("13793", -50, properties);
-mixpanel.sendMessage(update);
-```
-
-The Java library [appends a time stamp](https://github.com/mixpanel/mixpanel-java/blob/b64086b250107a8559989665051525d90a58b1e7/src/main/java/com/mixpanel/mixpanelapi/MessageBuilder.java#L51) to events by default. You have to manually use the $time property to append a time stamp to user profile properties.

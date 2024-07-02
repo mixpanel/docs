@@ -11,5 +11,10 @@
     "ruby": "Ruby",
     "php": "PHP",
     "go": "Go",
-    "java": "Java"
+    "java": "Java",
+    "mp-utils": {
+        "title": "Mixpanel-utils↗",
+        "href": "https://github.com/mixpanel/mixpanel-utils",
+        "newWindow": true
+  }
 }

@@ -6,17 +6,21 @@ The Mixpanel Go library is designed to be used for scripting, or in circumstance
 The [Full API Reference](https://pkg.go.dev/github.com/mixpanel/mixpanel-go), [Library Source Code](https://github.com/mixpanel/mixpanel-go).
 Also checkout our [Examples](https://github.com/mixpanel/mixpanel-go/tree/main/examples)
 
-## Installing the Library
+## Initialize the Library
 
-You can get the library using go get.
-```shell
-go get github.com/mixpanel/mixpanel-go
-```
+Replace `YOUR_TOKEN` with your project token. You can find your token [here](https://mixpanel.com/settings/project).
+```shell Go
+package main
 
-Once the library is installed, use the Mixpanel library in your applications with:
+import (
+	"context"
+	"github.com/mixpanel/mixpanel-go"
+)
 
-```go
-mp := mixpanel.NewApiClient("PROJECT_TOKEN")
+func main() {
+	ctx := context.Background()
+	mp := mixpanel.NewApiClient("YOUR_TOKEN")
+}
 ```
 
 ## EU Data Residency

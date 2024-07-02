@@ -88,6 +88,13 @@ If you have Group Analytics enabled, you will see a dropdown on the Profile Prop
 
 ![Lexicon Profile Properties](/lexicon-group-analytics-GIF.gif)
 
+### Lookup Table Definitions
+
+[Lookup Tables](/docs/data-structure/lookup-tables) in your project are listed in your Lexicon. Click into a Lookup Table definition to export the underlying CSV, replace the Lookup Table with a new CSV, and see which properties are linked.
+
+### Formulas and Behaviors Definition
+Saved [Formulas](/docs/reports/insights/metrics#formulas) and [Funnels/Retention Behaviors](/docs/features/saved-behaviors) in your project are also documented in your Lexicon. Review here to get an overview of existing definitions in your project that you can quickly leverage in your own analysis.
+
 ## Filtering Events, Custom Events, and Properties
 
 Lexicon provides several options for you to filter your events, custom events, event properties, and profile properties.
@@ -104,7 +111,7 @@ This data lets you easily discover the parts of your implementation that are mos
 
 ![Lexicon Query Volumes](/lexicon-query-volumes.png)
 
-## Dropping and Hiding Data
+## Dropping Data
 
 In Lexicon, you can intercept and drop incoming events or properties. Mixpanel won’t store any **new data** for the event or property you select to drop. **Warning: You cannot recover event data after you drop it.**
 
@@ -130,6 +137,16 @@ To drop an event in Lexicon:
 ![Lexicon Drop Events Warning](/lexicon-drop-events-warning.png)
 3. Click Drop. The status of the event indicates **Dropped**.
 
+**Undropping Events**
+
+You can undrop events and properties when you decide you need them again.
+
+To undrop an event:
+
+1. Select a dropped event. The “Status” column indicates if an event is dropped.
+![Lexicon Undrop Events](/lexicon-undrop-events.png)
+2. Click **Undrop**. The “Status” column no longer contains “Dropped”.
+
 ### Dropping Properties
 
 By dropping a property, you can intercept and drop incoming property. Mixpanel won’t store any new data for the property you select to drop. 
@@ -140,25 +157,25 @@ To drop a property in Lexicon:
 ![Lexicon Drop Properties](/lexicon-drop-properties.png)
 2. Click **Drop**. A warning indicates that you cannot recover the data that you choose to drop. Click Drop to confirm. The status of the property will indicate Dropped.
 
-### Undropping Events
-
-You can undrop events and properties when you decide you need them again.
-
-To undrop an event:
-
-1. Select a dropped event. The “Status” column indicates if an event is dropped.
-![Lexicon Undrop Events](/lexicon-undrop-events.png)
-2. Click **Undrop**. The “Status” column no longer contains “Dropped”.
-
-### Undropping Properties
+**Undropping Properties**
 
 1. Select a dropped property. The “Status” column indicates if a property is dropped.
 ![Lexicon Undrop Properties](/lexicon-undrop-properties.png)
 2. Click **Undrop**. The “Status” column no longer contains “Dropped”.
 
-### Hide Events and Properties
+## Hiding Data
 
-To hide an event or property:
+In Lexicon, you can hide any events or properties. Unlike [dropping data](/docs/data-governance/lexicon#dropping-data), hiding data does not affect data ingestion; any events/properties that are hidden will continue to be ingested in your project and count toward your data allowance.
+
+A hidden entity will not be indexed in your event/properties menu in the query builder. Any [inactive events and properties](/docs/tracking-best-practices/debugging#inactive-events-and-properties) will also be hidden.
+
+Hidden events will be excluded from your query results. For example, it will not be included in "All Events" and won't appear as an intermediate step in your [Flows report](/docs/reports/flows).
+
+Hiding data is useful for preventing not-so-commonly used entities from cluttering your events/properties menu, or to prevent certain events from being considered in your reports.
+
+If you wish to use a hidden entity in your report, you may manually select the entity by searching in the events/properties menu and then clicking "Show Hidden Events/Properties" to reveal the hidden entity.
+
+### Hiding Events and Properties
 
 1. Select one or more visible events, event properties, or profile properties. The “Hide” icon appears. You can check the “Status” field to determine whether an event or property is visible or hidden.
 ![Lexicon Hide Events](/hide-events.png)
@@ -188,17 +205,15 @@ Do note however that user profile properties cannot be merged at this time.
 
 ### Merging Events
 
-To merge events:
+**To merge events:**
 
 1. Select the events to merge. The “Merge” icon appears.
 2. Click Merge. The “Merge Events” window appears. It shows the events you selected and explains that merging the selected events combines them into a single event, which does not affect the raw data.
 ![Lexicon Merge Events](/lexicon-merge-events.png)
 3. In the “MERGE SELECTED EVENTS INTO…” section, specify which event Mixpanel should consider as the new unique event.
 4. Click **Merge**. The merged event appears and the “Status” column indicates “Merged”.
-
-### Unmerging Events
  
-To unmerge events:
+**To unmerge events:**
 
 1. Select the merged event to unmerge. The “Unmerge” icon appears.
 ![Lexicon Unmerge Events](/unmerge-events.png)
@@ -206,7 +221,7 @@ To unmerge events:
 
 ### Merging Properties
 
-To merge properties:
+**To merge properties:**
 
 1. Select the properties to merge. The “Merge” icon appears.
 2. Click Merge. The “Merge Properties” window appears. It shows the properties you selected and explains that merging the selected properties combines them into a single property, which does not affect the raw data.
@@ -216,7 +231,7 @@ To merge properties:
 
 ### Unmerging Properties
 
-To unmerge properties:
+**To unmerge properties:**
 
 1. Select the merged property to unmerge. The “Unmerge” icon appears.
 ![Lexicon Unmerge Events](/unmerge-properties.png)

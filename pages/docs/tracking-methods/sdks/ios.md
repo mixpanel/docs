@@ -6,6 +6,22 @@ Please refer to our [Quickstart Guide](/docs/quickstart/connect-your-data?sdk=io
 
 The [Full API Reference](https://mixpanel.github.io/mixpanel-iphone/index.html), [Library Source Code](https://github.com/mixpanel/mixpanel-iphone/), and an [Example Application](https://github.com/mixpanel/mixpanel-iphone/tree/master/HelloMixpanel) is documented in our GitHub repo.
 
+## Configure the SDK
+
+Replace `YOUR_TOKEN` with your project token. You can find your token [here](https://mixpanel.com/settings/project).
+
+```objc
+#import "Mixpanel/Mixpanel.h"
+
+- (BOOL)application:(UIApplication _)application 
+  didFinishLaunchingWithOptions:(NSDictionary _)launchOptions {
+  ...
+  Mixpanel *mixpanel = [Mixpanel sharedInstanceWithToken:@"YOUR_TOKEN" 
+  									trackAutomaticEvents: NO];
+  ...
+}
+```
+
 ## Sending Events
 
 We recommend tracking only five to seven events in your application instead of tracking too many things to start. Ideally, you track users going through your initial user experience and one key metric that matters for your application (e.g. a video streaming service might choose "Watched Video" as a key metric).
@@ -34,7 +50,9 @@ Mixpanel *mixpanel = [Mixpanel sharedInstance];
 
 It's very common to have certain properties that you want to include with each event you send. Generally, these are things you know about the user rather than about a specific event—for example, the user's age, gender, or source.
 
-To make things easier, you can register these properties as super properties. If you do, we will automatically include them with all tracked events. Super properties are saved to device storage, and will persist across invocations of your app. Mixpanel already stores some information as super properties by default; see a full list of Mixpanel default properties [here](/docs/data-structure/property-reference#default-properties).
+To make things easier, you can register these properties as super properties. If you do, we will automatically include them with all tracked events. Super properties are saved to device storage, and will persist across invocations of your app. Super properties are indistinguishable from other event properties once ingested in your project.
+
+Mixpanel already stores some information as super properties by default; see a full list of Mixpanel default properties [here](/docs/data-structure/property-reference#default-properties).
 
 To set super properties, call [`registerSuperProperties:`](https://mixpanel.github.io/mixpanel-iphone/Classes/Mixpanel.html#//api/name/registerSuperProperties:)
 
@@ -134,25 +152,6 @@ You can use [`people increment:`](https://mixpanel.github.io/mixpanel-iphone/Cla
 ### Other Types of Profile Updates
 There are a few other types of profile updates. To learn more, please review the full [MixpanelPeople API documentation](https://mixpanel.github.io/mixpanel-iphone/Classes/MixpanelPeople.html).
 
-## Tracking Revenue
-
-Mixpanel makes it easy to analyze the revenue you earn from individual customers. By associating charges with user profiles, you can compare revenue across different customer segments and calculate things like lifetime value.
-
-You can track a single transaction with [`people trackCharge:`](https://mixpanel.github.io/mixpanel-iphone/Classes/MixpanelPeople.html#//api/name/trackCharge:). This call will add transactions to the individual user profile, which will also be reflected in the Mixpanel Revenue report.
-```objc Objective-C
-// Tracks $100.77 in revenue for user 13793
-[mixpanel.people trackCharge:@(100.77)];
-
-// Refund this user $50
-[mixpanel.people trackCharge:@-50];
-
-// Tracks $25 in revenue for user 13793 on the 2nd of
-// January
-[mixpanel.people trackCharge:@25 withProperties:@{
-    @"$time": "2016-01-02T00:00:00"
-}];
-```
-
 ## Group Analytics
 Mixpanel Group Analytics is a paid add-on that allows behavioral data analysis by selected groups, as opposed to individual users.
 
@@ -230,6 +229,18 @@ post_install do |installer|
   end
 end
 ```
+
+## Flushing Events
+
+To preserve battery life and customer bandwidth, the Mixpanel library doesn't send the events you record immediately. Instead, it sends batches to the Mixpanel servers every 60 seconds while your application is running, as well as when the application transitions to the background. You can call [flush()](https://mixpanel.github.io/mixpanel-iphone/Classes/Mixpanel.html#//api/name/flush) manually if you want to force a flush at a particular moment.
+
+```objc
+[mixpanel flush];
+```
+
+## Mobile Attribution
+Learn more about [mobile attribution here](/docs/tracking-best-practices/traffic-attribution).
+
 
 ## EU Data Residency
 
