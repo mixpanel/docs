@@ -1,0 +1,26 @@
+---
+title: "Mirror Sync mode for Warehouse Connectorrs"
+slug: "2024-06-18-mirror-warehouse"
+hidden: false
+createdAt: "2024-06-18T17:39:02.165Z"
+updatedAt: "2024-06-18T17:39:02.165Z"
+date: "2024-06-18"
+---
+
+Introducing Mirror sync mode in Warehouse Connectors. This allows modifications to previously sent rows in Warehouse tables to be accurately reflected in Mixpanel. This unlocks accurate analysis for all data types, even data that changes such as transactions.
+
+This is available in Mixpanel Connectors for BigQuery and Snowflake event tables. Warehouse Connectors requires a paid add on for Enterprise Plans.
+
+<div style={{position: 'relative', paddingBottom: '64.90384615384616%', height: 0}}>
+    <iframe src="https://www.youtube.com/watch?v=ocTKKaQe65o"
+        frameBorder="0"
+        webkitallowfullscreen="true" mozallowfullscreen="true" allowFullScreen
+        style={{position: 'absolute', 'top': 0, 'left': 0, 'width': '100%', 'height': '100%'}}>
+    </iframe>
+</div>
+
+
+
+
+
+
