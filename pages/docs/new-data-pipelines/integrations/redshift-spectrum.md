@@ -119,6 +119,7 @@ Create a policy in IAM with the necessary permissions to enable Mixpanel to inte
         "redshift-data:BatchExecuteStatement",
         "redshift-data:ExecuteStatement",
         "redshift-serverless:GetCredentials",
+        "redshift-serverless:GetWorkgroup",
         "redshift:GetClusterCredentialsWithIAM",
         "redshift:GetClusterCredentials"
       ],
@@ -209,10 +210,7 @@ Follow these steps to grant the `CREATE` privilege:
   ```bash
   aws sts assume-role --role-arn <role-arn> --role-session-name MixpanelSession
   ```
-- If you receive an **"AccessDenied"** error, it means the role you're currently using to run the AWS CLI doesn't have permission to assume the Mixpanel role. To resolve this:
-  a. Identify your current role: This is typically your IAM user or the role you're using for AWS CLI access (e.g., an SSO role).
-
-  b. Update the Mixpanel role's trust relationship: Edit the trust policy of the role you created for Mixpanel in Step 2. Add a new statement allowing your current role to assume the Mixpanel role. Replace `<your account id>` with your AWS account ID
+- If you receive an **"AccessDenied"** error, it means the role you're currently using to run the AWS CLI doesn't have permission to assume the Mixpanel role. To resolve this, identify your current role (which is typically your IAM user or the role you're using for AWS CLI access) and then update the Mixpanel role's trust relationship. Edit the trust policy by adding a new statement allowing your current role to assume the Mixpanel role. For example, if you are using a SSO user, replace `<your account id>` with your AWS account ID.
 
   ```json
   {
@@ -221,7 +219,7 @@ Follow these steps to grant the `CREATE` privilege:
       {
         "Effect": "Allow",
         "Principal": {
-          "AWS": "arn:aws:iam::497391092644:root",
+          "AWS": "arn:aws:iam::485438090326:user/mixpanel-export",
           "Service": "redshift.amazonaws.com"
         },
         "Action": "sts:AssumeRole"
@@ -239,9 +237,9 @@ Follow these steps to grant the `CREATE` privilege:
 
 - Configure AWS CLI with the temporary credentials
   ```bash
-  aws configure set aws_access_key_id YOUR_ACCESS_KEY_ID
-  aws configure set aws_secret_access_key YOUR_SECRET_ACCESS_KEY
-  aws configure set aws_session_token YOUR_SESSION_TOKEN
+  aws configure set aws_access_key_id "<YOUR_ACCESS_KEY_ID>"
+  aws configure set aws_secret_access_key "<YOUR_SECRET_ACCESS_KEY>"
+  aws configure set aws_session_token "<YOUR_SESSION_TOKEN>"
   ```
 - Execute the privilege grant command
   ```bash
