@@ -150,6 +150,22 @@ $border-radius-lg: 100px;
     font-family: typography.$garnett-stack;
   }
 
+  // Modify breadcrumbs
+  .nextra-breadcrumb {
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    font-size: 14px;
+    font-weight: 500;
+    color: colors.$purple200;
+    .nx-font-medium {
+      color: colors.$purple100;
+    }
+    .nx-text-ellipsis:hover {
+      color: colors.$purple100;
+      cursor: pointer;
+    }
+  }
+
   .nextra-nav-container {
     background-color: colors.$purple140;
 
@@ -607,6 +623,7 @@ $border-radius-lg: 100px;
     border-bottom: colors.$black;
   }
 
+  // modify buttons in integration pages
   a.nextra-card {
     span {
       display: flex;
