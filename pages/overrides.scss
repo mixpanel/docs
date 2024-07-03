@@ -163,6 +163,30 @@ $border-radius-lg: 100px;
     --shiki-token-link: #22863a;
   }
 
+  //modify code tab switches
+  // [role~="tab"] {
+  //   color: colors.$base100;
+  // }
+
+  //modify code tab hover
+  [role~="tab"]:hover {
+    background-color: colors.$purple20;
+    color: colors.$purple140;
+  }
+
+  //modify selected tab
+  .nx-border-primary-500[role~="tab"] {
+    background-color: colors.$purple20;
+    color: colors.$purple140;
+  }
+
+  //modify code block window
+  // .nextra-code-block pre {
+  //   // background-color: colors.$grey100;
+  //   // scrollbar-color: colors.$black;
+  //   // box-shadow: 0px -7px 6px -8px rgba(32, 31, 36, 0.1);
+  // }
+
   .nextra-content {
     h1,
     h2,
@@ -170,6 +194,19 @@ $border-radius-lg: 100px;
     h4,
     h5 {
       letter-spacing: -0.3px;
+    }
+  }
+
+  // Modify nextra-cards
+  a.nextra-card {
+    span {
+      display: flex;
+      justify-content: center;
+      background-color: colors.$purple20;
+      &:hover {
+        background-color: colors.$purple50;
+        transition-duration: 0.5s;
+      }
     }
   }
 
@@ -516,16 +553,23 @@ $border-radius-lg: 100px;
 
   // Modify main body of article
   .nx-w-full > main {
-    // background-color: colors.$black;
     color: colors.$base100;
-
-    // td {
-    //   background-color: colors.$black;
-    // }
   }
 
   .nx-mt-6 {
     border-bottom: colors.$black;
+  }
+
+  a.nextra-card {
+    span {
+      display: flex;
+      justify-content: center;
+      background-color: colors.$purple200;
+      &:hover {
+        background-color: colors.$purple140;
+        transition-duration: 0.5s;
+      }
+    }
   }
 
   // Modify code output
@@ -737,11 +781,6 @@ $border-radius-lg: 100px;
         // background-color: colors.$purple20;
         color: colors.$purple50;
       }
-
-      // set color to questions/edit this page
-      // .nx-mt-8 {
-      //   background-color: colors.$black;
-      // }
     }
 
     // Add some spacing between the sidebar sections
@@ -897,14 +936,10 @@ $border-radius-lg: 100px;
     }
   }
 
-  //Modify thumbs up and down buttons
-  // .FeedbackCollector_root__3DCAt > button {
-  //   background-color: colors.$black;
-  // }
-
   // Modify Footer
   footer {
-    // background-color: colors.$black;
+    background-color: #111111;
+    opacity: 100%;
     hr {
       opacity: 0%;
     }
@@ -915,7 +950,7 @@ $border-radius-lg: 100px;
     color: colors.$base100;
   }
 
-  // Modify hide sidebar
+  // Modify hide sidebar button
   button[title="Hide sidebar"] {
     path {
       fill: colors.$base100;
@@ -941,7 +976,7 @@ $border-radius-lg: 100px;
   //   border-color: colors.$black;
   // }
 
-  // div .FeedbackCollector_root__3DCAt {
-  //   border-color: colors.$black;
-  // }
+  button [class~="Feedback"] {
+    background-color: #111111;
+  }
 }
