@@ -110,8 +110,8 @@ By [adding middleware to Segment's SDK](https://segment.com/docs/connections/sou
 analytics.addSourceMiddleware(({ payload, next, integrations }) => {
 	if (payload.type === 'track' || payload.type === 'page') {
 		if (window.mixpanel) {
-			const segmentDeviceId = payload.obj.anonymousId;
-			mixpanel.register({ $device_id: segmentDeviceId });
+			const segmentDeviceId = payload.obj.anonymousId;			
+			mixpanel.register({ $device_id: segmentDeviceId, distinct_id : "$device:"+segmentDeviceId });			
 			const sessionReplayProperties = mixpanel.get_session_recording_properties();
 			payload.obj.properties = {
 				...payload.obj.properties,
@@ -129,6 +129,8 @@ analytics.addSourceMiddleware(({ payload, next, integrations }) => {
 });
 ```
 
+
+
 ##### mParticle: Web SDK
 
 mParticle's Web SDK has a `.getDeviceId()` method which can be used to [retrieve the device_id](https://docs.mparticle.com/developers/sdk/web/initialization/#device-id-device-application-stamp). In the following example, we use this method to bind mParticle's device_id to Mixpanel's device_id, as wall as [patching `logEvent` and `logPageView`](https://docs.mparticle.com/developers/sdk/web/core-apidocs/classes/mParticle%20&%20mParticleInstance.html#index) to include session replay properties on all mParticle events. This configuration assumes you are [forwarding web requests server side](https://docs.mparticle.com/integrations/mixpanel/event/#:~:text=Forward%20Web%20Requests,bool) in the connection settings.
@@ -140,7 +142,7 @@ mixpanel.init('MIXPANEL-PROJECT-TOKEN', {
 		window.mParticle.ready(function() {
 			const mParticle_device_id = mParticle.getDeviceId();
 			if (mParticle_device_id) {
-				mixpanel.register({	$device_id: mParticle_device_id	});
+				mixpanel.register({ $device_id: mParticle_device_id, distinct_id : "$device:"+mParticle_device_id });
 			}
 
 			// Patch logEvent and logPageView to include sessionReplayProperties
@@ -178,7 +180,7 @@ mixpanel.init('MIXPANEL-PROJECT-TOKEN', {
     window.rudderanalytics.ready(function() {
       const rudderAnonymousId = rudderanalytics.getAnonymousId();
       if (rudderAnonymousId) {
-        mixpanel.register({ $device_id: rudderAnonymousId });
+	mixpanel.register({ $device_id: rudderAnonymousId, distinct_id : "$device:"+rudderAnonymousId });
       }
 
       // Patch track method to include sessionReplayProperties
