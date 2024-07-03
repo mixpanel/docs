@@ -83,7 +83,7 @@ $border-radius-lg: 100px;
 }
 
 // Light Theme Starts Here
-.theme-mixpanel-light {
+.light {
   line-height: 1.8;
   font-size: 0.88rem;
   letter-spacing: 0.3px;
@@ -417,7 +417,7 @@ $border-radius-lg: 100px;
 }
 
 // Dark theme starts here
-.theme-mixpanel-dark {
+.dark {
   line-height: 1.8;
   font-size: 0.88rem;
   letter-spacing: 0.3px;
@@ -485,7 +485,7 @@ $border-radius-lg: 100px;
 
   // Modify top nav container
   .nextra-nav-container {
-    background-color: colors.$purple140;
+    background-color: colors.$purple200;
 
     // Modify image assets in top nav
     path {
@@ -493,7 +493,7 @@ $border-radius-lg: 100px;
     }
 
     .nextra-nav-container-blur {
-      background-color: colors.$purple140;
+      background-color: colors.$purple40;
     }
 
     // Set color for top nav flex region
@@ -516,12 +516,12 @@ $border-radius-lg: 100px;
 
   // Modify main body of article
   .nx-w-full > main {
-    background-color: colors.$black;
+    // background-color: colors.$black;
     color: colors.$base100;
 
-    td {
-      background-color: colors.$black;
-    }
+    // td {
+    //   background-color: colors.$black;
+    // }
   }
 
   .nx-mt-6 {
@@ -589,11 +589,11 @@ $border-radius-lg: 100px;
 
   // Modify left-hand Nav
   .nextra-sidebar-container {
-    background-color: colors.$black;
+    // background-color: colors.$black;
 
-    .nx-flex {
-      background-color: colors.$black;
-    }
+    // .nx-flex {
+    //   background-color: colors.$black;
+    // }
 
     // nextra currently doesn't name anything in the sidebar properly and only has tailwind functional
     // names, and so this is hacked together so that we get the view that we want
@@ -633,7 +633,7 @@ $border-radius-lg: 100px;
 
     // Bottom scroll mask
     > .nx-sticky.nx-bottom-0 {
-      background-color: colors.$black;
+      // background-color: colors.$black;
       box-shadow: 0px -7px 6px -8px rgba(32, 31, 36, 0.1);
       border-top: colors.$black;
     }
@@ -707,13 +707,13 @@ $border-radius-lg: 100px;
     .nx-shadow-\[0_-12px_16px_white\] {
       box-shadow: unset;
     }
-    .nx-bg-white {
-      background-color: colors.$black;
-    }
+    // .nx-bg-white {
+    //   background-color: colors.$black;
+    // }
 
     .nextra-scrollbar {
       // set background color for bookmark region
-      background-color: colors.$black;
+      // background-color: colors.$black;
 
       // set font color for bookmark header
       p {
@@ -739,9 +739,9 @@ $border-radius-lg: 100px;
       }
 
       // set color to questions/edit this page
-      .nx-mt-8 {
-        background-color: colors.$black;
-      }
+      // .nx-mt-8 {
+      //   background-color: colors.$black;
+      // }
     }
 
     // Add some spacing between the sidebar sections
@@ -886,25 +886,25 @@ $border-radius-lg: 100px;
   // Fix JSX in Quickstart
   .next-steps-sections {
     .bg-base100 {
-      background-color: colors.$black;
+      background-color: #111111;
     }
     details {
-      background-color: colors.$black;
+      background-color: #111111;
 
       summary {
-        background-color: colors.$black;
+        background-color: #111111;
       }
     }
   }
 
   //Modify thumbs up and down buttons
-  .FeedbackCollector_root__3DCAt > button {
-    background-color: colors.$black;
-  }
+  // .FeedbackCollector_root__3DCAt > button {
+  //   background-color: colors.$black;
+  // }
 
   // Modify Footer
   footer {
-    background-color: colors.$black;
+    // background-color: colors.$black;
     hr {
       opacity: 0%;
     }
@@ -923,9 +923,9 @@ $border-radius-lg: 100px;
   }
 
   // Modify contact support area
-  .nx-mt-8 {
-    border-top: colors.$black;
-  }
+  // .nx-mt-8 {
+  //   border-top: colors.$black;
+  // }
 
   // Modify Navigation buttons at the bottom
   .nx-mb-8 > a {
@@ -937,11 +937,11 @@ $border-radius-lg: 100px;
   }
 
   //remove borders around bottom navigation
-  div .nx-mb-8 {
-    border-color: colors.$black;
-  }
+  // div .nx-mb-8 {
+  //   border-color: colors.$black;
+  // }
 
-  div .FeedbackCollector_root__3DCAt {
-    border-color: colors.$black;
-  }
+  // div .FeedbackCollector_root__3DCAt {
+  //   border-color: colors.$black;
+  // }
 }
