@@ -111,11 +111,6 @@ $border-radius-lg: 100px;
     font-weight: 500; // Override to a weight that we actually DO support, otherwise we risk faux bold
   }
 
-  //set color of hyperlinks
-  .nx-underline[href] {
-    color: colors.$purple40;
-  }
-
   // Get rid of all heading border-bottoms
   h1,
   h2,
@@ -154,6 +149,18 @@ $border-radius-lg: 100px;
     font-variant-ligatures: none;
     font-feature-settings: normal;
     letter-spacing: initial;
+    // Modify code block syntax color
+    --shiki-color-text: #414141;
+    --shiki-color-background: transparent;
+    --shiki-token-constant: #1976d2;
+    --shiki-token-string: #22863a;
+    --shiki-token-comment: #aaa;
+    --shiki-token-keyword: #d32f2f;
+    --shiki-token-parameter: #ff9800;
+    --shiki-token-function: #6f42c1;
+    --shiki-token-string-expression: #22863a;
+    --shiki-token-punctuation: #212121;
+    --shiki-token-link: #22863a;
   }
 
   .nextra-content {
@@ -443,6 +450,10 @@ $border-radius-lg: 100px;
     color: colors.$purple40;
   }
 
+  summary::-webkit-details-marker {
+    color: colors.$base100;
+  }
+
   // Get rid of all heading border-bottoms
   h1,
   h2,
@@ -469,12 +480,12 @@ $border-radius-lg: 100px;
     -webkit-font-smoothing: antialiased;
     overscroll-behavior-y: none;
     font-family: typography.$garnett-stack;
-    background-color: colors.$grey100;
+    background-color: colors.$black;
   }
 
   // Modify top nav container
   .nextra-nav-container {
-    background-color: colors.$purple100;
+    background-color: colors.$purple140;
 
     // Modify image assets in top nav
     path {
@@ -482,7 +493,7 @@ $border-radius-lg: 100px;
     }
 
     .nextra-nav-container-blur {
-      background-color: colors.$purple100;
+      background-color: colors.$purple140;
     }
 
     // Set color for top nav flex region
@@ -505,8 +516,16 @@ $border-radius-lg: 100px;
 
   // Modify main body of article
   .nx-w-full > main {
-    background-color: colors.$grey100;
+    background-color: colors.$black;
     color: colors.$base100;
+
+    td {
+      background-color: colors.$black;
+    }
+  }
+
+  .nx-mt-6 {
+    border-bottom: colors.$black;
   }
 
   // Modify code output
@@ -520,6 +539,40 @@ $border-radius-lg: 100px;
     font-variant-ligatures: none;
     font-feature-settings: normal;
     letter-spacing: initial;
+    --shiki-color-text: #d1d1d1;
+    --shiki-token-constant: #79b8ff;
+    --shiki-token-string: #ffab70;
+    --shiki-token-comment: #6b737c;
+    --shiki-token-keyword: #f97583;
+    --shiki-token-parameter: #ff9800;
+    --shiki-token-function: #b392f0;
+    --shiki-token-string-expression: #4bb74a;
+    --shiki-token-punctuation: #bbb;
+    --shiki-token-link: #ffab70;
+  }
+
+  //modify code tab switches
+  [role~="tab"] {
+    color: colors.$base100;
+  }
+
+  //modify code tab hover
+  [role~="tab"]:hover {
+    background-color: colors.$purple20;
+    color: colors.$purple140;
+  }
+
+  //modify selected tab
+  .nx-border-primary-500[role~="tab"] {
+    background-color: colors.$purple20;
+    color: colors.$purple140;
+  }
+
+  //modify code block window
+  .nextra-code-block pre {
+    background-color: colors.$grey100;
+    scrollbar-color: colors.$black;
+    box-shadow: 0px -7px 6px -8px rgba(32, 31, 36, 0.1);
   }
 
   // Modify markdown headers
@@ -536,10 +589,10 @@ $border-radius-lg: 100px;
 
   // Modify left-hand Nav
   .nextra-sidebar-container {
-    background-color: colors.$grey100;
+    background-color: colors.$black;
 
     .nx-flex {
-      background-color: colors.$grey100;
+      background-color: colors.$black;
     }
 
     // nextra currently doesn't name anything in the sidebar properly and only has tailwind functional
@@ -580,8 +633,9 @@ $border-radius-lg: 100px;
 
     // Bottom scroll mask
     > .nx-sticky.nx-bottom-0 {
-      background-color: colors.$grey100;
+      background-color: colors.$black;
       box-shadow: 0px -7px 6px -8px rgba(32, 31, 36, 0.1);
+      border-top: colors.$black;
     }
 
     .nx-transform-gpu > .nx-transition-opacity {
@@ -654,12 +708,12 @@ $border-radius-lg: 100px;
       box-shadow: unset;
     }
     .nx-bg-white {
-      background-color: colors.$grey100;
+      background-color: colors.$black;
     }
 
     .nextra-scrollbar {
       // set background color for bookmark region
-      background-color: colors.$grey100;
+      background-color: colors.$black;
 
       // set font color for bookmark header
       p {
@@ -686,7 +740,7 @@ $border-radius-lg: 100px;
 
       // set color to questions/edit this page
       .nx-mt-8 {
-        background-color: colors.$grey100;
+        background-color: colors.$black;
       }
     }
 
@@ -703,7 +757,7 @@ $border-radius-lg: 100px;
     letter-spacing: 2px;
     font-size: 14px;
     font-weight: 500;
-    color: colors.$purple20;
+    color: colors.$base100;
     .nx-font-medium {
       color: colors.$purple50;
     }
@@ -829,26 +883,65 @@ $border-radius-lg: 100px;
     }
   }
 
-  // Fix hard coded colors from MDX for Quickstart
-  .bg-base100 {
-    background-color: colors.$grey100;
-  }
+  // Fix JSX in Quickstart
+  .next-steps-sections {
+    .bg-base100 {
+      background-color: colors.$black;
+    }
+    details {
+      background-color: colors.$black;
 
-  .nx-mb-8 > #text {
-    color: colors.$base100;
-    path {
-      fill: colors.$base100;
+      summary {
+        background-color: colors.$black;
+      }
     }
   }
 
   //Modify thumbs up and down buttons
   .FeedbackCollector_root__3DCAt > button {
-    background-color: colors.$grey100;
+    background-color: colors.$black;
   }
 
   // Modify Footer
   footer {
-    background-color: colors.$grey100;
-    border-color: colors.$grey100;
+    background-color: colors.$black;
+    hr {
+      opacity: 0%;
+    }
+  }
+
+  // Modify copyright text at bottom
+  .nx-justify-center {
+    color: colors.$base100;
+  }
+
+  // Modify hide sidebar
+  button[title="Hide sidebar"] {
+    path {
+      fill: colors.$base100;
+    }
+  }
+
+  // Modify contact support area
+  .nx-mt-8 {
+    border-top: colors.$black;
+  }
+
+  // Modify Navigation buttons at the bottom
+  .nx-mb-8 > a {
+    color: colors.$base100;
+  }
+
+  .nx-mb-8 > a:hover {
+    color: colors.$purple50;
+  }
+
+  //remove borders around bottom navigation
+  div .nx-mb-8 {
+    border-color: colors.$black;
+  }
+
+  div .FeedbackCollector_root__3DCAt {
+    border-color: colors.$black;
   }
 }
