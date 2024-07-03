@@ -197,16 +197,65 @@ Create a new Redshift database or utilize an existing one. Here is how to create
 ![image](/48198342-27dc-43b1-bab8-434b31f97e34.png)
 ![image](/0867f1d8-3649-4f9e-b0d2-9a3b73cfbe97.png)
 
-### Step 5: Grant Previlege to Database User
+### Step 5: Grant Privilege to Database User
 
-AWS recommends using [federated identity](https://docs.aws.amazon.com/redshift/latest/mgmt/authorization-fas-spectrum.html) to manage Redshift Database resources. Federated identity in Redshift allows you to use your organization's identity system (such as AWS IAM) to authenticate and authorize users, eliminating the need to create and manage separate database user accounts. When you first connect to the database using the IAM role created in Step 2, Redshift automatically creates a corresponding database user named `IAMR:<IAM_ROLE_NAME>` with prefix `IAMR:`. To allow Mixpanel to create external schemas when running pipelines, you need to grant this user the `CREATE` privilege. Follow these steps:
+To enable Mixpanel's external schema creation for pipeline operations, grant the `CREATE` privilege to the federated database user associated with the IAM role. AWS recommends using [federated identity](https://docs.aws.amazon.com/redshift/latest/mgmt/authorization-fas-spectrum.html) for Redshift resource management, leveraging your organization's identity system (e.g., AWS IAM) for authentication and authorization.
 
-- Open the **Query Editor** in the Amazon Redshift console.
-- Execute the following SQL command, replacing `<REDSHIFT_DATABASE>` with your database name and `<IAM_ROLE_NAME>` with the role name (not the full ARN) you created in Step 2:
+> **Important:** Do not manually create `IAMR:xxx` users via SQL commands. Redshift automatically generates a corresponding database user with the `IAMR:` prefix upon the first connection using the IAM role.
 
-```sql
-GRANT CREATE ON DATABASE "<REDSHIFT_DATABASE>" TO "IAMR:<IAM_ROLE_NAME>";
-```
+Follow these steps to grant the `CREATE` privilege:
+
+- Go to the **CloudShell** service on the AWS console and assume the IAM role. Replace `<role-arn>` with the full ARN of the role you created in Step 2.
+  ```bash
+  aws sts assume-role --role-arn <role-arn> --role-session-name MixpanelSession
+  ```
+- If you receive an **"AccessDenied"** error, it means the role you're currently using to run the AWS CLI doesn't have permission to assume the Mixpanel role. To resolve this:
+  a. Identify your current role: This is typically your IAM user or the role you're using for AWS CLI access (e.g., an SSO role).
+
+  b. Update the Mixpanel role's trust relationship: Edit the trust policy of the role you created for Mixpanel in Step 2. Add a new statement allowing your current role to assume the Mixpanel role. Replace `<your account id>` with your AWS account ID
+
+  ```json
+  {
+    "Version": "2012-10-17",
+    "Statement": [
+      {
+        "Effect": "Allow",
+        "Principal": {
+          "AWS": "arn:aws:iam::497391092644:root",
+          "Service": "redshift.amazonaws.com"
+        },
+        "Action": "sts:AssumeRole"
+      },
+      {
+        "Effect": "Allow",
+        "Principal": {
+          "AWS": "arn:aws:iam::<your account id>:root"
+        },
+        "Action": "sts:AssumeRole"
+      }
+    ]
+  }
+  ```
+
+- Configure AWS CLI with the temporary credentials
+  ```bash
+  aws configure set aws_access_key_id YOUR_ACCESS_KEY_ID
+  aws configure set aws_secret_access_key YOUR_SECRET_ACCESS_KEY
+  aws configure set aws_session_token YOUR_SESSION_TOKEN
+  ```
+- Execute the privilege grant command
+  ```bash
+  aws redshift-data execute-statement \
+  --workgroup-name <your-workgroup-arn> \
+  --database <your-database-name> \
+  --sql "GRANT CREATE ON DATABASE \"<your-redshift-database>\" TO \"IAMR:<mixpanel-role-name>\";"
+  ```
+  Replace `<your-workgroup-arn>`, `<your-redshift-database>`, and `<mixpanel-role-name>` with your actual values. For provisioned Redshift clusters, use `--cluster-identifier` instead of `--workgroup-name`.
+- Verify command execution
+  ```bash
+  aws redshift-data describe-statement --id <statement-id>
+  ```
+- (Optional) Reset AWS CLI configuration by removing the temporary credentials from `~/.aws/credentials`.
 
 ## Provide Necessary Details for Pipeline Creation
 
