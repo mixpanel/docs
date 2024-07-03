@@ -83,14 +83,16 @@ $border-radius-lg: 100px;
 }
 
 //Bold top nav buttons on hover
-.nx-text-sm {
-  color: colors.$purple200;
-  &:hover {
-    font-weight: bold;
-    transition-duration: 0.5s;
-  }
-  &:active {
-    font-weight: bold;
+.nextra-nav-container {
+  .nx-text-sm {
+    // color: colors.$purple200;
+    &:hover {
+      font-weight: bold;
+      transition-duration: 0.5s;
+    }
+    &:active {
+      font-weight: bold;
+    }
   }
 }
 
@@ -395,6 +397,23 @@ $border-radius-lg: 100px;
     ul li {
       margin-top: $base-spacing * 2;
       margin-bottom: $base-spacing * 2;
+    }
+
+    // modify selected bookmark
+    .nx-text-primary-600 {
+      color: colors.$purple100;
+    }
+
+    // modify non-selected bookmarks
+    // .nx-text-gray-500 {
+    //   // background-color: colors.$purple20;
+    //   color: colors.$base100;
+    // }
+
+    // modify hover states
+    .nx-text-gray-500:hover {
+      // background-color: colors.$purple20;
+      color: colors.$purple100;
     }
   }
 
