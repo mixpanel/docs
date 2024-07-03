@@ -82,6 +82,18 @@ $border-radius-lg: 100px;
     format("woff2");
 }
 
+//Bold top nav buttons on hover
+.nx-text-sm {
+  color: colors.$purple200;
+  &:hover {
+    font-weight: bold;
+    transition-duration: 0.5s;
+  }
+  &:active {
+    font-weight: bold;
+  }
+}
+
 // Light Theme Starts Here
 .light {
   line-height: 1.8;
@@ -136,6 +148,42 @@ $border-radius-lg: 100px;
     -webkit-font-smoothing: antialiased;
     overscroll-behavior-y: none;
     font-family: typography.$garnett-stack;
+  }
+
+  .nextra-nav-container {
+    background-color: colors.$purple140;
+
+    // // Modify image assets in top nav
+    // path {
+    //   fill: colors.$base100;
+    // }
+
+    // .nextra-nav-container-blur {
+    //   background-color: colors.$purple40;
+    // }
+
+    // Set color for top nav flex region
+    .nx-mx-auto > nx-flex {
+      background-color: colors.$purple40;
+    }
+
+    // //Modify top nav tabs
+    // .nx-text-sm {
+    //   color: colors.$purple200;
+    //   &:hover {
+    //     font-weight: bold;
+    //   }
+    //   &:active {
+    //     font-weight: bold;
+    //   }
+    // }
+
+    // Modify search module
+    .Search_searchBar__rnWt2 {
+      ::placeholder {
+        text-align: center;
+      }
+    }
   }
 
   // All code/mono type
@@ -511,13 +559,12 @@ $border-radius-lg: 100px;
     color: colors.$base100;
   }
 
-  // Modify high level stuff across body
-  body {
+  Modify high level stuff across body body {
     -moz-osx-font-smoothing: grayscale;
     -webkit-font-smoothing: antialiased;
     overscroll-behavior-y: none;
     font-family: typography.$garnett-stack;
-    background-color: colors.$black;
+    // background-color: colors.$black;
   }
 
   // Modify top nav container
