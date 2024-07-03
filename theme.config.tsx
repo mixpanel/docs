@@ -1,8 +1,15 @@
 import { FC, ReactNode } from "react";
-import { DocsThemeConfig, useTheme } from "nextra-theme-docs";
+import { DocsThemeConfig } from "nextra-theme-docs";
 import Search from "./components/Search/Search";
 import MixpanelLogoWordmark from "./components/svg/MixpanelLogoWordmark";
-import { AdminIcon, AnalysisIcon, DataInIcon, DataOutIcon, IntroIcon, SupportIcon } from "./components/svg/NavIcon";
+import {
+  AdminIcon,
+  AnalysisIcon,
+  DataInIcon,
+  DataOutIcon,
+  IntroIcon,
+  SupportIcon,
+} from "./components/svg/NavIcon";
 import MainContent from "./components/MainContent/MainContent";
 
 function renderComponent<T>(ComponentOrNode: FC<T> | ReactNode, props?: T) {
@@ -12,21 +19,20 @@ function renderComponent<T>(ComponentOrNode: FC<T> | ReactNode, props?: T) {
 }
 
 const config: DocsThemeConfig = {
-  darkMode: false,
+  darkMode: true,
   nextThemes: {
-    defaultTheme: `theme-mixpanel-light`,
-    forcedTheme: `theme-mixpanel-dark`,
+    defaultTheme: `light`,
   },
   docsRepositoryBase: "https://github.com/mixpanel/docs/tree/main",
-  // ThemeSwitch: {
-  //   useOptions() {
-  //     return {
-  //       "theme-mixpanel-light": `Light`,
-  //       "theme-mixpanel-dark": `Dark`,
-  //       system: `System`,
-  //     };
-  //   },
-  // },
+  ThemeSwitch: {
+    useOptions() {
+      return {
+        light: `Light`,
+        dark: `Dark`,
+        system: `System`,
+      };
+    },
+  },
   head: (
     <>
       <link
@@ -84,31 +90,33 @@ const config: DocsThemeConfig = {
         let icon;
         switch (title) {
           case `INTRO`:
-            icon = <IntroIcon />
+            icon = <IntroIcon />;
             break;
           case `DATA IN`:
-            icon = <DataInIcon />
+            icon = <DataInIcon />;
             break;
           case `ANALYSIS`:
-            icon = <AnalysisIcon />
+            icon = <AnalysisIcon />;
             break;
           case `ADMIN`:
-            icon = <AdminIcon />
+            icon = <AdminIcon />;
             break;
           case `DATA OUT`:
-            icon = <DataOutIcon />
+            icon = <DataOutIcon />;
             break;
           case `SUPPORT`:
-            icon = <SupportIcon />
+            icon = <SupportIcon />;
             break;
           case `ENTERPRISE`:
-            icon = <IntroIcon />
+            icon = <IntroIcon />;
             break;
-          }
-          return (
-            <>{icon} {title}</>
-          )
-        } else {
+        }
+        return (
+          <>
+            {icon} {title}
+          </>
+        );
+      } else {
         return <>{title}</>;
       }
     },
