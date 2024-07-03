@@ -24,15 +24,15 @@ const config: DocsThemeConfig = {
     defaultTheme: `light`,
   },
   docsRepositoryBase: "https://github.com/mixpanel/docs/tree/main",
-  ThemeSwitch: {
-    useOptions() {
-      return {
-        light: `Light`,
-        dark: `Dark`,
-        system: `System`,
-      };
-    },
-  },
+  // ThemeSwitch: {
+  //   useOptions() {
+  //     return {
+  //       light: `Light`,
+  //       dark: `Dark`,
+  //       system: `System`,
+  //     };
+  //   },
+  // },
   head: (
     <>
       <link
