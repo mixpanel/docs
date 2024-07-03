@@ -190,12 +190,12 @@ For Redshift Serverless Users: Use the steps below, and refer to [IAM in Redshif
 - Under **Security and encryption** tab, click **Manage IAM roles**
 - Use the **Manage IAM roles** dropdown to select **Associate IAM roles** and then attach the role you created in Step 2.
 
-### Step 4: Create Database and Grant Previlege
+### Step 4: Create Redshift Database
 
-To facilitate Mixpanel's ability to write external schemas, either create a new database or utilize an existing one. Here is how to create a new Redshift database:
+Create a new Redshift database or utilize an existing one. Here is how to create a new Redshift database:
 
 ![image](/48198342-27dc-43b1-bab8-434b31f97e34.png)
-![image](/a860a7f8-ad9b-4855-9d88-2f4b8f17398e.png)
+![image](/0867f1d8-3649-4f9e-b0d2-9a3b73cfbe97.png)
 
 ### Step 5: Grant Previlege to Database User
 
