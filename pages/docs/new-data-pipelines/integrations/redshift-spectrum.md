@@ -241,19 +241,26 @@ Follow these steps to grant the `CREATE` privilege:
   aws configure set aws_secret_access_key "<YOUR_SECRET_ACCESS_KEY>"
   aws configure set aws_session_token "<YOUR_SESSION_TOKEN>"
   ```
-- Execute the privilege grant command
+- Run this command in your terminal, replacing the placeholders with your actual values, and ensures that the db user `IAMR:<mixpanel-role-name>` is created in Redshift
   ```bash
   aws redshift-data execute-statement \
   --workgroup-name <your-workgroup-arn> \
   --database <your-database-name> \
-  --sql "GRANT CREATE ON DATABASE \"<your-redshift-database>\" TO \"IAMR:<mixpanel-role-name>\";"
+  --sql "SELECT 1;"
   ```
-  Replace `<your-workgroup-arn>`, `<your-redshift-database>`, and `<mixpanel-role-name>` with your actual values. For provisioned Redshift clusters, use `--cluster-identifier` instead of `--workgroup-name`.
-- Verify command execution
-  ```bash
-  aws redshift-data describe-statement --id <statement-id>
+  Note: For provisioned Redshift clusters, use `--cluster-identifier` instead of `--workgroup-name`.
+- Grant CREATE privilege. Open **Query Editor v2** in the Amazon Redshift console. Connect using appropriate credentials and run the following SQL commands, replacing <your-database-name> and <mixpanel-role-name> with your actual values:
+
+  ```sql
+  -- Check if the IAMR user has been created
+  SELECT * FROM pg_user WHERE usename LIKE 'IAMR:<mixpanel-role-name>';
+
+  -- If you see your IAMR user in the results, proceed with the following commands
+  GRANT CREATE ON DATABASE '<your-database-name>' TO 'IAMR:<mixpanel-role-name>';
+
+  -- Should return true if the privilege was successfully granted
+  SELECT HAS_DATABASE_PRIVILEGE('IAMR:<mixpanel-role-name>', '<your-database-name>', 'CREATE');
   ```
-- (Optional) Reset AWS CLI configuration by removing the temporary credentials from `~/.aws/credentials`.
 
 ## Provide Necessary Details for Pipeline Creation
 
