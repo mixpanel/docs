@@ -6,6 +6,24 @@ Please refer to our [Quickstart Guide](/docs/quickstart/connect-your-data?sdk=sw
 
 The [Full API Reference](https://mixpanel.github.io/mixpanel-swift/), [Library Source Code](https://github.com/mixpanel/mixpanel-swift), and an [Example Application](https://github.com/mixpanel/mixpanel-swift/tree/master/MixpanelDemo/MixpanelDemo) is documented in our GitHub repo.
 
+## Initialize the Library
+
+Replace `YOUR_TOKEN` with your project token. You can find your token [here](https://mixpanel.com/settings/project).
+```objc
+#import "Mixpanel/Mixpanel.h"
+
+- (BOOL)application:(UIApplication _)application 
+  didFinishLaunchingWithOptions:(NSDictionary _)launchOptions {
+  ...
+  Mixpanel *mixpanel = [Mixpanel sharedInstanceWithToken:@"YOUR_TOKEN" 
+  									trackAutomaticEvents: NO];
+  ...
+}
+```
+
+### Configuration Options
+See all [config options here](https://mixpanel.github.io/mixpanel-swift/Classes/MixpanelInstance.html).
+
 ## Sending Events
 
 We recommend tracking only five to seven events in your application instead of tracking too many things to start. Ideally, you track users going through your initial user experience and one key metric that matters for your application (e.g. YouTube might choose "Watched Video" as a key metric).
@@ -30,7 +48,8 @@ Mixpanel.mainInstance().track(event: "Image Upload")
 
 It's very common to have certain properties that you want to include with each event you send. Generally, these are things you know about the user rather than about a specific event—for example, the user's age, gender, or source.
 
-To make things easier, you can register these properties as super properties. If you do, we will automatically include them with all tracked events. Super properties are saved to device storage, and will persist across invocations of your app. Mixpanel already stores some information as super properties by default; see a full list of Mixpanel default properties [here](/docs/data-structure/property-reference#default-properties).
+To make things easier, you can register these properties as super properties. If you do, we will automatically include them with all tracked events. Super properties are saved to device storage, and will persist across invocations of your app. Super properties are indistinguishable from other event properties once ingested in your project.
+Mixpanel already stores some information as super properties by default; see a full list of Mixpanel default properties [here](/docs/data-structure/property-reference#default-properties).
 
 To set super properties, call [`registerSuperProperties(_:)`](https://mixpanel.github.io/mixpanel-swift/Classes/MixpanelInstance.html#/s:FC8Mixpanel16MixpanelInstance23registerSuperPropertiesFGVs10DictionarySSPs9AnyObject__T_)
 
@@ -128,20 +147,6 @@ Mixpanel.mainInstance().people.increment(properties:
 ### Other Types of Profile Updates
 There are a few other types of profile updates. To learn more, please review the [full MixpanelPeople API documentation](https://mixpanel.github.io/mixpanel-swift/Classes/People.html).
 
-## Tracking Revenue
-
-Mixpanel makes it easy to analyze the revenue you earn from individual customers. By associating charges with user profiles, you can compare revenue across different customer segments and calculate things like lifetime value.
-
-You can track a single transaction with [`people.trackCharge(amount:)`](https://mixpanel.github.io/mixpanel-swift/Classes/People.html#/s:FC8Mixpanel6People11trackChargeFT6amountSd10propertiesGSqGVs10DictionarySSPs9AnyObject____T_). This call will add transactions to the individual user profile, which will also be reflected in the Mixpanel Revenue report.
-
-```swift Swift
-// Tracks $100.77 in revenue for user 13793
-Mixpanel.mainInstance().people.trackCharge(amount: 100.77)
-
-// Refund this user 50 dollars
-Mixpanel.mainInstance().people.trackCharge(amount: -50)
-```
-
 ## Group Analytics
 Mixpanel Group Analytics is a paid add-on that allows behavioral data analysis by selected groups, as opposed to individual users.
 
@@ -220,6 +225,16 @@ You can turn on Mixpanel logging by enabling the following flag:
 Mixpanel.mainInstance().loggingEnabled = true
 ```
 
+## Flushing Events
+
+To preserve battery life and customer bandwidth, the Mixpanel library doesn't send the events you record immediately. Instead, it sends batches to the Mixpanel servers every 60 seconds while your application is running, as well as when the application transitions to the background. You can call [flush()](https://mixpanel.github.io/mixpanel-swift/Classes/MixpanelInstance.html#/s:8Mixpanel0A8InstanceC5flush10completionyyycSg_tF) manually if you want to force a flush at a particular moment.
+
+```swift
+Mixpanel.mainInstance().flush()
+```
+
+## Mobile Attribution
+Learn more about [mobile attribution here](/docs/tracking-best-practices/traffic-attribution).
 
 ## EU Data Residency
 

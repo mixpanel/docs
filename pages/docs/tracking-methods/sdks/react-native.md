@@ -6,6 +6,23 @@ Please refer to our [Quickstart Guide](/docs/quickstart/connect-your-data?sdk=re
 
 The [Full API Reference](https://mixpanel.github.io/mixpanel-react-native/Mixpanel.html), [Library Source Code](https://github.com/mixpanel/mixpanel-react-native), and an [Example Application](https://github.com/mixpanel/mixpanel-react-native/tree/master/Samples) is documented in our GitHub repo.
 
+## Initialize the Library
+
+Replace `YOUR_TOKEN` with your project token. You can find your token [here](https://mixpanel.com/settings/project).
+
+```javascript
+//Import Mixpanel API
+import { Mixpanel } from "mixpanel-react-native";
+
+// Set up an instance of Mixpanel
+const trackAutomaticEvents = false;
+const mixpanel = new Mixpanel("YOUR_TOKEN", trackAutomaticEvents);
+mixpanel.init();
+```
+
+### Configuration Options
+See library [config options here](https://github.com/mixpanel/mixpanel-react-native/blob/6d8da0b503f77d49c244900ee8a4f6e77c4251e0/javascript/mixpanel-config.js).
+
 ## Sending Events
 
 We recommend tracking only five to seven events in your application instead of tracking too many things to start. Ideally, you track users going through your initial user experience and one key metric that matters for your application (e.g. YouTube might choose "Watched Video" as a key metric).
@@ -31,7 +48,9 @@ mixpanel.track("Image Upload");
 
 It's common to have certain properties that you want to include with each event you send. Generally, these are things you know about the user rather than about a specific event - for example, the user's age, gender, source, or initial referrer.
 
-To make things easier, you can register these properties as super properties. If you tell us just once that these properties are important, we will automatically include them with all events sent. Super properties are saved to local storage, and will persist across invocations of your app. Mixpanel already stores some information as super properties by default; see a full list of Mixpanel default properties [here](/docs/data-structure/property-reference#default-properties).
+To make things easier, you can register these properties as super properties. If you tell us just once that these properties are important, we will automatically include them with all events sent. Super properties are saved to local storage, and will persist across invocations of your app. Super properties are indistinguishable from other event properties once ingested in your project.
+
+Mixpanel already stores some information as super properties by default; see a full list of Mixpanel default properties [here](/docs/data-structure/property-reference#default-properties).
 
 To set super properties, call [`registerSuperProperties`](https://mixpanel.github.io/mixpanel-react-native/Mixpanel.html#registerSuperProperties)
 

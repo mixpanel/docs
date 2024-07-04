@@ -44,7 +44,7 @@ If there are projects that you wish for everyone in your organization to have so
 
 ### Remove Users
 
-You can remove users from an organization or project.
+You can remove users from an organization or project. You can only remove users with role permission below your own.
 
 #### Remove User from an Organization
 
@@ -93,11 +93,13 @@ Paid Organizations have four roles: Owner, Admin, Billing Admin and Member. Free
 | Modify 2FA and SSO                                                 | ✅ | ✅ | ❌ | ❌ |
 | Request Organization Deletion                                      | ✅ | ❌ | ❌ | ❌ |
 
-#### Owner
+**Owner**
+
+>As a best practice, it is recommended to have at least 2 Organization Owners at all times, in case an owner loses access to their account or is no longer working with the company.
 
 Organization Owners have administrative permissions for the organization and all the projects in the organization. Multiple users can be Owners. However, each organization must have at least one Owner.
 
-#### Admin
+**Admin**
 
 Organization Admins have permissions to manage projects, members and roles in the organization. Organization Admins have the same permissions as Organization Owners **except** for the following:
 
@@ -108,7 +110,7 @@ Organization Admins have permissions to manage projects, members and roles in th
 
 In addition, an Organization Admin would not be able to assign any user to anything higher than Admin (i.e. Organization Owner).
 
-#### Billing Admin
+**Billing Admin**
 
 Organization Billing Admins can only manage billing plans for your company. The Billing Admin does not have to belong to a team or project. A user can be a Billing Admin and also a member of a Project or a Team simultaneously.
 
@@ -119,7 +121,7 @@ Billing admins can view organization settings solely to:
 - View Receipts
 - Submit a Downgrade Request
 
-#### Member
+**Member**
 
 Organization Members have no permissions to control or manage organization settings. In order for a user to have access to project(s) and/or team(s), they must first be added to the organization as a Member.
 
@@ -174,23 +176,23 @@ The table below is an overview of the permissions per role for reports and other
 | Download CSV in Lexicon                 | ✅ | ✅ | ✅ | ✅ |
 | Upload a Lookup Table                   | ✅ | ✅ | ✅ | ✅ |
 
-#### Owner
+**Owner**
 
 When a user creates a project, they own and have complete control over it. They have all permissions at the project level and can provision project ownership to other project users.
 
 Organization Owners, by default, have administrative permissions to assume an owner role in a project.
 
-#### Admin
+**Admin**
 
 Project Admins have the same set of permissions as project owners. However, they cannot delete or reset the project or manage its security. In addition, a Project Admin would not be able to assign any user to anything higher than Admin (i.e. Project Owner).
 
 Organization Admins, by default, have administrative permissions to assume an admin role in a project.
 
-#### Analyst
+**Analyst**
 
 Project Analysts can create and save Mixpanel reports and Boards. They can also share their saved reports and Boards, along with reports and Boards in which they have editor permissions. They however do not have permissions to manage project user roles.
 
-#### Consumer
+**Consumer**
 
 Project Consumers can view and save their own reports and Boards. However, they cannot share their saved reports and Boards with other project users as these will be marked as private.
 

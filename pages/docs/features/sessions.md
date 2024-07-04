@@ -1,5 +1,7 @@
 # Sessions
 
+> The Session feature in this page is not about the legacy autotrack events (App Sessions, $ae_session, etc.) sent by older versions of Mixpanel's mobile SDKs.
+
 Use Sessions in Mixpanel to answer questions like:
 * How much time do users spend on my site per session?
 * What are the average number of pages visited per session?
@@ -21,7 +23,8 @@ The way sessions are computed, and thus how the Session Start and Session End ev
 * **Property Based**: Provide a `session_id` property. All events that a user performs which have the same value for `session_id` are considered part of the same session.
 
 Project Admins or Owners can choose between one of these configurations in [Project Settings](https://mixpanel.com/settings/project).
-Since Mixpanel computes sessions on the fly, you can change this definition at any time and it will apply historically. Read more [below](#session-computation-deep-dive).
+
+These virtual Session events are dynamically computed in the front end based on your provided session definition, so any reports that include these events will reflect the latest definition at the time of query. Note that these are not raw events that are stored in your project, meaning that they will not appear in your raw event export payload.
 
 ## Use Cases
 These use cases assume that you're tracking an event for each page a user views. You can do this automatically with our [Javascript SDK](/docs/quickstart/connect-your-data?sdk=javascript) or using a CDP like Segment.

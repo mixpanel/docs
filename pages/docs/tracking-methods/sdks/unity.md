@@ -59,7 +59,9 @@ Mixpanel.Track("Image Upload");
 
 It's very common to have certain properties that you want to include with each event you send. Generally, these are things you know about the **user** rather than about a specific event—for example, the user's age, gender, or source.
 
-To make things easier, you can register these properties as **super properties**. If you do, we will automatically include them with all tracked events. Super properties are saved to device storage, and will persist across invocations of your app. Mixpanel already stores some information as super properties by default; see a full list of Mixpanel default properties [here](/docs/data-structure/property-reference).
+To make things easier, you can register these properties as **super properties**. If you do, we will automatically include them with all tracked events. Super properties are saved to device storage, and will persist across invocations of your app. Super properties are indistinguishable from other event properties once ingested in your project.
+
+Mixpanel already stores some information as super properties by default; see a full list of Mixpanel default properties [here](/docs/data-structure/property-reference).
 
 To set super properties, call [`Mixpanel.Register.`](http://mixpanel.github.io/mixpanel-unity/api-reference/classmixpanel_1_1_mixpanel.html#acf2fccd7625dfb2a15ef54fcaf8ddfe4)
 
@@ -150,28 +152,3 @@ Mixpanel.People.Increment("point count", 500);
 #### Other Types of Profile Updates
 
 There are a few other types of profile updates. To learn more, please see the [full API reference](http://mixpanel.github.io/mixpanel-unity/api-reference/annotated.html).
-
-## Tracking Revenue
-
-Mixpanel makes it easy to analyze the revenue you earn from individual customers. By associating charges with user profiles, you can compare revenue across different customer segments and calculate things like lifetime value.
-
-You can track a single transaction with [`Mixpanel.people.TrackCharge`](http://mixpanel.github.io/mixpanel-unity/api-reference/classmixpanel_1_1_mixpanel_1_1_people.html#ae0f80a6831618f591542f230f821e665). This call will add transactions to the individual user profile, which will also be reflected in the Mixpanel Revenue report.
-
-```csharp
-// Make sure identify has been called before making revenue
-// updates
-Mixpanel.Identify("13793");
-
-// Tracks $100 in revenue for user 13793
-Mixpanel.People.TrackCharge(100);
-
-// Refund this user 50 dollars
-Mixpanel.People.TrackCharge(-50);
-
-// Tracks $25 in revenue for user 13793 on the 2nd of
-// January
-var props = new Value();
-props["time"] = "2012-01-02T00:00:00";
-
-Mixpanel.People.TrackCharge(25, props);
-```

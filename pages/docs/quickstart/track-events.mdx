@@ -264,6 +264,8 @@ All of our sample code transparently retries and backoff from rate limit excepti
 
 <br></br><br></br><br></br><br></br>
 
+<div className="next-steps-sections">
+
 {/* Next Section */}
 
 <hr></hr>
@@ -297,7 +299,7 @@ export function FAQBox({ title, children }) {
       className="last-of-type:mb-0 rounded-xl bg-[#f5f2f2] p-0 mt-6"
     >
       <summary>
-        <strong className="text-lg font-medium text-[#1b0b3b]">{title}</strong>
+        <strong className="text-lg font-medium">{title}</strong>
       </summary>
       <div className="nx-p-2">{children}</div>
     </details>
@@ -322,3 +324,4 @@ export function FAQBox({ title, children }) {
   mobile SDKs buffer events for 1 minute, or when the app transitions to the background, to 
   conserve battery life and bandwidth. You can call `.flush()` in the mobile SDKs to manually flush events to Mixpanel.
 </FAQBox>
+</div>

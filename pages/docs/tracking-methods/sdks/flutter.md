@@ -6,7 +6,27 @@ Please refer to our [Quickstart Guide](/docs/quickstart/connect-your-data?sdk=fl
 
 The [Full API Reference](https://mixpanel.github.io/mixpanel-flutter), [Library Source Code](https://github.com/mixpanel/mixpanel-flutter), and an [Example Application](https://github.com/mixpanel/mixpanel-flutter/tree/main/example) is documented in our GitHub repo.
 
+## Initialize the Library
 
+Replace `YOUR_TOKEN` with your project token. You can find your token [here](https://mixpanel.com/settings/project).
+
+```dart
+import 'package:mixpanel_flutter/mixpanel_flutter.dart';
+class _YourClassState extends State<YourClass> {
+  Mixpanel mixpanel;
+
+  @override
+  void initState() {
+    super.initState();
+    initMixpanel();
+  }
+
+  Future<void> initMixpanel() async {
+    // Once you've called this method once, you can access `mixpanel` throughout the rest of your application.
+    mixpanel = await Mixpanel.init("YOUR_TOKEN", trackAutomaticEvents: false);
+  }
+}
+```
 
 ## Sending Events
 
@@ -34,7 +54,9 @@ mixpanel.track("Image Upload");
 
 It's common to have certain properties that you want to include with each event you send. Generally, these are things you know about the user rather than about a specific event - for example, the user's age, gender, source, or initial referrer.
 
-To make things easier, you can register these properties as super properties. If you tell us just once that these properties are important, we will automatically include them with all events sent. Super properties are saved to local storage, and will persist across invocations of your app. Mixpanel already stores some information as super properties by default; see a full list of Mixpanel default properties [here](/docs/data-structure/property-reference#default-properties).
+To make things easier, you can register these properties as super properties. If you tell us just once that these properties are important, we will automatically include them with all events sent. Super properties are saved to local storage, and will persist across invocations of your app. Super properties are indistinguishable from other event properties once ingested in your project. 
+
+Mixpanel already stores some information as super properties by default; see a full list of Mixpanel default properties [here](/docs/data-structure/property-reference/default-properties).
 
 To set super properties, call [`registerSuperProperties`](https://mixpanel.github.io/mixpanel-flutter/mixpanel_flutter/Mixpanel/registerSuperProperties.html)
 
@@ -248,6 +270,9 @@ Specifically for Flutter Web, add your proxy server to the `mixpanel.init` call:
 ```js
 mixpanel.init("<YOUR_PROJECT_TOKEN>", {api_host: "https://<YOUR_PROXY_DOMAIN>"});
 ```
+
+## Mobile Attribution
+Learn more about [mobile attribution here](/docs/tracking-best-practices/traffic-attribution).
 
 ## Debugging and Logging
 
