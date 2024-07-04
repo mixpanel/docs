@@ -210,7 +210,7 @@ Follow these steps to grant the `CREATE` privilege:
   ```bash
   aws sts assume-role --role-arn <role-arn> --role-session-name MixpanelSession
   ```
-- If you receive an **"AccessDenied"** error, it means the role you're currently using to run the AWS CLI doesn't have permission to assume the Mixpanel role. To resolve this, identify your current role (which is typically your IAM user or the role you're using for AWS CLI access) and then update the Mixpanel role's trust relationship. Edit the trust policy by adding a new statement allowing your current role to assume the Mixpanel role. For example, if you are using a SSO user, replace `<your account id>` with your AWS account ID.
+- If you get an **"AccessDenied"** error, your current AWS CLI role can't assume the Mixpanel role. To fix this, edit the Mixpanel role's trust policy to allow your current role to assume it. If you're using SSO, add this to the trust policy, replacing `<your account id>` with your AWS account ID:
 
   ```json
   {
@@ -235,13 +235,13 @@ Follow these steps to grant the `CREATE` privilege:
   }
   ```
 
-- Configure AWS CLI with the temporary credentials
+- Configure AWS CLI with the temporary credentials.
   ```bash
   aws configure set aws_access_key_id "<YOUR_ACCESS_KEY_ID>"
   aws configure set aws_secret_access_key "<YOUR_SECRET_ACCESS_KEY>"
   aws configure set aws_session_token "<YOUR_SESSION_TOKEN>"
   ```
-- Run this command in your terminal, replacing the placeholders with your actual values, and ensures that the db user `IAMR:<mixpanel-role-name>` is created in Redshift
+- Run this command in your terminal, replacing the placeholders with your actual values, and trigger the db user `IAMR:<mixpanel-role-name>` creation in Redshift.
   ```bash
   aws redshift-data execute-statement \
   --workgroup-name <your-workgroup-arn> \
@@ -249,14 +249,14 @@ Follow these steps to grant the `CREATE` privilege:
   --sql "SELECT 1;"
   ```
   Note: For provisioned Redshift clusters, use `--cluster-identifier` instead of `--workgroup-name`.
-- Grant CREATE privilege. Open **Query Editor v2** in the Amazon Redshift console. Connect using appropriate credentials and run the following SQL commands, replacing <your-database-name> and <mixpanel-role-name> with your actual values:
+- Grant `CREATE` privilege. Click **Query data** in the Amazon Redshift console to open **Query Editor v2**. Connect using appropriate credentials and run the following SQL commands, replacing <your-database-name> and <mixpanel-role-name> with your actual values:
 
   ```sql
   -- Check if the IAMR user has been created
   SELECT * FROM pg_user WHERE usename LIKE 'IAMR:<mixpanel-role-name>';
 
   -- If you see your IAMR user in the results, proceed with the following commands
-  GRANT CREATE ON DATABASE '<your-database-name>' TO 'IAMR:<mixpanel-role-name>';
+  GRANT CREATE ON DATABASE "<your-database-name>" TO "IAMR:<mixpanel-role-name>";
 
   -- Should return true if the privilege was successfully granted
   SELECT HAS_DATABASE_PRIVILEGE('IAMR:<mixpanel-role-name>', '<your-database-name>', 'CREATE');
