@@ -110,7 +110,10 @@ By [adding middleware to Segment's SDK](https://segment.com/docs/connections/sou
 analytics.addSourceMiddleware(({ payload, next, integrations }) => {
 	if (payload.type === 'track' || payload.type === 'page') {
 		if (window.mixpanel) {
-			const segmentDeviceId = payload.obj.anonymousId;			
+			const segmentDeviceId = payload.obj.anonymousId;
+			//original id
+			mixpanel.register({ $device_id: segmentDeviceId, distinct_id : segmentDeviceId })
+			//simplified id 
 			mixpanel.register({ $device_id: segmentDeviceId, distinct_id : "$device:"+segmentDeviceId });			
 			const sessionReplayProperties = mixpanel.get_session_recording_properties();
 			payload.obj.properties = {
