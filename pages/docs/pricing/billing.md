@@ -171,7 +171,7 @@ Another option to avoid paying for overages is to downgrade or upgrade before th
 
 Mixpanel’s default pricing option is based on events because it is a better option for the majority of customers. Mixpanel also offers an MTU-based Enterprise plan, which **starts at $10,000 per year** and isn’t available online. If you are interested in learning more about it, [contact our sales team](https://mixpanel.com/contact-us/sales/).
 
-If you are an existing customer on an MTU plan, refer to our legacy MTU Pricing Guide.
+If you are an existing customer on an MTU plan, refer to our MTU Pricing Guide.
 
 ### Is old event data billed when imported to Mixpanel?
 
