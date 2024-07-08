@@ -28,7 +28,7 @@ This configuration supports SCIM.
 | Claimed Domains   | Organization| Admin Organization|
 | SCIM Group | Team in Organization | Linked Organization |
 
-> If you use Azure for SSO, contact Mixpanel before migrating, due to constraints with “Issuer URL” and “Identifier (Entity ID)”
+> ❗ If you use Azure for SSO, contact Mixpanel before migrating, due to constraints with “Issuer URL” and “Identifier (Entity ID)”
 
 ## Setting Up Shared SSO
 
@@ -45,7 +45,7 @@ Mixpanel supports using SCIM to administer users while using Shared SSO. With si
 
 With Shared SSO, the SCIM process works a little differently. Users are pushed to the Admin Organization. Groups in the IDP are pushed to Organizations Linked to the Admin Organization. Groups are mapped by matching an editable “SCIM Name” field in an Organization to the name of the Group in the IDP. Users that are members of the IDP Group are assigned to the linked Organization whos SCIM Name matches the name of the Group.
 
-> With Shared SSO, the SCIM process cannot create, delete or alter the linked Organizations in Mixpanel like it would with a Mixpanel Team. The SCIM process can only add and remove Users, and assign those users to the Organization.
+> ℹ️ With Shared SSO, the SCIM process cannot create, delete or alter the linked Organizations in Mixpanel like it would with a Mixpanel Team. The SCIM process can only add and remove Users, and assign those users to the Organization.
 
 ## Migrating To Shared SSO
 
