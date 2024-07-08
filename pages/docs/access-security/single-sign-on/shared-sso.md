@@ -12,6 +12,8 @@ An "Admin" Organization is a special type of Organization that contains Single S
 
 An "Admin" Organization is different from a regular Organization in that it will not have Projects, Teams, a Plan or Billing, or Service Accounts. Other than administrators, Users will not see the Admin Organization or interact with it directly.
 
+> ❗ If you use Azure for SSO, contact Mixpanel before migrating, due to constraints with “Issuer URL” and “Identifier (Entity ID)”
+
 ## How It Works
 
 Any Organization linked to an Admin Organization will use the Single Sign-On settings from that Admin Organization - and Single Sign-On settings or Claimed Domains the first Organization may have had are now ignored.
@@ -28,7 +30,6 @@ This configuration supports SCIM.
 | Claimed Domains   | Organization| Admin Organization|
 | SCIM Group | Team in Organization | Linked Organization |
 
-> ❗ If you use Azure for SSO, contact Mixpanel before migrating, due to constraints with “Issuer URL” and “Identifier (Entity ID)”
 
 ## Setting Up Shared SSO
 
