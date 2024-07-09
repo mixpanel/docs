@@ -19,7 +19,7 @@ Follow these steps to enable the integration with Mailchimp:
 
 ![mailchimp 1 Image](/mailchimp1.png)
 
-2. From the Integrations page, select the Appcues dropdown, and select **Connect**.
+2. From the Integrations page, select the Mailchimp dropdown, and select **Connect**.
 
 ![mailchimp 2 Image](/mailchimp2.png)
 
