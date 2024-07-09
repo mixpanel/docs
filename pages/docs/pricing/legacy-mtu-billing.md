@@ -1,4 +1,4 @@
-# Legacy MTU billing
+# MTU billing
 
 ## What is an MTU?
 

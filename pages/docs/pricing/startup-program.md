@@ -83,7 +83,7 @@ Yes, the startup program provides your first year of Mixpanel for free, valued u
 
 For startups on an event-based plan, any event above the purchased event limit is billed at the standard base rate. We guarantee a fair price, always. We’re not going to over-charge you for events. We want you to keep your costs predictable and manageable as your business grows.
 
-For startups on a legacy MTU plan, any monthly tracked user (MTU) above the purchased MTU limit would be billed at a metered additional data rate (120% of base rate).
+For startups on an MTU plan, any monthly tracked user (MTU) above the purchased MTU limit would be billed at a metered additional data rate (120% of base rate).
 
 For example, if you were to purchase a 100,000 MTU plan and then ended up tracking exactly 150,000 monthly tracked users (MTU) each month:
 
@@ -97,7 +97,7 @@ For example, if you were to purchase a 100,000 MTU plan and then ended up tracki
 - Since an extra 50,000, MTU would be consumed each month, leading to additional data charges of $499.95/month
 - Over a 12 month period, the annual cost would sum to $15,998.4* due to the additional 50,000 MTU sent each month and this will all be covered by your initial credit balance in the first year.
 
-If you are on a legacy MTU plan, the startup program allows you to track approximately 430,000 MTUs each month before you exceed the \$50,000 value of the offer. Please reach out to our [Sales team](https://mixpanel.com/contact-us/sales/) in case your company has more users and you want to discuss other plan options.
+If you are on an MTU plan, the startup program allows you to track approximately 430,000 MTUs each month before you exceed the \$50,000 value of the offer. Please reach out to our [Sales team](https://mixpanel.com/contact-us/sales/) in case your company has more users and you want to discuss other plan options.
 
 Note: These prices are illustrative only, please visit the [pricing page](https://mixpanel.com/pricing/) to view our latest prices.
 
