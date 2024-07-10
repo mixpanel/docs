@@ -41,7 +41,7 @@
 /docs/analysis/users /docs/users/overview
 /docs/best-practices/server-side-best-practices /docs/tracking-best-practices/server-side-best-practices
 /docs/debugging/bot-traffic /docs/tracking-best-practices/bot-traffic
-/docs/debugging/distinct-id-limits /docs/tracking-best-practices/distinct-id-limits
+/docs/debugging/distinct-id-limits /docs/tracking-best-practices/hot-shard-limits
 /docs/debugging/overview /docs/tracking-best-practices/debugging
 /docs/getting-started/plan-your-implementation /docs/what-to-track
 /docs/getting-started/what-is-mixpanel /docs/what-is-mixpanel
