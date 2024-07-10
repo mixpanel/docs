@@ -16,7 +16,7 @@ For more information about events refer to the documentation on [The Mixpanel Da
 * A `Page Viewed` event might have a property called `Page URL`, which is set to the URL of the page that was viewed.
 * A `Signed Up` event might have a property called `Signup Type`, which indicates whether the signup was `organic` vs `referral`.
 * A `Song Played` event might have a property called `Song Name`, which is set to the name of the song that was played.
-* A `Order Completed` event might have a property called `Items`, which is a list of objects, each of which contains details about an item, like its name, category, and price.
+* An `Order Completed` event might have a property called `Items`, which is a list of objects, each of which contains details about an item, like its name, category, and price.
 
 ## Use Cases
 
@@ -31,11 +31,11 @@ You can filter, breakdown, and aggregate your events by their properties to answ
 
 ### Keep Events as Actions
 
-We recommend striking the right balance when defining your events. Events should neither be too broad nor too specific, and should be defined at the level of how you plan to analyse the user's action or behaviour. Also keeping in mind to use event properties to provide context or details about an event, instead of creating different events to capture similar actions. 
+We recommend striking the right balance when defining your events. Events should neither be too broad nor too specific, and should be defined at the level of how you plan to analyse the user's action or behavior. Also keep in mind to use event properties to provide context or details about an event, instead of creating different events to capture similar actions. 
 
 **For example:**
 
-* If your goal is to analyse at high-level how users traverse through different pages: instead of tracking multiple events `Home Page Viewed` and `Pricing Page Viewed`, track a `Page Viewed` event with a `Page Name` property set to **"\/home"** or **"\/pricing"**. See [Tracking Page Views](/docs/tracking-methods/sdks/javascript#tracking-page-views) in our Javascript SDK documentation on how to instrument this.
+* If your goal is to analyze at high-level how users traverse through different pages: instead of tracking multiple events `Home Page Viewed` and `Pricing Page Viewed`, track a `Page Viewed` event with a `Page Name` property set to **"\/home"** or **"\/pricing"**. See [Tracking Page Views](/docs/tracking-methods/sdks/javascript#tracking-page-views) in our Javascript SDK documentation on how to instrument this.
 
 * If your goal is to track users adding items to a shopping cart: instead of tracking multiple events `Add Shirt to Cart`, `Add Hoodie to Cart`, and `Add Socks to Cart`, track a `Add to Cart` event with a `Item` property set to **"Shirt"**, or **"Hoodie"**, or **"Socks"**.
 
