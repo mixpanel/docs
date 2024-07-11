@@ -12,7 +12,7 @@ An "Admin" Organization is a special type of Organization that contains Single S
 
 An "Admin" Organization is different from a regular Organization in that it will not have Projects, Teams, a Plan or Billing, or Service Accounts. Other than administrators (those with Admin or Owner roles), any Organization Members will not see the Admin Organization or interact with it directly.
 
-> ❗ If you use Azure for SSO, contact Mixpanel before migrating, due to constraints with “Issuer URL” and “Identifier (Entity ID)”
+> ❗ If you use Azure for SSO, you must [open a Mixpanel support ticket](https://mixpanel.com/get-support) before migrating, due to constraints with “Issuer URL” and “Identifier (Entity ID)”
 
 ## How It Works
 
