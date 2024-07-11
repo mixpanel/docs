@@ -2,7 +2,7 @@
 
 ## Overview
 
-If you have multiple Mixpanel Organizations with separate billing accounts, but need to share SSO settings and email domains for login, you can share those settings with an "Admin" Organization.
+If you have multiple Mixpanel [Organizations](/docs/orgs-and-projects/organizations) with separate billing accounts, but need to share SSO settings and email domains for login, you can share those settings with an "Admin" Organization.
 
 With a shared SSO setup, Single Sign-On settings and Claimed Domains are administered via this "Admin" Organization, and Organizations can be linked to the "Admin" Organization in order to utilize those settings. Administrators need administrative privileges in the Admin Organization to make changes to the shared SSO and Domain settings.
 
