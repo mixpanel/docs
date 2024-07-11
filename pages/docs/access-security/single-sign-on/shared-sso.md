@@ -16,7 +16,7 @@ An "Admin" Organization is different from a regular Organization in that it will
 
 ## How It Works
 
-Any Organization linked to an Admin Organization will use the Single Sign-On settings from that Admin Organization - and Single Sign-On settings or Claimed Domains the first Organization may have had are now ignored.
+Any Organization linked to an Admin Organization will use the Single Sign-On settings from that Admin Organization - any Single Sign-On settings or Claimed Domains the Linked Organization may have had are now ignored.
 
 SSO settings and Claimed Domains are managed in the Admin Organization. Administrative users who manage SSO settings in the Admin Organization do not need to be members of the Linked Organization(s), and vice-versa.
 
