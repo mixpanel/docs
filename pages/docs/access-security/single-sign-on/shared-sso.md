@@ -8,9 +8,9 @@ With a shared SSO setup, Single Sign-On settings and Claimed Domains are adminis
 
 This feature is available to customers on an Enterprise Plan.
 
-An "Admin" Organization is a special type of Organization that contains Single Sign-On settings and Claimed Domains. It can have users, but these will typically be administrative users.
+An "Admin" Organization is a special type of Organization that contains Single Sign-On settings and Claimed Domains. It can have Organization Members, but you should only add administrative users to the Admin Organization to manage security. The [SCIM](/docs/access-security/single-sign-on/overview#scim) process will add Users as Organization Members.
 
-An "Admin" Organization is different from a regular Organization in that it will not have Projects, Teams, a Plan or Billing, or Service Accounts. Other than administrators, Users will not see the Admin Organization or interact with it directly.
+An "Admin" Organization is different from a regular Organization in that it will not have Projects, Teams, a Plan or Billing, or Service Accounts. Other than administrators (those with Admin or Owner roles), any Organization Members will not see the Admin Organization or interact with it directly.
 
 > ❗ If you use Azure for SSO, contact Mixpanel before migrating, due to constraints with “Issuer URL” and “Identifier (Entity ID)”
 
