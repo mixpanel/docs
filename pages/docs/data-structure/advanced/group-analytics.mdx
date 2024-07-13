@@ -92,9 +92,9 @@ Establish the group identifier with an event property as the Group Key, where th
 
 Group keys are project specific, and the group key must be set up before group data is sent.
 
-To administer group keys, navigate to your Project Settings. Click **+Add Group Key** under the *GROUP KEYS* section.
+To administer group keys, navigate to your Project Settings. Click **+Add Group Key** under the *Group Keys* section.
 
-![/Screen_Shot_2022-06-22_at_5.21.06_PM.png](/Screen_Shot_2022-06-22_at_5.21.06_PM.png)
+![image](/add-group-key.png "Add Group Key")
 
 Enter an event property to attribute the group key to. You can also enter a display name for the group key. Click **Save**.
 
@@ -181,7 +181,11 @@ curl --request POST \
   --data data_group_id=<data_group_id_here>
 ```
 
-The `<data_group_id>` can be found in the URL of the [Group Profile](/docs/data-structure/advanced/group-analytics#group-profiles) page:
+The `<data_group_id>` for the respective group key's profile can be found under Group Keys within Project Settings:
+
+![image](/data-group-id.png "Data Group ID")
+
+Alternatively, the `<data_group_id>` can also be seen as part of the URL of the [Group Profile](/docs/data-structure/advanced/group-analytics#group-profiles) page:
 
 `https://mixpanel.com/project/<project_id>/view/<workspace_id>/app/profile#distinct_id=<distinct_id>&data_group_id=<data_group_id>`
 
