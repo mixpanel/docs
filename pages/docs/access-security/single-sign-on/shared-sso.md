@@ -95,8 +95,10 @@ Be sure to follow these steps in this order, or there will be more downtime for 
 3. In your IDP, assign all users (who will be using Mixpanel in any Linked Organization) into the newly configured app
 4. (optional) Set up SCIM in your IDP, but do not start pushing groups
 5. Link the original Organization to the Admin Organization
-    1. This will cause the existing SSO set up to stop working
-6. Transfer claimed Domains from the original Organization to the Admin Organization
+
+> This will cause the existing SSO set up to stop working
+
+6. Transfer claimed Domains from the original Organization to the Admin Organization. Any claimed Domains in a Linked Organization will be hidden.
 7. Users should be able to log in via SSO again, as before
 8. (optional) Finish setting up SCIM
     1. Establish a Group in your IDP for the users who have access to the original Organization
