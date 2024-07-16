@@ -86,9 +86,9 @@ With Shared SSO, the SCIM process works a little differently. Users are pushed t
 
 ## Migrating To Shared SSO
 
-If you have Single Sign-On configured for an Organization, and want to use the same email domains with Shared SSO, you will need to migrate.
+If you have Single Sign-On configured for an Organization, and want to use the same email domains with a Shared SSO; you will need to follow these steps to migrate and minimize the time Single Sign-On is unavailable for your users.
 
-Following these steps in this order will minimize the time Single Sign-On is unavailable for your users.
+Be sure to follow these steps in this order, or there will be more downtime for Single Sign-On.
 
 1. Create an Admin Organization
 2. Set up SSO for the Admin Organization and configure an application in your IDP to match
