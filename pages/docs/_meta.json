@@ -21,6 +21,7 @@
 	"reports": "Reports",
 	"boards": "Boards",
 	"users": "Users",
+	"session-replay", "Session Replay",
 	"features": "Features",
 	"admin": {
 		"type": "separator",
