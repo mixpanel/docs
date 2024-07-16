@@ -33,6 +33,8 @@ This configuration supports [SCIM](/docs/access-security/single-sign-on/overview
 
 ## Setting Up Shared SSO
 
+### Set up Overview
+
 1. Create an Admin Organization
 
 2. [Set up SSO](/docs/access-security/single-sign-on/overview#scim) for the Admin Organization as if it were a regular Organization
