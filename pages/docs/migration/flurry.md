@@ -231,7 +231,7 @@ Once you’ve migrated your data have started to enable end users on Mixpanel, t
 
 After you’ve successfully migrated both your tracking and end users over to Mixpanel, we recommend you focus on longer term goals like:
 
-- Improving Data Governance → Creating scaleable processes and strategies for managing data at scale
+- Improving Data Governance → Creating scalable processes and strategies for managing data at scale
 - Optimizing Analysis → Helping end users analyze data for more use cases, faster via training and documentation
 - Building a Product Analytics Practice → Cultural change to be a self-serve, data democratized organization
 

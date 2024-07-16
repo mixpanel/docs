@@ -38,7 +38,7 @@ Filters are used to narrow events or behaviors that qualify for analysis. For ex
 
 ### Global Filters
 
-A global filter applies to the entire report. by properties or cohorts by clicking the **Filter** button. This will filter the results of the entire report to show only data with that property or cohort.
+A global filter applies to the entire report. Filter by properties or cohorts by clicking the **Filter** button. This will filter the results of the entire report to show only data with that property or cohort.
 
 ![image](/global-filter.png)
 
