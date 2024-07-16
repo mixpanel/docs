@@ -24,11 +24,11 @@ This configuration supports [SCIM](/docs/access-security/single-sign-on/overview
 
 ## Differences From Single-Organization SSO
 
-| _Feature_     | Single-Organization SSO | Shared SSO  |
-| ----------- | -----------             | ----------- |
-| SSO configuration    | Organization| Admin Organization|
-| Claimed Domains   | Organization| Admin Organization|
-| SCIM Group | Team in Organization | Linked Organization |
+In single-Organization SSO, SSO is configured in each Organization. In Shared SSO, SSO is configured in the "Admin" Organization, and shared by any Linked Organizations.
+
+In single-Organization SSO, claimed domains belong to each Organization. In Shared SSO, claimed domains belong to the Admin Organization and are shared by any Linked Organizations.
+
+In single-Organization SSO, SCIM groups in the IDP map to a Team in Mixpanel, using, with the IDP group name matching the Mixpanel Team **name**. I Shared SSO, SCIM groups in the IDP map to Linked Organizations, with the IDP group name matching the Linked Organization's **SCIM Name**.
 
 ## Setting Up Shared SSO
 
