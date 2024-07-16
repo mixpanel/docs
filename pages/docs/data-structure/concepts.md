@@ -26,7 +26,7 @@ For example, while an Event Property or Super Property tells you whether a user 
 Imagine you work on a music streaming product and you want to answer questions like: 
 
 - What are the most popular songs and artists this week?
-- What is the distribution of number of songs player per week by user?
+- What is the distribution of number of songs played per week by user?
 - Which experiment performed better in an A/B test to drive a higher conversion rate from Free to Premium accounts?
 
 You want to analyze uniques by both users *and* accounts so you create a group key for `account_id`. You also want to augment your events with details about songs being played so you create a "Songs" lookup table and specify the join key as `song_id`. Your data model will look like this:
