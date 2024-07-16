@@ -20,7 +20,7 @@ Any Organization linked to an Admin Organization will use the Single Sign-On set
 
 SSO settings and Claimed Domains are managed in the Admin Organization. Administrative users who manage SSO settings in the Admin Organization do not need to be members of the Linked Organization(s), and vice-versa.
 
-This configuration supports SCIM.
+This configuration supports [SCIM](/docs/access-security/single-sign-on/overview#scim).
 
 ## Differences From Single-Organization SSO
 
@@ -33,12 +33,46 @@ This configuration supports SCIM.
 
 ## Setting Up Shared SSO
 
-Overview:
-
 1. Create an Admin Organization
-2. Set up SSO for the Admin Organization as if it were a regular Organization
+
+2. [Set up SSO](/docs/access-security/single-sign-on/overview#scim) for the Admin Organization as if it were a regular Organization
+
 3. Link any Organizations to the Admin Organization
+
 4. (Optional) Set up SCIM
+
+### 1. Create an Admin Organization
+For an existing Organization, go to Organization Settings > Access Security > Shared SSO.
+
+![SSO Create Admin Organization Image](/sso_create_admin_org1.png)
+
+![SSO Create Admin Organization Image](/sso_create_admin_org2.png)
+
+The new Admin Organization will be listed in the left nav in Organization Settings.
+
+### 2. [Set up SSO](/docs/access-security/single-sign-on/overview#scim) for the Admin Organization
+
+This is the same as if it were a regular Organization
+
+### 3. Link any Organizations to the Admin Organization
+
+> ❗ Any existing SSO settings in the "Linked" Organization will be ignored after this step.
+
+Start by generating a linking code in the new Admin Organization
+
+![SSO Generate Linking Code Image](/sso_generate_linking_code.png)
+
+Then complete the linking by entering the linking code in the Organization to be linked.
+
+![SSO Enter Linking Code Image](/sso_enter_linking_code.png)
+
+The Organizations are now linked. The Linked Organization will now follow the SSO settings and claimed domains from the Admin Org.
+
+### 4. (Optional) Set up [SCIM](/docs/access-security/single-sign-on/overview#scim)
+
+The configurable "SCIM Name" for the Linked Organization must match a group in your IDP. Members of the matching group will be added to the Linked Organization.
+
+![SSO Linked Organizations Image](/sso_linked_orgs.png)
 
 ## SCIM With Shared SSO
 
