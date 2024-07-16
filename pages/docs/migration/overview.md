@@ -82,7 +82,7 @@ We recommend once your data and users are migrated to utilize your learnings fro
 
 After the migration, we recommend you focus on longer term goals like:
 
-- Improving Data Governance → Creating scaleable processes and strategies for managing data at scale
+- Improving Data Governance → Creating scalable processes and strategies for managing data at scale
 - Optimizing Analysis → Helping end users analyze data for more use cases, faster via training and documentation
 - Building a Product Analytics Practice → Cultural change to be a self-serve, data democratized organization
 

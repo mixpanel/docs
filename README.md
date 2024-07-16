@@ -35,6 +35,20 @@ This is a bit more advanced, but makes it much faster to test the impact of your
    ```
 6. Make whatever changes you want locally, this should automatically reflect in your local instance of the docs.
 
+## Spell checking
+
+We use [CSpell](https://cspell.org/) to automate spell checking. With the npm dependencies installed, use the following to check pages for spelling:
+
+```
+npm run spelling
+```
+
+For more advanced usage, you can use the underlying cspell tool like so:
+
+```
+npx cspell --help
+```
+
 # Adding Images/GIFs
 Upload images/GIFs to the public/ directory. You can make sub-directories within `public/` to namespace them (eg: `/public/tutorials/` for all tutorial-related images).
 
