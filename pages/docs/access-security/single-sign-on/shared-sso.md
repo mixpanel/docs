@@ -42,9 +42,9 @@ This configuration supports [SCIM](/docs/access-security/single-sign-on/overview
 
 4. (Optional) Set up SCIM
 
-### 1. Create an Admin Organization
+### 1. Create an Admin Organization in Mixpanel
 
-For an existing Organization, go to Organization Settings > Access Security > Shared SSO.
+For an existing Organization in Mixpanel, go to Organization Settings > Access Security > Shared SSO.
 
 ![SSO Create Admin Organization Image](/sso_create_admin_org1.png)
 
@@ -54,9 +54,9 @@ The new Admin Organization will be listed in the left nav in Organization Settin
 
 ### 2. [Set up SSO](/docs/access-security/single-sign-on/overview#scim) for the Admin Organization
 
-This is the same as if it were a regular Organization
+You do this in Mixpanel and your IDP. This is the same as if it were a regular Organization.
 
-### 3. Link any Organizations to the Admin Organization
+### 3. Link any Organizations to the Admin Organization in Mixpanel
 
 > ❗ Any existing SSO settings in the "Linked" Organization will be ignored after this step.
 
@@ -90,17 +90,17 @@ If you have Single Sign-On configured for an Organization, and want to use the s
 
 Be sure to follow these steps in this order, or there will be more downtime for Single Sign-On.
 
-1. Create an Admin Organization
-2. Set up SSO for the Admin Organization and configure an application in your IDP with the corresponding settings. You can refer to the [Single Sign-on Overview section](/docs/access-security/single-sign-on/overview) in our docs or to the respective IDP docs for [Azure](/docs/access-security/single-sign-on/azure) or [Okta](/docs/access-security/single-sign-on/okta)
+1. In Mixpanel, Create an Admin Organization
+2. In Mixpanel, Set up SSO for the Admin Organization and configure an application in your IDP with the corresponding settings. You can refer to the [Single Sign-on Overview section](/docs/access-security/single-sign-on/overview) in our docs or to the respective IDP docs for [Azure](/docs/access-security/single-sign-on/azure) or [Okta](/docs/access-security/single-sign-on/okta)
 3. In your IDP, assign all users (who will be using Mixpanel in any Linked Organization) into the newly configured app
-4. (optional) Set up SCIM in your IDP, but do not start pushing groups
-5. Link the original Organization to the Admin Organization
+4. (optional) In your IDP, set up SCIM for the newly configured app, but do not start pushing groups
+5. In Mixpanel, link the original Organization to the Admin Organization
 
 > This will cause the existing SSO set up to stop working
 
-6. Transfer claimed Domains from the original Organization to the Admin Organization. Any claimed Domains in a Linked Organization will be hidden.
+6. In Mixpanel, transfer claimed Domains from the original Organization to the Admin Organization. Any claimed Domains in a Linked Organization will be hidden.
 7. Users should be able to log in via SSO again, as before
 8. (optional) Finish setting up SCIM
-    1. Establish a Group in your IDP for the users who have access to the original Organization
-    2. Edit the SCIM name of the original Organization to match the name of this group
+    1. In your IDP, establish a Group for the users who have access to the original Organization
+    2. In Mixpanel, edit the SCIM name of the original Organization to match the name of this group
     3. Configure your IDP to push this group to Mixpanel
