@@ -30,7 +30,6 @@ This configuration supports [SCIM](/docs/access-security/single-sign-on/overview
 | Claimed Domains   | Organization| Admin Organization|
 | SCIM Group | Team in Organization | Linked Organization |
 
-
 ## Setting Up Shared SSO
 
 ### Set up Overview
@@ -44,6 +43,7 @@ This configuration supports [SCIM](/docs/access-security/single-sign-on/overview
 4. (Optional) Set up SCIM
 
 ### 1. Create an Admin Organization
+
 For an existing Organization, go to Organization Settings > Access Security > Shared SSO.
 
 ![SSO Create Admin Organization Image](/sso_create_admin_org1.png)
