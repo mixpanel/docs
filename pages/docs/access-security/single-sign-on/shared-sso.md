@@ -90,11 +90,11 @@ If you have Single Sign-On configured for an Organization, and want to use the s
 
 Be sure to follow these steps in this order, or there will be more downtime for Single Sign-On.
 
-1. In Mixpanel, Create an Admin Organization
+1. In Mixpanel, [Create an Admin Organization](#1-create-an-admin-organization-in-mixpanel)
 2. In Mixpanel, Set up SSO for the Admin Organization and configure an application in your IDP with the corresponding settings. You can refer to the [Single Sign-on Overview section](/docs/access-security/single-sign-on/overview) in our docs or to the respective IDP docs for [Azure](/docs/access-security/single-sign-on/azure) or [Okta](/docs/access-security/single-sign-on/okta)
 3. In your IDP, assign all users (who will be using Mixpanel in any Linked Organization) into the newly configured app
 4. (optional) In your IDP, set up SCIM for the newly configured app, but do not start pushing groups
-5. In Mixpanel, link the original Organization to the Admin Organization
+5. In Mixpanel, [link the original Organization to the Admin Organization](#3-link-any-organizations-to-the-admin-organization-in-mixpanel)
 
 > This will cause the existing SSO set up to stop working
 
