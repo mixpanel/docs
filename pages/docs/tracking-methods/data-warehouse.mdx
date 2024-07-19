@@ -485,6 +485,12 @@ We also recommend loading your user and account tables, to enrich events with de
 
 Syncs have a throughput of ~30K events+updates/second or ~100M events+updates/hour.
 
+### What is the best way to start bringing in event data?
+
+We recommend starting with a subset of data in a materialized view to test the import process. This allows you to ensure that relevant columns are correctly formatted and the data appears as expected in Mixpanel. Once the data is imported, run a few reports to verify that you can accurately gain insight into your team’s KPIs with the way your data is formatted.
+
+After validating your use case, navigate to the imported table and select "Delete Import" to hard delete the subset data. This step ensures that you can then import the entire table without worrying about duplicate data.
+
 ### I already track data to Mixpanel via SDK or CDP, can I still use Warehouse Connectors?
 
 Yes! You can send some events (eg: web and app data) directly via our SDKs and send other data (eg: user profiles from CRM or logs from your backend) from your warehouse and analyze them together in Mixpanel.
@@ -505,7 +511,7 @@ On an [MTU billing plan](https://docs.mixpanel.com/docs/pricing/legacy-mtu-billi
 The DWH cost of using a warehouse connector will vary based on the source warehouse and sync type used. Our connectors use warehouse-specific change tracking to compute modified rows in the warehouse and send only changed data to Mixpanel.
 
 There are 3 aspects of DWH cost: network egress, storage, and compute.
-* **Network Egress**: All data is transfered using gzip compression. Assuming an egress rate of \$0.08 per GB and 100 compressed bytes per event, this is a cost of less than \$0.01 per million events. [Mirror](#mirror) and [Append](#append) syncs will only transfer new or modified rows each time they run. [Full](#full) syncs will transfer all rows every time they run. We recommend using Full syncs only for small tables and running them less frequently.
+* **Network Egress**: All data is transferred using gzip compression. Assuming an egress rate of \$0.08 per GB and 100 compressed bytes per event, this is a cost of less than \$0.01 per million events. [Mirror](#mirror) and [Append](#append) syncs will only transfer new or modified rows each time they run. [Full](#full) syncs will transfer all rows every time they run. We recommend using Full syncs only for small tables and running them less frequently.
 * **Storage**: [Append](#append) and [Full](#full) syncs do not store any additional data in your warehouse, so there are no extra storage costs. [Mirror](#mirror) tracks changes using warehouse-specific functionallity that can affect warehouse storage costs:
   * Snowflake: Mirror uses [Snowflake Streams](https://docs.snowflake.com/en/user-guide/streams-intro). Snowflake Streams will [retain historical data](https://docs.snowflake.com/en/user-guide/streams-intro#billing-for-streams) until it is consumed from the stream. As long as the warehouse connector runs regularly data will be consumed regularly and only retained between runs.
   * BigQuery: Mirror uses [table snapshots](https://cloud.google.com/bigquery/docs/table-snapshots-intro). Mirror keeps one snapshot per table to track the contents of the table from the last run. BigQuery table snapshots have no cost when they are first created as they share the underlying storage with the source table, however as the source table changes [the cost of storing changes is attributed to the table snapshot](https://cloud.google.com/bigquery/docs/table-snapshots-intro#storage_costs). Each time the connector runs the current snapshot is replaced with a new snapshot of the latest state of the table. The storage cost is the amount of changes being tracked between the snapshot and source table between runs.

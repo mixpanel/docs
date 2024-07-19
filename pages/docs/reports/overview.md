@@ -38,7 +38,7 @@ Filters are used to narrow events or behaviors that qualify for analysis. For ex
 
 ### Global Filters
 
-A global filter applies to the entire report. by properties or cohorts by clicking the **Filter** button. This will filter the results of the entire report to show only data with that property or cohort.
+A global filter applies to the entire report. Filter by properties or cohorts by clicking the **Filter** button. This will filter the results of the entire report to show only data with that property or cohort.
 
 ![image](/global-filter.png)
 
@@ -181,6 +181,12 @@ If you need to, you can click on the **+ Ending** button and shift back the de
 
 "To Date" allows you select a date rnge that will update dynamically to fit the current internval. You can choose Week to Date, Month to Date, Quarter to Date and Year to Date. When the boundary of interval is passed, the date range will automatically update to include only the current interval. For example, if "Month to Date" was selected, and the date was February 27, the date range would include Feb 1 - Feb 27. The next week, after the month boundary has passed the date range would include Mar 1 - Mar 4.
 To Date respects start of week and start of quarter settings under project settings.
+
+### Minute Level Granularity
+
+![minute level granularity](/enable-minute-granularity.png)
+
+Enable hourly and minute level granularity by going to the advanced submenu under "custom" date range selection. This enables you to select time ranges up to the minute. You can also use this for the "Last" time range, to monitor only the past few hours or minutes. When doing time series using minutely or hourly intervals, there is a lower time range limit supported.
 
 ## Comparisons
 

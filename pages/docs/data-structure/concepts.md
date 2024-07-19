@@ -10,7 +10,7 @@ Mixpanel data is stored and isolated within a [project](/docs/orgs-and-projects/
 |----------|-------------------|
 | **Events** | Events describe actions that take place within your product. An event contains properties that describe the action. Events can also be joined with user profiles, group profiles, and lookup tables to enrich the data. <br><br> [Learn more about event properties](/docs/data-structure/events-and-properties) |
 | **User Profiles** | A user profile is a key/value store that holds state about a user. User profiles are joined to events on `event.distinct_id = user_profile.distinct_id`. <br><br> [Learn more about profile properties](/docs/data-structure/user-profiles) |
-| **Group Profiles** | A group profile is a key/value store that holds state about member of your group. Group profiles are joined to Events on your chosen _group key_. For example, if you create a new group key for `company_id` your events will be joined on `event.company_id = group_profile.company_id`. <br><br> [Learn more about group analytics](/docs/data-structure/advanced/group-analytics) |
+| **Group Profiles** | A group profile is a key/value store that holds state about members of your group. Group profiles are joined to Events on your chosen _group key_. For example, if you create a new group key for `company_id` your events will be joined on `event.company_id = group_profile.company_id`. <br><br> [Learn more about group analytics](/docs/data-structure/advanced/group-analytics) |
 | **Lookup Tables** | A lookup table is a key/value store that holds state about an entity. Lookup tables are joined to events (and other profiles) on your chosen join key. For example, if you create a lookup table for "Songs" and specify the join key as `song_id`, your events will be joined on `event.song_id = lookup_table.song_id`. <br><br>[Learn more about lookup tables](/docs/data-structure/lookup-tables) |
 
 ### Event Property vs User Profile Property
@@ -26,7 +26,7 @@ For example, while an Event Property or Super Property tells you whether a user 
 Imagine you work on a music streaming product and you want to answer questions like: 
 
 - What are the most popular songs and artists this week?
-- What is the distribution of number of songs player per week by user?
+- What is the distribution of number of songs played per week by user?
 - Which experiment performed better in an A/B test to drive a higher conversion rate from Free to Premium accounts?
 
 You want to analyze uniques by both users *and* accounts so you create a group key for `account_id`. You also want to augment your events with details about songs being played so you create a "Songs" lookup table and specify the join key as `song_id`. Your data model will look like this:
