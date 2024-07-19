@@ -27,7 +27,7 @@ For [Track Events](ref:track-event), tokens are provided as values inside of the
     "$token": "projecttoken",
     "$distinct_id": "1234",
     "$set": {
-        "Favourite Show": "The Office"
+        "Favorite Show": "The Office"
     }
 }
 ```
