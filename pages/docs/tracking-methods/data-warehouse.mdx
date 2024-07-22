@@ -485,6 +485,12 @@ We also recommend loading your user and account tables, to enrich events with de
 
 Syncs have a throughput of ~30K events+updates/second or ~100M events+updates/hour.
 
+### What is the best way to start bringing in event data?
+
+We recommend starting with a subset of data in a materialized view to test the import process. This allows you to ensure that relevant columns are correctly formatted and the data appears as expected in Mixpanel. Once the data is imported, run a few reports to verify that you can accurately gain insight into your team’s KPIs with the way your data is formatted.
+
+After validating your use case, navigate to the imported table and select "Delete Import" to hard delete the subset data. This step ensures that you can then import the entire table without worrying about duplicate data.
+
 ### I already track data to Mixpanel via SDK or CDP, can I still use Warehouse Connectors?
 
 Yes! You can send some events (eg: web and app data) directly via our SDKs and send other data (eg: user profiles from CRM or logs from your backend) from your warehouse and analyze them together in Mixpanel.
