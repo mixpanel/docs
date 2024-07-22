@@ -1,56 +1,117 @@
-/** @type {import('tailwindcss').Config} */
-module.exports = {
-  content: [
-    "./pages/**/*.{js,ts,jsx,tsx,mdx}",
-    "./components/**/*.{js,ts,jsx,tsx,mdx}",
-  ],
-  prefix: "nx-",
-  darkMode: ["class", 'html[class~="dark"]'],
-  theme: {
-    extend: {
-      colors: {
-        // Same as what we have in colors.scss, but accessible via tailwind
-        purple200: "#1b0b3b",
-        purple140: "#5028c0",
-        purple100: "#7856ff",
-        purple50: "#9075ff",
-        purple40: "#b094ff",
-        purple20: "#e8ddff",
+import { FC, ReactNode } from "react";
+import { DocsThemeConfig } from "nextra-theme-docs";
+import Search from "./components/Search/Search";
+import MixpanelLogoWordmark from "./components/svg/MixpanelLogoWordmark";
+import {
+  AdminIcon,
+  AnalysisIcon,
+  DataInIcon,
+  DataOutIcon,
+  IntroIcon,
+  SupportIcon,
+} from "./components/svg/NavIcon";
+import MainContent from "./components/MainContent/MainContent";
 
-        lava200: "#5b0137",
-        lava140: "#cc332b",
-        lava100: "#ff7558",
-        lava40: "#ffb0a3",
-        lava20: "#ffe1d6",
+function renderComponent<T>(ComponentOrNode: FC<T> | ReactNode, props?: T) {
+  if (!ComponentOrNode) return null;
+  if (typeof ComponentOrNode !== "function") return ComponentOrNode;
+  return <ComponentOrNode {...props} />;
+}
 
-        mint200: "#112e29",
-        mint140: "#09b096",
-        mint100: "#80e1d9",
-        mint40: "#bcf0f0",
-        mint20: "#e0fafa",
-
-        mustard200: "#a33c16",
-        mustard140: "#da6b15",
-        mustard100: "#f8bc3b",
-        mustard40: "#fede9b",
-        mustard20: "#ffefdb",
-
-        base120: "#eae6e7",
-        base100: "#f5f2f2",
-        base80: "#fbf9f9",
-
-        black: "#000",
-        grey100: "#201f24",
-        grey80: "#626266",
-        grey50: "#9b9b9b",
-        grey30: "#c0c0c0",
-        grey10: "#e9e9e9",
-        white: "#fff",
-
-        darkbg: "#242133",
-        lightbg: "#f5f2f2",
-      },
+const config: DocsThemeConfig = {
+  darkMode: true,
+  nextThemes: {
+    defaultTheme: `system`,
+  },
+  docsRepositoryBase: "https://github.com/mixpanel/docs/tree/main",
+  head: (
+    <>
+      <link
+        rel="apple-touch-icon"
+        sizes="180x180"
+        href={`https://cdn.mxpnl.com/marketing-site/static/favicons/apple-touch-icon.png`}
+      />
+      <link
+        rel="icon"
+        sizes="16x16"
+        href="https://cdn.mxpnl.com/marketing-site/static/favicons/favicon-16x16.png"
+        type="image/png"
+      />
+      <link
+        rel="icon"
+        sizes="32x32"
+        href="https://cdn.mxpnl.com/marketing-site/static/favicons/favicon-32x32.png"
+        type="image/png"
+      />
+      <link
+        rel="mask-icon"
+        href={`https://cdn.mxpnl.com/marketing-site/static/favicons/safari-pinned-tab.svg`}
+        color="#7856ff"
+      />
+      {/* <meta name="msapplication-TileColor" content="#ffffff" /> */}
+      {/* <meta name="theme-color" content="#ffffff" /> */}
+    </>
+  ),
+  feedback: {
+    content: "Question? Contact our Support Team",
+    useLink: () => "https://mixpanel.com/get-support",
+  },
+  footer: {
+    text: "© Mixpanel 2024",
+  },
+  logo: <MixpanelLogoWordmark width={125} />,
+  logoLink: "https://docs.mixpanel.com/docs/",
+  main: MainContent,
+  useNextSeoProps: () => ({
+    titleTemplate: "%s - Mixpanel Docs",
+  }),
+  search: {
+    component: Search,
+  },
+  project: {
+    link: "https://github.com/mixpanel/docs",
+  },
+  // primaryHue: { dark: 252, light: 252 },
+  // primarySaturation: { dark: 100, light: 100 },
+  sidebar: {
+    defaultMenuCollapseLevel: 1,
+    toggleButton: true,
+    titleComponent: ({ title, type }) => {
+      if (type === `separator`) {
+        let icon;
+        switch (title) {
+          case `INTRO`:
+            icon = <IntroIcon />;
+            break;
+          case `DATA IN`:
+            icon = <DataInIcon />;
+            break;
+          case `ANALYSIS`:
+            icon = <AnalysisIcon />;
+            break;
+          case `ADMIN`:
+            icon = <AdminIcon />;
+            break;
+          case `DATA OUT`:
+            icon = <DataOutIcon />;
+            break;
+          case `SUPPORT`:
+            icon = <SupportIcon />;
+            break;
+          case `ENTERPRISE`:
+            icon = <IntroIcon />;
+            break;
+        }
+        return (
+          <>
+            {icon} {title}
+          </>
+        );
+      } else {
+        return <>{title}</>;
+      }
     },
   },
-  plugins: [],
 };
+
+export default config;
