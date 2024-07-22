@@ -1,24 +1,21 @@
 # Install Mixpanel
 
-import { Tab, Tabs } from 'nextra-theme-docs'
-import { Card, Cards } from 'nextra-theme-docs'
-import { Callout } from 'nextra-theme-docs'
+import { Tab, Tabs } from "nextra-theme-docs";
+import { Card, Cards } from "nextra-theme-docs";
+import { Callout } from "nextra-theme-docs";
 
-import ExtendedButton from '/components/ExtendedButton/ExtendedButton'
-import ExtendedTabs from '/components/ExtendedTabs/ExtendedTabs'
+import ExtendedButton from "/components/ExtendedButton/ExtendedButton";
+import ExtendedTabs from "/components/ExtendedTabs/ExtendedTabs";
 
-import { dataItems } from '/utils/constants';
+import { dataItems } from "/utils/constants";
 
 ## Overview
 
 Installing Mixpanel is easy. This guide will show you how to do it with our SDKs.
 
-
-
-Already collect product data? Connect your 
-  **[Data Warehouse](/docs/tracking-methods/data-warehouse)** or via
-  **[3rd Party Integrations](/docs/tracking-methods/integrations/)**.
-
+Already collect product data? Connect your
+**[Data Warehouse](/docs/tracking-methods/data-warehouse)** or via
+**[3rd Party Integrations](/docs/tracking-methods/integrations/)**.
 
 ## Code
 
@@ -56,10 +53,14 @@ Replace `YOUR_TOKEN` with your project token. You can find your token [here](htt
 
 ```js Javascript
 //Import Mixpanel SDK
-import mixpanel from 'mixpanel-browser';
+import mixpanel from "mixpanel-browser";
 
 // Near entry of your product, init Mixpanel
-mixpanel.init('YOUR_TOKEN', {debug: true, track_pageview: true, persistence: 'localStorage'});
+mixpanel.init("YOUR_TOKEN", {
+  debug: true,
+  track_pageview: true,
+  persistence: "localStorage",
+});
 ```
 
 </Tab>
@@ -75,23 +76,28 @@ Replace `YOUR_TOKEN` with your project token. You can find your token [here](htt
 from mixpanel import Mixpanel
 
 mp = Mixpanel("YOUR_TOKEN")
-```
+
+````
 </Tab>
 
 <Tab>
 ##### Install the SDK
 ```shell Node.js
 npm install mixpanel
-```
+````
+
 ##### Configure the SDK
+
 Replace `YOUR_TOKEN` with your project token. You can find your token [here](https://mixpanel.com/settings/project).
+
 ```js Node.js
 // Grab the Mixpanel factory
-var Mixpanel = require('mixpanel');
+var Mixpanel = require("mixpanel");
 
 // Create an instance of the mixpanel client
-var mixpanel = Mixpanel.init('YOUR_TOKEN');
+var mixpanel = Mixpanel.init("YOUR_TOKEN");
 ```
+
 </Tab>
 
 <Tab>
@@ -110,24 +116,29 @@ import (
 )
 
 func main() {
-	ctx := context.Background()
-	mp := mixpanel.NewApiClient("YOUR_TOKEN")
+ctx := context.Background()
+mp := mixpanel.NewApiClient("YOUR_TOKEN")
 }
-```
+
+````
 </Tab>
 
 <Tab>
 ##### Install the SDK
 ```shell Ruby
 gem install mixpanel-ruby
-```
+````
+
 ##### Configure the SDK
+
 Replace `YOUR_TOKEN` with your project token. You can find your token [here](https://mixpanel.com/settings/project).
+
 ```ruby Ruby
 require 'mixpanel-ruby'
 
 mp = Mixpanel::Tracker.new(YOUR_TOKEN)
 ```
+
 </Tab>
 
 <Tab>
@@ -147,10 +158,11 @@ Replace `YOUR_TOKEN` with your project token. You can find your token [here](htt
 import com.mixpanel.mixpanelapi.MessageBuilder;
 import com.mixpanel.mixpanelapi.MixpanelAPI;
 
-// Set up an instance of MixpanelAPI 
+// Set up an instance of MixpanelAPI
 MixpanelAPI mixpanel = new MixpanelAPI();
 
 MessageBuilder messageBuilder = new MessageBuilder('YOUR_TOKEN');
+
 ```
 </Tab>
 
@@ -159,14 +171,18 @@ MessageBuilder messageBuilder = new MessageBuilder('YOUR_TOKEN');
 Under your app's root directory, run:
 
 ```
+
 npm install mixpanel-react-native
+
 ```
 
 Under your application's iOS folder, run:
 
 ```
+
 pod install
-```
+
+````
 
 Note: For XCode 12.5+, there is a known compile issue, please refer to this [workaround](https://github.com/mixpanel/mixpanel-react-native/issues/43#issuecomment-829599732).
 ##### Configure the SDK
@@ -179,7 +195,8 @@ import { Mixpanel } from "mixpanel-react-native";
 const trackAutomaticEvents = false;
 const mixpanel = new Mixpanel("YOUR_TOKEN", trackAutomaticEvents);
 mixpanel.init();
-```
+````
+
 </Tab>
 
 <Tab>
@@ -189,8 +206,11 @@ Add `mixpanel_flutter: ^2.0.0` to your package's pubspec.yaml file and run:
 ```
 flutter pub get
 ```
+
 ##### Configure the SDK
+
 Replace `YOUR_TOKEN` with your project token. You can find your token [here](https://mixpanel.com/settings/project).
+
 ```dart
 import 'package:mixpanel_flutter/mixpanel_flutter.dart';
 class _YourClassState extends State<YourClass> {
@@ -208,6 +228,7 @@ class _YourClassState extends State<YourClass> {
   }
 }
 ```
+
 </Tab>
 
 <Tab>
@@ -215,19 +236,21 @@ class _YourClassState extends State<YourClass> {
 <Tabs items={['Swift Package Manager', 'Cocoapods', 'Carthage']}>
 
 <Tab>
-Note: Swift Package Manager requires Xcode 12+
-1.  In Xcode, select File > Swift Packages > Add Package Dependency.
-2.  Follow the prompts using the URL for this repository and must select a version greater than or equal to v4.0.0
+  Note: Swift Package Manager requires Xcode 12+ 1. In Xcode, select File >
+  Swift Packages > Add Package Dependency. 2. Follow the prompts using the URL
+  for this repository and must select a version greater than or equal to v4.0.0
 </Tab>
 
 <Tab>
-1. Create a Podfile in your Xcode project directory by running `pod init` in your terminal, edit the Podfile generated, and add the following line: `pod 'Mixpanel'`.
-2. Run `pod install` in your Xcode project directory. CocoaPods should download and install the Mixpanel library, and create a new Xcode workspace. Open up this workspace in Xcode or typing `open *.xcworkspace` in your terminal.
+  1. Create a Podfile in your Xcode project directory by running `pod init` in
+  your terminal, edit the Podfile generated, and add the following line: `pod
+  'Mixpanel'`. 2. Run `pod install` in your Xcode project directory. CocoaPods
+  should download and install the Mixpanel library, and create a new Xcode
+  workspace. Open up this workspace in Xcode or typing `open *.xcworkspace` in
+  your terminal.
 </Tab>
 
-<Tab>
-Add `github "mixpanel/mixpanel-iphone"` to your Cartfile.
-</Tab>
+<Tab>Add `github "mixpanel/mixpanel-iphone"` to your Cartfile.</Tab>
 
 </Tabs>
 ##### Configure the SDK
@@ -235,14 +258,15 @@ Replace `YOUR_TOKEN` with your project token. You can find your token [here](htt
 ```objc
 #import "Mixpanel/Mixpanel.h"
 
-- (BOOL)application:(UIApplication _)application 
+- (BOOL)application:(UIApplication _)application
   didFinishLaunchingWithOptions:(NSDictionary _)launchOptions {
   ...
-  Mixpanel *mixpanel = [Mixpanel sharedInstanceWithToken:@"YOUR_TOKEN" 
-  									trackAutomaticEvents: NO];
+  Mixpanel \*mixpanel = [Mixpanel sharedInstanceWithToken:@"YOUR_TOKEN"
+  trackAutomaticEvents: NO];
   ...
-}
-```
+  }
+
+````
 </Tab>
 
 <Tab>
@@ -281,7 +305,8 @@ func application(_ application: UIApplication,
     Mixpanel.initialize(token: "YOUR_TOKEN", trackAutomaticEvents: false)
     ...
 }
-```
+````
+
 </Tab>
 
 <Tab>
@@ -305,8 +330,11 @@ Next, add the following permissions in your AndroidManifest.xml:
 <!-- Optional, but recommended so events will contain information about bluetooth state-->
 <uses-permission android:name="android.permission.BLUETOOTH" />
 ```
+
 ##### Configure the SDK
+
 Replace `YOUR_TOKEN` with your project token. You can find your token [here](https://mixpanel.com/settings/project).
+
 ```java
 import com.mixpanel.android.mpmetrics.MixpanelAPI;
 
@@ -324,6 +352,7 @@ public class MainActivity extends ActionBarActivity {
   }
 }
 ```
+
 </Tab>
 
 <Tab>
@@ -331,15 +360,16 @@ public class MainActivity extends ActionBarActivity {
 Add `https://github.com/mixpanel/mixpanel-unity.git#master` to the dependencies section of `com.mixpanel.unity`.
 
 Alternatively, you can download and install the .unitypackage file from our [releases page](https://github.com/mixpanel/mixpanel-unity/releases).
-##### Configure the SDK
-To initialize the library, first open the unity project settings menu for Mixpanel. (Edit -> Project Settings -> Mixpanel) 
-Then, enter your project token into the Token and Debug Token input fields within the inspector. 
-You can find your token [here](https://mixpanel.com/settings/project).
 
+##### Configure the SDK
+
+To initialize the library, first open the unity project settings menu for Mixpanel. (Edit -> Project Settings -> Mixpanel)
+Then, enter your project token into the Token and Debug Token input fields within the inspector.
+You can find your token [here](https://mixpanel.com/settings/project).
 
 ![unity_screenshots](https://user-images.githubusercontent.com/36679208/152408022-62440f50-04c7-4ff3-b331-02d3d3122c9e.jpg)
 
-Note: If you prefer to initialize Mixpanel manually, you can select the `Manual Initialization` in the settings and 
+Note: If you prefer to initialize Mixpanel manually, you can select the `Manual Initialization` in the settings and
 call `Mixpanel.Init()` to initialize.
 
 To use mixpanel, add the following sample code to a part of your application:
@@ -347,7 +377,9 @@ To use mixpanel, add the following sample code to a part of your application:
 ```csharp
 using mixpanel;
 ```
+
 You're
+
 </Tab>
 <Tab>
 ##### Install the SDK
@@ -355,13 +387,17 @@ You're
 <Callout type="info" emoji>
   No install required
 </Callout>
-Using the HTTP API does not require an installation. **You're ready to move to the next step.**
+Using the HTTP API does not require an installation. **You're ready to move to the
+next step.**
 
 </Tab>
 </ExtendedTabs>
 
+<br></br>
+<br></br>
+<br></br>
 
-<br></br><br></br><br></br>
+<div className="next-steps-sections" >
 
 {/* Next Section */}
 
@@ -369,13 +405,22 @@ Using the HTTP API does not require an installation. **You're ready to move to t
 <br></br>
 
 <div className="bg-base100 rounded-xl">
-    <h2 className="text-2xl font-medium mb-2 color:bg-purple200">Next: Identify Your Users</h2>
-    <p>With Mixpanel installed, you’re now ready to identify the users who use your product.</p>
-    <br></br>
-    <ExtendedButton title="Identify Your Users" link="/docs/quickstart/identify-users/"></ExtendedButton>
+  <h2 className="text-2xl font-medium mb-2 color:bg-purple200">
+    Next: Identify Your Users
+  </h2>
+  <p>
+    With Mixpanel installed, you’re now ready to identify the users who use your
+    product.
+  </p>
+  <br></br>
+  <ExtendedButton
+    title="Identify Your Users"
+    link="/docs/quickstart/identify-users/"
+  ></ExtendedButton>
 </div>
 
-<br></br><br></br>
+<br></br>
+<br></br>
 
 ## FAQ
 
@@ -386,25 +431,25 @@ export function FAQBox({ title, children }) {
       className="last-of-type:mb-0 rounded-xl bg-[#f5f2f2] p-0 mt-6"
     >
       <summary>
-        <strong className="text-lg font-medium text-[#1b0b3b]">{title}</strong>
+        <strong className="text-lg font-medium ">{title}</strong>
       </summary>
       <div className="nx-p-2">{children}</div>
     </details>
-  )
+  );
 }
 
 <FAQBox title="Does Mixpanel automatically track page views?">
   Yes, if you pass `track_pageview: true` in the `mixpanel.init()` call,
-   Mixpanel will automatically track a "Page View" event every time a new 
-   page is loaded. 
-   Learn more [here](/docs/tracking-methods/sdks/javascript#tracking-page-views).
+  Mixpanel will automatically track a "Page View" event every time a new page is
+  loaded. Learn more
+  [here](/docs/tracking-methods/sdks/javascript#tracking-page-views).
 </FAQBox>
 
 <FAQBox title="What are the recommended web configuration options?">
   When tracking on web, we recommend using localStorage, as this is more reliable:
 
 ```javascript
-mixpanel.set_config({ persistence: "localStorage" }); 
+mixpanel.set_config({ persistence: "localStorage" });
 ```
 
 Please note that cross-subdomain tracking is not possible when using local storage. If your implementation requires cross-subdomain tracking, remove the persistence flag and use the default "cookie" persistence option.
@@ -412,10 +457,11 @@ Please note that cross-subdomain tracking is not possible when using local stora
 </FAQBox>
 
 <FAQBox title="Does Mixpanel use third-party cookies?">
-  No, our Mixpanel JavaScript SDK does not set or use any third-party cookies. If you wish 
-  to disable cookies entirely, you can set the disable_persistence option to true when initializing 
-  your Mixpanel JS instance. Note that disabling persistence will disable the use of super properties 
-  and anonymous -> identified user tracking.
+  No, our Mixpanel JavaScript SDK does not set or use any third-party cookies.
+  If you wish to disable cookies entirely, you can set the disable_persistence
+  option to true when initializing your Mixpanel JS instance. Note that
+  disabling persistence will disable the use of super properties and anonymous
+  -> identified user tracking.
 </FAQBox>
 
 <FAQBox title="How can I track in a privacy compliant way?">
@@ -423,9 +469,10 @@ Please note that cross-subdomain tracking is not possible when using local stora
   client-side SDKs; this prevents any subsequent data being tracked from that user's device. 
   Learn more [here](/docs/privacy/protecting-user-data).
 
-  For iOS specifically: Mixpanel does not use IDFA, so it does not require user permission 
-  through the AppTrackingTransparency(ATT) framework. For more details, refer to our 
-  [Apple App Developer Privacy Guidance](https://mixpanel.com/legal/app-store-privacy-details).
+For iOS specifically: Mixpanel does not use IDFA, so it does not require user permission
+through the AppTrackingTransparency(ATT) framework. For more details, refer to our
+[Apple App Developer Privacy Guidance](https://mixpanel.com/legal/app-store-privacy-details).
+
 </FAQBox>
 
-
+</div>
