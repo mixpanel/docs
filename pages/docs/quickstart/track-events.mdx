@@ -1,11 +1,11 @@
 # Track Events
 
-import { Tab, Tabs } from 'nextra-theme-docs'
+import { Tab, Tabs } from "nextra-theme-docs";
 
-import ExtendedButton from '/components/ExtendedButton/ExtendedButton';
-import ExtendedTabs from '/components/ExtendedTabs/ExtendedTabs';
+import ExtendedButton from "/components/ExtendedButton/ExtendedButton";
+import ExtendedTabs from "/components/ExtendedTabs/ExtendedTabs";
 
-import { dataItems } from '/utils/constants';
+import { dataItems } from "/utils/constants";
 
 ## Overview
 
@@ -29,9 +29,9 @@ mixpanel.track('Sign Up', {
 🎉 Congratulations, you've tracked your first event! You can see it in Mixpanel via the [Events page](https://mixpanel.com/report/events).
 
 **More resources:**
-    * Video: [Debug Common Issues When Installing Mixpanel on Web](https://www.loom.com/embed/fbba03274dc441b49b578e8a734b1d99).
-    * Docs: [Read the Full Javascript SDK Docs](/docs/tracking-methods/sdks/javascript/)
-    * Github: [Browse the Open Source SDKs](https://github.com/mixpanel)
+_ Video: [Debug Common Issues When Installing Mixpanel on Web](https://www.loom.com/embed/fbba03274dc441b49b578e8a734b1d99).
+_ Docs: [Read the Full Javascript SDK Docs](/docs/tracking-methods/sdks/javascript/) \* Github: [Browse the Open Source SDKs](https://github.com/mixpanel)
+
 </Tab>
 
 <Tab>
@@ -45,8 +45,9 @@ mp.track('USER_ID', 'Sign Up',  {
 🎉 Congratulations, you've tracked your first event! You can see it in Mixpanel via the [Events page](https://mixpanel.com/report/events).
 
 **More resources:**
-    * Docs: [Read the Python SDK Doc](/docs/tracking-methods/sdks/python/)
-    * Github: [Browse the Open Source SDKs](https://github.com/mixpanel)
+_ Docs: [Read the Python SDK Doc](/docs/tracking-methods/sdks/python/)
+_ Github: [Browse the Open Source SDKs](https://github.com/mixpanel)
+
 </Tab>
 
 <Tab>
@@ -61,8 +62,9 @@ mixpanel.track("Sign Up", {
 🎉 Congratulations, you've tracked your first event! You can see it in Mixpanel via the [Events page](https://mixpanel.com/report/events).
 
 **More resources:**
-    * Docs: [Read the Node.js SDK Doc](/docs/tracking-methods/sdks/nodejs/)
-    * Github: [Browse the Open Source SDKs](https://github.com/mixpanel)
+_ Docs: [Read the Node.js SDK Doc](/docs/tracking-methods/sdks/nodejs/)
+_ Github: [Browse the Open Source SDKs](https://github.com/mixpanel)
+
 </Tab>
 
 <Tab>
@@ -72,11 +74,12 @@ exampleEvent = mp.NewEvent("Sign Up", "USER_ID", map[string]any{
 })
 
 err := mp.Track(ctx,
-	[]*mp.PeopleProperties{
-		exampleUser,
-	},
+[]\*mp.PeopleProperties{
+exampleUser,
+},
 )
-```
+
+````
 
 🎉 Congratulations, you've tracked your first event! You can see it in Mixpanel via the [Events page](https://mixpanel.com/report/events).
 
@@ -91,15 +94,15 @@ err := mp.Track(ctx,
 mp.track('USER_ID', 'Sign Up', {
   'Signup Type' => 'Referral'
 })
-```
+````
 
 🎉 Congratulations, you've tracked your first event! You can see it in Mixpanel via the [Events page](https://mixpanel.com/report/events).
 
 **More resources:**
-    * Docs: [Read the Ruby SDK Doc](/docs/tracking-methods/sdks/ruby/)
-    * Github: [Browse the Open Source SDKs](https://github.com/mixpanel)
-</Tab>
+_ Docs: [Read the Ruby SDK Doc](/docs/tracking-methods/sdks/ruby/)
+_ Github: [Browse the Open Source SDKs](https://github.com/mixpanel)
 
+</Tab>
 
 <Tab>
 ```java Java
@@ -118,7 +121,8 @@ delivery.addMessage(sentEvent);
 // Send the update to mixpanel
 MixpanelAPI mixpanel = new MixpanelAPI();
 mixpanel.deliver(delivery);
-```
+
+````
 
 🎉 Congratulations, you've tracked your first event! You can see it in Mixpanel via the [Events page](https://mixpanel.com/report/events).
 
@@ -129,16 +133,17 @@ mixpanel.deliver(delivery);
 
 <Tab>
 ```javascript
-mixpanel.track("Sign Up", { 
+mixpanel.track("Sign Up", {
   "Signup Type": "Referral"
 })
-```
+````
 
 🎉 Congratulations, you've tracked your first event! You can see it in Mixpanel via the [Events](https://mixpanel.com/report/events) page.
 
 **More resources:**
-    * Docs: [Read the React Native SDK Doc](/docs/tracking-methods/sdks/react-native/)
-    * Github: [Browse the Open Source SDKs](https://github.com/mixpanel)
+_ Docs: [Read the React Native SDK Doc](/docs/tracking-methods/sdks/react-native/)
+_ Github: [Browse the Open Source SDKs](https://github.com/mixpanel)
+
 </Tab>
 
 <Tab>
@@ -151,8 +156,10 @@ mixpanel.track('Sign Up', {
 🎉 Congratulations, you've tracked your first event! You can see it in Mixpanel via the [Events](https://mixpanel.com/report/events) page.
 
 **More resources:**
-    * Docs: [Read the Flutter SDK Docs](/docs/tracking-methods/sdks/flutter/)
-    * Github: [Browse the Open Source SDKs](https://github.com/mixpanel)
+
+- Docs: [Read the Flutter SDK Docs](/docs/tracking-methods/sdks/flutter/)
+- Github: [Browse the Open Source SDKs](https://github.com/mixpanel)
+
 </Tab>
 
 <Tab>
@@ -165,8 +172,10 @@ mixpanel.track('Sign Up', {
 🎉 Congratulations, you've tracked your first event! You can see it in Mixpanel via the [Events](https://mixpanel.com/report/events) page.
 
 **More resources:**
-    * Docs: [Read the iOS (Objective-C) SDK Doc](/docs/tracking-methods/sdks/ios/)
-    * Github: [Browse the Open Source SDKs](https://github.com/mixpanel)
+
+- Docs: [Read the iOS (Objective-C) SDK Doc](/docs/tracking-methods/sdks/ios/)
+- Github: [Browse the Open Source SDKs](https://github.com/mixpanel)
+
 </Tab>
 
 <Tab>
@@ -179,8 +188,9 @@ Mixpanel.mainInstance().track(event:"Sign Up", properties: [
 🎉 Congratulations, you've tracked your first event! You can see it in Mixpanel via the [Events](https://mixpanel.com/report/events) page.
 
 **More resources:**
-    * Docs: [Read the iOS (Swift) SDK Doc](/docs/tracking-methods/sdks/swift/)
-    * Github: [Browse the Open Source SDKs](https://github.com/mixpanel)
+_ Docs: [Read the iOS (Swift) SDK Doc](/docs/tracking-methods/sdks/swift/)
+_ Github: [Browse the Open Source SDKs](https://github.com/mixpanel)
+
 </Tab>
 
 <Tab>
@@ -193,8 +203,9 @@ mp.track("Signed Up", props);
 🎉 Congratulations, you've tracked your first event! You can see it in Mixpanel via the [Events](https://mixpanel.com/report/events) page.
 
 **More resources:**
-    * Docs: [Read the Android SDK Doc](/docs/tracking-methods/sdks/android/)
-    * Github: [Browse the Open Source SDKs](https://github.com/mixpanel)
+_ Docs: [Read the Android SDK Doc](/docs/tracking-methods/sdks/android/)
+_ Github: [Browse the Open Source SDKs](https://github.com/mixpanel)
+
 </Tab>
 
 <Tab>
@@ -207,8 +218,9 @@ Mixpanel.Track('Sign up', props);
 🎉 Congratulations, you've tracked your first event! You can see it in Mixpanel via the [Events](https://mixpanel.com/report/events) page.
 
 **More resources:**
-    * Docs: [Read the Unity SDK Doc](/docs/tracking-methods/sdks/unity/)
-    * Github: [Browse the Open Source SDKs](https://github.com/mixpanel)
+_ Docs: [Read the Unity SDK Doc](/docs/tracking-methods/sdks/unity/)
+_ Github: [Browse the Open Source SDKs](https://github.com/mixpanel)
+
 </Tab>
 
 <Tab>
@@ -258,11 +270,17 @@ Here are some other best practices:
 Our Import API is built to ingest billions of events per day across our customers. That said, we do rate limit at very high scale to ensure quality of service and real-time ingestion. Please refer to our [Import API docs](https://developer.mixpanel.com/reference/import-events) for details.
 
 All of our sample code transparently retries and backoff from rate limit exceptions. If you require a higher-limit for a 1-time backfill, please reach out to us at apis@mixpanel.com.
+
 </Tab>
 
 </ExtendedTabs>
 
-<br></br><br></br><br></br><br></br>
+<br></br>
+<br></br>
+<br></br>
+<br></br>
+
+<div className="next-steps-sections" >
 
 {/* Next Section */}
 
@@ -270,23 +288,22 @@ All of our sample code transparently retries and backoff from rate limit excepti
 <br></br>
 
 <div className="bg-base100 rounded-xl">
-    <h2 className="text-2xl font-medium mb-2 color:bg-purple200">You're Ready to Start Using Mixpanel</h2>
-    <p>It's time to create your first [report](/docs/reports/overview) or use one of our [many templates](/docs/boards/templates).</p>
-    <br></br>
-    <ExtendedButton title="Open Mixpanel" link="https://mixpanel.com"></ExtendedButton>
+  <h2 className="text-2xl font-medium mb-2 color:bg-purple200">
+    You're Ready to Start Using Mixpanel
+  </h2>
+  <p>
+    It's time to create your first [report](/docs/reports/overview) or use one
+    of our [many templates](/docs/boards/templates).
+  </p>
+  <br></br>
+  <ExtendedButton
+    title="Open Mixpanel"
+    link="https://mixpanel.com"
+  ></ExtendedButton>
 </div>
 
-{/*
-<div className="bg-base100 rounded-xl">
-    <h2 className="text-2xl font-medium mb-2 color:bg-purple200">Optional: Tips & Tricks</h2>
-    <p>Once you've implemented the `identify` and `track` methods and are sending events, you're ready to learn some best practices to get the most out of Mixpanel.</p>
-    <br></br>
-    <ExtendedButton title="Learn Tips & Tricks" link="/docs/quickstart/tips-and-tricks/"></ExtendedButton>
-</div>
- */}
-
-<br></br><br></br>
-
+<br></br>
+<br></br>
 
 ## FAQ
 
@@ -297,18 +314,18 @@ export function FAQBox({ title, children }) {
       className="last-of-type:mb-0 rounded-xl bg-[#f5f2f2] p-0 mt-6"
     >
       <summary>
-        <strong className="text-lg font-medium text-[#1b0b3b]">{title}</strong>
+        <strong className="text-lg font-medium">{title}</strong>
       </summary>
       <div className="nx-p-2">{children}</div>
     </details>
-  )
+  );
 }
 
 <FAQBox title="Does Mixpanel automatically track page views?">
   Yes, if you pass `track_pageview: true` in the `mixpanel.init()` call,
-   Mixpanel will automatically track a "Page View" event every time a new 
-   page is loaded. 
-   Learn more [here](/docs/tracking-methods/sdks/javascript#tracking-page-views).
+  Mixpanel will automatically track a "Page View" event every time a new page is
+  loaded. Learn more
+  [here](/docs/tracking-methods/sdks/javascript#tracking-page-views).
 </FAQBox>
 
 <FAQBox title="Why aren't my events showing up?">
@@ -318,7 +335,9 @@ export function FAQBox({ title, children }) {
   instance. We also recommend [setting up a proxy server](/docs/tracking-methods/sdks/javascript#tracking-via-proxy) 
   so that you don't lose events due to ad-blockers.
 
-  If tracking from a mobile device, events may take 1-2 minutes to appear because Mixpanel's 
-  mobile SDKs buffer events for 1 minute, or when the app transitions to the background, to 
-  conserve battery life and bandwidth. You can call `.flush()` in the mobile SDKs to manually flush events to Mixpanel.
+If tracking from a mobile device, events may take 1-2 minutes to appear because Mixpanel's
+mobile SDKs buffer events for 1 minute, or when the app transitions to the background, to
+conserve battery life and bandwidth. You can call `.flush()` in the mobile SDKs to manually flush events to Mixpanel.
+
 </FAQBox>
+</div>
