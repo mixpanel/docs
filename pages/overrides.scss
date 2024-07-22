@@ -176,7 +176,7 @@ $border-radius-lg: 100px;
 
   //##############################Light Theme Top Nav###################################
   .nextra-nav-container {
-    background-color: colors.$base100;
+    background-color: #f5f2f2;
     // box-shadow: unset;
     border-color: #eae7e7;
     border-width: 1px;
@@ -187,13 +187,13 @@ $border-radius-lg: 100px;
     // }
 
     .nextra-nav-container-blur {
-      background-color: colors.$base100;
+      background-color: #f5f2f2;
       box-shadow: none;
     }
 
     // Set color for top nav flex region
     .nx-mx-auto > nx-flex {
-      background-color: colors.$base100;
+      background-color: #f5f2f2;
       box-shadow: none;
     }
 
@@ -214,7 +214,7 @@ $border-radius-lg: 100px;
   //##############################Light Theme Body###################################
   .nx-w-full > main {
     color: colors.$grey100;
-    background-color: colors.$base80;
+    background-color: colors.$lightbg;
 
     .nx-mt-6 {
       border-bottom: colors.$black;
@@ -325,37 +325,37 @@ $border-radius-lg: 100px;
     // Fix JSX in Quickstart
     .next-steps-sections {
       .bg-base100 {
-        background-color: colors.$base80;
+        background-color: colors.$lightbg;
       }
       details {
-        background-color: colors.$base80;
+        background-color: colors.$lightbg;
 
         summary {
-          background-color: colors.$base80;
+          background-color: colors.$lightbg;
         }
         summary:hover {
-          background-color: colors.$base80;
+          background-color: colors.$lightbg;
         }
       }
     }
 
     //Modify Bottom Feedback Area
     button [class~="Feedback"] {
-      background-color: colors.$base80;
+      background-color: colors.$lightbg;
     }
   }
 
   //area under footer
   article {
-    background-color: colors.$base80;
+    background-color: colors.$lightbg;
   }
 
   //##############################Light Theme Sidebar Left###################################
   .nextra-sidebar-container {
-    background-color: #f5f2f2;
+    background-color: colors.$lightbg;
 
     .nx-flex {
-      background-color: #f5f2f2;
+      background-color: colors.$lightbg;
     }
 
     // nextra currently doesn't name anything in the sidebar properly and only has tailwind functional
@@ -465,10 +465,10 @@ $border-radius-lg: 100px;
 
   //##############################Dark Theme ToC Right###################################
   .nextra-toc {
-    background-color: colors.$base80;
+    background-color: colors.$lightbg;
     // Remove all hardcoded white backgrounds and shadow filters
     .nx-shadow-\[0_-12px_16px_white\] {
-      background-color: colors.$base80;
+      background-color: colors.$lightbg;
       box-shadow: unset;
     }
     // .nx-bg-white {
@@ -628,7 +628,7 @@ $border-radius-lg: 100px;
 
   // Modify Footer
   footer {
-    background-color: #f5f2f2 !important;
+    background-color: colors.$lightbg !important;
 
     // hr {
     //   opacity: 0%;
@@ -638,7 +638,7 @@ $border-radius-lg: 100px;
 
     //bottom box with trademark logo
     .nx-mx-auto {
-      background-color: #f5f2f2;
+      background-color: colors.$lightbg;
     }
   }
 
