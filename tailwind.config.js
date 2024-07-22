@@ -47,8 +47,8 @@ module.exports = {
         grey10: "#e9e9e9",
         white: "#fff",
 
-        darkbg: "#2f294b",
-        lightbg: "#f5f2f2",
+        darkbg: "#242133",
+        lightbg: "#fbf9f9",
       },
     },
   },
