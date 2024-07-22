@@ -782,7 +782,7 @@ $border-radius-lg: 100px;
   //##############################Dark Theme Body###################################
   .nx-w-full > main {
     color: colors.$base100;
-    background-color: #242133;
+    background-color: colors.$darkbg;
 
     .nx-mt-6 {
       border-bottom: colors.$black;
@@ -893,37 +893,37 @@ $border-radius-lg: 100px;
     // Fix JSX in Quickstart
     .next-steps-sections {
       .bg-base100 {
-        background-color: #242133;
+        background-color: colors.$darkbg;
       }
       details {
-        background-color: #242133;
+        background-color: colors.$darkbg;
 
         summary {
-          background-color: #242133;
+          background-color: colors.$darkbg;
         }
         summary:hover {
-          background-color: #242133;
+          background-color: colors.$darkbg;
         }
       }
     }
 
     //Modify Bottom Feedback Area
     button [class~="Feedback"] {
-      background-color: #242133;
+      background-color: colors.$darkbg;
     }
   }
 
   //area under footer
   article {
-    background-color: #242133;
+    background-color: colors.$darkbg;
   }
 
   //##############################Dark Theme Sidebar Left###################################
   .nextra-sidebar-container {
-    background-color: #2f294b;
+    background-color: colors.$darkbg;
 
     .nx-flex {
-      background-color: #2f294b;
+      background-color: colors.$darkbg;
     }
 
     // nextra currently doesn't name anything in the sidebar properly and only has tailwind functional
@@ -1033,10 +1033,10 @@ $border-radius-lg: 100px;
 
   //##############################Dark Theme ToC Right###################################
   .nextra-toc {
-    background-color: #242133;
+    background-color: colors.$darkbg;
     // Remove all hardcoded white backgrounds and shadow filters
     .nx-shadow-\[0_-12px_16px_white\] {
-      background-color: #242133;
+      background-color: colors.$darkbg;
       box-shadow: unset;
     }
     // .nx-bg-white {
@@ -1196,17 +1196,17 @@ $border-radius-lg: 100px;
 
   // Modify Footer
   footer {
-    background-color: #2f294b !important;
+    background-color: colors.$darkbg !important;
 
     hr {
       opacity: 0%;
       border-radius: 0;
-      background-color: #2f294b;
+      background-color: colors.$darkbg;
     }
 
     //bottom box with trademark logo
     .nx-mx-auto {
-      background-color: #2f294b;
+      background-color: colors.$darkbg;
     }
   }
 
