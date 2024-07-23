@@ -44,6 +44,11 @@ export default function Document() {
                     data-modal-open-on-command-k="true"
                     data-modal-example-questions='What is the first event I should track?,How do I migrate off Google Analytics?,How do I calculate time spent?,How do I import Snowflake data?'
                     data-modal-override-open-class-search="top-nav-search-bar"
+                    data-font-size-xs="12px"
+                    data-font-size-sm="14px"
+                    data-font-size-md="16px"
+                    data-font-size-lg="18px"
+                    data-font-size-xl="20px"
                     data-search-include-source-names='["Documentation", "Guides"]'
                     data-search-source-group-order='["Documentation", "Guides"]'
                     data-modal-command-k-search-mode-default="true"

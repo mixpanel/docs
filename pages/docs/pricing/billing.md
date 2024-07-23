@@ -20,6 +20,7 @@ Event-based pricing calculates the amount you are charged based on the number of
 - `$identify`
 - `$create_alias`
 - `$merge`
+- `$opt_in`
 - User profile creation/updates
 
 ### Plan Differences
