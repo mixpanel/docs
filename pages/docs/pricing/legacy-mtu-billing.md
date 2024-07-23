@@ -25,6 +25,7 @@ Certain events and API updates are non-qualifying and excluded from the MTU calc
 - `$identify`
 - `$create_alias`
 - `$merge`
+- `$opt_in`
 - Message Sent (`$campaign_delivery`)
 - Message Received (`$campaign_received`)
 - Message Bounced (`$campaign_bounced`)

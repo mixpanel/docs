@@ -1,6 +1,6 @@
 # Build Your Tracking Strategy
 
-It's important to first understand Mixpanel's Data Model and then create a Tracking Plan using this model to define the actions or behaviours that you want to track in order to measure your metrics and KPIs. This ensures that your data is structured to maximise Mixpanel's analytics capabilities. If you have not thought about your metrics and KPIs, now is a good time to read up on [Analytics Framework](/docs/tutorials/plan/framework).
+It's important to first understand Mixpanel's Data Model and then create a Tracking Plan using this model to define the actions or behaviors that you want to track in order to measure your metrics and KPIs. This ensures that your data is structured to maximise Mixpanel's analytics capabilities. If you have not thought about your metrics and KPIs, now is a good time to read up on [Analytics Framework](/docs/tutorials/plan/framework).
 
 ## The Mixpanel Data Model
 
@@ -8,7 +8,7 @@ Mixpanel's data model is composed of Events, User Profiles, and Properties that 
 
 ![image](/tutorials/base-data-model.png "Mixpanel Data Model")
 
-### Behaviours: Events and Event Properties
+### Behaviors: Events and Event Properties
 
 Events are the foundation of Mixpanel's Data Model. In order to conduct meaningful analysis and gather insights using Mixpanel reports, you should understand and intentionally design your events and event properties based on your business objectives, specific use cases, and key metrics.
 
@@ -23,7 +23,7 @@ For more details and examples refer to our documentation on [Events and Properti
 
 ### Demographics: User Profile and User Properties
 
-While events capture behaviours or user actions, user profiles capture demographic attributes which help in cohorting users based on their latest characteristics such as users' details *(e-mail, phone)*, device information *(brand, model)*, users' geographical locations *(country, region, city)*, product related details *(current subscriptions, customer type)*  etc. 
+While events capture behaviors or user actions, user profiles capture demographic attributes which help in cohorting users based on their latest characteristics such as users' details *(e-mail, phone)*, device information *(brand, model)*, users' geographical locations *(country, region, city)*, product related details *(current subscriptions, customer type)*  etc. 
 
 User profiles are in a separate object from events and are mutable *(eg for current snapshot)*:
 
@@ -91,11 +91,11 @@ Mixpanel also supports object and [list of objects](/docs/features/advanced#list
 
 For more details and examples refer to our documentation on [Supported Dta Types](/docs/data-structure/property-reference#supported-data-types).
 
-### Group Level Behaviours and Demographics
+### Group Level Behaviors and Demographics
 
 > Note: read this section only if you have [Group Analytics](/docs/data-structure/advanced/group-analytics) add-on.
 
-Mixpanel's core behavioural data analysis is at the individual user level; there are however, use cases where behavioral data needs to be analysed at a customized group level *(eg company, subscription, account)*. An add-on Group Analytics package available to customers on [Growth](https://mixpanel.com/pricing/) and [Enterprise plans](https://mixpanel.com/pricing/) enables this functionality.
+Mixpanel's core behavioral data analysis is at the individual user level; there are however, use cases where behavioral data needs to be analysed at a customized group level *(eg company, subscription, account)*. An add-on Group Analytics package available to customers on [Growth](https://mixpanel.com/pricing/) and [Enterprise plans](https://mixpanel.com/pricing/) enables this functionality.
 
 ![image](/tutorials/group-data-model.png "Group Analytics Data Model")
 
