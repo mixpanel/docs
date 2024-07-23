@@ -54,7 +54,7 @@ mixpanel.track_pageview({"page": "Pricing"});
 
 ### Tracking UTM Parameters
 
-The JavaScript library will automatically add any UTM parameters (`utm_source`, `utm_campaign`, `utm_medium`, `utm_term`, `utm_content`) present on the page to events fired from that page load.
+The JavaScript library will automatically add any UTM parameters (`utm_source`, `utm_campaign`, `utm_medium`, `utm_term`, `utm_content`) present on the page to events fired from that page load. Please note when configuring UTMs that UTM tracking is case sensitive, and should be formatted lower-case as shown in the examples above.
 
 When UTM parameters for an identified user are seen for the first time, these will also be stored on the user profile as `initial_utm_source`, `initial_utm_campaign`, `initial_utm_medium`, `initial_utm_term`, and `initial_utm_content`.
 
