@@ -64,7 +64,7 @@ All pull requests will generate a staging link in Vercel. Here's an [example](ht
 You may also preview changes by [testing locally](#testing-locally)
 
 # Changelog
-We make a changelog post for every feature we ship. It usually includes a Loom link + a description of the feature. Make sure to include either `video: <loom link>` or `thumnail: <image>` to ensure that we have a preview video or image for every changelog post.
+We make a changelog post for every feature we ship. It usually includes a Loom link + a description of the feature. Make sure to include either `video: <loom link>` or `thumbnail: <image>` to ensure that we have a preview video or image for every changelog post.
 
 [Here](https://github.com/mixpanel/docs/blob/2d7a6f88118577411cdd173f51abe30b7499044c/pages/changelogs/2024-04-18-ai-chatbot-search-in-docs.mdx
 ) is an example that you can clone to add a new changelog post.

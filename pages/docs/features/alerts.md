@@ -19,7 +19,7 @@ Create an alert for your Insights and Funnels reports and be notified when r
 4. **Set your alert criteria.** Depending on the report you’re working from, choose between anomaly detection or custom alert types. More details on each criteria type can be found below.
 5. **Set your notification frequency.** Depending on your alert criteria, you can choose a notification frequency spanning from an hour to at most a month. This frequency informs how often *at most* you’ll receive an alert.
      <br> *Note:*
-    - *for time-series reports, alert query frequency (how often we check if your data matches your alert condition) is determined by the time bucket of your report visualization. For instance, if you’re chart is hourly, the alert will be checked for at an hourly interval.*
+    - *for time-series reports, alert query frequency (how often we check if your data matches your alert condition) is determined by the time bucket of your report visualization. For instance, if your chart is hourly, the alert will be checked for at an hourly interval.*
     - *if you have an hourly chart, but set the alert frequency to daily, we’ll check your report for an alert condition match every hour. If we find a match, we’ll send you the alert message and will stop checking your report for a match until the next day.*
 6. **Set your notification delivery preferences.** When alert conditions are met, we can send notification via email or Slack.
     - For email, enter the recipient emails that you would like to receive this alert. You can enter any email here, not just internal users.
