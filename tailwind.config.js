@@ -48,7 +48,7 @@ module.exports = {
         white: "#fff",
 
         darkbg: "#242133",
-        lightbg: "#f5f2f2",
+        lightbg: "#fbf9f9",
       },
     },
   },
