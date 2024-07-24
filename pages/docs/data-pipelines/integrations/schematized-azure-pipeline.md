@@ -1,4 +1,4 @@
-# Azure Blob Storage
+# Schematized Azure Pipeline
 
 Mixpanel’s Azure Blob Export is one type of [Schematized Export Pipeline](/docs/data-pipelines/schematized-export-pipeline) that exports Mixpanel events and people data and imports them into an Azure Blob storage instance. 
 
