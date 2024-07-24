@@ -1,12 +1,14 @@
+import { Callout } from 'nextra/components'
+
 # Login Methods
 
 ## Overview
 Users must authenticate themselves through a login process to access Mixpanel. Mixpanel supports multiple login methods.
 
 ## Magic Link Login
-<CustomCallout type="info" title="Not receiving the Magic Link" >
+<Callout type="info">
     If you do not see the magic link email in your inbox/junk/spam mailbox, you may need to create an account or your account may be associated with a different email address.
-</CustomCallout>
+</Callout>
 
 By default, Mixpanel users authenticate in a password-less manner using Magic Link. After entering your email and clicking continue in the log in screen, we send an email to your inbox that contains a Magic Link, which will log you in directly.
 
@@ -14,9 +16,9 @@ By default, Mixpanel users authenticate in a password-less manner using Magic Li
 
 
 ## Password Login
-<CustomCallout type="info">
+<Callout type="warning">
     Once you set a password, the magic link login option will be permanently disabled for your account.
-</CustomCallout>
+</Callout>
 
 You can set a password for your user account if you prefer to log in by providing an email and password instead of the Magic Link.
 
