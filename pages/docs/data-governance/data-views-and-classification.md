@@ -101,7 +101,7 @@ The following are limitations to be aware of when using Data Views:
 
 ## Data Classification
 
-### Mark Properties as Classified Data 
+**Mark Properties as Classified Data** 
 
 Marking properties as classified limits which users can view them. Navigate to the event properties and user profile properties tabs in Lexicon to mark a property as classified. 
 
@@ -119,7 +119,7 @@ A pop-up will confirm that you want to mark the selected property or properties 
 
 When you mark a property as classified, the Status column will indicate that the property is classified alongside its visibility state (visible or hidden). If the Status column shows only the visibility state, then the property is not marked as classified.
 
-### Manage Classified Data Viewing Permissions for Individual Users
+**Manage Classified Data Viewing Permissions for Individual Users**
 
 Go to your Project Settings, and then to the tab "Project Users" in order to manage which users can access the events and properties marked as classified.
 
@@ -139,13 +139,13 @@ Navigate to Organization Settings from the gear icon at the top-right corner of 
 
 Users that cannot view properties marked as Classified Data can see which specific properties are marked as classified in Lexicon. Users that cannot view properties marked as Classified Data cannot use such properties as filters or breakdowns.
 
-#### Boards
+**Boards**
 
 If a report contains any event or property marked as classified when a user without the "Can View" option tries to open it, will see the next warning
 ![Sensitive Data Warning](/sensitive-data.png)
 Users that cannot view classified data can click on a Board card to access the full report and determine what properties are preventing them from viewing a report.
 
-#### Analysis Reports (Insights, Funnels, Flows, and Retention)
+**Analysis Reports (Insights, Funnels, Flows, and Retention)**
 
 Classified properties won't be visibly different when building a report, but if used by a user without the "Can View" option enabled, the next warning will be displayed:
 
