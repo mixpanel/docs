@@ -128,8 +128,8 @@ We retry syncs 5 times over 60 secs with exponential backoff in response to 5xx 
 When a sync fails, we do not update the cohort snapshot. The next sync performed will recompute the diff based on the last successful snapshot (until 3 days have passed, at which point we will attempt to sync the full cohort). This ensures that the state of the cohort will converge to what Mixpanel has.
 
 ##  FAQ
-**Does page_count in the requests start from 0 or 1?
-**The page_count starts from 1.
+**Does page_count in the requests start from 0 or 1?**
+The page_count starts from 1.
 
 **Are users within cohort resynced when webhook calls fail or there is an internal failure?**
 Even though we just sync a diff of users for each cohort there can be failures that occur mid sync. In a case like this, we do not have a mechanism to keep track of users that were already synced for a cohort when the failure occurs in between the sync process. So we start the sync from the top again. This can cause issues like users being synced again.
