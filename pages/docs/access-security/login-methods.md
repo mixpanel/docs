@@ -4,7 +4,7 @@
 Users must authenticate themselves through a login process to access Mixpanel. Mixpanel supports multiple login methods.
 
 ## Magic Link Login
-<CustomCallout type="info" title="Roles & Permissions">
+<CustomCallout type="info" title="Not receiving the Magic Link" >
     If you do not see the magic link email in your inbox/junk/spam mailbox, you may need to create an account or your account may be associated with a different email address.
 </CustomCallout>
 
@@ -14,7 +14,7 @@ By default, Mixpanel users authenticate in a password-less manner using Magic Li
 
 
 ## Password Login
-<CustomCallout type="info" title="Roles & Permissions">
+<CustomCallout type="info">
     Once you set a password, the magic link login option will be permanently disabled for your account.
 </CustomCallout>
 
