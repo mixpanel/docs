@@ -16,8 +16,8 @@ You can export data from your project using a variety of methods, including ligh
 
 ### Event Export via API
 
-<Callout type="warning">
-  The from_date and to_date parameter are in UTC timezone, regardless of your project's timezone setting.
+<Callout type="info">
+  The from_date and to_date parameters are in UTC timezone, regardless of your project's timezone setting.
 </Callout>
 
 To export raw event data, use the [Raw Event Export API](https://developer.mixpanel.com/reference/raw-event-export). The events payload is returned as JSONL, where each line is a valid JSON object. This method is recommended for high volume exports.
@@ -46,7 +46,7 @@ The exported payloads are raw events, containing timestamps as they are stored i
 
 ### CSV Events Export
 
-<Callout type="warning">
+<Callout type="info">
   Only the events visible in the Events table at the time of your export will be included in the CSV. Scroll down and click “Load More” to make more events visible.
 </Callout>
 
