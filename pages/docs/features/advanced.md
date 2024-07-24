@@ -987,17 +987,17 @@ To download Insights, Funnels, and Retention reports, click the "..." icon on th
 
 #### Insights Download Menu
 
-![/Screen_Shot_2020-02-14_at_10.31.33_AM.png](/Screen_Shot_2020-02-14_at_10.31.33_AM.png)
+![image](/Insights-export.png)
 
 #### Funnels Download Menu
 
-![/Screen_Shot_2020-02-14_at_10.32.18_AM.png](/Screen_Shot_2020-02-14_at_10.32.18_AM.png)
+![image](/Funnels-export.png)
 
 It is possible (only in the Funnels report) to download "CSV Trends", which downloads funnels by date.
 
 #### Retention Download Menu
 
-![/Screen_Shot_2020-02-14_at_10.32.36_AM.png](/Screen_Shot_2020-02-14_at_10.32.36_AM.png)
+![image](/Retention-export.png)
 
 ## Undefined and Null Properties
 
