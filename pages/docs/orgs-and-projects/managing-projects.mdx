@@ -1,3 +1,5 @@
+import { Callout } from 'nextra/components'
+
 # Managing Projects
 
 ## Creating Projects
@@ -94,7 +96,9 @@ Then select the Projects tab.
 
 ## Manage Timezones for Projects
 
->Note: For projects created before 11 Jan 2023, Mixpanel converts event timestamps to your project timezone before writing the event to your Mixpanel data stores, meaning that event timestamps are stored based on the project timezone setting at the time of ingestion.
+<Callout type="info" emoji="ℹ️">
+For projects created before 11 Jan 2023, Mixpanel converts event timestamps to your project timezone before writing the event to your Mixpanel data stores, meaning that event timestamps are stored based on the project timezone setting at the time of ingestion.
+</Callout>
 
 Mixpanel records all events in [Coordinated Universal Time (UTC)](https://www.worldtimeserver.com/learn/what-is-utc/) at intake. Changing the timezone for any project under Project Settings only affects the timezone in which Mixpanel outputs results.
 
