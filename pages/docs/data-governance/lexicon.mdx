@@ -177,6 +177,8 @@ If you wish to use a hidden entity in your report, you may manually select the e
 
 **Hiding Events and Properties**
 
+To hide an event or property:
+
 1. Select one or more visible events, event properties, or profile properties. The “Hide” icon appears. You can check the “Status” field to determine whether an event or property is visible or hidden.
 ![Lexicon Hide Events](/hide-events.png)
 2. Select **Hide**. A message appears to allow you to confirm hiding the event(s). After you select **Hide**, the event or property status changes to “Hidden”.
@@ -203,25 +205,27 @@ By merging “Purchase” and “purchase item” into a single event named “P
 Being able to merge events can help streamline your implementation, reduce your costs by eliminating redundant events being sent to Mixpanel, and simplify report analysis because you’re only using optimal events and properties.
 Do note however that user profile properties cannot be merged at this time.
 
-### Merging Events
+**Merging Events**
 
-**To merge events:**
+To merge events:
 
 1. Select the events to merge. The “Merge” icon appears.
 2. Click Merge. The “Merge Events” window appears. It shows the events you selected and explains that merging the selected events combines them into a single event, which does not affect the raw data.
 ![Lexicon Merge Events](/lexicon-merge-events.png)
 3. In the “MERGE SELECTED EVENTS INTO…” section, specify which event Mixpanel should consider as the new unique event.
 4. Click **Merge**. The merged event appears and the “Status” column indicates “Merged”.
- 
-**To unmerge events:**
+
+**Unmerge Events**
+
+To unmerge events:
 
 1. Select the merged event to unmerge. The “Unmerge” icon appears.
 ![Lexicon Unmerge Events](/unmerge-events.png)
 2. Click Unmerge. The merged event appears as the original two distinct events.
 
-### Merging Properties
+**Merging Properties**
 
-**To merge properties:**
+To merge properties:
 
 1. Select the properties to merge. The “Merge” icon appears.
 2. Click Merge. The “Merge Properties” window appears. It shows the properties you selected and explains that merging the selected properties combines them into a single property, which does not affect the raw data.
@@ -229,7 +233,9 @@ Do note however that user profile properties cannot be merged at this time.
 3. In the “MERGE SELECTED PROPERTIES INTO…” section, specify which property Mixpanel should recognize as the newly merged property name.
 4. Click **Merge**. The merged property appears and the “Status” column indicates “Merged”.
 
-**To unmerge properties:**
+**Unmerge Properties**
+
+To unmerge properties:
 
 1. Select the merged property to unmerge. The “Unmerge” icon appears.
 ![Lexicon Unmerge Events](/unmerge-properties.png)
