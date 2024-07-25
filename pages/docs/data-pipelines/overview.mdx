@@ -1,6 +1,14 @@
-# Overview
+import { Callout } from 'nextra/components'
 
-Data Pipelines is a [paid add-on](https://mixpanel.com/pricing) which continuously exports the events in your Mixpanel project to a cloud storage bucket or data warehouse of your choice. It's useful if you want to analyze Mixpanel events using SQL in your own environment.
+# Data Pipelines
+
+## Overview
+
+<Callout type="info" >
+  Data Pipelines are an enterprise add-on. [Reach out](https://mixpanel.com/contact-us/sales/) to our team to have it enabled on your account.
+</Callout>
+
+Data Pipelines continuously exports the events in your Mixpanel project to a cloud storage bucket or data warehouse of your choice. It's useful if you want to analyze Mixpanel events using SQL in your own environment.
 
 Using Data Pipelines requires 2 steps:
 1. Configuring your destination to allow Mixpanel to write to it.
@@ -56,19 +64,22 @@ Limits:
 
 ## FAQ
 
-### Why are some events or properties not exported to the destination?
+**Why are some events or properties not exported to the destination?**
 This normally happens when you have thousands of unique event names or property names, which is usually an implementation mistake (eg: including a UUID in the event or property name). This causes the export process to exceed table or column limits in the destination. Mixpanel itself imposes a limit of 10K unique properties in your schema after tranformation rules have been applied. Any projects exceeding this limit will have their pipelines paused until the issue can be remediated. If you notice an error in your pipelines around exceeding this limitation please try to identify a regex selector that selects some properties you would like to filter out of your schema and reach out to our support team for assistance.
 
-### Why does the number of events in Mixpanel not match the number of exported events to my destination?
+**Why does the number of events in Mixpanel not match the number of exported events to my destination?**
 This can happen for a few reasons:
 - [Data Sync](/docs/data-pipelines/schematized-export-pipeline#data-sync) is not enabled or not supported for your pipeline.
 - Data Delay: it can take up to 1 day for late arriving data to be synced from Mixpanel to your destination.
 - Hidden Events: Mixpanel exports all events to your destination, even ones that are hidden in the UI via Lexicon. We recommend checking whether the count in your destination is mostly due to events that have been hidden in the Mixpanel UI.
 
-### How can I count events exported by Mixpanel in the warehouse?
+**What timezone is used for my event exports?**
+Pipeline exports raw data from your project so all exported events so it will be whatever timestamp was supplied at the time of ingestion. This means that the timestamp for exported events from your pipeline will be in the UTC timezone, unless your project was created before 11 Jan 2023. Learn more about [managing timezones here](/docs/orgs-and-projects/managing-projects#manage-timezones-for-projects).
+
+**How can I count events exported by Mixpanel in the warehouse?**
 Counting events can be slightly different for each warehouse, since we use different partitioning methods. Here are examples for [BigQuery](/docs/data-pipelines/integrations/bigquery#getting-the-number-of-events-in-each-day) and [Snowflake](/docs/data-pipelines/integrations/snowflake#getting-the-number-of-events-in-each-day).
 
-### How does the free trial work?
+## Free Trial
 Mixpanel offers a 30-day trial version of the Data Pipelines. The trial allows for one data export pipeline per project to be created.  Simply pass `trial=true` to our API to create a trial pipeline.
 
 Trial limitations:
