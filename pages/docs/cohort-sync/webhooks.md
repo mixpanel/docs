@@ -129,15 +129,19 @@ When a sync fails, we do not update the cohort snapshot. The next sync performed
 
 ##  FAQ
 **Does page_count in the requests start from 0 or 1?**
+
 The page_count starts from 1.
 
 **Are users within cohort resynced when webhook calls fail or there is an internal failure?**
+
 Even though we just sync a diff of users for each cohort there can be failures that occur mid sync. In a case like this, we do not have a mechanism to keep track of users that were already synced for a cohort when the failure occurs in between the sync process. So we start the sync from the top again. This can cause issues like users being synced again.
 
 **What can go wrong for custom webhooks when users are synced again after failure scenarios?**
+
 For example, If these users are set up for some action upon arrival, this failure and recovery could trigger a duplicate action for the same user.
 
 This can be fixed on the custom webhook server-side by keeping track of users who have been already targeted with the action. This way during failure and recovery scenarios of cohort syncs duplicate actions for the same users can be avoided.
 
 **How are actions tracked in Mixpanel?**
+
 The actions are not automatically tracked in Mixpanel as they occur on the customer-side webhook server. Customers have to explicitly track events back to Mixpanel in order to use them on the Mixpanel platform.
