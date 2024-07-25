@@ -280,13 +280,12 @@ All of our sample code transparently retries and backoff from rate limit excepti
 <br></br>
 <br></br>
 
-<div className="next-steps-sections" >
 
 {/* Next Section */}
 
 <hr></hr>
 <br></br>
-
+<div className="extendedButtonComponent" >
 <div className="bg-base100 rounded-xl">
   <h2 className="text-2xl font-medium mb-2 color:bg-purple200">
     You're Ready to Start Using Mixpanel
@@ -301,7 +300,7 @@ All of our sample code transparently retries and backoff from rate limit excepti
     link="https://mixpanel.com"
   ></ExtendedButton>
 </div>
-
+</div>
 <br></br>
 <br></br>
 
@@ -320,6 +319,8 @@ export function FAQBox({ title, children }) {
     </details>
   );
 }
+
+<div className="faqComponent" >
 
 <FAQBox title="Does Mixpanel automatically track page views?">
   Yes, if you pass `track_pageview: true` in the `mixpanel.init()` call,
