@@ -8,10 +8,10 @@ The [Full API Reference](https://mixpanel.github.io/mixpanel-react-native/Mixpan
 
 ## Expo and Web Support
 
-Prior to version 3.0.2, the React Native SDK only wrapped around iOS Swift and Android SDK. As of version 3.0.2, React Native SDK supports Expo and React Native for Web (as well as other platforms) via Javascript Mode.
+Prior to version 3.0.2, the React Native SDK only wrapped around iOS Swift and Android SDK. As of version 3.0.2, React Native SDK supports Expo and React Native for Web (as well as other platforms utilizing React Native) via Javascript Mode.
 
 In order to enable Javascript Mode:
-1. Install [`AsyncStorage`](https://react-native-async-storage.github.io/async-storage/) which is used to persist data
+1. Install [`AsyncStorage`](https://react-native-async-storage.github.io/async-storage/) which is used to persist data. If this is unavailable in your target environment, you can import/define a different storage class. Please refer to [`this documentation.`](https://github.com/mixpanel/mixpanel-react-native/tree/master?tab=readme-ov-file#expo-and-react-native-for-web-support-302-and-above)
 ```
 npm install @react-native-async-storage/async-storage
 ```

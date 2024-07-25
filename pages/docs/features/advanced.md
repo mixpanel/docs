@@ -753,7 +753,7 @@ Prompts a selection of a property contained within the objects of the list. This
 
 The list of objects property support will be limited to the first 5 objects within the list property. More details on [Object and List of Objects Data Types](/docs/data-structure/property-reference#object-and-list-of-objects-data-types) support in our docs.
 
-For customer's on a paid plan, you may submit a request for approval to have this limit increased by opening a support ticket within the UI (or by sending an email to [support@mixpanel.com](mailto:support@mixpanel.com)) with the subject line: “Request for List of Objects Limit Increase”. An increase will not be guaranteed, but your project will be reviewed for feasibility of increasing this limit.
+For customers on a paid plan, you may submit a request for approval to have this limit increased by opening a support ticket within the UI (or by sending an email to [support@mixpanel.com](mailto:support@mixpanel.com)) with the subject line: “Request for List of Objects Limit Increase”. An increase will not be guaranteed, but your project will be reviewed for feasibility of increasing this limit.
 
 
 ## Analyzing First Time Users
@@ -987,17 +987,17 @@ To download Insights, Funnels, and Retention reports, click the "..." icon on th
 
 #### Insights Download Menu
 
-![/Screen_Shot_2020-02-14_at_10.31.33_AM.png](/Screen_Shot_2020-02-14_at_10.31.33_AM.png)
+![image](/Insights-export.png)
 
 #### Funnels Download Menu
 
-![/Screen_Shot_2020-02-14_at_10.32.18_AM.png](/Screen_Shot_2020-02-14_at_10.32.18_AM.png)
+![image](/Funnels-export.png)
 
 It is possible (only in the Funnels report) to download "CSV Trends", which downloads funnels by date.
 
 #### Retention Download Menu
 
-![/Screen_Shot_2020-02-14_at_10.32.36_AM.png](/Screen_Shot_2020-02-14_at_10.32.36_AM.png)
+![image](/Retention-export.png)
 
 ## Undefined and Null Properties
 
