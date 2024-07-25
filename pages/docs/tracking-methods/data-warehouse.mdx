@@ -469,6 +469,32 @@ To understand the potential savings consider a 100 GB source table with 100 days
 
 Full syncs periodically make a snapshot of the source table and sync it entirely to Mixpanel. If a row has new properties in your warehouse, the corresponding profile in Mixpanel will be overridden with those new properties. This mode is available for all tables except events.
 
+
+## Sync Frequency
+Mixpanel offers a variety of sync frequency options to cater to different data integration needs. These options allow you to choose how often your data is synchronized from your data warehouse to Mixpanel, ensuring your data is up-to-date and accurate.
+
+### Standard Sync Frequency Options
+* Hourly: Data is synchronized every hour, providing near real-time updates to your Mixpanel project.
+* Daily: Data synchronization occurs once a day, ideal for daily reporting and analytics.
+* Weekly: Data is synchronized once a week, suitable for less frequent reporting needs.
+
+### Advanced Sync Frequency Option: Trigger via API
+For more advanced synchronization needs, Mixpanel offers the ability to trigger syncs via API. This option generates a PUT URL that customers can use in their code to orchestrate Mixpanel sync jobs with other jobs, such as Fivetran pipelines or dbt jobs. By using this API trigger option, you can ensure 100% accuracy by aligning Mixpanel syncs with other critical data operations.
+
+To use the API trigger option:
+
+1. Select Advanced>Trigger Via API under Sync Frequency in the table sync creation UI.
+2. After creaitng the sync, we will generate a PUT URL for you. 
+3. Integrate this URL into your existing workflows or scripts.
+4. Authenticate the request with a Mixpanel Service Account. More information on setting up and using Mixpanel Service Accounts can be found [here](https://developer.mixpanel.com/reference/service-accounts).
+5. Trigger the sync job programmatically, ensuring it runs in coordination with other data processes.
+
+This flexibility allows you to maintain precise control over when and how your data is updated in Mixpanel, ensuring your analytics are always based on the latest information. 
+
+Note: If your table sync is set up with Mirror mode, you will need to run a sync job at least every 2 weeks to ensure our snapshots do not get deleted. 
+
+
+
 ## FAQ
 
 ### What tables are valuable to load into Mixpanel?
