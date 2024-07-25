@@ -329,8 +329,8 @@ $border-radius-lg: 100px;
     //   border-color: rgba(255, 255, 255, 0.4);
     // }
 
-    // Fix JSX in Quickstart
-    .next-steps-sections {
+    // Style FAQ components in Quickstart
+    .faqComponent {
       .bg-base100 {
         background-color: colors.$lightbg;
       }
@@ -343,6 +343,38 @@ $border-radius-lg: 100px;
         summary:hover {
           background-color: colors.$lightbg;
         }
+      }
+    }
+
+    //Style ExtendedButtons in Quickstar
+    .extendedButtonComponent {
+      h2 {
+        // text-2xl font-medium mb-2 color:bg-purple200 <- tailwindcss equivalent
+        font-size: 1.5rem;
+        line-height: 2rem;
+        font-weight: 500;
+        margin-bottom: 0.5rem;
+        color: colors.$purple200;
+      }
+
+      button {
+        box-shadow: 0 1px 2px 0 rgb(0 0 0 / 0.05);
+        background-color: colors.$purple50;
+        border-radius: 9999px;
+        font-weight: 500;
+        font-size: 1rem;
+        line-height: 1.5rem;
+        padding-left: 28px;
+        padding-right: 28px;
+        padding-top: 10px;
+        padding-bottom: 10px;
+        color: colors.$white;
+      }
+
+      button:hover {
+        box-shadow: 0 4px 6px -1px rgb(0 0 0 / 0.1),
+          0 2px 4px -2px rgb(0 0 0 / 0.1);
+        background-color: colors.$purple100;
       }
     }
 
@@ -897,8 +929,8 @@ $border-radius-lg: 100px;
       border-color: rgba(255, 255, 255, 0.4);
     }
 
-    // Fix JSX in Quickstart
-    .next-steps-sections {
+    // Style FAQ component
+    .faqComponent {
       .bg-base100 {
         background-color: colors.$darkbg;
       }
@@ -911,6 +943,38 @@ $border-radius-lg: 100px;
         summary:hover {
           background-color: colors.$darkbg;
         }
+      }
+    }
+
+    //Style ExtendedButtons in Quickstar
+    .extendedButtonComponent {
+      h2 {
+        // text-2xl font-medium mb-2 color:bg-purple200 <- tailwindcss equivalent
+        font-size: 1.5rem;
+        line-height: 2rem;
+        font-weight: 500;
+        margin-bottom: 0.5rem;
+        color: colors.$white;
+      }
+
+      button {
+        box-shadow: 0 1px 2px 0 rgb(0 0 0 / 0.05);
+        background-color: colors.$purple100;
+        border-radius: 9999px;
+        font-weight: 500;
+        font-size: 1rem;
+        line-height: 1.5rem;
+        padding-left: 28px;
+        padding-right: 28px;
+        padding-top: 10px;
+        padding-bottom: 10px;
+        color: colors.$white;
+      }
+
+      button:hover {
+        box-shadow: 0 4px 6px -1px rgb(0 0 0 / 0.1),
+          0 2px 4px -2px rgb(0 0 0 / 0.1);
+        background-color: colors.$purple50;
       }
     }
 
