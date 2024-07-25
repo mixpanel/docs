@@ -9,7 +9,8 @@ Data Views allow you to manage data access for a group of users within a single 
 **Teams or Functional Areas**
 
 You have a Mixpanel project that contains all of your data. Engineering, Marketing, Support, and various product teams all use Mixpanel on a regular basis. Each team can have a Data View filtering for relevant data.
-#### Separate Customer Data from Internal User Data
+
+**Separate Customer Data from Internal User Data**
 
 Create a Data View for customer data by excluding data tracked by your internal users/employees. Create another Data View for just your internal users. By doing this, you no longer have to remember to add cohorts or filters each time you create a Board, Report, or Cohort.
 
