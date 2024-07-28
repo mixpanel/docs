@@ -85,17 +85,27 @@ $border-radius-lg: 100px;
     format("woff2");
 }
 
-//############Global Top Nav Hover############
+//############Global Top Nav############
 .nextra-nav-container {
   .nx-text-sm {
-    // color: colors.$purple200;
-    &:hover {
-      font-weight: bold;
-      transition-duration: 0.5s;
+    font-size: 14px;
+    line-height: 20px;
+    padding: 8px;
+
+    //hover effect
+    & span:hover {
+      font-weight: 700;
+      color: colors.$purple100;
+      // text-decoration: underline !important;
     }
-    &:active {
-      font-weight: bold;
-    }
+  }
+
+  //actively selected tab
+  .nx-text-sm[aria-current="true"] span {
+    font-weight: 700 !important;
+    text-decoration: underline !important;
+    color: colors.$purple100;
+    filter: contrast(1.5);
   }
 }
 
@@ -110,41 +120,6 @@ $border-radius-lg: 100px;
   border-color: colors.$purple140;
   outline-style: none;
 }
-
-//input box area
-// .mantine-InputWrapper-root.mantine-TextInput-root {
-//   // &:focus {
-//   //   border-color: colors.$purple140 !important;
-//   //   outline-style: hidden !important;
-//   // }
-//   // border-color: colors.$purple140 !important;
-//   .mantine-Input-input.mantine-TextInput-input:hover {
-//     border-color: colors.$purple50 !important;
-//     border-radius: 2px;
-//     border-width: 2px;
-//   }
-//   // .mantine-Input-input.focus-visible {
-//   //   border-color: colors.$purple140 !important;
-//   //   border-radius: 5px;
-//   //   border-width: 2px;
-//   // }
-//   // .mantine-Input-wrapper.mantine-TextInput-wrapper {
-//   //   border-color: colors.$purple140;
-//   //   border-radius: 0px;
-//   //   border-width: 0px;
-//   //   outline-style: none;
-
-//   //   input:hover {
-//   //     border-color: colors.$purple140 !important;
-//   //   }
-//   //   // input:focus {
-//   //   //   border-color: colors.$purple140 !important;
-//   //   // }
-//   //   // input.focus-visible:focus-visible {
-//   //   //   outline: none !important;
-//   //   // }
-//   // }
-// }
 
 //############Global Feedback Module############
 .feedbackCollectorContainer {
@@ -211,17 +186,19 @@ $border-radius-lg: 100px;
   // Changelog title
   .changelogTitle {
     font-size: 48px !important;
-    line-height: 1 !important;
+    line-height: 1.5 !important;
     text-align: center !important;
     font-weight: 800 !important;
     margin-top: 32px !important;
     padding-bottom: 24px !important;
-    letter-spacing: 0em !important;
+    letter-spacing: -0.02em !important;
+    // color: colors.$purple200 !important;
   }
 
   //div for changelog entries in the index page
   .changelogIndexItem {
     margin-top: 40px;
+    // max-height: 500px;
 
     //title of each changelog entry
     .changelogItemTitle {
@@ -592,6 +569,9 @@ $border-radius-lg: 100px;
 
     //Modify Changelog
     .changelogMainContainer {
+      .changelogTitle {
+        color: colors.$purple200;
+      }
       .changelogLoadMoreButtonContainer {
         //load more button
         .changelogLoadMoreButton {
