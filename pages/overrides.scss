@@ -95,8 +95,8 @@ $border-radius-lg: 100px;
     //hover effect
     & span:hover {
       font-weight: 700;
-      color: colors.$purple100;
-      // text-decoration: underline !important;
+      // color: colors.$purple100;
+      text-decoration: underline !important;
     }
   }
 
@@ -104,7 +104,7 @@ $border-radius-lg: 100px;
   .nx-text-sm[aria-current="true"] span {
     font-weight: 700 !important;
     text-decoration: underline !important;
-    color: colors.$purple100;
+    // color: colors.$purple100;
     filter: contrast(1.5);
   }
 }
