@@ -57,7 +57,11 @@ export default function Document() {
           data-search-result-secondary-text-color="#626266"
           data-search-result-badge-bg-color="#eae7e7"
           data-search-result-badge-text-color="#626266"
+          data-query-input-text-color="#1b0b3b"
+          // data-query-input-placeholder-text-color="#1b0b3b"
           data-button-bg-color="#5028c0"
+          data-modal-overlay-opacity="0.8"
+          data-modal-overlay-bg-color="#242133"
         ></script>
         <script>
           {`(function(){let k=window.Kapa;if(!k){let i=function(){i.c(arguments)};i.q=[];i.c=function(args){i.q.push(args)};window.Kapa=i}})();`}
