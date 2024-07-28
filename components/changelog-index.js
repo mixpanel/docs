@@ -105,6 +105,7 @@ export default function ChangelogIndex({ more = "Read more" }) {
               </Link>
             </span>
           </p>
+          <div className="changelogDivider nx-mt-16"></div>
         </div>
       ))}
       {pageIndex + itemsPerPage < allPages.length && (
