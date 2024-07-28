@@ -2,6 +2,9 @@
 @use "./theme/typography.scss" as typography;
 @use "sass:color";
 
+//##############################Global Style##############################
+//Followed by Light Theme Specific Style and Dark Theme Specific Style
+
 $base-spacing: 8px;
 $border-radius: 8px;
 $border-radius-md: 24px;
@@ -82,7 +85,7 @@ $border-radius-lg: 100px;
     format("woff2");
 }
 
-//Bold top nav buttons on hover
+//############Global Top Nav Hover############
 .nextra-nav-container {
   .nx-text-sm {
     // color: colors.$purple200;
@@ -96,11 +99,183 @@ $border-radius-lg: 100px;
   }
 }
 
-//############Kapa Module###############
-//Kapa Header
-//title text
+//############Global Kapa Module###############
+//Kapa Header Title Text
 .mantine-Title-root {
-  color: #1b0b3b !important;
+  color: colors.$purple200 !important;
+}
+
+//body of module
+.mantine-Modal-body {
+  border-color: colors.$purple140;
+  outline-style: none;
+}
+
+//input box area
+// .mantine-InputWrapper-root.mantine-TextInput-root {
+//   // &:focus {
+//   //   border-color: colors.$purple140 !important;
+//   //   outline-style: hidden !important;
+//   // }
+//   // border-color: colors.$purple140 !important;
+//   .mantine-Input-input.mantine-TextInput-input:hover {
+//     border-color: colors.$purple50 !important;
+//     border-radius: 2px;
+//     border-width: 2px;
+//   }
+//   // .mantine-Input-input.focus-visible {
+//   //   border-color: colors.$purple140 !important;
+//   //   border-radius: 5px;
+//   //   border-width: 2px;
+//   // }
+//   // .mantine-Input-wrapper.mantine-TextInput-wrapper {
+//   //   border-color: colors.$purple140;
+//   //   border-radius: 0px;
+//   //   border-width: 0px;
+//   //   outline-style: none;
+
+//   //   input:hover {
+//   //     border-color: colors.$purple140 !important;
+//   //   }
+//   //   // input:focus {
+//   //   //   border-color: colors.$purple140 !important;
+//   //   // }
+//   //   // input.focus-visible:focus-visible {
+//   //   //   outline: none !important;
+//   //   // }
+//   // }
+// }
+
+//############Global Feedback Module############
+.feedbackCollectorContainer {
+  //Question
+  .feedbackQuestionTitle {
+    font-weight: 500;
+    font-size: 16px;
+  }
+  //Thank you
+  .feedbackThankYouText {
+    font-weight: 500;
+    font-size: 16px;
+    margin-bottom: 36px;
+    margin-top: 36px;
+  }
+  //Button Container
+  .feedbackButtonContainer {
+    display: inline-flex;
+    flex-wrap: wrap;
+    //Feedback Button
+    .feedbackButton {
+      border-radius: 16px;
+      box-shadow: 0 6px 12px color.adjust(colors.$black, $alpha: -0.95) !important;
+      display: flex;
+      font-weight: 600;
+      margin-right: 16px;
+      margin-top: 16px;
+      padding: 16px 24px;
+      transition: 0.5s !important;
+
+      &:hover {
+        box-shadow: 0 6px 12px color.adjust(colors.$purple140, $alpha: -0.95) !important;
+        transition: 0.5s !important;
+      }
+      //Style thumbs up icon
+      .feedbackThumbsUpIcon svg {
+        color: forestgreen !important;
+        display: inline-block;
+        margin-left: 8px;
+        width: 22px;
+        // path {
+        //   stroke: forestgreen !important;
+        //   // fill: forestgreen !important;
+        // }
+      }
+      //Style thumbs down icon
+      .feedbackThumbsDownIcon svg {
+        color: indianred !important;
+        display: inline-block;
+        margin-left: 8px;
+        width: 22px;
+        // path {
+        //   stroke: indianred !important;
+        //   // fill: indianred !important;
+        // }
+      }
+    }
+  }
+}
+
+//############Global Changelog############
+.changelogMainContainer {
+  // Changelog title
+  .changelogTitle {
+    font-size: 48px !important;
+    line-height: 1 !important;
+    text-align: center !important;
+    font-weight: 800 !important;
+    margin-top: 32px !important;
+    padding-bottom: 24px !important;
+    letter-spacing: 0em !important;
+  }
+
+  //div for changelog entries in the index page
+  .changelogIndexItem {
+    margin-top: 40px;
+
+    //title of each changelog entry
+    .changelogItemTitle {
+      font-size: 24px;
+      font-weight: 800;
+      line-height: 32px;
+      margin-top: 32px;
+      // text-shadow: 0px 0px 0.5px black;
+    }
+
+    //date of changelog entry
+    .changelogDate {
+      opacity: 0.5;
+      font-size: 14px;
+      line-height: 28px;
+      margin-top: 4px;
+      margin-bottom: 2px;
+    }
+
+    //read more button
+    .changelogReadMoreLink {
+      text-decoration-line: underline;
+      text-underline-offset: 2px;
+      text-decoration-thickness: from-font;
+      color: colors.$purple100;
+      font-size: 1.125rem; /* 18px */
+      line-height: 1.75rem; /* 28px */
+    }
+  }
+
+  //load more button
+  .changelogLoadMoreButtonContainer {
+    padding-top: 30px;
+
+    .changelogLoadMoreButton {
+      box-shadow: 0 1px 2px 0 rgb(0 0 0 / 0.05) !important;
+      // background-color: colors.$purple50 !important;
+      border-radius: 9999px !important;
+      font-weight: 600 !important;
+      font-size: 1rem !important;
+      line-height: 1.5rem !important;
+      padding-top: 0.625rem !important; /* 10px */
+      padding-bottom: 0.625rem !important; /* 10px */
+      // color: colors.$white !important;
+      padding-left: 1.75rem !important; /* 28px */
+      padding-right: 1.75rem !important; /* 28px */
+      border-radius: 9999px !important;
+      transition-duration: 0.5s;
+    }
+    .changelogLoadMoreButton:hover {
+      box-shadow: 0 4px 6px -1px rgb(0 0 0 / 0.1),
+        0 2px 4px -2px rgb(0 0 0 / 0.1);
+      // background-color: colors.$purple100;
+    }
+  }
 }
 
 //##############################Light Theme Starts Here##################################
@@ -240,6 +415,18 @@ $border-radius-lg: 100px;
       }
     }
 
+    //modify anchor links hastags
+    a.subheading-anchor {
+      filter: contrast(0) !important;
+      color: colors.$white !important;
+      opacity: 0.4 !important;
+      &:hover {
+        filter: contrast(0) !important;
+        color: colors.$white !important;
+        opacity: 0.7 !important;
+      }
+    }
+
     // Modify breadcrumbs
     .nextra-breadcrumb {
       text-transform: uppercase;
@@ -348,10 +535,17 @@ $border-radius-lg: 100px;
 
     //Style ExtendedButtons in Quickstar
     .extendedButtonComponent {
-      h2 {
-        // text-2xl font-medium mb-2 color:bg-purple200 <- tailwindcss equivalent
-        font-size: 1.5rem;
-        line-height: 2rem;
+      & h2 {
+        font-size: 2.25rem; /* 36px */
+        line-height: 2.5rem; /* 40px */
+        font-weight: 500;
+        margin-bottom: 0.5rem;
+        color: colors.$purple200;
+      }
+
+      & h4 {
+        font-size: 1.5rem; /* 24px */
+        line-height: 2rem; /* 32px */
         font-weight: 500;
         margin-bottom: 0.5rem;
         color: colors.$purple200;
@@ -361,7 +555,7 @@ $border-radius-lg: 100px;
         box-shadow: 0 1px 2px 0 rgb(0 0 0 / 0.05);
         background-color: colors.$purple50;
         border-radius: 9999px;
-        font-weight: 500;
+        font-weight: 600;
         font-size: 1rem;
         line-height: 1.5rem;
         padding-left: 28px;
@@ -379,8 +573,33 @@ $border-radius-lg: 100px;
     }
 
     //Modify Bottom Feedback Area
-    button [class~="Feedback"] {
-      background-color: colors.$lightbg;
+    .feedbackCollectorContainer {
+      .feedbackButtonContainer {
+        .feedbackButton {
+          background-color: colors.$purple50 !important;
+          color: colors.$white !important;
+
+          &:hover {
+            box-shadow: 0 4px 6px -1px rgb(0 0 0 / 0.1),
+              0 2px 4px -2px rgb(0 0 0 / 0.1);
+            background-color: colors.$purple100 !important;
+            transition: 0.5s;
+          }
+        }
+      }
+    }
+
+    //Modify Changelog Load More Button
+    .changelogLoadMoreButtonContainer {
+      .changelogLoadMoreButton {
+        background-color: colors.$purple50 !important;
+        color: colors.$white !important;
+      }
+      .changelogLoadMoreButton:hover {
+        box-shadow: 0 4px 6px -1px rgb(0 0 0 / 0.1),
+          0 2px 4px -2px rgb(0 0 0 / 0.1);
+        background-color: colors.$purple100 !important;
+      }
     }
   }
 
@@ -502,7 +721,7 @@ $border-radius-lg: 100px;
     }
   }
 
-  //##############################Dark Theme ToC Right###################################
+  //##############################Light Theme ToC Right###################################
   .nextra-toc {
     background-color: colors.$lightbg;
     // Remove all hardcoded white backgrounds and shadow filters
@@ -665,7 +884,7 @@ $border-radius-lg: 100px;
     }
   }
 
-  // Modify Footer
+  //##############################Light Theme Footer##############################
   footer {
     background-color: colors.$lightbg !important;
 
@@ -702,8 +921,6 @@ $border-radius-lg: 100px;
 }
 
 //##############################Dark Theme Starts Here###################################
-
-// Dark theme starts here
 .dark {
   line-height: 1.8;
   font-size: 0.88rem;
@@ -782,6 +999,7 @@ $border-radius-lg: 100px;
   }
 
   //##############################Dark Theme Top Nav###################################
+
   .nextra-nav-container {
     background-color: colors.$purple50;
     // box-shadow: unset;
@@ -873,6 +1091,19 @@ $border-radius-lg: 100px;
         opacity: 0.4;
       }
     }
+
+    //modify anchor links hastags
+    a.subheading-anchor {
+      filter: contrast(0) !important;
+      color: colors.$white !important;
+      opacity: 0.4 !important;
+      &:hover {
+        filter: contrast(0) !important;
+        color: colors.$white !important;
+        opacity: 0.7 !important;
+      }
+    }
+
     //####Dark Theme Code Syntax and Box####
     //code box stuff here
     code,
@@ -948,39 +1179,73 @@ $border-radius-lg: 100px;
 
     //Style ExtendedButtons in Quickstar
     .extendedButtonComponent {
-      h2 {
+      & h2 {
         // text-2xl font-medium mb-2 color:bg-purple200 <- tailwindcss equivalent
-        font-size: 1.5rem;
-        line-height: 2rem;
+        font-size: 2.25rem; /* 36px */
+        line-height: 2.5rem; /* 40px */
         font-weight: 500;
         margin-bottom: 0.5rem;
-        color: colors.$white;
+        // color: colors.$purple200;
+      }
+
+      & h4 {
+        // text-2xl font-medium mb-2 color:bg-purple200 <- tailwindcss equivalent
+        font-size: 1.5rem; /* 24px */
+        line-height: 2rem; /* 32px */
+        font-weight: 500;
+        margin-bottom: 0.5rem;
+        // color: colors.$purple200;
       }
 
       button {
         box-shadow: 0 1px 2px 0 rgb(0 0 0 / 0.05);
-        background-color: colors.$purple100;
+        background-color: colors.$purple140;
         border-radius: 9999px;
-        font-weight: 500;
+        font-weight: 600;
         font-size: 1rem;
         line-height: 1.5rem;
         padding-left: 28px;
         padding-right: 28px;
         padding-top: 10px;
         padding-bottom: 10px;
-        color: colors.$white;
+        color: colors.$purple20;
       }
 
       button:hover {
         box-shadow: 0 4px 6px -1px rgb(0 0 0 / 0.1),
           0 2px 4px -2px rgb(0 0 0 / 0.1);
-        background-color: colors.$purple50;
+        background-color: colors.$purple100;
       }
     }
 
     //Modify Bottom Feedback Area
-    button [class~="Feedback"] {
-      background-color: colors.$darkbg;
+    .feedbackCollectorContainer {
+      .feedbackButtonContainer {
+        .feedbackButton {
+          background-color: colors.$purple140;
+          color: colors.$purple20;
+
+          &:hover {
+            box-shadow: 0 4px 6px -1px rgb(0 0 0 / 0.1),
+              0 2px 4px -2px rgb(0 0 0 / 0.1);
+            background-color: colors.$purple50;
+            transition: 0.5s;
+          }
+        }
+      }
+    }
+
+    //Modify Changelog Load More Button
+    .changelogLoadMoreButtonContainer {
+      .changelogLoadMoreButton {
+        background-color: colors.$purple140 !important;
+        color: colors.$purple20 !important;
+      }
+      .changelogLoadMoreButton:hover {
+        box-shadow: 0 4px 6px -1px rgb(0 0 0 / 0.1),
+          0 2px 4px -2px rgb(0 0 0 / 0.1);
+        background-color: colors.$purple100 !important;
+      }
     }
   }
 
@@ -1140,6 +1405,10 @@ $border-radius-lg: 100px;
         // background-color: colors.$purple20;
         color: colors.$purple100;
       }
+
+      .nx-mt-8.nx-border-t {
+        border-top-color: rgba(255, 255, 255, 0.4);
+      }
     }
 
     // Add some spacing between the sidebar sections
@@ -1265,15 +1534,16 @@ $border-radius-lg: 100px;
     }
   }
 
-  // Modify Footer
+  //##############################Dark Theme Footer##############################
   footer {
     background-color: colors.$darkbg !important;
+    border-top: colors.$white !important;
 
-    hr {
-      opacity: 0%;
-      border-radius: 0;
-      background-color: colors.$darkbg;
-    }
+    // div hr {
+    //   opacity: 0.4 !important;
+    //   border-radius: 3px !important;
+    //   color: colors.$white !important;
+    // }
 
     //bottom box with trademark logo
     .nx-mx-auto {
@@ -1293,6 +1563,7 @@ $border-radius-lg: 100px;
 
   // Modify Navigation buttons at the bottom
   .nx-mb-8 > a {
+    border-top-color: rgba(255, 255, 255, 0.4) !important;
     color: colors.$white;
   }
 
