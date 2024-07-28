@@ -148,6 +148,7 @@ $border-radius-lg: 100px;
 
 //############Global Feedback Module############
 .feedbackCollectorContainer {
+  border-top: rgba(255, 255, 255, 0.4) !important;
   //Question
   .feedbackQuestionTitle {
     font-weight: 500;
@@ -589,16 +590,24 @@ $border-radius-lg: 100px;
       }
     }
 
-    //Modify Changelog Load More Button
-    .changelogLoadMoreButtonContainer {
-      .changelogLoadMoreButton {
-        background-color: colors.$purple50 !important;
-        color: colors.$white !important;
+    //Modify Changelog
+    .changelogMainContainer {
+      .changelogLoadMoreButtonContainer {
+        //load more button
+        .changelogLoadMoreButton {
+          background-color: colors.$purple50 !important;
+          color: colors.$white !important;
+        }
+        .changelogLoadMoreButton:hover {
+          box-shadow: 0 4px 6px -1px rgb(0 0 0 / 0.1),
+            0 2px 4px -2px rgb(0 0 0 / 0.1);
+          background-color: colors.$purple100 !important;
+        }
       }
-      .changelogLoadMoreButton:hover {
-        box-shadow: 0 4px 6px -1px rgb(0 0 0 / 0.1),
-          0 2px 4px -2px rgb(0 0 0 / 0.1);
-        background-color: colors.$purple100 !important;
+      //Modify Changelog Divider
+      .changelogDivider {
+        border-top-width: 2px;
+        opacity: 0.8;
       }
     }
   }
@@ -1235,16 +1244,24 @@ $border-radius-lg: 100px;
       }
     }
 
-    //Modify Changelog Load More Button
-    .changelogLoadMoreButtonContainer {
-      .changelogLoadMoreButton {
-        background-color: colors.$purple140 !important;
-        color: colors.$purple20 !important;
+    //Modify Changelog
+    .changelogMainContainer {
+      //load more buttons
+      .changelogLoadMoreButtonContainer {
+        .changelogLoadMoreButton {
+          background-color: colors.$purple140 !important;
+          color: colors.$purple20 !important;
+        }
+        .changelogLoadMoreButton:hover {
+          box-shadow: 0 4px 6px -1px rgb(0 0 0 / 0.1),
+            0 2px 4px -2px rgb(0 0 0 / 0.1);
+          background-color: colors.$purple100 !important;
+        }
       }
-      .changelogLoadMoreButton:hover {
-        box-shadow: 0 4px 6px -1px rgb(0 0 0 / 0.1),
-          0 2px 4px -2px rgb(0 0 0 / 0.1);
-        background-color: colors.$purple100 !important;
+      //changelog divider
+      .changelogDivider {
+        border-top-width: 1px !important;
+        opacity: 0.4 !important;
       }
     }
   }
