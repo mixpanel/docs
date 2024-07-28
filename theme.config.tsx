@@ -71,8 +71,8 @@ const config: DocsThemeConfig = {
   project: {
     link: "https://github.com/mixpanel/docs",
   },
-  // primaryHue: { dark: 252, light: 252 },
-  // primarySaturation: { dark: 100, light: 100 },
+  primaryHue: { dark: 256, light: 256 },
+  // primarySaturation: { dark: 50, light: 100 },
   sidebar: {
     defaultMenuCollapseLevel: 1,
     toggleButton: true,
