@@ -101,7 +101,7 @@ Mixpanel reserves certain event property names for special processing or for spe
 ## FAQ
 
 ### What types of data can I send as properties?
-Mixpanel accepts arbitrary JSON as properties, including strings, numbers, booleans, lists, and objects. See our [API docs](https://developer.mixpanel.com/reference/import-events) for more details.
+Mixpanel accepts arbitrary JSON as properties, including strings, numbers, booleans, lists, and objects. See our [Property Reference doc](https://docs.mixpanel.com/docs/data-structure/property-reference) or our [API docs](https://developer.mixpanel.com/reference/import-events) for more details.
 
 ### What are the limits of events and properties?
 We don't have a limit on the total number of events you can send to Mixpanel, but it will factor into your [pricing](https://mixpanel.com/pricing).
