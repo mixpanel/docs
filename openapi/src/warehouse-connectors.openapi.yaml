@@ -19,7 +19,7 @@ paths:
       parameters:
         - $ref: ./common/parameters.yaml#/path/projectId
         - $ref: ./common/parameters.yaml#/path/importId
-      operationId: manually-run-warehouse-sync
+      operationId: trigger-warehouse-import-api
       tags:
         - Triggers warehouse sync
       summary: Triggers Warehouse Import Sync
