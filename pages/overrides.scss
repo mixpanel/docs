@@ -96,14 +96,14 @@ $border-radius-lg: 100px;
     & span:hover {
       font-weight: 700;
       // color: colors.$purple100;
-      text-decoration: underline !important;
+      // text-decoration: underline !important;
     }
   }
 
   //actively selected tab
   .nx-text-sm[aria-current="true"] span {
-    font-weight: 700 !important;
-    text-decoration: underline !important;
+    font-weight: 700;
+    // text-decoration: underline !important;
     // color: colors.$purple100;
     filter: contrast(1.5);
   }
