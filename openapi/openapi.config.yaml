@@ -9,6 +9,7 @@ apiDefinitions:
   lexicon-schemas: ./src/lexicon-schemas.openapi.yaml
   query: ./src/query.openapi.yaml
   service-accounts: ./src/service-accounts.openapi.yaml
+  warehouse-connectors: ./src/warehouse-connectors.openapi.yaml
 
 lint:
   extends:

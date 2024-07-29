@@ -1,0 +1,46 @@
+openapi: 3.0.2
+x-readme-deploy-id: warehouse-connectors-api
+info:
+  title: Warehouse Connectors API
+  description: Connect an external warehouse to import events, users, groups, and lookup tables.
+  version: 1.0.0
+  contact:
+    url: https://mixpanel.com/get-support
+servers:
+  - $ref: ./common/app-api.yaml#/server
+security:
+  - ServiceAccount: []
+  - ProjectSecret: []
+tags:
+  - name: Trigger a sync
+    description: Trigger an import sync via API
+paths:
+  /projects/{projectId}/warehouse-sources/imports/{importId}/manual-sync:
+    put:
+      parameters:
+        - $ref: ./common/parameters.yaml#/path/projectId
+        - $ref: ./common/parameters.yaml#/path/projectId
+      operationId: manually-run-warehouse-sync
+      tags:
+        - Triggers warehouse sync
+      summary: Triggers Warehouse Import Sync
+      description: >-
+        This API endpoint triggers an immediate sync for a given warehouse import.
+      responses:
+        "200":
+          description: Success
+          content:
+            application/json:
+              examples:
+                example:
+                  value:
+                    "9876543210":
+                      - name: events-daily-bigquery-monoschema
+                        Dispatcher: backfill
+                        last_dispatched: "2019-02-01 12:00:00 US/Pacific"
+                        frequency: hourly
+                        sync_enabled: "true"
+        "401":
+          $ref: "#/components/responses/Unauthorized"
+        "403":
+          $ref: "#/components/responses/Forbidden"

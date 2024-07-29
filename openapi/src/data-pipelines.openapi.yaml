@@ -2,7 +2,7 @@ openapi: 3.0.2
 x-readme-deploy-id: data-pipelines-api
 info:
   title: Data Pipelines API
-  description: Create and manage a continious pipeline with an external warehouse.
+  description: Create and manage a continuous pipeline with an external warehouse.
   version: 1.0.0
   contact:
     url: https://mixpanel.com/get-support
@@ -37,23 +37,23 @@ paths:
       parameters:
         - $ref: ./common/parameters.yaml#/query/projectId
       responses:
-        '200':
+        "200":
           description: Success
           content:
             application/json:
               examples:
                 example:
                   value:
-                    '9876543210':
+                    "9876543210":
                       - name: events-daily-bigquery-monoschema
                         Dispatcher: backfill
-                        last_dispatched: '2019-02-01 12:00:00 US/Pacific'
+                        last_dispatched: "2019-02-01 12:00:00 US/Pacific"
                         frequency: hourly
-                        sync_enabled: 'true'
-        '401':
-          $ref: '#/components/responses/Unauthorized'
-        '403':
-          $ref: '#/components/responses/Forbidden'
+                        sync_enabled: "true"
+        "401":
+          $ref: "#/components/responses/Unauthorized"
+        "403":
+          $ref: "#/components/responses/Forbidden"
   /nessie/pipeline/create:
     post:
       tags:
@@ -75,27 +75,27 @@ paths:
           application/x-www-form-urlencoded:
             schema:
               oneOf:
-                - $ref: '#/components/schemas/RawGCSPipeline'
-                - $ref: '#/components/schemas/RawAmazonS3Pipeline'
-                - $ref: '#/components/schemas/RawAzurePipeline'
-                - $ref: '#/components/schemas/SchematizedBigQueryPipeline'
-                - $ref: '#/components/schemas/SchematizedSnowflakePipeline'
-                - $ref: '#/components/schemas/SchematizedAWSPipeline'
-                - $ref: '#/components/schemas/SchematizedAzurePipeline'
-                - $ref: '#/components/schemas/SchematizedGCSPipeline'
+                - $ref: "#/components/schemas/RawGCSPipeline"
+                - $ref: "#/components/schemas/RawAmazonS3Pipeline"
+                - $ref: "#/components/schemas/RawAzurePipeline"
+                - $ref: "#/components/schemas/SchematizedBigQueryPipeline"
+                - $ref: "#/components/schemas/SchematizedSnowflakePipeline"
+                - $ref: "#/components/schemas/SchematizedAWSPipeline"
+                - $ref: "#/components/schemas/SchematizedAzurePipeline"
+                - $ref: "#/components/schemas/SchematizedGCSPipeline"
               discriminator:
                 propertyName: type
                 mapping:
-                  gcs-raw: '#/components/schemas/RawGCSPipeline'
-                  s3-raw: '#/components/schemas/RawAmazonS3Pipeline'
-                  azure-raw: '#/components/schemas/RawAzurePipeline'
-                  bigquery: '#/components/schemas/SchematizedBigQueryPipeline'
-                  snowflake: '#/components/schemas/SchematizedSnowflakePipeline'
-                  aws: '#/components/schemas/SchematizedAWSPipeline'
-                  azure-blob: '#/components/schemas/SchematizedAzurePipeline'
-                  gcs-schema: '#/components/schemas/SchematizedGCSPipeline'
+                  gcs-raw: "#/components/schemas/RawGCSPipeline"
+                  s3-raw: "#/components/schemas/RawAmazonS3Pipeline"
+                  azure-raw: "#/components/schemas/RawAzurePipeline"
+                  bigquery: "#/components/schemas/SchematizedBigQueryPipeline"
+                  snowflake: "#/components/schemas/SchematizedSnowflakePipeline"
+                  aws: "#/components/schemas/SchematizedAWSPipeline"
+                  azure-blob: "#/components/schemas/SchematizedAzurePipeline"
+                  gcs-schema: "#/components/schemas/SchematizedGCSPipeline"
       responses:
-        '200':
+        "200":
           description: >-
             Returns the name of the pipeline created. Use the name of the
             pipeline to check the status of or cancel the pipeline.
@@ -109,12 +109,12 @@ paths:
                       - trial-people-daily-bigquery-monoschema
                     bigquery_dataset_name: >-
                       https://bigquery.cloud.google.com/dataset/mixpanel-prod-1:sample_dataset_name
-        '400':
-          $ref: '#/components/responses/BadRequest'
-        '401':
-          $ref: '#/components/responses/Unauthorized'
-        '403':
-          $ref: '#/components/responses/Forbidden'
+        "400":
+          $ref: "#/components/responses/BadRequest"
+        "401":
+          $ref: "#/components/responses/Unauthorized"
+        "403":
+          $ref: "#/components/responses/Forbidden"
   /nessie/pipeline/edit:
     post:
       tags:
@@ -130,28 +130,28 @@ paths:
             schema:
               oneOf:
                 - title: Raw GCS Pipeline
-                  $ref: '#/components/schemas/RawEditParams'
+                  $ref: "#/components/schemas/RawEditParams"
                 - title: Raw Amazon S3 Pipeline
-                  $ref: '#/components/schemas/RawEditParams'
+                  $ref: "#/components/schemas/RawEditParams"
                 - title: Raw Azure Pipeline
-                  $ref: '#/components/schemas/RawAzureEditParams'
+                  $ref: "#/components/schemas/RawAzureEditParams"
                 - title: Schematized BigQuery Pipeline
-                  $ref: '#/components/schemas/BigQueryEditParams'
+                  $ref: "#/components/schemas/BigQueryEditParams"
                 - title: Schematized Snowflake Pipeline
-                  $ref: '#/components/schemas/SchematizedEditParams'
+                  $ref: "#/components/schemas/SchematizedEditParams"
                 - title: Schematized AWS Pipeline
-                  $ref: '#/components/schemas/SchematizedAWSEditParams'
+                  $ref: "#/components/schemas/SchematizedAWSEditParams"
                 - title: Schematized Azure Pipeline
-                  $ref: '#/components/schemas/SchematizedAzureEditParams'
+                  $ref: "#/components/schemas/SchematizedAzureEditParams"
                 - title: Schematized GCS Pipeline
-                  $ref: '#/components/schemas/SchematizedEditParams'
+                  $ref: "#/components/schemas/SchematizedEditParams"
       responses:
-        '200':
+        "200":
           description: Success
-        '401':
-          $ref: '#/components/responses/Unauthorized'
-        '403':
-          $ref: '#/components/responses/Forbidden'
+        "401":
+          $ref: "#/components/responses/Unauthorized"
+        "403":
+          $ref: "#/components/responses/Forbidden"
   /nessie/pipeline/cancel:
     post:
       tags:
@@ -160,7 +160,7 @@ paths:
       operationId: cancel-warehouse-pipeline
       description: >-
         For a given pipeline name, this request deletes the pipeline and stops
-        any future jobs to be scheduled for the pipeline. 
+        any future jobs to be scheduled for the pipeline.
         Deleting the pipeline will result in the loss of all its historical data. If you wish to retain the history, it is recommended to pause the pipeline instead.
       requestBody:
         required: true
@@ -173,16 +173,16 @@ paths:
                   type: string
                   description: The name that uniquely identifies the pipeline.
                 project_id:
-                  $ref: '#/components/schemas/ProjectId'
+                  $ref: "#/components/schemas/ProjectId"
               required:
                 - name
       responses:
-        '200':
+        "200":
           description: Success
-        '401':
-          $ref: '#/components/responses/Unauthorized'
-        '403':
-          $ref: '#/components/responses/Forbidden'
+        "401":
+          $ref: "#/components/responses/Unauthorized"
+        "403":
+          $ref: "#/components/responses/Forbidden"
   /nessie/pipeline/pause:
     post:
       tags:
@@ -203,18 +203,18 @@ paths:
                   type: string
                   description: The name that uniquely identifies the pipeline.
                 project_id:
-                  $ref: '#/components/schemas/ProjectId'
+                  $ref: "#/components/schemas/ProjectId"
               required:
                 - name
       responses:
-        '200':
+        "200":
           description: Success
-        '401':
-          $ref: '#/components/responses/Unauthorized'
-        '403':
-          $ref: '#/components/responses/Forbidden'
-        '404':
-          $ref: '#/components/responses/NotFound'
+        "401":
+          $ref: "#/components/responses/Unauthorized"
+        "403":
+          $ref: "#/components/responses/Forbidden"
+        "404":
+          $ref: "#/components/responses/NotFound"
   /nessie/pipeline/resume:
     post:
       tags:
@@ -234,18 +234,18 @@ paths:
                   type: string
                   description: The name that uniquely identifies the pipeline.
                 project_id:
-                  $ref: '#/components/schemas/ProjectId'
+                  $ref: "#/components/schemas/ProjectId"
               required:
                 - name
       responses:
-        '200':
+        "200":
           description: Success
-        '401':
-          $ref: '#/components/responses/Unauthorized'
-        '403':
-          $ref: '#/components/responses/Forbidden'
-        '404':
-          $ref: '#/components/responses/NotFound'
+        "401":
+          $ref: "#/components/responses/Unauthorized"
+        "403":
+          $ref: "#/components/responses/Forbidden"
+        "404":
+          $ref: "#/components/responses/NotFound"
   /nessie/pipeline/status:
     get:
       operationId: get-warehouse-pipeline-status
@@ -296,7 +296,7 @@ paths:
           name: summary
           schema:
             type: string
-          description: 'Default: `false`. Only lists task count by status and no details.'
+          description: "Default: `false`. Only lists task count by status and no details."
         - in: query
           name: status
           schema:
@@ -306,16 +306,16 @@ paths:
           description: |
             Filters the tasks by the given status. Valid options for status are `pending`, `running`, `retried`, `failed`, `canceled`, and `timed_out`.
       responses:
-        '200':
+        "200":
           description: Success
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/PipelineStatusResponse'
-        '401':
-          $ref: '#/components/responses/Unauthorized'
-        '403':
-          $ref: '#/components/responses/Forbidden'
+                $ref: "#/components/schemas/PipelineStatusResponse"
+        "401":
+          $ref: "#/components/responses/Unauthorized"
+        "403":
+          $ref: "#/components/responses/Forbidden"
   /nessie/pipeline/timeline:
     get:
       operationId: list-warehouse-pipeline-sync-dates
@@ -331,7 +331,7 @@ paths:
             type: string
           description: The name that uniquely identifies the pipeline.
       responses:
-        '200':
+        "200":
           description: Success
           content:
             application/json:
@@ -339,18 +339,18 @@ paths:
                 example:
                   value:
                     day_syncs:
-                      - date: '2019-08-19'
+                      - date: "2019-08-19"
                         sync_times:
-                          - '2019-08-19 14:27:46.044605 -0700 PDT'
+                          - "2019-08-19 14:27:46.044605 -0700 PDT"
                         status: synced
-                      - date: '2019-08-20'
+                      - date: "2019-08-20"
                         sync_times:
-                          - ' 2019-08-20 14:33:09.315098 -0700 PDT'
+                          - " 2019-08-20 14:33:09.315098 -0700 PDT"
                         status: synced
-        '401':
-          $ref: '#/components/responses/Unauthorized'
-        '403':
-          $ref: '#/components/responses/Forbidden'
+        "401":
+          $ref: "#/components/responses/Unauthorized"
+        "403":
+          $ref: "#/components/responses/Forbidden"
 components:
   securitySchemes:
     $ref: ./common/securitySchemes.yaml
@@ -374,9 +374,9 @@ components:
       type: object
       properties:
         project_id:
-          $ref: '#/components/schemas/ProjectId'
+          $ref: "#/components/schemas/ProjectId"
         type:
-          $ref: '#/components/schemas/PipelineType'
+          $ref: "#/components/schemas/PipelineType"
         trial:
           type: boolean
           default: false
@@ -433,8 +433,8 @@ components:
           type: string
           default: daily
           enum:
-           - daily
-           - hourly
+            - daily
+            - hourly
           description: >
             **Default**: `daily`
 
@@ -461,7 +461,7 @@ components:
           type: string
           default: json
           enum:
-           - json
+            - json
           description: >
             **Default**: `json`
 
@@ -513,9 +513,9 @@ components:
       type: object
       properties:
         project_id:
-          $ref: '#/components/schemas/ProjectId'
+          $ref: "#/components/schemas/ProjectId"
         type:
-          $ref: '#/components/schemas/PipelineType'
+          $ref: "#/components/schemas/PipelineType"
         trial:
           type: boolean
           default: false
@@ -573,8 +573,8 @@ components:
           type: string
           default: daily
           enum:
-           - daily
-           - hourly
+            - daily
+            - hourly
           description: >
             **Default**: `daily`
 
@@ -601,7 +601,7 @@ components:
           type: string
           default: json
           enum:
-           - json
+            - json
           description: >
             **Default**: `json`
 
@@ -647,9 +647,9 @@ components:
           type: string
           default: none
           enum:
-           - none
-           - aes
-           - kms
+            - none
+            - aes
+            - kms
           description: >
             At rest encryption used by the
             s3 bucket.
@@ -670,9 +670,9 @@ components:
       type: object
       properties:
         project_id:
-          $ref: '#/components/schemas/ProjectId'
+          $ref: "#/components/schemas/ProjectId"
         type:
-          $ref: '#/components/schemas/PipelineType'
+          $ref: "#/components/schemas/PipelineType"
         trial:
           type: boolean
           default: false
@@ -729,8 +729,8 @@ components:
           type: string
           default: daily
           enum:
-           - daily
-           - hourly
+            - daily
+            - hourly
           description: >
             **Default**: `daily`
 
@@ -757,7 +757,7 @@ components:
           type: string
           default: json
           enum:
-           - json
+            - json
           description: >
             **Default**: `json`
 
@@ -800,9 +800,9 @@ components:
       type: object
       properties:
         project_id:
-          $ref: '#/components/schemas/ProjectId'
+          $ref: "#/components/schemas/ProjectId"
         type:
-          $ref: '#/components/schemas/PipelineType'
+          $ref: "#/components/schemas/PipelineType"
         trial:
           type: boolean
           default: false
@@ -960,9 +960,9 @@ components:
       type: object
       properties:
         project_id:
-          $ref: '#/components/schemas/ProjectId'
+          $ref: "#/components/schemas/ProjectId"
         type:
-          $ref: '#/components/schemas/PipelineType'
+          $ref: "#/components/schemas/PipelineType"
         trial:
           type: boolean
           default: false
@@ -1098,9 +1098,9 @@ components:
       type: object
       properties:
         project_id:
-          $ref: '#/components/schemas/ProjectId'
+          $ref: "#/components/schemas/ProjectId"
         type:
-          $ref: '#/components/schemas/PipelineType'
+          $ref: "#/components/schemas/PipelineType"
         trial:
           type: boolean
           default: false
@@ -1307,9 +1307,9 @@ components:
       type: object
       properties:
         project_id:
-          $ref: '#/components/schemas/ProjectId'
+          $ref: "#/components/schemas/ProjectId"
         type:
-          $ref: '#/components/schemas/PipelineType'
+          $ref: "#/components/schemas/PipelineType"
         trial:
           type: boolean
           default: false
@@ -1393,8 +1393,8 @@ components:
           type: string
           default: daily
           enum:
-           - daily
-           - hourly
+            - daily
+            - hourly
           description: >
             **Default**: `daily`
 
@@ -1422,8 +1422,8 @@ components:
           type: string
           default: json
           enum:
-           - json
-           - parquet
+            - json
+            - parquet
           description: >
             **Default**: `json`
 
@@ -1467,9 +1467,9 @@ components:
       type: object
       properties:
         project_id:
-          $ref: '#/components/schemas/ProjectId'
+          $ref: "#/components/schemas/ProjectId"
         type:
-          $ref: '#/components/schemas/PipelineType'
+          $ref: "#/components/schemas/PipelineType"
         trial:
           type: boolean
           default: false
@@ -1536,8 +1536,8 @@ components:
           type: string
           default: daily
           enum:
-           - daily
-           - hourly
+            - daily
+            - hourly
           description: >
             **Default**: `daily`
             **frequency** can be either `hourly` or `daily`. `hourly` exports
@@ -1548,7 +1548,7 @@ components:
           type: string
           description: |
             A whitelist for the event(s) you intend to export. For multiple events, you will need to pass in each event name as separate `events` parameters like so: `--data 'events=event1' \ --data 'events=event2'`
-            
+
             All events in the project will be exported if no events are
             specified.
         where:
@@ -1562,8 +1562,8 @@ components:
           type: string
           default: json
           enum:
-           - json
-           - parquet
+            - json
+            - parquet
           description: >
             **Default**: `json`
             The file format of the exported data. **data_format** can be either
@@ -1626,7 +1626,7 @@ components:
           type: string
           description: The name that uniquely identifies the pipeline.
         project_id:
-          $ref: '#/components/schemas/ProjectId'
+          $ref: "#/components/schemas/ProjectId"
         events:
           type: string
           description: |
@@ -1647,7 +1647,7 @@ components:
         - name
     SchematizedEditParams:
       allOf:
-        - $ref: '#/components/schemas/RawEditParams'
+        - $ref: "#/components/schemas/RawEditParams"
         - type: object
           properties:
             enable_sync:
@@ -1676,15 +1676,15 @@ components:
             resides.
     RawAzureEditParams:
       allOf:
-        - $ref: '#/components/schemas/RawEditParams'
-        - $ref: '#/components/schemas/AzureCommonEditParams'
+        - $ref: "#/components/schemas/RawEditParams"
+        - $ref: "#/components/schemas/AzureCommonEditParams"
     SchematizedAzureEditParams:
       allOf:
-        - $ref: '#/components/schemas/SchematizedEditParams'
-        - $ref: '#/components/schemas/AzureCommonEditParams'
+        - $ref: "#/components/schemas/SchematizedEditParams"
+        - $ref: "#/components/schemas/AzureCommonEditParams"
     BigQueryEditParams:
       allOf:
-        - $ref: '#/components/schemas/SchematizedEditParams'
+        - $ref: "#/components/schemas/SchematizedEditParams"
         - type: object
           properties:
             bq_share_with_group:
@@ -1698,7 +1698,7 @@ components:
                 type: string
     SchematizedAWSEditParams:
       allOf:
-        - $ref: '#/components/schemas/SchematizedEditParams'
+        - $ref: "#/components/schemas/SchematizedEditParams"
         - type: object
           properties:
             glue_database:
@@ -1721,7 +1721,7 @@ components:
         type: object
         properties:
           project_id:
-            $ref: '#/components/schemas/ProjectId'
+            $ref: "#/components/schemas/ProjectId"
           name:
             type: string
           state:
@@ -1738,36 +1738,36 @@ components:
       type: object
       properties:
         canceled:
-          $ref: '#/components/schemas/PipelineStatusJobList'
+          $ref: "#/components/schemas/PipelineStatusJobList"
         retried:
-          $ref: '#/components/schemas/PipelineStatusJobList'
+          $ref: "#/components/schemas/PipelineStatusJobList"
         succeeded:
-          $ref: '#/components/schemas/PipelineStatusJobList'
+          $ref: "#/components/schemas/PipelineStatusJobList"
   responses:
     BadRequest:
       description: Bad Request
       content:
         application/json:
           schema:
-            $ref: '#/components/schemas/ErrorResponse'
+            $ref: "#/components/schemas/ErrorResponse"
     Unauthorized:
       description: Unauthorized
       content:
         application/json:
           schema:
-            $ref: '#/components/schemas/ErrorResponse'
+            $ref: "#/components/schemas/ErrorResponse"
     Forbidden:
       description: Forbidden
       content:
         application/json:
           schema:
-            $ref: '#/components/schemas/ErrorResponse'
+            $ref: "#/components/schemas/ErrorResponse"
     NotFound:
       description: Not Found
       content:
         application/json:
           schema:
-            $ref: '#/components/schemas/ErrorResponse'
+            $ref: "#/components/schemas/ErrorResponse"
 x-explorer-enabled: true
 x-proxy-enabled: true
 x-samples-enabled: true
