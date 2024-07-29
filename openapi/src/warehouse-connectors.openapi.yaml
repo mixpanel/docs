@@ -41,6 +41,9 @@ paths:
           $ref: "./common/responses.yaml#/403Forbidden"
         "404":
           $ref: "./common/responses.yaml#/404NotFound"
+components:
+  securitySchemes:
+    $ref: ./common/securitySchemes.yaml
 x-explorer-enabled: true
 x-proxy-enabled: true
 x-samples-enabled: true
