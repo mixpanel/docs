@@ -10,7 +10,6 @@ servers:
   - $ref: ./common/app-api.yaml#/server
 security:
   - ServiceAccount: []
-  - ProjectSecret: []
 tags:
   - name: Trigger a sync
     description: Trigger an import sync via API
@@ -19,7 +18,7 @@ paths:
     put:
       parameters:
         - $ref: ./common/parameters.yaml#/path/projectId
-        - $ref: ./common/parameters.yaml#/path/projectId
+        - $ref: ./common/parameters.yaml#/path/importId
       operationId: manually-run-warehouse-sync
       tags:
         - Triggers warehouse sync
@@ -35,11 +34,13 @@ paths:
                 type: object
                 properties:
                   status:
-                    $ref: ".common/responses.yaml#/ResponseStatusOk"
+                    $ref: "./common/responses.yaml#/ResponseStatusOk"
         "401":
-          $ref: "#/components/responses/Unauthorized"
+          $ref: "./common/responses.yaml#/401Unauthorized"
         "403":
-          $ref: "#/components/responses/Forbidden"
+          $ref: "./common/responses.yaml#/403Forbidden"
+        "404":
+          $ref: "./common/responses.yaml#/404NotFound"
 x-explorer-enabled: true
 x-proxy-enabled: true
 x-samples-enabled: true
