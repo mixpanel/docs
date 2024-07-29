@@ -31,16 +31,21 @@ paths:
           description: Success
           content:
             application/json:
-              examples:
-                example:
-                  value:
-                    "9876543210":
-                      - name: events-daily-bigquery-monoschema
-                        Dispatcher: backfill
-                        last_dispatched: "2019-02-01 12:00:00 US/Pacific"
-                        frequency: hourly
-                        sync_enabled: "true"
+              schema:
+                type: object
+                properties:
+                  status:
+                    $ref: ".common/responses.yaml#/ResponseStatusOk"
         "401":
           $ref: "#/components/responses/Unauthorized"
         "403":
           $ref: "#/components/responses/Forbidden"
+x-explorer-enabled: true
+x-proxy-enabled: true
+x-samples-enabled: true
+x-samples-languages:
+  - curl
+  - node
+  - ruby
+  - javascript
+  - python
