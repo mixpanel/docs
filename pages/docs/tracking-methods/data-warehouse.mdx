@@ -160,7 +160,9 @@ Navigate to [Project Settings → Warehouse Sources](https://mixpanel.com/report
     </iframe>
 </div>
 
-The connection to Databricks only supports connecting directly to clusters. Connecting directly to jobs or SQL warehouses is not supported. The account used for the connection should have `can attach to` permissions to the cluster (and `can restart` if it auto-suspends), and `can use` to the warehouse the cluster leverages.
+<Callout type="info">
+  The connection to Databricks only supports connecting directly to clusters. Connecting directly to jobs or SQL warehouses is not supported. The account used for the connection should have `can attach to` permissions to the cluster (and `can restart` if it auto-suspends), and `can use` to the warehouse the cluster leverages.
+</Callout>
 
 Complete the following steps to get your Databricks connector up and running:
 
@@ -171,6 +173,26 @@ Complete the following steps to get your Databricks connector up and running:
     - ** HTTP Path ** - This is the HTTP path of the cluster you would like to connect to. This can be found in your cluster [JDBC/ODBC connection settings](https://docs.databricks.com/en/integrations/jdbc-odbc-bi.html#step)
     - ** Access Token ** - This is the Personal access token used to authenticate with your Databricks cluster. Here are the instructions on [how to create an access token](https://docs.databricks.com/en/dev-tools/auth.html#databricks-personal-access-tokens-for-workspace-users)
 4. In the second view, you should see that the credentials are validated and a source is added.
+
+**Using Service Principals**
+If a service principal is used, you'll want to follow these steps:
+1. [Create the service principal](https://docs.databricks.com/en/admin/users-groups/service-principals.html#manage-service-principals-in-your-account) if it doesn't exist.
+2. Create a token for the service principal. You can do so through the Databricks cli:
+```bash
+databricks configure --token
+databricks token-management create-obo-token <application_id_of_service_principal> 31536000 --comment "Mixpanel warehouse connector service principal token"
+```
+3. Copy the token generated for later use
+4. Give the service principal `Can Attach` permissions to the cluster (in Cluster > Permissions)
+    - Note the cluster needs to be a shared compute resource and not a single user cluster (unless the service principal created the cluster as well)
+5. Give the service principal access to the catalogs you want to read in Mixpanel
+6. When table access control is enabled in the account, the service principal also requires access to the files that will be read. You can add access like:
+```bash
+GRANT SELECT ON ANY FILE TO <application_id_of_service_principal>
+GRANT MODIFY ON ANY FILE TO <application_id_of_service_principal>
+```
+7. During the setup processing Mixpanel, you can now use the token from the service principal when setting up the connection
+
 
 **IP Allowed List**
 
