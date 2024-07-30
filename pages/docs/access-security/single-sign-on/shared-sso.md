@@ -16,7 +16,6 @@ An "Admin" Organization is different from a regular Organization in that it will
 
 ![SSO Admin Organization Image](/sso_view_admin_org.png)
 
-> ❗ If you already use Azure for SSO with Mixpanel, you must [open a Mixpanel support ticket](https://mixpanel.com/get-support) before migrating, due to constraints with “Issuer URL” and “Identifier (Entity ID)”
 
 ## How It Works
 
@@ -41,6 +40,8 @@ Claimed Domains|In each Organization|In the Admin Organization
 SCIM|IDP Groups = Mixpanel Teams|IDP Groups = Mixpanel Linked Organizations
 
 ## Setting Up Shared SSO
+
+> ❗ If you already use Azure for SSO with Mixpanel, you must [open a Mixpanel support ticket](https://mixpanel.com/get-support) before migrating, due to constraints with “Issuer URL” and “Identifier (Entity ID)”
 
 ### Set up Overview
 
@@ -95,6 +96,8 @@ With Shared SSO, the SCIM process works a little differently. Users are pushed t
 > ℹ️ With Shared SSO, the SCIM process cannot create, delete or alter the linked Organizations in Mixpanel like it would with a Mixpanel Team. The SCIM process can only add and remove Users, and assign those users to the linked Organization.
 
 ## Migrating To Shared SSO
+
+> ❗ If you already use Azure for SSO with Mixpanel, you must [open a Mixpanel support ticket](https://mixpanel.com/get-support) before migrating, due to constraints with “Issuer URL” and “Identifier (Entity ID)”
 
 If you have Single Sign-On configured for an Organization, and want to use the same email domains with a Shared SSO; you will need to follow these steps to migrate and minimize the time Single Sign-On is unavailable for your users.
 
