@@ -19,9 +19,13 @@ paths:
         - $ref: ./common/parameters.yaml#/path/projectId
         - $ref: ./common/parameters.yaml#/path/importId
       operationId: run-an-import
+      requestBody:
+        required: true
+        content:
+          application/json: {}
       tags:
         - Run an import
-      summary: Run a warehouse import
+      summary: Run an import
       description: >-
         This API endpoint triggers an immediate sync for a given warehouse import.
       responses:
