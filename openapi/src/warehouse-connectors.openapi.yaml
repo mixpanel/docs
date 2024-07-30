@@ -10,7 +10,7 @@ servers:
 security:
   - ServiceAccount: []
 tags:
-  - name: Trigger a sync
+  - name: Run an import
     description: Trigger an import sync via API
 paths:
   /projects/{projectId}/warehouse-sources/imports/{importId}/manual-sync:
@@ -20,7 +20,7 @@ paths:
         - $ref: ./common/parameters.yaml#/path/importId
       operationId: trigger-warehouse-import-api
       tags:
-        - Triggers warehouse sync
+        - Run an import
       summary: Triggers Warehouse Import Sync
       description: >-
         This API endpoint triggers an immediate sync for a given warehouse import.
