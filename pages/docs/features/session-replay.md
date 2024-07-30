@@ -229,7 +229,7 @@ Session Replay captures the Document Object Model (DOM) structure and changes to
 
 Masking and blocking are slightly different.
 
-Masked data is suppressed client-side, meaning it is not collected in its original form by Mixpanel’s SDK, and the data is not stored on Mixpanel servers. Masked data appears in Mixpanel as [****]. 
+Masked data is suppressed client-side, meaning it is not collected in its original form by Mixpanel’s SDK, and the data is not stored on Mixpanel servers. Masked elements have their text replaced with asterisks of the same length [****]. 
 
 Blocked data is similarly suppressed client-side, meaning it is not collected in its original form by Mixpanel’s SDK, and the data is not stored on Mixpanel servers. However, blocked elements will be rendered with a placeholder element (e.g., an empty box of similar size). 
 
