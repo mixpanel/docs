@@ -1,5 +1,4 @@
 openapi: 3.0.2
-x-readme-deploy-id: warehouse-connectors-api
 info:
   title: Warehouse Connectors API
   description: Connect an external warehouse to import events, users, groups, and lookup tables.
@@ -44,12 +43,3 @@ paths:
 components:
   securitySchemes:
     $ref: ./common/securitySchemes.yaml
-x-explorer-enabled: true
-x-proxy-enabled: true
-x-samples-enabled: true
-x-samples-languages:
-  - curl
-  - node
-  - ruby
-  - javascript
-  - python
