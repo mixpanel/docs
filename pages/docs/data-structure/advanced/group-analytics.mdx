@@ -8,7 +8,7 @@ Historically, Mixpanel grouped events by a single identifier called the distinct
 
 Group Analytics is available as an add-on package to customers on [Growth](https://mixpanel.com/pricing/) and [Enterprise plans](https://mixpanel.com/pricing/).
 
-Customers on the Growth plan can buy this add-on [online](https://mixpanel.com/pricing/), while customers on the Enterprise plans can reach out to their Customer Success Manager or the [Mixpanel Sales Team](https://mixpanel.com/contact-us/sales/). Online plans allow up to 6 group keys. Enterprise customers can choose between 3 or 6 group keys. Each group can have a total 1M profiles.
+Customers on the Growth plan can buy this add-on [online](https://mixpanel.com/pricing/), while customers on the Enterprise plans can reach out to their Customer Success Manager or the [Mixpanel Sales Team](https://mixpanel.com/contact-us/sales/). Online plans allow up to 6 group keys. Enterprise customers can choose between 3 or 6 group keys. Each group key can have a total of 1M group profiles (see [Limits and Caveats](https://docs.mixpanel.com/docs/data-structure/advanced/group-analytics#limits-and-caveats)).
 
 <div
   style={{
@@ -153,7 +153,7 @@ Because a user can be part of multiple groups within a group key, set the value 
 ## FAQ
 
 ### Limits and Caveats
-The maximum number of group profiles that may be tracked is 1M profiles. When exceeding this limit, queries that use group properties may fail due to the size of the group table.
+The maximum number of group profiles that may be tracked is 1M profiles per group key. When exceeding this limit, queries that use group profile properties against user level analysis (eg: break down my user funnel by company group key) may fail due to the size of the group table.
 
 No single group identifier (e.g. company_id), can have more than 1M events/day. When a particular group identifier has more events than this limit, query performance will suffer and sometimes fail.
 
