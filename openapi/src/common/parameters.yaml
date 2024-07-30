@@ -5,14 +5,14 @@ path:
     schema:
       type: integer
     required: true
-    description: 'Your project id (eg: 12345)'
+    description: "Your project id (eg: 12345)"
   organizationId:
     in: path
     name: organizationId
     schema:
       type: integer
     required: true
-    description: 'Your organization id (eg: 12345)'
+    description: "Your organization id (eg: 12345)"
 query:
   projectId:
     in: query
@@ -21,6 +21,13 @@ query:
       type: integer
     description: Required if using service account to authenticate request.
     required: true
+  importId:
+    in: path
+    name: importId
+    schema:
+      type: integer
+    required: true
+    description: "Your warehouse import id (eg: 12345)"
   toDate:
     in: query
     name: to_date
