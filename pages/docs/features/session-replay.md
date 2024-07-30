@@ -10,27 +10,27 @@ When digging into customer journeys in Mixpanel’s analytics, you can understan
 
 Currently, Session Replay is currently in invite-only beta access for:
 
-- customers on our [Enterprise plan](https://www.notion.so/Session-Replay-Docs-v1-c32c9817ec1b49798d1ca7d1ccc5880c?pvs=21)
+- customers on our [Enterprise plan]([https://www.notion.so/Session-Replay-Docs-v1-c32c9817ec1b49798d1ca7d1ccc5880c?pvs=21](https://mixpanel.com/pricing/))
 - projects without [EU Data Residency](/docs/privacy/eu-residency) enabled
 
 You can join the waitlist for beta access [here](https://mixpanel.com/m/session-replay-beta/).
 
 For any questions about Session Replay or beta access, please reach out to your Account Manager.
 
-## **Using Session Replay**
+## Using Session Replay
 
 Session Replay can be accessed in two places:
 
 1. From User Profile page
 2. From Mixpanel reports
 
-**From User Profile page**
+### From User Profile page
 
 In any user’s profile page, Click the ‘View Replays’ button to watch replays from that user. From here, you will be taken to our Replay Player.
 
 ![replayProfileEntry](/replayProfileEntryPoint.png)
 
-**From Mixpanel reports**
+### From Mixpanel reports
 
 Click any point on a chart for Event and Funnel metrics, and select ‘View Replays’ to view replays that show that event being fired. From here, you will be taken to our Replay Player. 
 
@@ -38,7 +38,7 @@ Click any point on a chart for Event and Funnel metrics, and select ‘View Repl
 
 *Note: reports entry point is currently supported for Event and Funnel metrics only.*
 
-## **Replay Player**
+### Replay Player
 
 ![replayHeroImageWithPrivacy](/replayHeroImageWithPrivacy.png)
 
@@ -55,13 +55,13 @@ The Replay Feed on the left of the player also allows you to:
 - search for replays by user's name / email, replay date, or user ID
 
 ## Implementation
-Our documentation on how to implement Session Replay can be found [here](/docs/tracking-methods/sdks/javascript#session-replay-beta).
+Session Replay is not enabled by default; enabling the feature requires instrumentation beyond the standard Mixpanel instrumentation. Our documentation on how to implement Session Replay can be found [here](/docs/tracking-methods/sdks/javascript#session-replay-beta).
 
 ## Legal (Beta Terms)
 
 Our Session Replay Beta Service Addendum can be found [here](https://mixpanel.com/legal/session-replay-beta-service-addendum/).
 
-## **FAQ**
+## FAQ
 
 ### Is Session Replay available for mobile?
 
