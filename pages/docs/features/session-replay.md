@@ -8,10 +8,7 @@ When digging into customer journeys in Mixpanel’s analytics, you can understan
 
 ## Availability
 
-Currently, Session Replay is currently in invite-only beta access for:
-
-- customers on our [Enterprise plan]([https://www.notion.so/Session-Replay-Docs-v1-c32c9817ec1b49798d1ca7d1ccc5880c?pvs=21](https://mixpanel.com/pricing/))
-- projects without [EU Data Residency](/docs/privacy/eu-residency) enabled
+Currently, Session Replay is currently in invite-only beta access for customers on our [Enterprise plan](https://mixpanel.com/pricing/)).
 
 You can join the waitlist for beta access [here](https://mixpanel.com/m/session-replay-beta/).
 
@@ -74,10 +71,6 @@ By default, all on-screen text elements are masked in replays. Additionally, you
 ### How long are replays stored?
 
 30 days.
-
-### Does Session Replay work on projects with EU Data Residency enabled?
-
-Not currently, but we plan to add support soon.
 
 ### Am I able to sample our session replay collection rate?
 
