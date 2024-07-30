@@ -18,10 +18,10 @@ paths:
       parameters:
         - $ref: ./common/parameters.yaml#/path/projectId
         - $ref: ./common/parameters.yaml#/path/importId
-      operationId: trigger-warehouse-import-api
+      operationId: run-an-import
       tags:
         - Run an import
-      summary: Triggers Warehouse Import Sync
+      summary: Run a warehouse import
       description: >-
         This API endpoint triggers an immediate sync for a given warehouse import.
       responses:
