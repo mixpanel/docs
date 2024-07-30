@@ -20,7 +20,7 @@ An "Admin" Organization is different from a regular Organization in that it will
 
 ## How It Works
 
-Any Organization linked to an Admin Organization will use the Single Sign-On settings from that Admin Organization - any Single Sign-On settings or Claimed Domains the Linked Organization may have had are now ignored.
+Any Organization linked to an Admin Organization will use the Single Sign-On settings from that Admin Organization - **any Single Sign-On settings or Claimed Domains the Linked Organization may have had are now ignored**.
 
 SSO settings and Claimed Domains are managed in the Admin Organization. Administrative users who manage SSO settings in the Admin Organization do not need to be members of the Linked Organization(s), and vice-versa.
 
@@ -32,7 +32,7 @@ In single-Organization SSO, SSO is configured in each Organization. In Shared SS
 
 In single-Organization SSO, claimed domains belong to each Organization. In Shared SSO, claimed domains belong to the Admin Organization and are shared by any Linked Organizations.
 
-In single-Organization SSO, SCIM groups in the IDP map to a Team in Mixpanel, with the IDP group name matching the Mixpanel Team **name**. In Shared SSO, SCIM groups in the IDP map to Linked Organizations, with the IDP group name matching the Linked Organization's **SCIM Name**.
+In single-Organization SSO, SCIM groups in the IDP map to Teams in Mixpanel, with the IDP group name matching the Mixpanel Team **name**. In Shared SSO, SCIM groups in the IDP map to Linked Organizations, with the IDP group name matching the Linked Organization's **SCIM Name**.
 
 ## Setting Up Shared SSO
 
