@@ -1,4 +1,10 @@
 {
-    "identifying-users": "Identifying Users",
-    "migrating-to-simplified-id-merge-system": "Migrating to Simplified ID Merge"
+  "overview": "Overview",
+  "identifying-users-simplified": "Identifying Users",
+  "identifying-users-original": {
+    "title": "Identifying Users",
+    "display": "hidden"
+  },
+  "serverside-id-management": "Server-side ID Management",
+  "migrating-to-simplified-id-merge-system": "Migrating to Simplified ID Merge"
 }
