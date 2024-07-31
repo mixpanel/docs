@@ -43,16 +43,6 @@ SCIM|IDP Groups = Mixpanel Teams|IDP Groups = Mixpanel Linked Organizations
 
 > ❗ If you already use Azure for SSO with Mixpanel, you must [open a Mixpanel support ticket](https://mixpanel.com/get-support) before migrating, due to constraints with “Issuer URL” and “Identifier (Entity ID)”
 
-### Set up Overview
-
-1. Create an Admin Organization
-
-2. [Set up SSO](/docs/access-security/single-sign-on/overview) for the Admin Organization as if it were a regular Organization
-
-3. Link any Organizations to the Admin Organization
-
-4. (Optional) Set up SCIM
-
 ### 1. Create an Admin Organization in Mixpanel
 
 For an existing Organization in Mixpanel, go to Organization Settings > Access Security > Shared SSO.
