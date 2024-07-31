@@ -61,7 +61,7 @@ Follow the steps to set up SSO in the Admin Organization as you would for a regu
 
 > ❗ Any existing SSO settings in the "Linked" Organization will be ignored after this step.
 
-Start by generating a linking code in the new Admin Organization
+Start by generating a linking code in the new Admin Organization. In the "Linked Organizations" section, click "Link Organization", then copy the generated linking code.
 
 ![SSO Generate Linking Code Image](/sso_generate_linking_code.png)
 
