@@ -8,11 +8,11 @@ This documentation targets users with intermediate or advanced knowledge of data
 You must first configure your destination to accept the data before you can export data from Mixpanel to that destination.
 
 For additional information on configuring the Mixpanel export for different destinations, see:
-  * [Exporting to Amazon](/docs/data-pipelines/integrations/amazon-s3)
-  * [Exporting to BigQuery](/docs/data-pipelines/integrations/bigquery)
-  * [Exporting to Snowflake](/docs/data-pipelines/integrations/snowflake) 
-  * [Exporting to Google Cloud Storage](/docs/data-pipelines/integrations/google-cloud-storage)
-  * [Exporting to Azure Blob Storage](/docs/data-pipelines/integrations/azure-blob-storage)  
+  * [Exporting to Amazon](/docs/data-pipelines/integrations/schematized-aws-pipeline)
+  * [Exporting to BigQuery](/docs/data-pipelines/integrations/schematized-bigquery-pipeline)
+  * [Exporting to Snowflake](/docs/data-pipelines/integrations/schematized-snowflake-pipeline)
+  * [Exporting to Google Cloud Storage](/docs/data-pipelines/integrations/schematized-gcs-pipeline)
+  * [Exporting to Azure Blob Storage](/docs/data-pipelines/integrations/schematized-azure-pipeline) 
 
 
 After configuring the destination, you can [create a pipeline](https://developer.mixpanel.com/reference/create-warehouse-pipeline) to export the data.
