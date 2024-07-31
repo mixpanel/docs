@@ -36,7 +36,7 @@ Next, you'll need to set the server location to EU when initializing the Mixpane
 If you want the IdP initiated flow to direct to [eu.mixpanel.com](https://eu.mixpanel.com/), prepend "eu." to your postback URL. For example, [mixpanel.com/security/login/1](https://mixpanel.com/security/login/1) would need to be changed to [eu.mixpanel.com/security/login/1](https://eu-mixpanel.com/security/login/1).
 
 ## Manage Personal Data
-Mixpanel deletion and retrieval APIs are in place to help Mixpanel implementations meet the requirements outlined by the General Data Protection Regulation (GDPR) legislation.
+[Mixpanel deletion and retrieval APIs](https://developer.mixpanel.com/reference/gdpr-api) are in place to help Mixpanel implementations meet the requirements outlined by the General Data Protection Regulation (GDPR) legislation.
 
 
 > 📘GDPR Request Rate Limits
