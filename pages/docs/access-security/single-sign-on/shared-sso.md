@@ -55,7 +55,7 @@ The new Admin Organization will be listed in the left nav in Organization Settin
 
 ### 2. [Set up SSO](/docs/access-security/single-sign-on/overview) for the Admin Organization
 
-You do this in Mixpanel and your IDP. This is the same as if it were a regular Organization. [SSO documentation](/docs/access-security/single-sign-on/overview).
+Follow the steps to set up SSO in the Admin Organization as you would for a regular Organization. [SSO documentation](/docs/access-security/single-sign-on/overview).
 
 ### 3. Link any Organizations to the Admin Organization in Mixpanel
 
