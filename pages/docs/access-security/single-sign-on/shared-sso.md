@@ -14,8 +14,9 @@ An Admin Organization is a special type of Organization that contains Single Sig
 
 An "Admin" Organization is different from a regular Organization in that it will not have Projects, Teams, a Plan or Billing, or Service Accounts. Other than administrators (those with Admin or Owner roles), any Organization Members will not see the Admin Organization or interact with it directly.
 
-![SSO Admin Organization Image](/sso_view_admin_org.png)
+An Admin Organization can have multiple Linked Organizations which will share SSO settings. A regular Organization can only be linked to one Admin Organization.
 
+![SSO Admin Organization Image](/sso_view_admin_org.png)
 
 ## How It Works
 
@@ -37,7 +38,9 @@ This configuration supports [SCIM](/docs/access-security/single-sign-on/overview
 :-----:|:-----:|:-----:
 SSO Configuration|In each Organization|In the Admin Organization
 Claimed Domains|In each Organization|In the Admin Organization
-SCIM|IDP Groups = Mixpanel Teams|IDP Groups = Mixpanel Linked Organizations
+SCIM|IDP Groups = Mixpanel Teams|IDP Groups = Mixpanel Linked Organizations*
+
+\* With Shared SSO, SCIM cannot manage Mixpanel Team membership. Team membership will need to be managed manually.
 
 ## Setting Up Shared SSO
 
@@ -82,6 +85,8 @@ The configurable "SCIM Name" for the Linked Organization must match a group in y
 Mixpanel supports using SCIM to administer users while using Shared SSO. With single-Organization SSO, the SCIM process would push users into the Mixpanel Organization, it would create Mixpanel Teams with the names of Groups in the IDP, and it would assign Mixpanel Users to those Teams.
 
 With Shared SSO, the SCIM process works a little differently. Users are pushed to the Admin Organization. Groups in the IDP are pushed to Organizations Linked to the Admin Organization. Groups are mapped by matching an editable “SCIM Name” field in an Organization to the name of the Group in the IDP. Users that are members of the IDP Group are assigned to the linked Organization whos SCIM Name matches the name of the Group.
+
+With Shared SSO, SCIM cannot manage Mixpanel Team membership. Team membership will need to be managed manually.
 
 > ℹ️ With Shared SSO, the SCIM process cannot create, delete or alter the linked Organizations in Mixpanel like it would with a Mixpanel Team. The SCIM process can only add and remove Users, and assign those users to the linked Organization.
 
