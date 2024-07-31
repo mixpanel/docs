@@ -1,0 +1,87 @@
+import { Callout } from 'nextra/components'
+
+# Identity Management
+
+## Overview
+
+Identity management is the process of assigning IDs and maintaining ID mappings to ensure your data are attributed to you users accurately. Mixpanel uses the Distinct ID property to identify your users and determine their uniqueness.
+
+## Distinct ID
+
+Mixpanel uses the Distinct ID property to keep track of who is doing each. Every event data and profile update sent to Mixpanel should have a distinct_id property associated with it (except in the case of preventing [hot shards](/docs/debugging/distinct-id-limits)). The Distinct ID value tells Mixpanel which user to attach your events and profile property updates.
+
+**If the Distinct ID on two events are two different values, they will be considered as coming from two separate users.**
+
+### Role of Distinct ID in Mixpanel
+
+Below highlights a non-exhaustive list examples of Distinct ID's role in Mixpanel:
+
+**Insights report** - Distinct IDs are used to determine uniqueness, which is crucial for aggregation methods like Uniques and Average per User.
+
+**Funnels report** - Distinct IDs are used to follow a user through a conversion journey. If a user tracks events with inconsistent Distinct IDs between steps, they will be counted as a drop-off.
+
+**User Analytics** - Distinct IDs are used to index individual users. If a single users is tracked using 2 different Distinct IDs, they will appear as 2 different users in your project.
+
+## Identity Management in Action
+
+Let's walkthrough how identity management affects your implementation using an example flow. Imagine you have a product that can be accesed from a website and a mobile app:
+
+### Without ID Management
+
+IMAGE OF NO ID MANAGEMENT FLOW
+
+1. A user access your product on the website through a computer. The Javascript SDK automatically generates a Distinct ID for them, with the value of `123`.
+2. Later in the day, the same user access your product again, this time on their smart phone. The Android SDK automatically generates a Distinct ID for them, with the value of `ABC`.
+3. This single user would appear as two separate users in your Mixpanel project; once or their access through the website, and another for their access through your app.
+
+Without identity management, a user who accesses your product from multiple device are incorrectly counted as two separate users.
+
+### With ID Management
+
+IMAGE OF ID MANAGEMENT FLOW
+
+1. A user access your product on the website through a computer. The Javascript SDK automatically generates a Distinct ID for them, with the value of `123`.
+2. When the user registers for an account, your implementation make an identify call, using their name `charlie` as the User ID. This triggers an ID merge, resulting in an ID cluster containing both `charlier` and `123`, which will map to the same user in Mixpanel.
+3. Later in the day, the same user access your product again, this time on their smart phone. The Android SDK automatically generates a Distinct ID for them, with the value of `ABC`.
+4. When the user logs in to your product using the account they registered earlier, your implementation calls identify again using the same User ID. This triggers another merge, adding `ABC` to the existing ID cluster. Now `ABC`, `123`, and `charlie` are all in one cluster and maps to one user in Mixpanel.
+
+With identity management, a user who accesses your product from multiple devices are accurately resolved to a single user.
+
+## Identity Merge APIs
+<Callout type="warning">
+  You cannot switch between the two APIs if your project already contains data in it.
+</Callout>
+
+Mixpanel supports 2 versions of the ID Merge API; Simplified ID Merge and Original ID Merge. Simplified ID Merge API is the default for new organizations.
+
+Due to the limited changes in functionality beyond a simpler implementation experience, we do not recommend that customers who have already implemented using the original API reimplement on the simplified API. Both APIs will remain supported and provide the same features.
+
+### Switching Between Simplified and Original API
+
+You can set the default Identity Merge API version for your projects in the Organization Settings:
+
+![Untitled](/Tracking/id-merge-org-settings.png)
+
+For new projects without any data in it, you can switch the Identity Merge API version for the project in the Project Settings:
+
+![Untitled](/Tracking/id-merge-project-settings.png)
+
+Once there are any data in your project, your Identity API version cannot be changed.
+
+### Simplified vs Original API Key Differences
+
+**Simplified API**
+
+- Distinct IDs are determined using `$user_id`/`$device_id` in events.
+- The `$user_id` is always set as the distinct_id for the user.
+- There is no limit on the number of `$device_id`s that can be merged into a single `$user_id`.
+
+**Original API**
+
+- Distinct IDs are determined using the `$identify`, `$merge`, and `$create_alias` events.
+- The distinct_id is automatically determined by Mixpanel using one of the IDs in the cluster and is not user-configurable. Any IDs in the cluster can be used for ingestion.
+- There is a limit of 500 IDs that can be merged into a single ID cluster.
+
+#### ID Merge Not Enabled
+
+If your project is not ID Merge enabled, please refer to [this documentation](https://github.com/mixpanel/docs/blob/main/legacy/aliases.md) for identity management using our legacy ID management version.
