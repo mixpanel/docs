@@ -416,6 +416,8 @@ Please note that cross-subdomain tracking is not possible when using local stora
   to disable cookies entirely, you can set the disable_persistence option to true when initializing 
   your Mixpanel JS instance. Note that disabling persistence will disable the use of super properties 
   and anonymous -> identified user tracking.
+  When tracking on web and cross-subdomain tracking is not needed, we recommend using localStorage 
+  persistence. This option also entirely avoids setting or using any first- or third-party cookies.
 </FAQBox>
 
 <FAQBox title="How can I track in a privacy compliant way?">
