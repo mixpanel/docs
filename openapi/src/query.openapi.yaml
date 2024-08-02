@@ -382,7 +382,7 @@ paths:
       summary: Query Retention Report
       tags:
         - Retention
-      description:
+      description: ''
       parameters:
         - $ref: ./common/parameters.yaml#/query/projectId
         - $ref: '#/components/parameters/workspaceId'
@@ -523,7 +523,7 @@ paths:
       summary: Query Frequency Report
       tags:
         - Retention
-      description:
+      description: ''
       parameters:
         - $ref: ./common/parameters.yaml#/query/projectId
         - $ref: '#/components/parameters/workspaceId'
@@ -1106,7 +1106,7 @@ paths:
       summary: Query Profiles
       tags:
         - Engage
-      description:
+      description: ''
       parameters:
         - $ref: ./common/parameters.yaml#/query/projectId
         - $ref: '#/components/parameters/workspaceId'
@@ -1554,7 +1554,7 @@ paths:
       summary: Custom JQL Query
       tags:
         - JQL
-      description:
+      description: ''
       parameters:
         - $ref: ./common/parameters.yaml#/query/projectId
         - $ref: '#/components/parameters/workspaceId'

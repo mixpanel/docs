@@ -60,7 +60,7 @@ paths:
         - Create Pipelines
       operationId: create-warehouse-pipeline
       summary: Create Pipeline
-      description:
+      description: ''
       requestBody:
         required: true
         content:
@@ -244,7 +244,7 @@ paths:
       summary: Get Pipeline
       tags:
         - Retrieve Pipelines
-      description:
+      description: ''
       parameters:
         - $ref: ./common/parameters.yaml#/query/projectId
         - in: query
