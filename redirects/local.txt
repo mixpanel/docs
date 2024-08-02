@@ -234,3 +234,12 @@
 /docs/tutorials/launch/define-cohorts /guides/launch/define-cohorts
 /docs/tutorials/beyond-onboarding /guides/beyond-onboarding
 /docs/tutorials/analytics-strategy /guides/analytics-strategy
+/docs/tracking-methods/id-management/identifying-users /docs/tracking-methods/id-management/identifying-users-simplified
+/docs/tracking-methods/id-management/identifying-users#simplified-vs-original-id-merge /docs/tracking-methods/id-management/identity-management#identity-merge-apis
+/docs/tracking-methods/id-management/identifying-users#example-user-flows /docs/tracking-methods/id-management/identifying-users-simplified#example-user-flows
+/docs/tracking-methods/id-management/identifying-users#what-is-distinct-id /docs/tracking-methods/id-management/identity-management#distinct-id
+/docs/tracking-methods/id-management/identifying-users#avoid-creating-profiles-for-anonymous-users /docs/tracking-methods/id-management/identifying-users-simplified#best-practices
+/docs/tracking-methods/id-management/identifying-users#how-do-i-switch-between-the-simplified-and-original-api /docs/tracking-methods/id-management/identity-management#switching-between-simplified-and-original-api
+/docs/tracking-methods/id-management/identifying-users#how-long-does-it-take-for-the-device_id---user_id-mapping-to-take-effect /docs/tracking-methods/id-management/identifying-users-simplified#faq
+/docs/tracking-methods/id-management/identifying-users#usage /docs/tracking-methods/id-management/identifying-users-simplified#client-side-identity-management
+/docs/tracking-methods/id-management/identifying-users#third-party-integration-support /docs/tracking-methods/id-management/identity-management#third-party-integration-support
