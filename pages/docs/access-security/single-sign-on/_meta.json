@@ -2,5 +2,6 @@
     "overview": "Overview",
     "azure": "Azure",
     "jumpcloud": "JumpCloud",
-    "okta": "Okta"
+    "okta": "Okta",
+    "shared-sso": "Shared SSO"
 }
