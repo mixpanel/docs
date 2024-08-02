@@ -2,7 +2,7 @@
 
 ## Overview
 
-Events are the core of [Mixpanel's Data Model](/docs/tutorials/plan/tracking-strategy#the-mixpanel-data-model). All events should have an **Event Name**, a **Timestamp** of when that event has occurred, and a **[Distinct ID](/docs/tracking-methods/id-management/identifying-users#what-is-distinct-id)** (Mixpanel's identifier for a user) to tie all events belonging to the same user. Events can optionally have a set of properties, which describes the event in more detail.
+Events are the core of [Mixpanel's Data Model](/docs/tutorials/plan/tracking-strategy#the-mixpanel-data-model). All events should have an **Event Name**, a **Timestamp** of when that event has occurred, and a **[Distinct ID](/docs/tracking-methods/id-management/identity-management#distinct-id)** (Mixpanel's identifier for a user) to tie all events belonging to the same user. Events can optionally have a set of properties, which describes the event in more detail.
 
 * If you're familiar with databases, events are like tables and properties are like columns.
 * If you're familiar with Google Analytics, events are like hits and properties are like dimensions.
