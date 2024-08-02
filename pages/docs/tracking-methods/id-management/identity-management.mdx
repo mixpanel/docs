@@ -94,6 +94,14 @@ Once there are any data in your project, your Identity API version cannot be cha
 - The distinct_id is automatically determined by Mixpanel using one of the IDs in the cluster and is not user-configurable. Any IDs in the cluster can be used for ingestion.
 - There is a limit of 500 IDs that can be merged into a single ID cluster.
 
+### Third-Party Integration Support
+Customer Data Platform (CDP) integrations may require some configuration to work the Simplified API:
+
+- Segment works out of the box with both the simplified and original APIs with no special configurations.
+- Rudderstack has a [connection setting](https://www.rudderstack.com/docs/destinations/streaming-destinations/mixpanel/#connection-settings) that should match the API version configured on your Mixpanel project.
+- mParticle works out of the box with both the original API, and the Simplified API; when using the Simplified API (for new projects) ensure the "Simplified ID Merge" option is checked in mParticle's connection details
+Most other integrations are unaffected by this API change. These integrations are not involved in identity management, they send data to the ID they are given and will work the same way on the simplified API that they do on the original API.
+
 #### ID Merge Not Enabled
 
 If your project is not ID Merge enabled, please refer to [this documentation](https://github.com/mixpanel/docs/blob/main/legacy/aliases.md) for identity management using our legacy ID management version.
