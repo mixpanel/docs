@@ -17,10 +17,11 @@ To decide which Mixpanel plan is right for you, first think about [what events y
 
 Event-based pricing calculates the amount you are charged based on the number of events across all projects in your organization. Certain events and API updates are non-qualifying and **excluded from the Monthly Events calculation**:
 
-- `$identify`
-- `$create_alias`
-- `$merge`
-- `$opt_in`
+- Identify (`$identify`)
+- Create Alias (`$create_alias`)
+- Merge (`$merge`)
+- Opt In (`$opt_in`)
+- Session Recording Checkpoint (`$mp_session_record`)
 - User profile creation/updates
 
 ### Plan Differences
