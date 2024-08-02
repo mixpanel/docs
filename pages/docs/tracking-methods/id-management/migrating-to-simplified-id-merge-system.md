@@ -328,7 +328,7 @@ Update your tech stack with the new project’s token, API secret, and service a
 3. <b>Customer Data Platform (CDP)</b> integration:
 
    - Ensure that your CDP is updated with new Mixpanel project token or API secret.
-   - Check the CDP's support for Simplified ID Merge [here](/docs/tracking-methods/id-management/identifying-users#third-party-integration-support).
+   - Check the CDP's support for Simplified ID Merge [here](/docs/tracking-methods/id-management/identity-management#third-party-integration-support).
 
 <br />
 
