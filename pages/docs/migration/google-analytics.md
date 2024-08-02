@@ -35,7 +35,7 @@ GA4 exports 2 types of user tables to BigQuery,
 1. `pseudonymous_users_YYYYMMDD` - This table contains only anonymous users updated on the specific day.
 2. `users_YYYYMMDD` - This table contains only known users updated on the specific day. 
 
-As [Mixpanel doesn't recommend setting user properties for anonymous users](/docs/tracking-methods/id-management/identifying-users#avoid-creating-profiles-for-anonymous-users), you would just need to import the `users_YYYYMMDD` table to Mixpanel (and not the `pseudonymous_users_YYYYMMDD` table). Similar to event properties, user properties are stored in `user_properties`(RECORD data type) in BigQuery, which needs to be transformed into a compatible data structure before sending them to Mixpanel. 
+As [Mixpanel doesn't recommend setting user properties for anonymous users](/docs/tracking-methods/id-management/identifying-users-simplified#best-practices), you would just need to import the `users_YYYYMMDD` table to Mixpanel (and not the `pseudonymous_users_YYYYMMDD` table). Similar to event properties, user properties are stored in `user_properties`(RECORD data type) in BigQuery, which needs to be transformed into a compatible data structure before sending them to Mixpanel. 
 
 ##### Pre-migration data audit
 Before migrating your data to Mixpanel, you should conduct a data audit to quickly identify the key events and properties that you want to migrate over. You can learn more about the importance of pre-migration data audit [here](/docs/migration/overview#data-audit).  
