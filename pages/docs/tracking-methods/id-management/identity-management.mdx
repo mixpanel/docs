@@ -2,6 +2,10 @@ import { Callout } from 'nextra/components'
 
 # Identity Management
 
+<Callout type="info">
+  Already familiar with the concept of identity management? Click [here](/docs/tracking-methods/id-management/identifying-users-simplified) for a detailed implementation guide for Mixpanel ID management.
+</Callout>
+
 ## Overview
 
 Identity management is the process of assigning IDs and maintaining ID mappings to ensure data are attributed to your users accurately. Mixpanel uses the **Distinct ID** property to identify your users and determine their uniqueness.
@@ -31,8 +35,7 @@ Let's walkthrough how identity management affects your implementation using an e
 
 ### Without ID Management
 
-<img src="/no_id_management.png" alt="no_id_management" width="200"/>
-![no_id_management](/no_id_management.png)
+<img src="/no_id_management.png" alt="no_id_management" width="400"/>
 
 1. A user access your product on the website through a computer. The Javascript SDK automatically generates a Distinct ID for them, with the value of `123`.
 2. Later in the day, the same user access your product again, this time on their smart phone. The Android SDK automatically generates a Distinct ID for them, with the value of `ABC`.
