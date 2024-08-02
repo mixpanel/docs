@@ -20,7 +20,7 @@ To backfill data, we recommend:
 ![image](/ga4_overview.png)
 
 At a high-level, the migration consists of 4 steps:
-1. Set up a new Mixpanel project which is on [Simplified ID Merge system](/docs/tracking-methods/id-management/identifying-users#simplified-vs-original-id-merge). 
+1. Set up a new Mixpanel project which is on [Simplified ID Merge system](/docs/tracking-methods/id-management/identity-management#identity-merge-apis). 
 2. Set up GA4 BigQuery Export following the instructions [here](https://support.google.com/analytics/answer/9823238?hl=en#zippy=%2Cin-this-article). 
 3. Transform GA4 data in BigQuery.   
 4. Set up [Mixpanel Warehouse Connector](/docs/tracking-methods/data-warehouse/overview) to initiate data sync from BigQuery to Mixpanel  
