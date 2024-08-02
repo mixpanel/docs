@@ -160,7 +160,9 @@ Navigate to [Project Settings → Warehouse Sources](https://mixpanel.com/report
     </iframe>
 </div>
 
-The connection to Databricks only supports connecting directly to clusters. Connecting directly to jobs or SQL warehouses is not supported. The account used for the connection should have `can attach to` permissions to the cluster (and `can restart` if it auto-suspends), and `can use` to the warehouse the cluster leverages.
+<Callout type="info">
+  The connection to Databricks only supports connecting directly to clusters. Connecting directly to jobs or SQL warehouses is not supported. The account used for the connection should have `can attach to` permissions to the cluster (and `can restart` if it auto-suspends), and `can use` to the warehouse the cluster leverages.
+</Callout>
 
 Complete the following steps to get your Databricks connector up and running:
 
@@ -171,6 +173,26 @@ Complete the following steps to get your Databricks connector up and running:
     - ** HTTP Path ** - This is the HTTP path of the cluster you would like to connect to. This can be found in your cluster [JDBC/ODBC connection settings](https://docs.databricks.com/en/integrations/jdbc-odbc-bi.html#step)
     - ** Access Token ** - This is the Personal access token used to authenticate with your Databricks cluster. Here are the instructions on [how to create an access token](https://docs.databricks.com/en/dev-tools/auth.html#databricks-personal-access-tokens-for-workspace-users)
 4. In the second view, you should see that the credentials are validated and a source is added.
+
+**Using Service Principals**
+If a service principal is used, you'll want to follow these steps:
+1. [Create the service principal](https://docs.databricks.com/en/admin/users-groups/service-principals.html#manage-service-principals-in-your-account) if it doesn't exist.
+2. Create a token for the service principal. You can do so through the Databricks cli:
+```bash
+databricks configure --token
+databricks token-management create-obo-token <application_id_of_service_principal> 31536000 --comment "Mixpanel warehouse connector service principal token"
+```
+3. Copy the token generated for later use
+4. Give the service principal `Can Attach` permissions to the cluster (in Cluster > Permissions)
+    - Note the cluster needs to be a shared compute resource and not a single user cluster (unless the service principal created the cluster as well)
+5. Give the service principal access to the catalogs you want to read in Mixpanel
+6. When table access control is enabled in the account, the service principal also requires access to the files that will be read. You can add access like:
+```bash
+GRANT SELECT ON ANY FILE TO <application_id_of_service_principal>
+GRANT MODIFY ON ANY FILE TO <application_id_of_service_principal>
+```
+7. During the setup processing Mixpanel, you can now use the token from the service principal when setting up the connection
+
 
 **IP Allowed List**
 
@@ -398,9 +420,9 @@ were to remove the Genre column in the example above the checksum of every row w
 **Handling partitioned tables:**
 
 When syncing [time partitioned](https://cloud.google.com/bigquery/docs/partitioned-tables#date_timestamp_partitioned_tables) or
-[ingestion-time paritioned](https://cloud.google.com/bigquery/docs/partitioned-tables#ingestion_time) tables Mirror will use partition
+[ingestion-time partitioned](https://cloud.google.com/bigquery/docs/partitioned-tables#ingestion_time) tables Mirror will use partition
 metadata to skip processing partitions that have not changed between sync runs. This will make the computation of the change stream
-much more efficient on large paritioned tables where only a small percentage of partitions are update between runs. For example,
+much more efficient on large partitioned tables where only a small percentage of partitions are update between runs. For example,
 in a day-partitioned table with two years of data, where only the last five days of data are normally updated only five partitions
 worth of data will be scanned each time the sync runs.
 
@@ -441,7 +463,7 @@ ALTER TABLE <table> ADD COLUMN <column> VARCHAR DEFAULT NULL;
 ```
 We recommend avoiding other types of schema changes. Snowflake streams only reflect changes to tables from DML statements. DDL statements
 that logically modify data (e.g. adding new columns with default values, dropping existing columns, or renaming columns) will be reflected
-in future data sent to Mixpanel but the Stream will not update historical data with changes caused by DDL statments.
+in future data sent to Mixpanel but the Stream will not update historical data with changes caused by DDL statements.
 </Tab>
 
 </ExtendedTabs>
@@ -451,17 +473,18 @@ in future data sent to Mixpanel but the Stream will not update historical data w
 ### Append
 Append syncs require an Insert Time column in your table. Mixpanel remembers the maximum Insert Time it saw in the previous run of the sync and looks for only rows that have an Insert Time greater than that. This is useful and efficient for append-only tables (usually events) that have a column indicating when the data was appended.
 
+Each time an Append sync runs, it will query the source table with a `WHERE <insert_time_column> > <previous_max_insert_time>` clause. This means that records added with an append time value before the `<previous_max_insert_time>` from the previous run can be missed (not imported) as they would be considered already ingested. The `<insert_time_column>` value should always reflect when the value was made available for Mixpanel to query and ingest.
+
 **Considerations when using Append with large BigQuery tables:**
 
-Each time an Append sync runs it will query the source table with a `WHERE <insert_time_column> > <previous_max_insert_time>` clause. In
-an un-partitioned BigQuery table this results in a full scan of all data in the source table each time the sync runs. To minimize
+In an un-partitioned BigQuery table, the `<insert_time_column>` filtering results in a full scan of all data in the source table each time the sync runs. To minimize
 BigQuery costs we recommend
 [partitioning the source table by the `<insert_time_column>`](https://cloud.google.com/bigquery/docs/partitioned-tables#date_timestamp_partitioned_tables).
 Doing so will ensure that each incremental sync run [only scans the most recent partitions](https://cloud.google.com/bigquery/docs/partitioned-tables).
 
 To understand the potential savings consider a 100 GB source table with 100 days of data (approximately 1 GB of data per day):
 - If this table is not partitioned and is synced daily the Append sync will scan the whole table (100 GB of data) each time it runs, or 3,000 GB of data per month.
-- If this table is partitioned by day and is synced daily with an Append sync the Append sync only scan the current day and previous day's partitions (2 GB of data) each time it runs, or 60 GB of data per day, a 50x improvement over the unpartitioned table.
+- If this table is partitioned by day and is synced daily with an Append sync the Append sync only scan the current day and previous day's partitions (2 GB of data) each time it runs, or 60 GB of data per day, a 50x improvement over the un-partitioned table.
 
 ---
 
@@ -484,7 +507,7 @@ For more advanced synchronization needs, Mixpanel offers the ability to trigger 
 To use the API trigger option:
 
 1. Select Advanced>Trigger Via API under Sync Frequency in the table sync creation UI.
-2. After creaitng the sync, we will generate a PUT URL for you. 
+2. After creating the sync, we will generate a PUT URL for you. 
 3. Integrate this URL into your existing workflows or scripts.
 4. Authenticate the request with a Mixpanel Service Account. More information on setting up and using Mixpanel Service Accounts can be found [here](https://developer.mixpanel.com/reference/service-accounts).
 5. Trigger the sync job programmatically, ensuring it runs in coordination with other data processes.
@@ -538,7 +561,7 @@ The DWH cost of using a warehouse connector will vary based on the source wareho
 
 There are 3 aspects of DWH cost: network egress, storage, and compute.
 * **Network Egress**: All data is transferred using gzip compression. Assuming an egress rate of \$0.08 per GB and 100 compressed bytes per event, this is a cost of less than \$0.01 per million events. [Mirror](#mirror) and [Append](#append) syncs will only transfer new or modified rows each time they run. [Full](#full) syncs will transfer all rows every time they run. We recommend using Full syncs only for small tables and running them less frequently.
-* **Storage**: [Append](#append) and [Full](#full) syncs do not store any additional data in your warehouse, so there are no extra storage costs. [Mirror](#mirror) tracks changes using warehouse-specific functionallity that can affect warehouse storage costs:
+* **Storage**: [Append](#append) and [Full](#full) syncs do not store any additional data in your warehouse, so there are no extra storage costs. [Mirror](#mirror) tracks changes using warehouse-specific functionality that can affect warehouse storage costs:
   * Snowflake: Mirror uses [Snowflake Streams](https://docs.snowflake.com/en/user-guide/streams-intro). Snowflake Streams will [retain historical data](https://docs.snowflake.com/en/user-guide/streams-intro#billing-for-streams) until it is consumed from the stream. As long as the warehouse connector runs regularly data will be consumed regularly and only retained between runs.
   * BigQuery: Mirror uses [table snapshots](https://cloud.google.com/bigquery/docs/table-snapshots-intro). Mirror keeps one snapshot per table to track the contents of the table from the last run. BigQuery table snapshots have no cost when they are first created as they share the underlying storage with the source table, however as the source table changes [the cost of storing changes is attributed to the table snapshot](https://cloud.google.com/bigquery/docs/table-snapshots-intro#storage_costs). Each time the connector runs the current snapshot is replaced with a new snapshot of the latest state of the table. The storage cost is the amount of changes being tracked between the snapshot and source table between runs.
 * **Compute**:

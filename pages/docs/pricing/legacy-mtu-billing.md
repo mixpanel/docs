@@ -22,10 +22,11 @@ Total number of events / 1,000
 
 Certain events and API updates are non-qualifying and excluded from the MTU calculation:
 
-- `$identify`
-- `$create_alias`
-- `$merge`
-- `$opt_in`
+- Identify (`$identify`)
+- Create Alias (`$create_alias`)
+- Merge (`$merge`)
+- Opt In (`$opt_in`)
+- Session Recording Checkpoint (`$mp_session_record`)
 - Message Sent (`$campaign_delivery`)
 - Message Received (`$campaign_received`)
 - Message Bounced (`$campaign_bounced`)
