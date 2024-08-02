@@ -221,6 +221,12 @@ Route data to Mixpanel's EU servers by setting the `serverURL` property after in
 mixpanel.setServerURL("https://api-eu.mixpanel.com");
 ```
 
+## [Legacy] Automatically Tracked Events
+
+Mixpanel's SDKs have a legacy feature to automatically collect common mobile events. We don't recommend enabling this, as these events rely on client-side state and can be unreliable compared to tracking server-side. You can still enable this feature by turning the flag `trackAutomaticEvents: true` when initializing Mixpanel. More details [here](https://github.com/mixpanel/mixpanel-flutter?tab=readme-ov-file#2-initialize-mixpanel). 
+
+You can see a list of events tracked automatically for [iOS here](/docs/tracking-methods/sdks/swift#legacy-automatically-tracked-events) and [Android here](/docs/tracking-methods/sdks/android#legacy-automatically-tracked-events).
+
 ## Tracking Via Proxy
 
 This guide demonstrates how to route events from Mixpanel's Flutter SDKs via a proxy in your own domain. This is useful to reduce the likelihood of ad-blockers impacting your tracking.

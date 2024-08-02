@@ -41,7 +41,7 @@ New and current customers who have not received any other exclusive offer and ar
 
 #### What offers prevent me from qualifying for the startup program?
 
-If you have already redeemed an offer through the [Product School](https://mixpanel.com/productschool/) or another partner, you will not be eligible for the startup program.
+If you have already redeemed an offer through the [Product School](https://productschool.teachable.com/p/productanalytics) or another partner, you will not be eligible for the startup program.
 
 ### Offer Details
 
@@ -49,7 +49,7 @@ If you have already redeemed an offer through the [Product School](https://mixpa
 
 Eligible startups can [apply directly](https://mixpanel.com/startups-apply/) for the startup program. Credits will be added to your account and automatically be applied to eligible line items when purchasing or upgrading to an annual [Growth plan](https://mixpanel.com/pricing/#edit-plan) via our plan builder.
 
-Once you have successfully applied, you need to click 'Redeem Now' and you will be guided to our plan builder where you can select the number of events you will need, along with adding on premium features like [Data Pipelines](https://mixpanel.com/data-pipeline/) and/or [Group Analytics](https://mixpanel.com/group-analytics/). You can also access the plan builder via the Billing section in your Organization Settings.
+Once you have successfully applied, you need to click 'Redeem Now' and you will be guided to our plan builder where you can select the number of events you will need, along with adding on premium features like [Data Pipelines](/docs/data-pipelines/overview) and/or [Group Analytics](/docs/data-structure/advanced/group-analytics). You can also access the plan builder via the Billing section in your Organization Settings.
 
 The offer is activated as soon as you successfully apply and are approved for the program. From that date, you will begin your one free year of Mixpanel.
 
@@ -83,7 +83,7 @@ Yes, the startup program provides your first year of Mixpanel for free, valued u
 
 For startups on an event-based plan, any event above the purchased event limit is billed at the standard base rate. We guarantee a fair price, always. We’re not going to over-charge you for events. We want you to keep your costs predictable and manageable as your business grows.
 
-For startups on a legacy MTU plan, any monthly tracked user (MTU) above the purchased MTU limit would be billed at a metered additional data rate (120% of base rate).
+For startups on an MTU plan, any monthly tracked user (MTU) above the purchased MTU limit would be billed at a metered additional data rate (120% of base rate).
 
 For example, if you were to purchase a 100,000 MTU plan and then ended up tracking exactly 150,000 monthly tracked users (MTU) each month:
 
@@ -97,7 +97,7 @@ For example, if you were to purchase a 100,000 MTU plan and then ended up tracki
 - Since an extra 50,000, MTU would be consumed each month, leading to additional data charges of $499.95/month
 - Over a 12 month period, the annual cost would sum to $15,998.4* due to the additional 50,000 MTU sent each month and this will all be covered by your initial credit balance in the first year.
 
-If you are on a legacy MTU plan, the startup program allows you to track approximately 430,000 MTUs each month before you exceed the \$50,000 value of the offer. Please reach out to our [Sales team](https://mixpanel.com/contact-us/sales/) in case your company has more users and you want to discuss other plan options.
+If you are on an MTU plan, the startup program allows you to track approximately 430,000 MTUs each month before you exceed the \$50,000 value of the offer. Please reach out to our [Sales team](https://mixpanel.com/contact-us/sales/) in case your company has more users and you want to discuss other plan options.
 
 Note: These prices are illustrative only, please visit the [pricing page](https://mixpanel.com/pricing/) to view our latest prices.
 

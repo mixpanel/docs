@@ -37,6 +37,7 @@ export default function insertGTMScriptTags() {
             debug: ${!isProd},
             persistence: 'cookie',
             track_pageview: false,
+            stop_utm_persistence: true,
             record_sessions_percent: 100,
             record_mask_text_selector: '',
         })

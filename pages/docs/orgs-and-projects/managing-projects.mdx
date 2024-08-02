@@ -1,3 +1,5 @@
+import { Callout } from 'nextra/components'
+
 # Managing Projects
 
 ## Creating Projects
@@ -94,11 +96,13 @@ Then select the Projects tab.
 
 ## Manage Timezones for Projects
 
-Mixpanel records all events in [Coordinated Universal Time (UTC)](https://www.worldtimeserver.com/learn/what-is-utc/) at intake.
+<Callout type="info" emoji="ℹ️">
+For projects created before 11 Jan 2023, Mixpanel converts event timestamps to your project timezone before writing the event to your Mixpanel data stores, meaning that event timestamps are stored based on the project timezone setting at the time of ingestion.
+</Callout>
 
-Mixpanel converts the timezone to your project timezone before writing the event to Mixpanel data stores. Mixpanel sets project timezones by city or region. If a city or region observes Daylight Savings Time, the ingestion offset adjusts appropriately.
+Mixpanel records all events in [Coordinated Universal Time (UTC)](https://www.worldtimeserver.com/learn/what-is-utc/) at intake. Changing the timezone for any project under Project Settings only affects the timezone in which Mixpanel outputs results.
 
->Note: As of 11 Jan 2023, all new projects store their data in UTC. Changing the timezone for any project under Project Settings only affects the timezone in which Mixpanel outputs results. You will no longer see a gap or spike in events after changing the timezone.
+Mixpanel sets project timezones by city or region. If a city or region observes Daylight Savings Time, the ingestion offset adjusts appropriately.
 
 ### Changing your Timezone
 
@@ -120,17 +124,9 @@ To change the project’s timezone:
 
 >Note that changing the timezone will not affect any data, it only affects the timezone in which we output results.
 
-### Understanding How Timezones Affect Data
-
-After you set your timezone correctly, you should send any dates or times to Mixpanel as Coordinated Universal Time (UTC).
-
-By default, Mixpanel’s integration libraries work with API ingestion endpoints to automatically convert the UTC timestamp or date to your project timezone before storing your data.
-
->If you overwrite the default timestamp, import old data, or set a property that is in date format (e.g. Account Created Date), be sure to send the timestamp or date in UTC.
-
 #### Sending Date Properties to Mixpanel
 
-As mentioned previously, you should send date properties to Mixpanel as UTC. Date properties are one of the five data types Mixpanel accepts.
+[Date properties are one of the five data types](/docs/data-structure/property-reference/data-type#date) Mixpanel accepts. Mixpanel events should be ingested with timestamps set to Coordinated Universal Time (UTC). If you overwrite the default timestamp, import old data, or set a property that is in date format (e.g. Account Created Date), be sure to send the timestamp or date in UTC.
 
 For this type of property, Mixpanel recommends an iso-formatted date string (YYYY-MM-DDTHH:mm:ss) to use in your Mixpanel reports.
 
@@ -156,28 +152,19 @@ Mixpanel.track("Account Created Date", props);
 ```
 #### Exporting Data from Mixpanel
 
-When you’re exporting raw data from Mixpanel, your request requires the date parameters "from_date" and "to_date" to determine which date range of data to return.
+When you’re exporting raw data from Mixpanel, your request requires the date parameters `from_date` and `to_date` to determine which date range of data to return.
 
 Mixpanel's raw export machines interpret the "from_date" and "to_date" values to your project’s timezone. As a result, if you request a single day of data, you receive one full day in your project’s timezone, not one full day in UTC.
 
-As mentioned earlier, Mixpanel hardcodes event timestamps to your project’s timezone. However, the "$time" property from a raw export returns with a Unix timestamp, not a UTC timestamp.
+As mentioned earlier, Mixpanel stores your events in UTC. The "$time" property from a raw export returns with a Unix timestamp, which represents the number of seconds that have elapsed since 00:00:00 on January 1, 1970.
 
-The Unix timestamp represents the number of seconds that have elapsed since 00:00:00 on January 1, 1970 in your project’s timezone.
-
-In the example below, if your project’s timezone is US/Pacific, the below parameters return:
-
-
-```
-00:00:00 Aug. 1 to 11:59:59 Aug. 1 PDT, or 07:00:00 Aug. 1 – 06:59:59 Aug. 2 UTC. from_date = "2015-08-01" to_date = "2015-08-01"
-```
+In the example below, if your project’s timezone is US/Pacific, and you set both the `from_date` and `to_date` to `2023-08-01`, it will return events between `00:00:00 Aug. 1 to 11:59:59 Aug. 1 PDT`/`07:00:00 Aug. 1 – 06:59:59 Aug. 2 UTC` where the events timestamp are in Unix timestamp format in UTC.
 
 #### Importing Data into Mixpanel
 
 Always send imported data to Mixpanel in UTC to ensure it displays correctly in your project.
 
-Mixpanel hardcodes timestamps of exported data to your project’s timezone. The exported data can be events and any date properties on events and users.
-
-As a result, operations such as extract, transform, and load, need a quick timestamp and date property offset to reset the data back to UTC before importing it back to Mixpanel.
+Mixpanel stores your data in UTC, then use your project timezone setting to output data in your selected timezone.
 
 ## Transfer Project to Another Organization
 
@@ -198,7 +185,7 @@ To transfer a project to another organization:
 
 >Note that project tallies will be transferred along with your project to the new Organization.
 
-## Merge Or Combine Mixpanel Projects
+## Merge Mixpanel Projects
 
 If for any reason you need to combine two or more Mixpanel projects, it is possible to do so. Here are a few things to consider before proceeding with the merge to ensure you maintain data integrity:
 

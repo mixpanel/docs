@@ -17,9 +17,11 @@ To decide which Mixpanel plan is right for you, first think about [what events y
 
 Event-based pricing calculates the amount you are charged based on the number of events across all projects in your organization. Certain events and API updates are non-qualifying and **excluded from the Monthly Events calculation**:
 
-- `$identify`
-- `$create_alias`
-- `$merge`
+- Identify (`$identify`)
+- Create Alias (`$create_alias`)
+- Merge (`$merge`)
+- Opt In (`$opt_in`)
+- Session Recording Checkpoint (`$mp_session_record`)
 - User profile creation/updates
 
 ### Plan Differences
@@ -167,11 +169,19 @@ It’s not possible to set a billing limit at this moment, but check out [this a
 
 Another option to avoid paying for overages is to downgrade or upgrade before the end of the billing cycle to a plan that covers all your data usage.
 
+#### Alerts for Additional Data Charges
+
+If you go over your prepaid amount, Mixpanel won't stop collecting your data. Any additional data over your current plan will be billed the following month.
+
+Organization owners and billing admins are sent an alert email if their paid account reaches the following percentages of their plan volume: 85%, 100%, 110%, 120%, 200%, 300%, and 400%. It is possible to receive multiple alerts in a month if an account reaches two or more of the thresholds mentioned above. Email addresses that are CC'd on receipts will also be CC'd on additional carte data rate alerts.
+
+If the billing owner logs into Mixpanel, they will see a popup if their account reaches the following percentages of their plan volume: 100%, 110%, and 120%.
+
 ### Is Mixpanel’s pricing based on MTUs?
 
 Mixpanel’s default pricing option is based on events because it is a better option for the majority of customers. Mixpanel also offers an MTU-based Enterprise plan, which **starts at $10,000 per year** and isn’t available online. If you are interested in learning more about it, [contact our sales team](https://mixpanel.com/contact-us/sales/).
 
-If you are an existing customer on an MTU plan, refer to our legacy MTU Pricing Guide.
+If you are an existing customer on an MTU plan, refer to our MTU Pricing Guide.
 
 ### Is old event data billed when imported to Mixpanel?
 
