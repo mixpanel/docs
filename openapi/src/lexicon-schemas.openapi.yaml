@@ -46,6 +46,7 @@ paths:
       tags:
         - Create Schemas
       summary: Create/Replace Multiple
+      description:
       requestBody:
         content:
           application/json:

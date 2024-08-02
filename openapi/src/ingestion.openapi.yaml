@@ -1188,7 +1188,7 @@ paths:
       security:
         - ServiceAccount: []
       summary: Replace a Lookup Table
- 
+      description:
       parameters:
         - in: path
           name: id

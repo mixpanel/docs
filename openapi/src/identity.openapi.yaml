@@ -29,6 +29,7 @@ paths:
         - Identities
       summary: Create Identity
       operationId: create-identity
+      description:
       requestBody:
         required: true
         content:
@@ -67,6 +68,7 @@ paths:
         - Identities
       summary: Create Alias
       operationId: identity-create-alias
+      description:
       requestBody:
         required: true
         content:
@@ -104,6 +106,7 @@ paths:
         - Identities
       summary: Merge Identities
       operationId: identity-merge
+      description:
       security:
         - ServiceAccount: []
         - ProjectSecret: []

@@ -24,6 +24,7 @@ paths:
       tags:
         - Retrieve Connectors
       summary: List Connectors
+      description:
       operationId: get-connectors
       responses:
         '200':
@@ -36,6 +37,7 @@ paths:
       tags:
         - Create Connectors
       summary: Create Connector
+      description:
       operationId: create-connector
       requestBody:
         content:
@@ -93,6 +95,7 @@ paths:
       tags:
         - Delete Connectors
       summary: Delete a Project's Connector by Connector Id
+      description:
       operationId: delete-connector
       responses:
         '200':
@@ -112,6 +115,7 @@ paths:
       tags:
         - Retrieve Connectors
       summary: List Connector Logs
+      description:
       operationId: get-connector-logs
       responses:
         '200':
