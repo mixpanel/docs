@@ -274,7 +274,7 @@ The following guide outlines the steps required to set up the new Mixpanel proje
 
 1. Create a new Mixpanel project in your existing organization by navigating to <b>Projects</b> setting under [Organization Settings](https://mixpanel.com/settings/org/projects). You can refer to [Creating Projects](/docs/orgs-and-projects/managing-projects#creating-projects) section in our documentation.
    
-2. Enable <b>Simplified API</b> in the new project by navigating to <b>Identity Merge</b> setting under this new Project's Settings. Refer to [this](/docs/tracking-methods/id-management/identifying-users#how-do-i-switch-between-the-simplified-and-original-api) section in our documentation.
+2. Enable <b>Simplified API</b> in the new project by navigating to <b>Identity Merge</b> setting under this new Project's Settings. Refer to [this](/docs/tracking-methods/id-management/identity-management#switching-between-simplified-and-original-api) section in our documentation.
 
    Please note that the new project follows the organization’s default (Legacy or Original ID Merge). You have to switch the project to Simplified ID Merge <b><i>before</i></b> sending any data to the project. Make sure to override the default selection in every newly created project.
 
