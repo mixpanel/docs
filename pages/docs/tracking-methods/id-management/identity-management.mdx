@@ -31,7 +31,7 @@ Let's walkthrough how identity management affects your implementation using an e
 
 ### Without ID Management
 
-IMAGE OF NO ID MANAGEMENT FLOW
+![no_id_management](/no_id_management.png)
 
 1. A user access your product on the website through a computer. The Javascript SDK automatically generates a Distinct ID for them, with the value of `123`.
 2. Later in the day, the same user access your product again, this time on their smart phone. The Android SDK automatically generates a Distinct ID for them, with the value of `ABC`.
@@ -41,7 +41,7 @@ Without identity management, a user who accesses your product from multiple devi
 
 ### With ID Management
 
-IMAGE OF ID MANAGEMENT FLOW
+![with_id_management](/with_id_management.png)
 
 1. A user access your product on the website through a computer. The Javascript SDK automatically generates a Distinct ID for them, with the value of `123`.
 2. When the user registers for an account, your implementation make an identify call, using their name `charlie` as the User ID. This triggers an ID merge, resulting in an ID cluster containing both `charlier` and `123`, which will map to the same user in Mixpanel.
