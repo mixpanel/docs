@@ -260,7 +260,7 @@ Take note of the following details when planning for the migration from Legacy I
 
 3. If you have Mixpanel in your mobile apps, you’ll need to ship a new version of the app with the updated ID management implementation, and the new project’s token as part of the migration process. Without a forced app update, it may take awhile for all users to upgrade to the latest app version. During this period, some events will still be tracked to the old project. Be prepared for data backfilling if you want these events, as well as the historical data to be included in the new project.
    
-4. With the introduction of the retroactive identity merging feature in Original and Simplified ID Merge, it may take up to 24 hours for identity merging (merging 2 unique users into 1 unique user) to be fully reflected in all Mixpanel reports. More details [here](/docs/tracking-methods/id-management/identifying-users#how-long-does-it-take-for-the-device_id---user_id-mapping-to-take-effect).
+4. With the introduction of the retroactive identity merging feature in Original and Simplified ID Merge, it may take up to 24 hours for identity merging (merging 2 unique users into 1 unique user) to be fully reflected in all Mixpanel reports. More details [here](/docs/tracking-methods/id-management/identifying-users-simplified#faq).
    
 5. All Mixpanel [Client-Side SDKs](/docs/tracking-methods/choosing-the-right-method#client-side-tracking) support Simplified ID Merge except for [Unity SDK](/docs/tracking-methods/sdks/unity). 
 
