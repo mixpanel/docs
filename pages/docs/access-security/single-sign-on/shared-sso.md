@@ -8,6 +8,8 @@ With a shared SSO setup, Single Sign-On settings and Claimed Domains are adminis
 
 This feature is available to customers on an Enterprise Plan.
 
+> Shared SSO is currently in private beta. Please contact your Account Manager if you are interested in enabling this feature.
+
 ## Admin Organizations
 
 An Admin Organization is a special type of Organization that contains Single Sign-On settings and Claimed Domains. It can have Organization Members, but you should only add administrative users to the Admin Organization to manage security. The [SCIM](/docs/access-security/single-sign-on/overview#scim) process will add Users as Organization Members.
