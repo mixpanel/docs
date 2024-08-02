@@ -311,7 +311,7 @@ Update your tech stack with the new project’s token, API secret, and service a
 
       <b>Note: Mixpanel [Unity](/docs/tracking-methods/sdks/unity) SDK currently does not support Simplified ID Merge.</b>
 
-   - Refer to the implementation guide [here](/docs/tracking-methods/id-management/identifying-users#usage). You only need to call `identify` and `reset` methods at specific points in the user journeys as the SDK will automatically add the reserved properties `$device_id` and `$user_id` to the events before sending them to Mixpanel.
+   - Refer to the implementation guide [here](/docs/tracking-methods/id-management/identifying-users-simplified#client-side-identity-management). You only need to call `identify` and `reset` methods at specific points in the user journeys as the SDK will automatically add the reserved properties `$device_id` and `$user_id` to the events before sending them to Mixpanel.
    - You should not call `alias`, as this method will not trigger identity merging in a Simplified ID Merge project. It is only provided as a backward-compatible solution for users who are on Legacy / Original ID Merge.
 
 <br />
