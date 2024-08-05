@@ -3,7 +3,7 @@ title: "Overview"
 slug: "overview"
 hidden: false
 createdAt: "2020-08-13T17:28:39.814Z"
-updatedAt: "2021-10-07T19:08:48.152Z"
+updatedAt: "2024-08-05T19:31:43.295Z"
 ---
 
 Mixpanel supports API endpoints that can query, export, and import data as well as manipulate Mixpanel metadata (such as data definitions).
@@ -56,4 +56,4 @@ The retrieval and deletion API calls are updated for version 3 and are made for 
 
 **Standard Server:** `mixpanel.com/api/app/projects`
 **EU Residency Server:** `eu.mixpanel.com/api/app/projects`
-Warehouse Connectors API
+Use the Warehouse Connectors API to manually run a warehouse imports.
