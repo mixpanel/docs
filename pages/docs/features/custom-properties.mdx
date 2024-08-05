@@ -199,3 +199,14 @@ Some key notes
 - Borrowing of a property is strictly from the most recent event in the 7 day lookback window. To elaborate
     - Say on event “purchase”, you want to borrow property “search term” from an event “search product”. If there are multiple events “search product” before “purchase”, the property will be borrowed from the most recent “search product” event where the property is set.
     - Lookback is also fixed to a 7 day window. Say the “purchase” event occurred on 31st Jan, if the  most recent “search product” occurred on 20th Jan, the borrow functionality will return “search term” = (not set), since this event happened 11 days ago which is outside the lookback window range.
+
+To use a borrowed property with other [functions](/docs/features/custom-properties#functions), you would need to: 
+
+1. Create a custom property with just the borrowed property on it's own
+![image](/borrowed-property.png "Borrowed Property")<br />
+
+2. Create a separate custom property using the borrowed property (i.e. the 1st custom property)
+![image](/borrowed-property-in-custom-property.png "Borrowed Property in Custom Property")<br />
+
+3. Here's an example of a [report](https://mixpanel.com/s/1c4Pl9) with *Searched Category* custom property using *Search term (Products Searched)* borrowed property
+![image](/borrowed-property-in-custom-property-report.png "Borrowed Property in Custom Property Report Example")<br />
