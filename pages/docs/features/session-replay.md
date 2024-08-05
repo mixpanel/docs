@@ -4,11 +4,11 @@
 
 Mixpanel Session Replay is the fastest way to understand the whole picture about your customers and make better product decisions, by combining quantitative and qualitative user insights. 
 
-When digging into customer journeys in Mixpanel’s analytics, you can understand “where do customers drop-off?” And now, Mixpanel Session Replay enables you to quickly follow-up with, “why do customers drop off?”
+When digging into customer journeys in Mixpanel’s analytics, you can understand “**where** do customers drop-off?” And now, Mixpanel Session Replay enables you to quickly follow-up with, “**why** do customers drop off?”
 
 ## Availability
 
-Currently, Session Replay is currently in invite-only beta access for customers on our [Enterprise plan](https://mixpanel.com/pricing/)).
+Currently, Session Replay is currently in invite-only beta access for customers on our [Enterprise plan](https://mixpanel.com/pricing/).
 
 You can join the waitlist for beta access [here](https://mixpanel.com/m/session-replay-beta/).
 
@@ -62,7 +62,10 @@ Our Session Replay Beta Service Addendum can be found [here](https://mixpanel.co
 
 ### Is Session Replay available for mobile?
 
-To start, Session Replay is available only for web-based applications (including mobile web). We hope to offer mobile support in the near future. 
+As of today, Session Replay is in closed Beta testing for web-based applications (including mobile web) and closed Alpha testing for native iOS aps. Android Alpha testing is expected later this year.
+
+For any questions about mobile beta access, please reach out to your Account Manager.
+ 
 
 ### Can I prevent Session Replay from recording sensitive content?
 
@@ -76,7 +79,11 @@ By default, all on-screen text elements are masked in replays. Additionally, you
 
 Yes, you can configure the percentage of total replays that our SDK will capture with as little as [one line of code in your SDK implementation](/docs/tracking-methods/sdks/javascript#sampling-method). 
 
-This out-of-the-box sampling method is random sampling: your SDK will decide randomly whether the currently SDK instance load falls into the sample or not. We recommend starting at 1% and increasing from there. Please note: if you expect low traffic, you can increase the starting sampling percentage. If you're still unsure about what sampling percentage to use, you can utilize a proxy metric like [Page Views](/docs/tracking-methods/sdks/javascript#tracking-page-views) to estimate how many recordings you'll be ingesting and base the sampling off that.
+This out-of-the-box sampling method is random sampling: your SDK will decide randomly whether the currently SDK instance load falls into the sample or not. We recommend starting at 1% and increasing from there.
+
+If you expect low traffic, you can increase the starting sampling percentage. 
+
+If you're still unsure about what sampling percentage to use, you can use our automatically generated [Session Start events](/docs/features/sessions#how-sessions-work) to estimate how many recordings you'll be ingesting, and base the sampling off that.
 
 If instead of random sampling, you want to use conditional logic to control which sessions to record, then your application code can derive its own yes/no decision, and then force a session recording to start after SDK initialization by calling `mixpanel.start_session_recording()`.
 
