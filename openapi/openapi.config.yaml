@@ -17,6 +17,7 @@ lint:
     info-license: off
     paths-kebab-case: off
     boolean-parameter-prefixes: off
+    operation-description: off
 
     # Todo: fix these offenders
     operation-tag-defined: off
