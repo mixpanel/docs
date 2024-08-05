@@ -425,8 +425,5 @@ Along with other data, the SDK respects all Do Not Track (DNT) settings as well 
 #### Retention
 User replays are stored for 30 days after the time of ingestion. There is no way to view a replay older than 30 days old.
 
-#### Data Residency
-EU residency is not supported yet, check back soon!
-
 ## Release History
 [See All Releases](https://github.com/mixpanel/mixpanel-js/releases).
