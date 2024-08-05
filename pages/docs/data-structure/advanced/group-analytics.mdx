@@ -153,9 +153,11 @@ Because a user can be part of multiple groups within a group key, set the value 
 ## FAQ
 
 ### Limits and Caveats
-The maximum number of group profiles that may be tracked is 1M profiles per group key. When exceeding this limit, queries that use group profile properties against user level analysis (eg: break down my user funnel by company group key) may fail due to the size of the group table.
 
-No single group identifier (e.g. company_id), can have more than 1M events/day. When a particular group identifier has more events than this limit, query performance will suffer and sometimes fail.
+Below set limits ensure reports using group analytics perform correctly, especially when they are analyzed against user level data (e.g. break down my user funnel by company group key):
+
+- 1M group profiles per group key (e.g. companny_id)
+- 1M events per day per group identifier (e.g. company_id = "Mixpanel") 
 
 ### Events Missing from Groups
 The group key property must be present as an event property on an event in order to attribute them to a group profile.
