@@ -15,9 +15,12 @@ Mixpanel has many Properties defined in its Data Model.
 | Reserved Properties | Mixpanel reserves certain property names (for [Events](/docs/data-structure/events-and-properties#reserved-event-properties) and [User Profiles](/docs/data-structure/user-profiles#reserved-user-properties)) for special use cases, and these may or may not be automatically populated with values. The purpose of such Reserved Properties are for processing (ie event time stamping) or for specific system features (eg: cohort exports). Examples: `time`, `$email`, `$phone`, `$name`, `$created`. |
  
 ## Default Properties
+
 Mixpanel's [Data Ingestion APIs](https://developer.mixpanel.com/reference/ingestion-api) and [Client-Side SDKs](/docs/tracking-methods/choosing-the-right-method#client-side-tracking) automatically collect certain properties on every event or user profile. Do also note that some Customer Data Platforms (CDPs) that integrate with Mixpanel may also map their own properties to Mixpanel default properties. This document describes what those properties mean.
 
 ### Ingestion APIs
+
+Mixpanel’s ingestion APIs can collect user geolocation data (City, Region, Country) as properties if IP address is present. Our client-side SDKs by default pull the user’s IP address when sending data to our ingestion APIs. The IP address is then cross-referenced against a local copy of MaxMind’s ([third-party IP geolocator(www.maxmind.com)]) GeoIP database to estimate geolocation data. Mixpanel does not store the IP address and is discarded once geolocation data is derived.
 
 To disable capturing of geolocation properties (i.e. City, Region, Country) refer to the respective SDKs or API documentation. For a quick reference, refer to examples on [disabling geolocation on client-side SDKs](/docs/privacy/protecting-user-data#disabling-geolocation) and [server-side best practice on tracking geolocation](/docs/best-practices/server-side-best-practices#tracking-geolocation-http-api).
 
