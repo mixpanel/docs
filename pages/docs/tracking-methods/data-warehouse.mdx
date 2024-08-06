@@ -507,14 +507,14 @@ For more advanced synchronization needs, Mixpanel offers the ability to trigger 
 To use the API trigger option:
 
 1. Select Advanced>Trigger Via API under Sync Frequency in the table sync creation UI.
-2. After creating the sync, we will generate a PUT URL for you. 
+2. After creating the sync, we will generate a PUT URL for you.
 3. Integrate this URL into your existing workflows or scripts.
 4. Authenticate the request with a Mixpanel Service Account. More information on setting up and using Mixpanel Service Accounts can be found [here](https://developer.mixpanel.com/reference/service-accounts).
 5. Trigger the sync job programmatically, ensuring it runs in coordination with other data processes.
 
-This flexibility allows you to maintain precise control over when and how your data is updated in Mixpanel, ensuring your analytics are always based on the latest information. 
+This flexibility allows you to maintain precise control over when and how your data is updated in Mixpanel, ensuring your analytics are always based on the latest information.
 
-Note: If your table sync is set up with Mirror mode, you will need to run a sync job at least every 2 weeks to ensure our snapshots do not get deleted. We rate limit the number of syncs to 5 per hour.
+Note: If your table sync is set up with Mirror mode, you will need to run a sync job at least every 2 weeks to ensure our snapshots do not get deleted. We rate limit the number of syncs via API to 5 per hour.
 
 
 
