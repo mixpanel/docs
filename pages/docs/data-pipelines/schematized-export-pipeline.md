@@ -120,7 +120,7 @@ This section describes how Schematized Export Pipeline creates the schema for th
 
 #### Common Properties
 
-Regardsless of whether you're using a single table or multiple tables, the following properties will be always present in the schema:
+Regardless of whether you're using a single table or multiple tables, the following properties will be always present in the schema:
 | name        | type   | description                                         |
 | :---------- | :----- | :-------------------------------------------------- |
 | time        | int    | The timestamp representing when the event occurred. |
