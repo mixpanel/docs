@@ -22,7 +22,7 @@ Mixpanel's [Data Ingestion APIs](https://developer.mixpanel.com/reference/ingest
 
 Mixpanel’s ingestion APIs can collect user geolocation data (City, Region, Country) as properties if IP address is present. Our client-side SDKs by default pull the user’s IP address when sending data to our ingestion APIs. The IP address is then cross-referenced against a local copy of MaxMind’s ([third-party IP geolocator](https://www.maxmind.com)) GeoIP database to estimate geolocation data. Mixpanel does not store the IP address and is discarded once geolocation data is derived.
 
-To disable capturing of geolocation properties (i.e. City, Region, Country) refer to the respective SDKs or API documentation. For a quick reference, refer to examples on [disabling geolocation on client-side SDKs](/docs/privacy/protecting-user-data#disabling-geolocation) and [server-side best practice on tracking geolocation](/docs/best-practices/server-side-best-practices#tracking-geolocation-http-api). Note that there is currently no means of selectively disabling one or two of the three geolocation properties.
+To disable capturing of geolocation properties (i.e. City, Region, Country) refer to the respective SDKs or API documentation. For a quick reference, refer to examples on [disabling geolocation on client-side SDKs](/docs/privacy/protecting-user-data#disabling-geolocation) and [server-side best practice on tracking geolocation](/docs/best-practices/server-side-best-practices#tracking-geolocation-http-api). Note that there is currently no means to selectively disable one or two of the three geolocation properties.
 
 #### Event Properties
 
