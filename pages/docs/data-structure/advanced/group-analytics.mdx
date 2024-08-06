@@ -154,10 +154,9 @@ Because a user can be part of multiple groups within a group key, set the value 
 
 ### Limits and Caveats
 
-The limits below ensure reports using group analytics perform correctly. This is especially when they are analyzed against user level data (e.g. break down my user funnel by company group key):
-
-- 1M group profiles per group key (e.g. company_id)
-- 1M events per day per group identifier (e.g. company_id = "Mixpanel") 
+The limits below ensure group analytics works correctly in Mixpanel:
+- 1M group profiles per group key (e.g. company_id) - when analysing against user level data (e.g. break down my user funnel by company group key)
+- 1M events per day per group identifier (e.g. company_id = "Mixpanel") - see [Hot Shard Limits](/docs/tracking-best-practices/hot-shard-limits)
 
 ### Events Missing from Groups
 The group key property must be present as an event property on an event in order to attribute them to a group profile.
