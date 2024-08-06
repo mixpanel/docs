@@ -7,7 +7,7 @@ createdAt: "2020-10-20T00:41:48.205Z"
 updatedAt: "2023-09-26T21:06:39.094Z"
 ---
 
-Query user profile data and return a list of users that fit specified parameters.
+Query user (or group) profile data and return list of users (or groups) that fit specified parameters.
 
 API responses will return at most `page_size` records for each request. To request additional records, callers should repeat their call to the API using the same `where` param, but provide a `session_id` parameter with a value taken from the first response, and include a `page` parameter with a value one greater than the value of page in the response.
 
@@ -25,3 +25,5 @@ while (length of this_page.results) >= this_page.page_size:
     this_page = query_api(where=YOUR_SELECTOR_EXPRESSION, session_id=this_page.session_id, page=next_page_number)
     do_something_with_response(this_page)
 ```
+
+The Query API has a rate limit of 60 queries per hour and a maximum of 5 concurrent queries.

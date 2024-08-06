@@ -18,6 +18,7 @@ curl https://mixpanel.com/api/query/jql \
 ```
 
 Example curl with the script directly inside of the curl:
+
 ```sh
 curl --request POST \
      --url https://mixpanel.com/api/query/jql \
@@ -38,5 +39,8 @@ curl --request POST \
 ```
 
 Note
+
+- The Query API has a rate limit of 60 queries per hour and a maximum of 5 concurrent queries.
 - Queries will timeout after 2 minutes of run-time.
 - You cannot make remote network requests (using XMLHttpRequest) from JavaScript.
+- Queries to the JQL endpoint contribute to Query API rate limit and have their own individual limit as well. There is a maximum of 5 concurrent queries and of 60 queries per hour. There is also a 5 GB limit on data that can be processed in a single query, and a 2 GB limit on the resulting output data.
