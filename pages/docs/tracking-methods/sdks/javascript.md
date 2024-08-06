@@ -374,7 +374,7 @@ Capture and replay data on how a user interacts with your application. Replay co
 
 ### Sampling Method
 
-The recommended way to capture session replays is by sampling a subset of users, specified during initialization:
+The easiest way to begin capturing session replays is by sampling a subset of users, specified during initialization:
 
 ```javascript
 mixpanel.init(
@@ -386,6 +386,8 @@ mixpanel.init(
 ```
 
 Start with a smaller percentage and tune to fit your analytics needs.
+
+If you already have the JS SDK installed, this is the only code change you need to start capturing session replays.
 
 ### Init Options
 
