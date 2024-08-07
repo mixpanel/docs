@@ -449,6 +449,7 @@ Mixpanel will create and manage the necessary STREAM objects in the `MIXPANEL` s
 - Snowflake Streams do not work if a table is deleted and re-created with the same name. If using a tool like dbt to model
   data in Snowflake make sure to use an [incremental model](https://docs.getdbt.com/docs/build/incremental-models) so that
   dbt does not replace the table each time it runs.
+- Snowflake streams doesn't capture changes when a column is deleted or renamed, so deletion of columns won't be synced to mixpanel.
 - Snowflake has specific requirements when using [Streams on Views](https://docs.snowflake.com/en/user-guide/streams-intro#streams-on-views)
   that must be met when using Mirror with views.
 - While Snowflake Streams are a very efficient way of tracking changes there are some performance implications
@@ -467,12 +468,10 @@ in future data sent to Mixpanel but the Stream will not update historical data w
 </Tab>
 
 <Tab>
-Mirror uses Databricks [Change Data Feed](https://docs.databricks.com/en/delta/delta-change-data-feed.html) to track changes to Databricks tables or views.
-The only requirement to use Mirror on a Databricks table or view is to enable [change data feed](https://docs.databricks.com/en/delta/delta-change-data-feed.html#enable-change-data-feed) on those entities.
+Mirror uses Databricks [Change Data Feed](https://docs.databricks.com/en/delta/delta-change-data-feed.html) to track changes to Databricks tables.
+The only requirement to use Mirror on a Databricks table is to enable [change data feed](https://docs.databricks.com/en/delta/delta-change-data-feed.html#enable-change-data-feed) on those entities.
 ```jsx
 ALTER TABLE <table> SET TBLPROPERTIES (delta.enableChangeDataFeed = true);
-# or
-ALTER VIEW <view> SET TBLPROPERTIES (delta.enableChangeDataFeed = true)
 ```
 
 **Considerations when using Mirror with Databricks:**
