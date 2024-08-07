@@ -35,9 +35,11 @@ Follow these steps to enable the integration with Apptimize:
 
 Mixpanel only exports identified user profiles (users with at least 1 set profile properties) to match to Apptimize - users without user profiles (i.e. anonymous users) will not export.
 
-The exported users are properly mapped in Apptimize automatically by the integration through the setting of `$apptimize_user_id` user property. This property is set automatically when both the Apptimize and Mixpanel SDKs are installed on the client.
+The exported users are properly mapped in Apptimize automatically by the integration through the setting of `$apptimize_user_id` user property. This property is set automatically when both the Apptimize and Mixpanel SDKs are installed on the client.  
 
 In addition, when our ingestion service detects calls setting this user property, Mixpanel will also auto-alias the value of `$apptimize_user_id` to the user's distinct_id. This ensures that experiment data passed from Apptimize to Mixpanel still attributes to the correct user.
+
+> **Note:** Mixpanel users can be associated with Apptimize users manually by setting the $apptimize_user_id in Mixpanel with the Apptimize.getPartnerID method available in the Apptimize SDK. Do this if ThirdPartyImporting is disabled in Apptimize or when using the Mixpanel Swift SDK, which does not support ThirdPartyImporting.  It is important to note that the Apptimize.getParterID will return a modified variation of the customer user ID by prefixing "i_" or "a_" to represent if the ID is identified or anonymous, and will allow Apptimize to properly match users from Mixpanel cohorts.
 
 ## Export a Cohort
 
