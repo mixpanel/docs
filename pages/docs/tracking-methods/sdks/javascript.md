@@ -370,7 +370,7 @@ mixpanel.init("<YOUR_PROJECT_TOKEN>", {api_host: "https://<YOUR_PROXY_DOMAIN>"})
 
 ## Session Replay (Beta)
 
-Capture and replay data on how a user interacts with your application. Replay collection is disabled by default, and the Replay portion of the SDK will not be loaded into your application until specified.
+Capture and replay data on how a user interacts with your application. Replay collection is disabled by default, and the Replay portion of the SDK will not be loaded into your application until specified. To use this feature, you must be on at least version 2.50.0 of our JavaScript SDK.
 
 ### Sampling Method
 
@@ -406,6 +406,8 @@ If you already have the JS SDK installed, this is the only code change you need 
 
 ### Recorder Methods
 
+We give our customers full control to customize when and where they capture session replays.
+
 #### Start capturing replay data
 
 ```javascript
@@ -421,6 +423,20 @@ This is optional, and can be used primarily to programmatically start and stop r
 mixpanel.stop_session_recording()
 ```
 This will have no effect if there is no replay data collection in progress.
+
+#### Example Scenarios
+
+| Scenario | Guidance | 
+| --- | --- |
+| We have a sensitive screen we don't want to capture | When user is about to access the sensitive screen, call `mixpanel.stop_session_recording()`. To resume recording once they leave this screen, you can resume recording with `mixpanel.start_session_recording()`  | 
+| We only want to record certain types of users (e.g. Free plan users only) | Using your application code, determine if current user meets the criteria of users you wish to capture. If they do, then call `mixpanel.start_session_recording()` to force recording on |
+| We only want to users utilizing certain features | When user is about to access the feature you wish to capture replays for, call `mixpanel.start_session_recording()` to force recording on |
+
+
+### Tips & Tricks While Implementing
+- Search for Session Recording Checkpoint events in your project, tracked as `$mp_session_record`. When you capture Mixpanel session replays, the SDK will automatically emit this default event. If you've implemented correctly, you should see these events appear. 
+- Calling `mixpanel.start_session_recording()` in your website / application is a good test to see if it causes Session Recording Checkpoint event mentioned above to appear. If it does, and you're still struggling to find replays for Users and Reports, your sampling rate may not be working, or may be set too low.
+- If you're still struggling to implement, [submit a request to our Support team](https://mixpanel.com/get-support) for more assistance.
 
 ### Privacy
 
