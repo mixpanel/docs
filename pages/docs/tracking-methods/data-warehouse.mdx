@@ -466,6 +466,26 @@ that logically modify data (e.g. adding new columns with default values, droppin
 in future data sent to Mixpanel but the Stream will not update historical data with changes caused by DDL statements.
 </Tab>
 
+<Tab>
+Mirror uses Databricks [Change Data Feed](https://docs.databricks.com/en/delta/delta-change-data-feed.html) to track changes to Databricks tables or views.
+The only requirement to use Mirror on a Databricks table or view is to enable [change data feed](https://docs.databricks.com/en/delta/delta-change-data-feed.html#enable-change-data-feed) on those entities.
+```jsx
+ALTER TABLE <table> SET TBLPROPERTIES (delta.enableChangeDataFeed = true);
+# or
+ALTER VIEW <view> SET TBLPROPERTIES (delta.enableChangeDataFeed = true)
+```
+
+**Considerations when using Mirror with Databricks:**
+- Databricks Change Data Feed only mantains change history for a limited number of days determined by [delta.logRetentionDuration](https://docs.databricks.com/en/delta/history.html#retrieve-delta-table-history) (default is 30 days). Make sure that the Mixpanel sync does not go longer 
+than this number of days without running. Mixpanel recommends leaving the default of 30 days to ensure that if Mixpanel looses access to the warehouse unexpectedly (e.g. a credentials change) there is time to correct the issue.
+- Databricks Change Data Feed do not work if a table is deleted and re-created with the same name. If using a tool like dbt to model
+  data in Databricks make sure to use an [incremental model](https://docs.getdbt.com/docs/build/incremental-models) so that
+  dbt does not replace the table each time it runs.
+- While, Databricks Change Data Feed works with adding new columns to the table or view, there are certain limitations when it comes to dropping columns or renaming columns
+which uses [column mappings](https://docs.databricks.com/en/delta/delta-change-data-feed.html#change-data-feed-limitations-for-tables-with-column-mapping-enabled). In such scenarios Mixpanel reccomends deleting the sync (along with the data) and re-creating the sync.
+
+</Tab>
+
 </ExtendedTabs>
 
 ---
@@ -564,9 +584,11 @@ There are 3 aspects of DWH cost: network egress, storage, and compute.
 * **Storage**: [Append](#append) and [Full](#full) syncs do not store any additional data in your warehouse, so there are no extra storage costs. [Mirror](#mirror) tracks changes using warehouse-specific functionality that can affect warehouse storage costs:
   * Snowflake: Mirror uses [Snowflake Streams](https://docs.snowflake.com/en/user-guide/streams-intro). Snowflake Streams will [retain historical data](https://docs.snowflake.com/en/user-guide/streams-intro#billing-for-streams) until it is consumed from the stream. As long as the warehouse connector runs regularly data will be consumed regularly and only retained between runs.
   * BigQuery: Mirror uses [table snapshots](https://cloud.google.com/bigquery/docs/table-snapshots-intro). Mirror keeps one snapshot per table to track the contents of the table from the last run. BigQuery table snapshots have no cost when they are first created as they share the underlying storage with the source table, however as the source table changes [the cost of storing changes is attributed to the table snapshot](https://cloud.google.com/bigquery/docs/table-snapshots-intro#storage_costs). Each time the connector runs the current snapshot is replaced with a new snapshot of the latest state of the table. The storage cost is the amount of changes being tracked between the snapshot and source table between runs.
+  * Databricks: Mirror uses Databricks [Change Data Feed](https://docs.databricks.com/en/delta/delta-change-data-feed.html) and all the changes are retained in databricks for the [delta.logRetentionDuration](https://docs.databricks.com/en/delta/history.html#retrieve-delta-table-history). Configure that window accordingly to keep storage costs low.
 * **Compute**:
   * Mirror on Snowflake: [Snowflake Streams](https://docs.snowflake.com/en/user-guide/streams-intro) natively track changes, the compute cost of querying for these changes is normally proportional to the amount of changed data.
   * Mirror on BigQuery: Each time the connector runs it checksums all rows in the source table and compares them to a [table snapshot](https://cloud.google.com/bigquery/docs/table-snapshots-intro) from the previous run. For large tables we highly recommend [partitioning](https://cloud.google.com/bigquery/docs/partitioned-tables) the source table. When the source table is partitioned the connector will skip checksumming any partitions which have not been modified since the last run. For more details see the BigQuery-specific instructions in [Mirror](#mirror).
+  * Mirror on Databricks: Databricks [Change Data Feed](https://docs.databricks.com/en/delta/delta-change-data-feed.html) natively tracks changes to the tables or views, the compute cost of querying these changes is normally proportional to the amount of changed data. Mixpanel reccomends using a smaller compute cluster and setting Auto Terminate after 10 mins of idle time on the compute cluster.
   * Append: All Append syncs run a query filtered on `insert_time_column > [last-run-time]`, the compute cost is the cost of this query. Partitioning or clustering based on `insert_time_column` will greatly improve the performance of this query.
   * Full: Full syncs are always a full table scan of the source table to export it.
 
