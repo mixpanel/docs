@@ -100,6 +100,8 @@ However, if your site is hosted on a domain like Heroku (or similar - [see a com
 
 For domains that don't allow cross-subdomain cookies, you should be setting `cross_subdomain_cookie: false`. Alternatively, you can also use a CNAME to change from yourdomain.herokuapp.com to yourdomain.com.
 
+Additionally, if the persistence setting is set to localStorage `persistence: 'localStorage'`, this will block tracking across subdomains. In that case, it should be modified to `persistence: 'cookie'`.
+
 
 ### Super Properties
 
