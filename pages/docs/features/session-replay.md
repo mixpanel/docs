@@ -52,7 +52,11 @@ The Replay Feed on the left of the player also allows you to:
 - search for replays by user's name / email, replay date, or user ID
 
 ## Implementation
-Session Replay is not enabled by default; enabling the feature requires instrumentation beyond the standard Mixpanel instrumentation. Our documentation on how to implement Session Replay can be found [here](/docs/tracking-methods/sdks/javascript#session-replay-beta).
+Session Replay is not enabled by default; enabling the feature requires instrumentation beyond the standard Mixpanel instrumentation. 
+
+However, in most cases, implementation is extremely simple, only requiring a single line of code to be changed. 
+
+Our documentation on how to implement Session Replay can be found [here](/docs/tracking-methods/sdks/javascript#session-replay-beta).
 
 ## Legal (Beta Terms)
 
