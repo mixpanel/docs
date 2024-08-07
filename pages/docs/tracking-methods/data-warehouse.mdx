@@ -316,7 +316,7 @@ Here’s an example table that illustrates what can be loaded as group profiles 
 
 ### Lookup Tables
 
-A Lookup Table is useful for enriching Mixpanel properties (e.g. content, skus, currencies) with additional metadata. Learn more about Lookup Tables [here](https://docs.mixpanel.com/docs/data-structure/lookup-tables). Do note the limits of lookup tables indicated [here](https://docs.mixpanel.com/docs/data-structure/lookup-tables#when-shouldnt--i-use-lookup-tables).
+A Lookup Table is useful for enriching Mixpanel properties (e.g. content, skus, currencies) with additional metadata. Learn more about Lookup Tables [here](/docs/data-structure/lookup-tables). Do note the limits of lookup tables indicated [here](/docs/data-structure/lookup-tables#when-shouldnt--i-use-lookup-tables).
 
 Here’s an example table that illustrates what can be loaded as lookup table in Mixpanel. The only important column is the ID, which is the primary key of the table that is eventually mapped to a Mixpanel property
 
@@ -566,14 +566,14 @@ Yes! You can send some events (eg: web and app data) directly via our SDKs and s
 
 ### How do updates & deletes from Mirror syncs affect my event quota usage?
 
-On an [Events billing plan](https://docs.mixpanel.com/docs/pricing/billing) your event quota is consumed by:
+On an [Events billing plan](/docs/pricing/billing) your event quota is consumed by:
 
 - **Monthly Event Volume:** The number of events in all of your projects at the end of each month. Updating an existing event using Mirror will not affect your monthly event volume. Deleting an existing event using Mirror will decrease your monthly event volume by one.
-- **Mirror updates and deletes:** Updates and deletes from mirror are counted separately from event volume. Each update or delete is counted as one event. You can see a breakdown your event quota consumption by "event volume" vs "updates and deletes" on your [organization billing page](https://mixpanel.com/report/settings/%23org%2F%24org_id%24%2Fplan).
+- **Mirror updates and deletes:** Updates and deletes from mirror are counted separately from event volume. Each update or delete is counted as one event towards billing for the month they were triggered on, even if the record being updated is for a previous month. You can see a breakdown your event quota consumption by "event volume" vs "updates and deletes" on your [organization billing page](https://mixpanel.com/report/settings/%23org%2F%24org_id%24%2Fplan).
 
 You can see how much of your quota is being consumed by each warehouse connector in the detailed [data usage view](https://mixpanel.com/report/settings/%23org%2F%24org_id%24%2Fplan%2Fdetail%2Fevents) for your organization.
 
-On an [MTU billing plan](https://docs.mixpanel.com/docs/pricing/legacy-mtu-billing) updates and deletes from Mirror do not impact [MTU calculations](https://docs.mixpanel.com/docs/pricing/legacy-mtu-billing#mtu-calculation), however updates and deletes are counted as events for the purposes of the [MTU guardrail](https://docs.mixpanel.com/docs/pricing/legacy-mtu-billing#mtu-guardrail) computation.
+On an [MTU billing plan](/docs/pricing/legacy-mtu-billing) updates and deletes from Mirror do not impact [MTU calculations](/docs/pricing/legacy-mtu-billing#mtu-calculation), however updates and deletes are counted as events for the purposes of the [MTU guardrail](/docs/pricing/legacy-mtu-billing#mtu-guardrail) computation.
 
 ### What will be the cost impact of this on my DWH?
 
