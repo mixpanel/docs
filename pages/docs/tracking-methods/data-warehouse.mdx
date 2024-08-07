@@ -569,7 +569,7 @@ Yes! You can send some events (eg: web and app data) directly via our SDKs and s
 On an [Events billing plan](https://docs.mixpanel.com/docs/pricing/billing) your event quota is consumed by:
 
 - **Monthly Event Volume:** The number of events in all of your projects at the end of each month. Updating an existing event using Mirror will not affect your monthly event volume. Deleting an existing event using Mirror will decrease your monthly event volume by one.
-- **Mirror updates and deletes:** Updates and deletes from mirror are counted separately from event volume. Each update or delete is counted as one event. You can see a breakdown your event quota consumption by "event volume" vs "updates and deletes" on your [organization billing page](https://mixpanel.com/report/settings/%23org%2F%24org_id%24%2Fplan).
+- **Mirror updates and deletes:** Updates and deletes from mirror are counted separately from event volume. Each update or delete is counted as one event towards billing for the month they were triggered on, even if the record being updated is for a previous month. You can see a breakdown your event quota consumption by "event volume" vs "updates and deletes" on your [organization billing page](https://mixpanel.com/report/settings/%23org%2F%24org_id%24%2Fplan).
 
 You can see how much of your quota is being consumed by each warehouse connector in the detailed [data usage view](https://mixpanel.com/report/settings/%23org%2F%24org_id%24%2Fplan%2Fdetail%2Fevents) for your organization.
 
