@@ -2,7 +2,7 @@
 
 ## What is an MTU?
 
-Monthly Tracked User (MTU) is a way to calculate your billing based on the number of visitors that perform a qualifying event each month, rather than individual user profiles or events. MTU plans start at $10,000 per year and are **not available to be purchased directly via our Pricing page**. [Our sales team can consult you](https://mixpanel.com/contact-us/sales/) to choose the best option.
+Monthly Tracked User (MTU) is a way to calculate your billing based on the number of visitors that perform a qualifying event each month, rather than individual user profiles or events. MTU plans start at $20,000 per year and are **not available to be purchased directly via our Pricing page**. [Our sales team can consult you](https://mixpanel.com/contact-us/sales/) to choose the best option.
 
 MTU can be considered when tracking more than 100k users or 5M monthly events.
 
