@@ -24,6 +24,7 @@ export const dwhItems = {
 export const mirrorItems = {
     'bigquery': 'BigQuery',
     'snowflake': 'Snowflake',
+    'databricks': 'Databricks',
 }
 
 export const KapaEventNames = {

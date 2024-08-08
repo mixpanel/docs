@@ -24,8 +24,7 @@ paths:
       tags:
         - Retrieve Connectors
       summary: List Connectors
-      description:
-        $ref: './docs/connectors/list-connectors.md'
+      description: ''
       operationId: get-connectors
       responses:
         '200':
@@ -38,8 +37,7 @@ paths:
       tags:
         - Create Connectors
       summary: Create Connector
-      description:
-        $ref: './docs/connectors/create-connector.md'
+      description: ''
       operationId: create-connector
       requestBody:
         content:
@@ -97,8 +95,7 @@ paths:
       tags:
         - Delete Connectors
       summary: Delete a Project's Connector by Connector Id
-      description:
-        $ref: './docs/connectors/delete-connector.md'
+      description: ''
       operationId: delete-connector
       responses:
         '200':
@@ -118,8 +115,7 @@ paths:
       tags:
         - Retrieve Connectors
       summary: List Connector Logs
-      description:
-        $ref: './docs/connectors/get-history.md'
+      description: ''
       operationId: get-connector-logs
       responses:
         '200':

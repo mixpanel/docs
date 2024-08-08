@@ -28,8 +28,8 @@ curl --request POST \
      --data 'data={
       "event": "$identify",
       "properties": {
-          "$identified_id": "ORIGINAL_ID",
-          "$anon_id": "NEW_ID",
+          "$identified_id": "YOUR_CHOSEN_USER_ID",
+          "$anon_id": "ORIGINAL_ANON_ID",
           "token": "YOUR_PROJECT_TOKEN"
       }
 }
