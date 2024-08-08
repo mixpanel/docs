@@ -1218,13 +1218,13 @@ $border-radius-lg: 100px;
     .feedbackCollectorContainer {
       .feedbackButtonContainer {
         .feedbackButton {
-          background-color: colors.$purple140;
+          background-color: #2B273F;
           color: colors.$purple20;
 
           &:hover {
             box-shadow: 0 4px 6px -1px rgb(0 0 0 / 0.1),
               0 2px 4px -2px rgb(0 0 0 / 0.1);
-            background-color: colors.$purple50;
+            background-color: colors.$purple140;
             transition: 0.5s;
           }
         }
