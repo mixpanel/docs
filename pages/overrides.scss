@@ -83,6 +83,12 @@ $border-radius-lg: 100px;
         format("woff2");
 }
 
+//ID management banner style
+.idManagementBanner {
+    position: sticky !important;
+    top: 55px;
+}
+
 
 
 .theme-mixpanel {

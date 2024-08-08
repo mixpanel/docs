@@ -69,7 +69,7 @@ Notes:
 
 ### Data Warehouse Connectors 
 If you have access to your Amplitude data in your data warehouse, the most scalable way to bring this historical data into Mixpanel is by using our warehouse connector. At a high-level, the migration consists of 3 steps:
-1. Set up a new Mixpanel project which is on [Simplified ID Merge system](/docs/tracking-methods/id-management/identifying-users#simplified-vs-original-id-merge). 
+1. Set up a new Mixpanel project which is on [Simplified ID Merge system](/docs/tracking-methods/id-management/identity-management#identity-merge-apis). 
 2. Transform Amplitude data in your data warehouse (sample SQL transformation included below).   
 3. Set up [Mixpanel Warehouse Connector](/docs/tracking-methods/data-warehouse/overview) to initiate data sync from your data warehouse to Mixpanel. 
 
