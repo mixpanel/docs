@@ -1,8 +1,8 @@
 import { Callout } from 'nextra/components'
 
-# Identifying Users
+# Identifying Users (Simplified)
 
-<Callout type="warning" >
+<Callout type="warning" style={{position: "fixed"}} >
   The information in this page are for projects using the **Simplified ID Merge API**. You can check your Identity Merge API by navigating to [your project settings](https://mixpanel.com/settings/project/id-management).
 
   For projects using **Original ID Merge API**, please refer to this documentation [here](/docs/tracking-methods/id-management/identifying-users-original).
@@ -201,7 +201,7 @@ By calling `.reset()` at logout or when a user enters an unauthenticated-state (
 
 You can track the user's unique identifier as a super property via `.register()` and user property via `.people.set()` as soon as it is available in the app i.e. on a successful sign-up / login or when an app is re-opened in a logged in state. In the cases when ID Merge is not implemented properly, you can rely on these properties for troubleshooting purposes.
 
-See the SDK reference on [registering super properties](/docs/tracking-methods/sdks/javascript#super-properties) and [setting profile properties](docs/tracking-methods/sdks/javascript#setting-profile-properties).
+See the SDK reference on [registering super properties](/docs/tracking-methods/sdks/javascript#super-properties) and [setting profile properties](/docs/tracking-methods/sdks/javascript#setting-profile-properties).
 
 **Avoid creating profiles for anonymous users**
 
@@ -245,7 +245,7 @@ It is not possible to merge 2 `$user_id`s together using the Simplified API. We 
 
 Attribution providers (like Appsflyer, Adjust, and Branch) use Mixpanel's SDK properly to set `$device_id` to whichever ID they use for attribution.
 
-For cohort syncs out to 3rd-party systems, we recommend designating a user property with the identifier of the user in that third-party system. More details are in our [integrations docs](/docs/cohort-sync/integrations); for example, see our [doc on exporting cohorts to Braze](/docs/cohort-sync/integrations/braze). If those integrations are bidirectional (eg: they send events back to Mixpanel), it's best to ensure that the user ID in both Mixpanel and the 3rd-party system is the same so that those events are sent to the correct user.
+For cohort syncs out to 3rd-party systems, we recommend designating a user property with the identifier of the user in that third-party system. More details are in our [integrations docs](/docs/cohort-sync/integrations); for example, see our [doc on exporting cohorts to Braze](/docs/cohort-sync/integrations/braze#matching-mixpanel-and-braze-users). If those integrations are bidirectional (eg: they send events back to Mixpanel), it's best to ensure that the user ID in both Mixpanel and the 3rd-party system is the same so that those events are sent to the correct user.
 
 **What is the status of Mixpanel's legacy `alias` method?**
 
