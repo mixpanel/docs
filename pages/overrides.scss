@@ -257,7 +257,7 @@ $border-radius-lg: 100px;
 }
 
 .nextra-callout {
-  opacity: 1;
+  opacity: 1 !important;
 }
 
 
@@ -1086,11 +1086,13 @@ $border-radius-lg: 100px;
 
   //ID management banner style
   .idManagementBanner {
+    .nextra-callout {
+      background-color: #49342d !important;
+      color: #fef089;
+    }
     position: sticky !important;
     top: 55px;
     opacity: 1 !important;
-    background-color: #49342d !important;
-    color: #fef089;
   }
 
     //modify anchor links hastags
