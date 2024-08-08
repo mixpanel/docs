@@ -243,3 +243,4 @@
 /docs/data-pipelines/integrations/bigquery /docs/data-pipelines/integrations/schematized-bigquery-pipeline
 /docs/data-pipelines/integrations/google-cloud-storage /docs/data-pipelines/integrations/schematized-gcs-pipeline
 /docs/data-pipelines/integrations/snowflake /docs/data-pipelines/integrations/schematized-snowflake-pipeline
+/docs/features/session-replay /docs/session-replay
