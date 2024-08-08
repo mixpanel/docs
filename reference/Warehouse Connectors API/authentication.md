@@ -13,12 +13,10 @@ A [service account](https://developer.mixpanel.com/reference/service-accounts) i
 curl -X PUT https://mixpanel.com/api/app/projects/<your_project_id>/warehouse-sources/imports/<your_import_id>/manual-sync \
 	--user "<serviceaccount_username>:<serviceaccount_secret>"
 ```
-
 ```shell cURL Header
 curl -X PUT https://mixpanel.com/api/app/projects/<your_project_id>/warehouse-sources/imports/<your_import_id>/manual-sync \
 	--header 'authorization: Basic <serviceaccount_username>:<serviceaccount_secret>'
 ```
-
 ```python Python Requests
 import requests
 requests.put(
