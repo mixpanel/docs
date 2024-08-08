@@ -6,19 +6,23 @@ Data Views allow you to manage data access for a group of users within a single 
 
 ### Use Cases
 
-#### Teams or Functional Areas
+**Teams or Functional Areas**
 
 You have a Mixpanel project that contains all of your data. Engineering, Marketing, Support, and various product teams all use Mixpanel on a regular basis. Each team can have a Data View filtering for relevant data.
-#### Separate Customer Data from Internal User Data
+
+**Separate Customer Data from Internal User Data**
 
 Create a Data View for customer data by excluding data tracked by your internal users/employees. Create another Data View for just your internal users. By doing this, you no longer have to remember to add cohorts or filters each time you create a Board, Report, or Cohort.
-#### Regions or Geo-Based Teams
+
+**Regions or Geo-Based Teams**
 
 For a global organization with multiple offices, regional teams might need access to data from only their region. E.g. The marketing team in the Asia region would like to target only Asian customers and should not have access to US customers' data. 
-#### Verified Data Only
+
+**Verified Data Only**
 
 Teams that want to closely manage events that are included in all their analysis can either include or exclude the specific events in the Data View definition. 
-#### Specific Platform/App Version
+
+**Specific Platform/App Version**
 
 Engineering or Product teams working on a specific version can use Data Views to target specific versions of the app or platform version(s) to be included in the analysis.
 
@@ -101,7 +105,7 @@ The following are limitations to be aware of when using Data Views:
 
 ## Data Classification
 
-### Mark Properties as Classified Data 
+**Mark Properties as Classified Data** 
 
 Marking properties as classified limits which users can view them. Navigate to the event properties and user profile properties tabs in Lexicon to mark a property as classified. 
 
@@ -119,7 +123,7 @@ A pop-up will confirm that you want to mark the selected property or properties 
 
 When you mark a property as classified, the Status column will indicate that the property is classified alongside its visibility state (visible or hidden). If the Status column shows only the visibility state, then the property is not marked as classified.
 
-### Manage Classified Data Viewing Permissions for Individual Users
+**Manage Classified Data Viewing Permissions for Individual Users**
 
 Go to your Project Settings, and then to the tab "Project Users" in order to manage which users can access the events and properties marked as classified.
 
@@ -139,13 +143,13 @@ Navigate to Organization Settings from the gear icon at the top-right corner of 
 
 Users that cannot view properties marked as Classified Data can see which specific properties are marked as classified in Lexicon. Users that cannot view properties marked as Classified Data cannot use such properties as filters or breakdowns.
 
-#### Boards
+**Boards**
 
 If a report contains any event or property marked as classified when a user without the "Can View" option tries to open it, will see the next warning
 ![Sensitive Data Warning](/sensitive-data.png)
 Users that cannot view classified data can click on a Board card to access the full report and determine what properties are preventing them from viewing a report.
 
-#### Analysis Reports (Insights, Funnels, Flows, and Retention)
+**Analysis Reports (Insights, Funnels, Flows, and Retention)**
 
 Classified properties won't be visibly different when building a report, but if used by a user without the "Can View" option enabled, the next warning will be displayed:
 

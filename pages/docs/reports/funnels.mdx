@@ -276,7 +276,7 @@ For example, if a user performs "Step 1 -> Step 1 -> Step 2":
 
 ### Property Sum
 
-This measurement type allows you to visualize revenue through a funnel. Instead of seeing how many users move through your flow, you can select an event property that exists on each step of the funnel. Mixpanel will sum up the total value of this property at each stage of the funnel and visualize the total ammount converted, or the dropoff at each step if "Funnel Steps" visualization is selected.
+This measurement type allows you to visualize revenue through a funnel. Instead of seeing how many users move through your flow, you can select an event property that exists on each step of the funnel. Mixpanel will sum up the total value of this property at each stage of the funnel and visualize the total amount converted, or the dropoff at each step if "Funnel Steps" visualization is selected.
 
 **Note**: For many e-commerce flows, you will want to pair property sum with [hold property constant](/docs/reports/funnels#hold-property-constant) on item ID so you can track each individual item.
 
@@ -316,7 +316,7 @@ In statistical hypothesis testing, the p-value or probability value is the proba
 
 In order to clarify this statistical significance, the segmentation chart shows the confidence level of each segment. Confidence level is defined as 1 - p.
 
-- > 0.95 = statistically significant, indicated in green. This variation in conversion rate is likely **not** driven by random chance.
+- \> 0.95 = statistically significant, indicated in green. This variation in conversion rate is likely **not** driven by random chance.
 - < 0.95 = not statistically significant, indicated in red. This variation in conversion rate is likely driven by random chance.
 
 ![/Screen_Shot_2019-10-28_at_2.28.54_PM.png](/Screen_Shot_2019-10-28_at_2.28.54_PM.png)
@@ -536,7 +536,7 @@ This is because, as we can see below, the first Search/Safari step is followed 
 
 Global filters apply your selected filters to the entire report after the Funnels query has been run. Since Funnels will calculate conversions first and then apply your global filters, entire conversions with any part that does not meet these filter requirements will be excluded from the report's results.
 
-For example, let's use the same four-step funnel where a user must Seach > Item Detail Page > Add to Cart > Complete Purchase, all within a one-day conversion window.
+For example, let's use the same four-step funnel where a user must Search > Item Detail Page > Add to Cart > Complete Purchase, all within a one-day conversion window.
 
 In the below example, the Funnels query will calculate a conversion because the user moves from Search, then Item Detail Page, then Add to Cart and lastly to Purchase within the 1 day conversion window. However, after the query is calculated, the global filter of Browser = Safari is applied. Since there are steps of this calculated funnel that have Browser = Chrome, the entire funnel will be filtered out of the aggregate results.
 

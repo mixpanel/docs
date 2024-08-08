@@ -34,7 +34,7 @@ Calculating the signature is done in parts:
 The resulting hash is the request signature.
 
 ```sh
-# (psuedo code)
+# (pseudo code)
 # all query parameters going to be sent out with the request
 request_parameters = {
    api_key: '123',

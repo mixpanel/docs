@@ -8,11 +8,12 @@ This documentation targets users with intermediate or advanced knowledge of data
 You must first configure your destination to accept the data before you can export data from Mixpanel to that destination.
 
 For additional information on configuring the Mixpanel export for different destinations, see:
-  * [Exporting to Amazon](/docs/data-pipelines/integrations/amazon-s3)
-  * [Exporting to BigQuery](/docs/data-pipelines/integrations/bigquery)
-  * [Exporting to Snowflake](/docs/data-pipelines/integrations/snowflake) 
-  * [Exporting to Google Cloud Storage](/docs/data-pipelines/integrations/google-cloud-storage)
-  * [Exporting to Azure Blob Storage](/docs/data-pipelines/integrations/azure-blob-storage)  
+   * [BigQuery](/docs/data-pipelines/integrations/schematized-bigquery-pipeline) 
+   * [Snowflake](/docs/data-pipelines/integrations/schematized-snowflake-pipeline) 
+   * [Amazon Web Services](/docs/data-pipelines/integrations/schematized-aws-pipeline) 
+   * [Google Cloud Storage](/docs/data-pipelines/integrations/schematized-gcs-pipeline) 
+   * [Azure Blob Storage](/docs/data-pipelines/integrations/schematized-azure-pipeline) 
+
 
 
 After configuring the destination, you can [create a pipeline](https://developer.mixpanel.com/reference/create-warehouse-pipeline) to export the data.
@@ -52,7 +53,7 @@ Mixpanel automatically exports the ID mapping table when you create a people exp
 Note: When using the ID mappings table, you should use the **resolved** `distinct_id` in place of the non-resolved `distinct_id` whenever present. If there is no resolved `distinct_id`, you can then use the `distinct_id` from the existing people or events table.
 }
 
-Examples of how to do this are available for [BigQuery](/docs/data-pipelines/integrations/bigquery#querying-the-identity-mapping-table)  and [Snowflake](/docs/data-pipelines/integrations/snowflake#querying-the-identity-mapping-table).
+Examples of how to do this are available for [BigQuery](/docs/data-pipelines/integrations/schematized-bigquery-pipeline#querying-the-identity-mapping-table)  and [Snowflake](/docs/data-pipelines/integrations/schematized-snowflake-pipeline#querying-the-identity-mapping-table).
 
 ## Service Level Agreement
 The policy for latency on exported events is 24 hours end to end, plus an additional 24 hours for late-arriving data.
@@ -119,7 +120,7 @@ This section describes how Schematized Export Pipeline creates the schema for th
 
 #### Common Properties
 
-Regardsless of whether you're using a single table or multiple tables, the following properties will be always present in the schema:
+Regardless of whether you're using a single table or multiple tables, the following properties will be always present in the schema:
 | name        | type   | description                                         |
 | :---------- | :----- | :-------------------------------------------------- |
 | time        | int    | The timestamp representing when the event occurred. |

@@ -138,7 +138,7 @@ Use the following functions in the **Formula** field to modify your custom prope
 | round | Returns the nearest integer value of the input value. | round(number)<br /><br />Example:<br />`round(A)` |
 | upper | Cast string property values to uppercase. | upper(string property)<br /><br />Example:<br />`upper(A); upper("hello")` -> "HELLO" |
 | lower | Cast string property values to lowercase. | lower(string property)<br /><br />Example:<br />`lower(A); lower("FacEBook")` -> "facebook" |
-|parse_url()| Extracts the part of the url that is specified: domain(google) or full_domain(google.co.uk) | parse_url(string property, part of url) <br /><br />Example: parse_url(A,"domain") |
+|parse_url()| Extracts the part of the url that is specified: domain(google) or full_domain(google.co.uk) | parse_url(string property, "domain") or parse_url(string property, "full_domain") <br /><br />Example: parse_url(A,"domain") |
 | regex_extract | If haystack is a string and pattern matches at least one substring, extracts the result from the first pattern match in haystack. The result is a string equal to the entire regex match, or if capture group is specified, only that portion of the match. | regex_extract(haystack, pattern, &lt;optional capture group#&gt;)<br /><br />Example:<br />`regex_extract("iPhone5.1","iPhone(...)",1)` ->5.1 |
 | regex_match | Returns true if the pattern matches any part of the string. | regex_match(haystack, pattern)<br /><br />Example:<br />`regex_match("zzhaystackzz", "ha(..)ack")` -> true <br /> // Use (?-i) for case-sensitive matching: `regex_match("HAYSTACK", "(?-i)haystack")` -> false |
 | regex_replace | Replaces the parts of a string that match a regular expression with a different string. | regex_replace(haystack, pattern, replacement)<br /><br />Example:<br />  // convert currency string to number: `regex_replace("$1,234,567", "[^.0-9]\*", ""))` -> `1234567` |
@@ -199,3 +199,14 @@ Some key notes
 - Borrowing of a property is strictly from the most recent event in the 7 day lookback window. To elaborate
     - Say on event “purchase”, you want to borrow property “search term” from an event “search product”. If there are multiple events “search product” before “purchase”, the property will be borrowed from the most recent “search product” event where the property is set.
     - Lookback is also fixed to a 7 day window. Say the “purchase” event occurred on 31st Jan, if the  most recent “search product” occurred on 20th Jan, the borrow functionality will return “search term” = (not set), since this event happened 11 days ago which is outside the lookback window range.
+
+To use a borrowed property with other [functions](/docs/features/custom-properties#functions), you would need to: 
+
+1. Create a custom property with just the borrowed property on it's own
+![image](/borrowed-property.png "Borrowed Property")<br />
+
+2. Create a separate custom property using the borrowed property (i.e. the 1st custom property)
+![image](/borrowed-property-in-custom-property.png "Borrowed Property in Custom Property")<br />
+
+3. Here's an example of a [report](https://mixpanel.com/s/1c4Pl9) with *Searched Category* custom property using *Search term (Products Searched)* borrowed property
+![image](/borrowed-property-in-custom-property-report.png "Borrowed Property in Custom Property Report Example")<br />

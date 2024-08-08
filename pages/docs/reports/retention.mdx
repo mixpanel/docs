@@ -52,7 +52,7 @@ Breakdowns segment data into groups. In this case, we want to break our report d
 
 You can visualize your metric in a variety of ways. Mixpanel allows you to choose how you would like to visualize your data. Select "Retention Curve" in the top right to change your visualization. In Retention, you can choose:
 
-- Retention Curve - see how users retaining over time. Users are bucketed by when they initally entered the product.
+- Retention Curve - see how users retaining over time. Users are bucketed by when they initially entered the product.
 - Line - see how your metric is trending over time. Used to see a particular retention group rate is trending over time.
 - Metric - see a summary view of your metric
 
@@ -187,7 +187,7 @@ This [loom video](https://www.loom.com/share/5484c7bdd61a4332818ceef20f475176)�
 
 NOTE — All the above cases would NOT qualify under Day 1 or Week 1 or Month 1 rolling interval retention
 
-**When should you the calendar vs rolling interval retention mode?
+**When should you the calendar vs rolling interval retention mode?**
 
 Both the modes are extremely useful. It totally depends on the use-case you’re trying to answer. Some examples -
 
@@ -231,7 +231,7 @@ The buckets measure the number of unique time buckets a user was active. Dependi
 
 - unique hours in a day
 - unique days in a week
-- unique months in a year
+- unique days in a month
 
 This will show how engaged users are with an action. In the example below, you can see how many users did the event "Complete Purchase" on unique days in a week. For users who did "Complete Purchase" on the week of Jan 9, 2020, 13.04% of them did "Complete Purchase" on 4 unique days that week.
 
@@ -322,6 +322,6 @@ W_March 2 = 500 / 1500 (weight for March 2)
 
 In our sample data, this computes to:(500 * (1000 / 1500)) + (400 * (500 / 1500)) = 466
 
-What does the Metric view in the Retention Trends report show?
+### What does the Metric view in the Retention Trends report show?
 
 The Metric view in the Retention Trends Report shows the ***last complete bucket*** for that retention trend. Metric charts are often used to look at the most up-to-date data value, which in this case, would be the last / most recently completed cell. For days where there isn't yet a completed cell, Mixpanel uses the closest completed cell for that day.

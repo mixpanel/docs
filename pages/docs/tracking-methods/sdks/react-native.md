@@ -6,6 +6,31 @@ Please refer to our [Quickstart Guide](/docs/quickstart/connect-your-data?sdk=re
 
 The [Full API Reference](https://mixpanel.github.io/mixpanel-react-native/Mixpanel.html), [Library Source Code](https://github.com/mixpanel/mixpanel-react-native), and an [Example Application](https://github.com/mixpanel/mixpanel-react-native/tree/master/Samples) is documented in our GitHub repo.
 
+## Expo and Web Support
+
+Prior to version 3.0.2, the React Native SDK only wrapped around iOS Swift and Android SDK. As of version 3.0.2, React Native SDK supports Expo and React Native for Web (as well as other platforms utilizing React Native) via Javascript Mode.
+
+In order to enable Javascript Mode:
+1. Install [`AsyncStorage`](https://react-native-async-storage.github.io/async-storage/) which is used to persist data. If this is unavailable in your target environment, you can import/define a different storage class. Please refer to [`this documentation.`](https://github.com/mixpanel/mixpanel-react-native/tree/master?tab=readme-ov-file#expo-and-react-native-for-web-support-302-and-above)
+```
+npm install @react-native-async-storage/async-storage
+```
+2. When initializing, set parameter `useNative=false`
+```javascript Javascript
+const trackAutomaticEvents = false;
+const useNative = false;
+const mixpanel = new Mixpanel(
+"YOUR_MIXPANEL_TOKEN",
+trackAutomaticEvents,
+useNative
+);
+```
+
+### Changes with useNative=false
+* [`Legacy Automatically Tracked Events`](/docs/tracking-methods/sdks/android#legacy-automatically-tracked-events) are not supported
+* Javascript Mode does not have the same default properties as Native Mode
+* Data does not automatically flush when the app is backgrounded. Be sure to call [`flush`](https://mixpanel.github.io/mixpanel-react-native/Mixpanel.html#flush) more frequently for key events
+
 ## Sending Events
 
 We recommend tracking only five to seven events in your application instead of tracking too many things to start. Ideally, you track users going through your initial user experience and one key metric that matters for your application (e.g. YouTube might choose "Watched Video" as a key metric).

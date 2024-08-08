@@ -753,7 +753,7 @@ Prompts a selection of a property contained within the objects of the list. This
 
 The list of objects property support will be limited to the first 5 objects within the list property. More details on [Object and List of Objects Data Types](/docs/data-structure/property-reference#object-and-list-of-objects-data-types) support in our docs.
 
-For customer's on a paid plan, you may submit a request for approval to have this limit increased by opening a support ticket within the UI (or by sending an email to [support@mixpanel.com](mailto:support@mixpanel.com)) with the subject line: “Request for List of Objects Limit Increase”. An increase will not be guaranteed, but your project will be reviewed for feasibility of increasing this limit.
+For customers on a paid plan, you may submit a request for approval to have this limit increased by opening a support ticket within the UI (or by sending an email to [support@mixpanel.com](mailto:support@mixpanel.com)) with the subject line: “Request for List of Objects Limit Increase”. An increase will not be guaranteed, but your project will be reviewed for feasibility of increasing this limit.
 
 
 ## Analyzing First Time Users
@@ -771,6 +771,7 @@ You can do this by adding a First Time Filter to any event in Mixpanel. This fil
 ![233894752-93851682-9d83-4c87-937d-8fd90db465c6.png](https://user-images.githubusercontent.com/2077899/233894752-93851682-9d83-4c87-937d-8fd90db465c6.png)
 
 Mixpanel computes this on-the-fly by scanning each user's history to determine if this was the first instance of the event performed by the user, based on timestamp.
+Note that when there's a tie in the timestamps of the first event (eg: the user does multiple first time Purchases in the same second), all of those events will be considered the "first time" and will match the filter. The impact will be that Mixpanel includes multiple events for those users, so if you break down by user ID, you may see that the user did multiple first events.
 
 ### Nth Time
 You can analyze the Nth time an event was performed by using a First Time Filter in funnels. For example, this shows you the number of users that do Tutorial Complete 3 times:
@@ -987,17 +988,17 @@ To download Insights, Funnels, and Retention reports, click the "..." icon on th
 
 #### Insights Download Menu
 
-![/Screen_Shot_2020-02-14_at_10.31.33_AM.png](/Screen_Shot_2020-02-14_at_10.31.33_AM.png)
+![image](/Insights-export.png)
 
 #### Funnels Download Menu
 
-![/Screen_Shot_2020-02-14_at_10.32.18_AM.png](/Screen_Shot_2020-02-14_at_10.32.18_AM.png)
+![image](/Funnels-export.png)
 
 It is possible (only in the Funnels report) to download "CSV Trends", which downloads funnels by date.
 
 #### Retention Download Menu
 
-![/Screen_Shot_2020-02-14_at_10.32.36_AM.png](/Screen_Shot_2020-02-14_at_10.32.36_AM.png)
+![image](/Retention-export.png)
 
 ## Undefined and Null Properties
 

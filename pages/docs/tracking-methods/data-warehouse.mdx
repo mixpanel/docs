@@ -160,7 +160,9 @@ Navigate to [Project Settings → Warehouse Sources](https://mixpanel.com/report
     </iframe>
 </div>
 
-The connection to Databricks only supports connecting directly to clusters. Connecting directly to jobs or SQL warehouses is not supported. The account used for the connection should have `can attach to` permissions to the cluster (and `can restart` if it auto-suspends), and `can use` to the warehouse the cluster leverages.
+<Callout type="info">
+  The connection to Databricks only supports connecting directly to clusters. Connecting directly to jobs or SQL warehouses is not supported. The account used for the connection should have `can attach to` permissions to the cluster (and `can restart` if it auto-suspends), and `can use` to the warehouse the cluster leverages.
+</Callout>
 
 Complete the following steps to get your Databricks connector up and running:
 
@@ -171,6 +173,26 @@ Complete the following steps to get your Databricks connector up and running:
     - ** HTTP Path ** - This is the HTTP path of the cluster you would like to connect to. This can be found in your cluster [JDBC/ODBC connection settings](https://docs.databricks.com/en/integrations/jdbc-odbc-bi.html#step)
     - ** Access Token ** - This is the Personal access token used to authenticate with your Databricks cluster. Here are the instructions on [how to create an access token](https://docs.databricks.com/en/dev-tools/auth.html#databricks-personal-access-tokens-for-workspace-users)
 4. In the second view, you should see that the credentials are validated and a source is added.
+
+**Using Service Principals**
+If a service principal is used, you'll want to follow these steps:
+1. [Create the service principal](https://docs.databricks.com/en/admin/users-groups/service-principals.html#manage-service-principals-in-your-account) if it doesn't exist.
+2. Create a token for the service principal. You can do so through the Databricks cli:
+```bash
+databricks configure --token
+databricks token-management create-obo-token <application_id_of_service_principal> 31536000 --comment "Mixpanel warehouse connector service principal token"
+```
+3. Copy the token generated for later use
+4. Give the service principal `Can Attach` permissions to the cluster (in Cluster > Permissions)
+    - Note the cluster needs to be a shared compute resource and not a single user cluster (unless the service principal created the cluster as well)
+5. Give the service principal access to the catalogs you want to read in Mixpanel
+6. When table access control is enabled in the account, the service principal also requires access to the files that will be read. You can add access like:
+```bash
+GRANT SELECT ON ANY FILE TO <application_id_of_service_principal>
+GRANT MODIFY ON ANY FILE TO <application_id_of_service_principal>
+```
+7. During the setup processing Mixpanel, you can now use the token from the service principal when setting up the connection
+
 
 **IP Allowed List**
 
@@ -278,7 +300,7 @@ Here’s an example table that illustrates what can be loaded as user profiles i
 | 45678 | bob@example.com | Bob Noyce | Free |
 
 <Callout type="info">
-Profile History is in beta. While Profiles typically only store the state of a user *as of now*, Profile History enables storing the state of a user *over time*. When creating a User Profile sync, set the Table Type to “History Table” — this will require you to supply a Start Time column in the sync configuration. Request beta access [here](https://forms.gle/x8mbU6FVe5uHiVXF6).
+Profile History is in beta. While Profiles typically only store the state of a user *as of now*, Profile History enables storing the state of a user *over time*. When creating a User Profile sync, set the Table Type to “History Table”. We expect tables to be modeled as a SCD (Slowly Changing Dimensions) Type 2 table. You will need to supply a Start Time column in the sync configuration. Mixpanel will infer a row's end time if a new row with a more recent start time for the same user is detected. Request beta access [here](https://forms.gle/x8mbU6FVe5uHiVXF6).
 </Callout>
 
 ### Group Profiles
@@ -294,7 +316,7 @@ Here’s an example table that illustrates what can be loaded as group profiles 
 
 ### Lookup Tables
 
-A Lookup Table is useful for enriching Mixpanel properties (e.g. content, skus, currencies) with additional metadata. Learn more about Lookup Tables [here](https://docs.mixpanel.com/docs/data-structure/lookup-tables). Do note the limits of lookup tables indicated [here](https://docs.mixpanel.com/docs/data-structure/lookup-tables#when-shouldnt--i-use-lookup-tables).
+A Lookup Table is useful for enriching Mixpanel properties (e.g. content, skus, currencies) with additional metadata. Learn more about Lookup Tables [here](/docs/data-structure/lookup-tables). Do note the limits of lookup tables indicated [here](/docs/data-structure/lookup-tables#when-shouldnt--i-use-lookup-tables).
 
 Here’s an example table that illustrates what can be loaded as lookup table in Mixpanel. The only important column is the ID, which is the primary key of the table that is eventually mapped to a Mixpanel property
 
@@ -315,7 +337,7 @@ which changes Mixpanel will reflect.
   or rows that have been deleted from the warehouse. We recommend using **Mirror** over **Append** for supported
   warehouses.
 - **Full** will reload the entire table to Mixpanel each time it runs rather than tracking changes between runs. Full
-  syncs are only supported for Lookup Tabls, User Profiles, and Group Profiles.
+  syncs are only supported for Lookup Tables, User Profiles, and Group Profiles.
 - **One-Time** will load the data from your warehouse into Mixpanel _once_ with no ability to send incremental
   changer later. This is only recommended where the warehouse is being used as a temporary copy of the data being
   moved to Mixpanel from some other source and the warehouse copy will not be updated later.
@@ -398,9 +420,9 @@ were to remove the Genre column in the example above the checksum of every row w
 **Handling partitioned tables:**
 
 When syncing [time partitioned](https://cloud.google.com/bigquery/docs/partitioned-tables#date_timestamp_partitioned_tables) or
-[ingestion-time paritioned](https://cloud.google.com/bigquery/docs/partitioned-tables#ingestion_time) tables Mirror will use partition
+[ingestion-time partitioned](https://cloud.google.com/bigquery/docs/partitioned-tables#ingestion_time) tables Mirror will use partition
 metadata to skip processing partitions that have not changed between sync runs. This will make the computation of the change stream
-much more efficient on large paritioned tables where only a small percentage of partitions are update between runs. For example,
+much more efficient on large partitioned tables where only a small percentage of partitions are update between runs. For example,
 in a day-partitioned table with two years of data, where only the last five days of data are normally updated only five partitions
 worth of data will be scanned each time the sync runs.
 
@@ -427,6 +449,7 @@ Mixpanel will create and manage the necessary STREAM objects in the `MIXPANEL` s
 - Snowflake Streams do not work if a table is deleted and re-created with the same name. If using a tool like dbt to model
   data in Snowflake make sure to use an [incremental model](https://docs.getdbt.com/docs/build/incremental-models) so that
   dbt does not replace the table each time it runs.
+- Snowflake streams doesn't capture changes when a column is deleted or renamed, so deletion of columns won't be synced to mixpanel.
 - Snowflake has specific requirements when using [Streams on Views](https://docs.snowflake.com/en/user-guide/streams-intro#streams-on-views)
   that must be met when using Mirror with views.
 - While Snowflake Streams are a very efficient way of tracking changes there are some performance implications
@@ -441,7 +464,25 @@ ALTER TABLE <table> ADD COLUMN <column> VARCHAR DEFAULT NULL;
 ```
 We recommend avoiding other types of schema changes. Snowflake streams only reflect changes to tables from DML statements. DDL statements
 that logically modify data (e.g. adding new columns with default values, dropping existing columns, or renaming columns) will be reflected
-in future data sent to Mixpanel but the Stream will not update historical data with changes caused by DDL statments.
+in future data sent to Mixpanel but the Stream will not update historical data with changes caused by DDL statements.
+</Tab>
+
+<Tab>
+Mirror uses Databricks [Change Data Feed](https://docs.databricks.com/en/delta/delta-change-data-feed.html) to track changes to Databricks tables.
+The only requirement to use Mirror on a Databricks table is to enable [change data feed](https://docs.databricks.com/en/delta/delta-change-data-feed.html#enable-change-data-feed) on those entities.
+```jsx
+ALTER TABLE <table> SET TBLPROPERTIES (delta.enableChangeDataFeed = true);
+```
+
+**Considerations when using Mirror with Databricks:**
+- Databricks Change Data Feed only mantains change history for a limited number of days determined by [delta.logRetentionDuration](https://docs.databricks.com/en/delta/history.html#retrieve-delta-table-history) (default is 30 days). Make sure that the Mixpanel sync does not go longer 
+than this number of days without running. Mixpanel recommends leaving the default of 30 days to ensure that if Mixpanel looses access to the warehouse unexpectedly (e.g. a credentials change) there is time to correct the issue.
+- Databricks Change Data Feed do not work if a table is deleted and re-created with the same name. If using a tool like dbt to model
+  data in Databricks make sure to use an [incremental model](https://docs.getdbt.com/docs/build/incremental-models) so that
+  dbt does not replace the table each time it runs.
+- While, Databricks Change Data Feed works with adding new columns to the table or view, there are certain limitations when it comes to dropping columns or renaming columns
+which uses [column mappings](https://docs.databricks.com/en/delta/delta-change-data-feed.html#change-data-feed-limitations-for-tables-with-column-mapping-enabled). In such scenarios Mixpanel reccomends deleting the sync (along with the data) and re-creating the sync.
+
 </Tab>
 
 </ExtendedTabs>
@@ -451,23 +492,50 @@ in future data sent to Mixpanel but the Stream will not update historical data w
 ### Append
 Append syncs require an Insert Time column in your table. Mixpanel remembers the maximum Insert Time it saw in the previous run of the sync and looks for only rows that have an Insert Time greater than that. This is useful and efficient for append-only tables (usually events) that have a column indicating when the data was appended.
 
+Each time an Append sync runs, it will query the source table with a `WHERE <insert_time_column> > <previous_max_insert_time>` clause. This means that records added with an append time value before the `<previous_max_insert_time>` from the previous run can be missed (not imported) as they would be considered already ingested. The `<insert_time_column>` value should always reflect when the value was made available for Mixpanel to query and ingest.
+
 **Considerations when using Append with large BigQuery tables:**
 
-Each time an Append sync runs it will query the source table with a `WHERE <insert_time_column> > <previous_max_insert_time>` clause. In
-an un-partitioned BigQuery table this results in a full scan of all data in the source table each time the sync runs. To minimize
+In an un-partitioned BigQuery table, the `<insert_time_column>` filtering results in a full scan of all data in the source table each time the sync runs. To minimize
 BigQuery costs we recommend
 [partitioning the source table by the `<insert_time_column>`](https://cloud.google.com/bigquery/docs/partitioned-tables#date_timestamp_partitioned_tables).
 Doing so will ensure that each incremental sync run [only scans the most recent partitions](https://cloud.google.com/bigquery/docs/partitioned-tables).
 
 To understand the potential savings consider a 100 GB source table with 100 days of data (approximately 1 GB of data per day):
 - If this table is not partitioned and is synced daily the Append sync will scan the whole table (100 GB of data) each time it runs, or 3,000 GB of data per month.
-- If this table is partitioned by day and is synced daily with an Append sync the Append sync only scan the current day and previous day's partitions (2 GB of data) each time it runs, or 60 GB of data per day, a 50x improvement over the unpartitioned table.
+- If this table is partitioned by day and is synced daily with an Append sync the Append sync only scan the current day and previous day's partitions (2 GB of data) each time it runs, or 60 GB of data per day, a 50x improvement over the un-partitioned table.
 
 ---
 
 ### Full
 
 Full syncs periodically make a snapshot of the source table and sync it entirely to Mixpanel. If a row has new properties in your warehouse, the corresponding profile in Mixpanel will be overridden with those new properties. This mode is available for all tables except events.
+
+
+## Sync Frequency
+Mixpanel offers a variety of sync frequency options to cater to different data integration needs. These options allow you to choose how often your data is synchronized from your data warehouse to Mixpanel, ensuring your data is up-to-date and accurate.
+
+### Standard Sync Frequency Options
+* Hourly: Data is synchronized every hour, providing near real-time updates to your Mixpanel project.
+* Daily: Data synchronization occurs once a day, ideal for daily reporting and analytics.
+* Weekly: Data is synchronized once a week, suitable for less frequent reporting needs.
+
+### Advanced Sync Frequency Option: Trigger via API
+For more advanced synchronization needs, Mixpanel offers the ability to trigger syncs via API. This option generates a PUT URL that customers can use in their code to orchestrate Mixpanel sync jobs with other jobs, such as Fivetran pipelines or dbt jobs. By using this API trigger option, you can ensure 100% accuracy by aligning Mixpanel syncs with other critical data operations.
+
+To use the API trigger option:
+
+1. Select Advanced>Trigger Via API under Sync Frequency in the table sync creation UI.
+2. After creating the sync, we will generate a PUT URL for you.
+3. Integrate this URL into your existing workflows or scripts.
+4. Authenticate the request with a Mixpanel Service Account. More information on setting up and using Mixpanel Service Accounts can be found [here](https://developer.mixpanel.com/reference/service-accounts).
+5. Trigger the sync job programmatically, ensuring it runs in coordination with other data processes.
+
+This flexibility allows you to maintain precise control over when and how your data is updated in Mixpanel, ensuring your analytics are always based on the latest information.
+
+Note: If your table sync is set up with Mirror mode, you will need to run a sync job at least every 2 weeks to ensure our snapshots do not get deleted. We rate limit the number of syncs via API to 5 per hour.
+
+
 
 ## FAQ
 
@@ -485,33 +553,41 @@ We also recommend loading your user and account tables, to enrich events with de
 
 Syncs have a throughput of ~30K events+updates/second or ~100M events+updates/hour.
 
+### What is the best way to start bringing in event data?
+
+We recommend starting with a subset of data in a materialized view to test the import process. This allows you to ensure that relevant columns are correctly formatted and the data appears as expected in Mixpanel. Once the data is imported, run a few reports to verify that you can accurately gain insight into your team’s KPIs with the way your data is formatted.
+
+After validating your use case, navigate to the imported table and select "Delete Import" to hard delete the subset data. This step ensures that you can then import the entire table without worrying about duplicate data.
+
 ### I already track data to Mixpanel via SDK or CDP, can I still use Warehouse Connectors?
 
 Yes! You can send some events (eg: web and app data) directly via our SDKs and send other data (eg: user profiles from CRM or logs from your backend) from your warehouse and analyze them together in Mixpanel.
 
 ### How do updates & deletes from Mirror syncs affect my event quota usage?
 
-On an [Events billing plan](https://docs.mixpanel.com/docs/pricing/billing) your event quota is consumed by:
+On an [Events billing plan](/docs/pricing/billing) your event quota is consumed by:
 
 - **Monthly Event Volume:** The number of events in all of your projects at the end of each month. Updating an existing event using Mirror will not affect your monthly event volume. Deleting an existing event using Mirror will decrease your monthly event volume by one.
-- **Mirror updates and deletes:** Updates and deletes from mirror are counted separately from event volume. Each update or delete is counted as one event. You can see a breakdown your event quota consumption by "event volume" vs "updates and deletes" on your [organization billing page](https://mixpanel.com/report/settings/%23org%2F%24org_id%24%2Fplan).
+- **Mirror updates and deletes:** Updates and deletes from mirror are counted separately from event volume. Each update or delete is counted as one event towards billing for the month they were triggered on, even if the record being updated is for a previous month. You can see a breakdown your event quota consumption by "event volume" vs "updates and deletes" on your [organization billing page](https://mixpanel.com/report/settings/%23org%2F%24org_id%24%2Fplan).
 
 You can see how much of your quota is being consumed by each warehouse connector in the detailed [data usage view](https://mixpanel.com/report/settings/%23org%2F%24org_id%24%2Fplan%2Fdetail%2Fevents) for your organization.
 
-On a [legacy MTU billing plan](https://docs.mixpanel.com/docs/pricing/legacy-mtu-billing) updates and deletes from Mirror do not impact [MTU calculations](https://docs.mixpanel.com/docs/pricing/legacy-mtu-billing#mtu-calculation), however updates and deletes are counted as events for the purposes of the [MTU guardrail](https://docs.mixpanel.com/docs/pricing/legacy-mtu-billing#mtu-guardrail) computation.
+On an [MTU billing plan](/docs/pricing/legacy-mtu-billing) updates and deletes from Mirror do not impact [MTU calculations](/docs/pricing/legacy-mtu-billing#mtu-calculation), however updates and deletes are counted as events for the purposes of the [MTU guardrail](/docs/pricing/legacy-mtu-billing#mtu-guardrail) computation.
 
 ### What will be the cost impact of this on my DWH?
 
 The DWH cost of using a warehouse connector will vary based on the source warehouse and sync type used. Our connectors use warehouse-specific change tracking to compute modified rows in the warehouse and send only changed data to Mixpanel.
 
 There are 3 aspects of DWH cost: network egress, storage, and compute.
-* **Network Egress**: All data is transfered using gzip compression. Assuming an egress rate of \$0.08 per GB and 100 compressed bytes per event, this is a cost of less than \$0.01 per million events. [Mirror](#mirror) and [Append](#append) syncs will only transfer new or modified rows each time they run. [Full](#full) syncs will transfer all rows every time they run. We recommend using Full syncs only for small tables and running them less frequently.
-* **Storage**: [Append](#append) and [Full](#full) syncs do not store any additional data in your warehouse, so there are no extra storage costs. [Mirror](#mirror) tracks changes using warehouse-specific functionallity that can affect warehouse storage costs:
+* **Network Egress**: All data is transferred using gzip compression. Assuming an egress rate of \$0.08 per GB and 100 compressed bytes per event, this is a cost of less than \$0.01 per million events. [Mirror](#mirror) and [Append](#append) syncs will only transfer new or modified rows each time they run. [Full](#full) syncs will transfer all rows every time they run. We recommend using Full syncs only for small tables and running them less frequently.
+* **Storage**: [Append](#append) and [Full](#full) syncs do not store any additional data in your warehouse, so there are no extra storage costs. [Mirror](#mirror) tracks changes using warehouse-specific functionality that can affect warehouse storage costs:
   * Snowflake: Mirror uses [Snowflake Streams](https://docs.snowflake.com/en/user-guide/streams-intro). Snowflake Streams will [retain historical data](https://docs.snowflake.com/en/user-guide/streams-intro#billing-for-streams) until it is consumed from the stream. As long as the warehouse connector runs regularly data will be consumed regularly and only retained between runs.
   * BigQuery: Mirror uses [table snapshots](https://cloud.google.com/bigquery/docs/table-snapshots-intro). Mirror keeps one snapshot per table to track the contents of the table from the last run. BigQuery table snapshots have no cost when they are first created as they share the underlying storage with the source table, however as the source table changes [the cost of storing changes is attributed to the table snapshot](https://cloud.google.com/bigquery/docs/table-snapshots-intro#storage_costs). Each time the connector runs the current snapshot is replaced with a new snapshot of the latest state of the table. The storage cost is the amount of changes being tracked between the snapshot and source table between runs.
+  * Databricks: Mirror uses Databricks [Change Data Feed](https://docs.databricks.com/en/delta/delta-change-data-feed.html) and all the changes are retained in databricks for the [delta.logRetentionDuration](https://docs.databricks.com/en/delta/history.html#retrieve-delta-table-history). Configure that window accordingly to keep storage costs low.
 * **Compute**:
   * Mirror on Snowflake: [Snowflake Streams](https://docs.snowflake.com/en/user-guide/streams-intro) natively track changes, the compute cost of querying for these changes is normally proportional to the amount of changed data.
   * Mirror on BigQuery: Each time the connector runs it checksums all rows in the source table and compares them to a [table snapshot](https://cloud.google.com/bigquery/docs/table-snapshots-intro) from the previous run. For large tables we highly recommend [partitioning](https://cloud.google.com/bigquery/docs/partitioned-tables) the source table. When the source table is partitioned the connector will skip checksumming any partitions which have not been modified since the last run. For more details see the BigQuery-specific instructions in [Mirror](#mirror).
+  * Mirror on Databricks: Databricks [Change Data Feed](https://docs.databricks.com/en/delta/delta-change-data-feed.html) natively tracks changes to the tables or views, the compute cost of querying these changes is normally proportional to the amount of changed data. Mixpanel reccomends using a smaller compute cluster and setting Auto Terminate after 10 mins of idle time on the compute cluster.
   * Append: All Append syncs run a query filtered on `insert_time_column > [last-run-time]`, the compute cost is the cost of this query. Partitioning or clustering based on `insert_time_column` will greatly improve the performance of this query.
   * Full: Full syncs are always a full table scan of the source table to export it.
 
