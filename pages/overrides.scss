@@ -181,13 +181,6 @@ $border-radius-lg: 100px;
   }
 }
 
-//ID management banner style
-.idManagementBanner {
-    position: sticky !important;
-    top: 55px;
-}
-
-
 //############Global Changelog############
 .changelogMainContainer {
   // Changelog title
@@ -262,6 +255,11 @@ $border-radius-lg: 100px;
     }
   }
 }
+
+.nextra-callout {
+  opacity: 1;
+}
+
 
 //##############################Light Theme Starts Here##################################
 .light {
@@ -363,25 +361,22 @@ $border-radius-lg: 100px;
       background-color: #f5f2f2;
       box-shadow: none;
     }
-
-    //Modify top nav tabs
-    // .nx-text-sm {
-    //   color: colors.$white;
-    // }
-
-    // Modify search module
-    // .Search_searchBar__rnWt2 {
-    //   background-color: #2b273f;
-    //   ::placeholder {
-    //     text-align: center;
-    //   }
-    // }
   }
 
   //##############################Light Theme Body###################################
   .nx-w-full > main {
     color: colors.$grey100;
     background-color: colors.$lightbg;
+  
+  
+  //ID management banner style
+  .idManagementBanner {
+    position: sticky !important;
+    top: 55px;
+    opacity: 1 !important;
+    background-color: #fefce8 !important;
+    color: #713f11;
+  }
 
     .nx-mt-6 {
       border-bottom: colors.$black;
@@ -412,6 +407,7 @@ $border-radius-lg: 100px;
       }
     }
 
+
     // Modify breadcrumbs
     .nextra-breadcrumb {
       text-transform: uppercase;
@@ -439,7 +435,7 @@ $border-radius-lg: 100px;
         color: colors.$white;
         pointer-events: none;
       }
-
+  
       //   //for the little arrows between breadcrumbs
       //   svg {
       //     opacity: 0.4;
@@ -1087,6 +1083,15 @@ $border-radius-lg: 100px;
         opacity: 0.4;
       }
     }
+
+  //ID management banner style
+  .idManagementBanner {
+    position: sticky !important;
+    top: 55px;
+    opacity: 1 !important;
+    background-color: #49342d !important;
+    color: #fef089;
+  }
 
     //modify anchor links hastags
     a.subheading-anchor {
