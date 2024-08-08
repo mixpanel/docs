@@ -1,6 +1,6 @@
 import { Callout } from 'nextra/components'
 
-# Identifying Users
+# Identifying Users (Original)
 
 <Callout type="warning" >
   The information in this page are for projects using the **Original ID Merge API**. You can check your Identity Merge API by navigating to [your project settings](https://mixpanel.com/settings/project/id-management). 
@@ -165,7 +165,7 @@ By calling `.reset()` at logout or when a user enters an unauthenticated-state (
 
 You can track the user's unique identifier as a super property via `.register()` and user property via `.people.set()` as soon as it is available in the app i.e. on a successful sign-up / login or when an app is re-opened in a logged in state. In the cases when ID Merge is not implemented properly, you can rely on these properties for troubleshooting purposes.
 
-See the SDK reference on [registering super properties](/docs/tracking-methods/sdks/javascript#super-properties) and [setting profile properties](docs/tracking-methods/sdks/javascript#setting-profile-properties).
+See the SDK reference on [registering super properties](/docs/tracking-methods/sdks/javascript#super-properties) and [setting profile properties](/docs/tracking-methods/sdks/javascript#setting-profile-properties).
 
 **Avoid creating profiles for anonymous users**
 
@@ -187,9 +187,9 @@ We encourage you to document your implementation (or create a diagram of the imp
 
 **Why is my user's distinct_id set to the anonymous device ID even after I identify them using my own user ID?**
 
-The canonical distinct_id is randomly selected by Mixpanel using any of the IDs inside of a cluster. This means that even after identifying your user, Mixpanel may choose your user ID or one of the other IDs inside of the cluster (such as the device ID) to serve as the displayed ID for the user. **This is random and not user-configurable.**
+The canonical distinct_id is selected by Mixpanel using any of the IDs inside of a cluster. This means that even after identifying your user, Mixpanel may choose your user ID or one of the other IDs inside of the cluster (such as the device ID) to serve as the displayed ID for the user. **This is random and not user-configurable.**
 
-Any IDs inside of the cluster can be used for ingestion and will resolve to the same user in Mixpanel, but only the canonical distinct_id is used in queries and exports.
+Any IDs inside of the cluster can be used for ingestion and will resolve to the same user in Mixpanel, but only the canonical distinct_id can be used in queries and exports..
 
 As a best practice, please set your chosen user ID as a separate user profile property and event property so that you can always query and see your own chosen user ID.
 
@@ -207,7 +207,7 @@ It may take up to 24 hours for this mapping to propagate to all other parts of t
 
 [User Profiles](/docs/data-structure/user-profiles) are set directly on `$distinct_id`s. We recommend waiting until after a user is identified before setting user profile properties.
 
-**Is it possible to merge two `$identified_id`s?**
+**Is it possible to merge two Identified IDs?**
 
 It is possible using the [$merge API event](https://developer.mixpanel.com/reference/identity-merge), which allows merging of any 2 ID clusters as long as it does not exceed 500 total IDs.
 
@@ -215,7 +215,7 @@ It is possible using the [$merge API event](https://developer.mixpanel.com/refer
 
 Attribution providers (like Appsflyer, Adjust, and Branch) use Mixpanel's SDK properly to set `$device_id` to whichever ID they use for attribution.
 
-For cohort syncs out to 3rd-party systems, we recommend designating a user property with the identifier of the user in that third-party system. More details are in our [integrations docs](/docs/cohort-sync/integrations); for example, see our [doc on exporting cohorts to Braze](/docs/cohort-sync/integrations/braze). If those integrations are bidirectional (eg: they send events back to Mixpanel), it's best to ensure that the user ID in both Mixpanel and the 3rd-party system is the same so that those events are sent to the correct user.
+For cohort syncs out to 3rd-party systems, we recommend designating a user property with the identifier of the user in that third-party system. More details are in our [integrations docs](/docs/cohort-sync/integrations); for example, see our [doc on exporting cohorts to Braze](/docs/cohort-sync/integrations/braze#matching-mixpanel-and-braze-users). If those integrations are bidirectional (eg: they send events back to Mixpanel), it's best to ensure that the user ID in both Mixpanel and the 3rd-party system is the same so that those events are sent to the correct user.
 
 **What is the status of Mixpanel's legacy `alias` method?**
 
