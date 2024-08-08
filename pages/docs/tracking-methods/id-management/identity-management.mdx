@@ -12,13 +12,14 @@ Identity management is the process of assigning IDs and maintaining ID mappings 
 
 ## Distinct ID
 
-The Distinct ID is the identifier property that Mixpanel uses to keep identify your users. Every event data and profile update sent to Mixpanel should have a distinct_id property associated with it (except in the case of preventing [hot shards](/docs/debugging/distinct-id-limits)). The Distinct ID value tells Mixpanel which user to attach your events and profile property updates.
+Distinct ID is Mixpanel's identifier used to uniquely track a user in the system. Every event data and profile update sent to Mixpanel should have a distinct_id property associated with it (except in the case of preventing [hot shards](/docs/debugging/distinct-id-limits)). The Distinct ID value tells Mixpanel which user to attach your events and profile property updates.
 
-The purpose of distinct_id is to provide a single, unified identifier for a user across devices and sessions. When two events have the same value of `distinct_id`, they are considered as being performed by one unique user. 
+The purpose of Distinct ID is to provide a single, unified identifier for a user across devices and sessions. When two events have the same value of `distinct_id`, they are considered as being performed by one unique user. If the Distinct ID on two events are two different values, they will be considered as coming from two separate users.
 
 <Callout type="warning">
-    If the Distinct ID on two events are two different values, they will be considered as coming from two separate users.
+    Note that the Distinct ID property is `distinct_id` for event payload, and `$distinct_id` for profile update payloads. Learn more about the [Import Events API](https://developer.mixpanel.com/reference/import-events) and [Engage API](https://developer.mixpanel.com/reference/profile-set).
 </Callout>
+
 ### Role of Distinct ID in Mixpanel
 
 Below are examples of Distinct ID's role in Mixpanel:
@@ -27,7 +28,7 @@ Below are examples of Distinct ID's role in Mixpanel:
 
 **Funnels report** - Distinct IDs are used to follow a user through a conversion journey. If a user tracks events with inconsistent Distinct IDs between steps, they will be counted as a drop-off.
 
-**User Analytics** - Distinct IDs are used to index individual users. If a single users is tracked using 2 different Distinct IDs, they will appear as 2 different users in your project.
+**User report** - Distinct IDs are used to index individual users. User Profiles with 2 different Distinct IDs from the same user would end up with 2 different profiles.
 
 ## Identity Management in Action
 
@@ -39,7 +40,7 @@ Let's walkthrough how identity management affects your implementation using an e
 
 1. A user access your product on the website through a computer. The Javascript SDK automatically generates a Distinct ID for them, with the value of `123`.
 2. Later in the day, the same user access your product again, this time on their smart phone. The Android SDK automatically generates a Distinct ID for them, with the value of `ABC`.
-3. This single user would appear as two separate users in your Mixpanel project; once or their access through the website, and another for their access through your app.
+3. This single user would appear as two separate users in your Mixpanel project; once for their access through the website, and another for their access through your app.
 
 Without identity management, a user who accesses your product from multiple device are incorrectly counted as two separate users.
 
