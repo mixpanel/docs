@@ -181,6 +181,13 @@ $border-radius-lg: 100px;
   }
 }
 
+//ID management banner style
+.idManagementBanner {
+    position: sticky !important;
+    top: 55px;
+}
+
+
 //############Global Changelog############
 .changelogMainContainer {
   // Changelog title

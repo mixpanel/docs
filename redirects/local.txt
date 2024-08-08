@@ -234,6 +234,7 @@
 /docs/tutorials/launch/define-cohorts /guides/launch/define-cohorts
 /docs/tutorials/beyond-onboarding /guides/beyond-onboarding
 /docs/tutorials/analytics-strategy /guides/analytics-strategy
+/docs/tracking-methods/id-management/identifying-users /docs/tracking-methods/id-management/identifying-users-simplified
 /docs/data-pipelines/integrations/aws-raw-pipeline /docs/data-pipelines/integrations/raw-aws-pipeline
 /docs/data-pipelines/integrations/azure-raw-pipeline /docs/data-pipelines/integrations/raw-azure-pipeline
 /docs/data-pipelines/integrations/azure-blob-storage /docs/data-pipelines/integrations/schematized-azure-pipeline
@@ -242,3 +243,4 @@
 /docs/data-pipelines/integrations/bigquery /docs/data-pipelines/integrations/schematized-bigquery-pipeline
 /docs/data-pipelines/integrations/google-cloud-storage /docs/data-pipelines/integrations/schematized-gcs-pipeline
 /docs/data-pipelines/integrations/snowflake /docs/data-pipelines/integrations/schematized-snowflake-pipeline
+/docs/features/session-replay /docs/session-replay
