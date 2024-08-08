@@ -38,5 +38,5 @@ If new property detection is enabled, notifications will also include a "View Ne
 - It was created within the last 30 days
 
 ### Additional Notes
-- Please note that all custom properties will **not** be marked as "New"
-- Event Approval is not available for projects with > 3000 hidden events, and will be auto-disable if projects exceed this limit
+- Please note that all [custom properties](/docs/features/custom-properties) will **not** be marked as "New"
+- Event Approval is not available for projects with > 3000 hidden events and will be auto-disable if projects exceed this limit
