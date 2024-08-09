@@ -50,7 +50,7 @@ While retroactive identity merging is supported on Original ID Merge, the main l
 
 Reaching the 500 Distinct IDs per ID cluster limit is possible, when the process of generating new Anonymous IDs through `reset()` call on logout, and adding them to the ID cluster repeats 500 times. The `reset()` call is typically implemented in products where multiple users are sharing the same device. This ensures that anonymous events post logout are linked to the next user who logins in, rather than the last user who logout. If some of your users are approaching this cluster limit, you should revisit your implementation and consider removing the `reset()` call, unless there is a compelling use case where the benefits outweigh the implications of reaching the ID cluster limit. 
 
-Also, if you are considering Simplified ID Merge, it's important to note that it does not support multiple identified IDs (i.e. User IDs) per ID cluster. This is supported on Original ID Merge via special events such as \$merge and \$create_alias but they are not supported on Simplified ID Merge as the approch to identity management is completely different, more details [here](/docs/tracking-methods/id-management/identifying-users#example-user-flows).
+Also, if you are considering Simplified ID Merge, it's important to note that it does not support multiple identified IDs (i.e. User IDs) per ID cluster. This is supported on Original ID Merge via special events such as \$merge and \$create_alias but they are not supported on Simplified ID Merge as the approch to identity management is completely different, more details [here](/docs/tracking-methods/id-management/identifying-users-simplified#example-user-flows).
 
 ><b>Staying on Original ID Merge</b>
 >- If you don’t generally support multiple users sharing the same device, and don’t have a compelling use case requiring `reset()` calls on logout (or if you are implementing via server-side and do not generate new anonymous IDs for the same user), you are unlikely to run into the limit of 500 IDs per ID cluster, and should not consider the migration.  
@@ -260,7 +260,7 @@ Take note of the following details when planning for the migration from Legacy I
 
 3. If you have Mixpanel in your mobile apps, you’ll need to ship a new version of the app with the updated ID management implementation, and the new project’s token as part of the migration process. Without a forced app update, it may take awhile for all users to upgrade to the latest app version. During this period, some events will still be tracked to the old project. Be prepared for data backfilling if you want these events, as well as the historical data to be included in the new project.
    
-4. With the introduction of the retroactive identity merging feature in Original and Simplified ID Merge, it may take up to 24 hours for identity merging (merging 2 unique users into 1 unique user) to be fully reflected in all Mixpanel reports. More details [here](/docs/tracking-methods/id-management/identifying-users#how-long-does-it-take-for-the-device_id---user_id-mapping-to-take-effect).
+4. With the introduction of the retroactive identity merging feature in Original and Simplified ID Merge, it may take up to 24 hours for identity merging (merging 2 unique users into 1 unique user) to be fully reflected in all Mixpanel reports. More details [here](/docs/tracking-methods/id-management/identifying-users-simplified#faq).
    
 5. All Mixpanel [Client-Side SDKs](/docs/tracking-methods/choosing-the-right-method#client-side-tracking) support Simplified ID Merge except for [Unity SDK](/docs/tracking-methods/sdks/unity). 
 
@@ -274,7 +274,7 @@ The following guide outlines the steps required to set up the new Mixpanel proje
 
 1. Create a new Mixpanel project in your existing organization by navigating to <b>Projects</b> setting under [Organization Settings](https://mixpanel.com/settings/org/projects). You can refer to [Creating Projects](/docs/orgs-and-projects/managing-projects#creating-projects) section in our documentation.
    
-2. Enable <b>Simplified API</b> in the new project by navigating to <b>Identity Merge</b> setting under this new Project's Settings. Refer to [this](/docs/tracking-methods/id-management/identifying-users#how-do-i-switch-between-the-simplified-and-original-api) section in our documentation.
+2. Enable <b>Simplified API</b> in the new project by navigating to <b>Identity Merge</b> setting under this new Project's Settings. Refer to [this](/docs/tracking-methods/id-management/identity-management#switching-between-simplified-and-original-api) section in our documentation.
 
    Please note that the new project follows the organization’s default (Legacy or Original ID Merge). You have to switch the project to Simplified ID Merge <b><i>before</i></b> sending any data to the project. Make sure to override the default selection in every newly created project.
 
@@ -311,7 +311,7 @@ Update your tech stack with the new project’s token, API secret, and service a
 
       <b>Note: Mixpanel [Unity](/docs/tracking-methods/sdks/unity) SDK currently does not support Simplified ID Merge.</b>
 
-   - Refer to the implementation guide [here](/docs/tracking-methods/id-management/identifying-users#usage). You only need to call `identify` and `reset` methods at specific points in the user journeys as the SDK will automatically add the reserved properties `$device_id` and `$user_id` to the events before sending them to Mixpanel.
+   - Refer to the implementation guide [here](/docs/tracking-methods/id-management/identifying-users-simplified#client-side-identity-management). You only need to call `identify` and `reset` methods at specific points in the user journeys as the SDK will automatically add the reserved properties `$device_id` and `$user_id` to the events before sending them to Mixpanel.
    - You should not call `alias`, as this method will not trigger identity merging in a Simplified ID Merge project. It is only provided as a backward-compatible solution for users who are on Legacy / Original ID Merge.
 
 <br />
@@ -328,7 +328,7 @@ Update your tech stack with the new project’s token, API secret, and service a
 3. <b>Customer Data Platform (CDP)</b> integration:
 
    - Ensure that your CDP is updated with new Mixpanel project token or API secret.
-   - Check the CDP's support for Simplified ID Merge [here](/docs/tracking-methods/id-management/identifying-users#third-party-integration-support).
+   - Check the CDP's support for Simplified ID Merge [here](/docs/tracking-methods/id-management/identity-management#third-party-integration-support).
 
 <br />
 

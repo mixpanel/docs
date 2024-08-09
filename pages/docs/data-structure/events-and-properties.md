@@ -2,7 +2,7 @@
 
 ## Overview
 
-Events are the core of [Mixpanel's Data Model](/docs/tutorials/plan/tracking-strategy#the-mixpanel-data-model). All events should have an **Event Name**, a **Timestamp** of when that event has occurred, and a **[Distinct ID](/docs/tracking-methods/id-management/identifying-users#what-is-distinct-id)** (Mixpanel's identifier for a user) to tie all events belonging to the same user. Events can optionally have a set of properties, which describes the event in more detail.
+Events are the core of [Mixpanel's Data Model](/docs/tutorials/plan/tracking-strategy#the-mixpanel-data-model). All events should have an **Event Name**, a **Timestamp** of when that event has occurred, and a **[Distinct ID](/docs/tracking-methods/id-management/identity-management#distinct-id)** (Mixpanel's identifier for a user) to tie all events belonging to the same user. Events can optionally have a set of properties, which describes the event in more detail.
 
 * If you're familiar with databases, events are like tables and properties are like columns.
 * If you're familiar with Google Analytics, events are like hits and properties are like dimensions.
@@ -71,8 +71,8 @@ Mixpanel reserves certain event property names for special processing or for spe
 | ip | - | The `ip` event property is the value to be used for geo location parsing (i.e. `$city`, `$region`, and `mp_country_code`) if `ip` as param to the [/track endpoint](https://developer.mixpanel.com/reference/track-event) has **not been** set to 1. Our client-side libraries, by default, will set the `ip` param to 1 so geo location is parsed from the incoming request, but this can be disabled or, if you're implementing from the [server-side](/docs/best-practices/server-side-best-practices#tracking-geolocation-http-api), you can include the `ip` event property so it's parsed from it instead of the IP of the incoming request. The `ip` event property is not stored in Mixpanel. |
 | $bucket / bucket | - | A reserved property that is hidden from the Mixpanel interface, and will cause other events to not appear in the interface. Do not name any property bucket or $bucket. |
 | $distinct_id / distinct_id | Distinct ID | Mixpanel's internal unique identifier for a user. See [Identifying Users](/docs/tracking-methods/id-management/identifying-users). |
-| $device_id | Device ID | In [Simplified ID Merge](/docs/tracking-methods/id-management/identifying-users#example-user-flows): unique identifier used to track a device while the user is in anynymous state. |
-| $user_id | User ID | In [Simplified ID Merge](/docs/tracking-methods/id-management/identifying-users#example-user-flows): unique identifier used to track a user across devices when user is in identified state. |
+| $device_id | Device ID | In [Simplified ID Merge](/docs/tracking-methods/id-management/identifying-users-simplified#example-user-flows): unique identifier used to track a device while the user is in anynymous state. |
+| $user_id | User ID | In [Simplified ID Merge](/docs/tracking-methods/id-management/identifying-users-simplified#example-user-flows): unique identifier used to track a user across devices when user is in identified state. |
 | $event_name | Event Name | Name of the tracked event used in the Mixpanel UI. |
 | $time / time | Time or Date | A unix time epoch that is used to determine the time of an event. Ingested as [`time`](https://developer.mixpanel.com/reference/import-events#propertiestime) property and indicated as `$time` in Mixpanel’s UI. If no `time` property is provided, we will use the time when the event arrives at our servers. |
 | $insert_id | Insert ID | A unique identifier for the event, used to deduplicate events that are accidentally sent multiple times. More details [here](https://developer.mixpanel.com/reference/import-events#propertiesinsert_id). |
