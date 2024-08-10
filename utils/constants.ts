@@ -1,6 +1,7 @@
 export const dataItems = {
     'javascript': `Javascript`,
     'python': `Python`,
+    'php': `PHP`,
     'node': `Node`,
     'go': `Go`,
     'ruby': `Ruby`,

@@ -48,6 +48,22 @@ You may want to disable ip geolocation when using a server-side SDK. You can lea
 </Tab>
 
 <Tab>
+```shell php
+// create/update a profile for user id 12345
+$mp->people->set('USER_ID', array(
+    '$first_name'       => "John",
+    '$last_name'        => "Doe",
+    '$email'            => "john.doe@example.com",
+    '$phone'            => "5555555555",
+    "Favorite Color"    => "red"
+));
+````
+
+You may want to disable ip geolocation when using a server-side SDK. You can learn more in [Server-Side Best Practices](/docs/tracking-best-practices/server-side-best-practices)
+
+</Tab>
+
+<Tab>
 ```javascript
 mixpanel.people.set('USER_ID', {
     $name: 'Jane Doe',
