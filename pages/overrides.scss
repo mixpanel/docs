@@ -558,13 +558,13 @@ $border-radius-lg: 100px;
     .feedbackCollectorContainer {
       .feedbackButtonContainer {
         .feedbackButton {
-          background-color: colors.$purple50 !important;
-          color: colors.$white !important;
+          background-color: colors.$base80 !important;
+          color: colors.$purple200 !important;
 
           &:hover {
             box-shadow: 0 4px 6px -1px rgb(0 0 0 / 0.1),
               0 2px 4px -2px rgb(0 0 0 / 0.1);
-            background-color: colors.$purple100 !important;
+            background-color: colors.$purple50 !important;
             transition: 0.5s;
           }
         }
