@@ -82,6 +82,39 @@ mp = Mixpanel("YOUR_TOKEN")
 
 <Tab>
 ##### Install the SDK
+
+**Install with Composer**
+
+1. Add mixpanel/mixpanel-php as a dependency and run composer update:
+
+```shell php
+"require": {
+    ...
+    "mixpanel/mixpanel-php" : "2.*"
+    ...
+}
+```
+**Install Manually**
+
+1. [Download the Mixpanel PHP Library](https://github.com/mixpanel/mixpanel-php/archive/master.zip)
+2. Extract the zip file to a directory called "mixpanel-php" in your project root
+
+##### Configure the SDK
+Replace `YOUR_TOKEN` with your project token. You can find your token [here](https://mixpanel.com/settings/project).
+```shell php
+<?php
+// import Mixpanel
+require 'mixpanel-php/lib/Mixpanel.php';
+
+// get the Mixpanel class instance, replace with your project token
+$mp = Mixpanel::getInstance("YOUR_TOKEN");
+
+?>
+````
+</Tab>
+
+<Tab>
+##### Install the SDK
 ```shell Node.js
 npm install mixpanel
 ````
