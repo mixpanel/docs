@@ -66,7 +66,7 @@ Our Session Replay Beta Service Addendum can be found [here](https://mixpanel.co
 
 ### Is Session Replay available for mobile?
 
-As of today, Session Replay is in closed Beta testing for web-based applications (including mobile web) and closed Alpha testing for native iOS aps. Android Alpha testing is expected later this year.
+As of today, Session Replay is in closed Beta testing for web-based applications (including mobile web) and closed Alpha testing for native iOS apps. Android Alpha testing is expected later this year.
 
 For any questions about mobile beta access, please reach out to your Account Manager.
  
@@ -79,13 +79,14 @@ By default, all on-screen text elements are masked in replays. Additionally, you
 
 30 days.
 
+### How can I estimate how many sessions I'll have?
+If you already use Mixpanel, the simplest way to estimate sessions is to count Total Session Start events in the Insights report. This will tell you how many total Sessions you have each month. If you enable Session Replay, it will collect all of these Sessions by default.
+
 ### Am I able to sample our session replay collection rate?
 
-Yes, you can configure the percentage of total replays that our SDK will capture with as little as [one line of code in your SDK implementation](/docs/tracking-methods/sdks/javascript#sampling-method). 
+Yes, you can configure the percentage of total replays that our SDK will capture with [one line of code in your SDK implementation](/docs/tracking-methods/sdks/javascript#sampling-method). 
 
-This out-of-the-box sampling method is random sampling: your SDK will decide randomly whether the currently SDK instance load falls into the sample or not. We recommend starting at 1% and increasing from there.
-
-If you expect low traffic, you can increase the starting sampling percentage. 
+This out-of-the-box sampling method is random sampling: your SDK will decide randomly whether the currently SDK instance load falls into the sample or not. We recommend starting at 1% and increasing from there. If you expect low traffic, you can increase the starting sampling percentage. 
 
 If you're still unsure about what sampling percentage to use, you can use our automatically generated [Session Start events](/docs/features/sessions#how-sessions-work) to estimate how many recordings you'll be ingesting, and base the sampling off that.
 
