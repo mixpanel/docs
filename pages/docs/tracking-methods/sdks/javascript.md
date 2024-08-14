@@ -370,11 +370,11 @@ mixpanel.init("<YOUR_PROJECT_TOKEN>", {api_host: "https://<YOUR_PROXY_DOMAIN>"})
 
 ## Session Replay (Beta)
 
-Capture and replay data on how a user interacts with your application. Replay collection is disabled by default, and the Replay portion of the SDK will not be loaded into your application until specified.
+Capture and replay data on how a user interacts with your application. Replay collection is disabled by default, and the Replay portion of the SDK will not be loaded into your application until specified. To use this feature, you must be on at least version 2.50.0 of our JavaScript SDK.
 
 ### Sampling Method
 
-The recommended way to capture session replays is by sampling a subset of users, specified during initialization:
+The easiest way to begin capturing session replays is by sampling a subset of users, specified during initialization:
 
 ```javascript
 mixpanel.init(
@@ -387,17 +387,26 @@ mixpanel.init(
 
 Start with a smaller percentage and tune to fit your analytics needs.
 
+If you already have the JS SDK installed, this is the only code change you need to start capturing session replays.
+
 ### Init Options
 
 | Option | Description | Default | 
 | --- | --- | --- |
-| `record_sessions_percent` | Percentage of SDK initializations that will qualify for replay data capture. A value of "1" = 1%. | `0` |
+| `record_block_class` | CSS class name or regular expression for elements which will be replaced with an empty element of the same dimensions, blocking all contents.  | `new RegExp('^(mp-block\|fs-exclude\|amp-block\|rr-block\|ph-no-capture)$')` <br/> (common industry block classes) |
+| `record_block_selector` | CSS selector for elements which will be replaced with an empty element of the same dimensions, blocking all contents.  | `"img, video"` |
+| `record_collect_fonts` | When true, Mixpanel will collect and store the fonts on your site to use in playback. | `false` |
 | `record_idle_timeout_ms` | Duration of inactivity in milliseconds before ending a contiguous replay. A new replay collection will start when active again. | `1800000`<br/>(30 minutes) |
-| `record_max_ms` | Maximum length of a single replay in milliseconds. Up to 24 hours is supported. Once a replay has reached the maximum length, a new one will begin. | `86400000`<br/>(24 hours) |
+| `record_inline_images` | When true, Mixpanel will collect and store images on your site to use in playback. NOTE: Image intensive websites may have their payloads rejected due to large size. If your site stores images at a publicly accessible URL, this option is not necessary. | `false` |
+| `record_mask_text_class` | CSS class name or regular expression for elements that will have their text contents masked. | `new RegExp('^(mp-mask\|fs-mask\|amp-mask\|rr-mask\|ph-mask)$')` <br/> (common industry mask classes) |
 | `record_mask_text_selector` | CSS selector for elements that will have their text contents masked. | `"*"` |
+| `record_max_ms` | Maximum length of a single replay in milliseconds. Up to 24 hours is supported. Once a replay has reached the maximum length, a new one will begin. | `86400000`<br/>(24 hours) |
+| `record_sessions_percent` | Percentage of SDK initializations that will qualify for replay data capture. A value of "1" = 1%. | `0` |
 
 
 ### Recorder Methods
+
+We give our customers full control to customize when and where they capture session replays.
 
 #### Start capturing replay data
 
@@ -415,6 +424,20 @@ mixpanel.stop_session_recording()
 ```
 This will have no effect if there is no replay data collection in progress.
 
+#### Example Scenarios
+
+| Scenario | Guidance | 
+| --- | --- |
+| We have a sensitive screen we don't want to capture | When user is about to access the sensitive screen, call `mixpanel.stop_session_recording()`. To resume recording once they leave this screen, you can resume recording with `mixpanel.start_session_recording()`  | 
+| We only want to record certain types of users (e.g. Free plan users only) | Using your application code, determine if current user meets the criteria of users you wish to capture. If they do, then call `mixpanel.start_session_recording()` to force recording on |
+| We only want to users utilizing certain features | When user is about to access the feature you wish to capture replays for, call `mixpanel.start_session_recording()` to force recording on |
+
+
+### Tips & Tricks While Implementing
+- Search for Session Recording Checkpoint events in your project, tracked as `$mp_session_record`. When you capture Mixpanel session replays, the SDK will automatically emit this default event. If you've implemented correctly, you should see these events appear. 
+- Calling `mixpanel.start_session_recording()` in your website / application is a good test to see if it causes Session Recording Checkpoint event mentioned above to appear. If it does, and you're still struggling to find replays for Users and Reports, your sampling rate may not be working, or may be set too low.
+- If you're still struggling to implement, [submit a request to our Support team](https://mixpanel.com/get-support) for more assistance.
+
 ### Privacy
 
 #### User Data
@@ -424,9 +447,6 @@ Along with other data, the SDK respects all Do Not Track (DNT) settings as well 
 
 #### Retention
 User replays are stored for 30 days after the time of ingestion. There is no way to view a replay older than 30 days old.
-
-#### Data Residency
-EU residency is not supported yet, check back soon!
 
 ## Release History
 [See All Releases](https://github.com/mixpanel/mixpanel-js/releases).

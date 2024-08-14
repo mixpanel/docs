@@ -1,6 +1,7 @@
 export const dataItems = {
     'javascript': `Javascript`,
     'python': `Python`,
+    'php': `PHP`,
     'node': `Node`,
     'go': `Go`,
     'ruby': `Ruby`,
@@ -24,6 +25,7 @@ export const dwhItems = {
 export const mirrorItems = {
     'bigquery': 'BigQuery',
     'snowflake': 'Snowflake',
+    'databricks': 'Databricks',
 }
 
 export const KapaEventNames = {

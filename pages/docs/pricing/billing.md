@@ -11,7 +11,7 @@ An event is a data point that represents an interaction between a user and your 
 - Media: Video Watched, Article Read
 - SaaS: Document Created, Call Started
 
-To decide which Mixpanel plan is right for you, first think about [what events you want to track](https://docs.mixpanel.com/docs/quickstart/what-to-track) and the number of active users you have.
+To decide which Mixpanel plan is right for you, first think about [what events you want to track](/docs/quickstart/what-to-track) and the number of active users you have.
 
 ### Computed Monthly Across Projects
 
@@ -52,7 +52,7 @@ From here, you can quickly view this billing period’s usage on the right side 
 
 The Group Analytics add-on allows behavioral analysis from a business or group level, as opposed to an individual level. 
 
-Check [here](https://docs.mixpanel.com/docs/data-structure/advanced/group-analytics) the technical documentation for Group Analytics, keeping in mind that implementing this feature is not trivial and includes sending your events with the key of the [group they](https://docs.mixpanel.com/docs/data-structure/advanced/group-analytics#group-keys-tracked-as-event-properties) belong to. Group Analytics **can’t be implemented retroactively** for already ingested events.
+Check [here](/docs/data-structure/advanced/group-analytics) for the technical documentation for Group Analytics, keeping in mind that implementing this feature is not trivial and includes sending your events with the key of the [group](/docs/data-structure/advanced/group-analytics#group-keys-tracked-as-event-properties) they belong to. Group Analytics **can’t be implemented retroactively** for already ingested events.
 
 This is a recommended feature for all B2B products that want answers to questions such as:
 
@@ -62,10 +62,10 @@ This is a recommended feature for all B2B products that want answers to question
 
 ### Data Pipelines Add-On
 
-The Data Pipelines Add-On exports the events in your Mixpanel project to a cloud storage bucket or data warehouse of your choice. It's useful if you want to analyze Mixpanel events using SQL in your own environment. We offer a 30-day free trial of this feature, see the [FAQ](https://docs.mixpanel.com/docs/data-pipelines/overview#how-does-the-free-trial-work) on how to enable it.
+The Data Pipelines Add-On exports the events in your Mixpanel project to a cloud storage bucket or data warehouse of your choice. It's useful if you want to analyze Mixpanel events using SQL in your own environment. We offer a 30-day free trial of this feature, see the [FAQ](/docs/data-pipelines/overview#how-does-the-free-trial-work) on how to enable it.
 
 ## Reverse Trial (Beta)
-When you sign up for Mixpanel, your organization is automatically enrolled in a 30-day free trial of our paid Growth plan, including our [Group Analytics and Data Pipeline add-ons](https://docs.mixpanel.com/docs/pricing/billing), with unlimited events.
+When you sign up for Mixpanel, your organization is automatically enrolled in a 30-day free trial of our paid Growth plan, including our [Group Analytics and Data Pipeline add-ons](/docs/pricing/billing), with unlimited events.
 
 This provides your organization with the opportunity to explore the paid functionality of Mixpanel, while also sending as many events as you need at no charge for 30 days.
 
@@ -155,11 +155,11 @@ To submit a downgrade request:
 
 ### How do I reduce my Mixpanel bill?
 
-The best way to reduce your bill is to send fewer events to Mixpanel. Check your project’s [Lexicon](https://docs.mixpanel.com/docs/data-governance/lexicon#viewing-query-volumes-for-events-and-properties) for events you are not querying, or for events with few queries and a high volume not providing value.
+The best way to reduce your bill is to send fewer events to Mixpanel. Check your project’s [Lexicon](/docs/data-governance/lexicon#viewing-query-volumes-for-events-and-properties) for events you are not querying, or for events with few queries and a high volume not providing value.
 
 You can also check the top events contributing towards your event count by creating a monthly Insights report querying “All Events” with a breakdown by “Event Name” ([example](https://mixpanel.com/project/3018488/view/3536632/app/insights#J1ZGYyVkWKpK)).
 
-[Hiding events](https://docs.mixpanel.com/docs/data-governance/lexicon#hide-events-and-properties) in Lexicon won’t stop their ingestion. [Dropping an event](https://docs.mixpanel.com/docs/data-governance/lexicon#dropping-events) in Lexicon will only block its ingestion from the moment it was dropped, not removing it retroactively.
+[Hiding events](/docs/data-governance/lexicon#hide-events-and-properties) in Lexicon won’t stop their ingestion. [Dropping an event](/docs/data-governance/lexicon#dropping-events) in Lexicon will only block its ingestion from the moment it was dropped, not removing it retroactively.
 
 ### What if I go over my event plan allowance? Can I set a billing limit?
 
@@ -189,7 +189,6 @@ We will only apply charges to event data points with timestamps within the curre
 
 ### I am using the Warehouse add-on for ingesting data. How does this impact billing? 
 
-From the Mixpanel perspective, the warehouse is just another source of data. Warehouse data, similar to other sources, is billed in accordance with general Mixpanel pricing policies. 
+New events imported through a warehouse connection are treated as any other source (same as importing through our SDKs or API directly). Warehouse data, similar to other sources, is billed in accordance with general Mixpanel pricing policies. 
 
-There is one additional field you will see in the Billing Page on your Data Usage Table called "Updates". Updates (updating an existing event or deleting an event) are generated by Mirror type syncs and are tracked separately from event volume. Each update is counted as one event towards billing. You can read more about these updates and how warehouse connectors may affect billing from the warehouse perspective [here](https://docs.mixpanel.com/docs/tracking-methods/data-warehouse#faq)
-
+There is one additional field you will see in the Billing Page on your Data Usage Table called "Updates". Updates (updating an existing event or deleting an event) are generated by Mirror-type syncs and are tracked separately from event volume. Each update is counted as one event towards billing and they are counted and billed for the month they were triggered on, even if the record being updated is for a previous month. You can read more about these updates and how warehouse connectors may affect billing from the warehouse perspective [here](/docs/tracking-methods/data-warehouse#faq)

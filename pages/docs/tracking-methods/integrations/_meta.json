@@ -9,11 +9,7 @@
   "freshpaint": "Freshpaint",
   "google-cloud-storage": "Google Cloud Storage",
   "google-pubsub": "Google Pubsub",
-  "google-sheets": {
-    "title": "Google Sheets ↗",
-    "href": "https://workspace.google.com/marketplace/app/sheets_%E2%87%94_mixpanel/1078767167468",
-    "newWindow": true
-  },
+  "google-sheets": "Google Sheets",
   "google-tag-manager": "Google Tag Manager",
   "launchdarkly": "LaunchDarkly",
   "mparticle": "mParticle",

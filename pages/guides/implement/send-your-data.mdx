@@ -23,13 +23,16 @@ When it comes to deciding which ingestion approach to use, there are no fixed ru
 Here are the key considerations that would guide you along in choosing the right approach as we go through each one:
 
 - **Source of Truth**: Does your company have data that is considered the *"source of truth"* when it comes to business reporting?
-- **Data Tools**: Do you use any existing Event Streaming, Customer Data Platform (CDP), or Reverse ETL tools?
+- **Data Tools**: Do you use any existing Event Streaming, Customer Data Platform (CDP), or Data Warehouse?
 - **Clickstream Data**: Are you already collecting any clickstream data, and if not, do you have the ability to collect them?
 - **Development Team**: What available development resources does your company have to implement the ingestion approaches?
 
-It is important to choose an ingestion method that fits your current needs and available resources, at the same time, factoring for some flexibility in scaling your approach as your product evolves. Most of our customers tend to start with the simplest approach of using our SDKs and slowly migrate to more complex architectures like CDPs or Reverse ETLs.
+It is important to choose an ingestion method that fits your current needs and available resources, at the same time, factoring for some flexibility in scaling your approach as your product evolves. Most of our customers tend to start with the simplest approach of using our SDKs and slowly migrate to more complex architectures like CDPs or Data Warehouses.
 
-This table provides a quick overview of the different approaches
+This table provides a quick overview of the different approaches:
+- Speed: Easiest way to start collecting data
+- Scale: Long-term view of being able to scale data collection as product changes
+- Quality: Accurate, clean, and completeness of data collected
 
 ![image](/tutorials/data-collection-maturity-matrix.png "Data Collection Maturity Matrix")
 
@@ -44,7 +47,7 @@ In general, we recommend utilizing Client-Side SDKs if you have limited developm
   <iframe src="https://www.youtube.com/embed/FL7wGgfTVoo?rel=0" title="Implement Via Client-Side SDK" frameborder="0" webkitallowfullscreen="true" mozallowfullscreen="true" allowFullScreen style={{position: 'absolute', top: 0, left: 0, width: '100%', height: '100%'}}></iframe>
 </p>
 
-Alternatively, you may want to consider using Server-Side SDKs, which are not susceptible to ad blockers, and provide more consistency when tracking users across platforms. It does require some custom code to track your anonymous (non-logged in) users.
+Alternatively, you may want to consider using Server-Side SDKs, which are not susceptible to ad blockers, and provide more consistency when tracking users across platforms. It does require some custom code to track your anonymous (non-logged in) users. Do refer to our documentation for [Server-Side Best Practices](/docs/tracking-best-practices/server-side-best-practices).
 
 <br />
 <p style={{ position: 'relative', paddingBottom: '56.25%', height: 0, overflow: 'hidden' }}>
@@ -55,7 +58,7 @@ As an in-between, consider client-side tracking via a proxy. This will help [red
 
 A full list of Mixpanel SDKs can be found in our [documentation](/docs/tracking-methods/choosing-the-right-method).
 
-### Client Data Platforms (CDP)
+### Customer Data Platforms (CDP)
 
 If you currently utitilise a Customer Data Platform (eg mParticle, Rudderstack, Segment), you can also use this to send your data to Mixpanel. If you're switching to Mixpanel from another analytics tool, CDPs will also allow you to easily migrate your historical data into Mixpanel.
 
@@ -66,9 +69,10 @@ If you currently utitilise a Customer Data Platform (eg mParticle, Rudderstack, 
 
 Please refer to the documentation by your respective CDP provider for more information on how to connect your data to Mixpanel.
 
-### Reverse ETL: Data Warehouse
+### Data Warehouses
 
-If your data is already stored in a data warehouse, our [Warehouse Sync](/docs/tracking-methods/data-warehouse/overview) allows you to import [events](/docs/tracking-methods/data-warehouse/sending-events), [user profiles](/docs/tracking-methods/data-warehouse/sending-user-profiles), and [group profiles](/docs/tracking-methods/data-warehouse/sending-group-profiles) into your Mixpanel project via recurring syncs to ensure that your data in Mixpanel matches your trusted data source.
+If your data is already stored in a data warehouse, our [Warehouse Connectors](/docs/tracking-methods/data-warehouse) allows you to import different [Table Types](/docs/tracking-methods/data-warehouse#table-types) that map to Events, User Profiles, Group Profiles, and Lookup Tables 
+in your Mixpanel project. It also provides various [Sync Modes](/docs/tracking-methods/data-warehouse#sync-modes) such as Mirror, Append, Full, and One-Time syncs to ensure that your data in Mixpanel matches your trusted data source.
 
 <br />
 <p style={{ position: 'relative', paddingBottom: '56.25%', height: 0, overflow: 'hidden' }}>

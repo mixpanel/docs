@@ -9,7 +9,7 @@ updatedAt: "2023-09-26T21:06:37.368Z"
 [block:callout]
 {
   "type": "info",
-  "body": "The $identify event payload is only useful for projects using the Original ID Merge system; it has no functionality in other ID management systems. Please review [this section of our documentation](https://docs.mixpanel.com/docs/tracking-methods/id-management/identifying-users#simplified-vs-original-id-merge) for more information."
+  "body": "The $identify event payload is only useful for projects using the Original ID Merge system; it has no functionality in other ID management systems. Please review [this section of our documentation](https://docs.mixpanel.com/docs/tracking-methods/id-management/identity-management#identity-merge-apis) for more information."
 }
 [/block]
 
@@ -28,8 +28,8 @@ curl --request POST \
      --data 'data={
       "event": "$identify",
       "properties": {
-          "$identified_id": "ORIGINAL_ID",
-          "$anon_id": "NEW_ID",
+          "$identified_id": "YOUR_CHOSEN_USER_ID",
+          "$anon_id": "ORIGINAL_ANON_ID",
           "token": "YOUR_PROJECT_TOKEN"
       }
 }
