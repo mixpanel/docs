@@ -79,7 +79,7 @@ The Organizations are now linked. The Linked Organization will now follow the SS
 
 ### 4. (Optional) Transfer Existing Domains
 
-Once your organizations are linked, you can then transfer any domains you might have claimed from the Linked Organization to the Admin Organization. Go to domain claiming on the linked organization and click the “Transfer domain” button for all the domains you want to transfer.
+Once your organizations are linked, you can then transfer any domains you might have claimed from the Linked Organization to the Admin Organization. Go to domain claiming on the Linked Organization and click the “Transfer domain” button for all the domains you want to transfer.
 
 ![SSO Domain Transfer Image](/sso_domain_transfer_image.png)
 
