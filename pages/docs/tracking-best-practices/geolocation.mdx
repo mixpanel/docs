@@ -93,6 +93,7 @@ You can manually define the country, city, and region geolocation properties in 
 If you have access to Latitude and Longitude information, you can specify `$latitude` and `$longitude` in the payload so that Mixpanel will use these properties (instead of the IP address) to infer the closest city. 
 
 **Example Event**
+
 On events, the event properties must be named `$latitude` and `$longitude` and the values should be in floating point decimal degrees.
 ```
 {
@@ -106,7 +107,7 @@ On events, the event properties must be named `$latitude` and `$longitude` and t
 }
 ```
 
-**User Profiles**
+**Example Profile**
 
 On user profile updates, the data must be named `$latitude` and `$longitude` and the values should be in floating point decimal degrees.
 
