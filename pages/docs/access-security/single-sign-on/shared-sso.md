@@ -77,7 +77,13 @@ Then complete the linking by entering the linking code in the Organization to be
 
 The Organizations are now linked. The Linked Organization will now follow the SSO settings and claimed domains from the Admin Org.
 
-### 4. (Optional) Set up [SCIM](/docs/access-security/single-sign-on/overview#scim)
+### 4. (Optional) Transfer Existing Domains
+
+Once your organizations are linked, you can then transfer any domains you might have claimed from the Linked Organization to the Admin Organization. Go to domain claiming on the Linked Organization and click the “Transfer domain” button for all the domains you want to transfer.
+
+![SSO Domain Transfer Image](/sso_domain_transfer_image.png)
+
+### 5. (Optional) Set up [SCIM](/docs/access-security/single-sign-on/overview#scim)
 
 The configurable "SCIM Name" for the Linked Organization must match a group in your IDP. Members of the matching group will be added to the Linked Organization.
 
