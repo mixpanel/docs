@@ -39,7 +39,7 @@ In summary, here is the order of operations:
 6. The payload which includes the geolocation properties without the IP address enters the queue for ingestion into the project.
 
 <Callout type="info">
-    IP address is an approximation of location. For more granular precision, [set your location using latitude and longitude](/docs/tracking-best-practices/geolocation#define-latitude-and-longitude).
+    IP address is an approximation of location. For more granular precision, [set your location using latitude and longitude](/docs/tracking-best-practices/geolocation#ignore-ip-address).
 </Callout>
   
 ## Manual Geolocation Tracking
@@ -194,3 +194,15 @@ You can set append `ip=0` to your request URL to set $ip to 0 for all your Engag
 ```
 api.mixpanel.com/engage?verbose=1&ip=0
 ```
+
+## FAQ
+
+**1. Why is my user's profile geolocation different from the geolocation of their events?**
+
+Profile geolocation properties and event geolocation properties are set at different times. Profile geolocation is updated to every time profile properties are set, and event geolocation are parsed at the time the event is tracked. For this reason the geolocation of the profile may not necessarily match with all of the events by that same user.
+
+For example, your user may login to your app in the US which sets the profile geolocation to the US. Then they may travel to Germany and track many events using your app without updating any profile properties since they are already logged in. In this case, we will see some events stemming from Germany despite the user profile location being in the US.
+
+**2. I know for a fact that one of my user is located in a certain country, but they are appearing in an entirely different continent in Mixpanel. What's wrong?**
+
+This can happen for a variety of reasons. Some users may have privacy settings or VPNs that masks their true location. Mixpanel uses the IP address of the request for geolocation parsing so if a user is masking their location, we would have no way of distinguishing it. If you know the geolocation of your users, consider [manually defining the geolocation properties in your data](/docs/tracking-best-practices/geolocation#manual-geolocation-tracking).
