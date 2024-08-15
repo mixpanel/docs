@@ -5,5 +5,6 @@
     "geolocation": "Geolocation",
     "hot-shard-limits": "Hot Shard Limits",
     "server-side-best-practices":"Server-side Best Practices",
-    "tracking-plan": "Tracking Plan"
+    "tracking-plan": "Tracking Plan",
+    "traffic-attribution": "Traffic Attribution"
 }
