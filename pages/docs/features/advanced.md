@@ -745,31 +745,3 @@ It is possible (only in the Funnels report) to download "CSV Trends", which down
 #### Retention Download Menu
 
 ![image](/Retention-export.png)
-
-## Undefined and Null Properties
-
-There are several reasons why you might see "undefined" in your properties list throughout Mixpanel reports when segmenting:
-
-- ***The specific property you’re segmenting by isn’t always sent along with the event you’re analyzing.*** For example, let’s say you’re segmenting the event “App Open” by the property “Account type” If there are instances where App Open fires without the Account type property getting sent with it, these will be categorized as “undefined” when you segment by Account type. Another common example is UTM parameters - “undefined” represents users who fired an event without any UTM in the URL that brought the user to your site.
-- When segmenting an event by a User Profile property, ***you’ll see “undefined” if there are User Profile profiles that don’t contain that property or if the event was triggered by a user without a User Profile at all.*** For example, let’s say you’re segmenting the event “Song Play” by the User Profile property “Favorite Genre.” If there are profiles that have triggered Song Play but don’t have the Favorite Genre property, that value will be “undefined.” Triggers of Song Play by users without a User Profile will also show up under “undefined.”
-- ***For geolocation data (City, Region, Country), the user’s IP couldn’t be mapped to a location, or their IP was not included with the request.*** For JavaScript implementations, City, Region, and Country are [default properties](/docs/data-structure/property-reference#default-properties). However, if the IP address of the user is not in Mixpanel’s geolocation database and can’t be mapped to a city, region, or country, they will be “undefined” in reports. For server-side implementations, City, Region, and Country can be “undefined” if the IP address is not included with the request. [Read more about how Mixpanel maps IP to location.](/docs/data-structure/property-reference#ingestion-apis)
-
-### Remove “undefined” & "null" values from reports
-
-If you don’t want to see “undefined” or "null" values in your report, you can remove them by:
-
-1. Unchecking the “undefined/null” box in the visualization legend.
-2. Looking only at instances where the property in question “is set" - this will exclude values where you see "undefined" or "null":
-
-![image](https://github.com/mixpanel/docs/assets/2077899/1a2465e1-da8d-4fe4-937a-5753716129b3)
-
-3. Directly exclude undefined or null values from an Insights visualization by hitting the exclude action:
-
-![image](https://github.com/mixpanel/docs/assets/2077899/4d010827-cc4e-4a11-9716-cd3bfbaebadd)
-
-
-### Troubleshooting Tips
-
-If you’re getting “undefined” property values but think you should not be, troubleshoot the issue using the Events page. Click on "Filter" in the top left to look at events coming in where the property in question “is not set.” You can then use this data to look at your code and figure out why some events are being fired without that property.
-
-![image](https://github.com/mixpanel/docs/assets/2077899/c028c2b1-160d-4c0b-ba9a-87b74aba9c42)
