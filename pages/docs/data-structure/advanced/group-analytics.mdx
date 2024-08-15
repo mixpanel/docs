@@ -8,7 +8,7 @@ Historically, Mixpanel grouped events by a single identifier called the distinct
 
 Group Analytics is available as an add-on package to customers on [Growth](https://mixpanel.com/pricing/) and [Enterprise plans](https://mixpanel.com/pricing/).
 
-Customers on the Growth plan can buy this add-on [online](https://mixpanel.com/pricing/), while customers on the Enterprise plans can reach out to their Customer Success Manager or the [Mixpanel Sales Team](https://mixpanel.com/contact-us/sales/). Online plans allow up to 6 group keys. Enterprise customers can choose between 3 or 6 group keys. Each group can have a total 1M profiles.
+Customers on the Growth plan can buy this add-on [online](https://mixpanel.com/pricing/), while customers on the Enterprise plans can reach out to their Customer Success Manager or the [Mixpanel Sales Team](https://mixpanel.com/contact-us/sales/). Online plans allow up to 6 group keys. Enterprise customers can choose between 3 or 6 group keys. Each group key can have a total of 1M group profiles (see [Limits and Caveats](/docs/data-structure/advanced/group-analytics#limits-and-caveats)).
 
 <div
   style={{
@@ -50,9 +50,9 @@ Much like a [user profile](/docs/data-structure/user-profiles), Group Profiles 
 
 Group Profiles have an activity feed that shows the events performed by users in a group. Only the events attributed to the group with a defined group key will appear in the group's activity feed.
 
-The Group Profile also displays the properties unique to that group - here's an [example](https://mixpanel.com/report/2195193/view/139237/profile#distinct_id=company_id_199&data_group_id=3983652220450539808&) of it:
+The Group Profile also displays the properties unique to that group - here's an [example](https://mixpanel.com/project/3187769/view/3699049/app/profile#distinct_id=company_id_8889&data_group_id=-1405123841946871899) of it:
 
-![/Screen_Shot_2022-06-22_at_5.41.07_PM.png](/Screen_Shot_2022-06-22_at_5.41.07_PM.png)
+![image](/group-profile-example.png "Group Profile Example")
 
 To access a group profile:
 
@@ -92,9 +92,9 @@ Establish the group identifier with an event property as the Group Key, where th
 
 Group keys are project specific, and the group key must be set up before group data is sent.
 
-To administer group keys, navigate to your Project Settings. Click **+Add Group Key** under the *GROUP KEYS* section.
+To administer group keys, navigate to your Project Settings. Click **+Add Group Key** under the *Group Keys* section.
 
-![/Screen_Shot_2022-06-22_at_5.21.06_PM.png](/Screen_Shot_2022-06-22_at_5.21.06_PM.png)
+![image](/add-group-key.png "Add Group Key")
 
 Enter an event property to attribute the group key to. You can also enter a display name for the group key. Click **Save**.
 
@@ -102,7 +102,7 @@ Enter an event property to attribute the group key to. You can also enter a disp
 
 ### Group Keys Tracked as Event Properties
 
-**Group keys must be event properties.** All events need to have a defined group key on them in order to be attributed to a group.
+**Group keys must be event properties.** All events need to have a defined group key on them in order to be attributed to a group. Property names and values are case-sensitive so be sure to track the group key on your events exactly as you've established them in Project Settings. 
 
 **Note:** Mixpanel does not backfill historical data to groups before the group key was implemented. This means that Mixpanel is only able to attribute group data from the date that the group key was set up in your Project Settings. Historical events that contain the group key as an event property sent prior to the implementation of the group key in Project Settings will not be attributed to a group.
 
@@ -140,7 +140,7 @@ To view the setup guides for implementing Groups using the Groups API, follow th
 
 ### Upload Group Profiles Using the Users Report
 
-It is possible to create Group Profiles by CSV upload as an alternative to the Groups API. [Follow the instructions here to learn how to upload Group Profiles using the Users report](/docs/users/overview#advanced).
+It is possible to create Group Profiles by CSV upload as an alternative to the Groups API. [Follow the instructions here to learn how to upload Group Profiles using the Users report](/docs/data-structure/user-profiles#importing-from-csv).
 
 ### Add Group Key to User's Profile
 
@@ -150,8 +150,44 @@ This relationship is one-way, meaning that you cannot use user profile propertie
 
 Because a user can be part of multiple groups within a group key, set the value of the user property as a list of string values, i.e., `"company_id": ["1", "2"]`
 
-## Limits and Caveats
+## FAQ
 
-Maximum number of group profiles that may be tracked: 1M profiles. When exceeding this limit, queries that use group properties may fail due to size of the group table.
+### Limits
 
-No single group identifier (e.g. company_id), can have more than 1M events/day. When a particular group identifier has more events than this limit, query performance will suffer and sometimes fail.
+The limits below ensure group analytics works correctly in Mixpanel:
+- 1M group profiles per group key (e.g. company_id)
+- 1M events per day per group identifier (e.g. company_id = "Mixpanel") - see [Hot Shard Limits](/docs/tracking-best-practices/hot-shard-limits)
+
+### Events Missing from Groups
+The group key property must be present as an event property on an event in order to attribute them to a group profile.
+
+Having the group key present as a user profile property does not automatically attribute the events by that user to the group.
+
+Mixpanel does not backfill historical data to groups before the group key was implemented. This means that Mixpanel is only able to attribute group data from the date that the group key was set up in your Project Settings. Historical events that contain the group key as an event property sent prior to the implementation of the group key in Project Settings will not be attributed to a group.
+
+### Group Analysis in Reports
+Group properties are supported when analyzing by users, but user properties are not supported when analyzing by groups.
+
+### Exporting Group Profiles via API
+Use the [Engage API endpoint](https://developer.mixpanel.com/reference/engage-query) to export Group Profiles by adding `data_group_id` in the `data` param of the request.
+
+```
+curl --request POST \
+  --url https://eu.mixpanel.com/api/2.0/engage \
+  --header 'Authorization: Basic <redacted>' \
+  --header 'Content-Type: application/x-www-form-urlencoded' \
+  --data 'filter_by_cohort={"id": <cohort_id_here>}' \
+  --data data_group_id=<data_group_id_here>
+```
+
+The `<data_group_id>` for the respective group key's profile can be found under Group Keys within Project Settings:
+
+![image](/data-group-id.png "Data Group ID")
+
+Alternatively, the `<data_group_id>` can also be seen as part of the URL of the [Group Profile](/docs/data-structure/advanced/group-analytics#group-profiles) page:
+
+`https://mixpanel.com/project/<project_id>/view/<workspace_id>/app/profile#distinct_id=<distinct_id>&data_group_id=<data_group_id>`
+
+Here's an actual [example](https://mixpanel.com/project/3187769/view/3699049/app/profile#distinct_id=company_id_8889&data_group_id=-1405123841946871899) with `data_group_id` = `-1405123841946871899`: 
+
+![image](/engage-api-data-group-id.png "Engage API Data Group ID")

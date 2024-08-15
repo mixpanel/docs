@@ -1,6 +1,7 @@
 export const dataItems = {
     'javascript': `Javascript`,
     'python': `Python`,
+    'php': `PHP`,
     'node': `Node`,
     'go': `Go`,
     'ruby': `Ruby`,
@@ -12,4 +13,35 @@ export const dataItems = {
     'android': `Android`,
     'unity': `Unity`,
     'httpapi': `HTTP API`,
+}
+
+export const dwhItems = {
+    'bigquery': 'BigQuery',
+    'snowflake': 'Snowflake',
+    'databricks': 'Databricks',
+    'redshift': 'Redshift',
+}
+
+export const mirrorItems = {
+    'bigquery': 'BigQuery',
+    'snowflake': 'Snowflake',
+    'databricks': 'Databricks',
+}
+
+export const KapaEventNames = {
+    OnModalOpen: `onModalOpen`,
+    OnModalClose: `onModalClose`,
+    onAskAIQuerySubmit : `onAskAIQuerySubmit`,
+    onAskAIExampleQuerySubmit : `onAskAIExampleQuerySubmit`,
+    onAskAIAnswerCompleted : `onAskAIAnswerCompleted`,
+    onAskAIFeedbackSubmit : `onAskAIFeedbackSubmit`,
+    onAskAILinkClick : `onAskAILinkClick`,
+    onAskAISourceClick : `onAskAISourceClick`,
+    onAskAIAnswerCopy : `onAskAIAnswerCopy`,
+    onAskAIGenerationStop : `onAskAIGenerationStop`,
+    onAskAIConversationReset : `onAskAIConversationReset`,
+    onModeSwitch : `onModeSwitch`,
+    onSearchResultsCompleted : `onSearchResultsCompleted`,
+    onSearchResultsShowMoreClick : `onSearchResultsShowMoreClick`,
+    onSearchResultClick : `onSearchResultClick`,
 }

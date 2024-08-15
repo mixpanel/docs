@@ -56,7 +56,7 @@ We also support additional data for extending your use cases with Mixpanel:
 
 ### ID Management Differences
 
-Mixpanel supports stitching user behaviour pre-login (e.g. traffic from your website, docs, blog) and post-login (once the user has signed up). This helps answer questions like:
+Mixpanel supports stitching user behavior pre-login (e.g. traffic from your website, docs, blog) and post-login (once the user has signed up). This helps answer questions like:
 
 - What % of site visitors end signing up?
 - How much of my Purchase revenue can I attribute to a particular campaign?
@@ -66,7 +66,7 @@ This system is called [ID Merge](/docs/tracking-methods/id-management/identifyin
 
 ![image](/simplified_id_merge_example.png)
 
-Anonymous users on Flurry are also identified based on their device IDs. Similarly, users can be identified using the Flurry.setUserId method to capture the user ID. The key difference here is though: Flurry does not support the stitching of user behaviour pre-login and post. That means in the Charlie example above, we will not be able to match Charlie across the Android or iOS devices. [User IDs are set as user properties only in Flurry on the device level](https://developer.yahoo.com/flurry/docs/analytics/rdd/), and [not applied to multiple devices](https://developer.yahoo.com/flurry/docs/analytics/userproperties/#:~:text=Flurry%20User%20Properties%20are%20captured,devices%20with%20the%20same%20UserID). As a consequence, it can be difficult to do user data reconciliation between Mixpanel and Flurry because users may be overstated on Flurry. 
+Anonymous users on Flurry are also identified based on their device IDs. Similarly, users can be identified using the Flurry.setUserId method to capture the user ID. The key difference here is though: Flurry does not support the stitching of user behavior pre-login and post. That means in the Charlie example above, we will not be able to match Charlie across the Android or iOS devices. [User IDs are set as user properties only in Flurry on the device level](https://developer.yahoo.com/flurry/docs/analytics/rdd/), and [not applied to multiple devices](https://developer.yahoo.com/flurry/docs/analytics/userproperties/#:~:text=Flurry%20User%20Properties%20are%20captured,devices%20with%20the%20same%20UserID). As a consequence, it can be difficult to do user data reconciliation between Mixpanel and Flurry because users may be overstated on Flurry. 
 
 ### Data Capture Differences
 
@@ -231,7 +231,7 @@ Once you’ve migrated your data have started to enable end users on Mixpanel, t
 
 After you’ve successfully migrated both your tracking and end users over to Mixpanel, we recommend you focus on longer term goals like:
 
-- Improving Data Governance → Creating scaleable processes and strategies for managing data at scale
+- Improving Data Governance → Creating scalable processes and strategies for managing data at scale
 - Optimizing Analysis → Helping end users analyze data for more use cases, faster via training and documentation
 - Building a Product Analytics Practice → Cultural change to be a self-serve, data democratized organization
 

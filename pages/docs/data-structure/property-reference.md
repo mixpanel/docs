@@ -9,17 +9,20 @@ Mixpanel has many Properties defined in its Data Model.
 | [Event Properties](/docs/data-structure/events-and-properties) | Event Properties describes the events that are tracked within your product. |
 | [Super Properties](/docs/tracking-methods/sdks/javascript#super-properties) | Super Properties are a logical term for global Event Properties that, after registration, are saved into the end user's device, and appended to every event from that device until persistence is cleared. This logical term is mostly applicable to our client-side libraries. |
 | [User Profile Properties](/docs/data-structure/user-profiles) | User Profile Properties describe your users (they typically store current demographical information). User profiles are joined to events based on [Distinct ID](/docs/tracking-methods/identifying-users#what-is-distinct-id). |
-| [Group Profile Properties](/docs/data-structure/advanced/group-analytics#group-profiles) | Group Profile Properties describe group level information (similar to User Profiles Properties at user level). With Mixpanel’s [Group Analytics](/docs/data-structure/advanced/group-analytics), multiple users can be grouped and behavioural data analysed at a customised group level (such as company, account). Group profiles are joined to events on your chosen [Group Key](/docs/data-structure/advanced/group-analytics#group-keys-tracked-as-event-properties). |
+| [Group Profile Properties](/docs/data-structure/advanced/group-analytics#group-profiles) | Group Profile Properties describe group level information (similar to User Profiles Properties at user level). With Mixpanel’s [Group Analytics](/docs/data-structure/advanced/group-analytics), multiple users can be grouped and behavioral data analysed at a customised group level (such as company, account). Group profiles are joined to events on your chosen [Group Key](/docs/data-structure/advanced/group-analytics#group-keys-tracked-as-event-properties). |
 | [Lookup Tables](/docs/data-structure/lookup-tables) | Lookup Tables allow you to dynamically extend additional properties mapped to an existing Event or User Property. For example, if you create a lookup table for "Songs" (that contains additional properties like `hash_tags`, `top_10`, `all_time_favorite`) and map it to an event property `song_id`; you can use these additional properties when doing filtering or breakdowns for events that has `song_id` as an event property. |
 | [Default Properties](/docs/data-structure/property-reference#default-properties) | Default Properties (for Events and User Profiles) are collected and populated with values automatically in Mixpanel. This can happen upon data ingestion or when using certain Mixpanel client-side SDKs. Typically, they have a dollar sign ($) or “mp\_” as prefix to distinguish them from normal properties. |
 | Reserved Properties | Mixpanel reserves certain property names (for [Events](/docs/data-structure/events-and-properties#reserved-event-properties) and [User Profiles](/docs/data-structure/user-profiles#reserved-user-properties)) for special use cases, and these may or may not be automatically populated with values. The purpose of such Reserved Properties are for processing (ie event time stamping) or for specific system features (eg: cohort exports). Examples: `time`, `$email`, `$phone`, `$name`, `$created`. |
  
 ## Default Properties
+
 Mixpanel's [Data Ingestion APIs](https://developer.mixpanel.com/reference/ingestion-api) and [Client-Side SDKs](/docs/tracking-methods/choosing-the-right-method#client-side-tracking) automatically collect certain properties on every event or user profile. Do also note that some Customer Data Platforms (CDPs) that integrate with Mixpanel may also map their own properties to Mixpanel default properties. This document describes what those properties mean.
 
 ### Ingestion APIs
 
-To disable capturing of geolocation properties (i.e. City, Region, Country) refer to the respective SDKs or API documentation. For a quick reference, refer to examples on [disabling geolocation on client-side SDKs](/docs/privacy/protecting-user-data#disabling-geolocation) and [server-side best practice on tracking geolocation](/docs/best-practices/server-side-best-practices#tracking-geolocation-http-api).
+Mixpanel’s ingestion APIs can collect user geolocation data (City, Region, Country) as properties if IP address is present. Our client-side SDKs by default pull the user’s IP address when sending data to our ingestion APIs. The IP address is then cross-referenced against a local copy of MaxMind’s ([third-party IP geolocator](https://www.maxmind.com)) GeoIP database to estimate geolocation data. Mixpanel does not store the IP address and is discarded once geolocation data is derived.
+
+To disable capturing of geolocation properties (i.e. City, Region, Country) refer to the respective SDKs or API documentation. For a quick reference, refer to examples on [disabling geolocation on client-side SDKs](/docs/privacy/protecting-user-data#disabling-geolocation) and [server-side best practice on tracking geolocation](/docs/best-practices/server-side-best-practices#tracking-geolocation-http-api). Note that there is currently no means to selectively disable one or two of the three geolocation properties.
 
 #### Event Properties
 
@@ -86,7 +89,7 @@ $referrer | Referrer | Referring URL including your own domain. Might not be pre
 | $model | Model | The model of the device. | ❌ | ✅ | ✅ | ✅ |
 | $watch_model	| Watch Model | The model of the iOS watch. | ❌ | ❌ | ✅ | ❌ |
 | $carrier | Carrier | Wireless carrier of the device owner. | ❌ | ✅ | ✅ | ❌ | 
-| $radio | Radio | Current [cellular network communication standard](https://www.objc.io/issues/5-ios7/iOS7-hidden-gems-and-workarounds/#know-your-radio)(opens in a new tab) (3G, 4G, LTE, etc). | ❌ | ✅ | ✅ | ✅ | 
+| $radio | Radio | Current [cellular network communication standard](https://www.objc.io/issues/5-ios7/iOS7-hidden-gems-and-workarounds/#know-your-radio)(opens in a new tab) (3G, 4G, LTE, etc). | ❌ | ❌ | ✅ | ✅ | 
 | $wifi | Wifi | Set to true if the user’s device has an active, available Wifi connection, false if not. | ❌ | ✅ | ✅ | ✅ | 
 | $bluetooth_enabled | Bluetooth | Set to true if Bluetooth is enabled, false if not. | ❌ | ✅ | ❌ | ❌ | 
 | $bluetooth_version | Bluetooth Version | Set to "none", "ble", or "classic". | ❌ | ✅ | ❌ | ❌ | 
@@ -152,14 +155,14 @@ Mixpanel supports five data types for properties: String, Numeric, Boolean, Date
 
 ### List
 
-- A list of values as a JSON array e.g Favourite Genres = ["Folk","Alternative"] or Favourite Numbers = [1,5,10.0]
+- A list of values as a JSON array e.g Favorite Genres = ["Folk","Alternative"] or Favorite Numbers = [1,5,10.0]
 - Limits of a List property: Event Property = 8KB, User Profile Property = 256KB
-- Each item in a list would be futher limited by their data type's limits; example: a list of strings would be limited by 255 bytes per string. Also refer to [List of Objects](/docs/data-structure/property-reference#list-of-objects) covered below.
+- Each item in a list would be further limited by their data type's limits; example: a list of strings would be limited by 255 bytes per string. Also refer to [List of Objects](/docs/data-structure/property-reference#list-of-objects) covered below.
 - Mixpanel lists are not ordered (i.e. position of values in a list are not significant in Mixpanel reports) and are useful for grouping or analysing similar values across events. Read more details on [List Property Support](/docs/features/advanced#list-property-support) in reports.
 
 ## Object and List of Objects Data Types
 
-Mixpanel also supports object and [list of objects](https://docs-git-kurbycchua-update-property-reference-mixpanel.vercel.app/docs/features/advanced#list-of-objects-property-support) data types in a limited capacity. These are typically for very specific use cases such as in e-commerce (eg Cart Items, Search Filters). It is highly encouraged that you use the five primary data types as they are fully supported in the Mixpanel UI.
+Mixpanel also supports object and [list of objects](/docs/features/advanced#list-of-objects-property-support) data types in a limited capacity. These are typically for very specific use cases such as in e-commerce (eg Cart Items, Search Filters). It is highly encouraged that you use the five primary data types as they are fully supported in the Mixpanel UI.
 
 ### Object
 

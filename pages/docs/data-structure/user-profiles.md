@@ -18,7 +18,7 @@ A user profile has a set of properties associated with a given user. Under the h
 | 456 | Bob | `bob@notion.so` | Product |
 | 789 | Carol | `carol@figma.com` | Design |
 
-User profiles are joined onto your events based on their **[Distinct ID](/docs/tracking-methods/id-management/identifying-users#what-is-distinct-id)** (Mixpanel's identifier for a user). This lets you join the events performed by a user with properties about who that user is. Thus, it's very important that you use the same Distinct ID for both the events and user profile for the same user.
+User profiles are joined onto your events based on their **[Distinct ID](/docs/tracking-methods/id-management/identity-management#distinct-id)** (Mixpanel's identifier for a user). This lets you join the events performed by a user with properties about who that user is. Thus, it's very important that you use the same Distinct ID for both the events and user profile for the same user.
 
 For more information about user profiles refer to the documentation on [The Mixpanel Data Model](/docs/tutorials/plan/tracking-strategy#the-mixpanel-data-model). 
 
@@ -26,11 +26,11 @@ For more information about user profiles refer to the documentation on [The Mixp
 
 ## Importing User Profiles via our API
 
-You can create or update User Profiles in similar ways you track events: from our [SDKs](/docs/tracking-methods/sdks/javascript#storing-user-profiles), via our [HTTP Engage API](https://developer.mixpanel.com/reference/profile-set), [Warehous Connectors](/docs/tracking-methods/data-warehouse/sending-user-profiles), or via our integrations partners.
+You can create or update User Profiles in similar ways you track events: from our [SDKs](/docs/tracking-methods/sdks/javascript#storing-user-profiles), via our [HTTP Engage API](https://developer.mixpanel.com/reference/profile-set), [Warehouse Connectors](/docs/tracking-methods/data-warehouse/sending-user-profiles), or via our integrations partners.
 
 We recommend tracking user profiles from as close as possible to the source of truth, which is usually your application database or your CRM. One typical approach (especially for [Server-Side Tracking](/docs/tracking-methods/choosing-the-right-method#server-side-tracking)) is to run an hourly or daily script on your servers that pull the list of user profiles from your database and pushes them to Mixpanel.
 
-Similarly for [Group Profiles](/docs/data-structure/advanced/group-analytics#group-profiles), they can be created or updated using our [SDKs](/docs/tracking-methods/sdks/javascript#creating-group-profiles), via our [HTTP Groups API](https://developer.mixpanel.com/reference/group-set-property), [Warehous Connectors](/docs/tracking-methods/data-warehouse/sending-group-profiles), or via our integration partners.
+Similarly for [Group Profiles](/docs/data-structure/advanced/group-analytics#group-profiles), they can be created or updated using our [SDKs](/docs/tracking-methods/sdks/javascript#creating-group-profiles), via our [HTTP Groups API](https://developer.mixpanel.com/reference/group-set-property), [Warehouse Connectors](/docs/tracking-methods/data-warehouse/sending-group-profiles), or via our integration partners.
 
 ### Operators
 
@@ -193,4 +193,4 @@ Mixpanel is 100% compatible with Segment; just follow Segment's best practices. 
 User Profiles are mutable, which means new ones can be added and existing ones can be updated or deleted. Mixpanel automatically maintains an "Updated at" (`$last_seen`) property, which contains the last timestamp that a user profile was updated. "Updated at" does not change if the user does a new event; it only changes when the profile is updated. "Updated at" also does not change for profile updates made via the UI or if the `$ignore_time` parameter is set to `true` (see example from [PHP SDK](/docs/tracking-methods/sdks/php#setting-profile-properties)).
 
 ### Where can I learn more about Group Profiles?
-You can get an overview of how Group Profiles relate to Mixpanel's Data Model under the section [Group Level Behaviours and Demographics](/docs/tutorials/plan/tracking-strategy#group-level-behaviours-and-demographics) in our tutorials. A more detailed explanation of [Group Profiles](/docs/data-structure/advanced/group-analytics#group-profiles) is documented under our [Group Analytics](/docs/data-structure/advanced/group-analytics) page.
+You can get an overview of how Group Profiles relate to Mixpanel's Data Model under the section [Group Level Behaviors and Demographics](/docs/tutorials/plan/tracking-strategy#group-level-behaviors-and-demographics) in our tutorials. A more detailed explanation of [Group Profiles](/docs/data-structure/advanced/group-analytics#group-profiles) is documented under our [Group Analytics](/docs/data-structure/advanced/group-analytics) page.

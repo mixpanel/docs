@@ -3,6 +3,13 @@
         "title": "Docs",
         "type": "page"
     },
+    "guides": {
+        "title": "Guides",
+        "type": "page",
+        "theme": {
+            "sidebar": true
+        }
+    },
     "changelogs": {
         "title": "Changelog",
         "type": "page",
@@ -14,12 +21,6 @@
         "title": "API Reference ↗",
         "type": "page",
         "href": "https://developer.mixpanel.com/reference",
-        "newWindow": true
-    },
-    "hire-an-expert": {
-        "title": "Hire an Expert ↗",
-        "type": "page",
-        "href": "https://mixpanel.com/partners/experts/matchmaking",
         "newWindow": true
     }
 }

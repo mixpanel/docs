@@ -2,7 +2,7 @@
 
 ## Overview
 
-Events are the core of [Mixpanel's Data Model](/docs/tutorials/plan/tracking-strategy#the-mixpanel-data-model). All events should have an **Event Name**, a **Timestamp** of when that event has occured, and a **[Distinct ID](/docs/tracking-methods/id-management/identifying-users#what-is-distinct-id)** (Mixpanel's identifier for a user) to tie all events belonging to the same user. Events can optionally have a set of properties, which describes the event in more detail.
+Events are the core of [Mixpanel's Data Model](/docs/tutorials/plan/tracking-strategy#the-mixpanel-data-model). All events should have an **Event Name**, a **Timestamp** of when that event has occurred, and a **[Distinct ID](/docs/tracking-methods/id-management/identity-management#distinct-id)** (Mixpanel's identifier for a user) to tie all events belonging to the same user. Events can optionally have a set of properties, which describes the event in more detail.
 
 * If you're familiar with databases, events are like tables and properties are like columns.
 * If you're familiar with Google Analytics, events are like hits and properties are like dimensions.
@@ -16,7 +16,7 @@ For more information about events refer to the documentation on [The Mixpanel Da
 * A `Page Viewed` event might have a property called `Page URL`, which is set to the URL of the page that was viewed.
 * A `Signed Up` event might have a property called `Signup Type`, which indicates whether the signup was `organic` vs `referral`.
 * A `Song Played` event might have a property called `Song Name`, which is set to the name of the song that was played.
-* A `Order Completed` event might have a property called `Items`, which is a list of objects, each of which contains details about an item, like its name, category, and price.
+* An `Order Completed` event might have a property called `Items`, which is a list of objects, each of which contains details about an item, like its name, category, and price.
 
 ## Use Cases
 
@@ -31,11 +31,11 @@ You can filter, breakdown, and aggregate your events by their properties to answ
 
 ### Keep Events as Actions
 
-We recommend striking the right balance when defining your events. Events should neither be too broad nor too specific, and should be defined at the level of how you plan to analyse the user's action or behaviour. Also keeping in mind to use event properties to provide context or details about an event, instead of creating different events to capture similar actions. 
+We recommend striking the right balance when defining your events. Events should neither be too broad nor too specific, and should be defined at the level of how you plan to analyse the user's action or behavior. Also keep in mind to use event properties to provide context or details about an event, instead of creating different events to capture similar actions. 
 
 **For example:**
 
-* If your goal is to analyse at high-level how users traverse through different pages: instead of tracking multiple events `Home Page Viewed` and `Pricing Page Viewed`, track a `Page Viewed` event with a `Page Name` property set to **"/home"** or **"/pricing"**. See [Tracking Page Views](/docs/tracking-methods/sdks/javascript#tracking-page-views) in our Javascript SDK documentation on how to instrument this.
+* If your goal is to analyze at high-level how users traverse through different pages: instead of tracking multiple events `Home Page Viewed` and `Pricing Page Viewed`, track a `Page Viewed` event with a `Page Name` property set to **"\/home"** or **"\/pricing"**. See [Tracking Page Views](/docs/tracking-methods/sdks/javascript#tracking-page-views) in our Javascript SDK documentation on how to instrument this.
 
 * If your goal is to track users adding items to a shopping cart: instead of tracking multiple events `Add Shirt to Cart`, `Add Hoodie to Cart`, and `Add Socks to Cart`, track a `Add to Cart` event with a `Item` property set to **"Shirt"**, or **"Hoodie"**, or **"Socks"**.
 
@@ -68,13 +68,13 @@ Mixpanel reserves certain event property names for special processing or for spe
 | **Raw Name** | **Display Name** | **Description** |
 | ------------ | ---------------- | --------------- |
 | token | - | The project's token when sending data via [/track API](https://developer.mixpanel.com/reference/track-event). Not visible via Mixpanel UI reports. |
-| ip | - | The `ip` event property is the value to be used for geo location parsing (i.e. `$city`, `$region`, and `mp_country_code`) if `ip` as param to the [/track endpoint](https://developer.mixpanel.com/reference/track-event) has **not been** set to 1. Our client-side libraries, by default, will set the `ip` param to 1 so geo location is parsed from the incoming request, but this can be disabled or, if you're implementing from the [server-side](/docs/best-practices/server-side-best-practices#tracking-geolocation-http-api), you can include the `ip` event property so it's parsed from it instead of the IP of the incoming request. The `ip` event property is not stored in Mixpanel. |
+| ip | - | The `ip` event property is the value to be used for [geo location parsing](/docs/data-structure/property-reference#ingestion-apis) (i.e. `$city`, `$region`, and `mp_country_code`) if `ip` as param to the [/track endpoint](https://developer.mixpanel.com/reference/track-event) has **not been** set to 1. Our client-side libraries, by default, will set the `ip` param to 1 so geo location is parsed from the incoming request, but this can be disabled or, if you're implementing from the [server-side](/docs/best-practices/server-side-best-practices#tracking-geolocation-http-api), you can include the `ip` event property so it's parsed from it instead of the IP of the incoming request. The `ip` event property is not stored in Mixpanel. |
 | $bucket / bucket | - | A reserved property that is hidden from the Mixpanel interface, and will cause other events to not appear in the interface. Do not name any property bucket or $bucket. |
 | $distinct_id / distinct_id | Distinct ID | Mixpanel's internal unique identifier for a user. See [Identifying Users](/docs/tracking-methods/id-management/identifying-users). |
-| $device_id | Device ID | In [Simplified ID Merge](/docs/tracking-methods/id-management/identifying-users#example-user-flows): unique identifier used to track a device while the user is in anynymous state. |
-| $user_id | User ID | In [Simplified ID Merge](/docs/tracking-methods/id-management/identifying-users#example-user-flows): unique identifier used to track a user across devices when user is in identified state. |
+| $device_id | Device ID | In [Simplified ID Merge](/docs/tracking-methods/id-management/identifying-users-simplified#example-user-flows): unique identifier used to track a device while the user is in anynymous state. |
+| $user_id | User ID | In [Simplified ID Merge](/docs/tracking-methods/id-management/identifying-users-simplified#example-user-flows): unique identifier used to track a user across devices when user is in identified state. |
 | $event_name | Event Name | Name of the tracked event used in the Mixpanel UI. |
-| $time / time | Time or Date | A unix time epoch that is used to determine the time of an event. If no time property is provided, we will use the time when the event arrives at our servers. |
+| $time / time | Time or Date | A unix time epoch that is used to determine the time of an event. Ingested as [`time`](https://developer.mixpanel.com/reference/import-events#propertiestime) property and indicated as `$time` in Mixpanel’s UI. If no `time` property is provided, we will use the time when the event arrives at our servers. |
 | $insert_id | Insert ID | A unique identifier for the event, used to deduplicate events that are accidentally sent multiple times. More details [here](https://developer.mixpanel.com/reference/import-events#propertiesinsert_id). |
 | $identified_id | Identified ID | In [Original ID Merge](/docs/tracking-methods/id-management/migrating-to-simplified-id-merge-system#on-original-id-merge): Internal Mixpanel property to track the identifier passed into the [`$identify`](https://developer.mixpanel.com/reference/create-identity) event. |
 | $anon_id | Anonymous ID | In [Original ID Merge](/docs/tracking-methods/id-management/migrating-to-simplified-id-merge-system#on-original-id-merge): Internal Mixpanel property to track the anonymous ID passed into the [`$identify`](https://developer.mixpanel.com/reference/create-identity) event. |
@@ -101,12 +101,12 @@ Mixpanel reserves certain event property names for special processing or for spe
 ## FAQ
 
 ### What types of data can I send as properties?
-Mixpanel accepts arbitrary JSON as properties, including strings, numbers, booleans, lists, and objects. See our [API docs](https://developer.mixpanel.com/reference/import-events) for more details.
+Mixpanel accepts arbitrary JSON as properties, including strings, numbers, booleans, lists, and objects. See our [Property Reference doc](https://docs.mixpanel.com/docs/data-structure/property-reference#supported-data-types) or our [API docs](https://developer.mixpanel.com/reference/import-events) for more details.
 
 ### What are the limits of events and properties?
 We don't have a limit on the total number of events you can send to Mixpanel, but it will factor into your [pricing](https://mixpanel.com/pricing).
 
-We have a soft limit of 2000 distinct event names in a 30 day window. If you send more event names, we'll still ingest them, but those event names will not be indexed and will not appear in our autocomplete menus.
+We have a soft limit of 5000 distinct event names. If you send more event names, we'll still ingest them, but those event names will not be indexed and will not appear in our autocomplete menus.
 
 Each event can have up to 2000 properties. Event property names can be at most 255 characters in length (longer names are truncated). Event property values are limited based on data type, refer to these limits under [Supported Data Types](/docs/data-structure/property-reference#supported-data-types).
 

@@ -99,8 +99,6 @@ mixpanel.identify("13791");
 ### Call Reset at Logout
 [reset](https://mixpanel.github.io/mixpanel-flutter/mixpanel_flutter/Mixpanel/reset.html)  generates a new random distinct_id and clears super properties. Call reset to clear data attributed to a user when that user logs out. This allows you to handle multiple users on a single device. For more information about maintaining user identity, see the [Identifying Users](/docs/tracking-methods/id-management/identifying-users) article article.
 
-Note: Calling reset frequently can lead to users quickly exceeding the 500 distinct_id per identity cluster limit. Once the 500 limit is reached you will no longer be able to add additional distinct_ids to the users identity cluster.
-
 ## Storing User Profiles
 
 In addition to events, you can store user profiles in Mixpanel's [Behavioral Analytics](https://mixpanel.com/people/) product. Profiles are persistent sets of properties that describe a user - things like name, email address, and signup date. You can use profiles to explore and segment users by who they are, rather than what they did.
@@ -143,28 +141,6 @@ mixpanel.getPeople().append("Favorite Colors", "Green");
 
 ### Other Types of Profile Updates
 There are a few other types of profile updates. They can be accessed through the [`People`](https://mixpanel.github.io/mixpanel-flutter/mixpanel_flutter/People-class.html)  class, which is accessible via [`mixpanel.getPeople()`](https://mixpanel.github.io/mixpanel-flutter/mixpanel_flutter/Mixpanel/getPeople.html).
-
-## Tracking Revenue
-
-Mixpanel makes it easy to analyze the revenue you make from individual customers. By associating charges with User Analytics profiles, you can compare revenue across different customer segments and calculate customer lifetime value.
-
-You can track a single transaction with [`mixpanel.getPeople().trackCharge`](https://mixpanel.github.io/mixpanel-flutter/mixpanel_flutter/People/trackCharge.html). This call will add transactions to the individual user profile, which will also be reflected in the Mixpanel Revenue report.
-
-```java
-// Make identify has been
-// called before making revenue updates
-mixpanel.identify("13793");
-
-// Tracks $100 in revenue for user 13793
-mixpanel.getPeople().trackCharge(100);
-
-// Refund this user 50 dollars
-mixpanel.getPeople().trackCharge(-50);
-
-// Tracks $25 in revenue for user 13793
-// on the 2nd of january
-mixpanel.getPeople().trackCharge(25, {"$time": "2012-01-02T00:00:00"});
-```
 
 ## Group Analytics
 Mixpanel Group Analytics is a paid add-on that allows behavioral data analysis by selected groups, as opposed to individual users.
@@ -245,7 +221,35 @@ Route data to Mixpanel's EU servers by setting the `serverURL` property after in
 mixpanel.setServerURL("https://api-eu.mixpanel.com");
 ```
 
-### Debugging and Logging
+## [Legacy] Automatically Tracked Events
+
+Mixpanel's SDKs have a legacy feature to automatically collect common mobile events. We don't recommend enabling this, as these events rely on client-side state and can be unreliable compared to tracking server-side. You can still enable this feature by turning the flag `trackAutomaticEvents: true` when initializing Mixpanel. More details [here](https://github.com/mixpanel/mixpanel-flutter?tab=readme-ov-file#2-initialize-mixpanel). 
+
+You can see a list of events tracked automatically for [iOS here](/docs/tracking-methods/sdks/swift#legacy-automatically-tracked-events) and [Android here](/docs/tracking-methods/sdks/android#legacy-automatically-tracked-events).
+
+## Tracking Via Proxy
+
+This guide demonstrates how to route events from Mixpanel's Flutter SDKs via a proxy in your own domain. This is useful to reduce the likelihood of ad-blockers impacting your tracking.
+
+There are two steps: setting up a proxy server and pointing the SDK at your server.
+
+**Step 1: Set up a proxy server**
+The simplest way is to use our [sample nginx config](https://github.com/mixpanel/tracking-proxy). This config redirects any calls made to your proxy server to Mixpanel.
+
+**Step 2: Point Flutter SDK at your server**
+Add the following line, replacing `YOUR_PROXY_DOMAIN` with your proxy server's domain.
+
+```java
+mixpanel.setServerURL("https://<YOUR_PROXY_DOMAIN>");
+```
+
+Specifically for Flutter Web, add your proxy server to the `mixpanel.init` call:
+
+```js
+mixpanel.init("<YOUR_PROJECT_TOKEN>", {api_host: "https://<YOUR_PROXY_DOMAIN>"});
+```
+
+## Debugging and Logging
 
 Enabling Mixpanel debugging and logging allows you to see the debug output from the Mixpanel library. This may be useful in determining when track calls go out. To enable Mixpanel debugging and logging, you can call [setLoggingEnabled(true)](https://mixpanel.github.io/mixpanel-flutter/mixpanel_flutter/Mixpanel/setLoggingEnabled.html) with `true`, then run your iOS project with Xcode or android project with Android Studio. The logs should be available in the console.
 

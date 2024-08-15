@@ -8,11 +8,12 @@ This documentation targets users with intermediate or advanced knowledge of data
 You must first configure your destination to accept the data before you can export data from Mixpanel to that destination.
 
 For additional information on configuring the Mixpanel export for different destinations, see:
-  * [Exporting to Amazon](/docs/data-pipelines/integrations/amazon-s3)
-  * [Exporting to BigQuery](/docs/data-pipelines/integrations/bigquery)
-  * [Exporting to Snowflake](/docs/data-pipelines/integrations/snowflake) 
-  * [Exporting to Google Cloud Storage](/docs/data-pipelines/integrations/google-cloud-storage)
-  * [Exporting to Azure Blob Storage](/docs/data-pipelines/integrations/azure-blob-storage)  
+   * [BigQuery](/docs/data-pipelines/integrations/schematized-bigquery-pipeline) 
+   * [Snowflake](/docs/data-pipelines/integrations/schematized-snowflake-pipeline) 
+   * [Amazon Web Services](/docs/data-pipelines/integrations/schematized-aws-pipeline) 
+   * [Google Cloud Storage](/docs/data-pipelines/integrations/schematized-gcs-pipeline) 
+   * [Azure Blob Storage](/docs/data-pipelines/integrations/schematized-azure-pipeline) 
+
 
 
 After configuring the destination, you can [create a pipeline](https://developer.mixpanel.com/reference/create-warehouse-pipeline) to export the data.
@@ -43,7 +44,7 @@ User data is exported to a single table named `mp_people_data`  (user data is ac
 Since user profiles are mutable, the data in the table is replaced every time an export happens based on the schedule (daily or hourly) with the latest user profiles.
 
 ## User Identity Resolution
-Exports from projects with [ID merge enabled](/docs/tracking-methods/id-management/identifying-users#how-do-i-switch-between-the-simplified-and-original-api) will need to use the identity mapping table to replicate the user counts seen in UI reporting. When ID merge is enabled, Mixpanel assigns multiple identifiers to an individual. Mixpanel resolves these into one identifier, and uses that for reporting unique user counts. Read more about how Mixpanel resolves IDs [here](/docs/tracking-methods/id-management/identifying-users#example-user-flows).
+Exports from projects with [ID merge enabled](/docs/tracking-methods/id-management/identity-management#identity-merge-apis) will need to use the identity mapping table to replicate the user counts seen in UI reporting. When ID merge is enabled, Mixpanel assigns multiple identifiers to an individual. Mixpanel resolves these into one identifier, and uses that for reporting unique user counts. Read more about how Mixpanel resolves IDs [here](/docs/tracking-methods/id-management/identifying-users-simplified#example-user-flows).
 
 Pipelines export event data as they appear when Mixpanel ingests them. This means exported event data before sending alias event has the original user identifier, **not** the resolved identifier. Use the identity mappings table to accurately count unique users. This will allow you to recreate the identity cluster that Mixpanel creates.
 
@@ -52,7 +53,7 @@ Mixpanel automatically exports the ID mapping table when you create a people exp
 Note: When using the ID mappings table, you should use the **resolved** `distinct_id` in place of the non-resolved `distinct_id` whenever present. If there is no resolved `distinct_id`, you can then use the `distinct_id` from the existing people or events table.
 }
 
-Examples of how to do this are available for [BigQuery](/docs/data-pipelines/integrations/bigquery#querying-the-identity-mapping-table)  and [Snowflake](/docs/data-pipelines/integrations/snowflake#querying-the-identity-mapping-table).
+Examples of how to do this are available for [BigQuery](/docs/data-pipelines/integrations/schematized-bigquery-pipeline#querying-the-identity-mapping-table)  and [Snowflake](/docs/data-pipelines/integrations/schematized-snowflake-pipeline#querying-the-identity-mapping-table).
 
 ## Service Level Agreement
 The policy for latency on exported events is 24 hours end to end, plus an additional 24 hours for late-arriving data.
@@ -119,7 +120,7 @@ This section describes how Schematized Export Pipeline creates the schema for th
 
 #### Common Properties
 
-Regardsless of whether you're using a single table or multiple tables, the following properties will be always present in the schema:
+Regardless of whether you're using a single table or multiple tables, the following properties will be always present in the schema:
 | name        | type   | description                                         |
 | :---------- | :----- | :-------------------------------------------------- |
 | time        | int    | The timestamp representing when the event occurred. |

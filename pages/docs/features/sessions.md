@@ -113,7 +113,7 @@ Exclude events that don’t denote an action made by the user from your funnel t
 
 #### Excluded Events
 
-Exclude events from being tracked as part of a session (such as backend API events that don’t denote an action made by the user on the site), to ensure the validity of session metrics. Mixpanel API events will be excluded by default, but external API events, such as a message sent through another program, will not be excluded.
+Exclude events from being tracked as part of a session (such as backend API events that don’t denote an action made by the user on the site), to ensure the validity of session metrics. [Mixpanel API events](/docs/features/sessions#what-mixpanel-api-events-are-by-default-excluded-from-session-calculations) will be excluded by default, but external API events, such as a message sent through another program, will not be excluded.
 
 For example, you should exclude events triggered when a message is sent to a user or when a user is added to an A/B test, as the user did not cause those events.
 
@@ -321,3 +321,16 @@ You can do so using the "Session Duration (seconds)" property associated with ou
 Similarly, you can use the same property as above. In this case, you would need to use our aggregate properties per user feature. If you select "Aggregate Properties per User" and then "Sum", it will add up all Session Lengths for any given day and divide it by all unique users. You can then apply a formula to express the values in minutes, simply by dividing by 60: [https://mixpanel.com/s/3k1bct](https://mixpanel.com/s/3k1bct)
 
 For additional information, I've also included Formula B to show how "Sum per User by Average" works. 
+
+### What Mixpanel API events are by default excluded from session calculations?
+
+- `$identify`
+- `$create_alias`
+- `$merge`
+- `$hotshard_events`
+- Message Sent (`$campaign_delivery`)
+- Message Bounced (`$campaign_bounced`)
+- Message Marked Spam (`$campaign_marked_spam`)
+- Message Suppressed (`$message_suppressed`)
+- Message Unsubscribed (`$unsubscribe`)
+- Campaign Entered (`$journey_entered`)

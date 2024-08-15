@@ -6,6 +6,31 @@ Please refer to our [Quickstart Guide](/docs/quickstart/connect-your-data?sdk=re
 
 The [Full API Reference](https://mixpanel.github.io/mixpanel-react-native/Mixpanel.html), [Library Source Code](https://github.com/mixpanel/mixpanel-react-native), and an [Example Application](https://github.com/mixpanel/mixpanel-react-native/tree/master/Samples) is documented in our GitHub repo.
 
+## Expo and Web Support
+
+Prior to version 3.0.2, the React Native SDK only wrapped around iOS Swift and Android SDK. As of version 3.0.2, React Native SDK supports Expo and React Native for Web (as well as other platforms utilizing React Native) via Javascript Mode.
+
+In order to enable Javascript Mode:
+1. Install [`AsyncStorage`](https://react-native-async-storage.github.io/async-storage/) which is used to persist data. If this is unavailable in your target environment, you can import/define a different storage class. Please refer to [`this documentation.`](https://github.com/mixpanel/mixpanel-react-native/tree/master?tab=readme-ov-file#expo-and-react-native-for-web-support-302-and-above)
+```
+npm install @react-native-async-storage/async-storage
+```
+2. When initializing, set parameter `useNative=false`
+```javascript Javascript
+const trackAutomaticEvents = false;
+const useNative = false;
+const mixpanel = new Mixpanel(
+"YOUR_MIXPANEL_TOKEN",
+trackAutomaticEvents,
+useNative
+);
+```
+
+### Changes with useNative=false
+* [`Legacy Automatically Tracked Events`](/docs/tracking-methods/sdks/android#legacy-automatically-tracked-events) are not supported
+* Javascript Mode does not have the same default properties as Native Mode
+* Data does not automatically flush when the app is backgrounded. Be sure to call [`flush`](https://mixpanel.github.io/mixpanel-react-native/Mixpanel.html#flush) more frequently for key events
+
 ## Sending Events
 
 We recommend tracking only five to seven events in your application instead of tracking too many things to start. Ideally, you track users going through your initial user experience and one key metric that matters for your application (e.g. YouTube might choose "Watched Video" as a key metric).
@@ -94,8 +119,6 @@ mixpanel.identify("13791");
 ### Call Reset at Logout
 [reset](https://mixpanel.github.io/mixpanel-react-native/Mixpanel.html#reset)  generates a new random distinct_id and clears super properties. Call reset to clear data attributed to a user when that user logs out. This allows you to handle multiple users on a single device. For more information about maintaining user identity, see the [Identifying Users](/docs/tracking-methods/id-management/identifying-users) article.
 
-Note: Calling reset frequently can lead to users quickly exceeding the 500 distinct_id per identity cluster limit. Once the 500 limit is reached you will no longer be able to add additional distinct_ids to the users identity cluster.
-
 ```javascript Javascript
 mixpanel.reset();
 ```
@@ -143,28 +166,6 @@ mixpanel.getPeople().append("Favorite Colors", "Green");
 
 ### Other Types of Profile Updates
 There are a few other types of profile updates. They can be accessed through the [`People`](https://mixpanel.github.io/mixpanel-react-native/People.html) class, which is accessible via [`mixpanel.getPeople()`](https://mixpanel.github.io/mixpanel-react-native/Mixpanel.html#getPeople).
-
-## Tracking Revenue
-
-Mixpanel makes it easy to analyze the revenue you make from individual customers. By associating charges with User Analytics profiles, you can compare revenue across different customer segments and calculate customer lifetime value.
-
-You can track a single transaction with [`mixpanel.getPeople().trackCharge`](https://mixpanel.github.io/mixpanel-react-native/People.html#trackCharge). This call will add transactions to the individual user profile, which will also be reflected in the Mixpanel Revenue report.
-
-```javascript Javascript
-// Make identify has been
-// called before making revenue updates
-mixpanel.identify("13793");
-
-// Tracks $100 in revenue for user 13793
-mixpanel.getPeople().trackCharge(100);
-
-// Refund this user 50 dollars
-mixpanel.getPeople().trackCharge(-50);
-
-// Tracks $25 in revenue for user 13793
-// on the 2nd of january
-mixpanel.getPeople().trackCharge(25, {"$time": "2012-01-02T00:00:00"});
-```
 
 ## Group Analytics
 Mixpanel Group Analytics is a paid add-on allows behavioral data analysis by selected groups, as opposed to individual users.
@@ -245,7 +246,23 @@ Route data to Mixpanel's EU servers by setting the `serverURL` property after in
 mixpanel.setServerURL("https://api-eu.mixpanel.com");
 ```
 
-### Debugging and Logging
+## Tracking Via Proxy
+
+This guide demonstrates how to route events from Mixpanel's React Native SDK via a proxy in your own domain. This is useful to reduce the likelihood of ad-blockers impacting your tracking.
+
+There are two steps: setting up a proxy server and pointing the SDK at your server.
+
+**Step 1: Set up a proxy server**
+The simplest way is to use our [sample nginx config](https://github.com/mixpanel/tracking-proxy). This config redirects any calls made to your proxy server to Mixpanel.
+
+**Step 2: Point React Native SDK at your server**
+When initializing, replace `YOUR_PROXY_DOMAIN` with your proxy server's domain for serverURL.
+```javascript Javascript
+// parameters:  optOutTrackingDefault, superProperties, serverURL
+mixpanel.init(false, {}, "https://<YOUR_PROXY_DOMAIN>"); 
+```
+
+## Debugging and Logging
 
 Enabling Mixpanel debugging and logging allows you to see the debug output from the Mixpanel library. This may be useful in determining when track calls go out. To enable Mixpanel debugging and logging, you can call [setLoggingEnabled(true)](https://mixpanel.github.io/mixpanel-react-native/Mixpanel.html#setLoggingEnabled) with `true`, then run your iOS project with Xcode or android project with Android Studio. The logs should be available in the console.
 

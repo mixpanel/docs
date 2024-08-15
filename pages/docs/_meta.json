@@ -4,10 +4,8 @@
 		"title": "INTRO"
 	},
 	"what-is-mixpanel": "What is Mixpanel?",
+	"what-to-track": "What to Track",
 	"quickstart": "Quickstart",
-	"how-it-works": "How it works",
-	"best-practices": "Best Practices",
-	"tutorials": "Onboarding Tutorial",
 	"data-in": {
 		"type": "separator",
 		"title": "DATA IN"
@@ -15,7 +13,7 @@
 	"tracking-methods": "Tracking Methods",
 	"data-structure": "Data Structure",
 	"migration": "Migration",
-	"debugging": "Debugging",
+	"tracking-best-practices": "Best Practices",
 	"analysis": {
 		"type": "separator",
 		"title": "ANALYSIS"
@@ -23,6 +21,7 @@
 	"reports": "Reports",
 	"boards": "Boards",
 	"users": "Users",
+	"session-replay": "Session Replay",
 	"features": "Features",
 	"admin": {
 		"type": "separator",
@@ -37,6 +36,7 @@
 		"type": "separator",
 		"title": "DATA OUT"
 	},
+	"export-methods": "Export Methods",
 	"data-pipelines": "Data Pipelines",
 	"cohort-sync": "Cohort Sync",
 	"support": {

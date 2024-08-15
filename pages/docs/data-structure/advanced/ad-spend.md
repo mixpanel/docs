@@ -329,12 +329,14 @@ This guide will go through setting up a serverless Google Cloud Function that wi
 
 #### Prerequisites
 
+We'll be using Facebook's [Marketing API](https://developers.facebook.com/docs/marketing-apis/get-started) to retrieve ad data from your ads account.
+
 In order to follow this guide, you will need:
 
 - Mixpanel project token (can be found in Mixpanel project settings)
 - Mixpanel secret token (can be found in Mixpanel project settings)
     - This is required to track back-dated events
-- [Facebook App Access Token](https://developers.facebook.com/docs/marketing-apis/overview/authentication) with the `ads_read` permission
+- [Facebook App Access Token](https://developers.facebook.com/docs/facebook-login/guides/access-tokens#apptokens) with the `ads_read` permission
 - Facebook Ad Account ID
     - You can get this from the Ad account dropdown at the top of [Facebook Ads Manager](https://adsmanager.facebook.com/adsmanager/manage)
 - A Google Cloud Platform project

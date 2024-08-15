@@ -2,6 +2,8 @@
 
 ## Getting Started
 
+Please refer to our [Quickstart Guide](/docs/quickstart/connect-your-data?sdk=javascript).
+
 The [Full API Reference](https://github.com/mixpanel/mixpanel-js/blob/master/doc/readme.io/javascript-full-api-reference.md#mixpanel), [Library Source Code](https://github.com/mixpanel/mixpanel-js), and an [Example Application](https://github.com/mixpanel/mixpanel-js/tree/master/examples) is documented in our GitHub repo.
 
 ## Track Events
@@ -52,7 +54,7 @@ mixpanel.track_pageview({"page": "Pricing"});
 
 ### Tracking UTM Parameters
 
-The JavaScript library will automatically add any UTM parameters (`utm_source`, `utm_campaign`, `utm_medium`, `utm_term`, `utm_content`) present on the page to events fired from that page load.
+The JavaScript library will automatically add any UTM parameters (`utm_source`, `utm_campaign`, `utm_medium`, `utm_term`, `utm_content`) present on the page to events fired from that page load. Please note when configuring UTMs that UTM tracking is case sensitive, and should be formatted lower-case as shown in the examples above.
 
 When UTM parameters for an identified user are seen for the first time, these will also be stored on the user profile as `initial_utm_source`, `initial_utm_campaign`, `initial_utm_medium`, `initial_utm_term`, and `initial_utm_content`.
 
@@ -145,7 +147,7 @@ If you want to store a super property only once (often for things like initial r
 
 This means that it's safe to call `mixpanel.register_once()` with the same property on every page load, and it will only set it if the super property doesn't exist.
 
-#### Super Properties Live in Local Storage
+#### Super Properties Live in a Cookie
 Our JS library uses a cookie (created in the domain of the page loading the lib) to store super properties. These are stored as JSON in the cookie. They will persist for the life of that cookie, which by default is 365 days. If you wish to change the life of the cookie, you may do so using [`set_config()`](https://github.com/mixpanel/mixpanel-js/blob/master/doc/readme.io/javascript-full-api-reference.md#mixpanelset_config) to adjust the value for the `cookie_expiration` (an integer in days).
 
 ## Managing User Identity
@@ -164,8 +166,6 @@ mixpanel.identify("13793");
 
 ### Call Reset at Logout
 [`Reset()`](https://github.com/mixpanel/mixpanel-js/blob/master/doc/readme.io/javascript-full-api-reference.md#mixpanelreset) generates a new random distinct_id and clears super properties. Call `reset()` to clear data attributed to a user when that user logs out. This allows you to handle multiple users on a single device. For more information about maintaining user identity, see the [Identifying Users](/docs/tracking-methods/id-management/identifying-users) article.
-
-Note: Calling reset frequently can lead to users quickly exceeding the 500 distinct_id per identity cluster limit. Once the 500 limit is reached you will no longer be able to add additional distinct_ids to the users identity cluster.
 
 ```javascript JavaScript
 // after logout:
@@ -367,6 +367,86 @@ mixpanel.init("<YOUR_PROJECT_TOKEN>", {api_host: "https://<YOUR_PROXY_DOMAIN>"})
 ```
 
 🎉 Congratulations, you've set up tracking through a proxy server! Here's a [full code sample](https://gist.github.com/ranic/80459104def4e4bcd73d5c77b817ee43).
+
+## Session Replay (Beta)
+
+Capture and replay data on how a user interacts with your application. Replay collection is disabled by default, and the Replay portion of the SDK will not be loaded into your application until specified. To use this feature, you must be on at least version 2.50.0 of our JavaScript SDK.
+
+### Sampling Method
+
+The easiest way to begin capturing session replays is by sampling a subset of users, specified during initialization:
+
+```javascript
+mixpanel.init(
+    "<YOUR_PROJECT_TOKEN>", 
+    {
+        record_sessions_percent: 1  //records 1% of all sessions
+    }
+)
+```
+
+Start with a smaller percentage and tune to fit your analytics needs.
+
+If you already have the JS SDK installed, this is the only code change you need to start capturing session replays.
+
+### Init Options
+
+| Option | Description | Default | 
+| --- | --- | --- |
+| `record_block_class` | CSS class name or regular expression for elements which will be replaced with an empty element of the same dimensions, blocking all contents.  | `new RegExp('^(mp-block\|fs-exclude\|amp-block\|rr-block\|ph-no-capture)$')` <br/> (common industry block classes) |
+| `record_block_selector` | CSS selector for elements which will be replaced with an empty element of the same dimensions, blocking all contents.  | `"img, video"` |
+| `record_collect_fonts` | When true, Mixpanel will collect and store the fonts on your site to use in playback. | `false` |
+| `record_idle_timeout_ms` | Duration of inactivity in milliseconds before ending a contiguous replay. A new replay collection will start when active again. | `1800000`<br/>(30 minutes) |
+| `record_inline_images` | When true, Mixpanel will collect and store images on your site to use in playback. NOTE: Image intensive websites may have their payloads rejected due to large size. If your site stores images at a publicly accessible URL, this option is not necessary. | `false` |
+| `record_mask_text_class` | CSS class name or regular expression for elements that will have their text contents masked. | `new RegExp('^(mp-mask\|fs-mask\|amp-mask\|rr-mask\|ph-mask)$')` <br/> (common industry mask classes) |
+| `record_mask_text_selector` | CSS selector for elements that will have their text contents masked. | `"*"` |
+| `record_max_ms` | Maximum length of a single replay in milliseconds. Up to 24 hours is supported. Once a replay has reached the maximum length, a new one will begin. | `86400000`<br/>(24 hours) |
+| `record_sessions_percent` | Percentage of SDK initializations that will qualify for replay data capture. A value of "1" = 1%. | `0` |
+
+
+### Recorder Methods
+
+We give our customers full control to customize when and where they capture session replays.
+
+#### Start capturing replay data
+
+```javascript
+mixpanel.start_session_recording()
+```
+This will have no effect if replay data collection is in progress. 
+
+This is optional, and can be used primarily to programmatically start and stop recording, or exclude something specific from recording. We recommend using the [sampling method](/docs/tracking-methods/sdks/javascript#sampling-method) detailed above unless you need to customize when you capture replay data. 
+
+#### Stop capturing replay data
+
+```javascript
+mixpanel.stop_session_recording()
+```
+This will have no effect if there is no replay data collection in progress.
+
+#### Example Scenarios
+
+| Scenario | Guidance | 
+| --- | --- |
+| We have a sensitive screen we don't want to capture | When user is about to access the sensitive screen, call `mixpanel.stop_session_recording()`. To resume recording once they leave this screen, you can resume recording with `mixpanel.start_session_recording()`  | 
+| We only want to record certain types of users (e.g. Free plan users only) | Using your application code, determine if current user meets the criteria of users you wish to capture. If they do, then call `mixpanel.start_session_recording()` to force recording on |
+| We only want to users utilizing certain features | When user is about to access the feature you wish to capture replays for, call `mixpanel.start_session_recording()` to force recording on |
+
+
+### Tips & Tricks While Implementing
+- Search for Session Recording Checkpoint events in your project, tracked as `$mp_session_record`. When you capture Mixpanel session replays, the SDK will automatically emit this default event. If you've implemented correctly, you should see these events appear. 
+- Calling `mixpanel.start_session_recording()` in your website / application is a good test to see if it causes Session Recording Checkpoint event mentioned above to appear. If it does, and you're still struggling to find replays for Users and Reports, your sampling rate may not be working, or may be set too low.
+- If you're still struggling to implement, [submit a request to our Support team](https://mixpanel.com/get-support) for more assistance.
+
+### Privacy
+
+#### User Data
+The Mixpanel SDK will always mask all inputs. By default, all text on a page will also be masked unless a different `record_mask_text_selector` is specified.
+
+Along with other data, the SDK respects all Do Not Track (DNT) settings as well as manual opt-out for any replay data. 
+
+#### Retention
+User replays are stored for 30 days after the time of ingestion. There is no way to view a replay older than 30 days old.
 
 ## Release History
 [See All Releases](https://github.com/mixpanel/mixpanel-js/releases).

@@ -16,11 +16,12 @@ jobs:
 
   # Create a new ReadMe Version if it needs to and pushes content to the version
   rdme-staging:
+    if: ${{ github.event.pull_request.head.repo.full_name == 'mixpanel/docs' }}
     runs-on: ubuntu-latest
     steps:
       - name: Check out repo 📚
         uses: actions/checkout@v4
-      - uses: actions/setup-node@v3
+      - uses: actions/setup-node@v4
         with:
           node-version: 18
           cache: 'npm'

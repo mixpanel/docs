@@ -1,4 +1,4 @@
-# Swift
+# iOS (Swift)
 
 ## Getting Started
 
@@ -82,8 +82,6 @@ Mixpanel.mainInstance().identify(distinctId: "13793");
 
 ### Call Reset on Logout
 Reset generates a new random distinct_id and clears super properties. Call reset to clear data attributed to a user when that user logs out. This allows you to handle multiple users on a single device. For more information about maintaining user identity, see the [Identifying Users](/docs/tracking-methods/id-management/identifying-users) article.
-
-Note: Calling reset frequently can lead to users quickly exceeding the 500 distinct_id per identity cluster limit. Once the 500 limit is reached you will no longer be able to add additional distinct_ids to the users identity cluster.
 
 Beginning with version v2.7.7, Mixpanel no longer uses the IFA(ID for Advertisers) but uses a randomly generated UUID as the default distinct ID instead. After you call reset, Mixpanel generates a new distinct_id.
 
@@ -228,11 +226,11 @@ Mixpanel.mainInstance().loggingEnabled = true
 Route data to Mixpanel's EU servers by setting the `serverURL` property after initializing the client. 
 
 ```swift
-mixpanel = Mixpanel.initialize(token: "MIXPANEL_TOKEN")
+let mixpanel = Mixpanel.initialize(token: "MIXPANEL_TOKEN")
 mixpanel.serverURL = "https://api-eu.mixpanel.com"
 ```
 
-### [Legacy] Automatically Tracked Events
+## [Legacy] Automatically Tracked Events
 
 Mixpanel's SDKs have a legacy feature to automatically collect common mobile events. We don't recommend enabling this, as these events rely on client-side state and can be unreliable.
 

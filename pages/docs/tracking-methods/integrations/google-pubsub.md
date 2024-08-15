@@ -123,7 +123,7 @@ At this point, you can route events from your production Pub/Sub topic through a
 Once connected, this will result in a steady stream of events being sent to Mixpanel. Happy streaming!
 
 # Error Handling
-In rare instances, Mixpanel's /import API may return a 429 or 5XX error. These can be safely retried. We recommend an exponential backoff with jitter strategy, as written in the sample code above. PubSub can be configured to perform exponential backoff if the function itself times out.
+In rare instances, Mixpanel's \/import API may return a 429 or 5XX error. These can be safely retried. We recommend an exponential backoff with jitter strategy, as written in the sample code above. PubSub can be configured to perform exponential backoff if the function itself times out.
 
 If the payload is malformed, our API might return a 400 error. In this case, the item cannot be ingested and this error should not be retried. Enqueue these messages onto a dead-letter-queue for inspection later on. This might happen while initially testing the connector, but should be rare in production, assuming the shape of data flowing through the pipeline remains consistent.
 

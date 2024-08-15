@@ -15,10 +15,10 @@ Next, create a Mixpanel instance and initialize a Mixpanel client to communicate
 The project token is unique to your Mixpanel project. [Instructions for finding your project token can be found here](/docs/orgs-and-projects/managing-projects#find-your-project-tokens).
 ```javascript Javascript
 // grab the Mixpanel factory
-var Mixpanel = require('mixpanel');
+const Mixpanel = require('mixpanel');
 
 // create an instance of the mixpanel client
-var mixpanel = Mixpanel.init('<YOUR_TOKEN>');
+const mixpanel = Mixpanel.init('<YOUR_TOKEN>');
 ```
 
 ## EU Data Residency
@@ -41,8 +41,8 @@ The `mixpanel.track()` method takes two arguments, an event name and a propertie
 
 You have the option to add additional event properties to the call to add detail to that event. [Read more about events and properties here](/docs/best-practices/server-side-best-practices#tracking-geolocation).
 ```javascript
-var Mixpanel = require('mixpanel');
-var mixpanel = Mixpanel.init('<YOUR_TOKEN>');
+const Mixpanel = require('mixpanel');
+const mixpanel = Mixpanel.init('<YOUR_TOKEN>');
 
 // track an event with optional properties
 mixpanel.track('event name', {
@@ -58,8 +58,8 @@ Mixpanel determines default geolocation data (\$city, \$region, mp_country_code)
 It is therefore important to pass IP as a property in server-side implementations. [Read about best practices for geolocation with server-side implementations](/docs/best-practices/server-side-best-practices).
 
 ```javascript
-var Mixpanel = require('mixpanel');
-var mixpanel = Mixpanel.init('<YOUR_TOKEN>', { geolocate: true });
+const Mixpanel = require('mixpanel');
+const mixpanel = Mixpanel.init('<YOUR_TOKEN>', { geolocate: false });
 
 // track an event with optional properties
 mixpanel.track('event name', {
@@ -68,7 +68,9 @@ mixpanel.track('event name', {
 });
 ```
 
-The geolocate boolean setting needs to be `true` for Mixpanel to infer the location based on the ip property provided in the event payload.
+The geolocate boolean setting needs to be `false` for Mixpanel to infer the location based on the ip property provided in the event payload.
+
+Note that tracking with Node in an async serverless implementation requires you to wait for the Mixpanel request to complete. The easiest way to do this would be to pass in in a callback as a 3rd parameter into `track` and return a promise that is resolved when the request is sent.
 
 ## Storing User Profiles
 
@@ -91,8 +93,8 @@ If the user with a distinct_id of `13793` already has a property named "Plan" in
 
 ```javascript
 // grab the Mixpanel factory
-var Mixpanel = require('mixpanel');
-var mixpanel = Mixpanel.init('<YOUR_TOKEN>');
+const Mixpanel = require('mixpanel');
+const mixpanel = Mixpanel.init('<YOUR_TOKEN>');
 
 // create or update a user in Mixpanel
 mixpanel.people.set('13793', {

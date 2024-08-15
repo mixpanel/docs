@@ -50,11 +50,6 @@ Click **Export to > CleverTap**. Select either one-time sync or dynamic sync. Cl
 ## Sync Types
 This integration supports two types of exports: one-time export and recurring sync. When you generate a one-time export or recurring sync, it overwrites the previous export with an updated export that reflects users who qualify for the cohort at the time of export.
 
-### One-Time Export
-In a one-time export, Mixpanel sends CleverTap a static export of users who currently qualify for the cohort. The cohort data will not be updated in CleverTap after a one-time export.
-
-### Recurring Sync
-In recurring sync, Mixpanel initiates sync between a cohort and CleverTap every 15 minutes. The exported cohort will be updated every 15 minutes to reflect the most recent list of users in a cohort.
 
 ## Select the Segment in CleverTap
 
