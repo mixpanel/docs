@@ -52,7 +52,7 @@ From here, you can quickly view this billing period’s usage on the right side 
 
 The Group Analytics add-on allows behavioral analysis from a business or group level, as opposed to an individual level. 
 
-Check [here](/docs/data-structure/advanced/group-analytics) for the technical documentation for Group Analytics, keeping in mind that implementing this feature is not trivial and includes sending your events with the key of the [group](/docs/data-structure/advanced/group-analytics#group-keys-tracked-as-event-properties) they belong to. Group Analytics **can’t be implemented retroactively** for already ingested events.
+Check [here](/docs/data-structure/advanced/group-analytics) for the technical documentation for Group Analytics, keeping in mind that implementing this feature is not trivial and includes sending your events with the key of the [group](/docs/data-structure/group-analytics#group-keys-tracked-as-event-properties) they belong to. Group Analytics **can’t be implemented retroactively** for already ingested events.
 
 This is a recommended feature for all B2B products that want answers to questions such as:
 
