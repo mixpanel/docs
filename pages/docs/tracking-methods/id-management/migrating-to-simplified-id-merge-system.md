@@ -284,7 +284,7 @@ The following guide outlines the steps required to set up the new Mixpanel proje
 
    - [Inviting users]([/docs/orgs-and-projects/roles-and-permissions#invite-users-to-a-project) to the project and granting them [Roles and Permissions](/docs/orgs-and-projects/roles-and-permissions#permissions)
    - Creating [Teams](/docs/orgs-and-projects/roles-and-permissions#teams) and adding users to them
-   -  Adding [group keys](/docs/data-structure/advanced/group-analytics#group-keys-in-project-settings) from Group Analytics
+   -  Adding [group keys](/docs/data-structure/group-analytics#group-keys-in-project-settings) from Group Analytics
    -  Creating [data views](/docs/data-governance/data-views-and-classification#create-data-view) and adding users or teams to them
    -  Creating or granting [service accounts](https://developer.mixpanel.com/reference/service-accounts) access to this project
    -  Configuring [session settings](/docs/features/sessions)

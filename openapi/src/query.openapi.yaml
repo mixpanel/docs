@@ -1129,7 +1129,7 @@ paths:
                 data_group_id:
                   type: string
                   description: >-
-                    The ID of the group key, used when querying group profiles, click [here](https://docs.mixpanel.com/docs/data-structure/advanced/group-analytics#exporting-group-profiles-via-api) for more info.
+                    The ID of the group key, used when querying group profiles, click [here](https://docs.mixpanel.com/docs/data-structure/group-analytics#exporting-group-profiles-via-api) for more info.
                 where:
                   type: string
                   description: >-
