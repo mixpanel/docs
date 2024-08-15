@@ -36,6 +36,7 @@ try:
                 break
 
         # Send to Mixpanel
+        # The event_data contains the entire event. Consider extracting parsing the event for properties and explicitly assigning them instead.
         event_data = msg.value().decode('utf-8')
         mp.track('some_user_id', 'My Event', {'message': event_data})
 
