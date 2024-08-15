@@ -1,6 +1,7 @@
 {
   "ad-spend": "Ad Spend",
   "amazon-s3": "Amazon S3",
+  "aws-kafka": "Amazon Kafka",
   "cms-ecommerce": "CMS & E-Commerce",
   "customer-io": {
     "title": "Customer.io ↗",
