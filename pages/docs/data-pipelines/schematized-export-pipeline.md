@@ -134,6 +134,17 @@ For a single table schema, you will also have an extra property for event name:
 
 Please note that the types in the above tables are generic. The exact type can be different based on your export destination.
 
+#### Limits
+The schema for each table cannot exceed 9500 unique properties. If a tables schema reaches this limit all new properties added to the schema will be included in a JSON like property called `mp_properties`.
+| name          | type             | pipeline destination  |
+| :------------ | :--------------- | :-------------------- |
+| mp_properties | json             | BigQuery              |
+| mp_properties | variant          | Snowflake             |
+| mp_properties | json-like string | AWS Glue              |
+| mp_properties | json-like string | GCS                   |
+| mp_properties | json-like string | Azure                 |
+
+
 #### Using One Table for All Events
 
 In this schema, all your Mixpanel data exists in a single table. Mixpanel recommends a single table schema because it makes querying simpler.
