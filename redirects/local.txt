@@ -244,3 +244,6 @@
 /docs/data-pipelines/integrations/google-cloud-storage /docs/data-pipelines/integrations/schematized-gcs-pipeline
 /docs/data-pipelines/integrations/snowflake /docs/data-pipelines/integrations/schematized-snowflake-pipeline
 /docs/features/session-replay /docs/session-replay
+/docs/data-structure/advanced/group-analytics /docs/data-structure/group-analytics
+/docs/data-structure/advanced/ad-spend /docs/tracking-methods/integrations/ad-spend
+/docs/data-structure/advanced/utm-tags /docs/tracking-best-practices/traffic-attribution
