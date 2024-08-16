@@ -65,14 +65,14 @@ For example, don't create an event name like `Purchase (11-01-2019)`. Instead, c
 ## FAQ
 
 ### What types of data can I send as properties?
-Mixpanel accepts arbitrary JSON as properties, including strings, numbers, booleans, lists, and objects. See our [Property Reference doc](https://docs.mixpanel.com/docs/data-structure/property-reference#supported-data-types) or our [API docs](https://developer.mixpanel.com/reference/import-events) for more details.
+Mixpanel accepts arbitrary JSON as properties, including strings, numbers, booleans, lists, and objects. See our [Property Reference doc](/docs/data-structure/property-reference/data-type) or our [API docs](https://developer.mixpanel.com/reference/import-events) for more details.
 
 ### What are the limits of events and properties?
 We don't have a limit on the total number of events you can send to Mixpanel, but it will factor into your [pricing](https://mixpanel.com/pricing).
 
 We have a soft limit of 5000 distinct event names. If you send more event names, we'll still ingest them, but those event names will not be indexed and will not appear in our autocomplete menus.
 
-Each event can have up to 2000 properties. Event property names can be at most 255 characters in length (longer names are truncated). Event property values are limited based on data type, refer to these limits under [Supported Data Types](/docs/data-structure/property-reference#supported-data-types).
+Each event can have up to 2000 properties. Event property names can be at most 255 characters in length (longer names are truncated). Event property values are limited based on data type, refer to these limits under [Supported Data Types](/docs/data-structure/property-reference/data-type).
 
 <Callout info="warning">
     **Note**: while events can have up to 2000 properties and batches of events can have up to 2000 events per ingestion batch, some libraries might default to sending the data through the GET protocol which would have a much lower size limit since the information is appended to the URL. If you are hitting the limits on the size of the request, first verify if the method being used is GET and can be switched to POST.
