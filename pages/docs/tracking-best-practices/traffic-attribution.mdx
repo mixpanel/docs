@@ -1,9 +1,8 @@
-# UTM Tags
-
-
-When setting up your Mixpanel implementation, one issue of particular interest is tracking users by their original source of traffic. By default, Mixpanel does some of this tracking for you on the web in the form of several [default properties](/docs/data-structure/property-reference).
+# Traffic Attribution
 
 ## Web Attribution
+
+When setting up your Mixpanel implementation, one issue of particular interest is tracking users by their original source of traffic. By default, Mixpanel does some of this tracking for you on the web in the form of several [default properties](/docs/data-structure/property-reference).
 
 ### UTM Properties
 
@@ -32,13 +31,13 @@ An initial referrer is equal to $direct when a user first lands on a site withou
 
 ## Mobile Attribution
 
-Mobile attribution, or tracking campaign source for app installs on iOS/Android, can be more complex than the web due to the way mobile devices store attribution information.
+Mobile attribution, or tracking campaign sources for app installs/uninstalls/downloads on mobile devices, can be more complex than the web due to the way mobile devices store attribution information.
 
 For Android, Google provides a [Play Install Referrer Library](https://developer.android.com/google/play/installreferrer/library) so you know where your installations came from. You can use the [getInstallReferrer ( )](https://developer.android.com/reference/com/android/installreferrer/api/ReferrerDetails#getinstallreferrer) method to retrieve the referrer URL string, parse it and send that data to Mixpanel as properties in events.
 
 For iOS, users enter the Apple App Store carrying data about where they came from, but the App Store strips that data once the user arrives in the store. Therefore, users who download your application don’t come with any data showing where they were before arriving at the App Store.
 
-In order to track channel attribution on iOS, you'll need to use a mobile attribution tool. You can see a list of the partners we integrate with on our [tech partners page](https://mixpanel.com/partners/integrations?categories=attribution-deep-linking).
+In order to track channel attribution on iOS, you'll need to use a [mobile attribution tool](/docs/tracking-methods/integrations/mobile-attribution-tracking). You can see a list of the partners we integrate with on our [tech partners page](https://mixpanel.com/partners/integrations?categories=attribution-deep-linking).
 
 ## Server-Side Attribution
 

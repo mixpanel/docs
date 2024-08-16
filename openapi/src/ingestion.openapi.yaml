@@ -1464,7 +1464,7 @@ components:
       description: |
 
         * `1` - One or more objects provided are valid. This does not signify a valid project token or secret.
-        * `0` - No data objects in the body are invalid.
+        * `0` - No data objects in the body are valid.
 
     Unauthorized:
       description: Unauthorized
