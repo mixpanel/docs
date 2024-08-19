@@ -346,7 +346,7 @@ which changes Mixpanel will reflect.
 
 Mirror syncs work by having the warehouse compute which rows have been inserted, modified, or deleted and sending this
 list of changes to Mixpanel. Change tracking is configured differently depending on the source warehouse. Mirror is
-supported for Snowflake and BigQuery sources.
+supported for Snowflake, Databricks and BigQuery sources.
 
 <ExtendedTabs urlParam="mirror" urlToItemsMap={mirrorItems}>
 
@@ -440,16 +440,16 @@ ALTER VIEW <view> SET CHANGE_TRACKING = TRUE;
 Mixpanel will create and manage the necessary STREAM objects in the `MIXPANEL` schema created in [Step 1](#step-1-connect-a-warehouse).
 
 **Considerations when using Mirror with Snowflake:**
-- Snowflake Streams only maintain maintain change tracking metadata for a limited number of days determined by
+- Snowflake Streams only maintain change tracking metadata for a limited number of days determined by
   the larger of [DATA_RETENTION_TIME_IN_DAYS and MAX_DATA_EXTENSION_TIME_IN_DAYS](https://docs.snowflake.com/en/user-guide/streams-manage#avoiding-stream-staleness)
   (default is 14 days for MAX_DATA_EXTENSION_TIME_IN_DAYS). Make sure that the Mixpanel sync
   does not go longer than this number of days without running. Mixpanel recommends leaving the default of 14
-  days to ensure that if Mixpanel looses access to the warehouse unexpectedly (e.g. a credentials change) there
+  days to ensure that if Mixpanel loses access to the warehouse unexpectedly (e.g. a credentials change), there
   is time to correct the issue.
 - Snowflake Streams do not work if a table is deleted and re-created with the same name. If using a tool like dbt to model
   data in Snowflake make sure to use an [incremental model](https://docs.getdbt.com/docs/build/incremental-models) so that
   dbt does not replace the table each time it runs.
-- Snowflake streams doesn't capture changes when a column is deleted or renamed, so deletion of columns won't be synced to mixpanel.
+- Snowflake streams doesn't capture changes when a column is deleted or renamed, so deletion of columns won't be synced to Mixpanel.
 - Snowflake has specific requirements when using [Streams on Views](https://docs.snowflake.com/en/user-guide/streams-intro#streams-on-views)
   that must be met when using Mirror with views.
 - While Snowflake Streams are a very efficient way of tracking changes there are some performance implications
@@ -476,12 +476,12 @@ ALTER TABLE <table> SET TBLPROPERTIES (delta.enableChangeDataFeed = true);
 
 **Considerations when using Mirror with Databricks:**
 - Databricks Change Data Feed only mantains change history for a limited number of days determined by [delta.logRetentionDuration](https://docs.databricks.com/en/delta/history.html#retrieve-delta-table-history) (default is 30 days). Make sure that the Mixpanel sync does not go longer 
-than this number of days without running. Mixpanel recommends leaving the default of 30 days to ensure that if Mixpanel looses access to the warehouse unexpectedly (e.g. a credentials change) there is time to correct the issue.
-- Databricks Change Data Feed do not work if a table is deleted and re-created with the same name. If using a tool like dbt to model
+than this number of days without running. Mixpanel recommends leaving the default of 30 days to ensure that if Mixpanel loses access to the warehouse unexpectedly (e.g. a credentials change), there is time to correct the issue.
+- Databricks Change Data Feed does not work if a table is deleted and re-created with the same name. If using a tool like dbt to model
   data in Databricks make sure to use an [incremental model](https://docs.getdbt.com/docs/build/incremental-models) so that
   dbt does not replace the table each time it runs.
-- While, Databricks Change Data Feed works with adding new columns to the table or view, there are certain limitations when it comes to dropping columns or renaming columns
-which uses [column mappings](https://docs.databricks.com/en/delta/delta-change-data-feed.html#change-data-feed-limitations-for-tables-with-column-mapping-enabled). In such scenarios Mixpanel reccomends deleting the sync (along with the data) and re-creating the sync.
+- While Databricks Change Data Feed works with adding new columns to the table or view, there are certain limitations when it comes to dropping columns or renaming columns
+which uses [column mappings](https://docs.databricks.com/en/delta/delta-change-data-feed.html#change-data-feed-limitations-for-tables-with-column-mapping-enabled). In such scenarios Mixpanel, recommends deleting the sync (along with the data) and re-creating the sync.
 
 </Tab>
 
