@@ -64,6 +64,17 @@ To set super properties, call [`registerSuperProperties`](https://mixpanel.githu
 mixpanel.registerSuperProperties({'Plan': 'Mega', 'Cost': '2000'});
 ```
 
+If you have properties you'd like all events to include, you can also set the super properties when initializing.
+
+```javascript Javascript
+const commonSuperProperties = {
+  superpropname: 'superpropvalue',
+  another_super_prop: 123,
+};
+// parameters:  optOutTrackingDefault, superProperties, serverURL
+mixpanel.init(false, commonSuperProperties, 'https://api.mixpanel.com');
+```
+
 The next time you track an event, the super properties you just set will be included as properties.
 
 Super properties are saved to local storage, and will persist between executions of your app.
