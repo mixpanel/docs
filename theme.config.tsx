@@ -48,8 +48,8 @@ const config: DocsThemeConfig = {
         href={`https://cdn.mxpnl.com/marketing-site/static/favicons/safari-pinned-tab.svg`}
         color="#7856ff"
       />
-      {/* <meta name="msapplication-TileColor" content="#ffffff" /> */}
-      {/* <meta name="theme-color" content="#ffffff" /> */}
+      <meta name="msapplication-TileColor" content="#ffffff" />
+      <meta name="theme-color" content="#ffffff" />
     </>
   ),
   feedback: {
