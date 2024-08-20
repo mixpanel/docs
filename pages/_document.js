@@ -59,7 +59,7 @@ export default function Document() {
           data-search-result-badge-text-color="#626266"
           data-query-input-text-color="#1b0b3b"
           // data-query-input-placeholder-text-color="#1b0b3b"
-          data-button-bg-color="#5028c0"
+          data-button-bg-color="#7856FF"
           data-modal-overlay-opacity="0.8"
           data-modal-overlay-bg-color="#242133"
         ></script>
