@@ -397,7 +397,6 @@ If you already have the JS SDK installed, this is the only code change you need 
 | `record_block_selector` | CSS selector for elements which will be replaced with an empty element of the same dimensions, blocking all contents.  | `"img, video"` |
 | `record_collect_fonts` | When true, Mixpanel will collect and store the fonts on your site to use in playback. | `false` |
 | `record_idle_timeout_ms` | Duration of inactivity in milliseconds before ending a contiguous replay. A new replay collection will start when active again. | `1800000`<br/>(30 minutes) |
-| `record_inline_images` | When true, Mixpanel will collect and store images on your site to use in playback. NOTE: Image intensive websites may have their payloads rejected due to large size. If your site stores images at a publicly accessible URL, this option is not necessary. | `false` |
 | `record_mask_text_class` | CSS class name or regular expression for elements that will have their text contents masked. | `new RegExp('^(mp-mask\|fs-mask\|amp-mask\|rr-mask\|ph-mask)$')` <br/> (common industry mask classes) |
 | `record_mask_text_selector` | CSS selector for elements that will have their text contents masked. | `"*"` |
 | `record_max_ms` | Maximum length of a single replay in milliseconds. Up to 24 hours is supported. Once a replay has reached the maximum length, a new one will begin. | `86400000`<br/>(24 hours) |
