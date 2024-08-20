@@ -32,28 +32,28 @@ Below are examples of Distinct ID's role in Mixpanel:
 
 ## Identity Management in Action
 
-Let's walkthrough how identity management affects your implementation using an example flow. Imagine you have a product that can be accesed from a website and a mobile app:
+Let's walk through how identity management affects your implementation using an example flow. Imagine you have a product that can be accessed from a website and a mobile app:
 
 ### Without ID Management
 
 <img src="/no_id_management.png" alt="no_id_management" width="400"/>
 
-1. A user access your product on the website through a computer. The Javascript SDK automatically generates a Distinct ID for them, with the value of `123`.
-2. Later in the day, the same user access your product again, this time on their smart phone. The Android SDK automatically generates a Distinct ID for them, with the value of `ABC`.
+1. A user accesses your product on the website through a computer. The Javascript SDK automatically generates a Distinct ID for them, with the value of `123`.
+2. Later in the day, the same user accesses your product again, this time on their smartphone. The Android SDK automatically generates a Distinct ID for them, with the value of `ABC`.
 3. This single user would appear as two separate users in your Mixpanel project; once for their access through the website, and another for their access through your app.
 
-Without identity management, a user who accesses your product from multiple device are incorrectly counted as two separate users.
+Without identity management, a user who accesses your product from multiple devices is incorrectly counted as two separate users.
 
 ### With ID Management
 
 ![with_id_management](/with_id_management.png)
 
-1. A user access your product on the website through a computer. The Javascript SDK automatically generates a Distinct ID for them, with the value of `123`.
+1. A user accesses your product on the website through a computer. The Javascript SDK automatically generates a Distinct ID for them, with the value of `123`.
 2. When the user registers for an account, your implementation makes an identify call, using their login `charlie` as the User ID. This triggers an ID merge, resulting in an ID cluster containing both `charlie` and `123`, which will map to the same user in Mixpanel.
-3. Later in the day, the same user access your product again, this time on their smart phone. The Android SDK automatically generates a Distinct ID for them, with the value of `ABC`.
-4. When the user logs in to your product using the account they registered earlier, your implementation calls identify again using the same User ID. This triggers another merge, adding `ABC` to the existing ID cluster. Now `ABC`, `123`, and `charlie` are all in one cluster and maps to one user in Mixpanel.
+3. Later in the day, the same user accesses your product again, this time on their smartphone. The Android SDK automatically generates a Distinct ID for them, with the value of `ABC`.
+4. When the user logs in to your product using the account they registered earlier, your implementation calls identify again using the same User ID. This triggers another merge, adding `ABC` to the existing ID cluster. Now `ABC`, `123`, and `charlie` are all in one cluster and map to one user in Mixpanel.
 
-With identity management, a user who access your product from multiple devices are accurately resolved to a single user.
+With identity management, a user who accesses your product from multiple devices is accurately resolved to a single user.
 
 ## Identity Merge APIs
 
