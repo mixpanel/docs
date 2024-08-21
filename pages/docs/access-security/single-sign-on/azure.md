@@ -51,15 +51,15 @@ For more information, read [this Microsoft Azure article](https://docs.microsoft
     
 ### SCIM Provisioning
   
-Azure has an autoprovisioning integration with Mixpanel that allows you automatically add users to Mixpanel upon giving them access in Azure. The integration also allows you to remove access within Mixpanel when you remove access in Azure. You can find more information [here](https://learn.microsoft.com/en-us/azure/active-directory/saas-apps/mixpanel-provisioning-tutorial). 
+Azure has an auto-provisioning integration with Mixpanel that allows you automatically add users to Mixpanel upon giving them access in Azure. The integration also allows you to remove access within Mixpanel when you remove access in Azure. You can find more information [here](https://learn.microsoft.com/en-us/azure/active-directory/saas-apps/mixpanel-provisioning-tutorial). 
 - New users provisioned from Azure will be automatically added as an Organization Member.
-- You will need to provision other Organizagion Roles to users within the Mixpanel product.
-- You will not be able to set the user's [Organization Role](https://docs.mixpanel.com/docs/orgs-and-projects/roles-and-permissions#organization-roles) within Azure. 
+- You will need to provision other [Organization Roles](https://docs.mixpanel.com/docs/orgs-and-projects/roles-and-permissions#organization-roles) to users within the Mixpanel product.
+- You will not be able to set the user's Organization Role and Project access within Azure. 
 
 You can also provision Groups of users in Azure to Mixpanel [Teams](/docs/orgs-and-projects/roles-and-permissions#teams) with SCIM.
 - Use the same name for the Group in Azure as the Team in Mixpanel.
 - In the Mixpanel Team, set the Organization Role and access to projects for the group of users.
-- You do not provision Organization and Project access for the group within Azure. 
+- You will not be able to provision Organization Role and Project access for the Group within Azure. 
 
 Note that it is advised you turn on **IDP Managed Access** if you are using SCIM Provisioning.
 
