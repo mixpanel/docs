@@ -247,3 +247,4 @@
 /docs/data-structure/advanced/group-analytics /docs/data-structure/group-analytics
 /docs/data-structure/advanced/ad-spend /docs/tracking-methods/integrations/ad-spend
 /docs/data-structure/advanced/utm-tags /docs/tracking-best-practices/traffic-attribution
+/docs/session-replay /docs/session-replay/session-replay-web
