@@ -199,7 +199,7 @@ Startup eligibility requirements:
 * Raised no more than $8MM USD in total funding
 
 ## FAQ
-**1.Why are my Segment data not appearing in my project?**
+**1. Why are my Segment data not appearing in my project?**
 
 This could be due to several reasons:
 * Storing data in the EU: A common issue is that the data in Segment is enabled to be sent to an EU endpoint but the Mixpanel data is still being stored outside of the EU. Both endpoints for Segment and Mixpanel need to point to the EU as described [here](https://segment.com/docs/connections/destinations/catalog/mixpanel/#enable-european-union-endpoint). If you have an existing Mixpanel project, you might need to have your data migrated to the EU. Please find further information [here](https://docs.mixpanel.com/docs/privacy/eu-residency#existing-customers).
@@ -210,7 +210,7 @@ This could be due to several reasons:
 
 - Device Mode will show as Mixpanel Library: Segment: web
 
-* No user profile data in Mixpanel: [Segment doesn’t track Mixpanel People by default;](https://segment.com/docs/connections/destinations/catalog/mixpanel/#people) this is a setting you need to enable in your Segment settings. To enable Mixpanel People, change the “Use Mixpanel People” setting in your Segment Settings UI.
+* No user profile data in Mixpanel: [Segment doesn’t track Mixpanel People by default](https://segment.com/docs/connections/destinations/catalog/mixpanel/#people). This is a setting you need to enable in your Segment settings. To enable Mixpanel People, change the “Use Mixpanel People” setting in your Segment Settings UI.
 
 **2. Why are there duplicated Segment events in my project?**
 
@@ -222,7 +222,7 @@ This can lead to duplicate events in Mixpanel, they will likely have different i
 
 **3. How do I register super properties using Segment?**
 
-Super properties can only be set when you are running in device mode. The super properties are automatically set with every property you pass into the analytics.identify() method. To have more control over the super properties you set, you can explicitly set super properties in your [Segment settings](https://segment.com/docs/connections/destinations/catalog/mixpanel/#explicitly-set-people-properties-and-super-properties).
+Super properties can only be set when you are running in device mode and using the Classic destination. The super properties are automatically set with every property you pass into the analytics.identify() method. To have more control over the super properties you set, you can explicitly set super properties in your [Segment settings](https://segment.com/docs/connections/destinations/catalog/mixpanel/#explicitly-set-people-properties-and-super-properties).
 
 **4. How do I track page views using Segment?**
 Page calls are automatically tracked via Segment. These can be tracked from Segment to Mixpanel as Loaded a Page or Loaded a Screen. To turn them off, you need to [configure this in your Segment settings](https://segment.com/docs/connections/destinations/catalog/mixpanel/#page).
