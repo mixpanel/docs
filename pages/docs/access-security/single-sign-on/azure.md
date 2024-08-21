@@ -25,7 +25,6 @@ For more information, read [this Microsoft Azure article](https://docs.microsoft
 
 3. Click **Edit** under **User Attributes & Claims** to add the required `email` claim (`firstName` and `lastName` are used for provisioning and optional).
 
-**Additional claims**
 | Claim name |     Value      |
 |-----------:|---------------:|
 | email      | user.mail      |
