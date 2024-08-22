@@ -55,9 +55,7 @@ To access this information, first select the select the Mixpanel app under the *
 
 In the right **About** column under the **SAML Setup** section, click **View SAML setup instructions**.
 
-![Okta Info 1 Image](/public/Admin/Okta/okta_saml_setup_instructions_fixed.png)
-
-![Okta Info 1 Image](/okta_info1.png)
+![Okta Info 1 Image](/Admin/Okta/okta_saml_setup_instructions_fixed.png)
 
 #### Public Certificate
 
@@ -71,7 +69,7 @@ You can also find the Public Certificate in the **Sign On** tab of the **Mixpane
 
 If you Public Certificate is expired or compromised, click **Generate new certificate** to generate a new certificate to upload in Mixpanel.
 
-![Okta Certificate Download Image](/public/Admin/Okta/okta_download_certificate.png)
+![Okta Certificate Download Image](/Admin/Okta/okta_download_certificate.png)
 
 #### Authentication URL
 
@@ -102,7 +100,7 @@ The following prerequisites must be met to set up SCIM provisioning:
 - The `Username` value in Okta must be an email address with a domain that you've claimed.
 - You need to have generated a SCIM OAuth token to use with the app. This token is located in **SCIM** menu of the **Access Security** tab in your Organization Settings. You will need to be an Organization Owner or Admin to access this.
 
-![Okta SCIM 1 Image](/public/Admin/Okta/sso_scim_token_updated_2024.png)
+![Okta SCIM 1 Image](/Admin/Okta/sso_scim_token_updated_2024.png)
 
 The following provisioning features are supported:
 
