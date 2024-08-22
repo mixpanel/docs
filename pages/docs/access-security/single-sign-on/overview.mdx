@@ -88,19 +88,19 @@ There are instructions here to set up SSO with Azure [here](/docs/access-securit
 
 It is possible to set up Mixpanel SSO with IDPs not listed above. [Contact support](https://mixpanel.com/get-support) for further assistance in such cases.
 
-### Postback URL
+## Postback URL
  
 You likely will need to provide your IDP with a postback URL. The postback URL is accessible from the **Access Security** menu. To obtain your postback URL, navigate to Access Security in your Organization Settings and toggle on the Single Sign-On button.
   
 ![SSO Postback URL Image](/sso_postback_url.png)
 
-### SAML Certificate
+## SAML Certificate
 
 This needs to be a **.cert** or **.pem** file for a valid X509 certificate. 
 - Note that .xml files are not valid. If you have downloaded an .xml file from your IDP, it will not work. 
 - It's important to note that this certificate will expire after some number of years. At the moment we do not send any notifications when it is about to expire. Please make sure you have a system set up to cycle your certificate every so often if you wish to avoid disruption.
 
-### Require Users to Log In Using SSO
+## Require Users to Log In Using SSO
 
 Optionally toggle on **Require Single Sign-On** to require your users to log in using SSO and to prevent your users from logging in using a username and password.
 - Please note that Organization Owners and Admins will still be able to log in using username and password in the case that SSO is not set up correctly.
