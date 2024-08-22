@@ -39,7 +39,7 @@ Additionally, it is required that you use `email` as an attribute statement.
 |-----------:|---------------:|
 | firstName  | user.firstName |
 | lastName   | user.lastName  |
-| email      | user.mail      |
+| email      | user.email      |
 
 The following screenshot highlights what you should place in the fields:
 
