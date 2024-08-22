@@ -67,9 +67,9 @@ Click **Download Certificate** in the second entry to download your certificate.
 
 You can also find the Public Certificate in the **Sign On** tab of the **Mixpanel** app. Scroll down to the **SAML Signing Certificates** section. Click **Actions** for the SHA-2 certificate and **Download certificate**. 
 
-If you Public Certificate is expired or compromised, click **Generate new certificate** to generate a new certificate to upload in Mixpanel.
-
 ![Okta Certificate Download Image](/Admin/Okta/okta_download_certificate.png)
+
+If you Public Certificate is expired or compromised, click **Generate new certificate** to generate a new certificate to upload in Mixpanel.
 
 #### Authentication URL
 
