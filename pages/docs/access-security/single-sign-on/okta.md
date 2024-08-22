@@ -109,7 +109,17 @@ The following provisioning features are supported:
 - **Push User Deactivation:** Deactivating the user or removing the user from the application through Okta will deactivate the user in Mixpanel (or delete the account if specified).
 - **Reactivate Users:** Reassigning a previously unassigned user to the application will reactivate the user's account in Mixpanel.
 
-Note that a new users provisioned from Okta will be automatically added as an Organization Member. You will need to provision other Organization Roles to users within the Mixpanel product. You will not be able to set the user's Organization Role and Project access within Okta.
+Please note the following when provisioning users from Okta to Mixpanel with SCIM:
+- New users provisioned from Okta will be automatically added as an Organization Member.
+- You will need to provision other [Organization Roles](https://docs.mixpanel.com/docs/orgs-and-projects/roles-and-permissions#organization-roles) to users within the Mixpanel product.
+- You will not be able to set the user's Organization Role and Project access within Okta. 
+
+You can also provision Groups of users in Azure to Mixpanel [Teams](/docs/orgs-and-projects/roles-and-permissions#teams) with SCIM.
+- Use the same name for the Group in Azure as the Team in Mixpanel.
+- In the Mixpanel Team, set the Organization Role and access to projects for the group of users.
+- You will not be able to provision Organization Role and Project access for the Group within Azure. 
+
+Note that it is advised you turn on **IDP Managed Access** if you are using SCIM Provisioning. Otherwise, Okta and Mixpanel might fall out of sync.
 
 #### Configuration Setup
 
@@ -137,8 +147,6 @@ Select the supported features (Create / Update / Deactivate) you wish to enable:
 
 #### Troubleshooting
 
-1. In Mixpanel, upon account creation, a SCIM-provisioned user will be added to the organization with the organization member role. The organization role for provisioned users can be changed by an organization admin within Mixpanel.
+1. If a Mixpanel account has already been created with the Okta user's email (their Okta Username) and that account is **not a member** of your Mixpanel organization, provisioning setup for that Okta user will fail. To resolve this, manually invite the existing user to your organization.
 
-2. If a Mixpanel account has already been created with the Okta user's email (their Okta Username) and that account is **not a member** of your Mixpanel organization, provisioning setup for that Okta user will fail. To resolve this, manually invite the existing user to your organization.
-
-3. Provisioning will also fail if the domain of the user's email has not been claimed by your organization. To resolve this, manually invite the existing user to your organization.
+2. Provisioning will also fail if the domain of the user's email has not been claimed by your organization. To resolve this, manually invite the existing user to your organization.
