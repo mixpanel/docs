@@ -66,25 +66,25 @@ Add `mixpanel-domain-verify=<your-token>` as the TXT record.
   
 You must configure your Identity Provider (IDP) to connect to Mixpanel in order to use SSO if you are not using custom built SSO. This requires that you directly configure your SSO settings.
 
-### Supported IDPs
+See the supported IDPs below:
 
-#### Okta
+### Okta
   
 Set up SSO with Okta using the "Mixpanel" app within the OIN or by configuring a custom app in Okta. [Follow these instructions](/docs/access-security/single-sign-on/okta) to configure the "Mixpanel" app or a custom app.
 
-#### OneLogin
+### OneLogin
 
 OneLogin only requires that you get the Postback URL. The "Mixpanel" application is in the OneLogin application store and supports auto-provisioning. You will just need to copy a SCIM token from Mixpanel into the provisioning token box in the OneLogin app. You can learn how to generate a token [here](/docs/access-security/single-sign-on/overview#scim).
   
-#### G-Suite
+### G-Suite
   
 Google has an official integration with Mixpanel with instructions [here](https://support.google.com/a/answer/7553416). Unfortunately, we do not have an auto-provisioning integration with G-Suite. You will need to rely on [Just In Time Provisioning](/docs/access-security/single-sign-on/overview#just-in-time-provisioning).
 
-#### Azure
+### Azure
 
 There are instructions here to set up SSO with Azure [here](/docs/access-security/single-sign-on/azure). Azure also has an auto-provisioning integration with Mixpanel which you can find more info [here](https://learn.microsoft.com/en-us/azure/active-directory/saas-apps/mixpanel-provisioning-tutorial).
 
-### Other IDPs
+#### Other IDPs
 
 It is possible to set up Mixpanel SSO with IDPs not listed above. [Contact support](https://mixpanel.com/get-support) for further assistance in such cases.
 
