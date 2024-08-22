@@ -139,7 +139,7 @@ The schema for each table cannot exceed 9500 unique properties. If a tables sche
 | name          | type             | pipeline destination  |
 | :------------ | :--------------- | :-------------------- |
 | mp_properties | json             | BigQuery              |
-| mp_properties | variant          | Snowflake             |
+| mp_properties | object           | Snowflake             |
 | mp_properties | json-like string | AWS Glue              |
 | mp_properties | json-like string | GCS                   |
 | mp_properties | json-like string | Azure                 |
