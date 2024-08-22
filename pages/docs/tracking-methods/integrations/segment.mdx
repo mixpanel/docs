@@ -8,7 +8,7 @@ import { Callout } from 'nextra/components'
 
 ## Overview
 
-Segment is a CDP (Customer Data Platform) which lets you track event data and route it to various downstream destinations. As a native partner, Mixpanel integrates seamlessly with Segment; if you use Segment for tracking, it only takes a few clicks to your data to Mixpanel.
+Segment, a Customer Data Platform (CDP), enables you to track event data and route it to various downstream destinations. As a native partner, Mixpanel seamlessly integrates with Segment. If you use Segment for tracking, you can send your data to Mixpanel with just a few clicks.
 
 ## How the Integration Works
 In the simplest form, the Segment libraries (“Sources”) generate messages about what is happening in your site or app, and send them to the Segment servers. Segment then translates the content of those messages into different formats for use by other tools (which we call ‘Destinations’), and sends the translated messages to those tools. The Segment servers also archive a copy of the data, and can send data to your storage systems (such as databases, warehouses, or bulk-storage buckets).
@@ -101,23 +101,23 @@ Let's say you want to create a mapping that is triggered for any events tracked 
 
 **2. Sample Payload**
 
-Set an example payload to use for testing your mapping. You can use a test event that currently exists in your source, load a Segment-generated sample event, or manually define a sample payload.
+For testing your mapping, set an example payload. You can use an existing event from your source, load a Segment-generated sample event, or create a sample payload manually.
 
-This example payload should be one that you know matches the condition so you can make sure the action will apply to your expected payload. As a best practice, you should also insert an example payload that you know should not match the condition in order to ensure your condition is specific enough to only target your expected payload.
+Ensure that this example payload matches the condition you set above so that the Action applies to your expected payload. As a best practice, insert an example payload that you know should not match the condition to verify that your condition is specific enough to target only your expected payload.
 
-Since we are creating a mapping that targets any events tracked on Android, we can insert a test event payload that contains the property `platform` set to `android`:
+Since we're creating a mapping for any events tracked on Android, we insert a test event payload that includes the property `platform` set to `android`:
 
 ![segment_sample_payload](/segment_sample_payload.png)
 
 **3. Edit Mapping**
 
-Edit the mapping of the Action to configure your output payload in your desired format. The left side of the UI allows you to configure the output value using the available objects from your source payload, while the right side of the UI allows you to define the property name for the value in Mixpanel.
+Edit the mapping of the Action to configure your output payload in your desired format. You can configure the output value using the available objects from your source payload on the left side of the UI. On the right side of the UI, you can define the property name for the value in Mixpanel.
 
-If I want to append "ANDROID" to the names of events coming from this Android actions mapping, I can specify this in the Event Name row in the left hand side:
+If we want to append "ANDROID" to the names of events coming from this Android actions mapping, specify this in the Event Name row on the left-hand side:
 
 ![segment_mapping_name](/segment_mapping_name.png)
 
-If I want to include the `messageId` from my sample Segment payload as a Mixpanel event property called "Segment Message ID", I can edit the Event Properties mapping:
+To include the `messageId` from the sample Segment payload as a Mixpanel event property called "Segment Message ID", edit the Event Properties mapping:
 
 ![segment_mapping_properties](/segment_mapping_properties.png)
 
