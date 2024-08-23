@@ -6,8 +6,10 @@ Welcome to the Mixpanel Session Replay iOS SDK(Closed Alpha)!
 
 Mixpanel Session Replay helps you quickly understand your customers and make better product decisions by combining quantitative and qualitative user insights. 
 
-For any questions about Session Replay or iOS Alpha access, please reach out to your Account Manager. Note: as our Alpha program is early access, our functionality may have bugs and cause crashes. Be sure to test thoroughly before enabling in production.
+# Availability
+Currently, iOS Session Replay is in invite-only Alpha access for customers on our Enterprise plan.
 
+For any questions about Session Replay or iOS Alpha access, please reach out to your Account Manager. Note: as our Alpha program is early access, our functionality may have bugs and cause crashes. Be sure to test thoroughly before enabling in production.
 
 # Quick Start Guide
 
