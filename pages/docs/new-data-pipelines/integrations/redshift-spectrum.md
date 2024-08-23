@@ -180,11 +180,9 @@ To ensure secure operations, limit the trust relationship to the Mixpanel export
 
 ### Step 3: Associate Access Role to Redshift
 
-Once you've established the IAM role that enables Mixpanel to access both the external Data Catalog and Amazon S3, it's essential to link this role with your Amazon Redshift cluster or serverless instance.
+Once you've established the IAM role that enables Mixpanel to access both the external Data Catalog and Amazon S3, it's essential to link this role with your Amazon Redshift Serverless instance.
 
-For Redshift Cluster Users: Follow the detailed steps provided in the [official guide to adding roles to Redshift](https://docs.aws.amazon.com/redshift/latest/dg/c-getting-started-using-spectrum-add-role.html):
-
-For Redshift Serverless Users: Use the steps below, and refer to [IAM in Redshift Serverless](https://docs.aws.amazon.com/redshift/latest/mgmt/serverless-iam.html) for additional details:
+Use the steps below, and refer to [IAM in Redshift Serverless](https://docs.aws.amazon.com/redshift/latest/mgmt/serverless-iam.html) for additional details:
 
 - Go to **Amazon Redshift** service on the AWS console
 - Select Redshift Serverless and access the Namespace configuration for an existing workgroup
@@ -248,7 +246,6 @@ Follow these steps to grant the `CREATE` privilege:
   --database <your-database-name> \
   --sql "SELECT 1;"
   ```
-  Note: For provisioned Redshift clusters, use `--cluster-identifier` instead of `--workgroup-name`.
 - Grant `CREATE` privilege. Click **Query data** in the Amazon Redshift console to open **Query Editor v2**. Connect using appropriate credentials and run the following SQL commands, replacing <your-database-name> and <mixpanel-role-name> with your actual values:
 
   ```sql
@@ -282,7 +279,7 @@ When configuring your json pipeline in Mixpanel, it is essential to provide spec
 
 **Redshift**
 
-- **Cluster Identifier** or **Workgroup Arn**: Either the Cluster Identifier (for provisioned Redshift clusters) or the Workgroup ARN (for Redshift Serverless), depending on which type of Redshift you're using.
+- **Workgroup Arn**: Workgroup ARN for Redshift Serverless.
 - **Database**: Redshift database where the external schema is created.
 - **Region**: AWS region where your Redshift is located.
 - **Role**: AWS Role ARN that Mixpanel should assume when creating schema to your database, e.g., `arn:aws:iam:::role/example-redshift-role`.
