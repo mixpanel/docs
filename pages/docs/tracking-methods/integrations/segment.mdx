@@ -25,11 +25,13 @@ Once you've installed and initialized a Segment library in your application, get
 
 ### 2. Identify Users
 
-The next thing you need to do is identify your users, so that you can understand your users. When you call [Segment's `identify` API](https://segment.com/docs/connections/spec/identify/), Mixpanel will set the specified `userId` as the Mixpanel `distinct_id` along with any additional `traits` that you provide.
+The next thing you need to do is identify your users, so that you can understand your users. We recommend calling `identify` when your user sign up and log in.
+
+When you call [Segment's `identify` API](https://segment.com/docs/connections/spec/identify/), Mixpanel will set the specified `userId` as the Mixpanel `distinct_id`. Any `traits` you provide in the call will be applied as profile properties for the targeted user in Mixpanel.
 
 ### 3. Track User Actions
 
-Lastly, track your users' actions using [Segment's `track` API call](https://segment.com/docs/connections/spec/track/).
+Lastly, track your users' actions using [Segment's `track` API call](https://segment.com/docs/connections/spec/track/), which would trigger [Mixpanel's `track` API](https://developer.mixpanel.com/reference/track-event) and ingest an event in your project.
 
 ### 4. Check for Success
 
@@ -111,7 +113,9 @@ Since we're creating a mapping for any events tracked on Android, we insert a te
 
 **3. Edit Mapping**
 
-Edit the mapping of the Action to configure your output payload in your desired format. You can configure the output value using the available objects from your source payload on the left side of the UI. On the right side of the UI, you can define the property name for the value in Mixpanel.
+Edit the mapping of the Action to configure your output payload in your desired format. In this stage, we are essentially creating a Segment payload using data that is generated from Segment's SDK, which will then be sent to Mixpanel's destination mapping code for additional processing.
+
+On the left side of the UI, you can configure the output value using the available data from your Segment source payload. On the right side of the UI, you can define the property names for the Segment payload that will be sent to Mixpanel.
 
 If we want to append "ANDROID" to the names of events coming from this Android actions mapping, specify this in the Event Name row on the left-hand side:
 
@@ -127,7 +131,11 @@ To include the `messageId` from the sample Segment payload as a Mixpanel event p
 
 **4. Preview Payload**
 
-Once you are done with configuring the mapping, preview how the payload will appear in the Mixpanel destination by expanding on the "Event context". You can also ingest the sample payload into Mixpanel to see how it will appear in your project by clicking "Send test event to destination".
+Once you are done with configuring the mapping, preview how your sample payload is mapped through the Action by expanding on the "Event context". You can also ingest the sample payload into Mixpanel to see how it will appear in your project by clicking "Send test event to destination".
+
+<Callout type="info">
+    Note that while the Event Context is helpful for showing how your properties are getting mapped through the Action, your payload will go through additional processing before getting ingested in Mixpanel. Send the test payload to destination in order to preview how your event will appear inside your project.
+</Callout>
 
 ![segment_test_event](/segment_test_event.png)
 
@@ -141,6 +149,10 @@ Create the Group Key in Mixpanel Project Settings. In this example, we are setti
 ![1groupkey_projectsettings](https://github.com/mixpanel/docs/assets/97630035/835de9fa-eea2-47b0-9965-4a922ebd39ab)
 
 **2. Configure your Group Actions Mapping**
+
+<Callout type="info">
+    If a Group Key mapping is not specified, Segment will use `$group_id` as the group key by default. In this case, set your group key in Mixpanel to `$group_id`.
+</Callout>
 
 Edit the Group action preset or create a new action mapping to target your group calls. You should manually type in the group key in the mapping to the same as it appears in the Mixpanel settings. 
 
@@ -202,15 +214,14 @@ Startup eligibility requirements:
 **1. Why are my Segment data not appearing in my project?**
 
 This could be due to several reasons:
-* Storing data in the EU: A common issue is that the data in Segment is enabled to be sent to an EU endpoint but the Mixpanel data is still being stored outside of the EU. Both endpoints for Segment and Mixpanel need to point to the EU as described [here](https://segment.com/docs/connections/destinations/catalog/mixpanel/#enable-european-union-endpoint). If you have an existing Mixpanel project, you might need to have your data migrated to the EU. Please find further information [here](https://docs.mixpanel.com/docs/privacy/eu-residency#existing-customers).
+* **Storing data in the EU:** A common issue is that the data in Segment is enabled to be sent to an EU endpoint but the Mixpanel data is still being stored outside of the EU. Both endpoints for Segment and Mixpanel need to point to the EU as described [here](https://segment.com/docs/connections/destinations/catalog/mixpanel/#enable-european-union-endpoint). If you have an existing Mixpanel project, you might need to have your data migrated to the EU. Please find further information [here](https://docs.mixpanel.com/docs/privacy/eu-residency#existing-customers).
 
-* [Cloud implementation vs. device implementation](https://segment.com/docs/connections/destinations/#connection-modes): Segment can be implemented via a cloud-based implementation or as an SDK on the device directly. Device implementation will send the data to Mixpanel directly while the cloud implementation will send it to Segment first. You can confirm your implementation by querying for the Mixpanel library property of the events in your project:
+* **[Cloud implementation vs. device implementation (Only applies to Classic destination; Action is cloud-mode only)](https://segment.com/docs/connections/destinations/#connection-modes):** Segment can be implemented via a cloud-based implementation or as an SDK on the device directly. Device implementation will send the data to Mixpanel directly while the cloud implementation will send it to Segment first. You can confirm your implementation by querying for the Mixpanel library property of the events in your project:
+    - Cloud Mode will show as Mixpanel Library: Segment: analytics.js
 
-- Cloud Mode will show as Mixpanel Library: Segment: analytics.js
+    - Device Mode will show as Mixpanel Library: Segment: web
 
-- Device Mode will show as Mixpanel Library: Segment: web
-
-* No user profile data in Mixpanel: [Segment doesn’t track Mixpanel People by default](https://segment.com/docs/connections/destinations/catalog/mixpanel/#people). This is a setting you need to enable in your Segment settings. To enable Mixpanel People, change the “Use Mixpanel People” setting in your Segment Settings UI.
+* **No user profile data in Mixpanel (Classic destination only)**: [Segment does not track Mixpanel People by default](https://segment.com/docs/connections/destinations/catalog/mixpanel/#people). This is a setting you need to enable in your Segment settings. To enable Mixpanel People, change the “Use Mixpanel People” setting in your Segment Settings UI.
 
 **2. Why are there duplicated Segment events in my project?**
 
