@@ -46,7 +46,7 @@ v0.2.0 - Updated 08/01/2024
 
 ## Initialize
 
-You should have the main Mixpanel SDK installed, if not, please refer to [Prerequisite](https://www.notion.so/How-to-use-Mixpanel-iOS-Session-Replay-6215958920b349a49cfcafd651de3f44?pvs=21) Add the initialization code at the start of your app's lifecycle.
+You should have the main Mixpanel SDK installed, if not, please refer to [Prerequisite](#prerequisite) Add the initialization code at the start of your app's lifecycle.
 
 SwiftUI
 
@@ -166,7 +166,7 @@ SessionReplay.getInstance().addSensitiveView(mySensiveView)
 
 ## Using Session Replay
 
-Please refer to [Using Session Replay](https://docs.mixpanel.com/docs/features/session-replay#using-session-replay)
+Please refer to [Using Session Replay](https://docs.mixpanel.com/docs/session-replay/session-replay-web#using-session-replay)
 
 # FAQ
 
@@ -203,7 +203,7 @@ This out-of-the-box sampling method is random sampling: your SDK will decide ran
 
 **Does it work in SwiftUI/UIKit apps?**
 
-Yes, please refer to this [section](https://www.notion.so/How-to-use-Mixpanel-iOS-Session-Replay-6215958920b349a49cfcafd651de3f44?pvs=21)
+Yes, please refer to this [section](#initialize)
 
 **Does it support Obj-C based app?**
 
@@ -224,4 +224,4 @@ If your app is SwiftUI-based, the automatic masking for `UITextField` and `UILab
 Image("family photo").replaySensitive();
 ```
 
-For More FAQ, please refer to Mixpanel Session Replay [FAQ](https://docs.mixpanel.com/docs/features/session-replay#faq)
+For More FAQ, please refer to Mixpanel Session Replay [FAQ](https://docs.mixpanel.com/docs/session-replay/session-replay-web#faq)
