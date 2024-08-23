@@ -66,56 +66,58 @@ Add `mixpanel-domain-verify=<your-token>` as the TXT record.
   
 You must configure your Identity Provider (IDP) to connect to Mixpanel in order to use SSO if you are not using custom built SSO. This requires that you directly configure your SSO settings.
 
+See the supported IDPs below:
+
 ### Okta
   
-Setting up SSO with Okta requires that you configure a custom app in Okta. [Follow these instructions](/docs/access-security/single-sign-on/okta) to configure a custom application.
+Set up SSO with Okta using the "Mixpanel" app within the OIN or by configuring a custom app in Okta. [Follow these instructions](/docs/access-security/single-sign-on/okta) to configure the "Mixpanel" app or a custom app.
 
-### One Login
+### OneLogin
 
-One Login only requires that you get the Postback URL. The "Mixpanel" application is in the Onelogin application store and supports autoprovisioning. You will just need to copy a SCIM token from Mixpanel into the provisioning token box in the Onelogin app. You can learn how to generate a token [here.](/docs/access-security/single-sign-on/overview#scim).
+OneLogin only requires that you get the Postback URL. The "Mixpanel" application is in the OneLogin application store and supports auto-provisioning. You will just need to copy a SCIM token from Mixpanel into the provisioning token box in the OneLogin app. You can learn how to generate a token [here](/docs/access-security/single-sign-on/overview#scim).
   
 ### G-Suite
   
-Google has an official integration with Mixpanel with instructions [here.](https://support.google.com/a/answer/7553416) Unfortunately, we do not have an autoprovisioning integration with G-Suite. You will need to rely on [Just In Time Provisioning.](/docs/access-security/single-sign-on/overview#just-in-time-provisioning)
+Google has an official integration with Mixpanel with instructions [here](https://support.google.com/a/answer/7553416). Unfortunately, we do not have an auto-provisioning integration with G-Suite. You will need to rely on [Just In Time Provisioning](/docs/access-security/single-sign-on/overview#just-in-time-provisioning).
 
 ### Azure
 
-There are [instructions here to set up SSO with Azure.](/docs/access-security/single-sign-on/azure) Azure also has an auto-provisioning integration with Mixpanel which you can [find more info for here.](https://learn.microsoft.com/en-us/azure/active-directory/saas-apps/mixpanel-provisioning-tutorial)
+There are instructions here to set up SSO with Azure [here](/docs/access-security/single-sign-on/azure). Azure also has an auto-provisioning integration with Mixpanel which you can find more info [here](https://learn.microsoft.com/en-us/azure/active-directory/saas-apps/mixpanel-provisioning-tutorial).
 
 ### Other IDPs
 
 It is possible to set up Mixpanel SSO with IDPs not listed above. [Contact support](https://mixpanel.com/get-support) for further assistance in such cases.
 
-### Postback URL
+## Postback URL
  
-You likely will need to provide your IDP with a postback URL. The postback URL is accessible from the **Access Security** menu. To obtain your postback URL, navigate to Access Security in your Organization Settings and toggle the Single Sign-On button.
+You likely will need to provide your IDP with a postback URL. The postback URL is accessible from the **Access Security** menu. To obtain your postback URL, navigate to Access Security in your Organization Settings and toggle on the Single Sign-On button.
   
 ![SSO Postback URL Image](/sso_postback_url.png)
 
-### SAML Certificate
+## SAML Certificate
 
 This needs to be a **.cert** or **.pem** file for a valid X509 certificate. 
 - Note that .xml files are not valid. If you have downloaded an .xml file from your IDP, it will not work. 
 - It's important to note that this certificate will expire after some number of years. At the moment we do not send any notifications when it is about to expire. Please make sure you have a system set up to cycle your certificate every so often if you wish to avoid disruption.
 
-### Require Users to Log In Using SSO
+## Require Users to Log In Using SSO
 
-Optionally toggle **Require Users to Log In using SSO** to prevent your users from using a username and password to log in. Click Enable. 
-- Please note that Organization Owners and Admins will still be able to log in using username and password in the case SSO is not set up correctly.
-- Note that external users who were invited to projects will still be able to log in using username and password.
+Optionally toggle on **Require Single Sign-On** to require your users to log in using SSO and to prevent your users from logging in using a username and password.
+- Please note that Organization Owners and Admins will still be able to log in using username and password in the case that SSO is not set up correctly.
+- Note that external users (with an email of an unclaimed domain) who were invited to projects will still be able to log in using username and password.
 
 ## IDP Managed Access
   
-This feature determines whether you are using your IDP to manage what users should be allowed in the organization or whether you are using the IDP purely as an authentication method and want to leave user management within Mixpanel. 
+This feature determines whether you are using your IDP to manage which users should be allowed in the organization or whether you are using the IDP purely as an authentication method and want to leave user management within Mixpanel. 
 
 If you enable this feature: 
-- All users of your verified claimed domains who log into Mixpanel (whether they are in your organization or not) will be prompted to use SSO. 
+- All users of your verified claimed domain(s) who log into Mixpanel will be prompted to use SSO, whether they are in your organization or not.
 - If they successfully log in through your SSO setup, they will be automatically added to the organization with no permissions except those granted to all users ([JIT provisioning](/docs/access-security/single-sign-on/overview#just-in-time-provisioning)). 
 - It will also redirect anyone signing up for a Mixpanel account with your claimed domain or anyone requesting access to a project in your organization to log in via SSO first. This helps ensure all users in your organization who try to use Mixpanel get routed to your IDP, where you can them assign them access to the Mixpanel app. This also prevents needing to manually invite users to Mixpanel from within Mixpanel's Organization Settings.
 
 We recommend enabling IDP Managed Access for most customers.
 
-Enabled the feature in the Access Security tab of your Organization Settings. Toggle on **IDP Managed Access** at the bottom. The toggle is purple when enabled.
+Enable the feature in the Access Security tab of your Organization Settings. Toggle on **IDP Managed Access** at the bottom. The toggle is purple when enabled.
   
 ![SSO IDP Managed Access Image](/sso_idp_managed_access.png)
 
@@ -145,9 +147,11 @@ You can find the official SCIM spec subset that Mixpanel implements [here](https
  
 ![SSO SCIM Image](/sso_scim.png)
   
-While you can hit the SCIM endpoints directly, the most common use case would to be use it for autoprovisioning within an IDP that has an integration with Mixpanel provisioning. This will let your IDP and Mixpanel stay in sync - when you assign users to Mixpanel in your IDP, they will be provisioned in Mixpanel, and optionally you can deprovision users within Mixpanel who lose access in your IDP. IDPs that currently have an autoprovisioning integration with Mixpanel are Okta, Onelogin, and Azure.
+While you can hit the SCIM endpoints directly, the most common use case would to be use it for auto-provisioning within an IDP that has an integration with Mixpanel provisioning. This will let your IDP and Mixpanel stay in sync - when you assign users to Mixpanel in your IDP, they will be provisioned in Mixpanel, and optionally you can deprovision users within Mixpanel who lose access in your IDP. IDPs that currently have an auto-provisioning integration with Mixpanel are Okta, OneLogin and Azure.
 
 If you wish to revoke your SCIM Provisioning token, you can generate a new one which will kill the previous token.
+
+We recommend enabling **IDP Managed Access** when using SCIM; otherwise, your IDP and Mixpanel can get out of sync.
 
 ## Remove SSO Configuration
 
