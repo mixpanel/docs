@@ -4,7 +4,10 @@
 
 Welcome to the Mixpanel Session Replay iOS SDK(Closed Alpha)!
 
-Mixpanel Session Replay helps you quickly understand your customers and make better product decisions by combining quantitative and qualitative user insights.
+Mixpanel Session Replay helps you quickly understand your customers and make better product decisions by combining quantitative and qualitative user insights. 
+
+For any questions about Session Replay or iOS Alpha access, please reach out to your Account Manager. Note: as our Alpha program is early access, our functionality may have bugs and cause crashes. Be sure to test thoroughly before enabling in production.
+
 
 # Quick Start Guide
 
@@ -196,11 +199,11 @@ let sessionReplayInstance = SessionReplay.initialize(token: token, distinctId: d
 
 This out-of-the-box sampling method is random sampling: your SDK will decide randomly whether the currently SDK instance load falls into the sample or not. We recommend starting at 1% and increasing from there. Please note: if you expect low traffic, you can increase the starting sampling percentage. It is a good idea to control this with your own API, so you can change it on the fly without redeploying your app. While you're testing, we recommend that you set it to 100 and this ensure every user session will be sent to Mixpanel. Once testing is done, we recommend lowering this value in production.
 
-Does it work in SwiftUI/UIKit apps?
+**Does it work in SwiftUI/UIKit apps?**
 
 Yes, please refer to this [section](https://www.notion.so/How-to-use-Mixpanel-iOS-Session-Replay-6215958920b349a49cfcafd651de3f44?pvs=21)
 
-Does it support Obj-C based app?
+**Does it support Obj-C based app?**
 
 Yes, Objective-C and Swift are fully interoperable.
 
