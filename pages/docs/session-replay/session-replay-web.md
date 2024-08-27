@@ -98,6 +98,12 @@ If you want to only record certain parts of a single-page application with no ne
 
 There is about a ~1 minute delay between when recordings are captured and when they appear in Mixpanel.  
 
+### Why can't I view Replays from my Insights or Funnels chart?
+
+Mixpanel looks for the `$mp_replay_id` property on your events in order to determine which replay it belongs to. If you have instrumented both Replays and Events using the Mixpanel JavaScript SDK, the `$mp_replay_id` will automatically be added to events sent by the SDK.
+
+For CDP implementations, look below for instructions on how to configure the SDKs together. To get the relevant Session Replay properties from the SDK, use `mixpanel.get_session_recording_properties()`. [See documentation](/docs/tracking-methods/sdks/javascript#get-replay-properties).
+
 ### Can I use Session Replay with a CDP?
 
 Yes. You can use Session Replay with CDPs like Segment and mParticle.
