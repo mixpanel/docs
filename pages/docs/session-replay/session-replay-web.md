@@ -98,9 +98,9 @@ If you want to only record certain parts of a single-page application with no ne
 
 There is about a ~1 minute delay between when recordings are captured and when they appear in Mixpanel.  
 
-### Why does it say the player failing to load?
+### Why does it say the player failed to load?
 
-To maintain our high standard of security, Mixpanel runs your session replays in an isolated domain separate from the main product. Sometimes, this domain may be blocked by an ad blocker or certain browser settings. Try disabling any ad blockers, or for extensions like uBlock add the following custom filter:
+In order to maintain a high standard of security, Mixpanel runs your session replays in an isolated domain through an iframe. Sometimes, this domain may be blocked by an ad blocker or certain browser settings. Try disabling any ad blockers, or for extensions like uBlock add the following custom filter:
 
 ```
 @@||mxpnl.com^$domain=mxpnl.com
