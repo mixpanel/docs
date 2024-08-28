@@ -100,7 +100,9 @@ There is about a ~1 minute delay between when recordings are captured and when t
 
 ### Why does it say the player failed to load?
 
-In order to maintain a high standard of security, Mixpanel runs your session replays in an isolated domain through an iframe. Sometimes, this domain may be blocked by an ad blocker or certain browser settings. Try disabling any ad blockers, or for extensions like uBlock add the following custom filter:
+In order to maintain a high standard of security, Mixpanel runs your session replays in an isolated domain through an iframe. Sometimes, this domain may be blocked by an ad blocker or certain browser settings. Please try disabling any ad blockers. 
+
+For extensions like uBlock, you can navigate to "My Filters" in the extension settings and paste the following custom filter:
 
 ```
 @@||mxpnl.com^$domain=mxpnl.com
