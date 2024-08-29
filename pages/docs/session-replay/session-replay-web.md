@@ -42,14 +42,17 @@ Click any point on a chart for Event and Funnel metrics, and select ‘View Repl
 The Replay Player allows you to watch replays, as well as:
 
 - Expand the player to full-screen
-- Copy a URL to share with your teammates
+- Copy a URL with or without a timestamp to share with your teammates
 - Change the playback speed
 - Automatically skip periods of the replay where user is inactive
+- See events in the replay timeline
+- Jump to different parts of the replay by clicking in the timeline
 
 The Replay Feed on the left of the player also allows you to:
 
-- sort replays by recency
-- search for replays by user's name / email, replay date, or user ID
+- Sort replays by recency, activity, or duration
+- Search for replays by user's name / email, replay date, user ID, or the name of an event in the replay
+- See a feed of events that occurred during each replay
 
 ## Implementation
 Session Replay is not enabled by default; enabling the feature requires instrumentation beyond the standard Mixpanel instrumentation. 
