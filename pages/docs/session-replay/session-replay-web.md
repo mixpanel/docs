@@ -295,6 +295,7 @@ mixpanel.init(YOUR_PROJECT_TOKEN, {record_block_selector: '.sensitive-data'})
 
 Once enabled, Session Replay runs on your site until either:
 - The user leaves your site
+- The user is inactive for more than 30 minutes
 - You call mixpanel.stop_session_recording()
 
 Call mixpanel.stop_session_recording() before a user navigates to a restricted area of your site to disable replay collection while the user is in that area. To restart replay collection, call `mixpanel.start_session_recording()` to re-add the plugin.
