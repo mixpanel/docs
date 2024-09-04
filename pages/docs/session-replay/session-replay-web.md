@@ -238,7 +238,7 @@ mixpanel.init('MIXPANEL-PROJECT-TOKEN', {
 
 ##### Google Tag Manager (GTM)
 
-You can use session replay with Google Tag Manager. First, make sure you have the [Mixpanel GTM Template](https://docs.mixpanel.com/docs/tracking-methods/integrations/google-tag-manager) installed in your workspace.
+You can use session replay with Google Tag Manager. First, make sure you have the [Mixpanel GTM Template](/docs/tracking-methods/integrations/google-tag-manager) installed in your workspace.
 
 Once that is added, you can add a new Mixpanel tag to your workspace which turns on Session Replay by following these instructions:
 
@@ -247,7 +247,7 @@ Once that is added, you can add a new Mixpanel tag to your workspace which turns
 - For `Tag Type` choose `init` from the dropdown
 - For `Initialization` choose `Set Options Manually`
 - In the `Option key` / `Option value` dropdown, ensure you choose `record_sessions_percent` and the value should be a number between 1 and 100.
-	- This is also where you can configure other [Session Replay options](https://docs.mixpanel.com/docs/tracking-methods/sdks/javascript#init-options) like `record_block_class` etc...
+- This is also where you can configure other [Session Replay options](/docs/tracking-methods/sdks/javascript#init-options) like `record_block_class` etc...
 - For the `Triggering` section, you'll want to choose something [early in the GTM lifecycle](https://support.google.com/tagmanager/answer/7679319?hl=en); typically this is `Initialization - All Pages` or `Consent Initialization - All Pages` to ensure that Session Replay starts recording as soon as the GTM container is initialized.
 - Save + Deploy this template to your website and you should be up and going with session replay
 
