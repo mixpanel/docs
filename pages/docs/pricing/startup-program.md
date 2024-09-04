@@ -66,17 +66,17 @@ If you have already redeemed an offer through the [Product School](https://produ
 If you are in the earlier version of the Mixpanel for Startups program which utilized “startup credits” and have specific questions regarding your account, please reach out to [startups@mixpanel.com](mailto:startups@mixpanel.com). 
 
 #### What is the credit-based startup program?
-Prior to September 2024, the Mixpanel for Startups program provided eligible startups with their first year of Mixpanel free, valued up to $50,000. Startups in this program are able to purchase an annual Growth plan as well as Group Analytics and Data Pipelines add-on packages utilizing credits. . 
+Prior to September 2024, the Mixpanel for Startups program provided eligible startups with their first year of Mixpanel free, valued up to \$50,000. Startups in this program are able to purchase an annual Growth plan as well as Group Analytics and Data Pipelines add-on packages utilizing credits. . 
 
-After acceptance to the program, $50,000 in credits were added to participants’ Mixpanel account and automatically applied to eligible line items when purchasing an annual [Growth plan](https://mixpanel.com/pricing/#edit-plan) via our plan-builder. The credits cover up to $50,000 in total usage within the first year. Any additional usage costs in excess of $50,000 is not covered by the program and will be charged to the credit card on file.
+After acceptance to the program, \$50,000 in credits were added to participants’ Mixpanel account and automatically applied to eligible line items when purchasing an annual [Growth plan](https://mixpanel.com/pricing/#edit-plan) via our plan-builder. The credits cover up to \$50,000 in total usage within the first year. Any additional usage costs in excess of \$50,000 is not covered by the program and will be charged to the credit card on file.
 
 #### How do I know if I am in the credit-based startup program?
-The credit-based startup program was valid prior to September 4, 2024. If you are currently in this version of the program, $50,000 worth of credits were added to your account to apply to eligible purchases and upgrades made in your first year. You can see these credits in your Mixpanel account under Organization Settings > Plan Details & Billing.
+The credit-based startup program was valid prior to September 4, 2024. If you are currently in this version of the program, \$50,000 worth of credits were added to your account to apply to eligible purchases and upgrades made in your first year. You can see these credits in your Mixpanel account under Organization Settings > Plan Details & Billing.
 
 The Manage Billing & Payment section displays detailed information about the credits that are used to cover your first year of Mixpanel. Eligible credits will also appear in the checkout process when purchasing a Growth plan and premium features through the online plan-builder.
 
 #### Will the startup credits in my account expire?
-Yes. The credit-based startup program provides your first year of Mixpanel for free, valued up to $50,000. After the first year, the unused credits expire and are no longer valid. You can see the expiration date in the Credits tab under Plan Details & Billing in the Organization Settings. Once your first year elapses, the credits expire and the credit card on file will be charged to cover the subscription renewal and additional data costs. 
+Yes. The credit-based startup program provides your first year of Mixpanel for free, valued up to \$50,000. After the first year, the unused credits expire and are no longer valid. You can see the expiration date in the Credits tab under Plan Details & Billing in the Organization Settings. Once your first year elapses, the credits expire and the credit card on file will be charged to cover the subscription renewal and additional data costs. 
 
 #### Other questions about Mixpanel for Startups?
 Please reach out to the team at [startups@mixpanel.com](mailto:startups@mixpanel.com).
