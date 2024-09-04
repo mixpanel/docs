@@ -25,7 +25,9 @@ B.  Follow [Okta's documentation on setting up a new application](https://help.o
 
 #### Configure SAML
 
-You must fill the form found in the **Configure SAML** menu in Okta. Make sure that the following fields are adjusted to match the coresponding values:
+A. If you use the Mixpanel app from the OIN, the following SAML configuration is already built into the app.
+
+B. If you create a custom app, you must fill the form found in the **Configure SAML** menu in Okta. Make sure that the following fields are adjusted to match the coresponding values:
 
 - **Single sign on URL:** Postback URL from Mixpanel (https://mixpanel.com/security/sso/v2/authorize/?org_id=YOUR_ORG_ID)
 - **Requestable SSO URLs:** https://sso.mixpanel.com/sso/saml2
@@ -39,7 +41,7 @@ Additionally, it is required that you use `email` as an attribute statement.
 |-----------:|---------------:|
 | firstName  | user.firstName |
 | lastName   | user.lastName  |
-| email      | user.mail      |
+| email      | user.email     |
 
 The following screenshot highlights what you should place in the fields:
 
@@ -47,13 +49,13 @@ The following screenshot highlights what you should place in the fields:
 
 ### Obtain Information From Okta
 
-In order to configure Mixpanel use with Okta, you must first obtain your **Public Certificate**, **Authentication URL**, and **Issuer URL** 
+In order to configure Mixpanel use with Okta, you must first obtain your **Public Certificate**, **Authentication URL**, and **Issuer URL**.
 
 To access this information, first select the select the Mixpanel app under the **Applications** tab in Okta. Click on the **Sign On** tab.
 
-Under the **SAML 2.0** section, click **View Setup Instructions** and scroll down to **Configuration Data**.
+In the right **About** column under the **SAML Setup** section, click **View SAML setup instructions**.
 
-![Okta Info 1 Image](/okta_info1.png)
+![Okta Info 1 Image](/Admin/Okta/okta_saml_setup_instructions_fixed.png)
 
 #### Public Certificate
 
@@ -62,6 +64,12 @@ The X.509 certificate allows users signing in through a third-party identity pro
 Click **Download Certificate** in the second entry to download your certificate.
 
 ![Okta Info 2 Image](/okta_info2.png)
+
+You can also find the Public Certificate in the **Sign On** tab of the **Mixpanel** app. Scroll down to the **SAML Signing Certificates** section. Click **Actions** for the SHA-2 certificate and **Download certificate**. 
+
+![Okta Certificate Download Image](/Admin/Okta/okta_download_certificate.png)
+
+If you Public Certificate is expired or compromised, click **Generate new certificate** to generate a new certificate to upload in Mixpanel.
 
 #### Authentication URL
 
@@ -92,7 +100,7 @@ The following prerequisites must be met to set up SCIM provisioning:
 - The `Username` value in Okta must be an email address with a domain that you've claimed.
 - You need to have generated a SCIM OAuth token to use with the app. This token is located in **SCIM** menu of the **Access Security** tab in your Organization Settings. You will need to be an Organization Owner or Admin to access this.
 
-![Okta SCIM 1 Image](/okta_scim1.png)
+![Okta SCIM 1 Image](/Admin/Okta/sso_scim_token_updated_2024.png)
 
 The following provisioning features are supported:
 
@@ -101,7 +109,17 @@ The following provisioning features are supported:
 - **Push User Deactivation:** Deactivating the user or removing the user from the application through Okta will deactivate the user in Mixpanel (or delete the account if specified).
 - **Reactivate Users:** Reassigning a previously unassigned user to the application will reactivate the user's account in Mixpanel.
 
-Note that a new users provisioned from Okta will be automatically added as an Organization Member. You will need to provision other Organization Roles to users within the Mixpanel product. You will not be able to set the user's Organization Role and Project access within Okta.
+Please note the following when provisioning users from Okta to Mixpanel with SCIM:
+- New users provisioned from Okta will be automatically added as an Organization Member.
+- You will need to provision other [Organization Roles](https://docs.mixpanel.com/docs/orgs-and-projects/roles-and-permissions#organization-roles) to users within the Mixpanel product.
+- You will not be able to set the user's Organization Role and Project access within Okta. 
+
+You can also provision Groups of users in Azure to Mixpanel [Teams](/docs/orgs-and-projects/roles-and-permissions#teams) with SCIM.
+- Use the same name for the Group in Azure as the Team in Mixpanel.
+- In the Mixpanel Team, set the Organization Role and access to projects for the group of users.
+- You will not be able to provision Organization Role and Project access for the Group within Azure. 
+
+Note that it is advised you turn on **IDP Managed Access** if you are using SCIM Provisioning. Otherwise, Okta and Mixpanel might fall out of sync.
 
 #### Configuration Setup
 
@@ -129,8 +147,6 @@ Select the supported features (Create / Update / Deactivate) you wish to enable:
 
 #### Troubleshooting
 
-1. In Mixpanel, upon account creation, a SCIM-provisioned user will be added to the organization with the organization member role. The organization role for provisioned users can be changed by an organization admin within Mixpanel.
+1. If a Mixpanel account has already been created with the Okta user's email (their Okta Username) and that account is **not a member** of your Mixpanel organization, provisioning setup for that Okta user will fail. To resolve this, manually invite the existing user to your organization.
 
-2. If a Mixpanel account has already been created with the Okta user's email (their Okta Username) and that account is **not a member** of your Mixpanel organization, provisioning setup for that Okta user will fail. To resolve this, manually invite the existing user to your organization.
-
-3. Provisioning will also fail if the domain of the user's email has not been claimed by your organization. To resolve this, manually invite the existing user to your organization.
+2. Provisioning will also fail if the domain of the user's email has not been claimed by your organization. To resolve this, manually invite the existing user to your organization.

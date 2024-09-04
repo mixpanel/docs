@@ -59,6 +59,6 @@ You can also provision Groups of users in Azure to Mixpanel [Teams](/docs/orgs-a
 - In the Mixpanel Team, set the Organization Role and access to projects for the group of users.
 - You will not be able to provision Organization Role and Project access for the Group within Azure. 
 
-Note that it is advised you turn on **IDP Managed Access** if you are using SCIM Provisioning.
+Note that it is advised you turn on **IDP Managed Access** if you are using SCIM Provisioning. Otherwise, Okta and Mixpanel might fall out of sync.
 
 Tenant URL: https://mixpanel.com/api/app/scim/v2

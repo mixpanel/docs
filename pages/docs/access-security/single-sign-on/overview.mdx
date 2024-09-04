@@ -151,6 +151,8 @@ While you can hit the SCIM endpoints directly, the most common use case would to
 
 If you wish to revoke your SCIM Provisioning token, you can generate a new one which will kill the previous token.
 
+We recommend enabling **IDP Managed Access** when using SCIM; otherwise, your IDP and Mixpanel can get out of sync.
+
 ## Remove SSO Configuration
 
 If you need to remove all of your SSO configuration, you can do so with the "Remove SSO Configuration" button. This option is available if you had previously configured SSO and then disabled SSO. This will clear the settings and SAML certificate, as well as entries that facilitate the SSO process.
