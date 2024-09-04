@@ -121,6 +121,18 @@ If an authentication app is your preferred method of authentication, you can log
 
 **Note: If you use all your recovery codes, you will be asked to reset your two-factor authentication method on your next login.**
 
+
 #### Login via Authy (SMS)
 
 Mixpanel is integrated with Authy (a Twilio service), so if you download the Authy app, you can add your email address and phone number. Then, you can add your Mixpanel account to the app. You can learn more about Authy at https://www.authy.com/. Please feel free to contact support if you need additional assistance here.
+
+### Resetting Two-Factor Authentication for Users
+
+As an organization admin, you can reset two-factor authentication (2FA) for users within your organization. To do this, follow these steps:
+
+1. Navigate to the Access Security section within your "Organization Settings".
+2. Click on the 2FA tab.
+3. Select the users whose 2FA needs to be reset.
+4. Click Reset Two-Factor Authorization
+
+This will reset their two-factor authentication, allowing them to set up 2FA again the next time they log in.
