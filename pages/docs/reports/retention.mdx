@@ -32,9 +32,15 @@ The retention behavior is the basic building block of a Retention report. A rete
 
 ### Step 2: Choose your Measurement
 
-After your retention behavior is defined, you can choose how you want to measure it. By default, Retention report will select retention rate as the measurement, but you can also measure the number of users retaining. You can change the measurement by selecting "Retention Rate" in the bottom left of the retention metric definition. In this case, we don't want to change the measurement, so it can be left alone.
+After your retention behavior is defined, you can choose how you want to measure it. By default, Retention report will select retention rate as the measurement. 
 
-![/retention_beta_2.png](/retention_beta_2.png)
+There are 4 types of measurement
+- Retention Rate: Percentage of users retained within window
+- Uniques Users: Absolute number of users retained within window
+- Property Sum: Total sum of property within a window  (eg.  total video watch duration)
+- Property Average: Average across users of sum of property within window (eg average watch time per user)
+
+![/Updated_retention_measurements.png](/Updated_retention_measurements.png)
 
 ### Step 3: Choose Filters
 
@@ -94,11 +100,17 @@ For example, if you are bucketing based on your "Item Purchased" event and creat
 
 ### Retention Criteria
 
-<p style={{ position: 'relative', paddingBottom: '56.25%', height: 0, overflow: 'hidden' }}>
-  <iframe src="https://www.loom.com/embed/565ed521880d4d7e9f68c821645b99cc" frameborder="0" style={{ position: 'absolute', top: 0, left: 0, width: '100%', height: '100%' }} allowfullscreen></iframe>
-</p>
+![/Updated_retention_criteria.png](/Updated_retention_criteria.png)
 
-#### Retention Criteria - On time interval
+#### 'On or After' time interval
+
+"On or After" Retention calculates the percentage of users who come back on a specific time unit (e.g. day, week, month) **or any time unit afterward**. A user can fulfill the "came back and did B criteria" on a specific time unit or any time in the future to be counted as retained in "On or After" Retention.
+
+"On or After" Retention gives you a better sense of how long you are holding on to your users in an absolute sense. It will tell you how many users used your app and then ever returned to find more value. In other words, it's the opposite of the overall churn of your user base.
+
+We think "On or After" retention is a better fit for most businesses and it is the default calculation for the Retention report. This is because it’s more common that a product doesn’t require users to come back in each time unit to achieve the product’s value proposition, and more often than not when doing retention analysis we don’t only value the user coming back in a specific time unit as long as they eventually do. However, if this is important to you and your business, please utilize "On" Retention.
+
+#### 'On' time interval
 
 "On" Retention calculates the percentage of users who come back on a specific time unit (e.g. day, week, month).
 
@@ -108,15 +120,36 @@ For example, day 5 retention is the percentage of users who “came back and did
 
 "On" retention is useful to understand high-level usage patterns.  We also recommend using "on" retention when your product relies on users returning in each and every time unit.
 
-#### Retention Criteria - On or After time interval
+#### 'On or Before' time interval
 
-![/Retention_Criteria](/Retention_Criteria.png)
+“On or Before” is a retention criteria most commonly used with measurement type of property sum or average. It looks at total activity done during the period between the start and end event
 
-"On or After" Retention calculates the percentage of users who come back on a specific time unit (e.g. day, week, month) **or any time unit afterward**. A user can fulfill the "came back and did B criteria" on a specific time unit or any time in the future to be counted as retained in "On or After" Retention.
+For example, if you want to look at 30 Day LTV (Lifetime value) of e-commerce users, you would look at total money spent on purchases from sign-up for 30 Days. This includes looking at revenue spent from Day 0, Day 1 ..to Day 30, where revenue is a property on the event purchase.  Similarly, if you want to look  at 30 day ARPU (average revenue per user), you would look at averaging the total revenue spent per user within the first 30 days
 
-"On or After" Retention gives you a better sense of how long you are holding on to your users in an absolute sense. It will tell you how many users used your app and then ever returned to find more value. In other words, it's the opposite of the overall churn of your user base.
+#### 'Streak mode' 
 
-We think "On or After" retention is a better fit for most businesses and it is the default calculation for the Retention report. This is because it’s more common that a product doesn’t require users to come back in each time unit to achieve the product’s value proposition, and more often than not when doing retention analysis we don’t only value the user coming back in a specific time unit as long as they eventually do. However, if this is important to you and your business, please utilize "On" Retention.
+“Streak mode” is mostly meant to count unique users doing consecutive actions across time intervals. 
+
+For example played a game for 5 consecutive days since sign-up, or visited the doctor for 8 consecutive months since registering for a clinic. 
+
+#### Advanced Use-Cases  
+
+These use-cases, use a combination of different retention criteria & measurement types 
+<p style={{ position: 'relative', paddingBottom: '56.25%', height: 0, overflow: 'hidden' }}>
+  <iframe src="https://www.loom.com/embed/7c6a803c0b654673b51b149cbdb45698?sid=84d24d63-dd50-4dd3-8b5a-85caa7bb171c" frameborder="0" style={{ position: 'absolute', top: 0, left: 0, width: '100%', height: '100%' }} allowfullscreen></iframe>
+</p>
+
+- What is the total revenue (or LTV) for new users in the first 7 days? How has this changed over time
+    - Retention Criteria: On or Before
+    - Measurement: Property Sum; 7 Days
+- What is the average video watch-time for a new subscriber in their first 30 days since subscription? How has this changed over time?
+    - Retention Criteria: On or Before
+    - Measurement: Property Average; 30 Days
+- How many new users have a wordle streak for 5 days or 10 days?
+    - Retention Criteria: Streak Mode
+    - Measurement: Unique Users; 5 days
+
+
 
 ### Custom Retention Brackets
 

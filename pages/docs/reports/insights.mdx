@@ -342,6 +342,24 @@ If you select the DAU, WAU, or MAU function for a date range that includes the c
 | Weekly Active Users (WAU) | The number of users who performed [event] within the last 7 days.<br /><br />**Example**: What's the count of users who watched a video in the week? | N/A |
 | Monthly Active Users (MAU) | The number of users who performed [event] within the last 30 days.<br /><br />**Example**: What's the count of users who watched a video in the last month? | N/A |
 
+**Example of MAU** 
+
+Assuming we would like to find the MAU of the last 6 months (e.g. Jul 5, 2023 to Jan 1, 2024)
+- If the time interval is "Month": https://mixpanel.com/s/3LC8ll
+  - For each month, we will look at the last date in the time frame, and count 30 days back from that. 
+  - So for the month of Dec, we will count the total number of active users from Dec 2 to Dec 31 
+  - As long as the user watches video once, anytime between Dec 2 to Dec 31, they will be counted as part of the MAU for Dec 
+
+- If the time interval is "Day": https://mixpanel.com/s/47YhnE
+  - For each day, we will look at the last date in the time frame, and count 30 days back from that. 
+  - So for Nov 1, we will count the total number of active users from Oct 3 to Nov 1
+  - As long as the user watches video once, anytime between Oct 3 to Nov 1, they will be counted as part of the MAU for Nov 1
+
+- If the time interval is "Week": https://mixpanel.com/s/dA5BK
+  - For each week, we will look at the last date in the time frame, and count 30 days back from that. 
+  - So for the week of Nov 27 to Dec 3, we will count the total number of active users from Nov 4 to Dec 3
+  - As long as the user watches video once, anytime between Nov 4 to Dec 3, they will be counted as part of the MAU for Nov 27 to Dec 3.
+
 **How do breakdowns work with Uniques?**
 
 When you apply a breakdown to a metric, by default, Mixpanel tells you how many unique users contributed to each segment. For example, in the image below, you can see there were a total of 2441 unique users, while the sum of individual segments is more than 3000. This is correct. That is because one user could have seen both a Home Page and a Shop Page, so they get counted as a user towards both segments.
