@@ -126,7 +126,8 @@ To include the `messageId` from the sample Segment payload as a Mixpanel event p
 ![segment_mapping_properties](/segment_mapping_properties.png)
 
 <Callout type="info">
-    When you edit the "Event Properties" mapping, you will not be able to rely on the `properties` object, meanning you will need to define each property as a key-value pair individually.
+    By default, the track preset takes the entire `properties` object from the Segment payload and uses it to generate "Event Properties" for the Mixpanel event payload. To edit the event properties mapping, you will need to manually define each property key-value pairs manually. 
+    ![segment_mapping_properties_edit](/segment_mapping_properties_edit.png)
 </Callout>    
 
 **4. Preview Payload**
@@ -134,7 +135,7 @@ To include the `messageId` from the sample Segment payload as a Mixpanel event p
 Once you are done with configuring the mapping, preview how your sample payload is mapped through the Action by expanding on the "Event context". You can also ingest the sample payload into Mixpanel to see how it will appear in your project by clicking "Send test event to destination".
 
 <Callout type="info">
-    Note that while the Event Context is helpful for showing how your properties are getting mapped through the Action, your payload will go through additional processing before getting ingested in Mixpanel. Send the test payload to destination in order to preview how your event will appear inside your project.
+    Note that while the Event Content tab is helpful for showing how your properties are getting mapped through the Action, your payload will go through additional processing before getting ingested in Mixpanel. Send the test payload to destination in order to preview how your event will appear inside your project.
 </Callout>
 
 ![segment_test_event](/segment_test_event.png)
@@ -164,11 +165,19 @@ Since we set the group key to `company_id` earlier, we manually enter it as the 
 
 **3. Create Group Profiles**
 
-Calling Segment SDK function [analytics.group()](https://segment.com/docs/connections/spec/group/) will create Group Profile/Group Profile Properties in Mixpanel. Mixpanel uses the key specified in the second argument of the group method.
+Calling Segment SDK function [analytics.group()](https://segment.com/docs/connections/spec/group/) will create Group Profile/Group Profile Properties in Mixpanel.
 
-![3groupcall (5)](https://github.com/mixpanel/docs/assets/97630035/704ef559-65ec-4958-bc72-b997e0dbcf31)
+```
+//the groupId is "some_company"
+//the second argument contain 3 group profile properties to be set
+analytics.group("some_company", {
+    "$name": "some_companys_name",
+    "employees": 100,
+    "id": "some_company"
+})
+```
 
-Example Group Profile/Group Profile Properties created from the group method:
+Example Group Profile/Group Profile Properties created from the group method above:
 
 ![4groupprofile](https://github.com/mixpanel/docs/assets/97630035/b8b7ab18-4c65-4dff-965a-d532ae49cffc)
 
