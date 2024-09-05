@@ -1,5 +1,6 @@
-# Roles & Permissions
+import { Callout } from 'nextra/components'
 
+# Roles & Permissions  
 
 ## Overview
 Your team members access your organization and its projects using individual user accounts which is what you use to sign into Mixpanel. An account must be part of an organization but it does not need to be part of all projects in the organization.  Each account will have a single organization role per organization and one or more project roles for each project it is a part of. These roles can further limit what an account will have access to in Mixpanel.
@@ -52,7 +53,9 @@ You can remove users from an organization or project. You can only remove users 
 2. Find the user(s) to remove and click the checkbox next to their name.
 3. Click the **Delete** button that appears at the top of the table.
 
->Note: Deleting a user from an organization will remove them from all projects and teams within the organization and is non-reversible.
+<Callout type="info">
+  Deleting a user from an organization will remove them from all projects and teams within the organization and is non-reversible.
+</Callout>
 
 ![image](/Del_Org_Users.png "Delete Org Users")
 
@@ -66,7 +69,9 @@ To remove a user from a project:
 
 A user may be a member of multiple projects. Deleting a user from one project does not affect their access to other projects within the organization.
 
->Note: Only users with Organization Owner or Organization Admin roles can remove users that have access to a project granted through a [Team](/docs/orgs-and-projects/roles-and-permissions#teams).
+<Callout type="info">
+  Only users with Organization Owner or Organization Admin roles can remove users that have access to a project granted through a [Team](/docs/orgs-and-projects/roles-and-permissions#teams).
+</Callout>
 
 ![image](/Del_Proj_Users.png "Delete Project Users")
 
@@ -76,7 +81,11 @@ In Mixpanel, users have roles in an organization and in a project. The types of 
 
 ### Organization Roles
 
-Paid Organizations have four roles: Owner, Admin, Billing Admin and Member. Free Organizations have two roles: Owner and Billing Admin. The table below breaks down the roles and permissions of each role:
+<Callout type="info">
+  Paid Organizations have access to four roles; Owner, Admin, Billing Admin, and Member. Free Organizations have access to two roles; Owner and Billing Admin.
+</Callout>
+
+The table below breaks down the roles and permissions of each role:
 
 | **Organization Role** | **Owner** | **Admin** | **Billing Admin** | **Member** |
 |-----------------------|-----------|-----------|-------------------|------------|
@@ -94,8 +103,9 @@ Paid Organizations have four roles: Owner, Admin, Billing Admin and Member. Free
 | Request Organization Deletion                                      | ✅ | ❌ | ❌ | ❌ |
 
 **Owner**
-
->As a best practice, it is recommended to have at least 2 Organization Owners at all times, in case an owner loses access to their account or is no longer working with the company.
+<Callout type="info">
+  As a best practice, it is recommended to have at least 2 Organization Owners at all times, in case an owner loses access to their account or is no longer working with the company.
+</Callout>
 
 Organization Owners have administrative permissions for the organization and all the projects in the organization. Multiple users can be Owners. However, each organization must have at least one Owner.
 

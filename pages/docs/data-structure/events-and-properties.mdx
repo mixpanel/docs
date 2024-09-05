@@ -47,9 +47,13 @@ We recommend striking the right balance when defining your events. Events should
 
 ### Name Events and Properties Consistently
 
+<Callout type="warning">
+   Mixpanel strings are case-sensitive; `sign_up_completed` and `Sign_Up_Completed` are considered two separate events.
+</Callout>
+
 We recommend having a consistent naming convention for your events and properties:
 
-* Generally, adopting snake_case for your event and property names tend to be more robust, especially if you plan to export your Mixpanel data to downstream processes such as data warehouses. Do also note that Mixpanel is case-sensitive (eg `sign_up_completed` vs `Sign Up Completed` are considered two separate events).
+* Generally, adopting snake_case for your event and property names tend to be more robust, especially if you plan to export your Mixpanel data to downstream processes such as data warehouses.
 
 * Use the **(Object) (Verb)** format for event names. Like `song_played` or `page_viewed`.
 
