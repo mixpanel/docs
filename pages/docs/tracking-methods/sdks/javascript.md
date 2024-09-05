@@ -400,10 +400,11 @@ If you already have the JS SDK installed, this is the only code change you need 
 | `record_mask_text_class` | CSS class name or regular expression for elements that will have their text contents masked. | `new RegExp('^(mp-mask\|fs-mask\|amp-mask\|rr-mask\|ph-mask)$')` <br/> (common industry mask classes) |
 | `record_mask_text_selector` | CSS selector for elements that will have their text contents masked. | `"*"` |
 | `record_max_ms` | Maximum length of a single replay in milliseconds. Up to 24 hours is supported. Once a replay has reached the maximum length, a new one will begin. | `86400000`<br/>(24 hours) |
+| `record_min_ms` | Minimum length of a single replay in milliseconds. Up to 8 seconds is supported. If a replay does not meet the minimum length, it will be discarded. | `0`<br/>(0 seconds) |
 | `record_sessions_percent` | Percentage of SDK initializations that will qualify for replay data capture. A value of "1" = 1%. | `0` |
 
 
-### Recorder Methods
+### Session Replay Methods
 
 We give our customers full control to customize when and where they capture session replays.
 
@@ -422,6 +423,19 @@ This is optional, and can be used primarily to programmatically start and stop r
 mixpanel.stop_session_recording()
 ```
 This will have no effect if there is no replay data collection in progress.
+
+
+#### Get replay properties
+
+Use this method to get properties used to identify a replay that is taking place. Add the properties from this method to any events sent to Mixpanel that are not coming from the SDK (e.g. from a [CDP library](/docs/session-replay/session-replay-web#can-i-use-session-replay-with-a-cdp)).
+
+If your Mixpanel Events are instrumented using the JavaScript SDK, these properties will automatically be added.
+
+```javascript
+mixpanel.get_session_recording_properties()
+// {$mp_replay_id: '19221397401184-063a51e0c3d58d-17525637-1d73c0-1919139740f185'}
+```
+Returns an empty object if there is no Replay in progress.
 
 #### Example Scenarios
 

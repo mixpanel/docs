@@ -42,14 +42,17 @@ Click any point on a chart for Event and Funnel metrics, and select ‘View Repl
 The Replay Player allows you to watch replays, as well as:
 
 - Expand the player to full-screen
-- Copy a URL to share with your teammates
+- Copy a URL with or without a timestamp to share with your teammates
 - Change the playback speed
 - Automatically skip periods of the replay where user is inactive
+- See events in the replay timeline
+- Jump to different parts of the replay by clicking in the timeline
 
 The Replay Feed on the left of the player also allows you to:
 
-- sort replays by recency
-- search for replays by user's name / email, replay date, or user ID
+- Sort replays by recency, activity, or duration
+- Search for replays by user's name / email, replay date, user ID, or the name of an event in the replay
+- See a feed of events that occurred during each replay
 
 ## Implementation
 Session Replay is not enabled by default; enabling the feature requires instrumentation beyond the standard Mixpanel instrumentation. 
@@ -97,6 +100,22 @@ If you want to only record certain parts of a single-page application with no ne
 ### How soon are Replays available for viewing after a session begins?
 
 There is about a ~1 minute delay between when recordings are captured and when they appear in Mixpanel.  
+
+### Why does it say the player failed to load?
+
+In order to maintain a high standard of security, Mixpanel runs your session replays in an isolated domain through an iframe. Sometimes, this domain may be blocked by an ad blocker or certain browser settings. Please try disabling any ad blockers. 
+
+For extensions like uBlock, you can navigate to "My Filters" in the extension settings and paste the following custom filter:
+
+```
+@@||mxpnl.com^$domain=mxpnl.com
+```
+
+### Why can't I view Replays from my Insights or Funnels chart?
+
+Mixpanel looks for the `$mp_replay_id` property on your events in order to determine which replay it belongs to. If you have instrumented both Replays and Events using the Mixpanel JavaScript SDK, the `$mp_replay_id` will automatically be added to events sent by the SDK.
+
+For CDP implementations, look below for instructions on how to configure the SDKs together. To get the relevant Session Replay properties from the SDK, use `mixpanel.get_session_recording_properties()`. [See documentation](/docs/tracking-methods/sdks/javascript#get-replay-properties).
 
 ### Can I use Session Replay with a CDP?
 
@@ -217,6 +236,26 @@ mixpanel.init('MIXPANEL-PROJECT-TOKEN', {
 });
 ```
 
+##### Google Tag Manager (GTM)
+
+You can use session replay with Google Tag Manager. First, make sure you have the [Mixpanel GTM Template](/docs/tracking-methods/integrations/google-tag-manager) installed in your workspace.
+
+Once that is added, you can add a new Mixpanel tag to your workspace which turns on Session Replay by following these instructions:
+
+- Add a new tag, and choose the Mixpanel tag type.
+- For `Project Token` fill in your Mixpanel project's token
+- For `Tag Type` choose `init` from the dropdown
+- For `Initialization` choose `Set Options Manually`
+- In the `Option key` / `Option value` dropdown, ensure you choose `record_sessions_percent` and the value should be a number between 1 and 100.
+- This is also where you can configure other [Session Replay options](/docs/tracking-methods/sdks/javascript#init-options) like `record_block_class` etc...
+- For the `Triggering` section, you'll want to choose something [early in the GTM lifecycle](https://support.google.com/tagmanager/answer/7679319?hl=en); typically this is `Initialization - All Pages` or `Consent Initialization - All Pages` to ensure that Session Replay starts recording as soon as the GTM container is initialized.
+- Save + Deploy this template to your website and you should be up and going with session replay
+
+Here's a screenshot of a working session replay tag for a visual comparison:
+
+<img src="https://github.com/user-attachments/assets/0905abdf-7f7a-4c3d-9759-6ca0605a66cb" width="400"/>
+
+
 ## Appendix: Session Replay Privacy Controls
 **Last updated July 30th, 2024**
 
@@ -276,6 +315,7 @@ mixpanel.init(YOUR_PROJECT_TOKEN, {record_block_selector: '.sensitive-data'})
 
 Once enabled, Session Replay runs on your site until either:
 - The user leaves your site
+- The user is inactive for more than 30 minutes
 - You call mixpanel.stop_session_recording()
 
 Call mixpanel.stop_session_recording() before a user navigates to a restricted area of your site to disable replay collection while the user is in that area. To restart replay collection, call `mixpanel.start_session_recording()` to re-add the plugin.

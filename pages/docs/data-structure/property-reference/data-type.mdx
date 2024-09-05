@@ -3,25 +3,25 @@ import { Callout } from 'nextra/components'
 # Data Type
 
 ## Overview
-Mixpanel supports five data types for properties: String, Numeric, Boolean, Date and List. By choosing the most suitable data type for your properties, you'd be able to apply a set of operators that are most relevant to your properties in Mixpanel reports, and this will give you richer insights about your data.
+Mixpanel supports five data types for properties: String, Numeric, Boolean, Date and List. By choosing the most suitable data type for your properties, you're able to apply a set of operators that are most relevant to your properties in Mixpanel reports, giving you richer insights into your data.
 
 ### String
 
-- Alphanumeric value e.g. Plan Type = "Free", Artist Name = "Bruno Mars"
+- Alphanumeric value e.g. Plan Type = "Free", Artist Name = "Bruno Mars".
 - String properties have a character limit of 255 bytes.
 - Mixpanel will treat any property value that does not match any other data type as a String.
 
 ### Numeric
 
-- Numeric (integer or decimal) value e.g. Cost = 15.00, Quantity = 5
+- Numeric (integer or decimal) value e.g. Cost = 15.00, Quantity = 5.
 - You can apply operators such as sum, median and percentile on numeric properties.
 
 ### Boolean
 
-- Mixpanel treats properties as boolean if the value is either the JSON constant `true` or `false` e.g. Favorited = true, Bookmarked = false.
-- On Mixpanel, you can typecast any non-boolean property to boolean,
-- "false", 0, null, undefined, and empty string will be typecasted to boolean `false`
-- "true" and any set value that is not 0 or empty string will be typecasted to boolean `true`
+- Mixpanel treats properties as boolean if the value is either the JSON constant `true` or `false`; e.g. Favorited = true, Bookmarked = false.
+- On Mixpanel, you can typecast any non-boolean property to boolean.
+- "false", 0, null, undefined, empty string and `not set` will be typecasted to boolean `false`.
+- "true" and any set value that is not 0 or empty string will be typecasted to boolean `true`.
 
 ### Date
 

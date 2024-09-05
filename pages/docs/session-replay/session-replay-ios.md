@@ -4,7 +4,12 @@
 
 Welcome to the Mixpanel Session Replay iOS SDK(Closed Alpha)!
 
-Mixpanel Session Replay helps you quickly understand your customers and make better product decisions by combining quantitative and qualitative user insights.
+Mixpanel Session Replay helps you quickly understand your customers and make better product decisions by combining quantitative and qualitative user insights. 
+
+# Availability
+Currently, iOS Session Replay is in invite-only Alpha access for customers on our Enterprise plan.
+
+For any questions about Session Replay or iOS Alpha access, please reach out to your Account Manager. Note: as our Alpha program is early access, our functionality may have bugs and cause crashes. Be sure to test thoroughly before enabling in production.
 
 # Quick Start Guide
 
@@ -41,7 +46,7 @@ v0.2.0 - Updated 08/01/2024
 
 ## Initialize
 
-You should have the main Mixpanel SDK installed, if not, please refer to [Prerequisite](https://www.notion.so/How-to-use-Mixpanel-iOS-Session-Replay-6215958920b349a49cfcafd651de3f44?pvs=21) Add the initialization code at the start of your app's lifecycle.
+You should have the main Mixpanel SDK installed, if not, please refer to [Prerequisite](#prerequisite) Add the initialization code at the start of your app's lifecycle.
 
 SwiftUI
 
@@ -161,19 +166,19 @@ SessionReplay.getInstance().addSensitiveView(mySensiveView)
 
 ## Using Session Replay
 
-Please refer to [Using Session Replay](https://docs.mixpanel.com/docs/features/session-replay#using-session-replay)
+Please refer to [Using Session Replay](/docs/session-replay/session-replay-web#using-session-replay)
 
 # FAQ
 
-**How does Session Replay work in iOS?**
+### How does Session Replay work in iOS?
 
 Session Replay observes user interactions within your app, capturing UI hierarchy changes and storing them as images, which are then sent to Mixpanel. Mixpanel reconstructs these images, applying recorded events as an end-user completes them. Within Mixpanel’s platform, you can view a reconstruction of your end-user’s screen as they navigate your app. However, Session Replay is not a literal video recording of your end-user’s screen; end-user actions are not video-recorded.
 
-**What is the expected impact on my app performance?**
+### What is the expected impact on my app performance?
 
 There is no impact on your app’s performance when there are no user interactions or nothing changes on the screen. When there are user interactions, expect approximately 1% to 3% more CPU usage and around 1MB more memory consumption. There is no impact on disk I/O because Session Replay does not write anything to your disk. In our own testing, the overhead is unnoticeable, however if you experience any performance degradations after installing Session Replay, please reach out to us.
 
-**What is the bandwidth impact and will it cause users to incur additional data charges?**
+### What is the bandwidth impact and will it cause users to incur additional data charges?
 
 The bandwidth impact of Session Replay depends on the setting of the `wifiOnly` parameter.
 
@@ -181,11 +186,11 @@ When `wifiOnly` is set to `true` (default setting), replay events are only flush
 
 When `wifiOnly` is set to `false`, replay events are flushed with any available network connection, including cellular. In this case, the amount of cellular data consumed depends on the intensity of user interactions and the typical session length of your app. Users may incur additional data charges if large amounts of data are transmitted over cellular connections.
 
-**How does Session Replay for mobile work if my app is offline?**
+### How does Session Replay for mobile work if my app is offline?
 
 Session Replay for mobile currently doesn’t work in offline mode.
 
-**Am I able to sample our session replay collection rate?**
+### Am I able to sample our session replay collection rate?
 
 Yes, you can configure the percentage of total replays that our SDK will capture as below.
 
@@ -196,15 +201,15 @@ let sessionReplayInstance = SessionReplay.initialize(token: token, distinctId: d
 
 This out-of-the-box sampling method is random sampling: your SDK will decide randomly whether the currently SDK instance load falls into the sample or not. We recommend starting at 1% and increasing from there. Please note: if you expect low traffic, you can increase the starting sampling percentage. It is a good idea to control this with your own API, so you can change it on the fly without redeploying your app. While you're testing, we recommend that you set it to 100 and this ensure every user session will be sent to Mixpanel. Once testing is done, we recommend lowering this value in production.
 
-Does it work in SwiftUI/UIKit apps?
+### Does it work in SwiftUI/UIKit apps?**
 
-Yes, please refer to this [section](https://www.notion.so/How-to-use-Mixpanel-iOS-Session-Replay-6215958920b349a49cfcafd651de3f44?pvs=21)
+Yes, please refer to this [section](#initialize)
 
-Does it support Obj-C based app?
+### Does it support Obj-C based app?
 
 Yes, Objective-C and Swift are fully interoperable.
 
-**Can I prevent Session Replay from recording sensitive content?**
+### Can I prevent Session Replay from recording sensitive content?
 
 If your app is UIKit-based, all `UITextField` and `UILabel` components are masked by default, and there is no way to unmask them. You can also mask any view manually by calling:
 
@@ -219,4 +224,4 @@ If your app is SwiftUI-based, the automatic masking for `UITextField` and `UILab
 Image("family photo").replaySensitive();
 ```
 
-For More FAQ, please refer to Mixpanel Session Replay [FAQ](https://docs.mixpanel.com/docs/features/session-replay#faq)
+For More FAQ, please refer to Mixpanel Session Replay [FAQ](/docs/session-replay/session-replay-web#faq)
