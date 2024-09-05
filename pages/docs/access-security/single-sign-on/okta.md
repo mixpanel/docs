@@ -37,11 +37,11 @@ B. If you create a custom app, you must fill the form found in the **Configure S
 
 The following screenshot highlights what you should place in the fields:
 
-![Okta Config SAML 1 Image](/okta config 1.png)
+![Okta Config SAML 1 Image](/okta_config_1.png)
 
 To add the Requestable SSO URLs field, navigate to Advanced Settings: 
 
-![Okta Config SAML 2 Image](/okta config 2.png)
+![Okta Config SAML 2 Image](/okta_config_2.png)
 
 Additionally, it is required that you use `email` as an attribute statement, other attributes we recommend include `firstName` and `lastName`.
 
@@ -51,7 +51,7 @@ Additionally, it is required that you use `email` as an attribute statement, oth
 | lastName   | user.lastName  |
 | email      | user.email     |
 
-![Okta Config SAML 2 Image](/okta config 3.png)
+![Okta Config SAML 2 Image](/okta_config_3.png)
 
 ### Obtain Information From Okta
 
