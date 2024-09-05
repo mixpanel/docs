@@ -488,6 +488,12 @@ Custom events were designed to specifically target this exact issue. With custom
 
 This allows users to make multiple paths to the same end goal. Learn more about creating custom events [here](/docs/features/custom-events).
 
+### Why are there only 200 segments in my Funnels breakdown report? 
+
+For some context, when breaking down a Funnel by a Property, the top 200 property values will be shown in the table below the Funnel. All other segments will be grouped into an $other category.
+
+If you'd like to view all of the individual segments beyond the 200-Property limit, you can export a CSV of the report. Your export will contain all Properties, including those bucketed into $other in the UI, up to 10k segments.
+
 ### How does Mixpanel handle simultaneous events?
 
 Mixpanel Funnels include a built-in two second grace period. This means any consecutive steps that have timestamps within two seconds of one another are interchangeable. This window allows for inconsistencies that arise with cross-platform tracking, batch event sending, mobile time tracking, or variations in connection speed.
