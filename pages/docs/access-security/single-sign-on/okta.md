@@ -27,7 +27,7 @@ B.  Follow [Okta's documentation on setting up a new application](https://help.o
 
 A. If you use the Mixpanel app from the OIN, the following SAML configuration is already built into the app.
 
-B. If you create a custom app, you must fill the form found in the **Configure SAML** menu in Okta. Make sure that the following fields are adjusted to match the coresponding values:
+B. If you create a custom app, you must fill the form found in the **Configure SAML** menu in Okta. Make sure that the following fields are adjusted to exactly match the corresponding values:
 
 - **Single sign on URL:** Postback URL from Mixpanel (https://mixpanel.com/security/sso/v2/authorize/?org_id=YOUR_ORG_ID)
 - **Requestable SSO URLs:** https://sso.mixpanel.com/sso/saml2
@@ -35,7 +35,15 @@ B. If you create a custom app, you must fill the form found in the **Configure S
 - **Destination URL:** https://sso.mixpanel.com/sso/saml2
 - **Audience URI:** https://mixpanel.com/security/sso/v2/authorize/
 
-Additionally, it is required that you use `email` as an attribute statement.
+The following screenshot highlights what you should place in the fields:
+
+![Okta Config SAML 1 Image](/okta_config_1.png)
+
+To add the Requestable SSO URLs field, navigate to Advanced Settings: 
+
+![Okta Config SAML 2 Image](/okta_config_2.png)
+
+Additionally, it is required that you use `email` as an attribute statement, other attributes we recommend include `firstName` and `lastName`.
 
 |    Name    |     Value      |
 |-----------:|---------------:|
@@ -43,9 +51,7 @@ Additionally, it is required that you use `email` as an attribute statement.
 | lastName   | user.lastName  |
 | email      | user.email     |
 
-The following screenshot highlights what you should place in the fields:
-
-![Okta Configure SAML 1 Image](/okta_configure_saml1.png)
+![Okta Config SAML 2 Image](/okta_config_3.png)
 
 ### Obtain Information From Okta
 
