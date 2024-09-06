@@ -372,6 +372,8 @@ mixpanel.init("<YOUR_PROJECT_TOKEN>", {api_host: "https://<YOUR_PROXY_DOMAIN>"})
 
 Capture and replay data on how a user interacts with your application. Replay collection is disabled by default, and the Replay portion of the SDK will not be loaded into your application until specified. To use this feature, you must be on at least version 2.50.0 of our JavaScript SDK.
 
+Before you enable Session Replay for a large audience, we recommend enabling it for a smaller set of users or accounts so that you can monitor performance and ensure your privacy rules align with company policies.
+
 ### Sampling Method
 
 The easiest way to begin capturing session replays is by sampling a subset of users, specified during initialization:
