@@ -42,7 +42,7 @@ For detailed setup guides per destination, see:
 
 ## Step 2: Creating the Pipeline
 
-After configuring your destination, initiate data export by setting up a pipeline through the **Integrations** page on your Mixpanel project. This step will activate data flow to your selected storage or warehouse destination.
+After configuring your destination, initiate data export in **Integrations** page on your Mixpanel project > **+ Create Pipeline** > fill in necessary configurations. You can choose different data sources inclduing events, people and identity and other advanced options. See [Overview](/docs/new-data-pipelines/json-pipelines) for more details.
 
 ## FAQ
 
