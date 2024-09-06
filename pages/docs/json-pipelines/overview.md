@@ -19,9 +19,9 @@ JSON pipelines export data as JSON files to a cloud storage bucket, providing a 
 
 For specific configuration instructions, see our guides for each storage destination:
 
-- [AWS S3](/docs/new-data-pipelines/integrations/aws-s3)
-- [Google Cloud Storage](/docs/new-data-pipelines/integrations/gcp-gcs)
-- [Azure Blob Storage](/docs/new-data-pipelines/integrations/azure-blob-storage)
+- [AWS S3](/docs/json-pipelines/integrations/aws-s3)
+- [Google Cloud Storage](/docs/json-pipelines/integrations/gcp-gcs)
+- [Azure Blob Storage](/docs/json-pipelines/integrations/azure-blob-storage)
 
 Data is exported to the following structured paths in your bucket:
 
@@ -36,13 +36,13 @@ JSON Pipelines also facilitate data export into tables, creating schemas that ar
 
 For detailed setup guides per destination, see:
 
-- [BigQuery](/docs/new-data-pipelines/integrations/bigquery)
-- [Redshift Spectrum](/docs/new-data-pipelines/integrations/redshift-spectrum)
-- [Snowflake](/docs/new-data-pipelines/integrations/snowflake)
+- [BigQuery](/docs/json-pipelines/integrations/bigquery)
+- [Redshift Spectrum](/docs/json-pipelines/integrations/redshift-spectrum)
+- [Snowflake](/docs/json-pipelines/integrations/snowflake)
 
 ## Step 2: Creating the Pipeline
 
-After configuring your destination, initiate data export in **Integrations** page on your Mixpanel project > **+ Create Pipeline** > fill in necessary configurations. You can choose different data sources inclduing events, people and identity and other advanced options. See [Overview](/docs/new-data-pipelines/json-pipelines) for more details.
+After configuring your destination, initiate data export in **Integrations** page on your Mixpanel project > **+ Create Pipeline** > fill in necessary configurations. You can choose different data sources inclduing events, people and identity and other advanced options. See [Overview](/docs/json-pipelines/json-pipelines) for more details.
 
 ## FAQ
 
@@ -70,13 +70,13 @@ To check a pipeline's configuration:
 
 Discrepancies between the event counts in Mixpanel and those exported to your destination can occur for several reasons:
 
-- **Data Sync**: If [Data Sync](/docs/new-data-pipelines/json-pipelines#data-sync) is not enabled or is unsupported for your pipeline, this could prevent some data from being exported.
+- **Data Sync**: If [Data Sync](/docs/json-pipelines/json-pipelines#data-sync) is not enabled or is unsupported for your pipeline, this could prevent some data from being exported.
 - **Data Delay**: Late-arriving data may take up to one day to sync from Mixpanel to your destination, leading to temporary discrepancies.
 - **Hidden Events**: Mixpanel exports all events, including those hidden in the Mixpanel UI via Lexicon. To reconcile differences in counts, check if the events in your destination include those hidden in the Mixpanel UI.
 
 ### How can I count events exported by Mixpanel in the warehouse?
 
-Counting events can be slightly different for each warehouse, since we use different partitioning methods. Here are examples for [BigQuery](/docs/new-data-pipelines/integrations/bigquery#get-the-number-of-events-each-day) and [Snowflake](/docs/new-data-pipelines/integrations/snowflake#get-the-number-of-events-each-day).
+Counting events can be slightly different for each warehouse, since we use different partitioning methods. Here are examples for [BigQuery](/docs/json-pipelines/integrations/bigquery#get-the-number-of-events-each-day) and [Snowflake](/docs/json-pipelines/integrations/snowflake#get-the-number-of-events-each-day).
 
 ### How does the free trial work?
 

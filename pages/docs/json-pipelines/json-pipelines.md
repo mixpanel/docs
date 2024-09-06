@@ -6,7 +6,7 @@ This documentation is intended for users with intermediate or advanced knowledge
 
 ## Create Json Pipelines
 
-Follow the instructions here in the [Overview](/docs/new-data-pipelines/overview).
+Follow the instructions here in the [Overview](/docs/json-pipelines/overview).
 
 ## Data Sources Output
 
@@ -82,4 +82,4 @@ Pipelines export event data as they appear when Mixpanel ingests them. Data sent
 
 Note: Use the `resolved_distinct_id` from the identity mappings table instead of the non-resolved `distinct_id` when available. If there is no resolved `distinct_id`, use the `distinct_id` from the existing people or events table.
 
-Examples of querying the identity mapping table are available for [BigQuery](/docs/new-data-pipelines/integrations/bigquery#query-identity-mappings) and [Snowflake](/docs/new-data-pipelines/integrations/snowflake#query-identity-mappings).
+Examples of querying the identity mapping table are available for [BigQuery](/docs/json-pipelines/integrations/bigquery#query-identity-mappings) and [Snowflake](/docs/json-pipelines/integrations/snowflake#query-identity-mappings).
