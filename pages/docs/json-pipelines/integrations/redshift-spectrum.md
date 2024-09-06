@@ -287,7 +287,12 @@ to create data pipeline via UI. It is essential to provide specific details to M
 
 ## Queries
 
-Once the pipelines are successfully executed, you can begin querying nested JSON data within the `properties` column in Redshift through the **Query Editor**. Here's an enhanced example query that retrieves the `distinct_id` of users from San Francisco:
+To query data in external schema created by Mixpanel, you need to ask admin to grant schema **USAGE** privilege to the federated database user.
+```sql
+GRANT USAGE ON SCHEMA "mp_json_export" TO "IAM:<your user name>";
+```
+
+Once the pipelines are successfully executed and you have necessary privilege, you can begin querying nested JSON data within the `properties` column in Redshift through the **Query Editor**. Here's an enhanced example query that retrieves the `distinct_id` of users from San Francisco:
 
 ```sql
 SET json_serialization_enable TO true;
