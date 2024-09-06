@@ -61,7 +61,7 @@ However, in most cases, implementation is extremely simple, only requiring a sin
 
 Our documentation on how to implement Session Replay can be found [here](/docs/tracking-methods/sdks/javascript#session-replay-beta).
 
-Before you enable Session Replay for a large audience, we recommend enabling it for a smaller set of users or accounts so that you can monitor performance and ensure your privacy rules align with company policies.
+Before you enable Session Replay for a large audience, we recommend testing in a demo project, and starting in production with smaller sets of users or accounts, so that you can monitor performance and ensure your privacy rules align with company policies.
 
 ## Legal (Beta Terms)
 
