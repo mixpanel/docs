@@ -23,7 +23,7 @@ Mixpanel exports data to customer's database. We first load the data into a sing
 
 2. Create storage integration
 
-   To enable Mixpanel to load from gcs owned by mixpanel to your warehouse, you need you create an gcs storage integration and then grant this inegration to the role. Replace `<project-id>` to your Mixpanel project ID.
+   To enable Mixpanel to load from gcs owned by mixpanel to your warehouse, you need you create a gcs storage integration with gcs bucket `"gcs://mixpanel-export-pipelines-<project-id>` owned by Mixpanel and then grant this integration to the role. Replace `<project-id>` to your Mixpanel project ID.
 
    ```sql
    CREATE STORAGE INTEGRATION MIXPANEL_EXPORT_STORAGE_INTEGRATION

@@ -46,6 +46,26 @@ After configuring your destination, initiate data export by setting up a pipelin
 
 ## FAQ
 
+### Managing Existing Pipelines
+
+To delete, pause, or unpause a JSON pipeline:
+
+1. Go to the **Integrations** page
+2. Find the pipeline you want to manage
+3. Click the **3-dot** menu on the right side of the pipeline
+4. Select **Delete Pipeline**, **Pause Pipeline**, or **Unpause Pipeline** as needed
+
+Note: JSON pipelines can only be managed through the UI, not via the data pipelines API.
+
+### Viewing Pipeline Configuration
+
+To check a pipeline's configuration:
+
+1. Go to the **Integrations** page
+2. Either:
+   - Click on the pipeline name to view configuration at the top of the page, or
+   - Click the **3-dot** menu and select **View Configuration**
+
 ### Why does the number of events in Mixpanel not match the number of exported events to my destination?
 
 Discrepancies between the event counts in Mixpanel and those exported to your destination can occur for several reasons:
