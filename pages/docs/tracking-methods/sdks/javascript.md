@@ -449,6 +449,7 @@ Returns an empty object if there is no Replay in progress.
 ### Tips & Tricks While Implementing
 - Search for Session Recording Checkpoint events in your project, tracked as `$mp_session_record`. When you capture Mixpanel session replays, the SDK will automatically emit this default event. If you've implemented correctly, you should see these events appear. 
 - Calling `mixpanel.start_session_recording()` in your website / application is a good test to see if it causes Session Recording Checkpoint event mentioned above to appear. If it does, and you're still struggling to find replays for Users and Reports, your sampling rate may not be working, or may be set too low.
+- Check the home page for your project to see if there are any replays listed in the Latest Replays card.
 - If you're still struggling to implement, [submit a request to our Support team](https://mixpanel.com/get-support) for more assistance.
 
 ### Privacy

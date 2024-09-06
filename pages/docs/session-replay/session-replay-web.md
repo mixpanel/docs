@@ -16,10 +16,11 @@ For any questions about Session Replay or beta access, please reach out to your 
 
 ## Using Session Replay
 
-Session Replay can be accessed in two places:
+Session Replay can be accessed in three places:
 
 1. From User Profile page
 2. From Mixpanel reports
+3. On the Home page for your project
 
 ### From User Profile page
 
@@ -29,11 +30,17 @@ In any user’s profile page, Click the ‘View Replays’ button to watch repla
 
 ### From Mixpanel reports
 
-Click any point on a chart for Event and Funnel metrics, and select ‘View Replays’ to view replays that show that event being fired. From here, you will be taken to our Replay Player. 
+Click any point on a chart for Event, Funnel, and User Profile, and select ‘View Replays’ to view replays that show that event being fired. From here, you will be taken to our Replay Player. 
 
 ![replayReportEntry](/replayReportEntryPoint.png)
 
-*Note: reports entry point is currently supported for Event and Funnel metrics only.*
+*Note: reports entry point is currently supported for Event, Funnel, and User Profile metrics only.*
+
+### From the Home page
+
+Find the Latest Replays card and click on individual replays to view them or click on ‘View All Replays‘ to see up to 100 of your latest replays.
+
+![replayHomeEntry](/replayHomeEntryPoint.png)
 
 ### Replay Player
 
@@ -58,6 +65,8 @@ The Replay Feed on the left of the player also allows you to:
 Session Replay is not enabled by default; enabling the feature requires instrumentation beyond the standard Mixpanel instrumentation. 
 
 However, in most cases, implementation is extremely simple, only requiring a single line of code to be changed. 
+
+Note that replays sent via your implementation will only be viewable in the project they were ingested in and will not be available to other projects in your org.
 
 Our documentation on how to implement Session Replay can be found [here](/docs/tracking-methods/sdks/javascript#session-replay-beta).
 
