@@ -261,7 +261,8 @@ Follow these steps to grant the `CREATE` privilege:
 
 ## Provide Necessary Details for Pipeline Creation
 
-When configuring your json pipeline in Mixpanel, it is essential to provide specific details to Mixpanel.
+Refer to [Step 2: Creating the Pipeline](/docs/json-pipelines/overview/#step-2-creating-the-pipeline)
+to create data pipeline via UI. It is essential to provide specific details to Mixpanel:
 
 **S3**
 

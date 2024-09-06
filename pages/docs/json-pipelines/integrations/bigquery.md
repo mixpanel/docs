@@ -18,42 +18,44 @@ Export logs are maintained in the `mp_nessie_export_log` table within BigQuery. 
 
 Please follow these steps to share permissions with Mixpanel and create json pipelines.
 
-1. Create a Dataset
+### Step 1: Create a Dataset
 
-   Create a dataset in your BigQuery to store the Mixpanel data.
+Create a dataset in your BigQuery to store the Mixpanel data.
 
-   ![image](/230698727-1216833e-8321-46de-a388-8b554a00938c.png)
+![image](/230698727-1216833e-8321-46de-a388-8b554a00938c.png)
 
-2. Grant Permissions to Mixpanel
+### Step 2: Grant Permissions to Mixpanel
 
-   > **Note:** If your organization uses [domain restriction constraint](https://cloud.google.com/resource-manager/docs/organization-policy/restricting-domains) you will have to update the policy to allow Mixpanel domain `mixpanel.com` and Google Workspace customer ID: `C00m5wrjz`.
+> **Note:** If your organization uses [domain restriction constraint](https://cloud.google.com/resource-manager/docs/organization-policy/restricting-domains) you will have to update the policy to allow Mixpanel domain `mixpanel.com` and Google Workspace customer ID: `C00m5wrjz`.
 
-   Mixpanel requires two permissions to manage the dataset:
+Mixpanel requires two permissions to manage the dataset:
 
-   **BigQuery Job User**
+**BigQuery Job User**
 
-   - Navigate to **IAM & Admin** in your Google Cloud Console.
-   - Click **+ ADD** to add principals
-   - Add new principle `export-upload@mixpanel-prod-1.iam.gserviceaccount.com` and set the role as `BigQuery Job User`
-   - Click the **Save** button.
+- Navigate to **IAM & Admin** in your Google Cloud Console.
+- Click **+ ADD** to add principals
+- Add new principle `export-upload@mixpanel-prod-1.iam.gserviceaccount.com` and set the role as `BigQuery Job User`
+- Click the **Save** button.
 
-   ![image](/230698732-4dadbccf-1eeb-4e64-a6c7-8926eb49e5cc.png)
+![image](/230698732-4dadbccf-1eeb-4e64-a6c7-8926eb49e5cc.png)
 
-   **BigQuery Data Owner**
+**BigQuery Data Owner**
 
-   - Go to **BigQuery** in your Google Cloud Console.
-   - Open the dataset intended for Mixpanel exports.
-   - Click on **Sharing** and **Permissions** in the drop down.
-   - In the Data Permissions window, click on **Add Principal**
-   - Add new principle `export-upload@mixpanel-prod-1.iam.gserviceaccount.com` and set the role as `BigQuery Data Owner`, and save.
+- Go to **BigQuery** in your Google Cloud Console.
+- Open the dataset intended for Mixpanel exports.
+- Click on **Sharing** and **Permissions** in the drop down.
+- In the Data Permissions window, click on **Add Principal**
+- Add new principle `export-upload@mixpanel-prod-1.iam.gserviceaccount.com` and set the role as `BigQuery Data Owner`, and save.
 
-   ![image](/230698735-972aedb5-1352-4ebc-82c4-ef075679779b.png)
+![image](/230698735-972aedb5-1352-4ebc-82c4-ef075679779b.png)
 
-3. Provide Necessary Details for Pipeline Creation
+### Step 3: Provide Necessary Details for Pipeline Creation
 
-   - **GCP project ID**: The project ID where BigQuery dataset is present
-   - **Dataset name**: Dataset created on the GCP project to which Mixpanel needs to export data
-   - **GCP region**: The region used for BigQuery
+Refer to [Step 2: Creating the Pipeline](/docs/json-pipelines/overview/#step-2-creating-the-pipeline) to create data pipeline via UI. You need to provide specific details to enable authentication and data export to BigQuery.
+
+- **GCP project ID**: The project ID where BigQuery dataset is present
+- **Dataset name**: Dataset created on the GCP project to which Mixpanel needs to export data
+- **GCP region**: The region used for BigQuery
 
 ## Partitioning
 

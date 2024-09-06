@@ -8,54 +8,57 @@ Mixpanel exports data to customer's database. We first load the data into a sing
 
 ## Set Export Permissions
 
-1. Create a Role and Grant Permissions
+### Step 1: Create a Role and Grant Permissions
 
-   Create a role (`MIXPANEL_EXPORT_ROLE` as example) and grant aceess on your database, schema, warehouse to the role. Replace `<database name>`, `<schema name>`, `<warehouse name>` with actual names.
+Create a role (`MIXPANEL_EXPORT_ROLE` as example) and grant aceess on your database, schema, warehouse to the role. Replace `<database name>`, `<schema name>`, `<warehouse name>` with actual names.
 
-   ```sql
-   CREATE ROLE MIXPANEL_EXPORT_ROLE;
-   GRANT ALL ON DATABASE <database name> TO ROLE MIXPANEL_EXPORT_ROLE;
-   GRANT ALL ON SCHEMA <database name>.<schema name> TO ROLE MIXPANEL_EXPORT_ROLE;
-   GRANT USAGE ON WAREHOUSE <warehouse name> TO ROLE MIXPANEL_EXPORT_ROLE;
-   GRANT OPERATE ON WAREHOUSE <warehouse name> TO ROLE MIXPANEL_EXPORT_ROLE;
-   GRANT MONITOR ON WAREHOUSE <warehouse name> TO ROLE MIXPANEL_EXPORT_ROLE;
-   ```
+```sql
+CREATE ROLE MIXPANEL_EXPORT_ROLE;
+GRANT ALL ON DATABASE <database name> TO ROLE MIXPANEL_EXPORT_ROLE;
+GRANT ALL ON SCHEMA <database name>.<schema name> TO ROLE MIXPANEL_EXPORT_ROLE;
+GRANT USAGE ON WAREHOUSE <warehouse name> TO ROLE MIXPANEL_EXPORT_ROLE;
+GRANT OPERATE ON WAREHOUSE <warehouse name> TO ROLE MIXPANEL_EXPORT_ROLE;
+GRANT MONITOR ON WAREHOUSE <warehouse name> TO ROLE MIXPANEL_EXPORT_ROLE;
+```
 
-2. Create storage integration
+### Step 2: Create storage integration
 
-   To enable Mixpanel to load from gcs owned by mixpanel to your warehouse, you need you create a gcs storage integration with gcs bucket `"gcs://mixpanel-export-pipelines-<project-id>` owned by Mixpanel and then grant this integration to the role. Replace `<project-id>` to your Mixpanel project ID.
+To enable Mixpanel to load from gcs owned by mixpanel to your warehouse, you need you create a gcs storage integration with gcs bucket `"gcs://mixpanel-export-pipelines-<project-id>` owned by Mixpanel and then grant this integration to the role. Replace `<project-id>` to your Mixpanel project ID.
 
-   ```sql
-   CREATE STORAGE INTEGRATION MIXPANEL_EXPORT_STORAGE_INTEGRATION
-     TYPE = EXTERNAL_STAGE
-     STORAGE_PROVIDER = 'GCS'
-     ENABLED = TRUE
-     STORAGE_ALLOWED_LOCATIONS = ("gcs://mixpanel-export-pipelines-<project-id>");
-   GRANT USAGE ON INTEGRATION MIXPANEL_EXPORT_STORAGE_INTEGRATION TO MIXPANEL_EXPORT_ROLE;
-   ```
+```sql
+CREATE STORAGE INTEGRATION MIXPANEL_EXPORT_STORAGE_INTEGRATION
+  TYPE = EXTERNAL_STAGE
+  STORAGE_PROVIDER = 'GCS'
+  ENABLED = TRUE
+  STORAGE_ALLOWED_LOCATIONS = ("gcs://mixpanel-export-pipelines-<project-id>");
+GRANT USAGE ON INTEGRATION MIXPANEL_EXPORT_STORAGE_INTEGRATION TO MIXPANEL_EXPORT_ROLE;
+```
 
-3. Authentication to user
+### Step 3: Authentication to user
 
-   We provide two different authenitcations: password and key-pair. In the example, create a user with either password or public key and then grant the role to user. You can fine the public key in the UI of creating Snowflake pipelines.
-   If you already have a user, change fields and grant the role.
+Refer to [Step 2: Creating the Pipeline](/docs/json-pipelines/overview/#step-2-creating-the-pipeline)
+to create data pipeline via UI.
 
-   password authentication
+We provide two different authenitcations: password and key-pair. In the example, create a user with either password or public key and then grant the role to user. You can fine the public key in the UI of creating Snowflake pipelines.
+If you already have a user, change fields and grant the role.
 
-   ```sql
-   CREATE USER MIXPANEL_EXPORT_USER PASSWORD='<password you provided>' DEFAULT_ROLE=MIXPANEL_EXPORT_ROLE;
+password authentication
 
-   ALTER USER MIXPANEL_EXPORT_USER SET PASSWORD='<password you provided>'
-   GRANT ROLE MIXPANEL_EXPORT_ROLE TO USER MIXPANEL_EXPORT_USER;
-   ```
+```sql
+CREATE USER MIXPANEL_EXPORT_USER PASSWORD='<password you provided>' DEFAULT_ROLE=MIXPANEL_EXPORT_ROLE;
 
-   key-pair based authentication
+ALTER USER MIXPANEL_EXPORT_USER SET PASSWORD='<password you provided>'
+GRANT ROLE MIXPANEL_EXPORT_ROLE TO USER MIXPANEL_EXPORT_USER;
+```
 
-   ```sql
-   CREATE USER MIXPANEL_EXPORT_USER RSA_PUBLIC_KEY='<mixpanle generated key>' DEFAULT_ROLE=MIXPANEL_EXPORT_ROLE;
+key-pair based authentication
 
-   ALTER USER MIXPANEL_EXPORT_USER SET RSA_PUBLIC_KEY='<mixpanle generated key>'
-   GRANT ROLE MIXPANEL_EXPORT_ROLE TO USER MIXPANEL_EXPORT_USER;
-   ```
+```sql
+CREATE USER MIXPANEL_EXPORT_USER RSA_PUBLIC_KEY='<mixpanle generated key>' DEFAULT_ROLE=MIXPANEL_EXPORT_ROLE;
+
+ALTER USER MIXPANEL_EXPORT_USER SET RSA_PUBLIC_KEY='<mixpanle generated key>'
+GRANT ROLE MIXPANEL_EXPORT_ROLE TO USER MIXPANEL_EXPORT_USER;
+```
 
 ## Partitioning
 
