@@ -23,7 +23,11 @@ Follow these steps to enable the integration with Facebook Ads:
 
 ![Facebook 2 Image](/facebook2.png)
 
-3. The Facebook Ads integration page will show a green export icon and details about the integration after it is connected. To disable the connector, select the **Facebook Ads** dropdown and click **Disconnect**.
+3. Select your Facebook Ad Account ID and your connector name and also choose user property where you're storing device advertising ID (optional)
+
+![Facebook 3 Image](/facebook_connector.png)
+
+4. The Facebook Ads integration page will show a green export icon and details about the integration after it is connected. To disable the connector, select the **Facebook Ads** dropdown and click **Disconnect**.
 
 ## Export a Cohort
 
@@ -59,9 +63,9 @@ The Mixpanel Cohort is available in the Audience list. Cohorts are exported to F
 
 ## Data Requirement
 
-Facebook uses email addresses to match users from the cohort with users from their system. If they do not have an email address, they will instead use a combination of phone number or first and last name.
+Facebook uses email addresses to match users from the cohort with users from their system. If they do not have an email address, they will instead use either a combination of phone number or first and last name or the device advertising ID that you choose when setting up the connection.
 
-In order to use this integration, you must set $email as a user profile property. In addition to email address, Mixpanel will send a first name user profile property, a last name user profile property, a phone number user property, and the distinct id. 
+In order to use this integration, you must set $email as a user profile property or have the advertising ID. In addition to email address, Mixpanel will send a first name user profile property, a last name user profile property, a phone number user property, an advertising id user property and the distinct id. 
 
 Facebook excludes cohort members from the audience if they are unable to match them with a user in their system. An inequality between the number of users in the Facebook audience and Mixpanel cohort indicates that Facebook was unable to find the user.
 
