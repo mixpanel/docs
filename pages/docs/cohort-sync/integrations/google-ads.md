@@ -21,7 +21,11 @@ Follow these steps to enable the integration with Google Ads:
 
 ![GoogleAds 2 Image](/googleads2.png)
 
-3. The Google Ads integration page shows a green export icon and details about the integration after it is connected.
+3. changes
+
+![GoogleAds Connector Image](/googleads_connector.png)
+
+4. The Google Ads integration page shows a green export icon and details about the integration after it is connected.
 
 ## Export a Cohort
 
