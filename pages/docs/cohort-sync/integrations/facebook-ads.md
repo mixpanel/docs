@@ -25,7 +25,7 @@ Follow these steps to enable the integration with Facebook Ads:
 
 3. Select your Facebook Ad Account ID and your connector name and also choose user property where you're storing device advertising ID (optional)
 
-![Facebook 3 Image](/facebook_connector.png)
+![Facebook Connector Image](/facebook_connector.png)
 
 4. The Facebook Ads integration page will show a green export icon and details about the integration after it is connected. To disable the connector, select the **Facebook Ads** dropdown and click **Disconnect**.
 
