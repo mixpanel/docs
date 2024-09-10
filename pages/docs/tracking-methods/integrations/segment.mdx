@@ -27,11 +27,11 @@ Once you've installed and initialized a Segment library in your application, get
 
 The next thing you need to do is identify your users, so that you can understand your users. We recommend calling `identify` when your user sign up and log in.
 
-When you call [Segment's `identify` API](https://segment.com/docs/connections/spec/identify/), Mixpanel will set the specified `userId` as the Mixpanel `distinct_id`. Any `traits` you provide in the call will be applied as profile properties for the targeted user in Mixpanel.
+When you call [Segment's identify API](https://segment.com/docs/connections/spec/identify/), Mixpanel will set the specified `userId` as the Mixpanel `distinct_id`. Any `traits` you provide in the call will be applied as profile properties for the targeted user in Mixpanel.
 
 ### 3. Track User Actions
 
-Lastly, track your users' actions using [Segment's `track` API call](https://segment.com/docs/connections/spec/track/), which would trigger [Mixpanel's `import` API](https://developer.mixpanel.com/reference/import-event) and ingest an event in your project.
+Lastly, track your users' actions using [Segment's track API call](https://segment.com/docs/connections/spec/track/), which would trigger [Mixpanel's import API](https://developer.mixpanel.com/reference/import-event) and ingest an event in your project.
 
 ### 4. Check for Success
 
