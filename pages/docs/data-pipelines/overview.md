@@ -25,8 +25,7 @@ For specific configuration instructions, see our guides for each storage destina
 
 Data is exported to the following structured paths in your bucket:
 
-- Hourly events: `<BUCKET_NAME>/<MIXPANEL_PROJECT_ID>/mp_master_event/<YEAR>/<MONTH>/<DAY>/<HOUR>/`
-- Daily events: `<BUCKET_NAME>/<MIXPANEL_PROJECT_ID>/mp_master_event/<YEAR>/<MONTH>/<DAY>/`
+- Events: `<BUCKET_NAME>/<MIXPANEL_PROJECT_ID>/mp_master_event/<YEAR>/<MONTH>/<DAY>/`
 - User profiles: `<BUCKET_NAME>/<MIXPANEL_PROJECT_ID>/mp_people_data/`
 - Identity mappings: `<BUCKET_NAME>/<MIXPANEL_PROJECT_ID>/mp_identity_mappings_data/`
 
