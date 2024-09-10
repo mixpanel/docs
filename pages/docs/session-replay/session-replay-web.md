@@ -61,6 +61,8 @@ However, in most cases, implementation is extremely simple, only requiring a sin
 
 Our documentation on how to implement Session Replay can be found [here](/docs/tracking-methods/sdks/javascript#session-replay-beta).
 
+Before you enable Session Replay for a large audience, we recommend testing in a demo project, and starting in production with smaller sets of users or accounts, so that you can monitor performance and ensure your privacy rules align with company policies.
+
 ## Legal (Beta Terms)
 
 Our Session Replay Beta Service Addendum can be found [here](https://mixpanel.com/legal/session-replay-beta-service-addendum/).
@@ -73,7 +75,6 @@ As of today, Session Replay is in closed Beta testing for web-based applications
 
 For any questions about mobile beta access, please reach out to your Account Manager.
  
-
 ### Can I prevent Session Replay from recording sensitive content?
 
 By default, all on-screen text elements are masked in replays. Additionally, you can customize how you initialize our SDK to fully control (1) where to record and (2) whom to record. For more details, please see our [implementation docs](/docs/tracking-methods/sdks/javascript#session-replay-beta).
