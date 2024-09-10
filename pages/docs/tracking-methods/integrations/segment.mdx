@@ -31,7 +31,7 @@ When you call [Segment's `identify` API](https://segment.com/docs/connections/sp
 
 ### 3. Track User Actions
 
-Lastly, track your users' actions using [Segment's `track` API call](https://segment.com/docs/connections/spec/track/), which would trigger [Mixpanel's `track` API](https://developer.mixpanel.com/reference/track-event) and ingest an event in your project.
+Lastly, track your users' actions using [Segment's `track` API call](https://segment.com/docs/connections/spec/track/), which would trigger [Mixpanel's `import` API](https://developer.mixpanel.com/reference/import-event) and ingest an event in your project.
 
 ### 4. Check for Success
 
@@ -72,11 +72,11 @@ The Mixpanel Actions destination comes with a preset of default mappings that yo
 
 | Preset Name           | Segment Trigger                                     | Mixpanel Action |
 |-----------------------|-----------------------------------------------------|-----------------|
-| Order Completed Calls | [Event type = "track"](https://segment.com/docs/connections/spec/track/) and event = "Order Completed"  | [Track Event](https://developer.mixpanel.com/reference/track-event) "Order Completed"  |
-| Track Calls           | [Event type = "track"](https://segment.com/docs/connections/spec/track/) and event != "Order Completed" | [Track Event](https://developer.mixpanel.com/reference/track-event)     |
-| Screen Calls          | [Event type = "screen"](https://segment.com/docs/connections/spec/screen/)                               | [Track Event](https://developer.mixpanel.com/reference/track-event) "Viewed \{name\}"     |
-| Identify Calls        | [Event type = "identify"](https://segment.com/docs/connections/spec/identify/)                             | [Identify User](https://docs.mixpanel.com/docs/tracking-methods/id-management/identifying-users-simplified#user_id)   |
-| Page Calls            | [Event type = "page"](https://segment.com/docs/connections/spec/page/)                                 | [Track Event](https://developer.mixpanel.com/reference/track-event) "Viewed \{name\}"    |
+| Order Completed Calls | [Event type = "track"](https://segment.com/docs/connections/spec/track/) and event = "Order Completed"  | [Import Event](https://developer.mixpanel.com/reference/import-event) "Order Completed"  |
+| Track Calls           | [Event type = "track"](https://segment.com/docs/connections/spec/track/) and event != "Order Completed" | [Import Event](https://developer.mixpanel.com/reference/import-event)     |
+| Screen Calls          | [Event type = "screen"](https://segment.com/docs/connections/spec/screen/)                               | [Import Event](https://developer.mixpanel.com/reference/import-event) "Viewed \{name\}"     |
+| Identify Calls        | [Event type = "identify"](https://segment.com/docs/connections/spec/identify/)                             | Identify User ([Simplified API](https://docs.mixpanel.com/docs/tracking-methods/id-management/identifying-users-simplified#user_id) /[Original API](https://developer.mixpanel.com/reference/create-identity)) and [Set Profile Properties](https://developer.mixpanel.com/reference/profile-set)   |
+| Page Calls            | [Event type = "page"](https://segment.com/docs/connections/spec/page/)                                 | [Import Event](https://developer.mixpanel.com/reference/import-event) "Viewed \{name\}"    |
 | Group Calls           | [Event type = "group"](https://segment.com/docs/connections/spec/group/)                                | [Identify Group](https://developer.mixpanel.com/reference/group-set-property)  |
 
 ### Customize Mappings
@@ -141,7 +141,7 @@ Once you are done with configuring the mapping, preview how your sample payload 
 ![segment_test_event](/segment_test_event.png)
 
 ## Implementing Group Analytics using Segment
-There are 4 parts to implementing Group Analytics via Segment. Learn more about [Group Analytics here](/docs/) and the Segment Group Spec here.
+There are 4 parts to implementing Group Analytics via Segment. Learn more about [Group Analytics here](/docs/data-structure/group-analytics) and the Segment Group Spec here.
 
 **1. Define the Group Key in Mixpanel**
 
@@ -245,4 +245,9 @@ This can lead to duplicate events in Mixpanel, they will likely have different i
 Super properties can only be set when you are running in device mode and using the Classic destination. The super properties are automatically set with every property you pass into the analytics.identify() method. To have more control over the super properties you set, you can explicitly set super properties in your [Segment settings](https://segment.com/docs/connections/destinations/catalog/mixpanel/#explicitly-set-people-properties-and-super-properties).
 
 **4. How do I track page views using Segment?**
-Page calls are automatically tracked via Segment. These can be tracked from Segment to Mixpanel as Loaded a Page or Loaded a Screen. To turn them off, you need to [configure this in your Segment settings](https://segment.com/docs/connections/destinations/catalog/mixpanel/#page).
+
+In analytics.js, a Page call is included in the initialization snippet by default right after analytics.load(). Otherwise, you will want you will want to call [analytics.page()](https://segment.com/docs/connections/spec/page/) manually to track page view.
+
+For the Preset Action, the default Event Name mapping for page call is `Viewed {name}`. To consolidate event names (e.g. "Page Viewed" or "Loaded a Page"), modify the Event Name mapping.
+
+![segment_page_name_mapping](/segment_page_name_mapping.png)
