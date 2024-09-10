@@ -16,10 +16,11 @@ For any questions about Session Replay or beta access, please reach out to your 
 
 ## Using Session Replay
 
-Session Replay can be accessed in two places:
+Session Replay can be accessed in three places:
 
 1. From User Profile page
 2. From Mixpanel reports
+3. On the Home page for your project
 
 ### From User Profile page
 
@@ -29,11 +30,17 @@ In any user’s profile page, Click the ‘View Replays’ button to watch repla
 
 ### From Mixpanel reports
 
-Click any point on a chart for Event and Funnel metrics, and select ‘View Replays’ to view replays that show that event being fired. From here, you will be taken to our Replay Player. 
+Click any point on a chart for Event, Funnel, and User Profile, and select ‘View Replays’ to view replays that show that event being fired. From here, you will be taken to our Replay Player. 
 
 ![replayReportEntry](/replayReportEntryPoint.png)
 
-*Note: reports entry point is currently supported for Event and Funnel metrics only.*
+*Note: reports entry point is currently supported for Event, Funnel, and User Profile metrics only.*
+
+### From the Home page
+
+Find the Latest Replays card and click on individual replays to view them or click on ‘View All Replays‘ to see up to 100 of your latest replays.
+
+![replayHomeEntry](/replayHomeEntryPoint.png)
 
 ### Replay Player
 
@@ -59,7 +66,11 @@ Session Replay is not enabled by default; enabling the feature requires instrume
 
 However, in most cases, implementation is extremely simple, only requiring a single line of code to be changed. 
 
+Note that replays sent via your implementation will only be viewable in the project they were ingested in and will not be available to other projects in your org.
+
 Our documentation on how to implement Session Replay can be found [here](/docs/tracking-methods/sdks/javascript#session-replay-beta).
+
+Before you enable Session Replay for a large audience, we recommend testing in a demo project, and starting in production with smaller sets of users or accounts, so that you can monitor performance and ensure your privacy rules align with company policies.
 
 ## Legal (Beta Terms)
 
@@ -73,7 +84,6 @@ As of today, Session Replay is in closed Beta testing for web-based applications
 
 For any questions about mobile beta access, please reach out to your Account Manager.
  
-
 ### Can I prevent Session Replay from recording sensitive content?
 
 By default, all on-screen text elements are masked in replays. Additionally, you can customize how you initialize our SDK to fully control (1) where to record and (2) whom to record. For more details, please see our [implementation docs](/docs/tracking-methods/sdks/javascript#session-replay-beta).
