@@ -1,5 +1,9 @@
 # Overview
 
+<Callout type="info" >
+  If you already did setup Older version of pipelines via the API and want to manage it. Go to docs [here](/docs/data-pipelines/old-pipelines/overview).
+</Callout>
+
 Data Pipelines is a [paid add-on](https://mixpanel.com/pricing) that continuously exports data from your Mixpanel project to a Cloud Storage bucket or Data Warehouse of your choice. This feature is ideal for those who wish to perform SQL analysis on Mixpanel data within their own environment.
 
 Setting up Data Pipelines involves two main steps:
