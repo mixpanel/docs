@@ -65,7 +65,7 @@ The Mixpanel Cohort is available under Audience Manager. Cohorts are exported to
   
 Google Ads uses email addresses to match users from the cohort with users from their system. If they do not have the email address, they will instead use a combination of phone number or first and last name or the device advertising ID that you choose when setting up the connection.
 
-In order to use this integration, **you must set an email as a user profile property or have device advertising ID**. In addition to an email address, Mixpanel sends the first name user profile property, the last name user profile property, a phone number user property, an advertising id user property and a distinct_id. All other user properties are not exported.
+In order to use this integration, **you must set an email as a user profile property or have device advertising ID**. In addition to an email address, Mixpanel sends the first name user profile property, the last name user profile property, a phone number user property, an advertising ID user property and a distinct_id. All other user properties are not exported.
 
 Google Ads excludes cohort members from the audience if they are unable to match them with a user in their system. Inequality between the number of users in Google Audiences and the Mixpanel cohort indicates that Google was unable to find the user.
   
