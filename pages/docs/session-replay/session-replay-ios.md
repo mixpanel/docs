@@ -168,6 +168,10 @@ SessionReplay.getInstance().addSensitiveView(mySensiveView)
 
 Please refer to [Using Session Replay](/docs/session-replay/session-replay-web#using-session-replay)
 
+## Legal (Beta Terms)
+
+Our Session Replay Beta Service Addendum can be found [here](https://mixpanel.com/legal/session-replay-beta-service-addendum/).
+
 # FAQ
 
 ### How does Session Replay work in iOS?

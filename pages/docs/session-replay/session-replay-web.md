@@ -1,4 +1,4 @@
-# Session Replay (Beta)
+# Session Replay
 
 ## Overview
 
@@ -8,11 +8,7 @@ When digging into customer journeys in Mixpanel’s analytics, you can understan
 
 ## Availability
 
-Currently, Session Replay is currently in invite-only beta access for customers on our [Enterprise plan](https://mixpanel.com/pricing/).
-
-You can join the waitlist for beta access [here](https://mixpanel.com/m/session-replay-beta/).
-
-For any questions about Session Replay or beta access, please reach out to your Account Manager.
+Currently, Web Session Replay is available for customers on our [Enterprise plan](https://mixpanel.com/pricing/).
 
 ## Using Session Replay
 
@@ -72,10 +68,6 @@ Our documentation on how to implement Session Replay can be found [here](/docs/t
 
 Before you enable Session Replay for a large audience, we recommend testing in a demo project, and starting in production with smaller sets of users or accounts, so that you can monitor performance and ensure your privacy rules align with company policies.
 
-## Legal (Beta Terms)
-
-Our Session Replay Beta Service Addendum can be found [here](https://mixpanel.com/legal/session-replay-beta-service-addendum/).
-
 ## FAQ
 
 ### Is Session Replay available for mobile?
@@ -92,8 +84,10 @@ By default, all on-screen text elements are masked in replays. Additionally, you
 
 30 days.
 
-### How can I estimate how many sessions I'll have?
-If you already use Mixpanel, the simplest way to estimate sessions is to count Total Session Start events in the Insights report. This will tell you how many total Sessions you have each month. If you enable Session Replay, it will collect all of these Sessions by default.
+### How can I estimate how many replays I'll have?
+If you already use Mixpanel, the simplest way to estimate the amount of replays is to use a proxy metric for how many page loads you have. If you use timeout based query sessions, Total Session Start events in the Insights report could be a good estimate.
+
+Then, when you enable Session Replay, use that metric and the sampling percentage to determine how many replays will be sent.
 
 ### Am I able to sample our session replay collection rate?
 
