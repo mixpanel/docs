@@ -64,7 +64,7 @@ However, in most cases, implementation is extremely simple, only requiring a sin
 
 Note that replays sent via your implementation will only be viewable in the project they were ingested in and will not be available to other projects in your org.
 
-Our documentation on how to implement Session Replay can be found [here](/docs/tracking-methods/sdks/javascript#session-replay-beta).
+Our documentation on how to implement Session Replay can be found [here](/docs/tracking-methods/sdks/javascript#session-replay).
 
 Before you enable Session Replay for a large audience, we recommend testing in a demo project, and starting in production with smaller sets of users or accounts, so that you can monitor performance and ensure your privacy rules align with company policies.
 
@@ -78,7 +78,7 @@ For any questions about mobile beta access, please reach out to your Account Man
  
 ### Can I prevent Session Replay from recording sensitive content?
 
-By default, all on-screen text elements are masked in replays. Additionally, you can customize how you initialize our SDK to fully control (1) where to record and (2) whom to record. For more details, please see our [implementation docs](/docs/tracking-methods/sdks/javascript#session-replay-beta).
+By default, all on-screen text elements are masked in replays. Additionally, you can customize how you initialize our SDK to fully control (1) where to record and (2) whom to record. For more details, please see our [implementation docs](/docs/tracking-methods/sdks/javascript#session-replay).
 
 ### How long are replays stored?
 
@@ -125,7 +125,7 @@ For CDP implementations, look below for instructions on how to configure the SDK
 
 Yes. You can use Session Replay with CDPs like Segment and mParticle.
 
-In order to use Session Replay, your app must include the Mixpanel SDK. [Consult the quickstart](/docs/quickstart/install-mixpanel) to ensure you have the Mixpanel SDK installed, and the [setup guide](/docs/tracking-methods/sdks/javascript#session-replay-beta) to make sure you have Session Replay enabled.
+In order to use Session Replay, your app must include the Mixpanel SDK. [Consult the quickstart](/docs/quickstart/install-mixpanel) to ensure you have the Mixpanel SDK installed, and the [setup guide](/docs/tracking-methods/sdks/javascript#session-replay) to make sure you have Session Replay enabled.
 
 Once you have included the Mixpanel SDK in your app add the following code snippets in order to connect your CDP's data stream with Mixpanel's Session Replay.
 
