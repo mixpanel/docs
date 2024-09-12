@@ -248,3 +248,4 @@
 /docs/data-structure/advanced/ad-spend /docs/tracking-methods/integrations/ad-spend
 /docs/data-structure/advanced/utm-tags /docs/tracking-best-practices/traffic-attribution
 /docs/session-replay /docs/session-replay/session-replay-web
+/docs/reports/funnels#counting-method /docs/reports/funnels#measurements
