@@ -72,7 +72,7 @@ Before you enable Session Replay for a large audience, we recommend testing in a
 
 ### Is Session Replay available for mobile?
 
-As of today, Session Replay is in closed Beta testing for web-based applications (including mobile web) and closed Alpha testing for native iOS apps. Android Alpha testing is expected later this year.
+As of today, Session Replay is available for web-based applications (including mobile web) on the Enterprise Plan and closed Alpha testing for native iOS apps. Android Alpha testing is expected later this year.
 
 For any questions about mobile beta access, please reach out to your Account Manager.
  
