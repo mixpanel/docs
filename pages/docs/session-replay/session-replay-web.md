@@ -8,7 +8,7 @@ When digging into customer journeys in Mixpanel’s analytics, you can understan
 
 ## Availability
 
-Currently, Web Session Replay is available for customers on our [Enterprise plan](https://mixpanel.com/pricing/).
+Session Replay is currently available as an add-on purchase for [Enterprise plans](https://mixpanel.com/pricing/). Customers on an Enterprise plan or considering upgrading are eligible to try session Replay free for 30 days as part of their Enterprise package.
 
 ## Using Session Replay
 
@@ -99,7 +99,7 @@ If you're still unsure about what sampling percentage to use, you can use our au
 
 If instead of random sampling, you want to use conditional logic to control which sessions to record, then your application code can derive its own yes/no decision, and then force a session recording to start after SDK initialization by calling `mixpanel.start_session_recording()`.
 
-If you want to only record certain parts of a single-page application with no new mixpanel.init calls, you can also use our [Start / Stop recorder methods](/docs/tracking-methods/sdks/javascript#recorder-methods). 
+If you want to only record certain parts of a single-page application with no new mixpanel.init calls, you can also use our [Start / Stop methods](/docs/tracking-methods/sdks/javascript#session-replay-methods). 
 
 ### How soon are Replays available for viewing after a session begins?
 
