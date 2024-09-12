@@ -17,6 +17,13 @@
             "sidebar": false
         }
     },
+    "community": {
+        "title": "Community Q&A",
+        "type": "page",
+        "theme": {
+            "sidebar": false
+        }
+    },
     "api-reference": {
         "title": "API Reference ↗",
         "type": "page",
