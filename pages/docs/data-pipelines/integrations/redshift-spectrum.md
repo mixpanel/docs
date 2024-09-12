@@ -10,7 +10,7 @@ Mixpanel exports data to your S3 bucket and simultaneously updates the necessary
 
 ## Setting S3 Permissions
 
-See [Setting S3 Permissions](/docs/json-pipelines/integrations/aws-s3#setting-s3-permissions)
+See [Setting S3 Permissions](/docs/data-pipelines/integrations/aws-s3#setting-s3-permissions)
 
 ## Setting Glue Permissions
 
@@ -261,7 +261,7 @@ Follow these steps to grant the `CREATE` privilege:
 
 ## Provide Necessary Details for Pipeline Creation
 
-Refer to [Step 2: Creating the Pipeline](/docs/json-pipelines/overview/#step-2-creating-the-pipeline)
+Refer to [Step 2: Creating the Pipeline](/docs/data-pipelines/overview/#step-2-creating-the-pipeline)
 to create data pipeline via UI. It is essential to provide specific details to Mixpanel:
 
 **S3**
@@ -288,6 +288,7 @@ to create data pipeline via UI. It is essential to provide specific details to M
 ## Queries
 
 To query data in external schema created by Mixpanel, you need to ask admin to grant schema **USAGE** privilege to the federated database user.
+
 ```sql
 GRANT USAGE ON SCHEMA "mp_json_export" TO "IAM:<your user name>";
 ```
