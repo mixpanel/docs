@@ -1,4 +1,4 @@
-# Session Replay (Beta)
+# Session Replay
 
 ## Overview
 
@@ -8,11 +8,7 @@ When digging into customer journeys in Mixpanel’s analytics, you can understan
 
 ## Availability
 
-Currently, Session Replay is currently in invite-only beta access for customers on our [Enterprise plan](https://mixpanel.com/pricing/).
-
-You can join the waitlist for beta access [here](https://mixpanel.com/m/session-replay-beta/).
-
-For any questions about Session Replay or beta access, please reach out to your Account Manager.
+Session Replay is currently available as an add-on purchase for [Enterprise plans](https://mixpanel.com/pricing/). Customers on an Enterprise plan or considering upgrading are eligible to try session Replay free for 30 days as part of their Enterprise package.
 
 ## Using Session Replay
 
@@ -68,32 +64,30 @@ However, in most cases, implementation is extremely simple, only requiring a sin
 
 Note that replays sent via your implementation will only be viewable in the project they were ingested in and will not be available to other projects in your org.
 
-Our documentation on how to implement Session Replay can be found [here](/docs/tracking-methods/sdks/javascript#session-replay-beta).
+Our documentation on how to implement Session Replay can be found [here](/docs/tracking-methods/sdks/javascript#session-replay).
 
 Before you enable Session Replay for a large audience, we recommend testing in a demo project, and starting in production with smaller sets of users or accounts, so that you can monitor performance and ensure your privacy rules align with company policies.
-
-## Legal (Beta Terms)
-
-Our Session Replay Beta Service Addendum can be found [here](https://mixpanel.com/legal/session-replay-beta-service-addendum/).
 
 ## FAQ
 
 ### Is Session Replay available for mobile?
 
-As of today, Session Replay is in closed Beta testing for web-based applications (including mobile web) and closed Alpha testing for native iOS apps. Android Alpha testing is expected later this year.
+As of today, Session Replay is available for web-based applications (including mobile web) on the Enterprise Plan and closed Alpha testing for native iOS apps. Android Alpha testing is expected later this year.
 
 For any questions about mobile beta access, please reach out to your Account Manager.
  
 ### Can I prevent Session Replay from recording sensitive content?
 
-By default, all on-screen text elements are masked in replays. Additionally, you can customize how you initialize our SDK to fully control (1) where to record and (2) whom to record. For more details, please see our [implementation docs](/docs/tracking-methods/sdks/javascript#session-replay-beta).
+By default, all on-screen text elements are masked in replays. Additionally, you can customize how you initialize our SDK to fully control (1) where to record and (2) whom to record. For more details, please see our [implementation docs](/docs/tracking-methods/sdks/javascript#session-replay).
 
 ### How long are replays stored?
 
 30 days.
 
-### How can I estimate how many sessions I'll have?
-If you already use Mixpanel, the simplest way to estimate sessions is to count Total Session Start events in the Insights report. This will tell you how many total Sessions you have each month. If you enable Session Replay, it will collect all of these Sessions by default.
+### How can I estimate how many replays I'll have?
+If you already use Mixpanel, the simplest way to estimate the amount of replays is to use a proxy metric for how many page loads you have. If you use timeout based query sessions, Total Session Start events in the Insights report could be a good estimate.
+
+Then, when you enable Session Replay, use that metric and the sampling percentage to determine how many replays will be sent.
 
 ### Am I able to sample our session replay collection rate?
 
@@ -105,7 +99,7 @@ If you're still unsure about what sampling percentage to use, you can use our au
 
 If instead of random sampling, you want to use conditional logic to control which sessions to record, then your application code can derive its own yes/no decision, and then force a session recording to start after SDK initialization by calling `mixpanel.start_session_recording()`.
 
-If you want to only record certain parts of a single-page application with no new mixpanel.init calls, you can also use our [Start / Stop recorder methods](/docs/tracking-methods/sdks/javascript#recorder-methods). 
+If you want to only record certain parts of a single-page application with no new mixpanel.init calls, you can also use our [Start / Stop methods](/docs/tracking-methods/sdks/javascript#session-replay-methods). 
 
 ### How soon are Replays available for viewing after a session begins?
 
@@ -131,7 +125,7 @@ For CDP implementations, look below for instructions on how to configure the SDK
 
 Yes. You can use Session Replay with CDPs like Segment and mParticle.
 
-In order to use Session Replay, your app must include the Mixpanel SDK. [Consult the quickstart](/docs/quickstart/install-mixpanel) to ensure you have the Mixpanel SDK installed, and the [setup guide](/docs/tracking-methods/sdks/javascript#session-replay-beta) to make sure you have Session Replay enabled.
+In order to use Session Replay, your app must include the Mixpanel SDK. [Consult the quickstart](/docs/quickstart/install-mixpanel) to ensure you have the Mixpanel SDK installed, and the [setup guide](/docs/tracking-methods/sdks/javascript#session-replay) to make sure you have Session Replay enabled.
 
 Once you have included the Mixpanel SDK in your app add the following code snippets in order to connect your CDP's data stream with Mixpanel's Session Replay.
 
