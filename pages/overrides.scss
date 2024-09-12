@@ -260,6 +260,67 @@ $border-radius-lg: 100px;
   opacity: 1 !important;
 }
 
+// h1
+.nx-mt-1 {
+  font-family: Garnett;
+  font-size: 48px;
+  font-style: normal;
+  font-weight: 500;
+  letter-spacing: -0.96px;
+}
+
+// h2
+.nx-mt-2 {
+  font-family: Garnett;
+  font-size: 22px;
+  font-style: normal;
+  font-weight: 500;
+  line-height: 140%; /* 30.8px */
+}
+
+// body
+.nx-w-full > main {
+  font-family: Garnett;
+  font-size: 14px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 168%; /* 23.52x */
+  letter-spacing: 0.28px;
+  
+    // breadcrumbs / left nav titles
+    .nextra-breadcrumb {
+      font-family: Garnett;
+      font-size: 14px;
+      font-style: normal;
+      font-weight: 500;
+      letter-spacing: 2.8px;
+      text-transform: uppercase;
+    }
+}
+
+// Nav items
+// .nx-flex.nx-flex-col.nx-gap-1 {
+.nx-flex.nx-rounded.nx-px-2 {
+  font-family: Garnett;
+  font-size: 12px;
+  font-style: normal;
+  font-weight: 500;
+  letter-spacing: 0.24px;
+}
+
+.nx-flex.nx-flex-col.nx-gap-1 {
+  font-family: Garnett;
+  font-size: 12px;
+  font-style: normal;
+  font-weight: 400;
+  letter-spacing: 0.24px;
+}
+
+// body {
+
+// }
+
+// .nextra-sidebar-container {
 
 //##############################Light Theme Starts Here##################################
 .light {
@@ -411,10 +472,6 @@ $border-radius-lg: 100px;
 
     // Modify breadcrumbs
     .nextra-breadcrumb {
-      text-transform: uppercase;
-      letter-spacing: 2px;
-      font-size: 14px;
-      font-weight: 500;
       //   color: colors.$white;
 
       //highlight current breadcrumb
@@ -1053,10 +1110,6 @@ $border-radius-lg: 100px;
 
     // Modify breadcrumbs
     .nextra-breadcrumb {
-      text-transform: uppercase;
-      letter-spacing: 2px;
-      font-size: 14px;
-      font-weight: 500;
       color: colors.$white;
 
       //highlight current breadcrumb
