@@ -79,7 +79,6 @@
 /docs/other-bits/community /docs/community/guidelines
 /docs/other-bits/data-pipelines /docs/data-pipelines/overview
 /docs/other-bits/data-pipelines/aws-raw-pipeline /docs/data-pipelines/integrations/aws-raw-pipeline
-/docs/other-bits/data-pipelines/azure-blob-storage /docs/data-pipelines/integrations/azure-blob-storage
 /docs/other-bits/data-pipelines/azure-raw-pipeline /docs/data-pipelines/integrations/azure-raw-pipeline
 /docs/other-bits/data-pipelines/gcs /docs/data-pipelines/integrations/google-cloud-storage
 /docs/other-bits/data-pipelines/gcs-raw-pipeline /docs/data-pipelines/integrations/google-cloud-storage-raw-pipeline
@@ -237,7 +236,6 @@
 /docs/tracking-methods/id-management/identifying-users /docs/tracking-methods/id-management/identifying-users-simplified
 /docs/data-pipelines/integrations/aws-raw-pipeline /docs/data-pipelines/integrations/raw-aws-pipeline
 /docs/data-pipelines/integrations/azure-raw-pipeline /docs/data-pipelines/integrations/raw-azure-pipeline
-/docs/data-pipelines/integrations/azure-blob-storage /docs/data-pipelines/integrations/schematized-azure-pipeline
 /docs/data-pipelines/integrations/amazon-s3 /docs/data-pipelines/integrations/schematized-aws-pipeline
 /docs/data-pipelines/integrations/google-cloud-storage-raw-pipeline /docs/data-pipelines/integrations/raw-gcs-pipeline
 /docs/data-pipelines/integrations/bigquery /docs/data-pipelines/integrations/schematized-bigquery-pipeline
