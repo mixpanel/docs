@@ -3,5 +3,6 @@
   "azure-blob-storage": "Azure Blob Storage",
   "bigquery": "BigQuery",
   "gcp-gcs": "Google Cloud Storage",
-  "redshift-spectrum": "Redshift Spectrum"
+  "redshift-spectrum": "Redshift Spectrum",
+  "snowflake": "Snowflake"
 }
