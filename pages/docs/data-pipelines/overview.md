@@ -3,7 +3,7 @@
 [block:callout]
 {
   "type": "info",
-  "body": "If you already did setup Older version of pipelines via the API and want to manage it. Go to docs [here](https://docs.mixpanel.com/docs/data-pipelines/old-pipelines/overview).
+  "body": "If you already did setup Older version of pipelines via the API and want to manage it. Go to docs [here](https://docs.mixpanel.com/docs/data-pipelines/old-pipelines/overview)."
 }
 [/block]
 
