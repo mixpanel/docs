@@ -1,8 +1,11 @@
 # Overview
 
-<Callout type="info" >
-  If you already did setup Older version of pipelines via the API and want to manage it. Go to docs [here](/docs/data-pipelines/old-pipelines/overview).
-</Callout>
+[block:callout]
+{
+  "type": "info",
+  "body": "If you already did setup Older version of pipelines via the API and want to manage it. Go to docs [here](https://docs.mixpanel.com/docs/data-pipelines/old-pipelines/overview).
+}
+[/block]
 
 Data Pipelines is a [paid add-on](https://mixpanel.com/pricing) that continuously exports data from your Mixpanel project to a Cloud Storage bucket or Data Warehouse of your choice. This feature is ideal for those who wish to perform SQL analysis on Mixpanel data within their own environment.
 
@@ -45,7 +48,7 @@ For detailed setup guides per destination, see:
 
 ## Step 2: Creating the Pipeline
 
-After configuring your destination, initiate data export in **Integrations** page on your Mixpanel project > **+ Create Pipeline** > fill in necessary configurations. You can choose different data sources inclduing events, people and identity and other advanced options. See [Overview](/docs/data-pipelines/json-pipelines) for more details.
+After configuring your destination, initiate data export in **Integrations** page on your Mixpanel project > **Create Pipeline** > fill in necessary configurations. You can choose different data sources inclduing events, people and identity and other advanced options. See [Data Pipelines](/docs/data-pipelines/json-pipelines) for more details.
 
 ## FAQ
 
@@ -73,7 +76,7 @@ To check a pipeline's configuration:
 
 Discrepancies between the event counts in Mixpanel and those exported to your destination can occur for several reasons:
 
-- **Data Sync**: If [Data Sync](/docs/data-pipelines/json-pipelines#data-sync) is not enabled or is unsupported for your pipeline, this could prevent some data from being exported.
+- **Data Sync**: If [Events Data Sync](/docs/data-pipelines/json-pipelines#events-data-sync) is not enabled or is unsupported for your pipeline, this could prevent some data from being exported.
 - **Data Delay**: Late-arriving data may take up to one day to sync from Mixpanel to your destination, leading to temporary discrepancies.
 - **Hidden Events**: Mixpanel exports all events, including those hidden in the Mixpanel UI via Lexicon. To reconcile differences in counts, check if the events in your destination include those hidden in the Mixpanel UI.
 
