@@ -368,7 +368,7 @@ mixpanel.init("<YOUR_PROJECT_TOKEN>", {api_host: "https://<YOUR_PROXY_DOMAIN>"})
 
 🎉 Congratulations, you've set up tracking through a proxy server! Here's a [full code sample](https://gist.github.com/ranic/80459104def4e4bcd73d5c77b817ee43).
 
-## Session Replay (Beta)
+## Session Replay
 
 Capture and replay data on how a user interacts with your application. Replay collection is disabled by default, and the Replay portion of the SDK will not be loaded into your application until specified. To use this feature, you must be on at least version 2.50.0 of our JavaScript SDK.
 

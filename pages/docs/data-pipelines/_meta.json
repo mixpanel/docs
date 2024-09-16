@@ -1,5 +1,6 @@
 {
-    "overview": "Overview",
-    "schematized-export-pipeline": "Schematized Export Pipeline",
-    "integrations": "Integrations"
+  "overview": "Overview",
+  "json-pipelines": "Data Pipelines",
+  "integrations": "Integrations",
+  "old-pipelines": "Older Version"
 }
