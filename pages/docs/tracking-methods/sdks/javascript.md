@@ -455,6 +455,8 @@ Returns an empty object if there is no Replay in progress.
 - If you're still struggling to implement, [submit a request to our Support team](https://mixpanel.com/get-support) for more assistance.
 
 ### Privacy
+Mixpanel offers a privacy-first approach to Session Replay, including features such as data masking. Mixpanel’s Session Replay privacy controls were designed to assist customers in protecting end user privacy. Read more [here](/docs/session-replay/session-replay-web#appendix-session-replay-privacy-controls).
+
 
 #### User Data
 The Mixpanel SDK will always mask all inputs. By default, all text on a page will also be masked unless a different `record_mask_text_selector` is specified.
