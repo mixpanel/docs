@@ -1,6 +1,6 @@
 # Build Your Tracking Strategy
 
-It's important to first understand Mixpanel's Data Model and then create a Tracking Plan using this model to define the actions or behaviors that you want to track in order to measure your metrics and KPIs. This ensures that your data is structured to maximise Mixpanel's analytics capabilities. If you have not thought about your metrics and KPIs, now is a good time to read up on [Analytics Framework](/docs/tutorials/plan/framework).
+It's important to first understand Mixpanel's Data Model and then create a Tracking Plan using this model to define the actions or behaviors that you want to track in order to measure your metrics and KPIs. This ensures that your data is structured to maximize Mixpanel's analytics capabilities. If you have not thought about your metrics and KPIs, now is a good time to read up on [Analytics Framework](/docs/tutorials/plan/framework).
 
 ## The Mixpanel Data Model
 
@@ -28,10 +28,10 @@ While events capture behaviors or user actions, user profiles capture demographi
 User profiles are in a separate object from events and are mutable *(eg for current snapshot)*:
 
 * All user profiles should have a **Distinct ID** that can be used to tie to events belonging to the same user
-* User profiles have user properties that capture these demographical attributes
+* User profiles have user properties that capture these demographic attributes
 * A user that has events, can exist in Mixpanel without having a user profile, especially when they are anonymous *(eg not logged in)*
 
-As a best practice, think of event properties that you track under events which might also be useful as user properties. This would allow you to analyse a user property which provides the latest state or value against the same event property that records a value in the past. Example: I want to analyze users who are currently in country = "Singapore" *(user property)*, did these same users also use my product in another country *(event property)*.
+As a best practice, think of event properties that you track under events which might also be useful as user properties. This would allow you to analyze a user property which provides the latest state or value against the same event property that records a value in the past. Example: I want to analyze users who are currently in country = "Singapore" *(user property)*, did these same users also use my product in another country *(event property)*.
 
 <br />
 <p style={{ position: 'relative', paddingBottom: '56.25%', height: 0, overflow: 'hidden' }}>
@@ -50,7 +50,7 @@ Examples:
 - App User ID - useful to have in all events where user is logged in for identity management troubleshooting
 - Subscription / User Type - useful for tracking change in subscriptions or user types over time in different events
 - Favorite Genre - useful in comparing a user's favorite genre against other music genres they played, and how they change their favorite
-- App Source - useful when you are tracking mulitple apps into one single Mixpanel project, which can be used for data segregation (see [Data Views](/docs/data-governance/data-views-and-classification#data-views-overview))
+- App Source - useful when you are tracking multiple apps into one single Mixpanel project, which can be used for data segregation (see [Data Views](/docs/data-governance/data-views-and-classification#data-views-overview))
 
 Mixpanel's client-side SDKs provide a method that allows you to register / save the property in a cookie or local storage and auto-appends it in subsequent event tracking calls.
 
@@ -79,13 +79,13 @@ Refer to the list of [Reserved Event Properties](/docs/data-structure/events-and
 
 Mixpanel supports five data types for properties: String, Numeric, Boolean, Date and List. You should choose the most suitable data type for your properties, since each type has a specific set of [operations](/docs/reports/insights#insights-data-functions-operators-and-calculations) that enables richer analysis *(eg numeric data types allows for aggregated)*.
 
-- String - useful in capturing textual values *(suppports double-byte characters)*
+- String - useful in capturing textual values *(supports double-byte characters)*
 - Numeric - meant for whole numbers or decimals where numeric calculations are expected to be performed *(supports up to 16 decimals)*
 - Boolean - used when a property is always a `true` or `false` state, avoid using when you expect your property to have other states in the future
 - Date - used to capture both date and/or timestamp, example: Jun 20, 2009 14:20:30
 - List - meant for capturing an array / collection of similar or related values, example: ["Shoes", "Clothing", "Cosmetics"]
 
-A property's default data type can be [typecasted](/docs/reports/overview#typecasting) to another data type in Mixpanel reports. However, it's always an important best practice that you keep a property's data type consistent during implementation to avoid any confusion.
+A property's default data type can be [typecast](/docs/reports/overview#typecasting) to another data type in Mixpanel reports. However, it's always an important best practice that you keep a property's data type consistent during implementation to avoid any confusion.
 
 Mixpanel also supports object and [list of objects](/docs/features/advanced#list-of-objects-property-support) data types for specific use cases like in e-commerce. It is highly encourage that you use the five primary data types as they are fully supported in the Mixpanel UI.
 
@@ -95,12 +95,12 @@ For more details and examples refer to our documentation on [Supported Dta Types
 
 > Note: read this section only if you have [Group Analytics](/docs/data-structure/advanced/group-analytics) add-on.
 
-Mixpanel's core behavioral data analysis is at the individual user level; there are however, use cases where behavioral data needs to be analysed at a customized group level *(eg company, subscription, account)*. An add-on Group Analytics package available to customers on [Growth](https://mixpanel.com/pricing/) and [Enterprise plans](https://mixpanel.com/pricing/) enables this functionality.
+Mixpanel's core behavioral data analysis is at the individual user level; there are however, use cases where behavioral data needs to be analyzed at a customized group level *(eg company, subscription, account)*. An add-on Group Analytics package available to customers on [Growth](https://mixpanel.com/pricing/) and [Enterprise plans](https://mixpanel.com/pricing/) enables this functionality.
 
 ![image](/tutorials/group-data-model.png "Group Analytics Data Model")
 
 * Similar to how each individual user's event must have a **Distinct ID**; each group would require a **Group ID** *(eg company_id, subscription_id, account_id)* that will allow Mixpanel to group events across users belong to the same group to enable group level analysis.
-* Additionally, just like each user can have a user profile; each group can also have a group profile that captures demographical group attributes to enable cohorting of groups based on their latest characteristics such as industry, company size, subscription information, account type.
+* Additionally, just like each user can have a user profile; each group can also have a group profile that captures demographic group attributes to enable cohorting of groups based on their latest characteristics such as industry, company size, subscription information, account type.
 
 <br />
 <p style={{ position: 'relative', paddingBottom: '56.25%', height: 0, overflow: 'hidden' }}>
@@ -130,7 +130,7 @@ Now that you have an understanding of Mixpanel's Data Model, let's walk you thro
 1. Prioritize on the key user journeys that are pertinent to the metrics and KPIs you want to measure. 
 
    For example, a sign up journey will be important when measuring metrics related to newly acquired user *(part of Reach)*. 
-   If you used the [RAE Framework](/docs/tutorials/plan/framework#the-rae-framework), make sure you cover the journeys that will help you track and measure your (R)each, (A)ctivation, and (E)ngagement.
+   If you used the [RAE Framework](/docs/tutorials/plan/framework#the-rae-framework), make sure you cover the journeys that will help you track and measure your Reach, Activation, and Engagement.
 
 <br />
 2. Map the key actions within these journeys into events and capture event properties to provide additional information about the action. As you define your events, think about whether certain event properties should be global / super properties and user properties. 
