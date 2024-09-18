@@ -1,5 +1,5 @@
 ---
-title: "Aggregrated Event Property Values"
+title: "Aggregated Event Property Values"
 slug: "query-event-properties"
 excerpt: "Get unique, total, or average data for of a single event and property over days, weeks, or months."
 hidden: false
