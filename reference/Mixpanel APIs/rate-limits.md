@@ -6,7 +6,7 @@ categorySlug: "mixpanel-apis"
 createdAt: "2023-10-31T15:28:39.814Z"
 updatedAt: "2023-10-31T15:38:48.152Z"
 ---
-We enforce a rate limit on our API to ensure the integrity of our system as well as prevent a single project from monopolizing the avaialble resources for other projects. Getting a 429 response code from our API means that you have reached our rate-limit.
+We enforce a rate limit on our API to ensure the integrity of our system as well as prevent a single project from monopolizing the available resources for other projects. Getting a 429 response code from our API means that you have reached our rate-limit.
 
 The rate limits are as follows:
 
