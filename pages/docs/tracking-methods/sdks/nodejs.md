@@ -53,7 +53,7 @@ mixpanel.track('event name', {
 });
 ```
 
-Mixpanel determines default geolocation data (\$city, \$region, mp_country_code) using the IP address on the incoming request. This can have the unintended effect of setting the location of all of your users to the location of your datacenter in server-side implementations.
+Mixpanel determines default geolocation data (\$city, \$region, mp_country_code) using the IP address on the incoming request. This can have the unintended effect of setting the location of all of your users to the location of your data center in server-side implementations.
 
 It is therefore important to pass IP as a property in server-side implementations. [Read about best practices for geolocation with server-side implementations](/docs/best-practices/server-side-best-practices).
 

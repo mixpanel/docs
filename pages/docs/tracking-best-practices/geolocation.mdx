@@ -44,13 +44,13 @@ In summary, here is the order of operations:
   
 ## Manual Geolocation Tracking
 
-It is possible to overide the default geolocation tracking behavior of our ingestion APIs. This is helpful in certain scenarios, for example:
+It is possible to override the default geolocation tracking behavior of our ingestion APIs. This is helpful in certain scenarios, for example:
 
 - **Server-side implementation**: Since the default geolocation is derived from the IP address of the request, data sent from the server-side will appear with geolocation set to the location of the server instead of the location of your users.
 - **Precise Location**: IP address is an approximation of location. Some use cases requires additional precision.
 - **Geolocation information already exists**: If you have a database of your user's location, you may want to leverage your database as a source of truth instead of relying on the geolocation parsing mechanism. 
 
-There are 3 ways to manually set the geolocation properties in your Mixpanel payloads; define the geolocation properties, define the Latitude/Logitude, or define the IP address.
+There are 3 ways to manually set the geolocation properties in your Mixpanel payloads; define the geolocation properties, define the Latitude/Longitude, or define the IP address.
 
 ### Define Geolocation Properties
 
@@ -174,7 +174,7 @@ If you're tracking from your servers, you need to set the `ip` property of the e
 
 #### Ignore IP Address
 
-As all server-side requests originate from the same IP, such as the IP of your server, it can have the unintended effect of setting the location of all of your users to the location of your datacenter. To prevent the Engage API from updating your profile geolocation using the IP address of the incoming request, you can set the $ip to 0 in your payload.
+As all server-side requests originate from the same IP, such as the IP of your server, it can have the unintended effect of setting the location of all of your users to the location of your data center. To prevent the Engage API from updating your profile geolocation using the IP address of the incoming request, you can set the $ip to 0 in your payload.
 
 ```
 // $ip set to 0

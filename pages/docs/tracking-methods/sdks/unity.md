@@ -17,7 +17,7 @@ Alternatively you can go to the [releases page](https://github.com/mixpanel/mixp
 
 ## Initializing the Library
 
-To start tracking with the Mixpanel Unity library, you must first initialize it with your project token. You can find your token by clicking your name in the upper righthand corner of your Mixpanel project and selecting Settings from the dropdown.
+To start tracking with the Mixpanel Unity library, you must first initialize it with your project token. You can find your token by clicking your name in the upper right hand corner of your Mixpanel project and selecting Settings from the dropdown.
 
 #### Configuring Mixpanel
 To initialize the library, first open the unity project settings menu for Mixpanel. (Edit -> Project Settings -> Mixpanel) Then, enter your project token into the Token and Debug Token input fields within the inspector.
@@ -25,7 +25,7 @@ To initialize the library, first open the unity project settings menu for Mixpan
 
 
 Once you've initialized the library with your project token, you can import Mixpanel into your code using the mixpanel namespace.
-```charp
+```csharp
 using mixpanel;
 
 // Then, you can track events with

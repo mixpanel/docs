@@ -93,7 +93,7 @@ If you want to use IFV(identifierForVendor) as the distinct_id, you can set
 
 In addition to events, you can store user profiles in Mixpanel's [Behavioral Analytics](/docs/data-structure/user-profiles) product. Profiles are persistent sets of properties that describe a user - things like name, email address, and signup date. You can use profiles to explore and segment users by who they are, rather than what they did.
 
-We generally recommend creating user profiles for only authenticated users; with this in mind, to create user profiles, 2 requiremenst need to be met:
+We generally recommend creating user profiles for only authenticated users; with this in mind, to create user profiles, 2 requirements need to be met:
 
 - You must call `.identify()` at least once for each user. Normally this is done after they authenticate.
 - At least one property should be sent for a profile to be created.
