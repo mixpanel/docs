@@ -19,7 +19,7 @@ You are already a Mixpanel customer and have the Mixpanel iOS SDK installed. If 
 
 ## Install
 
-You can integrate the Mixpanel iOS Session Replay SDK into your iOS project using Swift Package Manager (SPM).
+You can integrate the Mixpanel iOS Session Replay SDK into your iOS project by embedding the XCFramework below.
 
 ### Open Your Xcode Project
 
@@ -29,20 +29,20 @@ Open your existing Xcode project where you want to integrate the Mixpanel iOS Se
 
 Download and Unzip the below zip to your local drive
 
-v0.2.0 - Updated 08/01/2024
+v0.2.1 - Updated 09/18/2024
 
-[MixpanelSessionReplay.xcframework.zip](/downloads/MixpanelSessionReplay_v020.xcframework.zip)
+[MixpanelSessionReplay.xcframework.zip](/downloads/MixpanelSessionReplay_v021.xcframework.zip)
 
 
-- In Xcode, navigate to File > Add Package....
+- In Xcode, navigate to your Target's Build Phases and add the .xcframework file you just unzipped to the "Link Binary With Libraries" section
 
-![Add Local Package](/ios_sr_add_local.png)
+![Link Binary With Libraries](/ios_sr_link_library.png)
 
-- Pick the Mixpanel Session Replay package you just saved, and make sure to select a target.
+- Now go to your Target's General settings...
 
-![Choose Package](/ios_sr_choose_package.png)
+![Choose Package](/ios_sr_embed_framework.png)
 
-- Click Add Package.
+- And set the framework's Embed setting to "Embed & Sign" in the "Frameworks, Libraries, and Embedded Content" section
 
 ## Initialize
 
@@ -56,7 +56,7 @@ import MixpanelSessionReplay
 
 struct SessionReplayDemoApp: App {
     @State private var isActive = true
-    @Environment(\\.scenePhase) private var scenePhase
+    @Environment(\.scenePhase) private var scenePhase
 
     var body: some Scene {
         WindowGroup {
@@ -66,7 +66,7 @@ struct SessionReplayDemoApp: App {
             if newPhase == .active {
                 let sessionReplayInstance = SessionReplay.initialize(token: Mixpanel.mainInstance().apiToken, distinctId: Mixpanel.mainInstance().distinctId)
                 // Uncomment if you want to record the entire session
-                // sessionReplayInstance = SessionReplay.getInstance().startRecording()
+                // sessionReplayInstance.startRecording()
             }
         }
     }
@@ -112,10 +112,6 @@ Upon initialization you can provide a SessionReplayConfig object to specify the 
 
 `recordSessionsPercent` - this is a value between 0.0 and 100.0 that controls the sampling rate for recording session replays, at 0.0 no sessions will be recorded, at 100.0 all sessions will be recorded. - Default: 0.0
 
-`recordIdleTimeout` - The time interval (in seconds) after which the session is considered idle and a new session should start. This value is used to determine when the user has been inactive for too long. If the user does not interact with the session within this time frame, the current session will be ended and a new session will be started. Example: If the `recordIdleTimeout` is set to 30 seconds, a new session will start if there is no user interaction for 30 seconds.
-
-`recordMaxLength` - The maximum duration (in seconds) that a single session can last. This value is used to limit the length of a session to ensure it does not exceed a certain duration. Once the session reaches this maximum duration, it will be ended and a new session will start. Example: If the `recordMaxLength` is set to 3600 seconds (1 hour), a new session will start after 1 hour of continuous session activity.
-
 `maskAllText` - which allows users to determine whether all text elements in the session replay should be masked. By default, this option is enabled (`true`)
 
 `maskAllImages` - to control whether all images in the session replay should be masked. This option is also enabled by default (`true`)
@@ -140,14 +136,14 @@ sessionReplayInstance.loggingEnabled = true
 To start the session replay recording, you only need to call this once so we recommend calling this at the beginning of your app’s lifecycle:
 
 ```swift
-SessionReplay.getInstance().startRecording()
+SessionReplay.getInstance()?.startRecording()
 
 ```
 
 To stop the session replay recording:
 
 ```swift
-SessionReplay.getInstance().stopRecording()
+SessionReplay.getInstance()?.stopRecording()
 ```
 
 ## Privacy Settings
@@ -160,7 +156,7 @@ Image("family photo")
 	.replaySensitive()
 
 // UIKit
-SessionReplay.getInstance().addSensitiveView(mySensiveView)
+SessionReplay.getInstance()?.addSensitiveView(mySensiveView)
 
 ```
 
@@ -198,7 +194,7 @@ Session Replay for mobile currently doesn’t work in offline mode.
 
 Yes, you can configure the percentage of total replays that our SDK will capture as below.
 
-```jsx
+```swift
 let config = SessionReplayConfig(wifiOnly: false, recordSessionsPercent: 50.0)
 let sessionReplayInstance = SessionReplay.initialize(token: token, distinctId: distinctId, config: config)
 ```
@@ -217,14 +213,14 @@ Yes, Objective-C and Swift are fully interoperable.
 
 If your app is UIKit-based, all `UITextField` and `UILabel` components are masked by default, and there is no way to unmask them. You can also mask any view manually by calling:
 
-```jsx
+```swift
 // UIKit
-SessionReplay.getInstance().addSensitiveView(mySensiveView);
+SessionReplay.getInstance()?.addSensitiveView(mySensiveView);
 ```
 
 If your app is SwiftUI-based, the automatic masking for `UITextField` and `UILabel` does not work well in the current alpha version, so you need to manually mask any view.
 
-```jsx
+```swift
 Image("family photo").replaySensitive();
 ```
 
