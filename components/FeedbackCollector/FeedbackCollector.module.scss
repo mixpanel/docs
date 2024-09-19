@@ -92,7 +92,7 @@
 
 .feedbackTextArea {
   height: 120px;
-  padding: 4px;
+  padding: 4px 8px;
   background: colors.$base100;
   border-radius: 9px;
   resize: none;
@@ -100,7 +100,7 @@
 }
 
 .emailInput {
-  padding: 4px;
+  padding: 4px 8px;
   background: colors.$base100;
   border-radius: 9px;
   resize: none;
@@ -111,8 +111,8 @@
 .buttonContainer {
   margin-top: 8px;
   display: flex;
-    flex-direction: row;
-    justify-content: flex-end;
+  flex-direction: row;
+  justify-content: flex-end;
 }
 
 .scheduleCallAnchorTag {
