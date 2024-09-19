@@ -97,7 +97,7 @@ export function FeedbackCollector() {
                 onClick={submitFeedbackButtonClick}
               >
                 {" "}
-                Or Submit a feedback.{" "}
+                Or submit feedback to the team.{" "}
               </button>
             </div>
           </>
