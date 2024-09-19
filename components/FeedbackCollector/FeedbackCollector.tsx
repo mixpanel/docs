@@ -4,11 +4,31 @@ import { useState } from "react";
 import { track } from "../../utils/tracking";
 import ThumbsDownIcon from "../svg/ThumbsDown";
 import ThumbsUpIcon from "../svg/ThumbsUp";
+import Modal from "react-modal";
+import { styleText } from "util";
+import ExtendedButton from "/components/ExtendedButton/ExtendedButton";
+
+import style from "./FeedbackCollector.module.scss";
 
 // import style from "./FeedbackCollector.module.scss";
 
+const customStyles = {
+  content: {
+    top: "50%",
+    left: "50%",
+    right: "auto",
+    bottom: "auto",
+    marginRight: "-50%",
+    borderRadius: "16px",
+    transform: "translate(-50%, -50%)",
+  },
+};
+
+const scheduleLink = `https://calendly.com/d/ckzh-2ym-kpx/talk-to-a-mixpanel-pm`;
+
 export function FeedbackCollector() {
   const [gaveFeedback, setGaveFeedback] = useState(false);
+  const [isModalOpen, setIsModalOpen] = useState(false);
 
   const handleFeedback = function (isPositive: boolean) {
     // changelogs don't have h1s
@@ -22,6 +42,14 @@ export function FeedbackCollector() {
     setTimeout(() => {
       setGaveFeedback(false);
     }, 5000);
+  };
+
+  const submitFeedbackButtonClick = () => {
+    setIsModalOpen(true);
+  };
+
+  const closeSubmitModal = () => {
+    setIsModalOpen(false);
   };
 
   return (
@@ -52,9 +80,60 @@ export function FeedbackCollector() {
                 </span>
               </button>
             </div>
+            <div>
+              <button
+                className={style.feedbackSubmitButtonText}
+                onClick={submitFeedbackButtonClick}
+              >
+                {" "}
+                Or Submit a feedback.{" "}
+              </button>
+            </div>
           </>
         )}
       </div>
+      <Modal
+        isOpen={isModalOpen}
+        onRequestClose={() => setIsModalOpen(false)}
+        style={customStyles}
+        contentLabel="Example Modal"
+      >
+        <p className={style.submitFeedback}>Submit Feedback</p>
+        <div>
+          <p> Your Email (optional) </p>
+          <input className={style.emailInput} type={"email"} />
+        </div>
+        <textarea className={style.feedbackTextArea} />
+        <p>
+          {" "}
+          Would a call be easier? Grab time with a Mixpanel PM{" "}
+          <a
+            target="_blank"
+            className={style.scheduleCallAnchorTag}
+            rel="noopener noreferrer"
+            href={scheduleLink}
+          >
+            {" "}
+            here.
+          </a>{" "}
+        </p>
+        <div className={style.buttonContainer}>
+          <button
+            className={style.cancelButton}
+            onClick={() => setIsModalOpen(false)}
+          >
+            {" "}
+            Cancel{" "}
+          </button>
+          <button
+            className={style.submitButton}
+            onClick={() => setIsModalOpen(false)}
+          >
+            {" "}
+            Submit{" "}
+          </button>
+        </div>
+      </Modal>
     </div>
   );
 }

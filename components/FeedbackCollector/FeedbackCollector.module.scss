@@ -1,4 +1,5 @@
 @use "../../pages/theme/colors.scss" as colors;
+@use "../../pages/theme/typography.scss" as typography;
 @use "sass:color";
 
 .root {
@@ -58,4 +59,62 @@
   display: inline-block;
   margin-left: 8px;
   width: 22px;
+}
+
+
+.cancelButton {
+  color: colors.$purple200;
+  border-radius: 8px;
+  padding: 4px 8px;
+}
+
+.submitButton {
+  background: colors.$purple200 ;
+  border-radius: 8px;
+  padding: 4px 8px;
+  color: white;
+}
+
+.feedbackSubmitButtonText {
+  font-weight: 500;
+  font-size: 16px;
+  margin-top: 8px;
+}
+
+.submitFeedback {
+  color: colors.$purple200;
+  font-size: 1.5rem; /* 24px */
+  line-height: 2rem; /* 32px */
+  font-weight: 500;
+  margin-bottom: 0.5rem;
+  color: colors.$purple200;
+}
+
+.feedbackTextArea {
+  height: 120px;
+  padding: 4px;
+  background: colors.$base100;
+  border-radius: 9px;
+  resize: none;
+  width: 100%;
+}
+
+.emailInput {
+  padding: 4px;
+  background: colors.$base100;
+  border-radius: 9px;
+  resize: none;
+  width: 100%;
+  margin-bottom: 16px;
+}
+
+.buttonContainer {
+  margin-top: 8px;
+  display: flex;
+    flex-direction: row;
+    justify-content: flex-end;
+}
+
+.scheduleCallAnchorTag {
+  color: colors.$purple140;
 }
