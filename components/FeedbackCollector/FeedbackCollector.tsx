@@ -6,7 +6,6 @@ import ThumbsDownIcon from "../svg/ThumbsDown";
 import ThumbsUpIcon from "../svg/ThumbsUp";
 import Modal from "react-modal";
 import { styleText } from "util";
-import ExtendedButton from "/components/ExtendedButton/ExtendedButton";
 
 import style from "./FeedbackCollector.module.scss";
 
