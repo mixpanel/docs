@@ -1,6 +1,6 @@
 {
-    "overview": "Overview",
-    "protecting-user-data": "Protecting User Data",
+    "overview": "Privacy Overview",
+    "protecting-user-data": "Protecting User Data: Opt users out of tracking and anonymizing data",
     "legal-hub": {
         "title": "Legal Hub ↗",
         "newWindow": true,
@@ -8,5 +8,5 @@
     },
     "gdpr-compliance": "GDPR Compliance",
     "eu-residency": "EU Residency",
-    "end-user-data-management": "End User Data Management"
+    "end-user-data-management": "End User Data Management: Making GDPR and CCPA requests"
 }
