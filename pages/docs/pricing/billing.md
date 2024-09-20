@@ -1,4 +1,4 @@
-# Billing
+# Billing: How Mixpanel pricing works
 
 ## How Mixpanel Pricing Works
 
