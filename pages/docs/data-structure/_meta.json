@@ -1,8 +1,8 @@
 {
-    "concepts": "Data Model",
-    "events-and-properties": "Events & Properties",
-    "user-profiles": "User Profiles",
-    "group-analytics": "Group Analytics",
-    "lookup-tables": "Lookup Tables",
+    "concepts": "Data Model: How Mixpanel data is organized",
+    "events-and-properties": "Events: Capture behaviors and actions",
+    "user-profiles": "User Profile: Demographic attributes for your users",
+    "group-analytics": "Group Analytics: Group users together as an aggregated unit of measurement",
+    "lookup-tables": "Lookup Tables: Enrich ingested data using a CSV",
     "property-reference": "Property Reference"
 }
