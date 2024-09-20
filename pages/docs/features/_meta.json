@@ -1,12 +1,12 @@
 {
-    "alerts": "Alerts",
-    "attribution": "Attribution",
-    "embeds": "Embeds",
-    "chart-customization": "Chart Customization",
-    "custom-events": "Custom Events",
-    "custom-properties": "Custom Properties",
-    "saved-behaviors": "Saved Behaviors",
-    "sessions": "Sessions",
-    "spark": "Spark",
+    "alerts": "Alerts: Get notified about anomalies in your data",
+    "attribution": "Attribution: Multi-touch segmentation in user conversion journey",
+    "embeds": "Embeds: View Mixpanel reports in 3rd-party tools",
+    "chart-customization": "Chart Customization: Configure your report axis and color",
+    "custom-events": "Custom Events: Combine multiple events as a single event for analyses",
+    "custom-properties": "Custom Properties: Calculate new properties on the fly",
+    "saved-behaviors": "Saved Behaviors: Reuse Funnel or Retention behavior definition in other reports",
+    "sessions": "Sessions: Compute sessions based on existing event data",
+    "spark": "Spark: Use natural language to generate reports with AI",
     "advanced": "Advanced"
 }
