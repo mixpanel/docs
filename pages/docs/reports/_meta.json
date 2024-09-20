@@ -1,8 +1,8 @@
 {
-    "overview": "Overview",
-    "insights": "Insights",
-    "funnels": "Funnels",
-    "retention": "Retention",
-    "flows": "Flows",
+    "overview": "Reports Overview",
+    "insights": "Insights: Visualize trends and compositions within your data",
+    "funnels": "Funnels: Measure conversions through a series of events",
+    "retention": "Retention: Measure engagement over time",
+    "flows": "Flows: See frequent paths taken by users to or from any event",
     "apps": "Apps"
 }
