@@ -1,4 +1,4 @@
-# Migrate from Adobe Analytics
+# Migrating from Adobe Analytics
 
 If you haven't already, we recommend starting with our [Migration Guides Overview](/docs/migration/overview) as it details the key components of migrating to Mixpanel from other analytics tools. Below we outline specific steps and considerations when migrating from Adobe Analytics.
 
