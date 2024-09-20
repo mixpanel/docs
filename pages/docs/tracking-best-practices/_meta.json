@@ -1,10 +1,10 @@
 {
-    "bot-traffic": "Bot Traffic",
-    "debugging": "Debugging",
+    "bot-traffic": "Block unwanted bot traffic",
+    "debugging": "Debugging: Validate your data and troubleshoot your implementation",
     "developer-environments": "Developer Environments",
-    "geolocation": "Geolocation",
+    "geolocation": "Geolocation: IP address and location properties",
     "hot-shard-limits": "Hot Shard Limits",
     "server-side-best-practices":"Server-side Best Practices",
-    "tracking-plan": "Tracking Plan",
-    "traffic-attribution": "Traffic Attribution"
+    "tracking-plan": "Create a Tracking Plan",
+    "traffic-attribution": "Traffic Attribution: Analyze your marketing channels"
 }
