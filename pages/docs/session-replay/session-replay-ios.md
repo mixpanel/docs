@@ -64,7 +64,7 @@ struct SessionReplayDemoApp: App {
         }
         .onChange(of: scenePhase) { _, newPhase in
             let config = SessionReplayConfig(wifiOnly: false, recordSessionsPercent: 100.0)
-            let sessionReplayInstance = SessionReplay.initialize(token: "5d9d3df08d1c34a272abf23d892820bf", distinctId: "distinctId", config: config)
+            let sessionReplayInstance = SessionReplay.initialize(token: "MY_TOKEN", distinctId: "distinctId", config: config)
             #if DEBUG
             sessionReplayInstance.loggingEnabled = true
             #endif
@@ -95,7 +95,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     func applicationDidBecomeActive(_ application: UIApplication) {
         let config = SessionReplayConfig(wifiOnly: false, recordSessionsPercent: 100.0)
-        let sessionReplayInstance = SessionReplay.initialize(token: "5d9d3df08d1c34a272abf23d892820bf", distinctId: "distinctId", config: config)
+        let sessionReplayInstance = SessionReplay.initialize(token: "MY_TOKEN", distinctId: "distinctId", config: config)
         #if DEBUG
         sessionReplayInstance.loggingEnabled = true
         #endif
