@@ -1,7 +1,7 @@
 {
-    "overview": "Overview",
-    "azure": "Azure",
-    "jumpcloud": "JumpCloud",
-    "okta": "Okta",
-    "shared-sso": "Shared SSO"
+    "overview": "Single Sign-On: Use SSO to access Mixpanel",
+    "azure": "Setup Azure SSO",
+    "jumpcloud": "Setup JumpCloud SSO",
+    "okta": "Setup Okta SSO",
+    "shared-sso": "Shared SSO: Use the same SSO setting for multiple Mixpanel Organizations"
 }
