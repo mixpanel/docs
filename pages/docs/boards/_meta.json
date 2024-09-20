@@ -1,7 +1,7 @@
 {
-    "overview": "Overview",
-    "templates": "Templates",
-    "boards-on-boards": "Boards on Boards",
-    "public-boards": "Public Boards",
+    "overview": "Boards: Collect your reports into a single view",
+    "templates": "Templates: Generate a dashboard using customizable templates",
+    "boards-on-boards": "Boards on Boards: Organize your analyses with nested dashboards",
+    "public-boards": "Public Boards: Share analyses with stakeholders outside your company",
     "advanced": "Advanced"
 }
