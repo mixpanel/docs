@@ -1,6 +1,6 @@
 {
-    "experiments": "Experiments",
-    "impact": "Impact",
-    "signal": "Signal",
-    "jql": "JQL"
+    "experiments": "Experiments: Measure the impact of your A/B testing",
+    "impact": "Impact: Measure the effect of a launch on your KPIs",
+    "signal": "Signal: Quantify correlation between two events",
+    "jql": "JQL: Create custom queries using Javascript code"
 }
