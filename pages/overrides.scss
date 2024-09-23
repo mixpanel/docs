@@ -1252,13 +1252,7 @@ $border-radius-lg: 100px;
     .feedbackCollectorContainer {
 
       .feedbackTextArea {
-        height: 120px;
         color: black;
-        padding: 4px 8px;
-        background: colors.$base100;
-        border-radius: 9px;
-        resize: none;
-        width: 100%;
       }
 
       .cancelButton {

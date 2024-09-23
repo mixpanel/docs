@@ -30,7 +30,7 @@ export function FeedbackCollector() {
     track(`Docs feedback sumitted`, {
       feedback: feedbackContent,
     });
-    alert("Your feedback was successfully submitted!");
+    alert("Your feedback was successfully submitted.");
     setFeedbackContent(``);
     setGaveFeedback(false);
   };
@@ -41,27 +41,23 @@ export function FeedbackCollector() {
         {gaveFeedback ? (
           <div>
             <p className="feedbackThankYouText">Thanks for your feedback!</p>
-            <p> Have additional feedback? fill out the form below. </p>
+            <p> Have additional feedback? Please fill out the form below. </p>
             <textarea
               onChange={(e) => setFeedbackContent(e.target.value)}
               className="feedbackTextArea"
-            >
-              {" "}
-            </textarea>
+            />
             <div>
               <button
                 className="cancelButton"
                 onClick={() => setGaveFeedback(false)}
               >
-                {" "}
-                Close{" "}
+                Close
               </button>
               <button
                 className="submitButton"
                 onClick={() => handleSubmitFeedback()}
               >
-                {" "}
-                Sumit Feedback{" "}
+                Submit Feedback
               </button>
             </div>
           </div>
