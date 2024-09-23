@@ -152,13 +152,11 @@ Mixpanel.track("Account Created Date", props);
 ```
 #### Exporting Data from Mixpanel
 
-When you’re exporting raw data from Mixpanel, your request requires the date parameters `from_date` and `to_date` to determine which date range of data to return.
+When you’re exporting raw data from Mixpanel, your request requires the date parameters `from_date` and `to_date` to determine which date range of data to return. Mixpanel's raw export APR interprets the "from_date" and "to_date" param using UTC timezone.
 
-Mixpanel's raw export machines interpret the "from_date" and "to_date" values to your project’s timezone. As a result, if you request a single day of data, you receive one full day in your project’s timezone, not one full day in UTC.
+Mixpanel stores your events in UTC. The "$time" property from a raw export returns with a Unix timestamp, which represents the number of seconds that have elapsed since 00:00:00 on January 1, 1970.
 
-As mentioned earlier, Mixpanel stores your events in UTC. The "$time" property from a raw export returns with a Unix timestamp, which represents the number of seconds that have elapsed since 00:00:00 on January 1, 1970.
-
-In the example below, if your project’s timezone is US/Pacific, and you set both the `from_date` and `to_date` to `2023-08-01`, it will return events between `00:00:00 Aug. 1 to 11:59:59 Aug. 1 PDT`/`07:00:00 Aug. 1 – 06:59:59 Aug. 2 UTC` where the events timestamp are in Unix timestamp format in UTC.
+In the example below, if your project’s timezone is US/Pacific, and you set both the `from_date` and `to_date` to `2023-08-01`, it will return events between `00:00:00 Aug. 1 to 11:59:59 Aug. 1 UTC`/`17:00:00 Jul. 31 – 16:59:59 Aug. 1 PST` where the events timestamp are in Unix timestamp format in UTC.
 
 #### Importing Data into Mixpanel
 
