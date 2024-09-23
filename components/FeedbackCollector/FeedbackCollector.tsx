@@ -9,6 +9,7 @@ import ThumbsUpIcon from "../svg/ThumbsUp";
 
 export function FeedbackCollector() {
   const [gaveFeedback, setGaveFeedback] = useState(false);
+  const [feedbackContent, setFeedbackContent] = useState(``);
 
   const handleFeedback = function (isPositive: boolean) {
     // changelogs don't have h1s
@@ -17,18 +18,47 @@ export function FeedbackCollector() {
     };
     track(isPositive ? `Docs Promoter` : `Docs Detractor`, props);
     setGaveFeedback(true);
+  };
 
-    // reset feedback to 5 seconds
-    setTimeout(() => {
-      setGaveFeedback(false);
-    }, 5000);
+  const handleSubmitFeedback = () => {
+    track(`Docs feedback sumitted`, {
+      feedback: feedbackContent,
+    });
+    alert("Your feedback was successfully submitted!");
+    setFeedbackContent(``);
+    setGaveFeedback(false);
   };
 
   return (
     <div className="feedbackCollectorContainer">
       <div className="feedbackCollectorRoot">
         {gaveFeedback ? (
-          <p className="feedbackThankYouText">Thanks for your feedback!</p>
+          <div>
+            <p className="feedbackThankYouText">Thanks for your feedback!</p>
+            <p> Have additional feedback? fill out the form below. </p>
+            <textarea
+              onChange={(e) => setFeedbackContent(e.target.value)}
+              className="feedbackTextArea"
+            >
+              {" "}
+            </textarea>
+            <div>
+              <button
+                className="cancelButton"
+                onClick={() => setGaveFeedback(false)}
+              >
+                {" "}
+                Close{" "}
+              </button>
+              <button
+                className="submitButton"
+                onClick={() => handleSubmitFeedback()}
+              >
+                {" "}
+                Sumit Feedback{" "}
+              </button>
+            </div>
+          </div>
         ) : (
           <>
             <p className="feedbackQuestionTitle">Was this page useful?</p>
