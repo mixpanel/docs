@@ -144,6 +144,15 @@ $border-radius-lg: 100px;
     resize: none;
     width: 100%;
   }
+  .cancelButton {
+    border-radius: 8px;
+    padding: 4px 8px;
+  }
+
+  .submitButton {
+    border-radius: 8px;
+    padding: 4px 8px;
+  }
   //Button Container
   .feedbackButtonContainer {
     display: inline-flex;
@@ -566,14 +575,10 @@ $border-radius-lg: 100px;
     .feedbackCollectorContainer {
       .cancelButton {
         color: colors.$purple200;
-        border-radius: 8px;
-        padding: 4px 8px;
       }
 
       .submitButton {
         background: colors.$purple100 ;
-        border-radius: 8px;
-        padding: 4px 8px;
         color: white;
       }
 
@@ -1258,14 +1263,10 @@ $border-radius-lg: 100px;
 
       .cancelButton {
         color: colors.$base80;
-        border-radius: 8px;
-        padding: 4px 8px;
       }
 
       .submitButton {
         background: colors.$purple100 ;
-        border-radius: 8px;
-        padding: 4px 8px;
         color: white;
       }
 
