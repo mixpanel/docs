@@ -5,6 +5,8 @@ import { track } from "../../utils/tracking";
 import ThumbsDownIcon from "../svg/ThumbsDown";
 import ThumbsUpIcon from "../svg/ThumbsUp";
 
+const scheduleLink = `https://calendly.com/d/ckzh-2ym-kpx/talk-to-a-mixpanel-pm`;
+
 export function FeedbackCollector() {
   const router = useRouter();
   const [gaveFeedback, setGaveFeedback] = useState(false);
@@ -59,6 +61,19 @@ export function FeedbackCollector() {
               >
                 Submit Feedback
               </button>
+              <p className="scheduleCallContainer">
+              <strong>{"Would a call be easier? Grab time with a Mixpanel PM "}
+              <a
+                target="_blank"
+                className="scheduleCallAnchorTag"
+                rel="noopener noreferrer"
+                href={scheduleLink}
+              >
+                
+                { "here."}
+              </a>
+              </strong>
+            </p>
             </div>
           </div>
         ) : (
