@@ -1,15 +1,21 @@
-import clsx from "clsx";
-import { useState } from "react";
+import { useState, useEffect } from "react";
+import { useRouter } from "next/router";
 
 import { track } from "../../utils/tracking";
 import ThumbsDownIcon from "../svg/ThumbsDown";
 import ThumbsUpIcon from "../svg/ThumbsUp";
 
-// import style from "./FeedbackCollector.module.scss";
-
 export function FeedbackCollector() {
+  const router = useRouter();
   const [gaveFeedback, setGaveFeedback] = useState(false);
   const [feedbackContent, setFeedbackContent] = useState(``);
+
+  useEffect(() => {
+    router.events.on("routeChangeComplete", (url) => {
+      // reset the feedback on URL change.
+      setGaveFeedback(false);
+    });
+  });
 
   const handleFeedback = function (isPositive: boolean) {
     // changelogs don't have h1s
