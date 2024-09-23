@@ -29,7 +29,7 @@ export function FeedbackCollector() {
   };
 
   const handleSubmitFeedback = () => {
-    track(`Docs feedback sumitted`, {
+    track(`[DOCS] Docs feedback submitted`, {
       feedback: feedbackContent,
     });
     alert("Your feedback was successfully submitted.");
