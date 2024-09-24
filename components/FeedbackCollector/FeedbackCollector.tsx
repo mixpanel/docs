@@ -11,11 +11,13 @@ export function FeedbackCollector() {
   const router = useRouter();
   const [gaveFeedback, setGaveFeedback] = useState(false);
   const [feedbackContent, setFeedbackContent] = useState(``);
+  const [npsStatus, setNpsStatus] = useState(undefined);
 
   useEffect(() => {
     router.events.on("routeChangeComplete", (url) => {
       // reset the feedback on URL change.
       setGaveFeedback(false);
+      setNpsStatus(undefined);
     });
   });
 
@@ -26,15 +28,18 @@ export function FeedbackCollector() {
     };
     track(isPositive ? `Docs Promoter` : `Docs Detractor`, props);
     setGaveFeedback(true);
+    setNpsStatus(isPositive);
   };
 
   const handleSubmitFeedback = () => {
     track(`[DOCS] Docs feedback submitted`, {
       feedback: feedbackContent,
+      npsStatus: npsStatus ? `Docs Promoter` : `Docs Detractor`,
     });
     alert("Your feedback was successfully submitted.");
     setFeedbackContent(``);
     setGaveFeedback(false);
+    setNpsStatus(undefined);
   };
 
   return (
@@ -62,18 +67,18 @@ export function FeedbackCollector() {
                 Submit Feedback
               </button>
               <p className="scheduleCallContainer">
-              <strong>{"Would a call be easier? Grab time with a Mixpanel PM "}
-              <a
-                target="_blank"
-                className="scheduleCallAnchorTag"
-                rel="noopener noreferrer"
-                href={scheduleLink}
-              >
-                
-                { "here."}
-              </a>
-              </strong>
-            </p>
+                <strong>
+                  {"Would a call be easier? Grab time with a Mixpanel PM "}
+                  <a
+                    target="_blank"
+                    className="scheduleCallAnchorTag"
+                    rel="noopener noreferrer"
+                    href={scheduleLink}
+                  >
+                    {"here."}
+                  </a>
+                </strong>
+              </p>
             </div>
           </div>
         ) : (
