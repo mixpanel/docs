@@ -34,7 +34,7 @@ export function FeedbackCollector() {
   const handleSubmitFeedback = () => {
     track(`[DOCS] Docs feedback submitted`, {
       feedback: feedbackContent,
-      npsStatus: npsStatus ? `Docs Promoter` : `Docs Detractor`;
+      npsStatus: npsStatus ? `Docs Promoter` : `Docs Detractor`,
     });
     alert("Your feedback was successfully submitted.");
     setFeedbackContent(``);
@@ -67,18 +67,18 @@ export function FeedbackCollector() {
                 Submit Feedback
               </button>
               <p className="scheduleCallContainer">
-              <strong>{"Would a call be easier? Grab time with a Mixpanel PM "}
-              <a
-                target="_blank"
-                className="scheduleCallAnchorTag"
-                rel="noopener noreferrer"
-                href={scheduleLink}
-              >
-                
-                { "here."}
-              </a>
-              </strong>
-            </p>
+                <strong>
+                  {"Would a call be easier? Grab time with a Mixpanel PM "}
+                  <a
+                    target="_blank"
+                    className="scheduleCallAnchorTag"
+                    rel="noopener noreferrer"
+                    href={scheduleLink}
+                  >
+                    {"here."}
+                  </a>
+                </strong>
+              </p>
             </div>
           </div>
         ) : (
