@@ -30,9 +30,7 @@ Open your existing Xcode project where you want to integrate the Mixpanel iOS Se
 
 Download and Unzip the below zip to your local drive
 
-v0.2.6 - Updated 09/20/2024
-
-[MixpanelSessionReplay.xcframework.zip](/downloads/MixpanelSessionReplay.xcframework.zip)
+[MixpanelSessionReplay.xcframework.zip](https://mxpnl.notion.site/Mixpanel-iOS-Session-Replay-SDK-Alpha-10ae0ba9256280cdb6e0f39d594cb344?pvs=4)
 
 - In Xcode, navigate to your Target's Build Phases and add the .xcframework file you just unzipped to the "Link Binary With Libraries" section
 
