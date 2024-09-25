@@ -1,4 +1,4 @@
-# Users: explore your user base in Mixpanel
+# Users: Explore your user base in Mixpanel
 
 ![/Screen_Shot_2022-07-12_at_4.43.34_PM.png](/Screen_Shot_2022-07-12_at_4.43.34_PM.png)
 
