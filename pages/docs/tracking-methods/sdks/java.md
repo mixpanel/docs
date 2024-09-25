@@ -1,4 +1,4 @@
-# Java
+# Mixpanel SDKs: Java
 
 The Mixpanel Java library is useful to track events from Java servers.
 
