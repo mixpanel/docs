@@ -1,4 +1,4 @@
-# Lookup Tables: enrich ingested data using a CSV
+# Lookup Tables: Enrich ingested data using a CSV
 
 
 This guide covers Lookup Tables and how to use them effectively. Lookup Tables are optional; if you're new to Mixpanel, we recommend starting with our guide on [Events and Properties](/docs/data-structure/events-and-properties).
