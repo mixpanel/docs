@@ -284,7 +284,7 @@ mixpanel.add_group(“company”, “Mixpanel”)
 ```
 
 ### Creating Group Profiles
-It is possible to create a Group profile that is similar to a user profile. You must call [`mixpanel.set_group()`](/docs/tracking-methods/sdks/javascript#setting-group-profile-properties) to build a group profile. It is important to the `group_key`, `group_id`, and one property so that the profile is not empty.
+It is possible to create a Group profile that is similar to a user profile. You must call [`mixpanel.set_group()`](/docs/tracking-methods/sdks/javascript#setting-group-profile-properties) to build a group profile. It is important to set the `group_key`, `group_id`, and at least one property so that the profile is not empty.
 ```javascript JavaScript
 mixpanel.get_group(group_key, group_id).set({“property_name”: property_value})
 ```
