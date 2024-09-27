@@ -1,4 +1,4 @@
-# Go
+# Mixpanel SDKs: Go
 
 
 The Mixpanel Go library is designed to be used for scripting, or in circumstances when a client can't or won't run client side scripts

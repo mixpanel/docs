@@ -1,4 +1,4 @@
-# Alerts
+# Alerts: Get notified about anomalies in your data
 
 ## Overview
 
