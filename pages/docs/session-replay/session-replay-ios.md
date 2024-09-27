@@ -1,4 +1,4 @@
-# How to use Mixpanel iOS Session Replay
+# Session Replay (iOS): Watch playbacks of user digital experiences
 
 # Overview
 

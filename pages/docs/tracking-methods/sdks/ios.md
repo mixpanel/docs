@@ -1,4 +1,4 @@
-# iOS (Objective-C)
+# Mixpanel SDKs: iOS (Objective-C)
 
 ## Getting Started
 

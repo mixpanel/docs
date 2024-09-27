@@ -1,5 +1,4 @@
-# Event Approval
-
+# Event Approval: Review unexpected events before they are visible
 
 ## Overview
 

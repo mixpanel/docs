@@ -1,4 +1,4 @@
-# JQL
+# JQL: Create custom queries using Javascript code
 
 
 > ❗️ JQL is in maintenance mode.
