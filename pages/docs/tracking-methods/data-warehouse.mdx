@@ -55,7 +55,7 @@ Navigate to [Project Settings → Warehouse Sources](https://mixpanel.com/report
           ```jsx
           gcloud projects add-iam-policy-binding --member serviceAccount:<mixpanel-service-account> --role roles/bigquery.jobUser
           ```
-        - `roles/bigquery.dataViewer` on the datasets and/or tables to sync. Gives Mixpanel Mixpanel read-only access to the datasets.
+        - `roles/bigquery.dataViewer` on the datasets and/or tables to sync. Gives Mixpanel read-only access to the datasets.
           ```jsx
           GRANT `roles/bigquery.dataViewer`
             ON SCHEMA `<gcp-project>`.`<dataset-to-be-synced>`
