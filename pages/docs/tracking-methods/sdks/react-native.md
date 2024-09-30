@@ -1,4 +1,4 @@
-# React Native
+# Mixpanel SDKs: React Native
 
 ## Getting Started
 

@@ -1,4 +1,4 @@
-# iOS (Swift)
+# Mixpanel SDKs: iOS (Swift)
 
 ## Getting Started
 

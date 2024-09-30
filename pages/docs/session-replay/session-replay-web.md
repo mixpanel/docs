@@ -1,4 +1,4 @@
-# Session Replay
+# Session Replay (web): Watch playbacks of user digital experiences
 
 ## Overview
 
