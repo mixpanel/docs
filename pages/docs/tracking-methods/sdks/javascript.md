@@ -1,4 +1,4 @@
-# Javascript
+# Mixpanel SDKs: Javascript
 
 ## Getting Started
 

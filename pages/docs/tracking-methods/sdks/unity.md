@@ -1,4 +1,4 @@
-# Unity
+# Mixpanel SDKs: Unity
 
 ### Getting Started
 
