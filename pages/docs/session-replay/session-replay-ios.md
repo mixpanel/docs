@@ -1,12 +1,13 @@
-# How to use Mixpanel iOS Session Replay
+# Session Replay (iOS): Watch playbacks of user digital experiences
 
 # Overview
 
 Welcome to the Mixpanel Session Replay iOS SDK(Closed Alpha)!
 
-Mixpanel Session Replay helps you quickly understand your customers and make better product decisions by combining quantitative and qualitative user insights. 
+Mixpanel Session Replay helps you quickly understand your customers and make better product decisions by combining quantitative and qualitative user insights.
 
 # Availability
+
 Currently, iOS Session Replay is in invite-only Alpha access for customers on our Enterprise plan.
 
 For any questions about Session Replay or iOS Alpha access, please reach out to your Account Manager. Note: as our Alpha program is early access, our functionality may have bugs and cause crashes. Be sure to test thoroughly before enabling in production.
@@ -29,10 +30,7 @@ Open your existing Xcode project where you want to integrate the Mixpanel iOS Se
 
 Download and Unzip the below zip to your local drive
 
-v0.2.1 - Updated 09/18/2024
-
-[MixpanelSessionReplay.xcframework.zip](/downloads/MixpanelSessionReplay_v021.xcframework.zip)
-
+[MixpanelSessionReplay.xcframework.zip](https://mxpnl.notion.site/Mixpanel-iOS-Session-Replay-SDK-Alpha-10ae0ba9256280cdb6e0f39d594cb344?pvs=4)
 
 - In Xcode, navigate to your Target's Build Phases and add the .xcframework file you just unzipped to the "Link Binary With Libraries" section
 
@@ -63,11 +61,12 @@ struct SessionReplayDemoApp: App {
             ...
         }
         .onChange(of: scenePhase) { _, newPhase in
-            if newPhase == .active {
-                let sessionReplayInstance = SessionReplay.initialize(token: Mixpanel.mainInstance().apiToken, distinctId: Mixpanel.mainInstance().distinctId)
-                // Uncomment if you want to record the entire session
-                // sessionReplayInstance.startRecording()
-            }
+            let config = SessionReplayConfig(wifiOnly: false, recordSessionsPercent: 100.0)
+            let sessionReplayInstance = SessionReplay.initialize(token: "MY_TOKEN", distinctId: "distinctId", config: config)
+            #if DEBUG
+            sessionReplayInstance.loggingEnabled = true
+            #endif
+            sessionReplayInstance.startRecording()
         }
     }
 }
@@ -93,9 +92,12 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     }
 
     func applicationDidBecomeActive(_ application: UIApplication) {
-        let sessionReplayInstance = SessionReplay.initialize(token: Mixpanel.mainInstance().apiToken, distinctId: Mixpanel.mainInstance().distinctId)
-        // Uncomment if you want to record the entire session
-        // sessionReplayInstance.startRecording()
+        let config = SessionReplayConfig(wifiOnly: false, recordSessionsPercent: 100.0)
+        let sessionReplayInstance = SessionReplay.initialize(token: "MY_TOKEN", distinctId: "distinctId", config: config)
+        #if DEBUG
+        sessionReplayInstance.loggingEnabled = true
+        #endif
+        sessionReplayInstance.startRecording()
     }
 
 }
@@ -156,7 +158,7 @@ Image("family photo")
 	.replaySensitive()
 
 // UIKit
-SessionReplay.getInstance()?.addSensitiveView(mySensiveView)
+SessionReplay.getInstance()?.addSensitiveView(mySensitiveView)
 
 ```
 
@@ -168,7 +170,7 @@ Please refer to [Using Session Replay](/docs/session-replay/session-replay-web#u
 
 Our Session Replay Beta Service Addendum can be found [here](https://mixpanel.com/legal/session-replay-beta-service-addendum/).
 
-# FAQ
+## FAQ
 
 ### How does Session Replay work in iOS?
 
@@ -201,7 +203,7 @@ let sessionReplayInstance = SessionReplay.initialize(token: token, distinctId: d
 
 This out-of-the-box sampling method is random sampling: your SDK will decide randomly whether the currently SDK instance load falls into the sample or not. We recommend starting at 1% and increasing from there. Please note: if you expect low traffic, you can increase the starting sampling percentage. It is a good idea to control this with your own API, so you can change it on the fly without redeploying your app. While you're testing, we recommend that you set it to 100 and this ensure every user session will be sent to Mixpanel. Once testing is done, we recommend lowering this value in production.
 
-### Does it work in SwiftUI/UIKit apps?**
+### Does it work in SwiftUI/UIKit apps?\*\*
 
 Yes, please refer to this [section](#initialize)
 
@@ -215,7 +217,7 @@ If your app is UIKit-based, all `UITextField` and `UILabel` components are maske
 
 ```swift
 // UIKit
-SessionReplay.getInstance()?.addSensitiveView(mySensiveView);
+SessionReplay.getInstance()?.addSensitiveView(mySensitiveView);
 ```
 
 If your app is SwiftUI-based, the automatic masking for `UITextField` and `UILabel` does not work well in the current alpha version, so you need to manually mask any view.

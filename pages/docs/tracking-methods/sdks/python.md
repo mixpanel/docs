@@ -1,4 +1,4 @@
-# Python
+# Mixpanel SDKs: Python
 
 The Mixpanel Python library is designed to be used for scripting, or in circumstances when a user isn't directly interacting with your application on the web or a mobile device.
 

@@ -1,4 +1,4 @@
-# Okta
+# Setup Okta SSO
 
 
 ## Overview

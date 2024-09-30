@@ -1,4 +1,4 @@
-# JumpCloud
+# Setup JumpCloud SSO
 
 
 ## Overview
