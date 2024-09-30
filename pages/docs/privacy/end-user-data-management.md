@@ -1,4 +1,4 @@
-# End User Data Management
+# End User Data Management: Making GDPR and CCPA requests
 
 
 Mixpanel supports account holders’ ability to request the deletion or export of end user data.

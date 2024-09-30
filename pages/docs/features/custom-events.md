@@ -1,4 +1,4 @@
-# Custom Events
+# Custom Events: Combine multiple events for analyses
 
 ## Overview
 

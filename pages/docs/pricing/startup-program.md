@@ -1,4 +1,4 @@
-# Mixpanel for Startups Program
+# Startup Program: Use Mixpanel for free for the first year
 
 The Mixpanel for Startups program empowers early-stage companies to easily track and analyze data to find product-market fit and more. The program is open to startups that meet the following requirements:
 
