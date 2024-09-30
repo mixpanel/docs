@@ -1,4 +1,4 @@
-# Webhooks
+# Syncing cohorts to a custom webhook
 
 Mixpanel supports syncing cohorts to a custom webhook URL that you provide via our Integrations UI. When a sync is established, we will sync the full contents of the cohort to the URL and subsequently sync diffs (ie: the users who entered or exited the cohort since the last sync).
 

@@ -1,4 +1,4 @@
-# Azure
+# Setup Azure SSO
 
 
 ## Overview

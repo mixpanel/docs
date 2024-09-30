@@ -1,4 +1,4 @@
-# Flutter
+# Mixpanel SDKs: Flutter
 
 ## Getting Started
 

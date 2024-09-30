@@ -1,4 +1,4 @@
-# Sessions
+# Sessions: Compute sessions based on existing event data
 
 Use Sessions in Mixpanel to answer questions like:
 * How much time do users spend on my site per session?
