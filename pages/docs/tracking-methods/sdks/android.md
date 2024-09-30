@@ -1,4 +1,4 @@
-# Mixapnel SDKs: Android
+# Mixpanel SDKs: Android
 
 ## Getting Started
 
