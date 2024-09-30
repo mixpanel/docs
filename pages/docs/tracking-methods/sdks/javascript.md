@@ -54,12 +54,13 @@ mixpanel.track_pageview({"page": "Pricing"});
 
 ### Tracking UTM Parameters
 
-The JavaScript library will automatically add any UTM parameters (`utm_source`, `utm_campaign`, `utm_medium`, `utm_term`, `utm_content`) present on the page to events fired from that page load. Please note when configuring UTMs that UTM tracking is case sensitive, and should be formatted lower-case as shown in the examples above.
+The JavaScript library will automatically add any UTM parameters (`utm_source`, `utm_campaign`, `utm_medium`, `utm_term`, `utm_content`, `utm_id`, `utm_source_platform`, `utm_campaign_id`, `utm_creative_format`, `utm_marketing_tactic`) present on the page to events fired from that page load. Please note when configuring UTMs that UTM tracking is case sensitive, and should be formatted lower-case as shown in the examples above.
 
-When UTM parameters for an identified user are seen for the first time, these will also be stored on the user profile as `initial_utm_source`, `initial_utm_campaign`, `initial_utm_medium`, `initial_utm_term`, and `initial_utm_content`.
+When UTM parameters for an identified user are seen for the first time, these will also be stored on the user profile as `initial_utm_source`, `initial_utm_campaign`, `initial_utm_medium`, `initial_utm_term`, `initial_utm_content`, `initial_utm_id`, `initial_utm_source_platform`, `initial_utm_campaign_id`, `initial_utm_creative_format`, and `initial_utm_marketing_tactic`.
 
-In addition to UTM parameters, Mixpanel will also add any advertising click IDs to events fired. These include `dclid`, `fbclid`, `gclid`, `ko_click_id`, `li_fat_id`, `msclkid`, `ttclid`, `twclid`, `wbraid`
+In addition to UTM parameters, Mixpanel will also add any advertising click IDs to events fired. These include `dclid`, `fbclid`, `gclid`, `ko_click_id`, `li_fat_id`, `msclkid`, `sccid`, `ttclid`, `twclid`, `wbraid`.
 
+> Note: UTM parameters are by default persisted as [Super Properties](/docs/tracking-methods/sdks/javascript#super-properties). To disable this behavior, use the SDK initialization option `{stop_utm_persistence: true}` (refer to our [Release Notes](https://github.com/mixpanel/mixpanel-js/releases/tag/v2.52.0) in GitHub).
 
 ### Tracking Website Links
 
