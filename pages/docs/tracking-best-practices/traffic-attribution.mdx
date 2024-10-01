@@ -2,7 +2,7 @@
 
 ## Web Attribution
 
-When setting up your Mixpanel implementation, one issue of particular interest is tracking users by their original source of traffic. By default, Mixpanel does some of this tracking for you on the web in the form of several [default properties](/docs/data-structure/property-reference).
+When setting up your Mixpanel implementation, one issue of particular interest is tracking users by their original source of traffic. By default, Mixpanel does some of this tracking for you on the web in the form of several [default properties](/docs/data-structure/property-reference/default-properties).
 
 ### UTM Properties
 
@@ -10,11 +10,15 @@ Mixpanel's Javascript library tracks all [UTM tags](/docs/tracking-methods/sdks/
 
 Mixpanel's Javascript library will also track initial_utm_parameters as a profile property, based on the first ever visit. This is helpful as if a user makes a purchase or completes some other important event, it is important to know want to know what acquisition channel brought them to your site originally.
 
-- utm_source: track the source where traffic is coming from, including a website or advertiser
-- utm_medium: track the advertising medium, including email and banner ads
-- utm_campaign: track the campaign name associated with the traffic
-- utm_content: track the specific link within in an ad that a user clicked
-- utm_term: track keywords associated with campaigns
+- utm_source: source where traffic is coming from, including a website or advertiser
+- utm_medium: advertising medium, including email and banner ads
+- utm_campaign: campaign name associated with the traffic
+- utm_content: specific link within an ad that a user clicked
+- utm_term: keywords associated with campaigns
+- utm_id / utm_campaign_id : unique identifier of a campaign
+- utm_source_platform: marketing platform responsible for directing traffic
+- utm_creative_format: type of ad creative, for example: display, native, video, search
+- utm_marketing_tactic: targeting criteria applied to a campaign, for example: remarketing, prospecting
 - Initial UTM: tracks the first time a user reaches any of the above parameters
 
 ### Initial Referrer and Initial Referring Domain Properties
