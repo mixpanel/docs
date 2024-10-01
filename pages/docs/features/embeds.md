@@ -1,4 +1,4 @@
-# Embeds
+# Embeds: View Mixpanel reports in 3rd-party tools
 
 
 Mixpanel Boards and reports can be embedded in Figma, Coda, Jira, and any third-party tool that supports embedding.

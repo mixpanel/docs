@@ -1,6 +1,6 @@
 import { Callout } from 'nextra/components'
 
-# Data Type
+# Supported Properties Data Type
 
 ## Overview
 Mixpanel supports five data types for properties: String, Numeric, Boolean, Date and List. By choosing the most suitable data type for your properties, you're able to apply a set of operators that are most relevant to your properties in Mixpanel reports, giving you richer insights into your data.
@@ -8,7 +8,8 @@ Mixpanel supports five data types for properties: String, Numeric, Boolean, Date
 ### String
 
 - Alphanumeric value e.g. Plan Type = "Free", Artist Name = "Bruno Mars".
-- String properties have a character limit of 255 bytes.
+- String properties have a limit of 255 bytes. 
+- Different [character encodings](https://en.wikipedia.org/wiki/Character_encoding) require different number of bytes to represent a single character.
 - Mixpanel will treat any property value that does not match any other data type as a String.
 
 ### Numeric

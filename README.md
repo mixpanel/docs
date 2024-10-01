@@ -47,6 +47,10 @@ We use [CSpell](https://cspell.org/) to automate spell checking. With the npm de
 npm run spelling
 ```
 
+If you are using VSCode, we recommend you install [streetsidesoftware.code-spell-checker](https://marketplace.visualstudio.com/items?itemName=streetsidesoftware.code-spell-checker) to automate fixing spelling errors.
+
+Add words to the dictionary and otherwise configure the spell checker using [cspell.json](./cspell.json).
+
 For more advanced usage, you can use the underlying cspell tool like so:
 
 ```

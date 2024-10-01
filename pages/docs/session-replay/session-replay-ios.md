@@ -1,4 +1,4 @@
-# How to use Mixpanel iOS Session Replay
+# Session Replay (iOS): Watch playbacks of user digital experiences
 
 # Overview
 
@@ -30,9 +30,7 @@ Open your existing Xcode project where you want to integrate the Mixpanel iOS Se
 
 Download and Unzip the below zip to your local drive
 
-v0.2.6 - Updated 09/20/2024
-
-[MixpanelSessionReplay.xcframework.zip](/downloads/MixpanelSessionReplay.xcframework.zip)
+[MixpanelSessionReplay.xcframework.zip](https://mxpnl.notion.site/Mixpanel-iOS-Session-Replay-SDK-Alpha-10ae0ba9256280cdb6e0f39d594cb344?pvs=4)
 
 - In Xcode, navigate to your Target's Build Phases and add the .xcframework file you just unzipped to the "Link Binary With Libraries" section
 
@@ -172,7 +170,7 @@ Please refer to [Using Session Replay](/docs/session-replay/session-replay-web#u
 
 Our Session Replay Beta Service Addendum can be found [here](https://mixpanel.com/legal/session-replay-beta-service-addendum/).
 
-# FAQ
+## FAQ
 
 ### How does Session Replay work in iOS?
 

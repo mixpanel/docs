@@ -1,4 +1,4 @@
-# Overview
+# Mixpanel Administrative System
 
 
 The Mixpanel administrative system includes organizations, projects, and teams.
