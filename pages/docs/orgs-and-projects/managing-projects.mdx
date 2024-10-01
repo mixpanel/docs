@@ -152,17 +152,19 @@ Mixpanel.track("Account Created Date", props);
 ```
 #### Exporting Data from Mixpanel
 
-When you’re exporting raw data from Mixpanel, your request requires the date parameters `from_date` and `to_date` to determine which date range of data to return. Mixpanel's raw export APR interprets the "from_date" and "to_date" param using UTC timezone.
+<Callout type="info" emoji="ℹ️">
+For projects created before 11 January 2023, the `from_date` and `to_date` params for the Export API are interpreted using your project's current timezone setting.
+</Callout>
 
-Mixpanel stores your events in UTC. The "$time" property from a raw export returns with a Unix timestamp, which represents the number of seconds that have elapsed since 00:00:00 on January 1, 1970.
+When you’re exporting raw data from Mixpanel using the [Export API](https://developer.mixpanel.com/reference/raw-event-export), your request requires the date parameters `from_date` and `to_date` to determine which date range of data to return. Mixpanel's raw export API interprets the "from_date" and "to_date" param using UTC timezone.
 
-In the example below, if your project’s timezone is US/Pacific, and you set both the `from_date` and `to_date` to `2023-08-01`, it will return events between `00:00:00 Aug. 1 to 11:59:59 Aug. 1 UTC`/`17:00:00 Jul. 31 – 16:59:59 Aug. 1 PST` where the events timestamp are in Unix timestamp format in UTC.
+The `$time` property values from your raw event export are Unix timestamps, which represents the number of seconds that have elapsed since 00:00:00 on January 1, 1970. Note that [the timezone of the `$time` property in your exports depends on how your project records time at ingestion](/docs/orgs-and-projects/managing-projects#manage-timezones-for-projects).
 
 #### Importing Data into Mixpanel
 
 Always send imported data to Mixpanel in UTC to ensure it displays correctly in your project.
 
-Mixpanel stores your data in UTC, then use your project timezone setting to output data in your selected timezone.
+Mixpanel stores your data in UTC, then use your project timezone setting to output data in your selected timezone. For projects created before 11 January 2023, your UTC timestamps are converted to the project timezone before ingestion meaning that your event data are stored in the project timezone.
 
 ## Transfer Project to Another Organization
 
