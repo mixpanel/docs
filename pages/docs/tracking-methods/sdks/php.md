@@ -87,7 +87,11 @@ $mp = Mixpanel::getInstance("YOUR_PROJECT_TOKEN", array(
 ```
 
 ## Sending Events
-Track events using the library by calling the [`track()`](https://mixpanel.github.io/mixpanel-php/classes/Producers_MixpanelEvents.html#method_track) method using the Mixpanel class.
+Track events using the [`track()`](https://mixpanel.github.io/mixpanel-php/classes/Producers_MixpanelEvents.html#method_track) method on the Mixpanel class. The `track()` method accepts two arguments (`$event` string and `$properties` array) to generate an event payload, then triggers a request to the [/track API endpoint](https://developer.mixpanel.com/reference/track-event) to ingest the event to your project.
+
+<Callout type="info">
+    The [/track endpoint](https://developer.mixpanel.com/reference/track-event) will only validate events with timestamps within the last 5 days of the request. Events with timestamps older than 5 days will not be ingested. See below on best practices for historical imports.
+</Callout>
 
 ```php
 <?php
