@@ -38,14 +38,14 @@ paths:
           schema:
             type: string
           description: >-
-            The date in yyyy-mm-dd format to begin querying from. This date is inclusive and interpreted as UTC timezone for projects created after 11 January 2023 and current project timezone for projects created before 11 January 2023.
+            The date in yyyy-mm-dd format to begin querying from. This date is inclusive and interpreted as UTC timezone for projects created after 1 January 2023 and current project timezone for projects created before 11 January 2023.
           required: true
         - in: query
           name: to_date
           schema:
             type: string
           description: >-
-            The date in yyyy-mm-dd format to query to. This date is inclusive and interpreted as UTC timezone for projects created after 11 January 2023 and current project timezone for projects created before 11 January 2023.
+            The date in yyyy-mm-dd format to query to. This date is inclusive and interpreted as UTC timezone for projects created after 1 January 2023 and current project timezone for projects created before 11 January 2023.
           required: true
         - in: query
           name: limit
