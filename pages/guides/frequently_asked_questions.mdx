@@ -1,0 +1,296 @@
+export function FAQBox({ title, children }) {
+  return (
+    <details
+      open={false}
+      className="last-of-type:mb-0 rounded-xl bg-[#f5f2f2] p-0 mt-6"
+    >
+      <summary>
+        <strong className="text-lg font-medium ">{title}</strong>
+      </summary>
+      <div className="nx-p-2">{children}</div>
+    </details>
+  );
+}
+
+# Frequently Asked Questions
+
+## General
+
+<div className="faqComponent" >
+
+<FAQBox title="What does Mixpanel do?">
+  Mixpanel enables you to answer questions about your users and build better products. Mixpanel provide tools to help you track your users and visualize this data using interactive reports. You can import data from your existing database or track data in real time inside your product with our SDKs. You can export your Mixpanel data to your data warehouse or to other destinations.
+</FAQBox>
+
+<FAQBox title="Can I demo Mixpanel?">
+  We provide demo datasets that enables you to explore our product using sample data. To access the demo dataset, [register for a free Mixpanel account](https://mixpanel.com/signup/) and then click the top right of the UI and scroll down to the bottom to access the Sample Dataset (or by clicking [here](https://mixpanel.com/api/app/demo_project?show-demo-dataset-modal=true)).
+</FAQBox>
+
+<FAQBox title="How much does it cost to use Mixpanel?">
+  You can compare between our subscription plans and get an estimate using the plan builder [here](https://mixpanel.com/pricing/). 
+</FAQBox>
+
+
+</div>
+
+## Sending Data to Mixpanel
+
+<div className="faqComponent" >
+
+<FAQBox title="Why can’t I see any data in my Mixpanel project?">
+  There are many factors that can lead to data not appearing in your Mixpanel project. Please consider the following troubleshooting steps:
+
+  1. Make sure the token in your [init snippet](/docs/quickstart/install-mixpanel) is the same as the [project token](/docs/orgs-and-projects/managing-projects#find-your-project-tokens) in your project settings.
+  2. Make sure that the API request URL matches the Data Residency of your project. Learn more about Data Residency [here](/docs/privacy/eu-residency#eu-residency-and-cdps).
+  3. Make sure the Mixpanel SDK requests are being triggered. You can confirm this by enabling [debug mode](/docs/tracking-best-practices/debugging#enable-debug-mode). See more troubleshooting tips [here](/docs/tracking-best-practices/debugging).
+</FAQBox>
+
+<FAQBox title="What methods are available for importing data into Mixpanel?">
+  We support multiple methods for importing historical data and real-time tracking.
+
+  1. Sync data from your database using our Warehouse Connector.
+  2. Use one of our SDKs in your product or server. 
+  3. Leverage our APIs directly to import your data. 
+  4. Upload user profiles using a CSV.
+
+  Learn about your options for importing data in the ["Data In" section of our docs](/docs/tracking-methods/choosing-the-right-method)
+</FAQBox>
+
+<FAQBox title="How does ad-blockers affect Mixpanel tracking?">
+  Ad-blockers and DNT settings can prevent Mixpanel cookies from loading properly. As a best practice, [we recommend server-side tracking](/docs/tracking-methods/choosing-the-right-method#server-side-tracking) since you have control over your server. A [proxy](/docs/tracking-methods/choosing-the-right-method#client-side-tracking-via-a-proxy) is helpful for reducing the likelihood of ad-blockers impacting your client-side tracking.
+</FAQBox>
+
+<FAQBox title="How do I exclude bots from my tracking?">
+  Mixpanel’s Javascript SDK automatically blocks common web crawlers listed [here](https://github.com/mixpanel/mixpanel-js/blob/8ac526e5cb8563d11e2206046ab986c6491ac6d7/src/utils.js#L900C1-L925C3). Bots outside of this list are not blocked by default and will send data like any other users.
+
+  If you identify patterns in your bot users, you can implement conditional logic in your codes to detect these bots, and register `$ignore: true` as a [super property](/docs/tracking-methods/sdks/javascript#super-properties). When Mixpanel detects `$ignore: true` in an event payload, it will drop the event from ingestion.
+
+  Learn more about bot traffic management [here](/docs/tracking-best-practices/bot-traffic).
+</FAQBox>
+
+<FAQBox title="Why are my user profiles all set to the same location?">
+  By default, user profile location is updated every time a user is identified or a profile property is set. The location is parsed using the IP address of the request. If you send user updates from a server, it can have the unintended effect of setting your user locations to the location of the server.
+
+  You can prevent geolocation updates by [setting the IP value of the request payload to 0](/docs/tracking-best-practices/geolocation#ignore-ip-address). Learn more about geolocation in Mixpanel [here](/docs/tracking-best-practices/geolocation).
+</FAQBox>
+
+<FAQBox title="How do I override the default geolocation set by Mixpanel when sending data from a server?">
+  You can override the default geolocation set by Mixpanel by [manually defining the geolocation properties](/docs/tracking-best-practices/geolocation#define-geolocation-properties), [defining the latitude and longitude](/docs/tracking-best-practices/geolocation#define-latitude-and-longitude), or [passing your own IP address](/docs/tracking-best-practices/geolocation#define-ip-address). 
+  
+  Learn more about geolocation in Mixpanel [here](/docs/tracking-best-practices/geolocation).
+</FAQBox>
+
+<FAQBox title="How do I track downloads and installs from Apple App Store and Google Play Store?">
+  Mobile attribution is more complex than web tracking due to the way attribution data is stored in mobile devices. For Android, you can use the [Play Install Referrer Library](https://developer.android.com/google/play/installreferrer/library) to retrieve the referrer. For iOS, you will need to use a [mobile attribution partner](https://mixpanel.com/partners/integrations?categories=attribution-deep-linking).
+
+  Learn more about traffic attribution [here](/docs/tracking-best-practices/traffic-attribution#mobile-attribution).
+</FAQBox>
+
+<FAQBox title="How do I track first-touch UTM tags?">
+  By default, the Mixpanel Javascript SDK automatically tracks UTM tags from landing page URLs in a first-touch manner. The first UTM tags detected for the user will be set as a profile property and a super property.
+
+  Learn more about UTM tracking [here](/docs/tracking-best-practices/traffic-attribution#web-attribution).
+</FAQBox>
+
+<FAQBox title="How do I track last-touch UTM tags?">
+  While Mixpanel’s Javascript SDK automatically tracks UTM tag on a first-touch basis, it does not track UTM tags on a last-touch basis out-of-box. You can copy the codes outlined [here](/docs/tracking-best-practices/traffic-attribution#last-touch-utm-tracking) to start tracking last-touch UTM tags.
+
+  Learn more about UTM tracking [here](/docs/tracking-best-practices/traffic-attribution#web-attribution).
+</FAQBox>
+
+<FAQBox title="Why do I see Session Start and Session End events in my project?">
+  [Sessions events](/docs/features/sessions) are virtual events that are dynamically calculated in the front end using existing event data in your project. These virtual events are not a part of your raw data, meaning you do not have to implement any codes to see them and will not count toward your data allowance.
+</FAQBox>
+
+<FAQBox title="What are super properties?">
+  Super properties are event properties that you automatically add to all events that are sent. Once you register a super property, it will be stored in the cookie/local storage and appended to all events tracked by the user moving forward. 
+  
+  This is helpful for adding certain properties that describes the user tracking the event without having to manually define it in each track call. Once the super property is ingested in Mixpanel, it is indistinguishable from a regular event property.
+
+  Learn more about super properties [here](/docs/tracking-methods/sdks/javascript#super-properties).
+</FAQBox>
+
+<FAQBox title="How can I edit the event data inside my project?">
+  Event data are immutable, meaning that they cannot be altered once it is ingested into your project.
+
+  You can follow these instructions [here](/docs/data-governance/data-clean-up#2-deleting-problematic-data) to delete unwanted data or use a [Lookup Table](/docs/data-structure/lookup-tables) to enrich your existing data.
+</FAQBox>
+
+<FAQBox title="How can I send data from my data warehouse to Mixpanel?">
+  You can use our Warehouse Connectors (/docs/tracking-methods/data-warehouse) to sync data from Big Query, Databricks, Redshift, and Snowflake into your Mixpanel project without writing additional codes.
+
+  Alternatively, you can export the data from your data warehouse and import them into your Mixpanel project using the [Import API](https://developer.mixpanel.com/reference/import-events).
+</FAQBox>
+
+<FAQBox title="How can I do a one-time import of historic events?">
+  You can leverage our [Import API](https://developer.mixpanel.com/reference/import-events) to import historic events in bulk. You can also sync data from your warehouse into Mixpanel using a [Warehouse Connector](/docs/tracking-methods/data-warehouse).
+</FAQBox>
+
+<FAQBox title="Why do I see CORS errors in the console when Mixpanel requests in my website?">
+  CORS errors can occur when the CORS configuration is not setup correctly in your environment, causing Mixpanel requests to be blocked.  Mixpanel requires you to send cross-origin HTTP requests (requests sent to a different server than the one hosting your web application), so you need to setup your environment to allow this.
+
+  Learn more about CORS errors [here](https://developer.mozilla.org/en-US/docs/Web/HTTP/CORS/Errors).
+</FAQBox>
+
+</div>
+
+## Identity Management in Mixpanel
+
+<div className="faqComponent" >
+
+<FAQBox title="What is a distinct_id?">
+  Distinct ID is Mixpanel's identifier used to uniquely track a user in the system. Every event data and profile update sent to Mixpanel should have a distinct_id property associated with it. The Distinct ID value tells Mixpanel which user to attach your events and profile property updates.
+
+  If the Distinct ID on two events are two different values, they will be considered as coming from two separate users.
+</FAQBox>
+
+<FAQBox title="How is distinct_id generated?">
+  Mixpanel's client-side SDKs automatically generates a UUID upon initialization to represent the user while they are anonymous. Once they are identified with a `.identify(<USER_ID>)` call, their distinct_id is set to your chosen user ID.
+  
+  In a server-side environment, your server is responsible for generating the distinct_ids for your users.
+
+  Learn more about [distinct_ids](/docs/tracking-methods/id-management/identity-management#distinct-id) and [identifying users](/docs/tracking-methods/id-management/identifying-users-simplified).
+</FAQBox>
+
+<FAQBox title="Where are distinct_id stored?">
+  In the client-side (web or mobile), Mixpanel's SDK will generate a cookie/local storage upon initialization and store the distinct_id for the user there. If the cookie/local storage is cleared, a new distinct_id will be generated.
+
+  In the server-side, your server is responsible for generating and maintaining the distinct_id.
+
+  Learn more about [ID management](/docs/tracking-methods/id-management/identity-management) and [identifying your users in your implementation](/docs/tracking-methods/id-management/identifying-users-simplified).
+</FAQBox>
+
+<FAQBox title="What is the best practice for handling user identity in a client-side implementation?">
+  When implementing Mixpanel using a client-side SDK (web or mobile), we recommend calling `.identify(<USER_ID>)` at registration and login, and `.reset()` at logout. 
+    
+  Learn more about client-side ID management [here](/docs/tracking-methods/id-management/identifying-users-simplified#client-side-identity-management).
+</FAQBox>
+
+<FAQBox title="What is the best practice for handling user identity in a server-side implementation?">
+  When implementing Mixpanel using a server-side method, your server is responsible for identity management meaning you will need to generate your own IDs.
+    
+  Learn more about server-side ID management [here](/docs/tracking-methods/id-management/identifying-users-simplified#server-side-identity-management).
+</FAQBox>
+
+<FAQBox title="How do I setup cross-domain tracking with Mixpanel?">
+  Mixpanel does not natively support cross-domain tracking. This is because the Distinct ID is stored in the Mixpanel cookie and cookies do not transfer across domains.
+
+  Some users have found the workaround outlined [here](https://muffaddal-qutbuddin.medium.com/cross-domain-tracking-in-mixpanel-analytics-cfa5e7fe86b6) helpful for connecting behavior across multiple domains.
+
+  Here is a high-level overview of this process:
+  1. User lands on website A, and generates a cookie containing a Mixpanel-created distinct_id
+  2. Use `mixpanel.get_distinct_id()` (learn more [here](https://github.com/mixpanel/mixpanel-js/blob/master/doc/readme.io/javascript-full-api-reference.md#mixpanelget_distinct_id)) to retrieve the distinct_id and save it as a variable
+  3. Pass this variable as a URL parameter in the URL to website B
+  4. Your user navigates to the website B, and generates a new cookie containing another Mixpanel-created distinct_id
+  5. In website B, insert code to extract the website A distinct_id from the landing page URL of website B
+  6. In website B, call the `.identify()` method, passing in the Website A distinct_id
+
+</FAQBox>
+
+<FAQBox title="How do I setup cross-subdomain tracking with Mixpanel?">
+  The Mixpanel Javascript SDK supports cross-subdomain tracking out-of-box, meaning that your super properties and distinct_id will persist across your subdomains. 
+  
+  Learn more about cross-subdomain cookie persistence [here](/docs/tracking-methods/sdks/javascript#mixpanel-cookies-for-hosted-subdomains).
+</FAQBox>
+
+<FAQBox title="How do I setup consistent user tracking across multiple platforms, such as a website and an app?">
+  Mixpanel's client-side SDKs will generate a different ID for each instance of the an initialized library, meaning that your users will have a separate `$distinct_id` in the website and mobile app without any identification. To ensure that the same user’s events in both platforms are resolved back to the same user profile in Mixpanel, call `.identify(<user_id>)` using the same `user_id` in both platforms.
+
+  See an example cross-platform ID management flow [here](Learn more about ID management here (/docs/tracking-methods/id-management/identifying-users-simplified#example-user-flows).
+</FAQBox>
+
+<FAQBox title="Why is the distinct_id shown in Mixpanel different from the ID I used to identify the user?">
+  If you are using the [Original ID Merge API](/docs/tracking-methods/id-management/identity-management#identity-merge-apis) (check your project API [here](https://mixpanel.com/settings/project/id-management)), our API chooses one of the IDs inside the identity cluster to serve as the canonical distinct_id for the user, meaning that it can be set to your chosen user ID or one of the Mixpanel-generated anonymous ID. This is programmatically selected by Mixpanel and not user-configurable.
+
+  You can use any of the distinct_ids inside of the identity cluster for ingestion, but only the canonical distinct_id is used in queries and exports. As a best practice, we recommend setting your chosen user ID as a super property and profile property to make querying easier.
+</FAQBox>
+
+<FAQBox title="Why do I see data from 2 different users under a single Mixpanel profile?">
+  This can occur for projects using the [Original ID Merge API](/docs/tracking-methods/id-management/identity-management#identity-merge-apis) when multiple users are sharing one device and `.reset()` was not called upon logout. Since the previous user’s `distinct_id` was not cleared from local storage via `.reset()`, the subsequent user’s user ID is merged into the previous user’s identity cluster when once they sign in and `.identify()` is called.
+
+  To prevent this, follow our best practice for identity management and call identify at registration/login, and reset at logout.
+
+  This is not possible under the Simplified ID Merge API since 2 different `$user_ids` cannot be merged under 1 identity cluster.
+</FAQBox>
+
+<FAQBox title="Why do I see 2 duplicated Mixpanel user profiles sharing the same email value?">
+  This is usually caused by multiple different user IDs being passed for the same user during identification. For example, if you identify the same user using the ID `ABC` in the web and `123` in the mobile app, they will be considered 2 different users by Mixpanel since we would have no way of knowing they are the same users.
+
+  As a best practice, only 1 consistent unique identifier for each user across all platforms during the identification process.
+</FAQBox>
+
+</div>
+
+## Building Mixpanel Reports and Analyses
+
+<div className="faqComponent" >
+
+<FAQBox title="Which report should I use and when?">
+  Mixpanel has 4 core reports; Insights, Funnels, Retention, and Flows.
+
+  Use an [Insights report](/docs/reports/insights) to visualize your data and explore trends in your events, user profiles, user cohorts, and more using a wide variety of charts. 
+  
+  Use a [Funnels report](/docs/reports/funnels) to measure your user’s conversion from a starting event to a goal event. 
+  
+  Use a [Retention report](/docs/reports/retention) to measure the stickiness of your user engagement over time. 
+  
+  Use a [Flows report](/docs/reports/flows) to explore top paths leading up to an event and immediately after events.
+</FAQBox>
+
+
+</div>
+
+## Exporting Data from Mixpanel
+
+<div className="faqComponent" >
+
+<FAQBox title="">
+
+</FAQBox>
+
+<FAQBox title="">
+
+</FAQBox>
+
+<FAQBox title="">
+
+</FAQBox>
+
+</div>
+
+## Manage your Mixpanel Projects and Teammates
+
+<div className="faqComponent" >
+
+<FAQBox title="">
+
+</FAQBox>
+
+<FAQBox title="">
+
+</FAQBox>
+
+<FAQBox title="">
+
+</FAQBox>
+
+</div>
+
+## Protecting User Data and Privacy
+
+<div className="faqComponent" >
+
+<FAQBox title="">
+
+</FAQBox>
+
+<FAQBox title="">
+
+</FAQBox>
+
+<FAQBox title="">
+
+</FAQBox>
+
+</div>
+
