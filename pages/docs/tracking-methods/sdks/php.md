@@ -107,7 +107,7 @@ $mp->track("button clicked", array(
 //you can call identify so it's included in events during that script execution
 ?>
 ```
-Mixpanel determines default geolocation data (`$city`, `$region`, `mp_country_code`) using the IP address on the incoming request. As all server-side calls will likely originate from the same IP (that is, the IP of your server), this can have the unintended effect of setting the location of all of your users to the location of your datacenter. [Learn more about Geolocation best practices](/docs/tracking-best-practices/geolocation).
+Mixpanel determines default geolocation data (`$city`, `$region`, `mp_country_code`) using the IP address on the incoming request. As all server-side calls will likely originate from the same IP (that is, the IP of your server), this can have the unintended effect of setting the location of all of your users to the location of your data center. [Learn more about Geolocation best practices](/docs/tracking-best-practices/geolocation).
 
 ### Importing Historical Events
 The PHP SDK is a tracking SDK designed for real-time tracking in a server-side environment. Calling the `track()` method triggers a request to our [/track API endpoint](https://developer.mixpanel.com/reference/track-event), which will validate for events with a timestamp that is within the last 5 days of the request. **Events older than 5 days will not be ingested.**
