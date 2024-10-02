@@ -21,6 +21,76 @@ Mixpanel's Javascript library will also track initial_utm_parameters as a profil
 - utm_marketing_tactic: targeting criteria applied to a campaign, for example: remarketing, prospecting
 - Initial UTM: tracks the first time a user reaches any of the above parameters
 
+#### Last-Touch UTM tracking
+
+By default, Mixpanel's Javascript SDK tracks UTM tags in a first-touch manner by setting the first UTM tags detected for the user as a profile property and super property. This allows you to see what acquisition channel brought your users to your website originally.
+
+It can also be helpful to track UTM tags in a last-touch manner, which would set the UTM tag to the most recent value detected for the user. This allows you to evaluate the effectiveness of more recent acquisition channels on your user's behavior.
+
+The Javascript SDK does not track last-touch UTM tags by default, but you can add the following code in your website to automatically parse the UTM tags from the current URL, and register the tags as last-touch UTM super properties and profile properties.
+
+
+```javascript
+// Paste the following code below the Mixpanel Javascript Snippet 
+// that you add to your site to track events.
+
+function getQueryParam(url, param) {
+  // Expects a raw URL
+  param = param.replace(/[[]/, "\[").replace(/[]]/, "\]");
+
+  var regexS = "[\?&]" + param + "=([^&#]*)",
+      regex = new RegExp( regexS ),
+      results = regex.exec(url);
+
+  if (results === null || (results && typeof(results[1]) !== 'string' && results[1].length)) {
+    return '';
+  } else {
+    return decodeURIComponent(results[1]).replace(/\W/gi, ' ');
+  }
+};
+
+function campaignParams() {
+
+  // campaign_keywords sets the UTM tags to parse for
+  var campaign_keywords = 'utm_source utm_medium utm_campaign utm_content utm_term'.split(' ')
+      , kw = ''
+      , last_params = {}
+      , first_params = {};
+
+  var index;
+
+  //save UTM tags parsed from the URL as a key-value pair
+  //used to set last-touch UTM properties
+  for (index = 0; index < campaign_keywords.length; ++index) {
+    kw = getQueryParam(document.URL, campaign_keywords[index]);
+    if (kw.length) {
+      last_params[campaign_keywords[index] + ' [last touch]'] = kw;
+    }
+  }
+
+  //save UTM tags parsed from the URL as a key-value pair
+  //used to set first-touch UTM properties
+  for (index = 0; index < campaign_keywords.length; ++index) {
+    kw = getQueryParam(document.URL, campaign_keywords[index]);
+    if (kw.length) {
+      first_params[campaign_keywords[index] + ' [first touch]'] = kw;
+    }
+  }
+
+  //set last-touch UTM tags as profile properties
+  mixpanel.people.set(last_params);
+  //update last-touch UTM super property with the latest value
+  mixpanel.register(last_params);
+
+  //set first-touch UTM tag as profile property
+  //will be skipped if the property is already present
+  mixpanel.people.set_once(first_params);
+
+}
+
+campaignParams();
+```
+
 ### Initial Referrer and Initial Referring Domain Properties
 
 Mixpanel's Javascript library will track Initial Referrer and Initial Referring Domain and append them as a property to any event that a user completes. These properties are stored in the Mixpanel cookie the first time a user comes to your site and will not change on future site visits as long as the cookie is not cleared.
