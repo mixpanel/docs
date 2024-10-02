@@ -8,5 +8,10 @@
 	"implement": "Implement",
 	"launch": "Launch",
 	"beyond-onboarding": "Beyond Onboarding",
-    "analytics-strategy": "Analytics Strategy Workshop"
+    	"analytics-strategy": "Analytics Strategy Workshop",
+	"faq": {
+		"type": "separator",
+		"title": "FAQ"
+	},
+	"frequently_asked_questions": "Frequently Asked Questions"
 }
