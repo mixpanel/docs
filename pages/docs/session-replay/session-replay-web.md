@@ -272,6 +272,10 @@ How the SDK works on your site – the gist:
 
 We've tested the SDK extensively and it generally has minimal impact on how your website performs. The initial snapshot takes a bit of work, and naturally, more complex and interactive pages generate more data for rrweb and Mixpanel to handle. So, it's always a good practice to do some performance testing after you've implemented Session Replay, just to be sure everything's running smoothly.
 
+### How do Session Replays work when navigating between pages that are full page loads?
+
+If your web application relies on full page loads (where the entire page is reloaded when navigating from one page to another), a new Session Replay recording `$mp_replay_id` will be created when navigating to each page. This occurs because the Mixpanel instance is reloaded again when navigating between pages.
+
 
 ## Appendix: Session Replay Privacy Controls
 **Last updated July 30th, 2024**
