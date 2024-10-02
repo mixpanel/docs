@@ -97,7 +97,7 @@ Then select the Projects tab.
 ## Manage Timezones for Projects
 
 <Callout type="info" emoji="ℹ️">
-For projects created before 11 Jan 2023, Mixpanel converts event timestamps to your project timezone before writing the event to your Mixpanel data stores, meaning that event timestamps are stored based on the project timezone setting at the time of ingestion.
+For projects created before 1 Jan 2023, Mixpanel converts event timestamps to your project timezone before writing the event to your Mixpanel data stores, meaning that event timestamps are stored based on the project timezone setting at the time of ingestion.
 </Callout>
 
 Mixpanel records all events in [Coordinated Universal Time (UTC)](https://www.worldtimeserver.com/learn/what-is-utc/) at intake. Changing the timezone for any project under Project Settings only affects the timezone in which Mixpanel outputs results.
@@ -153,7 +153,7 @@ Mixpanel.track("Account Created Date", props);
 #### Exporting Data from Mixpanel
 
 <Callout type="info" emoji="ℹ️">
-For projects created before 11 January 2023, the `from_date` and `to_date` params for the Export API are interpreted using your project's current timezone setting.
+For projects created before 1 January 2023, the `from_date` and `to_date` params for the Export API are interpreted using your project's current timezone setting.
 </Callout>
 
 When you’re exporting raw data from Mixpanel using the [Export API](https://developer.mixpanel.com/reference/raw-event-export), your request requires the date parameters `from_date` and `to_date` to determine which date range of data to return. Mixpanel's raw export API interprets the "from_date" and "to_date" param using UTC timezone.
@@ -164,7 +164,7 @@ The `$time` property values from your raw event export are Unix timestamps, whic
 
 Always send imported data to Mixpanel in UTC to ensure it displays correctly in your project.
 
-Mixpanel stores your data in UTC, then use your project timezone setting to output data in your selected timezone. For projects created before 11 January 2023, your UTC timestamps are converted to the project timezone before ingestion meaning that your event data are stored in the project timezone.
+Mixpanel stores your data in UTC, then use your project timezone setting to output data in your selected timezone. For projects created before 1 January 2023, your UTC timestamps are converted to the project timezone before ingestion meaning that your event data are stored in the project timezone.
 
 ## Transfer Project to Another Organization
 
