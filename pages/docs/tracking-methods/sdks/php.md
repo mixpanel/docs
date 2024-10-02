@@ -46,7 +46,7 @@ $mp->track("button clicked", array(
 //you can call identify so it's included in events during that script execution
 ```
 
-Mixpanel determines default geolocation data (\$city, \$region, mp_country_code) using the IP address on the incoming request. As all server-side calls will likely originate from the same IP (that is, the IP of your server), this can have the unintended effect of setting the location of all of your users to the location of your datacenter. [Read about best practices for geolocation with server-side implementations](https://mixpanel.com/blog/2014/09/08/everything-about-server-side-updates/).
+Mixpanel determines default geolocation data (\$city, \$region, mp_country_code) using the IP address on the incoming request. As all server-side calls will likely originate from the same IP (that is, the IP of your server), this can have the unintended effect of setting the location of all of your users to the location of your data center. [Read about best practices for geolocation with server-side implementations](https://mixpanel.com/blog/2014/09/08/everything-about-server-side-updates/).
 
 ## Managing User Identity
 
@@ -79,7 +79,7 @@ In addition to events, you can send user profile updates to Mixpanel. Mixpanel c
 
 You can use profiles to explore and segment users by who they are, rather than what they did. You can also use profiles to send messages, such as emails, SMS, or push notifications.
 
-Mixpanel determines default geolocation data (\$city, \$region, mp_country_code) using the IP address on the incoming request. As all server-side calls will likely originate from the same IP (that is, the IP of your server), this can have the unintended effect of setting the location of all of your users to the location of your datacenter. [Read about best practices for geolocation with server-side implementations](https://mixpanel.com/blog/2014/09/08/everything-about-server-side-updates/).
+Mixpanel determines default geolocation data (\$city, \$region, mp_country_code) using the IP address on the incoming request. As all server-side calls will likely originate from the same IP (that is, the IP of your server), this can have the unintended effect of setting the location of all of your users to the location of your data center. [Read about best practices for geolocation with server-side implementations](https://mixpanel.com/blog/2014/09/08/everything-about-server-side-updates/).
 
 ### Setting Profile Properties
 The Mixpanel class has a public property called people that exposes an instance of Producers_MixpanelPeople that you can use to make profile updates.
