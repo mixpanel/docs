@@ -136,6 +136,28 @@ $border-radius-lg: 100px;
     margin-bottom: 36px;
     margin-top: 36px;
   }
+  .feedbackTextArea {
+    height: 120px;
+    padding: 4px 8px;
+    background: colors.$base100;
+    border-radius: 9px;
+    resize: none;
+    width: 100%;
+  }
+  .cancelButton {
+    border-radius: 8px;
+    padding: 4px 8px;
+  }
+  .submitButton {
+    border-radius: 8px;
+    padding: 4px 8px;
+  }
+  .scheduleCallContainer {
+    margin-top: 16px;
+  }
+  .scheduleCallAnchorTag {
+    text-decoration: underline;
+  }
   //Button Container
   .feedbackButtonContainer {
     display: inline-flex;
@@ -556,6 +578,15 @@ $border-radius-lg: 100px;
 
     //Modify Bottom Feedback Area
     .feedbackCollectorContainer {
+      .cancelButton {
+        color: colors.$purple200;
+      }
+
+      .submitButton {
+        background: colors.$purple100 ;
+        color: white;
+      }
+
       .feedbackButtonContainer {
         .feedbackButton {
           background-color: colors.$base80 !important;
@@ -1224,6 +1255,20 @@ $border-radius-lg: 100px;
 
     //Modify Bottom Feedback Area
     .feedbackCollectorContainer {
+
+      .feedbackTextArea {
+        color: black;
+      }
+
+      .cancelButton {
+        color: colors.$base80;
+      }
+
+      .submitButton {
+        background: colors.$purple100 ;
+        color: white;
+      }
+
       .feedbackButtonContainer {
         .feedbackButton {
           background-color: #2B273F;

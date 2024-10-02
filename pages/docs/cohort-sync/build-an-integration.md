@@ -1,4 +1,4 @@
-# Build An Integration
+# Partners: Build a Cohort Sync Integration with Mixpanel
 
 Building an integration with Mixpanel is a powerful way to provide value to your customers that also use Mixpanel. If your company is interested in becoming a Certified Technology Partner, building an integration is also the first step.
 

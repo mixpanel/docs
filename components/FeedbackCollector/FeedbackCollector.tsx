@@ -1,14 +1,25 @@
-import clsx from "clsx";
-import { useState } from "react";
+import { useState, useEffect } from "react";
+import { useRouter } from "next/router";
 
 import { track } from "../../utils/tracking";
 import ThumbsDownIcon from "../svg/ThumbsDown";
 import ThumbsUpIcon from "../svg/ThumbsUp";
 
-// import style from "./FeedbackCollector.module.scss";
+const scheduleLink = `https://calendly.com/d/ckzh-2ym-kpx/talk-to-a-mixpanel-pm`;
 
 export function FeedbackCollector() {
+  const router = useRouter();
   const [gaveFeedback, setGaveFeedback] = useState(false);
+  const [feedbackContent, setFeedbackContent] = useState(``);
+  const [npsStatus, setNpsStatus] = useState(undefined);
+
+  useEffect(() => {
+    router.events.on("routeChangeComplete", (url) => {
+      // reset the feedback on URL change.
+      setGaveFeedback(false);
+      setNpsStatus(undefined);
+    });
+  });
 
   const handleFeedback = function (isPositive: boolean) {
     // changelogs don't have h1s
@@ -17,18 +28,59 @@ export function FeedbackCollector() {
     };
     track(isPositive ? `Docs Promoter` : `Docs Detractor`, props);
     setGaveFeedback(true);
+    setNpsStatus(isPositive);
+  };
 
-    // reset feedback to 5 seconds
-    setTimeout(() => {
-      setGaveFeedback(false);
-    }, 5000);
+  const handleSubmitFeedback = () => {
+    track(`[DOCS] Docs feedback submitted`, {
+      feedback: feedbackContent,
+      npsStatus: npsStatus ? `Docs Promoter` : `Docs Detractor`,
+    });
+    alert("Your feedback was successfully submitted.");
+    setFeedbackContent(``);
+    setGaveFeedback(false);
+    setNpsStatus(undefined);
   };
 
   return (
     <div className="feedbackCollectorContainer">
       <div className="feedbackCollectorRoot">
         {gaveFeedback ? (
-          <p className="feedbackThankYouText">Thanks for your feedback!</p>
+          <div>
+            <p className="feedbackThankYouText">Thanks for your feedback!</p>
+            <p> Have additional feedback? Please fill out the form below. </p>
+            <textarea
+              onChange={(e) => setFeedbackContent(e.target.value)}
+              className="feedbackTextArea"
+            />
+            <div>
+              <button
+                className="cancelButton"
+                onClick={() => setGaveFeedback(false)}
+              >
+                Close
+              </button>
+              <button
+                className="submitButton"
+                onClick={() => handleSubmitFeedback()}
+              >
+                Submit Feedback
+              </button>
+              <p className="scheduleCallContainer">
+                <strong>
+                  {"Would a call be easier? Grab time with a Mixpanel PM "}
+                  <a
+                    target="_blank"
+                    className="scheduleCallAnchorTag"
+                    rel="noopener noreferrer"
+                    href={scheduleLink}
+                  >
+                    {"here."}
+                  </a>
+                </strong>
+              </p>
+            </div>
+          </div>
         ) : (
           <>
             <p className="feedbackQuestionTitle">Was this page useful?</p>

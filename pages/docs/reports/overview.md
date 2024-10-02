@@ -1,6 +1,4 @@
-# Reports
-
-## Overview
+# Reports Overview
 
 A report is the basic unit of performing an analysis in Mixpanel.
 
