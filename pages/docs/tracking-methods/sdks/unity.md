@@ -1,3 +1,5 @@
+import { Callout } from 'nextra/components'
+
 # Mixpanel SDKs: Unity
 
 ### Getting Started
@@ -7,7 +9,7 @@ Please refer to our [Quickstart Guide](/docs/quickstart/connect-your-data?sdk=un
 The [Full API Reference](http://mixpanel.github.io/mixpanel-unity/api-reference/annotated.html), [Library Source Code](https://github.com/mixpanel/mixpanel-unity), and an [Example Application](https://github.com/mixpanel/mixpanel-unity#examples) is documented in our GitHub repo.
 
 <Callout type="warning">
-    Unity SDK does not currently support [Simplified ID Merge](/docs/tracking-methods/id-management/identifying-users-simplified#overview).
+    Unity SDK does not currently support Simplified ID Merge.
 </Callout>
 
 ## Installing the Library
