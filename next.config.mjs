@@ -1,6 +1,11 @@
 import fs from "fs";
-import { join } from "path";
+import { fileURLToPath } from "url";
+import { join, dirname } from "path";
 import nextra from "nextra";
+
+// Get __dirname equivalent in ES modules
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = dirname(__filename);
 
 const withNextra = nextra({
   theme: "nextra-theme-docs",
@@ -51,12 +56,12 @@ function formatForNextRedirect({ source, destination }) {
   return { source, destination, permanent: true };
 }
 
-// export default withNextra({
-//   redirects: () => {
-//     return fs.readdirSync(join(__dirname, "redirects")).flatMap((filename) => {
-//       const pathToFile = join(__dirname, "redirects", filename);
-//       const filecontent = fs.readFileSync(pathToFile, "utf8");
-//       return parseRedirectPartsFromFile(filecontent).map(formatForNextRedirect);
-//     });
-//   },
-// });
+export default withNextra({
+  redirects: () => {
+    return fs.readdirSync(join(__dirname, "redirects")).flatMap((filename) => {
+      const pathToFile = join(__dirname, "redirects", filename);
+      const filecontent = fs.readFileSync(pathToFile, "utf8");
+      return parseRedirectPartsFromFile(filecontent).map(formatForNextRedirect);
+    });
+  },
+});
