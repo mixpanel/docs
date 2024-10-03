@@ -1,7 +1,8 @@
-const fs = require("fs");
-const { join } = require("path");
+import fs from "fs";
+import { join } from "path";
+import nextra from "nextra";
 
-const withNextra = require("nextra")({
+const withNextra = nextra({
   theme: "nextra-theme-docs",
   themeConfig: "./theme.config.tsx",
   staticImage: true,
@@ -50,12 +51,12 @@ function formatForNextRedirect({ source, destination }) {
   return { source, destination, permanent: true };
 }
 
-module.exports = withNextra({
-  redirects: () => {
-    return fs.readdirSync(join(__dirname, "redirects")).flatMap((filename) => {
-      const pathToFile = join(__dirname, "redirects", filename);
-      const filecontent = fs.readFileSync(pathToFile, "utf8");
-      return parseRedirectPartsFromFile(filecontent).map(formatForNextRedirect);
-    });
-  },
-});
+// export default withNextra({
+//   redirects: () => {
+//     return fs.readdirSync(join(__dirname, "redirects")).flatMap((filename) => {
+//       const pathToFile = join(__dirname, "redirects", filename);
+//       const filecontent = fs.readFileSync(pathToFile, "utf8");
+//       return parseRedirectPartsFromFile(filecontent).map(formatForNextRedirect);
+//     });
+//   },
+// });
