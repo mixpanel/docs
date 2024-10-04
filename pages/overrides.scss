@@ -282,6 +282,11 @@ $border-radius-lg: 100px;
   opacity: 1 !important;
 }
 
+// Add BG color to image with transparent background
+article img {
+  background-color: colors.$lightbg;
+}
+
 
 //##############################Light Theme Starts Here##################################
 .light {
