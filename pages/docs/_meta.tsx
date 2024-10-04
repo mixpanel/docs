@@ -1,14 +1,25 @@
-export default {
+import {
+	AdminIcon,
+	AnalysisIcon,
+	DataInIcon,
+	DataOutIcon,
+	IntroIcon,
+	SupportIcon,
+  } from "../../components/svg/NavIcon";
+
+import style from "./sidebar.module.scss";
+
+  export default {
 	"intro": {
 		"type": "separator",
-		"title": "INTRO"
+		"title": <div className={style.titleContainer}><IntroIcon /> INTRO</div>,
 	},
 	"what-is-mixpanel": "What is Mixpanel?",
 	"what-to-track": "What to Track",
 	"quickstart": "Quickstart",
 	"data-in": {
 		"type": "separator",
-		"title": "DATA IN"
+		"title": <div className={style.titleContainer}><DataInIcon /> DATA IN</div>,
 	},
 	"tracking-methods": "Tracking Methods",
 	"data-structure": "Data Structure",
@@ -16,7 +27,7 @@ export default {
 	"tracking-best-practices": "Best Practices",
 	"analysis": {
 		"type": "separator",
-		"title": "ANALYSIS"
+		"title": <div className={style.titleContainer}><AnalysisIcon /> ANALYSIS</div>,
 	},
 	"reports": "Reports",
 	"boards": "Boards",
@@ -25,7 +36,7 @@ export default {
 	"features": "Features",
 	"admin": {
 		"type": "separator",
-		"title": "ADMIN"
+		"title": <div className={style.titleContainer}><AdminIcon /> ADMIN</div>,
 	},
 	"orgs-and-projects": "Orgs & Projects",
 	"data-governance": "Data Governance",
@@ -34,14 +45,14 @@ export default {
 	"pricing": "Pricing",
 	"data-out": {
 		"type": "separator",
-		"title": "DATA OUT"
+		"title": <div className={style.titleContainer}><DataOutIcon /> DATA OUT</div>,
 	},
 	"export-methods": "Export Methods",
 	"data-pipelines": "Data Pipelines",
 	"cohort-sync": "Cohort Sync",
 	"support": {
 		"type": "separator",
-		"title": "SUPPORT"
+		"title": <div className={style.titleContainer}><SupportIcon /> SUPPORT</div>,
 	},
 	"community": "Community",
 	"get-help": {
