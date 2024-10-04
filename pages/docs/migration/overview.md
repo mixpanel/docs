@@ -62,6 +62,8 @@ To perform a successful historical data load, we recommend:
 - Load a limited subset of the data into a test project (for example, a single day or data or a sample of the entire dataset) to get started. This will help you identify any errors in the end to end process before you do a full historical data load.
 - Load a year’s worth (or less) of historical data during your migration. This will allow your team to review year-over-year trends easily and do historical analysis as needed, without sending a bunch of data which is stale and unlikely to be used.
 
+For a more in-depth look into the steps required for a successful project migration, check out our [project migration playbook](project-migration). 
+
 ## Change management migration of end users
 
 Once data is live, shift our focus to change management and migrating the existing users. You can mitigate risk here by:
