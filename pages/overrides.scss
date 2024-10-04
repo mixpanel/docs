@@ -346,7 +346,8 @@ article img {
     color: colors.$base100;
   }
 
-  Modify high level stuff across body body {
+  // Modify high level stuff across body
+  body {
     -moz-osx-font-smoothing: grayscale;
     -webkit-font-smoothing: antialiased;
     overscroll-behavior-y: none;
@@ -1007,7 +1008,8 @@ article img {
     color: colors.$base100;
   }
 
-  Modify high level stuff across body body {
+  // Modify high level stuff across body
+  body {
     -moz-osx-font-smoothing: grayscale;
     -webkit-font-smoothing: antialiased;
     overscroll-behavior-y: none;
