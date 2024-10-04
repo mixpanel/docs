@@ -100,6 +100,12 @@ $border-radius-lg: 100px;
     }
   }
 
+  .top-nav-search-bar {
+    @media (max-width: 400px) {
+      display: none;
+    }
+  }
+
   //actively selected tab
   .nx-text-sm[aria-current="true"] span {
     font-weight: 700;
@@ -1022,7 +1028,7 @@ $border-radius-lg: 100px;
   //##############################Dark Theme Top Nav###################################
 
   .nextra-nav-container {
-    background-color: colors.$darkbg;
+    background-color: #2b273f !important;
     // box-shadow: unset;
     border-color: #1f1f24;
     border-width: 1px;
@@ -1033,7 +1039,7 @@ $border-radius-lg: 100px;
     }
 
     .nextra-nav-container-blur {
-      background-color: colors.$darkbg;
+      background-color: #2b273f !important; //colors.$darkbg;
       box-shadow: none;
     }
 
