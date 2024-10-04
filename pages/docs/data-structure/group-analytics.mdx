@@ -8,7 +8,7 @@ Historically, Mixpanel grouped events by a single identifier called the distinct
 
 Group Analytics is available as an add-on package to customers on [Growth](https://mixpanel.com/pricing/) and [Enterprise plans](https://mixpanel.com/pricing/).
 
-Customers on the Growth plan can buy this add-on [online](https://mixpanel.com/pricing/), while customers on the Enterprise plans can reach out to their Customer Success Manager or the [Mixpanel Sales Team](https://mixpanel.com/contact-us/sales/). Online plans allow up to 6 group keys. Enterprise customers can choose between 3 or 6 group keys. Each group key can have a total of 1M group profiles (see [Limits and Caveats](/docs/data-structure/group-analytics#limits-and-caveats)).
+Customers on the Growth plan can buy this add-on [online](https://mixpanel.com/pricing/), while customers on the Enterprise plans can reach out to their Customer Success Manager or the [Mixpanel Sales Team](https://mixpanel.com/contact-us/sales/). Online plans allow up to 6 group keys. Enterprise customers can choose between 3 or 6 group keys. Each group key can have a total of 1M group profiles (see [Limits](/docs/data-structure/group-analytics#limits)).
 
 <div
   style={{
@@ -157,6 +157,7 @@ Because a user can be part of multiple groups within a group key, set the value 
 The limits below ensure group analytics works correctly in Mixpanel:
 - 1M group profiles per group key (e.g. company_id)
 - 1M events per day per group identifier (e.g. company_id = "Mixpanel") - see [Hot Shard Limits](/docs/tracking-best-practices/hot-shard-limits)
+- Group properties have similar [limits as User properties](/docs/data-structure/user-profiles#what-are-the-limits-of-user-properties)
 
 ### Events Missing from Groups
 The group key property must be present as an event property on an event in order to attribute them to a group profile.
