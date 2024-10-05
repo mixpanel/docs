@@ -19,7 +19,7 @@ The easiest way to install the library is to load it from our CDN to your websit
 </script>
 ```
 
-Afterward, start using the library by creating an instance of the Mixpanel object using your project token in your JS file. Any methods called from this object will target your project.
+Afterward, start using the library by creating an instance of the Mixpanel object by calling [`.init()`](https://github.com/mixpanel/mixpanel-js/blob/475b2c6853dd49ffc625daac3925bf37940ec390/doc/readme.io/javascript-full-api-reference.md#mixpanelinit) using your project token in your JS file. Any methods called from this object will target your project.
 
 ```javascript
 // Create an instance of the Mixpanel object
@@ -32,9 +32,39 @@ mixpanel.init('YOUR_PROJECT_TOKEN');
     The JS library is named `mixpanel-browser` in NPM and Yarn. This is to distinguish it from our server-side Node.js library, which is available as `mixpanel`.
 </Callout>
 
-The library is available as a package [on NPM](https://www.npmjs.com/package/mixpanel-browser) and [on Yarn](https://classic.yarnpkg.com/en/package/mixpanel-browser). 
+The library is available as a package [on NPM](https://www.npmjs.com/package/mixpanel-browser) and [on Yarn](https://classic.yarnpkg.com/en/package/mixpanel-browser). Open your CLI, and run the following command in your root directory to install the library.
 
+```bash
+# via npm
+npm install --save mixpanel-browser
 
+# via yarn
+yarn add mixpanel-browser
+```
+
+After installation, import the Mixpanel class in your JS file and create the Mixpanel object using your project token.
+
+```javascript
+// import mixpanel class from the library
+import mixpanel from 'mixpanel-browser'
+
+// create an instance Mixpanel object using your project token
+mixpanel.init('YOUR_PROJECT_TOKEN');
+```
+
+### Library configuration
+
+The Mixpanel object can be initialized with different configurations. See a complete list of the configuration options and default values [here](https://github.com/mixpanel/mixpanel-js/blob/v2.46.0/src/mixpanel-core.js#L88-L127).
+
+You can override the default configuration using the `config` argument when initializing the library.
+
+```javascript
+// create an instance of the Mixpanel object
+mixpanel.init('YOUR_PROJECT_TOKEN', {
+    persistence: 'localStorage',    // set persistence to local storage
+    debug: true,    // enable debug log in console
+});
+```
 
 ## Track Events
 
