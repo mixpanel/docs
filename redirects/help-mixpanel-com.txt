@@ -218,7 +218,7 @@ https://help.mixpanel.com/hc/en-us/articles/360045484191(.*) /docs/reports/reten
 https://help.mixpanel.com/hc/en-us/articles/360047094171(.*) /docs/features/advanced#list-property-support
 https://help.mixpanel.com/hc/en-us/articles/360048486671(.*) /docs/debugging/overview#inactive-events-and-properties
 https://help.mixpanel.com/hc/en-us/articles/360049332572(.*) /docs/cohort-sync/integrations/moengage
-https://help.mixpanel.com/hc/en-us/articles/360049450392(.*) /docs/reports/overview
+https://help.mixpanel.com/hc/en-us/articles/360049450392(.*) /docs/reports
 https://help.mixpanel.com/hc/en-us/articles/360050608232(.*) /docs/cohort-sync/integrations/chameleon
 https://help.mixpanel.com/hc/en-us/articles/360050702631(.*) /docs/cohort-sync/integrations/leanplum
 https://help.mixpanel.com/hc/en-us/articles/360051018011(.*) /docs/cohort-sync/integrations/onesignal
@@ -256,8 +256,8 @@ https://help.mixpanel.com/hc/en-us/articles/7412632533524(.*) /docs/boards/overv
 https://help.mixpanel.com/hc/en-us/articles/7646382971796(.*) https://mixpanel.com/content/guide-to-product-analytics/chapter_3/
 https://help.mixpanel.com/hc/en-us/articles/7647069378196(.*) https://mixpanel.com/content/guide-to-product-analytics/chapter_4/
 https://help.mixpanel.com/hc/en-us/articles/7647365321620(.*) https://mixpanel.com/content/guide-to-product-analytics/chapter_5/
-https://help.mixpanel.com/hc/en-us/articles/7651210894740(.*) /docs/reports/overview
-https://help.mixpanel.com/hc/en-us/articles/7651639898260(.*) /docs/reports/overview
+https://help.mixpanel.com/hc/en-us/articles/7651210894740(.*) /docs/reports
+https://help.mixpanel.com/hc/en-us/articles/7651639898260(.*) /docs/reports
 https://help.mixpanel.com/hc/en-us/articles/7713028610964(.*) /docs/reports/insights#advanced
 https://help.mixpanel.com/hc/en-us/articles/7715039510548(.*) /docs/features/advanced#query-builder-features
 https://help.mixpanel.com/hc/en-us/articles/7716920767124(.*) /docs/reports/funnels#faq

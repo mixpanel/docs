@@ -33,7 +33,7 @@
 /docs/analysis/boards/boards-on-boards /docs/boards/boards-on-boards
 /docs/analysis/boards/public-boards /docs/boards/public-boards
 /docs/analysis/boards/templates /docs/boards/templates
-/docs/analysis/reports /docs/reports/overview
+/docs/analysis/reports /docs/reports
 /docs/analysis/reports/flows /docs/reports/flows
 /docs/analysis/reports/funnels /docs/reports/funnels
 /docs/analysis/reports/insights /docs/reports/insights
@@ -104,7 +104,7 @@
 /docs/other-bits/tutorials/developers/mixpanel-for-developers-id-management /docs/tracking-methods/id-management/identifying-users
 /docs/other-bits/tutorials/developers/mixpanel-for-developers-implementation /docs/quickstart/install-mixpanel
 /docs/other-bits/tutorials/how-to-clean-your-data /docs/data-governance/data-clean-up
-/docs/other-bits/tutorials/migration-guides /docs/migration/overview
+/docs/other-bits/tutorials/migration-guides /docs/migration
 /docs/other-bits/tutorials/migration-guides/migrating-to-mixpanel-from-adobe-analytics /docs/migration/adobe-analytics
 /docs/other-bits/tutorials/migration-guides/migrating-to-mixpanel-from-amplitude /docs/migration/amplitude
 /docs/other-bits/tutorials/migration-guides/migrating-to-mixpanel-from-google-analytics /docs/migration/google-analytics
@@ -246,3 +246,6 @@
 /docs/data-structure/advanced/utm-tags /docs/tracking-best-practices/traffic-attribution
 /docs/session-replay /docs/session-replay/session-replay-web
 /docs/reports/funnels#counting-method /docs/reports/funnels#measurements
+/docs/tracking-methods/id-management/identity-management /docs/tracking-methods/id-management
+/docs/migration/overview /docs/migration
+/docs/reports/overview /docs/reports
