@@ -54,7 +54,7 @@ mixpanel.init('YOUR_PROJECT_TOKEN');
 
 ### Library configuration
 
-The Mixpanel object can be initialized with different configurations. See a complete list of the configuration options and default values [here](https://github.com/mixpanel/mixpanel-js/blob/v2.46.0/src/mixpanel-core.js#L88-L127).
+The Mixpanel object can be initialized with different configurations. See a complete list of the configuration options and default values [here](https://github.com/mixpanel/mixpanel-js/blob/master/doc/readme.io/javascript-full-api-reference.md#mixpanelset_config).
 
 You can override the default configuration using the `config` argument when initializing the library.
 
@@ -66,53 +66,89 @@ mixpanel.init('YOUR_PROJECT_TOKEN', {
 });
 ```
 
-## Track Events
+You can update the configuration after initialization using the [`.set_config`](https://github.com/mixpanel/mixpanel-js/blob/master/doc/readme.io/javascript-full-api-reference.md#mixpanelset_config) method.
 
-### Sending Events
-Once you have the snippet in your page, you can track an event by calling `mixpanel.track()` with the event name and properties.
-```javascript JavaScript
-// Send a "Played song" event to Mixpanel
-// with a property "genre"
-mixpanel.track(
-    "Played song",
-    {"genre": "hip-hop"}
-);
+```javascript
+// create an instance of the Mixpanel object
+mixpanel.init('YOUR_PROJECT_TOKEN', {
+    persistence: 'localStorage',    // set persistence to local storage
+    debug: true,    // enable debug log in console
+});
+
+// disable debug log after initialization
+mixpanel.set_config({
+    debug: false
+});
+
+// debug is disabled
 ```
+
+## Sending Events
+The Javascript SDK provides a few different methods to send event data to your project. Calling any of the event tracking methods below will generate an event payload, then trigger a request to the [/track API endpoint](https://developer.mixpanel.com/reference/track-event) to ingest the event into your project.
 
 All events sent from the JavaScript library will be sent over HTTPS.
 
-### Tracking Page Views
+<Callout type="info">
+    The [/track endpoint](https://developer.mixpanel.com/reference/track-event) will only validate events with timestamps within the last 5 days of the request. Events with timestamps older than 5 days will not be ingested. See below on best practices for [historical imports](/docs/tracking-methods/sdks/javascript#importing-historical-events).
+</Callout>
 
-Page view tracking is turned off by default. Page view events can be added automatically on every page load by using the `track_pageview` option to the `mixpanel.init` call, like so:
+### Track Events
+Once you initialized the Mixpanel object, call `.track()` to send an event by providing the event name and any event properties.
 
 ```javascript JavaScript
-mixpanel.init('YOUR_TOKEN', {track_pageview: true});
+// create an instance of the Mixpanel object
+mixpanel.init('YOUR_PROJECT_TOKEN');
+
+// Send a "Played song" event to Mixpanel
+mixpanel.track("Played song",{
+    "genre": "hip-hop"  // with an event property "genre" set to "hip-hop"
+    }
+);
+```
+
+#### Track Page Views
+
+Page view tracking is turned off by default. Page view events can be added automatically on every page load by enabling the `track_pageview` [config option](https://github.com/mixpanel/mixpanel-js/blob/v2.46.0/src/mixpanel-core.js#L88-L127) when creating the Mixpanel object.
+
+```javascript JavaScript
+//create an instance of the Mixpanel object
+mixpanel.init('YOUR_PROJECT_TOKEN', {
+    track_pageview: true    // enable automatic pageview tracking
+    });
 ```
 
 The default `track_pageview` setting does not auto-track page views in single-page applications. For tracking dynamic page views in single-page applications, the `track_pageview` option can also accept the following values for tracking.
 
 ```javascript JavaScript
 // Track when the path changes, ignoring any query string or hash changes
-mixpanel.init('YOUR_TOKEN', {track_pageview: "url-with-path"});
+mixpanel.init('YOUR_PROJECT_TOKEN', {
+    track_pageview: "url-with-path"
+    });
 
 // Track when the path or query string change, ignoring hash changes
-mixpanel.init('YOUR_TOKEN', {track_pageview: "url-with-path-and-query-string"});
+mixpanel.init('YOUR_PROJECT_TOKEN', {
+    track_pageview: "url-with-path-and-query-string"
+    });
 
 // Track any URL changes in the path, query string, or hash
-mixpanel.init('YOUR_TOKEN', {track_pageview: "full-url"});
+mixpanel.init('YOUR_PROJECT_TOKEN', {
+    track_pageview: "full-url"
+    });
 ```
 
-The standard page view event (`$mp_web_page_view`) includes the page title (`current_page_title`), URL components (`current_domain`, `current_url_path`, `current_url_protocol`, `current_url_search`), and [marketing parameters](/docs/tracking-methods/sdks/javascript#tracking-utm-parameters) described below. Additional page view event properties can also be added as event properties.
+The default page view event has the event name (`$mp_web_page_view`), and includes the event properties page title (`current_page_title`), URL components (`current_domain`, `current_url_path`, `current_url_protocol`, `current_url_search`), and [marketing parameters](/docs/tracking-methods/sdks/javascript#tracking-utm-parameters). Additional page view event properties can be added.
 
 ```javascript JavaScript
-// Send a default page view event
+// Send a default page view event "$mp_web_page_view"
 mixpanel.track_pageview();
 
-// Send a default page view event with additional properties
-mixpanel.track_pageview({"page": "Pricing"});
+// Send a default page view event with additional "page" property
+mixpanel.track_pageview({
+    "page": "Pricing"
+    });
 ```
 
-### Tracking UTM Parameters
+#### Track UTM Tags
 
 The JavaScript library will automatically add any UTM parameters (`utm_source`, `utm_campaign`, `utm_medium`, `utm_term`, `utm_content`, `utm_id`, `utm_source_platform`, `utm_campaign_id`, `utm_creative_format`, `utm_marketing_tactic`) present on the page to events fired from that page load. Please note when configuring UTMs that UTM tracking is case sensitive, and should be formatted lower-case as shown in the examples above.
 
@@ -120,47 +156,49 @@ When UTM parameters for an identified user are seen for the first time, these wi
 
 In addition to UTM parameters, Mixpanel will also add any advertising click IDs to events fired. These include `dclid`, `fbclid`, `gclid`, `ko_click_id`, `li_fat_id`, `msclkid`, `sccid`, `ttclid`, `twclid`, `wbraid`.
 
-> Note: UTM parameters are by default persisted as [Super Properties](/docs/tracking-methods/sdks/javascript#super-properties). To disable this behavior, use the SDK initialization option `{stop_utm_persistence: true}` (refer to our [Release Notes](https://github.com/mixpanel/mixpanel-js/releases/tag/v2.52.0) in GitHub).
+Learn more about [UTM tracking](/docs/tracking-best-practices/traffic-attribution#web-attribution).
 
-### Tracking Website Links
+<Callout type="info">
+    Note: UTM parameters are by default persisted as [Super Properties](/docs/tracking-methods/sdks/javascript#super-properties). To disable this UTM persistence, use the SDK initialization option `{stop_utm_persistence: true}` (refer to our [Release Notes](https://github.com/mixpanel/mixpanel-js/releases/tag/v2.52.0) in GitHub).
+</Callout>
 
-When tracking link clicks with [`mixpanel.track()`](https://github.com/mixpanel/mixpanel-js/blob/master/doc/readme.io/javascript-full-api-reference.md#mixpaneltrack), the page can change before the event is successfully sent, leading to inaccurate results.
+#### Other Tracking Methods
+There are other less common methods for sending data to Mixpanel. Refer to the [full API documentation](https://github.com/mixpanel/mixpanel-js/blob/master/doc/readme.io/javascript-full-api-reference.md#mixpanel).
 
-To make this easier, use [`mixpanel.track_links()`](https://github.com/mixpanel/mixpanel-js/blob/master/doc/readme.io/javascript-full-api-reference.md#mixpaneltrack_links). This function will allow you to bind an event to a link click with much greater accuracy.
+#### Importing Historical Events
+The Javascript SDK is a tracking SDK designed for real-time tracking in a client-side environment. Calling the `.track()` method triggers a request to our [/track API endpoint](https://developer.mixpanel.com/reference/track-event), which will validate for events with a timestamp that is within the last 5 days of the request. **Events older than 5 days will not be ingested**.
 
-Here's how it works:
-```javascript JavaScript
-<div id="nav">
-    <a href="/">Home</a>
-    <a href="/about">About</a>
-    <a href="/pricing">Pricing</a>
-</div>
-<script type="text/javascript">
-    mixpanel.track_links("#nav a", "click nav link", {
-        "referrer": document.referrer
-    });
-</script>
-```
+For bulk import of historical events older than 5 days, we will need to use the [/import API endpoint](https://developer.mixpanel.com/reference/import-events) which is optimized for scripting and supports ingesting historical data. We recommend the [Python SDK](/docs/tracking-methods/sdks/python) (see the [`.import_data()`](https://mixpanel.github.io/mixpanel-python/#primary-interface) function) and [mixpanel-utils module](https://github.com/mixpanel/mixpanel-utils) (see the [`import_events()`](https://github.com/mixpanel/mixpanel-utils?tab=readme-ov-file#import-events) function) which both leverages the /import API for event ingestion.
 
-This will send a "click nav link" event (with a "referrer" property) each time a user clicks on a navigation link. It's important to note that the links matched by the CSS selector must exist on the page at the time the `mixpanel.track_links()` call is made, or it will not bind correctly.
+You can also leverage the /import API directly for a more customized solution.
 
-### Other Tracking Methods
-There are other less common ways to send data to Mixpanel. To learn more, please refer to the [full API documentation](https://github.com/mixpanel/mixpanel-js/blob/master/doc/readme.io/javascript-full-api-reference.md#mixpanel).
-
-[`mixpanel.track_forms()`](https://github.com/mixpanel/mixpanel-js/blob/master/doc/readme.io/javascript-full-api-reference.md#mixpaneltrack_forms) - similar to `mixpanel.track_links()`, but tracks form submissions.
-
-### Mixpanel Cookie
+## Mixpanel Cookie
 By default, Mixpanel cookies send over HTTPS requests as part of the headers. However, Mixpanel’s JavaScript library provides a configuration to completely prevent the browser from transmitting your cookies with non-HTTPS requests.
 
-To enable this, use the [`set_config()`](https://github.com/mixpanel/mixpanel-js/blob/master/doc/readme.io/javascript-full-api-reference.md#mixpanelset_config) method and change the `secure_cookie` flag from `false` to `true`. If you configure your instance to send data over HTTP instead of HTTPS but do set `secure_cookie: true`, then your cookie data is not sent to the server.
+To enable this, set the `secure_cookie` configuration from the default value of `false` to `true`. 
+
+```javascript
+// create an instance of the Mixpanel object
+mixpanel.init('YOUR_PROJECT_TOKEN', {
+    'secure_cookie': true   // prevent transmitting cookie with non-HTTPs requests
+});
+```
+
+If you configure your instance to send data over HTTP (instead of HTTPS) but set `secure_cookie: true`, then your cookie data will not sent to the server.
 
 #### Mixpanel Cookies for Hosted Subdomains
-The Mixpanel JavaScript library has a default setting of `cross_subdomain_cookie: true` in the `mixpanel.init` function. This enables Mixpanel cookies to work across subdomains, keeping Mixpanel's Distinct ID and [Super Properties](/docs/tracking-methods/sdks/javascript#super-properties) consistent across these sub-domains.
+By default, Mixpanel cookie works across subdomain, keeping Mixpanel's Distinct ID and [Super Properties](/docs/tracking-methods/sdks/javascript#super-properties) consistent across your sub-domains.
 
-However, if your site is hosted on a domain like Heroku (or similar - [see a complete list of affected domains](https://publicsuffix.org/list/effective_tld_names.dat)) with a URL like XYZ.herokuapp.com, cross-subdomain cookies are not allowed for security reasons. Having Mixpanel default settings for `cross_subdomain_cookie` on these sites, results to users' Distinct IDs being reset to a new `$distinct_id` on each page load. This will cause issues with Mixpanel reports, namely broken Retention reports and Funnels.
+However, if your site is hosted on a domain like Heroku (or similar - [see a complete list of affected domains](https://publicsuffix.org/list/effective_tld_names.dat)) with a URL like `XYZ.herokuapp.com`, cross-subdomain cookies are not allowed for security reasons.
 
-For domains that don't allow cross-subdomain cookies, you should be setting `cross_subdomain_cookie: false`. Alternatively, you can also use a CNAME to change from yourdomain.herokuapp.com to yourdomain.com.
+For domains that don't allow cross-subdomain cookies, disable cross-subdomain cookie by setting the  `cross_subdomain_cookie` configuration option to `false`. Alternatively, you can also use a `CNAME` to change from yourdomain.herokuapp.com to yourdomain.com.
 
+```javascript
+// create an instance of the Mixpanel object
+mixpanel.init('YOUR_PROJECT_TOKEN', {
+    'cross_subdomain_cookie': false   // prevent cookie persistence across subdomains
+});
+```
 
 ### Super Properties
 
