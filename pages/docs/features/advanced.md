@@ -550,8 +550,7 @@ In funnels, the behavioral property is computed in the time range between 2 step
 
 #### After Step 1
 
-In retention, the behavioral property is computed in the chosen time range after the entry event, up until the retaining action. For example, there may be a 7 day window in which we're looking for an event, but if the retaining action happens before the 7 days are up, we no longer count an additional events.
-
+In retention, the behavioral property is computed in the chosen time range after the entry event, up until the expiration window. For example, there may be a 7 day window in which we're looking for an event. Even if the retaining action happens before the 7 days are up, we continue to count additional events.
 
 ## Find Interesting Segments
 
