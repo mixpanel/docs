@@ -18,7 +18,7 @@
         }
     },
     "api-reference": {
-        "title": "API Reference ↗",
+        "title": "API Docs ↗",
         "type": "page",
         "href": "https://developer.mixpanel.com/reference",
         "newWindow": true

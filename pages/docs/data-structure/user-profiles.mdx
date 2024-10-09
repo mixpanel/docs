@@ -151,6 +151,19 @@ You'll have the opportunity to look through all columns in the CSV to preview th
 
 ![/Screen_Shot_2021-12-01_at_12.24.00_PM.png](/Screen_Shot_2021-12-01_at_12.24.00_PM.png)
 
+## Importing Historical Profile Values 
+Historical profiles layer on additional capabilities by capturing changes in each property over time instead of just the latest value.
+
+See here for more on how to [import](https://docs.mixpanel.com/docs/tracking-methods/data-warehouse#user-profiles) historical properties via Warehouse connectors.
+
+Historical properties can be used anywhere that regular profile properties can be used.
+
+For eg, when you apply breakdown by historical plan-type property, the property value will be picked based on the time of the event, instead of the current property value.
+![image](/historical_property_value.webp)
+
+When you hover over a historical property, the context menu that pops up will show that the property was sourced from a history table, as well as the name of the source. This means that the value of the property used in charts can vary over time.
+![image](/dropdown_historical_property.webp)
+
 ## Deleting Profiles
 
 User Profiles can be deleted either via the [Users](https://mixpanel.com/report/users) page or programmatically via our [Engage API](https://developer.mixpanel.com/reference/delete-profile). We also provide a `people_delete` method in the mixpanel-utils library [here](https://github.com/mixpanel/mixpanel-utils#people-delete).
@@ -192,3 +205,22 @@ User Profiles are mutable, which means new ones can be added and existing ones c
 
 ### Where can I learn more about Group Profiles?
 You can get an overview of how Group Profiles relate to Mixpanel's Data Model under the section [Group Level Behaviours and Demographics](/docs/tutorials/plan/tracking-strategy#group-level-behaviours-and-demographics) in our tutorials. A more detailed explanation of [Group Profiles](/docs/data-structure/group-analytics#group-profiles) is documented under our [Group Analytics](/docs/data-structure/group-analytics) page.
+
+### How are end times applied to the historical property?
+The end time will be inferred from the next event sent with a higher `Start Timestamp`. If you do not have an updated value for a property and simply want it to become inactive at a certain timestamp, please set up your DWH table to set undefined for the property at the time that it becomes inactive/expires.
+
+### How do I set the initial set of profile properties for the user?
+Historical profile properties can only be imported through a Warehouse Connector sync. For more information about the connectors and which are supported, see our [docs](https://docs.mixpanel.com/docs/tracking/data-warehouse). There is currently no other method to import historical profile properties or set defaults. To set initial values, please ensure that your warehouse table has the rows covering the historical period you want to analyze.
+
+### What if I have the same property name sent as a regular profile property as well as a historic property?
+If a regular profile property shares a name with an historic property, the two properties will be treated as distinct and separate entities (they will not be de-dupped).
+
+### What if I have the same property name sent through multiple WH syncs?
+If both syncs are regular user tables and they refer to the same Distinct ID(s), they will be de-dupped and only the latest value will be retained. If both syncs are historical user tables, we will have a warning popup if the conflict can be detected at sync creation time and you will have the option of renaming one of the columns. If one sync is for regular user table and the other for a historical one, see here (link to previous question).
+
+### I deleted my historical user table Warehouse sync and data but there are still empty user profiles!
+All the historical props will be deleted from the profile but the profile itself remains, along with any non-historical properties. This is to prevent accidentally deleting profile data sent through API/UI/CSV that might have been merged into the profile data sent via the Warehouse sync. 
+To delete profiles yourself, please use this [guide](https://developer.mixpanel.com/reference/delete-profile).
+
+### What is the frequency of updates that are supported?
+The feature supports updates at the rate of about one change per day for each user. It is meant to cover use-cases like plan type changes, MRR etc which are slowly changing dimensions. It is not intended for more frequent changes like game score updates.

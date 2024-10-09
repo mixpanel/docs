@@ -11,6 +11,7 @@ import {
   SupportIcon,
 } from "./components/svg/NavIcon";
 import MainContent from "./components/MainContent/MainContent";
+import SignUpButton from "./components/SignUpButton/SignUpButton";
 
 function renderComponent<T>(ComponentOrNode: FC<T> | ReactNode, props?: T) {
   if (!ComponentOrNode) return null;
@@ -70,6 +71,9 @@ const config: DocsThemeConfig = {
   },
   project: {
     link: "https://github.com/mixpanel/docs",
+  },
+  navbar: {
+    extraContent: SignUpButton,
   },
   primaryHue: { dark: 256, light: 256 },
   // primarySaturation: { dark: 50, light: 100 },
