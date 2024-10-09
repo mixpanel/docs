@@ -56,6 +56,16 @@ For example, suppose the cohort’s filter criteria is: users where user[“City
 
 Mixpanel computes the above over the last 30 days and then groups the set of users who have property user[“City”] == “SF” as of right now and intersect that with the daily cohort of users who did Order Ride 3 times in the last 7 days.
 
+### Creating a Cohort with Changing User Properties
+With historical user or group properties, you can optionally Add Time and Measurementto specify the time-range over which to search for the property value
+![image](/historical_cohort_1.webp)
+ 
+ This brings up time selector options.
+ ![image](/historical_cohort_2.webp)
+
+ To go back to the default of using the latest value of the historical property, you can Remove Time and Measurement
+ ![image](/historical_cohort_3.webp)
+
 ## Using Cohorts in Analysis
 You can visualize how cohorts size over time, use cohorts to filter your reports, or compare how cohorts perform a metric.
 

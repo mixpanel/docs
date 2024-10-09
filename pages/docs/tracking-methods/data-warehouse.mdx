@@ -299,9 +299,20 @@ Here’s an example table that illustrates what can be loaded as user profiles i
 | 12345 | grace@example.com | Grace Hopper | Pro |
 | 45678 | bob@example.com | Bob Noyce | Free |
 
-<Callout type="info">
-Profile History is in beta. While Profiles typically only store the state of a user *as of now*, Profile History enables storing the state of a user *over time*. When creating a User Profile sync, set the Table Type to “History Table”. We expect tables to be modeled as a SCD (Slowly Changing Dimensions) Type 2 table. You will need to supply a Start Time column in the sync configuration. Mixpanel will infer a row's end time if a new row with a more recent start time for the same user is detected. Request beta access [here](https://forms.gle/x8mbU6FVe5uHiVXF6).
-</Callout>
+While Profiles typically only store the state of a user *as of now*, Profile History enables storing the state of a user *over time*. 
+
+#### Setup 
+When creating a User Profile sync, set the Table Type to “History Table”. We expect tables to be modeled as a SCD (Slowly Changing Dimensions) Type 2 table. You will need to supply a Start Time column in the sync configuration. Mixpanel will infer a row's end time if a new row with a more recent start time for the same user is detected. 
+
+Supported warehouses: Snowflake, Big Query, Databricks 
+
+Source table requirements: 
+- The source table for user/group history is expected to be modeled as an SCD (Slowly Changing Dimension) Type 2 table. This means that the table must maintain all the history over time that you want to use for analysis.
+- History tables are supported only with mirror sync mode. Follow these [docs](https://docs.mixpanel.com/docs/tracking-methods/data-warehouse#mirror) to setup your source table to be mirror-compatible.
+- The table should have a Timestamp/Date type column signifying the time that the properties on the row become active. This column will need to be supplied as `Start Time`  in the sync configuration.
+- The following data types are NOT supported:
+    - Lists (eg Snowflake’s ARRAY)
+    - Objects (eg Snowflake’s OBJECT)
 
 ### Group Profiles
 
@@ -313,6 +324,8 @@ Here’s an example table that illustrates what can be loaded as group profiles 
 | --- | --- | --- | --- | --- |
 | 12345 | Notion | notion.so | 45000 | Enterprise |
 | 45678 | Linear | linear.so | 2000 | Pro |
+
+Group Profile History value and setup is similar to the User Profile History section elaborated above
 
 ### Lookup Tables
 
