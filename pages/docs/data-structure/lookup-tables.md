@@ -75,6 +75,8 @@ Once you have uploaded the CSV file for the lookup table, map it to an event or 
 
 ![image](/lexicon-import-lookup-table.png "Lexicon Import Lookup Table Modal")
 
+*Please note that we currently do not support mapping a Lookup table to the "$distinct_id" property. If you would like to associate a certain property with the user, we would suggest uploading it as a user profile property for the user instead. 
+
 ### Locally within a Report
 You can also upload Lookup Tables straight from your reports. Lookup tables uploaded directly in reports create a local mapping that can only be used while you are in the report. This mapping is not global, and can't be used in other reports. 
 
