@@ -19,7 +19,7 @@ The easiest way to install the library is to load it from our CDN to your websit
 </script>
 ```
 
-Afterward, start using the library by creating an instance of the Mixpanel object by calling [`.init()`](https://github.com/mixpanel/mixpanel-js/blob/475b2c6853dd49ffc625daac3925bf37940ec390/doc/readme.io/javascript-full-api-reference.md#mixpanelinit) using your project token in your JS file. Any methods called from this object will target your project.
+Afterward, start using the library by creating an instance of the Mixpanel object by calling [`.init()`](https://github.com/mixpanel/mixpanel-js/blob/475b2c6853dd49ffc625daac3925bf37940ec390/doc/readme.io/javascript-full-api-reference.md#mixpanelinit) using your [project token](/docs/orgs-and-projects/managing-projects#find-your-project-tokens) in your JS file. Any methods called from this object will target your project.
 
 ```javascript
 // Create an instance of the Mixpanel object
@@ -52,7 +52,7 @@ import mixpanel from 'mixpanel-browser'
 mixpanel.init('YOUR_PROJECT_TOKEN');
 ```
 
-### Library configuration
+### Library Configuration
 
 The Mixpanel object can be initialized with different configurations. See a complete list of the configuration options and default values [here](https://github.com/mixpanel/mixpanel-js/blob/master/doc/readme.io/javascript-full-api-reference.md#mixpanelset_config).
 
@@ -98,9 +98,6 @@ Once you initialized the Mixpanel object, call `.track()` to send an event by pr
 
 **Example Usage**
 ```javascript JavaScript
-// create an instance of the Mixpanel object
-mixpanel.init('YOUR_PROJECT_TOKEN');
-
 // Send a "Played song" event to Mixpanel
 mixpanel.track("Played song",{
     "genre": "hip-hop"  // with an event property "genre" set to "hip-hop"
@@ -191,9 +188,6 @@ Use [`.register_once()`](https://github.com/mixpanel/mixpanel-js/blob/master/doc
 
 **Example Usage**
 ```javascript
-// create an instance of the Mixpanel object
-mixpanel.init('YOUR_PROJECT_TOKEN');
-
 // register "name" as a super property
 mixpanel.register({
     name: 'Sam',
@@ -232,18 +226,16 @@ You can handle the identity of a user using the `.identify()` and `.reset()` met
     We recommend against calling `.identify()` for anonymous visitors to your site.
 </Callout>
 
-Call `.identify()` when you know the identity of the current user, passing in their user ID as an argument. This is typically at account registration and at log in.
+Call [`.identify()`](https://github.com/mixpanel/mixpanel-js/blob/master/doc/readme.io/javascript-full-api-reference.md#mixpanelidentify) when you know the identity of the current user, passing in their user ID as an argument. This is typically at account registration and at log in.
 
 **Example Usage**
 
 ```javascript
-//create an instance of the Mixpanel object
-mixpanel.init('YOUR_PROJECT_TOKEN');
-
 // your user signs in and tracks a sign in event
-mixpanel.track('sign in')
+mixpanel.track('sign in');
 
 // upon sign in, identify the user with their ID
+// ensure future events sent from the user have distinct_id 12345
 mixpanel.identify('12345');
 ```
 
@@ -253,6 +245,9 @@ Call [`.reset()`](https://github.com/mixpanel/mixpanel-js/blob/master/doc/readme
 **Example Usage**
 
 ```javascript JavaScript
+// your user logs out and tracks a log out event
+mixpanel.track('log out');
+
 // generate new cookie with new distinct_id
 mixpanel.reset();
 ```
@@ -274,9 +269,6 @@ If a profile property already exist, if will be overwritten with the latest valu
 
 **Example Usage**
 ```javascript JavaScript
-//create an instance of the Mixpanel object
-mixpanel.init('YOUR_PROJECT_TOKEN');
-
 // You must call identify to associate the profile update with the user
 // Create "plan" profile prop for user "12345"
 mixpanel.identify('12345');
@@ -305,9 +297,6 @@ A few commonly used people methods are highlighted below:
 **Example Usage**
 
 ```javascript
-//create an instance of the Mixpanel object
-mixpanel.init('YOUR_PROJECT_TOKEN');
-
 // set profile properties for user "1234"
 mixpanel.identify('1234');
 mixpanel.people.set({
@@ -364,9 +353,6 @@ Alternatively, you can manually add the group key property to be more selective 
 
 **Example Usage**
 ```javascript
-//create an instance of the Mixpanel object
-mixpanel.init('YOUR_PROJECT_TOKEN');
-
 // assign the current user to the "mixpanel" company group
 mixpanel.set_group('company', 'mixpanel');
 
@@ -387,9 +373,6 @@ Call [`.add_group()`](https://github.com/mixpanel/mixpanel-js/blob/master/doc/re
 
 **Example Usage**
 ```javascript
-//create an instance of the Mixpanel object
-mixpanel.init('YOUR_PROJECT_TOKEN');
-
 // assign the current user to the "mixpanel" company group
 // events will contain 'company' prop set to ["mixpanel"]
 mixpanel.set_group('company', 'mixpanel');
@@ -410,9 +393,6 @@ To set group profile properties, specify the group that needs to be updated by c
 
 **Example Usage**
 ```javascript
-//create an instance of the Mixpanel object
-mixpanel.init('YOUR_PROJECT_TOKEN');
-
 // assign the current user to the "mixpanel" company group
 mixpanel.set_group('company', 'mixpanel');
 
@@ -437,9 +417,6 @@ A few commonly used group methods are highlighted below:
 
 **Example Usage**
 ```javascript
-//create an instance of the Mixpanel object
-mixpanel.init('YOUR_PROJECT_TOKEN');
-
 // assign the current user to the "mixpanel" company group
 mixpanel.set_group('company', 'mixpanel');
 
@@ -502,9 +479,6 @@ The Javascript SDK is initialized with tracking enabled by default. Use the [`.o
 **Example Usage**
 
 ```javascript
-// create an instance of Mixpanel
-mixpanel.init('YOUR_PROJECT_TOKEN');
-
 //send "some_event"
 mixpanel.track('some_event');
 
