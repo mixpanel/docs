@@ -26,7 +26,7 @@ Afterward, start using the library by creating an instance of the Mixpanel objec
 mixpanel.init('YOUR_PROJECT_TOKEN');
 ```
 
-### Installing via NPM and Yarn
+**Installing via NPM and Yarn**
 
 <Callout type="info">
     The JS library is named `mixpanel-browser` in NPM and Yarn. This is to distinguish it from our server-side Node.js library, which is available as `mixpanel`.
@@ -58,20 +58,21 @@ The Mixpanel object can be initialized with different configurations. See a comp
 
 You can override the default configuration using the `config` argument when initializing the library.
 
+**Example Usage**
 ```javascript
 // create an instance of the Mixpanel object
 mixpanel.init('YOUR_PROJECT_TOKEN', {
     persistence: 'localStorage',    // set persistence to local storage
-    debug: true,    // enable debug log in console
+    debug: true,                    // enable debug log in console
 });
 ```
 
 You can update the configuration after initialization using the [`.set_config`](https://github.com/mixpanel/mixpanel-js/blob/master/doc/readme.io/javascript-full-api-reference.md#mixpanelset_config) method.
 
+**Example Usage**
 ```javascript
 // create an instance of the Mixpanel object
 mixpanel.init('YOUR_PROJECT_TOKEN', {
-    persistence: 'localStorage',    // set persistence to local storage
     debug: true,    // enable debug log in console
 });
 
@@ -95,6 +96,7 @@ All events sent from the JavaScript library will be sent over HTTPS.
 ### Track Events
 Once you initialized the Mixpanel object, call `.track()` to send an event by providing the event name and any event properties.
 
+**Example Usage**
 ```javascript JavaScript
 // create an instance of the Mixpanel object
 mixpanel.init('YOUR_PROJECT_TOKEN');
@@ -106,10 +108,15 @@ mixpanel.track("Played song",{
 );
 ```
 
-#### Track Page Views
+<Callout type="info">
+    Avoid using names containing `$` or `mp` (e.g. `$name`, `mp_country_code`, etc.) as they are used by our [reserved event properties](/docs/data-structure/property-reference/reserved-properties#reserved-event-properties) which receive special treatment in our UI or are used for special processing.
+</Callout>
+
+### Track Page Views
 
 Page view tracking is turned off by default. Page view events can be added automatically on every page load by enabling the `track_pageview` [config option](https://github.com/mixpanel/mixpanel-js/blob/v2.46.0/src/mixpanel-core.js#L88-L127) when creating the Mixpanel object.
 
+**Example Usage**
 ```javascript JavaScript
 //create an instance of the Mixpanel object
 mixpanel.init('YOUR_PROJECT_TOKEN', {
@@ -119,6 +126,7 @@ mixpanel.init('YOUR_PROJECT_TOKEN', {
 
 The default `track_pageview` setting does not auto-track page views in single-page applications. For tracking dynamic page views in single-page applications, the `track_pageview` option can also accept the following values for tracking.
 
+**Example Usage**
 ```javascript JavaScript
 // Track when the path changes, ignoring any query string or hash changes
 mixpanel.init('YOUR_PROJECT_TOKEN', {
@@ -138,6 +146,8 @@ mixpanel.init('YOUR_PROJECT_TOKEN', {
 
 The default page view event has the event name (`$mp_web_page_view`), and includes the event properties page title (`current_page_title`), URL components (`current_domain`, `current_url_path`, `current_url_protocol`, `current_url_search`), and [marketing parameters](/docs/tracking-methods/sdks/javascript#tracking-utm-parameters). Additional page view event properties can be added.
 
+**Example Usage**
+
 ```javascript JavaScript
 // Send a default page view event "$mp_web_page_view"
 mixpanel.track_pageview();
@@ -148,7 +158,7 @@ mixpanel.track_pageview({
     });
 ```
 
-#### Track UTM Tags
+### Track UTM Tags
 
 The JavaScript library will automatically add any UTM parameters (`utm_source`, `utm_campaign`, `utm_medium`, `utm_term`, `utm_content`, `utm_id`, `utm_source_platform`, `utm_campaign_id`, `utm_creative_format`, `utm_marketing_tactic`) present on the page to events fired from that page load. Please note when configuring UTMs that UTM tracking is case sensitive, and should be formatted lower-case as shown in the examples above.
 
@@ -172,11 +182,410 @@ For bulk import of historical events older than 5 days, we will need to use the 
 
 You can also leverage the /import API directly for a more customized solution.
 
+## Setting Super Properties
+Super properties are global event properties that you define once and apply to all events. 
+
+To register super properties, call [`.register()`](https://github.com/mixpanel/mixpanel-js/blob/master/doc/readme.io/javascript-full-api-reference.md#mixpanelregister).
+
+Use [`.register_once()`](https://github.com/mixpanel/mixpanel-js/blob/master/doc/readme.io/javascript-full-api-reference.md#mixpanelregister_once) to register super properties without overwriting existing values.
+
+**Example Usage**
+```javascript
+// create an instance of the Mixpanel object
+mixpanel.init('YOUR_PROJECT_TOKEN');
+
+// register "name" as a super property
+mixpanel.register({
+    name: 'Sam',
+});
+
+// register "city" as an additional super property
+// ignore "name" since it already exists
+mixpanel.register_once({
+    name: 'Samantha',
+    city: 'San Francisco'
+});
+
+// track a "registration" event
+// the event will include the "name" property set to "Sam"
+// and "city" set to "San Francisco"
+mixpanel.track('registration');
+```
+
+Your super properties are stored in the cookie generated by the domain that is loading the library. They will persist for the life of that cookie, which by default is 365 days. If you wish to change the life of the cookie, adjust the `cookie_expiration` configuration.
+
+**Example Usage**
+```javascript
+// set cookie_expiration to 90 days upon initialization
+mixpanel.init('YOUR_PROJECT_TOKEN', {
+    'cookie_expiration': 90
+});
+```
+
+## Managing User Identity
+
+You can handle the identity of a user using the `.identify()` and `.reset()` methods. Learn more about [identity management](/docs/tracking-methods/id-management/identity-management) and [identifying users](/docs/tracking-methods/id-management/identifying-users).
+
+### Identify
+
+<Callout type="warning">
+    We recommend against calling `.identify()` for anonymous visitors to your site.
+</Callout>
+
+Call `.identify()` when you know the identity of the current user, passing in their user ID as an argument. This is typically at account registration and at log in.
+
+**Example Usage**
+
+```javascript
+//create an instance of the Mixpanel object
+mixpanel.init('YOUR_PROJECT_TOKEN');
+
+// your user signs in and tracks a sign in event
+mixpanel.track('sign in')
+
+// upon sign in, identify the user with their ID
+mixpanel.identify('12345');
+```
+
+### Call Reset at Logout
+Call [`.reset()`](https://github.com/mixpanel/mixpanel-js/blob/master/doc/readme.io/javascript-full-api-reference.md#mixpanelreset) to clear data attributed to a user when they logout. This will clear the cookie/local storage and allows you to handle [multiple users on a single device](/docs/tracking-methods/id-management/identifying-users-simplified#multiple-users-one-device). 
+
+**Example Usage**
+
+```javascript JavaScript
+// generate new cookie with new distinct_id
+mixpanel.reset();
+```
+
+## Storing User Profiles
+Once your users are identified, create [user profiles](/docs/data-structure/user-profiles) by setting profile properties to describe them. Example profile properties include "name", "email", "company", and any other demographic details about the user.
+
+The Javascript SDK provides a few methods for setting profile properties under [`.people`](https://github.com/mixpanel/mixpanel-js/blob/master/doc/readme.io/javascript-full-api-reference.md#mixpanelpeople), which will trigger requests to the [/engage API endpoint](https://developer.mixpanel.com/reference/profile-set).
+
+### Setting Profile Properties
+
+<Callout type="info">
+    You must call `.identify()` before setting profile properties in order to associate the profile properties you set with the target user. If identify is not called, the profile update will be queued for ingestion until an identify call is made.
+</Callout>
+
+Set profile properties on a user profile by calling the [`.people.set()`](https://github.com/mixpanel/mixpanel-js/blob/master/doc/readme.io/javascript-full-api-reference.md#mixpanelpeopleset) method.
+
+If a profile property already exist, if will be overwritten with the latest value provided in the method. If a profile property does not exist, it will be added to the profile.
+
+**Example Usage**
+```javascript JavaScript
+//create an instance of the Mixpanel object
+mixpanel.init('YOUR_PROJECT_TOKEN');
+
+// You must call identify to associate the profile update with the user
+// Create "plan" profile prop for user "12345"
+mixpanel.identify('12345');
+mixpanel.people.set({
+    plan: 'Premium'
+    });
+
+// We only need to call identify once per page load
+mixpanel.people.set({
+    plan: 'Enterprise',   // Update "plan" from "Premium" to "Enterprise"
+    company: 'mixpanel'  // Create new "company" profile prop
+});
+```
+
+### Other Types Of Profile Updates
+
+There are a few other methods for setting profile properties. See a complete reference of the available methods [here](https://github.com/mixpanel/mixpanel-js/blob/master/doc/readme.io/javascript-full-api-reference.md#mixpanelpeople).
+
+A few commonly used people methods are highlighted below:
+
+  * [`.people.set_once()`](https://github.com/mixpanel/mixpanel-js/blob/master/doc/readme.io/javascript-full-api-reference.md#mixpanelpeopleset_once) - set profile properties only if they do not exist (will not overwrite existing properties)
+  * [`.people.append()`](https://github.com/mixpanel/mixpanel-js/blob/master/doc/readme.io/javascript-full-api-reference.md#mixpanelpeopleappend) - append values to a list profile property
+  * [`.people.union()`](https://github.com/mixpanel/mixpanel-js/blob/master/doc/readme.io/javascript-full-api-reference.md#mixpanelpeopleunion) - append to a list property, excluding duplicates
+  * [`.people.increment()`](https://github.com/mixpanel/mixpanel-js/blob/master/doc/readme.io/javascript-full-api-reference.md#mixpanelpeopleincrement) - increment/decrement numeric profile properties
+
+**Example Usage**
+
+```javascript
+//create an instance of the Mixpanel object
+mixpanel.init('YOUR_PROJECT_TOKEN');
+
+// set profile properties for user "1234"
+mixpanel.identify('1234');
+mixpanel.people.set({
+    name: 'Sam',
+    company: 'Store ABC',
+    age: 25,
+    roles: ['sales','engineer']
+});
+
+// "name" will not be update since it already exists
+// "email" will be added to profile
+mixpanel.people.set_once({
+    name: 'Samantha',
+    email: 'sam@mail.com'
+});
+
+// append "legal" to "roles"
+// new "roles" value is ['sales','engineer','legal']
+mixpanel.people.append('roles', 'legal');
+
+// append "engineer" to "roles"
+// will be ignored since "engineer" already exists in "roles"
+mixpanel.people.union('roles', 'engineer');
+
+// increment "age" by 2
+// New age value is 25+2 = "27"
+mixpanel.people.increment('age',2);
+
+// use negative number to decrement
+// New age value is 27-5 = "22"
+mixpanel.people.increment('age',-5);
+```
+
+## Group Analytics
+
+<Callout type="info">
+    Read more about [Group Analytics](/docs/data-structure/group-analytics) before proceeding. You will need to have the [group key defined in your project settings](/docs/data-structure/group-analytics#group-keys-in-project-settings) first.
+</Callout>
+
+Mixpanel [Group Analytics](/docs/data-structure/group-analytics) is a paid add-on that allows behavioral data analysis by groups (e.g. company, team), as opposed to individual users.
+
+A group is identified by the `group_key` and `group_id`.
+* `group_key` is the event property that connects event data to a group. (e.g. `company`)
+* `group_id` is the identifier for a specific group. (e.g. `mixpanel`,`company_a`,`company_b`, etc.)
+
+The Javascript SDK provides a few method for adding individual users to a group and setting group profile properties.
+
+### Adding Users to a Group
+[All events must have the group key as an event property in order to be attributed to a group](/docs/data-structure/group-analytics#group-keys-tracked-as-event-properties). Without the group key, an event cannot be attributed to a group.
+
+Call the [`.set_group()`](https://github.com/mixpanel/mixpanel-js/blob/master/doc/readme.io/javascript-full-api-reference.md#mixpanelset_group) method to register the current user to a group, which would add the `group_key` as an event property set to the `group_id` value to all events moving forward. 
+
+Alternatively, you can manually add the group key property to be more selective about which events to attribute to a group.
+
+**Example Usage**
+```javascript
+//create an instance of the Mixpanel object
+mixpanel.init('YOUR_PROJECT_TOKEN');
+
+// assign the current user to the "mixpanel" company group
+mixpanel.set_group('company', 'mixpanel');
+
+// track "some_event"
+// event property "company" = ["mixpanel"] is added automatically
+mixpanel.track('some_event');
+
+// alternatively you can manually set the group key on each event
+mixpanel.track('some_event',{
+    company: ['mixpanel']
+});
+```
+**Multiple Groups**
+
+[An event can be attributed to multiple groups](/docs/data-structure/group-analytics#attribute-events-to-multiple-groups) by passing in the `group_key` value as a list of multiple `group_id` values.
+
+Call [`.add_group()`](https://github.com/mixpanel/mixpanel-js/blob/master/doc/readme.io/javascript-full-api-reference.md#mixpaneladd_group) to add additional `group_id` to an existing list.
+
+**Example Usage**
+```javascript
+//create an instance of the Mixpanel object
+mixpanel.init('YOUR_PROJECT_TOKEN');
+
+// assign the current user to the "mixpanel" company group
+// events will contain 'company' prop set to ["mixpanel"]
+mixpanel.set_group('company', 'mixpanel');
+
+// add "mp-us" as an additional company group
+// new "company" value is ["mixpanel","mp-us"]
+mixpanel.add_group('company', 'mp-us');
+
+// track "some_event"
+// event property "company" = ["mixpanel","mp-us"] is added automatically
+mixpanel.track('some_event');
+```
+
+### Setting Group Profile Properties
+Create a group profiles by setting group properties, similar to a user profile. For example, you may want to describe a company group with properties such as "ARR", "employee_count", and "subscription".
+
+To set group profile properties, specify the group that needs to be updated by calling [`.get_group()`](https://github.com/mixpanel/mixpanel-js/blob/master/doc/readme.io/javascript-full-api-reference.md#mixpanelget_group), then set the group properties by chaining the `.set()` method, which will trigger a request to the [/groups API endpoint](https://developer.mixpanel.com/reference/group-set-property).
+
+**Example Usage**
+```javascript
+//create an instance of the Mixpanel object
+mixpanel.init('YOUR_PROJECT_TOKEN');
+
+// assign the current user to the "mixpanel" company group
+mixpanel.set_group('company', 'mixpanel');
+
+// specify the target group using the group_key and group_id
+// set "name", "features", and "employee_count" as group profile props
+mixpanel.get_group('company','mixpanel').set({
+    name: 'Mixpanel',
+    features: ['reports','alerts','cohorts'],
+    employee_count: 100
+});
+```
+
+### Other Group Profile Methods
+
+There are a few other methods for setting group profile properties under [`.group`](https://github.com/mixpanel/mixpanel-js/blob/master/doc/readme.io/javascript-full-api-reference.md#mixpanelgroup).
+
+A few commonly used group methods are highlighted below:
+  * [`.group.set_once()`](https://github.com/mixpanel/mixpanel-js/blob/master/doc/readme.io/javascript-full-api-reference.md#mixpanelgroupset_once) - set group properties only if they do not exist (will not overwrite existing properties)
+  * [`.group.unset()`](https://github.com/mixpanel/mixpanel-js/blob/master/doc/readme.io/javascript-full-api-reference.md#mixpanelgroupunset) - remove a group property from a group profile
+  * [`.group.union()`](https://github.com/mixpanel/mixpanel-js/blob/master/doc/readme.io/javascript-full-api-reference.md#mixpanelgroupunion) - merge a list with a list-valued group property, excluding duplicates
+  * [`.group.remove()`](https://github.com/mixpanel/mixpanel-js/blob/master/doc/readme.io/javascript-full-api-reference.md#mixpanelgroupremove) - remove a value from a list-valued group property
+
+**Example Usage**
+```javascript
+//create an instance of the Mixpanel object
+mixpanel.init('YOUR_PROJECT_TOKEN');
+
+// assign the current user to the "mixpanel" company group
+mixpanel.set_group('company', 'mixpanel');
+
+// set group profile properties
+mixpanel.get_group('company','mixpanel').set({
+    name: 'Mixpanel',
+    features: ['reports','alerts','cohorts'],
+    employee_count: 100
+});
+
+// ignore "name" since it already exists
+// add "color" as a group profile prop
+mixpanel.get_group('company','mixpanel').set_once({
+    name: 'mp',
+    color: 'purple'
+});
+
+// delete "color" from the group profile
+mixpanel.get_group('company','mixpanel').unset('color');
+
+// add "data pipeline" to "features" prop
+// ignore "alert" since it is a duplicate value
+mixpanel.get_group('company','mixpanel').union('features', [
+    'data pipeline',
+    'alert'
+    ]);
+
+//remove "alert" from "features"
+mixpanel.get_group('company','mixpanel').remove('features', 'alert');
+```
+
+## Debug Mode
+
+To enable debug mode, set the `debug` configuration option to `true` when initializing the Mixpanel object.
+
+**Example Usage**
+
+<Callout type="info">
+    Remove this parameter before going into production.
+</Callout>
+
+```javascript
+// enable debug log in the console
+mixpanel.init('YOUR_PROJECT_TOKEN', {
+    debug: true
+});
+```
+If you implemented using the HTML snippet, the `mixpanel` object is globally accessible and you can enable debug mode directly from the console by calling `mixpanel.set_config({debug:true});`.
+
+Learn more about [debugging](/docs/tracking-best-practices/debugging#debugging-with-the-browser-console-web).
+
+## Privacy-Friendly Tracking
+You have control over the data you send to Mixpanel. The Javascript SDK provide methods to help you protect user data.
+
+Learn more about [Privacy](/docs/privacy/overview).
+
+### Opt Out of Tracking
+The Javascript SDK is initialized with tracking enabled by default. Use the [`.opt_out_tracking()`](https://github.com/mixpanel/mixpanel-js/blob/master/doc/readme.io/javascript-full-api-reference.md#mixpanelopt_out_tracking) method to opt the user out of data tracking and cookies/local storage for the current Mixpanel instance.
+
+**Example Usage**
+
+```javascript
+// create an instance of Mixpanel
+mixpanel.init('YOUR_PROJECT_TOKEN');
+
+//send "some_event"
+mixpanel.track('some_event');
+
+// opt user out of tracking
+// SDK is prevented from sending any data
+mixpanel.opt_out_tracking();
+
+// this track call will not work
+mixpanel.track('some_other_event');
+```
+
+**Opt Out by Default**
+
+You can initialize the library with users opted out of tracking by default using the `opt_out_tracking_by_default` configuration. Once the user is ready to be tracked, call [`.opt_in_tracking()`](https://github.com/mixpanel/mixpanel-js/blob/master/doc/readme.io/javascript-full-api-reference.md#mixpanelopt_in_tracking) to start tracking.
+
+**Example Usage**
+
+```javascript
+// create an instance of the Mixpanel object
+// users are opted out of tracking by default
+mixpanel.init('YOUR_PROJECT_TOKEN', {
+    opt_out_tracking_by_default: true
+    });
+
+// this track call will not work
+mixpanel.track('some_event');
+
+//opt user in to tracking
+mixpanel.opt_in_tracking();
+
+// send "some_other_event"
+mixpanel.track('some_other_event');
+```
+### EU Data Residency
+Route data to Mixpanel's EU servers by setting a `api_host` configuration when creating the Mixpanel object.
+
+Learn more about [EU Data Residency](/docs/privacy/eu-residency).
+
+**Example Usage**
+```javascript
+// create an instance of the Mixpanel object
+// route requests to Mixpanel's EU servers
+mixpanel.init('YOUR_PROJECT_TOKEN', {
+    api_host: 'https://api-eu.mixpanel.com',
+});
+```
+
+### Disable Geolocation
+
+The Javascript SDK parse the request IP address to generate geolocation properties for events and profiles. To disable geolocation, set the `ip` to `false` when initializing the library.
+
+Learn more about [geolocation](/docs/tracking-best-practices/geolocation).
+
+**Example Usage**
+```javascript
+//create an instance of the Mixpanel object
+ // disable IP address for geolocation parsing
+mixpanel.init('YOUR_PROJECT_TOKEN', {
+    ip: false
+});
+```
+
+### Disable Default Properties
+
+To disable [default properties](/docs/data-structure/property-reference/default-properties) from being tracked, add them to the `property_blacklist` config flag when initializing the library.
+
+**Example Usage**
+```javascript
+//create an instance of the Mixpanel object
+// stop setting the $os and $browser event properties
+mixpanel.init('YOUR_PROJECT_TOKEN', {
+    property_blacklist: ['$browser','$os']
+});
+```
+
 ## Mixpanel Cookie
 By default, Mixpanel cookies send over HTTPS requests as part of the headers. However, Mixpanel’s JavaScript library provides a configuration to completely prevent the browser from transmitting your cookies with non-HTTPS requests.
 
-To enable this, set the `secure_cookie` configuration from the default value of `false` to `true`. 
+To enable this, set the `secure_cookie` configuration from the default value of `false` to `true`.
 
+**Example Usage**
 ```javascript
 // create an instance of the Mixpanel object
 mixpanel.init('YOUR_PROJECT_TOKEN', {
@@ -186,286 +595,46 @@ mixpanel.init('YOUR_PROJECT_TOKEN', {
 
 If you configure your instance to send data over HTTP (instead of HTTPS) but set `secure_cookie: true`, then your cookie data will not sent to the server.
 
-#### Mixpanel Cookies for Hosted Subdomains
-By default, Mixpanel cookie works across subdomain, keeping Mixpanel's Distinct ID and [Super Properties](/docs/tracking-methods/sdks/javascript#super-properties) consistent across your sub-domains.
+#### Hosted Subdomains
+By default, Mixpanel cookie works across subdomain, keeping Mixpanel's Distinct ID and [Super Properties](/docs/tracking-methods/sdks/javascript#super-properties) consistent across your sub-domains. For hosted subdomains (see [complete list of affected domains](https://publicsuffix.org/list/effective_tld_names.dat)) that don't allow cross-subdomain cookies, disable cross-subdomain cookie by setting the  `cross_subdomain_cookie` configuration option to `false`. Alternatively, you can also use a `CNAME` to change from `yourdomain.hostapp.com` to `yourdomain.com`.
 
-However, if your site is hosted on a domain like Heroku (or similar - [see a complete list of affected domains](https://publicsuffix.org/list/effective_tld_names.dat)) with a URL like `XYZ.herokuapp.com`, cross-subdomain cookies are not allowed for security reasons.
-
-For domains that don't allow cross-subdomain cookies, disable cross-subdomain cookie by setting the  `cross_subdomain_cookie` configuration option to `false`. Alternatively, you can also use a `CNAME` to change from yourdomain.herokuapp.com to yourdomain.com.
-
+**Example Usage**
 ```javascript
 // create an instance of the Mixpanel object
 mixpanel.init('YOUR_PROJECT_TOKEN', {
     'cross_subdomain_cookie': false   // prevent cookie persistence across subdomains
 });
 ```
-
-### Super Properties
-
-It's very common to have certain properties that you want to include with each event you send. Generally, these are things you know about the user rather than about a specific event - for example, the user's age, gender, source, or initial referrer.
-
-To make things easier, you can register these properties as super properties. If you tell us just once that these properties are important, we will automatically include them with all events sent. Super properties are stored in a browser cookie, and will persist between visits to your site. Mixpanel already stores some information as super properties by default; see a full list of Mixpanel default properties [here](/docs/data-structure/property-reference/properties).
-
-To set super properties, call [`mixpanel.register()`](https://github.com/mixpanel/mixpanel-js/blob/master/doc/readme.io/javascript-full-api-reference.md#mixpanelregister).
-
-```javascript JavaScript
-<script type="text/javascript">
-    mixpanel.register({
-        "age": 28,
-        "gender": "male",
-        "source": "facebook"
-    });
-</script>
-```
-
-The next time you track an event, the super properties you just set will be included as properties. If you call:
-```javascript JavaScript
-mixpanel.track("Signup");
-```
-
-after making the previous call to `mixpanel.register()`, it is just like adding the properties directly:
-```javascript JavaScript
-mixpanel.track("Signup", {
-    "age": 28,
-    "gender": "male",
-    "source": "facebook"
-});
-```
-
-#### Setting Super Properties Only Once
-
-If you want to store a super property only once (often for things like initial referrer, ad campaign, or source), you can use [`mixpanel.register_once()`](https://github.com/mixpanel/mixpanel-js/blob/master/doc/readme.io/javascript-full-api-reference.md#mixpanelregister_once). This function behaves like `mixpanel.register()` and has the same interface, but it doesn't override super properties you've already saved.
-
-```javascript JavaScript
-<script type="text/javascript">
-    mixpanel.register_once({
-        "ad_campaign": "fb-01"
-    });
-</script>
-```
-
-This means that it's safe to call `mixpanel.register_once()` with the same property on every page load, and it will only set it if the super property doesn't exist.
-
-#### Super Properties Live in a Cookie
-Our JS library uses a cookie (created in the domain of the page loading the lib) to store super properties. These are stored as JSON in the cookie. They will persist for the life of that cookie, which by default is 365 days. If you wish to change the life of the cookie, you may do so using [`set_config()`](https://github.com/mixpanel/mixpanel-js/blob/master/doc/readme.io/javascript-full-api-reference.md#mixpanelset_config) to adjust the value for the `cookie_expiration` (an integer in days).
-
-## Managing User Identity
-
-You can handle the identity of a user using the `identify()` and `alias()` methods. Proper use of these methods can connect events to the correct user as they move across devices, browsers, and other platforms.
-
-### Identify
-Identify a user with a unique ID to track user activity across devices, tie a user to their events, and create a user profile. If you never call this method, unique visitors are tracked using a UUID that generates the first time they visit the site.
-
-Call `identify()` when you know the identity of the current user, typically after log-in or sign-up. We recommend against using `identify()` for anonymous visitors to your site.
-
-```javascript JavaScript
-// after log-in or sign-up:
-mixpanel.identify("13793");
-```
-
-### Call Reset at Logout
-[`Reset()`](https://github.com/mixpanel/mixpanel-js/blob/master/doc/readme.io/javascript-full-api-reference.md#mixpanelreset) generates a new random distinct_id and clears super properties. Call `reset()` to clear data attributed to a user when that user logs out. This allows you to handle multiple users on a single device. For more information about maintaining user identity, see the [Identifying Users](/docs/tracking-methods/id-management/identifying-users) article.
-
-```javascript JavaScript
-// after logout:
-mixpanel.reset();
-```
-
-## Storing User Profiles
-
-In addition to events, you can store user profiles in Mixpanel. Profiles are persistent sets of properties that describe a user - things like name, email address, and signup date. You can use profiles to explore and segment users by who they are, rather than what they did.
-
-*Please take note of the [reserved profile properties](/docs/data-structure/user-profiles#reserved-user-properties) (e.g. `$name`, `$email`) which receive special treatment in our UI or are used for special processing.
-
-### Setting Profile Properties
-
-You can set properties on a user profile with `mixpanel.people.set`.
-```javascript JavaScript
-// mixpanel.identify must be called in order to associate the profile properties you set
-// with that user. You only need to call it once per page load for a given user.
-mixpanel.identify("13793");
-
-mixpanel.people.set({ "Plan": "Premium" });
-```
-
-This will set a "Plan" property, with a value "Premium", on user 13793's profile. If there isn't a profile with distinct_id 13793 in Mixpanel already, a new profile will be created. If user 13793 already has a property named "Plan" in their profile, the old value will be overwritten with "Premium".
-
-#### Other Types Of Profile Updates
-
-There are a few other types of profile updates
-
-  * `mixpanel.people.set_once` - set properties if they don't exist
-  * `mixpanel.people.append` - append to a list property
-  * `mixpanel.people.union` - append to a list property, excluding duplicates
-
-### Incrementing Numeric Properties
-
-You can use `mixpanel.people.increment` to change the current value of numeric properties. This is useful when you want to keep a running tally of things, such as games played, messages sent, or points earned.
-
-```javascript JavaScript
-// If no number is passed, the default is to increment by 1
-mixpanel.people.increment("games played");
-
-// You can also pass a number to increment
-// Here we add 500 to the user's point count
-mixpanel.people.increment("points earned", 500);
-
-// Pass an object to increment multiple properties
-mixpanel.people.increment({
-    "dollars spent": 17,
-    // Subtract by passing a negative value
-    "credits remaining": -34
-});
-```
-
-## Debug Mode
-
-Debug Mode allows you to see the requests being sent by your implementation to Mixpanel, in real time, from your browser's developer console. This includes events (with their properties), as well as other types of requests such as `identify` and `alias`. It also exposes SDK errors and warnings that occur before data is sent to Mixpanel. Debug mode works with both NPM and HTML snippet implementations, but the setup process differs slightly.
-
-### Start Debugging
-
-**If you implemented using NPM**, you will need to add the `debug` parameter to your `mixpanel.init` call, like so:
-
-```jsx
-mixpanel.init('YOUR_TOKEN', {debug: true});
-```
-
-Be sure to remove this parameter before going into production; we suggest setting this parameter conditionally, based on the environment your implementation is running in (e.g. `true` for dev and staging; `false` for production).
-
-**If you implemented using the HTML snippet**, you can enable debug mode either in code (as above), or you can enable it directly from your developer tools console, without making any code changes. This is because the `mixpanel` object is globally accessible from the snippet, so you can open your devtools console and simply run `mixpanel.set_config({debug: true})` to enable debug mode.
-
-### Interpreting Debug Output
-
-![image](/230696892-8fb6e415-bd0a-4e0a-a9ef-a121ccda3600.png)
-
-Here, we are debugging an HTML snippet implementation, but the logs are the same regardless of how you enabled debug mode. These events are being sent normally — each batch of events can be expanded to see the properties being sent with the event. Logging for other types of Mixpanel requests, such as `identify` and `alias`, works the same way, with all request contents logged.
-
-SDK errors and warnings, such as calling `track` without an event name and `alias`ing an identifier to itself, are also logged to the console in debug mode. These client-side errors do not result in an request to Mixpanel, so they can't be debugged using the network tab — you must use debug mode to surface them.
-
-![image](/230696898-b839468c-e3a4-444a-ae2c-ae419c44be56.png)
-
-
-## Group Analytics
-Mixpanel Group Analytics is a paid add-on that allows behavioral data analysis by selected groups, as opposed to individual users.
-
-Grouping by identifiers other than the `distinct_id` will allow analysis at a company or group level when using Mixpanel analytics. Read [this article](/docs/data-structure/advanced/group-analytics) to learn more about Group Analytics.
-
-A group is identified by the `group_key` and `group_id`.
-* `group_key` is the property that connects event data for Group Analytics.
-* `group_id` is the identifier for a specific group.
-
-If the property “company” is chosen for Group Analytics, “company” is the `group_key`, and “Mixpanel”, “Company A”, and “13254” are all potential `group_id` values.
-
-A user can belong to multiple groups. All updates to a group operate on the `group_key` and `group_id`.
-
-### Creating a Group Key
-Administer group keys through your Project Settings. Group keys are event properties. All events need to have a defined group key on them in order to be attributed to a group. Group keys are project specific, and the group key should be set up before group data is sent. Note that Mixpanel does not backfill historical data before the group key was implemented.
-
-To administer group keys, navigate to your Project Settings. Click **+Add Group Key** under the *GROUP KEYS* section.
-
-### Adding Users to a Group
-Adding users to groups causes the `group_key` and `group_id` to send as a property key and value for all events triggered by that user on the device. You can add multiple values for a single user to the `group_key` list property.
-
-Similar to a `distinct_id`, the `group_key` allows Mixpanel to group events by an identifier for analysis. A `group_key`, however, is a group level identifier and not a user level identifier like the `distinct_id`.
-
-You can add users to groups by calling the [`mixpanel.set_group()`](/docs/tracking-methods/sdks/javascript#setting-group-profile-properties) method.
-
-```javascript JavaScript
-//Assign Company A and Company B to a user
-mixpanel.set_group(“company”, [“Company A”, “Company B”])
-```
-
-You can call  [`mixpanel.add_group()`](/docs/tracking-methods/sdks/javascript#creating-group-profiles) to add any additional groups to an existing list.
-
-```javascript JavaScript
-//Add “Mixpanel” to the list of existing groups
-mixpanel.add_group(“company”, “Mixpanel”)
-```
-
-### Creating Group Profiles
-It is possible to create a Group profile that is similar to a user profile. You must call [`mixpanel.set_group()`](/docs/tracking-methods/sdks/javascript#setting-group-profile-properties) to build a group profile. It is important to set the `group_key`, `group_id`, and at least one property so that the profile is not empty.
-```javascript JavaScript
-mixpanel.get_group(group_key, group_id).set({“property_name”: property_value})
-```
-
-### Setting Group Profile Properties
-You can add details to Groups by adding properties to them.
-
-In order to update Group profile properties, you must specify the group that needs to be updated by calling [`get_group()`](/docs/tracking-methods/sdks/javascript#group-analytics)
-```javascript JavaScript
-mixpanel.get_group(“company”, “Mixpanel”)
-```
-The [`get_group()`](/docs/tracking-methods/sdks/javascript#group-analytics) method can be chained with other commands that edit properties specific to the group.
-
-You can set the property `$name` to populate the name field at the top of the group profile.
-
-These operations are similar to the corresponding operations for user profile property updates.
-#### set
-`mixpanel.get_group().set` updates or adds a property to a group.
-
-```javascript JavaScript
-mixpanel.get_group(group_key, group_id).set({“property_name”: property_value})
-```
-#### set once
-`mixpanel.get_group().set_once` adds a property value to a group only if it has not been set before.
-
-```javascript JavaScript
-mixpanel.get_group(group_key, group_id).set_once({“property_name”: property_value})
-```
-
-#### unset
-`mixpanel.get_group().unset` unsets a specific property in the group.
-
-```javascript JavaScript
-mixpanel.get_group(group_key, group_id).unset(“property_name”)
-```
-
-#### remove
-`mixpanel.get_group().remove` removes a specific value in a list property.
-```javascript JavaScript
-mixpanel.get_group(group_key, group_id).remove(“property_name”, “property_value”)
-```
-
-#### union
-`mixpanel.get_group().union` adds the specified values to a list property and ensures that those values only appear once.
-```javascript JavaScript
-mixpanel.get_group(group_key, group_id).union(“property_name”, [property_value1, … [property_valueN])
-```
-## EU Data Residency
-
-Route data to Mixpanel's EU servers by setting the `api_host` config property.
-```javascript
-mixpanel.init(
-  "YOUR_TOKEN",
-  {
-    api_host: "https://api-eu.mixpanel.com",
-  },
-);
-```
 ## Tracking Via Proxy
 
-This guide demonstrates how to route events from Mixpanel's SDKs via a proxy in your own domain. This is useful when tracking from the web, to reduce the likelihood of ad-blockers impacting your tracking.
+You can route events from Mixpanel's SDKs via a proxy in your own domain, which can reduce the likelihood of ad-blockers impacting your tracking.
 
 ![image](https://github.com/mixpanel/docs/assets/2077899/3ec6f3c2-aed0-4a18-9395-36838c3b53f1)
 
 There are two steps: setting up a proxy server and pointing our JavaScript SDK at your server.
 
 **Step 1: Set up a proxy server**
+
 The simplest way is to use our [sample nginx config](https://github.com/mixpanel/tracking-proxy). This config redirects any calls made to your proxy server to Mixpanel.
 
 **Step 2: Point our JavaScript SDK at your server**
+
 Add the following line before the Mixpanel JS snippet, replacing `YOUR_PROXY_DOMAIN` with your proxy server's domain. This is not required if you use npm or yarn instead of the snippet:
-```js
+
+```javascript
 const MIXPANEL_CUSTOM_LIB_URL = "https://<YOUR_PROXY_DOMAIN>/lib.min.js";
 ```
 
 Add your proxy server to the `mixpanel.init` call:
 
-```js
-mixpanel.init("<YOUR_PROJECT_TOKEN>", {api_host: "https://<YOUR_PROXY_DOMAIN>"})
+```javascript
+//create an instance of the Mixpanel object
+mixpanel.init('YOUR_PROJECT_TOKEN', {
+    api_host: 'https://<YOUR_PROXY_DOMAIN>' // set the proxy server as the api_host
+    });
 ```
 
-🎉 Congratulations, you've set up tracking through a proxy server! Here's a [full code sample](https://gist.github.com/ranic/80459104def4e4bcd73d5c77b817ee43).
+Here's a [full code sample](https://gist.github.com/ranic/80459104def4e4bcd73d5c77b817ee43).
 
 ## Session Replay
 
