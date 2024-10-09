@@ -1,8 +1,6 @@
 # Install Mixpanel
 
-import { Tab, Tabs } from "nextra-theme-docs";
-import { Card, Cards } from "nextra-theme-docs";
-import { Callout } from "nextra-theme-docs";
+import { Callout, Tabs } from "nextra/components";
 
 import ExtendedButton from "/components/ExtendedButton/ExtendedButton";
 import ExtendedTabs from "/components/ExtendedTabs/ExtendedTabs";
@@ -25,28 +23,28 @@ Choose from the methods below. Not sure how to choose? [Read our guide](/docs/tr
 
 <ExtendedTabs urlParam="sdk" urlToItemsMap={dataItems}>
 
-<Tab>
+<Tabs.Tab>
 ##### Install the SDK
 
 <Tabs items={['snippet', 'npm', 'yarn']}>
-	<Tab>
+	<Tabs.Tab>
 	```html
 	<!-- Paste this right before your closing </head> tag -->
 	<script type="text/javascript">
 	  (function (f, b) { if (!b.__SV) { var e, g, i, h; window.mixpanel = b; b._i = []; b.init = function (e, f, c) { function g(a, d) { var b = d.split("."); 2 == b.length && ((a = a[b[0]]), (d = b[1])); a[d] = function () { a.push([d].concat(Array.prototype.slice.call(arguments, 0))); }; } var a = b; "undefined" !== typeof c ? (a = b[c] = []) : (c = "mixpanel"); a.people = a.people || []; a.toString = function (a) { var d = "mixpanel"; "mixpanel" !== c && (d += "." + c); a || (d += " (stub)"); return d; }; a.people.toString = function () { return a.toString(1) + ".people (stub)"; }; i = "disable time_event track track_pageview track_links track_forms track_with_groups add_group set_group remove_group register register_once alias unregister identify name_tag set_config reset opt_in_tracking opt_out_tracking has_opted_in_tracking has_opted_out_tracking clear_opt_in_out_tracking start_batch_senders people.set people.set_once people.unset people.increment people.append people.union people.track_charge people.clear_charges people.delete_user people.remove".split( " "); for (h = 0; h < i.length; h++) g(a, i[h]); var j = "set set_once union unset remove delete".split(" "); a.get_group = function () { function b(c) { d[c] = function () { call2_args = arguments; call2 = [c].concat(Array.prototype.slice.call(call2_args, 0)); a.push([e, call2]); }; } for ( var d = {}, e = ["get_group"].concat( Array.prototype.slice.call(arguments, 0)), c = 0; c < j.length; c++) b(j[c]); return d; }; b._i.push([e, f, c]); }; b.__SV = 1.2; e = f.createElement("script"); e.type = "text/javascript"; e.async = !0; e.src = "undefined" !== typeof MIXPANEL_CUSTOM_LIB_URL ? MIXPANEL_CUSTOM_LIB_URL : "file:" === f.location.protocol && "//cdn.mxpnl.com/libs/mixpanel-2-latest.min.js".match(/^\/\//) ? "https://cdn.mxpnl.com/libs/mixpanel-2-latest.min.js" : "//cdn.mxpnl.com/libs/mixpanel-2-latest.min.js"; g = f.getElementsByTagName("script")[0]; g.parentNode.insertBefore(e, g); } })(document, window.mixpanel || []);
 	</script>
 	```
-	</Tab>
-	<Tab>
+	</Tabs.Tab>
+	<Tabs.Tab>
 	```text
 	npm install --save mixpanel-browser
 	```
-	</Tab>
-	<Tab>
+	</Tabs.Tab>
+	<Tabs.Tab>
 	```text
 	yarn add mixpanel-browser
 	```
-	</Tab>
+	</Tabs.Tab>
 </Tabs>
 ##### Configure the SDK
 Replace `YOUR_TOKEN` with your project token. You can find your token [here](https://mixpanel.com/settings/project).
@@ -63,9 +61,9 @@ mixpanel.init("YOUR_TOKEN", {
 });
 ```
 
-</Tab>
+</Tabs.Tab>
 
-<Tab>
+<Tabs.Tab>
 ##### Install the SDK
 ```shell Python
 pip install mixpanel
@@ -78,9 +76,9 @@ from mixpanel import Mixpanel
 mp = Mixpanel("YOUR_TOKEN")
 
 ````
-</Tab>
+</Tabs.Tab>
 
-<Tab>
+<Tabs.Tab>
 ##### Install the SDK
 
 **Install with Composer**
@@ -111,9 +109,9 @@ $mp = Mixpanel::getInstance("YOUR_TOKEN");
 
 ?>
 ````
-</Tab>
+</Tabs.Tab>
 
-<Tab>
+<Tabs.Tab>
 ##### Install the SDK
 ```shell Node.js
 npm install mixpanel
@@ -131,9 +129,9 @@ var Mixpanel = require("mixpanel");
 var mixpanel = Mixpanel.init("YOUR_TOKEN");
 ```
 
-</Tab>
+</Tabs.Tab>
 
-<Tab>
+<Tabs.Tab>
 ##### Install the SDK
 ```shell Go
 go get github.com/mixpanel/mixpanel-go
@@ -154,9 +152,9 @@ mp := mixpanel.NewApiClient("YOUR_TOKEN")
 }
 
 ````
-</Tab>
+</Tabs.Tab>
 
-<Tab>
+<Tabs.Tab>
 ##### Install the SDK
 ```shell Ruby
 gem install mixpanel-ruby
@@ -172,9 +170,9 @@ require 'mixpanel-ruby'
 mp = Mixpanel::Tracker.new(YOUR_TOKEN)
 ```
 
-</Tab>
+</Tabs.Tab>
 
-<Tab>
+<Tabs.Tab>
 ##### Install the SDK
 ```xml Java
 <!--Include the following in your project's pom.xml-->
@@ -197,9 +195,9 @@ MixpanelAPI mixpanel = new MixpanelAPI();
 MessageBuilder messageBuilder = new MessageBuilder('YOUR_TOKEN');
 
 ```
-</Tab>
+</Tabs.Tab>
 
-<Tab>
+<Tabs.Tab>
 ##### Install the SDK
 Under your app's root directory, run:
 
@@ -230,9 +228,9 @@ const mixpanel = new Mixpanel("YOUR_TOKEN", trackAutomaticEvents);
 mixpanel.init();
 ````
 
-</Tab>
+</Tabs.Tab>
 
-<Tab>
+<Tabs.Tab>
 ##### Install the SDK
 Add `mixpanel_flutter: ^2.0.0` to your package's pubspec.yaml file and run:
 
@@ -262,28 +260,28 @@ class _YourClassState extends State<YourClass> {
 }
 ```
 
-</Tab>
+</Tabs.Tab>
 
-<Tab>
+<Tabs.Tab>
 ##### Install the SDK
 <Tabs items={['Swift Package Manager', 'Cocoapods', 'Carthage']}>
 
-<Tab>
+<Tabs.Tab>
   Note: Swift Package Manager requires Xcode 12+ 1. In Xcode, select File >
   Swift Packages > Add Package Dependency. 2. Follow the prompts using the URL
   for this repository and must select a version greater than or equal to v4.0.0
-</Tab>
+</Tabs.Tab>
 
-<Tab>
+<Tabs.Tab>
   1. Create a Podfile in your Xcode project directory by running `pod init` in
   your terminal, edit the Podfile generated, and add the following line: `pod
   'Mixpanel'`. 2. Run `pod install` in your Xcode project directory. CocoaPods
   should download and install the Mixpanel library, and create a new Xcode
   workspace. Open up this workspace in Xcode or typing `open *.xcworkspace` in
   your terminal.
-</Tab>
+</Tabs.Tab>
 
-<Tab>Add `github "mixpanel/mixpanel-iphone"` to your Cartfile.</Tab>
+<Tabs.Tab>Add `github "mixpanel/mixpanel-iphone"` to your Cartfile.</Tabs.Tab>
 
 </Tabs>
 ##### Configure the SDK
@@ -300,26 +298,26 @@ Replace `YOUR_TOKEN` with your project token. You can find your token [here](htt
   }
 
 ````
-</Tab>
+</Tabs.Tab>
 
-<Tab>
+<Tabs.Tab>
 ##### Install the SDK
 <Tabs items={['Swift Package Manager', 'Cocoapods', 'Carthage']}>
 
-<Tab>
+<Tabs.Tab>
 Note: Swift Package Manager requires Xcode 12+
 1. In Xcode, select File > Swift Packages > Add Package Dependency.
 2. Paste the URL `https://github.com/mixpanel/mixpanel-swift` and a minimum semantic version of v2.8.0.
-</Tab>
+</Tabs.Tab>
 
-<Tab>
+<Tabs.Tab>
 1. Create a Podfile in your Xcode project directory by running `pod init` in your terminal, edit the Podfile generated, and add the following line: `pod 'Mixpanel-swift'`.
 2. Run `pod install` in your Xcode project directory. CocoaPods should download and install the Mixpanel library, and create a new Xcode workspace. Open up this workspace in Xcode or typing `open *.xcworkspace` in your terminal.
-</Tab>
+</Tabs.Tab>
 
-<Tab>
+<Tabs.Tab>
 Add `github "mixpanel/mixpanel-swift"` to your Cartfile.
-</Tab>
+</Tabs.Tab>
 
 </Tabs>
 ##### Configure the SDK
@@ -340,9 +338,9 @@ func application(_ application: UIApplication,
 }
 ````
 
-</Tab>
+</Tabs.Tab>
 
-<Tab>
+<Tabs.Tab>
 ##### Install the SDK
 Add `implementation 'com.mixpanel.android:mixpanel-android:7.+'` as a dependency to your `build.gradle` file.
 
@@ -386,9 +384,9 @@ public class MainActivity extends ActionBarActivity {
 }
 ```
 
-</Tab>
+</Tabs.Tab>
 
-<Tab>
+<Tabs.Tab>
 ##### Install the SDK
 Add `https://github.com/mixpanel/mixpanel-unity.git#master` to the dependencies section of `com.mixpanel.unity`.
 
@@ -413,8 +411,8 @@ using mixpanel;
 
 You're
 
-</Tab>
-<Tab>
+</Tabs.Tab>
+<Tabs.Tab>
 ##### Install the SDK
 
 <Callout type="info" emoji>
@@ -423,7 +421,7 @@ You're
 Using the HTTP API does not require an installation. **You're ready to move to the
 next step.**
 
-</Tab>
+</Tabs.Tab>
 </ExtendedTabs>
 
 <br></br>

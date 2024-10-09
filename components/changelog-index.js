@@ -53,7 +53,8 @@ const renderMedia = (page) => {
 };
 
 export default function ChangelogIndex({ more = "Read more" }) {
-  const allPages = getPagesUnderRoute("/changelogs");
+  // naturally sorts pages from a-z rather than z-a
+  const allPages = getPagesUnderRoute("/changelogs").reverse();
   const itemsPerPage = 10;
   const [displayedPages, setDisplayedPages] = useState([]);
   const [pageIndex, setPageIndex] = useState(0);
