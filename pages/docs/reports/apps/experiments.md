@@ -33,7 +33,7 @@ It is important to ensure that the groups are mutually exclusive. For example, i
 
 ### Step 4: Select a Date Range
 
-[Select the date range](/docs/reports/overview#select-a-date-range) of the experiment. In most cases you should choose the date your experiment began as the start date.
+[Select the date range](/docs/reports#select-a-date-range) of the experiment. In most cases you should choose the date your experiment began as the start date.
 
 All events tracked by users within the date range will be included in the Experiment report, even if those events took place before the experiment started.
 

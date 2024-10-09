@@ -12,8 +12,8 @@
 /developer-docs-redirect/cohorts /docs/cohort-sync/build-an-integration
 /developer-docs-redirect/collection-via-a-proxy /docs/tracking-methods/sdks/javascript
 /developer-docs-redirect/custom-query /docs/reports/apps/jql
-/developer-docs-redirect/data-discrepancy-faq /docs/other-bits/data-pipelines/overview#faq
-/developer-docs-redirect/data-pipelines /docs/other-bits/data-pipelines/overview
+/developer-docs-redirect/data-discrepancy-faq /docs/data-pipelines#faq
+/developer-docs-redirect/data-pipelines /docs/data-pipelines
 /developer-docs-redirect/data-structure-deep-dive /docs/how-it-works/concepts
 /developer-docs-redirect/data-warehouse-export https://developer.mixpanel.com/reference/create-warehouse-pipeline
 /developer-docs-redirect/flutter /docs/tracking-methods/sdks/flutter
@@ -51,7 +51,7 @@
 /developer-docs-redirect/php http://mixpanel.github.io/mixpanel-php/classes/Mixpanel.html
 /developer-docs-redirect/plan-your-implementation /docs/getting-started/plan-your-implementation
 /developer-docs-redirect/privacy-friendly-tracking /docs/privacy/protecting-user-data
-/developer-docs-redirect/privacy-security /docs/privacy/overview
+/developer-docs-redirect/privacy-security /docs/privacy
 /developer-docs-redirect/python /docs/tracking-methods/sdks/python
 /developer-docs-redirect/quick-start-guide /docs/quickstart/install-mixpanel
 /developer-docs-redirect/raw-export-pipeline https://developer.mixpanel.com/reference/raw-data-export-api

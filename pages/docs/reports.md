@@ -103,11 +103,11 @@ You can select the following filtering options to show a subset of the propertie
 
 The events and properties in the menu are prefixed to provide additional context about the properties' type. They will be removed when additional context is not needed.
 
-- Event properties are not prefixed (except in [User report's menu](/docs/reports/overview):
+- Event properties are not prefixed (except in [User report's menu](/docs/reports):
 
     ![/Screen_Shot_2021-11-18_at_12.26.25_PM.png](/Screen_Shot_2021-11-18_at_12.26.25_PM.png)
 
-- User properties are prefixed by "User": "User" prefix is removed in [User report's menu](/docs/reports/overview) or once you filter the menu by "user properties".
+- User properties are prefixed by "User": "User" prefix is removed in [User report's menu](/docs/reports) or once you filter the menu by "user properties".
 
     ![/Screen_Shot_2021-11-18_at_12.25.13_PM.png](/Screen_Shot_2021-11-18_at_12.25.13_PM.png)
 
@@ -214,7 +214,7 @@ Compare to overall allows you compare each segment value and see what proportion
 
 ## Saving to a Board
 
-When you are satisfied with the analysis, and decide that this is something that you are likely to revisit, Mixpanel recommends that you save the report to a [Board](/docs/boards/overview). You can do this by pressing "Save" in the top right and selecting the Board you would like to save to, or creating a new Board.
+When you are satisfied with the analysis, and decide that this is something that you are likely to revisit, Mixpanel recommends that you save the report to a [Board](/docs/boards). You can do this by pressing "Save" in the top right and selecting the Board you would like to save to, or creating a new Board.
 
 ![/Screen_Shot_2022-07-08_at_5.40.30_PM.png](/Screen_Shot_2022-07-08_at_5.40.30_PM.png)
 

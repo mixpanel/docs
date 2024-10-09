@@ -37,6 +37,7 @@ Depending on your current setup, the steps for migrating your live data tracking
 - [Adobe Analytics Migration Guide](/docs/migration/adobe-analytics)
 - [Amplitude Migration Guide](/docs/migration/amplitude)
 - [Google Analytics Migration Guide](/docs/migration/google-analytics)
+- [Flurry Migration Guide](/docs/migration/flurry)
 
 ### Data audit
 
