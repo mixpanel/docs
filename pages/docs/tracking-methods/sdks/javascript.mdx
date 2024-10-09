@@ -177,8 +177,6 @@ The Javascript SDK is a tracking SDK designed for real-time tracking in a client
 
 For bulk import of historical events older than 5 days, we will need to use the [/import API endpoint](https://developer.mixpanel.com/reference/import-events) which is optimized for scripting and supports ingesting historical data. We recommend the [Python SDK](/docs/tracking-methods/sdks/python) (see the [`.import_data()`](https://mixpanel.github.io/mixpanel-python/#primary-interface) function) and [mixpanel-utils module](https://github.com/mixpanel/mixpanel-utils) (see the [`import_events()`](https://github.com/mixpanel/mixpanel-utils?tab=readme-ov-file#import-events) function) which both leverages the /import API for event ingestion.
 
-You can also leverage the /import API directly for a more customized solution.
-
 ## Setting Super Properties
 Super properties are global event properties that you define once and apply to all events. 
 

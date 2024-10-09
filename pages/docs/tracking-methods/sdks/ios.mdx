@@ -1,3 +1,5 @@
+import { Callout } from 'nextra/components'
+
 # Mixpanel SDKs: iOS (Objective-C)
 
 ## Getting Started
@@ -6,71 +8,178 @@ Please refer to our [Quickstart Guide](/docs/quickstart/connect-your-data?sdk=io
 
 The [Full API Reference](https://mixpanel.github.io/mixpanel-iphone/index.html), [Library Source Code](https://github.com/mixpanel/mixpanel-iphone/), and an [Example Application](https://github.com/mixpanel/mixpanel-iphone/tree/master/HelloMixpanel) is documented in our GitHub repo.
 
-## Sending Events
+## Installing the Library
 
-We recommend tracking only five to seven events in your application instead of tracking too many things to start. Ideally, you track users going through your initial user experience and one key metric that matters for your application (e.g. a video streaming service might choose "Watched Video" as a key metric).
+You can install the Objective-C library by using CocoaPods, Carthage, or Swift Package Manager.
 
-Once you've initialized the library, you can track an event by calling [`track:properties:`](https://mixpanel.github.io/mixpanel-iphone/Classes/Mixpanel.html#//api/name/track:properties:) with the event name and properties.
+**Installation Option 1: CocoaPods**
+
+1. Install CocoaPods by typing the following in your command line:
+
+```bash
+gem install cocoapods
+```
+
+2. Creae a local CocoaPods spec mirror:
+
+```bash
+pod setup
+```
+
+3. Navigate to your Xcode project directory and create a Podfile:
+
+```bash
+pod init
+```
+
+4. Edit the Podfile that is generated from step 3, adding the following line: `pod 'Mixpanel'`
+
+5. Install the Mixpanel library and create a new Xcode workspace by running the following in the Xcode project directory:
+
+```bash
+pod install
+```
+
+**Installation Option 2: Carthage**
+
+Mixpanel supports [Carthage](https://github.com/Carthage/Carthage#quick-start) to package your dependencies as a framework. Include the following dependency in your Cartfile:
+
+```bash
+github "mixpanel/mixpanel-iphone"
+```
+
+**Installation Option 3: Swift Package Manager**
+
+1. In Xcode, select File > Add Packages...
+
+2. Enter the package URL for [this repository](https://github.com/mixpanel/mixpanel-iphone) and select version v4.0.0 or above.
+
+After installing the library, import the library into `AppDelegate.m` and create an instance of Mixpanel using [`sharedInstanceWithToken:`](https://mixpanel.github.io/mixpanel-iphone/Classes/Mixpanel.html#//api/name/sharedInstanceWithToken:) with your project token inside [`application:didFinishLaunchingWithOptions:`](https://developer.apple.com/documentation/uikit/uiapplicationdelegate#//apple_ref/occ/intfm/UIApplicationDelegate/application:willFinishLaunchingWithOptions:).
 
 ```objc Objective-C
+//import library to AppDelegate
+#import "Mixpanel/Mixpanel.h"
+
+- (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
+...
+  //create Mixpanel instance
+  [Mixpanel sharedInstanceWithToken:@"YOUR_PROJECT_TOKEN" trackAutomaticEvents:NO];
+...
+}
+```
+
+### Library Configuration
+
+The library can be initialized with different configurations. See a complete list of the configuration options [here](https://mixpanel.github.io/mixpanel-iphone/Classes/Mixpanel.html#//api/name/sharedInstanceWithToken:).
+
+**Example Usage**
+
+```objc Objective-C
+//import library to AppDelegate
+#import "Mixpanel/Mixpanel.h"
+
+- (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
+...
+  //create Mixpanel instance with trackCrashes enabled
+  [Mixpanel sharedInstanceWithToken:@"YOUR_PROJECT_TOKEN" trackAutomaticEvents:NO trackCrashes:YES];
+...
+}
+```
+
+## Sending Events
+
+Use [`track:properties:`](https://mixpanel.github.io/mixpanel-iphone/Classes/Mixpanel.html#//api/name/track:properties:) to send an event by providing the event name and any event properties. This will trigger a request to the [/track API endpoint](https://developer.mixpanel.com/reference/track-event) to ingest the event into your project.
+
+<Callout type="info">
+  The [/track endpoint](https://developer.mixpanel.com/reference/track-event) will only validate events with timestamps within the last 5 days of the request. Events with timestamps older than 5 days will not be ingested. See below on best practices for historical imports.
+</Callout>
+
+**Example Usage**
+```objc Objective-C
+// send "some_event"
+// with "Plan" event prop set to "Premium"
 Mixpanel *mixpanel = [Mixpanel sharedInstance];
-[mixpanel track:@"Plan selected"
+[mixpanel track:@"some_event"
      properties:@{ @"Plan": @"Premium" }];
 ```
 
 
-## Timing Events
+### Timing Events
 
 You can track the time it took for an action to occur, such as an image upload or a comment post, using [`timeEvent:`](https://mixpanel.github.io/mixpanel-iphone/Classes/Mixpanel.html#//api/name/timeEvent:). This will mark the "start" of your action, which you can then finish with a track call. The time duration is then recorded in the "Duration" property.
+
+**Example Usage**
 ```objc Objective-C
 Mixpanel *mixpanel = [Mixpanel sharedInstance];
+
+// start the timer for the event "Image Upload"
 [mixpanel timeEvent:@"Image Upload"];
+
+// 20 seconds later...
+
 [self uploadImageWithSuccessHandler:^{
+    //// track "Image Upload" event with "Duration" event prop set to 20
     [mixpanel track:@"Image Upload"];
 }];
 ```
 
-## Super Properties
+### Flushing Events
+To preserve battery life and customer bandwidth, the Mixpanel library doesn't send the events you record immediately. Instead, it sends batches to the Mixpanel servers every 60 seconds while your application is running, as well as when the application transitions to the background. 
 
-It's very common to have certain properties that you want to include with each event you send. Generally, these are things you know about the user rather than about a specific event—for example, the user's age, gender, or source.
+Call [`flush`](https://mixpanel.github.io/mixpanel-iphone/Classes/Mixpanel.html#//api/name/flush) manually if you want to force a flush at a particular moment.
 
-To make things easier, you can register these properties as super properties. If you do, we will automatically include them with all tracked events. Super properties are saved to device storage, and will persist across invocations of your app. Mixpanel already stores some information as super properties by default; see a full list of Mixpanel default properties [here](/docs/data-structure/property-reference#default-properties).
-
-To set super properties, call [`registerSuperProperties:`](https://mixpanel.github.io/mixpanel-iphone/Classes/Mixpanel.html#//api/name/registerSuperProperties:)
-
+**Example Usage**
 ```objc Objective-C
-// Send a "Plan: Mega" property will be sent
-// with all future track calls.
-[mixpanel registerSuperProperties:@{@"Plan": @"Mega"}];
+Mixpanel *mixpanel = [Mixpanel sharedInstance];
+
+// flush batched events for ingestion immediately
+[mixpanel flush];
 ```
 
-Going forward, whenever you track an event, super properties will be included as properties. For instance, if you call:
+**Flush Interval**
 
+You can update the default flush interval from 60 seconds to another interval using [`flushInterval`](https://mixpanel.github.io/mixpanel-iphone/Classes/Mixpanel.html#//api/name/flushInterval).
+
+**Example Usage**
 ```objc Objective-C
-[mixpanel track:@"Signup" properties:@{
-    @"Source": @"Twitter"
-}];
+Mixpanel *mixpanel = [Mixpanel sharedInstance];
+
+//set the flush interval to every 120 seconds
+[Mixpanel sharedInstance].flushInterval = 120;
 ```
 
-after making the above call to [`registerSuperProperties:`](https://mixpanel.github.io/mixpanel-iphone/Classes/Mixpanel.html#//api/name/registerSuperProperties:), it is just like adding the properties directly:
+#### Importing Historical Events
+
+The Objective-C SDK is a tracking SDK designed for real-time tracking in a client-side environment. Calling `track:properties:` triggers a request to our [/track API endpoint](https://developer.mixpanel.com/reference/track-event), which will validate for events with a timestamp that is within the last 5 days of the request. **Events older than 5 days will not be ingested**.
+
+For bulk import of historical events older than 5 days, we will need to use the [/import API endpoint](https://developer.mixpanel.com/reference/import-events) which is optimized for scripting and supports ingesting historical data. We recommend the [Python SDK](/docs/tracking-methods/sdks/python) (see the [`.import_data()`](https://mixpanel.github.io/mixpanel-python/#primary-interface) function) and [mixpanel-utils module](https://github.com/mixpanel/mixpanel-utils) (see the [`import_events()`](https://github.com/mixpanel/mixpanel-utils?tab=readme-ov-file#import-events) function) which both leverages the /import API for event ingestion.
+
+## Setting Super Properties
+
+Super properties are global event properties that you define once and apply to all events.
+
+To register super properties, call [`registerSuperProperties:`](https://mixpanel.github.io/mixpanel-iphone/Classes/Mixpanel.html#//api/name/registerSuperProperties:)
+
+Use [`registerSuperPropertiesOnce:`](https://mixpanel.github.io/mixpanel-iphone/Classes/Mixpanel.html#//api/name/registerSuperPropertiesOnce:) to register super properties without overwriting existing values.
+
 
 ```objc Objective-C
-[mixpanel track:@"Signup" properties:@{
-    @"Source": @"Twitter",
-    @"Plan": @"Mega"
-}];
+Mixpanel *mixpanel = [Mixpanel sharedInstance];
+
+// register "name" as a super property
+[mixpanel registerSuperProperties:@{@"Name": @"Sam"}];
+
+// track "some_event"
+// "Name" event prop is included in the event
+[mixpanel track:@"some_event"];
+
+// ignored since "name" already exists
+[mixpanel registerSuperPropertiesOnce:@{@"Name": @"Samantha"}];
 ```
 
-### Setting Super Properties Only Once
-If you want to store a super property only once (often for things like ad campaign or source), you can use [`registerSuperPropertiesOnce:`](https://mixpanel.github.io/mixpanel-iphone/Classes/Mixpanel.html#//api/name/registerSuperPropertiesOnce:). This function behaves like `registerSuperProperties` and has the same interface, but it doesn't override super properties you've already saved.
-```objc Objective-C
-[mixpanel registerSuperPropertiesOnce:@{@"Source": @"ad-01"}];
-```
-
-This means that it's safe to call `registerSuperPropertiesOnce:` with the same property on every app load, and it will only set it if the super property doesn't exist.
-
-### Super Properties Live in Local Storage
 Our mobile libraries store your super properties in local storage. They will persist so long as the app is installed (between launches and updates). Uninstalling the app will remove that customers super properties.
+
+See more methods related to super properties in the complete library reference [here](https://mixpanel.github.io/mixpanel-iphone/Classes/Mixpanel.html#).
 
 
 ## Managing User Identity
