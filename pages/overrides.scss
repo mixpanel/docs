@@ -288,6 +288,11 @@ $border-radius-lg: 100px;
   opacity: 1 !important;
 }
 
+// Add BG color to image with transparent background
+article img {
+  background-color: colors.$lightbg;
+}
+
 //##############################Light Theme Starts Here##################################
 .light {
   line-height: 1.8;
@@ -346,7 +351,8 @@ $border-radius-lg: 100px;
     color: colors.$base100;
   }
 
-  Modify high level stuff across body body {
+  // Modify high level stuff across body
+  body {
     -moz-osx-font-smoothing: grayscale;
     -webkit-font-smoothing: antialiased;
     overscroll-behavior-y: none;
@@ -1005,7 +1011,8 @@ $border-radius-lg: 100px;
     color: colors.$base100;
   }
 
-  Modify high level stuff across body body {
+  // Modify high level stuff across body
+  body {
     -moz-osx-font-smoothing: grayscale;
     -webkit-font-smoothing: antialiased;
     overscroll-behavior-y: none;

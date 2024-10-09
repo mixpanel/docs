@@ -8,7 +8,8 @@ Mixpanel supports five data types for properties: String, Numeric, Boolean, Date
 ### String
 
 - Alphanumeric value e.g. Plan Type = "Free", Artist Name = "Bruno Mars".
-- String properties have a character limit of 255 bytes.
+- String properties have a limit of 255 bytes. 
+- Different [character encodings](https://en.wikipedia.org/wiki/Character_encoding) require different number of bytes to represent a single character.
 - Mixpanel will treat any property value that does not match any other data type as a String.
 
 ### Numeric
@@ -38,7 +39,8 @@ Mixpanel supports five data types for properties: String, Numeric, Boolean, Date
 - Limits of a List property: Event Property = 8KB, User Profile Property = 256KB
 - Each item in a list would be futher limited by their data type's limits; example: a list of strings would be limited by 255 bytes per string. Also refer to [List of Objects](/docs/data-structure/property-reference#list-of-objects) covered below.
 - Mixpanel lists are not ordered (i.e. position of values in a list are not significant in Mixpanel reports) and are useful for grouping or analysing similar values across events. Read more details on [List Property Support](/docs/features/advanced#list-property-support) in reports.
-- Note: Editing of list properties is not supported directly within the Mixpanel UI. To modify list properties, you must use the [Mixpanel API] (https://developer.mixpanel.com/reference/profile-set) or one of our SDKs.
+- Note: Editing of list properties is not supported directly within the Mixpanel UI. To modify list properties, you must use the [Mixpanel API](https://developer.mixpanel.com/reference/profile-set) or one of our SDKs.
+
 
 ### Object
 <Callout type="info">
