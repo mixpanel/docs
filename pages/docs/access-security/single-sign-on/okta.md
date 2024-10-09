@@ -3,7 +3,7 @@
 
 ## Overview
 
-Before using this document, read the [general Mixpanel SSO set-up instructions](/docs/access-security/single-sign-on/overview).
+Before using this document, read the [general Mixpanel SSO set-up instructions](/docs/access-security/single-sign-on).
 
 You have two setup options in order to use Single Sign-On (SSO) for Mixpanel through Okta:
 
@@ -13,7 +13,7 @@ B.  If you have a more custom setup, follow Okta's documentation on setting up a
 
 ### Configure SSO in Mixpanel
 
-Follow the [general SSO set-up instructions](/docs/access-security/single-sign-on/overview).
+Follow the [general SSO set-up instructions](/docs/access-security/single-sign-on).
 
 Make sure to collect your postback URL and successfully claim your domain.
 

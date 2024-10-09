@@ -36,7 +36,7 @@ GRANT USAGE ON INTEGRATION MIXPANEL_EXPORT_STORAGE_INTEGRATION TO MIXPANEL_EXPOR
 
 ### Step 3: Authentication to user
 
-Refer to [Step 2: Creating the Pipeline](/docs/data-pipelines/overview/#step-2-creating-the-pipeline)
+Refer to [Step 2: Creating the Pipeline](/docs/data-pipelines/#step-2-creating-the-pipeline)
 to create data pipeline via UI.
 
 We provide two different authenitcations: password and key-pair. In the example, create a user with either password or public key and then grant the role to user. You can fine the public key in the UI of creating Snowflake pipelines.

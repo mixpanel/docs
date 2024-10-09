@@ -214,7 +214,7 @@ Compare to overall allows you compare each segment value and see what proportion
 
 ## Saving to a Board
 
-When you are satisfied with the analysis, and decide that this is something that you are likely to revisit, Mixpanel recommends that you save the report to a [Board](/docs/boards/overview). You can do this by pressing "Save" in the top right and selecting the Board you would like to save to, or creating a new Board.
+When you are satisfied with the analysis, and decide that this is something that you are likely to revisit, Mixpanel recommends that you save the report to a [Board](/docs/boards). You can do this by pressing "Save" in the top right and selecting the Board you would like to save to, or creating a new Board.
 
 ![/Screen_Shot_2022-07-08_at_5.40.30_PM.png](/Screen_Shot_2022-07-08_at_5.40.30_PM.png)
 

@@ -401,7 +401,7 @@ Discuss internally and decide on the best data migration approach with minimal i
 2. Prepare for the official transition to the new project as soon as live data is re-directed there. Make sure that your project is well-setup by then.
 
    - If data delays or incomplete data are expected in the new project, clearly communicate this to your Mixpanel users as their analysis will be impacted. For example, having a data backfilling plan in place and sharing details such as “X months of data will be available in new project within Y hours”. This proactive approach will help manage expectations with your Mixpanel users and ensure a seamless transition.
-   - Do check the [cost implication](/docs/pricing/billing) of having overlapping data across multiple projects. If you have any questions, do reach out to our [Mixpanel Support](/docs/response-times#contacting-mixpanel-support) team for assistance.
+   - Do check the [cost implication](/docs/pricing) of having overlapping data across multiple projects. If you have any questions, do reach out to our [Mixpanel Support](/docs/response-times#contacting-mixpanel-support) team for assistance.
 
 3. In cases of a more intricate migration, involving larger data volumes coming from different sources that potentially pose a higher risk to Mixpanel users' experience, you might want to consider doing historical backfilling before updating the live implementation. This approach enables you to have ample time to configure your new project, replicate existing reports and non-data entities into the new project, and test them against the backfilled data. While this may require multiple backfills, you have the option to only deploy the live data implementation when you are ready. 
 
