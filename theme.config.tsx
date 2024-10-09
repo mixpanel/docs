@@ -25,7 +25,7 @@ const config: DocsThemeConfig = {
 
     return (
       <>
-        <title>{title} - Mixpanel Docs</title>
+        <title>{`${title} - Mixpanel Docs`}</title>
         <meta property="og:url" content={url} />
         <meta property="og:title" content={`${title} - Mixpanel Docs`} />
         <meta
