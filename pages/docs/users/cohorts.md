@@ -90,11 +90,6 @@ Cohorts are computed dynamically at the time that you use them in a query. Suppo
 
 This has a few implications. First, it means every time you run a query that uses the cohort, the cohort is freshly computed vs being a static snapshot of users. Second, it means that the set of users who are in the cohort are users that are in the cohort as of _right now_; it's _not_ a rolling window of users that have ever been in the cohort.
 
-### Cohorts and Time
-We don't recommend using Cohorts in analysis when trying to understand cause -> effect relationships between user behavior. For example, suppose you're trying to understand whether watching more comedy videos drives users to subscribe. You might create a Comedy Fans cohort defined as "Users who performed Watched Video where genre=comedy in the last 30 days" and then breakdown your Subscriptions by whether users are in the Comedy Fans cohort. The problem is that the user might have become a Comedy Fan _after_ subscribing, which doesn't tell you whether watching comedy had any impact on subscribing.
-
-Instead, we recommend using Funnels if you want to understand specific sequences of events with a strict ordering between each other. For example, creating a funnel from Signup -> Subscription and comparing that to a funnel from Signup -> Watched Comedy -> Subscription, to understand what % of users convert after watching comedy.
-
 
 ## Saving and Sharing Cohorts
 
