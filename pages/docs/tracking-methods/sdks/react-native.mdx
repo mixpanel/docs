@@ -245,7 +245,7 @@ Call [`.reset()`](https://mixpanel.github.io/mixpanel-react-native/Mixpanel.html
 // your user logs out and tracks a log out event
 mixpanel.track('log out');
 
-// generate new cookie with new distinct_id
+// clear local storage and generate new distinct_id
 mixpanel.reset();
 ```
 
@@ -546,6 +546,7 @@ The simplest way is to use our [sample nginx config](https://github.com/mixpanel
 **Step 2: Point our React Native SDK at your server**
 
 When initializing, replace `<YOUR_PROXY_DOMAIN>` with your proxy server's domain for `serverURL`.
+
 ```javascript
 const serverURL = '<YOUR_PROXY_DOMAIN>';  // set the server URL to your proxy
 const trackAutomaticEvents = false;
