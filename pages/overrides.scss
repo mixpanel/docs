@@ -100,6 +100,12 @@ $border-radius-lg: 100px;
     }
   }
 
+  .top-nav-search-bar {
+    @media (max-width: 400px) {
+      display: none;
+    }
+  }
+
   //actively selected tab
   .nx-text-sm[aria-current="true"] span {
     font-weight: 700;
@@ -287,7 +293,6 @@ article img {
   background-color: colors.$lightbg;
 }
 
-
 //##############################Light Theme Starts Here##################################
 .light {
   line-height: 1.8;
@@ -395,16 +400,15 @@ article img {
   .nx-w-full > main {
     color: colors.$grey100;
     background-color: colors.$lightbg;
-  
-  
-  //ID management banner style
-  .idManagementBanner {
-    position: sticky !important;
-    top: 55px;
-    opacity: 1 !important;
-    background-color: #fefce8 !important;
-    color: #713f11;
-  }
+
+    //ID management banner style
+    .idManagementBanner {
+      position: sticky !important;
+      top: 55px;
+      opacity: 1 !important;
+      background-color: #fefce8 !important;
+      color: #713f11;
+    }
 
     .nx-mt-6 {
       border-bottom: colors.$black;
@@ -436,7 +440,6 @@ article img {
       }
     }
 
-
     // Modify breadcrumbs
     .nextra-breadcrumb {
       text-transform: uppercase;
@@ -464,7 +467,7 @@ article img {
         color: colors.$white;
         pointer-events: none;
       }
-  
+
       //   //for the little arrows between breadcrumbs
       //   svg {
       //     opacity: 0.4;
@@ -589,7 +592,7 @@ article img {
       }
 
       .submitButton {
-        background: colors.$purple100 ;
+        background: colors.$purple100;
         color: white;
       }
 
@@ -1032,7 +1035,7 @@ article img {
   //##############################Dark Theme Top Nav###################################
 
   .nextra-nav-container {
-    background-color: colors.$purple50;
+    background-color: #2b273f !important;
     // box-shadow: unset;
     border-color: #1f1f24;
     border-width: 1px;
@@ -1043,7 +1046,7 @@ article img {
     }
 
     .nextra-nav-container-blur {
-      background-color: colors.$purple50;
+      background-color: #2b273f !important; //colors.$darkbg;
       box-shadow: none;
     }
 
@@ -1123,16 +1126,16 @@ article img {
       }
     }
 
-  //ID management banner style
-  .idManagementBanner {
-    .nextra-callout {
-      background-color: #49342d !important;
-      color: #fef089;
+    //ID management banner style
+    .idManagementBanner {
+      .nextra-callout {
+        background-color: #49342d !important;
+        color: #fef089;
+      }
+      position: sticky !important;
+      top: 55px;
+      opacity: 1 !important;
     }
-    position: sticky !important;
-    top: 55px;
-    opacity: 1 !important;
-  }
 
     //modify anchor links hastags
     a.subheading-anchor {
@@ -1262,7 +1265,6 @@ article img {
 
     //Modify Bottom Feedback Area
     .feedbackCollectorContainer {
-
       .feedbackTextArea {
         color: black;
       }
@@ -1272,13 +1274,13 @@ article img {
       }
 
       .submitButton {
-        background: colors.$purple100 ;
+        background: colors.$purple100;
         color: white;
       }
 
       .feedbackButtonContainer {
         .feedbackButton {
-          background-color: #2B273F;
+          background-color: #2b273f;
           color: colors.$purple20;
 
           &:hover {
