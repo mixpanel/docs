@@ -497,9 +497,14 @@ article img {
       //   --shiki-token-link: #ffab70;
     }
 
-    //modify code highlights in page body (not codebox)
+    // modify code highlights in page body (not codebox)
     p code {
       background-color: rgba(32, 31, 36, 0.08);
+    }
+
+    // modify codebox
+    .nextra-code ._ring-gray-300 {
+      background-color: colors.$purple20;
     }
 
     //modify code tabs
@@ -1173,6 +1178,16 @@ article img {
     //modify code highlights in text body (not codebox)
     p code {
       background-color: rgba(255, 255, 255, 0.08);
+    }
+
+    // modify codebox
+    .nextra-code > .dark\:_ring-neutral-700 {
+      background-color: colors.$grey100;
+      border: 1px solid rgba(255, 255, 255, 0.1);
+    }
+
+    code.nextra-code {
+      background-color: colors.$grey100;
     }
 
     //modify code tabs
