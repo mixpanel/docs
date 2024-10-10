@@ -92,7 +92,7 @@ Preview the users and associated user properties to ensure the data looks as exp
 ![image](/ga4_users.png)
 
 ##### Post-migration data validation
-You can use our [Lexicon](/docs/data-governance/lexicon) or Events page to check that your data has successfully been ingested. However, if your historical events are older than 30 days, they will not show up on Lexicon, Events page or in the event dropdown menu across all reports. In this case, you can leverage our [Insights report](docs/reports/insights) to validate the historical events, by selecting the import time frame and filtering by the following default properties: 
+You can use our [Lexicon](/docs/data-governance/lexicon) or Events page to check that your data has successfully been ingested. However, if your historical events are older than 30 days, they will not show up on Lexicon, Events page or in the event dropdown menu across all reports. In this case, you can leverage our [Insights report](/docs/reports/insights) to validate the historical events, by selecting the import time frame and filtering by the following default properties: 
 
 - Warehouse Import ID (tracked as `$warehouse_import_id`)
 - Warehouse Import Job ID (`$warehouse_import_job_id`)
