@@ -1,6 +1,6 @@
 # Connect Your Data
 
-import { Tab, Tabs } from 'nextra-theme-docs'
+import { Tabs } from 'nextra/components'
 
 import ExtendedTabs from '../../../components/ExtendedTabs/ExtendedTabs';
 
@@ -14,53 +14,53 @@ Note: You'll need your Project Token to authenticate, which you can get [here](h
 ## Step 1: Install the SDK
 <ExtendedTabs urlParam="sdk" urlToItemsMap={dataItems}>
 
-<Tab>
+<Tabs.Tab>
 
 <Tabs items={['snippet', 'npm', 'yarn']}>
-	<Tab>
+	<Tabs.Tab>
 	```html
 	<!-- Paste this right before your closing </head> tag -->
 	<script type="text/javascript">
 	  (function (f, b) { if (!b.__SV) { var e, g, i, h; window.mixpanel = b; b._i = []; b.init = function (e, f, c) { function g(a, d) { var b = d.split("."); 2 == b.length && ((a = a[b[0]]), (d = b[1])); a[d] = function () { a.push([d].concat(Array.prototype.slice.call(arguments, 0))); }; } var a = b; "undefined" !== typeof c ? (a = b[c] = []) : (c = "mixpanel"); a.people = a.people || []; a.toString = function (a) { var d = "mixpanel"; "mixpanel" !== c && (d += "." + c); a || (d += " (stub)"); return d; }; a.people.toString = function () { return a.toString(1) + ".people (stub)"; }; i = "disable time_event track track_pageview track_links track_forms track_with_groups add_group set_group remove_group register register_once alias unregister identify name_tag set_config reset opt_in_tracking opt_out_tracking has_opted_in_tracking has_opted_out_tracking clear_opt_in_out_tracking start_batch_senders people.set people.set_once people.unset people.increment people.append people.union people.track_charge people.clear_charges people.delete_user people.remove".split( " "); for (h = 0; h < i.length; h++) g(a, i[h]); var j = "set set_once union unset remove delete".split(" "); a.get_group = function () { function b(c) { d[c] = function () { call2_args = arguments; call2 = [c].concat(Array.prototype.slice.call(call2_args, 0)); a.push([e, call2]); }; } for ( var d = {}, e = ["get_group"].concat( Array.prototype.slice.call(arguments, 0)), c = 0; c < j.length; c++) b(j[c]); return d; }; b._i.push([e, f, c]); }; b.__SV = 1.2; e = f.createElement("script"); e.type = "text/javascript"; e.async = !0; e.src = "undefined" !== typeof MIXPANEL_CUSTOM_LIB_URL ? MIXPANEL_CUSTOM_LIB_URL : "file:" === f.location.protocol && "//cdn.mxpnl.com/libs/mixpanel-2-latest.min.js".match(/^\/\//) ? "https://cdn.mxpnl.com/libs/mixpanel-2-latest.min.js" : "//cdn.mxpnl.com/libs/mixpanel-2-latest.min.js"; g = f.getElementsByTagName("script")[0]; g.parentNode.insertBefore(e, g); } })(document, window.mixpanel || []);
 	</script>
 	```
-	</Tab>
-	<Tab>
+	</Tabs.Tab>
+	<Tabs.Tab>
 	```text
 	npm install --save mixpanel-browser
 	```
-	</Tab>
-	<Tab>
+	</Tabs.Tab>
+	<Tabs.Tab>
 	```text
 	yarn add mixpanel-browser
 	```
-	</Tab>
+	</Tabs.Tab>
 </Tabs>
 
-</Tab>
-<Tab>
+</Tabs.Tab>
+<Tabs.Tab>
 ```shell Python
 pip install mixpanel
 ```
-</Tab>
+</Tabs.Tab>
 
-<Tab>
+<Tabs.Tab>
 ```shell Node.js
 npm install mixpanel
 ```
-</Tab>
+</Tabs.Tab>
 
-<Tab>
+<Tabs.Tab>
 ```shell Go
 go get github.com/mixpanel/mixpanel-go
 ```
-</Tab>
-<Tab>
+</Tabs.Tab>
+<Tabs.Tab>
 ```shell Ruby
 gem install mixpanel-ruby
 ```
-</Tab>
-<Tab>
+</Tabs.Tab>
+<Tabs.Tab>
 ```xml Java
 <!--Include the following in your project's pom.xml-->
 <dependency>
@@ -69,8 +69,8 @@ gem install mixpanel-ruby
   <version>1.4.4</version>
 </dependency>
 ```
-</Tab>
-<Tab>
+</Tabs.Tab>
+<Tabs.Tab>
 Under your app's root directory, run:
 
 ```
@@ -84,16 +84,16 @@ pod install
 ```
 
 Note: For XCode 12.5+, there is a known compile issue, please refer to this [workaround](https://github.com/mixpanel/mixpanel-react-native/issues/43#issuecomment-829599732).
-</Tab>
-<Tab>
+</Tabs.Tab>
+<Tabs.Tab>
 Add `mixpanel_flutter: ^2.0.0` to your package's pubspec.yaml file and run:
 
 ```
 flutter pub get
 ```
 
-</Tab>
-<Tab>
+</Tabs.Tab>
+<Tabs.Tab>
 **Swift Package Manager**
 
 1.  In Xcode, select File > Swift Packages > Add Package Dependency.
@@ -106,8 +106,8 @@ flutter pub get
 
 **Carthage**
 Add `github "mixpanel/mixpanel-iphone"` to your Cartfile.
-</Tab>
-<Tab>
+</Tabs.Tab>
+<Tabs.Tab>
 **Swift Package Manager (requires Xcode 12+)**
 
 1. In Xcode, select File > Swift Packages > Add Package Dependency.
@@ -120,8 +120,8 @@ Add `github "mixpanel/mixpanel-iphone"` to your Cartfile.
 
 **Carthage**
 Add `github "mixpanel/mixpanel-swift"` to your Cartfile.
-</Tab>
-<Tab>
+</Tabs.Tab>
+<Tabs.Tab>
 Add `implementation 'com.mixpanel.android:mixpanel-android:7.+'` as a dependency to your `build.gradle` file.
 
 Once you've updated `build.gradle`, you can force Android Studio to sync with your new configuration by clicking the Sync Project with Gradle Files icon at the top of the window:
@@ -141,19 +141,19 @@ Next, add the following permissions in your AndroidManifest.xml:
 <!-- Optional, but recommended so events will contain information about bluetooth state-->
 <uses-permission android:name="android.permission.BLUETOOTH" />
 ```
-</Tab>
-<Tab>
+</Tabs.Tab>
+<Tabs.Tab>
 
 Add `https://github.com/mixpanel/mixpanel-unity.git#master` to the dependencies section of `com.mixpanel.unity`.
 
 Alternatively, you can download and install the .unitypackage file from our [releases page](https://github.com/mixpanel/mixpanel-unity/releases).
-</Tab>
+</Tabs.Tab>
 </ExtendedTabs>
 
 ## Step 2: Track your first event
 <ExtendedTabs urlParam="sdk" urlToItemsMap={dataItems}>
 
-<Tab>
+<Tabs.Tab>
 ```js Javascript
 import mixpanel from 'mixpanel-browser';
 
@@ -172,9 +172,9 @@ mixpanel.track('Sign Up', {
 
 You can also follow our video walkthrough [here](https://www.loom.com/embed/fbba03274dc441b49b578e8a734b1d99).
 
-</Tab>
+</Tabs.Tab>
 
-<Tab>
+<Tabs.Tab>
 ```python Python
 from mixpanel import Mixpanel
 
@@ -190,9 +190,9 @@ mp.track(user_id, 'Signed Up',  {
 
 For more options, see the reference and code for each SDK in [Github](https://github.com/mixpanel).
 
-</Tab>
+</Tabs.Tab>
 
-<Tab>
+<Tabs.Tab>
 ```js Node.js
 var Mixpanel = require("mixpanel");
 
@@ -209,9 +209,9 @@ mixpanel.track("Signed Up", {
 
 For more options, see the reference and code for each SDK in [Github](https://github.com/mixpanel).
 
-</Tab>
+</Tabs.Tab>
 
-<Tab>
+<Tabs.Tab>
 ```go Go
 package main
 
@@ -238,9 +238,9 @@ func main() {
 
 For more options, see the reference and code for each SDK in [Github](https://github.com/mixpanel).
 
-</Tab>
+</Tabs.Tab>
 
-<Tab>
+<Tabs.Tab>
 ```ruby Ruby
 require 'mixpanel-ruby'
 mp = Mixpanel::Tracker.new(PROJECT_TOKEN)
@@ -255,10 +255,10 @@ mp.track(user_id, 'Signed Up', {
 
 For more options, see the reference and code for each SDK in [Github](https://github.com/mixpanel).
 
-</Tab>
+</Tabs.Tab>
 
 
-<Tab>
+<Tabs.Tab>
 ```java Java
 import com.mixpanel.mixpanelapi.ClientDelivery;
 import com.mixpanel.mixpanelapi.MessageBuilder;
@@ -285,9 +285,9 @@ mixpanel.deliver(delivery);",
 
 For more options, see the reference and code for each SDK in [Github](https://github.com/mixpanel).
 
-</Tab>
+</Tabs.Tab>
 
-<Tab>
+<Tabs.Tab>
 ```javascript
 import React from "react";
 import { Button, SafeAreaView } from "react-native";
@@ -317,9 +317,9 @@ export default SampleApp;
 
 For more options, see the reference and code for each SDK in [Github](https://github.com/mixpanel).
 
-</Tab>
+</Tabs.Tab>
 
-<Tab>
+<Tabs.Tab>
 ```dart
 import 'package:mixpanel_flutter/mixpanel_flutter.dart';
 class _YourClassState extends State<YourClass> {
@@ -342,9 +342,9 @@ class _YourClassState extends State<YourClass> {
 
 For more options, see the reference and code for each SDK in [Github](https://github.com/mixpanel).
 
-</Tab>
+</Tabs.Tab>
 
-<Tab>
+<Tabs.Tab>
 ```objc
 
 #import "Mixpanel/Mixpanel.h"
@@ -364,9 +364,9 @@ For more options, see the reference and code for each SDK in [Github](https://gi
 
 For more options, see the reference and code for each SDK in [Github](https://github.com/mixpanel).
 
-</Tab>
+</Tabs.Tab>
 
-<Tab>
+<Tabs.Tab>
 Import Mixpanel into `AppDelegate.swift`, and initialize Mixpanel within `application:didFinishLaunchingWithOptions`:
 
 ```swift
@@ -389,9 +389,9 @@ func application(_ application: UIApplication,
 For more options, see the reference and code for each SDK in [Github](https://github.com/mixpanel).
 
 
-</Tab>
+</Tabs.Tab>
 
-<Tab>
+<Tabs.Tab>
 ```java
 import com.mixpanel.android.mpmetrics.MixpanelAPI;
 
@@ -420,9 +420,9 @@ public class MainActivity extends ActionBarActivity {
 
 For more options, see the reference and code for each SDK in [Github](https://github.com/mixpanel).
 
-</Tab>
+</Tabs.Tab>
 
-<Tab>
+<Tabs.Tab>
 To initialize the library, first open the unity project settings menu for Mixpanel. (Edit -> Project Settings -> Mixpanel) Then, enter your project token into the Token and Debug Token input fields within the inspector. If you prefer to initialize Mixpanel manually, you can select the `Manual Initialization` in the settings and call `Mixpanel.Init()` to initialize.
 
 ![unity_screenshots](https://user-images.githubusercontent.com/36679208/152408022-62440f50-04c7-4ff3-b331-02d3d3122c9e.jpg)
@@ -440,9 +440,9 @@ Mixpanel.Track('Signup', props);
 
 For more options, see the reference and code for each SDK in [Github](https://github.com/mixpanel).
 
-</Tab>
+</Tabs.Tab>
 
-<Tab>
+<Tabs.Tab>
 If you don't see an SDK or an integration in your language, you can send events to our API directly.
 
 Here's a sample script. Just plug in your Project Token at the top, run the script, and visit our [Events page](https://mixpanel.com/report/events) to see the events in our UI.
@@ -492,7 +492,7 @@ Here are some other best practices:
 Our Import API is built to ingest billions of events per day across our customers. That said, we do rate limit at very high scale to ensure quality of service and real-time ingestion. Please refer to our [Import API docs](https://developer.mixpanel.com/reference/import-events) for details.
 
 All of our sample code transparently retries and backoff from rate limit exceptions. If you require a higher-limit for a 1-time backfill, please reach out to us at apis@mixpanel.com.
-</Tab>
+</Tabs.Tab>
 
 </ExtendedTabs>
 

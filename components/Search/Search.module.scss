@@ -1,24 +1,23 @@
 .icon {
-    width: 14px;
-    margin-right: 6px;
+  width: 14px;
+  margin-right: 6px;
 }
 
 .searchBar:focus {
-    box-shadow: none;
-    
+  box-shadow: none;
 }
 
 .inputContainer {
-    display: flex;
-    flex-direction: row;
+  display: flex;
+  flex-direction: row;
 }
 
-@media (max-width: 768px) {
-    .searchBar {
-        display: none;
-    }
-    
-    .icon {
-        width: 20px;
-    }
+@media (max-width: 800px) {
+  .searchBar {
+    display: none;
+  }
+
+  .icon {
+    width: 20px;
+  }
 }

@@ -91,7 +91,7 @@ In order to build a Braze Segment after importing a cohort:
 
 ## Matching Mixpanel and Braze Users
 
-> **Warning:** Projects using the [simplified ID merge system](/docs/tracking-methods/id-management/identity-management#identity-merge-apis) must have the `$user_id` in Mixpanel match the user identifier in the partner service. Using any alternative partner properties to match users between tools may result in partner events not being attributed to the correct user in Mixpanel. Any partner properties mentioned in the below section are primarily applicable to projects on the original ID merge system.
+> **Warning:** Projects using the [simplified ID merge system](/docs/tracking-methods/id-management#identity-merge-apis) must have the `$user_id` in Mixpanel match the user identifier in the partner service. Using any alternative partner properties to match users between tools may result in partner events not being attributed to the correct user in Mixpanel. Any partner properties mentioned in the below section are primarily applicable to projects on the original ID merge system.
 
 In order to match Mixpanel users to ones on Braze's end, the user in Mixpanel should have a profile property named $braze_external_id with the value you have assigned in Braze to the same user as [external_user_id](https://www.braze.com/docs/developer_guide/platform_integration_guides/ios/analytics/setting_user_ids/#suggested-user-id-naming-convention).
 
