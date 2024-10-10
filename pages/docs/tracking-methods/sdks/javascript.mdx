@@ -1,4 +1,4 @@
-import { Callout } from 'nextra/components'
+import { Callout, Tabs } from 'nextra/components'
 
 # Mixpanel SDKs: Javascript
 
@@ -10,47 +10,50 @@ The [Full API Reference](https://github.com/mixpanel/mixpanel-js/blob/master/doc
 
 ## Installing the Library
 
-The easiest way to install the library is to load it from our CDN to your website. Paste the following code snippet right before the closing `</head>` tag in your page HTML.
+<Tabs items={['Snippet','NPM/Yarn']}>
+    <Tabs.Tab>
+        The easiest way to install the library is to load it from our CDN to your website. Paste the following code snippet right before the closing `</head>` tag in your page HTML.
 
-```javascript
-// Paste this right before your closing </head> tag
-<script type="text/javascript">
-  (function (f, b) { if (!b.__SV) { var e, g, i, h; window.mixpanel = b; b._i = []; b.init = function (e, f, c) { function g(a, d) { var b = d.split("."); 2 == b.length && ((a = a[b[0]]), (d = b[1])); a[d] = function () { a.push([d].concat(Array.prototype.slice.call(arguments, 0))); }; } var a = b; "undefined" !== typeof c ? (a = b[c] = []) : (c = "mixpanel"); a.people = a.people || []; a.toString = function (a) { var d = "mixpanel"; "mixpanel" !== c && (d += "." + c); a || (d += " (stub)"); return d; }; a.people.toString = function () { return a.toString(1) + ".people (stub)"; }; i = "disable time_event track track_pageview track_links track_forms track_with_groups add_group set_group remove_group register register_once alias unregister identify name_tag set_config reset opt_in_tracking opt_out_tracking has_opted_in_tracking has_opted_out_tracking clear_opt_in_out_tracking start_batch_senders people.set people.set_once people.unset people.increment people.append people.union people.track_charge people.clear_charges people.delete_user people.remove".split( " "); for (h = 0; h < i.length; h++) g(a, i[h]); var j = "set set_once union unset remove delete".split(" "); a.get_group = function () { function b(c) { d[c] = function () { call2_args = arguments; call2 = [c].concat(Array.prototype.slice.call(call2_args, 0)); a.push([e, call2]); }; } for ( var d = {}, e = ["get_group"].concat( Array.prototype.slice.call(arguments, 0)), c = 0; c < j.length; c++) b(j[c]); return d; }; b._i.push([e, f, c]); }; b.__SV = 1.2; e = f.createElement("script"); e.type = "text/javascript"; e.async = !0; e.src = "undefined" !== typeof MIXPANEL_CUSTOM_LIB_URL ? MIXPANEL_CUSTOM_LIB_URL : "file:" === f.location.protocol && "//cdn.mxpnl.com/libs/mixpanel-2-latest.min.js".match(/^\/\//) ? "https://cdn.mxpnl.com/libs/mixpanel-2-latest.min.js" : "//cdn.mxpnl.com/libs/mixpanel-2-latest.min.js"; g = f.getElementsByTagName("script")[0]; g.parentNode.insertBefore(e, g); } })(document, window.mixpanel || []);
-</script>
-```
+        ```javascript
+        // Paste this right before your closing head tag
+        <script type="text/javascript">
+        (function (f, b) { if (!b.__SV) { var e, g, i, h; window.mixpanel = b; b._i = []; b.init = function (e, f, c) { function g(a, d) { var b = d.split("."); 2 == b.length && ((a = a[b[0]]), (d = b[1])); a[d] = function () { a.push([d].concat(Array.prototype.slice.call(arguments, 0))); }; } var a = b; "undefined" !== typeof c ? (a = b[c] = []) : (c = "mixpanel"); a.people = a.people || []; a.toString = function (a) { var d = "mixpanel"; "mixpanel" !== c && (d += "." + c); a || (d += " (stub)"); return d; }; a.people.toString = function () { return a.toString(1) + ".people (stub)"; }; i = "disable time_event track track_pageview track_links track_forms track_with_groups add_group set_group remove_group register register_once alias unregister identify name_tag set_config reset opt_in_tracking opt_out_tracking has_opted_in_tracking has_opted_out_tracking clear_opt_in_out_tracking start_batch_senders people.set people.set_once people.unset people.increment people.append people.union people.track_charge people.clear_charges people.delete_user people.remove".split( " "); for (h = 0; h < i.length; h++) g(a, i[h]); var j = "set set_once union unset remove delete".split(" "); a.get_group = function () { function b(c) { d[c] = function () { call2_args = arguments; call2 = [c].concat(Array.prototype.slice.call(call2_args, 0)); a.push([e, call2]); }; } for ( var d = {}, e = ["get_group"].concat( Array.prototype.slice.call(arguments, 0)), c = 0; c < j.length; c++) b(j[c]); return d; }; b._i.push([e, f, c]); }; b.__SV = 1.2; e = f.createElement("script"); e.type = "text/javascript"; e.async = !0; e.src = "undefined" !== typeof MIXPANEL_CUSTOM_LIB_URL ? MIXPANEL_CUSTOM_LIB_URL : "file:" === f.location.protocol && "//cdn.mxpnl.com/libs/mixpanel-2-latest.min.js".match(/^\/\//) ? "https://cdn.mxpnl.com/libs/mixpanel-2-latest.min.js" : "//cdn.mxpnl.com/libs/mixpanel-2-latest.min.js"; g = f.getElementsByTagName("script")[0]; g.parentNode.insertBefore(e, g); } })(document, window.mixpanel || []);
+        </script>
+        ```
 
-Afterward, start using the library by creating an instance of the Mixpanel object by calling [`.init()`](https://github.com/mixpanel/mixpanel-js/blob/475b2c6853dd49ffc625daac3925bf37940ec390/doc/readme.io/javascript-full-api-reference.md#mixpanelinit) using your [project token](/docs/orgs-and-projects/managing-projects#find-your-project-tokens) in your JS file. Any methods called from this object will target your project.
+        Afterward, create an instance of the Mixpanel object by calling [`.init()`](https://github.com/mixpanel/mixpanel-js/blob/475b2c6853dd49ffc625daac3925bf37940ec390/doc/readme.io/javascript-full-api-reference.md#mixpanelinit) using your [project token](/docs/orgs-and-projects/managing-projects#find-your-project-tokens) in your JS file. Any methods called from this object will target your project.
 
-```javascript
-// Create an instance of the Mixpanel object
-mixpanel.init('YOUR_PROJECT_TOKEN');
-```
+        ```javascript
+        // Create an instance of the Mixpanel object
+        mixpanel.init('YOUR_PROJECT_TOKEN');
+        ```
+    </Tabs.Tab>
+    <Tabs.Tab>
+        <Callout type="info">
+            The JS library is named `mixpanel-browser` in NPM and Yarn. This is to distinguish it from our server-side Node.js library, which is available as `mixpanel`.
+        </Callout>
 
-**Installing via NPM and Yarn**
+        The library is available as a package [on NPM](https://www.npmjs.com/package/mixpanel-browser) and [on Yarn](https://classic.yarnpkg.com/en/package/mixpanel-browser). Open your CLI, and run the following command in your root directory to install the library.
 
-<Callout type="info">
-    The JS library is named `mixpanel-browser` in NPM and Yarn. This is to distinguish it from our server-side Node.js library, which is available as `mixpanel`.
-</Callout>
+        ```bash
+        # via npm
+        npm install --save mixpanel-browser
 
-The library is available as a package [on NPM](https://www.npmjs.com/package/mixpanel-browser) and [on Yarn](https://classic.yarnpkg.com/en/package/mixpanel-browser). Open your CLI, and run the following command in your root directory to install the library.
+        # via yarn
+        yarn add mixpanel-browser
+        ```
 
-```bash
-# via npm
-npm install --save mixpanel-browser
+        After installation, import the Mixpanel class in your JS file and create the Mixpanel object using your project token.
 
-# via yarn
-yarn add mixpanel-browser
-```
+        ```javascript
+        // import mixpanel class from the library
+        import mixpanel from 'mixpanel-browser'
 
-After installation, import the Mixpanel class in your JS file and create the Mixpanel object using your project token.
-
-```javascript
-// import mixpanel class from the library
-import mixpanel from 'mixpanel-browser'
-
-// create an instance Mixpanel object using your project token
-mixpanel.init('YOUR_PROJECT_TOKEN');
-```
+        // create an instance Mixpanel object using your project token
+        mixpanel.init('YOUR_PROJECT_TOKEN');
+        ```
+    </Tabs.Tab>
+</Tabs>
 
 ### Library Configuration
 
@@ -287,46 +290,96 @@ There are a few other methods for setting profile properties. See a complete ref
 
 A few commonly used people methods are highlighted below:
 
-  * [`.people.set_once()`](https://github.com/mixpanel/mixpanel-js/blob/master/doc/readme.io/javascript-full-api-reference.md#mixpanelpeopleset_once) - set profile properties only if they do not exist (will not overwrite existing properties)
-  * [`.people.append()`](https://github.com/mixpanel/mixpanel-js/blob/master/doc/readme.io/javascript-full-api-reference.md#mixpanelpeopleappend) - append values to a list profile property
-  * [`.people.union()`](https://github.com/mixpanel/mixpanel-js/blob/master/doc/readme.io/javascript-full-api-reference.md#mixpanelpeopleunion) - append to a list property, excluding duplicates
-  * [`.people.increment()`](https://github.com/mixpanel/mixpanel-js/blob/master/doc/readme.io/javascript-full-api-reference.md#mixpanelpeopleincrement) - increment/decrement numeric profile properties
+<Tabs items={['.set_once()','.append()','.union()','.increment()']} >
+  <Tabs.Tab>
+    The [`.people.set_once()`](https://github.com/mixpanel/mixpanel-js/blob/master/doc/readme.io/javascript-full-api-reference.md#mixpanelpeopleset_once) method set profile properties only if they do not exist yet. If it is setting a profile property that already exists, it will be ignored.
 
-**Example Usage**
+    Use this method if you want to set profile properties without the risk of overwriting existing data.
 
-```javascript
-// set profile properties for user "1234"
-mixpanel.identify('1234');
-mixpanel.people.set({
-    name: 'Sam',
-    company: 'Store ABC',
-    age: 25,
-    roles: ['sales','engineer']
-});
+    **Example Usage**
+    ```javascript
+    // set profile properties for user "1234"
+    mixpanel.identify('1234');
+    mixpanel.people.set({
+        name: 'Sam',
+    });
 
-// "name" will not be update since it already exists
-// "email" will be added to profile
-mixpanel.people.set_once({
-    name: 'Samantha',
-    email: 'sam@mail.com'
-});
+    // "name" will not be update since it already exists
+    // "email" will be added to profile
+    mixpanel.people.set_once({
+        name: 'Samantha',
+        email: 'sam@mail.com'
+    });
+    ```
+  </Tabs.Tab>
+  <Tabs.Tab>
+    The [`.people.append()`](https://github.com/mixpanel/mixpanel-js/blob/master/doc/readme.io/javascript-full-api-reference.md#mixpanelpeopleappend) method append values to a list profile property.
 
-// append "legal" to "roles"
-// new "roles" value is ['sales','engineer','legal']
-mixpanel.people.append('roles', 'legal');
+    Use this method to add additional values to an existing list property instead of redefining the entire list.
 
-// append "engineer" to "roles"
-// will be ignored since "engineer" already exists in "roles"
-mixpanel.people.union('roles', 'engineer');
+    **Example Usage**
+    ```javascript
+    // set profile properties for user "1234"
+    mixpanel.identify('1234');
+    mixpanel.people.set({
+        name: 'Sam',
+        roles: ['sales','engineer']
+    });
 
-// increment "age" by 2
-// New age value is 25+2 = "27"
-mixpanel.people.increment('age',2);
+    // add "legal" to "roles"
+    // new "roles" value is ['sales','engineer','legal']
+    mixpanel.people.append('roles', 'legal');
 
-// use negative number to decrement
-// New age value is 27-5 = "22"
-mixpanel.people.increment('age',-5);
-```
+    // append() allows duplicates
+    // new "roles" values are ['sales','engineer','legal','legal']
+    mixpanel.people.append('roles', 'legal');
+    ```
+
+  </Tabs.Tab>
+  <Tabs.Tab>
+    The [`.people.union()`](https://github.com/mixpanel/mixpanel-js/blob/master/doc/readme.io/javascript-full-api-reference.md#mixpanelpeopleunion) method append new values to a list property, excluding duplicates.
+
+    Use this method to create a list profile property that only contains unique values without duplicates.
+
+    **Example Usage**
+    ```javascript
+    // set profile properties for user "1234"
+    mixpanel.identify('1234');
+    mixpanel.people.set({
+        name: 'Sam',
+        roles: ['sales','engineer']
+    });
+
+    // will be ignored since "engineer" already exists in "roles"
+    mixpanel.people.union('roles', 'engineer');
+
+    // add "legal" to "roles" since it doesn't exist yet
+    mixpanel.people.union('roles', 'legal');
+    ```
+  </Tabs.Tab>
+  <Tabs.Tab>
+    The [`.people.increment()`](https://github.com/mixpanel/mixpanel-js/blob/master/doc/readme.io/javascript-full-api-reference.md#mixpanelpeopleincrement) method increments a numeric property by a whole number.
+
+    Use this method to add to or subtract from your numeric property based on its current value.
+
+    **Example Usage**
+    ```javascript
+    // set profile properties for user "1234"
+    mixpanel.identify('1234');
+    mixpanel.people.set({
+        name: 'Sam',
+        age: 25,
+    });
+
+      // increment "age" by 2
+      mixpanel.people.increment('age',2);
+      
+      // use negative number to decrement
+      // decrement "age" by 5
+      mixpanel.people.increment('age',-5);
+      ```
+  </Tabs.Tab>
+</Tabs>
 
 ## Group Analytics
 
@@ -408,43 +461,102 @@ mixpanel.get_group('company','mixpanel').set({
 There are a few other methods for setting group profile properties under [`.group`](https://github.com/mixpanel/mixpanel-js/blob/master/doc/readme.io/javascript-full-api-reference.md#mixpanelgroup).
 
 A few commonly used group methods are highlighted below:
-  * [`.group.set_once()`](https://github.com/mixpanel/mixpanel-js/blob/master/doc/readme.io/javascript-full-api-reference.md#mixpanelgroupset_once) - set group properties only if they do not exist (will not overwrite existing properties)
-  * [`.group.unset()`](https://github.com/mixpanel/mixpanel-js/blob/master/doc/readme.io/javascript-full-api-reference.md#mixpanelgroupunset) - remove a group property from a group profile
-  * [`.group.union()`](https://github.com/mixpanel/mixpanel-js/blob/master/doc/readme.io/javascript-full-api-reference.md#mixpanelgroupunion) - merge a list with a list-valued group property, excluding duplicates
-  * [`.group.remove()`](https://github.com/mixpanel/mixpanel-js/blob/master/doc/readme.io/javascript-full-api-reference.md#mixpanelgroupremove) - remove a value from a list-valued group property
 
-**Example Usage**
-```javascript
-// assign the current user to the "mixpanel" company group
-mixpanel.set_group('company', 'mixpanel');
+<Tabs items={['.set_once()','.unset()','.union()','.remove()']}>
+  <Tabs.Tab>
+    The [`.group.set_once()`](https://github.com/mixpanel/mixpanel-js/blob/master/doc/readme.io/javascript-full-api-reference.md#mixpanelgroupset_once) method set group profile properties only if they do not exist yet. If it is setting a profile property that already exists, it will be ignored.
 
-// set group profile properties
-mixpanel.get_group('company','mixpanel').set({
-    name: 'Mixpanel',
-    features: ['reports','alerts','cohorts'],
-    employee_count: 100
-});
+    Use this method if you want to set group profile properties without the risk of overwriting existing data.
 
-// ignore "name" since it already exists
-// add "color" as a group profile prop
-mixpanel.get_group('company','mixpanel').set_once({
-    name: 'mp',
-    color: 'purple'
-});
+    **Example Usage**
+    ```javascript
+    // assign the current user to the "mixpanel" company group
+    mixpanel.set_group('company', 'mixpanel');
 
-// delete "color" from the group profile
-mixpanel.get_group('company','mixpanel').unset('color');
+    // set group profile properties
+    mixpanel.get_group('company','mixpanel').set({
+        name: 'Mixpanel',
+    });
 
-// add "data pipeline" to "features" prop
-// ignore "alert" since it is a duplicate value
-mixpanel.get_group('company','mixpanel').union('features', [
-    'data pipeline',
-    'alert'
-    ]);
+    // ignore "name" since it already exists
+    // add "color" as a group profile prop
+    mixpanel.get_group('company','mixpanel').set_once({
+        name: 'mp',
+        color: 'purple'
+    });
+    ```
 
-//remove "alert" from "features"
-mixpanel.get_group('company','mixpanel').remove('features', 'alert');
-```
+  </Tabs.Tab>
+  <Tabs.Tab>
+    The [`.group.unset()`](https://github.com/mixpanel/mixpanel-js/blob/master/doc/readme.io/javascript-full-api-reference.md#mixpanelgroupunset) method removes a group property from a group profile.
+
+    Use this method to delete unwanted group profile properties from a specific group profile.
+
+    **Example Usage**
+    ```javascript
+    // assign the current user to the "mixpanel" company group
+    mixpanel.set_group('company', 'mixpanel');
+
+    // set group profile properties
+    mixpanel.get_group('company','mixpanel').set({
+        name: 'Mixpanel',
+        color: 'purple'
+    });
+
+    // delete "color" from the group profile
+    mixpanel.get_group('company','mixpanel').unset('color');
+
+    // only "name" remains as group profile prop
+    ```
+
+  </Tabs.Tab>
+  <Tabs.Tab>
+    The [`.group.union()`](https://github.com/mixpanel/mixpanel-js/blob/master/doc/readme.io/javascript-full-api-reference.md#mixpanelgroupunion) method append new values to a list property, excluding duplicates.
+
+    Use this method to create a list group profile property that only contains unique values without duplicates.
+
+    **Example Usage**
+    ```javascript
+    // assign the current user to the "mixpanel" company group
+    mixpanel.set_group('company', 'mixpanel');
+
+    // set group profile properties
+    mixpanel.get_group('company','mixpanel').set({
+        name: 'Mixpanel',
+        features: ['reports','alerts','cohorts'],
+    });
+
+    // add "data pipeline" to "features" prop
+    // ignore "alert" since it is a duplicate value
+    mixpanel.get_group('company','mixpanel').union('features', [
+        'data pipeline',
+        'alert'
+        ]);
+    ```
+
+  </Tabs.Tab>
+  <Tabs.Tab>
+    The [`.group.remove()`](https://github.com/mixpanel/mixpanel-js/blob/master/doc/readme.io/javascript-full-api-reference.md#mixpanelgroupremove) method removes a value from a list-valued group profile property.
+
+    Use this method to remove specific values from a list without affecting all of the other values in the list.
+
+    **Example Usage**
+    ```javascript
+    // assign the current user to the "mixpanel" company group
+    mixpanel.set_group('company', 'mixpanel');
+
+    // set group profile properties
+    mixpanel.get_group('company','mixpanel').set({
+        name: 'Mixpanel',
+        features: ['reports','alerts','cohorts'],
+    });
+
+    //remove "alert" from "features"
+    // "feature" now contain values ["reports","cohorts"]
+    mixpanel.get_group('company','mixpanel').remove('features', 'alert');
+    ```
+  </Tabs.Tab>
+</Tabs>
 
 ## Debug Mode
 
