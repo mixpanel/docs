@@ -90,6 +90,13 @@ Cohorts are computed dynamically at the time that you use them in a query. Suppo
 
 This has a few implications. First, it means every time you run a query that uses the cohort, the cohort is freshly computed vs being a static snapshot of users. Second, it means that the set of users who are in the cohort are users that are in the cohort as of _right now_; it's _not_ a rolling window of users that have ever been in the cohort.
 
+### Cohorts and Time:
+A common question that customers want to answer is how certain user behaviour impact downstream behaviour. Should you use cohorts or funnels to answer the question of how many users watch a comedy video and then subscribe? Cohorts and filters will give you different answers.
+
+For example, consider this report: [https://mixpanel.com/s/4AuMRi](https://mixpanel.com/s/4AuMRi)
+
+For the cohort on Jan 1, I'm looking at the users who watched a comedy video in the last 30 days before Dec 25 and who then subscribed over the same period of time. However, for the funnel on Dec 25, I'm looking at the users who watched a comedy video on Dec 25, and who have then also subscribed anytime within the next 30 day period from Dec 25. This means that if a user subsequently subscribes on Jan 3, the funnel chart can change to take that conversion into account. In this case, if you care about the conversion window, i.e. the amount of time that a user has in order to count as a conversion, using funnels would give you a more accurate answer.
+
 
 ## Saving and Sharing Cohorts
 
