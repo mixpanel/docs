@@ -135,7 +135,7 @@ Mixpanel *mixpanel = [Mixpanel sharedInstance];
 // 20 seconds later...
 
 [self uploadImageWithSuccessHandler:^{
-    //// track "Image Upload" event with "Duration" event prop set to 20
+    // track "Image Upload" event with "Duration" event prop set to 20
     [mixpanel track:@"Image Upload"];
 }];
 ```
@@ -249,7 +249,7 @@ Mixpanel *mixpanel = [Mixpanel sharedInstance];
 
 Once your users are identified, create [user profiles](/docs/data-structure/user-profiles) by setting profile properties to describe them. Example profile properties include "name", "email", "company", and any other demographic details about the user.
 
-The Objective-C SDK provides a few methods for setting profile properties under the [`MixpanelPeople`](https://mixpanel.github.io/mixpanel-iphone/Classes/MixpanelPeople.html) accessible via [`.people`](https://mixpanel.github.io/mixpanel-iphone/Classes/Mixpanel.html#//api/name/people). These methods will trigger requests to the [/engage API endpoint](https://developer.mixpanel.com/reference/profile-set).
+The Objective-C SDK provides a few methods for setting profile properties under [`MixpanelPeople`](https://mixpanel.github.io/mixpanel-iphone/Classes/MixpanelPeople.html) accessible via [`.people`](https://mixpanel.github.io/mixpanel-iphone/Classes/Mixpanel.html#//api/name/people). These methods will trigger requests to the [/engage API endpoint](https://developer.mixpanel.com/reference/profile-set).
 
 ### Setting Profile Properties
 
@@ -276,7 +276,7 @@ Mixpanel *mixpanel = [Mixpanel sharedInstance];
 ```
 
 ### Other Types of Profile Updates
-There are a few other methods for setting profile properties. See a complete reference of the available methods [here](https://mixpanel.github.io/mixpanel-android/com/mixpanel/android/mpmetrics/MixpanelAPI.People.html)
+There are a few other methods for setting profile properties. See a complete reference of the available methods [here](https://mixpanel.github.io/mixpanel-iphone/Classes/MixpanelPeople.html)
 
 A few commonly used people methods are highlighted below:
 
@@ -356,7 +356,7 @@ A few commonly used people methods are highlighted below:
     ```
   </Tabs.Tab>
   <Tabs.Tab>
-    The [`.people increment:by`](https://mixpanel.github.io/mixpanel-android/com/mixpanel/android/mpmetrics/MixpanelAPI.People.html#increment(java.lang.String,double)) method increments a numeric property by a whole number.
+    The [`.people increment:by`](https://mixpanel.github.io/mixpanel-iphone/Classes/MixpanelPeople.html#//api/name/increment:by:) method increments a numeric property by a whole number.
 
     Use this method to add to or subtract from your numeric property based on its current value.
 
@@ -537,10 +537,6 @@ A few commonly used group methods are highlighted below:
     // ignore "alert" since it is a duplicate value
     [[mixpanel getGroup:@"company" groupID:@"mixpanel"] union:@"features"
           values:@["data pipeline","alert"]];
-
-    //remove "alert" from "features"
-    [[mixpanel getGroup:@"company" groupID:@"mixpanel"] remove:@"features" 
-          value:@"alert"];
     ```
 
   </Tabs.Tab>
@@ -614,7 +610,7 @@ end
 Learn more about [debugging](/docs/tracking-best-practices/debugging).
 
 ## Privacy-Friendly Tracking
-You have control over the data you send to Mixpanel. The Android SDK provide methods to help you protect user data.
+You have control over the data you send to Mixpanel. The Objective-C SDK provide methods to help you protect user data.
 
 Learn more about [Privacy](/docs/privacy/overview).
 
@@ -668,12 +664,12 @@ self.mixpanel.serverURL = @"https://api-eu.mixpanel.com";
 
 ### Disable Geolocation
 
-The Objective-C SDK parse the request IP address to generate geolocation properties for events and profiles. To disable geolocation, set the [`seIPAddressForGeoLocation`](https://mixpanel.github.io/mixpanel-iphone/Classes/Mixpanel.html#//api/name/useIPAddressForGeoLocation) flag to `NO`.
+The Objective-C SDK parse the request IP address to generate geolocation properties for events and profiles. To disable geolocation, set the [`useIPAddressForGeoLocation`](https://mixpanel.github.io/mixpanel-iphone/Classes/Mixpanel.html#//api/name/useIPAddressForGeoLocation) flag to `NO`.
 
 **Example Usage**
 ```objc Objective-C
 // disable geolocation
-[Mixpanel sharedInstance].seIPAddressForGeoLocation = NO;
+[Mixpanel sharedInstance].useIPAddressForGeoLocation = NO;
 ```
 
 ## Legacy Automatically Tracked Events
