@@ -282,7 +282,7 @@ The following guide outlines the steps required to set up the new Mixpanel proje
 
 3. Continue to set up the new project by following the guide [here](/docs/best-practices/project-setup). Configure the new project's settings by referring to your existing project’s settings. Some of the setup tasks may include:
 
-   - [Inviting users]([/docs/orgs-and-projects/roles-and-permissions#invite-users-to-a-project) to the project and granting them [Roles and Permissions](/docs/orgs-and-projects/roles-and-permissions#permissions)
+   - [Inviting users](/docs/orgs-and-projects/roles-and-permissions#invite-users-to-a-project) to the project and granting them [Roles and Permissions](/docs/orgs-and-projects/roles-and-permissions#permissions)
    - Creating [Teams](/docs/orgs-and-projects/roles-and-permissions#teams) and adding users to them
    -  Adding [group keys](/docs/data-structure/group-analytics#group-keys-in-project-settings) from Group Analytics
    -  Creating [data views](/docs/data-governance/data-views-and-classification#create-data-view) and adding users or teams to them
@@ -334,7 +334,7 @@ Update your tech stack with the new project’s token, API secret, and service a
 
 4. Other <b>3rd-party Platforms</b> integration: 
 
-   If you are sending events from 3rd-party platforms (i.e. attribution and messaging tools), make sure to update the Mixpanel project token (or API secret) and ensure that 3rd-party events sent to Mixpanel are compatible with Simplified ID Merge. Refer to this [section](docs/tracking-methods/id-management/identifying-users#how-should-i-link-identified-ids-from-3rd-party-systems) for more information. 
+   If you are sending events from 3rd-party platforms (i.e. attribution and messaging tools), make sure to update the Mixpanel project token (or API secret) and ensure that 3rd-party events sent to Mixpanel are compatible with Simplified ID Merge. Refer to this [section](/docs/tracking-methods/id-management/identifying-users#how-should-i-link-identified-ids-from-3rd-party-systems) for more information. 
 
 <br />
 
@@ -430,7 +430,7 @@ As part of creating the new Simplfied ID Merge project, you would also need to m
    Before you move any Board, it's important to note the following:
    - Duplicate the existing Board and move the new copy into the new project. This would minimise impact where users are still using Boards and reports in the old project.
    - Any saved cohorts, custom events, custom properties, lookup tables would need to be created first as they don't get automatically moved as part of the Move Board. 
-   - You may need to replicate the permissions for the moved Board should you have very specific [sharing permissions](docs/boards/advanced#sharing) set in the existing project.
+   - You may need to replicate the permissions for the moved Board should you have very specific [sharing permissions](/docs/boards/advanced#sharing) set in the existing project.
    - Double check that all reports (especially those that use cohorts, custom events, custom properties, lookup tables) are working properly.
 
 <br />
