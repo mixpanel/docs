@@ -9,7 +9,7 @@ updatedAt: "2023-09-26T21:06:37.416Z"
 [block:callout]
 {
   "type": "info",
-  "body": "The $merge event payload is only useful for projects using the Original ID Merge system; it has no functionality in other ID management systems. Please review [this section of our documentation](https://docs.mixpanel.com/docs/tracking-methods/id-management/identity-management#identity-merge-apis) for more information."
+  "body": "The $merge event payload is only useful for projects using the Original ID Merge system; it has no functionality in other ID management systems. Please review [this section of our documentation](https://docs.mixpanel.com/docs/tracking-methods/id-management#identity-merge-apis) for more information."
 }
 [/block]
 

@@ -13,4 +13,4 @@ updatedAt: "2023-08-09T00:38:54.824Z"
  }
 [/block]
 
-These APIs help you manage Data Pipelines in Mixpanel. Learn more about our Data Pipelines add-on [here](https://docs.mixpanel.com/docs/other-bits/data-pipelines)
+These APIs help you manage Data Pipelines in Mixpanel. Learn more about our Data Pipelines add-on [here](https://docs.mixpanel.com/docs/data-pipelines)

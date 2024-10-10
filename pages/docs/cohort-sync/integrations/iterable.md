@@ -55,7 +55,7 @@ The Mixpanel Cohort is available in the Audience list. Mixpanel exports cohort d
 
 ## Matching Users between Mixpanel and Iterable
 
-> **Warning:** Projects using the [simplified ID merge system](/docs/tracking-methods/id-management/identity-management#identity-merge-apis) must have the `$user_id` in Mixpanel match the user identifier in the partner service. Using any alternative partner properties to match users between tools may result in partner events not being attributed to the correct user in Mixpanel. Any partner properties mentioned in the below section are primarily applicable to projects on the original ID merge system.
+> **Warning:** Projects using the [simplified ID merge system](/docs/tracking-methods/id-management#identity-merge-apis) must have the `$user_id` in Mixpanel match the user identifier in the partner service. Using any alternative partner properties to match users between tools may result in partner events not being attributed to the correct user in Mixpanel. Any partner properties mentioned in the below section are primarily applicable to projects on the original ID merge system.
 
 The best way to match users from Mixpanel to Iterable is to set the `$iterable_user_id` profile property with the user's Iterable User ID. This also prevents Iterable from overwriting the Iterable User ID with the Mixpanel Distinct ID upon cohort sync from Mixpanel.
 

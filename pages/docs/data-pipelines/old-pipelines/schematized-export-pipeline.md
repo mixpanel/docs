@@ -48,7 +48,7 @@ Since user profiles are mutable, the data in the table is replaced every time an
 
 ## User Identity Resolution
 
-Exports from projects with [ID merge enabled](/docs/tracking-methods/id-management/identity-management#identity-merge-apis) will need to use the identity mapping table to replicate the user counts seen in UI reporting. When ID merge is enabled, Mixpanel assigns multiple identifiers to an individual. Mixpanel resolves these into one identifier, and uses that for reporting unique user counts. Read more about how Mixpanel resolves IDs [here](/docs/tracking-methods/id-management/identifying-users-simplified#example-user-flows).
+Exports from projects with [ID merge enabled](/docs/tracking-methods/id-management#identity-merge-apis) will need to use the identity mapping table to replicate the user counts seen in UI reporting. When ID merge is enabled, Mixpanel assigns multiple identifiers to an individual. Mixpanel resolves these into one identifier, and uses that for reporting unique user counts. Read more about how Mixpanel resolves IDs [here](/docs/tracking-methods/id-management/identifying-users-simplified#example-user-flows).
 
 Pipelines export event data as they appear when Mixpanel ingests them. This means exported event data before sending alias event has the original user identifier, **not** the resolved identifier. Use the identity mappings table to accurately count unique users. This will allow you to recreate the identity cluster that Mixpanel creates.
 

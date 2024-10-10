@@ -1,6 +1,6 @@
 # Track Events
 
-import { Tab, Tabs } from "nextra-theme-docs";
+import { Tabs } from "nextra/components";
 
 import ExtendedButton from "/components/ExtendedButton/ExtendedButton";
 import ExtendedTabs from "/components/ExtendedTabs/ExtendedTabs";
@@ -19,7 +19,7 @@ Replace `Sign Up` with a unique identifier for the event. Passing additional i
 
 <ExtendedTabs urlParam="sdk" urlToItemsMap={dataItems}>
 
-<Tab>
+<Tabs.Tab>
 ```js Javascript
 mixpanel.track('Sign Up', {
   'Signup Type': 'Referral'
@@ -32,9 +32,9 @@ mixpanel.track('Sign Up', {
 _ Video: [Debug Common Issues When Installing Mixpanel on Web](https://www.loom.com/embed/fbba03274dc441b49b578e8a734b1d99).
 _ Docs: [Read the Full Javascript SDK Docs](/docs/tracking-methods/sdks/javascript/) \* Github: [Browse the Open Source SDKs](https://github.com/mixpanel)
 
-</Tab>
+</Tabs.Tab>
 
-<Tab>
+<Tabs.Tab>
 ```python Python
 # Note: you must supply the USER_ID
 mp.track('USER_ID', 'Sign Up',  {
@@ -48,9 +48,9 @@ mp.track('USER_ID', 'Sign Up',  {
 _ Docs: [Read the Python SDK Doc](/docs/tracking-methods/sdks/python/)
 _ Github: [Browse the Open Source SDKs](https://github.com/mixpanel)
 
-</Tab>
+</Tabs.Tab>
 
-<Tab>
+<Tabs.Tab>
 ```shell php
 $mp->track("button clicked", array("label" => "sign-up"));
 ```
@@ -61,9 +61,9 @@ $mp->track("button clicked", array("label" => "sign-up"));
 _ Docs: [Read the Python SDK Doc](/docs/tracking-methods/sdks/php/)
 _ Github: [Browse the Open Source SDKs](https://github.com/mixpanel)
 
-</Tab>
+</Tabs.Tab>
 
-<Tab>
+<Tabs.Tab>
 ```js Node.js
 // Note: you must supply the USER_ID
 mixpanel.track("Sign Up", {
@@ -78,9 +78,9 @@ mixpanel.track("Sign Up", {
 _ Docs: [Read the Node.js SDK Doc](/docs/tracking-methods/sdks/nodejs/)
 _ Github: [Browse the Open Source SDKs](https://github.com/mixpanel)
 
-</Tab>
+</Tabs.Tab>
 
-<Tab>
+<Tabs.Tab>
 ```go Go
 exampleEvent = mp.NewEvent("Sign Up", "USER_ID", map[string]any{
     "Signup Type": "Referral",
@@ -99,9 +99,9 @@ exampleUser,
 **More resources:**
     * Docs: [Read the Go SDK Doc](/docs/tracking-methods/sdks/go/)
     * Github: [Browse the Open Source SDKs](https://github.com/mixpanel)
-</Tab>
+</Tabs.Tab>
 
-<Tab>
+<Tabs.Tab>
 ```ruby Ruby
 # Note: you must supply the USER_ID
 mp.track('USER_ID', 'Sign Up', {
@@ -115,9 +115,9 @@ mp.track('USER_ID', 'Sign Up', {
 _ Docs: [Read the Ruby SDK Doc](/docs/tracking-methods/sdks/ruby/)
 _ Github: [Browse the Open Source SDKs](https://github.com/mixpanel)
 
-</Tab>
+</Tabs.Tab>
 
-<Tab>
+<Tabs.Tab>
 ```java Java
 import com.mixpanel.mixpanelapi.ClientDelivery;
 
@@ -142,9 +142,9 @@ mixpanel.deliver(delivery);
 **More resources:**
     * Docs: [Read the Java SDK Doc](/docs/tracking-methods/sdks/java/)
     * Github: [Browse the Open Source SDKs](https://github.com/mixpanel)
-</Tab>
+</Tabs.Tab>
 
-<Tab>
+<Tabs.Tab>
 ```javascript
 mixpanel.track("Sign Up", {
   "Signup Type": "Referral"
@@ -157,9 +157,9 @@ mixpanel.track("Sign Up", {
 _ Docs: [Read the React Native SDK Doc](/docs/tracking-methods/sdks/react-native/)
 _ Github: [Browse the Open Source SDKs](https://github.com/mixpanel)
 
-</Tab>
+</Tabs.Tab>
 
-<Tab>
+<Tabs.Tab>
 ```java
 mixpanel.track('Sign Up', {
   'Signup Type': 'Referral'
@@ -173,9 +173,9 @@ mixpanel.track('Sign Up', {
 - Docs: [Read the Flutter SDK Docs](/docs/tracking-methods/sdks/flutter/)
 - Github: [Browse the Open Source SDKs](https://github.com/mixpanel)
 
-</Tab>
+</Tabs.Tab>
 
-<Tab>
+<Tabs.Tab>
 ```objc
 [mixpanel track:@"Signed Up" properties:
     @{ @"Signup Type": @"Referral" }
@@ -189,9 +189,9 @@ mixpanel.track('Sign Up', {
 - Docs: [Read the iOS (Objective-C) SDK Doc](/docs/tracking-methods/sdks/ios/)
 - Github: [Browse the Open Source SDKs](https://github.com/mixpanel)
 
-</Tab>
+</Tabs.Tab>
 
-<Tab>
+<Tabs.Tab>
 ```swift
 Mixpanel.mainInstance().track(event:"Sign Up", properties: [
     "Signup Type": "Referral",
@@ -204,9 +204,9 @@ Mixpanel.mainInstance().track(event:"Sign Up", properties: [
 _ Docs: [Read the iOS (Swift) SDK Doc](/docs/tracking-methods/sdks/swift/)
 _ Github: [Browse the Open Source SDKs](https://github.com/mixpanel)
 
-</Tab>
+</Tabs.Tab>
 
-<Tab>
+<Tabs.Tab>
 ```java
 JSONObject props = new JSONObject();
 props.put("Signup Type", "Referral");
@@ -219,9 +219,9 @@ mp.track("Signed Up", props);
 _ Docs: [Read the Android SDK Doc](/docs/tracking-methods/sdks/android/)
 _ Github: [Browse the Open Source SDKs](https://github.com/mixpanel)
 
-</Tab>
+</Tabs.Tab>
 
-<Tab>
+<Tabs.Tab>
 ```csharp
 var props = new Value();
 props["Signup Type"] =  "Referral";
@@ -234,9 +234,9 @@ Mixpanel.Track('Sign up', props);
 _ Docs: [Read the Unity SDK Doc](/docs/tracking-methods/sdks/unity/)
 _ Github: [Browse the Open Source SDKs](https://github.com/mixpanel)
 
-</Tab>
+</Tabs.Tab>
 
-<Tab>
+<Tabs.Tab>
 If you don't see an SDK or an integration in your language, you can send events to our API directly.
 
 Here's a sample script. Replace `YOUR_TOKEN` with your project token. You can find your token [here](https://mixpanel.com/settings/project).
@@ -284,7 +284,7 @@ Our Import API is built to ingest billions of events per day across our customer
 
 All of our sample code transparently retries and backoff from rate limit exceptions. If you require a higher-limit for a 1-time backfill, please reach out to us at apis@mixpanel.com.
 
-</Tab>
+</Tabs.Tab>
 
 </ExtendedTabs>
 
@@ -304,7 +304,7 @@ All of our sample code transparently retries and backoff from rate limit excepti
     You're Ready to Start Using Mixpanel
   </h2>
   <p>
-    It's time to create your first [report](/docs/reports/overview) or use one
+    It's time to create your first [report](/docs/reports) or use one
     of our [many templates](/docs/boards/templates).
   </p>
   <br></br>
