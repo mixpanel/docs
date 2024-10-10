@@ -1,0 +1,40 @@
+{
+  "projectBaseUrl":"https:\/\/docs.mixpanel.com",
+  "ignorePatterns": [
+    {
+      "pattern": ".*{PROJECT_ID}.*",
+      "reason": "ignore links with dynamic parameters"
+    },
+    {
+      "pattern": "^.*.(png|jpg|jpeg|webp|gif|mp4|svg)$",
+      "reason": "ignore media since we can't predict all output urls"
+    },
+    {
+      "pattern": "^.*.mdx$",
+      "reason": "ignore mdx"
+    },
+    {
+      "pattern": "^.*loom.com.*",
+      "reason": "ignore links from Loom embeds"
+    }
+  ],
+  "replacementPatterns": [
+    {
+      "pattern": "^\/docs\/",
+      "replacement": "https:\/\/docs.mixpanel.com\/docs\/"
+    },
+    {
+      "pattern": "^\/guides\/",
+      "replacement": "https:\/\/docs.mixpanel.com\/guides\/"
+    },
+    {
+      "pattern": "^\/changelogs\/",
+      "replacement": "https:\/\/docs.mixpanel.com\/changelogs\/"
+    }
+  ],
+  "timeout": "20s",
+  "retryOn429": true,
+  "retryCount": 5,
+  "fallbackRetryDelay": "30s",
+  "aliveStatusCodes": [200, 206, 0]
+}
