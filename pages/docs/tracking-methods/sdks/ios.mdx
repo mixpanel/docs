@@ -1,4 +1,4 @@
-import { Callout } from 'nextra/components'
+import { Callout, Tabs } from 'nextra/components'
 
 # Mixpanel SDKs: iOS (Objective-C)
 
@@ -12,47 +12,58 @@ The [Full API Reference](https://mixpanel.github.io/mixpanel-iphone/index.html),
 
 You can install the Objective-C library by using CocoaPods, Carthage, or Swift Package Manager.
 
-**Installation Option 1: CocoaPods**
+<Tabs items={['CocoaPods', 'Carthage', 'Swift Package Manager']}>
+  <Tabs.Tab>
+    1. Install CocoaPods by typing the following in your command line:
 
-1. Install CocoaPods by typing the following in your command line:
+    ```bash
+    //install CocoaPods
+    gem install cocoapods
+    ```
 
-```bash
-gem install cocoapods
-```
+    2. After install CocoaPods, create a local CocoaPods spec mirror by running the following:
 
-2. Creae a local CocoaPods spec mirror:
+    ```bash
+    //Create CocoaPods spec mirror
+    pod setup
+    ```
 
-```bash
-pod setup
-```
+    3. Then navigate to your Xcode project directory and create a Podfile by running the following:
 
-3. Navigate to your Xcode project directory and create a Podfile:
+    ```bash
+    // create Podfile in project directory
+    pod init
+    ```
 
-```bash
-pod init
-```
+    4. Open the Podfile that was generated and add the Mixpanel library to your dependencies:
 
-4. Edit the Podfile that is generated from step 3, adding the following line: `pod 'Mixpanel'`
+    ```ruby Ruby
+    // add Mixpanel library to dependencies
+    target 'MyApp' do
+      pod 'Mixpanel'
+    end
+    ```
 
-5. Install the Mixpanel library and create a new Xcode workspace by running the following in the Xcode project directory:
+    5. Install the Mixpanel library and create a new Xcode workspace by running the following in the Xcode project directory:
+    ```bash
+    // install library in your dependencies
+    pod install
+    ```
+  </Tabs.Tab>
+  <Tabs.Tab>
+    Mixpanel supports [Carthage](https://github.com/Carthage/Carthage#quick-start) to package your dependencies as a framework. Include the following dependency in your Cartfile:
 
-```bash
-pod install
-```
+    ```bash
+    // add Mixpanel library to your dependencies
+    github "mixpanel/mixpanel-iphone"
+    ```
+  </Tabs.Tab>
+  <Tabs.Tab>
+    1. In Xcode, select File \> Add Packages...
 
-**Installation Option 2: Carthage**
-
-Mixpanel supports [Carthage](https://github.com/Carthage/Carthage#quick-start) to package your dependencies as a framework. Include the following dependency in your Cartfile:
-
-```bash
-github "mixpanel/mixpanel-iphone"
-```
-
-**Installation Option 3: Swift Package Manager**
-
-1. In Xcode, select File > Add Packages...
-
-2. Enter the package URL for [this repository](https://github.com/mixpanel/mixpanel-iphone) and select version v4.0.0 or above.
+    2. Enter the package URL for [this repository](https://github.com/mixpanel/mixpanel-iphone) and select version v4.0.0 or above.
+  </Tabs.Tab>
+</Tabs>
 
 After installing the library, import the library into `AppDelegate.m` and create an instance of Mixpanel using [`sharedInstanceWithToken:`](https://mixpanel.github.io/mixpanel-iphone/Classes/Mixpanel.html#//api/name/sharedInstanceWithToken:) with your project token inside [`application:didFinishLaunchingWithOptions:`](https://developer.apple.com/documentation/uikit/uiapplicationdelegate#//apple_ref/occ/intfm/UIApplicationDelegate/application:willFinishLaunchingWithOptions:).
 
@@ -269,46 +280,105 @@ There are a few other methods for setting profile properties. See a complete ref
 
 A few commonly used people methods are highlighted below:
 
-  * [`.people setOnce:`](https://mixpanel.github.io/mixpanel-iphone/Classes/MixpanelPeople.html#//api/name/setOnce:) - set profile properties only if they do not exist (will not overwrite existing properties)
-  * [`.people append:`](https://mixpanel.github.io/mixpanel-iphone/Classes/MixpanelPeople.html#//api/name/append:) - append values to a list profile property
-  * [`.people union:`](https://mixpanel.github.io/mixpanel-iphone/Classes/MixpanelPeople.html#//api/name/union:) - append to a list property, excluding duplicates
-  * [`.people increment:by`](https://mixpanel.github.io/mixpanel-android/com/mixpanel/android/mpmetrics/MixpanelAPI.People.html#increment(java.lang.String,double)) - increment/decrement numeric profile properties
+<Tabs items={['setOnce:', 'append:', 'union:','increment:by']} >
+  <Tabs.Tab>
+    The [`.people setOnce:`](https://mixpanel.github.io/mixpanel-iphone/Classes/MixpanelPeople.html#//api/name/setOnce:) method set profile properties only if they do not exist yet. If it is setting a profile property that already exists, it will be ignored.
 
-**Example Usage**
-```objc Objective-C
-Mixpanel *mixpanel = [Mixpanel sharedInstance];
+    Use this method if you want to set profile properties without the risk of overwriting existing data.
 
-// set profile properties for user "12345"
-[mixpanel identify:@"12345"];
-[mixpanel.people set:@{
-  @"name": @"Sam",
-  @"company": @"Store ABC",
-  @"age": @25,
-  @"roles": @["sales","engineer"]
-  }];
+    **Example Usage**
+    ```objc Objective-C
+    Mixpanel *mixpanel = [Mixpanel sharedInstance];
 
-// will be ignored since "name" already exists
-[mixpanel.people setOnce:@{@"name": @"Samantha"}];
+    // set profile properties for user "12345"
+    [mixpanel identify:@"12345"];
+    [mixpanel.people set:@{@"name": @"Sam"}];
 
-// append "legal" to "roles"
-// new "roles" value is ['sales','engineer','legal']
-[mixpanel.people append:@{
-  @"roles": @"legal"
-}];
+    // will be ignored since "name" already exists
+    [mixpanel.people setOnce:@{@"name": @"Samantha"}];
 
-// append "engineer" to "roles"
-// will be ignored since "engineer" already exists in "roles"
-[mixpanel.people append:@{
-  @"roles": @"engineer"
-}];
+    // set "location" property since it does not exist
+    [mixpanel.people setOnce:@{@"location": @"global"}];
+    ```
+  </Tabs.Tab>
+  <Tabs.Tab>
+    The [`.people append:`](https://mixpanel.github.io/mixpanel-iphone/Classes/MixpanelPeople.html#//api/name/append:) method append values to a list profile property.
 
-// increment "age" by 2
-// New age value is 25+2 = "27"
-[mixpanel.people increment:@"age" by:@2];
-// use negative number to decrement
-// New age value is 27-5 = "22"
-[mixpanel.people increment:@"age" by:@-5];
-```
+    Use this method to add additional values to an existing list property instead of redefining the entire list.
+
+    **Example Usage**
+    ```objc Objective-C
+    Mixpanel *mixpanel = [Mixpanel sharedInstance];
+
+    // set profile properties for user "12345"
+    [mixpanel identify:@"12345"];
+    [mixpanel.people set:@{
+      @"roles": @["sales","engineer"]
+      }];
+
+    // add "legal" to "roles"
+    [mixpanel.people append:@{
+      @"roles": @"legal"
+    }];
+
+    // new "roles" values are ['sales','engineer','legal']
+    ```
+
+  </Tabs.Tab>
+  <Tabs.Tab>
+    The [`.people union:`](https://mixpanel.github.io/mixpanel-iphone/Classes/MixpanelPeople.html#//api/name/union:) method append new values to a list property, excluding duplicates.
+
+    Use this method to create a list profile property that only contains unique values without duplicates.
+
+    **Example Usage**
+    ```objc Objective-C
+    Mixpanel *mixpanel = [Mixpanel sharedInstance];
+
+    // set profile properties for user "12345"
+    [mixpanel identify:@"12345"];
+    [mixpanel.people set:@{
+      @"roles": @["sales","engineer"]
+      }];
+
+    // will be ignored since "engineer" already exists in "roles"
+    [mixpanel.people union:@{
+      @"roles": @"engineer"
+    }];
+    // "roles" = ['sales','engineer']
+
+    // add "engineer" to "roles"
+    // append: allows duplicates
+    [mixpanel.people append:@{
+      @"roles": @"engineer"
+    }];
+    // "roles" = ['sales','engineer','engineer']
+
+    ```
+  </Tabs.Tab>
+  <Tabs.Tab>
+    The [`.people increment:by`](https://mixpanel.github.io/mixpanel-android/com/mixpanel/android/mpmetrics/MixpanelAPI.People.html#increment(java.lang.String,double)) method increments a numeric property by a whole number.
+
+    Use this method to add to or subtract from your numeric property based on its current value.
+
+    **Example Usage**
+    ```objc Objective-C
+    Mixpanel *mixpanel = [Mixpanel sharedInstance];
+
+    // set profile properties for user "12345"
+    [mixpanel identify:@"12345"];
+    [mixpanel.people set:@{
+      @"age": @25
+      }];
+
+    // increment "age" by 2
+    [mixpanel.people increment:@"age" by:@2];
+
+    // use negative number to decrement
+    //decrement "age" by 5
+    [mixpanel.people increment:@"age" by:@-5];
+    ```
+  </Tabs.Tab>
+</Tabs>
 
 ## Group Analytics
 
@@ -383,48 +453,124 @@ Mixpanel *mixpanel = [Mixpanel sharedInstance];
 
 // specify the target group using the group_key and group_id using getGroup:
 // set "industry" as a group profile prop to "analytics" using set:
-[[mixpanel getGroup:@"company", groupID:@“mixpanel”] set:@{@"industry": @"analytics"}];
+[[mixpanel getGroup:@"company", groupID:@“mixpanel”] set:@{
+        @"industry": @"analytics"}];
 ```
 
 ### Other Group Profile Methods
+
 See all of the methods under the MixpanelGroup class [here](https://mixpanel.github.io/mixpanel-iphone/Classes/MixpanelGroup.html).
 
 A few commonly used group methods are highlighted below:
-  * [`getGroup:groupID setOnce:`](https://mixpanel.github.io/mixpanel-iphone/Classes/MixpanelGroup.html#//api/name/setOnce:) - set group properties only if they do not exist (will not overwrite existing properties)
-  * [`getGroup:groupID unset:`](https://mixpanel.github.io/mixpanel-iphone/Classes/MixpanelGroup.html#//api/name/unset:) - remove a group property from a group profile
-  * [`getGroup:groupID union:values:`](https://mixpanel.github.io/mixpanel-iphone/Classes/MixpanelGroup.html#//api/name/union:values:) - merge a list with a list-valued group property, excluding duplicates
-  * [`getGroup:groupID remove:value:`](https://mixpanel.github.io/mixpanel-iphone/Classes/MixpanelGroup.html#//api/name/remove:value:) - remove a value from a list-valued group property
 
-**Example Usage**
-```objc Objective-C
-Mixpanel *mixpanel = [Mixpanel sharedInstance];
+<Tabs items={['setOnce:', 'unset:', 'union:values:','remove:value:']}>
+  <Tabs.Tab>
+    The [`getGroup:groupID setOnce:`](https://mixpanel.github.io/mixpanel-iphone/Classes/MixpanelGroup.html#//api/name/setOnce:) method set group profile properties only if they do not exist yet. If it is setting a profile property that already exists, it will be ignored.
 
-// assign the current user to the "mixpanel" company group
-[mixpanel setGroup:@"company" groupIDs:@"mixpanel"];
+    Use this method if you want to set group profile properties without the risk of overwriting existing data.
 
-// set group profile properties
-[[mixpanel getGroup:@"company" groupID:@"mixpanel"] set:@{
-  @"name": @"Mixpanel",
-  @"features": @["reports","alerts","cohorts"],
-  @"employee_count": @100
-  }];
+    **Example Usage**
+    ```objc Objective-C
+    Mixpanel *mixpanel = [Mixpanel sharedInstance];
 
-// ignored since "name" is already exists
-[[mixpanel getGroup:@"company" groupID:@"mixpanel"] setOnce:@{
-      @"name": @"mp"}];
+    // assign the current user to the "mixpanel" company group
+    [mixpanel setGroup:@"company" groupIDs:@"mixpanel"];
 
-// delete "employee_count" from the group profile
-[[mixpanel getGroup:@"company" groupID:@"mixpanel"] unset:@"employee_count"];
+    // set group profile properties
+    [[mixpanel getGroup:@"company" groupID:@"mixpanel"] set:@{
+      @"name": @"Mixpanel"
+      }];
 
-// add "data pipeline" to "features" prop
-// ignore "alert" since it is a duplicate value
-[[mixpanel getGroup:@"company" groupID:@"mixpanel"] union:@"features"
-      values:@["data pipeline","alert"]];
+    // ignored since "name" is already exists
+    [[mixpanel getGroup:@"company" groupID:@"mixpanel"] setOnce:@{
+          @"name": @"mp"}];
+    
+    // set "country" group prop since it does not exist
+    [[mixpanel getGroup:@"company" groupID:@"mixpanel"] setOnce:@{
+          @"country": @"us"}];
 
-//remove "alert" from "features"
-[[mixpanel getGroup:@"company" groupID:@"mixpanel"] remove:@"features" 
-      value:@"alert"];
-```
+    ```
+  </Tabs.Tab>
+  <Tabs.Tab>
+    The [`getGroup:groupID unset:`](https://mixpanel.github.io/mixpanel-iphone/Classes/MixpanelGroup.html#//api/name/unset:) method removes a group property from a group profile.
+
+    Use this method to delete unwanted group profile properties from a specific group profile.
+
+    **Example Usage**
+    ```objc Objective-C
+    Mixpanel *mixpanel = [Mixpanel sharedInstance];
+
+    // assign the current user to the "mixpanel" company group
+    [mixpanel setGroup:@"company" groupIDs:@"mixpanel"];
+
+    // set group profile properties
+    [[mixpanel getGroup:@"company" groupID:@"mixpanel"] set:@{
+      @"name": @"Mixpanel",
+      @"employee_count": @100
+      }];
+
+    // delete "employee_count" from the group profile
+    [[mixpanel getGroup:@"company" groupID:@"mixpanel"] unset:@"employee_count"];
+
+    // The group only has the "name" property remaining
+    ```
+  </Tabs.Tab>
+  <Tabs.Tab>
+    The [`getGroup:groupID union:values:`](https://mixpanel.github.io/mixpanel-iphone/Classes/MixpanelGroup.html#//api/name/union:values:) method append new values to a list property, excluding duplicates.
+
+    Use this method to create a list profile property that only contains unique values without duplicates.
+
+    **Example Usage**
+    ```objc Objective-C
+    Mixpanel *mixpanel = [Mixpanel sharedInstance];
+
+    // assign the current user to the "mixpanel" company group
+    [mixpanel setGroup:@"company" groupIDs:@"mixpanel"];
+
+    // set group profile properties
+    [[mixpanel getGroup:@"company" groupID:@"mixpanel"] set:@{
+      @"name": @"Mixpanel",
+      @"features": @["reports","alerts","cohorts"],
+      }];
+
+    // add "data pipeline" to "features" prop
+    // ignore "alert" since it is a duplicate value
+    [[mixpanel getGroup:@"company" groupID:@"mixpanel"] union:@"features"
+          values:@["data pipeline","alert"]];
+
+    //remove "alert" from "features"
+    [[mixpanel getGroup:@"company" groupID:@"mixpanel"] remove:@"features" 
+          value:@"alert"];
+    ```
+
+  </Tabs.Tab>
+  <Tabs.Tab>
+    The [`getGroup:groupID remove:value:`](https://mixpanel.github.io/mixpanel-iphone/Classes/MixpanelGroup.html#//api/name/remove:value:) method removes a value from a list-valued group profile property.
+
+    Use this method to remove specific values from a list without affecting all of the other values in the list.
+
+    **Example Usage**
+    ```objc Objective-C
+    Mixpanel *mixpanel = [Mixpanel sharedInstance];
+
+    // assign the current user to the "mixpanel" company group
+    [mixpanel setGroup:@"company" groupIDs:@"mixpanel"];
+
+    // set group profile properties
+    [[mixpanel getGroup:@"company" groupID:@"mixpanel"] set:@{
+      @"name": @"Mixpanel",
+      @"features": @["reports","alerts","cohorts"],
+      }];
+
+    //remove "alert" from "features"
+    [[mixpanel getGroup:@"company" groupID:@"mixpanel"] remove:@"features" 
+          value:@"alert"];
+    
+    // "features" = ["reports","cohorts"]
+    ```
+  </Tabs.Tab>
+</Tabs>
+
 
 ## Debug Mode
 
