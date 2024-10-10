@@ -91,13 +91,6 @@ $border-radius-lg: 100px;
     font-size: 14px;
     line-height: 20px;
     padding: 8px;
-
-    //hover effect
-    & span:hover {
-      font-weight: 700;
-      // color: colors.$purple100;
-      // text-decoration: underline !important;
-    }
   }
 
   .top-nav-search-bar {
@@ -659,30 +652,10 @@ article img {
 
     // bold the parent links, first two are desktop version, second two are mobile version
     // extra specificity is required because we want to distinguish between the top level and nested files
-    .nextra-scrollbar
-      > ._transform-gpu
-      > ul
-      > li
-      > a,
-    .nextra-scrollbar
-      > ._transform-gpu
-      > ul
-      > li
-      > button,
-    .nextra-scrollbar
-      > ul
-      > li.open
-      > ._transform-gpu
-      > ul
-      > li
-      > a,
-    .nextra-scrollbar
-      > ul
-      > li.open
-      > ._transform-gpu
-      > ul
-      > li
-      > button {
+    .nextra-scrollbar > ._transform-gpu > ul > li > a,
+    .nextra-scrollbar > ._transform-gpu > ul > li > button,
+    .nextra-scrollbar > ul > li.open > ._transform-gpu > ul > li > a,
+    .nextra-scrollbar > ul > li.open > ._transform-gpu > ul > li > button {
       font-weight: 500;
     }
 
@@ -1344,30 +1317,10 @@ article img {
 
     // bold the parent links, first two are desktop version, second two are mobile version
     // extra specificity is required because we want to distinguish between the top level and nested files
-    .nextra-scrollbar
-      > ._transform-gpu
-      > ul
-      > li
-      > a,
-    .nextra-scrollbar
-      > ._transform-gpu
-      > ul
-      > li
-      > button,
-    .nextra-scrollbar
-      > ul
-      > li.open
-      > ._transform-gpu
-      > ul
-      > li
-      > a,
-    .nextra-scrollbar
-      > ul
-      > li.open
-      > ._transform-gpu
-      > ul
-      > li
-      > button {
+    .nextra-scrollbar > ._transform-gpu > ul > li > a,
+    .nextra-scrollbar > ._transform-gpu > ul > li > button,
+    .nextra-scrollbar > ul > li.open > ._transform-gpu > ul > li > a,
+    .nextra-scrollbar > ul > li.open > ._transform-gpu > ul > li > button {
       font-weight: 500;
     }
 
