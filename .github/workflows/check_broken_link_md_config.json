@@ -6,11 +6,15 @@
       "reason": "ignore links with dynamic parameters"
     },
     {
-      "pattern": "^.*.(png|jpg|jpeg|webp|gif|mp4)$",
+      "pattern": "^.*.(png|jpg|jpeg|webp|gif|mp4|svg)$",
       "reason": "ignore media since we can't predict all output urls"
     },
     {
-      "pattern": "^.*loom\.com.*",
+      "pattern": "^.*.mdx$",
+      "reason": "ignore mdx"
+    },
+    {
+      "pattern": "^.*loom.com.*",
       "reason": "ignore links from Loom embeds"
     }
   ],
@@ -32,5 +36,5 @@
   "retryOn429": true,
   "retryCount": 5,
   "fallbackRetryDelay": "30s",
-  "aliveStatusCodes": [200, 206]
+  "aliveStatusCodes": [200, 206, 0]
 }
