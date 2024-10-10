@@ -1,4 +1,4 @@
-import { Callout } from 'nextra/components'
+import { Callout, Tabs } from 'nextra/components'
 
 # Mixpanel SDKs: Android
 
@@ -291,41 +291,103 @@ There are a few other methods for setting profile properties. See a complete ref
 
 A few commonly used people methods are highlighted below:
 
-  * [`.getPeople().setOnce()`](https://mixpanel.github.io/mixpanel-android/com/mixpanel/android/mpmetrics/MixpanelAPI.People.html#setOnce(org.json.JSONObject)) - set profile properties only if they do not exist (will not overwrite existing properties)
-  * [`.getPeople().append()`](https://mixpanel.github.io/mixpanel-android/com/mixpanel/android/mpmetrics/MixpanelAPI.People.html#append(java.lang.String,java.lang.Object)) - append values to a list profile property
-  * [`.getPeople().union()`](https://mixpanel.github.io/mixpanel-android/com/mixpanel/android/mpmetrics/MixpanelAPI.People.html#union(java.lang.String,org.json.JSONArray)) - append to a list property, excluding duplicates
-  * [`.getPeople().increment()`](https://mixpanel.github.io/mixpanel-android/com/mixpanel/android/mpmetrics/MixpanelAPI.People.html#increment(java.lang.String,double)) - increment/decrement numeric profile properties
+<Tabs items={['.setOnce()','.append()','.union()','.increment()']} >
+  <Tabs.Tab>
+    The [`.getPeople().setOnce()`](https://mixpanel.github.io/mixpanel-android/com/mixpanel/android/mpmetrics/MixpanelAPI.People.html#setOnce(org.json.JSONObject)) method set profile properties only if they do not exist yet. If it is setting a profile property that already exists, it will be ignored.
 
-**Example Usage**
-```java Java
-// set profile properties for user "1234"
-JSONObject props = new JSONObject();
-props.put('name', 'Sam');
-props.put('company', 'Store ABC');
-props.put('age', 25);
-props.put('roles', ['sales','engineer']);
-mixpanel.identify('1234', true);
-mixpanel.getPeople().set(props);
+    Use this method if you want to set profile properties without the risk of overwriting existing data.
 
-// will be ignored since "name" already exists
-mixpanel.getPeople().setOnce('name', 'Samantha');
+    **Example Usage**
+    ```java Java
+    // set profile properties for user "1234"
+    JSONObject props = new JSONObject();
+    props.put('name', 'Sam');
 
-// append "legal" to "roles"
-// new "roles" value is ['sales','engineer','legal']
-mixpanel.getPeople().append('roles', 'legal');
+    mixpanel.identify('1234', true);
+    mixpanel.getPeople().set(props);
 
-// append "engineer" to "roles"
-// will be ignored since "engineer" already exists in "roles"
-mixpanel.getPeople().union('roles', 'engineer');
+    // will be ignored since "name" already exists
+    mixpanel.getPeople().setOnce('name', 'Samantha');
 
-// increment "age" by 2
-// New age value is 25+2 = "27"
-mixpanel.getPeople().increment('age',2);
+    // set "location" group prop since it does not exist
+    mixpanel.getPeople().setOnce('location', 'us');
+    ```
+  </Tabs.Tab>
+  <Tabs.Tab>
+    The [`.getPeople().append()`](https://mixpanel.github.io/mixpanel-android/com/mixpanel/android/mpmetrics/MixpanelAPI.People.html#append(java.lang.String,java.lang.Object)) method append values to a list profile property.
 
-// use negative number to decrement
-// New age value is 27-5 = "22"
-mixpanel.getPeople().increment('age',-5);
-```
+    Use this method to add additional values to an existing list property instead of redefining the entire list.
+
+    **Example Usage**
+    ```java Java
+    // set profile properties for user "1234"
+    JSONObject props = new JSONObject();
+    props.put('name', 'Sam');
+    props.put('roles', ['sales','engineer']);
+
+    mixpanel.identify('1234', true);
+    mixpanel.getPeople().set(props);
+
+    // add "legal" to "roles"  
+    // new role values are ['sales','engineer','legal']
+    mixpanel.getPeople().append('roles', 'legal');
+
+    // .append() allows duplicates
+    // new "roles" values are ['sales','engineer','legal', 'legal']
+    mixpanel.getPeople().append('roles', 'legal');
+    ```
+
+  </Tabs.Tab>
+  <Tabs.Tab>
+    The [`.getPeople().union()`](https://mixpanel.github.io/mixpanel-android/com/mixpanel/android/mpmetrics/MixpanelAPI.People.html#union(java.lang.String,org.json.JSONArray)) method append new values to a list property, excluding duplicates.
+
+    Use this method to create a list profile property that only contains unique values without duplicates.
+
+    **Example Usage**
+    ```java Java
+    // set profile properties for user "1234"
+    JSONObject props = new JSONObject();
+    props.put('name', 'Sam');
+    props.put('roles', ['sales','engineer']);
+
+    mixpanel.identify('1234', true);
+    mixpanel.getPeople().set(props);
+
+    // append "engineer" to "roles"
+    // will be ignored since "engineer" already exists in "roles"
+    mixpanel.getPeople().union('roles', 'engineer');
+
+    // append "legal" to "roles"
+    // new role values are ['sales','engineer','legal']
+    mixpanel.getPeople().union('roles', 'legal');
+    ```
+
+  </Tabs.Tab>
+  <Tabs.Tab>
+    The [`.getPeople().increment()`](https://mixpanel.github.io/mixpanel-android/com/mixpanel/android/mpmetrics/MixpanelAPI.People.html#increment(java.lang.String,double)) method increments a numeric property by a whole number.
+
+    Use this method to add to or subtract from your numeric property based on its current value.
+
+    **Example Usage**
+    ```java Java
+    // set profile properties for user "1234"
+    JSONObject props = new JSONObject();
+    props.put('name', 'Sam');
+    props.put('age', 25);
+
+    mixpanel.identify('1234', true);
+    mixpanel.getPeople().set(props);
+
+    // increment "age" by 2
+    mixpanel.getPeople().increment('age',2);
+
+    // use negative number to decrement
+    // decrement "age" by 5
+    mixpanel.getPeople().increment('age',-5);
+    ```
+
+  </Tabs.Tab>
+</Tabs>
 
 ## Group Analytics
 
@@ -359,6 +421,7 @@ mixpanel.track('some_event');
 //alternatively you can manually define the group key
 JSONObject groupKey = new JSONObject();
 groupKey.put('company','mixpanel');
+
 mixpanel.track('some_event', groupKey)
 ```
 
@@ -402,39 +465,106 @@ mixpanel.getGroup('company','mixpanel').set('industry','analytics');
 See all of the methods under the Group class [here](https://mixpanel.github.io/mixpanel-android/com/mixpanel/android/mpmetrics/MixpanelAPI.Group.html).
 
 A few commonly used group methods are highlighted below:
-  * [`.getGroup().setOnce()`](https://mixpanel.github.io/mixpanel-android/com/mixpanel/android/mpmetrics/MixpanelAPI.Group.html#setOnce(org.json.JSONObject)) - set group properties only if they do not exist (will not overwrite existing properties)
-  * [`.getGroup().unset()`](https://mixpanel.github.io/mixpanel-android/com/mixpanel/android/mpmetrics/MixpanelAPI.Group.html#unset(java.lang.String)) - remove a group property from a group profile
-  * [`.getGroup().union()`](https://mixpanel.github.io/mixpanel-android/com/mixpanel/android/mpmetrics/MixpanelAPI.Group.html#union(java.lang.String,org.json.JSONArray)) - merge a list with a list-valued group property, excluding duplicates
-  * [`.getGroup().remove()`](https://mixpanel.github.io/mixpanel-android/com/mixpanel/android/mpmetrics/MixpanelAPI.Group.html#remove(java.lang.String,java.lang.Object)) - remove a value from a list-valued group property
 
-**Example Usage**
-```java Java
-// assign the current user to the "mixpanel" company group
-mixpanel.setGroup('company', 'mixpanel');
+<Tabs items={['.setOnce()','.unset()','.union()','.remove()']}>
+  <Tabs.Tab>
+    The [`.getGroup().setOnce()`](https://mixpanel.github.io/mixpanel-android/com/mixpanel/android/mpmetrics/MixpanelAPI.Group.html#setOnce(org.json.JSONObject)) method set group profile properties only if they do not exist yet. If it is setting a profile property that already exists, it will be ignored.
 
-// set group profile properties
-JSONObject groupProps = new JSONObject();
-groupProps.put('name', 'Mixpanel');
-groupProps.put('features', ['reports','alerts','cohorts']);
-groupProps.put('employee_count', '100');
-mixpanel.getGroup('company','mixpanel').set(groupProps);
+    Use this method if you want to set group profile properties without the risk of overwriting existing data.
 
-// ignored since "name" is already exists
-mixpanel.getGroup('company','mixpanel').setOnce('name','mp');
+    **Example Usage**
+    ```java Java
+    // assign the current user to the "mixpanel" company group
+    mixpanel.setGroup('company', 'mixpanel');
 
-// delete "employee_count" from the group profile
-mixpanel.getGroup('company','mixpanel').unset('employee_count');
+    // set group profile properties
+    JSONObject groupProps = new JSONObject();
+    groupProps.put('name', 'Mixpanel');
 
-// add "data pipeline" to "features" prop
-// ignore "alert" since it is a duplicate value
-mixpanel.getGroup('company','mixpanel').union('features', [
-    'data pipeline',
-    'alert'
-    ]);
+    mixpanel.getGroup('company','mixpanel').set(groupProps);
 
-//remove "alert" from "features"
-mixpanel.getGroup('company','mixpanel').remove('features', 'alert');
-```
+    // ignored since "name" is already exists
+    mixpanel.getGroup('company','mixpanel').setOnce('name','mp');
+
+    // set "location" group prop since it does not exist
+    mixpanel.getGroup('company','mixpanel').setOnce('location','us');
+    ```
+
+  </Tabs.Tab>
+  <Tabs.Tab>
+    The [`.getGroup().unset()`](https://mixpanel.github.io/mixpanel-android/com/mixpanel/android/mpmetrics/MixpanelAPI.Group.html#unset(java.lang.String)) method removes a group property from a group profile.
+
+    Use this method to delete unwanted group profile properties from a specific group profile.
+
+    **Example Usage**
+    ```java Java
+    // assign the current user to the "mixpanel" company group
+    mixpanel.setGroup('company', 'mixpanel');
+
+    // set group profile properties
+    JSONObject groupProps = new JSONObject();
+    groupProps.put('name', 'Mixpanel');
+    groupProps.put('employee_count', '100');
+
+    mixpanel.getGroup('company','mixpanel').set(groupProps);
+
+    // delete "employee_count" from the group profile
+    mixpanel.getGroup('company','mixpanel').unset('employee_count');
+
+    // only "name" remains as a group prop
+    ```
+
+  </Tabs.Tab>
+  <Tabs.Tab>
+    The [`.getGroup().union()`](https://mixpanel.github.io/mixpanel-android/com/mixpanel/android/mpmetrics/MixpanelAPI.Group.html#union(java.lang.String,org.json.JSONArray)) method append new values to a list property, excluding duplicates.
+
+    Use this method to create a list group profile property that only contains unique values without duplicates.
+
+    **Example Usage**
+    ```java Java
+    // assign the current user to the "mixpanel" company group
+    mixpanel.setGroup('company', 'mixpanel');
+
+    // set group profile properties
+    JSONObject groupProps = new JSONObject();
+    groupProps.put('name', 'Mixpanel');
+    groupProps.put('features', ['reports','alerts','cohorts']);
+
+    mixpanel.getGroup('company','mixpanel').set(groupProps);
+
+
+    // add "data pipeline" to "features" prop
+    // ignore "alert" since it is a duplicate value
+    mixpanel.getGroup('company','mixpanel').union('features', [
+        'data pipeline',
+        'alert'
+        ]);
+    ```
+
+  </Tabs.Tab>
+  <Tabs.Tab>
+    The [`.getGroup().remove()`](https://mixpanel.github.io/mixpanel-android/com/mixpanel/android/mpmetrics/MixpanelAPI.Group.html#remove(java.lang.String,java.lang.Object)) method removes a value from a list-valued group profile property.
+
+    Use this method to remove specific values from a list without affecting all of the other values in the list.
+
+    **Example Usage**
+    ```java Java
+    // assign the current user to the "mixpanel" company group
+    mixpanel.setGroup('company', 'mixpanel');
+
+    // set group profile properties
+    JSONObject groupProps = new JSONObject();
+    groupProps.put('name', 'Mixpanel');
+    groupProps.put('features', ['reports','alerts','cohorts']);
+    
+    mixpanel.getGroup('company','mixpanel').set(groupProps);
+
+    //remove "alerts" from "features"
+    // "features" now contain ["reports","cohorts"]
+    mixpanel.getGroup('company','mixpanel').remove('features', 'alerts');
+    ```
+  </Tabs.Tab>
+</Tabs>
 
 ## Debug Mode
 
