@@ -49,7 +49,7 @@ events and properties to Mixpanel.
   android:name="android.permission.BLUETOOTH" />
 ```
 
-After the installation, import the library and initialize Mixpanel in your code by calling [`MixpanelAPI.getInstance()`](https://mixpanel.github.io/mixpanel-android/com/mixpanel/android/mpmetrics/MixpanelAPI.html#getInstance(android.content.Context,java.lang.String,boolean)) with your application context, your [project token](/docs/orgs-and-projects/managing-projects#find-your-project-tokens), and automatic events setting.
+After the installation, import the library and initialize Mixpanel in your code by calling [`MixpanelAPI.getInstance()`](https://mixpanel.github.io/mixpanel-android/com/mixpanel/android/mpmetrics/MixpanelAPI.html#getInstance(android.content.Context,java.lang.String,boolean)) with your application context, your [project token](/docs/orgs-and-projects/managing-projects#find-your-project-tokens), and `false` value for automatic events.
 
 ```java Java
 import com.mixpanel.android.mpmetrics.MixpanelAPI;
@@ -62,18 +62,36 @@ public class MainActivity extends ActionBarActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        MixpanelAPI mixpanel = MixpanelAPI.getInstance(this, "YOUR_PROJECT_TOKEN");
+        MixpanelAPI mixpanel = MixpanelAPI.getInstance(this, "YOUR_PROJECT_TOKEN", false);
     }
 }
 ```
 
 ### Library Configuration
-The library can be initialized with different configurations. See a complete list of the configuration options [here](https://mixpanel.github.io/mixpanel-android/com/mixpanel/android/mpmetrics/MixpanelAPI.html#getInstance(android.content.Context,java.lang.String,org.json.JSONObject,java.lang.String,boolean)).
+The library can be initialized with different configurations. See a complete list of the configuration options and methods under [`MPConfig`](https://mixpanel.github.io/mixpanel-android/com/mixpanel/android/mpmetrics/MPConfig.html).
+
+You can set the library configuration by adding `meta-data` entries under the `<application>` of your app's `AndroidManifest.xml`.
+
+**Example Usage**
+```xml Java
+<!-- disable auto flushing on app backgrounding -->
+<meta-data android:name="com.mixpanel.android.MPConfig.FlushOnBackground"
+           android:value="false" />
+<!-- enable debug logs -->           
+<meta-data android:name="com.mixpanel.android.MPConfig.EnableDebugLogging"
+           android:value="true" />
+```
+
+The [`MPConfig`](https://mixpanel.github.io/mixpanel-android/com/mixpanel/android/mpmetrics/MPConfig.html) provide a few methods that you can call to set and retrieve your configuration after the library has already been initialized.
 
 ```java Java
 // initialize Mixpanel with automatic events disabled
-trackAutomaticEvents = false;
-MixpanelAPI mixpanel = MixpanelAPI.getInstance(this, "YOUR_PROJECT_TOKEN", trackAutomaticEvents);
+trackAutomaticEvents = true;
+MixpanelAPI mixpanel = 
+    MixpanelAPI.getInstance(this, "YOUR_PROJECT_TOKEN", trackAutomaticEvents);
+
+// enable automatic events after initialization
+mixpanel.setTrackAutomaticEvents(false);
 ```
 
 ## Sending Events
@@ -170,8 +188,8 @@ mixpanel.registerSuperProperties(props);
 //register "city" as an additional super property
 // ignore "name" since it already exists
 JSONObject moreProps = new JSONObject();
-props.put('name', 'Samantha');
-props.put('city', 'San Francisco');
+moreProps.put('name', 'Samantha');
+moreProps.put('city', 'San Francisco');
 mixpanel.registerSuperPropertiesOnce(moreProps);
 
 
@@ -187,8 +205,8 @@ If you have properties you'd like all events to include, you can also set the su
 
 // create object of super properties
 JSONObject yourSuperProps = new JSONObject();
-props.put('name', 'Samantha');
-props.put('city', 'San Francisco');
+yourSuperProps.put('name', 'Samantha');
+yourSuperProps.put('city', 'San Francisco');
 
 //create Mixpanel instance with super properties above
 MixpanelAPI mixpanel =
@@ -317,7 +335,6 @@ mixpanel.getPeople().increment('age',-5);
 
 Mixpanel Group Analytics is a paid add-on that allows behavioral data analysis by selected groups, as opposed to individual users.
 
-
 A group is identified by the `group_key` and `group_id`.
 * `group_key` is the event property that connects event data to a group. (e.g. `company`)
 * `group_id` is the identifier for a specific group. (e.g. `mixpanel`,`company_a`,`company_b`, etc.)
@@ -338,6 +355,11 @@ mixpanel.setGroup('company', 'mixpanel');
 // track "some_event"
 // event property "company" = ["mixpanel"] is added automatically
 mixpanel.track('some_event');
+
+//alternatively you can manually define the group key
+JSONObject groupKey = new JSONObject();
+groupKey.put('company','mixpanel');
+mixpanel.track('some_event', groupKey)
 ```
 
 **Multiple Groups**
@@ -392,9 +414,9 @@ mixpanel.setGroup('company', 'mixpanel');
 
 // set group profile properties
 JSONObject groupProps = new JSONObject();
-props.put('name', 'Mixpanel');
-props.put('features', ['reports','alerts','cohorts']);
-props.put('employee_count', '100');
+groupProps.put('name', 'Mixpanel');
+groupProps.put('features', ['reports','alerts','cohorts']);
+groupProps.put('employee_count', '100');
 mixpanel.getGroup('company','mixpanel').set(groupProps);
 
 // ignored since "name" is already exists
@@ -420,6 +442,7 @@ To enable debug mode, add the following permission within your `AndroidManifest.
 ```xml Java
 ...
 <application>
+    <!-- enable debug logging-->
     <meta-data
       android:name="com.mixpanel.android.MPConfig.EnableDebugLogging"
       android:value="true" />
@@ -467,18 +490,36 @@ MixpanelAPI mixpanel =
 ```
 ### EU Data Residency
 
-Route data to Mixpanel's EU servers by adding meta-data entries under the `<application>` tag of your app's `AndroidManifest.xml`.
+Route data to Mixpanel's EU servers by adding these meta-data entries under the `<application>` tag of your app's `AndroidManifest.xml` to set the URLs of the API requests to our EU domain.
 
 ```xml Java
-<meta-data android:name="com.mixpanel.android.MPConfig.EventsEndpoint"
+...
+<application>
+    <!--set request URLs to Mixapnel EU domain-->
+    <meta-data android:name="com.mixpanel.android.MPConfig.EventsEndpoint"
            android:value="https://api-eu.mixpanel.com/track?ip=1" />
-<meta-data android:name="com.mixpanel.android.MPConfig.PeopleEndpoint"
+    <meta-data android:name="com.mixpanel.android.MPConfig.PeopleEndpoint"
            android:value="https://api-eu.mixpanel.com/engage?ip=1" />
-<meta-data android:name="com.mixpanel.android.MPConfig.GroupsEndpoint"
+    <meta-data android:name="com.mixpanel.android.MPConfig.GroupsEndpoint"
            android:value="https://api-eu.mixpanel.com/groups" />
-<meta-data android:name="com.mixpanel.android.MPConfig.DecideEndpoint"
+    <meta-data android:name="com.mixpanel.android.MPConfig.DecideEndpoint"
            android:value="https://api-eu.mixpanel.com/decide" />
+    ...
+</application>
+...
 ```
+
+### Disable Geolocation
+
+The Android SDK parse the request IP address to generate geolocation properties for events and profiles. To disable geolocation, add the following meta-data entry under the `<application>` tag of your app's `AndroidManifest.xml`.
+
+```xml Java
+<!-- disable geolocation parsing -->
+<meta-data android:name="com.mixpanel.android.MPConfig.UseIpAddressForGeolocation" 
+           android:value="false" />
+```
+
+Learn more about [geolocation](/docs/tracking-best-practices/geolocation).
 
 ## App Links Tracking
 The Mixpanel library has built in support for tracking in-bound and out-bound [App Links](https://developers.facebook.com/docs/applinks). App Links is a specification to help standardize deep-linking between apps as well as give you additional information about how users are getting to and from your own mobile app.
@@ -503,3 +544,6 @@ If you're linking to other applications using the Bolts framework, Mixpanel will
 bolts.AppLinkNavigation.navigateInBackground(this, "http://anotherapp.com/app/link");
 ...
 ```
+
+## Release History
+[See All Releases](https://github.com/mixpanel/mixpanel-android/releases).
