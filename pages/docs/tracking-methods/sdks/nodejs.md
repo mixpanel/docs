@@ -83,7 +83,7 @@ A profile update changes the properties of a user profile, essentially changing 
 You can use profiles and user profile properties to explore and segment users by who they are, in addition to what they did with event tracking.
 
 ### Setting Profile Properties
-You can update or create a [user profile](/docs/data-structure/user-profiles)`. The first argument is distinct_id, and the second argument is a JSON list of the properties to add to or update the profile with.
+You can update or create a [user profile](/docs/data-structure/user-profiles). The first argument is distinct_id, and the second argument is a JSON list of the properties to add to or update the profile with.
 
 The following example sets a "Plan" property with a value "Premium", a first name, a last name, and a created date on the user's profile that has a distinct id of `13793`.
 
