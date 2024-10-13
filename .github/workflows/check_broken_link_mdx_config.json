@@ -16,6 +16,18 @@
     {
       "pattern": "^.*loom.com.*",
       "reason": "ignore links from Loom embeds"
+    },
+    {
+      "pattern": "(^.*sso.mixpanel.com.*)|(^.*mixpanel.com\/security\/.*)",
+      "reason": "ignore example SSO urls"
+    },
+    {
+      "pattern": "(^.*mixpanel.com\/api\/.*)|(^.*api.mixpanel.com.*)|(^.*api-eu.mixpanel.com.*)",
+      "reason": "ignore example API urls"
+    },
+    {
+      "pattern": "^.*files.readme.io.*",
+      "reason": "ignore readme file URLs"
     }
   ],
   "replacementPatterns": [
