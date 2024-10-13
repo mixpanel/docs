@@ -30,8 +30,16 @@
       "reason": "ignore readme file URLs"
     },
     {
-      "pattern": "^.mktorest.com.*",
+      "pattern": "^.*mktorest.com.*",
       "reason": "ignore Marketo test URL"
+    },
+    {
+      "pattern": "^.*support.iterable.*",
+      "reason": "some Iterable are returning 403 despite being valid"
+    },
+    {
+      "pattern": "^.*openai.com.*",
+      "reason": "some OpenAI links are returning 403 despite being valid"
     }
   ],
   "replacementPatterns": [
