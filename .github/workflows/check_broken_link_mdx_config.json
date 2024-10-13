@@ -28,6 +28,10 @@
     {
       "pattern": "^.*files.readme.io.*",
       "reason": "ignore readme file URLs"
+    },
+    {
+      "pattern": "^.mktorest.com.*",
+      "reason": "ignore Marketo test URL"
     }
   ],
   "replacementPatterns": [
