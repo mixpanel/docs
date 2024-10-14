@@ -11,7 +11,7 @@
     },
     {
       "pattern": "^.*.mdx$",
-      "reason": "ignore mdx"
+      "reason": "ignore mdx "
     },
     {
       "pattern": "^.*loom.com.*",
