@@ -1,4 +1,4 @@
-ame: Check Markdown links
+name: Check Markdown links
 
 on: 
   # triggered on PR
