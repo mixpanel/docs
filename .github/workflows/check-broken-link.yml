@@ -2,7 +2,7 @@ name: Check Markdown links
 
 on: 
   # triggered on PR
-  # pull_request: {}
+  pull_request: {}
   
   # manual trigger
   workflow_dispatch: {}
