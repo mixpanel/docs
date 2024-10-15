@@ -11,15 +11,15 @@ servers:
 security:
   - OAuthToken: []
 tags:
-  - name: Cancel Deletion
+  - name: Cancel a Deletion
     description: Cancels an existing deletion task
   - name: Check Status of Retrieval
     description: Checks the status of a data retrieval job
-  - name: Check Status of a Deletion Task
+  - name: Check Status of Deletion
     description: Checks the status of an existing deletion task
-  - name: Create Retrieval
+  - name: Create a Retrieval
     description: Creates a data retrieval job
-  - name: Create a Deletion Task
+  - name: Create a Deletion
     description: Creates a task that specifies a list of users in a particular project to delete
 paths:
 
@@ -42,7 +42,7 @@ paths:
                 disclosure_type:
                   $ref: '#/components/schemas/DisclosureType'
       tags:
-        - Create Retrieval
+        - Create a Retrieval
       summary: Create Retrieval
       description: Creates a data retrieval job.
       responses:
@@ -98,7 +98,7 @@ paths:
                 compliance_type:
                   $ref: '#/components/schemas/ComplianceType'
       tags:
-        - Create a Deletion Task
+        - Create a Deletion
       summary: Create a Deletion Task
       description: Creates a task that specifies a list of users in a particular project to delete
       responses:
@@ -123,7 +123,7 @@ paths:
     get:
       operationId: get-deletion
       tags:
-        - Check Status of a Deletion Task
+        - Check Status of Deletion
       summary: Check Status of a Deletion Task
       description: Checks the status of an existing deletion task
       responses:
@@ -142,7 +142,7 @@ paths:
     delete:
       operationId: delete-deletion
       tags:
-        - Cancel a Deletion Task
+        - Cancel a Deletion
       summary: Cancel a Deletion Task
       description: Cancel a task that specifies a list of users in a particular project to delete.
       responses:
@@ -205,6 +205,7 @@ components:
                 - REVOKED
                 - NOT_FOUND
                 - UNKNOWN
+              example: 'SUCCESS'
             results:
               type: string
               description: 'Link to the export if retrieval job is completed. Will be an empty string if job is incomplete'
@@ -255,6 +256,7 @@ components:
             - REVOKED
             - NOT_FOUND
             - UNKNOWN
+          example: 'SUCCESS'
         requesting_user:
           type: string
           description: 'The user that created the deletion job request'
