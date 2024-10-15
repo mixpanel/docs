@@ -177,7 +177,7 @@ components:
             task_id: 
               type: string
               description: 'The task_id of the retrieval/deletion job.'
-              example: 'job tracking_id'
+              example: 'job-tracking-id'
 
     CheckRetrievalResponse:
       title: CheckRetrievalResponse
@@ -208,6 +208,7 @@ components:
             results:
               type: string
               description: 'Link to the export if retrieval job is completed. Will be an empty string if job is incomplete'
+              example: 'linktoexportfile.com/9871287366712'
             distinct_ids:
               $ref: '#/components/schemas/DistinctIds'
 
@@ -287,6 +288,7 @@ components:
       items:
         type: string
         description: 'Distinct IDs involved in the request'
+      example: ['distinct_id_1','distinct_id_2','distinct_id_3']
 
     ComplianceType:
       type: string
