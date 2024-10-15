@@ -13,14 +13,14 @@ security:
 tags:
   - name: Cancel a Deletion
     description: Cancels an existing deletion task
-  - name: Check Status of Retrieval
-    description: Checks the status of a data retrieval job
   - name: Check Status of Deletion
     description: Checks the status of an existing deletion task
-  - name: Create a Retrieval
-    description: Creates a data retrieval job
+  - name: Check Status of Retrieval
+    description: Checks the status of a data retrieval job
   - name: Create a Deletion
     description: Creates a task that specifies a list of users in a particular project to delete
+  - name: Create a Retrieval
+    description: Creates a data retrieval job
 paths:
 
   # Create Retrieval Task
