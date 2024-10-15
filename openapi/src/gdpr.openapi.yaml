@@ -52,7 +52,7 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/JobCreated'
-              example:
+              examples:
                 $ref: '#/components/examples/JobCreatedExample'
         '401':
           $ref: ./common/responses.yaml#/401Unauthorized
@@ -109,7 +109,7 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/JobCreated'
-              example:
+              examples:
                 $ref: '#/components/examples/JobCreatedExample'
         '401':
           $ref: ./common/responses.yaml#/401Unauthorized
