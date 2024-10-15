@@ -52,8 +52,6 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/JobCreated'
-              examples:
-                $ref: '#/components/examples/JobCreatedExample'
         '401':
           $ref: ./common/responses.yaml#/401Unauthorized
         '403':
@@ -109,8 +107,6 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/JobCreated'
-              examples:
-                $ref: '#/components/examples/JobCreatedExample'
         '401':
           $ref: ./common/responses.yaml#/401Unauthorized
         '403':
@@ -270,7 +266,14 @@ components:
           description: 'The timestamp when the deletion job was requested'
         distinct_ids:
           $ref: '#/components/schemas/DistinctIds'
-    
+      example:
+        tracking_id: 'job tracking_id'
+        status: 'SUCCESS'
+        requesting_user: 'user@mail.com'
+        compliance_type: 'GDPR'
+        project_id: 'your project ID'
+        date_requested: 'YYYY-MM-DDTHH:MM:SS'
+        distinct_ids: ['distinct_id_1','distinct_id_2']
 
     ResponseStatus:
       type: string
@@ -308,11 +311,3 @@ components:
         type: string
       description: 'The task ID shown in the response'
       required: true
-
-  examples:
-
-    JobCreatedExample:
-      value:
-        status: 'ok'
-        results:
-          task_id: 'job task id'
