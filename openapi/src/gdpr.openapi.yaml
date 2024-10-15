@@ -52,6 +52,8 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/JobCreated'
+              example:
+                $ref: '#/components/examples/JobCreatedExample'
         '401':
           $ref: ./common/responses.yaml#/401Unauthorized
         '403':
@@ -107,6 +109,8 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/JobCreated'
+              example:
+                $ref: '#/components/examples/JobCreatedExample'
         '401':
           $ref: ./common/responses.yaml#/401Unauthorized
         '403':
@@ -176,8 +180,6 @@ components:
             task_id: 
               type: string
               description: 'The task_id of the retrieval/deletion job.'
-
-      example: {"status": "ok", "results": {"task_id": "<job tracking_id>"}}
 
     CheckRetrievalResponse:
       title: CheckRetrievalResponse
@@ -306,3 +308,11 @@ components:
         type: string
       description: 'The task ID shown in the response'
       required: true
+
+  examples:
+
+    JobCreatedExample:
+      value:
+        status: 'ok'
+        results:
+          task_id: 'job task id'
