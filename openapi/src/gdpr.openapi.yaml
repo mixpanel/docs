@@ -61,9 +61,8 @@ paths:
   /data-retrievals/v3.0/{tracking_id}:
     parameters:
       - $ref: '#/components/parameters/TrackingId'
+      - $ref: '#/components/parameters/ProjectToken'
     get:
-      parameters:
-        - $ref: '#/components/parameters/ProjectToken'
       operationId: get-retrieval
       tags:
         - Check Status of Retrieval
@@ -81,10 +80,8 @@ paths:
         '403':
           $ref: ./common/responses.yaml#/403Forbidden
 
-  # Deletion
+  # Create Deletion Task
   /data-deletions/v3.0:
-
-    # Create Deletion Task
     post:
       parameters:
         - $ref: '#/components/parameters/ProjectToken'
@@ -115,31 +112,14 @@ paths:
         '403':
           $ref: ./common/responses.yaml#/403Forbidden
 
-    # Cancel Deletion Task
-    delete:
-      parameters:
-        - $ref: '#/components/parameters/ProjectToken'
-        - $ref: '#/components/parameters/TrackingId'
-      operationId: delete-deletion
-      tags:
-        - Cancel a Deletion Task
-      summary: Cancel a Deletion Task
-      description: Cancel a task that specifies a list of users in a particular project to delete.
-      responses:
-        '204':
-          description: Success
-        '401':
-          $ref: ./common/responses.yaml#/401Unauthorized
-        '403':
-          $ref: ./common/responses.yaml#/403Forbidden
-
-  # Check Deletion Task
+  # Check and Cancel Deletion Tasks
   /data-deletions/v3.0/{tracking_id}:
     parameters:
       - $ref: '#/components/parameters/TrackingId'
+      - $ref: '#/components/parameters/ProjectToken'
+    
+    # Check Deletion Task
     get:
-      parameters:
-        - $ref: '#/components/parameters/ProjectToken'
       operationId: get-deletion
       tags:
         - Check Status of a Deletion Task
@@ -156,7 +136,21 @@ paths:
           $ref: ./common/responses.yaml#/401Unauthorized
         '403':
           $ref: ./common/responses.yaml#/403Forbidden
-
+    
+    # Cancel Deletion Tasks
+    delete:
+      operationId: delete-deletion
+      tags:
+        - Cancel a Deletion Task
+      summary: Cancel a Deletion Task
+      description: Cancel a task that specifies a list of users in a particular project to delete.
+      responses:
+        '204':
+          description: Success
+        '401':
+          $ref: ./common/responses.yaml#/401Unauthorized
+        '403':
+          $ref: ./common/responses.yaml#/403Forbidden
 
 components:
 
