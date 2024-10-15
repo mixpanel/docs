@@ -36,11 +36,11 @@ paths:
             schema:
               properties:
                 distinct_ids:
-                  $ref: '#/components/parameters/DistinctIds'
+                  $ref: '#/components/schemas/DistinctIds'
                 compliance_type:
-                  $ref: '#/components/parameters/ComplianceType'
+                  $ref: '#/components/schemas/ComplianceType'
                 disclosure_type:
-                  $ref: '#/components/parameters/DisclosureType'
+                  $ref: '#/components/schemas/DisclosureType'
       tags:
         - Create Retrieval
       summary: Create Retrieval
@@ -93,9 +93,9 @@ paths:
             schema:
               properties:
                 distinct_ids:
-                  $ref: '#/components/parameters/DistinctIds'
+                  $ref: '#/components/schemas/DistinctIds'
                 compliance_type:
-                  $ref: '#/components/parameters/ComplianceType'
+                  $ref: '#/components/schemas/ComplianceType'
       tags:
         - Create a Deletion Task
       summary: Create a Deletion Task
@@ -278,9 +278,16 @@ components:
       type: array
       items:
         type: string
-        description: 'Distinct IDs involved in the retrieval/deletion request'
+        description: 'Distinct IDs involved in the request'
 
-  
+    ComplianceType:
+      type: string
+      description: 'Select CCPA or GDPR. Default is GDPR.'
+
+    DisclosureType:
+      type: string
+      description: 'Only required if compliance_type = CCPA. Can be Data, Categories, or Sources. Default is Data.'
+
   parameters:
 
     ProjectToken:
@@ -290,29 +297,6 @@ components:
         type: string
       description: 'Your project token'
       required: true
-
-    ComplianceType:
-      name: compliance_type
-      in: query
-      schema:
-        type: string
-      description: 'Select CCPA or GDPR. Default is GDPR.'
-
-    DisclosureType:
-        name: disclosure_type
-        in: query
-        schema:
-          type: string
-        description: 'Only required if compliance_type = CCPA. Can be Data, Categories, or Sources. Default is Data.'
-
-    DistinctIds:
-      name: distinct_ids
-      in: query
-      schema:
-        type: array
-        items:
-          type: string
-          description: 'Distinct IDs involved in the retrieval/deletion request'
 
     TrackingId:
       name: tracking_id
