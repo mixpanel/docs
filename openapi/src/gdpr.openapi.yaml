@@ -177,6 +177,7 @@ components:
               type: string
               description: 'The task_id of the retrieval/deletion job.'
 
+      example: {"status": "ok", "results": {"task_id": "<job tracking_id>"}}
 
     CheckRetrievalResponse:
       title: CheckRetrievalResponse
