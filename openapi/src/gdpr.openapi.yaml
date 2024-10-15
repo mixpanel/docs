@@ -100,7 +100,7 @@ paths:
       tags:
         - Create a Deletion
       summary: Create a Deletion
-      description: Creates a task that specifies a list of users in a particular project to delete
+      description: Creates a task that specifies a list of users in a project to delete
       responses:
         '201':
           description: Success
@@ -144,7 +144,7 @@ paths:
       tags:
         - Cancel a Deletion
       summary: Cancel a Deletion
-      description: Cancel a task that specifies a list of users in a particular project to delete.
+      description: Cancel a deletion task that is still in progress
       responses:
         '204':
           description: Success
