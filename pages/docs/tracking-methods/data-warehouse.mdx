@@ -497,6 +497,12 @@ which uses [column mappings](https://docs.databricks.com/en/delta/delta-change-d
 
 </Tabs.Tab>
 
+<Tabs.Tab>
+Mirror takes Redshift table snapshots and runs queries to compute the change stream between two snapshot. Snapshots are stored in  a staging schema created in Step 1.
+- If two rows in Redshift table are identical across *all* columns, the checksums Mirror computes for each row will be the same and Mixpanel will consider them the same row causing only one copy to appear in Mixpanel. We recommend ensuring that one of your columns is a unique row ID to avoid this.
+- The table snapshots managed by Mixpanel and are automatically cleaned-up. Under normal conditions, Mirror maintains only one snapshot per-sync and removes the older run's snapshot as soon as it has been used by the subsequent sync run. These snapshots will incur some additional storage cost.
+</Tabs.Tab>
+
 </ExtendedTabs>
 
 ---
