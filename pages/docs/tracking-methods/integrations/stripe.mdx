@@ -1,4 +1,4 @@
-import { Tab, Tabs } from 'nextra-theme-docs'
+import { Tabs } from 'nextra/components'
 
 # Stripe
 
@@ -15,7 +15,7 @@ Create a [new Cloud Function](https://console.cloud.google.com/functions/add), s
 Paste in the following code, which accepts Stripe's webhook format, and forwards it to Mixpanel's `/import` API:
 
 <Tabs items={['python', 'requirements.txt']}>
-<Tab>
+<Tabs.Tab>
     ```python main.py
     import functions_framework
     import json
@@ -45,13 +45,13 @@ Paste in the following code, which accepts Stripe's webhook format, and forwards
         )
         return resp.json()
     ```
-</Tab>
-<Tab>
+</Tabs.Tab>
+<Tabs.Tab>
     ```txt requirements.txt
     functions-framework==3.*
     requests
     ```
-</Tab>
+</Tabs.Tab>
 </Tabs>
 
 Click `Deploy`, which enables your Cloud Function to listen for new events. 

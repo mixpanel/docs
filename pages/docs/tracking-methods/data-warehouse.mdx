@@ -1,5 +1,4 @@
-import { Tab, Tabs } from 'nextra-theme-docs'
-import { Callout } from 'nextra/components'
+import { Callout, Tabs } from 'nextra/components'
 
 import ExtendedTabs from '../../../components/ExtendedTabs/ExtendedTabs';
 import { dwhItems, mirrorItems } from '../../../utils/constants';
@@ -28,7 +27,7 @@ Navigate to [Project Settings → Warehouse Sources](https://mixpanel.com/report
 
 <ExtendedTabs urlParam="dwh" urlToItemsMap={dwhItems}>
 
-<Tab>
+<Tabs.Tab>
     <div style={{position: 'relative', paddingBottom: '64.90384615384616%', height: 0}}>
         <iframe src="https://www.loom.com/embed/04f4ea75310744cdab477e1b47684db3?sid=3728258e-b860-431f-bdf2-cff508b2b19e"
             frameBorder="0"
@@ -68,8 +67,8 @@ Navigate to [Project Settings → Warehouse Sources](https://mixpanel.com/report
             TO "<mixpanel-service-account>"
           ```
 
-</Tab>
-<Tab>
+</Tabs.Tab>
+<Tabs.Tab>
     <div style={{position: 'relative', paddingBottom: '64.90384615384616%', height: 0}}>
         <iframe src="https://www.loom.com/embed/5dbaf37d9308404393417043551aed55"
             frameBorder="0"
@@ -150,8 +149,8 @@ Navigate to [Project Settings → Warehouse Sources](https://mixpanel.com/report
     35.204.177.251
     ```
 
-</Tab>
-<Tab>
+</Tabs.Tab>
+<Tabs.Tab>
     <div style={{position: 'relative', paddingBottom: '64.90384615384616%', height: 0}}>
     <iframe src="https://www.loom.com/embed/56a21b31e75342498317cbb6f31285eb"
         frameBorder="0"
@@ -207,8 +206,8 @@ If you are using [IP Access List](https://docs.databricks.com/en/security/networ
 35.204.177.251
 ```
 
-</Tab>
-<Tab>
+</Tabs.Tab>
+<Tabs.Tab>
 
 <div style={{position: 'relative', paddingBottom: '64.90384615384616%', height: 0}}>
     <iframe src="https://www.loom.com/embed/76f4658dd850457e9634c706ee0d9430"
@@ -249,7 +248,7 @@ If you are using [AWS PrivateLink](https://docs.aws.amazon.com/redshift/latest/m
 35.204.164.122
 35.204.177.251
 ```
-</Tab>
+</Tabs.Tab>
 </ExtendedTabs>
 
 ---
@@ -363,7 +362,7 @@ supported for Snowflake, Databricks and BigQuery sources.
 
 <ExtendedTabs urlParam="mirror" urlToItemsMap={mirrorItems}>
 
-<Tab>
+<Tabs.Tab>
 Mirror takes BigQuery [table snapshots](https://cloud.google.com/bigquery/docs/table-snapshots-intro) and runs queries to compute the
 change stream between two snapshot. Snapshots are stored in the `mixpanel` dataset created in [Step 1](#step-1-connect-a-warehouse).
 
@@ -439,9 +438,9 @@ much more efficient on large partitioned tables where only a small percentage of
 in a day-partitioned table with two years of data, where only the last five days of data are normally updated only five partitions
 worth of data will be scanned each time the sync runs.
 
-</Tab>
+</Tabs.Tab>
 
-<Tab>
+<Tabs.Tab>
 Mirror uses [Snowflake Streams](https://docs.snowflake.com/en/user-guide/streams-intro) to track changes to Snowflake
 tables or views. The only requirement to use Mirror on a Snowflake table or view is to enable
 [change tracking](https://docs.snowflake.com/en/user-guide/streams-manage):
@@ -478,9 +477,9 @@ ALTER TABLE <table> ADD COLUMN <column> VARCHAR DEFAULT NULL;
 We recommend avoiding other types of schema changes. Snowflake streams only reflect changes to tables from DML statements. DDL statements
 that logically modify data (e.g. adding new columns with default values, dropping existing columns, or renaming columns) will be reflected
 in future data sent to Mixpanel but the Stream will not update historical data with changes caused by DDL statements.
-</Tab>
+</Tabs.Tab>
 
-<Tab>
+<Tabs.Tab>
 Mirror uses Databricks [Change Data Feed](https://docs.databricks.com/en/delta/delta-change-data-feed.html) to track changes to Databricks tables.
 The only requirement to use Mirror on a Databricks table is to enable [change data feed](https://docs.databricks.com/en/delta/delta-change-data-feed.html#enable-change-data-feed) on those entities.
 ```jsx
@@ -496,7 +495,7 @@ than this number of days without running. Mixpanel recommends leaving the defaul
 - While Databricks Change Data Feed works with adding new columns to the table or view, there are certain limitations when it comes to dropping columns or renaming columns
 which uses [column mappings](https://docs.databricks.com/en/delta/delta-change-data-feed.html#change-data-feed-limitations-for-tables-with-column-mapping-enabled). In such scenarios Mixpanel, recommends deleting the sync (along with the data) and re-creating the sync.
 
-</Tab>
+</Tabs.Tab>
 
 </ExtendedTabs>
 
@@ -582,7 +581,7 @@ We add couple of hidden properties `$warehouse_import_id` and `$warehouse_type` 
 
 ### How do updates & deletes from Mirror syncs affect my event quota usage?
 
-On an [Events billing plan](/docs/pricing/billing) your event quota is consumed by:
+On an [Events billing plan](/docs/pricing) your event quota is consumed by:
 
 - **Monthly Event Volume:** The number of events in all of your projects at the end of each month. Updating an existing event using Mirror will not affect your monthly event volume. Deleting an existing event using Mirror will decrease your monthly event volume by one.
 - **Mirror updates and deletes:** Updates and deletes from mirror are counted separately from event volume. Each update or delete is counted as one event towards billing for the month they were triggered on, even if the record being updated is for a previous month. You can see a breakdown your event quota consumption by "event volume" vs "updates and deletes" on your [organization billing page](https://mixpanel.com/report/settings/%23org%2F%24org_id%24%2Fplan).

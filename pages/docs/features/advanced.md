@@ -266,7 +266,7 @@ Steps
 
     No, breakdowns are fundamentally designed to sum up to 100%. To ensure your analysis is accurate, please create non-overlapping segments.
 
-    If you really need to answer a question like this, the right way here is to create these as two metrics leveraging [inline filters](/docs/reports/overview) and NOT use breakdowns.
+    If you really need to answer a question like this, the right way here is to create these as two metrics leveraging [inline filters](/docs/reports) and NOT use breakdowns.
 
     ![/12834111393684](/12834111393684.png)
 

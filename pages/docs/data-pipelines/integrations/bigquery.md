@@ -51,7 +51,7 @@ Mixpanel requires two permissions to manage the dataset:
 
 ### Step 3: Provide Necessary Details for Pipeline Creation
 
-Refer to [Step 2: Creating the Pipeline](/docs/data-pipelines/overview/#step-2-creating-the-pipeline) to create data pipeline via UI. You need to provide specific details to enable authentication and data export to BigQuery.
+Refer to [Step 2: Creating the Pipeline](/docs/data-pipelines/#step-2-creating-the-pipeline) to create data pipeline via UI. You need to provide specific details to enable authentication and data export to BigQuery.
 
 - **GCP project ID**: The project ID where BigQuery dataset is present
 - **Dataset name**: Dataset created on the GCP project to which Mixpanel needs to export data
