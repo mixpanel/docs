@@ -497,15 +497,15 @@ which uses [column mappings](https://docs.databricks.com/en/delta/delta-change-d
 
 </Tabs.Tab>
 
-<Tab>
+<Tabs.Tab>
 
-Mirror takes Redshift table snapshots and runs queries to compute the change stream between two snapshot. Snapshots are stored in  a staging schema created in Step 1.
-- If two rows in Redshift table are identical across *all* columns, the checksums Mirror computes for each row will be the same and Mixpanel will consider them the same row causing only one copy to appear in Mixpanel. We recommend ensuring that one of your columns is a unique row ID to avoid this.
+Mirror takes Redshift table snapshots and runs queries to compute the changes between two snapshots using hash value for each row. Snapshots are stored in a staging schema created in [Step 1](#step-1-connect-a-warehouse).
+- If two rows in Redshift table are identical across *all* columns, the md5 hash value Mirror computes for each row will be the same and Mixpanel will consider them the same row causing only one copy to appear in Mixpanel. We recommend ensuring that one of your columns is a unique row ID to avoid this.
 - The table snapshots managed by Mixpanel and are automatically cleaned-up. Under normal conditions, Mirror maintains only one snapshot per-sync and removes the older run's snapshot as soon as it has been used by the subsequent sync run. These snapshots will incur some additional storage cost.
 
 **How changes are detected:**
 
-Changed rows are detected by checksumming the values of all columns except trailing NULL-valued columns. For example in the following table would use these per-row checksums:
+Changed rows are detected by computing MD5 hash for concatenated values of all columns except trailing NULL-valued columns. For example in the following table would use these per-row MD5:
 
 | **ID** | **Song Name** | **Artist** | **Genre** | **Computed checksum** |
 | --- | --- | --- | --- | --- |
@@ -543,7 +543,7 @@ Adding new, default-NULL columns to Mirror-tracked tables/views is fully support
 ALTER TABLE <table> ADD COLUMN <column> STRING NULL;
 ```
 
-We recommend avoiding other types of schema changes on large tables. Other schema changes may cause the checksum of every row to change, effectively re-sending the entire table to Mixpanel. For example, if we were to remove the Genre column in the example above the checksum of every row would be different:
+We recommend avoiding other types of schema changes on large tables. Other schema changes may cause the hash value of every row to change, effectively re-sending the entire table to Mixpanel. For example, if we were to remove the Genre column in the example above the checksum of every row would be different:
 
 | **ID** | **Song Name** | **Artist** | **Tag** | **Computed checksum** |
 | --- | --- | --- | --- | --- |
@@ -555,10 +555,10 @@ We recommend avoiding other types of schema changes on large tables. Other schem
 
 - Currently only add-column schema update is supported.
 - Geography, Geometry,  Varbyte and hllsketch not supported currently. If you have a use-case that requires support any of these columns, please contact us for a feature request.
-- Any new tables created after the permissions are granted, are not automatically accessible by mixpanel. Please grant necessary permissions to be able to setup mirror on the tables.
+- Any new tables created after the permissions are granted, are not automatically accessible by mixpanel. Please re-grant necessary permissions to be able to setup mirror on the tables.
 - `_mp_row_hash`, `_mp_change_type` are reserved column names used for tracking the computed hash value for each row, and update type to the row. Please ensure that this doesn’t conflict with the column names  of the table.
 
-</Tab>
+</Tabs.Tab>
 
 </ExtendedTabs>
 
