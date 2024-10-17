@@ -4,7 +4,7 @@ const process = require("node:process");
 const util = require("node:util");
 const YAML = require("yaml");
 
-const exec = util.promisify(require("node:child_process").exec);
+const execFile = util.promisify(require("node:child_process").execFile);
 
 const README_API_KEY = process.env.README_API_KEY;
 if (!README_API_KEY) {
@@ -17,9 +17,9 @@ if (!README_VERSION) {
   process.exit(1);
 }
 
-async function execAndLog(cmd) {
+async function execAndLog(cmd, args) {
   try {
-    const { stdout, stderr } = await exec(cmd);
+    const { stdout, stderr } = await execFile(cmd, args);
     console.error(stderr);
     console.log(stdout);
   } catch (err) {
@@ -63,9 +63,9 @@ async function updateSpecs() {
 
     // validate and publish spec
     console.log(`Updating ${spec.info.title} (${specFile}, ID ${specId})`);
-    await execAndLog(`npx rdme openapi:validate ${fullPath}`);
+    await execAndLog('npx', ['rdme', 'openapi:validate', fullPath]);
     await execAndLog(
-      `npx rdme openapi ${fullPath} --id=${specId} --key=${README_API_KEY}`
+      'npx', ['rdme', 'openapi', fullPath, `--id=${specId}`, `--key=${README_API_KEY}`]
     );
   }
 }
