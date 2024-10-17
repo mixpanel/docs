@@ -1,21 +1,15 @@
 import React, { useState, useEffect } from "react";
 import { getPagesUnderRoute } from "nextra/context";
-import ExtendedButton from "/components/ExtendedButton/ExtendedButton";
+import { ImageFrame } from "/components/ImageFrame";
 import Link from "next/link";
 
 const renderMedia = (page) => {
+  console.log(`render`, page.frontMatter);
   if (page.frontMatter?.thumbnail) {
     return (
-      <img
+      <ImageFrame
         src={page.frontMatter.thumbnail}
-        alt="Thumbnail"
-        style={{
-          maxWidth: "560px",
-          width: "100%",
-          borderRadius: "16px",
-          marginBottom: "16px",
-        }}
-        className="max-w-full h-auto"
+        alt={page.frontMatter.title}
       />
     );
   } else if (page.frontMatter?.video) {
