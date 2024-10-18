@@ -116,7 +116,6 @@ Call [`.flush()`](https://mixpanel.github.io/mixpanel-flutter/mixpanel_flutter/M
 mixpanel.flush();
 ```
 
-
 #### Importing Historical Events
 
 The Flutter SDK is a tracking SDK designed for real-time tracking in a client-side environment. Calling `.track()` triggers a request to our [/track API endpoint](https://developer.mixpanel.com/reference/track-event), which will validate for events with a timestamp that is within the last 5 days of the request. **Events older than 5 days will not be ingested**.
@@ -234,7 +233,7 @@ A few commonly used people methods are highlighted below:
     // will be ignored since "name" already exists
     mixpanel.getPeople().setOnce('name', 'samantha');
 
-    // set "location" group prop since it does not exist
+    // set "location" user prop since it does not exist
     mixpanel.getPeople().setOnce('location', 'us');
     ```
   </Tabs.Tab>
