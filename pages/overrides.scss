@@ -267,6 +267,10 @@ $border-radius-lg: 100px;
     border-bottom: 1px solid colors.$base120;
     // max-height: 500px;
 
+    @media (max-width: 600px) {
+      flex-direction: column;
+    }
+
     //title of each changelog entry
     .changelogItemTitle {
       font-size: 28px;
@@ -281,7 +285,8 @@ $border-radius-lg: 100px;
 
     .changelogIndexItemDate {
       width: 190px;
-      margin-right: 34px;
+      margin-right: 36px;
+      margin-bottom: 36px;
     }
 
     //date of changelog entry
@@ -296,6 +301,7 @@ $border-radius-lg: 100px;
 
     .changelogIndexItemBody {
       width: 860px;
+      max-width: 100%;
       color: colors.$grey80;
       font-size: 1.125rem; /* 18px */
       font-weight: 400;
