@@ -43,7 +43,6 @@ export default function ImageFrame({
       },
     },
   });
-  console.log(width);
 
   return (
     <div className={imageFrame({ isTall: isTall })}>

@@ -4,7 +4,6 @@ import { ImageFrame } from "/components/ImageFrame";
 import Link from "next/link";
 
 const renderMedia = (page) => {
-  console.log(`render`, page.frontMatter);
   if (page.frontMatter?.thumbnail) {
     return (
       <ImageFrame
