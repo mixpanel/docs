@@ -204,16 +204,58 @@ $border-radius-lg: 100px;
 
 //############Global Changelog############
 .changelogMainContainer {
+  .changelogHeader {
+    display: flex;
+    flex-direction: row;
+    height: 300px;
+    align-items: center;
+    justify-content: space-between;
+    flex-wrap: nowrap;
+
+    .changelogHeaderLeft {
+      max-width: 50%;
+
+      @media (max-width: 700px) {
+        max-width: none;
+      }
+
+      span {
+        color: colors.$grey80;
+        font-size: 18px;
+        font-weight: 400;
+        line-height: 160%;
+        letter-spacing: 0.36px;
+
+        a {
+          color: colors.$purple140;
+          text-decoration-line: underline;
+        }
+      }
+    }
+  }
+
   // Changelog title
   .changelogTitle {
-    font-size: 48px !important;
-    line-height: 1.5 !important;
-    text-align: center !important;
-    font-weight: 800 !important;
+    font-size: 60px !important;
+    line-height: 120% !important;
+    font-weight: 500 !important;
     margin-top: 32px !important;
     padding-bottom: 24px !important;
-    letter-spacing: -0.02em !important;
-    // color: colors.$purple200 !important;
+    letter-spacing: -1.2px !important;
+    color: colors.$purple200 !important;
+  }
+
+  .changelogHeaderImg {
+    max-width: 560px;
+    width: 50%;
+    border-radius: 16px;
+    margin-bottom: 16px;
+    position: absolute;
+    right: 0;
+
+    @media (max-width: 700px) {
+      display: none;
+    }
   }
 
   //div for changelog entries in the index page
