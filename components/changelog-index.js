@@ -1,20 +1,13 @@
 import React, { useState, useEffect } from "react";
 import { getPagesUnderRoute } from "nextra/context";
 import { ImageFrame } from "/components/ImageFrame";
-import { VideoFrame } from "/components/VideoFrame";
+import { VideoButtonWithModal } from "/components/VideoButtonWithModal";
 import Link from "next/link";
 
 const renderMedia = (page) => {
-  if (page.frontMatter?.thumbnail) {
-    return (
-      <ImageFrame
-        src={page.frontMatter.thumbnail}
-        alt={page.frontMatter.title}
-      />
-    );
-  } else if (page.frontMatter?.video) {
-    return <VideoFrame src={page.frontMatter.video} />;
-  }
+  return (
+    <ImageFrame src={page.frontMatter.thumbnail} alt={page.frontMatter.title} />
+  );
 };
 
 export default function ChangelogIndex({ more = "Read more" }) {
@@ -61,12 +54,14 @@ export default function ChangelogIndex({ more = "Read more" }) {
             <p className="changelogDate">{page.frontMatter.date}</p>
           ) : null}
 
-          {page.frontMatter?.thumbnail ||
-            (page.frontMatter?.video && renderMedia(page))}
+          {page.frontMatter?.thumbnail && renderMedia(page)}
 
           <p className="opacity-80 mt-6 leading-7">
             {page.frontMatter?.description}{" "}
-            <span className="inline-block">
+            <span className="nx-block">
+              {page.frontMatter?.video && (
+                <VideoButtonWithModal src={page.frontMatter.video} />
+              )}
               <Link href={page.route} className="changelogReadMoreLink">
                 {more + " →"}
               </Link>
