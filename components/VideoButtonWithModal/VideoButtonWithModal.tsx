@@ -17,8 +17,9 @@ export default function VideoButtonWithModal({
   let [isOpen, setIsOpen] = useState(false);
 
   // TODO: update this style and abstract it as time allows to a single button component
+  // https://www.figma.com/design/8kiticjQNChvsP9y7s9SRf/Product-Releases-(Copy)?node-id=982-75355&node-type=frame&t=O7vwnwoAoOx42stw-0
   const playButton = tv({
-    base: "nx-mr-6 nx-rounded nx-bg-indigo-600 nx-px-2 nx-py-1 nx-text-xs nx-font-semibold nx-text-white nx-shadow-sm hover:nx-bg-indigo-500 focus-visible:nx-outline focus-visible:nx-outline-2 focus-visible:nx-outline-offset-2 focus-visible:nx-outline-indigo-600",
+    base: "nx-rounded nx-bg-indigo-600 nx-px-2 nx-py-1 nx-text-xs nx-font-semibold nx-text-white nx-shadow-sm hover:nx-bg-indigo-500 focus-visible:nx-outline focus-visible:nx-outline-2 focus-visible:nx-outline-offset-2 focus-visible:nx-outline-indigo-600",
   });
 
   return (
@@ -28,7 +29,7 @@ export default function VideoButtonWithModal({
         className={playButton()}
         onClick={() => setIsOpen(true)}
       >
-        Button text
+        Watch the Video
       </button>
 
       <Dialog
@@ -45,9 +46,8 @@ export default function VideoButtonWithModal({
                 aspectRatio: 16 / 9,
                 height: "auto",
                 borderRadius: "16px",
-                marginBottom: "16px",
               }}
-              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+              allow="accelerometer; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
               title={title}
               allowFullScreen
             ></iframe>

@@ -58,7 +58,7 @@ export default function ChangelogIndex({ more = "Read more" }) {
 
           <p className="opacity-80 mt-6 leading-7">
             {page.frontMatter?.description}{" "}
-            <span className="nx-block">
+            <span className="nx-isolate nx-inline-flex nx-rounded-md nx-shadow-sm nx-space-x-5 nx-mt-8">
               {page.frontMatter?.video && (
                 <VideoButtonWithModal src={page.frontMatter.video} />
               )}
