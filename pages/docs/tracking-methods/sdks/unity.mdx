@@ -37,6 +37,8 @@ After installing the package, open the unity project settings menu for Mixpanel 
 
 ![image](/230697675-388145e0-bd47-42b9-8276-3be22d157529.png)
 
+Please note if you prefer to initialize Mixpanel manually, you can select the Manual Initialization in the settings and call [`Mixpanel.Init()`](https://github.com/mixpanel/mixpanel-unity/blob/ec303c5bdacd00303a8b814a9806cfb05882c719/Mixpanel/MixpanelAPI.cs#L27) to initialize.
+
 
 Once you've initialized the library with your project token, import Mixpanel into your code using the `mixpanel` namespace to start using it:
 
@@ -195,9 +197,6 @@ Mixpanel.People.Set("Plan", "Enterprise");
 
 ### Other Types of Profile Updates
 
-
-#### Incrementing Numeric Properties
-
 There are a few other methods for setting profile properties. See a complete reference of the available methods [here](https://mixpanel.github.io/mixpanel-unity/api-reference/classmixpanel_1_1_mixpanel_1_1_people.html)
 
 A few commonly used people methods are highlighted below:
@@ -292,3 +291,44 @@ A few commonly used people methods are highlighted below:
 
   </Tabs.Tab>
 </Tabs>
+
+## Privacy-Friendly Tracking
+
+You have control over the data you send to Mixpanel. The Unity SDK provide methods to help you protect user data.
+
+Learn more about [Privacy](/docs/privacy/overview).
+
+### Opt Out of Tracking
+
+The Unity SDK is initialized with tracking enabled by default. Use the `.OptOutTracking()` method to opt the user out of data tracking and local storage for the current Mixpanel instance.
+
+**Example Usage**
+```csharp
+//send "some_event"
+Mixpanel.Track("some_event");
+
+// opt user out of tracking
+// SDK is prevented from sending any data
+Mixpanel.OptOutTracking();
+
+// this track call will not work
+Mixpanel.Track("some_event");
+```
+
+**Opt Out By Default**
+
+You can initialize the library with users opted out of tracking by default using the `IsTracking` configuration. Once the user is ready to be tracked, call `.optInTracking()` to start tracking.
+
+**Example Usage**
+```csharp
+// turn off tracking
+MixpanelStorage.IsTracking = false;
+
+//opt back into tracking
+Mixpanel.OptInTracking();
+```
+
+### EU Data Residency
+
+Route data to Mixpanel's EU servers by setting the `API Host Address` to `https://api-eu.mixpanel.com/` when configuring the library under the unity project settings menu for Mixpanel (Edit -> Project Settings -> Mixpanel).
+
