@@ -17,28 +17,27 @@ You can install the Swift library by using CocoaPods, Carthage, or Swift Package
     1. Install CocoaPods by typing the following in your command line:
 
     ```bash
-    //install CocoaPods
+    # install CocoaPods
     gem install cocoapods
     ```
 
     2. After install CocoaPods, create a local CocoaPods spec mirror by running the following:
 
     ```bash
-    //Create CocoaPods spec mirror
+    # Create CocoaPods spec mirror
     pod setup
     ```
 
     3. Then navigate to your Xcode project directory and create a Podfile by running the following:
 
     ```bash
-    // create Podfile in project directory
+    # create Podfile in project directory
     pod init
     ```
 
     4. Open the Podfile that was generated and add the Mixpanel library to your dependencies:
 
     ```ruby Ruby
-    // add Mixpanel library to dependencies
     target 'MyApp' do
       pod 'Mixpanel-swift'
     end

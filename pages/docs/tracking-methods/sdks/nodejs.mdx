@@ -1,3 +1,5 @@
+import { Callout, Tabs, Cards } from 'nextra/components'
+
 # Mixpanel SDKs: Node.js
 
 The Mixpanel Node.js library will be most useful to you if you need to send data from a Node.js server, or for interacting with Mixpanel APIs in JavaScript outside of the browser (such as importing past events with a script).
@@ -8,11 +10,14 @@ The [Library Source Code](https://github.com/mixpanel/mixpanel-node) and an [Exa
 
 Install the Mixpanel Node.js library and create a Mixpanel instance in order to begin Mixpanel tracking.
 
-Use [npm](https://www.npmjs.com/) to install Mixpanel in your project by calling `npm install mixpanel`. The Mixpanel module will be available in the Node project after installing the library.
+Use [npm](https://www.npmjs.com/) to install Mixpanel. The Mixpanel module will be available in the Node project after installing the library.
 
-Next, create a Mixpanel instance and initialize a Mixpanel client to communicate with Mixpanel servers. To do this, grab the Mixpanel factory and create an instance of the Mixpanel client by calling `mixpanel.init(YOUR_PROJECT_TOKEN)`.
+```bash
+npm install mixpanel
+```
 
-The project token is unique to your Mixpanel project. [Instructions for finding your project token can be found here](/docs/orgs-and-projects/managing-projects#find-your-project-tokens).
+Next, create a Mixpanel instance to communicate with Mixpanel servers. To do this, grab the Mixpanel factory and create an instance of the Mixpanel client by calling `mixpanel.init('YOUR_PROJECT_TOKEN')` using [your project token](/docs/orgs-and-projects/managing-projects#find-your-project-tokens).
+
 ```javascript Javascript
 // grab the Mixpanel factory
 const Mixpanel = require('mixpanel');
