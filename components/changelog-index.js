@@ -60,7 +60,6 @@ export default function ChangelogIndex({ more = "Read more" }) {
 
   // Load initial or additional pages
   useEffect(() => {
-    console.log(filter)
     const morePages = allPages.filter(page => {
       switch (filter) {
         case 'updates':
