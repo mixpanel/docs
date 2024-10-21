@@ -10,7 +10,6 @@ const renderMedia = (page) => {
         src={page.frontMatter.thumbnail}
         alt="Thumbnail"
         style={{
-          maxWidth: "560px",
           width: "100%",
           borderRadius: "16px",
           marginBottom: "16px",
@@ -36,7 +35,6 @@ const renderMedia = (page) => {
       <iframe
         src={embedURL}
         style={{
-          maxWidth: "560px",
           width: "100%",
           aspectRatio: 16 / 9,
           height: "auto",
@@ -72,41 +70,47 @@ export default function ChangelogIndex({ more = "Read more" }) {
   return (
     <div
       style={{
-        display: "block",
-        maxWidth: "560px",
-        width: "100%",
-        marginLeft: "auto",
-        marginRight: "auto",
+        display: "flex",
         alignItems: "center",
+        flexDirection: "column",
       }}
       className="changelogIndexContainer"
     >
       {displayedPages.map((page) => (
         <div key={page.route} className="changelogIndexItem">
-          <h3>
-            <Link
-              href={page.route}
-              style={{ color: "inherit", textDecoration: "none" }}
-              className="changelogItemTitle block"
-            >
-              {page.meta?.title || page.frontMatter?.title || page.name}
-            </Link>
-          </h3>
-          {page.frontMatter?.date ? (
-            <p className="changelogDate">{page.frontMatter.date}</p>
-          ) : null}
+          <div className="changelogIndexItemDate">
+            {page.frontMatter?.date ? (
+              <p className="changelogDate">{(new Date(page.frontMatter.date)).toLocaleDateString(undefined, {
+                year: "numeric",
+                month: "long",
+                day: "numeric"
+              })}</p>
+            ) : null}
+          </div>
 
-          {renderMedia(page)}
+          <div className="changelogIndexItemBody">
+            {renderMedia(page)}
 
-          <p className="opacity-80 mt-6 leading-7">
-            {page.frontMatter?.description}{" "}
-            <span className="inline-block">
-              <Link href={page.route} className="changelogReadMoreLink">
-                {more + " →"}
+            <h3>
+              <Link
+                href={page.route}
+                style={{ color: "inherit", textDecoration: "none" }}
+                className="changelogItemTitle block"
+              >
+                {page.meta?.title || page.frontMatter?.title || page.name}
               </Link>
-            </span>
-          </p>
-          <div className="changelogDivider nx-mt-16"></div>
+            </h3>
+
+            <p className="opacity-80 mt-6 leading-7">
+              {page.frontMatter?.description}{" "}
+              <span className="inline-block">
+                <Link href={page.route} className="changelogReadMoreLink">
+                  {more + " →"}
+                </Link>
+              </span>
+            </p>
+            <div className="changelogDivider nx-mt-16"></div>
+          </div>
         </div>
       ))}
       {pageIndex + itemsPerPage < allPages.length && (
