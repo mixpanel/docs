@@ -10,7 +10,7 @@ const renderMedia = (page) => {
   );
 };
 
-export default function ChangelogIndex({ more = "Read more" }) {
+export default function ChangelogIndex({ more = "Learn More" }) {
   // naturally sorts pages from a-z rather than z-a
   const allPages = getPagesUnderRoute("/changelogs").reverse();
   const itemsPerPage = 10;
@@ -62,16 +62,16 @@ export default function ChangelogIndex({ more = "Read more" }) {
             </h3>
 
             <p className="opacity-80 mt-6 leading-7">
-              {page.frontMatter?.description}{" "}
-              <span className="nx-isolate nx-inline-flex nx-rounded-md nx-shadow-sm nx-space-x-5 nx-mt-8">
+              {page.frontMatter?.description}
+            </p>
+            <div className="nx-isolate nx-inline-flex nx-items-center nx-space-x-5 nx-mt-8">
               {page.frontMatter?.video && (
                   <VideoButtonWithModal src={page.frontMatter.video} />
                 )}
-                <Link href={page.route} className="changelogReadMoreLink">
-                  {more + " →"}
-                </Link>
-              </span>
-            </p>
+              <Link href={page.route} className="changelogReadMoreLink">
+                {more + " →"}
+              </Link>
+            </div>
             <div className="changelogDivider nx-mt-16"></div>
           </div>
         </div>
