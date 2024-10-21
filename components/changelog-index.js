@@ -56,16 +56,61 @@ export default function ChangelogIndex({ more = "Read more" }) {
   const itemsPerPage = 10;
   const [displayedPages, setDisplayedPages] = useState([]);
   const [pageIndex, setPageIndex] = useState(0);
+  const [filter, setFilter] = useState(`all`);
 
   // Load initial or additional pages
   useEffect(() => {
-    const morePages = allPages.slice(pageIndex, pageIndex + itemsPerPage);
+    console.log(filter)
+    const morePages = allPages.filter(page => {
+      switch (filter) {
+        case 'updates':
+          return page.frontMatter?.isAnnouncement !== true;
+        case 'announcements':
+          return page.frontMatter?.isAnnouncement === true;
+        default:
+          return true;
+      }
+    }).slice(pageIndex, pageIndex + itemsPerPage);
     setDisplayedPages((prev) => [...prev, ...morePages]);
   }, [pageIndex]);
+
+  useEffect(() => {
+    console.log(filter)
+    const morePages = allPages.filter(page => {
+      switch (filter) {
+        case 'updates':
+          return page.frontMatter?.isAnnouncement !== true;
+        case 'announcements':
+          return page.frontMatter?.isAnnouncement === true;
+        default:
+          return true;
+      }
+    }).slice(pageIndex, pageIndex + itemsPerPage);
+    setDisplayedPages(morePages);
+  }, [filter]);
 
   const loadMore = () => {
     setPageIndex((prev) => prev + itemsPerPage);
   };
+
+  const filterButton = (id, label) => {
+    let className = 'changelogFilterButton';
+    if (filter === id) {
+      className += ' active'
+    }
+    return (
+      <button
+        className={className}
+        onClick={() => setFilter(id)}
+      >{label}</button>
+    );
+  }
+
+  const filterOptions = [
+    {id: 'all', label: 'All Posts'},
+    {id: 'announcements', label: 'Announcements'},
+    {id: 'updates', label: 'Updates'},
+  ]
 
   return (
     <div
@@ -76,6 +121,11 @@ export default function ChangelogIndex({ more = "Read more" }) {
       }}
       className="changelogIndexContainer"
     >
+      <div className="changelogIndexFilterBorder" />
+      <div className="changelogIndexFilterBar">
+        {filterOptions.map(filter => filterButton(filter.id, filter.label))}
+      </div>
+
       {displayedPages.map((page) => (
         <div key={page.route} className="changelogIndexItem">
           <div className="changelogIndexItemDate">
