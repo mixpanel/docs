@@ -283,25 +283,53 @@ $border-radius-lg: 100px;
 
   //div for changelog entries in the index page
   .changelogIndexItem {
+    display: flex;
+    flex-direction: row;
     margin-top: 40px;
+    max-width: 100%;
+    border-bottom: 1px solid colors.$base120;
     // max-height: 500px;
+
+    @media (max-width: 600px) {
+      flex-direction: column;
+    }
 
     //title of each changelog entry
     .changelogItemTitle {
-      font-size: 24px;
-      font-weight: 800;
-      line-height: 32px;
+      font-size: 28px;
+      font-weight: 500;
+      line-height: 120%;
       margin-top: 32px;
       // text-shadow: 0px 0px 0.5px black;
+      color: colors.$purple200;
+      font-feature-settings: "salt" on;
+      letter-spacing: -0.28px;
+    }
+
+    .changelogIndexItemDate {
+      width: 190px;
+      margin-right: 36px;
+      margin-bottom: 36px;
     }
 
     //date of changelog entry
     .changelogDate {
-      opacity: 0.5;
+      color: colors.$grey80;
       font-size: 14px;
-      line-height: 28px;
-      margin-top: 4px;
-      margin-bottom: 2px;
+      font-weight: 500;
+      line-height: 168%; /* 23.52px */
+      letter-spacing: 0.28px;
+      text-wrap: nowrap;
+    }
+
+    .changelogIndexItemBody {
+      width: 860px;
+      max-width: 100%;
+      color: colors.$grey80;
+      font-size: 1.125rem; /* 18px */
+      font-weight: 400;
+      line-height: 160%;
+      letter-spacing: 0.36px;
     }
 
     //read more button
@@ -310,8 +338,6 @@ $border-radius-lg: 100px;
       text-underline-offset: 2px;
       text-decoration-thickness: from-font;
       color: colors.$purple100;
-      font-size: 1.125rem; /* 18px */
-      line-height: 1.75rem; /* 28px */
     }
   }
 
