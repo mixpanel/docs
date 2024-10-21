@@ -57,7 +57,10 @@
 /docs/data-pipelines/integrations/azure-raw-pipeline /docs/data-pipelines/integrations/raw-azure-pipeline
 /docs/data-pipelines/integrations/google-cloud-storage /docs/data-pipelines/integrations/schematized-gcs-pipeline
 /docs/data-pipelines/integrations/google-cloud-storage-raw-pipeline /docs/data-pipelines/integrations/raw-gcs-pipeline
+/docs/data-pipelines/integrations/raw-aws-pipeline /docs/data-pipelines/old-pipelines/integrations/raw-aws-pipeline
 /docs/data-pipelines/old-pipelines/overview /docs/data-pipelines/old-pipelines
+/docs/data-pipelines/overview /docs/data-pipelines
+/docs/data-pipelines/schematized-export-pipeline /docs/data-pipelines/old-pipelines/integrations/schematized-export-pipeline
 /docs/data-structure/advanced/ad-spend /docs/tracking-methods/integrations/ad-spend
 /docs/data-structure/advanced/group-analytics /docs/data-structure/group-analytics
 /docs/data-structure/advanced/utm-tags /docs/tracking-best-practices/traffic-attribution
@@ -65,6 +68,9 @@
 /docs/debugging/distinct-id-limits /docs/tracking-best-practices/hot-shard-limits
 /docs/debugging/overview /docs/tracking-best-practices/debugging
 /docs/features/session-replay /docs/session-replay
+/docs/formulas /changelogs/2023-09-19-formulas
+/docs/funnels /docs/reports/funnels
+/docs/getting-started /docs/what-is-mixpanel
 /docs/getting-started/plan-your-implementation /docs/what-to-track
 /docs/getting-started/what-is-mixpanel /docs/what-is-mixpanel
 /docs/getting-started/what-should-i-track /docs/what-to-track
@@ -72,6 +78,8 @@
 /docs/how-it-works/concepts /docs/data-structure/concepts
 /docs/how-it-works/infrastructure https://engineering.mixpanel.com/under-the-hood-of-mixpanels-infrastructure-0c7682125e9b
 /docs/implement-mixpanel /docs/what-is-mixpanel
+/docs/insights /docs/reports/insights
+/docs/javascript /docs/tracking-methods/sdks/javascript
 /docs/migration/overview /docs/migration
 /docs/orgs-and-projects/overview /docs/orgs-and-projects
 /docs/other-bits/cohort-syncs/airship /docs/cohort-sync/integrations/airship
@@ -149,11 +157,15 @@
 /docs/other-bits/under-the-hoo /docs/how-it-works/infrastructure
 /docs/other-bits/under-the-hood /docs/how-it-works/infrastructure
 /docs/pricing/billing /docs/pricing
+/docs/pricing/pricing-faqs /docs/pricing#faqs
+/docs/pricing/pricing_faqs /docs/pricing#faqs
 /docs/privacy/overview /docs/privacy
 /docs/quickstart/connect-your-data /docs/quickstart/install-mixpanel
 /docs/quickstart/what-to-track /docs/what-to-track
 /docs/reports/funnels#counting-method /docs/reports/funnels#measurements
 /docs/reports/overview /docs/reports
+/docs/reports/segmentation /docs/reports/insights
+/docs/tracking-best-practices/distinct-id-limits /docs/tracking-best-practices/hot-shard-limits
 /docs/tracking-methods/data-warehouse/bigquery /docs/tracking-methods/data-warehouse
 /docs/tracking-methods/data-warehouse/bigquery /docs/tracking-methods/data-warehouse
 /docs/tracking-methods/data-warehouse/column-types /docs/tracking-methods/data-warehouse
@@ -218,7 +230,7 @@
 /docs/tracking/reference/android /docs/tracking-methods/sdks/android
 /docs/tracking/reference/data-model /docs/how-it-works/concepts
 /docs/tracking/reference/default-properties /docs/data-structure/property-reference
-/docs/tracking/reference/distinct-id-limits /docs/debugging/distinct-id-limits
+/docs/tracking/reference/distinct-id-limits /docs/tracking-best-practices/hot-shard-limits
 /docs/tracking/reference/flutter /docs/tracking-methods/sdks/flutter
 /docs/tracking/reference/go /docs/tracking-methods/sdks/go
 /docs/tracking/reference/ios /docs/tracking-methods/sdks/ios
