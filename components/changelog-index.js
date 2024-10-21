@@ -1,50 +1,16 @@
 import React, { useState, useEffect } from "react";
 import { getPagesUnderRoute } from "nextra/context";
 import { ImageFrame } from "/components/ImageFrame";
+import { VideoButtonWithModal } from "/components/VideoButtonWithModal";
 import Link from "next/link";
 
 const renderMedia = (page) => {
-  if (page.frontMatter?.thumbnail) {
-    return (
-      <ImageFrame
-        src={page.frontMatter.thumbnail}
-        alt={page.frontMatter.title}
-      />
-    );
-  } else if (page.frontMatter?.video) {
-    const videoURL = page.frontMatter.video;
-    let embedURL;
-
-    if (videoURL.includes("youtube.com") || videoURL.includes("youtu.be")) {
-      const videoId = videoURL.split("v=")[1]
-        ? videoURL.split("v=")[1].split("&")[0]
-        : videoURL.split("/").pop();
-      embedURL = `https://www.youtube.com/embed/${videoId}`;
-    } else if (videoURL.includes("loom.com")) {
-      const videoId = videoURL.split("/").pop();
-      embedURL = `https://www.loom.com/embed/${videoId}?hideEmbedTopBar=true`;
-    }
-
-    return (
-      <iframe
-        src={embedURL}
-        style={{
-          width: "100%",
-          aspectRatio: 16 / 9,
-          height: "auto",
-          borderRadius: "16px",
-          marginBottom: "16px",
-        }}
-        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-        allowFullScreen
-        title="Video"
-      ></iframe>
-    );
-  }
-  return "";
+  return (
+    <ImageFrame src={page.frontMatter.thumbnail} alt={page.frontMatter.title} />
+  );
 };
 
-export default function ChangelogIndex({ more = "Read more" }) {
+export default function ChangelogIndex({ more = "Learn More" }) {
   // naturally sorts pages from a-z rather than z-a
   const allPages = getPagesUnderRoute("/changelogs").reverse();
   const itemsPerPage = 10;
@@ -81,9 +47,9 @@ export default function ChangelogIndex({ more = "Read more" }) {
               })}</p>
             ) : null}
           </div>
-
+          
           <div className="changelogIndexItemBody">
-            {renderMedia(page)}
+            {page.frontMatter?.thumbnail && renderMedia(page)}
 
             <h3>
               <Link
@@ -96,13 +62,16 @@ export default function ChangelogIndex({ more = "Read more" }) {
             </h3>
 
             <p className="opacity-80 mt-6 leading-7">
-              {page.frontMatter?.description}{" "}
-              <span className="inline-block">
-                <Link href={page.route} className="changelogReadMoreLink">
-                  {more + " →"}
-                </Link>
-              </span>
+              {page.frontMatter?.description}
             </p>
+            <div className="nx-isolate nx-inline-flex nx-items-center nx-space-x-5 nx-mt-8">
+              {page.frontMatter?.video && (
+                  <VideoButtonWithModal src={page.frontMatter.video} />
+                )}
+              <Link href={page.route} className="changelogReadMoreLink">
+                {more + " →"}
+              </Link>
+            </div>
             <div className="changelogDivider nx-mt-16"></div>
           </div>
         </div>
