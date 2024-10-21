@@ -70,24 +70,9 @@ export default function ChangelogIndex({ more = "Read more" }) {
         default:
           return true;
       }
-    }).slice(pageIndex, pageIndex + itemsPerPage);
-    setDisplayedPages((prev) => [...prev, ...morePages]);
-  }, [pageIndex]);
-
-  useEffect(() => {
-    console.log(filter)
-    const morePages = allPages.filter(page => {
-      switch (filter) {
-        case 'updates':
-          return page.frontMatter?.isAnnouncement !== true;
-        case 'announcements':
-          return page.frontMatter?.isAnnouncement === true;
-        default:
-          return true;
-      }
-    }).slice(pageIndex, pageIndex + itemsPerPage);
+    }).slice(0, pageIndex + itemsPerPage);
     setDisplayedPages(morePages);
-  }, [filter]);
+  }, [pageIndex, filter]);
 
   const loadMore = () => {
     setPageIndex((prev) => prev + itemsPerPage);
