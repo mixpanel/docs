@@ -136,7 +136,7 @@ By [adding middleware to Segment's SDK](https://segment.com/docs/connections/sou
 ```javascript
 // Middleware to add Mixpanel's session recording properties to Segment events
 analytics.addSourceMiddleware(({ payload, next, integrations }) => {
-	if (payload.type === 'track' || payload.type === 'page') {
+	if (payload.obj.type === 'track' || payload.obj.type === 'page') {
 		if (window.mixpanel) {
 			const segmentDeviceId = payload.obj.anonymousId;
 			//original id
@@ -150,7 +150,7 @@ analytics.addSourceMiddleware(({ payload, next, integrations }) => {
 			};
 		}
 	}
-	if (payload.type === 'identify') {
+	if (payload.obj.type === 'identify') {
 		if (window.mixpanel) {
 			const userId = payload.obj.userId;
 			mixpanel.identify(userId);
