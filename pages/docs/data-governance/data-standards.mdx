@@ -1,0 +1,68 @@
+# Data Standards (Beta)
+
+## Overview
+
+Data governance can feel like an endless uphill battle. There’s always more work to do:
+- making sure new events are named correctly
+- making sure people add descriptions to events
+- making sure people assign owners to events
+
+Historically, this work has been labor-intensive and never-ending. Someone needs to enforce that this work gets done, otherwise a project will naturally get messier and less usable over time.
+
+With Data Standards, we’re automating this work, so that your data stays clean without you needing to invest hours of labor every week.
+
+## What are Data Standards?
+
+*Data Standards* are rules for your data. They are accompanied by *Actions*, which are automatically applied if these rules are broken.
+
+### Data Standards
+
+Today, you can define the following standards:
+
+- All my events must be [X] case
+- All my events must include a description
+
+![image.png](https://prod-files-secure.s3.us-west-2.amazonaws.com/675c76ea-9344-43f8-957f-719aaedf54ce/2c6c0dac-85e2-4065-a809-91c7717633a8/image.png)
+
+*We plan to introduce more standards in the future, for event owners, required properties, and more.* 
+
+### Actions
+
+If Data Standards are violated, you can define actions to be automatically applied. As a result, you can ensure your data quality stays high, without needing to invest corresponding amounts of time enforcing manually. 
+
+**New Data**
+
+Data Standards helps ensure new data entering your project is high quality. 
+
+![image.png](https://prod-files-secure.s3.us-west-2.amazonaws.com/675c76ea-9344-43f8-957f-719aaedf54ce/eb46b21b-70a2-49f7-8d97-da632a3d2533/image.png)
+
+This is accomplished in three ways:
+
+| Action | Description |
+| --- | --- |
+| **Block Event Approval** | Do not allow an event to be changed from `Pending` status until it complies with all data standards. You must still manually change status from `Pending` to `Visible`. This allows your team to still do a QA process, to check new tracking for best practices, potential duplicates, and correct implementation, before approving |
+| **Auto Event Approval** | Once an event complies with data standards, events with status of `Pending` will automatically change to `Visible`. Note: this is not recommended, as we still advise teams check new tracking for best practices, potential duplicates, and correct implementation |
+| **Automatic Drop** | If an event does not meet naming convention standards, we will automatically drop that event. Note: dropped data is irreversible, so we recommend caution using this action.  |
+
+Additionally, notifications can be sent anytime a violation is detected, so that you can keep a finger on the pulse of your data quality, and intervene as needed.
+
+Finally, in advanced settings, you can also choose to automatically drop events that were not already planned using our Schemas endpoint. However, dropped data is irreversible, so we recommend caution using this action. 
+
+![image.png](https://prod-files-secure.s3.us-west-2.amazonaws.com/675c76ea-9344-43f8-957f-719aaedf54ce/a475f655-a752-41cf-a3a4-f8eaeda697ba/image.png)
+
+**Existing Data**
+
+Data Standards has the power to immediately clean up your entire project in a single click, by automatically hiding any events that do not comply with your data standards. 
+
+Here’s an illustrative example of how this works:
+
+- You enable the data standard that ‘All events must have a description’
+- You enable this standard for Existing data
+- In one click, all your events missing a description are automatically hidden
+- Once your end users add descriptions to events, these events will be un-hidden automatically
+
+For users that still need this data, they can still access these hidden events in our Query Builder. However, for casual users, this undocumented data will be tucked away, so they are only immediately presented with high quality data that meets your data standards. 
+
+## Interested in learning more?
+
+Want your project to be more cleanly organized, without investing hours of work each week taming the chaos? Reach out to your Account Manager for exclusive Beta access to Data Standards.
