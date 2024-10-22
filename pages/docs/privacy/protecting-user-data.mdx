@@ -1,6 +1,6 @@
 # Protecting User Data: Opt users out of tracking and anonymizing data
 
-import { Tab, Tabs } from 'nextra-theme-docs'
+import { Tabs } from 'nextra/components'
 
 ## Overview
 You have full control over the data you send to Mixpanel. Here we share best practices for tracking in a privacy-friendly way.
@@ -9,64 +9,64 @@ You have full control over the data you send to Mixpanel. Here we share best pra
 You can use the opt_out method in Mixpanel's SDKs to opt users out of tracking. This state is controlled by a flag that is set as a browser cookie or localStorage. Note: because this setting is stateful, it only exists on our Web/Mobile SDKs -- if you're tracking from your servers, you will need to store this opt-out setting in a database and check it before sending any track calls.
 
 <Tabs items={['Javascript', 'Objective-C', 'Swift', 'Android', 'React Native']}>
-<Tab>
+<Tabs.Tab>
 ```javascript
 mixpanel.opt_out_tracking();
 ```
-</Tab>
-<Tab>
+</Tabs.Tab>
+<Tabs.Tab>
 ```objc
 Mixpanel *mixpanel = [Mixpanel sharedInstance];\n[mixpanel optOutTracking];
 ```
-</Tab>
-<Tab>
+</Tabs.Tab>
+<Tabs.Tab>
 ```swift
 Mixpanel.mainInstance().optOutTracking();
 ```
-</Tab>
-<Tab>
+</Tabs.Tab>
+<Tabs.Tab>
 ```java
 mixpanel.optOutTracking();
 ```
-</Tab>
-<Tab>
+</Tabs.Tab>
+<Tabs.Tab>
 ```javascript
 mixpanel.optOutTracking();
 ```
-</Tab>
+</Tabs.Tab>
 </Tabs>
 
 You can also configure our SDKs to opt users out of tracking by default:
 
 <Tabs items={['Javascript', 'Objective-C', 'Swift', 'Android', 'React Native']}>
-<Tab>
+<Tabs.Tab>
 ```javascript
 mixpanel.init(YOUR TOKEN, {opt_out_tracking_by_default: true});
 ```
-</Tab>
-<Tab>
+</Tabs.Tab>
+<Tabs.Tab>
 ```objc
 Mixpanel *mixpanel = [Mixpanel sharedInstanceWithToken:@YOUR_API_TOKEN trackAutomaticEvents:NO optOutTrackingByDefault:YES];
 ```
-</Tab>
-<Tab>
+</Tabs.Tab>
+<Tabs.Tab>
 ```swift
 let mixpanel = Mixpanel.initialize(token: YOUR PROJECT TOKEN, trackAutomaticEvents: no, optOutTrackingByDefault: true)
 ```
-</Tab>
-<Tab>
+</Tabs.Tab>
+<Tabs.Tab>
 ```java
 MixpanelAPI mixpanelOptOutDefault = MixpanelAPI.getInstance(context, YOUR PROJECT TOKEN, true, true /* opt out by default */);
 ```
-</Tab>
-<Tab>
+</Tabs.Tab>
+<Tabs.Tab>
 ```javascript
 const trackAutomaticEvents = false;
 const optOutTrackingDefault = true;
 const mixpanel = new Mixpanel('your project token', trackAutomaticEvents, optOutTrackingDefault);
 mixpanel.init();
 ```
-</Tab>
+</Tabs.Tab>
 </Tabs>
 
 
@@ -74,31 +74,31 @@ mixpanel.init();
 Mixpanel's Web and Mobile libraries use IP address to enrich events with geographic information like city, country, and region. Mixpanel does not store IP addresses, but rather, only uses IPs to assign [geolocation properties to data upon ingestion](/docs/tracking-best-practices/geolocation). You can disable this using the following configuration options in each of our SDKs:
 
 <Tabs items={['Javascript', 'Objective-C', 'Swift', 'Android', 'React Native']}>
-<Tab>
+<Tabs.Tab>
 ```javascript Javascript
 mixpanel.init("YOUR_TOKEN", {"ip": false})
 ```
-</Tab>
-<Tab>
+</Tabs.Tab>
+<Tabs.Tab>
 ```objectivec Objective-C
 useIPAddressForGeoLocation = NO
 ```
-</Tab>
-<Tab>
+</Tabs.Tab>
+<Tabs.Tab>
 ```swift
 Mixpanel.initialize(token: "MIXPANEL_TOKEN", useIPAddressForGeoLocation: false)
 ```
-</Tab>
-<Tab>
+</Tabs.Tab>
+<Tabs.Tab>
   ```xml Android
 <meta-data android:name="com.mixpanel.android.MPConfig.UseIpAddressForGeolocation" android:value="false" />
 ```
-</Tab>
-<Tab>
+</Tabs.Tab>
+<Tabs.Tab>
   ```javascript React Native
 setUseIpAddressForGeolocation(false)
 ```
-</Tab>
+</Tabs.Tab>
 </Tabs>
 
 ## Anonymizing Users
