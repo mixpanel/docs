@@ -266,7 +266,7 @@ Steps
 
     No, breakdowns are fundamentally designed to sum up to 100%. To ensure your analysis is accurate, please create non-overlapping segments.
 
-    If you really need to answer a question like this, the right way here is to create these as two metrics leveraging [inline filters](/docs/reports/overview) and NOT use breakdowns.
+    If you really need to answer a question like this, the right way here is to create these as two metrics leveraging [inline filters](/docs/reports) and NOT use breakdowns.
 
     ![/12834111393684](/12834111393684.png)
 
@@ -550,8 +550,7 @@ In funnels, the behavioral property is computed in the time range between 2 step
 
 #### After Step 1
 
-In retention, the behavioral property is computed in the chosen time range after the entry event, up until the retaining action. For example, there may be a 7 day window in which we're looking for an event, but if the retaining action happens before the 7 days are up, we no longer count an additional events.
-
+In retention, the behavioral property is computed in the chosen time range after the entry event, up until the expiration window. For example, there may be a 7 day window in which we're looking for an event. Even if the retaining action happens before the 7 days are up, we continue to count additional events.
 
 ## Find Interesting Segments
 

@@ -30,7 +30,7 @@ This table contains descriptions for each field in the “Events” view.
 
 | Field | Description |
 | --- | --- |
-| Event Name | The database name of the event. Status Icons indicate whether event is hidden or visible in the Mixpanel project |
+| Event Name | The database name of the event. Status Icons indicate whether the event is hidden or visible in the Mixpanel project |
 | Display Name | The event name that displays in the Mixpanel interface. |
 | Description | The information that describes the event, such as what triggers it or what properties are sent with it. |
 | 30-Day Volume | The total number of events that users fired in the last 30 days. |
@@ -105,7 +105,7 @@ You can filter by visible or hidden events, dropped events, merged events, tags,
 
 ## Viewing Query Volumes for Events and Properties
 
-In each view, you can see the total UI and API queries in the last 30 days for any of these data types and sort by it. 
+In each view, you can see the total UI and API queries in the last 30 days for any of these data types and sort by them. 
 
 This data lets you easily discover the parts of your implementation that are most valuable and the parts that are not being used. You can use this information to determine which events and properties you should drop.
 
@@ -184,7 +184,7 @@ To hide an event or property:
 2. Select **Hide**. A message appears to allow you to confirm hiding the event(s). After you select **Hide**, the event or property status changes to “Hidden”.
 ![Lexicon Hide Events Warning](/lexicon-hide-events2.png)
 
-Another option for hiding an event, property, or property value is to let it inactivate until it is hidden in report dropdown menus. Mixpanel’s report dropdown menus hide events that have not been fired within the last 30 days. Event properties and property values that have not been sent to your project in 28 days be hidden from dropdown menus.
+Another option for hiding an event, property, or property value is to let it inactivate until it is hidden in report dropdown menus. Mixpanel’s report dropdown menus hide events that have not been fired within the last 30 days. Event properties and property values that have not been sent to your project in 28 days are hidden from dropdown menus.
 
 **Show Events and Properties**
 
@@ -241,6 +241,23 @@ To unmerge properties:
 ![Lexicon Unmerge Events](/unmerge-properties.png)
 2. Click Unmerge. The merged property appears as the original two distinct properties.
 
+## Verify Data
+
+Verified Data in Mixpanel allows designated project owners and admins to add Verified badges to certain Events, Behaviors, Formulas, and Custom Events. This signals to other users within your project that this data has been vetted and can be confidently used for analysis and reporting. 
+
+By providing a clear distinction between vetted and non-vetted data, it becomes easier for teams to adopt Mixpanel, knowing they are using the right events.
+
+This feature is only available for customers on Enterprise plans. 
+
+**How it Works**
+
+1. Navigate to Lexicon
+2. Go to any event, behavior, formula, or custom event
+3. In the top right corner, click the Verify button
+4. Now, whenever end users are creating reports, or browsing data in Lexicon, they will see a Verified icon next to this data item.
+
+![verifyButton](/verifyButton.png)
+
 ## Export and Import Lexicon Data
 
 Mixpanel supports exporting and importing Lexicon data dictionaries. Project owners, admins, analysts, and consumers can click **Export** in Lexicon to receive a CSV file via email that contains the events and properties, and/or user profile properties data from a project.
@@ -252,7 +269,7 @@ In the Export panel, you can select:
 - Events & Properties and/or
 - User Profile Properties
 
-The requester will receive an email with a link to download a single CSV file. This link remains active for 14 days. Each CSV file can contain up to 5,000 events, and 2,000 properties per event. Each CSV file can contain up to 2,000 user profile properties.
+The requester will receive an email with a link to download a single CSV file. This link remains active for 14 days. Each CSV file can contain up to 5,000 events, 2,000 properties per event, and 2,000 user profile properties.
 
 ### CSV Import
 
