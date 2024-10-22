@@ -16,7 +16,7 @@ This feature is available to customers on an Enterprise Plan.
 
 ## Admin Organizations
 
-An Admin Organization is a special type of Organization that contains Single Sign-On settings and Claimed Domains. It can have Organization Members, but you should only add administrative users to the Admin Organization to manage security. The [SCIM](/docs/access-security/single-sign-on/overview#scim) process will add Users as Organization Members.
+An Admin Organization is a special type of Organization that contains Single Sign-On settings and Claimed Domains. It can have Organization Members, but you should only add administrative users to the Admin Organization to manage security. The [SCIM](/docs/access-security/single-sign-on#scim) process will add Users as Organization Members.
 
 An "Admin" Organization is different from a regular Organization in that it will not have Projects, Teams, a Plan or Billing, or Service Accounts. Other than administrators (those with Admin or Owner roles), any Organization Members will not see the Admin Organization or interact with it directly.
 
@@ -30,7 +30,7 @@ Any Organization linked to an Admin Organization will use the Single Sign-On set
 
 SSO settings and Claimed Domains are managed in the Admin Organization. Administrative users who manage SSO settings in the Admin Organization do not need to be members of the Linked Organization(s), and vice-versa.
 
-This configuration supports [SCIM](/docs/access-security/single-sign-on/overview#scim).
+This configuration supports [SCIM](/docs/access-security/single-sign-on#scim).
 
 ## Differences From Single-Organization SSO
 
@@ -51,7 +51,7 @@ SCIM|IDP Groups = Mixpanel Teams|IDP Groups = Mixpanel Linked Organizations*
 ## Setting Up Shared SSO
 
 <Callout type="warning">
-    If you already use Azure for SSO with Mixpanel, you must [remove existing SSO configuration](/docs/access-security/single-sign-on/overview#remove-sso-configuration) before migrating, due to constraints with “Issuer URL” and “Identifier (Entity ID).” Contact Mixpanel by [opening a Mixpanel support ticket](https://mixpanel.com/get-support).
+    If you already use Azure for SSO with Mixpanel, you must [remove existing SSO configuration](/docs/access-security/single-sign-on#remove-sso-configuration) before migrating, due to constraints with “Issuer URL” and “Identifier (Entity ID).” Contact Mixpanel by [opening a Mixpanel support ticket](https://mixpanel.com/get-support).
 </Callout>
 
 ### 1. Create an Admin Organization in Mixpanel
@@ -65,9 +65,9 @@ For an existing Organization in Mixpanel, go to Organization Settings > Access S
 The new Admin Organization will be listed in the left nav in Organization Settings.
 ![SSO Admin Organization Navigation Image](/sso_admin_org_nav.png)
 
-### 2. [Set up SSO](/docs/access-security/single-sign-on/overview) for the Admin Organization
+### 2. [Set up SSO](/docs/access-security/single-sign-on) for the Admin Organization
 
-Follow the steps to set up SSO in the Admin Organization as you would for a regular Organization. [SSO documentation](/docs/access-security/single-sign-on/overview).
+Follow the steps to set up SSO in the Admin Organization as you would for a regular Organization. [SSO documentation](/docs/access-security/single-sign-on).
 
 ### 3. Link any Organizations to the Admin Organization in Mixpanel
 
@@ -91,7 +91,7 @@ Once your organizations are linked, you can then transfer any domains you might 
 
 ![SSO Domain Transfer Image](/sso_domain_transfer_image.png)
 
-### 5. (Optional) Set up [SCIM](/docs/access-security/single-sign-on/overview#scim)
+### 5. (Optional) Set up [SCIM](/docs/access-security/single-sign-on#scim)
 
 The configurable "SCIM Name" for the Linked Organization must match a group in your IDP. Members of the matching group will be added to the Linked Organization.
 
@@ -120,7 +120,7 @@ If you have Single Sign-On configured for an Organization, and want to use the s
 Be sure to follow these steps in this order, or there will be more downtime for Single Sign-On.
 
 1. In Mixpanel, [Create an Admin Organization](#1-create-an-admin-organization-in-mixpanel)
-2. In Mixpanel, Set up SSO for the Admin Organization and configure an application in your IDP with the corresponding settings. You can refer to the [Single Sign-on Overview section](/docs/access-security/single-sign-on/overview) in our docs or to the respective IDP docs for [Azure](/docs/access-security/single-sign-on/azure) or [Okta](/docs/access-security/single-sign-on/okta)
+2. In Mixpanel, Set up SSO for the Admin Organization and configure an application in your IDP with the corresponding settings. You can refer to the [Single Sign-on Overview section](/docs/access-security/single-sign-on) in our docs or to the respective IDP docs for [Azure](/docs/access-security/single-sign-on/azure) or [Okta](/docs/access-security/single-sign-on/okta)
 3. In your IDP, assign all users (who will be using Mixpanel in any Linked Organization) into the newly configured app
 4. (Optional) In your IDP, set up SCIM for the newly configured app, but **do not start pushing groups**
 5. In Mixpanel, transfer claimed Domains from the original Organization to the Admin Organization. Any claimed Domains in a Linked Organization will be hidden when the Organizations are linked (step 6).

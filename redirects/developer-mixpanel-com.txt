@@ -12,8 +12,8 @@
 /developer-docs-redirect/cohorts /docs/cohort-sync/build-an-integration
 /developer-docs-redirect/collection-via-a-proxy /docs/tracking-methods/sdks/javascript
 /developer-docs-redirect/custom-query /docs/reports/apps/jql
-/developer-docs-redirect/data-discrepancy-faq /docs/other-bits/data-pipelines/overview#faq
-/developer-docs-redirect/data-pipelines /docs/other-bits/data-pipelines/overview
+/developer-docs-redirect/data-discrepancy-faq /docs/data-pipelines#faq
+/developer-docs-redirect/data-pipelines /docs/data-pipelines
 /developer-docs-redirect/data-structure-deep-dive /docs/how-it-works/concepts
 /developer-docs-redirect/data-warehouse-export https://developer.mixpanel.com/reference/create-warehouse-pipeline
 /developer-docs-redirect/flutter /docs/tracking-methods/sdks/flutter
@@ -41,7 +41,7 @@
 /developer-docs-redirect/jql-language-reference /docs/reports/apps/jql
 /developer-docs-redirect/jql-overview /docs/reports/apps/jql
 /developer-docs-redirect/jql-tutorial-building-an-application /docs/reports/apps/jql
-/developer-docs-redirect/mixpanel-amazon-s3-export /docs/data-pipelines/integrations/amazon-s3
+/developer-docs-redirect/mixpanel-amazon-s3-export /docs/data-pipelines/old-pipelines/integrations/schematized-aws-pipeline
 /developer-docs-redirect/mixpanel-bigquery-export-design /docs/data-pipelines/integrations/bigquery
 /developer-docs-redirect/mixpanel-snowflake-export /docs/data-pipelines/integrations/snowflake
 /developer-docs-redirect/mparticle /docs/tracking-methods/integrations/mparticle
@@ -51,7 +51,7 @@
 /developer-docs-redirect/php http://mixpanel.github.io/mixpanel-php/classes/Mixpanel.html
 /developer-docs-redirect/plan-your-implementation /docs/getting-started/plan-your-implementation
 /developer-docs-redirect/privacy-friendly-tracking /docs/privacy/protecting-user-data
-/developer-docs-redirect/privacy-security /docs/privacy/overview
+/developer-docs-redirect/privacy-security /docs/privacy
 /developer-docs-redirect/python /docs/tracking-methods/sdks/python
 /developer-docs-redirect/quick-start-guide /docs/quickstart/install-mixpanel
 /developer-docs-redirect/raw-export-pipeline https://developer.mixpanel.com/reference/raw-data-export-api
@@ -60,7 +60,7 @@
 /developer-docs-redirect/ruby /docs/tracking-methods/sdks/ruby
 /developer-docs-redirect/rudderstack /docs/tracking-methods/integrations/rudderstack
 /developer-docs-redirect/s3-import /docs/tracking-methods/integrations/amazon-s3
-/developer-docs-redirect/schematized-export-pipeline /docs/data-pipelines/schematized-export-pipeline
+/developer-docs-redirect/schematized-export-pipeline /docs/data-pipelines/old-pipelines/schematized-export-pipeline
 /developer-docs-redirect/segment /docs/tracking-methods/integrations/segment
 /developer-docs-redirect/server /docs/quickstart/install-mixpanel?sdk=python
 /developer-docs-redirect/snowplow /docs/tracking-methods/integrations/snowplow

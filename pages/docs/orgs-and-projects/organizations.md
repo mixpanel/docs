@@ -38,6 +38,6 @@ The org owner or admin can then designate the level of discoverability of their 
 ## Deleting an Organization
 Organization Owners may request the closure of the organization under the Overview tab in the Organization Settings, which would delete your organization, all existing projects, and all the data contained inside of the project. Users will maintain access to your organization for 90 days, after which it will be deleted. After 90 days, organization projects will be **permanently** deleted.
 
-Learn more about [privacy and compliance here](/docs/privacy/overview).
+Learn more about [privacy and compliance here](/docs/privacy).
 
 [Contact the Support team](https://mixpanel.com/get-support) if you have any questions regarding the deletion of your organization/data.
