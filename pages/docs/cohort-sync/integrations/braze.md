@@ -13,7 +13,7 @@ You must be a Mixpanel project admin to enable the Braze integration.
 
 In order to set up the integration, you must use a Data Import Key and a Braze Instance URL to connect a Mixpanel instance with a Braze instance.
 
-A Braze project stores the Data Import Key and Braze Instance URL. You can find these two values in from within Braze. [Use the Braze documentation to learn how to obtain the Key and URL](https://www.braze.com/docs/partners/insights/behavioral_analytics/mixpanel_for_currents/#integration-details). 
+A Braze project stores the Data Import Key and Braze Instance URL. You can find these two values in from within Braze. [Use the Braze documentation to learn how to obtain the Key and URL](https://www.braze.com/docs/partners/data_and_infrastructure_agility/analytics/mixpanel_for_currents/). 
 
 ## Set Up the Integration
 
@@ -91,9 +91,9 @@ In order to build a Braze Segment after importing a cohort:
 
 ## Matching Mixpanel and Braze Users
 
-> **Warning:** Projects using the [simplified ID merge system](/docs/tracking-methods/id-management/identity-management#identity-merge-apis) must have the `$user_id` in Mixpanel match the user identifier in the partner service. Using any alternative partner properties to match users between tools may result in partner events not being attributed to the correct user in Mixpanel. Any partner properties mentioned in the below section are primarily applicable to projects on the original ID merge system.
+> **Warning:** Projects using the [simplified ID merge system](/docs/tracking-methods/id-management#identity-merge-apis) must have the `$user_id` in Mixpanel match the user identifier in the partner service. Using any alternative partner properties to match users between tools may result in partner events not being attributed to the correct user in Mixpanel. Any partner properties mentioned in the below section are primarily applicable to projects on the original ID merge system.
 
-In order to match Mixpanel users to ones on Braze's end, the user in Mixpanel should have a profile property named $braze_external_id with the value you have assigned in Braze to the same user as [external_user_id](https://www.braze.com/docs/developer_guide/platform_integration_guides/ios/analytics/setting_user_ids/#suggested-user-id-naming-convention).
+In order to match Mixpanel users to ones on Braze's end, the user in Mixpanel should have a profile property named $braze_external_id with the value you have assigned in Braze to the same user as [external_user_id](https://www.braze.com/docs/developer_guide/platform_integration_guides/legacy_sdks/ios/analytics/setting_user_ids/#suggested-user-id-naming-convention).
 
 The recommendation would be to insert code after the user authenticates that sends a `people.set` operation to the `$braze_external_id` property with the string value so it is stored in the Mixpanel profile. This could be when they sign up (or just log in if they already had an account). By setting the property each time the user authenticates you would ensure users who have signed up previous to this code changes also have it.
 

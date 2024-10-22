@@ -18,7 +18,7 @@ import { Callout } from 'nextra/components'
   
   For projects using Simplified ID Merge API, please refer to this documentation [here](/docs/tracking-methods/id-management/identifying-users-simplified).
 
-  Learn more about the different ID Merge APIs [here](/docs/tracking-methods/id-management/identity-management#identity-merge-apis).
+  Learn more about the different ID Merge APIs [here](/docs/tracking-methods/id-management#identity-merge-apis).
 </Callout>
 
 Mixpanel supports stitching user behavior pre-login (eg: traffic from your website, docs, blog) and post-login (once the user has signed up). This helps answer questions like:
@@ -31,7 +31,7 @@ This system is called ID Merge. In this guide, we walk through how to identify u
 
 ## Mechanism
 
-The **Original ID Merge API** uses three special events to link various user identifiers and sets the [distinct_id](/docs/tracking-methods/id-management/identity-management#distinct-id) for your events; these events are namely: `$identify`, `$create_alias`, and `$merge`.
+The **Original ID Merge API** uses three special events to link various user identifiers and sets the [distinct_id](/docs/tracking-methods/id-management#distinct-id) for your events; these events are namely: `$identify`, `$create_alias`, and `$merge`.
 
 ### $identify
 
@@ -217,7 +217,7 @@ We recommend using an ID that is unique to each user and does not change, for ex
 
 **How long does it take for an ID merge mapping to take effect?**
 
-For debugging purposes, the Activity Feed view of a single user is updated in real-time (less than 1 minute delay). You can get to the Activity Feed by navigating to [Users](/docs/users/overview) and selecting a given user.
+For debugging purposes, the Activity Feed view of a single user is updated in real-time (less than 1 minute delay). You can get to the Activity Feed by navigating to [Users](/docs/users) and selecting a given user.
 
 It may take up to 24 hours for this mapping to propagate to all other parts of the system. This means that, in some cases, when analyzing a funnel that spans pre-login and post-login behavior in real-time, some may be shown as dropped-off, even though they've performed the conversion event.
 

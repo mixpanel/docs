@@ -1,0 +1,77 @@
+# Building Revenue Metrics
+
+## Overview
+Mixpanel now helps you analyze the impact of your product and marketing initiatives on your key company revenue metrics. 
+Whether you have a transactions based business model or a subscription based business model, you can measure and monitor your top metrics in Mixpanel. We have built the analysis capabilities and underlying data model to ensure the difference in the business model is baked in all through, and your revenue metrics analysis are a 100% accurate
+
+## Transactions Business Models
+![image](/transaction_biz_use_cases.webp)
+
+### Metrics Definitions
+
+1. ARPU aka Avg revenue per user:  Total Revenue/ Total Number of Users
+2. AOV aka Avg order value: Total Revenue/ Total Number of Purchases 
+3. Life Time Value: what is the cumulative spend we expect from a user in the overall time they spend on this platform. Often defined as ARPU in the first 30 (or XX) days x Avg life-time (in months) of a user
+4. CAC aka Customer Acquisition Cost: i.e how much money do we have to spend to acquire a user (do I have to spend 5$ on marketing spend or $20 etc). A good acquisition strategy would mean LTV/ CAC > 1
+   
+NOTE: You can look at how to build these metrics in Mixpanel by leveraging our [Ecomm template](https://mixpanel.com/project?show-template-selector=true) on either your data or our public demo data set. Here is a [public dashboard](https://mixpanel.com/p/DnjPvUbyke46TtZ9AeCGCs) to give you a view on the metrics you can build
+
+## Subscriptions Business Models
+![image](/sub_biz_use_cases.webp)
+
+### Metrics Definitions
+
+1. **NRR: Net Revenue Retention** - This looks for existing customers, how has the revenue base changed (grown, reduced)
+    - NRR > 100% → existing customers are being retained + growing
+    - NRR < 100% → existing customers are a leaky bucket and we aren’t able to upsell them
+    **Formula:** 
+    - Current MRR from Existing Biz / Prior MRR
+    - (Prior MRR from Existing Biz + [Upsell MRR - Downgrade MRR ])/ Prior MRR
+2. **MRR Churn:** This looks for existing customers, how has the revenue dropped. Does not consider upsells 
+    - Target ARR Churn < 15%; *not sure what this translates to monthly*
+    - Formula: 1 - [(Current MRR from existing biz - Upsell MRR)/ Prior MRR ]
+3. **MRR Growth Rate:** This looks at overall growth in MRR (new + existing biz) 
+    Formula: current MRR/ prior MRR 
+4. **MRR broken down by revenue type** : This looks at what’s the contribution of  
+    - new revenue : want this to go up since this is net - new money (land motion)
+    - upsell revenue : want this to go up since this is net - new money (expand motion)
+    - downgrade/ lost revenue : want this to be minimal
+    - flat renewal: want this pie to keep growing as we land more logos
+    Goal is to have : new + upsell - downgrade to be positive. Means recurring revenue is growing
+
+NOTE: You can look at how to build these metrics in Mixpanel by leveraging our [SaaS KPIs template](https://mixpanel.com/project?show-template-selector=true) on either your data or our public demo data set. Here is a [public dashboard](https://mixpanel.com/p/8R2b9DRvnZfrNXYVqNxFLH) to give you a view on the metrics you can build
+
+### Functionality
+
+We've got 2 new **computed properties** to help you with subscription revenue metrics. The model is built by comparing 2 data points - 
+1. **recurring revenue change:** looks at ‘numerical difference’ between the 2 values
+2. **recurring revenue change type:** tells you ‘type of change’ as mentioned below
+    1. 20 -> 5 = downgrade [positive to less positive]
+    2. 5 -> 0 = churn [positive to zero]
+    3. 0 -> 5 = new [zero to positive]
+    4. 5 -> 20 = upgrade [positive to more positive]
+    5. 5 -> 5 = flat [no change]
+NOTE: all are these are functionalities on [historical profile properties](https://docs.mixpanel.com/docs/data-structure/user-profiles#importing-historical-profile-values)
+![image](/computed_props.png)
+
+When creating a revenue metric eg incremental MRR in the last one month, you have two controls to help with it 
+1. **time control** - As of XX Months ago, which let’s you choose what should today’s value be compared versus i.e is it 1 month ago, 3 months ago, etc
+2. **change type** - Do you only want to look at incremental revenue for new accounts or only existing upsold accounts etc
+![image](/Subscription_revenue_metric.png)
+
+We also have the ability for you to look at the latest value as of time-period, or **any** value during the time period. For example, you might want to answer: show me all customers who were on a free plan the last 12 M, even if they are on say the growth/ enterprise plan now
+![image](/Any_value.webp)
+
+## Frequent Asked Questions
+
+#### Can all customers use these features?
+   Only customers using the MP Warehouse Connectors get access to these features  
+#### What should be the shape of the data to analyze these metrics?
+   Please ensure once you setup the Warehouse Connectors, you have Mirror Mode turned on to ensure your data is 100% in sync with the WH even if the WH data is updated
+   - For Transactions based models -  Please send purchase value as a event property on every purchase event
+   - For Subscription based models -
+     - Please send a monthly snapshot of the revenue per user/ account as a historical profile property. More details [here](https://docs.mixpanel.com/docs/data-structure/user-profiles#importing-historical-profile-values)
+     - If a user/ account is not active, please set the revenue data to zero for the immediate month following so we can tag this as a churned user/ account.
+#### We have multiple SKUs  per account, each with it’s own contract. Can we send this as a revenue object property for an account?
+  Today, we do not support profile history for object type properties
+  To be able to look at revenue per SKU, we recommend sending each SKU revenue as a historical numerical property. So if you have 5 SKUs, send 5 historical properties (SKU_revenue 1, SKU_revenue 2…., SKU_revenue_5)

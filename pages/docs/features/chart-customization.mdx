@@ -46,6 +46,29 @@ For the x-axis, you have access to the follow customizations:
 
 For every metric in your report, they by default assigned to the left y-axis. To visualize correlation between different metrics on different scales, it can be useful to use a secondary y-axis on the right. You can select the left or right buttons for each metric to choose which axis the metric is assigned to.
 
+## Metric Units
+
+![Metric Unit](/metric-unit.png)
+
+You will find unit configuration in the bottom left of every metric block. This space allows you to configure various aspects of a metric. These selections will update in the chart, tooltip, and the table below the chart. This is saveable to your report, and it will in turn persist to the board view.
+
+Available configurations:
+- Unit: choose from the presets, or choose custom to choose any unit for your metric. For certain metrics like conversion rate, Mixpanel will default to the appropriate unit
+- Abbreviation: choose whether or not the result should be abbreviated. Useful for large numbers
+- Precision: choose how much decimal precision should appear for values
+
+### Units on Formula
+
+![Formula Unit](/lexicon-formula-unit.png)
+
+For any formula, you can save the unit configuration associated with it. In the example above, this formula is a percentage based metric. The `%` unit is saved to this formula. Any future usage of this formula across all reports will automatically use the `%` unit.
+
+### Units on Numeric Properties
+
+![Numeric Property Unit](/lexicon-property-unit.png)
+
+In lexicon, for any numeric property you can save the unit configuration associated with it. For example, if you have a `price` property that you know is in `$`. You can set this, and any future usage of this property in measurements will default to using `$` so this no longer needs to be set on every usage.
+
 ## Segment Coloring
 
 ![Segment Color](/segment-coloring-1.png)

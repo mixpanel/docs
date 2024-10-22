@@ -6,7 +6,7 @@ This documentation is intended for users with intermediate or advanced knowledge
 
 ## Create Json Pipelines
 
-Follow the instructions here in the [Overview](/docs/data-pipelines/overview).
+Follow the instructions here in the [Overview](/docs/data-pipelines).
 
 ## Data Sources Output
 
