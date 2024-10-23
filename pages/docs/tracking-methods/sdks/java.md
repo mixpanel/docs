@@ -1,16 +1,14 @@
-import { Callout,Tabs } from 'nextra/components'
-
 # Mixpanel SDKs: Java
 
-## Getting Started
-
 The Mixpanel Java library is useful to track events from Java servers.
+
+## Getting Started
 
 The [Full API Reference](http://mixpanel.github.io/mixpanel-java/), [Library Source Code](https://github.com/mixpanel/mixpanel-java) and an [Example Application](https://github.com/mixpanel/mixpanel-java/blob/master/src/demo/java/com/mixpanel/mixpanelapi/demo/MixpanelAPIDemo.java) is documented in our GitHub repo.
 
 ## Installing the Library
 
-You can get the library by including the following in your project's `pom.xml`:
+You can get the library by including the following in your project's pom.xml:
 
 ```xml
 <dependency>
@@ -19,8 +17,6 @@ You can get the library by including the following in your project's `pom.xml`:
     <version>1.5.2</version>
 </dependency>
 ```
-
-
 
 If you're not using Maven to build your project, you can browse and download the library jar directly from [Maven central](http://search.maven.org/#search%7Cga%7C1%7Cmixpanel-java)
 
@@ -69,8 +65,6 @@ mixpanel.deliver(delivery);
 ## EU Data Residency
 
 Route data to Mixpanel's EU servers by passing in positional arguments into the `MixpanelAPI`  constructor
-
-```java
 public MixpanelAPI(String eventsEndpoint,
                    String peopleEndpoint,
                    String groupsEndpoint)
