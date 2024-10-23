@@ -68,6 +68,6 @@ Currently the “View Error” button will only display if there is an error ava
 ### Delay in Sync
 If you notice that cohorts which are recurring in sync are taking more than expected time to sync, we recommned to have mutliple connections created and have cohorts spread across these connections. 
 
-![image](image to be uploaded and added)
+![image](/cohort_sync_delay.png)
 
 All cohorts in a connection are queued in a sequential order while the connections run in parallel which could be the reason for cohorts to have a delay in sync. If you see the cumulative user count of all cohorts in a connection breach ~5M, we would recommned to create a new connection.
