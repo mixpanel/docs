@@ -138,4 +138,4 @@ When replacing a lookup table using the [API](https://developer.mixpanel.com/ref
 
 ### Can I map it to the $distinct_id property? 
 
-We currently do not support mapping a Lookup table to the "$distinct_id" property. If you would like to associate a certain property with the user, we would suggest uploading it as a user profile property for the user instead. 
+Mapping a Lookup Table to the `$distinct_id` property is not supported. To create a user property for a profile, upload it as a user property directly.
