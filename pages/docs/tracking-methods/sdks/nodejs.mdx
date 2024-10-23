@@ -112,13 +112,11 @@ Learn more about [server-side identity management](/docs/tracking-methods/id-man
 
 Once your users are identified, create [user profiles](/docs/data-structure/user-profiles) by setting profile properties to describe them. Example profile properties include "name", "email", "company", and any other demographic details about the user.
 
-The Node.js SDK provides a few methods for setting profile properties, which will trigger requests to the [/engage API endpoint](https://developer.mixpanel.com/reference/profile-set).
+The Mixpanel object contains a `people` property, that exposes the [`MixpanelPeople`](https://github.com/mixpanel/mixpanel-node/blob/master/lib/people.js) class which contain methods for managing user profile properties. These methods will trigger requests to the [/engage API endpoint](https://developer.mixpanel.com/reference/profile-set).
 
 Mixpanel determines default geolocation data (`$city`, `$region`, `mp_country_code`) using the IP address on the incoming request. As all server-side calls will likely originate from the same IP (that is, the IP of your server), this can have the unintended effect of setting the location of all of your users to the location of your data center. [Learn more about best practices for geolocation.](/docs/tracking-best-practices/geolocation).
 
 ### Setting Profile Properties
-
-The Mixpanel object contains a `people` property, that exposes the [`MixpanelPeople`](https://github.com/mixpanel/mixpanel-node/blob/master/lib/people.js) class which contain methods for managing user profile properties.
 
 Set profile properties on a user profile by calling [`people.set()`](https://github.com/mixpanel/mixpanel-node/blob/master/lib/people.js#L41).
 
@@ -197,7 +195,7 @@ A few commonly used people methods are highlighted below:
     const Mixpanel = require('mixpanel');
     const mp = Mixpanel.init('YOUR_PROJECT_TOKEN');
 
-    // create a user profile with name and plan user props
+    // create a user profile with name and roles user props
     mp.people.set('sample_distinct_id', {
         name: 'sam',
         roles: ['sales','engineer'],
@@ -226,7 +224,7 @@ A few commonly used people methods are highlighted below:
     const Mixpanel = require('mixpanel');
     const mp = Mixpanel.init('YOUR_PROJECT_TOKEN');
 
-    // create a user profile with name and plan user props
+    // create a user profile with name and roles user props
     mp.people.set('sample_distinct_id', {
         name: 'sam',
         roles: ['sales','engineer'],
@@ -254,7 +252,7 @@ A few commonly used people methods are highlighted below:
     const Mixpanel = require('mixpanel');
     const mp = Mixpanel.init('YOUR_PROJECT_TOKEN');
 
-    // create a user profile with name and plan user props
+    // create a user profile with name and age user props
     mp.people.set('sample_distinct_id', {
         name: 'sam',
         age: 25,
@@ -334,6 +332,7 @@ mp.track('some_event', {
 });
 
 // Create or update a the "mixpanel" company group
+// setting "name" and "industry" as group props
 mixpanel.groups.set('company', 'mixpanel', {
   name: 'Mixpanel',
   industry: 'Analytics',
@@ -456,7 +455,7 @@ mixpanel.init('YOUR_PROJECT_TOKEN',{
 
 ## Privacy-Friendly Tracking
 
-You have control over the data you send to Mixpanel. The Ruby SDK have a few configurations to help you protect user data.
+You have control over the data you send to Mixpanel. The Node.js SDK have a few configurations to help you protect user data.
 
 Since this is a server-side tracking library where you have control of the servers, your server is responsible for determining whether to send data about a particular user or not.
 
