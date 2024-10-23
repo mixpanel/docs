@@ -185,6 +185,10 @@ Exclusion Step: Event A
 
 We will count (1) and (3) as an entry into the Funnel. At (2), the user will drop off. So, there will be two entries (1)(3) into the Funnel, and one conversion (3). Hence, you cannot use the exclusion step to count each entry into the Funnel. 
 
+Example reports for reference from our demo dataset: 
+- [User activity](https://mixpanel.com/s/2it5gE) 
+- [Funnel](https://mixpanel.com/s/2CpCuq) 
+
 2. An exclusion step does not prevent users for qualifying into the funnel up until the exclusion step. If you want users who did a particular event at any point excluded, use a cohort filter.
 3. There may be any number of exclusion events between steps.
 4. Exclusion steps have the same [two second grace period](/docs/reports/funnels#how-does-mixpanel-handle-simultaneous-events) as other steps in the funnel.
@@ -576,7 +580,3 @@ To calculate the actual p-value, we estimate the hypergeometric cumulative distr
 In the CDF, the value of any point (X) represents the probability that a random draw would result in fewer conversions P(k < X). 1 - P(k < X) represents the probability that a random draw would result in more conversions P(k >= X).
 
 These two probabilities are used to represent the probability that the selected segment will either outperform (P(k < X)) or underperform (P(k > X)) the overall set of users. Mixpanel takes the higher probability of the two, and calculate the p-value as 1 - max(P(outperform), P(underperform)).
-
-Example reports for reference from our demo dataset: 
-- [User activity](https://mixpanel.com/s/2it5gE) 
-- [Funnel](https://mixpanel.com/s/2CpCuq) 
