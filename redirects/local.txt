@@ -43,6 +43,7 @@
 /docs/analysis/reports/insights /docs/reports/insights
 /docs/analysis/reports/retention /docs/reports/retention
 /docs/analysis/users /docs/users
+/docs/best-practices/analytics-strategy/engagement /docs/tracking-best-practices/tracking-plan
 /docs/best-practices/adoption https://mixpanel.com/blog/establish-a-product-analytics-practice/
 /docs/best-practices/analytics-strategy /docs/tutorials/analytics-strategy
 /docs/best-practices/analytics-strategy/overview /docs/best-practices/analytics-strategy
