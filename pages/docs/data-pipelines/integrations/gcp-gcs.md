@@ -1,6 +1,6 @@
 # Google Cloud Storage
 
-Mixpanel supports exporting events and people data directly to Google Cloud Storage (GCS) via [Json Pipelines](/docs/data-pipelines/overview).
+Mixpanel supports exporting events and people data directly to Google Cloud Storage (GCS) via [Json Pipelines](/docs/data-pipelines).
 
 ## Setting GCS Permissions
 
@@ -21,7 +21,7 @@ This process ensures that the specified service account has the necessary permis
 
 ### Step 2: Provide Mixpanel with GCS Details
 
-Refer to [Step 2: Creating the Pipeline](/docs/data-pipelines/overview/#step-2-creating-the-pipeline) to create data pipeline via UI. You need to provide the following details to ensure Mixpanel can accurately direct the data exports to your GCS:
+Refer to [Step 2: Creating the Pipeline](/docs/data-pipelines/#step-2-creating-the-pipeline) to create data pipeline via UI. You need to provide the following details to ensure Mixpanel can accurately direct the data exports to your GCS:
 
 - Bucket: The GCS bucket to export Mixpanel data to
 - Region: The GCS region for the bucket

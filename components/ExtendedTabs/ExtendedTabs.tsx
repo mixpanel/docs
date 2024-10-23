@@ -1,4 +1,4 @@
-import { Tabs } from 'nextra-theme-docs'
+import { Tabs } from 'nextra/components'
 import { useEffect, useState } from 'react';
 
 type ExtendedTabsType = {

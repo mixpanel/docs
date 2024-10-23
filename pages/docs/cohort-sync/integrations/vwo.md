@@ -27,7 +27,7 @@ To enable the integration:
 4. The VWO integration will show a **Connected** tag in the UI once the connection establishes.
 
 ## Matching Users between VWO and Mixpanel
-> **Warning:** Projects using the [simplified ID merge system](/docs/tracking-methods/id-management/identity-management#identity-merge-apis) must have the `$user_id` in Mixpanel match the user identifier in the partner service. Using any alternative partner properties to match users between tools may result in partner events not being attributed to the correct user in Mixpanel. Any partner properties mentioned in the below section are primarily applicable to projects on the original ID merge system.
+> **Warning:** Projects using the [simplified ID merge system](/docs/tracking-methods/id-management#identity-merge-apis) must have the `$user_id` in Mixpanel match the user identifier in the partner service. Using any alternative partner properties to match users between tools may result in partner events not being attributed to the correct user in Mixpanel. Any partner properties mentioned in the below section are primarily applicable to projects on the original ID merge system.
 
 Mixpanel only exports identified user profiles with the user property `$vwo_user_id` to match to VWO - users without user profile properties (i.e. anonymous users) will not export. The value of this property should equal a matching User ID in VWO.
 

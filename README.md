@@ -61,7 +61,7 @@ npx cspell --help
 
 Upload images/GIFs to the public/ directory. You can make sub-directories within `public/` to namespace them (eg: `/public/tutorials/` for all tutorial-related images).
 
-To reference an image, use a relative link to the image with the `public` stripped out. For example, if you have an image `public/example.png`, you can reference it as follows: `[insert alt text here](/example.png)`.
+To reference an image, use a relative link to the image with the `public` stripped out. For example, if you have an image `public/example.png`, you can reference it as follows: `[insert alt text here](/example.png)`. Ensure that the the image filename has no spaces and are separated by either a hyphen or an underscore.
 
 If you're making a diagram, please add it to this [Figjam](https://www.figma.com/file/m4XseN6oAiu2yGN18qfamD/Docs-Toolkit?type=whiteboard&node-id=0-1&t=j3TBgane3MsYReF2-0). That way, if others want to make small tweaks, they can discover the original.
 
@@ -73,6 +73,9 @@ All pull requests will generate a staging link in Vercel. Here's an [example](ht
 
 You may also preview changes by [testing locally](#testing-locally)
 
+# Nextra 3.0
+We are now using [Nextra 3](https://the-guild.dev/blog/nextra-3), which is slightly different than Nextra 2. The main differences for most maintainers is that instead of _meta.json to generate custom sidebars, it is now in Javascript or Typescript, and can be rendered with components. Another difference is that `Tab` is now imported from `Tabs.Tab` and `Card` from `Cards.Card`, both from `nextra/components`.
+
 # Changelog
 
 We make a changelog post for every feature we ship. It usually includes a Loom link + a description of the feature. Make sure to include either `video: <loom link>` or `thumbnail: <image>` to ensure that we have a preview video or image for every changelog post.
@@ -81,9 +84,9 @@ We make a changelog post for every feature we ship. It usually includes a Loom l
 
 # Maintainers
 
-[Vijay](https://github.com/ranic), [Marissa](https://github.com/marissakuhrau), [Mav](https://github.com/mavlee), [Isha](https://github.com/ishamehramixpanel). Eventually we’ll expand this list, but keeping it tight for now.
+[Marissa](https://github.com/marissakuhrau), [Mav](https://github.com/mavlee), [Isha](https://github.com/ishamehramixpanel), and [Myron](https://github.com/myronkaifung). Eventually we’ll expand this list, but keeping it tight for now.
 
-## Review Process
+# Review Process
 
 For simple content changes, the reviewer will merge the PR for expediency. For code changes, the original author will merge changes.
 

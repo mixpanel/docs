@@ -8,9 +8,9 @@ MTU can be considered when tracking more than 100k users or 5M monthly events.
 
 ## MTU Calculation
 
-An MTU is a visitor that **tracks at least one qualifying event** within your projects within the calendar month, independent of whether they have a user profile in [Users](https://docs.mixpanel.com/docs/users/overview#basic-features). Mixpanel determines unique users using the `$distinct_id`. Users are only counted once per month, even if they perform multiple actions across devices.
+An MTU is a visitor that **tracks at least one qualifying event** within your projects within the calendar month, independent of whether they have a user profile in [Users](/docs/users#basic-features). Mixpanel determines unique users using the `$distinct_id`. Users are only counted once per month, even if they perform multiple actions across devices.
 
-An organization is charged based on the total number of MTUs across all projects. This means that if a user performs a qualifying event in multiple projects, they are **counted once per project**. MTUs are *not* User Profiles – the number of MTUs in your project will not match the number of [User Profiles](https://docs.mixpanel.com/docs/data-structure/user-profiles) in your project.
+An organization is charged based on the total number of MTUs across all projects. This means that if a user performs a qualifying event in multiple projects, they are **counted once per project**. MTUs are *not* User Profiles – the number of MTUs in your project will not match the number of [User Profiles](/docs/data-structure/user-profiles) in your project.
 
 ## MTU Guardrail
 
@@ -49,7 +49,7 @@ Similarly, while Mixpanel Warehouse driven Event Updates & Deletes and Profile M
 
 > Note: Mixpanel has deprecated Messages & Experiments(opens in a new tab) feature since Jan 1, 2022; above documentation is kept for existing customers who may have these events in the past while using such feature.
 > 
-In addition, Mixpanel also excludes a number of inbound events sent by partner products. Refer to a given partner's [integration page](https://docs.mixpanel.com/docs/cohort-sync/integrations/airship) to see if it has events excluded from MTU calculations.
+In addition, Mixpanel also excludes a number of inbound events sent by partner products. Refer to a given partner's [integration page](/docs/cohort-sync/integrations/airship) to see if it has events excluded from MTU calculations.
 
 ## Estimate MTU Usage
 
