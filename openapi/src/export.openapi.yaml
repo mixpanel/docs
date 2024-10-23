@@ -71,9 +71,10 @@ paths:
           name: time_in_ms
           schema:
             type: boolean
-            default: false
           description: >-
-            If set to `true` and you are using an SDK version that supports millisecond precision, the timestamp in the event payload will be exported with millisecond precision. Defaults to `false`.
+            Defaults to `false` which will export event timestamps with second-precision.
+            
+            Set to `true` to export event timestamps with millisecond-precision.
         - in: header
           name: Accept-Encoding
           description: If set to `gzip` and the response body is > 1400 bytes, the response will be compressed with gzip, and `Content-Encoding` will be set to `gzip`.
