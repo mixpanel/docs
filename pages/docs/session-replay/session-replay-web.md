@@ -140,9 +140,11 @@ analytics.addSourceMiddleware(({ payload, next, integrations }) => {
 		if (window.mixpanel) {
 			const segmentDeviceId = payload.obj.anonymousId;
 			// -------------------------------------------
-			// Comment out one of the below mixpanel.register methods depending on your ID Management Version	
-			mixpanel.register({ $device_id: segmentDeviceId, distinct_id : segmentDeviceId }); // Original ID Merge
-			mixpanel.register({ $device_id: segmentDeviceId, distinct_id : "$device:"+segmentDeviceId }); // Simplified ID Merge
+			// Comment out one of the below mixpanel.register methods depending on your ID Management Version
+			// Original ID Merge
+			mixpanel.register({ $device_id: segmentDeviceId, distinct_id : segmentDeviceId });
+			// Simplified ID Merge
+			mixpanel.register({ $device_id: segmentDeviceId, distinct_id : "$device:"+segmentDeviceId }); 
 			// -------------------------------------------	
 			const sessionReplayProperties = mixpanel.get_session_recording_properties();
 			payload.obj.properties = {
