@@ -60,7 +60,7 @@
 /docs/data-pipelines/integrations/raw-aws-pipeline /docs/data-pipelines/old-pipelines/integrations/raw-aws-pipeline
 /docs/data-pipelines/old-pipelines/overview /docs/data-pipelines/old-pipelines
 /docs/data-pipelines/overview /docs/data-pipelines
-/docs/data-pipelines/schematized-export-pipeline /docs/data-pipelines/old-pipelines/integrations/schematized-export-pipeline
+/docs/data-pipelines/schematized-export-pipeline /docs/data-pipelines/old-pipelines/schematized-export-pipeline
 /docs/data-structure/advanced/ad-spend /docs/tracking-methods/integrations/ad-spend
 /docs/data-structure/advanced/group-analytics /docs/data-structure/group-analytics
 /docs/data-structure/advanced/utm-tags /docs/tracking-best-practices/traffic-attribution
