@@ -66,8 +66,8 @@ To find more details on Failure errors, you can click in the Cohort within the I
 Currently the “View Error” button will only display if there is an error available. In the case that you do not see a “View Error” button but the sync did not finish successfully, you can reach out to the Support team to help get more details on the error.
 
 ### Delay in Sync
-If you notice that cohorts which are recurring in sync are taking more than expected time to sync, we recommned to have mutliple connections created and have cohorts spread across these connections. 
+If your recurring cohort syncs are taking more time than expected, we recommend creating multiple connections and spreading your syncs across them. Cohort syncs under one connection are executed in a sequential order; to increase parallelism, you should create multiple connections covering different types of sync.
+
+In general, if you see the cumulative user count of all cohorts synced under a connection breach ~5 million, we would recommend that you create a new connection.
 
 ![image](/cohort_sync_delay.png)
-
-All cohorts in a connection are queued in a sequential order while the connections run in parallel which could be the reason for cohorts to have a delay in sync. If you see the cumulative user count of all cohorts in a connection breach ~5M, we would recommned to create a new connection.
