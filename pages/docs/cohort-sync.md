@@ -64,3 +64,10 @@ To find more details on Failure errors, you can click in the Cohort within the I
 3. Click on the “View Error” button to get more details.
 
 Currently the “View Error” button will only display if there is an error available. In the case that you do not see a “View Error” button but the sync did not finish successfully, you can reach out to the Support team to help get more details on the error.
+
+### Delay in Sync
+If you notice that cohorts which are recurring in sync are taking more than expected time to sync, we recommned to have mutliple connections created and have cohorts spread across these connections. 
+
+![image](image to be uploaded and added)
+
+All cohorts in a connection are queued in a sequential order while the connections run in parallel which could be the reason for cohorts to have a delay in sync. If you see the cumulative user count of all cohorts in a connection breach ~5M, we would recommned to create a new connection.
