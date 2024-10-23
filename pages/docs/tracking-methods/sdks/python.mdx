@@ -2,6 +2,8 @@ import { Cards, Tabs, Callout } from 'nextra/components'
 
 # Mixpanel SDKs: Python
 
+## Getting Started
+
 The Mixpanel Python library is designed to be used for scripting, or in circumstances when a user isn't directly interacting with your application on the web or a mobile device.
 
 The [Full API Reference](http://mixpanel.github.io/mixpanel-python), [Library Source Code](https://github.com/mixpanel/mixpanel-python), and an [Example Script](https://github.com/mixpanel/mixpanel-python/tree/master/demo) is documented in our GitHub repo.
@@ -46,6 +48,7 @@ Use [`track()`](http://mixpanel.github.io/mixpanel-python/#mixpanel.Mixpanel.tra
   The [/track endpoint](https://developer.mixpanel.com/reference/track-event) will only validate events with timestamps within the last 5 days of the request. Events with timestamps older than 5 days will not be ingested. See below on best practices for historical imports.
 </Callout>
 
+**Example Usage**
 ```python
 # import Mixpanel
 from mixpanel import Mixpanel
