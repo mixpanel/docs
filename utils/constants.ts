@@ -26,6 +26,7 @@ export const mirrorItems = {
     'bigquery': 'BigQuery',
     'snowflake': 'Snowflake',
     'databricks': 'Databricks',
+    'redshift': 'Redshift',
 }
 
 export const KapaEventNames = {
