@@ -9,7 +9,7 @@ updatedAt: "2023-09-26T21:06:38.693Z"
 
 Track events to Mixpanel from client devices. We recommend using one of our client-side SDKs instead of using /track directly, as our SDKs provide queueing, retrying, batching, and more.
 
-## "When to use /track vs /import"
+## When to use /track vs /import
 
 Typically, we recommend using /import for server-side integrations as it is more scalable and supports ingesting historical data. We only recommend /track for client-side tracking in an environment for which we don't have SDK support or if you're sending data via some other untrusted environment (eg: third-party webhooks that send data to Mixpanel).
 
