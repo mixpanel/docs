@@ -67,6 +67,14 @@ paths:
             An expression to filter events by. More info on expression
             sequence structure can be found
             [here](ref:segmentation-expressions)
+        - in: query
+          name: time_in_ms
+          schema:
+            type: boolean
+          description: >-
+            Defaults to `false` which will export event timestamps with second-precision.
+            
+            Set to `true` to export event timestamps with millisecond-precision.
         - in: header
           name: Accept-Encoding
           description: If set to `gzip` and the response body is > 1400 bytes, the response will be compressed with gzip, and `Content-Encoding` will be set to `gzip`.
