@@ -1,12 +1,11 @@
 import React, { useState, useEffect } from "react";
 import { getPagesUnderRoute } from "nextra/context";
-import ExtendedButton from "/components/ExtendedButton/ExtendedButton";
 import Link from "next/link";
 
 enum PostFilterOptions {
-  All = "all",
-  Announcements = `announcement`,
-  Updates = "update",
+  All = `all`,
+  Announcements = `announcements`,
+  Updates = `updates`,
 }
 
 const renderMedia = (page) => {
@@ -70,9 +69,11 @@ export default function ChangelogIndex({ more = "Read more" }) {
       .filter((page) => {
         switch (filter) {
           case PostFilterOptions.Updates:
+            // @ts-ignore:next-line
             return !page.frontMatter?.isAnnouncement;
           case PostFilterOptions.Announcements:
-            return page.frontMatter?.isAnnouncement;
+            // @ts-ignore:next-line
+            return page.frontMatter?.isAnnouncement === true;
           default:
             return true;
         }
@@ -85,7 +86,7 @@ export default function ChangelogIndex({ more = "Read more" }) {
     setPageIndex((prev) => prev + itemsPerPage);
   };
 
-  const filterButton = (id, label) => {
+  const filterButton = (id: PostFilterOptions, label: string) => {
     let className = "changelogFilterButton";
     if (filter === id) {
       className += " active";
@@ -98,9 +99,9 @@ export default function ChangelogIndex({ more = "Read more" }) {
   };
 
   const filterOptions = [
-    { id: "all", label: "All Posts" },
-    { id: "announcements", label: "Announcements" },
-    { id: "updates", label: "Updates" },
+    { id: PostFilterOptions.All, label: "All Posts" },
+    { id: PostFilterOptions.Announcements, label: "Announcements" },
+    { id: PostFilterOptions.Updates, label: "Updates" },
   ];
 
   return (
@@ -157,7 +158,7 @@ export default function ChangelogIndex({ more = "Read more" }) {
         </div>
       ))}
       {pageIndex + itemsPerPage < allPages.length && (
-        <div class="changelogLoadMoreButtonContainer">
+        <div className="changelogLoadMoreButtonContainer">
           <button onClick={loadMore} className="changelogLoadMoreButton">
             Load More
           </button>
