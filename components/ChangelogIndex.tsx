@@ -3,6 +3,12 @@ import { getPagesUnderRoute } from "nextra/context";
 import ExtendedButton from "/components/ExtendedButton/ExtendedButton";
 import Link from "next/link";
 
+enum PostFilterOptions {
+  All = "all",
+  Announcements = `announcement`,
+  Updates = "update",
+}
+
 const renderMedia = (page) => {
   if (page.frontMatter?.thumbnail) {
     return (
@@ -56,17 +62,17 @@ export default function ChangelogIndex({ more = "Read more" }) {
   const itemsPerPage = 10;
   const [displayedPages, setDisplayedPages] = useState([]);
   const [pageIndex, setPageIndex] = useState(0);
-  const [filter, setFilter] = useState(`all`);
+  const [filter, setFilter] = useState(PostFilterOptions.All);
 
   // Load initial or additional pages
   useEffect(() => {
     const morePages = allPages
       .filter((page) => {
         switch (filter) {
-          case "updates":
-            return page.frontMatter?.isAnnouncement !== true;
-          case "announcements":
-            return page.frontMatter?.isAnnouncement === true;
+          case PostFilterOptions.Updates:
+            return !page.frontMatter?.isAnnouncement;
+          case PostFilterOptions.Announcements:
+            return page.frontMatter?.isAnnouncement;
           default:
             return true;
         }
