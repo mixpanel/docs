@@ -43,6 +43,7 @@
 /docs/analysis/reports/insights /docs/reports/insights
 /docs/analysis/reports/retention /docs/reports/retention
 /docs/analysis/users /docs/users
+/docs/best-practices/analytics-strategy/engagement /docs/tracking-best-practices/tracking-plan
 /docs/best-practices/adoption https://mixpanel.com/blog/establish-a-product-analytics-practice/
 /docs/best-practices/analytics-strategy /docs/tutorials/analytics-strategy
 /docs/best-practices/analytics-strategy/overview /docs/best-practices/analytics-strategy
@@ -60,7 +61,7 @@
 /docs/data-pipelines/integrations/raw-aws-pipeline /docs/data-pipelines/old-pipelines/integrations/raw-aws-pipeline
 /docs/data-pipelines/old-pipelines/overview /docs/data-pipelines/old-pipelines
 /docs/data-pipelines/overview /docs/data-pipelines
-/docs/data-pipelines/schematized-export-pipeline /docs/data-pipelines/old-pipelines/integrations/schematized-export-pipeline
+/docs/data-pipelines/schematized-export-pipeline /docs/data-pipelines/old-pipelines/schematized-export-pipeline
 /docs/data-structure/advanced/ad-spend /docs/tracking-methods/integrations/ad-spend
 /docs/data-structure/advanced/group-analytics /docs/data-structure/group-analytics
 /docs/data-structure/advanced/utm-tags /docs/tracking-best-practices/traffic-attribution
