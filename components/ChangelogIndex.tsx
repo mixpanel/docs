@@ -60,16 +60,18 @@ export default function ChangelogIndex({ more = "Read more" }) {
 
   // Load initial or additional pages
   useEffect(() => {
-    const morePages = allPages.filter(page => {
-      switch (filter) {
-        case 'updates':
-          return page.frontMatter?.isAnnouncement !== true;
-        case 'announcements':
-          return page.frontMatter?.isAnnouncement === true;
-        default:
-          return true;
-      }
-    }).slice(0, pageIndex + itemsPerPage);
+    const morePages = allPages
+      .filter((page) => {
+        switch (filter) {
+          case "updates":
+            return page.frontMatter?.isAnnouncement !== true;
+          case "announcements":
+            return page.frontMatter?.isAnnouncement === true;
+          default:
+            return true;
+        }
+      })
+      .slice(0, pageIndex + itemsPerPage);
     setDisplayedPages(morePages);
   }, [pageIndex, filter]);
 
@@ -78,23 +80,22 @@ export default function ChangelogIndex({ more = "Read more" }) {
   };
 
   const filterButton = (id, label) => {
-    let className = 'changelogFilterButton';
+    let className = "changelogFilterButton";
     if (filter === id) {
-      className += ' active'
+      className += " active";
     }
     return (
-      <button
-        className={className}
-        onClick={() => setFilter(id)}
-      >{label}</button>
+      <button className={className} onClick={() => setFilter(id)}>
+        {label}
+      </button>
     );
-  }
+  };
 
   const filterOptions = [
-    {id: 'all', label: 'All Posts'},
-    {id: 'announcements', label: 'Announcements'},
-    {id: 'updates', label: 'Updates'},
-  ]
+    { id: "all", label: "All Posts" },
+    { id: "announcements", label: "Announcements" },
+    { id: "updates", label: "Updates" },
+  ];
 
   return (
     <div
@@ -107,18 +108,20 @@ export default function ChangelogIndex({ more = "Read more" }) {
     >
       <div className="changelogIndexFilterBorder" />
       <div className="changelogIndexFilterBar">
-        {filterOptions.map(filter => filterButton(filter.id, filter.label))}
+        {filterOptions.map((filter) => filterButton(filter.id, filter.label))}
       </div>
 
       {displayedPages.map((page) => (
         <div key={page.route} className="changelogIndexItem">
           <div className="changelogIndexItemDate">
             {page.frontMatter?.date ? (
-              <p className="changelogDate">{(new Date(page.frontMatter.date)).toLocaleDateString(undefined, {
-                year: "numeric",
-                month: "long",
-                day: "numeric"
-              })}</p>
+              <p className="changelogDate">
+                {new Date(page.frontMatter.date).toLocaleDateString(undefined, {
+                  year: "numeric",
+                  month: "long",
+                  day: "numeric",
+                })}
+              </p>
             ) : null}
           </div>
 
