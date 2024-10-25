@@ -8,8 +8,10 @@ type ImageFrameProps = {
   alt?: string;
 };
 
+const MAX_IMAGE_HEIGHT_WITHOUT_OVERFLOW = 400;
+
 export default function ImageFrame({
-  alt = "Thumnail of screenshot",
+  alt = "Thumbnail of screenshot",
   ...props
 }: ImageFrameProps) {
   const imageRef = useRef<HTMLImageElement>(null);
@@ -23,7 +25,7 @@ export default function ImageFrame({
     }
   }, []);
 
-  const isTall = height > 400;
+  const isTall = height > MAX_IMAGE_HEIGHT_WITHOUT_OVERFLOW;
 
   const imageFrame = tv({
     base: "nx-aspect-video nx-overflow-hidden nx-nx-mt-8 lg:nx-rounded-3xl nx-roundex-xl nx-bg-base80 nx-bg-gradient-to-t nx-from-grey20 nx-mb-8 lg:nx-px-14",
