@@ -1,10 +1,11 @@
 import { FC, ReactNode } from "react";
-import { useRouter } from 'next/router'
+import { useRouter } from "next/router";
 import { DocsThemeConfig, useConfig } from "nextra-theme-docs";
 import Search from "./components/Search/Search";
 import MixpanelLogoWordmark from "./components/svg/MixpanelLogoWordmark";
 import MainContent from "./components/MainContent/MainContent";
 import SignUpButton from "./components/SignUpButton/SignUpButton";
+import ChangelogPostHeader from "./components/ChangelogPostHeader/ChangelogPostHeader";
 
 function renderComponent<T>(ComponentOrNode: FC<T> | ReactNode, props?: T) {
   if (!ComponentOrNode) return null;
@@ -69,6 +70,7 @@ const config: DocsThemeConfig = {
   logo: <MixpanelLogoWordmark width={125} />,
   logoLink: "https://mixpanel.com/home/",
   main: MainContent,
+  components: { ChangelogPostHeader: ChangelogPostHeader },
   search: {
     component: Search,
   },

@@ -15,7 +15,7 @@ export default {
         "type": "page",
         "theme": {
             "sidebar": false,
-            //layout: 'full'
+            layout: 'full'
         }
     },
     "api-reference": {
