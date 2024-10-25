@@ -111,7 +111,10 @@ export default function ChangelogIndex({ more = "Learn More" }) {
             </p>
             <div className="nx-isolate nx-inline-flex nx-items-center nx-space-x-5 nx-mt-8">
               {page.frontMatter?.video && (
-                <VideoButtonWithModal src={page.frontMatter.video} />
+                <VideoButtonWithModal
+                  src={page.frontMatter.video}
+                  showThumbnail={false}
+                />
               )}
               <Link href={page.route} className="changelogReadMoreLink">
                 {more + " →"}

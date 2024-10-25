@@ -1,16 +1,18 @@
+import { ImageFrame } from "../ImageFrame";
+
 type ChangelogHeaderProps = {
   date?: string;
-  media?: any;
+  image?: any;
   title?: string;
 };
 
 export default function ChangelogPostHeader({
   date,
-  media,
+  image,
   title,
 }: ChangelogHeaderProps) {
   return (
-    <div>
+    <div className="changelogPostHeader">
       {date && (
         <p className="changelogDate">
           {new Date(date).toLocaleDateString(undefined, {
@@ -21,9 +23,9 @@ export default function ChangelogPostHeader({
         </p>
       )}
 
-      {media && <div>INSERT MEDIA HERE</div>}
+      {title && <h3 className="changelogTitle">{title}</h3>}
 
-      {title && <h3>{title}</h3>}
+      {image && <ImageFrame src={image} alt={title} />}
     </div>
   );
 }
