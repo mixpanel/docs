@@ -10,7 +10,7 @@ enum PostFilterOptions {
   Updates = `updates`,
 }
 
-const renderMedia = (page) => {
+const renderImage = (page) => {
   return (
     <ImageFrame src={page.frontMatter.thumbnail} alt={page.frontMatter.title} />
   );
@@ -94,7 +94,7 @@ export default function ChangelogIndex({ more = "Learn More" }) {
           </div>
 
           <div className="changelogIndexItemBody">
-            {page.frontMatter?.thumbnail && renderMedia(page)}
+            {page.frontMatter?.thumbnail && renderImage(page)}
 
             <h3>
               <Link
