@@ -41,8 +41,6 @@
     "@types/node": "22.5.2",
     "autoprefixer": "^10.4.20",
     "cspell": "^8.14.2",
-    "install": "^0.13.0",
-    "npm": "^10.9.0",
     "postcss": "^8.4.45",
     "rdme": "8.6.6",
     "tailwind-variants": "^0.2.1",
