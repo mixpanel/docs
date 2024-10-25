@@ -448,7 +448,7 @@ mixpanel.track('some_event');
 ```
 
 ### Setting Group Profile Properties
-Create a group profiles by setting group properties, similar to a user profile. For example, you may want to describe a company group with properties such as "ARR", "employee_count", and "subscription".
+Create a group profile by setting group properties, similar to a user profile. For example, you may want to describe a company group with properties such as "ARR", "employee_count", and "subscription".
 
 To set group profile properties, specify the group that needs to be updated by calling [`.getGroup()`](https://mixpanel.github.io/mixpanel-android/com/mixpanel/android/mpmetrics/MixpanelAPI.html#getGroup(java.lang.String,java.lang.Object)), then set the group properties by chaining the [`.set()`](https://mixpanel.github.io/mixpanel-android/com/mixpanel/android/mpmetrics/MixpanelAPI.Group.html#set(org.json.JSONObject)) method, which will trigger a request to the [/groups API endpoint](https://developer.mixpanel.com/reference/group-set-property).
 

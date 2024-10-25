@@ -38,6 +38,7 @@ Use [`track()`](http://mixpanel.github.io/mixpanel-ruby/Mixpanel/Events.html#met
 </Callout>
 
 **Example Usage**
+
 ```ruby
 # create an instance of the Mixpanel class
 require 'mixpanel-ruby'
@@ -263,7 +264,7 @@ To send group identifiers with your events, set the `group_key` as an event prop
 **Example Usage**
 
 ```ruby
-# track "some_event" with a "distinct_id"
+# track "some_event" with "sample_distinct_id"
 # event is attributed to the "mixpanel" company group
 Tracker = Mixpanel::Tracker.new("YOUR_PROJECT_TOKEN")
 tracker.track("sample_distinct_id", “some_event”, {
@@ -285,7 +286,7 @@ tracker.track("sample_distinct_id", “some_event”, {
 ```
 
 ### Setting Group Profile Properties
-Create a group profiles by setting group properties, similar to a user profile. For example, you may want to describe a company group with properties such as "ARR", "employee_count", and "subscription".
+Create a group profile by setting group properties, similar to a user profile. For example, you may want to describe a company group with properties such as "ARR", "employee_count", and "subscription".
 
 Instances of [`Mixpanel::Tracker`](http://mixpanel.github.io/mixpanel-ruby/Mixpanel/Tracker.html) have a property called `groups` that is an instance of [`Mixpanel::Groups`](https://mixpanel.github.io/mixpanel-ruby/Mixpanel/Groups.html), which contain methods for managing group profile properties.
 

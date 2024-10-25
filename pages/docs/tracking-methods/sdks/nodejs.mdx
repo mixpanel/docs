@@ -110,7 +110,7 @@ Learn more about [server-side identity management](/docs/tracking-methods/id-man
 
 ## Storing User Profiles
 
-Once your users are identified, create [user profiles](/docs/data-structure/user-profiles) by setting profile properties to describe them. Example profile properties include "name", "email", "company", and any other demographic details about the user.
+Create [user profiles](/docs/data-structure/user-profiles) by setting profile properties to describe them. Example profile properties include "name", "email", "company", and any other demographic details about the user.
 
 The Mixpanel object contains a `people` property, that exposes the [`MixpanelPeople`](https://github.com/mixpanel/mixpanel-node/blob/master/lib/people.js) class which contain methods for managing user profile properties. These methods will trigger requests to the [/engage API endpoint](https://developer.mixpanel.com/reference/profile-set).
 
@@ -316,7 +316,7 @@ mp.track('some_event', {
 ```
 
 ### Setting Group Profile Properties
-Create a group profiles by setting group properties, similar to a user profile. For example, you may want to describe a company group with properties such as "ARR", "employee_count", and "subscription".
+Create a group profile by setting group properties, similar to a user profile. For example, you may want to describe a company group with properties such as "ARR", "employee_count", and "subscription".
 
 The Mixpanel object contains a `groups` property, that exposes the [`MixpanelGroups`](https://github.com/mixpanel/mixpanel-node/blob/master/lib/groups.js) class which contain methods for managing group profile properties.
 
