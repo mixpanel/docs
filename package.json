@@ -26,6 +26,7 @@
   "dependencies": {
     "@docsearch/js": "^3.6.1",
     "@docsearch/react": "^3.6.1",
+    "@headlessui/react": "^2.1.10",
     "clsx": "^2.1.1",
     "next": "^14.2.8",
     "nextra": "3.0.3",
@@ -43,6 +44,7 @@
     "cspell": "^8.14.2",
     "postcss": "^8.4.45",
     "rdme": "8.6.6",
+    "tailwind-variants": "^0.2.1",
     "tailwindcss": "^3.4.10",
     "typescript": "^5.5.4",
     "yaml": "2.5.0"
