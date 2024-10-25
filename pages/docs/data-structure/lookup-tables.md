@@ -135,3 +135,7 @@ Yes. For example, first_trip_city_id and last_trip_city_id can both map to the "
 When replacing a lookup table using the [API](https://developer.mixpanel.com/reference/replace-lookup-table), you would need to pass the lookup table's ID as part of the URL in the API call. This `id` can be found in Lexicon under the Lookup Table's Details. See below screenshot as example:
 
 ![image](/lookup-table-id.png "Lookup Table ID")
+
+### Can I map it to the $distinct_id property? 
+
+Mapping a Lookup Table to the `$distinct_id` property is not supported. To create a user property for a profile, upload it as a user property directly.
