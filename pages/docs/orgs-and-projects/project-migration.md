@@ -10,7 +10,7 @@ We will cover the following key areas:
 
 - **Understanding the Scope:** Assess your data sources and define the objectives of your project migration.
 - **Planning and Preparation:** Establish a clear plan, and identify which data is critical to your business.
-- **Execution:** Follow our step-by-step guidance on on effectively migrating and validating data.
+- **Execution:** Follow our step-by-step guidance on effectively migrating and validating data.
 - **Post-Migration Review:** Validate our checklist of best practices for ensuring data integrity, migrating saved entities, and addressing any issues that arise.
 
 This guide will help you navigate the process, minimize risks, and streamline your data consolidation efforts, leading to more informed decision-making and better alignment across your organization.
@@ -65,17 +65,17 @@ Conducting a thorough data audit is essential for a successful project migration
 **Prioritize Current Uses Cases:**
 
 - Your project Lexicon provides insight into the number of UI and API queries performed by end users over the past 30 days. Focus on consolidating a list of events and properties where the “30-day queries” count is greater than 0. Prioritize migrating only the data that is actively being queried or has a clear, measurable business impact.
-- Build out a reverse spec that is inclusive of only the events/properties being utilized today.
+- Build out a reverse spec that is inclusive of only the events/properties being utilized today. You can export your Lexicon data dictionary from the legacy projects as a starting point for the reverse spec. Be sure to note which events and properties will be retained for the new project as your metrics and business needs become formalized. 
 
 **Understand Your Analytic Strategy:**
 
-- If you haven’t done so already, consider running an [analytics strategy session](https://docs.mixpanel.com/guides/analytics-strategy) to develop a framework of KPIs and identify the events and properties that are needed to unlock this analysis.
+- If you haven’t done so already, consider running an [analytics strategy session](/guides/analytics-strategy) to develop a framework of KPIs and identify the events and properties that are needed to unlock this analysis.
 - Using the reverse spec built above, denote the events and properties that enable the analysis of each KPI deemed important during your analytic strategy discussion. If none of the events and properties in the reverse spec can be used to report on a KPI that was surfaced in the analytics strategy, scope out events and properties that would be needed in the next sprint to achieve this analysis.
     - Conversely, if events and properties are included in the reverse spec but are not being used to measure any KPIs from your strategic discuss, determine if these events and properties are crucial to your analysis or if they can be removed from tracking.
 
 **Assess Data Quality:**
 
-- When merging multiple projects, review the event and property taxonomy across all projects to identify opportunities for consolidation during the ETL process. This can help reduce the number of events and properties being transferred to the new project, streamlining the dataset and improving overall efficiency. This includes data type conflicts, inconsistent naming conventions, duplicate/missing values, and identity management strategies.
+- When merging multiple projects, review the event and property taxonomy across all projects to identify opportunities for consolidation during the ETL process. This can help reduce the number of events and properties being transferred to the new project, streamlining the dataset and improving overall efficiency. This includes data type conflicts, inconsistent naming conventions, duplicate/missing values, and identity management strategies. When comparing the data schemas of the projects being migrated, ensure that key event and property names align and that there are no conflicts in data types, structures, or naming conventions.
 
 The output of these steps should serve as the scope and implementation plan that defines your new project schema.
 
@@ -105,18 +105,20 @@ curl --request GET \
 If you choose to export a subset of events to bring over to your new project, you can leverage the `event` or `where` parameters to query for the specific event data you’re looking to migrate.
 
 ## Step 4: Transform Data
-Upload the exported event data to your storage object, the process here may vary depending on the data warehouse you use. Our [warehouse connector](https://docs.mixpanel.com/docs/tracking-methods/data-warehouse) supports integrations with BigQuery, Snowflake, Databricks, and Redshift.
+Upload the exported event data to your storage object, the process here may vary depending on the data warehouse you use. Our [warehouse connector](/docs/tracking-methods/data-warehouse) supports integrations with BigQuery, Snowflake, Databricks, and Redshift.
 
 Checklist before running transformations:
 
-- [ ]  Compare the timezones from your existing projects to the new project to determine any **timezone offsets** that are necessary
-- [ ]  Understand if any transformations are required to uniquely **identify** your users
+- [ ]  Compare the timezones from your existing projects to the new project to determine any [**timezone offsets**](/docs/orgs-and-projects/managing-projects#manage-timezones-for-projects) that are necessary
+- [ ]  Understand if any transformations are required to uniquely [**identify**](/docs/tracking-methods/id-management) your users
 - [ ]  Determine a To/From **Date**
 
 Optionally:
 
-- [ ]  Add a [group identifier](https://docs.mixpanel.com/docs/data-structure/advanced/group-analytics#group-by-a-custom-identifier) if you’re looking to backfill analysis on a group analytics key.
-- [ ]  Add a super property to utilize [data views](https://docs.mixpanel.com/docs/data-governance/data-views-and-classification) to leverage access to a subset of data for a group of users within a single Mixpanel project.
+- [ ]  Add a [group identifier](/docs/data-structure/group-analytics#group-by-a-custom-identifier) if you’re looking to backfill analysis on a group analytics key.
+- [ ]  Add a super property to utilize [data views](/docs/data-governance/data-views-and-classification) to leverage access to a subset of data for a group of users within a single Mixpanel project.
+
+Begin here and add in transformations and filters to support the table or view that will be leveraged to pull in data from your data warehouse. 
 
 ```sql
 CREATE VIEW `project.dataset.view` AS
@@ -125,7 +127,7 @@ SELECT
     event_time,
     distinct_id,
     properties,
-    insert_time,
+    mp_processing_time_ms, -- insert time
     -- Add in your transformations here
 FROM `project.dataset.table`
 WHERE condition; -- filter your view here
@@ -160,7 +162,7 @@ Table/View: [find your table/view]
   
   Insert Time: `mp_processing_time_ms`
 
-If you are not leveraging our warehouse connectors offering, you can use our [import API](https://developer.mixpanel.com/reference/import-events) instead. See example GCS batch import script below:
+If you are not leveraging our warehouse connectors offering, you can use our [import API](https://developer.mixpanel.com/reference/import-events) instead. Review the GCS batch import script below and modify it to suite your needs (i.e. If your project is stored in the EU adjust your API endpoints accordingly):
 
 ```python
 import gzip
@@ -267,7 +269,7 @@ if __name__ == "__main__":
 
 This step is optional if you would like to migrate historical user properties into your new project. 
 
-If you have our [Data Pipelines add-on](https://docs.mixpanel.com/docs/data-pipelines/overview) you can use the user table in your data warehouse.
+If you have our [Data Pipelines add-on](/docs/data-pipelines) you can use the user table in your data warehouse.
 
 If you do not have access to this user profile data outside of Mixpanel, you can utilize the python script below to export user profile data.
 
@@ -358,18 +360,15 @@ Update the project token for platforms actively sending data to Mixpanel today. 
 
 ## Step 10: Data Validation
 
-**1. Pre-Migration Validation**
-
-- **Data Quality Assessment:** Before merging, assess the quality of the data in each project. Identify any duplicates, missing values, or inconsistent formats, and resolve these issues to ensure a clean migration.
-- **Schema Comparison:** Compare the data schemas of the projects being migrated. Ensure that key event and property names align and that there are no conflicts in data types, structures, or naming conventions.
-
-**2. Post-Migration Data Quality Checks**
+**1. Post-Migration Data Quality Checks**
 
 - **Count Verification:** After the migration, verify that the number of events (totals & uniques) in the migrated dataset matches the expected total. This can be easily verified using our Insights report. Any discrepancies should be investigated and resolved.
-- **Data Consistency Check:** Ensure that the data is consistent across all events. For example, verify that all related properties have been correctly migrated.
+- **Data Consistency Check:** Ensure that the data is consistent across all events. For example, verify that all related properties have been correctly migrated and that no data types, or naming convention conflicts exist.
 - **Unique Identifier Validation:** Check that all unique identifiers remain unique after the migration and that no duplicates have been introduced.
 
-**3. Stakeholder Review**
+💡 **Note:** For projects created before 1 Jan 2023, Mixpanel converts event timestamps to your project timezone before writing the event to your Mixpanel data stores, meaning that event timestamps are stored based on the project timezone setting at the time of ingestion. 
+
+**2. Stakeholder Review**
 
 - **Collaborative Validation:** Involve key stakeholders, such as data owners, project managers, and end-users, in the validation process. Their insights can help identify potential issues that automated checks might miss. Ensure they can pull the KPIs they’ve identified as critical in the analytic strategy discussion. Document the KPI in a shared board and how you gained this insight for future reference.
     - Pro tip: Creating a reference guide at this step can serve as a helpful guide as you socialize the new project with end users getting up to speed at your organization.
@@ -400,6 +399,6 @@ Saved entities, such as reports, boards, custom events, custom properties, cohor
 💡 **Best Practices:**
 - **Prioritize Key Entities:** Focus on migrating the most important and frequently used entities first to ensure critical business functions continue uninterrupted.
 - **Collaborate with Stakeholders:** Involve key stakeholders throughout the migration process to ensure that their needs are met and that the migrated entities align with their expectations.
-- **Boards & Reports**: Utilize [Move](https://docs.mixpanel.com/changelogs/2023-07-27-move) to transfer saved boards and reports across the same region (i.e. US, EU data centers). Permissions are managed by group admins allowing Boards to be moved across Projects or Organizations, depending on your use case.
+- **Boards & Reports**: Utilize [Move](/docs/boards/advanced#move-board) to transfer saved boards and reports across the same region (i.e. US, EU data centers). Permissions are managed by group admins allowing Boards to be moved across Projects or Organizations, depending on your use case.
     - Move does not support the migration of custom events, custom properties, cohorts, and lexicon metadata. This would need to be done manually. Review these lists with stakeholders and decide if any of these saved entities would need to be recreated in the new project to set your end users up for success.
     - Lexicon metadata can be [retrieved](https://developer.mixpanel.com/reference/list-all-schemas-for-project) from existing projects and [recreated](https://developer.mixpanel.com/reference/upload-schemas-for-project) in the new project via our Lexicon Schemas API.
