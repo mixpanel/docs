@@ -1,7 +1,12 @@
 import React, { useState, useEffect } from "react";
 import { getPagesUnderRoute } from "nextra/context";
-import ExtendedButton from "/components/ExtendedButton/ExtendedButton";
 import Link from "next/link";
+
+enum PostFilterOptions {
+  All = `all`,
+  Announcements = `announcements`,
+  Updates = `updates`,
+}
 
 const renderMedia = (page) => {
   if (page.frontMatter?.thumbnail) {
@@ -56,16 +61,48 @@ export default function ChangelogIndex({ more = "Read more" }) {
   const itemsPerPage = 10;
   const [displayedPages, setDisplayedPages] = useState([]);
   const [pageIndex, setPageIndex] = useState(0);
+  const [filter, setFilter] = useState(PostFilterOptions.All);
 
   // Load initial or additional pages
   useEffect(() => {
-    const morePages = allPages.slice(pageIndex, pageIndex + itemsPerPage);
-    setDisplayedPages((prev) => [...prev, ...morePages]);
-  }, [pageIndex]);
+    const morePages = allPages
+      .filter((page) => {
+        switch (filter) {
+          case PostFilterOptions.Updates:
+            // @ts-ignore:next-line
+            return !page.frontMatter?.isAnnouncement;
+          case PostFilterOptions.Announcements:
+            // @ts-ignore:next-line
+            return page.frontMatter?.isAnnouncement === true;
+          default:
+            return true;
+        }
+      })
+      .slice(0, pageIndex + itemsPerPage);
+    setDisplayedPages(morePages);
+  }, [pageIndex, filter]);
 
   const loadMore = () => {
     setPageIndex((prev) => prev + itemsPerPage);
   };
+
+  const filterButton = (id: PostFilterOptions, label: string) => {
+    let className = "changelogFilterButton";
+    if (filter === id) {
+      className += " active";
+    }
+    return (
+      <button className={className} onClick={() => setFilter(id)}>
+        {label}
+      </button>
+    );
+  };
+
+  const filterOptions = [
+    { id: PostFilterOptions.All, label: "All Posts" },
+    { id: PostFilterOptions.Announcements, label: "Announcements" },
+    { id: PostFilterOptions.Updates, label: "Updates" },
+  ];
 
   return (
     <div
@@ -76,15 +113,22 @@ export default function ChangelogIndex({ more = "Read more" }) {
       }}
       className="changelogIndexContainer"
     >
+      <div className="changelogIndexFilterBorder" />
+      <div className="changelogIndexFilterBar">
+        {filterOptions.map((filter) => filterButton(filter.id, filter.label))}
+      </div>
+
       {displayedPages.map((page) => (
         <div key={page.route} className="changelogIndexItem">
           <div className="changelogIndexItemDate">
             {page.frontMatter?.date ? (
-              <p className="changelogDate">{(new Date(page.frontMatter.date)).toLocaleDateString(undefined, {
-                year: "numeric",
-                month: "long",
-                day: "numeric"
-              })}</p>
+              <p className="changelogDate">
+                {new Date(page.frontMatter.date).toLocaleDateString(undefined, {
+                  year: "numeric",
+                  month: "long",
+                  day: "numeric",
+                })}
+              </p>
             ) : null}
           </div>
 
@@ -114,7 +158,7 @@ export default function ChangelogIndex({ more = "Read more" }) {
         </div>
       ))}
       {pageIndex + itemsPerPage < allPages.length && (
-        <div class="changelogLoadMoreButtonContainer">
+        <div className="changelogLoadMoreButtonContainer">
           <button onClick={loadMore} className="changelogLoadMoreButton">
             Load More
           </button>
