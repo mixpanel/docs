@@ -24,7 +24,7 @@
   },
   "homepage": "https://github.com/mixpanel/docs#readme",
   "dependencies": {
-    "@docsearch/js": "^3.6.1",
+    "@docsearch/js": "^3.6.2",
     "@docsearch/react": "^3.6.1",
     "clsx": "^2.1.1",
     "next": "^14.2.8",
