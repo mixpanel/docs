@@ -203,8 +203,9 @@ A few commonly used people methods are highlighted below:
 
     // create profile update message for "sample_distinct_id"
     JSONObject props = new JSONObject();
+    String[] roles = {"sales", "engineer"};
     props.put("name", "Sam");
-    props.put("roles", ["sales","engineer"]);
+    props.put("roles", roles);
     props.put("$ip", "0");
     JSONObject newUser = messageBuilder.set("sample_distinct_id", props);
     mixpanel.sendMessage(newUser);
@@ -244,8 +245,9 @@ A few commonly used people methods are highlighted below:
 
     // create profile update message for "sample_distinct_id"
     JSONObject props = new JSONObject();
+    String[] roles = {"sales", "engineer"};
     props.put('name', 'Sam');
-    props.put('roles', ['sales','engineer']);
+    props.put('roles', roles);
     JSONObject newUser = messageBuilder.set("sample_distinct_id", props);
     mixpanel.sendMessage(newUser);
 
@@ -359,8 +361,9 @@ MessageBuilder messageBuilder = new MessageBuilder("YOUR_PROJECT_TOKEN");
 // send event with "name" and "company" event props
 // event is associated with the 2 company groups ("mp-eu" and "mp-us")
 JSONObject props = new JSONObject();
+String[] companies = {"mp-eu", "mp-us"};
 props.put("name", "sam");
-props.put("company", ["mp-eu","mp-us"])
+props.put("company", companies)
 JSONObject eventPayload =
     messageBuilder.event("sample_distinct_id", "some_event", props);
 mixpanel.sendMessage(eventPayload);

@@ -323,8 +323,9 @@ A few commonly used people methods are highlighted below:
     ```java Java
     // set profile properties for user "1234"
     JSONObject props = new JSONObject();
+    String roles[] = {'sales','engineer'};
     props.put('name', 'Sam');
-    props.put('roles', ['sales','engineer']);
+    props.put('roles', roles);
 
     mixpanel.identify('1234', true);
     mixpanel.getPeople().set(props);
@@ -348,8 +349,9 @@ A few commonly used people methods are highlighted below:
     ```java Java
     // set profile properties for user "1234"
     JSONObject props = new JSONObject();
+    String roles[] = {'sales','engineer'};
     props.put('name', 'Sam');
-    props.put('roles', ['sales','engineer']);
+    props.put('roles', roles);
 
     mixpanel.identify('1234', true);
     mixpanel.getPeople().set(props);
@@ -528,8 +530,9 @@ A few commonly used group methods are highlighted below:
 
     // set group profile properties
     JSONObject groupProps = new JSONObject();
+    String features[] = {'reports','alerts','cohorts'};
     groupProps.put('name', 'Mixpanel');
-    groupProps.put('features', ['reports','alerts','cohorts']);
+    groupProps.put('features', features);
 
     mixpanel.getGroup('company','mixpanel').set(groupProps);
 
@@ -555,8 +558,9 @@ A few commonly used group methods are highlighted below:
 
     // set group profile properties
     JSONObject groupProps = new JSONObject();
+    String features[] = {'reports','alerts','cohorts'};
     groupProps.put('name', 'Mixpanel');
-    groupProps.put('features', ['reports','alerts','cohorts']);
+    groupProps.put('features', features);
     
     mixpanel.getGroup('company','mixpanel').set(groupProps);
 
