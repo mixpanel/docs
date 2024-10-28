@@ -14,45 +14,46 @@ The [Full API Reference](https://mixpanel.github.io/mixpanel-php/), [Library Sou
     Note: Our library requires PHP 5.0 or greater.
 </Callout>
 
-You can get the library using [Composer](http://getcomposer.org/) by including the following in your project's composer.json requirements and running composer update:
+<Tabs items={['Composer','Manual']}>
+    <Tabs.Tab>
+        You can get the library using [Composer](http://getcomposer.org/) by including the following in your project's `composer.json` requirements and running composer update:
 
-```json
-"require": {
-    ...
-    "mixpanel/mixpanel-php" : "2.*"
-    ...
-}
-```
+        ```json
+        "require": {
+            ...
+            "mixpanel/mixpanel-php" : "2.*"
+            ...
+        }
+        ```
 
-Once the library is installed, create an instance of the Mixpanel class with the [`getInstance()`](https://mixpanel.github.io/mixpanel-php/classes/Mixpanel.html#method_getInstance) method using your project token. 
+        Once the library is installed, create an instance of the Mixpanel class with the [`getInstance()`](https://mixpanel.github.io/mixpanel-php/classes/Mixpanel.html#method_getInstance) method using [your project token](https://docs.mixpanel.com/docs/orgs-and-projects/managing-projects#find-your-project-tokens). 
 
-Any data tracked using this Mixpanel instance will target your selected project.
+        ```php
+        <?php
+        // import dependencies
+        require 'vendor/autoload.php';
+        
+        // create an instance of the Mixpanel class
+        $mp = Mixpanel::getInstance("YOUR_PROJECT_TOKEN");
 
-```php
-<?php
-// import dependencies
-require 'vendor/autoload.php';
- 
-// create an instance of the Mixpanel class
-$mp = Mixpanel::getInstance("YOUR_PROJECT_TOKEN");
+        ?>
+        ```
+    </Tabs.Tab>
+    <Tabs.Tab>
+        If you're not using Composer for your package management, you can browse and download the library [from GitHub](https://github.com/mixpanel/mixpanel-php), extract the zip file to a directory called "mixpanel-php" in your project root, then import the library.
 
-?>
-```
+        ```php
+        <?php
+        // import Mixpanel
+        require 'mixpanel-php/lib/Mixpanel.php';
+        
+        // create an instance of the Mixpanel class
+        $mp = Mixpanel::getInstance("YOUR_PROJECT_TOKEN");
 
-**Manual Installation**
-
-If you're not using Composer for your package management, you can browse and download the library [from GitHub](https://github.com/mixpanel/mixpanel-php), extract the zip file to a directory called "mixpanel-php" in your project root, then import the library.
-
-```php
-<?php
-// import Mixpanel
-require 'mixpanel-php/lib/Mixpanel.php';
- 
-// create an instance of the Mixpanel class
-$mp = Mixpanel::getInstance("YOUR_PROJECT_TOKEN");
-
-?>
-```
+        ?>
+        ```
+    </Tabs.Tab>
+</Tabs>
 
 ### Library Configuration
 
@@ -106,68 +107,71 @@ Mixpanel determines default geolocation data (`$city`, `$region`, `mp_country_co
 ### Importing Historical Events
 The PHP SDK is a tracking SDK designed for real-time tracking in a server-side environment. Calling the `track()` method triggers a request to our [/track API endpoint](https://developer.mixpanel.com/reference/track-event), which will validate for events with a timestamp that is within the last 5 days of the request. **Events older than 5 days will not be ingested.**
 
-For bulk import of historical events older than 5 days, we will need to use the /import API endpoint which is optimized for scripting and supports ingesting historical data. We recommend the [Python SDK](/docs/tracking-methods/sdks/python) (see the [`.import_data()`](https://mixpanel.github.io/mixpanel-python/#primary-interface) function) and [mixpanel-utils module](https://github.com/mixpanel/mixpanel-utils) (see the [`import_events()`](https://github.com/mixpanel/mixpanel-utils?tab=readme-ov-file#import-events) function) which both leverages the /import API for event ingestion. 
-
-You can also leverage the [/import API](https://developer.mixpanel.com/reference/import-events) directly for a more customized solution.
-
+For bulk import of historical events older than 5 days, we will need to use the [/import API endpoint](https://developer.mixpanel.com/reference/import-events) which is optimized for scripting and supports ingesting historical data. We recommend the [Python SDK](/docs/tracking-methods/sdks/python) (see the [`.import_data()`](https://mixpanel.github.io/mixpanel-python/#primary-interface) function) and [mixpanel-utils module](https://github.com/mixpanel/mixpanel-utils) (see the [`import_events()`](https://github.com/mixpanel/mixpanel-utils?tab=readme-ov-file#import-events) function) which both leverages the /import API for event ingestion. 
 
 ## Managing User Identity
 
-Mixpanel groups events sent with different distinct_ids, presenting them in reports as different user event streams. You can connect events with different distinct_ids, ultimately attributing them to one user. You will want to check which version of ID management you have enabled within Project Settings -> Identity Merge
+Mixpanel groups events sent with different distinct_ids, presenting them in reports as different user event streams. You can connect events with different distinct_ids, ultimately attributing them to one user. You will want to check [which version of ID management you have enabled within Project Settings -> Identity Merge](https://docs.mixpanel.com/docs/tracking-methods/id-management#identity-merge-apis).
 
-If you have `Original ID Merge` enabled, you can an anonymous ID and your chosen user ID by calling the [`identify()`](https://mixpanel.github.io/mixpanel-php/classes/Producers_MixpanelEvents.html#method_identify) method. This will send an [`$identify`](/docs/tracking-methods/id-management/identifying-users-original#identify) event containing both IDs and merge them under one identity cluster.
+<Tabs items={['Original API', 'Simplified API']} >
+    <Tabs.Tab>
+        If you have [Original ID Merge enabled](/docs/tracking-methods/id-management#identity-merge-apis), send your anonymous events with an anonymous ID that you generate. Then merge your anonymous ID and your chosen user ID by calling the [`identify()`](https://mixpanel.github.io/mixpanel-php/classes/Producers_MixpanelEvents.html#method_identify) method once they are known (typically at registration and login). This will send an [`$identify`](/docs/tracking-methods/id-management/identifying-users-original#identify) event containing both IDs and merge them under one identity cluster.
 
-**Example Usage**
-```php
-<?php
-// import dependencies
-require 'vendor/autoload.php';
- 
-// create an instance of the Mixpanel class
-$mp = Mixpanel::getInstance("YOUR_PROJECT_TOKEN");
+        Learn more about [server-side ID management for project on Original ID Merge API](/docs/tracking-methods/id-management/identifying-users-original#server-side-identity-management).
 
-// send an "$identify" event to merge "USER_ID" and "ANON_ID" together
-$mp->identify('USER_ID','ANON_ID');
+        **Example Usage**
+        ```php
+        <?php
+        // import dependencies
+        require 'vendor/autoload.php';
+        
+        // create an instance of the Mixpanel class
+        $mp = Mixpanel::getInstance("YOUR_PROJECT_TOKEN");
 
-?>
-```
+        // send an "$identify" event to merge "USER_ID" and "ANON_ID" together
+        $mp->identify('USER_ID','ANON_ID');
 
-If you have `Simplified ID Merge` enabled, you will want to send any event that contains both the `$device_id` (set to the anonymous ID) and `$user_id` (set to your chosen user ID) properties. When a `$user_id` and a `$device_id` is detected in the same event for the first time, it triggers a merge of the 2 IDs.
+        ?>
+        ```
+    </Tabs.Tab>
+    <Tabs.Tab>
+        If you have [Simplified ID Merge](/docs/tracking-methods/id-management#identity-merge-apis) enabled, send your event anonymous events with an anonymous ID set to the $device_id. Then call [`identify()`](https://mixpanel.github.io/mixpanel-php/classes/Producers_MixpanelEvents.html#method_identify) while providing your chosen user ID once they are known (typically at registration and login). This will set your chosen user ID as the $user_id for events moving forward.
+        
+        When a `$user_id` and a `$device_id` is detected in the same event for the first time, it triggers a merge of the 2 IDs.
 
-**Example Usage**
-```php
-<?php
-// import dependencies
-require 'vendor/autoload.php';
- 
-// create an instance of the Mixpanel class
-$mp = Mixpanel::getInstance("YOUR_PROJECT_TOKEN");
+        Learn more about [server-side ID management for project on Original ID Merge API](/docs/tracking-methods/id-management/identifying-users-simplified#server-side-identity-management).
 
-//the call to identify is not necessary to connect the IDs,
-//but it is practical as it will add the distinct_id to all events moving forward
-$mp->identify("USER_ID");
+        **Example Usage**
+        ```php
+        <?php
+        // import dependencies
+        require 'vendor/autoload.php';
+        
+        // create an instance of the Mixpanel class
+        $mp = Mixpanel::getInstance("YOUR_PROJECT_TOKEN");
 
-// when a $user_id/$device_id pair is detected in the same event for the first time,
-// a merge is triggered to map the 2 IDs together.
-$mp->track("sign-up", array(
-  '$device_id' => "ANON_ID",
-  '$user_id' => "USER_ID"
-));
+        // calling identify will attach the "USER_ID"
+        // as the $user_id event property to all events moving forward
+        $mp->identify("USER_ID");
 
-?>
-```
+        // when a $user_id/$device_id pair is detected in the same event for the first time,
+        // a merge is triggered to map the 2 IDs together.
+        $mp->track("sign-up", array(
+        '$device_id' => "ANON_ID",
+        '$user_id' => "USER_ID"
+        ));
 
-**Note:** For projects on our legacy ID management model (it will read as *ID Merge is not enabled* within project settings), you can read about [using $create_alias to link IDs here](https://github.com/mixpanel/docs/blob/main/legacy/aliases.md).
-
-Learn more about ID management [in our tracking guide](/docs/tracking-methods/id-management).
-
+        ?>
+        ```
+    </Tabs.Tab>
+</Tabs>
 
 ## Storing User Profiles
 Once your users are identified, create [user profiles](/docs/data-structure/user-profiles) by setting profile properties to describe them. Example profile properties include "name", "email", "company", and any other demographic details about the user.
 
 The PHP SDK provides a few methods for setting profile properties, which will trigger requests to the [/engage API endpoint](https://developer.mixpanel.com/reference/profile-set).
 
-Mixpanel determines default geolocation data (\$city, \$region, mp_country_code) using the IP address on the incoming request. As all server-side calls will likely originate from the same IP (that is, the IP of your server), this can have the unintended effect of setting the location of all of your users to the location of your datacenter. [Learn more about best practices for geolocation](/docs/tracking-best-practices/geolocation).
+Mixpanel determines default geolocation data (`$city`, `$region`, `mp_country_code`) using the IP address on the incoming request. As all server-side calls will likely originate from the same IP (that is, the IP of your server), this can have the unintended effect of setting the location of all of your users to the location of your datacenter. [Learn more about best practices for geolocation](/docs/tracking-best-practices/geolocation).
 
 ### Setting Profile Properties
 The Mixpanel class has a public property called [`$people`](https://mixpanel.github.io/mixpanel-php/classes/Mixpanel.html#property_people) that exposes an instance of [`Producers_MixpanelPeople`](https://mixpanel.github.io/mixpanel-php/classes/Producers_MixpanelPeople.html) that you can use to make profile updates.
@@ -194,14 +198,6 @@ $mp->people->set("USER_ID", array(
 ), $ip = 0);
 ..
 ```
-
-**Note:** Pick your property names wisely. Please note the following guidelines:
-
-* Your property names should not begin with "$"" or "mp_". These properties are [reserved for special properties](/docs/data-structure/property-reference/reserved-properties) sent by Mixpanel.
-* Your property names cannot begin or end with a space as they will automatically be trimmed.
-* Your property names and values cannot be longer than 255 characters. In practice they should be much shorter than that. Property names get cut off by our user interface at about 20 characters.
-
-[Click here](/docs/data-structure/property-reference/reserved-properties#reserved-profile-properties) to see a list of Mixpanel's reserved user profile properties.
 
 ### Other Types of Profile Updates
 
@@ -253,7 +249,7 @@ A few commonly used people methods are highlighted below:
     // set profile properties for user "1234"
     $mp->people->set("1234", array(
         'name'       => "Sam",
-        'roles'      => ["sales","engineer"]
+        'roles'      => array("sales","engineer")
     ), $ip = 0);
 
 
@@ -293,6 +289,64 @@ A few commonly used people methods are highlighted below:
 
   </Tabs.Tab>
 </Tabs>
+
+## Group Analytics
+
+<Callout type="info">
+    Read more about [Group Analytics](/docs/data-structure/group-analytics) before proceeding. You will need to have the [group key defined in your project settings](/docs/data-structure/group-analytics#group-keys-in-project-settings) first.
+</Callout>
+
+Mixpanel Group Analytics is a paid add-on that allows behavioral data analysis by selected groups, as opposed to individual users.
+
+A group is identified by the `group_key` and `group_id`.
+* `group_key` is the event property that connects event data to a group. (e.g. `company`)
+* `group_id` is the identifier for a specific group. (e.g. `mixpanel`,`company_a`,`company_b`, etc.)
+
+### Sending Group Identifiers With Events
+
+[All events must have the group key as an event property in order to be attributed to a group](/docs/data-structure/group-analytics#group-keys-tracked-as-event-properties). Without the group key, an event cannot be attributed to a group.
+
+To send group identifiers with your events, set the `group_key` as an event property with the `group_id` as the value.
+
+**Example Usage**
+
+```php
+<?php
+// import dependencies
+require 'vendor/autoload.php';
+ 
+// create an instance of the Mixpanel class
+$mp = Mixpanel::getInstance("YOUR_PROJECT_TOKEN");
+
+// Send "some_event" containing the "company" group_key and "mixpanel" group_id
+$mp->track("some_event", array(
+  "company"       => "mixpanel", // "label" prop is set to "sign-up"
+  "distinct_id" => "SOME_ID"  // "distinct_id" prop is set to "SOME_ID"
+));
+?>
+```
+
+**Multiple Groups**
+
+[An event can be attributed to multiple groups](/docs/data-structure/group-analytics#attribute-events-to-multiple-groups) by passing in the `group_key` value as a list of multiple `group_id` values.
+
+ **Example Usage**
+
+```php
+<?php
+// import dependencies
+require 'vendor/autoload.php';
+ 
+// create an instance of the Mixpanel class
+$mp = Mixpanel::getInstance("YOUR_PROJECT_TOKEN");
+
+// Send "some_event" containing the "company" group_key with "mp-us" and "mp-eu" group_id
+$mp->track("some_event", array(
+  "company"       => array("mp-us","mp-eu")
+  "distinct_id" => "SOME_ID"  // "distinct_id" prop is set to "SOME_ID"
+));
+?>
+```
 
 ## Debug Mode
 To enable debug mode, set the `debug` configuration option to `true` when initializing the Mixpanel class.
@@ -337,14 +391,16 @@ $mp = Mixpanel::getInstance("YOUR_PROJECT_TOKEN", array(
 
 The PHP SDK parse the request IP address to generate geolocation properties for events and profiles. You may want to disable them to prevent the unintentional setting of your data's geolocation to the location of your server that is sending the request, or to prevent geolocation data from being tracked entirely.
 
-To disable geolocation, set the `$ip` of your profile updates to `0`.
+To disable geolocation, set the `$ip` of your profile updates to `0` and set your `events_endpoint` to `/track?ip=0` when initializing the Mixpanel instance.
 
 **Example Usage**
 
 ```php
 <?php
 // create an instance of the Mixpanel class
-$mp = Mixpanel::getInstance("YOUR_PROJECT_TOKEN");
+$mp = Mixpanel::getInstance("YOUR_PROJECT_TOKEN", array(
+    "events_endpoint" => "/track?ip=0" // disable geolocation parsing for events
+));
 
 // set user props without geolocation parsing
 $mp->people->set("USER_ID", array(
