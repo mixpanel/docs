@@ -403,6 +403,29 @@ $border-radius-lg: 100px;
   }
 }
 
+.changelogPostHeader {
+  margin-top: 80px;
+
+  //date of changelog entry
+  .changelogDate {
+    color: colors.$grey80;
+    font-size: 14px;
+    font-weight: 400;
+    line-height: 168%; /* 23.52px */
+    letter-spacing: 0.28px;
+    text-wrap: nowrap;
+  }
+
+  .changelogTitle {
+    color: colors.$purple200;
+    font-size: 48px;
+    font-weight: 500;
+    line-height: 120%; /* 57.6px */
+    letter-spacing: -0.96px;
+    margin-bottom: 24px;
+  }
+}
+
 .nextra-callout {
   opacity: 1 !important;
 }
