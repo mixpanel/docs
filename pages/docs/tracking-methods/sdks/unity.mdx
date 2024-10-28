@@ -232,9 +232,10 @@ A few commonly used people methods are highlighted below:
     ```csharp
     // set profile properties for user "1234"
     Mixpanel.Identify('1234');
+    var roles = new string[] {'sales','engineer'};
     Mixpanel.People.Set({
         'name':'sam',
-        'roles': ['sales','engineer']
+        'roles': roles
     });
 
     // add "legal" to "roles"  
@@ -256,9 +257,10 @@ A few commonly used people methods are highlighted below:
     ```csharp
     // set profile properties for user "1234"
     Mixpanel.Identify('1234');
+    var roles = new string[] {'sales','engineer'};
     Mixpanel.People.Set({
         'name':'sam',
-        'roles': ['sales','engineer']
+        'roles': roles
     });
 
     // append "engineer" to "roles"
@@ -282,7 +284,7 @@ A few commonly used people methods are highlighted below:
     Mixpanel.Identify('1234');
     Mixpanel.People.Set({
         'name':'sam',
-        'roles': ['sales','engineer']
+        'age': 25
     });
 
     // increment "age" by 2
@@ -295,6 +297,67 @@ A few commonly used people methods are highlighted below:
 
   </Tabs.Tab>
 </Tabs>
+
+## Group Analytics
+
+<Callout type="info">
+    Read more about [Group Analytics](/docs/data-structure/group-analytics) before proceeding. You will need to have the [group key defined in your project settings](/docs/data-structure/group-analytics#group-keys-in-project-settings) first.
+</Callout>
+
+Mixpanel Group Analytics is a paid add-on that allows behavioral data analysis by selected groups, as opposed to individual users.
+
+A group is identified by the `group_key` and `group_id`.
+* `group_key` is the event property that connects event data to a group. (e.g. `company`)
+* `group_id` is the identifier for a specific group. (e.g. `mixpanel`,`company_a`,`company_b`, etc.)
+
+### Sending Group Identifiers With Events
+
+[All events must have the group key as an event property in order to be attributed to a group](/docs/data-structure/group-analytics#group-keys-tracked-as-event-properties). Without the group key, an event cannot be attributed to a group.
+
+To send group identifiers with your events, set the `group_key` as an event property with the `group_id` as the value.
+
+**Example Usage**
+```csharp
+// set group key "company" as event prop
+// with "mixpanel" as value
+var props = new Value();
+props["company"] = "mixpanel";
+
+//track "some_event" with your event props
+// this event is associated with the mixpanel company group
+Mixpanel.Track("some_event", props);
+```
+
+**Multiple Groups**
+
+[An event can be attributed to multiple groups](/docs/data-structure/group-analytics#attribute-events-to-multiple-groups) by passing in the `group_key` value as a list of multiple `group_id` values.
+
+
+**Example Usage**
+```csharp
+// set group key "company" as event prop
+// with "mp-eu" and "mp-us" as value
+var props = new Value();
+var companies = new string[] {"mp-eu","mp-us"};
+props["company"] = companies;
+
+//track "some_event" with your event props
+// this event is associated with the mp-eu and mp-us company group
+Mixpanel.Track("some_event", props);
+```
+
+### Adding Group Identifiers to User Profiles
+
+To connect group information to a user profile, include the `group_key` and `group_id` as a user profile property using the `People.Set()` call.
+
+**Example Usage**
+
+```csharp
+// set group key "company" as a user prop
+// with group id "mixpanel" as value
+Mixpanel.Identify("12345");
+Mixpanel.People.Set("company", "mixpanel");
+```
 
 ## Privacy-Friendly Tracking
 

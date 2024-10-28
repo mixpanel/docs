@@ -348,6 +348,27 @@ $mp->track("some_event", array(
 ?>
 ```
 
+### Adding Group Identifiers to User Profiles
+
+To connect group information to a user profile, include the `group_key` and `group_id` as a user profile property using the `set()` call.
+
+**Example Usage**
+```php
+<?php
+// import dependencies
+require 'vendor/autoload.php';
+ 
+// create an instance of the Mixpanel class
+$mp = Mixpanel::getInstance("YOUR_PROJECT_TOKEN");
+
+// set group key "company" as a user prop
+// with group id "mixpanel" as value
+$mp->people->set("USER_ID", array(
+    'company'       => "mixpanel",
+), $ip = 0);   // set $ip to 0 to prevent profile geolocation update
+..
+```
+
 ## Debug Mode
 To enable debug mode, set the `debug` configuration option to `true` when initializing the Mixpanel class.
 

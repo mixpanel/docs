@@ -439,6 +439,22 @@ Mixpanel *mixpanel = [Mixpanel sharedInstance];
 [mixpanel track:@"some_event"];
 ```
 
+### Adding Group Identifiers to User Profiles
+
+To connect group information to a user profile, include the `group_key` and `group_id` as a user profile property using the `set` call.
+
+**Example Usage**
+```objc Objective-C
+Mixpanel *mixpanel = [Mixpanel sharedInstance];
+
+// You must call identify to associate the profile update with the user
+[mixpanel identify:@"12345"];
+
+// Set group key "company" as user prop
+// with group id "mixpanel" as value
+[mixpanel.people set:@{@"company": @"mixpanel"}];
+```
+
 ### Setting Group Profile Properties
 Create a group profiles by setting group properties, similar to a user profile. For example, you may want to describe a company group with properties such as "ARR", "employee_count", and "subscription".
 

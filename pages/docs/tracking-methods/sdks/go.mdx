@@ -356,6 +356,32 @@ mp.Track(ctx, []*mixpanel.Event{
 })
 ```
 
+### Adding Group Identifiers to User Profiles
+
+To connect group information to a user profile, include the `group_key` and `group_id` as a user profile property using the `.PeopleSet` call.
+
+**Example Usage**
+
+```go
+ctx := context.Background()
+mp := mixpanel.NewApiClient("YOUR_PROJECT_TOKEN")
+
+// create a payload to create profile for distinct_id 12345
+// with group key "company" as user prop and group ID "mixpanel" as value
+exampleUser := mixpanel.NewPeopleProperties("12345", map[string]any{
+	"name": "sam",
+	"company": "mixpanel",
+	"$ip": 0
+})
+
+// pass the profile payload in the PeopleSet function
+err := mp.PeopleSet(ctx,
+	[]*mixpanel.PeopleProperties{
+		exampleUser,
+	},
+)
+```
+
 ### Setting Group Profile Properties
 Create a group profiles by setting group properties, similar to a user profile. For example, you may want to describe a company group with properties such as "ARR", "employee_count", and "subscription".
 

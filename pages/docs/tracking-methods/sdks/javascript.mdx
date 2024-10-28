@@ -437,6 +437,16 @@ mixpanel.add_group('company', 'mp-us');
 mixpanel.track('some_event');
 ```
 
+### Adding Group Identifiers to User Profiles
+
+To connect group information to a user profile, include the `group_key` and `group_id` as a user profile property using the `people.set()` call.
+
+```javascript
+// set group key "company" as a user prop
+// with group id "mixpanel" as value
+mixpanel.people.set({"company":"mixpanel"})
+```
+
 ### Setting Group Profile Properties
 Create a group profiles by setting group properties, similar to a user profile. For example, you may want to describe a company group with properties such as "ARR", "employee_count", and "subscription".
 

@@ -252,6 +252,7 @@ You can set properties on a user profile with [`people.set(property:to:)`](https
 
 If a profile property already exist, if will be overwritten with the latest value provided in the method. If a profile property does not exist, it will be added to the profile.
 
+**Example Usage**
 ```swift Swift
 /// You must call identify to associate the profile update with the user
 Mixpanel.mainInstance().identify(distinctId: "12345")
@@ -414,6 +415,22 @@ Mixpanel.mainInstance().addGroup(groupKey: "company", groupID: "mp-us")
 /// track "some_event"
 /// event prop "company" = ["mixpanel","mp-us"] is added automatically
 Mixpanel.mainInstance().track(event: "some_event")
+
+```
+
+### Adding Group Identifiers to User Profiles
+
+To connect group information to a user profile, include the `group_key` and `group_id` as a user profile property using the `.people.set()` call.
+
+**Example Usage**
+
+```swift Swift
+/// You must call identify to associate the profile update with the user
+Mixpanel.mainInstance().identify(distinctId: "12345")
+
+// set group key "company" as a user prop
+// with group id "mixpanel" as value
+Mixpanel.mainInstance().people.set(properties: ["company":"mixpanel", "$email":"joe.doe@example.com"])
 
 ```
 

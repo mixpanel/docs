@@ -286,6 +286,24 @@ tracker.track("sample_distinct_id", “some_event”, {
 })
 ```
 
+### Adding Group Identifiers to User Profiles
+
+To connect group information to a user profile, include the `group_key` and `group_id` as a user profile property using the `.people.set()` call.
+
+**Example Usage**
+```ruby
+# create an instance of the Mixpanel class
+require 'mixpanel-ruby'
+tracker = Mixpanel::Tracker.new("YOUR_PROJECT_TOKEN")
+
+# set group key "company" as a user prop
+# with group id "mixpanel" as value
+tracker.people.set('sample_distinct_id', {
+    'name'       => 'Sam',
+    'company'     => 'mixpanel'
+}, ip = 0);
+```
+
 ### Setting Group Profile Properties
 Create a group profile by setting group properties, similar to a user profile. For example, you may want to describe a company group with properties such as "ARR", "employee_count", and "subscription".
 

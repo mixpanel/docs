@@ -369,6 +369,32 @@ JSONObject eventPayload =
 mixpanel.sendMessage(eventPayload);
 ```
 
+### Adding Group Identifiers to User Profiles
+
+To connect group information to a user profile, include the `group_key` and `group_id` as a user profile property using the `.set()` call.
+
+```java
+// import classes from the library
+import com.mixpanel.mixpanelapi.MessageBuilder;
+import com.mixpanel.mixpanelapi.MixpanelAPI;
+
+// initialize MessageBuilder and MixpanelAPI
+MessageBuilder messageBuilder =
+    new MessageBuilder("YOUR_PROJECT_TOKEN");
+
+MixpanelAPI mixpanel = new MixpanelAPI();
+
+// create profile update message for "sample_distinct_id"
+// with group key "company" as user prop and group id "mixpanel" as value
+JSONObject props = new JSONObject();
+props.put("company", "mixpanel");
+props.put("$ip", "0"); // do not update profile location
+JSONObject newUser = messageBuilder.set("sample_distinct_id", props);
+
+// Send the message to mixpanel
+mixpanel.sendMessage(newUser);
+```
+
 ### Setting Group Profile Properties
 Create a group profile by setting group properties, similar to a user profile. For example, you may want to describe a company group with properties such as "ARR", "employee_count", and "subscription".
 
