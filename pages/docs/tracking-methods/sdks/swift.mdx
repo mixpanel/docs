@@ -53,7 +53,7 @@ You can install the Swift library by using CocoaPods, Carthage, or Swift Package
     Mixpanel supports [Carthage](https://github.com/Carthage/Carthage#quick-start) to package your dependencies as a framework. Include the following dependency in your Cartfile:
 
     ```bash
-    // add Mixpanel library to your dependencies
+    # add Mixpanel library to your dependencies
     github "mixpanel/mixpanel-swift"
     ```
   </Tabs.Tab>
@@ -168,7 +168,7 @@ For bulk import of historical events older than 5 days, we will need to use the 
 
 Super properties are global event properties that you define once and apply to all events.
 
-To register super properties, call [`.registerSuperProperties(_:)`](https://mixpanel.github.io/mixpanel-swift/Classes/MixpanelInstance.html#/s:FC8Mixpanel16MixpanelInstance23registerSuperPropertiesFGVs10DictionarySSPs9AnyObject__T_).
+To register super properties, call [`.registerSuperProperties(_:)`](https://mixpanel.github.io/mixpanel-swift/Classes/MixpanelInstance.html#/s:8Mixpanel0A8InstanceC23registerSuperPropertiesyySDySSAA0A4Type_pGF).
 
 Use [`.registerSuperPropertiesOnce(_:)`](https://mixpanel.github.io/mixpanel-swift/Classes/MixpanelInstance.html#/s:8Mixpanel0A8InstanceC27registerSuperPropertiesOnce_12defaultValueySDySSAA0A4Type_pG_AaF_pSgtF) to register super properties without overwriting existing values.
 
@@ -428,8 +428,8 @@ To connect group information to a user profile, include the `group_key` and `gro
 /// You must call identify to associate the profile update with the user
 Mixpanel.mainInstance().identify(distinctId: "12345")
 
-// set group key "company" as a user prop
-// with group id "mixpanel" as value
+/// set group key "company" as a user prop
+/// with group id "mixpanel" as value
 Mixpanel.mainInstance().people.set(properties: ["company":"mixpanel", "$email":"joe.doe@example.com"])
 
 ```
@@ -468,15 +468,15 @@ A few commonly used group methods are highlighted below:
     /// assign the current user to the "mixpanel" company group
     Mixpanel.mainInstance().setGroup(groupKey: "company", groupID: ["mixpanel"])
 
-    // set group profile properties
+    /// set group profile properties
     Mixpanel.mainInstance().getGroup(groupKey: "company", groupID: “mixpanel”).set(properties: [
         "name": "Mixpanel"])
 
-    // ignored since "name" is already exists
+    /// ignored since "name" is already exists
     Mixpanel.mainInstance().getGroup(groupKey: "company", groupID: “mixpanel”).setOnce(properties: [
         "name": "mp"])
     
-    // set "country" group prop since it does not exist
+    /// set "country" group prop since it does not exist
     Mixpanel.mainInstance().getGroup(groupKey: "company", groupID: “mixpanel”).setOnce(properties: [
         "country": "us"])
     ```
@@ -522,7 +522,7 @@ A few commonly used group methods are highlighted below:
     /// add "data pipeline" to "features" prop
     /// ignore "alert" since it is a duplicate value
     Mixpanel.mainInstance().getGroup(groupKey: "company", groupID: “mixpanel”).union(key: "features",
-        values: ["data pipeline","alert"])
+        values: ["data pipeline","alerts"])
     ```
   </Tabs.Tab>
   <Tabs.Tab>
@@ -556,7 +556,7 @@ Enable debug mode by setting the [`loggingEnabled`](https://mixpanel.github.io/m
 
 **Example Usage**
 ```swift Swift
-// enable debug log
+/// enable debug log
 Mixpanel.mainInstance().loggingEnabled = true
 ```
 Learn more about [debugging](/docs/tracking-best-practices/debugging).

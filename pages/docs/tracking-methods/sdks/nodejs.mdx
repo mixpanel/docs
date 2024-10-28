@@ -94,7 +94,7 @@ const mp = Mixpanel.init('YOUR_PROJECT_TOKEN');
 // import an old event for distinct_id 12345
 // with epoch timestamp 1698023982
 // with "plan" event prop
-mp.track('some_event', 1698023982, {
+mp.import('some_event', 1698023982, {
       distinct_id: '12345',
       plan: 'premium'
   });
@@ -151,7 +151,7 @@ A few commonly used people methods are highlighted below:
 
 <Tabs items={['set_once()','append()','union()','increment()']} >
   <Tabs.Tab>
-    The [`people.set_once()`](hhttps://github.com/mixpanel/mixpanel-node/blob/master/lib/people.js#L22) method set profile properties only if they do not exist yet. If it is setting a profile property that already exists, it will be ignored.
+    The [`people.set_once()`](https://github.com/mixpanel/mixpanel-node/blob/master/lib/people.js#L22) method set profile properties only if they do not exist yet. If it is setting a profile property that already exists, it will be ignored.
 
     Use this method if you want to set profile properties without the risk of overwriting existing data.
 

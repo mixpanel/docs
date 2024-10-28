@@ -84,6 +84,8 @@ You can set the library configuration by adding `meta-data` entries under the `<
 
 The [`MPConfig`](https://mixpanel.github.io/mixpanel-android/com/mixpanel/android/mpmetrics/MPConfig.html) provide a few methods that you can call to set and retrieve your configuration after the library has already been initialized.
 
+**Example Usage**
+
 ```java Java
 // initialize Mixpanel with automatic events disabled
 trackAutomaticEvents = true;
@@ -559,7 +561,7 @@ A few commonly used group methods are highlighted below:
     // ignore "alert" since it is a duplicate value
     mixpanel.getGroup('company','mixpanel').union('features', [
         'data pipeline',
-        'alert'
+        'alerts'
         ]);
     ```
 
@@ -638,6 +640,16 @@ optOutTrackingDefault = true;
 trackAutomaticEvents = false;
 MixpanelAPI mixpanel =
     MixpanelAPI.getInstance(context, 'YOUR_PROJECT_TOKEN', optOutTrackingDefault, trackAutomaticEvents);
+
+
+// this track call will not work
+mixpanel.track('some_event');
+
+// opt user back into tracking
+mixpanel.optInTracking();
+ 
+// this track call will work
+mixpanel.track('some_other_event');
 ```
 ### EU Data Residency
 
@@ -665,9 +677,13 @@ Route data to Mixpanel's EU servers by adding these meta-data entries under the 
 The Android SDK parse the request IP address to generate geolocation properties for events and profiles. To disable geolocation, add the following meta-data entry under the `<application>` tag of your app's `AndroidManifest.xml`.
 
 ```xml Java
-<!-- disable geolocation parsing -->
-<meta-data android:name="com.mixpanel.android.MPConfig.UseIpAddressForGeolocation" 
-           android:value="false" />
+<application>
+...
+  <!-- disable geolocation parsing -->
+  <meta-data android:name="com.mixpanel.android.MPConfig.UseIpAddressForGeolocation" 
+            android:value="false" />
+...
+</application>
 ```
 
 Learn more about [geolocation](/docs/tracking-best-practices/geolocation).

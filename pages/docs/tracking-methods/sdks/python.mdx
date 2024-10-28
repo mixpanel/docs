@@ -77,12 +77,12 @@ mp = Mixpanel('YOUR_PROJECT_TOKEN')
 
 # import event that is old
 mp.import_data(
-	api_key='', //deprecated but required
+	api_key='', # deprecated but required
 	distinct_id='sample_distinct_id', 
 	event_name='some_event',
     timestamp=1634528073,
 	properties = {'some_property': 'some value'},
-	api_secret = 'project_api_secret' #used to authenticate request
+	api_secret = 'project_api_secret' # used to authenticate request
 	)
 ```
 
@@ -229,7 +229,7 @@ A few commonly used people methods are highlighted below:
 
     # use negative number to decrement
     # decrement "age" by 5
-    mixpanel.getPeople().increment('1234', {'age',-5});
+    mp.people_increment('1234', {'age',-5});
     ```
 
   </Tabs.Tab>
@@ -248,11 +248,13 @@ A group is identified by the `group_key` and `group_id`.
 * `group_id` is the identifier for a specific group. (e.g. `mixpanel`,`company_a`,`company_b`, etc.)
 
 ### Sending Group Identifiers With Events
+
 [All events must have the group key as an event property in order to be attributed to a group](/docs/data-structure/group-analytics#group-keys-tracked-as-event-properties). Without the group key, an event cannot be attributed to a group.
 
 To send group identifiers with your events, set the `group_key` as an event property with the `group_id` as the value.
 
 **Example Usage**
+
 ```python
 mp = Mixpanel('YOUR_PROJECT_TOKEN')
 
@@ -262,11 +264,13 @@ mp.track('sample_distinct_id', 'some_event', {
     'Plan Type' : 'Premium', 
     'company' : 'mixpanel'})
 ```
+
 **Multiple Groups**
 
 [An event can be attributed to multiple groups](/docs/data-structure/group-analytics#attribute-events-to-multiple-groups) by passing in the `group_key` value as a list of multiple `group_id` values.
 
 **Example Usage**
+
 ```python
 mp = Mixpanel('YOUR_PROJECT_TOKEN')
 
@@ -282,6 +286,7 @@ mp.track('sample_distinct_id', 'some_event', {
 To connect group information to a user profile, include the `group_key` and `group_id` as a user profile property using the `people_set()` call.
 
 **Example Usage**
+
 ```python
 # initialize Mixpanel
 mp = Mixpanel('YOUR_PROJECT_TOKEN')
@@ -292,6 +297,7 @@ mp.people_set('sample_distinct_id', {
     'name' : 'sam',
     'company' : 'mixpanel',
 }, meta = {'$ignore_time' : True,'$ip' : 0})
+```
 
 ### Setting Group Profile Properties
 
@@ -365,7 +371,7 @@ A few commonly used group methods are highlighted below:
         'employee_count'
     ])
 
-    // only "name" remains as a group prop
+    # only "name" remains as a group prop
     ```
 
   </Tabs.Tab>
@@ -384,10 +390,10 @@ A few commonly used group methods are highlighted below:
         'features': ['reports','alerts','cohorts']
     })
 
-    // add "data pipeline" to "features" prop
-    // ignore "alert" since it is a duplicate value
+    # add "data pipeline" to "features" prop
+    # ignore "alert" since it is a duplicate value
     mp.group_union('company','mixpanel', {
-        'features': ['data pipeline','alert']
+        'features': ['data pipeline','alerts']
     })
     ```
 
@@ -407,8 +413,8 @@ A few commonly used group methods are highlighted below:
         'features': ['reports','alerts','cohorts']
     })
     
-    //remove "alerts" from "features"
-    // "features" now contain ["reports","cohorts"]
+    # remove "alerts" from "features"
+    # "features" now contain ["reports","cohorts"]
     mixpanel.group_remove('company','mixpanel', {
         'features': ['alerts']
     })

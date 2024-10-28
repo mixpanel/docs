@@ -296,7 +296,7 @@ A few commonly used people methods are highlighted below:
     mixpanel.identify('1234');
     mixpanel.getPeople().set({
         'name':'sam',
-        'roles': ['sales','engineer']
+        'age': 25
     });
 
     // increment "age" by 2
@@ -369,14 +369,11 @@ mixpanel.track('some_event');
 To connect group information to a user profile, include the `group_key` and `group_id` as a user profile property using the `.getPeople().set()` call.
 
 **Example Usage**
-```dart
-// You must call identify to associate the profile update with the user
-// Sets user's "Plan" attribute to "Premium"
-mixpanel.identify("12345");
-mixpanel.getPeople().set("Plan", "Premium");
 
+```dart
 // set group key "company" as user prop
 // with group id "mixpanel" as the value
+mixpanel.identify("12345");
 mixpanel.getPeople().set("company", "mixpanel");
 ```
 
@@ -462,7 +459,7 @@ A few commonly used group methods are highlighted below:
     // ignore "alert" since it is a duplicate value
     mixpanel.getGroup('company','mixpanel').union('features', [
         'data pipeline',
-        'alert'
+        'alerts'
         ]);
     ```
 

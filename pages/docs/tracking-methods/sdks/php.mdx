@@ -135,7 +135,7 @@ Mixpanel groups events sent with different distinct_ids, presenting them in repo
         ```
     </Tabs.Tab>
     <Tabs.Tab>
-        If you have [Simplified ID Merge](/docs/tracking-methods/id-management#identity-merge-apis) enabled, send your event anonymous events with an anonymous ID set to the $device_id. Then call [`identify()`](https://mixpanel.github.io/mixpanel-php/classes/Producers_MixpanelEvents.html#method_identify) while providing your chosen user ID once they are known (typically at registration and login). This will set your chosen user ID as the $user_id for events moving forward.
+        If you have [Simplified ID Merge](/docs/tracking-methods/id-management#identity-merge-apis) enabled, send your event anonymous events with an anonymous ID set to the `$device_id`. Then call [`identify()`](https://mixpanel.github.io/mixpanel-php/classes/Producers_MixpanelEvents.html#method_identify) while providing your chosen user ID once they are known (typically at registration and login). This will set your chosen user ID as the `$user_id` for events moving forward.
         
         When a `$user_id` and a `$device_id` is detected in the same event for the first time, it triggers a merge of the 2 IDs.
 
@@ -320,8 +320,8 @@ $mp = Mixpanel::getInstance("YOUR_PROJECT_TOKEN");
 
 // Send "some_event" containing the "company" group_key and "mixpanel" group_id
 $mp->track("some_event", array(
-  "company"       => "mixpanel", // "label" prop is set to "sign-up"
-  "distinct_id" => "SOME_ID"  // "distinct_id" prop is set to "SOME_ID"
+  "company"       => "mixpanel",
+  "distinct_id" => "SOME_ID"
 ));
 ?>
 ```
@@ -343,7 +343,7 @@ $mp = Mixpanel::getInstance("YOUR_PROJECT_TOKEN");
 // Send "some_event" containing the "company" group_key with "mp-us" and "mp-eu" group_id
 $mp->track("some_event", array(
   "company"       => array("mp-us","mp-eu")
-  "distinct_id" => "SOME_ID"  // "distinct_id" prop is set to "SOME_ID"
+  "distinct_id" => "SOME_ID"
 ));
 ?>
 ```

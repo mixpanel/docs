@@ -540,7 +540,7 @@ A few commonly used group methods are highlighted below:
     // ignore "alert" since it is a duplicate value
     mixpanel.get_group('company','mixpanel').union('features', [
         'data pipeline',
-        'alert'
+        'alerts'
         ]);
     ```
 
@@ -655,7 +655,7 @@ Learn more about [geolocation](/docs/tracking-best-practices/geolocation).
 **Example Usage**
 ```javascript
 //create an instance of the Mixpanel object
- // disable IP address for geolocation parsing
+// disable IP address for geolocation parsing
 mixpanel.init('YOUR_PROJECT_TOKEN', {
     ip: false
 });

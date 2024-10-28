@@ -17,28 +17,28 @@ You can install the Objective-C library by using CocoaPods, Carthage, or Swift P
     1. Install CocoaPods by typing the following in your command line:
 
     ```bash
-    //install CocoaPods
+    # install CocoaPods
     gem install cocoapods
     ```
 
     2. After install CocoaPods, create a local CocoaPods spec mirror by running the following:
 
     ```bash
-    //Create CocoaPods spec mirror
+    # Create CocoaPods spec mirror
     pod setup
     ```
 
     3. Then navigate to your Xcode project directory and create a Podfile by running the following:
 
     ```bash
-    // create Podfile in project directory
+    # create Podfile in project directory
     pod init
     ```
 
     4. Open the Podfile that was generated and add the Mixpanel library to your dependencies:
 
     ```ruby Ruby
-    // add Mixpanel library to dependencies
+    # add Mixpanel library to dependencies
     target 'MyApp' do
       pod 'Mixpanel'
     end
@@ -46,7 +46,7 @@ You can install the Objective-C library by using CocoaPods, Carthage, or Swift P
 
     5. Install the Mixpanel library and create a new Xcode workspace by running the following in the Xcode project directory:
     ```bash
-    // install library in your dependencies
+    # install library in your dependencies
     pod install
     ```
   </Tabs.Tab>
@@ -54,7 +54,7 @@ You can install the Objective-C library by using CocoaPods, Carthage, or Swift P
     Mixpanel supports [Carthage](https://github.com/Carthage/Carthage#quick-start) to package your dependencies as a framework. Include the following dependency in your Cartfile:
 
     ```bash
-    // add Mixpanel library to your dependencies
+    # add Mixpanel library to your dependencies
     github "mixpanel/mixpanel-iphone"
     ```
   </Tabs.Tab>
@@ -313,7 +313,7 @@ A few commonly used people methods are highlighted below:
     // set profile properties for user "12345"
     [mixpanel identify:@"12345"];
     [mixpanel.people set:@{
-      @"roles": @["sales","engineer"]
+      @"roles": @[@"sales",@"engineer"]
       }];
 
     // add "legal" to "roles"
@@ -337,7 +337,7 @@ A few commonly used people methods are highlighted below:
     // set profile properties for user "12345"
     [mixpanel identify:@"12345"];
     [mixpanel.people set:@{
-      @"roles": @["sales","engineer"]
+      @"roles": @[@"sales",@"engineer"]
       }];
 
     // will be ignored since "engineer" already exists in "roles"
@@ -469,7 +469,7 @@ Mixpanel *mixpanel = [Mixpanel sharedInstance];
 
 // specify the target group using the group_key and group_id using getGroup:
 // set "industry" as a group profile prop to "analytics" using set:
-[[mixpanel getGroup:@"company", groupID:@“mixpanel”] set:@{
+[[mixpanel getGroup:@"company", groupID:@"mixpanel"] set:@{
         @"industry": @"analytics"}];
 ```
 
@@ -546,13 +546,13 @@ A few commonly used group methods are highlighted below:
     // set group profile properties
     [[mixpanel getGroup:@"company" groupID:@"mixpanel"] set:@{
       @"name": @"Mixpanel",
-      @"features": @["reports","alerts","cohorts"],
+      @"features": @[@"reports",@"alerts",@"cohorts"],
       }];
 
     // add "data pipeline" to "features" prop
     // ignore "alert" since it is a duplicate value
-    [[mixpanel getGroup:@"company" groupID:@"mixpanel"] union:@"features"
-          values:@["data pipeline","alert"]];
+    [[mixpanel getGroup:@"company" groupID:@"mixpanel"] union: @"features"
+          values: @[@"data pipeline",@"alert"]];
     ```
 
   </Tabs.Tab>
@@ -571,12 +571,12 @@ A few commonly used group methods are highlighted below:
     // set group profile properties
     [[mixpanel getGroup:@"company" groupID:@"mixpanel"] set:@{
       @"name": @"Mixpanel",
-      @"features": @["reports","alerts","cohorts"],
+      @"features": @[@"reports",@"alerts",@"cohorts"],
       }];
 
     //remove "alert" from "features"
-    [[mixpanel getGroup:@"company" groupID:@"mixpanel"] remove:@"features" 
-          value:@"alert"];
+    [[mixpanel getGroup:@"company" groupID:@"mixpanel"] remove: @"features" 
+          value: @"alert"];
     
     // "features" = ["reports","cohorts"]
     ```
@@ -674,6 +674,7 @@ Mixpanel *mixpanel = [Mixpanel sharedInstanceWithToken:@"YOUR_PROJECT_TOKEN"
 Route data to Mixpanel's EU servers by setting the `serverURL` flag after initializing the Mixpanel instance. 
 
 ```objc Objective-C
+// set request URL to Mixpanel's EU domain
 Mixpanel *mixpanel = [Mixpanel sharedInstance];
 self.mixpanel.serverURL = @"https://api-eu.mixpanel.com";
 ```

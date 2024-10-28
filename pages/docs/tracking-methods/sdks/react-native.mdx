@@ -133,7 +133,7 @@ mixpanel.timeEvent("Image Upload");
 
 // 20 seconds later...
 
-//track "Image Upload" event
+// track "Image Upload" event
 // "Duration" event property set to 20
 mixpanel.track("Image Upload");
 ```
@@ -160,7 +160,7 @@ mixpanel.setFlushBatchSize(100);
 ```
 
 #### Importing Historical Events
-The React Native SDK is a tracking SDK designed for real-time tracking in a client-side environment. Calling `track:properties:` triggers a request to our [/track API endpoint](https://developer.mixpanel.com/reference/track-event), which will validate for events with a timestamp that is within the last 5 days of the request. **Events older than 5 days will not be ingested**.
+The React Native SDK is a tracking SDK designed for real-time tracking in a client-side environment. Calling `track()` triggers a request to our [/track API endpoint](https://developer.mixpanel.com/reference/track-event), which will validate for events with a timestamp that is within the last 5 days of the request. **Events older than 5 days will not be ingested**.
 
 For bulk import of historical events older than 5 days, we will need to use the [/import API endpoint](https://developer.mixpanel.com/reference/import-events) which is optimized for scripting and supports ingesting historical data. We recommend the [Python SDK](/docs/tracking-methods/sdks/python) (see the [`.import_data()`](https://mixpanel.github.io/mixpanel-python/#primary-interface) function) and [mixpanel-utils module](https://github.com/mixpanel/mixpanel-utils) (see the [`import_events()`](https://github.com/mixpanel/mixpanel-utils?tab=readme-ov-file#import-events) function) which both leverages the /import API for event ingestion.
 
@@ -175,13 +175,13 @@ Use [`.registerSuperPropertiesOnce()`](https://mixpanel.github.io/mixpanel-react
 **Example Usage**
 ```javascript
 // register "name" as a super property
-mixpanel.register({
+mixpanel.registerSuperProperties({
     name: 'Sam',
 });
  
 // register "city" as an additional super property
 // ignore "name" since it already exists
-mixpanel.register_once({
+mixpanel.registerSuperPropertiesOnce({
     name: 'Samantha',
     city: 'San Francisco'
 });
@@ -306,10 +306,10 @@ A few commonly used people methods are highlighted below:
     mixpanel.getPeople().set(properties);
     
     // will be ignored since "name" already exists
-    mixpanel.getPeople().set_once('name', 'Samantha');
+    mixpanel.getPeople().setOnce('name', 'Samantha');
 
     // "email" will be set since it does not exist
-    mixpanel.getPeople().set_once('email', 'test@mail.com');
+    mixpanel.getPeople().setOnce('email', 'test@mail.com');
     ```
   </Tabs.Tab>
   <Tabs.Tab>
