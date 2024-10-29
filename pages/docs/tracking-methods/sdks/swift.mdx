@@ -617,6 +617,19 @@ Mixpanel.initialize(token: "MIXPANEL_TOKEN")
 Mixpanel.mainInstance().serverURL = "https://api-eu.mixpanel.com"
 ```
 
+### India Data Residency
+
+Route data to Mixpanel's India servers by setting the `serverURL` property after initializing the client. 
+
+**Example Usage**
+```swift Swift
+/// initialize Mixpanel
+Mixpanel.initialize(token: "MIXPANEL_TOKEN")
+
+/// Set request URL to Mixpanel's India domain
+Mixpanel.mainInstance().serverURL = "https://api-in.mixpanel.com"
+```
+
 ### Disable Geolocation
 
 The Swift SDK parse the request IP address to generate geolocation properties for events and profiles. To disable geolocation, set the [`useIPAddressForGeoLocation`](https://mixpanel.github.io/mixpanel-swift/Classes/MixpanelInstance.html#/s:8Mixpanel0A8InstanceC26useIPAddressForGeoLocationSbvp) flag to `false`.

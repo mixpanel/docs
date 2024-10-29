@@ -649,6 +649,7 @@ mixpanel.optInTracking();
 // send "some_other_event"
 mixpanel.track('some_other_event');
 ```
+
 ### EU Data Residency
 Route data to Mixpanel's EU servers by calling `.setServerURL()` to set the `serverURL` to `https://api-eu.mixpanel.com` after initializing the client.
 
@@ -658,6 +659,17 @@ Learn more about [EU Data Residency](/docs/privacy/eu-residency).
 ```javascript
 // set the Mixpanel instance to send data using Mixpanel's EU domain
 mixpanel.setServerURL('https://api-eu.mixpanel.com');
+```
+
+### India Data Residency
+Route data to Mixpanel's India servers by calling `.setServerURL()` to set the `serverURL` to `https://api-in.mixpanel.com` after initializing the client.
+
+Learn more about [India Data Residency](/docs/privacy/in-residency).
+
+**Example Usage**
+```javascript
+// set the Mixpanel instance to send data using Mixpanel's EU domain
+mixpanel.setServerURL('https://api-in.mixpanel.com');
 ```
 
 ### Disable Geolocation

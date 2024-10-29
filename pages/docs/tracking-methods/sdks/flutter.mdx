@@ -541,6 +541,16 @@ Route data to Mixpanel's EU servers by setting the `serverURL` property after in
 mixpanel.setServerURL("https://api-eu.mixpanel.com");
 ```
 
+### India Data Residency
+
+Route data to Mixpanel's India servers by setting the `serverURL` property after initializing the client.
+
+**Example Usage**
+```dart
+// set request URL to Mixpanel's India domain
+mixpanel.setServerURL("https://api-in.mixpanel.com");
+```
+
 ### Disable Geolocation
 
 The Flutter SDK parse the request IP address to generate geolocation properties for events and profiles. To disable geolocation, call [`.setUseIpAddressForGelocation()`](https://mixpanel.github.io/mixpanel-flutter/mixpanel_flutter/Mixpanel/setUseIpAddressForGeolocation.html) with `false`.

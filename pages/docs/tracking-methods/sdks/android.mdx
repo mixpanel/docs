@@ -658,7 +658,7 @@ Route data to Mixpanel's EU servers by adding these meta-data entries under the 
 ```xml Java
 ...
 <application>
-    <!--set request URLs to Mixapnel EU domain-->
+    <!--set request URLs to Mixpanel EU domain-->
     <meta-data android:name="com.mixpanel.android.MPConfig.EventsEndpoint"
            android:value="https://api-eu.mixpanel.com/track?ip=1" />
     <meta-data android:name="com.mixpanel.android.MPConfig.PeopleEndpoint"
@@ -667,6 +667,27 @@ Route data to Mixpanel's EU servers by adding these meta-data entries under the 
            android:value="https://api-eu.mixpanel.com/groups" />
     <meta-data android:name="com.mixpanel.android.MPConfig.DecideEndpoint"
            android:value="https://api-eu.mixpanel.com/decide" />
+    ...
+</application>
+...
+```
+
+### India Data Residency
+
+Route data to Mixpanel's India servers by adding these meta-data entries under the `<application>` tag of your app's `AndroidManifest.xml` to set the URLs of the API requests to our India domain.
+
+```xml Java
+...
+<application>
+    <!--set request URLs to Mixpanel India domain-->
+    <meta-data android:name="com.mixpanel.android.MPConfig.EventsEndpoint"
+           android:value="https://api-in.mixpanel.com/track?ip=1" />
+    <meta-data android:name="com.mixpanel.android.MPConfig.PeopleEndpoint"
+           android:value="https://api-in.mixpanel.com/engage?ip=1" />
+    <meta-data android:name="com.mixpanel.android.MPConfig.GroupsEndpoint"
+           android:value="https://api-in.mixpanel.com/groups" />
+    <meta-data android:name="com.mixpanel.android.MPConfig.DecideEndpoint"
+           android:value="https://api-in.mixpanel.com/decide" />
     ...
 </application>
 ...

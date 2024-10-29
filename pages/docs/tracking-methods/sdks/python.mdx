@@ -442,6 +442,21 @@ mp_eu = Mixpanel(
 )
 ```
 
+### India Data Residency
+
+Route data to Mixpanel's India servers by using a custom `Consumer` with an `api_host` set to the India domain.
+
+**Example Usage**
+```py
+from mixpanel import Mixpanel
+
+# use custom consumer with URLs set to Mixpanel's India domain
+mp_eu = Mixpanel(
+  "YOUR_PROJECT_TOKEN",
+  consumer=mixpanel.Consumer(api_host="api-in.mixpanel.com"),
+)
+```
+
 ### Disable Geolocation
 
 The Python SDK parse the request IP address to generate geolocation properties for events and profiles. You may want to disable them to prevent the unintentional setting of your data's geolocation to the location of your server that is sending the request, or to prevent geolocation data from being tracked entirely.

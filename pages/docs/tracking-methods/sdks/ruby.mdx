@@ -456,6 +456,27 @@ tracker = Mixpanel::Tracker.new(YOUR_PROJECT_TOKEN) do |type, message|
 end
 ```
 
+### India Data Residency
+
+Route data to Mixpanel's India servers by using a custom [consumer](http://mixpanel.github.io/mixpanel-ruby/Mixpanel/Consumer.html):
+
+**Example Usage**
+
+```ruby
+require 'mixpanel-ruby'
+
+in_consumer = Mixpanel::Consumer.new(
+    'https://api-in.mixpanel.com/track', #set track request URL
+    'https://api-in.mixpanel.com/engage', #set profile request URL
+    'https://api-in.mixpanel.com/groups', #set group request URL
+)
+
+# initialize Mixpanel with your custom consumer
+tracker = Mixpanel::Tracker.new(YOUR_PROJECT_TOKEN) do |type, message|
+    in_consumer.send!(type, message)
+end
+```
+
 ### Disable Geolocation
 
 The Ruby SDK parse the request IP address to generate geolocation properties for events and profiles. You may want to disable them to prevent the unintentional setting of your data's geolocation to the location of your server that is sending the request, or to prevent geolocation data from being tracked entirely.
