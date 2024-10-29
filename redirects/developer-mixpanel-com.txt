@@ -24,6 +24,7 @@
 /developer-docs-redirect/gcs-raw-pipeline /docs/data-pipelines/integrations/google-cloud-storage-raw-pipeline
 /developer-docs-redirect/google-pubsub /docs/tracking-methods/integrations/google-pubsub
 /developer-docs-redirect/implement-mixpanel /docs/what-is-mixpanel
+/developer-docs-redirect/insights /docs/reports/insights
 /developer-docs-redirect/ios /docs/tracking-methods/sdks/ios
 /developer-docs-redirect/ios-objective-c /docs/tracking-methods/sdks/ios
 /developer-docs-redirect/ios-objective-c-quickstart /docs/quickstart/install-mixpanel?sdk=ios
@@ -62,6 +63,7 @@
 /developer-docs-redirect/s3-import /docs/tracking-methods/integrations/amazon-s3
 /developer-docs-redirect/schematized-export-pipeline /docs/data-pipelines/old-pipelines/schematized-export-pipeline
 /developer-docs-redirect/segment /docs/tracking-methods/integrations/segment
+/developer-docs-redirect/sending-events /docs/quickstart/track-events
 /developer-docs-redirect/server /docs/quickstart/install-mixpanel?sdk=python
 /developer-docs-redirect/snowplow /docs/tracking-methods/integrations/snowplow
 /developer-docs-redirect/swift /docs/tracking-methods/sdks/swift
