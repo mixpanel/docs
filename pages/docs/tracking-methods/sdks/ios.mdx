@@ -679,6 +679,16 @@ Mixpanel *mixpanel = [Mixpanel sharedInstance];
 self.mixpanel.serverURL = @"https://api-eu.mixpanel.com";
 ```
 
+### India Data Residency
+
+Route data to Mixpanel's India servers by setting the `serverURL` flag after initializing the Mixpanel instance. 
+
+```objc Objective-C
+// set request URL to Mixpanel's India domain
+Mixpanel *mixpanel = [Mixpanel sharedInstance];
+self.mixpanel.serverURL = @"https://api-in.mixpanel.com";
+```
+
 ### Disable Geolocation
 
 The Objective-C SDK parse the request IP address to generate geolocation properties for events and profiles. To disable geolocation, set the [`useIPAddressForGeoLocation`](https://mixpanel.github.io/mixpanel-iphone/Classes/Mixpanel.html#//api/name/useIPAddressForGeoLocation) flag to `NO`.

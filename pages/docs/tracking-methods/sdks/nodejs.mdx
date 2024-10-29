@@ -470,7 +470,7 @@ const Mixpanel = require('mixpanel');
 // enable debug logs
 mixpanel.init('YOUR_PROJECT_TOKEN',{
     debug: true
-    });
+});
 ```
 
 ## Privacy-Friendly Tracking
@@ -491,7 +491,22 @@ const Mixpanel = require('mixpanel');
 // set request URLs to Mixpanel's EU domain
 mixpanel.init('YOUR_PROJECT_TOKEN',{
     host: 'api-eu.mixpanel.com'
-    });
+});
+```
+
+### India Data Residency
+
+Route data to Mixpanel's EU servers by setting the [`host`](https://github.com/mixpanel/mixpanel-node/blob/master/lib/mixpanel-node.d.ts#L21) config property during the library initialization.
+
+**Example Usage**
+
+```javascript
+const Mixpanel = require('mixpanel');
+
+// set request URLs to Mixpanel's India domain
+mixpanel.init('YOUR_PROJECT_TOKEN', {
+    host: 'api-in.mixpanel.com'
+});
 ```
 
 ### Disable Geolocation

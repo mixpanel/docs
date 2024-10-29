@@ -632,6 +632,7 @@ mixpanel.opt_in_tracking();
 // send "some_other_event"
 mixpanel.track('some_other_event');
 ```
+
 ### EU Data Residency
 Route data to Mixpanel's EU servers by setting a `api_host` configuration when creating the Mixpanel object.
 
@@ -643,6 +644,20 @@ Learn more about [EU Data Residency](/docs/privacy/eu-residency).
 // route requests to Mixpanel's EU servers
 mixpanel.init('YOUR_PROJECT_TOKEN', {
     api_host: 'https://api-eu.mixpanel.com',
+});
+```
+
+### India Data Residency
+Route data to Mixpanel's India servers by setting a `api_host` configuration when creating the Mixpanel object.
+
+Learn more about [India Data Residency](/docs/privacy/in-residency).
+
+**Example Usage**
+```javascript
+// create an instance of the Mixpanel object
+// route requests to Mixpanel's India servers
+mixpanel.init('YOUR_PROJECT_TOKEN', {
+    api_host: 'https://api-in.mixpanel.com',
 });
 ```
 

@@ -622,6 +622,19 @@ MixpanelAPI mixpanel = new MixpanelAPI( "https://api-eu.mixpanel.com/track",
                                         "https://api-eu.mixpanel.com/groups");
 ```
 
+### India Data Residency
+
+Route data to Mixpanel's India servers by passing in positional arguments into the [`MixpanelAPI`](https://mixpanel.github.io/mixpanel-java/com/mixpanel/mixpanelapi/MixpanelAPI.html) constructor:
+
+**Example Usage**
+
+```java
+// set event, people, and group endpoints to Mixpanel's India domains
+MixpanelAPI mixpanel = new MixpanelAPI( "https://api-in.mixpanel.com/track",
+                                        "https://api-in.mixpanel.com/engage",
+                                        "https://api-in.mixpanel.com/groups");
+```
+
 ### Disable Geolocation
 
 The Java SDK parse the request IP address to generate geolocation properties for events and profiles. You may want to disable them to prevent the unintentional setting of your data's geolocation to the location of your server that is sending the request, or to prevent geolocation data from being tracked entirely.

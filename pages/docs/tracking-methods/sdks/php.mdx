@@ -408,6 +408,22 @@ $mp = Mixpanel::getInstance("YOUR_PROJECT_TOKEN", array(
 ?>
 ```
 
+### India Data Residency
+Route data to Mixpanel's India servers by setting a `host` configuration during initialization.
+```php
+<?php
+// import dependencies
+require "vendor/autoload.php";
+
+// create an instance of the Mixpanel class
+$mp = Mixpanel::getInstance("YOUR_PROJECT_TOKEN", array(
+    "host" => "api-in.mixpanel.com" // set host name for api calls to India domain
+    ));
+
+?>
+```
+
+
 ### Disable Geolocation
 
 The PHP SDK parse the request IP address to generate geolocation properties for events and profiles. You may want to disable them to prevent the unintentional setting of your data's geolocation to the location of your server that is sending the request, or to prevent geolocation data from being tracked entirely.
