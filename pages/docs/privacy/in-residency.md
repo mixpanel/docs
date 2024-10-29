@@ -49,7 +49,7 @@ You can find instructions for the required config settings for each SDK below:
 - [Flutter](/docs/tracking-methods/sdks/flutter#india-data-residency)
 
 ## Log in via SSO
-If you want the IdP initiated flow to direct to [**in.**mixpanel.com](https://in.mixpanel.com/), prepend the "in." subdomain to your postback URL. For example, `mixpanel.com/security/login/1` would need to be changed to `in.mixpanel.com/security/login/1`.
+If you want the IdP initiated flow to direct to [in.mixpanel.com](https://in.mixpanel.com/), prepend the "in." subdomain to your postback URL. For example, `mixpanel.com/security/login/1` would need to be changed to `in.mixpanel.com/security/login/1`.
 
 ## India Residency and Customer Data Platforms (CDPs)
 
