@@ -43,7 +43,7 @@ If you want the IdP initiated flow to direct to [eu.mixpanel.com](https://eu.mix
 > You can batch up to 2000 distinct IDs per deletion request and up to 2000 for a retrieval request. Request rates are limited for GDPR API requests.
 
 ### User Opt-Out
-While the following API can be used to delete or retrieve personal data as outlined by the GPDR, it is important to also opt users out of subsequent tracking. If tracking using a client-side Mixpanel library, you can opt users out of tracking using Mixpanel's opt-out methods. These are available in the following client-side libraries:
+While the following API can be used to delete or retrieve personal data as outlined by the GDPR, it is important to also opt users out of subsequent tracking. If tracking using a client-side Mixpanel library, you can opt users out of tracking using Mixpanel's opt-out methods. These are available in the following client-side libraries:
 * [JavaScript](/docs/tracking-methods/sdks/javascript#opting-users-out-of-tracking)
 * [iOS - Objective-C](/docs/tracking-methods/sdks/ios#opting-users-out-of-tracking)
 * [iOS - Swift](/docs/tracking-methods/sdks/swift#opting-users-out-of-tracking)
