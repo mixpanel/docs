@@ -1,8 +1,10 @@
 import { useState, MouseEvent } from "react";
-import { Checkbox, Dialog } from "@headlessui/react";
+import { Dialog } from "@headlessui/react";
+// https://www.tailwind-variants.org/docs
+import { tv } from "tailwind-variants";
+
 import { track } from "../../utils/tracking";
 import { APIMethods, BaseAPI, HeaderContentType } from "../../utils/client";
-//import { APIMethods, BaseAPI, HeaderContentType } from "@src/utils/client";
 
 // default, focus, error, success
 const enum SubscribeInputState {
@@ -27,6 +29,8 @@ export default function SubscribeButtonWithModal() {
   const [subscribeInputState, setSubscribeInputState] = useState(
     SubscribeInputState.Default
   );
+  const submitDisabled =
+    subscribeInputState === SubscribeInputState.Error || !agreedToTerms;
 
   const validateEmail = (): string => {
     let errorMsg = ``;
@@ -71,7 +75,6 @@ export default function SubscribeButtonWithModal() {
         track(`[DOCS] Subscribed to Product Updates`, {});
         setSubscribeInputState(SubscribeInputState.Success);
         setError(``);
-        setIsOpen(false);
       } catch (e) {
         // send to rollbar.
         /* track(
@@ -89,10 +92,24 @@ export default function SubscribeButtonWithModal() {
     }
   };
 
+  const submitButton = tv({
+    base: "nx-px-5 nx-py-3 nx-my-4 nx-drop-shadow-sm nx-bg-gradient-to-t nx-from-purple100 nx-to-purple50 nx-rounded-full nx-text-white nx-font-medium",
+    variants: {
+      disabled: {
+        true: "",
+        false: "",
+      },
+    },
+  });
+
   return (
     <div>
-      <button type="button" onClick={() => setIsOpen(true)}>
-        SUBSCRIBE
+      <button
+        type="button"
+        onClick={() => setIsOpen(true)}
+        className="nx-px-5 nx-py-3 nx-my-4 nx-drop-shadow-sm nx-bg-gradient-to-t nx-from-purple100 nx-to-purple50 nx-rounded-full nx-text-white nx-font-medium"
+      >
+        Subscribe
       </button>
       <Dialog
         open={isOpen}
@@ -113,7 +130,7 @@ export default function SubscribeButtonWithModal() {
                   Company Email
                 </label>
                 <input
-                  className="nx-rounded-full nx-px-6 nx-py-3.5"
+                  className="nx-rounded-full nx-px-6 nx-py-3.5 nx-outline-purple100"
                   aria-label="Subscribe"
                   disabled={subscribeInputState === SubscribeInputState.Success}
                   value={
@@ -132,8 +149,16 @@ export default function SubscribeButtonWithModal() {
                   }}
                 />
               </div>
-              <div>
+              {error ? (
+                <div className="nx-text-xs nx-text-lava140 nx-ml-6 nx-mt-1">
+                  <p>{error}</p>
+                </div>
+              ) : (
+                <></>
+              )}
+              <div className="nx-flex nx-mt-4">
                 <input
+                  className="nx-mr-2"
                   type="checkbox"
                   aria-label="Subscribe"
                   disabled={subscribeInputState === SubscribeInputState.Success}
@@ -143,7 +168,7 @@ export default function SubscribeButtonWithModal() {
                     validateEmail();
                   }}
                 />
-                <span>
+                <span className="nx-text-grey80 nx-text-xs nx-leading-normal">
                   I agree to receive product update emails about Mixpanel
                   products pursuant to the{" "}
                   <a
@@ -156,19 +181,11 @@ export default function SubscribeButtonWithModal() {
                   . I understand that I can opt-out at any time.
                 </span>
               </div>
-              {error ? (
-                <div>
-                  <p>{error}</p>
-                </div>
-              ) : (
-                <></>
-              )}
+
               <button
                 onClick={handleSubmit}
-                disabled={
-                  subscribeInputState === SubscribeInputState.Error ||
-                  !agreedToTerms
-                }
+                disabled={submitDisabled}
+                className={submitButton({ disabled: submitDisabled })}
               >
                 Subscribe
               </button>
