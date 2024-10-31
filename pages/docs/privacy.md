@@ -4,36 +4,16 @@ Mixpanel believes in respecting and protecting people’s fundamental online pri
 Visit our [Privacy Hub](https://mixpanel.com/legal/privacy-hub/) to see how we comply with various privacy guidelines.
 
 ## Storing Your Data in the European Union
-By default, Mixpanel stores user data on its US Servers via the Google Cloud Platform.
-However, Mixpanel also provides you with the option to process and store your customers' personal data in Europe via our [EU Data Residency Program](https://mixpanel.com/topics/data-residency-for-mixpanel/).
+Mixpanel provides you with the option to process and store your customers' personal data in Europe via our [EU Data Residency Program](https://mixpanel.com/legal/eu-data-residency/).
 You can enable this by selecting the "EU Data Residency" option when creating a new project and using our EU subdomain during all API calls.
 
-| API | Standard Server | EU Residency Server |
-|-------|-------------------------|--------------------------------|
-| [Ingestion API](https://developer.mixpanel.com/reference/ingestion-api) | `api.mixpanel.com` | `api-eu.mixpanel.com` |
-| [Query API](https://developer.mixpanel.com/reference/query-api) | `mixpanel.com/api` | `eu.mixpanel.com/api` |
-| [Raw Data Export API](https://developer.mixpanel.com/reference/raw-data-export-api) | `data.mixpanel.com/api/2.0/export` | `data-eu.mixpanel.com/api/2.0/export` |
-| [Data Pipelines API](https://developer.mixpanel.com/reference/create-warehouse-pipeline) | `data.mixpanel.com/api/2.0/export` | `data-eu.mixpanel.com/api/2.0/export` |
-| [Lexicon Schemas API](https://developer.mixpanel.com/reference/lexicon-schemas-api) | `mixpanel.com/api/app/projects` | `eu.mixpanel.com/api/app/projects` |
-| [Connectors API](https://developer.mixpanel.com/reference/connectors-api) | `mixpanel.com/api/app/projects` | `eu.mixpanel.com/api/app/projects`|
+See [EU Data Residency](/docs/privacy/eu-residency) for detailed information on how to use EU Data Residency with Mixpanel.
 
-## Using Our SDKs
-Next, you'll need to set the server location to EU when initializing the Mixpanel library. You can find instructions for the required config settings for each SDK below:
+## Storing Your Data in India
+You may process and store your customers' personal data in India via our India Data Residency Program<!-- TODO: link to India DC privacy website page -->.
+Contact your Mixpanel account manager to learn more about enabling India Data Residency for your account.
 
-- [JavaScript](/docs/tracking-methods/sdks/javascript#eu-data-residency)
-- [Objective-C](/docs/tracking-methods/sdks/ios#eu-data-residency)
-- [Swift](/docs/tracking-methods/sdks/ios#eu-data-residency)
-- [Android](/docs/tracking-methods/sdks/android#eu-data-residency)
-- [Python](/docs/tracking-methods/sdks/python#eu-data-residency)
-- [Java](/docs/tracking-methods/sdks/java#eu-data-residencyy)
-- [PHP](/docs/tracking-methods/sdks/php#eu-data-residency)
-- [Ruby](/docs/tracking-methods/sdks/ruby#eu-data-residency)
-- [Node.js](/docs/tracking-methods/sdks/nodejs#eu-data-residency)
-- [React Native](/docs/tracking-methods/sdks/react-native)
-- [Flutter](/docs/tracking-methods/sdks/flutter#eu-data-residency)
-
-## Log in via SSO
-If you want the IdP initiated flow to direct to [eu.mixpanel.com](https://eu.mixpanel.com/), prepend "eu." to your postback URL. For example, [mixpanel.com/security/login/1](https://mixpanel.com/security/login/1) would need to be changed to [eu.mixpanel.com/security/login/1](https://eu.mixpanel.com/security/login/1).
+See [India Data Residency](/docs/privacy/in-residency) for detailed information on how to use India Data Residency with Mixpanel.
 
 ## Manage Personal Data
 [Mixpanel deletion and retrieval APIs](https://developer.mixpanel.com/reference/gdpr-api) are in place to help Mixpanel implementations meet the requirements outlined by the General Data Protection Regulation (GDPR) legislation.
