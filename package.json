@@ -8,6 +8,7 @@
     "api:publish": "node ./openapi/publish.js",
     "api:test": "./openapi/test.sh",
     "build": "next build",
+    "postbuild": "next-sitemap",
     "dev": "next dev",
     "spelling": "cspell '**/*.md*'",
     "start": "next start",
