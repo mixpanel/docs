@@ -5,6 +5,7 @@ import { tv } from "tailwind-variants";
 
 import { track } from "../../utils/tracking";
 import { APIMethods, BaseAPI, HeaderContentType } from "../../utils/client";
+import { APITrackingEvents, trackResponse } from "../../utils/tracking-wrapper";
 
 // default, focus, error, success
 const enum SubscribeInputState {
@@ -77,16 +78,16 @@ export default function SubscribeButtonWithModal() {
         setError(``);
       } catch (e) {
         // send to rollbar.
-        /* track(
-          BlogEvents.SubscribeRequestFailed,
-          {
-            message:
+        trackResponse({
+          APIContext: {
+            event: APITrackingEvents.Error,
+            response:
               `failed to succesfully submit Subscribe request` +
               (e instanceof Error ? e.message : JSON.stringify(e)),
           },
-          true,
-          RollbarType.Error
-        ); */
+          eventContext: `[DOCS] Subscribe to Product Updates Failed}`,
+          sendToRollbar: true,
+        });
         setError(`Failed to subscribe. Please try again.`);
       }
     }
