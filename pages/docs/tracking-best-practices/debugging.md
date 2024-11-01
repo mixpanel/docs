@@ -65,8 +65,23 @@ If you're using Mixpanel in a web application, you can use your browser's develo
 1. On your website, [enable debug mode](/docs/tracking-methods/sdks/javascript#debug-mode).
 2. Open your browser's developer console and navigate to the Network > Fetch/XHR tab. 
 3. Perform an action that triggers the `mixpanel.track` call.
-4. If your project has US Data Residency, look for a request triggered to `api.mixpanel.com/track`. If your project has [EU Data Residency](/docs/privacy/eu-residency), look for a request triggered to  `api-eu.mixpanel.com/track`. Troubleshoot any error messages.
+4. Look for requests to the Mixpanel API and troubleshoot any error messages.
+    - If your project has US Data Residency, look for a request triggered to `api.mixpanel.com/track`.
+    - If your project has [EU Data Residency](/docs/privacy/eu-residency), look for a request triggered to  `api-eu.mixpanel.com/track`.
+    - If your project has [India Data Residency](/docs/privacy/in-residency), look for a request triggered to  `api-in.mixpanel.com/track`.
 6. If the request is successful, check that the "token" in the data payload matches the token in your [Project Settings](/docs/orgs-and-projects/managing-projects#access-keys). From here, you can then validate that the event was directed to the right project token and using Events, and confirm that the data is arriving correctly in Mixpanel.
+
+### Ensure you are using the API host that matches your project's data residency
+
+If you are using a Mixpanel SDK, you *must* configure it to talk to the correct api host depending on your project's data residency. Refer to the SDK documentation for how to configure the API host.
+
+| Data Residency | API Host |
+|---|---|
+| US Data Residency | `api.mixpanel.com` (default) |
+| [EU Data Residency](/docs/privacy/eu-residency) | `api-eu.mixpanel.com` |
+| [India Data Residency](/docs/privacy/in-residency) | `api-in.mixpanel.com` |
+
+**⚠️ Important:** Projects with India Data Residency *must* configure SDKs with the `api-in.mixpanel.com` host or events will be rejected and will be missing from your project.
 
 ### Customize Flush Interval (Mobile)
 
