@@ -6,12 +6,14 @@ import { tv } from "tailwind-variants";
 type ImageFrameProps = {
   src: string;
   alt?: string;
+  isAnnouncement?: boolean;
 };
 
 const MAX_IMAGE_HEIGHT_WITHOUT_OVERFLOW = 400;
 
 export default function ImageFrame({
   alt = "Thumbnail of screenshot",
+  isAnnouncement = false,
   ...props
 }: ImageFrameProps) {
   const imageRef = useRef<HTMLImageElement>(null);
@@ -28,7 +30,7 @@ export default function ImageFrame({
   const isTall = height > MAX_IMAGE_HEIGHT_WITHOUT_OVERFLOW;
 
   const imageFrame = tv({
-    base: "nx-aspect-video nx-overflow-hidden nx-nx-mt-8 lg:nx-rounded-3xl nx-roundex-xl nx-bg-base80 nx-bg-gradient-to-t nx-from-grey20 nx-mb-8 lg:nx-px-14",
+    base: "nx-aspect-video nx-overflow-hidden nx-nx-mt-8 lg:nx-rounded-3xl nx-rounded-xl nx-bg-base80 nx-bg-gradient-to-t nx-from-grey20 nx-mb-8 lg:nx-px-14",
     variants: {
       isTall: {
         false: "nx-flex nx-justify-center nx-items-center",
@@ -41,19 +43,34 @@ export default function ImageFrame({
     variants: {
       isTall: {
         true: "nx-border nx-border-grey20",
-        false: "nx-rounded-md",
+        false: "nx-rounded-2xl",
+      },
+      isAnnouncement: {
+        true: "lg:nx-rounded-3xl nx-rounded-xl nx-mb-8",
       },
     },
   });
 
-  return (
+  return isAnnouncement ? (
+    <Image
+      ref={imageRef}
+      src={props.src}
+      height={height}
+      width={width}
+      className={imageSelf({ isTall: isTall, isAnnouncement: isAnnouncement })}
+      alt={alt}
+    />
+  ) : (
     <div className={imageFrame({ isTall: isTall })}>
       <Image
         ref={imageRef}
         src={props.src}
         height={height}
         width={width}
-        className={imageSelf({ isTall: isTall })}
+        className={imageSelf({
+          isTall: isTall,
+          isAnnouncement: isAnnouncement,
+        })}
         alt={alt}
       />
     </div>
