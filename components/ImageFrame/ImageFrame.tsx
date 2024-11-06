@@ -6,12 +6,14 @@ import { tv } from "tailwind-variants";
 type ImageFrameProps = {
   src: string;
   alt?: string;
+  isAnnouncement?: boolean;
 };
 
 const MAX_IMAGE_HEIGHT_WITHOUT_OVERFLOW = 400;
 
 export default function ImageFrame({
   alt = "Thumbnail of screenshot",
+  isAnnouncement = false,
   ...props
 }: ImageFrameProps) {
   const imageRef = useRef<HTMLImageElement>(null);
@@ -41,19 +43,34 @@ export default function ImageFrame({
     variants: {
       isTall: {
         true: "nx-border nx-border-grey20",
-        false: "nx-rounded-md",
+        false: "nx-rounded-2xl",
+      },
+      isAnnouncement: {
+        true: "lg:nx-rounded-3xl nx-rounded-xl nx-mb-8",
       },
     },
   });
 
-  return (
+  return isAnnouncement ? (
+    <Image
+      ref={imageRef}
+      src={props.src}
+      height={height}
+      width={width}
+      className={imageSelf({ isTall: isTall, isAnnouncement: isAnnouncement })}
+      alt={alt}
+    />
+  ) : (
     <div className={imageFrame({ isTall: isTall })}>
       <Image
         ref={imageRef}
         src={props.src}
         height={height}
         width={width}
-        className={imageSelf({ isTall: isTall })}
+        className={imageSelf({
+          isTall: isTall,
+          isAnnouncement: isAnnouncement,
+        })}
         alt={alt}
       />
     </div>
