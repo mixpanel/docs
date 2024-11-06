@@ -14,8 +14,7 @@ export default {
         "title": "Changelog",
         "type": "page",
         "theme": {
-            "sidebar": false,
-            layout: 'full'
+            "sidebar": false
         }
     },
     "api-reference": {
