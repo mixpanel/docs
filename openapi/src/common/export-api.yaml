@@ -12,4 +12,4 @@ server:
         The server location to be used:
           * `data` - The default (US) servers used for most projects
           * `data-eu` - EU servers if you are enrolled in EU Data Residency
-          * `data-in` - IN servers if you are enrolled in India Data Residency
+          * `data-in` - India servers if you are enrolled in India Data Residency
