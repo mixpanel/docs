@@ -371,6 +371,7 @@ $border-radius-lg: 100px;
   //load more button
   .changelogLoadMoreButtonContainer {
     padding-top: 30px;
+    padding-bottom: 80px;
 
     .changelogLoadMoreButton {
       box-shadow: 0 1px 2px 0 rgb(0 0 0 / 0.05) !important;
@@ -1225,6 +1226,11 @@ article img {
     }
   }
 
+  //##############################Dark Theme Top Nav###################################
+  .changelogSubscribeModalInner {
+    background-color: colors.$grey100;
+  }
+
   //##############################Dark Theme Body###################################
   ._w-full > main {
     color: colors.$base100;
@@ -1523,6 +1529,7 @@ article img {
         }
       }
     }
+
     .changelogPostHeader {
       //date of changelog entry
       .changelogDate {
