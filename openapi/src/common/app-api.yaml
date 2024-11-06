@@ -12,4 +12,4 @@ server:
         The server location to be used:
           * `mixpanel` - The default (US) servers used for most projects
           * `eu.mixpanel` - EU servers if you are enrolled in EU Data Residency
-          * `in.mixpanel` - IN servers if you are enrolled in India Data Residency
+          * `in.mixpanel` - India servers if you are enrolled in India Data Residency
