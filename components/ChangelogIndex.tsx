@@ -12,7 +12,11 @@ enum PostFilterOptions {
 
 const renderImage = (page) => {
   return (
-    <ImageFrame src={page.frontMatter.thumbnail} alt={page.frontMatter.title} />
+    <ImageFrame
+      src={page.frontMatter.thumbnail}
+      alt={page.frontMatter.title}
+      isAnnouncement={page.frontMatter?.isAnnouncement}
+    />
   );
 };
 
@@ -110,6 +114,14 @@ export default function ChangelogIndex({ more = "Learn More" }) {
               {page.frontMatter?.description}
             </p>
             <div className="nx-isolate nx-inline-flex nx-items-center nx-space-x-5 nx-mt-8">
+              {page.frontMatter?.isAnnouncement && (
+                <a
+                  href="https://mixpanel.com/contact-us/demo-request/"
+                  className="nx-px-5 nx-py-3 nx-my-4 nx-drop-shadow-sm nx-bg-gradient-to-t nx-from-purple100 nx-to-purple50 nx-rounded-full nx-text-white nx-font-medium nx-text-sm"
+                >
+                  Request a Demo
+                </a>
+              )}
               {page.frontMatter?.video && (
                 <VideoButtonWithModal
                   src={page.frontMatter.video}
