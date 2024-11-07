@@ -102,7 +102,7 @@ To ensure secure operations, limit the trust relationship to the Mixpanel export
 
 This section outlines the necessary steps for configuring permissions to allow Mixpanel to create external schemas in Redshift Spectrum.
 
-### Step 1: Creat Policy
+### Step 1: Create Policy
 
 Create a policy in IAM with the necessary permissions to enable Mixpanel to interact with Redshift Spectrum, Glue Data Catalog, and S3. Replace `<BUCKET_NAME>` with your actual S3 bucket name:
 
