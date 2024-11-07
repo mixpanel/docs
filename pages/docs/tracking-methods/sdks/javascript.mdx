@@ -821,7 +821,9 @@ Returns an empty object if there is no Replay in progress.
 
 #### Get replay URL
 
-Provides a URL that links to the current replay in Mixpanel. This is useful for debugging purposes or for adding metadata to other platforms, such as support tickets.
+Returns a URL linking to the current replay in the Mixpanel UI. This URL is accessible only by authenticated users with the necessary permissions for the Mixpanel project.
+
+Useful for debugging purposes or for adding metadata to other platforms, such as support tickets.
 
 ```javascript
 mixpanel.get_session_replay_url()
