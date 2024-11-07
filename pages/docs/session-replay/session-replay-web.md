@@ -1,4 +1,4 @@
-# Session Replay
+# Session Replay (web): Watch playbacks of user digital experiences
 
 ## Overview
 
@@ -136,7 +136,7 @@ By [adding middleware to Segment's SDK](https://segment.com/docs/connections/sou
 ```javascript
 // Middleware to add Mixpanel's session recording properties to Segment events
 analytics.addSourceMiddleware(({ payload, next, integrations }) => {
-	if (payload.type === 'track' || payload.type === 'page') {
+	if (payload.obj.type === 'track' || payload.obj.type === 'page') {
 		if (window.mixpanel) {
 			const segmentDeviceId = payload.obj.anonymousId;
 			//original id
@@ -150,7 +150,7 @@ analytics.addSourceMiddleware(({ payload, next, integrations }) => {
 			};
 		}
 	}
-	if (payload.type === 'identify') {
+	if (payload.obj.type === 'identify') {
 		if (window.mixpanel) {
 			const userId = payload.obj.userId;
 			mixpanel.identify(userId);
@@ -258,6 +258,23 @@ Once that is added, you can add a new Mixpanel tag to your workspace which turns
 Here's a screenshot of a working session replay tag for a visual comparison:
 
 <img src="https://github.com/user-attachments/assets/0905abdf-7f7a-4c3d-9759-6ca0605a66cb" width="400"/>
+
+### How does Session Replay affect my website's performance?
+
+Mixpanel leverages the open-source library, [rrweb](https://github.com/rrweb-io/rrweb), to power Session Replay. Both rrweb and Mixpanel are designed with the highest standards of performance in mind.
+
+How the SDK works on your site – the gist:
+* Initial Snapshot: When recording starts, rrweb takes a snapshot of the entire webpage's structure (the DOM), assigning unique IDs to each element for change tracking.
+* Change Detection: Asynchronously monitors any changes that occur to the DOM using MutationObserver, minimizing work so that we don't need to keep taking full snapshots.
+* User Interactions: Listens for actions like clicks and mouse movements and throttles any high frequency events.
+* Collection & Delivery: Mixpanel collects the recording data and sends it to our servers in batches every 10 seconds.
+* Optimized Compression: Before sending, Mixpanel will compress the payload using the asynchronous CompressionStream API. This will optimize bandwidth while not blocking the UI thread.
+
+We've tested the SDK extensively and it generally has minimal impact on how your website performs. The initial snapshot takes a bit of work, and naturally, more complex and interactive pages generate more data for rrweb and Mixpanel to handle. So, it's always a good practice to do some performance testing after you've implemented Session Replay, just to be sure everything's running smoothly.
+
+### How do Session Replays work when navigating between pages that are full page loads?
+
+If your web application relies on full page loads (where the entire page is reloaded when navigating from one page to another), a new Session Replay recording `$mp_replay_id` will be created when navigating to each page. This occurs because the Mixpanel instance is reloaded again when navigating between pages.
 
 
 ## Appendix: Session Replay Privacy Controls

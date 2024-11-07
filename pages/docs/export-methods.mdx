@@ -1,12 +1,12 @@
 import { Callout } from 'nextra/components'
 
-# Export Methods
+# Export Methods: Export raw data and reports from Mixpanel
 
 ## Overview
 
 This page provides a high-level overview of your options for exporting event data, profile data, and formatted report data.
 
-You can export data from your project using a variety of methods, including lightweight CSVs generated from the UI, large volume raw data export from our APIs, and data syncs to external destinations through [Cohort Syncs](/docs/cohort-sync/overview) and [Data Pipelines](/docs/data-pipelines/overview).
+You can export data from your project using a variety of methods, including lightweight CSVs generated from the UI, large volume raw data export from our APIs, and data syncs to external destinations through [Cohort Syncs](/docs/cohort-sync) and [Data Pipelines](/docs/data-pipelines).
 
 <Callout type="info">
   For GDPR/CCPA-compliant exports, please [see the End User Data Management page](https://docs.mixpanel.com/docs/privacy/end-user-data-management).
@@ -17,7 +17,7 @@ You can export data from your project using a variety of methods, including ligh
 ### Event Export via API
 
 <Callout type="info">
-  The from_date and to_date parameters are in UTC timezone, regardless of your project's timezone setting.
+  The `from_date` and `to_date` params are interpreted using UTC timezones. For projects created before 1 January 2023, the `from_date` and `to_date` params are interpreted using your current project timezone.
 </Callout>
 
 To export raw event data, use the [Raw Event Export API](https://developer.mixpanel.com/reference/raw-event-export). The events payload is returned as JSONL, where each line is a valid JSON object. This method is recommended for high volume exports.
@@ -42,7 +42,7 @@ Example payload:
 
 ```
 
-The exported payloads are raw events, containing timestamps as they are stored in your project. For projects created before 11 Jan 2023, your event timestamp is stored in your local project timezone at the time of ingestion. For projects created after 11 Jan 2023, your event timestamp is stored in UTC timezone. Learn more about managing your project timezone [here](/docs/orgs-and-projects/managing-projects#manage-timezones-for-projects).
+The exported payloads are raw events, containing timestamps as they are stored in your project. For projects created before 1 Jan 2023, your event timestamp is stored in your local project timezone at the time of ingestion. For projects created after 1 Jan 2023, your event timestamp is stored in UTC timezone. Learn more about managing your project timezone [here](/docs/orgs-and-projects/managing-projects#manage-timezones-for-projects).
 
 ### CSV Events Export
 
@@ -154,4 +154,4 @@ You may use our [Query API](https://developer.mixpanel.com/reference/query-api)
 
 ## Export Integrations
 
-You can sync your Mixpanel data to your other destinations using our native connectors. Learn more about the [Data Pipeline](/docs/data-pipelines/overview) for warehouse syncs and [Cohort Syncs](/docs/cohort-sync/overview) for audience targeting.
+You can sync your Mixpanel data to your other destinations using our native connectors. Learn more about the [Data Pipeline](/docs/data-pipelines) for warehouse syncs and [Cohort Syncs](/docs/cohort-sync) for audience targeting.

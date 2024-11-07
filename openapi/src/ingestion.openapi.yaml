@@ -5,7 +5,7 @@ info:
   description: APIs allowing for event-based tracking and user profile handling.
   version: 1.0.0
   contact:
-    url: 'https://mixpanel.com/get-support'
+    url: "https://mixpanel.com/get-support"
 servers:
   - url: https://{region}.mixpanel.com
     description: Mixpanel's data collection server.
@@ -15,10 +15,12 @@ servers:
         enum:
           - api
           - api-eu
+          - api-in
         description: >
           The server location to be used:
             * `api` - The default (US) servers used for most projects
             * `api-eu` - EU servers if you are enrolled in EU Data Residency
+            * `api-in` - India servers if you are enrolled in India Data Residency
 
 tags:
   - name: Events
@@ -255,8 +257,8 @@ paths:
               items:
                 type: object
                 required:
-                - event
-                - properties
+                  - event
+                  - properties
                 properties:
                   event:
                     type: string
@@ -283,65 +285,23 @@ paths:
                     additionalProperties: true
                 additionalProperties: false
       responses:
-        '200':
-          $ref: '#/components/responses/StrictReceived'
-        '400':
-          $ref: '#/components/responses/StrictInvalid'
-        '401':
-          $ref: '#/components/responses/StrictUnauthorized'
-        '413':
-          $ref: '#/components/responses/StrictTooLarge'
-        '429':
-          $ref: '#/components/responses/RateLimitExceeded'
+        "200":
+          $ref: "#/components/responses/StrictReceived"
+        "400":
+          $ref: "#/components/responses/StrictInvalid"
+        "401":
+          $ref: "#/components/responses/StrictUnauthorized"
+        "413":
+          $ref: "#/components/responses/StrictTooLarge"
+        "429":
+          $ref: "#/components/responses/RateLimitExceeded"
   /track:
     post:
       operationId: track-event
       tags:
         - Events
       summary: "Track Events"
-      description: |
-          Track events to Mixpanel from client devices. We recommend using one of our client-side SDKs instead of using /track directly, as our SDKs provide queueing, retrying, batching, and more.
-          ***
-          [block:api-header]
-          {
-            "title": "When to use /track vs /import"
-          }
-          [/block]
-          Typically, we recommend using /import for server-side integrations as it is more scalable and supports ingesting historical data. We only recommend /track for client-side tracking in an environment for which we don't have SDK support or if you're sending data via some other untrusted environment (eg: third-party webhooks that send data to Mixpanel).
-          [block:parameters]
-          {
-            "data": {
-              "h-0": "",
-              "h-1": "/track",
-              "h-2": "/import",
-              "0-0": "Events per request",
-              "0-1": "2000",
-              "0-2": "2000",
-              "1-0": "Authentication",
-              "1-1": "Project Token, intended for untrusted clients.",
-              "1-2": "Project Secret, intended for server-side integration.",
-              "2-0": "Compression",
-              "2-1": "Gzip allowed",
-              "2-2": "Gzip allowed",
-              "3-0": "Content-Type",
-              "3-1": "application/x-www-form-urlencoded",
-              "3-2": "application/json or application/x-ndjson",
-              "4-0": "Ingesting historical events",
-              "4-1": "Last 5 days only.",
-              "4-2": "Any time after 1971-01-01."
-            },
-            "cols": 3,
-            "rows": 5
-          }
-          [/block]
-
-          [block:api-header]
-          {
-            "title": "Limits"
-          }
-          [/block]
-          The limits for track are the same as /import, [see here](https://developer.mixpanel.com/reference/import-events#rate-limits).
-
+      description: ""
       parameters:
         - $ref: ./common/ingestion-api.yaml#/OptionalRequestParameter/UseIpAsDistinctId
         - $ref: ./common/ingestion-api.yaml#/OptionalRequestParameter/ResponseType/Verbose
@@ -356,8 +316,8 @@ paths:
               items:
                 type: object
                 required:
-                - event
-                - properties
+                  - event
+                  - properties
                 properties:
                   event:
                     type: string
@@ -387,12 +347,12 @@ paths:
                     additionalProperties: true
                 additionalProperties: false
       responses:
-        '200':
-          $ref: '#/components/responses/Received'
-        '401':
-          $ref: '#/components/responses/Unauthorized'
-        '403':
-          $ref: '#/components/responses/Forbidden'
+        "200":
+          $ref: "#/components/responses/Received"
+        "401":
+          $ref: "#/components/responses/Unauthorized"
+        "403":
+          $ref: "#/components/responses/Forbidden"
   /engage#profile-set:
     post:
       operationId: profile-set
@@ -424,20 +384,20 @@ paths:
                   - "$set"
                 properties:
                   "$token":
-                      type: string
-                      default: "YOUR_PROJECT_TOKEN"
+                    type: string
+                    default: "YOUR_PROJECT_TOKEN"
                   "$distinct_id":
-                      type: string
-                      default: "13793"
+                    type: string
+                    default: "13793"
                   "$set":
-                      type: object
+                    type: object
       responses:
-        '200':
-          $ref: '#/components/responses/Received'
-        '401':
-          $ref: '#/components/responses/Unauthorized'
-        '403':
-          $ref: '#/components/responses/Forbidden'
+        "200":
+          $ref: "#/components/responses/Received"
+        "401":
+          $ref: "#/components/responses/Unauthorized"
+        "403":
+          $ref: "#/components/responses/Forbidden"
   /engage#profile-set-once:
     post:
       operationId: profile-set-property-once
@@ -467,20 +427,20 @@ paths:
                   - "$set_once"
                 properties:
                   "$token":
-                      type: string
-                      default: "YOUR_PROJECT_TOKEN"
+                    type: string
+                    default: "YOUR_PROJECT_TOKEN"
                   "$distinct_id":
-                      type: string
-                      default: "13793"
+                    type: string
+                    default: "13793"
                   "$set_once":
-                      type: object
+                    type: object
       responses:
-        '200':
-          $ref: '#/components/responses/Received'
-        '401':
-          $ref: '#/components/responses/Unauthorized'
-        '403':
-          $ref: '#/components/responses/Forbidden'
+        "200":
+          $ref: "#/components/responses/Received"
+        "401":
+          $ref: "#/components/responses/Unauthorized"
+        "403":
+          $ref: "#/components/responses/Forbidden"
   /engage#profile-numerical-add:
     post:
       operationId: profile-numerical-add
@@ -515,22 +475,22 @@ paths:
                   - "$add"
                 properties:
                   "$token":
-                      type: string
-                      default: "YOUR_PROJECT_TOKEN"
+                    type: string
+                    default: "YOUR_PROJECT_TOKEN"
                   "$distinct_id":
-                      type: string
-                      default: "13793"
+                    type: string
+                    default: "13793"
                   "$add":
-                      type: object
-                      additionalProperties:
-                        type: number
+                    type: object
+                    additionalProperties:
+                      type: number
       responses:
-        '200':
-          $ref: '#/components/responses/Received'
-        '401':
-          $ref: '#/components/responses/Unauthorized'
-        '403':
-          $ref: '#/components/responses/Forbidden'
+        "200":
+          $ref: "#/components/responses/Received"
+        "401":
+          $ref: "#/components/responses/Unauthorized"
+        "403":
+          $ref: "#/components/responses/Forbidden"
   /engage#profile-union:
     post:
       operationId: user-profile-union
@@ -562,29 +522,29 @@ paths:
                   - "$union"
                 properties:
                   "$token":
-                      type: string
-                      default: "YOUR_PROJECT_TOKEN"
+                    type: string
+                    default: "YOUR_PROJECT_TOKEN"
                   "$distinct_id":
-                      type: string
-                      default: "13793"
+                    type: string
+                    default: "13793"
                   "$union":
-                      type: object
-                      minProperties: 1
-                      additionalProperties:
-                        type: array
-                        minItems: 1
-                        items:
-                          oneOf:
-                            # TODO: add more oneOf of array and objects but it's curently erroring out
-                            - type: number
-                            - type: string
+                    type: object
+                    minProperties: 1
+                    additionalProperties:
+                      type: array
+                      minItems: 1
+                      items:
+                        oneOf:
+                          # TODO: add more oneOf of array and objects but it's curently erroring out
+                          - type: number
+                          - type: string
       responses:
-        '200':
-          $ref: '#/components/responses/Received'
-        '401':
-          $ref: '#/components/responses/Unauthorized'
-        '403':
-          $ref: '#/components/responses/Forbidden'
+        "200":
+          $ref: "#/components/responses/Received"
+        "401":
+          $ref: "#/components/responses/Unauthorized"
+        "403":
+          $ref: "#/components/responses/Forbidden"
   /engage#profile-list-append:
     post:
       operationId: profile-append-to-list-property
@@ -616,20 +576,20 @@ paths:
                   - "$append"
                 properties:
                   "$token":
-                      type: string
-                      default: "YOUR_PROJECT_TOKEN"
+                    type: string
+                    default: "YOUR_PROJECT_TOKEN"
                   "$distinct_id":
-                      type: string
-                      default: "13793"
+                    type: string
+                    default: "13793"
                   "$append":
-                      type: object
+                    type: object
       responses:
-        '200':
-          $ref: '#/components/responses/Received'
-        '401':
-          $ref: '#/components/responses/Unauthorized'
-        '403':
-          $ref: '#/components/responses/Forbidden'
+        "200":
+          $ref: "#/components/responses/Received"
+        "401":
+          $ref: "#/components/responses/Unauthorized"
+        "403":
+          $ref: "#/components/responses/Forbidden"
   /engage#profile-list-remove:
     post:
       operationId: profile-remove-from-list-property
@@ -660,20 +620,20 @@ paths:
                   - "$remove"
                 properties:
                   "$token":
-                      type: string
-                      default: "YOUR_PROJECT_TOKEN"
+                    type: string
+                    default: "YOUR_PROJECT_TOKEN"
                   "$distinct_id":
-                      type: string
-                      default: "13793"
+                    type: string
+                    default: "13793"
                   "$remove":
-                      type: object
+                    type: object
       responses:
-        '200':
-          $ref: '#/components/responses/Received'
-        '401':
-          $ref: '#/components/responses/Unauthorized'
-        '403':
-          $ref: '#/components/responses/Forbidden'
+        "200":
+          $ref: "#/components/responses/Received"
+        "401":
+          $ref: "#/components/responses/Unauthorized"
+        "403":
+          $ref: "#/components/responses/Forbidden"
   /engage#profile-unset:
     post:
       operationId: profile-delete-property
@@ -703,24 +663,24 @@ paths:
                   - "$unset"
                 properties:
                   "$token":
-                      type: string
-                      default: "YOUR_PROJECT_TOKEN"
+                    type: string
+                    default: "YOUR_PROJECT_TOKEN"
                   "$distinct_id":
-                      type: string
-                      default: "13793"
+                    type: string
+                    default: "13793"
                   "$unset":
-                      type: array
-                      minItems: 1
-                      description: Profile properties to be removed.
-                      items:
-                        type: string
+                    type: array
+                    minItems: 1
+                    description: Profile properties to be removed.
+                    items:
+                      type: string
       responses:
-        '200':
-          $ref: '#/components/responses/Received'
-        '401':
-          $ref: '#/components/responses/Unauthorized'
-        '403':
-          $ref: '#/components/responses/Forbidden'
+        "200":
+          $ref: "#/components/responses/Received"
+        "401":
+          $ref: "#/components/responses/Unauthorized"
+        "403":
+          $ref: "#/components/responses/Forbidden"
   /engage#profile-batch-update:
     post:
       operationId: profile-batch-update
@@ -768,12 +728,12 @@ paths:
                     }
                 ]
       responses:
-        '200':
-          $ref: '#/components/responses/Received'
-        '401':
-          $ref: '#/components/responses/Unauthorized'
-        '403':
-          $ref: '#/components/responses/Forbidden'
+        "200":
+          $ref: "#/components/responses/Received"
+        "401":
+          $ref: "#/components/responses/Unauthorized"
+        "403":
+          $ref: "#/components/responses/Forbidden"
   /engage#profile-delete:
     post:
       operationId: delete-profile
@@ -810,25 +770,25 @@ paths:
                   - "$delete"
                 properties:
                   "$token":
-                      type: string
-                      default: "YOUR_PROJECT_TOKEN"
+                    type: string
+                    default: "YOUR_PROJECT_TOKEN"
                   "$distinct_id":
-                      type: string
-                      default: "13793"
+                    type: string
+                    default: "13793"
                   "$delete":
-                      type: string
-                      nullable: true
-                      default: "null"
+                    type: string
+                    nullable: true
+                    default: "null"
                   "$ignore_alias":
-                      type: boolean
-                      default: false
+                    type: boolean
+                    default: false
       responses:
-        '200':
-          $ref: '#/components/responses/Received'
-        '401':
-          $ref: '#/components/responses/Unauthorized'
-        '403':
-          $ref: '#/components/responses/Forbidden'
+        "200":
+          $ref: "#/components/responses/Received"
+        "401":
+          $ref: "#/components/responses/Unauthorized"
+        "403":
+          $ref: "#/components/responses/Forbidden"
   /groups#group-set:
     post:
       operationId: group-set-property
@@ -855,23 +815,23 @@ paths:
                   - "$set"
                 properties:
                   "$token":
-                      type: string
-                      default: "YOUR_PROJECT_TOKEN"
+                    type: string
+                    default: "YOUR_PROJECT_TOKEN"
                   "$group_key":
-                      type: string
-                      default: "Company"
+                    type: string
+                    default: "Company"
                   "$group_id":
-                      type: string
-                      default: "Mixpanel"
+                    type: string
+                    default: "Mixpanel"
                   "$set":
-                      type: object
+                    type: object
       responses:
-        '200':
-          $ref: '#/components/responses/Received'
-        '401':
-          $ref: '#/components/responses/Unauthorized'
-        '403':
-          $ref: '#/components/responses/Forbidden'
+        "200":
+          $ref: "#/components/responses/Received"
+        "401":
+          $ref: "#/components/responses/Unauthorized"
+        "403":
+          $ref: "#/components/responses/Forbidden"
   /groups#group-set-once:
     post:
       operationId: group-set-property-once
@@ -898,23 +858,23 @@ paths:
                   - "$set_once"
                 properties:
                   "$token":
-                      type: string
-                      default: "YOUR_PROJECT_TOKEN"
+                    type: string
+                    default: "YOUR_PROJECT_TOKEN"
                   "$group_key":
-                      type: string
-                      default: "Company"
+                    type: string
+                    default: "Company"
                   "$group_id":
-                      type: string
-                      default: "Mixpanel"
+                    type: string
+                    default: "Mixpanel"
                   "$set_once":
-                      type: object
+                    type: object
       responses:
-        '200':
-          $ref: '#/components/responses/Received'
-        '401':
-          $ref: '#/components/responses/Unauthorized'
-        '403':
-          $ref: '#/components/responses/Forbidden'
+        "200":
+          $ref: "#/components/responses/Received"
+        "401":
+          $ref: "#/components/responses/Unauthorized"
+        "403":
+          $ref: "#/components/responses/Forbidden"
   /groups#group-unset:
     post:
       operationId: group-delete-property
@@ -941,27 +901,27 @@ paths:
                   - "$unset"
                 properties:
                   "$token":
-                      type: string
-                      default: "YOUR_PROJECT_TOKEN"
+                    type: string
+                    default: "YOUR_PROJECT_TOKEN"
                   "$group_key":
-                      type: string
-                      default: "Company"
+                    type: string
+                    default: "Company"
                   "$group_id":
-                      type: string
-                      default: "Mixpanel"
+                    type: string
+                    default: "Mixpanel"
                   "$unset":
-                      type: array
-                      minItems: 1
-                      description: Profile properties to be removed.
-                      items:
-                        type: string
+                    type: array
+                    minItems: 1
+                    description: Profile properties to be removed.
+                    items:
+                      type: string
       responses:
-        '200':
-          $ref: '#/components/responses/Received'
-        '401':
-          $ref: '#/components/responses/Unauthorized'
-        '403':
-          $ref: '#/components/responses/Forbidden'
+        "200":
+          $ref: "#/components/responses/Received"
+        "401":
+          $ref: "#/components/responses/Unauthorized"
+        "403":
+          $ref: "#/components/responses/Forbidden"
   /groups#group-remove-from-list:
     post:
       operationId: group-remove-from-list-property
@@ -988,23 +948,23 @@ paths:
                   - "$remove"
                 properties:
                   "$token":
-                      type: string
-                      default: "YOUR_PROJECT_TOKEN"
+                    type: string
+                    default: "YOUR_PROJECT_TOKEN"
                   "$group_key":
-                      type: string
-                      default: "Company"
+                    type: string
+                    default: "Company"
                   "$group_id":
-                      type: string
-                      default: "Mixpanel"
+                    type: string
+                    default: "Mixpanel"
                   "$remove":
-                      type: object
+                    type: object
       responses:
-        '200':
-          $ref: '#/components/responses/Received'
-        '401':
-          $ref: '#/components/responses/Unauthorized'
-        '403':
-          $ref: '#/components/responses/Forbidden'
+        "200":
+          $ref: "#/components/responses/Received"
+        "401":
+          $ref: "#/components/responses/Unauthorized"
+        "403":
+          $ref: "#/components/responses/Forbidden"
   /groups#group-union:
     post:
       operationId: group-union
@@ -1035,32 +995,32 @@ paths:
                   - "$unset"
                 properties:
                   "$token":
-                      type: string
-                      default: "YOUR_PROJECT_TOKEN"
+                    type: string
+                    default: "YOUR_PROJECT_TOKEN"
                   "$group_key":
-                      type: string
-                      default: "Company"
+                    type: string
+                    default: "Company"
                   "$group_id":
-                      type: string
-                      default: "Mixpanel"
+                    type: string
+                    default: "Mixpanel"
                   "$union":
-                      type: object
-                      minProperties: 1
-                      additionalProperties:
-                        type: array
-                        minItems: 1
-                        items:
-                          oneOf:
-                            # TODO: add more oneOf of array and objects but it's curently erroring out
-                            - type: number
-                            - type: string
+                    type: object
+                    minProperties: 1
+                    additionalProperties:
+                      type: array
+                      minItems: 1
+                      items:
+                        oneOf:
+                          # TODO: add more oneOf of array and objects but it's curently erroring out
+                          - type: number
+                          - type: string
       responses:
-        '200':
-          $ref: '#/components/responses/Received'
-        '401':
-          $ref: '#/components/responses/Unauthorized'
-        '403':
-          $ref: '#/components/responses/Forbidden'
+        "200":
+          $ref: "#/components/responses/Received"
+        "401":
+          $ref: "#/components/responses/Unauthorized"
+        "403":
+          $ref: "#/components/responses/Forbidden"
   /groups#group-batch-update:
     post:
       operationId: group-batch-update
@@ -1107,12 +1067,12 @@ paths:
                     }
                 ]
       responses:
-        '200':
-          $ref: '#/components/responses/Received'
-        '401':
-          $ref: '#/components/responses/Unauthorized'
-        '403':
-          $ref: '#/components/responses/Forbidden'
+        "200":
+          $ref: "#/components/responses/Received"
+        "401":
+          $ref: "#/components/responses/Unauthorized"
+        "403":
+          $ref: "#/components/responses/Forbidden"
   /groups#group-delete:
     post:
       operationId: delete-group
@@ -1139,25 +1099,25 @@ paths:
                   - "$set"
                 properties:
                   "$token":
-                      type: string
-                      default: "YOUR_PROJECT_TOKEN"
+                    type: string
+                    default: "YOUR_PROJECT_TOKEN"
                   "$group_key":
-                      type: string
-                      default: "Company"
+                    type: string
+                    default: "Company"
                   "$group_id":
-                      type: string
-                      default: "Mixpanel"
+                    type: string
+                    default: "Mixpanel"
                   "$delete":
-                      type: string
-                      nullable: true
-                      default: "null"
+                    type: string
+                    nullable: true
+                    default: "null"
       responses:
-        '200':
-          $ref: '#/components/responses/Received'
-        '401':
-          $ref: '#/components/responses/Unauthorized'
-        '403':
-          $ref: '#/components/responses/Forbidden'
+        "200":
+          $ref: "#/components/responses/Received"
+        "401":
+          $ref: "#/components/responses/Unauthorized"
+        "403":
+          $ref: "#/components/responses/Forbidden"
   /lookup-tables:
     get:
       operationId: list-lookup-tables
@@ -1176,10 +1136,10 @@ paths:
           description: The Mixpanel project_id, used to authenticate service account credentials.
       description: Get a list of Lookup Tables defined in the project.
       responses:
-        '200':
-          $ref: '#/components/responses/LookupTableList'
-        '401':
-          $ref: '#/components/responses/StrictUnauthorized'
+        "200":
+          $ref: "#/components/responses/LookupTableList"
+        "401":
+          $ref: "#/components/responses/StrictUnauthorized"
   /lookup-tables/{id}:
     put:
       operationId: replace-lookup-table
@@ -1188,7 +1148,7 @@ paths:
       security:
         - ServiceAccount: []
       summary: Replace a Lookup Table
-      description: ''
+      description: ""
       parameters:
         - in: path
           name: id
@@ -1218,22 +1178,22 @@ paths:
               type: string
               format: blob
               default: |
-                  id,field1,field2
-                  key1,v1,z1
-                  key2,z1,z2
+                id,field1,field2
+                key1,v1,z1
+                key2,z1,z2
       responses:
-        '200':
-          $ref: '#/components/responses/LookupTableReceived'
-        '400':
-          $ref: '#/components/responses/LookupTableInvalid'
-        '401':
-          $ref: '#/components/responses/StrictUnauthorized'
-        '404':
-          $ref: '#/components/responses/StrictNotFound'
-        '413':
-          $ref: '#/components/responses/StrictTooLarge'
-        '429':
-          $ref: '#/components/responses/RateLimitExceeded'
+        "200":
+          $ref: "#/components/responses/LookupTableReceived"
+        "400":
+          $ref: "#/components/responses/LookupTableInvalid"
+        "401":
+          $ref: "#/components/responses/StrictUnauthorized"
+        "404":
+          $ref: "#/components/responses/StrictNotFound"
+        "413":
+          $ref: "#/components/responses/StrictTooLarge"
+        "429":
+          $ref: "#/components/responses/RateLimitExceeded"
 components:
   securitySchemes:
     $ref: ./common/securitySchemes.yaml
@@ -1471,13 +1431,13 @@ components:
       content:
         application/json:
           schema:
-            $ref: '#/components/schemas/ErrorResponse'
+            $ref: "#/components/schemas/ErrorResponse"
     Forbidden:
       description: Forbidden
       content:
         application/json:
           schema:
-            $ref: '#/components/schemas/ErrorResponse'
+            $ref: "#/components/schemas/ErrorResponse"
 x-explorer-enabled: true
 x-proxy-enabled: true
 x-samples-enabled: true

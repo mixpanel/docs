@@ -1,6 +1,6 @@
 import { Callout } from 'nextra/components'
 
-# User Profiles
+# User Profile: Demographic attributes for your users
 
 <Callout type="info" >
 **Note:** The following terms are used in this section: 
@@ -30,9 +30,9 @@ For more information about user profiles refer to the documentation on [The Mixp
 
 ## Importing Profiles via API
 
-You can create or update User Profiles in similar ways you track events: from our [SDKs](/docs/tracking-methods/sdks/javascript#storing-user-profiles), via our [HTTP Engage API](https://developer.mixpanel.com/reference/profile-set), [Warehouse Connectors](/docs/tracking-methods/data-warehouse/sending-user-profiles), or via our integrations partners.
+You can create or update User Profiles in similar ways you track events: from our [SDKs](/docs/tracking-methods/sdks/javascript#storing-user-profiles), via our [HTTP Engage API](https://developer.mixpanel.com/reference/profile-set), [Warehouse Connectors](/docs/tracking-methods/data-warehouse#user-profiles), or via our integrations partners.
 
-Similarly for [Group Profiles](/docs/data-structure/group-analytics#group-profiles), they can be created or updated using our [SDKs](/docs/tracking-methods/sdks/javascript#creating-group-profiles), via our [HTTP Groups API](https://developer.mixpanel.com/reference/group-set-property), [Warehouse Connectors](/docs/tracking-methods/data-warehouse/sending-group-profiles), or via our integration partners.
+Similarly for [Group Profiles](/docs/data-structure/group-analytics#group-profiles), they can be created or updated using our [SDKs](/docs/tracking-methods/sdks/javascript#creating-group-profiles), via our [HTTP Groups API](https://developer.mixpanel.com/reference/group-set-property), [Warehouse Connectors](/docs/tracking-methods/data-warehouse#group-profiles), or via our integration partners.
 
 We recommend tracking profiles from as close as possible to the source of truth, which is usually your application database or your CRM. One typical approach (especially for [Server-Side Tracking](/docs/tracking-methods/choosing-the-right-method#server-side-tracking)) is to run an hourly or daily script on your servers that pulls the list of profiles from your database and pushes them to Mixpanel.
 
@@ -122,7 +122,7 @@ After `$distinct_id`, you can add additional properties to the profile by press
 
 ![/Screen_Shot_2021-12-01_at_12.20.27_PM.png](/Screen_Shot_2021-12-01_at_12.20.27_PM.png)
 
-We recommend using the `$name` (or `$first_name`, `$last_name`), `$email`, and `$phone` [Reserved Profile Properties](/docs/data-structure/property-reference/reserved-properties#reserved-profile-properties)) if you're uploading a user's name, email, or phone. Mixpanel shows these properties by default in various parts of our UI and are used for [Cohort Syncs](/docs/cohort-sync/overview) as well.
+We recommend using the `$name` (or `$first_name`, `$last_name`), `$email`, and `$phone` [Reserved Profile Properties](/docs/data-structure/property-reference/reserved-properties#reserved-profile-properties)) if you're uploading a user's name, email, or phone. Mixpanel shows these properties by default in various parts of our UI and are used for [Cohort Syncs](/docs/cohort-sync) as well.
 
 ### Bulk Import from CSV
 
@@ -150,6 +150,19 @@ If you do not assign an identifier column, Mixpanel will use your `$email` colum
 You'll have the opportunity to look through all columns in the CSV to preview their values. In this step, you must **uncheck all columns that you DO NOT wish to import**. You must also choose the associated Mixpanel profile property that each CSV column will be associated with. When you're done selecting the columns, and mapping their associated properties, press the **Import profiles** button to proceed.
 
 ![/Screen_Shot_2021-12-01_at_12.24.00_PM.png](/Screen_Shot_2021-12-01_at_12.24.00_PM.png)
+
+## Importing Historical Profile Values 
+Historical profiles layer on additional capabilities by capturing changes in each property over time instead of just the latest value.
+
+See here for more on how to [import](https://docs.mixpanel.com/docs/tracking-methods/data-warehouse#user-profiles) historical properties via Warehouse connectors.
+
+Historical properties can be used anywhere that regular profile properties can be used.
+
+For eg, when you apply breakdown by historical plan-type property, the property value will be picked based on the time of the event, instead of the current property value.
+![image](/historical_property_value.webp)
+
+When you hover over a historical property, the context menu that pops up will show that the property was sourced from a history table, as well as the name of the source. This means that the value of the property used in charts can vary over time.
+![image](/dropdown_historical_property.webp)
 
 ## Deleting Profiles
 
@@ -192,3 +205,22 @@ User Profiles are mutable, which means new ones can be added and existing ones c
 
 ### Where can I learn more about Group Profiles?
 You can get an overview of how Group Profiles relate to Mixpanel's Data Model under the section [Group Level Behaviours and Demographics](/docs/tutorials/plan/tracking-strategy#group-level-behaviours-and-demographics) in our tutorials. A more detailed explanation of [Group Profiles](/docs/data-structure/group-analytics#group-profiles) is documented under our [Group Analytics](/docs/data-structure/group-analytics) page.
+
+### How are end times applied to the historical property?
+The end time will be inferred from the next event sent with a higher `Start Timestamp`. If you do not have an updated value for a property and simply want it to become inactive at a certain timestamp, please set up your DWH table to set undefined for the property at the time that it becomes inactive/expires.
+
+### How do I set the initial set of profile properties for the user?
+Historical profile properties can only be imported through a Warehouse Connector sync. For more information about the connectors and which are supported, see our [docs](https://docs.mixpanel.com/docs/tracking/data-warehouse). There is currently no other method to import historical profile properties or set defaults. To set initial values, please ensure that your warehouse table has the rows covering the historical period you want to analyze.
+
+### What if I have the same property name sent as a regular profile property as well as a historic property?
+If a regular profile property shares a name with an historic property, the two properties will be treated as distinct and separate entities (they will not be de-dupped).
+
+### What if I have the same property name sent through multiple WH syncs?
+If both syncs are regular user tables and they refer to the same Distinct ID(s), they will be de-dupped and only the latest value will be retained. If both syncs are historical user tables, we will have a warning popup if the conflict can be detected at sync creation time and you will have the option of renaming one of the columns. If one sync is for regular user table and the other for a historical one, see here (link to previous question).
+
+### I deleted my historical user table Warehouse sync and data but there are still empty user profiles!
+All the historical props will be deleted from the profile but the profile itself remains, along with any non-historical properties. This is to prevent accidentally deleting profile data sent through API/UI/CSV that might have been merged into the profile data sent via the Warehouse sync. 
+To delete profiles yourself, please use this [guide](https://developer.mixpanel.com/reference/delete-profile).
+
+### What is the frequency of updates that are supported?
+The feature supports updates at the rate of about one change per day for each user. It is meant to cover use-cases like plan type changes, MRR etc which are slowly changing dimensions. It is not intended for more frequent changes like game score updates.

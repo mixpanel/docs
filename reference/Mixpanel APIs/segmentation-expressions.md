@@ -52,7 +52,7 @@ The power of segmentation comes from the ability to define custom expressions ba
 [/block]
 ## Typecast Operations
 
-Internally, all properties of events have a type. This type is determined when we parse the event sent to us into a JSON object. Currently, there are three types, string, number, and boolean, which may be specified directly. A property may also have the values null and undefined, which are only handled internally. The default type is string. If you wish to treat an expression as another type, you may use the typecast operators to cast a property to a different type. For example, if `properties["signed up"]` has values of `"true"` and `"false"` as strings, and you wish to intercode them as booleans, you may cast them by using the `boolean() typecast function: boolean(properties["signed up"])`.
+Internally, all properties of events have a type. This type is determined when we parse the event sent to us into a JSON object. Currently, there are three types, string, number, and boolean, which may be specified directly. A property may also have the values null and undefined, which are only handled internally. The default type is string. If you wish to treat an expression as another type, you may use the typecast operators to cast a property to a different type. For example, if `properties["signed up"]` has values of `"true"` and `"false"` as strings, and you wish to encode them as booleans, you may cast them by using the `boolean() typecast function: boolean(properties["signed up"])`.
 
 The typecasting rules are described below.
 

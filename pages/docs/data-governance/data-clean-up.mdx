@@ -23,7 +23,7 @@ In this section, we will look at tips and tricks on how to clean up messy data w
 [Lexicon](/docs/data-governance/lexicon) is our data dictionary in Mixpanel, and is where project owners and admins can add / manage descriptions for all events and properties to organize your data.
 
 - Order by volume descending. Are your users querying events with large volume? If not, you might want to think about dropping these events. Dropping events means that they will no longer be ingested in Mixpanel. This is especially helpful for apps, since you don’t need to release new app versions and wait for users to download the latest versions for the code change to take effect (we still recommend that you clean up the code on the backend though!).
-- Sometimes, customers may still want these large volume events because they rely on them downstream (via data pipelines). But if you’re not querying the events in Mixpanel itself, you shouldn’t send it in - if you’re on the [events plan](/docs/pricing/billing#monthly-events-calculation), this increases your utilisation; also, this clutters up the UI for users who don’t need to see it there. You could hide the event in the UI in Lexicon, but our recommended approach is to not send this data into Mixpanel at all.
+- Sometimes, customers may still want these large volume events because they rely on them downstream (via data pipelines). But if you’re not querying the events in Mixpanel itself, you shouldn’t send it in - if you’re on the [events plan](/docs/pricing#monthly-events-calculation), this increases your utilisation; also, this clutters up the UI for users who don’t need to see it there. You could hide the event in the UI in Lexicon, but our recommended approach is to not send this data into Mixpanel at all.
 - If you’re leveraging our SDKs and want to continue doing so for ease of leveraging our ID management and default properties, an alternative is to route events from [Mixpanel’s SDKs via a proxy in your own domain](/docs/tracking-methods/sdks/javascript). This way, you get to push the events required for backend analyses directly into your warehouse, and send only the events users query in our UI to Mixpanel
 
 #### Cleaning up display names and adding descriptions for events
@@ -121,8 +121,8 @@ You may undo Data Deletion requests **for only 7 days after submitting**, after 
 
 ### Reminders with ETL approach
 
-- For projects created prior to January 11th, 2023, offset your timestamps
-    - If your project was created prior to January 11th, 2023, you cannot just clean the data you don't want and re-import it. Your data is stored in project time, so you need to adjust the offset before importing
+- For projects created prior to 1 Jan 2023 offset your timestamps
+    - If your project was created prior to 1 Jan 2023, you cannot just clean the data you don't want and re-import it. Your data is stored in project time, so you need to adjust the offset before importing
 - Don’t forget to regenerate $insert_id’s when you ETL
     - When you submit a deletion request, we hide your data immediately from your project to reduce any privacy concerns. We call this “soft deletion”, an interim phase before our “hard deletion” kicks in (where your data is permanently deleted from our servers) so that you can review the impact of your changes and undo when necessary. If you re-import data while the data is soft deleted **with the same \$insert_id**, our deduplication systems may keep the old (deleted) event and toss the new event. Since this data is soft-deleted, your re-import won’t reflect the data as imported. Thus, when the ETL is done, you should regenerate the $insert_id value if possible, to avoid this possible collision
     
