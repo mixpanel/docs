@@ -807,7 +807,6 @@ mixpanel.stop_session_recording()
 ```
 This will have no effect if there is no replay data collection in progress.
 
-
 #### Get replay properties
 
 Use this method to get properties used to identify a replay that is taking place. Add the properties from this method to any events sent to Mixpanel that are not coming from the SDK (e.g. from a [CDP library](/docs/session-replay/session-replay-web#can-i-use-session-replay-with-a-cdp)).
@@ -819,6 +818,15 @@ mixpanel.get_session_recording_properties()
 // {$mp_replay_id: '19221397401184-063a51e0c3d58d-17525637-1d73c0-1919139740f185'}
 ```
 Returns an empty object if there is no Replay in progress.
+
+#### Get replay URL
+
+Provides a URL that links to the current replay in Mixpanel. This is useful for debugging purposes or for adding metadata to other platforms, such as support tickets.
+
+```javascript
+mixpanel.get_session_replay_url()
+```
+Returns null if there is no Replay in progress.
 
 #### Example Scenarios
 
