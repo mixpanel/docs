@@ -775,6 +775,10 @@ article img {
         box-shadow: 0px 0px 0px 5px rgba(176, 148, 255, 0.30);
       }
     }
+
+    .videoIconDark {
+      display: none;
+    }
     
     .changelogMainContainerWrapper {
       background: colors.$base120;
@@ -1496,6 +1500,10 @@ article img {
         background: #242133;
         box-shadow: 0px 0px 0px 5px rgba(176, 148, 255, 0.30);
       }
+    }
+
+    .videoIconLight {
+      display: none;
     }
 
     .changelogMainContainerWrapper {

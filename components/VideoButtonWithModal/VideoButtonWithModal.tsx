@@ -4,6 +4,7 @@ import getVideoEmbedURL from "./util";
 // https://www.tailwind-variants.org/docs
 import { tv } from "tailwind-variants";
 import VideoIcon from "../svg/VideoIcon";
+import VideoIconDark from "../svg/VideoIconDark";
 
 type VideoButtonModalProps = {
   src: string;
@@ -67,8 +68,10 @@ export default function VideoButtonWithModal({
           ></iframe>
         ) : (
           <span className={"videoIconWrapper"}>
-            <VideoIcon />
+            <span className={"videoIconLight"}> <VideoIcon /> </span>
+            <span className={"videoIconDark"}> <VideoIconDark /> </span>
           </span>
+          
         )}
         Watch the Video
       </button>
