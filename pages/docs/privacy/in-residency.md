@@ -26,7 +26,6 @@ using our India subdomain during all API calls.
 | [Raw Data Export API](https://developer.mixpanel.com/reference/raw-data-export-api) | `data.mixpanel.com/api/2.0/export` | `data-in.mixpanel.com/api/2.0/export` |
 | [Data Pipelines API](https://developer.mixpanel.com/reference/create-warehouse-pipeline) | `data.mixpanel.com/api/2.0/nessie` | `data-in.mixpanel.com/api/2.0/nessie` |
 | [Lexicon Schemas API](https://developer.mixpanel.com/reference/lexicon-schemas-api) | `mixpanel.com/api/app/projects` | `in.mixpanel.com/api/app/projects` |
-| [Connectors API](https://developer.mixpanel.com/reference/connectors-api) | `mixpanel.com/api/app/projects` | `in.mixpanel.com/api/app/projects`|
 
 You can find where your data is stored under Project Settings > Data Residency for existing projects. Additionally, projects stored in the India will have a URL that starts with 'in.mixpanel.com', whereas projects stored in the US will have a 'mixpanel.com' URL. If the wrong Data Residency location was chosen before implementation, you will need to create a new project with the applicable data storage option and migrate all your existing data. Mixpanel cannot assist with migrating an existing project with the wrong residency location. You can find out more about creating a new project [here](/docs/orgs-and-projects/managing-projects#creating-projects).
 
