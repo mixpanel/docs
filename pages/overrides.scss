@@ -301,10 +301,16 @@ $border-radius-lg: 100px;
   }
 
   .changelogFilterButton {
+    display: flex;
+    align-items: center;
     padding: 8px 16px;
     font-size: 16px;
     font-weight: 400;
     letter-spacing: 0.32px;
+
+    &.hover {
+      background-color: black;
+    }
 
     &.active {
       border-radius: 8px;
@@ -778,7 +784,24 @@ article img {
       }
 
       .changelogFilterButton {
+        border-radius: 4px;
         color: colors.$purple200;
+
+        &:hover {
+          background: colors.$base100;
+        }
+
+        &:active {
+          background: colors.$base120;
+        }
+
+        &:focus-visible  {
+          border: 2px solid colors.$purple40;
+          border-radius: 8px;
+          background: #FFF;
+          box-shadow: 0px 0px 0px 5px rgba(176, 148, 255, 0.30);
+          outline: none;
+        }
 
         &.active {
           background: colors.$white;
