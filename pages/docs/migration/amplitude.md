@@ -1,6 +1,6 @@
 # Migrating from Amplitude
 
-If you haven't already, we recommend starting with our [Migration Guides Overview](/docs/migration/overview) as it details the key components of migrating to Mixpanel from other analytics tools. Below we outline specific steps and considerations when migrating from Amplitude.
+If you haven't already, we recommend starting with our [Migration Guides Overview](/docs/migration) as it details the key components of migrating to Mixpanel from other analytics tools. Below we outline specific steps and considerations when migrating from Amplitude.
 
 ## Differences in the data models
 
@@ -69,7 +69,7 @@ Notes:
 
 ### Data Warehouse Connectors 
 If you have access to your Amplitude data in your data warehouse, the most scalable way to bring this historical data into Mixpanel is by using our warehouse connector. At a high-level, the migration consists of 3 steps:
-1. Set up a new Mixpanel project which is on [Simplified ID Merge system](/docs/tracking-methods/id-management/identity-management#identity-merge-apis). 
+1. Set up a new Mixpanel project which is on [Simplified ID Merge system](/docs/tracking-methods/id-management#identity-merge-apis). 
 2. Transform Amplitude data in your data warehouse (sample SQL transformation included below).   
 3. Set up [Mixpanel Warehouse Connector](/docs/tracking-methods/data-warehouse/overview) to initiate data sync from your data warehouse to Mixpanel. 
 
@@ -152,7 +152,7 @@ You can learn more about user mappings [here](/docs/tracking-methods/data-wareho
 ![image](/amp_user_warehouse_connector.png)
 
 ##### Post-migration data validation
-You can use our [Lexicon](/docs/data-governance/lexicon) or Events page to check that your data has successfully been ingested. However, if your historical events are older than 30 days, they will not show up on Lexicon, Events page or in the event dropdown menu across all reports. In this case, you can leverage our [Insights report](docs/reports/insights) to validate the historical events, by selecting the import time frame and filtering by the following default properties: 
+You can use our [Lexicon](/docs/data-governance/lexicon) or Events page to check that your data has successfully been ingested. However, if your historical events are older than 30 days, they will not show up on Lexicon, Events page or in the event dropdown menu across all reports. In this case, you can leverage our [Insights report](/docs/reports/insights) to validate the historical events, by selecting the import time frame and filtering by the following default properties: 
 
 - Warehouse Import ID (tracked as `$warehouse_import_id`)
 - Warehouse Import Job ID (`$warehouse_import_job_id`)
@@ -185,7 +185,7 @@ Fortunately, Mixpanel and Amplitude’s client side SDKs have *very similar* dev
 
 This section will detail the Javascript SDKs (for the sake of brevity), although both analytics platforms have fairly uniform tracking APIs for other SDKs (mobile, server-side).
 
-Amplitude JS Docs: [https://amplitude.github.io/Amplitude-JavaScript/](https://amplitude.github.io/Amplitude-JavaScript/)
+Amplitude JS Docs: [https://amplitude.github.io/Amplitude-TypeScript/modules/_amplitude_analytics_browser.html](https://amplitude.github.io/Amplitude-TypeScript/modules/_amplitude_analytics_browser.html)
 
 Mixpanel JS Docs: [https://developer.mixpanel.com/docs/javascript-full-api-reference](https://developer.mixpanel.com/docs/javascript-full-api-reference)
 
@@ -346,7 +346,7 @@ curl --request POST \
 The big difference between the APIs are:
 
 - **Authentication:** Amplitude authenticates in the request payload, whereas Mixpanel uses your project token in the request URL alongside basic auth. Mixpanel authentication can be done via a service account as described [here](https://developer.mixpanel.com/reference/ingestion-api-authentication). Be sure to move the authentication outside the payload.
-- **Event JSON Structure:** Amplitude and Mixpanel have slightly different structures (explained [here](/docs/migration/amplitude#differences-in-the-data-models)). You will want to remap the Amplitude event format to the expected Mixpanel JSON payload as described [here](https://www.notion.so/Migrating-to-Mixpanel-from-Amplitude-723407166fbf4f7ba9365034691502da).
+- **Event JSON Structure:** Amplitude and Mixpanel have slightly different structures (explained [here](/docs/migration/amplitude#differences-in-the-data-models)). You will want to remap the Amplitude event format to the expected Mixpanel JSON payload as described [here](/docs/migration/amplitude#differences-in-the-data-models).
 
 ### Reverse ETL (RETL)
 

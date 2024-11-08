@@ -15,7 +15,7 @@ To access Experiments, click on **Applications** in the top right navigation, 
 
 ### Step 1: Prepare a Board
 
-To use Experiments you must have a board, which contains the various reports you wish to analyze your experiment by.
+To use Experiments you must have a board that contains the various reports you wish to analyze your experiment.
 
 ### Step 2: Select an Experiment
 
@@ -33,7 +33,7 @@ It is important to ensure that the groups are mutually exclusive. For example, i
 
 ### Step 4: Select a Date Range
 
-[Select the date range](/docs/reports/overview#select-a-date-range) of the experiment. In most cases you should choose the date your experiment began as the start date.
+[Select the date range](/docs/reports#select-a-date-range) of the experiment. In most cases, you should choose the date your experiment began as the start date.
 
 All events tracked by users within the date range will be included in the Experiment report, even if those events took place before the experiment started.
 
@@ -64,7 +64,7 @@ If calculating using uniques in Insights, then the group rate is calculated as:
 
 $Group\,Rate= { (\# \,of\,users\,who\,performed\,metric\,event)  \over (\# of\,users\,in\,group)}$
 
-This value is  a percentage, because the maximum possible value is 1.  We therefor display the percentage of users in the control group who performed the metric event.
+This value is a percentage because the maximum possible value is 1.  We therefore display the percentage of users in the control group who performed the metric event.
 
 If calculating using funnels, then the rate is the overall conversion rate of the funnel for users in the group.
 
@@ -80,7 +80,7 @@ You can also switch between lift and the delta, which is the absolute difference
 
 Confidence is the probability that the lift or delta between your control and variant groups is significant.
 
-For conversions we calculate a standard confidence score for binomial outcomes, and for event counts we calculate a standard confidence score for poisson outcomes.
+For conversions we calculate a standard confidence score for binomial outcomes, and for event counts we calculate a standard confidence score for Poisson outcomes.
 
 The trend line in the column displays how confidence has changed over the selected date range.
 
@@ -94,8 +94,8 @@ Please note: Even if a metric is already segmented, this breakdown will overrid
 
 The Experiments report locates significant differences between the Control and Variant groups. Metric rows in the table are highlighted when any difference is calculated with 95% or greater confidence.
 
-- Positive differences, where the variant rate is higher than the control rate, are highlighted green.
-- Negative differences, where the variant rate is lower than the control rate, are highlighted red.
+- Positive differences, where the variant rate is higher than the control rate, are highlighted in green.
+- Negative differences, where the variant rate is lower than the control rate, are highlighted in red.
 - Statistically insignificant results remain gray.
 
 ![/Screen_Shot_2020-01-14_at_5.38.54_PM.png](/Screen_Shot_2020-01-14_at_5.38.54_PM.png)
@@ -116,9 +116,9 @@ For event counts, we assume under the null hypothesis that each user cohort has 
 
 #### Interpreting a Confidence Score
 
-Generally speaking, higher confidence results mean that it is more likely that two cohorts of users differ significantly on your chosen metric. You can use the confidence score as a metric to quickly interpret large numbers of results. The higher the number of metrics you are analyzing, the higher percentage of those results that may be false positives.
+Generally speaking, higher confidence results mean that it is more likely that two cohorts of users differ significantly on your chosen metric. You can use the confidence score as a metric to quickly interpret large numbers of results. The higher the number of metrics you are analyzing, the higher percentage of those results may be false positives.
 
-If you are using our color-coded thresholds of 95%, there is a 5% chance that any individual result is a false positive. So if you are looking at 20 metrics at once, it is more likely that a larger number of those metrics could be false positives. If you want more precision in decision making, we recommend that you calculate your sample size prior to running an A/B test, and then only use the results you see in the Experimentation Report once you achieve that sample size. Higher confidence results are less likely to be false positives.
+If you are using our color-coded thresholds of 95%, there is a 5% chance that any individual result is a false positive. So if you are looking at 20 metrics at once, it is more likely that a larger number of those metrics could be false positives. If you want more precision in decision-making, we recommend that you calculate your sample size before running an A/B test, and then only use the results you see in the Experimentation Report once you achieve that sample size. Higher confidence results are less likely to be false positives.
 
 ### Add Experiments to an Implementation
 
