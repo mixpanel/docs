@@ -313,6 +313,20 @@ $border-radius-lg: 100px;
     }
   }
 
+  .playButton {
+    text-align: center;
+    font-family: Garnett;
+    font-size: 13.238px;
+    font-style: normal;
+    font-weight: 500;
+    line-height: 15.129px; /* 114.286% */
+    padding: 11.3px 20.3px;
+  }
+
+  .videoIconWrapper {
+    margin-right: 6.5px;
+  }
+
   //div for changelog entries in the index page
   .changelogIndexItem {
     display: flex;
@@ -752,7 +766,16 @@ article img {
     }
 
     //Modify Changelog
-
+    .playButton {
+      &:focus-visible {
+        outline: none;
+        border-radius: 8px;
+        border: 2px solid #5028C0;
+        background: colors.$base80;
+        box-shadow: 0px 0px 0px 5px rgba(176, 148, 255, 0.30);
+      }
+    }
+    
     .changelogMainContainerWrapper {
       background: colors.$base120;
     }
@@ -1465,6 +1488,16 @@ article img {
     }
 
     //Modify Changelog
+    .playButton {
+      &:focus-visible {
+        outline: none;
+        border-radius: 8px;
+        border: 2px solid #7856FF;
+        background: #242133;
+        box-shadow: 0px 0px 0px 5px rgba(176, 148, 255, 0.30);
+      }
+    }
+
     .changelogMainContainerWrapper {
       background: colors.$grey100;
     }
