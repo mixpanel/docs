@@ -114,42 +114,6 @@ The end goal of segmenting your users into different engagement cohorts is to mo
 
 For more details on defining and viewing your user cohorts, read our [Guide to Product Analytics](https://mixpanel.com/content/guide-to-product-analytics/chapter_3/).
 
-## Mixpanel Measurement Framework
-
-**What to Not to Track?**
-
-Too often, we see customers peer through every single interaction on their platform and say, “what if we need to know this metric down the road? It could be important. Let’s just track it just in case”.
-
-The two main issues with “just-in-cases” are:
-
-1. It drastically increases the implementation time for your development team. We’ve seen implementations stretch out over multiple sprints because the developers don’t have time to implement every thing and end up pushing back to ask for prioritization by sprints. If we’re going to end up doing that anyway, why not just prioritize from the beginning?
-
-2. It leads to event bloat. When there are too many events, end users find it more difficult to learn which are the important events they need to measure. Too often, one of the reasons customers cite low engagement on the tool when their users are overwhelmed by the number of events. Too many events - and event properties - also slow down the platform. Imagine pulling a drop down to look for an event, but the there are over 1,000 events to load. (Note that our UI allows a dropdown of up to 1,500 events; you can still explicitly query the exact event if you know the name even if you can’t find the event in the dropdown though).
-
-**So, what should one track?**
-
-There is no single set of metrics that works for everyone. Businesses and products are all unique and have different goals; even departments in the same company may have different ideas of success from one another. With those differences in mind, we’ve crafted a framework to help you find the right metrics for your product
-
-Mixpanel’s measurement framework is composed of a Focus metric, which typically is the metric that is slightly more important than the rest; as well as, Level 1 metrics that either directly contribute or act as a checks to the focus metric. More specific metrics can also be further added to drive the Level 1 and Focus metrics.
-
-![measurementframework](/measurementframework.png)
-
-Now let’s dive into each of these metrics a little further and go through an example of a measurement framework together. For this exercise, we’ll be using a video streaming product as an example :
-
-<div style={{position: 'relative', paddingBottom: '64.90384615384616%', height: 0}}>
-    <iframe src="https://www.loom.com/embed/e6568ba2034f431d97c19cd874fbc0d8"
-        frameBorder="0"
-        webkitallowfullscreen="true" mozallowfullscreen="true" allowFullScreen
-        style={{position: 'absolute', 'top': 0, 'left': 0, 'width': '100%', 'height': '100%'}}>
-    </iframe>
-</div>
-
-**Do-It Yourself Template**
-
-Setting up your framework is a crucial first step. Below is a blank template for you to apply the framework to your product. Fill out the blanks and either work your way down or define the L2 metrics to help determine your focus metric!
-
-**[Measurement Framework Template](https://docs.google.com/spreadsheets/d/1ZdOZ6TMtRPxy7qRxiLsvH9HWcHJM6nZydWKoThRxFKc/edit#gid=1484002407)**
-
 ## Crafting your Metrics and KPIs
 
 Regardless of the Analytics Framework you adopt, it's important to craft your metrics and KPIs based on your business' goals, ensuring they are not only result-oriented, but also actionable. Leverage the following key pointers as you define your metrics and KPIs:
@@ -166,30 +130,6 @@ Having the right metrics enables you to develop the key insights necessary to ma
 
 - **Vanity Metrics**: doesn't help you understand your product performance that informs future strategies; instead, focus on **Value Metrics** that measure how your target users perceive value to effect "value exchange" (see [How Viber shifted from vanity to value metrics](https://mixpanel.com/blog/metrics-that-matter-to-viber-a-formula-to-meaningfully-measure-active-users/))
 - **Lagging Metrics**: after-the-fact measured outcomes that are no longer actionable (example: revenue, churn); instead, focus on **Leading Metrics** that help you anticipate and predict what will happen so you can be more tactical in course-correcting (more details on looking at [Leading and Lagging Indicators to Measure Product Progress](https://herbig.co/leading-lagging-indicators-okrs/))
-
-![bestpractices1](/bestpractices1.png)
-
-Where events are too broad, you’d end up having to create filters for every single disparate action you want to measure. Conversely, where events are too narrow, you need to do a lot of work every time to compare the actions against one another.
-
-**In general, we advise customers to group together the same *******actions******* that users take across your site / platform, and group them to the level of the most commonly asked questions.**
-
-Consider the event `Start Signup`. Top questions we might want to answer with this:
-
-- Which page / screen did users most commonly click start signup from?
-- Which signup platform was the most popular?
-
-Here’s an example of an implementation we *don’t* recommend.
-
-![bestpractices2](/bestpractices2.png)
-
-Here, the question you’d want to answer most is: Which signup platform drives the most sign ups? If our events are too narrow, e.g. homepage/start_signup/apple, we’d have to manually add every single event where the signup occurs in order to do a comparison. It’s much easier to capture it as the event Start Signup and use event properties to describe the different originating pages / screens and signup platforms:
-
-![bestpractices3](/bestpractices3.png)
-
-
-To get all signup starts via the ideal state structure, the user only needs to query the single signup event and apply the flow and platform breakdowns. Once that's complete, the user can easily see that the homepage flow drives the most traffic with Apple out-performing other platforms across the board.
-
-Here’s another [example](https://mixpanel.com/blog/data-democratization-product-analytics/) where we walk through in-depth how to optimize a customer’s event structure.
 
 ## Summary
 
