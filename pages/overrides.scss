@@ -406,6 +406,7 @@ $border-radius-lg: 100px;
     color: colors.$grey80;
     font-size: 14px;
     font-weight: 400;
+    margin-bottom: 16px;
     line-height: 168%; /* 23.52px */
     letter-spacing: 0.28px;
     text-wrap: nowrap;
@@ -1508,7 +1509,26 @@ article img {
       }
 
       .changelogFilterButton {
+        border-radius: 4px;
         color: colors.$white;
+
+        &:hover {
+          background: rgba(176, 148, 255, 0.20);
+
+        }
+
+        &:active {
+          background: rgba(176, 148, 255, 0.10);
+        }
+
+        &:focus-visible  {
+          border: 2px solid colors.$purple40;
+          outline: none;
+          border-radius: 8px;
+          border: 2px solid colors.$purple100;
+          background: colors.$darkbg;
+          box-shadow: 0px 0px 0px 5px rgba(176, 148, 255, 0.25);
+        }
 
         &.active {
           background: colors.$purple140;
