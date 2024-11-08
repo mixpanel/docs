@@ -22,8 +22,17 @@ export default function VideoButtonWithModal({
 
   // TODO: update this style and abstract it as time allows to a single button component
   // https://www.figma.com/design/8kiticjQNChvsP9y7s9SRf/Product-Releases-(Copy)?node-id=982-75355&node-type=frame&t=O7vwnwoAoOx42stw-0
+
+  let playButtonBaseClass =
+    "nx-flex nx-items-center nx-px-2 nx-py-1 nx-text-xs nx-font-semibold nx-text-purple140 nx-shadow-sm focus-visible:nx-outline focus-visible:nx-outline-2 focus-visible:nx-outline-offset-2 focus-visible:nx-outline-purple140";
+  if (showThumbnail) {
+    playButtonBaseClass = "thumbnailPlayButton " + playButtonBaseClass;
+  } else {
+    playButtonBaseClass = "playButton " + playButtonBaseClass;
+  }
+
   const playButton = tv({
-    base: "playButton nx-flex nx-items-center nx-px-2 nx-py-1 nx-text-xs nx-font-semibold nx-text-purple140 nx-shadow-sm focus-visible:nx-outline focus-visible:nx-outline-2 focus-visible:nx-outline-offset-2 focus-visible:nx-outline-purple140",
+    base: playButtonBaseClass,
     variants: {
       showThumbnail: {
         true: "nx-border nx-border-base120 nx-rounded-2xl nx-px-4 nx-py-4 nx-relative",
@@ -37,7 +46,7 @@ export default function VideoButtonWithModal({
     base: "",
     variants: {
       showThumbnail: {
-        true: "nx-bg-white nx-relative nx-z-0 nx-w-fit nx-rounded-2xl nx-mt-10 nx-mb-10",
+        true: "nx-relative nx-z-0 nx-w-fit nx-rounded-2xl nx-mt-10 nx-mb-10",
       },
     },
   });
@@ -68,12 +77,15 @@ export default function VideoButtonWithModal({
           ></iframe>
         ) : (
           <span className={"videoIconWrapper"}>
-            <span className={"videoIconLight"}> <VideoIcon /> </span>
-            <span className={"videoIconDark"}> <VideoIconDark /> </span>
+            <span className={"videoIconLight"}>
+              <VideoIcon />
+            </span>
+            <span className={"videoIconDark"}>
+              <VideoIconDark />
+            </span>
           </span>
-          
         )}
-        Watch the Video
+        {`Watch the video ${showThumbnail ? `→` : ``}`}
       </button>
 
       <Dialog
