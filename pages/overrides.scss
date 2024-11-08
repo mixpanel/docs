@@ -792,6 +792,9 @@ article img {
 
     .thumbnailPlayButton {
       border-radius: 16px;
+      border: 1px solid var(--Base-Base-120, #EAE7E7);
+      background: colors.$white;
+      box-shadow: 0px 4px 8px 0px rgba(0, 0, 0, 0.04);
 
       &:hover {
         background: colors.$base100;
