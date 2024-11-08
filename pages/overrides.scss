@@ -793,9 +793,9 @@ article img {
         }
 
         &:focus-visible  {
-          border: 2px solid colors.$purple40;
-          border-radius: 8px;
           background: #FFF;
+          border-radius: 8px;
+          border: 2px solid colors.$purple40;
           box-shadow: 0px 0px 0px 5px rgba(176, 148, 255, 0.30);
           outline: none;
         }
@@ -1522,12 +1522,12 @@ article img {
         }
 
         &:focus-visible  {
-          border: 2px solid colors.$purple40;
-          outline: none;
+          background: colors.$darkbg;
           border-radius: 8px;
           border: 2px solid colors.$purple100;
-          background: colors.$darkbg;
+          border: 2px solid colors.$purple40;
           box-shadow: 0px 0px 0px 5px rgba(176, 148, 255, 0.25);
+          outline: none;
         }
 
         &.active {
