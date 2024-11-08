@@ -4,6 +4,7 @@ import getVideoEmbedURL from "./util";
 // https://www.tailwind-variants.org/docs
 import { tv } from "tailwind-variants";
 import VideoIcon from "../svg/VideoIcon";
+import VideoIconDark from "../svg/VideoIconDark";
 
 type VideoButtonModalProps = {
   src: string;
@@ -22,7 +23,7 @@ export default function VideoButtonWithModal({
   // TODO: update this style and abstract it as time allows to a single button component
   // https://www.figma.com/design/8kiticjQNChvsP9y7s9SRf/Product-Releases-(Copy)?node-id=982-75355&node-type=frame&t=O7vwnwoAoOx42stw-0
   const playButton = tv({
-    base: "nx-flex nx-items-center nx-px-2 nx-py-1 nx-text-xs nx-font-semibold nx-text-purple140 nx-shadow-sm focus-visible:nx-outline focus-visible:nx-outline-2 focus-visible:nx-outline-offset-2 focus-visible:nx-outline-purple140",
+    base: "playButton nx-flex nx-items-center nx-px-2 nx-py-1 nx-text-xs nx-font-semibold nx-text-purple140 nx-shadow-sm focus-visible:nx-outline focus-visible:nx-outline-2 focus-visible:nx-outline-offset-2 focus-visible:nx-outline-purple140",
     variants: {
       showThumbnail: {
         true: "nx-border nx-border-base120 nx-rounded-2xl nx-px-4 nx-py-4 nx-relative",
@@ -66,7 +67,11 @@ export default function VideoButtonWithModal({
             }}
           ></iframe>
         ) : (
-          <VideoIcon />
+          <span className={"videoIconWrapper"}>
+            <span className={"videoIconLight"}> <VideoIcon /> </span>
+            <span className={"videoIconDark"}> <VideoIconDark /> </span>
+          </span>
+          
         )}
         Watch the Video
       </button>
