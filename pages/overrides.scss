@@ -857,7 +857,7 @@ article img {
         }
 
         &:focus-visible  {
-          background: #FFF;
+          background: colors.$white;;
           border-radius: 8px;
           border: 2px solid colors.$purple40;
           box-shadow: 0px 0px 0px 5px rgba(176, 148, 255, 0.30);
@@ -1561,7 +1561,7 @@ article img {
 
     .thumbnailPlayButton {
       z-index: 1;
-      color: #FFF;
+      color: colors.$white;;
       border-radius: 16px;
       border: 1px solid colors.$purple200;
       background: rgba(234, 231, 231, 0.05);
