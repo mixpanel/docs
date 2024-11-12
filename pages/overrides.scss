@@ -889,12 +889,15 @@ article img {
         //load more button
         .changelogLoadMoreButton {
           color: colors.$purple140 !important;
-          border: 1.418px solid colors.$purple140;
-        }
-        .changelogLoadMoreButton:hover {
-          box-shadow: 0 4px 6px -1px rgb(0 0 0 / 0.1),
+          border: 2px solid colors.$purple140;
+          transition: 0.5s;
+
+          &:hover {
+            box-shadow: 0 4px 6px -1px rgb(0 0 0 / 0.1),
             0 2px 4px -2px rgb(0 0 0 / 0.1);
-          background-color: colors.$purple50 !important;
+            border-radius: $border-radius !important;
+            transition: border-radius 0.3s ease;
+          }
         }
       }
     }
@@ -1661,17 +1664,18 @@ article img {
           color: colors.$white !important;
         }
       }
-
       //load more buttons
       .changelogLoadMoreButtonContainer {
         .changelogLoadMoreButton {
-          background-color: colors.$purple140 !important;
+          border: 2px solid #7856FF;
           color: colors.$purple20 !important;
-        }
-        .changelogLoadMoreButton:hover {
-          box-shadow: 0 4px 6px -1px rgb(0 0 0 / 0.1),
-            0 2px 4px -2px rgb(0 0 0 / 0.1);
-          background-color: colors.$purple100 !important;
+
+          &:hover {
+            box-shadow: 0 4px 6px -1px rgb(0 0 0 / 0.1),
+              0 2px 4px -2px rgb(0 0 0 / 0.1);
+            border-radius: $border-radius !important;
+            transition: border-radius 0.3s;
+          }
         }
       }
     }
