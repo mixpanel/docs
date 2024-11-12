@@ -404,7 +404,7 @@ $border-radius-lg: 100px;
       box-shadow: 0 1px 2px 0 rgb(0 0 0 / 0.05) !important;
       // background-color: colors.$purple50 !important;
       border-radius: 9999px !important;
-      font-weight: 600 !important;
+      font-weight: 500 !important;
       font-size: 1rem !important;
       line-height: 1.5rem !important;
       padding-top: 0.625rem !important; /* 10px */
@@ -888,13 +888,15 @@ article img {
       .changelogLoadMoreButtonContainer {
         //load more button
         .changelogLoadMoreButton {
-          background-color: colors.$purple50 !important;
-          color: colors.$white !important;
-        }
-        .changelogLoadMoreButton:hover {
-          box-shadow: 0 4px 6px -1px rgb(0 0 0 / 0.1),
+          border: 2px solid colors.$purple140;
+          color: colors.$purple140 !important;
+
+          &:hover {
+            box-shadow: 0 4px 6px -1px rgb(0 0 0 / 0.1),
             0 2px 4px -2px rgb(0 0 0 / 0.1);
-          background-color: colors.$purple100 !important;
+            border-radius: $border-radius !important;
+            transition: border-radius;
+          }
         }
       }
     }
@@ -1665,13 +1667,15 @@ article img {
       //load more buttons
       .changelogLoadMoreButtonContainer {
         .changelogLoadMoreButton {
-          background-color: colors.$purple140 !important;
+          border: 2px solid colors.$purple100;
           color: colors.$purple20 !important;
-        }
-        .changelogLoadMoreButton:hover {
-          box-shadow: 0 4px 6px -1px rgb(0 0 0 / 0.1),
-            0 2px 4px -2px rgb(0 0 0 / 0.1);
-          background-color: colors.$purple100 !important;
+
+          &:hover {
+            box-shadow: 0 4px 6px -1px rgb(0 0 0 / 0.1),
+              0 2px 4px -2px rgb(0 0 0 / 0.1);
+            border-radius: $border-radius !important;
+            transition: border-radius;
+          }
         }
       }
     }
