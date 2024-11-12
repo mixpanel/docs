@@ -206,6 +206,17 @@ $border-radius-lg: 100px;
 ._w-full > main:has(.changelogMainContainerWrapper) {
   padding-top: 0;
 }
+
+.thumbnailPlayButton {
+  z-index: -1;
+  color: colors.$purple140;
+  font-family: Garnett;
+  font-size: 16px;
+  font-style: normal;
+  font-weight: 500;
+  line-height: 24px; /* 150% */
+}
+
 .changelogMainContainerWrapper {
   width: 100%;
   position: absolute;
@@ -779,6 +790,32 @@ article img {
       }
     }
 
+    .thumbnailPlayButton {
+      border-radius: 16px;
+      border: 1px solid var(--Base-Base-120, #EAE7E7);
+      background: colors.$white;
+      box-shadow: 0px 4px 8px 0px rgba(0, 0, 0, 0.04);
+
+      &:hover {
+        background: colors.$base100;
+        border: 1px solid  colors.$base120;
+        box-shadow: 0px 8px 20px 0px rgba(0, 0, 0, 0.04);
+      }
+
+      &:active {
+        background: colors.$base120;;
+        border: 1px solid colors.$base120;;
+        box-shadow: 0px 2px 4px 0px rgba(0, 0, 0, 0.04);
+      }
+
+      &:focus-visible {
+        background: colors.$white;
+        border: 2px solid colors.$purple100;
+        box-shadow: 0px 0px 0px 5px rgba(176, 148, 255, 0.30);
+        outline: none;
+      }
+    }
+
     .videoIconDark {
       display: none;
     }
@@ -820,7 +857,7 @@ article img {
         }
 
         &:focus-visible  {
-          background: #FFF;
+          background: colors.$white;;
           border-radius: 8px;
           border: 2px solid colors.$purple40;
           box-shadow: 0px 0px 0px 5px rgba(176, 148, 255, 0.30);
@@ -1521,6 +1558,35 @@ article img {
         box-shadow: 0px 0px 0px 5px rgba(176, 148, 255, 0.30);
       }
     }
+
+    .thumbnailPlayButton {
+      z-index: 1;
+      color: colors.$white;;
+      border-radius: 16px;
+      border: 1px solid colors.$purple200;
+      background: rgba(234, 231, 231, 0.05);
+      box-shadow: 0px 4px 8px 0px rgba(0, 0, 0, 0.04);
+
+      &:hover {
+        background: #40385C;
+        border: 1px solid colors.$purple200;
+        box-shadow: 0px 4px 8px 0px rgba(0, 0, 0, 0.04);
+      }
+
+      &:active {
+        background: #322D47;
+        border: 1px solid colors.$purple200;
+        box-shadow: 0px 2px 4px 0px rgba(0, 0, 0, 0.04);
+      }
+
+      &:focus-visible {
+        background: rgba(234, 231, 231, 0.05);
+        border: 2px solid colors.$purple100;
+        box-shadow: 0px 0px 0px 5px rgba(176, 148, 255, 0.30);
+        outline: none;
+      }
+    }
+
 
     .videoIconLight {
       display: none;
