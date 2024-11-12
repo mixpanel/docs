@@ -117,7 +117,7 @@ export default function ChangelogIndex({ more = "Learn More" }) {
               {page.frontMatter?.isAnnouncement && (
                 <a
                   href="https://mixpanel.com/contact-us/demo-request/"
-                  className="nx-px-5 nx-py-3 nx-my-4 nx-drop-shadow-sm nx-bg-gradient-to-t nx-from-purple100 nx-to-purple50 nx-rounded-full nx-text-white nx-font-medium nx-text-sm"
+                  className="nx-px-5 nx-py-3 nx-my-4 nx-drop-shadow-sm nx-bg-gradient-to-t nx-from-purple100 nx-to-purple50 nx-rounded-full nx-text-white nx-font-medium nx-text-medium"
                 >
                   Request a Demo
                 </a>
