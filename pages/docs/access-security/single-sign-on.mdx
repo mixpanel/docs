@@ -21,7 +21,7 @@ Claiming a domain will add security to an SSO implementation by allowing only me
 To claim a domain, add a TXT record to your domain's DNS records with a verification key provided by Mixpanel. The verification key is available after you submit to claim a domain in your Organization Settings.
 
 <Callout type="info">
-  A single domain can be claimed by only one single Mixpanel organization. If you have multiple Mixpanel organizations with separate billing accounts but need to share SSO settings and email domains for login, please see the [documentation for the Shared SSO beta](docs/access-security/single-sign-on/shared-sso) to see how you can share those settings with an "Admin" Organization.
+  A single domain can be claimed by only one single Mixpanel organization. If you have multiple Mixpanel organizations with separate billing accounts but need to share SSO settings and email domains for login, please see the [documentation for the Shared SSO beta](/docs/access-security/single-sign-on/shared-sso) to see how you can share those settings with an "Admin" Organization.
 </Callout>
 
 ### Generate Verification Key by Claiming Domain
@@ -139,7 +139,7 @@ The SCIM menu in the Access Security tab of the Organization Settings lets you g
 
 Note that only accounts with an **Enterprise plan** have access to SCIM at the moment.
 
-You can find the official SCIM spec subset that Mixpanel implements [here](https://datatracker.ietf.org/doc/html/rfc7644). The base endpoint is https://mixpanel.com/api/app/scim/v2 which you can hit using the SCIM token as an Authentication Bearer token. For instance a GET call on https://mixpanel.com/api/app/scim/v2/Users using the SCIM token will get you a list of all users in your organization. 
+You can find the official SCIM spec subset that Mixpanel implements [here](https://datatracker.ietf.org/doc/html/rfc7644). The base endpoint is `https://mixpanel.com/api/app/scim/v2` which you can hit using the SCIM token as an Authentication Bearer token. For instance a GET call on `https://mixpanel.com/api/app/scim/v2/Users` using the SCIM token will get you a list of all users in your organization. 
 
 <Callout type="info">
   The SCIM endpoint affects only users whose email has a domain in the list of your verified claimed domains.
