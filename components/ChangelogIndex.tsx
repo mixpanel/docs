@@ -91,7 +91,7 @@ export default function ChangelogIndex({ more = "Learn More" }) {
       </div>
 
       {displayedPages.map((page) => (
-        <div key={page.route} className="changelogIndexItem">
+        <div key={page.route} className="changelogIndexItem nx-mt-16">
           <div className="changelogIndexItemDate">
             {page.frontMatter?.date ? (
               <p className="changelogDate">
@@ -107,7 +107,7 @@ export default function ChangelogIndex({ more = "Learn More" }) {
           <div className="changelogIndexItemBody">
             {page.frontMatter?.thumbnail && renderImage(page)}
 
-            <h3>
+            <h3 className="changelogItemTitleWrapper">
               <Link
                 href={page.route}
                 style={{ color: "inherit", textDecoration: "none" }}
