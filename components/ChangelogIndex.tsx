@@ -28,9 +28,8 @@ export default function ChangelogIndex({ more = "Learn More" }) {
   const [pageIndex, setPageIndex] = useState(0);
   const [filter, setFilter] = useState(PostFilterOptions.All);
 
-  // Load initial or additional pages
-  useEffect(() => {
-    const morePages = allPages
+  const getAllFilteredPages = () => {
+    return allPages
       .filter((page) => {
         switch (filter) {
           case PostFilterOptions.Updates:
@@ -43,7 +42,12 @@ export default function ChangelogIndex({ more = "Learn More" }) {
             return true;
         }
       })
-      .slice(0, pageIndex + itemsPerPage);
+    }
+
+  // Load initial or additional pages
+  useEffect(() => {
+    const morePages = getAllFilteredPages().slice(0, pageIndex + itemsPerPage);
+
     setDisplayedPages(morePages);
   }, [pageIndex, filter]);
 
@@ -57,7 +61,10 @@ export default function ChangelogIndex({ more = "Learn More" }) {
       className += " active";
     }
     return (
-      <button className={className} onClick={() => setFilter(id)}>
+      <button className={className} onClick={() => { 
+        setFilter(id);
+        setPageIndex(0);
+      }}>
         {label}
       </button>
     );
@@ -136,7 +143,7 @@ export default function ChangelogIndex({ more = "Learn More" }) {
           </div>
         </div>
       ))}
-      {pageIndex + itemsPerPage < allPages.length && (
+      {pageIndex + itemsPerPage < getAllFilteredPages().length && (
         <div className="changelogLoadMoreButtonContainer">
           <button onClick={loadMore} className="changelogLoadMoreButton">
             Load More
