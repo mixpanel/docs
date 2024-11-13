@@ -69,7 +69,7 @@ Conducting a thorough data audit is essential for a successful project migration
 
 **Understand Your Analytic Strategy:**
 
-- If you haven’t done so already, consider running an [analytics strategy session](/guides/analytics-strategy) to develop a framework of KPIs and identify the events and properties that are needed to unlock this analysis.
+- If you haven’t done so already, consider running an [analytics strategy session](/guides/plan/framework) to develop a framework of KPIs and identify the events and properties that are needed to unlock this analysis.
 - Using the reverse spec built above, denote the events and properties that enable the analysis of each KPI deemed important during your analytic strategy discussion. If none of the events and properties in the reverse spec can be used to report on a KPI that was surfaced in the analytics strategy, scope out events and properties that would be needed in the next sprint to achieve this analysis.
     - Conversely, if events and properties are included in the reverse spec but are not being used to measure any KPIs from your strategic discuss, determine if these events and properties are crucial to your analysis or if they can be removed from tracking.
 
@@ -138,11 +138,11 @@ Once your event table/view is formatted as expected, navigate to the new project
 
 **Setup**
 
-Source: [find your source]
+Source: find your source
 
-Dataset: [find your dataset]
+Dataset: find your dataset
 
-Table/View: [find your table/view] 
+Table/View: find your table/view 
 
 **Map Columns**: `Default Event`
 
