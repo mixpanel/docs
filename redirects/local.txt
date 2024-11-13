@@ -269,3 +269,4 @@
 /docs/tutorials/plan/tracking-strategy /guides/plan/tracking-strategy
 /docs/users/overview /docs/users
 /guides /guides/onboarding-overview/
+/guides/analytics-strategy /guides/plan/framework
