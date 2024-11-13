@@ -677,15 +677,15 @@ While this highlights the default cache behavior, you can always refresh a repor
 
 To refresh the query results cache, navigate to the report, click the three dots overflow menu at the top of the report, select **Refresh Data**.
 
-![public/Refresh_Data_Report.png](public/Refresh_Data_Report.png)
+![public/Refresh_Data_Report.png](/Refresh_Data_Report.png)
 
 To refresh the query results' cache in a Board, click the three dots overflow menu at the top of the Board, and select **Refresh Data**.
 
-![public/Refresh_Data_Board.png](public/Refresh_Data_Board.png)
+![public/Refresh_Data_Board.png](/Refresh_Data_Board.png)
 
 To refresh the query results' cache in a Board card, click the three dots overflow menu at the top of the card, and select **Refresh Data**. 
 
-![public/Refresh_Data_Board_Card.png](public/Refresh_Data_Board_Card.png)
+![public/Refresh_Data_Board_Card.png](/Refresh_Data_Board_Card.png)
 
 ## Event and Property Limitations
 
