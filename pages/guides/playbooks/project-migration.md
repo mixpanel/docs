@@ -314,7 +314,7 @@ Once your user table/view is formatted as expected navigate to your new project,
 
 If you have not purchased warehouse connectors, you can leverage our [Engage API](https://developer.mixpanel.com/reference/profile-set) instead. Here's some sample code to get you started, utilizing the `$set` operator to update user profiles:
 
-```jsx
+```python
 # Fill this out. You can get it from https://mixpanel.com/settings/project
 PROJECT_TOKEN = ""
  
