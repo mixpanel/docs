@@ -7,6 +7,6 @@ export default {
 	"plan": "Plan",
 	"implement": "Implement",
 	"launch": "Launch",
-	"playbooks": "Playbooks,
+	"playbooks": "Playbooks",
 	"beyond-onboarding": "Beyond Onboarding"
 }
