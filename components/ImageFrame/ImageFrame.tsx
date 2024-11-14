@@ -46,7 +46,7 @@ export default function ImageFrame({
         false: "nx-rounded-2xl",
       },
       isAnnouncement: {
-        true: "lg:nx-rounded-3xl nx-rounded-xl nx-mb-8",
+        true: "lg:nx-rounded-3xl nx-rounded-xl nx-mb-8 nx-bg-transparent nx-border-0",
       },
     },
   });
