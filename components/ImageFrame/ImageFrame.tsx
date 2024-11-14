@@ -30,7 +30,7 @@ export default function ImageFrame({
   const isTall = height > MAX_IMAGE_HEIGHT_WITHOUT_OVERFLOW;
 
   const imageFrame = tv({
-    base: "nx-aspect-video nx-overflow-hidden nx-nx-mt-8 lg:nx-rounded-3xl nx-rounded-xl nx-bg-[#EAE7E714] nx-bg-gradient-to-t nx-from-[#EAE7E70D] nx-mb-8 lg:nx-px-14",
+    base: "nx-aspect-video nx-overflow-hidden nx-nx-mt-8 lg:nx-rounded-3xl nx-rounded-xl nx-bg-[#EAE7E714] nx-bg-gradient-to-t nx-from-[#EAE7E70D] nx-mb-8 nx-px-8 lg:nx-px-14 md:nx-px-10 sm:nx-px-10 ",
     variants: {
       isTall: {
         false: "nx-flex nx-justify-center nx-items-center",

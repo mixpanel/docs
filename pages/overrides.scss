@@ -451,6 +451,14 @@ $border-radius-lg: 100px;
     line-height: 120%; /* 57.6px */
     letter-spacing: -0.96px;
     margin-bottom: 24px;
+
+    @media (max-width: 1135px) {
+      font-size: 36px;
+    }
+
+    @media (max-width: 200px) {
+      font-size: 28px;
+    }
   }
 }
 
