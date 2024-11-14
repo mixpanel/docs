@@ -663,29 +663,29 @@ If you save a report that uses query time sampling, then a version of the report
 
 Mixpanel stores the results from a report query in the cache and presents these results from there when appropriate. This saves time when running a complicated query multiple times, and allows you to surface previously calculated results near-instantaneously. The date range of the query will adjust how Mixpanel presents results from the cache.
 
-- If the query date range is over 30 days, then the query results are cached for up to 24 hours.
-- If the query date range is 30 days or under, then the query results are cached for up to 3 hours.
-- If the query date range is 1 day, then the query results are cached for up to 15 minutes.
+- If the query date range is 1 year or over, then the query results are cached for up to 14 days.
+- If the query date range is under 1 year, then the query results are cached for up to 7 days.
+- If the query date range is under 6 months, then the query results are cached for up to 3 days.
+- If the query date range is under 2 months, then the query results are cached for up to 2 days.
+- If the query date range is under 1 month, then the query results are cached for up to 1 day.
+- If the query date range is under 1 week, then the query results are cached for up to 12 hours.
+- If the query date range is under 1 day, then the query results are cached for up to 1 hour.
 
-You can see While this highlights the default cache behavior, you can always refresh a report to include the most current data.
-
-![/Cache_Update.png](/Cache_Update.png)
-
-You can also view when the most recent update was in Boards by hovering over report cards.
-
-![/Dashboard_Cache.png](/Dashboard_Cache.png)
+While this highlights the default cache behavior, you can always refresh a report to include the most current data as described below.
 
 ### Refreshing the Query Results Cache
 
-To refresh the query results cache, navigate to an Insights report and click the **Refresh** button at the top of the query builder.
+To refresh the query results cache, navigate to the report, click the three dots overflow menu at the top of the report, select **Refresh Data**.
 
-![/Refresh_Cache.png](/Refresh_Cache.png)
+![public/Refresh_Data_Report.png](/Refresh_Data_Report.png)
 
-To refresh the query results' cache in a Board, click the three dots at the top of the Board, and then click the **Refresh all cards** button.
+To refresh the query results' cache in a Board, click the three dots overflow menu at the top of the Board, and select **Refresh Data**.
 
-![/Dashboard_Refresh.png](/Dashboard_Refresh.png)
+![public/Refresh_Data_Board.png](/Refresh_Data_Board.png)
 
-If the cached result is less than 1 minute old, we always serve from the cache without running a new background query.
+To refresh the query results' cache in a Board card, click the three dots overflow menu at the top of the card, and select **Refresh Data**. 
+
+![public/Refresh_Data_Board_Card.png](/Refresh_Data_Board_Card.png)
 
 ## Event and Property Limitations
 
