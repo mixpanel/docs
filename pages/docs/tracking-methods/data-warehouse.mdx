@@ -419,6 +419,8 @@ previous section.
 ALTER TABLE <table> ADD COLUMN <column> STRING NULL;
 ```
 
+If you have a JSON column in the table/view which you map to `JSON Properties` in the import setup, as the whole JSON object for that column is used to calculate the checksum for the row, **any changes to the JSON object will result in a change to the checksum**, even if the change is to add new keys with null values. As such, consider conditional formatting when building the JSON object to only update it when a new non-null value is available for a row.
+
 We recommend avoiding other types of schema changes on large tables. Other schema changes may cause the
 checksum of every row to change, effectively re-sending the entire table to Mixpanel. For example, if we
 were to remove the Genre column in the example above the checksum of every row would be different:
