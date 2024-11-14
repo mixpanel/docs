@@ -100,7 +100,9 @@ curl --request GET \
      --header 'authorization: Basic ' # set up service account auth
 ```
 
-*Note: The API will allow for a maximum of 100 concurrent queries, 60 queries per hour, and 3 queries per second.*
+*Note:* 
+- The API will allow for a maximum of 100 concurrent queries, 60 queries per hour, and 3 queries per second.
+- If your original project was created prior to March 2023, time should be converted to UTC.
 
 If you choose to export a subset of events to bring over to your new project, you can leverage the `event` or `where` parameters to query for the specific event data you’re looking to migrate.
 
