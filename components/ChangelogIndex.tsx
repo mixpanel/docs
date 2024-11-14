@@ -135,7 +135,7 @@ export default function ChangelogIndex({ more = "Learn More" }) {
                   showThumbnail={false}
                 />
               )}
-              <Link href={page.route} className="changelogReadMoreLink">
+              <Link target="_blank" href={page.route} className="changelogReadMoreLink">
                 {more + " →"}
               </Link>
             </div>
