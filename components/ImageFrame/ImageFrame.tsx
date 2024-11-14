@@ -58,7 +58,7 @@ export default function ImageFrame({
   };
 
   const darkImageFrame = tv(createTVConfig("14", "0D"));
-  const lightImageFrame = tv(createTVConfig("00", "80"));
+  const lightImageFrame = tv(createTVConfig("FF", "80"));
 
   const imageSelf = tv({
     base: "nx-w-full max-h-96 h-full nx-shadow-sm",
