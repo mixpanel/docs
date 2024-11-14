@@ -286,7 +286,7 @@ $border-radius-lg: 100px;
     right: -64px;
 
     @media (max-width: 965px) {
-      width: 50%
+      width: 50%;
     }
 
     @media (max-width: 700px) {
@@ -449,6 +449,14 @@ $border-radius-lg: 100px;
     line-height: 120%; /* 57.6px */
     letter-spacing: -0.96px;
     margin-bottom: 24px;
+
+    @media (max-width: 1135px) {
+      font-size: 36px;
+    }
+
+    @media (max-width: 200px) {
+      font-size: 28px;
+    }
   }
 }
 
@@ -789,34 +797,34 @@ article img {
       &:focus-visible {
         outline: none;
         border-radius: 8px;
-        border: 2px solid #5028C0;
+        border: 2px solid #5028c0;
         background: colors.$base80;
-        box-shadow: 0px 0px 0px 5px rgba(176, 148, 255, 0.30);
+        box-shadow: 0px 0px 0px 5px rgba(176, 148, 255, 0.3);
       }
     }
 
     .thumbnailPlayButton {
       border-radius: 16px;
-      border: 1px solid var(--Base-Base-120, #EAE7E7);
+      border: 1px solid var(--Base-Base-120, #eae7e7);
       background: colors.$white;
       box-shadow: 0px 4px 8px 0px rgba(0, 0, 0, 0.04);
 
       &:hover {
         background: colors.$base100;
-        border: 1px solid  colors.$base120;
+        border: 1px solid colors.$base120;
         box-shadow: 0px 8px 20px 0px rgba(0, 0, 0, 0.04);
       }
 
       &:active {
-        background: colors.$base120;;
-        border: 1px solid colors.$base120;;
+        background: colors.$base120;
+        border: 1px solid colors.$base120;
         box-shadow: 0px 2px 4px 0px rgba(0, 0, 0, 0.04);
       }
 
       &:focus-visible {
         background: colors.$white;
         border: 2px solid colors.$purple100;
-        box-shadow: 0px 0px 0px 5px rgba(176, 148, 255, 0.30);
+        box-shadow: 0px 0px 0px 5px rgba(176, 148, 255, 0.3);
         outline: none;
       }
     }
@@ -824,7 +832,7 @@ article img {
     .videoIconDark {
       display: none;
     }
-    
+
     .changelogMainContainerWrapper {
       background: colors.$base120;
     }
@@ -861,11 +869,11 @@ article img {
           background: colors.$base120;
         }
 
-        &:focus-visible  {
-          background: colors.$white;;
+        &:focus-visible {
+          background: colors.$white;
           border-radius: 8px;
           border: 2px solid colors.$purple40;
-          box-shadow: 0px 0px 0px 5px rgba(176, 148, 255, 0.30);
+          box-shadow: 0px 0px 0px 5px rgba(176, 148, 255, 0.3);
           outline: none;
         }
 
@@ -898,7 +906,7 @@ article img {
 
           &:hover {
             box-shadow: 0 4px 6px -1px rgb(0 0 0 / 0.1),
-            0 2px 4px -2px rgb(0 0 0 / 0.1);
+              0 2px 4px -2px rgb(0 0 0 / 0.1);
             border-radius: $border-radius !important;
             transition: border-radius;
           }
@@ -1560,28 +1568,28 @@ article img {
       &:focus-visible {
         outline: none;
         border-radius: 8px;
-        border: 2px solid #7856FF;
+        border: 2px solid #7856ff;
         background: #242133;
-        box-shadow: 0px 0px 0px 5px rgba(176, 148, 255, 0.30);
+        box-shadow: 0px 0px 0px 5px rgba(176, 148, 255, 0.3);
       }
     }
 
     .thumbnailPlayButton {
       z-index: 1;
-      color: colors.$white;;
+      color: colors.$white;
       border-radius: 16px;
       border: 1px solid colors.$purple200;
       background: rgba(234, 231, 231, 0.05);
       box-shadow: 0px 4px 8px 0px rgba(0, 0, 0, 0.04);
 
       &:hover {
-        background: #40385C;
+        background: #40385c;
         border: 1px solid colors.$purple200;
         box-shadow: 0px 4px 8px 0px rgba(0, 0, 0, 0.04);
       }
 
       &:active {
-        background: #322D47;
+        background: #322d47;
         border: 1px solid colors.$purple200;
         box-shadow: 0px 2px 4px 0px rgba(0, 0, 0, 0.04);
       }
@@ -1589,11 +1597,10 @@ article img {
       &:focus-visible {
         background: rgba(234, 231, 231, 0.05);
         border: 2px solid colors.$purple100;
-        box-shadow: 0px 0px 0px 5px rgba(176, 148, 255, 0.30);
+        box-shadow: 0px 0px 0px 5px rgba(176, 148, 255, 0.3);
         outline: none;
       }
     }
-
 
     .videoIconLight {
       display: none;
@@ -1627,15 +1634,14 @@ article img {
         color: colors.$white;
 
         &:hover {
-          background: rgba(176, 148, 255, 0.20);
-
+          background: rgba(176, 148, 255, 0.2);
         }
 
         &:active {
-          background: rgba(176, 148, 255, 0.10);
+          background: rgba(176, 148, 255, 0.1);
         }
 
-        &:focus-visible  {
+        &:focus-visible {
           background: colors.$darkbg;
           border-radius: 8px;
           border: 2px solid colors.$purple100;
