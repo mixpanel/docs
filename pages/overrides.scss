@@ -279,12 +279,15 @@ $border-radius-lg: 100px;
   }
 
   .changelogHeaderImg {
+    width: 100%;
     max-width: 560px;
-    width: 50%;
-    border-radius: 16px;
-    margin-bottom: 16px;
+    margin-bottom: auto;
     position: relative;
     right: -64px;
+
+    @media (max-width: 965px) {
+      width: 50%
+    }
 
     @media (max-width: 700px) {
       display: none;
