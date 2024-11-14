@@ -28,6 +28,7 @@ export default function ImageFrame({
       setHeight(imageRef.current.getBoundingClientRect().height);
       setWidth(imageRef.current.getBoundingClientRect().width);
     } else {
+      // display: none still renders the HTML, and returns 0 for both height and width
       setHeight(
         Math.max(
           lightImageRef.current.getBoundingClientRect().height,
@@ -72,7 +73,7 @@ export default function ImageFrame({
     },
   });
 
-  return isAnnouncement ? (
+  const ImageComponent = () => (
     <Image
       ref={imageRef}
       src={props.src}
@@ -81,34 +82,18 @@ export default function ImageFrame({
       className={imageSelf({ isTall: isTall, isAnnouncement: isAnnouncement })}
       alt={alt}
     />
+  );
+
+  return isAnnouncement ? (
+    <ImageComponent />
   ) : (
     <>
       <div className={`lightImageFrame ` + lightImageFrame({ isTall: isTall })}>
-        <Image
-          ref={lightImageRef}
-          src={props.src}
-          height={height}
-          width={width}
-          className={imageSelf({
-            isTall: isTall,
-            isAnnouncement: isAnnouncement,
-          })}
-          alt={alt}
-        />
+        <ImageComponent />
       </div>
 
       <div className={`darkImageFrame ` + darkImageFrame({ isTall: isTall })}>
-        <Image
-          ref={darkImageRef}
-          src={props.src}
-          height={height}
-          width={width}
-          className={imageSelf({
-            isTall: isTall,
-            isAnnouncement: isAnnouncement,
-          })}
-          alt={alt}
-        />
+        <ImageComponent />
       </div>
     </>
   );
