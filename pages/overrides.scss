@@ -897,6 +897,10 @@ article img {
           color: colors.$grey80;
         }
 
+        .darkImageFrame {
+          display: none;
+        }
+
         .changelogReadMoreLink {
           color: colors.$purple140;
         }
@@ -1667,6 +1671,10 @@ article img {
 
         .changelogIndexItemBody {
           color: colors.$white;
+        }
+
+        .lightImageFrame {
+          display: none;
         }
 
         .changelogReadMoreLink {
