@@ -24,21 +24,21 @@ export default function ImageFrame({
   const [width, setWidth] = useState(0);
 
   useLayoutEffect(() => {
-    if (imageRef?.current) {
+    if (isAnnouncement) {
       setHeight(imageRef.current.getBoundingClientRect().height);
       setWidth(imageRef.current.getBoundingClientRect().width);
     } else {
       // display: none still renders the HTML, and returns 0 for both height and width
       setHeight(
         Math.max(
-          lightImageRef.current.getBoundingClientRect().height,
-          darkImageRef.current.getBoundingClientRect().height
+          lightImageRef.current?.getBoundingClientRect().height,
+          darkImageRef.current?.getBoundingClientRect().height
         )
       );
       setWidth(
         Math.max(
-          lightImageRef.current.getBoundingClientRect().width,
-          darkImageRef.current.getBoundingClientRect().width
+          lightImageRef?.current?.getBoundingClientRect().width,
+          darkImageRef?.current?.getBoundingClientRect().width
         )
       );
     }
@@ -46,7 +46,7 @@ export default function ImageFrame({
 
   const isTall = height > MAX_IMAGE_HEIGHT_WITHOUT_OVERFLOW;
 
-  const createTVConfig = (bottomGradient, topGradient) => {
+  const createTVConfig = (bottomGradient: string, topGradient: string) => {
     return {
       base: `nx-aspect-video nx-overflow-hidden nx-nx-mt-8 lg:nx-rounded-3xl nx-rounded-xl nx-bg-[#EAE7E7${bottomGradient}] nx-bg-gradient-to-t nx-from-[#EAE7E7${topGradient}] nx-mb-8 lg:nx-px-14`,
       variants: {
@@ -73,9 +73,9 @@ export default function ImageFrame({
     },
   });
 
-  const ImageComponent = () => (
+  const renderImageComponent = (refInstance) => (
     <Image
-      ref={imageRef}
+      ref={refInstance}
       src={props.src}
       height={height}
       width={width}
@@ -85,15 +85,15 @@ export default function ImageFrame({
   );
 
   return isAnnouncement ? (
-    <ImageComponent />
+    <>{renderImageComponent(imageRef)}</>
   ) : (
     <>
       <div className={`lightImageFrame ` + lightImageFrame({ isTall: isTall })}>
-        <ImageComponent />
+        {renderImageComponent(lightImageRef)}
       </div>
 
       <div className={`darkImageFrame ` + darkImageFrame({ isTall: isTall })}>
-        <ImageComponent />
+        {renderImageComponent(darkImageRef)}
       </div>
     </>
   );
