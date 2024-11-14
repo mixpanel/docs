@@ -29,20 +29,19 @@ export default function ChangelogIndex({ more = "Learn More" }) {
   const [filter, setFilter] = useState(PostFilterOptions.All);
 
   const getAllFilteredPages = () => {
-    return allPages
-      .filter((page) => {
-        switch (filter) {
-          case PostFilterOptions.Updates:
-            // @ts-ignore:next-line
-            return !page.frontMatter?.isAnnouncement;
-          case PostFilterOptions.Announcements:
-            // @ts-ignore:next-line
-            return page.frontMatter?.isAnnouncement === true;
-          default:
-            return true;
-        }
-      })
-    }
+    return allPages.filter((page) => {
+      switch (filter) {
+        case PostFilterOptions.Updates:
+          // @ts-ignore:next-line
+          return !page.frontMatter?.isAnnouncement;
+        case PostFilterOptions.Announcements:
+          // @ts-ignore:next-line
+          return page.frontMatter?.isAnnouncement === true;
+        default:
+          return true;
+      }
+    });
+  };
 
   // Load initial or additional pages
   useEffect(() => {
@@ -61,10 +60,13 @@ export default function ChangelogIndex({ more = "Learn More" }) {
       className += " active";
     }
     return (
-      <button className={className} onClick={() => { 
-        setFilter(id);
-        setPageIndex(0);
-      }}>
+      <button
+        className={className}
+        onClick={() => {
+          setFilter(id);
+          setPageIndex(0);
+        }}
+      >
         {label}
       </button>
     );
@@ -89,6 +91,7 @@ export default function ChangelogIndex({ more = "Learn More" }) {
       <div className="changelogIndexFilterBar">
         {filterOptions.map((filter) => filterButton(filter.id, filter.label))}
       </div>
+      <div className="changelogIndexFilterBorder changelogIndexFilterBorderBottom" />
 
       {displayedPages.map((page) => (
         <div key={page.route} className="changelogIndexItem nx-mt-16">
@@ -135,7 +138,11 @@ export default function ChangelogIndex({ more = "Learn More" }) {
                   showThumbnail={false}
                 />
               )}
-              <Link target="_blank" href={page.route} className="changelogReadMoreLink">
+              <Link
+                target="_blank"
+                href={page.route}
+                className="changelogReadMoreLink"
+              >
                 {more + " →"}
               </Link>
             </div>
