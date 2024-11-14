@@ -48,7 +48,7 @@ export default function ImageFrame({
 
   const createTVConfig = (bottomGradient: string, topGradient: string) => {
     return {
-      base: `nx-aspect-video nx-overflow-hidden nx-nx-mt-8 lg:nx-rounded-3xl nx-rounded-xl nx-bg-[#EAE7E7${bottomGradient}] nx-bg-gradient-to-t nx-from-[#EAE7E7${topGradient}] nx-mb-8 lg:nx-px-14`,
+      base: `nx-aspect-video nx-overflow-hidden nx-nx-mt-8 lg:nx-rounded-3xl nx-rounded-xl nx-to[#EAE7E7${bottomGradient}] nx-bg-gradient-to-t nx-from-[#EAE7E7${topGradient}] nx-mb-8 lg:nx-px-14`,
       variants: {
         isTall: {
           false: "nx-flex nx-justify-center nx-items-center",
