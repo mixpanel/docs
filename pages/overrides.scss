@@ -897,10 +897,6 @@ article img {
           color: colors.$grey80;
         }
 
-        .darkImageFrame {
-          display: none;
-        }
-
         .changelogReadMoreLink {
           color: colors.$purple140;
         }
@@ -920,6 +916,10 @@ article img {
           }
         }
       }
+    }
+
+    .darkImageFrame {
+      display: none;
     }
   }
 
@@ -1673,10 +1673,6 @@ article img {
           color: colors.$white;
         }
 
-        .lightImageFrame {
-          display: none;
-        }
-
         .changelogReadMoreLink {
           color: colors.$white;
         }
@@ -1700,6 +1696,10 @@ article img {
           }
         }
       }
+    }
+
+    .lightImageFrame {
+      display: none;
     }
 
     .changelogPostHeader {
