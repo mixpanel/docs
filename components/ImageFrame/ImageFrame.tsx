@@ -46,9 +46,11 @@ export default function ImageFrame({
 
   const isTall = height > MAX_IMAGE_HEIGHT_WITHOUT_OVERFLOW;
 
-  const createTVConfig = (bottomGradient: string, topGradient: string) => {
+  const createTVConfig = (is_light=true) => {
+    const lightBase = `nx-aspect-video nx-overflow-hidden nx-nx-mt-8 lg:nx-rounded-3xl nx-rounded-xl nx-mb-8 lg:nx-px-14 nx-bg-gradient-to-t nx-from-grey20-opacity-100 nx-to-grey20-opacity-50`;
+    const darkBase  = `nx-aspect-video nx-overflow-hidden nx-nx-mt-8 lg:nx-rounded-3xl nx-rounded-xl nx-mb-8 lg:nx-px-14 nx-bg-gradient-to-t nx-from-grey20-opacity-8 nx-to-grey20-opacity-5`;
     return {
-      base: `nx-aspect-video nx-overflow-hidden nx-nx-mt-8 lg:nx-rounded-3xl nx-rounded-xl nx-to[#EAE7E7${bottomGradient}] nx-bg-gradient-to-t nx-from-[#EAE7E7${topGradient}] nx-mb-8 lg:nx-px-14`,
+      base: is_light ? lightBase : darkBase,
       variants: {
         isTall: {
           false: "nx-flex nx-justify-center nx-items-center",
@@ -57,8 +59,8 @@ export default function ImageFrame({
     };
   };
 
-  const darkImageFrame = tv(createTVConfig("14", "0D"));
-  const lightImageFrame = tv(createTVConfig("FF", "80"));
+  const darkImageFrame = tv(createTVConfig(false));
+  const lightImageFrame = tv(createTVConfig(true));
 
   const imageSelf = tv({
     base: "nx-w-full max-h-96 h-full nx-shadow-sm",

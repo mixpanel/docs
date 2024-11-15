@@ -45,6 +45,10 @@ module.exports = {
         grey50: "#9b9b9b",
         grey30: "#c0c0c0",
         grey20: "#eae7e7",
+        'grey20-opacity-8': `#eae7e714`,
+        'grey20-opacity-5': `#eae7e70D`,
+        'grey20-opacity-100': `#eae7e7FF`,
+        'grey20-opacity-50': `#eae7e780`,
         grey10: "#e9e9e9",
         white: "#fff",
 
