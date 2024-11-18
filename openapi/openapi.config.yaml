@@ -1,6 +1,5 @@
 apiDefinitions:
   annotations: ./src/annotations.openapi.yaml
-  connectors: ./src/connectors.openapi.yaml
   data-pipelines: ./src/data-pipelines.openapi.yaml
   export: ./src/export.openapi.yaml
   gdpr: ./src/gdpr.openapi.yaml

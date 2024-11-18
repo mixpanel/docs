@@ -419,6 +419,8 @@ previous section.
 ALTER TABLE <table> ADD COLUMN <column> STRING NULL;
 ```
 
+If you have a JSON column in the table/view which you map to `JSON Properties` in the import setup, as the whole JSON object for that column is used to calculate the checksum for the row, **any changes to the JSON object will result in a change to the checksum**, even if the change is to add new keys with null values. As such, consider conditional formatting when building the JSON object to only update it when a new non-null value is available for a row.
+
 We recommend avoiding other types of schema changes on large tables. Other schema changes may cause the
 checksum of every row to change, effectively re-sending the entire table to Mixpanel. For example, if we
 were to remove the Genre column in the example above the checksum of every row would be different:
@@ -487,12 +489,13 @@ ALTER TABLE <table> SET TBLPROPERTIES (delta.enableChangeDataFeed = true);
 ```
 
 **Considerations when using Mirror with Databricks:**
+- Mirror is not supported on views in Databricks
 - Databricks Change Data Feed only mantains change history for a limited number of days determined by [delta.logRetentionDuration](https://docs.databricks.com/en/delta/history.html#retrieve-delta-table-history) (default is 30 days). Make sure that the Mixpanel sync does not go longer 
 than this number of days without running. Mixpanel recommends leaving the default of 30 days to ensure that if Mixpanel loses access to the warehouse unexpectedly (e.g. a credentials change), there is time to correct the issue.
 - Databricks Change Data Feed does not work if a table is deleted and re-created with the same name. If using a tool like dbt to model
   data in Databricks make sure to use an [incremental model](https://docs.getdbt.com/docs/build/incremental-models) so that
   dbt does not replace the table each time it runs.
-- While Databricks Change Data Feed works with adding new columns to the table or view, there are certain limitations when it comes to dropping columns or renaming columns
+- While Databricks Change Data Feed works with adding new columns to the table, there are certain limitations when it comes to dropping columns or renaming columns
 which uses [column mappings](https://docs.databricks.com/en/delta/delta-change-data-feed.html#change-data-feed-limitations-for-tables-with-column-mapping-enabled). In such scenarios Mixpanel, recommends deleting the sync (along with the data) and re-creating the sync.
 
 </Tabs.Tab>
@@ -666,7 +669,7 @@ There are 3 aspects of DWH cost: network egress, storage, and compute.
 * **Compute**:
   * Mirror on Snowflake: [Snowflake Streams](https://docs.snowflake.com/en/user-guide/streams-intro) natively track changes, the compute cost of querying for these changes is normally proportional to the amount of changed data.
   * Mirror on BigQuery: Each time the connector runs it checksums all rows in the source table and compares them to a [table snapshot](https://cloud.google.com/bigquery/docs/table-snapshots-intro) from the previous run. For large tables we highly recommend [partitioning](https://cloud.google.com/bigquery/docs/partitioned-tables) the source table. When the source table is partitioned the connector will skip checksumming any partitions which have not been modified since the last run. For more details see the BigQuery-specific instructions in [Mirror](#mirror).
-  * Mirror on Databricks: Databricks [Change Data Feed](https://docs.databricks.com/en/delta/delta-change-data-feed.html) natively tracks changes to the tables or views, the compute cost of querying these changes is normally proportional to the amount of changed data. Mixpanel reccomends using a smaller compute cluster and setting Auto Terminate after 10 mins of idle time on the compute cluster.
+  * Mirror on Databricks: Databricks [Change Data Feed](https://docs.databricks.com/en/delta/delta-change-data-feed.html) natively tracks changes to the tables or views, the compute cost of querying these changes is normally proportional to the amount of changed data. Mixpanel recommends using a smaller compute cluster and setting Auto Terminate after 10 mins of idle time on the compute cluster.
   * Append: All Append syncs run a query filtered on `insert_time_column > [last-run-time]`, the compute cost is the cost of this query. Partitioning or clustering based on `insert_time_column` will greatly improve the performance of this query.
   * Full: Full syncs are always a full table scan of the source table to export it.
 

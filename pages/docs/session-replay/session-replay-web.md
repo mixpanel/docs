@@ -136,13 +136,16 @@ By [adding middleware to Segment's SDK](https://segment.com/docs/connections/sou
 ```javascript
 // Middleware to add Mixpanel's session recording properties to Segment events
 analytics.addSourceMiddleware(({ payload, next, integrations }) => {
-	if (payload.type === 'track' || payload.type === 'page') {
+	if (payload.obj.type === 'track' || payload.obj.type === 'page') {
 		if (window.mixpanel) {
 			const segmentDeviceId = payload.obj.anonymousId;
-			//original id
-			mixpanel.register({ $device_id: segmentDeviceId, distinct_id : segmentDeviceId })
-			//simplified id 
-			mixpanel.register({ $device_id: segmentDeviceId, distinct_id : "$device:"+segmentDeviceId });			
+			// -------------------------------------------
+			// Comment out one of the below mixpanel.register methods depending on your ID Management Version
+			// Original ID Merge
+			mixpanel.register({ $device_id: segmentDeviceId, distinct_id : segmentDeviceId });
+			// Simplified ID Merge
+			mixpanel.register({ $device_id: segmentDeviceId, distinct_id : "$device:"+segmentDeviceId }); 
+			// -------------------------------------------	
 			const sessionReplayProperties = mixpanel.get_session_recording_properties();
 			payload.obj.properties = {
 				...payload.obj.properties,
@@ -150,7 +153,7 @@ analytics.addSourceMiddleware(({ payload, next, integrations }) => {
 			};
 		}
 	}
-	if (payload.type === 'identify') {
+	if (payload.obj.type === 'identify') {
 		if (window.mixpanel) {
 			const userId = payload.obj.userId;
 			mixpanel.identify(userId);
