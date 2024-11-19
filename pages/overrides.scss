@@ -215,6 +215,7 @@ $border-radius-lg: 100px;
   font-style: normal;
   font-weight: 500;
   line-height: 24px; /* 150% */
+  position: unset;
 }
 
 .changelogMainContainerWrapper {
@@ -280,14 +281,14 @@ $border-radius-lg: 100px;
 
   .changelogHeaderImg {
     width: 100%;
-    max-width: 560px;
+    max-width: 703px;
     margin-bottom: auto;
     position: relative;
     right: -64px;
     background: none;
 
     @media (max-width: 965px) {
-      width: 50%;
+      //width: 50%;
     }
 
     @media (max-width: 700px) {
@@ -805,7 +806,7 @@ article img {
       }
     }
 
-    .thumbnailPlayButton {
+    .thumbnailPlayButtonWrapper {
       border-radius: 16px;
       border: 1px solid var(--Base-Base-120, #eae7e7);
       background: colors.$white;
@@ -1582,9 +1583,12 @@ article img {
       }
     }
 
-    .thumbnailPlayButton {
+    .thumbnailPlayButtonWrapper {
+      .thumbnailPlayButton {
+        color: colors.$white;
+      }
+
       z-index: 1;
-      color: colors.$white;
       border-radius: 16px;
       border: 1px solid colors.$purple200;
       background: rgba(234, 231, 231, 0.05);

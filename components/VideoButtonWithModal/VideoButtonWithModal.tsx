@@ -29,11 +29,15 @@ export default function VideoButtonWithModal({
     ? `thumbnailPlayButton ${PLAY_BUTTON_BASE_CLASS}`
     : `playButton ${PLAY_BUTTON_BASE_CLASS}`;
 
+  const playButtonWrapperClass = showThumbnail
+    ? `thumbnailPlayButtonWrapper`
+    : `playButtonWrapper`;
+
   const playButton = tv({
     base: playButtonClass,
     variants: {
       showThumbnail: {
-        true: "nx-border nx-border-base120 nx-rounded-2xl nx-px-4 nx-py-4 nx-relative",
+        true: "nx-rounded-2xl nx-px-4 nx-py-4 nx-relative",
         false:
           "nx-border-2 nx-border-purple140 nx-rounded-full hover:nx-rounded-lg",
       },
@@ -41,7 +45,7 @@ export default function VideoButtonWithModal({
   });
 
   const buttonWrapper = tv({
-    base: "",
+    base: playButtonWrapperClass,
     variants: {
       showThumbnail: {
         true: "nx-relative nx-z-0 nx-w-fit nx-rounded-2xl nx-mt-10 nx-mb-10",

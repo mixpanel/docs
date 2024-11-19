@@ -3,6 +3,7 @@ import { getPagesUnderRoute } from "nextra/context";
 import { ImageFrame } from "./ImageFrame";
 import { VideoButtonWithModal } from "./VideoButtonWithModal";
 import Link from "next/link";
+import { MdxFile } from "nextra";
 
 enum PostFilterOptions {
   All = `all`,
@@ -20,19 +21,20 @@ const renderImage = (page) => {
   );
 };
 
-const renderVideo = (page) => {
-  const videoURL = page.frontMatter.video;
-  let embedURL;
-
+const getVideoEmbedURL = (videoURL) => {
   if (videoURL.includes("youtube.com") || videoURL.includes("youtu.be")) {
     const videoId = videoURL.split("v=")[1]
       ? videoURL.split("v=")[1].split("&")[0]
       : videoURL.split("/").pop();
-    embedURL = `https://www.youtube.com/embed/${videoId}`;
+    return `https://www.youtube.com/embed/${videoId}`;
   } else if (videoURL.includes("loom.com")) {
     const videoId = videoURL.split("/").pop();
-    embedURL = `https://www.loom.com/embed/${videoId}?hideEmbedTopBar=true`;
+    return `https://www.loom.com/embed/${videoId}?hideEmbedTopBar=true`;
   }
+};
+
+const renderVideo = (videoURL) => {
+  const embedURL = getVideoEmbedURL(videoURL);
 
   return (
     <iframe
@@ -44,19 +46,20 @@ const renderVideo = (page) => {
         borderRadius: "16px",
         marginBottom: "16px",
       }}
-      allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+      allow="clipboard-write; encrypted-media; picture-in-picture"
       allowFullScreen
       title="Video"
     ></iframe>
   );
 };
 
-const renderMedia = (page) => {
+const renderMedia: (page: MdxFile) => React.JSX.Element = (page) => {
   if (page.frontMatter?.thumbnail) {
     return renderImage(page);
   } else if (page.frontMatter?.video) {
-    return renderVideo(page);
+    return renderVideo(page.frontMatter?.video);
   }
+  return null;
 };
 
 export default function ChangelogIndex({ more = "Learn More" }) {
