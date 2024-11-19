@@ -22,21 +22,18 @@ const renderImage = (page) => {
 };
 
 const getVideoEmbedURL = (videoURL) => {
-  if (videoURL.includes("youtube.com") || videoURL.includes("youtu.be")) {
-    const videoId = videoURL.split("v=")[1]
-      ? videoURL.split("v=")[1].split("&")[0]
-      : videoURL.split("/").pop();
-    return `https://www.youtube.com/embed/${videoId}`;
-  } else {
-    try {
-      const parsedURL = new URL(videoURL);
-      if (parsedURL.host === "loom.com") {
-        const videoId = parsedURL.pathname.split("/").pop();
-        return `https://www.loom.com/embed/${videoId}?hideEmbedTopBar=true`;
-      }
-    } catch (e) {
-      console.error("Invalid URL:", e);
+  try {
+    const parsedURL = new URL(videoURL);
+    const host = parsedURL.host;
+    if (host === "www.youtube.com" || host === "youtube.com" || host === "youtu.be") {
+      const videoId = parsedURL.searchParams.get("v") || parsedURL.pathname.split("/").pop();
+      return `https://www.youtube.com/embed/${videoId}`;
+    } else if (host === "www.loom.com" || host === "loom.com") {
+      const videoId = parsedURL.pathname.split("/").pop();
+      return `https://www.loom.com/embed/${videoId}?hideEmbedTopBar=true`;
     }
+  } catch (e) {
+    console.error("Invalid URL:", e);
   }
 };
 
