@@ -34,7 +34,7 @@
     "nextra-theme-docs": "3.0.3",
     "react": "^18.3.1",
     "react-dom": "^18.3.1",
-    "sass": "^1.78.0",
+    "sass": "^1.81.0",
     "sharp": "^0.33.5"
   },
   "devDependencies": {
@@ -42,11 +42,11 @@
     "@types/mixpanel": "^2.14.9",
     "@types/node": "22.8.0",
     "autoprefixer": "^10.4.20",
-    "cspell": "^8.14.2",
+    "cspell": "^8.16.0",
     "postcss": "^8.4.45",
     "rdme": "8.6.6",
     "tailwindcss": "^3.4.14",
-    "typescript": "^5.5.4",
+    "typescript": "^5.6.3",
     "yaml": "2.6.0"
   }
 }
