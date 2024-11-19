@@ -917,6 +917,10 @@ article img {
         }
       }
     }
+
+    .darkImageFrame {
+      display: none;
+    }
   }
 
   //area under footer
@@ -1692,6 +1696,10 @@ article img {
           }
         }
       }
+    }
+
+    .lightImageFrame {
+      display: none;
     }
 
     .changelogPostHeader {

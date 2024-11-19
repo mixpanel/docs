@@ -110,7 +110,7 @@ export default function ChangelogIndex({ more = "Learn More" }) {
           <div className="changelogIndexItemBody">
             {page.frontMatter?.thumbnail && renderImage(page)}
 
-            <h3 className="changelogItemTitleWrapper">
+            <h3 className={page.frontMatter?.thumbnail && "changelogItemTitleWrapper"}>
               <Link
                 href={page.route}
                 style={{ color: "inherit", textDecoration: "none" }}
