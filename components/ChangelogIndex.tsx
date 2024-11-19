@@ -27,9 +27,16 @@ const getVideoEmbedURL = (videoURL) => {
       ? videoURL.split("v=")[1].split("&")[0]
       : videoURL.split("/").pop();
     return `https://www.youtube.com/embed/${videoId}`;
-  } else if (videoURL.includes("loom.com")) {
-    const videoId = videoURL.split("/").pop();
-    return `https://www.loom.com/embed/${videoId}?hideEmbedTopBar=true`;
+  } else {
+    try {
+      const parsedURL = new URL(videoURL);
+      if (parsedURL.host === "loom.com") {
+        const videoId = parsedURL.pathname.split("/").pop();
+        return `https://www.loom.com/embed/${videoId}?hideEmbedTopBar=true`;
+      }
+    } catch (e) {
+      console.error("Invalid URL:", e);
+    }
   }
 };
 
