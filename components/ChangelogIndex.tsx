@@ -20,6 +20,45 @@ const renderImage = (page) => {
   );
 };
 
+const renderVideo = (page) => {
+  const videoURL = page.frontMatter.video;
+  let embedURL;
+
+  if (videoURL.includes("youtube.com") || videoURL.includes("youtu.be")) {
+    const videoId = videoURL.split("v=")[1]
+      ? videoURL.split("v=")[1].split("&")[0]
+      : videoURL.split("/").pop();
+    embedURL = `https://www.youtube.com/embed/${videoId}`;
+  } else if (videoURL.includes("loom.com")) {
+    const videoId = videoURL.split("/").pop();
+    embedURL = `https://www.loom.com/embed/${videoId}?hideEmbedTopBar=true`;
+  }
+
+  return (
+    <iframe
+      src={embedURL}
+      style={{
+        width: "100%",
+        aspectRatio: 16 / 9,
+        height: "auto",
+        borderRadius: "16px",
+        marginBottom: "16px",
+      }}
+      allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+      allowFullScreen
+      title="Video"
+    ></iframe>
+  );
+};
+
+const renderMedia = (page) => {
+  if (page.frontMatter?.thumbnail) {
+    return renderImage(page);
+  } else if (page.frontMatter?.video) {
+    return renderVideo(page);
+  }
+};
+
 export default function ChangelogIndex({ more = "Learn More" }) {
   // naturally sorts pages from a-z rather than z-a
   const allPages = getPagesUnderRoute("/changelogs").reverse();
@@ -108,9 +147,14 @@ export default function ChangelogIndex({ more = "Learn More" }) {
           </div>
 
           <div className="changelogIndexItemBody">
-            {page.frontMatter?.thumbnail && renderImage(page)}
+            {(page.frontMatter?.thumbnail || page.frontMatter?.video) &&
+              renderMedia(page)}
 
-            <h3 className={page.frontMatter?.thumbnail && "changelogItemTitleWrapper"}>
+            <h3
+              className={
+                page.frontMatter?.thumbnail && "changelogItemTitleWrapper"
+              }
+            >
               <Link
                 href={page.route}
                 style={{ color: "inherit", textDecoration: "none" }}
@@ -132,7 +176,7 @@ export default function ChangelogIndex({ more = "Learn More" }) {
                   Request a Demo
                 </a>
               )}
-              {page.frontMatter?.video && (
+              {page.frontMatter?.video && page.frontMatter?.thumbnail && (
                 <VideoButtonWithModal
                   src={page.frontMatter.video}
                   showThumbnail={false}
