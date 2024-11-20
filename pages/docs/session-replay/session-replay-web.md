@@ -74,7 +74,9 @@ For any questions about early access to mobile replay, please reach out to your 
  
 ### Can I prevent Session Replay from recording sensitive content?
 
-By default, all on-screen text elements are masked in replays. Additionally, you can customize how you initialize our SDK to fully control (1) where to record and (2) whom to record. For more details, please see our [implementation docs](/docs/tracking-methods/sdks/javascript#session-replay).
+By default, all on-screen text, image, and video elements are masked or blocked in replays. This means they will not appear when you watch replays, until you manually unmask and unblock. We give you full controls to customize (1) where to record and (2) whom to record. 
+
+For more details, please see our [implementation docs](/docs/tracking-methods/sdks/javascript#session-replay).
 
 ### How long are replays stored?
 
