@@ -2,8 +2,8 @@
 
 .signUpButton {
   box-shadow: 0 1px 2px 0 rgb(0 0 0 / 0.05);
-  background-color: colors.$purple50;
-  font-weight: 600;
+  background: linear-gradient(1deg, colors.$purple100 0.97%, colors.$purple50 96.96%);
+  font-weight: 500;
   font-size: 1rem;
   line-height: 1.5rem;
   color: colors.$white;
