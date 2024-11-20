@@ -295,6 +295,18 @@ For customers who have purchased our Session Replay add-on, you will be billed f
 
 Mixpanel reserves the right to stop ingesting replays once a customer collects replays beyond their purchased / allocated amount. To minimize disruption to your team, we recommend working with your Account Manager to ensure you have the right plan for your session replay needs. 
 
+### Should I sample Session Replays, and how much?
+It depends! Start by identifying your primary use case:
+
+- For debugging/support or monitoring new features, avoid sampling to ensure you don’t miss critical replays (e.g., those with fatal crashes or major wins).
+- For general product awareness, sampling can help balance costs while still capturing a high-level view of user workflows.
+
+If sampling is right for your use cases, consider these factors:
+- Traffic levels: If you only want to capture high-traffic areas of your application, smaller sampling percentages may suffice. Higher rates may be necessary to ensure coverage for less trafficked parts of your product.
+- User types: If you have a high-value users who make up a smaller percentage of your overall user base, you may need a higher sampling rate to ensure you capture their rare and valuable sessions. If you have many low-value users who are relatively undifferentiated, lower sampling percentages can suffice.
+
+Ultimately, balance your goals (e.g., peace of mind vs. cost-efficiency) to set sampling rates that optimize your insights. Sampling too aggressively can create blind spots in your data, making it harder to uncover critical insights or diagnose issues when they arise. Once missed, a replay can’t be recovered, so make sure your sampling strategy gives you the confidence to make data-driven decisions without regret.
+
 ## Appendix: Session Replay Privacy Controls
 **Last updated July 30th, 2024**
 
