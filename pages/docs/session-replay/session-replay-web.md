@@ -1,10 +1,10 @@
-# Session Replay (web): Watch playbacks of user digital experiences
+# Session Replay (Web): Watch playbacks of user digital experiences
 
 ## Overview
 
-Mixpanel Session Replay is the fastest way to understand the whole picture about your customers and make better product decisions, by combining quantitative and qualitative user insights. 
+Mixpanel Session Replay is the best way to get a more complete view of your customers and make better product decisions, by combining quantitative and qualitative user insights. 
 
-When digging into customer journeys in Mixpanel’s analytics, you can understand “**where** do customers drop-off?” And now, Mixpanel Session Replay enables you to quickly follow-up with, “**why** do customers drop off?”
+When digging into customer journeys with Mixpanel’s analytics tools, you can understand “**where** do customers drop-off?” And now, Mixpanel Session Replay enables you to quickly follow-up with, “**why** do customers drop off?”
 
 ## Availability
 
@@ -14,9 +14,9 @@ Session Replay is currently available as an add-on purchase for [Enterprise plan
 
 Session Replay can be accessed in three places:
 
-1. From User Profile page
+1. From User Profile pages
 2. From Mixpanel reports
-3. On the Home page for your project
+3. On the Home page of your project
 
 ### From User Profile page
 
@@ -45,7 +45,7 @@ Find the Latest Replays card and click on individual replays to view them or cli
 The Replay Player allows you to watch replays, as well as:
 
 - Expand the player to full-screen
-- Copy a URL with or without a timestamp to share with your teammates
+- Copy a URL (with or without a timestamp) to share with your teammates
 - Change the playback speed
 - Automatically skip periods of the replay where user is inactive
 - See events in the replay timeline
@@ -58,11 +58,7 @@ The Replay Feed on the left of the player also allows you to:
 - See a feed of events that occurred during each replay
 
 ## Implementation
-Session Replay is not enabled by default; enabling the feature requires instrumentation beyond the standard Mixpanel instrumentation. 
-
-However, in most cases, implementation is extremely simple, only requiring a single line of code to be changed. 
-
-Note that replays sent via your implementation will only be viewable in the project they were ingested in and will not be available to other projects in your org.
+Session Replay is not enabled by default; enabling the feature requires instrumentation beyond the standard Mixpanel implementation. However, in most cases, implementation is extremely simple, only requiring a single line of code to be changed. Please note that replays sent via your implementation will only be viewable in the project they were ingested in, and will not be available to other projects in your org.
 
 Our documentation on how to implement Session Replay can be found [here](/docs/tracking-methods/sdks/javascript#session-replay).
 
@@ -74,7 +70,7 @@ Before you enable Session Replay for a large audience, we recommend testing in a
 
 As of today, Session Replay is available for web-based applications (including mobile web) on the Enterprise Plan and closed Alpha testing for native iOS apps. Android Alpha testing is expected later this year.
 
-For any questions about mobile beta access, please reach out to your Account Manager.
+For any questions about early access to mobile replay, please reach out to your Account Manager.
  
 ### Can I prevent Session Replay from recording sensitive content?
 
@@ -87,7 +83,7 @@ By default, all on-screen text elements are masked in replays. Additionally, you
 ### How can I estimate how many replays I'll have?
 If you already use Mixpanel, the simplest way to estimate the amount of replays is to use a proxy metric for how many page loads you have. If you use timeout based query sessions, Total Session Start events in the Insights report could be a good estimate.
 
-Then, when you enable Session Replay, use that metric and the sampling percentage to determine how many replays will be sent.
+Then, when you enable Session Replay, use that metric and the sampling percentage to estimate how many replays will be sent.
 
 ### Am I able to sample our session replay collection rate?
 
@@ -279,6 +275,10 @@ We've tested the SDK extensively and it generally has minimal impact on how your
 
 If your web application relies on full page loads (where the entire page is reloaded when navigating from one page to another), a new Session Replay recording `$mp_replay_id` will be created when navigating to each page. This occurs because the Mixpanel instance is reloaded again when navigating between pages.
 
+### What happens if I hit my replay limit?
+For customers who have purchased our Session Replay add-on, you will be billed for replays ingested beyond your purchased amount. For customers using Session Replay who have not purchased our add-on (for example, using complimentary replays included with your Free or Growth plan), replays above your complimentary amount will not be viewable until customer pays for overage replays, or upgrades plan. Before this happens, we'll send email notifications warning users that your limit is approaching. 
+
+Mixpanel reserves the right to stop ingesting replays once a customer collects replays beyond their purchased / allocated amount. To minimize disruption to your team, we recommend working with your Account Manager to ensure you have the right plan for your session replay needs. 
 
 ## Appendix: Session Replay Privacy Controls
 **Last updated July 30th, 2024**
