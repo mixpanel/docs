@@ -213,6 +213,8 @@ Yes, Objective-C and Swift are fully interoperable.
 
 ### Can I prevent Session Replay from recording sensitive content?
 
+At Mixpanel, we take privacy seriously and aim to provide tools that empower developers to maintain the highest level of user privacy when implementing Session Replay. Our iOS SDK includes robust privacy tools to help you manage what data is captured and how it is handled. However, ensuring compliance and safeguarding user data requires careful configuration and testing on your part. Please consult with your legal team before implementing, and test thoroughly before productionalizing. 
+
 If your app is UIKit-based, all `UITextField` and `UILabel` components are masked by default, and there is no way to unmask them. You can also mask any view manually by calling:
 
 ```swift
