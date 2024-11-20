@@ -362,6 +362,13 @@ mixpanel.init(YOUR_PROJECT_TOKEN, {record_block_selector: '.sensitive-data'})
 <img src="https://image.com" class="mp-block"/>
 ```
 
+### What's the difference between masking and blocking?
+
+Blocked elements will not appear. You won't see these elements when watching back replays
+
+Masked content is replaced with asterisks. For example, a text label saying "Hello, world" would appear as "****** *****"
+
+
 ### Disabling Replay Collection 
 
 Once enabled, Session Replay runs on your site until either:
