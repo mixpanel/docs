@@ -103,6 +103,19 @@ If you want to only record certain parts of a single-page application with no ne
 
 There is about a ~1 minute delay between when recordings are captured and when they appear in Mixpanel.  
 
+### How do we count replays?
+Mixpanel session replays are not actually tied to “sessions”, as [our sessions are defined query-time](/docs/features/sessions#how-sessions-work). Instead, replays are initiated and concluded based on specific triggers.
+
+**How Replays Start**
+1. Auto-Sampling: when `mixpanel.init()` is called, the SDK determines whether to start recording based on your defined sampling rate. If selected, recording begins automatically.
+2. Conditional Sampling: Use `.start_session_recording()` within your custom logic to override sampling and explicitly start recording.
+
+**How Replays End**
+1. Maximum Recording Length: recording stops once it reaches the maximum allowed duration (24 hours by default, customizable).
+2. User Inactivity: after the user is idle for more than the defined duration (30 minutes by default, customizable), the replay ends. A new replay begins when the user becomes active again.
+3. Explicit Stop: call `.stop_session_recording()` to manually stop recording.
+4. SDK Lifecycle: if the SDK is destroyed (e.g., due to a hard page navigation), recording ends immediately.
+
 ### Why does it say the player failed to load?
 
 In order to maintain a high standard of security, Mixpanel runs your session replays in an isolated domain through an iframe. Sometimes, this domain may be blocked by an ad blocker or certain browser settings. Please try disabling any ad blockers. 
