@@ -58,7 +58,7 @@ async function BaseAPI({
             "Content-Type": headerContentType,
             ...(token && { Authorization: `Bearer ${token}` }),
         },
-        ...([body] && { body: preparedBody }),
+        ...(preparedBody && { body: preparedBody }),
     };
 
     const response = await fetch(url, OPTIONS).then((response: any) =>
