@@ -6,6 +6,10 @@ Welcome to the Mixpanel Session Replay iOS SDK(Closed Alpha)!
 
 Mixpanel Session Replay helps you quickly understand your customers and make better product decisions by combining quantitative and qualitative user insights.
 
+# How Does It Work?
+
+Session Replay for iOS observes user interactions within your app, capturing UI hierarchy changes and storing them as images, which are then sent to Mixpanel. Mixpanel reconstructs these images, applying recorded events as an end-user completes them. Within Mixpanel’s platform, you can view a reconstruction of your end-user’s screen as they navigate your app. However, Session Replay is not a literal video recording of your end-user’s screen; end-user actions are not video-recorded.
+
 # Availability
 
 Currently, iOS Session Replay is in invite-only Alpha access for customers on our Enterprise plan.
