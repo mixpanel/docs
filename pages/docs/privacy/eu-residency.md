@@ -34,7 +34,7 @@ Next, you'll need to set the server location to EU when initializing the Mixpane
 - [Flutter](/docs/tracking-methods/sdks/flutter#eu-data-residency)
 
 ## Log in via SSO
-If you want the IdP-initiated flow to direct to [eu.mixpanel.com](https://eu.mixpanel.com/), prepend "eu." to your postback URL. For example, [mixpanel.com/security/login/1](https://mixpanel.com/security/login/1) would need to be changed to [eu.mixpanel.com/security/login/1](https://eu.mixpanel.com/security/login/1). 
+If you want the IdP-initiated flow to direct to [eu.mixpanel.com](https://eu.mixpanel.com/), prepend "eu." to your postback URL. For example, `mixpanel.com/security/login/1` would need to be changed to `eu.mixpanel.com/security/login/1`.
 
 ## EU Residency and CDPs
 

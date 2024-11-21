@@ -203,62 +203,216 @@ $border-radius-lg: 100px;
 }
 
 //############Global Changelog############
+._w-full > main:has(.changelogMainContainerWrapper) {
+  padding-top: 0;
+}
+
+.thumbnailPlayButton {
+  z-index: -1;
+  color: colors.$purple140;
+  font-family: Garnett;
+  font-size: 16px;
+  font-style: normal;
+  font-weight: 500;
+  line-height: 24px; /* 150% */
+  position: unset;
+}
+
+.changelogMainContainerWrapper {
+  width: 100%;
+  position: absolute;
+  left: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
 .changelogMainContainer {
+  max-width: min(1440px, 100%);
+  padding: 0 64px;
+  width: 100%;
+  overflow: hidden;
+
+  @media (max-width: 1135px) {
+    padding: 0 36px;
+  }
+  @media (max-width: 600px) {
+    padding: 0 32px;
+  }
+
+  .changelogHeader {
+    display: flex;
+    flex-direction: row;
+    height: 300px;
+    align-items: center;
+    justify-content: space-between;
+    flex-wrap: nowrap;
+
+    .changelogHeaderLeft {
+      max-width: 50%;
+
+      @media (max-width: 700px) {
+        max-width: none;
+      }
+
+      span {
+        font-size: 18px;
+        font-weight: 400;
+        line-height: 160%;
+        letter-spacing: 0.36px;
+
+        a {
+          color: colors.$purple140;
+          text-decoration-line: underline;
+        }
+      }
+    }
+  }
+
   // Changelog title
   .changelogTitle {
-    font-size: 48px !important;
-    line-height: 1.5 !important;
-    text-align: center !important;
-    font-weight: 800 !important;
+    font-size: 60px !important;
+    line-height: 120% !important;
+    font-weight: 500 !important;
     margin-top: 32px !important;
     padding-bottom: 24px !important;
-    letter-spacing: -0.02em !important;
-    // color: colors.$purple200 !important;
+    letter-spacing: -1.2px !important;
+  }
+
+  .changelogHeaderImg {
+    width: 100%;
+    max-width: 703px;
+    margin-bottom: auto;
+    position: relative;
+    right: -64px;
+    background: none;
+
+    @media (max-width: 965px) {
+      //width: 50%;
+    }
+
+    @media (max-width: 700px) {
+      display: none;
+    }
+  }
+
+  .changelogIndexFilterBorder {
+    width: calc(100% + 128px);
+  }
+
+  .changelogIndexFilterBorderBottom {
+    margin-bottom: 40px;
+  }
+
+  .changelogIndexFilterBar {
+    width: 100%;
+    height: 88px;
+    display: flex;
+    column-gap: 8px;
+    z-index: 1;
+    padding: 24px 0;
+
+    @media (max-width: 600px) {
+      justify-content: center;
+    }
+  }
+
+  .changelogFilterButton {
+    display: flex;
+    align-items: center;
+    padding: 8px 16px;
+    font-size: 16px;
+    font-weight: 400;
+    letter-spacing: 0.32px;
+
+    &.active {
+      border-radius: 8px;
+      font-style: normal;
+      font-weight: 500;
+    }
+  }
+
+  .playButton {
+    text-align: center;
+    font-family: Garnett;
+    font-size: 13.238px;
+    font-style: normal;
+    font-weight: 500;
+    line-height: 15.129px; /* 114.286% */
+    padding: 11.3px 20.3px;
+  }
+
+  .videoIconWrapper {
+    margin-right: 6.5px;
   }
 
   //div for changelog entries in the index page
   .changelogIndexItem {
-    margin-top: 40px;
-    // max-height: 500px;
+    display: flex;
+    flex-direction: row;
+    max-width: 100%;
+
+    @media (max-width: 600px) {
+      flex-direction: column;
+    }
+
+    .changelogItemTitleWrapper {
+      margin-top: 32px;
+      margin-bottom: 8px;
+    }
 
     //title of each changelog entry
     .changelogItemTitle {
-      font-size: 24px;
-      font-weight: 800;
-      line-height: 32px;
-      margin-top: 32px;
+      font-size: 28px;
+      font-weight: 500;
+      line-height: 120%;
       // text-shadow: 0px 0px 0.5px black;
+      color: colors.$purple200;
+      font-feature-settings: "salt" on;
+      letter-spacing: -0.28px;
+    }
+
+    .changelogIndexItemDate {
+      width: 190px;
+      margin-right: 36px;
+      margin-bottom: 36px;
     }
 
     //date of changelog entry
     .changelogDate {
-      opacity: 0.5;
       font-size: 14px;
-      line-height: 28px;
-      margin-top: 4px;
-      margin-bottom: 2px;
+      font-weight: 500;
+      line-height: 168%; /* 23.52px */
+      letter-spacing: 0.28px;
+      text-wrap: nowrap;
+    }
+
+    .changelogIndexItemBody {
+      width: 860px;
+      max-width: 100%;
+      font-size: 1.125rem; /* 18px */
+      font-weight: 400;
+      line-height: 160%;
+      letter-spacing: 0.36px;
     }
 
     //read more button
     .changelogReadMoreLink {
-      text-decoration-line: underline;
-      text-underline-offset: 2px;
-      text-decoration-thickness: from-font;
-      color: colors.$purple100;
-      font-size: 1.125rem; /* 18px */
-      line-height: 1.75rem; /* 28px */
+      font-weight: 500;
+      color: colors.$purple140;
     }
   }
 
   //load more button
   .changelogLoadMoreButtonContainer {
     padding-top: 30px;
+    padding-bottom: 80px;
 
     .changelogLoadMoreButton {
       box-shadow: 0 1px 2px 0 rgb(0 0 0 / 0.05) !important;
       // background-color: colors.$purple50 !important;
       border-radius: 9999px !important;
-      font-weight: 600 !important;
+      font-weight: 500 !important;
       font-size: 1rem !important;
       line-height: 1.5rem !important;
       padding-top: 0.625rem !important; /* 10px */
@@ -273,6 +427,38 @@ $border-radius-lg: 100px;
       box-shadow: 0 4px 6px -1px rgb(0 0 0 / 0.1),
         0 2px 4px -2px rgb(0 0 0 / 0.1);
       // background-color: colors.$purple100;
+    }
+  }
+}
+
+.changelogPostHeader {
+  margin-top: 80px;
+
+  //date of changelog entry
+  .changelogDate {
+    color: colors.$grey80;
+    font-size: 14px;
+    font-weight: 400;
+    margin-bottom: 16px;
+    line-height: 168%; /* 23.52px */
+    letter-spacing: 0.28px;
+    text-wrap: nowrap;
+  }
+
+  .changelogTitle {
+    color: colors.$purple200;
+    font-size: 48px;
+    font-weight: 500;
+    line-height: 120%; /* 57.6px */
+    letter-spacing: -0.96px;
+    margin-bottom: 24px;
+
+    @media (max-width: 1135px) {
+      font-size: 36px;
+    }
+
+    @media (max-width: 200px) {
+      font-size: 28px;
     }
   }
 }
@@ -610,27 +796,131 @@ article img {
     }
 
     //Modify Changelog
+    .playButton {
+      &:focus-visible {
+        outline: none;
+        border-radius: 8px;
+        border: 2px solid #5028c0;
+        background: colors.$base80;
+        box-shadow: 0px 0px 0px 5px rgba(176, 148, 255, 0.3);
+      }
+    }
+
+    .thumbnailPlayButtonWrapper {
+      border-radius: 16px;
+      border: 1px solid var(--Base-Base-120, #eae7e7);
+      background: colors.$white;
+      box-shadow: 0px 4px 8px 0px rgba(0, 0, 0, 0.04);
+
+      &:hover {
+        background: colors.$base100;
+        border: 1px solid colors.$base120;
+        box-shadow: 0px 8px 20px 0px rgba(0, 0, 0, 0.04);
+      }
+
+      &:active {
+        background: colors.$base120;
+        border: 1px solid colors.$base120;
+        box-shadow: 0px 2px 4px 0px rgba(0, 0, 0, 0.04);
+      }
+
+      &:focus-visible {
+        background: colors.$white;
+        border: 2px solid colors.$purple100;
+        box-shadow: 0px 0px 0px 5px rgba(176, 148, 255, 0.3);
+        outline: none;
+      }
+    }
+
+    .videoIconDark {
+      display: none;
+    }
+
+    .changelogMainContainerWrapper {
+      background: colors.$lightbg;
+    }
+
     .changelogMainContainer {
+      background-color: colors.$lightbg;
+      border-right: 1px solid colors.$lightbg;
+      border-left: 1px solid colors.$lightbg;
+      box-shadow: 0px 0px 24px 0px rgba(0, 0, 0, 0.06);
+
       .changelogTitle {
         color: colors.$purple200;
       }
+
+      .changelogHeader .changelogHeaderLeft span {
+        color: colors.$grey80;
+      }
+
+      .changelogHeaderImgDark {
+        display: none;
+      }
+
+      .changelogIndexFilterBorder {
+        border-top: 1px solid colors.$base120;
+      }
+
+      .changelogFilterButton {
+        border-radius: 4px;
+        color: colors.$purple200;
+
+        &:hover {
+          background: colors.$base100;
+        }
+
+        &:active {
+          background: colors.$base120;
+        }
+
+        &:focus-visible {
+          background: colors.$white;
+          border-radius: 8px;
+          border: 2px solid colors.$purple40;
+          box-shadow: 0px 0px 0px 5px rgba(176, 148, 255, 0.3);
+          outline: none;
+        }
+
+        &.active {
+          background: colors.$white;
+        }
+      }
+
+      .changelogIndexItem {
+        border-bottom: 1px solid colors.$base120;
+
+        .changelogDate {
+          color: colors.$grey80;
+        }
+
+        .changelogIndexItemBody {
+          color: colors.$grey80;
+        }
+
+        .changelogReadMoreLink {
+          color: colors.$purple140;
+        }
+      }
+
       .changelogLoadMoreButtonContainer {
         //load more button
         .changelogLoadMoreButton {
-          background-color: colors.$purple50 !important;
-          color: colors.$white !important;
-        }
-        .changelogLoadMoreButton:hover {
-          box-shadow: 0 4px 6px -1px rgb(0 0 0 / 0.1),
-            0 2px 4px -2px rgb(0 0 0 / 0.1);
-          background-color: colors.$purple100 !important;
+          border: 2px solid colors.$purple140;
+          color: colors.$purple140 !important;
+
+          &:hover {
+            box-shadow: 0 4px 6px -1px rgb(0 0 0 / 0.1),
+              0 2px 4px -2px rgb(0 0 0 / 0.1);
+            border-radius: $border-radius !important;
+            transition: border-radius;
+          }
         }
       }
-      //Modify Changelog Divider
-      .changelogDivider {
-        border-top-width: 2px;
-        opacity: 0.8;
-      }
+    }
+
+    .darkImageFrame {
+      display: none;
     }
   }
 
@@ -1044,6 +1334,11 @@ article img {
     }
   }
 
+  //##############################Dark Theme Top Nav###################################
+  .changelogSubscribeModalInner {
+    background-color: colors.$grey100;
+  }
+
   //##############################Dark Theme Body###################################
   ._w-full > main {
     color: colors.$base100;
@@ -1278,23 +1573,143 @@ article img {
     }
 
     //Modify Changelog
+    .playButton {
+      &:focus-visible {
+        outline: none;
+        border-radius: 8px;
+        border: 2px solid #7856ff;
+        background: #242133;
+        box-shadow: 0px 0px 0px 5px rgba(176, 148, 255, 0.3);
+      }
+    }
+
+    .thumbnailPlayButtonWrapper {
+      .thumbnailPlayButton {
+        color: colors.$white;
+      }
+
+      z-index: 1;
+      border-radius: 16px;
+      border: 1px solid colors.$purple200;
+      background: rgba(234, 231, 231, 0.05);
+      box-shadow: 0px 4px 8px 0px rgba(0, 0, 0, 0.04);
+
+      &:hover {
+        background: #40385c;
+        border: 1px solid colors.$purple200;
+        box-shadow: 0px 4px 8px 0px rgba(0, 0, 0, 0.04);
+      }
+
+      &:active {
+        background: #322d47;
+        border: 1px solid colors.$purple200;
+        box-shadow: 0px 2px 4px 0px rgba(0, 0, 0, 0.04);
+      }
+
+      &:focus-visible {
+        background: rgba(234, 231, 231, 0.05);
+        border: 2px solid colors.$purple100;
+        box-shadow: 0px 0px 0px 5px rgba(176, 148, 255, 0.3);
+        outline: none;
+      }
+    }
+
+    .videoIconLight {
+      display: none;
+    }
+
+    .changelogMainContainerWrapper {
+      background: colors.$grey100;
+    }
     .changelogMainContainer {
+      background-color: colors.$darkbg;
+
+      .changelogTitle {
+        color: colors.$white;
+      }
+
+      .changelogHeader .changelogHeaderLeft span {
+        color: colors.$white;
+      }
+
+      .changelogHeaderImgLight {
+        display: none;
+      }
+
+      .changelogIndexFilterBorder {
+        border-top: 1px solid colors.$black;
+      }
+
+      .changelogFilterButton {
+        border-radius: 4px;
+        color: colors.$white;
+
+        &:hover {
+          background: rgba(176, 148, 255, 0.2);
+        }
+
+        &:active {
+          background: rgba(176, 148, 255, 0.1);
+        }
+
+        &:focus-visible {
+          background: colors.$darkbg;
+          border-radius: 8px;
+          border: 2px solid colors.$purple100;
+          border: 2px solid colors.$purple40;
+          box-shadow: 0px 0px 0px 5px rgba(176, 148, 255, 0.25);
+          outline: none;
+        }
+
+        &.active {
+          background: colors.$purple140;
+        }
+      }
+
+      .changelogIndexItem {
+        border-bottom: 1px solid colors.$black;
+
+        .changelogDate {
+          color: rgba(255, 255, 255, 0.55);
+        }
+
+        .changelogIndexItemBody {
+          color: colors.$white;
+        }
+
+        .changelogReadMoreLink {
+          color: colors.$white;
+        }
+
+        button {
+          color: colors.$white !important;
+        }
+      }
+
       //load more buttons
       .changelogLoadMoreButtonContainer {
         .changelogLoadMoreButton {
-          background-color: colors.$purple140 !important;
+          border: 2px solid colors.$purple100;
           color: colors.$purple20 !important;
-        }
-        .changelogLoadMoreButton:hover {
-          box-shadow: 0 4px 6px -1px rgb(0 0 0 / 0.1),
-            0 2px 4px -2px rgb(0 0 0 / 0.1);
-          background-color: colors.$purple100 !important;
+
+          &:hover {
+            box-shadow: 0 4px 6px -1px rgb(0 0 0 / 0.1),
+              0 2px 4px -2px rgb(0 0 0 / 0.1);
+            border-radius: $border-radius !important;
+            transition: border-radius;
+          }
         }
       }
-      //changelog divider
-      .changelogDivider {
-        border-top-width: 1px !important;
-        opacity: 0.4 !important;
+    }
+
+    .lightImageFrame {
+      display: none;
+    }
+
+    .changelogPostHeader {
+      //date of changelog entry
+      .changelogDate {
+        color: rgba(255, 255, 255, 0.55);
       }
     }
   }
