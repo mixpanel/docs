@@ -2,14 +2,37 @@
 
 ## Board-wide Date Ranges and Filters
 
-Boards allow you to alter some aspects of the queries within each of the reports on that board, making it simple to ensure every report is showing results from a consistent set of data.  Both date ranges and filters can be added by clicking "Add Filter" at the top right of the board.  This will open a row, shown below, where the date range can be selected, and filters can be applied.
+Boards allow you to alter some aspects of the queries within each of the reports on that board, making it simple to ensure every report is showing results from a consistent set of data. All board-wide settings can be accessed from the top of the screen, right below the header. Select the desired date range on the left side, or select a filter by pressing the "+" button on the right side. By default, board-wide date ranges and filters are temporary. If you wish to save the date range and filter selections you've made to the board, so they'll appear for all users, click "Save", to the right of the filters. Similarly, you can press "Cancel" to discard the changes.
 
-![/Screen_Shot_2022-01-07_at_2.35.49_PM.png](/Screen_Shot_2022-01-07_at_2.35.49_PM.png)
+~[board filters](/board-filters.png)
 
-By default, date ranges and filters are temporary, allowing you to explore the data without overwriting the board. But, if you wish to save the date range and filter selections you've made to the board, so they'll appear for other users as well, click "Save to Board."
-
-**Note**
 Applying date ranges and filters on a board does not change the queries saved in each individual report; instead, it only changes the data displayed when you view those reports in the current board. If you click into a report from the board, however, Mixpanel will maintain the date range and filters to ensure you see data consistent between the board and report. Navigate to the report on its own, though, and you'll see the report's original saved date range and filters.
+
+Board-wide settings are also not modifiable in the report. Since the board-wide settings are always applied, we maintain them so they don't affect report state and to keep consistent results once a user navigates back to the board.
+
+### Board-wide Date Range
+
+By default, the board respects the date range selected by each individual report. You can set a date range board-wide. All date range settings are the same as in reports, so any date range you select in boards will be the same as if it were selected in a report.
+
+### Board-wide Filters
+
+Press the plus button to add a filter. Filters are applied to every report in the board. Note that the filters set from the board could conflict with filters on individual reports, leading to unexpected results. All board-wide filters are added to the "Filter" section in reports
+
+#### Board-wide Filter Settings
+
+~[board filter settings](/board-filter-settings.png)
+
+Filter Settings are only available for enterprise plans.
+
+Filter settings allow for additional configuration on boards, meant for boards that are highly consumed or are standardized across a set of filters. Filter settings are only available for string filters using "is" or "is not" operators.
+
+- "Limit filter values to the selection above"
+  Reduces the set of values available when accessing the filter to the choices selected. This is useful when there are a large set of filter values, and the board creator wants to focus in only on a certain set of filter values
+
+- "Start filter with nothing selected"
+  Starts the filter as not filtering for anything. This is useful when the filter property is known, or when wanting to focus to a particular property. This also saves time from users from having to select this property.
+
+These settings can be used in combination, so that a filter property can be selected, and only be allowed to choose a particular subset of values.
 
 ## Board Subscriptions
 
