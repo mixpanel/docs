@@ -1,0 +1,56 @@
+# copy pasted from analytics/blob/master/.github/actions/create-or-update-comment/action.yaml
+name: Create or update comment
+description: Create or update the contents of an issue comment
+inputs:
+  issue-number:
+    description: 'The number of the issue or pull request to write the comment to'
+    required: true
+  key:
+    description: 'Unique identifier for this comment in the context of a given issue or pull request'
+    required: true
+  body:
+    description: 'Body of the comment'
+    required: true
+runs:
+  using: 'composite'
+  steps:
+    - name: Create or update comment
+      uses: actions/github-script@v6
+      env:
+        ISSUE_NUMBER: ${{ inputs.issue-number }}
+        KEY: ${{ inputs.key }}
+        BODY: ${{ inputs.body }}
+      with:
+        script: |
+          const issue_number = process.env.ISSUE_NUMBER
+          const key = process.env.KEY
+          const body = process.env.BODY
+          const owner = context.repo.owner;
+          const repo = context.repo.repo;
+
+          const keyComment = `<!-- ${ key } -->`;
+          const bodyWithKey = keyComment + "\n" + body
+
+          const allComments = await github.paginate(github.rest.issues.listComments, {issue_number, owner, repo});
+
+          const existingComment = allComments
+            .reverse()
+            .find(comment =>
+              comment.body && comment.body.startsWith(keyComment)
+            )
+
+          if (existingComment) {
+            await github.rest.issues.updateComment({
+              owner,
+              repo,
+              comment_id: existingComment.id,
+              body: bodyWithKey,
+            });
+          } else {
+            await github.rest.issues.createComment({
+              owner,
+              repo,
+              issue_number,
+              body: bodyWithKey,
+            });
+          }
