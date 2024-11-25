@@ -62,7 +62,7 @@ Choose your current implementation method for Adobe Analytics and follow the bel
 
 ### Warehouse Connectors
 
-[Mixpanel Warehouse Connectors](https://docs.mixpanel.com/docs/tracking-methods/data-warehouse/overview), allows you to natively import data from Snowflake, BigQuery or Redshift into Mixpanel. With this feature, you can set up recurring syncs from your data warehouse and ensure that Mixpanel is always in sync with your trusted data.
+[Mixpanel Warehouse Connectors](/docs/tracking-methods/warehouse-connectors), allows you to natively import data from Snowflake, BigQuery or Redshift into Mixpanel. With this feature, you can set up recurring syncs from your data warehouse and ensure that Mixpanel is always in sync with your trusted data.
 
 ### Client-side SDKs & Server-side SDKs
 
@@ -146,7 +146,7 @@ For most cases, we recommend starting fresh when migrating from Adobe Analytics.
 To backfill data, we recommend:
 
 - If you already have your historical data in a warehouse,
-  - Utilize our [warehouse connector](https://docs.mixpanel.com/docs/tracking-methods/data-warehouse/overview), to send historical data into a separate Mixpanel project
+  - Utilize our [warehouse connector](/docs/tracking-methods/warehouse-connectors), to send historical data into a separate Mixpanel project
 - If you have a CDP, this should be straightforward
     - Utilize the CDPs backfilling feature, like [Segment Replay](https://segment.com/docs/guides/what-is-replay/), to re-send historical data to Mixpanel
 - For any other implementation method
