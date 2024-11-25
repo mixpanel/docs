@@ -107,7 +107,7 @@ curl --request GET \
 If you choose to export a subset of events to bring over to your new project, you can leverage the `event` or `where` parameters to query for the specific event data you’re looking to migrate.
 
 ## Step 4: Transform Data
-Upload the exported event data to your storage object, the process here may vary depending on the data warehouse you use. Our [warehouse connector](/docs/tracking-methods/data-warehouse) supports integrations with BigQuery, Snowflake, Databricks, and Redshift.
+Upload the exported event data to your storage object, the process here may vary depending on the data warehouse you use. Our [warehouse connector](/docs/tracking-methods/warehouse-connectors) supports integrations with BigQuery, Snowflake, Databricks, and Redshift.
 
 Checklist before running transformations:
 

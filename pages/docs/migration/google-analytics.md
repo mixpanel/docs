@@ -17,7 +17,7 @@ Given GA4 has a similar data format to Mixpanel, it is possible to migrate some 
 At a high-level, the migration consists of 4 steps:
 1. Set up a new Mixpanel project which is on [Simplified ID Merge system](/docs/tracking-methods/id-management#identity-merge-apis). 
 2. Set up GA4 BigQuery Export following the instructions [here](https://support.google.com/analytics/answer/9823238?hl=en#zippy=%2Cin-this-article). 
-3. Set up [Mixpanel Warehouse Connector](/docs/tracking-methods/data-warehouse/overview) to initiate data sync from BigQuery to Mixpanel  
+3. Set up [Mixpanel Warehouse Connector](/docs/tracking-methods/warehouse-connectors) to initiate data sync from BigQuery to Mixpanel  
 
 ##### Pre-migration data audit
 Before migrating your data to Mixpanel, you should conduct a data audit to quickly identify the key events and properties that you want to migrate over. You can learn more about the importance of pre-migration data audit [here](/docs/migration#data-audit).  
@@ -69,9 +69,9 @@ GROUP BY up.value.user_property_name
 ```
 
 ##### Setting up BigQuery Warehouse Connectors 
-Our [Warehouse Connector](/docs/tracking-methods/data-warehouse/overview) will automatically detect GA4 datasets in BigQuery. You can use this to migrate your historical data from BigQuery to Mixpanel as well as seamlessly import new data going forward.
+Our [Warehouse Connector](/docs/tracking-methods/warehouse-connectors) will automatically detect GA4 datasets in BigQuery. You can use this to migrate your historical data from BigQuery to Mixpanel as well as seamlessly import new data going forward.
 
-Once you've given your new Mixpanel project, that is leveraging Simplified ID Merge, access to your [BigQuery Instance](/docs/tracking-methods/data-warehouse#step-1-connect-a-warehouse) in the [Warehouse Sources](https://mixpanel.com/report/settings/%23project%2F%24project_id%24%2Fwarehousesources/) tab of your project settings it's time to import your data. Navigate to [Project Settings → Warehouse Data](https://mixpanel.com/report/settings/%23project%2F%24project_id%24%2Fwarehousedata/) and click +Event Table.
+Once you've given your new Mixpanel project, that is leveraging Simplified ID Merge, access to your [BigQuery Instance](/docs/tracking-methods/warehouse-connectors#step-1-connect-a-warehouse) in the [Warehouse Sources](https://mixpanel.com/report/settings/%23project%2F%24project_id%24%2Fwarehousesources/) tab of your project settings it's time to import your data. Navigate to [Project Settings → Warehouse Data](https://mixpanel.com/report/settings/%23project%2F%24project_id%24%2Fwarehousedata/) and click +Event Table.
 
 Under setup select your BigQuery source you gave Mixpanel access to. In the dataset drop-down, choose your GA4 dataset, then select the GA4 events table. Your Event Name, Event Time, and Distinct ID columns will automatically map for you. If you're tracking users in an anonymous state with GA4 you can select user_pseudo_id for the Device ID column. 
 
