@@ -340,7 +340,7 @@ Update your tech stack with the new project’s token, API secret, and service a
 
 5. <b>Data Warehouse</b> integration: 
 
-   Consider using our [Mixpanel Warehouse Connector](/docs/tracking-methods/data-warehouse/overview) which supports Simplified ID Merge. Make sure that events from the data warehouse contains information that can be mapped to the reserved properties `$device_id` and `$user_id` before setting up the connector in Mixpanel.
+   Consider using our [Mixpanel Warehouse Connector](/docs/tracking-methods/warehouse-connectors) which supports Simplified ID Merge. Make sure that events from the data warehouse contains information that can be mapped to the reserved properties `$device_id` and `$user_id` before setting up the connector in Mixpanel.
 
 For mobile apps, adoption of the latest app version may take some time. This means that users who have upgraded to the latest app version will start sending data to the new project (with Simplified ID Merge), whereas users on the older apps will continue to send data to the old project. To capture the full data, consider migrating the residual data in the old project to the new one, and repeat the process until the app adoption reaches a satisfactory level. You can find additional information about backfilling and key considerations in the [next section](#backfilling-historical-data).
 
@@ -365,7 +365,7 @@ Depending on where you data resides, there are different ways to backfill histor
    - You can use Engage API to migrate user data (APIs for both [user export](https://developer.mixpanel.com/reference/engage-query) and batched [user import](https://developer.mixpanel.com/reference/profile-batch-update) are available).
    - Consider incorporating the export and import functions from [Mixpanel-utils open source library](https://github.com/mixpanel/mixpanel-utils) in your migration script.
 
-2. <b>Mixpanel Warehouse Connector</b> - if you’ve been storing your data in a data warehouse, you can import them into Mixpanel using [Warehouse Connector](https://docs.mixpanel.com/docs/tracking-methods/data-warehouse/overview) which supports both events and user data. 
+2. <b>Mixpanel Warehouse Connector</b> - if you’ve been storing your data in a data warehouse, you can import them into Mixpanel using [Warehouse Connector](/docs/tracking-methods/warehouse-connectors) which supports both events and user data. 
 
 3. <b>Customer Data Platform (CDP)</b> - replay the historical data from CDP to Mixpanel.  
 
