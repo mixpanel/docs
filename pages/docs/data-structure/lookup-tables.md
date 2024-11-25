@@ -37,7 +37,7 @@ Then, whenever you use an event with the `song_id` property, you'll have access 
 
 The benefit is that you don't need to change your tracking code at all. You can upload this Lookup Table after the fact and it automatically joins onto all prior events or user profiles with the mapped property.
 
-We also provide an [API](https://developer.mixpanel.com/reference/replace-lookup-table) and [Warehouse Connectors](/docs/tracking-methods/data-warehouse#lookup-tables) to keep Lookup Tables synced on a recurring basis.
+We also provide an [API](https://developer.mixpanel.com/reference/replace-lookup-table) and [Warehouse Connectors](/docs/tracking-methods/warehouse-connectors#lookup-tables) to keep Lookup Tables synced on a recurring basis.
 
 ## Use Cases
 
@@ -84,7 +84,7 @@ You can also upload Lookup Tables straight from your reports. Lookup tables uplo
 
 This feature can be useful if you need to have the lookup table mapping only for a specific report or if you wish to override an existing globally mapped lookup table for a property within a report.
 
-Lookup Tables can be replaced with a fresh copy, either via our UI, [API](https://developer.mixpanel.com/reference/replace-lookup-table), or [Warehouse Connectors](/docs/tracking-methods/data-warehouse#lookup-tables).
+Lookup Tables can be replaced with a fresh copy, either via our UI, [API](https://developer.mixpanel.com/reference/replace-lookup-table), or [Warehouse Connectors](/docs/tracking-methods/warehouse-connectors#lookup-tables).
 
 ## How do I use a Lookup Table?
 
@@ -107,7 +107,7 @@ Lookup Tables have a limit of **100MB** per CSV file or roughly 1M rows. You can
 * Don't use Lookup Tables when the ID is a User ID. Instead use [User Profiles](/docs/data-structure/user-profiles). Mixpanel is more optimized for User Profiles, so they don't have any scale limits and support more opinionated workflows in our product (like clicking into a report and seeing the list of User Profiles).
 * Don't use Lookup Tables as a way to mutate events. For example, it might be tempting to have an Orders lookup table, with 1 row per Order that a customer makes. Then, you can update the Orders table whenever an order is mutated (eg: when you issue a refund). This approach will quickly run into the 100MB scale limit and will make it difficult to do the analysis you need. Instead, we recommend modeling state changes as events, which doesn't have scale limits and preserves the history of state changes. Track an `Order Completed` event and an `Order Refunded` or `Order Modified` event. You can then use our funnels report to answer questions like: "what % of orders were refunded?"
 
-A good use case for Lookup Tables are for mapping metadata that changes over time, since lookup tables can be replaced via the Mixpanel UI or programatically via [API](https://developer.mixpanel.com/reference/replace-lookup-table) or [Warehouse Connectors](/docs/tracking-methods/data-warehouse#lookup-tables), and changes are retroactive. A currency exchange rate table mapped to `Order Currency` property which can be used to convert `Order Amount`; or a region territory grouping table mapped to `Country` are good examples.
+A good use case for Lookup Tables are for mapping metadata that changes over time, since lookup tables can be replaced via the Mixpanel UI or programatically via [API](https://developer.mixpanel.com/reference/replace-lookup-table) or [Warehouse Connectors](/docs/tracking-methods/warehouse-connectors#lookup-tables), and changes are retroactive. A currency exchange rate table mapped to `Order Currency` property which can be used to convert `Order Amount`; or a region territory grouping table mapped to `Country` are good examples.
 
 ### Who has access? 
 
