@@ -19,7 +19,7 @@ To access free replays, customers will need to ensure they’re on the latest Mi
 - For customers on an existing **Free** plan:
     - Switch your plan to the latest Free plan, which includes 1M monthly events and 10k session replays. You can make this switch directly from the [pricing page](https://mixpanel.com/pricing/).
 - For customers on an existing **Growth** plan:
-    - You're on the latest plan if you purchased or edited your plan after April 2024. If you're not sure if you're on the latest plan, you confirm on the [pricing page](https://mixpanel.com/pricing/) - if you see 'Make the Switch' on the Growth plan, then you are on an older version.
+    - You're on the latest plan if you purchased or edited your plan after April 2024. If you're not sure if you're on the latest plan, you can confirm on the [pricing page](https://mixpanel.com/pricing/) - if you see 'Make the Switch' on the Growth plan, then you are on an older version.
     - You can make the switch to our latest plan directly from the [pricing page](https://mixpanel.com/pricing/).
 - Enterprise customers should contact their account manager to determine their plan status.
 
