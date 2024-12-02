@@ -262,3 +262,4 @@
 /docs/users/overview /docs/users
 /guides /guides/onboarding-overview/
 /guides/analytics-strategy /guides/plan/framework
+/docs/features/revenue_analytics /guides/launch/revenue-analytics
