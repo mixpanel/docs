@@ -8,7 +8,22 @@ When digging into customer journeys in Mixpanel’s analytics, you can understan
 
 ## Availability
 
-Session Replay is currently available as an add-on purchase for [Enterprise plans](https://mixpanel.com/pricing/). Customers on an Enterprise plan or considering upgrading are eligible to try session Replay free for 30 days as part of their Enterprise package.
+Session Replay is available on the Free, Growth, and Enterprise plans!
+
+- Customers on the Free plan have access to 10k free replays per month.
+- Customers on the Growth and Enterprise plans have access to 20k free replays per month.
+- Additional custom volumes of Session Replay are available as an add-on purchase for [Enterprise plans](https://mixpanel.com/pricing/).
+
+To access free replays, customers will need to ensure they’re on the latest Mixpanel plans:
+
+- For customers on an existing **Free** plan:
+    - Switch your plan to the latest Free plan, which includes 1M monthly events and 10k session replays. You can make this switch directly from the [pricing page](https://mixpanel.com/pricing/).
+- For customers on an existing **Growth** plan:
+    - You're on the latest plan if you purchased or edited your plan after April 2024. If you're not sure if you're on the latest plan, you confirm on the [pricing page](https://mixpanel.com/pricing/) - if you see 'Make the Switch' on the Growth plan, then you are on an older version.
+    - You can make the switch to our latest plan directly from the [pricing page](https://mixpanel.com/pricing/).
+- Enterprise customers should contact their account manager to determine their plan status.
+
+Customers will be blocked from viewing additional replays above their monthly limit (or custom add-on limit for an Enterprise plan) until they upgrade or purchase additional volumes.
 
 ## Using Session Replay
 
