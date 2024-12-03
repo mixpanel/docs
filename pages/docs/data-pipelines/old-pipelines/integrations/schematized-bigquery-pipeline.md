@@ -3,7 +3,7 @@
 This guide describes how Mixpanel exports your data to a [Google BigQuery](https://cloud.google.com/bigquery/) dataset.  
 ## Design
 
-There are currently two ways to export mixpanel data into big.
+There are currently two ways to export mixpanel data into BigQuery.
 1. Exporting into Customer managed BigQuery (recommended)
 2. Exporting into Mixpanel managed BigQuery  
 
@@ -97,7 +97,7 @@ We recommend exporting Mixpanel data into customer-managed BigQuery, for this th
    **BigQuery Job User**
      * Go to **IAM &Admin** in your Google Cloud Console.
      * Click **+ ADD** to add principals
-     * Add new principle "export-upload@mixpanel-prod-1.iam.gserviceaccount.com" and set role as "BigQuery Job User", and save.
+     * Add new principal "export-upload@mixpanel-prod-1.iam.gserviceaccount.com" and set role as "BigQuery Job User", and save.
        ![image](/230698732-4dadbccf-1eeb-4e64-a6c7-8926eb49e5cc.png)
     
    **BigQuery Data Owner**
@@ -105,7 +105,7 @@ We recommend exporting Mixpanel data into customer-managed BigQuery, for this th
      * Open the dataset you want mixpanel to export to.
      * Click on **sharing** and **permissions** in the drop down. 
      * In the Data Permissions window click on **Add Principal** 
-     * Add new principle "export-upload@mixpanel-prod-1.iam.gserviceaccount.com" and set role as "BigQuery Data Owner", and save.    
+     * Add new principal "export-upload@mixpanel-prod-1.iam.gserviceaccount.com" and set role as "BigQuery Data Owner", and save.    
        ![image](/230698735-972aedb5-1352-4ebc-82c4-ef075679779b.png)
 
 3. You need to pass this dataset and gcp project id as params when you [create your pipeline](https://developer.mixpanel.com/reference/create-warehouse-pipeline)

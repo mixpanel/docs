@@ -34,7 +34,7 @@ Mixpanel requires two permissions to manage the dataset:
 
 - Navigate to **IAM & Admin** in your Google Cloud Console.
 - Click **+ ADD** to add principals
-- Add new principle `export-upload@mixpanel-prod-1.iam.gserviceaccount.com` and set the role as `BigQuery Job User`
+- Add new principal `export-upload@mixpanel-prod-1.iam.gserviceaccount.com` and set the role as `BigQuery Job User`
 - Click the **Save** button.
 
 ![image](/230698732-4dadbccf-1eeb-4e64-a6c7-8926eb49e5cc.png)
@@ -45,7 +45,7 @@ Mixpanel requires two permissions to manage the dataset:
 - Open the dataset intended for Mixpanel exports.
 - Click on **Sharing** and **Permissions** in the drop down.
 - In the Data Permissions window, click on **Add Principal**
-- Add new principle `export-upload@mixpanel-prod-1.iam.gserviceaccount.com` and set the role as `BigQuery Data Owner`, and save.
+- Add new principal `export-upload@mixpanel-prod-1.iam.gserviceaccount.com` and set the role as `BigQuery Data Owner`, and save.
 
 ![image](/230698735-972aedb5-1352-4ebc-82c4-ef075679779b.png)
 

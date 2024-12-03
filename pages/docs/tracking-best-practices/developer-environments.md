@@ -48,7 +48,7 @@ An organization is charged based on data across all projects. This means that if
 
 Generally speaking, Mixpanel users have more flexibility and get more valuable insights when combining the tracking of multiple platforms into a single project to study their overall user experience across platforms.
 
-While we generally recommend sending data from all platforms to a single project, it’s also best practice to create separate development and production projects to avoid cluttering production data with test data, regardless of platform. If you send events from all platforms to one project, you can still differentiate actions taken on your app vs. website via segmentation and filtering using the Operating System property (the Mixpanel JavaScript, iOS, and Android libraries store the Operating System property by default.
+While we generally recommend sending data from all platforms to a single project, it’s also best practice to create separate development and production projects to avoid cluttering production data with test data, regardless of platform. If you send events from all platforms to one project, you can still differentiate actions taken on your app vs. website via segmentation and filtering using the Operating System property (the Mixpanel JavaScript, iOS, and Android libraries store the Operating System property by default).
 
 If you decide to send events from multiple platforms to the same Mixpanel projects, follow these guidelines for the best results:
 
