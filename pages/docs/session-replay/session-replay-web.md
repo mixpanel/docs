@@ -8,7 +8,22 @@ When digging into customer journeys in Mixpanel’s analytics, you can understan
 
 ## Availability
 
-Session Replay is currently available as an add-on purchase for [Enterprise plans](https://mixpanel.com/pricing/). Customers on an Enterprise plan or considering upgrading are eligible to try session Replay free for 30 days as part of their Enterprise package.
+Session Replay is available on the Free, Growth, and Enterprise plans!
+
+- Customers on the Free plan have access to 10k free replays per month.
+- Customers on the Growth and Enterprise plans have access to 20k free replays per month.
+- Additional custom volumes of Session Replay are available as an add-on purchase for [Enterprise plans](https://mixpanel.com/pricing/).
+
+To access free replays, customers will need to ensure they’re on the latest Mixpanel plans:
+
+- For customers on an existing **Free** plan:
+    - Switch your plan to the latest Free plan, which includes 1M monthly events and 10k session replays. You can make this switch directly from the [pricing page](https://mixpanel.com/pricing/).
+- For customers on an existing **Growth** plan:
+    - You're on the latest plan if you purchased or edited your plan after April 2024.
+    - You can make the switch to our latest plan directly from the [pricing page](https://mixpanel.com/pricing/).
+- Enterprise customers should contact their account manager to determine their plan status.
+
+Customers will be blocked from viewing additional replays above their monthly limit (or custom add-on limit for an Enterprise plan) until they upgrade or purchase additional volumes.
 
 ## Using Session Replay
 
@@ -120,6 +135,12 @@ For extensions like uBlock, you can navigate to "My Filters" in the extension se
 Mixpanel looks for the `$mp_replay_id` property on your events in order to determine which replay it belongs to. If you have instrumented both Replays and Events using the Mixpanel JavaScript SDK, the `$mp_replay_id` will automatically be added to events sent by the SDK.
 
 For CDP implementations, look below for instructions on how to configure the SDKs together. To get the relevant Session Replay properties from the SDK, use `mixpanel.get_session_recording_properties()`. [See documentation](/docs/tracking-methods/sdks/javascript#get-replay-properties).
+
+#### Server Side Stitching (Beta)
+
+Mixpanel can infer the replay an event happened in by looking at the distinct ID and time that the replay ocurred. This is especially useful if you have events coming in from multiple sources, like your server or via warehouse import and it doesn't make sense to pass around the value of `mixpanel.get_session_recording_properties()`. NOTE: we still recommend including these properties on your client side events to guarantee accuracy.
+
+In order for Server Side Stitching to work, just ensure that the Mixpanel Javascript SDK calls `identify()` at some point with the user's unique Distinct ID. [See managing user identity](/docs/tracking-methods/sdks/javascript#managing-user-identity).
 
 ### Can I use Session Replay with a CDP?
 
