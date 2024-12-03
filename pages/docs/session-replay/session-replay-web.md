@@ -116,6 +116,13 @@ If instead of random sampling, you want to use conditional logic to control whic
 
 If you want to only record certain parts of a single-page application with no new mixpanel.init calls, you can also use our [Start / Stop methods](/docs/tracking-methods/sdks/javascript#session-replay-methods). 
 
+### What happens when I reach my Session Replay limit?
+For customers who have purchased our Session Replay add-on, you will be billed for replays ingested beyond your purchased amount at the per unit rate. Before this happens, we'll send email notifications warning that your limit is approaching to users with  “Owner” or “Billing Admin” permissions over your Mixpanel organization.
+
+For customers using Session Replay who have not purchased our add-on (for example, using complimentary replays included with your Free, Growth, or Enterprise plan), replays above your complimentary amount will not be viewable until the customer pays for overage replays (Enterprise plan only), or upgrades plan. Before this happens, users with  “Owner” or “Billing Admin” permissions over your Mixpanel organization will be notified that their limit is approaching.
+
+Mixpanel reserves the right to stop ingesting replays once a customer collects replays beyond their purchased / allocated amount. To minimize disruption to your team, we recommend monitoring your usage in Mixpanel’s user interface and, if applicable to your  account, working with your Account Manager to ensure you have the right plan for your session replay needs.
+
 ### How soon are Replays available for viewing after a session begins?
 
 There is about a ~1 minute delay between when recordings are captured and when they appear in Mixpanel.  
@@ -299,6 +306,8 @@ We've tested the SDK extensively and it generally has minimal impact on how your
 ### How do Session Replays work when navigating between pages that are full page loads?
 
 If your web application relies on full page loads (where the entire page is reloaded when navigating from one page to another), a new Session Replay recording `$mp_replay_id` will be created when navigating to each page. This occurs because the Mixpanel instance is reloaded again when navigating between pages.
+
+
 
 
 ## Appendix: Session Replay Privacy Controls
