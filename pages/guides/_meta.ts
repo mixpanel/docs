@@ -7,6 +7,6 @@ export default {
 	"plan": "Plan",
 	"implement": "Implement",
 	"launch": "Launch",
-	"beyond-onboarding": "Beyond Onboarding",
-    "analytics-strategy": "Analytics Strategy Workshop"
+	"playbooks": "Playbooks",
+	"beyond-onboarding": "Beyond Onboarding"
 }

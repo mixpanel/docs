@@ -61,4 +61,4 @@ You can also provision Groups of users in Azure to Mixpanel [Teams](/docs/orgs-a
 
 Note that it is advised you turn on **IDP Managed Access** if you are using SCIM Provisioning. Otherwise, Okta and Mixpanel might fall out of sync.
 
-Tenant URL: https://mixpanel.com/api/app/scim/v2
+Tenant URL: `https://mixpanel.com/api/app/scim/v2`
