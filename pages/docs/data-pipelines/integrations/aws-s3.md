@@ -1,6 +1,6 @@
 # AWS S3
 
-Mixpanel allows you to export events and poeple data into AWS S3 through [Json Pipelines](/docs/data-pipelines)
+Mixpanel allows you to export events and people data into AWS S3 through [Json Pipelines](/docs/data-pipelines)
 
 ## Setting S3 Permissions
 
