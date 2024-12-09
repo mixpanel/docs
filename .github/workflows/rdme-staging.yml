@@ -39,7 +39,7 @@ jobs:
           fi
 
       - name: Push docs to staging env 🚀
-        uses: readmeio/rdme@v8
+        uses: readmeio/rdme@v9
         with:
           rdme: docs ./reference --key=${{ secrets.README_API_KEY }} --version=0.0-pr-${{ github.event.number }}
 
