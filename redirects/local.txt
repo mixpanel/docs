@@ -263,3 +263,4 @@
 /guides /guides/onboarding-overview/
 /guides/analytics-strategy /guides/plan/framework
 /docs/features/revenue_analytics /guides/launch/revenue-analytics
+/docs/tracking-methods/data-warehouse#mirror /docs/tracking-methods/warehouse-connectors#mirror 
