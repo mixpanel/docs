@@ -51,6 +51,8 @@ To better understand the goals of investing in a project migration, it’s best 
 
 - **Feedback mechanisms**, such as having Project Managers create a shared project plan where stakeholders can stay informed about progress, decisions, and issues, can help generate greater visibility throughout the project migration process.
 
+  [Example Data Migration Project Plan](https://docs.google.com/spreadsheets/d/1zSh2OuFuIejieZ7BGTDM6ovdIQ9nuq7DYgpgEeePoU0/edit?gid=0#gid=0)
+
 # Steps
 ## Step 1: Create New Project
 Go to your Mixpanel UI, select the project down-drop at the top left-hand corner of your window, and select “Create Project.”
@@ -404,3 +406,22 @@ Saved entities, such as reports, boards, custom events, custom properties, cohor
 - **Boards & Reports**: Utilize [Move](/docs/boards/advanced#move-board) to transfer saved boards and reports across the same region (i.e. US, EU data centers). Permissions are managed by group admins allowing Boards to be moved across Projects or Organizations, depending on your use case.
     - Move does not support the migration of custom events, custom properties, cohorts, and lexicon metadata. This would need to be done manually. Review these lists with stakeholders and decide if any of these saved entities would need to be recreated in the new project to set your end users up for success.
     - Lexicon metadata can be [retrieved](https://developer.mixpanel.com/reference/list-all-schemas-for-project) from existing projects and [recreated](https://developer.mixpanel.com/reference/upload-schemas-for-project) in the new project via our Lexicon Schemas API.
+
+## Ongoing Optimization
+As organizations grow and new use cases become available to become analyzed it presents an opportunity for data to drift from the governed processes we put in place throughout this playbook. Having a process in place for new teams to follow allows for your customer to scale cleanly. 
+
+Leveraging our in-product data governance tools can help support ongoing structure throughout your customers projects. Implementing the use of “verified” metrics, events, and formulas helps end users identify trusted content across the organization. Once your trusted governance owner(s) verify content, a blue checkmark badge will be displayed in the query builder as well as within a dedicated category within the query builder to help users quickly filter to see only trusted content.
+
+Having pinned and favorited boards for new users to jump into as they familiarize themselves with the data is a great place to start. We see the most success when companies have a trusted metrics board for each team or product that leverages this. These boards not only guide users in exploring new use cases but also ensure they leverage the correct events and properties to get the answers they need.
+
+Our in-product data standards tooling empowers your organization to scale your data operations by acting on your data at scale through the a rule based system.
+
+Today, you can define the following standards:
+
+- All my events must be [X] case
+- All my events must include a description
+- All my events must include an owner
+
+If Data Standards are violated, you can define actions to be automatically applied. As a result, you can ensure your data quality stays high, without needing to invest corresponding amounts of time enforcing manually. 
+
+By enforcing continuous governance practices and leveraging our in-product tooling, you can proactively address potential inconsistencies and maintain alignment across your new and existing data in Mixpanel, fostering reliability and long-term data quality.
