@@ -20,14 +20,14 @@ Before you enable Session Replay for a large audience, we recommend testing in a
 As of today, Session Replay is available for web-based applications (including mobile web) on the Enterprise Plan and closed Alpha testing for native iOS apps. Android Alpha testing is expected in early 2025.
 
 For any questions about early mobile access, please reach out to your Account Manager.
- 
-### Can I prevent Session Replay from recording sensitive content?
-
-By default, all on-screen text elements are masked in replays. Additionally, you can customize how you initialize our SDK to fully control (1) where to record and (2) whom to record. For more details, please see our [implementation docs](/docs/tracking-methods/sdks/javascript#session-replay).
 
 ### How long are replays stored?
 
 30 days.
+ 
+### Can I prevent Session Replay from recording sensitive content?
+
+By default, all on-screen text elements are masked in replays. Additionally, you can customize how you initialize our SDK to fully control (1) where to record and (2) whom to record. For more details, please see our [implementation docs](/docs/tracking-methods/sdks/javascript#session-replay).
 
 ### How can I estimate how many replays I'll have?
 If you already use Mixpanel, the simplest way to estimate the amount of replays is to use a proxy metric for how many page loads you have. If you use timeout based query sessions, Total Session Start events in the Insights report could be a good estimate.
@@ -46,6 +46,25 @@ If instead of random sampling, you want to use conditional logic to control whic
 
 If you want to only record certain parts of a single-page application with no new mixpanel.init calls, you can also use our [Start / Stop methods](/docs/tracking-methods/sdks/javascript#session-replay-methods). 
 
+### How does Session Replay affect my website's performance?
+
+Mixpanel leverages the open-source library, [rrweb](https://github.com/rrweb-io/rrweb), to power Session Replay. Both rrweb and Mixpanel are designed with the highest standards of performance in mind.
+
+How the SDK works on your site – the gist:
+* Initial Snapshot: When recording starts, rrweb takes a snapshot of the entire webpage's structure (the DOM), assigning unique IDs to each element for change tracking.
+* Change Detection: Asynchronously monitors any changes that occur to the DOM using MutationObserver, minimizing work so that we don't need to keep taking full snapshots.
+* User Interactions: Listens for actions like clicks and mouse movements and throttles any high frequency events.
+* Collection & Delivery: Mixpanel collects the recording data and sends it to our servers in batches every 10 seconds.
+* Optimized Compression: Before sending, Mixpanel will compress the payload using the asynchronous CompressionStream API. This will optimize bandwidth while not blocking the UI thread.
+
+We've tested the SDK extensively and it generally has minimal impact on how your website performs. The initial snapshot takes a bit of work, and naturally, more complex and interactive pages generate more data for rrweb and Mixpanel to handle. So, it's always a good practice to do some performance testing after you've implemented Session Replay, just to be sure everything's running smoothly.
+
+### Why can't I view Replays from my Insights or Funnels chart?
+
+Mixpanel looks for the `$mp_replay_id` property on your events in order to determine which replay it belongs to. If you have instrumented both Replays and Events using the Mixpanel JavaScript SDK, the `$mp_replay_id` will automatically be added to events sent by the SDK.
+
+For CDP implementations, look below for instructions on how to configure the SDKs together. To get the relevant Session Replay properties from the SDK, use `mixpanel.get_session_recording_properties()`. [See documentation](/docs/tracking-methods/sdks/javascript#get-replay-properties).
+
 ### Why does it say the player failed to load?
 
 In order to maintain a high standard of security, Mixpanel runs your session replays in an isolated domain through an iframe. Sometimes, this domain may be blocked by an ad blocker or certain browser settings. Please try disabling any ad blockers. 
@@ -56,11 +75,9 @@ For extensions like uBlock, you can navigate to "My Filters" in the extension se
 @@||mxpnl.com^$domain=mxpnl.com
 ```
 
-### Why can't I view Replays from my Insights or Funnels chart?
+### How do Session Replays work when navigating between pages that are full page loads?
 
-Mixpanel looks for the `$mp_replay_id` property on your events in order to determine which replay it belongs to. If you have instrumented both Replays and Events using the Mixpanel JavaScript SDK, the `$mp_replay_id` will automatically be added to events sent by the SDK.
-
-For CDP implementations, look below for instructions on how to configure the SDKs together. To get the relevant Session Replay properties from the SDK, use `mixpanel.get_session_recording_properties()`. [See documentation](/docs/tracking-methods/sdks/javascript#get-replay-properties).
+If your web application relies on full page loads (where the entire page is reloaded when navigating from one page to another), a new Session Replay recording `$mp_replay_id` will be created when navigating to each page. This occurs because the Mixpanel instance is reloaded again when navigating between pages.
 
 ### Can I use Session Replay with a CDP?
 
