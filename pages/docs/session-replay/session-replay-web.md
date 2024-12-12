@@ -35,7 +35,7 @@ Session Replay can be accessed in three places:
 
 ### From User Profile page
 
-In any user’s profile page, Click the ‘View Replays’ button to watch replays from that user. From here, you will be taken to our Replay Player.
+In any user’s profile page, click the ‘View Replays’ button to watch replays from that user. From here, you will be taken to our Replay Player.
 
 ![replayProfileEntry](/replayProfileEntryPoint.png)
 
@@ -136,6 +136,10 @@ For extensions like uBlock, you can navigate to "My Filters" in the extension se
 ```
 @@||mxpnl.com^$domain=mxpnl.com
 ```
+
+### Why don't I see the ‘View Replays’ button?
+
+You won't see the 'View Replays' button if your Organization is on an older plan. You will need to update to the [latest plan](https://docs.mixpanel.com/docs/session-replay/session-replay-web#availability) to view session replays. 
 
 ### Why can't I view Replays from my Insights or Funnels chart?
 
