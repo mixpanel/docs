@@ -842,9 +842,8 @@ article img {
 
     .changelogMainContainer {
       background-color: colors.$lightbg;
-      border-right: 1px solid colors.$lightbg;
-      border-left: 1px solid colors.$lightbg;
-      box-shadow: 0px 0px 24px 0px rgba(0, 0, 0, 0.06);
+      border-right: 1px solid colors.$base120;
+      border-left: 1px solid colors.$base120;
 
       .changelogTitle {
         color: colors.$purple200;
