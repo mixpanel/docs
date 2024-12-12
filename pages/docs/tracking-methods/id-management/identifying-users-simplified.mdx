@@ -186,14 +186,6 @@ def track_to_mp(request, event_name, properties):
 
   # Note: leave the first argument blank here, since we're passing $device_id and $user_id as properties.
   mp.track("", event_name, properties)
-
-def identify_user(request):
-  properties = {
-    "$device_id": uuid.uuid4(),
-    "$identified_id": request.user.username
-
-  }
-  track_to_mp(request, "$identify", properties)
 ```
 ## Best Practices
 
