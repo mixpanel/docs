@@ -7,7 +7,10 @@ Mixpanel Session Replay is the fastest way to understand the whole picture about
 When digging into customer journeys in Mixpanel’s analytics, you can understand “**where** do customers drop-off?” And now, Mixpanel Session Replay enables you to quickly follow-up with, “**why** do customers drop off?”
 
 ## Implementation
-Session Replay is not enabled by default; enabling the feature requires instrumentation beyond the standard Mixpanel instrumentation. However, in most cases, implementation is extremely simple, only requiring a single line of code to be changed. Our documentation on how to implement Session Replay can be found [here](/docs/tracking-methods/sdks/javascript#session-replay).
+Session Replay is not enabled by default; enabling the feature requires instrumentation beyond the standard Mixpanel instrumentation. However, in most cases, implementation is extremely simple, only requiring a single line of code to be changed. 
+
+- Our documentation on how to implement Session Replay with our Javascript SDK can be found [here](/docs/tracking-methods/sdks/javascript#session-replay)
+- Our documentation on how to implement Session Replay with CDPs (like Segment and mParticle) can be found [here](/docs/session-replay/session-replay-web#can-i-use-session-replay-with-a-cdp).
 
 Replays sent via your implementation will only be viewable in the project they were ingested in and will not be available to other projects in your org.
 
