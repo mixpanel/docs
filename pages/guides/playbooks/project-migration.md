@@ -39,6 +39,8 @@ To better understand the goals of investing in a project migration, it’s best 
     - **Identify what is in scope** for this migration. Do you want to bring all data from all projects into one or select a subset of data to retain?
 - **Timeline and Milestones:**
     - **Create a high-level timeline** that outlines key phases of the migration, such as planning, execution, validation, and post-migration review. This will help keep the project on schedule.
+        - **Best practice:**
+            - For larger migrations, the planning phase can become more complex. Using a phased approach to break down the data migration process, with multiple QA checkpoints along the way, helps identify and resolve issues early. This approach reduces the risk of discovering problems in later stages and minimizes the need to reimport quality improvements in subsequent phases.        
 
 **2. Identify Key Stakeholders and Define Owners**
 
