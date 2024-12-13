@@ -1,22 +1,24 @@
 # Session Replay (iOS): Watch playbacks of user digital experiences
 
-# Overview
+## Overview
 
-Welcome to the Mixpanel Session Replay iOS SDK(Closed Alpha)!
+Mixpanel Session Replay is the fastest way to understand the whole picture about your customers and make better product decisions, by combining quantitative and qualitative user insights. 
 
-Mixpanel Session Replay helps you quickly understand your customers and make better product decisions by combining quantitative and qualitative user insights.
+When digging into customer journeys in Mixpanel’s analytics, you can understand “**where** do customers drop-off?” And now, Mixpanel Session Replay enables you to quickly follow-up with, “**why** do customers drop off?”
 
-# Availability
+## Availability
 
 Currently, iOS Session Replay is in invite-only Alpha access for customers on our Enterprise plan.
 
 For any questions about Session Replay or iOS Alpha access, please reach out to your Account Manager. Note: as our Alpha program is early access, our functionality may have bugs and cause crashes. Be sure to test thoroughly before enabling in production.
 
+For more information on our Web replay functionality, read [here](/docs/session-replay/session-replay-web)
+
 # Quick Start Guide
 
 ## Prerequisite
 
-You are already a Mixpanel customer and have the Mixpanel iOS SDK installed. If not, please follow this [doc](https://docs.mixpanel.com/docs/what-is-mixpanel) to get started.
+You are already a Mixpanel customer and have the Mixpanel iOS SDK installed. If not, please follow this [doc](docs/what-is-mixpanel) to get started.
 
 ## Install
 
@@ -164,7 +166,7 @@ SessionReplay.getInstance()?.addSensitiveView(mySensitiveView)
 
 ## Using Session Replay
 
-Please refer to [Using Session Replay](/docs/session-replay/session-replay-web#using-session-replay)
+Please refer to [Using Session Replay](/docs/session-replay#using-session-replay)
 
 ## Legal (Beta Terms)
 
@@ -225,5 +227,3 @@ If your app is SwiftUI-based, the automatic masking for `UITextField` and `UILab
 ```swift
 Image("family photo").replaySensitive();
 ```
-
-For More FAQ, please refer to Mixpanel Session Replay [FAQ](/docs/session-replay/session-replay-web#faq)
