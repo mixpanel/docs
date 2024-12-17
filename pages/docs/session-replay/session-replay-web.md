@@ -139,7 +139,7 @@ For extensions like uBlock, you can navigate to "My Filters" in the extension se
 
 ### Why don't I see the ‘View Replays’ button?
 
-You won't see the 'View Replays' button if your Organization is on an older plan. You will need to update to the [latest plan](https://docs.mixpanel.com/docs/session-replay/session-replay-web#availability) to view session replays. 
+You won't see the 'View Replays' button if your Organization is on an older plan. You will need to update to the [latest plan](/docs/session-replay/session-replay-web#availability) to view session replays. 
 
 ### Why can't I view Replays from my Insights or Funnels chart?
 
