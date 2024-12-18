@@ -4,6 +4,10 @@ import { Callout, Tabs } from 'nextra/components'
 
 ## Getting Started
 
+<Callout type="info">
+    Mixpanel's Autocapture alpha for web is live! To join, [email us](mailto:autocapture-alpha@mixpanel.com).
+</Callout>
+
 Please refer to our [Quickstart Guide](/docs/quickstart/connect-your-data?sdk=javascript).
 
 The [Full API Reference](https://github.com/mixpanel/mixpanel-js/blob/master/doc/readme.io/javascript-full-api-reference.md#mixpanel), [Library Source Code](https://github.com/mixpanel/mixpanel-js), and an [Example Application](https://github.com/mixpanel/mixpanel-js/tree/master/examples) is documented in our GitHub repo.
@@ -747,13 +751,13 @@ Here's a [full code sample](https://gist.github.com/ranic/80459104def4e4bcd73d5c
 
 ## Session Replay
 
-Capture and replay data on how a user interacts with your application. Replay collection is disabled by default, and the Replay portion of the SDK will not be loaded into your application until specified. To use this feature, you must be on at least version 2.50.0 of our JavaScript SDK.
+Capture and replay data on how users interact with your application. By default, the Replay functionality is disabled and will not be loaded into your application until explicitly enabled. Ensure your application runs at least version 2.50.0 of our JavaScript SDK to use this feature.
 
 Before you enable Session Replay for a large audience, we recommend testing in a demo project, and starting in production with smaller sets of users or accounts, so that you can monitor performance and ensure your privacy rules align with company policies.
 
-### Sampling Method
+### Implementation / Sampling
 
-The easiest way to begin capturing session replays is by sampling a subset of users, specified during initialization:
+Implementing Session Replay and setting your sampling rate can be accomplished in a single step during the SDK initialization. Here’s how to activate Session Replay and control the volume of session data captured:
 
 ```javascript
 mixpanel.init(
@@ -764,9 +768,9 @@ mixpanel.init(
 )
 ```
 
-Start with a smaller percentage and tune to fit your analytics needs.
+Start with a low sampling rate, such as 1%, and adjust according to your specific analytics needs.
 
-If you already have the JS SDK installed, this is the only code change you need to start capturing session replays.
+Note: This is the only change needed in your existing JavaScript SDK setup to enable Session Replay.
 
 ### Init Options
 
