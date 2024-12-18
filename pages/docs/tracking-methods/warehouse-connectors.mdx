@@ -489,7 +489,7 @@ ALTER TABLE <table> SET TBLPROPERTIES (delta.enableChangeDataFeed = true);
 
 **Considerations when using Mirror with Databricks:**
 - Mirror is not supported on views in Databricks
-- Databricks Change Data Feed only mantains change history for a limited number of days determined by [delta.logRetentionDuration](https://docs.databricks.com/en/delta/history.html#retrieve-delta-table-history) (default is 30 days). Make sure that the Mixpanel sync does not go longer 
+- Databricks Change Data Feed only maintains change history for a limited number of days determined by [delta.logRetentionDuration](https://docs.databricks.com/en/delta/history.html#retrieve-delta-table-history) (default is 30 days). Make sure that the Mixpanel sync does not go longer 
 than this number of days without running. Mixpanel recommends leaving the default of 30 days to ensure that if Mixpanel loses access to the warehouse unexpectedly (e.g. a credentials change), there is time to correct the issue.
 - Databricks Change Data Feed does not work if a table is deleted and re-created with the same name. If using a tool like dbt to model
   data in Databricks make sure to use an [incremental model](https://docs.getdbt.com/docs/build/incremental-models) so that
