@@ -70,7 +70,7 @@ Mixpanel can determine default geolocation data (`$city`, `$region`, `mp_country
 
 The [`Track()`](https://pkg.go.dev/github.com/mixpanel/mixpanel-go#ApiClient.Track) function is designed for real-time tracking in a server-side environment and will trigger request to the [/track API endpoint](https://developer.mixpanel.com/reference/track-event), which will validate for events with a time stamp that is within the last 5 days of the request. **Events older than 5 days will not be ingested.**
 
-Use the [`Import()`](https://pkg.go.dev/github.com/mixpanel/mixpanel-go#ApiClient.Import) function to import events that occured more than 5 days in the past. The `Import()` function is based on the [/import API endpoint](https://developer.mixpanel.com/reference/import-events).
+Use the [`Import()`](https://pkg.go.dev/github.com/mixpanel/mixpanel-go#ApiClient.Import) function to import events that occurred more than 5 days in the past. The `Import()` function is based on the [/import API endpoint](https://developer.mixpanel.com/reference/import-events).
 
 **Example Usage**
 
@@ -347,7 +347,7 @@ ctx := context.Background()
 mp := mixpanel.NewApiClient("YOUR_PROJECT_TOKEN")
 
 // send "some_event"
-// event is attributed to 2 comapny groups: "mp-us" and "mp-eu"
+// event is attributed to 2 company groups: "mp-us" and "mp-eu"
 mp.Track(ctx, []*mixpanel.Event{
 	mp.NewEvent("some_event", "sample_distinct_id", map[string]any{
 		"Plan Type": "Premium",

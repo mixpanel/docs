@@ -132,7 +132,7 @@ When any single event in the batch does not pass validation, we return a 400 sta
 
 `failed_records` includes one row for each of the failed events, with details about the error we found. If some of the rows passed validation, we will ingest them and return their count in `num_records_imported`.
 
-## GeoIP Enrichrichment
+## GeoIP Enrichment
 
 If you supply a property `ip` with an IP address, Mixpanel will automatically do a GeoIP lookup and replace the `ip` property with geographic properties (City, Country, Region). These properties can be used in our UI to segment events geographically.
 
