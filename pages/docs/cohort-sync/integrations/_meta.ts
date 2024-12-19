@@ -1,4 +1,5 @@
 export default {
+    "abtasty": "AB Tasty",
     "airship": "Airship",
     "appcues": "Appcues",
     "apptimize": "Apptimize",

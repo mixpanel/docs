@@ -45,13 +45,6 @@ Use the Data Pipelines API to export Mixpanel data to your own Data Warehouse. M
 **India Residency Server:** `in.mixpanel.com/api/app/projects`
 Use the Schemas API to manage your data definitions in Lexicon and Data Audit
 
-### [**Connectors API**](ref:connectors-api)
-
-**Standard Server:** `mixpanel.com/api/app/projects`
-**EU Residency Server:** `eu.mixpanel.com/api/app/projects`
-**India Residency Server:** `in.mixpanel.com/api/app/projects`
-Batch import large volumes of data into Mixpanel from a cloud bucket
-
 ### [**GDPR API**](ref:gdpr-api)
 
 **Standard Server:** `mixpanel.com/api/app/data-retrievals`

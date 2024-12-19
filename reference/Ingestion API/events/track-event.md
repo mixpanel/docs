@@ -16,8 +16,8 @@ Typically, we recommend using /import for server-side integrations as it is more
 |                             | /track                                         | /import                                               |
 | --------------------------- | ---------------------------------------------- | ----------------------------------------------------- |
 | Events per request          | 2000                                           | 2000                                                  |
-| Authentication              | Project Token, intended for untrusted clients. | Project Secret, intended for server-side integration. |
-| Compression                 | None                                           | Gzip allowed                                          |
+| Authentication              | Project Token, intended for untrusted clients. | Project Secret/Service Accounts, intended for server-side integration. |
+| Compression                 | Gzip allowed (only when calling the API directly. Gzip not available in the SDK)                                          | Gzip allowed                                          |
 | Content-Type                | application/x-www-form-urlencoded              | application/json or application/x-ndjson              |
 | Ingesting historical events | Last 5 days only.                              | Any time after 1971-01-01.                            |
 
@@ -25,7 +25,7 @@ Typically, we recommend using /import for server-side integrations as it is more
 
 The limits for track are the same as /import, [see here](https://developer.mixpanel.com/reference/import-events#rate-limits).
 
-Each event has the following size limits:
+Each line of event has the following size limits:
 
 - Must be smaller than 1MB of uncompressed JSON.
 - Must have fewer than 255 properties.
