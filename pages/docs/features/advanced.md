@@ -121,7 +121,7 @@ To modify the segment buckets, click on the **under-item** and the custom buck
 
 To remove all grouping and revert to the default, open the custom buckets modal and click **Reset**
 
-Note that you cannot have more than 10 uneven (varied) groups.
+> Note that you cannot have more than 10 uneven (varied) groups.
 
 ### String property Use Cases
 
