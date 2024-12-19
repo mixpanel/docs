@@ -274,7 +274,7 @@ The following guide outlines the steps required to set up the new Mixpanel proje
 
 1. Create a new Mixpanel project in your existing organization by navigating to <b>Projects</b> setting under [Organization Settings](https://mixpanel.com/settings/org/projects). You can refer to [Creating Projects](/docs/orgs-and-projects/managing-projects#creating-projects) section in our documentation.
    
-2. Enable <b>Simplified API</b> in the new project by navigating to <b>Identity Merge</b> setting under this new Project's Settings. Refer to [this](/docs/tracking-methods/id-management/identity-management#switching-between-simplified-and-original-api) section in our documentation.
+2. Enable <b>Simplified API</b> in the new project by navigating to <b>Identity Merge</b> setting under this new Project's Settings. Refer to [this](/docs/tracking-methods/id-management#switching-between-simplified-and-original-api) section in our documentation.
 
    Please note that the new project follows the organization’s default (Legacy or Original ID Merge). You have to switch the project to Simplified ID Merge <b><i>before</i></b> sending any data to the project. Make sure to override the default selection in every newly created project.
 
@@ -282,7 +282,7 @@ The following guide outlines the steps required to set up the new Mixpanel proje
 
 3. Continue to set up the new project by following the guide [here](/docs/best-practices/project-setup). Configure the new project's settings by referring to your existing project’s settings. Some of the setup tasks may include:
 
-   - [Inviting users]([/docs/orgs-and-projects/roles-and-permissions#invite-users-to-a-project) to the project and granting them [Roles and Permissions](/docs/orgs-and-projects/roles-and-permissions#permissions)
+   - [Inviting users](/docs/orgs-and-projects/roles-and-permissions#invite-users-to-a-project) to the project and granting them [Roles and Permissions](/docs/orgs-and-projects/roles-and-permissions#permissions)
    - Creating [Teams](/docs/orgs-and-projects/roles-and-permissions#teams) and adding users to them
    -  Adding [group keys](/docs/data-structure/group-analytics#group-keys-in-project-settings) from Group Analytics
    -  Creating [data views](/docs/data-governance/data-views-and-classification#create-data-view) and adding users or teams to them
@@ -328,19 +328,19 @@ Update your tech stack with the new project’s token, API secret, and service a
 3. <b>Customer Data Platform (CDP)</b> integration:
 
    - Ensure that your CDP is updated with new Mixpanel project token or API secret.
-   - Check the CDP's support for Simplified ID Merge [here](/docs/tracking-methods/id-management/identity-management#third-party-integration-support).
+   - Check the CDP's support for Simplified ID Merge [here](/docs/tracking-methods/id-management#third-party-integration-support).
 
 <br />
 
 4. Other <b>3rd-party Platforms</b> integration: 
 
-   If you are sending events from 3rd-party platforms (i.e. attribution and messaging tools), make sure to update the Mixpanel project token (or API secret) and ensure that 3rd-party events sent to Mixpanel are compatible with Simplified ID Merge. Refer to this [section](docs/tracking-methods/id-management/identifying-users#how-should-i-link-identified-ids-from-3rd-party-systems) for more information. 
+   If you are sending events from 3rd-party platforms (i.e. attribution and messaging tools), make sure to update the Mixpanel project token (or API secret) and ensure that 3rd-party events sent to Mixpanel are compatible with Simplified ID Merge. Refer to this [section](/docs/tracking-methods/id-management/identifying-users#how-should-i-link-identified-ids-from-3rd-party-systems) for more information. 
 
 <br />
 
 5. <b>Data Warehouse</b> integration: 
 
-   Consider using our [Mixpanel Warehouse Connector](/docs/tracking-methods/data-warehouse/overview) which supports Simplified ID Merge. Make sure that events from the data warehouse contains information that can be mapped to the reserved properties `$device_id` and `$user_id` before setting up the connector in Mixpanel.
+   Consider using our [Mixpanel Warehouse Connector](/docs/tracking-methods/warehouse-connectors) which supports Simplified ID Merge. Make sure that events from the data warehouse contains information that can be mapped to the reserved properties `$device_id` and `$user_id` before setting up the connector in Mixpanel.
 
 For mobile apps, adoption of the latest app version may take some time. This means that users who have upgraded to the latest app version will start sending data to the new project (with Simplified ID Merge), whereas users on the older apps will continue to send data to the old project. To capture the full data, consider migrating the residual data in the old project to the new one, and repeat the process until the app adoption reaches a satisfactory level. You can find additional information about backfilling and key considerations in the [next section](#backfilling-historical-data).
 
@@ -365,7 +365,7 @@ Depending on where you data resides, there are different ways to backfill histor
    - You can use Engage API to migrate user data (APIs for both [user export](https://developer.mixpanel.com/reference/engage-query) and batched [user import](https://developer.mixpanel.com/reference/profile-batch-update) are available).
    - Consider incorporating the export and import functions from [Mixpanel-utils open source library](https://github.com/mixpanel/mixpanel-utils) in your migration script.
 
-2. <b>Mixpanel Warehouse Connector</b> - if you’ve been storing your data in a data warehouse, you can import them into Mixpanel using [Warehouse Connector](https://docs.mixpanel.com/docs/tracking-methods/data-warehouse/overview) which supports both events and user data. 
+2. <b>Mixpanel Warehouse Connector</b> - if you’ve been storing your data in a data warehouse, you can import them into Mixpanel using [Warehouse Connector](/docs/tracking-methods/warehouse-connectors) which supports both events and user data. 
 
 3. <b>Customer Data Platform (CDP)</b> - replay the historical data from CDP to Mixpanel.  
 
@@ -401,7 +401,7 @@ Discuss internally and decide on the best data migration approach with minimal i
 2. Prepare for the official transition to the new project as soon as live data is re-directed there. Make sure that your project is well-setup by then.
 
    - If data delays or incomplete data are expected in the new project, clearly communicate this to your Mixpanel users as their analysis will be impacted. For example, having a data backfilling plan in place and sharing details such as “X months of data will be available in new project within Y hours”. This proactive approach will help manage expectations with your Mixpanel users and ensure a seamless transition.
-   - Do check the [cost implication](/docs/pricing/billing) of having overlapping data across multiple projects. If you have any questions, do reach out to our [Mixpanel Support](/docs/response-times#contacting-mixpanel-support) team for assistance.
+   - Do check the [cost implication](/docs/pricing) of having overlapping data across multiple projects. If you have any questions, do reach out to our [Mixpanel Support](/docs/response-times#contacting-mixpanel-support) team for assistance.
 
 3. In cases of a more intricate migration, involving larger data volumes coming from different sources that potentially pose a higher risk to Mixpanel users' experience, you might want to consider doing historical backfilling before updating the live implementation. This approach enables you to have ample time to configure your new project, replicate existing reports and non-data entities into the new project, and test them against the backfilled data. While this may require multiple backfills, you have the option to only deploy the live data implementation when you are ready. 
 
@@ -430,7 +430,7 @@ As part of creating the new Simplfied ID Merge project, you would also need to m
    Before you move any Board, it's important to note the following:
    - Duplicate the existing Board and move the new copy into the new project. This would minimise impact where users are still using Boards and reports in the old project.
    - Any saved cohorts, custom events, custom properties, lookup tables would need to be created first as they don't get automatically moved as part of the Move Board. 
-   - You may need to replicate the permissions for the moved Board should you have very specific [sharing permissions](docs/boards/advanced#sharing) set in the existing project.
+   - You may need to replicate the permissions for the moved Board should you have very specific [sharing permissions](/docs/boards/advanced#sharing) set in the existing project.
    - Double check that all reports (especially those that use cohorts, custom events, custom properties, lookup tables) are working properly.
 
 <br />

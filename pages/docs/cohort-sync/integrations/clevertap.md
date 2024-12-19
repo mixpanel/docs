@@ -22,9 +22,9 @@ To enable the integration with CleverTap:
 
 ![CleverTap 2 Image](/clevertap2.png)
 
-3. Specify a **Connector Name** and enter the CleverTap **Project ID**, **Passcode**, and **Datacenter** details to authorize the connection.
+3. Specify a **Connector Name** and enter the CleverTap **Project ID**, **Passcode**, and **Data center** details to authorize the connection.
 
-4. You can optionally select the user properties to export by clicking on the ***Edit Columns*** and selecting the user properties you wish to be included in the export. The default user properties that are exported can be found [here](/docs/cohort-sync/overview#limits).
+4. You can optionally select the user properties to export by clicking on the ***Edit Columns*** and selecting the user properties you wish to be included in the export. The default user properties that are exported can be found [here](/docs/cohort-sync#limits).
    
 5. The CleverTap integration will show a **Connected** tag in the UI once the connection establishes.
 

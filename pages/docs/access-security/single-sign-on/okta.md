@@ -1,9 +1,9 @@
-# Okta
+# Setup Okta SSO
 
 
 ## Overview
 
-Before using this document, read the [general Mixpanel SSO set-up instructions](/docs/access-security/single-sign-on/overview).
+Before using this document, read the [general Mixpanel SSO set-up instructions](/docs/access-security/single-sign-on).
 
 You have two setup options in order to use Single Sign-On (SSO) for Mixpanel through Okta:
 
@@ -13,7 +13,7 @@ B.  If you have a more custom setup, follow Okta's documentation on setting up a
 
 ### Configure SSO in Mixpanel
 
-Follow the [general SSO set-up instructions](/docs/access-security/single-sign-on/overview).
+Follow the [general SSO set-up instructions](/docs/access-security/single-sign-on).
 
 Make sure to collect your postback URL and successfully claim your domain.
 
@@ -120,10 +120,10 @@ Please note the following when provisioning users from Okta to Mixpanel with SCI
 - You will need to provision other [Organization Roles](https://docs.mixpanel.com/docs/orgs-and-projects/roles-and-permissions#organization-roles) to users within the Mixpanel product.
 - You will not be able to set the user's Organization Role and Project access within Okta. 
 
-You can also provision Groups of users in Azure to Mixpanel [Teams](/docs/orgs-and-projects/roles-and-permissions#teams) with SCIM.
-- Use the same name for the Group in Azure as the Team in Mixpanel.
+You can also provision Groups of users in Okta to Mixpanel [Teams](/docs/orgs-and-projects/roles-and-permissions#teams) with SCIM.
+- Use the same name for the Group in Okta as the Team in Mixpanel.
 - In the Mixpanel Team, set the Organization Role and access to projects for the group of users.
-- You will not be able to provision Organization Role and Project access for the Group within Azure. 
+- You will not be able to provision Organization Role and Project access for the Group within Okta. 
 
 Note that it is advised you turn on **IDP Managed Access** if you are using SCIM Provisioning. Otherwise, Okta and Mixpanel might fall out of sync.
 

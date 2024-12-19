@@ -251,3 +251,7 @@ In analytics.js, a Page call is included in the initialization snippet by defaul
 For the Preset Action, the default Event Name mapping for page call is `Viewed {name}`. To consolidate event names (e.g. "Page Viewed" or "Loaded a Page"), modify the Event Name mapping.
 
 ![segment_page_name_mapping](/segment_page_name_mapping.png)
+
+**5. How can I filter for events that originate from Segment in my project?**
+
+Events coming from Segment are marked with the event property `mp_lib` (Mixpanel Library) set to the name of the Segment SDK used to generate the event. For example, events sent using Segment's Javascript SDK will have the `mp_lib` property set to `Segment: analytics.js`.

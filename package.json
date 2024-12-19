@@ -8,6 +8,7 @@
     "api:publish": "node ./openapi/publish.js",
     "api:test": "./openapi/test.sh",
     "build": "next build",
+    "postbuild": "next-sitemap",
     "dev": "next dev",
     "spelling": "cspell '**/*.md*'",
     "start": "next start",
@@ -24,27 +25,30 @@
   },
   "homepage": "https://github.com/mixpanel/docs#readme",
   "dependencies": {
-    "@docsearch/js": "^3.6.1",
+    "@docsearch/js": "^3.6.3",
     "@docsearch/react": "^3.6.1",
+    "@headlessui/react": "^2.1.10",
     "clsx": "^2.1.1",
     "next": "^14.2.8",
-    "nextra": "latest",
-    "nextra-theme-docs": "latest",
+    "next-sitemap": "^4.2.3",
+    "nextra": "3.0.3",
+    "nextra-theme-docs": "3.0.3",
     "react": "^18.3.1",
     "react-dom": "^18.3.1",
-    "sass": "^1.78.0",
+    "sass": "^1.81.0",
     "sharp": "^0.33.5"
   },
   "devDependencies": {
     "@redocly/openapi-cli": "1.0.0-beta.16",
     "@types/mixpanel": "^2.14.9",
-    "@types/node": "22.5.2",
+    "@types/node": "22.8.0",
     "autoprefixer": "^10.4.20",
-    "cspell": "^8.14.2",
+    "cspell": "^8.16.0",
     "postcss": "^8.4.45",
     "rdme": "8.6.6",
-    "tailwindcss": "^3.4.10",
-    "typescript": "^5.5.4",
-    "yaml": "2.5.0"
+    "tailwind-variants": "^0.2.1",
+    "tailwindcss": "^3.4.14",
+    "typescript": "^5.6.3",
+    "yaml": "2.6.0"
   }
 }

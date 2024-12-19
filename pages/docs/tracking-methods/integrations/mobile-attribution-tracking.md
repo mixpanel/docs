@@ -13,7 +13,7 @@ Each one has its benefits and drawbacks, although **usually Webhooks or the SDK 
 
 ## Webhooks
 
-Some of our partners support webhooks (or callbacks); the idea being that you can set up the partner so that when there’s new data for an install/re-engagement, said data is sent from the partner to your server or a service of your choosing (if you want to offload processing it). The data you receive will have an install/device ID and the attribution data. You can then either choose to send that data directly to Mixpanel ([through our ingestion APIs](https://developer.mixpanel.com/reference/events)) or, better yet, store it in a data warehouse so you have that on your end, and leverage [our data warehouse connectors](https://docs.mixpanel.com/docs/tracking-methods/data-warehouse/overview) to import that data to Mixpanel.
+Some of our partners support webhooks (or callbacks); the idea being that you can set up the partner so that when there’s new data for an install/re-engagement, said data is sent from the partner to your server or a service of your choosing (if you want to offload processing it). The data you receive will have an install/device ID and the attribution data. You can then either choose to send that data directly to Mixpanel ([through our ingestion APIs](https://developer.mixpanel.com/reference/events)) or, better yet, store it in a data warehouse so you have that on your end, and leverage [our data warehouse connectors](/docs/tracking-methods/warehouse-connectors) to import that data to Mixpanel.
 
 > **Note**: Adjust is just selected alphabetically from the list of partners. We encourage customers to review the list and choose based on the ones that fit their requirements best.
 

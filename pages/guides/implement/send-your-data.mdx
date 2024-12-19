@@ -60,7 +60,7 @@ A full list of Mixpanel SDKs can be found in our [documentation](/docs/tracking-
 
 ### Customer Data Platforms (CDP)
 
-If you currently utitilise a Customer Data Platform (eg mParticle, Rudderstack, Segment), you can also use this to send your data to Mixpanel. If you're switching to Mixpanel from another analytics tool, CDPs will also allow you to easily migrate your historical data into Mixpanel.
+If you currently utilize a Customer Data Platform (eg mParticle, Rudderstack, Segment), you can also use this to send your data to Mixpanel. If you're switching to Mixpanel from another analytics tool, CDPs will also allow you to easily migrate your historical data into Mixpanel.
 
 <br />
 <p style={{ position: 'relative', paddingBottom: '56.25%', height: 0, overflow: 'hidden' }}>
@@ -71,8 +71,8 @@ Please refer to the documentation by your respective CDP provider for more infor
 
 ### Data Warehouses
 
-If your data is already stored in a data warehouse, our [Warehouse Connectors](/docs/tracking-methods/data-warehouse) allows you to import different [Table Types](/docs/tracking-methods/data-warehouse#table-types) that map to Events, User Profiles, Group Profiles, and Lookup Tables 
-in your Mixpanel project. It also provides various [Sync Modes](/docs/tracking-methods/data-warehouse#sync-modes) such as Mirror, Append, Full, and One-Time syncs to ensure that your data in Mixpanel matches your trusted data source.
+If your data is already stored in a data warehouse, our [Warehouse Connectors](/docs/tracking-methods/warehouse-connectors) allows you to import different [Table Types](/docs/tracking-methods/warehouse-connectors#table-types) that map to Events, User Profiles, Group Profiles, and Lookup Tables 
+in your Mixpanel project. It also provides various [Sync Modes](/docs/tracking-methods/warehouse-connectors#sync-modes) such as Mirror, Append, Full, and One-Time syncs to ensure that your data in Mixpanel matches your trusted data source.
 
 <br />
 <p style={{ position: 'relative', paddingBottom: '56.25%', height: 0, overflow: 'hidden' }}>
@@ -129,6 +129,6 @@ If you've previously collected data in other systems and wish to analyze it in M
 
 Given that different systems may adopt different data models, it's essential to understand [Mixpanel Data Model](/guides/plan/tracking-strategy#the-mixpanel-data-model) and identify any required data transformations before backfilling the data into Mixpanel. For detailed guidance on migrating data from platforms such as Amplitude and Google Analytics, refer to our guide [here](/docs/migration/overview). 
 
-If your historical data is stored in a data warehouse, you can import it into Mixpanel through [Mixpanel Warehouse Connector](/docs/tracking-methods/data-warehouse). 
+If your historical data is stored in a data warehouse, you can import it into Mixpanel through [Mixpanel Warehouse Connector](/docs/tracking-methods/warehouse-connectors). 
 
 Alternatively, if your historical data is stored in a system without Mixpanel native support for migration, you can still import it into Mixpanel via Mixpanel APIs. Learn more about this option [here](/guides/implement/send-your-data#direct-api-ingestion).
