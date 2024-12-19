@@ -100,7 +100,6 @@ Navigate to [Project Settings → Warehouse Sources](https://mixpanel.com/report
         AUTO_RESUME = TRUE
         INITIALLY_SUSPENDED = TRUE;
       GRANT USAGE ON MIXPANEL_WAREHOUSE TO ROLE MIXPANEL_ROLE;
-      GRANT OPERATE ON MIXPANEL_WAREHOUSE TO ROLE MIXPANEL_ROLE;
       GRANT MONITOR ON MIXPANEL_WAREHOUSE TO ROLE MIXPANEL_ROLE;
       ```
     - A Snowflake [STORAGE INTEGRATION](https://docs.snowflake.com/en/sql-reference/sql/create-storage-integration) Mixpanel will
@@ -302,8 +301,6 @@ While Profiles typically only store the state of a user *as of now*, Profile His
 
 #### Setup 
 When creating a User Profile sync, set the Table Type to “History Table”. We expect tables to be modeled as a SCD (Slowly Changing Dimensions) Type 2 table. You will need to supply a Start Time column in the sync configuration. Mixpanel will infer a row's end time if a new row with a more recent start time for the same user is detected. 
-
-Supported warehouses: Snowflake, Big Query, Databricks 
 
 Source table requirements: 
 - The source table for user/group history is expected to be modeled as an SCD (Slowly Changing Dimension) Type 2 table. This means that the table must maintain all the history over time that you want to use for analysis.
