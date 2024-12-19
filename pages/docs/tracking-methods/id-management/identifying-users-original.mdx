@@ -105,7 +105,7 @@ If using our Web/Mobile SDKs or a CDP like Segment or Rudderstack, there are onl
 
 
 <Callout type="warning">
-    The `distinct_id` is programatically selected by Mixpanel, using one of the IDs inside of an identity cluster, based on the most optimal merging process. This means that the canonical distinct_id could be set to a `$device_id` or your chosen `user_id`. This is not user-configurable. You can use any of the IDs in the cluster for ingestion, but only the canonical `distinct_id` can be used in queries and exports.
+    The `distinct_id` is programmatically selected by Mixpanel, using one of the IDs inside of an identity cluster, based on the most optimal merging process. This means that the canonical distinct_id could be set to a `$device_id` or your chosen `user_id`. This is not user-configurable. You can use any of the IDs in the cluster for ingestion, but only the canonical `distinct_id` can be used in queries and exports.
 </Callout>
 
 ## Example User Flows
@@ -115,7 +115,7 @@ Let's walk through a few user flows where ID Merge is useful, and when to call `
 
 1. A user lands in your product on a new device and interacts with your product before signing up. Our SDK will assign the user a random `$device_id` (D1) and persists it. All events tracked at this point will have `distinct_id` set to the `$device_id` value (D1).
 
-2. The user returns later and signs up for your product. You call `.identify(U1)`. Mixpanel adds U1 and D1 to the same identity cluster. Moving forward, any events tracked using either U1 or D1 will resolve to the same user. Mixpanel will set U1 or D1 as the `distinct_id` moving forward. This is programatically determined by Mixpanel and is not user-configurable.
+2. The user returns later and signs up for your product. You call `.identify(U1)`. Mixpanel adds U1 and D1 to the same identity cluster. Moving forward, any events tracked using either U1 or D1 will resolve to the same user. Mixpanel will set U1 or D1 as the `distinct_id` moving forward. This is programmatically determined by Mixpanel and is not user-configurable.
     
 ### Returning User
 

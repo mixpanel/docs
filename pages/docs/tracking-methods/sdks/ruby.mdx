@@ -12,7 +12,7 @@ See our [server](/docs/quickstart/connect-your-data?sdk=ruby) quickstart for how
 
 ## Installing the Library
 
-To intall the library, call the following in your command line to install the `mixpanel-ruby` gem:
+To install the library, call the following in your command line to install the `mixpanel-ruby` gem:
 
 ```bash
 # install mixpanel ruby sdk with gem
@@ -57,7 +57,7 @@ Mixpanel determines default geolocation data (`$city`, `$region`, `mp_country_co
 
 The [`track()`](http://mixpanel.github.io/mixpanel-ruby/Mixpanel/Events.html#method-i-track) function is designed for real-time tracking in a server-side environment and will trigger request to the [/track API endpoint](https://developer.mixpanel.com/reference/track-event), which will validate for events with a time stamp that is within the last 5 days of the request. **Events older than 5 days will not be ingested.**
 
-Use the [`import()`](http://mixpanel.github.io/mixpanel-ruby/Mixpanel/Events.html#method-i-import) function to import events that occured more than 5 days in the past. The `import()` function is based on the [/import API endpoint](https://developer.mixpanel.com/reference/import-events).
+Use the [`import()`](http://mixpanel.github.io/mixpanel-ruby/Mixpanel/Events.html#method-i-import) function to import events that occurred more than 5 days in the past. The `import()` function is based on the [/import API endpoint](https://developer.mixpanel.com/reference/import-events).
 
 **Example Usage**
 ```ruby
@@ -279,7 +279,7 @@ tracker.track("sample_distinct_id", “some_event”, {
  **Example Usage**
 ```ruby
 # track "some_event" with a "distinct_id"
-# event is attributed to 2 comapny groups: "mp-us" and "mp-eu"
+# event is attributed to 2 company groups: "mp-us" and "mp-eu"
 Tracker = Mixpanel::Tracker.new("YOUR_PROJECT_TOKEN")
 tracker.track("sample_distinct_id", “some_event”, {
   "company" => ["mp-us","mp-eu"]

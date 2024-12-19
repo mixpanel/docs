@@ -553,12 +553,12 @@ mixpanel.setServerURL("https://api-in.mixpanel.com");
 
 ### Disable Geolocation
 
-The Flutter SDK parse the request IP address to generate geolocation properties for events and profiles. To disable geolocation, call [`.setUseIpAddressForGelocation()`](https://mixpanel.github.io/mixpanel-flutter/mixpanel_flutter/Mixpanel/setUseIpAddressForGeolocation.html) with `false`.
+The Flutter SDK parse the request IP address to generate geolocation properties for events and profiles. To disable geolocation, call [`.setUseIpAddressForGeolocation()`](https://mixpanel.github.io/mixpanel-flutter/mixpanel_flutter/Mixpanel/setUseIpAddressForGeolocation.html) with `false`.
 
 **Example Usage**
 ```dart
 // disable geolocation from IP parsing
-mixpanel.setUseIpAddressForGelocation(false);
+mixpanel.setUseIpAddressForGeolocation(false);
 ```
 
 Learn more about [geolocation](/docs/tracking-best-practices/geolocation).

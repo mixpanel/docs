@@ -68,7 +68,7 @@ Mixpanel determines default geolocation data (`$city`, `$region`, `mp_country_co
 ### Importing Historical Events
 The [`track()`](http://mixpanel.github.io/mixpanel-python/#mixpanel.Mixpanel.track) function is designed for real-time tracking in a server-side environment and will trigger request to the [/track API endpoint](https://developer.mixpanel.com/reference/track-event), which will validate for events with a time stamp that is within the last 5 days of the request. **Events older than 5 days will not be ingested.**
 
-Use the [`import_data()`](https://mixpanel.github.io/mixpanel-python/#mixpanel.Mixpanel.import_data) function to import events that occured more than 5 days in the past. The `import_data()` function is based on the [/import API endpoint](https://developer.mixpanel.com/reference/import-events).
+Use the [`import_data()`](https://mixpanel.github.io/mixpanel-python/#mixpanel.Mixpanel.import_data) function to import events that occurred more than 5 days in the past. The `import_data()` function is based on the [/import API endpoint](https://developer.mixpanel.com/reference/import-events).
 
 **Example Usage**
 ```py
@@ -275,7 +275,7 @@ mp.track('sample_distinct_id', 'some_event', {
 mp = Mixpanel('YOUR_PROJECT_TOKEN')
 
 # track "some_event" with a "distinct_id"
-# event is attributed to 2 comapny groups: "mp-us" and "mp-eu"
+# event is attributed to 2 company groups: "mp-us" and "mp-eu"
 mp.track('sample_distinct_id', 'some_event', {
     'Plan Type' : 'Premium', 
     'company' : ['mp-us','mp-eu']})

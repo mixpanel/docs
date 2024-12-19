@@ -171,7 +171,7 @@ Calling Segment SDK function [analytics.group()](https://segment.com/docs/connec
 //the groupId is "some_company"
 //the second argument contain 3 group profile properties to be set
 analytics.group("some_company", {
-    "$name": "some_companys_name",
+    "$name": "some_company_name",
     "employees": 100,
     "id": "some_company"
 })
@@ -203,7 +203,7 @@ If you are using [Segment Device Mode](https://segment.com/docs/connections/dest
 
 ## Debugging
 For debugging purposes, it can be useful to see exactly what Segment is sending to Mixpanel. You can validate this data through the [Segment Source Debugger](https://segment.com/docs/connections/sources/debugger/). In the Segment Source Debugger, you can select the event you are looking to validate:
-<img width="1080" alt="yGK1yH7zGy_cv5hLBEHgdU9oMyALishD6S0kObRRJANGxbjIEL" src="https://github.com/mixpanel/docs/assets/97630035/6ee0bbcd-8bf2-4f86-83a7-b0a3c39108e4" />
+<img width="1080" alt="debugger screenshot" src="https://github.com/mixpanel/docs/assets/97630035/6ee0bbcd-8bf2-4f86-83a7-b0a3c39108e4" />
 
 Click the “Validate” button in the top right corner and choose “Mixpanel” as the destination. After the event has been sent, you can click to view the request from Segment to grab the data payload:
 ![pasted image 0 (1)](https://github.com/mixpanel/docs/assets/97630035/0344decc-dc96-4569-ac3d-cc530c63bdb3)
