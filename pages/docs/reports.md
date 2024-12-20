@@ -103,7 +103,7 @@ You can select the following filtering options to show a subset of the propertie
 
 The events and properties in the menu are prefixed to provide additional context about the properties' type. They will be removed when additional context is not needed.
 
-- Event properties are not prefixed (except in [User report's menu](/docs/reports):
+- Event properties are not prefixed (except in [User report's menu](/docs/reports)):
 
     ![/Screen_Shot_2021-11-18_at_12.26.25_PM.png](/Screen_Shot_2021-11-18_at_12.26.25_PM.png)
 
