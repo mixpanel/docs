@@ -6,7 +6,7 @@
 
 ![/Screen_Shot_2022-07-11_at_3.53.47_PM.png](/Screen_Shot_2022-07-11_at_3.53.47_PM.png)
 
-Analyze session metrics by selecting "Session Start" or "Session End" from the events list. Learn more about using Sessions in Insights, Funnels and Flows [here](/docs/features/sessions).
+Analyze session metrics by selecting "Session Start" or "Session End" from the events list. Learn more about using Sessions in Insights, Funnels, and Flows [here](/docs/features/sessions).
 
 ### Inline Filtering
 
@@ -38,17 +38,17 @@ To zoom in, click on the graph and drag to highlight a specific window of time i
 
 To filter the results of your report by any property or cohort, click the **Filter** button.
 
-To break down your results of your report by any property or cohort, click the **Breakdown**.
+To break down the results of your report by any property or cohort, click the **Breakdown**.
 
-You can break down your results by the "Time" event property and breakdown by Hour, Day, Week, Month, Quarter, Year, Hour of Day, or Day of Week.
+You can break down your results by the "Time" event property and break down by Hour, Day, Week, Month, Quarter, Year, Hour of Day, or Day of Week.
 
 ![/breakdown_by_date.gif](/breakdown_by_date.gif)
 
-If you are analyzing any custom events, you can breakdown by the property "Event Name".
+If you are analyzing any custom events, you can break them down by the property "Event Name".
 
 ![image](https://github.com/mixpanel/docs/assets/2077899/dafe97ca-35a3-4dee-8285-41a115f0417d)
 
-The drop-down menus only show events/event properties that were ingested within the last 30 days. To select events/event properties that have not been ingested in the last 30 days, type the name of the event/event property in the Filter or Breakdown search bar. You must know the exact name of the event/event property you want to select because event names are case sensitive.
+The drop-down menus only show events/event properties that were ingested within the last 30 days. To select events/event properties that have not been ingested in the last 30 days, type the name of the event/event property in the Filter or Breakdown search bar. You must know the exact name of the event/event property you want to select because event names are case-sensitive.
 
 ![/query_old_event.gif](/query_old_event.gif)
 
@@ -66,7 +66,7 @@ The Mixpanel application for Slack will also automatically unfurl a preview of 
 
 ### Enable the Integration
 
-To enable the integration, log in to both Mixpanel and Slack, then click [here](https://mixpanel.com/slack/oauth?slack_v2=true) to authorize the slack workspace:
+To enable the integration, log in to both Mixpanel and Slack, then click [here](https://mixpanel.com/slack/oauth?slack_v2=true) to authorize the Slack workspace:
 
 ![/Screen_Shot_2020-06-15_at_10.41.00_PM.png](/Screen_Shot_2020-06-15_at_10.41.00_PM.png)
 
@@ -88,7 +88,7 @@ Once you've set up the integration, Mixpanel links pasted in Slack will unfurl. 
 
 Mixpanel does not restrict who can enable the Mixpanel integration for Slack. However, your Slack workspace may limit who can perform the connection.
 
-After Mixpanel is connected to Slack, any Slack user who posts a Mixpanel link will be prompted to connect their own account, in order to unfurl report previews. By performing this integration at the user level, it ensures that only reports the user has access to will unfurl in Slack.
+After Mixpanel is connected to Slack, any Slack user who posts a Mixpanel link will be prompted to connect their own account to unfurl report previews. Performing this integration at the user level ensures that only reports the user has access to will unfurl in Slack.
 
 ### Privacy
 
@@ -96,7 +96,7 @@ The Mixpanel app for Slack adheres to Mixpanel's overall privacy policy, availab
 
 ## Custom Buckets
 
-Custom buckets lets you group existing properties into meaningful segments on the fly. This is focused on enabling every person to answer common segmentation questions easily, quickly and in a low friction way.
+Custom buckets let you group existing properties into meaningful segments on the fly. This is focused on enabling every person to answer common segmentation questions easily, quickly, and in a low-friction way.
 
 Example use-cases include:
 
@@ -121,6 +121,8 @@ To modify the segment buckets, click on the **under-item** and the custom buck
 
 To remove all grouping and revert to the default, open the custom buckets modal and click **Reset**
 
+> Note that you cannot have more than 10 uneven (varied) groups.
+
 ### String property Use Cases
 
 **Use Case:** You want to compare # videos watched between core markets - North America, Europe & China
@@ -140,9 +142,9 @@ Steps
 
     ![/12828869626644](/12828869626644.png)
 
-2. Choose to bucket segments, by opening the custom buckets model and click Apply
+2. Choose to bucket segments, by opening the custom buckets model and clicking Apply
     - For each segment, choose the operator “is” and select one or more values
-    - “Rest of the World” is auto generated as **remaining values**
+    - “Rest of the World” is auto-generated as **remaining values**
     - To note — if two segments have the same value, the first segment will consider the value. Custom buckets are non-overlapping and sum up to 100% by definition
 
 ![/14342715436052](/14342715436052.png)
@@ -173,7 +175,7 @@ Goal: You want to distribute this in various ways
 **Deep Dive: Use Case A**: Evenly in 10 min buckets for the range 50-100 mins
 
 1. Add a breakdown - “watch time (mins)”
-    - To note — every numeric property is **auto-bucketed into even sized buckets as the default**
+    - To note — every numeric property is **auto-bucketed into even-sized buckets as the default**
     - Here the default seems to be even buckets of 10 mins across the range
 
         ![/14342489051028](/14342489051028.png)
@@ -183,7 +185,7 @@ Goal: You want to distribute this in various ways
 2. Go to the overflow and open the custom buckets modal
 3. Since looking for even buckets of “30 mins”, choose **Even Bucketing**
 4. Modify the min and max values of the desired range, and the bucket size, and click apply
-    - To note — both a lower end and upper end bucket will be auto-generated to ensure your breakdown always adds up to 100%
+    - To note — both a lower-end and upper-end bucket will be auto-generated to ensure your breakdown always adds up to 100%
     - Here these buckets are <50 mins and ≥ 100 mins
 
         ![/14342575096724](/14342575096724.png)
@@ -195,8 +197,8 @@ Goal: You want to distribute this in various ways
 
 1. Open the custom buckets modal
 2. Since looking for specific buckets with varied bucket ranges, choose **Varied Bucketing**
-3. Enter the ‘segment’ break point values in each row and click apply. You can preview the bucket as you enter values in the line-item below
-    - To note — both a lower end and upper end bucket will be auto-generated to ensure your buckets always adds up to a 100%
+3. Enter the ‘segment’ breakpoint values in each row and click apply. You can preview the bucket as you enter values in the line item below
+    - To note — both a lower-end and upper-end bucket will be auto-generated to ensure your buckets always add up to a 100%
 
 ![/14342546138516](/14342546138516.png)
 
@@ -225,17 +227,17 @@ Goal: You want to group this in a meaningful way
 
 Steps
 
-1. Add a breakdown age(years). By default this will add as a numeric property
-2. Since you are looking for pin-pointed years and not creating number-ranges, this is a question more common to string property data type
+1. Add a breakdown age(years). By default, this will add as a numeric property
+2. Since you are looking for pin-pointed years and not creating number ranges, this is a question more common to string property data type
 3. Change **Data Type** of age(years) to String. Once changed you will see the type-casted property type as an under-item
-    - To note - only type-casted data types show as an under-item. If the data-type was the same as ingested, no under-item for data type will be seen
+    - To note - only type-casted data types show as an under-item. If the data type was the same as ingested, no under-item for data type will be seen
 
         ![/14342634016660](/14342634016660.png)
 
         ![/12833644608148](/12833644608148.png)
 
-4. Post changing data-type, open the custom buckets modal. This will now open a modal meant for string property data type
-5. Follow steps as elaborated for String property use-case above, and achieve the goal
+4. Post changing data type, open the custom buckets modal. This will now open a modal meant for string property data type
+5. Follow the steps as elaborated for the String property use-case above, and achieve the goal
 
     ![/14342637801748](/14342637801748.png)
 
@@ -248,11 +250,11 @@ Steps
 
 - **Which reports does Custom Buckets work on?**
 
-    This feature is available in the Insights, Funnels and Retention reports.
+    This feature is available in the Insights, Funnels, and Retention reports.
 
 - **Which property types does this support?**
 
-    Custom Buckets work on String, Numeric and List data type
+    Custom Buckets work on String, Numeric, and List data type
 
 - **Can I save a Custom Bucket**?
 
@@ -260,7 +262,7 @@ Steps
 
 - **How is custom buckets different from [custom property](/docs/features/custom-properties)?**
 
-    Custom buckets only supports the most common custom-property use-case of **`if else`** to create meaningful segments in a more simplistic UI, and a low lift way to enable quick ad-hoc exploration. You could get this same answer using custom property too, it would just be more effort and not as intuitive
+    Custom buckets only support the most common custom-property use-case of **`if else`** to create meaningful segments in a more simplistic UI and a low-lift way to enable quick ad-hoc exploration. You could get this same answer using custom property too, it would just be more effort and not as intuitive
 
 - **Can I create over-lapping segments like (US & UK) vs (US & Australia)?**
 
@@ -270,27 +272,27 @@ Steps
 
     ![/12834111393684](/12834111393684.png)
 
-- **What happens if I change data-type, can I still use custom buckets?**
+- **What happens if I change the data type, can I still use custom buckets?**
 
-    Yes you can as long as the data-type you’ve changed the property to is supported.
+    Yes, as long as the data type you’ve changed the property to is supported.
 
 - **Understanding the details:**
     - **In Numeric: Can I change the operators on the upper and lower bound?**
 
-        No, the operators have been fixed. The lower bound is always strictly greater than (≥) and the upper bound is just lesser than (<). If you are looking for more control on the operators, please create a [custom property](/docs/features/custom-properties#creating-a-custom-property).
+        No, the operators have been fixed. The lower bound is always strictly greater than (≥) and the upper bound is just lesser than (<). If you are looking for more control over the operators, please create a [custom property](/docs/features/custom-properties#creating-a-custom-property).
 
     - **In String: Is (not set) included in (remaining values)?**
 
-        No, (not set) is not included in remaining values
+        No, (not set) is not included in the remaining values
 
         - (remaining values): refers to ‘set’ values that just don’t fall into any of your defined segments
-        - (not set) refers to the events where a property value has not been set at tracking/ ingestion. For example a new video (MixFun) is has been added. But during tracking, you forget to send the name of this video. So the count of this video is being tracked, but it’s being associated to a property value (not set) vs (MixFun)
+        - (not set) refers to the events where a property value has not been set at tracking/ ingestion. For example, a new video (MixFun) has been added, but during tracking, you forget to send the name of this video. So the count of this video is being tracked, but it’s being associated with a property value (not set) vs (MixFun)
 
         More details can be found in [this help doc](/docs/features/advanced#undefined-and-null-properties)
 
     - **In Numeric: What is the difference between (not set) and (non-numeric values)?**
-        - (not set) as explained above for string refers to property values that have not been associated to any specific property value
-        - (non numeric values) refers to set values that have just been sent in as non-numeric data type. For example, you’re looking to track time spent and have coded that as a numeric property, but for some reason some values are tracked as “a”, or “b” which are not-numeric.
+        - (not set) as explained above for string refers to property values that have not been associated with any specific property value
+        - (non-numeric values) refers to set values that have just been sent in as non-numeric data type. For example, you’re looking to track time spent and have coded that as a numeric property, but for some reason some values are tracked as “a”, or “b” which are not numeric.
 - **Some Common How-do-I(s)**
     - **How do I know is set, (not set)?**
 
@@ -337,7 +339,7 @@ View Users can help you:
 ![/View_Users_Insights_gif.gif](/View_Users_Insights_gif.gif)
 
 - To learn more about your users who recently **Signed Up** at a specific point in time, you can click any point on a chart or line to access View Users. The View Users overlay **displays the list of users contributing to your chosen point on the chart**.
-- By clicking on one of these users, you can further **explore their User Properties** like experiment group, purchase count, last event and many more.
+- By clicking on one of these users, you can further **explore their User Properties** like experiment group, purchase count, last event, and many more.
 - While viewing a specific user, you can also **discover their recent activities** (\*Like, Comment, Message Sent, Ad Conversion,\* etc) after **Sign Up** through the Activities menu.
 
 ### Funnels
@@ -351,7 +353,7 @@ View Users can help you:
 
 ![/View_Users_Retention_gif.gif](/View_Users_Retention_gif.gif)
 
-- View Users in Retention report presents you with two options - view retained users and view dropped off users. This is helpful to **find the specific group of users who were engaged or dropped off** after **Sign Up** over a period of time.
+- View Users in Retention report presents you with two options - view retained users and view dropped-off users. This is helpful to **find the specific group of users who were engaged or dropped off** after **Sign Up** over a period of time.
 - **Export your group of choice to a CSV with one click**. This data can guide meaningful actions, like emailing your user group a note that helps them get unstuck and engaged.
 
 ## Keyboard Shortcuts
@@ -362,18 +364,18 @@ Undo / redo shortcuts allow for fast adjustments to your analysis. `Cmd + Z` t
 
 ![/Undo_Redo_gif.gif](/Undo_Redo_gif.gif)
 
-- **Navigate different report versions**: add a new event, filter or breakdown and undo that change with `Cmd + Z` . This makes iterating between different versions of your report quick and easy.
-- **Compare visualizations**: go from a bar chart, to a line chart, to a pie chart and all the way back while only using the undo / redo keyboard shortcuts.
+- **Navigate different report versions**: add a new event, filter, or breakdown and undo that change with `Cmd + Z`. This makes iterating between different versions of your report quick and easy.
+- **Compare visualizations**: go from a bar chart to a line chart, to a pie chart, and all the way back, while only using the undo / redo keyboard shortcuts.
 
 ## Comparison: Time, Baseline and Overall
 
-Once you have visualized a metric you are interested in, you want want to compare it against related metrics to gain further insight. Previously, only comparing against past values was supported, but there are now 3 different ways to compare your metrics. The ability to do and show comparisons across segments is also supported in Boards, so any report saved will also reflect in Boards.
+Once you have visualized a metric you are interested in, you want to compare it against related metrics to gain further insight. Previously, only comparing against past values was supported, but there are now 3 different ways to compare your metrics. The ability to do and show comparisons across segments is also supported in Boards, so any report saved will also reflect in Boards.
 
 ### Time Comparisons
 
 ![/Screen_Shot_2021-09-22_at_4.38.05_PM.png](/Screen_Shot_2021-09-22_at_4.38.05_PM.png)
 
-The compare to past menu has been modified to include the new comparison options, but users can continue to find the same time comparison options that existed before under the new "Compare" menu.
+The compare-to-past menu has been modified to include the new comparison options, but users can continue to find the same-time comparison options that existed before under the new "Compare" menu.
 
 ### Time Comparison - Absolute Values
 
@@ -387,11 +389,11 @@ This can be activated by selecting the "Percent change over Baseline" option in 
 
 ![/Screen_Shot_2021-09-22_at_4.40.41_PM.png](/Screen_Shot_2021-09-22_at_4.40.41_PM.png)
 
-When this view is activated, users will see the percentage difference from the one time period to another. This is the same value that was shown in the tooltip, but now users are able to show how segments are shrinking and growing over time. This also makes it easier to see relative performance between different segments.
+When this view is activated, users will see the percentage difference from one time period to another. This is the same value that was shown in the tooltip, but now users are able to show how segments are shrinking and growing over time. This also makes it easier to see relative performance between different segments.
 
 ![/Screen_Shot_2021-09-22_at_4.50.52_PM.png](/Screen_Shot_2021-09-22_at_4.50.52_PM.png)
 
-These values are also reflected into the segmentation table below the chart.
+These values are also reflected in the segmentation table below the chart.
 
 ### Increase over Baseline
 
@@ -407,7 +409,7 @@ To enable, choose the "Increase over Baseline" option in the compare menu, then 
 
 Notice that because "Home supplies" is chosen at the baseline, it appears on the chart as a flat 0 line - this is because "Home supplies" always has a 0% difference against itself in the same time period.
 
-Also note that the y axis can go below 0, because segments can perform better or worse than the selected baseline, like "Entertainment" above.
+Also note that the y-axis can go below 0, because segments can perform better or worse than the selected baseline, like "Entertainment" above.
 
 ### Percentage of Overall
 
@@ -421,11 +423,11 @@ To enable, open the Compare menu and select "Percentage of Overall"
 
 ### Why do the values in Compare to Overall not add up to 100%?
 
-Depending on the type of metric, the percentages may not add up to 100%. This is because the value is being compared to the unsegmented value. For example, if you were you segment Total "Add Item to Cart" events by "Category", then the values should sum up to 100%, since an item might not be a part of different categories.
+Depending on the type of metric, the percentages may not add up to 100%. This is because the value is being compared to the unsegmented value. For example, if you were you segment Total "Add Item to Cart" events by "Category", then the values should sum up to 100% since an item might not be a part of different categories.
 
-However, if the metric was "average price", then the average price across all categories might be $10. Within individual categories, the average price might be lower or higher, and that is the comparison being done by "Compare to Overall". In this case the percentage values would not add up to 100%.
+However, if the metric was "average price", then the average price across all categories might be $10. Within individual categories, the average price might be lower or higher, and that is the comparison being done by "Compare to Overall". In this case, the percentage values would not add up to 100%.
 
-More generally, if the metric is summable, and the groups are mutually exclusive, then the percentages will add up to 100%. if the metric is a non counting metric like uniques, or percentile aggregation, the percentages will not add up to 100%. Another example is if the breakdown is by cohorts, where users can be members of multiple cohorts, the percentages will not sum to 100%.
+More generally, if the metric is summable, and the groups are mutually exclusive, then the percentages will add up to 100%. if the metric is a non-counting metric like uniques or percentile aggregation, the percentages will not add up to 100%. Another example is if the breakdown is by cohorts, where users can be members of multiple cohorts, the percentages will not sum to 100%.
 
 ### Supported Charts
 
@@ -500,24 +502,24 @@ You will see an indication like this:
 
 **Does this mean the downloaded CSV has lower limits?**
 
-No, limits for CSV downloads remain unchanged across Insights, Funnels and Retention.
+No, limits for CSV downloads remain unchanged across Insights, Funnels, and Retention.
 
 ## Analyzing First Time Users
 
 Sometimes, you might want to filter an event to only the first time that it's performed by a user. This helps answer the following questions:
 
 * How many users sign up or perform another key event for the first time each week?
-* Which referrers do most first time users come from?
+* Which referrers do most first-time users come from?
 * How quickly do users make a purchase after their first time engaging with the app?
 * How well do users retain after performing a key event for the first time?
-* What events do users perform before and after doing their first purchase?
+* What events do users perform before and after making their first purchase?
 
 You can do this by adding a First Time Filter to any event in Mixpanel. This filters the event down to only the first instance of the event performed by a user:
 
 ![233894752-93851682-9d83-4c87-937d-8fd90db465c6.png](https://user-images.githubusercontent.com/2077899/233894752-93851682-9d83-4c87-937d-8fd90db465c6.png)
 
 Mixpanel computes this on-the-fly by scanning each user's history to determine if this was the first instance of the event performed by the user, based on timestamp.
-Note that when there's a tie in the timestamps of the first event (eg: the user does multiple first time Purchases in the same second), all of those events will be considered the "first time" and will match the filter. The impact will be that Mixpanel includes multiple events for those users, so if you break down by user ID, you may see that the user did multiple first events.
+Note that when there's a tie in the timestamps of the first event (eg: the user does multiple first-time Purchases in the same second), all of those events will be considered the "first time" and will match the filter. The impact will be that Mixpanel includes multiple events for those users, so if you break down by user ID, you may see that the user did multiple first events.
 
 ### Nth Time
 You can analyze the Nth time an event was performed by using a First Time Filter in funnels. For example, this shows you the number of users that do Tutorial Complete 3 times:
@@ -536,13 +538,13 @@ After selecting this option, you must select an event to compute the frequency o
 
 ### Aggregate Property per User
 
-After select this option, you must select an event, and then a property on that event. Finally, you can choose an aggregation type for this property. You can use this to segment your users by this property aggregation. For example, you may want to filter only for users who have greater than 100 minutes of video watch time, or you may want to segment users by their watch time.
+After selecting this option, you must select an event, and then a property on that event. Finally, you can choose an aggregation type for this property. You can use this to segment your users by this property aggregation. For example, you may want to filter only for users who have greater than 100 minutes of video watch time, or you may want to segment users by their watch time.
 
 ### Time Range
 
 #### Per Interval
 
-In insights, the time in which this computation is done is on a per interval basis. For a line chart, that will be for each individual interval plotted on the chart. For bar, table and pie, this interval is the entire date range selected in the date picker.
+In insights, the time in which this computation is done is on a per-interval basis. For a line chart, that will be for each individual interval plotted on the chart. For bar, table, and pie, this interval is the entire date range selected in the date picker.
 
 #### Between Steps
 
@@ -550,11 +552,11 @@ In funnels, the behavioral property is computed in the time range between 2 step
 
 #### After Step 1
 
-In retention, the behavioral property is computed in the chosen time range after the entry event, up until the expiration window. For example, there may be a 7 day window in which we're looking for an event. Even if the retaining action happens before the 7 days are up, we continue to count additional events.
+In retention, the behavioral property is computed in the chosen time range after the entry event, up until the expiration window. For example, there may be a 7-day window in which we're looking for an event. Even if the retaining action happens before the 7 days are up, we continue to count additional events.
 
 ## Find Interesting Segments
 
-Determine which users are either driving conversion and retention or behaving as outliers by using the built in “Find Interesting Segments” feature.
+Determine which users are either driving conversion and retention or behaving as outliers by using the built-in “Find Interesting Segments” feature.
 
 Find Interesting Segments can help you discover:
 
@@ -583,13 +585,13 @@ An email that breaks down the top and bottom converting segments of your funnel 
 Segment Analysis helps answer questions such as:
 
 - Which groups of users are driving my conversion rate?
-- Which are groups of users are decreasing my conversion rate?
+- Which groups of users are decreasing my conversion rate?
 
-This is done by examining which segments of users are converting at a high rate and have a large enough population size, or which segments are converting at a low rate and have a large enough population size. In the first scenario, this segment would raise the overall conversion rate, while in the second scenario this segment would be lowering the overall conversion rate.
+This is done by examining which segments of users are converting at a high rate and have a large enough population size, or which segments are converting at a low rate and have a large enough population size. In the first scenario, this segment would raise the overall conversion rate, while in the second scenario, this segment would be lowering the overall conversion rate.
 
 ### Time Comparison
 
-A time comparison chart is also included in the email. This chart shows a segments behavior over time (in terms of both conversion rate change and population size change) as it relates to the overall population trend (population and conversion rate change).
+A time comparison chart is also included in the email. This chart shows a segment's behavior over time (in terms of both conversion rate change and population size change) as it relates to the overall population trend (population and conversion rate change).
 
 Time comparison answers questions such as:
 
@@ -604,27 +606,27 @@ View the top and bottom converting segments in your retention report by clicking
 
 ![/10037069627156](/10037069627156.png)
 
-Rather than searching through multiple segment breakdowns to find significant data, this feature automatically identifies that data for you. Mixpanel combs through your event properties and cohorts, and show you which of those segments retain at a higher or lower rate than average.
+Rather than searching through multiple segment breakdowns to find significant data, this feature automatically identifies that data for you. Mixpanel combs through your event properties and cohorts and shows you which of those segments retain at a higher or lower rate than average.
 
-An email that breaks down the top and bottom retaining segments of your Retention report based on changes on retention rates is automatically sent after you click the button.
+An email that breaks down the top and bottom retaining segments of your Retention report based on changes in retention rates is automatically sent after you click the button.
 
 ### Interpret Email Results
 
 When your analysis email says “no interesting segments”, this means that none of the segments you analyzed were behaving significantly differently from the overall population at a large enough volume. To resolve this issue, try extending the date range of the report or try a different report.
 
-If the analysis request included dates in the past five days, and is sent from mobile SDK, data may be delayed and therefore not included at the time of the analysis. Likewise, the date window selected might still fall under conversion window, and more conversions have yet to come through.
+If the analysis request included dates in the past five days and is sent from mobile SDK, data may be delayed and therefore not included at the time of the analysis. Likewise, the date window selected might still fall under the conversion window, and more conversions have yet to come through.
 
 Results are sorted by taking into consideration the property, the number of users in the report, as well as the deviation from overall conversion or retention behavior to surface the most meaningful segments to you.
 
 ## Query Time Sampling
 
-Query-time sampling allows you to query a subset of users and shorten the time it takes for a report to load results. The Insights, Funnels, Retention and Flows reports all support sampling at query time.
+Query-time sampling allows you to query a subset of users and shorten the time it takes for a report to load results. The Insights, Funnels, Retention, and Flows reports all support sampling at query time.
 
 This feature is available to enterprise customers with over 5 million [MTUs](/docs/admin/pricing-plans#mtu-calculation) or over 2 billion monthly events.
 
 ### Enable or Disable Query Time Sampling
 
-Navigate to the report where you would like to enable or disable sampling at time of query.
+Navigate to the report where you would like to enable or disable sampling at the time of the query.
 
 ### Enable Sampling
 
@@ -632,7 +634,7 @@ From the report in which you would like to use sampling, click the **lightning 
 
 ![/13109650264596](/13109650264596.png)
 
-This will enable sampling on the report, and will be indicated by the lightning bolt symbol turning blue. The percentage of the total that is included in the query calculations will be indicated in the top right corner of the query builder.
+This will enable sampling on the report and will be indicated by the lightning bolt symbol turning blue. The percentage of the total that is included in the query calculations will be indicated in the top right corner of the query builder.
 
 ### Disable Sampling
 
@@ -642,7 +644,7 @@ The lightning bolt symbol will turn grey to indicate that sampling is disabled.
 
 ### Query Time Sampling Calculation and Presentation
 
-Mixpanel will not sample, or drop, events at ingestion. Instead, Mixpanel will ingest all event data and sample at query time. This prevents the loss of important data, and therefore allows you to toggle sampling on and off depending on need.
+Mixpanel will not sample, or drop, events at ingestion. Instead, Mixpanel will ingest all event data and sample it at query time. This prevents the loss of important data and, therefore, allows you to toggle sampling on and off depending on need.
 
 For example, if you have a need for iterative querying, then sampling will greatly speed up this process. When you build the proper query, you can turn off sampling and query the entire dataset.
 
@@ -661,31 +663,31 @@ If you save a report that uses query time sampling, then a version of the report
 
 ## Query Result Caching
 
-Mixpanel stores the results from a report query in cache, and presents these results from cache when appropriate. This saves time when running a complicated query multiple times, and allows you to surface previously calculated results near-instantaneously. The date range of the query will adjust how Mixpanel presents results from the cache.
+Mixpanel stores the results from a report query in the cache and presents these results from there when appropriate. This saves time when running a complicated query multiple times, and allows you to surface previously calculated results near-instantaneously. The date range of the query will adjust how Mixpanel presents results from the cache.
 
-- If the query date range is over 30 days, then the query results are cached for up to 24 hours.
-- If the query date range is 30 days or under, then the query results are cached for up to 3 hours.
-- If the query date range is 1 day, then the query results are cached for up to 15 minutes.
+- If the query date range is 1 year or over, then the query results are cached for up to 14 days.
+- If the query date range is under 1 year, then the query results are cached for up to 7 days.
+- If the query date range is under 6 months, then the query results are cached for up to 3 days.
+- If the query date range is under 2 months, then the query results are cached for up to 2 days.
+- If the query date range is under 1 month, then the query results are cached for up to 1 day.
+- If the query date range is under 1 week, then the query results are cached for up to 12 hours.
+- If the query date range is under 1 day, then the query results are cached for up to 1 hour.
 
-You can see While this highlights the default cache behavior, you can always refresh a report to include the most current data.
-
-![/Cache_Update.png](/Cache_Update.png)
-
-You can also view when the most recent update was in Boards by hovering over report cards.
-
-![/Dashboard_Cache.png](/Dashboard_Cache.png)
+While this highlights the default cache behavior, you can always refresh a report to include the most current data as described below.
 
 ### Refreshing the Query Results Cache
 
-To refresh the query results cache, navigate to an Insights report and click the **Refresh** button at the top of the query builder.
+To refresh the query results cache, navigate to the report, click the three dots overflow menu at the top of the report, select **Refresh Data**.
 
-![/Refresh_Cache.png](/Refresh_Cache.png)
+![public/Refresh_Data_Report.png](/Refresh_Data_Report.png)
 
-To refresh query results cache in a Board, click the three dots in the top of the Board, and then click the **Refresh all cards** button.
+To refresh the query results' cache in a Board, click the three dots overflow menu at the top of the Board, and select **Refresh Data**.
 
-![/Dashboard_Refresh.png](/Dashboard_Refresh.png)
+![public/Refresh_Data_Board.png](/Refresh_Data_Board.png)
 
-If the cached result is less than 1 min old, we always serve from cache without running a new background query.
+To refresh the query results' cache in a Board card, click the three dots overflow menu at the top of the card, and select **Refresh Data**. 
+
+![public/Refresh_Data_Board_Card.png](/Refresh_Data_Board_Card.png)
 
 ## Event and Property Limitations
 

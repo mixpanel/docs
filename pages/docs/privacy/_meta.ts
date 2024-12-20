@@ -7,5 +7,6 @@ export default {
     },
     "gdpr-compliance": "GDPR Compliance",
     "eu-residency": "EU Residency",
+    "in-residency": "India Residency",
     "end-user-data-management": "End User Data Management"
 }
