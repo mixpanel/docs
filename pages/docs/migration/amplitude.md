@@ -71,7 +71,7 @@ Notes:
 If you have access to your Amplitude data in your data warehouse, the most scalable way to bring this historical data into Mixpanel is by using our warehouse connector. At a high-level, the migration consists of 3 steps:
 1. Set up a new Mixpanel project which is on [Simplified ID Merge system](/docs/tracking-methods/id-management#identity-merge-apis). 
 2. Transform Amplitude data in your data warehouse (sample SQL transformation included below).   
-3. Set up [Mixpanel Warehouse Connector](/docs/tracking-methods/data-warehouse/overview) to initiate data sync from your data warehouse to Mixpanel. 
+3. Set up [Mixpanel Warehouse Connector](/docs/tracking-methods/warehouse-connectors) to initiate data sync from your data warehouse to Mixpanel. 
 
 ##### Amplitude event schema
 SQL query to flatten the JSON columns into individual columns: 
@@ -141,13 +141,13 @@ ON t1.user_id = t2.user_id AND t1.event_time = t2.max_event_time
 ```
 
 ## Setting up Warehouse Connectors
-Once you've transformed your data in your data warehouse, you can set up the [Mixpanel Warehouse Connector](/docs/tracking-methods/data-warehouse/overview) to migrate your historical data into Mixpanel. We'd recommend first sending a month of data into a test project for validation.
+Once you've transformed your data in your data warehouse, you can set up the [Mixpanel Warehouse Connector](/docs/tracking-methods/warehouse-connectors) to migrate your historical data into Mixpanel. We'd recommend first sending a month of data into a test project for validation.
 
-You can learn more about event mappings [here](/docs/tracking-methods/data-warehouse/sending-events). Here's an example of mappings for event table:
+You can learn more about event mappings [here](/docs/tracking-methods/warehouse-connectors#events). Here's an example of mappings for event table:
 
 ![image](/amp_event_warehouse_connector.png)
 
-You can learn more about user mappings [here](/docs/tracking-methods/data-warehouse/sending-user-profiles). Here's an example of mappings for user table: 
+You can learn more about user mappings [here](/docs/tracking-methods/warehouse-connectors#user-profiles). Here's an example of mappings for user table: 
 
 ![image](/amp_user_warehouse_connector.png)
 
@@ -177,7 +177,7 @@ We support the following data collection mechanisms:
 
 ### Data Warehouse Connectors
 
-You can set up the [Mixpanel Warehouse Connector](/docs/tracking-methods/data-warehouse/overview) to set your implementation to Mixpanel. You can learn more about event mappings [here](/docs/tracking-methods/data-warehouse/sending-events) and about user mappings [here](/docs/tracking-methods/data-warehouse/sending-user-profiles).
+You can set up the [Mixpanel Warehouse Connector](/docs/tracking-methods/warehouse-connectors) to set your implementation to Mixpanel. You can learn more about event mappings [here](/docs/tracking-methods/warehouse-connectors#events) and about user mappings [here](/docs/tracking-methods/warehouse-connectors#user-profiles).
 
 ### Client-side SDKs & Server-side SDKs
     

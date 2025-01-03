@@ -21,7 +21,7 @@ Whether you have a transactions based business model or a subscription based bus
    ![image](/arpu.webp)
 5. CAC aka Customer Acquisition Cost: i.e how much money do we have to spend to acquire a user (do I have to spend 5$ on marketing spend or $20 etc). A good acquisition strategy would mean LTV/ CAC > 1
 
-The [following FAQ](/docs/features/revenue_analytics#what-should-be-the-shape-of-the-data-to-analyze-these-metrics) explains what the shape of the data should be to build the above revenue metrics. 
+The [following FAQ](/guides/launch/revenue-analytics#what-should-be-the-shape-of-the-data-to-analyze-these-metrics) explains what the shape of the data should be to build the above revenue metrics. 
    
 NOTE: You can look at how to build these metrics in Mixpanel by leveraging our [Ecomm template](https://mixpanel.com/project?show-template-selector=true) on either your data or our public demo data set. Here is a [public dashboard](https://mixpanel.com/p/DnjPvUbyke46TtZ9AeCGCs) to give you a view on the metrics you can build
 
@@ -60,7 +60,7 @@ We've got 2 new **computed properties** to help you with subscription revenue me
     3. 0 -> 5 = new [zero to positive]
     4. 5 -> 20 = upgrade [positive to more positive]
     5. 5 -> 5 = flat [no change]
-NOTE: all are these are functionalities on [historical profile properties](https://docs.mixpanel.com/docs/data-structure/user-profiles#importing-historical-profile-values)
+NOTE: all are these are functionalities on [historical profile properties](/docs/data-structure/user-profiles#importing-historical-profile-values)
 ![image](/computed_props.png)
 
 When creating a revenue metric eg incremental MRR in the last one month, you have two controls to help with it 
@@ -79,7 +79,7 @@ We also have the ability for you to look at the latest value as of time-period, 
    Please ensure once you setup the Warehouse Connectors, you have Mirror Mode turned on to ensure your data is 100% in sync with the WH even if the WH data is updated
    - For Transactions based models -  Please send purchase value as a event property on every purchase event. Example: `(Event: Purchase completed, {item: clothing, price: $100})`
    - For Subscription based models -
-     - Please send a monthly snapshot of the revenue per user/ account as a historical profile property. More details [here](https://docs.mixpanel.com/docs/data-structure/user-profiles#importing-historical-profile-values)
+     - Please send a monthly snapshot of the revenue per user/ account as a historical profile property. More details [here](/docs/data-structure/user-profiles#importing-historical-profile-values)
      - If a user/ account is not active, please set the revenue data to zero for the immediate month following so we can tag this as a churned user/ account.
 #### We have multiple SKUs  per account, each with it’s own contract. Can we send this as a revenue object property for an account?
   Today, we do not support profile history for object type properties
