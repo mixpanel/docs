@@ -414,7 +414,7 @@ As organizations grow and new use cases become available to become analyzed it p
 
 Leveraging our in-product data governance tools can help support ongoing structure throughout your customers projects. Implementing the use of “verified” metrics, events, and formulas helps end users identify trusted content across the organization. Once your trusted governance owner(s) verify content, a blue checkmark badge will be displayed in the query builder as well as within a dedicated category within the query builder to help users quickly filter to see only trusted content.
 
-Having pinned and favorited boards for new users to jump into as they familiarize themselves with the data is a great place to start. We see the most success when companies have a trusted metrics board for each team or product that leverages this. These boards not only guide users in exploring new use cases but also ensure they leverage the correct events and properties to get the answers they need.
+Having pinned and favorite boards for new users to jump into as they familiarize themselves with the data is a great place to start. We see the most success when companies have a trusted metrics board for each team or product that leverages this. These boards not only guide users in exploring new use cases but also ensure they leverage the correct events and properties to get the answers they need.
 
 Our in-product data standards tooling empowers your organization to scale your data operations by acting on your data at scale through the a rule based system.
 

@@ -57,7 +57,7 @@ For example, suppose the cohort’s filter criteria is: users where user[“City
 Mixpanel computes the above over the last 30 days and then groups the set of users who have property user[“City”] == “SF” as of right now and intersect that with the daily cohort of users who did Order Ride 3 times in the last 7 days.
 
 ### Creating a Cohort with Changing User Properties
-With historical user or group properties, you can optionally Add Time and Measurementto specify the time-range over which to search for the property value
+With historical user or group properties, you can optionally Add Time and Measurement to specify the time-range over which to search for the property value
 ![image](/historical_cohort_1.webp)
  
  This brings up time selector options.
@@ -91,7 +91,7 @@ Cohorts are computed dynamically at the time that you use them in a query. Suppo
 This has a few implications. First, it means every time you run a query that uses the cohort, the cohort is freshly computed vs being a static snapshot of users. Second, it means that the set of users who are in the cohort are users that are in the cohort as of _right now_; it's _not_ a rolling window of users that have ever been in the cohort.
 
 ### Cohorts and Time:
-A common question that customers want to answer is how certain user behaviour impact downstream behaviour. Should you use cohorts or funnels to answer the question of how many users watch a comedy video and then subscribe? Cohorts and filters will give you different answers.
+A common question that customers want to answer is how certain user behavior impact downstream behavior. Should you use cohorts or funnels to answer the question of how many users watch a comedy video and then subscribe? Cohorts and filters will give you different answers.
 
 For example, consider this report: [https://mixpanel.com/s/4AuMRi](https://mixpanel.com/s/4AuMRi)
 

@@ -123,7 +123,7 @@ Here’s how you can setup this mapping:
 
 ![13-Binding](https://github.com/mixpanel/docs/assets/3978760/96d8e794-0979-441a-be68-c2cfb471630b)
 
-This will track the UDO `page_view` whever it appears on our site.
+This will track the UDO `page_view` wherever it appears on our site.
 
 Next, give the event a name in mixpanel... 
 
@@ -186,9 +186,9 @@ A single event may have many custom properties mapped; that might look like this
 
 ![23-MultipleMappings](https://github.com/mixpanel/docs/assets/3978760/4878ea4e-c2fa-4bc7-b5f5-72da3f969a08)
 
-Adding event properties is as simple as modifying the exsiting mapping to an event, and saving and publishing. Once you trigger your new tage you will the correct UDO value *and* the label you specified in the mapper show up in mixpanel  
+Adding event properties is as simple as modifying the existing mapping to an event, and saving and publishing. Once you trigger your new tag you will the correct UDO value *and* the label you specified in the mapper show up in mixpanel  
 
-![24-SuccesfulEvent](https://github.com/mixpanel/docs/assets/3978760/41d27add-4d89-424d-830e-ba978e3b17f6)
+![24-SuccessfulEvent](https://github.com/mixpanel/docs/assets/3978760/41d27add-4d89-424d-830e-ba978e3b17f6)
 
 Note: you can always rename property keys' display labels [in lexicon](https://help.mixpanel.com/hc/en-us/articles/360001307806-Lexicon-Overview#adding-or-changing-descriptions)
        
