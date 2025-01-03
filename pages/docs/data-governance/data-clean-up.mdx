@@ -84,7 +84,7 @@ Data Deletion is a severe action with permanent consequences. Thus, we recommend
 
 You can use the Data Deletion tool in these scenarios: 
 - Your Mixpanel role is Owner or Admin
-- Your data does not extend beyond the past 180 days
+- Your data does not extend beyond the past 180 days (event time, not ingestion time)
 - Your event volumes are below 5 billion events per month, any month over the trailing 3 months
 - Your project has not had more than 10 deletes over the past calendar month 
 
@@ -100,7 +100,7 @@ Once you've identified the problematic data, and confirmed you want to delete:
 1. Navigate to the Data Deletion section in Project Settings
 2. Click ‘Request an Event Deletion’
 3. Select which event you want to delete
-4. Select time range (cannot be more than 180 days in the past)
+4. Select time range (event time cannot be more than 180 days in the past)
 5. Add any Event property filters if needed
 6. Validate in the preview that the right data is being deleted
 7. Submit deletion request
