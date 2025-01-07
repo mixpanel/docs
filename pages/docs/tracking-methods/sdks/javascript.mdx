@@ -4,6 +4,10 @@ import { Callout, Tabs } from 'nextra/components'
 
 ## Getting Started
 
+<Callout type="info">
+    Mixpanel's Autocapture alpha for web is live! To join, [email us](mailto:autocapture-alpha@mixpanel.com).
+</Callout>
+
 Please refer to our [Quickstart Guide](/docs/quickstart/connect-your-data?sdk=javascript).
 
 The [Full API Reference](https://github.com/mixpanel/mixpanel-js/blob/master/doc/readme.io/javascript-full-api-reference.md#mixpanel), [Library Source Code](https://github.com/mixpanel/mixpanel-js), and an [Example Application](https://github.com/mixpanel/mixpanel-js/tree/master/examples) is documented in our GitHub repo.
@@ -747,13 +751,13 @@ Here's a [full code sample](https://gist.github.com/ranic/80459104def4e4bcd73d5c
 
 ## Session Replay
 
-Capture and replay data on how a user interacts with your application. Replay collection is disabled by default, and the Replay portion of the SDK will not be loaded into your application until specified. To use this feature, you must be on at least version 2.50.0 of our JavaScript SDK.
+Capture and replay data on how users interact with your application. By default, the Replay functionality is disabled and will not be loaded into your application until explicitly enabled. Ensure your application runs at least version 2.50.0 of our JavaScript SDK to use this feature.
 
 Before you enable Session Replay for a large audience, we recommend testing in a demo project, and starting in production with smaller sets of users or accounts, so that you can monitor performance and ensure your privacy rules align with company policies.
 
-### Sampling Method
+### Implementation / Sampling
 
-The easiest way to begin capturing session replays is by sampling a subset of users, specified during initialization:
+Implementing Session Replay and setting your sampling rate can be accomplished in a single step during the SDK initialization. Here’s how to activate Session Replay and control the volume of session data captured:
 
 ```javascript
 mixpanel.init(
@@ -764,9 +768,9 @@ mixpanel.init(
 )
 ```
 
-Start with a smaller percentage and tune to fit your analytics needs.
+Start with a low sampling rate, such as 1%, and adjust according to your specific analytics needs.
 
-If you already have the JS SDK installed, this is the only code change you need to start capturing session replays.
+Note: This is the only change needed in your existing JavaScript SDK setup to enable Session Replay.
 
 ### Init Options
 
@@ -781,6 +785,7 @@ If you already have the JS SDK installed, this is the only code change you need 
 | `record_max_ms` | Maximum length of a single replay in milliseconds. Up to 24 hours is supported. Once a replay has reached the maximum length, a new one will begin. | `86400000`<br/>(24 hours) |
 | `record_min_ms` | Minimum length of a single replay in milliseconds. Up to 8 seconds is supported. If a replay does not meet the minimum length, it will be discarded. | `0`<br/>(0 seconds) |
 | `record_sessions_percent` | Percentage of SDK initializations that will qualify for replay data capture. A value of "1" = 1%. | `0` |
+| `record_canvas` | When true, Mixpanel will record snapshots of `<canvas>` elements on your site at up to 15 frames per second | `false` |
 
 
 ### Session Replay Methods
@@ -803,7 +808,6 @@ mixpanel.stop_session_recording()
 ```
 This will have no effect if there is no replay data collection in progress.
 
-
 #### Get replay properties
 
 Use this method to get properties used to identify a replay that is taking place. Add the properties from this method to any events sent to Mixpanel that are not coming from the SDK (e.g. from a [CDP library](/docs/session-replay/session-replay-web#can-i-use-session-replay-with-a-cdp)).
@@ -815,6 +819,16 @@ mixpanel.get_session_recording_properties()
 // {$mp_replay_id: '19221397401184-063a51e0c3d58d-17525637-1d73c0-1919139740f185'}
 ```
 Returns an empty object if there is no Replay in progress.
+
+#### Get replay URL
+
+Returns a URL linking to the current replay in the Mixpanel UI. This URL is accessible only by authenticated users with the necessary permissions for the Mixpanel project. This is useful for debugging purposes or for adding metadata to other platforms, such as support tickets.
+
+```javascript
+mixpanel.get_session_replay_url()
+// https://mixpanel.com/projects/replay-redirect?replay_id=19307d78e24394fe15-0cd98d8fd9ad1d-1f525636-4b9600-19307d78e28194fe15&distinct_id=123&token=my-project-token
+```
+Returns null if there is no Replay in progress.
 
 #### Example Scenarios
 
