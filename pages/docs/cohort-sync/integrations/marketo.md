@@ -13,7 +13,7 @@ You must be a Mixpanel project admin to use the Marketo data integration.
 
 In order to setup your Mixpanel and Marketo Integration, you must be an Admin in both Marketo and your Mixpanel project. To set up the integration:
 
-1. Input your[ Marketo credentials](http://developers.marketo.com/rest-api/authentication/) (Client ID, Client Secret, Rest URL) in the Mixpanel integration setup flow. Remove "identity" from the url so its rest endpoint when setting up the integration looks like: https://051-pvi-353.mktorest.com/
+1. Input your[Marketo credentials](http://developers.marketo.com/rest-api/authentication/) (Client ID, Client Secret, Rest URL) in the Mixpanel integration setup flow. Remove "identity" from the url so its rest endpoint when setting up the integration looks like: https://051-pvi-353.mktorest.com/
 
 2. Create a Mixpanel Custom Field in Marketo. **This Custom Field should be set as a boolean type**. Read the [Marketo Documentation](https://docs.marketo.com/display/public/DOCS/Create+a+Custom+Field+in+Marketo) for additional information on how to set up a Custom Field.
 
