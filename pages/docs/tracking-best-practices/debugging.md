@@ -148,7 +148,7 @@ Mixpanel records all events in Coordinated Universal Time (UTC) at intake. By de
 
 ### Different Queries
 
-- Are both systems looking at the same event and the same timeframe?
+- Are both systems looking at the same event and the same time frame?
 - Are any filters applied to the query? Does the discrepancy persist if you remove them?
 - Are you looking at event or user properties?
 
@@ -180,7 +180,7 @@ A cohort might show more in Mixpanel than what is actually being exported to the
 To debug, please make sure that you are looking at data in both systems like this:
 
 - data that is triggered at the same point of the user journey
-- at the same timeframe and timezone
+- at the same time frame and timezone
 - with the same filtering for the query of the data
 - at the same unit (unique user count, total event count or session count)
 

@@ -171,7 +171,7 @@ Once your users are identified, create [user profiles](/docs/data-structure/user
 
 The PHP SDK provides a few methods for setting profile properties, which will trigger requests to the [/engage API endpoint](https://developer.mixpanel.com/reference/profile-set).
 
-Mixpanel determines default geolocation data (`$city`, `$region`, `mp_country_code`) using the IP address on the incoming request. As all server-side calls will likely originate from the same IP (that is, the IP of your server), this can have the unintended effect of setting the location of all of your users to the location of your datacenter. [Learn more about best practices for geolocation](/docs/tracking-best-practices/geolocation).
+Mixpanel determines default geolocation data (`$city`, `$region`, `mp_country_code`) using the IP address on the incoming request. As all server-side calls will likely originate from the same IP (that is, the IP of your server), this can have the unintended effect of setting the location of all of your users to the location of your data center. [Learn more about best practices for geolocation](/docs/tracking-best-practices/geolocation).
 
 ### Setting Profile Properties
 The Mixpanel class has a public property called [`$people`](https://mixpanel.github.io/mixpanel-php/classes/Mixpanel.html#property_people) that exposes an instance of [`Producers_MixpanelPeople`](https://mixpanel.github.io/mixpanel-php/classes/Producers_MixpanelPeople.html) that you can use to make profile updates.
