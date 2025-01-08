@@ -341,7 +341,7 @@ which changes Mixpanel will reflect.
 
 - **Mirror** will keep Mixpanel perfectly in sync with the data in the warehouse. This includes syncing new data,
   modifying historical data, and deleting data that has been removed from the warehouse. **Mirror** is supported
-  for Snowflake and BigQuery.
+  for Snowflake, BigQuery, Databricks and Redshift.
 - **Append** will load new rows in the warehouse into Mixpanel, but will ignore modifications to existing rows
   or rows that have been deleted from the warehouse. We recommend using **Mirror** over **Append** for supported
   warehouses.
@@ -355,7 +355,7 @@ which changes Mixpanel will reflect.
 
 Mirror syncs work by having the warehouse compute which rows have been inserted, modified, or deleted and sending this
 list of changes to Mixpanel. Change tracking is configured differently depending on the source warehouse. Mirror is
-supported for Snowflake, Databricks and BigQuery sources.
+supported for Snowflake, Databricks , BigQuery and Redshift sources.
 
 <ExtendedTabs urlParam="mirror" urlToItemsMap={mirrorItems}>
 
