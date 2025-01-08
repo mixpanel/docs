@@ -76,7 +76,7 @@ If you go over the limit of your plan, Mixpanel won't stop collecting your data.
 
 For example, let’s say you are on a Growth plan including 1,000 MTUs:
 
-- In January you tracked 1,500 MTUS, which went over by 500 MTU.
+- In January you tracked 1,500 MTUs, which went over by 500 MTU.
 - Around January 1, you would have paid your base monthly fee for January.
 - Then around February 1, you will pay your base monthly fee for February plus the January additional data rate charges you incurred.
 
