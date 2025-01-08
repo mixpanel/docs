@@ -120,7 +120,7 @@ When you switch to **Any Order,** you have the option to anchor specific steps
 
 ![/CleanShot_2021-12-15_at_11.03.46.gif](/CleanShot_2021-12-15_at_11.03.46.gif)
 
-A step will either appear with a number beside it, indicating where it must fall in the funnel, or with an asterix (\*), indicating that it can be performed in any order before the next anchored step.
+A step will either appear with a number beside it, indicating where it must fall in the funnel, or with an asterisk (\*), indicating that it can be performed in any order before the next anchored step.
 
 **Example**:
 
@@ -287,11 +287,11 @@ For example, if a user performs "Step 1 -> Step 1 -> Step 2":
 
 ### Property Sum
 
-This measurement type allows you to visualize revenue through a funnel. Instead of seeing how many users move through your flow, you can select an event property that exists on each step of the funnel. Mixpanel will sum up the total value of this property at each stage of the funnel and visualize the total amount converted, or the dropoff at each step if "Funnel Steps" visualization is selected.
+This measurement type allows you to visualize revenue through a funnel. Instead of seeing how many users move through your flow, you can select an event property that exists on each step of the funnel. Mixpanel will sum up the total value of this property at each stage of the funnel and visualize the total amount converted, or the drop-off at each step if "Funnel Steps" visualization is selected.
 
 **Note**: For many e-commerce flows, you will want to pair property sum with [hold property constant](/docs/reports/funnels#hold-property-constant) on item ID so you can track each individual item.
 
-To use property sum, select property sum from the measurement menu, and select a numeric property. In this case, we're seeing our 5 step purchase funnel, and we can see that our biggest dropoff is between viewing an item and adding it to cart.
+To use property sum, select property sum from the measurement menu, and select a numeric property. In this case, we're seeing our 5 step purchase funnel, and we can see that our biggest drop-off is between viewing an item and adding it to cart.
 
 ![Revenue Funnel](/funnels_property_sum.png)
 
@@ -533,7 +533,7 @@ As you can see in the below activity feed, this user's first Search event happen
 
 ![image](https://github.com/mixpanel/docs/assets/2077899/eb848af7-4cef-4eb5-8a60-36c88a6fd64f)
 
-However, if I put a per step filter on the Search event and require a user to use a Brower = Safari, then I will restrict entry into the funnel to only Search events on Safari browsers.
+However, if I put a per step filter on the Search event and require a user to use a Browser = Safari, then I will restrict entry into the funnel to only Search events on Safari browsers.
 
 Below we see the same user's activity stream where their first Search event is with the Chrome browser, and thus this user’s first Search event **is not** included in a funnels calculation. However they have a second Search that is using Safari, and this event qualifies them to enter into the funnel. Unlike before when we did not filter, now each of their subsequent steps happens within the conversion window, and this user reaches full conversion to the end of the funnel.
 
