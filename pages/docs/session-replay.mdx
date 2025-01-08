@@ -84,7 +84,7 @@ The Replay Feed on the left of the player also allows you to:
 
 Server-Side Stitching allows our customers to easily watch replays for events that aren’t fired from our SDK. 
 
-It works by inferring the replay an event happened in by looking at the distinct ID and time that the replay ocurred. This is especially useful if you have events coming in from multiple sources, like your server or via warehouse import and it doesn't make sense to pass around the value of `mixpanel.get_session_recording_properties()`. NOTE: we still recommend including these properties on your client side events to guarantee accuracy.
+It works by inferring the replay an event happened in by looking at the distinct ID and time that the replay occurred. This is especially useful if you have events coming in from multiple sources, like your server or via warehouse import and it doesn't make sense to pass around the value of `mixpanel.get_session_recording_properties()`. NOTE: we still recommend including these properties on your client side events to guarantee accuracy.
 
 As a result, this feature:
 - makes it 10x easier to watch replays for events coming from your data warehouse
