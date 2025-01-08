@@ -177,7 +177,7 @@ If you need to, you can click on the **+ Ending** button and shift back the de
 
 ### To Date
 
-"To Date" allows you select a date rnge that will update dynamically to fit the current interval. You can choose Week to Date, Month to Date, Quarter to Date and Year to Date. When the boundary of interval is passed, the date range will automatically update to include only the current interval. For example, if "Month to Date" was selected, and the date was February 27, the date range would include Feb 1 - Feb 27. The next week, after the month boundary has passed the date range would include Mar 1 - Mar 4.
+"To Date" allows you select a date range that will update dynamically to fit the current interval. You can choose Week to Date, Month to Date, Quarter to Date and Year to Date. When the boundary of interval is passed, the date range will automatically update to include only the current interval. For example, if "Month to Date" was selected, and the date was February 27, the date range would include Feb 1 - Feb 27. The next week, after the month boundary has passed the date range would include Mar 1 - Mar 4.
 To Date respects start of week and start of quarter settings under project settings.
 
 ### Minute Level Granularity
