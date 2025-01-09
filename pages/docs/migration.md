@@ -17,7 +17,7 @@ If you’re reading this, congrats on considering making the switch from another
 
 A migration primarily consists of 4 phases:
 
-1. Technical migration of data → Data audit, Live data cutover, Historical data import
+1. Technical migration of data → Data audit, Live data cut-over, Historical data import
 2. Change management migration of end users → Champion identification, User interviews, Team by team specific trainings, Ensuring adoption for each team
 3. Data governance and implementation optimization → Improving/Implementing data governance processes, Identifying missing or incorrect data, Optimizing workflows for adding/editing data
 4. Ongoing success planning → Building a product analytics practice
