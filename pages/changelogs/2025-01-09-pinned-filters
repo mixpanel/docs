@@ -1,0 +1,25 @@
+---
+title: "Global Board Filters and Segments"
+slug: "changelog-2025-01-09-board-filters"
+hidden: false
+createdAt: "2025-01-09T19:59:02.165Z"
+updatedAt: "2025-01-09T19:59:02.165Z"
+date: "2024-12-19"
+thumbnail: "/changelog/pinned-filters.png"
+description: "You can now easily apply and save filters and breakdowns to all reports within a board."
+isAnnouncement: false
+---
+
+<ChangelogPostHeader
+  date="2024-12-19"
+  image="/changelog/pinned-filters.png"
+  title="Global Board Filters and Segments"
+/>
+
+You can now easily apply filters and breakdowns to all reports within a board. This lets you quickly analyze all reports in your board using different filters, saving you time from clicking into each report. You can also save board-level filters, ensuring consistent data analysis across your team.
+
+Key changes in this update:
+
+- Global Filter & Breakdown Selections: Easily set a date range, filters, and breakdowns that apply to all reports within a board.
+- Saved Board Filters: Save your preferred filters to the board for easy access and consistent analysis for everyone using the board.
+- Clearer Context: When viewing a report, you can now easily distinguish between board-level and report-level filters.
