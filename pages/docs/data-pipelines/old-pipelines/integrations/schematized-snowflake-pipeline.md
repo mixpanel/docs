@@ -73,7 +73,7 @@ GROUP BY ttime
 
 
 
-This example returns the number of events in each day in project timezone for a monoschema export pipeline and an example daterange. `PROJECT_TIMEZONE` and `DB_NAME` should be replaced by your Mixpanel project timezone and your snowflake database name. You can adjust the query for multischema by putting the right table name in the query.
+This example returns the number of events in each day in project timezone for a monoschema export pipeline and an example date range. `PROJECT_TIMEZONE` and `DB_NAME` should be replaced by your Mixpanel project timezone and your snowflake database name. You can adjust the query for multi-schema by putting the right table name in the query.
 
 ### Querying the identity mapping table
 
@@ -97,4 +97,4 @@ GROUP BY resolved_distinct_id
 LIMIT 100
 ```
 
-Counting number of times a user has done a specific behavior is also possible by adding more filters on event properties. You can adjust the query for multischema by putting the right table name in the query.
+Counting number of times a user has done a specific behavior is also possible by adding more filters on event properties. You can adjust the query for multi-schema by putting the right table name in the query.

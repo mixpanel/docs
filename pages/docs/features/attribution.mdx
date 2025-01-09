@@ -8,7 +8,7 @@ Let’s consider an example user journey:
 2. The user clicks on the ad and is taken to the product page on the company's website
 3. The user adds the product to their cart and begins the checkout process
 4. The user abandons the checkout process
-5. The user receives a retargeting ad for the product on Instagram
+5. The user receives a re-targeting ad for the product on Instagram
 6. The user clicks on the ad and completes the purchase
 
 In this example, two touchpoints contribute to the successful conversion: the Facebook ad and the Instagram ad. Using an attribution model, we can assign different weights to these touchpoints to determine their relative importance in the conversion.
@@ -47,7 +47,7 @@ If you use a Mixpanel js-sdk, we’ve updated our sdk to track utm parameters mo
 - U-shaped - Gives 40% credit to the first touchpoint, 40% credit to the last touchpoint, and divides the remaining 20% to any touch points in between. With 2 touchpoints, the credit is normalized (50%, 50%). With 6 touch points the middle 4 touch points would share the 20% (40%, 5%, 5%, 5%, 5%, 40%).
 - J-shaped - Gives 20% credit to the first touchpoint, 60% credit to the last touchpoint, and divides the remaining 20% to any touch points in between. With 2 touchpoints, the credit is normalized (25%, 75%). With 6 touch points the middle 4 touch points would share the 20% (20%, 5%, 5%, 5%, 5%, 60%).
 - Inverse J-shaped - Gives 60% credit to the first touchpoint, 20% credit to the last touchpoint, and divides the remaining 20% to any touch points in between. With 2 touchpoints, the credit is normalized (75%, 25%). With 6 touch points the middle 4 touch points would share the 20% (60%, 5%, 5%, 5%, 5%, 20%).
-- Custom - Customize the weightage to be given to the first and last touchpoint, and all other touchpoints in between based on your use-case.
+- Custom - Customize the weight to be given to the first and last touchpoint, and all other touchpoints in between based on your use-case.
 
 ## Glossary
 

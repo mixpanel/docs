@@ -10,7 +10,7 @@ Mixpanel exports data to customer's database. We first load the data into a sing
 
 ### Step 1: Create a Role and Grant Permissions
 
-Create a role (`MIXPANEL_EXPORT_ROLE` as example) and grant aceess on your database, schema, warehouse to the role. Replace `<database name>`, `<schema name>`, `<warehouse name>` with actual names.
+Create a role (`MIXPANEL_EXPORT_ROLE` as example) and grant access on your database, schema, warehouse to the role. Replace `<database name>`, `<schema name>`, `<warehouse name>` with actual names.
 
 ```sql
 CREATE ROLE MIXPANEL_EXPORT_ROLE;
@@ -39,7 +39,7 @@ GRANT USAGE ON INTEGRATION MIXPANEL_EXPORT_STORAGE_INTEGRATION TO MIXPANEL_EXPOR
 Refer to [Step 2: Creating the Pipeline](/docs/data-pipelines/#step-2-creating-the-pipeline)
 to create data pipeline via UI.
 
-We provide two different authenitcations: password and key-pair. In the example, create a user with either password or public key and then grant the role to user. You can fine the public key in the UI of creating Snowflake pipelines.
+We provide two different authentications: password and key-pair. In the example, create a user with either password or public key and then grant the role to user. You can fine the public key in the UI of creating Snowflake pipelines.
 If you already have a user, change fields and grant the role.
 
 password authentication
@@ -54,9 +54,9 @@ GRANT ROLE MIXPANEL_EXPORT_ROLE TO USER MIXPANEL_EXPORT_USER;
 key-pair based authentication
 
 ```sql
-CREATE USER MIXPANEL_EXPORT_USER RSA_PUBLIC_KEY='<mixpanle generated key>' DEFAULT_ROLE=MIXPANEL_EXPORT_ROLE;
+CREATE USER MIXPANEL_EXPORT_USER RSA_PUBLIC_KEY='<mixpanel generated key>' DEFAULT_ROLE=MIXPANEL_EXPORT_ROLE;
 
-ALTER USER MIXPANEL_EXPORT_USER SET RSA_PUBLIC_KEY='<mixpanle generated key>'
+ALTER USER MIXPANEL_EXPORT_USER SET RSA_PUBLIC_KEY='<mixpanel generated key>'
 GRANT ROLE MIXPANEL_EXPORT_ROLE TO USER MIXPANEL_EXPORT_USER;
 ```
 
