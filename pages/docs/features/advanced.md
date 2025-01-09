@@ -663,7 +663,7 @@ If you save a report that uses query time sampling, then a version of the report
 
 ## Query Result Caching
 
-Mixpanel stores the results from a report query in the cache and presents these results from there when appropriate. This saves time when running a complicated query multiple times, and allows you to surface previously calculated results near-instantaneously. The date range of the query will adjust how Mixpanel presents results from the cache.
+Mixpanel stores the results from a report query in our server cache and presents these results from there when appropriate. This saves time when running a complicated query multiple times, and allows you to surface previously calculated results near-instantaneously. The date range of the query will adjust how Mixpanel presents results from the server cache.
 
 - If the query date range is 1 year or over, then the query results are cached for up to 14 days.
 - If the query date range is under 1 year, then the query results are cached for up to 7 days.
@@ -673,7 +673,7 @@ Mixpanel stores the results from a report query in the cache and presents these 
 - If the query date range is under 1 week, then the query results are cached for up to 12 hours.
 - If the query date range is under 1 day, then the query results are cached for up to 1 hour.
 
-While this highlights the default cache behavior, you can always refresh a report to include the most current data as described below.
+While this highlights the default server cache behavior, you can always refresh a report to include the most current data as described below.
 
 ### Refreshing the Query Results Cache
 

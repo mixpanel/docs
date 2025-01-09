@@ -86,7 +86,7 @@ A CCPA deletion includes all data connected to the requested distinct_id.
 There are three different disclosure types as outlined in the CCPA. To export or delete everything, you can select “Data” as the disclosure type. Select “Categories” to export or delete the data table headers. Select “Sources” to export or delete data connected to the means of data collection.
 
 ## Opt Out Users
-While the following API can be used to delete or retrieve personal data as outlined by the GPDR, it is important to also opt users out of subsequent tracking. Deleting data from Mixpanel will remove it permanently, but it will not prevent the data from being collected moving forward. If tracking using a client-side Mixpanel library, you can opt users out of tracking using Mixpanel's opt-out methods. These are available in the following client-side libraries:
+While the following API can be used to delete or retrieve personal data as outlined by the GDPR, it is important to also opt users out of subsequent tracking. Deleting data from Mixpanel will remove it permanently, but it will not prevent the data from being collected moving forward. If tracking using a client-side Mixpanel library, you can opt users out of tracking using Mixpanel's opt-out methods. These are available in the following client-side libraries:
 * [JavaScript](https://developer.mixpanel.com/reference/javascript#opting-users-out-of-tracking)
 * [iOS - Objective-C](https://developer.mixpanel.com/reference/ios#opting-users-out-of-tracking)
 * [iOS - Swift](https://developer.mixpanel.com/reference/swift#opting-users-out-of-tracking)

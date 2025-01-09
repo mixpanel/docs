@@ -83,7 +83,7 @@ In order to build a Braze Segment after importing a cohort:
 
 ![Braze 13 Image](/braze13.png)
 
-6. The exported Mixpanel cohort isvisible in the dropdown. Select the cohort.
+6. The exported Mixpanel cohort is visible in the dropdown. Select the cohort.
 
 ![Braze 14 Image](/braze14.png)
 

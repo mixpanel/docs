@@ -50,7 +50,7 @@ If you sell products online, you can load your product catalog into Mixpanel as 
 ### B2B
 If you have a B2B product, you likely have some key entities that are specific to your product. For example, Github has repositories, Figma has design components, Slack has channels. If they track repository_id, component_id, or channel_id as properties on their events, they can use Lookup Tables to enrich those events with information about those repositories, components, and channels.
 
-In general, it is still best to have metadata that don't change over time, and you analyse often, to be tracked as event or user properties. Do refer to the FAQ section on [When shouldn't I use Lookup Tables?](/docs/data-structure/lookup-tables#when-shouldnt-i-use-lookup-tables)
+In general, it is still best to have metadata that don't change over time, and you analyze often, to be tracked as event or user properties. Do refer to the FAQ section on [When shouldn't I use Lookup Tables?](/docs/data-structure/lookup-tables#when-shouldnt-i-use-lookup-tables)
 
 ## How do I upload a Lookup Table?
 
@@ -62,7 +62,7 @@ Lookup Tables are accessible via Lexicon. Go to **Lexicon > Import > Lookup Tabl
 ![image](/lexicon-lookup-table.png "Lexicon Lookup Tables")
 
 Here's an example of what a CSV file should look like
-- The first row is the header and will serve as names for the lookup table properties for each column. Header names must be unique. The first columnn's header is unimportant and can be any text.
+- The first row is the header and will serve as names for the lookup table properties for each column. Header names must be unique. The first column's header is unimportant and can be any text.
 - The first column's value will be use to join to the property you map to (i.e. song_id). Values in this column must be unique.
 ```
 song_id,artist,genre,is_platinum,name,release_date

@@ -82,7 +82,7 @@ After establishing the necessary policies, create a cross-account IAM Role to at
 - Go to the **IAM** service on the AWS console.
 - Select **Roles** in the sidebar and click **Create role**.
 - On the trusted entity page, choose **AWS Account**, then click **Another AWS account**, and enter `485438090326` for the **Account ID** and click **Next**.
-- On the permissions page, locate and attach the policies you created in previous steps (data modification and, if appliable, KMS).
+- On the permissions page, locate and attach the policies you created in previous steps (data modification and, if applicable, KMS).
 - On the review page, provide a name and description for this role and click **Create role**.
 
 To ensure secure operations, limit the trust relationship to the Mixpanel export user:
