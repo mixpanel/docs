@@ -18,13 +18,13 @@
       "pattern": ".+\\.(png|jpe?g|svg|webm|gif)"
     },
     {
-      "name": "code-span",
-      "pattern": "^`(.+)`$"
+      "name": "code-block",
+      "pattern": "/^\\s*```[\\s\\S]*?^\\s*```/gm"
     }
   ],
   "ignoreRegExpList": [
     "images",
-    "code-span"
+    "code-block"
   ],
   "words": [
     "abtasty",

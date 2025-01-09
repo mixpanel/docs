@@ -40,7 +40,7 @@ In other words, each event containing an $insert_id is checked for duplication a
     "token": "project_token",
     "distinct_id": "aubrey@thesix.views",
     "time": 1601412131000,
-    "$insert_id": "ABCDE"
+    "$insert_id": "88B7hahbaschhhB66cbsg"
   },
 }
 ```
