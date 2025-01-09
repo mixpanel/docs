@@ -160,7 +160,7 @@ For CDP implementations, look below for instructions on how to configure the SDK
 
 #### Server Side Stitching (Beta)
 
-Mixpanel can infer the replay an event happened in by looking at the distinct ID and time that the replay ocurred. This is especially useful if you have events coming in from multiple sources, like your server or via warehouse import and it doesn't make sense to pass around the value of `mixpanel.get_session_recording_properties()`. NOTE: we still recommend including these properties on your client side events to guarantee accuracy.
+Mixpanel can infer the replay an event happened in by looking at the distinct ID and time that the replay occurred. This is especially useful if you have events coming in from multiple sources, like your server or via warehouse import and it doesn't make sense to pass around the value of `mixpanel.get_session_recording_properties()`. NOTE: we still recommend including these properties on your client side events to guarantee accuracy.
 
 
 ### Can I use Session Replay with a CDP?

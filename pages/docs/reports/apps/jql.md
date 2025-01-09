@@ -111,7 +111,7 @@ Apart from joined collection, join() accepts an optional third argument: an obje
 | Argument      | Type                                                                                            | Description                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                     |
 | :------------ | :---------------------------------------------------------------------------------------------- | :------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
 | **type**      | <span style="font-family: courier">string</span></br><span style="color: green">optional</span> | Join type: full, left, right or inner. Default is a full join.                                                                                                                                                                                                                                                                                                                                                                                                                                                                  |
-| **selectors** | <span style="font-family: courier">string</span></br><span style="color: green">optional</span> | An optional list of {event: "event name", selector: "Segmentation expression"} objects that restrict event/user pairs retrieved. A record is retreieved if it matches any of the selector objects. To learn more about selectors, refer to [Segmentation API](https://developer.mixpanel.com/reference/segmentation-expressions). Segmentation expressions in join() selectors can access both events and user properties. |
+| **selectors** | <span style="font-family: courier">string</span></br><span style="color: green">optional</span> | An optional list of {event: "event name", selector: "Segmentation expression"} objects that restrict event/user pairs retrieved. A record is retrieved if it matches any of the selector objects. To learn more about selectors, refer to [Segmentation API](https://developer.mixpanel.com/reference/segmentation-expressions). Segmentation expressions in join() selectors can access both events and user properties. |
 
 ```javascript Example
 function main() {
@@ -121,7 +121,7 @@ function main() {
       to_date: "2016-06-01",
     }),
     People(),
-    // Fetch tuples that satisfy muliple conditions:
+    // Fetch tuples that satisfy multiple conditions:
     // * They're both event and user records.
     // * Event is sent from US.
     // * User age is above thirty.
@@ -372,7 +372,7 @@ The group key is computed from a key specification - the first argument of the `
 
 If you use property names as keys, you can use dot notation (i.e., a ".") to access values inside nested objects. For example, if you had a list of objects that looked like
 
-`{"item": "tshirt", "info": {"size": "XL"}}`, you could group by
+`{"item": "t-shirt", "info": {"size": "XL"}}`, you could group by
 
 `["item", "info.size"]`
 

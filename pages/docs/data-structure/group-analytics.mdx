@@ -120,7 +120,7 @@ Not all of a user's events will be attributed to a group. Only the events with a
 
 Mixpanel's SDKs have methods to help you implement Groups Analytics.
 
-Because the client has persistence, only client-side SDKs have methods for adding and removing a user's events to a group (registering and deregistering the `<group_key>: <group_id>` as a super property to be tracked on all events).
+Because the client has persistence, only client-side SDKs have methods for adding and removing a user's events to a group (registering and de-registering the `<group_key>: <group_id>` as a super property to be tracked on all events).
 
 Without persistence on the server, you will need to track `<group_key>: <group_id>` on all events that should be attributed to a group (or multiple groups).
 
