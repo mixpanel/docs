@@ -1,9 +1,8 @@
 name: 'Check spelling'
 on:
-  # Don't enable in PRs just yet until we've built a sane wordlist
-  # pull_request: {}
-  # push:
-  #   branches: [ main ]
+  pull_request: {}
+  push:
+    branches: [ main ]
   workflow_dispatch: {}
 
 jobs:
