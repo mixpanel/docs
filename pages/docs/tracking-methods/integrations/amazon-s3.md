@@ -15,7 +15,7 @@ You can create the bucket in any region, though it will need to be in the same r
 ### Step 2a: Setup the Lambda Function
 Create a [new Lambda Function](https://docs.aws.amazon.com/lambda/latest/dg/getting-started-create-function.html). 
 * Select `Author From Scratch`.
-* Set the runtime to `python 3.7`.
+* Select a Python runtime.
 * Select  `Create Function`.
 
 ![image](/230694620-2645c553-c898-4c98-a19c-f31eb0a23799.png)
