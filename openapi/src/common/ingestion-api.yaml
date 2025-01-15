@@ -69,4 +69,4 @@ OptionalRequestParameter:
       schema:
         $ref: ./schemas.yaml#/IntegerPropertyAsBooleanFlag
         description: >-
-          If present and equal to 0, Mixpanel will not perform geolocation parsing using the IP address of the request. It is recommended to set the ip to "0" when making requests from the server-side to prevent the unintentional effect of overwriting your profiles geolocation with your server's location.
+          If present and equal to 0, Mixpanel will not perform geolocation parsing using the IP address of the request. It is recommended to set the ip to "0" when making requests from the server-side to prevent the unintentional effect of overwriting your profile's geolocation with your server location.
