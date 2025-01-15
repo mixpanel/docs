@@ -62,3 +62,11 @@ OptionalRequestParameter:
         $ref: ./schemas.yaml#/IntegerPropertyAsBooleanFlag
         description: >-
           If present and equal to 1, Mixpanel will validate the provided records and return a JSON object with per-record error messages for records that fail validation.
+    IP:
+      in: query
+      name: ip
+      required: false
+      schema:
+        $ref: ./schemas.yaml#/IntegerPropertyAsBooleanFlag
+        description: >-
+          If present and equal to 0, Mixpanel will not perform geolocation parsing using the IP address of the request. It is recommended to set the ip to "0" when making requests from the server-side to prevent the unintentional effect of overwriting your profiles geolocation with your server's location.
