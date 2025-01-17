@@ -126,3 +126,9 @@ GROUP BY
 LIMIT
   100;
 ```
+
+### FAQ
+
+If you face a "Cannot connect to.." error, it would be good to check how you have configured the Pipeline on Mixpanel. 
+- Account Name: should not be a URL, it should be your unique account identifier. Eg. "blah2321.us-west-2"
+- Storage Integration: MIXPANEL_EXPORT_STORAGE_INTEGRATION
