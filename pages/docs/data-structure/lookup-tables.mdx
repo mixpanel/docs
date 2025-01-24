@@ -1,5 +1,6 @@
-# Lookup Tables: Enrich ingested data using a CSV
+import { Callout } from 'nextra/components'
 
+# Lookup Tables: Enrich ingested data using a CSV
 
 This guide covers Lookup Tables and how to use them effectively. Lookup Tables are optional; if you're new to Mixpanel, we recommend starting with our guide on [Events and Properties](/docs/data-structure/events-and-properties).
 
@@ -41,22 +42,30 @@ We also provide an [API](https://developer.mixpanel.com/reference/replace-lookup
 
 ## Use Cases
 
-### Media
+**Media**
+
 One possible use case for Lookup Tables is to load metadata about your content (songs, podcasts, articles) into Mixpanel. If you track some content identifier (eg: song_id, podcast_id, article_id) as a property on your events, you can then upload a Lookup Table with other properties of that content, like name, category, author, or creation date. You can then use any of those properties on any events that have the ID properties.
 
-### E-Commerce
+**E-Commerce**
+
 If you sell products online, you can load your product catalog into Mixpanel as a Lookup Table. As long as you track a product_id or sku_id property on your events, you'll be able to enrich those events with other properties about those products, like their name, category, and price.
 
-### B2B
+**B2B**
+
 If you have a B2B product, you likely have some key entities that are specific to your product. For example, Github has repositories, Figma has design components, Slack has channels. If they track repository_id, component_id, or channel_id as properties on their events, they can use Lookup Tables to enrich those events with information about those repositories, components, and channels.
 
 In general, it is still best to have metadata that don't change over time, and you analyze often, to be tracked as event or user properties. Do refer to the FAQ section on [When shouldn't I use Lookup Tables?](/docs/data-structure/lookup-tables#when-shouldnt-i-use-lookup-tables)
 
 ## How do I upload a Lookup Table?
 
-> Note: Only Project Owners and Admins can create global lookup tables mappings. Analysts and Consumers can only create local mappings within reports.
+<Callout type="info">
+    Free plan users can upload and map a Lookup Table to an existing property locally from within a report. Growth and Enterprise plan users can also create globally persistent mappings to a Lookup Table via the Lexicon. See our [pricing page](https://mixpanel.com/pricing/) for more details.
+</Callout>
 
 ### Globally using Lexicon
+
+> Note: Only Project Owners and Admins can create global Lookup Table mappings. Analysts and Consumers can only create local mappings within reports.
+
 Lookup Tables are accessible via Lexicon. Go to **Lexicon > Import > Lookup Table** to upload a CSV file or manage existing lookup tables.
 
 ![image](/lexicon-lookup-table.png "Lexicon Lookup Tables")
