@@ -23,9 +23,7 @@ export default function insertGTMScriptTags() {
 
   const isProd = process.env.NODE_ENV === `production`;
 
-  const PROJECT_3_MIXPANEL_TOKEN = isProd
-    ? `metrics-1`
-    : `9c4e9a6caf9f429a7e3821141fc769b7`;
+  const PROJECT_3_MIXPANEL_TOKEN = process.env.PROJECT_3_MIXPANEL_TOKEN;
 
   const MIXPANEL_CUSTOM_LIB_URL = `https://cdn.mxpnl.com/libs/mixpanel.dev.min.js`;
 
