@@ -1,4 +1,10 @@
+import { Callout } from 'nextra/components'
+
 # AWS Redshift Spectrum
+
+<Callout type="info">
+  Customers on an Enterprise or Growth plan can access Data Pipeline as an add-on package. See our [pricing page](https://mixpanel.com/pricing/) for more details.
+</Callout>
 
 Mixpanel's JSON pipelines enable direct export of your Mixpanel data into an S3 bucket, facilitating the use of Redshift Spectrum for querying.
 
@@ -246,7 +252,7 @@ Follow these steps to grant the `CREATE` privilege:
   --database <your-database-name> \
   --sql "SELECT 1;"
   ```
-- Grant `CREATE` privilege. Click **Query data** in the Amazon Redshift console to open **Query Editor v2**. Connect using appropriate credentials and run the following SQL commands, replacing <your-database-name> and <mixpanel-role-name> with your actual values:
+- Grant `CREATE` privilege. Click **Query data** in the Amazon Redshift console to open **Query Editor v2**. Connect using appropriate credentials and run the following SQL commands, replacing `<your-database-name>` and `<mixpanel-role-name>` with your actual values:
 
   ```sql
   -- Check if the IAMR user has been created
