@@ -3,7 +3,7 @@ import { Callout } from 'nextra/components'
 # Alerts: Get notified about anomalies in your data
 
 <Callout type="info">
-    Enterprise plan users can set up to 5 alerts per project. Enterprise plan users can set an unlimited number of alerts. See our [pricing page](https://mixpanel.com/pricing/) for more details.
+    Users with a paid plan can access Alerts. Growth plan users can set up to 5 alerts per project. Enterprise plan users can set an unlimited number of alerts. See our [pricing page](https://mixpanel.com/pricing/) for more details.
 </Callout>
 
 ## Overview
@@ -24,7 +24,7 @@ Create an alert for your Insights and Funnels reports and be notified when r
 3. If your report has more than one event, select an event to track. If your report has a breakdown applied, either select a segment to alert on, or select any segment to be alerted when any segment matches the alert criteria.
 4. **Set your alert criteria.** Depending on the report you’re working from, choose between anomaly detection or custom alert types. More details on each criteria type can be found below.
 5. **Set your notification frequency.** Depending on your alert criteria, you can choose a notification frequency spanning from an hour to at most a month. This frequency informs how often *at most* you’ll receive an alert.
-     <br> *Note:*
+    *Note:*
     - *for time-series reports, alert query frequency (how often we check if your data matches your alert condition) is determined by the time bucket of your report visualization. For instance, if your chart is hourly, the alert will be checked for at an hourly interval.*
     - *if you have an hourly chart, but set the alert frequency to daily, we’ll check your report for an alert condition match every hour. If we find a match, we’ll send you the alert message and will stop checking your report for a match until the next day.*
 6. **Set your notification delivery preferences.** When alert conditions are met, we can send notification via email or Slack.
@@ -55,6 +55,10 @@ You can view the details of another user’s alert, but you are not able to edit
 ## Alert Criteria Types
 
 ### Anomaly Detection
+
+<Callout type="info">
+    Users on the Enterprise plan can create Anomaly Detection alerts. See our [pricing page](https://mixpanel.com/pricing/) for more details.
+</Callout>
 
 Anomaly Detection alerts automatically monitor your metrics and notify you when significant anomalies occur. With advanced forecasting algorithms, Mixpanel calculates thresholds based on the expected range of your metrics. If a data point falls outside of the calculated confidence interval, you'll receive an alert, allowing you to address the issue promptly. No manual threshold configuration is required, making it an effortless way to stay informed about potential problems.
 
