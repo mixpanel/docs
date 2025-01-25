@@ -4,22 +4,15 @@ import { Callout } from 'nextra/components'
 
 ## Overview
 
+<Callout type="info">
+  Customers on an Enterprise or Growth plan can access Data Pipeline as an add-on package. See our [pricing page](https://mixpanel.com/pricing/) for more details.
+</Callout>
+
 <Callout type="warning">
   This version of managing pipelines via API is Deprecated going forward.
   For the customers who earlier used these apis to create and manage can continue using it.
   Otherwise Go to Integrations page in mixpanel to create and manage pipelines via UI and
   go to [docs](/docs/data-pipelines) for more info.
-</Callout>
-
-<Callout type="warning">
-  If your Mixpanel org was created before Sep 2024 and you just start setting up Data Pipelines,
-  by default you will use the older version of pipelines.
-  If you want to use Json Pipelines, please reach out to our support team for assistance.
-</Callout>
-
-<Callout type="info">
-  Data Pipelines is a paid add-on. Visit our [pricing
-  page](https://mixpanel.com/pricing) to add it to your plan.
 </Callout>
 
 Data Pipelines continuously exports the events in your Mixpanel project to a cloud storage bucket or data warehouse of your choice. It's useful if you want to analyze Mixpanel events using SQL in your own environment.
