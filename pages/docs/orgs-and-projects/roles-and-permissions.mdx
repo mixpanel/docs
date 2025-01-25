@@ -5,7 +5,6 @@ import { Callout } from 'nextra/components'
 ## Overview
 Your team members access your organization and its projects using individual user accounts which is what you use to sign into Mixpanel. An account must be part of an organization but it does not need to be part of all projects in the organization.  Each account will have a single organization role per organization and one or more project roles for each project it is a part of. These roles can further limit what an account will have access to in Mixpanel.
 
-
 ### Invite Users
 
 You can invite users to an organization or to a project with specific role permissions. See [Permissions](/docs/orgs-and-projects/roles-and-permissions#permissions) to learn more about organization roles and project roles.
@@ -82,7 +81,11 @@ In Mixpanel, users have roles in an organization and in a project. The types of 
 ### Organization Roles
 
 <Callout type="info">
-  Paid Organizations have access to four roles; Owner, Admin, Billing Admin, and Member. Free Organizations have access to two roles; Owner and Billing Admin.
+  Users on an Enterprise or Growth plan have access to four roles; Owner, Admin, Billing Admin, and Member. 
+  
+  Users on a Free plan have access to two roles; Owner and Billing Admin.
+
+  See our [pricing page](https://mixpanel.com/pricing/) for more details.
 </Callout>
 
 The table below breaks down the roles and permissions of each role:
