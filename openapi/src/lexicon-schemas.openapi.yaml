@@ -101,6 +101,7 @@ paths:
     parameters:
       - $ref: ./common/parameters.yaml#/path/projectId
       - $ref: "#/components/parameters/schemaEntityType"
+      - $ref: "#/components/parameters/schemaEntityNameQuery"
     get:
       operationId: list-schemas-for-entity
       tags:
@@ -308,28 +309,6 @@ paths:
           $ref: ./common/responses.yaml#/401Unauthorized
         "403":
           $ref: ./common/responses.yaml#/403Forbidden
-  /projects/{projectId}/schemas/{entityType}?{name}:
-    parameters:
-      - $ref: ./common/parameters.yaml#/path/projectId
-      - $ref: "#/components/parameters/schemaEntityType"
-      - $ref: "#/components/parameters/schemaEntityName"
-    delete:
-      operationId: delete-schema-by-entity-and-name-with-query
-      tags:
-        - Delete Schemas With Query
-      summary: Delete for Entity and Name Using Query
-      description: Delete schema for an entity type and entity name using query param
-      responses:
-        "200":
-          description: Success
-          content:
-            application/json:
-              schema:
-                $ref: "#/components/schemas/DeleteSchemasResponse"
-        "401":
-          $ref: ./common/responses.yaml#/401Unauthorized
-        "403":
-          $ref: ./common/responses.yaml#/403Forbidden
 components:
   securitySchemes:
     $ref: ./common/securitySchemes.yaml
@@ -520,6 +499,13 @@ components:
       schema:
         type: string
       required: true
+      description: "The entity name (eg: Added To Cart)"
+    schemaEntityNameQuery:
+      in: query
+      name: name
+      schema:
+        type: string
+      required: false
       description: "The entity name (eg: Added To Cart)"
 x-explorer-enabled: true
 x-proxy-enabled: true
