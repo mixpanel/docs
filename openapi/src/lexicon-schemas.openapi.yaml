@@ -5,7 +5,7 @@ info:
     Use schemas to sync your data dictionary with Mixpanel. Schemas can be
     used to populate Lexicon and provide additional context for your data.
   contact:
-    url: 'https://mixpanel.com/get-support'
+    url: "https://mixpanel.com/get-support"
   version: 1.0.0
 servers:
   - $ref: ./common/app-api.yaml#/server
@@ -31,22 +31,22 @@ paths:
       summary: List Schemas
       description: List all schemas in a project
       responses:
-        '200':
+        "200":
           description: Success
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/ListSchemasResponse'
-        '401':
+                $ref: "#/components/schemas/ListSchemasResponse"
+        "401":
           $ref: ./common/responses.yaml#/401Unauthorized
-        '403':
+        "403":
           $ref: ./common/responses.yaml#/403Forbidden
     post:
       operationId: upload-schemas-for-project
       tags:
         - Create Schemas
       summary: Create/Replace Multiple
-      description: ''
+      description: ""
       requestBody:
         content:
           application/json:
@@ -57,7 +57,7 @@ paths:
                   type: array
                   description: The list of schema entries to upload
                   items:
-                    $ref: '#/components/schemas/SchemaEntry'
+                    $ref: "#/components/schemas/SchemaEntry"
                 truncate:
                   type: boolean
                   description: >-
@@ -70,15 +70,15 @@ paths:
                 - entries
               additionalProperties: false
       responses:
-        '200':
+        "200":
           description: Success
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/BatchUploadSchemasResponse'
-        '401':
+                $ref: "#/components/schemas/BatchUploadSchemasResponse"
+        "401":
           $ref: ./common/responses.yaml#/401Unauthorized
-        '403':
+        "403":
           $ref: ./common/responses.yaml#/403Forbidden
     delete:
       operationId: delete-all-schemas-in-project
@@ -87,20 +87,20 @@ paths:
       summary: Delete all Schemas
       description: Delete all schemas in a project
       responses:
-        '200':
+        "200":
           description: Success
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/DeleteSchemasResponse'
-        '401':
+                $ref: "#/components/schemas/DeleteSchemasResponse"
+        "401":
           $ref: ./common/responses.yaml#/401Unauthorized
-        '403':
+        "403":
           $ref: ./common/responses.yaml#/403Forbidden
   /projects/{projectId}/schemas/{entityType}:
     parameters:
       - $ref: ./common/parameters.yaml#/path/projectId
-      - $ref: '#/components/parameters/schemaEntityType'
+      - $ref: "#/components/parameters/schemaEntityType"
     get:
       operationId: list-schemas-for-entity
       tags:
@@ -108,15 +108,15 @@ paths:
       summary: List for Entity
       description: Get all schemas for a specific entity type
       responses:
-        '200':
+        "200":
           description: Success
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/ListSchemasResponse'
-        '401':
+                $ref: "#/components/schemas/ListSchemasResponse"
+        "401":
           $ref: ./common/responses.yaml#/401Unauthorized
-        '403':
+        "403":
           $ref: ./common/responses.yaml#/403Forbidden
     delete:
       operationId: delete-schemas-for-entity
@@ -125,21 +125,21 @@ paths:
       summary: Delete for Entity
       description: Delete all schemas of a specific entity type
       responses:
-        '200':
+        "200":
           description: Success
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/DeleteSchemasResponse'
-        '401':
+                $ref: "#/components/schemas/DeleteSchemasResponse"
+        "401":
           $ref: ./common/responses.yaml#/401Unauthorized
-        '403':
+        "403":
           $ref: ./common/responses.yaml#/403Forbidden
   /projects/{projectId}/schemas/{entityType}/{name}:
     parameters:
       - $ref: ./common/parameters.yaml#/path/projectId
-      - $ref: '#/components/parameters/schemaEntityType'
-      - $ref: '#/components/parameters/schemaEntityName'
+      - $ref: "#/components/parameters/schemaEntityType"
+      - $ref: "#/components/parameters/schemaEntityName"
     get:
       operationId: list-schemas-by-entity-and-name
       tags:
@@ -147,15 +147,15 @@ paths:
       summary: List for Entity and Name
       description: Get the schema for a specific entity type and entity name
       responses:
-        '200':
+        "200":
           description: Success
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/Schema'
-        '401':
+                $ref: "#/components/schemas/Schema"
+        "401":
           $ref: ./common/responses.yaml#/401Unauthorized
-        '403':
+        "403":
           $ref: ./common/responses.yaml#/403Forbidden
     delete:
       operationId: delete-schema-by-entity-and-name
@@ -164,15 +164,15 @@ paths:
       summary: Delete for Entity and Name
       description: Delete schema for an entity type and entity name
       responses:
-        '200':
+        "200":
           description: Success
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/DeleteSchemasResponse'
-        '401':
+                $ref: "#/components/schemas/DeleteSchemasResponse"
+        "401":
           $ref: ./common/responses.yaml#/401Unauthorized
-        '403':
+        "403":
           $ref: ./common/responses.yaml#/403Forbidden
     post:
       operationId: upload-schema-by-entity-and-name
@@ -294,19 +294,41 @@ paths:
         content:
           application/json:
             schema:
-              $ref: '#/components/schemas/Schema'
+              $ref: "#/components/schemas/Schema"
       responses:
-        '200':
+        "200":
           description: Success
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/UploadSchemasResponse'
-        '400':
+                $ref: "#/components/schemas/UploadSchemasResponse"
+        "400":
           $ref: ./common/responses.yaml#/400BadRequest
-        '401':
+        "401":
           $ref: ./common/responses.yaml#/401Unauthorized
-        '403':
+        "403":
+          $ref: ./common/responses.yaml#/403Forbidden
+  /projects/{projectId}/schemas/{entityType}?{name}:
+    parameters:
+      - $ref: ./common/parameters.yaml#/path/projectId
+      - $ref: "#/components/parameters/schemaEntityType"
+      - $ref: "#/components/parameters/schemaEntityName"
+    delete:
+      operationId: delete-schema-by-entity-and-name-with-query
+      tags:
+        - Delete Schemas With Query
+      summary: Delete for Entity and Name Using Query
+      description: Delete schema for an entity type and entity name using query param
+      responses:
+        "200":
+          description: Success
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/DeleteSchemasResponse"
+        "401":
+          $ref: ./common/responses.yaml#/401Unauthorized
+        "403":
           $ref: ./common/responses.yaml#/403Forbidden
 components:
   securitySchemes:
@@ -341,7 +363,7 @@ components:
                   - array
                   - boolean
                   - integer
-                  - 'null'
+                  - "null"
                   - number
                   - object
                   - string
@@ -362,7 +384,7 @@ components:
                           of the entity name
                       hidden:
                         type: boolean
-                        description: 'If true, this property will be hidden in the Mixpanel UI'
+                        description: "If true, this property will be hidden in the Mixpanel UI"
                         default: false
                       dropped:
                         type: boolean
@@ -398,7 +420,7 @@ components:
                     type: string
                 hidden:
                   type: boolean
-                  description: 'If true, this entity will be hidden in the Mixpanel UI'
+                  description: "If true, this entity will be hidden in the Mixpanel UI"
                   default: false
                 dropped:
                   type: boolean
@@ -425,12 +447,12 @@ components:
       type: object
       properties:
         entityType:
-          $ref: '#/components/schemas/SchemaEntityType'
+          $ref: "#/components/schemas/SchemaEntityType"
         name:
           type: string
-          description: 'The entity name (eg: Added To Cart)'
+          description: "The entity name (eg: Added To Cart)"
         schemaJson:
-          $ref: '#/components/schemas/Schema'
+          $ref: "#/components/schemas/Schema"
       required:
         - name
         - entityType
@@ -442,7 +464,7 @@ components:
         results:
           type: array
           items:
-            $ref: '#/components/schemas/SchemaEntry'
+            $ref: "#/components/schemas/SchemaEntry"
         status:
           type: string
           enum:
@@ -489,16 +511,16 @@ components:
       in: path
       name: entityType
       schema:
-        $ref: '#/components/schemas/SchemaEntityType'
+        $ref: "#/components/schemas/SchemaEntityType"
       required: true
-      description: 'The entity type (eg: event)'
+      description: "The entity type (eg: event)"
     schemaEntityName:
       in: path
       name: name
       schema:
         type: string
       required: true
-      description: 'The entity name (eg: Added To Cart)'
+      description: "The entity name (eg: Added To Cart)"
 x-explorer-enabled: true
 x-proxy-enabled: true
 x-samples-enabled: true
