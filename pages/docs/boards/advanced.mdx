@@ -1,3 +1,5 @@
+import { Callout } from 'nextra/components'
+
 # Advanced
 
 ## Board-wide Date Ranges and Filters
@@ -66,7 +68,11 @@ It is possible to subscribe to a private board. However, there are some restrict
 1. If you convert a regular board with subscriptions into a private board, existing subscriptions will still work with existing recipients. However, if they click **View Board**, they will not be able to access your private board. Creating new subscriptions or editing existing subscriptions within the private board will force you to limit recipients to yourself.
 2. You cannot edit subscriptions of someone else’s private board without selecting a different board that you have access to (regardless of your permissions or role). You can still delete the subscription or select a different board.
 
-## Sharing
+## Sharing and Permissions
+
+<Callout type="info">
+  Growth and Enterprise plan users can control who views and edits reports in a board. Free plan users have view and edit permissions for all boards and reports in a project. See our [pricing page](https://mixpanel.com/pricing/) for more details.
+</Callout>
 
 Sharing and permissions are set at the board level, and all reports saved on a board inherit the same set of sharing and permissions settings of that board.
 
@@ -79,10 +85,6 @@ Both reports and boards can also be shared via the "Copy URL" button at the top 
 ![/Screen_Shot_2021-11-08_at_11.01.00_AM.png](/Screen_Shot_2021-11-08_at_11.01.00_AM.png)
 
 So long as the recipient has access to the project, they will be able to see the shared report or board. However, unless they have specifically given Editor permissions, they will only be able to view it, not edit it.
-
-## Permissions
-
-Sharing and permissions are set at the board level, and all reports saved on a board inherit the same set of sharing and permissions settings of that board.
 
 In the sharing process, you can choose the permissions level granted to the individual with whom you're sharing the board. Teammates with access to a board can either be Viewers (any changes made will not be saved) or Editors (changes made will be saved). 
 
