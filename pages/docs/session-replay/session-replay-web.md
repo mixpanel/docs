@@ -23,7 +23,7 @@ To access free replays, customers will need to ensure they’re on the latest Mi
     - You can make the switch to our latest plan directly from the [pricing page](https://mixpanel.com/pricing/).
 - Enterprise customers should contact their account manager to determine their plan status.
 
-Customers will be blocked from viewing additional replays above their monthly limit (or custom add-on limit for an Enterprise plan) until they upgrade or purchase additional volumes. After breaching a higher limit, we may stop capturing replays of your user sessions.
+Customers will be blocked from viewing additional replays above their monthly limit (or custom add-on limit for an Enterprise plan) until they upgrade or purchase additional volumes. After breaching a higher limit, we may stop capturing replays of your user sessions. Replay volumes are summed across all your projects within your billing account.
 
 ## Using Session Replay
 
