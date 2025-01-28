@@ -116,3 +116,8 @@ Our Service Level Agreement (SLA) stipulates a latency policy for exported event
 For hourly pipelines, data that arrives on time is expected to be exported within 24 hours from the moment it is ingested by Mixpanel. For daily pipelines, this 24-hour period begins at the start of the next calendar day based on project time (e.g., data ingested on January 1st is scheduled to be exported from the start of January 2nd midnight to the end of the day on January 3rd).
 
 Data arriving late is handled during a daily sync process the following day after ingestion, provided sync is enabled. For instance, if data for January 1st arrives on January 3rd, it would be exported in the sync run on January 4th.
+
+### What should I set for the Account Name and Storage Integration when creating a Snowflake pipeline?
+
+The Account Name should be set to your unique account identifier Eg. "blah2321.us-west-2" while the Storage Integration should be set to the name of the storage integration you created in Snowflake Eg. "MIXPANEL_EXPORT_STORAGE_INTEGRATION".
+
