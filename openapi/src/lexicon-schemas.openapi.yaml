@@ -502,7 +502,7 @@ components:
       description: "The entity name (eg: Added To Cart)"
     schemaEntityNameQuery:
       in: query
-      name: name
+      name: entity_name
       schema:
         type: string
       required: false
