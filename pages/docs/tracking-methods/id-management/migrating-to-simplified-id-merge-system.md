@@ -425,17 +425,17 @@ As part of creating the new Simplified ID Merge project, you would also need to 
 
 3. <b>Boards & Reports</b>
 
-   Move Board: Mixpanel provides a [Move Board](/docs/boards/advanced#move-board) feature that allows you to directly [transfer Boards between projects](/changelogs/2023-07-27-move) preserving reports, filters, and text annotations.
+   Move Board: Mixpanel provides a [Move Board](/docs/boards/move-boards) feature that allows you to directly [transfer Boards between projects](/changelogs/2023-07-27-move) preserving reports, filters, and text annotations.
 
    Before you move any Board, it's important to note the following:
    - Duplicate the existing Board and move the new copy into the new project. This would minimize impact where users are still using Boards and reports in the old project.
    - Any saved cohorts, custom events, custom properties, lookup tables would need to be created first as they don't get automatically moved as part of the Move Board. 
-   - You may need to replicate the permissions for the moved Board should you have very specific [sharing permissions](/docs/boards/advanced#sharing) set in the existing project.
+   - You may need to replicate the permissions for the moved Board should you have very specific [sharing permissions](/docs/boards/sharing-and-permission) set in the existing project.
    - Double check that all reports (especially those that use cohorts, custom events, custom properties, lookup tables) are working properly.
 
 <br />
 
-4. <b>Lexicon</b>
+1. <b>Lexicon</b>
 
    Schemas API or CSV Export/Import: Migrate the Lexicon schema definitions (i.e. display name, descriptions, etc.) of your events, event properties, and user properties from the existing project to the new project using either the [Lexicon Schemas API](https://developer.mixpanel.com/reference/lexicon-schemas-api) or [Lexicon CSV Export/Import](/docs/data-governance/lexicon#export-and-import-lexicon-data).
 

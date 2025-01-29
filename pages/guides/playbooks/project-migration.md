@@ -405,7 +405,7 @@ Saved entities, such as reports, boards, custom events, custom properties, cohor
 💡 **Best Practices:**
 - **Prioritize Key Entities:** Focus on migrating the most important and frequently used entities first to ensure critical business functions continue uninterrupted.
 - **Collaborate with Stakeholders:** Involve key stakeholders throughout the migration process to ensure that their needs are met and that the migrated entities align with their expectations.
-- **Boards & Reports**: Utilize [Move](/docs/boards/advanced#move-board) to transfer saved boards and reports across the same region (i.e. US, EU data centers). Permissions are managed by group admins allowing Boards to be moved across Projects or Organizations, depending on your use case.
+- **Boards & Reports**: Utilize [Move](/docs/boards/move-boards) to transfer saved boards and reports across the same region (i.e. US, EU data centers). Permissions are managed by group admins allowing Boards to be moved across Projects or Organizations, depending on your use case.
     - Move does not support the migration of custom events, custom properties, cohorts, and lexicon metadata. This would need to be done manually. Review these lists with stakeholders and decide if any of these saved entities would need to be recreated in the new project to set your end users up for success.
     - Lexicon metadata can be [retrieved](https://developer.mixpanel.com/reference/list-all-schemas-for-project) from existing projects and [recreated](https://developer.mixpanel.com/reference/upload-schemas-for-project) in the new project via our Lexicon Schemas API.
 
