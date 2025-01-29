@@ -3,5 +3,5 @@ export default {
     "templates": "Templates",
     "boards-on-boards": "Boards on Boards",
     "public-boards": "Public Boards",
-    "move-board": "Move Board"
+    "move-boards": "Move Boards"
 }
