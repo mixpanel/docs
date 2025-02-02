@@ -1,4 +1,6 @@
-# Quickstart
+import { Cards } from 'nextra/components'
+
+# Capture Events
 
 <Cards>
   <Cards.Card icon title="Autocapture" href="/docs/quickstart/track-events/autocapture" />
