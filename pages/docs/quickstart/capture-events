@@ -1,0 +1,6 @@
+# Quickstart
+
+<Cards>
+  <Cards.Card icon title="Autocapture" href="/docs/quickstart/track-events/autocapture" />
+  <Cards.Card icon title="Track Events" href="/docs/quickstart/track-events/track-events" />
+</Cards>
