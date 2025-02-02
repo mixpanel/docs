@@ -1,20 +1,20 @@
-# Autocapture
-
-import { Tabs } from "nextra/components";
+import { Callout, Tabs } from "nextra/components";
 
 import ExtendedButton from "/components/ExtendedButton/ExtendedButton";
 import ExtendedTabs from "/components/ExtendedTabs/ExtendedTabs";
 
 import { dataItems } from "/utils/constants";
 
-## Overview
+# Autocapture
+
+## What is Autocapture?
 
 Autocapture allows you to capture information about your website with minimal setup. Once enabled via SDK, Autocapture automatically captures frontend events like page views, button clicks, and form interactions.
 
 ## Availability
 
 Autocapture is available on all plans.
-Autocapture is currently available for web only via Mixpanel’s web SDK. To turn it on, ensure you have the config `{autocapture: true}` set in the SDK.
+Autocapture is currently available for web only via Mixpanel’s [Javascript SDK]((https://docs.mixpanel.com/docs/tracking-methods/sdks/javascript)). To turn it on, ensure you have the config `{autocapture: true}` set in the SDK.
 
 ## Autocapture events
 
@@ -40,12 +40,16 @@ Autocapture can coexist with more precise tracking — you can both enable Autoc
 
 ## Configuring Autocapture
 If you subscribe to automatic SDK updates, please note that these updates will not change your Autocapture configuration.
-If you are an existing customer, we do not recommend changes to your SDK implementation (including turning on Autocapture) without speaking to a member of the Mixpanel team.
-Customers adding the SDK with a snippet that contains an enabled autocapture config will turn on autocapture. **If this config is not present in the snippet, Autocapture will not be enabled.** Our documentation on how to configure the web SDK, including changing your Autocapture configuration, [can be found here](https://docs.mixpanel.com/docs/tracking-methods/sdks/javascript).
+
+<Callout type="info">
+    If you are an existing customer, we do not recommend changes to your SDK implementation (including turning on Autocapture) without speaking to a member of the Mixpanel team.
+</Callout>
+
+Customers adding the Javascript SDK with a snippet that contains an enabled autocapture config will turn on autocapture. **If this config is not present in the snippet, Autocapture will not be enabled.** Our documentation on how to configure the Javascript SDK, including changing your Autocapture configuration, [can be found here](https://docs.mixpanel.com/docs/tracking-methods/sdks/javascript).
 
 ### Disabling Autocapture
 
-You can disable Autocapture by setting the config in the Mixpanel SDK. Disabling Autocapture does not disable session recording, which is [configured separately](https://docs.mixpanel.com/docs/tracking-methods/sdks/javascript#session-replay) in the Mixpanel SDK. [Learn more about detailed configuration here](https://docs.mixpanel.com/docs/tracking-methods/sdks/javascript).
+You can disable Autocapture by setting the config in the Javascript SDK. Disabling Autocapture does not disable session recording, which is [configured separately](https://docs.mixpanel.com/docs/tracking-methods/sdks/javascript#session-replay) in the Javascript SDK. [Learn more about detailed configuration here](https://docs.mixpanel.com/docs/tracking-methods/sdks/javascript).
 
 ### Manage your event volume
 
