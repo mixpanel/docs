@@ -1,7 +1,13 @@
 export default {
   "install-mixpanel": "Install Mixpanel",
   "identify-users": "Identify Users",
-  "track-events": "Track Events",
+  "track-events": {
+    title: "Track Events",
+    items: [
+      "track-events/track-events",
+      "track-events/autocapture"
+    ]
+  },
   "tips-and-tricks": {
     "display": "hidden"
   },
