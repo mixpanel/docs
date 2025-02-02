@@ -169,7 +169,7 @@ Note that disabling Autocapture does not disable Session Replay, which is [confi
 
 **HTML attributes captured by default**
 
-By default, Autocapture collects the following HTML attributes on Autocaptured events:
+By default, Autocapture collects the following HTML attributes on events:
 | HTML Element Attribute | Description |
 | --- | --- |
 | `aria-label` | Provides an accessible name for an element, used by assistive technologies like screen readers. |
@@ -181,9 +181,9 @@ By default, Autocapture collects the following HTML attributes on Autocaptured e
 | `title` | Provides additional information about an element, typically displayed as a tooltip when hovered. |
 | `type` | Specifies the type of an element, commonly used in `<input>` fields to define input behavior (e.g., text, password, email). |
 
-**Default event properties on Autocaptured events**
+**Default event properties on Autocapture events**
 
-On Autocaptured events, Mixpanel default-tracks the following properties:
+On Autocapture events, Mixpanel default-tracks the following properties:
 | Event Property | Description |
 | --- | --- |
 | `$event_type` | The type of event that was captured (e.g., "click", "submit"). |
@@ -217,7 +217,7 @@ All events sent from the JavaScript library will be sent over HTTPS.
     The [/track endpoint](https://developer.mixpanel.com/reference/track-event) will only validate events with timestamps within the last 5 days of the request. Events with timestamps older than 5 days will not be ingested. See below on best practices for [historical imports](/docs/tracking-methods/sdks/javascript#importing-historical-events).
 </Callout>
 
-### Autocaptured Events
+### Autocapture Events
 If you've enabled Autocapture, you do not need to set up precision tracking for page view or UTMs unless you are tracking a single-page application.
 
 ### Track Events
