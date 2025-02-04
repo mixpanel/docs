@@ -554,6 +554,39 @@ In funnels, the behavioral property is computed in the time range between 2 step
 
 In retention, the behavioral property is computed in the chosen time range after the entry event, up until the expiration window. For example, there may be a 7-day window in which we're looking for an event. Even if the retaining action happens before the 7 days are up, we continue to count additional events.
 
+## Company health and activation metrics 
+
+### Company Profiles
+
+This page gives you a view into all your company health - including key metrics, and company profile properties (i.e company attributes) 
+
+Company Health Metrics on the page include - understanding company usage (DAU, WAU, MAU, new users), users’ engagement level (activity per user, lifecycle of user) and their retention (Day 1, Week 1 and Month 1) 
+
+You can view the definition of each metric by clicking on the metric card, which will open the underlying Mixpanel report 
+
+NOTE
+1. To access this page - click on Users/ Companies → Company Profile
+2. This is only available if you have setup a B2B Company Key, an option available in the Group Anlaytics package.
+
+![image](/B2B_Company_Profiles.webp) 
+
+### Activation Metrics 
+
+SaaS companies often have use-cases like the below, where you’re trying to segment companies based on how many and quality of users. Examples - what are the number of trial accounts that have > 2 active users?  Hypothesis is these will convert faster. What you want to do here is to be able to break down account activity by number of active users 
+
+We now have a new computed property (in both breakdown and filter) - **“Number of users who did…”**, available on our group analytics package that enables answering the above type of questions
+
+![image](/B2B_Activation_1.webp)
+
+When using as a breakdown, we show you how many downloads came from different types of account health i.e 605 downloads came from accounts with 0 active users, ~1.5 downloads through the 30 days came from accounts with 2 active users, where “active user” is defined by both the activity (eg. document created) and frequency of activity (eg. ≥1 t times)
+
+In a line chart, we look for activity per interval - i.e in the below daily chart, we’re looking for activity qualification per day (i.e an active user is one who has created atleast one document in that day). 
+
+So below shows on Aug 19th - there were 35 accounts who downloaded  document. Of the 35, 32 accounts had only 1 active user, 2 accounts had 2 active user and 1 account had 28 active users! But since most downloads came from accounts with just 1 active user, there is no correlation possibly between account document download activity to account health
+
+![image](/B2B_Activation_2.webp)
+
+
 ## Find Interesting Segments
 
 Determine which users are either driving conversion and retention or behaving as outliers by using the built-in “Find Interesting Segments” feature.
