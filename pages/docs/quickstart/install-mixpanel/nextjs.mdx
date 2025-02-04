@@ -42,59 +42,58 @@ import { dataItems } from "/utils/constants";
 
 4. Initialize Mixpanel in your Next.js application
 
-   **If using page router**, open or create the file `_app.js` or `app.tsx` in your pages/ directory. Then import and initialize Mixpanel inside `useEffect`. You’ll also need to track pageviews manually using `useRouter`.
+   a. **If using page router**, open or create the file `_app.js` or `app.tsx` in your pages/ directory. Then import and initialize Mixpanel inside `useEffect`. You’ll also need to track pageviews manually using `useRouter`.
+   
+   ```javascript
+   import { useEffect } from 'react';
+   import { useRouter } from 'next/router';
+   import { initMixpanel, trackPageView } from '../lib/mixpanelClient';
 
-  ```javascript
-  import { useEffect } from 'react';
-  import { useRouter } from 'next/router';
-  import { initMixpanel, trackPageView } from '../lib/mixpanelClient';
+   function MyApp({ Component, pageProps }) {
+     const router = useRouter();
+  
+     useEffect(() => {
+       initMixpanel(); // Initialize Mixpanel
+  
+       const handleRouteChange = (url) => {
+         trackPageView(url); // Track pageviews
+       };
+  
+       // Track page views on route change
+       router.events.on('routeChangeComplete', handleRouteChange);
+  
+       return () => {
+         router.events.off('routeChangeComplete', handleRouteChange);
+       };
+     }, [router.events]);
+  
+     return <Component {...pageProps} />;
+   }
+  
+   export default MyApp;
+   ```
 
-  function MyApp({ Component, pageProps }) {
-    const router = useRouter();
-  
-    useEffect(() => {
-      initMixpanel(); // Initialize Mixpanel
-  
-      const handleRouteChange = (url) => {
-        trackPageView(url); // Track pageviews
-      };
-  
-      // Track page views on route change
-      router.events.on('routeChangeComplete', handleRouteChange);
-  
-      return () => {
-        router.events.off('routeChangeComplete', handleRouteChange);
-      };
-    }, [router.events]);
-  
-    return <Component {...pageProps} />;
-  }
-  
-  export default MyApp;
-  ```
+   b. **If using app router**, open or create the file `layout.js` or `layout.tsx` in your app/ directory
+   ```javascript
+   'use client';
 
-  **If using app router**, open or create the file `layout.js` or `layout.tsx` in your app/ directory
-
-  ```javascript
-  'use client';
-
-  import { useEffect } from 'react';
-  import { usePathname } from 'next/navigation';
-  import { initMixpanel } from '../lib/mixpanelClient';
+   import { useEffect } from 'react';
+   import { usePathname } from 'next/navigation';
+   import { initMixpanel } from '../lib/mixpanelClient';
   
-  export default function RootLayout({ children }) {
+   export default function RootLayout({ children }) {
   
-    useEffect(() => {
-      initMixpanel(); // Initialize Mixpanel
-    }, []);
+     useEffect(() => {
+       initMixpanel(); // Initialize Mixpanel
+     }, []);
   
-    return (
-      <html lang="en">
-        <body>{children}</body>
-      </html>
-    );
-  }
-  ```
+     return (
+       <html lang="en">
+         <body>{children}</body>
+       </html>
+     );
+   }
+   ```
 
 5. Run the development server, test your application (click some things, submit some things, etc.) and check the Mixpanel live event view to confirm that events are sending via Autocapture.
    
