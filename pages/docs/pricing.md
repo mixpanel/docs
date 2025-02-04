@@ -30,8 +30,8 @@ There are three event-based billing plans to choose from: Free, Growth, and Ente
 
 The high-level differences between the three are:
 
-- **Free:** Mixpanel is usage-based and you can use it for free for as long as you want, no trial needed. If you are new to Mixpanel and want to test it out, we encourage you to use our free plan and upgrade once you have an estimate of your project’s volume. Limited to a maximum of 5 saved reports per user account. Features like cohorts, lookup tables, custom properties, or permissions are not included.
-- **Growth:** The typical Growth plan customer is a small team using Mixpanel (fewer than 50 employees).
+- **Free:** Mixpanel is usage-based and you can use it for free for as long as you want, no trial needed. If you are new to Mixpanel and want to test it out, we encourage you to use our free plan and upgrade once you have an estimate of your project’s volume. Limited to a maximum of 5 saved reports per user account and 1M total events. Features like cohorts, lookup tables, custom properties, or permissions are not included.
+- **Growth:** The typical Growth plan customer is a small team using Mixpanel (fewer than 50 employees). Growth plans purchased after February 2025 include the first 1M events free.
 - **Enterprise:** Designed for large teams that require access controls and permissions, data governance features, dedicated onboarding support, and account management. Some exclusive reports for Enterprise are Signal, Experiments, and Impact, with features like Data Views, sensitive data classification, or SSO.
 
 ## Choosing the Right Plan
@@ -132,6 +132,21 @@ If you go over your prepaid amount, Mixpanel won't stop collecting your data. An
 Organization owners and billing admins are sent an alert email if their paid account reaches the following percentages of their plan volume: 85%, 100%, 110%, 120%, 200%, 300%, and 400%. It is possible to receive multiple alerts in a month if an account reaches two or more of the thresholds mentioned above. Email addresses that are CC'd on receipts will also be CC'd on additional carte data rate alerts.
 
 If the billing owner logs into Mixpanel, they will see a popup if their account reaches the following percentages of their plan volume: 100%, 110%, and 120%.
+
+### I’m on a Growth plan and paying for less than 1M monthly events. How do I switch to the more recent one?
+The easiest way to switch is to go to Mixpanel’s [pricing page](https://www.mixpanel.com/pricing) and select “Make the Switch” on the Growth plan card. From there, you can move to the latest plan. If you are unable to adjust your plan, reach out to our Support team.
+
+### I signed up for the 1 million event Growth plan. What happens if I go over that amount?
+The first 1 million events ingested are free! If you go over 1 million events, each event ingested will be charged at the additional data rate seen in the “Plan Details & Billing” in your Organization Settings. If you're only on a 1M monthly events plan, the additional data rate is $.00028 per event. Purchasing higher volumes upfront will lower that additional data rate, as we include volume discounts in our pricing.
+
+If you have Data Pipeline or Group Analytics add-ons, you will also be charged 20% for Data Pipelines and/or 40% for Group Analytics based on the additional data ingested.
+
+As an example:
+
+- You signed up for the 1 million monthly event Growth plan with Group Analytics
+- If you send 1.1 million events in a month, you’ll be charged for the 100,000 events over the plan at the additional data rate, along with 40% of the calculated overage for the Group Analytics add-on.
+
+We bake volume discounts into our pricing, so if you are often tracking more than 1 million monthly events, it may be better to upgrade to the right size plan on the Pricing page — you’ll pay less per event.
 
 ### Is Mixpanel’s pricing based on MTUs?
 
