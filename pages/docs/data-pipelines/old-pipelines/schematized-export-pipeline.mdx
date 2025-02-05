@@ -89,7 +89,7 @@ Mixpanel is able to detect any changes in your data with the granularity of a da
 
 Data sync helps keep the data fresh and minimizes missing data points.
 
-Do Note: Data sync does not fully guarantee syncing GDPR Data Deletions. It is recommended to implement a strategy to remove all records of GDPR Deleted Users in your data warehouse. Additionally, we start checking for late arriving data 24 hours after the data for a day is exported. It may take more than 2 days for the data in the destination to be in sync with the data in Mixpanel.
+Do Note: Data sync does not fully guarantee syncing GDPR Data Deletions and will only sync data for days up to 10 days in the past. It is recommended to implement a strategy to remove all records of GDPR Deleted Users in your data warehouse. Additionally, we start checking for late arriving data 24 hours after the data for a day is exported. It may take more than 2 days for the data in the destination to be in sync with the data in Mixpanel.
 
 ## Transformation Rules
 
