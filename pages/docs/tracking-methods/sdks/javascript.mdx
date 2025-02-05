@@ -152,7 +152,7 @@ Note that disabling Autocapture does not disable Session Replay, which is [confi
 | --- | --- | --- |
 | `click` | When set to `true`, Mixpanel will track element clicks. It will not track textContent unless `capture_text_content` is also set to `true`. | `true` |
 | `input` | When set to `true`, Mixpanel will track when an input is provided. It will not capture input content. | `true` |
-| `pageview` | When set, Mixpanel will collect pageviews all components of the URL — including UTM parameters. | `"full-url"` |
+| `pageview` | When set, Mixpanel will collect pageviews when some components of the URL change — including UTM parameters. | `"full-url"` |
 | `scroll` | When set, Mixpanel will collect page scrolls at specified scroll intervals. | `true` |
 | `submit` | When set to `true`, Mixpanel will track form submissions (but not submission content). | `true` |
 | `capture_text_content` | When set to `true`, Mixpanel will capture the textContent of any element. | `false` |
@@ -160,12 +160,12 @@ Note that disabling Autocapture does not disable Session Replay, which is [confi
 | `scroll_depth_percent_checkpoints` | Establishes the scroll depth intervals which trigger `Page Scroll` event. | `[25, 50, 75, 100]` |
 | `scroll_capture_all` | When set to true, overrides `scroll_depth_percentage_checkpoints` and captures all scroll events. | `false` |
 | `block_url_regexes` | Opts out specific pages from Autocapture. | `[]` |
-| `allow_url_regexes` | Opts in specific pages from Autocapture. | `[]` |
+| `allow_url_regexes` | Opts in specific pages to Autocapture. | `[]` |
 | `block_selectors` | Opts out specific classes from Autocapture. | `[]` |
-| `allow_selectors` | Opts in specific classes from Autocapture. | `[]` |
+| `allow_selectors` | Opts in specific classes to Autocapture. | `[]` |
 | `block_attrs` | Opts out specific attributes from Autocapture. | `[]` |
-| `allow_element_callback` | A user-provided function that determines whether a specific element should be tracked via Autocapture or not. The function receives the element as its only argument, and should return `true` if the element should be tracked (otherwise the element will NOT be tracked). | `not set` |
-| `block_element_callback` | A user-provided function that determines whether a specific element should be blocked from tracking via Autocapture or not. The function receives the element as its only argument, and should return `true` if the element should be blocked. | `not set` |
+| `allow_element_callback` | A user-provided function that determines whether a specific element should be tracked via Autocapture or not. The function receives the element as its first argument, and the DOM event as its second argument, and should return `true` if the element should be tracked (otherwise the element will NOT be tracked). | `not set` |
+| `block_element_callback` | A user-provided function that determines whether a specific element should be blocked from tracking via Autocapture or not. The function receives the element as its first argument, and the DOM event as its second argument, and should return `true` if the element should be blocked. | `not set` |
 
 **HTML attributes captured by default**
 
@@ -186,10 +186,10 @@ By default, Autocapture collects the following HTML attributes on events:
 On Autocapture events, Mixpanel default-tracks the following properties:
 | Event Property | Description |
 | --- | --- |
-| `$event_type` | The type of event that was captured (e.g., "click", "submit"). |
+| `$event_type` | The type of DOM event that was captured (e.g., "click", "submit"). |
 | `$host` | The hostname of the webpage where the event was triggered (e.g., `example.com`). |
 | `$pathname` | The path portion of the URL where the event occurred (e.g., `/checkout`). |
-| `$elements` | A list of elements that were involved in the event, useful for understanding event context. |
+| `$elements` | A list of elements that were involved in the event, useful for understanding element context. |
 | `$target` | The specific HTML element that triggered the event (e.g., a button or link). |
 | `$el_attr__href` | The href attribute of the target element if it is a link (`<a>` tag). |
 | `$el_classes` | The CSS classes associated with the target element. |
