@@ -745,14 +745,14 @@ Users can download reports in three formats:
 - CSV
 - PNG
 - PDF
-
-### Breakdown Limits in Report Downloads
-
+- 
 Mixpanel maintains breakdown limits for CSV, PNG, and PDF report downloads.
 
 ### CSV
 
-For property values that exceed 10,000, Mixpanel only returns the top 10,000 breakdowns of that property. Here’s an example CSV export of an Insights report. The first column contains the date of when each event was sent. The columns contain the event name and the rows contain the number of each event sent to Mixpanel.
+When exporting a CSV of an Insights report in Bar, Stacked Bar, Pie, Table, or Metric view, you can export up to 50,000 rows of data. For all other views and reports, the export limit is 10,000 rows. If your report exceeds these limits, we will only return the number of rows up to the limit in ascending order.
+
+Below is an example of an exported Insights report, where the first column contains the date of when each event was sent. The rest of the columns contain the event name and the rows contain the count of each event sent to Mixpanel for each date.
 
 ![/CSV-download.png](/CSV-download.png)
 
