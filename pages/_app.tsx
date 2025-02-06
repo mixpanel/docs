@@ -76,23 +76,23 @@ function trackPageview() {
 export default function MyApp({ Component, pageProps }: AppProps) {
   const router = useRouter();
 
-  // useEffect(() => {
-  //   insertGTMScriptTags();
-  //   trackPageview();
-  //   Object.values(KapaEventNames).forEach((eventName) => {
-  //     // @ts-ignore
-  //     Kapa(eventName, function (args) {
-  //       // prefix kapa's property names to distinguish them from mixpanel's
-  //       const properties = {};
-  //       if (args) {
-  //         Object.keys(args).forEach((keyName) => {
-  //           properties[`${DocsAIPrefix} ${keyName}`] = args[keyName];
-  //         });
-  //       }
-  //       track(`${DocsAIPrefix} ${eventName}`, properties);
-  //     });
-  //   });
-  // }, []);
+  useEffect(() => {
+    insertGTMScriptTags();
+    trackPageview();
+    Object.values(KapaEventNames).forEach((eventName) => {
+      // @ts-ignore
+      Kapa(eventName, function (args) {
+        // prefix kapa's property names to distinguish them from mixpanel's
+        const properties = {};
+        if (args) {
+          Object.keys(args).forEach((keyName) => {
+            properties[`${DocsAIPrefix} ${keyName}`] = args[keyName];
+          });
+        }
+        track(`${DocsAIPrefix} ${eventName}`, properties);
+      });
+    });
+  }, []);
 
   useEffect(() => {
     router.events.on(`routeChangeComplete`, trackPageview);
