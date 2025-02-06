@@ -297,6 +297,21 @@ Event and property descriptions and metadata (hidden, dropped, sensitive, etc) t
 
 Mixpanel provides a suite of API endpoints for you to Retrieve, Create, and Delete your data dictionary in Lexicon. To use these APIs, check out our [API reference docs](https://developer.mixpanel.com/reference/lexicon-schemas-api).
 
+### Lexicon UI vs Lexicon Schemas API
+
+The payload returned from the Lexicon Schemas API is most likely not an exact match of the Lexicon as seen in your project's UI. This because the Lexicon Schemas are a subset of the data that appears in Lexicon UI.
+
+The Lexicon UI contain entities that were sent to your project within the last 30 days or has an associated Lexicon Schema.
+
+A Lexicon Schema is created when one of the following take place:
+1. When a schema is created through the Lexicon Schema API
+2. When a new entity is imported to your Lexicon via CSV import
+3. When metadata about an entity is added via the UI (such as adding description, hiding/showing, adding tags, etc.)
+
+When using the Lexicon Schema API to export, only entities that has a Schema are exported. Entities that are seen in your Lexicon UI that were sent within the last 30 days without a Schema will not be reflected in the Lexicon Schema payload.
+
+To export all of your entities from the Lexicon, please use the [CSV export method](/docs/data-governance/lexicon#export-and-import-lexicon-data) which will export everything as seen in the UI, which includes recently sent entities and all entities with a Schema.
+
 ## Lexicon Event Details 
 
 Mixpanel provides a variety of tools to make it easier for teams to better understand what specific events mean. 
