@@ -136,6 +136,9 @@ If the billing owner logs into Mixpanel, they will see a popup if their account 
 ### I’m on a Growth plan and paying for less than 1M monthly events. How do I switch to the more recent one?
 The easiest way to switch is to go to Mixpanel’s [pricing page](https://www.mixpanel.com/pricing) and select “Make the Switch” on the Growth plan card. From there, you can move to the latest plan. If you are unable to adjust your plan, reach out to our Support team.
 
+### Why can I only select a volume of 1M monthly events on monthly Growth plans, not annual ones?
+Our latest pricing plans include the first 1M events free each month. We require a larger precommitted volume (more than 1M monthly events) in order to purchase an annual plan. Annual plans still include the first 1M events free each month.
+
 ### I signed up for the 1 million event Growth plan. What happens if I go over that amount?
 The first 1 million events ingested are free! If you go over 1 million events, each event ingested will be charged at the additional data rate seen in the “Plan Details & Billing” in your Organization Settings. If you're only on a 1M monthly events plan, the additional data rate is $.00028 per event. Purchasing higher volumes upfront will lower that additional data rate, as we include volume discounts in our pricing.
 
