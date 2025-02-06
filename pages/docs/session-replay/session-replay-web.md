@@ -158,11 +158,6 @@ Mixpanel looks for the `$mp_replay_id` property on your events in order to deter
 
 For CDP implementations, look below for instructions on how to configure the SDKs together. To get the relevant Session Replay properties from the SDK, use `mixpanel.get_session_recording_properties()`. [See documentation](/docs/tracking-methods/sdks/javascript#get-replay-properties).
 
-#### Server Side Stitching (Beta)
-
-Mixpanel can infer the replay an event happened in by looking at the distinct ID and time that the replay occurred. This is especially useful if you have events coming in from multiple sources, like your server or via warehouse import and it doesn't make sense to pass around the value of `mixpanel.get_session_recording_properties()`. NOTE: we still recommend including these properties on your client side events to guarantee accuracy.
-
-
 ### Can I use Session Replay with a CDP?
 
 Yes. You can use Session Replay with CDPs like Segment and mParticle.
