@@ -68,6 +68,10 @@ Once you’ve configured your destination, you need to tell Mixpanel to start ex
 
 You can do this with our [Create Pipeline API](https://developer.mixpanel.com/reference/create-warehouse-pipeline). You can create the Pipeline directly from our developer docs UI.
 
+<Callout type="info">
+  Note that the Service Account must have an Admin or Owner role in order to authenticate the request.
+</Callout>
+
 Limits:
 
 - For event export pipelines (`data_source: events`) in each Mixpanel project, we support at most two recurring pipelines (`to_date` is empty) and one non-recurring pipeline (has a `to_date` that is the ending date of the export window).
