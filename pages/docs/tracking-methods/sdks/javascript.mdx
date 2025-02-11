@@ -951,14 +951,14 @@ Note: This is the only change needed in your existing JavaScript SDK setup to en
 
 ### Session Replay Methods
 
-We give our customers full control to customize when and where they capture session replays.
+We give our customers full control to customize when and where they capture session replays. Session Replay must be enabled via the `record_sessions_percent` init option [described above](/docs/tracking-methods/sdks/javascript#implementation--sampling) before these methods are used.
 
 #### Start capturing replay data
 
 ```javascript
 mixpanel.start_session_recording()
 ```
-This will have no effect if replay data collection is in progress. 
+This will have no effect if replay data collection is in progress.
 
 This is optional, and can be used primarily to programmatically start and stop recording, or exclude something specific from recording. We recommend using the [sampling method](/docs/tracking-methods/sdks/javascript#sampling-method) detailed above unless you need to customize when you capture replay data. 
 
