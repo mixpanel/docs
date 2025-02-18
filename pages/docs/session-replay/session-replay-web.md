@@ -147,16 +147,9 @@ For extensions like uBlock, you can navigate to "My Filters" in the extension se
 ### How do Session Replays work when navigating between pages that are full page loads?
 If your web application relies on full page loads (where the entire page is reloaded when navigating from one page to another), a new Session Replay recording `$mp_replay_id` will be created when navigating to each page. This occurs because the Mixpanel instance is reloaded again when navigating between pages.
 
-
 ### Why don't I see the ‘View Replays’ button?
 
 You won't see the 'View Replays' button if your Organization is on an older plan. You will need to update to the [latest plan](/docs/session-replay/session-replay-web#availability) to view session replays. 
-
-### Why can't I view Replays from my Insights or Funnels chart?
-
-Mixpanel looks for the `$mp_replay_id` property on your events in order to determine which replay it belongs to. If you have instrumented both Replays and Events using the Mixpanel JavaScript SDK, the `$mp_replay_id` will automatically be added to events sent by the SDK.
-
-For CDP implementations, look below for instructions on how to configure the SDKs together. To get the relevant Session Replay properties from the SDK, use `mixpanel.get_session_recording_properties()`. [See documentation](/docs/tracking-methods/sdks/javascript#get-replay-properties).
 
 ### Can I use Session Replay with a CDP?
 
