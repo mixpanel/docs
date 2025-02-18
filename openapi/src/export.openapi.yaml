@@ -24,6 +24,8 @@ paths:
         The raw export API allows you to download your event data as it is
         received and stored within Mixpanel, complete with all event properties
         (including distinct_id) and the exact timestamp the event was fired.
+
+        The raw export API has a rate limit of 60 queries per hour, 3 queries per second, and a maximum of 100 concurrent queries. If you exceed the rate limit, a 429 error will be returned.
       parameters:
         - in: query
           name: project_id
@@ -31,13 +33,25 @@ paths:
             type: integer
           description: >-
             Required if using service account to authenticate request.
-        - $ref: ./common/parameters.yaml#/query/fromDate
-        - $ref: ./common/parameters.yaml#/query/toDate
+        - in: query
+          name: from_date
+          schema:
+            type: string
+          description: >-
+            The date in yyyy-mm-dd format to begin querying from. This date is inclusive and interpreted as UTC timezone for projects created after 1 January 2023 and current project timezone for projects created before 11 January 2023.
+          required: true
+        - in: query
+          name: to_date
+          schema:
+            type: string
+          description: >-
+            The date in yyyy-mm-dd format to query to. This date is inclusive and interpreted as UTC timezone for projects created after 1 January 2023 and current project timezone for projects created before 11 January 2023.
+          required: true
         - in: query
           name: limit
           schema:
             type: integer
-          description: The max number of events to be returned.
+          description: Use this parameter if you want to limit the max number of events to be returned. Value cannot be over 100000.
         - in: query
           name: event
           schema:
@@ -53,6 +67,14 @@ paths:
             An expression to filter events by. More info on expression
             sequence structure can be found
             [here](ref:segmentation-expressions)
+        - in: query
+          name: time_in_ms
+          schema:
+            type: boolean
+          description: >-
+            Defaults to `false` which will export event timestamps with second-precision.
+            
+            Set to `true` to export event timestamps with millisecond-precision.
         - in: header
           name: Accept-Encoding
           description: If set to `gzip` and the response body is > 1400 bytes, the response will be compressed with gzip, and `Content-Encoding` will be set to `gzip`.

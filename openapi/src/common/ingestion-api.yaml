@@ -33,16 +33,6 @@ OptionalRequestParameter:
         with a string-valued error message if the request wasn't
         successful. This is useful for debugging during
         implementation.
-    Redirect:
-      in: query
-      name: redirect
-      required: false
-      schema:
-          type: string
-      description: >-
-        If present, Mixpanel will serve a redirect to the given url
-        as a response to the request. This is useful to add link tracking
-        in notifications.
     PNGPixel:
       in: query
       name: img
@@ -64,3 +54,21 @@ OptionalRequestParameter:
         If present, Mixpanel will return a `content-type: text/javascript`
         with a body that calls a function by value provided. This is useful
         for creating local callbacks to a successful track call in JavaScript.
+    Strict:
+      in: query
+      name: strict
+      required: false
+      schema:
+        $ref: ./schemas.yaml#/IntegerPropertyAsBooleanFlag
+        description: >-
+          If present and equal to 1, Mixpanel will validate the provided records and return a JSON object with per-record error messages for records that fail validation.
+    IP:
+      in: query
+      name: ip
+      required: false
+      schema:
+        $ref: ./schemas.yaml#/IntegerPropertyAsBooleanFlag
+        default: 0
+        description: >-
+          If present and equal to 0, Mixpanel will not perform geolocation parsing using the IP address of the request. We recommend setting the ip to "0" when making requests from the server-side to prevent the unintentional effect of overwriting your profile's geolocation with your server location.
+          Defaults to 1 which would use the IP address of the request to update profile geolocation.

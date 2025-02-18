@@ -1,5 +1,9 @@
-@use "./theme/colors.scss" as color;
+@use "./theme/colors.scss" as colors;
 @use "./theme/typography.scss" as typography;
+@use "sass:color";
+
+//##############################Global Style##############################
+//Followed by Light Theme Specific Style and Dark Theme Specific Style
 
 $base-spacing: 8px;
 $border-radius: 8px;
@@ -7,274 +11,2003 @@ $border-radius-md: 24px;
 $border-radius-lg: 100px;
 
 @font-face {
-    font-display: swap;
-    font-family: typography.$garnett;
-    font-style: normal;
-    font-weight: 500;
-    src: url("#{typography.$cdn-base}#{typography.$garnett-medium-base}.woff2")
-        format("woff2");
+  font-display: swap;
+  font-family: typography.$garnett;
+  font-style: normal;
+  font-weight: 500;
+  src: url("#{typography.$cdn-base}#{typography.$garnett-medium-base}.woff2")
+    format("woff2");
 }
 
 @font-face {
-    font-display: swap;
-    font-family: typography.$garnett;
-    font-style: normal;
-    font-weight: 400;
-    src: url("#{typography.$cdn-base}#{typography.$garnett-regular-base}.woff2")
-        format("woff2");
+  font-display: swap;
+  font-family: typography.$garnett;
+  font-style: normal;
+  font-weight: 400;
+  src: url("#{typography.$cdn-base}#{typography.$garnett-regular-base}.woff2")
+    format("woff2");
 }
 
 @font-face {
-    font-display: swap;
-    font-family: typography.$arizona-text-variable;
-    font-style: normal;
-    src: url("#{typography.$cdn-base}#{typography.$arizona-text-base}.woff2")
-        format("woff2");
+  font-display: swap;
+  font-family: typography.$arizona-text-variable;
+  font-style: normal;
+  src: url("#{typography.$cdn-base}#{typography.$arizona-text-base}.woff2")
+    format("woff2");
 }
 
 @font-face {
-    font-display: swap;
-    font-family: typography.$arizona-text-light;
-    font-style: normal;
-    src: url("#{typography.$cdn-base}#{typography.$arizona-text-light-base}.woff2")
-        format("woff2");
+  font-display: swap;
+  font-family: typography.$arizona-text-light;
+  font-style: normal;
+  src: url("#{typography.$cdn-base}#{typography.$arizona-text-light-base}.woff2")
+    format("woff2");
 }
 
 @font-face {
-    font-display: swap;
-    font-family: typography.$apercu;
-    font-weight: 500;
-    src: url("#{typography.$cdn-base}#{typography.$apercu-base}.woff2")
-        format("woff2");
+  font-display: swap;
+  font-family: typography.$apercu;
+  font-weight: 500;
+  src: url("#{typography.$cdn-base}#{typography.$apercu-base}.woff2")
+    format("woff2");
 }
 
 @font-face {
-    font-family: typography.$apercu-pro;
-    font-style: normal;
-    font-weight: 400;
-    src: url("#{typography.$cdn-base}/apercu/web/5.008/apercu-regular-pro.woff2")
-        format("woff2");
+  font-family: typography.$apercu-pro;
+  font-style: normal;
+  font-weight: 400;
+  src: url("#{typography.$cdn-base}/apercu/web/5.008/apercu-regular-pro.woff2")
+    format("woff2");
 }
 
 @font-face {
-    font-family: typography.$apercu-pro;
-    font-style: normal;
-    font-weight: 500;
-    src: url("#{typography.$cdn-base}/apercu/web/5.008/apercu-medium-pro.woff2")
-        format("woff2");
+  font-family: typography.$apercu-pro;
+  font-style: normal;
+  font-weight: 500;
+  src: url("#{typography.$cdn-base}/apercu/web/5.008/apercu-medium-pro.woff2")
+    format("woff2");
 }
 
 @font-face {
-    font-family: typography.$apercu-pro;
-    font-style: normal;
+  font-family: typography.$apercu-pro;
+  font-style: normal;
+  font-weight: 700;
+  src: url("#{typography.$cdn-base}/apercu/web/5.008/apercu-bold-pro.woff2")
+    format("woff2");
+}
+
+// One-off here because I think the font family definitions this was based on are messed up!
+@font-face {
+  font-family: "Apercu Monospaced";
+  font-style: normal;
+  font-weight: 400;
+  src: url("https://cdn.mxpnl.com/static/marketing/fonts/apercu/web/5.008/apercu-mono-regular-pro.woff2")
+    format("woff2");
+}
+
+//############Global Top Nav############
+.nextra-nav-container {
+  ._text-sm {
+    font-size: 14px;
+    line-height: 20px;
+    padding: 8px;
+  }
+
+  .top-nav-search-bar {
+    @media (max-width: 400px) {
+      display: none;
+    }
+  }
+
+  //actively selected tab
+  ._text-sm[aria-current="true"] span {
     font-weight: 700;
-    src: url("#{typography.$cdn-base}/apercu/web/5.008/apercu-bold-pro.woff2")
-        format("woff2");
+    // text-decoration: underline !important;
+    // color: colors.$purple100;
+    filter: contrast(1.5);
+  }
 }
 
+//############Global Kapa Module###############
+//Kapa Header Title Text
+.mantine-Title-root {
+  color: colors.$purple200 !important;
+}
 
-// One-off here because I think the font family definitions this was based on are messed up! 
-@font-face {
-    font-family: "Apercu Monospaced";
-    font-style: normal;
+//body of module
+.mantine-Modal-body {
+  border-color: colors.$purple140;
+  outline-style: none;
+}
+
+//############Global Feedback Module############
+.feedbackCollectorContainer {
+  border-top: rgba(255, 255, 255, 0.4) !important;
+  //Question
+  .feedbackQuestionTitle {
+    font-weight: 500;
+    font-size: 16px;
+  }
+  //Thank you
+  .feedbackThankYouText {
+    font-weight: 500;
+    font-size: 16px;
+    margin-bottom: 36px;
+    margin-top: 36px;
+  }
+  .feedbackTextArea {
+    height: 120px;
+    padding: 4px 8px;
+    background: colors.$base100;
+    border-radius: 9px;
+    resize: none;
+    width: 100%;
+  }
+  .cancelButton {
+    border-radius: 8px;
+    padding: 4px 8px;
+  }
+  .submitButton {
+    border-radius: 8px;
+    padding: 4px 8px;
+  }
+  .scheduleCallContainer {
+    margin-top: 16px;
+  }
+  .scheduleCallAnchorTag {
+    text-decoration: underline;
+  }
+  //Button Container
+  .feedbackButtonContainer {
+    display: inline-flex;
+    flex-wrap: wrap;
+    //Feedback Button
+    .feedbackButton {
+      border-radius: 16px;
+      box-shadow: 0 6px 12px color.adjust(colors.$black, $alpha: -0.95) !important;
+      display: flex;
+      font-weight: 600;
+      margin-right: 16px;
+      margin-top: 16px;
+      padding: 16px 24px;
+      transition: 0.5s !important;
+
+      &:hover {
+        box-shadow: 0 6px 12px color.adjust(colors.$purple140, $alpha: -0.95) !important;
+        transition: 0.5s !important;
+      }
+      //Style thumbs up icon
+      .feedbackThumbsUpIcon svg {
+        color: forestgreen !important;
+        display: inline-block;
+        margin-left: 8px;
+        width: 22px;
+        // path {
+        //   stroke: forestgreen !important;
+        //   // fill: forestgreen !important;
+        // }
+      }
+      //Style thumbs down icon
+      .feedbackThumbsDownIcon svg {
+        color: indianred !important;
+        display: inline-block;
+        margin-left: 8px;
+        width: 22px;
+        // path {
+        //   stroke: indianred !important;
+        //   // fill: indianred !important;
+        // }
+      }
+    }
+  }
+}
+
+//############Global Changelog############
+._w-full > main:has(.changelogMainContainerWrapper) {
+  padding-top: 0;
+}
+
+.thumbnailPlayButton {
+  z-index: -1;
+  color: colors.$purple140;
+  font-family: Garnett;
+  font-size: 16px;
+  font-style: normal;
+  font-weight: 500;
+  line-height: 24px; /* 150% */
+  position: unset;
+}
+
+.changelogMainContainerWrapper {
+  width: 100%;
+  position: absolute;
+  left: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.changelogMainContainer {
+  max-width: min(1440px, 100%);
+  padding: 0 64px;
+  width: 100%;
+  overflow: hidden;
+
+  @media (max-width: 1135px) {
+    padding: 0 36px;
+  }
+  @media (max-width: 600px) {
+    padding: 0 32px;
+  }
+
+  .changelogHeader {
+    display: flex;
+    flex-direction: row;
+    height: 300px;
+    align-items: center;
+    justify-content: space-between;
+    flex-wrap: nowrap;
+
+    .changelogHeaderLeft {
+      max-width: 50%;
+
+      @media (max-width: 700px) {
+        max-width: none;
+      }
+
+      span {
+        font-size: 18px;
+        font-weight: 400;
+        line-height: 160%;
+        letter-spacing: 0.36px;
+
+        a {
+          color: colors.$purple140;
+          text-decoration-line: underline;
+        }
+      }
+    }
+  }
+
+  // Changelog title
+  .changelogTitle {
+    font-size: 60px !important;
+    line-height: 120% !important;
+    font-weight: 500 !important;
+    margin-top: 32px !important;
+    padding-bottom: 24px !important;
+    letter-spacing: -1.2px !important;
+  }
+
+  .changelogHeaderImg {
+    width: 100%;
+    max-width: 703px;
+    margin-bottom: auto;
+    position: relative;
+    right: -64px;
+    background: none;
+
+    @media (max-width: 965px) {
+      //width: 50%;
+    }
+
+    @media (max-width: 700px) {
+      display: none;
+    }
+  }
+
+  .changelogIndexFilterBorder {
+    width: calc(100% + 128px);
+  }
+
+  .changelogIndexFilterBorderBottom {
+    margin-bottom: 40px;
+  }
+
+  .changelogIndexFilterBar {
+    width: 100%;
+    height: 88px;
+    display: flex;
+    column-gap: 8px;
+    z-index: 1;
+    padding: 24px 0;
+
+    @media (max-width: 600px) {
+      justify-content: center;
+    }
+  }
+
+  .changelogFilterButton {
+    display: flex;
+    align-items: center;
+    padding: 8px 16px;
+    font-size: 16px;
     font-weight: 400;
-    src: url("https://cdn.mxpnl.com/static/marketing/fonts/apercu/web/5.008/apercu-mono-regular-pro.woff2")
-        format("woff2");
+    letter-spacing: 0.32px;
+
+    &.active {
+      border-radius: 8px;
+      font-style: normal;
+      font-weight: 500;
+    }
+  }
+
+  .playButton {
+    text-align: center;
+    font-family: Garnett;
+    font-size: 13.238px;
+    font-style: normal;
+    font-weight: 500;
+    line-height: 15.129px; /* 114.286% */
+    padding: 11.3px 20.3px;
+  }
+
+  .videoIconWrapper {
+    margin-right: 6.5px;
+  }
+
+  //div for changelog entries in the index page
+  .changelogIndexItem {
+    display: flex;
+    flex-direction: row;
+    max-width: 100%;
+
+    @media (max-width: 600px) {
+      flex-direction: column;
+    }
+
+    .changelogItemTitleWrapper {
+      margin-top: 32px;
+      margin-bottom: 8px;
+    }
+
+    //title of each changelog entry
+    .changelogItemTitle {
+      font-size: 28px;
+      font-weight: 500;
+      line-height: 120%;
+      // text-shadow: 0px 0px 0.5px black;
+      color: colors.$purple200;
+      font-feature-settings: "salt" on;
+      letter-spacing: -0.28px;
+    }
+
+    .changelogIndexItemDate {
+      width: 190px;
+      margin-right: 36px;
+      margin-bottom: 36px;
+    }
+
+    //date of changelog entry
+    .changelogDate {
+      font-size: 14px;
+      font-weight: 500;
+      line-height: 168%; /* 23.52px */
+      letter-spacing: 0.28px;
+      text-wrap: nowrap;
+    }
+
+    .changelogIndexItemBody {
+      width: 860px;
+      max-width: 100%;
+      font-size: 1.125rem; /* 18px */
+      font-weight: 400;
+      line-height: 160%;
+      letter-spacing: 0.36px;
+    }
+
+    //read more button
+    .changelogReadMoreLink {
+      font-weight: 500;
+      color: colors.$purple140;
+    }
+  }
+
+  //load more button
+  .changelogLoadMoreButtonContainer {
+    padding-top: 30px;
+    padding-bottom: 80px;
+
+    .changelogLoadMoreButton {
+      box-shadow: 0 1px 2px 0 rgb(0 0 0 / 0.05) !important;
+      // background-color: colors.$purple50 !important;
+      border-radius: 9999px !important;
+      font-weight: 500 !important;
+      font-size: 1rem !important;
+      line-height: 1.5rem !important;
+      padding-top: 0.625rem !important; /* 10px */
+      padding-bottom: 0.625rem !important; /* 10px */
+      // color: colors.$white !important;
+      padding-left: 1.75rem !important; /* 28px */
+      padding-right: 1.75rem !important; /* 28px */
+      border-radius: 9999px !important;
+      transition-duration: 0.5s;
+    }
+    .changelogLoadMoreButton:hover {
+      box-shadow: 0 4px 6px -1px rgb(0 0 0 / 0.1),
+        0 2px 4px -2px rgb(0 0 0 / 0.1);
+      // background-color: colors.$purple100;
+    }
+  }
 }
 
+.changelogPostHeader {
+  margin-top: 80px;
 
+  //date of changelog entry
+  .changelogDate {
+    color: colors.$grey80;
+    font-size: 14px;
+    font-weight: 400;
+    margin-bottom: 16px;
+    line-height: 168%; /* 23.52px */
+    letter-spacing: 0.28px;
+    text-wrap: nowrap;
+  }
 
-.theme-mixpanel {
-    line-height: 1.8;
-    font-size: 0.88rem;
-    letter-spacing: 0.3px;
+  .changelogTitle {
+    color: colors.$purple200;
+    font-size: 48px;
+    font-weight: 500;
+    line-height: 120%; /* 57.6px */
+    letter-spacing: -0.96px;
+    margin-bottom: 24px;
 
-    // We'll handle our own antialiasing.
-    .nx-subpixel-antialiased {
-        -webkit-font-smoothing: unset;
-        -moz-osx-font-smoothing: unset;
+    @media (max-width: 1135px) {
+      font-size: 36px;
     }
-    
 
-    // We'll handle our own tracking.
-    .nx-tracking-tight {
-        letter-spacing: unset;
+    @media (max-width: 200px) {
+      font-size: 28px;
+    }
+  }
+}
+
+.nextra-callout {
+  opacity: 1 !important;
+}
+
+// Add BG color to image with transparent background
+article img {
+  background-color: colors.$lightbg;
+}
+
+//##############################Light Theme Starts Here##################################
+.light {
+  line-height: 1.8;
+  font-size: 0.88rem;
+  letter-spacing: 0.3px;
+
+  // We'll handle our own antialiasing.
+  ._subpixel-antialiased {
+    -webkit-font-smoothing: unset;
+    -moz-osx-font-smoothing: unset;
+  }
+
+  // We'll handle our own tracking.
+  ._tracking-tight {
+    letter-spacing: unset;
+  }
+
+  ._font-semibold,
+  ._font-bold,
+  p strong {
+    font-weight: 500; // Override to a weight that we actually DO support, otherwise we risk faux bold
+  }
+
+  ._font-semibold,
+  ._font-bold,
+  li strong {
+    font-weight: 500; // Override to a weight that we actually DO support, otherwise we risk faux bold
+  }
+
+  //set color of hyperlinks
+  ._underline[href] {
+    color: colors.$purple100;
+  }
+
+  summary::-webkit-details-marker {
+    color: colors.$base100;
+  }
+
+  // Get rid of all heading border-bottoms
+  h1,
+  h2,
+  h3,
+  h4,
+  h5 {
+    &._border-b {
+      border-width: 0;
+    }
+  }
+
+  // Set color to markdown headers
+  h1,
+  h2,
+  h3,
+  h4,
+  h5 {
+    color: colors.$base100;
+  }
+
+  // Modify high level stuff across body
+  body {
+    -moz-osx-font-smoothing: grayscale;
+    -webkit-font-smoothing: antialiased;
+    overscroll-behavior-y: none;
+    font-family: typography.$garnett-stack;
+    // background-color: colors.$black;
+  }
+
+  // Modify markdown headers
+  .nextra-content {
+    h1,
+    h2,
+    h3,
+    h4,
+    h5 {
+      letter-spacing: -0.3px;
+      color: colors.$grey100;
+    }
+  }
+
+  //##############################Light Theme Top Nav###################################
+  .nextra-nav-container {
+    background-color: #f5f2f2;
+    // box-shadow: unset;
+    border-color: #eae7e7;
+    border-width: 1px;
+
+    // Modify image assets in top nav
+    // path {
+    //   fill: colors.$white;
+    // }
+
+    .nextra-nav-container-blur {
+      background-color: #f5f2f2;
+      box-shadow: none;
     }
 
-    .nx-font-semibold,
-    p strong {
-        font-weight: 500; // Override to a weight that we actually DO support, otherwise we risk faux bold
+    // Set color for top nav flex region
+    ._mx-auto > ._flex {
+      background-color: #f5f2f2;
+      box-shadow: none;
+    }
+  }
+
+  //##############################Light Theme Body###################################
+  ._w-full > main {
+    color: colors.$grey100;
+    background-color: colors.$lightbg;
+
+    //ID management banner style
+    .idManagementBanner {
+      position: sticky !important;
+      top: 55px;
+      opacity: 1 !important;
+      background-color: #fefce8 !important;
+      color: #713f11;
     }
 
-    // Get rid of all heading border-bottoms
-    h1, h2, h3, h4, h5 {
-        &.nx-border-b {
-            border-width: 0;
+    ._mt-6 {
+      border-bottom: colors.$black;
+    }
+
+    // modify buttons in integration pages
+    a.nextra-card {
+      span {
+        display: flex;
+        justify-content: center;
+        background-color: colors.$purple20;
+        color: colors.$purple200;
+        &:hover {
+          background-color: colors.$purple50;
+          transition-duration: 0.5s;
         }
+      }
     }
 
-    // Add some space underneath the text underlines
-    .\[text-underline-position\:from-font\] {
-        text-underline-offset: 3px;
+    //modify anchor links hastags
+    a.subheading-anchor {
+      filter: contrast(0) !important;
+      color: colors.$white !important;
+      opacity: 0.4 !important;
+      &:hover {
+        filter: contrast(0) !important;
+        color: colors.$white !important;
+        opacity: 0.7 !important;
+      }
     }
 
-    body {
-        background-color: color.$base100;
-        -moz-osx-font-smoothing: grayscale;
-        -webkit-font-smoothing: antialiased;
-        overscroll-behavior-y: none;
-        font-family: typography.$garnett-stack;
-    }
-
-    // All code/mono type
-    code, kbd, samp, pre {
-        font-family: "Apercu Monospaced", monospace;
-        font-size: 15px;
-        line-height: 150%;
-        font-variant-ligatures: none;
-        font-feature-settings: normal;
-        letter-spacing: initial;
-    }
-
-    .nextra-content {
-        h1, h2, h3, h4, h5 {
-            letter-spacing: -0.3px;
-        }
-    }
-
-    // Right-hand sidebar
-    .nextra-toc {
-        // Remove all hardcoded white backgrounds and shadow filters
-        .nx-shadow-\[0_-12px_16px_white\] {
-            box-shadow: unset;
-        }
-        .nx-bg-white {
-            background-color: color.$base100;
-        }
-
-            // Add some spacing between the sidebar sections
-            ul li {
-                margin-top: $base-spacing * 2;
-                margin-bottom: $base-spacing * 2;
-            }
-
-    }
-
+    // Modify breadcrumbs
     .nextra-breadcrumb {
-        text-transform: uppercase;
-        letter-spacing: 2px;
-        font-size: 14px;
+      text-transform: uppercase;
+      letter-spacing: 2px;
+      font-size: 14px;
+      font-weight: 500;
+      //   color: colors.$white;
+
+      //highlight current breadcrumb
+      ._font-medium {
+        color: colors.$purple100;
+      }
+
+      //change color when hovering over breadcrumb with link
+      ._text-ellipsis:hover {
+        a:hover {
+          color: colors.$purple100;
+          opacity: 1;
+          cursor: pointer;
+        }
+      }
+
+      //breadcrumbs without a link ignores pointer
+      ._text-ellipsis:empty {
+        color: colors.$white;
+        pointer-events: none;
+      }
+
+      //   //for the little arrows between breadcrumbs
+      //   svg {
+      //     opacity: 0.4;
+      //   }
+    }
+    //####Light Theme Code Syntax and Box####
+    code,
+    kbd,
+    samp,
+    pre {
+      font-family: "Apercu Monospaced", monospace;
+      font-size: 15px;
+      line-height: 150%;
+      font-variant-ligatures: none;
+      font-feature-settings: normal;
+      letter-spacing: initial;
+      //   background-color: rgba(255, 255, 255, 0.08);
+      //   --shiki-color-text: #d1d1d1;
+      //   --shiki-token-constant: #79b8ff;
+      //   --shiki-token-string: #ffab70;
+      //   --shiki-token-comment: #6b737c;
+      //   --shiki-token-keyword: #f97583;
+      //   --shiki-token-parameter: #ff9800;
+      //   --shiki-token-function: #b392f0;
+      //   --shiki-token-string-expression: #4bb74a;
+      //   --shiki-token-punctuation: #bbb;
+      //   --shiki-token-link: #ffab70;
+    }
+
+    // modify code highlights in page body (not codebox)
+    p code {
+      background-color: rgba(32, 31, 36, 0.08);
+    }
+
+    // modify codebox
+    .nextra-code ._ring-gray-300 {
+      background-color: colors.$purple20;
+    }
+
+    //modify code tabs
+    // [role~="tab"] {
+    //   color: rgba(255, 255, 255, 0.4);
+    // }
+
+    //modify code tab hover
+    [role~="tab"]:hover {
+      color: colors.$purple100;
+      border-bottom-width: 0px;
+    }
+
+    //modify selected code tab
+    button[data-headlessui-state~="selected"] {
+      color: colors.$purple100;
+      border-bottom: solid colors.$purple100;
+      border-bottom-width: 2px;
+    }
+
+    //modify code scroll bar
+    // [role~="tablist"] {
+    //   border-color: rgba(255, 255, 255, 0.1);
+    // }
+
+    // hr {
+    //   border-color: rgba(255, 255, 255, 0.4);
+    // }
+
+    // Style FAQ components in Quickstart
+    .faqComponent {
+      .bg-base100 {
+        background-color: colors.$lightbg;
+      }
+      details {
+        background-color: colors.$lightbg;
+
+        summary {
+          background-color: colors.$lightbg;
+        }
+        summary:hover {
+          background-color: colors.$lightbg;
+        }
+      }
+    }
+
+    //Style ExtendedButtons in Quickstar
+    .extendedButtonComponent {
+      & h2 {
+        font-size: 2.25rem; /* 36px */
+        line-height: 2.5rem; /* 40px */
         font-weight: 500;
+        margin-bottom: 0.5rem;
+        color: colors.$purple200;
+      }
+
+      & h4 {
+        font-size: 1.5rem; /* 24px */
+        line-height: 2rem; /* 32px */
+        font-weight: 500;
+        margin-bottom: 0.5rem;
+        color: colors.$purple200;
+      }
+
+      button {
+        box-shadow: 0 1px 2px 0 rgb(0 0 0 / 0.05);
+        background-color: colors.$purple50;
+        border-radius: 9999px;
+        font-weight: 600;
+        font-size: 1rem;
+        line-height: 1.5rem;
+        padding-left: 28px;
+        padding-right: 28px;
+        padding-top: 10px;
+        padding-bottom: 10px;
+        color: colors.$white;
+      }
+
+      button:hover {
+        box-shadow: 0 4px 6px -1px rgb(0 0 0 / 0.1),
+          0 2px 4px -2px rgb(0 0 0 / 0.1);
+        background-color: colors.$purple100;
+      }
     }
 
-    // Custom Search theming from Algolia Docsearch
-    .DocSearch {
-        --docsearch-primary-color: #{color.$purple200};
-        --docsearch-highlight-color:  #{color.$purple100};
-        --docsearch-spacing: #{$base-spacing * 3};
-        --docsearch-modal-width: 47rem;
-        --docsearch-container-background: rgba(27,11,59,.85);
-        --docsearch-modal-background: white;
-        --docsearch-footer-height: 60px;
-        --docsearch-hit-color: #{color.$purple200};
-        --docsearch-muted-color: #{color.$purple200};
-        
-        // Global Nextra theming makes the focus ring look a little nasty
-        input:focus-visible {
-            box-shadow: none;
+    //Modify Bottom Feedback Area
+    .feedbackCollectorContainer {
+      .cancelButton {
+        color: colors.$purple200;
+      }
+
+      .submitButton {
+        background: colors.$purple100;
+        color: white;
+      }
+
+      .feedbackButtonContainer {
+        .feedbackButton {
+          background-color: colors.$base80 !important;
+          color: colors.$purple200 !important;
+
+          &:hover {
+            box-shadow: 0 4px 6px -1px rgb(0 0 0 / 0.1),
+              0 2px 4px -2px rgb(0 0 0 / 0.1);
+            background-color: colors.$purple50 !important;
+            transition: 0.5s;
+          }
         }
-
-        &-SearchBar {
-            padding: 80px 88px 32px;
-        }
-
-        &-Modal {
-            border-radius: $border-radius-md;
-        }
-
-        &-Dropdown {
-            padding: 0 90px;
-            margin-bottom: 20px;
-        }
-        
-        .DocSearch-Hit-action, .DocSearch-Hit-icon, .DocSearch-Hit-Tree {
-            color: #b094ff;
-        }
-
-        &-Hit-Tree {
-            opacity: 1;
-        }
-
-        &-Hit a {
-            transition: background-color 0.1s linear;
-            border-radius: 0;
-            box-shadow: none;
-        }
-
-        &-Hits mark {
-            color: color.$purple100;
-            font-weight: bold;
-        }
-
-        &-Hit {
-            border-radius: $border-radius;
-            padding-bottom: initial;
-            margin-bottom: $base-spacing;
-            border: 2px solid #{color.$purple100};
-            overflow: hidden;
-        }
-
-        &-Form {
-            border-radius: $border-radius-md;
-            box-shadow: inset 0 0 0 2px color.$grey30;
-            transition: box-shadow 0.15s linear;
-
-            .DocSearch-MagnifierLabel {
-                color: color.$grey30;
-                transition: color 0.15s linear;
-            }
-
-            &:focus-within {
-                box-shadow: var(--docsearch-searchbox-shadow);
-
-                .DocSearch-MagnifierLabel {
-                    color: var(--docsearch-highlight-color);
-                }
-            }
-        }
-
-        &-Footer {
-            border-radius: 0 0 $border-radius-md $border-radius-md;
-        }
-
-        &-Commands-Key {
-            box-shadow: none;
-            background: transparent;
-            color: color.$grey50;
-        }
-
-        &-Label {
-            color: color.$grey50;
-        }
-
-        &-Screen-Icon {
-            display: flex;
-            justify-content: center;
-            color: unset;
-        }
-
-        &-NoResults-Prefill-List {
-            display: none;
-        }
-
-        &-StartScreen {
-            display: none;
-        }
-
-        &-NoResults {
-            color: color.$grey50;
-        }
+      }
     }
 
+    //Modify Changelog
+    .playButton {
+      &:focus-visible {
+        outline: none;
+        border-radius: 8px;
+        border: 2px solid #5028c0;
+        background: colors.$base80;
+        box-shadow: 0px 0px 0px 5px rgba(176, 148, 255, 0.3);
+      }
+    }
+
+    .thumbnailPlayButtonWrapper {
+      border-radius: 16px;
+      border: 1px solid var(--Base-Base-120, #eae7e7);
+      background: colors.$white;
+      box-shadow: 0px 4px 8px 0px rgba(0, 0, 0, 0.04);
+
+      &:hover {
+        background: colors.$base100;
+        border: 1px solid colors.$base120;
+        box-shadow: 0px 8px 20px 0px rgba(0, 0, 0, 0.04);
+      }
+
+      &:active {
+        background: colors.$base120;
+        border: 1px solid colors.$base120;
+        box-shadow: 0px 2px 4px 0px rgba(0, 0, 0, 0.04);
+      }
+
+      &:focus-visible {
+        background: colors.$white;
+        border: 2px solid colors.$purple100;
+        box-shadow: 0px 0px 0px 5px rgba(176, 148, 255, 0.3);
+        outline: none;
+      }
+    }
+
+    .videoIconDark {
+      display: none;
+    }
+
+    .changelogMainContainerWrapper {
+      background: colors.$lightbg;
+    }
+
+    .changelogMainContainer {
+      background-color: colors.$lightbg;
+      border-right: 1px solid colors.$base120;
+      border-left: 1px solid colors.$base120;
+
+      .changelogTitle {
+        color: colors.$purple200;
+      }
+
+      .changelogHeader .changelogHeaderLeft span {
+        color: colors.$grey80;
+      }
+
+      .changelogHeaderImgDark {
+        display: none;
+      }
+
+      .changelogIndexFilterBorder {
+        border-top: 1px solid colors.$base120;
+      }
+
+      .changelogFilterButton {
+        border-radius: 4px;
+        color: colors.$purple200;
+
+        &:hover {
+          background: colors.$base100;
+        }
+
+        &:active {
+          background: colors.$base120;
+        }
+
+        &:focus-visible {
+          background: colors.$white;
+          border-radius: 8px;
+          border: 2px solid colors.$purple40;
+          box-shadow: 0px 0px 0px 5px rgba(176, 148, 255, 0.3);
+          outline: none;
+        }
+
+        &.active {
+          background: colors.$white;
+        }
+      }
+
+      .changelogIndexItem {
+        border-bottom: 1px solid colors.$base120;
+
+        .changelogDate {
+          color: colors.$grey80;
+        }
+
+        .changelogIndexItemBody {
+          color: colors.$grey80;
+        }
+
+        .changelogReadMoreLink {
+          color: colors.$purple140;
+        }
+      }
+
+      .changelogLoadMoreButtonContainer {
+        //load more button
+        .changelogLoadMoreButton {
+          border: 2px solid colors.$purple140;
+          color: colors.$purple140 !important;
+
+          &:hover {
+            box-shadow: 0 4px 6px -1px rgb(0 0 0 / 0.1),
+              0 2px 4px -2px rgb(0 0 0 / 0.1);
+            border-radius: $border-radius !important;
+            transition: border-radius;
+          }
+        }
+      }
+    }
+
+    .darkImageFrame {
+      display: none;
+    }
+  }
+
+  //area under footer
+  article {
+    background-color: colors.$lightbg;
+  }
+
+  //##############################Light Theme Sidebar Left###################################
+  .nextra-sidebar-container {
+    background-color: colors.$lightbg;
+
+    ._flex {
+      background-color: colors.$lightbg;
+    }
+
+    // nextra currently doesn't name anything in the sidebar properly and only has tailwind functional
+    // names, and so this is hacked together so that we get the view that we want
+
+    // bold the parent links, first two are desktop version, second two are mobile version
+    // extra specificity is required because we want to distinguish between the top level and nested files
+    .nextra-scrollbar > ._transform-gpu > ul > li > a,
+    .nextra-scrollbar > ._transform-gpu > ul > li > button,
+    .nextra-scrollbar > ul > li.open > ._transform-gpu > ul > li > a,
+    .nextra-scrollbar > ul > li.open > ._transform-gpu > ul > li > button {
+      font-weight: 500;
+    }
+
+    // Bottom scroll mask
+    > ._sticky._bottom-0 {
+      box-shadow: 0px -7px 6px -8px rgba(32, 31, 36, 0.1);
+      border-top: colors.$black;
+    }
+
+    ._transform-gpu {
+      // styles the separator / category titles text
+      .first\:_mt-0 {
+        align-items: center;
+        color: colors.$grey80;
+        display: flex;
+        grid-gap: 8px;
+        letter-spacing: 0.16rem;
+        padding-bottom: 0;
+        padding-top: 24px;
+      }
+
+      // modify pressed state
+      a:active {
+        background-color: color.adjust(colors.$purple40, $alpha: -0.6);
+      }
+
+      // modify the selected nav item
+      ._text-primary-800 {
+        background-color: colors.$purple20;
+        color: colors.$purple140;
+      }
+
+      // modify the non-selected nav items
+      ._text-gray-500 {
+        color: colors.$purple200;
+      }
+
+      // remove the vertical rule within dropdowns
+      .before\:_w-px:before {
+        width: 0;
+      }
+
+      // modify hover states
+      .hover\:_bg-gray-100:hover {
+        background-color: colors.$purple20;
+        color: colors.$purple140;
+      }
+
+      // add background color to focus states
+      li > a:focus-visible,
+      li > button:focus-visible {
+        background-color: colors.$white;
+      }
+
+      // add more spacing to focused states
+      li {
+        margin-left: 4px;
+        margin-right: 4px;
+      }
+
+      // add more spacing to focused states
+      ._pt-1 {
+        padding-bottom: 0.25rem;
+      }
+
+      // decrease the indent in the nav
+      ul {
+        margin-left: 0;
+      }
+    }
+  }
+
+  //##############################Light Theme ToC Right###################################
+  .nextra-toc {
+    background-color: colors.$lightbg;
+    // Remove all hardcoded white backgrounds and shadow filters
+    ._shadow-\[0_-12px_16px_white\] {
+      background-color: colors.$lightbg;
+      box-shadow: unset;
+    }
+    // ._bg-white {
+    //   background-color: colors.$black;
+    // }
+
+    .nextra-scrollbar {
+      // set background color for bookmark region
+      // background-color: colors.$black;
+
+      // set font color for bookmark header
+      p {
+        // color: colors.$base100;
+        cursor: default;
+      }
+
+      // modify selected bookmark
+      ._text-primary-600 {
+        color: colors.$purple100;
+      }
+
+      // modify non-selected bookmarks
+      ._text-gray-600 {
+        // background-color: colors.$purple20;
+        color: colors.$purple200;
+      }
+
+      // modify hover states
+      ._text-gray-600:hover {
+        // background-color: colors.$purple20;
+        color: colors.$purple100;
+      }
+    }
+
+    // Add some spacing between the sidebar sections
+    ul li {
+      margin-top: $base-spacing * 2;
+      margin-bottom: $base-spacing * 2;
+    }
+  }
+
+  // Custom Search theming from Algolia Docsearch
+  .DocSearch {
+    // --docsearch-primary-color: #{colors.$purple200};
+    // --docsearch-highlight-color: #{colors.$purple100};
+    // --docsearch-spacing: #{$base-spacing * 3};
+    // --docsearch-modal-width: 47rem;
+    // --docsearch-container-background: rgba(27, 11, 59, 0.85);
+    // --docsearch-modal-background: white;
+    // --docsearch-footer-height: 60px;
+    // --docsearch-hit-color: #{colors.$purple200};
+    // --docsearch-muted-color: #{colors.$purple200};
+
+    // Global Nextra theming makes the focus ring look a little nasty
+    input:focus-visible {
+      box-shadow: none;
+    }
+
+    //Center placeholder text
+    input[class~="searchBar"]::placeholder {
+      text-align: center;
+    }
+
+    &-SearchBar {
+      padding: 80px 88px 32px;
+    }
+
+    &-Modal {
+      border-radius: $border-radius-md;
+    }
+
+    &-Dropdown {
+      padding: 0 90px;
+      margin-bottom: 20px;
+    }
+
+    .DocSearch-Hit-action,
+    .DocSearch-Hit-icon,
+    .DocSearch-Hit-Tree {
+      color: #{colors.$purple40};
+    }
+
+    &-Hit-Tree {
+      opacity: 1;
+    }
+
+    &-Hit a {
+      transition: background-color 0.1s linear;
+      border-radius: 0;
+      box-shadow: none;
+    }
+
+    &-Hits mark {
+      color: colors.$purple100;
+      font-weight: bold;
+    }
+
+    &-Hit {
+      border-radius: $border-radius;
+      padding-bottom: initial;
+      margin-bottom: $base-spacing;
+      border: 2px solid #{colors.$purple100};
+      overflow: hidden;
+    }
+
+    &-Form {
+      border-radius: $border-radius-md;
+      box-shadow: inset 0 0 0 2px colors.$grey30;
+      transition: box-shadow 0.15s linear;
+
+      .DocSearch-MagnifierLabel {
+        color: colors.$grey30;
+        transition: color 0.15s linear;
+      }
+
+      &:focus-within {
+        box-shadow: var(--docsearch-searchbox-shadow);
+
+        .DocSearch-MagnifierLabel {
+          color: var(--docsearch-highlight-color);
+        }
+      }
+    }
+
+    &-Footer {
+      border-radius: 0 0 $border-radius-md $border-radius-md;
+    }
+
+    &-Commands-Key {
+      box-shadow: none;
+      background: transparent;
+      color: colors.$grey50;
+    }
+
+    &-Label {
+      color: colors.$grey50;
+    }
+
+    &-Screen-Icon {
+      display: flex;
+      justify-content: center;
+      color: unset;
+    }
+
+    &-NoResults-Prefill-List {
+      display: none;
+    }
+
+    &-StartScreen {
+      display: none;
+    }
+
+    &-NoResults {
+      color: colors.$grey50;
+    }
+  }
+
+  //##############################Light Theme Footer##############################
+  footer {
+    background-color: colors.$lightbg !important;
+
+    // hr {
+    //   opacity: 0%;
+    //   border-radius: 0;
+    //   background-color: #2f294b;
+    // }
+
+    //bottom box with trademark logo
+    ._mx-auto {
+      background-color: colors.$lightbg;
+    }
+  }
+
+  //   // Modify copyright text at bottom
+  //   ._justify-center {
+  //     color: colors.$white;
+  //   }
+
+  // Modify contact support area
+  // ._mt-8 {
+  //   border-top: colors.$black;
+  // }
+
+  // Modify Navigation buttons at the bottom
+  //   ._mb-8 > a {
+  //     color: colors.$white;
+  //   }
+
+  ._mb-8 > a:hover {
+    color: colors.$purple100;
+  }
 }
 
+//##############################Dark Theme Starts Here###################################
+.dark {
+  line-height: 1.8;
+  font-size: 0.88rem;
+  letter-spacing: 0.3px;
+
+  // We'll handle our own antialiasing.
+  ._subpixel-antialiased {
+    -webkit-font-smoothing: unset;
+    -moz-osx-font-smoothing: unset;
+  }
+
+  // We'll handle our own tracking.
+  ._tracking-tight {
+    letter-spacing: unset;
+  }
+
+  ._font-semibold,
+  ._font-bold,
+  p strong {
+    font-weight: 500; // Override to a weight that we actually DO support, otherwise we risk faux bold
+  }
+
+  ._font-semibold,
+  ._font-bold,
+  li strong {
+    font-weight: 500; // Override to a weight that we actually DO support, otherwise we risk faux bold
+  }
+
+  //set color of hyperlinks
+  ._underline[href] {
+    color: colors.$purple40;
+  }
+
+  summary::-webkit-details-marker {
+    color: colors.$base100;
+  }
+
+  // Get rid of all heading border-bottoms
+  h1,
+  h2,
+  h3,
+  h4,
+  h5 {
+    &._border-b {
+      border-width: 0;
+    }
+  }
+
+  // Set color to markdown headers
+  h1,
+  h2,
+  h3,
+  h4,
+  h5 {
+    color: colors.$base100;
+  }
+
+  // Modify high level stuff across body
+  body {
+    -moz-osx-font-smoothing: grayscale;
+    -webkit-font-smoothing: antialiased;
+    overscroll-behavior-y: none;
+    font-family: typography.$garnett-stack;
+    // background-color: colors.$black;
+  }
+
+  // Modify markdown headers
+  .nextra-content {
+    h1,
+    h2,
+    h3,
+    h4,
+    h5 {
+      letter-spacing: -0.3px;
+      color: colors.$base100;
+    }
+  }
+
+  //##############################Dark Theme Top Nav###################################
+
+  .nextra-nav-container {
+    background-color: #2b273f !important;
+    // box-shadow: unset;
+    border-color: #1f1f24;
+    border-width: 1px;
+
+    // Modify image assets in top nav
+    path {
+      fill: colors.$white;
+    }
+
+    .nextra-nav-container-blur {
+      background-color: #2b273f !important; //colors.$darkbg;
+      box-shadow: none;
+    }
+
+    // Set color for top nav flex region
+    ._mx-auto > ._flex {
+      background-color: #2b273f;
+      box-shadow: none;
+    }
+
+    //Modify top nav tabs
+    ._text-sm {
+      color: colors.$white;
+    }
+
+    // Modify search module
+    .Search_searchBar__rnWt2 {
+      background-color: #2b273f;
+      ::placeholder {
+        text-align: center;
+      }
+    }
+  }
+
+  //##############################Dark Theme Top Nav###################################
+  .changelogSubscribeModalInner {
+    background-color: colors.$grey100;
+  }
+
+  //##############################Dark Theme Body###################################
+  ._w-full > main {
+    color: colors.$base100;
+    background-color: colors.$darkbg;
+
+    ._mt-6 {
+      border-bottom: colors.$black;
+    }
+
+    // modify buttons in integration pages
+    a.nextra-card {
+      span {
+        display: flex;
+        justify-content: center;
+        background-color: colors.$purple140;
+        &:hover {
+          background-color: colors.$purple100;
+          transition-duration: 0.5s;
+        }
+      }
+    }
+
+    // Modify breadcrumbs
+    .nextra-breadcrumb {
+      text-transform: uppercase;
+      letter-spacing: 2px;
+      font-size: 14px;
+      font-weight: 500;
+      color: colors.$white;
+
+      //highlight current breadcrumb
+      ._font-medium {
+        color: colors.$purple100;
+      }
+
+      //change color when hovering over breadcrumb with link
+      ._text-ellipsis:hover {
+        a:hover {
+          color: colors.$purple100;
+          opacity: 1;
+          cursor: pointer;
+        }
+      }
+
+      //breadcrumbs without a link ignores pointer
+      ._text-ellipsis:empty {
+        color: colors.$white;
+        opacity: 0.4;
+        pointer-events: none;
+      }
+
+      svg {
+        opacity: 0.4;
+      }
+    }
+
+    //ID management banner style
+    .idManagementBanner {
+      .nextra-callout {
+        background-color: #49342d !important;
+        color: #fef089;
+      }
+      position: sticky !important;
+      top: 55px;
+      opacity: 1 !important;
+    }
+
+    //modify anchor links hastags
+    a.subheading-anchor {
+      filter: contrast(0) !important;
+      color: colors.$white !important;
+      opacity: 0.4 !important;
+      &:hover {
+        filter: contrast(0) !important;
+        color: colors.$white !important;
+        opacity: 0.7 !important;
+      }
+    }
+
+    //####Dark Theme Code Syntax and Box####
+    //code box stuff here
+    code,
+    kbd,
+    samp,
+    pre {
+      font-family: "Apercu Monospaced", monospace;
+      font-size: 15px;
+      line-height: 150%;
+      font-variant-ligatures: none;
+      font-feature-settings: normal;
+      letter-spacing: initial;
+      background-color: rgba(255, 255, 255, 0.08);
+      --shiki-color-text: #d1d1d1;
+      --shiki-token-constant: #79b8ff;
+      --shiki-token-string: #ffab70;
+      --shiki-token-comment: #6b737c;
+      --shiki-token-keyword: #f97583;
+      --shiki-token-parameter: #ff9800;
+      --shiki-token-function: #b392f0;
+      --shiki-token-string-expression: #4bb74a;
+      --shiki-token-punctuation: #bbb;
+      --shiki-token-link: #ffab70;
+    }
+
+    //modify code highlights in text body (not codebox)
+    p code {
+      background-color: rgba(255, 255, 255, 0.08);
+    }
+
+    // modify codebox
+    .nextra-code > .dark\:_ring-neutral-700 {
+      background-color: colors.$grey100;
+      border: 1px solid rgba(255, 255, 255, 0.1);
+    }
+
+    code.nextra-code {
+      background-color: colors.$grey100;
+    }
+
+    //modify code tabs
+    [role~="tab"] {
+      color: rgba(255, 255, 255, 0.4);
+    }
+
+    //modify code tab hover
+    [role~="tab"]:hover {
+      color: colors.$purple100;
+    }
+
+    //modify selected code tab
+    button[data-headlessui-state~="selected"] {
+      color: colors.$purple100;
+      border-bottom: solid colors.$purple100;
+      border-bottom-width: 2px;
+    }
+
+    //modify code scroll bar
+    [role~="tablist"] {
+      border-color: rgba(255, 255, 255, 0.1);
+    }
+
+    hr {
+      border-color: rgba(255, 255, 255, 0.4);
+    }
+
+    // Style FAQ component
+    .faqComponent {
+      .bg-base100 {
+        background-color: colors.$darkbg;
+      }
+      details {
+        background-color: colors.$darkbg;
+
+        summary {
+          background-color: colors.$darkbg;
+        }
+        summary:hover {
+          background-color: colors.$darkbg;
+        }
+      }
+    }
+
+    //Style ExtendedButtons in Quickstar
+    .extendedButtonComponent {
+      & h2 {
+        // text-2xl font-medium mb-2 color:bg-purple200 <- tailwindcss equivalent
+        font-size: 2.25rem; /* 36px */
+        line-height: 2.5rem; /* 40px */
+        font-weight: 500;
+        margin-bottom: 0.5rem;
+        // color: colors.$purple200;
+      }
+
+      & h4 {
+        // text-2xl font-medium mb-2 color:bg-purple200 <- tailwindcss equivalent
+        font-size: 1.5rem; /* 24px */
+        line-height: 2rem; /* 32px */
+        font-weight: 500;
+        margin-bottom: 0.5rem;
+        // color: colors.$purple200;
+      }
+
+      button {
+        box-shadow: 0 1px 2px 0 rgb(0 0 0 / 0.05);
+        background-color: colors.$purple140;
+        border-radius: 9999px;
+        font-weight: 600;
+        font-size: 1rem;
+        line-height: 1.5rem;
+        padding-left: 28px;
+        padding-right: 28px;
+        padding-top: 10px;
+        padding-bottom: 10px;
+        color: colors.$purple20;
+      }
+
+      button:hover {
+        box-shadow: 0 4px 6px -1px rgb(0 0 0 / 0.1),
+          0 2px 4px -2px rgb(0 0 0 / 0.1);
+        background-color: colors.$purple100;
+      }
+    }
+
+    //Modify Bottom Feedback Area
+    .feedbackCollectorContainer {
+      .feedbackTextArea {
+        color: black;
+      }
+
+      .cancelButton {
+        color: colors.$base80;
+      }
+
+      .submitButton {
+        background: colors.$purple100;
+        color: white;
+      }
+
+      .feedbackButtonContainer {
+        .feedbackButton {
+          background-color: #2b273f;
+          color: colors.$purple20;
+
+          &:hover {
+            box-shadow: 0 4px 6px -1px rgb(0 0 0 / 0.1),
+              0 2px 4px -2px rgb(0 0 0 / 0.1);
+            background-color: colors.$purple140;
+            transition: 0.5s;
+          }
+        }
+      }
+    }
+
+    //Modify Changelog
+    .playButton {
+      &:focus-visible {
+        outline: none;
+        border-radius: 8px;
+        border: 2px solid #7856ff;
+        background: #242133;
+        box-shadow: 0px 0px 0px 5px rgba(176, 148, 255, 0.3);
+      }
+    }
+
+    .thumbnailPlayButtonWrapper {
+      .thumbnailPlayButton {
+        color: colors.$white;
+      }
+
+      z-index: 1;
+      border-radius: 16px;
+      border: 1px solid colors.$purple200;
+      background: rgba(234, 231, 231, 0.05);
+      box-shadow: 0px 4px 8px 0px rgba(0, 0, 0, 0.04);
+
+      &:hover {
+        background: #40385c;
+        border: 1px solid colors.$purple200;
+        box-shadow: 0px 4px 8px 0px rgba(0, 0, 0, 0.04);
+      }
+
+      &:active {
+        background: #322d47;
+        border: 1px solid colors.$purple200;
+        box-shadow: 0px 2px 4px 0px rgba(0, 0, 0, 0.04);
+      }
+
+      &:focus-visible {
+        background: rgba(234, 231, 231, 0.05);
+        border: 2px solid colors.$purple100;
+        box-shadow: 0px 0px 0px 5px rgba(176, 148, 255, 0.3);
+        outline: none;
+      }
+    }
+
+    .videoIconLight {
+      display: none;
+    }
+
+    .changelogMainContainerWrapper {
+      background: colors.$grey100;
+    }
+    .changelogMainContainer {
+      background-color: colors.$darkbg;
+
+      .changelogTitle {
+        color: colors.$white;
+      }
+
+      .changelogHeader .changelogHeaderLeft span {
+        color: colors.$white;
+      }
+
+      .changelogHeaderImgLight {
+        display: none;
+      }
+
+      .changelogIndexFilterBorder {
+        border-top: 1px solid colors.$black;
+      }
+
+      .changelogFilterButton {
+        border-radius: 4px;
+        color: colors.$white;
+
+        &:hover {
+          background: rgba(176, 148, 255, 0.2);
+        }
+
+        &:active {
+          background: rgba(176, 148, 255, 0.1);
+        }
+
+        &:focus-visible {
+          background: colors.$darkbg;
+          border-radius: 8px;
+          border: 2px solid colors.$purple100;
+          border: 2px solid colors.$purple40;
+          box-shadow: 0px 0px 0px 5px rgba(176, 148, 255, 0.25);
+          outline: none;
+        }
+
+        &.active {
+          background: colors.$purple140;
+        }
+      }
+
+      .changelogIndexItem {
+        border-bottom: 1px solid colors.$black;
+
+        .changelogDate {
+          color: rgba(255, 255, 255, 0.55);
+        }
+
+        .changelogIndexItemBody {
+          color: colors.$white;
+        }
+
+        .changelogReadMoreLink {
+          color: colors.$white;
+        }
+
+        button {
+          color: colors.$white !important;
+        }
+      }
+
+      //load more buttons
+      .changelogLoadMoreButtonContainer {
+        .changelogLoadMoreButton {
+          border: 2px solid colors.$purple100;
+          color: colors.$purple20 !important;
+
+          &:hover {
+            box-shadow: 0 4px 6px -1px rgb(0 0 0 / 0.1),
+              0 2px 4px -2px rgb(0 0 0 / 0.1);
+            border-radius: $border-radius !important;
+            transition: border-radius;
+          }
+        }
+      }
+    }
+
+    .lightImageFrame {
+      display: none;
+    }
+
+    .changelogPostHeader {
+      //date of changelog entry
+      .changelogDate {
+        color: rgba(255, 255, 255, 0.55);
+      }
+    }
+  }
+
+  //area under footer
+  article {
+    background-color: colors.$darkbg;
+  }
+
+  //##############################Dark Theme Sidebar Left###################################
+  .nextra-sidebar-container {
+    background-color: colors.$darkbg;
+
+    ._flex {
+      background-color: colors.$darkbg;
+    }
+
+    // nextra currently doesn't name anything in the sidebar properly and only has tailwind functional
+    // names, and so this is hacked together so that we get the view that we want
+
+    // bold the parent links, first two are desktop version, second two are mobile version
+    // extra specificity is required because we want to distinguish between the top level and nested files
+    .nextra-scrollbar > ._transform-gpu > ul > li > a,
+    .nextra-scrollbar > ._transform-gpu > ul > li > button,
+    .nextra-scrollbar > ul > li.open > ._transform-gpu > ul > li > a,
+    .nextra-scrollbar > ul > li.open > ._transform-gpu > ul > li > button {
+      font-weight: 500;
+    }
+
+    // Bottom scroll mask
+    > ._sticky._bottom-0 {
+      box-shadow: 0px -7px 6px -8px rgba(32, 31, 36, 0.1);
+      border-top: colors.$black;
+    }
+
+    ._transform-gpu {
+      // styles the separator / category titles text
+      .first\:_mt-0 {
+        align-items: center;
+        color: colors.$grey50;
+        display: flex;
+        grid-gap: 8px;
+        letter-spacing: 0.16rem;
+        padding-bottom: 0;
+        padding-top: 24px;
+      }
+
+      // modify pressed state
+      a:active {
+        background-color: color.adjust(colors.$purple40, $alpha: -0.6);
+      }
+
+      // modify the selected nav item
+      ._text-primary-800 {
+        background-color: colors.$purple140;
+        color: colors.$purple20;
+      }
+
+      // modify the non-selected nav items
+      ._text-gray-500 {
+        color: colors.$base80;
+      }
+
+      // remove the vertical rule within dropdowns
+      .before\:_w-px:before {
+        width: 0;
+      }
+
+      // modify hover states
+      .hover\:_bg-gray-100:hover {
+        background-color: colors.$purple140;
+        color: colors.$purple20;
+      }
+
+      // add background color to focus states
+      li > a:focus-visible,
+      li > button:focus-visible {
+        background-color: colors.$white;
+      }
+
+      // add more spacing to focused states
+      li {
+        margin-left: 4px;
+        margin-right: 4px;
+      }
+
+      // add more spacing to focused states
+      ._pt-1 {
+        padding-bottom: 0.25rem;
+      }
+
+      // decrease the indent in the nav
+      ul {
+        margin-left: 0;
+      }
+    }
+  }
+
+  //##############################Dark Theme ToC Right###################################
+  .nextra-toc {
+    background-color: colors.$darkbg;
+    // Remove all hardcoded white backgrounds and shadow filters
+    .nextra-toc-footer {
+      background-color: colors.$darkbg;
+      box-shadow: unset;
+    }
+    // ._bg-white {
+    //   background-color: colors.$black;
+    // }
+
+    .nextra-scrollbar {
+      // set background color for bookmark region
+      // background-color: colors.$black;
+
+      // set font color for bookmark header
+      p {
+        color: colors.$base100;
+        cursor: default;
+      }
+
+      // modify selected bookmark
+      ._text-primary-600 {
+        color: colors.$purple100;
+      }
+
+      // modify non-selected bookmarks
+      ._text-gray-600 {
+        // background-color: colors.$purple20;
+        color: colors.$base100;
+      }
+
+      // modify hover states
+      ._text-gray-600:hover {
+        // background-color: colors.$purple20;
+        color: colors.$purple100;
+      }
+
+      ._mt-8._border-t {
+        border-top-color: rgba(255, 255, 255, 0.4);
+      }
+    }
+
+    // Add some spacing between the sidebar sections
+    ul li {
+      margin-top: $base-spacing * 2;
+      margin-bottom: $base-spacing * 2;
+    }
+  }
+
+  // Custom Search theming from Algolia Docsearch
+  .DocSearch {
+    // --docsearch-primary-color: #{colors.$purple200};
+    // --docsearch-highlight-color: #{colors.$purple100};
+    // --docsearch-spacing: #{$base-spacing * 3};
+    // --docsearch-modal-width: 47rem;
+    // --docsearch-container-background: rgba(27, 11, 59, 0.85);
+    // --docsearch-modal-background: white;
+    // --docsearch-footer-height: 60px;
+    // --docsearch-hit-color: #{colors.$purple200};
+    // --docsearch-muted-color: #{colors.$purple200};
+
+    // Global Nextra theming makes the focus ring look a little nasty
+    input:focus-visible {
+      box-shadow: none;
+    }
+
+    //Center placeholder text
+    input[class~="searchBar"]::placeholder {
+      text-align: center;
+    }
+
+    &-SearchBar {
+      padding: 80px 88px 32px;
+    }
+
+    &-Modal {
+      border-radius: $border-radius-md;
+    }
+
+    &-Dropdown {
+      padding: 0 90px;
+      margin-bottom: 20px;
+    }
+
+    .DocSearch-Hit-action,
+    .DocSearch-Hit-icon,
+    .DocSearch-Hit-Tree {
+      color: #{colors.$purple40};
+    }
+
+    &-Hit-Tree {
+      opacity: 1;
+    }
+
+    &-Hit a {
+      transition: background-color 0.1s linear;
+      border-radius: 0;
+      box-shadow: none;
+    }
+
+    &-Hits mark {
+      color: colors.$purple100;
+      font-weight: bold;
+    }
+
+    &-Hit {
+      border-radius: $border-radius;
+      padding-bottom: initial;
+      margin-bottom: $base-spacing;
+      border: 2px solid #{colors.$purple100};
+      overflow: hidden;
+    }
+
+    &-Form {
+      border-radius: $border-radius-md;
+      box-shadow: inset 0 0 0 2px colors.$grey30;
+      transition: box-shadow 0.15s linear;
+
+      .DocSearch-MagnifierLabel {
+        color: colors.$grey30;
+        transition: color 0.15s linear;
+      }
+
+      &:focus-within {
+        box-shadow: var(--docsearch-searchbox-shadow);
+
+        .DocSearch-MagnifierLabel {
+          color: var(--docsearch-highlight-color);
+        }
+      }
+    }
+
+    &-Footer {
+      border-radius: 0 0 $border-radius-md $border-radius-md;
+    }
+
+    &-Commands-Key {
+      box-shadow: none;
+      background: transparent;
+      color: colors.$grey50;
+    }
+
+    &-Label {
+      color: colors.$grey50;
+    }
+
+    &-Screen-Icon {
+      display: flex;
+      justify-content: center;
+      color: unset;
+    }
+
+    &-NoResults-Prefill-List {
+      display: none;
+    }
+
+    &-StartScreen {
+      display: none;
+    }
+
+    &-NoResults {
+      color: colors.$grey50;
+    }
+  }
+
+  //##############################Dark Theme Footer##############################
+  footer {
+    background-color: colors.$darkbg !important;
+    border-top: colors.$white !important;
+
+    // div hr {
+    //   opacity: 0.4 !important;
+    //   border-radius: 3px !important;
+    //   color: colors.$white !important;
+    // }
+
+    //bottom box with trademark logo
+    ._mx-auto {
+      background-color: colors.$darkbg;
+    }
+  }
+
+  // Modify copyright text at bottom
+  ._justify-center {
+    color: colors.$white;
+  }
+
+  // Modify contact support area
+  // ._mt-8 {
+  //   border-top: colors.$black;
+  // }
+
+  // Modify Navigation buttons at the bottom
+  ._mb-8 > a {
+    border-top-color: rgba(255, 255, 255, 0.4) !important;
+    color: colors.$white;
+  }
+
+  ._mb-8 > a:hover {
+    color: colors.$purple100;
+  }
+}

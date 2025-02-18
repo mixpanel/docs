@@ -27,14 +27,14 @@ In order to generate a request signature you will need the following information
 
 Calculating the signature is done in parts:
 1) Alphabetically sort all parameters being used in the request. This excludes your api_secret
-2) alphabetically sorted order, concatenate the parameter and parameter value joined by an equal sign. For example: `param1=paramvalue1param2=paramvalue2` 
+2) alphabetically sorted order, concatenate the parameter and parameter value joined by an equal sign. For example: `param1=value1param2=value2` 
 2) append the api_secret to the string of concatenated parameters.
 3) md5 hash the final string
 
 The resulting hash is the request signature.
 
 ```sh
-# (psuedo code)
+# (pseudo code)
 # all query parameters going to be sent out with the request
 request_parameters = {
    api_key: '123',
@@ -67,7 +67,7 @@ Request with Signature
 https://mixpanel.com/api/2.0/events/
 		&interval=7
 		&expire=1275624968
-		&api_key=f0aa34668dsadsa231
+		&api_key=xxxxx
 		&type=average
 		&event=%5B%22splash+features<%22%2C+%22account-page%22%5D
 		&unit=day

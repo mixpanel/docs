@@ -1,6 +1,6 @@
 This article reflects a legacy version of identity management in Mixpanel, for projects that were created prior to 2020. In 2020, we released hourly merge. If you have ID Merge enabled, you will see it in your Mixpanel [project settings](https://mixpanel.com/settings/project):
 
-![image](/230244606-e12422cd-d937-4328-ac58-8cc60f919df7.png)
+![image](https://github.com/mixpanel/docs/assets/2077899/2b366ab9-e837-4f19-bf1f-85872a93f75e)
 
 If you're using ID Merge, see our latest recommendations [here](https://developer.mixpanel.com/docs/identity-management).
 
@@ -54,7 +54,7 @@ When you call reset, all events for logged out users will appear anonymous until
 In addition, because you remove super properties, you will need to again register these for each user on login. The tradeoff for the above drawbacks is that each profile is one unique user within your implementation.
 
 # Existing User Identification Example
-If you’ve already mapped your identifier (such as “sally@gmail.com”) to a Mixpanel distinct_id (such as “12345”), any attempt to map your identifier to a different Mixpanel distinct_id fails.
+If you’ve already mapped your identifier (such as `sally@gmail.com`) to a Mixpanel distinct_id (such as “12345”), any attempt to map your identifier to a different Mixpanel distinct_id fails.
 
 In the previous example, Sally came to your website, not your mobile application. Suppose she decides to download your app on her phone and logs in.
 

@@ -24,7 +24,7 @@ Deduplication only occurs when a subset of the event data is exactly identical.
     "4-2": "The time an event occurred. If present, the value should be a unix timestamp (seconds since midnight, January 1st, 1970 - UTC). If this property is not included in your request, Mixpanel will use the time the event arrives at the server.",
     "5-0": "**properties.$insert_id**",
     "5-1": "<span style=\"font-family: courier\">String</span></br><span style=\"color: red\">required</span>",
-    "5-2": "A unique UUID tied to exactly one occurance of an event."
+    "5-2": "A unique UUID tied to exactly one occurrence of an event."
   },
   "cols": 3,
   "rows": 6
@@ -40,12 +40,12 @@ In other words, each event containing an $insert_id is checked for duplication a
     "token": "project_token",
     "distinct_id": "aubrey@thesix.views",
     "time": 1601412131000,
-    "$insert_id": "dsad09sad8sa0"
+    "$insert_id": "88B7hahbaschhhB66cbsg"
   },
 }
 ```
 
-If this simplified object is an exact match to any other simplfied event it is marked as a duplicate. Ingested events that have been marked as a duplicate will be deleted within 24 hours.
+If this simplified object is an exact match to any other simplified event it is marked as a duplicate. Ingested events that have been marked as a duplicate will be deleted within 24 hours.
 
 If an event is sent to the Ingestion API without an `$insert_id` one will be generated for it. However, it will not qualify for the deduplication process.
 

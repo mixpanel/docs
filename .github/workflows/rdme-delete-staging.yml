@@ -5,16 +5,18 @@ on:
       - closed
     paths:
       - 'reference/**'
+      - 'openapi/**'
       - '.github/actions/**'
       - '.github/workflows/rdme-staging.yml'
 
 jobs:
   delete-staging:
+    if: ${{ github.event.pull_request.head.repo.full_name == 'mixpanel/docs' }}
     runs-on: ubuntu-latest
     steps:
       - name: Check out repo 📚
         uses: actions/checkout@v4
-      - uses: actions/setup-node@v3
+      - uses: actions/setup-node@v4
         with:
           node-version: 18
           cache: 'npm'
