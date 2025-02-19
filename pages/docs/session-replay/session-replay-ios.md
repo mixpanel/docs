@@ -8,11 +8,11 @@ When digging into customer journeys in Mixpanel’s analytics, you can understan
 
 ## Availability
 
-Currently, iOS Session Replay is in invite-only Alpha access for customers on our Enterprise plan.
+Currently, iOS Session Replay is in invite-only Beta access for customers on our Enterprise plan.
 
-For any questions about Session Replay or iOS Alpha access, please reach out to your Account Manager. Note: as our Alpha program is early access, our functionality may have bugs and cause crashes. Be sure to test thoroughly before enabling in production.
+For any questions about Session Replay or iOS Beta access, please reach out to your Account Manager. Note: as our Beta program is early access, our functionality, including data masking features, may have bugs and cause crashes. Be sure to test thoroughly before enabling in production.
 
-For more information on our Web replay functionality, read [here](/docs/session-replay/session-replay-web)
+Before publishing an App with Session Replay enabled, make sure to test it thoroughly to ensure that no sensitive data is exposed. Customizing masking rules in particular should be reviewed carefully. Like all Mixpanel product features, Mixpanel's customers are responsible for their configuration of Session Replay and ensuring sensitive data is not exposed.
 
 # Quick Start Guide
 
@@ -152,7 +152,13 @@ SessionReplay.getInstance()?.stopRecording()
 
 ## Privacy Settings
 
-By default, Mixpanel will hide UILabel and UITextField to exclude more sensitive views from recording, to mark any view as sensitive:
+By default, Mixpanel will mask `UITextFields` to exclude more sensitive views with user inputs from recording.  `UITextFields` cannot be unmasked to protect end-user privacy.
+
+By default, Mixpanel will mask `UILabels`. `UILabels` can be unmasked at your discretion. `maskAllText` can be used to control whether all text elements in the session replay should be masked. By default, this option is enabled as True.
+
+By default, Mixpanel will mask all images. Images can be unmasked. `maskAllImages` can be used to control whether all images in the session replay should be masked. This option is also enabled by default as True.	
+
+To mark any view as sensitive:
 
 ```swift
 // SwiftUI
@@ -172,6 +178,8 @@ Please refer to [Using Session Replay](/docs/session-replay#using-session-replay
 
 Our Session Replay Beta Service Addendum can be found [here](https://mixpanel.com/legal/session-replay-beta-service-addendum/).
 
+The alpha and beta of Mixpanel’s mobile session replay SDK will track certain events and send them to Mixpanel so that Mixpanel can understand and improve the alpha and beta mobile session replay feature experience. These events include starting and stopping a session, adding and removing sensitive classes, adding sensitive views and adding safe views
+
 ## FAQ
 
 ### How does Session Replay work in iOS?
@@ -180,7 +188,7 @@ Session Replay observes user interactions within your app, capturing UI hierarch
 
 ### What is the expected impact on my app performance?
 
-There is no impact on your app’s performance when there are no user interactions or nothing changes on the screen. When there are user interactions, expect approximately 1% to 3% more CPU usage and around 1MB more memory consumption. There is no impact on disk I/O because Session Replay does not write anything to your disk. In our own testing, the overhead is unnoticeable, however if you experience any performance degradations after installing Session Replay, please reach out to us.
+There is no impact on your app’s performance when there are no user interactions or nothing changes on the screen. When there are user interactions, expect approximately 1% to 3% more CPU usage and around 1MB more memory consumption. There is no impact on disk I/O because Session Replay does not write anything to your disk. In our own testing, the overhead is unnoticeable, however this testing was not exhaustive and you may discover the recording overhead may negatively impact your mobile application performance depending on your application specifications. If you experience any performance degradations after installing Session Replay, please reach out to us. 
 
 ### What is the bandwidth impact and will it cause users to incur additional data charges?
 
@@ -215,15 +223,9 @@ Yes, Objective-C and Swift are fully interoperable.
 
 ### Can I prevent Session Replay from recording sensitive content?
 
-If your app is UIKit-based, all `UITextField` and `UILabel` components are masked by default, and there is no way to unmask them. You can also mask any view manually by calling:
+If your app is SwiftUI-based or UIKit-based, all `UITextField` and `UILabel` components are masked by default. `UITextField` cannot be unmasked, while `UILabels` can be unmasked  You can also mask any view manually by calling:
 
 ```swift
 // UIKit
 SessionReplay.getInstance()?.addSensitiveView(mySensitiveView);
-```
-
-If your app is SwiftUI-based, the automatic masking for `UITextField` and `UILabel` does not work well in the current alpha version, so you need to manually mask any view.
-
-```swift
-Image("family photo").replaySensitive();
 ```
