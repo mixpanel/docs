@@ -18,7 +18,7 @@ For more information on our Web replay functionality, read [here](/docs/session-
 
 ## Prerequisite
 
-You are already a Mixpanel customer and have the Mixpanel iOS SDK installed. If not, please follow this [doc](docs/what-is-mixpanel) to get started.
+You are already a Mixpanel customer and have the Mixpanel iOS SDK installed. If not, please follow this [doc](docs/tracking-methods/sdks/swift) to get started.
 
 ## Install
 
