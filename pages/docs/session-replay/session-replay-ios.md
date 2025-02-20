@@ -12,7 +12,7 @@ Currently, iOS Session Replay is in invite-only Beta access for customers on our
 
 For any questions about Session Replay or iOS Beta access, please reach out to your Account Manager. Note: as our Beta program is early access, our functionality, including data masking features, may have bugs and cause crashes. Be sure to test thoroughly before enabling in production.
 
-For more information on our Web replay functionality, read [here](https://docs.mixpanel.com/docs/session-replay/session-replay-web)
+For more information on our Web replay functionality, read [here](/docs/session-replay/session-replay-web)
 
 Before publishing an App with Session Replay enabled, make sure to test it thoroughly to ensure that no sensitive data is exposed. Customizing masking rules in particular should be reviewed carefully. Like all Mixpanel product features, Mixpanel's customers are responsible for their configuration of Session Replay and ensuring sensitive data is not exposed.
 
@@ -20,7 +20,7 @@ Before publishing an App with Session Replay enabled, make sure to test it thoro
 
 ## Prerequisite
 
-You are already a Mixpanel customer and have the latest version of the Mixpanel Swift SDK installed (minimum supported version is `v4.3.1`). If not, please follow this [doc](https://docs.mixpanel.com/docs/quickstart) to get started.
+You are already a Mixpanel customer and have the latest version of the Mixpanel Swift SDK installed (minimum supported version is `v4.3.1`). If not, please follow this [doc](/docs/quickstart) to get started.
 
 ## Install
 
