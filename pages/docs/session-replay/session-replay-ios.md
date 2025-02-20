@@ -20,7 +20,7 @@ Before publishing an App with Session Replay enabled, make sure to test it thoro
 
 ## Prerequisite
 
-You are already a Mixpanel customer and have the latest version of the Mixpanel Swift SDK installed (minimum supported version is `v4.3.1`). If not, please follow this [doc](https://docs.mixpanel.com/docs/what-is-mixpanel) to get started.
+You are already a Mixpanel customer and have the latest version of the Mixpanel Swift SDK installed (minimum supported version is `v4.3.1`). If not, please follow this [doc](https://docs.mixpanel.com/docs/quickstart) to get started.
 
 ## Install
 
@@ -212,7 +212,7 @@ bgImage.mpReplaySensitive = false
 
 ## Using Session Replay
 
-Please refer to [Using Session Replay](#using-session-replay)
+Please refer to [Using Session Replay](https://docs.mixpanel.com/docs/session-replay/session-replay-web#using-session-replay)
 
 ## Legal (Beta Terms)
 
