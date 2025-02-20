@@ -43,7 +43,7 @@ Download and Unzip the below zip file to your local drive
 
 ## Initialize
 
-You should have the main Mixpanel SDK installed (minimum version `v4.3.1`), if not, please refer to [Prerequisite](https://docs.mixpanel.com/docs/tracking-methods/sdks/swift) Add the initialization code at the start of your app's lifecycle.
+You should have the main Mixpanel SDK installed (minimum version `v4.3.1`), if not, please refer to [Prerequisite](/docs/tracking-methods/sdks/swift) Add the initialization code at the start of your app's lifecycle.
 
 SwiftUI
 
@@ -212,7 +212,7 @@ bgImage.mpReplaySensitive = false
 
 ## Using Session Replay
 
-Please refer to [Using Session Replay](https://docs.mixpanel.com/docs/session-replay/session-replay-web#using-session-replay)
+Please refer to [Using Session Replay](/docs/session-replay/session-replay-web#using-session-replay)
 
 ## Legal (Beta Terms)
 
