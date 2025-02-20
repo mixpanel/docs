@@ -218,7 +218,7 @@ Please refer to [Using Session Replay](/docs/session-replay/session-replay-web#u
 
 Our Session Replay Beta Service Addendum can be found [here](https://mixpanel.com/legal/session-replay-beta-service-addendum/).
 
-The alpha and beta of Mixpanel’s mobile session replay SDK will track certain events and send them to Mixpanel so that Mixpanel can understand and improve the alpha and beta mobile session replay feature experience. These events include starting and stopping a session, adding and removing sensitive classes, adding sensitive views and adding safe views
+The alpha and beta of Mixpanel’s mobile session replay SDK will track certain events and send them to Mixpanel so that Mixpanel can understand and improve the alpha and beta mobile session replay feature experience. These events include starting and stopping a session, adding and removing sensitive classes, adding sensitive views and adding safe views. Nothing about your application will be included in this tracking; only your usage of the Mixpanel Session Replay SDK.
 
 ## FAQ
 
