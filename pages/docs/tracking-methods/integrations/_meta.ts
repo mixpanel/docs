@@ -24,5 +24,7 @@ export default {
     "newWindow": true
   },
   "snowplow": "Snowplow",
-  "stripe": "Stripe"
+  "stripe": "Stripe",
+  "tealium": "Tealium",
+  "vendo": "Vendo"
 }
