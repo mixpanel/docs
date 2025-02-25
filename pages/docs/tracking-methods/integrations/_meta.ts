@@ -25,5 +25,6 @@ export default {
   },
   "snowplow": "Snowplow",
   "stripe": "Stripe",
+  "tealium": "Tealium",
   "vendo": "Vendo"
 }
