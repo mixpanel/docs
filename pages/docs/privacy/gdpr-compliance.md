@@ -7,7 +7,7 @@ As controllers of personal data, Mixpanel and its customers must uphold certain 
 
 ## Right to Access and Data Portability
 
-Mixpanel supports individuals’ right to access and right to portability of their personal data through individual export requests. Any Mixpanel account holder will be able to request an export of one’s own personal data, as well as the personal data of their own end-users. [The form for submitting end user personal data export requests](/docs/privacy/end-user-data-management) and for submitting account holder data export requests is available through Personal Settings > Data & Privacy. 
+Mixpanel supports individuals’ right to access and right to portability of their personal data through individual export requests. Any Mixpanel account holder will be able to request an export of one’s personal data, as well as the personal data of their end-users. [The form for submitting end-user personal data export requests](/docs/privacy/end-user-data-management) and for submitting account holder data export requests is available through Personal Settings > Data & Privacy. 
  
 ## Right to Erasure
 
@@ -21,10 +21,10 @@ Mixpanel collects information about how customers use the product, and uses this
 
 ## Data Retention Policy
 
-As processors of its customers’ data and to protect the privacy of information it stores, Mixpanel holds data no longer than is needed to provide its services. To further support this, Mixpanel has implemented the following data retention policy:
+As the processor of its customers’ data and to protect the privacy of information it stores, Mixpanel holds data no longer than is needed to provide its services. To further support this, Mixpanel has implemented the following data retention policy:
 
 - Events are automatically deleted after 5 years on an ongoing basis from all projects.
-  - The start of the retention period is the date that is transferred to Mixpanel with an Event (i.e., the “Event Date”), which typically corresponds to the date an user completed an action on a web or mobile application. In the event that an Event Date is not transferred to Mixpanel with an Event by our Customer, the Event Date is recorded as the date we received the Event.
+  - The start of the retention period is the date that is transferred to Mixpanel with an Event (i.e., the “Event Date”), which typically corresponds to the date a user completed an action on a web or mobile application. In the event that an Event Date is not transferred to Mixpanel with an Event by our Customer, the Event Date is recorded as the date we received the Event.
 - User data is retained indefinitely. Customers are given the ability to delete profiles using the [Engage API](https://developer.mixpanel.com/reference/delete-profile).
 
 This policy includes projects that were deleted or reset through the Project Settings - deleting a project through the Project Settings triggers a soft deletion. The data in the deleted or reset project will remain stored in Mixpanel for 60-90 days, after which it will be hard deleted and unrecoverable.
