@@ -99,9 +99,9 @@ For any questions about early mobile access, please reach out to your Account Ma
 By default, all on-screen text elements are masked in replays. Additionally, you can customize how you initialize our SDK to fully control (1) where to record and (2) whom to record. For more details, please see our [implementation docs](/docs/tracking-methods/sdks/javascript#session-replay).
 
 ### How can I estimate how many replays I'll have?
-If you already use Mixpanel, the simplest way to estimate the amount of replays is to use a proxy metric for how many page loads you have. If you use timeout based query sessions, Total Session Start events in the Insights report could be a good estimate.
+If you already use Mixpanel, Session Start events are a way to estimate the rough amount of replays you might expect.  This is especially true if you use timeout-based query sessions. However, because our sessions are defined at query time, we cannot guarantee these metrics will be directly correlated.
 
-Then, when you enable Session Replay, use that metric and the sampling percentage to determine how many replays will be sent.
+When you enable Session Replay, use the above proxy metric (or something similar) to determine a starting sampling percentage, which will determine how many replays will be sent. You can always adjust this as you go to calibrate to the right level. 
 
 ### Am I able to sample our session replay collection rate?
 
@@ -143,9 +143,6 @@ For extensions like uBlock, you can navigate to "My Filters" in the extension se
 ```
 @@||mxpnl.com^$domain=mxpnl.com
 ```
-
-### How do Session Replays work when navigating between pages that are full page loads?
-If your web application relies on full page loads (where the entire page is reloaded when navigating from one page to another), a new Session Replay recording `$mp_replay_id` will be created when navigating to each page. This occurs because the Mixpanel instance is reloaded again when navigating between pages.
 
 ### Why don't I see the ‘View Replays’ button?
 
