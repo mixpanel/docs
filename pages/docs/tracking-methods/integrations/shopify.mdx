@@ -11,7 +11,7 @@ Mixpanel [Autocapture](https://docs.mixpanel.com/docs/tracking-methods/autocaptu
 
 This guide explores two simple options to integrate Mixpanel’s [Javascript SDK](https://docs.mixpanel.com/docs/tracking-methods/sdks/javascript) into your shop:
 
-1. [Mixpanel SDK + Autotrack](#install-mixpanel-sdk-with-autocapture): collect data automatically (minimal setup)
+1. [Mixpanel SDK + Autocapture](#install-mixpanel-sdk-with-autocapture): collect data automatically (minimal setup)
 2. [Mixpanel SDK +  Shopify Web Pixel](#mixpanel-sdk--shopify-web-pixel): define your own customer events (robust, yet approachable setup)
 
 For optimal visibility, we recommend both! Shopify’s checkout flow is strict about only running proprietary scripts, but you can still fully capture conversion events by implementing Option 2 with the [Shopify Web Pixel](https://shopify.dev/docs/api/web-pixels-api#custom-web-pixels) setup guide.
@@ -43,7 +43,7 @@ _Automatically collect customer events with minimal steps_
 
 7. Confirm the configuration in your Mixpanel Project and enjoy a data pipeline flowing with `[Auto]` tracked events!
 
-    ![](/autotracked_events.png)
+    ![](/Autocaptureed_events.png)
 
 ## Mixpanel SDK + [Shopify Web Pixel](https://shopify.dev/docs/api/web-pixels-api#custom-web-pixels)    
 _Define your own customer events with an approachable setup_
@@ -80,7 +80,7 @@ _Define your own customer events with an approachable setup_
     });
     ```
 
-    Putting this recipe to work, here’s an example of how to track product_viewed events:
+    Putting this recipe to work, here’s an example of how to track `product_viewed` events:
     
     ```javascript
     // Subscribe to Shopify Pixel Event API
@@ -101,7 +101,7 @@ _Define your own customer events with an approachable setup_
     });
     ```
 
-    And, another example of gathering checkout_completed events:
+    And, another example of gathering `checkout_completed` events:
 
     ```javascript
     // Subscribe to Shopify Pixel Event API
