@@ -117,6 +117,51 @@ Mixpanel’s report dropdown menus hide events that have not been fired within t
 
 To have an imported event, event property, or property value that’s older than 30 days show in the dropdowns, you can fire a single instance of that event, property, or property value and the data will resurface it in the UI. If you know the name of the event, you can also search for it by typing the name in the dropdown menu (case sensitive).
 
+### Understanding CORS Errors
+
+**CORS** stands for **Cross-Origin Resource Sharing**, and it is a security feature implemented by web browsers to prevent potentially harmful interactions between websites (or apps) from different domains (origins).
+
+An "origin" refers to the combination of the protocol (HTTP or HTTPS), domain (example.com), and port (8080, for example). When a webpage from one origin tries to make requests (like loading data or interacting with a server) to a different origin, that is a cross-origin request.
+
+#### Why do CORS errors happen?
+
+By default, browsers block web pages from making requests to a different domain, protocol, or port than the one the page originated from (this is called the **same-origin policy**). This helps protect users from **cross-site scripting (XSS)** and other malicious attacks.
+
+However, there are legitimate scenarios where a website might need to request resources from another domain. For example:
+- A front-end app (like a React or Angular app) might need to get data from an API hosted on a different domain.
+- A website might want to load images or resources hosted elsewhere.
+
+In such cases, the server from the other domain has to explicitly allow these requests through a process called **CORS**.
+
+#### Fixing Common Cases of CORS Errors
+
+1. CORS Configuration
+
+Ensure your proxy is properly configured to handle CORS. This includes adding the appropriate Access-Control-Allow-Headers, such as Authorization, in the preflight response.
+Verify that Access-Control-Allow-Origin is set to allow requests from your client’s domain.
+
+2. Proxy Adjustments
+
+Reconfigure your proxy to forward all necessary headers, including Authorization, Content-Type, and Content-Encoding, to the /record endpoint.
+If you’re encountering a 415 Unsupported Media Type error, it’s likely the Content-Type and Content-Encoding headers are being blocked or not forwarded correctly.
+
+3. Initialization Setup
+
+Make sure you’re initializing Mixpanel correctly for session replay by including the recommended options in your mixpanel.init() call, such as track_pageview and persistence.
+
+4. Content Security Policy (CSP)
+
+Verify that your Content Security Policy allows connections to all required Mixpanel domains. Update it to include the necessary URLs if needed.
+
+5. Fallback Option
+
+If possible, switching back to the default Mixpanel endpoints could resolve these issues, as they are pre-configured to handle CORS correctly. However, we understand this might not be ideal if you rely on your proxy to avoid ad blockers.
+
+6. Debugging Tips
+
+Use your browser’s developer tools to inspect network requests to the record endpoint. Look for errors like CORS rejections or HTTP status codes (e.g., 415).
+Compare successful requests to the default Mixpanel endpoints with those sent through your proxy to identify any discrepancies.
+
 ## Data Discrepancies
 
 ### Discrepancies in Mixpanel Reports
