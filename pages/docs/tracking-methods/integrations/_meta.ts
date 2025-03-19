@@ -15,13 +15,13 @@ export default {
   "google-tag-manager": "Google Tag Manager",
   "launchdarkly": "LaunchDarkly",
   "mparticle": "mParticle",
+  "nextjs": "Next.js",
   "mobile-attribution-tracking": "Mobile Attribution Tracking",
   "rudderstack": "Rudderstack",
   "segment": "Segment",
   "shopify": {
-    "title": "Shopify ↗",
-    "href": "https://apps.shopify.com/vendo?utm_source=mixpanel&utm_medium=partner",
-    "newWindow": true
+    "title": "Shopify",
+    "href": "/docs/tracking-methods/integrations/shopify",
   },
   "snowplow": "Snowplow",
   "stripe": "Stripe",

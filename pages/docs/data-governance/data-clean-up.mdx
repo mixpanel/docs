@@ -79,6 +79,7 @@ Data Deletion is a severe action with permanent consequences. Thus, we recommend
 | We have sensitive data that we accidentally ingested that we legally cannot have and need to urgently delete | Yes, use Data Deletion with targeted event property filters to delete events with sensitive data. You can then re-upload data without sensitive PII data included. Please refer to our 'Reminders with ETL Approach' section on this page as you proceed |
 | I no longer want an event/ property entirely, as it’s no longer relevant to my team | No, we recommend you actually use [Dropping and Hiding Data](https://docs.mixpanel.com/docs/data-governance/lexicon#dropping-and-hiding-data) instead, as these will hide the events from your team, without using up your limited Data Deletion requests. |
 | I don’t need to legally delete some events with sensitive data, but I don’t want some of my users to be able to see the sensitive data | No, we recommend you use [Mark Properties as Classified](https://docs.mixpanel.com/docs/data-governance/data-views-and-classification#mark-properties-as-classified-data) to remove the data from the analysis experience for certain user types, while keeping accessible for other users. |
+| I want to delete data associated with a specific distinct ID | No, we recommend you use our [Distinct ID Deletion API](https://developer.mixpanel.com/reference/create-deletion), as Data Deletion does not support Distinct ID as a filtering criteria |
 
 ### Who can use Data Deletion?
 
