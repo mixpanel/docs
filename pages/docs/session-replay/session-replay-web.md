@@ -23,7 +23,7 @@ To access free replays, customers will need to ensure they’re on the latest Mi
     - You can make the switch to our latest plan directly from the [pricing page](https://mixpanel.com/pricing/).
 - Enterprise customers should contact their account manager to determine their plan status.
 
-Customers will be blocked from viewing additional replays above their monthly limit (or custom add-on limit for an Enterprise plan) until they upgrade or purchase additional volumes. After breaching a higher limit, we may stop capturing replays of your user sessions. Replay volumes are summed across all your projects within your billing account.
+Customers who purchase the Session Replay add-on will be charged overages for any replays ingested beyond their purchased limit. To avoid disruptions, please monitor your usage regularly. For customers with complimentary Session Replays (whether through a sales discount, an included plan benefit, or our Startup Program), any replays exceeding the monthly or annual limit will first be hidden behind a paywall, and eventually be dropped. Replay usage is aggregated across all projects within your billing account.
 
 ## Using Session Replay
 
@@ -99,9 +99,9 @@ For any questions about early mobile access, please reach out to your Account Ma
 By default, all on-screen text elements are masked in replays. Additionally, you can customize how you initialize our SDK to fully control (1) where to record and (2) whom to record. For more details, please see our [implementation docs](/docs/tracking-methods/sdks/javascript#session-replay).
 
 ### How can I estimate how many replays I'll have?
-If you already use Mixpanel, the simplest way to estimate the amount of replays is to use a proxy metric for how many page loads you have. If you use timeout based query sessions, Total Session Start events in the Insights report could be a good estimate.
+If you already use Mixpanel, Session Start events are a way to estimate the rough amount of replays you might expect.  This is especially true if you use timeout-based query sessions. However, because our sessions are defined at query time, we cannot guarantee these metrics will be directly correlated.
 
-Then, when you enable Session Replay, use that metric and the sampling percentage to determine how many replays will be sent.
+When you enable Session Replay, use the above proxy metric (or something similar) to determine a starting sampling percentage, which will determine how many replays will be sent. You can always adjust this as you go to calibrate to the right level. 
 
 ### Am I able to sample our session replay collection rate?
 
@@ -144,24 +144,9 @@ For extensions like uBlock, you can navigate to "My Filters" in the extension se
 @@||mxpnl.com^$domain=mxpnl.com
 ```
 
-### How do Session Replays work when navigating between pages that are full page loads?
-If your web application relies on full page loads (where the entire page is reloaded when navigating from one page to another), a new Session Replay recording `$mp_replay_id` will be created when navigating to each page. This occurs because the Mixpanel instance is reloaded again when navigating between pages.
-
-
 ### Why don't I see the ‘View Replays’ button?
 
 You won't see the 'View Replays' button if your Organization is on an older plan. You will need to update to the [latest plan](/docs/session-replay/session-replay-web#availability) to view session replays. 
-
-### Why can't I view Replays from my Insights or Funnels chart?
-
-Mixpanel looks for the `$mp_replay_id` property on your events in order to determine which replay it belongs to. If you have instrumented both Replays and Events using the Mixpanel JavaScript SDK, the `$mp_replay_id` will automatically be added to events sent by the SDK.
-
-For CDP implementations, look below for instructions on how to configure the SDKs together. To get the relevant Session Replay properties from the SDK, use `mixpanel.get_session_recording_properties()`. [See documentation](/docs/tracking-methods/sdks/javascript#get-replay-properties).
-
-#### Server Side Stitching (Beta)
-
-Mixpanel can infer the replay an event happened in by looking at the distinct ID and time that the replay occurred. This is especially useful if you have events coming in from multiple sources, like your server or via warehouse import and it doesn't make sense to pass around the value of `mixpanel.get_session_recording_properties()`. NOTE: we still recommend including these properties on your client side events to guarantee accuracy.
-
 
 ### Can I use Session Replay with a CDP?
 

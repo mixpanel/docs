@@ -1,0 +1,34 @@
+name: Mark stale issues and pull requests
+
+on:
+  schedule:
+  - cron: '40 4 * * *'
+
+jobs:
+  stale:
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    permissions:
+      issues: write
+      pull-requests: write
+
+    steps:
+    # https://github.com/actions/stale
+    - uses: actions/stale@v5
+      with:
+        repo-token: ${{ secrets.GITHUB_TOKEN }}
+        days-before-stale: 180
+        days-before-close: 14
+        stale-issue-message: >
+          This issue has been inactive for over 180 days. It will be automatically closed in 14 days.
+          Label this issue as "never-stale" to exempt it from this check.
+
+          —[Mark stale](https://github.com/mixpanel/docs/actions/workflows/stale.yaml)
+        stale-pr-message: >
+          This PR has been inactive for over 180 days. It will be automatically closed in 14 days.
+          Label this PR as "never-stale" to exempt it from this check.
+
+          —[Mark stale](https://github.com/mixpanel/docs/actions/workflows/stale.yaml)
+        stale-issue-label: 'stale'
+        stale-pr-label: 'stale'
+        exempt-pr-labels: never-stale

@@ -643,6 +643,10 @@ After validating your use case, navigate to the imported table and select "Delet
 
 Yes! You can send some events (eg: web and app data) directly via our SDKs and send other data (eg: user profiles from CRM or logs from your backend) from your warehouse and analyze them together in Mixpanel.
 
+Please do note that warehouse connectors enforce strict_mode validation by default and any events and historical profiles with time set in future will be dropped.
+We will reject events with time values that are before 1971-01-01 or more than 1 hour in the future as measured on our servers.
+We recommend that customer filter such events and refresh such events when they are no longer set in future.
+
 ### How do I filter for events coming to mixpanel via Warehouse Connector Sync in my reports?
 
 We add couple of hidden properties `$warehouse_import_id` and `$warehouse_type` on every event ingested through warehouse connectors. You can add filters and breakdowns on that property in any Mixpanel report. You can find the Warehouse import ID of a sync in Sync History tab shown as `Mixpanel Import Id`.

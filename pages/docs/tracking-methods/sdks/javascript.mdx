@@ -25,7 +25,7 @@ The [Full API Reference](https://github.com/mixpanel/mixpanel-js/blob/master/doc
 
         ```javascript
         // Create an instance of the Mixpanel object
-        mixpanel.init('YOUR_PROJECT_TOKEN');
+        mixpanel.init('YOUR_PROJECT_TOKEN', {autocapture: true});
         ```
     </Tabs.Tab>
     <Tabs.Tab>
@@ -50,7 +50,7 @@ The [Full API Reference](https://github.com/mixpanel/mixpanel-js/blob/master/doc
         import mixpanel from 'mixpanel-browser'
 
         // create an instance Mixpanel object using your project token
-        mixpanel.init('YOUR_PROJECT_TOKEN');
+        mixpanel.init('YOUR_PROJECT_TOKEN', {autocapture: true});
         ```
     </Tabs.Tab>
 </Tabs>
@@ -87,6 +87,127 @@ mixpanel.set_config({
 // debug is disabled
 ```
 
+## Autocapture
+Starting with SDK version 2.60.0, the Javascript SDK can autocapture events when you enable it. To do so, enable the autocapture configuration:
+```javascript
+// create an instance of the Mixpanel object
+mixpanel.init('YOUR_PROJECT_TOKEN', {
+    autocapture: true,    // enable autocapture
+});
+```
+
+If you'd like to change the default Autocapture settings, you can use custom configs. This is the default configuration:
+```javascript
+mixpanel.init('YOUR_PROJECT_TOKEN', {
+  autocapture: {
+    pageview: "full-url",
+    click: true,
+    input: true,
+    scroll: true,
+    submit: true,
+    capture_text_content: false,
+  },
+});
+```
+
+**Omitting elements from Autocapture tracking**
+
+Add the built-in `.mp-no-track` class to any element you wish to exclude from tracking. You can also opt an individual element out of being included in any tracking (including the `$elements` prop of another target's event) using the `.mp-sensitive` class.
+
+Alternatively, you can update your Autocapture configuration using different blocking options:
+1. `block_selectors`: used to block specific classes
+
+Example:
+```javascript
+mixpanel.init('YOUR_PROJECT_TOKEN', {
+  autocapture: {
+    block_selectors: ['.class1', 'button.class2']
+  },
+});
+```
+
+2. `block_url_regexes`: used to block Autocapture from tracking on certain pages
+
+Example:
+```javascript
+mixpanel.init('YOUR_PROJECT_TOKEN', {
+  autocapture: {
+    block_url_regexes: [/\/login\/?$/, /\/payment\/?$/]
+  },
+});
+```
+
+**Disabling Autocapture**
+
+To disable Autocapture, see the following code sample:
+```javascript
+mixpanel.init('YOUR_PROJECT_TOKEN', {
+    autocapture: false
+});
+```
+Note that disabling Autocapture does not disable Session Replay, which is [configured separately](https://docs.mixpanel.com/docs/tracking-methods/sdks/javascript#session-replay).
+
+**Autocapture Init Options**
+| Option | Description | Default | 
+| --- | --- | --- |
+| `click` | When set to `true`, Mixpanel will track element clicks. It will not track textContent unless `capture_text_content` is also set to `true`. | `true` |
+| `input` | When set to `true`, Mixpanel will track when an input is provided. It will not capture input content. | `true` |
+| `pageview` | When set, Mixpanel will collect pageviews when some components of the URL change — including UTM parameters. | `"full-url"` |
+| `scroll` | When set, Mixpanel will collect page scrolls at specified scroll intervals. | `true` |
+| `submit` | When set to `true`, Mixpanel will track form submissions (but not submission content). | `true` |
+| `capture_text_content` | When set to `true`, Mixpanel will capture the textContent of any element. | `false` |
+| `capture_extra_attrs` | Enables specification of additional attributes to track. | `[]` |
+| `scroll_depth_percent_checkpoints` | Establishes the scroll depth intervals which trigger `Page Scroll` event. | `[25, 50, 75, 100]` |
+| `scroll_capture_all` | When set to true, overrides `scroll_depth_percentage_checkpoints` and captures all scroll events. | `false` |
+| `block_url_regexes` | Opts out specific pages from Autocapture. | `[]` |
+| `allow_url_regexes` | Opts in specific pages to Autocapture. | `[]` |
+| `block_selectors` | Opts out specific classes from Autocapture. | `[]` |
+| `allow_selectors` | Opts in specific classes to Autocapture. | `[]` |
+| `block_attrs` | Opts out specific attributes from Autocapture. | `[]` |
+| `allow_element_callback` | A user-provided function that determines whether a specific element should be tracked via Autocapture or not. The function receives the element as its first argument, and the DOM event as its second argument, and should return `true` if the element should be tracked (otherwise the element will NOT be tracked). | `not set` |
+| `block_element_callback` | A user-provided function that determines whether a specific element should be blocked from tracking via Autocapture or not. The function receives the element as its first argument, and the DOM event as its second argument, and should return `true` if the element should be blocked. | `not set` |
+
+**HTML attributes captured by default**
+
+By default, Autocapture collects the following HTML attributes on events:
+| HTML Element Attribute | Description |
+| --- | --- |
+| `aria-label` | Provides an accessible name for an element, used by assistive technologies like screen readers. |
+| `aria-labelledby` | Identifies one or more elements that serve as labels for the current element, improving accessibility. |
+| `aria-described-by` | References an element that provides additional description or context for the current element. |
+| `href` | Specifies the URL of a linked resource, commonly used in `<a>` (anchor) and `<link>` elements. |
+| `name` | Defines the name of an input field, form, or metadata element, often used for form controls and `<meta>` tags. |
+| `role` | Defines the semantic role of an element to assist accessibility tools in interpreting the page structure. |
+| `title` | Provides additional information about an element, typically displayed as a tooltip when hovered. |
+| `type` | Specifies the type of an element, commonly used in `<input>` fields to define input behavior (e.g., text, password, email). |
+
+**Default event properties on Autocapture events**
+
+On Autocapture events, Mixpanel default-tracks the following properties:
+| Event Property | Description |
+| --- | --- |
+| `$event_type` | The type of DOM event that was captured (e.g., "click", "submit"). |
+| `$host` | The hostname of the webpage where the event was triggered (e.g., `example.com`). |
+| `$pathname` | The path portion of the URL where the event occurred (e.g., `/checkout`). |
+| `$elements` | A list of elements that were involved in the event, useful for understanding element context. |
+| `$target` | The specific HTML element that triggered the event (e.g., a button or link). |
+| `$el_attr__href` | The href attribute of the target element if it is a link (`<a>` tag). |
+| `$el_classes` | The CSS classes associated with the target element. |
+| `$el_tag_name` | The tag name of the element that triggered the event (e.g., `button`, `a`, `div`). |
+| `$viewportHeight` | The height of the browser’s viewport at the time of the event. |
+| `$viewportWidth` | The width of the browser’s viewport at the time of the event. |
+| `$clientX` | The X-coordinate of the mouse pointer relative to the browser’s viewport when the event occurred. |
+| `$clientY` | The Y-coordinate of the mouse pointer relative to the browser’s viewport when the event occurred. |
+| `$offsetX` | The X-coordinate of the mouse pointer relative to the event target element. |
+| `$offsetY` | The Y-coordinate of the mouse pointer relative to the event target element. |
+| `$pageX` | The X-coordinate of the mouse pointer relative to the full page. |
+| `$pageY` | The Y-coordinate of the mouse pointer relative to the full page. |
+| `$screenX` | The X-coordinate of the mouse pointer relative to the screen. |
+| `$screenY` | The Y-coordinate of the mouse pointer relative to the screen. |
+| `$x` | The X-coordinate of the event, often synonymous with `$pageX`. |
+| `$y` | The X-coordinate of the event, often synonymous with `$pageY`. |
+
+
 ## Sending Events
 The Javascript SDK provides a few different methods to send event data to your project. Calling any of the event tracking methods below will generate an event payload, then trigger a request to the [/track API endpoint](https://developer.mixpanel.com/reference/track-event) to ingest the event into your project.
 
@@ -95,6 +216,9 @@ All events sent from the JavaScript library will be sent over HTTPS.
 <Callout type="info">
     The [/track endpoint](https://developer.mixpanel.com/reference/track-event) will only validate events with timestamps within the last 5 days of the request. Events with timestamps older than 5 days will not be ingested. See below on best practices for [historical imports](/docs/tracking-methods/sdks/javascript#importing-historical-events).
 </Callout>
+
+### Autocapture Events
+If you've enabled Autocapture, you do not need to set up precision tracking for page view or UTMs unless you are tracking a single-page application.
 
 ### Track Events
 Once you initialized the Mixpanel object, call `.track()` to send an event by providing the event name and any event properties.
@@ -160,17 +284,58 @@ mixpanel.track_pageview({
 
 ### Track UTM Tags
 
-The JavaScript library will automatically add any UTM parameters (`utm_source`, `utm_campaign`, `utm_medium`, `utm_term`, `utm_content`, `utm_id`, `utm_source_platform`, `utm_campaign_id`, `utm_creative_format`, `utm_marketing_tactic`) present on the page to events fired from that page load. Please note when configuring UTMs that UTM tracking is case sensitive, and should be formatted lower-case as shown in the examples above.
+The JavaScript library will automatically add the following UTM parameters present on the page to events fired from that page load:
+- utm_source
+- utm_campaign
+- utm_medium
+- utm_term
+- utm_content
+- utm_id
+- utm_source_platform
+- utm_campaign_id
+- utm_creative_format
+- utm_marketing_tactic
 
-When UTM parameters for an identified user are seen for the first time, these will also be stored on the user profile as `initial_utm_source`, `initial_utm_campaign`, `initial_utm_medium`, `initial_utm_term`, `initial_utm_content`, `initial_utm_id`, `initial_utm_source_platform`, `initial_utm_campaign_id`, `initial_utm_creative_format`, and `initial_utm_marketing_tactic`.
+<Callout type="warning">
+    UTM tracking is case sensitive and should be formatted in lowercase as shown in the examples above.
+</Callout>
 
-In addition to UTM parameters, Mixpanel will also add any advertising click IDs to events fired. These include `dclid`, `fbclid`, `gclid`, `ko_click_id`, `li_fat_id`, `msclkid`, `sccid`, `ttclid`, `twclid`, `wbraid`.
+UTM parameters are by default persisted across events as [Super Properties](/docs/tracking-methods/sdks/javascript#setting-super-properties). To opt in to the recommended modern behavior most compatible with our [attribution models](/docs/features/attribution), use the SDK initialization option `{stop_utm_persistence: true}` to disable UTM param persistence (refer to our [Release Notes](https://github.com/mixpanel/mixpanel-js/releases/tag/v2.52.0) in GitHub).
+
+**Example Usage**
+
+```javascript Javascript
+//create an instance of the Mixpanel object
+mixpanel.init('YOUR_PROJECT_TOKEN', {
+    stop_utm_persistence: true    // disable utm persistence
+    });
+```
+
+When UTM parameters for an identified user are seen for the first time, these will also be stored on the user profile as the following user properties:
+- initial_utm_source
+- initial_utm_campaign
+- initial_utm_medium
+- initial_utm_term
+- initial_utm_content
+- initial_utm_id
+- initial_utm_source_platform
+- initial_utm_campaign_id
+- initial_utm_creative_format
+- initial_utm_marketing_tactic
+
+In addition to UTM parameters, Mixpanel will also add any advertising click IDs to events fired. These include:
+- dclid
+- fbclid
+- gclid
+- ko_click_id
+- li_fat_id
+- msclkid
+- sccid
+- ttclid
+- twclid
+- wbraid
 
 Learn more about [UTM tracking](/docs/tracking-best-practices/traffic-attribution#web-attribution).
-
-<Callout type="info">
-    Note: UTM parameters are by default persisted as [Super Properties](/docs/tracking-methods/sdks/javascript#setting-super-properties). To disable this UTM persistence, use the SDK initialization option `{stop_utm_persistence: true}` (refer to our [Release Notes](https://github.com/mixpanel/mixpanel-js/releases/tag/v2.52.0) in GitHub).
-</Callout>
 
 #### Other Tracking Methods
 There are other less common methods for sending data to Mixpanel. Refer to the [full API documentation](https://github.com/mixpanel/mixpanel-js/blob/master/doc/readme.io/javascript-full-api-reference.md#mixpanel).
@@ -266,7 +431,7 @@ The Javascript SDK provides a few methods for setting profile properties under [
 
 Set profile properties on a user profile by calling the [`.people.set()`](https://github.com/mixpanel/mixpanel-js/blob/master/doc/readme.io/javascript-full-api-reference.md#mixpanelpeopleset) method.
 
-If a profile property already exist, if will be overwritten with the latest value provided in the method. If a profile property does not exist, it will be added to the profile.
+If a profile property already exists, it will be overwritten with the latest value provided in the method. If a profile property does not exist, it will be added to the profile.
 
 **Example Usage**
 ```javascript JavaScript
@@ -793,7 +958,7 @@ We give our customers full control to customize when and where they capture sess
 ```javascript
 mixpanel.start_session_recording()
 ```
-This will have no effect if replay data collection is in progress. 
+This will force recording to begin, overriding any value defined in `record_sessions_percent`. This will have no effect if replay data collection is in progress. 
 
 This is optional, and can be used primarily to programmatically start and stop recording, or exclude something specific from recording. We recommend using the [sampling method](/docs/tracking-methods/sdks/javascript#sampling-method) detailed above unless you need to customize when you capture replay data. 
 
