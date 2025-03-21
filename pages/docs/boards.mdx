@@ -1,3 +1,5 @@
+import { Callout } from 'nextra/components'
+
 # Boards: Collect your reports into a single view
 
 ![/Screen_Shot_2022-01-07_at_2.07.26_PM.png](/Screen_Shot_2022-01-07_at_2.07.26_PM.png)
@@ -111,11 +113,15 @@ Row heights can now be adjusted to either show more report content, or hide empt
 
 ![/Screen_Shot_2022-06-29_at_11.51.48_AM.png](/Screen_Shot_2022-06-29_at_11.51.48_AM.png)
 
-A row's height is initially determined by the tallest card within that row. Text cards can be very short if they contain only one line of text, or very tall if they contain many lines. Meanwhile, reports always start at their minimum height, but may warrant expansion in order to show more data (more bars on a bar chart, for example).
+A row's height is initially determined by the tallest card within that row. Text cards can be very short if they contain only one line of text, or very tall if they contain many lines. Meanwhile, reports always start at their minimum height but may warrant expansion in order to show more data (more bars on a bar chart, for example).
 
 A row will start life at the minimum possible height.
 
 ### Step 5: Board-wide Date Ranges and Filters
+
+<Callout type="info">
+  Applying date ranges and filters on a Board does not alter the queries saved in individual reports. Instead, it updates the data displayed when you view those reports on the current Board. However, when you access a report from the Board, Mixpanel retains the date range and filters to ensure data consistency between the Board and the report. If you navigate directly to the report, it will display the report's original saved date range and filters.
+</Callout>
 
 Boards allow you to alter some aspects of the queries within each of the reports on that board, making it simple to ensure every report is showing results from a consistent set of data.  Both date ranges and filters can be added by clicking "Add Filter" at the top right of the board.  This will open a row, shown below, where the date range can be selected, and filters can be applied.
 
@@ -123,9 +129,7 @@ Boards allow you to alter some aspects of the queries within each of the reports
 
 By default, date ranges and filters are temporary, allowing you to explore the data without overwriting the board. But, if you wish to save the date range and filter selections you've made to the board, so they'll appear for other users as well, click "Save to Board."
 
-**Note** Applying date ranges and filters on a board does not change the queries saved in each individual report; instead, it only changes the data displayed when you view those reports in the current board. If you click into a report from the board, however, Mixpanel will maintain the date range and filters to ensure you see data consistent between the board and report. Navigate to the report on its own, though, and you'll see the report's original saved date range and filters.
-
-* If you are on the Enterprise plan, you would have access to [Pinned Filters](https://docs.mixpanel.com/changelogs/2025-01-10-pinned-filters). You would need to click the three dots besides the existing filter, then the "Edit" button. Once you've updated the filter, you would need to click the "Apply" button. To save your changes to the board, please click "Save". 
+Users with an Enterprise subscription plan get access to [Pinned Filters](/changelogs/2025-01-10-pinned-filters). Click the three dots next to the existing filter, then select the "Edit" button. After updating the filter, click the "Apply" button. To save your changes to the board, click "Save".
 
 ![/Board_Pinned_Filters-Edit.png](/Board_Pinned_Filters-Edit.png)
 
