@@ -1,7 +1,7 @@
 # JQL: Create custom queries using Javascript code
 
 > ❗️ JQL is in maintenance mode.
-> The JQL platform is built as a self-serve tool and Mixpanel cannot create custom JQL queries.
+> Since the JQL platform is designed as a self-service tool, Mixpanel is unable to assist with writing custom JQL queries.
 > 
 > Mixpanel is not investing in JQL any further. If you would like to run arbitrary queries on your Mixpanel events, please use our [Data Pipelines](/docs/data-pipelines) add-on to export your events to your data warehouse.
 
