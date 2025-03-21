@@ -370,7 +370,7 @@ change stream between two snapshot. Snapshots are stored in the `mixpanel` datas
   and Mixpanel will consider them the same row causing only one copy to appear in Mixpanel. We recommend ensuring that one
   of your columns is a unique row ID to avoid this.
 - The table snapshots managed by Mixpanel are always created to expire after 21 days. This ensures that the snapshots are
-  deleted even if Mixpanel looses access to them unexpectedly. Make sure that the sync does not go longer than 21 days without
+  deleted even if Mixpanel loses access to them unexpectedly. Make sure that the sync does not go longer than 21 days without
   running as each sync run needs access to the previous sync run's snapshot. (Under normal conditions Mirror maintains only one
   snapshot per-sync and removes the older run's snapshot as soon as it has been used by the subsequent sync run).
 
