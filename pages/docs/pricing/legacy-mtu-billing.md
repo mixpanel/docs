@@ -93,4 +93,4 @@ The main scenarios that usually increase the number of MTUs:
 - A marketing campaign (can lead to an increase in tracked users due to an influx of anonymous visitors).
 - An update that adds tracking to new parts of your product.
 
-To assist in analyzing potential sources of MTU spikes, create a copy of [this board(opens in a new tab)](https://mixpanel.com/project/2195193/view/139237/app/boards#id=5762529) from our demo project into the main project contributing to MTU charges. As you open the board linked above, you will see instructions to click on "Use this board" to transfer it over to your project and to edit the default date range.
+To assist in analyzing potential sources of MTU spikes, create a copy of [this board(opens in a new tab)](https://mixpanel.com/project/3187769/view/3699049/app/boards/#id=7126504) from our demo project into the main project contributing to MTU charges. As you open the board linked above, you will see instructions to click on "Use this board" to transfer it over to your project and to edit the default date range.
