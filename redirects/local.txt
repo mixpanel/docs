@@ -265,3 +265,6 @@
 /docs/features/revenue_analytics /guides/launch/revenue-analytics
 /docs/tracking-methods/data-warehouse#mirror /docs/tracking-methods/warehouse-connectors#mirror
 /docs/tracking-methods/data-warehouse /docs/tracking-methods/warehouse-connectors
+/docs/boards/advanced /docs/boards
+/docs/quickstart/track-events /docs/quickstart/capture-events/track-events
+/docs/session-replay/session-replay-web#server-side-stitching-beta /docs/session-replay#server-side-stitching

@@ -1,14 +1,17 @@
+import { Callout } from 'nextra/components'
+
 # Group Analytics: Group users together as an aggregated unit of measurement
+
+<Callout type="info">
+  Customers on an Enterprise or Growth plan can access Group Analytics as an add-on package. See our [pricing page](https://mixpanel.com/pricing/) for more details.
+</Callout>
+
 
 ## Overview
 
 Mixpanel Group Analytics allows behavioral data analysis at a customized group level (such as account, device—or any other way you want to assess your business).
 
 Historically, Mixpanel grouped events by a single identifier called the distinct_id. This ultimately grouped events by the individual user. Group Analytics allows you to establish an event property other than the distinct_id, such as company ID, account ID, project ID, or billing ID, as an identifier by which to analyze your data.
-
-Group Analytics is available as an add-on package to customers on [Growth](https://mixpanel.com/pricing/) and [Enterprise plans](https://mixpanel.com/pricing/).
-
-Customers on the Growth plan can buy this add-on [online](https://mixpanel.com/pricing/), while customers on the Enterprise plans can reach out to their Customer Success Manager or the [Mixpanel Sales Team](https://mixpanel.com/contact-us/sales/). Online plans allow up to 6 group keys. Enterprise customers can choose between 3 or 6 group keys. Each group key can have a total of 1M group profiles (see [Limits](/docs/data-structure/group-analytics#limits)).
 
 <div
   style={{
@@ -84,6 +87,12 @@ To change the identifier in a report:
 
 4. The report will now display results grouped by the newly selected group identifier.
 
+### B2B Company Analytics
+
+Company Analytics is an advanced offering ‘within’ group analytics tailored to B2B SaaS Companies.  Here we focus on the idea that users ‘belong’ to a company, and that company behavior is ‘dependant’ on user behavioral activity. For instance, if you have 2 accounts each worth $50Mn but with 5 and 20 users respectively, the account with 20 users is considered more healthy and likely to renew vs the other account. 
+
+Company Analytics enables you to understand such account health and activation metrics, which are derived from the underlying user activity.
+
 ## Implementation
 
 Establish the group identifier with an event property as the Group Key, where the property value is the Group ID. As **event property:value** is **group key:group id**.
@@ -99,6 +108,14 @@ To administer group keys, navigate to your Project Settings. Click **+Add Group
 Enter an event property to attribute the group key to. You can also enter a display name for the group key. Click **Save**.
 
 ![/Screen_Shot_2022-06-22_at_6.18.38_PM.png](/Screen_Shot_2022-06-22_at_6.18.38_PM.png)
+
+### Setup B2B Company Key
+
+1. Choose which ‘one’ group key should be used as the B2B Company Key as well. This is the key for which Company Profiles will be generated 
+2. Also specify the property which should be referenced as the Company name (identifier) throughout the Mixpanel interface
+NOTE: You can change which group key should be used as the ‘Company key’. To change, first turn off the current group key set as Company Key, and then you can go turn on another group key as the ‘Company key’ 
+
+![image](/B2B_Company_Key.webp)
 
 ### Group Keys Tracked as Event Properties
 
@@ -192,3 +209,19 @@ Alternatively, the `<data_group_id>` can also be seen as part of the URL of the 
 Here's an actual [example](https://mixpanel.com/project/3187769/view/3699049/app/profile#distinct_id=company_id_8889&data_group_id=-1405123841946871899) with `data_group_id` = `-1405123841946871899`: 
 
 ![image](/engage-api-data-group-id.png "Engage API Data Group ID")
+
+### How is B2B Company Analytics different than Group Analytics? 
+
+Company Analytics is an advanced offering ‘within’ group analytics. 
+
+Group Analytics focuses on the concept of there being multiple entities on which analysis can be done ‘independently’ (eg. user ID, restaurant ID, driver ID, company ID, etc.)
+
+Company Analytics is specific to B2B Companies where you are likely to have a user ID and company ID. Here we focus on the idea that users ‘belong’ to a company, and that company behavior is ‘dependant’ on user behavioral activity. For instance, in SaaS companies, the health of an account is determined by how active the users of that account are.
+
+### What are the unique features of B2B Company Analytics? 
+
+There are two features unique to B2B Company Analytics being set up, which aren’t available with the generic group analytics setup.  
+- Company Profiles - this is an advanced version of group profiles that shows you the health of a company
+- Company Activation filters & breakdowns
+
+You can learn more [here](/docs/features/advanced#b2b-company-health-and-activation-metrics)

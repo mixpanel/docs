@@ -8,12 +8,22 @@ When digging into customer journeys in Mixpanel’s analytics, you can understan
 
 ## Platform Availability
 
-We have two ways to implement:
+We currently support two platforms:
 
 <Cards>
   <Cards.Card icon title="Web" href="/docs/session-replay/session-replay-web" />
-  <Cards.Card icon title="iOS (Alpha)" href="/docs/session-replay/session-replay-ios" />
+  <Cards.Card icon title="iOS (Beta)" href="/docs/session-replay/session-replay-ios" />
 </Cards>
+
+## Implementation
+Session Replay is not enabled by default; enabling the feature requires instrumentation beyond the standard Mixpanel instrumentation. However, in most cases, implementation is extremely simple, only requiring a single line of code to be changed.
+
+- Our documentation on how to implement Session Replay with our Javascript SDK can be found [here](/docs/tracking-methods/sdks/javascript#session-replay)
+- Our documentation on how to implement Session Replay with CDPs (like Segment and mParticle) can be found [here](/docs/session-replay/session-replay-web#can-i-use-session-replay-with-a-cdp).
+
+Replays sent via your implementation will only be viewable in the project they were ingested in and will not be available to other projects in your org.
+
+Before you enable Session Replay for a large audience, we recommend testing in a demo project, and starting in production with smaller sets of users or accounts, so that you can monitor performance and ensure your privacy rules align with company policies.
 
 ## Plan Availability
 
@@ -31,7 +41,7 @@ To access free replays, customers will need to ensure they’re on the latest Mi
     - You can make the switch to our latest plan directly from the [pricing page](https://mixpanel.com/pricing/).
 - Enterprise customers should contact their account manager to determine their plan status.
 
-Customers will be blocked from viewing additional replays above their monthly limit (or custom add-on limit for an Enterprise plan) until they upgrade or purchase additional volumes.
+Customers who purchase the Session Replay add-on will be charged overages for any replays ingested beyond their purchased limit. To avoid disruptions, please monitor your usage regularly. For customers with complimentary Session Replays (whether through a sales discount, an included plan benefit, or our Startup Program), any replays exceeding the monthly or annual limit will first be hidden behind a paywall, and eventually be dropped. Replay usage is aggregated across all projects within your billing account.
 
 ## Using Session Replay
 
@@ -80,7 +90,7 @@ The Replay Feed on the left of the player also allows you to:
 - Search for replays by user's name / email, replay date, user ID, or the name of an event in the replay
 - See a feed of events that occurred during each replay
 
-## Server Side Stitching (Beta)
+## Server Side Stitching
 
 Server-Side Stitching allows our customers to easily watch replays for events that aren’t fired from our SDK. 
 
@@ -93,10 +103,10 @@ As a result, this feature:
 
 | | **With Competitors** | **With Mixpanel** | **Value Add** |
 | --- | --- | --- | --- |
-| **DWH events** | Can’t watch replays that contain a specific DWH event without lots of custom code | Can easily watch replays that contain specific DWH events, just need our SDK to capture replays and make an `.identify()` call | **High** |
-| **SS events** | Can’t watch replays that contain a specific SS event without lots of custom code | Can easily watch replays that contain specific SS events, just need our SDK to capture replays and make an `.identify()` call | **High** |
-| **CDP events** | Middleware required to watch replays that contain a specific event | You don’t need middleware to watch replays that contain specific events. However, we recommend adding middleware to handle edge cases where replays may not be associated with the right events (simultaneous sessions across tabs, domains, or apps) | **Medium** |
-| **SDK-sent events** | Can easily watch replays that contain a specific event | Can easily watch replays that contain a specific event | **Low** |
+| **Events sent via Data Warehouses** | Can’t watch replays that contain without lots of custom code | Can easily watch replays that contain, just need our SDK to capture replays and make an `.identify()` call | **High** |
+| **Events sent via APIs (e.g. server-side events)** | Can’t watch replays that contain without lots of custom code | Can easily watch replays that contain, just need our SDK to capture replays and make an `.identify()` call | **High** |
+| **Events sent via Customer Data Platform** | Middleware required to watch replays that contain a specific event | You don’t need middleware to watch replays that contain specific events. However, we recommend adding middleware to handle edge cases where replays may not be associated with the right events (simultaneous sessions across tabs, domains, or apps) | **Medium** |
+| **Events sent via Client-Side SDK** | Can easily watch replays that contain a specific event | Can easily watch replays that contain a specific event | **Low** |
 
 In order for Server Side Stitching to work, just ensure that the Mixpanel Javascript SDK calls `identify()` at some point with the user's unique Distinct ID. [See managing user identity](/docs/tracking-methods/sdks/javascript#managing-user-identity).
 

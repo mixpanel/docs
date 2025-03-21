@@ -74,7 +74,8 @@ All pull requests will generate a staging link in Vercel. Here's an [example](ht
 You may also preview changes by [testing locally](#testing-locally)
 
 # Nextra 3.0
-We are now using [Nextra 3](https://the-guild.dev/blog/nextra-3), which is slightly different than Nextra 2. The main differences for most maintainers is that instead of _meta.json to generate custom sidebars, it is now in Javascript or Typescript, and can be rendered with components. Another difference is that `Tab` is now imported from `Tabs.Tab` and `Card` from `Cards.Card`, both from `nextra/components`.
+
+We are now using [Nextra 3](https://the-guild.dev/blog/nextra-3), which is slightly different than Nextra 2. The main differences for most maintainers is that instead of \_meta.json to generate custom sidebars, it is now in Javascript or Typescript, and can be rendered with components. Another difference is that `Tab` is now imported from `Tabs.Tab` and `Card` from `Cards.Card`, both from `nextra/components`.
 
 # Changelog
 
@@ -84,7 +85,7 @@ We make a changelog post for every feature we ship. It usually includes a Loom l
 
 # Maintainers
 
-[Marissa](https://github.com/marissakuhrau), [Mav](https://github.com/mavlee), [Isha](https://github.com/ishamehramixpanel), and [Myron](https://github.com/myronkaifung). Eventually we’ll expand this list, but keeping it tight for now.
+[Marissa](https://github.com/marissakuhrau), [Isha](https://github.com/ishamehramixpanel), and [Myron](https://github.com/myronkaifung). Eventually we’ll expand this list, but keeping it tight for now.
 
 # Review Process
 

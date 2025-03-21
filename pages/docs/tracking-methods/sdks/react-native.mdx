@@ -16,7 +16,7 @@ After [setting up your development environment for React Native](https://reactna
 npm install mixpanel-react-native
 ```
 
-Then navigate tp your application's iOS folder, and install the dependencies. (Note you do not need to update your Podfile to add Mixpanel.)
+Then navigate to your application's iOS folder, and install the dependencies. (Note you do not need to update your Podfile to add Mixpanel.)
 
 ```bash
 pod install
@@ -267,7 +267,7 @@ The React Native SDK provides a few methods for setting profile properties under
 
 Set profile properties on a user profile by calling the [`.getPeople().set()`](https://mixpanel.github.io/mixpanel-react-native/People.html#set) method.
 
-If a profile property already exist, if will be overwritten with the latest value provided in the method. If a profile property does not exist, it will be added to the profile.
+If a profile property already exists, it will be overwritten with the latest value provided in the method. If a profile property does not exist, it will be added to the profile.
 
 **Example Usage**
 ```javascript Javascript
@@ -592,7 +592,7 @@ To enable debug mode, call the [.setLoggingEnabled()](https://mixpanel.github.io
 
 ```javascript
 // enable debug log in the console
-mixpanel.setLoginEnabled(true);
+mixpanel.setLoggingEnabled(true);
 ```
 
 Learn more about [debugging](/docs/tracking-best-practices/debugging).

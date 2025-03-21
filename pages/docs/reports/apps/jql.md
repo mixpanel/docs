@@ -1,9 +1,9 @@
 # JQL: Create custom queries using Javascript code
 
-
 > ❗️ JQL is in maintenance mode.
+> Since the JQL platform is designed as a self-service tool, Mixpanel is unable to assist with writing custom JQL queries.
 > 
-> Mixpanel is not investing in JQL any further. If you would like to run arbitrary queries on your Mixpanel events, please use our [Data Pipelines](https://developer.mixpanel.com/reference/raw-data-export-api) add-on to export your events to your data warehouse.
+> Mixpanel is not investing in JQL any further. If you would like to run arbitrary queries on your Mixpanel events, please use our [Data Pipelines](/docs/data-pipelines) add-on to export your events to your data warehouse.
 
 The JQL JavaScript code must define a `main()` function. This JavaScript will be compiled, and the `main()` function will be executed by the query engine. The return value of `main()` must be a sequence of zero or more transformations applied to a collection of events, user records or joined records.  
 Events are retrieved by calling the `Events()` function.
