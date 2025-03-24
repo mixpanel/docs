@@ -140,7 +140,7 @@ MPSessionReplayConfig(recordSessionsPercent: 100.0, autoMaskedViews: [])
 MPSessionReplayConfig(recordSessionsPercent: 100.0)
 ```
 
-`autoCapture` - This an enum to selectively disable the run method replacement functionality (aka "swizzling) in the event that it conflicts with another SDK ([like New Relic](https://docs.newrelic.com/docs/mobile-monitoring/new-relic-mobile-ios/get-started/new-relic-ios-compatibility-requirements/#method))
+`autoCapture` - This an enum to selectively disable the runtime method replacement functionality (aka "swizzling) in the event that it conflicts with another SDK ([like New Relic](https://docs.newrelic.com/docs/mobile-monitoring/new-relic-mobile-ios/get-started/new-relic-ios-compatibility-requirements/#method))
 
 - Config to auto capture on both view controller lifecycle methods and touch events (Default)
 
@@ -180,7 +180,7 @@ Or if the manual capture was triggered by a touch event:
 MPSessionReplay.getInstance()?.captureScreenshot(withTouchEvent: touchEvent)
 ```
 
-NOTE: If you choose to disable auto capture and do manual screen capturing instead, it will be up to you to determine when, where and how you call the `captureScreenshot()` method in your application. The most naïve approach would be to call it on `Timer`, for example:
+NOTE: If you choose to disable auto capture and do manual screen capturing instead, it will be up to you to determine when, where and how you call the `captureScreenshot()` method in your application. The most naïve approach would be to call it on a `Timer`, for example:
 
 ```swift
 let screenshotTimer = Timer.scheduledTimer(withTimeInterval: 1, repeats: true) { _ in
