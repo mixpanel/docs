@@ -140,6 +140,56 @@ MPSessionReplayConfig(recordSessionsPercent: 100.0, autoMaskedViews: [])
 MPSessionReplayConfig(recordSessionsPercent: 100.0)
 ```
 
+`autoCapture` - This an enum to selectively disable the runtime method replacement functionality (aka "swizzling) in the event that it conflicts with another SDK ([like New Relic](https://docs.newrelic.com/docs/mobile-monitoring/new-relic-mobile-ios/get-started/new-relic-ios-compatibility-requirements/#method))
+
+- Config to auto capture on both view controller lifecycle methods and touch events (Default)
+
+```swift
+MPSessionReplayConfig(recordSessionsPerecent: 100.0, autoCapture: .enabled)
+```
+
+- Config to auto capture only on view controller lifecycle events -- use this if you want to keep the touch based functionality in the conflicting SDK, but not their view controller functionality.
+
+```swift
+MPSessionReplayConfig(recordSessionsPerecent: 100.0, autoCapture: .viewControllerLifecycle)
+```
+
+- Config to auto capture only on touch events -- use this if you want to keep the view controller lifecycle functionality in the conflicting SDK, but not their touch functionality.
+
+```swift
+MPSessionReplayConfig(recordSessionsPerecent: 100.0, autoCapture: .touch)
+```
+
+- Config to completely disable auto capture -- use this if you want to keep all functionality in the conflicting SDK
+
+```swift
+MPSessionReplayConfig(recordSessionsPerecent: 100.0, autoCapture: .disabled)
+```
+
+### Manual Screenshot Capture
+
+If you have partially or completely disabled automatic screen capture via the `autoCapture` config setting you can manually capture screenshots by calling `captureScreenshot()`:
+
+```swift
+MPSessionReplay.getInstance()?.captureScreenshot()
+```
+
+Or if the manual capture was triggered by a touch event:
+
+```swift
+MPSessionReplay.getInstance()?.captureScreenshot(withTouchEvent: touchEvent)
+```
+
+NOTE: If you choose to disable auto capture and do manual screen capturing instead, it will be up to you to determine when, where and how you call the `captureScreenshot()` method in your application. The most naïve approach would be to call it on a `Timer`, for example:
+
+```swift
+let screenshotTimer = Timer.scheduledTimer(withTimeInterval: 1, repeats: true) { _ in
+    MPSessionReplay.getInstance()?.captureScreenshot()
+}
+```
+
+Keeping in mind that this is relatively inefficient and will result in capturing unnecessary/unchanged screenshots, it's also possible to miss important moments in between the timed screenshots. Taking screenshots on demand at critical moments will always be preferable.
+
 ### Logging
 
 Developers can enable or disable logging with the `loggingEnabled` property of the `MPSessionReplay` object.
