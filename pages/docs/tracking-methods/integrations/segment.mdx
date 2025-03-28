@@ -79,6 +79,10 @@ The Mixpanel Actions destination comes with a preset of default mappings that yo
 | Page Calls            | [Event type = "page"](https://segment.com/docs/connections/spec/page/)                                 | [Import Event](https://developer.mixpanel.com/reference/import-events) "Viewed \{name\}"    |
 | Group Calls           | [Event type = "group"](https://segment.com/docs/connections/spec/group/)                                | [Identify Group](https://developer.mixpanel.com/reference/group-set-property)  |
 
+<Callout type="info">
+    Note that the `id` Segment event property is a reserved property that is mapped to `distinct_id` in Mixpanel. Avoid sending events with an `id` event property from Segment.
+</Callout>
+
 ### Customize Mappings
 
 <Callout type="warning">
