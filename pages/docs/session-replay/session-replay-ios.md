@@ -22,24 +22,13 @@ Before publishing an App with Session Replay enabled, make sure to test it thoro
 
 You are already a Mixpanel customer and have the latest version of the Mixpanel Swift SDK installed (minimum supported version is `v4.3.1`). If not, please follow this [doc](/docs/quickstart) to get started.
 
-## Install
+## Installation
 
-You can integrate the Mixpanel iOS Session Replay SDK into your iOS project by embedding the XCFramework below.
+Add the Session Replay SDK using Swift Package Manager directly in Xcode:
 
-### Open Your Xcode Project
-
-Open your existing Xcode project where you want to integrate the Mixpanel iOS Session Replay SDK.
-
-### Add Mixpanel Session Replay Package
-
-Download and Unzip the below zip file to your local drive
-
-[MixpanelSessionReplay.xcframework.zip](https://www.notion.so/Mixpanel-iOS-Session-Replay-SDK-Beta-10ae0ba9256280cdb6e0f39d594cb344?pvs=21)
-
-- In Xcode, navigate to your Target's General settings and add the .xcframework file you just unzipped to the "Frameworks, Libraries, and Embedded Content" section
-- Make sure that the Embed setting is set to “Embed & Sign”
-
-![Embed Framework](/ios_sr_embed_framework.png)
+1. In Xcode, go to **File → Add Package Dependencies...**
+2. Paste the GitHub URL: `https://github.com/mixpanel/mixpanel-ios-session-replay-package`
+3. Follow the prompts to select the latest version and add the package to your project.
 
 ## Initialize
 
