@@ -12,7 +12,7 @@ The [Full API Reference](http://mixpanel.github.io/mixpanel-android/index.html),
 
 We publish builds of our library to the Maven central repository as an .aar file. This file contains all of the classes, resources, and configurations that you'll need to use the library.
 
-To install the library inside Android Studio, declare it as dependency in your build.gradle file by adding the following line to the `dependecies` section in `app/build.gradle`:
+To install the library inside Android Studio, declare it as dependency in your build.gradle file by adding the following line to the `dependencies` section in `app/build.gradle`:
 
 ```java Java
 implementation "com.mixpanel.android:mixpanel-android:7.+"
@@ -271,7 +271,7 @@ The Android SDK provides a few methods for setting profile properties under the 
 
 Set profile properties on a user profile by calling the [`.getPeople().set()`](https://mixpanel.github.io/mixpanel-android/com/mixpanel/android/mpmetrics/MixpanelAPI.People.html#set(org.json.JSONObject)) method.
 
-If a profile property already exist, if will be overwritten with the latest value provided in the method. If a profile property does not exist, it will be added to the profile.
+If a profile property already exists, it will be overwritten with the latest value provided in the method. If a profile property does not exist, it will be added to the profile.
 
 **Example Usage**
 ```java Java

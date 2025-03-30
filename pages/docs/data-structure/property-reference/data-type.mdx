@@ -19,7 +19,7 @@ Mixpanel supports five data types for properties: String, Numeric, Boolean, Date
 
 ### Boolean
 
-- Mixpanel treats properties as boolean if the value is either the JSON constant `true` or `false`; e.g. Favorited = true, Bookmarked = false.
+- Mixpanel treats properties as boolean if the value is either the JSON constant `true` or `false`; e.g. Favorite = true, Bookmarked = false.
 - On Mixpanel, you can typecast any non-boolean property to boolean.
 - "false", 0, null, undefined, empty string and `not set` will be typecasted to boolean `false`.
 - "true" and any set value that is not 0 or empty string will be typecasted to boolean `true`.
@@ -35,10 +35,10 @@ Mixpanel supports five data types for properties: String, Numeric, Boolean, Date
 
 ### List
 
-- A list of values as a JSON array e.g. Favourite Genres = `["Folk","Alternative"]` or Favourite Numbers = `[1,5,10.0]`
+- A list of values as a JSON array e.g. Favorite Genres = `["Folk","Alternative"]` or Favorite Numbers = `[1,5,10.0]`
 - Limits of a List property: Event Property = 8KB, User Profile Property = 256KB
-- Each item in a list would be futher limited by their data type's limits; example: a list of strings would be limited by 255 bytes per string. Also refer to [List of Objects](/docs/data-structure/property-reference#list-of-objects) covered below.
-- Mixpanel lists are not ordered (i.e. position of values in a list are not significant in Mixpanel reports) and are useful for grouping or analysing similar values across events. Read more details on [List Property Support](/docs/features/advanced#list-property-support) in reports.
+- Each item in a list would be further limited by their data type's limits; example: a list of strings would be limited by 255 bytes per string. Also refer to [List of Objects](/docs/data-structure/property-reference#list-of-objects) covered below.
+- Mixpanel lists are not ordered (i.e. position of values in a list are not significant in Mixpanel reports) and are useful for grouping or analyzing similar values across events. Read more details on [List Property Support](/docs/features/advanced#list-property-support) in reports.
 - Note: Editing of list properties is not supported directly within the Mixpanel UI. To modify list properties, you must use the [Mixpanel API](https://developer.mixpanel.com/reference/profile-set) or one of our SDKs.
 
 

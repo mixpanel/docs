@@ -180,15 +180,25 @@ Mixpanel.mainInstance().registerSuperProperties(["name": "Sam"])
 /// track "some_event"
 /// "name" is automatically added as an event prop
 Mixpanel.mainInstance().track(event: "some_event")
-
-// this is ignored because "name" already exists
-Mixpanel.mainInstance().registerSuperPropertiesOnce(["name": "Samantha"])
-
-/// register a "location" super property
-Mixpanel.mainInstance().registerSuperPropertiesOnce(["location": "us"])
 ```
 
 Our mobile libraries store your super properties in local storage. They will persist so long as the app is installed (between launches and updates). Uninstalling the app will remove that customers super properties.
+
+**Note**
+As creating properties involves an async operation to local storage, if you will create multiple properties at once, it's best to send a single call to the register function with all properties at once, to avoid possible issues with race conditions overwriting each other. This is just in case you will create multiple properties all in the same block of code.
+
+**Example Usage**
+```swift Swift
+Mixpanel.mainInstance().registerSuperProperties([
+            "superProp0": "value1",
+            "superProp1": "value2",
+            "superProp2": "value3",
+            "superProp3": 1,
+            "superProp4": 2,
+            "superProp5": 3])
+
+Mixpanel.mainInstance().(event:"test")
+```
 
 See more methods related to super properties in the complete library reference [here](https://mixpanel.github.io/mixpanel-swift/Classes/MixpanelInstance.html).
 
@@ -250,7 +260,7 @@ The Swift SDK provides a few methods for setting profile properties under the [`
 
 You can set properties on a user profile with [`people.set(property:to:)`](https://mixpanel.github.io/mixpanel-swift/Classes/People.html#/s:FC8Mixpanel6People3setFT8propertySS2toPs9AnyObject__T_).
 
-If a profile property already exist, if will be overwritten with the latest value provided in the method. If a profile property does not exist, it will be added to the profile.
+If a profile property already exists, it will be overwritten with the latest value provided in the method. If a profile property does not exist, it will be added to the profile.
 
 **Example Usage**
 ```swift Swift

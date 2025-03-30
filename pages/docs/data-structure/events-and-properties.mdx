@@ -33,7 +33,7 @@ You can filter, breakdown, and aggregate your events by their properties to answ
 
 ### Keep Events as Actions
 
-We recommend striking the right balance when defining your events. Events should neither be too broad nor too specific, and should be defined at the level of how you plan to analyse the user's action or behavior. Also keep in mind to use event properties to provide context or details about an event, instead of creating different events to capture similar actions. 
+We recommend striking the right balance when defining your events. Events should neither be too broad nor too specific, and should be defined at the level of how you plan to analyze the user's action or behavior. Also keep in mind to use event properties to provide context or details about an event, instead of creating different events to capture similar actions. 
 
 **For example:**
 
@@ -45,7 +45,7 @@ We recommend striking the right balance when defining your events. Events should
   
 * If your goal is to track different buttons from different user journeys: instead of tracking 1 event `Button Clicked` with `Button Name` property set to **"Play"**, or **"Profile"**, or **"X"**, track them as different events `Song Played` and `Profile Updated` and `Logout` with specific properties for each event to provide richer context.
 
-### Name Events and Properties Consistently
+### Use a Naming Convention for Events and Properties
 
 <Callout type="warning">
    Mixpanel strings are case-sensitive; `sign_up_completed` and `Sign_Up_Completed` are considered two separate events.

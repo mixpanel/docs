@@ -6,18 +6,18 @@ import { dwhItems, mirrorItems } from '../../../utils/constants';
 # Warehouse Connectors: Sync data from your data warehouse into Mixpanel
 
 <Callout type="info">
-Warehouse Connectors are an enterprise add-on. [Reach out](https://mixpanel.com/contact-us/sales/) to our team to have it enabled on your account.
+  Customers on an Enterprise can access Warehouse Connectors as an add-on package. See our [pricing page](https://mixpanel.com/pricing/) for more details.
 </Callout>
 
 With Warehouse Connectors you can sync data from data warehouses like Snowflake, BigQuery, Databricks, and Redshift to Mixpanel. By unifying business data with product usage events, you can answer many more questions in Mixpanel:
 * What percentage of our Enterprise revenue uses the features we shipped last year?
 * Did our app redesign reduce support tickets?
 * Which account demographics have the best retention?
-* We spent $50,000 on a marketing campaign, did the users we acquire stick around a month later?
+* We spent $50,000 on a marketing campaign, did the users we acquired stick around a month later?
 
 Mixpanel's [Mirror](#mirror) sync mode keeps the data in Mixpanel fully in sync with any changes that occur in the warehouse including updating historical events that are deleted or modified in your warehouse.
 
-In this guide, we'll walk through how to set up Warehouse Connectors. The integration is completely codeless, but you will need someone with access to your DWH to help with the initial set up.
+In this guide, we'll walk through how to set up Warehouse Connectors. The integration is completely codeless, but you will need someone with access to your DWH to help with the initial setup.
 
 ## Getting Started
 
@@ -38,7 +38,7 @@ Navigate to [Project Settings → Warehouse Sources](https://mixpanel.com/report
 
         The BigQuery connector works by giving a Mixpanel-managed service account permission to read from BigQuery in your GCP project. You will need:
         - Your GCP Project ID, which you can find in the URL of Google Cloud Console (`https://console.cloud.google.com/bigquery?project=YOUR_GCP_PROJECT`).
-        - Your unique Mixpanel service account ID, which is is generated the first time you create a BigQuery connection in the Mixpanel UI
+        - Your unique Mixpanel service account ID, which is generated the first time you create a BigQuery connection in the Mixpanel UI
           (e.g. `project-?????@mixpanel-warehouse-1.iam.gserviceaccount.com`).
         - A new, empty `mixpanel` dataset in your BigQuery instance (if you are using [Mirror](#mirror)).
         ```jsx
@@ -49,7 +49,7 @@ Navigate to [Project Settings → Warehouse Sources](https://mixpanel.com/report
             );
         ```
 
-        Grant the the Mixpanel service the following permissions:
+        Grant the Mixpanel service the following permissions:
         - `roles/bigquery.jobUser` - Allows Mixpanel to run BigQuery jobs to unload data.
           ```jsx
           gcloud projects add-iam-policy-binding --member serviceAccount:<mixpanel-service-account> --role roles/bigquery.jobUser
@@ -67,6 +67,7 @@ Navigate to [Project Settings → Warehouse Sources](https://mixpanel.com/report
             TO "<mixpanel-service-account>"
           ```
 
+JSON columns mapped in BigQuery containing multiple properties are subject to a hard limit of 1MB per record. This limitation is imposed by Google Cloud's handling of JSON objects and applies during the intermediate step where data is written to the GCS bucket.
 </Tabs.Tab>
 <Tabs.Tab>
     <div style={{position: 'relative', paddingBottom: '64.90384615384616%', height: 0}}>
@@ -182,7 +183,7 @@ databricks token-management create-obo-token <application_id_of_service_principa
 ```
 3. Copy the token generated for later use
 4. Give the service principal `Can Attach` permissions to the cluster (in Cluster > Permissions)
-    - Note the cluster needs to be a shared compute resource and not a single user cluster (unless the service principal created the cluster as well)
+    - Note the cluster needs to be a shared compute resource and not a single-user cluster (unless the service principal created the cluster as well)
 5. Give the service principal access to the catalogs you want to read in Mixpanel
 6. When table access control is enabled in the account, the service principal also requires access to the files that will be read. You can add access like:
 ```bash
@@ -228,9 +229,9 @@ Complete the following steps to get your Redshift connector up and running:
     - **S3 Staging Bucket** - This is the name of S3 staging bucket you need to create. We'll use it to extract data from your Redshift tables before importing the data into Mixpanel.
     - Copy the command generated below in the AWS CLI to create the S3 Staging Bucket with the name you specified.
     - **Database Name** - Input the name of the Database where the tables you want to import are stored.
-    - (Optional) **Policy Name** - This is an optional name for the policy, which contains role permissions that you need to grant the Mixpanel Service Account. After inputting a policy name, you can either copy paste the JSON in the AWS UI or copy paste the inline command line version that we generate and run in the AWS CLI.
-    - **Role Name** - Input the name of the role. After inputting a role name, you can either copy paste the JSON in the AWS UI or copy paste the inline command line version that we generate and run in the AWS CLI. Running this command grants the Mixpanel Service Account the necessary permissions to read and export data from your Redshift tables.
-    - Finally, attach the policy you created to the role you created by copy pasting the command in the AWS CLI.
+    - (Optional) **Policy Name** - This is an optional name for the policy, which contains role permissions that you need to grant the Mixpanel Service Account. After inputting a policy name, you can either copy-paste the JSON in the AWS UI or copy-paste the inline command line version that we generate and run in the AWS CLI.
+    - **Role Name** - Input the name of the role. After inputting a role name, you can either copy-paste the JSON in the AWS UI or copy-paste the inline command line version that we generate and run in the AWS CLI. Running this command grants the Mixpanel Service Account the necessary permissions to read and export data from your Redshift tables.
+    - Finally, attach the policy you created to the role you created by copy-pasting the command in the AWS CLI.
     - Then, click Create Source.
 5. In the third view, you should see a confirmation that your source was created. To establish the source connection, we need to ping your Redshift instance to actually create the service account user.
     - **Grant Access to Schema** - Enter the name of the schema you want to grant Mixpanel access to.
@@ -262,7 +263,7 @@ Select a table or view representing an event from your warehouse and tell Mixpan
 
 ## Table Types
 
-Mixpanel’s [Data Model](/docs/how-it-works/concepts) consists of 4 types: Events, User Profiles, Group Profiles, and Lookup Tables. Each have properties, which are arbitrary JSON. Warehouse Connectors lets you turn any table or view in your warehouse into one of these 4 types of tables, provided they match the required schema.
+Mixpanel’s [Data Model](/docs/how-it-works/concepts) consists of 4 types: Events, User Profiles, Group Profiles, and Lookup Tables. Each has properties, which are arbitrary JSON. Warehouse Connectors lets you turn any table or view in your warehouse into one of these 4 types of tables, provided they match the required schema.
 
 ### Events
 
@@ -300,7 +301,7 @@ Here’s an example table that illustrates what can be loaded as user profiles i
 While Profiles typically only store the state of a user *as of now*, Profile History enables storing the state of a user *over time*. 
 
 #### Setup 
-When creating a User Profile sync, set the Table Type to “History Table”. We expect tables to be modeled as a SCD (Slowly Changing Dimensions) Type 2 table. You will need to supply a Start Time column in the sync configuration. Mixpanel will infer a row's end time if a new row with a more recent start time for the same user is detected. 
+When creating a User Profile sync, set the Table Type to “History Table”. We expect tables to be modeled as an SCD (Slowly Changing Dimensions) Type 2 table. You will need to supply a Start Time column in the sync configuration. Mixpanel will infer a row's end time if a new row with a more recent start time for the same user is detected. 
 
 Source table requirements: 
 - The source table for user/group history is expected to be modeled as an SCD (Slowly Changing Dimension) Type 2 table. This means that the table must maintain all the history over time that you want to use for analysis.
@@ -325,9 +326,9 @@ Group Profile History value and setup is similar to the User Profile History sec
 
 ### Lookup Tables
 
-A Lookup Table is useful for enriching Mixpanel properties (e.g. content, skus, currencies) with additional metadata. Learn more about Lookup Tables [here](/docs/data-structure/lookup-tables). Do note the limits of lookup tables indicated [here](/docs/data-structure/lookup-tables#when-shouldnt--i-use-lookup-tables).
+A Lookup Table is useful for enriching Mixpanel properties (e.g. content, skus, currencies) with additional metadata. Learn more about Lookup Tables [here](/docs/data-structure/lookup-tables). Note the limits of lookup tables indicated [here](/docs/data-structure/lookup-tables#when-shouldnt--i-use-lookup-tables).
 
-Here’s an example table that illustrates what can be loaded as lookup table in Mixpanel. The only important column is the ID, which is the primary key of the table that is eventually mapped to a Mixpanel property
+Here is an example table that illustrates what can be loaded as a lookup table in Mixpanel. The only important column is the ID, which is the primary key of the table that is eventually mapped to a Mixpanel property
 
 | ID | Song Name | Artist | Genre |
 | --- | --- | --- | --- |
@@ -340,10 +341,10 @@ Warehouse Connectors regularly check warehouse tables for changes to load into M
 which changes Mixpanel will reflect.
 
 - **Mirror** will keep Mixpanel perfectly in sync with the data in the warehouse. This includes syncing new data,
-  modifying historical data, and deleting data that has been removed from the warehouse. **Mirror** is supported
-  for Snowflake and BigQuery.
+  modifying historical data, and deleting data that were removed from the warehouse. **Mirror** is supported
+  for Snowflake, BigQuery, Databricks, and Redshift.
 - **Append** will load new rows in the warehouse into Mixpanel, but will ignore modifications to existing rows
-  or rows that have been deleted from the warehouse. We recommend using **Mirror** over **Append** for supported
+  or rows that were deleted from the warehouse. We recommend using **Mirror** over **Append** for supported
   warehouses.
 - **Full** will reload the entire table to Mixpanel each time it runs rather than tracking changes between runs. Full
   syncs are only supported for Lookup Tables, User Profiles, and Group Profiles.
@@ -355,7 +356,7 @@ which changes Mixpanel will reflect.
 
 Mirror syncs work by having the warehouse compute which rows have been inserted, modified, or deleted and sending this
 list of changes to Mixpanel. Change tracking is configured differently depending on the source warehouse. Mirror is
-supported for Snowflake, Databricks and BigQuery sources.
+supported for Snowflake, Databricks, BigQuery, and Redshift sources.
 
 <ExtendedTabs urlParam="mirror" urlToItemsMap={mirrorItems}>
 
@@ -369,7 +370,7 @@ change stream between two snapshot. Snapshots are stored in the `mixpanel` datas
   and Mixpanel will consider them the same row causing only one copy to appear in Mixpanel. We recommend ensuring that one
   of your columns is a unique row ID to avoid this.
 - The table snapshots managed by Mixpanel are always created to expire after 21 days. This ensures that the snapshots are
-  deleted even if Mixpanel looses access to them unexpectedly. Make sure that the sync does not go longer than 21 days without
+  deleted even if Mixpanel loses access to them unexpectedly. Make sure that the sync does not go longer than 21 days without
   running as each sync run needs access to the previous sync run's snapshot. (Under normal conditions Mirror maintains only one
   snapshot per-sync and removes the older run's snapshot as soon as it has been used by the subsequent sync run).
 
@@ -487,7 +488,7 @@ ALTER TABLE <table> SET TBLPROPERTIES (delta.enableChangeDataFeed = true);
 
 **Considerations when using Mirror with Databricks:**
 - Mirror is not supported on views in Databricks
-- Databricks Change Data Feed only mantains change history for a limited number of days determined by [delta.logRetentionDuration](https://docs.databricks.com/en/delta/history.html#retrieve-delta-table-history) (default is 30 days). Make sure that the Mixpanel sync does not go longer 
+- Databricks Change Data Feed only maintains change history for a limited number of days determined by [delta.logRetentionDuration](https://docs.databricks.com/en/delta/history.html#retrieve-delta-table-history) (default is 30 days). Make sure that the Mixpanel sync does not go longer 
 than this number of days without running. Mixpanel recommends leaving the default of 30 days to ensure that if Mixpanel loses access to the warehouse unexpectedly (e.g. a credentials change), there is time to correct the issue.
 - Databricks Change Data Feed does not work if a table is deleted and re-created with the same name. If using a tool like dbt to model
   data in Databricks make sure to use an [incremental model](https://docs.getdbt.com/docs/build/incremental-models) so that
@@ -642,16 +643,20 @@ After validating your use case, navigate to the imported table and select "Delet
 
 Yes! You can send some events (eg: web and app data) directly via our SDKs and send other data (eg: user profiles from CRM or logs from your backend) from your warehouse and analyze them together in Mixpanel.
 
+Please do note that warehouse connectors enforce strict_mode validation by default and any events and historical profiles with time set in future will be dropped.
+We will reject events with time values that are before 1971-01-01 or more than 1 hour in the future as measured on our servers.
+We recommend that customer filter such events and refresh such events when they are no longer set in future.
+
 ### How do I filter for events coming to mixpanel via Warehouse Connector Sync in my reports?
 
-We add couple of hidden properties `$warehouse_import_id` and `$warehouse_type` on every event ingested through warehouse connectors. You can add filters and breakdowns on that property in any Mixpanel report. You can find the Warehouse import id of a sync in Sync History tab shown as `Mixpanel Import Id`.
+We add couple of hidden properties `$warehouse_import_id` and `$warehouse_type` on every event ingested through warehouse connectors. You can add filters and breakdowns on that property in any Mixpanel report. You can find the Warehouse import ID of a sync in Sync History tab shown as `Mixpanel Import Id`.
 
 ### How do updates & deletes from Mirror syncs affect my event quota usage?
 
 On an [Events billing plan](/docs/pricing) your event quota is consumed by:
 
 - **Monthly Event Volume:** The number of events in all of your projects at the end of each month. Updating an existing event using Mirror will not affect your monthly event volume. Deleting an existing event using Mirror will decrease your monthly event volume by one.
-- **Mirror updates and deletes:** Updates and deletes from mirror are counted separately from event volume. Each update or delete is counted as one event towards billing for the month they were triggered on, even if the record being updated is for a previous month. You can see a breakdown your event quota consumption by "event volume" vs "updates and deletes" on your [organization billing page](https://mixpanel.com/report/settings/%23org%2F%24org_id%24%2Fplan).
+- **Mirror updates and deletes:** Updates and deletes from Mirror are counted separately from event volume. Each update or deletion is counted as one event towards billing for the month they were triggered on, even if the record being updated is for a previous month. You can see a breakdown of your event quota consumption by "event volume" vs "updates and deletes" on your [organization billing page](https://mixpanel.com/report/settings/%23org%2F%24org_id%24%2Fplan).
 
 You can see how much of your quota is being consumed by each warehouse connector in the detailed [data usage view](https://mixpanel.com/report/settings/%23org%2F%24org_id%24%2Fplan%2Fdetail%2Fevents) for your organization.
 
@@ -670,10 +675,10 @@ There are 3 aspects of DWH cost: network egress, storage, and compute.
 * **Compute**:
   * Mirror on Snowflake: [Snowflake Streams](https://docs.snowflake.com/en/user-guide/streams-intro) natively track changes, the compute cost of querying for these changes is normally proportional to the amount of changed data.
   * Mirror on BigQuery: Each time the connector runs it checksums all rows in the source table and compares them to a [table snapshot](https://cloud.google.com/bigquery/docs/table-snapshots-intro) from the previous run. For large tables we highly recommend [partitioning](https://cloud.google.com/bigquery/docs/partitioned-tables) the source table. When the source table is partitioned the connector will skip checksumming any partitions which have not been modified since the last run. For more details see the BigQuery-specific instructions in [Mirror](#mirror).
-  * Mirror on Databricks: Databricks [Change Data Feed](https://docs.databricks.com/en/delta/delta-change-data-feed.html) natively tracks changes to the tables or views, the compute cost of querying these changes is normally proportional to the amount of changed data. Mixpanel recommends using a smaller compute cluster and setting Auto Terminate after 10 mins of idle time on the compute cluster.
+  * Mirror on Databricks: Databricks [Change Data Feed](https://docs.databricks.com/en/delta/delta-change-data-feed.html) natively tracks changes to the tables or views, the compute cost of querying these changes is normally proportional to the amount of changed data. Mixpanel recommends using a smaller compute cluster and setting Auto Terminate after 10 minutes of idle time on the compute cluster.
   * Append: All Append syncs run a query filtered on `insert_time_column > [last-run-time]`, the compute cost is the cost of this query. Partitioning or clustering based on `insert_time_column` will greatly improve the performance of this query.
   * Full: Full syncs are always a full table scan of the source table to export it.
 
 ### How can I get help setting up a warehouse connector?
 
-[Reach out](https://mixpanel.com/contact-us/sales/) to our team — we’re happy to walk you through the set up. If you bring a data engineer who has credentials to access your warehouse, it takes < 10 minutes to get up and running.
+[Reach out](https://mixpanel.com/contact-us/sales/) to our team — we’re happy to walk you through the setup. If you bring a data engineer who has credentials to access your warehouse, it takes < 10 minutes to get up and running.

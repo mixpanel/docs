@@ -23,7 +23,7 @@ In this section, we will look at tips and tricks on how to clean up messy data w
 [Lexicon](/docs/data-governance/lexicon) is our data dictionary in Mixpanel, and is where project owners and admins can add / manage descriptions for all events and properties to organize your data.
 
 - Order by volume descending. Are your users querying events with large volume? If not, you might want to think about dropping these events. Dropping events means that they will no longer be ingested in Mixpanel. This is especially helpful for apps, since you don’t need to release new app versions and wait for users to download the latest versions for the code change to take effect (we still recommend that you clean up the code on the backend though!).
-- Sometimes, customers may still want these large volume events because they rely on them downstream (via data pipelines). But if you’re not querying the events in Mixpanel itself, you shouldn’t send it in - if you’re on the [events plan](/docs/pricing#monthly-events-calculation), this increases your utilisation; also, this clutters up the UI for users who don’t need to see it there. You could hide the event in the UI in Lexicon, but our recommended approach is to not send this data into Mixpanel at all.
+- Sometimes, customers may still want these large volume events because they rely on them downstream (via data pipelines). But if you’re not querying the events in Mixpanel itself, you shouldn’t send it in - if you’re on the [events plan](/docs/pricing#monthly-events-calculation), this increases your utilization; also, this clutters up the UI for users who don’t need to see it there. You could hide the event in the UI in Lexicon, but our recommended approach is to not send this data into Mixpanel at all.
 - If you’re leveraging our SDKs and want to continue doing so for ease of leveraging our ID management and default properties, an alternative is to route events from [Mixpanel’s SDKs via a proxy in your own domain](/docs/tracking-methods/sdks/javascript). This way, you get to push the events required for backend analyses directly into your warehouse, and send only the events users query in our UI to Mixpanel
 
 #### Cleaning up display names and adding descriptions for events
@@ -60,7 +60,7 @@ Data Deletion allows you to delete noisy or sensitive data from your Mixpanel pr
 
 You might find this useful if you:
 - accidentally send Personal Identifiable Information (PII) in a property
-- have implementation issues leading to duplicative tracking
+- have implementation issues leading to duplicated data
 - experience bot traffic issues that clutter an important event
 
 In addition to permanently deleting the chosen data from our servers, we will immediately hide the data in your project so your users don’t accidentally view or analyze incorrect/sensitive data.
@@ -79,6 +79,7 @@ Data Deletion is a severe action with permanent consequences. Thus, we recommend
 | We have sensitive data that we accidentally ingested that we legally cannot have and need to urgently delete | Yes, use Data Deletion with targeted event property filters to delete events with sensitive data. You can then re-upload data without sensitive PII data included. Please refer to our 'Reminders with ETL Approach' section on this page as you proceed |
 | I no longer want an event/ property entirely, as it’s no longer relevant to my team | No, we recommend you actually use [Dropping and Hiding Data](https://docs.mixpanel.com/docs/data-governance/lexicon#dropping-and-hiding-data) instead, as these will hide the events from your team, without using up your limited Data Deletion requests. |
 | I don’t need to legally delete some events with sensitive data, but I don’t want some of my users to be able to see the sensitive data | No, we recommend you use [Mark Properties as Classified](https://docs.mixpanel.com/docs/data-governance/data-views-and-classification#mark-properties-as-classified-data) to remove the data from the analysis experience for certain user types, while keeping accessible for other users. |
+| I want to delete data associated with a specific distinct ID | No, we recommend you use our [Distinct ID Deletion API](https://developer.mixpanel.com/reference/create-deletion), as Data Deletion does not support Distinct ID as a filtering criteria |
 
 ### Who can use Data Deletion?
 

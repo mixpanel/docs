@@ -7,13 +7,11 @@ import { Callout } from 'nextra/components'
   go to docs [here](/docs/data-pipelines/old-pipelines).
 </Callout>
 
-<Callout type="warning">
-  If your Mixpanel org was created before Sep 2024 and you just start setting up Data Pipelines,
-  by default you will use the [older version of pipelines](/docs/data-pipelines/old-pipelines/overview).
-  If you want to use Json Pipelines, please reach out to our support team for assistance.
+<Callout type="info">
+  Customers on an Enterprise or Growth plan can access Data Pipeline as an add-on package. See our [pricing page](https://mixpanel.com/pricing/) for more details.
 </Callout>
 
-Data Pipelines is a [paid add-on](https://mixpanel.com/pricing) that continuously exports data from your Mixpanel project to a Cloud Storage bucket or Data Warehouse of your choice. This feature is ideal for those who wish to perform SQL analysis on Mixpanel data within their own environment.
+Data Pipelines is a feature that continuously exports data from your Mixpanel project to a Cloud Storage bucket or Data Warehouse of your choice. This feature is ideal for those who wish to perform SQL analysis on Mixpanel data within their own environment.
 
 Setting up Data Pipelines involves two main steps:
 
@@ -116,3 +114,8 @@ Our Service Level Agreement (SLA) stipulates a latency policy for exported event
 For hourly pipelines, data that arrives on time is expected to be exported within 24 hours from the moment it is ingested by Mixpanel. For daily pipelines, this 24-hour period begins at the start of the next calendar day based on project time (e.g., data ingested on January 1st is scheduled to be exported from the start of January 2nd midnight to the end of the day on January 3rd).
 
 Data arriving late is handled during a daily sync process the following day after ingestion, provided sync is enabled. For instance, if data for January 1st arrives on January 3rd, it would be exported in the sync run on January 4th.
+
+### What should I set for the Account Name and Storage Integration when creating a Snowflake pipeline?
+
+The Account Name should be set to your unique account identifier Eg. "blah2321.us-west-2" while the Storage Integration should be set to the name of the storage integration you created in Snowflake Eg. "MIXPANEL_EXPORT_STORAGE_INTEGRATION".
+

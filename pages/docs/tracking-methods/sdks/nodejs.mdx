@@ -83,7 +83,7 @@ Mixpanel determines default geolocation data (`$city`, `$region`, `mp_country_co
 
 The [`track()`](https://github.com/mixpanel/mixpanel-node/blob/master/lib/mixpanel-node.d.ts#L67) function is designed for real-time tracking in a server-side environment and will trigger request to the [/track API endpoint](https://developer.mixpanel.com/reference/track-event), which will validate for events with a time stamp that is within the last 5 days of the request. **Events older than 5 days will not be ingested.**
 
-Use the [`import()`](https://github.com/mixpanel/mixpanel-node/blob/master/lib/mixpanel-node.js#L349) function to import events that occured more than 5 days in the past. The `import()` function is based on the [/import API endpoint](https://developer.mixpanel.com/reference/import-events).
+Use the [`import()`](https://github.com/mixpanel/mixpanel-node/blob/master/lib/mixpanel-node.js#L349) function to import events that occurred more than 5 days in the past. The `import()` function is based on the [/import API endpoint](https://developer.mixpanel.com/reference/import-events).
 
 **Example Usage**
 
@@ -120,7 +120,7 @@ Mixpanel determines default geolocation data (`$city`, `$region`, `mp_country_co
 
 Set profile properties on a user profile by calling [`people.set()`](https://github.com/mixpanel/mixpanel-node/blob/master/lib/people.js#L41).
 
-If a profile property already exist, if will be overwritten with the latest value provided in the method. If a profile property does not exist, it will be added to the profile.
+If a profile property already exists, it will be overwritten with the latest value provided in the method. If a profile property does not exist, it will be added to the profile.
 
 **Example Usage**
 
@@ -307,7 +307,7 @@ mp.track('some_event', {
 
 ```javascript
 // track "some_event" with a "distinct_id"
-// event is attributed to 2 comapny groups: "mp-us" and "mp-eu"
+// event is attributed to 2 company groups: "mp-us" and "mp-eu"
 mp.track('some_event', {
     'distinct_id': 'sample_distinct_id',
     'Plan Type': 'Premium',

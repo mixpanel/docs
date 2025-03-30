@@ -1,7 +1,7 @@
 export default {
   "install-mixpanel": "Install Mixpanel",
   "identify-users": "Identify Users",
-  "track-events": "Track Events",
+  "capture-events": "Capture Events",
   "tips-and-tricks": {
     "display": "hidden"
   },
