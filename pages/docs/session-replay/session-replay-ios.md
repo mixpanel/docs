@@ -22,24 +22,13 @@ Before publishing an App with Session Replay enabled, make sure to test it thoro
 
 You are already a Mixpanel customer and have the latest version of the Mixpanel Swift SDK installed (minimum supported version is `v4.3.1`). If not, please follow this [doc](/docs/quickstart) to get started.
 
-## Install
+## Installation
 
-You can integrate the Mixpanel iOS Session Replay SDK into your iOS project by embedding the XCFramework below.
+Add the Session Replay SDK using Swift Package Manager directly in Xcode:
 
-### Open Your Xcode Project
-
-Open your existing Xcode project where you want to integrate the Mixpanel iOS Session Replay SDK.
-
-### Add Mixpanel Session Replay Package
-
-Download and Unzip the below zip file to your local drive
-
-[MixpanelSessionReplay.xcframework.zip](https://www.notion.so/Mixpanel-iOS-Session-Replay-SDK-Beta-10ae0ba9256280cdb6e0f39d594cb344?pvs=21)
-
-- In Xcode, navigate to your Target's General settings and add the .xcframework file you just unzipped to the "Frameworks, Libraries, and Embedded Content" section
-- Make sure that the Embed setting is set to “Embed & Sign”
-
-![Embed Framework](/ios_sr_embed_framework.png)
+1. In Xcode, go to **File → Add Package Dependencies...**
+2. Paste the GitHub URL: `https://github.com/mixpanel/mixpanel-ios-session-replay-package`
+3. Follow the prompts to select the latest version and add the package to your project.
 
 ## Initialize
 
@@ -139,6 +128,56 @@ MPSessionReplayConfig(recordSessionsPercent: 100.0, autoMaskedViews: [])
 ```swift
 MPSessionReplayConfig(recordSessionsPercent: 100.0)
 ```
+
+`autoCapture` - This an enum to selectively disable the runtime method replacement functionality (aka "swizzling) in the event that it conflicts with another SDK ([like New Relic](https://docs.newrelic.com/docs/mobile-monitoring/new-relic-mobile-ios/get-started/new-relic-ios-compatibility-requirements/#method))
+
+- Config to auto capture on both view controller lifecycle methods and touch events (Default)
+
+```swift
+MPSessionReplayConfig(recordSessionsPerecent: 100.0, autoCapture: .enabled)
+```
+
+- Config to auto capture only on view controller lifecycle events -- use this if you want to keep the touch based functionality in the conflicting SDK, but not their view controller functionality.
+
+```swift
+MPSessionReplayConfig(recordSessionsPerecent: 100.0, autoCapture: .viewControllerLifecycle)
+```
+
+- Config to auto capture only on touch events -- use this if you want to keep the view controller lifecycle functionality in the conflicting SDK, but not their touch functionality.
+
+```swift
+MPSessionReplayConfig(recordSessionsPerecent: 100.0, autoCapture: .touch)
+```
+
+- Config to completely disable auto capture -- use this if you want to keep all functionality in the conflicting SDK
+
+```swift
+MPSessionReplayConfig(recordSessionsPerecent: 100.0, autoCapture: .disabled)
+```
+
+### Manual Screenshot Capture
+
+If you have partially or completely disabled automatic screen capture via the `autoCapture` config setting you can manually capture screenshots by calling `captureScreenshot()`:
+
+```swift
+MPSessionReplay.getInstance()?.captureScreenshot()
+```
+
+Or if the manual capture was triggered by a touch event:
+
+```swift
+MPSessionReplay.getInstance()?.captureScreenshot(withTouchEvent: touchEvent)
+```
+
+NOTE: If you choose to disable auto capture and do manual screen capturing instead, it will be up to you to determine when, where and how you call the `captureScreenshot()` method in your application. The most naïve approach would be to call it on a `Timer`, for example:
+
+```swift
+let screenshotTimer = Timer.scheduledTimer(withTimeInterval: 1, repeats: true) { _ in
+    MPSessionReplay.getInstance()?.captureScreenshot()
+}
+```
+
+Keeping in mind that this is relatively inefficient and will result in capturing unnecessary/unchanged screenshots, it's also possible to miss important moments in between the timed screenshots. Taking screenshots on demand at critical moments will always be preferable.
 
 ### Logging
 

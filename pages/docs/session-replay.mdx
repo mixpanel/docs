@@ -41,7 +41,7 @@ To access free replays, customers will need to ensure they’re on the latest Mi
     - You can make the switch to our latest plan directly from the [pricing page](https://mixpanel.com/pricing/).
 - Enterprise customers should contact their account manager to determine their plan status.
 
-Customers will be blocked from viewing additional replays above their monthly limit (or custom add-on limit for an Enterprise plan) until they upgrade or purchase additional volumes.
+Customers who purchase the Session Replay add-on will be charged overages for any replays ingested beyond their purchased limit. To avoid disruptions, please monitor your usage regularly. For customers with complimentary Session Replays (whether through a sales discount, an included plan benefit, or our Startup Program), any replays exceeding the monthly or annual limit will first be hidden behind a paywall, and eventually be dropped. Replay usage is aggregated across all projects within your billing account.
 
 ## Using Session Replay
 
@@ -89,6 +89,32 @@ The Replay Feed on the left of the player also allows you to:
 - Sort replays by recency, activity, or duration
 - Search for replays by user's name / email, replay date, user ID, or the name of an event in the replay
 - See a feed of events that occurred during each replay
+
+## Heatmaps (Beta)
+Heatmaps in Mixpanel help you visualize user interactions on your web application, showing where users click the most. This feature enables teams to quickly identify areas of high engagement and friction, helping to optimize user experiences and improve conversion rates.
+
+Our initial version of heatmaps is a click map, which means it specifically tracks clicks on individual site elements rather than just overlaying general activity on a page. This provides more precise insights into which modals, dropdowns, or features that users engage with the most.
+
+Heatmaps are currently in private, closed beta. For early access, please contact your Account Manager.
+
+###  How It Works
+Heatmaps are powered by session replay data and automatically capture click interactions when enabled. Users can generate heatmaps for specific pages to get deeper insights into user engagement.
+
+### Implementation
+Ensure you have Session Replay set up, and click interaction tracking enabled. Session Replays are required for Heatmaps to work. 
+
+Note: if you already utilize Mixpanel's [autocapture functionality](/docs/tracking-methods/autocapture) to capture clicks, then these clicks can be used to populate Heatmaps
+
+### Using Heatmaps
+1. From the Home page, find the Heatmaps section
+2. Choose a URL where you want to analyze user interactions.
+3. To easily navigate back to a created Heatmap, you can click the title to rename the Heatmap
+
+### Additional Notes
+- Session Replay must be enabled for heatmaps to work, as heatmaps rely on session replay data to track and visualize user clicks. 
+- Enabling heatmaps does not impact billing. They’re included as part of the Session Replay add-on and do not generate additional billable events.
+- Heatmaps only capture data during sessions where replays are recorded. If a page has limited replay coverage, the heatmap may not be meaningful.
+- Currently, heatmaps track click interactions. Future versions may also include hovers, scroll depth, and other interaction types.
 
 ## Server Side Stitching
 
