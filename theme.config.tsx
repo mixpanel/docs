@@ -8,12 +8,6 @@ import SignUpButton from "./components/SignUpButton/SignUpButton";
 import ChangelogPostHeader from "./components/ChangelogPostHeader/ChangelogPostHeader";
 import { VideoButtonWithModal } from "./components/VideoButtonWithModal";
 
-function renderComponent<T>(ComponentOrNode: FC<T> | ReactNode, props?: T) {
-  if (!ComponentOrNode) return null;
-  if (typeof ComponentOrNode !== "function") return ComponentOrNode;
-  return <ComponentOrNode {...props} />;
-}
-
 const config: DocsThemeConfig = {
   darkMode: true,
   nextThemes: {
