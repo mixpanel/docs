@@ -66,7 +66,7 @@ const config: DocsThemeConfig = {
     useLink: () => "https://mixpanel.com/get-support",
   },
   footer: {
-    content: "© Mixpanel 2024",
+    content: `© Mixpanel ${new Date().getFullYear()}`,
   },
   logo: <MixpanelLogoWordmark width={125} />,
   logoLink: "https://mixpanel.com/home/",
