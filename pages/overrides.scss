@@ -467,9 +467,28 @@ $border-radius-lg: 100px;
   opacity: 1 !important;
 }
 
-// Add BG color to image with transparent background
-article img {
-  background-color: colors.$lightbg;
+// Add image frame styling to prevent layout-reflow and match custom layout image styling (changelog) with nextra layout
+article p:has(img) {
+  background-color: color.adjust(colors.$grey20, $alpha: -0.95);
+  border-radius: 1.5rem;
+  aspect-ratio: 16/9;
+  padding-left: 2rem;
+  padding-right: 2rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  overflow: hidden;
+  width: 100%;
+
+  img {
+    border-radius: 1rem;
+    width: 100%;
+  }
+
+  @media (min-width: 1024px) {
+    padding-left: 3.5rem;
+    padding-right: 3.5rem;
+  }
 }
 
 //##############################Light Theme Starts Here##################################
