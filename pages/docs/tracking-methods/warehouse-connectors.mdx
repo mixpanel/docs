@@ -652,7 +652,7 @@ We recommend that customer filter such events and refresh such events when they 
 We add couple of hidden properties `$warehouse_import_id` and `$warehouse_type` on every event ingested through warehouse connectors. You can add filters and breakdowns on that property in any Mixpanel report. You can find the Warehouse import ID of a sync in Sync History tab shown as `Mixpanel Import Id`.
 
 
-## Warehouse Connectors Billing FAQ
+## Billing FAQ
 
 ### How am I billed for Mixpanel when using a warehouse connector?
 
@@ -669,7 +669,7 @@ When using warehouse connectors, different types of operations have varying impa
 | **New events in current month** | Counts as billable events | If you sync events that occurred this month, each event counts toward your monthly quota |
 | **Historical events** | Not billed | If you send Event A with properties a, b, c, d as a historical event (from a past month), it will not count toward billing |
 | **Event table updates** | Billed for the month the update happens | If you already have Event A in your database and add property e or update property b's value, each affected row counts as a billable event |
-| **Event table column additions** | Only billed for non-NULL values | Adding a column with NULL values does not count as an update across all supported warehouses |
+| **Event table column additions** | Billed for non-NULL values | Adding a column with NULL values does not count as an update across all supported warehouses, each affected row counts as a billable event otherwise |
 | **Event table deletes** | Billed when the delete occurs | Deleting events or properties will generate billable events for each affected row |
 | **User table standard operations** | Not billed | In standard mode, user profile inserts, updates, and deletes are not billed |
 | **User table history mode** | Billed for updates and deletes | With history sync enabled, each profile update or delete generates a billable event, including the initial historical import |
