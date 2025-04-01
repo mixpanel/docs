@@ -651,18 +651,44 @@ We recommend that customer filter such events and refresh such events when they 
 
 We add couple of hidden properties `$warehouse_import_id` and `$warehouse_type` on every event ingested through warehouse connectors. You can add filters and breakdowns on that property in any Mixpanel report. You can find the Warehouse import ID of a sync in Sync History tab shown as `Mixpanel Import Id`.
 
-### How do updates & deletes from Mirror syncs affect my event quota usage?
 
-On an [Events billing plan](/docs/pricing) your event quota is consumed by:
+## Warhouse Connectors Billing FAQ
 
-- **Monthly Event Volume:** The number of events in all of your projects at the end of each month. Updating an existing event using Mirror will not affect your monthly event volume. Deleting an existing event using Mirror will decrease your monthly event volume by one.
-- **Mirror updates and deletes:** Updates and deletes from Mirror are counted separately from event volume. Each update or deletion is counted as one event towards billing for the month they were triggered on, even if the record being updated is for a previous month. You can see a breakdown of your event quota consumption by "event volume" vs "updates and deletes" on your [organization billing page](https://mixpanel.com/report/settings/%23org%2F%24org_id%24%2Fplan).
+### How am I billed for Mixpanel when using a warehouse connector?
 
-You can see how much of your quota is being consumed by each warehouse connector in the detailed [data usage view](https://mixpanel.com/report/settings/%23org%2F%24org_id%24%2Fplan%2Fdetail%2Fevents) for your organization.
+When using a warehouse connector, you are billed based on the amount of data imported to Mixpanel through the connector. Each event sent from your warehouse to Mixpanel counts as one data point, just like events sent through our other tracking methods.
+
+Your organization will be charged according to your plan's data point pricing. For more information, please visit our [pricing page](https://mixpanel.com/pricing/).
+
+### How do different actions impact my Mixpanel billing when using warehouse connectors?
+
+When using warehouse connectors, different types of operations have varying impacts on your billing. The table below explains how each action affects your monthly event volume:
+
+| Action | Impact on Billing | Example |
+|--------|-------------------|---------|
+| **New events in current month** | Counts as billable events | If you sync events that occurred this month, each event counts toward your monthly quota |
+| **Historical events** | Not billed | If you send Event A with properties a, b, c, d as a historical event (from a past month), it will not count toward billing |
+| **Event table updates** | Billed for the month the update happens | If you already have Event A in your database and add property e or update property b's value, each affected row counts as a billable event |
+| **Event table column additions** | Only billed for non-NULL values | Adding a column with NULL values does not count as an update across all supported warehouses |
+| **Event table deletes** | Billed when the delete occurs | Deleting events or properties will generate billable events for each affected row |
+| **User table standard operations** | Not billed | In standard mode, user profile inserts, updates, and deletes are not billed |
+| **User table history mode** | Billed for updates and deletes | With history sync enabled, each profile update or delete generates a billable event, including the initial historical import |
+
+For large-scale changes that might significantly impact billing, we recommend consulting with your Account Manager before proceeding.
 
 On an [MTU billing plan](/docs/pricing/legacy-mtu-billing) updates and deletes from Mirror do not impact [MTU calculations](/docs/pricing/legacy-mtu-billing#mtu-calculation), however updates and deletes are counted as events for the purposes of the [MTU guardrail](/docs/pricing/legacy-mtu-billing#mtu-guardrail) computation.
 
-### What will be the cost impact of this on my DWH?
+
+### Will I be charged for failed imports or errors?
+
+No, you will only be charged for events that are successfully imported into Mixpanel. Events that fail validation or encounter errors during the import process will not count toward your billable data points.
+
+### How can I monitor my data usage with warehouse connectors?
+
+You can track your data usage in Mixpanel by navigating to Organization Settings > Plan Details and Billing. Head to Data Usage > View Historical Usage to view event usage by project and by Mirror.
+
+
+### How do different actions impact my DWH billing?
 
 The DWH cost of using a warehouse connector will vary based on the source warehouse and sync type used. Our connectors use warehouse-specific change tracking to compute modified rows in the warehouse and send only changed data to Mixpanel.
 
