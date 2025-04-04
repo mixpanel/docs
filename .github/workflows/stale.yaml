@@ -14,7 +14,7 @@ jobs:
 
     steps:
     # https://github.com/actions/stale
-    - uses: actions/stale@v5
+    - uses: actions/stale@9.1.0
       with:
         repo-token: ${{ secrets.GITHUB_TOKEN }}
         days-before-stale: 180
@@ -23,10 +23,14 @@ jobs:
           This issue has been inactive for over 180 days. It will be automatically closed in 14 days.
           Label this issue as "never-stale" to exempt it from this check.
 
+          @mixpanel/docs: please review.
+
           —[Mark stale](https://github.com/mixpanel/docs/actions/workflows/stale.yaml)
         stale-pr-message: >
           This PR has been inactive for over 180 days. It will be automatically closed in 14 days.
           Label this PR as "never-stale" to exempt it from this check.
+
+          @mixpanel/docs: please review.
 
           —[Mark stale](https://github.com/mixpanel/docs/actions/workflows/stale.yaml)
         stale-issue-label: 'stale'
