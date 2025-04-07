@@ -268,4 +268,3 @@
 /docs/boards/advanced /docs/boards
 /docs/quickstart/track-events /docs/quickstart/capture-events/track-events
 /docs/session-replay/session-replay-web#server-side-stitching-beta /docs/session-replay#server-side-stitching
-/docs/reports/funnels /docs/reports/funnels/funnels-overview
