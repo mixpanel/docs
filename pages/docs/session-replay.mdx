@@ -119,21 +119,6 @@ If you currently use [Autocapture](/docs/tracking-methods/autocapture) to track 
 2. Choose a URL where you want to analyze user interactions.
 3. To easily navigate back to a created Heatmap, you can click the title to rename the Heatmap
 
-## Server Side Stitching
-
-Server-Side Stitching allows you to easily watch replays for events that are not fired from our SDK. It works by inferring the replay an event happened in by looking at the distinct ID and time that the replay occurred. This is especially useful if you have events coming in from multiple sources such as your server or via warehouse import where it does not make sense to pass around the value of `mixpanel.get_session_recording_properties()`. (Note: we still recommend including these properties on your client side events to guarantee accuracy.)
-
-This make it possible to watch replays for events tracked server-side, events coming from your data warehouse, and events tracked with your CDP (we still recommend using our [CDP middleware](/docs/session-replay-web#can-i-use-session-replay-with-a-cdp) to ensure data accuracy for cross tab/platform user sessions).
-
-| | **With Competitors** | **With Mixpanel** | **Value Add** |
-| --- | --- | --- | --- |
-| **Events sent via Data Warehouses** | Cannot watch replays that contain without lots of custom code | Can easily watch replays that contain, just need our SDK to capture replays and make an `.identify()` call | **High** |
-| **Events sent via APIs (e.g. server-side events)** | Cannot watch replays that contain without lots of custom code | Can easily watch replays that contain, just need our SDK to capture replays and make an `.identify()` call | **High** |
-| **Events sent via Customer Data Platform** | Middleware required to watch replays that contain a specific event | You do not need middleware to watch replays that contain specific events. However, we recommend adding middleware to handle edge cases where replays may not be associated with the right events (simultaneous sessions across tabs, domains, or apps) | **Medium** |
-| **Events sent via Client-Side SDK** | Can easily watch replays that contain a specific event | Can easily watch replays that contain a specific event | **Low** |
-
-To ensure Server-Side Stitching works, call `identify()` from the client-side using our SDK with the user's unique Distinct ID. This guarantees that events generated from both the client-side and server-side share the same Distinct ID. [Learn more about identifying users](/docs/tracking-methods/id-management/identifying-users-simplified#client-side-identity-management).
-
 ## FAQ
 
 #### What happens when I reach my Session Replay limit?

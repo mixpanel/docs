@@ -320,6 +320,8 @@ Mixpanel offers a privacy-first approach to Session Replay, including features s
 
 The Mixpanel SDK will always mask all inputs. By default, all text on a page will also be masked unless a different `record_mask_text_selector` is specified (see [Additional Configuration](/docs/session-replay/implement-session-replay/session-replay-web#additional-configuration-options) above).
 
+Along with other data, the SDK respects all Do Not Track (DNT) settings as well as manual opt-out for any replay data. 
+
 ### Retention
 
 User replays are stored for 30 days after the time of ingestion. There is no way to view a replay older than 30 days old.

@@ -214,6 +214,8 @@ By default, all text, images, and WebViews are also masked.
 
 You can unmask these element at your own discretion using the [`autoMaskedViews` config option described above](/docs/session-replay/implement-session-replay/session-replay-android#additional-configuration-options).
 
+Along with other data, the SDK respects all Do Not Track (DNT) settings as well as manual opt-out for any replay data. 
+
 #### Mark Views as Sensitive
 
 All `EditText` and `TextView` components are masked by default. `EditText` cannot be unmasked, while `TextView` can be unmasked.
