@@ -2,13 +2,9 @@ import { Callout } from 'nextra/components'
 
 # Implement Session Replay (Web)
 
-<Callout type="warning">
-Before enabling Session Replay for a large audience, we recommend testing it in a demo project and starting with smaller user or account sets in production. This allows you to monitor performance and ensure your privacy rules align with company policies.
-</Callout>
-
 ## Overview
 
-This developer guide will assist you in configuring your web platform for [Session Replay](/docs/session-replay) using the [Mixpanel JavaScript SDK](/docs/tracking-methods/sdks/javascript). Learn more about viewing captured Replays in your project [here](/docs/session-replay).
+This developer guide will assist you in configuring your web platform for [Session Replay](/docs/session-replay) using the [Mixpanel JavaScript SDK](/docs/tracking-methods/sdks/javascript). Learn more about [viewing captured Replays in your project here](/docs/session-replay).
 
 By default, Session Replay is disabled and will not be loaded into your application until explicitly enabled. In most cases, implementation is extremely simple, requiring only a single line of code to be changed.
 
@@ -18,13 +14,17 @@ You are a Mixpanel customer and have the latest version of the Mixpanel Javascri
 
 ## Capturing Replays
 
-You can capturing replay data for a sample of your users during SDK initialization, or customize when and where replays are captured manually using Session Replay methods provided by the SDK.
+<Callout type="warning">
+	Test in a sandbox project and start with a smaller sample rate. This allows you to monitor performance, usage, and ensure your privacy rules align with your company policies.
+</Callout>
 
-We recommend using the sampling method unless you need to customize when you capture replay data.
+You can capturing replay data using a sampling method (recommended), or customize when and where replays are captured manually using Session Replay methods provided by the SDK.
 
 ### Sampling
 
-To enable Session Replay and set your sampling rate, set the `recording_sessions_percent` when initializing the SDK. This is the only change needed in your existing JavaScript SDK setup to enable Session Replay.
+We recommend using the sampling method unless you need to customize when you capture replay data.
+
+To enable Session Replay and set your sampling rate, set the `recording_sessions_percent` when initializing the SDK. This is the only change needed in your existing JavaScript SDK implementation to enable Session Replay.
 
 Start with a low sampling rate, then adjust according to your specific analytics needs.
 
@@ -52,6 +52,7 @@ This will have no effect if replay data collection is already in progress.
 **Example Usage**
 
 ```javascript Javascript
+// manually trigger a replay capture
 mixpanel.start_session_recording();
 ```
 
@@ -64,6 +65,7 @@ This will have no effect if there is no replay data collection in progress.
 **Example Usage**
 
 ```javascript Javascript
+// manually end a replay capture
 mixpanel.stop_session_recording();
 ```
 
@@ -118,6 +120,7 @@ You can use the `get_session_recording_properties()` method to return the Replay
 **Example Usage**
 
 ```javascript Javascript
+// return the $mp_replay_id for the currently active capture
 mixpanel.get_session_recording_properties();
 // {$mp_replay_id: '19221397401184-063a51e0c3d58d-17525637-1d73c0-1919139740f185'}
 ```
@@ -149,6 +152,7 @@ This is useful for debugging or for adding metadata to other platforms. (E.g. ad
 **Example Usage**
 
 ```javascript Javascript
+// return the Mixpanel URL to view the current replay in the UI
 mixpanel.get_session_replay_url();
 // https://mixpanel.com/projects/replay-redirect?replay_id=19307d78e24394fe15-0cd98d8fd9ad1d-1f525636-4b9600-19307d78e28194fe15&distinct_id=123&token=my-project-token
 ```
@@ -324,7 +328,7 @@ User replays are stored for 30 days after the time of ingestion. There is no way
 
 #### Can I prevent Session Replay from recording sensitive content?
 
-By default, all on-screen text elements are masked in replays. Additionally, you can customize how you leverage our SDK to fully control (1) where to record and (2) whom to record. Consider the [example scenarios](/docs/session-replay/implement-session-replay/session-replay-web#example-scenarios) and [init options](/docs/session-replay/implement-session-replay/session-replay-web#init-options) provided above to customize the replay capture of your implementation.
+By default, all on-screen text elements are masked in replays. Additionally, you can customize how you leverage our SDK to fully control (1) where to record and (2) whom to record. Consider the [manual capture example scenarios](/docs/session-replay/implement-session-replay/session-replay-web#example-scenarios) and [init options](/docs/session-replay/implement-session-replay/session-replay-web#init-options) provided above to customize the replay capture of your implementation.
 
 #### How can I estimate how many Replays I will generate?
 
