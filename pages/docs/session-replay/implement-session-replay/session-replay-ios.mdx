@@ -14,7 +14,7 @@ Our Session Replay Beta Service Addendum can be found [here](https://mixpanel.co
 
 ## Overview
 
-This developer guide will assist you in configuring your Swift app for [Session Replay](/docs/session-replay) using the [Session Replay SDK (Swift)](/docs/tracking-methods/sdks/swift-replay). Learn more about [viewing captured Replays in your project here](/docs/session-replay).
+This developer guide will assist you in configuring your Swift app for [Session Replay](/docs/session-replay) using the [Session Replay SDK (Swift)](/docs/tracking-methods/sdks/swift/swift-replay). Learn more about [viewing captured Replays in your project here](/docs/session-replay).
 
 ## Prerequisite
 
@@ -22,7 +22,7 @@ You are already a Mixpanel customer and have the latest version of the [Mixpanel
 
 ## Installation
 
-To capture Session Replays in your app, add the [Session Replay SDK]((/docs/tracking-methods/sdks/swift-replay)) using Swift Package Manager directly in Xcode:
+To capture Session Replays in your app, add the [Session Replay SDK](/docs/tracking-methods/sdks/swift/swift-replay) using Swift Package Manager directly in Xcode:
 
 1. In Xcode, go to File → **Add Package Dependencies…**
 2. Paste the GitHub URL: `https://github.com/mixpanel/mixpanel-ios-session-replay-package`
@@ -31,6 +31,8 @@ To capture Session Replays in your app, add the [Session Replay SDK]((/docs/trac
 ### Initialize
 
 You should have the main Mixpanel Swift SDK installed (minimum version `v4.3.1`), if not, please refer to [Prerequisite](/docs/session-replay/session-replay-ios#prerequisite). 
+
+Add the following code to your **SwiftUI and **UIKit**.
 
 **SwiftUI**
 
@@ -222,7 +224,7 @@ let screenshotTimer = Timer.scheduledTimer(withTimeInterval: 1, repeats: true) {
 }
 ```
 
-Keeping in mind that this is relatively inefficient and will result in capturing unnecessary/unchanged screenshots, it is also possible to miss important moments in between the timed screenshots. Taking scr
+Keeping in mind that this is relatively inefficient and will result in capturing unnecessary/unchanged screenshots, it is also possible to miss important moments in between the timed screenshots. Taking screenshots on demand at critical moments will always be preferable.
 
 ## Replay ID
 
