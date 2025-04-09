@@ -16,7 +16,5 @@ export default {
         "title": "Mixpanel-utils↗",
         "href": "https://github.com/mixpanel/mixpanel-utils",
         "newWindow": true
-    },
-    "android-replay": "Session Replay (Android)",
-    "swift-replay": "Session Replay (Swift)"
+    }
 }
