@@ -105,7 +105,7 @@ You can capturing replay data using a sampling method (recommended), or customiz
 
 ### Sampling
 
-To enable Session Replay and set your sampling rate, use the `SessionReplayConfig` object and set `recordSessionsPercent` with a value between `0.0` and `100.0`. 
+To enable Session Replay and set your sampling rate, use the [`SessionReplayConfig`](https://github.com/mixpanel/mixpanel-ios-session-replay/blob/e3d9edd6c68fc027b5217ef42dd2bd0234b8262e/MixpanelSessionReplay/MixpanelSessionReplay/Models/MPSessionReplayConfig.swift#L26) object and set [`recordSessionsPercent`](https://github.com/mixpanel/mixpanel-ios-session-replay/blob/e3d9edd6c68fc027b5217ef42dd2bd0234b8262e/MixpanelSessionReplay/MixpanelSessionReplay/Models/MPSessionReplayConfig.swift#L42) with a value between `0.0` and `100.0`. 
 
 At `0.0` no sessions will be recorded, at `100.0` all sessions will be recorded.
 
@@ -122,7 +122,7 @@ To programatically start and stop replay capture, use the `.startRecording()` an
 
 #### Start Recording
 
-Call `.startRecording()` to force recording to begin, regardless of the `recordSessionsPercent` init option. 
+Call [`.startRecording()`](https://github.com/mixpanel/mixpanel-ios-session-replay/blob/e3d9edd6c68fc027b5217ef42dd2bd0234b8262e/MixpanelSessionReplay/MixpanelSessionReplay/MPSessionReplayInstance.swift#L123) to force recording to begin, regardless of the `recordSessionsPercent` init option. 
 
 The recording automatically stops when the app goes to the background. Therefore, if you want to continuously record the replays, you will need to restart the replay once the app becomes active again.
 
@@ -136,7 +136,7 @@ MPSessionReplay.getInstance()?.startRecording()
 
 #### Stop Recording
 
-Call `.stopRecording()` to stop any active replay data collection. The SDK automatically stops recording when the app goes to the background.
+Call [`.stopRecording()`](https://github.com/mixpanel/mixpanel-ios-session-replay/blob/e3d9edd6c68fc027b5217ef42dd2bd0234b8262e/MixpanelSessionReplay/MixpanelSessionReplay/MPSessionReplayInstance.swift#L218) to stop any active replay data collection. The SDK automatically stops recording when the app goes to the background.
 
 **Example Usage**
 
@@ -148,16 +148,16 @@ MPSessionReplay.getInstance()?.stopRecording()
 
 ### Config Options
 
-Upon initialization you can provide a `SessionReplayConfig` object to customize your replay capture behavior.
+Upon initialization you can provide a [`SessionReplayConfig`](https://github.com/mixpanel/mixpanel-ios-session-replay/blob/e3d9edd6c68fc027b5217ef42dd2bd0234b8262e/MixpanelSessionReplay/MixpanelSessionReplay/Models/MPSessionReplayConfig.swift#L26) object to customize your replay capture behavior.
 
 Currently, there are four config options:
 
 | Option | Description | Default | 
 | --- | --- | --- |
-| `wifiOnly` | When `true`, replay events will only be flushed to the server when the device has a WiFi connection. If there is no wifi, flushes are skipped and the events remain in the in-memory queue until wifi is restored (or until the queue reaches its limit and the oldest events are evicted to make room for newer events). <br/> When `false`, replay events will be flushed with any network connection, including cellular. | `true` |
-| `recordSessionsPercent` | This is a value between `0.0` and `100.0` that controls the sampling rate for recording session replays. <br/> At `0.0` no sessions will be recorded. At `100.0` all sessions will be recorded.  | `0.0` |
-| `autoMaskedViews` | This is a `Set` of enum options for the types of views that should be masked by the SDK automatically. | `Image`, `Text`, and `Web` |
-| `autoCapture` | This an enum to selectively disable the runtime method replacement functionality (aka “swizzling") in the event that it conflicts with another SDK (like [New Relic](https://docs.newrelic.com/docs/mobile-monitoring/new-relic-mobile-ios/get-started/new-relic-ios-compatibility-requirements/#method)) | `.enabled` |
+| [`wifiOnly`](https://github.com/mixpanel/mixpanel-ios-session-replay/blob/e3d9edd6c68fc027b5217ef42dd2bd0234b8262e/MixpanelSessionReplay/MixpanelSessionReplay/Models/MPSessionReplayConfig.swift#L34) | When `true`, replay events will only be flushed to the server when the device has a WiFi connection. If there is no wifi, flushes are skipped and the events remain in the in-memory queue until wifi is restored (or until the queue reaches its limit and the oldest events are evicted to make room for newer events). <br/> When `false`, replay events will be flushed with any network connection, including cellular. | `true` |
+| [`recordSessionsPercent`](https://github.com/mixpanel/mixpanel-ios-session-replay/blob/e3d9edd6c68fc027b5217ef42dd2bd0234b8262e/MixpanelSessionReplay/MixpanelSessionReplay/Models/MPSessionReplayConfig.swift#L42) | This is a value between `0.0` and `100.0` that controls the sampling rate for recording session replays. <br/> At `0.0` no sessions will be recorded. At `100.0` all sessions will be recorded.  | `0.0` |
+| [`autoMaskedViews`](https://github.com/mixpanel/mixpanel-ios-session-replay/blob/e3d9edd6c68fc027b5217ef42dd2bd0234b8262e/MixpanelSessionReplay/MixpanelSessionReplay/Models/MPSessionReplayConfig.swift#L47) | This is a `Set` of enum options for the types of views that should be masked by the SDK automatically. | `Image`, `Text`, and `Web` |
+| [`autoCapture`](https://github.com/mixpanel/mixpanel-ios-session-replay/blob/e3d9edd6c68fc027b5217ef42dd2bd0234b8262e/MixpanelSessionReplay/MixpanelSessionReplay/Models/MPSessionReplayConfig.swift#L57) | This an enum to selectively disable the runtime method replacement functionality (aka “swizzling") in the event that it conflicts with another SDK (like [New Relic](https://docs.newrelic.com/docs/mobile-monitoring/new-relic-mobile-ios/get-started/new-relic-ios-compatibility-requirements/#method)) | `.enabled` |
 
 **Example Usage**
 
@@ -169,7 +169,7 @@ MPSessionReplayConfig(autoMaskedViews: [.Image], wifiOnly: true)
 
 #### Manual Screenshot Capture
 
-If you have partially or completely disabled automatic screen capture via the `autoCapture` config setting above, you can manually capture screenshots by calling `.captureScreenshot()`:
+If you have partially or completely disabled automatic screen capture via the `autoCapture` config setting above, you can manually capture screenshots by calling [`.captureScreenshot()`](https://github.com/mixpanel/mixpanel-ios-session-replay/blob/e3d9edd6c68fc027b5217ef42dd2bd0234b8262e/MixpanelSessionReplay/MixpanelSessionReplay/MPSessionReplayInstance.swift#L151):
 
 **Example Usage**
 
@@ -196,9 +196,9 @@ Keeping in mind that this is relatively inefficient and will result in capturing
 
 ### Mark Views as Sensitive
 
-All `UITextField` and `UILabel` components are masked by default. `UITextField` cannot be unmasked, while `UILabels` can be unmasked
+Mark any views as sensitive by setting `mpReplaySensitive` to `true`. Views marked as "sensitive" will be masked. 
 
-Mark any views as sensitive by setting `mpReplaySensitive` to `true`. Views marked as "sensitive" will be masked.
+Set `mpReplaySensitive` to `false` to mark any view as safe. Views marked as "safe" will not be masked.
 
 **Example Usage**
 
@@ -214,25 +214,11 @@ let ccView = CreditCardUIView()
 ccView.mpReplaySensitive = true
 ```
 
-Set `mpReplaySensitive` to `false` to mark any view as safe. Views marked as "safe" will not be masked.
-
-**Example Usage**
-
-```swift Swift
-// Mark any view as safe
-
-// SwiftUI
-BackgroundImage()
-    .mpReplaySensitive(false)
- 
-//UIKit
-let bgImage = BackgroundImage()
-bgImage.mpReplaySensitive = false
-```
+All `UITextField` and `UILabel` components are masked by default. `UITextField` cannot be unmasked, while `UILabels` can be unmasked
 
 ## Get Replay ID
 
-You can use the `getReplayId()` method to return the [Replay ID](/docs/session-replay/implement-session-replay/session-replay-ios#replay-id) for the current replay recording. The method will return an empty object if there is no active replay capture in progress.
+Use the [`getReplayId()`](https://github.com/mixpanel/mixpanel-ios-session-replay/blob/2fb5c4651fa7bd661395082d5350565401ed26f7/MixpanelSessionReplay/MixpanelSessionReplay/MPSessionReplay.swift#L19) method to return the [Replay ID](/docs/session-replay/implement-session-replay/session-replay-ios#replay-id) for the current replay recording. The method will return an empty object if there is no active replay capture in progress.
 
 **Example Usage**
 
@@ -242,9 +228,18 @@ MPSessionReplay.getInstance()?.getReplayId()
 // {$mp_replay_id: '19221397401184-063a51e0c3d58d-17525637-1d73c0-1919139740f185'}
 ```
 
+## Flushing
+
+Use the [`flush()`](https://github.com/mixpanel/mixpanel-ios-session-replay/blob/e3d9edd6c68fc027b5217ef42dd2bd0234b8262e/MixpanelSessionReplay/MixpanelSessionReplay/MPSessionReplayInstance.swift#L255) method to manually flush replay events in queue.
+
+```swift Swift
+// trigger manual flushing for replay events
+MPSessionReplay.getInstance()?.flush()
+```
+
 ## Debug Mode
 
-Enable or disable logging with the `loggingEnabled` property of the `MPSessionReplay` object.
+Enable or disable logging with the [`loggingEnabled`](https://github.com/mixpanel/mixpanel-ios-session-replay/blob/e3d9edd6c68fc027b5217ef42dd2bd0234b8262e/MixpanelSessionReplay/MixpanelSessionReplay/MPSessionReplayInstance.swift#L52) property of the [`MPSessionReplay`](https://github.com/mixpanel/mixpanel-ios-session-replay/blob/e3d9edd6c68fc027b5217ef42dd2bd0234b8262e/MixpanelSessionReplay/MixpanelSessionReplay/MPSessionReplayInstance.swift) object.
 
 **Example Usage**
 
