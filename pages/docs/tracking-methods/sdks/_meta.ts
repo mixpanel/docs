@@ -16,5 +16,5 @@ export default {
         "title": "Mixpanel-utils↗",
         "href": "https://github.com/mixpanel/mixpanel-utils",
         "newWindow": true
-  }
+    }
 }
