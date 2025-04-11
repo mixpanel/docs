@@ -39,6 +39,48 @@ This user enters the funnel when they first track Event A at 1:00 pm. They conve
 
 The second instance of Event A at 1:30 pm does not reset the conversion window timer. Event B and Event C would need to be completed within 1 hour from the first Event A tracked for the user to be counted as converted.
 
+### Optimized Re-entry
+
+When **Optimized Re-entry** mode is enabled, we actively evaluate all funnel entry attempts - even if the user's previous funnel is still in progress. This allows us to capture potential conversions which might occur from subsequent entries, maximizing total conversions.
+
+If any user funnel entries within the report date range result in a conversion, we count the user as converted.
+
+![image](/funnel_reentry.png)
+
+**Scenario 1**
+
+- Funnel Steps: A -> B
+- Event Stream: A -> Conversion Window Ends for A Ends -> A^ -> B
+
+**Default Mode**
+
+Since event A occurred first and did not convert within its window, we count the user as not converted. This mode only considers the user’s first funnel entry.
+
+**Optimized Reentry Mode**
+
+We treat A^ → B as a valid conversion because A^ initiates a new funnel which converts within its active conversion window. Therefore, we count the user as converted.
+
+**Scenario 2**
+
+- Funnel: A -> B
+- Event Stream: A -> A^ -> Conversion Window for A Ends -> B
+
+**Default Mode**
+
+Since A^ took place while the funnel entry triggered by A was still active, we ignore it. We only evaluate the first funnel entry (A), which did not convert. The conversion rate would be 0% from the drop-off for A since A^ is ignored.
+
+**Optimized Reentry Mode**
+
+We treat A^ as a new funnel entry and restart the funnel history. When B occurs, it completes the new funnel A^ → B, which we count as a conversion. The conversion rate would be 50% from the successful conversion for A^ and the drop-off for A. (A′^ / [A + A^])
+
+
+**PLEASE NOTE:** 
+1. For [Unique aggregation](/docs/reports/funnels/funnels-advanced#counting-methods) during a date range with multiple funnel conversions, we consider the first converted funnel only. For example in scenario A → B → A^ → B^, there are 2 user funnels converted: A → B and A^ → B^. We only consider the first A → B as the user conversion.
+2. In a multi-step steps funnel, we only consider the first step for re-entries. For every subsequent step, we pick the first instance of the step. 
+3. For the first step in a funnel, if there are multiple entries prior to step 2, we consider the most recent entry. For example, in scenario A → A^ → A^^ → B where all actions happen within the conversion window, A^^ → B would be recorded as the funnel. 
+4. For all other counting types - [TTC](/docs/reports/funnels/funnels-advanced#time-to-convert), [Property Sum](/docs/reports/funnels/funnels-advanced#property-sum), we compute these based on the funnels selected to optimize maximum conversions. For example, in scenario A → A^ → A^^ → B where all actions happen within the conversion window, in the Optimized Reentry mode TTC would be calculated for A^^ → B. However in the Default mode, TTC would be calculated for A → B.
+
+
 ### Ordering
 
 The order control determines how much flexibility there can be to the sequence of your user's actions to be counted as a conversion. By default, funnels are based on a specific order.
