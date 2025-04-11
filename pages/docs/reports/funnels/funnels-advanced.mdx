@@ -52,24 +52,24 @@ If any user funnel entries within the report date range result in a conversion, 
 - Funnel Steps: A -> B
 - Event Stream: A -> Conversion Window Ends for A Ends -> A^ -> B
 
-- **Default Mode**
+**Default Mode**
 
 Since event A occurred first and did not convert within its window, we count the user as not converted. This mode only considers the user’s first funnel entry.
 
--  **Optimized Reentry Mode**
+**Optimized Reentry Mode**
 
-We treat A^ → B as a valid conversion because A^ initiates a new funnel within the active conversion window. Therefore, we count the user as converted.
+We treat A^ → B as a valid conversion because A^ initiates a new funnel which converts within its active conversion window. Therefore, we count the user as converted.
 
 **Scenario 2**
 
 - Funnel: A -> B
 - Event Stream: A -> A^ -> Conversion Window for A Ends -> B
 
-- **Default Mode**
+**Default Mode**
 
 Since A^ took place while the funnel entry triggered by A was still active, we ignore it. We only evaluate the first funnel entry (A), which did not convert. The conversion rate would be 0% from the drop-off for A since A^ is ignored.
 
--  **Optimized Reentry Mode**
+**Optimized Reentry Mode**
 
 We treat A^ as a new funnel entry and restart the funnel history. When B occurs, it completes the new funnel A^ → B, which we count as a conversion. The conversion rate would be 50% from the successful conversion for A^ and the drop-off for A. (A′^ / [A + A^])
 
