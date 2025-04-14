@@ -659,10 +659,10 @@ Billing varies by operation type and connector mode. The tables below explain ho
 | Action | Impact on Billing | Example |
 |--------|-------------------|---------|
 | **New events in current month** | Counts as billable events | If you sync events that occurred this month, each event counts toward your monthly quota |
-| **Historical events** | Not billed | If you already have an event in your Mixpanel, for example, Event A with properties a, b, c, d, and you send in historical events for a past month, it will not count towards billing |
-| **Event table updates** | Billed for the month the update happens | If you already have an event in Mixpanel, for example, Event A with properties a, b, c, d but want to: <br/>• update the value of property d, or<br/>• add another property e<br/>this will count as a billable event |
-| **Event table column additions** | Only billed for non-NULL values | Adding a column with NULL values does not count as an update across all supported warehouses |
-| **Event table deletes** | Billed when the delete occurs | Deleting events or properties will generate billable events for each affected row |
+| **Historical events** | Not billed | If you send in historical events for a past month, it will not count towards billing |
+| **Event table updates (Mirror)** | Billed when update occurs | If you already have an event in Mixpanel, for example, Event A with properties a, b, c, d but want to: <br/>• update the value of property d, or<br/>• add another property e<br/>this will count as a billable event |
+| **Event table column additions (Mirror)** | Billed for each row for non-NULL column values | Adding a column will generate billable events for each row in the affected table |
+| **Event table deletes (Mirror) ** | Billed when the delete occurs | Deleting events or properties will generate billable events for each affected row |
 
 **User Profile Operations:**
 
