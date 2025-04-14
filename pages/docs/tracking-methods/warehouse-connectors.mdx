@@ -654,30 +654,46 @@ We add couple of hidden properties `$warehouse_import_id` and `$warehouse_type` 
 
 ## Billing FAQ
 
-### How am I billed for Mixpanel when using a warehouse connector?
+### How do different actions impact my billing when using warehouse connectors?
 
-When using a warehouse connector, you are billed based on the amount of data imported to Mixpanel through the connector. Each event sent from your warehouse to Mixpanel counts as one data point, just like events sent through our other tracking methods.
+Billing varies by operation type and connector mode. The tables below explain how each action affects your monthly event volume:
 
-Your organization will be charged according to your plan's data point pricing. For more information, please visit our [pricing page](https://mixpanel.com/pricing/).
-
-### How do different actions impact my Mixpanel billing when using warehouse connectors?
-
-When using warehouse connectors, different types of operations have varying impacts on your billing. The table below explains how each action affects your monthly event volume:
+**Event Operations:**
 
 | Action | Impact on Billing | Example |
 |--------|-------------------|---------|
 | **New events in current month** | Counts as billable events | If you sync events that occurred this month, each event counts toward your monthly quota |
-| **Historical events** | Not billed | If you send Event A with properties a, b, c, d as a historical event (from a past month), it will not count toward billing |
-| **Event table updates** | Billed for the month the update happens | If you already have Event A in your database and add property e or update property b's value, each affected row counts as a billable event |
-| **Event table column additions** | Billed for non-NULL values | Adding a column with NULL values does not count as an update across all supported warehouses, each affected row counts as a billable event otherwise |
+| **Historical events** | Not billed | If you already have an event in your Mixpanel, for example, Event A with properties a, b, c, d, and you send in historical events for a past month, it will not count towards billing |
+| **Event table updates** | Billed for the month the update happens | If you already have an event in Mixpanel, for example, Event A with properties a, b, c, d but want to: <br>• update the value of property d, or<br>• add another property e<br>this will count as a billable event |
+| **Event table column additions** | Only billed for non-NULL values | Adding a column with NULL values does not count as an update across all supported warehouses |
 | **Event table deletes** | Billed when the delete occurs | Deleting events or properties will generate billable events for each affected row |
-| **User table standard operations** | Not billed | In standard mode, user profile inserts, updates, and deletes are not billed |
-| **User table history mode** | Billed for updates and deletes | With history sync enabled, each profile update or delete generates a billable event, including the initial historical import |
+
+**User Profile Operations:**
+
+| Mode | Operation | Impact on Billing |
+|------|-----------|-------------------|
+| **Standard mode (Append)** | Inserts, updates, deletes | Not billed |
+| **History mode (Mirror)** | New profiles in current month | Billed like regular events |
+| **History mode (Mirror)** | Historical profiles | Not billed for past months, similar to events |
+| **History mode (Mirror)** | Updates and deletes | Billed when the operation occurs |
+
+**Note**: Our Mirror functionality looks at the current data in tables and uses different approaches (depending on the platform) to track changes to only perform operations based on those changes. This is important to consider for your data modeling process. If your workflow consists of dropping a table and recreating it with the new version of the data, Mirror would most likely consider everything as deleted and new, which would significantly influence billing. However, if your workflow keeps the previous version of the data and just appends, updates, and deletes rows, billing will be based only on the new operations as the tables above describe.
+
+You can monitor these different operations in your billing page, where they'll appear as separate line items: Events - Updates, Events - Deletes, User - Updates, and User - Deletes.
+
+### When should I use Mirror vs. Append mode?
+
+**Use Mirror mode when:**
+- You need to maintain an exact replica of your warehouse data in Mixpanel
+- You want to automatically sync updates and deletes from your warehouse
+- You need to track the history of user profile changes over time (with History mode)
+
+**Use Append mode when:**
+- You only need to add new data without updating existing records
+- You want to minimize billable operations (as updates and deletes don't count towards billing)
+- You have a workflow that frequently drops and recreates tables
 
 For large-scale changes that might significantly impact billing, we recommend consulting with your Account Manager before proceeding.
-
-On an [MTU billing plan](/docs/pricing/legacy-mtu-billing) updates and deletes from Mirror do not impact [MTU calculations](/docs/pricing/legacy-mtu-billing#mtu-calculation), however updates and deletes are counted as events for the purposes of the [MTU guardrail](/docs/pricing/legacy-mtu-billing#mtu-guardrail) computation.
-
 
 ### Will I be charged for failed imports or errors?
 
@@ -685,26 +701,4 @@ No, you will only be charged for events that are successfully imported into Mixp
 
 ### How can I monitor my data usage with warehouse connectors?
 
-You can track your data usage in Mixpanel by navigating to Organization Settings > Plan Details and Billing. Head to Data Usage > View Historical Usage to view event usage by project and by Mirror.
-
-
-### How do different actions impact my DWH billing?
-
-The DWH cost of using a warehouse connector will vary based on the source warehouse and sync type used. Our connectors use warehouse-specific change tracking to compute modified rows in the warehouse and send only changed data to Mixpanel.
-
-There are 3 aspects of DWH cost: network egress, storage, and compute.
-* **Network Egress**: All data is transferred using gzip compression. Assuming an egress rate of \$0.08 per GB and 100 compressed bytes per event, this is a cost of less than \$0.01 per million events. [Mirror](#mirror) and [Append](#append) syncs will only transfer new or modified rows each time they run. [Full](#full) syncs will transfer all rows every time they run. We recommend using Full syncs only for small tables and running them less frequently.
-* **Storage**: [Append](#append) and [Full](#full) syncs do not store any additional data in your warehouse, so there are no extra storage costs. [Mirror](#mirror) tracks changes using warehouse-specific functionality that can affect warehouse storage costs:
-  * Snowflake: Mirror uses [Snowflake Streams](https://docs.snowflake.com/en/user-guide/streams-intro). Snowflake Streams will [retain historical data](https://docs.snowflake.com/en/user-guide/streams-intro#billing-for-streams) until it is consumed from the stream. As long as the warehouse connector runs regularly data will be consumed regularly and only retained between runs.
-  * BigQuery: Mirror uses [table snapshots](https://cloud.google.com/bigquery/docs/table-snapshots-intro). Mirror keeps one snapshot per table to track the contents of the table from the last run. BigQuery table snapshots have no cost when they are first created as they share the underlying storage with the source table, however as the source table changes [the cost of storing changes is attributed to the table snapshot](https://cloud.google.com/bigquery/docs/table-snapshots-intro#storage_costs). Each time the connector runs the current snapshot is replaced with a new snapshot of the latest state of the table. The storage cost is the amount of changes being tracked between the snapshot and source table between runs.
-  * Databricks: Mirror uses Databricks [Change Data Feed](https://docs.databricks.com/en/delta/delta-change-data-feed.html) and all the changes are retained in databricks for the [delta.logRetentionDuration](https://docs.databricks.com/en/delta/history.html#retrieve-delta-table-history). Configure that window accordingly to keep storage costs low.
-* **Compute**:
-  * Mirror on Snowflake: [Snowflake Streams](https://docs.snowflake.com/en/user-guide/streams-intro) natively track changes, the compute cost of querying for these changes is normally proportional to the amount of changed data.
-  * Mirror on BigQuery: Each time the connector runs it checksums all rows in the source table and compares them to a [table snapshot](https://cloud.google.com/bigquery/docs/table-snapshots-intro) from the previous run. For large tables we highly recommend [partitioning](https://cloud.google.com/bigquery/docs/partitioned-tables) the source table. When the source table is partitioned the connector will skip checksumming any partitions which have not been modified since the last run. For more details see the BigQuery-specific instructions in [Mirror](#mirror).
-  * Mirror on Databricks: Databricks [Change Data Feed](https://docs.databricks.com/en/delta/delta-change-data-feed.html) natively tracks changes to the tables or views, the compute cost of querying these changes is normally proportional to the amount of changed data. Mixpanel recommends using a smaller compute cluster and setting Auto Terminate after 10 minutes of idle time on the compute cluster.
-  * Append: All Append syncs run a query filtered on `insert_time_column > [last-run-time]`, the compute cost is the cost of this query. Partitioning or clustering based on `insert_time_column` will greatly improve the performance of this query.
-  * Full: Full syncs are always a full table scan of the source table to export it.
-
-### How can I get help setting up a warehouse connector?
-
-[Reach out](https://mixpanel.com/contact-us/sales/) to our team — we’re happy to walk you through the setup. If you bring a data engineer who has credentials to access your warehouse, it takes < 10 minutes to get up and running.
+You can track your data usage in Mixpanel by navigating to Organization Settings > Usage and viewing the "Data Points" section. Use the "Data Source" filter to specifically view warehouse connector imports.
