@@ -656,17 +656,17 @@ Billing varies by operation type and connector mode. The tables below explain ho
 
 **Billing for Event Syncs:**
 
-| **Data Type** | **Operation**                            | **Sync Type** | **Supported** | **Billing** |
-|---------------|-------------------------------------------|---------------|---------------|-------------|
-| **Events**    | **New events (current calendar month)**  | One time      | ✅            | ✅          |
-|               |                                           | Append        | ✅            | ✅          |
-|               |                                           | Mirror        | ✅            | ✅          |
-|               | **Historical events (backfills)**         | One time      | ✅            | ❌          |
-|               |                                           | Append        | ❌            | ❌          |
-|               |                                           | Mirror        | ✅            | ❌          |
-|               | **Updates & deletes**                    | One time      | ❌            | ❌          |
-|               |                                           | Append        | ❌            | ❌          |
-|               |                                           | Mirror        | ✅            | ✅          |
+| **Events Operation**                      | **Sync Type** | **Supported** | **Billed** |
+|-------------------------------------------|---------------|---------------|-------------|
+| **New events (current calendar month)**  | One time      | ✅            | ✅          |
+|                                           | Append        | ✅            | ✅          |
+|                                           | Mirror        | ✅            | ✅          |
+| **Historical events (backfills)**         | One time      | ✅            | ❌          |
+|                                           | Append        | ❌            | ❌          |
+|                                           | Mirror        | ✅            | ❌          |
+| **Updates & deletes**                    | One time      | ❌            | ❌          |
+|                                           | Append        | ❌            | ❌          |
+|                                           | Mirror        | ✅            | ✅          |
 
 **Note on Updates**: If you already have an event in Mixpanel, for example, Event A with properties a,b,c,d but want to:
 
@@ -684,14 +684,14 @@ If instead your workflow updates existing tables—by appending, updating, or de
 
 **Billing for User/Group Profiles Syncs**
 
-| **Data Type**           | **Operation**                      | **Mode**     | **Sync Type**     | **Supported** | **Billed** |
-|-------------------------|------------------------------------|--------------|-------------------|---------------|-------------|
-| **User/Group Profiles** | **Set/update profile properties**  | Standard     | Full sync         | ✅            | ❌          |
-|                         |                                    | Standard     | Append            | ✅            | ❌          |
-|                         |                                    | Historical   | Mirror            | ✅            | ✅          |
-|                         | **Unset profile properties**       | Standard     | Full sync         | ❌            | ❌          |
-|                         |                                    | Standard     | Append            | ❌            | ❌          |
-|                         |                                    | Historical   | Mirror            | ✅            | ✅          |
+| **User/Group Profiles Operation**   | **Mode**     | **Sync Type**     | **Supported** | **Billed** |
+|------------------------------------|--------------|-------------------|---------------|-------------|
+| **Set/update profile properties**  | Standard     | Full sync         | ✅            | ❌          |
+|                                    | Standard     | Append            | ✅            | ❌          |
+|                                    | Historical   | Mirror            | ✅            | ✅          |
+| **Unset profile properties**       | Standard     | Full sync         | ❌            | ❌          |
+|                                    | Standard     | Append            | ❌            | ❌          |
+|                                    | Historical   | Mirror            | ✅            | ✅          |
 
 
 You can monitor these different operations in your billing page, where they'll appear as separate line items: Events - Updates, Events - Deletes, User - Updates, and User - Deletes.
