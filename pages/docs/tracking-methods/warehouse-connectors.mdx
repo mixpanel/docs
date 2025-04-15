@@ -656,17 +656,26 @@ Billing varies by operation type and connector mode. The tables below explain ho
 
 **Billing for Event Syncs:**
 
-| **Events Operation**                      | **Sync Type** | **Supported** | **Billed** |
-|-------------------------------------------|---------------|---------------|-------------|
-| **New events (current calendar month)**  | One time      | ✅            | ✅          |
-|                                           | Append        | ✅            | ✅          |
-|                                           | Mirror        | ✅            | ✅          |
-| **Historical events (backfills)**         | One time      | ✅            | ❌          |
-|                                           | Append        | ❌            | ❌          |
-|                                           | Mirror        | ✅            | ❌          |
-| **Updates & deletes**                    | One time      | ❌            | ❌          |
-|                                           | Append        | ❌            | ❌          |
-|                                           | Mirror        | ✅            | ✅          |
+| **Event Operation**                         | **Sync Type** | **Supported** | **Billing** |
+|--------------------------------------|---------------|---------------|-------------|
+| **New events** (current month)       | One time      | ✅            | ✅          |
+|                                      | ---           | ---           | ---         |
+|                                      | Append        | ✅            | ✅          |
+|                                      | ---           | ---           | ---         |
+|                                      | Mirror        | ✅            | ✅          |
+| ---                                  | ---           | ---           | ---         |
+| **Historical events** (backfills)    | One time      | ✅            | ❌          |
+|                                      | ---           | ---           | ---         |
+|                                      | Append        | ❌            | ❌          |
+|                                      | ---           | ---           | ---         |
+|                                      | Mirror        | ✅            | ❌          |
+| ---                                  | ---           | ---           | ---         |
+| **Updates & deletes**                | One time      | ❌            | ❌          |
+|                                      | ---           | ---           | ---         |
+|                                      | Append        | ❌            | ❌          |
+|                                      | ---           | ---           | ---         |
+|                                      | Mirror        | ✅            | ✅          |
+| ---                                  | ---           | ---           | ---         |
 
 **Note on Updates**: If you already have an event in Mixpanel, for example, Event A with properties a,b,c,d but want to:
 
