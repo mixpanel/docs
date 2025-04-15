@@ -658,51 +658,74 @@ Billing varies by operation type and connector mode. The tables below explain ho
 
 | **Data Type** | **Operation**                            | **Sync Type** | **Supported** | **Billing** |
 |---------------|-------------------------------------------|---------------|---------------|-------------|
-| **Events**    | **New events (current calendar month)**   | Append        | ✅            | ✅          |
+| **Events**    | **New events (current calendar month)**  | One time      | ✅            | ✅          |
+|               |                                           | Append        | ✅            | ✅          |
 |               |                                           | Mirror        | ✅            | ✅          |
-|               |                                           | One time      | ✅            | ✅          |
-|               | **Historical events (backfills)**         | Append        | ❌            | ❌          |
+|               | **Historical events (backfills)**         | One time      | ✅            | ❌          |
+|               |                                           | Append        | ❌            | ❌          |
 |               |                                           | Mirror        | ✅            | ❌          |
-|               |                                           | One time      | ✅            | ❌          |
-|               | **Updates & deletes (see below)**         | Append        | ❌            | ❌          |
+|               | **Updates & deletes**                    | One time      | ❌            | ❌          |
+|               |                                           | Append        | ❌            | ❌          |
 |               |                                           | Mirror        | ✅            | ✅          |
-|               |                                           | One time      | ❌            | ❌          |
 
-*Updates & deletes: Examples *
-
-If you already have an event in Mixpanel, for example, Event A with properties a,b,c,d but want to:
+**Note on Updates**: If you already have an event in Mixpanel, for example, Event A with properties a,b,c,d but want to:
 
 - Update the value of property d, or
-- Add another property e with a non-NULL value
+- Add a new property e with a non-NULL value
 
-This will count as a update event for each row in the sync.
+This will count as an update event for each row in the sync.
 
-**User Profile Operations:**
+More info: Our Mirror functionality looks at the current data already uploaded in Mixpanel and uses different approaches (depending on the warehouse) to identify changes performed within your warehouse platform. This is important to consider for your data modeling process within your warehouse. If your warehouse workflow consists of dropping a table and recreating it with a new version of the data, Mirror would idenify this change as ingesting the entire table deleted with each row deleted as a billable event, and the entire table recreated as a new billable event. However, if your workflow keeps the previous version of the data and just appends, updates, and deletes rows, billing will be based only on the new operations as the table above describes.
 
-| Mode | Operation | Impact on Billing |
-|------|-----------|-------------------|
-| **Standard mode (Append)** | Inserts, updates, deletes | Not billed |
-| **History mode (Mirror)** | New profiles in current month | Billed like regular events |
-| **History mode (Mirror)** | Historical profiles | Not billed for past months, similar to events |
-| **History mode (Mirror)** | Updates and deletes | Billed when the operation occurs |
+**Note on Deletes**: If you delete an event using the Mixpanel UI instead of Mirror, it will not be counted as a billable event.
 
-**Note**: Our Mirror functionality looks at the current data in tables and uses different approaches (depending on the platform) to track changes to only perform operations based on those changes. This is important to consider for your data modeling process. If your workflow consists of dropping a table and recreating it with the new version of the data, Mirror would most likely consider everything as deleted and new, which would significantly influence billing. However, if your workflow keeps the previous version of the data and just appends, updates, and deletes rows, billing will be based only on the new operations as the tables above describe.
+**Note on Backfills**: If you already have an event in your Mixpanel project, and you sync in historical events for a past month with the same properties, it will not count towards billing. Otherwise, billing will occur at the time of the event update. Please contact your Account Manager for guidance on historical backfills that may affect billing.
+
+**Note on Mirror**: 
+
+**Billing for User/Group Profiles Syncs**
+
+| **Data Type**           | **Operation**                      | **Mode**     | **Sync Type**     | **Supported** | **Billed** |
+|-------------------------|------------------------------------|--------------|-------------------|---------------|-------------|
+| **User/Group Profiles** | **Set/update profile properties**  | Standard     | Full sync         | ✅            | ❌          |
+|                         |                                    | Standard     | Append            | ✅            | ❌          |
+|                         |                                    | Historical   | Mirror            | ✅            | ✅          |
+|                         | **Unset profile properties**       | Standard     | Full sync         | ❌            | ❌          |
+|                         |                                    | Standard     | Append            | ❌            | ❌          |
+|                         |                                    | Historical   | Mirror            | ✅            | ✅          |
+
 
 You can monitor these different operations in your billing page, where they'll appear as separate line items: Events - Updates, Events - Deletes, User - Updates, and User - Deletes.
 
 ### When should I use Mirror vs. Append mode?
 
 **Use Mirror mode when:**
-- You need to maintain an exact replica of your warehouse data in Mixpanel
+- You want to maintain an exact replica of your warehouse data in Mixpanel
 - You want to automatically sync updates and deletes from your warehouse
 - You need to track the history of user profile changes over time (with History mode)
 
 **Use Append mode when:**
 - You only need to add new data without updating existing records
-- You want to minimize billable operations (as updates and deletes don't count)
 - You have a workflow that frequently drops and recreates tables
 
 For large-scale changes that might significantly impact billing, we recommend consulting with your Account Manager before proceeding.
+
+### What will be the cost impact of this on my DWH?
+
+The DWH cost of using a warehouse connector will vary based on the source warehouse and sync type used. Our connectors use warehouse-specific change tracking to compute modified rows in the warehouse and send only changed data to Mixpanel.
+
+There are 3 aspects of DWH cost: network egress, storage, and compute.
+* **Network Egress**: All data is transferred using gzip compression. Assuming an egress rate of \$0.08 per GB and 100 compressed bytes per event, this is a cost of less than \$0.01 per million events. [Mirror](#mirror) and [Append](#append) syncs will only transfer new or modified rows each time they run. [Full](#full) syncs will transfer all rows every time they run. We recommend using Full syncs only for small tables and running them less frequently.
+* **Storage**: [Append](#append) and [Full](#full) syncs do not store any additional data in your warehouse, so there are no extra storage costs. [Mirror](#mirror) tracks changes using warehouse-specific functionality that can affect warehouse storage costs:
+  * Snowflake: Mirror uses [Snowflake Streams](https://docs.snowflake.com/en/user-guide/streams-intro). Snowflake Streams will [retain historical data](https://docs.snowflake.com/en/user-guide/streams-intro#billing-for-streams) until it is consumed from the stream. As long as the warehouse connector runs regularly data will be consumed regularly and only retained between runs.
+  * BigQuery: Mirror uses [table snapshots](https://cloud.google.com/bigquery/docs/table-snapshots-intro). Mirror keeps one snapshot per table to track the contents of the table from the last run. BigQuery table snapshots have no cost when they are first created as they share the underlying storage with the source table, however as the source table changes [the cost of storing changes is attributed to the table snapshot](https://cloud.google.com/bigquery/docs/table-snapshots-intro#storage_costs). Each time the connector runs the current snapshot is replaced with a new snapshot of the latest state of the table. The storage cost is the amount of changes being tracked between the snapshot and source table between runs.
+  * Databricks: Mirror uses Databricks [Change Data Feed](https://docs.databricks.com/en/delta/delta-change-data-feed.html) and all the changes are retained in databricks for the [delta.logRetentionDuration](https://docs.databricks.com/en/delta/history.html#retrieve-delta-table-history). Configure that window accordingly to keep storage costs low.
+* **Compute**:
+  * Mirror on Snowflake: [Snowflake Streams](https://docs.snowflake.com/en/user-guide/streams-intro) natively track changes, the compute cost of querying for these changes is normally proportional to the amount of changed data.
+  * Mirror on BigQuery: Each time the connector runs it checksums all rows in the source table and compares them to a [table snapshot](https://cloud.google.com/bigquery/docs/table-snapshots-intro) from the previous run. For large tables we highly recommend [partitioning](https://cloud.google.com/bigquery/docs/partitioned-tables) the source table. When the source table is partitioned the connector will skip checksumming any partitions which have not been modified since the last run. For more details see the BigQuery-specific instructions in [Mirror](#mirror).
+  * Mirror on Databricks: Databricks [Change Data Feed](https://docs.databricks.com/en/delta/delta-change-data-feed.html) natively tracks changes to the tables or views, the compute cost of querying these changes is normally proportional to the amount of changed data. Mixpanel recommends using a smaller compute cluster and setting Auto Terminate after 10 minutes of idle time on the compute cluster.
+  * Append: All Append syncs run a query filtered on `insert_time_column > [last-run-time]`, the compute cost is the cost of this query. Partitioning or clustering based on `insert_time_column` will greatly improve the performance of this query.
+  * Full: Full syncs are always a full table scan of the source table to export it.
 
 ### Will I be charged for failed imports or errors?
 
