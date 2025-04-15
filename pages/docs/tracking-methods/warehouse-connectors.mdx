@@ -650,7 +650,7 @@ We add couple of hidden properties `$warehouse_import_id` and `$warehouse_type` 
 
 ## Billing FAQ
 
-### How do different actions impact my billing when using warehouse connectors?
+### What actions impact billing for warehouse connectors?
 
 Billing varies by operation type and connector mode. The tables below explain how each action affects your monthly event volume:
 
@@ -670,8 +670,8 @@ Billing varies by operation type and connector mode. The tables below explain ho
 
 **Note on Updates**: If you already have an event in Mixpanel, for example, Event A with properties a,b,c,d but want to:
 
-- **Update the value of property d,** or
-- **Add a new property e with a non-NULL value**
+- **Update the value** of property d, or
+- **Add a new property** or column e with a non-NULL value
 
 This will count as an update event for each row in the sync.
 
@@ -680,9 +680,7 @@ If your warehouse workflow **drops and recreates tables**, Mirror will treat thi
 If instead your workflow updates existing tables—by appending, updating, or deleting specific rows or columns—only the affected rows will be billed, as shown in the table above.
 **Note on Deletes**: If you delete an event using the Mixpanel UI instead of Mirror, it will not be counted as a billable event.
 
-**Note on Backfills**: If you already have an event in your Mixpanel project, and you sync in historical events for a past month with the same properties, it will not count towards billing. Otherwise, billing will occur at the time of the event update. Please contact your Account Manager for guidance on historical backfills that may affect billing.
-
-**Note on Mirror**: 
+**Note on Backfills**: If you already have an event in your Mixpanel project, and you sync in historical events for a past month with the same properties, it will not count towards billing. Otherwise, billing will occur at the time of the event update.
 
 **Billing for User/Group Profiles Syncs**
 
