@@ -656,7 +656,7 @@ Billing varies by operation type and connector mode. The tables below explain ho
 
 **Billing for Event Syncs:**
 
-| **Events Operation**                      | **Sync Type** | **Supported** | **Billed** |
+| **Event Operation**                        | **Sync Type** | **Supported** | **Billed** |
 |-------------------------------------------|---------------|---------------|-------------|
 | **New events (current calendar month)**  | One time      | ✅            | ✅          |
 |                                           | Append        | ✅            | ✅          |
@@ -664,7 +664,7 @@ Billing varies by operation type and connector mode. The tables below explain ho
 | **Historical events (backfills)**         | One time      | ✅            | ❌          |
 |                                           | Append        | ❌            | ❌          |
 |                                           | Mirror        | ✅            | ❌          |
-| **Updates & deletes**                    | One time      | ❌            | ❌          |
+| **Updates & deletes**                     | One time      | ❌            | ❌          |
 |                                           | Append        | ❌            | ❌          |
 |                                           | Mirror        | ✅            | ✅          |
 
@@ -678,20 +678,22 @@ This will count as an update event for each row in the sync.
 If your warehouse workflow **drops and recreates tables**, Mirror will treat this as a full delete and re-insert, with each row counted as a billable event. Mirror looks at the data already ingested into Mixpanel and uses warehouse-specific logic to identify changes made within your warehouse platform. In the case of a full table delete, Mixpanel will register each deleted row as a billable event, and the same applies when the table is recreated.
 
 If instead your workflow updates existing tables—by appending, updating, or deleting specific rows or columns—only the affected rows will be billed, as shown in the table above.
+
 **Note on Deletes**: If you delete an event using the Mixpanel UI instead of Mirror, it will not be counted as a billable event.
 
 **Note on Backfills**: If you already have an event in your Mixpanel project, and you sync in historical events for a past month with the same properties, it will not count towards billing. Otherwise, billing will occur at the time of the event update.
 
 **Billing for User/Group Profiles Syncs**
 
-| **User/Group Profiles Operation**   | **Mode**     | **Sync Type**     | **Supported** | **Billed** |
+
+| **Profile Operation**              | **Mode**     | **Sync Type**     | **Supported** | **Billed** |
 |------------------------------------|--------------|-------------------|---------------|-------------|
 | **Set/update profile properties**  | Standard     | Full sync         | ✅            | ❌          |
 |                                    | Standard     | Append            | ✅            | ❌          |
-|                                    | Historical   | Mirror            | ✅            | ✅          |
-| **Unset profile properties**       | Standard     | Full sync         | ❌            | ❌          |
+|                                    | History      | Mirror            | ✅            | ✅          |
+| **Remove profile properties**      | Standard     | Full sync         | ❌            | ❌          |
 |                                    | Standard     | Append            | ❌            | ❌          |
-|                                    | Historical   | Mirror            | ✅            | ✅          |
+|                                    | History      | Mirror            | ✅            | ✅          |
 
 
 You can monitor these different operations in your billing page, where they'll appear as separate line items: Events - Updates, Events - Deletes, User - Updates, and User - Deletes.
