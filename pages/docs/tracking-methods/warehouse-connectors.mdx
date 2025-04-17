@@ -679,9 +679,9 @@ If your warehouse workflow **drops and recreates tables**, Mirror will treat thi
 
 If instead your workflow updates existing tables—by appending, updating, or deleting specific rows or columns—only the affected rows will be billed, as shown in the table above.
 
-**Note on Deletes**: If you delete an event using the Mixpanel UI instead of Mirror, it will not be counted as a billable event.
+**Note on Deletes**: If you delete events using [Mixpanel UI](https://docs.mixpanel.com/docs/data-governance/data-clean-up), those deletes are not counted towards billable events. Only Deletes coming from warehouse using mirror are billable.
 
-**Note on Backfills**: If you already have an event in your Mixpanel project, and you sync in historical events for a past month with the same properties, it will not count towards billing. Otherwise, billing will occur at the time of the event update.
+**Note on Backfills**: You can also backfill using `Append` mode if you create a new sync. But for a ongoing sync you cannot backfill for older days with in the existing sync once the `insert_time` has moved past.
 
 **Billing for User/Group Profiles Syncs**
 
