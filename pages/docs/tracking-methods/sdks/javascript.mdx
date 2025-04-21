@@ -947,13 +947,15 @@ Note: This is the only change needed in your existing JavaScript SDK setup to en
 | `record_min_ms` | Minimum length of a single replay in milliseconds. Up to 8 seconds is supported. If a replay does not meet the minimum length, it will be discarded. | `0`<br/>(0 seconds) |
 | `record_sessions_percent` | Percentage of SDK initializations that will qualify for replay data capture. A value of "1" = 1%. | `0` |
 | `record_canvas` | When true, Mixpanel will record snapshots of `<canvas>` elements on your site at up to 15 frames per second | `false` |
-| `record_heatmap_data` | When true, Mixpanel will capture click events during replays to populate heatmaps.  Viewing heatmaps is currently in Beta. | `false` |
+| `record_heatmap_data` | When true, Mixpanel will capture click events during replays to populate Heatmaps.  Viewing Heatmaps is currently in Beta. | `false` |
 
 ### Heatmaps (Beta)
 
-In order to collect data to populate heatmaps, use the `record_heatmap_data` init option.
+In order to collect data to populate Heatmaps, use the `record_heatmap_data` init option.
 
-Note that heatmaps are currently in private, closed beta. For early access, please contact your Account Manager.
+Note: If you already utilize Mixpanel's [autocapture functionality](/docs/tracking-methods/autocapture) to capture clicks, then these clicks can be used to populate Heatmaps.
+
+Note: Heatmaps are currently in private, closed beta. For early access, please contact your Account Manager.
 
 ### Session Replay Methods
 
