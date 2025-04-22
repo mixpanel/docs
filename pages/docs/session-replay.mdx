@@ -90,35 +90,6 @@ The Replay Feed on the left of the player also allows you to:
 - Search for replays by user's name / email, replay date, user ID, or the name of an event in the replay
 - See a feed of events that occurred during each replay
 
-## Heatmaps (Beta)
-
-<Callout type="info">
-  Heatmaps are currently in private, closed beta. For early access, please contact your Account Manager.
-</Callout>
-
-Heatmaps help you visualize user interactions on your web application, showing where users click the most. This feature enables teams to quickly identify areas of high engagement and friction, helping to optimize user experiences and improve conversion rates.
-
-Our initial version of Heatmaps is a click map, which means it specifically tracks clicks on individual site elements rather than just overlaying general activity on a page. This provides more precise insights into which modals, dropdowns, or features that users engage with the most. Future versions may also include hovers, scroll depth, and other interaction types.
-
-Enabling Heatmaps does not affect billing. They are included with the Session Replay add-on and do not generate additional billable events.
-
-###  How It Works
-Heatmaps are powered by Session Replay data and automatically capture click interactions when enabled. Users can generate a Heatmap for specific pages to gain deeper insights into user engagement.
-
-To function, Heatmaps require Session Replay to be enabled, as they rely on session replay data to track and visualize user clicks.
-
-Heatmaps only capture data during sessions with recorded replays. If a page has limited replay coverage, the Heatmap may not offer meaningful insights.
-
-### Implementation
-Ensure you have Session Replay set up, and [click interaction tracking enabled](/docs/tracking-methods/sdks/javascript#heatmaps-beta). Session Replays are required for Heatmaps to work.
-
-If you currently use [Autocapture](/docs/tracking-methods/autocapture) to track clicks, you can leverage these clicks to populate the Heatmaps.
-
-### Using Heatmaps
-1. From the Home page, find the Heatmaps section
-2. Choose a URL where you want to analyze user interactions.
-3. To easily navigate back to a created Heatmap, you can click the title to rename the Heatmap
-
 ## FAQ
 
 #### What happens when I reach my Session Replay limit?
