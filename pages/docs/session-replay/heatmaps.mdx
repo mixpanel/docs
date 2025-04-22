@@ -22,9 +22,19 @@ To function, Heatmaps require Session Replay to be enabled, as they rely on sess
 Heatmaps only capture data during sessions with recorded replays. If a page has limited replay coverage, the Heatmap may not offer meaningful insights.
 
 ### Implementation
-Ensure you have Session Replay set up(see [developer guide on implementing Session Replay](/docs/session-replay/implement-session-replay/session-replay-web)), and [Autocapture](/docs/tracking-methods/autocapture) with click interaction tracking enabled. Session Replays are required for Heatmaps to work.
 
-If you currently use [Autocapture](/docs/tracking-methods/autocapture) to track clicks, you can leverage these clicks to populate the Heatmaps.
+Ensure you have Session Replay set up(see [developer guide on implementing Session Replay](/docs/session-replay/implement-session-replay/session-replay-web)), with the `record_heatmap_data` set to `true`. 
+
+**Example Usage**
+
+```javascript Javascript
+mixpanel.init('YOUR_PROJECT_TOKEN', {
+  record_sessions_percent: 1, // Session Replay enabled, recording 1% of all sessions
+  record_heatmap_data: true   // Enable Heatmap data collection
+});
+```
+
+If you currently use [Autocapture](/docs/tracking-methods/autocapture) to track clicks, you can leverage these clicks to populate the Heatmaps without the `record_heatmap_data` init option.
 
 **Example Usage**
 
@@ -41,7 +51,17 @@ mixpanel.init('YOUR_PROJECT_TOKEN', {
   record_sessions_percent: 1 // Session Replay enabled, recording 1% of all sessions
 });
 ```
+
 ### Using Heatmaps
+
 1. From the Home page, find the Heatmaps section
-2. Choose a URL where you want to analyze user interactions.
-3. To easily navigate back to a created Heatmap, you can click the title to rename the Heatmap
+
+![heatmap_home.png](/heatmap_home.png)
+
+2. Choose a URL where you want to analyze user interactions and generate a Heatmap.
+
+![heatmap_sample.png](/heatmap_sample.png)
+
+3. To easily navigate back to a created Heatmap, you can click the title to rename the Heatmap.
+
+![heatmap_rename.png](/heatmap_rename.png)
