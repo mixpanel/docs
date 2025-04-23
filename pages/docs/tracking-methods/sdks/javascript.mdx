@@ -953,7 +953,7 @@ Customize the Replay capture behavior using the library init options outlined be
 | `record_min_ms` | Minimum length of a single replay in milliseconds. Up to 8 seconds is supported. If a replay does not meet the minimum length, it will be discarded. | `0`<br/>(0 seconds) |
 | `record_sessions_percent` | Percentage of SDK initializations that will qualify for replay data capture. A value of "1" = 1%. | `0` |
 | `record_canvas` | When true, Mixpanel will record snapshots of `<canvas>` elements on your site at up to 15 frames per second | `false` |
-| `record_heatmap_data` | When true, Mixpanel will capture click events during replays to populate Heatmaps.  Viewing Heatmaps is currently in Beta. | `false` |
+| `record_heatmap_data` | When true, Mixpanel will capture click events during replays to populate Heatmaps. Viewing Heatmaps is currently in Beta. | `false` |
 
 
 ### Manual Capture
@@ -997,11 +997,40 @@ mixpanel.get_session_replay_url()
 ```
 ### Heatmaps (Beta)
 
-In order to collect data to populate Heatmaps, use the `record_heatmap_data` init option.
+<Callout type="info">
+Heatmaps are currently in private, closed beta. For early access, please contact your Account Manager.
+</Callout>
 
-Note: If you already utilize Mixpanel's [autocapture functionality](/docs/tracking-methods/autocapture) to capture clicks, then these clicks can be used to populate Heatmaps.
+Enable [Heatmaps](/docs/session-replay/heatmaps) data collection by setting `record_heatmap_data` to `true` during library initialization.
 
-Note: Heatmaps are currently in private, closed beta. For early access, please contact your Account Manager.
+Ensure Session Replay is enabled, as Heatmaps only collect data during sessions with recorded replays. If a page has limited replay coverage, the resulting Heatmap may provide limited or less meaningful insights.
+
+**Example Usage**
+
+```javascript Javascript
+mixpanel.init('YOUR_PROJECT_TOKEN', {
+  record_sessions_percent: 1, // Session Replay must be enabled for Heatmap
+  record_heatmap_data: true   // Enable Heatmap data collection
+});
+```
+
+If you use [Autocapture](/docs/tracking-methods/autocapture) to track clicks, you can leverage these clicks to populate the Heatmaps without setting the `record_heatmap_data` option during library initialization.
+
+**Example Usage**
+
+```javascript Javascript
+mixpanel.init('YOUR_PROJECT_TOKEN', {
+  autocapture: {
+    pageview: "full-url",
+    click: true, // click tracking enabled
+    input: true,
+    scroll: true,
+    submit: true,
+    capture_text_content: false,
+  },
+  record_sessions_percent: 1 // Session Replay enabled, recording 1% of all sessions
+});
+```
 
 ## Release History
 [See All Releases](https://github.com/mixpanel/mixpanel-js/releases).

@@ -157,6 +157,45 @@ mixpanel.get_session_replay_url();
 // https://mixpanel.com/projects/replay-redirect?replay_id=19307d78e24394fe15-0cd98d8fd9ad1d-1f525636-4b9600-19307d78e28194fe15&distinct_id=123&token=my-project-token
 ```
 
+## Heatmaps (Beta)
+
+<Callout type="info">
+Heatmaps are currently in private, closed beta. For early access, please contact your Account Manager.
+</Callout>
+
+To supplement your Session Replay data, enable [Heatmaps](/docs/session-replay/heatmaps) data collection. The current Heatmap functions as a click map, tracking user interactions with individual site elements.
+
+Enable Heatmap data collection by setting `record_heatmap_data` to `true` during library initialization.
+
+Ensure Session Replay is enabled, as Heatmaps only collect data during sessions with recorded replays. If a page has limited replay coverage, the resulting Heatmap may provide limited or less meaningful insights.
+
+**Example Usage**
+
+```javascript Javascript
+mixpanel.init('YOUR_PROJECT_TOKEN', {
+  record_sessions_percent: 1, // Session Replay must be enabled for Heatmap
+  record_heatmap_data: true   // Enable Heatmap data collection
+});
+```
+
+If you use [Autocapture](/docs/tracking-methods/autocapture) to track clicks, you can leverage these clicks to populate the Heatmaps without setting the `record_heatmap_data` option during library initialization.
+
+**Example Usage**
+
+```javascript Javascript
+mixpanel.init('YOUR_PROJECT_TOKEN', {
+  autocapture: {
+    pageview: "full-url",
+    click: true, // click tracking enabled
+    input: true,
+    scroll: true,
+    submit: true,
+    capture_text_content: false,
+  },
+  record_sessions_percent: 1 // Session Replay enabled, recording 1% of all sessions
+});
+```
+
 ## Debugging
 
 <Callout type="info">
