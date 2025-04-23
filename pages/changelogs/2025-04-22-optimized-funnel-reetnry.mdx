@@ -1,0 +1,27 @@
+---
+title: "Optimized Funnel Re-entry"
+slug: "changelog-2025-04-22-optimized-funnel-reentry"
+hidden: false
+createdAt: "2025-04-22T19:59:02.165Z"
+updatedAt: "2025-04-22T19:59:02.165Z"
+date: "2024-04-22"
+video: "https://www.loom.com/share/a3a6c641dc9d4eb8851d066c010c6c1a?sid=5196e0c1-828e-4c45-bc1c-433353149806"
+description: "Mixpanel's new funnel re-entry mode guarantees the ability to find a funnel conversion if a conversion exists, irrespective of if it's the user's first or fifth attempt to enter the funnel."
+isAnnouncement: false
+---
+
+<ChangelogPostHeader
+  date="2025-04-16"
+  title="Funnel Optimized Reentry"
+/>
+
+When Optimized Re-entry mode is enabled, we actively evaluate all funnel entry attempts - even if the user’s previous funnel is still in progress. This allows us to capture potential conversions which might occur from subsequent entries, maximizing total conversions. If any user funnel entries within the report date range result in a conversion, we count the user as converted.
+
+With this mode, we are able to answer 
+- How many unique users converted irrespective of if it was their first attempt or not? 
+- How many total conversions were there, while counting simultaneous ongoing funnels? 
+- Which webpages led to dropoffs? 
+
+Learn more in our [help docs](https://docs.mixpanel.com/docs/reports/funnels/funnels-advanced#optimized-re-entry)
+
+<VideoButtonWithModal src="https://www.loom.com/embed/a3a6c641dc9d4eb8851d066c010c6c1a?sid=5196e0c1-828e-4c45-bc1c-433353149806"/>
