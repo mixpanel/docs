@@ -33,6 +33,80 @@ When *any* Mixpanel GTM tag fires, it automatically tries to initialize a new in
 
 This way the user doesn't need to worry about initialization. They just need to make sure that the Initialization Options are configured consistently across the tags.
 
+#### Custom Initialization Options
+
+To add initialization options for capabilities like [session replay](https://docs.mixpanel.com/docs/tracking-methods/sdks/javascript#implementation--sampling) (`record_sessions_percent`)or [heatmaps](https://docs.mixpanel.com/docs/tracking-methods/sdks/javascript#heatmaps-beta) (`record_heatmap_data`) to Google Tag Manager:
+
+1\. Add a new tag in GTM and choose the Mixpanel tag type
+
+2\. For Project Token field, enter your Mixpanel project token
+
+3\. For Tag Type select init from the dropdown
+
+4\. For Initialization choose Set Options Manually
+
+5\. In the Option key / Option value section, add the relevant key-value pair according to your needs (e.g.; `record_heatmap_data` as the key and set a boolean value of `true`)
+
+6\. For the Triggering section, choose an early GTM lifecycle event like Initialization \- All Pages or Consent Initialization \- All Pages
+
+#### GTM with custom Autocapture initialization options
+
+To use [autocapture initialization options](https://docs.mixpanel.com/docs/tracking-methods/sdks/javascript#autocapture) like `capture_extra_attrs` with GTM, you'll need to create a custom JavaScript variable in GTM and then use that variable for your autocapture configuration. Here's how to do it:
+
+##### **1\. Create a Custom JavaScript Variable in GTM**
+
+First, create a Custom JavaScript variable that returns the autocapture configuration object:
+
+1\. In GTM, go to Variables \> User-Defined Variables \> New
+
+2\. Choose "Custom JavaScript" as the variable type
+
+3\. Add code that returns the autocapture configuration object, including the `capture_extra_attrs` option
+
+For example, the Custom JavaScript variable might look like this:
+
+```
+function() {
+
+ return {
+
+   pageview: "full-url",
+
+   click: true,
+
+   input: true,
+
+   scroll: true,
+
+   submit: true,
+
+   capture_extra_attrs: \['data-cta-name', 'data-cta-position'\]
+
+ };
+
+}
+```
+
+##### **2\. Use the Variable in Your Mixpanel Tag**
+
+Once the custom variable is created:
+
+1\. Edit the Mixpanel initialization tag in GTM
+
+2\. For the Autocapture option, instead of selecting "Enabled" or "Disabled" from the dropdown, select the custom JavaScript variable
+
+##### **3\. Verify Your Implementation**
+
+After setting up the tag with the custom variable:
+
+1\. Use GTM's preview mode to verify that the tag is firing correctly
+
+2\. Check in the browser's developer console that the Mixpanel configuration includes the custom autocapture settings
+
+3\. Verify in Mixpanel that the extra attributes are being captured with your events
+
+This approach allows for customized autocapture options beyond the simple enabled/disabled toggle that's available in the standard GTM template interface.
+
 ### Sending Mixpanel Commands
 
 After adding the **Project Token** to its respective field, you need to choose what **type** of tag to use. Each type corresponds with some command you can use with the Mixpanel JS API.
