@@ -37,8 +37,8 @@ Mixpanel supports five data types for properties: String, Numeric, Boolean, Date
 
 - A list of values as a JSON array e.g. Favorite Genres = `["Folk","Alternative"]` or Favorite Numbers = `[1,5,10.0]`
 - Limits of a List property: Event Property = 8KB, User Profile Property = 256KB
-- Each item in a list would be further limited by their data type's limits; example: a list of strings would be limited by 255 bytes per string. Also refer to [List of Objects](/docs/data-structure/property-reference#list-of-objects) covered below.
-- Mixpanel lists are not ordered (i.e. position of values in a list are not significant in Mixpanel reports) and are useful for grouping or analyzing similar values across events. Read more details on [List Property Support](/docs/features/advanced#list-property-support) in reports.
+- Each item in a list would be further limited by their data type's limits; example: a list of strings would be limited by 255 bytes per string. Also refer to [List of Objects](/docs/data-structure/property-reference/data-type#list-of-objects-property-support) covered below.
+- Mixpanel lists are not ordered (i.e. position of values in a list are not significant in Mixpanel reports) and are useful for grouping or analyzing similar values across events. Read more details on [List Property Support](/docs/data-structure/property-reference/data-type#list-property-support) in reports.
 - Note: Editing of list properties is not supported directly within the Mixpanel UI. To modify list properties, you must use the [Mixpanel API](https://developer.mixpanel.com/reference/profile-set) or one of our SDKs.
 
 
@@ -276,7 +276,8 @@ In each case, the object will have multiple properties, such as "price" and "bra
     ]
 }
 ```
-> The list of objects property support will be limited to the first 5 objects within the list property. Customers on a paid plan may submit a request for approval to increase the limit by opening a support ticket.
+
+Projects with fewer than 100 million events per month can include up to 20 objects per list. For projects exceeding this threshold, the system supports only the first 5 objects in each list. Customers on a paid plan may request a limit increase by [submitting a support ticket](https://mixpanel.com/get-support).
 
 ### Breakdown and Filter
 List of objects can be used like other properties in Mixpanel. Upon selecting a list of objects property, you will be prompted to select another property common to the objects in the list. Usage in measurements, filters, and breakdowns follows the same behavior as other [list properties](/docs/data-structure/property-reference/data-type#list-property-support).
@@ -309,9 +310,9 @@ Undefined values are seen when one or more of the events being measured in a que
 
 There are several reasons why you might see "undefined" values throughout Mixpanel reports when segmenting:
 
-- ***The specific property you’re segmenting by isn’t always sent along with the event you’re analyzing.*** For example, let’s say you’re segmenting the event “App Open” by the property “Account type” If there are instances where App Open fires without the Account type property getting sent with it, these will be categorized as “undefined” when you segment by Account type. Another common example is UTM parameters - “undefined” represents users who fired an event without any UTM in the URL that brought the user to your site.
-- When segmenting an event by a User Profile property, ***you’ll see “undefined” if there are User Profile profiles that don’t contain that property or if the event was triggered by a user without a User Profile at all.*** For example, let’s say you’re segmenting the event “Song Play” by the User Profile property “Favorite Genre.” If there are profiles that have triggered Song Play but don’t have the Favorite Genre property, that value will be “undefined.” Triggers of Song Play by users without a User Profile will also show up under “undefined.”
-- ***For geolocation data (City, Region, Country), the user’s IP couldn’t be mapped to a location, or their IP was not included with the request.*** For JavaScript implementations, City, Region, and Country are [default properties](/docs/data-structure/property-reference/default-properties). However, if the IP address of the user is not in Mixpanel’s geolocation database and can’t be mapped to a city, region, or country, they will be “undefined” in reports. For server-side implementations, City, Region, and Country can be “undefined” if the IP address is not included with the request. [Read more about how Mixpanel maps IP to location.](/docs/tracking-best-practices/geolocation)
+- ***The specific property you are segmenting by is not always sent along with the event you are analyzing. ***For example, let’s say you are segmenting the event “App Open” by the property “Account type” If there are instances where App Open fires without the Account type property getting sent with it, these will be categorized as “undefined” when you segment by Account type. Another common example is UTM parameters - “undefined” represents users who fired an event without any UTM in the URL that brought the user to your site.
+- When segmenting an event by a User Profile property, ***you’ll see “undefined” if there are User Profile profiles that do not contain that property or if the event was triggered by a user without a User Profile at all.*** For example, let’s say you’re segmenting the event “Song Play” by the User Profile property “Favorite Genre.” If there are profiles that have triggered Song Play but don’t have the Favorite Genre property, that value will be “undefined.” Triggers of Song Play by users without a User Profile will also show up under “undefined.”
+- ***For geolocation data (City, Region, Country), the user’s IP could not be mapped to a location, or their IP was not included with the request.*** For JavaScript implementations, City, Region, and Country are [default properties](/docs/data-structure/property-reference/default-properties). However, if the IP address of the user is not in Mixpanel’s geolocation database and can’t be mapped to a city, region, or country, they will be “undefined” in reports. For server-side implementations, City, Region, and Country can be “undefined” if the IP address is not included with the request. [Read more about how Mixpanel maps IP to location.](/docs/tracking-best-practices/geolocation)
 
 **Null**
 
@@ -319,7 +320,7 @@ There are several reasons why you might see "undefined" values throughout Mixpan
 
 #### Remove “undefined” & "null" values from reports
 
-If you don’t want to see “undefined” or "null" values in your report, you can remove them by:
+If you do not want to see “undefined” or "null" values in your report, you can remove them by:
 
 1. Unchecking the “undefined/null” box in the visualization legend.
 2. Looking only at instances where the property in question “is set" - this will exclude values where you see "undefined" or "null":
