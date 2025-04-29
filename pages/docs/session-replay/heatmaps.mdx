@@ -54,7 +54,7 @@ mixpanel.init('YOUR_PROJECT_TOKEN', {
 
 ### Using Heatmaps
 
-1. From the Home page, find the Heatmaps section
+1. From the Home page, find the Heatmaps section.
 
 ![heatmap_home.png](/heatmap_home.png)
 
@@ -65,3 +65,13 @@ mixpanel.init('YOUR_PROJECT_TOKEN', {
 3. To easily navigate back to a created Heatmap, you can click the title to rename the Heatmap.
 
 ![heatmap_rename.png](/heatmap_rename.png)
+
+4. Rotate through backdrops to view different states of your application for the same URL.
+
+![heatmap_backdrops.png](/heatmap_backdrops.png)
+
+### Backdrops
+
+Backdrops are snapshots of your application in various states (such as a modal open, a menu expanded, or different page layouts). Backdrops are pulled from session replays that match the URL you’re analyzing, helping you understand how different views or UI states affect user interactions.
+
+Backdrops are subject to the same retention policies as your session replays. Once a session replay expires, it can no longer be used as a backdrop. If you don't see enough backdrops (or can't find the specific view or state you're looking for), consider increasing your session replay sampling rate to capture a wider set of application states.
