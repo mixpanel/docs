@@ -104,6 +104,10 @@ Currently, each organization has a limit of 50 active Anomaly Detection Alerts. 
 
 By setting up Anomaly Detection Alerts in Mixpanel, you can gain valuable insights into unusual patterns in your metrics and take proactive actions based on detected anomalies. Stay ahead of potential issues and leverage data-driven decision-making with Anomaly Detection Alerts.
 
+**Rounding in alert messages**
+
+When displaying decimal values, the current value shown in alert messages is rounded to 2 decimal places.  This can make it appear to be outside the alert range when it is very close to the boundary.  However, the actual alert is always checked against the full unrounded value.
+
 ## Root Cause Analysis
 
 Mixpanel's Root Cause Analysis (RCA) feature analyzes the properties of unexpected events and automatically generates a Board with reports broken down by relevant properties so you can search for the underlying cause of any unexpected data point or fired alert.
