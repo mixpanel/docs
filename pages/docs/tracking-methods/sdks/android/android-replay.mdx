@@ -135,6 +135,8 @@ Currently, there are three config options:
 | [`recordSessionsPercent`](https://github.com/mixpanel/mixpanel-android-session-replay/blob/13c5726c9573e329120959025cfd6b06b5b3d888/mixpanel-android-session-replay/src/main/java/com/mixpanel/mixpanel_android_session_replay/models/MPSessionReplayConfig.kt#L11) | This is a value between `0.0` and `100.0` that controls the sampling rate for recording session replays. <br/> At `0.0` no sessions will be recorded. At `100.0` all sessions will be recorded.  | `0.0` |
 | [`autoMaskedViews`](https://github.com/mixpanel/mixpanel-android-session-replay/blob/13c5726c9573e329120959025cfd6b06b5b3d888/mixpanel-android-session-replay/src/main/java/com/mixpanel/mixpanel_android_session_replay/models/MPSessionReplayConfig.kt#L12) | This is a `Set` of enum options for the types of views that should be masked by the SDK automatically. | `Image`, `Text`, and `Web` |
 
+Note: automasking is supported for apps built with XML-based layouts. For apps using Jetpack Compose, automasking is not yet fully supported. Manual masking controls offer complete functionality, but developers should test carefully to confirm that masking behaves as expected.
+
 **Example Usage**
 
 ```kotlin Kotlin
