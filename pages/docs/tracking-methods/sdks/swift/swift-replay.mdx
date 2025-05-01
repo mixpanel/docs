@@ -159,6 +159,8 @@ Currently, there are four config options:
 | [`autoMaskedViews`](https://github.com/mixpanel/mixpanel-ios-session-replay/blob/e3d9edd6c68fc027b5217ef42dd2bd0234b8262e/MixpanelSessionReplay/MixpanelSessionReplay/Models/MPSessionReplayConfig.swift#L47) | This is a `Set` of enum options for the types of views that should be masked by the SDK automatically. | `Image`, `Text`, and `Web` |
 | [`autoCapture`](https://github.com/mixpanel/mixpanel-ios-session-replay/blob/e3d9edd6c68fc027b5217ef42dd2bd0234b8262e/MixpanelSessionReplay/MixpanelSessionReplay/Models/MPSessionReplayConfig.swift#L57) | This an enum to selectively disable the runtime method replacement functionality (aka “swizzling") in the event that it conflicts with another SDK (like [New Relic](https://docs.newrelic.com/docs/mobile-monitoring/new-relic-mobile-ios/get-started/new-relic-ios-compatibility-requirements/#method)) | `.enabled` |
 
+Note: automasking is supported for apps using UIKit. If you’re using SwiftUI, automasking is not yet fully supported. However, full masking functionality is still available through manual masking controls. We recommend developers test their implementations thoroughly to ensure sensitive data is properly masked.
+
 **Example Usage**
 
 ```swift Swift
