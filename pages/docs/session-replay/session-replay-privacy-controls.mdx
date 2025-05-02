@@ -1,13 +1,15 @@
-# Session Replay for Web Privacy Controls
+import { Tabs } from 'nextra/components'
+
+# Session Replay Privacy Controls
 **Last updated July 30th, 2024**
 
-## Introduction to Session Replay for Web
+## Introduction to Session Replay
 
-Mixpanel offers a privacy-first approach to Session Replay, including features such as data masking. Mixpanel’s Web Session Replay privacy controls were designed to assist customers in protecting end user privacy.
+Mixpanel offers a privacy-first approach to Session Replay, including features such as data masking. Mixpanel's Session Replay privacy controls were designed to assist customers in protecting end user privacy.
 
 Data privacy regulations are rapidly evolving and vary considerably across states and countries. A consistent requirement across many data privacy regulations for website operators is disclosing to end users that their personal information is being collected, often in a privacy notice. Before implementing Session Replay on your website, a best practice is to review your privacy notice with legal counsel to ensure it remains accurate and compliant with data privacy laws. 
 
-## How does Session Replay (Web) work?
+## How does Session Replay work?
 
 Session Replay for Web captures the Document Object Model (DOM) structure and changes to it. Mixpanel then reconstructs the web page, applying recorded events at the time an end user completed them. Within Mixpanel’s platform, you can view a reconstruction of your end user’s screen as they navigate your website. However, Session Replay for Web is not a video recording of your end user’s screen and end user actions are not literally video-recorded.
 
@@ -20,7 +22,7 @@ Masked data is suppressed client-side, meaning it is not collected in its origin
 Blocked data is similarly suppressed client-side, meaning it is not collected in its original form by Mixpanel’s SDK, and the data is not stored on Mixpanel servers. However, blocked elements will be rendered with a placeholder element (e.g., an empty box of similar size). 
 
 Note: interactions (such as mouse-clicks) with blocked and masked elements are still captured by Session Replay for Web.
-
+  
 ## Configuring Privacy Controls
 
 By default, Mixpanel masks and/or blocks the most common elements that contain content like input text, non-input text, images, and videos. However, Mixpanel also offers its customers a range of privacy controls to choose to unmask / unblock elements as needed, which are detailed further on this page. 
@@ -34,6 +36,7 @@ By default, Mixpanel masks and/or blocks the most common elements that contain c
 Other elements not listed in this table are captured by default, and can be blocked at your discretion. You can specify a CSS selector under the config option `record_block_selector` to block all elements which match the selector.
 
 ## How to mask and block elements
+
 - To mask text, add the class name “.mp-mask.” Masked content is replaced with [****]
 - To block elements containing text entirely, add the class name “.mp-block.” Blocked content will be rendered with a placeholder element
 - Specify a CSS selector `record_mask_text_selector` to mask all text in elements that match the selector
@@ -55,23 +58,23 @@ mixpanel.init(YOUR_PROJECT_TOKEN, {record_block_selector: '.sensitive-data'})
 
 ## Disabling Replay Collection 
 
-Once enabled, Session Replay runs on your website until either:
-- The user leaves your site
+Once enabled, Session Replay runs on your website/app until either:
+- The user leaves your website/app
 - The user is inactive for more than 30 minutes
-- You call mixpanel.stop_session_recording()
+- You call manually stop a session recording using an SDK method.
 
-Call mixpanel.stop_session_recording() before a user navigates to a restricted area of your site to disable replay collection while the user is in that area. To restart replay collection, call `mixpanel.start_session_recording()` to re-add the plugin.
+Call `mixpanel.stop_session_recording()` before a user navigates to a restricted area of your site to disable replay collection while the user is in that area. To restart replay collection, call `mixpanel.start_session_recording()` to re-add the plugin.
 
 ## Additional Considerations
 WebComponents that utilize HTML attributes may be ingested and stored by Session Replay for Web, regardless of whether they are displayed in an individual recording as text. Customers should utilize the block functionality outlined above to the extent specific areas of a webpage should not be ingested.
 
 ## User Opt-Out
 
-Mixpanel’s Session Replay for Web follows Mixpanel’s [standard SDK opt-out setting](/docs/privacy/end-user-data-management#opt-out-users).
+Session Replay follows [standard SDK opt-out setting](/docs/privacy/end-user-data-management#opt-out-users). If a user is opted out of regular SDK tracking, they will also be opted out of Session Replay recording.
 
 ## Data Deletion
 
-Deletion requests for Session Replay for Web use Mixpanel’s standard end user management process for events documented [here](/docs/privacy/end-user-data-management).
+Deletion requests for Session Replay for Web use Mixpanel's standard end user management process for events documented [here](/docs/privacy/end-user-data-management).
 
 ## Data Retention
 

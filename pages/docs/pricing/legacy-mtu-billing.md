@@ -34,6 +34,7 @@ Certain events and API updates are non-qualifying and excluded from the MTU calc
 - Message Suppressed (`$message_suppressed`)
 - Message Unsubscribed (`$unsubscribe`)
 - Campaign Entered (`$journey_entered`)
+- Experiment Started (`$experiment_started`)
 - Mailchimp Campaign - Open
 - Mailchimp Campaign - Click
 - Mailchimp Campaign - Sent
