@@ -10,7 +10,7 @@ Use this API to send batches of events from your servers to Mixpanel.
 
 ## Request Format
 
-Each request ingests a batch of events into Mixpanel. We accept up to 2000 events and 2MB uncompressed per request. Events are part of the request body. 
+Each request ingests a batch of events into Mixpanel. We accept up to 2000 events and 10MB uncompressed per request. Events are part of the request body. 
 
 We support Content-Type `application/json` or `application/x-ndjson`:
 
