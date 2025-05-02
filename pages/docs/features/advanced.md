@@ -446,64 +446,6 @@ Comparisons are supported across all insights chart types. Depending on the exac
 | Retention Curve | No | Yes | No |
 | Retention Trends | Yes | Yes | No |
 
-## Limits and Ordering
-
-### Summary
-
-In order to keep the interactive analysis experience snappy for projects of all sizes, we've made 2 changes:
-
-- Added maximum limits to how many segments are returned when breaking down a metric by properties
-- Changed the logic for the top segments that are returned
-
-### Limits
-
-### UI
-
-We're changing how many segments are returned back to the report (**visible limit**), how many segments can be selected at a time for visualization (**selection limit**) as well as the number of segments selected by default (**default selection**).
-
-Here's the breakdown per report + visualization type:
-
-| Report Viz | Default Selection | Selection Limit | Visible Limit |
-| --- | --- | --- | --- |
-| Insights (bar) | 12 | 300 | 3000 |
-| Insights (line) | 12 | 50 | 3000 |
-| Retention | 6 | 12 | 200 |
-| Funnels | 6 | 12 | 200 |
-
-### Downloaded CSV and API
-
-When downloading results as CSV or when querying our APIs, the limits remain unchanged.
-
-### Top Segments logic
-
-The way we pick the top segments differs according to the type of query. We choose the top segments based on the value shown in the second column.
-
-| Query type | How we select top segments |
-| --- | --- |
-| Total | Total number of occurrences of the chosen event |
-| Unique | Number of unique users who performed the chosen event |
-| Sum of property values | Sum of the chosen property |
-| Min/max of property values | Lowest/highest value of the chosen property |
-| Average | Number of events (or users) that contribute to the average |
-| Median/Percentile/Distribution | Number of events (or users) that contribute to the distribution |
-| Distinct count | Number of distinct values of the chosen property |
-| DAU/WAU/MAU | Number of unique users |
-| Sessions | Number of sessions that contain the chosen event |
-| Funnels | Total number of times the first funnel step was completed |
-| Retention | Total number of times the first event was completed |
-
-### FAQ
-
-**How will I know if my results are being pruned?**
-
-You will see an indication like this:
-
-![image](https://github.com/mixpanel/docs/assets/2077899/3935993c-0410-46e4-a9d6-2d2dfb5313cd)
-
-**Does this mean the downloaded CSV has lower limits?**
-
-No, limits for CSV downloads remain unchanged across Insights, Funnels, and Retention.
-
 ## Analyzing First Time Users
 
 Sometimes, you might want to filter an event to only the first time that it's performed by a user. This helps answer the following questions:

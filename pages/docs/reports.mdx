@@ -247,3 +247,61 @@ Or alternatively, if you'd like to see the exact numeric values you can typecast
 This is a period of continuous user activity. Use Sessions in Mixpanel to track which events users perform within a session, how many sessions contained a key action or how many sessions it takes for a user to convert in a funnel. [Learn more](/docs/features/sessions).
 
 ![/Screen_Shot_2022-07-11_at_3.27.25_PM.png](/Screen_Shot_2022-07-11_at_3.27.25_PM.png)
+
+## Segment Limits and Ordering
+
+In order to keep the interactive analysis experience snappy for projects of all sizes, Mixpanel limits how many segments are returned when using breakdowns. When breakdown (also referred to as segmentation) limits are reached, the response will be truncated to only return the top N segments. We have higher limits available via CSV exports.
+
+### **UI**
+
+We’re changing how many segments are returned back to the report (visible limit), how many segments can be selected at a time for visualization (selection limit) as well as the number of segments selected by default (default selection).
+
+Here’s the breakdown per report visualization type:
+
+| **Report Viz** | **Default Selection** | **Selection Limit** | **Visible Limit** |
+| --- | --- | --- | --- |
+| Insights (table) | 12 | 3000 | 3000 |
+| Insights (bar) | 12 | 300 | 3000 |
+| Insights (line & pie) | 12 | 50 | 3000 |
+| Insights (metric, column) | 6 | 12 | 3000 |
+| Retention | 6 | 12 | 200 |
+| Funnels | 6 | 12 | 200 |
+
+### **CSV Export**
+
+When exporting a report as CSV, we offer elevated limits. For most reports, the CSV export limit is 10,000. For insights non-line charts, we allow for up-to 50,000.
+
+### **Top Segments logic**
+
+The way we pick the top segments differs according to the type of query. We choose the top segments based on the value shown in the metric value column.
+
+| **Query type** | **How we select top segments** |
+| --- | --- |
+| Total | Total number of occurrences of the chosen event |
+| Unique | Number of unique users who performed the chosen event |
+| Sum of property values | Sum of the chosen property |
+| Min/max of property values | Lowest/highest value of the chosen property |
+| Average | Number of events (or users) that contribute to the average |
+| Median/Percentile/Distribution | Number of events (or users) that contribute to the distribution |
+| Distinct count | Number of distinct values of the chosen property |
+| DAU/WAU/MAU | Number of unique users |
+| Sessions | Number of sessions that contain the chosen event |
+| Funnels | Total number of times the first funnel step was completed |
+| Retention | Total number of times the first event was completed |
+
+### Multi-metric and formula reports
+
+Since our top N logic is determined per metric, multi-metric and formula reports that have breakdowns that exceed segment cardinality limits may experience a few awkward edge cases where the different metrics’ top N segments are misaligned. We highly recommend using filters to bring your segment count under our cardinality limit to ensure the same segments are selected across metrics - ensuring formula accuracy and a more user friendly report viewing experience. You may also wish to use CSV exports for these cases.
+
+### Multi-breakdown reports
+
+For multi-segmentation or multi-breakdowns, we define top N segments based on the top N flattened segments, which is the combination of the individual segment values across all breakdowns. For example, for a breakdown by Country and Browser, we treat “United States/Chrome” as one flattened segment for the purpose of our segmentation limits. 
+
+### How will I know if my results are being truncated?
+
+You will see a banner at the top of your report indicating that results were truncated, what limit was applied and what CSV export limit is available.
+
+![image](/Segment_limits.png)
+
+
+
