@@ -467,6 +467,10 @@ $border-radius-lg: 100px;
   opacity: 1 !important;
 }
 
+._max-w-\[90rem\] {
+  max-width: 100% !important;
+}
+
 // Add image frame styling to prevent layout-reflow and match custom layout image styling (changelog) with nextra layout
 
 article {
@@ -509,9 +513,7 @@ article {
         margin-top: 1rem;
       }
     }
-
   }
-
 }
 
 //##############################Light Theme Starts Here##################################
