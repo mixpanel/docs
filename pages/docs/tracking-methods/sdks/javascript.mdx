@@ -145,7 +145,7 @@ mixpanel.init('YOUR_PROJECT_TOKEN', {
     autocapture: false
 });
 ```
-Note that disabling Autocapture does not disable Session Replay, which is [configured separately](https://docs.mixpanel.com/docs/tracking-methods/sdks/javascript#session-replay).
+Note that disabling Autocapture does not disable Session Replay, which is [configured separately](/docs/tracking-methods/sdks/javascript#session-replay).
 
 **Autocapture Init Options**
 | Option | Description | Default | 
@@ -209,16 +209,14 @@ On Autocapture events, Mixpanel default-tracks the following properties:
 
 
 ## Sending Events
-The Javascript SDK provides a few different methods to send event data to your project. Calling any of the event tracking methods below will generate an event payload, then trigger a request to the [/track API endpoint](https://developer.mixpanel.com/reference/track-event) to ingest the event into your project.
-
-All events sent from the JavaScript library will be sent over HTTPS.
 
 <Callout type="info">
     The [/track endpoint](https://developer.mixpanel.com/reference/track-event) will only validate events with timestamps within the last 5 days of the request. Events with timestamps older than 5 days will not be ingested. See below on best practices for [historical imports](/docs/tracking-methods/sdks/javascript#importing-historical-events).
 </Callout>
 
-### Autocapture Events
-If you've enabled Autocapture, you do not need to set up precision tracking for page view or UTMs unless you are tracking a single-page application.
+The Javascript SDK provides a few different methods to send event data to your project. Calling any of the event tracking methods below will generate an event payload, then trigger a request to the [/track API endpoint](https://developer.mixpanel.com/reference/track-event) to ingest the event into your project.
+
+All events sent from the JavaScript library will be sent over HTTPS.
 
 ### Track Events
 Once you initialized the Mixpanel object, call `.track()` to send an event by providing the event name and any event properties.
@@ -236,9 +234,26 @@ mixpanel.track("Played song",{
     Avoid using names containing `$` or `mp` (e.g. `$name`, `mp_country_code`, etc.) as they are used by our [reserved event properties](/docs/data-structure/property-reference/reserved-properties#reserved-event-properties) which receive special treatment in our UI or are used for special processing.
 </Callout>
 
+#### Timing Events
+
+You can track the time it took for an action to occur, such as an image upload or a comment post, using [`.time_event()`](https://github.com/mixpanel/mixpanel-js/blob/master/doc/readme.io/javascript-full-api-reference.md#mixpaneltime_event). This will mark the “start” of your action, which will be timed until you finish with a `.track()` call. The time duration is then recorded in the “Duration” property.
+
+```javascript Javascript
+// start the timer for the event "Image Upload"
+mixpanel.time_event('Image Upload');
+
+// 20 seconds later...
+
+// track "Image Upload" event with "Duration" event prop set to 20
+mixpanel.track('Image Upload');
+```
+
+
 ### Track Page Views
 
 Page view tracking is turned off by default. Page view events can be added automatically on every page load by enabling the `track_pageview` [config option](https://github.com/mixpanel/mixpanel-js/blob/v2.46.0/src/mixpanel-core.js#L88-L127) when creating the Mixpanel object.
+
+If you have enabled Autocapture, you do not need to set up precision tracking for page view unless you are implementing in a single-page application.
 
 **Example Usage**
 ```javascript JavaScript
