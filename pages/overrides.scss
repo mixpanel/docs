@@ -108,6 +108,10 @@ $border-radius-lg: 100px;
   }
 }
 
+  table {
+    empty-cells: hide;
+  }
+
 //############Global Kapa Module###############
 //Kapa Header Title Text
 .mantine-Title-root {
