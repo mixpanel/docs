@@ -132,7 +132,7 @@ When a sync fails, we do not update the cohort snapshot. The next sync performed
 
 The page_count starts from 1.
 
-**Are users within cohort resynced when webhook calls fail or there is an internal failure?**
+**Are users within cohort re-synced when webhook calls fail or there is an internal failure?**
 
 Even though we just sync a diff of users for each cohort there can be failures that occur mid sync. In a case like this, we do not have a mechanism to keep track of users that were already synced for a cohort when the failure occurs in between the sync process. So we start the sync from the top again. This can cause issues like users being synced again.
 

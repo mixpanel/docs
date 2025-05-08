@@ -1,63 +1,73 @@
-import { Cards } from 'nextra/components'
+import { Cards, Callout } from 'nextra/components'
 
-# Session Replay
+# Session Replay: Watch playbacks of user digital experiences
 
-Mixpanel Session Replay is the fastest way to understand the whole picture about your customers and make better product decisions, by combining quantitative and qualitative user insights. 
+Mixpanel Session Replay provides the fastest way to gain a comprehensive understanding of your customers and make informed product decisions by combining both quantitative and qualitative insights.
 
-When digging into customer journeys in Mixpanel’s analytics, you can understand “**where** do customers drop-off?” And now, Mixpanel Session Replay enables you to quickly follow-up with, “**why** do customers drop off?”
-
-## Platform Availability
-
-We have two ways to implement:
-
-<Cards>
-  <Cards.Card icon title="Web" href="/docs/session-replay/session-replay-web" />
-  <Cards.Card icon title="iOS (Alpha)" href="/docs/session-replay/session-replay-ios" />
-</Cards>
+While analyzing customer journeys using Mixpanel's analytics, you can identify **where** customers drop off. Now, with Mixpanel Session Replay, you can quickly follow up by exploring **why** customers drop off.
 
 ## Plan Availability
 
 Session Replay is available for customers on Free, Growth, and Enterprise plans:
-- Customers on the Free plan have access to 10k free replays per month.
-- Customers on the Growth and Enterprise plans have access to 20k free replays per month.
-- Additional custom volumes of Session Replay are available as an add-on purchase for [Enterprise plans](https://mixpanel.com/pricing/).
 
-To access free replays, customers will need to ensure they’re on the latest Mixpanel plans:
+| Plan       | Replay Allowance                                                         |
+|------------|--------------------------------------------------------------------------|
+| Free       | 10k free Replays per month                                               |
+| Growth     | 20k free Replays per month                                               |
+| Enterprise | 20k free Replays per month ([additional Replays available as an add-on](https://mixpanel.com/pricing/))|
+
+Customers must be on the latest Mixpanel plans to access free replays.
 
 - For customers on an existing **Free** plan:
     - Switch your plan to the latest Free plan, which includes 1M monthly events and 10k session replays. You can make this switch directly from the [pricing page](https://mixpanel.com/pricing/).
 - For customers on an existing **Growth** plan:
-    - You're on the latest plan if you purchased or edited your plan after April 2024. If you’re not sure if you’re on the latest plan, you confirm on the pricing page - if you see ‘Make the Switch’ on the Growth plan, then you are on an older version.
+    - You're on the latest plan if you purchased or edited your plan after April 2024. If you are not sure if your organization is using the latest plan, you confirm on the pricing page - if you see "Make the Switch" on the Growth plan, then you are on an older version.
     - You can make the switch to our latest plan directly from the [pricing page](https://mixpanel.com/pricing/).
-- Enterprise customers should contact their account manager to determine their plan status.
+- Enterprise customers should contact their Account Manager to determine their plan status.
 
-Customers will be blocked from viewing additional replays above their monthly limit (or custom add-on limit for an Enterprise plan) until they upgrade or purchase additional volumes.
+## Implementation
 
-## Using Session Replay
+Session Replay is supported on three platforms: Web, iOS, and Android. You can use Session Replay with CDPs (e.g., Segment and mParticle) through the Web platform. 
 
-Session Replay can be accessed in three places:
+See our developer guides on implementing Session Replay for these platforms below:
 
-1. From User Profile page
+<Cards>
+  <Cards.Card icon title="Web" href="/docs/session-replay/implement-session-replay/session-replay-web" />
+  <Cards.Card icon title="iOS (Beta)" href="/docs/session-replay/implement-session-replay/session-replay-ios" />
+  <Cards.Card icon title="Android (Alpha)" href="/docs/session-replay/implement-session-replay/session-replay-android" />
+</Cards>
+
+## Watching Replays
+
+<Callout type="info">
+User replays are stored for 30 days after the time of ingestion. There is no way to view a replay older than 30 days old.
+</Callout>
+
+Replays can be viewed in three places:
+
+1. From the User Profile page
 2. From Mixpanel reports
 3. On the Home page for your project
 
 ### From User Profile page
 
-In any user’s profile page, Click the ‘View Replays’ button to watch replays from that user. From here, you will be taken to our Replay Player.
+In any user's profile page, Click the "View Replays" button to watch replays from that user. From here, you will be taken to our Replay Player.
 
 ![replayProfileEntry](/replayProfileEntryPoint.png)
 
 ### From Mixpanel reports
 
-Click any point on a chart for Event, Funnel, and User Profile, and select ‘View Replays’ to view replays that show that event being fired. From here, you will be taken to our Replay Player. 
+<Callout type="info">
+  Reports entry point is currently supported for Event, Funnel, and User Profile metrics only.
+</Callout>
+
+Click any point on a chart for Event, Funnel, and User Profile, and select "View Replays" to view replays that show that event being fired. From here, you will be taken to our Replay Player. 
 
 ![replayReportEntry](/replayReportEntryPoint.png)
 
-*Note: reports entry point is currently supported for Event, Funnel, and User Profile metrics only.*
-
 ### From the Home page
 
-Find the Latest Replays card and click on individual replays to view them or click on ‘View All Replays‘ to see up to 100 of your latest replays.
+Find the Latest Replays card and click on individual replays to view them or click on "View All Replays" to see up to 100 of your latest replays.
 
 ![replayHomeEntry](/replayHomeEntryPoint.png)
 
@@ -80,35 +90,45 @@ The Replay Feed on the left of the player also allows you to:
 - Search for replays by user's name / email, replay date, user ID, or the name of an event in the replay
 - See a feed of events that occurred during each replay
 
-## Server Side Stitching (Beta)
-
-Server-Side Stitching allows our customers to easily watch replays for events that aren’t fired from our SDK. 
-
-It works by inferring the replay an event happened in by looking at the distinct ID and time that the replay ocurred. This is especially useful if you have events coming in from multiple sources, like your server or via warehouse import and it doesn't make sense to pass around the value of `mixpanel.get_session_recording_properties()`. NOTE: we still recommend including these properties on your client side events to guarantee accuracy.
-
-As a result, this feature:
-- makes it 10x easier to watch replays for events coming from your data warehouse
-- makes it 10x easier to watch replays for server-side tracked events
-- makes Session Replay work automatically with events tracked with your CDP *(although we still recommend using our [CDP middleware](/docs/session-replay-web#can-i-use-session-replay-with-a-cdp) to ensure data accuracy for cross tab / platform user sessions)*
-
-| | **With Competitors** | **With Mixpanel** | **Value Add** |
-| --- | --- | --- | --- |
-| **DWH events** | Can’t watch replays that contain a specific DWH event without lots of custom code | Can easily watch replays that contain specific DWH events, just need our SDK to capture replays and make an `.identify()` call | **High** |
-| **SS events** | Can’t watch replays that contain a specific SS event without lots of custom code | Can easily watch replays that contain specific SS events, just need our SDK to capture replays and make an `.identify()` call | **High** |
-| **CDP events** | Middleware required to watch replays that contain a specific event | You don’t need middleware to watch replays that contain specific events. However, we recommend adding middleware to handle edge cases where replays may not be associated with the right events (simultaneous sessions across tabs, domains, or apps) | **Medium** |
-| **SDK-sent events** | Can easily watch replays that contain a specific event | Can easily watch replays that contain a specific event | **Low** |
-
-In order for Server Side Stitching to work, just ensure that the Mixpanel Javascript SDK calls `identify()` at some point with the user's unique Distinct ID. [See managing user identity](/docs/tracking-methods/sdks/javascript#managing-user-identity).
-
 ## FAQ
 
-### What happens when I reach my Session Replay limit?
-For customers who have purchased our Session Replay add-on, you will be billed for replays ingested beyond your purchased amount at the per unit rate. Before this happens, we'll send email notifications warning that your limit is approaching to users with  “Owner” or “Billing Admin” permissions over your Mixpanel organization.
+#### What happens when I reach my Session Replay limit?
+Customers who have purchased the Session Replay add-on will be billed for replays ingested beyond the purchased amount at the ala carte rate. Customers using Session Replay without purchasing the add-on (e.g., those using complimentary replays included with the Free, Growth, or Enterprise plans) will be unable to view replays once they reach the data allowance, unless they upgrade. We will send email notifications to [organization Owners and Billing Admins](/docs/orgs-and-projects/roles-and-permissions#organization-roles) as your projects approaches the data allowance of your subscription plan.
 
-For customers using Session Replay who have not purchased our add-on (for example, using complimentary replays included with your Free, Growth, or Enterprise plan), replays above your complimentary amount will not be viewable until you upgrade your plan. Before this happens, users with  “Owner” or “Billing Admin” permissions over your Mixpanel organization will be notified that their limit is approaching.
+Mixpanel reserves the right to stop ingesting replays once a customer collects replays beyond their purchased/allocated amount. To minimize disruption to your team, we recommend monitoring your data usage in the organization settings and working with your Account Manager (if applicable) to ensure you have the right plan for your needs.
 
-Mixpanel reserves the right to stop ingesting replays once a customer collects replays beyond their purchased / allocated amount. To minimize disruption to your team, we recommend monitoring your usage in Mixpanel’s user interface and, if applicable to your  account, working with your Account Manager to ensure you have the right plan for your session replay needs.
+#### How soon are Replays available for viewing after a session begins?
 
-### How soon are Replays available for viewing after a session begins?
+Replays are available for viewing in Mixpanel ~1 minute after the recording is captured.
 
-There is about a ~1 minute delay between when recordings are captured and when they appear in Mixpanel.  
+#### How long are replays stored?
+
+Replays are stored for 30 days.
+
+#### Why does it say the player failed to load?
+
+To maintain a high level of security, Mixpanel runs your session replays in an isolated domain through an iframe. Occasionally, this domain may be blocked by an ad blocker or specific browser settings. We recommend disabling any ad blockers, or whitelisting the Mixpanel domain.
+
+For extensions like uBlock, go to "My Filters" in the extension settings and add the following custom filter:
+
+```
+@@||mxpnl.com^$domain=mxpnl.com
+```
+
+#### Why can't I see the "View Replays" button in the UI?
+
+You will not see the "View Replays" button if your organization is on an older plan. You will need to update to the latest plan to use Session Replay (see [here](/docs/session-replay#plan-availability) for details).
+
+#### Can I use Session Replay with a CDP?
+
+You can use Session Replay with CDPs (e.g., Segment and mParticle) for the web platform. Your app must include the Mixpanel Javascript SDK, with Session Replay enabled. Learn more in the developer guide [here](/docs/session-replay/implement-session-replay/session-replay-web#session-replay-with-a-cdp).
+
+#### How can I estimate how many Replays I will generate?
+
+If you already use Mixpanel, the [Session Start events](/docs/features/sessions) are a way to estimate the rough amount of replays you might expect. This is especially true if you use timeout-based query sessions. However, because our sessions are defined at query time, we cannot guarantee these metrics will be directly correlated.
+
+When you enable Session Replay, use the above proxy metric to determine a starting sampling percentage, which will determine how many replays will be sent. You can always adjust this as you go to calibrate to the right level.
+
+#### Am I able to sample our Session Replay collection rate?
+
+Yes, you can configure the percentage of total replays that our SDK will capture as a sampling rate or manually trigger/end replay capture. See the developers guide for [implementing Session Replay](/docs/session-replay/implement-session-replay) to learn more about sampling and manual capture.

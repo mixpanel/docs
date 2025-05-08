@@ -19,7 +19,7 @@ The Organization Settings for Identity Merge determines the default identity man
 
 <br />
 
-You can change the identity management version for a specific project (without affecting other projects) via Project Settings, provided no data has been ingested into the project. For new projects, we recommend setting the Simplied ID Merge (<b>Simplified API</b>) option as it is a generally more straightforward, simpler way of managing your users' identity in Mixpanel. 
+You can change the identity management version for a specific project (without affecting other projects) via Project Settings, provided no data has been ingested into the project. For new projects, we recommend setting the Simplified ID Merge (<b>Simplified API</b>) option as it is a generally more straightforward, simpler way of managing your users' identity in Mixpanel. 
 
 ![image](/Tracking/project-setting.png)
 
@@ -33,7 +33,7 @@ This guide assists you in evaluating whether a migration to Simplified ID Merge 
 
 The main limitation of Legacy ID Management was that anonymous user states could become orphaned. This happens when an anonymous user was initially tracked on one platform or device, signs up as a user, and later on moved to another platform or device, triggering various anonymous events before logging in. The anonymous events on the second platform would be orphaned, resulting in duplicated users on Mixpanel. 
 
-Aliasing on Legacy ID Management can only be done once. Once a User ID is aliased to an Anonymous ID (typically on the 1st device where they started using your product), subsequent attempts to alias the same User ID to a different Anonymous ID (generate from a different platform or device) will fail. Here’s a diagram illustrating how a typical user journey on different devices ends up creating an ophaned user.
+Aliasing on Legacy ID Management can only be done once. Once a User ID is aliased to an Anonymous ID (typically on the 1st device where they started using your product), subsequent attempts to alias the same User ID to a different Anonymous ID (generate from a different platform or device) will fail. Here’s a diagram illustrating how a typical user journey on different devices ends up creating an orphaned user.
 
 ![image](/Tracking/legacy-id-management.png)
 
@@ -50,7 +50,7 @@ While retroactive identity merging is supported on Original ID Merge, the main l
 
 Reaching the 500 Distinct IDs per ID cluster limit is possible, when the process of generating new Anonymous IDs through `reset()` call on logout, and adding them to the ID cluster repeats 500 times. The `reset()` call is typically implemented in products where multiple users are sharing the same device. This ensures that anonymous events post logout are linked to the next user who logins in, rather than the last user who logout. If some of your users are approaching this cluster limit, you should revisit your implementation and consider removing the `reset()` call, unless there is a compelling use case where the benefits outweigh the implications of reaching the ID cluster limit. 
 
-Also, if you are considering Simplified ID Merge, it's important to note that it does not support multiple identified IDs (i.e. User IDs) per ID cluster. This is supported on Original ID Merge via special events such as \$merge and \$create_alias but they are not supported on Simplified ID Merge as the approch to identity management is completely different, more details [here](/docs/tracking-methods/id-management/identifying-users-simplified#example-user-flows).
+Also, if you are considering Simplified ID Merge, it's important to note that it does not support multiple identified IDs (i.e. User IDs) per ID cluster. This is supported on Original ID Merge via special events such as \$merge and \$create_alias but they are not supported on Simplified ID Merge as the approach to identity management is completely different, more details [here](/docs/tracking-methods/id-management/identifying-users-simplified#example-user-flows).
 
 ><b>Staying on Original ID Merge</b>
 >- If you don’t generally support multiple users sharing the same device, and don’t have a compelling use case requiring `reset()` calls on logout (or if you are implementing via server-side and do not generate new anonymous IDs for the same user), you are unlikely to run into the limit of 500 IDs per ID cluster, and should not consider the migration.  
@@ -241,7 +241,7 @@ Take note of the following details when planning for the migration from Legacy I
         "event": "App Install",
         "properties": {
             "token": "{{token}}",
-            "distinct_id": "$device:anoymous111"
+            "distinct_id": "$device:anonymous111"
         }
     }        
     ```
@@ -252,7 +252,7 @@ Take note of the following details when planning for the migration from Legacy I
         "event": "App Install",
         "properties": {
             "token": "{{token}}",
-            "distinct_id": "$device:anoymous111",
+            "distinct_id": "$device:anonymous111",
             "$device_id": "anonymous111"
         }
     }
@@ -301,7 +301,7 @@ Update your tech stack with the new project’s token, API secret, and service a
 
 1. Mixpanel <b>[Client-Side SDK](/docs/tracking-methods/choosing-the-right-method#client-side-tracking)</b> integration:
 
-   - Upgrade to the latest SDK version supporting Simplified ID Merge and initialise the SDK with new project’s token:
+   - Upgrade to the latest SDK version supporting Simplified ID Merge and initialize the SDK with new project’s token:
       - [Javascript ≥ v2.46.0](https://github.com/mixpanel/mixpanel-js/releases/tag/v2.46.0)
       - [Android ≥ v7.3.0](https://github.com/mixpanel/mixpanel-android/releases/tag/v7.3.0)
       - [iOS (Objective-C) ≥ v5.0.2](https://github.com/mixpanel/mixpanel-iphone/releases/tag/v5.0.2)
@@ -407,7 +407,7 @@ Discuss internally and decide on the best data migration approach with minimal i
 
 ### Migrating Reports and Non-Data Entities
 
-As part of creating the new Simplfied ID Merge project, you would also need to migrate existing boards, reports, and non-data entities (e.g. cohorts, custom events, custom properties, lookup tables, etc.) into the new project. Below is a recommended approach on how to go about doing this work:
+As part of creating the new Simplified ID Merge project, you would also need to migrate existing boards, reports, and non-data entities (e.g. cohorts, custom events, custom properties, lookup tables, etc.) into the new project. Below is a recommended approach on how to go about doing this work:
 
 1. <b>Cohorts, Custom Events, and Custom Properties</b>
    
@@ -425,17 +425,17 @@ As part of creating the new Simplfied ID Merge project, you would also need to m
 
 3. <b>Boards & Reports</b>
 
-   Move Board: Mixpanel provides a [Move Board](/docs/boards/advanced#move-board) feature that allows you to directly [transfer Boards between projects](/changelogs/2023-07-27-move) preserving reports, filters, and text annotations.
+   Move Board: Mixpanel provides a [Move Board](/docs/boards/move-boards) feature that allows you to directly [transfer Boards between projects](/changelogs/2023-07-27-move) preserving reports, filters, and text annotations.
 
    Before you move any Board, it's important to note the following:
-   - Duplicate the existing Board and move the new copy into the new project. This would minimise impact where users are still using Boards and reports in the old project.
+   - Duplicate the existing Board and move the new copy into the new project. This would minimize impact where users are still using Boards and reports in the old project.
    - Any saved cohorts, custom events, custom properties, lookup tables would need to be created first as they don't get automatically moved as part of the Move Board. 
-   - You may need to replicate the permissions for the moved Board should you have very specific [sharing permissions](/docs/boards/advanced#sharing) set in the existing project.
+   - You may need to replicate the permissions for the moved Board should you have very specific [sharing permissions](/docs/boards/sharing-and-permission) set in the existing project.
    - Double check that all reports (especially those that use cohorts, custom events, custom properties, lookup tables) are working properly.
 
 <br />
 
-4. <b>Lexicon</b>
+1. <b>Lexicon</b>
 
    Schemas API or CSV Export/Import: Migrate the Lexicon schema definitions (i.e. display name, descriptions, etc.) of your events, event properties, and user properties from the existing project to the new project using either the [Lexicon Schemas API](https://developer.mixpanel.com/reference/lexicon-schemas-api) or [Lexicon CSV Export/Import](/docs/data-governance/lexicon#export-and-import-lexicon-data).
 

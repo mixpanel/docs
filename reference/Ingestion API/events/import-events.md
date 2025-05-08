@@ -10,7 +10,7 @@ Use this API to send batches of events from your servers to Mixpanel.
 
 ## Request Format
 
-Each request ingests a batch of events into Mixpanel. We accept up to 2000 events and 2MB uncompressed per request. Events are part of the request body. 
+Each request ingests a batch of events into Mixpanel. We accept up to 2000 events and 10MB uncompressed per request. Events are part of the request body. 
 
 We support Content-Type `application/json` or `application/x-ndjson`:
 
@@ -132,7 +132,7 @@ When any single event in the batch does not pass validation, we return a 400 sta
 
 `failed_records` includes one row for each of the failed events, with details about the error we found. If some of the rows passed validation, we will ingest them and return their count in `num_records_imported`.
 
-## GeoIP Enrichrichment
+## GeoIP Enrichment
 
 If you supply a property `ip` with an IP address, Mixpanel will automatically do a GeoIP lookup and replace the `ip` property with geographic properties (City, Country, Region). These properties can be used in our UI to segment events geographically.
 

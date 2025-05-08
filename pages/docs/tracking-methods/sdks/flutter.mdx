@@ -199,7 +199,7 @@ The Flutter SDK provides a few methods for setting profile properties under the 
 
 Set profile properties on a user profile by calling the [`.getPeople().set()`](https://mixpanel.github.io/mixpanel-flutter/mixpanel_flutter/People/set.html) method.
 
-If a profile property already exist, if will be overwritten with the latest value provided in the method. If a profile property does not exist, it will be added to the profile.
+If a profile property already exists, it will be overwritten with the latest value provided in the method. If a profile property does not exist, it will be added to the profile.
 
 **Example Usage**
 ```dart
@@ -553,12 +553,12 @@ mixpanel.setServerURL("https://api-in.mixpanel.com");
 
 ### Disable Geolocation
 
-The Flutter SDK parse the request IP address to generate geolocation properties for events and profiles. To disable geolocation, call [`.setUseIpAddressForGelocation()`](https://mixpanel.github.io/mixpanel-flutter/mixpanel_flutter/Mixpanel/setUseIpAddressForGeolocation.html) with `false`.
+The Flutter SDK parse the request IP address to generate geolocation properties for events and profiles. To disable geolocation, call [`.setUseIpAddressForGeolocation()`](https://mixpanel.github.io/mixpanel-flutter/mixpanel_flutter/Mixpanel/setUseIpAddressForGeolocation.html) with `false`.
 
 **Example Usage**
 ```dart
 // disable geolocation from IP parsing
-mixpanel.setUseIpAddressForGelocation(false);
+mixpanel.setUseIpAddressForGeolocation(false);
 ```
 
 Learn more about [geolocation](/docs/tracking-best-practices/geolocation).
@@ -581,7 +581,7 @@ The simplest way is to use our [sample nginx config](https://github.com/mixpanel
 **Step 2: Point Flutter SDK at your server**
 Add the following line, replacing `YOUR_PROXY_DOMAIN` with your proxy server's domain.
 
-**Example Usage
+**Example Usage**
 ```dart
 // route data to your proxy server
 mixpanel.setServerURL("https://<YOUR_PROXY_DOMAIN>");
