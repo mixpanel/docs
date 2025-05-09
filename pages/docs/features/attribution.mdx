@@ -10,7 +10,7 @@ import { Callout } from 'nextra/components'
 
 Attribution helps teams attribute conversion credit to the touchpoints in a user journey, whether it's to the first or last touch (single-touch attribution models) or to multiple touchpoints using a multi-touch attribution model like U-shape or Linear. 
 
-Let’s consider an example user journey:
+Consider the following example user journey:
 1. A user sees an ad for a product on Facebook
 2. The user clicks on the ad and is taken to the product page on the company's website
 3. The user adds the product to their cart and begins the checkout process
@@ -64,7 +64,7 @@ If you use a Mixpanel js-sdk, we’ve updated our sdk to track utm parameters mo
 - **Attributed by property:** This is the property on a touchpoint event that we use for the attribution model. The canonical example is utm_source
 - **Lookback window:** The time window where a user's events with this attribution property are counted towards the calculation. The window ends when the conversion metric happens.
 
-## Frequently Asked Questions
+## FAQ
 
 ### How does Mixpanel compute attribution under the hood?
 
@@ -146,3 +146,7 @@ NOTE: You can apply a filter on an attribution property only after an attributio
 - Step 1: Turn on Attribution analysis by going to the breakdown section and choosing `Attributed by..` and property `XYZ`
 - Step 2 (a): Once attribution model has been applied, go to the filter section and choose the computed property `Attributed by XXX`. You can apply an attribution filter only on the property used in the attribution breakdown
 - Step 2 (b): Once attribution model has been applied, click on the chart bar and filter/exclude the segments as needed
+
+### What does the "(not set)" attribution segment mean?
+
+You may see a "(not set)" segment in your report when using the Attribution feature. This occurs when the attribution property is missing from all events being evaluated for the user.
