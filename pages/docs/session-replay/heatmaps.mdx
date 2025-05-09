@@ -83,3 +83,35 @@ mixpanel.init('YOUR_PROJECT_TOKEN', {
 Backdrops are snapshots of your application in various states (such as a modal open, a menu expanded, or different page layouts). Backdrops are pulled from session replays that match the URL you’re analyzing, helping you understand how different views or UI states affect user interactions.
 
 Backdrops are subject to the same retention policies as your session replays. Once a session replay expires, it can no longer be used as a backdrop. If you don't see enough backdrops (or can't find the specific view or state you're looking for), consider increasing your session replay sampling rate to capture a wider set of application states.
+
+## FAQ
+
+#### Why does it say the player failed to load?
+
+To maintain a high level of security, Mixpanel runs your heatmaps in an isolated domain through an iframe. Occasionally, this domain may be blocked by an ad blocker or specific browser settings. We recommend disabling any ad blockers, or whitelisting the Mixpanel domain.
+
+For extensions like uBlock, go to "My Filters" in the extension settings and add the following custom filter:
+
+```
+@@||mxpnl.com^$domain=mxpnl.com
+```
+
+#### Why does it say the backdrop replay was not found?
+
+Heatmaps are stored indefinitely, but a specific backdrop may depend on a replay that is stored according to a specific retention policy.  If that backdrop replay is deleted, you may need to pick a new one.
+
+#### Why does it say no backdrop options were found?
+
+If we can't find any eligible Session Replays with click events matching the heatmap URL, then we can't generate a backdrop for the heatmap.  You may need to increase your session replay sampling or manually capture replays on your page of interest to ensure relevant replays are available.
+
+See the developers guide for [implementing Session Replay](/docs/session-replay/implement-session-replay) to learn more about sampling and manual capture.
+
+#### Why does it say there is no data for the heatmap URL?
+
+Heatmaps are populated using click data captured using our SDK.  Ensure you have implemented click tracking either through [session replay](/docs/session-replay/implement-session-replay/session-replay-web#heatmaps-beta) or through [autocapture](/docs/quickstart/capture-events/autocapture).
+
+If no clicks were found for the URL, you may need to increase your session replay sampling or manually capture replays on your page of interest to ensure relevant replays and click events are available.  See the developers guide for [implementing Session Replay](/docs/session-replay/implement-session-replay) to learn more about sampling and manual capture.
+
+#### Why does it say no elements were found for my heatmap?
+
+We match click events to specific elements on your page.  If no matches are found, double check that the backdrop accurately represents the page with the URL you have specified.
