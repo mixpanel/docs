@@ -1,5 +1,6 @@
-# Braze
+import { Callout } from 'nextra/components'
 
+# Braze
 
 ## Overview
 
@@ -24,6 +25,10 @@ Enter the Mixpanel project where the integration is to be performed, then:
 ![Braze 1 Image](/braze1.png)
 
 2. Select the Braze integration tab. Click **Connect**.
+
+<Callout type="info">
+    If you set a User ID Property, it should be a Mixpanel user property that matches the Braze External ID. If you do not select one, Mixpanel will default to using the `$braze_external_id` property to match users between Braze and Mixpanel. See more about [matching users between Braze and Mixpanel](/docs/cohort-sync/integrations/braze#matching-mixpanel-and-braze-users).
+</Callout>
 
 ![Braze 2 Image](/braze2.png)
 
@@ -91,7 +96,9 @@ In order to build a Braze Segment after importing a cohort:
 
 ## Matching Mixpanel and Braze Users
 
-> **Warning:** Projects using the [simplified ID merge system](/docs/tracking-methods/id-management#identity-merge-apis) must have the `$user_id` in Mixpanel match the user identifier in the partner service. Using any alternative partner properties to match users between tools may result in partner events not being attributed to the correct user in Mixpanel. Any partner properties mentioned in the below section are primarily applicable to projects on the original ID merge system.
+<Callout type="warning">
+    **Warning:** Projects using the [Simplified ID merge system](/docs/tracking-methods/id-management#identity-merge-apis) must have the `$user_id` in Mixpanel match the user identifier in the partner service. Using any alternative partner properties to match users between tools may result in partner events not being attributed to the correct user in Mixpanel. Any partner properties mentioned in the below section are primarily applicable to projects on the original ID merge system.
+</Callout>
 
 In order to match Mixpanel users to ones on Braze's end, the user in Mixpanel should have a profile property named $braze_external_id with the value you have assigned in Braze to the same user as [external_user_id](https://www.braze.com/docs/developer_guide/platform_integration_guides/legacy_sdks/ios/analytics/setting_user_ids/#suggested-user-id-naming-convention).
 
@@ -99,7 +106,9 @@ The recommendation would be to insert code after the user authenticates that sen
 
 If you are planning to also enable sending engagement events from Braze to Mixpanel, and the Braze external_user_id differs from the user_id you identify the user with in Mixpanel, you can also alias the Braze external_user_id to the distinct_id you identify users with after they authenticate. Often times, you use the same user ID for both the external_user_id in Braze, and the ID you identify with in Mixpanel, so in that case, aliasing would not be needed.
 
->Note: SDK versions older than Android v5.9.6, Swift: v2.10.4, and Objective-C: v3.9.2 automatically created both the profile property and the alias mentioned above. This has since been deprecated due to possible ID management issues in some use cases, so on the SDK versions cited (or above), you should set the `$braze_external_id` profile property and alias when applicable.
+<Callout type="info">
+    SDK versions older than Android v5.9.6, Swift: v2.10.4, and Objective-C: v3.9.2 automatically created both the profile property and the alias mentioned above. This has since been deprecated due to possible ID management issues in some use cases, so on the SDK versions cited (or above), you should set the `$braze_external_id` profile property and alias when applicable.
+</Callout>
 
 ## Braze Events into Mixpanel & MTU exemptions
 
