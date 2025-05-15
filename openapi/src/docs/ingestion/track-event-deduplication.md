@@ -9,7 +9,7 @@ Mixpanel deduplicates events using a combination of four key event properties:
 - Event Name (`event`)
 - Distinct ID (`distinct_id`)
 - Timestamp (`time`)
-- Insert ID (`$inser_id`)
+- Insert ID (`$insert_id`)
 
 If all four of these properties are identical across two or more events, Mixpanel considers them duplicates and will only show the most recent version of that event in your reports. This applies regardless of whether the events are sent via SDKs, APIs, or other integrations. 
 
