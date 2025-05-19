@@ -969,6 +969,15 @@ Customize the Replay capture behavior using the library init options outlined be
 | `record_canvas` | When true, Mixpanel will record snapshots of `<canvas>` elements on your site at up to 15 frames per second | `false` |
 | `record_heatmap_data` | When true, Mixpanel will capture click events during replays to populate Heatmaps. Viewing Heatmaps is currently in Beta. | `false` |
 
+**Example Usage**
+
+```javascript
+mixpanel.init('YOUR_PROJECT_TOKEN', {
+    record_sessions_percent: 1,  //records 1% of all sessions
+    record_mask_text_selector: '', //unmask all text elements
+    record_block_selector: '' //unmask images and videos
+});
+```
 
 ### Manual Capture
 
