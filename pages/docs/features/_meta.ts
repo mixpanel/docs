@@ -7,6 +7,7 @@ export default {
     "custom-properties": "Custom Properties",
     "saved-behaviors": "Saved Behaviors",
     "sessions": "Sessions",
+    "slack-integration": "Slack Integration",
     "spark": "Spark",
     "advanced": "Advanced"
 }
