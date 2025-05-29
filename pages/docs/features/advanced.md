@@ -439,7 +439,7 @@ Comparisons are supported across all insights chart types. Depending on the exac
 | Insights Stacked Line | No | No | Yes |
 | Insights Bar | Yes | Yes | Yes |
 | Insights Stacked Bar | Yes | No | No |
-| Insights Pie | No | No | Yes |
+| Insights Pie | No | No | No |
 | Insights Metric | Yes | Yes | Yes |
 | Funnels Steps | Yes | Yes | No |
 | Funnel Trends | Yes | Yes | No |

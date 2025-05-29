@@ -23,6 +23,12 @@ Mixpanel's Javascript library will also track initial_utm_parameters as a profil
 
 UTM parameters are by default persisted across events as [Super Properties](/docs/tracking-methods/sdks/javascript#setting-super-properties). To opt in to the recommended modern behavior most compatible with our [attribution models](/docs/features/attribution), use the SDK initialization option `{stop_utm_persistence: true}` to disable UTM param persistence (refer to our [Release Notes](https://github.com/mixpanel/mixpanel-js/releases/tag/v2.52.0) in GitHub).
 
+#### Organic Traffic
+
+If a user arrives at your landing page organically, no UTM tags will be parsed because the URL does not contain them. As a result, the UTM property will be absent from the events and will appear as "(not set)" when used as a breakdown in a report. You can interpret a "(not set)" value for any UTM property as indicating organic or direct traffic.
+
+Learn more about falsy values [here](/docs/data-structure/property-reference/data-type#undefined-and-null).
+
 ### Initial Referrer and Initial Referring Domain Properties
 
 Mixpanel's Javascript library will track Initial Referrer and Initial Referring Domain and append them as a property to any event that a user completes. These properties are stored in the Mixpanel cookie the first time a user comes to your site and will not change on future site visits as long as the cookie is not cleared.
@@ -33,7 +39,7 @@ Having this information allows you to build reports to see how users from differ
 
 #### $direct
 
-An initial referrer is equal to $direct when a user first lands on a site without being referred by another website. The user may have typed the website address directly, clicked a bookmark, clicked a link from an email, or might have security settings in their browser that prevent referrer data from being passed.
+An initial referrer is equal to `$direct` when a user first lands on a site without being referred by another website. The user may have typed the website address directly, clicked a bookmark, clicked a link from an email, or might have security settings in their browser that prevent referrer data from being passed.
 
 ## Mobile Attribution
 
