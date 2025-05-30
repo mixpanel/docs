@@ -87,10 +87,6 @@ Note that Cohorts created using this method are static; they will not update ove
 ## Using Cohorts in Analysis
 You can visualize how cohorts size over time, use cohorts to filter your reports, or compare how cohorts perform a metric.
 
-<Callout type="info">
-    **Note:** If you import historical data with events timestamped more 30 days ago, the historical events will not be used in your existing cohort queries until 12 hours after you've imported the data.
-</Callout>
-
 ### Visualizing Cohort Size Over Time
 
 In Insights, you can define a metric based on the size of a cohort over time. This is useful to understand how key subsets of your user base (like your Power Users) are trending over time. Select a cohort from the "Events and Cohorts" menu in the Insights report; this will generate a line chart that shows the size of the cohort over time. Each point is the size of the cohort as of the end of that time interval.
@@ -106,6 +102,10 @@ You can compare the behavior of different cohorts by selecting a cohort from the
 When breaking down metrics by multiple cohorts, events are evaluated independently against each cohort. Consider an insights report that counts all events broken down by 3 cohorts, 'Power Users in North America', 'Power Users in Europe', and 'All Power Users'. An event belonging to a power user in North America, would contribute to the sum for buckets, `In 'Power Users in North America'`, `In 'All Power Users'`, and `Not In 'Power Users in Europe'`.
 
 ## How Cohorts are Computed
+
+<Callout type="info">
+    **Note:** If you import historical data with events timestamped more 30 days ago, the historical events will not be used in your existing cohort queries until 12 hours after you've imported the data.
+</Callout>
 
 Cohorts are computed dynamically at the time that you use them in a query. Suppose you make a funnels report that filters down to the New Users cohort. Under the hood, Mixpanel does the following:
 1. Run a query to compute the set of users who are in the cohort as of right now (the time that the query is run).
