@@ -101,9 +101,13 @@ Mixpanel offers a 30-day free trial of the Data Pipelines, allowing you to creat
 
 ### What is Active Pipeline Limit
 
+Each project can have 2 recurring pipelines and 1 date ranged backfill pipeline active.
+
 To maintain optimal performance across our services, we limit the number of concurrently running pipeline steps to one per project. This approach ensures that each job, including those involving substantial backfills, waits its turn, preventing any single project from monopolizing resources and thus promoting fair scheduling among all customers.
 
-Additionally, a maximum of **_two_** events pipelines are permitted per project.
+### When do pipeline exports run?
+
+Pipelines by default are set to start an export 30 minutes after the time period to export in project time is complete. For example a project in the Pacific timezone with a daily events pipeline will start the export for data from 5/22 on 5/23 00:30 AM PT.
 
 ### What is the Service Level Agreement?
 
