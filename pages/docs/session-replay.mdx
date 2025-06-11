@@ -18,7 +18,7 @@ Session Replay is available for customers on Free, Growth, and Enterprise plans.
 
 ## Implementation
 
-Session Replay is supported on three platforms: Web, iOS, and Android. You can use Session Replay with CDPs (e.g., Segment and mParticle) through the Web platform. 
+Session Replay is supported on three platforms: Web, iOS, and Android. You can use Session Replay with CDPs (e.g., Segment and mParticle) on both Web and Mobile.
 
 See our developer guides on implementing Session Replay for these platforms below:
 
@@ -113,7 +113,13 @@ You will not see the "View Replays" button if your organization is on an older p
 
 #### Can I use Session Replay with a CDP?
 
-You can use Session Replay with CDPs (e.g., Segment and mParticle) for the web platform. Your app must include the Mixpanel Javascript SDK, with Session Replay enabled. Learn more in the developer guide [here](/docs/session-replay/implement-session-replay/session-replay-web#session-replay-with-a-cdp).
+You can use Session Replay with CDPs (e.g., Segment and mParticle) on both web and mobile. 
+
+| Platform | Guidance |
+| --- | --- |
+| Web | Your app must include the Mixpanel Javascript SDK, with Session Replay enabled. Learn more in the developer guide [here](/docs/session-replay/implement-session-replay/session-replay-web#session-replay-with-a-cdp). |
+| iOS | Works with CDPs, but you must install the Mixpanel Session Replay SDK in your app. Read more in our [iOS implementation guide](/docs/session-replay/implement-session-replay/session-replay-ios). |
+| Android | Works with CDPs, but you must install the Mixpanel Session Replay SDK in your app. Read more in our [Android implementation guide](/docs/session-replay/implement-session-replay/session-replay-android). |
 
 ### How does Session Replay work differently on web versus mobile?
 
