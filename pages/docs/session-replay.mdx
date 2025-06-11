@@ -8,21 +8,13 @@ While analyzing customer journeys using Mixpanel's analytics, you can identify *
 
 ## Plan Availability
 
-Session Replay is available for customers on Free, Growth, and Enterprise plans:
+Session Replay is available for customers on Free, Growth, and Enterprise plans. Customers must be on the latest Mixpanel plans to access free replays.
 
-| Plan       | Replay Allowance                                                         |
-|------------|--------------------------------------------------------------------------|
-| Free       | 10k free Replays per month                                               |
-| Growth     | 20k free Replays per month                                               |
-| Enterprise | 20k free Replays per month ([additional Replays available as an add-on](https://mixpanel.com/pricing/))|
-
-Customers must be on the latest Mixpanel plans to access free replays.
-
-| Plan Type | Action Required |
-|-----------|----------------|
-| Free | Switch your plan to the latest Free plan, which includes 1M monthly events and 10k session replays. You can make this switch directly from the [pricing page](https://mixpanel.com/pricing/). |
-| Growth | You're on the latest plan if you purchased or edited your plan after April 2024. If you are not sure if your organization is using the latest plan, you can confirm on the pricing page - if you see "Make the Switch" on the Growth plan, then you are on an older version. You can make the switch to our latest plan directly from the [pricing page](https://mixpanel.com/pricing/). |
-| Enterprise | Contact your Account Manager to determine your plan status. |
+| Plan | Replay Allowance | How to Access |
+|------------|-------------------------------------------------------------------------|----------------------------------------------------------------------------------------------------------|
+| Free | 10k free Replays per month | Switch to the latest Free plan (includes 1M monthly events + 10k replays) via the [pricing page](https://mixpanel.com/pricing/). |
+| Growth | 20k free Replays per month | You’re on the latest plan if you purchased or edited after April 2024. Confirm or switch on the [pricing page](https://mixpanel.com/pricing/). |
+| Enterprise | 20k free Replays per month | Contact your Account Manager to determine your plan status. |
 
 ## Implementation
 
@@ -128,7 +120,6 @@ You can use Session Replay with CDPs (e.g., Segment and mParticle) for the web p
 Session Replay works differently on web versus mobile in Mixpanel:
 - **Web**: Captures DOM changes to reconstruct user interactions, tracking elements, clicks, and navigation. This provides an event-based replay of user activity.
 - **Mobile**: Captures actual screen pixels since native apps don't use a DOM. This visual approach records all on-screen activity as it appears to users, including scrolls, carousels, and auto-scrolling elements.
-
 
 #### How can I estimate how many Replays I will generate?
 
