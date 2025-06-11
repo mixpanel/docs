@@ -112,7 +112,7 @@ To enable Session Replay and set your sampling rate, create a `SessionReplayConf
 
 Start with a low sampling rate, then adjust according to your specific analytics needs.
 
-Recording only starts if the sampling check passes and you explicitly call startRecording(). Recording does not start automatically.
+Recording only starts if the sampling check passes and you explicitly call startRecording(). Recording does not start automatically. 
 
 **Example Usage**
 
@@ -127,7 +127,7 @@ To programatically start and stop replay capture, use the `.startRecording()` an
 
 #### Start Capturing Replay Data
 
-Replay recording does not start automatically — you must explicitly call `.startRecording()` after the random sampling check passes.
+Replay recording does not start automatically — you must explicitly call `.startRecording()` after the random sampling check passes. Note: this is planned to change in upcoming releases, as we move towards recording beginning automatically if the sampling check passes.
 
 Recording automatically stops when the app goes into the background, so you’ll need to call `.startRecording()` again when the app becomes active to begin capturing replays again.
 
