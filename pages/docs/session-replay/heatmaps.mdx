@@ -1,9 +1,9 @@
 import { Callout } from 'nextra/components'
 
-# Heatmaps (Beta)
+# Heatmaps for Web (Beta)
 
 <Callout type="info">
-  Heatmaps are currently in private, closed beta. For early access, please contact your Account Manager.
+  Heatmaps for Web are currently in private, closed beta. For early access, please contact your Account Manager.
 </Callout>
 
 ## Overview
@@ -37,9 +37,11 @@ Heatmaps only capture data during sessions with recorded replays. If a page has 
 
 ### Implementation
 
-Ensure you have Session Replay set up(see [developer guide on implementing Session Replay](/docs/session-replay/implement-session-replay/session-replay-web)), with the `record_heatmap_data` set to `true`.
+Ensure you have Session Replay set up using our Javascript SDK (see [developer guide on implementing Session Replay](/docs/session-replay/implement-session-replay/session-replay-web)), with the `record_heatmap_data` set to `true`. 
 
 Clicks recorded using `record_heatmap_data` will only capture clicks while an a session recording is in progress. These clicks are sent as `$mp_click` and will not be counted against your plan data allowance.
+
+Currently, heatmaps are not available on our Mobile Session Replay SDKs.
 
 **Example Usage**
 
