@@ -52,8 +52,68 @@ AB Tasty Documentation on cohorts exports from Mixpanel is [here](https://suppor
 
 
 ## AB Tasty Events in Mixpanel
-This integration relies on using the Mixpanel SDK. Assuming the integration has been set up, you'll see events that contain an **AB Tasty** property on events that fire from pages where an AB Tasty campaign is running. This property’s value contains the AB Tasty campaign and variation’s ID.
 
-Once you have data flowing from AB Tasty to Mixpanel, you can filter your Mixpanel reports on AB Tasty campaigns and variations by using the **AB Tasty** event property breakdown.
+Analyze your AB Tasty experiments in Mixpanel with a powerful, streamlined workflow. By creating two simple custom properties and configuring your project's Experiment Settings, you can access AB Tasty data in dropdowns, breakdowns, and experimentation reports. This one-time setup eliminates the need for complex, report-by-report data parsing and unlocks a more powerful and consistent way to measure the impact of your A/B tests.
 
+### How AB Tasty Data Arrives
 
+When the integration is active, AB Tasty sends a single event to Mixpanel named `"Event"` for users exposed to a test. This event contains one property, `"AB Tasty"`, which holds a concatenated string of the campaign and variation IDs. For example: `[12345]My Homepage Test[67890]Variation B`.
+
+### Step 1: Create Campaign and Variation Custom Properties
+
+Before configuring the Experiment Settings, you must first parse the campaign and variation names from the `"AB Tasty"` property into their own dedicated custom properties.
+
+Navigate to **Lexicon** in your Mixpanel project and create the two custom properties below.
+
+#### A. Campaign Custom Property
+![Screenshot 2025-06-17 at 1 49 40 PM](https://github.com/user-attachments/assets/add85567-80d5-4a11-b05c-0934a5365b28)
+
+This property uses a REGEX function to extract the campaign name.
+
+1.  **Create a new Custom Property.**
+2.  Name it. `AB Tasty Campaign Name` is recommended, but the name does not need to exactly match this format.
+3.  Use the following formula:
+    ```
+    REGEX_EXTRACT(properties["AB Tasty"], "^\\[\\d+\\](.*?)(?=\\[\\d+\\])", 1)
+    ```
+4.  **Save** the property.
+
+> **How it works:** This formula reads the `"AB Tasty"` property and extracts only the text that exists *between* the first and second ID brackets (e.g., `[12345]` and `[67890]`).
+
+#### B. Variation Custom Property
+![Screenshot 2025-06-17 at 1 49 16 PM](https://github.com/user-attachments/assets/fd48158a-a436-48bc-9d2b-f4cb9931f2e6)
+
+This property uses a nested SPLIT function to isolate the variation name.
+
+1.  **Create another new Custom Property.**
+2.  Name it. `AB Tasty Variant Name` is recommended, but the name does not need to exactly match this format.
+3.  Use the following formula:
+    ```
+    SPLIT(SPLIT(properties["AB Tasty"], "[", 3), "]", 1)
+    ```
+4.  **Save** the property.
+
+> **How it works:** This formula first splits the full string by the `[` character to isolate the end of the string, and then splits that result by the `]` character to capture only the variation name.
+
+### Step 2: Configure Project Experiment Settings
+
+With your Custom Properties created, you can now tell Mixpanel how to recognize your AB Tasty experiments.
+
+![image](https://github.com/user-attachments/assets/4384ed79-79d8-4035-8ffe-35550a0835e1)
+
+1.  Navigate to your **Project Settings**.
+2.  Scroll to the **Experiment Event Settings** section.
+3.  Define the mapping for your AB Tasty experiments:
+    * **Experiment Event**: Select the `"Event"` event.
+    * **Experiment Name**: Map this to your new custom property, `AB Tasty Campaign Name`.
+    * **Variant Name**: Map this to your new custom property, `AB Tasty Variation Name`.
+4.  **Save** your settings.
+
+### The Result: Powerful, Automated Analysis
+
+Once saved, Mixpanel will automatically process all incoming AB Tasty data according to your settings. You can now analyze your experiments without any further configuration.
+
+This provides several key advantages:
+* No more ad-hoc filtering or complex formulas in your reports.
+* Consistent, reliable analysis across all of your AB Tasty experiments.
+* Unlock the full power of Mixpanel's Experimentation features, including significance testing and impact on multiple goals.
