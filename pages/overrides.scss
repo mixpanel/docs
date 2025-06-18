@@ -1074,9 +1074,11 @@ article {
     // }
 
     .nextra-scrollbar {
+      // modify margins on right sidebar to prevent overflowing
+      margin-right: auto;
+
       // set background color for bookmark region
       // background-color: colors.$black;
-
       // set font color for bookmark header
       p {
         // color: colors.$base100;
@@ -1864,9 +1866,11 @@ article {
     // }
 
     .nextra-scrollbar {
+      // modify margins on right sidebar to prevent overflowing
+      margin-right: auto;
+
       // set background color for bookmark region
       // background-color: colors.$black;
-
       // set font color for bookmark header
       p {
         color: colors.$base100;
