@@ -467,6 +467,10 @@ $border-radius-lg: 100px;
   opacity: 1 !important;
 }
 
+._max-w-\[90rem\] {
+  max-width: 100% !important;
+}
+
 // Add image frame styling to prevent layout-reflow and match custom layout image styling (changelog) with nextra layout
 
 article {
@@ -483,8 +487,9 @@ article {
     width: 100%;
 
     img {
-      border-radius: 1rem;
       width: 100%;
+      height: 100%;
+      object-fit: contain;
     }
 
     @media (min-width: 1024px) {
@@ -508,9 +513,7 @@ article {
         margin-top: 1rem;
       }
     }
-
   }
-
 }
 
 //##############################Light Theme Starts Here##################################
@@ -724,7 +727,7 @@ article {
 
     // modify codebox
     .nextra-code ._ring-gray-300 {
-      background-color: colors.$purple20;
+      background-color: colors.$white;
     }
 
     //modify code tabs
@@ -1071,9 +1074,11 @@ article {
     // }
 
     .nextra-scrollbar {
+      // modify margins on right sidebar to prevent overflowing
+      margin-right: auto;
+
       // set background color for bookmark region
       // background-color: colors.$black;
-
       // set font color for bookmark header
       p {
         // color: colors.$base100;
@@ -1490,12 +1495,12 @@ article {
 
     // modify codebox
     .nextra-code > .dark\:_ring-neutral-700 {
-      background-color: colors.$grey100;
+      background-color: rgba(255, 255, 255, 0.08);
       border: 1px solid rgba(255, 255, 255, 0.1);
     }
 
     code.nextra-code {
-      background-color: colors.$grey100;
+      background-color: rgba(255, 255, 255, 0);
     }
 
     //modify code tabs
@@ -1861,9 +1866,11 @@ article {
     // }
 
     .nextra-scrollbar {
+      // modify margins on right sidebar to prevent overflowing
+      margin-right: auto;
+
       // set background color for bookmark region
       // background-color: colors.$black;
-
       // set font color for bookmark header
       p {
         color: colors.$base100;

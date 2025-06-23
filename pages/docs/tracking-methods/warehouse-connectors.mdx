@@ -324,6 +324,8 @@ Here’s an example table that illustrates what can be loaded as group profiles 
 
 Group Profile History value and setup is similar to the User Profile History section elaborated above
 
+Generally, group profile history values can only be used for queries within that same group. To power user-mode queries that use a group profile history property, the latest value of the ingested property will be used instead. Following ingestion, there may be a delay before the latest value will be available in queries.
+
 ### Lookup Tables
 
 A Lookup Table is useful for enriching Mixpanel properties (e.g. content, skus, currencies) with additional metadata. Learn more about Lookup Tables [here](/docs/data-structure/lookup-tables). Note the limits of lookup tables indicated [here](/docs/data-structure/lookup-tables#when-shouldnt--i-use-lookup-tables).
@@ -349,7 +351,7 @@ which changes Mixpanel will reflect.
 - **Full** will reload the entire table to Mixpanel each time it runs rather than tracking changes between runs. Full
   syncs are only supported for Lookup Tables, User Profiles, and Group Profiles.
 - **One-Time** will load the data from your warehouse into Mixpanel _once_ with no ability to send incremental
-  changer later. This is only recommended where the warehouse is being used as a temporary copy of the data being
+  changes later. This is only recommended where the warehouse is being used as a temporary copy of the data being
   moved to Mixpanel from some other source and the warehouse copy will not be updated later.
 
 ### Mirror
@@ -643,20 +645,82 @@ Please do note that warehouse connectors enforce strict_mode validation by defau
 We will reject events with time values that are before 1971-01-01 or more than 1 hour in the future as measured on our servers.
 We recommend that customer filter such events and refresh such events when they are no longer set in future.
 
-### How do I filter for events coming to mixpanel via Warehouse Connector Sync in my reports?
+### How do I filter for events coming to Mixpanel via Warehouse Connector Sync in my reports?
 
 We add couple of hidden properties `$warehouse_import_id` and `$warehouse_type` on every event ingested through warehouse connectors. You can add filters and breakdowns on that property in any Mixpanel report. You can find the Warehouse import ID of a sync in Sync History tab shown as `Mixpanel Import Id`.
 
-### How do updates & deletes from Mirror syncs affect my event quota usage?
+### Does Mixpanel automatically flatten nested data from warehouse tables?
 
-On an [Events billing plan](/docs/pricing) your event quota is consumed by:
+Automatic flattening is only available for GA4 tables. For other tables, you’ll need to manually flatten the data via queries before import.
 
-- **Monthly Event Volume:** The number of events in all of your projects at the end of each month. Updating an existing event using Mirror will not affect your monthly event volume. Deleting an existing event using Mirror will decrease your monthly event volume by one.
-- **Mirror updates and deletes:** Updates and deletes from Mirror are counted separately from event volume. Each update or deletion is counted as one event towards billing for the month they were triggered on, even if the record being updated is for a previous month. You can see a breakdown of your event quota consumption by "event volume" vs "updates and deletes" on your [organization billing page](https://mixpanel.com/report/settings/%23org%2F%24org_id%24%2Fplan).
+### What should I do if my BigQuery import query is too large or takes too long?
 
-You can see how much of your quota is being consumed by each warehouse connector in the detailed [data usage view](https://mixpanel.com/report/settings/%23org%2F%24org_id%24%2Fplan%2Fdetail%2Fevents) for your organization.
+Consider breaking the data into smaller chunks if you’re working with large datasets. You can do this by creating views in BigQuery that only include the data you want to import — for example, limiting it to the past 6 months or 1 year.
+Note: The 20-hour query limit is a Mixpanel restriction, not a BigQuery one, to help keep the system stable for all users.
 
-On an [MTU billing plan](/docs/pricing/legacy-mtu-billing) updates and deletes from Mirror do not impact [MTU calculations](/docs/pricing/legacy-mtu-billing#mtu-calculation), however updates and deletes are counted as events for the purposes of the [MTU guardrail](/docs/pricing/legacy-mtu-billing#mtu-guardrail) computation.
+
+## Billing FAQ
+
+### What actions impact billing for warehouse connectors?
+
+Billing varies by operation type and connector mode. The tables below explain how each action affects your monthly event volume:
+
+**Billing for Event Syncs:**
+
+| **Event Operation**                        | **Sync Type** | **Supported** | **Billed** |
+|-------------------------------------------|---------------|---------------|-------------|
+| **New events (current calendar month)**  | One time      | ✅            | ✅          |
+|                                           | Append        | ✅            | ✅          |
+|                                           | Mirror        | ✅            | ✅          |
+| **Historical events (backfills)**         | One time      | ✅            | ❌          |
+|                                           | Append        | ❌            | ❌          |
+|                                           | Mirror        | ✅            | ❌          |
+| **Updates & deletes**                     | One time      | ❌            | ❌          |
+|                                           | Append        | ❌            | ❌          |
+|                                           | Mirror        | ✅            | ✅          |
+
+**Note on Updates**: If you already have an event in Mixpanel, for example, Event A with properties a,b,c,d but want to:
+
+- **Update the value** of property d, or
+- **Add a new property** or column e with a non-NULL value
+
+This will count as an update event for each row in the sync.
+
+If your warehouse workflow **drops and recreates tables**, Mirror will treat this as a full delete and re-insert, with each row counted as a billable event. Mirror looks at the data already ingested into Mixpanel and uses warehouse-specific logic to identify changes made within your warehouse platform. In the case of a full table delete, Mixpanel will register each deleted row as a billable event, and the same applies when the table is recreated.
+
+If instead your workflow updates existing tables—by appending, updating, or deleting specific rows or columns—only the affected rows will be billed, as shown in the table above.
+
+**Note on Deletes**: If you delete events using [Mixpanel UI](https://docs.mixpanel.com/docs/data-governance/data-clean-up), those deletes are not counted towards billable events. Only Deletes coming from warehouse using mirror are billable.
+
+**Note on Backfills**: You can also backfill using `Append` mode if you create a new sync. But for a ongoing sync you cannot backfill for older days with in the existing sync once the `insert_time` has moved past.
+
+**Billing for User/Group Profiles Syncs**
+
+
+| **Profile Operation**              | **Mode**     | **Sync Type**     | **Supported** | **Billed** |
+|------------------------------------|--------------|-------------------|---------------|-------------|
+| **Set/update profile properties**  | Standard     | Full sync         | ✅            | ❌          |
+|                                    | Standard     | Append            | ✅            | ❌          |
+|                                    | History      | Mirror            | ✅            | ✅          |
+| **Remove profile properties**      | Standard     | Full sync         | ❌            | ❌          |
+|                                    | Standard     | Append            | ❌            | ❌          |
+|                                    | History      | Mirror            | ✅            | ✅          |
+
+
+You can monitor these different operations in your billing page, where they'll appear as separate line items: Events - Updates, Events - Deletes, User - Updates, and User - Deletes.
+
+### When should I use Mirror vs. Append mode?
+
+**Use Mirror mode when:**
+- You want to maintain an exact replica of your warehouse data in Mixpanel
+- You want to automatically sync updates and deletes from your warehouse
+- You need to track the history of user profile changes over time (with History mode)
+
+**Use Append mode when:**
+- You only need to add new data without updating existing records
+- You have a workflow that frequently drops and recreates tables
+
+For large-scale changes that might significantly impact billing, we recommend consulting with your Account Manager before proceeding.
 
 ### What will be the cost impact of this on my DWH?
 
@@ -675,6 +739,10 @@ There are 3 aspects of DWH cost: network egress, storage, and compute.
   * Append: All Append syncs run a query filtered on `insert_time_column > [last-run-time]`, the compute cost is the cost of this query. Partitioning or clustering based on `insert_time_column` will greatly improve the performance of this query.
   * Full: Full syncs are always a full table scan of the source table to export it.
 
-### How can I get help setting up a warehouse connector?
+### Will I be charged for failed imports or errors?
 
-[Reach out](https://mixpanel.com/contact-us/sales/) to our team — we’re happy to walk you through the setup. If you bring a data engineer who has credentials to access your warehouse, it takes < 10 minutes to get up and running.
+No, you will only be charged for events that are successfully imported into Mixpanel. Events that fail validation or encounter errors during the import process will not count toward your billable data points.
+
+### How can I monitor my data usage with warehouse connectors?
+
+You can track your data usage in Mixpanel by navigating to Organization Settings > Usage and viewing the "Data Points" section. Use the "Data Source" filter to specifically view warehouse connector imports.

@@ -145,7 +145,7 @@ mixpanel.init('YOUR_PROJECT_TOKEN', {
     autocapture: false
 });
 ```
-Note that disabling Autocapture does not disable Session Replay, which is [configured separately](https://docs.mixpanel.com/docs/tracking-methods/sdks/javascript#session-replay).
+Note that disabling Autocapture does not disable Session Replay, which is [configured separately](/docs/tracking-methods/sdks/javascript#session-replay).
 
 **Autocapture Init Options**
 | Option | Description | Default | 
@@ -209,16 +209,14 @@ On Autocapture events, Mixpanel default-tracks the following properties:
 
 
 ## Sending Events
-The Javascript SDK provides a few different methods to send event data to your project. Calling any of the event tracking methods below will generate an event payload, then trigger a request to the [/track API endpoint](https://developer.mixpanel.com/reference/track-event) to ingest the event into your project.
-
-All events sent from the JavaScript library will be sent over HTTPS.
 
 <Callout type="info">
     The [/track endpoint](https://developer.mixpanel.com/reference/track-event) will only validate events with timestamps within the last 5 days of the request. Events with timestamps older than 5 days will not be ingested. See below on best practices for [historical imports](/docs/tracking-methods/sdks/javascript#importing-historical-events).
 </Callout>
 
-### Autocapture Events
-If you've enabled Autocapture, you do not need to set up precision tracking for page view or UTMs unless you are tracking a single-page application.
+The Javascript SDK provides a few different methods to send event data to your project. Calling any of the event tracking methods below will generate an event payload, then trigger a request to the [/track API endpoint](https://developer.mixpanel.com/reference/track-event) to ingest the event into your project.
+
+All events sent from the JavaScript library will be sent over HTTPS.
 
 ### Track Events
 Once you initialized the Mixpanel object, call `.track()` to send an event by providing the event name and any event properties.
@@ -236,9 +234,26 @@ mixpanel.track("Played song",{
     Avoid using names containing `$` or `mp` (e.g. `$name`, `mp_country_code`, etc.) as they are used by our [reserved event properties](/docs/data-structure/property-reference/reserved-properties#reserved-event-properties) which receive special treatment in our UI or are used for special processing.
 </Callout>
 
+#### Timing Events
+
+You can track the time it took for an action to occur, such as an image upload or a comment post, using [`.time_event()`](https://github.com/mixpanel/mixpanel-js/blob/master/doc/readme.io/javascript-full-api-reference.md#mixpaneltime_event). This will mark the “start” of your action, which will be timed until you finish with a `.track()` call. The time duration is then recorded in the “Duration” property.
+
+```javascript Javascript
+// start the timer for the event "Image Upload"
+mixpanel.time_event('Image Upload');
+
+// 20 seconds later...
+
+// track "Image Upload" event with "Duration" event prop set to 20
+mixpanel.track('Image Upload');
+```
+
+
 ### Track Page Views
 
 Page view tracking is turned off by default. Page view events can be added automatically on every page load by enabling the `track_pageview` [config option](https://github.com/mixpanel/mixpanel-js/blob/v2.46.0/src/mixpanel-core.js#L88-L127) when creating the Mixpanel object.
+
+If you have enabled Autocapture, you do not need to set up precision tracking for page view unless you are implementing in a single-page application.
 
 **Example Usage**
 ```javascript JavaScript
@@ -912,13 +927,19 @@ Here's a [full code sample](https://gist.github.com/ranic/80459104def4e4bcd73d5c
 
 ## Session Replay
 
-Capture and replay data on how users interact with your application. By default, the Replay functionality is disabled and will not be loaded into your application until explicitly enabled. Ensure your application runs at least version 2.50.0 of our JavaScript SDK to use this feature.
+<Callout type="info">
+    See the developer's guide to implementing Session Replay with the Javascript SDK [here](/docs/session-replay/implement-session-replay/session-replay-web).
+</Callout>
 
-Before you enable Session Replay for a large audience, we recommend testing in a demo project, and starting in production with smaller sets of users or accounts, so that you can monitor performance and ensure your privacy rules align with company policies.
+Mixpanel [Session Replay](/docs/session-replay) enables you to watch playbacks of your end-user's digital experiences on your website. By default, the Session Replay functionality is disabled and will not be loaded into your website until explicitly enabled.
 
-### Implementation / Sampling
+### Sampling
 
-Implementing Session Replay and setting your sampling rate can be accomplished in a single step during the SDK initialization. Here’s how to activate Session Replay and control the volume of session data captured:
+Enable Session Replay and set your sampling rate with the `record_sessions_percent` config option when initializing the library. 
+
+Start with a low sampling rate and adjust according to your specific analytics needs.
+
+**Example Usage**
 
 ```javascript
 mixpanel.init(
@@ -929,17 +950,16 @@ mixpanel.init(
 )
 ```
 
-Start with a low sampling rate, such as 1%, and adjust according to your specific analytics needs.
+Start with a low sampling rate and adjust according to your specific analytics needs.
 
-Note: This is the only change needed in your existing JavaScript SDK setup to enable Session Replay.
+### Replay Configurations
 
-### Init Options
+Customize the Replay capture behavior using the library init options outlined below.
 
 | Option | Description | Default | 
 | --- | --- | --- |
 | `record_block_class` | CSS class name or regular expression for elements which will be replaced with an empty element of the same dimensions, blocking all contents.  | `new RegExp('^(mp-block\|fs-exclude\|amp-block\|rr-block\|ph-no-capture)$')` <br/> (common industry block classes) |
 | `record_block_selector` | CSS selector for elements which will be replaced with an empty element of the same dimensions, blocking all contents.  | `"img, video"` |
-| `record_collect_fonts` | When true, Mixpanel will collect and store the fonts on your site to use in playback. | `false` |
 | `record_idle_timeout_ms` | Duration of inactivity in milliseconds before ending a contiguous replay. A new replay collection will start when active again. | `1800000`<br/>(30 minutes) |
 | `record_mask_text_class` | CSS class name or regular expression for elements that will have their text contents masked. | `new RegExp('^(mp-mask\|fs-mask\|amp-mask\|rr-mask\|ph-mask)$')` <br/> (common industry mask classes) |
 | `record_mask_text_selector` | CSS selector for elements that will have their text contents masked. | `"*"` |
@@ -947,76 +967,93 @@ Note: This is the only change needed in your existing JavaScript SDK setup to en
 | `record_min_ms` | Minimum length of a single replay in milliseconds. Up to 8 seconds is supported. If a replay does not meet the minimum length, it will be discarded. | `0`<br/>(0 seconds) |
 | `record_sessions_percent` | Percentage of SDK initializations that will qualify for replay data capture. A value of "1" = 1%. | `0` |
 | `record_canvas` | When true, Mixpanel will record snapshots of `<canvas>` elements on your site at up to 15 frames per second | `false` |
+| `record_heatmap_data` | When true, Mixpanel will capture click events during replays to populate Heatmaps. Viewing Heatmaps is currently in Beta. | `false` |
 
-
-### Session Replay Methods
-
-We give our customers full control to customize when and where they capture session replays.
-
-#### Start capturing replay data
+**Example Usage**
 
 ```javascript
-mixpanel.start_session_recording()
+mixpanel.init('YOUR_PROJECT_TOKEN', {
+    record_sessions_percent: 1,  //records 1% of all sessions
+    record_mask_text_selector: '', //unmask all text elements
+    record_block_selector: '' //unmask images and videos
+});
 ```
-This will force recording to begin, overriding any value defined in `record_sessions_percent`. This will have no effect if replay data collection is in progress. 
 
-This is optional, and can be used primarily to programmatically start and stop recording, or exclude something specific from recording. We recommend using the [sampling method](/docs/tracking-methods/sdks/javascript#sampling-method) detailed above unless you need to customize when you capture replay data. 
+### Manual Capture
 
-#### Stop capturing replay data
+Start and stop the capturing of Replay data manually at any time using the `start_session_recording()` and `stop_session_recording()` methods. These methods override the `record_sessions_percent` value from the [sampling init option](/docs/tracking-methods/sdks/javascript#sampling) above.
+
+**Example Usage**
 
 ```javascript
-mixpanel.stop_session_recording()
+// force session recording to begin
+// no effect if replay data collection is in progress
+mixpanel.start_session_recording();
+
+// force session recording to end
+// no effect if replay data collection is not in progress
+mixpanel.stop_session_recording();
 ```
-This will have no effect if there is no replay data collection in progress.
 
-#### Get replay properties
+#### Get Replay ID
 
-Use this method to get properties used to identify a replay that is taking place. Add the properties from this method to any events sent to Mixpanel that are not coming from the SDK (e.g. from a [CDP library](/docs/session-replay/session-replay-web#can-i-use-session-replay-with-a-cdp)).
+Use the `get_session_recording_properties()` method to return the `$mp_replay_id` of the current recording taking place. Add this property to any events not tracked using the SDK to include the event in the current recording.
 
-If your Mixpanel Events are instrumented using the JavaScript SDK, these properties will automatically be added.
+Events tracked using the JavaScript SDK while session recording is active will have the `$mp_replay_id` added automatically.
+
+**Example Usage**
 
 ```javascript
 mixpanel.get_session_recording_properties()
 // {$mp_replay_id: '19221397401184-063a51e0c3d58d-17525637-1d73c0-1919139740f185'}
+// Returns an empty object if there is no Replay in progress.
 ```
-Returns an empty object if there is no Replay in progress.
 
-#### Get replay URL
+#### Get Replay URL
 
 Returns a URL linking to the current replay in the Mixpanel UI. This URL is accessible only by authenticated users with the necessary permissions for the Mixpanel project. This is useful for debugging purposes or for adding metadata to other platforms, such as support tickets.
 
 ```javascript
 mixpanel.get_session_replay_url()
 // https://mixpanel.com/projects/replay-redirect?replay_id=19307d78e24394fe15-0cd98d8fd9ad1d-1f525636-4b9600-19307d78e28194fe15&distinct_id=123&token=my-project-token
+// Returns null if there is no Replay in progress.
 ```
-Returns null if there is no Replay in progress.
+### Heatmaps (Beta)
 
-#### Example Scenarios
+<Callout type="info">
+Heatmaps are currently in private, closed beta. For early access, please contact your Account Manager.
+</Callout>
 
-| Scenario | Guidance | 
-| --- | --- |
-| We have a sensitive screen we don't want to capture | When user is about to access the sensitive screen, call `mixpanel.stop_session_recording()`. To resume recording once they leave this screen, you can resume recording with `mixpanel.start_session_recording()`  | 
-| We only want to record certain types of users (e.g. Free plan users only) | Using your application code, determine if current user meets the criteria of users you wish to capture. If they do, then call `mixpanel.start_session_recording()` to force recording on |
-| We only want to users utilizing certain features | When user is about to access the feature you wish to capture replays for, call `mixpanel.start_session_recording()` to force recording on |
+Enable [Heatmaps](/docs/session-replay/heatmaps) data collection by setting `record_heatmap_data` to `true` during library initialization.
 
+Ensure Session Replay is enabled, as Heatmaps only collect data during sessions with recorded replays. If a page has limited replay coverage, the resulting Heatmap may provide limited or less meaningful insights.
 
-### Tips & Tricks While Implementing
-- Search for Session Recording Checkpoint events in your project, tracked as `$mp_session_record`. When you capture Mixpanel session replays, the SDK will automatically emit this default event. If you've implemented correctly, you should see these events appear. Note: the Session Recording Checkpoint event does not count as a billed event for events plans in Mixpanel.
-- Calling `mixpanel.start_session_recording()` in your website / application is a good test to see if it causes Session Recording Checkpoint event mentioned above to appear. If it does, and you're still struggling to find replays for Users and Reports, your sampling rate may not be working, or may be set too low.
-- Check the home page for your project to see if there are any replays listed in the Latest Replays card.
-- If you're still struggling to implement, [submit a request to our Support team](https://mixpanel.com/get-support) for more assistance.
+**Example Usage**
 
-### Privacy
-Mixpanel offers a privacy-first approach to Session Replay, including features such as data masking. Mixpanel’s Session Replay privacy controls were designed to assist customers in protecting end user privacy. Read more [here](/docs/session-replay/session-replay-web#appendix-session-replay-privacy-controls).
+```javascript Javascript
+mixpanel.init('YOUR_PROJECT_TOKEN', {
+  record_sessions_percent: 1, // Session Replay must be enabled for Heatmap
+  record_heatmap_data: true   // Enable Heatmap data collection
+});
+```
 
+If you use [Autocapture](/docs/tracking-methods/autocapture) to track clicks, you can leverage these clicks to populate the Heatmaps without setting the `record_heatmap_data` option during library initialization.
 
-#### User Data
-The Mixpanel SDK will always mask all inputs. By default, all text on a page will also be masked unless a different `record_mask_text_selector` is specified.
+**Example Usage**
 
-Along with other data, the SDK respects all Do Not Track (DNT) settings as well as manual opt-out for any replay data. 
-
-#### Retention
-User replays are stored for 30 days after the time of ingestion. There is no way to view a replay older than 30 days old.
+```javascript Javascript
+mixpanel.init('YOUR_PROJECT_TOKEN', {
+  autocapture: {
+    pageview: "full-url",
+    click: true, // click tracking enabled
+    input: true,
+    scroll: true,
+    submit: true,
+    capture_text_content: false,
+  },
+  record_sessions_percent: 1 // Session Replay enabled, recording 1% of all sessions
+});
+```
 
 ## Release History
 [See All Releases](https://github.com/mixpanel/mixpanel-js/releases).

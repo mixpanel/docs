@@ -55,10 +55,10 @@ def track_to_mp(request, event_name, properties):
 
   # ... handle additional event properties such as $browser, $device, and $os ...
 
-  if "Referer" in request.headers:
+  if "Referrer" in request.headers:
     properties.update({
-      "$referrer": request.headers["Referer"]
-      "$referring_domain": urlparse(request.headers["Referer"]).hostname
+      "$referrer": request.headers["referrer"]
+      "$referring_domain": urlparse(request.headers["Referrer"]).hostname
     })
 
   # assumes query parameters are available as Flask request.args dict
