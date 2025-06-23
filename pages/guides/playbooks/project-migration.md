@@ -405,7 +405,7 @@ Saved entities, such as reports, boards, custom events, custom properties, cohor
 💡 **Best Practices:**
 - **Prioritize Key Entities:** Focus on migrating the most important and frequently used entities first to ensure critical business functions continue uninterrupted.
 - **Collaborate with Stakeholders:** Involve key stakeholders throughout the migration process to ensure that their needs are met and that the migrated entities align with their expectations.
-- **Boards & Reports**: Utilize [Move](/docs/boards/advanced#move-board) to transfer saved boards and reports across the same region (i.e. US, EU data centers). Permissions are managed by group admins allowing Boards to be moved across Projects or Organizations, depending on your use case.
+- **Boards & Reports**: Utilize [Move](/docs/boards/move-boards) to transfer saved boards and reports across the same region (i.e. US, EU data centers). Permissions are managed by group admins allowing Boards to be moved across Projects or Organizations, depending on your use case.
     - Move does not support the migration of custom events, custom properties, cohorts, and lexicon metadata. This would need to be done manually. Review these lists with stakeholders and decide if any of these saved entities would need to be recreated in the new project to set your end users up for success.
     - Lexicon metadata can be [retrieved](https://developer.mixpanel.com/reference/list-all-schemas-for-project) from existing projects and [recreated](https://developer.mixpanel.com/reference/upload-schemas-for-project) in the new project via our Lexicon Schemas API.
 
@@ -414,7 +414,7 @@ As organizations grow and new use cases become available to become analyzed it p
 
 Leveraging our in-product data governance tools can help support ongoing structure throughout your customers projects. Implementing the use of “verified” metrics, events, and formulas helps end users identify trusted content across the organization. Once your trusted governance owner(s) verify content, a blue checkmark badge will be displayed in the query builder as well as within a dedicated category within the query builder to help users quickly filter to see only trusted content.
 
-Having pinned and favorited boards for new users to jump into as they familiarize themselves with the data is a great place to start. We see the most success when companies have a trusted metrics board for each team or product that leverages this. These boards not only guide users in exploring new use cases but also ensure they leverage the correct events and properties to get the answers they need.
+Having pinned and favorite boards for new users to jump into as they familiarize themselves with the data is a great place to start. We see the most success when companies have a trusted metrics board for each team or product that leverages this. These boards not only guide users in exploring new use cases but also ensure they leverage the correct events and properties to get the answers they need.
 
 Our in-product data standards tooling empowers your organization to scale your data operations by acting on your data at scale through the a rule based system.
 

@@ -53,7 +53,7 @@ If a visitor performs any of these actions, a new visit starts:
 - The same person browsing your site on different devices. A separate unique visitor is counted per device.
 - Opens a private browsing session (such as Chrome’s Incognito tab).
 
-As a result, many internal Adobe users aren't too sure of how unique visitors are actually calculated given that it’s also dependent on how their data set up is done by the consultants they hire, eventually making these calculations somewhat a blackbox.
+As a result, many internal Adobe users aren't too sure of how unique visitors are actually calculated given that it’s also dependent on how their data set up is done by the consultants they hire, eventually making these calculations somewhat of a black box.
 
 
 ## Track forward looking real-time data
@@ -164,7 +164,7 @@ To prevent any potential issues with identity management due to the drastic diff
 
 We recommend customers use Simplified API for their identity management, because they can easily designate their anonymous id and prefix it with a $device.
 
-For any 3rd party integrations, the recommendation is to populate the identifiers that are being used on those 3rd party systems as user profile properties and utilise that as a mean to identify users when exporting out cohorts. 
+For any 3rd party integrations, the recommendation is to populate the identifiers that are being used on those 3rd party systems as user profile properties and utilize that as a mean to identify users when exporting out cohorts. 
 
 ***This step needs to be done before any data is sent to the project.***
 

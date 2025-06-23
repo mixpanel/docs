@@ -159,9 +159,11 @@ See here for more on how to [import](https://docs.mixpanel.com/docs/tracking-met
 Historical properties can be used anywhere that regular profile properties can be used.
 
 For eg, when you apply breakdown by historical plan-type property, the property value will be picked based on the time of the event, instead of the current property value.
+
 ![image](/historical_property_value.webp)
 
 When you hover over a historical property, the context menu that pops up will show that the property was sourced from a history table, as well as the name of the source. This means that the value of the property used in charts can vary over time.
+
 ![image](/dropdown_historical_property.webp)
 
 ## Deleting Profiles
@@ -204,7 +206,7 @@ Mixpanel is 100% compatible with Segment; just follow Segment's best practices. 
 User Profiles are mutable, which means new ones can be added and existing ones can be updated or deleted. Mixpanel automatically maintains an "Updated at" (`$last_seen`) property, which contains the last timestamp that a user profile was updated. "Updated at" does not change if the user does a new event; it only changes when the profile is updated. "Updated at" also does not change for profile updates made via the UI or if the `$ignore_time` parameter is set to `true` (see example from [PHP SDK](/docs/tracking-methods/sdks/php#setting-profile-properties)).
 
 ### Where can I learn more about Group Profiles?
-You can get an overview of how Group Profiles relate to Mixpanel's Data Model under the section [Group Level Behaviours and Demographics](/docs/tutorials/plan/tracking-strategy#group-level-behaviours-and-demographics) in our tutorials. A more detailed explanation of [Group Profiles](/docs/data-structure/group-analytics#group-profiles) is documented under our [Group Analytics](/docs/data-structure/group-analytics) page.
+You can get an overview of how Group Profiles relate to Mixpanel's Data Model under the section [Group Level Behaviors and Demographics](/docs/tutorials/plan/tracking-strategy#group-level-behaviours-and-demographics) in our tutorials. A more detailed explanation of [Group Profiles](/docs/data-structure/group-analytics#group-profiles) is documented under our [Group Analytics](/docs/data-structure/group-analytics) page.
 
 ### How are end times applied to the historical property?
 The end time will be inferred from the next event sent with a higher `Start Timestamp`. If you do not have an updated value for a property and simply want it to become inactive at a certain timestamp, please set up your DWH table to set undefined for the property at the time that it becomes inactive/expires.

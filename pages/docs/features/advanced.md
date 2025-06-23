@@ -439,70 +439,12 @@ Comparisons are supported across all insights chart types. Depending on the exac
 | Insights Stacked Line | No | No | Yes |
 | Insights Bar | Yes | Yes | Yes |
 | Insights Stacked Bar | Yes | No | No |
-| Insights Pie | No | No | Yes |
+| Insights Pie | No | No | No |
 | Insights Metric | Yes | Yes | Yes |
 | Funnels Steps | Yes | Yes | No |
 | Funnel Trends | Yes | Yes | No |
 | Retention Curve | No | Yes | No |
 | Retention Trends | Yes | Yes | No |
-
-## Limits and Ordering
-
-### Summary
-
-In order to keep the interactive analysis experience snappy for projects of all sizes, we've made 2 changes:
-
-- Added maximum limits to how many segments are returned when breaking down a metric by properties
-- Changed the logic for the top segments that are returned
-
-### Limits
-
-### UI
-
-We're changing how many segments are returned back to the report (**visible limit**), how many segments can be selected at a time for visualization (**selection limit**) as well as the number of segments selected by default (**default selection**).
-
-Here's the breakdown per report + visualization type:
-
-| Report Viz | Default Selection | Selection Limit | Visible Limit |
-| --- | --- | --- | --- |
-| Insights (bar) | 12 | 300 | 3000 |
-| Insights (line) | 12 | 50 | 3000 |
-| Retention | 6 | 12 | 200 |
-| Funnels | 6 | 12 | 200 |
-
-### Downloaded CSV and API
-
-When downloading results as CSV or when querying our APIs, the limits remain unchanged.
-
-### Top Segments logic
-
-The way we pick the top segments differs according to the type of query. We choose the top segments based on the value shown in the second column.
-
-| Query type | How we select top segments |
-| --- | --- |
-| Total | Total number of occurrences of the chosen event |
-| Unique | Number of unique users who performed the chosen event |
-| Sum of property values | Sum of the chosen property |
-| Min/max of property values | Lowest/highest value of the chosen property |
-| Average | Number of events (or users) that contribute to the average |
-| Median/Percentile/Distribution | Number of events (or users) that contribute to the distribution |
-| Distinct count | Number of distinct values of the chosen property |
-| DAU/WAU/MAU | Number of unique users |
-| Sessions | Number of sessions that contain the chosen event |
-| Funnels | Total number of times the first funnel step was completed |
-| Retention | Total number of times the first event was completed |
-
-### FAQ
-
-**How will I know if my results are being pruned?**
-
-You will see an indication like this:
-
-![image](https://github.com/mixpanel/docs/assets/2077899/3935993c-0410-46e4-a9d6-2d2dfb5313cd)
-
-**Does this mean the downloaded CSV has lower limits?**
-
-No, limits for CSV downloads remain unchanged across Insights, Funnels, and Retention.
 
 ## Analyzing First Time Users
 
@@ -554,6 +496,39 @@ In funnels, the behavioral property is computed in the time range between 2 step
 
 In retention, the behavioral property is computed in the chosen time range after the entry event, up until the expiration window. For example, there may be a 7-day window in which we're looking for an event. Even if the retaining action happens before the 7 days are up, we continue to count additional events.
 
+## Company health and activation metrics 
+
+### Company Profiles
+
+This page gives you a view into all your company health - including key metrics, and company profile properties (i.e company attributes) 
+
+Company Health Metrics on the page include - understanding company usage (DAU, WAU, MAU, new users), users’ engagement level (activity per user, lifecycle of user), and their retention (Day 1, Week 1, and Month 1) 
+
+You can view the definition of each metric by clicking on the metric card, which will open the underlying Mixpanel report 
+
+NOTE
+1. To access this page - click on Users/ Companies → Company Profile
+2. This is only available if you have set up a B2B Company Key, an option available in the Group Analytics package.
+
+![image](/B2B_Company_Profiles.webp) 
+
+### Activation Metrics 
+
+SaaS companies often have use cases like the one below, where you’re trying to segment companies based on how many and the quality of users. (Examples - what are the number of trial accounts that have > 2 active users?)  The hypothesis is that these will convert faster. What you want to do here is to be able to break down account activity by the number of active users 
+
+We now have a new computed property (in both breakdown and filter) - **“Number of users who did…”**, available on our group analytics package that enables answering the above type of questions
+
+![image](/B2B_Activation_1.webp)
+
+When using as a breakdown, we show you how many downloads came from different types of account health i.e 605 downloads came from accounts with 0 active users, ~1.5 downloads through the 30 days came from accounts with 2 active users, where “active user” is defined by both the activity (eg. document created) and frequency of activity (eg. ≥1 t times)
+
+In a line chart, we look for activity per interval - i.e in the below daily chart, we’re looking for activity qualification per day (i.e. an active user is one who has created at least one document in that day). 
+
+So below shows on Aug 19th - there were 35 accounts that downloaded the document. Of the 35, 32 accounts had only 1 active user, 2 accounts had 2 active users, and 1 account had 28 active users! But since most downloads came from accounts with just 1 active user, there is no correlation possibly between account document download activity to account health
+
+![image](/B2B_Activation_2.webp)
+
+
 ## Find Interesting Segments
 
 Determine which users are either driving conversion and retention or behaving as outliers by using the built-in “Find Interesting Segments” feature.
@@ -561,8 +536,8 @@ Determine which users are either driving conversion and retention or behaving as
 Find Interesting Segments can help you discover:
 
 - Whether certain property segments outperform the overall funnel conversion or retention rates.
-- Which cohorts perform the best to get ideas on optimizing cohort behavior.
-- Which segments are under-performing.
+- Cohorts that perform bests to optimize for those behaviors.
+- Segments that are under-performing.
 - Changes in the conversion or retention rates of segments.
 - Change in population over time in funnels.
 
@@ -663,7 +638,7 @@ If you save a report that uses query time sampling, then a version of the report
 
 ## Query Result Caching
 
-Mixpanel stores the results from a report query in the cache and presents these results from there when appropriate. This saves time when running a complicated query multiple times, and allows you to surface previously calculated results near-instantaneously. The date range of the query will adjust how Mixpanel presents results from the cache.
+Mixpanel stores the results from a report query in our server cache and presents these results from there when appropriate. This saves time when running a complicated query multiple times, and allows you to surface previously calculated results near-instantaneously. The date range of the query will adjust how Mixpanel presents results from the server cache.
 
 - If the query date range is 1 year or over, then the query results are cached for up to 14 days.
 - If the query date range is under 1 year, then the query results are cached for up to 7 days.
@@ -673,7 +648,7 @@ Mixpanel stores the results from a report query in the cache and presents these 
 - If the query date range is under 1 week, then the query results are cached for up to 12 hours.
 - If the query date range is under 1 day, then the query results are cached for up to 1 hour.
 
-While this highlights the default cache behavior, you can always refresh a report to include the most current data as described below.
+While this highlights the default server cache behavior, you can always refresh a report to include the most current data as described below.
 
 ### Refreshing the Query Results Cache
 
@@ -712,14 +687,14 @@ Users can download reports in three formats:
 - CSV
 - PNG
 - PDF
-
-### Breakdown Limits in Report Downloads
-
+- 
 Mixpanel maintains breakdown limits for CSV, PNG, and PDF report downloads.
 
 ### CSV
 
-For property values that exceed 10,000, Mixpanel only returns the top 10,000 breakdowns of that property. Here’s an example CSV export of an Insights report. The first column contains the date of when each event was sent. The columns contain the event name and the rows contain the number of each event sent to Mixpanel.
+When exporting a CSV of an Insights report in Bar, Stacked Bar, Pie, Table, or Metric view, you can export up to 50,000 rows of data. For all other views and reports, the export limit is 10,000 rows. If your report exceeds these limits, we will only return the number of rows up to the limit in ascending order.
+
+Below is an example of an exported Insights report, where the first column contains the date of when each event was sent. The rest of the columns contain the event name and the rows contain the count of each event sent to Mixpanel for each date.
 
 ![/CSV-download.png](/CSV-download.png)
 

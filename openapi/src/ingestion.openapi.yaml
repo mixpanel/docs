@@ -101,7 +101,7 @@ paths:
                       time:
                         type: integer
                         title: time
-                        description: The time at which the event occurred, in seconds or milliseconds since UTC epoch.
+                        description: The time at which the event occurred, in seconds or milliseconds since UTC epoch. If the time value is set in the future, it will be overwritten with the current present time at ingestion.
                       distinct_id:
                         type: string
                         title: distinct_id
@@ -163,7 +163,7 @@ paths:
                       time:
                         type: integer
                         title: time
-                        description: The time at which the event occurred, in seconds or milliseconds since UTC epoch.
+                        description: The time at which the event occurred, in seconds or milliseconds since UTC epoch. If the time value is set in the future, it will be overwritten with the current present time at ingestion.
                       distinct_id:
                         type: string
                         title: distinct_id
@@ -193,6 +193,7 @@ paths:
         it does exist, it sets the properties to these values, overwriting
         existing values.
       parameters:
+        - $ref: ./common/ingestion-api.yaml#/OptionalRequestParameter/ResponseType/IP
         - $ref: ./common/ingestion-api.yaml#/OptionalRequestParameter/ResponseType/Strict
         - $ref: ./common/ingestion-api.yaml#/OptionalRequestParameter/ResponseType/Verbose
         - $ref: ./common/ingestion-api.yaml#/OptionalRequestParameter/ResponseType/JavascriptWithCallback
@@ -236,6 +237,7 @@ paths:
         Works just like "$set", except it will not overwrite existing property
         values. This is useful for properties like "First login date".
       parameters:
+        - $ref: ./common/ingestion-api.yaml#/OptionalRequestParameter/ResponseType/IP
         - $ref: ./common/ingestion-api.yaml#/OptionalRequestParameter/ResponseType/Strict
         - $ref: ./common/ingestion-api.yaml#/OptionalRequestParameter/ResponseType/Verbose
         - $ref: ./common/ingestion-api.yaml#/OptionalRequestParameter/ResponseType/JavascriptWithCallback
@@ -284,6 +286,7 @@ paths:
         negative values. This is useful for maintaining the values of properties
         like "Number of Logins" or "Files Uploaded".
       parameters:
+        - $ref: ./common/ingestion-api.yaml#/OptionalRequestParameter/ResponseType/IP
         - $ref: ./common/ingestion-api.yaml#/OptionalRequestParameter/ResponseType/Strict
         - $ref: ./common/ingestion-api.yaml#/OptionalRequestParameter/ResponseType/Verbose
         - $ref: ./common/ingestion-api.yaml#/OptionalRequestParameter/ResponseType/JavascriptWithCallback
@@ -329,6 +332,7 @@ paths:
         Adds the specified values to a list property on a user profile and
         ensures that those values only appear once. The profile is created if it does not exist.
       parameters:
+        - $ref: ./common/ingestion-api.yaml#/OptionalRequestParameter/ResponseType/IP
         - $ref: ./common/ingestion-api.yaml#/OptionalRequestParameter/ResponseType/Strict
         - $ref: ./common/ingestion-api.yaml#/OptionalRequestParameter/ResponseType/Verbose
         - $ref: ./common/ingestion-api.yaml#/OptionalRequestParameter/ResponseType/JavascriptWithCallback
@@ -385,6 +389,7 @@ paths:
         property that doesn't exist will result in assigning a list with one
         element to that property.
       parameters:
+        - $ref: ./common/ingestion-api.yaml#/OptionalRequestParameter/ResponseType/IP
         - $ref: ./common/ingestion-api.yaml#/OptionalRequestParameter/ResponseType/Strict
         - $ref: ./common/ingestion-api.yaml#/OptionalRequestParameter/ResponseType/Verbose
         - $ref: ./common/ingestion-api.yaml#/OptionalRequestParameter/ResponseType/JavascriptWithCallback
@@ -429,6 +434,7 @@ paths:
         is removed from the existing list on the user profile. If it does not
         exist, no updates are made.
       parameters:
+        - $ref: ./common/ingestion-api.yaml#/OptionalRequestParameter/ResponseType/IP
         - $ref: ./common/ingestion-api.yaml#/OptionalRequestParameter/ResponseType/Strict
         - $ref: ./common/ingestion-api.yaml#/OptionalRequestParameter/ResponseType/Verbose
         - $ref: ./common/ingestion-api.yaml#/OptionalRequestParameter/ResponseType/JavascriptWithCallback
@@ -472,6 +478,7 @@ paths:
         Takes a JSON list of string property names, and permanently removes the
         properties and their values from a profile.
       parameters:
+        - $ref: ./common/ingestion-api.yaml#/OptionalRequestParameter/ResponseType/IP
         - $ref: ./common/ingestion-api.yaml#/OptionalRequestParameter/ResponseType/Strict
         - $ref: ./common/ingestion-api.yaml#/OptionalRequestParameter/ResponseType/Verbose
         - $ref: ./common/ingestion-api.yaml#/OptionalRequestParameter/ResponseType/JavascriptWithCallback
@@ -524,6 +531,7 @@ paths:
 
         Refer to the respective user profile update commands ($set, $set_once, $add, $union, $append, $remove, $unset, and $delete) on syntax for their parameters.
       parameters:
+        - $ref: ./common/ingestion-api.yaml#/OptionalRequestParameter/ResponseType/IP
         - $ref: ./common/ingestion-api.yaml#/OptionalRequestParameter/ResponseType/Strict
         - $ref: ./common/ingestion-api.yaml#/OptionalRequestParameter/ResponseType/Verbose
         - $ref: ./common/ingestion-api.yaml#/OptionalRequestParameter/ResponseType/JavascriptWithCallback
@@ -625,6 +633,8 @@ paths:
       summary: Update Property
       description: Updates or adds properties to a group profile. The profile is created if it does not exist.
       parameters:
+        - $ref: ./common/ingestion-api.yaml#/OptionalRequestParameter/ResponseType/IP
+        - $ref: ./common/ingestion-api.yaml#/OptionalRequestParameter/ResponseType/Strict
         - $ref: ./common/ingestion-api.yaml#/OptionalRequestParameter/ResponseType/Verbose
       requestBody:
         required: true
@@ -668,6 +678,8 @@ paths:
       summary: Set Property Once
       description: Adds properties to a group only if the property is not already set. The profile is created if it does not exist.
       parameters:
+        - $ref: ./common/ingestion-api.yaml#/OptionalRequestParameter/ResponseType/IP
+        - $ref: ./common/ingestion-api.yaml#/OptionalRequestParameter/ResponseType/Strict
         - $ref: ./common/ingestion-api.yaml#/OptionalRequestParameter/ResponseType/Verbose
       requestBody:
         required: true
@@ -711,6 +723,8 @@ paths:
       summary: Delete Property
       description: Unsets specific properties on the group profile.
       parameters:
+        - $ref: ./common/ingestion-api.yaml#/OptionalRequestParameter/ResponseType/IP
+        - $ref: ./common/ingestion-api.yaml#/OptionalRequestParameter/ResponseType/Strict
         - $ref: ./common/ingestion-api.yaml#/OptionalRequestParameter/ResponseType/Verbose
       requestBody:
         required: true
@@ -758,6 +772,8 @@ paths:
       summary: Remove from List Property
       description: Removes a specific value in a list property.
       parameters:
+        - $ref: ./common/ingestion-api.yaml#/OptionalRequestParameter/ResponseType/IP
+        - $ref: ./common/ingestion-api.yaml#/OptionalRequestParameter/ResponseType/Strict
         - $ref: ./common/ingestion-api.yaml#/OptionalRequestParameter/ResponseType/Verbose
       requestBody:
         required: true
@@ -803,6 +819,8 @@ paths:
         Adds the specified values to a list property on a group profile and
         ensures that those values only appear once. The profile is created if it does not exist.
       parameters:
+        - $ref: ./common/ingestion-api.yaml#/OptionalRequestParameter/ResponseType/IP
+        - $ref: ./common/ingestion-api.yaml#/OptionalRequestParameter/ResponseType/Strict
         - $ref: ./common/ingestion-api.yaml#/OptionalRequestParameter/ResponseType/Verbose
       requestBody:
         required: true
@@ -864,6 +882,8 @@ paths:
 
         Refer to the respective group profile update commands ($set, $set_once, $add, $union, $remove, $unset, and $delete) on syntax for their parameters.
       parameters:
+        - $ref: ./common/ingestion-api.yaml#/OptionalRequestParameter/ResponseType/IP
+        - $ref: ./common/ingestion-api.yaml#/OptionalRequestParameter/ResponseType/Strict
         - $ref: ./common/ingestion-api.yaml#/OptionalRequestParameter/ResponseType/Verbose
       requestBody:
         required: true

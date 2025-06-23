@@ -1,7 +1,10 @@
+import { Code, Callout } from 'nextra/components'
+
 # Custom Properties: Calculate new properties on the fly
 
-
-import {Code} from 'nextra/components'
+<Callout type="info">
+  Free plan users can create custom properties locally within a report. Growth and Enterprise plan users can save the custom properties globally to reuse in other reports. See our [pricing page](https://mixpanel.com/pricing/) for more details.
+</Callout>
 
 ## Overview
 
@@ -9,7 +12,7 @@ Custom properties lets you combine existing properties into new properties on th
 
 ## Use Cases
 
-### Grouping Marketing Channels
+**Grouping Marketing Channels**
 
 If you're a marketer, using Mixpanel to show the impact of various channels on acquisition, you might want to group your UTM Sources into higher level buckets. For example:
 * Facebook, Instagram, Twitter → Social
@@ -20,14 +23,14 @@ You can also use the [Channel Classifier](/changelogs/2023-11-16-channel-classif
 
 ![image](/channel-classifier.png "Channel Classifier")
 
-### Compute Properties Mathematically from Other Properties
+**Compute Properties Mathematically from Other Properties**
 
 If you have an e-commerce app, you can combine "price" and "quantity" properties into a "total price" property as follows:
 
 ![image](https://github.com/mixpanel/docs/assets/2077899/b514f908-6838-45ff-bdea-feb6969e0340)
 
 
-### Compute the Number of Days Between Two Date Properties
+**Compute the Number of Days Between Two Date Properties**
 
 Use custom properties to compute the date/time difference between two date properties. You can also use the special "TODAY()" function to find the difference between a date property and the current date/time. This is ideal when you want to transform a "DateofBirth" property into “age” or a "Created" property into “days active since registration”.
 
@@ -35,7 +38,7 @@ A new custom property can be defined by taking into account the “Created” pr
 
 ![image](https://github.com/mixpanel/docs/assets/2077899/3f099385-9b2c-4e5c-9f73-e72a807e133e)
 
-### Compare Different Properties
+**Compare Different Properties**
 
 Use custom properties to create a new property if two property values are the same.
 
@@ -47,13 +50,13 @@ They can create a custom property to determine whether the two country values ar
 
 ![image](https://github.com/mixpanel/docs/assets/2077899/c9b2a70a-60d7-4563-9b59-b21d3c5b86cc)
 
-### Extract Domain from Email Address
+**Extract Domain from Email Address**
 
 Extract the domain of the email from an email address. You can parse out parts of a string after "@" using the SPLIT function:
 
 ![image](https://github.com/mixpanel/docs/assets/2077899/daf38804-4bfc-40a4-bed2-8d391bd4ebda)
 
-### Query a List with an Index
+**Query a List with an Index**
 
 Let’s say you have a list of recommendations as a property, and you’d like to parse out the first recommendation as another string property.
 
@@ -63,7 +66,7 @@ You can parse out the first delivery ID in a list property with several Delivery
 
 The same syntax works with objects.
 
-### Borrow properties from one event onto subsequent events
+**Borrow properties from one event onto subsequent events**
 
 ![image](/borrowed_property_functionality.png)
 
@@ -139,10 +142,10 @@ Use the following functions in the **Formula** field to modify your custom prope
 | upper | Cast string property values to uppercase. | upper(string property)<br /><br />Example:<br />`upper(A); upper("hello")` -> "HELLO" |
 | lower | Cast string property values to lowercase. | lower(string property)<br /><br />Example:<br />`lower(A); lower("FacEBook")` -> "facebook" |
 |parse_url()| Extracts the part of the url that is specified: domain(google) or full_domain(google.co.uk) | parse_url(string property, "domain") or parse_url(string property, "full_domain") <br /><br />Example: parse_url(A,"domain") |
-| regex_extract | If haystack is a string and pattern matches at least one substring, extracts the result from the first pattern match in haystack. The result is a string equal to the entire regex match, or if capture group is specified, only that portion of the match. | regex_extract(haystack, pattern, &lt;optional capture group#&gt;)<br /><br />Example:<br />`regex_extract("iPhone5.1","iPhone(...)",1)` ->5.1 |
-| regex_match | Returns true if the pattern matches any part of the string. | regex_match(haystack, pattern)<br /><br />Example:<br />`regex_match("zzhaystackzz", "ha(..)ack")` -> true <br /> // Use (?-i) for case-sensitive matching: `regex_match("HAYSTACK", "(?-i)haystack")` -> false |
-| regex_replace | Replaces the parts of a string that match a regular expression with a different string. | regex_replace(haystack, pattern, replacement)<br /><br />Example:<br />  // convert currency string to number: `regex_replace("$1,234,567", "[^.0-9]\*", ""))` -> `1234567` |
-| datedif | Subtract two dates. Units:<br />D: days.<br />M:  months.<br />Y: years<br />MD:  days remaining after subtracting whole months.<br />YM:  months remaining after subtracting whole years.<br />YD:  days, assuming start_date and end_date are within 1 year.<br />Use TODAY() for current day. |<br />datedif(start_date,end_date,unit)<br /><br />Example:<br />`datedif(registrationdate,TODAY(), "M")` -> 5 |
+| regex_extract | If haystack is a string and pattern matches at least one substring, extracts the result from the first pattern match in haystack. The result is a string equal to the entire regex match, or if capture group is specified, only that portion of the match. We use the PCRE2 regex engine. | regex_extract(haystack, pattern, &lt;optional capture group#&gt;)<br /><br />Example:<br />`regex_extract("iPhone5.1","iPhone(...)",1)` ->5.1 |
+| regex_match | Returns true if the pattern matches any part of the string. We use the PCRE2 regex engine. | regex_match(haystack, pattern)<br /><br />Example:<br />`regex_match("zzhaystackzz", "ha(..)ack")` -> true <br /> // Use (?-i) for case-sensitive matching: `regex_match("HAYSTACK", "(?-i)haystack")` -> false |
+| regex_replace | Replaces the parts of a string that match a regular expression with a different string. We use the PCRE2 regex engine. | regex_replace(haystack, pattern, replacement)<br /><br />Example:<br />  // convert currency string to number: `regex_replace("$1,234,567", "[^.0-9]\*", ""))` -> `1234567` |
+| datedif | Subtract two dates. Units:<br />D: days.<br />M:  months.<br />Y: years<br />MD:  days remaining after subtracting whole months.<br />YM:  months remaining after subtracting whole years.<br />YD:  days, assuming start_date and end_date are within 1 year.<br />Use TODAY() for current day. |<br />datedif(start_date,end_date,unit)<br /><br />Example:<br />`datedif(registration_date,TODAY(), "M")` -> 5 |
 | len | Returns the length of the string or the list. | len(string) or len(list)<br /><br />Example:<br /> `len("Canada")` -> 6 |
 | left | Returns characters from the beginning of a given string. | left(string, num_of_characters)<br /><br />Example:<br />`left("Canada",3)` -> "Can" |
 | right | Returns characters from the end of a given string | right(string, num_of_characters)<br /><br />Example:<br />`right("Canada",3)` -> "ada" |
@@ -159,7 +162,7 @@ Use the following functions in the **Formula** field to modify your custom prope
 
 Use the following numeric operators in the **Formula** field to modify your custom property using:
 
-- `+`: Addition. Operator can also be used to create string concatenation, for example: `"string_to_concatenate" + yourprop`
+- `+`: Addition. Operator can also be used to create string concatenation, for example: `"string_to_concatenate" + your string property`
 - `-`: Subtraction
 - `*`: Multiplication
 - `/`: Division
