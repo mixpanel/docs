@@ -7,6 +7,11 @@ createdAt: "2020-10-20T00:41:48.213Z"
 updatedAt: "2023-09-26T21:06:39.162Z"
 ---
 
+> ❗️JQL is currently in maintenance mode and will be completely deprecated December 31, 2025. We recommend discontinuing use of JQL and using an [alternate method](https://docs.mixpanel.com/docs/export-methods) to get the data you need. Below are alternatives for common use cases and you need help deciding the best method for you, reach out to [support](mixpanel.com/get-support). 
+> - Raw Event export: [Export API](https://developer.mixpanel.com/reference/raw-data-export-api) or [Data Pipelines](https://docs.mixpanel.com/docs/data-pipelines)
+> - User Profile export: [Engage Query API](https://developer.mixpanel.com/reference/engage-query) or [Data Pipelines](https://docs.mixpanel.com/docs/data-pipelines)
+> - Other reporting: [Query API](https://developer.mixpanel.com/reference/query-api) or in-app [Core Reports](https://docs.mixpanel.com/docs/reports)
+
 The HTTP API is the lowest-level way to use JQL. At its core, the API is very simple: you write a script, and you post it to an API endpoint with some authentication parameters.
 
 For longer scripts, you will likely want to keep the code in a file. If you had your script in a file called my_query.js, you could run it using the following cURL command:
