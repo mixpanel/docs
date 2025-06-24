@@ -33,6 +33,14 @@ This documentation is intended for users with intermediate or advanced knowledge
 
 Follow the instructions here in the [Overview](/docs/data-pipelines).
 
+## Destination and Date Range Restrictions
+
+To prevent data duplication and conflicts, the system enforces the following rule: **you cannot create multiple event pipelines that export to the same destination with overlapping date ranges**. 
+
+For example, if you already have a pipeline exporting to BigQuery dataset "my_dataset" for dates January 1-31, you cannot create another pipeline exporting to the same dataset with dates January 15 - February 15, as the January 15-31 period would overlap.
+
+This constraint ensures data integrity and prevents duplicate exports to the same destination tables or storage locations.
+
 ## Data Sources Output
 
 Json pipelines support three different data sources: events, people, and identity.
