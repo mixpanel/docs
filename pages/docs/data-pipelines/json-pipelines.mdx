@@ -6,6 +6,25 @@ import { Callout } from 'nextra/components'
   Customers on an Enterprise or Growth plan can access Data Pipeline as an add-on package. See our [pricing page](https://mixpanel.com/pricing/) for more details.
 </Callout>
 
+<Callout type="info">
+## Pipeline System Improvements
+
+We're rolling out an improved pipeline system to make your data exports more efficient and reliable. We're deploying these improvements gradually across all customers without advance notice - your pipeline will automatically transition to the new system when ready. Your data quality and completeness remain exactly the same - only the processing method has improved.
+
+### Benefits
+
+- **Elimination of data sync delays** - no more waiting for daily sync processes to detect and fix data discrepancies
+- **Complete data export** - all events are exported without the risk of missing late-arriving data
+
+### What You'll Notice
+
+**Events Pipelines Only**: This improvement only affects events pipelines. People and identity mapping pipelines remain unchanged.
+
+**Event Count Display**: The event count shown per task in the UI now represents the total events processed per batch rather than events exported per day or per hour. Since each batch can span multiple days, this number may appear different from before.
+
+**Backfill Process**: When a new pipeline is created, it will complete the full historical backfill first before starting regular processing. For example, if you create a pipeline on January 15th at 11 AM with a backfill from January 1st, the system will first export all events that arrived in Mixpanel before around January 15th 11 AM as the initial backfill, then begin processing any new events that arrive after around January 15th 11 AM, regardless of which date those events are for.
+</Callout>
+
 Json Pipeline is designed to export your Mixpanel data to supported data warehouses or object storage solutions. We maintain all properties in a high-level JSON format under the `properties` key for both events and user profile data.
 
 This documentation is intended for users with intermediate or advanced knowledge of databases and familiarity with Amazon Web Services, Google Cloud Platform, or Snowflake technology.
