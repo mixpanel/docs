@@ -3,6 +3,9 @@ x-readme-deploy-id: query
 info:
   title: Query API
   description: query api
+  license:
+    name: MIT
+    url: https://opensource.org/licenses/MIT
   contact:
     url: https://mixpanel.com/get-support
   version: 1.0.0
