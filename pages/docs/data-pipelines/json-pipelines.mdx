@@ -117,3 +117,24 @@ Pipelines export event data as they appear when Mixpanel ingests them. Data sent
 Note: Use the `resolved_distinct_id` from the identity mappings table instead of the non-resolved `distinct_id` when available. If there is no resolved `distinct_id`, use the `distinct_id` from the existing people or events table.
 
 Examples of querying the identity mapping table are available for [BigQuery](/docs/data-pipelines/integrations/bigquery#query-identity-mappings) and [Snowflake](/docs/data-pipelines/integrations/snowflake#query-identity-mappings).
+
+## Change Log
+
+<details>
+<summary><strong>2025-06-26 - Pipeline System Improvements - Incremental Export</strong></summary>
+
+We're rolling out an improved pipeline system to make your data exports more efficient and reliable. We're deploying these improvements gradually across all customers without advance notice - your pipeline will automatically transition to the new system when ready. Your data quality and completeness remain exactly the same - only the processing method has improved.
+
+### Benefits
+
+- **Elimination of data sync delays** - no more waiting for daily sync processes to detect and fix data discrepancies
+- **Complete data export** - all events are exported without the risk of missing late-arriving data
+- **No 10-day sync window limitation** - late-arriving events are automatically exported regardless of how late they arrive, eliminating the previous 10-day sync window restriction
+
+### What You'll Notice
+
+- **Events Pipelines Only**: This improvement only affects events pipelines. People and identity mapping pipelines remain unchanged.
+- **Event Count Display**: The event count shown per task in the UI now represents the total events processed per batch rather than events exported per day or per hour. Since each batch can span multiple days, this number may appear different from before.
+- **Backfill Process**: When a new pipeline is created, it will complete the full historical backfill first before starting regular processing. For example, if you create a pipeline on January 15th at 11 AM with a backfill from January 1st, the system will first export all events that arrived in Mixpanel before around January 15th 11 AM as the initial backfill, then begin processing any new events that arrive after around January 15th 11 AM, regardless of which date those events are for.
+
+</details>
