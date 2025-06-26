@@ -2,6 +2,9 @@ openapi: 3.0.2
 info:
   title: Warehouse Connectors API
   description: Connect an external warehouse to import events, users, groups, and lookup tables.
+  license:
+    name: MIT
+    url: https://opensource.org/licenses/MIT
   version: 1.0.0
   contact:
     url: https://mixpanel.com/get-support

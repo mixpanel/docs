@@ -6,6 +6,9 @@ info:
     Use annotations to label specific points in time in your charts with a description.
   contact:
     url: 'https://mixpanel.com/get-support'
+  license:
+    name: MIT
+    url: https://opensource.org/licenses/MIT
   version: 1.0.0
 servers:
   - $ref: ./common/app-api.yaml#/server
