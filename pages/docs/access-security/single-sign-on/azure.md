@@ -48,7 +48,7 @@ For more information, read [this Microsoft Azure article](https://docs.microsoft
 5. Assign your team members this new application.
     
 ### SCIM Provisioning
-  
+
 Azure has an auto-provisioning integration with Mixpanel that allows you automatically add users to Mixpanel upon giving them access in Azure. The integration also allows you to remove access within Mixpanel when you remove access in Azure. You can find more information [here](https://learn.microsoft.com/en-us/azure/active-directory/saas-apps/mixpanel-provisioning-tutorial). 
 - New users provisioned from Azure will be automatically added as an Organization Member.
 - You will need to provision other [Organization Roles](https://docs.mixpanel.com/docs/orgs-and-projects/roles-and-permissions#organization-roles) to users within the Mixpanel product.
