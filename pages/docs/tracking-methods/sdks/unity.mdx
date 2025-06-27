@@ -92,12 +92,12 @@ Mixpanel.Track("Image Upload");
 ### Flushing Events
 To preserve battery life and customer bandwidth, the Mixpanel library doesn’t send the events you record immediately. Instead, it sends batches to the Mixpanel servers every 60 seconds while your application is running, as well as when the application transitions to the background.
 
-Call [`Mixpanel.FlushQueue()`](https://mixpanel.github.io/mixpanel-unity/api-reference/classmixpanel_1_1_mixpanel.html#a0af296d8b284355bbc4c6b7d556be5d7) manually if you want to force a flush at a particular moment.
+Call Mixpanel.Flush() manually if you want to force a flush at a particular moment.
 
 **Example Usage**
 ```csharp
 Upload queued data to the Mixpanel server
-Mixpanel.FlushQueue();
+Mixpanel.Flush();
 ```
 
 **Flush Interval**
