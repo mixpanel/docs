@@ -1,10 +1,10 @@
 export default {
     "alerts": "Alerts",
-    "attribution": "Attribution",
     "embeds": "Embeds",
     "chart-customization": "Chart Customization",
     "custom-buckets": "Custom Buckets",
     "custom-events": "Custom Events",
+    "computed-properties": "Computed Properties",
     "custom-properties": "Custom Properties",
     "saved-behaviors": "Saved Behaviors",
     "sessions": "Sessions",
