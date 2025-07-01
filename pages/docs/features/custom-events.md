@@ -35,3 +35,11 @@ Here you can see a list of all the custom events in the project. Click on the *
 To delete a custom event, check the **box** beside the title of all the custom events you want to delete, then click the **delete** button at the top of the list.
 
 ![image](https://github.com/mixpanel/docs/assets/2077899/8004da2b-db3c-48c0-a494-e500e1cc5bf7)
+
+## Sharing Custom Events
+
+A custom event will be private to the user who created it until it is shared with others. To share this custom event with another user in the project, you can click on "Save and Share" while creating the custom event.  
+
+![image](https://github.com/user-attachments/assets/277ac882-4ef0-4251-bb1e-107ed38f4f27)
+
+![image](https://github.com/user-attachments/assets/6d84dbf7-7bba-45fd-ba25-44e0772752d8)
