@@ -2,59 +2,6 @@
 
 ## Query Builder Features
 
-### Session Metric Analysis
-
-![/Screen_Shot_2022-07-11_at_3.53.47_PM.png](/Screen_Shot_2022-07-11_at_3.53.47_PM.png)
-
-Analyze session metrics by selecting "Session Start" or "Session End" from the events list. Learn more about using Sessions in Insights, Funnels, and Flows [here](/docs/features/sessions).
-
-### Inline Filtering
-
-Filter this event by clicking the **inline action menu** and selecting **Add filter** from the drop-down. Choose an event property, user profile property, group profile property, or cohort to filter the event by.
-
-![image](https://github.com/mixpanel/docs/assets/2077899/9307d6c1-025c-4bb4-9ab3-12f9ab1c7ce3)
-
-You can select whether you would like your query to match any or all of the filters by clicking on **and/or** beside the filters.
-
-![image](https://github.com/mixpanel/docs/assets/2077899/1b8cdb9d-2479-404c-b10a-f82373d03e34)
-
-### Duplicating Events
-
-To duplicate any events or properties in your query, select the inline action menu and choose **Duplicate**. Delete any events or properties by clicking the **trash** icon.
-
-![image](https://github.com/mixpanel/docs/assets/2077899/f496b609-47a3-4287-95f8-e9e6f2ac915d)
-
-### Advanced Date and Time Selectors
-
-You can also choose how Mixpanel buckets the time range in Insights, Funnel Trends and Retention Trend reports (granularity may vary). To view a range in hours, you can select **Hour** as the view:
-
-![image](https://github.com/mixpanel/docs/assets/2077899/991a0f0f-b297-4b94-8d41-7323fe6666f6)
-
-To zoom in, click on the graph and drag to highlight a specific window of time in your report. Click **Reset zoom** to return to the previous view.
-
-![zoom (1)](https://github.com/mixpanel/docs/assets/2077899/3add64ad-3fea-4d74-a3bf-303fcc1f4d9d)
-
-### Advanced Filter & Breakdown Usage
-
-To filter the results of your report by any property or cohort, click the **Filter** button.
-
-To break down the results of your report by any property or cohort, click the **Breakdown**.
-
-You can break down your results by the "Time" event property and break down by Hour, Day, Week, Month, Quarter, Year, Hour of Day, or Day of Week.
-
-![/breakdown_by_date.gif](/breakdown_by_date.gif)
-
-If you are analyzing any custom events, you can break them down by the property "Event Name".
-
-![image](https://github.com/mixpanel/docs/assets/2077899/dafe97ca-35a3-4dee-8285-41a115f0417d)
-
-The drop-down menus only show events/event properties that were ingested within the last 30 days. To select events/event properties that have not been ingested in the last 30 days, type the name of the event/event property in the Filter or Breakdown search bar. You must know the exact name of the event/event property you want to select because event names are case-sensitive.
-
-![/query_old_event.gif](/query_old_event.gif)
-
-To create a temporary cohort for the current report, click **Create Custom...** in the dropdown menu and select "Cohort. A window will pop up where you can specify the restrictions of your cohort. Learn more about building a cohort [here](/docs/users/cohorts#creating-cohorts).
-
-![/create_cohort_from_report.gif](/create_cohort_from_report.gif)
 
 
 ## View Users
@@ -200,34 +147,6 @@ Note that when there's a tie in the timestamps of the first event (eg: the user 
 You can analyze the Nth time an event was performed by using a First Time Filter in funnels. For example, this shows you the number of users that do Tutorial Complete 3 times:
 
 ![233895123-bc2dd00f-5dde-4e43-82fe-081173abf0e4.png](https://user-images.githubusercontent.com/2077899/233895123-bc2dd00f-5dde-4e43-82fe-081173abf0e4.png)
-
-## Behavioral Properties
-
-Behavioral properties allow you to use your user's activity and use it as a property in your other analysis. A behavioral property is a virtual property, meaning it's not a property that you are explicitly tracking, but a property that Mixpanel can compute and allow you to use in analysis.
-
-Behavioral properties can be used anywhere, most typically in filters and breakdowns.
-
-### Frequency per User
-
-After selecting this option, you must select an event to compute the frequency of. You can use this to segment your users by how many times they did an event, or use it to filter out users to only those who did an event a certain number of times.
-
-### Aggregate Property per User
-
-After selecting this option, you must select an event, and then a property on that event. Finally, you can choose an aggregation type for this property. You can use this to segment your users by this property aggregation. For example, you may want to filter only for users who have greater than 100 minutes of video watch time, or you may want to segment users by their watch time.
-
-### Time Range
-
-#### Per Interval
-
-In insights, the time in which this computation is done is on a per-interval basis. For a line chart, that will be for each individual interval plotted on the chart. For bar, table, and pie, this interval is the entire date range selected in the date picker.
-
-#### Between Steps
-
-In funnels, the behavioral property is computed in the time range between 2 steps in your funnel. You can specify which steps in the funnel this applies to. In the case of doing "Frequency per User", the event count does not include the events that make up the funnel itself, and **only** the events between the funnel steps.
-
-#### After Step 1
-
-In retention, the behavioral property is computed in the chosen time range after the entry event, up until the expiration window. For example, there may be a 7-day window in which we're looking for an event. Even if the retaining action happens before the 7 days are up, we continue to count additional events.
 
 ## Company health and activation metrics 
 
@@ -396,19 +315,3 @@ To refresh the query results' cache in a Board, click the three dots overflow me
 To refresh the query results' cache in a Board card, click the three dots overflow menu at the top of the card, and select **Refresh Data**. 
 
 ![public/Refresh_Data_Board_Card.png](/Refresh_Data_Board_Card.png)
-
-## Event and Property Limitations
-
-While all reports in Mixpanel utilize your event data and properties to deliver insight into your business, not all reports can use all event types or properties.
-
-Reports use events and properties to target users, segment data, and filter data. This guide will clarify which reports can use which event types and properties.
-
-**Insights:** All event types and properties are available in Insights to break down and filter data.
-
-**Funnels:** Funnels can be calculated by unique or total events. All event types and properties are available to break down and filter data.
-
-**Retention:** Retention only counts total users, not unique. However, all event types and properties are available to filter data.
-
-**Signal:** Signal uses only event properties, not user profile properties. However, all event types are available to filter data.
-
-**Users:** All event types and properties are available in Users.
