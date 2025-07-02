@@ -14,7 +14,7 @@ Mixpanel Support Engineers are always ready to lend their product expertise and 
 
 ## Support Offerings & First Response Times
 
-Our Support Engineers are located all over the world – in San Francisco, Barcelona, London, and Singapore – and we strive to respond to support issues as quickly as possible. Support offerings vary depending on your Mixpanel plan.
+Our Support Engineers are located worldwide — in San Francisco, Barcelona, London, Singapore, Bengaluru, and Tel Aviv — and we strive to respond to support issues as quickly as possible. Support offerings vary depending on your Mixpanel plan.
 
 | Plan | Critical FRT* | Normal FRT* | Hours of Operation |
 | --- | --- | --- | --- |
