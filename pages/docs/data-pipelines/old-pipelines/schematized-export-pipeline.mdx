@@ -104,6 +104,7 @@ Mixpanel applies these rules for table and column names:
 - Maximum name length is 128 characters (The name is truncated after 128 characters.)
 - Properties that start with a `$` (dollar sign) have a prefix of `mp_`.
 - Properties that conflict with reserved keywords are prefixed with `res_`.
+- When there are multiple types for the same property name, we append "_<type>" (e.g., "_string" or "_number") to the column names to differentiate them.
 
 #### Naming Conflicts
 
