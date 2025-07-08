@@ -5,8 +5,8 @@ export function FAQBox({ title, section, children }) {
       className="last-of-type:mb-0 rounded-xl bg-[#f5f2f2] p-0 mt-6"
       onClick={() =>
         mixpanel.track("[Docs] FAQ Item Expanded", {
-          "faq-section": section,
           "faq-question": title,
+          ...(section && { "faq-section": section }),
         })
       }
     >
@@ -24,7 +24,7 @@ export function FAQBox({ title, section, children }) {
 
 <div className="faqComponent" >
 
-<FAQBox title="What does Mixpanel do?" section="General">
+<FAQBox title="What does Mixpanel do?">
   Mixpanel enables you to answer questions about your users and build better
   products. Mixpanel provide tools to help you track your users and visualize
   this data using interactive reports. You can import data from your existing
