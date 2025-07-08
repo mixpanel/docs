@@ -18,7 +18,7 @@ import { Callout } from 'nextra/components'
   
   For projects using Simplified ID Merge API, please refer to this documentation [here](/docs/tracking-methods/id-management/identifying-users-simplified).
 
-  Learn more about the different ID Merge APIs [here](/docs/tracking-methods/id-management/identity-management#identity-merge-apis).
+  Learn more about the different ID Merge APIs [here](/docs/tracking-methods/id-management#identity-merge-apis).
 </Callout>
 
 Mixpanel supports stitching user behavior pre-login (eg: traffic from your website, docs, blog) and post-login (once the user has signed up). This helps answer questions like:
@@ -31,7 +31,7 @@ This system is called ID Merge. In this guide, we walk through how to identify u
 
 ## Mechanism
 
-The **Original ID Merge API** uses three special events to link various user identifiers and sets the [distinct_id](/docs/tracking-methods/id-management/identity-management#distinct-id) for your events; these events are namely: `$identify`, `$create_alias`, and `$merge`.
+The **Original ID Merge API** uses three special events to link various user identifiers and sets the [distinct_id](/docs/tracking-methods/id-management#distinct-id) for your events; these events are namely: `$identify`, `$create_alias`, and `$merge`.
 
 ### $identify
 
@@ -104,9 +104,11 @@ If using our Web/Mobile SDKs or a CDP like Segment or Rudderstack, there are onl
 - Calling `.reset` will clear the local storage (which contains the `$user_id` and `$device_id`), and generate a new `$device_id` for the session. A best practice would be to only call `.reset()` if there is a definite intent to change user on the same device, example clicking on “Sign-up” button instead of “Login”.
 
 
-<Callout type="warning">
-    The `distinct_id` is programatically selected by Mixpanel, using one of the IDs inside of an identity cluster, based on the most optimal merging process. This means that the canonical distinct_id could be set to a `$device_id` or your chosen `user_id`. This is not user-configurable. You can use any of the IDs in the cluster for ingestion, but only the canonical `distinct_id` can be used in queries and exports.
-</Callout>
+## Canonical Distinct ID
+
+Once a user has been identified via the `.identify(user_id)` method, their `$device_id` prior to identification will be combined with the `$user_id` to form an identity cluster containing both IDs, as well as any other IDs previously merged with the `$user_id`. During this process, the canonical `distinct_id` is programmatically selected by Mixpanel, using one of the IDs inside of the identity cluster, based on the most optimal merging process. This means that the canonical distinct_id could be set to a `$device_id` or your chosen `user_id`. This is not user-configurable.
+
+You can use any of the IDs in the cluster for ingestion, but only the canonical `distinct_id` can be used in queries and exports.
 
 ## Example User Flows
 Let's walk through a few user flows where ID Merge is useful, and when to call `.identify()` and `.reset()` to use ID Merge properly.
@@ -115,7 +117,7 @@ Let's walk through a few user flows where ID Merge is useful, and when to call `
 
 1. A user lands in your product on a new device and interacts with your product before signing up. Our SDK will assign the user a random `$device_id` (D1) and persists it. All events tracked at this point will have `distinct_id` set to the `$device_id` value (D1).
 
-2. The user returns later and signs up for your product. You call `.identify(U1)`. Mixpanel adds U1 and D1 to the same identity cluster. Moving forward, any events tracked using either U1 or D1 will resolve to the same user. Mixpanel will set U1 or D1 as the `distinct_id` moving forward. This is programatically determined by Mixpanel and is not user-configurable.
+2. The user returns later and signs up for your product. You call `.identify(U1)`. Mixpanel adds U1 and D1 to the same identity cluster. Moving forward, any events tracked using either U1 or D1 will resolve to the same user. Mixpanel will set U1 or D1 as the `distinct_id` moving forward. This is programmatically determined by Mixpanel and is not user-configurable.
     
 ### Returning User
 
@@ -217,7 +219,7 @@ We recommend using an ID that is unique to each user and does not change, for ex
 
 **How long does it take for an ID merge mapping to take effect?**
 
-For debugging purposes, the Activity Feed view of a single user is updated in real-time (less than 1 minute delay). You can get to the Activity Feed by navigating to [Users](/docs/users/overview) and selecting a given user.
+For debugging purposes, the Activity Feed view of a single user is updated in real-time (less than 1 minute delay). You can get to the Activity Feed by navigating to [Users](/docs/users) and selecting a given user.
 
 It may take up to 24 hours for this mapping to propagate to all other parts of the system. This means that, in some cases, when analyzing a funnel that spans pre-login and post-login behavior in real-time, some may be shown as dropped-off, even though they've performed the conversion event.
 

@@ -16,7 +16,7 @@ To **manually install** the template, e.g. for debugging prior to the changes be
 3. In the GTM UI, browse to **Templates**, and in the box titled **Tag Templates**, click the blue **New** button.
 4. Once the **Template Editor** is open, click the menu (three vertical dots) in the top-right corner of the window and choose **Import**.
 5. Select the `template.tpl` file you downloaded locally.
-6. Follow the prompts. Once import is complete, the Template Editor should show the Mixpanel template in edit mode.
+6. Follow the prompts. Once the import is complete, the Template Editor should show the Mixpanel template in edit mode.
 7. Click **Save** to save the template, and then proceed to close the Template Editor.
 8. In the GTM UI, browse to **Tags** and click **New** to create a new tag.
 9. From the list of available tag templates, choose the **Mixpanel** template you just imported to the container.
@@ -25,27 +25,101 @@ To **manually install** the template, e.g. for debugging prior to the changes be
 
 The template brings the functionality of the [Mixpanel JS SDK](https://developer.mixpanel.com/docs/javascript-full-api-reference) to Google Tag Manager so that you can implement Mixpanel through the Tag Manager interface instead of a direct implementation in code. You will need to define and fire tags using this template to make Mixpanel SDK calls to track events and identify users.
 
-It utilizes a custom created [JavaScript wrapper](https://github.com/mixpanel/mixpanel-js-wrapper) to overcome the restrictions GTM's templating system places on available JavaScript APIs.
+It utilizes a custom-created [JavaScript wrapper](https://github.com/mixpanel/mixpanel-js-wrapper) to overcome the restrictions GTM's templating system places on available JavaScript APIs.
 
 ### Initialization
 
-When *any* Mixpanel GTM tag fires, it automatically tries to initialize a new instance using the **Initialization Options** configured in the tag. If an instance with the given name has already been initialized on the page, the initialization process is skipped.
+When *any* Mixpanel GTM tag fires, it automatically tries to initialize a new instance using the **Initialization Options** configured in the tag. If an instance with the given name has already been initialized on the page, the initialization process will be skipped.
 
-This way the user doesn't need to worry about initialization. They just need to make sure that the Initialization Options are configured consistently across the tags.
+This way, the user doesn't need to worry about initialization; just ensure that the Initialization Options are configured consistently across the tags.
+
+#### Custom Initialization Options
+
+To add initialization options for capabilities like [session replay](https://docs.mixpanel.com/docs/tracking-methods/sdks/javascript#implementation--sampling) (`record_sessions_percent`)or [heatmaps](https://docs.mixpanel.com/docs/tracking-methods/sdks/javascript#heatmaps-beta) (`record_heatmap_data`) to Google Tag Manager:
+
+1\. Add a new tag in GTM and choose the Mixpanel tag type
+
+2\. For the Project Token field, enter your Mixpanel project token
+
+3\. For Tag Type, select init from the dropdown
+
+4\. For Initialization, choose Set Options Manually
+
+5\. In the Option key / Option value section, add the relevant key-value pair according to your needs (e.g., `record_heatmap_data` as the key and set a boolean value of `true`)
+
+6\. For the Triggering section, choose an early GTM lifecycle event like Initialization \- All Pages or Consent Initialization \- All Pages
+
+#### GTM with custom Autocapture initialization options
+
+To use [autocapture initialization options](https://docs.mixpanel.com/docs/tracking-methods/sdks/javascript#autocapture) like `capture_extra_attrs` with GTM, you'll need to create a custom JavaScript variable in GTM and then use that variable for your autocapture configuration. Here's how to do it:
+
+##### **1\. Create a Custom JavaScript Variable in GTM**
+
+First, create a Custom JavaScript variable that returns the autocapture configuration object:
+
+1\. In GTM, go to Variables \> User-Defined Variables \> New
+
+2\. Choose "Custom JavaScript" as the variable type
+
+3\. Add code that returns the autocapture configuration object, including the `capture_extra_attrs` option
+
+For example, the Custom JavaScript variable might look like this:
+
+```javascript Javascript
+function() {
+
+ return {
+
+   pageview: "full-url",
+
+   click: true,
+
+   input: true,
+
+   scroll: true,
+
+   submit: true,
+
+   capture_extra_attrs: ['data-cta-name', 'data-cta-position']
+
+ };
+
+}
+```
+
+##### **2\. Use the Variable in Your Mixpanel Tag**
+
+Once the custom variable is created:
+
+1\. Edit the Mixpanel initialization tag in GTM
+
+2\. For the Autocapture option, instead of selecting "Enabled" or "Disabled" from the dropdown, select the custom JavaScript variable
+
+##### **3\. Verify Your Implementation**
+
+After setting up the tag with the custom variable:
+
+1\. Use GTM's preview mode to verify that the tag is firing correctly
+
+2\. Check in the browser's developer console that the Mixpanel configuration includes the custom autocapture settings
+
+3\. Verify in Mixpanel that the extra attributes are being captured with your events
+
+This approach allows for customized autocapture options beyond the simple enabled/disabled toggle that's available in the standard GTM template interface.
 
 ### Sending Mixpanel Commands
 
 After adding the **Project Token** to its respective field, you need to choose what **type** of tag to use. Each type corresponds with some command you can use with the Mixpanel JS API.
 
-> Note that `'init'`, `'push'` and any of the "getter" commands are not supported in the template.
+> Note that `'init'`, `'push'`, and any of the "getter" commands are not supported in the template.
 
 The more complex tag types (`group`, `people`, and `track`) are elevated to the top of the drop-down menu with the `-` prefix to separate them from the other commands.
 
-Once you select a tag type, additional options may appear. Consult the SDK reference for details on how to configure these options.
+Once you select a tag type, additional options may appear. Please have a look at the SDK reference for details on how to configure these options.
 
 ### Firing The Tag
 
-Once you're happy with your tag, you need to add a **Trigger** to it. For example, to trigger it with every page load, add the **All Pages** trigger to it.
+Once you're happy with your tag, add a **Trigger** to it. For example, to trigger it with every page load, add the **All Pages** trigger.
 
 Save the tag when done.
 

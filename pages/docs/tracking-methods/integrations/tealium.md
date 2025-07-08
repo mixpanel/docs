@@ -78,7 +78,7 @@ In the first section of the tag wizard, enter your [**mixpanel project token**](
 
 Next, you’ll setup **load rules** which determine which pages mixpanel will be deployed on.
 
-In order for the mixpanel tag to appear on your pages, you will need to add a condition to your **[load rules](https://community.tealiumiq.com/t5/iQ-Tag-Management/Load-Rules/ta-p/5098)** using the wizard. Load rules make it possible to conditionally apply tags in certain cases, based on variables and conditions that Tealium is aware of. 
+In order for the mixpanel tag to appear on your pages, you will need to add a condition to your **[load rules](https://docs.tealium.com/iq-tag-management/load-rules/about/)** using the wizard. Load rules make it possible to conditionally apply tags in certain cases, based on variables and conditions that Tealium is aware of. 
 
 For testing, it’s perfectly fine to say "load on all pages":
 
@@ -88,7 +88,7 @@ Mixpanel should now be deployed on all known Tealium pages of your site. Next, y
 
 ## Sending Events
 
-The final section of the tag wizard is where **[data mappings](https://community.tealiumiq.com/t5/iQ-Tag-Management/Data-Mappings/ta-p/10645)** are configured. 
+The final section of the tag wizard is where **[data mappings](https://docs.tealium.com/iq-tag-management/data-mappings/about/)** are configured. 
 Data mappings are *essentially* a GUI-driven configuration that *will compose and deploy javascript snippets* on your Tealium-tagged pages (if the load rules are met).
 
 That the goal of this guide is to turn something of this form:
@@ -123,11 +123,11 @@ Here’s how you can setup this mapping:
 
 ![13-Binding](https://github.com/mixpanel/docs/assets/3978760/96d8e794-0979-441a-be68-c2cfb471630b)
 
-This will track the UDO `page_view` whever it appears on our site.
+This will track the UDO `page_view` wherever it appears on our site.
 
 Next, give the event a name in mixpanel... 
 
-For this tutorial, we’ll use a **[custom value](https://community.tealiumiq.com/t5/iQ-Tag-Management/Data-Mappings/ta-p/10645#toc-hId-1471722208)** ... this is added as another variable in tealium’s data mapper:
+For this tutorial, we’ll use a **[custom value](https://docs.tealium.com/iq-tag-management/data-mappings/about/#custom-value-mapping)** ... this is added as another variable in tealium’s data mapper:
 
 - Click "variables" drop down and choose use custom value:
 
@@ -186,9 +186,9 @@ A single event may have many custom properties mapped; that might look like this
 
 ![23-MultipleMappings](https://github.com/mixpanel/docs/assets/3978760/4878ea4e-c2fa-4bc7-b5f5-72da3f969a08)
 
-Adding event properties is as simple as modifying the exsiting mapping to an event, and saving and publishing. Once you trigger your new tage you will the correct UDO value *and* the label you specified in the mapper show up in mixpanel  
+Adding event properties is as simple as modifying the existing mapping to an event, and saving and publishing. Once you trigger your new tag you will the correct UDO value *and* the label you specified in the mapper show up in mixpanel  
 
-![24-SuccesfulEvent](https://github.com/mixpanel/docs/assets/3978760/41d27add-4d89-424d-830e-ba978e3b17f6)
+![24-SuccessfulEvent](https://github.com/mixpanel/docs/assets/3978760/41d27add-4d89-424d-830e-ba978e3b17f6)
 
 Note: you can always rename property keys' display labels [in lexicon](https://help.mixpanel.com/hc/en-us/articles/360001307806-Lexicon-Overview#adding-or-changing-descriptions)
        

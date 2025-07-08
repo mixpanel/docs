@@ -14,7 +14,7 @@ To disable capturing of geolocation properties (i.e. City, Region, Country) refe
 | $city | City | The city of the event sender parsed from the IP property or the Latitude and Longitude properties. |
 | $region | Region | The region (state or province) of the event sender parsed from the IP property or the Latitude and Longitude properties. |
 | mp_country_code | Country | The country of the event sender parsed from the IP property or the Latitude and Longitude properties. The value is stored as a 2-letter country code in the raw data and parsed into the country name in the UI. |
-| $mp_api_endpoint | API Endpoint | Mixpanel property to record the API endpoint the data was sent to: <br /> **api.mixpanel.com** - default ingestion <br /> **api-eu.mixpanel.com** - EU data ingestion <br /> **api-js.mixpanel.com** - Javascript SDK |
+| $mp_api_endpoint | API Endpoint | Mixpanel property to record the API endpoint the data was sent to: <br /> **api.mixpanel.com** - default ingestion <br /> **api-eu.mixpanel.com** - EU data ingestion <br /> **api-in.mixpanel.com** - India data ingestion <br /> **api-js.mixpanel.com** - Javascript SDK |
 | $import | Import | Internal Mixpanel property set to `true` to indicate that events were sent through [/import API](https://developer.mixpanel.com/reference/import-events). |
 | $mp_api_timestamp_ms | API Timestamp | UTC timestamp in milliseconds when the event was received by our API. |
 | mp_processing_time_ms | Time Processed (UTC) | UTC timestamp in milliseconds when the event was processed by Mixpanel servers. |
@@ -37,7 +37,7 @@ Do note that Mixpanel's default user properties are only updated when you send o
 
 Note that the following SDKs wrap around our other SDKs; and as such, would also inherit the appropriate default properties from these wrapped SDKs indicated in the tables below:
 - [React Native](/docs/tracking-methods/sdks/react-native) wraps around Android and Swift SDK; `mp_lib` will be set to `react-native` with `$lib_version` set as React Native's library version.
-- [Flutter](/docs/tracking-methods/sdks/flutter) wraps around Javscript, Android, and Swift SDK; `mp_lib` will be set to `flutter` with `$lib_version` set as the Flutter's library version.
+- [Flutter](/docs/tracking-methods/sdks/flutter) wraps around Javascript, Android, and Swift SDK; `mp_lib` will be set to `flutter` with `$lib_version` set as the Flutter's library version.
 
 ### Event Properties
 
@@ -76,7 +76,7 @@ $referrer | Referrer | Referring URL including your own domain. Might not be pre
 | $wifi | Wifi | Set to true if the user’s device has an active, available Wifi connection, false if not. | ❌ | ✅ | ✅ | ✅ | 
 | $bluetooth_enabled | Bluetooth | Set to true if Bluetooth is enabled, false if not. | ❌ | ✅ | ❌ | ❌ | 
 | $bluetooth_version | Bluetooth Version | Set to "none", "ble", or "classic". | ❌ | ✅ | ❌ | ❌ | 
-| $has_nfc | Has NFC | Set to true if Near Field Communication is being used, false if not. | ❌ | ✅ | ❌ | ❌ | 
+| $has_nfc | Has NFC | The device supports Near Field Communication(NFC). Set to true if the device hardware supports NFC, false if not. | ❌ | ✅ | ❌ | ❌ | 
 | $has_telephone | Has Telephone | Set to true if this device has telephone functionality, false if not. | ❌ | ✅ | ❌ | ❌ | 
 | $google_play_services | Google Play Services | Verifies that Google Play services is installed and enabled on this device, and that the version installed on this device is no older than the one required by this client. | ❌ | ✅ | ❌ | ❌ | 
 | $duration | Duration	| A property that is appended to an event to capture the elapsed time (in seconds) between a `time_event` and a `track` call. See [time_event](https://github.com/mixpanel/mixpanel-js/blob/master/doc/readme.io/javascript-full-api-reference.md#mixpaneltime_event) in Javascript SDK for example. | ✅ | ✅ | ✅ | ✅ | 
@@ -91,7 +91,7 @@ Do note that Mixpanel's default user properties are only updated when you send o
 | $android_lib_version | Android Lib Version | Last used Mixpanel Android / Unity library version. | ❌ | ✅ | ❌ | ✅ |
 | $ios_lib_version | iOS Lib Version | Last used Mixpanel iOS / Unity library version. | ❌ | ❌ | ✅ | ✅ |
 | $swift_lib_version | Swift Lib Version | Last used Mixpanel Swift library version. | ❌ | ❌ | ✅ | ❌ |
-| $os | Operating System | Last OS of the event sender. | ✅ | ✅ | ✅ | ✅ |
+| $os | Operating System | Last OS of the event sender. | ✅ | ❌ | ❌ | ✅ |
 | $android_os | Android OS | Set when Android operating system was used. | ❌ | ✅ | ❌ | ✅ |
 | $android_os_version | Android OS Version | Last version of Android on the device. | ❌ | ✅ | ❌ | ✅ |
 | $ios_version | iOS Version | Last version of iOS on the device. | ❌ | ❌ | ✅ | ✅ |
@@ -106,5 +106,5 @@ Do note that Mixpanel's default user properties are only updated when you send o
 | initial_utm_source, initial_utm_medium, etc. | Initial UTM Parameters | UTM tags seen for the first time from the URL a customer clicked to arrive at your domain. Each UTM will be collected under its own property. More details [here](/docs/tracking-methods/sdks/javascript#tracking-utm-parameters). | ✅ | ❌ | ❌ | ❌ |
 | $android_manufacturer | Android Manufacturer | Android device manufacturer. | ❌ | ✅ | ❌ | ❌ |
 | $android_brand | Android Brand | Android device brand. | ❌ | ✅ | ❌ | ❌ |
-| $android_model | Android Model | The model of the Anroid device. | ❌ | ✅ | ❌ | ✅ |
+| $android_model | Android Model | The model of the Android device. | ❌ | ✅ | ❌ | ✅ |
 | $ios_device_model | iOS Device Model | The model of the iOS device. | ❌ | ❌ | ✅ | ✅ |

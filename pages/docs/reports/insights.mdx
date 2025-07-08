@@ -1,3 +1,5 @@
+import { Callout } from 'nextra/components'
+
 # Insights: Visualize trends and compositions within your data
 
 ## Overview
@@ -28,7 +30,7 @@ Here are some of the sample questions you can answer in Insights:
 
 #### Frequency Analysis
 
-It's important to know what's the natural frequency at which your users use your product and experience the core value proposition of your product--do the majority of your users use your product daily? Weekly? Monthly? A16Z wrote a great article about the [Power User Curve](https://www.reforge.com/brief/understand-your-most-engaged-users-with-the-power-user-curve#bOb9wjj_l0R3Pqo32pggUQ), and this [video](https://www.loom.com/share/0c05ac17742a4d49a4c6879c0fe9f0de) shows how you can reproduce that within Mixpanel.
+It's important to know what's the natural frequency at which your users use your product and experience the core value proposition of your product--do the majority of your users use your product daily? Weekly? Monthly? A16Z wrote a great article about the [Power User Curve](https://www.reforge.com/blog/brief-understand-your-most-engaged-users-with-the-power-user-curve), and this [video](https://www.loom.com/share/0c05ac17742a4d49a4c6879c0fe9f0de) shows how you can reproduce that within Mixpanel.
 
 ## Quick Start
 
@@ -147,6 +149,7 @@ Tables are useful to see the precise values of your data and to quickly scan mul
 
 ##### Sort Order
 You can configure how you want rows in the table to be sorted, with our global sorting control.
+
 ![Sorting.gif](https://github.com/mixpanel/docs/assets/2077899/a61948a6-3e4a-4e5d-9b75-3f4b14cb1450)
 
 ###### Grouped View vs Ungrouped View
@@ -218,6 +221,10 @@ Click the **Metrics** button, then select Formula.. Each event in the query show
 To note, you cannot nest a formula metric when constructing another formula.
 
 #### Save formulas for re-use
+
+<Callout type="info">
+    Users on an Enterprise or Growth plan can save Formulas for reuse. Free users can create Formulas locally within a report but cannot save them. See our [pricing page](https://mixpanel.com/pricing/) for more details.
+</Callout>
 
 Use existing events to create calculated formulas, like Bounce Rate & % Active Users, that can be saved and reused by others within the project.
 

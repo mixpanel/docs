@@ -14,7 +14,7 @@ Mixpanel Support Engineers are always ready to lend their product expertise and 
 
 ## Support Offerings & First Response Times
 
-Our Support Engineers are located all over the world – in San Francisco, Barcelona, London, and Singapore – and we strive to respond to support issues as quickly as possible. Support offerings vary depending on your Mixpanel plan.
+Our Support Engineers are located all over the world – in San Francisco, Barcelona, London, Singapore, Bangalore and Tel Aviv – and we strive to respond to support issues as quickly as possible. Support offerings vary depending on your Mixpanel plan.
 
 | Plan | Critical FRT* | Normal FRT* | Hours of Operation |
 | --- | --- | --- | --- |
@@ -34,7 +34,7 @@ If you’re experiencing a persistent, widespread issue or cannot access your ac
 
 To see if there are any incidents affecting Mixpanel services, visit Mixpanel’s [Status Page](https://www.mixpanelstatus.com/) (or subscribe to receive notifications of future status updates). For all other issues, we’ll do our best to respond according to the table above and the severity of the issue. In the meantime, feel free to review our other resources:
 
-- [Mixpanel Slack Community](https://www.mixpanel.com/community-slack): Crowdsource Mixpanel solutions and submit product ideas
+- [Mixpanel Slack Community](https://www.mixpanel.com/community-slack): Crowd-source Mixpanel solutions and submit product ideas
 - [Mixpanel Docs](https://docs.mixpanel.com/):
 Best practices, user guides, and frequently asked questions
 - [Mixpanel API Reference](https://developer.mixpanel.com/reference/overview):

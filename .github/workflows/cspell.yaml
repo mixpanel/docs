@@ -1,9 +1,8 @@
 name: 'Check spelling'
 on:
-  # Don't enable in PRs just yet until we've built a sane wordlist
-  # pull_request: {}
-  # push:
-  #   branches: [ main ]
+  pull_request: {}
+  push:
+    branches: [ main ]
   workflow_dispatch: {}
 
 jobs:
@@ -11,7 +10,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
-      - uses: streetsidesoftware/cspell-action@v6
+      - uses: streetsidesoftware/cspell-action@v7
         with:
           # Define glob patterns to filter the files to be checked. Use a new line between patterns to define multiple patterns.
           # The default is to check ALL files that were changed in in the pull_request or push.
@@ -22,7 +21,7 @@ jobs:
           #   !dist/**/*.{ts,js}
           #
           # Default: ALL files
-          files: ''
+          files: '**/*.md*'
       
           # Check files and directories starting with `.`.
           # - "true" - glob searches will match against `.dot` files.
@@ -37,7 +36,7 @@ jobs:
           # Notification level to use with inline reporting of spelling errors.
           # Allowed values are: warning, error, none
           # Default: warning
-          inline: warning
+          inline: error
       
           # Reports flagged / forbidden words as errors.
           # If true, errors will still be reported even if `inline` is "none"
@@ -49,10 +48,10 @@ jobs:
           # Determines if the action should be failed if any spelling issues are found.
           # Allowed values are: true, false
           # Default: true
-          strict: false
+          strict: true
       
           # Limit the files checked to the ones in the pull request or push.
-          incremental_files_only: ${{ github.event_name != 'workflow_dispatch' }}
+          incremental_files_only: false
       
           # Path to `cspell.json`
           config: 'cspell.json'

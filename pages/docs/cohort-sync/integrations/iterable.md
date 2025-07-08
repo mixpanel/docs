@@ -55,9 +55,11 @@ The Mixpanel Cohort is available in the Audience list. Mixpanel exports cohort d
 
 ## Matching Users between Mixpanel and Iterable
 
-> **Warning:** Projects using the [simplified ID merge system](/docs/tracking-methods/id-management/identity-management#identity-merge-apis) must have the `$user_id` in Mixpanel match the user identifier in the partner service. Using any alternative partner properties to match users between tools may result in partner events not being attributed to the correct user in Mixpanel. Any partner properties mentioned in the below section are primarily applicable to projects on the original ID merge system.
+> **Warning:** Projects using the [simplified ID merge system](/docs/tracking-methods/id-management#identity-merge-apis) must have the `$user_id` in Mixpanel match the user identifier in the partner service. Using any alternative partner properties to match users between tools may result in partner events not being attributed to the correct user in Mixpanel. Any partner properties mentioned in the below section are primarily applicable to projects on the original ID merge system.
 
-The best way to match users from Mixpanel to Iterable is to set the `$iterable_user_id` profile property with the user's Iterable User ID. This also prevents Iterable from overwriting the Iterable User ID with the Mixpanel Distinct ID upon cohort sync from Mixpanel.
+The best way to match users from Mixpanel to Iterable is to grab the value displayed as `userId` in Iterable and store it as a profile property for the user in Mixpanel under the name `$iterable_user_id`. This also prevents Iterable from overwriting the Iterable User ID with the Mixpanel Distinct ID upon cohort sync from Mixpanel. For context, the value you should store as `$iterable_user_id` in the Mixpanel profile would look like this in Iterable:
+
+![Iterable's user ID](/iterable_user_id.png)
 
 Iterable uses an email address to match users from the cohort with users from their system. The integration will fail if an email address is not sent. In order to use this integration, you must set email as a user profile property.
 

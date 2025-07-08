@@ -2,6 +2,9 @@ openapi: 3.0.2
 info:
   title: Event Export API
   description: Export events as JSON.
+  license:
+    name: MIT
+    url: https://opensource.org/licenses/MIT
   version: 1.0.0
   contact:
     url: https://mixpanel.com/get-support
@@ -33,8 +36,20 @@ paths:
             type: integer
           description: >-
             Required if using service account to authenticate request.
-        - $ref: ./common/parameters.yaml#/query/fromDate
-        - $ref: ./common/parameters.yaml#/query/toDate
+        - in: query
+          name: from_date
+          schema:
+            type: string
+          description: >-
+            The date in yyyy-mm-dd format to begin querying from. This date is inclusive and interpreted as UTC timezone for projects created after 1 January 2023 and current project timezone for projects created before 11 January 2023.
+          required: true
+        - in: query
+          name: to_date
+          schema:
+            type: string
+          description: >-
+            The date in yyyy-mm-dd format to query to. This date is inclusive and interpreted as UTC timezone for projects created after 1 January 2023 and current project timezone for projects created before 11 January 2023.
+          required: true
         - in: query
           name: limit
           schema:
@@ -55,6 +70,14 @@ paths:
             An expression to filter events by. More info on expression
             sequence structure can be found
             [here](ref:segmentation-expressions)
+        - in: query
+          name: time_in_ms
+          schema:
+            type: boolean
+          description: >-
+            Defaults to `false` which will export event timestamps with second-precision.
+            
+            Set to `true` to export event timestamps with millisecond-precision.
         - in: header
           name: Accept-Encoding
           description: If set to `gzip` and the response body is > 1400 bytes, the response will be compressed with gzip, and `Content-Encoding` will be set to `gzip`.

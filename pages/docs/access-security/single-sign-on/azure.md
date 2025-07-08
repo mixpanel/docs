@@ -3,7 +3,7 @@
 
 ## Overview
 
-You can set up Microsoft Azure Single Sign-On to use with your Mixpanel account. Before using this document, read the [general Mixpanel SSO set-up instructions]((https://docs.microsoft.com/en-us/azure/active-directory/saas-apps/mixpanel-provisioning-tutorial)) as well as [Azure's documentation on setting up a new application](https://docs.microsoft.com/en-us/azure/active-directory/saas-apps/mixpanel-provisioning-tutorial). 
+You can set up Microsoft Azure Single Sign-On to use with your Mixpanel account. Before using this document, read the [general Mixpanel SSO set-up instructions](/docs/access-security/single-sign-on) as well as [Azure's documentation on setting up a new application](https://docs.microsoft.com/en-us/azure/active-directory/saas-apps/mixpanel-provisioning-tutorial). 
 
 ### Add Mixpanel as a New Application
 
@@ -61,4 +61,4 @@ You can also provision Groups of users in Azure to Mixpanel [Teams](/docs/orgs-a
 
 Note that it is advised you turn on **IDP Managed Access** if you are using SCIM Provisioning. Otherwise, Okta and Mixpanel might fall out of sync.
 
-Tenant URL: https://mixpanel.com/api/app/scim/v2
+Tenant URL: `https://mixpanel.com/api/app/scim/v2`

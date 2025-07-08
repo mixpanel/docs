@@ -99,7 +99,7 @@ Sessions are reset every 24 hours at midnight (according to your project timezon
 
 #### Estimating Ideal Session Length
 
-Use your [Time to Convert Chart in Funnels](/docs/reports/funnels#time-to-convert) to help determine an appropriate session timeout period that aligns with your users’ behavior.
+Use your [Time to Convert Chart in Funnels](/docs/reports/funnels/funnels-advanced#time-to-convert) to help determine an appropriate session timeout period that aligns with your users’ behavior.
 
 ![image](https://github.com/mixpanel/docs/assets/2077899/44f40194-1aff-493b-828e-f9a1c750ac03)
 
@@ -261,7 +261,7 @@ You can add additional properties to be associated with the session by going und
 ## Session Controls in Reports
 ### Funnels
 
-In [Funnels](/docs/reports/funnels), once you have set up sessions, a “Session Start” and “Session End” events will be generated in the report based on the funnel criteria.
+In [Funnels](/docs/reports/funnels/funnels-overview), once you have set up sessions, a “Session Start” and “Session End” events will be generated in the report based on the funnel criteria.
 
 ![image](https://github.com/mixpanel/docs/assets/2077899/e6c12438-00da-4ebe-8302-a52f5a9da511)
 

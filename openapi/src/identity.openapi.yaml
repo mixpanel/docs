@@ -3,6 +3,9 @@ x-readme-deploy-id: identity
 info:
   title: Identity API
   description: APIs to identify anonymous user IDs to their canonical user ID.
+  license:
+    name: MIT
+    url: https://opensource.org/licenses/MIT
   version: 1.0.0
   contact:
     url: 'https://mixpanel.com/get-support'
@@ -15,10 +18,12 @@ servers:
         enum:
           - api
           - api-eu
+          - api-in
         description: >
           The server location to be used:
             * `api` - The default (US) servers used for most projects
             * `api-eu` - EU servers if you are enrolled in EU Data Residency
+            * `api-in` - India servers if you are enrolled in India Data Residency
 tags:
   - name: Identities
     description: Register or merge users with a new identity.

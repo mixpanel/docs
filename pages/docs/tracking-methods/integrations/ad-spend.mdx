@@ -1,6 +1,8 @@
+import { Callout } from 'nextra/components'
+
 # Ad Spend
 
-Mixpanel’s event-based-data model enables you to represent and analyze any type of data, including ad campaign performance. This guide shows you how to track this data to Mixpanel. The end result is a report that looks like this.
+Mixpanel’s event-based data model enables you to represent and analyze any type of data, including ad campaign performance. This guide shows you how to track this data to Mixpanel. The end result is a report that looks like this.
 
 In this doc, we give step-by-step guidance on how to bring your advertising network data into Mixpanel to look at metrics such as ROAS (Return on Ad Spend), CPC (Cost per click) in the context of in-product conversions. We also provide detailed guides for Google and Facebook Ads. The end result should look like this:
 
@@ -8,6 +10,10 @@ In this doc, we give step-by-step guidance on how to bring your advertising netw
 
 
 **NOTE:** If you are a Marketer reading this, we encourage you to share this with your dev team to get this one-time setup done. This should not take more than a couple of hours.
+
+<Callout type="info">
+If you prefer not to build and maintain your data pipelines, consider using [Vendo](/docs/tracking-methods/integrations/vendo). The Vendo integration with Mixpanel allows seamless integration of advertising data from Google, Meta, and other ad platforms into Mixpanel without the need for custom development. Learn more [here](https://www.vendodata.com/connections?utm_source=mixpanel-partner-portal&utm_medium=partner).
+</Callout>
 
 
 ## Understanding the Data Model
@@ -198,6 +204,13 @@ const Mixpanel = require('mixpanel');
 
 const MIXPANEL_TOKEN = 'YOUR MIXPANEL TOKEN';
 const MIXPANEL_SECRET = 'YOUR MIXPANEL SECRET';
+// For US Data Residency (default):
+const MIXPANEL_HOST = 'api.mixpanel.com';
+// For EU Data Residency:
+// const MIXPANEL_HOST = 'api-eu.mixpanel.com';
+// For India Data Residency:
+// const MIXPANEL_HOST = 'api-in.mixpanel.com';
+
 const GOOGLE_CLIENT_ID = 'YOUR GOOGLE CREDENTIAL CLIENT ID';
 const GOOGLE_CLIENT_SECRET = 'YOUR GOOGLE CREDENTIAL CLIENT SECRET';
 const GOOGLE_CLIENT_REFRESH_TOKEN = 'YOUR REFRESH TOKEN FOR YOUR GOOGLE CREDENTIAL';
@@ -206,9 +219,7 @@ const GOOGLE_ADS_CUSTOMER_ID = 'YOUR GOOGLE CUSTOMER CLIENT ID WITHOUT HYPHENS';
 
 // End of Configuration
 
-const mixpanel = Mixpanel.init(MIXPANEL_TOKEN, {secret: MIXPANEL_SECRET});
-// Use the below line of init code instead if project in EU residency
-// const mixpanel = Mixpanel.init(MIXPANEL_TOKEN, {host: "api-eu.mixpanel.com", secret: MIXPANEL_SECRET});
+const mixpanel = Mixpanel.init(MIXPANEL_TOKEN, {host: MIXPANEL_HOST, secret: MIXPANEL_SECRET});
 
 const client = new GoogleAdsApi({
     client_id: GOOGLE_CLIENT_ID,
@@ -379,6 +390,12 @@ const Mixpanel = require('mixpanel');
 
 const MIXPANEL_TOKEN = 'YOUR MIXPANEL TOKEN';
 const MIXPANEL_SECRET = 'YOUR MIXPANEL SECRET';
+// For US Data Residency (default):
+const MIXPANEL_HOST = 'api.mixpanel.com';
+// For EU Data Residency:
+// const MIXPANEL_HOST = 'api-eu.mixpanel.com';
+// For India Data Residency:
+// const MIXPANEL_HOST = 'api-in.mixpanel.com';
 const FACEBOOK_TOKEN = 'YOUR FACEBOOK DEVELOPER APP TOKEN';
 const FACEBOOK_AD_ACCOUNT_ID = 123456789012345; // Your Facebook Ad account ID here. e.g. 123456789012345
 const FACEBOOK_AD_API_ACCOUNT = 'act_' + FACEBOOK_AD_ACCOUNT_ID;
@@ -386,13 +403,9 @@ const FACEBOOK_AD_API_ACCOUNT = 'act_' + FACEBOOK_AD_ACCOUNT_ID;
 // End of Configuration
 
 const mixpanel = Mixpanel.init(MIXPANEL_TOKEN, {
+    host: MIXPANEL_HOST,
     secret: MIXPANEL_SECRET
 });
-// Use the init code below instead if project in EU residency
-// const mixpanel = Mixpanel.init(MIXPANEL_TOKEN, {
-//    secret: MIXPANEL_SECRET,
-//    host: "api-eu.mixpanel.com"
-// });
 
 adsSdk.FacebookAdsApi.init(FACEBOOK_TOKEN);
 
