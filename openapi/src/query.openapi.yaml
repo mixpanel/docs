@@ -3,6 +3,9 @@ x-readme-deploy-id: query
 info:
   title: Query API
   description: query api
+  license:
+    name: MIT
+    url: https://opensource.org/licenses/MIT
   contact:
     url: https://mixpanel.com/get-support
   version: 1.0.0
@@ -1162,7 +1165,7 @@ paths:
                   type: integer
                   description: >-
                     Which page of the results to retrieve. Pages start at zero.
-                    If the "page" parameter is provided, the session_id
+                    If the "page" parameter is provided and above 0, the session_id
                     parameter must also be provided.
                 behaviors:
                   type: integer

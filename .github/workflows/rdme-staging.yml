@@ -53,7 +53,7 @@ jobs:
   # build and update comment with the proper link
   preview-notify:
     name: Preview / Notify
-    runs-on: ubuntu-20.04
+    runs-on: ubuntu-latest
     needs:
       - rdme-staging
     timeout-minutes: 15
