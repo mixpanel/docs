@@ -3,6 +3,9 @@ x-readme-deploy-id: ingestion
 info:
   title: Ingestion API
   description: APIs allowing for event-based tracking and user profile handling.
+  license:
+    name: MIT
+    url: https://opensource.org/licenses/MIT
   version: 1.0.0
   contact:
     url: "https://mixpanel.com/get-support"
@@ -101,7 +104,7 @@ paths:
                       time:
                         type: integer
                         title: time
-                        description: The time at which the event occurred, in seconds or milliseconds since UTC epoch.
+                        description: The time at which the event occurred, in seconds or milliseconds since UTC epoch. If the time value is set in the future, it will be overwritten with the current present time at ingestion.
                       distinct_id:
                         type: string
                         title: distinct_id
@@ -163,7 +166,7 @@ paths:
                       time:
                         type: integer
                         title: time
-                        description: The time at which the event occurred, in seconds or milliseconds since UTC epoch.
+                        description: The time at which the event occurred, in seconds or milliseconds since UTC epoch. If the time value is set in the future, it will be overwritten with the current present time at ingestion.
                       distinct_id:
                         type: string
                         title: distinct_id

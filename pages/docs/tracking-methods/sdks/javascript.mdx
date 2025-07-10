@@ -14,18 +14,30 @@ The [Full API Reference](https://github.com/mixpanel/mixpanel-js/blob/master/doc
     <Tabs.Tab>
         The easiest way to install the library is to load it from our CDN to your website. Paste the following code snippet right before the closing `</head>` tag in your page HTML.
 
-        ```javascript
-        // Paste this right before your closing head tag
+        ```html
+        <!-- Paste this right before your closing head tag -->
         <script type="text/javascript">
-        (function (f, b) { if (!b.__SV) { var e, g, i, h; window.mixpanel = b; b._i = []; b.init = function (e, f, c) { function g(a, d) { var b = d.split("."); 2 == b.length && ((a = a[b[0]]), (d = b[1])); a[d] = function () { a.push([d].concat(Array.prototype.slice.call(arguments, 0))); }; } var a = b; "undefined" !== typeof c ? (a = b[c] = []) : (c = "mixpanel"); a.people = a.people || []; a.toString = function (a) { var d = "mixpanel"; "mixpanel" !== c && (d += "." + c); a || (d += " (stub)"); return d; }; a.people.toString = function () { return a.toString(1) + ".people (stub)"; }; i = "disable time_event track track_pageview track_links track_forms track_with_groups add_group set_group remove_group register register_once alias unregister identify name_tag set_config reset opt_in_tracking opt_out_tracking has_opted_in_tracking has_opted_out_tracking clear_opt_in_out_tracking start_batch_senders people.set people.set_once people.unset people.increment people.append people.union people.track_charge people.clear_charges people.delete_user people.remove".split( " "); for (h = 0; h < i.length; h++) g(a, i[h]); var j = "set set_once union unset remove delete".split(" "); a.get_group = function () { function b(c) { d[c] = function () { call2_args = arguments; call2 = [c].concat(Array.prototype.slice.call(call2_args, 0)); a.push([e, call2]); }; } for ( var d = {}, e = ["get_group"].concat( Array.prototype.slice.call(arguments, 0)), c = 0; c < j.length; c++) b(j[c]); return d; }; b._i.push([e, f, c]); }; b.__SV = 1.2; e = f.createElement("script"); e.type = "text/javascript"; e.async = !0; e.src = "undefined" !== typeof MIXPANEL_CUSTOM_LIB_URL ? MIXPANEL_CUSTOM_LIB_URL : "file:" === f.location.protocol && "//cdn.mxpnl.com/libs/mixpanel-2-latest.min.js".match(/^\/\//) ? "https://cdn.mxpnl.com/libs/mixpanel-2-latest.min.js" : "//cdn.mxpnl.com/libs/mixpanel-2-latest.min.js"; g = f.getElementsByTagName("script")[0]; g.parentNode.insertBefore(e, g); } })(document, window.mixpanel || []);
+            (function (f, b) { if (!b.__SV) { var e, g, i, h; window.mixpanel = b; b._i = []; b.init = function (e, f, c) { function g(a, d) { var b = d.split("."); 2 == b.length && ((a = a[b[0]]), (d = b[1])); a[d] = function () { a.push([d].concat(Array.prototype.slice.call(arguments, 0))); }; } var a = b; "undefined" !== typeof c ? (a = b[c] = []) : (c = "mixpanel"); a.people = a.people || []; a.toString = function (a) { var d = "mixpanel"; "mixpanel" !== c && (d += "." + c); a || (d += " (stub)"); return d; }; a.people.toString = function () { return a.toString(1) + ".people (stub)"; }; i = "disable time_event track track_pageview track_links track_forms track_with_groups add_group set_group remove_group register register_once alias unregister identify name_tag set_config reset opt_in_tracking opt_out_tracking has_opted_in_tracking has_opted_out_tracking clear_opt_in_out_tracking start_batch_senders people.set people.set_once people.unset people.increment people.append people.union people.track_charge people.clear_charges people.delete_user people.remove".split( " "); for (h = 0; h < i.length; h++) g(a, i[h]); var j = "set set_once union unset remove delete".split(" "); a.get_group = function () { function b(c) { d[c] = function () { call2_args = arguments; call2 = [c].concat(Array.prototype.slice.call(call2_args, 0)); a.push([e, call2]); }; } for ( var d = {}, e = ["get_group"].concat( Array.prototype.slice.call(arguments, 0)), c = 0; c < j.length; c++) b(j[c]); return d; }; b._i.push([e, f, c]); }; b.__SV = 1.2; e = f.createElement("script"); e.type = "text/javascript"; e.async = !0; e.src = "undefined" !== typeof MIXPANEL_CUSTOM_LIB_URL ? MIXPANEL_CUSTOM_LIB_URL : "file:" === f.location.protocol && "//cdn.mxpnl.com/libs/mixpanel-2-latest.min.js".match(/^\/\//) ? "https://cdn.mxpnl.com/libs/mixpanel-2-latest.min.js" : "//cdn.mxpnl.com/libs/mixpanel-2-latest.min.js"; g = f.getElementsByTagName("script")[0]; g.parentNode.insertBefore(e, g); } })(document, window.mixpanel || []);
         </script>
         ```
 
-        Afterward, create an instance of the Mixpanel object by calling [`.init()`](https://github.com/mixpanel/mixpanel-js/blob/475b2c6853dd49ffc625daac3925bf37940ec390/doc/readme.io/javascript-full-api-reference.md#mixpanelinit) using your [project token](/docs/orgs-and-projects/managing-projects#find-your-project-tokens) in your JS file. Any methods called from this object will target your project.
+        Within the `script` tags, create an instance of the Mixpanel object by calling [`.init()`](https://github.com/mixpanel/mixpanel-js/blob/475b2c6853dd49ffc625daac3925bf37940ec390/doc/readme.io/javascript-full-api-reference.md#mixpanelinit) using your [project token](/docs/orgs-and-projects/managing-projects#find-your-project-tokens) in your JS file. Any methods called from this object will target your project.
 
         ```javascript
         // Create an instance of the Mixpanel object
         mixpanel.init('YOUR_PROJECT_TOKEN', {autocapture: true});
+        ```
+
+        Altogether, with your particular library configuration, the code snippet should follow this basic structure:
+
+        ```html
+        <!-- Paste this right before your closing head tag -->
+        <script type="text/javascript">
+            (function (f, b) { if (!b.__SV) { var e, g, i, h; window.mixpanel = b; b._i = []; b.init = function (e, f, c) { function g(a, d) { var b = d.split("."); 2 == b.length && ((a = a[b[0]]), (d = b[1])); a[d] = function () { a.push([d].concat(Array.prototype.slice.call(arguments, 0))); }; } var a = b; "undefined" !== typeof c ? (a = b[c] = []) : (c = "mixpanel"); a.people = a.people || []; a.toString = function (a) { var d = "mixpanel"; "mixpanel" !== c && (d += "." + c); a || (d += " (stub)"); return d; }; a.people.toString = function () { return a.toString(1) + ".people (stub)"; }; i = "disable time_event track track_pageview track_links track_forms track_with_groups add_group set_group remove_group register register_once alias unregister identify name_tag set_config reset opt_in_tracking opt_out_tracking has_opted_in_tracking has_opted_out_tracking clear_opt_in_out_tracking start_batch_senders people.set people.set_once people.unset people.increment people.append people.union people.track_charge people.clear_charges people.delete_user people.remove".split( " "); for (h = 0; h < i.length; h++) g(a, i[h]); var j = "set set_once union unset remove delete".split(" "); a.get_group = function () { function b(c) { d[c] = function () { call2_args = arguments; call2 = [c].concat(Array.prototype.slice.call(call2_args, 0)); a.push([e, call2]); }; } for ( var d = {}, e = ["get_group"].concat( Array.prototype.slice.call(arguments, 0)), c = 0; c < j.length; c++) b(j[c]); return d; }; b._i.push([e, f, c]); }; b.__SV = 1.2; e = f.createElement("script"); e.type = "text/javascript"; e.async = !0; e.src = "undefined" !== typeof MIXPANEL_CUSTOM_LIB_URL ? MIXPANEL_CUSTOM_LIB_URL : "file:" === f.location.protocol && "//cdn.mxpnl.com/libs/mixpanel-2-latest.min.js".match(/^\/\//) ? "https://cdn.mxpnl.com/libs/mixpanel-2-latest.min.js" : "//cdn.mxpnl.com/libs/mixpanel-2-latest.min.js"; g = f.getElementsByTagName("script")[0]; g.parentNode.insertBefore(e, g); } })(document, window.mixpanel || []);
+
+            // Create an instance of the Mixpanel object
+            mixpanel.init('YOUR_PROJECT_TOKEN', {autocapture: true});
+        </script>
         ```
     </Tabs.Tab>
     <Tabs.Tab>
@@ -145,7 +157,7 @@ mixpanel.init('YOUR_PROJECT_TOKEN', {
     autocapture: false
 });
 ```
-Note that disabling Autocapture does not disable Session Replay, which is [configured separately](https://docs.mixpanel.com/docs/tracking-methods/sdks/javascript#session-replay).
+Note that disabling Autocapture does not disable Session Replay, which is [configured separately](/docs/tracking-methods/sdks/javascript#session-replay).
 
 **Autocapture Init Options**
 | Option | Description | Default | 
@@ -209,16 +221,14 @@ On Autocapture events, Mixpanel default-tracks the following properties:
 
 
 ## Sending Events
-The Javascript SDK provides a few different methods to send event data to your project. Calling any of the event tracking methods below will generate an event payload, then trigger a request to the [/track API endpoint](https://developer.mixpanel.com/reference/track-event) to ingest the event into your project.
-
-All events sent from the JavaScript library will be sent over HTTPS.
 
 <Callout type="info">
     The [/track endpoint](https://developer.mixpanel.com/reference/track-event) will only validate events with timestamps within the last 5 days of the request. Events with timestamps older than 5 days will not be ingested. See below on best practices for [historical imports](/docs/tracking-methods/sdks/javascript#importing-historical-events).
 </Callout>
 
-### Autocapture Events
-If you've enabled Autocapture, you do not need to set up precision tracking for page view or UTMs unless you are tracking a single-page application.
+The Javascript SDK provides a few different methods to send event data to your project. Calling any of the event tracking methods below will generate an event payload, then trigger a request to the [/track API endpoint](https://developer.mixpanel.com/reference/track-event) to ingest the event into your project.
+
+All events sent from the JavaScript library will be sent over HTTPS.
 
 ### Track Events
 Once you initialized the Mixpanel object, call `.track()` to send an event by providing the event name and any event properties.
@@ -236,9 +246,26 @@ mixpanel.track("Played song",{
     Avoid using names containing `$` or `mp` (e.g. `$name`, `mp_country_code`, etc.) as they are used by our [reserved event properties](/docs/data-structure/property-reference/reserved-properties#reserved-event-properties) which receive special treatment in our UI or are used for special processing.
 </Callout>
 
+#### Timing Events
+
+You can track the time it took for an action to occur, such as an image upload or a comment post, using [`.time_event()`](https://github.com/mixpanel/mixpanel-js/blob/master/doc/readme.io/javascript-full-api-reference.md#mixpaneltime_event). This will mark the “start” of your action, which will be timed until you finish with a `.track()` call. The time duration is then recorded in the “Duration” property.
+
+```javascript Javascript
+// start the timer for the event "Image Upload"
+mixpanel.time_event('Image Upload');
+
+// 20 seconds later...
+
+// track "Image Upload" event with "Duration" event prop set to 20
+mixpanel.track('Image Upload');
+```
+
+
 ### Track Page Views
 
 Page view tracking is turned off by default. Page view events can be added automatically on every page load by enabling the `track_pageview` [config option](https://github.com/mixpanel/mixpanel-js/blob/v2.46.0/src/mixpanel-core.js#L88-L127) when creating the Mixpanel object.
+
+If you have enabled Autocapture, you do not need to set up precision tracking for page view unless you are implementing in a single-page application.
 
 **Example Usage**
 ```javascript JavaScript
@@ -945,7 +972,6 @@ Customize the Replay capture behavior using the library init options outlined be
 | --- | --- | --- |
 | `record_block_class` | CSS class name or regular expression for elements which will be replaced with an empty element of the same dimensions, blocking all contents.  | `new RegExp('^(mp-block\|fs-exclude\|amp-block\|rr-block\|ph-no-capture)$')` <br/> (common industry block classes) |
 | `record_block_selector` | CSS selector for elements which will be replaced with an empty element of the same dimensions, blocking all contents.  | `"img, video"` |
-| `record_collect_fonts` | When true, Mixpanel will collect and store the fonts on your site to use in playback. | `false` |
 | `record_idle_timeout_ms` | Duration of inactivity in milliseconds before ending a contiguous replay. A new replay collection will start when active again. | `1800000`<br/>(30 minutes) |
 | `record_mask_text_class` | CSS class name or regular expression for elements that will have their text contents masked. | `new RegExp('^(mp-mask\|fs-mask\|amp-mask\|rr-mask\|ph-mask)$')` <br/> (common industry mask classes) |
 | `record_mask_text_selector` | CSS selector for elements that will have their text contents masked. | `"*"` |
@@ -955,6 +981,15 @@ Customize the Replay capture behavior using the library init options outlined be
 | `record_canvas` | When true, Mixpanel will record snapshots of `<canvas>` elements on your site at up to 15 frames per second | `false` |
 | `record_heatmap_data` | When true, Mixpanel will capture click events during replays to populate Heatmaps. Viewing Heatmaps is currently in Beta. | `false` |
 
+**Example Usage**
+
+```javascript
+mixpanel.init('YOUR_PROJECT_TOKEN', {
+    record_sessions_percent: 1,  //records 1% of all sessions
+    record_mask_text_selector: '', //unmask all text elements
+    record_block_selector: '' //unmask images and videos
+});
+```
 
 ### Manual Capture
 

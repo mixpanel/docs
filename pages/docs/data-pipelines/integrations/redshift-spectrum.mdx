@@ -256,7 +256,7 @@ Follow these steps to grant the `CREATE` privilege:
 
   ```sql
   -- Check if the IAMR user has been created
-  SELECT * FROM pg_user WHERE username LIKE 'IAMR:<mixpanel-role-name>';
+  SELECT * FROM pg_user WHERE usename LIKE 'IAMR:<mixpanel-role-name>';
 
   -- If you see your IAMR user in the results, proceed with the following commands
   GRANT CREATE ON DATABASE "<your-database-name>" TO "IAMR:<mixpanel-role-name>";

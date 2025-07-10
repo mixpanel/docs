@@ -100,7 +100,6 @@ mixpanel.init(
 | --- | --- | --- |
 | `record_block_class` | CSS class name or regular expression for elements which will be replaced with an empty element of the same dimensions, blocking all contents.  | `new RegExp('^(mp-block\|fs-exclude\|amp-block\|rr-block\|ph-no-capture)$')` <br/> (common industry block classes) |
 | `record_block_selector` | CSS selector for elements which will be replaced with an empty element of the same dimensions, blocking all contents.  | `"img, video"` |
-| `record_collect_fonts` | When true, Mixpanel will collect and store the fonts on your site to use in playback. | `false` |
 | `record_idle_timeout_ms` | Duration of inactivity in milliseconds before ending a contiguous replay. A new replay collection will start when active again. | `1800000`<br/>(30 minutes) |
 | `record_mask_text_class` | CSS class name or regular expression for elements that will have their text contents masked. | `new RegExp('^(mp-mask\|fs-mask\|amp-mask\|rr-mask\|ph-mask)$')` <br/> (common industry mask classes) |
 | `record_mask_text_selector` | CSS selector for elements that will have their text contents masked. | `"*"` |
@@ -108,6 +107,19 @@ mixpanel.init(
 | `record_min_ms` | Minimum length of a single replay in milliseconds. Up to 8 seconds is supported. If a replay does not meet the minimum length, it will be discarded. | `0`<br/>(0 seconds) |
 | `record_sessions_percent` | Percentage of SDK initializations that will qualify for replay data capture. A value of "1" = 1%. | `0` |
 | `record_canvas` | When true, Mixpanel will record snapshots of `<canvas>` elements on your site at up to 15 frames per second | `false` |
+| `record_heatmap_data` | When true, Mixpanel will capture click events during replays to populate Heatmaps. Viewing Heatmaps is currently in Beta. You can learn more [here](/docs/session-replay/heatmaps). | `false` |
+
+Note: Canvas recording (record_canvas) utilizes [rrweb's](https://github.com/rrweb-io/rrweb) UNSAFE_replayCanvas option, which is experimental and not fully supported. We recommend testing thoroughly before deploying to production.
+
+**Example Usage**
+
+```javascript
+mixpanel.init('YOUR_PROJECT_TOKEN', {
+    record_sessions_percent: 1,  //records 1% of all sessions
+    record_mask_text_selector: '', //unmask all text elements
+    record_block_selector: '' //unmask images and videos
+});
+```
 
 ## Replay ID
 
