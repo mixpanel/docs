@@ -3,6 +3,9 @@ x-readme-deploy-id: data-pipelines-api
 info:
   title: Data Pipelines API
   description: Create and manage a continious pipeline with an external warehouse.
+  license:
+    name: MIT
+    url: https://opensource.org/licenses/MIT
   version: 1.0.0
   contact:
     url: https://mixpanel.com/get-support

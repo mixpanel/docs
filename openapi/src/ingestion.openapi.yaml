@@ -3,6 +3,9 @@ x-readme-deploy-id: ingestion
 info:
   title: Ingestion API
   description: APIs allowing for event-based tracking and user profile handling.
+  license:
+    name: MIT
+    url: https://opensource.org/licenses/MIT
   version: 1.0.0
   contact:
     url: "https://mixpanel.com/get-support"
