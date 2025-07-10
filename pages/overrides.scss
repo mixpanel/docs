@@ -727,7 +727,7 @@ article {
 
     // modify codebox
     .nextra-code ._ring-gray-300 {
-      background-color: colors.$purple20;
+      background-color: colors.$white;
     }
 
     //modify code tabs
@@ -1074,9 +1074,11 @@ article {
     // }
 
     .nextra-scrollbar {
+      // modify margins on right sidebar to prevent overflowing
+      margin-right: auto;
+
       // set background color for bookmark region
       // background-color: colors.$black;
-
       // set font color for bookmark header
       p {
         // color: colors.$base100;
@@ -1493,12 +1495,12 @@ article {
 
     // modify codebox
     .nextra-code > .dark\:_ring-neutral-700 {
-      background-color: colors.$grey100;
+      background-color: rgba(255, 255, 255, 0.08);
       border: 1px solid rgba(255, 255, 255, 0.1);
     }
 
     code.nextra-code {
-      background-color: colors.$grey100;
+      background-color: rgba(255, 255, 255, 0);
     }
 
     //modify code tabs
@@ -1864,9 +1866,11 @@ article {
     // }
 
     .nextra-scrollbar {
+      // modify margins on right sidebar to prevent overflowing
+      margin-right: auto;
+
       // set background color for bookmark region
       // background-color: colors.$black;
-
       // set font color for bookmark header
       p {
         color: colors.$base100;
