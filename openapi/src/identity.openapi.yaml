@@ -3,6 +3,9 @@ x-readme-deploy-id: identity
 info:
   title: Identity API
   description: APIs to identify anonymous user IDs to their canonical user ID.
+  license:
+    name: MIT
+    url: https://opensource.org/licenses/MIT
   version: 1.0.0
   contact:
     url: 'https://mixpanel.com/get-support'
