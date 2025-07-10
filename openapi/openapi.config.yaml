@@ -1,24 +1,33 @@
-apiDefinitions:
-  annotations: ./src/annotations.openapi.yaml
-  data-pipelines: ./src/data-pipelines.openapi.yaml
-  export: ./src/export.openapi.yaml
-  gdpr: ./src/gdpr.openapi.yaml
-  identity: ./src/identity.openapi.yaml
-  ingestion: ./src/ingestion.openapi.yaml
-  lexicon-schemas: ./src/lexicon-schemas.openapi.yaml
-  query: ./src/query.openapi.yaml
-  service-accounts: ./src/service-accounts.openapi.yaml
-  warehouse-connectors: ./src/warehouse-connectors.openapi.yaml
+apis:
+  annotations:
+    root: ./src/annotations.openapi.yaml
+  data-pipelines:
+    root: ./src/data-pipelines.openapi.yaml
+  export:
+    root: ./src/export.openapi.yaml
+  gdpr:
+    root: ./src/gdpr.openapi.yaml
+  identity:
+    root: ./src/identity.openapi.yaml
+  ingestion:
+    root: ./src/ingestion.openapi.yaml
+  lexicon-schemas:
+    root: ./src/lexicon-schemas.openapi.yaml
+  query:
+    root: ./src/query.openapi.yaml
+  service-accounts:
+    root: ./src/service-accounts.openapi.yaml
+  warehouse-connectors:
+    root: ./src/warehouse-connectors.openapi.yaml
 
-lint:
+rules:
   extends:
-    - all
-  rules:
-    info-license: off
-    paths-kebab-case: off
-    boolean-parameter-prefixes: off
-    operation-description: off
+    - recommended
+  info-license: off
+  paths-kebab-case: off
+  boolean-parameter-prefixes: off
+  operation-description: off
 
-    # Todo: fix these offenders
-    operation-tag-defined: off
-    parameter-description: off
+  # Todo: fix these offenders
+  operation-tag-defined: off
+  parameter-description: off
