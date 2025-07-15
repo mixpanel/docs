@@ -18,11 +18,12 @@ isAnnouncement: false
 
 Tailor your Mixpanel experience to suit the needs of your organization. Now, project admins can set any Board in the project as the default project homepage. This means a personalized and productive start for every employee logging into Mixpanel. 
 
-Since Mixpanel Boards are incredibly flexible, you can craft a homepage that suits your team's unique needs. Here’s how a dedicated Homepage Board can improve your team's workflow:
+Since Mixpanel Boards are incredibly flexible, you can craft a homepage that suits your project. Here’s how a dedicated Homepage Board can improve your team's workflow:
 
 - **Access Key Information:** Direct your team to important documentation, onboarding guides, or key project data.
 - **Streamline Onboarding:** Guide new users to intro reports and content that’s specific to your organization.
 - **Highlight KPIs:** Put key KPIs front and center for your team by adding them to the Homepage Board.
 
 
-Users with the project admin role can configure the project's homepage in Project Settings.
+Users with the project admin role can configure the project's homepage in Project Settings. Removing the Homepage Board reverts the project to the default Mixpanel Home.
+
