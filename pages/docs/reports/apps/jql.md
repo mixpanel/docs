@@ -1,7 +1,7 @@
 # JQL: Create custom queries using Javascript code
 
-> ❗️JQL is currently in maintenance mode and will be completely deprecated December 31, 2025. We recommend discontinuing use of JQL and using an [alternate method](/docs/export-methods) to get the data you need. Below are alternatives for common use cases and you need help deciding the best method for you, reach out to [support](https://mixpanel.com/get-support). 
-> - Raw Event export: [Export API](https://developer.mixpanel.com/reference/raw-data-export-api) or [Data Pipelines](https://docs.mixpanel.com/docs/data-pipelines)
+> ❗️JQL is currently in maintenance mode and will be completely deprecated December 31, 2025. We recommend discontinuing use of JQL and using an [alternate method](/docs/export-methods) to get the data you need. Below are alternatives for common use cases and you need help deciding the best method for you, reach out to [support](https://mixpanel.com/contact-us/support).
+> - Raw Event export: [Export API](https://developer.mixpanel.com/reference/raw-data-export-api) or [Data Pipelines](/docs/data-pipelines)
 > - User Profile export: [Engage Query API](https://developer.mixpanel.com/reference/engage-query) or [Data Pipelines](/docs/data-pipelines)
 > - Other reporting: [Query API](https://developer.mixpanel.com/reference/query-api) or in-app [Core Reports](/docs/reports)
 
