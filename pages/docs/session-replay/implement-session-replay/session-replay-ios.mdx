@@ -2,16 +2,6 @@ import { Callout } from 'nextra/components'
 
 # Implement Session Replay (iOS)
 
-<Callout type="info">
-iOS Session Replay is currently in invite-only Private Beta. Please reach out to your Account Manager for any questions about Session Replay or iOS Beta access.
-</Callout>
-
-<Callout type="warning">
-Since our Beta program offers early access, some functionality, including data masking features, may contain bugs and cause crashes. We recommend thoroughly testing before enabling in production.
-
-Our Session Replay Beta Service Addendum can be found [here](https://mixpanel.com/legal/session-replay-beta-service-addendum/).
-</Callout>
-
 ## Overview
 
 This developer guide will assist you in configuring your Swift app for [Session Replay](/docs/session-replay) using the [Session Replay SDK (Swift)](/docs/tracking-methods/sdks/swift/swift-replay). Learn more about [viewing captured Replays in your project here](/docs/session-replay).
@@ -32,7 +22,7 @@ To capture Session Replays in your app, add the [Session Replay SDK](/docs/track
 
 You should have the main Mixpanel Swift SDK installed (minimum version `v4.3.1`), if not, please refer to [Prerequisite](/docs/session-replay/session-replay-ios#prerequisite). 
 
-Add the following code to your **SwiftUI and **UIKit**.
+Add the following code to your **SwiftUI** or **UIKit** app.
 
 **SwiftUI**
 
@@ -50,11 +40,12 @@ struct SessionReplayDemoApp: App {
         }
         .onChange(of: scenePhase) {
             if scenePhase == .active {
-                let config = MPSessionReplayConfig(wifiOnly: false, recordSessionsPercent: 100.0)
-                let sessionReplayInstance = MPSessionReplay.initialize(token: Mixpanel.mainInstance().apiToken, distinctId: Mixpanel.mainInstance().distinctId, config: config)
- 
-                sessionReplayInstance.loggingEnabled = true
-                sessionReplayInstance.startRecording()
+                let config = MPSessionReplayConfig(wifiOnly: false, enableLogging: true)
+                MPSessionReplay.initialize(
+                        token: Mixpanel.mainInstance().apiToken,
+                        distinctId: Mixpanel.mainInstance().distinctId,
+                        config: config
+                )
             }
         }
 }
@@ -73,84 +64,90 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
  
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]? = nil) -> Bool {
         Mixpanel.initialize(token: token, trackAutomaticEvents: true)
- 
-        let config = MPSessionReplayConfig(
-            wifiOnly: false,
-            recordSessionsPercent: 100.0
-        )
-        let sesionReplayInstance = MPSessionReplay.initialize(
-            token: Mixpanel.mainInstance().apiToken,
-            distinctId: Mixpanel.mainInstance().distinctId,
-            config: config
-        )
-        #if DEBUG
         Mixpanel.mainInstance().loggingEnabled = true
-        MPSessionReplay.getInstance()?.loggingEnabled = true
-				#endif
-        return true
-    }
  
-    func applicationDidBecomeActive(_ application: UIApplication) {
-        MPSessionReplay.getInstance()?.startRecording()
+        let config = MPSessionReplayConfig(wifiOnly: false, enableLogging: true)
+        MPSessionReplay.initialize(
+                token: Mixpanel.mainInstance().apiToken,
+                distinctId: Mixpanel.mainInstance().distinctId,
+                config: config
+        )
     }
- 
 }
 ```
 ## Capturing Replays
 
 <Callout type="warning">
-	Test in a sandbox project and start with a smaller sample rate. This allows you to monitor performance, usage, and ensure your privacy rules align with your company policies.
+	Test in a sandbox project and start with a lower sampling rate. This allows you to monitor performance, usage, and ensure your privacy rules align with your company policies.
 </Callout>
 
-You can capturing replay data using a sampling method (recommended), or customize when and where replays are captured manually using methods provided by the Session Replay Swift SDK.
+You can capture replay data using a sampling method (recommended), or customize when and where replays are captured manually using methods provided by the Session Replay Swift SDK.
 
 ### Sampling
 
 We recommend using our sampling functionality unless you need custom logic to decide when to record sessions.
 
-To enable Session Replay and set your sampling rate, create a `SessionReplayConfig` object and set the `recordSessionsPercent` with a value between `0.0` and `100.0`. At `0.0` no sessions will be recorded, at `100.0` all sessions will be recorded.
+To enable Session Replay and set your sampling rate, create a `MPSessionReplayConfig` object and set the `autoStartRecordingSessionsPercent` with a value between `0.0` and `100.0`. At `0.0` no sessions will be recorded, at `100.0` (default) all sessions will be recorded.
 
 Start with a low sampling rate, then adjust according to your specific analytics needs.
 
-Recording only starts if the sampling check passes and you explicitly call startRecording(). Recording does not start automatically. 
+Upon initialization, recording starts automatically if the sampling check passes. 
 
 **Example Usage**
 
 ```swift Swift
 // records 1% of all sessions
-MPSessionReplayConfig(recordSessionsPercent: 1.0)
+MPSessionReplayConfig(autoStartRecordingSessionsPercent: 1.0)
 ```
 
-### Manual Capture
+### Manual Recording
 
 To programatically start and stop replay capture, use the `.startRecording()` and `.stopRecording()` methods. 
 
-#### Start Capturing Replay Data
+#### Start Recording Replay Data
 
-Replay recording does not start automatically — you must explicitly call `.startRecording()` after the random sampling check passes. Note: this is planned to change in upcoming releases, as we move towards recording beginning automatically if the sampling check passes.
+Calling `.startRecording()` will force recording to begin regardless of the `autoStartRecordingSessionsPercent` sampling check.
 
-Recording automatically stops when the app goes into the background, so you’ll need to call `.startRecording()` again when the app becomes active to begin capturing replays again.
+Recording automatically stops when the app goes into the background. If `autoStartRecording` is `true` (default) recording automatically re-starts when the app comes back to the foreground.
 
-This will have no effect if replay data collection is already in progress.
-
+Calling `.startRecording()` has no effect while recording is already in progress.
 **Example Usage**
 
 ```swift Swift
-// manually trigger a replay capture
+// manually force recording to begin for 100% of sessions
 MPSessionReplay.getInstance()?.startRecording()
 ```
 
-#### Stop Capturing Replay Data
+```swift Swift
+// manually force recording to begin with a 50% sampling rate
+MPSessionReplay.getInstance()?.startRecording(recordSessionsPercent: 50.0)
+```
+
+#### Stop Recording Replay Data
 
 Call `.stopRecording()` to stop any active replay data collection. The SDK automatically stops recording when the app goes to the background.
 
-This will have no effect if there is no replay data collection in progress.
+Calling `.stopRecording()` has no effect when there is no recording in progress.
 
 **Example Usage**
 
 ```swift Swift
 // manually end a replay capture
 MPSessionReplay.getInstance()?.stopRecording()
+```
+
+#### Manual Screenshot Capture
+
+You can also manually trigger the capture of individual screenshots by calling `.captureScreenshot()`:
+
+**Example Usage**
+
+```swift Swift
+// manually capture screenshots
+MPSessionReplay.getInstance()?.captureScreenshot()
+
+// manually capture screenshots triggered by a touch event
+MPSessionReplay.getInstance()?.captureScreenshot(withTouchEvent: touchEvent)
 ```
 
 #### Example Use Cases for Manual Capture
@@ -163,78 +160,81 @@ MPSessionReplay.getInstance()?.stopRecording()
 
 ### Additional Configuration Options
 
-Upon initialization you can provide a `SessionReplayConfig` object to customize your replay capture.
+Upon initialization you can provide a `MPSessionReplayConfig` object to customize your replay capture.
 
-Currently, there are only four config options:
+Currently, there are six config options:
 
 | Option | Description | Default | 
 | --- | --- | --- |
 | `wifiOnly` | When `true`, replay events will only be flushed to the server when the device has a WiFi connection. If there is no wifi, flushes are skipped and the events remain in the in-memory queue until wifi is restored (or until the queue reaches its limit and the oldest events are evicted to make room for newer events). <br/> When `false`, replay events will be flushed with any network connection, including cellular. | `true` |
-| `recordSessionsPercent` | This is a value between `0.0` and `100.0` that controls the sampling rate for recording session replays. <br/> At `0.0` no sessions will be recorded. At `100.0` all sessions will be recorded.  | `0.0` |
-| `autoMaskedViews` | This is a `Set` of enum options for the types of views that should be masked by the SDK automatically. | `Image`, `Text`, and `Web` |
-| `autoCapture` | This an enum to selectively disable the runtime method replacement functionality (aka “swizzling") in the event that it conflicts with another SDK (like [New Relic](https://docs.newrelic.com/docs/mobile-monitoring/new-relic-mobile-ios/get-started/new-relic-ios-compatibility-requirements/#method)) | `.enabled` |
+| `autoMaskedViews` | This is a `Set` of enum options for the types of views that should be masked by the SDK automatically. | `[.image, .text, .web, .map]` |
+| `autoStartRecording` | This is a boolean value that determines whether or not recording begins automatically upon initialization and when returning to the foreground. | `true` |
+| `autoStartRecordingSessionsPercent` | This is a value between `0.0` and `100.0` (default) that controls the sampling rate for automatically triggered session replays. <br/> At `0.0` no sessions will be recorded. At `100.0` all sessions will be recorded.  | `100.0` |
+| `flushInterval` | Specifies the flush interval (in seconds) at which session replay events are sent to the Mixpanel server. | `10` |
+| `enableLogging` | This is a boolean value that determines whether or not debugging logs are printed to the console. | `false` |
 
 **autoMaskedViews Example Usage**
 ```swift Swift
 // mask images only
-MPSessionReplayConfig(recordSessionsPercent: 100.0, autoMaskedViews: [.Image])
+MPSessionReplayConfig(autoMaskedViews: [.image])
 
 // disable auto masking
-MPSessionReplayConfig(recordSessionsPercent: 100.0, autoMaskedViews: [])
-
-// mask image, text and WebViews
-MPSessionReplayConfig(recordSessionsPercent: 100.0)
+MPSessionReplayConfig(autoMaskedViews: [])
 ```
 
-**autoCapture Example Usage**
+Alternatively:
 
 ```swift Swift
-// auto capture on both view controller lifecycle methods and touch events
-MPSessionReplayConfig(recordSessionsPerecent: 100.0, autoCapture: .enabled)
+// mask images only
+MPSessionReplay.getInstance()?.autoMaskedViews = [.image]
 
-// auto capture only on view controller lifecycle events
-MPSessionReplayConfig(recordSessionsPerecent: 100.0, autoCapture: .viewControllerLifecycle)
-
-// auto capture only on touch events
-MPSessionReplayConfig(recordSessionsPerecent: 100.0, autoCapture: .touch)
-
-// disable auto capture
-// use this if you want to keep all functionality in the conflicting SDK
-MPSessionReplayConfig(recordSessionsPerecent: 100.0, autoCapture: .disabled)
+// disable auto masking
+MPSessionReplay.getInstance()?.autoMaskedViews = []
 ```
 
-#### Manual Screenshot Capture
+#### Identity Management
 
-If you have partially or completely disabled automatic screen capture via the `autoCapture` config setting above, you can manually capture screenshots by calling `.captureScreenshot()`:
+The Mixpanel distinct ID for the current user can be passed into the initializer and changed at runtime by calling the `.identify(distinctId:)` method:
 
 **Example Usage**
 
 ```swift Swift
-// manually capture screenshots
-MPSessionReplay.getInstance()?.captureScreenshot()
+// initialize the main Mixpanel tracking SDK
+Mixpanel.initialize(token: token, trackAutomaticEvents: true)
 
-// manually capture screenshots triggered by a touch event
-MPSessionReplay.getInstance()?.captureScreenshot(withTouchEvent: touchEvent)
+// initialize the session replay SDK with the project token and distinct ID from above
+MPSessionReplay.initialize(
+        token: Mixpanel.mainInstance().apiToken,
+        distinctId: Mixpanel.mainInstance().distinctId,
+)
 ```
 
-If you choose to disable auto capture and do manual screen capturing instead, it will be up to you to determine when, where and how you call the `.captureScreenshot()` method in your application. The most naïve approach would be to call it on a `Timer`.
-
-**Example Usage**
+To change the distinct ID later:
 
 ```swift Swift
-// trigger manual screenshot capture using Timer
-let screenshotTimer = Timer.scheduledTimer(withTimeInterval: 1, repeats: true) { _ in
-    MPSessionReplay.getInstance()?.captureScreenshot()
+// for example when the user logs out
+func logout() {
+    // reset the main Mixpanel tracking SDK to generate a new distinct ID
+    Mixpanel.mainInstance().reset()
+    let newDistinctId = Mixpanel.mainInstance().getDistinctId()
+    // change session replay distinct ID
+    MPSessionReplay.getInstance()?.identify(distinctId: newDistinctId)
 }
 ```
 
-Keeping in mind that this is relatively inefficient and will result in capturing unnecessary/unchanged screenshots, it is also possible to miss important moments in between the timed screenshots. Taking screenshots on demand at critical moments will always be preferable.
+#### Manual Flushing
+
+You can flush any currently queued session replay events at any time by calling `.flush()`:
+
+```swift Swift
+MPSessionReplay.getInstance()?.flush()
+```
 
 ## Replay ID
 
-When a replay capture begins, a Replay ID is generated by the SDK and is attached as an event property (`$mp_replay_id`) to events tracked by the SDK during the capture session. Events containing the same `$mp_replay_id` will appear in the same Replay.
+When a replay capture begins, a Replay ID is generated by the SDK and is attached as an event property (`$mp_replay_id`) to events tracked by the Mixpanel SDK during the capture session. Events containing the same `$mp_replay_id` will appear in the same Replay.
 
-If you are sending any events not coming from the SDK, add the `$mp_replay_id` event property to attribute the event to a specific Replay.
+If you are sending any events not coming from the Mixpanel SDK, add the `$mp_replay_id` event property to attribute the event to a specific Replay.
 
 You can use the `getReplayId()` method to return the Replay ID for the current replay capture. The method will return an empty object if there is no active replay capture in progress.
 
@@ -272,16 +272,21 @@ If you are still struggling to implement, [submit a request to our Support team]
 
 ### Logging
 
-Developers can enable or disable logging with the `loggingEnabled` property of the `MPSessionReplay` object.
+Developers can enable or disable logging with the `enableLogging` option of the `MPSessionReplayConfig` object or via the `loggingEnabled` property of the main `MPSessionReplay` instance.
 
 **Example Usage**
 
 ```swift Swift
 let token = Mixpanel.mainInstance().apiToken
 let distinctId = Mixpanel.mainInstance().distinctId
-let config = MPSessionReplayConfig(wifiOnly: false, recordSessionsPercent: 50.0)
-let sessionReplayInstance = MPSessionReplay.initialize(token: token, distinctId: distinctId, config: config)
-sessionReplayInstance.loggingEnabled = true // enable debug log
+let config = MPSessionReplayConfig(wifiOnly: false, enableLogging: true) // enable debug logging
+MPSessionReplay.initialize(token: token, distinctId: distinctId, config: config)
+```
+
+Alternatively:
+
+```swift Swift
+MPSessionReplay.getInstance()?.loggingEnabled = true
 ```
 
 ## Privacy
@@ -290,17 +295,17 @@ Mixpanel offers a privacy-first approach to Session Replay, including features s
 
 ### User Data
 
-The Mixpanel SDK will always mask all inputs. To protect end-user privacy, input text fields cannot be unmasked.
+The Mixpanel SDK will always mask all input text fields. To protect end-user privacy, input text fields cannot be unmasked.
 
-By default, all text, images, and WebViews are also masked.
+By default, all text, images, WKWebViews and MKMapViews are also masked.
 
-You can unmask these element at your own discretion using the [`autoMaskedViews` config option described above](/docs/session-replay/implement-session-replay/session-replay-ios#additional-configuration-options).
+You can unmask these elements at your own discretion using the [`autoMaskedViews` config option described above](/docs/session-replay/implement-session-replay/session-replay-ios#additional-configuration-options).
 
 #### Mark Views as Sensitive
 
 If your app is SwiftUI-based or UIKit-based, all `UITextField` and `UILabel` components are masked by default. `UITextField` cannot be unmasked, while `UILabels` can be unmasked
 
-You can also mark any views as sensitive using `mpReplaySensitive`. Views marked as "sensitive" will be masked.
+You can also mark any views as sensitive using `mpReplaySensitive`. Views marked as "sensitive" will always be masked.
 
 **Example Usage**
 
@@ -316,7 +321,7 @@ let ccView = CreditCardUIView()
 ccView.mpReplaySensitive = true
 ```
 
-Set `mpReplaySensitive` to `false` to mark any view as safe. Views marked as "safe" will not be masked.
+Set `mpReplaySensitive` to `false` to mark any view as "safe". Views marked as "safe" will never be masked.
 
 **Example Usage**
 
