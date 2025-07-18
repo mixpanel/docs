@@ -2,11 +2,12 @@ import "./globals.css";
 import "./overrides.scss";
 import React from "react";
 import { useEffect } from "react";
-import { insertGTMScriptTags } from "../components/GTMScripts";
 import type { AppProps } from "next/app";
 import { useRouter } from "next/router";
-import { KapaEventNames } from "../utils/constants";
-import { track, DocsAIPrefix } from "../utils/tracking";
+import * as Sentry from "@sentry/react";
+
+import { insertGTMScriptTags } from "../components/GTMScripts";
+import { SENTRY_VARS } from "../utils/error-reporting";
 
 export type URLSearchGet = string | null;
 
@@ -79,6 +80,7 @@ export default function MyApp({ Component, pageProps }: AppProps) {
   useEffect(() => {
     insertGTMScriptTags();
     trackPageview();
+    window.sentry = Sentry.init(SENTRY_VARS);
     // TODO: Based on their doc: https://docs.kapa.ai/integrations/website-widget/javascript-api/events
     // we should be able to use `Kapa` as a function like below, but it seems like the global object interface has changed
     // which is throwing Kapa is not a function error. I will follow up w/ Kapa team to see what's up.
