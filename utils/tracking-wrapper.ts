@@ -1,5 +1,5 @@
 // * Usage: Sends an event with API response info to Mixpanel
-// * and Rollbar (if `sendToRollbar` is true)
+// * and sentry (if `sendToSentry` is true)
 
 /**
  * @example
@@ -9,7 +9,7 @@
  *          event: APITrackingEvents.Error,
  *      },
  *      eventContext: `${EVENT_CONTEXT} > fun()`,
- *      sendToRollbar: true,
+ *      sendToSentry: true,
  *      ...values,
  * });
  * ```
@@ -69,7 +69,7 @@ type TrackResponseProps = {
     eventContext: string; // Eg: be specific about component or function
     accountId?: number;
     formId?: string;
-    sendToRollbar?: boolean;
+    sendToSentry?: boolean;
     // Whatever else
     [key: string]: any;
 };
@@ -78,7 +78,7 @@ type EventProperties = {
     [key: string]: any;
 };
 
-export const enum RollbarType {
+export const enum LogType {
     Info = `info`,
     Error = `error`,
 }
@@ -90,16 +90,16 @@ function mixpanelDefined() {
 export function trackEvent(
     eventName: DocsEvents,
     properties: EventProperties,
-    sendToRollbar = false,
-    rollbarType = RollbarType.Info,
+    sendToSentry = false,
+    logType = LogType.Info,
 ) {
     if (mixpanelDefined()) {
         properties[DocsEventsProperties.Team] = `Interactive`;
         mixpanel.track(`${eventName}`, properties);
     }
 
-    if (sendToRollbar) {
-        if (rollbarType === RollbarType.Error) {
+    if (sendToSentry) {
+        if (logType === LogType.Error) {
             reporter.error(eventName, { ...properties });
         } else {
             reporter.info(eventName, { ...properties });
@@ -133,11 +133,11 @@ export function trackResponse({
         ...rest,
     });
 
-    const ROLLBAR_MSG = `Event: ${APIContext.event}, Context: ${eventContext}`;
+    const ERROR_MSG = `Event: ${APIContext.event}, Context: ${eventContext}`;
 
-    if (rest.sendToRollbar) {
+    if (rest.sendToSentry) {
         APIContext.event === APITrackingEvents.Error
-            ? reporter.error(ROLLBAR_MSG, { API_LOG, ...rest })
-            : reporter.info(ROLLBAR_MSG, { API_LOG, ...rest });
+            ? reporter.error(ERROR_MSG, { API_LOG, ...rest })
+            : reporter.info(ERROR_MSG, { API_LOG, ...rest });
     }
 }

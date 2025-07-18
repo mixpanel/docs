@@ -1,3 +1,4 @@
+import type * as Sentry from '@sentry/core';
 
 interface Mixpanel {
   // @TODO: https://mixpanel.atlassian.net/browse/INTRACTIVE-685
@@ -8,4 +9,5 @@ interface Mixpanel {
       [property: string]: string
     }
   }
+  sentry?: Sentry.Client | undefined;
 }
