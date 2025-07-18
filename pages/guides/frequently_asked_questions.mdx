@@ -316,6 +316,7 @@ export function FAQBox({ title, section, children }) {
 </FAQBox>
 
 <FAQBox title="How do I setup cross-domain tracking with Mixpanel?(Simplified API)" section="Identity Management in Mixpanel">
+    To set up cross-domain tracking with Mixpanel for projects using the Original ID Merge API, you need to ensure that the same user is recognized across different domains. The recommended approach is to pass the Mixpanel `distinct_id` from one domain to the next domain, typically via URL parameters. Then call `identify()` on the next domain using the `distinct_id` from the previous domain. For example:
 </FAQBox>
 
 <FAQBox title="How do I setup cross-subdomain tracking with Mixpanel?" section="Identity Management in Mixpanel">
@@ -417,7 +418,7 @@ You can use any of the distinct_ids inside of the identity cluster for ingestion
 </FAQBox>
 
 <FAQBox title="How does Mixpanel attribute campaign data when identities are set or changed?" section="Identity Management in Mixpanel">
-  **WIP**
+  When a user's identity is set or changes (for example, when a user moves from being anonymous to authenticated), Mixpanel automatically merges the anonymous activity with the identified user profile. This process ensures that all events and campaign attribution data collected in those events (such as UTM tags) while the user was anonymous are unified with their known profile once their identity is established. This allows for a complete view of the user's journey, including campaign touchpoints before and after identification.
 </FAQBox>
 
 </div>
