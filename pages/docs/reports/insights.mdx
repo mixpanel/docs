@@ -38,23 +38,31 @@ It's important to know what's the natural frequency at which your users use your
   <iframe src="https://www.loom.com/embed/c223230fd46d432880f6bcf804b07cac" frameborder="0" style={{ position: 'absolute', top: 0, left: 0, width: '100%', height: '100%' }} allowfullscreen></iframe>
 </p>
 
-### Step 1: Choose or Define your Behavior
+### Step 1: Define your Behavior
 
-Metrics are basing building blocks of an Insights report. A metric is made up of a behavior, and a way to measure that behavior. By default, Insights will prompt you to select the most basic form of a behavior: an event. However, you can also press the "+ Metrics" button to select add a metric based on a different type of behavior. You can also add a formula, which is a metric that is a function of other metrics.
+Metrics are the basic building blocks of an Insights report, and consists of profiles (users, groups, Cohorts) or behaviors (events, Funnels behavior, or Retention behavior) along with a measurement of those entities. Press the "Select Metrics" button to add a metric.
 
-To select an event and start with an event based metric, press "Select Event".
+To select an event and start with an event-based simple behavior metric, choose "Events" in the left column of the metrics menu, then select the events you want to measure. This creates a simple behavior.
 
 ![Choose Events](/choose-events.png)
 
-To select a different type of metric, press "+ Metrics" and choose your metric type from the list. See [Metric Types](/docs/reports/insights#metric-types) for a full list of supported metric types.
+You can save the behavior you built and reuse them in other reports. Select the "..." button in the top right corner of the metric, then click "Save Behavior". Note that saving a behavior and saving a metric is different; a saved behavior consists of the events/Funnels/Retention, while a saved metrics consists of the saved behavior and the measurements of the behavior.
 
-![Choose Metrics](/choose-metrics.png)
+[INSERT IMAGE HERE]
+
+Learn more about [Saved Metrics and Behaviors](/docs/features/saved-metrics-and-behaviors).
 
 ### Step 2: Choose your Measurement
 
-Once you've selected your behavior, you can choose how to measure that behavior. Depending on the type of behavior selected, Insights will default to a different measurement. If you're measuring a basic event, Insights will default to measuring the number of unique users who have done that event.
+Once you've selected your behavior, you can choose how to measure that behavior. A behavior combined with a measurement forms a Metric.
+
+Depending on the type of behavior selected, Insights will default to a different measurement. If you're measuring a Simple Behavior (events), Insights will default to measuring the number of unique users who have done that event.
 
 ![Choose Measurement](/choose-measurement.png)
+
+You can save the metric you built and reuse them in other reports. Select the "..." button in the top right corner of the metric, then click "Save Metric". Note that saving a metric and saving a behavior is different; a saved behavior consists of the events/Funnels/Retention, while a saved metrics consists of the saved behavior and the measurements of the behavior.
+
+Learn more about [Saved Metrics and Behaviors](/docs/features/saved-metrics-and-behaviors).
 
 ### Step 3: Choose Filters
 
@@ -80,20 +88,32 @@ You now have a full analysis that you can use and add onto a Board, or use as a 
 
 ## Basic Features
 
-### Metric Types
+### Metrics
+
+Metrics are the basic building blocks of an Insights report, and consists of profiles (users, groups, Cohorts) or behaviors (events, Funnels behavior, or Retention behavior) along with a measurement of those entities. The table below outlines the types of Metrics that can be analyzed in the Insights report.
+
+**Behavioral Metrics**
 
 | Metric Type | Description |
 | --- | --- |
-| Event | A metric based off of a single event. The metric could measure the total number of occurrences, unique users, or aggregates a property of this event. |
+| Simple Behavior (events) | A metric based off of an event or group of events. The metric could measure the total number of occurrences, unique users, or aggregates a property of this event. |
+| Funnel Behavior | A metric based off a funnel behavior. You can select a saved funnel behavior or define a new funnel, then choose a measurement on that funnel to form a funnel metric. By default measures conversion rate on all steps of the funnel. |
+| Retention Behavior | A metric based off a retention behavior. You can select a saved retention behavior or define a new retention, then choose a measurement to form a retention metric. By default, measures retention rate. |
+
+**Other Metrics**
+
+| Metric Type | Description |
+| --- | --- |
 | Profile | A metric based off of the user or group profiles. You can measure the number of profiles, or an aggregate on properties of the profiles. |
-| Formula | A metric that is a function of other metrics. You can select a saved formula, or create a new formula based on the existing metrics in the report. |
-| Funnel | A metric based off a funnel behavior. You can select a saved funnel behavior or define a new funnel, then choose a measurement on that funnel to form a funnel metric. By default measures conversion rate on all steps of the funnel. |
-| Retention | A metric based off a retention behavior. You can select a saved retention behavior or define a new retention, then choose a measurement to form a retention metric. By default, measures retention rate. |
 | Cohort | A metric based off of a defined cohort. Measures the number of users who are part of that cohort. |
+| Formula | A metric that is a function of other metrics. You can select a saved formula, or create a new formula based on the existing metrics in the report. |
 
-If choosing Formula, Funnel, Retention or Cohort, you will be prompted first to selected a saved definition. If you wish to start by defining your own behavior, press "Create" in the top right of the menu.
+#### Saving Metrics and Behaviors
+You can save the metric and behaviors you built and reuse them in other analysis. Select the "..." button in the top right corner of the metric, then click "Save Metric" or "Save Behavior". Note that saving a metric and saving a behavior is different; a saved behavior consists of the events/Funnels/Retention, while a saved metrics consists of the behavior together with the measurements of the behavior.
 
-### Chart Types
+Learn more about [Saved Metrics and Behavior](/docs/features/saved-metrics-and-behaviors).
+
+### Charts
 
 Insights feature multiple visualizations to help you view the query results in the clearest chart type. By default, Insights displays the results on the line chart, which helps you understand how metrics trend over time. However, another chart type might present the results with more clarity. In Insights, you can choose to get a metric calculated either across the entire time period selected in the date picker or on a time-segmented view of the metric (e.g. daily breakdown).
 
