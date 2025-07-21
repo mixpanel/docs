@@ -38,6 +38,7 @@ export default function insertGTMScriptTags() {
             persistence: 'cookie',
             stop_utm_persistence: true,
             record_sessions_percent: 100,
+            record_heatmap_data: true,
             record_mask_text_selector: '',
             autocapture: true,
         })
