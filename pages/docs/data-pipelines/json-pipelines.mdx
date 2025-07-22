@@ -106,7 +106,7 @@ Examples of querying the identity mapping table are available for [BigQuery](/do
 We're rolling out an improved pipeline system to make your data exports more efficient and reliable. We're deploying these improvements gradually across all customers starting with new pipelines in our EU and IN data residency. New pipelines in projects with US residency and existing pipelines in all regions will follow after. Your pipeline will automatically transition to the new system when ready. Your data quality and completeness remain exactly the same - only the processing method has improved.
 
 ### Whats affected?
-- **Events Pipelines Only**: This improvement only affects events pipelines. People and identity mapping pipelines remain unchanged.
+- **Events Pipelines with Sync Enabled Only**: This improvement only affects events pipelines that have sync enabled. People and identity mapping pipelines remain unchanged.
 
 ### Benefits
 - **Elimination of data sync delays** - no more waiting for daily sync processes to detect and fix data discrepancies
