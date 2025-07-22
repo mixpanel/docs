@@ -13,6 +13,7 @@
 /developer-docs-redirect/collection-via-a-proxy /docs/tracking-methods/sdks/javascript
 /developer-docs-redirect/custom-query /docs/reports/apps/jql
 /developer-docs-redirect/data-discrepancy-faq /docs/data-pipelines#faq
+/developer-docs-redirect/data-model /docs/data-structure/concepts
 /developer-docs-redirect/data-pipelines /docs/data-pipelines
 /developer-docs-redirect/data-structure-deep-dive /docs/how-it-works/concepts
 /developer-docs-redirect/data-warehouse-export https://developer.mixpanel.com/reference/create-warehouse-pipeline
