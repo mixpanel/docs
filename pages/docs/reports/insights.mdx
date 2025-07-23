@@ -46,11 +46,7 @@ To select an event and start with an event-based simple behavior metric, choose 
 
 ![Choose Events](/choose-events.png)
 
-You can save the behavior you built and reuse them in other reports. Select the "..." button in the top right corner of the metric, then click "Save Behavior". Note that saving a behavior and saving a metric is different; a saved behavior consists of the events/Funnels/Retention, while a saved metrics consists of the saved behavior and the measurements of the behavior.
-
-[INSERT IMAGE HERE]
-
-Learn more about [Saved Metrics and Behaviors](/docs/features/saved-metrics-and-behaviors).
+You can save the behavior you built and reuse them in other reports. Learn more about [Saved Metrics and Behaviors](/docs/features/saved-metrics-and-behaviors).
 
 ### Step 2: Choose your Measurement
 
@@ -66,15 +62,15 @@ Learn more about [Saved Metrics and Behaviors](/docs/features/saved-metrics-and-
 
 ### Step 3: Choose Filters
 
-Filters exclude unwanted data. In this case, we only care about events performed on the iOS platform. Therefore, add a "Platform" filter, where Platform equals "iOS Native". At this point, your query should look like this:
+Filters exclude unwanted data. In this case, we only care about events performed on the iOS platform. Therefore, add a "Operating System" filter, where OS equals "iOS". At this point, your query should look like this:
 
-![Choose Filters](/choose-filters.gif)
+![Choose Filters](/choose-filters.png)
 
 ### Step 4: Choose Breakdowns
 
-Breakdowns segment data into groups. In this case, we want to count message-sending users in different cities. Therefore, add a "City" breakdown. At this point, your query should look like this:
+Breakdowns segment data into groups. In this case, we want to count sign ups based on users in different cities. Therefore, add a "City" breakdown. At this point, your query should look like this:
 
-![Choose Breakdowns](/choose-breakdowns.gif)
+![Choose Breakdowns](/choose-breakdowns.png)
 
 ### Step 5: Change Visualization
 
@@ -112,6 +108,8 @@ Metrics are the basic building blocks of an Insights report, and consists of pro
 You can save the metric and behaviors you built and reuse them in other analysis. Select the "..." button in the top right corner of the metric, then click "Save Metric" or "Save Behavior". Note that saving a metric and saving a behavior is different; a saved behavior consists of the events/Funnels/Retention, while a saved metrics consists of the behavior together with the measurements of the behavior.
 
 Learn more about [Saved Metrics and Behavior](/docs/features/saved-metrics-and-behaviors).
+
+![Insights Saved Behaviors](/insights-saved-behavior.png)
 
 ### Charts
 
@@ -185,20 +183,23 @@ The Grouped View preserves the hierarchy of breakdowns. It shows you segments wi
 You can sort segments alphabetically or by the value of a particular metric. In the grouped view, sorting is configured on a per-breakdown level and respects the breakdown hierarchy.
 
 In the below image, we sort Country *within* Item Category, which respects the hierarchy.
+
 ![image](https://github.com/mixpanel/docs/assets/2077899/4697ce00-d394-46ce-b538-66ec91ccd6e7)
 
-Hierarchy is defined by the breakdown order in the query panel:
-![image](https://github.com/mixpanel/docs/assets/2077899/ff2f72b3-89bc-459e-b8b7-e81655d04bb7)
+Hierarchy is defined by the breakdown order in the query panel.
 
 ###### View “N” segments
 
 The View “N” control lets you decide how many rows to display per breakdown in your table.
+
 ![View_N_gif](https://github.com/mixpanel/docs/assets/2077899/4fb0fd18-2ef7-416b-adaa-c7299da0f7b3)
 
 In the ungrouped view, choose the number of rows to display:
+
 ![image](https://github.com/mixpanel/docs/assets/2077899/b1b25b19-51be-4934-bbfd-7562e0f98d4a)
 
 In the grouped view, you can choose the number of rows you want to display for each breakdown:
+
 ![image](https://github.com/mixpanel/docs/assets/2077899/f9f8c83c-34ed-44bd-b4e7-f60b70255a6f)
 
 ![image](https://github.com/mixpanel/docs/assets/2077899/b09c1ad1-1392-4ec0-9358-361f677c600d)
@@ -211,6 +212,7 @@ In the grouped view, you can choose the number of rows you want to display for e
 ##### Overall and Segment Sub-Totals
 
 **Overall:** This refers to the value considering all the segments, independent of whether displayed or not based on your View N control; i.e changes to View N will not affect Overall numbers
+
 ![image](https://github.com/mixpanel/docs/assets/2077899/3d6556a4-9468-4d1f-8979-4fdb512f2aaa)
 
 **Sub-Totals:** In the grouped view, in addition to the Overall, segment sub-totals are also displayed. Similar to “Overall”, these values are independent of the View N control
@@ -248,7 +250,7 @@ To note, you cannot nest a formula metric when constructing another formula.
 
 Use existing events to create calculated formulas, like Bounce Rate & % Active Users, that can be saved and reused by others within the project.
 
-![saveformula.gif](/saveformula.gif)
+![saveformula.gif](/saveformula.png)
 
 Some nuances to note:
 - Once you save a formula, A,B,C refer to what’s **within** the saved formula modal
@@ -259,8 +261,6 @@ Some nuances to note:
 To access and re-use saved formulas, click on “+Formula”, and then see the list of saved formulas. You can also look at all the saved formulas in the Lexicon tab “Formulas”. Some callouts regarding permissions:
 - All roles can create a saved formula, but only some roles can share them with the whole project for re-use
 - You can only look at saved formulas created by you or shared with you
-
-![reuseformula.gif](/reuseformula.gif)
 
 ### Custom Bucketing
 
@@ -393,10 +393,7 @@ There are some cases though, where you want to know how the 2441 users are distr
 
 ![image](/uniques_count_once.png)
 
-To note - in a line chart, there are two concepts of time period: chart date range (3M below) and time interval (weekly interval below). When advanced controls are used in a line chart, it assigns a segment based on the first/last segment for each time interval, NOT across all time intervals in the chart range. For eg. user Joey could count towards Contact Page Wk of Feb 27 and Shop Page Wk of March 6. But in the same time interval, they would count only towards one segment.
-
-![image](/uniques_count_once_line.png)
-
+To note - in a line chart, there are two concepts of time period: chart date range (3M below) and time interval (weekly interval below). When advanced controls are used in a line chart, it assigns a segment based on the first/last segment for each time interval, NOT across all time intervals in the chart range.
 #### Aggregate Property
 
 | Function Name | Events Calculation | Profiles Calculation |
