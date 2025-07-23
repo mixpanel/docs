@@ -5,7 +5,8 @@ export default {
     "chart-customization": "Chart Customization",
     "custom-events": "Custom Events",
     "custom-properties": "Custom Properties",
-    "saved-behaviors": "Saved Behaviors",
+    "mcp": "MCP Integration",
+    "saved-metrics-and-behaviors": "Saved Metrics & Behaviors",
     "sessions": "Sessions",
     "spark": "Spark",
     "advanced": "Advanced"
