@@ -6,6 +6,14 @@ import { Callout } from 'nextra/components'
 
 This developer guide will assist you in configuring your Swift app for [Session Replay](/docs/session-replay) using the [Session Replay SDK (Swift)](/docs/tracking-methods/sdks/swift/swift-replay). Learn more about [viewing captured Replays in your project here](/docs/session-replay).
 
+<Callout type="warning">
+  Mobile Session Replay is generally available (GA) to customers on all plans and in all regions. To enable it for your organization, please contact your account manager or reach out to our support team. Ingestion of mobile session replays will not work until the feature has been enabled for your organization.
+</Callout>
+
+## Best Practices
+
+Session Replay provides powerful insights into user behavior, but it also introduces inherent risks—especially on mobile. These risks are not unique to Mixpanel; they are common across the entire session replay product category. Because SDKs run on end-user devices and screen content may include sensitive data, we recommend treating Session Replay as a high-sensitivity feature. Be especially cautious with masking, edge-case testing, and rollout strategies. For more information on risk categories and best practices, read more [here](/docs/session-replay#best-practices)
+
 ## Prerequisite
 
 You are already a Mixpanel customer and have the latest version of the [Mixpanel Swift SDK](/docs/tracking-methods/sdks/swift) installed (minimum supported version is [`v4.3.1`](https://github.com/mixpanel/mixpanel-swift/releases/tag/v4.3.1)). If not, please follow [this doc](/docs/quickstart/install-mixpanel) to install the SDK.
@@ -268,7 +276,21 @@ If you are using the [recommended sampling method](/docs/session-replay/implemen
 
 You can also check the Home page for your project to check for any recent Replays listed in the "Latest Replays" card.
 
-If you are still struggling to implement, [submit a request to our Support team](https://mixpanel.com/get-support) for more assistance.
+---
+
+### Troubleshooting
+
+If you are still struggling with either of the following common issues:
+- **Replays are not showing up in my project**
+- **Replays are not displaying my UI correctly**
+
+Please [submit a request to our Support team](https://mixpanel.com/get-support) and include the following information:
+- Whether your issue is with iOS, Android, or both
+- Your Session Replay (SR) code snippet
+- Where you initialize the Mobile Session Replay SDK
+- Any relevant logs
+- (If applicable) A link to a replay showing the issue
+- (If applicable) A screenshot of the UI or a description of the expected behavior
 
 ### Logging
 
@@ -346,6 +368,10 @@ By default, Mixpanel retains Session Replays for 30 days from the date the repla
 Our Session Replay Beta Service Addendum can be found [here](https://mixpanel.com/legal/session-replay-beta-service-addendum/).
 
 The alpha and beta of Mixpanel's mobile session replay SDK will track certain events and send them to Mixpanel so that Mixpanel can understand and improve the alpha and beta mobile session replay feature experience. These events include starting and stopping a session, adding and removing sensitive classes, adding sensitive views and adding safe views. Nothing about your application will be included in this tracking; only your usage of the Mixpanel Session Replay SDK.
+
+## Known Product Limitations
+- SwiftUI apps have limited support for automatic masking of sensitive views. If your app uses SwiftUI, manually mark sensitive views and test thoroughly to ensure masking is working as expected.
+- At this time, webview masking is all-or-none. Embedded webviews in your mobile app can only be masked entirely or not at all. This may reduce the value of Session Replay for apps with many webviews. Be sure to test thoroughly to confirm your masking configuration meets your privacy requirements.
 
 ## FAQ
 
