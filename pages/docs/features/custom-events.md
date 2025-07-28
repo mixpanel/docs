@@ -52,4 +52,4 @@ Custom Events and [Simple Behaviors](/docs/features/saved-metrics-and-behaviors#
 As a best practice, follow the guidelines below to determine whether to use Simple Behaviors or Custom Events:
 
 - Use **Simple Behaviors** if you want to create a definition that can be easily viewed and modified from the query builder in Insights reports
-- Use **Custom Events** if you need to need to create a virtual event that can be used everywhere in Mixpanel (e.g. inside a cohort definition or Funnel)
+- Use **Custom Events** if you need to need to create a virtual event that can be used everywhere in Mixpanel (e.g. inside a cohort definition, Funnels, Flows, or Retention)
