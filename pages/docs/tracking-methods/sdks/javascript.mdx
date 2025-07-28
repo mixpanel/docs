@@ -212,8 +212,14 @@ On Autocapture events, Mixpanel default-tracks the following properties:
 | `$clientY` | The Y-coordinate of the mouse pointer relative to the browser’s viewport when the event occurred. |
 | `$offsetX` | The X-coordinate of the mouse pointer relative to the event target element. |
 | `$offsetY` | The Y-coordinate of the mouse pointer relative to the event target element. |
+| `$pageHeight` | The height of the full page. |
+| `$pageWidth` | The width of the full page. |
 | `$pageX` | The X-coordinate of the mouse pointer relative to the full page. |
 | `$pageY` | The Y-coordinate of the mouse pointer relative to the full page. |
+| `$scroll_checkpoint` | The percentage of scrollbar that has been reached when crossing specific thresholds (e.g., 25%, 50%, 75%, 100%). |
+| `$scroll_height` | The height of the scrollable area of the page. |
+| `$scroll_percentage` | The percentage of the page that has been scrolled. |
+| `$scroll_top` | The number of pixels the page has been scrolled vertically. |
 | `$screenX` | The X-coordinate of the mouse pointer relative to the screen. |
 | `$screenY` | The Y-coordinate of the mouse pointer relative to the screen. |
 | `$x` | The X-coordinate of the event, often synonymous with `$pageX`. |
@@ -979,7 +985,7 @@ Customize the Replay capture behavior using the library init options outlined be
 | `record_min_ms` | Minimum length of a single replay in milliseconds. Up to 8 seconds is supported. If a replay does not meet the minimum length, it will be discarded. | `0`<br/>(0 seconds) |
 | `record_sessions_percent` | Percentage of SDK initializations that will qualify for replay data capture. A value of "1" = 1%. | `0` |
 | `record_canvas` | When true, Mixpanel will record snapshots of `<canvas>` elements on your site at up to 15 frames per second | `false` |
-| `record_heatmap_data` | When true, Mixpanel will capture click events during replays to populate Heatmaps. Viewing Heatmaps is currently in Beta. | `false` |
+| `record_heatmap_data` | When true, Mixpanel will capture click events during replays to populate Heatmaps. | `false` |
 
 **Example Usage**
 
@@ -1030,11 +1036,7 @@ mixpanel.get_session_replay_url()
 // https://mixpanel.com/projects/replay-redirect?replay_id=19307d78e24394fe15-0cd98d8fd9ad1d-1f525636-4b9600-19307d78e28194fe15&distinct_id=123&token=my-project-token
 // Returns null if there is no Replay in progress.
 ```
-### Heatmaps (Beta)
-
-<Callout type="info">
-Heatmaps are currently in private, closed beta. For early access, please contact your Account Manager.
-</Callout>
+### Heatmaps 
 
 Enable [Heatmaps](/docs/session-replay/heatmaps) data collection by setting `record_heatmap_data` to `true` during library initialization.
 

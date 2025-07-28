@@ -1,6 +1,6 @@
-import { FC, ReactNode } from "react";
 import { useRouter } from "next/router";
 import { DocsThemeConfig, useConfig } from "nextra-theme-docs";
+
 import Search from "./components/Search/Search";
 import MixpanelLogoWordmark from "./components/svg/MixpanelLogoWordmark";
 import MainContent from "./components/MainContent/MainContent";
@@ -15,14 +15,15 @@ const config: DocsThemeConfig = {
   },
   docsRepositoryBase: "https://github.com/mixpanel/docs/tree/main",
   head() {
-    const { asPath } = useRouter();
+    const { pathname } = useRouter();
     const { title } = useConfig();
-    const url = `https://docs.mixpanel.com${asPath}`;
+    const url = `https://docs.mixpanel.com${pathname}`;
 
     return (
       <>
         <title>{`${title} - Mixpanel Docs`}</title>
         <meta property="og:url" content={url} />
+        <link rel="canonical" href={url} />
         <meta property="og:title" content={`${title} - Mixpanel Docs`} />
         <meta
           property="og:description"
@@ -57,7 +58,7 @@ const config: DocsThemeConfig = {
   },
   feedback: {
     content: "Question? Contact our Support Team",
-    useLink: () => "https://mixpanel.com/get-support",
+    useLink: () => "https://mixpanel.com/contact-us/support",
   },
   footer: {
     content: `© Mixpanel ${new Date().getFullYear()}`,
