@@ -66,7 +66,7 @@ The process can be broken down into 3 main steps:
 * (Optionally) Fix historical data via exporting, transforming and re-importing the data
 
 ### Reviewing hot shard data in your project
-A great starting point for the analysis would be to create a copy of [this board](https://mixpanel.com/project/3187769/view/3699049/app/boards#id=7145081) from our demo project into the affected project. As you open the board linked above, you will see instructions to click on "Use this board" to transfer it over to your project and to edit the default date range.
+A great starting point for the analysis would be to create a copy of [this board](https://mixpanel.com/project/3187769/view/3699049/app/boards#id=7145081) from our demo project into the affected project. As you open the board linked above, you will see instructions to click on "Use this board" to transfer it over to your project and to edit the default date range. Only projects with US residency will be able to copy the board directly. Projects with EU and IN residency will need to recreate the reports manually.
 
 ![Screenshot use this board](/tracking_id_limits_copy_board.png)
 
