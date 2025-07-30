@@ -84,55 +84,50 @@ The Replay Feed on the left of the player also allows you to:
 
 ## Best Practices
 
-Session Replay is an invaluable tool for teams to debug and understand user behavior, but it introduces inherent risks — especially in mobile environments. These risks are not unique to Mixpanel; they are common across the entire session replay category and industry.
+Session Replay is an invaluable tool for teams to debug and understand user behavior. While it introduces some inherent considerations — especially in mobile environments — these are common across the entire session replay category and industry.
 
-Inherently, session replay captures what users see on their screens, which may include sensitive information. Mobile implementations carry additional considerations:
+Session replay captures what users see on their screens, which may include sensitive information. Mobile implementations carry additional considerations:
 * **SDKs are installed directly on end-user devices**, making them harder to roll back or hotfix if issues arise.
-* **Android's fragmented ecosystem**—with many device and OS combinations—increases the likelihood of edge cases and unexpected behavior.
+* **Android's fragmented ecosystem**—with many device and OS combinations—may require additional testing across different configurations.
 
 With the right planning and safeguards, teams can unlock the value of replay while minimizing potential downsides.
 
-### Categories of Risk
+### Key Considerations
 
-| **Risk Category**                  | **Description**                                                                                            |
-| ---------------------------------- | ---------------------------------------------------------------------------------------------------------- |
-| **Fatal Crashes**                  | The SDK may cause the app to crash during initialization, particularly on specific devices or OS versions. |
-| **Masking Bugs**                   | Correctly configured masking rules may still fail due to SDK bugs, potentially exposing sensitive data.    |
-| **Faulty Masking Implementations** | Developers may forget to / improperly mask sensitive screens or elements, leading to unintended data capture in production.         |
-
-### Sensitive Areas to Watch
-
-| **Sensitive Area**             | **Why It Matters**                                                                   |
+| **Key Considerations**             | **Why It Matters**                                                                   |
 | ------------------------------ | ------------------------------------------------------------------------------------ |
 | **Industries**                 | Apps in healthcare, fintech, or other regulated spaces carry higher compliance risk. |
 | **Sensitive Screens**          | Checkout, payment, and profile screens often contain sensitive user data.            |
-| **Embedded Webviews**          | Web content may behave unexpectedly with masking rules.                         |
-| **User Inputs**                | Form fields and search bars can capture personal or confidential data.               |
-| **Uncommon App Architectures** | Custom or non-standard implementations may introduce unexpected replay behavior.     |
+| **Embedded Webviews**          | Embedded web views may require additional review to ensure expected behavior. |
+| **Uncommon App Architectures** | Custom or non-standard implementations may require additional testing and configuration.     |
 
 ---
 
-To mitigate these risks, we recommend:
+To ensure successful implementation, we recommend:
 * **Defensive programming**, such as safe initialization and fallback behavior
 * **Thorough QA**, including testing across device types and sensitive screens
-* **Staged rollouts** to detect and address issues before full deployment
+* **Staged rollouts**—use feature flags to safely test and enable or disable Session Replay as needed
 
-Session Replay is a powerful feature that should be implemented with care. Following best practices can help you gain valuable insights into user behavior while reducing potential risks to user trust or app stability.
+Session Replay is a powerful feature that should be implemented with care. Following best practices can help you gain valuable insights into user behavior. We recommend thorough testing in your development environment before deploying to production.
+
+## Performance Considerations
+
+Our Session Replay SDKs are designed with performance in mind, utilizing optimized capture algorithms that reduce CPU and memory usage. However, as with any SDK integration, there may still be some risk of performance impacts. We recommend thorough testing and monitoring your app's performance during initial deployment.
 
 ## Incident Handling
 
 If you encounter an unexpected or urgent issue, please reach out to our support team promptly so we can help resolve it as quickly as possible. Examples of situations that require immediate attention include:
 
-- **SR SDK causing my app to crash**
+- **Performance / stability issues with the SR SDK**
 - **Accidental ingestion of sensitive user data**
 
 For these cases, [submit a request to our Support team](https://mixpanel.com/get-support) and include the following information:
 
-**If the SR SDK is causing your app to crash:**
+**If you're experiencing performance / stability issues with the SR SDK:**
 - Whether your issue is with Web, iOS, Android, or multiple platforms
 - Your Session Replay (SR) code snippet
 - Where you initialize the Session Replay SDK
-- Any relevant logs
+- Any relevant logs or performance metrics
 
 **If you accidentally ingested sensitive user data:**
 - Whether your issue is with Web, iOS, Android, or multiple platforms
