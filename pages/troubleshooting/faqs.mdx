@@ -337,9 +337,6 @@ export function FAQBox({ title, section, children }) {
   Learn more about [identifying users](/docs/tracking-methods/id-management/identifying-users-simplified).
 </FAQBox>
 
-<FAQBox title="How do I keep Identity management consistent with embedded webviews?" section="Identity Management in Mixpanel">
-</FAQBox>
-
 <FAQBox title="Why is the distinct_id shown in Mixpanel different from the ID I used to identify the user?" section="Identity Management in Mixpanel">
   If you are using the [Original ID Merge API](/docs/tracking-methods/id-management/identity-management#identity-merge-apis) (check your project API [here](https://mixpanel.com/settings/project/id-management)), our API chooses one of the IDs inside the identity cluster to serve as the canonical distinct_id for the user, meaning that it can be set to your chosen user ID or one of the Mixpanel-generated anonymous ID. This is programmatically selected by Mixpanel and not user-configurable.
 
