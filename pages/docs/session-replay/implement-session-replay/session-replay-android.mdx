@@ -319,7 +319,7 @@ The alpha and beta of Mixpanel's mobile session replay SDK will track certain ev
 ## Known Product Limitations
 - Jetpack Compose apps (Android only) have limited support for automatic masking of sensitive views, so if your app uses Jetpack Compose, you should manually mark sensitive views and test thoroughly.
 - At this time, webview masking is all-or-none, meaning embedded webviews in your mobile app can only be masked entirely or not at all, which may reduce the value of Session Replay for apps with many webviews—be sure to test thoroughly in your use case.
-- Android Session Replay requires a minimum version of 26, and older versions are not officially supported at this time, so thorough testing on your supported OS versions is recommended.
+- Android Session Replay requires a minimum Android API level of 21. Older versions are not supported.
 
 ## FAQ
 
