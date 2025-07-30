@@ -104,9 +104,9 @@ These risks are common across all session replay tools, but well-established ind
 ---
 
 To ensure successful implementation, we recommend:
-* Defensive programming, such as safe initialization and fallback behavior
+* Defensive programming, including safe initialization, graceful error handling (try/catch), and sensible fallback behavior
 * Thorough QA, including testing across device types and sensitive screens
-* Staged rollouts, using feature flags to safely test and enable or disable Session Replay as needed
+* Staged roll out, using feature flags to safely test and enable or disable Session Replay as needed
 
 Session Replay is a powerful feature that should be implemented with care. Following best practices can help you gain valuable insights into user behavior. We recommend thorough testing in your development environment before deploying to production.
 
