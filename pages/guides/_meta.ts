@@ -8,5 +8,5 @@ export default {
 	"implement": "Implement",
 	"launch": "Launch",
 	"playbooks": "Playbooks",
-	"beyond-onboarding": "Beyond Onboarding"
+	"beyond-onboarding": "Beyond Onboarding",
 }
