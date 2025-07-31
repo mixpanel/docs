@@ -91,7 +91,7 @@ When calling `.startRecording()` recording always begins regardless of the `reco
 
 ```kotlin
 // start recording with a specified sampling rate (10%)
-MPSessionReplay.getInstance()?.startRecording(withSessionsPercent: 10.0)
+MPSessionReplay.getInstance()?.startRecording(sessionsPercent: 10.0)
 ```
 
 Recording automatically stops when the app goes into the background. If the `autoStartRecording` configuration is `true` (default) recording will automatically start when the app returns to the foreground.
