@@ -16,7 +16,8 @@ The API endpoints are organized by the function that they support. The API struc
 **EU Residency Server:** `api-eu.mixpanel.com`
 **India Residency Server:** `api-in.mixpanel.com`
 Use the Ingestion API to get your data into Mixpanel. This includes live events, historical imports, and user profile data. 
-> 🚧 To ensure data ingests into your project, use the correct Ingestion API subdomain for your project's data residency. For more information, you can learn more about: [EU Residency](https://docs.mixpanel.com/docs/privacy/eu-residency) and [IN Residency](https://docs.mixpanel.com/docs/privacy/in-residency).
+
+> To ensure data ingests into your project, use the correct Ingestion API subdomain for your project's data residency. For more information, you can learn more about: [EU Residency](https://docs.mixpanel.com/docs/privacy/eu-residency) and [IN Residency](https://docs.mixpanel.com/docs/privacy/in-residency).
 
 ### [**Query API**](ref:query-api)
 
