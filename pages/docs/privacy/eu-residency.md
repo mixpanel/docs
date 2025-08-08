@@ -7,7 +7,12 @@ Mixpanel believes in respecting and protecting people’s fundamental online pri
 Visit our [Privacy Hub](https://mixpanel.com/legal/privacy-hub/) to see how we comply with various privacy guidelines.
 
 ## Storing Your Data in the European Union
-By default, Mixpanel stores user data on its US Servers via the Google Cloud Platform. However, Mixpanel also provides you with the option to process and store your customers' personal data in Europe via our [EU Data Residency Program](https://mixpanel.com/legal/eu-data-residency). You can enable this by selecting the "EU Data Residency" option when creating a new project and using our EU subdomain during all API calls.
+By default, Mixpanel stores user data on its US Servers via the Google Cloud Platform. However, Mixpanel also provides you with the option to process and store your customers' personal data in Europe via our [EU Data Residency Program](https://mixpanel.com/legal/eu-data-residency). 
+You can enable this by selecting the "EU Data Residency" option when creating a new project and using our EU subdomain during all API calls.
+
+> ⚠️ Important: For new EU projects created on or after August 18, 2025, no data will be ingested into your new EU data residency project unless your SDK is sending data to the EU endpoint. Ensure you are using the EU endpoint in your SDK configuration.
+
+For existing EU projects created prior to August 18, 2025, we encourage you to update your SDK configuration to use the dedicated EU endpoint. This is a best practice that ensures your project is correctly aligned with its data residency.
 
 | API | Standard Server | EU Residency Server |
 |-------|-------------------------|--------------------------------|

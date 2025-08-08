@@ -223,8 +223,8 @@ paths:
                     "dropped": false,
                     "owners": [
                         {
-                            "name": "Pat Davis",
-                            "email": "pat.david@mixpanel.com"
+                            "name": "First Last",
+                            "email": "first.last@mixpanel.com"
                         }
                     ]
                 }
