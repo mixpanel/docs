@@ -25,6 +25,7 @@ export const SENTRY_VARS = {
     allowUrls: MIXPANEL_DOMAINS,
     // disables session replay by default
     replaysSessionSampleRate: 0,
+    ignoreErrors: [`Failed to fetch`, `Load failed`],
     integrations: (integrations: Integration[]) => {
         return [
             /** disables the http integration, we do not care about failed HTTP responses in Sentry */
