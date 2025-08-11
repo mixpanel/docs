@@ -1,13 +1,32 @@
-<div class="changelogMainContainer">
-<h1
-  className="changelogTitle text-4xl tracking-tighter text-center font-extrabold
-md:text-5xl mt-8 pb-6"
->
-  Changelog
-</h1>
+import { SubscribeButtonWithModal } from "../components/SubscribeButtonWithModal";
 
-import ChangelogIndex from "../components/changelog-index";
+<div class="changelogMainContainerWrapper">
+<div class="changelogMainContainer">
+
+<div class="changelogHeader">
+  <div class="changelogHeaderLeft">
+    <h1
+      className="changelogTitle text-4xl tracking-tighter text-center font-extrabold
+md:text-5xl mt-8 pb-6"
+    >
+      Changelog
+    </h1>
+    <span>Get all the latest updates in your inbox.</span>
+    <SubscribeButtonWithModal />
+  </div>
+  <img
+    class="changelogHeaderImg changelogHeaderImgLight max-w-full h-auto"
+    src="/changelog/changelog-hero-light.png"
+  />
+  <img
+    class="changelogHeaderImg changelogHeaderImgDark max-w-full h-auto"
+    src="/changelog/changelog-hero-dark.png"
+  />
+</div>
+
+import ChangelogIndex from "../components/ChangelogIndex";
 
 <ChangelogIndex />
 
+</div>
 </div>

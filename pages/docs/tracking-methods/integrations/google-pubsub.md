@@ -46,7 +46,7 @@ def main(event, context):
     msg = base64.b64decode(event["data"]).decode("utf-8")
     events = [json.loads(line) for line in msg.split("\n") if len(line) > 0]
 
-    # Adjust the timestammps of each of the sample events so that
+    # Adjust the timestamps of each of the sample events so that
     # they appear recent. Note: this is just for this demo, do not
     # do this in production.
     for e in events:

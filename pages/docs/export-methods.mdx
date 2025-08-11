@@ -6,7 +6,7 @@ import { Callout } from 'nextra/components'
 
 This page provides a high-level overview of your options for exporting event data, profile data, and formatted report data.
 
-You can export data from your project using a variety of methods, including lightweight CSVs generated from the UI, large volume raw data export from our APIs, and data syncs to external destinations through [Cohort Syncs](/docs/cohort-sync/overview) and [Data Pipelines](/docs/data-pipelines/overview).
+You can export data from your project using a variety of methods, including lightweight CSVs generated from the UI, large volume raw data export from our APIs, and data syncs to external destinations through [Cohort Syncs](/docs/cohort-sync) and [Data Pipelines](/docs/data-pipelines).
 
 <Callout type="info">
   For GDPR/CCPA-compliant exports, please [see the End User Data Management page](https://docs.mixpanel.com/docs/privacy/end-user-data-management).
@@ -37,8 +37,8 @@ Example payload:
 ```
 # The entire payload is a JSONL
 # Each line of event is a JSON object
-{"event":"Signed up","properties":{"time":1602611311,"$insert_id":"hpuDqcvpltpCjBsebtxwadtEBDnFAdycabFb","mp_processing_time_ms":1602625711874}}
-{"event":"Signed up","properties":{"time":1602787121,"$insert_id":"jajcebutltmvhbbholfhxtCcycwnBjDtndha","mp_processing_time_ms":1602801521561}}
+{"event":"Signed up","properties":{"time":1602611311,"$insert_id":"ABCDE","mp_processing_time_ms":1602625711874}}
+{"event":"Signed up","properties":{"time":1602787121,"$insert_id":"ABCDE","mp_processing_time_ms":1602801521561}}
 
 ```
 
@@ -109,7 +109,7 @@ Sample payload:
       }
     }
   ],
-  "session_id": "1234567890-EXAMPL",
+  "session_id": "1234567890-EXAMPLE",
   "status": "ok",
   "total": 1
 }
@@ -142,16 +142,22 @@ To export Group Profiles as a CSV, switch the group key to your group of choice 
 ![image](/switch_group_key.png)
 
 ## Exporting Reports
+
+<Callout type="info">
+  Users with a Growth or Enterprise plan can use our Query API to export formatted report data. Users with a Free plan can export reports as CSV, PNG, or PDF from the UI. See our [pricing page](https://mixpanel.com/pricing/) for more details.
+</Callout>
+
 ### Downloading Reports via the UI
 You can download any reports as a CSV, PNG, or PDF by clicking the "..." button in the top right corner of the report UI, and then selecting "Export".
 
-### Exporting Reports via API
-<Callout type="info">
-  The Flows report cannot be exported using API at this time. Please use the export method from the UI outlined above.
-</Callout>
+When exporting a CSV of an Insights report in Bar, Stacked Bar, Pie, Table, or Metric view, you can export up to 50,000 rows of data. For all other views and reports, the export limit is 10,000 rows.
 
-You may use our [Query API](https://developer.mixpanel.com/reference/query-api) to export the formatted results that you see in our web app. Learn more about the [Insights API](https://developer.mixpanel.com/reference/insights-query), [Funnels API](https://developer.mixpanel.com/reference/funnels-query), and [Retention API](https://developer.mixpanel.com/reference/retention-query).
+### Exporting Reports via API
+
+You may use our [Query API](https://developer.mixpanel.com/reference/query-api) to export the formatted results that you see in our web app. Learn more about the [Insights API](https://developer.mixpanel.com/reference/insights-query), [Funnels API](https://developer.mixpanel.com/reference/funnels-query), and [Retention API](https://developer.mixpanel.com/reference/retention-query). 
+
+The Flows report cannot be exported using API. Please use the export method from the UI outlined above.
 
 ## Export Integrations
 
-You can sync your Mixpanel data to your other destinations using our native connectors. Learn more about the [Data Pipeline](/docs/data-pipelines/overview) for warehouse syncs and [Cohort Syncs](/docs/cohort-sync/overview) for audience targeting.
+You can sync your Mixpanel data to your other destinations using our native connectors. Learn more about the [Data Pipeline](/docs/data-pipelines) for warehouse syncs and [Cohort Syncs](/docs/cohort-sync) for audience targeting.

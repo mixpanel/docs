@@ -1,6 +1,6 @@
 # Migrating from Adobe Analytics
 
-If you haven't already, we recommend starting with our [Migration Guides Overview](/docs/migration/overview) as it details the key components of migrating to Mixpanel from other analytics tools. Below we outline specific steps and considerations when migrating from Adobe Analytics.
+If you haven't already, we recommend starting with our [Migration Guides Overview](/docs/migration) as it details the key components of migrating to Mixpanel from other analytics tools. Below we outline specific steps and considerations when migrating from Adobe Analytics.
 
 ## Differences in the data models
 
@@ -53,7 +53,7 @@ If a visitor performs any of these actions, a new visit starts:
 - The same person browsing your site on different devices. A separate unique visitor is counted per device.
 - Opens a private browsing session (such as Chrome’s Incognito tab).
 
-As a result, many internal Adobe users aren't too sure of how unique visitors are actually calculated given that it’s also dependent on how their data set up is done by the consultants they hire, eventually making these calculations somewhat a blackbox.
+As a result, many internal Adobe users aren't too sure of how unique visitors are actually calculated given that it’s also dependent on how their data set up is done by the consultants they hire, eventually making these calculations somewhat of a black box.
 
 
 ## Track forward looking real-time data
@@ -62,7 +62,7 @@ Choose your current implementation method for Adobe Analytics and follow the bel
 
 ### Warehouse Connectors
 
-[Mixpanel Warehouse Connectors](https://docs.mixpanel.com/docs/tracking-methods/data-warehouse/overview), allows you to natively import data from Snowflake, BigQuery or Redshift into Mixpanel. With this feature, you can set up recurring syncs from your data warehouse and ensure that Mixpanel is always in sync with your trusted data.
+[Mixpanel Warehouse Connectors](/docs/tracking-methods/warehouse-connectors), allows you to natively import data from Snowflake, BigQuery or Redshift into Mixpanel. With this feature, you can set up recurring syncs from your data warehouse and ensure that Mixpanel is always in sync with your trusted data.
 
 ### Client-side SDKs & Server-side SDKs
 
@@ -146,7 +146,7 @@ For most cases, we recommend starting fresh when migrating from Adobe Analytics.
 To backfill data, we recommend:
 
 - If you already have your historical data in a warehouse,
-  - Utilize our [warehouse connector](https://docs.mixpanel.com/docs/tracking-methods/data-warehouse/overview), to send historical data into a separate Mixpanel project
+  - Utilize our [warehouse connector](/docs/tracking-methods/warehouse-connectors), to send historical data into a separate Mixpanel project
 - If you have a CDP, this should be straightforward
     - Utilize the CDPs backfilling feature, like [Segment Replay](https://segment.com/docs/guides/what-is-replay/), to re-send historical data to Mixpanel
 - For any other implementation method
@@ -164,7 +164,7 @@ To prevent any potential issues with identity management due to the drastic diff
 
 We recommend customers use Simplified API for their identity management, because they can easily designate their anonymous id and prefix it with a $device.
 
-For any 3rd party integrations, the recommendation is to populate the identifiers that are being used on those 3rd party systems as user profile properties and utilise that as a mean to identify users when exporting out cohorts. 
+For any 3rd party integrations, the recommendation is to populate the identifiers that are being used on those 3rd party systems as user profile properties and utilize that as a mean to identify users when exporting out cohorts. 
 
 ***This step needs to be done before any data is sent to the project.***
 

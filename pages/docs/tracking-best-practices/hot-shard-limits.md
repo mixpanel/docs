@@ -43,7 +43,7 @@ Updated Event -
 }
 ```
 
-These events can be queried from the dashboard just like any other events. An email is sent to organisation owners and the specific project's owners to alert them of the hot shard. In addition, a monthly report (per project) is sent as well for hot shards that were detected and remediated in the past month.
+These events can be queried from the dashboard just like any other events. An email is sent to organization owners and the specific project's owners to alert them of the hot shard. In addition, a monthly report (per project) is sent as well for hot shards that were detected and remediated in the past month.
 
 Starting in June 2024, we are also limitedly emitting a new type of events called `$hotshard_record`. The purpose is to keep track of all user-analytics and group-analytics hotshard remediation history that has happened inside your project in a central event type.
 
@@ -66,7 +66,7 @@ The process can be broken down into 3 main steps:
 * (Optionally) Fix historical data via exporting, transforming and re-importing the data
 
 ### Reviewing hot shard data in your project
-A great starting point for the analysis would be to create a copy of [this board](https://mixpanel.com/project/3187769/view/3699049/app/boards#id=7145081) from our demo project into the affected project. As you open the board linked above, you will see instructions to click on "Use this board" to transfer it over to your project and to edit the default date range.
+A great starting point for the analysis would be to create a copy of [this board](https://mixpanel.com/project/3187769/view/3699049/app/boards#id=7145081) from our demo project into the affected project. As you open the board linked above, you will see instructions to click on "Use this board" to transfer it over to your project and to edit the default date range. Only projects with US residency will be able to copy the board directly. Projects with EU and IN residency will need to recreate the reports manually.
 
 ![Screenshot use this board](/tracking_id_limits_copy_board.png)
 
@@ -78,7 +78,7 @@ The board eases the process of identifying the data marked as coming from a hot 
 Once you have identified the cluster of `distinct_id` values related to the issue, it would be time to review your implementation and inspect the reason why a set of these IDs are getting a higher than usual number of events. In general terms, you will often find these main scenarios:
 
 #### Events that are non-attributable to users but marked with a specific ID
-In some instances, your project will have events that should not be attributed to a specific user or group, like some automated tests being tracked, or perhaps ad-spend data you're importing; it may be that when implementing, a specific ID was abritrarily chosen for those events, say the string `"0"`, `"spend_data"` or perhaps even the name of the pod/server the data is coming from. This can lead to hundreds of thousands of events with the same ID causing this issue. 
+In some instances, your project will have events that should not be attributed to a specific user or group, like some automated tests being tracked, or perhaps ad-spend data you're importing; it may be that when implementing, a specific ID was arbitrarily chosen for those events, say the string `"0"`, `"spend_data"` or perhaps even the name of the pod/server the data is coming from. This can lead to hundreds of thousands of events with the same ID causing this issue. 
 
 If your use case is similar to this, and the event **should not be attributed to specific users or groups**, you can change your implementation to send those events with an empty string value `""`. Upon ingestion, Mixpanel will randomly store these events in different shards so you will not incur a performance hit if this is your intended use case.
 
@@ -373,7 +373,7 @@ for file_name in exported_files:
 ## Hot Shard FAQ
 
 #### How does hot shard detection work?
-The detection step runs in the ingestion pipeline. A counter of events is maintained for each `distinct_id` and `event_date` combination. The counter is best-effort as a result of the underlying systems used to maintain such a large keyspace.
+The detection step runs in the ingestion pipeline. A counter of events is maintained for each `distinct_id` and `event_date` combination. The counter is best-effort as a result of the underlying systems used to maintain such a large key space.
 
 Once a pre-defined threshold is crossed, the `distinct_id` is marked as contributing to a hot shard and all subsequent events for this `distinct_id` and `event_date` are updated to even the load across shards. Historical events prior to the hotshard detection for the same `distinct_id` are not updated.
 
