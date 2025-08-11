@@ -3,5 +3,6 @@ export default {
     "funnels": "Funnels",
     "retention": "Retention",
     "flows": "Flows",
+    "metric_tree": "Metric Tree",
     "apps": "Apps"
 }
