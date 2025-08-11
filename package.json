@@ -42,7 +42,7 @@
   "devDependencies": {
     "@redocly/openapi-cli": "1.0.0-beta.95",
     "@types/mixpanel": "2.14.9",
-    "@types/node": "24.0.13",
+    "@types/node": "24.2.1",
     "autoprefixer": "10.4.21",
     "cspell": "9.1.5",
     "postcss": "8.5.6",
