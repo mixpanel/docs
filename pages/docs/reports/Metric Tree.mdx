@@ -27,7 +27,9 @@ Idea is to think through your strategy, and the various hypothesis without confu
 ## Step 2: Make the metrics real with data 
 Click on connect metric, and connect metric card to metric with data. This is a regular Mixpanel query panel. You can choose to bring in saved metrics, or create a metric. 
 
-**NOTE:** We highly recommend saving metrics in the metric tree, especially those on the higher levels, so others on the project use only this standardized verified metrics. Saved Metrics has additional ability like adding owners to it.
+<Callout info="info">
+  **NOTE**: We highly recommend saving metrics in the metric tree, especially those on the higher levels, so others on the project use only this standardized verified metrics. Saved Metrics has additional ability like adding owners to it.
+</Callout>
 
 ![image](https://github.com/mixpanel/docs/public/metrictree3.png)
 
@@ -42,7 +44,9 @@ Metric Trees have similar permissions to Mixpanel boards. You can share the tree
 
 Metric Tree is a multi-player space meant for collaboration and for you to use during your weekly team rituals. So many of you can be on the tree at the same time and edit it, and most importantly add insights or actions for metrics you’re accountable for.  
 
-**NOTE:** When you hit undo, you undo only your last action.  Also, the last edit on a metric persists for all.
+<Callout info="info">
+  **NOTE:** When you hit undo, you undo only your last action.  Also, the last edit on a metric persists for all.
+</Callout>
 
 ## How to use this on an ongoing basis? 
 - Data driven decision: Clearly articulate what’s working vs not by looking at how your input metrics and initiatives are impacting your top business outcomes
@@ -64,23 +68,28 @@ For example: if I wanted a QoQ view instead of YoY, I’d select
 
 ![image](https://github.com/mixpanel/docs/public/metrictree4.png)
 
-**To note:**
+<Callout info="info">
+  **To note:**
 
 - You can change the default time comparison settings for your tree, i.e all metrics, by clicking on `Apply to All Metrics` after setting up the right time ranges for one metric
 - You can add up to 3 time-ranges per metric card
 - On the metric card view, when you click on MoM, it shows the absolute value of the metric for the last 30 D. If you switch and click on QoQ it will show you the absolute value of the metric for the last 3M
 - If you switch the default “display” on the metric card, all the other cards that have that time range will also switch so you compare metrics across the tree in a similar period.
+</Callout>
 
 ## Add owner to keep a person accountable for the metric
 For any eligible metric, you can click on the owner icon and assign owner 
 
-**NOTE:** You can assign an owner only to a [saved metric](https://docs.mixpanel.com/docs/features/saved-metrics-and-behaviors#saved-metrics) 
+<Callout info="info">
+  **NOTE:** You can assign an owner only to a [saved metric](https://docs.mixpanel.com/docs/features/saved-metrics-and-behaviors#saved-metrics) 
+</Callout>
 
 ![image](https://github.com/mixpanel/docs/public/metrictree5.png)
 
 ## Pin contextual reports & boards to the metric, to enable deep dive
 
 Click on a metric. When the query panel opens, navigate to the Context tab. Within the Context tab, pin reports and board in the ‘Pinned’ tab
+
 ![image](https://github.com/mixpanel/docs/public/metrictree6.png)
 
 ## Add important insights to the logbook for future reference 
@@ -95,6 +104,7 @@ Click on a metric. When the query panel opens, navigate to the Context tab. With
 `As of` determines the end date reference point for the metric tree. 
 
 For example if you want to look at how the metric tree looked at the end of Q1, i.e March 2025, you could set `As of 31 March 2025` . All the metrics in the metric tree which are based on last 30 D, or last 3M etc, will look at measuring the value of last 30D as of 31 March 2025 i.e 2-31 March 2025 instead of last 30D as of today.
+
 ![image](https://github.com/mixpanel/docs/public/metrictree8.png)
 
 ## What does Filtering a tree do? 
@@ -117,6 +127,7 @@ No it doesn’t have to. We generally ask people to start a tree at L2 or L3 lev
 
 ## What is correlation? How do I access it?  
 Access the 3-dot overflow menu on the top right of the metric tree. Click on Show/ Hide > Show Correlation. Correlation numbers should show up across all the edges, i.e the connection between two metric cards.  
+
 ![image](https://github.com/mixpanel/docs/public/metrictree9.png)
 
 Mixpanel shows Pearson Correlation Coefficient. It measures the strength and direction of a linear relationship between two time-series data sets. It produces a value between **-1 and 1**
