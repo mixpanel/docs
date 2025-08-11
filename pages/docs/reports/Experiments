@@ -8,7 +8,7 @@ import { Callout } from 'nextra/components'
 
 ## Overview
 
-INSERT SCREENSHOT
+![image](/exp_overview.png)
 
 The Experiment report analyzes how one variant impacts your metrics versus other variant(s), helping you decide which variant should be rolled out more broadly. To access Experiments, click on the **Experiments** tab in the navigation panel, or **Create New > Experiment**.
 
@@ -57,7 +57,8 @@ Metric rows in the table are highlighted when any difference is calculated with 
 
 The main reason you look at statistical significance (p-value) is to get confidence on what it means for the larger roll out.
 
-INSERT IMAGE
+![image](/exp_stat_sig.png)
+
 Max Significance Level (p-value) = [1-CI]/2 where CI = Confidence Interval
 
 In the above image for example, max p=0.025 [(1-0.95)/2]
@@ -108,7 +109,7 @@ You can also add the experiment breakdowns and filters directly in a report via 
 
 ## Looking under the hood - How does the analysis engine work? 
 
-INSERT IMAGE
+![image](/exp_under_hood.png)
 
 The Experiment report behavior is powered by [borrowed properties](/docs/features/custom-properties#borrowed-properties). 
 
@@ -145,7 +146,7 @@ An example track call would look like this:
 `mixpanel.track('$experiment_started', {'Experiment name': 'Test', 'Variant name': 'v1'})`
 
 You can specify the event and property that should be used as the exposure event, name, and variant in the project settings in the Overview tab under 'Experiment Event Settings'. This allows you to use an experiment event that you're already tracking, for example, via a 3rd party feature flagging tool. Note, only string properties should be used for the 'Name' and 'Variant'.
-INSERT IMAGE
+![image](/exp_settings.png)
 
 ### When to track an exposure event? 
 - An exposure event  ONLY needs to be sent the first time a user is exposed to an experiment as long as the user is always in the initial bucketed variant. Exposure events don’t have to be sent subsequently in new sessions.
@@ -228,4 +229,4 @@ Once the experiment is ready to review, you can choose to 'End Analysis'. Once c
 ### Experiment Management
 You can manage all your experiments via the Experiments Home tab. You can customize which columns you’d like to see. 
 
-INSERT IMAGE
+![image](/exp_management.png)
