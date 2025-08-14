@@ -3,6 +3,9 @@ info:
   title: GDPR API
   description: >-
     The following retrieval and deletion API is made for GDPR and CCPA compliance.
+  license:
+    name: MIT
+    url: https://opensource.org/licenses/MIT
   contact:
     url: 'https://mixpanel.com/get-support'
   version: 3.0.0

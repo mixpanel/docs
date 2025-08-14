@@ -107,6 +107,9 @@ mixpanel.init(
 | `record_min_ms` | Minimum length of a single replay in milliseconds. Up to 8 seconds is supported. If a replay does not meet the minimum length, it will be discarded. | `0`<br/>(0 seconds) |
 | `record_sessions_percent` | Percentage of SDK initializations that will qualify for replay data capture. A value of "1" = 1%. | `0` |
 | `record_canvas` | When true, Mixpanel will record snapshots of `<canvas>` elements on your site at up to 15 frames per second | `false` |
+| `record_heatmap_data` | When true, Mixpanel will capture click events during replays to populate Heatmaps. You can learn more [here](/docs/session-replay/heatmaps). | `false` |
+
+Note: Canvas recording (record_canvas) utilizes [rrweb's](https://github.com/rrweb-io/rrweb) UNSAFE_replayCanvas option, which is experimental and not fully supported. We recommend testing thoroughly before deploying to production.
 
 **Example Usage**
 
@@ -166,11 +169,7 @@ mixpanel.get_session_replay_url();
 // https://mixpanel.com/projects/replay-redirect?replay_id=19307d78e24394fe15-0cd98d8fd9ad1d-1f525636-4b9600-19307d78e28194fe15&distinct_id=123&token=my-project-token
 ```
 
-## Heatmaps (Beta)
-
-<Callout type="info">
-Heatmaps are currently in private, closed beta. For early access, please contact your Account Manager.
-</Callout>
+## Heatmaps 
 
 To supplement your Session Replay data, enable [Heatmaps](/docs/session-replay/heatmaps) data collection. The current Heatmap functions as a click map, tracking user interactions with individual site elements.
 

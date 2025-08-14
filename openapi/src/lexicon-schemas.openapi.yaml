@@ -4,6 +4,9 @@ info:
   description: >-
     Use schemas to sync your data dictionary with Mixpanel. Schemas can be
     used to populate Lexicon and provide additional context for your data.
+  license:
+    name: MIT
+    url: https://opensource.org/licenses/MIT
   contact:
     url: "https://mixpanel.com/get-support"
   version: 1.0.0
@@ -220,8 +223,8 @@ paths:
                     "dropped": false,
                     "owners": [
                         {
-                            "name": "Pat Davis",
-                            "email": "pat.david@mixpanel.com"
+                            "name": "First Last",
+                            "email": "first.last@mixpanel.com"
                         }
                     ]
                 }

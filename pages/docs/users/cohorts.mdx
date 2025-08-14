@@ -103,6 +103,10 @@ When breaking down metrics by multiple cohorts, events are evaluated independent
 
 ## How Cohorts are Computed
 
+<Callout type="info">
+    **Note:** To ensure timely results from queries, newly imported or changed historical events timestamped more than 30 days ago might be part of your existing cohort analysis only after 12 hours from their import/change.
+</Callout>
+
 Cohorts are computed dynamically at the time that you use them in a query. Suppose you make a funnels report that filters down to the New Users cohort. Under the hood, Mixpanel does the following:
 1. Run a query to compute the set of users who are in the cohort as of right now (the time that the query is run).
 2. Run a query to compute the set of users who converted in the funnel, filtering down to the list produced in Step 1.
