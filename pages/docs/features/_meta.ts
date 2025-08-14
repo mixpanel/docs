@@ -10,6 +10,5 @@ export default {
     "saved-metrics-and-behaviors": "Saved Metrics & Behaviors",
     "sessions": "Sessions",
     "slack-integration": "Slack Integration",
-    "spark": "Spark",
-    "advanced": "Advanced"
+    "spark": "Spark"
 }
