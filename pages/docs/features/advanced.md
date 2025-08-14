@@ -36,39 +36,6 @@ View Users can help you:
 - View Users in Retention report presents you with two options - view retained users and view dropped-off users. This is helpful to **find the specific group of users who were engaged or dropped off** after **Sign Up** over a period of time.
 - **Export your group of choice to a CSV with one click**. This data can guide meaningful actions, like emailing your user group a note that helps them get unstuck and engaged.
 
-## Keyboard Shortcuts
-
-### Undo / Redo Shortcuts
-
-Undo / redo shortcuts allow for fast adjustments to your analysis. `Cmd + Z` to undo; `Cmd + Shift + Z` to redo. Change filters, date ranges, line vs bar chart, and go back in one second to compare before and after, or fix the view.
-
-![/Undo_Redo_gif.gif](/Undo_Redo_gif.gif)
-
-- **Navigate different report versions**: add a new event, filter, or breakdown and undo that change with `Cmd + Z`. This makes iterating between different versions of your report quick and easy.
-- **Compare visualizations**: go from a bar chart to a line chart, to a pie chart, and all the way back, while only using the undo / redo keyboard shortcuts.
-
-## Analyzing First Time Users
-
-Sometimes, you might want to filter an event to only the first time that it's performed by a user. This helps answer the following questions:
-
-* How many users sign up or perform another key event for the first time each week?
-* Which referrers do most first-time users come from?
-* How quickly do users make a purchase after their first time engaging with the app?
-* How well do users retain after performing a key event for the first time?
-* What events do users perform before and after making their first purchase?
-
-You can do this by adding a First Time Filter to any event in Mixpanel. This filters the event down to only the first instance of the event performed by a user:
-
-![233894752-93851682-9d83-4c87-937d-8fd90db465c6.png](https://user-images.githubusercontent.com/2077899/233894752-93851682-9d83-4c87-937d-8fd90db465c6.png)
-
-Mixpanel computes this on-the-fly by scanning each user's history to determine if this was the first instance of the event performed by the user, based on timestamp.
-Note that when there's a tie in the timestamps of the first event (eg: the user does multiple first-time Purchases in the same second), all of those events will be considered the "first time" and will match the filter. The impact will be that Mixpanel includes multiple events for those users, so if you break down by user ID, you may see that the user did multiple first events.
-
-### Nth Time
-You can analyze the Nth time an event was performed by using a First Time Filter in funnels. For example, this shows you the number of users that do Tutorial Complete 3 times:
-
-![233895123-bc2dd00f-5dde-4e43-82fe-081173abf0e4.png](https://user-images.githubusercontent.com/2077899/233895123-bc2dd00f-5dde-4e43-82fe-081173abf0e4.png)
-
 ## Company health and activation metrics 
 
 ### Company Profiles

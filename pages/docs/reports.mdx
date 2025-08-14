@@ -62,6 +62,22 @@ You can select whether you would like the query to match any of these filters, o
 
 ![image](https://github.com/mixpanel/docs/assets/2077899/9e3bcd31-2b12-48d1-b04f-cdda85dd2584)
 
+### First Time Ever Filter
+Sometimes, you might want to filter an event to only the first time that it's performed by a user. This helps answer the following questions:
+
+* How many users sign up or perform another key event for the first time each week?
+* Which referrers do most first-time users come from?
+* How quickly do users make a purchase after their first time engaging with the app?
+* How well do users retain after performing a key event for the first time?
+* What events do users perform before and after making their first purchase?
+
+You can do this by adding a First Time Filter to any event in Mixpanel. This filters the event down to only the first instance of the event performed by a user:
+
+![233894752-93851682-9d83-4c87-937d-8fd90db465c6.png](https://user-images.githubusercontent.com/2077899/233894752-93851682-9d83-4c87-937d-8fd90db465c6.png)
+
+Mixpanel computes this on-the-fly by scanning each user's history to determine if this was the first instance of the event performed by the user, based on timestamp.
+Note that when there's a tie in the timestamps of the first event (eg: the user does multiple first-time Purchases in the same second), all of those events will be considered the "first time" and will match the filter. The impact will be that Mixpanel includes multiple events for those users, so if you break down by user ID, you may see that the user did multiple first events.
+
 ## Breakdowns
 
 Breakdown groups the results of your metrics in Insights, Funnels, Flows, or Retention reports by a property or cohort, allowing you to examine which properties or cohorts have a significant impact on your query.
@@ -224,6 +240,23 @@ Compare to segment allows you to set a property value as a baseline and see how 
 Compare to overall allows you compare each segment value and see what proportion it makes of the overall value.
 
 ![/compare_to_overall.png](/compare_to_overall.png)
+
+#### Supported Charts
+
+Comparisons are supported across all insights chart types. Depending on the exact configuration chosen, certain comparison operations may be disabled.
+
+| Chart Type | Time Comparison Supported | Percentage change over Baseline Supported | Percentage of Overall Supported |
+| --- | --- | --- | --- |
+| Insights Line | Yes | Yes | Yes |
+| Insights Stacked Line | No | No | Yes |
+| Insights Bar | Yes | Yes | Yes |
+| Insights Stacked Bar | Yes | No | No |
+| Insights Pie | No | No | No |
+| Insights Metric | Yes | Yes | Yes |
+| Funnels Steps | Yes | Yes | No |
+| Funnel Trends | Yes | Yes | No |
+| Retention Curve | No | Yes | No |
+| Retention Trends | Yes | Yes | No |
 
 ## Saving to a Board
 
