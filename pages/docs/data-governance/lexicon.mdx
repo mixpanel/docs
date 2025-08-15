@@ -207,6 +207,10 @@ By merging “Purchase” and “purchase item” into a single event named “P
 Being able to merge events can help streamline your implementation, reduce your costs by eliminating redundant events being sent to Mixpanel, and simplify report analysis because you’re only using optimal events and properties.
 Do note however that user profile properties cannot be merged at this time.
 
+<Callout type="info">
+ Note that events merged into another will no longer query in reports or custom events, so be sure to update these with the new merged event name.
+</Callout>
+
 **Merging Events**
 
 To merge events:
