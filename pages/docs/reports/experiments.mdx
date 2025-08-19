@@ -99,7 +99,7 @@ Once the ‘Test Duration’ setup during configuration is complete, we show a b
 1. Sample size to be exposed
 2. Number of days you’d like to run the experiment
 
-NOTE: If you are using a ‘sequential’ testing experiment model type, you can always peek at the results sooner. Learn more about what sequential testing is here (link)
+NOTE: If you are using a ‘sequential’ testing experiment model type, you can always peek at the results sooner. Learn more about what sequential testing is [here](/docs/reports/experiments#experiment-model-types)
 
 ### Diagnosing experiments further in regular Mixpanel reports
 Click 'Analyze' on a metric to dive deeper into the results. This will open a normal Mixpanel insights report for the time range being analyzed with the experiment breakdown applied. This allows you to view users, view replays, or apply additional breakdowns to further analyze the results.
@@ -147,7 +147,7 @@ An example track call would look like this:
 
 You can specify the event and property that should be used as the exposure event, name, and variant in the project settings in the Overview tab under 'Experiment Event Settings'. This allows you to use an experiment event that you're already tracking, for example, via a 3rd party feature flagging tool. Note, only string properties should be used for the 'Name' and 'Variant'.
 
-![image](/exp_settings.png)
+![image](/exp_settings_rescale.png)
 
 ### When to track an exposure event? 
 - An exposure event  ONLY needs to be sent the first time a user is exposed to an experiment as long as the user is always in the initial bucketed variant. Exposure events don’t have to be sent subsequently in new sessions.
@@ -203,17 +203,9 @@ You can see your experiment MEU usage by going to Organization settings > Plan D
 ## References
 
 ### Experiment Model Types
-- Sequential
+- Sequential: Allows you to detect lift and conclude experiments quickly, but may fail to reach significance for very small lifts. **When to use?** If you’re looking for impact as tiny as 1% i.e, super low lifts
     
-    Allows you to detect lift and conclude experiments quickly, but may fail to reach significance for very small lifts
-    
-    **When to use?** If you’re looking for impact as tiny as 1% i.e, super low lifts
-    
-- Frequentist
-    
-    Capable of detecting smaller lifts, but requires you to keep experiments for the full duration. You’re discouraged from preemptively making decisions before the test duration is complete
-    
-    **When to use?** If you’re looking for large impact changes like 10%+
+- Frequentist: Capable of detecting smaller lifts, but requires you to keep experiments for the full duration. You’re discouraged from preemptively making decisions before the test duration is complete. **When to use?** If you’re looking for large impact changes like 10%+
 
 ### Experiment metric types
 - **Primary Metrics:**  Main goals you're trying to improve. These are metrics used to determine if the experiment succeeded. Examples: revenue, conversion rates, ARPU.
