@@ -101,15 +101,9 @@ Examples of querying the identity mapping table are available for [BigQuery](/do
 ## Change Log
 
 <details>
-<summary><strong>2025-06-26 (EU and IN) and 2025-08-14 (US) - Pipeline System Improvements By Incremental Export</strong></summary>
+<summary><strong>2025-06-26 (EU and IN): Pipeline System Improvements By Incremental Export</strong></summary>
 
-We're rolling out an improved pipeline system to make your data exports more efficient and reliable. 
-We're deploying these improvements gradually across all customers based on the dates below:
-- 2025-06-26: Newly created pipelines in EU and IN data residency will have incremental export.
-- 2025-08-14: Newly created pipelines in US data residency will have incremental export.
-
-The rollout of these updates to existing pipelines in all regions is scheduled for the near future. 
-Your pipeline will automatically transition to the new system when ready. Your data quality and completeness remain exactly the same - only the processing method has improved.
+We’re rolling out an improved pipeline system to make your data exports more efficient and reliable. We’re deploying these improvements gradually across all customers starting with new pipelines in our EU and IN data residency. New pipelines in projects with US residency and existing pipelines in all regions will follow after. Your pipeline will automatically transition to the new system when ready. Your data quality and completeness remain exactly the same - only the processing method has improved.
 
 ### Whats affected?
 - **Events Pipelines with Sync Enabled Only**: This improvement only affects events pipelines that have sync enabled. People and identity mapping pipelines remain unchanged.
@@ -125,4 +119,15 @@ Your pipeline will automatically transition to the new system when ready. Your d
 - **Pipelines Logs Reset**: Once your pipeline is migrated the logging available in th UI will be reset so past jobs log lines will no longer available. Only the new incremental jobs will be visible going forward.
 - **Predicable Deletion Behavior**:  In rare cases the sync functionality meant that Mixpanel could re-sync days for which data was deleted allowing the pipeline to also remove that data from your data warehouse. Sync keeping your warehouse in line with deletions was not guaranteed behavior however. The removal of sync means this unreliable behavior has been removed and as such warehouse data owners are responsible for the deletion of all data on the warehouse side.
 - **More Pre-shuffled Distinct Ids in Data**: The faster export and removal of late syncs for data can lead to more events exported with their original distinct_id as opposed to the resolved identifier seen in Mixpanel after we’ve shuffled the data. These discrepancies are expected in pipelines on both the old and new behavior and can be resolved using the ID mappings table exported from identity pipelines outlined in [our docs here](docs/data-pipelines/json-pipelines#user-identity-resolution).
+</details>
+
+<details>
+<summary><strong>2025-08-14 (US): Pipeline System Improvements By Incremental Export</strong></summary>
+ 
+We have deployed the Incremental Export Improvement for newly created pipelines with US data residency.
+
+The rollout of these updates to existing pipelines in all regions is scheduled for the near future. 
+Your pipeline will automatically transition to the new system when ready. Your data quality and completeness remain exactly the same - only the processing method has improved.
+
+You can find out more about [Incremental Export here](docs/data-pipelines/json-pipelines#whats-affected).
 </details>
