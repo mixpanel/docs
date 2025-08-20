@@ -43,6 +43,7 @@ export default {
   },
   reports: "Reports",
   boards: "Boards",
+  metric_tree: "Metric Trees",
   users: "Users",
   "session-replay": "Session Replay",
   features: "Features",
