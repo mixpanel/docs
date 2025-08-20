@@ -64,6 +64,9 @@ This is a recommended feature for all B2B products that want answers to question
 
 The Data Pipelines Add-On exports the events in your Mixpanel project to a cloud storage bucket or data warehouse of your choice. It's useful if you want to analyze Mixpanel events using SQL in your own environment. We offer a 30-day free trial of this feature, see the [FAQ](/docs/data-pipelines#how-does-the-free-trial-work) on how to enable it.
 
+### Metric Tree Add-on
+The Metric Tree Add-On enables you to map your growth strategy in a quantitative and measurable way, and understand the logical relationship between your input metrics and output business outcomes. It is a collaborative space for you and your team to identify opportunities, have prioritization and trade-off discussions across Exec to ICs, and eventually take data backed decisions. You can read more about the functionality of Metric Trees [here](/docs/metric_tree).
+
 ## Billing & Payment
 
 Mixpanel runs on a subscription service in which your card is charged at the beginning of every month or every year (depending on the plan you’ve purchased) to cover reporting services for that period of time.

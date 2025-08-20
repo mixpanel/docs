@@ -3,5 +3,6 @@ export default {
     "funnels": "Funnels",
     "retention": "Retention",
     "flows": "Flows",
+    "experiments": "Experiments",
     "apps": "Apps"
 }
