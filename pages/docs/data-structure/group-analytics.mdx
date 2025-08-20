@@ -102,30 +102,28 @@ To use these features, you must [designate the group key as a company key when s
 
 #### Company Profiles
 
-This page gives you a view into all your company health - including key metrics, and company profile properties (i.e company attributes) 
+This page gives you a view into all your company health - this includes key metrics and company profile properties (i.e company attributes).
 
-Company Health Metrics on the page include - understanding company usage (DAU, WAU, MAU, new users), users’ engagement level (activity per user, lifecycle of user), and their retention (Day 1, Week 1, and Month 1) 
+Company Health Metrics on the page include KPIs on usage (DAU, WAU, MAU, new users), users’ engagement level (activity per user, life cycle of user), and their retention (Day 1, Week 1, and Month 1).
 
-You can view the definition of each metric by clicking on the metric card, which will open the underlying Mixpanel report 
+You can view the definition of each metric by clicking on the metric card, which will open the underlying Mixpanel report.
 
-1. To access this page - click on Users/ Companies → Company Profile
+1. To access this page, click on Users/ Companies → Company Profile
 2. This is only available if you have [set up a B2B Company Key](/docs/data-structure/group-analytics#setup-b2b-company-key), an option available in the Group Analytics package.
 
 ![image](/B2B_Company_Profiles.webp) 
 
 #### Activation Metrics 
 
-SaaS companies often have use cases like the one below, where you’re trying to segment companies based on how many and the quality of users. (Examples - what are the number of trial accounts that have > 2 active users?)  The hypothesis is that these will convert faster. What you want to do here is to be able to break down account activity by the number of active users 
-
-We now have a new computed property (in both breakdown and filter) - **“Number of users who did…”**, available on our group analytics package that enables answering the above type of questions
+SaaS companies often have use cases like the one below, where you’re trying to segment companies based on the number of users and the quality of users. (Examples - what is the number of trial accounts that have > 2 active users?)  The hypothesis is that these will convert faster. What you want to do here is to be able to break down account activity by the number of active users. We have a computed property in both breakdown and filter, called the **“Number of users who did…”**, available in the Group Analytics add-on, which enables you to answer these types of questions.
 
 ![image](/B2B_Activation_1.webp)
 
-When using as a breakdown, we show you how many downloads came from different types of account health i.e 605 downloads came from accounts with 0 active users, ~1.5 downloads through the 30 days came from accounts with 2 active users, where “active user” is defined by both the activity (eg. document created) and frequency of activity (eg. ≥1 t times)
+When using as a breakdown, we show you how many downloads came from different types of account health i.e 605 downloads came from accounts with 0 active users, ~1.5 downloads through the 30 days came from accounts with 2 active users, where “active user” is defined by both the activity (eg. document created) and frequency of activity (eg. ≥1 t times).
 
-In a line chart, we look for activity per interval - i.e in the below daily chart, we’re looking for activity qualification per day (i.e. an active user is one who has created at least one document in that day). 
+In a line chart, we look for activity per interval (i.e, in the below daily chart, we’re looking for activity qualification per day (i.e. an active user is one who has created at least one document in that day). 
 
-So below shows on Aug 19th - there were 35 accounts that downloaded the document. Of the 35, 32 accounts had only 1 active user, 2 accounts had 2 active users, and 1 account had 28 active users! But since most downloads came from accounts with just 1 active user, there is no correlation possibly between account document download activity to account health
+So below shows on Aug 19th - there were 35 accounts that downloaded the document. Of the 35, 32 accounts had only 1 active user, 2 accounts had 2 active users, and 1 account had 28 active users! But since most downloads came from accounts with just 1 active user, there is no correlation between account document download activity to account health.
 
 ![image](/B2B_Activation_2.webp)
 
@@ -147,9 +145,12 @@ Enter an event property to attribute the group key to. You can also enter a disp
 
 ### Setup B2B Company Key
 
-1. Choose which ‘one’ group key should be used as the B2B Company Key as well. This is the key for which Company Profiles will be generated 
-2. Also specify the property which should be referenced as the Company name (identifier) throughout the Mixpanel interface
-NOTE: You can change which group key should be used as the ‘Company key’. To change, first turn off the current group key set as Company Key, and then you can go turn on another group key as the ‘Company key’ 
+1. Choose which group key should be used as the B2B Company Key as well. This is the key for which Company Profiles will be generated.
+2. Specify the property that should be referenced as the Company name (identifier) throughout the Mixpanel interface.
+
+<Callout type="info">
+  You can change which group key should be used as the Company Key. To change, first unset the current group key set as Company Key in the project settings, and then set a new group key as the Company Key.
+</Callout>
 
 ![image](/B2B_Company_Key.webp)
 
