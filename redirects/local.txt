@@ -17,7 +17,7 @@
 /docs/admin/sso/okta /docs/access-security/single-sign-on/okta
 /docs/admin/two-factor-authentication /docs/access-security/two-factor-authentication
 /docs/analysis/advanced/alerts /docs/features/alerts
-/docs/analysis/advanced/attribution /docs/features/attribution
+/docs/analysis/advanced/attribution /docs/features/computed-properties#attribution
 /docs/analysis/advanced/cohorts /docs/users/cohorts
 /docs/analysis/advanced/custom-events /docs/features/custom-events
 /docs/analysis/advanced/custom-properties /docs/features/custom-properties
@@ -272,3 +272,4 @@
 /docs/users/overview /docs/users
 /guides /guides/onboarding-overview/
 /guides/analytics-strategy /guides/plan/framework
+/docs/features/attribution /docs/features/computed-properties#attribution
