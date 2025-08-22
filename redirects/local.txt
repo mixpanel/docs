@@ -273,3 +273,7 @@
 /guides /guides/onboarding-overview/
 /guides/analytics-strategy /guides/plan/framework
 /docs/features/attribution /docs/features/computed-properties#attribution
+/docs/session-replay/implement-session-replay /docs/session-replay
+/docs/session-replay/implement-session-replay/session-replay-web /docs/tracking-methods/sdks/javascript/javascript-replay
+/docs/session-replay/implement-session-replay/session-replay-ios /docs/tracking-methods/sdks/swift/swift-replay
+/docs/session-replay/implement-session-replay/session-replay-android /docs/tracking-methods/sdks/android/android-replay
