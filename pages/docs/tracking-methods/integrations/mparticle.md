@@ -273,7 +273,7 @@ This could be due to several reasons:
 
 Please check the following settings:
 
-- Ensure you have an audience output configued under ```Data Platform > Setup > Audience``` with your audience selected.
+- Ensure you have an audience output configured under ```Data Platform > Setup > Audience``` with your audience selected.
 - Ensure your audience is targeting your audience output.
 - Ensure your audience has fully processed in mParticle.
 - Download your audience to ensure proper enrollment.
