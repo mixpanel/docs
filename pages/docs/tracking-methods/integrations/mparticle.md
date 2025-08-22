@@ -37,7 +37,7 @@ Install mParticle as outlined in the [Getting Started Guide](https://docs.mparti
 | Project Token (Required) | `string` | none  | Found in your Mixpanel project settings. |
 | Project API Secret| `string` | none | Found in your Mixpanel project settings. This is required to forward Historical Data older than 5 days which is sent to [Mixpanel's import API](https://developer.mixpanel.com/reference/import-events).|
 | External Identity Type| `string` | Customer Id | This is the identifier sent to Mixpanel to be used as a user's distinct ID. mParticle recommends using the `mparticle ID` for brand new implmentations, which works in hand with the default [Profile Conversion Strategy](https://docs.mparticle.com/guides/idsync/profile-conversion-strategy/). This identifier acts as the distinct ID within mParticle to track pre- and post- identified activity. [More information on mParticle's IDSync](https://docs.mparticle.com/guides/idsync/use-cases/).|
-| Target Server   | `string` | Standard Server | Configure to match your [Mixpanel server residency](https://docs.mixpanel.com/docs/privacy/eu-residency). |
+| Target Server   | `string` | Standard Server | Configure to match your [Mixpanel server residency](/docs/privacy/eu-residency). |
 
 
 ![mparticle_output_mapping](/mparticle_output_mapping.png)
@@ -53,7 +53,7 @@ Under Setup > Connections, add your new Mixpanel output and select your settings
 | Include Attribution Info | `boolean` | false  | Eanble to include publisher and campaign names when tracking events. |
 | Create Profile Only If Logged In | `boolean` | false  | If enabled, mParticle will only send data to Mixpanel for identified users. |
 | Include IP Address | `boolean` | true  | If enabled, Mixpanel will use  the IP address for location data. IP addresses are not stored in events.|
-| Super Properties | `string` | false  | Set super properties to be included with any event regardless of the "Inculde User Attributes" setting. Must be in event data to populate in dropdown. [Learn more about Mixpanel's super properties](https://docs.mixpanel.com/docs/tracking-methods/sdks/javascript#setting-super-properties). |
+| Super Properties | `string` | false  | Set super properties to be included with any event regardless of the "Inculde User Attributes" setting. Must be in event data to populate in dropdown. [Learn more about Mixpanel's super properties](/docs/tracking-methods/sdks/javascript#setting-super-properties). |
 | Upper Case Idfa and Idfv | `boolean` | false  | Eanble to set IDFA and IDFV vlaues as uppercase.  |
 | Forward Web Requests Server Side | `boolean` | false  | Eanble to send web requests server side.  |
 | Send Event Attributes as Objects | `boolean` | true  | Eanble to send attributes as objects (recommended).  |
@@ -246,17 +246,19 @@ This could be due to several reasons:
 * **Storing data in the EU:** A common issue is that the data in mParticle is enabled to be sent to an EU endpoint but the Mixpanel data is still being stored outside of the EU. Both endpoints for mParticle and Mixpanel need to point to the EU. Check your Mixpanel data residency in your project settings, and set your mParticle residency on under ```output configuration > Mixpanel Target Server```.
 
 
-![Mixpanel Residency](/mixpanel_data_residency) ![mParticle Residency](/mparticle_data_residency)
+![Mixpanel Residency](/mixpanel_data_residency) 
+
+![mParticle Residency](/mparticle_data_residency)
 
 
-* **Project Token mismatch:** Please ensure the project token on your mParticle output matching the token in your Mixpanel project
+* **Project Token mismatch:** Please ensure the project token on your mParticle output matches the token in your Mixpanel project
 
 
 **2. Why are there duplicate or disconnected profiles in Mixpanel?**
 
-- This can happen if you are attempting to set profile attributes before calling `Login` or as a separate call at the same time as mParticle's login method. If you want to create a profile right after signup, be sure to wrap your `setUserAttribute` call in a callback function. Example in [identfy users](/docs/blob/main/pages/docs/tracking-methods/integrations/mparticle#3-identify-users) section.
+- This can happen if you are attempting to set profile attributes before calling `Login` or as a separate call at the same time as mParticle's login method. If you want to create a profile right after signing up, be sure to wrap your `setUserAttribute` call in a callback function. Example in [identfy users](/docs/tracking-methods/integrations/mparticle#3-identify-users) section.
 
-- If you are using [Simplfied ID Merge](https://docs.mixpanel.com/docs/tracking-methods/id-management/identifying-users-simplified), please ensure that the "Simplfied ID Merge" setting is selected in your connection output settings.
+- If you are using [Simplfied ID Merge](/docs/tracking-methods/id-management/identifying-users-simplified), please ensure that the "Simplfied ID Merge" setting is selected in your connection output settings.
 
 **3. How do I register super properties using mParticle?**
 
