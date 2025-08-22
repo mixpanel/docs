@@ -40,7 +40,7 @@ Replace `VERSION_NAME` with the latest version available on [Maven Central](http
 
 ### Initialize
 
-You should have the main Mixpanel Android SDK installed (minimum version `v8.0.2`), if not, please refer to [Prerequisite](/docs/session-replay/session-replay-android#prerequisite).
+You should have the main Mixpanel Android SDK installed (minimum version `v8.0.2`), if not, please refer to [Prerequisite](/docs/tracking-methods/sdks/android).
 
 Initialize the `MPSessionReplay` SDK in your `Application` class:
 
@@ -240,7 +240,7 @@ To ensure Server-Side Stitching works, call [`identify()`](/docs/tracking-method
 
 When a Replay capture begins, a "Session Recording Checkpoint" event will appear in your project, tracked as `$mp_session_record`. You may use this event to verify whether you have implemented Session Replay correctly.
 
-If you are using the [recommended sampling method](/docs/session-replay/implement-session-replay/session-replay-android#sampling) to capture your Replays but having trouble finding the Replays in your project, try calling `.startRecording()` manually and see if the `$mp_session_record` event appears. If it does appear but you are still struggling to locate your Replays, you may want to increase your sampling rate.
+If you are using the [recommended sampling method](/docs/tracking-methods/sdks/android/android-replay#sampling) to capture your Replays but having trouble finding the Replays in your project, try calling `.startRecording()` manually and see if the `$mp_session_record` event appears. If it does appear but you are still struggling to locate your Replays, you may want to increase your sampling rate.
 
 You can also check the Home page for your project to check for any recent Replays listed in the "Latest Replays" card.
 
@@ -270,7 +270,7 @@ The Mixpanel SDK will always mask all inputs. To protect end-user privacy, input
 
 By default, all text, images, and WebViews are also masked.
 
-You can unmask these element at your own discretion using the [`autoMaskedViews` config option described above](/docs/session-replay/implement-session-replay/session-replay-android#additional-configuration-options).
+You can unmask these element at your own discretion using the [`autoMaskedViews` config option described above](/docs/tracking-methods/sdks/android/android-replay#additional-configuration-options).
 
 Along with other data, the SDK respects all Do Not Track (DNT) settings as well as manual opt-out for any replay data. 
 
@@ -337,7 +337,7 @@ However, Session Replay is not a literal video recording of your end-user's scre
 
 The Mixpanel SDK will always mask all inputs. By default, all text, images, and WebViews on a page.
 
-Additionally, you can customize how you leverage our SDK to fully control (1) where to record and (2) whom to record. Consider the [manual capture example scenarios](/docs/session-replay/implement-session-replay/session-replay-android#manual-capture), [SDK configuration options](/docs/session-replay/implement-session-replay/session-replay-android#additional-configuration-options), and [manual view masking example](/docs/session-replay/implement-session-replay/session-replay-android#mark-views-as-sensitive) provided above to customize the replay capture of your implementation.
+Additionally, you can customize how you leverage our SDK to fully control (1) where to record and (2) whom to record. Consider the [manual capture example scenarios](/docs/tracking-methods/sdks/android/android-replay#manual-capture), [SDK configuration options](/docs/tracking-methods/sdks/android/android-replay#additional-configuration-options), and [manual view masking example](/docs/tracking-methods/sdks/android/android-replay#mark-views-as-sensitive) provided above to customize the replay capture of your implementation.
 
 #### How can I estimate how many Replays I will generate?
 
@@ -347,7 +347,7 @@ When you enable Session Replay, use the above proxy metric to determine a starti
 
 #### How does Session Replay affect my app's bandwidth consumption?
 
-The bandwidth impact of Session Replay depends on the setting of the [`wifiOnly` parameter](/docs/session-replay/implement-session-replay/session-replay-android#additional-configuration-options).
+The bandwidth impact of Session Replay depends on the setting of the [`wifiOnly` parameter](/docs/tracking-methods/sdks/android/android-replay#additional-configuration-options).
 
 By default, `wifiOnly` is set to `true`, which means replay events are only flushed to the server when the device has a wifi connection. If there is no wifi, flushes are skipped, and the events remain in the in-memory queue until WiFi is restored. This ensures no additional cellular data is used, preventing users from incurring additional data charges.
 

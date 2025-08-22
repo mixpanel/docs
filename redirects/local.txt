@@ -229,7 +229,7 @@
 /docs/tracking/javascript-quickstart /docs/quickstart/install-mixpanel?sdk=javascript
 /docs/tracking/mobile /docs/tracking/reference/mobile-sdk
 /docs/tracking/mobile/android /docs/tracking-methods/sdks/android
-/docs/tracking/reference/androi /docs/tracking-methods/sdks/android
+/docs/tracking/reference/android /docs/tracking-methods/sdks/android
 /docs/tracking/reference/android /docs/tracking-methods/sdks/android
 /docs/tracking/reference/data-model /docs/how-it-works/concepts
 /docs/tracking/reference/default-properties /docs/data-structure/property-reference
