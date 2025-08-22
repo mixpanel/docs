@@ -52,12 +52,12 @@ Under Setup > Connections, add your new Mixpanel output and select your settings
 | Include User Attributes | `boolean` | true  | Enable to track user attributes as event properties. |
 | Include Attribution Info | `boolean` | false  | Enable to include publisher and campaign names when tracking events. |
 | Create Profile Only If Logged In | `boolean` | false  | If enabled, mParticle will only send data to Mixpanel for identified users. |
-| Include IP Address | `boolean` | true  | If enabled, Mixpanel will use  the IP address for location data. IP addresses are not stored in events.|
+| Include IP Address | `boolean` | true  | If enabled, Mixpanel will use the IP address for location data. IP addresses are not stored in events.|
 | Super Properties | `string` | false  | Set super properties to be included with any event, regardless of the "Include User Attributes" setting. Must be in event data to populate in the dropdown. [Learn more about Mixpanel's super properties](/docs/tracking-methods/sdks/javascript#setting-super-properties). |
-| Upper Case Idfa and Idfv | `boolean` | false  | Eanble to set IDFA and IDFV vlaues as uppercase.  |
-| Forward Web Requests Server Side | `boolean` | false  | Eanble to send web requests server side.  |
-| Send Event Attributes as Objects | `boolean` | true  | Eanble to send attributes as objects (recommended).  |
-| Simplfied ID Merge | `boolean` | false  | Enable if using simplfied ID merge.|
+| Upper Case IDFA and IDFV | `boolean` | false  | Enable to set IDFA and IDFV values as uppercase.  |
+| Forward Web Requests Server Side | `boolean` | false  | Enable to send web requests server side.  |
+| Send Event Attributes as Objects | `boolean` | true  | Enable to send attributes as objects (recommended).  |
+| Simplified ID Merge | `boolean` | false  | Enable if using simplified ID merge.|
 | Min Platform Version | `List` | "Select App Version"  | Filter by app version.|
 
 [View all connection settings](https://docs.mparticle.com/integrations/mixpanel/event/#connection-settings)
@@ -257,9 +257,9 @@ This could be due to several reasons:
 
 **2. Why are there duplicate or disconnected profiles in Mixpanel?**
 
-- This can happen if you are attempting to set profile attributes before calling `Login` or as a separate call at the same time as mParticle's login method. If you want to create a profile right after signing up, be sure to wrap your `setUserAttribute` call in a callback function. Example in [identfy users](/docs/tracking-methods/integrations/mparticle#3-identify-users) section.
+- This can happen if you are attempting to set profile attributes before calling `Login` or as a separate call at the same time as mParticle's login method. If you want to create a profile right after signing up, be sure to wrap your `setUserAttribute` call in a callback function. Example in [identify users](/docs/tracking-methods/integrations/mparticle#3-identify-users) section.
 
-- If you are using [Simplfied ID Merge](/docs/tracking-methods/id-management/identifying-users-simplified), please ensure that the "Simplfied ID Merge" setting is selected in your connection output settings.
+- If you are using [Simplified ID Merge](/docs/tracking-methods/id-management/identifying-users-simplified), please ensure that the "Simplified ID Merge" setting is selected in your connection output settings.
 
 **3. How do I register super properties using mParticle?**
 
