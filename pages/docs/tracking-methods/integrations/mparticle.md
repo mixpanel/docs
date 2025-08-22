@@ -247,9 +247,9 @@ This could be due to several reasons:
 * **Storing data in the EU:** A common issue is that the data in mParticle is enabled to be sent to an EU endpoint, but the Mixpanel data is still being stored outside of the EU. Both endpoints for mParticle and Mixpanel need to point to the EU. Check your Mixpanel data residency in your project settings, and set your mParticle residency under `output configuration > Mixpanel Target Server`.
 
 
-![Mixpanel Residency](/mixpanel_data_residency) 
+![Mixpanel Residency](/mixpanel_data_residency.png) 
 
-![mParticle Residency](/mparticle_data_residency)
+![mParticle Residency](/mparticle_data_residency.png)
 
 
 * **Project Token mismatch:** Please ensure the project token on your mParticle output matches the token in your Mixpanel project
