@@ -13,17 +13,17 @@ mParticle forwards two main types of data:
 
 * **Event Data:** Any action done by users in your app
 
-* **Audience Data:** Data about users including profile properties
+* **Audience Data:** Data about users, including profile properties
 
-For detailed instructions on how to install the mParticle, please refer to the [mParticle Getting Started Guide](https://docs.mparticle.com/guides/getting-started/create-an-input).
+Refer to the [mParticle Getting Started Guide](https://docs.mparticle.com/guides/getting-started/create-an-input) for detailed instructions on how to install the mParticle.
 
 ## Setup
 
 <Callout type="info">
-    The mParticle to Mixpanel integration relies on your mParticle data implementation schema, which must align with the requirements outlined below. While many mParticle SDK methods generally align with Mixpanel's, not all are supported. This may take some fine tuning and testing to ensure accuracy of data.
+    The mParticle to Mixpanel integration relies on your mParticle data implementation schema and must align with the requirements outlined below. While many mParticle SDK methods generally align with Mixpanel's, not all are supported. This may take some fine-tuning and testing to ensure the accuracy of the data.
 </Callout>
 
-### 1. Intall mParticle
+### 1. Install mParticle
 
 Install mParticle as outlined in the [Getting Started Guide](https://docs.mparticle.com/guides/getting-started/create-an-input).
 
@@ -35,8 +35,8 @@ Install mParticle as outlined in the [Getting Started Guide](https://docs.mparti
 | Setting Name           | Data Type  | Default Value  | Description      |
 |-----------------------|-----------------------|---------------------|-----------------|
 | Project Token (Required) | `string` | none  | Found in your Mixpanel project settings. |
-| Project API Secret| `string` | none | Found in your Mixpanel project settings. This is required to forward Historical Data older than 5 days which is sent to [Mixpanel's import API](https://developer.mixpanel.com/reference/import-events).|
-| External Identity Type| `string` | Customer Id | This is the identifier sent to Mixpanel to be used as a user's distinct ID. mParticle recommends using the `mparticle ID` for brand new implmentations, which works in hand with the default [Profile Conversion Strategy](https://docs.mparticle.com/guides/idsync/profile-conversion-strategy/). This identifier acts as the distinct ID within mParticle to track pre- and post- identified activity. [More information on mParticle's IDSync](https://docs.mparticle.com/guides/idsync/use-cases/).|
+| Project API Secret| `string` | none | Found in your Mixpanel project settings. This is required to forward Historical Data older than 5 days, which is sent to [Mixpanel's import API](https://developer.mixpanel.com/reference/import-events).|
+| External Identity Type| `string` | Customer Id | This is the identifier sent to Mixpanel to be used as a user's distinct ID. mParticle recommends using the `mparticle ID` for brand new implementations, which works in hand with the default [Profile Conversion Strategy](https://docs.mparticle.com/guides/idsync/profile-conversion-strategy/). This identifier acts as the distinct ID within mParticle to track pre- and post-identified activity. [More information on mParticle's IDSync](https://docs.mparticle.com/guides/idsync/use-cases/).|
 | Target Server   | `string` | Standard Server | Configure to match your [Mixpanel server residency](/docs/privacy/eu-residency). |
 
 
@@ -48,12 +48,12 @@ Under Setup > Connections, add your new Mixpanel output and select your settings
 
 | Setting Name           | Data Type  | Default Value  | Description      |
 |-----------------------|-----------------------|---------------------|-----------------|
-| Use Mixpanel People | `boolean` | true  | Eanble to send people to Mixpanel as users. |
-| Include User Attributes | `boolean` | true  | Eanble to track user attributes as event properties. |
-| Include Attribution Info | `boolean` | false  | Eanble to include publisher and campaign names when tracking events. |
+| Use Mixpanel People | `boolean` | true  | Enable to send people to Mixpanel as users. |
+| Include User Attributes | `boolean` | true  | Enable to track user attributes as event properties. |
+| Include Attribution Info | `boolean` | false  | Enable to include publisher and campaign names when tracking events. |
 | Create Profile Only If Logged In | `boolean` | false  | If enabled, mParticle will only send data to Mixpanel for identified users. |
 | Include IP Address | `boolean` | true  | If enabled, Mixpanel will use  the IP address for location data. IP addresses are not stored in events.|
-| Super Properties | `string` | false  | Set super properties to be included with any event regardless of the "Inculde User Attributes" setting. Must be in event data to populate in dropdown. [Learn more about Mixpanel's super properties](/docs/tracking-methods/sdks/javascript#setting-super-properties). |
+| Super Properties | `string` | false  | Set super properties to be included with any event, regardless of the "Include User Attributes" setting. Must be in event data to populate in the dropdown. [Learn more about Mixpanel's super properties](/docs/tracking-methods/sdks/javascript#setting-super-properties). |
 | Upper Case Idfa and Idfv | `boolean` | false  | Eanble to set IDFA and IDFV vlaues as uppercase.  |
 | Forward Web Requests Server Side | `boolean` | false  | Eanble to send web requests server side.  |
 | Send Event Attributes as Objects | `boolean` | true  | Eanble to send attributes as objects (recommended).  |
@@ -64,7 +64,7 @@ Under Setup > Connections, add your new Mixpanel output and select your settings
 
 
 <Callout type="info">
-   If you are on Simplfied ID merge, you must set the "Simplified ID Merge" Connection Setting to `true` in order to merge `$device_id` and `$user_id` properly.
+   If your project is using Simplified ID merge, you must set the "Simplified ID Merge" Connection Setting to `true` to merge `$device_id` and `$user_id` properly.
 </Callout>
 
 ### 3. Identify Users
@@ -73,15 +73,15 @@ Identify users calling `mParticle.Identity.Login()` when users sign up and log i
 
 mParticle has four [IDSync methods](https://docs.mparticle.com/developers/client-sdks/web/idsync/) on the web SDK: 
 
-* **Identify**: Called automatically at session start which generates an anonymous ID.
+* **Identify**: Called automatically at session start, which generates an anonymous ID.
 * **Login**: Called on signup and login to identify a user.
 * **Logout**: Called on logout to clear user data from local storage.
-* **Modify**: Used to modify mParticle user identities such as updating an email address. Typically this will not be used with Mixpanel.
+* **Modify**: Used to modify mParticle user identities, such as updating an email address. Typically, this will not be used with Mixpanel.
 
-When identifying user you will need to provide the `customer ID` or other known value as determined by [mParticle's identity priorities](https://docs.mparticle.com/guides/idsync/components/#identity-priorities). While mParticle manages identity internally, the External ID value set in your mParticle configuration settings will be set as the `$distinct_id` for Mixpanel.
+When identifying users, you need to provide the `customer ID` or other known value as determined by [mParticle's identity priorities](https://docs.mparticle.com/guides/idsync/components/#identity-priorities). While mParticle manages identity internally, the External ID value set in your mParticle configuration settings will be set as the `$distinct_id` for Mixpanel.
 While mParticle accepts several user identifiers, only one will be sent as the External ID to Mixpanel.
 
-Here is an example `Login()` call using [mParticle's Web SDK](https://docs.mparticle.com/developers/client-sdks/web/idsync/). Note that if you plan to set user attributes on signup, you need to include them in a callback function as mParticle runs these operations asynchronously. While email is included as an identifier, it is also included in the callback to be set as a profile property. If your project uses Customer ID as the External ID, then it would not be necessary to include email in the identity request for Mixpanel.
+Here is an example `Login()` call using [mParticle's Web SDK](https://docs.mparticle.com/developers/client-sdks/web/idsync/). If you plan to set user attributes on signup, you need to include them in a callback function as mParticle runs these operations asynchronously. While email is included as an identifier, it is also included in the callback to be set as a profile property. If your project uses Customer ID as the External ID, then it would not be necessary to include email in the identity request for Mixpanel.
 
 ```
 //create main request body of identifiers
@@ -92,7 +92,7 @@ let identityRequest = {
 		customerid: user.id
 	}
 };
-//optional callback to set attributes after identify call is complete
+//optional callback to set attributes after the identify call is complete
 
 let identityCallback = function (result) {
 	const mParticleUser = result.getUser();
@@ -113,7 +113,7 @@ mParticle.Identity.login(identityRequest, identityCallback);
 
 ### 4. Create User Profiles
 
-To create profiles and set profile properties, call `SetUserAttribute`. These will persist until overwritten. Note that if you identify a user in mParticle with email, it mus also be set as an attribute in order to store it as a Mixpanel profile property.
+To create profiles and set profile properties, call `SetUserAttribute`. These will persist until overwritten. Note that if you identify a user in mParticle with email, it must also be set as an attribute to store it as a Mixpanel profile property.
 
 Here is an example call to set user attributes:
 
@@ -141,7 +141,7 @@ Custom events contain the following attributes:
 Here is a simple custom event with event types defined beforehand:
 
 ```
-//define event types - these are used to further classify data.
+//define event types - these are used to further classify your data.
 
 EventType = {
   Navigation: 1,
@@ -162,7 +162,7 @@ mParticle.logEvent(
 {
   // custom attributes
   'Song Name':'Blinding Lights',
-  'Artist':'The Weeknd'
+  'Artist': 'The Weeknd'
 } 
 );
 ```
@@ -177,7 +177,7 @@ mParticle.logEvent(
 
 By default, mParticle does not have a way to map audiences to Mixpanel. Instead, you can forward an audience to Mixpanel by creating a profile property for users and then creating a cohort with that property. Here are the steps below:
 
-1. Add an Audience Output under ```Data Platform > Setup > Audience```. This is similar to creating your output where you need to add your project token and match your data residency to your project.
+1. Add an Audience Output under ```Data Platform > Setup > Audience```. This is similar to creating your output, where you need to add your project token and match your data residency to your project.
 
 2. Create an Audience (if none exist) under ```Segmentation > Audiences``` and specify your target output.
 
@@ -185,7 +185,7 @@ By default, mParticle does not have a way to map audiences to Mixpanel. Instead,
 
 4. Return to ```Data Platform > Setup > Audience``` and add the connected audience to the Audience Output.
 
-5. Verify size of audience. You may have to wait until your audience has finished calculating as shown by the percentage marker under audience. Smaller audience sizes (< 100k) may not preview.
+5. Verify the size of the audience. You may need to wait until your audience has finished calculating, as shown by the percentage marker under audience. Smaller audience sizes (< 100k) may not preview.
 
 ![mparticle_audience_count](/mparticle_audience_count.png)
 
@@ -193,7 +193,7 @@ By default, mParticle does not have a way to map audiences to Mixpanel. Instead,
 
 ![mixpanel_audience_property](/mixpanel_audience_property.png)
 
-6. Create a cohort in Mixpanel looking for the audience ID or name if you specifed that in your setup.
+6. Create a cohort in Mixpanel looking for the audience ID or name if you specified that in your setup.
 
 ![mixpanel_mparticle_cohort](/mixpanel_mparticle_cohort.png)
 
@@ -202,31 +202,31 @@ By default, mParticle does not have a way to map audiences to Mixpanel. Instead,
 
 For debugging purposes, it can be useful to see exactly what mParticle is sending to Mixpanel. 
 
-You can validate this data through the [mParticle Live Stream](https://docs.mparticle.com/guides/platform-guide/live-stream/) and [Event Forwarding page](https://docs.mparticle.com/guides/platform-guide/event-forwarding/). You can also use the [mParticle Logger in your configuration](https://docs.mparticle.com/developers/client-sdks/web/custom-logger/) for real time errors with your implementation.
+You can validate this data through the [mParticle Live Stream](https://docs.mparticle.com/guides/platform-guide/live-stream/) and [Event Forwarding page](https://docs.mparticle.com/guides/platform-guide/event-forwarding/). You can also use the [mParticle Logger in your configuration](https://docs.mparticle.com/developers/client-sdks/web/custom-logger/) for real-time errors with your implementation.
 
 ### Live Stream
 
 The Live Stream provides a real-time view of all data flowing in and out of mParticle.
 
-Here you can filter by sources and examine the JSON data for specific events and which events and user attributes were included in a batch message.
+Here, you can filter by sources and examine the JSON data for specific events, and which events/user attributes were included in a batch message.
 
-Access the Live Stream page under ```Data Platform > Live Stream``` using the left navigation.
+Access the Live Stream page under `Data Platform > Live Stream` using the left navigation.
 
 ![live_stream](/mparticle_live_stream.png)
 
 ### Event Forwarding
 
-The Event Forwarding page provides an overview of how much data is ingested by your inputs and how much is forwarded to your connected output integrations.
+The Event Forwarding page provides an overview of the volume of data ingested by your inputs and the volume of data forwarded to your connected output integrations.
 
-Access the Event Forwarding page under ```Data Platform > Event Forwarding``` using the left navigation.
+Access the Event Forwarding page under `Data Platform > Event Forwarding` using the left navigation.
 
-Here, you can select your input(s) and any number of outputs to compare events ingested by mParticle and fowarded to Mixpanel to determine any unexpected discrepenceis or errors. You can also [add filters to your connections](https://docs.mparticle.com/guides/platform-guide/data-filter/) to control which data goes into Mixpanel.
+Here, you can select your input(s) and any number of outputs to compare events ingested by mParticle and forwarded to Mixpanel to determine any unexpected discrepancies or errors. You can also [add filters to your connections](https://docs.mparticle.com/guides/platform-guide/data-filter/) to control which data goes into Mixpanel.
 
 ![event_forwarding](/mparticle_event_forwarding.png)
 
 ### Logger
 
-To log warnings and other information, please see the [mParticle's custom logger documentation](https://docs.mparticle.com/developers/client-sdks/web/custom-logger/). For example, the Web SDK allows you to set "logLevel" to ```warning``` or ```verbose```
+To log warnings and other information, please see the [mParticle's custom logger documentation](https://docs.mparticle.com/developers/client-sdks/web/custom-logger/). For example, the Web SDK allows you to set "logLevel" to `warning` or `verbose`.
 
 ```
 window.mParticle = {
@@ -240,10 +240,11 @@ window.mParticle = {
 ```
 
 ## FAQ
+
 **1. Why are my mParticle data not appearing in my project?**
 
 This could be due to several reasons:
-* **Storing data in the EU:** A common issue is that the data in mParticle is enabled to be sent to an EU endpoint but the Mixpanel data is still being stored outside of the EU. Both endpoints for mParticle and Mixpanel need to point to the EU. Check your Mixpanel data residency in your project settings, and set your mParticle residency on under ```output configuration > Mixpanel Target Server```.
+* **Storing data in the EU:** A common issue is that the data in mParticle is enabled to be sent to an EU endpoint, but the Mixpanel data is still being stored outside of the EU. Both endpoints for mParticle and Mixpanel need to point to the EU. Check your Mixpanel data residency in your project settings, and set your mParticle residency under `output configuration > Mixpanel Target Server`.
 
 
 ![Mixpanel Residency](/mixpanel_data_residency) 
