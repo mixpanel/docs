@@ -220,7 +220,7 @@ mixpanel.init('YOUR_PROJECT_TOKEN', {
 
 When a Replay capture begins, a "Session Recording Checkpoint" event will appear in your project, tracked as `$mp_session_record`. You may use this event to verify whether you have implemented Session Replay correctly.
 
-If you are using the [recommended sampling method](/docs/session-replay/implement-session-replay/session-replay-web#sampling) to capture your Replays but having trouble finding the Replays in your project, try calling `start_session_recording()` manually and see if the `$mp_session_record` event appears. If it does appear but you are still struggling to locate your Replays, you may want to increase your sampling rate.
+If you are using the [recommended sampling method](/docs/tracking-methods/sdks/javascript/javascript-replay#sampling) to capture your Replays but having trouble finding the Replays in your project, try calling `start_session_recording()` manually and see if the `$mp_session_record` event appears. If it does appear but you are still struggling to locate your Replays, you may want to increase your sampling rate.
 
 You can also check the Home page for your project to check for any recent Replays listed in the "Latest Replays" card.
 
@@ -230,7 +230,7 @@ If you are still struggling to implement, [submit a request to our Support team]
 
 You can use Session Replay with customer data platforms (CDPs), such as [Segment](https://segment.com/) and [mParticle](https://www.mparticle.com/).
 
-In order to use Session Replay, your app must have the [Mixpanel Javascript SDK installed](/docs/tracking-methods/sdks/javascript#installing-the-library) with [Session Replay enabled](/docs/session-replay/implement-session-replay/session-replay-web#capturing-replays).
+In order to use Session Replay, your app must have the [Mixpanel Javascript SDK installed](/docs/tracking-methods/sdks/javascript#installing-the-library) with [Session Replay enabled](/docs/tracking-methods/sdks/javascript/javascript-replay#capturing-replays).
 
 Once you have included the Mixpanel SDK in your app add the following code snippets in order to connect your CDP's data stream with Mixpanel's Session Replay.
 
@@ -373,7 +373,7 @@ Mixpanel offers a privacy-first approach to Session Replay, including features s
 
 ### User Data
 
-The Mixpanel SDK will always mask all inputs. By default, all text on a page will also be masked unless a different `record_mask_text_selector` is specified (see [Additional Configuration](/docs/session-replay/implement-session-replay/session-replay-web#additional-configuration-options) above).
+The Mixpanel SDK will always mask all inputs. By default, all text on a page will also be masked unless a different `record_mask_text_selector` is specified (see [Additional Configuration](/docs/tracking-methods/sdks/javascript/javascript-replay#additional-configuration-options) above).
 
 Along with other data, the SDK respects all Do Not Track (DNT) settings as well as manual opt-out for any replay data. 
 
@@ -385,7 +385,7 @@ User replays are stored for 30 days after the time of ingestion. There is no way
 
 #### Can I prevent Session Replay from recording sensitive content?
 
-By default, all on-screen text elements are masked in replays. Additionally, you can customize how you leverage our SDK to fully control (1) where to record and (2) whom to record. Consider the [manual capture example scenarios](/docs/session-replay/implement-session-replay/session-replay-web#example-scenarios) and [init options](/docs/session-replay/implement-session-replay/session-replay-web#init-options) provided above to customize the replay capture of your implementation.
+By default, all on-screen text elements are masked in replays. Additionally, you can customize how you leverage our SDK to fully control (1) where to record and (2) whom to record. Consider the [manual capture example scenarios](/docs/tracking-methods/sdks/javascript/javascript-replay#example-scenarios) and [init options](/docs/tracking-methods/sdks/javascript/javascript-replay#init-options) provided above to customize the replay capture of your implementation.
 
 #### How can I estimate how many Replays I will generate?
 
