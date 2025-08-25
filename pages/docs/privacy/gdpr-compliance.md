@@ -25,7 +25,7 @@ As the processor of its customers’ data and to protect the privacy of informat
 Section 1. Events are automatically deleted after 2\* years on an ongoing basis from all projects.
 
 - The start of the retention period is the date that is transferred to Mixpanel with an Event (i.e., the “Event Date”), which typically corresponds to the date a user completed an action on a web or mobile application. In the event that an Event Date is not transferred to Mixpanel with an Event by our Customer, the Event Date is recorded as the date we received the Event.
-- As of September 1, 2025, Mixpanel's event retention period is 2 years. If your project was created prior to September 1, 2025 the retention period is 5 years; provided, that your project retention period will be reduced to 2 years in the event that you modify your plan or move to Mixpanel's Free Plan.
+- \*As of September 1, 2025, Mixpanel's event retention period is 2 years. If your project was created prior to September 1, 2025 the retention period is 5 years; provided, that your project retention period will be reduced to 2 years in the event that you modify your plan or move to Mixpanel's Free Plan.
 
 Section 2. User data is retained for the duration of an active Subscription Plan. Customers are given the ability to delete profiles using the [Engage API](https://developer.mixpanel.com/reference/delete-profile).
 
