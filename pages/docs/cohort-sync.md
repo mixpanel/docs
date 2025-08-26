@@ -1,6 +1,5 @@
 # Cohort Syncs Overview
 
-
 ## Limits
 Each project is limited to 60 dynamic (recurring) cohort syncs across all destinations. This limit helps ensure that syncs are fast and reliable. We recommend pruning older unused syncs to stay within the limit. There are no limit on the number of cohorts for static, or 1-time, syncs.
 
@@ -21,7 +20,7 @@ If these properties are not present in your project, users might not be matched 
 
 The email address and phone number properties will only show in the manual CSV exports for Google Ads and Facebook integrations.
 
-Note: Exporting group-level cohorts (Group Analytics) is not currently supported.
+> Note: Exporting group-level cohorts (Group Analytics) is not currently supported.
 
 ## Troubleshooting
 
@@ -61,7 +60,7 @@ To find more details on Failure errors, you can click in the Cohort within the I
 
 1. Under the integration section, select the cohort:
 ![image](https://user-images.githubusercontent.com/13734965/233539867-3bd94f9f-b50c-4939-9eb9-5879e0b2e8cf.png)
-2. If an error is available you will see the “View Error” button:
+2. If an error is available, you will see the “View Error” button:
 ![image](https://user-images.githubusercontent.com/13734965/233539900-58b14423-bdfd-4fb7-98ff-17576d54a5d8.png)
 3. Click on the “View Error” button to get more details.
 
