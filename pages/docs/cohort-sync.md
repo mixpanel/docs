@@ -21,6 +21,8 @@ If these properties are not present in your project, users might not be matched 
 
 The email address and phone number properties will only show in the manual CSV exports for Google Ads and Facebook integrations.
 
+Note: Exporting group-level cohorts (Group Analytics) is not currently supported.
+
 ## Troubleshooting
 
 Sometimes, you may find that the number of users shown in your cohort in Mixpanel does not reflect the number of users in the integration partner's interface. Please see below what could be causing this and how you can find out which users were successfully exported from Mixpanel.
