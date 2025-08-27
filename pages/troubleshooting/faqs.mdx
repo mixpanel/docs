@@ -153,9 +153,9 @@ export function FAQBox({ title, section, children }) {
 </FAQBox>
 
 <FAQBox title="How can I edit the event data inside my project?" section="Sending Data to Mixpanel">
-  You cannot directly edit the raw event data that has already been ingested into your Mixpanel project; events are immutable once received (unless imported via a [mirror sync warehouse connector](/docs/tracking-methods/warehouse-connectors#mirror). However, you can [hide unwanted events](/docs/data-governance/lexicon#hiding-data) from appearing in your reports and delete unwanted data.
+  You cannot directly edit the raw event data that has already been ingested into your Mixpanel project; events are immutable once received (unless imported via a [mirror sync warehouse connector](/docs/tracking-methods/warehouse-connectors#mirror)). However, you can [hide unwanted events](/docs/data-governance/lexicon#hiding-data) from appearing in your reports and delete unwanted data.
 
-  Learn more about the [Lexicon](/docs/data-governance/lexicon), [Data Deletion](/docs/data-governance/data-clean-up#2-deleting-problematic-data), and [Warehouse Connectors](/docs/tracking-methods/warehouse-connectors).
+  Learn more about [Lexicon](/docs/data-governance/lexicon), [Data Deletion](/docs/data-governance/data-clean-up#2-deleting-problematic-data), and [Warehouse Connectors](/docs/tracking-methods/warehouse-connectors).
 </FAQBox>
 
 <FAQBox title="How can I send data from my data warehouse to Mixpanel?" section="Sending Data to Mixpanel">
@@ -171,7 +171,7 @@ export function FAQBox({ title, section, children }) {
 
   **3. Data Warehouse Connector(Add-on)**: Mixpanel offers a [data warehouse connector](/docs/tracking-methods/warehouse-connectors) as an add-on for organizations on the Enterprise plan, which allows you to point Mixpanel to your data warehouse table, and Mixpanel manages the sync and cadence of data import. This is a managed solution and is easier for teams that want Mixpanel to handle the process. Contact your account manager to learn more about the pricing.
 
-  Learn more about the pricing for historical events on the Billing & Pricing doc](/docs/pricing#is-old-event-data-billed-when-imported-to-mixpanel).
+  Learn more about the pricing for historical events on the [Billing & Pricing doc](/docs/pricing#is-old-event-data-billed-when-imported-to-mixpanel).
 </FAQBox>
 
 <FAQBox title="Why do I see CORS errors in the console when Mixpanel requests in my website?" section="Sending Data to Mixpanel">
@@ -214,8 +214,8 @@ export function FAQBox({ title, section, children }) {
 
 <FAQBox title="What is the best way to send both client-side and server-side events?" section="Sending Data to Mixpanel">
   The best practice for sending both client-side and server-side events in Mixpanel is to use a **hybrid approach**:
-    - **Track critical business events (**such as purchases, sign-ups, and revenue events) **on the server side**. This ensures greater accuracy and reliability, as server-side events are not impacted by ad blockers, network interruptions, or client-side manipulation. Use Mixpanel’s server-side SDKs or direct API ingestion for this purpose.
-    - **Track user interactions and UI events (**such as button clicks and page views) **on the client side**. These events reflect real-time user behavior that only occurs in the browser or app and are best captured using Mixpanel’s client-side SDKs.
+    - **Track critical business events** (such as purchases, sign-ups, and revenue events) **on the server side**. This ensures greater accuracy and reliability, as server-side events are not impacted by ad blockers, network interruptions, or client-side manipulation. Use Mixpanel’s server-side SDKs or direct API ingestion for this purpose.
+    - **Track user interactions and UI events** (such as button clicks and page views) **on the client side**. These events reflect real-time user behavior that only occurs in the browser or app and are best captured using Mixpanel’s client-side SDKs.
 
   Learn more about [choosing the right tracking method](/docs/tracking-methods/choosing-the-right-method).
 </FAQBox>
