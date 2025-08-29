@@ -42,6 +42,8 @@ We also support additional data for extending your use cases with Mixpanel:
 ### Mixpanel's Migration Service
 If you have under 15M events in Amplitude, you can migrate your historical Amplitude data using Mixpanel's free migration service. 
 
+Note that while the migration tool is free to use, backfilling historical event data can have significant impact on your billing. Refer to [this section](/docs/pricing#are-monthly-events-calculated-based-on-ingestion-time-or-event-timestamp) for more details.
+
 Here's an example request to the migration service which you can customize:
 
 ```bash

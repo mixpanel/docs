@@ -10,6 +10,8 @@ Try unifying your marketing and product data in one place. This guide will outli
 
 Given GA4 has a similar data format to Mixpanel, it is possible to migrate some of your historical data to see trends. In the cases where historical data is essential, we recommend loading a year’s worth (or less) of historical data during your migration. This will allow your team to review year-over-year trends easily and do historical analysis as needed.
 
+Note that backfilling historical data can have significant impact on your billing. Refer to [this section](/docs/pricing#are-monthly-events-calculated-based-on-ingestion-time-or-event-timestamp) for more details.
+
 #### Loading historical data via Mixpanel BigQuery Warehouse Connector 
 
 ![image](/ga4_overview.png)
