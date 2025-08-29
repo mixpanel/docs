@@ -172,7 +172,7 @@ You can see if your account is on ingestion time billing in Organization Setting
 
 This depends on if your account is on ingestion time or event timestamp billing. Refer to the section above for details.
 
-For accounts on ingestion time billing, old events will be included in billing tallies since they’re calculated based on ingestion time. For example, if April 1st - April 30th is the current billing cycle, importing data from March **will** be included in the April event count. If you’re planning on backfilling a significant amount of historical events and need help understanding how it will impact your costs, please reach out to your Mixpanel account manager or contact support [https://mixpanel.com/get-support].
+For accounts on ingestion time billing, old events will be included in billing tallies since they’re calculated based on ingestion time. For example, if April 1st - April 30th is the current billing cycle, importing data from March **will** be included in the April event count. If you’re planning on backfilling a significant amount of historical events and need help understanding how it will impact your costs, please reach out to your Mixpanel account manager or [contact support](https://mixpanel.com/get-support).
 
 For legacy accounts on event timestamp billing, events imported with timestamps outside the currently billing cycle will not contribute to event tallies. For example: if April 1st - April 30th is the current billing cycle, importing data from March will **not** be included in the April event count.
 
