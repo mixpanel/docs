@@ -64,7 +64,7 @@ mp.track('12345', 'some_event', {
 })
 ```
 
-To track any geolocation data(`$city`, `$region`, `mp_country_code`), you will need to set the location property values in the event. [Learn more about best practices for geolocation.](/docs/tracking-best-practices/geolocation).
+To track any geolocation data (`$city`, `$region`, `mp_country_code`), you will need to set the location property values in the event. [Learn more about best practices for geolocation.](/docs/tracking-best-practices/geolocation)
 
 ### Importing Historical Events
 The [`track()`](http://mixpanel.github.io/mixpanel-python/#mixpanel.Mixpanel.track) function is designed for real-time tracking in a server-side environment and will trigger request to the [/track API endpoint](https://developer.mixpanel.com/reference/track-event), which will validate for events with a time stamp that is within the last 5 days of the request. **Events older than 5 days will not be ingested.**
@@ -100,7 +100,7 @@ Create [user profiles](/docs/data-structure/user-profiles) by setting profile pr
 
 The Python SDK provides a few functions for setting profile properties, which will trigger requests to the [/engage API endpoint](https://developer.mixpanel.com/reference/profile-set).
 
-To track any geolocation data(`$city`, `$region`, `$country_code`) for profile updates, you will need to set the location property values. [Learn more about best practices for geolocation.](/docs/tracking-best-practices/geolocation).
+To track any geolocation data (`$city`, `$region`, `$country_code`) for profile updates, you will need to set the location property values. [Learn more about best practices for geolocation.](/docs/tracking-best-practices/geolocation)
 
 ### Setting Profile Properties
 Set profile properties on a user profile by calling the [`people_set()`](https://mixpanel.github.io/mixpanel-python/#mixpanel.Mixpanel.people_set) method.
@@ -460,9 +460,7 @@ mp_in = Mixpanel(
 
 ### Geolocation
 
-The Python SDK sets the request IP address to `0` for events and profiles, meaning by default you are not tracking geolocation properties.  
-
-```
+The Python SDK sets the request IP address to `0` for events and profiles, meaning by default you are not tracking geolocation properties, unless explicitly included in the event or profile update.  
 
 ## Release History
 
