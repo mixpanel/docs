@@ -59,11 +59,12 @@ mp = Mixpanel('YOUR_PROJECT_TOKEN')
 # Track 'some_event' with "plan" event prop
 # With distinct_id set to '12345'
 mp.track('12345', 'some_event', {
-    'plan': 'premium'
+    'plan': 'premium',
+    'ip': 192.168.0.1
 })
 ```
 
-Mixpanel determines default geolocation data (`$city`, `$region`, `mp_country_code`) using the IP address on the incoming request. As all server-side calls will likely originate from the same IP (that is, the IP of your server), this can have the unintended effect of setting the location of all of your users to the location of your data center. [Learn more about best practices for geolocation.](/docs/tracking-best-practices/geolocation).
+To track any geolocation data (`$city`, `$region`, `mp_country_code`), you will need to set the location property values in the event. [Learn more about best practices for geolocation.](/docs/tracking-best-practices/geolocation)
 
 ### Importing Historical Events
 The [`track()`](http://mixpanel.github.io/mixpanel-python/#mixpanel.Mixpanel.track) function is designed for real-time tracking in a server-side environment and will trigger request to the [/track API endpoint](https://developer.mixpanel.com/reference/track-event), which will validate for events with a time stamp that is within the last 5 days of the request. **Events older than 5 days will not be ingested.**
@@ -99,7 +100,7 @@ Create [user profiles](/docs/data-structure/user-profiles) by setting profile pr
 
 The Python SDK provides a few functions for setting profile properties, which will trigger requests to the [/engage API endpoint](https://developer.mixpanel.com/reference/profile-set).
 
-Mixpanel determines default geolocation data (`$city`, `$region`, `mp_country_code`) using the IP address on the incoming request. As all server-side calls will likely originate from the same IP (that is, the IP of your server), this can have the unintended effect of setting the location of all of your users to the location of your data center. [Learn more about best practices for geolocation.](/docs/tracking-best-practices/geolocation).
+To track any geolocation data (`$city`, `$region`, `$country_code`) for profile updates, you will need to set the location property values. [Learn more about best practices for geolocation.](/docs/tracking-best-practices/geolocation)
 
 ### Setting Profile Properties
 Set profile properties on a user profile by calling the [`people_set()`](https://mixpanel.github.io/mixpanel-python/#mixpanel.Mixpanel.people_set) method.
@@ -122,7 +123,7 @@ mp.people_set('sample_distinct_id', {
 # update name property with new value
 mp.people_set('sample_distinct_id', {
     'name' : 'samantha'
-}, meta = {'$ignore_time' : True,'$ip' : 0})
+}, meta = {'$ignore_time' : True,'$ip' : 192.168.0.1})
 ```
 
 ### Other Types of Profile Updates
@@ -457,27 +458,9 @@ mp_in = Mixpanel(
 )
 ```
 
-### Disable Geolocation
+### Geolocation
 
-The Python SDK parse the request IP address to generate geolocation properties for events and profiles. You may want to disable them to prevent the unintentional setting of your data's geolocation to the location of your server that is sending the request, or to prevent geolocation data from being tracked entirely.
-
-To disable geolocation, set the `$ip` of your events to `0` and the `ip` of your profile updates to `0` using the `meta` argument.
-
-**Example Usage**
-```python
-mp = Mixpanel('YOUR_PROJECT_TOKEN')
-
-# disable geolocation on events
-mp.track('sample_distinct_id','some_event', {
-    'some_property': 'some_value'
-}, meta={'ip':0})
-
-# disable geolocation on profile updates
-mp.people_set('sample_distinct_id', {
-    'name' : 'sam',
-}, meta = {'$ip' : 0}) # do not update geolocation
-
-```
+The Python SDK sets the request IP address to `0` for events and profiles, meaning by default you are not tracking geolocation properties, unless explicitly included in the event or profile update.  
 
 ## Release History
 
