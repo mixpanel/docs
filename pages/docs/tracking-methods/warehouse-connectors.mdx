@@ -583,6 +583,8 @@ To understand the potential savings consider a 100 GB source table with 100 days
 - If this table is not partitioned and is synced daily the Append sync will scan the whole table (100 GB of data) each time it runs, or 3,000 GB of data per month.
 - If this table is partitioned by day and is synced daily with an Append sync the Append sync only scan the current day and previous day's partitions (2 GB of data) each time it runs, or 60 GB of data per day, a 50x improvement over the un-partitioned table.
 
+Note: [BigQuery's ingestion time partitions](https://cloud.google.com/bigquery/docs/partitioned-tables#ingestion_time) **are not supported** in Append mode.
+
 ---
 
 ### Full
