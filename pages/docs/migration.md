@@ -64,7 +64,7 @@ To perform a successful historical data load, we recommend:
 
 For a more in-depth look into the steps required for a successful project migration, check out our [project migration playbook](/guides/playbooks/project-migration). 
 
-Note that backfilling historical data can have significant impact on your billing. Refer to [this section](/docs/pricing#are-monthly-events-calculated-based-on-ingestion time-or-event-timestamp) for more details.
+Note that backfilling historical data can have significant impact on your billing. Refer to [this section](/docs/pricing#are-monthly-events-calculated-based-on-ingestion-time-or-event-timestamp) for more details.
 
 ## Change management migration of end users
 
