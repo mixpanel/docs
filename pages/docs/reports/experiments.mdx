@@ -53,20 +53,32 @@ Metric rows in the table are highlighted when any difference is calculated with 
 - Negative differences, where the variant value is lower than control, are highlighted in red
 - Statistically insignificant results remain gray
 
-### How do you read statistical significance?
+### How do you read and calculate statistical significance?
 
-The main reason you look at statistical significance (p-value) is to get confidence on what it means for the larger roll out.
+Statistical significance (p-value) helps you understand how confident you can be that the observed effect in an experiment reflects the true effect for all users.
 
 ![image](/exp_stat_sig.png)
 
-Max Significance Level (p-value) = [1-CI]/2 where CI = Confidence Interval
+**Max significance level (p-value)** = (1 − CI) / 2, where CI = Confidence Interval  
+In the example above, the maximum p-value is 0.025 [(1 − 0.95) / 2].  
 
-In the above image for example, max p=0.025 [(1-0.95)/2]
+So, if an experiment's results show:  
 
-So, if an experiment's results show 
+- **p ≤ 0.025**: The results are statistically significant. You can be 95% confident that the observed lift reflects the true effect.  
+- **p > 0.025**: The results are not statistically significant. You cannot be highly confident that the observed effect will hold broadly.  
 
-- p ≤ 0.025 : results are statistically significant for this metric, i.e you can be 95% confidence in the lift seen if the change is rolled out to all users.
-- p > 0.025 : results are not statistically significant for this metric, i.e you cannot be very confident on the results if the change is rolled out broadly.
+**Calculation formula:**
+
+\[
+Z = \frac{ \bar{X}_{variant} - \bar{X}_{control} }{ \sqrt{ \sigma_{variant}^2 + \sigma_{control}^2 } }
+\]
+
+- \(\bar{X}\): Observed metric value (mean)  
+- \(\sigma^2\): Variance of the metric in each group  
+
+The Z-score is converted to a p-value to determine statistical significance.
+
+
 
 ### How do you read lift?
 
