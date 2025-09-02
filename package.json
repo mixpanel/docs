@@ -24,6 +24,10 @@
     "url": "https://github.com/mixpanel/docs/issues"
   },
   "homepage": "https://github.com/mixpanel/docs#readme",
+  "engines": {
+    "node": ">=20.0.0 <21.0.0",
+    "npm": ">=10.0.0 <12.0.0"
+  },
   "dependencies": {
     "@docsearch/js": "3.9.0",
     "@docsearch/react": "3.9.0",
