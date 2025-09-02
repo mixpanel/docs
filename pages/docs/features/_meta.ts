@@ -1,13 +1,14 @@
 export default {
     "alerts": "Alerts",
-    "attribution": "Attribution",
     "embeds": "Embeds",
     "chart-customization": "Chart Customization",
+    "custom-buckets": "Custom Buckets",
     "custom-events": "Custom Events",
+    "computed-properties": "Computed Properties",
     "custom-properties": "Custom Properties",
     "mcp": "MCP Integration",
     "saved-metrics-and-behaviors": "Saved Metrics & Behaviors",
     "sessions": "Sessions",
-    "spark": "Spark",
-    "advanced": "Advanced"
+    "slack-integration": "Slack Integration",
+    "spark": "Spark"
 }

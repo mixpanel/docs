@@ -101,18 +101,32 @@ Examples of querying the identity mapping table are available for [BigQuery](/do
 ## Change Log
 
 <details>
+<summary><strong>2025-08-14 (US): Pipeline System Improvements By Incremental Export</strong></summary>
+ 
+We have deployed the Incremental Export Improvement for newly created pipelines with US data residency.
+
+The rollout of these updates to existing pipelines in all regions is scheduled for the near future. 
+Your pipeline will automatically transition to the new system when ready. Your data quality and completeness remain the same; only the processing method has improved.
+
+You can find out more about Incremental Export in the previous changelog below (2025-06-26).
+</details>
+
+<details>
 <summary><strong>2025-06-26: Pipeline System Improvements By Incremental Export</strong></summary>
 
-We're rolling out an improved pipeline system to make your data exports more efficient and reliable. We're deploying these improvements gradually across all customers starting with new pipelines in our EU and IN data residency. New pipelines in projects with US residency and existing pipelines in all regions will follow after. Your pipeline will automatically transition to the new system when ready. Your data quality and completeness remain exactly the same - only the processing method has improved.
+We're rolling out an improved pipeline system to improve the efficiency and reliability of your data exports. We're deploying these improvements gradually across all customers, starting with new pipelines in our EU and IN data residency. New pipelines in projects with US residency and existing pipelines in all regions will follow after. Your pipeline will automatically transition to the new system when ready. Your data quality and completeness remain the same - only the processing method has improved.
 
-### Whats affected?
-- **Events Pipelines with Sync Enabled Only**: This improvement only affects events pipelines that have sync enabled. People and identity mapping pipelines remain unchanged.
+**What is affected?**
 
-### Benefits
+- **Events Pipelines with Sync Enabled Only**: This improvement only affects event pipelines that have sync enabled. People and identity mapping pipelines remain unchanged.
+
+**Benefits**
+
 - **Elimination of data sync delays** - no more waiting for daily sync processes to detect and fix data discrepancies
 - **Complete data export** - all events are exported without the risk of missing late-arriving data. Late-arriving events are automatically exported regardless of how late they arrive, eliminating the previous 10-day sync window restriction
 
-### Changes You May Notice
+**Changes You May Notice**
+
 - **Event Count Display**: The event count shown per task in the UI now represents the total events processed per batch rather than events exported per day or per hour. Since each batch can span multiple days, this number may appear different from before.
 - **Backfill Process**: When a new pipeline is created, it will complete the full historical backfill first before starting regular processing. For example, if you create a pipeline on January 15th at 11 AM with a backfill from January 1st, the system will first export all events that arrived in Mixpanel before around January 15th 11 AM as the initial backfill, then begin processing any new events that arrive after around January 15th 11 AM, regardless of which date those events are for. Existing pipelines will have the last 10 days backfilled as part of the migration and then the new incremental behavior will start.
 - **Storage Location File Structure Changes**: Previous behavior of sync would replace files for a day when the day was re-synced. No sync means Mixpanel will no longer coalesce files for days when sync runs so files are no longer updated/removed. Incremental pipelines will instead add a new file with events seen in each day for each run of the pipeline meaning more small files are expected.
