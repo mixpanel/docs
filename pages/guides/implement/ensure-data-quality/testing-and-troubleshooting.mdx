@@ -1,0 +1,188 @@
+import { Callout, Steps } from 'nextra/components'
+
+# Testing and Troubleshooting
+
+Mixpanel provides a range of tools that can be leveraged to streamline the Quality Assurance process during implementation. These tools provide the ability to validate event triggers and property values in real-time, ensuring accurate data collection. Additionally, Mixpanel's debugging and logging features can be employed to identify and rectify integration issues early in the development process.
+
+## Debugging and Logging
+
+Enabling debug mode within the Mixpanel SDK aids in troubleshooting and identifying issues early in the implementation process. This generates detailed logs to the browser console or your development platform (e.g., Xcode, Android Studio) for each event and network call, providing valuable insights into the data being sent to Mixpanel. Mixpanel provides this debug mode option across a wide range of SDKs, including [JavaScript](/docs/tracking-methods/sdks/javascript), [React Native](/docs/tracking-methods/sdks/react-native), [Android](/docs/tracking-methods/sdks/android), [iOS(Objective-C)](/docs/tracking-methods/sdks/ios), [iOS(Swift)](/docs/tracking-methods/sdks/swift), [Flutter](/docs/tracking-methods/sdks/flutter), [Node.js](/docs/tracking-methods/sdks/flutter), and [PHP](/docs/tracking-methods/sdks/php).
+
+For example, you can enable debug mode in the JavaScript library by setting the `debug` configuration to `true` when initializing the Mixpanel object.
+
+```javascript JavaScript
+// Create an instance of the Mixpanel object with debug enabled
+mixpanel.init("YOUR_PROJECT_TOKEN", {
+    debug: true  // enable debug log in console
+    }
+);
+```
+
+It's a best practice to disable debug mode when deploying your code to production. This prevents unnecessary logging, which can impact application performance and potentially expose sensitive data. Alternatively, some SDKs allow you to programmatically control debug mode, enabling it only in development environments.
+
+```javascript Javascript
+// Assuming you have a way to determine the current environment
+const isDevelopment = process.env.NODE_ENV === 'development';
+
+// Initialize Mixpanel with debug mode enabled only in development
+mixpanel.init("YOUR_PROJECT_TOKEN", {
+    debug: isDevelopment
+    }
+);
+
+// Alternatively, you can set debug mode after initialization
+mixpanel.set_config({
+    debug: isDevelopment
+    }
+);
+```
+
+In addition to leveraging the debug mode offered by the SDKs, development teams should implement robust error handling for server-side integrations, including direct API calls and any third-party data ingestion tools used with Mixpanel.
+
+## Validating Events
+
+Mixpanel's **Events** report can be utilized to test and troubleshoot implementation by verifying that events are being triggered as expected and that properties are being populated with the correct values.
+
+To use the Events report for testing and troubleshooting, you can follow the below tips to narrow down the data.
+
+<Steps>
+
+{<h3>Find Your Users</h3>}
+
+Filter by event properties `$user_id`, `$device_id`, `$distinct_id`, or any user property (e.g., `$email`) to focus on a specific user. If you're using Mixpanel's JavaScript SDK, you can use `mixpanel.get_distinct_id()` in your browser console to find your own Distinct ID.
+
+{<h3>Set the Timeframe</h3>}
+
+Adjust the timeframe in the Events report to align with your testing or troubleshooting needs. Keep in mind that the report defaults to **Today**, so you may need to expand the timeframe to capture relevant data.
+
+{<h3>Focus on Key Events</h3>}
+
+Select the specific events you anticipate being triggered during the user journey you're testing. If these events can be triggered from multiple journeys, use event properties to filter and isolate the data relevant to your current test. Note that the Events report defaults to **All Events**, so selecting specific events of interest will be helpful.
+
+{<h3>Track Key Properties</h3>}
+
+Customize the Events report by selecting the specific properties you want to track. If you're using client-side SDKs and tracking numerous custom properties, use the **Your Properties** vs. **Mixpanel Properties** tabs to filter and focus on the data that's most relevant to your analysis.
+
+</Steps>
+
+<Callout type="info">
+**Ready to see it in action?**
+
+[Click here to see an interactive demo of the Events report.](https://mixpanel.navattic.com/4o5m0r6q)
+</Callout>
+
+### Utilizing the Events Report
+
+See below for more ways to utilize the Events report for troubleshooting.
+
+<Steps>
+
+{<h3>Monitor Event Frequency</h3>}
+
+Track the event count to ensure that the event is being triggered at the expected frequency within a user journey.
+
+{<h3>Inspect Property Values</h3>}
+
+Scrutinize the property values associated with the event to confirm that they are being populated correctly, contain the expected data types, and maintain consistent values.
+
+{<h3>Compare with Tracking Plan</h3>}
+
+Cross-reference the event and its associated properties with your Tracking Plan to ensure consistency and adherence to your data strategy.
+
+{<h3>Identify Anomalies</h3>}
+
+Look for any unexpected patterns or outliers in the event data that could indicate tracking issues or discrepancies between expected and actual user behavior.
+
+</Steps>
+
+## Inspecting Users
+
+Mixpanel's **Users** report can be employed to verify that user profiles are accurately populated, user properties are being tracked correctly, and that identity management is functioning as intended. This is particularly useful for debugging issues related to user identity, segmentation, and ensuring that user data is accurately associated with the correct profiles.
+
+<Callout type="info">
+For customers leveraging [Group Analytics](/docs/data-structure/group-analytics), the Users report can also be used to verify group profiles and events associated with a specific Group ID.
+</Callout>
+
+To use the Users report for testing and troubleshooting, follow the below tips to narrow down the data.
+
+<Steps>
+
+{<h3>Find Your Profile</h3>}
+
+Filter by the user property `$distinct_id`. (Remember that with the [Simplified API](/docs/tracking-methods/id-management#identity-merge-apis), a user's `$distinct_id` is initially their `$device_id` while they're anonymous. After identification, it permanently becomes the `$user_id`).
+
+{<h3>Segment Users</h3>}
+
+Create cohorts by selecting specific events and properties to isolate groups of users exhibiting particular behaviors relevant to your current test. Toggle between all **Users** and **Users with Profiles** dropdown to filter and focus on the users that's most relevant to your analysis. Note that the Users report defaults to **Users with Profiles**, which may exclude anonymous users or those without user properties.
+
+{<h3>Track Key Properties</h3>}
+
+Customize the Users report by selecting the specific user properties you want to analyze. This allows you to identify any unexpected values or inconsistencies.
+
+{<h3>Zoom In</h3>}
+
+Dive deeper into a specific user's Profile to access their Activity Feed, User Properties, and Identity Cluster. This granular view provides insights into their individual journey, including the events they triggered, their associated property values, and how their identity has been managed within Mixpanel.
+
+</Steps>
+
+<Callout type="info">
+**Ready to see it in action?**
+
+[Click here to see an interactive demo of the Users report.](https://mixpanel.navattic.com/k4i0av8)
+</Callout>
+
+### Utilizing the Users Report
+
+See below for more ways to utilize the Users report for troubleshooting.
+
+<Steps>
+
+{<h3>Validate User Property Updates</h3>}
+
+After implementing changes to how user properties are tracked or updated, examine individual user profiles to confirm that these changes are accurately reflected.
+
+{<h3>Debug User Segmentation Issues</h3>}
+
+If you're experiencing issues with user segmentation or cohorts, analyze user profiles and their event activity to pinpoint where users are being incorrectly assigned or excluded.
+
+{<h3>Investigate a Specific User</h3>}
+
+Analyze a user's journey through your product by examining their profile and activity feed; check if there are any missing events or events not being triggered correctly.
+
+{<h3>Validate Identity Management</h3>}
+
+Trace pre and post-login states within user profiles and verify if users’ identities are being associated correctly and that user data is being consolidated appropriately.
+
+</Steps>
+
+## Tracing Identity Management
+
+To accurately assess if a user's identity is being associated correctly, the **User Profile → Activity Feed** report is essential, as it is the only report that reflects both pre- and post-login activities, even before the identity resolution process is fully complete.
+
+![tracing_identity_management](/tracing_identity_management.png)
+
+However, If you suspect issues with user identity association on [Simplified API](docs/tracking-methods/id-management#identity-merge-apis), this [Sample Insights report](https://mixpanel.com/project/3018488/view/3536632/app/boards#id=6350211&editor-card-id=%22report-49423748%22) can also be helpful. By examining events sorted by time in a table visualization, and filtering on properties for the specific events in question, you can trace how `$user_id` and `$device_id` are being passed. Additionally, you can check for instances where the `$identity_failure_reason` property has a value of "errAnonDistinctIdAssignedAlready," which indicates IDs passed are not being associated correctly.
+
+If your Mixpanel project is not utilizing the Simplified API approach, please refer to Mixpanel's [Identity Management Overview](/docs/tracking-methods/id-management) guide for comprehensive details and alternative troubleshooting instructions.
+
+## Lexicon: Mixpanel's Data Dictionary
+
+Mixpanel's Lexicon serves as a central hub for managing metadata related to both Tracked Data (events, event properties, and user properties) and Computed Data ([Custom Events](/docs/features/custom-events), [Custom Properties](/docs/features/custom-properties), [Lookup Tables](/docs/data-structure/lookup-tables), [Formulas](/docs/reports/insights#formulas), and [Behaviors](/docs/features/saved-metrics-and-behaviors#saved-behaviors)) created within the Mixpanel UI.
+
+During implementation and quality assurance tests, it can be invaluable for troubleshooting by allowing you to:
+
+- **Review Properties Tracked:** Inspect which properties are being tracked for a specific event or compare properties across multiple events to ensure consistency.
+
+- **Identify New Events and Properties:** Surface new events and user properties that may not have been included in your initial Tracking Plan, helping you maintain data governance.
+
+- **Check Naming Consistencies:** Verify that event and property names adhere to established standards, preventing inconsistencies that can hinder data analysis.
+
+<Callout type="info">
+**Ready to see it in action?**
+
+[Click here to see an interactive demo of the Lexicon.](https://mixpanel.navattic.com/nli0v00)
+</Callout>
+
+While this module focuses on Lexicon's role in testing and troubleshooting, it's worth noting that Lexicon also plays a key part in **Data Governance**. This aspect is covered in depth within the **Establishing Data Governance** module, offered under the Mixpanel Onboarding learning path. For a more comprehensive understanding, refer to Mixpanel's documentation on [Lexicon](/docs/data-governance/lexicon).
+
+For more in-depth guidance on troubleshooting and debugging your Mixpanel implementation, refer to [Mixpanel's documentation](/docs/tracking-best-practices/debugging).
