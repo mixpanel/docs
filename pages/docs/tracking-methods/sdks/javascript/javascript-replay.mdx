@@ -218,11 +218,9 @@ mixpanel.init('YOUR_PROJECT_TOKEN', {
 `$mp_session_record` is exempt from your plan data allowance.
 </Callout>
 
-When a Replay capture begins, a "Session Recording Checkpoint" event will appear in your project, tracked as `$mp_session_record`. You may use this event to verify whether you have implemented Session Replay correctly.
+To check your implementation, select **Session Replay** from the side navigation in your Mixpanel project to see whether replays are being captured and appearing as expected. When a capture begins, a "Session Recording Checkpoint" event (`$mp_session_record`) also appears in your project; you can use this to verify that Session Replay is implemented correctly.
 
 If you are using the [recommended sampling method](/docs/tracking-methods/sdks/javascript/javascript-replay#sampling) to capture your Replays but having trouble finding the Replays in your project, try calling `start_session_recording()` manually and see if the `$mp_session_record` event appears. If it does appear but you are still struggling to locate your Replays, you may want to increase your sampling rate.
-
-You can also check the Home page for your project to check for any recent Replays listed in the "Latest Replays" card.
 
 If you are still struggling to implement, [submit a request to our Support team](https://mixpanel.com/get-support) for more assistance.
 
