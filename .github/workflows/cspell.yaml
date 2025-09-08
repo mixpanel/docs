@@ -9,7 +9,7 @@ jobs:
   spellcheck:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v5
       - uses: streetsidesoftware/cspell-action@v7
         with:
           # Define glob patterns to filter the files to be checked. Use a new line between patterns to define multiple patterns.
