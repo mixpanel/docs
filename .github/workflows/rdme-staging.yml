@@ -71,7 +71,7 @@ jobs:
       # Build PR Comment
       - name: Build PR comment
         id: build-pr-comment
-        uses: actions/github-script@v7
+        uses: actions/github-script@v8
         with:
           result-encoding: string
           script: |
