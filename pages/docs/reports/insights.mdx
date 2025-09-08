@@ -471,3 +471,12 @@ You can hover over any event and in the context panel, you now have the ability 
 You can see a few samples of an event to help you decide whether that's the right event you want for your analysis or which property you should use for filters/breakdowns.
 
 ![View Sample Events](/advanced-view-sample-events.gif)
+
+### Date Range Guardrails
+
+To enable a great self-serve experience and quick queries, there are some guardrails added to the date-ranges depending on you query type. Specifically
+- if you create an hourly granularity report, the date range can range be a max of 31 days
+- if you create a daily granularity report, the date range can be a max of 6 months
+- if you have reports with All Events, the date range can be a max of 93 days (i.e 3 months)
+- if you have reports with cohorts, the date range can include a max of 93 time intervals - whether it be 93 weeks, or 93 days which enables a report - last 3 months at daily granularity
+
