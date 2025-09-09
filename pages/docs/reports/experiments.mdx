@@ -16,13 +16,14 @@ The Experiment report analyzes how one variant impacts your metrics versus other
 
 ### Step 1: Select an Experiment
 
-Click 'New Experiment' from the Experiment report menu and select your experiment. Any experiment started in the last 30 days will automatically be detected and populate in the dropdown. To analyze experiments that started prior to 30 days, please hard-code the experiment name
+Click 'New Experiment' from the Experiment report menu and select your experiment. Any experiment started in the last 30 days will automatically be detected and populated in the dropdown. To analyze experiments that began before 30 days, please hard-code the experiment name
 
-NOTE: Only experiments tracked via exposure events, i.e $experiment_started, can be analyzed in the experiment report. Read more on how to track experiments here. 
-
+<Callout type="info">
+Only experiments tracked via exposure events, i.e, $experiment_started`, can be analyzed in the experiment report. Read more on how to track experiments [here](/docs/reports/experiments#adding-experiments-to-an-implementation). 
+</Callout>
 ### Step 2: Choose the ‘Control’ Variant
 
-Select the ‘Variant’ that represents your control. All your other variant(s) will be compared to the control, i.e, how much better they perform vs the control variant. 
+Select the ‘Variant’ that represents your control. All your other variant(s) will be compared to the control, i.e, how much better are they performing vs the control variant. 
 
 ### Step 3: Choose Success Metrics
 
@@ -66,7 +67,7 @@ In the above image for example, max p=0.025 [(1-0.95)/2]
 So, if an experiment's results show 
 
 - p ≤ 0.025: results are statistically significant for this metric, i.e, you can be 95% confident in the lift seen if the change is rolled out to all users.
-- p > 0.025: results are not statistically significant for this metric, i.,e you cannot be very confident in the results if the change is rolled out broadly.
+- p > 0.025: results are not statistically significant for this metric, i.e, you cannot be very confident in the results if the change is rolled out broadly.
 
 ### How do you read lift?
 
@@ -113,7 +114,7 @@ You can also add the experiment breakdowns and filters directly in a report via 
 
 The Experiment report behavior is powered by [borrowed properties](/docs/features/custom-properties#borrowed-properties). 
 
-For every user event, we identify if the event is performed after being exposed to an experiment. If it were, then we would  borrow the variant details from the tracked $experiment_started to attribute the event to the proper variant.
+For every user event, we identify if the event is performed after being exposed to an experiment. If it were, then we would borrow the variant details from the tracked `$experiment_started` to attribute the event to the proper variant.
 
 ### FAQs
 1. If a user switches variants mid-experiment, how do we calculate the impact on metrics? 
@@ -124,7 +125,7 @@ For every user event, we identify if the event is performed after being exposed 
     
     We consider the complete user’s behavior for every experiment that they are a part of. 
     
-    We believe this will still give accurate results for a particular experiment, as the users have been randomly allocated. So there should be enough similar users, ie. part of multiple experiments, across both control and variants for a particular experiment. 
+    We believe this will still give accurate results for a particular experiment, as the users have been randomly allocated. So there should be enough similar users, ie, part of multiple experiments, across both control and variants for a particular experiment. 
     
 3. For what time duration do we associate the user being exposed to an experiment to impact metrics? 
     
@@ -169,8 +170,8 @@ You can specify the event and property that should be used as the exposure event
 Experimentation is priced based on MEUs - Monthly Experiment Users. Only users exposed to an experiment in a month are counted towards this tally. 
 
 ### FAQ
-#### How are MEUs different than MTUs (Monthly Tracked Users)? 
-MTUs count any user who has tracked an event to the project in the calendar month. MEU is a subset of MTUs; it’s only  users who have tracked an exposure experiment event (ie, $experiment_started) in the calendar month.
+#### How are MEUs different than MTUs (Monthly Tracked Users)?
+MTUs count any user who has tracked an event to the project in the calendar month. MEU is a subset of MTU; it’s only users who have tracked an exposure experiment event (ie, `$experiment_started`) in the calendar month.
 
 #### How can I estimate MEUs?
 If you actively run experiments, you can look at the number of  monthly users exposed to an experiment. Note that the MEU calculation is different if users are, on average, exposed to 30 or more experiments in a month. 
@@ -214,8 +215,8 @@ You can see your experiment MEU usage by going to Organization settings > Plan D
 ### Post Experiment Analysis Decision 
 Once the experiment is ready to review, you can choose to 'End Analysis'. Once complete, you can log a decision, visible to all users, based on the experiment outcome:
 
-- Ship Variant (any of the variants): You had a statistically significant result. You have made a decision to ship a variant to all users. NOTE: Shipping variant here is just a log; it does not actually trigger rolling out the feature flag unless you are using Mixpanel feature flags (in beta today).
-- Ship None: You may not have had any statistically significant results, or even if you have statistically significant results, the lift is not sufficient to warrant a change in user experience. You decide not the ship the change.
+- Ship Variant (any of the variants): You had a statistically significant result. You have made a decision to ship a variant to all users. NOTE: Shipping variant here is just a log; it does not actually trigger rolling out the feature flag unless you are using Mixpanel feature flags **(in beta today)**.
+- Ship None: You may not have had any statistically significant results, or even if you have statistically significant results, the lift is not sufficient to warrant a change in user experience. You decide not to ship the change.
 - Defer Decision: You may have a direction you want to go, but need to sync with other stakeholders before confirming the decision. This is an example where you might defer decision, and come back at a later date and log the final decision.
 
 ### Experiment Management
