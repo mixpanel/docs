@@ -583,6 +583,8 @@ To understand the potential savings consider a 100 GB source table with 100 days
 - If this table is not partitioned and is synced daily the Append sync will scan the whole table (100 GB of data) each time it runs, or 3,000 GB of data per month.
 - If this table is partitioned by day and is synced daily with an Append sync the Append sync only scan the current day and previous day's partitions (2 GB of data) each time it runs, or 60 GB of data per day, a 50x improvement over the un-partitioned table.
 
+Note: [BigQuery's ingestion time partitions](https://cloud.google.com/bigquery/docs/partitioned-tables#ingestion_time) **are not supported** in Append mode.
+
 ---
 
 ### Full
@@ -674,15 +676,16 @@ Billing varies by operation type and connector mode. The tables below explain ho
 
 | **Event Operation**                        | **Sync Type** | **Supported** | **Billed** |
 |-------------------------------------------|---------------|---------------|-------------|
-| **New events (current calendar month)**  | One time      | ✅            | ✅          |
+| **Events**  | One time      | ✅            | ✅          |
 |                                           | Append        | ✅            | ✅          |
 |                                           | Mirror        | ✅            | ✅          |
-| **Historical events (backfills)**         | One time      | ✅            | ❌          |
-|                                           | Append        | ❌            | ❌          |
-|                                           | Mirror        | ✅            | ❌          |
 | **Updates & deletes**                     | One time      | ❌            | ❌          |
 |                                           | Append        | ❌            | ❌          |
 |                                           | Mirror        | ✅            | ✅          |
+
+The above table applies if your account uses ingestion time billing. If your account is on legacy event timestamp billing, only events sent in with timestamps in the current month will be included in billing. More details on ingestion time vs. event timestamp billing can be found in [this section](/docs/pricing#are-monthly-events-calculated-based-on-ingestion-time-or-event-timestamp).
+
+If you’re planning on backfilling a significant amount of historical events and need help understanding how it will impact your costs, please reach out to your Mixpanel account manager or [contact support](https://mixpanel.com/get-support).
 
 **Note on Updates**: If you already have an event in Mixpanel, for example, Event A with properties a,b,c,d but want to:
 
