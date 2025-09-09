@@ -35,7 +35,7 @@ This way, the user doesn't need to worry about initialization; just ensure that 
 
 #### Custom Initialization Options
 
-To add initialization options for capabilities like [session replay](https://docs.mixpanel.com/docs/tracking-methods/sdks/javascript#implementation--sampling) (`record_sessions_percent`)or [heatmaps](https://docs.mixpanel.com/docs/tracking-methods/sdks/javascript#heatmaps) (`record_heatmap_data`) to Google Tag Manager:
+To add initialization options for capabilities like [Session Replay](https://docs.mixpanel.com/docs/tracking-methods/sdks/javascript#implementation--sampling) (`record_sessions_percent`), [Heatmaps](https://docs.mixpanel.com/docs/tracking-methods/sdks/javascript#heatmaps) (`record_heatmap_data`), Routing data to [EU Servers for EU Data Residency](https://docs.mixpanel.com/docs/tracking-methods/sdks/javascript#eu-data-residency), or Routing data to [IN Servers for India Data Residency](https://docs.mixpanel.com/docs/tracking-methods/sdks/javascript#india-data-residency) to Google Tag Manager:
 
 1\. Add a new tag in GTM and choose the Mixpanel tag type
 
@@ -45,7 +45,12 @@ To add initialization options for capabilities like [session replay](https://doc
 
 4\. For Initialization, choose Set Options Manually
 
-5\. In the Option key / Option value section, add the relevant key-value pair according to your needs (e.g., `record_heatmap_data` as the key and set a boolean value of `true`)
+5\. In the Option key / Option value section, add the relevant key-value pair according to your needs
+
+For example: 
+- `record_heatmap_data` as the key and set a boolean value of `true`
+- `api_host: https://api-eu.mixpanel.com` if your project has EU Data Residency
+- `api_host: https://api-in.mixpanel.com` if your project has India Data Residency
 
 6\. For the Triggering section, choose an early GTM lifecycle event like Initialization \- All Pages or Consent Initialization \- All Pages
 
