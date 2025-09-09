@@ -590,7 +590,7 @@ A few commonly used group methods are highlighted below:
 
 ## Session Replay
 
-Install the [Session Replay SDK for Android](/docs/tracking-methods/sdks/android/android-replay) to record replay data. Learn more about [Session Replay](/docs/session-replay) and [implementing Session Replay on Android](/docs/session-replay/implement-session-replay/session-replay-android).
+Install the [Session Replay SDK for Android](/docs/tracking-methods/sdks/android/android-replay) to record replay data. Learn more about [Session Replay](/docs/session-replay) and [implementing Session Replay on Android](/docs/tracking-methods/sdks/android/android-replay).
 
 ## Debug Mode
 
@@ -732,6 +732,43 @@ If you're linking to other applications using the Bolts framework, Mixpanel will
 ...
 bolts.AppLinkNavigation.navigateInBackground(this, "http://anotherapp.com/app/link");
 ...
+```
+
+## Tracking Via Proxy
+
+This guide demonstrates how to route events from Mixpanel's Android SDKs via a proxy in your own domain. This is useful to reduce the likelihood of ad-blockers impacting your tracking.
+
+There are two steps: setting up a proxy server and pointing the SDK at your server.
+
+**Step 1: Set up a proxy server**
+The simplest way is to use our [sample nginx config](https://github.com/mixpanel/tracking-proxy). This config redirects any calls made to your proxy server to Mixpanel.
+
+**Step 2: Point Android SDK at your server**
+
+Add the following line, replacing `YOUR_PROXY_DOMAIN` with your proxy server's domain.
+
+**Example Usage**
+```java
+// route data to your proxy server
+mixpanel.setServerURL("https://<YOUR_PROXY_DOMAIN>");
+```
+
+## Backup Host
+
+When you set a backup host, the SDK will first attempt to send data to the primary Mixpanel endpoint. If this request fails, the SDK will then automatically retry the request using the specified backup host. The SDK will use the same URL path, protocol (HTTP/HTTPS), and query parameters as the original request, only replacing the primary host portion of the URL with the backup host.
+
+**Example Usage via SDK**
+```java
+// route data to your backup host
+mixpanel.setBackupHost("my.backuphost.com");
+```
+**Example Usage via AndroidManifest.xml**
+
+You can also set your backup host in your `AndroidManifest.xml`:
+
+```xml Java
+<meta-data android:name="com.mixpanel.android.MPConfig.BackupHost" 
+           android:value="my.backuphost.com" />
 ```
 
 ## Release History

@@ -1,7 +1,43 @@
-// * Usage: Sends an event with stack trace (if available) to Rollbar
+// * Usage: Sends an event with stack trace (if available) to Sentry
 // * For API responses (usually just errors), please use
-// * `trackResponse({ sendToRollbar: true })` to send
-// * sync'd items to Mixpanel + Rollbar
+// * `trackResponse({ sendToSentry: true })` to send
+// * sync'd items to Mixpanel + Sentry
+
+import * as SentryCore from "@sentry/core";
+import * as Sentry from "@sentry/react";
+import type { Integration } from "@sentry/core";
+
+const MIXPANEL_DOMAINS = [
+    `https://cdn.mxpnl.com`,
+    `https://docs.mixpanel.com`,
+    /^https:\/\/docs-git-(.+?)-mixpanel\.vercel\.app/,
+];
+
+const ENV = process.env.NODE_ENV;
+
+export const SENTRY_VARS = {
+    debug: false,
+    environment: ENV,
+    stackParser: Sentry.defaultStackParser,
+    transport: Sentry.makeFetchTransport,
+    dsn: `https://6200201fbaac39435129c90af2fc30cb@o81318.ingest.us.sentry.io/4509680694984704`, // docs project
+    sendDefaultPii: false,
+    allowUrls: MIXPANEL_DOMAINS,
+    // disables session replay by default
+    replaysSessionSampleRate: 0,
+    ignoreErrors: [`Failed to fetch`, `Load failed`],
+    integrations: (integrations: Integration[]) => {
+        return [
+            /** disables the http integration, we do not care about failed HTTP responses in Sentry */
+            ...integrations.filter(
+                (integration) => integration.name !== `HttpClient`,
+            ),
+
+            /** for production environments, records sessions leading up to an error */
+            ...(ENV === `production` ? [Sentry.replayIntegration()] : []),
+        ];
+    },
+};
 
 export function isBrowserEnv(): boolean {
     return typeof window !== `undefined`;
@@ -22,91 +58,50 @@ function maybeWrapAsError(arg: string | Error) {
     }
 }
 
-interface LogMessage {
-    rollbarLink?: string;
-    stack?: string;
-    message: string;
-}
-
-const logList: { [k in LogLevel]: LogMessage[] } = {
-    error: [],
-    info: [],
-    warn: [],
-};
-
-export const errorReportingUtils = {
-    getConsoleLogs,
-};
-
-function getConsoleLogs(): { [k in LogLevel]: LogMessage[] } {
-    return logList;
-}
-
 /**
- * Reports some kind of message to console and Rollbar (if defined).
+ * Reports some kind of message to console and sentry (if defined).
  *
  * Raw strings will be wrapped in an Error to preserve
  * a stack trace.
  *
- * The rollbar client's log methods accept arguments in any order, see
- * https://docs.rollbar.com/docs/rollbarjs-configuration-reference#rollbarlog
- *
  * @param logLevel - error, info, or warn type
  * @param error - the message to display
  * @param info - extra parameters to log, or a nice message
- * @param rest - any additional params for rollbar
+ * @param rest - any additional params for sentry
  */
-function reportToConsoleAndRollbar(
+function reportToConsoleAndSentry(
     logLevel: LogLevel,
     message: string | Error,
     info?: any,
     ...rest: any[]
 ) {
     const maybeError = maybeWrapAsError(message);
-    const baseMessage = message instanceof Error ? message.message : message;
-    const prettyMessage = `${baseMessage}${info ? `\n` + JSON.stringify(info) : ``}`;
-    const logMsg: LogMessage = {
-        message: prettyMessage,
-        stack: maybeError.stack,
-    };
     // eslint-disable-next-line no-console
     console[logLevel](message, info, ...rest);
 
-    // @ts-ignore
-    if (isBrowserEnv() && window[`Rollbar`]) {
-        // @ts-ignore
-        const rollbarResp = window[`Rollbar`]?.[logLevel]?.(
-            maybeError,
-            info,
-            ...rest,
-        );
-        if (rollbarResp?.uuid) {
-            logMsg.rollbarLink = `https://rollbar.com/item/uuid/?uuid=${rollbarResp.uuid}`;
+    if (isBrowserEnv() && window.sentry) {
+        if (logLevel === LogLevel.ERROR) {
+            Sentry.withScope((scope) => {
+                scope.setExtras(info);
+                scope.setExtras({ ...rest });
+                Sentry.captureException(maybeError);
+            });
+        } else {
+            Sentry.withScope((scope) => {
+                scope.setExtras(info);
+                scope.setExtras({ ...rest });
+                Sentry.captureMessage(
+                    maybeError.toString(),
+                    SentryCore.severityLevelFromString(logLevel),
+                );
+            });
         }
     }
-    logList[logLevel].push(logMsg);
-}
-
-// For capturing stray error window error events that we don't want to log to Rollbar
-export function logTopLevelError(ev: ErrorEvent) {
-    // TODO some shared const list for this?
-    if (
-        [
-            `ResizeObserver loop limit exceeded`,
-            `ResizeObserver loop completed with undelivered notifications.`,
-        ].includes(ev.message)
-    ) {
-        return;
-    }
-    const logMsg: LogMessage = {
-        message: `${ev.message} (${ev.filename}: ${ev.lineno})`,
-    };
-    logList.error.push(logMsg);
 }
 
 function createReporterFunc(logLevel: LogLevel) {
     return function (message: string | Error, info?: any, ...rest: any[]) {
-        reportToConsoleAndRollbar(logLevel, message, info, ...rest);
+        reportToConsoleAndSentry(logLevel, message, info, ...rest);
     };
 }
 

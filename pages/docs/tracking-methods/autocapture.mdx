@@ -25,10 +25,16 @@ By default, Autocapture will automatically collect the following predefined even
 - Form interactions (e.g., form submitted)
 - Element interactions, including clicks and changes on page elements
 - Attribution
+- Rage clicks
 
 When you enable Autocapture, you will start collecting these predefined events and property types, and they will appear for your use in analysis in your Mixpanel instance. Within your Mixpanel instance, these events will be displayed using preset labels such as “[Auto] Page View” and “[Auto] Element Click”.
 
 Autocapture events will all be tracked as events that start with `$mp_`  and will start with [Auto] as a prefix in Mixpanel, so if used in combination with other tracking and ingestion methods, you will be able to tell the difference.
+
+### Rage Clicks
+A rage click is when a user clicks on the same spot on your webpage in quick succession. It happens because the user expects something to happen, but nothing does — so they click again and again, showing they are frustrated. Rage clicks are tracked as `[Auto] Rage Click` events. 
+
+By default, Mixpanel considers 4 clicks within a second and between 30 pixels apart as a rage click. You can configure these qualifying criteria to something that best suits your application by overriding the defaults in the [Javascript SDK](/docs/tracking-methods/sdks/javascript).
 
 ## Autocapture vs Precision Tracking
 There are two ways to capture events:

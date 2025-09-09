@@ -17,7 +17,7 @@ Typically, we recommend using /import for server-side integrations as it is more
 | --------------------------- | ---------------------------------------------- | ----------------------------------------------------- |
 | Events per request          | 2000                                           | 2000                                                  |
 | Authentication              | Project Token, intended for untrusted clients. | Project Secret/Service Accounts, intended for server-side integration. |
-| Compression                 | Gzip allowed (only when calling the API directly. Gzip not available in the SDK)                                          | Gzip allowed                                          |
+| Compression                 | Gzip allowed                                   | Gzip allowed                                          |
 | Content-Type                | application/x-www-form-urlencoded              | application/json or application/x-ndjson              |
 | Ingesting historical events | Last 5 days only.                              | Any time after 1971-01-01.                            |
 

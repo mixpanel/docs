@@ -17,7 +17,7 @@
 /docs/admin/sso/okta /docs/access-security/single-sign-on/okta
 /docs/admin/two-factor-authentication /docs/access-security/two-factor-authentication
 /docs/analysis/advanced/alerts /docs/features/alerts
-/docs/analysis/advanced/attribution /docs/features/attribution
+/docs/analysis/advanced/attribution /docs/features/computed-properties#attribution
 /docs/analysis/advanced/cohorts /docs/users/cohorts
 /docs/analysis/advanced/custom-events /docs/features/custom-events
 /docs/analysis/advanced/custom-properties /docs/features/custom-properties
@@ -229,7 +229,7 @@
 /docs/tracking/javascript-quickstart /docs/quickstart/install-mixpanel?sdk=javascript
 /docs/tracking/mobile /docs/tracking/reference/mobile-sdk
 /docs/tracking/mobile/android /docs/tracking-methods/sdks/android
-/docs/tracking/reference/androi /docs/tracking-methods/sdks/android
+/docs/tracking/reference/android /docs/tracking-methods/sdks/android
 /docs/tracking/reference/android /docs/tracking-methods/sdks/android
 /docs/tracking/reference/data-model /docs/how-it-works/concepts
 /docs/tracking/reference/default-properties /docs/data-structure/property-reference
@@ -272,3 +272,9 @@
 /docs/users/overview /docs/users
 /guides /guides/onboarding-overview/
 /guides/analytics-strategy /guides/plan/framework
+/docs/features/attribution /docs/features/computed-properties#attribution
+/docs/session-replay/implement-session-replay /docs/session-replay
+/docs/session-replay/implement-session-replay/session-replay-web /docs/tracking-methods/sdks/javascript/javascript-replay
+/docs/session-replay/implement-session-replay/session-replay-ios /docs/tracking-methods/sdks/swift/swift-replay
+/docs/session-replay/implement-session-replay/session-replay-android /docs/tracking-methods/sdks/android/android-replay
+/docs/features/advanced /docs/reports

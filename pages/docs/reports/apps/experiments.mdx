@@ -1,16 +1,16 @@
 import { Callout } from 'nextra/components'
 
-# Experiments: Measure the impact of your A/B testing
+# Experiments (Deprecating Soon)
 
 <Callout type="info">
-    Users on an Enterprise plan can access the Experiment report. See our [pricing page](https://mixpanel.com/pricing/) for more details.
+    This app will be deprecated on Nov 1, 2025. To analyze Experiments in Mixpanel, please use our new [Experiments Report](/docs/reports/experiments)
 </Callout>
 
 ## Overview
 
-The Experiments report analyzes how A/B test variants impact your metrics.  Experiments does this by calculating the difference between variant groups and the effects of the variants on selected events.
+The Experiments report analyzes how A/B test variants impact your metrics.  Experiments do this by calculating the difference between variant groups and the effects of the variants on selected events.
 
-Experiments requires an A/B test, its variant, and a dashboard that contains the metrics you are measuring. An experiment query calculates the variants’ effects on the dashboard metrics by calculating the delta and the lift between the two variants.
+Experiments require an A/B test, its variant, and a dashboard that contains the metrics you are measuring. An experiment query calculates the variants’ effects on the dashboard metrics by calculating the delta and the lift between the two variants.
 
 To access Experiments, click on **Applications** in the top right navigation, then select **Experiments**.
 
@@ -20,7 +20,7 @@ To access Experiments, click on **Applications** in the top right navigation, 
 
 ### Step 1: Prepare a Board
 
-To use Experiments you must have a board that contains the various reports you wish to analyze your experiment.
+To use Experiments, you must have a board that contains the various reports you wish to analyze in your experiment.
 
 ### Step 2: Select an Experiment
 
@@ -34,7 +34,7 @@ Select the group of users that represents your control group and your variant gr
 
 In a Custom Experiment, the control and variant groups can be a cohort of any other users filtered by events and properties.
 
-It is important to ensure that the groups are mutually exclusive. For example, in onboarding flow testing, users exposed to the original, not new, onboarding flow should be the control. Introducing users that could qualify under the control and variant group may abstract the report results.
+It is important to ensure that the groups are mutually exclusive. For example, in onboarding flow testing, users exposed to the original, not new, onboarding flow should be the control. Introducing users who could qualify under the control and variant group may abstract the report results.
 
 ### Step 4: Select a Date Range
 
@@ -129,7 +129,7 @@ If you are using our color-coded thresholds of 95%, there is a 5% chance that an
 
 Mixpanel will automatically populate the Experiment, Control, and Variant dropdowns within the report if sent in the proper format.
 
-Mixpanel scans for experiments that began in the date range you’ve selected for the report.  If any are found, then they will appear under the “Tracked Experiments” sub-header. To do this you must send data in the following format:
+Mixpanel scans for experiments that began in the date range you’ve selected for the report.  If any are found, then they will appear under the “Tracked Experiments” sub-header. To do this, you must send data in the following format:
 
 **Event Name:** “$experiment_started”
 

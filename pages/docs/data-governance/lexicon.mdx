@@ -20,10 +20,11 @@ Tracked Data
 3. Profile Properties
 
 Computed Data
-1. Custom Events
-2. Lookup Tables
-3. Formulas
-4. Behaviors
+1. Cohorts
+2. Custom Events
+3. Lookup Tables
+4. Formulas
+5. Behaviors
 
 ### Events
 
@@ -85,6 +86,10 @@ This table contains descriptions for each field in the “Profile Properties” 
 If you have Group Analytics enabled, you will see a dropdown on the Profile Properties tab that will let you select any Group Types that you may have configured. The default selection will be "User Profiles" which correspond to User properties.
 
 ![Lexicon Profile Properties](/lexicon-group-analytics-GIF.gif)
+
+### Cohorts
+
+[Cohorts](/docs/users/cohorts) are groups of users that share a certain set of properties or who perform a similar sequence of events. You can create cohorts based on user properties, events, and other criteria to analyze user behavior and engagement.
 
 ### Custom Events
 
@@ -207,6 +212,10 @@ By merging “Purchase” and “purchase item” into a single event named “P
 Being able to merge events can help streamline your implementation, reduce your costs by eliminating redundant events being sent to Mixpanel, and simplify report analysis because you’re only using optimal events and properties.
 Do note however that user profile properties cannot be merged at this time.
 
+<Callout type="info">
+ After you merge an event into another, it no longer appears in reports or custom events that reference it. Update those reports with the new merged event to maintain accuracy.
+</Callout>
+
 **Merging Events**
 
 To merge events:
@@ -300,14 +309,14 @@ You can use an existing Token, or create a new token with a Token Role of Worksp
 
 For the Segment Workplace value, we recommend using the Slug name located in the Segment dashboard: Settings > General Settings.
 
-Once you have your Segment Token & Workspace, head over to Lexicon and Select Import from Segment.
+Once you have your Segment Token & Workspace, head over to Lexicon and select Import from Segment.
 - Enter your Token & Workspace
 - Select the Plan you want to import from Segment
 - Review the Events and Profile Properties that will be imported
 - Import your Segment Plan into Lexicon
 
 ### Avo.app Import
-In order to import your data dictionary from Avo.app, you will need to enable an integration with Mixpanel. The following information would be necessary in order to complete this integration from Avo.app:
+To import your data dictionary from Avo.app, you will need to enable an integration with Mixpanel. The following information would be necessary to complete this integration from Avo.app:
 - Mixpanel Project ID (`https://mixpanel.com/project/[Mixpanel Project ID]/...`)
 - Mixpanel Service Account Username & Secret (Owner or Admin role required)
 To publish your Avo data dictionary to Lexicon, click the "Publish to Lexicon" button in the integration interface.
@@ -317,7 +326,7 @@ Click [here](https://www.avo.app/docs/publishing/integrations) for more informat
 ### mParticle Import
 When importing a data dictionary from mParticle, navigate to your Data Plan and select Download Plan Version from the upper right menu.
 
-- Click Import on the top right hand side of Lexicon
+- Click Import on the top right-hand side of Lexicon
 - Select mParticle
 - Select the downloaded JSON file from mParticle Data Plans
 - Review Events, Event Properties, and User Profile Properties to be imported.
@@ -329,18 +338,18 @@ Mixpanel provides a suite of API endpoints for you to Retrieve, Create, and Dele
 
 ### Lexicon UI vs Lexicon Schemas API
 
-The payload returned from the Lexicon Schemas API is most likely not an exact match of the Lexicon as seen in your project's UI. This because the Lexicon Schemas are a subset of the data that appears in Lexicon UI.
+The payload returned from the Lexicon Schemas API is most likely not an exact match of the Lexicon as seen in your project's UI. This is because the Lexicon Schemas are a subset of the data that appears in Lexicon UI.
 
-The Lexicon UI contain entities that were sent to your project within the last 30 days or has an associated Lexicon Schema.
+The Lexicon UI contains entities that were sent to your project within the last 30 days or have an associated Lexicon Schema.
 
-A Lexicon Schema is created when one of the following take place:
+A Lexicon Schema is created when one of the following takes place:
 1. When a schema is created through the Lexicon Schema API
 2. When a new entity is imported to your Lexicon via CSV import
 3. When metadata about an entity is added via the UI (such as adding description, hiding/showing, adding tags, etc.)
 
-When using the Lexicon Schema API to export, only entities that has a Schema are exported. Entities that are seen in your Lexicon UI that were sent within the last 30 days without a Schema will not be reflected in the Lexicon Schema payload.
+When using the Lexicon Schema API to export, only entities that have a Schema are exported. Entities that are seen in your Lexicon UI that were sent within the last 30 days without a Schema will not be reflected in the Lexicon Schema payload.
 
-To export all of your entities from the Lexicon, please use the [CSV export method](/docs/data-governance/lexicon#export-and-import-lexicon-data) which will export everything as seen in the UI, which includes recently sent entities and all entities with a Schema.
+To export all of your entities from the Lexicon, please use the [CSV export method](/docs/data-governance/lexicon#export-and-import-lexicon-data), which will export everything as seen in the UI, which includes recently sent entities and all entities with a Schema.
 
 ## Lexicon Event Details 
 
