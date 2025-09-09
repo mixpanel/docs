@@ -9,7 +9,7 @@ Mixpanel currently has three versions of ID management:
 
 To determine your current ID Management version, navigate to <b>Identity Merge</b> setting under your [Organization Settings](https://mixpanel.com/settings/org/id-management) (for Organization Owners/Admins) or [Project Settings](https://mixpanel.com/settings/project/id-management) (for Project Owners/Admins). 
 
-The Organization Settings for Identity Merge determines the default identity management for every new subsequent project created:
+The Organization Settings for Identity Merge determines the default identity management for every new project created:
 
 - **Disabled**: Legacy ID Management
 - **Original API**: Original ID Merge
@@ -25,15 +25,15 @@ You can change the identity management version for a specific project (without a
 
 ## Deciding to Migrate
 
-It is currently not possible to automatically convert an existing project, already populated with data, on Legacy or Original ID Merge to Simplified ID Merge. This is because Simplified ID Merge has a very different backend architecture. <b>To adopt Simplified ID Merge, you would need to set up a new empty Mixpanel project</b>. 
+It is currently not possible to automatically convert an existing project, already populated with data, from Legacy or Original ID Merge to Simplified ID Merge. This is because Simplified ID Merge has a very different backend architecture. <b>To adopt Simplified ID Merge, you would need to set up a new empty Mixpanel project</b>. 
 
-This guide assists you in evaluating whether a migration to Simplified ID Merge will benefit your tracking based on your current identity management requirements and future product plans. We'll outline the pros and cons of each ID Management version and guide you through key considerations to make an informed decision. We'll also provide details on the resources required at your end should you decide to proceed with the migration. 
+This guide assists you in evaluating whether a migration to Simplified ID Merge will benefit your tracking based on your current identity management requirements and future product plans. We'll outline the pros and cons of each ID Management version and guide you through key considerations to make an informed decision. We'll also provide details on the resources required on your end should you decide to proceed with the migration. 
 
 ### On Legacy ID Management
 
 The main limitation of Legacy ID Management was that anonymous user states could become orphaned. This happens when an anonymous user was initially tracked on one platform or device, signs up as a user, and later on moved to another platform or device, triggering various anonymous events before logging in. The anonymous events on the second platform would be orphaned, resulting in duplicated users on Mixpanel. 
 
-Aliasing on Legacy ID Management can only be done once. Once a User ID is aliased to an Anonymous ID (typically on the 1st device where they started using your product), subsequent attempts to alias the same User ID to a different Anonymous ID (generate from a different platform or device) will fail. Here’s a diagram illustrating how a typical user journey on different devices ends up creating an orphaned user.
+Aliasing on Legacy ID Management can only be done once. Once a User ID is aliased to an Anonymous ID (typically on the 1st device where they started using your product), subsequent attempts to alias the same User ID to a different Anonymous ID (generated from a different platform or device) will fail. Here’s a diagram illustrating how a typical user journey on different devices ends up creating an orphaned user.
 
 ![image](/Tracking/legacy-id-management.png)
 
@@ -42,23 +42,23 @@ Aliasing on Legacy ID Management can only be done once. Once a User ID is aliase
 The lack of a retroactive identity merging feature means that orphaned users are created whenever new Anonymous IDs are introduced during user interactions across multiple sessions, devices, and platforms. This prevents you from getting a holistic view of the user's journey. 
 
 ><b>Staying on Legacy ID Management</b> <br />
-> Note: If you are only tracking authenticated users (i.e. don't track events while user is anonymous), you don't need the retroactive identity merging feature in Simplified ID Merge and should not consider the migration. We have preserved the documentation on the Legacy ID Management [here](https://github.com/mixpanel/docs/blob/main/legacy/aliases.md). 
+> Note: If you are only tracking authenticated users (i.e. don't track events while the user is anonymous), you don't need the retroactive identity merging feature in Simplified ID Merge and should not consider the migration. We have preserved the documentation on the Legacy ID Management [here](https://github.com/mixpanel/docs/blob/main/legacy/aliases.md). 
 
 ### On Original ID Merge
 
 While retroactive identity merging is supported on Original ID Merge, the main limitation is that each user's ID cluster is limited to a maximum of 500 Distinct IDs. Upon reaching this limit, any new Distinct ID can no longer be merged into the same ID cluster. They will then become orphaned (duplicate users on Mixpanel), preventing you from getting a holistic view of the user's journey. 
 
-Reaching the 500 Distinct IDs per ID cluster limit is possible, when the process of generating new Anonymous IDs through `reset()` call on logout, and adding them to the ID cluster repeats 500 times. The `reset()` call is typically implemented in products where multiple users are sharing the same device. This ensures that anonymous events post logout are linked to the next user who logins in, rather than the last user who logout. If some of your users are approaching this cluster limit, you should revisit your implementation and consider removing the `reset()` call, unless there is a compelling use case where the benefits outweigh the implications of reaching the ID cluster limit. 
+Reaching the 500 Distinct IDs per ID cluster limit is possible when the process of generating new Anonymous IDs through the `reset()` call on logout, and adding them to the ID cluster repeats 500 times. The `reset()` call is typically implemented in products where multiple users are sharing the same device. This ensures that anonymous events post logout are linked to the next user who logins in, rather than the last user who logout. If some of your users are approaching this cluster limit, you should revisit your implementation and consider removing the `reset()` call, unless there is a compelling use case where the benefits outweigh the implications of reaching the ID cluster limit. 
 
 Also, if you are considering Simplified ID Merge, it's important to note that it does not support multiple identified IDs (i.e. User IDs) per ID cluster. This is supported on Original ID Merge via special events such as \$merge and \$create_alias but they are not supported on Simplified ID Merge as the approach to identity management is completely different, more details [here](/docs/tracking-methods/id-management/identifying-users-simplified#example-user-flows).
 
 ><b>Staying on Original ID Merge</b>
 >- If you don’t generally support multiple users sharing the same device, and don’t have a compelling use case requiring `reset()` calls on logout (or if you are implementing via server-side and do not generate new anonymous IDs for the same user), you are unlikely to run into the limit of 500 IDs per ID cluster, and should not consider the migration.  
->- You have ID management requirements which are not supported in Simplified ID Merge (i.e. the need the support of multiple identified IDs per user.)
+>- You have ID management requirements that are not supported in Simplified ID Merge (e.g. the need to support multiple identified IDs per user)
 
 ## Understanding Simplified ID Merge
 
-Unlike Legacy ID Management, which requires an explicit alias call to connect anonymous to identified state, or Original ID Merge, which requires special identity events (i.e. \$identify, \$create_alias, and \$merge) to initiate identity merging; <b>Simplified ID Merge only requires including reserved event properties `$device_id` and `$user_id` on the events for identity merging to take place</b>. You can learn more about Simplified ID Merge [here](/docs/tracking-methods/id-management/identifying-users). Here’s a quick examples to illustrate: 
+Unlike Legacy ID Management, which requires an explicit alias call to connect anonymous to identified state, or Original ID Merge, which requires special identity events (i.e. \$identify, \$create_alias, and \$merge) to initiate identity merging; <b>Simplified ID Merge only requires including reserved event properties `$device_id` and `$user_id` on the events for identity merging to take place</b>. You can learn more about Simplified ID Merge [here](/docs/tracking-methods/id-management/identifying-users). Here’s a quick example to illustrate: 
 
 1. When a user is anonymous, the events should include a `$device_id` property that stores the Anonymous ID.
 ```
@@ -350,7 +350,7 @@ For mobile apps, adoption of the latest app version may take some time. This mea
 
 <br />
 
-Before starting the backfilling process, it’s important to have a discussion internally to determine the volume of historical data that needs to be migrated. It’s advisable to migrate only what you need (i.e. recent data actively queried by the team) as this is more manageable and resource-efficient. 
+Before starting the backfilling process, it’s important to have a discussion internally to determine the volume of historical data that needs to be migrated. It’s advisable to migrate only what you need (i.e. recent data actively queried by the team) as this is more manageable and resource-efficient. Note that backfilling historical data can have significant impact on your billing. Refer to [this section](/docs/pricing#are-monthly-events-calculated-based-on-ingestion-time-or-event-timestamp) for more details.
 
 - Mixpanel Client-Side SDKs, by default, use the /track API endpoint which accepts events up to 5 days old, so it is advisable to initiate the backfill process only after the data for a given day has stabilized to avoid the need for multiple backfills.
 - If waiting data to stabilize is not feasible, consider using `mp_processing_time_ms` property (UTC timestamp of when the event was processed by our servers) to identify late-arriving events and selectively backfill them into the new project.
