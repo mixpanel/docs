@@ -350,7 +350,7 @@ For mobile apps, adoption of the latest app version may take some time. This mea
 
 <br />
 
-Before starting the backfilling process, it’s important to have a discussion internally to determine the volume of historical data that needs to be migrated. It’s advisable to migrate only what you need (i.e. recent data actively queried by the team) as this is more manageable and resource-efficient. 
+Before starting the backfilling process, it’s important to have a discussion internally to determine the volume of historical data that needs to be migrated. It’s advisable to migrate only what you need (i.e. recent data actively queried by the team) as this is more manageable and resource-efficient. Note that backfilling historical data can have significant impact on your billing. Refer to [this section](/docs/pricing#are-monthly-events-calculated-based-on-ingestion-time-or-event-timestamp) for more details.
 
 - Mixpanel Client-Side SDKs, by default, use the /track API endpoint which accepts events up to 5 days old, so it is advisable to initiate the backfill process only after the data for a given day has stabilized to avoid the need for multiple backfills.
 - If waiting data to stabilize is not feasible, consider using `mp_processing_time_ms` property (UTC timestamp of when the event was processed by our servers) to identify late-arriving events and selectively backfill them into the new project.

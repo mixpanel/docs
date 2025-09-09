@@ -212,7 +212,7 @@ You can get an overview of how Group Profiles relate to Mixpanel's Data Model un
 The end time will be inferred from the next event sent with a higher `Start Timestamp`. If you do not have an updated value for a property and simply want it to become inactive at a certain timestamp, please set up your DWH table to set undefined for the property at the time that it becomes inactive/expires.
 
 ### How do I set the initial set of profile properties for the user?
-Historical profile properties can only be imported through a Warehouse Connector sync. For more information about the connectors and which are supported, see our [docs](https://docs.mixpanel.com/docs/tracking/warehouse-connectors). There is currently no other method to import historical profile properties or set defaults. To set initial values, please ensure that your warehouse table has the rows covering the historical period you want to analyze.
+Historical profile properties can only be imported through a Warehouse Connector sync. For more information about the connectors and which are supported, see our [docs](https://docs.mixpanel.com/docs/tracking-methods/warehouse-connectors). There is currently no other method to import historical profile properties or set defaults. To set initial values, please ensure that your warehouse table has the rows covering the historical period you want to analyze.
 
 ### What if I have the same property name sent as a regular profile property as well as a historic property?
 If a regular profile property shares a name with an historic property, the two properties will be treated as distinct and separate entities (they will not be de-dupped).

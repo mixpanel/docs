@@ -1,0 +1,591 @@
+export function FAQBox({ title, section, children }) {
+  return (
+    <details
+      open={false}
+      className="last-of-type:mb-0 rounded-xl bg-[#f5f2f2] p-0 mt-6"
+      onClick={() =>
+        mixpanel.track("[Docs] FAQ Item Expanded", {
+          "faq-question": title,
+          ...(section && { "faq-section": section }),
+        })
+      }
+    >
+      <summary>
+        <strong className="text-lg font-medium ">{title}</strong>
+      </summary>
+      <div className="nx-p-2">{children}</div>
+    </details>
+  );
+}
+
+# Frequently Asked Questions
+
+## General
+
+<div className="faqComponent" >
+
+<FAQBox title="What does Mixpanel do?" section="General">
+  Mixpanel is a product analytics platform that helps businesses track user interactions with digital products such as websites and mobile apps. It provides detailed insights into user behavior, allowing teams to analyze usage patterns, measure engagement, and optimize the user experience. With features like event tracking, funnel analysis, cohort reports, and A/B testing, Mixpanel enables data-driven decision-making to improve product performance and growth.
+
+  Mixpanel offers a variety of ingestion SDKs and import/export integrations to make it easy to collect and use product analytics data across platforms.
+
+  [Learn more about Mixpanel](/docs/what-is-mixpanel) and [send your first event](/docs/quickstart).
+</FAQBox>
+
+<FAQBox title="Can I demo Mixpanel?" section="General">
+  Mixpanel offers sample datasets representing a range of use cases (including B2B, AI, and e-commerce) to help you learn the platform's features effectively. To access these datasets, [create a Mixpanel account](https://mixpanel.com/signup/), log in, then select [Mixpanel Demo Sample Datasets](https://mixpanel.com/api/app/demo_project?show-demo-dataset-modal=true) from the project menu dropdown.
+  
+  You may also [book a demo with our team](https://mixpanel.com/contact-us/demo/).
+</FAQBox>
+
+<FAQBox title="How much does it cost to use Mixpanel?" section="General">
+  Mixpanel offers flexible pricing through the Free, Growth, and Enterprise plans. You can explore the features available in each plan on our [pricing page](https://mixpanel.com/pricing/). The page includes a Plan Builder tool that helps you estimate your cost based on projected data usage.
+</FAQBox>
+
+</div>
+
+## Sending Data to Mixpanel
+
+<div className="faqComponent" >
+
+<FAQBox title="Why can’t I see any data in my Mixpanel project?" section="Sending Data to Mixpanel">
+  There are several common reasons why you might not see any data in your Mixpanel project:
+
+    1. **Incorrect Project Token** - Using the wrong project token in your initialization code will lead to your tracked data not arriving to your project. Always verify that the token matches [the token shown in your project settings](/docs/orgs-and-projects/managing-projects#find-your-project-tokens).
+    2. **Mismatched Data Residency** - If your Mixpanel project data residency setting does not match the API endpoint you are sending data to, your data will **not be ingested**. If your project data residency is set to EU or India, make sure to route your data to the correct API server URL in your initialization code. Learn more about [EU Residency](/docs/privacy/eu-residency) and [India Residency](/docs/privacy/in-residency).
+    3. **Implementation Issues** - Implementation errors can prevent Mixpanel SDK methods from triggering as expected. To help identify and resolve these issues during development, [enable debug mode in your SDK](/docs/tracking-best-practices/debugging#enable-debug-mode). This will provide logs of the Mixpanel requests being triggered, along with the associated payloads.
+
+  Learn more about [debugging your implementation](/docs/tracking-best-practices/debugging).
+</FAQBox>
+
+<FAQBox title="What methods are available for importing data into Mixpanel?" section="Sending Data to Mixpanel">
+  You can use any [Mixpanel SDKs](/docs/tracking-methods/sdks) to track and send events directly from your applications, both on the client and server side.
+
+  Mixpanel supports direct imports from data warehouses such as Snowflake, BigQuery, Redshift, and Databricks through [Warehouse Connectors](/docs/tracking-methods/warehouse-connectors). You can set up [recurring syncs](/docs/tracking-methods/warehouse-connectors#sync-modes) to keep Mixpanel in sync with your warehouse data.
+
+  If you use a CDP like Segment or Rudderstack, you can add Mixpanel as a downstream destination to receive your data. Learn more about [data ingestion integrations](/docs/tracking-methods/integrations).
+</FAQBox>
+
+<FAQBox title="How does ad-blockers affect Mixpanel tracking?" section="Sending Data to Mixpanel">
+  Ad-blockers can significantly affect Mixpanel tracking, particularly when using the client-side JavaScript SDK. These blockers and privacy extensions often target known analytics endpoints (such as Mixpanel's), preventing events from being sent and recorded. As a result, users with ad blockers enabled may not be tracked in Mixpanel, leading to discrepancies between backend data and Mixpanel reports. Depending on your audience and the types of blockers in use, an estimated 30% or more of client-side events may be impacted.
+
+  To reduce the impact of ad-blockers, use server-side tracking for critical events (server-side requests are not subject to ad blocking) and implement a proxy server to route client-side requests through your own domain (making them less likely to be blocked).
+  
+  Read more about [the differences between client-side and server-side tracking](/docs/tracking-methods/choosing-the-right-method).
+</FAQBox>
+
+<FAQBox title="How do I exclude bots from my tracking?" section="Sending Data to Mixpanel">
+  By default, [Mixpanel's JavaScript SDK](/docs/tracking-methods/sdks/javascript) automatically blocks traffic from known web crawlers, as listed [here](https://github.com/mixpanel/mixpanel-js/blob/8ac526e5cb8563d11e2206046ab986c6491ac6d7/src/utils.js#L900C1-L925C3). All other traffic is processed normally and ingested into your project.
+
+  To further control bot traffic, you can implement custom filtering in your code. This involves identifying common patterns among your bots and setting the super property `$ignore: true` to exclude those events at ingestion. 
+  
+  Learn more about [managing bot traffic](/docs/tracking-best-practices/bot-traffic).
+</FAQBox>
+
+<FAQBox title="Why are my user profiles all set to the same location?" section="Sending Data to Mixpanel">
+  If all user profiles in Mixpanel display the same location, it is likely because you are sending data through a server-side implementation or a CDP (like Segment or Rudderstack). In these cases, Mixpanel uses the server's IP address for geolocation instead of the end user's, resulting in all users being assigned the same location (such as Boardman, Oregon for Segment or Ashburn, Virginia for Rudderstack).
+
+  By default, Mixpanel updates a user's geolocation each time a user property is created or modified. If you don't explicitly include the user's real IP address in your payload, Mixpanel defaults to the server's IP.
+
+  To resolve this, you can:
+    - Pass the actual client IP using the `$ip`  in your payload,
+    - Manually set geolocation properties like `$city`, `$region`, and `$country_code`, or
+    - Set `$ip` to `0` to prevent Mixpanel from updating the geolocation entirely.
+
+  Learn more about [geolocation](/docs/tracking-best-practices/geolocation) and other [server-side implementation best practices](/docs/tracking-best-practices/server-side-best-practices).
+</FAQBox>
+
+<FAQBox title="How do I override the default geolocation set by Mixpanel when sending data from a server?" section="Sending Data to Mixpanel">
+  By default, Mixpanel determines the geolocation of users and events based on the IP address of the request. When using client-side tracking, this reflects the end user's location. With server-side tracking, it reflects the server's location.
+
+  To override the default geolocation set by Mixpanel, you can:
+    - Pass the actual client IP using the `$ip`  in your payload
+    - Manually set geolocation properties such as `$city`, `$region`, and `$country_code`
+    - Specify the exact coordinates by setting the `$latitude` and `$longitude` properties in your payload
+  
+  Learn more about [geolocation](/docs/tracking-best-practices/geolocation).
+</FAQBox>
+
+<FAQBox title="How do I track downloads and installs from Apple App Store and Google Play Store?" section="Sending Data to Mixpanel">
+  Tracking downloads and installs from the Apple App Store and Google Play Store in Mixpanel cannot be done directly, as neither app store provides this data to Mixpanel out-of-the-box.
+
+  **For Google Play Store (Android):** You can use the [**Play Install Referrer Library**](https://developer.android.com/google/play/installreferrer/library) to retrieve the referrer URL when the app is first opened. This allows you to capture some attribution data (such as campaign source) and send it to Mixpanel as event properties. However, this only works for a subset of attribution data and does not provide the total number of downloads—only installs where the app is opened and the referrer is available
+
+  **For Apple App Store (iOS):** The App Store strips attribution data before the user downloads the app, so you cannot directly track the source or count of installs via Mixpanel. To track channel attribution on iOS, you need to use a mobile attribution partner (such as Adjust, AppsFlyer, or Branch). These partners can capture install and attribution data and send it to Mixpanel for analysis.
+
+  Learn more about [Traffic Attribution](docs/tracking-best-practices/traffic-attribution) and our [attribution integration partners](https://mixpanel.com/partners/integrations?categories=attribution-deep-linking).
+</FAQBox>
+
+<FAQBox title="How do I track first-touch UTM tags?" section="Sending Data to Mixpanel">
+  To track first-touch UTM tags in Mixpanel, you can rely on the default behavior of the Mixpanel JavaScript SDK. When a user visits your site for the first time with UTM parameters in the URL, the SDK will:
+    - Automatically capture the UTM parameters from the landing page URL (such as `utm_source`, `utm_medium`, `utm_campaign`, etc.) and add them to events fired from that page load.
+    - Store these first-seen UTM parameters as user profile properties prefixed with `initial_` (e.g., `initial_utm_source`, `initial_utm_campaign`). These properties represent the first-touch attribution and will persist on the user profile for future reference.
+
+  **No extra configuration is needed** for first-touch tracking if you are using the default SDK settings and identifying users normally. The UTM parameters will be persisted as [super properties](/docs/data-structure/events-and-properties#super-properties) in a last-touch manner and the initial values will be set on the user profile automatically in a first-touch manner.
+
+  If you are using a server-side implementation or a third-party integration, you must manually set these UTM properties.
+
+  We recommend disabling UTM persistence for compatibility with the [Attribution](/docs/features/attribution) feature. To disable UTM persistence, set `stop_utm_persistence: true` when initializing the SDK.
+
+  Learn more about [UTM tracking](/docs/tracking-best-practices/traffic-attribution#web-attribution).
+</FAQBox>
+
+<FAQBox title="How do I track last-touch UTM tags?" section="Sending Data to Mixpanel">
+  By default, UTM parameters are persisted as [super properties](/docs/data-structure/events-and-properties#super-properties) in all events and is updated when a new UTM parameter is detected in subsequent page loads (which aligns with last-touch attribution).
+
+  We recommend disabling UTM persistence for compatibility with the [Attribution](/docs/features/attribution) feature. To disable UTM persistence, set `stop_utm_persistence: true` when initializing the SDK.
+  
+  Learn more about UTM tracking [here](/docs/tracking-best-practices/traffic-attribution#web-attribution).
+</FAQBox>
+
+<FAQBox title="Why do I see Session Start and Session End events in my project?" section="Sending Data to Mixpanel">
+  **Session Start** and **Session End** events are automatically computed based on the events already in your project. These are **virtual events;** they are not sent from your application but are generated by Mixpanel at query time within the UI and reports. These virtual events do not count toward your data allowance.
+
+  The definition of a session, when it starts and ends, depends on your project's session settings, which may be [timeout-based](/docs/features/sessions#timeout-based-sessions), [event-based](docs/features/sessions#event-based-sessions), or [property-based](/docs/features/sessions#property-based-sessions). You can use these virtual events in reports such as Insights, Funnels, and Flows. However, they do not appear in your raw events list and cannot be exported via the API, as they are not stored as actual events in your data store.
+  
+  Learn more about [Sessions](/docs/features/sessions).
+</FAQBox>
+
+<FAQBox title="What are super properties?" section="Sending Data to Mixpanel">
+  [Super properties](/docs/data-structure/events-and-properties#super-properties) in Mixpanel are event properties that you define once and are automatically included with every event tracked from the client-side SDKs. They are stored in the user's local storage or cookie, so you don't need to manually add them to each event. This is useful for properties that provide important context across multiple events, such as user type, app version, or campaign source.
+
+  You can register super properties with the [JavaScript SDK](/docs/tracking-methods/sdks/javascript#setting-super-properties), [Android SDK](/docs/tracking-methods/sdks/android#setting-super-properties), [Swift SDK](/docs/tracking-methods/sdks/swift#setting-super-properties), [iOS SDK](/docs/tracking-methods/sdks/ios#setting-super-properties), and the [React SDK](/docs/tracking-methods/sdks/react-native#setting-super-properties).
+</FAQBox>
+
+<FAQBox title="How can I edit the event data inside my project?" section="Sending Data to Mixpanel">
+  You cannot directly edit the raw event data that has already been ingested into your Mixpanel project; events are immutable once received (unless imported via a [mirror sync warehouse connector](/docs/tracking-methods/warehouse-connectors#mirror)). However, you can [hide unwanted events](/docs/data-governance/lexicon#hiding-data) from appearing in your reports and delete unwanted data.
+
+  Learn more about [Lexicon](/docs/data-governance/lexicon), [Data Deletion](/docs/data-governance/data-clean-up#2-deleting-problematic-data), and [Warehouse Connectors](/docs/tracking-methods/warehouse-connectors).
+</FAQBox>
+
+<FAQBox title="How can I send data from my data warehouse to Mixpanel?" section="Sending Data to Mixpanel">
+  You can send data from your data warehouse to Mixpanel using [Warehouse Connectors](/docs/tracking-methods/warehouse-connectors), which offer native integrations with Redshift, Snowflake, BigQuery, and Databricks. This codeless setup allows you to configure recurring syncs, ensuring Mixpanel stays up to date with your warehouse data.
+</FAQBox>
+
+<FAQBox title="How can I do a one-time import of historic events? How much does it cost?" section="Sending Data to Mixpanel">
+  To do an initial import of data into Mixpanel, there are several methods available:
+
+  **1. SDKs (Software Development Kits)**: You can use [Mixpanel's SDKs](/docs/tracking-methods/sdks) to send data directly from your application. This is a common approach for ongoing event tracking, but it can also be used for initial imports if you replay historical events through the SDKs. 
+
+  **2. Import API**: Mixpanel provides an [Import API](https://developer.mixpanel.com/reference/import-events) that allows you to send data directly to Mixpanel. This method is managed by your team, and you can automate API calls to send data as needed. 
+
+  **3. Data Warehouse Connector(Add-on)**: Mixpanel offers a [data warehouse connector](/docs/tracking-methods/warehouse-connectors) as an add-on for organizations on the Enterprise plan, which allows you to point Mixpanel to your data warehouse table, and Mixpanel manages the sync and cadence of data import. This is a managed solution and is easier for teams that want Mixpanel to handle the process. Contact your account manager to learn more about the pricing.
+
+  Learn more about the pricing for historical events on the [Billing & Pricing doc](/docs/pricing#is-old-event-data-billed-when-imported-to-mixpanel).
+</FAQBox>
+
+<FAQBox title="Why do I see CORS errors in the console when Mixpanel requests in my website?" section="Sending Data to Mixpanel">
+  CORS (Cross-Origin Resource Sharing) errors appear in your console when Mixpanel requests from your website are blocked by the browser's security policy. This typically happens because the Mixpanel server response does not include the necessary CORS headers (like `Access-Control-Allow-Origin`) to allow your domain to access the resource.
+
+  Mixpanel requires you to send cross-origin HTTP requests (requests sent to a different server than the one hosting your web application), so you need to setup your environment to allow this. Use browser developer tools to inspect the failed request and see which headers are missing or mismatched.
+  
+  Learn more about [CORS errors](https://developer.mozilla.org/en-US/docs/Web/HTTP/Guides/CORS/Errors).
+</FAQBox>
+
+<FAQBox title="How do we send data to Mixpanel?" section="Sending Data to Mixpanel">
+  You can use [Mixpanel's SDKs](/docs/tracking-methods/sdks) to track and send events directly from your applications, both on the client and server side.
+
+  Mixpanel supports direct imports from data warehouses such as Snowflake, BigQuery, Redshift, and Databricks through [Warehouse Connectors](/docs/tracking-methods/warehouse-connectors). You can set up recurring syncs to keep Mixpanel in sync with your warehouse data.
+
+  If you use a CDP like Segment or Rudderstack, you can add Mixpanel as a downstream destination to receive your data.
+
+  Learn more about [Tracking Methods](/docs/tracking-methods).
+</FAQBox>
+
+<FAQBox title="Can Mixpanel integrate with our current data model or database?" section="Sending Data to Mixpanel">
+  Mixpanel is flexible and can integrate with most data models or databases, either directly or through data transformation and import methods.
+
+  If your data is stored in a data warehouse (such as BigQuery, Redshift, Snowflake, or Databricks), Mixpanel's [Warehouse Connectors](/docs/tracking-methods/warehouse-connectors) allow you to sync tables or views from your warehouse into Mixpanel. This integration is codeless and can keep your Mixpanel data in sync with your backend systems
+
+  If you are using a CDP such as Segment or Rudderstack, you can set Mixpanel as a downstream destination to stream data from your existing sources.
+
+  Learn more about [Tracking Methods](/docs/tracking-methods).
+</FAQBox>
+
+<FAQBox title="How do we handle sensitive or private data?" section="Sending Data to Mixpanel">
+  Mixpanel does not store personally identifiable information (PII) unless you explicitly choose to track it. You have full control over the data you send and should avoid including raw PII (such as names, email addresses, or phone numbers) unless absolutely necessary.
+
+  Mixpanel also provides tools to help you honor user privacy, including options to support opt-out requests and manage data responsibly. Learn more about how to [protect user data](/docs/privacy/protecting-user-data).
+
+  With [Data Views](/docs/data-governance/data-views-and-classification#data-views-overview), you can create filtered views of your project data and assign access to specific teams or users.
+
+  Additionally, [Data Classification](/docs/data-governance/data-views-and-classification#data-classification) lets you mark certain properties as classified, restricting visibility to only authorized users within your project.
+</FAQBox>
+
+<FAQBox title="What is the best way to send both client-side and server-side events?" section="Sending Data to Mixpanel">
+  The best practice for sending both client-side and server-side events in Mixpanel is to use a **hybrid approach**:
+    - **Track critical business events** (such as purchases, sign-ups, and revenue events) **on the server side**. This ensures greater accuracy and reliability, as server-side events are not impacted by ad blockers, network interruptions, or client-side manipulation. Use Mixpanel’s server-side SDKs or direct API ingestion for this purpose.
+    - **Track user interactions and UI events** (such as button clicks and page views) **on the client side**. These events reflect real-time user behavior that only occurs in the browser or app and are best captured using Mixpanel’s client-side SDKs.
+
+  Learn more about [choosing the right tracking method](/docs/tracking-methods/choosing-the-right-method).
+</FAQBox>
+
+<FAQBox title="How do we ensure the data is accurate and implementation is correct?" section="Sending Data to Mixpanel">
+  To ensure your Mixpanel data is accurate and your implementation is correct, follow these best practices:
+  1. **Use Separate Development and Production Projects:** Always set up at least two Mixpanel projects, one for development and one for production. Implement and test all tracking in the development project first. This prevents test or incorrect data from polluting your production analytics. Learn more about setting up [developer environments](/docs/tracking-best-practices/developer-environments).
+  2. **Validate Events and Properties:** Use Mixpanel's Events view to confirm that events are arriving as expected. Manually trigger events and search for them using user-level identifiers (like `distinct_id`). Inspect event properties for correctness, data type, and naming conventions (Mixpanel is case sensitive). Learn more about [debugging your implementation](/docs/tracking-best-practices/debugging).
+  3. **Iterate and Update Tracking Plan:** After each product update or when adding new events, update your tracking plan, get sign-off from a data governance owner, and repeat the QA process in the development project before deploying to production. Learn more about [creating a tracking plan](/docs/tracking-best-practices/tracking-plan) and establishing [data standards](/docs/data-governance/data-standards).
+</FAQBox>
+
+<FAQBox title="How do I anonymize an actual known user?" section="Sending Data to Mixpanel">
+  Mixpanel does not require any identifying information about users. You can generate a hash of a unique user ID (such as your internal user ID) and use that hash as the user's ID when calling the `.identify()` method in the SDKs. This way, the user cannot be traced back to their real identity, but you can still analyze their behavior in aggregate. The hash should only be reversible by you, not by Mixpanel or anyone else.
+
+  To anonymize a user who has already been tracked, first export all data associated with that user. Then, delete the user's data using Mixpanel's GDPR-compliant deletion methods. After reviewing the exported data, remove any personally identifiable information (PII), and reimport the sanitized data as needed once the deletion has been fully processed.
+
+  Learn more about [anonymizing users](/docs/privacy/protecting-user-data#anonymizing-users) and submitting [GDPR requests](/docs/privacy/end-user-data-management).
+</FAQBox>
+
+</div>
+
+## Identity Management in Mixpanel
+
+<div className="faqComponent" >
+
+<FAQBox title="What is a distinct_id?" section="Identity Management in Mixpanel">
+  A **distinct_id** in Mixpanel is the unique identifier used to track a user across events and profile updates. This ID allows Mixpanel to attribute actions and properties to the correct user, ensuring accurate analytics and reporting.
+
+  When two events have the same distinct_id, they are considered to be performed by the same unique user. If two events have different distinct_ids, they are treated as coming from different users.
+
+  Learn more about [identity management](/docs/tracking-methods/id-management).
+</FAQBox>
+
+<FAQBox title="How is distinct_id generated?" section="Identity Management in Mixpanel">
+  On the client side, the Mixpanel SDK automatically generates a random, unique `distinct_id` for anonymous users. When a user registers or logs in, you can assign a known user ID (such as a database ID) by calling the `identify` method in the SDK. The ID is then stored in the cookie or local storage for persistence.
+
+  On the server side, you are responsible for generating both anonymous and known user IDs, as well as ensuring their consistency and persistence across events.
+
+  Learn more about [identifying users](/docs/tracking-methods/id-management/identifying-users-simplified).
+</FAQBox>
+
+<FAQBox title="Where is distinct_id stored?" section="Identity Management in Mixpanel">
+  On the client side, the `distinct_id` is stored in the end user's device using cookies or local storage. If the user clears this data (or you call `reset()`), the SDK generates a new `distinct_id`.
+
+  On the server side, your server is responsible for generating, maintaining, and persisting the `distinct_id` across events to ensure consistent user tracking.
+
+  Learn more about [identifying users](/docs/tracking-methods/id-management/identifying-users-simplified).
+</FAQBox>
+
+<FAQBox title="What is the best practice for handling user identity in a client-side implementation?" section="Identity Management in Mixpanel">
+  As a best practice for client-side identity management:
+    1. **Call `identify()`** during both registration and login, using a consistent user ID in each case to ensure proper user identification.
+    2. **Call `reset()`** on logout to clear cookies or local storage and generate a new ID. This prevents unintended merging of data from multiple users sharing the same device.
+    3. **Include your user ID** as both a super property and a user property. Doing so makes it easier to query and export data.
+
+  Learn more about [identifying users](/docs/tracking-methods/id-management/identifying-users-simplified).
+</FAQBox>
+
+<FAQBox title="What is the best practice for handling user identity in a server-side implementation?" section="Identity Management in Mixpanel">
+  In a server-side implementation, you must generate and manage user IDs yourself. When a user is anonymous, generate a unique Anonymous ID (such as a UUID) and store it.
+
+  If your project is using the [Simplified API](/docs/tracking-methods/id-management/identifying-users-simplified): For anonymous events, set the `$device_id` event property to this Anonymous ID. When the user is authenticated and you know their User ID, include both `$user_id` (your internal user ID) and `$device_id` (the original Anonymous ID) in all events sent from the server. Mixpanel will merge a pair of `$user_id` and `$device_id` the first time they are received together on an event.
+
+  If your project is using the [Original API](/docs/tracking-methods/id-management/identifying-users-original): For anonymous events, set the `distinct_id` event property to this Anonymous ID. When the user is authenticated and you know their User ID, send a `$identify` event containing both the anonymous ID and the user ID to merge them together.
+
+  Learn more about [the difference between the two identity management APIs](/docs/tracking-methods/id-management#identity-merge-apis).
+</FAQBox>
+
+<FAQBox title="How do I setup cross-domain tracking with Mixpanel?(Original API)" section="Identity Management in Mixpanel">
+  To set up cross-domain tracking with Mixpanel for projects using the Original ID Merge API, you need to ensure that the same user is recognized across different domains. The recommended approach is to pass the Mixpanel `distinct_id` from one domain to the next domain, typically via URL parameters. Then call `identify()` on the next domain using the `distinct_id` from the previous domain. For example:
+
+  **On the First Domain:**
+
+  - Retrieve the current user's `distinct_id` using the Mixpanel SDK.
+  - When redirecting or linking to the second domain, append the `distinct_id` as a URL parameter.
+
+  ```jsx
+  // On the first domain*
+  var distinctId = mixpanel.get_distinct_id();
+  var destinationUrl = "https://second-domain.com";
+  var urlWithDistinctId = destinationUrl + (destinationUrl.indexOf('?') !== -1 ? '&' : '?') + "distinct_id=" + encodeURIComponent(distinctId);
+  window.location.href = urlWithDistinctId;
+  ```
+
+  **On the Second Domain:**
+
+  - Extract the `distinct_id` from the URL parameters.
+  - Use `mixpanel.identify(distinctId)` before sending any events.
+  
+  ```jsx
+  // On the second domain
+  var urlParams = new URLSearchParams(window.location.search);
+  var distinctId = urlParams.get('distinct_id');
+  if (distinctId) {
+    mixpanel.identify(distinctId);
+  }
+  ```
+</FAQBox>
+
+<FAQBox title="How do I setup cross-subdomain tracking with Mixpanel?" section="Identity Management in Mixpanel">
+  To set up cross-subdomain tracking with Mixpanel, you should configure the Mixpanel JavaScript SDK to use cookies for persistence and enable the cross-subdomain cookie option. This ensures that the same Mixpanel distinct_id and super properties are shared as users move between subdomains.
+
+  ```jsx
+  // enable cross-subdomain cookie tracking
+  mixpanel.init('YOUR_PROJECT_TOKEN', {
+    cross_subdomain_cookie: true,
+    persistence: 'cookie'
+  });
+  ```
+</FAQBox>
+
+<FAQBox title="How do I setup consistent user tracking across multiple platforms, such as a website and an app?" section="Identity Management in Mixpanel">
+  To ensure consistent user tracking across multiple platforms, apply identity management best practices:
+
+  1. Call `identify(<user_id>)` during user registration and sign-in to associate activity with the correct user.
+  2. Call `reset()` upon user logout to clear the current session and prevent data from carrying over.
+  3. Use the same `user_id` for each individual user across all platforms to maintain a unified profile.
+
+  Learn more about [identifying users](/docs/tracking-methods/id-management/identifying-users-simplified).
+</FAQBox>
+
+<FAQBox title="Why is the distinct_id shown in Mixpanel different from the ID I used to identify the user?" section="Identity Management in Mixpanel">
+  If you are using the [Original ID Merge API](/docs/tracking-methods/id-management/identity-management#identity-merge-apis) (check your project API [here](https://mixpanel.com/settings/project/id-management)), our API chooses one of the IDs inside the identity cluster to serve as the canonical distinct_id for the user, meaning that it can be set to your chosen user ID or one of the Mixpanel-generated anonymous ID. This is programmatically selected by Mixpanel and not user-configurable.
+
+You can use any of the distinct_ids inside of the identity cluster for ingestion, but only the canonical distinct_id is used in queries and exports. As a best practice, we recommend setting your chosen user ID as a super property and profile property to make querying easier.
+
+</FAQBox>
+
+<FAQBox title="Why do I see data from 2 different users under a single Mixpanel profile?" section="Identity Management in Mixpanel">
+  Seeing data from two different users under a single Mixpanel profile is most commonly caused by improper identity management - specifically, not calling `reset()` when users log out on shared devices.
+
+  If multiple users use the same device and you do not call `reset()` when a user logs out, the next user who logs in will inherit the previous user's distinct_id. When you then call `identify()` with the new user's ID, Mixpanel merges the previous and new IDs into a single identity cluster. This causes events from both users to appear under the same profile. 
+
+  Learn more about [identifying users](/docs/tracking-methods/id-management/identifying-users-simplified).
+
+  If your backend or frontend sends events for different users but uses the same distinct_id, Mixpanel will attribute all those events to a single user profile.
+</FAQBox>
+
+<FAQBox title="Why do I see 2 duplicated Mixpanel user profiles sharing the same email value?" section="Identity Management in Mixpanel">
+  Mixpanel identifies users based on the `distinct_id` value. If the same user receives two different IDs, Mixpanel treats them as separate users, even if they share other properties.
+
+  For instance, when you send data from multiple sources—such as web, mobile, or third-party tools like Segment or Shopify—and each source assigns a different identifier (e.g., email, user ID, or device ID), Mixpanel generates distinct user profiles for each ID, regardless of matching properties like email.
+
+  To resolve this issue, review all data sources and ensure that each user is consistently assigned a single unifying user ID during identification across every platform.
+</FAQBox>
+
+<FAQBox title="What dev lift is involved when migrating from Legacy ID merge to Original or Simplified?" section="Identity Management in Mixpanel">
+  The development effort required to migrate from Legacy ID Management to Original or Simplified ID Merge in Mixpanel depends on which version you are moving to:
+
+  Migrating to **Original ID Merge** typically involves minimal effort if your implementation already follows best practices (calling `alias` at user registration and `identify` at login using supported SDKs). In this case, Mixpanel can enable the migration for you, and no additional development work is required on your end. To proceed, contact the Support team for assistance with transitioning from the legacy API to the Original ID Merge API.
+
+  Migrating to **Simplified ID Merge** requires significantly more effort. This path involves setting up a new project, updating your codebase, migrating data, and releasing app updates. The process is manual, and your engineering team will need to manage each step directly.
+
+  Both ID Merge APIs offer substantial improvements over the legacy implementation, and we recommend that most projects migrate to one of these updated options.
+
+  You can view [a comparison of the two ID Merge APIs](/docs/tracking-methods/id-management#identity-merge-apis). For further guidance, please [reach out to the support team](https://mixpanel.com/get-support).
+</FAQBox>
+
+<FAQBox title="Are there limitations with using Simplified ID vs Original ID merge?" section="Identity Management in Mixpanel">
+  Please see a summary of the pros and cons when choosing between the 2 ID Merge API versions [here](/docs/tracking-methods/id-management#identity-merge-apis).
+</FAQBox>
+
+<FAQBox title="What happens if a user clears cookies or reinstalls the app?" section="Identity Management in Mixpanel">
+  When you use Mixpanel’s client-side SDKs (e.g., JavaScript, iOS Swift, Android), clearing cookies, localStorage, or uninstalling the app removes the `distinct_id`, `$device_id`, and super properties from the user’s device. If the user returns to your website or reinstalls the app, the SDK will generate a new random `distinct_id` and `$device_id`.
+
+  Once you call `identify` with the user’s known identifier, Mixpanel will reconcile the data and attribute it to the correct user profile in the Mixpanel UI.
+</FAQBox>
+
+<FAQBox title="Is there a limit to the number of identities that can be merged?" section="Identity Management in Mixpanel">
+  Projects using the **Original ID Merge API** can merge up to 500 IDs within a single identity cluster.
+
+  Projects using the **Simplified ID Merge API** can merge an unlimited number of `$device_id` under one identity cluster; however, each cluster can contain only one `$user_id`.
+
+  You can view [a comparison of the two ID Merge APIs](/docs/tracking-methods/id-management#identity-merge-apis).
+</FAQBox>
+
+<FAQBox title="How does Mixpanel handle merging IDs and what are the best practices?" section="Identity Management in Mixpanel">
+  Mixpanel handles merging IDs through a process called **ID Merge**, which groups different identifiers (such as anonymous device IDs and authenticated user IDs) into a single "identity cluster." This ensures all events from the same user (across devices, platforms, and sessions) are linked to one user profile.
+
+  As a best practice for client-side implementation, call `identify()` at registration and sign in using a consistent `$user_id`, and call `reset()` at logout.
+
+  For server-side implementation, your server is responsible for generating IDs for your users and maintaining ID persistence across events.
+
+  Learn more about [identifying users](/docs/tracking-methods/id-management/identifying-users-simplified).
+</FAQBox>
+
+<FAQBox title="How does Mixpanel ensure data privacy and compliance?" section="Identity Management in Mixpanel">
+  Mixpanel neither require nor collects any personally identifying information about users, such as email addresses or phone numbers (unless you specifically provide the information to us). It only needs to associate a sequence of events with a specific user ID. You determine the user ID and decide how to transmit it to Mixpanel.
+
+  If you prefer to analyze aggregate user behavior without the ability to identify individual users, we recommend creating a hash of a unique user identifier and using that hash as the user ID when invoking the `.identify()` method in our SDKs.
+
+  Learn more about [protecting user data](/docs/privacy/protecting-user-data).
+</FAQBox>
+
+<FAQBox title="How does Mixpanel attribute campaign data when identities are set or changed?" section="Identity Management in Mixpanel">
+  When a user's identity is set or changes (for example, when a user moves from being anonymous to authenticated), Mixpanel automatically merges the anonymous activity with the identified user profile. This process ensures that all events and campaign attribution data collected in those events (such as UTM tags) while the user was anonymous are unified with their known profile once their identity is established. This allows for a complete view of the user's journey, including campaign touchpoints before and after identification.
+</FAQBox>
+
+</div>
+
+## Building Mixpanel Reports and Analyses
+
+<div className="faqComponent" >
+
+<FAQBox title="How do I get started and what should I analyze?" section="Building Mixpanel Reports and Analyses">
+  Check out [our Guides](/guides/onboarding-overview) for a walk-through on how to plan, implement, and analyze in Mixpanel!
+</FAQBox>
+
+<FAQBox title="What are the best practices for setting up trusted boards for users to view and use?" section="Building Mixpanel Reports and Analyses">
+  Admin and Owners can [pin boards for users](/docs/boards#step-1-navigating-boards) so they appear prominently for all users. You can also encourage users to favorite boards they use most often.
+</FAQBox>
+
+<FAQBox title="How do I know my report is “correct”?" section="Building Mixpanel Reports and Analyses">
+  If you are worried about a report being correct, first confirm that the data is being tracked as expected. From there, [review the docs](/docs/reports) about the specific report to make sure you understand the logic behind it. If something looks off, try to find an example of a specific user or event that you thought should/shouldn’t be included in the report and see if there’s anything about that event/user that would lead to the behavior seen (ie is there a filter on the report, filtering out the event?). If you still need help, reach out to [Support via the web form](https://mixpanel.com/get-support) with a link to the report and some context on what looks off.
+</FAQBox>
+
+<FAQBox title="What are other companies in my industry tracking and creating reports for in Mixpanel?" section="Building Mixpanel Reports and Analyses">
+  Companies across industries track and create reports focused on the metrics most relevant to their business models. Check out [these case studies](https://mixpanel.com/customers/all) from Mixpanel customers to get ideas about what to track and how Mixpanel is being used in your industry. We also have [templates](/docs/boards/templates) and demo datasets for various industries (accessed through the ? menu) that are a helpful starting point for tracking.
+</FAQBox>
+
+<FAQBox title="How can I standardize what events my users use to create reports?" section="Building Mixpanel Reports and Analyses">
+  Organizations on enterprise plans can set [data standards](/docs/data-governance/data-standards) and [approve events](/docs/data-governance/event-approval) to ensure that the events users are using to create reports are standardized. All plans can add a description and [other metadata in Lexicon](/docs/data-governance/lexicon) to help users find the right events to use.
+</FAQBox>
+
+<FAQBox title="How do I edit and duplicate reports?" section="Building Mixpanel Reports and Analyses">
+  The [Reports](/docs/reports) doc has a lot of great information about editing reports. You can duplicate a report through the overflow (…) menu in the upper-right-hand corner of the report builder.
+</FAQBox>
+
+<FAQBox title="How do I filter reports?" section="Building Mixpanel Reports and Analyses">
+  The [Filters](/docs/reports#filters) section of the Reports doc goes over how to add inline and global filters. The filters work a bit differently in a Funnel report, which you can read about [here](/docs/reports/funnels/funnels-advanced#filters).
+
+  You can also add [board-level filters](/docs/boards#step-5-board-wide-date-ranges-and-filters) to apply a global filter across all the reports on the board.
+</FAQBox>
+
+<FAQBox title="How can I get automated insights from alerts and setup anomaly detection?" section="Building Mixpanel Reports and Analyses">
+  Growth and Enterprise plans can create custom alerts based on reports. When an alert fires, Mixpanel’s [Root Cause Analysis feature](/docs/features/alerts#root-cause-analysis) analyzes the properties of unexpected events and automatically generates a Board with reports broken down by relevant properties so you can search for the underlying cause of any unexpected data point or fired alert.
+
+  Organizations with enterprise plans can also set up [anomaly detection alerts](/docs/features/alerts#anomaly-detection) to automatically monitor their metrics and notify you when significant anomalies occur.
+
+  Learn more about custom alerts [here](/docs/features/alerts).
+</FAQBox>
+
+<FAQBox title="What are the common analysis types done in Mixpanel?" section="Building Mixpanel Reports and Analyses">
+  The most common analysis is done in the four core reports:
+  - [Insights](/docs/reports/insights): Visualize trends and compositions within your data
+  - [Funnels](/docs/reports/funnels/funnels-overview): Measure conversions through a series of events
+  - [Retention](/docs/reports/retention): Measure engagement over time
+  - [Flows](/docs/reports/flows): See frequent paths taken by users to or from any event
+
+  Check out [templates](/docs/boards/templates) and demo datasets for various industries (accessed through the ? menu) to get a feel for popular metrics.
+</FAQBox>
+
+<FAQBox title="How can I collaborate and share within Mixpanel?" section="Building Mixpanel Reports and Analyses">
+  The [Sharing and Permissions](/docs/boards/sharing-and-permission) doc has information sharing reports. [Custom properties](/docs/features/custom-properties), [cohorts](/docs/users/cohorts), and [custom events](/docs/features/custom-events) can also be shared explicitly with users or across the project. You’ll be prompted to save and share those entities after creation.
+</FAQBox>
+
+<FAQBox title="What is the difference between a Metric and Behavior?" section="Building Mixpanel Reports and Analyses">
+  Metrics measure the performance, progress, or success of different aspects of your product or business. They are always measurements which are based on a single event, behavior, cohort, or profile.
+
+  Behaviors are reusable definitions for Simple, Funnel, or Retention analyses. They allow teams to standardize definitions of key user flows and ensure consistency across different analyses.
+</FAQBox>
+
+</div>
+
+
+
+## Exporting Data from Mixpanel
+
+<div className="faqComponent" >
+
+<FAQBox title="How do data pipeline exports work? How is the data structured and what can I expect?" section="Exporting Data from Mixpanel">
+  Data Pipelines is a feature that exports data from your Mixpanel project to a Cloud Storage bucket or Data Warehouse of your choice. It is available as an add-on for Growth and Enterprise plans. You can read more about the setup and exported data in the [Data Pipelines doc](/docs/data-pipelines).
+</FAQBox>
+
+<FAQBox title="How can I export my data from Mixpanel?" section="Exporting Data from Mixpanel">
+  Event data can be exported via the [Export API](https://developer.mixpanel.com/reference/raw-data-export-api), while user profile data can be exported via the [Engage API](https://developer.mixpanel.com/reference/engage-query). We also have a handy [Mixpanel-utils Python module](https://github.com/mixpanel/mixpanel-utils#export-events) that hits the APIs directly.
+  
+  Alternatively, you can purchase the [Data Pipelines](/docs/data-pipelines) add-on to export data directly to cloud storage or a data warehouse.
+
+  Learn more about exporting data [here](/docs/export-methods).
+</FAQBox>
+
+<FAQBox title="Can I automate data exports (e.g., schedule CSV delivery or direct warehouse sync)?" section="Exporting Data from Mixpanel">
+  If you have the [Data Pipelines](/docs/data-pipelines) add on, data will automatically be synced to your warehouse at the scheduled cadence (daily or hourly).
+  
+  At a board level, you can set up a [board subscription](/docs/boards#board-subscriptions) to automatically receive a snapshot of a board sent as an email or a Slack message. It isn’t possible to schedule a CSV delivery of a specific report within the UI. However, the [Query API](https://developer.mixpanel.com/reference/query-api) can be used by paid plans to export report data on your end.
+</FAQBox>
+
+<FAQBox title="Is there an additional cost for exporting data?" section="Exporting Data from Mixpanel">
+  It depends on how you want to export the data! All plans can access the [Export API](https://developer.mixpanel.com/reference/raw-data-export-api) to export event data at no additional cost. Profile data can be exported from the [Engage API](https://developer.mixpanel.com/reference/engage-query) at no cost as well.
+
+  The [Query API](https://developer.mixpanel.com/reference/query-api) is included for Growth and Enterprise plans. If you want to use [Data Pipelines](/docs/data-pipelines) to export the data, you would need to purchase it as an add-on.
+</FAQBox>
+
+<FAQBox title="Can I export specific data, such as cohorts, user lists, or raw events?" section="Exporting Data from Mixpanel">
+  Yes! You can see a list of [specific APIs here](https://developer.mixpanel.com/reference/overview) to export event, report, and user data. A [cohort sync](/docs/cohort-sync) can be used to export cohorts. Learn more about exporting data [here](/docs/export-methods).
+</FAQBox>
+
+<FAQBox title="What if my data warehouse is not natively supported?" section="Exporting Data from Mixpanel">
+  You can use a [reverse ETL (rETL) tool such as Census or Hightouch](/guides/implement/send-your-data#data-warehouses). These third-party tools allow you to transform and schedule syncs from your warehouse to Mixpanel, even if your warehouse isn’t directly supported. Another option is to use Mixpanel’s Import API to send data directly from your warehouse to Mixpanel.
+</FAQBox>
+
+</div>
+
+## Manage your Mixpanel Projects and Teammates
+
+<div className="faqComponent" >
+
+<FAQBox title="How should we structure our Mixpanel projects?" section="Manage your Mixpanel Projects and Teammates">
+  It's recommended to set up at least two separate projects: one for Development data and another for Production data. This separation ensures that test data doesn’t mix with your live user data. The [Setup guide](/guides/plan/setup#development-and-production-project-setup) has more information.
+  
+  Organizations on an enterprise plan can also use [Data Views](/docs/data-governance/data-views-and-classification) within a single Mixpanel project. Data Views allow you to create focused “mini-projects” that display only the events and properties relevant to a specific team, function, or use case.
+</FAQBox>
+
+<FAQBox title="How do we keep things organized within a Mixpanel project for multiple teams?" section="Manage your Mixpanel Projects and Teammates">
+  Organizations on an enterprise plan can use [Data Views](/docs/data-governance/data-views-and-classification) to create focused “mini-projects” that display only the events and properties relevant to a specific team, function, or use case.
+
+  Outside of data views, you can have teams implement standardized ways to name and describe reports to keep things organized.
+</FAQBox>
+
+<FAQBox title="Who should own and maintain Mixpanel projects?" section="Manage your Mixpanel Projects and Teammates">
+  It depends on your organization and goals. This blog post, [A guide to data governance for product teams](https://mixpanel.com/blog/what-is-data-governance/), goes into best practices for setting up product analytics. You can also check out the [Implement section](/guides/implement/establish-governance) of the guides.
+</FAQBox>
+
+<FAQBox title="How do we onboard new teammates and empower them to use Mixpanel?" section="Manage your Mixpanel Projects and Teammates">
+  The first step is giving them access to Mixpanel. The [Roles & Permissions](/docs/orgs-and-projects/roles-and-permissions#overview) doc has information about how to invite additional users. They can check out the [Launch guide](/guides/launch/create-boards) for a guided walkthrough of the Mixpanel features and reports.
+
+  We also have a [training template](/docs/boards/templates#training-board-for-champions-to-use-to-educate-users) that can be set up in the project. This will walk the user through the reports in Mixpanel itself. You can set it up as a [pinned board](/docs/boards#step-1-navigating-boards) so its visible to all users.
+</FAQBox>
+
+<FAQBox title="How can we audit or review how our team is using Mixpanel?" section="Manage your Mixpanel Projects and Teammates">
+  Organization owners and admins can see information about Mixpanel usage in the Organization settings, under the ‘Mixpanel Usage’ tab. This lets you see active users and popular boards and reports.
+
+  You can see specific event and property utilization in each [project's Lexicon](/docs/data-governance/lexicon).
+</FAQBox>
+
+<FAQBox title="How do we support and decentralize Mixpanel expertise within our organization?" section="Manage your Mixpanel Projects and Teammates">
+  Check out the following blog posts to learn more about how to support and decentralize Mixpanel expertise:
+  - [5 ingredients for better data collaboration](https://mixpanel.com/blog/how-to-better-data-collaboration/)
+  - [Data democratization explained: Benefits, challenges, and best practices](https://mixpanel.com/blog/data-democratization/)
+  - [How to get product and analytics teams at large companies working together in lockstep](https://mixpanel.com/blog/product-and-analytics-teams-working-together-self-serve/)
+  - [How to establish a product analytics practice](https://mixpanel.com/blog/establish-a-product-analytics-practice/)
+</FAQBox>
+
+</div>
+
+## Protecting User Data and Privacy
+
+<div className="faqComponent" >
+
+<FAQBox title="How can users opt out of tracking?" section="Protecting User Data and Privacy">
+  When building your Mixpanel implementation, you can use the opt-out methods provided in Mixpanel’s client-side SDKs to offer users to ability to opt out of tracking. You can also initialize client-side SDKs to have users opted out by default until they opt in. The [Protecting User Data doc](/docs/privacy/protecting-user-data) has more information.
+</FAQBox>
+
+<FAQBox title="Where can I learn more about user privacy regulations and opting users out of tracking?" section="Protecting User Data and Privacy">
+  The [Privacy](/docs/privacy) section of the docs has information around privacy regulations. This includes the [Protecting User Data](/docs/privacy/protecting-user-data) doc, which goes into how to opt users out and includes FAQs. There is also the [GDPR compliance](/docs/privacy/gdpr-compliance) doc for GDPR-specific information.
+</FAQBox>
+
+<FAQBox title="How can we anonymize users and avoid sending PII?" section="Protecting User Data and Privacy">
+  Mixpanel does not know, or need to know, any identifying information about users (like email or phone number). Mixpanel only needs to know that a set of events were performed by a particular user ID. You choose the ID and you choose how you want to send that ID to Mixpanel. The [Protecting User Data](/docs/privacy/protecting-user-data) doc has more information.
+</FAQBox>
+
+<FAQBox title="How do we disable geolocation or prevent IP address usage?" section="Protecting User Data and Privacy">
+  The exact method will depend on the SDK being used. See the [Disabling Geolocation](/docs/privacy/protecting-user-data#disabling-geolocation) section of the docs for more information, along with the [Geolocation](/docs/tracking-best-practices/geolocation) doc.
+</FAQBox>
+
+<FAQBox title="How do we handle the accidental sending of PII?" section="Protecting User Data and Privacy">
+  If you accidentally send PII, you can use the data deletion feature to remove it. The [Data Clean-up](/docs/data-governance/data-clean-up#2-deleting-problematic-data) doc has more information. If that doesn’t work for your specific event data, have an organization or project owner open a ticket with [Support via the web form.](https://mixpanel.com/get-support)
+
+  User profile data can be deleted via the [Engage API](https://developer.mixpanel.com/reference/delete-profile).
+</FAQBox>
+
+</div>

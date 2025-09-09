@@ -73,25 +73,66 @@ To access a group profile:
 
 ### Change the Group Identifier in a Report
 
-To change the identifier in a report:
+By default, Metrics aggregates at the user-level. To change the identifier used for aggregation in a metric:
 
-1. Go to a report.
+1. Go to a report
+2. Click the “Users” dropdown within the Metric
+3. Select a Group. The report will now display results grouped by the newly selected group identifier.
 
-2. Click the **Analyze Uniques by** dropdown above the query builder.
+![](/saved_behavior_group_identifier.png)
 
-![/Screen_Shot_2022-06-22_at_5.45.29_PM.png](/Screen_Shot_2022-06-22_at_5.45.29_PM.png)
+When your [Insights report](/docs/reports/insights) includes multiple Metrics, you can individually toggle the identifier for each one.
 
-3. Select the group identifier.
+For example, you can create an Insights report that shows Signups by unique Users and by unique Companies.
 
-![/Screen_Shot_2022-06-22_at_5.46.39_PM.png](/Screen_Shot_2022-06-22_at_5.46.39_PM.png)
+![](/saved-metrics-and-behaviors11.png)
 
-4. The report will now display results grouped by the newly selected group identifier.
+Similarly, you can build a report that displays Conversion Rates per User and per Company.
+
+![](/saved-metrics-and-behaviors12.png)
+
 
 ### B2B Company Analytics
 
-Company Analytics is an advanced offering ‘within’ group analytics tailored to B2B SaaS Companies.  Here we focus on the idea that users ‘belong’ to a company, and that company behavior is ‘dependant’ on user behavioral activity. For instance, if you have 2 accounts each worth $50Mn but with 5 and 20 users respectively, the account with 20 users is considered more healthy and likely to renew vs the other account. 
+Company Analytics is a feature within Group Analytics tailored to B2B SaaS Companies.  Here we focus on the idea that users ‘belong’ to a company, and that company behavior is dependent on user behavioral activity. For instance, if you have 2 accounts, each worth $50M but with 5 and 20 users respectively, the account with 20 users is considered more healthy and likely to renew compared to the other account. 
 
 Company Analytics enables you to understand such account health and activation metrics, which are derived from the underlying user activity.
+
+To use these features, you must [designate the group key as a company key when setting up the group](/docs/data-structure/group-analytics#setup-b2b-company-key).
+
+#### Company Profiles
+
+The Company Profiles page gives you a holistic view into your company health, which includes key metrics and company profile properties (i.e, company attributes).
+
+Company Health Metrics on the page include KPIs on usage (DAU, WAU, MAU, new users), users’ engagement level (activity per user, life cycle of user), and their retention (Day 1, Week 1, and Month 1).
+
+You can view the definition of each metric by clicking on the metric card, which will open the underlying Mixpanel report.
+
+To access this page, click on Users/ Companies → Company Profile.
+
+Note: This is only available if you have [set up a B2B Company Key](/docs/data-structure/group-analytics#setup-b2b-company-key), an option available in the Group Analytics package.
+
+![image](/B2B_Company_Profiles.webp) 
+
+#### Activation Metrics 
+
+SaaS companies often have use cases that require them to segment companies based on the number of users and the quality of users. 
+
+For example, a question you may have is 'What is the number of trial accounts that have more than two active users?'. The hypothesis is that these accounts will convert faster. 
+
+We have a computed property in both breakdown and filter, called the **“Number of users who did…”**, available in the Group Analytics add-on, which enables you to answer these types of questions as it allows you to break down account activity by the number of active users.
+
+![image](/B2B_Activation_1.webp)
+
+When using **“Number of users who did…”** as a breakdown, we show you how many downloads came from different types of account health.
+For example, 605 downloads came from accounts with zero active users. ~1.5 downloads in the last 30 days came from accounts with two active users. Where an “active user” is defined by both the activity (e.g., event as such document created) and frequency of the activity (e.g., performing the event ≥1 time).
+
+In a line chart, we look for activity per interval. 
+
+For example, in the below daily chart, we’re looking for activity qualification per day (i.e., an active user is one who has created at least one document on that day). 
+The chart below shows that on Aug 19th, 35 accounts downloaded a document. Of the 35 accounts, 32 had one active user, 2 had two active users, and 1 had twenty-eight active users. Since most downloads originated from accounts with only one active user, we can conclude there is no correlation between account document downloaded activity and account health.
+
+![image](/B2B_Activation_2.webp)
 
 ## Implementation
 
@@ -111,9 +152,12 @@ Enter an event property to attribute the group key to. You can also enter a disp
 
 ### Setup B2B Company Key
 
-1. Choose which ‘one’ group key should be used as the B2B Company Key as well. This is the key for which Company Profiles will be generated 
-2. Also specify the property which should be referenced as the Company name (identifier) throughout the Mixpanel interface
-NOTE: You can change which group key should be used as the ‘Company key’. To change, first turn off the current group key set as Company Key, and then you can go turn on another group key as the ‘Company key’ 
+1. Choose which group key will be used as the B2B Company Key. This is the key for which Company Profiles (B2B Company Analytics) will be generated.
+2. Specify the property that should be referenced as the Company name (identifier) throughout the Mixpanel interface.
+
+<Callout type="info">
+  You can change which group key should be used as the Company Key. To change, first unset the current group key set as Company Key in the project settings, and then set a new group key as the Company Key.
+</Callout>
 
 ![image](/B2B_Company_Key.webp)
 
@@ -223,5 +267,3 @@ Company Analytics is specific to B2B Companies where you are likely to have a us
 There are two features unique to B2B Company Analytics being set up, which aren’t available with the generic group analytics setup.  
 - Company Profiles - this is an advanced version of group profiles that shows you the health of a company
 - Company Activation filters & breakdowns
-
-You can learn more [here](/docs/features/advanced#company-health-and-activation-metrics)
