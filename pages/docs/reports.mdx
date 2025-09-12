@@ -317,6 +317,8 @@ Here’s the breakdown per report visualization type:
 | Retention | 6 | 12 | 200 |
 | Funnels | 6 | 12 | 200 |
 
+When you see a "cardinality limit" error or a "-" in your report despite having data, it usually means the query returned too many unique segments for the UI to display. To avoid this, try narrowing the time range, applying filters to specific events or properties, or reducing the number of breakdowns. This helps limit the number of segments, making your report more accurate and easier to interpret.
+
 ### **CSV Export**
 
 When exporting a report as CSV, we offer elevated limits. For most reports, the CSV export limit is 10,000. For insights non-line charts, we allow for up-to 50,000.
