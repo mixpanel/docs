@@ -4,23 +4,24 @@ import { Callout } from 'nextra/components'
 
 ## Overview
 
-mParticle, a Customer Data Platform (CDP), enables you to track event data and route it to various downstream destinations. As a native partner, Mixpanel seamlessly integrates with mParticle. If you use mParticle for tracking, you can send your data to Mixpanel with just a few clicks.
+[mParticle](https://www.mparticle.com/) is a customer data platform (CDP) that enables you to track event data and route it to various downstream destinations. As a native partner, Mixpanel seamlessly integrates with mParticle. If you use mParticle for tracking, you can send your data to Mixpanel with just a few clicks.
 
 ## How the Integration Works
-In simple terms, mParticle collects data from any number of inputs (mParticle APIs, mobile apps, web, external feeds), transforms it, and forwards it to your Mixpanel project.
+
+In simple terms, mParticle collects data from any number of inputs (mParticle APIs, mobile apps, web, external feeds), transforms it, and then forwards it to your Mixpanel project.
 
 mParticle forwards two main types of data:
 
-* **Event Data:** Any action done by users in your app
+- **Event Data:** Any action done by users in your app
 
-* **Audience Data:** Data about users, including profile properties
+- **Audience Data:** Data about users, including profile properties
 
-Refer to the [mParticle Getting Started Guide](https://docs.mparticle.com/guides/getting-started/create-an-input) for detailed instructions on how to install the mParticle.
+Refer to the [mParticle Getting Started Guide](https://docs.mparticle.com/guides/getting-started/create-an-input) for detailed instructions on how to install mParticle.
 
 ## Setup
 
 <Callout type="info">
-    The mParticle to Mixpanel integration relies on your mParticle data implementation schema and must align with the requirements outlined below. While many mParticle SDK methods generally align with Mixpanel's, not all are supported. This may take some fine-tuning and testing to ensure the accuracy of the data.
+The mParticle to Mixpanel integration relies on your mParticle data implementation schema and must align with the requirements outlined below. While many mParticle SDK methods generally align with Mixpanel's, not all are supported. This may take some fine-tuning and testing to ensure the accuracy of the data.
 </Callout>
 
 ### 1. Install mParticle
@@ -130,7 +131,7 @@ currentUser.setUserAttribute("plan_type", "Premium");
 
 ### 5. Track User Actions
 
-While each of mParticle's client SDKs [automatically capture some events](https://docs.mparticle.com/developers/client-sdks/web/event-tracking/#automatically-tracked-events), you can track custom events to send to Mixpanel.
+While each of mParticle's client SDKs [automatically captures some events](https://docs.mparticle.com/developers/client-sdks/web/event-tracking/#automatically-tracked-events), you can track custom events to send to Mixpanel.
 
 Custom events contain the following attributes:
 
@@ -208,7 +209,7 @@ You can validate this data through the [mParticle Live Stream](https://docs.mpar
 
 The Live Stream provides a real-time view of all data flowing in and out of mParticle.
 
-Here, you can filter by sources and examine the JSON data for specific events, and which events/user attributes were included in a batch message.
+Here, you can filter by source and examine the JSON data for specific events or which events/user attributes were included in a batch message.
 
 Access the Live Stream page under `Data Platform > Live Stream` using the left navigation.
 
