@@ -1,5 +1,6 @@
 export default {
     "alerts": "Alerts",
+    "annotations": "Annotations",
     "embeds": "Embeds",
     "chart-customization": "Chart Customization",
     "custom-buckets": "Custom Buckets",
