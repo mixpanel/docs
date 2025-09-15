@@ -8,8 +8,6 @@ const __filename = fileURLToPath(import.meta.url);
 const __dirname = dirname(__filename);
 
 const withNextra = nextra({
-  theme: "nextra-theme-docs",
-  themeConfig: "./theme.config.tsx",
   staticImage: true,
   latex: true,
   defaultShowCopyCode: true,
