@@ -87,7 +87,7 @@ While mParticle accepts several user identifiers, only one will be sent as the E
 
 Here is an example `Login()` call using [mParticle's Web SDK](https://docs.mparticle.com/developers/client-sdks/web/idsync/). If you plan to set user attributes on signup, you need to include them in a callback function as mParticle runs these operations asynchronously. While email is included as an identifier, it is also included in the callback to be set as a profile property. If your project uses Customer ID as the External ID, then it would not be necessary to include email in the identity request for Mixpanel.
 
-```
+```javascript Javascript
 //create main request body of identifiers
 
 let identityRequest = {
@@ -121,7 +121,7 @@ To create profiles and set profile properties, call `SetUserAttribute`. These wi
 
 Here is an example call to set user attributes:
 
-```
+```javascript Javascript
 // get current user
 
 let currentUser = mParticle.Identity.getCurrentUser();
@@ -144,7 +144,7 @@ Custom events contain the following attributes:
 
 Here is a simple custom event with event types defined beforehand:
 
-```
+```javascript Javascript
 //define event types - these are used to further classify your data.
 
 EventType = {
@@ -232,7 +232,7 @@ Here, you can select your input(s) and any number of outputs to compare events i
 
 To log warnings and other information, please see the [mParticle's custom logger documentation](https://docs.mparticle.com/developers/client-sdks/web/custom-logger/). For example, the Web SDK allows you to set "logLevel" to `warning` or `verbose`.
 
-```
+```javascript Javascript
 window.mParticle = {
 			config: {
 				isDevelopmentMode: true,
