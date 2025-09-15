@@ -26,9 +26,13 @@ Custom properties let you combine existing properties into new properties on the
 
 If you're new to this feature, we recommend starting with one of the examples. Click the **Insert Example** drop down to populate the box with a use-case specific custom property.
 
-When writing your formula, click **Ctrl + Space** to see a list of all the available functions and their descriptions. Click **period (.)** to search for event or user profile properties to add to the formula. If you are creating a “Custom Event Property” both event and user profile properties will be available to select. If you are creating a “Custom Profile Property” only user profile properties will be available for use in the custom property.
+When writing your formula, click **Ctrl + Space** to see a list of all the available [functions and their descriptions](/docs/features/custom-properties#functions). Type **period (.)** to open the menu for choosing an event/profile properties to add to the custom property definition. 
 
+If you are creating a “Custom Event Property” both event and user profile properties will be available to select. If you are creating a “Custom Profile Property” only user profile properties will be available for use in the custom property.
+
+<Callout type="info">
 Note that the formula used to compose your custom property can't be longer than 20,000 characters.
+</Callout>
 
 ![image](https://github.com/mixpanel/docs/assets/2077899/98a4e5f0-6b9b-414b-8dfe-feecdb837078)
 
@@ -106,9 +110,15 @@ Borrowed properties allow you to take a property from a prior event and automati
 - Use client-side properties to populate a property on a server-side event. Example: “purchase” event could be a server-side event, while the “product search” event is a client-side event.
 - Track a single event property and apply it to subsequent events. Example: It may be hard to track whether every event has dark mode enabled. You would need to keep track of the state of dark mode, and then add a “dark mode” property to every event that you track. Using borrowed events, you can just track one event with a property that indicates whether dark mode has been enabled or not, and have subsequent events borrow the property from that event.
 
-### Borrowed Properties Example
+<Callout type="info">
+Each project can use up to 20 borrowed properties.
+</Callout>
+
+### Creating Borrowed Properties
 
 The following is a demonstration of Borrowed Properties using the [E-Commerce demo project](https://mixpanel.com/project/3018488), which anyone with a Mixpanel account can access.
+
+In this demonstration, we present an event called **"Purchase Completed"**, which lacks the event property **"Search term"**. To enable a breakdown by **"Search term"**, we apply the Borrowed Property feature, leveraging the property from another event called **"Product Searched"**.
 
 <Steps>
 
@@ -138,12 +148,13 @@ The following is a demonstration of Borrowed Properties using the [E-Commerce de
 
 </Steps>
 
-### Borrowing mechanics
-Borrowed properties pick up the value from the most recent borrowed event.
-A seven-day lookback window is applied, meaning the second event has to happen within seven days of the first event. If there is no first event within the lookback window, the value of the borrowed property will be (not set)
+### Borrowing Mechanics
 
+Borrowed Properties capture the value from the most recent borrowed event.
 
-How to create a borrowed property is demonstrated in this video
+We apply a seven-day lookback window, so the second event must occur within seven days of the first. If no first event exists within this window, the borrowed property is assigned the value (not set).
+
+The video below demonstrates how to create a borrowed property.
 
 <div style={{position: 'relative', paddingBottom: '64.90384615384616%', height: 0}}>
     <iframe src="https://www.loom.com/embed/d45c325a7ee544a9965e90c3a5127257?sid=a52205f3-31d1-4928-9a64-ae937295fa40"
