@@ -3,7 +3,7 @@
   "version": "0.0.1",
   "description": "Mixpanel's Official Documentation",
   "scripts": {
-    "api:build": "openapi --config=./openapi/openapi.config.yaml --output ./openapi/out/ bundle",
+    "api:build": "redocly bundle",
     "api:lint": "openapi --config=./openapi/openapi.config.yaml --format=stylish lint",
     "api:publish": "node ./openapi/publish.js",
     "api:test": "./openapi/test.sh",
