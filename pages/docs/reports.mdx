@@ -300,13 +300,17 @@ View Users can help you:
 
 ## Segment Limits and Ordering
 
+<Callout type="warning">
+When you encounter a "cardinality limit" error or see a "-" in your report despite having data, it indicates that the query returned more unique segments than the UI can display. To resolve this, narrow the time range, apply filters to specific events or properties, or reduce the number of breakdowns. These steps limit the segments, making your report easier to interpret and reduce the strain on the querying capacity of your projects.
+</Callout>
+
 In order to keep the interactive analysis experience snappy for projects of all sizes, Mixpanel limits how many segments are returned when using breakdowns. When breakdown (also referred to as segmentation) limits are reached, the response will be truncated to only return the top N segments. We have higher limits available via CSV exports.
 
-### **UI**
+### UI
 
-We’re changing how many segments are returned back to the report (visible limit), how many segments can be selected at a time for visualization (selection limit) as well as the number of segments selected by default (default selection).
+We are changing how many segments are returned back to the report (visible limit), how many segments can be selected at a time for visualization (selection limit) as well as the number of segments selected by default (default selection).
 
-Here’s the breakdown per report visualization type:
+Here is the breakdown per report visualization type:
 
 | **Report Viz** | **Default Selection** | **Selection Limit** | **Visible Limit** |
 | --- | --- | --- | --- |
@@ -317,13 +321,11 @@ Here’s the breakdown per report visualization type:
 | Retention | 6 | 12 | 200 |
 | Funnels | 6 | 12 | 200 |
 
-When you see a "cardinality limit" error or a "-" in your report despite having data, it usually means the query returned too many unique segments for the UI to display. To avoid this, try narrowing the time range, applying filters to specific events or properties, or reducing the number of breakdowns. This helps limit the number of segments, making your report more accurate and easier to interpret.
-
-### **CSV Export**
+### CSV Export
 
 When exporting a report as CSV, we offer elevated limits. For most reports, the CSV export limit is 10,000. For insights non-line charts, we allow for up-to 50,000.
 
-### **Top Segments logic**
+### Top Segments logic
 
 The way we pick the top segments differs according to the type of query. We choose the top segments based on the value shown in the metric value column.
 
