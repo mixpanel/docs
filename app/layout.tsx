@@ -6,10 +6,10 @@ import { getPageMap } from 'nextra/page-map';
 // Required for theme styles, previously was imported under the hood
 import 'nextra-theme-docs/style.css';
 
-import MainContent from "./components/MainContent/MainContent";
-import MixpanelLogoWordmark from "./components/svg/MixpanelLogoWordmark";
-import Search from "./components/Search/Search";
-import SignUpButton from "./components/SignUpButton/SignUpButton";
+import MainContent from "../components/MainContent/MainContent";
+import MixpanelLogoWordmark from "../components/svg/MixpanelLogoWordmark";
+import Search from "../components/Search/Search";
+import SignUpButton from "../components/SignUpButton/SignUpButton";
 
 export default async function RootLayout({ children, params }) {
   const { pathname } = useRouter();

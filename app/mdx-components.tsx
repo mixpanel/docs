@@ -5,10 +5,9 @@ import { VideoButtonWithModal } from "../components/VideoButtonWithModal";
 
 const docsComponents = getDocsMDXComponents()
  
-export function useMDXComponents(components) {
+export function useMDXComponents() {
   return {
     ...docsComponents,
-    ...components,
     ChangelogPostHeader,
     VideoButtonWithModal,
   }
