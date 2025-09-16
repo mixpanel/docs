@@ -44,6 +44,8 @@ paths:
       operationId: import-events
       security:
         - ServiceAccount: []
+        - ProjectSecret: []
+        - OAuthToken: []
       summary: Import Events
       description: ""
       parameters:
@@ -134,7 +136,7 @@ paths:
       summary: "Track Events"
       description: ""
       security:
-        - ServiceAccount: []
+        - {}
       parameters:
         - $ref: ./common/ingestion-api.yaml#/OptionalRequestParameter/UseIpAsDistinctId
         - $ref: ./common/ingestion-api.yaml#/OptionalRequestParameter/ResponseType/Verbose
@@ -198,7 +200,7 @@ paths:
         it does exist, it sets the properties to these values, overwriting
         existing values.
       security:
-        - ServiceAccount: []
+        - {}
       parameters:
         - $ref: ./common/ingestion-api.yaml#/OptionalRequestParameter/ResponseType/IP
         - $ref: ./common/ingestion-api.yaml#/OptionalRequestParameter/ResponseType/Strict
@@ -244,7 +246,7 @@ paths:
         Works just like "$set", except it will not overwrite existing property
         values. This is useful for properties like "First login date".
       security:
-        - ServiceAccount: []
+        - {}
       parameters:
         - $ref: ./common/ingestion-api.yaml#/OptionalRequestParameter/ResponseType/IP
         - $ref: ./common/ingestion-api.yaml#/OptionalRequestParameter/ResponseType/Strict
@@ -295,7 +297,7 @@ paths:
         negative values. This is useful for maintaining the values of properties
         like "Number of Logins" or "Files Uploaded".
       security:
-        - ServiceAccount: []
+        - {}
       parameters:
         - $ref: ./common/ingestion-api.yaml#/OptionalRequestParameter/ResponseType/IP
         - $ref: ./common/ingestion-api.yaml#/OptionalRequestParameter/ResponseType/Strict
@@ -343,7 +345,7 @@ paths:
         Adds the specified values to a list property on a user profile and
         ensures that those values only appear once. The profile is created if it does not exist.
       security:
-        - ServiceAccount: []
+        - {}
       parameters:
         - $ref: ./common/ingestion-api.yaml#/OptionalRequestParameter/ResponseType/IP
         - $ref: ./common/ingestion-api.yaml#/OptionalRequestParameter/ResponseType/Strict
@@ -402,7 +404,7 @@ paths:
         property that doesn't exist will result in assigning a list with one
         element to that property.
       security:
-        - ServiceAccount: []
+        - {}
       parameters:
         - $ref: ./common/ingestion-api.yaml#/OptionalRequestParameter/ResponseType/IP
         - $ref: ./common/ingestion-api.yaml#/OptionalRequestParameter/ResponseType/Strict
@@ -449,7 +451,7 @@ paths:
         is removed from the existing list on the user profile. If it does not
         exist, no updates are made.
       security:
-        - ServiceAccount: []
+        - {}
       parameters:
         - $ref: ./common/ingestion-api.yaml#/OptionalRequestParameter/ResponseType/IP
         - $ref: ./common/ingestion-api.yaml#/OptionalRequestParameter/ResponseType/Strict
@@ -495,7 +497,7 @@ paths:
         Takes a JSON list of string property names, and permanently removes the
         properties and their values from a profile.
       security:
-        - ServiceAccount: []
+        - {}
       parameters:
         - $ref: ./common/ingestion-api.yaml#/OptionalRequestParameter/ResponseType/IP
         - $ref: ./common/ingestion-api.yaml#/OptionalRequestParameter/ResponseType/Strict
@@ -550,7 +552,7 @@ paths:
 
         Refer to the respective user profile update commands ($set, $set_once, $add, $union, $append, $remove, $unset, and $delete) on syntax for their parameters.
       security:
-        - ServiceAccount: []
+        - {}
       parameters:
         - $ref: ./common/ingestion-api.yaml#/OptionalRequestParameter/ResponseType/IP
         - $ref: ./common/ingestion-api.yaml#/OptionalRequestParameter/ResponseType/Strict
@@ -607,7 +609,7 @@ paths:
         so that you don't delete the original profile when trying to delete the
         duplicate (as they pass in the alias as the distinct_id).
       security:
-        - ServiceAccount: []
+        - {}
       parameters:
         - $ref: ./common/ingestion-api.yaml#/OptionalRequestParameter/ResponseType/Strict
         - $ref: ./common/ingestion-api.yaml#/OptionalRequestParameter/ResponseType/Verbose
@@ -656,7 +658,7 @@ paths:
       summary: Update Property
       description: Updates or adds properties to a group profile. The profile is created if it does not exist.
       security:
-        - ServiceAccount: []
+        - {}
       parameters:
         - $ref: ./common/ingestion-api.yaml#/OptionalRequestParameter/ResponseType/IP
         - $ref: ./common/ingestion-api.yaml#/OptionalRequestParameter/ResponseType/Strict
@@ -703,7 +705,7 @@ paths:
       summary: Set Property Once
       description: Adds properties to a group only if the property is not already set. The profile is created if it does not exist.
       security:
-        - ServiceAccount: []
+        - {}
       parameters:
         - $ref: ./common/ingestion-api.yaml#/OptionalRequestParameter/ResponseType/IP
         - $ref: ./common/ingestion-api.yaml#/OptionalRequestParameter/ResponseType/Strict
@@ -750,7 +752,7 @@ paths:
       summary: Delete Property
       description: Unsets specific properties on the group profile.
       security:
-        - ServiceAccount: []
+        - {}
       parameters:
         - $ref: ./common/ingestion-api.yaml#/OptionalRequestParameter/ResponseType/IP
         - $ref: ./common/ingestion-api.yaml#/OptionalRequestParameter/ResponseType/Strict
@@ -801,7 +803,7 @@ paths:
       summary: Remove from List Property
       description: Removes a specific value in a list property.
       security:
-        - ServiceAccount: []
+        - {}
       parameters:
         - $ref: ./common/ingestion-api.yaml#/OptionalRequestParameter/ResponseType/IP
         - $ref: ./common/ingestion-api.yaml#/OptionalRequestParameter/ResponseType/Strict
@@ -850,7 +852,7 @@ paths:
         Adds the specified values to a list property on a group profile and
         ensures that those values only appear once. The profile is created if it does not exist.
       security:
-        - ServiceAccount: []
+        - {}
       parameters:
         - $ref: ./common/ingestion-api.yaml#/OptionalRequestParameter/ResponseType/IP
         - $ref: ./common/ingestion-api.yaml#/OptionalRequestParameter/ResponseType/Strict
@@ -915,7 +917,7 @@ paths:
 
         Refer to the respective group profile update commands ($set, $set_once, $add, $union, $remove, $unset, and $delete) on syntax for their parameters.
       security:
-        - ServiceAccount: []
+        - {}
       parameters:
         - $ref: ./common/ingestion-api.yaml#/OptionalRequestParameter/ResponseType/IP
         - $ref: ./common/ingestion-api.yaml#/OptionalRequestParameter/ResponseType/Strict
@@ -964,7 +966,7 @@ paths:
       summary: Delete Group
       description: Deletes a group profile from Mixpanel.
       security:
-        - ServiceAccount: []
+        - {}
       parameters:
         - $ref: ./common/ingestion-api.yaml#/OptionalRequestParameter/ResponseType/Verbose
       requestBody:
@@ -1032,6 +1034,7 @@ paths:
         - Lookup Tables
       security:
         - ServiceAccount: []
+        - ProjectSecret: []
       summary: Replace a Lookup Table
       description: ""
       parameters:
