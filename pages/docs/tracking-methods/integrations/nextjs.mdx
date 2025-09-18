@@ -73,24 +73,42 @@ import { dataItems } from "/utils/constants";
    export default MyApp;
    ```
 
-   b. **If using app router**, open or create the file `layout.js` or `layout.tsx` in your app/ directory
+   b. **If using app router**, create a file `MixpanelProvider.js` or `MixpanelProvider.tsx` in your root directory
    ```javascript
-   'use client';
-
-   import { useEffect } from 'react';
-   import { usePathname } from 'next/navigation';
-   import { initMixpanel } from '../lib/mixpanelClient';
-  
-   export default function RootLayout({ children }) {
-  
+   'use client;
+   
+   import { initMixpanel } from './lib/mixpanel;
+   import { ReactNode, useEffect } from 'react';
+   
+   export function MixpanelProvider({ children }: { children: ReactNode }) {
      useEffect(() => {
-       initMixpanel(); // Initialize Mixpanel
+       initMixpanel();
      }, []);
-  
+     return children;
+   }
+   
+   export default MixpanelProvider;
+   ```
+
+   Then wrap your app with the provider in your root `layout.js` or `layout.tsx` file:
+   ```javascript
+   import './globals.css';
+   import React from 'react';
+   import MixpanelProvider from '../MixpanelProvider';
+   
+   export default function RootLayout({
+     children,
+   }: {
+     children: React.ReactNode;
+   }) {
      return (
-       <html lang="en">
-         <body>{children}</body>
-       </html>
+         <html>
+           <body>
+             <MixpanelProvider>
+               {children}
+             </MixpanelProvider>
+           </body>
+         </html>
      );
    }
    ```
