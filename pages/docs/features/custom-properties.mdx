@@ -1,4 +1,4 @@
-import { Code, Callout } from 'nextra/components'
+import { Code, Callout, Steps } from 'nextra/components'
 
 # Custom Properties: Calculate new properties on the fly
 
@@ -8,9 +8,43 @@ import { Code, Callout } from 'nextra/components'
 
 ## Overview
 
-Custom properties lets you combine existing properties into new properties on the fly, using a simple Excel-like formula language. You can then use these new properties almost anywhere that you can use regular properties, with the ability to save/share them for reuse across your team. For more on why we built this, check out [our blog](https://mixpanel.com/blog/introducing-the-mixpanel-modeling-layer/).
+Custom properties let you combine existing properties into new properties on the fly, using a simple Excel-like formula language. You can then use these new properties almost anywhere that you can use regular properties, with the ability to save/share them for reuse across your team. For more on why we built this, check out [our blog](https://mixpanel.com/blog/introducing-the-mixpanel-modeling-layer/).
 
-## Use Cases
+## Creating a Custom Property
+
+<Steps>
+
+{<h3>Click the plus button to the right of the search bar, then select either “Custom Event Property” or “Custom User Property” to open the property builder.</h3>}
+
+![image](/1_create_a_custom_property.png)
+
+{<h3>Give your property a name.</h3>}
+
+![image](/2_assign_a_name.png)
+
+{<h3>Click the formula bar to start defining the calculations to perform for your property.</h3>}
+
+If you're new to this feature, we recommend starting with one of the examples. Click the **Insert Example** drop down to populate the box with a use-case specific custom property.
+
+When writing your formula, click **Ctrl + Space** to see a list of all the available [functions and their descriptions](/docs/features/custom-properties#functions). Type **period (.)** to open the menu for choosing an event/profile properties to add to the custom property definition. 
+
+If you are creating a “Custom Event Property” both event and user profile properties will be available to select. If you are creating a “Custom Profile Property” only user profile properties will be available for use in the custom property.
+
+<Callout type="info">
+Note that the formula used to compose your custom property can't be longer than 20,000 characters.
+</Callout>
+
+![image](https://github.com/mixpanel/docs/assets/2077899/98a4e5f0-6b9b-414b-8dfe-feecdb837078)
+
+</Steps>
+
+## Saving and Reusing a Custom Property
+
+Custom properties are local to the report by default when you select **Apply**. To save the custom property permanently for use in other reports and to make it usable by other project members, click **Save**. We recommend Applying the custom property and using it in your local analysis first, before saving and sharing, to reduce clutter in the project.
+
+When you create custom properties and select **Save as Custom Property**, your created custom property will be private by default. You can also add a description at this stage, so you and your colleagues can know what the custom property is for. You can also decide to save the custom property and **share** that custom property with specific colleagues, teams, or the entire organization by clicking "**Save and Share**":
+
+## Common Use Cases
 
 **Grouping Marketing Channels**
 
@@ -44,7 +78,7 @@ Use custom properties to create a new property if two property values are the sa
 
 For example:
 
-A company wants to find out what percentage of purchases are being made by users that have changed countries since sign up.
+A company wants to find out what percentage of purchases are being made by users who have changed countries since signing up.
 
 They can create a custom property to determine whether the two country values are the same with this transformation:
 
@@ -58,7 +92,7 @@ Extract the domain of the email from an email address. You can parse out parts o
 
 **Query a List with an Index**
 
-Let’s say you have a list of recommendations as a property, and you’d like to parse out the first recommendation as another string property.
+Let's say you have a list of recommendations as a property, and you’d like to parse out the first recommendation as another string property.
 
 You can parse out the first delivery ID in a list property with several DeliveryIDs:
 
@@ -66,39 +100,89 @@ You can parse out the first delivery ID in a list property with several Delivery
 
 The same syntax works with objects.
 
-**Borrow properties from one event onto subsequent events**
 
-![image](/borrowed_property_functionality.png)
+## Borrowed Properties
 
-For events that cannot have certain properties easily tracked, borrowed properties comes into the picture. This functionality allows you to borrow the specific property from a preceding action
+Borrowed properties allow you to take a property from a prior event and automatically add it as a property on a future event without needing to explicitly track the property in the future event.
 
-![image](/Borrowed_property_discovery.png)
+**Use Cases:**
 
-Some scenarios where this functionality could be used: 
-- **When merging events from 2 different systems, like server side & client side:** 
-  Use Case: You want to know transactions processed (which is a server side event), broken down by restaurant category (which is a property on a client side event order placed)
-- **When one team/ app wants to leverage tracking from 2+ teams/ apps:** 
-  Use Case: You want to know whether launch of Dark Mode, driven by the central team, impacted overall time spent on the page, which is your core KPI. Instead of adding the property - dark mode setting onto all the page view events, you can borrow this from existing tracking setup by the central launch team (dark mode toggle event) 
-- **When wanting to join event properties within a product session**: 
-  Use Case: You want to know which in product banners led to most purchase conversions
+- Use client-side properties to populate a property on a server-side event. Example: “purchase” event could be a server-side event, while the “product search” event is a client-side event.
+- Track a single event property and apply it to subsequent events. Example: It may be hard to track whether every event has dark mode enabled. You would need to keep track of the state of dark mode, and then add a “dark mode” property to every event that you track. Using borrowed events, you can just track one event with a property that indicates whether dark mode has been enabled or not, and have subsequent events borrow the property from that event.
 
-## Creating a Custom Property
+<Callout type="info">
+Each project can use up to 20 borrowed properties.
+</Callout>
 
-Click the plus button to the right of the search bar, then select Event Property or User Property to open the property builder.
+### Creating Borrowed Properties
 
-![image](/create-custom-prop.png)
+The following is a demonstration of Borrowed Properties using the [E-Commerce demo project](https://mixpanel.com/project/3018488), which anyone with a Mixpanel account can access.
 
-Optionally give your property a name and click into the formula bar to start defining it. If you're new to this feature, we recommend starting with one of the examples. Click the **Insert Example** drop down to populate the box with a use-case specific custom property.
+In this demonstration, we present an event called **"Purchase Completed"**, which lacks the event property **"Search term"**. To enable a breakdown by **"Search term"**, we apply the Borrowed Property feature, leveraging the property from another event called **"Product Searched"**.
 
-When writing your formula, click **Ctrl + Space** to see a list of all the available functions and their descriptions. Click **period (.)** to search for event or user profile properties to add to the formula.
+<Steps>
 
-![image](https://github.com/mixpanel/docs/assets/2077899/98a4e5f0-6b9b-414b-8dfe-feecdb837078)
+{<h3>Purchase Completed does not have “Search term”.</h3>}
 
-Custom properties are local to the report by default, when you select **Apply**. To save the custom property permanently for use in other reports and to make it usable by other project members, click **Save**. We recommend Apply-ing the custom property and using it in your local analysis first, before saving and sharing, to reduce clutter in the project.
+![image](/purchase_completed.png)
 
-When you create custom properties and select **Save as Custom Property**, your created custom property will be private by default. You can also add a description at this stage, so you and your colleagues can know what the custom property is for. You can also decide to save the custom property and **share** that custom property with specific colleagues, teams or the entire organization by clicking "**Save and Share**":
+{<h3>Products Searched does have “Search term”.</h3>}
 
-Also note that the formula used to compose your custom property can't be longer than 20,000 characters.
+![image](/products_searched.png)
+
+{<h3>Create a custom event property.</h3>}
+
+![image](/1_create_custom_event_property.png)
+
+{<h3>Add a borrowed property.</h3>}
+
+![image](/2_add_borrowed_property.png)
+
+{<h3>Select an event to borrow from.</h3>}
+
+![image](/3_select_products_searched.png)
+
+{<h3>Select the property to borrow.</h3>}
+
+![image](/4_select_search_terms.png)
+
+</Steps>
+
+### Borrowing Mechanics
+
+Borrowed Properties capture the value from the most recent borrowed event.
+
+We apply a seven-day lookback window, so the second event must occur within seven days of the first. If no first event exists within this window, the borrowed property is assigned the value (not set).
+
+The video below demonstrates how to create a borrowed property.
+
+<div style={{position: 'relative', paddingBottom: '64.90384615384616%', height: 0}}>
+    <iframe src="https://www.loom.com/embed/d45c325a7ee544a9965e90c3a5127257?sid=a52205f3-31d1-4928-9a64-ae937295fa40"
+        frameBorder="0"
+        webkitallowfullscreen="true" mozallowfullscreen="true" allowFullScreen
+        style={{position: 'absolute', 'top': 0, 'left': 0, 'width': '100%', 'height': '100%'}}>
+    </iframe>
+</div>
+
+Some key notes
+- Borrowed property creation is limited to Admin & Owner Roles only
+- A project can have a maximum of 20 borrowed properties. Hence, you are encouraged to only create borrowed properties useful to the larger team
+- A borrowed property, once created, is like any other custom property. It can be accessed by all in the project, depending on permissions
+- Borrowing of a property is strictly from the most recent event in the 7-day lookback window. To elaborate
+    - Say on event “purchase”, you want to borrow property “search term” from an event “search product”. If there are multiple events “search product” before “purchase”, the property will be borrowed from the most recent “search product” event where the property is set.
+    - Lookback is also fixed to a 7-day window. Say the “purchase” event occurred on 31st Jan, if the  most recent “search product” occurred on 20th Jan, the borrow functionality will return “search term” = (not set), since this event happened 11 days ago, which is outside the lookback window range.
+
+To use a borrowed property with other [functions](/docs/features/custom-properties#functions), you would need to: 
+
+1. Create a custom property with just the borrowed property on its own
+![image](/borrowed-property.png "Borrowed Property")<br />
+
+2. Create a separate custom property using the borrowed property (i.e., the 1st custom property)
+![image](/borrowed-property-in-custom-property.png "Borrowed Property in Custom Property")<br />
+
+3. Here's an example of a [report](https://mixpanel.com/s/1c4Pl9) with *Searched Category* custom property using *Search term (Products Searched)* borrowed property
+![image](/borrowed-property-in-custom-property-report.png "Borrowed Property in Custom Property Report Example")<br />
+
 
 ## Reference
 
@@ -142,7 +226,7 @@ Use the following functions in the **Formula** field to modify your custom prope
 | upper | Cast string property values to uppercase. | upper(string property)<br /><br />Example:<br />`upper(A); upper("hello")` -> "HELLO" |
 | lower | Cast string property values to lowercase. | lower(string property)<br /><br />Example:<br />`lower(A); lower("FacEBook")` -> "facebook" |
 |parse_url()| Extracts the part of the url that is specified: domain(google) or full_domain(google.co.uk) | parse_url(string property, "domain") or parse_url(string property, "full_domain") <br /><br />Example: parse_url(A,"domain") |
-| regex_extract | If haystack is a string and pattern matches at least one substring, extracts the result from the first pattern match in haystack. The result is a string equal to the entire regex match, or if capture group is specified, only that portion of the match. We use the PCRE2 regex engine. | regex_extract(haystack, pattern, &lt;optional capture group#&gt;)<br /><br />Example:<br />`regex_extract("iPhone5.1","iPhone(...)",1)` ->5.1 |
+| regex_extract | If haystack is a string and pattern matches at least one substring, extracts the result from the first pattern match in haystack. The result is a string equal to the entire regex match, or if a capture group is specified, only that portion of the match. We use the PCRE2 regex engine. | regex_extract(haystack, pattern, &lt;optional capture group#&gt;)<br /><br />Example:<br />`regex_extract("iPhone5.1","iPhone(...)",1)` ->5.1 |
 | regex_match | Returns true if the pattern matches any part of the string. We use the PCRE2 regex engine. | regex_match(haystack, pattern)<br /><br />Example:<br />`regex_match("zzhaystackzz", "ha(..)ack")` -> true <br /> // Use (?-i) for case-sensitive matching: `regex_match("HAYSTACK", "(?-i)haystack")` -> false |
 | regex_replace | Replaces the parts of a string that match a regular expression with a different string. We use the PCRE2 regex engine. | regex_replace(haystack, pattern, replacement)<br /><br />Example:<br />  // convert currency string to number: `regex_replace("$1,234,567", "[^.0-9]\*", ""))` -> `1234567` |
 | datedif | Subtract two dates. Units:<br />D: days.<br />M:  months.<br />Y: years<br />MD:  days remaining after subtracting whole months.<br />YM:  months remaining after subtracting whole years.<br />YD:  days, assuming start_date and end_date are within 1 year.<br />Use TODAY() for current day. |<br />datedif(start_date,end_date,unit)<br /><br />Example:<br />`datedif(registration_date,TODAY(), "M")` -> 5 |
@@ -182,34 +266,5 @@ Use the following comparison operators in the **Formula** field to modify your c
 ### Constants
 - `false`: Represents the literal value of boolean false.
 - `true`: Represents the literal value of boolean true.
-- `undefined`: Represents the literal value of cases that aren’t defined.
+- `undefined`: Represents the literal value of cases that aren't defined.
 
-### Borrowed Properties
-How to create a borrowed property is demonstrated in this video
-
-<div style={{position: 'relative', paddingBottom: '64.90384615384616%', height: 0}}>
-    <iframe src="https://www.loom.com/embed/d45c325a7ee544a9965e90c3a5127257?sid=a52205f3-31d1-4928-9a64-ae937295fa40"
-        frameBorder="0"
-        webkitallowfullscreen="true" mozallowfullscreen="true" allowFullScreen
-        style={{position: 'absolute', 'top': 0, 'left': 0, 'width': '100%', 'height': '100%'}}>
-    </iframe>
-</div>
-
-Some key notes
-- Borrowed property creation is limited to Admin & Owner Roles only
-- A project can have a maximum of 20 borrowed properties. Hence you are encouraged to only create borrowed properties useful to the larger team
-- A borrowed property once created is like any other custom property. It can be accessed by all in the project depending on permissions
-- Borrowing of a property is strictly from the most recent event in the 7 day lookback window. To elaborate
-    - Say on event “purchase”, you want to borrow property “search term” from an event “search product”. If there are multiple events “search product” before “purchase”, the property will be borrowed from the most recent “search product” event where the property is set.
-    - Lookback is also fixed to a 7 day window. Say the “purchase” event occurred on 31st Jan, if the  most recent “search product” occurred on 20th Jan, the borrow functionality will return “search term” = (not set), since this event happened 11 days ago which is outside the lookback window range.
-
-To use a borrowed property with other [functions](/docs/features/custom-properties#functions), you would need to: 
-
-1. Create a custom property with just the borrowed property on it's own
-![image](/borrowed-property.png "Borrowed Property")<br />
-
-2. Create a separate custom property using the borrowed property (i.e. the 1st custom property)
-![image](/borrowed-property-in-custom-property.png "Borrowed Property in Custom Property")<br />
-
-3. Here's an example of a [report](https://mixpanel.com/s/1c4Pl9) with *Searched Category* custom property using *Search term (Products Searched)* borrowed property
-![image](/borrowed-property-in-custom-property-report.png "Borrowed Property in Custom Property Report Example")<br />
