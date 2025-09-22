@@ -3,7 +3,7 @@
   "version": "0.0.1",
   "description": "Mixpanel's Official Documentation",
   "scripts": {
-    "api:build": "openapi --config=./openapi/openapi.config.yaml --output ./openapi/out/ bundle",
+    "api:build": "redocly bundle --config=./openapi/openapi.config.yaml",
     "api:lint": "openapi --config=./openapi/openapi.config.yaml --format=stylish lint",
     "api:publish": "node ./openapi/publish.js",
     "api:test": "./openapi/test.sh",
@@ -44,7 +44,7 @@
     "sharp": "0.34.3"
   },
   "devDependencies": {
-    "@redocly/openapi-cli": "1.0.0-beta.95",
+    "@redocly/cli": "1.34.5",
     "@types/mixpanel": "2.14.9",
     "@types/node": "24.3.0",
     "autoprefixer": "10.4.21",
