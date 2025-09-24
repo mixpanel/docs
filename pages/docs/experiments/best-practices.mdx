@@ -1,0 +1,128 @@
+import { Callout } from 'nextra/components'
+
+# Experimentation Best Practices
+
+## Hypothesis Development
+
+### Craft Strong Hypotheses
+- **Structure**: "If [change], then [outcome], because [reasoning]"
+- **Specific**: Define exactly what you're changing and what you expect to happen
+- **Measurable**: Tie to concrete metrics you can track
+- **Time-bound**: Set clear expectations for when effects should appear
+
+### Example Good Hypothesis
+"If we add social proof badges to product pages, then conversion rate will increase by 5%, because users trust products that others have purchased."
+
+## Sample Size Planning
+
+### Determine Adequate Sample Size
+- **Use power analysis**: Calculate required sample size before starting
+- **Consider your baseline**: Lower baseline rates need larger samples
+- **Factor in expected lift**: Smaller expected changes need more users
+- **Account for segments**: Plan for subgroup analysis needs
+
+### General Guidelines
+- **Minimum Detectable Effect**: Aim for changes of at least 2-5%
+- **Statistical Power**: Target 80% power (ability to detect true effects)
+- **Significance Level**: Typically use 95% confidence (α = 0.05)
+
+## Metric Selection
+
+### Primary Metrics
+- **Choose 1-2 primary metrics maximum** to avoid multiple testing issues
+- **Select metrics that directly measure your hypothesis**
+- **Ensure metrics are sensitive to your changes** (will move within test timeframe)
+
+### Guardrail Metrics
+- **Monitor key business metrics** (revenue, retention, satisfaction)
+- **Track user experience indicators** (page load time, error rates)
+- **Watch for unintended consequences** in related product areas
+
+### Secondary Metrics
+- **Help explain the "why" behind primary metric changes**
+- **Provide additional context for decision making**
+- **Explore user behavior patterns**
+
+## Experiment Design
+
+### Randomization Best Practices
+- **Use proper randomization units** (typically users, not sessions)
+- **Ensure random assignment is consistent** across user sessions
+- **Account for network effects** when users can influence each other
+- **Consider stratification** for important user segments
+
+### Control Group Management
+- **Always include a proper control group** (status quo)
+- **Keep control groups large enough** for reliable comparisons
+- **Avoid making changes to control** during the experiment
+
+## Avoiding Common Pitfalls
+
+### Statistical Issues
+- **Don't peek at results repeatedly** without adjusting significance levels
+- **Avoid stopping experiments early** unless using sequential testing
+- **Be aware of multiple testing problems** when analyzing many metrics
+- **Don't cherry-pick time periods** for analysis
+
+### Implementation Issues
+- **Validate exposure event tracking** before launching
+- **Test your experiment setup** with a small percentage first
+- **Monitor for technical issues** that could bias results
+- **Ensure consistent user experience** across variant groups
+
+### Business Context
+- **Consider external factors** (holidays, marketing campaigns, seasonality)
+- **Account for learning effects** (users adapting to changes over time)
+- **Plan for network effects** in social or marketplace products
+- **Think about long-term vs. short-term impacts**
+
+## Running Experiments at Scale
+
+### Experiment Pipeline
+- **Maintain a roadmap** of planned experiments
+- **Prioritize based on potential impact** and ease of implementation
+- **Allow adequate time** between related experiments
+- **Document learnings** for organizational knowledge
+
+### Resource Management
+- **Plan engineering resources** for implementation and monitoring
+- **Coordinate with marketing teams** to avoid conflicting campaigns
+- **Consider user fatigue** from too many simultaneous experiments
+- **Balance learning goals** with product development velocity
+
+## Statistical Considerations
+
+### Sequential vs. Frequentist Testing
+- **Sequential Testing**: Good for detecting large effects quickly, allows early stopping
+- **Frequentist Testing**: Better for small effect detection, requires full test duration
+- **Choose based on your goals**: Quick decisions vs. precise measurements
+
+### Handling Multiple Variants
+- **Limit the number of variants** to maintain statistical power
+- **Consider pairwise comparisons** vs. overall ANOVA
+- **Adjust significance levels** when making multiple comparisons
+- **Plan your analysis approach** before starting the test
+
+## Advanced Topics
+
+### Segmentation Analysis
+- **Plan key segments in advance** (new vs. returning users, etc.)
+- **Use interaction effects** to understand segment differences
+- **Be cautious about post-hoc segmentation** (can lead to false discoveries)
+- **Consider segment size requirements** for reliable results
+
+### Long-term Effects
+- **Plan for post-experiment monitoring** to catch delayed effects
+- **Consider novelty effects** that may wear off over time
+- **Think about user learning curves** for complex features
+- **Monitor competitive responses** that might influence results
+
+<Callout type="warning">
+Remember that experimentation is both an art and a science. While these guidelines provide a strong foundation, always consider your specific product context and user base when designing experiments.
+</Callout>
+
+## Additional Resources
+
+- [Sample Size Calculators](https://mixpanel.com/tools/sample-size-calculator)
+- [A/B Testing Significance Calculator](https://mixpanel.com/tools/ab-test-calculator)
+- [Mixpanel's Guide to Product Analytics](https://mixpanel.com/content/guide-to-product-analytics/)

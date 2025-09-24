@@ -6,20 +6,52 @@ import { Callout } from 'nextra/components'
     The Experiment Report is a separately priced product. It is currently only offered to those on the Enterprise Plan. See our [pricing page](https://mixpanel.com/pricing/) for more details.
 </Callout>
 
+## Why Experiment?
+
+Experimentation helps you make data-driven product decisions by measuring the real impact of changes on user behavior. Mixpanel is an ideal place to run experiments because all your product analytics data is already here, giving you comprehensive insights into how changes affect your entire user journey.
+
+## Prerequisites
+
+Before getting started with experiments:
+
+- **Enterprise Plan**: Experimentation is only available on Enterprise plans
+- **Exposure Event Tracking**: You must implement `$experiment_started` event tracking
+- **Baseline Metrics**: Have your key success metrics already defined in Mixpanel
+- **Permissions**: Ensure you have the appropriate project permissions
+
+## Experiment Workflow
+
+**Plan** → **Setup & Launch** → **Monitor** → **Interpret Results** → **Make Decisions**
+
+1. **Plan**: Define hypothesis, success metrics, and test parameters
+2. **Setup & Launch**: Configure experiment settings and begin exposure
+3. **Monitor**: Track experiment progress and data collection
+4. **Interpret Results**: Analyze statistical significance and lift
+5. **Make Decisions**: Choose whether to ship, iterate, or abandon changes
+
 ## Overview
 
 ![image](/exp_overview.png)
 
-The Experiment report analyzes how one variant impacts your metrics versus other variant(s), helping you decide which variant should be rolled out more broadly. To access Experiments, click on the **Experiments** tab in the navigation panel, or **Create New > Experiment**.
+The Experiment report analyzes how one variant impacts your metrics versus other variant(s), helping you decide which variant should be rolled out more broadly. To access Experiments, click on the **Experiments** tab in the navigation panel, or **Create New > Experiment**.
 
-## Building an Experiment Report
+## Plan Your Experiment
+
+Before creating an experiment report, ensure you have:
+
+- A clear hypothesis about what change will improve which metric
+- Defined primary success metrics (and secondary/guardrail metrics)
+- Estimated sample size and test duration requirements
+- Proper exposure event tracking implemented
+
+## Setup & Launch Your Experiment
 
 ### Step 1: Select an Experiment
 
 Click 'New Experiment' from the Experiment report menu and select your experiment. Any experiment started in the last 30 days will automatically be detected and populated in the dropdown. To analyze experiments that began before 30 days, please hard-code the experiment name
 
 <Callout type="info">
-Only experiments tracked via exposure events, i.e, $experiment_started`, can be analyzed in the experiment report. Read more on how to track experiments [here](/docs/reports/experiments#adding-experiments-to-an-implementation). 
+Only experiments tracked via exposure events, i.e, $experiment_started`, can be analyzed in the experiment report. Read more on how to track experiments [here](#adding-experiments-to-an-implementation). 
 </Callout>
 ### Step 2: Choose the ‘Control’ Variant
 
@@ -41,7 +73,16 @@ Mixpanel has set default automatic configurations, seen below. If required, plea
 2. **Confidence Threshold**: 95% 
 3. **Experiment Start Date**: Date of the first user exposed to the experiment
 
-## Reading Experiment Report Results
+## Monitor Your Experiment
+
+Once your experiment is running, you can track its progress in the Experiments dashboard. Monitor key indicators:
+
+- **Sample Size Progress**: Track how many users have been exposed
+- **Data Quality**: Ensure exposure events are being tracked correctly
+- **Guardrail Metrics**: Watch for any negative impacts on important metrics
+- **External Factors**: Note any external events that might affect results
+
+## Interpret Your Results
 
 The Experiments report identifies significant differences between the Control and Variant groups. Every metric has two key attributes: 
 
@@ -60,7 +101,19 @@ The main reason you look at statistical significance (p-value) is to get confide
 
 ![image](/exp_stat_sig.png)
 
-Max Significance Level (p-value) = [1-CI]/2 where CI = Confidence Interval
+#### Statistical Significance Calculation
+
+Mixpanel calculates statistical significance using different methods based on your experiment model:
+
+**For Sequential Testing:**
+- Uses continuous monitoring with adjusted significance thresholds
+- Allows for early stopping when significance is reached
+- Accounts for multiple testing through sequential boundaries
+
+**For Frequentist Testing:**
+- Uses traditional hypothesis testing with fixed sample sizes
+- Calculates p-values using standard statistical tests (t-tests for continuous metrics, chi-square for categorical)
+- Formula: Max Significance Level (p-value) = [1-CI]/2 where CI = Confidence Interval
 
 In the above image for example, max p=0.025 [(1-0.95)/2]
 
@@ -100,7 +153,7 @@ Once the ‘Test Duration’ setup during configuration is complete, we show a b
 1. Sample size to be exposed
 2. Number of days you’d like to run the experiment
 
-NOTE: If you are using a ‘sequential’ testing experiment model type, you can always peek at the results sooner. Learn more about what sequential testing is [here](/docs/reports/experiments#experiment-model-types)
+NOTE: If you are using a 'sequential' testing experiment model type, you can always peek at the results sooner. Learn more about what sequential testing is [here](#experiment-model-types)
 
 ### Diagnosing experiments further in regular Mixpanel reports
 Click 'Analyze' on a metric to dive deeper into the results. This will open a normal Mixpanel insights report for the time range being analyzed with the experiment breakdown applied. This allows you to view users, view replays, or apply additional breakdowns to further analyze the results.
@@ -161,15 +214,13 @@ You can specify the event and property that should be used as the exposure event
     
     For example, you begin an experiment on 1st Aug, and 1M users are ‘assigned’ to the control and variant. You do not want to send an ‘exposure’ event for all these users right away, as they have only been assigned to the experiment.  It’s possible that some user gets exposed on 4th Aug and some on 8th Aug. You would want to track $experiment_started at the exposure for accurate analysis.
 
-## Experiment Pricing
+## Billing FAQ
 <Callout type="info">
     The Experiment Report is a separately priced product offered to organizations on the Enterprise Plan. Please [contact us](https://mixpanel.com/contact-us/sales/) for more details.
 </Callout>
 
 ### Pricing Unit
-Experimentation is priced based on MEUs - Monthly Experiment Users. Only users exposed to an experiment in a month are counted towards this tally. 
-
-### FAQ
+Experimentation is priced based on MEUs - Monthly Experiment Users. Only users exposed to an experiment in a month are counted towards this tally.
 #### How are MEUs different than MTUs (Monthly Tracked Users)?
 MTUs count any user who has tracked an event to the project in the calendar month. MEU is a subset of MTU; it’s only users who have tracked an exposure experiment event (ie, `$experiment_started`) in the calendar month.
 
@@ -212,12 +263,39 @@ You can see your experiment MEU usage by going to Organization settings > Plan D
 - **Guardrail Metrics:** These are other important metrics that you want to ensure haven’t been negatively affected while focusing on the primary metrics. Examples: CSAT, churn rate.
 - **Secondary Metrics:** These provide a deeper understanding of how users are interacting with your changes, i.e, help to understand the "why" behind changes in the primary metric. Examples: time spent, number of pages visited, or specific user actions.
 
-### Post Experiment Analysis Decision 
-Once the experiment is ready to review, you can choose to 'End Analysis'. Once complete, you can log a decision, visible to all users, based on the experiment outcome:
+## Make Your Decision
 
-- Ship Variant (any of the variants): You had a statistically significant result. You have made a decision to ship a variant to all users. NOTE: Shipping variant here is just a log; it does not actually trigger rolling out the feature flag unless you are using Mixpanel feature flags **(in beta today)**.
-- Ship None: You may not have had any statistically significant results, or even if you have statistically significant results, the lift is not sufficient to warrant a change in user experience. You decide not to ship the change.
-- Defer Decision: You may have a direction you want to go, but need to sync with other stakeholders before confirming the decision. This is an example where you might defer decision, and come back at a later date and log the final decision.
+Once the experiment is ready to review, you can choose to 'End Analysis'. Use these guidelines to make informed decisions:
+
+### When to Ship a Variant
+- **Statistical significance achieved** AND **practical significance met** (lift meets your minimum threshold)
+- **Guardrail metrics remain stable** (no significant negative impacts)
+- **Sample size is adequate** for your confidence requirements
+- **Results align with your hypothesis** and business objectives
+
+### When to Ship None
+- **No statistical significance** achieved after adequate test duration
+- **Statistically significant but practically insignificant** (lift too small to matter)
+- **Negative impact on guardrail metrics** outweighs primary metric gains
+- **Results contradict** your hypothesis significantly
+
+### When to Rerun or Iterate
+- **Inconclusive results** due to insufficient sample size
+- **Mixed signals** across different user segments
+- **External factors** contaminated the test period
+- **Technical issues** affected data collection
+
+### What to Watch Post-Rollout
+- **Monitor guardrail metrics** for 2-4 weeks after full rollout
+- **Track long-term effects** beyond your experiment window
+- **Watch for novelty effects** that may wear off
+- **Document learnings** for future experiments
+
+### Decision Options in Mixpanel
+
+- **Ship Variant (any of the variants)**: You had a statistically significant result. You have made a decision to ship a variant to all users. NOTE: Shipping variant here is just a log; it does not actually trigger rolling out the feature flag unless you are using Mixpanel feature flags **(in beta today)**.
+- **Ship None**: You may not have had any statistically significant results, or even if you have statistically significant results, the lift is not sufficient to warrant a change in user experience. You decide not to ship the change.
+- **Defer Decision**: You may have a direction you want to go, but need to sync with other stakeholders before confirming the decision. This is an example where you might defer decision, and come back at a later date and log the final decision.
 
 ### Experiment Management
 You can manage all your experiments via the Experiments Home tab. You can customize which columns you’d like to see. 
