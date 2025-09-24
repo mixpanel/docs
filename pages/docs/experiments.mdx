@@ -117,7 +117,7 @@ Mixpanel categorizes metrics into three types, each using different statistical 
 
 3. **Value Metrics** (Averages, Sums of properties): Use **normal distribution approximation**
    - Examples: Average order value, total revenue, average session duration
-   - Calculates variance using sample statistics and Central Limit Theorem
+   - Calculates variance using sample statistics
 
 **Statistical Calculation Process:**
 
@@ -127,7 +127,10 @@ For all metric types, we follow the same general process:
 2. **Estimate variance** using the appropriate distribution 
 3. **Compute standard error** from variance and sample size
 4. **Calculate Z-score** measuring how many standard errors apart the groups are
-5. **Derive p-value** from Z-score using normal distribution (via Central Limit Theorem)
+5. **Derive p-value** from Z-score using normal distribution
+
+**Statistical Foundation:**
+Our calculations assume normal distributions for the sampling distributions of our metrics. While individual data points may not be normally distributed, the Central Limit Theorem tells us that with sufficient sample sizes, the sampling distributions of means and proportions will approximate normal distributions, making our statistical methods valid.
 
 **For Sequential Testing:**
 - Uses continuous monitoring with adjusted significance thresholds with [mSPRT method](https://arxiv.org/pdf/1905.10493)
