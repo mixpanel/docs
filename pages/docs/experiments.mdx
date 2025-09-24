@@ -3,7 +3,7 @@ import { Callout } from 'nextra/components'
 # Experiments: Measure the impact of a/b testing
 
 <Callout type="info">
-    The Experiment Report is a separately priced product. It is currently only offered to those on the Enterprise Plan. See our [pricing page](https://mixpanel.com/pricing/) for more details.
+    The Experiment Report is a separately priced product add-on. It is currently only offered to those on the Enterprise Plan. See our [pricing page](https://mixpanel.com/pricing/) for more details.
 </Callout>
 
 ## Why Experiment?
@@ -14,10 +14,8 @@ Experimentation helps you make data-driven product decisions by measuring the re
 
 Before getting started with experiments:
 
-- **Enterprise Plan**: Experimentation is only available on Enterprise plans
-- **Exposure Event Tracking**: You must implement `$experiment_started` event tracking
-- **Baseline Metrics**: Have your key success metrics already defined in Mixpanel
-- **Permissions**: Ensure you have the appropriate project permissions
+- **Exposure Event Tracking**:[Implement experimentation events](#implementation-for-experimentation)
+- **Baseline Metrics**: Have your key success metrics already measured in Mixpanel
 
 ## Overview & Workflow
 
@@ -103,16 +101,41 @@ The main reason you look at statistical significance (p-value) is to get confide
 
 #### Statistical Significance Calculation
 
-Mixpanel calculates statistical significance using different methods based on your experiment model:
+Mixpanel uses Frequentist statistical methods to compute p-values and confidence intervals. The specific approach depends on your metric type and experiment model.
+
+**Metric Types and Their Distributions:**
+
+Mixpanel categorizes metrics into three types, each using different statistical distributions:
+
+1. **Count Metrics** (Total Events, Total Sessions): Use **Poisson distribution**
+   - Examples: Total purchases, total page views, session count
+   - Variance equals the mean (characteristic of Poisson distributions)
+
+2. **Rate Metrics** (Conversion rates, Retention rates): Use **Bernoulli distribution**
+   - Examples: Signup conversion rate, checkout completion rate, 7-day retention
+   - Models binary outcomes (did/didn't convert) across your user base
+
+3. **Value Metrics** (Averages, Sums of properties): Use **normal distribution approximation**
+   - Examples: Average order value, total revenue, average session duration
+   - Calculates variance using sample statistics and Central Limit Theorem
+
+**Statistical Calculation Process:**
+
+For all metric types, we follow the same general process:
+
+1. **Calculate group rates** for control and treatment
+2. **Estimate variance** using the appropriate distribution 
+3. **Compute standard error** from variance and sample size
+4. **Calculate Z-score** measuring how many standard errors apart the groups are
+5. **Derive p-value** from Z-score using normal distribution (via Central Limit Theorem)
 
 **For Sequential Testing:**
-- Uses continuous monitoring with adjusted significance thresholds
+- Uses continuous monitoring with adjusted significance thresholds (mSPRT method)
 - Allows for early stopping when significance is reached
-- Accounts for multiple testing through sequential boundaries
+- More conservative calculations to account for multiple testing
 
 **For Frequentist Testing:**
 - Uses traditional hypothesis testing with fixed sample sizes
-- Calculates p-values using standard statistical tests (t-tests for continuous metrics, chi-square for categorical)
 - Formula: Max Significance Level (p-value) = [1-CI]/2 where CI = Confidence Interval
 
 In the above image for example, max p=0.025 [(1-0.95)/2]
@@ -122,28 +145,60 @@ So, if an experiment's results show
 - p ≤ 0.025: results are statistically significant for this metric, i.e, you can be 95% confident in the lift seen if the change is rolled out to all users.
 - p > 0.025: results are not statistically significant for this metric, i.e, you cannot be very confident in the results if the change is rolled out broadly.
 
+#### Example: E-commerce Checkout Experiment
+
+To illustrate how these calculations work in practice, let's walk through a concrete example.
+
+**Scenario:** Testing a new checkout UI on an e-commerce site with 20 users (10 control, 10 treatment).
+
+**Results:**
+- **Control group:** 5 users converted (50% conversion rate), average cart size $60
+- **Treatment group:** 6 users converted (60% conversion rate), average cart size $67
+
+**For Conversion Rate (Rate Metric - Bernoulli Distribution):**
+
+1. **Group rates:** Control = 0.5, Treatment = 0.6
+2. **Variance calculation:** Control = 0.5 × (1-0.5) = 0.25, Treatment = 0.6 × (1-0.6) = 0.24  
+3. **Standard error:** Combined SE = √((0.25/10) + (0.24/10)) = 0.221
+4. **Z-score:** (0.6 - 0.5) / 0.221 = 0.45
+5. **P-value:** ~0.65 (not statistically significant)
+
+**For Average Cart Size (Value Metric - Normal Distribution):**
+
+1. **Group means:** Control = $60, Treatment = $67
+2. **Variance calculation:** Uses sample variance of cart values in each group
+3. **Standard error:** Calculated from combined variance and sample sizes
+4. **Z-score and p-value:** Computed using the same Z-test framework
+
+This example shows why larger sample sizes are crucial—with only 10 users per group, even a 10-point difference in conversion rate isn't statistically significant.
+
 ### How do you read lift?
 
 Lift is the percentage difference between the control and variant(s) metrics. 
 $Lift= { (variant \,group\,rate - control \,group\,rate) \over (control \,group\,rate)}$
 
-Lift, mean, and variance are calculated differently based on the type of metric being analyzed. We categorize metrics into 3 types: 
+Lift, mean, and variance are calculated differently based on the type of metric being analyzed:
 
-- **Numeric** - any metrics that involve numeric property math (sum, average, etc)
-- **Binomial** - any metric that has a true or false outcome (unique users, funnel conversions, retention)
-- **Rate** - any metric that can be conceptualized as a rate (funnel conversion rate, total events/experiment, etc)
+**Count Metrics (Total Events, Sessions):**
+- **Group Rate:** Total count ÷ Number of users exposed
+- **Variance:** Equal to the mean (Poisson distribution property)
+- **Example:** If treatment group has 150 total purchases from 100 exposed users, group rate = 1.5 purchases per user
 
-The ‘group rate’ is calculated differently depending on the type of metric.
+**Rate Metrics (Conversion, Retention):** 
+- **Group Rate:** The actual rate (already normalized)
+- **Variance:** Calculated using Bernoulli distribution: p × (1-p)
+- **Example:** If 25 out of 100 users convert, group rate = 0.25 (25% conversion rate)
 
-- For numeric & binomial metrics:
+**Value Metrics (Averages, Sums):**
+- **Group Rate:** Sum of property values ÷ Number of users exposed  
+- **Variance:** Calculated from the distribution of individual property values
+- **Example:** If treatment group spent $5,000 total from 100 users, group rate = $50 average per exposed user
 
-    $Group\,Rate= { (\# \,Metric\,absolute\,value)  \over (\# of\,users\,exposed)}$
-  
-    NOTE: Normalizing the rate based on the number of users exposed helps understand the possible impact on every single user exposed to the experiment
-    
-- For rate metrics: the group rate is the same as the metric for the users in the group. Example: if calculating a funnel conversion rate, then the group rate is the overall conversion rate of the funnel for users in the group.
-    
-    NOTE: Conversion rates are normalized as is, hence no further normalization is done
+**Why This Matters:**
+Normalizing by exposed users (not just converters) helps you understand the impact on your entire user base. A feature that increases average order value among buyers but reduces conversion rate might actually decrease overall revenue per user.
+
+**Custom Formula Metrics:**
+For complex metrics using formulas like `Revenue per User = Total Revenue ÷ Unique Users`, Mixpanel uses propagation of uncertainty to estimate variance. This combines the variances of the component metrics (Total Revenue and Unique Users) to calculate the overall metric's statistical significance. The system assumes metrics in formulas are uncorrelated for these calculations.
 
 ### When do we say the Experiment is ready to review?
 Once the ‘Test Duration’ setup during configuration is complete, we show a banner that says “Experiment is ready to review”.
@@ -169,22 +224,8 @@ The Experiment report behavior is powered by [borrowed properties](/docs/feature
 
 For every user event, we identify if the event is performed after being exposed to an experiment. If it were, then we would borrow the variant details from the tracked `$experiment_started` to attribute the event to the proper variant.
 
-### FAQs
-1. If a user switches variants mid-experiment, how do we calculate the impact on metrics? 
-    
-    We break a user and their associated behavior into fractional parts for analysis. We consider the initial behavior part of the first variant, then once the variant changes, we consider the rest of the behavior for analysis towards the new variant. 
-    
-2. If a user is part of multiple experiments, how do we calculate the impact of a single experiment?
-    
-    We consider the complete user’s behavior for every experiment that they are a part of. 
-    
-    We believe this will still give accurate results for a particular experiment, as the users have been randomly allocated. So there should be enough similar users, ie, part of multiple experiments, across both control and variants for a particular experiment. 
-    
-3. For what time duration do we associate the user being exposed to an experiment to impact metrics? 
-    
-    Post experiment exposure, we consider a user’s behavior as ‘exposed’ to an experiment for a max of 90 days.
 
-## Adding Experiments to an Implementation
+### Implementation for Experimentation
 
 Mixpanel experiment analysis work based on exposure events. To use the experiment report, you must send your Exposure events in the following format: 
 
@@ -213,6 +254,21 @@ You can specify the event and property that should be used as the exposure event
 - Send exposure details and not the assignment.
     
     For example, you begin an experiment on 1st Aug, and 1M users are ‘assigned’ to the control and variant. You do not want to send an ‘exposure’ event for all these users right away, as they have only been assigned to the experiment.  It’s possible that some user gets exposed on 4th Aug and some on 8th Aug. You would want to track $experiment_started at the exposure for accurate analysis.
+
+### FAQs
+1. If a user switches variants mid-experiment, how do we calculate the impact on metrics? 
+    
+    We break a user and their associated behavior into fractional parts for analysis. We consider the initial behavior part of the first variant, then once the variant changes, we consider the rest of the behavior for analysis towards the new variant. 
+    
+2. If a user is part of multiple experiments, how do we calculate the impact of a single experiment?
+    
+    We consider the complete user’s behavior for every experiment that they are a part of. 
+    
+    We believe this will still give accurate results for a particular experiment, as the users have been randomly allocated. So there should be enough similar users, ie, part of multiple experiments, across both control and variants for a particular experiment. 
+    
+3. For what time duration do we associate the user being exposed to an experiment to impact metrics? 
+    
+    Post experiment exposure, we consider a user’s behavior as ‘exposed’ to an experiment for a max of 90 days.
 
 ## Experimentation Pricing FAQ
 <Callout type="info">
