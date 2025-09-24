@@ -130,7 +130,7 @@ For all metric types, we follow the same general process:
 5. **Derive p-value** from Z-score using normal distribution (via Central Limit Theorem)
 
 **For Sequential Testing:**
-- Uses continuous monitoring with adjusted significance thresholds (mSPRT method)
+- Uses continuous monitoring with adjusted significance thresholds with [mSPRT method](https://arxiv.org/pdf/1905.10493)
 - Allows for early stopping when significance is reached
 - More conservative calculations to account for multiple testing
 
