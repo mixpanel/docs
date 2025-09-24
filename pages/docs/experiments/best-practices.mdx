@@ -2,125 +2,59 @@ import { Callout } from 'nextra/components'
 
 # Experimentation Best Practices
 
-## Hypothesis Development
+Running experiments isn't just about flipping switches and hoping for the best. The difference between experiments that generate real insights and those that waste time often comes down to a few key practices. Here's what we've learned from working with thousands of teams on their experimentation programs.
 
-### Craft Strong Hypotheses
-- **Structure**: "If [change], then [outcome], because [reasoning]"
-- **Specific**: Define exactly what you're changing and what you expect to happen
-- **Measurable**: Tie to concrete metrics you can track
-- **Time-bound**: Set clear expectations for when effects should appear
+## Start with a Strong Hypothesis
 
-### Example Good Hypothesis
-"If we add social proof badges to product pages, then conversion rate will increase by 5%, because users trust products that others have purchased."
+Your experiment is only as good as the hypothesis behind it. A weak hypothesis leads to inconclusive results, even when everything else is done perfectly.
 
-## Sample Size Planning
+The best hypotheses follow a simple structure: "If [change], then [outcome], because [reasoning]." For example: "If we add social proof badges to product pages, then conversion rate will increase by 5%, because users trust products that others have purchased."
 
-### Determine Adequate Sample Size
-- **Use power analysis**: Calculate required sample size before starting
-- **Consider your baseline**: Lower baseline rates need larger samples
-- **Factor in expected lift**: Smaller expected changes need more users
-- **Account for segments**: Plan for subgroup analysis needs
+Why does this work? It forces you to think through not just *what* you're testing, but *why* you expect it to work. That reasoning becomes crucial when you're interpreting results later.
 
-### General Guidelines
-- **Minimum Detectable Effect**: Aim for changes of at least 2-5%
-- **Statistical Power**: Target 80% power (ability to detect true effects)
-- **Significance Level**: Typically use 95% confidence (α = 0.05)
+## Get Your Sample Size Right
 
-## Metric Selection
+Nothing kills an experiment faster than realizing afterward that you didn't have enough users to detect a meaningful difference. This is especially painful when you've spent weeks collecting data.
 
-### Primary Metrics
-- **Choose 1-2 primary metrics maximum** to avoid multiple testing issues
-- **Select metrics that directly measure your hypothesis**
-- **Ensure metrics are sensitive to your changes** (will move within test timeframe)
+Before you start, calculate your required sample size using a power analysis. Consider your baseline conversion rate—lower rates need larger samples to detect the same percentage change. If you're looking for a 5% improvement on a 2% baseline, you'll need far more users than improving from 20% to 25%.
 
-### Guardrail Metrics
-- **Monitor key business metrics** (revenue, retention, satisfaction)
-- **Track user experience indicators** (page load time, error rates)
-- **Watch for unintended consequences** in related product areas
+As a general rule, aim to detect changes of at least 2-5%. Smaller improvements are often not worth the implementation effort, and detecting them requires massive sample sizes.
 
-### Secondary Metrics
-- **Help explain the "why" behind primary metric changes**
-- **Provide additional context for decision making**
-- **Explore user behavior patterns**
+## Choose Metrics Carefully
 
-## Experiment Design
+Here's where many experiments go wrong: trying to measure everything instead of focusing on what matters.
 
-### Randomization Best Practices
-- **Use proper randomization units** (typically users, not sessions)
-- **Ensure random assignment is consistent** across user sessions
-- **Account for network effects** when users can influence each other
-- **Consider stratification** for important user segments
+Pick 1-2 primary metrics. These should directly measure what your hypothesis predicts will change. If you're testing a new checkout flow, your primary metric should be conversion rate, not page views.
 
-### Control Group Management
-- **Always include a proper control group** (status quo)
-- **Keep control groups large enough** for reliable comparisons
-- **Avoid making changes to control** during the experiment
+But don't stop there. Set up guardrail metrics to catch unintended consequences. If your new checkout flow increases conversions but doubles customer service complaints, you need to know that. Monitor key business metrics like revenue, retention, and satisfaction alongside your primary metrics.
 
-## Avoiding Common Pitfalls
+Secondary metrics help you understand the "why" behind your results. If conversion goes up, are users spending more time on the page? Are they more likely to return? These insights guide your next experiments.
 
-### Statistical Issues
-- **Don't peek at results repeatedly** without adjusting significance levels
-- **Avoid stopping experiments early** unless using sequential testing
-- **Be aware of multiple testing problems** when analyzing many metrics
-- **Don't cherry-pick time periods** for analysis
+## Avoid the Peeking Problem
 
-### Implementation Issues
-- **Validate exposure event tracking** before launching
-- **Test your experiment setup** with a small percentage first
-- **Monitor for technical issues** that could bias results
-- **Ensure consistent user experience** across variant groups
+It's tempting to check results daily, especially when you're excited about a test. But repeatedly checking for significance without adjusting your analysis can lead to false positives.
 
-### Business Context
-- **Consider external factors** (holidays, marketing campaigns, seasonality)
-- **Account for learning effects** (users adapting to changes over time)
-- **Plan for network effects** in social or marketplace products
-- **Think about long-term vs. short-term impacts**
+If you must peek (and we all do), either use sequential testing methods that account for multiple looks, or commit to your original test duration. The worst outcome is stopping an experiment early because you saw a promising spike that later disappears.
 
-## Running Experiments at Scale
+## Think Beyond the Test Window
 
-### Experiment Pipeline
-- **Maintain a roadmap** of planned experiments
-- **Prioritize based on potential impact** and ease of implementation
-- **Allow adequate time** between related experiments
-- **Document learnings** for organizational knowledge
+The best experiments teach you something about your users, not just about a specific feature. When results come in, dig deeper than just "variant A beat variant B."
 
-### Resource Management
-- **Plan engineering resources** for implementation and monitoring
-- **Coordinate with marketing teams** to avoid conflicting campaigns
-- **Consider user fatigue** from too many simultaneous experiments
-- **Balance learning goals** with product development velocity
+Look at different user segments. Did new users respond differently than returning ones? Were there differences by device or geography? These patterns often reveal insights that apply to future experiments.
 
-## Statistical Considerations
+Consider long-term effects too. Some changes show immediate benefits that fade over time as novelty wears off. Others take weeks to show their true impact as users adapt to new workflows.
 
-### Sequential vs. Frequentist Testing
-- **Sequential Testing**: Good for detecting large effects quickly, allows early stopping
-- **Frequentist Testing**: Better for small effect detection, requires full test duration
-- **Choose based on your goals**: Quick decisions vs. precise measurements
+## Scale Your Learning
 
-### Handling Multiple Variants
-- **Limit the number of variants** to maintain statistical power
-- **Adjust significance levels** when making multiple comparisons
-- **Plan your analysis approach** before starting the test
+As your experimentation program matures, the real value comes from the cumulative learning across all your tests. Document what you learn from each experiment, even the "failed" ones. Failed experiments that contradict your intuition are often the most valuable—they reveal gaps in your understanding of user behavior.
 
-## Advanced Topics
-
-### Segmentation Analysis
-- **Plan key segments in advance** (new vs. returning users, etc.)
-- **Use interaction effects** to understand segment differences
-- **Be cautious about post-hoc segmentation** (can lead to false discoveries)
-- **Consider segment size requirements** for reliable results
-
-### Long-term Effects
-- **Plan for post-experiment monitoring** to catch delayed effects
-- **Consider novelty effects** that may wear off over time
-- **Think about user learning curves** for complex features
-- **Monitor competitive responses** that might influence results
+Build a roadmap of related experiments. If testing a new headline increases signups, what happens when you test the entire landing page? Each experiment should inform the next, creating a virtuous cycle of learning.
 
 <Callout type="warning">
-Remember that experimentation is both an art and a science. While these guidelines provide a strong foundation, always consider your specific product context and user base when designing experiments.
+Remember that experimentation is both an art and a science. These practices provide a foundation, but every product and user base is different. Use your judgment and adapt these guidelines to your specific context.
 </Callout>
 
 ## Additional Resources
 
-- [What is Product Experimentation?](https://mixpanel.com/blog/product-experimentation/)
-- [Mixpanel's Guide to Product Analytics](https://mixpanel.com/content/guide-to-product-analytics/)
+What is Product Experimentation? @https://mixpanel.com/blog/product-experimentation/ 
+Mixpanel's Guide to Product Analytics @https://mixpanel.com/content/guide-to-product-analytics/intro/ 
