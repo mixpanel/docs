@@ -1,14 +1,16 @@
-import { Callout } from 'nextra/components'
+import { Callout } from "nextra/components";
 
 # Data Pipelines Overview
 
 <Callout type="warning">
-  If you already did setup older version of pipelines via the API and want to manage it,
-  go to docs [here](/docs/data-pipelines/old-pipelines).
+    If you already did setup older version of pipelines via the API and want to
+    manage it, go to docs [here](/docs/data-pipelines/old-pipelines).
 </Callout>
 
 <Callout type="info">
-  Customers on an Enterprise or Growth plan can access Data Pipeline as an add-on package. See our [pricing page](https://mixpanel.com/pricing/) for more details.
+    Customers on an Enterprise or Growth plan can access Data Pipeline as an
+    add-on package. See our [pricing page](https://mixpanel.com/pricing/) for
+    more details.
 </Callout>
 
 Data Pipelines is a feature that continuously exports data from your Mixpanel project to a Cloud Storage bucket or Data Warehouse of your choice. This feature is ideal for those who wish to perform SQL analysis on Mixpanel data within their own environment.
@@ -30,15 +32,15 @@ JSON pipelines export data as JSON files to a cloud storage bucket, providing a 
 
 For specific configuration instructions, see our guides for each storage destination:
 
-- [AWS S3](/docs/data-pipelines/integrations/aws-s3)
-- [Google Cloud Storage](/docs/data-pipelines/integrations/gcp-gcs)
-- [Azure Blob Storage](/docs/data-pipelines/integrations/azure-blob-storage)
+-   [AWS S3](/docs/data-pipelines/integrations/aws-s3)
+-   [Google Cloud Storage](/docs/data-pipelines/integrations/gcp-gcs)
+-   [Azure Blob Storage](/docs/data-pipelines/integrations/azure-blob-storage)
 
 Data is exported to the following structured paths in your bucket:
 
-- Events: `<BUCKET_NAME>/<MIXPANEL_PROJECT_ID>/mp_master_event/<YEAR>/<MONTH>/<DAY>/`
-- User profiles: `<BUCKET_NAME>/<MIXPANEL_PROJECT_ID>/mp_people_data/`
-- Identity mappings: `<BUCKET_NAME>/<MIXPANEL_PROJECT_ID>/mp_identity_mappings_data/`
+-   Events: `<BUCKET_NAME>/<MIXPANEL_PROJECT_ID>/mp_master_event/<YEAR>/<MONTH>/<DAY>/`
+-   User profiles: `<BUCKET_NAME>/<MIXPANEL_PROJECT_ID>/mp_people_data/`
+-   Identity mappings: `<BUCKET_NAME>/<MIXPANEL_PROJECT_ID>/mp_identity_mappings_data/`
 
 ### Data Warehouse
 
@@ -46,9 +48,9 @@ JSON Pipelines also facilitate data export into tables, creating schemas that ar
 
 For detailed setup guides per destination, see:
 
-- [BigQuery](/docs/data-pipelines/integrations/bigquery)
-- [Redshift Spectrum](/docs/data-pipelines/integrations/redshift-spectrum)
-- [Snowflake](/docs/data-pipelines/integrations/snowflake)
+-   [BigQuery](/docs/data-pipelines/integrations/bigquery)
+-   [Redshift Spectrum](/docs/data-pipelines/integrations/redshift-spectrum)
+-   [Snowflake](/docs/data-pipelines/integrations/snowflake)
 
 ## Step 2: Creating the Pipeline
 
@@ -73,16 +75,16 @@ To check a pipeline's configuration:
 
 1. Go to the **Integrations** page
 2. Either:
-   - Click on the pipeline name to view configuration at the top of the page, or
-   - Click the **3-dot** menu and select **View Configuration**
+    - Click on the pipeline name to view configuration at the top of the page, or
+    - Click the **3-dot** menu and select **View Configuration**
 
 ### Why does the number of events in Mixpanel not match the number of exported events to my destination?
 
 Discrepancies between the event counts in Mixpanel and those exported to your destination can occur for several reasons:
 
-- **Data Sync**: If [Events Data Sync](/docs/data-pipelines/json-pipelines#events-data-sync) is not enabled or is unsupported for your pipeline, this could prevent some data from being exported.
-- **Data Delay**: Late-arriving data may take up to one day to sync from Mixpanel to your destination, leading to temporary discrepancies.
-- **Hidden Events**: Mixpanel exports all events, including those hidden in the Mixpanel UI via Lexicon. To reconcile differences in counts, check if the events in your destination include those hidden in the Mixpanel UI.
+-   **Data Sync**: If [Events Data Sync](/docs/data-pipelines/json-pipelines#events-data-sync) is not enabled or is unsupported for your pipeline, this could prevent some data from being exported.
+-   **Data Delay**: Late-arriving data may take up to one day to sync from Mixpanel to your destination, leading to temporary discrepancies.
+-   **Hidden Events**: Mixpanel exports all events, including those hidden in the Mixpanel UI via Lexicon. To reconcile differences in counts, check if the events in your destination include those hidden in the Mixpanel UI.
 
 ### How can I count events exported by Mixpanel in the warehouse?
 
@@ -94,10 +96,14 @@ Mixpanel offers a 30-day free trial of the Data Pipelines, allowing you to creat
 
 **Trial limitations**:
 
-- Exports are scheduled on a daily basis only.
-- Data synchronization feature is not available.
-- Only one pipeline can be created per data source per project.
-- Backfilled data is limited to one day prior to the creation date of the pipeline.
+-   Exports are scheduled on a daily basis only.
+-   Data synchronization feature is not available.
+-   Only one pipeline can be created per data source per project.
+-   Backfilled data is limited to one day prior to the creation date of the pipeline.
+
+### Why can't I delete the trial pipeline?
+
+You can’t delete a trial pipeline in Mixpanel — this is intentional. Each project is limited to one trial pipeline per data source, and keeping it prevents deleting/recreating trials to bypass limits. It also serves as a record that the trial has been used. Even after you upgrade to a paid Data Pipelines package, the trial pipeline remains visible and cannot be removed. This is a policy decision to preserve the integrity of the trial program, not a technical constraint.
 
 ### What is Active Pipeline Limit
 
@@ -122,4 +128,3 @@ Data arriving late is handled during a daily sync process the following day afte
 ### What should I set for the Account Name and Storage Integration when creating a Snowflake pipeline?
 
 The Account Name should be set to your unique account identifier Eg. "blah2321.us-west-2" while the Storage Integration should be set to the name of the storage integration you created in Snowflake Eg. "MIXPANEL_EXPORT_STORAGE_INTEGRATION".
-
