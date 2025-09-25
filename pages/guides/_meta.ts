@@ -9,6 +9,11 @@ export default {
     	href: "/changelogs",
 		newWindow: true
   	},
+	"solutions-and-workflows": {
+		"type": "separator",
+		"title": "SOLUTIONS & WORKFLOWS"
+	},
+	"guides-by-use-case": "Guides by Use Case",
 	"enterprise": {
 		"type": "separator",
 		"title": "ENTERPRISE"
