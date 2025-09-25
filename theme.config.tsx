@@ -1,5 +1,5 @@
 import { useRouter } from "next/router";
-import { DocsThemeConfig, useConfig } from "nextra-theme-docs";
+import { useConfig } from "nextra-theme-docs";
 
 import Search from "./components/Search/Search";
 import MixpanelLogoWordmark from "./components/svg/MixpanelLogoWordmark";
@@ -8,7 +8,7 @@ import SignUpButton from "./components/SignUpButton/SignUpButton";
 import ChangelogPostHeader from "./components/ChangelogPostHeader/ChangelogPostHeader";
 import { VideoButtonWithModal } from "./components/VideoButtonWithModal";
 
-const config: DocsThemeConfig = {
+const config = {
   darkMode: true,
   nextThemes: {
     defaultTheme: `system`,
@@ -16,7 +16,8 @@ const config: DocsThemeConfig = {
   docsRepositoryBase: "https://github.com/mixpanel/docs/tree/main",
   head() {
     const { pathname } = useRouter();
-    const { title } = useConfig();
+    // TODO: Find replacement for useConfig().title in Nextra 4
+    const title = 'Mixpanel Docs'; // Temporary fallback
     const url = `https://docs.mixpanel.com${pathname}`;
 
     return (

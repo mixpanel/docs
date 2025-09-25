@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { getPagesUnderRoute } from "nextra/context";
+// import { getPagesUnderRoute } from "nextra"; // TODO: Find replacement in Nextra 4
 import { ImageFrame } from "./ImageFrame";
 import { VideoButtonWithModal } from "./VideoButtonWithModal";
 import Link from "next/link";
@@ -67,8 +67,9 @@ const renderMedia: (page: MdxFile) => React.JSX.Element = (page) => {
 };
 
 export default function ChangelogIndex({ more = "Learn More" }) {
+  // TODO: Replace getPagesUnderRoute with Nextra 4 alternative
   // naturally sorts pages from a-z rather than z-a
-  const allPages = getPagesUnderRoute("/changelogs").reverse();
+  const allPages: MdxFile[] = []; // getPagesUnderRoute("/changelogs").reverse();
   const itemsPerPage = 10;
   const [displayedPages, setDisplayedPages] = useState([]);
   const [pageIndex, setPageIndex] = useState(0);
