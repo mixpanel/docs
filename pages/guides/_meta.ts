@@ -14,14 +14,10 @@ export default {
 		"title": "SOLUTIONS & WORKFLOWS"
 	},
 	"guides-by-use-case": "Guides by Use Case",
-	"enterprise": {
+	"best-practices-and-playbooks": {
 		"type": "separator",
-		"title": "ENTERPRISE"
+		"title": "BEST PRACTICES & PLAYBOOKS"
 	},
-	"onboarding-overview": "Enterprise Onboarding",
-	"plan": "Plan",
-	"implement": "Implement",
-	"launch": "Launch",
-	"playbooks": "Playbooks",
-	"beyond-onboarding": "Beyond Onboarding",
+	"strategic-playbooks": "Strategic Playbooks",
+	"beyond-onboarding": "Beyond Onboarding"
 }
