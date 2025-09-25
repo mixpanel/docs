@@ -4,6 +4,11 @@ export default {
 		"title": "DISCOVER MIXPANEL"
 	},
 	"what-is-mixpanel": "What is Mixpanel?",
+	"changelog": {
+    	title: "What's New? ↗",
+    	href: "/changelogs",
+		newWindow: true
+  	},
 	"enterprise": {
 		"type": "separator",
 		"title": "ENTERPRISE"
