@@ -9,4 +9,9 @@ export default {
 	"launch": "Launch",
 	"playbooks": "Playbooks",
 	"beyond-onboarding": "Beyond Onboarding",
+	"level1": {
+		"type": "separator",
+		"title": "LEVEL 1"
+	},
+	"level2": "LEVEL 2",
 }
