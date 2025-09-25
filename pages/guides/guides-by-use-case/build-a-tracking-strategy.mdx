@@ -18,7 +18,7 @@ A tracking strategy is not just about what you log; it is about creating a share
 
 A good strategy is built step by step, not all at once. The practices below will help you move from a vague idea of “we should track more” to a clear, scalable framework your whole team can rely on.
 
-### 1. Define the Events that Matter
+### Define the Events that Matter
 
 Events are the backbone of Mixpanel. Start by mapping out the key user actions tied to your KPIs (e.g., sign-up started, checkout completed, feature used).
 
@@ -28,7 +28,7 @@ Events are the backbone of Mixpanel. Start by mapping out the key user actions t
 
 Learn more about [Events](/docs/data-structure/events-and-properties).
 
-### 2. Use Event Properties to Add Context
+### Use Event Properties to Add Context
 
 Events tell you *what* happened, properties tell you *how* it happened. Properties give you the flexibility to keep your event list small while still allowing rich analysis.
 
@@ -52,7 +52,7 @@ Promoting context like app version, device type, or campaign source to a [super 
 **Pro tip**: Teams typically see the best results when they limit their schema to a manageable set of core events, enriched with properties for detail.
 </Callout>
 
-### 3. Capture User Profiles and Properties
+### Capture User Profiles and Properties
 
 Events capture behavior, while user profiles capture who the user is today (e.g., their email, location, and subscription level). When you pair event properties with user properties, you can compare past behavior with the current state.
 
@@ -60,7 +60,7 @@ For example, a user property for `current_country = Singapore` can be compared w
 
 Learn more about [User Profiles](/docs/data-structure/user-profiles).
 
-### 4. Tips for Choosing Properties
+### Tips for Choosing Properties
 
 Properties, whether attached to events or stored on user profiles, add the context that makes your analysis meaningful. The right ones make it easy to answer business questions; the wrong ones add noise and confusion.
 
@@ -88,7 +88,7 @@ Standardize common properties like `plan_type`, `device`, or `region` so you can
 
 Following these guidelines keeps your schema focused, while still giving you the flexibility to answer the questions that matter most.
 
-### 5. Standardize Naming Conventions
+### Standardize Naming Conventions
 
 Clear, consistent names make your data easier to use and trust. A naming convention prevents confusion, reduces duplicate events, and keeps your queries simple.
 
@@ -101,7 +101,7 @@ As a best practice, use `snake_case` for all event names, properties, and proper
 **Pro tip**: Write down your naming rules in your tracking plan so engineers and analysts always know what to follow.
 </Callout>
 
-### 6. Document and Govern Your Tracking Plan
+### Document and Govern Your Tracking Plan
 
 Your strategy only works if it is shared and enforced. Keep a **living tracking plan** and lean on Mixpanel's governance features.
 
