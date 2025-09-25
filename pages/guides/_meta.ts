@@ -1,4 +1,9 @@
 export default {
+	"discover-mixpanel": {
+		"type": "separator",
+		"title": "DISCOVER MIXPANEL"
+	},
+	"what-is-mixpanel": "What is Mixpanel?",
 	"enterprise": {
 		"type": "separator",
 		"title": "ENTERPRISE"
