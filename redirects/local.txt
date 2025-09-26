@@ -292,3 +292,4 @@
 /guides/launch/track-user-retention /guides/strategic-playbooks/onboarding-playbook/launch/track-user-retention
 /guides/launch/define-cohorts /guides/strategic-playbooks/onboarding-playbook/launch/define-cohorts
 /guides/launch/revenue-analytics /guides/strategic-playbooks/onboarding-playbook/launch/revenue-analytics
+/guides/beyond-onboarding /guides/strategic-playbooks/onboarding-playbook/beyond-onboarding
