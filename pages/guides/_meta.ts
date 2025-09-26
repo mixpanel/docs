@@ -18,6 +18,5 @@ export default {
 		"type": "separator",
 		"title": "BEST PRACTICES & PLAYBOOKS"
 	},
-	"strategic-playbooks": "Strategic Playbooks",
-	"beyond-onboarding": "Beyond Onboarding"
+	"strategic-playbooks": "Strategic Playbooks"
 }

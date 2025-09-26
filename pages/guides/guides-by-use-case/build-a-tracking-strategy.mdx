@@ -20,7 +20,7 @@ A good strategy is built step by step, not all at once. The practices below will
 
 ### Define the Events that Matter
 
-Events are the backbone of Mixpanel. Start by mapping out the key user actions tied to your KPIs (e.g., sign-up started, checkout completed, feature used).
+Events are the backbone of Mixpanel. Start by mapping out the key user actions tied to your KPIs (e.g. sign-up started, checkout completed, feature used).
 
 - ✅ **Do** choose events that represent meaningful behaviors connected to business goals.
 - ❌ **Do not** track every click or interaction simply because it is possible, since doing so can clutter your analysis.
@@ -40,7 +40,7 @@ Properties like `plan_type`, `payment_method`, or `device` can help keep your ev
 
 {<h3>Use consistent data types for predictable analysis.</h3>}
 
-Consistency in [data types](/docs/data-structure/property-reference/data-type) (e.g., string, numeric, or Boolean) ensures your metrics are accurate and comparable over time. For example, if a property is sometimes a string and sometimes a number, queries can break and charts can become unreliable.
+Consistency in [data types](/docs/data-structure/property-reference/data-type) (e.g. string, numeric, or Boolean) ensures your metrics are accurate and comparable over time. For example, if a property is sometimes a string and sometimes a number, queries can break and charts can become unreliable.
 
 {<h3>Attach session-level context as super properties.</h3>}
 
@@ -48,13 +48,13 @@ Promoting context like app version, device type, or campaign source to a [super 
 
 </Steps>
 
-<Callout>
+<Callout type="info">
 **Pro tip**: Teams typically see the best results when they limit their schema to a manageable set of core events, enriched with properties for detail.
 </Callout>
 
 ### Capture User Profiles and Properties
 
-Events capture behavior, while user profiles capture who the user is today (e.g., their email, location, and subscription level). When you pair event properties with user properties, you can compare past behavior with the current state.
+Events capture behavior, while user profiles capture who the user is today (e.g. their email, location, and subscription level). When you pair event properties with user properties, you can compare past behavior with the current state.
 
 For example, a user property for `current_country = Singapore` can be compared with an event geolocation property showing where they logged in previously. A user who travels often may track events in different locations despite their current location being somewhere else.
 
@@ -97,7 +97,7 @@ Clear, consistent names make your data easier to use and trust. A naming convent
 
 As a best practice, use `snake_case` for all event names, properties, and property values (for example: `checkout_completed`, `payment_method = credit_card`). Snake case works well with APIs and avoids ambiguity.
 
-<Callout>
+<Callout type="info" >
 **Pro tip**: Write down your naming rules in your tracking plan so engineers and analysts always know what to follow.
 </Callout>
 

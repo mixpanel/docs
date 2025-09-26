@@ -1,5 +1,6 @@
 export default {
     "plan": "Plan",
 	"implement": "Implement",
-	"launch": "Launch"
+	"launch": "Launch",
+	"beyond-onboarding": "Beyond Onboarding"
 }
