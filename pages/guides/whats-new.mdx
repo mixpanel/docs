@@ -3,18 +3,15 @@ title: "What's New"
 description: "Auto-updating highlights from Mixpanel Changelogs"
 ---
 
-import { useMemo, useRef, useState } from 'react'
+import { useEffect, useMemo, useRef, useState } from 'react'
 import { getPagesUnderRoute } from 'nextra/context'
 
-/**
- * Static, zero-fetch version that reads local /pages/changelogs.
- * Cards render as horizontal scrolling tiles with scroll-snap and controls.
- */
+/* Option 1 — Horizontal scrolling tiles */
 
 export const changelogPages = getPagesUnderRoute('/changelogs')
 
 export default function WhatsNewPage() {
-  const DEFAULT_LIMIT = 12
+  const DEFAULT_LIMIT = 16
 
   // Build items from local pages
   const items = useMemo(() => {
@@ -29,6 +26,7 @@ export default function WhatsNewPage() {
       .map((p) => {
         const fm = p.frontMatter || p.meta || {}
         const route = p.route || ''
+        if (!/\/changelogs\/.+/.test(route)) return null
         const name = p.name || route.split('/').pop() || ''
         const date = fm.date || parseDate(name) || parseDate(route)
         return {
@@ -41,11 +39,8 @@ export default function WhatsNewPage() {
           category: fm.category || fm.type || ''
         }
       })
-      .sort((a, b) => {
-        const da = new Date(a.date || '')
-        const db = new Date(b.date || '')
-        return db - da
-      })
+      .filter(Boolean)
+      .sort((a, b) => new Date(b.date || '') - new Date(a.date || ''))
   }, [])
 
   const shipped30d = useMemo(() => {
@@ -53,163 +48,131 @@ export default function WhatsNewPage() {
     return items.filter(i => !isNaN(new Date(i.date)) && new Date(i.date).getTime() >= cutoff).length
   }, [items])
 
-  const [mode, setMode] = useState('tiles')
-
   const isNew = (dateStr) => {
-    const d = new Date(dateStr)
-    if (isNaN(d)) return false
+    const d = new Date(dateStr); if (isNaN(d)) return false
     const days = (Date.now() - d.getTime()) / (1000 * 60 * 60 * 24)
     return days <= 14
   }
-
   const fmtDate = (dateStr) => {
-    const d = new Date(dateStr)
-    if (isNaN(d)) return dateStr || ''
+    const d = new Date(dateStr); if (isNaN(d)) return dateStr || ''
     return d.toLocaleDateString(undefined, { year: 'numeric', month: 'short', day: 'numeric' })
   }
 
-  const monthKey = (dateStr) => {
-    const d = new Date(dateStr)
-    if (isNaN(d)) return 'Unknown'
-    return d.toLocaleDateString(undefined, { year: 'numeric', month: 'long' })
-  }
-
-  const ViewToggle = ({ mode, setMode }) => (
-    <div className="flex gap-2 items-center mb-4">
-      <button
-        onClick={() => setMode('tiles')}
-        className={`px-3 py-1 rounded border ${mode === 'tiles' ? 'bg-gray-100' : 'bg-white'}`}
-        aria-pressed={mode === 'tiles'}
-      >
-        Tiles
-      </button>
-      <button
-        onClick={() => setMode('timeline')}
-        className={`px-3 py-1 rounded border ${mode === 'timeline' ? 'bg-gray-100' : 'bg-white'}`}
-        aria-pressed={mode === 'timeline'}
-      >
-        Timeline
-      </button>
-    </div>
-  )
-
   const Card = ({ item }) => (
-    <a href={item.url} className="block border rounded-lg p-4 hover:shadow-sm transition h-full">
+    <a href={item.url} className="block h-full border rounded-2xl p-4 hover:shadow-sm transition bg-white/5">
       <div className="flex items-start gap-3">
         {item.thumbnail ? (
           <img src={item.thumbnail} alt="" className="w-16 h-16 object-cover rounded-md" loading="lazy" />
         ) : item.video ? (
-          <div className="w-16 h-16 bg-black/5 rounded-md flex items-center justify-center text-xs">Video</div>
+          <div className="w-16 h-16 bg-black/10 rounded-md flex items-center justify-center text-xs">Video</div>
         ) : (
-          <div className="w-16 h-16 bg-black/5 rounded-md" />
+          <div className="w-16 h-16 bg-black/10 rounded-md" />
         )}
         <div className="min-w-0">
           <div className="flex items-center gap-2 text-xs text-gray-500">
             <span>{fmtDate(item.date)}</span>
             {item.category && <span aria-label="category">• {item.category}</span>}
-            {isNew(item.date) && (
-              <span className="ml-2 inline-block px-1.5 py-0.5 text-[10px] rounded bg-emerald-100 text-emerald-700">NEW</span>
-            )}
+            {isNew(item.date) && <span className="ml-2 inline-block px-1.5 py-0.5 text-[10px] rounded bg-emerald-100 text-emerald-700">NEW</span>}
           </div>
           <h3 className="mt-1 text-base font-medium leading-snug line-clamp-2">{item.title}</h3>
-          {item.description && <p className="mt-1 text-sm text-gray-600 line-clamp-3">{item.description}</p>}
+          {item.description && <p className="mt-1 text-sm opacity-80 line-clamp-3">{item.description}</p>}
         </div>
       </div>
     </a>
   )
 
-  // Horizontal scrolling tiles with snap and controls
+  // ------- HORIZONTAL SCROLLER -------
   const Tiles = ({ items, limit = DEFAULT_LIMIT }) => {
     const shown = items.slice(0, limit)
     const ref = useRef(null)
-    const page = () => Math.max((ref.current?.clientWidth || 0) - 64, 240)
+    const [canScroll, setCanScroll] = useState(false)
+    const [progress, setProgress] = useState(0)
+
+    useEffect(() => {
+      const el = ref.current
+      if (!el) return
+      const update = () => {
+        const max = el.scrollWidth - el.clientWidth
+        setCanScroll(max > 0)
+        setProgress(max <= 0 ? 0 : el.scrollLeft / max)
+      }
+      update()
+      el.addEventListener('scroll', update, { passive: true })
+      window.addEventListener('resize', update)
+      return () => {
+        el.removeEventListener('scroll', update)
+        window.removeEventListener('resize', update)
+      }
+    }, [shown.length])
+
+    const page = () => Math.max(240, Math.floor((ref.current?.clientWidth || 0) * 0.9))
     const scrollLeft = () => ref.current?.scrollBy({ left: -page(), behavior: 'smooth' })
     const scrollRight = () => ref.current?.scrollBy({ left: page(), behavior: 'smooth' })
 
     return (
-      <div>
+      <div className="relative">
+        {/* Scroll container */}
         <div
           ref={ref}
-          className="flex overflow-x-auto gap-4 pb-2 snap-x snap-mandatory scroll-smooth"
-          style={{ WebkitOverflowScrolling: 'touch' }}
-          tabIndex={0}
+          className="flex overflow-x-auto gap-4 pb-8 snap-x snap-mandatory scroll-smooth"
+          style={{
+            WebkitOverflowScrolling: 'touch',
+            maskImage: 'linear-gradient(to right, transparent, black 24px, black calc(100% - 24px), transparent)',
+            WebkitMaskImage: 'linear-gradient(to right, transparent, black 24px, black calc(100% - 24px), transparent)',
+            scrollbarWidth: 'none', msOverflowStyle: 'none'
+          }}
           aria-label="Latest updates"
         >
-          {shown.map((i) => (
-            <div key={i.url} className="snap-start shrink-0 w-72">
+          {shown.map(i => (
+            <div key={i.url} className="snap-start shrink-0 w-80">
               <Card item={i} />
             </div>
           ))}
         </div>
-        <div className="flex justify-end gap-2 mt-2">
-          <button onClick={scrollLeft} className="px-3 py-1 rounded border">Prev</button>
-          <button onClick={scrollRight} className="px-3 py-1 rounded border">Next</button>
-        </div>
+
+        {/* Progress bar */}
+        {canScroll && (
+          <div className="absolute left-0 right-0 bottom-2 h-1 rounded-full bg-gray-500/30 overflow-hidden">
+            <div className="h-full bg-fuchsia-500" style={{ width: `${Math.round(progress * 100)}%` }} />
+          </div>
+        )}
+
+        {/* Arrow controls */}
+        {canScroll && (
+          <>
+            <button
+              onClick={scrollLeft}
+              aria-label="Previous"
+              className="absolute right-16 bottom-8 translate-y-1/2 rounded-full border bg-white/90 text-black px-3 py-2 shadow"
+            >
+              &lt;
+            </button>
+            <button
+              onClick={scrollRight}
+              aria-label="Next"
+              className="absolute right-4 bottom-8 translate-y-1/2 rounded-full border bg-white/90 text-black px-3 py-2 shadow"
+            >
+              &gt;
+            </button>
+          </>
+        )}
       </div>
     )
   }
-
-  const Timeline = ({ items }) => {
-    const groups = useMemo(() => {
-      const map = new Map()
-      for (const i of items) {
-        const k = monthKey(i.date)
-        if (!map.has(k)) map.set(k, [])
-        map.get(k).push(i)
-      }
-      return Array.from(map.entries()).sort((a, b) => {
-        const da = new Date(a[0]); const db = new Date(b[0]); return db - da
-      })
-    }, [items])
-
-    return (
-      <div className="space-y-8">
-        {groups.map(([month, arr]) => (
-          <section key={month}>
-            <h2 className="text-xl font-semibold mb-3">
-              {month} <span className="text-sm text-gray-500">({arr.length})</span>
-            </h2>
-            <ul className="space-y-3">
-              {arr.sort((a, b) => new Date(b.date) - new Date(a.date)).map(i => (
-                <li key={i.url} className="border rounded-lg p-4 hover:shadow-sm transition">
-                  <a href={i.url} className="block">
-                    <div className="flex items-start gap-3">
-                      <div className="w-20 shrink-0 text-xs text-gray-500 mt-1">{fmtDate(i.date)}</div>
-                      <div className="min-w-0">
-                        <div className="flex items-center gap-2 text-xs text-gray-500">
-                          {i.category && <span>{i.category}</span>}
-                          {isNew(i.date) && (
-                            <span className="inline-block px-1.5 py-0.5 text-[10px] rounded bg-emerald-100 text-emerald-700">NEW</span>
-                          )}
-                        </div>
-                        <h3 className="mt-1 text-base font-medium leading-snug">{i.title}</h3>
-                        {i.description && <p className="mt-1 text-sm text-gray-600 line-clamp-2">{i.description}</p>}
-                      </div>
-                    </div>
-                  </a>
-                </li>
-              ))}
-            </ul>
-          </section>
-        ))}
-      </div>
-    )
-  }
+  // ------------------------------------
 
   return (
-    <div className="mx-auto max-w-5xl">
-      <div className="mx-auto max-w-5xl mb-6">
-        <h1 className="text-3xl font-semibold tracking-tight">What's New</h1>
-        <p className="mt-1 text-sm text-gray-500">
-          Fresh from our <a className="underline" href="/changelogs">Changelog</a>. We shipped <strong>{shipped30d}</strong> updates in the last 30 days.
+    <div className="mx-auto max-w-6xl">
+      <div className="mb-6">
+        <h1 className="text-3xl font-semibold tracking-tight">New releases</h1>
+        <p className="mt-1 text-sm opacity-80">
+          Learn more about our newly released capabilities. We shipped <strong>{shipped30d}</strong> updates in the last 30 days.
         </p>
       </div>
 
-      <ViewToggle mode={mode} setMode={setMode} />
+      <Tiles items={items} />
 
-      {mode === 'tiles' ? <Tiles items={items} /> : <Timeline items={items} />}
-
-      <div className="mt-8 text-sm text-gray-500">
+      <div className="mt-8 text-sm opacity-70">
         Do not see what you are looking for? See the full <a className="underline" href="/changelogs">Changelog</a>.
       </div>
     </div>
