@@ -3,22 +3,22 @@ title: "What's New"
 description: "Auto-updating highlights from Mixpanel Changelogs"
 ---
 
-import { useMemo, useState } from 'react'
+import { useMemo, useRef, useState } from 'react'
 import { getPagesUnderRoute } from 'nextra/context'
 
 /**
- * Static, zero-fetch version — uses Nextra to read local /pages/changelogs.
- * Auto-updates whenever new changelog MDX is added to the repo.
+ * Static, zero-fetch version that reads local /pages/changelogs.
+ * Cards render as horizontal scrolling tiles with scroll-snap and controls.
  */
 
 export const changelogPages = getPagesUnderRoute('/changelogs')
 
 export default function WhatsNewPage() {
-  const DEFAULT_LIMIT = 10
+  const DEFAULT_LIMIT = 12
 
-  // Normalize Nextra page objects into lightweight items
+  // Build items from local pages
   const items = useMemo(() => {
-    const parseDateFromString = (s = '') => {
+    const parseDate = (s = '') => {
       const m = s.match(/(\d{4}-\d{2}-\d{2})/)
       return m ? m[1] : ''
     }
@@ -30,7 +30,7 @@ export default function WhatsNewPage() {
         const fm = p.frontMatter || p.meta || {}
         const route = p.route || ''
         const name = p.name || route.split('/').pop() || ''
-        const date = fm.date || parseDateFromString(name) || parseDateFromString(route)
+        const date = fm.date || parseDate(name) || parseDate(route)
         return {
           url: route,
           title: fm.title || p.title || humanize(name),
@@ -41,10 +41,9 @@ export default function WhatsNewPage() {
           category: fm.category || fm.type || ''
         }
       })
-      // Sort newest first by date (fallback to route/name if date missing)
       .sort((a, b) => {
-        const da = new Date(a.date || parseDateFromString(a.url || ''))
-        const db = new Date(b.date || parseDateFromString(b.url || ''))
+        const da = new Date(a.date || '')
+        const db = new Date(b.date || '')
         return db - da
       })
   }, [])
@@ -54,7 +53,7 @@ export default function WhatsNewPage() {
     return items.filter(i => !isNaN(new Date(i.date)) && new Date(i.date).getTime() >= cutoff).length
   }, [items])
 
-  const [mode, setMode] = useState('cards')
+  const [mode, setMode] = useState('tiles')
 
   const isNew = (dateStr) => {
     const d = new Date(dateStr)
@@ -78,11 +77,11 @@ export default function WhatsNewPage() {
   const ViewToggle = ({ mode, setMode }) => (
     <div className="flex gap-2 items-center mb-4">
       <button
-        onClick={() => setMode('cards')}
-        className={`px-3 py-1 rounded border ${mode === 'cards' ? 'bg-gray-100' : 'bg-white'}`}
-        aria-pressed={mode === 'cards'}
+        onClick={() => setMode('tiles')}
+        className={`px-3 py-1 rounded border ${mode === 'tiles' ? 'bg-gray-100' : 'bg-white'}`}
+        aria-pressed={mode === 'tiles'}
       >
-        Cards
+        Tiles
       </button>
       <button
         onClick={() => setMode('timeline')}
@@ -95,12 +94,12 @@ export default function WhatsNewPage() {
   )
 
   const Card = ({ item }) => (
-    <a href={item.url} className="block border rounded-lg p-4 hover:shadow-sm transition">
+    <a href={item.url} className="block border rounded-lg p-4 hover:shadow-sm transition h-full">
       <div className="flex items-start gap-3">
         {item.thumbnail ? (
           <img src={item.thumbnail} alt="" className="w-16 h-16 object-cover rounded-md" loading="lazy" />
         ) : item.video ? (
-          <div className="w-16 h-16 bg-black/5 rounded-md flex items-center justify-center text-xs">🎬</div>
+          <div className="w-16 h-16 bg-black/5 rounded-md flex items-center justify-center text-xs">Video</div>
         ) : (
           <div className="w-16 h-16 bg-black/5 rounded-md" />
         )}
@@ -119,11 +118,33 @@ export default function WhatsNewPage() {
     </a>
   )
 
-  const CardsView = ({ items, limit = DEFAULT_LIMIT }) => {
+  // Horizontal scrolling tiles with snap and controls
+  const Tiles = ({ items, limit = DEFAULT_LIMIT }) => {
     const shown = items.slice(0, limit)
+    const ref = useRef(null)
+    const page = () => Math.max((ref.current?.clientWidth || 0) - 64, 240)
+    const scrollLeft = () => ref.current?.scrollBy({ left: -page(), behavior: 'smooth' })
+    const scrollRight = () => ref.current?.scrollBy({ left: page(), behavior: 'smooth' })
+
     return (
-      <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
-        {shown.map(i => <Card key={i.url} item={i} />)}
+      <div>
+        <div
+          ref={ref}
+          className="flex overflow-x-auto gap-4 pb-2 snap-x snap-mandatory scroll-smooth"
+          style={{ WebkitOverflowScrolling: 'touch' }}
+          tabIndex={0}
+          aria-label="Latest updates"
+        >
+          {shown.map((i) => (
+            <div key={i.url} className="snap-start shrink-0 w-72">
+              <Card item={i} />
+            </div>
+          ))}
+        </div>
+        <div className="flex justify-end gap-2 mt-2">
+          <button onClick={scrollLeft} className="px-3 py-1 rounded border">Prev</button>
+          <button onClick={scrollRight} className="px-3 py-1 rounded border">Next</button>
+        </div>
       </div>
     )
   }
@@ -186,7 +207,7 @@ export default function WhatsNewPage() {
 
       <ViewToggle mode={mode} setMode={setMode} />
 
-      {mode === 'cards' ? <CardsView items={items} /> : <Timeline items={items} />}
+      {mode === 'tiles' ? <Tiles items={items} /> : <Timeline items={items} />}
 
       <div className="mt-8 text-sm text-gray-500">
         Do not see what you are looking for? See the full <a className="underline" href="/changelogs">Changelog</a>.
