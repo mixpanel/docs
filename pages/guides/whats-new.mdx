@@ -3,62 +3,58 @@ title: "What's New"
 description: "Auto-updating highlights from Mixpanel Changelogs"
 ---
 
-import { useEffect, useMemo, useState } from 'react'
+import { useMemo, useState } from 'react'
+import { getPagesUnderRoute } from 'nextra/context'
+
+/**
+ * Static, zero-fetch version — uses Nextra to read local /pages/changelogs.
+ * Auto-updates whenever new changelog MDX is added to the repo.
+ */
+
+export const changelogPages = getPagesUnderRoute('/changelogs')
 
 export default function WhatsNewPage() {
-  // Config
-  const REPO_LIST_URL =
-    'https://api.github.com/repos/mixpanel/docs/contents/pages/changelogs?ref=main'
   const DEFAULT_LIMIT = 10
-  const FETCH_COUNT = 30
 
-  // Utilities (scoped inside the component for MDX compatibility)
-  const parseDateFromName = (name) => {
-    const m = name.match(/^(\d{4}-\d{2}-\d{2})-/)
-    return m ? m[1] : ''
-  }
-
-  const parseFrontmatter = (md) => {
-    const m = md.match(/^---\n([\s\S]*?)\n---/)
-    if (!m) return {}
-    const out = {}
-    let key = null
-    for (const lineRaw of m[1].split('\n')) {
-      const line = lineRaw.trim()
-      if (!line) continue
-      const kv = line.match(/^([A-Za-z0-9_-]+):\s*(.*)$/)
-      if (kv) {
-        key = kv[1]
-        let val = kv[2]
-        if (
-          (val.startsWith('"') && val.endsWith('"')) ||
-          (val.startsWith("'") && val.endsWith("'"))
-        ) {
-          val = val.slice(1, -1)
-        }
-        out[key] = val
-      } else if (key && line.startsWith('- ')) {
-        if (!Array.isArray(out[key])) out[key] = []
-        out[key].push(line.slice(2).trim())
-      }
+  // Normalize Nextra page objects into lightweight items
+  const items = useMemo(() => {
+    const parseDateFromString = (s = '') => {
+      const m = s.match(/(\d{4}-\d{2}-\d{2})/)
+      return m ? m[1] : ''
     }
-    return out
-  }
+    const humanize = (s = '') =>
+      s.replace(/^\d{4}-\d{2}-\d{2}-/, '').replace(/-/g, ' ').replace(/\b\w/g, c => c.toUpperCase())
 
-  const extractFirstParagraph = (md) => {
-    const stripped = md.replace(/^---[\s\S]*?---/, '').trim()
-    const lines = stripped
-      .split('\n')
-      .filter(Boolean)
-      .filter((l) => !l.startsWith('import ') && !l.startsWith('export '))
-    return lines.slice(0, 4).join(' ')
-  }
+    return (changelogPages || [])
+      .map((p) => {
+        const fm = p.frontMatter || p.meta || {}
+        const route = p.route || ''
+        const name = p.name || route.split('/').pop() || ''
+        const date = fm.date || parseDateFromString(name) || parseDateFromString(route)
+        return {
+          url: route,
+          title: fm.title || p.title || humanize(name),
+          date,
+          description: fm.description || '',
+          thumbnail: fm.thumbnail || '',
+          video: fm.video || '',
+          category: fm.category || fm.type || ''
+        }
+      })
+      // Sort newest first by date (fallback to route/name if date missing)
+      .sort((a, b) => {
+        const da = new Date(a.date || parseDateFromString(a.url || ''))
+        const db = new Date(b.date || parseDateFromString(b.url || ''))
+        return db - da
+      })
+  }, [])
 
-  const humanizeSlug = (name) => {
-    const noExt = name.replace(/\.mdx$/, '')
-    const noDate = noExt.replace(/^\d{4}-\d{2}-\d{2}-/, '')
-    return noDate.replace(/-/g, ' ').replace(/\b\w/g, (c) => c.toUpperCase())
-  }
+  const shipped30d = useMemo(() => {
+    const cutoff = Date.now() - 30 * 24 * 60 * 60 * 1000
+    return items.filter(i => !isNaN(new Date(i.date)) && new Date(i.date).getTime() >= cutoff).length
+  }, [items])
+
+  const [mode, setMode] = useState('cards')
 
   const isNew = (dateStr) => {
     const d = new Date(dateStr)
@@ -70,11 +66,7 @@ export default function WhatsNewPage() {
   const fmtDate = (dateStr) => {
     const d = new Date(dateStr)
     if (isNaN(d)) return dateStr || ''
-    return d.toLocaleDateString(undefined, {
-      year: 'numeric',
-      month: 'short',
-      day: 'numeric'
-    })
+    return d.toLocaleDateString(undefined, { year: 'numeric', month: 'short', day: 'numeric' })
   }
 
   const monthKey = (dateStr) => {
@@ -83,44 +75,6 @@ export default function WhatsNewPage() {
     return d.toLocaleDateString(undefined, { year: 'numeric', month: 'long' })
   }
 
-  const countLast30 = (items) => {
-    const cutoff = Date.now() - 30 * 24 * 60 * 60 * 1000
-    return items.filter(
-      (i) =>
-        !isNaN(new Date(i.date)) &&
-        new Date(i.date).getTime() >= cutoff
-    ).length
-  }
-
-  // Data fetching
-  const fetchChangelogIndex = async () => {
-    const res = await fetch(REPO_LIST_URL, {
-      headers: { Accept: 'application/vnd.github.v3+json' }
-    })
-    if (!res.ok) throw new Error(`GitHub API error: ${res.status}`)
-    const files = await res.json()
-    return (Array.isArray(files) ? files : []).filter((f) => f.name.endsWith('.mdx'))
-  }
-
-  const fetchFrontmatter = async (file) => {
-    const rawRes = await fetch(file.download_url)
-    const raw = await rawRes.text()
-    const fm = parseFrontmatter(raw)
-    const summary = (fm.description ?? extractFirstParagraph(raw))?.slice(0, 260) ?? ''
-    const dateStr = fm.date ?? parseDateFromName(file.name) ?? ''
-    const url = `/changelogs/${file.name.replace(/\.mdx$/, '')}`
-    return {
-      title: fm.title || humanizeSlug(file.name),
-      date: dateStr,
-      description: summary,
-      thumbnail: fm.thumbnail || '',
-      video: fm.video || '',
-      category: fm.category || fm.type || '',
-      url
-    }
-  }
-
-  // Local components (defined inside for MDX)
   const ViewToggle = ({ mode, setMode }) => (
     <div className="flex gap-2 items-center mb-4">
       <button
@@ -155,15 +109,11 @@ export default function WhatsNewPage() {
             <span>{fmtDate(item.date)}</span>
             {item.category && <span aria-label="category">• {item.category}</span>}
             {isNew(item.date) && (
-              <span className="ml-2 inline-block px-1.5 py-0.5 text-[10px] rounded bg-emerald-100 text-emerald-700">
-                NEW
-              </span>
+              <span className="ml-2 inline-block px-1.5 py-0.5 text-[10px] rounded bg-emerald-100 text-emerald-700">NEW</span>
             )}
           </div>
           <h3 className="mt-1 text-base font-medium leading-snug line-clamp-2">{item.title}</h3>
-          {item.description && (
-            <p className="mt-1 text-sm text-gray-600 line-clamp-3">{item.description}</p>
-          )}
+          {item.description && <p className="mt-1 text-sm text-gray-600 line-clamp-3">{item.description}</p>}
         </div>
       </div>
     </a>
@@ -173,9 +123,7 @@ export default function WhatsNewPage() {
     const shown = items.slice(0, limit)
     return (
       <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
-        {shown.map((i) => (
-          <Card key={i.url} item={i} />
-        ))}
+        {shown.map(i => <Card key={i.url} item={i} />)}
       </div>
     )
   }
@@ -189,9 +137,7 @@ export default function WhatsNewPage() {
         map.get(k).push(i)
       }
       return Array.from(map.entries()).sort((a, b) => {
-        const da = new Date(a[0])
-        const db = new Date(b[0])
-        return db - da
+        const da = new Date(a[0]); const db = new Date(b[0]); return db - da
       })
     }, [items])
 
@@ -203,35 +149,25 @@ export default function WhatsNewPage() {
               {month} <span className="text-sm text-gray-500">({arr.length})</span>
             </h2>
             <ul className="space-y-3">
-              {arr
-                .sort((a, b) => new Date(b.date) - new Date(a.date))
-                .map((i) => (
-                  <li key={i.url} className="border rounded-lg p-4 hover:shadow-sm transition">
-                    <a href={i.url} className="block">
-                      <div className="flex items-start gap-3">
-                        <div className="w-20 shrink-0 text-xs text-gray-500 mt-1">
-                          {fmtDate(i.date)}
-                        </div>
-                        <div className="min-w-0">
-                          <div className="flex items-center gap-2 text-xs text-gray-500">
-                            {i.category && <span>{i.category}</span>}
-                            {isNew(i.date) && (
-                              <span className="inline-block px-1.5 py-0.5 text-[10px] rounded bg-emerald-100 text-emerald-700">
-                                NEW
-                              </span>
-                            )}
-                          </div>
-                          <h3 className="mt-1 text-base font-medium leading-snug">{i.title}</h3>
-                          {i.description && (
-                            <p className="mt-1 text-sm text-gray-600 line-clamp-2">
-                              {i.description}
-                            </p>
+              {arr.sort((a, b) => new Date(b.date) - new Date(a.date)).map(i => (
+                <li key={i.url} className="border rounded-lg p-4 hover:shadow-sm transition">
+                  <a href={i.url} className="block">
+                    <div className="flex items-start gap-3">
+                      <div className="w-20 shrink-0 text-xs text-gray-500 mt-1">{fmtDate(i.date)}</div>
+                      <div className="min-w-0">
+                        <div className="flex items-center gap-2 text-xs text-gray-500">
+                          {i.category && <span>{i.category}</span>}
+                          {isNew(i.date) && (
+                            <span className="inline-block px-1.5 py-0.5 text-[10px] rounded bg-emerald-100 text-emerald-700">NEW</span>
                           )}
                         </div>
+                        <h3 className="mt-1 text-base font-medium leading-snug">{i.title}</h3>
+                        {i.description && <p className="mt-1 text-sm text-gray-600 line-clamp-2">{i.description}</p>}
                       </div>
-                    </a>
-                  </li>
-                ))}
+                    </div>
+                  </a>
+                </li>
+              ))}
             </ul>
           </section>
         ))}
@@ -239,66 +175,22 @@ export default function WhatsNewPage() {
     )
   }
 
-  // State and effects
-  const [mode, setMode] = useState('cards')
-  const [items, setItems] = useState([])
-  const [loading, setLoading] = useState(true)
-  const [error, setError] = useState(null)
-
-  useEffect(() => {
-    let cancelled = false
-    ;(async () => {
-      try {
-        const index = await fetchChangelogIndex()
-        index.sort((a, b) => b.name.localeCompare(a.name))
-        const toFetch = index.slice(0, FETCH_COUNT)
-        const results = []
-        for (const f of toFetch) {
-          try {
-            results.push(await fetchFrontmatter(f))
-          } catch (e) {
-            // ignore single post failure
-          }
-        }
-        if (!cancelled) setItems(results.filter(Boolean))
-      } catch (e) {
-        if (!cancelled) setError(e?.message || String(e))
-      } finally {
-        if (!cancelled) setLoading(false)
-      }
-    })()
-    return () => {
-      cancelled = true
-    }
-  }, [])
-
-  const shipped30d = useMemo(() => countLast30(items), [items])
-
-  // Render
   return (
     <div className="mx-auto max-w-5xl">
       <div className="mx-auto max-w-5xl mb-6">
         <h1 className="text-3xl font-semibold tracking-tight">What's New</h1>
         <p className="mt-1 text-sm text-gray-500">
-          Fresh from our <a className="underline" href="/changelogs">Changelog</a>. We shipped{' '}
-          <strong>{shipped30d}</strong> updates in the last 30 days.
+          Fresh from our <a className="underline" href="/changelogs">Changelog</a>. We shipped <strong>{shipped30d}</strong> updates in the last 30 days.
         </p>
       </div>
 
       <ViewToggle mode={mode} setMode={setMode} />
 
-      {loading && <div className="text-sm text-gray-500">Loading latest updates...</div>}
-      {error && <div className="text-sm text-red-600">Error: {error}</div>}
-      {!loading && !error && (mode === 'cards' ? <CardsView items={items} /> : <Timeline items={items} />)}
+      {mode === 'cards' ? <CardsView items={items} /> : <Timeline items={items} />}
 
       <div className="mt-8 text-sm text-gray-500">
-        Do not see what you are looking for? See the full{' '}
-        <a className="underline" href="/changelogs">Changelog</a>.
+        Do not see what you are looking for? See the full <a className="underline" href="/changelogs">Changelog</a>.
       </div>
-
-      <noscript>
-        <p>JavaScript is disabled. Visit the <a href="/changelogs">Changelog</a> for all updates.</p>
-      </noscript>
     </div>
   )
 }
