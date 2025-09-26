@@ -4,7 +4,7 @@ import { Callout } from 'nextra/components'
 
 ## Overview
 
-This developer guide will assist you in configuring your web platform for Feature Flags using the [Mixpanel JavaScript SDK](/docs/tracking-methods/sdks/javascript). Feature Flags allow you to control feature rollouts, conduct A/B testing, and manage application behavior without deploying new code.
+This developer guide will assist you in configuring your web platform for Feature Flags using the [Mixpanel JavaScript SDK](/docs/tracking-methods/sdks/javascript). Feature Flags allow you to control the rollout of your features, conduct A/B testing, and manage application behavior without deploying new code.
 
 For complete JavaScript SDK documentation, see the [JavaScript SDK guide](/docs/tracking-methods/sdks/javascript).
 
@@ -89,8 +89,24 @@ mixpanel.flags.update_context({
 Lookup the assigned value for a feature flag.
 This action triggers tracking an exposure event, `$experiment_started` to your Mixpanel project.
 
-**Example usage**
 
+**Experiment Flags: Get Variant Value**
+
+```javascript
+// Fetch the variant value once flags are ready and track an exposure event *if* the user context is in a rollout group for the feature flag.
+const variant_value = await mixpanel.flags.get_variant_value("my-feature-flag", "control");
+
+// Use flag value in your application logic
+if (variant_value == "variant_a") {
+  showExperimentForVariantA();
+} else if (variant_value == "variant_b") {
+  showExperienceForVariantB();
+} else if (variant_value == "control") {
+  showDefaultExperience();
+}
+```
+
+**Feature Gates: Check if Flag is Enabled/Disabled**
 ```javascript
 // Fetch the variant value once flags are ready and track an exposure event *if* the user context is in a rollout group for the feature flag.
 const variant_value = await mixpanel.flags.get_variant_value("my-feature-flag", "control");

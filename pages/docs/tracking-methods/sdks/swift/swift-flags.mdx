@@ -4,7 +4,7 @@ import { Callout } from 'nextra/components'
 
 ## Overview
 
-This developer guide will assist you in configuring your iOS/macOS platform for Feature Flags using the [Mixpanel Swift SDK](/docs/tracking-methods/sdks/swift). Feature Flags allow you to control feature rollouts, conduct A/B testing, and manage application behavior without deploying new code.
+This developer guide will assist you in configuring your iOS/macOS platform for Feature Flags using the [Mixpanel Swift SDK](/docs/tracking-methods/sdks/swift). Feature Flags allow you to control the rollout of your features, conduct A/B testing, and manage application behavior without deploying new code.
 
 For complete Swift SDK documentation, see the [Swift SDK guide](/docs/tracking-methods/sdks/swift).
 
@@ -12,7 +12,7 @@ For complete Swift SDK documentation, see the [Swift SDK guide](/docs/tracking-m
 
 Before implementing Feature Flags, ensure:
 
-- You are a Mixpanel ENT customer and have the latest version of the SDK installed (minimum supported version is [`v4.0.0`](https://github.com/mixpanel/mixpanel-swift/releases/tag/v4.0.0)). If not, please follow [this doc](/docs/quickstart/install-mixpanel) to install the SDK.
+- You are a Mixpanel ENT customer and have the latest version of the SDK installed (minimum supported version is [`v5.1.3`](https://github.com/mixpanel/mixpanel-swift/releases/tag/v5.1.3)). If not, please follow [this doc](/docs/quickstart/install-mixpanel) to install the SDK.
 - You have your Project Token from your [Mixpanel Project Settings](/docs/orgs-and-projects/managing-projects#find-your-project-tokens)
 
 ## Flag Initialization
@@ -87,76 +87,9 @@ Mixpanel.mainInstance().flags.loadFlags()
 Lookup the assigned value for a feature flag.
 This action triggers tracking an exposure event, `$experiment_started` to your Mixpanel project.
 
-### Synchronous Flag Retrieval
+### Asynchronous Flag Variant Retrieval
 
-**Get Flag Variant**
-
-```swift
-// Get the complete variant object synchronously
-let fallbackVariant = MixpanelFlagVariant(key: "control", value: "control")
-let variant = Mixpanel.mainInstance().flags.getVariantSync("my-feature-flag", fallback: fallbackVariant)
-
-// Use flag variant in your application logic
-if variant.key == "variant_a" {
-    showExperimentForVariantA()
-} else if variant.key == "variant_b" {
-    showExperimentForVariantB()
-} else {
-    showDefaultExperience()
-}
-```
-
-**Get Flag Value**
-
-```swift
-// Get just the flag value synchronously
-let flagValue = Mixpanel.mainInstance().flags.getVariantValueSync("my-feature-flag", fallbackValue: "control")
-
-// Use flag value in your application logic
-if flagValue as? String == "variant_a" {
-    showExperimentForVariantA()
-} else if flagValue as? String == "variant_b" {
-    showExperimentForVariantB()
-} else {
-    showDefaultExperience()
-}
-```
-
-**Check if Flag is Enabled**
-
-```swift
-// Check if a boolean flag is enabled synchronously
-let isEnabled = Mixpanel.mainInstance().flags.isEnabledSync("my-boolean-flag", fallbackValue: false)
-
-if isEnabled {
-    showNewFeature()
-} else {
-    showOldFeature()
-}
-```
-
-### Asynchronous Flag Retrieval
-
-**Get Flag Variant**
-
-```swift
-// Get the complete variant object asynchronously
-let fallbackVariant = MixpanelFlagVariant(key: "control", value: "control")
-Mixpanel.mainInstance().flags.getVariant("my-feature-flag", fallback: fallbackVariant) { variant in
-    DispatchQueue.main.async {
-        // Use flag variant in your application logic
-        if variant.key == "variant_a" {
-            showExperimentForVariantA()
-        } else if variant.key == "variant_b" {
-            showExperimentForVariantB()
-        } else {
-            showDefaultExperience()
-        }
-    }
-}
-```
-
-**Get Flag Value**
+**Experiment Flags: Get Variant Value**
 
 ```swift
 // Get just the flag value asynchronously
@@ -177,7 +110,7 @@ Mixpanel.mainInstance().flags.getVariantValue("my-feature-flag", fallbackValue: 
 }
 ```
 
-**Check if Flag is Enabled**
+**FeatureGates: Check if Flag is Enabled/Disabled**
 
 ```swift
 // Check if a boolean flag is enabled asynchronously
@@ -191,6 +124,37 @@ Mixpanel.mainInstance().flags.isEnabled("my-boolean-flag", fallbackValue: false)
     }
 }
 ```
+
+### Synchronous Flag Variant Retrieval
+
+**Experiment Flags: Get Variant Value**
+
+```swift
+// Get just the flag value synchronously
+let flagValue = Mixpanel.mainInstance().flags.getVariantValueSync("my-feature-flag", fallbackValue: "control")
+
+// Use flag value in your application logic
+if flagValue as? String == "variant_a" {
+    showExperimentForVariantA()
+} else if flagValue as? String == "variant_b" {
+    showExperimentForVariantB()
+} else {
+    showDefaultExperience()
+}
+```
+
+**Feature Gates: Check if Flag is Enabled/Disabled**
+```swift
+// Check if a boolean flag is enabled
+let isEnabled = Mixpanel.mainInstance().flags.isEnabledSync("my-boolean-flag", fallbackValue: false)
+
+if isEnabled {
+    showNewFeature()
+} else {
+    showOldFeature()
+}
+```
+
 
 ## FAQ / Troubleshooting
 
@@ -211,33 +175,3 @@ Mixpanel.mainInstance().flags.isEnabled("my-boolean-flag", fallbackValue: false)
 
 4. **Check flags readiness**: Use `areFlagsReady()` to check if flags have been loaded before making synchronous calls
 5. **Enable debug mode**: Set up logging to see detailed information about flag requests and responses
-
-### How do I check if flags are ready before making synchronous calls?
-
-```swift
-if Mixpanel.mainInstance().flags.areFlagsReady() {
-    // Safe to make synchronous calls
-    let variant = Mixpanel.mainInstance().flags.getVariantSync("my-flag", fallback: fallbackVariant)
-} else {
-    // Use async calls or trigger flag loading
-    Mixpanel.mainInstance().flags.loadFlags()
-}
-```
-
-### What's the difference between synchronous and asynchronous flag methods?
-
-- **Synchronous methods** (`getVariantSync`, `getVariantValueSync`, `isEnabledSync`): Return immediately with the cached flag value if flags are ready, or the fallback value if flags are not ready. These methods will not trigger a network request.
-- **Asynchronous methods** (`getVariant`, `getVariantValue`, `isEnabled`): Will trigger a flag fetch if flags are not ready, and call the completion handler with the result once available.
-
-### How do I handle flag updates during app lifecycle?
-
-Flag updates are automatically triggered when:
-- You call `identify()` with a new distinct ID
-- You manually call `loadFlags()` after updating the context
-
-For runtime context changes:
-```swift
-// Update context and reload flags
-Mixpanel.mainInstance().flags.delegate?.getOptions().featureFlagsContext["company_id"] = "new_company"
-Mixpanel.mainInstance().flags.loadFlags()
-```
