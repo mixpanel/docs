@@ -98,10 +98,14 @@ const Tile = ({ item }: { item: Item }) => (
   </a>
 );
 
-function Carousel({ items, tileWidth = 420, gap = 24 }: { items: Item[]; tileWidth?: number; gap?: number }) {
+function Carousel({ items }: { items: Item[] }) {
   const ref = useRef<HTMLDivElement | null>(null);
   const [canScroll, setCanScroll] = useState(false);
   const [progress, setProgress] = useState(0);
+
+  // fixed tile/gap values (inline styles to defeat theme overrides)
+  const TILE_W = 420;
+  const GAP = 24;
 
   useEffect(() => {
     const el = ref.current;
@@ -120,7 +124,7 @@ function Carousel({ items, tileWidth = 420, gap = 24 }: { items: Item[]; tileWid
     };
   }, [items.length]);
 
-  const page = () => Math.max(tileWidth + gap, Math.floor((ref.current?.clientWidth || 0) * 0.9));
+  const page = () => Math.max(TILE_W + GAP, Math.floor((ref.current?.clientWidth || 0) * 0.9));
   const left = () => ref.current?.scrollBy({ left: -page(), behavior: 'smooth' });
   const right = () => ref.current?.scrollBy({ left: page(), behavior: 'smooth' });
 
@@ -136,22 +140,27 @@ function Carousel({ items, tileWidth = 420, gap = 24 }: { items: Item[]; tileWid
         }}
       />
 
-      {/* SCROLLER: grid with horizontal auto-flow */}
+      {/* SCROLLER — inline styles force a horizontal lane */}
       <div
         ref={ref}
-        className="relative overflow-x-auto pb-10 grid grid-flow-col gap-6"
+        aria-label="Latest updates"
         style={{
-          gridAutoColumns: `${tileWidth}px`,
+          position: 'relative',
+          overflowX: 'auto',
+          overflowY: 'hidden',
+          paddingBottom: '2.5rem', // space for progress bar
+          display: 'flex',
+          flexWrap: 'nowrap',
+          gap: `${GAP}px`,
           WebkitOverflowScrolling: 'touch',
           scrollbarWidth: 'none',
-          msOverflowStyle: 'none',
           maskImage: 'linear-gradient(to right, transparent, black 32px, black calc(100% - 32px), transparent)',
-          WebkitMaskImage: 'linear-gradient(to right, transparent, black 32px, black calc(100% - 32px), transparent)',
+          WebkitMaskImage:
+            'linear-gradient(to right, transparent, black 32px, black calc(100% - 32px), transparent)',
         }}
-        aria-label="Latest updates"
       >
         {items.map((i) => (
-          <div key={i.url} className="h-full">
+          <div key={i.url} style={{ flex: `0 0 ${TILE_W}px`, minWidth: `${TILE_W}px` }}>
             <Tile item={i} />
           </div>
         ))}
