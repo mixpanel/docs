@@ -1,0 +1,271 @@
+import { Callout } from 'nextra/components'
+
+# Implement Feature Flags (Android)
+
+## Overview
+
+This developer guide will assist you in configuring your Android platform for Feature Flags using the [Mixpanel Android SDK](/docs/tracking-methods/sdks/android). Feature Flags allow you to control feature rollouts, conduct A/B testing, and manage application behavior without deploying new code.
+
+For complete Android SDK documentation, see the [Android SDK guide](/docs/tracking-methods/sdks/android).
+
+## Prerequisites
+
+Before implementing Feature Flags, ensure:
+
+- You are a Mixpanel ENT customer and have the latest version of the SDK installed (minimum supported version is [`v7.0.0`](https://github.com/mixpanel/mixpanel-android/releases/tag/v7.0.0)). If not, please follow [this doc](/docs/quickstart/install-mixpanel) to install the SDK.
+- You have your Project Token from your [Mixpanel Project Settings](/docs/orgs-and-projects/managing-projects#find-your-project-tokens)
+
+## Flag Initialization
+
+Initializing the SDK with feature flags enabled requires setting the `featureFlagsEnabled` option to `true` in MixpanelOptions. This enables making an outbound request to Mixpanel servers with the current user context.
+The server will assign the user context to a variant for each feature flag according to how they are configured in the Mixpanel UX.
+
+The response will include an assigned variant for each flag that the user context is in a rollout group for. If a flag is not returned, it most likely signifies that the user was either not in the rollout percentage for a flag or in the configured targeting cohort.
+
+**Example Usage**
+
+```java
+MixpanelOptions options = new MixpanelOptions();
+options.featureFlagsEnabled = true;
+
+MixpanelAPI mixpanel = MixpanelAPI.getInstance(context, "YOUR_PROJECT_TOKEN", options);
+```
+
+If your flag is configured with a Variant Assignment Key other than `distinct_id` for any of the feature flags in your project, then the call to initialize feature flags must include those keys.
+
+For example, for a Variant Assignment Key, `company_id`, you would setup the SDK as follows:
+
+```java
+JSONObject context = new JSONObject();
+context.put("company_id", "X");
+
+MixpanelOptions options = new MixpanelOptions();
+options.featureFlagsEnabled = true;
+options.featureFlagsContext = context;
+
+MixpanelAPI mixpanel = MixpanelAPI.getInstance(getApplicationContext(), "YOUR_PROJECT_TOKEN", options);
+```
+
+If you are using Runtime Targeting in any of the feature flags in your project, then any properties that you use in targeting should be included in a `customProperties` node within the context:
+
+```java
+JSONObject customProperties = new JSONObject();
+customProperties.put("platform", "android");
+
+JSONObject context = new JSONObject();
+context.put("company_id", "X");
+context.put("customProperties", customProperties);
+
+MixpanelOptions options = new MixpanelOptions();
+options.featureFlagsEnabled = true;
+options.featureFlagsContext = context;
+
+MixpanelAPI mixpanel = MixpanelAPI.getInstance(getApplicationContext(), "YOUR_PROJECT_TOKEN", options);
+```
+
+## Flag Reload
+
+Following initialization, you can reload feature flag assignments in a couple of ways:
+
+1) After a user logs in or out of your application and you call `identify`, a feature flag reload will be triggered.
+
+```java
+String updatedDistinctId = "";
+mixpanel.identify(updatedDistinctId);
+```
+
+2) If variant assignment keys or properties used in Runtime Targeting change during the lifetime of your application, you can manually reload flags by updating the context:
+
+```java
+JSONObject newCustomProperties = new JSONObject();
+newCustomProperties.put("platform", "android");
+
+JSONObject newContext = new JSONObject();
+newContext.put("company_id", "Y");
+newContext.put("customProperties", newCustomProperties);
+
+// Update the context and reload flags
+mixpanel.getOptions().featureFlagsContext = newContext;
+mixpanel.getFlags().loadFlags();
+```
+
+## Flag Evaluation
+
+Lookup the assigned value for a feature flag.
+This action triggers tracking an exposure event, `$experiment_started` to your Mixpanel project.
+
+### Synchronous Flag Retrieval
+
+**Get Flag Variant**
+
+```java
+// Get the complete variant object synchronously
+MixpanelFlagVariant fallbackVariant = new MixpanelFlagVariant("control", "control");
+MixpanelFlagVariant variant = mixpanel.getFlags().getVariantSync("my-feature-flag", fallbackVariant);
+
+// Use flag variant in your application logic
+if ("variant_a".equals(variant.key)) {
+    showExperimentForVariantA();
+} else if ("variant_b".equals(variant.key)) {
+    showExperimentForVariantB();
+} else {
+    showDefaultExperience();
+}
+```
+
+**Get Flag Value**
+
+```java
+// Get just the flag value synchronously
+Object flagValue = mixpanel.getFlags().getVariantValueSync("my-feature-flag", "control");
+
+// Use flag value in your application logic
+if ("variant_a".equals(flagValue)) {
+    showExperimentForVariantA();
+} else if ("variant_b".equals(flagValue)) {
+    showExperimentForVariantB();
+} else {
+    showDefaultExperience();
+}
+```
+
+**Check if Flag is Enabled**
+
+```java
+// Check if a boolean flag is enabled synchronously
+boolean isEnabled = mixpanel.getFlags().isEnabledSync("my-boolean-flag", false);
+
+if (isEnabled) {
+    showNewFeature();
+} else {
+    showOldFeature();
+}
+```
+
+### Asynchronous Flag Retrieval
+
+**Get Flag Variant**
+
+```java
+// Get the complete variant object asynchronously
+MixpanelFlagVariant fallbackVariant = new MixpanelFlagVariant("control", "control");
+mixpanel.getFlags().getVariant("my-feature-flag", fallbackVariant, new FlagCompletionCallback<MixpanelFlagVariant>() {
+    @Override
+    public void onComplete(MixpanelFlagVariant variant) {
+        // This runs on the main thread
+        if ("variant_a".equals(variant.key)) {
+            showExperimentForVariantA();
+        } else if ("variant_b".equals(variant.key)) {
+            showExperimentForVariantB();
+        } else {
+            showDefaultExperience();
+        }
+    }
+});
+```
+
+**Get Flag Value**
+
+```java
+// Get just the flag value asynchronously
+mixpanel.getFlags().getVariantValue("my-feature-flag", "control", new FlagCompletionCallback<Object>() {
+    @Override
+    public void onComplete(Object value) {
+        // This runs on the main thread
+        if ("variant_a".equals(value)) {
+            showExperimentForVariantA();
+        } else if ("variant_b".equals(value)) {
+            showExperimentForVariantB();
+        } else {
+            showDefaultExperience();
+        }
+    }
+});
+```
+
+**Check if Flag is Enabled**
+
+```java
+// Check if a boolean flag is enabled asynchronously
+mixpanel.getFlags().isEnabled("my-boolean-flag", false, new FlagCompletionCallback<Boolean>() {
+    @Override
+    public void onComplete(Boolean isEnabled) {
+        // This runs on the main thread
+        if (isEnabled) {
+            showNewFeature();
+        } else {
+            showOldFeature();
+        }
+    }
+});
+```
+
+## FAQ / Troubleshooting
+
+### What if I'm not receiving any flags on SDK initialization?
+
+1. **Check your project token**:
+  - Ensure you're using the correct project token from your [Mixpanel project settings](/docs/orgs-and-projects/managing-projects#find-your-project-tokens)
+2. **Review flag configuration**:
+  - Make sure your feature flag is enabled
+  - Check the flag's rollout percentage
+    - User contexts that are not assigned to the rollout percentage will not receive flags
+  - If you are using a targeting cohort, verify on the mixpanel 'Users' page that the user's `distinct_id` is a member of that cohort.
+
+3. **Review SDK parameters**:
+  - Ensure `featureFlagsEnabled = true` is set in MixpanelOptions
+  - If using a custom Variant Assignment Key, ensure it is included in the `featureFlagsContext` JSONObject
+  - If using Runtime Targeting, ensure all properties used in targeting are included in the `customProperties` object within `featureFlagsContext`
+
+4. **Check flags readiness**: Use `areFlagsReady()` to check if flags have been loaded before making synchronous calls
+5. **Enable debug logging**: Check Android logs for detailed information about flag requests and responses
+
+### How do I check if flags are ready before making synchronous calls?
+
+```java
+if (mixpanel.getFlags().areFlagsReady()) {
+    // Safe to make synchronous calls
+    MixpanelFlagVariant variant = mixpanel.getFlags().getVariantSync("my-flag", fallbackVariant);
+} else {
+    // Use async calls or trigger flag loading
+    mixpanel.getFlags().loadFlags();
+}
+```
+
+### What's the difference between synchronous and asynchronous flag methods?
+
+- **Synchronous methods** (`getVariantSync`, `getVariantValueSync`, `isEnabledSync`): Return immediately with the cached flag value if flags are ready, or the fallback value if flags are not ready. These methods will not trigger a network request and should not be called from the main UI thread if flags might not be ready.
+- **Asynchronous methods** (`getVariant`, `getVariantValue`, `isEnabled`): Will trigger a flag fetch if flags are not ready, and call the completion callback with the result once available. The completion callback runs on the main thread.
+
+### How do I handle flag updates during app lifecycle?
+
+Flag updates are automatically triggered when:
+- You call `identify()` with a new distinct ID
+- You manually call `loadFlags()` after updating the context
+
+For runtime context changes:
+```java
+JSONObject newContext = new JSONObject();
+newContext.put("company_id", "new_company");
+
+// Update context and reload flags
+mixpanel.getOptions().featureFlagsContext = newContext;
+mixpanel.getFlags().loadFlags();
+```
+
+### Thread Safety Considerations
+
+The Android SDK handles thread safety internally:
+- All flag operations are thread-safe
+- Synchronous methods can be called from any thread (but avoid calling from main thread if flags might not be ready)
+- Asynchronous completion callbacks always run on the main thread
+- Flag loading and network requests happen on background threads
+
+### ProGuard/R8 Configuration
+
+If you're using code obfuscation, ensure your ProGuard/R8 configuration preserves the necessary classes:
+
+```
+-keep class com.mixpanel.android.mpmetrics.MixpanelFlagVariant { *; }
+-keep class com.mixpanel.android.mpmetrics.FlagCompletionCallback { *; }
+```
