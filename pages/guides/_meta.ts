@@ -1,12 +1,22 @@
 export default {
-	"enterprise": {
+	"discover-mixpanel": {
 		"type": "separator",
-		"title": "ENTERPRISE"
+		"title": "DISCOVER MIXPANEL"
 	},
-	"onboarding-overview": "Enterprise Onboarding",
-	"plan": "Plan",
-	"implement": "Implement",
-	"launch": "Launch",
-	"playbooks": "Playbooks",
-	"beyond-onboarding": "Beyond Onboarding",
+	"what-is-mixpanel": "What is Mixpanel?",
+	"changelog": {
+    	title: "What's New? ↗",
+    	href: "/changelogs",
+		newWindow: true
+  	},
+	"solutions-and-workflows": {
+		"type": "separator",
+		"title": "SOLUTIONS & WORKFLOWS"
+	},
+	"guides-by-use-case": "Guides by Use Case",
+	"best-practices-and-playbooks": {
+		"type": "separator",
+		"title": "BEST PRACTICES & PLAYBOOKS"
+	},
+	"strategic-playbooks": "Strategic Playbooks"
 }
