@@ -3,6 +3,10 @@ name: Publish OpenAPI specs to ReadMe
 on:
   push:
     branches: [ main ]
+    paths:
+      - 'openapi/**'
+      - '.github/actions/**'
+      - '.github/workflows/rdme-openapi.yml'
 
 jobs:
   rdme-openapi:
