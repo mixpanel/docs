@@ -1,0 +1,107 @@
+---
+title: "What's New — Timeline"
+description: "Auto-updating timeline of Mixpanel Changelogs with type filter"
+---
+
+import { useMemo, useState } from 'react'
+import { getPagesUnderRoute } from 'nextra/context'
+
+/**
+ * Timeline-only view with a type filter.
+ * - Reads local /pages/changelogs MDX (no network requests).
+ * - Type filter uses: frontMatter.category, frontMatter.type, or frontMatter.tags.
+ * - Auto-updates as new changelog MDX is added.
+ */
+
+export const changelogPages = getPagesUnderRoute('/changelogs')
+
+export default function WhatsNewTimeline() {
+  // Build normalized items from local pages
+  const items = useMemo(() => {
+    const parseDate = (s = '') => {
+      const m = s.match(/(\d{4}-\d{2}-\d{2})/)
+      return m ? m[1] : ''
+    }
+    const humanize = (s = '') =>
+      s.replace(/^\d{4}-\d{2}-\d{2}-/, '').replace(/-/g, ' ').replace(/\b\w/g, c => c.toUpperCase())
+
+    const toTypes = (fm = {}) => {
+      const out = []
+      const cat = fm.category || fm.type
+      if (cat) out.push(String(cat))
+      const tags = fm.tags
+      if (Array.isArray(tags)) out.push(...tags.map(String))
+      else if (typeof tags === 'string') out.push(...tags.split(',').map(t => t.trim()).filter(Boolean))
+      // de-dupe and keep short labels
+      return Array.from(new Set(out.filter(Boolean)))
+    }
+
+    return (changelogPages || [])
+      .map((p) => {
+        const fm = p.frontMatter || p.meta || {}
+        const route = p.route || ''
+        if (!/\/changelogs\/.+/.test(route)) return null // skip /changelogs root
+        const name = p.name || route.split('/').pop() || ''
+        const date = fm.date || parseDate(name) || parseDate(route)
+        return {
+          url: route,
+          title: fm.title || p.title || humanize(name),
+          date,
+          description: fm.description || '',
+          thumbnail: fm.thumbnail || '',
+          video: fm.video || '',
+          // types derived from category/type/tags
+          types: toTypes(fm)
+        }
+      })
+      .filter(Boolean)
+      .sort((a, b) => new Date(b.date || '') - new Date(a.date || ''))
+  }, [])
+
+  // Derive list of type options (for the filter UI)
+  const typeOptions = useMemo(() => {
+    const set = new Set()
+    for (const i of items) for (const t of (i.types || [])) set.add(t)
+    return ['All', ...Array.from(set).sort((a, b) => a.localeCompare(b))]
+  }, [items])
+
+  const [selectedType, setSelectedType] = useState('All')
+
+  const filtered = useMemo(() => {
+    if (selectedType === 'All') return items
+    return items.filter(i => (i.types || []).includes(selectedType))
+  }, [items, selectedType])
+
+  const shipped30d = useMemo(() => {
+    const cutoff = Date.now() - 30 * 24 * 60 * 60 * 1000
+    return filtered.filter(i => !isNaN(new Date(i.date)) && new Date(i.date).getTime() >= cutoff).length
+  }, [filtered])
+
+  const isNew = (dateStr) => {
+    const d = new Date(dateStr)
+    if (isNaN(d)) return false
+    const days = (Date.now() - d.getTime()) / (1000 * 60 * 60 * 24)
+    return days <= 14
+  }
+
+  const fmtDate = (dateStr) => {
+    const d = new Date(dateStr)
+    if (isNaN(d)) return dateStr || ''
+    return d.toLocaleDateString(undefined, { year: 'numeric', month: 'short', day: 'numeric' })
+  }
+
+  const monthKey = (dateStr) => {
+    const d = new Date(dateStr)
+    if (isNaN(d)) return 'Unknown'
+    return d.toLocaleDateString(undefined, { year: 'numeric', month: 'long' })
+  }
+
+  // Group by month (post-filter)
+  const groups = useMemo(() => {
+    const map = new Map()
+    for (const i of filtered) {
+      const k = monthKey(i.date)
+      if (!map.has(k)) map.set(k, [])
+      map.get(k).push(i)
+    }
+    return Array.from(map.entries()).sort((a, b) => n
