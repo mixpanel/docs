@@ -13,7 +13,6 @@ type Item = {
   category: string;
 };
 
-// Read local /pages/changelogs at build/runtime (no network requests)
 const changelogPages = getPagesUnderRoute('/changelogs');
 
 function buildItems(): Item[] {
@@ -28,7 +27,7 @@ function buildItems(): Item[] {
     .map((p: any) => {
       const fm = p.frontMatter || p.meta || {};
       const route = p.route || '';
-      if (!/\/changelogs\/.+/.test(route)) return null; // skip index
+      if (!/\/changelogs\/.+/.test(route)) return null;
       const name = p.name || route.split('/').pop() || '';
       const date = fm.date || parseDate(name) || parseDate(route);
       return {
@@ -50,7 +49,6 @@ function fmtDate(dateStr: string) {
   if (isNaN(d as any)) return dateStr || '';
   return d.toLocaleDateString(undefined, { year: 'numeric', month: 'short', day: 'numeric' });
 }
-
 function isNew(dateStr: string) {
   const d = new Date(dateStr);
   if (isNaN(d as any)) return false;
@@ -88,17 +86,14 @@ const Tile = ({ item }: { item: Item }) => (
             }}
           />
         )}
-        <div
-          className="pointer-events-none absolute inset-0"
-          style={{ boxShadow: 'inset 0 0 120px rgba(255,255,255,0.15)' }}
-        />
+        <div className="pointer-events-none absolute inset-0" style={{ boxShadow: 'inset 0 0 120px rgba(255,255,255,0.15)' }} />
       </div>
 
       <div className="mt-4">
         <span className="inline-flex items-center gap-1 text-sm font-medium underline">
           Read update <span aria-hidden="true">&rarr;</span>
         </span>
-      </div>      
+      </div>
     </div>
   </a>
 );
@@ -117,7 +112,7 @@ function Carousel({ items, tileWidth = 420, gap = 24 }: { items: Item[]; tileWid
       setProgress(max <= 0 ? 0 : el.scrollLeft / max);
     };
     update();
-    el.addEventListener('scroll', update, { passive: true } as any);
+    el.addEventListener('scroll', update as any, { passive: true } as any);
     window.addEventListener('resize', update);
     return () => {
       el.removeEventListener('scroll', update as any);
@@ -130,7 +125,8 @@ function Carousel({ items, tileWidth = 420, gap = 24 }: { items: Item[]; tileWid
   const right = () => ref.current?.scrollBy({ left: page(), behavior: 'smooth' });
 
   return (
-    <div className="relative not-prose">
+    <div className="relative nx-not-prose not-prose">
+      {/* soft glow backdrop */}
       <div
         className="absolute -inset-x-8 -top-8 -bottom-6 rounded-[40px] pointer-events-none"
         style={{
@@ -139,37 +135,36 @@ function Carousel({ items, tileWidth = 420, gap = 24 }: { items: Item[]; tileWid
           filter: 'blur(20px)',
         }}
       />
+
+      {/* SCROLLER: grid with horizontal auto-flow */}
       <div
         ref={ref}
-        className="relative overflow-x-auto pb-10 whitespace-nowrap"
+        className="relative overflow-x-auto pb-10 grid grid-flow-col gap-6"
         style={{
+          gridAutoColumns: `${tileWidth}px`,
           WebkitOverflowScrolling: 'touch',
           scrollbarWidth: 'none',
           msOverflowStyle: 'none',
-          maskImage:
-            'linear-gradient(to right, transparent, black 32px, black calc(100% - 32px), transparent)',
-          WebkitMaskImage:
-            'linear-gradient(to right, transparent, black 32px, black calc(100% - 32px), transparent)',
+          maskImage: 'linear-gradient(to right, transparent, black 32px, black calc(100% - 32px), transparent)',
+          WebkitMaskImage: 'linear-gradient(to right, transparent, black 32px, black calc(100% - 32px), transparent)',
         }}
         aria-label="Latest updates"
       >
-        {items.map((i, idx) => (
-          <div
-            key={i.url}
-            className="align-top inline-block"
-            style={{ width: tileWidth, marginRight: idx === items.length - 1 ? 0 : gap }}
-          >
+        {items.map((i) => (
+          <div key={i.url} className="h-full">
             <Tile item={i} />
           </div>
         ))}
       </div>
 
+      {/* progress */}
       {canScroll && (
         <div className="absolute left-0 right-0 bottom-3 h-1 rounded-full bg-white/10 overflow-hidden">
           <div className="h-full bg-fuchsia-500" style={{ width: `${Math.round(progress * 100)}%` }} />
         </div>
       )}
 
+      {/* arrows */}
       {canScroll && (
         <>
           <button
@@ -200,7 +195,7 @@ export default function WhatsNewPromo() {
   }, [items]);
 
   return (
-    <section className="not-prose mx-auto max-w-7xl">
+    <section className="nx-not-prose not-prose mx-auto max-w-7xl">
       <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 items-start">
         <div className="lg:col-span-4">
           <h1 className="text-4xl font-bold tracking-tight">New releases</h1>
