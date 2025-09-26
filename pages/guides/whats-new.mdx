@@ -6,13 +6,9 @@ description: "Auto-updating highlights from Mixpanel Changelogs"
 import { useEffect, useMemo, useRef, useState } from 'react'
 import { getPagesUnderRoute } from 'nextra/context'
 
-/* Option 1 — Horizontal scrolling tiles */
-
 export const changelogPages = getPagesUnderRoute('/changelogs')
 
-export default function WhatsNewPage() {
-  const DEFAULT_LIMIT = 16
-
+export default function WhatsNewPromo() {
   // Build items from local pages
   const items = useMemo(() => {
     const parseDate = (s = '') => {
@@ -36,7 +32,7 @@ export default function WhatsNewPage() {
           description: fm.description || '',
           thumbnail: fm.thumbnail || '',
           video: fm.video || '',
-          category: fm.category || fm.type || ''
+          category: (fm.category || fm.type || '').toString()
         }
       })
       .filter(Boolean)
@@ -58,32 +54,44 @@ export default function WhatsNewPage() {
     return d.toLocaleDateString(undefined, { year: 'numeric', month: 'short', day: 'numeric' })
   }
 
-  const Card = ({ item }) => (
-    <a href={item.url} className="block h-full border rounded-2xl p-4 hover:shadow-sm transition bg-white/5">
-      <div className="flex items-start gap-3">
-        {item.thumbnail ? (
-          <img src={item.thumbnail} alt="" className="w-16 h-16 object-cover rounded-md" loading="lazy" />
-        ) : item.video ? (
-          <div className="w-16 h-16 bg-black/10 rounded-md flex items-center justify-center text-xs">Video</div>
-        ) : (
-          <div className="w-16 h-16 bg-black/10 rounded-md" />
-        )}
-        <div className="min-w-0">
-          <div className="flex items-center gap-2 text-xs text-gray-500">
-            <span>{fmtDate(item.date)}</span>
-            {item.category && <span aria-label="category">• {item.category}</span>}
-            {isNew(item.date) && <span className="ml-2 inline-block px-1.5 py-0.5 text-[10px] rounded bg-emerald-100 text-emerald-700">NEW</span>}
-          </div>
-          <h3 className="mt-1 text-base font-medium leading-snug line-clamp-2">{item.title}</h3>
-          {item.description && <p className="mt-1 text-sm opacity-80 line-clamp-3">{item.description}</p>}
+  // -------- Tile card (large, promo style) --------
+  const Tile = ({ item }) => (
+    <a href={item.url} className="block h-full rounded-2xl overflow-hidden bg-white/5 backdrop-blur-sm border hover:shadow-lg transition">
+      <div className="p-5">
+        <div className="text-xs uppercase tracking-wide text-gray-500 flex items-center gap-2">
+          {fmtDate(item.date)}
+          {item.category && <span>• {item.category}</span>}
+          {isNew(item.date) && <span className="ml-2 inline-block px-1.5 py-0.5 text-[10px] rounded bg-emerald-100 text-emerald-700">NEW</span>}
+        </div>
+        <h3 className="mt-2 text-xl font-semibold leading-snug line-clamp-2">{item.title}</h3>
+        {item.description && <p className="mt-2 text-sm opacity-90 line-clamp-3">{item.description}</p>}
+
+        <div className="relative mt-5 h-56 rounded-xl overflow-hidden bg-black/10">
+          {item.thumbnail ? (
+            <img src={item.thumbnail} alt="" loading="lazy" className="w-full h-full object-cover" />
+          ) : (
+            <div className="w-full h-full" style={{
+              background: 'radial-gradient(120% 120% at 0% 100%, rgba(168,85,247,0.25), transparent 60%), radial-gradient(120% 120% at 100% 0%, rgba(59,130,246,0.25), transparent 60%)'
+            }} />
+          )}
+          {/* soft glow */}
+          <div className="pointer-events-none absolute inset-0" style={{
+            boxShadow: 'inset 0 0 120px rgba(255,255,255,0.15)'
+          }} />
+        </div>
+
+        <div className="mt-4">
+          <span className="inline-flex items-center gap-1 text-sm font-medium underline">
+            Read update
+            <span aria-hidden>→</span>
+          </span>
         </div>
       </div>
     </a>
   )
 
-  // ------- HORIZONTAL SCROLLER -------
-  const Tiles = ({ items, limit = DEFAULT_LIMIT }) => {
-    const shown = items.slice(0, limit)
+  // -------- Horizontal scroller with fade, arrows, progress --------
+  const Carousel = ({ items, tileWidth = 420, gap = 24 }) => {
     const ref = useRef(null)
     const [canScroll, setCanScroll] = useState(false)
     const [progress, setProgress] = useState(0)
@@ -103,54 +111,61 @@ export default function WhatsNewPage() {
         el.removeEventListener('scroll', update)
         window.removeEventListener('resize', update)
       }
-    }, [shown.length])
+    }, [items.length])
 
-    const page = () => Math.max(240, Math.floor((ref.current?.clientWidth || 0) * 0.9))
-    const scrollLeft = () => ref.current?.scrollBy({ left: -page(), behavior: 'smooth' })
-    const scrollRight = () => ref.current?.scrollBy({ left: page(), behavior: 'smooth' })
+    const page = () => Math.max(tileWidth + gap, Math.floor((ref.current?.clientWidth || 0) * 0.9))
+    const left = () => ref.current?.scrollBy({ left: -page(), behavior: 'smooth' })
+    const right = () => ref.current?.scrollBy({ left: page(), behavior: 'smooth' })
 
     return (
       <div className="relative">
-        {/* Scroll container */}
+        {/* the glowing backdrop behind tiles */}
+        <div className="absolute -inset-x-8 -top-8 -bottom-6 rounded-[40px] pointer-events-none" style={{
+          background: 'radial-gradient(60% 80% at 10% 0%, rgba(168,85,247,0.25), transparent 70%), radial-gradient(60% 80% at 90% 100%, rgba(59,130,246,0.25), transparent 70%)',
+          filter: 'blur(20px)'
+        }} />
+
+        {/* scroll container */}
         <div
           ref={ref}
-          className="flex overflow-x-auto gap-4 pb-8 snap-x snap-mandatory scroll-smooth"
+          className="relative flex overflow-x-auto gap-6 pb-10 snap-x snap-mandatory scroll-smooth"
           style={{
             WebkitOverflowScrolling: 'touch',
-            maskImage: 'linear-gradient(to right, transparent, black 24px, black calc(100% - 24px), transparent)',
-            WebkitMaskImage: 'linear-gradient(to right, transparent, black 24px, black calc(100% - 24px), transparent)',
-            scrollbarWidth: 'none', msOverflowStyle: 'none'
+            scrollbarWidth: 'none',
+            msOverflowStyle: 'none',
+            maskImage: 'linear-gradient(to right, transparent, black 32px, black calc(100% - 32px), transparent)',
+            WebkitMaskImage: 'linear-gradient(to right, transparent, black 32px, black calc(100% - 32px), transparent)'
           }}
           aria-label="Latest updates"
         >
-          {shown.map(i => (
-            <div key={i.url} className="snap-start shrink-0 w-80">
-              <Card item={i} />
+          {items.map((i) => (
+            <div key={i.url} className="snap-start shrink-0" style={{ width: tileWidth }}>
+              <Tile item={i} />
             </div>
           ))}
         </div>
 
-        {/* Progress bar */}
+        {/* progress bar */}
         {canScroll && (
-          <div className="absolute left-0 right-0 bottom-2 h-1 rounded-full bg-gray-500/30 overflow-hidden">
+          <div className="absolute left-0 right-0 bottom-3 h-1 rounded-full bg-white/10 overflow-hidden">
             <div className="h-full bg-fuchsia-500" style={{ width: `${Math.round(progress * 100)}%` }} />
           </div>
         )}
 
-        {/* Arrow controls */}
+        {/* arrows */}
         {canScroll && (
           <>
             <button
-              onClick={scrollLeft}
+              onClick={left}
               aria-label="Previous"
-              className="absolute right-16 bottom-8 translate-y-1/2 rounded-full border bg-white/90 text-black px-3 py-2 shadow"
+              className="hidden md:flex absolute right-16 bottom-6 translate-y-1/2 rounded-full border bg-white/90 text-black px-3 py-2 shadow"
             >
               &lt;
             </button>
             <button
-              onClick={scrollRight}
+              onClick={right}
               aria-label="Next"
-              className="absolute right-4 bottom-8 translate-y-1/2 rounded-full border bg-white/90 text-black px-3 py-2 shadow"
+              className="hidden md:flex absolute right-4 bottom-6 translate-y-1/2 rounded-full border bg-white/90 text-black px-3 py-2 shadow"
             >
               &gt;
             </button>
@@ -159,22 +174,26 @@ export default function WhatsNewPage() {
       </div>
     )
   }
-  // ------------------------------------
 
+  // -------- Layout: left intro + right carousel --------
   return (
-    <div className="mx-auto max-w-6xl">
-      <div className="mb-6">
-        <h1 className="text-3xl font-semibold tracking-tight">New releases</h1>
-        <p className="mt-1 text-sm opacity-80">
-          Learn more about our newly released capabilities. We shipped <strong>{shipped30d}</strong> updates in the last 30 days.
-        </p>
-      </div>
+    <section className="mx-auto max-w-7xl">
+      <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 items-start">
+        <div className="lg:col-span-4">
+          <h1 className="text-4xl font-bold tracking-tight">New releases</h1>
+          <p className="mt-3 text-base opacity-80">
+            Learn more about our newly released capabilities. We shipped <strong>{shipped30d}</strong> updates in the last 30 days.
+          </p>
+        </div>
 
-      <Tiles items={items} />
+        <div className="lg:col-span-8">
+          <Carousel items={items.slice(0, 16)} />
+        </div>
+      </div>
 
       <div className="mt-8 text-sm opacity-70">
         Do not see what you are looking for? See the full <a className="underline" href="/changelogs">Changelog</a>.
       </div>
-    </div>
+    </section>
   )
 }
