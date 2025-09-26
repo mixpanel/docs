@@ -1,0 +1,303 @@
+---
+title: "What's New"
+description: "Auto-updating highlights from Mixpanel Changelogs"
+---
+
+import React, {useEffect, useMemo, useState} from 'react'
+
+/**
+ * What's New — auto-updating from changelogs in mixpanel/docs
+ * Save as: pages/whats-new.mdx
+ *
+ * How it works:
+ * - Fetches directory listing from the GitHub API for /pages/changelogs
+ * - Sorts by filename date prefix (YYYY-MM-DD) desc
+ * - Fetches the top N raw MDX files and parses frontmatter (title, video, thumbnail, etc.)
+ * - Renders either Cards (grid) or Timeline (by month) with a toggle
+ *
+ * Notes:
+ * - Public GitHub API (rate-limited ~60 req/hr per IP). We keep requests minimal.
+ * - Frontmatter is optional; we fallback to slug-derived titles and first paragraph if needed.
+ * - To bump counts/scope, tweak FETCH_COUNT / DEFAULT_LIMIT below.
+ */
+
+const REPO_LIST_URL =
+  'https://api.github.com/repos/mixpanel/docs/contents/pages/changelogs?ref=main'
+
+const DEFAULT_LIMIT = 10     // default number of items shown in Cards view
+const FETCH_COUNT   = 30     // number of files to fetch & parse (supports Timeline/grouping)
+
+function PageHeader({count30d}) {
+  return (
+    <div className="mx-auto max-w-5xl mb-6">
+      <h1 className="text-3xl font-semibold tracking-tight">What’s New</h1>
+      <p className="mt-1 text-sm text-gray-500">
+        Fresh from our <a className="underline" href="/changelogs">Changelog</a>.
+        We shipped <strong>{count30d}</strong> updates in the last 30 days.
+      </p>
+    </div>
+  )
+}
+
+function ViewToggle({mode, setMode}) {
+  return (
+    <div className="flex gap-2 items-center mb-4">
+      <button
+        onClick={() => setMode('cards')}
+        className={`px-3 py-1 rounded border ${mode==='cards' ? 'bg-gray-100' : 'bg-white'}`}
+        aria-pressed={mode==='cards'}
+      >Cards</button>
+      <button
+        onClick={() => setMode('timeline')}
+        className={`px-3 py-1 rounded border ${mode==='timeline' ? 'bg-gray-100' : 'bg-white'}`}
+        aria-pressed={mode==='timeline'}
+      >Timeline</button>
+    </div>
+  )
+}
+
+// -------- Data fetching & parsing --------
+
+async function fetchChangelogIndex() {
+  const res = await fetch(REPO_LIST_URL, {
+    headers: {'Accept': 'application/vnd.github.v3+json'}
+  })
+  if (!res.ok) throw new Error(`GitHub API error: ${res.status}`)
+  const files = await res.json()
+  return (Array.isArray(files) ? files : []).filter(f => f.name.endsWith('.mdx'))
+}
+
+function parseDateFromName(name) {
+  const m = name.match(/^(\d{4}-\d{2}-\d{2})-/)
+  return m ? m[1] : null
+}
+
+async function fetchFrontmatter(file) {
+  // we only need frontmatter and an excerpt; fetch full then strip
+  const rawRes = await fetch(file.download_url)
+  const raw = await rawRes.text()
+  const fm = parseFrontmatter(raw)
+  const summary = (fm.description ?? extractFirstParagraph(raw))?.slice(0, 260) ?? ''
+  const dateStr = fm.date ?? parseDateFromName(file.name) ?? ''
+  const url = `/changelogs/${file.name.replace(/\.mdx$/, '')}`
+  return {
+    title: fm.title || humanizeSlug(file.name),
+    date: dateStr,
+    description: summary,
+    thumbnail: fm.thumbnail || '',
+    video: fm.video || '',
+    category: fm.category || fm.type || '',
+    url
+  }
+}
+
+function parseFrontmatter(md) {
+  const m = md.match(/^---\n([\s\S]*?)\n---/)
+  if (!m) return {}
+  const out = {}
+  let key = null
+  for (const lineRaw of m[1].split('\n')) {
+    const line = lineRaw.trim()
+    if (!line) continue
+    const kv = line.match(/^([A-Za-z0-9_-]+):\s*(.*)$/)
+    if (kv) {
+      key = kv[1]
+      let val = kv[2]
+      if ((val.startsWith('"') && val.endsWith('"')) || (val.startsWith("'") && val.endsWith("'"))) {
+        val = val.slice(1, -1)
+      }
+      out[key] = val
+    } else if (key && line.startsWith('- ')) {
+      // naive list support
+      if (!Array.isArray(out[key])) out[key] = []
+      out[key].push(line.slice(2).trim())
+    }
+  }
+  return out
+}
+
+function extractFirstParagraph(md) {
+  // strip frontmatter
+  md = md.replace(/^---[\s\S]*?---/, '').trim()
+  // skip imports/exports and blank lines, collect a few lines
+  const lines = md.split('\n').filter(Boolean).filter(l => !l.startsWith('import ') && !l.startsWith('export '))
+  return lines.slice(0, 4).join(' ')
+}
+
+function humanizeSlug(name) {
+  const noExt = name.replace(/\.mdx$/, '')
+  const noDate = noExt.replace(/^\d{4}-\d{2}-\d{2}-/, '')
+  return noDate.replace(/-/g, ' ').replace(/\b\w/g, m => m.toUpperCase())
+}
+
+// -------- UI helpers --------
+
+function isNew(dateStr) {
+  const d = new Date(dateStr)
+  if (isNaN(d)) return false
+  const days = (Date.now() - d.getTime()) / (1000*60*60*24)
+  return days <= 14
+}
+
+function fmtDate(dateStr) {
+  const d = new Date(dateStr)
+  if (isNaN(d)) return dateStr || ''
+  return d.toLocaleDateString(undefined, {year:'numeric', month:'short', day:'numeric'})
+}
+
+function monthKey(dateStr) {
+  const d = new Date(dateStr)
+  if (isNaN(d)) return 'Unknown'
+  return d.toLocaleDateString(undefined, {year:'numeric', month:'long'})
+}
+
+function countLast30(items) {
+  const cutoff = Date.now() - 30*24*60*60*1000
+  return items.filter(i => !isNaN(new Date(i.date)) && new Date(i.date).getTime() >= cutoff).length
+}
+
+// -------- Cards --------
+
+function Card({item}) {
+  return (
+    <a href={item.url} className="block border rounded-lg p-4 hover:shadow-sm transition">
+      <div className="flex items-start gap-3">
+        {item.thumbnail ? (
+          /* eslint-disable @next/next/no-img-element */
+          <img src={item.thumbnail} alt="" className="w-16 h-16 object-cover rounded-md" loading="lazy" />
+        ) : item.video ? (
+          <div className="w-16 h-16 bg-black/5 rounded-md flex items-center justify-center text-xs">🎬</div>
+        ) : (
+          <div className="w-16 h-16 bg-black/5 rounded-md" />
+        )}
+        <div className="min-w-0">
+          <div className="flex items-center gap-2 text-xs text-gray-500">
+            <span>{fmtDate(item.date)}</span>
+            {item.category && <span aria-label="category">• {item.category}</span>}
+            {isNew(item.date) && <span className="ml-2 inline-block px-1.5 py-0.5 text-[10px] rounded bg-emerald-100 text-emerald-700">NEW</span>}
+          </div>
+          <h3 className="mt-1 text-base font-medium leading-snug line-clamp-2">{item.title}</h3>
+          {item.description && <p className="mt-1 text-sm text-gray-600 line-clamp-3">{item.description}</p>}
+        </div>
+      </div>
+    </a>
+  )
+}
+
+function CardsView({items, limit=DEFAULT_LIMIT}) {
+  const shown = items.slice(0, limit)
+  return (
+    <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
+      {shown.map((i) => <Card key={i.url} item={i} />)}
+    </div>
+  )
+}
+
+// -------- Timeline --------
+
+function Timeline({items}) {
+  const groups = useMemo(() => {
+    const map = new Map()
+    for (const i of items) {
+      const k = monthKey(i.date)
+      if (!map.has(k)) map.set(k, [])
+      map.get(k).push(i)
+    }
+    // sort groups by most recent month
+    return Array.from(map.entries()).sort((a,b) => {
+      const da = new Date(a[0])
+      const db = new Date(b[0])
+      return db - da
+    })
+  }, [items])
+
+  return (
+    <div className="space-y-8">
+      {groups.map(([month, arr]) => (
+        <section key={month}>
+          <h2 className="text-xl font-semibold mb-3">{month} <span className="text-sm text-gray-500">({arr.length})</span></h2>
+          <ul className="space-y-3">
+            {arr.sort((a,b) => new Date(b.date)-new Date(a.date)).map(i => (
+              <li key={i.url} className="border rounded-lg p-4 hover:shadow-sm transition">
+                <a href={i.url} className="block">
+                  <div className="flex items-start gap-3">
+                    <div className="w-20 shrink-0 text-xs text-gray-500 mt-1">{fmtDate(i.date)}</div>
+                    <div className="min-w-0">
+                      <div className="flex items-center gap-2 text-xs text-gray-500">
+                        {i.category && <span>{i.category}</span>}
+                        {isNew(i.date) && <span className="inline-block px-1.5 py-0.5 text-[10px] rounded bg-emerald-100 text-emerald-700">NEW</span>}
+                      </div>
+                      <h3 className="mt-1 text-base font-medium leading-snug">{i.title}</h3>
+                      {i.description && <p className="mt-1 text-sm text-gray-600 line-clamp-2">{i.description}</p>}
+                    </div>
+                  </div>
+                </a>
+              </li>
+            ))}
+          </ul>
+        </section>
+      ))}
+    </div>
+  )
+}
+
+// -------- Page --------
+
+export default function WhatsNewPage() {
+  const [mode, setMode]       = useState('cards')
+  const [items, setItems]     = useState([])
+  const [loading, setLoading] = useState(true)
+  const [error, setError]     = useState(null)
+
+  useEffect(() => {
+    let cancelled = false
+    ;(async () => {
+      try {
+        const index = await fetchChangelogIndex()
+        // Sort by filename desc (YYYY-MM-DD-*.mdx lexicographically works)
+        index.sort((a,b) => b.name.localeCompare(a.name))
+        const toFetch = index.slice(0, FETCH_COUNT)
+        const results = []
+        for (const f of toFetch) {
+          try {
+            results.push(await fetchFrontmatter(f))
+          } catch (e) {
+            // ignore a single post failure
+            console.warn('changelog parse fail', f.name, e)
+          }
+        }
+        if (!cancelled) setItems(results.filter(Boolean))
+      } catch (e) {
+        if (!cancelled) setError(e?.message || String(e))
+      } finally {
+        if (!cancelled) setLoading(false)
+      }
+    })()
+    return () => { cancelled = true }
+  }, [])
+
+  const shipped30d = useMemo(() => countLast30(items), [items])
+
+  return (
+    <div className="mx-auto max-w-5xl">
+      <PageHeader count30d={shipped30d} />
+      <ViewToggle mode={mode} setMode={setMode} />
+      {loading && <div className="text-sm text-gray-500">Loading latest updates…</div>}
+      {error && <div className="text-sm text-red-600">Error: {error}</div>}
+      {!loading && !error && (
+        mode === 'cards'
+          ? <CardsView items={items} />
+          : <Timeline items={items} />
+      )}
+
+      <div className="mt-8 text-sm text-gray-500">
+        Don’t see what you’re looking for? See the full <a className="underline" href="/changelogs">Changelog</a>.
+      </div>
+
+      {/* No-JS fallback */}
+      <noscript>
+        <p>JavaScript is disabled. Visit the <a href="/changelogs">Changelog</a> for all updates.</p>
+      </noscript>
+    </div>
+  )
+}
