@@ -96,9 +96,9 @@ const Tile = ({ item }: { item: Item }) => (
 
       <div className="mt-4">
         <span className="inline-flex items-center gap-1 text-sm font-medium underline">
-          Read update <span aria-hidden>-></span>
+          Read update <span aria-hidden="true">&rarr;</span>
         </span>
-      </div>
+      </div>      
     </div>
   </a>
 );
