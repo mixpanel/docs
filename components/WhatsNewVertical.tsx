@@ -26,7 +26,7 @@ const fmtDay = (dateStr: string) => {
   return d.toLocaleDateString(undefined, { month: 'short', day: 'numeric', year: 'numeric' });
 };
 
-// ---------- build items (latest first) ----------
+// ---------- build items (newest first) ----------
 function buildItems(): Item[] {
   return (changelogPages || [])
     .map((p: any) => {
@@ -43,10 +43,8 @@ function buildItems(): Item[] {
       } as Item;
     })
     .filter(Boolean)
-    .sort(
-      (a: Item, b: Item) =>
-        new Date(b.date || '').getTime() - new Date(a.date || '').getTime()
-    );
+    .sort((a: Item, b: Item) => new Date(b.date).getTime() - new Date(a.date).getTime())
+    .reverse();
 }
 
 // ---------- UI ----------
@@ -54,9 +52,9 @@ function Row({ item }: { item: Item }) {
   return (
     <li className="py-2">
       <a href={item.url} className="block rounded-lg hover:bg-white/5 transition p-3">
-        <div className="flex gap-3 items-start">
-          {/* compact media (smaller but not tiny) */}
-          <div className="shrink-0 w-[112px] h-[68px] rounded-md overflow-hidden bg-black/10">
+        <div className="flex items-start gap-4">
+          {/* compact media (between preview and old size) */}
+          <div className="shrink-0 w-[120px] h-[72px] rounded-md overflow-hidden bg-black/10">
             {item.thumbnail ? (
               <img src={item.thumbnail} alt="" loading="lazy" className="w-full h-full object-cover" />
             ) : (
@@ -85,8 +83,8 @@ function Row({ item }: { item: Item }) {
 export default function WhatsNewVertical() {
   const items = useMemo(buildItems, []);
 
-  // paging (latest X)
-  const [pageSize, setPageSize] = useState<number>(10); // default X = 10
+  // paging (Latest X)
+  const [pageSize, setPageSize] = useState<number>(5); // default to 5 to match preview feel
   const [offset, setOffset] = useState<number>(0);
 
   const total = items.length;
@@ -99,7 +97,7 @@ export default function WhatsNewVertical() {
 
   const changeSize = (n: number) => {
     setPageSize(n);
-    setOffset(0); // reset to latest whenever size changes
+    setOffset(0); // reset to latest batch when size changes
   };
 
   const prev = () => setOffset(Math.max(0, offset - pageSize));
@@ -107,54 +105,57 @@ export default function WhatsNewVertical() {
 
   return (
     <section className="nx-not-prose not-prose mx-auto max-w-2xl">
-      {/* Header + controls */}
-      <div className="mb-4 flex flex-wrap items-center justify-between gap-3">
-        <h1 className="text-2xl font-semibold tracking-tight">What&apos;s New</h1>
+      {/* Header row */}
+      <div className="mb-4 flex items-center justify-between gap-3">
+        <h1 className="text-3xl font-semibold tracking-tight">What&apos;s New</h1>
 
+        {/* Controls aligned top-right */}
         <div className="flex items-center gap-2">
-          <label htmlFor="batch" className="text-sm text-gray-500">
-            Show
-          </label>
+          <span className="text-sm text-gray-500">Show</span>
           <select
-            id="batch"
             className="border rounded px-2 py-1 text-sm"
             value={pageSize}
             onChange={(e) => changeSize(Number(e.target.value))}
+            aria-label="Select how many latest updates to show"
           >
             {[5, 10, 15, 20].map(n => (
-              <option key={n} value={n}>Latest {n}</option>
+              <option key={n} value={n}>
+                Latest {n}
+              </option>
             ))}
           </select>
 
-          <div className="ml-2 flex items-center gap-2">
-            <button
-              onClick={prev}
-              disabled={!canPrev}
-              className="rounded border px-2 py-1 text-sm disabled:opacity-40"
-              aria-label="Previous batch"
-            >
-              &larr; Prev
-            </button>
-            <button
-              onClick={next}
-              disabled={!canNext}
-              className="rounded border px-2 py-1 text-sm disabled:opacity-40"
-              aria-label="Next batch"
-            >
-              Next &rarr;
-            </button>
-          </div>
+          <button
+            onClick={prev}
+            disabled={!canPrev}
+            className="ml-2 rounded border px-2 py-1 text-sm disabled:opacity-40"
+            aria-label="Previous batch"
+            title="Previous batch"
+          >
+            Prev
+          </button>
+          <button
+            onClick={next}
+            disabled={!canNext}
+            className="rounded border px-2 py-1 text-sm disabled:opacity-40"
+            aria-label="Next batch"
+            title="Next batch"
+          >
+            Next
+          </button>
         </div>
       </div>
 
       {/* status */}
-      <div className="mb-2 text-xs text-gray-500">
+      <div className="mb-3 text-xs text-gray-500">
         Showing {total === 0 ? 0 : start + 1}–{end} of {total}
       </div>
 
       {/* list */}
       <ul className="divide-y divide-white/10">
-        {page.map(item => <Row key={item.url} item={item} />)}
+        {page.map((item) => (
+          <Row key={item.url} item={item} />
+        ))}
       </ul>
 
       {/* footer link */}
