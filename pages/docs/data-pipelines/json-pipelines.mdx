@@ -58,17 +58,15 @@ The following are examples of the output in **BigQuery** for each data source pi
 
 ## Events Data Sync
 
-> Sync is disabled by default when creating events pipelines. You can enable it by toggling it in the **Advanced** session.
+Events Data Sync is enabled by default when creating JSON pipelines to ensure data consistency. This feature automatically detects data changes as soon as they are ingested and appends new files for new/late data to your storage/warehouses, helping keep the data fresh and minimizing missing data points.
 
-Event data stored in Mixpanel’s datastore and in the export destination can fall out of sync.
-
-The discrepancy can be attributed to several different causes:
+Event data can fall out of sync between Mixpanel's datastore and the export destination due to several causes:
 
 - Late data can arrive multiple days later due to a mobile client being offline.
 - The import API can add data to previous days.
 - Delete requests related to GDPR can cause deletion of events and event properties.
 
-Mixpanel is able to detect any changes in your data as soon as they are ingested and adds new files for new/late data in object storage and data warehouse, if applicable. Data sync helps keep the data fresh and minimizes missing data points.
+**Important limitations**: Data sync does not fully guarantee syncing GDPR Data Deletions and will only sync data for days up to 10 days in the past. It is recommended to implement a strategy to remove all records of GDPR Deleted Users in your data warehouse. Additionally, we start checking for late arriving data 24 hours after the data for a day is exported. It may take more than 2 days for the data in the destination to be in sync with the data in Mixpanel.
 
 ## Backfill Historical Events
 
@@ -99,6 +97,29 @@ Examples of querying the identity mapping table are available for [BigQuery](/do
 ## Incremental Pipelines
 
 As of 10 September 2025, all JSON pipelines in all regions (US/EU/IN) have been migrated to our improved incremental pipeline export system.
+<details>
+<summary><strong>2025-09-27: Sync Enabled by Default for JSON Pipelines</strong></summary>
+
+Removed sync toggle from JSON pipeline creation UI. All new JSON pipelines now have incremental sync enabled by default to ensure data consistency without requiring manual configuration.
+
+**Impact**: New JSON pipelines automatically include sync functionality - no longer optional through UI toggle.
+</details>
+
+<details>
+<summary><strong>2025-08-14 (US): Pipeline System Improvements By Incremental Export</strong></summary>
+ 
+We have deployed the Incremental Export Improvement for newly created pipelines with US data residency.
+
+The rollout of these updates to existing pipelines in all regions is scheduled for the near future. 
+Your pipeline will automatically transition to the new system when ready. Your data quality and completeness remain the same; only the processing method has improved.
+
+You can find out more about Incremental Export in the previous changelog below (2025-06-26).
+</details>
+
+<details>
+<summary><strong>2025-06-26: Pipeline System Improvements By Incremental Export</strong></summary>
+
+We're rolling out an improved pipeline system to improve the efficiency and reliability of your data exports. We're deploying these improvements gradually across all customers, starting with new pipelines in our EU and IN data residency. New pipelines in projects with US residency and existing pipelines in all regions will follow after. Your pipeline will automatically transition to the new system when ready. Your data quality and completeness remain the same - only the processing method has improved.
 
 **What is affected?**
 
