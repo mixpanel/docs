@@ -31,13 +31,10 @@ async function execAndLog(cmd, args) {
 async function updateSpecs() {
   // fetch IDs of openapi specs via readme API
   const res = await fetch(
-    `https://dash.readme.com/api/v1/api-specification?perPage=10&page=1`,
+    `https://api.readme.com/v2/branches/${README_VERSION}/apis`,
     {
       headers: {
-        Authorization: `Basic ${Buffer.from(README_API_KEY).toString(
-          "base64"
-        )}`,
-        "x-readme-version": README_VERSION,
+        Authorization: `Bearer ${README_API_KEY}`,
       },
     }
   );
@@ -54,18 +51,20 @@ async function updateSpecs() {
     const fullPath = path.join(outBase, specFile);
     const yamlStr = fs.readFileSync(fullPath, "utf8");
     const spec = YAML.parse(yamlStr);
-    const specMeta = remoteSpecMetas.find((m) => m.title === spec.info.title);
+    const slug = specFile.split(`.openapi.yaml`)[0];
+    const specMeta = remoteSpecMetas.data.find((m) => m.filename.split(`.json`)[0] === slug);
     if (!specMeta) {
       console.log(`!!! No spec found for "${spec.info.title}". Please upload it as found in the developer.mixpanel.com runbook.`);
       continue;
     }
-    const specId = specMeta.id;
 
     // validate and publish spec
-    console.log(`Updating ${spec.info.title} (${specFile}, ID ${specId})`);
+    console.log(`Updating ${spec.info.title} (${specFile}`);
     await execAndLog('npx', ['rdme', 'openapi:validate', fullPath]);
+    // when readme was upgraded to readme refactored, all of the yaml files were converted to json, and therefore
+    // the slug name also looks like "annotations-api.json", even though we store them as yaml here.
     await execAndLog(
-      'npx', ['rdme', 'openapi', fullPath, `--id=${specId}`, `--key=${README_API_KEY}`]
+      'npx', ['rdme', 'openapi', 'upload', fullPath, `--key=${README_API_KEY}`, `--slug=${slug}.json`]
     );
   }
 }
