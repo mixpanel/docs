@@ -1,13 +1,14 @@
 name: Generate ReadMe Staging 🦉
 
-on:
-  # run this workflow on all PRs that have reference dirs changed
-  pull_request:
-    paths:
-      - 'openapi/**'
-      - 'reference/**'
-      - '.github/actions/**'
-      - '.github/workflows/rdme-staging.yml'
+# This is currently broken, fix this in a future PR
+# on:
+#   # run this workflow on all PRs that have reference dirs changed
+#   pull_request:
+#     paths:
+#       - 'openapi/**'
+#       - 'reference/**'
+#       - '.github/actions/**'
+#       - '.github/workflows/rdme-staging.yml'
 
 jobs:
   # ////////////////////////////////////////////////////////////////////////
