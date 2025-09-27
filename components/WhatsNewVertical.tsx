@@ -51,18 +51,45 @@ function buildItems(): Item[] {
 
 // ---------- UI ----------
 function Row({ item }: { item: Item }) {
+  // explicit inline sizing so we’re not relying on arbitrary Tailwind sizes
+  const thumbStyle: React.CSSProperties = {
+    width: 120,
+    height: 72,
+    borderRadius: 8,
+    overflow: 'hidden',
+    background: 'rgba(0,0,0,0.1)',
+    flex: '0 0 auto'
+  };
+
+  const titleStyle: React.CSSProperties = {
+    marginTop: 2,
+    fontSize: 15,
+    fontWeight: 600,
+    lineHeight: 1.25,
+    display: '-webkit-box',
+    WebkitLineClamp: 2,
+    WebkitBoxOrient: 'vertical',
+    overflow: 'hidden'
+  };
+
   return (
-    <li className="py-1.5">
-      <a href={item.url} className="block rounded-lg hover:bg-white/5 transition p-3">
-        <div className="flex items-start gap-4">
-          {/* compact media (between previous big and preview small) */}
-          <div className="shrink-0 w-[120px] h-[72px] rounded-md overflow-hidden bg-black/10">
+    <li style={{ padding: '8px 0' }}>
+      <a href={item.url} className="block rounded-lg hover:bg-white/5 transition" style={{ padding: 12 }}>
+        <div style={{ display: 'flex', gap: 16, alignItems: 'flex-start' }}>
+          <div style={thumbStyle}>
             {item.thumbnail ? (
-              <img src={item.thumbnail} alt="" loading="lazy" className="w-full h-full object-cover" />
+              // eslint-disable-next-line @next/next/no-img-element
+              <img
+                src={item.thumbnail}
+                alt=""
+                loading="lazy"
+                style={{ width: '100%', height: '100%', objectFit: 'cover', display: 'block' }}
+              />
             ) : (
               <div
-                className="w-full h-full"
                 style={{
+                  width: '100%',
+                  height: '100%',
                   background:
                     'radial-gradient(120% 120% at 0% 100%, rgba(168,85,247,0.18), transparent 60%), radial-gradient(120% 120% at 100% 0%, rgba(59,130,246,0.18), transparent 60%)'
                 }}
@@ -70,11 +97,9 @@ function Row({ item }: { item: Item }) {
             )}
           </div>
 
-          <div className="min-w-0">
+          <div style={{ minWidth: 0 }}>
             <div className="text-[12px] text-gray-500">{fmtDay(item.date)}</div>
-            <h3 className="mt-0.5 text-[15px] leading-snug font-medium line-clamp-2">
-              {item.title}
-            </h3>
+            <h3 style={titleStyle}>{item.title}</h3>
           </div>
         </div>
       </a>
@@ -105,13 +130,21 @@ export default function WhatsNewVertical() {
   const prev = () => setOffset(Math.max(0, offset - pageSize));
   const next = () => setOffset(Math.min(total, offset + pageSize));
 
+  // header grid keeps controls pinned right even on narrow center columns
+  const headerGrid: React.CSSProperties = {
+    display: 'grid',
+    gridTemplateColumns: '1fr auto',
+    alignItems: 'center',
+    gap: 12,
+    marginBottom: 16
+  };
+
   return (
-    <section className="nx-not-prose not-prose mx-auto max-w-2xl">
-      {/* Header grid keeps controls pinned right even in narrow columns */}
-      <div className="mb-4 grid grid-cols-1 sm:grid-cols-[1fr_auto] items-center gap-3">
+    <section className="nx-not-prose not-prose" style={{ maxWidth: 720, margin: '0 auto' }}>
+      <div style={headerGrid}>
         <h1 className="text-3xl font-semibold tracking-tight">What&apos;s New</h1>
 
-        <div className="justify-self-start sm:justify-self-end flex items-center gap-2">
+        <div style={{ display: 'flex', alignItems: 'center', gap: 8 }}>
           <span className="text-sm text-gray-500">Show</span>
           <select
             className="border rounded px-2 py-1 text-sm"
@@ -129,9 +162,10 @@ export default function WhatsNewVertical() {
           <button
             onClick={prev}
             disabled={!canPrev}
-            className="ml-2 rounded border px-2 py-1 text-sm disabled:opacity-40"
+            className="rounded border px-2 py-1 text-sm disabled:opacity-40"
             aria-label="Previous batch"
             title="Previous batch"
+            style={{ marginLeft: 8 }}
           >
             &larr; Prev
           </button>
@@ -147,19 +181,16 @@ export default function WhatsNewVertical() {
         </div>
       </div>
 
-      {/* status */}
-      <div className="mb-3 text-xs text-gray-500">
+      <div className="text-xs text-gray-500" style={{ marginBottom: 8 }}>
         Showing {total === 0 ? 0 : start + 1}–{end} of {total}
       </div>
 
-      {/* list */}
       <ul className="divide-y divide-white/10">
         {page.map((item) => (
           <Row key={item.url} item={item} />
         ))}
       </ul>
 
-      {/* footer link */}
       <div className="mt-6 text-sm text-gray-500">
         Looking for more? See the full <a className="underline" href="/changelogs">Changelog</a>.
       </div>
