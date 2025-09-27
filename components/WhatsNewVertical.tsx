@@ -8,7 +8,6 @@ type Item = {
   title: string;
   date: string;
   thumbnail: string;
-  summary?: string; // NOTE: shown only if explicitly provided in frontmatter
 };
 
 const changelogPages = getPagesUnderRoute('/changelogs');
@@ -65,8 +64,7 @@ function buildItems(): Item[] {
         url: route,
         title: fm.title || p.title || humanize(name),
         date,
-        thumbnail: thumb || '',
-        summary: fm.summary || '' // only render if explicitly set
+        thumbnail: thumb || ''
       } as Item;
     })
     .filter(Boolean)
@@ -184,7 +182,7 @@ function Row({ item }: { item: Item }) {
   return (
     <li style={{ padding: '12px 0' }}>
       <a href={item.url} className="block rounded-xl hover:bg-white/5 transition p-3">
-        {/* Title (bigger) left · Date right */}
+        {/* Title left · Date right */}
         <div style={headerRow}>
           <h3
             className="text-[20px] font-semibold leading-tight hover:underline underline-offset-4"
@@ -211,13 +209,7 @@ function Row({ item }: { item: Item }) {
           )}
         </div>
 
-        {/* Summary: ONLY if frontmatter.summary is present */}
-        {item.summary ? (
-          <p className="mt-2 text-[14px] text-gray-400" style={clampStyle(3)}>
-            {item.summary}
-          </p>
-        ) : null}
-
+        {/* Inline read link */}
         <div className="mt-1">
           <span className="text-[13px] underline underline-offset-4">Read update →</span>
         </div>
@@ -255,7 +247,6 @@ export default function WhatsNewVertical() {
       <div>
         <h1 className="text-5xl md:text-6xl font-semibold tracking-tight">What&apos;s New</h1>
 
-        {/* Two paragraphs with spacing */}
         <p className="mt-4 text-[15px] text-gray-300 leading-relaxed">
           <strong>Track Mixpanel product releases and improvements in one place.</strong> See what’s
           new, what got faster, and what opens up entirely new ways to answer questions about your
@@ -268,7 +259,6 @@ export default function WhatsNewVertical() {
           and put the most impactful updates to work on your team today.
         </p>
 
-        {/* Optional subtle secondary link */}
         <div className="mt-3">
           <a className="rounded-md border px-3 py-1.5 text-sm hover:bg-white/5" href="/changelogs">
             Browse Changelog
@@ -276,7 +266,7 @@ export default function WhatsNewVertical() {
         </div>
       </div>
 
-      {/* CONTROLS ROW: same line (left + right) with spacing from hero */}
+      {/* CONTROLS ROW */}
       <div className="mt-6 grid grid-cols-[1fr_auto] items-center gap-3">
         <div className="text-xs text-gray-500">
           Showing {total === 0 ? 0 : start + 1}–{end} of {total}
@@ -299,7 +289,7 @@ export default function WhatsNewVertical() {
         ))}
       </ul>
 
-      {/* FOOTER BAR: one line (left link · right controls) */}
+      {/* FOOTER BAR */}
       <div className="mt-8 grid grid-cols-[1fr_auto] items-center gap-3">
         <div className="text-sm">
           <a className="text-violet-400 underline underline-offset-4" href="/changelogs">
