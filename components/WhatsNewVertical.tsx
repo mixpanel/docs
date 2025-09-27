@@ -1,3 +1,4 @@
+// components/WhatsNewVertical.tsx
 'use client';
 
 import React, { useMemo, useState } from 'react';
@@ -26,46 +27,63 @@ const fmtDay = (dateStr: string) => {
   return d.toLocaleDateString(undefined, { month: 'short', day: 'numeric', year: 'numeric' });
 };
 
-// ---------- build items (newest first) ----------
+const firstNonEmpty = (...vals: any[]) =>
+  vals.find((v) => {
+    if (!v) return false;
+    if (Array.isArray(v)) return v.length > 0 && typeof v[0] === 'string';
+    return typeof v === 'string';
+  });
+
+// ---------- build items (NEWEST first) ----------
 function buildItems(): Item[] {
   return (changelogPages || [])
     .map((p: any) => {
       const fm = p.frontMatter || p.meta || {};
       const route = p.route || '';
-      if (!/\/changelogs\/.+/.test(route)) return null; // skip /changelogs index
+      if (!/\/changelogs\/.+/.test(route)) return null; // skip index page
+
       const name = p.name || route.split('/').pop() || '';
       const date = fm.date || parseDate(name) || parseDate(route);
-      const thumb =
-        fm.thumbnail || fm.image || fm.cover || fm.screenshot || fm.hero || '';
+
+      // smart thumbnail fallback across common keys
+      const thumb = firstNonEmpty(
+        fm.thumbnail,
+        fm.image,
+        fm.cover,
+        fm.ogImage,
+        fm.hero,
+        fm.screenshot,
+        Array.isArray(fm.images) ? fm.images[0] : undefined
+      ) as string | undefined;
+
       return {
         url: route,
         title: fm.title || p.title || humanize(name),
         date,
-        thumbnail: thumb
+        thumbnail: thumb || ''
       } as Item;
     })
     .filter(Boolean)
-    .sort((a: Item, b: Item) => new Date(b.date).getTime() - new Date(a.date).getTime())
-    .reverse();
+    // sort newest → oldest
+    .sort((a: Item, b: Item) => new Date(b.date).getTime() - new Date(a.date).getTime());
 }
 
 // ---------- UI ----------
 function Row({ item }: { item: Item }) {
-  // explicit inline sizing so we’re not relying on arbitrary Tailwind sizes
-  const thumbStyle: React.CSSProperties = {
-    width: 120,
-    height: 72,
-    borderRadius: 8,
+  // Stacked layout: big 16:9 preview, then date + title
+  const imgWrap: React.CSSProperties = {
+    width: '100%',
+    borderRadius: 12,
     overflow: 'hidden',
-    background: 'rgba(0,0,0,0.1)',
-    flex: '0 0 auto'
+    aspectRatio: '16 / 9',
+    background:
+      'radial-gradient(120% 120% at 0% 100%, rgba(168,85,247,0.18), transparent 60%), radial-gradient(120% 120% at 100% 0%, rgba(59,130,246,0.18), transparent 60%)'
   };
-
   const titleStyle: React.CSSProperties = {
-    marginTop: 2,
-    fontSize: 15,
+    marginTop: 4,
+    fontSize: 16,
     fontWeight: 600,
-    lineHeight: 1.25,
+    lineHeight: 1.3,
     display: '-webkit-box',
     WebkitLineClamp: 2,
     WebkitBoxOrient: 'vertical',
@@ -73,35 +91,24 @@ function Row({ item }: { item: Item }) {
   };
 
   return (
-    <li style={{ padding: '8px 0' }}>
-      <a href={item.url} className="block rounded-lg hover:bg-white/5 transition" style={{ padding: 12 }}>
-        <div style={{ display: 'flex', gap: 16, alignItems: 'flex-start' }}>
-          <div style={thumbStyle}>
-            {item.thumbnail ? (
-              // eslint-disable-next-line @next/next/no-img-element
-              <img
-                src={item.thumbnail}
-                alt=""
-                loading="lazy"
-                style={{ width: '100%', height: '100%', objectFit: 'cover', display: 'block' }}
-              />
-            ) : (
-              <div
-                style={{
-                  width: '100%',
-                  height: '100%',
-                  background:
-                    'radial-gradient(120% 120% at 0% 100%, rgba(168,85,247,0.18), transparent 60%), radial-gradient(120% 120% at 100% 0%, rgba(59,130,246,0.18), transparent 60%)'
-                }}
-              />
-            )}
-          </div>
-
-          <div style={{ minWidth: 0 }}>
-            <div className="text-[12px] text-gray-500">{fmtDay(item.date)}</div>
-            <h3 style={titleStyle}>{item.title}</h3>
-          </div>
+    <li style={{ padding: '12px 0' }}>
+      <a href={item.url} className="block rounded-xl hover:bg-white/5 transition p-3">
+        <div style={imgWrap}>
+          {item.thumbnail ? (
+            // eslint-disable-next-line @next/next/no-img-element
+            <img
+              src={item.thumbnail}
+              alt=""
+              loading="lazy"
+              style={{ width: '100%', height: '100%', objectFit: 'cover', display: 'block' }}
+            />
+          ) : (
+            <div style={{ width: '100%', height: '100%' }} />
+          )}
         </div>
+
+        <div className="mt-2 text-[12px] text-gray-500">{fmtDay(item.date)}</div>
+        <h3 style={titleStyle}>{item.title}</h3>
       </a>
     </li>
   );
@@ -124,13 +131,13 @@ export default function WhatsNewVertical() {
 
   const changeSize = (n: number) => {
     setPageSize(n);
-    setOffset(0); // reset to latest
+    setOffset(0); // reset to newest batch when size changes
   };
 
   const prev = () => setOffset(Math.max(0, offset - pageSize));
   const next = () => setOffset(Math.min(total, offset + pageSize));
 
-  // header grid keeps controls pinned right even on narrow center columns
+  // Header grid: title left, controls pinned right
   const headerGrid: React.CSSProperties = {
     display: 'grid',
     gridTemplateColumns: '1fr auto',
@@ -140,7 +147,7 @@ export default function WhatsNewVertical() {
   };
 
   return (
-    <section className="nx-not-prose not-prose" style={{ maxWidth: 720, margin: '0 auto' }}>
+    <section className="nx-not-prose not-prose" style={{ maxWidth: 880, margin: '0 auto' }}>
       <div style={headerGrid}>
         <h1 className="text-3xl font-semibold tracking-tight">What&apos;s New</h1>
 
