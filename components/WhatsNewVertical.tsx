@@ -75,12 +75,13 @@ function buildItems(): Item[] {
 const s = {
   page: { maxWidth: 880, margin: '0 auto' },
   h1: {
+    marginTop: 16,         // ← extra space under the breadcrumb
+    marginBottom: 0,
     fontSize: '44px',
     lineHeight: 1.1,
     fontWeight: 600 as const,
     letterSpacing: '-0.02em' as const,
-    margin: 0,
-  },
+  },  
   heroP: {
     marginTop: 12,
     fontSize: 15,
