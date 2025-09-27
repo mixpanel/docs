@@ -1,34 +1,34 @@
 apis:
   annotations:
-    root: ./src/annotations.openapi.yaml
-    output: ./out/annotations.openapi.yaml
+    root: ./src/annotations-api.openapi.yaml
+    output: ./out/annotations-api.openapi.yaml
   data-pipelines:
-    root: ./src/data-pipelines.openapi.yaml
-    output: ./out/data-pipelines.openapi.yaml
+    root: ./src/data-pipelines-api.openapi.yaml
+    output: ./out/data-pipelines-api.openapi.yaml
   export:
-    root: ./src/export.openapi.yaml
-    output: ./out/export.openapi.yaml
+    root: ./src/event-export-api.openapi.yaml
+    output: ./out/event-export-api.openapi.yaml
   gdpr:
-    root: ./src/gdpr.openapi.yaml
-    output: ./out/gdpr.openapi.yaml
+    root: ./src/gdpr-api-2.openapi.yaml
+    output: ./out/gdpr-api-2.openapi.yaml
   identity:
-    root: ./src/identity.openapi.yaml
-    output: ./out/identity.openapi.yaml
+    root: ./src/identity-api.openapi.yaml
+    output: ./out/identity-api.openapi.yaml
   ingestion:
-    root: ./src/ingestion.openapi.yaml
-    output: ./out/ingestion.openapi.yaml
+    root: ./src/ingestion-api.openapi.yaml
+    output: ./out/ingestion-api.openapi.yaml
   lexicon-schemas:
-    root: ./src/lexicon-schemas.openapi.yaml
-    output: ./out/lexicon-schemas.openapi.yaml
+    root: ./src/lexicon-schemas-api.openapi.yaml
+    output: ./out/lexicon-schemas-api.openapi.yaml
   query:
-    root: ./src/query.openapi.yaml
-    output: ./out/query.openapi.yaml
+    root: ./src/query-api.openapi.yaml
+    output: ./out/query-api.openapi.yaml
   service-accounts:
-    root: ./src/service-accounts.openapi.yaml
-    output: ./out/service-accounts.openapi.yaml
+    root: ./src/service-accounts-api.openapi.yaml
+    output: ./out/service-accounts-api.openapi.yaml
   warehouse-connectors:
-    root: ./src/warehouse-connectors.openapi.yaml
-    output: ./out/warehouse-connectors.openapi.yaml
+    root: ./src/warehouse-connectors-api.openapi.yaml
+    output: ./out/warehouse-connectors-api.openapi.yaml
 
 extends:
   - recommended
