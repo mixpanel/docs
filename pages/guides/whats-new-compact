@@ -1,0 +1,10 @@
+---
+title: "What's New — Compact"
+description: "Vertical compact board (months collapsed by default)"
+---
+
+import WhatsNewVertical from '../../components/WhatsNewVertical'
+
+<div className="nx-not-prose not-prose">
+  <WhatsNewVertical />
+</div>
