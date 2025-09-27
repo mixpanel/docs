@@ -46,7 +46,7 @@ function buildItems(): Item[] {
     .map((p: any) => {
       const fm = p.frontMatter || p.meta || {};
       const route = p.route || '';
-      if (!/\/changelogs\/.+/.test(route)) return null; // skip index
+      if (!/\/changelogs\/.+/.test(route)) return null;
 
       const name = p.name || route.split('/').pop() || '';
       const date = fm.date || parseDate(name) || parseDate(route);
@@ -182,7 +182,6 @@ function Row({ item }: { item: Item }) {
   return (
     <li style={{ padding: '12px 0' }}>
       <a href={item.url} className="block rounded-xl hover:bg-white/5 transition p-3">
-        {/* Title left · Date right */}
         <div style={headerRow}>
           <h3
             className="text-[20px] font-semibold leading-tight hover:underline underline-offset-4"
@@ -194,7 +193,6 @@ function Row({ item }: { item: Item }) {
           <div className="text-[12px] text-gray-500">{fmtDay(item.date)}</div>
         </div>
 
-        {/* Image */}
         <div style={imgWrap}>
           {item.thumbnail ? (
             // eslint-disable-next-line @next/next/no-img-element
@@ -209,7 +207,6 @@ function Row({ item }: { item: Item }) {
           )}
         </div>
 
-        {/* Inline read link */}
         <div className="mt-1">
           <span className="text-[13px] underline underline-offset-4">Read update →</span>
         </div>
@@ -236,7 +233,7 @@ export default function WhatsNewVertical() {
 
   const changeSize = (n: number) => {
     setPageSize(n);
-    setOffset(0); // reset to newest window when size changes
+    setOffset(0);
   };
   const prev = () => setOffset(Math.max(0, offset - pageSize));
   const next = () => setOffset(Math.min(total, offset + pageSize));
@@ -260,26 +257,30 @@ export default function WhatsNewVertical() {
         </p>
 
         <div className="mt-3">
-          <a className="rounded-md border px-3 py-1.5 text-sm hover:bg-white/5" href="/changelogs">
+          <a
+            className="inline-flex items-center gap-1 text-sm text-gray-300 hover:text-white underline underline-offset-4"
+            href="/changelogs"
+          >
             Browse Changelog
           </a>
         </div>
       </div>
 
-      {/* CONTROLS ROW */}
-      <div className="mt-6 grid grid-cols-[1fr_auto] items-center gap-3">
+      {/* TOP CONTROLS — single line */}
+      <div className="mt-6 flex items-center justify-between gap-3">
         <div className="text-xs text-gray-500">
           Showing {total === 0 ? 0 : start + 1}–{end} of {total}
         </div>
-
-        <ControlsTop
-          pageSize={pageSize}
-          canPrev={canPrev}
-          canNext={canNext}
-          changeSize={changeSize}
-          prev={prev}
-          next={next}
-        />
+        <div className="min-w-0 whitespace-nowrap">
+          <ControlsTop
+            pageSize={pageSize}
+            canPrev={canPrev}
+            canNext={canNext}
+            changeSize={changeSize}
+            prev={prev}
+            next={next}
+          />
+        </div>
       </div>
 
       {/* LIST */}
@@ -289,14 +290,16 @@ export default function WhatsNewVertical() {
         ))}
       </ul>
 
-      {/* FOOTER BAR */}
-      <div className="mt-8 grid grid-cols-[1fr_auto] items-center gap-3">
+      {/* BOTTOM BAR — single line */}
+      <div className="mt-8 flex items-center justify-between gap-3">
         <div className="text-sm">
           <a className="text-violet-400 underline underline-offset-4" href="/changelogs">
             Browse the full Changelog →
           </a>
         </div>
-        <ControlsBottom canPrev={canPrev} canNext={canNext} prev={prev} next={next} />
+        <div className="min-w-0 whitespace-nowrap">
+          <ControlsBottom canPrev={canPrev} canNext={canNext} prev={prev} next={next} />
+        </div>
       </div>
     </section>
   );
