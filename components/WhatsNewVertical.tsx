@@ -35,11 +35,13 @@ function buildItems(): Item[] {
       if (!/\/changelogs\/.+/.test(route)) return null; // skip /changelogs index
       const name = p.name || route.split('/').pop() || '';
       const date = fm.date || parseDate(name) || parseDate(route);
+      const thumb =
+        fm.thumbnail || fm.image || fm.cover || fm.screenshot || fm.hero || '';
       return {
         url: route,
         title: fm.title || p.title || humanize(name),
         date,
-        thumbnail: fm.thumbnail || ''
+        thumbnail: thumb
       } as Item;
     })
     .filter(Boolean)
@@ -50,10 +52,10 @@ function buildItems(): Item[] {
 // ---------- UI ----------
 function Row({ item }: { item: Item }) {
   return (
-    <li className="py-2">
+    <li className="py-1.5">
       <a href={item.url} className="block rounded-lg hover:bg-white/5 transition p-3">
         <div className="flex items-start gap-4">
-          {/* compact media (between preview and old size) */}
+          {/* compact media (between previous big and preview small) */}
           <div className="shrink-0 w-[120px] h-[72px] rounded-md overflow-hidden bg-black/10">
             {item.thumbnail ? (
               <img src={item.thumbnail} alt="" loading="lazy" className="w-full h-full object-cover" />
@@ -84,7 +86,7 @@ export default function WhatsNewVertical() {
   const items = useMemo(buildItems, []);
 
   // paging (Latest X)
-  const [pageSize, setPageSize] = useState<number>(5); // default to 5 to match preview feel
+  const [pageSize, setPageSize] = useState<number>(5);
   const [offset, setOffset] = useState<number>(0);
 
   const total = items.length;
@@ -97,7 +99,7 @@ export default function WhatsNewVertical() {
 
   const changeSize = (n: number) => {
     setPageSize(n);
-    setOffset(0); // reset to latest batch when size changes
+    setOffset(0); // reset to latest
   };
 
   const prev = () => setOffset(Math.max(0, offset - pageSize));
@@ -105,12 +107,11 @@ export default function WhatsNewVertical() {
 
   return (
     <section className="nx-not-prose not-prose mx-auto max-w-2xl">
-      {/* Header row */}
-      <div className="mb-4 flex items-center justify-between gap-3">
+      {/* Header grid keeps controls pinned right even in narrow columns */}
+      <div className="mb-4 grid grid-cols-1 sm:grid-cols-[1fr_auto] items-center gap-3">
         <h1 className="text-3xl font-semibold tracking-tight">What&apos;s New</h1>
 
-        {/* Controls aligned top-right */}
-        <div className="flex items-center gap-2">
+        <div className="justify-self-start sm:justify-self-end flex items-center gap-2">
           <span className="text-sm text-gray-500">Show</span>
           <select
             className="border rounded px-2 py-1 text-sm"
@@ -132,7 +133,7 @@ export default function WhatsNewVertical() {
             aria-label="Previous batch"
             title="Previous batch"
           >
-            Prev
+            &larr; Prev
           </button>
           <button
             onClick={next}
@@ -141,7 +142,7 @@ export default function WhatsNewVertical() {
             aria-label="Next batch"
             title="Next batch"
           >
-            Next
+            Next &rarr;
           </button>
         </div>
       </div>
