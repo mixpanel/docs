@@ -22,7 +22,8 @@
 /docs/analysis/advanced/custom-events /docs/features/custom-events
 /docs/analysis/advanced/custom-properties /docs/features/custom-properties
 /docs/analysis/advanced/embeds /docs/features/embeds
-/docs/analysis/advanced/experiments /docs/reports/apps/experiments
+/docs/analysis/advanced/experiments /docs/experiments
+/docs/reports/experiments /docs/experiments
 /docs/analysis/advanced/group-analytics /docs/data-structure/advanced/group-analytics
 /docs/analysis/advanced/impact /docs/reports/apps/impact
 /docs/analysis/advanced/other-advanced-features /docs/features/advanced
