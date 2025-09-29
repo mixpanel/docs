@@ -117,15 +117,21 @@ Mixpanel offers a 30-day free trial of the Data Pipelines, allowing you to creat
 - Only one pipeline can be created per data source per project.
 - Backfilled data is limited to one day prior to the creation date of the pipeline.
 
+### Why can’t I delete my trial pipeline?
+
+You can’t delete a trial pipeline in Mixpanel — this is intentional. Each project is limited to one trial pipeline per data source, and keeping it prevents deleting/recreating trials to bypass limits. It also serves as a record that the trial has been used. Even after you upgrade to a paid Data Pipelines package, the trial pipeline remains visible and cannot be removed. This is a policy decision to preserve the integrity of the trial program, not a technical constraint.
+
 ### What is Active Pipeline Limit
 
 Each project can have 2 recurring pipelines and 1 date ranged backfill pipeline active.
 
 To maintain optimal performance across our services, we limit the number of concurrently running pipeline steps to one per project. This approach ensures that each job, including those involving substantial backfills, waits its turn, preventing any single project from monopolizing resources and thus promoting fair scheduling among all customers.
 
-### When do pipeline exports run?
+### Is it possible to specify when pipeline exports run?
 
-Pipelines by default are set to start an export 30 minutes after the time period to export in project time is complete. For example a project in the Pacific timezone with a daily events pipeline will start the export for data from 5/22 on 5/23 00:30 AM PT.
+No. Hourly pipelines are targeted to run 30 minutes past the hour to be exported, and daily pipelines are targeted to run 30 minutes past the day to be exported (e.g. 00:30 AM) in the project’s timezone. For example, a project in the Pacific timezone with a daily events pipeline will start the export for data from 5/22 on 5/23 00:30 AM PT.
+
+Please note that the [24-hour SLA](/docs/data-pipelines#what-is-the-service-level-agreement) applies.
 
 ### What is the Service Level Agreement?
 
