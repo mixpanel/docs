@@ -181,5 +181,5 @@ In the feature flag B page, in the target audience -
 Yes, today you can have a maximum of 5 variants per flag, and a maximum of 5 rollout groups per flag
 
 **We use a CDP in our company. How do we use Mixpanel Feature Flags with our CDP?**
-When you initialize the mixpanel feature flag SDK, configure it to not track any $experiment_started events directly to Mixpanel.
+When you initialize the mixpanel feature flag SDK, configure it to not track any `$experiment_started` events directly to Mixpanel.
 This way you use the mixpanel SDK to serve the feature flags, but when an end-user sees exposure, they manually use their existing method of tracking events through their CDP to mixpanel to track the $experiment_started event
