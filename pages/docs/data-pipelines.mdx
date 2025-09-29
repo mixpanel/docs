@@ -105,9 +105,11 @@ Each project can have 2 recurring pipelines and 1 date ranged backfill pipeline 
 
 To maintain optimal performance across our services, we limit the number of concurrently running pipeline steps to one per project. This approach ensures that each job, including those involving substantial backfills, waits its turn, preventing any single project from monopolizing resources and thus promoting fair scheduling among all customers.
 
-### When do pipeline exports run?
+### Is it possible to specify when pipeline exports run?
 
-Pipelines by default are set to start an export 30 minutes after the time period to export in project time is complete. For example a project in the Pacific timezone with a daily events pipeline will start the export for data from 5/22 on 5/23 00:30 AM PT.
+No. Hourly pipelines are targeted to run 30 minutes past the hour to be exported, and daily pipelines are targeted to run 30 minutes past the day to be exported (e.g. 00:30 AM) in the project’s timezone. For example, a project in the Pacific timezone with a daily events pipeline will start the export for data from 5/22 on 5/23 00:30 AM PT.
+
+Please note that the [24-hour SLA](/docs/data-pipelines#what-is-the-service-level-agreement) applies.
 
 ### What is the Service Level Agreement?
 
