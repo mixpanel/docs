@@ -26,7 +26,8 @@ B.  Follow [Google Workspace's documentation on setting up a new application](ht
 #### Configure SAML
 
 A. If you use the Mixpanel app from the store, the following SAML configuration is already built into the app.
-![CleanShot 2025-09-16 at 11.08.34](/Users/leonardo.fratini/Library/Application Support/CleanShot/media/media_MQGkDvuFTS/CleanShot 2025-09-16 at 11.08.34.jpg)
+
+![use_existing_app](https://github.com/user-attachments/assets/4d42cf48-9b1e-4be2-8b56-ec76edaad118)
 
 B. If you create a custom app, you must fill the form found in the **Configure SAML** menu in Google Workspace. Make sure that the following fields are adjusted to exactly match the corresponding values:
 
@@ -36,23 +37,25 @@ B. If you create a custom app, you must fill the form found in the **Configure S
 
 The following screenshot highlights what you should place in the fields:
 
-![CleanShot 2025-09-29 at 16.30.49](/Users/leonardo.fratini/Library/Application Support/CleanShot/media/media_V4Fjk2TRhv/CleanShot 2025-09-29 at 16.30.49.jpg)
+![custom_saml_app](https://github.com/user-attachments/assets/be8660ff-084f-409e-9dec-49e17b7563e6)
 
 Additionally, it is required that you use `email` as an attribute statement, other attributes we recommend include `firstName` and `lastName`.
 
-![CleanShot 2025-09-16 at 11.13.30](/Users/leonardo.fratini/Pictures/screenshots/CleanShot 2025-09-16 at 11.13.30.jpg)
+![attr_mapping](https://github.com/user-attachments/assets/b10ea8bf-ff1a-4270-8b97-0d078ae46fde)
 
 ### Obtain Information From Google Workspace
 
 In order to configure Mixpanel use with Google Workspace, you must first obtain your **Public Certificate**, **SSO URL**, and **Entity ID**.
 
 To access this information, access the Mixpanel app in Google Workspace (or create a custom app) first select **DOWNLOAD METADATA**. Then, grab the **SSO URL** and **Entity ID** as well as the certificate to upload in Mixpanel (we recommend adding the expiration date to the file name to make it easier to manage in Mixpanel).
-![CleanShot X 2025-09-29 16.41.42](/Users/leonardo.fratini/Library/Application Support/CleanShot/media/media_D1Qaajbj83/CleanShot X 2025-09-29 16.41.42.png)
+
+![google_metadata](https://github.com/user-attachments/assets/d1ea2115-eaf7-4cde-a01d-b9bb248314e3)
 
 ### Enable SSO
 
 From Mixpanel, navigate to your **Organization Settings** and then the **Access Security** tab. From the **2FA & SSO** menu, upload your **Public Certificate** and add your **SSO URL** and **Entity ID** to the **Identity Provider Sign-In URL** and **Issuer URL**, respectively.
-![CleanShot 2025-09-29 at 16.45.33](/Users/leonardo.fratini/Library/Application Support/CleanShot/media/media_1YIbDnb7hQ/CleanShot 2025-09-29 at 16.45.33.jpg)
+
+![sso_settings_in_mp](https://github.com/user-attachments/assets/e97be4c6-dc1f-44d1-adb4-530679bca9ba)
 
 Optionally toggle **Require Single Sign-On** to prevent your users from logging in with a username and password. Organization Owners and Admins will still be able to log in using username and password in case SSO is not set up correctly.
 
