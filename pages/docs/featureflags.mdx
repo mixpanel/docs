@@ -130,37 +130,6 @@ Coming soon: React Native, Java, Ruby
 If you have any other SDK requests, please reach out to the support team to let us know.
 </Callout>
 
-## **Frequently Asked Questions**
-
-- **How do [Data Views](/docs/data-governance/data-views-and-classification),affect feature flags?
-    - Feature flags are scoped to data views.
-    - If targeting your flag to specific user cohorts, only end users included in the data view where the flag is created, will be targeted.
-    - Only users with access to a data-view and can view and edit the flag
-
-- **Can I target a cohort, but also include run-time targeting like device or url path?**
-    Yes, you can. You can couple run-time targeting with general cohorts. It works with an and condition across the 2 groups.
-
-- **Why is control variant always non-sticky? I want all my variants to be sticky**
-    Control variant is set to always be non-sticky to ensure this is the only group of users that can move up to other variants if allocation of other variants is increased. This is to avoid users moving from non-control variants. 
-    NOTE: If you do want all users to be sticky and do not anticipate needing to change the variant allocation, mark control variant as 0%, and allocate all the 100% to the other variants
-    This is recommended for use-cases where you have no default or control experience, and are testing a brand new experience with 2+ variants 
-
-- **Are there any limits to variants or rollout group?**
-    Yes, today you can have a maximum of 5 variants per flag, and a maximum of 5 rollout groups per flag
-
-- **How do we avoid overlapping target audiences across 2 different feature flags?**
-    Let's say we have 2 features: feature A and feature B, and we want these to be non-overlapping in audience targeting. 
-    In the feature flag B page, in target audience -
-        - Create Rollout Group 1: any user who was exposed to feature flag A
-            - Variant served: control 100% (no new experience, revert to default)
-            - Rollout Percentage : 100%
-        - Create Rollout Group 2: All users, or any specific users you want for flag B 
-
-- **We use a CDP in our company. How do we use Mixpanel Feature Flags with our CDP?**
-    When you initialize the mixpanel feature flag SDK, configure it to not track any $experiment_started events directly to Mixpanel.
-    This way you use the mixpanel SDK to serve the feature flags, but when an end-user sees exposure, they manually use their existing method of tracking events through their CDP to mixpanel to track the $experiment_started event
-
-
 ### QA Testers
 
 This section allows you to override which variants specific users who will receive the experience.
@@ -188,7 +157,7 @@ We recommend establish light-weight controls without slowing teams:
 
 ### **Frequently Asked Questions**
 
-- **How do [Data Views](/docs/data-governance/data-views-and-classification),affect feature flags?
+- **How do [Data Views](/docs/data-governance/data-views-and-classification) affect feature flags?**
     - Feature flags are scoped to data views.
     - If targeting your flag to specific user cohorts, only end users included in the data view where the flag is created, will be targeted.
     - Only users with access to a data-view and can view and edit the flag
