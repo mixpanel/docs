@@ -12,19 +12,20 @@ For complete JavaScript SDK documentation, see the [JavaScript SDK guide](/docs/
 
 Before implementing Feature Flags, ensure:
 
-- You are a Mixpanel ENT customer and have the latest version of the SDK installed (minimum supported version is [`v2.70.0`](https://github.com/mixpanel/mixpanel-js/releases/tag/v2.70.0)). If not, please follow [this doc](/docs/quickstart/install-mixpanel) to install the SDK.
+- You are on an Enterprise subscription plan and have the latest version of the SDK installed (minimum supported version is [`v2.70.0`](https://github.com/mixpanel/mixpanel-js/releases/tag/v2.70.0)). If not, please follow [this doc](/docs/quickstart/install-mixpanel) to install the SDK.
 - You have your Project Token from your [Mixpanel Project Settings](/docs/orgs-and-projects/managing-projects#find-your-project-tokens)
 
 ## Flag Initialization
 
 Initializing the SDK with the `flags` option enables making an outbound request to Mixpanel servers with the current user context.
+
 The server will assign the user context to a variant for each feature flag according to the how they are configured in the Mixpanel UX.
 
 The response will include an assigned variant for each flag that the user context is in a rollout group for. If a flag is not returned, it most likely signifies that the user was either not in the rollout percentage for a flag or in the configured targeting cohort.
  
 **Example Usage**
 
-```javascript
+```javascript Javascript
 mixpanel.init("YOUR_PROJECT_TOKEN", {
   debug: true,
   flags: true,
@@ -35,7 +36,7 @@ If your flag is configured with a Variant Assignment Key other than `distinct_id
 
 For example, for a Variant Assignment Key, `company_id`, you would setup the SDK as follows.
 
-```javascript
+```javascript Javascript
 mixpanel.init("YOUR_PROJECT_TOKEN", {
   debug: true,
   flags: {
@@ -121,7 +122,7 @@ if (variant_value == "variant_a") {
 }
 ```
 
-## FAQ / Troubleshooting
+## Frequently Asked Questions
 
 ### What if I'm not receiving any flags on SDK initialization?
 

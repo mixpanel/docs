@@ -12,7 +12,7 @@ For complete Android SDK documentation, see the [Android SDK guide](/docs/tracki
 
 Before implementing Feature Flags, ensure:
 
-- You are a Mixpanel ENT customer and have the latest version of the SDK installed (minimum supported version is [`v8.2.4`](https://github.com/mixpanel/mixpanel-android/releases/tag/v8.2.4)). If not, please follow [this doc](/docs/quickstart/install-mixpanel) to install the SDK.
+- You are on an Enterprise subscription plan  and have the latest version of the SDK installed (minimum supported version is [`v8.2.4`](https://github.com/mixpanel/mixpanel-android/releases/tag/v8.2.4)). If not, please follow [this doc](/docs/quickstart/install-mixpanel) to install the SDK.
 - You have your Project Token from your [Mixpanel Project Settings](/docs/orgs-and-projects/managing-projects#find-your-project-tokens)
 
 ## Flag Initialization
@@ -24,7 +24,7 @@ The response will include an assigned variant for each flag that the user contex
 
 **Example Usage**
 
-```java
+```java Java
 MixpanelOptions options = new MixpanelOptions();
 options.featureFlagsEnabled = true;
 
@@ -35,7 +35,7 @@ If your flag is configured with a Variant Assignment Key other than `distinct_id
 
 For example, for a Variant Assignment Key, `company_id`, you would setup the SDK as follows:
 
-```java
+```java Java
 JSONObject context = new JSONObject();
 context.put("company_id", "X");
 
@@ -162,7 +162,7 @@ if (isEnabled) {
 ```
 
 
-## FAQ / Troubleshooting
+## Frequently Asked Questions
 
 ### What if I'm not receiving any flags on SDK initialization?
 
