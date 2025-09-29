@@ -2,7 +2,7 @@ openapi: 3.0.2
 info:
   title: Feature Flags API
   description: >-
-    Use the Feature Flags API to assign users to feature flag variants and to retrieve feature flag definitions.
+    Use the Feature Flags API to evaluate feature flags for users and retrieve feature flag definitions.
   contact:
     url: 'https://mixpanel.com/get-support'
   license:
@@ -10,20 +10,7 @@ info:
     url: https://opensource.org/licenses/MIT
   version: 1.0.0
 servers:
-  - url: https://{region}.mixpanel.com
-    description: Mixpanel's data collection server.
-    variables:
-      region:
-        default: api
-        enum:
-          - api
-          - api-eu
-          - api-in
-        description: >
-          The server location to be used:
-            * `api` - The default (US) servers used for most projects
-            * `api-eu` - EU servers if you are enrolled in EU Data Residency
-            * `api-in` - India servers if you are enrolled in India Data Residency
+  - $ref: ./common/app-api.yaml#/server
 tags:
   - name: Evaluate Flags
     description: Evaluate feature flags for a specific user
@@ -32,7 +19,7 @@ tags:
 paths:
   /flags:
     get:
-      operationId: get-variant-assignments
+      operationId: get-variant-assignments 
       parameters:
         - name: context
           in: query
@@ -43,7 +30,7 @@ paths:
           example: '%7B%22distinct_id%22%3A%22user123%22%2C%22device_id%22%3A%22device456%22%7D'
       tags:
         - Evaluate Flags
-      summary: Gets variant assignment
+      summary: Evaluate Feature Flags (GET)
       description: Evaluate all enabled feature flags for a user with the provided context. Returns selected variants for flags the user is eligible for.
       responses:
         '200':

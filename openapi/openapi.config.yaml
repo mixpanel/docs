@@ -7,7 +7,14 @@ apis:
     output: ./out/data-pipelines-api.json
   export:
     root: ./src/export.openapi.yaml
+<<<<<<< HEAD
     output: ./out/event-export-api.json
+=======
+    output: ./out/export.openapi.yaml
+  featureflags:
+    root: ./src/featureflags.openapi.yaml
+    output: ./out/featureflags.openapi.yaml
+>>>>>>> 7fb01cac (Add api docs for feature flags)
   gdpr:
     root: ./src/gdpr.openapi.yaml
     output: ./out/gdpr-api-2.json
