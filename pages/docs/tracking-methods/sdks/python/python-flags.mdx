@@ -23,7 +23,7 @@ There are two modes available for using the python SDK for feature flagging, Loc
 
 For local evaluation, the SDK will poll Mixpanel servers for feature flag configurations. Assignment of user contexts to variants will be done locally within the SDK. This mode is recommended for low latency since there is no network call made at assignment time.
 
-For remote evaluation, the SDK will make a network call to Mixpanel servers at assignment time. This mode is recommended for use cases where  
+For remote evaluation, the SDK will make a network call to Mixpanel servers at assignment time. This mode is recommended for use cases where you want to leverage Mixpanel cohorts for user targeting or sticky variants for persistent variant assignments.
 
 ## Local Evaluation
 
