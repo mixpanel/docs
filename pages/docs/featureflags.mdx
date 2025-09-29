@@ -37,7 +37,7 @@ import { Cards, Callout } from 'nextra/components'
 
 We support the following types of Flags 
 
-1. **Feature Gate** : Toggle a feature on or off for targeted users or all users. Useful for phased or controlled rollouts.
+1. **Feature Gate** : Toggle a feature on or off for targeted users or all users. Useful for phased or controlled rollout.
 2. **Experiment :** Deliver different variant experiences (e.g., layouts, flows, pricing) to a targeted group of users. Enables measuring and analyzing impact.
 3. [Coming Soon] **Dynamic Config** : Configure features with flexible key-value pairs instead of just on/off. Lets you:
     - Pass JSON payloads (e.g., `{"cta_text": "Buy now", "discount": 20}`) to customize behavior or UI dynamically
@@ -65,7 +65,7 @@ Variant management includes 3 concepts -
 - Variant split % is the allocation across the variants.
     - For example, 10% of users in variant A, and 90% in variant B.
 - Sticky Variants ensures continuity in the variant experience served
-    - If a user is assigned to a sticky variant B, regardless of how variant splits, rollout percentagek, or cohort memberships change in the future, the user will continue to see the variant B. 
+    - If a user is assigned to a sticky variant B, regardless of how variant splits, rollout percentage, or cohort memberships change in the future, the user will continue to see the variant B. 
 
 <Callout type="info">
 Control variant by is always set to non-sticky. This is to ensure this is the only group of users that can move up to other variants if allocation of other variants is increased.
@@ -73,7 +73,7 @@ Control variant by is always set to non-sticky. This is to ensure this is the on
 
 ## Rollout Groups
 
-Feature flags may consistent of one or more rollout groups. Users are evaluated against each rollout group in order until one is found that the user qualitifes for.
+Feature flags may consistent of one or more rollout groups. Users are evaluated against each rollout group in order until one is found that the user qualifies for.
 They consist of two parts.
     1) Cohorts
     2) Rollout Percentage
@@ -81,17 +81,17 @@ They consist of two parts.
 ### Cohorts
 
 You can optionally target rollout of your feature flags to subsets of your user base rather than to all your users with [Cohorts](https://docs.mixpanel.com/docs/cohorts).
-These are dynamic audiences of Mixpanel users based on user behavior or properties. Use these to target feature flag rollouts to specific subsets of your user base.
+These are dynamic audiences of Mixpanel users based on user behavior or properties. Use these to target feature flags to specific subsets of your user base.
 
 <Callout type="info">
- Cohorts used in feature flag targeting refresh on a periodic cadence (~every 2 hours). So once a user qualitifes for a cohort, it can take up to 2 hours before they see a desired experience.
- If you want users to continue seeing the same variant even if they disqualify from the cohort in the future, couple this with **Sticky Variants.** This will ensure a user continues to see the new experience untill he flag is turned off.
+ Cohorts used in feature flag targeting refresh on a periodic cadence (~every 2 hours). So once a user qualifies for a cohort, it can take up to 2 hours before they see a desired experience.
+ If you want users to continue seeing the same variant even if they disqualify from the cohort in the future, couple this with **Sticky Variants.** This will ensure a user continues to see the new experience until he flag is turned off.
 </Callout>
 
 The configuration determining which users are in the rollout.
 
 - **Runtime Targeting**
-    - When building a cohort, if you add a filter, navgiate to `+ Create New`, you'll be able to add a new runtime property filter.
+    - When building a cohort, if you add a filter, navigate to `+ Create New`, you'll be able to add a new runtime property filter.
     - Runtime properties (e.g., `platform`, `path`, `country`) should be passed by the SDK at request time for immediate, per-request decisions.
 
 ### Rollout Percentage

@@ -36,10 +36,6 @@ Targeting by Mixpanel cohorts and sticky variants are not supported in Local Eva
     2) `enable_polling` - This should be set to `True` to enable local evaluation. 
     3) `poll_interval` - This is the interval in seconds at which the SDK will poll Mixpanel servers for feature flag configurations.
 
-- Polling can be kicked off in two ways
-    - `start_polling_for_definitions` - This will kick off polling in a background OS thread.
-    - `astart_polling_for_definitions` - This will kick off polling in an asyncio task.
-
 - The SDK will continue to poll for the lifetime of the SDK instance or until stopped.
 
 ```python
