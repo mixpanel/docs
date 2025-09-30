@@ -145,7 +145,7 @@ A recurring sync that is not exporting data despite a functional manual sync may
 
 As a troubleshooting step please navigate to [Apps Script > My Triggers from your Google Workspace]( https://script.google.com/home/triggers), delete the existing Mixpanel Sheets extension trigger, then try creating a new recurring sync to generate a new trigger.
 
-** 2. Why is my sync failing to authenticate even though I entered the correct Mixpanel credentials?**
+**2. Why is my sync failing to authenticate even though I entered the correct Mixpanel credentials?**
 
 Some users report seeing the error `Authorization is required to perform that action.` when setting up a sync, despite providing the correct Mixpanel authentication. This issue occurs when you are logged into multiple Google accounts simultaneously, where the sheet is owned by one account (e.g.,personal) but the extension is installed on another account (e.g., business).
 
