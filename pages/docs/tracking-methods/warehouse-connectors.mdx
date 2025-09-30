@@ -149,6 +149,13 @@ JSON columns mapped in BigQuery containing multiple properties are subject to a 
     35.204.177.251
     ```
 
+    - Some users report seeing the following error `ErrorMessage=SQL compilation error: Cannot unload to an inlined external location. Please create a stage first and unload to the stage instead.`. To resolve this error, you may set the following account security setting:
+
+    ```jsx
+    ALTER ACCOUNT SET PREVENT_UNLOAD_TO_INLINE_URL = FALSE;
+    ```
+
+    See the [Snowflake documentation on this setting](https://docs.snowflake.com/en/sql-reference/parameters#prevent-unload-to-inline-url) before making the change.
 </Tabs.Tab>
 <Tabs.Tab>
     <div style={{position: 'relative', paddingBottom: '64.90384615384616%', height: 0}}>
