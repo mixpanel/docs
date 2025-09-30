@@ -83,6 +83,11 @@ Discrepancies between the event counts in Mixpanel and those exported to your de
 - **Data Sync**: If [Events Data Sync](/docs/data-pipelines/json-pipelines#events-data-sync) is not enabled or is unsupported for your pipeline, this could prevent some data from being exported.
 - **Data Delay**: Late-arriving data may take up to one day to sync from Mixpanel to your destination, leading to temporary discrepancies.
 - **Hidden Events**: Mixpanel exports all events, including those hidden in the Mixpanel UI via Lexicon. To reconcile differences in counts, check if the events in your destination include those hidden in the Mixpanel UI.
+- **Timezone Differences**: Data is exported to your warehouse in UTC, whereas data displayed in Mixpanel is in your project timezone. 
+
+### What timezone is the data exported in?
+
+The data is exported in UTC timezone. You’ll need to convert it to your project’s timezone when running queries in your warehouse.
 
 ### How can I count events exported by Mixpanel in the warehouse?
 
