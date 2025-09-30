@@ -43,6 +43,7 @@ export default {
   },
   reports: "Reports",
   boards: "Boards",
+  featureflags: "Feature Flags",
   experiments: "Experiments",
   metric_tree: "Metric Trees",
   users: "Users",
