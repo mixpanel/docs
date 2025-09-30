@@ -15,7 +15,7 @@ jobs:
   # Pull Request
   # ////////////////////////////////////////////////////////////////////////
 
-  # Create a new ReadMe branch if it needs to and pushes content to the branch
+  # Create a new ReadMe version if it needs to and pushes content to the version
   rdme-staging:
     if: ${{ github.event.pull_request.head.repo.full_name == 'mixpanel/docs' }}
     runs-on: ubuntu-latest
@@ -33,7 +33,7 @@ jobs:
       - name: Add node_modules to PATH
         run: echo "$PWD/node_modules/.bin" >> $GITHUB_PATH
 
-      - name: Create readme branch
+      - name: Create readme version
         run: |
           # Make the request and capture both the response and HTTP status code
           status=$(curl -s -o /dev/null -w "%{http_code}" -X POST "https://api.readme.com/v2/branches" \
@@ -47,20 +47,20 @@ jobs:
             }')
 
           if [ "$status" -eq 201 ]; then
-            echo "Branch created successfully"
+            echo "Version created successfully"
           else
-            echo "Errors because the branch already exists, and so we can continue to the next step"
+            echo "Errors because the version already exists, and so we can continue to the next step"
           fi
 
-      - name: Push docs to branch 🚀
+      - name: Push docs to version 🚀
         uses: readmeio/rdme@v10
         with:
           rdme: docs upload ./reference --key=${{ secrets.README_API_KEY }} --branch=3.27-pr-${{ github.event.number }}
 
-      - name: Build OpenAPI specs to branch
+      - name: Build OpenAPI specs to version
         run: npm run api:build
 
-      - name: Publish OpenAPI specs to branch
+      - name: Publish OpenAPI specs to version
         run: npm run api:publish
         env:
           README_API_KEY: ${{ secrets.README_API_KEY }}
