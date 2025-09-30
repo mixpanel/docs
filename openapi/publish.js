@@ -8,11 +8,11 @@ const env = { ...process.env, DEBUG: "rdme*" };
 const execFile = util.promisify(require("node:child_process").execFile);
 
 const README_API_KEY = process.env.README_API_KEY;
+const README_VERSION = process.env.README_VERSION;
 if (!README_API_KEY) {
   console.error(`README_API_KEY not set`);
   process.exit(1);
 }
-const README_VERSION = process.env.README_VERSION;
 if (!README_VERSION) {
   console.error(`README_VERSION not set`);
   process.exit(1);
@@ -27,6 +27,21 @@ async function execAndLog(cmd, args) {
     console.error(err);
     process.exit(1);
   }
+}
+
+function getSlugFromJson(file) {
+  const splitFile = file.split(`.json`);
+  return splitFile[0];
+}
+
+function getSlugFromYaml(file) {
+  const splitFile = file.split(`.yaml`);
+  return splitFile[0];
+}
+
+function convertSlugToJson(file) {
+  const slug = getSlugFromYaml(file);
+  return `${slug}.json`;
 }
 
 async function updateSpecs() {
@@ -45,7 +60,7 @@ async function updateSpecs() {
   const outBase = path.resolve(__dirname, `out`);
   const filenames = fs
     .readdirSync(outBase)
-    .filter((fn) => fn.endsWith(`.json`));
+    .filter((fn) => fn.endsWith(`.yaml`));
 
   if (!remoteSpecMetas) {
     console.error(`!!! No remote specs found, please double check the API`);
@@ -57,7 +72,7 @@ async function updateSpecs() {
     const fullPath = path.join(outBase, specFile);
     const yamlStr = fs.readFileSync(fullPath, "utf8");
     const spec = YAML.parse(yamlStr);
-    const specMeta = remoteSpecMetas.data.find((m) => m.filename === specFile);
+    const specMeta = remoteSpecMetas.data.find((m) => getSlugFromJson(m.filename) === getSlugFromYaml(specFile));
     if (!specMeta) {
       console.log(`!!! No spec found for "${spec.info.title}". Please upload it as found in the developer.mixpanel.com runbook.`);
       continue;
@@ -66,8 +81,21 @@ async function updateSpecs() {
     // validate and publish spec
     console.log(`Updating ${spec.info.title} (${specFile}`);
     await execAndLog('npx', ['rdme', 'openapi:validate', fullPath]);
+    // this converts the file to json, since it does this step directly in readme anyway
     await execAndLog(
-      'npx', ['rdme', 'openapi', 'upload', fullPath, `--key=${README_API_KEY}`, `--slug=${specFile}`], {env}
+      'npx', ['rdme', 'openapi', 'convert', fullPath, `--out=openapi/out/${convertSlugToJson(specFile)}`], {env}
+    );
+    // publish the json version
+    await execAndLog(
+      'npx', [
+        'rdme',
+        'openapi',
+        'upload',
+        `${convertSlugToJson(fullPath)}`,
+        `--key=${README_API_KEY}`,
+        `--slug=${convertSlugToJson(specFile)}`,
+        `--confirm-overwrite`
+      ], {env}
     );
   }
 }
