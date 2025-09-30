@@ -1,9 +1,5 @@
 ---
 title: 'Project Secret [Deprecating]'
-metadata:
-  title: ''
-  description: ''
-  robots: noindex
 content:
   excerpt: ''
 privacy:

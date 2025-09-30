@@ -1,9 +1,5 @@
 ---
 title: Authentication
-metadata:
-  title: ''
-  description: ''
-  robots: noindex
 content:
   excerpt: ''
 privacy:

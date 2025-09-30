@@ -1,9 +1,5 @@
 ---
 title: Authentication (when workspaces ship)
-metadata:
-  title: ''
-  description: ''
-  robots: noindex
 content:
   excerpt: ''
 privacy:

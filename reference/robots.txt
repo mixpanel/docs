@@ -1,0 +1,15 @@
+User-agent: *
+Disallow: */reference/overview-1/*
+Disallow: */reference/raw-data-export-api-authentication/*
+Disallow: */reference/raw-data-export-api/*
+Disallow: */reference/ingestion-api/*
+Disallow: */reference/user-profiles/user-profile-limits/*
+Disallow: */reference/lexicon-scehams-api/*
+Disallow: */reference/authentication/index/*
+Disallow: */reference/authentication/project-secret/*
+Disallow: */reference/authentication/service-accounts/*
+Disallow: */reference/partner-cohort-integrations/*
+Disallow: */reference/jql/jql-additional-info/*
+Disallow: */reference/query-api/*
+Disallow: */reference/service-accounts-api-authentication/*
+Disallow: */reference/service-accounts-api/*

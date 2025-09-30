@@ -1,9 +1,5 @@
 ---
 title: Service Accounts
-metadata:
-  title: ''
-  description: ''
-  robots: noindex
 content:
   excerpt: ''
 privacy:

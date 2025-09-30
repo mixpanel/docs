@@ -1,9 +1,5 @@
 ---
 title: Authentication Methods
-metadata:
-  title: ''
-  description: ''
-  robots: noindex
 content:
   excerpt: ''
 privacy:

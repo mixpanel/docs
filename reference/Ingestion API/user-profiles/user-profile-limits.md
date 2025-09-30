@@ -1,9 +1,5 @@
 ---
 title: Limits
-metadata:
-  title: ''
-  description: ''
-  robots: noindex
 content:
   excerpt: ''
 privacy:
