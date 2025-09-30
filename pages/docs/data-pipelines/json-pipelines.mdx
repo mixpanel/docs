@@ -68,9 +68,7 @@ The discrepancy can be attributed to several different causes:
 - The import API can add data to previous days.
 - Delete requests related to GDPR can cause deletion of events and event properties.
 
-Mixpanel is able to detect any changes in your data with the granularity of a day and replaces the old data with the latest version both in object storage and data warehouse, if applicable. Data sync helps keep the data fresh and minimizes missing data points.
-
-Do Note: Data sync does not fully guarantee syncing GDPR Data Deletions and will only sync data for days up to 10 days in the past. It is recommended to implement a strategy to remove all records of GDPR Deleted Users in your data warehouse. Additionally, we start checking for late arriving data 24 hours after the data for a day is exported. It may take more than 2 days for the data in the destination to be in sync with the data in Mixpanel.
+Mixpanel is able to detect any changes in your data as soon as they are ingested and adds new files for new/late data in object storage and data warehouse, if applicable. Data sync helps keep the data fresh and minimizes missing data points.
 
 ## Backfill Historical Events
 
@@ -119,3 +117,15 @@ As of 10 September 2025, all JSON pipelines in all regions (US/EU/IN) have been 
 - **Pipelines logs reset**: Once your pipeline is migrated, the logging available in the UI will be reset so past jobs log lines will no longer be available. Only the new incremental jobs will be visible going forward.
 - **Predicable deletion behavior**:  In rare cases, the sync functionality meant that Mixpanel could re-sync days for which data was deleted, allowing the pipeline to also remove that data from your data warehouse. Sync keeping your warehouse in line with deletions was not guaranteed behavior however. The removal of sync means this unreliable behavior has been removed and as such, warehouse data owners are responsible for the deletion of all data on the warehouse side.
 - **More pre-shuffled distinct IDs in data**: The faster export and removal of late syncs for data can lead to more events exported with their original `distinct_id` as opposed to the resolved identifier seen in Mixpanel after we’ve shuffled the data. These discrepancies are expected in pipelines on both the old and new behavior, and can be resolved using the ID mappings table exported from identity pipelines outlined in [our docs here](/docs/data-pipelines/json-pipelines#user-identity-resolution).
+
+## FAQs
+
+### Why is sync not available for People and Identity pipelines?
+
+The sync feature is designed for events to keep the exported data up-to-date with changes that occur in Mixpanel (e.g. late-arriving data). For People and Identity pipelines, the data is re-exported in full in each export for profiles and identity mappings, which means that it's always up-to-date and does not require the sync feature. For that reason, you would not be able to enable sync for People and Identity pipelines — there is simply no use for it.
+
+### How are GDPR deletions handled?
+
+GDPR deletions do not automatically cascade deletions to data warehouses via pipelines. When a user is deleted from Mixpanel via the GDPR deletion API, this deletion is reflected in Mixpanel’s own storage, but the deletion does not propagate to data that has already been exported to data warehouses via pipelines.
+
+To keep your synced warehouse data GDPR compliant, you will need to implement a process to delete the corresponding user and event data from your warehouse when a GDPR deletion occurs in Mixpanel.
