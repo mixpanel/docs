@@ -1,14 +1,13 @@
 ---
 title: Authentication (when workspaces ship)
-excerpt: ''
-deprecated: false
-hidden: true
 metadata:
   title: ''
   description: ''
   robots: noindex
-next:
-  description: ''
+content:
+  excerpt: ''
+privacy:
+  view: anyone_with_link
 ---
 ## Service Account
 

@@ -1,12 +1,12 @@
 ---
 title: Create Annotations
-excerpt: ''
-deprecated: false
-hidden: false
 metadata:
   title: ''
   description: ''
   robots: index
-next:
-  description: ''
+content:
+  excerpt: ''
+privacy:
+  view: public
 ---
+

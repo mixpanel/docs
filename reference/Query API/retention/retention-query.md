@@ -1,17 +1,13 @@
 ---
 title: Query Retention Report
-excerpt: ''
-api:
-  file: query-api.json
-  operationId: retention-query
-deprecated: false
-hidden: false
 metadata:
   title: ''
   description: ''
   robots: index
-next:
-  description: ''
+content:
+  excerpt: ''
+privacy:
+  view: public
 ---
 Get cohort analysis.
 

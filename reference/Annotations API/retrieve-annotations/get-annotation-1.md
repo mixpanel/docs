@@ -1,15 +1,12 @@
 ---
 title: Get Annotation
-excerpt: Get an Annotation
-api:
-  file: annotations-api.json
-  operationId: get-annotation
-deprecated: false
-hidden: false
 metadata:
   title: ''
   description: ''
   robots: index
-next:
-  description: ''
+content:
+  excerpt: Get an Annotation
+privacy:
+  view: public
 ---
+

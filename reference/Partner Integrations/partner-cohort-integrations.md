@@ -1,14 +1,13 @@
 ---
 title: Partner Cohort Integrations
-excerpt: ''
-deprecated: false
-hidden: true
 metadata:
   title: ''
   description: ''
   robots: noindex
-next:
-  description: ''
+content:
+  excerpt: ''
+privacy:
+  view: anyone_with_link
 ---
 This page documents Mixpanel’s specifications for matching computed sets of users (“Cohorts”) to [technology partner products](https://mixpanel.com/partners/becomeapartner-technology/) via a webhooks-based approach.
 

@@ -1,14 +1,13 @@
 ---
-title: Project Secret [Deprecating]
-excerpt: ''
-deprecated: false
-hidden: false
+title: 'Project Secret [Deprecating]'
 metadata:
   title: ''
   description: ''
   robots: noindex
-next:
-  description: ''
+content:
+  excerpt: ''
+privacy:
+  view: public
 ---
 <Callout icon="❗️" theme="error">
   Deprecation Warning

@@ -1,14 +1,13 @@
 ---
 title: Event Deduplication
-excerpt: ''
-deprecated: false
-hidden: false
 metadata:
   title: ''
   description: ''
   robots: index
-next:
-  description: ''
+content:
+  excerpt: ''
+privacy:
+  view: public
 ---
 Mixpanel provides an event deduplication mechanism to ensure that duplicate events do not skew your analytics. Deduplication is essential when events may be sent multiple times due to network retries, client-side batching, or integration with multiple data sources.
 

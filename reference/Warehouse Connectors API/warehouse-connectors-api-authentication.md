@@ -1,14 +1,13 @@
 ---
 title: Authentication
-excerpt: ''
-deprecated: false
-hidden: false
 metadata:
   title: ''
   description: ''
   robots: index
-next:
-  description: ''
+content:
+  excerpt: ''
+privacy:
+  view: public
 ---
 A [service account](ref:service-accounts) is necessary to authenticate Warehouse Connectors API requests. Once you have created a service account and obtained your user name and secret, you can make a request to trigger a warehouse import.
 

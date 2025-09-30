@@ -1,17 +1,13 @@
 ---
 title: Create Alias
-excerpt: ''
-api:
-  file: identity-api.json
-  operationId: identity-create-alias
-deprecated: false
-hidden: false
 metadata:
   title: ''
   description: ''
   robots: index
-next:
-  description: ''
+content:
+  excerpt: ''
+privacy:
+  view: public
 ---
 <Callout icon="📘" theme="info">
   The `$create_alias` event payload is only useful for projects using the Original ID Merge system and the Legacy ID Management System; it has no functionality in the Simplified ID Merge system. Please review [this section of our documentation](https://docs.mixpanel.com/docs/tracking-methods/id-management#identity-merge-apis) for more information.

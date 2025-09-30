@@ -1,14 +1,13 @@
 ---
 title: Project Token
-excerpt: ''
-deprecated: false
-hidden: false
 metadata:
   title: ''
   description: ''
   robots: index
-next:
-  description: ''
+content:
+  excerpt: ''
+privacy:
+  view: public
 ---
 Every Mixpanel project has a unique alphanumerical token for collecting data. A project's token is not a secret value. In front-end implementation, such as our javascript library, this token will be available to anyone visiting your page.
 

@@ -1,17 +1,13 @@
 ---
 title: Track Events
-excerpt: ''
-api:
-  file: ingestion-api.json
-  operationId: track-event
-deprecated: false
-hidden: false
 metadata:
   title: ''
   description: ''
   robots: index
-next:
-  description: ''
+content:
+  excerpt: ''
+privacy:
+  view: public
 ---
 Track events to Mixpanel from client devices. We recommend using one of our client-side SDKs instead of using /track directly, as our SDKs provide queueing, retrying, batching, and more.
 

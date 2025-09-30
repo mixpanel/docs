@@ -1,14 +1,13 @@
 ---
 title: Overview
-excerpt: ''
-deprecated: false
-hidden: false
 metadata:
   title: ''
   description: ''
   robots: noindex
-next:
-  description: ''
+content:
+  excerpt: ''
+privacy:
+  view: public
 ---
 The Mixpanel Export Data APIs allow you to export your raw data either manually or through a pipeline.
 

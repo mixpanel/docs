@@ -1,14 +1,13 @@
 ---
 title: Rate Limits
-excerpt: ''
-deprecated: false
-hidden: false
 metadata:
   title: ''
   description: ''
   robots: index
-next:
-  description: ''
+content:
+  excerpt: ''
+privacy:
+  view: public
 ---
 We enforce a rate limit on our API to ensure the integrity of our system as well as prevent a single project from monopolizing the available resources for other projects. Getting a 429 response code from our API means that you have reached our rate-limit.
 

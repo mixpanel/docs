@@ -1,17 +1,13 @@
 ---
 title: Custom JQL Query
-excerpt: ''
-api:
-  file: query-api.json
-  operationId: query-jql
-deprecated: false
-hidden: false
 metadata:
   title: ''
   description: ''
   robots: index
-next:
-  description: ''
+content:
+  excerpt: ''
+privacy:
+  view: public
 ---
 > ❗️JQL is currently in maintenance mode and will be completely deprecated December 31, 2025. We recommend discontinuing use of JQL and using an [alternate method](https://docs.mixpanel.com/docs/export-methods) to get the data you need. Below are alternatives for common use cases and you need help deciding the best method for you, reach out to [support](mixpanel.com/get-support). 
 >

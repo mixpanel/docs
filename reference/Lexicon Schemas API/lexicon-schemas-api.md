@@ -1,14 +1,13 @@
 ---
 title: Overview
-excerpt: ''
-deprecated: false
-hidden: false
 metadata:
   title: ''
   description: ''
   robots: noindex
-next:
-  description: ''
+content:
+  excerpt: ''
+privacy:
+  view: public
 ---
 Sync your internal data dictionary or tracking plan with Mixpanel using Schemas. A Schema is used to describe the data you are sending to Mixpanel and represents an individual entry into your data dictionary. Schemas that you upload will be used to populate Lexicon and provide additional context for your data across the query UI. A Schema represents a single entity (usually an event) and is defined with json-schema.
 

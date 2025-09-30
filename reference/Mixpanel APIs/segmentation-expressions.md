@@ -1,14 +1,13 @@
 ---
 title: Segmentation Expressions
-excerpt: ''
-deprecated: false
-hidden: false
 metadata:
   title: ''
   description: ''
   robots: index
-next:
-  description: ''
+content:
+  excerpt: ''
+privacy:
+  view: public
 ---
 Segmentation Expressions are used in [Query API](ref:query-api) and [Raw Data Export API](raw-data-export-api) to allow for more specificity when querying your data.
 

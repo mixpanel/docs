@@ -1,17 +1,13 @@
 ---
 title: Import Events
-excerpt: ''
-api:
-  file: ingestion-api.json
-  operationId: import-events
-deprecated: false
-hidden: false
 metadata:
   title: ''
   description: ''
   robots: index
-next:
-  description: ''
+content:
+  excerpt: ''
+privacy:
+  view: public
 ---
 Use this API to send batches of events from your servers to Mixpanel.
 

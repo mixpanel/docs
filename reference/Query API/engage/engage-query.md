@@ -1,17 +1,13 @@
 ---
 title: Query Profiles
-excerpt: ''
-api:
-  file: query-api.json
-  operationId: engage-query
-deprecated: false
-hidden: false
 metadata:
   title: ''
   description: ''
   robots: index
-next:
-  description: ''
+content:
+  excerpt: ''
+privacy:
+  view: public
 ---
 Query user (or group) profile data and return list of users (or groups) that fit specified parameters.
 

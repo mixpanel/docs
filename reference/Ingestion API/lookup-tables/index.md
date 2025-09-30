@@ -1,14 +1,13 @@
 ---
 title: Lookup Tables
-excerpt: ''
-deprecated: false
-hidden: false
 metadata:
   title: ''
   description: ''
   robots: index
-next:
-  description: ''
+content:
+  excerpt: ''
+privacy:
+  view: public
 ---
 Lookup Tables are mutable tables that describe non-user entities like accounts, product SKUs, or geographies. These tables can be used to enrich events at query-time. In star schema terms: events are like facts and Lookup Tables are like dimensions.
 

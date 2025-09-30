@@ -1,14 +1,13 @@
 ---
 title: Overview
-excerpt: ''
-deprecated: false
-hidden: false
 metadata:
   title: ''
   description: ''
   robots: noindex
-next:
-  description: ''
+content:
+  excerpt: ''
+privacy:
+  view: public
 ---
 The Service Accounts API lets you manage your service accounts programmatically. You can get a list of your organizations service accounts, see when they were last used, see when they expire, create new service accounts, delete service accounts, and add/remove service accounts to/from projects. This API is useful for automated key management and rotation.
 

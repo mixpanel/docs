@@ -1,14 +1,13 @@
 ---
 title: Overview
-excerpt: ''
-deprecated: false
-hidden: false
 metadata:
   title: ''
   description: ''
   robots: noindex
-next:
-  description: ''
+content:
+  excerpt: ''
+privacy:
+  view: public
 ---
 Mixpanel's Ingestion APIs allow you to send event or profile data to Mixpanel, which can be analyzed in our reporting interface. 
 

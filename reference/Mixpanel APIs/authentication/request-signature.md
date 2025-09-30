@@ -1,14 +1,13 @@
 ---
-title: Request Signature [Deprecated]
-excerpt: ''
-deprecated: false
-hidden: false
+title: 'Request Signature [Deprecated]'
 metadata:
   title: ''
   description: ''
   robots: index
-next:
-  description: ''
+content:
+  excerpt: ''
+privacy:
+  view: public
 ---
 <Callout icon="❗️" theme="error">
   Deprecation Warning

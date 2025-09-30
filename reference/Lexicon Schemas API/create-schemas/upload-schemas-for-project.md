@@ -1,17 +1,13 @@
 ---
 title: Create/Replace Multiple
-excerpt: ''
-api:
-  file: lexicon-schemas-api.json
-  operationId: upload-schemas-for-project
-deprecated: false
-hidden: false
 metadata:
   title: ''
   description: ''
   robots: index
-next:
-  description: ''
+content:
+  excerpt: ''
+privacy:
+  view: public
 ---
 Upload schemas in bulk to the specified project. If a schema already exists for a specified entity, it will be replaced by the one you upload.
 

@@ -1,17 +1,13 @@
 ---
 title: Query Frequency Report
-excerpt: ''
-api:
-  file: query-api.json
-  operationId: retention-frequency-query
-deprecated: false
-hidden: false
 metadata:
   title: ''
   description: ''
   robots: index
-next:
-  description: ''
+content:
+  excerpt: ''
+privacy:
+  view: public
 ---
 Get data about how frequently users are performing events.
 

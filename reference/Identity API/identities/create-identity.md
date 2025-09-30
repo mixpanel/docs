@@ -1,17 +1,13 @@
 ---
 title: Create Identity
-excerpt: ''
-api:
-  file: identity-api.json
-  operationId: create-identity
-deprecated: false
-hidden: false
 metadata:
   title: ''
   description: ''
   robots: index
-next:
-  description: ''
+content:
+  excerpt: ''
+privacy:
+  view: public
 ---
 <Callout icon="📘" theme="info">
   The `$identify` event payload is only useful for projects using the Original ID Merge system; it has no functionality in other ID management systems. Please review [this section of our documentation](https://docs.mixpanel.com/docs/tracking-methods/id-management#identity-merge-apis) for more information.

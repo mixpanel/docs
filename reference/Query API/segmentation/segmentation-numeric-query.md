@@ -1,20 +1,17 @@
 ---
 title: Numerically Bucket
-excerpt: >-
-  Get data for an event, segmented and filtered by properties, with values
-  placed into numeric buckets.
-
-  The Query API has a rate limit of 60 queries per hour and a maximum of 5
-  concurrent queries.
-api:
-  file: query-api.json
-  operationId: segmentation-numeric-query
-deprecated: false
-hidden: false
 metadata:
   title: ''
   description: ''
   robots: index
-next:
-  description: ''
+content:
+  excerpt: >-
+    Get data for an event, segmented and filtered by properties, with values
+    placed into numeric buckets.
+
+    The Query API has a rate limit of 60 queries per hour and a maximum of 5
+    concurrent queries.
+privacy:
+  view: public
 ---
+

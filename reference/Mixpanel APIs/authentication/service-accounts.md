@@ -1,14 +1,13 @@
 ---
 title: Service Accounts
-excerpt: ''
-deprecated: false
-hidden: false
 metadata:
   title: ''
   description: ''
   robots: noindex
-next:
-  description: ''
+content:
+  excerpt: ''
+privacy:
+  view: public
 ---
 <Callout icon="👍" theme="okay">
   Recommended Authentication

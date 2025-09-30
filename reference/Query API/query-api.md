@@ -1,14 +1,13 @@
 ---
 title: Overview
-excerpt: ''
-deprecated: false
-hidden: false
 metadata:
   title: ''
   description: ''
   robots: noindex
-next:
-  description: ''
+content:
+  excerpt: ''
+privacy:
+  view: public
 ---
 The Query API allows you to obtain the same calculated and formatted results that you see from a report in our web app.
 
