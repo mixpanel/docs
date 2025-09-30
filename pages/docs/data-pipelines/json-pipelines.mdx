@@ -66,7 +66,7 @@ Event data can fall out of sync between Mixpanel's datastore and the export dest
 - The import API can add data to previous days.
 - Delete requests related to GDPR can cause deletion of events and event properties.
 
-**Important limitations**: Data sync does not fully guarantee syncing GDPR Data Deletions and will only sync data for days up to 10 days in the past. It is recommended to implement a strategy to remove all records of GDPR Deleted Users in your data warehouse. Additionally, we start checking for late arriving data 24 hours after the data for a day is exported. It may take more than 2 days for the data in the destination to be in sync with the data in Mixpanel.
+**Important limitations**: Data sync does not guarantee syncing GDPR Data Deletions. It is recommended to implement a strategy to remove all records of GDPR Deleted Users in your data warehouse.
 
 ## Backfill Historical Events
 
