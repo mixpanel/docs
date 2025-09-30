@@ -15,7 +15,7 @@ jobs:
   # Pull Request
   # ////////////////////////////////////////////////////////////////////////
 
-  # Create a new ReadMe Version if it needs to and pushes content to the version
+  # Create a new ReadMe branch if it needs to and pushes content to the branch
   rdme-staging:
     if: ${{ github.event.pull_request.head.repo.full_name == 'mixpanel/docs' }}
     runs-on: ubuntu-latest
@@ -42,15 +42,15 @@ jobs:
             -H "Authorization: Bearer ${{ secrets.README_API_KEY }}" \
             -d '{
               "name": "0.0-pr-${{ github.event.number }}",
-              "base": "${{ secrets.README_VERSION }}",
+              "base": "3.27",
               "release_stage": "release",
               "state": "current"
             }')
 
           if [ "$status" -eq 201 ]; then
-            echo "Version created successfully"
+            echo "Branch created successfully"
           else
-            echo "Errors because the version already exists, and so we can continue to the next step"
+            echo "Errors because the branch already exists, and so we can continue to the next step"
           fi
 
       - name: Push docs to branch 🚀
