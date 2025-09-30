@@ -24,10 +24,13 @@ You can capturing replay data using a sampling method (recommended), or customiz
 
 We recommend using the sampling method unless you need to customize when you capture replay data.
 
+When the SDK initializes, it makes a sampling decision based on your configured sampling rate. A percentage of initializations will trigger session recording accordingly.
+
 To enable Session Replay and set your sampling rate, set the `recording_sessions_percent` when initializing the SDK. This is the only change needed in your existing JavaScript SDK implementation to enable Session Replay.
 
+<Callout type="info">
 Start with a low sampling rate, then adjust according to your specific analytics needs.
-
+</Callout>
 **Example Usage**
 
 ```javascript Javascript
@@ -404,3 +407,7 @@ Below is a high-level overview of how the SDK will work on your website:
 - Optimized Compression: Before sending, Mixpanel will compress the payload using the asynchronous CompressionStream API. This will optimize bandwidth while not blocking the UI thread.
 
 We have tested the SDK extensively and it generally has minimal impact on how your website performs. The initial snapshot takes a bit of work, and naturally, more complex and interactive pages generate more data for rrweb and Mixpanel to handle. So, it is always a good practice to do some performance testing after you have implemented Session Replay, just to be sure everything is running smoothly.
+
+#### Does session recording persist across page loads?
+
+Session recording does persist across page load for SDK v2.61.0+. See [the release note](https://github.com/mixpanel/mixpanel-js/releases/tag/v2.61.0).

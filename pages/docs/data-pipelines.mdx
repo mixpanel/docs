@@ -1,4 +1,4 @@
-import { Callout } from 'nextra/components'
+import { Callout, Steps } from 'nextra/components'
 
 # Data Pipelines Overview
 
@@ -52,7 +52,25 @@ For detailed setup guides per destination, see:
 
 ## Step 2: Creating the Pipeline
 
+After configuring your destination to accept data exported from Mixpanel, we must initiate the pipeline from the Mixpanel UI.
+
 After configuring your destination, initiate data export in **Integrations** page on your Mixpanel project > **Create Pipeline** > fill in necessary configurations. You can choose different data sources including events, people and identity and other advanced options. See [Data Pipelines](/docs/data-pipelines/json-pipelines) for more details.
+
+<Steps>
+
+{<h3>Click the settings button and select Integrations.</h3>}
+
+![create_pipeline1](/create_pipeline1.png)
+
+{<h3>Select the provider of your warehouse destination, and click "+ Create Pipeline".</h3>}
+
+![create_pipeline2](/create_pipeline2.png)
+
+{<h3>Provide the details of your destination to create the pipeline.</h3>}
+
+![create_pipeline3](/create_pipeline3.png)
+
+</Steps>
 
 ## FAQ
 
