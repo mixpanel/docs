@@ -1,9 +1,5 @@
 ---
 title: Query Segmentation Report
-metadata:
-  title: ''
-  description: ''
-  robots: index
 content:
   excerpt: >-
     Get data for an event, segmented and filtered by properties. The Query API

@@ -1,9 +1,5 @@
 ---
 title: Create Alias
-metadata:
-  title: ''
-  description: ''
-  robots: index
 content:
   excerpt: ''
 privacy:

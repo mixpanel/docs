@@ -1,9 +1,5 @@
 ---
 title: Set Property
-metadata:
-  title: ''
-  description: ''
-  robots: index
 content:
   excerpt: >-
     Takes a JSON object containing names and values of profile properties. If

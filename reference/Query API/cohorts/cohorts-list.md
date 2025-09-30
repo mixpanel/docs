@@ -1,9 +1,5 @@
 ---
 title: List Saved Cohorts
-metadata:
-  title: ''
-  description: ''
-  robots: index
 content:
   excerpt: >
     The list endpoint returns all of the cohorts in a given project. The JSON

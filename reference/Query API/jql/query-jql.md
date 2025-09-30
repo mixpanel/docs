@@ -1,9 +1,5 @@
 ---
 title: Custom JQL Query
-metadata:
-  title: ''
-  description: ''
-  robots: index
 content:
   excerpt: ''
 privacy:

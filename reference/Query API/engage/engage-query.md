@@ -1,9 +1,5 @@
 ---
 title: Query Profiles
-metadata:
-  title: ''
-  description: ''
-  robots: index
 content:
   excerpt: ''
 privacy:

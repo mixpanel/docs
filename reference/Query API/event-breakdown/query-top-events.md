@@ -1,9 +1,5 @@
 ---
 title: Today's Top Events
-metadata:
-  title: ''
-  description: ''
-  robots: index
 content:
   excerpt: >-
     Get the top events for today, with their counts and the normalized percent

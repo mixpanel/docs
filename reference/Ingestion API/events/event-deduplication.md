@@ -1,9 +1,5 @@
 ---
 title: Event Deduplication
-metadata:
-  title: ''
-  description: ''
-  robots: index
 content:
   excerpt: ''
 privacy:

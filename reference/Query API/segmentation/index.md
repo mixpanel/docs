@@ -1,9 +1,5 @@
 ---
 title: Segmentation
-metadata:
-  title: ''
-  description: ''
-  robots: index
 content:
   excerpt: ''
 privacy:

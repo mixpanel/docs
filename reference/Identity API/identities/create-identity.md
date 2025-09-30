@@ -1,9 +1,5 @@
 ---
 title: Create Identity
-metadata:
-  title: ''
-  description: ''
-  robots: index
 content:
   excerpt: ''
 privacy:

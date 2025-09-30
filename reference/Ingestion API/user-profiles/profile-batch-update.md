@@ -1,9 +1,5 @@
 ---
 title: Update Multiple Profiles
-metadata:
-  title: ''
-  description: ''
-  robots: index
 content:
   excerpt: >-
     Send a batch of profile updates. Instead of sending a single JSON object as

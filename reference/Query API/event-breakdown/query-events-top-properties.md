@@ -1,9 +1,5 @@
 ---
 title: Top Event Properties
-metadata:
-  title: ''
-  description: ''
-  robots: index
 content:
   excerpt: >-
     Get the top property names for an event. The Query API has a rate limit of

@@ -1,9 +1,5 @@
 ---
 title: Create/Replace Multiple
-metadata:
-  title: ''
-  description: ''
-  robots: index
 content:
   excerpt: ''
 privacy:

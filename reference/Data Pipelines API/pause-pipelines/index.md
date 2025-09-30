@@ -1,9 +1,5 @@
 ---
 title: Pause Pipelines
-metadata:
-  title: ''
-  description: ''
-  robots: index
 content:
   excerpt: ''
 privacy:

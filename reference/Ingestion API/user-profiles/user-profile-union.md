@@ -1,9 +1,5 @@
 ---
 title: Union To List Property
-metadata:
-  title: ''
-  description: ''
-  robots: index
 content:
   excerpt: >-
     Adds the specified values to a list property on a user profile and ensures

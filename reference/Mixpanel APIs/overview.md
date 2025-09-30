@@ -1,9 +1,5 @@
 ---
 title: Overview
-metadata:
-  title: ''
-  description: ''
-  robots: index
 content:
   excerpt: ''
 privacy:

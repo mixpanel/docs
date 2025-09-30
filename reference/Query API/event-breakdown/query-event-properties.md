@@ -1,9 +1,5 @@
 ---
 title: Aggregrated Event Property Values
-metadata:
-  title: ''
-  description: ''
-  robots: index
 content:
   excerpt: >-
     Get unique, total, or average data for of a single event and property over

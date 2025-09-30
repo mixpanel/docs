@@ -1,9 +1,5 @@
 ---
 title: Query Saved Report
-metadata:
-  title: ''
-  description: ''
-  robots: index
 content:
   excerpt: >-
     Get data from your Insights reports. The Query API has a rate limit of 60

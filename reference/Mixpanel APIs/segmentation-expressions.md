@@ -1,9 +1,5 @@
 ---
 title: Segmentation Expressions
-metadata:
-  title: ''
-  description: ''
-  robots: index
 content:
   excerpt: ''
 privacy:

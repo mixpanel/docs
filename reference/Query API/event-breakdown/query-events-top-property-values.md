@@ -1,9 +1,5 @@
 ---
 title: Top Event Property Values
-metadata:
-  title: ''
-  description: ''
-  robots: index
 content:
   excerpt: >-
     Get the top values for a property. The Query API has a rate limit of 60

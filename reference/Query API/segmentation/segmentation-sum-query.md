@@ -1,9 +1,5 @@
 ---
 title: Numerically Sum
-metadata:
-  title: ''
-  description: ''
-  robots: index
 content:
   excerpt: >-
     Sums an expression for events per unit time. The Query API has a rate limit

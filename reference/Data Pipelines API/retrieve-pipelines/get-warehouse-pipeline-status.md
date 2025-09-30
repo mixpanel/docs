@@ -1,9 +1,5 @@
 ---
 title: Get Pipeline
-metadata:
-  title: ''
-  description: ''
-  robots: index
 content:
   excerpt: ''
 privacy:

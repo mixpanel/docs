@@ -1,9 +1,5 @@
 ---
 title: Append to List Property
-metadata:
-  title: ''
-  description: ''
-  robots: index
 content:
   excerpt: >-
     Takes a JSON object containing keys and values, and appends each to a list

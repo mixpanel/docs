@@ -1,9 +1,5 @@
 ---
 title: Increment Numerical Property
-metadata:
-  title: ''
-  description: ''
-  robots: index
 content:
   excerpt: >-
     Takes a JSON object containing keys and numerical values. $add will

@@ -1,9 +1,5 @@
 ---
 title: Delete Pipeline
-metadata:
-  title: ''
-  description: ''
-  robots: index
 content:
   excerpt: >-
     For a given pipeline name, this request deletes the pipeline and stops any

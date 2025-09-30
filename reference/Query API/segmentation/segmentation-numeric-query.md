@@ -1,9 +1,5 @@
 ---
 title: Numerically Bucket
-metadata:
-  title: ''
-  description: ''
-  robots: index
 content:
   excerpt: >-
     Get data for an event, segmented and filtered by properties, with values

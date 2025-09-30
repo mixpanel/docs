@@ -1,9 +1,5 @@
 ---
 title: Create Pipeline
-metadata:
-  title: ''
-  description: ''
-  robots: index
 content:
   excerpt: ''
 privacy:

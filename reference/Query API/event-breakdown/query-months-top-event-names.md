@@ -1,9 +1,5 @@
 ---
 title: Top Events
-metadata:
-  title: ''
-  description: ''
-  robots: index
 content:
   excerpt: >-
     Get a list of the most common events over the last 31 days. The Query API

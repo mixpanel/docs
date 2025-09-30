@@ -1,9 +1,5 @@
 ---
 title: Numerically Average
-metadata:
-  title: ''
-  description: ''
-  robots: index
 content:
   excerpt: >-
     Averages an expression for events per unit time. The Query API has a rate

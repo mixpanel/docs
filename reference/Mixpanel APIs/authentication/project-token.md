@@ -1,9 +1,5 @@
 ---
 title: Project Token
-metadata:
-  title: ''
-  description: ''
-  robots: index
 content:
   excerpt: ''
 privacy:

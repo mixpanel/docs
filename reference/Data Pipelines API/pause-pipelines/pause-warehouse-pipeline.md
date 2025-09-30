@@ -1,9 +1,5 @@
 ---
 title: Pause Pipeline
-metadata:
-  title: ''
-  description: ''
-  robots: index
 content:
   excerpt: >-
     For a given pipeline name, this request pauses the pipeline which stops the

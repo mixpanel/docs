@@ -1,9 +1,5 @@
 ---
 title: Aggregate Event Counts
-metadata:
-  title: ''
-  description: ''
-  robots: index
 content:
   excerpt: >-
     Get unique, total, or average data for a set of events over N days, weeks,

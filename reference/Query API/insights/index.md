@@ -1,9 +1,5 @@
 ---
 title: Insights
-metadata:
-  title: ''
-  description: ''
-  robots: index
 content:
   excerpt: ''
 privacy:

@@ -1,9 +1,5 @@
 ---
 title: 'Request Signature [Deprecated]'
-metadata:
-  title: ''
-  description: ''
-  robots: index
 content:
   excerpt: ''
 privacy:

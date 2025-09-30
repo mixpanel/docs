@@ -1,9 +1,5 @@
 ---
 title: Remove from List Property
-metadata:
-  title: ''
-  description: ''
-  robots: index
 content:
   excerpt: >-
     Takes a JSON object containing keys and values. The value in the request is

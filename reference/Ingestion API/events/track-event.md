@@ -1,9 +1,5 @@
 ---
 title: Track Events
-metadata:
-  title: ''
-  description: ''
-  robots: index
 content:
   excerpt: ''
 privacy:

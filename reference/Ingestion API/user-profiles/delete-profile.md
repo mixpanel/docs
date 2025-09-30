@@ -1,9 +1,5 @@
 ---
 title: Delete Profile
-metadata:
-  title: ''
-  description: ''
-  robots: index
 content:
   excerpt: >
     Permanently delete the profile from Mixpanel, along with all of its

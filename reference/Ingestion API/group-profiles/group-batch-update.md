@@ -1,9 +1,5 @@
 ---
 title: Batch Update Group Profiles
-metadata:
-  title: ''
-  description: ''
-  robots: index
 content:
   excerpt: >-
     Send a batch of group profile updates. Instead of sending a single JSON

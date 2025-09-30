@@ -1,9 +1,5 @@
 ---
 title: Query Retention Report
-metadata:
-  title: ''
-  description: ''
-  robots: index
 content:
   excerpt: ''
 privacy:

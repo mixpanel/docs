@@ -1,9 +1,5 @@
 ---
 title: Replace a Lookup Table
-metadata:
-  title: ''
-  description: ''
-  robots: index
 content:
   excerpt: ''
 privacy:

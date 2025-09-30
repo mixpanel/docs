@@ -1,9 +1,5 @@
 ---
 title: Delete Property
-metadata:
-  title: ''
-  description: ''
-  robots: index
 content:
   excerpt: >-
     Takes a JSON list of string property names, and permanently removes the

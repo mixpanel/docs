@@ -1,9 +1,5 @@
 ---
 title: Create/Replace One
-metadata:
-  title: ''
-  description: ''
-  robots: index
 content:
   excerpt: >-
     Upload a schema for a single entity. If a schema already exists for a
