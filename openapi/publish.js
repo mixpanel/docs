@@ -83,7 +83,7 @@ async function updateSpecs() {
     await execAndLog('npx', ['rdme', 'openapi:validate', fullPath]);
     // this converts the file to json, since it does this step directly in readme anyway
     await execAndLog(
-      'npx', ['rdme', 'openapi', 'convert', fullPath, `--out=openapi/out/${convertSlugToJson(specFile)}`], {env}
+      'npx', ['rdme', 'openapi', 'convert', fullPath, `--out=${convertSlugToJson(fullPath)}`], {env}
     );
     // publish the json version
     await execAndLog(
