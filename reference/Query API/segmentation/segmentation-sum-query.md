@@ -1,8 +1,17 @@
 ---
-title: "Numerically Sum"
-slug: "segmentation-sum-query"
-excerpt: "Sums an expression for events per unit time."
+title: Numerically Sum
+excerpt: >-
+  Sums an expression for events per unit time. The Query API has a rate limit of
+  60 queries per hour and a maximum of 5 concurrent queries.
+api:
+  file: query-api.json
+  operationId: segmentation-sum-query
+deprecated: false
 hidden: false
-createdAt: "2020-10-20T00:41:48.200Z"
-updatedAt: "2023-09-26T21:06:39.057Z"
+metadata:
+  title: ''
+  description: ''
+  robots: index
+next:
+  description: ''
 ---

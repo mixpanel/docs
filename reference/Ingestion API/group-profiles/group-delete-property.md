@@ -1,8 +1,15 @@
 ---
-title: "Delete Property"
-slug: "group-delete-property"
-excerpt: "Unsets specific properties on the group profile."
+title: Delete Property
+excerpt: Unsets specific properties on the group profile.
+api:
+  file: ingestion-api.json
+  operationId: group-delete-property
+deprecated: false
 hidden: false
-createdAt: "2020-10-20T00:41:26.260Z"
-updatedAt: "2023-09-26T21:06:39.009Z"
+metadata:
+  title: ''
+  description: ''
+  robots: index
+next:
+  description: ''
 ---

@@ -1,8 +1,17 @@
 ---
-title: "Delete Property"
-slug: "profile-delete-property"
-excerpt: "Takes a JSON list of string property names, and permanently removes the properties and their values from a profile."
+title: Delete Property
+excerpt: >-
+  Takes a JSON list of string property names, and permanently removes the
+  properties and their values from a profile.
+api:
+  file: ingestion-api.json
+  operationId: profile-delete-property
+deprecated: false
 hidden: false
-createdAt: "2020-10-20T00:41:26.253Z"
-updatedAt: "2023-09-26T21:06:38.851Z"
+metadata:
+  title: ''
+  description: ''
+  robots: index
+next:
+  description: ''
 ---

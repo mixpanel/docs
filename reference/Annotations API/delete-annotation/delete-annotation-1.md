@@ -1,8 +1,15 @@
 ---
-title: "Delete Annotation"
-slug: "delete-annotation-1"
-excerpt: "Delete an Annotation. Requires a role of at least Analyst."
+title: Delete Annotation
+excerpt: Delete an Annotation. Requires a role of at least Analyst.
+api:
+  file: annotations-api.json
+  operationId: delete-annotation
+deprecated: false
 hidden: false
-createdAt: "2022-02-16T00:43:23.650Z"
-updatedAt: "2023-09-26T21:06:38.609Z"
+metadata:
+  title: ''
+  description: ''
+  robots: index
+next:
+  description: ''
 ---

@@ -1,9 +1,14 @@
 ---
-title: "Overview"
-slug: "query-api"
+title: Overview
+excerpt: ''
+deprecated: false
 hidden: false
-createdAt: "2020-10-20T01:07:58.032Z"
-updatedAt: "2020-10-20T19:14:28.849Z"
+metadata:
+  title: ''
+  description: ''
+  robots: noindex
+next:
+  description: ''
 ---
 The Query API allows you to obtain the same calculated and formatted results that you see from a report in our web app.
 

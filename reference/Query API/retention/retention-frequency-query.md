@@ -1,15 +1,21 @@
 ---
-title: "Query Frequency Report"
-slug: "retention-frequency-query"
-excerpt: ""
+title: Query Frequency Report
+excerpt: ''
+api:
+  file: query-api.json
+  operationId: retention-frequency-query
+deprecated: false
 hidden: false
-createdAt: "2020-10-20T00:41:48.196Z"
-updatedAt: "2023-09-26T21:06:39.027Z"
+metadata:
+  title: ''
+  description: ''
+  robots: index
+next:
+  description: ''
 ---
-
 Get data about how frequently users are performing events.
 
-Let's breakdown an example response. If you specify `day` as \"unit\" and `hour` as \"addiction_unit\", you will get a response that looks like this:
+Let's breakdown an example response. If you specify `day` as \"unit\" and `hour` as \"addiction\_unit\", you will get a response that looks like this:
 
 ```json
 {

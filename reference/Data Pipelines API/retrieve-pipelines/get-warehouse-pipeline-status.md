@@ -1,12 +1,18 @@
 ---
-title: "Get Pipeline"
-slug: "get-warehouse-pipeline-status"
-excerpt: ""
+title: Get Pipeline
+excerpt: ''
+api:
+  file: data-pipelines-api.json
+  operationId: get-warehouse-pipeline-status
+deprecated: false
 hidden: false
-createdAt: "2022-02-18T20:12:47.078Z"
-updatedAt: "2023-09-26T21:06:38.030Z"
+metadata:
+  title: ''
+  description: ''
+  robots: index
+next:
+  description: ''
 ---
-
 Given the name of the pipeline this API returns the status of the pipeline. It returns the summary and status of all the recent run export jobs for the pipeline.
 
 **Example Response:** Status with no Summary and a Filter

@@ -1,8 +1,15 @@
 ---
-title: "List for Entity"
-slug: "list-schemas-for-entity"
-excerpt: "Get all schemas for a specific entity type"
+title: List for Entity
+excerpt: Get all schemas for a specific entity type
+api:
+  file: lexicon-schemas-api.json
+  operationId: list-schemas-for-entity
+deprecated: false
 hidden: false
-createdAt: "2020-11-20T21:23:20.199Z"
-updatedAt: "2023-09-26T21:06:39.030Z"
+metadata:
+  title: ''
+  description: ''
+  robots: index
+next:
+  description: ''
 ---

@@ -1,8 +1,15 @@
 ---
-title: "List Saved Funnels"
-slug: "funnels-list-saved"
-excerpt: "Get the names and funnel_ids of your funnels."
+title: List Saved Funnels
+excerpt: Get the names and funnel_ids of your funnels.
+api:
+  file: query-api.json
+  operationId: funnels-list-saved
+deprecated: false
 hidden: false
-createdAt: "2020-10-20T00:41:48.193Z"
-updatedAt: "2023-09-26T21:06:38.971Z"
+metadata:
+  title: ''
+  description: ''
+  robots: index
+next:
+  description: ''
 ---

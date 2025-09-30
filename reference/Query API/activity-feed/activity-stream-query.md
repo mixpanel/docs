@@ -1,8 +1,17 @@
 ---
-title: "Profile Event Activity"
-slug: "activity-stream-query"
-excerpt: "This endpoint returns the activity feed for specified users."
+title: Profile Event Activity
+excerpt: >-
+  This endpoint returns the activity feed for specified users. The Query API has
+  a rate limit of 60 queries per hour and a maximum of 5 concurrent queries.
+api:
+  file: query-api.json
+  operationId: activity-stream-query
+deprecated: false
 hidden: false
-createdAt: "2020-10-20T00:41:48.202Z"
-updatedAt: "2023-09-26T21:06:39.076Z"
+metadata:
+  title: ''
+  description: ''
+  robots: index
+next:
+  description: ''
 ---

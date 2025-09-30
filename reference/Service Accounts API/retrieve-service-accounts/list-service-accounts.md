@@ -1,8 +1,15 @@
 ---
-title: "List Service Accounts"
-slug: "list-service-accounts"
-excerpt: "Return a list of all service accounts for your organization"
+title: List Service Accounts
+excerpt: Return a list of all service accounts for your organization
+api:
+  file: service-accounts-api.json
+  operationId: list-service-accounts
+deprecated: false
 hidden: false
-createdAt: "2021-09-16T19:11:25.185Z"
-updatedAt: "2023-09-26T21:06:38.684Z"
+metadata:
+  title: ''
+  description: ''
+  robots: index
+next:
+  description: ''
 ---

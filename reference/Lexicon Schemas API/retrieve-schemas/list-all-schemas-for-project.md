@@ -1,8 +1,15 @@
 ---
-title: "List Schemas"
-slug: "list-all-schemas-for-project"
-excerpt: "List all schemas in a project"
+title: List Schemas
+excerpt: List all schemas in a project
+api:
+  file: lexicon-schemas-api.json
+  operationId: list-all-schemas-for-project
+deprecated: false
 hidden: false
-createdAt: "2020-11-20T21:23:20.194Z"
-updatedAt: "2023-09-26T21:06:38.928Z"
+metadata:
+  title: ''
+  description: ''
+  robots: index
+next:
+  description: ''
 ---

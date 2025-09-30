@@ -1,8 +1,15 @@
 ---
-title: "List Service Accounts For Project"
-slug: "list-project-service-accounts"
-excerpt: "Retrieve a list of service accounts that are members of the specified project"
+title: List Service Accounts For Project
+excerpt: Retrieve a list of service accounts that are members of the specified project
+api:
+  file: service-accounts-api.json
+  operationId: list-project-service-accounts
+deprecated: false
 hidden: false
-createdAt: "2021-09-16T19:11:25.187Z"
-updatedAt: "2023-09-26T21:06:38.748Z"
+metadata:
+  title: ''
+  description: ''
+  robots: index
+next:
+  description: ''
 ---

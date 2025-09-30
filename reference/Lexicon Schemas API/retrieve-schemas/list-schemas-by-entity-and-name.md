@@ -1,8 +1,15 @@
 ---
-title: "List for Entity and Name"
-slug: "list-schemas-by-entity-and-name"
-excerpt: "Get the schema for a specific entity type and entity name"
+title: List for Entity and Name
+excerpt: Get the schema for a specific entity type and entity name
+api:
+  file: lexicon-schemas-api.json
+  operationId: list-schemas-by-entity-and-name
+deprecated: false
 hidden: false
-createdAt: "2020-11-20T21:23:20.201Z"
-updatedAt: "2023-09-26T21:06:39.053Z"
+metadata:
+  title: ''
+  description: ''
+  robots: index
+next:
+  description: ''
 ---

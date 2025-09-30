@@ -1,8 +1,17 @@
 ---
-title: "Top Event Properties"
-slug: "query-events-top-properties"
-excerpt: "Get the top property names for an event."
+title: Top Event Properties
+excerpt: >-
+  Get the top property names for an event. The Query API has a rate limit of 60
+  queries per hour and a maximum of 5 concurrent queries.
+api:
+  file: query-api.json
+  operationId: query-events-top-properties
+deprecated: false
 hidden: false
-createdAt: "2020-10-20T00:41:48.211Z"
-updatedAt: "2023-09-26T21:06:39.141Z"
+metadata:
+  title: ''
+  description: ''
+  robots: index
+next:
+  description: ''
 ---

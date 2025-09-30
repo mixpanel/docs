@@ -1,8 +1,17 @@
 ---
-title: "Pause Pipeline"
-slug: "pause-warehouse-pipeline"
-excerpt: "For a given pipeline name, this request pauses the pipeline which stops the ongoing jobs and prevents any future jobs to be scheduled for the pipeline"
+title: Pause Pipeline
+excerpt: >-
+  For a given pipeline name, this request pauses the pipeline which stops the
+  ongoing jobs and prevents any future jobs to be scheduled for the pipeline
+api:
+  file: data-pipelines-api.json
+  operationId: pause-warehouse-pipeline
+deprecated: false
 hidden: false
-createdAt: "2022-02-18T20:12:47.077Z"
-updatedAt: "2023-09-26T21:06:38.013Z"
+metadata:
+  title: ''
+  description: ''
+  robots: index
+next:
+  description: ''
 ---

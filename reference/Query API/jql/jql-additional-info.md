@@ -1,9 +1,15 @@
 ---
-title: "Additional Information"
-slug: "jql-additional-info"
+title: Additional Information
+excerpt: ''
+deprecated: false
 hidden: false
-createdAt: "2020-10-20T22:19:11.453Z"
-updatedAt: "2020-10-20T22:21:59.752Z"
-type: "link"
-link_url: "https://developer.mixpanel.com/docs/jql-overview"
+link:
+  new_tab: false
+  url: https://developer.mixpanel.com/docs/jql-overview
+metadata:
+  title: ''
+  description: ''
+  robots: noindex
+next:
+  description: ''
 ---

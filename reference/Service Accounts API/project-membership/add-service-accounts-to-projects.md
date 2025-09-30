@@ -1,8 +1,17 @@
 ---
-title: "Add Service Accounts To Projects"
-slug: "add-service-accounts-to-projects"
-excerpt: "Adds a list of service account ids to a list of project ids with the specified role"
+title: Add Service Accounts To Projects
+excerpt: >-
+  Adds a list of service account ids to a list of project ids with the specified
+  role
+api:
+  file: service-accounts-api.json
+  operationId: add-service-accounts-to-projects
+deprecated: false
 hidden: false
-createdAt: "2021-09-16T19:11:25.188Z"
-updatedAt: "2023-09-26T21:06:38.777Z"
+metadata:
+  title: ''
+  description: ''
+  robots: index
+next:
+  description: ''
 ---
