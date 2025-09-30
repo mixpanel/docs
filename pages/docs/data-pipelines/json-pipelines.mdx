@@ -58,17 +58,15 @@ The following are examples of the output in **BigQuery** for each data source pi
 
 ## Events Data Sync
 
-> Sync is disabled by default when creating events pipelines. You can enable it by toggling it in the **Advanced** session.
+Events Data Sync is enabled by default when creating JSON pipelines to ensure data consistency. This feature automatically detects data changes as soon as they are ingested and appends new files for new/late data to your storage/warehouses, helping keep the data fresh and minimizing missing data points.
 
-Event data stored in Mixpanel’s datastore and in the export destination can fall out of sync.
-
-The discrepancy can be attributed to several different causes:
+Event data can fall out of sync between Mixpanel's datastore and the export destination due to several causes:
 
 - Late data can arrive multiple days later due to a mobile client being offline.
 - The import API can add data to previous days.
 - Delete requests related to GDPR can cause deletion of events and event properties.
 
-Mixpanel is able to detect any changes in your data as soon as they are ingested and adds new files for new/late data in object storage and data warehouse, if applicable. Data sync helps keep the data fresh and minimizes missing data points.
+**Important limitations**: Data sync does not guarantee syncing GDPR Data Deletions. It is recommended to implement a strategy to remove all records of GDPR Deleted Users in your data warehouse.
 
 ## Backfill Historical Events
 
@@ -129,3 +127,29 @@ The sync feature is designed for events to keep the exported data up-to-date wit
 GDPR deletions do not automatically cascade deletions to data warehouses via pipelines. When a user is deleted from Mixpanel via the GDPR deletion API, this deletion is reflected in Mixpanel’s own storage, but the deletion does not propagate to data that has already been exported to data warehouses via pipelines.
 
 To keep your synced warehouse data GDPR compliant, you will need to implement a process to delete the corresponding user and event data from your warehouse when a GDPR deletion occurs in Mixpanel.
+
+## Change Log
+
+<details>
+<summary><strong>2025-09-29: Sync Enabled by Default for JSON Pipelines</strong></summary>
+
+Removed sync toggle from JSON pipeline creation UI. All new JSON pipelines now have incremental sync enabled by default to ensure data consistency without requiring manual configuration.
+
+**Impact**: New JSON pipelines automatically include sync functionality - no longer optional through UI toggle.
+</details>
+
+<details>
+<summary><strong>2025-08-14: Incremental Export Deployed for US Pipelines</strong></summary>
+ 
+We have deployed the Incremental Export Improvement for newly created pipelines with US data residency.
+
+The rollout of these updates to existing pipelines in US residency is scheduled for the near future.
+Your pipeline will automatically transition to the new system when ready.
+Your data quality and completeness remain the same; only the processing method has improved.
+</details>
+
+<details>
+<summary><strong>2025-06-26: Introducing Incremental Export for Event Pipelines</strong></summary>
+
+We're rolling out an improved pipeline system to improve the efficiency and reliability of your data exports. We're deploying these improvements for newly created pipelines in our EU and IN data residency. New pipelines in projects with US residency and migrating existing pipelines in all regions will follow after. Your pipeline will automatically transition to the new system when ready. Your data quality and completeness remain the same - only the processing method has improved.
+</details>
