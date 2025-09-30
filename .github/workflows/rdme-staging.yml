@@ -35,7 +35,6 @@ jobs:
 
       - name: Create readme version
         run: |
-          # Make the request and capture both the response and HTTP status code
           status=$(curl -s -o /dev/null -w "%{http_code}" -X POST "https://api.readme.com/v2/branches" \
             -H "Content-Type: application/json" \
             -H "Authorization: Bearer ${{ secrets.README_API_KEY }}" \
