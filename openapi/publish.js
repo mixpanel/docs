@@ -4,6 +4,7 @@ const process = require("node:process");
 const util = require("node:util");
 const YAML = require("yaml");
 
+const env = { ...process.env, DEBUG: "rdme*" };
 const execFile = util.promisify(require("node:child_process").execFile);
 
 const README_API_KEY = process.env.README_API_KEY;
@@ -66,7 +67,7 @@ async function updateSpecs() {
     console.log(`Updating ${spec.info.title} (${specFile}`);
     await execAndLog('npx', ['rdme', 'openapi:validate', fullPath]);
     await execAndLog(
-      'npx', ['rdme', 'openapi', 'upload', fullPath, `--key=${README_API_KEY}`, `--slug=${specFile}`, `--confirm-overwrite`]
+      'npx', ['rdme', 'openapi', 'upload', fullPath, `--key=${README_API_KEY}`, `--slug=${specFile}`, `--confirm-overwrite`], {env}
     );
   }
 }
