@@ -67,7 +67,7 @@ async function updateSpecs() {
     console.log(`Updating ${spec.info.title} (${specFile}`);
     await execAndLog('npx', ['rdme', 'openapi:validate', fullPath]);
     await execAndLog(
-      'npx', ['rdme', 'openapi', 'upload', fullPath, `--key=${README_API_KEY}`, `--slug=${specFile}`, `--confirm-overwrite`], {env}
+      'npx', ['rdme', 'openapi', 'upload', fullPath, `--key=${README_API_KEY}`, `--slug=${specFile}`], {env}
     );
   }
 }
