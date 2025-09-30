@@ -44,15 +44,19 @@ async function updateSpecs() {
   const outBase = path.resolve(__dirname, `out`);
   const filenames = fs
     .readdirSync(outBase)
-    .filter((fn) => fn.endsWith(`.openapi.yaml`));
+    .filter((fn) => fn.endsWith(`.json`));
+
+  if (!remoteSpecMetas) {
+    console.error(`!!! No remote specs found, please double check the API`);
+    process.exit(1);
+  }
 
   for (specFile of filenames) {
     // get ID of each spec by matching title between filename and metadata
     const fullPath = path.join(outBase, specFile);
     const yamlStr = fs.readFileSync(fullPath, "utf8");
     const spec = YAML.parse(yamlStr);
-    const slug = specFile.split(`.openapi.yaml`)[0];
-    const specMeta = remoteSpecMetas.data.find((m) => m.filename.split(`.json`)[0] === slug);
+    const specMeta = remoteSpecMetas.data.find((m) => m.filename === specFile);
     if (!specMeta) {
       console.log(`!!! No spec found for "${spec.info.title}". Please upload it as found in the developer.mixpanel.com runbook.`);
       continue;
@@ -61,10 +65,8 @@ async function updateSpecs() {
     // validate and publish spec
     console.log(`Updating ${spec.info.title} (${specFile}`);
     await execAndLog('npx', ['rdme', 'openapi:validate', fullPath]);
-    // when readme was upgraded to readme refactored, all of the yaml files were converted to json, and therefore
-    // the slug name also looks like "annotations-api.json", even though we store them as yaml here.
     await execAndLog(
-      'npx', ['rdme', 'openapi', 'upload', fullPath, `--key=${README_API_KEY}`, `--slug=${slug}.json`]
+      'npx', ['rdme', 'openapi', 'upload', fullPath, `--key=${README_API_KEY}`, `--slug=${specFile}`, `--confirm-overwrite`]
     );
   }
 }
