@@ -1,7 +1,8 @@
-name: Publish OpenAPI specs to ReadMe
+name: Publish OpenAPI specs to ReadMe Production
 
 on:
   push:
+    branches: [ main ]
     paths:
       - 'openapi/**'
       - '.github/actions/**'
