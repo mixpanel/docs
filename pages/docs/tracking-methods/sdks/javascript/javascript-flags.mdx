@@ -74,7 +74,7 @@ updated_distinct_id = ""
 mixpanel.identify(updated_distinct_id)
 ```
 
-2) If variant assignment keys or properties used in Runtime Targeting change during the lifetime of your application, you can manually reload with those new properties
+2) To refresh flag variants that may have changed during the lifetime of your app, you can manually reload flags with a new context:
 
 ```javascript
 mixpanel.flags.update_context({
@@ -99,7 +99,7 @@ const variant_value = await mixpanel.flags.get_variant_value("my-feature-flag", 
 
 // Use flag value in your application logic
 if (variant_value == "variant_a") {
-  showExperimentForVariantA();
+  showExperienceForVariantA();
 } else if (variant_value == "variant_b") {
   showExperienceForVariantB();
 } else if (variant_value == "control") {
@@ -110,15 +110,13 @@ if (variant_value == "variant_a") {
 **Feature Gates: Check if Flag is Enabled/Disabled**
 ```javascript
 // Fetch the variant value once flags are ready and track an exposure event *if* the user context is in a rollout group for the feature flag.
-const variant_value = await mixpanel.flags.get_variant_value("my-feature-flag", "control");
+const isEnabled = await mixpanel.flags.is_enabled("my-feature-flag", control");
 
-// Use flag value in your application logic
-if (variant_value == "variant_a") {
-  showExperimentForVariantA();
-} else if (variant_value == "variant_b") {
-  showExperienceForVariantB();
-} else if (variant_value == "control") {
-  showDefaultExperience();
+// Use the result in your application logic. 
+if (isEnabled) {
+  showNewFeature();
+} else {
+  showOldFeature();
 }
 ```
 

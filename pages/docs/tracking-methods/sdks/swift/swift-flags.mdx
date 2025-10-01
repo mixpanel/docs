@@ -73,12 +73,6 @@ Mixpanel.mainInstance().identify(distinctId: updatedDistinctId)
 2) If variant assignment keys or properties used in Runtime Targeting change during the lifetime of your application, you can manually reload flags by updating the context:
 
 ```swift
-Mixpanel.mainInstance().flags.delegate?.getOptions().featureFlagsContext = [
-    "company_id": "Y",
-    "customProperties": [
-        "platform": "ios"
-    ]
-]
 Mixpanel.mainInstance().flags.loadFlags()
 ```
 
@@ -99,9 +93,9 @@ Mixpanel.mainInstance().flags.getVariantValue("my-feature-flag", fallbackValue: 
         if let stringValue = value as? String {
             switch stringValue {
             case "variant_a":
-                showExperimentForVariantA()
+                showExperienceForVariantA()
             case "variant_b":
-                showExperimentForVariantB()
+                showExperienceForVariantB()
             default:
                 showDefaultExperience()
             }
@@ -135,9 +129,9 @@ let flagValue = Mixpanel.mainInstance().flags.getVariantValueSync("my-feature-fl
 
 // Use flag value in your application logic
 if flagValue as? String == "variant_a" {
-    showExperimentForVariantA()
+    showExperienceForVariantA()
 } else if flagValue as? String == "variant_b" {
-    showExperimentForVariantB()
+    showExperienceForVariantB()
 } else {
     showDefaultExperience()
 }
