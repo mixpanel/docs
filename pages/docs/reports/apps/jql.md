@@ -4,6 +4,8 @@
 > - Raw Event export: [Export API](https://developer.mixpanel.com/reference/raw-data-export-api) or [Data Pipelines](/docs/data-pipelines)
 > - User Profile export: [Engage Query API](https://developer.mixpanel.com/reference/engage-query) or [Data Pipelines](/docs/data-pipelines)
 > - Other reporting: [Query API](https://developer.mixpanel.com/reference/query-api) or in-app [Core Reports](/docs/reports)
+>  
+> ❗️JQL is a self-serve tool. If you choose JQL, your developer team will be responsible to write and maintain the query logic.
 
 The JQL JavaScript code must define a `main()` function. This JavaScript will be compiled, and the `main()` function will be executed by the query engine. The return value of `main()` must be a sequence of zero or more transformations applied to a collection of events, user records or joined records.  
 Events are retrieved by calling the `Events()` function.
