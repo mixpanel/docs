@@ -1,5 +1,7 @@
 ---
 title: Retrieve Schemas
+category:
+  uri: Lexicon Schemas API
 content:
   excerpt: ''
 privacy:

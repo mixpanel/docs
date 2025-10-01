@@ -1,5 +1,7 @@
 ---
 title: Create/Replace One
+category:
+  uri: Lexicon Schemas API
 content:
   excerpt: >-
     Upload a schema for a single entity. If a schema already exists for a

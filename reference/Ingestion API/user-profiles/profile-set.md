@@ -1,5 +1,7 @@
 ---
 title: Set Property
+category:
+  uri: Ingestion API
 content:
   excerpt: >-
     Takes a JSON object containing names and values of profile properties. If

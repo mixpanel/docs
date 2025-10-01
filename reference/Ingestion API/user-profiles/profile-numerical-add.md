@@ -1,5 +1,7 @@
 ---
 title: Increment Numerical Property
+category:
+  uri: Ingestion API
 content:
   excerpt: >-
     Takes a JSON object containing keys and numerical values. $add will

@@ -1,5 +1,7 @@
 ---
 title: Authentication
+category:
+  uri: Query API
 content:
   excerpt: ''
 privacy:

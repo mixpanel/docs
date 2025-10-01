@@ -1,5 +1,7 @@
 ---
 title: Download Data
+category:
+  uri: Event Export API
 content:
   excerpt: >-
     Every data point sent to Mixpanel is stored as JSON in our data store. The

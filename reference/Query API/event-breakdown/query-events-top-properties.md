@@ -1,5 +1,7 @@
 ---
 title: Top Event Properties
+category:
+  uri: Query API
 content:
   excerpt: >-
     Get the top property names for an event. The Query API has a rate limit of

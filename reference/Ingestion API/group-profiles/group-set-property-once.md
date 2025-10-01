@@ -1,5 +1,7 @@
 ---
 title: Set Property Once
+category:
+  uri: Ingestion API
 content:
   excerpt: >-
     Adds properties to a group only if the property is not already set. The

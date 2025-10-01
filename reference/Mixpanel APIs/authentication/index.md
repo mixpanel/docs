@@ -1,5 +1,7 @@
 ---
 title: Authentication Methods
+category:
+  uri: Mixpanel APIs
 content:
   excerpt: ''
 privacy:

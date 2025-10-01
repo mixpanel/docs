@@ -1,5 +1,7 @@
 ---
 title: Delete Pipeline
+category:
+  uri: Data Pipelines API
 content:
   excerpt: >-
     For a given pipeline name, this request deletes the pipeline and stops any

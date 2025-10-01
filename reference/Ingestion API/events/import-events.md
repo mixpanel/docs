@@ -1,5 +1,7 @@
 ---
 title: Import Events
+category:
+  uri: Ingestion API
 content:
   excerpt: ''
 privacy:

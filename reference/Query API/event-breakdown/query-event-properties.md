@@ -1,6 +1,7 @@
 ---
-title: Aggregrated Event Property Values
-content:
+title: Aggregated Event Property Values
+category:
+  uri: Query API
   excerpt: >-
     Get unique, total, or average data for of a single event and property over
     days, weeks, or months.

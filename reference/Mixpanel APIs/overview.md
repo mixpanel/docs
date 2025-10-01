@@ -1,5 +1,7 @@
 ---
 title: Overview
+category:
+  uri: Mixpanel APIs
 content:
   excerpt: ''
 privacy:

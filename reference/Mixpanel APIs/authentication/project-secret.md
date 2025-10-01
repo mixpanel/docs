@@ -1,5 +1,7 @@
 ---
 title: 'Project Secret [Deprecating]'
+category:
+  uri: Mixpanel APIs
 content:
   excerpt: ''
 privacy:

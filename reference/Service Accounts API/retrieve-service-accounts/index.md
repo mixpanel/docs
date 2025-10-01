@@ -1,5 +1,7 @@
 ---
 title: Retrieve Service Accounts
+category:
+  uri: Service Accounts API
 content:
   excerpt: ''
 privacy:

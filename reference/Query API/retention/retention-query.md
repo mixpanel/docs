@@ -1,5 +1,7 @@
 ---
 title: Query Retention Report
+category:
+  uri: Query API
 content:
   excerpt: ''
 privacy:

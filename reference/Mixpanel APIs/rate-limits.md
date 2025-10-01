@@ -1,5 +1,7 @@
 ---
 title: Rate Limits
+category:
+  uri: Mixpanel APIs
 content:
   excerpt: ''
 privacy:

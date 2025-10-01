@@ -1,5 +1,7 @@
 ---
 title: Segmentation Expressions
+category:
+  uri: Mixpanel APIs
 content:
   excerpt: ''
 privacy:

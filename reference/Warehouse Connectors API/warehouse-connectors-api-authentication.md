@@ -1,5 +1,7 @@
 ---
 title: Authentication
+category:
+  uri: Warehouse Connectors API
 content:
   excerpt: ''
 privacy:

@@ -1,5 +1,7 @@
 ---
 title: Lookup Tables
+category:
+  uri: Ingestion API
 content:
   excerpt: ''
 privacy:

@@ -1,5 +1,7 @@
 ---
 title: 'Request Signature [Deprecated]'
+category:
+  uri: Mixpanel APIs
 content:
   excerpt: ''
 privacy:

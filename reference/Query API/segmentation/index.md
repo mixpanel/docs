@@ -1,5 +1,7 @@
 ---
 title: Segmentation
+category:
+  uri: Query API
 content:
   excerpt: ''
 privacy:

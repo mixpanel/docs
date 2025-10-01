@@ -1,5 +1,7 @@
 ---
 title: Query Frequency Report
+category:
+  uri: Query API
 content:
   excerpt: ''
 privacy:

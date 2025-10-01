@@ -1,5 +1,7 @@
 ---
 title: Overview
+category:
+  uri: Lexicon Schemas API
 content:
   excerpt: ''
 privacy:

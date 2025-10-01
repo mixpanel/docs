@@ -1,5 +1,7 @@
 ---
 title: Set Property Once
+category:
+  uri: Ingestion API
 content:
   excerpt: >-
     Works just like "$set", except it will not overwrite existing property

@@ -1,5 +1,7 @@
 ---
 title: Project Token
+category:
+  uri: Mixpanel APIs
 content:
   excerpt: ''
 privacy:

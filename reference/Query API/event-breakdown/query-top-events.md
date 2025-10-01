@@ -1,5 +1,7 @@
 ---
 title: Today's Top Events
+category:
+  uri: Query API
 content:
   excerpt: >-
     Get the top events for today, with their counts and the normalized percent

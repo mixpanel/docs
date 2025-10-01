@@ -1,5 +1,7 @@
 ---
 title: Delete Property
+category:
+  uri: Ingestion API
 content:
   excerpt: >-
     Takes a JSON list of string property names, and permanently removes the

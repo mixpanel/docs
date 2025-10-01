@@ -1,5 +1,7 @@
 ---
 title: Pause Pipeline
+category:
+  uri: Data Pipelines API
 content:
   excerpt: >-
     For a given pipeline name, this request pauses the pipeline which stops the

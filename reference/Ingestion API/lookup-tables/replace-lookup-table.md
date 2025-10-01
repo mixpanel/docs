@@ -1,5 +1,7 @@
 ---
 title: Replace a Lookup Table
+category:
+  uri: Ingestion API
 content:
   excerpt: ''
 privacy:

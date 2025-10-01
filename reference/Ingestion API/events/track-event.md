@@ -1,5 +1,7 @@
 ---
 title: Track Events
+category:
+  uri: Ingestion API
 content:
   excerpt: ''
 privacy:

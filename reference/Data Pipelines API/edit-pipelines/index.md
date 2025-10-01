@@ -1,5 +1,7 @@
 ---
 title: Edit Pipelines
+category:
+  uri: Data Pipelines API
 content:
   excerpt: ''
 privacy:

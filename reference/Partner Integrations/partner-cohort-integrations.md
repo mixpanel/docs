@@ -1,5 +1,7 @@
 ---
 title: Partner Cohort Integrations
+category:
+  uri: Partner Integrations
 content:
   excerpt: ''
 privacy:

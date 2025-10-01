@@ -1,5 +1,7 @@
 ---
 title: Remove from List Property
+category:
+  uri: Ingestion API
 content:
   excerpt: >-
     Takes a JSON object containing keys and values. The value in the request is

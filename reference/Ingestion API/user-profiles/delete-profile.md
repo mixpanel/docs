@@ -1,5 +1,7 @@
 ---
 title: Delete Profile
+category:
+  uri: Ingestion API
 content:
   excerpt: >
     Permanently delete the profile from Mixpanel, along with all of its

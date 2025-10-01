@@ -1,5 +1,7 @@
 ---
 title: Batch Update Group Profiles
+category:
+  uri: Ingestion API
 content:
   excerpt: >-
     Send a batch of group profile updates. Instead of sending a single JSON

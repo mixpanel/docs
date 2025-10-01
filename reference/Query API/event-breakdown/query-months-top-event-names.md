@@ -1,5 +1,7 @@
 ---
 title: Top Events
+category:
+  uri: Query API
 content:
   excerpt: >-
     Get a list of the most common events over the last 31 days. The Query API

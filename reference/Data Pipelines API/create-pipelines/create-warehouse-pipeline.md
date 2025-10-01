@@ -1,5 +1,7 @@
 ---
 title: Create Pipeline
+category:
+  uri: Data Pipelines API
 content:
   excerpt: ''
 privacy:

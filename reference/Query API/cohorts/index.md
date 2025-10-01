@@ -1,5 +1,7 @@
 ---
 title: Cohorts
+category:
+  uri: Query API
 content:
   excerpt: ''
 privacy:

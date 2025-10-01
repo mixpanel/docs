@@ -1,5 +1,7 @@
 ---
 title: Authentication
+category:
+  uri: Ingestion API
 content:
   excerpt: ''
 privacy:

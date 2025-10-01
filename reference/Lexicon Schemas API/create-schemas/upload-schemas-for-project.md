@@ -1,5 +1,7 @@
 ---
 title: Create/Replace Multiple
+category:
+  uri: Lexicon Schemas API
 content:
   excerpt: ''
 privacy:

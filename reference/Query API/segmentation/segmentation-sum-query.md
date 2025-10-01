@@ -1,5 +1,7 @@
 ---
 title: Numerically Sum
+category:
+  uri: Query API
 content:
   excerpt: >-
     Sums an expression for events per unit time. The Query API has a rate limit

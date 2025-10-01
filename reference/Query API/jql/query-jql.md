@@ -1,5 +1,7 @@
 ---
 title: Custom JQL Query
+category:
+  uri: Query API
 content:
   excerpt: ''
 privacy:

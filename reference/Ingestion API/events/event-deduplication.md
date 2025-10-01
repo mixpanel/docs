@@ -1,5 +1,7 @@
 ---
 title: Event Deduplication
+category:
+  uri: Ingestion API
 content:
   excerpt: ''
 privacy:

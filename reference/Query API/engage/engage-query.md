@@ -1,5 +1,7 @@
 ---
 title: Query Profiles
+category:
+  uri: Query API
 content:
   excerpt: ''
 privacy:

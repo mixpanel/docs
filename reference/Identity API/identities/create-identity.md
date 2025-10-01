@@ -1,5 +1,7 @@
 ---
 title: Create Identity
+category:
+  uri: Identity API
 content:
   excerpt: ''
 privacy:

@@ -1,5 +1,7 @@
 ---
 title: Limits
+category:
+  uri: Lexicon Schemas API
 content:
   excerpt: ''
 privacy:

@@ -1,5 +1,7 @@
 ---
 title: Service Accounts
+category:
+  uri: Mixpanel APIs
 content:
   excerpt: ''
 privacy:

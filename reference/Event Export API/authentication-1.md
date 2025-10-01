@@ -1,5 +1,7 @@
 ---
 title: Authentication (when workspaces ship)
+category:
+  uri: Event Export API
 content:
   excerpt: ''
 privacy:

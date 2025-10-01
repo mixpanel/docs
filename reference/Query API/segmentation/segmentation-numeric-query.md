@@ -1,5 +1,7 @@
 ---
 title: Numerically Bucket
+category:
+  uri: Query API
 content:
   excerpt: >-
     Get data for an event, segmented and filtered by properties, with values

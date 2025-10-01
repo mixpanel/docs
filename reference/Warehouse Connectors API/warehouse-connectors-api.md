@@ -1,5 +1,7 @@
 ---
 title: Overview
+category:
+  uri: Warehouse Connectors API
 content:
   excerpt: ''
 privacy:

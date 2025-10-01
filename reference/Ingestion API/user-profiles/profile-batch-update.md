@@ -1,5 +1,7 @@
 ---
 title: Update Multiple Profiles
+category:
+  uri: Ingestion API
 content:
   excerpt: >-
     Send a batch of profile updates. Instead of sending a single JSON object as
