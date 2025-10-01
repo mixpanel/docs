@@ -53,7 +53,7 @@ jobs:
       - name: Push docs to version 🚀
         uses: readmeio/rdme@v10
         with:
-          rdme: docs upload ./reference --key=${{ secrets.README_API_KEY }} --branch=3.27-pr-${{ github.event.number }}
+          rdme: reference upload ./reference --key=${{ secrets.README_API_KEY }} --branch=3.27-pr-${{ github.event.number }}
 
       - name: Build OpenAPI specs to version
         run: npm run api:build

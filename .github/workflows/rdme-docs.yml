@@ -22,4 +22,4 @@ jobs:
       - name: Run `docs` command 🚀
         uses: readmeio/rdme@v10
         with:
-          rdme: docs upload ./reference --key=${{ secrets.README_API_KEY }} --branch=3.27
+          rdme: reference upload ./reference --key=${{ secrets.README_API_KEY }} --branch=3.27
