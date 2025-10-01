@@ -3,6 +3,11 @@ import { Callout } from 'nextra/components'
 # Managing Projects
 
 ## Creating Projects
+
+<Callout type="info">
+To create a project, you will need an admin or owner organization role. Learn more about [Roles and Permissions](/docs/orgs-and-projects/roles-and-permissions).
+</Callout>
+
 Your first project will be created automatically when you create an Organization in Mixpanel. You can create additional projects as follows -- we recommend creating a Development project to test any tracking changes before pushing them to production.
 
 ![manageprojects 1 Image](/manageprojects1.png)
@@ -55,6 +60,10 @@ This table provides the values for the **project token** and the **API secret**.
 
 ## Reset Projects
 
+<Callout type="info">
+Only project owners and organization owners may reset projects. Learn more about [Roles and Permissions](/docs/orgs-and-projects/roles-and-permissions).
+</Callout>
+
 You can reset the current project in Project Settings. When you reset the project, Mixpanel deactivates the project and all its data and settings, and then generates a new project.
 
 ![manageprojects 11 Image](/manageprojects11.png)
@@ -64,6 +73,10 @@ A warning indicates this reset deactivates the project and all its data and proj
 ![manageprojects 12 Image](/manageprojects12.png)
 
 ## Delete Projects
+
+<Callout type="info">
+Only project owners and organization owners may delete projects. Learn more about [Roles and Permissions](/docs/orgs-and-projects/roles-and-permissions).
+</Callout>
 
 To delete a project:
 
@@ -113,6 +126,10 @@ Mixpanel records all events in [Coordinated Universal Time (UTC)](https://www.wo
 Mixpanel sets project timezones by city or region. If a city or region observes Daylight Savings Time, the ingestion offset adjusts appropriately.
 
 ### Changing your Timezone
+
+<Callout type="info">
+You must have an admin or owner project role to change your project timezone setting. Learn more about [Roles and Permissions](/docs/orgs-and-projects/roles-and-permissions).
+</Callout>
 
 By default, Mixpanel sets your timezone to UTC. 
 
