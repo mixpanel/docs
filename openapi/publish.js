@@ -51,7 +51,7 @@ async function updateSpecs() {
     process.exit(1);
   }
 
-  for (specFile of [filenames[0]]) {
+  for (specFile of filenames) {
     // get ID of each spec by matching title between filename and metadata
     const fullPath = path.join(outBase, specFile);
     const yamlStr = fs.readFileSync(fullPath, "utf8");
@@ -67,7 +67,16 @@ async function updateSpecs() {
     await execAndLog('npx', ['rdme@10.5.1', 'openapi:validate', fullPath]);
     // publish the json version
     await execAndLog(
-      'npx', ['rdme@10.5.1', 'openapi', 'upload', `${fullPath}`, `--key=${README_API_KEY}`, `--slug=${specFile}`, `--confirm-overwrite`],
+      'npx', [
+        'rdme@10.5.1',
+        'openapi',
+        'upload',
+        `${fullPath}`,
+        `--key=${README_API_KEY}`,
+        `--slug=${specFile}`,
+        `--branch=${README_VERSION}`,
+        `--confirm-overwrite`,
+      ],
     );
   }
 }
