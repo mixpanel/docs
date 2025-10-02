@@ -47,11 +47,11 @@ Upload schemas in bulk to the specified project. If a schema already exists for 
             "displayName": "Item Purchased",
             "hidden": false,
             "dropped": false,
-            "owners": [
-              {
-                "name": "First Last",
-                "email": "first.last@mixpanel.com"
-              }
+            "contacts": [
+              "first.last@mixpanel.com"
+            ],
+            "teamContacts": [
+              "Analytics Team"
             ]
           }
         },

@@ -42,11 +42,11 @@ Upload a schema for a single entity. If a schema already exists for a specified 
             "displayName": "Item Purchased",
             "hidden": false,
             "dropped": false,
-            "owners": [
-                {
-                    "name": "First Last",
-                    "email": "first.last@mixpanel.com"
-                }
+            "contacts": [
+              "first.last@mixpanel.com"
+            ],
+            "teamContacts": [
+              "Analytics Team"
             ]
         }
     },
