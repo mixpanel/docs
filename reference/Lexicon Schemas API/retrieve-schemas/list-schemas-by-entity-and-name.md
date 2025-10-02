@@ -1,8 +1,10 @@
 ---
-title: "List for Entity and Name"
-slug: "list-schemas-by-entity-and-name"
-excerpt: "Get the schema for a specific entity type and entity name"
-hidden: false
-createdAt: "2020-11-20T21:23:20.201Z"
-updatedAt: "2023-09-26T21:06:39.053Z"
+title: List for Entity and Name
+category:
+  uri: Lexicon Schemas API
+content:
+  excerpt: Get the schema for a specific entity type and entity name
+privacy:
+  view: public
 ---
+

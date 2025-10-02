@@ -1,8 +1,12 @@
 ---
-title: "List Pipelines"
-slug: "list-warehouse-pipeline-jobs"
-excerpt: "This API endpoint returns the list of all the pipelines scheduled for a project."
-hidden: false
-createdAt: "2022-02-18T20:12:47.075Z"
-updatedAt: "2023-09-26T21:06:37.975Z"
+title: List Pipelines
+category:
+  uri: Data Pipelines API
+content:
+  excerpt: >-
+    This API endpoint returns the list of all the pipelines scheduled for a
+    project.
+privacy:
+  view: public
 ---
+
