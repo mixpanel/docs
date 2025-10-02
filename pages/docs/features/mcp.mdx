@@ -1,71 +1,110 @@
 ---
 title: MCP
-tags: [mcp, model context protocol, ai, claude, gemini, natural language, integration, conversational ai, mixpanel]
+tags: [mcp, model context protocol, ai, cursor, anthropic, chatgpt, openai, claude, gemini, natural language, integration, conversational ai, mixpanel, llm, AI-Powered Analytics Through Natural Language]
 ---
 
 import { Code, Callout } from 'nextra/components'
 
 # Mixpanel MCP Integration
-AI-Powered Analytics Through Natural Language
 ---
 ## Overview
 
-The Mixpanel Model Context Protocol (MCP) integration enables organizations to analyze product data using conversational AI. Teams can query events, funnels, and user behavior directly through Claude's interface using natural language, eliminating the need for complex dashboard navigation or technical query languages.
+The Mixpanel Model Context Protocol (MCP) integration enables organizations to analyze product data using conversational AI. Teams can query events, funnels, and user behavior through AI interfaces (Claude, Cursor, etc.) using natural language, eliminating the need for complex dashboard navigation or technical query languages.
 
 <Callout type="info">
-  **Beta Feature:** This integration is currently in Private Beta. See [Getting Started](#getting-started) to learn how to get access.
+  **Beta Feature:** Help us improve this integration by sharing your feedback [here](https://docs.google.com/forms/d/e/1FAIpQLSchV5qoyiI9tmtxOkDF_4So5KKR1iiZzuqcPbwMOphQC_lEVA/viewform?usp=header).
 </Callout>
 
 ---
 
-## Key Benefits
+## Mixpanel MCP Tools
+The MCP integration provides access to all core Mixpanel analysis capabilities through natural language queries:
 
-**Democratized Analytics**
-- Natural language queries eliminate technical barriers
-- Instant insights without dashboard complexity
-- Accessible to non-technical stakeholders
+### Analytics Functions
 
-**Enhanced Productivity**  
-- Reduce time-to-insight from minutes to seconds
-- Eliminate context switching between tools
-- Enable real-time decision making
+- Segmentation: Event counts and unique users with filtering and grouping (run_segmentation_query)
+- Funnels: Conversion rate analysis across user journeys (run_funnels_query)
+- Retention: User engagement and return behavior tracking (run_retention_query)
+- Frequency: User engagement patterns and usage intensity (run_frequency_query)
 
-**Strategic Value**
-- Accelerate product discovery processes
-- Enable data-driven conversations across teams
-- Improve accessibility of product intelligence
+### Data Discovery & Exploration
+
+- Project Management: Access projects and workspace information (`get_projects`, `get_project_info`)
+- Event Discovery: Browse all available events in your project (`get_events`)
+- Event Properties: Explore properties available for each event (`get_event_properties`)
+- Property Values: Discover specific values for event properties (`get_event_property_values`)
+- Data Quality: Monitor and detect volume anomalies in data ingestion (`get_data_volume_anomalies`)
+- Lexicon Integration: Get direct links to event definitions and documentation in Mixpanel Lexicon (`get_lexicon_detail_url`)
+
+### Query Capabilities
+
+- Natural Language Filtering: Use complex boolean expressions for data filtering
+- Advanced Grouping: Segment data by properties with mathematical operations
+- Time-based Analysis: Analyze trends across different time periods (hourly, daily, weekly, monthly)
+- Numerical Aggregations: Perform sum, average, and bucket analysis on numeric properties
+
+For more information on organizing and documenting your events, see [Mixpanel Lexicon documentation](/docs/data-governance/lexicon).
+
+---
+
+## Getting Started
+
+### Beta Access
+The Mixpanel MCP integration is currently in Beta. You can start using it right away by following the [Implementation Guide](#implementation-guide) below.
+
+### Permissions & Access Control
+
+**Admin Configuration Required**
+- **Organization administrators** must enable MCP access in **Settings > Org > Overview**
+- Once enabled by an admin, all Mixpanel users in the organization can use the MCP integration
+- The MCP toggle controls access for the entire organization
+
+**User Access Scope**
+After the organization admin enables MCP:
+- Any Mixpanel user with any role can connect to the MCP integration
+- Users can only query data from projects they already have access to within Mixpanel
+- Existing Mixpanel permissions and project access controls remain in effect
+
+### Recommended Implementation Path
+1. **Organization admin** enables "Enable MCP" toggle in organization settings
+2. **Individual users** complete the integration setup following the [Implementation Guide](#implementation-guide)
+3. **Users authenticate** with their Mixpanel account during the connection process
+4. **Once authenticated, start by asking:** "What Mixpanel projects do I have access to?"
+5. **Select a project** from the response to focus your analysis
+6. **Ask any questions** about your Mixpanel data—refer to [Use Case Examples](#use-case-examples) below if you need ideas
+7. **Begin with test data** to validate functionality
+8. **Conduct security review** before production data access
+9. **Train teams** on natural language query techniques
+10. **Expand usage** across product and analytics teams
 
 ---
 
 ## Implementation Guide
 
-### Option 1: Claude Pro Users (Recommended)
-
-**Best for:** Teams with Claude Pro subscriptions
-
-**Setup Steps:**
-1. Navigate to [claude.ai](https://claude.ai) or open Claude desktop app
-2. Click the settings icon in the chat text box
-3. Select **Add Integrations**
-4. Click **Add Integration** in the new window
-5. Configure the integration:
-   - **Integration Name:** Mixpanel (or preferred name)
-   - **Integration URL:** `https://mcp.mixpanel.com/sse`
-6. Click **Connect** and complete Mixpanel authorization
-
----
-
-### Option 2: Claude Free Users (Desktop Only)
-
-**Prerequisites:**
-- Node.js installed on your system
-- Claude desktop application
-- Command line access
-
+### Prerequisites (for Claude Free & Cursor)
 **Install Node.js (if needed):**
 ```bash
 brew install node
 ```
+
+### Option 1: Claude Pro
+
+**Setup Steps:**
+1. Navigate to [claude.ai](https://claude.ai) or open Claude desktop app
+2. Go to **Settings** → **Connectors** → **Add Custom Connector**
+3. Configure the integration:
+   - **Integration Name:** Mixpanel (or preferred name)
+   - **Integration URL:** `https://mcp.mixpanel.com/sse`
+4. Click **Connect** and complete Mixpanel authorization
+
+For additional information on setting up Claude connectors, see [Claude's connector documentation](https://support.anthropic.com/en/articles/11724452-browsing-and-connecting-to-tools-from-the-directory).
+
+---
+
+### Option 2: Claude Free
+**Additional Requirements:**
+- Claude desktop application
+- Command line access
 
 **Setup Steps:**
 1. Open Claude desktop app
@@ -94,91 +133,104 @@ npx -y mcp-remote https://mcp.mixpanel.com/sse --allow-http
 ```
 
 5. Complete Mixpanel authorization via the provided link
-6. Restart Claude desktop app
 
 ---
 
-## Mixpanel MCP Tools
-The MCP integration provides access to all core Mixpanel analysis capabilities through natural language queries:
+### Option 3: Cursor
+**Additional Requirements:**
+- Cursor application  
+- Command line access
 
-### Analytics Functions
+**Setup Steps:**
+1. Open Cursor application
+2. Navigate to **Cursor Settings** → **MCP & Integrations** → **MCP Tools** → **New MCP Server**
+3. This opens MCP.json where you paste the following configuration:
 
-- Segmentation: Event counts and unique users with filtering and grouping (run_segmentation_query)
-- Funnels: Conversion rate analysis across user journeys (run_funnels_query)
-- Retention: User engagement and return behavior tracking (run_retention_query)
-- Frequency: User engagement patterns and usage intensity (run_frequency_query)
+```json
+{
+  "mcpServers": {
+    "mixpanel": {
+      "command": "npx",
+      "args": [
+        "-y",
+        "mcp-remote",
+        "https://mcp.mixpanel.com/sse",
+        "--allow-http"
+      ]
+    }
+  }
+}
+```
 
-### Data Discovery & Exploration
+4. Run authorization command in terminal:
+```bash
+npx -y mcp-remote https://mcp.mixpanel.com/sse --allow-http
+```
 
-- Project Management: Access projects and workspace information (`get_projects`, `get_project_info`)
-- Event Discovery: Browse all available events in your project (`get_events`)
-- Event Properties: Explore properties available for each event (`get_event_properties`)
-- Property Values: Discover specific values for event properties (`get_event_property_values`)
-- Data Quality: Monitor and detect volume anomalies in data ingestion (`get_data_volume_anomalies`)
-
-### Query Capabilities
-
-- Natural Language Filtering: Use complex boolean expressions for data filtering
-- Advanced Grouping: Segment data by properties with mathematical operations
-- Time-based Analysis: Analyze trends across different time periods (hourly, daily, weekly, monthly)
-- Numerical Aggregations: Perform sum, average, and bucket analysis on numeric properties
-
----
-
-## Getting Started
-
-### Beta Access
-The Mixpanel MCP integration is currently in Private Beta. To request access, please sign up using [this form](https://docs.google.com/forms/d/e/1FAIpQLScOcPiQu3UP_dYBuFZ6jBIBGT-JhEU-Vgyr_o-LL3jZWqZtkQ/viewform?usp=header). Alternatively, you can reach out to your Mixpanel representative.
-
-### Recommended Implementation Path
-1. **Once you are authenticated, start by asking:** "What Mixpanel projects do I have access to?"
-2. **Select a project** from the response to focus your analysis
-3. **Ask any questions** about your Mixpanel data—refer to [Use Case Examples](#use-case-examples) below if you need ideas on how to get started
-4. **Begin with test data** to validate functionality
-5. **Conduct security review** before production data access
-6. **Train teams** on natural language query techniques
-7. **Expand usage** across product and analytics teams
+5. Complete Mixpanel authorization via the provided link
 
 ---
 
 ## Use Case Examples
 
-### Channel Performance Analysis
-Query example: "Which channels drive the most users?"
-Business Value: Identify top-performing acquisition channels for budget allocation
+**Channel Performance Analysis**
 
-### Retention Intelligence  
-**Query:** "Which channels drive users who retain best?"
-**Business Value:** Understand quality vs. quantity in user acquisition strategy
+- Query example: "Which channels drive the most users?"
+- Business Value: Identify top-performing acquisition channels for budget allocation
 
-### Conversion Optimization
-**Query:** "Show me signup conversion rates by source"
-**Business Value:** Optimize funnel performance by traffic source
+**Retention Intelligence**
 
-### User Journey Analysis
-**Query:** "What's the typical user journey for power users?"
-**Business Value:** Identify patterns in high-value user behavior for product development
+- Query: "Which channels drive users who retain best?"
+- Business Value: Understand quality vs. quantity in user acquisition strategy
 
-### Advanced Analytics
-**Query:** "Compare user behavior across different feature roll outs"
-**Business Value:** Measure feature impact and optimize product decisions
+**Conversion Optimization**
+
+- Query: "Show me signup conversion rates by source"
+- Business Value: Optimize funnel performance by traffic source
+
+**User Journey Analysis**
+
+- Query: "What's the typical user journey for power users?"
+- Business Value: Identify patterns in high-value user behavior for product development
+
+**Advanced Analytics**
+
+- Query: "Compare user behavior across different feature roll outs"
+- Business Value: Measure feature impact and optimize product decisions
+
+### Key Benefits
+
+**Democratized Analytics**
+- Natural language queries eliminate technical barriers
+- Instant insights without dashboard complexity
+- Accessible to non-technical stakeholders
+
+**Enhanced Productivity**  
+- Reduce time-to-insight from minutes to seconds
+- Eliminate context switching between tools
+- Enable real-time decision making
+
+**Strategic Value**
+- Accelerate product discovery processes
+- Enable data-driven conversations across teams
+- Improve accessibility of product intelligence
 
 ---
 
 ## Security & Compliance Considerations
 
-### Data Handling
-**Important:** This integration enables querying your Mixpanel data through Claude (Anthropic's AI service). Review your organization's data handling policies before implementation.
+**Data Handling**
+**Important:** This integration enables querying your Mixpanel data through AI services (Claude, Cursor, etc.). Review your organization's data handling policies before implementation.
 
-### Best Practices
-- Implement appropriate access controls based on data sensitivity
-- Monitor usage patterns and data exposure
-- Consider compliance requirements (GDPR, CCPA, etc.)
-- Test with non-sensitive data first
+**Access Controls**
+- Organization administrators must enable MCP in **Settings > Org > Overview**
+- Users can only query data from projects they already have access to within Mixpanel
+- Existing Mixpanel permissions and project access controls remain in effect
 
-### Recommended Security Approach
+**Best Practices**
 - Start with demo or test datasets
-- Conduct internal security review
+- Conduct internal security review before production use
+- Consider compliance requirements (GDPR, CCPA, etc.)
 - Establish usage guidelines for teams
 - Monitor data sharing patterns
 
@@ -186,16 +238,12 @@ Business Value: Identify top-performing acquisition channels for budget allocati
 
 ## Technical Specifications
 
-### Supported Platforms
-- **Claude Pro:** Web interface and desktop app
-- **Claude Free:** Desktop app only
+**Supported Platforms**
+- **Claude Pro:** Web interface with native MCP support
+- **Claude Free:** Desktop app with configuration setup
+- **Cursor:** AI-powered code editor integration
 
-### System Requirements
-- Active Mixpanel account with appropriate permissions
-- Node.js (for Claude Free setup)
-- Modern web browser (for web interfaces)
-
-### Integration Architecture
+**Integration Architecture**
 - **Protocol:** Model Context Protocol (MCP)
 - **Connection:** Server-sent events (SSE)
 - **Authentication:** OAuth with Mixpanel
@@ -205,10 +253,8 @@ Business Value: Identify top-performing acquisition channels for budget allocati
 
 ## Troubleshooting
 
-### Common Issues
+**Common Issues**
 - **Node.js not found:** Install using `brew install node`
 - **Authorization fails:** Ensure proper Mixpanel account permissions
 - **Desktop app issues:** Restart application after configuration changes
 - **Free user limitations:** Remote URL integrations only supported in desktop app
-
----

@@ -35,6 +35,8 @@ paths:
       summary: Create Identity
       operationId: create-identity
       description: ''
+      security:
+        - {}
       requestBody:
         required: true
         content:
@@ -74,6 +76,8 @@ paths:
       summary: Create Alias
       operationId: identity-create-alias
       description: ''
+      security:
+        - {}
       requestBody:
         required: true
         content:
@@ -115,6 +119,7 @@ paths:
       security:
         - ServiceAccount: []
         - ProjectSecret: []
+        - OAuthToken: []
       parameters:
         - in: query
           name: strict
