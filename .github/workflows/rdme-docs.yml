@@ -20,6 +20,6 @@ jobs:
         uses: actions/checkout@v4
 
       - name: Run `docs` command 🚀
-        uses: readmeio/rdme@v10
+        uses: readmeio/rdme@v10.5.1
         with:
           rdme: reference upload ./reference --key=${{ secrets.README_API_KEY }} --branch=3.27

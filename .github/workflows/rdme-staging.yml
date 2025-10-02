@@ -51,7 +51,7 @@ jobs:
           fi
 
       - name: Push docs to version 🚀
-        uses: readmeio/rdme@v10
+        uses: readmeio/rdme@v10.5.1
         with:
           rdme: reference upload ./reference --key=${{ secrets.README_API_KEY }} --branch=3.27-pr-${{ github.event.number }}
 
@@ -93,6 +93,7 @@ jobs:
               # API Reference Preview
               :rocket: https://developer.mixpanel.com/v3.27-pr-${{ github.event.number }}/reference/overview
               Last updated: ${new Date().toLocaleString("en-US", {timeZone: "America/Los_Angeles"})} PT from ${{github.sha}}
+            `
 
       # Update PR Comment
       - uses: ./.github/actions/create-or-update-comment
