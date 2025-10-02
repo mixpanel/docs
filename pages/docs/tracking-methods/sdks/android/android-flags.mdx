@@ -92,7 +92,7 @@ This action triggers tracking an exposure event, `$experiment_started` to your M
 
 ```java
 // Get just the flag value asynchronously
-String fallback = "control"; // the value to use if the user is not targeted by the flag
+String fallback = "control"; // the value to use if the user doesn't match any of the flag's rollout rules
 mixpanel.flags.getVariantValue("my-feature-flag", fallback, new FlagCompletionCallback<Object>() {
     @Override
     public void onComplete(Object value) {
@@ -112,7 +112,7 @@ mixpanel.flags.getVariantValue("my-feature-flag", fallback, new FlagCompletionCa
 
 ```java
 // Check if a boolean flag is enabled asynchronously
-boolean fallback = false; // the value to use if the user is not targeted by the flag
+boolean fallback = false; // the value to use if the user doesn't match any of the flag's rollout rules
 mixpanel.flags.isEnabled("my-boolean-flag", fallback, new FlagCompletionCallback<Boolean>() {
     @Override
     public void onComplete(Boolean isEnabled) {
@@ -132,7 +132,7 @@ mixpanel.flags.isEnabled("my-boolean-flag", fallback, new FlagCompletionCallback
 
 ```java
 // Get just the flag value synchronously
-String fallback = "control"; // the value to use if the user is not targeted by the flag
+String fallback = "control"; // the value to use if the user doesn't match any of the flag's rollout rules
 Object flagValue = mixpanel.flags.getVariantValueSync("my-feature-flag", fallback);
 
 // Use flag value in your application logic
@@ -148,7 +148,7 @@ if (flagValue.equals("variant_a")) {
 **Feature Gates: Check if Flag is Enabled/Disabled**
 ```java
 // Check if a boolean flag is enabled
-boolean fallback = false; // the value to use if the user is not targeted by the flag
+boolean fallback = false; // the value to use if the user doesn't match any of the flag's rollout rules
 boolean isEnabled = mixpanel.flags.isEnabledSync("my-boolean-flag", fallback);
 
 if (isEnabled) {

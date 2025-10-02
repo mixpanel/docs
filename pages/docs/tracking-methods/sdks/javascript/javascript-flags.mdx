@@ -95,7 +95,7 @@ This action triggers tracking an exposure event, `$experiment_started` to your M
 
 ```javascript
 // Fetch the variant value once flags are ready and track an exposure event *if* the user context is in a rollout group for the feature flag.
-const fallback = "control"; // the value to use if the user is not targeted by the flag
+const fallback = "control"; // the value to use if the user doesn't match any of the flag's rollout rules
 const variant_value = await mixpanel.flags.get_variant_value("my-feature-flag", fallback);
 
 // Use flag value in your application logic
