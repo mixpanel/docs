@@ -1,4 +1,4 @@
-import { Callout } from 'nextra/components'
+import { Callout, Steps } from 'nextra/components'
 
 # Data Pipelines Overview
 
@@ -52,7 +52,25 @@ For detailed setup guides per destination, see:
 
 ## Step 2: Creating the Pipeline
 
+After configuring your destination to accept data exported from Mixpanel, we must initiate the pipeline from the Mixpanel UI.
+
 After configuring your destination, initiate data export in **Integrations** page on your Mixpanel project > **Create Pipeline** > fill in necessary configurations. You can choose different data sources including events, people and identity and other advanced options. See [Data Pipelines](/docs/data-pipelines/json-pipelines) for more details.
+
+<Steps>
+
+{<h3>Click the settings button and select Integrations.</h3>}
+
+![create_pipeline1](/create_pipeline1.png)
+
+{<h3>Select the provider of your warehouse destination, and click "+ Create Pipeline".</h3>}
+
+![create_pipeline2](/create_pipeline2.png)
+
+{<h3>Provide the details of your destination to create the pipeline.</h3>}
+
+![create_pipeline3](/create_pipeline3.png)
+
+</Steps>
 
 ## FAQ
 
@@ -83,6 +101,11 @@ Discrepancies between the event counts in Mixpanel and those exported to your de
 - **Data Sync**: If [Events Data Sync](/docs/data-pipelines/json-pipelines#events-data-sync) is not enabled or is unsupported for your pipeline, this could prevent some data from being exported.
 - **Data Delay**: Late-arriving data may take up to one day to sync from Mixpanel to your destination, leading to temporary discrepancies.
 - **Hidden Events**: Mixpanel exports all events, including those hidden in the Mixpanel UI via Lexicon. To reconcile differences in counts, check if the events in your destination include those hidden in the Mixpanel UI.
+- **Timezone Differences**: Data is exported to your warehouse in UTC, whereas data displayed in Mixpanel is in your project timezone. 
+
+### What timezone is the data exported in?
+
+The data is exported in UTC timezone. You’ll need to convert it to your project’s timezone when running queries in your warehouse.
 
 ### How can I count events exported by Mixpanel in the warehouse?
 
@@ -99,15 +122,21 @@ Mixpanel offers a 30-day free trial of the Data Pipelines, allowing you to creat
 - Only one pipeline can be created per data source per project.
 - Backfilled data is limited to one day prior to the creation date of the pipeline.
 
+### Why can’t I delete my trial pipeline?
+
+You can’t delete a trial pipeline in Mixpanel — this is intentional. Each project is limited to one trial pipeline per data source, and keeping it prevents deleting/recreating trials to bypass limits. It also serves as a record that the trial has been used. Even after you upgrade to a paid Data Pipelines package, the trial pipeline remains visible and cannot be removed. This is a policy decision to preserve the integrity of the trial program, not a technical constraint.
+
 ### What is Active Pipeline Limit
 
 Each project can have 2 recurring pipelines and 1 date ranged backfill pipeline active.
 
 To maintain optimal performance across our services, we limit the number of concurrently running pipeline steps to one per project. This approach ensures that each job, including those involving substantial backfills, waits its turn, preventing any single project from monopolizing resources and thus promoting fair scheduling among all customers.
 
-### When do pipeline exports run?
+### Is it possible to specify when pipeline exports run?
 
-Pipelines by default are set to start an export 30 minutes after the time period to export in project time is complete. For example a project in the Pacific timezone with a daily events pipeline will start the export for data from 5/22 on 5/23 00:30 AM PT.
+No. Hourly pipelines are targeted to run 30 minutes past the hour to be exported, and daily pipelines are targeted to run 30 minutes past the day to be exported (e.g. 00:30 AM) in the project’s timezone. For example, a project in the Pacific timezone with a daily events pipeline will start the export for data from 5/22 on 5/23 00:30 AM PT.
+
+Please note that the [24-hour SLA](/docs/data-pipelines#what-is-the-service-level-agreement) applies.
 
 ### What is the Service Level Agreement?
 

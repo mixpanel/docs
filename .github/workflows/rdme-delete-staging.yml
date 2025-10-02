@@ -16,9 +16,9 @@ jobs:
     steps:
       - name: Check out repo 📚
         uses: actions/checkout@v4
-      - uses: actions/setup-node@v4
+      - uses: actions/setup-node@v5
         with:
-          node-version: 18
+          node-version: 20
           cache: 'npm'
       - run: npm ci
       - name: Add node_modules to PATH
@@ -26,7 +26,11 @@ jobs:
 
       - name: Delete staging version
         run: |
-          if rdme versions:delete 0.0-pr-${{ github.event.number }} --key=${{ secrets.README_API_KEY }}; then
+          status=$(curl -s -o /dev/null -w "%{http_code}" -X DELETE "https://api.readme.com/v2/branches/3.27-pr-${{ github.event.number }}" \
+            -H "Content-Type: application/json" \
+            -H "Authorization: Bearer ${{ secrets.README_API_KEY }}")
+
+          if [ "$status" -eq 204 ]; then
             echo "Version deleted successfully"
           else
             echo "Version doesn't exist, no need to delete"
