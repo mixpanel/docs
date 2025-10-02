@@ -1,12 +1,12 @@
 ---
-title: "Query Retention Report"
-slug: "retention-query"
-excerpt: ""
-hidden: false
-createdAt: "2020-10-20T00:41:48.195Z"
-updatedAt: "2023-09-26T21:06:38.986Z"
+title: Query Retention Report
+category:
+  uri: Query API
+content:
+  excerpt: ''
+privacy:
+  view: public
 ---
-
 Get cohort analysis.
 
 If you specify neither an `interval` nor a `unit`, the `interval` is 1 day. This means that each user gets 24 hours in each interval to do the specified event.

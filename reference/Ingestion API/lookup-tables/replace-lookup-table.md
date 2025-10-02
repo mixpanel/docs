@@ -1,10 +1,11 @@
 ---
-title: "Replace a Lookup Table"
-slug: "replace-lookup-table"
-excerpt: ""
-hidden: false
-createdAt: "2021-10-05T01:49:31.011Z"
-updatedAt: "2023-09-26T21:06:39.089Z"
+title: Replace a Lookup Table
+category:
+  uri: Ingestion API
+content:
+  excerpt: ''
+privacy:
+  view: public
 ---
 Lookup Tables must be [created via our UI](https://docs.mixpanel.com/docs/data-structure/lookup-tables#how-do-i-upload-a-lookup-table). Once a Lookup Table is created, its contents can be replaced via this API.
 
@@ -40,12 +41,14 @@ print(resp.json()
 ```
 
 ### Validation
+
 * The first column of the lookup table is assumed to be the ID of the row. All ID values must be unique.
 * The first row of the lookup table is a header row. The values in the header must be unique, as each one uniquely identifies a column of the table. These will appear as properties of the lookup table in Mixpanel's UI.
 * The CSV must be valid according to RFC4180.
 * If the `Content-Encoding: gzip` header is supplied, the table will be decompressed before parsing.
 
 #### Types
+
 * Integers or floats will be parsed as numbers.
 * RFC3339 timestamps (`2021-08-21T05:36:01Z`) will parsed as datetimes.
 * `true` or `false` (case-insensitive) will be parsed as boolean.
@@ -54,6 +57,7 @@ print(resp.json()
 * All other values will be treated as strings.
 
 #### Errors
+
 Lookup Tables are replaced in their entirety or not replaced at all. When the Lookup Table fails to meet the above validation, we return an error that looks as follows:
 
 ```json
@@ -76,6 +80,7 @@ Lookup Tables are replaced in their entirety or not replaced at all. When the Lo
 We will return at most the first 10 rows that failed validation.
 
 ### Limits
+
 This endpoint will return a 429 error if called more than 100 times in a rolling 24 hour window. We recommend updating lookup tables at most hourly to stay within this limit.
 
-This endpoint will return a 413 error if a Lookup Table exceeds 100MB uncompressed. In practice, this translates to 1-2M rows. If you have a lookup table that exceeds the limit, we recommend pruning the number of columns to those that are useful to analysis. Removing long URLs or user-generated content can bring a lookup table within this limit. If you still exceed the limit, please reach out to us at apis@mixpanel.com -- we'd love to hear your use case!
+This endpoint will return a 413 error if a Lookup Table exceeds 100MB uncompressed. In practice, this translates to 1-2M rows. If you have a lookup table that exceeds the limit, we recommend pruning the number of columns to those that are useful to analysis. Removing long URLs or user-generated content can bring a lookup table within this limit. If you still exceed the limit, please reach out to us at [apis@mixpanel.com](mailto:apis@mixpanel.com) -- we'd love to hear your use case!
