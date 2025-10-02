@@ -1,12 +1,12 @@
 ---
-title: "Get Pipeline"
-slug: "get-warehouse-pipeline-status"
-excerpt: ""
-hidden: false
-createdAt: "2022-02-18T20:12:47.078Z"
-updatedAt: "2023-09-26T21:06:38.030Z"
+title: Get Pipeline
+category:
+  uri: Data Pipelines API
+content:
+  excerpt: ''
+privacy:
+  view: public
 ---
-
 Given the name of the pipeline this API returns the status of the pipeline. It returns the summary and status of all the recent run export jobs for the pipeline.
 
 **Example Response:** Status with no Summary and a Filter

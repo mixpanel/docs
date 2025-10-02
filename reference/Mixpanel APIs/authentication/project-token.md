@@ -1,9 +1,11 @@
 ---
-title: "Project Token"
-slug: "project-token"
-hidden: false
-createdAt: "2020-08-13T18:08:34.151Z"
-updatedAt: "2023-06-21T22:51:50.849Z"
+title: Project Token
+category:
+  uri: Mixpanel APIs
+content:
+  excerpt: ''
+privacy:
+  view: public
 ---
 Every Mixpanel project has a unique alphanumerical token for collecting data. A project's token is not a secret value. In front-end implementation, such as our javascript library, this token will be available to anyone visiting your page.
 
@@ -62,6 +64,6 @@ For [Import Events](ref:import-events), the token is provided in the header as t
 
 ## Managing a Project's Token
 
-A project's token can be found in the Access Keys section of a project's settings overview page: <https://mixpanel.com/settings/project/>.
+A project's token can be found in the Access Keys section of a project's settings overview page: [https://mixpanel.com/settings/project/](https://mixpanel.com/settings/project/).
 
  To learn more, view our [project settings guide](https://help.mixpanel.com/hc/en-us/articles/115004490503-Project-Settings).
