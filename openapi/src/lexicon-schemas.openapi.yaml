@@ -221,12 +221,12 @@ paths:
                     "displayName": "Item Purchased",
                     "hidden": false,
                     "dropped": false,
-                    "owners": [
-                        {
-                            "name": "First Last",
-                            "email": "first.last@mixpanel.com"
-                        }
-                    ]
+                    "contacts": [
+                        "first.last@mixpanel.com"
+                    ],
+                    "teamContacts": [
+                        "Analytics Team"
+                    ],
                 }
             },
             "properties": {
@@ -410,20 +410,21 @@ components:
                     [Events only] If true, the event will be dropped at
                     ingestion time.
                   default: false
-                owners:
+                contacts:
                   type: array
                   description: >-
-                    A list of people or teams that are responsible for this
+                    A list of emails belonging to users responsible for this
                     entity.
                   items:
-                    type: object
-                    properties:
-                      name:
-                        type: string
-                      email:
-                        type: string
-                        format: email
+                    type: string
                     additionalProperties: false
+                teamContacts:
+                  type: array
+                  description: >-
+                    A list of team names responsible for this
+                    entity.
+                  items:
+                    type: string
               additionalProperties: false
     SchemaEntry:
       type: object
