@@ -26,9 +26,9 @@ jobs:
 
       - name: Delete staging version
         run: |
-          status=$(curl -s -o /dev/null -w "%{http_code}" -X DELETE "https://api.readme.com/v2/branches/"3.27-pr-${{ github.event.number }}" \
+          status=$(curl -s -o /dev/null -w "%{http_code}" -X DELETE "https://api.readme.com/v2/branches/3.27-pr-${{ github.event.number }}" \
             -H "Content-Type: application/json" \
-            -H "Authorization: Bearer ${{ secrets.README_API_KEY }}" \
+            -H "Authorization: Bearer ${{ secrets.README_API_KEY }}")
 
           if [ "$status" -eq 204 ]; then
             echo "Version deleted successfully"
