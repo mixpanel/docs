@@ -1,26 +1,48 @@
-# Benchmarks & Analytics Maturity
-Description
+# Identify Users
 
-## Benchmarks
-See product performance baselines across conversion, retention, and engagement. Use these as north stars to calibrate goals and identify outliers.
+import { Tabs } from "nextra/components";
+
+import ExtendedButton from "/components/ExtendedButton/ExtendedButton";
+import ExtendedTabs from "/components/ExtendedTabs/ExtendedTabs";
+
+import { dataItems } from "/utils/constants";
+
+## Overview
+
+This step introduces the `identify` method, which allows you to see which users triggered each event in Mixpanel.
+
+It also introduces the `people.set` method, which allows you to define the attributes of each user.
 
 
+
+{/* Next Section */}
+
+
+
+<hr></hr>
+<br></br>
 
 <div className="extendedButtonComponent" >
 
 <div className="bg-base100 rounded-xl">
- 
+  <h2 className="text-2xl font-medium mb-2 color:bg-purple200">
+    Next: Track Events
+  </h2>
   <p>
-
-
-</p>
+    Once you've implemented `identify`, it's time to track what your users are
+    doing in your product.
+  </p>
   <br></br>
   <ExtendedButton
-    title="Product Analytics Benchmarks"
-    link="https://mixpanel.com/benchmarks/"
+    title="Track Events in Your Product"
+    link="/docs/quickstart/track-events/"
   ></ExtendedButton>
 </div>
 
 </div>
 <br></br>
 <br></br>
+
+
+
+</div>
