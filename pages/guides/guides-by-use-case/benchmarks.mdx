@@ -1,0 +1,267 @@
+'use client';
+
+import React from "react";
+import { ExternalLink, LibraryBig, LineChart, Layers, Sparkles } from "lucide-react";
+import { Tabs, TabsList, TabsTrigger, TabsContent } from "@/components/ui/tabs";
+import { Card, CardContent } from "@/components/ui/card";
+import { Button } from "@/components/ui/button";
+
+/**
+ * MDX-compatible version (no TypeScript prop types, client-ready)
+ * Drop this into a .mdx file in your docs app. If your UI kit
+ * components are Client Components, the 'use client' pragma above
+ * ensures interactivity (Tabs, Buttons, etc.).
+ */
+
+// --- Helper components ---
+const SectionHeader = ({ id, eyebrow, title, blurb }) => (
+  <header id={id} className="scroll-mt-24">
+    <div className="text-sm uppercase tracking-wider text-muted-foreground">{eyebrow}</div>
+    <h2 className="mt-1 text-2xl md:text-3xl font-semibold">{title}</h2>
+    <p className="mt-2 text-muted-foreground max-w-3xl">{blurb}</p>
+  </header>
+);
+
+const Pill = ({ children }) => (
+  <span className="inline-flex items-center rounded-full border px-2 py-0.5 text-xs font-medium">{children}</span>
+);
+
+const LinkButton = ({ href, children }) => (
+  <a href={href} target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-1 text-sm font-medium text-primary hover:underline">
+    {children} <ExternalLink className="h-4 w-4" />
+  </a>
+);
+
+const GuideCard = ({ icon, title, caption, href, tag }) => (
+  <Card className="group overflow-hidden border bg-card transition-shadow hover:shadow-lg">
+    <CardContent className="p-5">
+      <div className="flex items-start gap-3">
+        <div className="rounded-2xl bg-muted p-2">{icon}</div>
+        <div className="flex-1">
+          <div className="flex items-center gap-2">
+            <h3 className="text-lg font-semibold leading-tight">{title}</h3>
+            {tag ? <Pill>{tag}</Pill> : null}
+          </div>
+          <p className="mt-1 text-sm text-muted-foreground">{caption}</p>
+          <div className="mt-3">
+            <LinkButton href={href}>Open</LinkButton>
+          </div>
+        </div>
+      </div>
+    </CardContent>
+  </Card>
+);
+
+const ListItem = ({ title, href, caption }) => (
+  <li className="py-3">
+    <div className="flex items-start justify-between gap-4">
+      <div>
+        <a href={href} target="_blank" rel="noopener noreferrer" className="font-medium hover:underline">
+          {title}
+        </a>
+        <p className="text-sm text-muted-foreground mt-1">{caption}</p>
+      </div>
+      <ExternalLink className="h-4 w-4 shrink-0 mt-1 text-muted-foreground" />
+    </div>
+  </li>
+);
+
+const TOC = () => (
+  <nav aria-label="Table of contents" className="sticky top-4 hidden lg:block">
+    <div className="rounded-2xl border p-4">
+      <div className="text-xs uppercase tracking-wider text-muted-foreground">On this page</div>
+      <ul className="mt-2 space-y-2 text-sm">
+        <li><a className="hover:underline" href="#benchmarks">Benchmarks</a></li>
+        <li><a className="hover:underline" href="#benchmarks-industry">Benchmarks by Industry</a></li>
+        <li><a className="hover:underline" href="#analytics-maturity">Analytics Maturity</a></li>
+      </ul>
+    </div>
+  </nav>
+);
+
+// --- Data ---
+const DATA = {
+  benchmarks: [
+    {
+      title: "Product Analytics Benchmarks",
+      caption:
+        "Explore conversion, retention, and engagement baselines across products to set realistic targets and spot outliers.",
+      href: "https://mixpanel.com/benchmarks/",
+      tag: "Live",
+      icon: <LineChart className="h-5 w-5" />,
+    },
+  ],
+  industry: [
+    {
+      title: "2025 Fintech Benchmarks Report",
+      caption: "Industry-specific performance norms and insights tailored for fintech teams.",
+      href: "https://mixpanel.com/m/benchmarks-report-2025-fintech/",
+      tag: "Report",
+      icon: <Layers className="h-5 w-5" />,
+    },
+    {
+      title: "2025 Media & Entertainment Benchmarks",
+      caption: "Benchmarks for audience growth, engagement, and retention across media & entertainment.",
+      href: "https://mixpanel.com/m/benchmarks-report-2025-media-entertainment/",
+      tag: "Report",
+      icon: <Layers className="h-5 w-5" />,
+    },
+  ],
+  maturity: [
+    {
+      title: "Get Started: Product Analytics Strategy",
+      caption: "Assess where you are on the analytics maturity curve and what to do to level up next.",
+      href: "https://mixpanel.com/content/product-analytics-strategy/get-started/",
+      tag: "Guide",
+      icon: <LibraryBig className="h-5 w-5" />,
+    },
+  ],
+};
+
+export default function GuidesBenchmarksMock() {
+  return (
+    <div className="mx-auto max-w-6xl px-4 py-10 md:py-14">
+      {/* Page header */}
+      <header className="mb-8 md:mb-10">
+        <div className="flex items-center gap-2 text-primary"><Sparkles className="h-5 w-5" /><span className="text-sm font-medium">Guides Mockup</span></div>
+        <h1 className="mt-1 text-3xl md:text-4xl font-semibold">Benchmarks & Analytics Maturity</h1>
+        <p className="mt-2 max-w-3xl text-muted-foreground">
+          A visual, link-first explainer page for Mixpanel Guides that pulls together our benchmarks and maturity resources. Use this mockup to test layout, tone, and information density before we ship.
+        </p>
+      </header>
+
+      {/* Top controls */}
+      <div className="flex flex-col-reverse gap-6 lg:grid lg:grid-cols-[220px_1fr]">
+        <TOC />
+
+        <main className="space-y-12">
+          {/* Layout switcher */}
+          <Tabs defaultValue="cards" className="w-full">
+            <div className="flex items-center justify-between">
+              <div className="text-sm text-muted-foreground">Choose a layout for the cards:</div>
+              <TabsList>
+                <TabsTrigger value="cards">Cards</TabsTrigger>
+                <TabsTrigger value="list">List</TabsTrigger>
+                <TabsTrigger value="compact">Compact</TabsTrigger>
+              </TabsList>
+            </div>
+
+            {/* --- Benchmarks --- */}
+            <section className="pt-6">
+              <SectionHeader
+                id="benchmarks"
+                eyebrow="Section 1"
+                title="Benchmarks"
+                blurb="See product performance baselines across conversion, retention, and engagement. Use these as north stars to calibrate goals and identify outliers."
+              />
+
+              <TabsContent value="cards" className="mt-4">
+                <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
+                  {DATA.benchmarks.map((c) => (
+                    <GuideCard key={c.title} {...c} />
+                  ))}
+                </div>
+              </TabsContent>
+              <TabsContent value="list" className="mt-2">
+                <ul>
+                  {DATA.benchmarks.map((c) => (
+                    <ListItem key={c.title} title={c.title} caption={c.caption} href={c.href} />
+                  ))}
+                </ul>
+              </TabsContent>
+              <TabsContent value="compact" className="mt-2">
+                <div className="flex flex-wrap gap-2">
+                  {DATA.benchmarks.map((c) => (
+                    <a key={c.title} href={c.href} target="_blank" rel="noopener noreferrer" className="rounded-xl border px-3 py-2 text-sm hover:bg-muted inline-flex items-center gap-2">
+                      <LineChart className="h-4 w-4" /> {c.title}
+                    </a>
+                  ))}
+                </div>
+              </TabsContent>
+            </section>
+
+            {/* --- Benchmarks by Industry --- */}
+            <section className="pt-10">
+              <SectionHeader
+                id="benchmarks-industry"
+                eyebrow="Section 2"
+                title="Benchmarks by Industry"
+                blurb="Drill into industry-specific norms to set context-rich targets. Start with our latest Fintech and Media & Entertainment reports."
+              />
+
+              <TabsContent value="cards" className="mt-4">
+                <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
+                  {DATA.industry.map((c) => (
+                    <GuideCard key={c.title} {...c} />
+                  ))}
+                </div>
+              </TabsContent>
+              <TabsContent value="list" className="mt-2">
+                <ul>
+                  {DATA.industry.map((c) => (
+                    <ListItem key={c.title} title={c.title} caption={c.caption} href={c.href} />
+                  ))}
+                </ul>
+              </TabsContent>
+              <TabsContent value="compact" className="mt-2">
+                <div className="flex flex-wrap gap-2">
+                  {DATA.industry.map((c) => (
+                    <a key={c.title} href={c.href} target="_blank" rel="noopener noreferrer" className="rounded-xl border px-3 py-2 text-sm hover:bg-muted inline-flex items-center gap-2">
+                      <Layers className="h-4 w-4" /> {c.title}
+                    </a>
+                  ))}
+                </div>
+              </TabsContent>
+            </section>
+
+            {/* --- Analytics Maturity --- */}
+            <section className="pt-10">
+              <SectionHeader
+                id="analytics-maturity"
+                eyebrow="Section 3"
+                title="Analytics Maturity"
+                blurb="Assess where your org sits on the analytics maturity curve and chart the next moves to unlock impact."
+              />
+
+              <TabsContent value="cards" className="mt-4">
+                <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
+                  {DATA.maturity.map((c) => (
+                    <GuideCard key={c.title} {...c} />
+                  ))}
+                </div>
+              </TabsContent>
+              <TabsContent value="list" className="mt-2">
+                <ul>
+                  {DATA.maturity.map((c) => (
+                    <ListItem key={c.title} title={c.title} caption={c.caption} href={c.href} />
+                  ))}
+                </ul>
+              </TabsContent>
+              <TabsContent value="compact" className="mt-2">
+                <div className="flex flex-wrap gap-2">
+                  {DATA.maturity.map((c) => (
+                    <a key={c.title} href={c.href} target="_blank" rel="noopener noreferrer" className="rounded-xl border px-3 py-2 text-sm hover:bg-muted inline-flex items-center gap-2">
+                      <LibraryBig className="h-4 w-4" /> {c.title}
+                    </a>
+                  ))}
+                </div>
+              </TabsContent>
+            </section>
+          </Tabs>
+
+          {/* Footer CTA to test engagement */}
+          <div className="rounded-2xl border p-5 flex flex-col md:flex-row md:items-center md:justify-between gap-3">
+            <div>
+              <div className="text-sm uppercase tracking-wider text-muted-foreground">Prototype</div>
+              <p className="text-base font-medium">Does this layout work for your team? Share feedback and we’ll iterate.</p>
+            </div>
+            <div className="flex gap-2">
+              <Button asChild variant="default"><a href="#benchmarks">Back to top</a></Button>
+              <Button asChild variant="outline"><a href="https://docs.mixpanel.com/guides/what-is-mixpanel" target="_blank" rel="noopener noreferrer">View current Guides page</a></Button>
+            </div>
+          </div>
+        </main>
+      </div>
+    </div>
+  );
+}
