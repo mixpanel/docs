@@ -176,10 +176,7 @@ The event time follows the start time entries in the table, so if you have an en
 
 ![image](/historic_profile_property_profile_view.png)
 
-### Billing implications
-Each entry in a Profile History table generates an event; updating the value on that row or deleting the row will thus generate an update or deletion. For event plans, the event tally will also add the number of any event, update or delete from warehouse connectors, including profile history tables. This differs from basic profile tables (which only update the current value, there's no history), which leads to profile tables not counting towards billing but profile history ones do.
-
-For MTU plans, the events and updates/deletes don't directly affect the MTU tally unless the volume of events and updates pushes the threshold for the guardrail (by default 1000 events per user); once the threshold for the guardrail is crossed, events and updates from profile history tables will also count towards billing.
+For billing details, read the warehouse connectors [billing FAQ section on People/Group updates](../tracking-methods/warehouse-connectors#what-actions-impact-billing-for-warehouse-connectors).
 
 ## Deleting Profiles
 
@@ -241,3 +238,6 @@ To delete profiles yourself, please use this [guide](https://developer.mixpanel.
 
 ### What is the frequency of updates that are supported?
 The feature supports updates at the rate of about one change per day for each user. It is meant to cover use-cases like plan type changes, MRR etc which are slowly changing dimensions. It is not intended for more frequent changes like game score updates.
+
+## How are historic profile properties calculated within custom properties?
+You can use historic user and group properties within custom properties; when used in a custom property, the value used will always be based on the time of the event.
