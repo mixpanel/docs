@@ -32,6 +32,7 @@ import { Cards, Callout } from 'nextra/components'
 - **Runtime Properties** — request-time attributes (e.g., URL path, app version) used to target immediately.
 - **Assignment vs Exposure** — assignment is deciding the variant; exposure is when your app **uses** that variant to render.
 - **Feature Flag API Request** - is a call made to a feature flag API to retrieve the current state or configuration of one or more feature flags. This request allows an application to dynamically determine which features should be active for a particular user
+- **Context** - key value pairs mapping variant assignment keys to user values for variant assignment
 
 ## Types of Feature Flags
 
@@ -54,6 +55,7 @@ This is the randomization bucket unit: `distinct_id` (user), `device_id`, or a *
 
 - For projects that support ([Group Analytics](/docs/data-structure/group-analytics)), you can choose one of your group keys as the Variant Assignment Key as well.
     - **Group** `group_id` — target by account/org using a group key (e.g., `account_id`).
+    - Values for group keys will need to be supplied to the Mixpanel feature flag SDK through the `context` parameter
 
 ### Variants Management
 

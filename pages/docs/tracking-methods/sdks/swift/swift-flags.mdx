@@ -30,7 +30,7 @@ Mixpanel.initialize(token: "YOUR_PROJECT_TOKEN", options: MixpanelOptions(
 ))
 ```
 
-If your flag is configured with a Variant Assignment Key other than `distinct_id` for any of the feature flags in your project, then the call to initialize feature flags must include those keys.
+If your flag is configured with a Variant Assignment Key other than `distinct_id` or `device_id` for any of the feature flags in your project, then the call to initialize feature flags must include those keys.
 
 For example, for a Variant Assignment Key, `company_id`, you would setup the SDK as follows:
 
