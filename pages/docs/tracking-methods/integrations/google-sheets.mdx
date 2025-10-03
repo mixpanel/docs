@@ -136,3 +136,18 @@ Using the principle of least-privilege, Sheets™ ⇔ Mixpanel requests access t
 - `https://www.googleapis.com/auth/script.external_request` is used to send your mapped data to mixpanel and to request your report/cohort data from mixpanel.
 
 No other sensitive scopes are requested by the application.
+
+## FAQ
+
+**1. Why isn't my recurring sync exporting data, even though a manual run works?**
+
+A recurring sync that is not exporting data despite a functional manual sync may be indicative of a stale trigger caused by the extension entering a bad state (could be caused by a number of reason originating in your local Google Workspace instance).
+
+As a troubleshooting step please navigate to [Apps Script > My Triggers from your Google Workspace]( https://script.google.com/home/triggers), delete the existing Mixpanel Sheets extension trigger, then try creating a new recurring sync to generate a new trigger.
+
+**2. Why is my sync failing to authenticate even though I entered the correct Mixpanel credentials?**
+
+Some users report seeing the error `Authorization is required to perform that action.` when setting up a sync, despite providing the correct Mixpanel authentication. This issue occurs when you are logged into multiple Google accounts simultaneously, where the sheet is owned by one account (e.g., personal) but the extension is installed on another account (e.g., business).
+
+To resolve the issue, log out and reinstall the extension on the same account you use to access the sheet.
+

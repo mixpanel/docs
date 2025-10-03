@@ -1,12 +1,12 @@
 ---
-title: "Query Profiles"
-slug: "engage-query"
-excerpt: ""
-hidden: false
-createdAt: "2020-10-20T00:41:48.205Z"
-updatedAt: "2023-09-26T21:06:39.094Z"
+title: Query Profiles
+category:
+  uri: Query API
+content:
+  excerpt: ''
+privacy:
+  view: public
 ---
-
 Query user (or group) profile data and return list of users (or groups) that fit specified parameters.
 
 API responses will return at most `page_size` records for each request. To request additional records, callers should repeat their call to the API using the same `where` param, but provide a `session_id` parameter with a value taken from the first response, and include a `page` parameter with a value one greater than the value of page in the response.
