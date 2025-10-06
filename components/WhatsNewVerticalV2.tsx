@@ -71,7 +71,7 @@ function buildItems(): Item[] {
     .sort((a: Item, b: Item) => new Date(b.date).getTime() - new Date(a.date).getTime());
 }
 
-/* ---------- shared inline styles ---------- */
+/* ---------- shared inline styles (theme-safe) ---------- */
 const TL_X = 12;                     // timeline line X (relative to UL left)
 const TL_PAD = TL_X + 16;            // left padding so content clears the gutter
 
@@ -89,14 +89,14 @@ const s = {
     marginTop: 12,
     fontSize: 15,
     lineHeight: 1.6,
-    color: 'rgba(255,255,255,0.8)',
+    /* inherit color so it works in light & dark */
   },
   heroLink: {
     marginTop: 12,
     fontSize: 14,
     textDecoration: 'underline',
     textUnderlineOffset: '4px',
-    color: 'rgba(255,255,255,0.85)',
+    /* inherit color; let site/theme decide link color */
     display: 'inline-block',
   },
   rowBar: {
@@ -108,14 +108,14 @@ const s = {
   },
   showing: {
     fontSize: 12,
-    color: 'rgba(255,255,255,0.55)',
+    opacity: 0.7, // theme-safe
   },
   controlsWrap: { whiteSpace: 'nowrap' as const, minWidth: 0 },
   btn: {
     fontSize: 12,
     padding: '6px 8px',
     borderRadius: 6,
-    border: '1px solid rgba(255,255,255,0.18)',
+    border: '1px solid currentColor', // theme-safe border
     background: 'transparent',
     color: 'inherit',
     cursor: 'pointer',
@@ -124,7 +124,7 @@ const s = {
     fontSize: 12,
     padding: '6px 8px',
     borderRadius: 6,
-    border: '1px solid rgba(255,255,255,0.18)',
+    border: '1px solid currentColor', // theme-safe border
     background: 'transparent',
     color: 'inherit',
   },
@@ -142,7 +142,8 @@ const s = {
     top: 0,
     bottom: 0,
     width: 2,
-    background: 'rgba(255,255,255,0.07)',
+    background: 'currentColor', // theme-safe
+    opacity: 0.12,               // subtle in both themes
   },
   /* card */
   cardLi: { padding: '12px 0', position: 'relative' as const },
@@ -161,7 +162,10 @@ const s = {
     textDecorationThickness: '1px',
     textUnderlineOffset: '4px',
   },
-  cardDate: { fontSize: 12, color: 'rgba(255,255,255,0.55)' },
+  cardDate: {
+    fontSize: 12,
+    opacity: 0.6, // theme-safe instead of white
+  },
   imgWrap: {
     width: '100%',
     borderRadius: 12,
@@ -179,7 +183,7 @@ const s = {
   },
   footerLink: {
     fontSize: 14,
-    color: 'rgb(167 139 250)',
+    color: 'rgb(167 139 250)', // accent that reads on both themes
     textDecoration: 'underline',
     textUnderlineOffset: '4px',
   },
@@ -191,8 +195,8 @@ const s = {
     width: 8,
     height: 8,
     borderRadius: 999,
-    background: 'rgb(167 139 250)',  // violet dot
-    boxShadow: '0 0 0 2px rgba(20,20,30,0.9)', // ring to separate from bg
+    background: 'rgb(167 139 250)',  // violet dot (visible in both)
+    boxShadow: '0 0 0 2px rgba(20,20,30,0.9)', // subtle ring for contrast
   },
   /* NEW badge */
   newBadge: {
