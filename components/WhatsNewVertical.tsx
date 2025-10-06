@@ -153,7 +153,7 @@ const s = {
     marginTop: 12,
     fontSize: 15,
     lineHeight: 1.6,
-    // color is forced in CSS with !important (see ThemeVars)
+    color: 'var(--wn-text)', 
   },
 
   heroLink: {
@@ -161,8 +161,8 @@ const s = {
     fontSize: 14,
     textDecoration: 'underline',
     textUnderlineOffset: '4px',
-    // color is forced in CSS with !important
     display: 'inline-block',
+    color: 'var(--wn-text)',
   },
 
   rowBar: {
@@ -175,7 +175,7 @@ const s = {
 
   showing: {
     fontSize: 12,
-    // color forced in CSS (!important)
+    color: 'var(--wn-muted)', 
   },
 
   controlsWrap: { whiteSpace: 'nowrap' as const, minWidth: 0 },
@@ -241,7 +241,7 @@ const s = {
 
   cardDate: {
     fontSize: 12,
-    // color forced in CSS (!important)
+    color: 'var(--wn-muted)',
   },
 
   imgWrap: {
@@ -469,9 +469,9 @@ export default function WhatsNewVertical() {
 
       {/* TOP BAR — single line */}
       <div style={s.rowBar}>
-        <div className="wn-showing" style={{ fontSize: 13 }}>
+        <div className="wn-showing" style={s.showing}>
           Showing {total === 0 ? 0 : start + 1}–{end} of {total}
-        </div>
+        </div>         
         <ControlsTop
           pageSize={pageSize}
           canPrev={canPrev}
