@@ -171,7 +171,7 @@ const TL_X = 12;                     // timeline line X (relative to UL left)
 const TL_PAD = TL_X + 16;            // left padding so content clears the gutter
 
 const s = {
-  page: { maxWidth: 880, margin: '0 auto' },
+  page: { maxWidth: 880, margin: '0 auto', color: 'inherit' }, // ensure we inherit theme text color
   h1: {
     marginTop: 16,
     marginBottom: 0,
@@ -184,14 +184,15 @@ const s = {
     marginTop: 12,
     fontSize: 15,
     lineHeight: 1.6,
-    /* inherit color so it works in light & dark */
+    color: 'currentColor',           // explicitly use theme text color (fixes light mode washout)
   },
   heroLink: {
     marginTop: 12,
     fontSize: 14,
     textDecoration: 'underline',
     textUnderlineOffset: '4px',
-    /* inherit color; let site/theme decide link color */
+    color: 'currentColor',           // readable in both themes
+    textDecorationColor: 'currentColor',    
     display: 'inline-block',
   },
   rowBar: {
@@ -238,7 +239,7 @@ const s = {
     bottom: 0,
     width: 2,
     background: 'currentColor', // theme-safe
-    opacity: 0.12,               // subtle in both themes
+    opacity: 0.18,                   // a touch stronger so it shows on light bg    
   },
   /* card */
   cardLi: { padding: '12px 0', position: 'relative' as const },
@@ -278,9 +279,10 @@ const s = {
   },
   footerLink: {
     fontSize: 14,
-    color: 'rgb(167 139 250)', // accent that reads on both themes
+    color: 'currentColor',           // keeps it obvious in both themes    
     textDecoration: 'underline',
     textUnderlineOffset: '4px',
+    textDecorationColor: 'currentColor',
   },
   /* timeline dot */
   dot: {
@@ -291,7 +293,8 @@ const s = {
     height: 8,
     borderRadius: 999,
     background: 'rgb(167 139 250)',  // violet dot (visible in both)
-    boxShadow: '0 0 0 2px rgba(20,20,30,0.9)', // subtle ring for contrast
+    // slightly lighter ring so it doesn't look too heavy in light mode
+    boxShadow: '0 0 0 2px rgba(0,0,0,0.25)',
   },
   /* NEW badge */
   newBadge: {
