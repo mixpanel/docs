@@ -31,7 +31,7 @@ options.featureFlagsEnabled = true;
 MixpanelAPI mixpanel = MixpanelAPI.getInstance(context, "YOUR_PROJECT_TOKEN", options);
 ```
 
-If your flag is configured with a Variant Assignment Key other than `distinct_id` for any of the feature flags in your project, then the call to initialize feature flags must include those keys.
+If your flag is configured with a Variant Assignment Key other than `distinct_id` or `device_id` for any of the feature flags in your project, then the call to initialize feature flags must include those keys.
 
 For example, for a Variant Assignment Key, `company_id`, you would setup the SDK as follows:
 
@@ -71,22 +71,15 @@ Following initialization, you can reload feature flag assignments in a couple of
 
 ```java
 String updatedDistinctId = "";
+// Reload after login
 mixpanel.identify(updatedDistinctId);
 ```
 
-2) If variant assignment keys or properties used in Runtime Targeting change during the lifetime of your application, you can manually reload flags by updating the context:
+2) To refresh flag variants that may have changed during the lifetime of your app, you can manually reload flags:
 
 ```java
-JSONObject newCustomProperties = new JSONObject();
-newCustomProperties.put("platform", "android");
-
-JSONObject newContext = new JSONObject();
-newContext.put("company_id", "Y");
-newContext.put("customProperties", newCustomProperties);
-
-// Update the context and reload flags
-mixpanel.getOptions().featureFlagsContext = newContext;
-mixpanel.getFlags().loadFlags();
+// Manually reload flags if desired
+mixpanel.flags.loadFlags();
 ```
 ## Flag Evaluation
 
@@ -99,14 +92,15 @@ This action triggers tracking an exposure event, `$experiment_started` to your M
 
 ```java
 // Get just the flag value asynchronously
-mixpanel.getFlags().getVariantValue("my-feature-flag", "control", new FlagCompletionCallback<Object>() {
+String fallback = "control"; // the value to use if the user doesn't match any of the flag's rollout rules
+mixpanel.flags.getVariantValue("my-feature-flag", fallback, new FlagCompletionCallback<Object>() {
     @Override
     public void onComplete(Object value) {
         // This runs on the main thread
         if (value.equals("variant_a")) {
-            showExperimentForVariantA();
+            showExperienceForVariantA();
         } else if (value.equals("variant_b")) {
-            showExperimentForVariantB();
+            showExperienceForVariantB();
         } else {
             showDefaultExperience();
         }
@@ -118,7 +112,8 @@ mixpanel.getFlags().getVariantValue("my-feature-flag", "control", new FlagComple
 
 ```java
 // Check if a boolean flag is enabled asynchronously
-mixpanel.getFlags().isEnabled("my-boolean-flag", false, new FlagCompletionCallback<Boolean>() {
+boolean fallback = false; // the value to use if the user doesn't match any of the flag's rollout rules
+mixpanel.flags.isEnabled("my-boolean-flag", fallback, new FlagCompletionCallback<Boolean>() {
     @Override
     public void onComplete(Boolean isEnabled) {
         // This runs on the main thread
@@ -137,13 +132,14 @@ mixpanel.getFlags().isEnabled("my-boolean-flag", false, new FlagCompletionCallba
 
 ```java
 // Get just the flag value synchronously
-Object flagValue = mixpanel.getFlags().getVariantValueSync("my-feature-flag", "control");
+String fallback = "control"; // the value to use if the user doesn't match any of the flag's rollout rules
+Object flagValue = mixpanel.flags.getVariantValueSync("my-feature-flag", fallback);
 
 // Use flag value in your application logic
 if (flagValue.equals("variant_a")) {
-    showExperimentForVariantA();
+    showExperienceForVariantA();
 } else if (flagValue.equals("variant_b")) {
-    showExperimentForVariantB();
+    showExperienceForVariantB();
 } else {
     showDefaultExperience();
 }
@@ -151,8 +147,9 @@ if (flagValue.equals("variant_a")) {
 
 **Feature Gates: Check if Flag is Enabled/Disabled**
 ```java
-// Check if a boolean flag is enabled 
-boolean isEnabled = mixpanel.getFlags().isEnabledSync("my-boolean-flag", false);
+// Check if a boolean flag is enabled
+boolean fallback = false; // the value to use if the user doesn't match any of the flag's rollout rules
+boolean isEnabled = mixpanel.flags.isEnabledSync("my-boolean-flag", fallback);
 
 if (isEnabled) {
     showNewFeature();
