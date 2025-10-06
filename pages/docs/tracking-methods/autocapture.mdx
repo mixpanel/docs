@@ -76,7 +76,6 @@ Autocapture's default settings also include the following privacy and security c
 - Sensitive elements — such as end user text inputs, selects, and textarea elements, are default-excluded from tracking. [You can view our default configurations and options here](https://docs.mixpanel.com/docs/tracking-methods/sdks/javascript).
 - By default, Autocapture will not collect sensitive input fields like passwords or form fields — it will only capture a limited set of HTML attributes like class, name, aria-label, role, title, and type attribute values. No content populated by an end user will be collected.
 - By default, Autocapture will not capture the text that your website or app displays (`textContent` and its children).
-- The exception to these attribute collection rules is when an element has an explicit attribute added with the prefix “mp-track-”. This allows data in these attributes to be intentionally passed back to Mixpanel.
 - Mixpanel also provides flexibility to define the classes pages of your website for which you configure Autocapture by using and `block_selectors` and `block_url_regexes`.
 
 To change these default settings, you can customize what is collected through your [SDK configuration](https://docs.mixpanel.com/docs/tracking-methods/sdks/javascript).

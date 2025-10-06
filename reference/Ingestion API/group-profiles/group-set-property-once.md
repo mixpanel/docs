@@ -1,8 +1,12 @@
 ---
-title: "Set Property Once"
-slug: "group-set-property-once"
-excerpt: "Adds properties to a group only if the property is not already set. The profile is created if it does not exist."
-hidden: false
-createdAt: "2020-10-20T00:41:26.258Z"
-updatedAt: "2023-09-26T21:06:38.998Z"
+title: Set Property Once
+category:
+  uri: Ingestion API
+content:
+  excerpt: >-
+    Adds properties to a group only if the property is not already set. The
+    profile is created if it does not exist.
+privacy:
+  view: public
 ---
+
