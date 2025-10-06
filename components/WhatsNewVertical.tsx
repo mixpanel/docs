@@ -95,13 +95,33 @@ function buildItems(): Item[] {
 function ThemeVars() {
   return (
     <style>{`
+      /* Default (fallback) */
       :root {
         --wn-text: rgba(0,0,0,0.90);
         --wn-muted: rgba(0,0,0,0.60);
         --wn-line: rgba(0,0,0,0.18);
       }
+
+      /* Light theme selectors used by various doc themes */
+      html[data-theme="light"],
+      :root.light,
+      :root:not(.dark):not([data-theme="dark"]) {
+        --wn-text: rgba(0,0,0,0.90);
+        --wn-muted: rgba(0,0,0,0.60);
+        --wn-line: rgba(0,0,0,0.18);
+      }
+
+      /* Dark theme selectors used by various doc themes */
+      html[data-theme="dark"],
+      :root.dark {
+        --wn-text: rgba(255,255,255,0.92);
+        --wn-muted: rgba(255,255,255,0.65);
+        --wn-line: rgba(255,255,255,0.18);
+      }
+
+      /* Optional: if you ALSO want to respect OS when no site theme is set */
       @media (prefers-color-scheme: dark) {
-        :root {
+        :root:not([data-theme]):not(.light):not(.dark) {
           --wn-text: rgba(255,255,255,0.92);
           --wn-muted: rgba(255,255,255,0.65);
           --wn-line: rgba(255,255,255,0.18);
