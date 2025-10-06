@@ -6,18 +6,15 @@ import { getPagesUnderRoute } from 'nextra/context';
 type Item = {
   url: string;
   title: string;
-  date: string;       // ISO-ish e.g. 2025-09-22
+  date: string;       // ISO e.g. 2025-09-22
   thumbnail: string;  // URL or empty string
 };
 
 /* -------------------------------------------------------
-   Source: all pages under /changelogs
+   Build items from /changelogs (NEWEST → OLDEST)
 ------------------------------------------------------- */
 const changelogPages = getPagesUnderRoute('/changelogs');
 
-/* -------------------------------------------------------
-   Utilities
-------------------------------------------------------- */
 const parseDateFromString = (s = '') => {
   const m = s.match(/(\d{4}-\d{2}-\d{2})/);
   return m ? m[1] : '';
@@ -53,9 +50,6 @@ const clampStyle = (lines: number): React.CSSProperties => ({
   overflow: 'hidden',
 });
 
-/* -------------------------------------------------------
-   Build items (NEWEST → OLDEST)
-------------------------------------------------------- */
 function buildItems(): Item[] {
   return (changelogPages || [])
     .map((p: any) => {
@@ -83,14 +77,14 @@ function buildItems(): Item[] {
       } as Item;
     })
     .filter(Boolean)
-    .sort(
-      (a: Item, b: Item) =>
-        new Date(b.date).getTime() - new Date(a.date).getTime()
-    );
+    .sort((a: Item, b: Item) => new Date(b.date).getTime() - new Date(a.date).getTime());
 }
 
 /* -------------------------------------------------------
-   Theme variables (work in light & dark)
+   THEME VARS + OVERRIDES (scoped to .wn wrapper)
+   - We bind to your site's theme (data-theme / .dark) AND
+     include strong, scoped overrides with !important for
+     the elements that were washed out in Light mode.
 ------------------------------------------------------- */
 function ThemeVars() {
   return (
@@ -102,37 +96,42 @@ function ThemeVars() {
         --wn-line: rgba(0,0,0,0.18);
       }
 
-      /* Light theme selectors used by various doc themes */
-      html[data-theme="light"],
-      :root.light,
-      :root:not(.dark):not([data-theme="dark"]) {
+      /* Light theme (site toggle) */
+      html[data-theme="light"], :root.light, :root:not(.dark):not([data-theme="dark"]) {
         --wn-text: rgba(0,0,0,0.90);
         --wn-muted: rgba(0,0,0,0.60);
         --wn-line: rgba(0,0,0,0.18);
       }
 
-      /* Dark theme selectors used by various doc themes */
-      html[data-theme="dark"],
-      :root.dark {
+      /* Dark theme (site toggle) */
+      html[data-theme="dark"], :root.dark {
         --wn-text: rgba(255,255,255,0.92);
         --wn-muted: rgba(255,255,255,0.65);
         --wn-line: rgba(255,255,255,0.18);
       }
 
-      /* Optional: if you ALSO want to respect OS when no site theme is set */
-      @media (prefers-color-scheme: dark) {
-        :root:not([data-theme]):not(.light):not(.dark) {
-          --wn-text: rgba(255,255,255,0.92);
-          --wn-muted: rgba(255,255,255,0.65);
-          --wn-line: rgba(255,255,255,0.18);
-        }
+      /* ---- HIGH-SPECIFICITY, SCOPED OVERRIDES ----
+         These ensure hero text and muted text are readable
+         even if an upstream prose style tries to tint them. */
+      .wn .wn-hero p,
+      .wn .wn-hero a {
+        color: var(--wn-text) !important;
+      }
+      .wn .wn-showing,
+      .wn .wn-date {
+        color: var(--wn-muted) !important;
+      }
+      .wn .wn-footer a {
+        color: var(--wn-text) !important;
+        text-decoration: underline;
+        text-underline-offset: 4px;
       }
     `}</style>
   );
 }
 
 /* -------------------------------------------------------
-   Inline styles (theme-safe via CSS vars)
+   Inline styles (use CSS vars above)
 ------------------------------------------------------- */
 const TL_X = 12;           // timeline line X from UL left
 const TL_PAD = TL_X + 16;  // left padding to clear gutter
@@ -154,7 +153,7 @@ const s = {
     marginTop: 12,
     fontSize: 15,
     lineHeight: 1.6,
-    color: 'var(--wn-text)',
+    // color is forced in CSS with !important (see ThemeVars)
   },
 
   heroLink: {
@@ -162,7 +161,7 @@ const s = {
     fontSize: 14,
     textDecoration: 'underline',
     textUnderlineOffset: '4px',
-    color: 'var(--wn-text)',
+    // color is forced in CSS with !important
     display: 'inline-block',
   },
 
@@ -176,7 +175,7 @@ const s = {
 
   showing: {
     fontSize: 12,
-    color: 'var(--wn-muted)',
+    // color forced in CSS (!important)
   },
 
   controlsWrap: { whiteSpace: 'nowrap' as const, minWidth: 0 },
@@ -240,7 +239,10 @@ const s = {
     textUnderlineOffset: '4px',
   },
 
-  cardDate: { fontSize: 12, color: 'var(--wn-muted)' },
+  cardDate: {
+    fontSize: 12,
+    // color forced in CSS (!important)
+  },
 
   imgWrap: {
     width: '100%',
@@ -259,13 +261,6 @@ const s = {
     display: 'inline-block',
   },
 
-  footerLink: {
-    fontSize: 14,
-    color: 'var(--wn-text)',
-    textDecoration: 'underline',
-    textUnderlineOffset: '4px',
-  },
-
   /* Timeline dot */
   dot: {
     position: 'absolute' as const,
@@ -274,8 +269,8 @@ const s = {
     width: 8,
     height: 8,
     borderRadius: 999,
-    background: 'rgb(167 139 250)',         // violet dot
-    boxShadow: '0 0 0 2px rgba(0,0,0,0.25)', // subtle ring for light mode too
+    background: 'rgb(167 139 250)',
+    boxShadow: '0 0 0 2px rgba(0,0,0,0.25)',
   },
 
   /* NEW badge */
@@ -314,7 +309,7 @@ function ControlsTop({
 }) {
   return (
     <div style={s.controlsWrap}>
-      <span style={{ fontSize: 13, color: 'var(--wn-muted)', marginRight: 6 }}>
+      <span className="wn-showing" style={{ fontSize: 13, marginRight: 6 }}>
         Show
       </span>
       <select
@@ -381,7 +376,6 @@ function ControlsBottom({
    Card
 ------------------------------------------------------- */
 function Row({ item }: { item: Item }) {
-  // “NEW” if within last 14 days
   const isNew = (() => {
     const d = new Date(item.date);
     if (isNaN(d as unknown as number)) return false;
@@ -400,7 +394,7 @@ function Row({ item }: { item: Item }) {
             {item.title}
             {isNew && <span style={s.newBadge}>NEW</span>}
           </h3>
-          <div style={s.cardDate}>{formatDay(item.date)}</div>
+          <div className="wn-date" style={{ fontSize: 12 }}>{formatDay(item.date)}</div>
         </div>
 
         <div style={s.imgWrap}>
@@ -430,8 +424,6 @@ function Row({ item }: { item: Item }) {
 ------------------------------------------------------- */
 export default function WhatsNewVertical() {
   const items = useMemo(buildItems, []);
-
-  // paging (Latest X)
   const [pageSize, setPageSize] = useState<number>(5);
   const [offset, setOffset] = useState<number>(0);
 
@@ -451,11 +443,11 @@ export default function WhatsNewVertical() {
   const next = () => setOffset(Math.min(total, offset + pageSize));
 
   return (
-    <section className="nx-not-prose not-prose" style={s.page}>
+    <section className="nx-not-prose not-prose wn" style={s.page}>
       <ThemeVars />
 
       {/* HERO */}
-      <div>
+      <div className="wn-hero">
         <h1 style={s.h1}>What&apos;s New</h1>
 
         <p style={s.heroP}>
@@ -477,7 +469,7 @@ export default function WhatsNewVertical() {
 
       {/* TOP BAR — single line */}
       <div style={s.rowBar}>
-        <div style={s.showing}>
+        <div className="wn-showing" style={{ fontSize: 13 }}>
           Showing {total === 0 ? 0 : start + 1}–{end} of {total}
         </div>
         <ControlsTop
@@ -500,10 +492,8 @@ export default function WhatsNewVertical() {
 
       {/* BOTTOM BAR — single line */}
       <div style={{ ...s.rowBar, marginTop: 32 }}>
-        <div>
-          <a href="/changelogs" style={s.footerLink}>
-            Browse the full Changelog →
-          </a>
+        <div className="wn-footer">
+          <a href="/changelogs">Browse the full Changelog →</a>
         </div>
         <ControlsBottom canPrev={canPrev} canNext={canNext} prev={prev} next={next} />
       </div>
