@@ -8,7 +8,7 @@ type Item = {
   title: string;
   date: string;
   thumbnail: string;
-  videoEmbed?: string; // <— NEW: embed URL if frontMatter.video is present and recognized
+  videoEmbed?: string; // derived embed URL if a supported video is present
 };
 
 const changelogPages = getPagesUnderRoute('/changelogs');
@@ -41,32 +41,39 @@ const clampStyle = (lines: number): React.CSSProperties => ({
   overflow: 'hidden'
 });
 
-/** Make an embeddable URL from a YouTube/Loom link (matches ChangelogIndex logic) */
-const getVideoEmbedURL = (videoURL?: string): string | undefined => {
+/** Build an embeddable URL for common hosts */
+function getVideoEmbedURL(videoURL?: string): string | undefined {
   if (!videoURL) return undefined;
   try {
-    const parsedURL = new URL(videoURL);
-    const host = parsedURL.host.replace(/^www\./, '');
+    const url = new URL(videoURL);
+    const host = url.host.replace(/^www\./, '');
 
     // YouTube
-    if (host === 'youtube.com' || host === 'youtu.be') {
-      const id =
-        parsedURL.searchParams.get('v') ||
-        parsedURL.pathname.split('/').filter(Boolean).pop();
+    if (host === 'youtube.com') {
+      const id = url.searchParams.get('v') || url.pathname.split('/').pop();
+      return id ? `https://www.youtube.com/embed/${id}` : undefined;
+    }
+    if (host === 'youtu.be') {
+      const id = url.pathname.split('/').pop();
       return id ? `https://www.youtube.com/embed/${id}` : undefined;
     }
 
     // Loom
     if (host === 'loom.com') {
-      const id = parsedURL.pathname.split('/').filter(Boolean).pop();
+      const id = url.pathname.split('/').pop();
       return id ? `https://www.loom.com/embed/${id}?hideEmbedTopBar=true` : undefined;
     }
 
-    return undefined;
+    // Vimeo
+    if (host === 'vimeo.com') {
+      const id = url.pathname.split('/').pop();
+      return id ? `https://player.vimeo.com/video/${id}` : undefined;
+    }
   } catch {
-    return undefined;
+    // ignore invalid URL
   }
-};
+  return undefined;
+}
 
 /* ---------- build items (NEWEST → OLDEST) ---------- */
 function buildItems(): Item[] {
@@ -78,6 +85,7 @@ function buildItems(): Item[] {
 
       const name = p.name || route.split('/').pop() || '';
       const date = fm.date || parseDate(name) || parseDate(route);
+
       const thumb = firstNonEmpty(
         fm.thumbnail,
         fm.image,
@@ -88,17 +96,14 @@ function buildItems(): Item[] {
         Array.isArray(fm.images) ? fm.images[0] : undefined
       ) as string | undefined;
 
-      // NEW: pick up video and build an embed URL
-      const videoRaw =
-        fm.video || fm.videoUrl || fm.videoURL || fm.video_link || fm.videoLink;
-      const videoEmbed = getVideoEmbedURL(videoRaw);
+      const videoEmbed = getVideoEmbedURL(fm.video);
 
       return {
         url: route,
         title: fm.title || p.title || humanize(name),
         date,
         thumbnail: thumb || '',
-        videoEmbed, // may be undefined
+        videoEmbed
       } as Item;
     })
     .filter(Boolean)
@@ -123,6 +128,7 @@ const s = {
     marginTop: 12,
     fontSize: 15,
     lineHeight: 1.6,
+    // color inherits for light/dark
   },
   heroLink: {
     marginTop: 12,
@@ -179,7 +185,7 @@ const s = {
   },
   /* card */
   cardLi: { padding: '12px 0', position: 'relative' as const },
-  cardA: { display: 'block', borderRadius: 12, padding: 12, textDecoration: 'none' },
+  cardA: { display: 'block', borderRadius: 12, padding: 12, textDecoration: 'none', color: 'inherit' },
   cardHeader: {
     display: 'grid',
     gridTemplateColumns: '1fr auto',
@@ -237,12 +243,27 @@ const s = {
     fontWeight: 700 as const,
     letterSpacing: '0.02em',
     color: 'rgb(26, 26, 31)',
-    background:
-      'linear-gradient(90deg, rgba(167,139,250,0.95), rgba(99,102,241,0.95))',
+    background: 'linear-gradient(90deg, rgba(167,139,250,0.95), rgba(99,102,241,0.95))',
     borderRadius: 999,
     padding: '2px 6px',
     lineHeight: 1.1,
     verticalAlign: 'middle',
+  },
+
+  /* text-only mode */
+  textOnly: {
+    marginTop: 4,
+  },
+  divider: {
+    height: 1,
+    background: 'currentColor',
+    opacity: 0.1,
+    margin: '6px 0 2px',
+  },
+  readLinkSmall: {
+    fontSize: 13,
+    textDecoration: 'underline',
+    textUnderlineOffset: '4px',
   },
 };
 
@@ -264,7 +285,7 @@ function ControlsTop({
 }) {
   return (
     <div style={s.controlsWrap}>
-      <span style={{ fontSize: 13, color: 'rgba(255,255,255,0.7)', marginRight: 6 }}>Show</span>
+      <span style={{ fontSize: 13, opacity: 0.7, marginRight: 6 }}>Show</span>
       <select style={s.select} value={pageSize} onChange={(e) => changeSize(Number(e.target.value))}>
         {[5, 10, 15, 20].map((n) => (
           <option key={n} value={n}>
@@ -315,7 +336,9 @@ function Row({ item }: { item: Item }) {
     return days <= 14;
   })();
 
-  const showVideo = !item.thumbnail && !!item.videoEmbed;
+  const hasThumb = !!item.thumbnail;
+  const hasVideo = !!item.videoEmbed;
+  const hasMedia = hasThumb || hasVideo;
 
   return (
     <li style={s.cardLi} role="listitem">
@@ -331,36 +354,33 @@ function Row({ item }: { item: Item }) {
           <div style={s.cardDate}>{fmtDay(item.date)}</div>
         </div>
 
-        <div style={s.imgWrap}>
-          {showVideo ? (
-            <iframe
-              src={item.videoEmbed}
-              title="Video"
-              allow="clipboard-write; encrypted-media; picture-in-picture"
-              allowFullScreen
-              style={{
-                width: '100%',
-                height: '100%',
-                border: 0,
-                display: 'block',
-              }}
-            />
-          ) : item.thumbnail ? (
-            // eslint-disable-next-line @next/next/no-img-element
-            <img
-              src={item.thumbnail}
-              alt=""
-              loading="lazy"
-              style={{ width: '100%', height: '100%', objectFit: 'cover', display: 'block' }}
-            />
-          ) : (
-            <div style={{ width: '100%', height: '100%' }} />
-          )}
-        </div>
-
-        <div>
-          <span style={s.readLink}>Read update →</span>
-        </div>
+        {hasMedia ? (
+          <div style={s.imgWrap}>
+            {hasVideo ? (
+              <iframe
+                src={item.videoEmbed}
+                title="Video"
+                allow="clipboard-write; encrypted-media; picture-in-picture"
+                allowFullScreen
+                style={{ width: '100%', height: '100%', border: 0, display: 'block' }}
+              />
+            ) : (
+              // eslint-disable-next-line @next/next/no-img-element
+              <img
+                src={item.thumbnail}
+                alt=""
+                loading="lazy"
+                style={{ width: '100%', height: '100%', objectFit: 'cover', display: 'block' }}
+              />
+            )}
+          </div>
+        ) : (
+          // Text-only compact mode (no blank gradient box)
+          <div style={s.textOnly}>
+            <div style={s.divider} />
+            <span style={s.readLinkSmall}>Read update →</span>
+          </div>
+        )}
       </a>
     </li>
   );
