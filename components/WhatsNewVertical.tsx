@@ -6,24 +6,37 @@ import { getPagesUnderRoute } from 'nextra/context';
 type Item = {
   url: string;
   title: string;
-  date: string;
-  thumbnail: string;
+  date: string;       // ISO-ish e.g. 2025-09-22
+  thumbnail: string;  // URL or empty string
 };
 
+/* -------------------------------------------------------
+   Source: all pages under /changelogs
+------------------------------------------------------- */
 const changelogPages = getPagesUnderRoute('/changelogs');
 
-/* ---------- helpers ---------- */
-const parseDate = (s = '') => {
+/* -------------------------------------------------------
+   Utilities
+------------------------------------------------------- */
+const parseDateFromString = (s = '') => {
   const m = s.match(/(\d{4}-\d{2}-\d{2})/);
   return m ? m[1] : '';
 };
-const humanize = (s = '') =>
-  s.replace(/^\d{4}-\d{2}-\d{2}-/, '').replace(/-/g, ' ').replace(/\b\w/g, c => c.toUpperCase());
 
-const fmtDay = (dateStr: string) => {
+const humanizeSlug = (s = '') =>
+  s
+    .replace(/^\d{4}-\d{2}-\d{2}-/, '')
+    .replace(/-/g, ' ')
+    .replace(/\b\w/g, (c) => c.toUpperCase());
+
+const formatDay = (dateStr: string) => {
   const d = new Date(dateStr);
-  if (isNaN(d as any)) return dateStr || '';
-  return d.toLocaleDateString(undefined, { month: 'short', day: 'numeric', year: 'numeric' });
+  if (isNaN(d as unknown as number)) return dateStr || '';
+  return d.toLocaleDateString(undefined, {
+    month: 'short',
+    day: 'numeric',
+    year: 'numeric',
+  });
 };
 
 const firstNonEmpty = (...vals: any[]) =>
@@ -37,10 +50,12 @@ const clampStyle = (lines: number): React.CSSProperties => ({
   display: '-webkit-box',
   WebkitLineClamp: lines,
   WebkitBoxOrient: 'vertical',
-  overflow: 'hidden'
+  overflow: 'hidden',
 });
 
-/* ---------- build items (NEWEST → OLDEST) ---------- */
+/* -------------------------------------------------------
+   Build items (NEWEST → OLDEST)
+------------------------------------------------------- */
 function buildItems(): Item[] {
   return (changelogPages || [])
     .map((p: any) => {
@@ -49,7 +64,7 @@ function buildItems(): Item[] {
       if (!/\/changelogs\/.+/.test(route)) return null;
 
       const name = p.name || route.split('/').pop() || '';
-      const date = fm.date || parseDate(name) || parseDate(route);
+      const date = fm.date || parseDateFromString(name) || parseDateFromString(route);
       const thumb = firstNonEmpty(
         fm.thumbnail,
         fm.image,
@@ -62,116 +77,49 @@ function buildItems(): Item[] {
 
       return {
         url: route,
-        title: fm.title || p.title || humanize(name),
+        title: fm.title || p.title || humanizeSlug(name),
         date,
-        thumbnail: thumb || ''
+        thumbnail: thumb || '',
       } as Item;
     })
     .filter(Boolean)
-    .sort((a: Item, b: Item) => new Date(b.date).getTime() - new Date(a.date).getTime());
+    .sort(
+      (a: Item, b: Item) =>
+        new Date(b.date).getTime() - new Date(a.date).getTime()
+    );
 }
 
-/* ---------- shared inline styles ---------- */
-/*
-const s = {
-  page: { maxWidth: 880, margin: '0 auto' },
-  h1: {
-    marginTop: 16,         // ← extra space under the breadcrumb
-    marginBottom: 0,
-    fontSize: '44px',
-    lineHeight: 1.1,
-    fontWeight: 600 as const,
-    letterSpacing: '-0.02em' as const,
-  },  
-  heroP: {
-    marginTop: 12,
-    fontSize: 15,
-    lineHeight: 1.6,
-    color: 'rgba(255,255,255,0.8)',
-  },
-  heroLink: {
-    marginTop: 12,
-    fontSize: 14,
-    textDecoration: 'underline',
-    textUnderlineOffset: '4px',
-    color: 'rgba(255,255,255,0.85)',
-    display: 'inline-block',
-  },
-  rowBar: {
-    marginTop: 24,
-    display: 'flex',
-    alignItems: 'center',
-    justifyContent: 'space-between',
-    gap: 12,
-  },
-  showing: {
-    fontSize: 12,
-    color: 'rgba(255,255,255,0.55)',
-  },
-  controlsWrap: { whiteSpace: 'nowrap' as const, minWidth: 0 },
-  btn: {
-    fontSize: 12,
-    padding: '6px 8px',
-    borderRadius: 6,
-    border: '1px solid rgba(255,255,255,0.18)',
-    background: 'transparent',
-    color: 'inherit',
-    cursor: 'pointer',
-  },
-  select: {
-    fontSize: 12,
-    padding: '6px 8px',
-    borderRadius: 6,
-    border: '1px solid rgba(255,255,255,0.18)',
-    background: 'transparent',
-    color: 'inherit',
-  },
-  cardLi: { padding: '12px 0' },
-  cardA: { display: 'block', borderRadius: 12, padding: 12, textDecoration: 'none' },
-  cardHeader: {
-    display: 'grid',
-    gridTemplateColumns: '1fr auto',
-    alignItems: 'center',
-    gap: 12,
-    marginBottom: 8,
-  },
-  cardTitle: {
-    fontSize: 20,
-    fontWeight: 600 as const,
-    lineHeight: 1.2,
-    textDecorationThickness: '1px',
-    textUnderlineOffset: '4px',
-  },
-  cardDate: { fontSize: 12, color: 'rgba(255,255,255,0.55)' },
-  imgWrap: {
-    width: '100%',
-    borderRadius: 12,
-    overflow: 'hidden',
-    aspectRatio: '16 / 9',
-    background:
-      'radial-gradient(120% 120% at 0% 100%, rgba(168,85,247,0.18), transparent 60%), radial-gradient(120% 120% at 100% 0%, rgba(59,130,246,0.18), transparent 60%)',
-  },
-  readLink: {
-    marginTop: 6,
-    fontSize: 13,
-    textDecoration: 'underline',
-    textUnderlineOffset: '4px',
-    display: 'inline-block',
-  },
-  footerLink: {
-    fontSize: 14,
-    color: 'rgb(167 139 250)', // violet-ish
-    textDecoration: 'underline',
-    textUnderlineOffset: '4px',
-  },
-};
-*/
-/* ---------- shared inline styles (theme-safe) ---------- */
-const TL_X = 12;                     // timeline line X (relative to UL left)
-const TL_PAD = TL_X + 16;            // left padding so content clears the gutter
+/* -------------------------------------------------------
+   Theme variables (work in light & dark)
+------------------------------------------------------- */
+function ThemeVars() {
+  return (
+    <style>{`
+      :root {
+        --wn-text: rgba(0,0,0,0.90);
+        --wn-muted: rgba(0,0,0,0.60);
+        --wn-line: rgba(0,0,0,0.18);
+      }
+      @media (prefers-color-scheme: dark) {
+        :root {
+          --wn-text: rgba(255,255,255,0.92);
+          --wn-muted: rgba(255,255,255,0.65);
+          --wn-line: rgba(255,255,255,0.18);
+        }
+      }
+    `}</style>
+  );
+}
+
+/* -------------------------------------------------------
+   Inline styles (theme-safe via CSS vars)
+------------------------------------------------------- */
+const TL_X = 12;           // timeline line X from UL left
+const TL_PAD = TL_X + 16;  // left padding to clear gutter
 
 const s = {
-  page: { maxWidth: 880, margin: '0 auto', color: 'inherit' }, // ensure we inherit theme text color
+  page: { maxWidth: 880, margin: '0 auto' },
+
   h1: {
     marginTop: 16,
     marginBottom: 0,
@@ -179,22 +127,25 @@ const s = {
     lineHeight: 1.1,
     fontWeight: 600 as const,
     letterSpacing: '-0.02em' as const,
+    color: 'var(--wn-text)',
   },
+
   heroP: {
     marginTop: 12,
     fontSize: 15,
     lineHeight: 1.6,
-    color: 'currentColor',           // explicitly use theme text color (fixes light mode washout)
+    color: 'var(--wn-text)',
   },
+
   heroLink: {
     marginTop: 12,
     fontSize: 14,
     textDecoration: 'underline',
     textUnderlineOffset: '4px',
-    color: 'currentColor',           // readable in both themes
-    textDecorationColor: 'currentColor',    
+    color: 'var(--wn-text)',
     display: 'inline-block',
   },
+
   rowBar: {
     marginTop: 24,
     display: 'flex',
@@ -202,29 +153,34 @@ const s = {
     justifyContent: 'space-between',
     gap: 12,
   },
+
   showing: {
     fontSize: 12,
-    opacity: 0.7, // theme-safe
+    color: 'var(--wn-muted)',
   },
+
   controlsWrap: { whiteSpace: 'nowrap' as const, minWidth: 0 },
+
   btn: {
     fontSize: 12,
     padding: '6px 8px',
     borderRadius: 6,
-    border: '1px solid currentColor', // theme-safe border
+    border: '1px solid var(--wn-muted)',
     background: 'transparent',
-    color: 'inherit',
+    color: 'var(--wn-text)',
     cursor: 'pointer',
   },
+
   select: {
     fontSize: 12,
     padding: '6px 8px',
     borderRadius: 6,
-    border: '1px solid currentColor', // theme-safe border
+    border: '1px solid var(--wn-muted)',
     background: 'transparent',
-    color: 'inherit',
+    color: 'var(--wn-text)',
   },
-  /* list + timeline */
+
+  /* List + timeline */
   list: {
     marginTop: 12,
     listStyle: 'none',
@@ -232,18 +188,21 @@ const s = {
     position: 'relative' as const,
     paddingLeft: TL_PAD,
   },
+
   timelineLine: {
     position: 'absolute' as const,
     left: TL_X,
     top: 0,
     bottom: 0,
     width: 2,
-    background: 'currentColor', // theme-safe
-    opacity: 0.18,                   // a touch stronger so it shows on light bg    
+    background: 'var(--wn-line)',
   },
-  /* card */
+
+  /* Card */
   cardLi: { padding: '12px 0', position: 'relative' as const },
+
   cardA: { display: 'block', borderRadius: 12, padding: 12, textDecoration: 'none' },
+
   cardHeader: {
     display: 'grid',
     gridTemplateColumns: '1fr auto',
@@ -251,17 +210,18 @@ const s = {
     gap: 12,
     marginBottom: 8,
   },
+
   cardTitle: {
     fontSize: 20,
     fontWeight: 600 as const,
     lineHeight: 1.2,
+    color: 'var(--wn-text)',
     textDecorationThickness: '1px',
     textUnderlineOffset: '4px',
   },
-  cardDate: {
-    fontSize: 12,
-    opacity: 0.6, // theme-safe instead of white
-  },
+
+  cardDate: { fontSize: 12, color: 'var(--wn-muted)' },
+
   imgWrap: {
     width: '100%',
     borderRadius: 12,
@@ -270,6 +230,7 @@ const s = {
     background:
       'radial-gradient(120% 120% at 0% 100%, rgba(168,85,247,0.18), transparent 60%), radial-gradient(120% 120% at 100% 0%, rgba(59,130,246,0.18), transparent 60%)',
   },
+
   readLink: {
     marginTop: 6,
     fontSize: 13,
@@ -277,25 +238,26 @@ const s = {
     textUnderlineOffset: '4px',
     display: 'inline-block',
   },
+
   footerLink: {
     fontSize: 14,
-    color: 'currentColor',           // keeps it obvious in both themes    
+    color: 'var(--wn-text)',
     textDecoration: 'underline',
     textUnderlineOffset: '4px',
-    textDecorationColor: 'currentColor',
   },
-  /* timeline dot */
+
+  /* Timeline dot */
   dot: {
     position: 'absolute' as const,
-    left: -(TL_PAD - TL_X),          // aligns dot on the vertical line
-    top: 12,                         // aligns to top of the card
+    left: -(TL_PAD - TL_X),
+    top: 12,
     width: 8,
     height: 8,
     borderRadius: 999,
-    background: 'rgb(167 139 250)',  // violet dot (visible in both)
-    // slightly lighter ring so it doesn't look too heavy in light mode
-    boxShadow: '0 0 0 2px rgba(0,0,0,0.25)',
+    background: 'rgb(167 139 250)',         // violet dot
+    boxShadow: '0 0 0 2px rgba(0,0,0,0.25)', // subtle ring for light mode too
   },
+
   /* NEW badge */
   newBadge: {
     marginLeft: 8,
@@ -312,7 +274,9 @@ const s = {
   },
 };
 
-/* ---------- control components (inline-styled) ---------- */
+/* -------------------------------------------------------
+   Controls
+------------------------------------------------------- */
 function ControlsTop({
   pageSize,
   canPrev,
@@ -330,18 +294,35 @@ function ControlsTop({
 }) {
   return (
     <div style={s.controlsWrap}>
-      <span style={{ fontSize: 13, color: 'rgba(255,255,255,0.7)', marginRight: 6 }}>Show</span>
-      <select style={s.select} value={pageSize} onChange={(e) => changeSize(Number(e.target.value))}>
+      <span style={{ fontSize: 13, color: 'var(--wn-muted)', marginRight: 6 }}>
+        Show
+      </span>
+      <select
+        aria-label="Show latest count"
+        style={s.select}
+        value={pageSize}
+        onChange={(e) => changeSize(Number(e.target.value))}
+      >
         {[5, 10, 15, 20].map((n) => (
           <option key={n} value={n}>
             Latest {n}
           </option>
         ))}
       </select>
-      <button onClick={prev} disabled={!canPrev} style={{ ...s.btn, marginLeft: 8 }}>
+      <button
+        onClick={prev}
+        disabled={!canPrev}
+        style={{ ...s.btn, marginLeft: 8 }}
+        aria-label="Previous batch"
+      >
         &larr; Prev
       </button>
-      <button onClick={next} disabled={!canNext} style={{ ...s.btn, marginLeft: 6 }}>
+      <button
+        onClick={next}
+        disabled={!canNext}
+        style={{ ...s.btn, marginLeft: 6 }}
+        aria-label="Next batch"
+      >
         Next &rarr;
       </button>
     </div>
@@ -361,26 +342,45 @@ function ControlsBottom({
 }) {
   return (
     <div style={s.controlsWrap}>
-      <button onClick={prev} disabled={!canPrev} style={s.btn}>
+      <button onClick={prev} disabled={!canPrev} style={s.btn} aria-label="Previous batch">
         &larr; Prev
       </button>
-      <button onClick={next} disabled={!canNext} style={{ ...s.btn, marginLeft: 6 }}>
+      <button
+        onClick={next}
+        disabled={!canNext}
+        style={{ ...s.btn, marginLeft: 6 }}
+        aria-label="Next batch"
+      >
         Next &rarr;
       </button>
     </div>
   );
 }
 
-/* ---------- card ---------- */
+/* -------------------------------------------------------
+   Card
+------------------------------------------------------- */
 function Row({ item }: { item: Item }) {
+  // “NEW” if within last 14 days
+  const isNew = (() => {
+    const d = new Date(item.date);
+    if (isNaN(d as unknown as number)) return false;
+    const days = (Date.now() - d.getTime()) / (1000 * 60 * 60 * 24);
+    return days <= 14;
+  })();
+
   return (
-    <li style={s.cardLi}>
-      <a href={item.url} style={s.cardA}>
+    <li style={s.cardLi} role="listitem">
+      {/* timeline dot */}
+      <span aria-hidden="true" style={s.dot} />
+
+      <a href={item.url} style={s.cardA} aria-label={`Read update: ${item.title}`}>
         <div style={s.cardHeader}>
           <h3 style={{ ...s.cardTitle, ...clampStyle(2) }} title={item.title}>
             {item.title}
+            {isNew && <span style={s.newBadge}>NEW</span>}
           </h3>
-          <div style={s.cardDate}>{fmtDay(item.date)}</div>
+          <div style={s.cardDate}>{formatDay(item.date)}</div>
         </div>
 
         <div style={s.imgWrap}>
@@ -405,7 +405,9 @@ function Row({ item }: { item: Item }) {
   );
 }
 
-/* ---------- main ---------- */
+/* -------------------------------------------------------
+   Main
+------------------------------------------------------- */
 export default function WhatsNewVertical() {
   const items = useMemo(buildItems, []);
 
@@ -430,20 +432,22 @@ export default function WhatsNewVertical() {
 
   return (
     <section className="nx-not-prose not-prose" style={s.page}>
+      <ThemeVars />
+
       {/* HERO */}
       <div>
         <h1 style={s.h1}>What&apos;s New</h1>
 
         <p style={s.heroP}>
-          <strong>Track Mixpanel product releases and improvements in one place.</strong> See what’s
-          new, what got faster, and what opens up entirely new ways to answer questions about your
-          product. These changes are built from customer feedback and real workflows—less setup,
-          fewer manual steps, clearer answers.
+          <strong>Track Mixpanel product releases and improvements in one place.</strong> See
+          what’s new, what got faster, and what opens up entirely new ways to answer questions
+          about your product. These changes are built from customer feedback and real
+          workflows—less setup, fewer manual steps, clearer answers.
         </p>
         <p style={s.heroP}>
-          From performance boosts to streamlined analysis and collaboration, each release is here to
-          shorten the path from “what happened?” to “what should we do?”. Browse the highlights below
-          and put the most impactful updates to work on your team today.
+          From performance boosts to streamlined analysis and collaboration, each release is here
+          to shorten the path from “what happened?” to “what should we do?”. Browse the highlights
+          below and put the most impactful updates to work on your team today.
         </p>
 
         <a href="/changelogs" style={s.heroLink}>
@@ -466,8 +470,9 @@ export default function WhatsNewVertical() {
         />
       </div>
 
-      {/* LIST */}
-      <ul style={{ marginTop: 12, listStyle: 'none', padding: 0 }}>
+      {/* LIST + TIMELINE */}
+      <ul style={s.list} role="list">
+        <div aria-hidden="true" style={s.timelineLine} />
         {page.map((item) => (
           <Row key={item.url} item={item} />
         ))}
