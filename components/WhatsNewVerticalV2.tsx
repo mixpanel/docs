@@ -232,7 +232,7 @@ function ControlsTop({
 }) {
   return (
     <div style={s.controlsWrap}>
-      <span style={{ fontSize: 13, color: 'rgba(255,255,255,0.7)', marginRight: 6 }}>Show</span>
+      <span style={{ fontSize: 13, opacity: 0.7, marginRight: 6 }}>Show</span>      
       <select style={s.select} value={pageSize} onChange={(e) => changeSize(Number(e.target.value))}>
         {[5, 10, 15, 20].map((n) => (
           <option key={n} value={n}>
@@ -360,7 +360,7 @@ export default function WhatsNewVertical() {
           and put the most impactful updates to work on your team today.
         </p>
 
-        <a href="/changelogs" style={s.heroLink}>
+        <a href="/changelogs" style={s.heroLink} aria-label="Browse the full Mixpanel changelog">
           Browse Changelog
         </a>
       </div>
@@ -391,7 +391,7 @@ export default function WhatsNewVertical() {
       {/* BOTTOM BAR — single line */}
       <div style={{ ...s.rowBar, marginTop: 32 }}>
         <div>
-          <a href="/changelogs" style={s.footerLink}>
+          <a href="/changelogs" style={s.footerLink} aria-label="Browse the full Mixpanel changelog">
             Browse the full Changelog →
           </a>
         </div>
