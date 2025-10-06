@@ -1,6 +1,6 @@
 'use client';
 
-import React, { useMemo, useState } from 'react';
+import React, { useMemo, useState, useRef } from 'react';
 import { getPagesUnderRoute } from 'nextra/context';
 
 type Item = {
@@ -8,6 +8,10 @@ type Item = {
   title: string;
   date: string;
   thumbnail: string;
+  // NEW: optional media
+  videoSrc?: string;       // self-hosted .mp4/.webm/etc
+  videoPoster?: string;    // optional poster for the <video>
+  youtubeId?: string;      // youtube id if provided
 };
 
 const changelogPages = getPagesUnderRoute('/changelogs');
@@ -40,6 +44,24 @@ const clampStyle = (lines: number): React.CSSProperties => ({
   overflow: 'hidden'
 });
 
+// quick YouTube id guesser (supports full URL or id)
+const getYoutubeId = (val?: string) => {
+  if (!val) return '';
+  // already an id-like token
+  if (/^[a-zA-Z0-9_-]{6,}$/.test(val)) return val;
+
+  // url patterns
+  const m =
+    val.match(/[?&]v=([a-zA-Z0-9_-]{6,})/) ||
+    val.match(/youtu\.be\/([a-zA-Z0-9_-]{6,})/) ||
+    val.match(/youtube\.com\/embed\/([a-zA-Z0-9_-]{6,})/);
+
+  return m ? m[1] : '';
+};
+
+const isVideoFile = (src?: string) =>
+  !!src && /\.(mp4|webm|ogg|ogv|mov)$/i.test(src);
+
 /* ---------- build items (NEWEST → OLDEST) ---------- */
 function buildItems(): Item[] {
   return (changelogPages || [])
@@ -50,6 +72,8 @@ function buildItems(): Item[] {
 
       const name = p.name || route.split('/').pop() || '';
       const date = fm.date || parseDate(name) || parseDate(route);
+
+      // thumbnail first (same as your original)
       const thumb = firstNonEmpty(
         fm.thumbnail,
         fm.image,
@@ -60,11 +84,41 @@ function buildItems(): Item[] {
         Array.isArray(fm.images) ? fm.images[0] : undefined
       ) as string | undefined;
 
+      // NEW: try to detect video
+      const rawVideo =
+        fm.video ||
+        fm.videoUrl ||
+        fm.mp4 ||
+        fm.webm ||
+        fm.media;
+
+      let videoSrc: string | undefined;
+      let videoPoster: string | undefined = fm.videoPoster || fm.poster || thumb;
+
+      if (typeof rawVideo === 'string' && isVideoFile(rawVideo)) {
+        videoSrc = rawVideo;
+      } else if (rawVideo && typeof rawVideo === 'object') {
+        // allow { src, poster }
+        if (rawVideo.src && isVideoFile(rawVideo.src)) {
+          videoSrc = rawVideo.src;
+          videoPoster = rawVideo.poster || videoPoster;
+        }
+      }
+
+      // NEW: YouTube support if no self-hosted video
+      let youtubeId: string | undefined;
+      if (!videoSrc) {
+        youtubeId = getYoutubeId(fm.youtube || fm.youtubeId || fm.yt);
+      }
+
       return {
         url: route,
         title: fm.title || p.title || humanize(name),
         date,
-        thumbnail: thumb || ''
+        thumbnail: thumb || '',
+        videoSrc,
+        videoPoster,
+        youtubeId
       } as Item;
     })
     .filter(Boolean)
@@ -89,14 +143,13 @@ const s = {
     marginTop: 12,
     fontSize: 15,
     lineHeight: 1.6,
-    /* inherit color so it works in light & dark */
+    // color inherits (theme-safe)
   },
   heroLink: {
     marginTop: 12,
     fontSize: 14,
     textDecoration: 'underline',
     textUnderlineOffset: '4px',
-    /* inherit color; let site/theme decide link color */
     display: 'inline-block',
   },
   rowBar: {
@@ -108,14 +161,14 @@ const s = {
   },
   showing: {
     fontSize: 12,
-    opacity: 0.7, // theme-safe
+    opacity: 0.7,
   },
   controlsWrap: { whiteSpace: 'nowrap' as const, minWidth: 0 },
   btn: {
     fontSize: 12,
     padding: '6px 8px',
     borderRadius: 6,
-    border: '1px solid currentColor', // theme-safe border
+    border: '1px solid currentColor',
     background: 'transparent',
     color: 'inherit',
     cursor: 'pointer',
@@ -124,7 +177,7 @@ const s = {
     fontSize: 12,
     padding: '6px 8px',
     borderRadius: 6,
-    border: '1px solid currentColor', // theme-safe border
+    border: '1px solid currentColor',
     background: 'transparent',
     color: 'inherit',
   },
@@ -142,8 +195,8 @@ const s = {
     top: 0,
     bottom: 0,
     width: 2,
-    background: 'currentColor', // theme-safe
-    opacity: 0.12,               // subtle in both themes
+    background: 'currentColor',
+    opacity: 0.12,
   },
   /* card */
   cardLi: { padding: '12px 0', position: 'relative' as const },
@@ -164,7 +217,7 @@ const s = {
   },
   cardDate: {
     fontSize: 12,
-    opacity: 0.6, // theme-safe instead of white
+    opacity: 0.6,
   },
   imgWrap: {
     width: '100%',
@@ -173,6 +226,7 @@ const s = {
     aspectRatio: '16 / 9',
     background:
       'radial-gradient(120% 120% at 0% 100%, rgba(168,85,247,0.18), transparent 60%), radial-gradient(120% 120% at 100% 0%, rgba(59,130,246,0.18), transparent 60%)',
+    position: 'relative' as const,
   },
   readLink: {
     marginTop: 6,
@@ -183,20 +237,20 @@ const s = {
   },
   footerLink: {
     fontSize: 14,
-    color: 'rgb(167 139 250)', // accent that reads on both themes
+    color: 'rgb(167 139 250)',
     textDecoration: 'underline',
     textUnderlineOffset: '4px',
   },
   /* timeline dot */
   dot: {
     position: 'absolute' as const,
-    left: -(TL_PAD - TL_X),          // aligns dot on the vertical line
-    top: 12,                         // aligns to top of the card
+    left: -(TL_PAD - TL_X),
+    top: 12,
     width: 8,
     height: 8,
     borderRadius: 999,
-    background: 'rgb(167 139 250)',  // violet dot (visible in both)
-    boxShadow: '0 0 0 2px rgba(20,20,30,0.9)', // subtle ring for contrast
+    background: 'rgb(167 139 250)',
+    boxShadow: '0 0 0 2px rgba(20,20,30,0.9)',
   },
   /* NEW badge */
   newBadge: {
@@ -212,6 +266,30 @@ const s = {
     lineHeight: 1.1,
     verticalAlign: 'middle',
   },
+  // play overlay (for YouTube thumbnail & videos)
+  playOverlay: {
+    position: 'absolute' as const,
+    left: '50%',
+    top: '50%',
+    transform: 'translate(-50%, -50%)',
+    width: 56,
+    height: 56,
+    borderRadius: '50%',
+    background: 'rgba(0,0,0,0.55)',
+    boxShadow: '0 2px 16px rgba(0,0,0,0.35)',
+    display: 'grid',
+    placeItems: 'center',
+    color: 'white',
+    pointerEvents: 'none' as const
+  },
+  triangle: {
+    width: 0,
+    height: 0,
+    borderLeft: '14px solid white',
+    borderTop: '8px solid transparent',
+    borderBottom: '8px solid transparent',
+    marginLeft: 4
+  }
 };
 
 /* ---------- control components ---------- */
@@ -232,7 +310,7 @@ function ControlsTop({
 }) {
   return (
     <div style={s.controlsWrap}>
-      <span style={{ fontSize: 13, opacity: 0.7, marginRight: 6 }}>Show</span>      
+      <span style={{ fontSize: 13, opacity: 0.7, marginRight: 6 }}>Show</span>
       <select style={s.select} value={pageSize} onChange={(e) => changeSize(Number(e.target.value))}>
         {[5, 10, 15, 20].map((n) => (
           <option key={n} value={n}>
@@ -275,6 +353,8 @@ function ControlsBottom({
 
 /* ---------- card ---------- */
 function Row({ item }: { item: Item }) {
+  const vidRef = useRef<HTMLVideoElement | null>(null);
+
   // NEW badge if within last 14 days
   const isNew = (() => {
     const d = new Date(item.date);
@@ -282,6 +362,30 @@ function Row({ item }: { item: Item }) {
     const days = (Date.now() - d.getTime()) / (1000 * 60 * 60 * 24);
     return days <= 14;
   })();
+
+  // handlers for hover play (self-hosted video only)
+  const maybePlay = () => {
+    const v = vidRef.current;
+    if (!v) return;
+    // don’t auto-play on mobile
+    if (window.matchMedia('(pointer:fine)').matches) {
+      v.play().catch(() => {});
+    }
+  };
+  const maybePause = () => {
+    const v = vidRef.current;
+    if (!v) return;
+    v.pause();
+    try { v.currentTime = 0; } catch {}
+  };
+
+  // YouTube thumbnail if we have an id and no image/video
+  const youtubeThumb = item.youtubeId
+    ? `https://img.youtube.com/vi/${item.youtubeId}/hqdefault.jpg`
+    : '';
+
+  const showImage = !!item.thumbnail || !!youtubeThumb;
+  const imageSrc = item.thumbnail || youtubeThumb;
 
   return (
     <li style={s.cardLi} role="listitem">
@@ -297,17 +401,41 @@ function Row({ item }: { item: Item }) {
           <div style={s.cardDate}>{fmtDay(item.date)}</div>
         </div>
 
-        <div style={s.imgWrap}>
-          {item.thumbnail ? (
+        <div
+          style={s.imgWrap}
+          onMouseEnter={maybePlay}
+          onFocus={maybePlay}
+          onMouseLeave={maybePause}
+          onBlur={maybePause}
+        >
+          {showImage && (
             // eslint-disable-next-line @next/next/no-img-element
             <img
-              src={item.thumbnail}
+              src={imageSrc!}
               alt=""
               loading="lazy"
               style={{ width: '100%', height: '100%', objectFit: 'cover', display: 'block' }}
             />
-          ) : (
-            <div style={{ width: '100%', height: '100%' }} />
+          )}
+
+          {!showImage && item.videoSrc && (
+            <video
+              ref={vidRef}
+              src={item.videoSrc}
+              poster={item.videoPoster}
+              muted
+              playsInline
+              preload="none"
+              // no controls for feed
+              style={{ width: '100%', height: '100%', objectFit: 'cover', display: 'block' }}
+            />
+          )}
+
+          {/* Play overlay for both video & YT thumbnail (purely visual) */}
+          {(item.videoSrc || item.youtubeId) && (
+            <span aria-hidden="true" style={s.playOverlay}>
+              <span style={s.triangle} />
+            </span>
           )}
         </div>
 
@@ -391,7 +519,7 @@ export default function WhatsNewVertical() {
       {/* BOTTOM BAR — single line */}
       <div style={{ ...s.rowBar, marginTop: 32 }}>
         <div>
-          <a href="/changelogs" style={s.footerLink} aria-label="Browse the full Mixpanel changelog">
+          <a href="/changelogs" style={s.footerLink}>
             Browse the full Changelog →
           </a>
         </div>
