@@ -72,6 +72,7 @@ function buildItems(): Item[] {
 }
 
 /* ---------- shared inline styles ---------- */
+/*
 const s = {
   page: { maxWidth: 880, margin: '0 auto' },
   h1: {
@@ -162,6 +163,149 @@ const s = {
     color: 'rgb(167 139 250)', // violet-ish
     textDecoration: 'underline',
     textUnderlineOffset: '4px',
+  },
+};
+*/
+/* ---------- shared inline styles (theme-safe) ---------- */
+const TL_X = 12;                     // timeline line X (relative to UL left)
+const TL_PAD = TL_X + 16;            // left padding so content clears the gutter
+
+const s = {
+  page: { maxWidth: 880, margin: '0 auto' },
+  h1: {
+    marginTop: 16,
+    marginBottom: 0,
+    fontSize: '44px',
+    lineHeight: 1.1,
+    fontWeight: 600 as const,
+    letterSpacing: '-0.02em' as const,
+  },
+  heroP: {
+    marginTop: 12,
+    fontSize: 15,
+    lineHeight: 1.6,
+    /* inherit color so it works in light & dark */
+  },
+  heroLink: {
+    marginTop: 12,
+    fontSize: 14,
+    textDecoration: 'underline',
+    textUnderlineOffset: '4px',
+    /* inherit color; let site/theme decide link color */
+    display: 'inline-block',
+  },
+  rowBar: {
+    marginTop: 24,
+    display: 'flex',
+    alignItems: 'center',
+    justifyContent: 'space-between',
+    gap: 12,
+  },
+  showing: {
+    fontSize: 12,
+    opacity: 0.7, // theme-safe
+  },
+  controlsWrap: { whiteSpace: 'nowrap' as const, minWidth: 0 },
+  btn: {
+    fontSize: 12,
+    padding: '6px 8px',
+    borderRadius: 6,
+    border: '1px solid currentColor', // theme-safe border
+    background: 'transparent',
+    color: 'inherit',
+    cursor: 'pointer',
+  },
+  select: {
+    fontSize: 12,
+    padding: '6px 8px',
+    borderRadius: 6,
+    border: '1px solid currentColor', // theme-safe border
+    background: 'transparent',
+    color: 'inherit',
+  },
+  /* list + timeline */
+  list: {
+    marginTop: 12,
+    listStyle: 'none',
+    padding: 0,
+    position: 'relative' as const,
+    paddingLeft: TL_PAD,
+  },
+  timelineLine: {
+    position: 'absolute' as const,
+    left: TL_X,
+    top: 0,
+    bottom: 0,
+    width: 2,
+    background: 'currentColor', // theme-safe
+    opacity: 0.12,               // subtle in both themes
+  },
+  /* card */
+  cardLi: { padding: '12px 0', position: 'relative' as const },
+  cardA: { display: 'block', borderRadius: 12, padding: 12, textDecoration: 'none' },
+  cardHeader: {
+    display: 'grid',
+    gridTemplateColumns: '1fr auto',
+    alignItems: 'center',
+    gap: 12,
+    marginBottom: 8,
+  },
+  cardTitle: {
+    fontSize: 20,
+    fontWeight: 600 as const,
+    lineHeight: 1.2,
+    textDecorationThickness: '1px',
+    textUnderlineOffset: '4px',
+  },
+  cardDate: {
+    fontSize: 12,
+    opacity: 0.6, // theme-safe instead of white
+  },
+  imgWrap: {
+    width: '100%',
+    borderRadius: 12,
+    overflow: 'hidden',
+    aspectRatio: '16 / 9',
+    background:
+      'radial-gradient(120% 120% at 0% 100%, rgba(168,85,247,0.18), transparent 60%), radial-gradient(120% 120% at 100% 0%, rgba(59,130,246,0.18), transparent 60%)',
+  },
+  readLink: {
+    marginTop: 6,
+    fontSize: 13,
+    textDecoration: 'underline',
+    textUnderlineOffset: '4px',
+    display: 'inline-block',
+  },
+  footerLink: {
+    fontSize: 14,
+    color: 'rgb(167 139 250)', // accent that reads on both themes
+    textDecoration: 'underline',
+    textUnderlineOffset: '4px',
+  },
+  /* timeline dot */
+  dot: {
+    position: 'absolute' as const,
+    left: -(TL_PAD - TL_X),          // aligns dot on the vertical line
+    top: 12,                         // aligns to top of the card
+    width: 8,
+    height: 8,
+    borderRadius: 999,
+    background: 'rgb(167 139 250)',  // violet dot (visible in both)
+    boxShadow: '0 0 0 2px rgba(20,20,30,0.9)', // subtle ring for contrast
+  },
+  /* NEW badge */
+  newBadge: {
+    marginLeft: 8,
+    fontSize: 11,
+    fontWeight: 700 as const,
+    letterSpacing: '0.02em',
+    color: 'rgb(26, 26, 31)',
+    background:
+      'linear-gradient(90deg, rgba(167,139,250,0.95), rgba(99,102,241,0.95))',
+    borderRadius: 999,
+    padding: '2px 6px',
+    lineHeight: 1.1,
+    verticalAlign: 'middle',
   },
 };
 
