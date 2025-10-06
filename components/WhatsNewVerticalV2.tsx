@@ -1,398 +1,479 @@
-'use client';
+import * as React from 'react'
+import { getPagesUnderRoute } from 'nextra/context'
 
-import React, { useMemo, useState } from 'react';
-import { getPagesUnderRoute } from 'nextra/context';
+// -----------------------------
+// Theme variables for light/dark
+// -----------------------------
+function ThemeVars() {
+  return (
+    <style>{`
+      /* Light (default) */
+      :root, html:not(.dark), [data-theme="light"] {
+        --wn-bg:            #ffffff;
+        --wn-card:          #f8f7ff;      /* subtle lilac to pair with MP palette */
+        --wn-card-border:   rgba(0,0,0,0.06);
+        --wn-text:          #1c1c20;      /* strong readable body */
+        --wn-muted:         rgba(28,28,32,0.55);
+        --wn-ring:          rgba(103,80,255,0.35);
+        --wn-dot:           #6a5cff;      /* lilac */
+      }
 
-type Item = {
-  url: string;
-  title: string;
-  date: string;
-  thumbnail: string;
-};
+      /* Dark (works with either html.dark or data-theme) */
+      html.dark, [data-theme="dark"] {
+        --wn-bg:            #0f1116;
+        --wn-card:          #171923;
+        --wn-card-border:   rgba(255,255,255,0.08);
+        --wn-text:          rgba(255,255,255,0.92);
+        --wn-muted:         rgba(255,255,255,0.6);
+        --wn-ring:          rgba(103,80,255,0.45);
+        --wn-dot:           #a8a0ff;
+      }
 
-const changelogPages = getPagesUnderRoute('/changelogs');
-
-/* ---------- helpers ---------- */
-const parseDate = (s = '') => {
-  const m = s.match(/(\d{4}-\d{2}-\d{2})/);
-  return m ? m[1] : '';
-};
-const humanize = (s = '') =>
-  s.replace(/^\d{4}-\d{2}-\d{2}-/, '').replace(/-/g, ' ').replace(/\b\w/g, c => c.toUpperCase());
-
-const fmtDay = (dateStr: string) => {
-  const d = new Date(dateStr);
-  if (isNaN(d as any)) return dateStr || '';
-  return d.toLocaleDateString(undefined, { month: 'short', day: 'numeric', year: 'numeric' });
-};
-
-const firstNonEmpty = (...vals: any[]) =>
-  vals.find((v) => {
-    if (!v) return false;
-    if (Array.isArray(v)) return v.length > 0 && typeof v[0] === 'string';
-    return typeof v === 'string';
-  });
-
-const clampStyle = (lines: number): React.CSSProperties => ({
-  display: '-webkit-box',
-  WebkitLineClamp: lines,
-  WebkitBoxOrient: 'vertical',
-  overflow: 'hidden'
-});
-
-/* ---------- build items (NEWEST → OLDEST) ---------- */
-function buildItems(): Item[] {
-  return (changelogPages || [])
-    .map((p: any) => {
-      const fm = p.frontMatter || p.meta || {};
-      const route = p.route || '';
-      if (!/\/changelogs\/.+/.test(route)) return null;
-
-      const name = p.name || route.split('/').pop() || '';
-      const date = fm.date || parseDate(name) || parseDate(route);
-      const thumb = firstNonEmpty(
-        fm.thumbnail,
-        fm.image,
-        fm.cover,
-        fm.ogImage,
-        fm.hero,
-        fm.screenshot,
-        Array.isArray(fm.images) ? fm.images[0] : undefined
-      ) as string | undefined;
-
-      return {
-        url: route,
-        title: fm.title || p.title || humanize(name),
-        date,
-        thumbnail: thumb || ''
-      } as Item;
-    })
-    .filter(Boolean)
-    .sort((a: Item, b: Item) => new Date(b.date).getTime() - new Date(a.date).getTime());
+      /* Bridge common prose tokens inside our wrapper so the site theme can't wash out text */
+      .wn {
+        --tw-prose-body: var(--wn-text);
+        --tw-prose-headings: var(--wn-text);
+        --tw-prose-links: var(--wn-text);
+      }
+    `}</style>
+  )
 }
 
-/* ---------- shared inline styles ---------- */
-const TL_X = 12;                     // timeline line X (relative to UL left)
-const TL_PAD = TL_X + 16;            // left padding so content clears the gutter
+// -----------------------------
+// Types
+// -----------------------------
+type Item = {
+  route: string
+  name: string
+  frontMatter?: {
+    title?: string
+    date?: string
+    image?: string
+  }
+}
 
-const s = {
-  page: { maxWidth: 880, margin: '0 auto' },
-  h1: {
-    marginTop: 16,
-    marginBottom: 0,
-    fontSize: '44px',
-    lineHeight: 1.1,
-    fontWeight: 600 as const,
-    letterSpacing: '-0.02em' as const,
+function parseDate(s?: string): Date | null {
+  if (!s) return null
+  const d = new Date(s)
+  return isNaN(+d) ? null : d
+}
+
+function formatDate(d: Date): string {
+  const dt = new Intl.DateTimeFormat('en-GB', {
+    day: '2-digit',
+    month: 'short',
+    year: 'numeric',
+  })
+  // 27 Sept 2025
+  const parts = dt.formatToParts(d)
+  const day = parts.find(p => p.type === 'day')?.value ?? ''
+  const mon = parts.find(p => p.type === 'month')?.value ?? ''
+  const yr  = parts.find(p => p.type === 'year')?.value ?? ''
+  return `${day} ${mon} ${yr}`
+}
+
+function isNew(d: Date | null): boolean {
+  if (!d) return false
+  const ms = Date.now() - d.getTime()
+  return ms <= 14 * 24 * 60 * 60 * 1000
+}
+
+// -----------------------------
+// Main component
+// -----------------------------
+export default function WhatsNewVertical() {
+  // Pull all changelog posts
+  const raw = getPagesUnderRoute('/changelogs') as unknown as Item[]
+
+  // Normalize & sort (newest first)
+  const items = React.useMemo(() => {
+    const mapped = (raw || []).map((p) => {
+      const date = parseDate(p.frontMatter?.date)
+      const title = p.frontMatter?.title ?? p.name ?? 'Untitled'
+      const image = p.frontMatter?.image
+      return { ...p, title, date, image }
+    })
+    mapped.sort((a, b) => {
+      const da = a.date ? a.date.getTime() : 0
+      const db = b.date ? b.date.getTime() : 0
+      return db - da
+    })
+    return mapped
+  }, [raw])
+
+  // Pagination
+  const SIZE_OPTIONS = [5, 10, 15]
+  const [size, setSize] = React.useState<number>(SIZE_OPTIONS[0])
+  const [page, setPage] = React.useState<number>(0)
+
+  const total = items.length
+  const start = page * size
+  const end   = Math.min(start + size, total)
+
+  React.useEffect(() => {
+    if (start >= total) setPage(0)
+  }, [size, total]) // reset if the list shrinks
+
+  const pageItems = items.slice(start, end)
+
+  const next = () => setPage((p) => (end >= total ? p : p + 1))
+  const prev = () => setPage((p) => (p <= 0 ? 0 : p - 1))
+
+  return (
+    <section
+      className="nx-not-prose not-prose wn"
+      style={s.page}
+      data-wn-id="wn-vertical"
+    >
+      <ThemeVars />
+
+      {/* Header */}
+      <div style={s.headerWrap}>
+        <h1 style={s.h1}>What&apos;s New</h1>
+
+        <div style={s.hero}>
+          {/* PREFERRED FIX: use theme tokens inline (no hard-coded white) */}
+          <p style={s.heroP}>
+            <strong>Track Mixpanel product releases and improvements in one place.</strong>{' '}
+            See what’s new, what got faster, and what opens up entirely new ways to answer questions about your product.
+            These changes are built from customer feedback and real workflows—less setup, fewer manual steps, clearer answers.
+          </p>
+          <p style={s.heroP}>
+            From performance boosts to streamlined analysis and collaboration, each release is here to shorten the path
+            from “what happened?” to “what should we do?”. Browse the highlights below and put the most impactful updates
+            to work on your team today.
+          </p>
+          <a href="/changelogs" style={s.heroLink}>Browse Changelog</a>
+        </div>
+
+        {/* Controls row */}
+        <div style={s.controlsRow}>
+          <div style={s.showing}>
+            Showing {total === 0 ? 0 : start + 1}–{end} of {total}
+          </div>
+
+          <div style={s.controlsRight}>
+            <span style={s.showLabel}>Show</span>
+            <select
+              aria-label="Show latest"
+              value={size}
+              onChange={(e) => { setSize(parseInt(e.target.value, 10)); setPage(0) }}
+              style={s.select}
+            >
+              {SIZE_OPTIONS.map(v => (
+                <option key={v} value={v}>Latest {v}</option>
+              ))}
+            </select>
+
+            <button
+              type="button"
+              onClick={prev}
+              disabled={page === 0}
+              style={s.navBtn}
+            >
+              ← Prev
+            </button>
+            <button
+              type="button"
+              onClick={next}
+              disabled={end >= total}
+              style={s.navBtn}
+            >
+              Next →
+            </button>
+          </div>
+        </div>
+      </div>
+
+      {/* List with timeline gutter */}
+      <div style={s.listWrap}>
+        <div style={s.timeline} />
+        {pageItems.map((it) => {
+          const d = it.date
+          const badge = isNew(d)
+          return (
+            <article key={it.route} style={s.card}>
+              {/* timeline dot */}
+              <div style={s.dot} aria-hidden />
+
+              {/* Title row */}
+              <div style={s.titleRow}>
+                <h2 style={s.h2}>
+                  {it.title}
+                  {badge && <span style={s.newBadge}>NEW</span>}
+                </h2>
+                {d && <time style={s.cardDate} dateTime={d.toISOString()}>{formatDate(d)}</time>}
+              </div>
+
+              {/* Media */}
+              <a href={it.route} style={s.mediaLink} aria-label={`Read ${it.title}`}>
+                <div style={s.media}>
+                  {it.image ? (
+                    // eslint-disable-next-line @next/next/no-img-element
+                    <img src={it.image} alt="" style={s.img} />
+                  ) : (
+                    <div style={s.placeholder} />
+                  )}
+                </div>
+              </a>
+
+              <div style={s.readRow}>
+                <a href={it.route} style={s.readLink}>Read update →</a>
+              </div>
+            </article>
+          )
+        })}
+      </div>
+
+      {/* Footer controls */}
+      <div style={s.footerRow}>
+        <a href="/changelogs" style={s.footerLink}>Browse the full Changelog →</a>
+        <div style={s.controlsRight}>
+          <button
+            type="button"
+            onClick={prev}
+            disabled={page === 0}
+            style={s.navBtn}
+          >
+            ← Prev
+          </button>
+          <button
+            type="button"
+            onClick={next}
+            disabled={end >= total}
+            style={s.navBtn}
+          >
+            Next →
+          </button>
+        </div>
+      </div>
+    </section>
+  )
+}
+
+// -----------------------------
+// Styles (inline → preferred fix)
+// -----------------------------
+const s: Record<string, React.CSSProperties> = {
+  page: {
+    position: 'relative',
+    margin: '0 auto',
+    maxWidth: 980,
+    padding: '8px 0 64px',
   },
+
+  headerWrap: {
+    marginBottom: 12,
+  },
+
+  h1: {
+    fontSize: 44,
+    lineHeight: 1.1,
+    fontWeight: 700,
+    margin: '0 0 12px 0',
+    color: 'var(--wn-text)',
+  },
+
+  hero: {
+    marginTop: 6,
+    marginBottom: 8,
+  },
+
   heroP: {
+    // THE KEY: set tokenized color inline so Light mode is readable
     marginTop: 12,
     fontSize: 15,
     lineHeight: 1.6,
-    color: 'rgba(255,255,255,0.8)',
+    color: 'var(--wn-text)',
   },
+
   heroLink: {
     marginTop: 12,
+    color: 'var(--wn-text)',
     fontSize: 14,
     textDecoration: 'underline',
     textUnderlineOffset: '4px',
-    color: 'rgba(255,255,255,0.85)',
     display: 'inline-block',
   },
-  rowBar: {
+
+  controlsRow: {
     marginTop: 24,
     display: 'flex',
     alignItems: 'center',
     justifyContent: 'space-between',
     gap: 12,
   },
+
   showing: {
     fontSize: 12,
-    color: 'rgba(255,255,255,0.55)',
+    color: 'var(--wn-muted)',
   },
-  controlsWrap: { whiteSpace: 'nowrap' as const, minWidth: 0 },
-  btn: {
-    fontSize: 12,
-    padding: '6px 8px',
-    borderRadius: 6,
-    border: '1px solid rgba(255,255,255,0.18)',
-    background: 'transparent',
-    color: 'inherit',
-    cursor: 'pointer',
-  },
-  select: {
-    fontSize: 12,
-    padding: '6px 8px',
-    borderRadius: 6,
-    border: '1px solid rgba(255,255,255,0.18)',
-    background: 'transparent',
-    color: 'inherit',
-  },
-  /* list + timeline */
-  list: {
-    marginTop: 12,
-    listStyle: 'none',
-    padding: 0,
-    position: 'relative' as const,
-    paddingLeft: TL_PAD,
-  },
-  timelineLine: {
-    position: 'absolute' as const,
-    left: TL_X,
-    top: 0,
-    bottom: 0,
-    width: 2,
-    background: 'rgba(255,255,255,0.07)',
-  },
-  /* card */
-  cardLi: { padding: '12px 0', position: 'relative' as const },
-  cardA: { display: 'block', borderRadius: 12, padding: 12, textDecoration: 'none' },
-  cardHeader: {
-    display: 'grid',
-    gridTemplateColumns: '1fr auto',
+
+  controlsRight: {
+    display: 'flex',
     alignItems: 'center',
-    gap: 12,
-    marginBottom: 8,
+    gap: 8,
   },
-  cardTitle: {
-    fontSize: 20,
-    fontWeight: 600 as const,
-    lineHeight: 1.2,
-    textDecorationThickness: '1px',
-    textUnderlineOffset: '4px',
+
+  showLabel: {
+    fontSize: 12,
+    color: 'var(--wn-muted)',
+    marginRight: 4,
   },
-  cardDate: { fontSize: 12, color: 'rgba(255,255,255,0.55)' },
-  imgWrap: {
-    width: '100%',
-    borderRadius: 12,
-    overflow: 'hidden',
-    aspectRatio: '16 / 9',
-    background:
-      'radial-gradient(120% 120% at 0% 100%, rgba(168,85,247,0.18), transparent 60%), radial-gradient(120% 120% at 100% 0%, rgba(59,130,246,0.18), transparent 60%)',
-  },
-  readLink: {
-    marginTop: 6,
-    fontSize: 13,
-    textDecoration: 'underline',
-    textUnderlineOffset: '4px',
-    display: 'inline-block',
-  },
-  footerLink: {
+
+  select: {
+    appearance: 'none',
+    WebkitAppearance: 'none',
+    MozAppearance: 'none',
+    border: `1px solid var(--wn-card-border)`,
+    background: 'transparent',
+    color: 'var(--wn-text)',
+    borderRadius: 8,
+    padding: '6px 28px 6px 10px',
     fontSize: 14,
-    color: 'rgb(167 139 250)',
+    position: 'relative' as const,
+    backgroundImage:
+      `linear-gradient(45deg, transparent 50%, var(--wn-text) 50%),
+       linear-gradient(135deg, var(--wn-text) 50%, transparent 50%)`,
+    backgroundPosition: 'right 10px center, right 5px center',
+    backgroundSize: '6px 6px, 6px 6px',
+    backgroundRepeat: 'no-repeat',
+  },
+
+  navBtn: {
+    fontSize: 14,
+    border: `1px solid var(--wn-card-border)`,
+    background: 'transparent',
+    color: 'var(--wn-text)',
+    padding: '6px 10px',
+    borderRadius: 8,
+    cursor: 'pointer',
+    transition: 'background 160ms ease',
+  },
+
+  listWrap: {
+    position: 'relative',
+    marginTop: 20,
+  },
+
+  timeline: {
+    position: 'absolute',
+    left: -24,
+    top: 12,
+    bottom: 12,
+    width: 2,
+    background:
+      'linear-gradient(to bottom, var(--wn-card-border), var(--wn-card-border))',
+    borderRadius: 2,
+    pointerEvents: 'none',
+  },
+
+  card: {
+    position: 'relative',
+    margin: '28px 0 40px',
+    paddingLeft: 0,
+  },
+
+  dot: {
+    position: 'absolute',
+    left: -28,
+    top: 8,
+    width: 10,
+    height: 10,
+    background: 'var(--wn-dot)',
+    borderRadius: '999px',
+    boxShadow: '0 0 0 3px var(--wn-ring)',
+  },
+
+  titleRow: {
+    display: 'flex',
+    alignItems: 'baseline',
+    justifyContent: 'space-between',
+    gap: 12,
+    marginBottom: 10,
+  },
+
+  h2: {
+    fontSize: 22,
+    lineHeight: 1.25,
+    fontWeight: 700,
+    color: 'var(--wn-text)',
+    margin: 0,
+    display: 'flex',
+    alignItems: 'center',
+    gap: 10,
+  },
+
+  newBadge: {
+    fontSize: 11,
+    lineHeight: 1,
+    padding: '4px 6px',
+    borderRadius: 999,
+    border: `1px solid var(--wn-card-border)`,
+    background: 'transparent',
+    color: 'var(--wn-text)',
+  },
+
+  cardDate: {
+    fontSize: 12,
+    color: 'var(--wn-muted)',
+    whiteSpace: 'nowrap',
+  },
+
+  mediaLink: {
+    display: 'block',
+    borderRadius: 16,
+    overflow: 'hidden',
+  },
+
+  media: {
+    borderRadius: 16,
+    border: `1px solid var(--wn-card-border)`,
+    background:
+      'radial-gradient(180px 120px at 30% 20%, rgba(106,92,255,0.35), transparent), ' +
+      'radial-gradient(220px 160px at 75% 70%, rgba(168,160,255,0.28), transparent), ' +
+      'var(--wn-card)',
+    padding: 18,
+  },
+
+  img: {
+    display: 'block',
+    width: '100%',
+    height: 'auto',
+    borderRadius: 10,
+  },
+
+  placeholder: {
+    width: '100%',
+    height: 260,
+    borderRadius: 12,
+    background:
+      'repeating-linear-gradient( 45deg, rgba(0,0,0,0.06), rgba(0,0,0,0.06) 10px, transparent 10px, transparent 20px )',
+  },
+
+  readRow: {
+    marginTop: 10,
+  },
+
+  readLink: {
+    fontSize: 14,
+    textDecoration: 'underline',
+    textUnderlineOffset: '3px',
+    color: 'var(--wn-text)',
+  },
+
+  footerRow: {
+    marginTop: 28,
+    display: 'flex',
+    alignItems: 'center',
+    justifyContent: 'space-between',
+    gap: 12,
+  },
+
+  footerLink: {
+    color: 'var(--wn-text)',
     textDecoration: 'underline',
     textUnderlineOffset: '4px',
+    fontSize: 14,
   },
-  /* timeline dot */
-  dot: {
-    position: 'absolute' as const,
-    left: -(TL_PAD - TL_X),          // aligns dot on the vertical line
-    top: 12,                         // aligns to top of the card
-    width: 8,
-    height: 8,
-    borderRadius: 999,
-    background: 'rgb(167 139 250)',  // violet dot
-    boxShadow: '0 0 0 2px rgba(20,20,30,0.9)', // ring to separate from bg
-  },
-  /* NEW badge */
-  newBadge: {
-    marginLeft: 8,
-    fontSize: 11,
-    fontWeight: 700 as const,
-    letterSpacing: '0.02em',
-    color: 'rgb(26, 26, 31)',
-    background:
-      'linear-gradient(90deg, rgba(167,139,250,0.95), rgba(99,102,241,0.95))',
-    borderRadius: 999,
-    padding: '2px 6px',
-    lineHeight: 1.1,
-    verticalAlign: 'middle',
-  },
-};
-
-/* ---------- control components ---------- */
-function ControlsTop({
-  pageSize,
-  canPrev,
-  canNext,
-  changeSize,
-  prev,
-  next,
-}: {
-  pageSize: number;
-  canPrev: boolean;
-  canNext: boolean;
-  changeSize: (n: number) => void;
-  prev: () => void;
-  next: () => void;
-}) {
-  return (
-    <div style={s.controlsWrap}>
-      <span style={{ fontSize: 13, color: 'rgba(255,255,255,0.7)', marginRight: 6 }}>Show</span>
-      <select style={s.select} value={pageSize} onChange={(e) => changeSize(Number(e.target.value))}>
-        {[5, 10, 15, 20].map((n) => (
-          <option key={n} value={n}>
-            Latest {n}
-          </option>
-        ))}
-      </select>
-      <button onClick={prev} disabled={!canPrev} style={{ ...s.btn, marginLeft: 8 }}>
-        &larr; Prev
-      </button>
-      <button onClick={next} disabled={!canNext} style={{ ...s.btn, marginLeft: 6 }}>
-        Next &rarr;
-      </button>
-    </div>
-  );
-}
-
-function ControlsBottom({
-  canPrev,
-  canNext,
-  prev,
-  next,
-}: {
-  canPrev: boolean;
-  canNext: boolean;
-  prev: () => void;
-  next: () => void;
-}) {
-  return (
-    <div style={s.controlsWrap}>
-      <button onClick={prev} disabled={!canPrev} style={s.btn}>
-        &larr; Prev
-      </button>
-      <button onClick={next} disabled={!canNext} style={{ ...s.btn, marginLeft: 6 }}>
-        Next &rarr;
-      </button>
-    </div>
-  );
-}
-
-/* ---------- card ---------- */
-function Row({ item }: { item: Item }) {
-  // NEW badge if within last 14 days
-  const isNew = (() => {
-    const d = new Date(item.date);
-    if (isNaN(d as any)) return false;
-    const days = (Date.now() - d.getTime()) / (1000 * 60 * 60 * 24);
-    return days <= 14;
-  })();
-
-  return (
-    <li style={s.cardLi} role="listitem">
-      {/* timeline dot */}
-      <span aria-hidden="true" style={s.dot} />
-
-      <a href={item.url} style={s.cardA} aria-label={`Read update: ${item.title}`}>
-        <div style={s.cardHeader}>
-          <h3 style={{ ...s.cardTitle, ...clampStyle(2) }} title={item.title}>
-            {item.title}
-            {isNew && <span style={s.newBadge}>NEW</span>}
-          </h3>
-          <div style={s.cardDate}>{fmtDay(item.date)}</div>
-        </div>
-
-        <div style={s.imgWrap}>
-          {item.thumbnail ? (
-            // eslint-disable-next-line @next/next/no-img-element
-            <img
-              src={item.thumbnail}
-              alt=""
-              loading="lazy"
-              style={{ width: '100%', height: '100%', objectFit: 'cover', display: 'block' }}
-            />
-          ) : (
-            <div style={{ width: '100%', height: '100%' }} />
-          )}
-        </div>
-
-        <div>
-          <span style={s.readLink}>Read update →</span>
-        </div>
-      </a>
-    </li>
-  );
-}
-
-/* ---------- main ---------- */
-export default function WhatsNewVertical() {
-  const items = useMemo(buildItems, []);
-
-  // paging (Latest X)
-  const [pageSize, setPageSize] = useState<number>(5);
-  const [offset, setOffset] = useState<number>(0);
-
-  const total = items.length;
-  const start = offset;
-  const end = Math.min(offset + pageSize, total);
-  const page = items.slice(start, end);
-
-  const canPrev = start > 0;
-  const canNext = end < total;
-
-  const changeSize = (n: number) => {
-    setPageSize(n);
-    setOffset(0);
-  };
-  const prev = () => setOffset(Math.max(0, offset - pageSize));
-  const next = () => setOffset(Math.min(total, offset + pageSize));
-
-  return (
-    <section className="nx-not-prose not-prose" style={s.page}>
-      {/* HERO */}
-      <div>
-        <h1 style={s.h1}>What&apos;s New</h1>
-
-        <p style={s.heroP}>
-          <strong>Track Mixpanel product releases and improvements in one place.</strong> See what’s
-          new, what got faster, and what opens up entirely new ways to answer questions about your
-          product. These changes are built from customer feedback and real workflows—less setup,
-          fewer manual steps, clearer answers.
-        </p>
-        <p style={s.heroP}>
-          From performance boosts to streamlined analysis and collaboration, each release is here to
-          shorten the path from “what happened?” to “what should we do?”. Browse the highlights below
-          and put the most impactful updates to work on your team today.
-        </p>
-
-        <a href="/changelogs" style={s.heroLink}>
-          Browse Changelog
-        </a>
-      </div>
-
-      {/* TOP BAR — single line */}
-      <div style={s.rowBar}>
-        <div style={s.showing}>
-          Showing {total === 0 ? 0 : start + 1}–{end} of {total}
-        </div>
-        <ControlsTop
-          pageSize={pageSize}
-          canPrev={canPrev}
-          canNext={canNext}
-          changeSize={changeSize}
-          prev={prev}
-          next={next}
-        />
-      </div>
-
-      {/* LIST + TIMELINE */}
-      <ul style={s.list} role="list">
-        <div aria-hidden="true" style={s.timelineLine} />
-        {page.map((item) => (
-          <Row key={item.url} item={item} />
-        ))}
-      </ul>
-
-      {/* BOTTOM BAR — single line */}
-      <div style={{ ...s.rowBar, marginTop: 32 }}>
-        <div>
-          <a href="/changelogs" style={s.footerLink}>
-            Browse the full Changelog →
-          </a>
-        </div>
-        <ControlsBottom canPrev={canPrev} canNext={canNext} prev={prev} next={next} />
-      </div>
-    </section>
-  );
 }
