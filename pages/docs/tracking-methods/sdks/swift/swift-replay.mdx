@@ -97,7 +97,7 @@ We recommend using our sampling functionality unless you need custom logic to de
 
 To enable Session Replay and set your sampling rate, create a `MPSessionReplayConfig` object and set the `recordingSessionsPercent` with a value between `0.0` and `100.0`. At `0.0` no sessions will be recorded, at `100.0` (default) all sessions will be recorded.
 
-Start with a high sampling rate, then adjust according to your specific analytics needs.
+To start, we recommend using an 100% sampling rate to ensure replay capture is behaving as expected, then adjust according to your specific analytics needs.
 
 Upon initialization, recording starts automatically if the sampling check passes. 
 
