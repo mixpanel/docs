@@ -51,52 +51,66 @@ Mixpanel helps product teams **see what’s happening**, **understand why**, **d
 
 
 
-<section aria-label="OADA loop overview" style="padding:24px 16px">
-  <h2 style="text-align:center;margin:0 0 8px">Close the Loop with Mixpanel</h2>
+## Close the Loop with Mixpanel
+
+See how each step in the loop connects to Mixpanel features and Guides that help you put it into action.
+
+| 👀 **Observe** | 📊 **Analyze** | 💡 **Decide** | 🚀 **Act** |
+|---|---|---|---|
+| See what’s happening in your product by tracking the events that matter. <br/><br/>**[Build a tracking strategy →](https://docs.mixpanel.com/guides/guides-by-use-case/build-a-tracking-strategy)** | Explore funnels, retention, and drivers to find what moves your metrics. <br/><br/>**[Ensure data quality →](https://docs.mixpanel.com/guides/guides-by-use)**
+
+
+
+
+
+
+
+<section aria-label="OADA cards">
   <p style="text-align:center;margin:0 0 16px">
     See how each step in the loop connects to Mixpanel features and Guides that help you put it into action.
   </p>
 
-  <div style="display:grid;gap:16px;grid-template-columns:repeat(auto-fit,minmax(240px,1fr))">
-    <!-- Observe -->
-    <a href="https://docs.mixpanel.com/guides/guides-by-use-case/build-a-tracking-strategy" style="text-decoration:none;color:inherit">
-      <article style="border:1px solid #E5E7EB;border-radius:16px;padding:16px;background:#fff;box-shadow:0 2px 10px rgba(0,0,0,0.03)">
-        <div aria-hidden="true" style="font-size:28px">👀</div>
-        <h3 style="margin:8px 0 6px">Observe</h3>
-        <p style="margin:0">See what’s happening in your product by tracking the events that matter.</p>
-        <div style="margin-top:8px;font-weight:600">Build a tracking strategy →</div>
-      </article>
-    </a>
+  <style>
+    .oada-grid { display: grid; gap: 16px; }
+    @media (min-width: 700px) { .oada-grid { grid-template-columns: repeat(2, 1fr); } }
+    @media (min-width: 1000px) { .oada-grid { grid-template-columns: repeat(4, 1fr); } }
+    .oada-card {
+      border: 1px solid #E5E7EB; border-radius: 16px; padding: 16px; background: #fff;
+      box-shadow: 0 2px 10px rgba(0,0,0,0.03);
+    }
+    .oada-card h3 { margin: 8px 0 6px; }
+    .oada-card p { margin: 0; }
+    .oada-card .cta { margin-top: 8px; font-weight: 600; }
+  </style>
 
-    <!-- Analyze -->
-    <a href="https://docs.mixpanel.com/guides/guides-by-use-case/ensuring-data-quality" style="text-decoration:none;color:inherit">
-      <article style="border:1px solid #E5E7EB;border-radius:16px;padding:16px;background:#fff;box-shadow:0 2px 10px rgba(0,0,0,0.03)">
-        <div aria-hidden="true" style="font-size:28px">📊</div>
-        <h3 style="margin:8px 0 6px">Analyze</h3>
-        <p style="margin:0">Explore funnels, retention, and drivers to find what moves your metrics.</p>
-        <div style="margin-top:8px;font-weight:600">Ensure data quality →</div>
-      </article>
-    </a>
+  <div class="oada-grid">
+    <div class="oada-card">
+      <div aria-hidden="true" style="font-size:28px">👀</div>
+      <h3>Observe</h3>
+      <p>See what’s happening in your product by tracking the events that matter.</p>
+      <p class="cta"><a href="https://docs.mixpanel.com/guides/guides-by-use-case/build-a-tracking-strategy">Build a tracking strategy →</a></p>
+    </div>
 
-    <!-- Decide -->
-    <a href="https://docs.mixpanel.com/guides/guides-by-use-case/driving-product-innovation" style="text-decoration:none;color:inherit">
-      <article style="border:1px solid #E5E7EB;border-radius:16px;padding:16px;background:#fff;box-shadow:0 2px 10px rgba(0,0,0,0.03)">
-        <div aria-hidden="true" style="font-size:28px">💡</div>
-        <h3 style="margin:8px 0 6px">Decide</h3>
-        <p style="margin:0">Align on what to change next with dashboards, annotations, and shared insights.</p>
-        <div style="margin-top:8px;font-weight:600">Drive product innovation →</div>
-      </article>
-    </a>
+    <div class="oada-card">
+      <div aria-hidden="true" style="font-size:28px">📊</div>
+      <h3>Analyze</h3>
+      <p>Explore funnels, retention, and drivers to find what moves your metrics.</p>
+      <p class="cta"><a href="https://docs.mixpanel.com/guides/guides-by-use-case/ensuring-data-quality">Ensure data quality →</a></p>
+    </div>
 
-    <!-- Act -->
-    <a href="https://docs.mixpanel.com/guides/strategic-playbooks/experimentation-playbook" style="text-decoration:none;color:inherit">
-      <article style="border:1px solid #E5E7EB;border-radius:16px;padding:16px;background:#fff;box-shadow:0 2px 10px rgba(0,0,0,0.03)">
-        <div aria-hidden="true" style="font-size:28px">🚀</div>
-        <h3 style="margin:8px 0 6px">Act</h3>
-        <p style="margin:0">Ship improvements and measure impact with experiments and launch tracking.</p>
-        <div style="margin-top:8px;font-weight:600">Run experiments →</div>
-      </article>
-    </a>
+    <div class="oada-card">
+      <div aria-hidden="true" style="font-size:28px">💡</div>
+      <h3>Decide</h3>
+      <p>Align on what to change next with dashboards, annotations, and shared insights.</p>
+      <p class="cta"><a href="https://docs.mixpanel.com/guides/guides-by-use-case/driving-product-innovation">Drive product innovation →</a></p>
+    </div>
+
+    <div class="oada-card">
+      <div aria-hidden="true" style="font-size:28px">🚀</div>
+      <h3>Act</h3>
+      <p>Ship improvements and measure impact with experiments and launch tracking.</p>
+      <p class="cta"><a href="https://docs.mixpanel.com/guides/strategic-playbooks/experimentation-playbook">Run experiments →</a></p>
+    </div>
   </div>
 </section>
 
