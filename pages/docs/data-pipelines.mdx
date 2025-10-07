@@ -128,7 +128,7 @@ You can’t delete a trial pipeline in Mixpanel — this is intentional. Each pr
 
 ### What is Active Pipeline Limit
 
-Each project can have 2 recurring pipelines and 1 date ranged backfill pipeline active. Multiple pipelines cannot write to the same desination or for the same date range in a destination. Recurring pipelines must have different frequencies.
+Each project can have 2 recurring pipelines and 1 date ranged backfill pipeline active. Multiple pipelines cannot write to the same destination or for the same date range in a destination. Recurring pipelines must have different frequencies.
 
 To maintain optimal performance across our services, we limit the number of concurrently running pipeline steps to one per project. This approach ensures that each job, including those involving substantial backfills, waits its turn, preventing any single project from monopolizing resources and thus promoting fair scheduling among all customers.
 
