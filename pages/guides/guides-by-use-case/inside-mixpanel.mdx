@@ -142,7 +142,7 @@ Through **Session Replay** and **Heatmaps**, they observe users zooming in on pa
 ---
 
 **Decide** <br></br>
-The team compares cohorts of mobile users who completed checkout versus those who didn’t. They find that reducing the number of required fields correlates with higher conversion. They decide to simplify the payment form and surface popular payment options earlier in the flow.
+The team compares **cohorts** of mobile users who completed checkout versus those who didn’t. They find that reducing the number of required fields correlates with higher conversion. They decide to simplify the payment form and surface popular payment options earlier in the flow.
 
 ---
 
@@ -202,39 +202,41 @@ They run an **Experiment** testing a new “Rate this Episode” prompt and smar
 <details>
 <summary><strong>💰 Fintech: Increasing Feature Adoption and Retention</strong></summary>
 
-A fintech product team tracks engagement with budgeting tools, analyzes setup drop-offs, and experiments with alerts to improve retention.
+A fintech product team observes how customers engage with budgeting tools, analyzes where they drop off, decides which steps to simplify, and acts by testing new prompts that improve adoption and retention.
 
 ---
 
 **Observe** <br></br>
-They track *Linked Account → Created Budget → Reviewed Spending → Adjusted Budget*.  
-Many users stop after linking an account.
+The team maps the customer journey to identify where engagement drops: *Account Linked → Budget Created → Spending Reviewed → Budget Adjusted*
+
+Using **Funnels** and **Flows** in Mixpanel, they see that many users link their bank account but never complete a first budget. This gap represents a key opportunity to improve activation within the product.
 
 ---
 
 **Analyze** <br></br>
-**Session Replay** shows authentication errors for smaller banks.  
-**Retention Reports** confirm users who finish linking are 2× more likely to stay active.
+They dig deeper using **Insights**, **Retention**, and **Session Replay** to understand why users don’t finish setup. Behavioral data reveals that users linking smaller financial institutions often encounter errors. Retention reports show that users who successfully create a budget are twice as likely to return within 30 days.
 
-| Funnel Stage | Conversion Rate |
-|---------------|-----------------|
-| Linked Account → Created Budget | 45% |
-| Created Budget → Reviewed Spending | 80% |
+| Tool | Observation | Insight |
+|------|--------------|----------|
+| **Funnels & Flows** | Many users stop after linking a bank account | Setup friction prevents users from creating their first budget and experiencing value. |
+| **Insights** | Lower completion rates among users linking smaller institutions | Connection errors and inconsistent authentication flows block progress. |
+| **Retention** | Users who complete budget setup return 2× more often within 30 days | Early success with the budgeting feature predicts long-term engagement. |
+| **Session Replay** | Users repeatedly attempt to link accounts before exiting | Frustration during setup causes drop-offs before key actions are completed. |
+
 
 ---
 
 **Decide** <br></br>
-A **Metric Tree** connects “Monthly Active Users” to “Set Budget Alert.”  
-Users who set alerts retain longer, so the team focuses there.
+The team compares **cohorts** of users who complete their first budget versus those who don’t. They find that users who set up a budget alert immediately after creation retain best over time. They decide to streamline the account linking flow and prompt users to set alerts earlier.
 
 ---
 
 **🚀 Act** <br></br>
-They test an alert prompt via **Experimentation** and release it progressively using **Feature Flags**.
+They launch an **Experiment** testing a simplified linking process and a new “Set Your First Alert” prompt after budget creation. When the new experience increases completion and retention, they roll it out to all users using **Feature Flags**.
 
 ---
 
-**✨ Result:** Budgeting alert adoption increases 30%, retention rises 18%.<br></br>
+**✨ Result:** Budget feature adoption increases 30%, and retention improves 15% as users connect accounts and set alerts more easily.<br></br>
 
 </details>
 
@@ -243,39 +245,40 @@ They test an alert prompt via **Experimentation** and release it progressively u
 <details>
 <summary><strong>🎮 Gaming: Driving Player Engagement and In-App Purchases</strong></summary>
 
-A gaming studio observes where players churn, analyzes gameplay behavior, and experiments with prompts to drive engagement and purchases.
+A gaming studio observes how players progress through levels, analyzes behavior to uncover friction and missed opportunities, decides what changes will keep players engaged, and acts by testing prompts that increase completion and purchases.
 
 ---
 
 **Observe** <br></br>
-They track *Level Started → Level Completed → In-App Purchase Made.*  
-Most players quit after Level 3.
+The team tracks key in-game milestones to identify where players churn: *Level Started → Level Completed → In-App Purchase Made*
+
+Using **Funnels** and **Flows** in Mixpanel, they find that a large portion of users drop off after failing Level 3 multiple times. This stage becomes their primary focus for improvement.
 
 ---
 
 **Analyze** <br></br>
-**Session Replay** and **Insights** reveal players miss key hints.  
-Those who use power-ups complete more levels and spend more.
+They use **Insights**, **Session Replay**, and **Heatmaps** to understand what’s causing frustration. Behavioral data shows that players who use “Power-Ups” early in gameplay are far more likely to progress, while replays reveal many players overlook the in-game hint icon.
 
-| Tool | Discovery |
-|------|------------|
-| **Session Replay** | Players ignore the “Hint” icon on Level 3 |
-| **Insights** | Power-up users complete 2× more levels |
+| Tool | Observation | Insight |
+|------|--------------|----------|
+| **Funnels & Flows** | High player drop-off after Level 3 | Repeated failures at a single level cause early churn and reduced engagement. |
+| **Insights** | Power-Up users complete twice as many levels as others | Early exposure to helpful tools increases progression and satisfaction. |
+| **Session Replay & Heatmaps** | Players ignore or miss the on-screen “Hint” icon | Key features are visually understated or poorly timed, leading to missed opportunities. |
+
 
 ---
 
 **Decide** <br></br>
-Using **Metric Trees**, they find “Power-Up Usage” directly impacts “Revenue.”  
-They plan to highlight power-ups before Level 3.
+The team compares **cohorts** of players who used Power-Ups before Level 3 with those who didn’t. They confirm that introducing Power-Ups earlier increases both level completion and purchase likelihood. They decide to highlight Power-Ups at the start of Level 3 with a short tutorial prompt.
 
 ---
 
 **Act** <br></br>
-They run an **Experiment** with a pre-level prompt and roll it out using **Feature Flags**.
+They run an **Experiment** testing the new Power-Up prompt, measuring its effect on both level completion and in-app purchases. After the new version shows a significant improvement in completion and a rise in purchases, the team deploys it to all players using **Feature Flags**.
 
 ---
 
-**✨ Result:** Level completion improves 35%; in-app purchases rise 20%.<br></br>
+**✨ Result:** Players advance further through the game, spend more time in-app, and make more purchases, driving sustained engagement.<br></br>
 
 </details>
 
@@ -292,7 +295,7 @@ Keep building your Mixpanel expertise with these resources designed to help you 
 | **Developer Docs** | Build and extend Mixpanel with advanced implementation guides. | [Open →](https://developer.mixpanel.com/reference/overview) |
 | **Docs** | Explore product capabilities, setup guides, and detailed feature references. | [Open →](https://docs.mixpanel.com/) |
 | **Events** | Join live sessions and webinars to explore new features, use cases, and expert-led best practices. | [Open →](https://mixpanel.com/events) |
-| **Guides** | Apply Mixpanel best practices to real-world workflows and use cases. | You are Here 📍 |
+| **Guides** | Apply Mixpanel best practices to real-world workflows and use cases. | 📍 You are Here |
 | **Mixpanel University** | Follow guided learning paths to validate your skills and earn certifications. | [Open →](https://mixpanel.com/university/) |
 
 Wherever you are in your Mixpanel journey, these resources will help you continue learning, stay connected, and keep improving.
