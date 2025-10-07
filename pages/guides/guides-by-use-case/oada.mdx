@@ -40,7 +40,7 @@ Mixpanel helps product teams **see what’s happening**, **understand why**, **d
 
     {/* Right: text with a flexible basis */}
     <aside style={{ flex: '1 1 320px', minWidth: 280 }}>
-      <h2 style={{ marginTop: 0 }}>**See Mixpanel in Action**</h2>
+      <h2 style={{ marginTop: 0 }}>**Discover Mixpanel**</h2>
       <p>
         In this 5-minute overview, learn how Mixpanel supports the <strong>Observe → Analyze → Decide → Act</strong> loop
         that drives product innovation.
@@ -61,7 +61,7 @@ See how each step in the loop connects to Mixpanel features and Guides that help
 
 | 👀 **Observe** | 📊 **Analyze** | 💡 **Decide** | 🚀 **Act** |
 |---|---|---|---|
-| See what’s happening in your product by tracking the events that matter. <br/><br/>**[Build a tracking strategy →](https://docs.mixpanel.com/guides/guides-by-use-case/build-a-tracking-strategy)** | Explore funnels, retention, and drivers to find what moves your metrics. <br/><br/>**[Ensure data quality →](https://docs.mixpanel.com/guides/guides-by-use)** | Align on what to change next with dashboards, annotations, and shared insights. <br/><br/>**[Build a tracking strategy →](https://docs.mixpanel.com/guides/guides-by-use-case/build-a-tracking-strategy)** | Ship improvements and measure impact with experiments and launch tracking. <br/><br/>**[Build a tracking strategy →](https://docs.mixpanel.com/guides/guides-by-use-case/build-a-tracking-strategy)**
+| See what’s happening in your product by tracking the events that matter. <br/><br/>**[Build a tracking strategy →](https://docs.mixpanel.com/guides/guides-by-use-case/build-a-tracking-strategy)** | Explore funnels, retention, and drivers to find what moves your metrics. <br/><br/>**[Ensure data quality →](https://docs.mixpanel.com/guides/guides-by-use-case/ensuring-data-quality)** | Align on what to change next with dashboards, annotations, and shared insights. <br/><br/>**[Link name here →](#)** | Ship improvements and measure impact with experiments and launch tracking. <br/><br/>**[Drive product innovation →](https://docs.mixpanel.com/guides/guides-by-use-case/driving-product-innovation)**
 
 ---
 
@@ -82,27 +82,29 @@ Below are examples of how teams in different industries use Mixpanel to measure,
 ---
 
 **Observe** <br></br>
-The team tracks the key onboarding steps — *Account Created → Setup Complete → First Project Created* — to identify where users drop off. **Funnels** and **Flows** reveal that many sign-ups never finish creating their first project.
+The team tracks the onboarding journey (Account Created → Tutorial Completed → Key Action Taken) to understand where users get stuck. Using **Funnels** and **Flows** in Mixpanel, they see that a large portion of users drop off before finishing the tutorial.
 
 ---
 
 **Analyze** <br></br>
-Using **Insights**, **Retention**, and **Session Replay**, they see users abandoning the setup due to unclear tracking plan instructions.
+They dig deeper with **Insights** and **Session Replay** to find out *why*. Behavioral data shows that most users abandon onboarding when asked to configure a complex setting too early, while replays confirm that this screen causes confusion.
 
-| Tool | Insight |
-|------|----------|
-| **Funnels** | 60% drop-off between “Setup Complete” → “First Project Created.” |
-| **Session Replay** | Users hover over “Tracking Plan” but never click “Save.” |
+| Tool | Observation | Insight |
+|------|--------------|----------|
+| **Funnels & Flows** | High drop-off between “Account Created” and “Tutorial Completed” | Many users start onboarding but don’t reach the first key action, indicating friction early in the setup process. |
+| **Insights** | Users who skip advanced configuration steps are more likely to activate | Complex setup tasks cause early abandonment before users reach value. |
+| **Session Replay** | Users pause or exit on the configuration screen | The configuration step is confusing, creating hesitation and contributing to drop-offs. |
+
 
 ---
 
 **Decide** <br></br>
-A **Metric Tree** shows that inviting teammates drives activation. They decide to surface a prompt encouraging users to invite others earlier.
+The team compares **cohorts** of users who complete onboarding in their first session versus those who don’t. They find that users who finish onboarding right away are twice as likely to activate within a week. They decide to simplify the initial setup and move optional configuration to a later stage.
 
 ---
 
 **Act** <br></br>
-They run an **Experiment** introducing a tooltip--“Invite your teammate to collaborate”--and roll out the winning variant using **Feature Flags**.
+They run an **Experiment** testing a new guided flow that delays complex setup until after the user experiences initial value. After the winning version significantly improves activation, they roll it out to all users using **Feature Flags**.
 
 ---
 
@@ -121,34 +123,35 @@ They run an **Experiment** introducing a tooltip--“Invite your teammate to col
 ---
 
 **Observe** <br></br>
-They map the funnel: *Product Viewed → Added to Cart → Checkout Started → Purchase Completed*.  
-Drop-offs spike at checkout.
+The team maps the path to purchase (Product Viewed → Added to Cart → Checkout Started → Purchase Completed) to pinpoint where customers abandon the flow. Using **Funnels** in Mixpanel, they see that a large portion of users start checkout but never complete payment.
 
 ---
 
 **Analyze** <br></br>
-Segmenting by device, they find mobile users struggle most.  
-**Session Replay** shows zooming and misclicks on the payment form.
+They investigate further with **Insights**, segmenting results by device and geography. Mobile users show significantly lower completion rates.
 
-| Observation | Insight |
-|--------------|----------|
-| 40% drop-off at payment | Payment form not optimized for mobile |
-| Higher desktop conversion | Indicates design, not intent issue |
+Through **Session Replay** and **Heatmaps**, they observe users zooming in on payment fields, misclicking form inputs, and abandoning the process after multiple failed attempts.
+
+| Tool | Observation | Insight |
+|------|--------------|----------|
+| **Funnels** | 40% drop-off at payment step | Many users abandon checkout before completing payment, indicating friction at this stage. |
+| **Session Replay & Heatmaps** | Users zoom and misclick on payment fields | The form is difficult to complete on mobile, leading to frustration and abandonment. |
+| **Insights** | Longer time on payment page before exit | Users struggle to enter details correctly, suggesting unclear field labels or validation errors. |
+
 
 ---
 
 **Decide** <br></br>
-A **Metric Tree** links revenue to “Discount Applied” and “Shipping Cost Viewed.”  
-High shipping costs cause abandonment, prompting a pricing test.
+The team compares cohorts of mobile users who completed checkout versus those who didn’t. They find that reducing the number of required fields correlates with higher conversion. They decide to simplify the payment form and surface popular payment options earlier in the flow.
 
 ---
 
 **Act** <br></br>
-They A/B test new shipping thresholds with **Experimentation** and roll out successful results using **Feature Flags**.
+They create an **Experiment** testing the simplified checkout form with mobile users. The results show a significant lift in mobile conversions, so the team rolls out the new design to all users using **Feature Flags**.
 
 ---
 
-**✨ Result:** Mobile checkout completion increases by 20%.
+**✨ Result:** Checkout completion increases by 20%, and mobile users complete purchases faster with fewer errors..
 <br></br>
 
 </details>
