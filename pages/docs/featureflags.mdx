@@ -76,17 +76,17 @@ Control variant by is always set to non-sticky. This is to ensure this is the on
 
 ### Step 3: Rollout Groups
 
-Feature flags may consistent of one or more rollout groups. Users are evaluated against each rollout group in order until one is found that the user qualifies for.
+Feature flags may consist of one or more rollout groups. Users are evaluated against each rollout group in order until one is found that the user qualifies for.
 
 You can target 'All Users', or optionally target rollout of your feature flags to subsets of your user base rather than to all your users with [Cohorts](https://docs.mixpanel.com/docs/cohorts).
 These are dynamic audiences of Mixpanel users based on user behavior or properties. Use these to target feature flags to specific subsets of your user base. For example, target only users who did 5 purchases in the last week. 
 
 <Callout type="info">
  - Cohorts used in feature flag targeting refresh on a periodic cadence (~every 2 hours). So once a user qualifies for a cohort, it can take up to 2 hours before they see a desired experience.
- - If you want users to continue seeing the same variant even if they disqualify from the cohort in the future, couple this with **Sticky Variants.** This will ensure a user continues to see the new experience until he flag is turned off.
+ - If you want users to continue seeing the same variant even if they disqualify from the cohort in the future, couple this with **Sticky Variants.** This will ensure a user continues to see the new experience until the flag is turned off.
 </Callout>
 
-**Runtime Targeting** enabled targeting users immediately based on device or platform properties. For example, only users who are on android device and in the UK
+**Runtime Targeting** enables targeting users immediately based on device or platform properties. For example, only users who are on Android devices and in the UK.
 - When building a cohort, if you add a filter, navigate to `+ Create New`, you'll be able to add a new runtime property filter.
 - Runtime properties (e.g., `platform`, `path`, `country`) should be passed by the SDK at request time for immediate, per-request decisions.
 
