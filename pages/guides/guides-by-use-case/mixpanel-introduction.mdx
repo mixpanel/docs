@@ -44,7 +44,7 @@ At its core, Mixpanel supports a **continuous innovation loop**—helping you ob
 
     {/* Right: text with a flexible basis */}
     <aside style={{ flex: '1 1 320px', minWidth: 280 }}>
-      <h2 style={{ marginTop: 0 }}>**Discover Mixpanel**</h2>
+      <h2 style={{ marginTop: 0 }}>**Mixpanel Overview**</h2>
       <p>
         In this 5-minute overview, learn how Mixpanel powers the continuous innovation loop––from observation to impact.
       </p>
@@ -68,11 +68,11 @@ This loop represents the cycle teams follow to turn data into action—first obs
 |---|---|---|---|
 | Track the right events and understand user behavior. | Explore funnels, retention, and trends to find what drives engagement. | Align on opportunities using dashboards and metrics. | Launch experiments and measure impact to close the loop. |
 
-**Learn more:** [Go deeper on the OADA Loop →](/guides/mixpanel-oada-loop)
+**Learn more:** [Go deeper on the OADA Loop →](/guides/oada-loop)
 
 ---
 
-## Mixpanel Features That Power the Loop
+## Mixpanel Features That Power Continuous Innovation
 
 - **Analysis:** Funnels, Flows, Insights, Retention  
 - **Experimentation:** Feature Flags, A/B Testing  
@@ -83,9 +83,56 @@ This loop represents the cycle teams follow to turn data into action—first obs
 
 ## Event Data Model
 
-Mixpanel’s **event-based data model** captures every user interaction—allowing you to measure, segment, and iterate quickly.
+Everything in Mixpanel starts with **events**––the building blocks of your data model.
+
+An event represents something a **user** does (like *Signed Up*, *Viewed a Product*, or *Completed Purchase*). Each event can include **properties** that add context, such as the user’s plan type, location, or device.
+
+Together, these events and properties form a flexible data model that mirrors how people actually use your product. Once instrumented, you can analyze this data instantly—–without writing SQL or waiting on an analyst.
+
 
 - 📖 [How Mixpanel structures event data →](https://docs.mixpanel.com/docs/)
+
+
+
+<section
+  style={{
+    display: 'flex',
+    flexWrap: 'wrap',
+    alignItems: 'center',
+    gap: '24px',
+    margin: '32px 0',
+  }}
+>
+  <div style={{ flex: '1 1 400px', minWidth: '280px' }}>
+    <p>
+      Everything in Mixpanel starts with <strong>events</strong>––the building blocks of your data model.
+    </p>
+    <p>
+      An event represents something a <strong>user</strong> does (like <em>Signed Up</em>, <em>Viewed a Product</em>,
+      or <em>Completed Purchase</em>). Each event can include <strong>properties</strong> that add context, such as
+      the user’s plan type, location, or device.
+    </p>
+    <p>
+      Together, these events and properties form a flexible data model that mirrors how people actually use your
+      product. Once instrumented, you can analyze this data instantly—without writing SQL or waiting on an analyst.
+    </p>
+  </div>
+
+  <div style={{ flex: '1 1 300px', textAlign: 'center' }}>
+    <img
+      src="/images/event-data-model.png"
+      alt="Mixpanel event data model diagram"
+      style={{
+        maxWidth: '100%',
+        borderRadius: '8px',
+        boxShadow: '0 2px 10px rgba(0,0,0,0.05)',
+      }}
+    />
+    <p style={{ fontSize: '0.9em', color: '#666', marginTop: '8px' }}>
+      Example of how events and properties structure user behavior data in Mixpanel.
+    </p>
+  </div>
+</section>
 
 ---
 
