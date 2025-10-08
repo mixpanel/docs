@@ -81,7 +81,7 @@ After the organization admin enables MCP:
 
 ## Implementation Guide
 
-### Prerequisites (for Claude Free & Cursor)
+### Prerequisites (for Claude Free, Cursor & Gemini CLI)
 **Install Node.js (if needed):**
 ```bash
 brew install node
@@ -168,6 +168,62 @@ npx -y mcp-remote https://mcp.mixpanel.com/sse --allow-http
 ```
 
 5. Complete Mixpanel authorization via the provided link
+
+---
+
+### Option 4: Google Gemini CLI
+
+**Additional Requirements:**
+- [Gemini CLI](https://github.com/google/gemini-cli) installed
+- Command line access
+
+**Setup Steps:**
+1. Install the Gemini CLI by following [Gemini CLI installation instructions](https://github.com/google/gemini-cli#installation).
+2. Authenticate to Google Gemini using your Google account:
+   ```bash
+   gemini
+   ```
+3. Configure Mixpanel MCP as a remote server and authorize:
+   ```bash
+   npx -y mcp-remote https://mcp.mixpanel.com/sse --allow-http
+   ```
+   Running this command will provide a link in your terminal to authorize your access with Mixpanel. Follow the authorization steps in your browser. After logging in via OAuth, you should see a confirmation message.
+
+4. **Verify Configuration (or Create It Manually):**  
+   After authorization, your `settings.json` file for the Gemini CLI should be updated automatically. You can find this file at `~/.gemini/settings.json`. To check, run:
+   ```bash
+   ls -la ~/.gemini
+   cat ~/.gemini/settings.json
+   ```
+   The contents should be similar to the following:
+   ```json
+   {
+     "theme": "Default",
+     "selectedAuthType": "oauth-personal",
+     "mcpServers": {
+       "mixpanel-remote": {
+         "command": "npx",
+         "args": [
+           "-y",
+           "mcp-remote",
+           "https://mcp.mixpanel.com/sse",
+           "--allow-http"
+         ]
+       }
+     },
+     "preferredEditor": "vim"
+   }
+   ```
+   This configuration ensures that the Gemini CLI knows how to connect to the Mixpanel remote server.
+   If `settings.json` is not available, create it manually using the same contents as above.
+   
+
+5. Complete Mixpanel authorization via the provided link (if not already done).
+6. Run the Gemini CLI
+  Once configured, you can use the Gemini CLI with the specified model by running this command:
+  ```bash
+  gemini
+  ```
 
 ---
 
