@@ -70,7 +70,7 @@ let updatedDistinctId = ""
 Mixpanel.mainInstance().identify(distinctId: updatedDistinctId)
 ```
 
-2) If variant assignment keys or properties used in Runtime Targeting change during the lifetime of your application, you can manually reload flags by updating the context:
+2) To refresh flag variants that may have changed during the lifetime of your app, you can manually reload flags.
 
 ```swift
 Mixpanel.mainInstance().flags.loadFlags()
