@@ -80,7 +80,7 @@ Each stage in the OADA framework connects directly to Mixpanel’s tools, helpin
 
 | 👀 **Observe** | 📊 **Analyze** | 💡 **Decide** | 🚀 **Act** |
 |---|---|---|---|
-| See what’s happening in your product with [Session Replay](/docs/session-replay), [Heatmaps](/docs/session-replay/heatmaps), [Autocapture](/docs/tracking-methods/autocapture), and [Alerts](/docs/features/alerts). | Explore [Insights](/docs/reports/insights), [Funnels](/docs/reports/funnels), [Flows](/docs/reports/flows), [Retention](/docs/reports/retention), and [Cohorts](/docs/users/cohorts) to find what moves your metrics. | Align on what to change next with [boards](/docs/boards), [annotations](/docs/features/annotations), and shared insights. | Measure impact with [experiments](/docs/experiments) and ship improvements with [feature flags](/docs/featureflags). |
+| See what’s happening in your product with [Session Replay](/docs/session-replay), [Heatmaps](/docs/session-replay/heatmaps), [Autocapture](/docs/tracking-methods/autocapture), and [Alerts](/docs/features/alerts). | Explore [Insights](/docs/reports/insights), [Funnels](/docs/reports/funnels), [Flows](/docs/reports/flows), [Retention](/docs/reports/retention), and [Cohorts](/docs/users/cohorts) to find what moves your metrics. | Align on what to change next with [Metric Trees](/docs/metric_tree), [Boards](/docs/boards), [Annotations](/docs/features/annotations), and shared insights. | Measure impact with [Experiments](/docs/experiments) and ship improvements with [Feature Flags](/docs/featureflags). |
 
 **Learn more:** [Go deeper on the OADA Loop →](/guides/oada-loop)
 
@@ -112,99 +112,3 @@ Keep building your Mixpanel expertise with these resources designed to help you 
 | **Mixpanel University** | Follow guided learning paths to validate your skills and earn certifications. | [Open →](https://mixpanel.com/university/) |
 
 Wherever you are in your Mixpanel journey, these resources will help you keep learning, stay connected, and keep improving.
-
-## Archive
-Saving this cool code, but not sure we need it for this page.
-
-### Boxes
-<section style={{display:'grid',gridTemplateColumns:'repeat(auto-fit,minmax(240px,1fr))',gap:'16px',margin:'16px 0'}}>
-  <article style={{border:'1px solid #E5E7EB',borderRadius:'12px',padding:'16px',background:'#fff'}}>
-    <div aria-hidden style={{fontSize:'24px'}}>📈</div>
-    <h3 style={{margin:'8px 0 4px'}}><strong>Analysis</strong></h3>
-    <p style={{margin:'0 0 8px'}}>Explore behavior with Insights, Funnels, Flows, and Retention to spot drop-offs, drivers, and return patterns.</p>
-    <p style={{fontSize:'0.95em',margin:'0 0 8px'}}><strong>Why it matters:</strong> Turns raw events into answers fast.</p>
-    <p style={{margin:0}}><a href="/docs/reports" style={{fontWeight:600}}>Learn more →</a></p>
-  </article>
-
-  <article style={{border:'1px solid #E5E7EB',borderRadius:'12px',padding:'16px',background:'#fff'}}>
-    <div aria-hidden style={{fontSize:'24px'}}>🧪</div>
-    <h3 style={{margin:'8px 0 4px'}}><strong>Experiments</strong></h3>
-    <p style={{margin:'0 0 8px'}}>Use A/B and multivariate testing to validate hypotheses before full rollout. </p>
-    <p style={{fontSize:'0.95em',margin:'0 0 8px'}}><strong>Why it matters:</strong> Ship confidently and measure lift.</p>
-    <p style={{margin:0}}><a href="/docs/experiments" style={{fontWeight:600}}>Learn More →</a></p>
-  </article>
-
-  <article
-    style={{
-      border: '1px solid #E5E7EB',
-      borderRadius: '12px',
-      padding: '16px',
-      background: '#fff',
-    }}
-  >
-    <div aria-hidden style={{ fontSize: '24px' }}>🚩</div>
-    <h3 style={{ margin: '8px 0 4px' }}><strong>Feature Flags</strong></h3>
-    <p style={{ margin: '0 0 8px' }}>
-      Roll out new functionality gradually, target specific user groups, and monitor impact safely.
-    </p>
-    <p style={{ fontSize: '0.95em', margin: '0 0 8px' }}>
-      <strong>Why it matters:</strong> Minimizes risk and accelerates learning with controlled releases.
-    </p>
-    <p style={{ margin: 0 }}>
-      <a href="/docs/featureflags" style={{ fontWeight: 600 }}>
-        Learn More →
-      </a>
-    </p>
-  </article>
-
-  <article style={{border:'1px solid #E5E7EB',borderRadius:'12px',padding:'16px',background:'#fff'}}>
-    <div aria-hidden style={{fontSize:'24px'}}>🎥</div>
-    <h3 style={{margin:'8px 0 4px'}}><strong>Session Replay</strong></h3>
-    <p style={{margin:'0 0 8px'}}>See real sessions and Heatmaps to understand <em>why</em> the numbers moved.</p>
-    <p style={{fontSize:'0.95em',margin:'0 0 8px'}}><strong>Why it matters:</strong> Reveals friction you can’t see in charts.</p>
-    <p style={{margin:0}}><a href="/docs/session-replay" style={{fontWeight:600}}>Learn More →</a></p>
-  </article>
-
-  <article style={{border:'1px solid #E5E7EB',borderRadius:'12px',padding:'16px',background:'#fff'}}>
-    <div aria-hidden style={{fontSize:'24px'}}>🌳</div>
-    <h3 style={{margin:'8px 0 4px'}}><strong>Metric Trees</strong></h3>
-    <p style={{margin:'0 0 8px'}}>Map KPIs to contributing actions to see how improvements cascade.</p>
-    <p style={{fontSize:'0.95em',margin:'0 0 8px'}}><strong>Why it matters:</strong> Aligns teams on what moves the metric.</p>
-    <p style={{margin:0}}><a href="/docs/metric_tree" style={{fontWeight:600}}>Learn More →</a></p>
-  </article>
-
-</section>
-
-
-### Image by Text
-<section
-  style={{
-    display: 'flex',
-    flexWrap: 'wrap',
-    alignItems: 'center',
-    gap: '24px',
-    margin: '32px 0',
-  }}
->
-  <div style={{ flex: '1 1 400px', minWidth: '280px' }}>
-    <p>
-      Everything in Mixpanel starts with <strong>events</strong>––the building blocks of your data model.
-    </p><br></br>
-    <p>
-      An event represents something a <strong>user</strong> does (like <em>Signed Up</em>, <em>Viewed a Product</em>,
-      or <em>Completed Purchase</em>). Each event can include <strong>properties</strong> that add context, such as
-      the user’s plan type, location, or device.
-    </p><br></br>
-    <p>
-      Together, these events and properties form a flexible data model that mirrors how people actually use your
-      product. Once instrumented, you can analyze this data instantly—–without writing SQL or waiting on an analyst.
-    </p>
-  </div>
-
-  <div style={{ flex: '1 1 300px', textAlign: 'center' }}>
-    ![Event Data Model diagram](/event-1.svg)
-    <p style={{ fontSize: '0.9em', color: '#666', marginTop: '8px' }}>
-      Example of how events and properties structure user behavior data in Mixpanel.
-    </p>
-  </div>
-</section>
