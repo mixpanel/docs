@@ -47,13 +47,13 @@ Below are examples of how teams in different industries use Mixpanel to measure,
 
 **Observe** <br></br>
 The team monitors early-user activity using **Session Replay**, **Heatmaps**, and **Autocapture** to see how new users interact with the onboarding flow: *Account Created → Tutorial Completed → Key Action Taken*.  
+
 They set up **Alerts** to track sudden drops in completion.
 
 ---
 
 **Analyze** <br></br>
-Using **Funnels**, **Flows**, and **Cohorts**, the team identifies where users are stalling and compares completion across personas.  
-Behavioral trends show that users who skip the advanced configuration step activate faster.
+Using **Funnels**, **Flows**, and **Cohorts**, the team identifies where users are stalling and compares completion across personas. Behavioral trends show that users who skip the advanced configuration step activate faster.
 
 | Tool | Observation | Insight |
 |------|--------------|----------|
@@ -64,14 +64,12 @@ Behavioral trends show that users who skip the advanced configuration step activ
 ---
 
 **Decide** <br></br>
-The team uses **Metric Trees** and **Goals** to understand which metrics—like “First Value Reached”—drive long-term retention.  
-They decide to move optional setup later in the journey and emphasize the first “aha” moment sooner.
+The team uses **Metric Trees** to understand which metrics--like “First Value Reached”--drive long-term retention. They decide to move optional setup later in the journey and emphasize the first “aha” moment sooner.
 
 ---
 
 **Act** <br></br>
-They test this change through **Feature Flags**, rolling out a new guided flow to a subset of users and using **Experiment Results Analysis** to measure impact.  
-When the experiment shows faster activation and higher retention, they launch it to all users.
+They test this change through **Experiments**, rolling out a new guided flow to a subset of users. When the experiment shows faster activation and higher retention, they launch it to all users using **Feature Flags**.
 
 ---
 
@@ -90,30 +88,26 @@ When the experiment shows faster activation and higher retention, they launch it
 
 **Observe** <br></br>
 Using **Session Replay**, **Heatmaps**, and **Autocapture**, the team tracks the path from *Product Viewed → Added to Cart → Checkout Started → Purchase Completed* to see where users abandon the flow.  
-They also use **Surveys** to gather context on friction points.
 
 ---
 
 **Analyze** <br></br>
-Through **Funnels**, **Cohorts**, and **Retention Reports**, the team identifies a 40% drop-off at payment on mobile devices.  
-They also use **Text Analysis** on open-ended survey feedback to understand why.
+Through **Funnels**, **Cohorts**, and **Retention**, the team identifies a 40% drop-off at payment on mobile devices.  
 
 | Tool | Observation | Insight |
 |------|--------------|----------|
 | **Funnels** | 40% mobile drop-off at payment | Checkout fields are too dense for mobile screens. |
 | **Session Replay & Heatmaps** | Users zoom and misclick on payment fields | UI not optimized for mobile input. |
-| **Text Analysis (Survey)** | Repeated mentions of “confusing checkout” | Poor field labeling and validation cause frustration. |
 
 ---
 
 **Decide** <br></br>
-The team leverages **Metric Trees** and **Goals** to link checkout completion to revenue impact.  
-They decide to simplify payment forms and surface the most-used payment options first.
+The team leverages **Metric Trees** to link checkout completion to revenue impact. They decide to simplify payment forms and surface the most-used payment options first.
 
 ---
 
 **Act** <br></br>
-They deploy a **Feature Flag** to release the redesigned checkout to 50% of traffic and use **Experiment Diagnosis** to confirm conversion improvements before rolling it out universally.
+They deploy a **Feature Flag** to release the redesigned checkout to 50% of traffic and use **Experiments** to confirm conversion improvements before rolling it out universally.
 
 ---
 
@@ -136,26 +130,23 @@ The team uses **Session Replay**, **Autocapture**, and **Alerts** to track *Epis
 ---
 
 **Analyze** <br></br>
-They turn to **Retention**, **Cohorts**, and **Text Analysis** on user feedback to learn why viewers disengage.  
-**Funnels & Flows** show most users stop after Episode 2, and qualitative data confirms weak recommendations at that point.
+They turn to **Retention** and **Cohorts** to learn which viewers come back.  **Funnels & Flows** show most viewers stop after Episode 2, and qualitative data confirms weak recommendations at that point.
 
 | Tool | Observation | Insight |
 |------|--------------|----------|
 | **Retention & Cohorts** | Only 30% return for Episode 3 | Low content continuity beyond early episodes. |
 | **Funnels & Flows** | Drop-off after Episode 2 | Weak recommendations between episodes. |
-| **Text Analysis (Feedback)** | “Didn’t know what to watch next” | Recommendation engine not surfacing relevant follow-ups. |
 
 ---
 
 **Decide** <br></br>
-Using **Metric Trees** and **Impact Modeling**, the team connects “Episode Completion Rate” to “Viewer Retention.”  
-They decide to insert a personalized “Up Next” prompt and ratings flow to strengthen recommendations.
+Using **Metric Trees**, the team connects “Episode Completion Rate” to “Viewer Retention.”  They decide to insert a personalized “Up Next” prompt and ratings flow to strengthen recommendations.
 
 ---
 
 **Act** <br></br>
-They roll out the update to 25% of users via **Feature Flags** and analyze engagement using **Experiment Results Analysis**.  
-Viewers who see the new recommendations have longer sessions and higher continuation rates.
+They run an **Experiment** on the "Up Next" prompt. After positive results that indicate viewers who see the new recommendations have longer sessions and higher continuation rates, they expand rollout to all viewers using **Feature Flags**.
+
 
 ---
 
@@ -173,32 +164,27 @@ Viewers who see the new recommendations have longer sessions and higher continua
 ---
 
 **Observe** <br></br>
-They track customer actions with **Session Replay**, **Surveys**, and **Autocapture**, focusing on *Account Linked → Budget Created → Spending Reviewed → Budget Adjusted*.  
-**Alerts** notify them of sudden drops in budget creation.
+They track customer actions with **Session Replay** and **Autocapture**, focusing on *Account Linked → Budget Created → Spending Reviewed → Budget Adjusted*. **Alerts** notify them of sudden drops in budget creation.
 
 ---
 
 **Analyze** <br></br>
-Using **Funnels**, **Cohorts**, and **Retention Reports**, they find that users linking smaller financial institutions often fail to complete setup.  
-**Text Analysis** on feedback reveals recurring issues with bank connection errors.
+Using **Funnels**, **Cohorts**, and **Retention**, they find that users linking smaller financial institutions often fail to complete setup.  
 
 | Tool | Observation | Insight |
 |------|--------------|----------|
 | **Funnels & Cohorts** | Users stop after linking a bank account | Authentication errors block progress. |
 | **Retention Reports** | Users who finish setup return 2× more often | Early success predicts long-term retention. |
-| **Text Analysis (Support Logs)** | Mentions of “connection timeout” | Technical integration issues drive churn. |
 
 ---
 
 **Decide** <br></br>
-The team uses **Goals** and **Metric Trees** to link budgeting feature adoption to retention KPIs.  
-They decide to improve error handling and prompt users to set alerts immediately after creating a budget.
+The team uses **Metric Trees** to link budgeting feature adoption to retention KPIs. They decide to improve error handling and prompt users to set alerts immediately after creating a budget.
 
 ---
 
 **Act** <br></br>
-They deploy **Feature Flags** to release a new “Set Alert” flow and use **Experiment Results Analysis** to confirm uplift.  
-After positive results, they expand rollout to all customers.
+They run an **Experiment** on a new “Set Alert” flow. After positive results, they expand rollout to all customers using **Feature Flags**.
 
 ---
 
@@ -221,26 +207,22 @@ The team uses **Session Replay**, **Heatmaps**, and **Autocapture** to track *Le
 ---
 
 **Analyze** <br></br>
-They turn to **Funnels**, **Cohorts**, and **Text Analysis** on player feedback to understand why drop-offs occur.  
-Players who use “Power-Ups” progress faster, and replays show many ignore in-game hint icons.
+They turn to **Funnels** and **Cohorts** on player feedback to understand why drop-offs occur.  Players who use “Power-Ups” progress faster, and replays show many ignore in-game hint icons.
 
 | Tool | Observation | Insight |
 |------|--------------|----------|
 | **Funnels & Cohorts** | High player drop-off after Level 3 | Repeated failures at one level lead to early churn. |
 | **Session Replay & Heatmaps** | Players miss hint icons | Poor visual placement of key gameplay aids. |
-| **Text Analysis (Feedback)** | “Game too hard too soon” | Early difficulty curve frustrates new players. |
 
 ---
 
 **Decide** <br></br>
-Using **Goals** and **Impact Modeling**, the team links early-level completions to retention and in-app purchases.  
-They decide to introduce Power-Up tutorials earlier to help players progress.
+Using **Metric Trees**, the team links early-level completions to retention and in-app purchases. They decide to introduce Power-Up tutorials earlier to help players progress.
 
 ---
 
 **Act** <br></br>
-Through **Feature Flags**, they roll out a new “Use Power-Up” tutorial and measure results with **Experiment Diagnosis**.  
-When they see improved completion and monetization metrics, they expand it to all players.
+They run an **Experiment** on a new “Use Power-Up” tutorial and measure results. When they see improved completion and monetization metrics, they expand it to all players using **Feature Flags**.
 
 ---
 
