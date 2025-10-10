@@ -176,10 +176,11 @@ mixpanel.init('YOUR_PROJECT_TOKEN', {
 Note that disabling Autocapture does not disable Session Replay, which is [configured separately](/docs/tracking-methods/sdks/javascript#session-replay).
 
 **Autocapture Init Options**
-| Option | Description | Default | 
+| Option | Description | Default |
 | --- | --- | --- |
 | `click` | When set to `true`, Mixpanel will track element clicks. It will not track textContent unless `capture_text_content` is also set to `true`. | `true` |
-| `rage_click` | When set to `true`, Mixpanel will track rage clicks on elements. You can also fine tune thresholds for classifying rage clicks as follows `{threshold_px: $number, timeout_ms: $number, click_count: $number}`. Each attribute is optional such that it reverts back to a value that is most optimal. | `true` 
+| `dead_click` | When set to `true`, Mixpanel will track dead clicks on elements. You can also fine tune thresholds for classifying dead clicks as follows `{timeout_ms: $number}`. Each attribute is optional such that it reverts back to a value that is most optimal. | `true`
+| `rage_click` | When set to `true`, Mixpanel will track rage clicks on elements. You can also fine tune thresholds for classifying rage clicks as follows `{threshold_px: $number, timeout_ms: $number, click_count: $number}`. Each attribute is optional such that it reverts back to a value that is most optimal. | `true`
 | `input` | When set to `true`, Mixpanel will track when an input is provided. It will not capture input content. | `true` |
 | `pageview` | When set, Mixpanel will collect pageviews when some components of the URL change — including UTM parameters. | `"full-url"` |
 | `scroll` | When set, Mixpanel will collect page scrolls at specified scroll intervals. | `true` |
@@ -396,7 +397,7 @@ The Javascript SDK is a tracking SDK designed for real-time tracking in a client
 For bulk import of historical events older than 5 days, we will need to use the [/import API endpoint](https://developer.mixpanel.com/reference/import-events) which is optimized for scripting and supports ingesting historical data. We recommend the [Python SDK](/docs/tracking-methods/sdks/python) (see the [`.import_data()`](https://mixpanel.github.io/mixpanel-python/#primary-interface) function) and [mixpanel-utils module](https://github.com/mixpanel/mixpanel-utils) (see the [`import_events()`](https://github.com/mixpanel/mixpanel-utils?tab=readme-ov-file#import-events) function) which both leverages the /import API for event ingestion.
 
 ## Setting Super Properties
-Super properties are global event properties that you define once and apply to all events. 
+Super properties are global event properties that you define once and apply to all events.
 
 To register super properties, call [`.register()`](https://github.com/mixpanel/mixpanel-js/blob/master/doc/readme.io/javascript-full-api-reference.md#mixpanelregister).
 
@@ -456,7 +457,7 @@ mixpanel.identify('12345');
 ```
 
 ### Call Reset at Logout
-Call [`.reset()`](https://github.com/mixpanel/mixpanel-js/blob/master/doc/readme.io/javascript-full-api-reference.md#mixpanelreset) to clear data attributed to a user when they logout. This will clear the cookie/local storage and allows you to handle [multiple users on a single device](/docs/tracking-methods/id-management/identifying-users-simplified#multiple-users-one-device). 
+Call [`.reset()`](https://github.com/mixpanel/mixpanel-js/blob/master/doc/readme.io/javascript-full-api-reference.md#mixpanelreset) to clear data attributed to a user when they logout. This will clear the cookie/local storage and allows you to handle [multiple users on a single device](/docs/tracking-methods/id-management/identifying-users-simplified#multiple-users-one-device).
 
 **Example Usage**
 
@@ -588,7 +589,7 @@ A few commonly used people methods are highlighted below:
 
       // increment "age" by 2
       mixpanel.people.increment('age',2);
-      
+
       // use negative number to decrement
       // decrement "age" by 5
       mixpanel.people.increment('age',-5);
@@ -613,7 +614,7 @@ The Javascript SDK provides a few method for adding individual users to a group 
 ### Adding Users to a Group
 [All events must have the group key as an event property in order to be attributed to a group](/docs/data-structure/group-analytics#group-keys-tracked-as-event-properties). Without the group key, an event cannot be attributed to a group.
 
-Call the [`.set_group()`](https://github.com/mixpanel/mixpanel-js/blob/master/doc/readme.io/javascript-full-api-reference.md#mixpanelset_group) method to register the current user to a group, which would add the `group_key` as an event property set to the `group_id` value to all events moving forward. 
+Call the [`.set_group()`](https://github.com/mixpanel/mixpanel-js/blob/master/doc/readme.io/javascript-full-api-reference.md#mixpanelset_group) method to register the current user to a group, which would add the `group_key` as an event property set to the `group_id` value to all events moving forward.
 
 Alternatively, you can manually add the group key property to be more selective about which events to attribute to a group.
 
