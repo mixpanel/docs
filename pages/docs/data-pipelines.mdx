@@ -155,3 +155,7 @@ The Account Name should be set to your unique account identifier Eg. "blah2321.u
 ### What happens to data older than 10 days (late-arriving data)?
 
 For incremental JSON pipelines, data older than 10 days will be exported as they are ingested. However, that is not the case for Raw and Schematized pipelines — manual intervention will be needed to export your data older than 10 days into your data warehouse.
+
+### Can I change the destination of an existing pipeline?
+
+No, you cannot. If you need to change the destination, you would need to create a new pipeline.
