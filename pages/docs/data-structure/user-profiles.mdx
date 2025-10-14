@@ -151,10 +151,19 @@ You'll have the opportunity to look through all columns in the CSV to preview th
 
 ![/Screen_Shot_2021-12-01_at_12.24.00_PM.png](/Screen_Shot_2021-12-01_at_12.24.00_PM.png)
 
-## Historical Profile Values 
-Historic updates for profile property values layer on additional capabilities by capturing changes in each property over time instead of just the latest value. At this time, this functionality is dependent on our warehouse connectors feature. You can read more on how to import this type of data [here](../tracking-methods/warehouse-connectors#profile-history-tables).
+## Importing Historical Profile Values
 
-Historical properties can be used anywhere that regular profile properties can be used. For eg, when you apply breakdown by historical plan-type property, the property value will be picked based on the time of the event, instead of the current property value.
+<Callout type="info">
+Historical profiles requires the use of [Warehouse Connectors](/docs/tracking-methods/warehouse-connectors) paid add-on to ingest historical properties.
+</Callout>
+
+Historical profiles layer on additional capabilities by capturing changes in each property over time instead of just the latest value.
+
+See here for more on how to [import](/docs/tracking-methods/warehouse-connectors#user-profiles) historical properties via Warehouse connectors.
+
+Historical properties can be used anywhere that regular profile properties can be used.
+
+For eg, when you apply breakdown by historical plan-type property, the property value will be picked based on the time of the event, instead of the current property value.
 
 ![image](/historical_property_value.webp)
 
