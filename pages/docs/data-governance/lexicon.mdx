@@ -1,3 +1,8 @@
+---
+title: Lexicon
+tags: [lexicon, data-governance, data-dictionary, event-definitions, event-properties, profile-properties, data-management, event-documentation, data-catalog, metadata-management, data-discovery, custom-events, cohorts, lookup-tables, formulas, behaviors, verified-data, data-quality, event-validation, data-standardization, analytics-governance, mixpanel-lexicon, event-catalog, property-definitions, data-lineage, session-replay-metadata]
+---
+
 import { Callout } from 'nextra/components'
 
 # Lexicon: Describe your events and data using a dictionary
@@ -270,6 +275,24 @@ By providing a clear distinction between vetted and non-vetted data, it becomes 
 4. Now, whenever end users are creating reports, or browsing data in Lexicon, they will see a Verified icon next to this data item.
 
 ![verifyButton](/verifyButton.png)
+
+## Session Replay in Event Metadata
+
+Event metadata across Query Builder, Lexicon, and Event pages now automatically includes relevant Session Replays when available.
+
+**How it works:** When viewing event details, Session Replays that captured the specific event will appear in the metadata panel. This applies to:
+
+- Individual event inspection in Query Builder
+- Event definitions in Lexicon  
+- Event detail views on dedicated Event pages
+
+**Requirements:** This feature is available to accounts with Session Replay enabled. No additional configuration is needed—relevant replays will automatically appear when present.
+
+**What you'll see:** Session Replay thumbnails and links will display alongside standard event properties. Click any replay to view the full session context surrounding that event.
+
+This enhancement provides immediate visual context for event analysis without requiring manual correlation between Events and Session Replay data.
+
+For Session Replay setup and configuration, see our [Session Replay documentation](/docs/session-replay).
 
 ## Export and Import Lexicon Data
 

@@ -1,8 +1,12 @@
 ---
-title: "Numerically Average"
-slug: "segmentation-query-average"
-excerpt: "Averages an expression for events per unit time."
-hidden: false
-createdAt: "2020-10-20T00:41:48.201Z"
-updatedAt: "2023-09-26T21:06:39.068Z"
+title: Numerically Average
+category:
+  uri: Query API
+content:
+  excerpt: >-
+    Averages an expression for events per unit time. The Query API has a rate
+    limit of 60 queries per hour and a maximum of 5 concurrent queries.
+privacy:
+  view: public
 ---
+
