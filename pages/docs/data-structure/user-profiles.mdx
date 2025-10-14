@@ -171,6 +171,22 @@ When you hover over a historical property, the context menu that pops up will sh
 
 ![image](/dropdown_historical_property.webp)
 
+### Historic Profile Data Modeling
+
+When the data is imported from the warehouse, aside from having it available in dropdowns for query, you can see the raw data in two (2) separate areas.
+
+**Hidden event**: under the hood, the data is modeled through events, linked in a special way, and attribution is used to obtain the value the profile had at a certain point in time. The name of the event takes after the name of the table/view we read from in the warehouse connector, so if the table name is `company_plan_history`, the event will be named `company_plan_history` too (by default it's hidden). 
+
+![image](/historic_profile_property_source.png)
+
+The event time follows the start time entries in the table, so if you have an entry for say January 1st, there will also be this event with that same time in the project. This is used for attribution. Say you have 2 entries in the table for plan values, January 1st with a value of "plan1" and an entry on June 1st with a value of "plan" 2. If you were to create a report for this user based on the historic property, any event between Jan 1st and Jun 1st would have the "plan1" value, and any event after Jun 1 would have "plan2".
+
+**Profile View**: if you navigate to the profile view of a specific user (or group) that has historic profile data, you will see the property to the left of the screen and, when you hover, you'll see a button to view the changes over time. Once clicked, you will be shown a list of the values the property has had through time.
+
+![image](/historic_profile_property_profile_view.png)
+
+For billing details, read the warehouse connectors [billing FAQ section on People/Group updates](../tracking-methods/warehouse-connectors#what-actions-impact-billing-for-warehouse-connectors).
+
 ## Deleting Profiles
 
 User Profiles can be deleted either via the [Users](https://mixpanel.com/report/users) page or programmatically via our [Engage API](https://developer.mixpanel.com/reference/delete-profile). We also provide a `people_delete` method in the mixpanel-utils library [here](https://github.com/mixpanel/mixpanel-utils#people-delete).
@@ -231,3 +247,6 @@ To delete profiles yourself, please use this [guide](https://developer.mixpanel.
 
 ### What is the frequency of updates that are supported?
 The feature supports updates at the rate of about one change per day for each user. It is meant to cover use-cases like plan type changes, MRR etc which are slowly changing dimensions. It is not intended for more frequent changes like game score updates.
+
+## How are historic profile properties calculated within custom properties?
+You can use historic user and group properties within custom properties; when used in a custom property, the value used will always be based on the time of the event.

@@ -1,9 +1,11 @@
 ---
-title: "Overview"
-slug: "ingestion-api"
-hidden: false
-createdAt: "2020-10-20T01:00:32.287Z"
-updatedAt: "2023-05-22T22:08:16.158Z"
+title: Overview
+category:
+  uri: Ingestion API
+content:
+  excerpt: ''
+privacy:
+  view: public
 ---
 Mixpanel's Ingestion APIs allow you to send event or profile data to Mixpanel, which can be analyzed in our reporting interface. 
 
@@ -13,8 +15,8 @@ See our [Client-Side vs Server-Side Tracking](https://docs.mixpanel.com/docs/get
 
 ## Ingestion HTTP APIs
 
-- [Events](ref:events) 
-- [Identities](ref:identities) 
-- [User Profiles](ref:user-profiles) 
-- [Group Profiles](ref:group-profiles) 
-- [Lookup Tables](ref:lookup-tables)
+* [Events](ref:events) 
+* [Identities](ref:identities) 
+* [User Profiles](ref:user-profiles) 
+* [Group Profiles](ref:group-profiles) 
+* [Lookup Tables](ref:lookup-tables)

@@ -1,15 +1,19 @@
-name: Publish OpenAPI specs to ReadMe
+name: Publish OpenAPI specs to ReadMe Production
 
 on:
   push:
     branches: [ main ]
+    paths:
+      - 'openapi/**'
+      - '.github/actions/**'
+      - '.github/workflows/rdme-openapi.yml'
 
 jobs:
   rdme-openapi:
     runs-on: ubuntu-latest
     steps:
     - uses: actions/checkout@v4
-    - uses: actions/setup-node@v4
+    - uses: actions/setup-node@v5
       with:
         node-version: 20.x
     - run: npm ci
@@ -17,4 +21,4 @@ jobs:
     - run: npm run api:publish
       env:
         README_API_KEY: ${{ secrets.README_API_KEY }}
-        README_VERSION: '3.26'
+        README_VERSION: '3.27'
