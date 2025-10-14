@@ -152,3 +152,6 @@ Data arriving late is handled during a daily sync process the following day afte
 
 The Account Name should be set to your unique account identifier Eg. "blah2321.us-west-2" while the Storage Integration should be set to the name of the storage integration you created in Snowflake Eg. "MIXPANEL_EXPORT_STORAGE_INTEGRATION".
 
+### What happens to data older than 10 days (late-arriving data)?
+
+For incremental JSON pipelines, data older than 10 days will be exported as they are ingested. However, that is not the case for Raw and Schematized pipelines — manual intervention will be needed to export your data older than 10 days into your data warehouse.
