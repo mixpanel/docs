@@ -136,6 +136,10 @@ For example, event data is exported to the following path: `<BUCKET_NAME>/<PROJE
 
 This structure is created by Mixpanel and cannot be customized at the moment.
 
+### Can I export only a subset of events or properties with JSON pipelines?
+
+No, all events and properties are exported as they are ingested into Mixpanel. It’s not possible to filter for events and properties to include or exclude in your data pipeline exports. However, it is possible to whitelist events to export and filter by properties if you’re using our older pipelines created via API (Raw and Schematized).
+
 ## Change Log
 
 <details>
