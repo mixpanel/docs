@@ -1,5 +1,6 @@
-# India Data Residency
+import { Callout } from 'nextra/components'
 
+# India Data Residency
 
 ## Overview
 Mixpanel believes in respecting and protecting people’s fundamental online
@@ -9,7 +10,9 @@ DPDPA.
 
 Visit our [Privacy Hub](https://mixpanel.com/legal/privacy-hub/) to see how we comply with various privacy guidelines.
 
-If you would like access to the India Data Center, reach out to your Mixpanel account manager or [contact us here](https://mixpanel.com/m/india-mixpanel-analytics-for-fintech/).
+<Callout type="info">
+    If you would like access to the India Data Center, reach out to your Mixpanel account manager or [contact us here](https://mixpanel.com/m/india-mixpanel-analytics-for-fintech/).
+</Callout>
 
 ## Storing Your Data in India
 Mixpanel provides you with the option to process and store your customers'
@@ -17,7 +20,9 @@ personal data in India via our India Data Residency Program. You can enable this
 by selecting the "India Data Residency" option when creating a new project and
 using our India subdomain during all API calls.
 
-**⚠️ Important:** No data will be ingested to your India data residency project unless your SDK is sending data to the India endpoint. Ensure you are using the India endpoint in your SDK configuration.
+<Callout type="warning">
+No data will be ingested to your India data residency project unless your SDK is sending data to the India URL endpoint. Ensure you are using the India URL endpoint in your SDK configuration.
+</Callout>
 
 | API | Standard Server | India Residency Server |
 |-------|-------------------------|--------------------------------|
