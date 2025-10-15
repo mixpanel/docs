@@ -31,12 +31,12 @@ See our developer guides on implementing Session Replay for these platforms belo
 ## Watching Replays
 
 <Callout type="info">
-By default, replays are stored for 30 days after the time of ingestion. Once a replay is expired, there is no way to view that replay. Enterprise plan customers with the paid session replay add-on can customize this retention period between 7 days and 360 days. For more information, reach out to your Account Manager or our sales team. 
+By default, replays are stored for 30 days after the time of ingestion. Once a replay is expired, there is no way to view that replay. Enterprise plan customers with the paid session replay add-on can customize this retention period between 7 days and 360 days. For more information, reach out to your Account Manager or our sales team.
 </Callout>
 
-Session Replay is particularly valuable for understanding user frustration and identifying problematic user experiences. To find relevant replays, you can focus on interesting users (power users, purchases), interesting trends (KPIs spikes or dips), or replays where certain events or sentiment signals (like [rage clicks](/docs/tracking-methods/autocapture#rage-clicks)) occur. 
+Session Replay is particularly valuable for understanding user frustration and identifying problematic user experiences. To find relevant replays, you can focus on interesting users (power users, purchases), interesting trends (KPIs spikes or dips), or replays where certain events or sentiment signals (like [dead clicks](/docs/tracking-methods/autocapture#dead-clicks)/[rage clicks](/docs/tracking-methods/autocapture#rage-clicks)) occur.
 
-To start using Session Replay, select **Session Replay** from the side navigation in your Mixpanel project. Here, you'll see your most recent replays and can easily filter them by events, properties, or custom time ranges to focus on the replays that matter most to you. Pro tip: when getting started with implementing Session Replay, you can use this view to check if replays are coming in as expected. 
+To start using Session Replay, select **Session Replay** from the side navigation in your Mixpanel project. Here, you'll see your most recent replays and can easily filter them by events, properties, or custom time ranges to focus on the replays that matter most to you. Pro tip: when getting started with implementing Session Replay, you can use this view to check if replays are coming in as expected.
 
 what makes Mixpanel Session Replay special is that it can be used seamlessly with your existing Mixpanel workflows, like:
 
@@ -49,7 +49,7 @@ what makes Mixpanel Session Replay special is that it can be used seamlessly wit
   Reports entry point is currently supported for Event, Funnel, and User Profile metrics only.
 </Callout>
 
-Click any point on a chart for Event, Funnel, and User Profile, and select "View Replays" to view replays that show that event being fired. From here, you will be taken to our Replay Player. 
+Click any point on a chart for Event, Funnel, and User Profile, and select "View Replays" to view replays that show that event being fired. From here, you will be taken to our Replay Player.
 
 ![replayReportEntry](/replayReportEntryPoint.png)
 
@@ -77,7 +77,7 @@ The Replay Feed on the left of the player also allows you to:
 - Sort replays by recency, activity, or duration
 - Search for replays by user's name / email, replay date, user ID, or the name of an event in the replay
 - See a feed of events that occurred during each replay
-- Display properties and their values within the event feed 
+- Display properties and their values within the event feed
 
 ## Best Practices
 
@@ -146,7 +146,7 @@ Replays are available for viewing in Mixpanel ~1 minute after the recording is c
 
 #### How long are replays stored?
 
-By default, replays are stored for 30 days after the time of ingestion. Once a replay is expired, there is no way to view that replay. Enterprise plan customers with the paid session replay add-on can customize this retention period between 7 days and 360 days. For more information, reach out to your Account Manager or our sales team. 
+By default, replays are stored for 30 days after the time of ingestion. Once a replay is expired, there is no way to view that replay. Enterprise plan customers with the paid session replay add-on can customize this retention period between 7 days and 360 days. For more information, reach out to your Account Manager or our sales team.
 
 #### Why does it say the player failed to load?
 
@@ -164,7 +164,7 @@ You will not see the "View Replays" button if your organization is on an older p
 
 #### Can I use Session Replay with a CDP?
 
-You can use Session Replay with CDPs (e.g., Segment and mParticle) on both web and mobile. 
+You can use Session Replay with CDPs (e.g., Segment and mParticle) on both web and mobile.
 
 | Platform | Guidance |
 | --- | --- |
