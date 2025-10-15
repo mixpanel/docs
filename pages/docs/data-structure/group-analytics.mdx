@@ -9,9 +9,7 @@ import { Callout } from 'nextra/components'
 
 ## Overview
 
-Mixpanel Group Analytics allows behavioral data analysis at a customized group level (such as account, device—or any other way you want to assess your business).
-
-Historically, Mixpanel grouped events by a single identifier called the distinct_id. This ultimately grouped events by the individual user. Group Analytics allows you to establish an event property other than the distinct_id, such as company ID, account ID, project ID, or billing ID, as an identifier by which to analyze your data.
+Mixpanel Group Analytics allows behavioral data analysis at a customized group level (such as account, device—or any other way you want to assess your business). This enables the power to analyze, as an example, whether a company or team completed a funnel instead, allowing multiple users in the company/team to perform various stages of the process, rather than requiring for a single user to complete the entire workflow to count as a conversion.
 
 <div
   style={{
@@ -35,15 +33,17 @@ Historically, Mixpanel grouped events by a single identifier called the distinct
   ></iframe>
 </div>
 
-### Group By a Custom Identifier
+### Data Modeling
 
 Mixpanel Group Analysis allows you to select alternative unique identifiers in reports.
 
-By default, Mixpanel counts unique users by distinct_id. Group Analytics allows you to uniquely count events by an alternative identifier, such as company ID, invite ID, or another value shared by a group of individuals with different distinct_ids.
+By default, Mixpanel counts unique users by distinct_id. Group Analytics allows you to uniquely count events by an alternative identifier, such as company ID, invite ID, or another value shared by a group of individuals with different distinct_ids. Below you will see an example of an event coming into a project that has `company_id` and `team_id` set up as separate group keys. You will see how, starting with a single event being ingested (on the left), by switching the identifier you're analyzing on, the event can be read with said identifier as the user key to do the analysis on:
+
+<img src="/group_analytics_data_model.png" />
 
 This allows behavioral analysis from a business or group level, as opposed to an individual level. You can answer questions such as:
 
-- What companies are engaging the most with a product?
+- Which companies are engaging the most with a product?
 - In instances where there are more than one user per account, such as a video streaming service, how are events triggered at an account level?
 - What groups convert through a funnel to a goal event (as opposed to what individual users convert)?
 
@@ -59,17 +59,13 @@ The Group Profile also displays the properties unique to that group - here's an�
 
 To access a group profile:
 
-1. Go to Users.
+1. Navigate to the Users page from the menu.
 
-2. Click the **Analyze Uniques by** dropdown above the query builder.
+2. Click on the group identifier you want to analyze on.
 
-![/Screen_Shot_2022-06-22_at_5.40.43_PM.png](/Screen_Shot_2022-06-22_at_5.40.43_PM.png)
+![/group_analytics_navigation.png](/group_analytics_navigation.png)
 
-3. Select the group identifier.
-
-![/Screen_Shot_2022-06-22_at_5.39.06_PM.png](/Screen_Shot_2022-06-22_at_5.39.06_PM.png)
-
-4. Groups profiles will populate the Users report.
+3. Groups profiles will populate the Users report.
 
 ### Change the Group Identifier in a Report
 
