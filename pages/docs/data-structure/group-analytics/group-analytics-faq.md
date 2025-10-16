@@ -6,6 +6,7 @@ The limits below ensure group analytics works correctly in Mixpanel:
 - 1M group profiles per group key (e.g. company_id)
 - 1M events per day per group identifier (e.g. company_id = "Mixpanel") - see [Hot Shard Limits](/docs/tracking-best-practices/hot-shard-limits)
 - Group properties have similar [limits as User properties](/docs/data-structure/user-profiles#what-are-the-limits-of-user-properties)
+- The package supports up to 3 group keys. This can be increased up to 6 on enterprise plans with an add-on. 
 
 ## Events Missing from Groups
 The group key property must be present as an event property on an event in order to attribute them to a group profile.
