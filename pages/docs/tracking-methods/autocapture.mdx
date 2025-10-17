@@ -25,14 +25,21 @@ By default, Autocapture will automatically collect the following predefined even
 - Form interactions (e.g., form submitted)
 - Element interactions, including clicks and changes on page elements
 - Attribution
+- Dead clicks
 - Rage clicks
 
 When you enable Autocapture, you will start collecting these predefined events and property types, and they will appear for your use in analysis in your Mixpanel instance. Within your Mixpanel instance, these events will be displayed using preset labels such as “[Auto] Page View” and “[Auto] Element Click”.
 
 Autocapture events will all be tracked as events that start with `$mp_`  and will start with [Auto] as a prefix in Mixpanel, so if used in combination with other tracking and ingestion methods, you will be able to tell the difference.
 
+### Dead Clicks
+
+A dead click is when a user clicks an interactive element but the click produces no visible response within a certain timeframe. Dead clicks often indicate broken functionality, unresponsive UI elements, or poor user experience. Dead clicks are tracked as `[Auto] Dead Click` events.
+
+By default, Mixpanel considers a click on an interactive element to be a dead click if there are no responses withing 0.5 seconds. You can configure these qualifying criteria to something that best suits your application by overriding the defaults in the [Javascript SDK](/docs/tracking-methods/sdks/javascript).
+
 ### Rage Clicks
-A rage click is when a user clicks on the same spot on your webpage in quick succession. It happens because the user expects something to happen, but nothing does — so they click again and again, showing they are frustrated. Rage clicks are tracked as `[Auto] Rage Click` events. 
+A rage click is when a user clicks on the same spot on your webpage in quick succession. It happens because the user expects something to happen, but nothing does — so they click again and again, showing they are frustrated. Rage clicks are tracked as `[Auto] Rage Click` events.
 
 By default, Mixpanel considers 4 clicks within a second and between 30 pixels apart as a rage click. You can configure these qualifying criteria to something that best suits your application by overriding the defaults in the [Javascript SDK](/docs/tracking-methods/sdks/javascript).
 
@@ -66,7 +73,7 @@ At any time, you can change your configuration to only capture clicks on specifi
 ## Privacy and security
 The default configuration of Autocapture is designed to strike a balance between automatically capturing meaningful events while excluding potentially sensitive data. At the same time, the technical design of your website, your industry, the purpose of your website, and compliance requirements across jurisdictions can vary greatly. As a result, your close review of the data derived from Autocapture is always recommended. **Because there is no one-size-fits-all approach to event analytics, it's our customers' responsibility to ensure the configuration of Mixpanel on their website complies with applicable data privacy laws and regulations and their Mixpanel's Services Agreement.**
 
-In certain contexts, a flexible configuration of Autocapture or turning off Autocapture may be appropriate to enable your company's privacy and compliance requirements. **In particular, if the purpose of your website involves the capture of highly sensitive data like Protected Health Information (PHI), we do not recommend using Autocapture. If you have entered into a BAA (Business Associate Agreement) with Mixpanel, we do not recommend using Autocapture.** 
+In certain contexts, a flexible configuration of Autocapture or turning off Autocapture may be appropriate to enable your company's privacy and compliance requirements. **In particular, if the purpose of your website involves the capture of highly sensitive data like Protected Health Information (PHI), we do not recommend using Autocapture. If you have entered into a BAA (Business Associate Agreement) with Mixpanel, we do not recommend using Autocapture.**
 
 As an analytics provider, Mixpanel is committed to designing features to facilitate data privacy for our customers and their end-users.  While it's our customers' responsibility to ensure use of Mixpanel complies with data privacy law, we offer a privacy-first approach to autocapture, including default omission of input elements, designed to help you complete data minimization and comply with data privacy law. We’ve additionally provided you with the following tools and resources to help you adhere to applicable data privacy legislation.
 

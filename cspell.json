@@ -299,7 +299,9 @@
     "yourdomain",
     "yourfullname",
     "YOURPROJECT",
-    "zzhaystackzz"
+    "zzhaystackzz",
+    "NORTHAMERICA",
+    "SOUTHAMERICA"
   ],
   "dictionaries": [
     "custom-dictionary"
