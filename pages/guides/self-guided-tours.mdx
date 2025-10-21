@@ -8,33 +8,58 @@ Explore our product with interactive, self-guided tours. Click any card to launc
 <Script src="https://cdn.navattic.com/js/embed.umd.js" strategy="afterInteractive" />
 
 <Script id="navattic-popup-init" strategy="afterInteractive">
-{[
-"(function(){",
-"  function ready(fn){ if (document.readyState !== 'loading') fn(); else document.addEventListener('DOMContentLoaded', fn); }",
-"  ready(function(){",
-"    function boot(){",
-"      if (!(window && window.NavatticEmbed && window.NavatticEmbed.initPopup)) { setTimeout(boot, 120); return; }",
-"      var nodes = document.querySelectorAll('[data-navattic-id]');",
-"      for (var i=0; i<nodes.length; i++){",
-"        var el = nodes[i];",
-"        var id = el.getAttribute('data-navattic-id');",
-"        var title = el.getAttribute('data-navattic-title') || 'Product tour';",
-"        var url = 'https://capture.navattic.com/' + id;",
-"        try { window.NavatticEmbed.initPopup(url, { title: title, preload: false }); } catch(e) {}",
-"        el.addEventListener('click', function(evt){",
-"          var btn = evt.currentTarget;",
-"          var id2 = btn.getAttribute('data-navattic-id');",
-"          var url2 = 'https://capture.navattic.com/' + id2;",
-"          if (window && window.NavatticEmbed && window.NavatticEmbed.openPopup) {",
-"            window.NavatticEmbed.openPopup(url2);",
-"          }",
-"        });",
-"      }",
-"    }",
-"    boot();",
-"  });",
-"})();"
-].join("\n")}
+{`
+(function () {
+  function whenReady(fn) {
+    if (document.readyState !== "loading") fn();
+    else document.addEventListener("DOMContentLoaded", fn);
+  }
+
+  var inited = Object.create(null);
+
+  function ensureEmbed(cb) {
+    if (window && window.NavatticEmbed && window.NavatticEmbed.initPopup) return cb();
+    var tries = 0;
+    (function wait() {
+      if (window && window.NavatticEmbed && window.NavatticEmbed.initPopup) return cb();
+      if (tries++ > 100) return console.warn("[Navattic] embed script not found.");
+      setTimeout(wait, 100);
+    })();
+  }
+
+  function initAndOpen(el) {
+    var id = el.getAttribute("data-navattic-id");
+    if (!id) return;
+    var title = el.getAttribute("data-navattic-title") || "Product tour";
+    var url = "https://capture.navattic.com/" + id;
+
+    ensureEmbed(function () {
+      try {
+        if (!inited[url]) {
+          window.NavatticEmbed.initPopup(url, { title: title, preload: false });
+          inited[url] = true;
+          console.log("[Navattic] initialized:", url);
+        }
+        window.NavatticEmbed.openPopup(url);
+        console.log("[Navattic] opened:", url);
+      } catch (e) {
+        console.error("[Navattic] error opening popup", e);
+      }
+    });
+  }
+
+  whenReady(function () {
+    // Delegate clicks from the whole document (covers dynamically-rendered buttons too)
+    document.addEventListener("click", function (evt) {
+      var el = evt.target.closest("[data-navattic-id]");
+      if (el) {
+        evt.preventDefault();
+        initAndOpen(el);
+      }
+    });
+  });
+})();
+`}
 </Script>
 
 <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
