@@ -16,29 +16,3 @@ function useNavatticPopup(embedUrl, config) {
     return () => { cancelled = true; };
   }, [embedUrl, JSON.stringify(config)]);
 }
-
-export function DemoCard({ id, title, label = "Product Overview", thumbnail, alt = "" }) {
-  const embedUrl = `https://capture.navattic.com/${id}`;
-  useNavatticPopup(embedUrl, { title, preload: false });
-  return (
-    <button
-      type="button"
-      aria-label={`Open: ${title}`}
-      className="group text-left bg-base100 rounded-xl border border-base300 hover:border-base400 focus:outline-none focus-visible:ring focus-visible:ring-primary/50 transition overflow-hidden"
-      onClick={() => window.NavatticEmbed?.openPopup(embedUrl)}
-    >
-      <div className="aspect-video bg-base200 overflow-hidden">
-        {thumbnail ? (
-          <img src={thumbnail} alt={alt || title} loading="lazy" className="h-full w-full object-cover" />
-        ) : (
-          <div className="w-full h-full grid place-items-center text-sm text-base-content/60">Preview loads on click</div>
-        )}
-      </div>
-      <div className="p-4">
-        <div className="inline-flex items-center text-[11px] font-medium bg-warning/20 text-warning px-2 py-1 rounded">{label}</div>
-        <h3 className="mt-2 text-lg font-semibold leading-snug group-hover:underline">{title}</h3>
-        <p className="mt-1 text-sm text-base-content/70">Opens in a modal.</p>
-      </div>
-    </button>
-  );
-}
