@@ -7,7 +7,7 @@ export const metadata = {
     "Interactive, self-guided product tours powered by Navattic (pop-up embeds).",
 };
 
-// ---- Helper: initialize a Navattic pop-up once per demo id ----
+// Helper: initialize a Navattic pop-up once per demo id
 function useNavatticPopup(embedUrl, config) {
   useEffect(() => {
     let cancelled = false;
@@ -26,7 +26,7 @@ function useNavatticPopup(embedUrl, config) {
   }, [embedUrl, JSON.stringify(config)]);
 }
 
-// ---- Card component ----
+// Card component
 export function DemoCard({
   id,
   title,
@@ -73,7 +73,7 @@ export function DemoCard({
 
 # Self-Guided Product Tours
 
-Explore our product with interactive, self-guided tours. Click any card to launch a pop-up walkthrough—no new windows.
+Explore our product with interactive, self-guided tours. Click any card to launch a pop-up walkthrough - no new windows.
 
 <Script src="https://cdn.navattic.com/js/embed.umd.js" strategy="afterInteractive" />
 
