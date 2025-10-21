@@ -5,6 +5,7 @@ export default {
 	},
 	"what-is-mixpanel": "What is Mixpanel?",
 	"whats-new": "What's New?",
+	"self-guided-tours": "Self Guided Tours",
 	"solutions-and-workflows": {
 		"type": "separator",
 		"title": "SOLUTIONS & WORKFLOWS"
