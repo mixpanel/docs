@@ -15,7 +15,7 @@ You are a Mixpanel customer and have the latest version of the Mixpanel Javascri
 ## Capturing Replays
 
 <Callout type="warning">
-	Test in a sandbox project and start with a smaller sample rate. This allows you to monitor performance, usage, and ensure your privacy rules align with your company policies.
+	Test in a sandbox project and start with a 100% sample rate. This allows you to monitor performance, usage, and ensure your privacy rules align with your company policies.
 </Callout>
 
 You can capturing replay data using a sampling method (recommended), or customize when and where replays are captured manually using Session Replay methods provided by the SDK.
@@ -29,7 +29,7 @@ When the SDK initializes, it makes a sampling decision based on your configured 
 To enable Session Replay and set your sampling rate, set the `recording_sessions_percent` when initializing the SDK. This is the only change needed in your existing JavaScript SDK implementation to enable Session Replay.
 
 <Callout type="info">
-Start with a low sampling rate, then adjust according to your specific analytics needs.
+To start, we recommend using an 100% sampling rate to ensure replay capture is behaving as expected, then adjust according to your specific analytics needs.
 </Callout>
 **Example Usage**
 
@@ -37,7 +37,7 @@ Start with a low sampling rate, then adjust according to your specific analytics
 mixpanel.init(
     "<YOUR_PROJECT_TOKEN>", 
     {
-        record_sessions_percent: 1  //records 1% of all sessions
+        record_sessions_percent: 100  //records 100% of all sessions
     }
 );
 ```

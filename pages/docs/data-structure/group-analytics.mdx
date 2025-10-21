@@ -9,7 +9,7 @@ import { Callout } from 'nextra/components'
 
 ## Overview
 
-Mixpanel Group Analytics allows behavioral data analysis at a customized group level (such as account, device—or any other way you want to assess your business).
+Mixpanel Group Analytics allows behavioral data analysis at a customized group level (such as account, device—or any other way you want to assess your business).
 
 Historically, Mixpanel grouped events by a single identifier called the distinct_id. This ultimately grouped events by the individual user. Group Analytics allows you to establish an event property other than the distinct_id, such as company ID, account ID, project ID, or billing ID, as an identifier by which to analyze your data.
 
@@ -139,6 +139,10 @@ The chart below shows that on Aug 19th, 35 accounts downloaded a document. Of th
 Establish the group identifier with an event property as the Group Key, where the property value is the Group ID. As **event property:value** is **group key:group id**.
 
 ### Group Keys in Project Settings
+
+<Callout type="info">
+  To set a group key, you must have an admin or owner project role. Learn more about [Roles and Permissions](/docs/orgs-and-projects/roles-and-permissions).
+</Callout>
 
 Group keys are project specific, and the group key must be set up before group data is sent.
 

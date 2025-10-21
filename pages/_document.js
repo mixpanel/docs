@@ -30,7 +30,7 @@ export default function Document() {
           data-modal-command-k-search-mode-default="true"
           data-modal-header-bg-color="#f5f2f2"
           data-switch-bg-color="#f5f2f2"
-          data-switch-color="1b0b3b"
+          data-switch-color="#1b0b3b"
           data-modal-header-border-bottom="2px solid #eae7e7"
           data-search-result-primary-text-color="#1b0b3b"
           data-search-result-secondary-text-color="#626266"
