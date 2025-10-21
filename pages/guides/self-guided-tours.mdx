@@ -1,8 +1,51 @@
+import Script from "next/script";
+import { useEffect } from "react";
+
+function useNavatticPopup(embedUrl, config) {
+  useEffect(() => {
+    let cancelled = false;
+    function init() {
+      if (cancelled) return;
+      if (typeof window !== "undefined" && window.NavatticEmbed?.initPopup) {
+        window.NavatticEmbed.initPopup(embedUrl, config);
+      } else {
+        setTimeout(init, 100);
+      }
+    }
+    init();
+    return () => { cancelled = true; };
+  }, [embedUrl, JSON.stringify(config)]);
+}
+
+export function DemoCard({ id, title, label = "Product Overview", thumbnail, alt = "" }) {
+  const embedUrl = `https://capture.navattic.com/${id}`;
+  useNavatticPopup(embedUrl, { title, preload: false });
+  return (
+    <button
+      type="button"
+      aria-label={`Open: ${title}`}
+      className="group text-left bg-base100 rounded-xl border border-base300 hover:border-base400 focus:outline-none focus-visible:ring focus-visible:ring-primary/50 transition overflow-hidden"
+      onClick={() => window.NavatticEmbed?.openPopup(embedUrl)}
+    >
+      <div className="aspect-video bg-base200 overflow-hidden">
+        {thumbnail ? (
+          <img src={thumbnail} alt={alt || title} loading="lazy" className="h-full w-full object-cover" />
+        ) : (
+          <div className="w-full h-full grid place-items-center text-sm text-base-content/60">Preview loads on click</div>
+        )}
+      </div>
+      <div className="p-4">
+        <div className="inline-flex items-center text-[11px] font-medium bg-warning/20 text-warning px-2 py-1 rounded">{label}</div>
+        <h3 className="mt-2 text-lg font-semibold leading-snug group-hover:underline">{title}</h3>
+        <p className="mt-1 text-sm text-base-content/70">Opens in a modal.</p>
+      </div>
+    </button>
+  );
+}
+
 # Self-Guided Product Tours
 
 Explore our product with interactive, self-guided tours. Click any card to launch a pop-up walkthrough - no new windows.
-
-<Script src="https://cdn.navattic.com/js/embed.umd.js" strategy="afterInteractive" />
 
 <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
   <DemoCard id="cmfkxwfa5000004lc8408f5wi" title="2-minute mini product tour" label="Product Overview" thumbnail="/images/navattic/mini-tour.jpg" alt="Mini product tour preview" />
