@@ -1,0 +1,406 @@
+# Inside Mixpanel: The OADA Loop
+Mixpanel helps product teams **see what’s happening**, **understand why**, **decide what to do next**, and **measure impact**—fast. This continuous cycle is the **OADA loop**: Observe → Analyze → Decide → Act.
+
+---
+
+## See Mixpanel in Action
+
+<br></br>
+<section id="video" aria-label="Mixpanel overview video" style={{ padding: '8px 16px 32px' }}>
+  <div
+    style={{
+      display: 'flex',
+      flexWrap: 'wrap',
+      gap: 24,
+      alignItems: 'center',
+    }}
+  >
+    {/* Left: video with a min width so it wraps when narrow */}
+    <div style={{ flex: '1 1 480px', minWidth: 320 }}>
+      <div
+        style={{
+          position: 'relative',
+          paddingBottom: '56.25%',
+          height: 0,
+          overflow: 'hidden',
+          borderRadius: '16px',
+          boxShadow: '0 4px 20px rgba(0,0,0,0.08)',
+        }}
+      >
+        <iframe
+          title="Mixpanel Overview: OADA loop"
+          src="https://www.youtube.com/embed/sRQCfmvh3vg"
+          frameBorder="0"
+          allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+          allowFullScreen
+          style={{ position: 'absolute', top: 0, left: 0, width: '100%', height: '100%', border: 0 }}
+        />
+      </div>
+    </div>
+
+    {/* Right: text with a flexible basis */}
+    <aside style={{ flex: '1 1 320px', minWidth: 280 }}>
+      <h2 style={{ marginTop: 0 }}>**Discover Mixpanel**</h2>
+      <p>
+        In this 5-minute overview, learn how Mixpanel supports the <strong>Observe → Analyze → Decide → Act</strong> loop
+        that drives product innovation.
+      </p>
+<br></br>
+      <a href="https://youtu.be/sRQCfmvh3vg?si=oLrnLyO2ppWK9mzY" style={{ fontWeight: 600 }}>
+        Open in YouTube →
+      </a>
+    </aside>
+  </div>
+</section>
+
+---
+
+## Close the Loop with Mixpanel
+
+See how each step in the loop connects to Mixpanel features and Guides that help you put it into action.
+
+| 👀 **Observe** | 📊 **Analyze** | 💡 **Decide** | 🚀 **Act** |
+|---|---|---|---|
+| See what’s happening in your product by tracking the events that matter. <br/><br/>**[Build a tracking strategy →](https://docs.mixpanel.com/guides/guides-by-use-case/build-a-tracking-strategy)** | Explore funnels, retention, and drivers to find what moves your metrics. <br/><br/> | Align on what to change next with dashboards, annotations, and shared insights. <br/><br/> | Ship improvements and measure impact with experiments and launch tracking. <br/><br/>**[Drive product innovation →](https://docs.mixpanel.com/guides/guides-by-use-case/driving-product-innovation)**
+
+---
+
+## How Different Industries Use the Continuous Loop
+
+Mixpanel powers the OADA loop across every industry--helping teams turn data into confident action. 
+
+Whether you’re optimizing user onboarding, increasing checkout conversions, or improving content engagement, the same continuous loop applies. 
+
+Below are examples of how teams in different industries use Mixpanel to measure, learn, and grow faster.
+
+
+<details>
+<summary><strong>💼 SaaS: Improving Onboarding and Activation</strong></summary>
+
+<br></br>A SaaS team observes where new users drop off during onboarding, analyzes behavior to uncover friction points, decides which steps to simplify, and acts by testing improvements that drive activation and conversion.
+
+---
+
+**Observe** <br></br>
+The team tracks the onboarding journey to understand where users get stuck: *Account Created → Tutorial Completed → Key Action Taken*
+
+Using **Funnels** and **Flows** in Mixpanel, they see that a large portion of users drop off before finishing the tutorial.
+
+---
+
+**Analyze** <br></br>
+They dig deeper with **Insights** and **Session Replay** to find out *why*. Behavioral data shows that most users abandon onboarding when asked to configure a complex setting too early, while replays confirm that this screen causes confusion.
+
+| Tool | Observation | Insight |
+|------|--------------|----------|
+| **Funnels & Flows** | High drop-off between “Account Created” and “Tutorial Completed” | Many users start onboarding but don’t reach the first key action, indicating friction early in the setup process. |
+| **Insights** | Users who skip advanced configuration steps are more likely to activate | Complex setup tasks cause early abandonment before users reach value. |
+| **Session Replay** | Users pause or exit on the configuration screen | The configuration step is confusing, creating hesitation and contributing to drop-offs. |
+
+
+---
+
+**Decide** <br></br>
+The team compares **cohorts** of users who complete onboarding in their first session versus those who don’t. They find that users who finish onboarding right away are twice as likely to activate within a week. They decide to simplify the initial setup and move optional configuration to a later stage.
+
+---
+
+**Act** <br></br>
+They run an **Experiment** testing a new guided flow that delays complex setup until after the user experiences initial value. After the winning version significantly improves activation, they roll it out to all users using **Feature Flags**.
+
+---
+
+**✨ Result:** Activation improves 15%, and time to value shortens.
+<br></br>
+
+</details>
+
+
+
+<details>
+<summary><strong>🛍️ eCommerce: Increasing Checkout Conversion</strong></summary>
+
+<br></br>An eCommerce team observes how shoppers move through checkout, analyzes drop-offs to find mobile pain points, decides what changes to prioritize, and acts by launching experiments that lift conversion rates.
+
+---
+
+**Observe** <br></br>
+The team maps the path to purchase to pinpoint where customers abandon the flow: *Product Viewed → Added to Cart → Checkout Started → Purchase Completed*
+
+Using **Funnels** in Mixpanel, they see that a large portion of users start checkout but never complete payment.
+
+---
+
+**Analyze** <br></br>
+They investigate further with **Insights**, segmenting results by device and geography. Mobile users show significantly lower completion rates.
+
+Through **Session Replay** and **Heatmaps**, they observe users zooming in on payment fields, misclicking form inputs, and abandoning the process after multiple failed attempts.
+
+| Tool | Observation | Insight |
+|------|--------------|----------|
+| **Funnels** | 40% drop-off at payment step | Many users abandon checkout before completing payment, indicating friction at this stage. |
+| **Session Replay & Heatmaps** | Users zoom and misclick on payment fields | The form is difficult to complete on mobile, leading to frustration and abandonment. |
+| **Insights** | Longer time on payment page before exit | Users struggle to enter details correctly, suggesting unclear field labels or validation errors. |
+
+
+---
+
+**Decide** <br></br>
+The team compares **cohorts** of mobile users who completed checkout versus those who didn’t. They find that reducing the number of required fields correlates with higher conversion. They decide to simplify the payment form and surface popular payment options earlier in the flow.
+
+---
+
+**Act** <br></br>
+They create an **Experiment** testing the simplified checkout form with mobile users. The results show a significant lift in mobile conversions, so the team rolls out the new design to all users using **Feature Flags**.
+
+---
+
+**✨ Result:** Checkout completion increases by 20%, and mobile users complete purchases faster with fewer errors.
+<br></br>
+
+</details>
+
+
+
+<details>
+<summary><strong>🎬 Media & Entertainment: Boosting Viewer Retention</strong></summary>
+
+<br></br>A streaming platform observes how audiences engage with content, analyzes where viewers disengage, decides how to personalize recommendations, and acts by improving the experience to keep viewers watching longer.
+
+---
+
+**Observe** <br></br>
+The team maps the typical viewing journey to understand where viewers lose interest: *Episode Started → Episode Completed → Next Episode Started*
+
+Using **Funnels**, they see a major drop-off after Episode 2 in new series. **Flows** confirm that most users who stop watching don’t move on to similar shows or genres.
+
+---
+
+**Analyze** <br></br>
+They dig deeper using **Insights**, **Retention**, and **Session Replay** to uncover why engagement drops off. They discover that episodes with weaker completion rates also have fewer post-watch interactions, like “Add to Watch List” or “Rate Content.”
+Session Replays and Heatmaps reveal that end-of-episode recommendations are often irrelevant or missed entirely.
+
+| Tool | Observation | Insight |
+|------|--------------|----------|
+| **Funnels & Flows** | Sharp viewer drop-off after Episode 2 | Audiences disengage early in new series, suggesting issues with content pacing or recommendations. |
+| **Insights & Retention** | Fewer return visits after initial viewing session | Users aren’t motivated to continue watching after early episodes, indicating weak re-engagement drivers. |
+| **Session Replay & Heatmaps** | Limited interaction with “Next Episode” or “Recommended for You” sections | End-of-episode recommendations aren’t personalized or visually prominent enough to encourage continued viewing. |
+
+
+---
+
+**Decide** <br></br>
+The team compares **cohorts** of viewers who continue past Episode 2 versus those who stop. They find that engagement with “Next Episode” or “Rate Content” interactions strongly predicts long-term retention. They decide to improve personalization and prompt users to rate episodes before recommending what to watch next.
+
+---
+
+**Act** <br></br>
+They run an **Experiment** testing a new “Rate this Episode” prompt and smarter “Up Next” recommendations. Once they see a significant increase in episode-to-episode continuation, they roll out the new experience globally using **Feature Flags**.
+
+---
+
+**✨ Result:** Repeat viewership increases 25%, and average session length grows as more viewers continue past early episodes.
+<br></br>
+
+</details>
+
+
+
+<details>
+<summary><strong>💰 Fintech: Increasing Feature Adoption and Retention</strong></summary>
+
+<br></br>A fintech product team observes how customers engage with budgeting tools, analyzes where they drop off, decides which steps to simplify, and acts by testing new prompts that improve adoption and retention.
+
+---
+
+**Observe** <br></br>
+The team maps the customer journey to identify where engagement drops: *Account Linked → Budget Created → Spending Reviewed → Budget Adjusted*
+
+Using **Funnels** and **Flows** in Mixpanel, they see that many users link their bank account but never complete a first budget. This gap represents a key opportunity to improve activation within the product.
+
+---
+
+**Analyze** <br></br>
+They dig deeper using **Insights**, **Retention**, and **Session Replay** to understand why users don’t finish setup. Behavioral data reveals that users linking smaller financial institutions often encounter errors. Retention reports show that users who successfully create a budget are twice as likely to return within 30 days.
+
+| Tool | Observation | Insight |
+|------|--------------|----------|
+| **Funnels & Flows** | Many users stop after linking a bank account | Setup friction prevents users from creating their first budget and experiencing value. |
+| **Insights** | Lower completion rates among users linking smaller institutions | Connection errors and inconsistent authentication flows block progress. |
+| **Retention** | Users who complete budget setup return 2× more often within 30 days | Early success with the budgeting feature predicts long-term engagement. |
+| **Session Replay** | Users repeatedly attempt to link accounts before exiting | Frustration during setup causes drop-offs before key actions are completed. |
+
+
+---
+
+**Decide** <br></br>
+The team compares **cohorts** of users who complete their first budget versus those who don’t. They find that users who set up a budget alert immediately after creation retain best over time. They decide to streamline the account linking flow and prompt users to set alerts earlier.
+
+---
+
+**Act** <br></br>
+They launch an **Experiment** testing a simplified linking process and a new “Set Your First Alert” prompt after budget creation. When the new experience increases completion and retention, they roll it out to all users using **Feature Flags**.
+
+---
+
+**✨ Result:** Budget feature adoption increases 30%, and retention improves 15% as users connect accounts and set alerts more easily.
+<br></br>
+
+</details>
+
+
+
+<details>
+<summary><strong>🎮 Gaming: Driving Player Engagement and In-App Purchases</strong></summary>
+
+<br></br>A gaming studio observes how players progress through levels, analyzes behavior to uncover friction and missed opportunities, decides what changes will keep players engaged, and acts by testing prompts that increase completion and purchases.
+
+---
+
+**Observe** <br></br>
+The team tracks key in-game milestones to identify where players churn: *Level Started → Level Completed → In-App Purchase Made*
+
+Using **Funnels** and **Flows** in Mixpanel, they find that a large portion of users drop off after failing Level 3 multiple times. This stage becomes their primary focus for improvement.
+
+---
+
+**Analyze** <br></br>
+They use **Insights**, **Session Replay**, and **Heatmaps** to understand what’s causing frustration. Behavioral data shows that players who use “Power-Ups” early in gameplay are far more likely to progress, while replays reveal many players overlook the in-game hint icon.
+
+| Tool | Observation | Insight |
+|------|--------------|----------|
+| **Funnels & Flows** | High player drop-off after Level 3 | Repeated failures at a single level cause early churn and reduced engagement. |
+| **Insights** | Power-Up users complete twice as many levels as others | Early exposure to helpful tools increases progression and satisfaction. |
+| **Session Replay & Heatmaps** | Players ignore or miss the on-screen “Hint” icon | Key features are visually understated or poorly timed, leading to missed opportunities. |
+
+
+---
+
+**Decide** <br></br>
+The team compares **cohorts** of players who used Power-Ups before Level 3 with those who didn’t. They confirm that introducing Power-Ups earlier increases both level completion and purchase likelihood. They decide to highlight Power-Ups at the start of Level 3 with a short tutorial prompt.
+
+---
+
+**Act** <br></br>
+They run an **Experiment** testing the new Power-Up prompt, measuring its effect on both level completion and in-app purchases. After the new version shows a significant improvement in completion and a rise in purchases, the team deploys it to all players using **Feature Flags**.
+
+---
+
+**✨ Result:** Players advance further through the game, spend more time in-app, and make more purchases, driving sustained engagement.
+<br></br>
+
+</details>
+
+No matter your industry, the OADA loop helps you turn insights into action--and Mixpanel gives you the tools to complete that loop faster with every iteration.
+
+---
+
+## Keep Learning
+Keep building your Mixpanel expertise with these resources designed to help you learn, connect, and put insights into action.
+
+| Resource | Description | Link |
+|-----------|--------------|------|
+| **Community** | Connect with other Mixpanel users, share ideas, and learn how peers are tackling similar challenges. | [Open →](https://community.mixpanel.com/) |
+| **Developer Docs** | Build and extend Mixpanel with advanced implementation guides. | [Open →](https://developer.mixpanel.com/reference/overview) |
+| **Docs** | Explore product capabilities, setup guides, and detailed feature references. | [Open →](https://docs.mixpanel.com/) |
+| **Events** | Join live sessions and webinars to explore new features, use cases, and expert-led best practices. | [Open →](https://mixpanel.com/events) |
+| **Guides** | Apply Mixpanel best practices to real-world workflows and use cases. | 📍 You are Here |
+| **Mixpanel University** | Follow guided learning paths to validate your skills and earn certifications. | [Open →](https://mixpanel.com/university/) |
+
+Wherever you are in your Mixpanel journey, these resources will help you continue learning, stay connected, and keep improving.
+
+## Archive
+Saving this cool code, but not sure we need it for this page.
+
+### Boxes
+<section style={{display:'grid',gridTemplateColumns:'repeat(auto-fit,minmax(240px,1fr))',gap:'16px',margin:'16px 0'}}>
+  <article style={{border:'1px solid #E5E7EB',borderRadius:'12px',padding:'16px',background:'#fff'}}>
+    <div aria-hidden style={{fontSize:'24px'}}>📈</div>
+    <h3 style={{margin:'8px 0 4px'}}><strong>Analysis</strong></h3>
+    <p style={{margin:'0 0 8px'}}>Explore behavior with Insights, Funnels, Flows, and Retention to spot drop-offs, drivers, and return patterns.</p>
+    <p style={{fontSize:'0.95em',margin:'0 0 8px'}}><strong>Why it matters:</strong> Turns raw events into answers fast.</p>
+    <p style={{margin:0}}><a href="/docs/reports" style={{fontWeight:600}}>Learn more →</a></p>
+  </article>
+
+  <article style={{border:'1px solid #E5E7EB',borderRadius:'12px',padding:'16px',background:'#fff'}}>
+    <div aria-hidden style={{fontSize:'24px'}}>🧪</div>
+    <h3 style={{margin:'8px 0 4px'}}><strong>Experiments</strong></h3>
+    <p style={{margin:'0 0 8px'}}>Use A/B and multivariate testing to validate hypotheses before full rollout. </p>
+    <p style={{fontSize:'0.95em',margin:'0 0 8px'}}><strong>Why it matters:</strong> Ship confidently and measure lift.</p>
+    <p style={{margin:0}}><a href="/docs/experiments" style={{fontWeight:600}}>Learn More →</a></p>
+  </article>
+
+  <article
+    style={{
+      border: '1px solid #E5E7EB',
+      borderRadius: '12px',
+      padding: '16px',
+      background: '#fff',
+    }}
+  >
+    <div aria-hidden style={{ fontSize: '24px' }}>🚩</div>
+    <h3 style={{ margin: '8px 0 4px' }}><strong>Feature Flags</strong></h3>
+    <p style={{ margin: '0 0 8px' }}>
+      Roll out new functionality gradually, target specific user groups, and monitor impact safely.
+    </p>
+    <p style={{ fontSize: '0.95em', margin: '0 0 8px' }}>
+      <strong>Why it matters:</strong> Minimizes risk and accelerates learning with controlled releases.
+    </p>
+    <p style={{ margin: 0 }}>
+      <a href="/docs/featureflags" style={{ fontWeight: 600 }}>
+        Learn More →
+      </a>
+    </p>
+  </article>
+
+  <article style={{border:'1px solid #E5E7EB',borderRadius:'12px',padding:'16px',background:'#fff'}}>
+    <div aria-hidden style={{fontSize:'24px'}}>🎥</div>
+    <h3 style={{margin:'8px 0 4px'}}><strong>Session Replay</strong></h3>
+    <p style={{margin:'0 0 8px'}}>See real sessions and Heatmaps to understand <em>why</em> the numbers moved.</p>
+    <p style={{fontSize:'0.95em',margin:'0 0 8px'}}><strong>Why it matters:</strong> Reveals friction you can’t see in charts.</p>
+    <p style={{margin:0}}><a href="/docs/session-replay" style={{fontWeight:600}}>Learn More →</a></p>
+  </article>
+
+  <article style={{border:'1px solid #E5E7EB',borderRadius:'12px',padding:'16px',background:'#fff'}}>
+    <div aria-hidden style={{fontSize:'24px'}}>🌳</div>
+    <h3 style={{margin:'8px 0 4px'}}><strong>Metric Trees</strong></h3>
+    <p style={{margin:'0 0 8px'}}>Map KPIs to contributing actions to see how improvements cascade.</p>
+    <p style={{fontSize:'0.95em',margin:'0 0 8px'}}><strong>Why it matters:</strong> Aligns teams on what moves the metric.</p>
+    <p style={{margin:0}}><a href="/docs/metric_tree" style={{fontWeight:600}}>Learn More →</a></p>
+  </article>
+
+</section>
+
+
+### Image by Text
+<section
+  style={{
+    display: 'flex',
+    flexWrap: 'wrap',
+    alignItems: 'center',
+    gap: '24px',
+    margin: '32px 0',
+  }}
+>
+  <div style={{ flex: '1 1 400px', minWidth: '280px' }}>
+    <p>
+      Everything in Mixpanel starts with <strong>events</strong>––the building blocks of your data model.
+    </p><br></br>
+    <p>
+      An event represents something a <strong>user</strong> does (like <em>Signed Up</em>, <em>Viewed a Product</em>,
+      or <em>Completed Purchase</em>). Each event can include <strong>properties</strong> that add context, such as
+      the user’s plan type, location, or device.
+    </p><br></br>
+    <p>
+      Together, these events and properties form a flexible data model that mirrors how people actually use your
+      product. Once instrumented, you can analyze this data instantly—–without writing SQL or waiting on an analyst.
+    </p>
+  </div>
+
+  <div style={{ flex: '1 1 300px', textAlign: 'center' }}>
+    ![Event Data Model diagram](/event-1.svg)
+    <p style={{ fontSize: '0.9em', color: '#666', marginTop: '8px' }}>
+      Example of how events and properties structure user behavior data in Mixpanel.
+    </p>
+  </div>
+</section>
