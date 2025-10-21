@@ -1,56 +1,135 @@
 import Script from "next/script";
 import { useEffect } from "react";
 
-function useNavatticPopup(embedUrl, config) {
-  useEffect(() => {
-    let cancelled = false;
-    function init() {
-      if (cancelled) return;
-      if (typeof window !== "undefined" && window.NavatticEmbed?.initPopup) {
-        window.NavatticEmbed.initPopup(embedUrl, config);
-      } else {
-        setTimeout(init, 100);
-      }
-    }
-    init();
-    return () => { cancelled = true; };
-  }, [embedUrl, JSON.stringify(config)]);
-}
-
-export function DemoCard({ id, title, label = "Product Overview", thumbnail, alt = "" }) {
-  const embedUrl = `https://capture.navattic.com/${id}`;
-  useNavatticPopup(embedUrl, { title, preload: false });
-  return (
-    <button
-      type="button"
-      aria-label={`Open: ${title}`}
-      className="group text-left bg-base100 rounded-xl border border-base300 hover:border-base400 focus:outline-none focus-visible:ring focus-visible:ring-primary/50 transition overflow-hidden"
-      onClick={() => window.NavatticEmbed?.openPopup(embedUrl)}
-    >
-      <div className="aspect-video bg-base200 overflow-hidden">
-        {thumbnail ? (
-          <img src={thumbnail} alt={alt || title} loading="lazy" className="h-full w-full object-cover" />
-        ) : (
-          <div className="w-full h-full grid place-items-center text-sm text-base-content/60">Preview loads on click</div>
-        )}
-      </div>
-      <div className="p-4">
-        <div className="inline-flex items-center text-[11px] font-medium bg-warning/20 text-warning px-2 py-1 rounded">{label}</div>
-        <h3 className="mt-2 text-lg font-semibold leading-snug group-hover:underline">{title}</h3>
-        <p className="mt-1 text-sm text-base-content/70">Opens in a modal.</p>
-      </div>
-    </button>
-  );
-}
-
 # Self-Guided Product Tours
 
 Explore our product with interactive, self-guided tours. Click any card to launch a pop-up walkthrough - no new windows.
 
 <Script src="https://cdn.navattic.com/js/embed.umd.js" strategy="afterInteractive" />
 
+<Script id="navattic-popup-init" strategy="afterInteractive">
+{[
+"(function(){",
+"  function ready(fn){ if (document.readyState !== 'loading') fn(); else document.addEventListener('DOMContentLoaded', fn); }",
+"  ready(function(){",
+"    function boot(){",
+"      if (!(window && window.NavatticEmbed && window.NavatticEmbed.initPopup)) { setTimeout(boot, 120); return; }",
+"      var nodes = document.querySelectorAll('[data-navattic-id]');",
+"      for (var i=0; i<nodes.length; i++){",
+"        var el = nodes[i];",
+"        var id = el.getAttribute('data-navattic-id');",
+"        var title = el.getAttribute('data-navattic-title') || 'Product tour';",
+"        var url = 'https://capture.navattic.com/' + id;",
+"        try { window.NavatticEmbed.initPopup(url, { title: title, preload: false }); } catch(e) {}",
+"        el.addEventListener('click', function(evt){",
+"          var btn = evt.currentTarget;",
+"          var id2 = btn.getAttribute('data-navattic-id');",
+"          var url2 = 'https://capture.navattic.com/' + id2;",
+"          if (window && window.NavatticEmbed && window.NavatticEmbed.openPopup) {",
+"            window.NavatticEmbed.openPopup(url2);",
+"          }",
+"        });",
+"      }",
+"    }",
+"    boot();",
+"  });",
+"})();"
+].join("\n")}
+</Script>
+
 <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-  <DemoCard id="cmfkxwfa5000004lc8408f5wi" title="2-minute mini product tour" label="Product Overview" thumbnail="/images/navattic/mini-tour.jpg" alt="Mini product tour preview" />
-  <DemoCard id="REPLACE_WITH_DEMO_ID" title="5-minute full product tour" label="Product Overview" thumbnail="/images/navattic/full-tour.jpg" alt="Full product tour preview" />
-  <DemoCard id="REPLACE_WITH_DEMO_ID" title="Customizing the Lead Page" label="CRM" thumbnail="/images/navattic/lead-page.jpg" alt="Lead page customization preview" />
+
+  <button
+    type="button"
+    aria-label="Open: 2-minute mini product tour"
+    className="group text-left bg-base100 rounded-xl border border-base300 hover:border-base400 focus:outline-none focus-visible:ring focus-visible:ring-primary/50 transition overflow-hidden"
+    data-navattic-id="cmfkxwfa5000004lc8408f5wi"
+    data-navattic-title="2-minute mini product tour"
+  >
+    <div className="relative aspect-video bg-base200 overflow-hidden">
+      <img
+        src="/images/navattic/mini-tour.jpg"
+        alt="Mini product tour preview"
+        loading="lazy"
+        className="h-full w-full object-cover"
+      />
+      <div className="pointer-events-none absolute inset-0 grid place-items-center">
+        <span className="inline-grid h-12 w-12 place-items-center rounded-full bg-base100/80 backdrop-blur-md shadow-md transition group-hover:scale-105">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="currentColor" className="text-base-content/80">
+            <path d="M8 5v14l11-7z" />
+          </svg>
+        </span>
+      </div>
+    </div>
+    <div className="p-4">
+      <div className="inline-flex items-center text-[11px] font-medium bg-warning/20 text-warning px-2 py-1 rounded">
+        Product Overview
+      </div>
+      <h3 className="mt-2 text-lg font-semibold leading-snug group-hover:underline">2-minute mini product tour</h3>
+      <p className="mt-1 text-sm text-base-content/70">Opens in a modal, not a new window.</p>
+    </div>
+  </button>
+
+  <button
+    type="button"
+    aria-label="Open: 5-minute full product tour"
+    className="group text-left bg-base100 rounded-xl border border-base300 hover:border-base400 focus:outline-none focus-visible:ring focus-visible:ring-primary/50 transition overflow-hidden"
+    data-navattic-id="REPLACE_WITH_DEMO_ID"
+    data-navattic-title="5-minute full product tour"
+  >
+    <div className="relative aspect-video bg-base200 overflow-hidden">
+      <img
+        src="/images/navattic/full-tour.jpg"
+        alt="Full product tour preview"
+        loading="lazy"
+        className="h-full w-full object-cover"
+      />
+      <div className="pointer-events-none absolute inset-0 grid place-items-center">
+        <span className="inline-grid h-12 w-12 place-items-center rounded-full bg-base100/80 backdrop-blur-md shadow-md transition group-hover:scale-105">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="currentColor" className="text-base-content/80">
+            <path d="M8 5v14l11-7z" />
+          </svg>
+        </span>
+      </div>
+    </div>
+    <div className="p-4">
+      <div className="inline-flex items-center text-[11px] font-medium bg-info/20 text-info px-2 py-1 rounded">
+        Product Overview
+      </div>
+      <h3 className="mt-2 text-lg font-semibold leading-snug group-hover:underline">5-minute full product tour</h3>
+      <p className="mt-1 text-sm text-base-content/70">Opens in a modal.</p>
+    </div>
+  </button>
+
+  <button
+    type="button"
+    aria-label="Open: Customizing the Lead Page"
+    className="group text-left bg-base100 rounded-xl border border-base300 hover:border-base400 focus:outline-none focus-visible:ring focus-visible:ring-primary/50 transition overflow-hidden"
+    data-navattic-id="REPLACE_WITH_DEMO_ID"
+    data-navattic-title="Customizing the Lead Page"
+  >
+    <div className="relative aspect-video bg-base200 overflow-hidden">
+      <img
+        src="/images/navattic/lead-page.jpg"
+        alt="Lead page customization preview"
+        loading="lazy"
+        className="h-full w-full object-cover"
+      />
+      <div className="pointer-events-none absolute inset-0 grid place-items-center">
+        <span className="inline-grid h-12 w-12 place-items-center rounded-full bg-base100/80 backdrop-blur-md shadow-md transition group-hover:scale-105">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="currentColor" className="text-base-content/80">
+            <path d="M8 5v14l11-7z" />
+          </svg>
+        </span>
+      </div>
+    </div>
+    <div className="p-4">
+      <div className="inline-flex items-center text-[11px] font-medium bg-secondary/20 text-secondary px-2 py-1 rounded">
+        CRM
+      </div>
+      <h3 className="mt-2 text-lg font-semibold leading-snug group-hover:underline">Customizing the Lead Page</h3>
+      <p className="mt-1 text-sm text-base-content/70">Opens in a modal.</p>
+    </div>
+  </button>
+
 </div>
