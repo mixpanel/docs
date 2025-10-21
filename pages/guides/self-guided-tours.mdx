@@ -1,105 +1,128 @@
 import Script from "next/script";
+import { useEffect } from "react";
 
 export const metadata = {
   title: "Self‑Guided Tours",
   description: "Interactive, self‑guided product tours powered by Navattic (pop‑up embeds).",
 };
 
+// ---- Helper: initialize a Navattic popup once per demo id ----
+function useNavatticPopup(embedUrl, config) {
+  useEffect(() => {
+    let cancelled = false;
+    function init() {
+      if (cancelled) return;
+      if (typeof window !== "undefined" && window.NavatticEmbed?.initPopup) {
+        window.NavatticEmbed.initPopup(embedUrl, config);
+      } else {
+        setTimeout(init, 100);
+      }
+    }
+    init();
+    return () => {
+      cancelled = true;
+    };
+  }, [embedUrl, JSON.stringify(config)]);
+}
+
+// ---- Card component ----
+export function DemoCard({ id, title, label = "Product Overview", thumbnail, alt = "" }) {
+  const embedUrl = `https://capture.navattic.com/${id}`;
+  useNavatticPopup(embedUrl, { title, preload: false });
+
+  return (
+    <button
+      type="button"
+      aria-label={`Open: ${title}`}
+      className="group text-left bg-base100 rounded-xl border border-base300 hover:border-base400 focus:outline-none focus-visible:ring focus-visible:ring-primary/50 transition overflow-hidden"
+      onClick={() => window.NavatticEmbed?.openPopup(embedUrl)}
+    >
+      <div className="relative aspect-video bg-base200 overflow-hidden">
+        {thumbnail ? (
+          <img
+            src={thumbnail}
+            alt={alt || title}
+            loading="lazy"
+            className="h-full w-full object-cover"
+          />
+        ) : (
+          <div className="w-full h-full grid place-items-center text-sm text-base-content/60">
+            Preview loads on click
+          </div>
+        )}
+        {/* Play button overlay */}
+        <div className="pointer-events-none absolute inset-0 grid place-items-center">
+          <span className="inline-grid h-12 w-12 place-items-center rounded-full bg-base100/80 backdrop-blur-md shadow-md transition group-hover:scale-105">
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="currentColor" className="text-base-content/80">
+              <path d="M8 5v14l11-7z" />
+            </svg>
+          </span>
+        </div>
+      </div>
+      <div className="p-4">
+        <div className="inline-flex items-center text-[11px] font-medium bg-warning/20 text-warning px-2 py-1 rounded">
+          {label}
+        </div>
+        <h3 className="mt-2 text-lg font-semibold leading-snug group-hover:underline">{title}</h3>
+        <p className="mt-1 text-sm text-base-content/70">Opens in a modal.</p>
+      </div>
+    </button>
+  );
+}
+      className="group text-left bg-base100 rounded-xl border border-base300 hover:border-base400 focus:outline-none focus-visible:ring focus-visible:ring-primary/50 transition overflow-hidden"
+      onClick={() => window.NavatticEmbed?.openPopup(embedUrl)}
+    >
+      <div className="aspect-video bg-base200 overflow-hidden">
+        {/* Optional: replace with a real thumbnail */}
+        <div className="w-full h-full grid place-items-center text-sm text-base-content/60">
+          Preview loads on click
+        </div>
+      </div>
+      <div className="p-4">
+        <div className="inline-flex items-center text-[11px] font-medium bg-warning/20 text-warning px-2 py-1 rounded">
+          {label}
+        </div>
+        <h3 className="mt-2 text-lg font-semibold leading-snug group-hover:underline">{title}</h3>
+        <p className="mt-1 text-sm text-base-content/70">Opens in a modal.</p>
+      </div>
+    </button>
+  );
+}
+
 # Self‑Guided Product Tours
 
 Explore our product with interactive, self‑guided tours. Click any card to launch a pop‑up walkthrough—no new windows.
 
-{/* Load Navattic’s embed script once. The data‑attribute API below relies on this. */}
+{/* Load Navattic’s embed script once. */}
 <Script src="https://cdn.navattic.com/js/embed.umd.js" strategy="afterInteractive" />
 
 {/* Card Grid */}
 <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-  {/* Card 1 — Replace demo id/title/labels as needed */}
-  <button
-    type="button"
-    aria-label="Open: 2-minute mini product tour"
-    className="group text-left bg-base100 rounded-xl border border-base300 hover:border-base400 focus:outline-none focus-visible:ring focus-visible:ring-primary/50 transition overflow-hidden"
-    data-navattic-popup
-    data-navattic-demo-id="cmfkxwfa5000004lc8408f5wi"
-    data-navattic-title="2-minute mini product tour"
-    data-navattic-preload="false"
-  >
-    <div className="aspect-video bg-base200 overflow-hidden">
-      {/* Optional: swap this with a real thumbnail <img /> */}
-      <div className="w-full h-full grid place-items-center text-sm text-base-content/60">
-        Preview loads on click
-      </div>
-    </div>
-    <div className="p-4">
-      <div className="inline-flex items-center text-[11px] font-medium bg-warning/20 text-warning px-2 py-1 rounded">
-        Product Overview
-      </div>
-      <h3 className="mt-2 text-lg font-semibold leading-snug group-hover:underline">
-        2-minute mini product tour
-      </h3>
-      <p className="mt-1 text-sm text-base-content/70">
-        Opens in a modal, not a new window.
-      </p>
-    </div>
-  </button>
-
-  {/* Card 2 — duplicate and point to another Navattic demo */}
-  <button
-    type="button"
-    aria-label="Open: Full product tour"
-    className="group text-left bg-base100 rounded-xl border border-base300 hover:border-base400 focus:outline-none focus-visible:ring focus-visible:ring-primary/50 transition overflow-hidden"
-    data-navattic-popup
-    data-navattic-demo-id="REPLACE_WITH_DEMO_ID"
-    data-navattic-title="5-minute full product tour"
-    data-navattic-preload="false"
-  >
-    <div className="aspect-video bg-base200 overflow-hidden">
-      <div className="w-full h-full grid place-items-center text-sm text-base-content/60">
-        Thumbnail placeholder
-      </div>
-    </div>
-    <div className="p-4">
-      <div className="inline-flex items-center text-[11px] font-medium bg-info/20 text-info px-2 py-1 rounded">
-        Product Overview
-      </div>
-      <h3 className="mt-2 text-lg font-semibold leading-snug group-hover:underline">
-        5-minute full product tour
-      </h3>
-      <p className="mt-1 text-sm text-base-content/70">Opens in a modal.</p>
-    </div>
-  </button>
-
-  {/* Card 3 — duplicate as needed */}
-  <button
-    type="button"
-    aria-label="Open: Customizing the Lead Page"
-    className="group text-left bg-base100 rounded-xl border border-base300 hover:border-base400 focus:outline-none focus-visible:ring focus-visible:ring-primary/50 transition overflow-hidden"
-    data-navattic-popup
-    data-navattic-demo-id="REPLACE_WITH_DEMO_ID"
-    data-navattic-title="Customizing the Lead Page"
-    data-navattic-preload="false"
-  >
-    <div className="aspect-video bg-base200 overflow-hidden">
-      <div className="w-full h-full grid place-items-center text-sm text-base-content/60">
-        Thumbnail placeholder
-      </div>
-    </div>
-    <div className="p-4">
-      <div className="inline-flex items-center text-[11px] font-medium bg-secondary/20 text-secondary px-2 py-1 rounded">
-        CRM
-      </div>
-      <h3 className="mt-2 text-lg font-semibold leading-snug group-hover:underline">
-        Customizing the Lead Page
-      </h3>
-      <p className="mt-1 text-sm text-base-content/70">Opens in a modal.</p>
-    </div>
-  </button>
+  <DemoCard
+    id="cmfkxwfa5000004lc8408f5wi"
+    title="2-minute mini product tour"
+    label="Product Overview"
+    thumbnail="/images/navattic/mini-tour.jpg"  /* <- replace with your image path */
+    alt="Mini product tour preview"
+  />
+  <DemoCard
+    id="REPLACE_WITH_DEMO_ID"
+    title="5-minute full product tour"
+    label="Product Overview"
+    thumbnail="/images/navattic/full-tour.jpg"  /* <- replace */
+    alt="Full product tour preview"
+  />
+  <DemoCard
+    id="REPLACE_WITH_DEMO_ID"
+    title="Customizing the Lead Page"
+    label="CRM"
+    thumbnail="/images/navattic/lead-page.jpg"  /* <- replace */
+    alt="Lead page customization preview"
+  />
 </div>
 
-{/* Usage notes (keep for maintainers):
-  - Duplicate a <button> block to add more cards. Change:
-    * data-navattic-demo-id to your Navattic demo ID (https://capture.navattic.com/<id>)
-    * data-navattic-title for the modal header
-    * Labels/heading/thumbnail content to match the demo
-  - data-navattic-preload="false" avoids heavy preloading when many cards are present.
+{/* Notes for maintainers:
+ - Replace id values with your Navattic demo IDs (https://capture.navattic.com/<id>)
+ - Title shows in the popup chrome; change per demo.
+ - preload: false prevents heavy eager loading when you have many cards.
 */}
