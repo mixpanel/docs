@@ -34,13 +34,13 @@ export function DemoCard({
   thumbnail,
   alt = "",
 }) {
-  const embedUrl = `https://capture.navattic.com/${id}`;
+  const embedUrl = 'https://capture.navattic.com/${id}';
   useNavatticPopup(embedUrl, { title, preload: false });
 
   return (
     <button
       type="button"
-      aria-label={`Open: ${title}`}
+      aria-label={'Open: ${title}'}
       className="group text-left bg-base100 rounded-xl border border-base300 hover:border-base400 focus:outline-none focus-visible:ring focus-visible:ring-primary/50 transition overflow-hidden"
       onClick={() => window.NavatticEmbed?.openPopup(embedUrl)}
     >
