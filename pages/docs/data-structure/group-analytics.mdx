@@ -35,15 +35,17 @@ Historically, Mixpanel grouped events by a single identifier called the distinct
   ></iframe>
 </div>
 
-### Group By a Custom Identifier
+### Data Modeling
 
 Mixpanel Group Analysis allows you to select alternative unique identifiers in reports.
 
-By default, Mixpanel counts unique users by distinct_id. Group Analytics allows you to uniquely count events by an alternative identifier, such as company ID, invite ID, or another value shared by a group of individuals with different distinct_ids.
+By default, Mixpanel counts unique users by distinct_id. Group Analytics allows you to uniquely count events by an alternative identifier, such as company ID, invite ID, or another value shared by a group of individuals with different distinct_ids. Below you will see an example of an event coming into a project that has `company_id` and `team_id` set up as separate group keys. You will see how, starting with a single event being ingested (on the left), by switching the identifier you're analyzing on, the event can be read with said identifier as the user key to do the analysis on:
+
+<img src="/group_analytics_data_model.png" />
 
 This allows behavioral analysis from a business or group level, as opposed to an individual level. You can answer questions such as:
 
-- What companies are engaging the most with a product?
+- Which companies are engaging the most with a product?
 - In instances where there are more than one user per account, such as a video streaming service, how are events triggered at an account level?
 - What groups convert through a funnel to a goal event (as opposed to what individual users convert)?
 
@@ -59,17 +61,13 @@ The Group Profile also displays the properties unique to that group - here's an�
 
 To access a group profile:
 
-1. Go to Users.
+1. Navigate to the Users page from the menu.
 
-2. Click the **Analyze Uniques by** dropdown above the query builder.
+2. Click on the group identifier you want to analyze on.
 
-![/Screen_Shot_2022-06-22_at_5.40.43_PM.png](/Screen_Shot_2022-06-22_at_5.40.43_PM.png)
+![/group_analytics_navigation.png](/group_analytics_navigation.png)
 
-3. Select the group identifier.
-
-![/Screen_Shot_2022-06-22_at_5.39.06_PM.png](/Screen_Shot_2022-06-22_at_5.39.06_PM.png)
-
-4. Groups profiles will populate the Users report.
+3. Groups profiles will populate the Users report.
 
 ### Change the Group Identifier in a Report
 
@@ -133,141 +131,3 @@ For example, in the below daily chart, we’re looking for activity qualificatio
 The chart below shows that on Aug 19th, 35 accounts downloaded a document. Of the 35 accounts, 32 had one active user, 2 had two active users, and 1 had twenty-eight active users. Since most downloads originated from accounts with only one active user, we can conclude there is no correlation between account document downloaded activity and account health.
 
 ![image](/B2B_Activation_2.webp)
-
-## Implementation
-
-Establish the group identifier with an event property as the Group Key, where the property value is the Group ID. As **event property:value** is **group key:group id**.
-
-### Group Keys in Project Settings
-
-<Callout type="info">
-  To set a group key, you must have an admin or owner project role. Learn more about [Roles and Permissions](/docs/orgs-and-projects/roles-and-permissions).
-</Callout>
-
-Group keys are project specific, and the group key must be set up before group data is sent.
-
-To administer group keys, navigate to your Project Settings. Click **+Add Group Key** under the *Group Keys* section.
-
-![image](/add-group-key.png "Add Group Key")
-
-Enter an event property to attribute the group key to. You can also enter a display name for the group key. Click **Save**.
-
-![/Screen_Shot_2022-06-22_at_6.18.38_PM.png](/Screen_Shot_2022-06-22_at_6.18.38_PM.png)
-
-### Setup B2B Company Key
-
-1. Choose which group key will be used as the B2B Company Key. This is the key for which Company Profiles (B2B Company Analytics) will be generated.
-2. Specify the property that should be referenced as the Company name (identifier) throughout the Mixpanel interface.
-
-<Callout type="info">
-  You can change which group key should be used as the Company Key. To change, first unset the current group key set as Company Key in the project settings, and then set a new group key as the Company Key.
-</Callout>
-
-![image](/B2B_Company_Key.webp)
-
-### Group Keys Tracked as Event Properties
-
-**Group keys must be event properties.** All events need to have a defined group key on them in order to be attributed to a group. Property names and values are case-sensitive so be sure to track the group key on your events exactly as you've established them in Project Settings. 
-
-**Note:** Mixpanel does not backfill historical data to groups before the group key was implemented. This means that Mixpanel is only able to attribute group data from the date that the group key was set up in your Project Settings. Historical events that contain the group key as an event property sent prior to the implementation of the group key in Project Settings will not be attributed to a group.
-
-### Attribute Events to Multiple Groups
-
-An event can be attributed to multiple groups. To attribute to multiple groups, track the group event property's value as a list of string-valued group ids.
-
-```javascript
-mixpanel.track("Some Event", { company_id: ["01234", "56789", "55555"] });
-```
-
-Not all of a user's events will be attributed to a group. Only the events with a defined group key will be attributed to the group and appear in the group's profile's activity feed.
-
-### Implement Using the Groups API
-
-Mixpanel's SDKs have methods to help you implement Groups Analytics.
-
-Because the client has persistence, only client-side SDKs have methods for adding and removing a user's events to a group (registering and de-registering the `<group_key>: <group_id>` as a super property to be tracked on all events).
-
-Without persistence on the server, you will need to track `<group_key>: <group_id>` on all events that should be attributed to a group (or multiple groups).
-
-Both client- and server-side SDKs have methods for creating and updating Group Profiles.
-
-To view the setup guides for implementing Groups using the Groups API, follow the instructions connected to the SDK you are using found in [Mixpanel's Developer Documentation](https://developer.mixpanel.com/docs).
-
-- [HTTP](https://developer.mixpanel.com/docs/http#section-group-analytics)
-- [Javascript SDK](https://developer.mixpanel.com/docs/javascript#section-group-analytics)
-- [iOS-Swift SDK](https://developer.mixpanel.com/docs/swift#section-group-analytics)
-- [iOS-Objective-C SDK](https://developer.mixpanel.com/docs/ios#section-group-analytics)
-- [Android SDK](https://developer.mixpanel.com/docs/android#section-group-analytics)
-- [Java SDK](https://developer.mixpanel.com/docs/java#section-group-analytics)
-- [Python SDK](https://developer.mixpanel.com/docs/python#section-group-analytics)
-- [React Native SDK](https://developer.mixpanel.com/docs/react-native#group-analytics)
-- [Ruby SDK](https://developer.mixpanel.com/docs/ruby#section-group-analytics)
-
-### Upload Group Profiles Using the Users Report
-
-It is possible to create Group Profiles by CSV upload as an alternative to the Groups API. [Follow the instructions here to learn how to upload Group Profiles using the Users report](/docs/data-structure/user-profiles#importing-from-csv).
-
-### Add Group Key to User's Profile
-
-Adding `<group_key>: <group_id>` to user profiles connects user profiles to group profiles. This allows you to view user group profile properties when analyzing by Users in reports; for example, when creating user cohorts based on group profile properties.
-
-This relationship is one-way, meaning that you cannot use user profile properties when analyzing by a Group in reports.
-
-Because a user can be part of multiple groups within a group key, set the value of the user property as a list of string values, i.e., `"company_id": ["1", "2"]`
-
-## FAQ
-
-### Limits
-
-The limits below ensure group analytics works correctly in Mixpanel:
-- 1M group profiles per group key (e.g. company_id)
-- 1M events per day per group identifier (e.g. company_id = "Mixpanel") - see [Hot Shard Limits](/docs/tracking-best-practices/hot-shard-limits)
-- Group properties have similar [limits as User properties](/docs/data-structure/user-profiles#what-are-the-limits-of-user-properties)
-
-### Events Missing from Groups
-The group key property must be present as an event property on an event in order to attribute them to a group profile.
-
-Having the group key present as a user profile property does not automatically attribute the events by that user to the group.
-
-Mixpanel does not backfill historical data to groups before the group key was implemented. This means that Mixpanel is only able to attribute group data from the date that the group key was set up in your Project Settings. Historical events that contain the group key as an event property sent prior to the implementation of the group key in Project Settings will not be attributed to a group.
-
-### Group Analysis in Reports
-Group properties are supported when analyzing by users, but user properties are not supported when analyzing by groups.
-
-### Exporting Group Profiles via API
-Use the [Engage API endpoint](https://developer.mixpanel.com/reference/engage-query) to export Group Profiles by adding `data_group_id` in the `data` param of the request.
-
-```
-curl --request POST \
-  --url https://eu.mixpanel.com/api/2.0/engage \
-  --header 'Authorization: Basic <redacted>' \
-  --header 'Content-Type: application/x-www-form-urlencoded' \
-  --data 'filter_by_cohort={"id": <cohort_id_here>}' \
-  --data data_group_id=<data_group_id_here>
-```
-
-The `<data_group_id>` for the respective group key's profile can be found under Group Keys within Project Settings:
-
-![image](/data-group-id.png "Data Group ID")
-
-Alternatively, the `<data_group_id>` can also be seen as part of the URL of the [Group Profile](/docs/data-structure/group-analytics#group-profiles) page:
-
-`https://mixpanel.com/project/<project_id>/view/<workspace_id>/app/profile#distinct_id=<distinct_id>&data_group_id=<data_group_id>`
-
-Here's an actual [example](https://mixpanel.com/project/3187769/view/3699049/app/profile#distinct_id=company_id_8889&data_group_id=-1405123841946871899) with `data_group_id` = `-1405123841946871899`: 
-
-![image](/engage-api-data-group-id.png "Engage API Data Group ID")
-
-### How is B2B Company Analytics different than Group Analytics? 
-
-Company Analytics is an advanced offering ‘within’ group analytics. 
-
-Group Analytics focuses on the concept of there being multiple entities on which analysis can be done ‘independently’ (eg. user ID, restaurant ID, driver ID, company ID, etc.)
-
-Company Analytics is specific to B2B Companies where you are likely to have a user ID and company ID. Here we focus on the idea that users ‘belong’ to a company, and that company behavior is ‘dependant’ on user behavioral activity. For instance, in SaaS companies, the health of an account is determined by how active the users of that account are.
-
-### What are the unique features of B2B Company Analytics? 
-
-There are two features unique to B2B Company Analytics being set up, which aren’t available with the generic group analytics setup.  
-- Company Profiles - this is an advanced version of group profiles that shows you the health of a company
-- Company Activation filters & breakdowns
