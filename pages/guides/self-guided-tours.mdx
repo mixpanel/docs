@@ -2,8 +2,8 @@ import Script from "next/script";
 import { useEffect } from "react";
 
 export const metadata = {
-  title: "Self‑Guided Tours",
-  description: "Interactive, self‑guided product tours powered by Navattic (pop‑up embeds).",
+  title: "Self-Guided Tours",
+  description: "Interactive, self-guided product tours powered by Navattic (pop‑up embeds).",
 };
 
 // ---- Helper: initialize a Navattic popup once per demo id ----
@@ -89,9 +89,9 @@ export function DemoCard({ id, title, label = "Product Overview", thumbnail, alt
   );
 }
 
-# Self‑Guided Product Tours
+# Self-Guided Product Tours
 
-Explore our product with interactive, self‑guided tours. Click any card to launch a pop‑up walkthrough—no new windows.
+Explore our product with interactive, self-guided tours. Click any card to launch a pop‑up walkthrough—no new windows.
 
 {/* Load Navattic’s embed script once. */}
 <Script src="https://cdn.navattic.com/js/embed.umd.js" strategy="afterInteractive" />
@@ -102,21 +102,21 @@ Explore our product with interactive, self‑guided tours. Click any card to lau
     id="cmfkxwfa5000004lc8408f5wi"
     title="2-minute mini product tour"
     label="Product Overview"
-    thumbnail="/images/navattic/mini-tour.jpg"  /* <- replace with your image path */
+    thumbnail="/images/navattic/mini-tour.jpg"
     alt="Mini product tour preview"
   />
   <DemoCard
     id="REPLACE_WITH_DEMO_ID"
     title="5-minute full product tour"
     label="Product Overview"
-    thumbnail="/images/navattic/full-tour.jpg"  /* <- replace */
+    thumbnail="/images/navattic/full-tour.jpg"
     alt="Full product tour preview"
   />
   <DemoCard
     id="REPLACE_WITH_DEMO_ID"
     title="Customizing the Lead Page"
     label="CRM"
-    thumbnail="/images/navattic/lead-page.jpg"  /* <- replace */
+    thumbnail="/images/navattic/lead-page.jpg"
     alt="Lead page customization preview"
   />
 </div>
