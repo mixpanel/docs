@@ -12,7 +12,7 @@ For complete JavaScript SDK documentation, see the [JavaScript SDK guide](/docs/
 
 Before implementing Feature Flags, ensure:
 
-- You are on an Enterprise subscription plan and have the latest version of the SDK installed (minimum supported version is [`v2.70.0`](https://github.com/mixpanel/mixpanel-js/releases/tag/v2.70.0)). If not, please follow [this doc](/docs/quickstart/install-mixpanel) to install the SDK.
+- You are on an Enterprise subscription plan and have the latest version of the SDK installed (minimum supported version is [`v2.71.0`](https://github.com/mixpanel/mixpanel-js/releases/tag/v2.71.0)). If not, please follow [this doc](/docs/quickstart/install-mixpanel) to install the SDK.
 - You have your Project Token from your [Mixpanel Project Settings](/docs/orgs-and-projects/managing-projects#find-your-project-tokens)
 
 ## Flag Initialization
@@ -32,7 +32,7 @@ mixpanel.init("YOUR_PROJECT_TOKEN", {
 });
 ```
 
-If your flag is configured with a Variant Assignment Key other than `distinct_id` for any of the feature flags in your project, then the call to initialize feature flags must include those keys.
+If your flag is configured with a Variant Assignment Key other than `distinct_id` or `device_id` for any of the feature flags in your project, then the call to initialize feature flags must include those keys.
 
 For example, for a Variant Assignment Key, `company_id`, you would setup the SDK as follows.
 
@@ -95,7 +95,8 @@ This action triggers tracking an exposure event, `$experiment_started` to your M
 
 ```javascript
 // Fetch the variant value once flags are ready and track an exposure event *if* the user context is in a rollout group for the feature flag.
-const variant_value = await mixpanel.flags.get_variant_value("my-feature-flag", "control");
+const fallback = "control"; // the value to use if the user doesn't match any of the flag's rollout rules
+const variant_value = await mixpanel.flags.get_variant_value("my-feature-flag", fallback);
 
 // Use flag value in your application logic
 if (variant_value == "variant_a") {
@@ -110,7 +111,8 @@ if (variant_value == "variant_a") {
 **Feature Gates: Check if Flag is Enabled/Disabled**
 ```javascript
 // Fetch the variant value once flags are ready and track an exposure event *if* the user context is in a rollout group for the feature flag.
-const isEnabled = await mixpanel.flags.is_enabled("my-feature-flag", control");
+const fallback = false;
+const isEnabled = await mixpanel.flags.is_enabled("my-feature-flag", fallback);
 
 // Use the result in your application logic. 
 if (isEnabled) {
@@ -129,7 +131,7 @@ if (isEnabled) {
 2. **Review flag configuration**: 
   - Make sure your feature flag is enabled
   - Check the flag's rollout percentage
-    - User contexts that are not assigned to the rollout percentage will not 
+    - User contexts that are not assigned to the rollout percentage will not be assigned variant values
   - If you are using a targeting cohort, verify on the mixpanel 'Users' page that the user's `distinct_id` is a member of that cohort.
 
 3. **Review SDK parameters**:
