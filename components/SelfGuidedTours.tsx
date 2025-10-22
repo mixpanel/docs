@@ -4,8 +4,8 @@ import Script from "next/script";
 type Card = {
   title: string;
   label: string;
-  img?: string;       // if absent => black fallback
-  popupUrl?: string;  // Navattic demo URL
+  img?: string;
+  popupUrl?: string;
 };
 
 const cards: Card[] = [
@@ -30,11 +30,10 @@ const cards: Card[] = [
 export default function SelfGuidedTours({ version }: { version?: string }) {
   return (
     <>
-      {/* Navattic pop-up loader */}
       <Script src="https://js.navattic.com/embeds.js" strategy="afterInteractive" />
 
-      <div className="nx-not-prose not-prose mt-8 relative">
-        {/* visible version tag */}
+      {/* data-hide-arrows lets us nuke stray ::before/::after triangles only in this section */}
+      <div className="nx-not-prose not-prose mt-8 relative" data-hide-arrows>
         {version ? (
           <div className="absolute -top-6 right-0 inline-flex items-center gap-2 rounded-full bg-fuchsia-600/15 text-fuchsia-300 px-3 py-1 text-xs font-medium">
             Self-Guided Tours v{version}
@@ -49,9 +48,15 @@ export default function SelfGuidedTours({ version }: { version?: string }) {
               aria-label={`Open: ${c.title}`}
               data-navattic-open={c.popupUrl}
               data-navattic-title={c.title}
-              // fixed 296×319
               style={{ width: 296, height: 319 }}
-              className="relative rounded-[14px] overflow-hidden bg-[#0B0A13] border border-slate-800 shadow-md hover:shadow-xl transition-transform hover:-translate-y-1 focus:outline-none focus-visible:ring-2 focus-visible:ring-[#8B5CF6]"
+              className="
+                relative overflow-hidden rounded-[14px]
+                bg-[#0B0A13]
+                border-2 border-[#8B5CF6]/70        /* <— purple card border */
+                shadow-md hover:shadow-xl
+                transition-transform hover:-translate-y-1
+                focus:outline-none focus-visible:ring-2 focus-visible:ring-[#8B5CF6]
+              "
             >
               {/* dog-ear */}
               <div
@@ -98,6 +103,15 @@ export default function SelfGuidedTours({ version }: { version?: string }) {
             </button>
           ))}
         </div>
+
+        {/* scoped style: remove tiny connector arrows from any legacy styles */}
+        <style jsx global>{`
+          [data-hide-arrows] *::before,
+          [data-hide-arrows] *::after {
+            /* wipe any pseudo-element triangles that might be injected elsewhere */
+            content: none !important;
+          }
+        `}</style>
       </div>
     </>
   );
