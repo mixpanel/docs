@@ -63,5 +63,5 @@ export default withNextra({
       const filecontent = fs.readFileSync(pathToFile, "utf8");
       return parseRedirectPartsFromFile(filecontent).map(formatForNextRedirect);
     });
-  },  
+  },
 });
