@@ -1,4 +1,5 @@
 export default {
+  "install-with-ai": "Install with AI",
   "install-mixpanel": "Install Mixpanel",
   "identify-users": "Identify Users",
   "capture-events": "Capture Events",
