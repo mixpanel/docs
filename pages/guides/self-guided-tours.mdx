@@ -15,17 +15,25 @@ Explore our product with interactive, self-guided tours. Click any card to launc
     else document.addEventListener("DOMContentLoaded", fn);
   }
 
-  var inited = Object.create(null);
-
-  function ensureEmbed(cb) {
+  // Inject the CDN script if it's not already present
+  function ensureScript(cb) {
     if (window && window.NavatticEmbed && window.NavatticEmbed.initPopup) return cb();
-    var tries = 0;
-    (function wait() {
-      if (window && window.NavatticEmbed && window.NavatticEmbed.initPopup) return cb();
-      if (tries++ > 100) return console.warn("[Navattic] embed script not found.");
-      setTimeout(wait, 100);
-    })();
+    var existing = document.querySelector('script[data-navattic-cdn="1"]');
+    if (!existing) {
+      var s = document.createElement("script");
+      s.src = "https://cdn.navattic.com/js/embed.umd.js";
+      s.defer = true;
+      s.async = true;
+      s.setAttribute("data-navattic-cdn", "1");
+      s.onload = function(){ cb(); };
+      s.onerror = function(){ console.warn("[Navattic] failed to load CDN script"); };
+      document.head.appendChild(s);
+    } else {
+      existing.addEventListener("load", cb);
+    }
   }
+
+  var inited = Object.create(null);
 
   function initAndOpen(el) {
     var id = el.getAttribute("data-navattic-id");
@@ -33,7 +41,7 @@ Explore our product with interactive, self-guided tours. Click any card to launc
     var title = el.getAttribute("data-navattic-title") || "Product tour";
     var url = "https://capture.navattic.com/" + id;
 
-    ensureEmbed(function () {
+    ensureScript(function () {
       try {
         if (!inited[url]) {
           window.NavatticEmbed.initPopup(url, { title: title, preload: false });
@@ -49,7 +57,6 @@ Explore our product with interactive, self-guided tours. Click any card to launc
   }
 
   whenReady(function () {
-    // Delegate clicks from the whole document (covers dynamically-rendered buttons too)
     document.addEventListener("click", function (evt) {
       var el = evt.target.closest("[data-navattic-id]");
       if (el) {
