@@ -4,7 +4,7 @@ import Script from "next/script";
 type Card = {
   title: string;
   label: string;
-  img?: string;
+  img?: string;        // if omitted, a black placeholder block is shown
   popupUrl?: string;
 };
 
@@ -30,16 +30,18 @@ const cards: Card[] = [
 export default function SelfGuidedTours({ version }: { version?: string }) {
   return (
     <>
+      {/* Navattic loader */}
       <Script src="https://js.navattic.com/embeds.js" strategy="afterInteractive" />
 
-      {/* data-hide-arrows lets us nuke stray ::before/::after triangles only in this section */}
-      <div className="nx-not-prose not-prose mt-8 relative" data-hide-arrows>
+      {/* Self-guided tours section */}
+      <section className="nx-not-prose not-prose mt-8" data-sgt>
         {version ? (
-          <div className="absolute -top-6 right-0 inline-flex items-center gap-2 rounded-full bg-fuchsia-600/15 text-fuchsia-300 px-3 py-1 text-xs font-medium">
+          <div className="mb-4 inline-flex items-center gap-2 rounded-full bg-fuchsia-600/15 text-fuchsia-300 px-3 py-1 text-xs font-medium">
             Self-Guided Tours v{version}
           </div>
         ) : null}
 
+        {/* grid of cards */}
         <div className="flex flex-wrap gap-6">
           {cards.map((c, i) => (
             <button
@@ -51,8 +53,8 @@ export default function SelfGuidedTours({ version }: { version?: string }) {
               style={{ width: 296, height: 319 }}
               className="
                 relative overflow-hidden rounded-[14px]
-                bg-[#0B0A13]
-                border-2 border-[#8B5CF6]/70        /* <— purple card border */
+                bg-[#0B0A13] text-white
+                border-2 border-[#8B5CF6]/80          /* purple card border */
                 shadow-md hover:shadow-xl
                 transition-transform hover:-translate-y-1
                 focus:outline-none focus-visible:ring-2 focus-visible:ring-[#8B5CF6]
@@ -61,13 +63,13 @@ export default function SelfGuidedTours({ version }: { version?: string }) {
               {/* dog-ear */}
               <div
                 className="absolute top-0 right-0 w-7 h-7 bg-[#8B5CF6] pointer-events-none"
-                style={{ clipPath: "polygon(100% 0, 0 0, 100% 100%)" }}
+                style={{ clipPath: 'polygon(100% 0, 0 0, 100% 100%)' }}
               />
 
               {/* accent bar */}
               <div className="h-2 w-full bg-[#8B5CF6]" />
 
-              {/* media section */}
+              {/* image area */}
               <div className="h-[160px] bg-[#151520]">
                 <div className="h-full ml-3 overflow-hidden rounded-l-sm">
                   {c.img ? (
@@ -91,28 +93,17 @@ export default function SelfGuidedTours({ version }: { version?: string }) {
                 </div>
               </div>
 
-              {/* bottom content */}
+              {/* text area */}
               <div className="px-5 pt-4">
                 <span className="inline-flex items-center rounded-md px-3 py-1 text-[11px] font-semibold tracking-wide bg-[#8B5CF6] text-white">
                   {c.label}
                 </span>
-                <h3 className="mt-3 text-[22px] leading-[1.15] font-extrabold text-white">
-                  {c.title}
-                </h3>
+                <h3 className="mt-3 text-[22px] leading-[1.15] font-extrabold">{c.title}</h3>
               </div>
             </button>
           ))}
         </div>
-
-        {/* scoped style: remove tiny connector arrows from any legacy styles */}
-        <style jsx global>{`
-          [data-hide-arrows] *::before,
-          [data-hide-arrows] *::after {
-            /* wipe any pseudo-element triangles that might be injected elsewhere */
-            content: none !important;
-          }
-        `}</style>
-      </div>
+      </section>
     </>
   );
 }
