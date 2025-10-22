@@ -1,6 +1,10 @@
-import Script from "next/script";
+import SelfGuidedTours from "@/components/SelfGuidedTours";
 
 # Self-Guided Product Tours
+
+<div className="mt-3 inline-flex items-center gap-2 rounded-full bg-fuchsia-600/15 text-fuchsia-300 px-3 py-1 text-xs font-medium">
+  Self-Guided Tours • v0.01
+</div>
 
 Track Mixpanel product releases and improvements in one place.  
 See what’s new, what got faster, and what opens up entirely new ways to answer questions about your product.
@@ -8,114 +12,4 @@ See what’s new, what got faster, and what opens up entirely new ways to answer
 Explore our product with interactive, self-guided tours.  
 Click any card to launch a pop-up walkthrough — no new windows.
 
-{/* Navattic embed loader (required for data-navattic-open to work) */}
-<Script src="https://js.navattic.com/embeds.js" strategy="afterInteractive" />
-
-{/* ====== CARD GRID (exact 296x319 cards) ====== */}
-<div className="not-prose nx-not-prose mt-10">
-  {/* Use flex so cards keep their fixed width and wrap nicely */}
-  <div className="flex flex-wrap gap-6">
-
-    {/* CARD 1 — Launch an Experiment */}
-    <button
-      type="button"
-      className="group relative w-[296px] h-[319px] rounded-[14px] overflow-hidden bg-[#0B0A13] border border-[#2A2A35] shadow-md hover:shadow-xl transition-transform hover:-translate-y-1 focus:outline-none focus-visible:ring-2 focus-visible:ring-[#8B5CF6]"
-      data-navattic-open="https://capture.navattic.com/cmfkxwfa5000004lc8408f5wi"
-      data-navattic-title="Launch an Experiment"
-      aria-label="Open: Launch an Experiment"
-    >
-      {/* dog-ear */}
-      <div className="pointer-events-none absolute top-0 right-0 w-7 h-7 bg-[#FFC52E] [clip-path:polygon(100%_0,0_0,100%_100%)]" />
-
-      {/* top yellow strip */}
-      <div className="h-2 bg-[#FFC52E]" />
-
-      {/* media area: fixed height, image indented to the right */}
-      <div className="h-[160px] bg-[#151520]">
-        <div className="h-full ml-3 overflow-hidden rounded-l-sm">
-          <img
-            src="/navattic/launch-an-experiment.png"
-            alt="Launch an Experiment preview"
-            className="h-full w-full object-cover"
-            loading="lazy"
-          />
-        </div>
-      </div>
-
-      {/* body */}
-      <div className="px-5 pt-4">
-        <span className="inline-flex items-center rounded-md px-3 py-1 text-[11px] font-semibold tracking-wide bg-[#FFC52E] text-black">
-          PRODUCT OVERVIEWS
-        </span>
-        <h3 className="mt-3 text-[22px] leading-[1.15] font-extrabold text-white">
-          Launch an Experiment
-        </h3>
-      </div>
-    </button>
-
-    {/* CARD 2 — Placeholder, same exact size */}
-    <button
-      type="button"
-      className="group relative w-[296px] h-[319px] rounded-[14px] overflow-hidden bg-[#0B0A13] border border-[#2A2A35] shadow-md hover:shadow-xl transition-transform hover:-translate-y-1 focus:outline-none focus-visible:ring-2 focus-visible:ring-[#8B5CF6]"
-      data-navattic-open="https://capture.navattic.com/YOUR_SECOND_DEMO_ID"
-      data-navattic-title="Example Walkthrough"
-      aria-label="Open: Example Walkthrough"
-    >
-      <div className="pointer-events-none absolute top-0 right-0 w-7 h-7 bg-[#FFC52E] [clip-path:polygon(100%_0,0_0,100%_100%)]" />
-      <div className="h-2 bg-[#FFC52E]" />
-
-      <div className="h-[160px] bg-gradient-to-br from-slate-800 via-slate-900 to-black">
-        <div className="h-full ml-3 grid place-items-center rounded-l-sm">
-          <div className="flex items-center gap-2 text-slate-200 text-sm">
-            <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor" className="opacity-90">
-              <path d="M8 5v14l11-7z" />
-            </svg>
-            <span>Preview loads on click</span>
-          </div>
-        </div>
-      </div>
-
-      <div className="px-5 pt-4">
-        <span className="inline-flex items-center rounded-md px-3 py-1 text-[11px] font-semibold tracking-wide bg-[#FFC52E] text-black">
-          PRODUCT OVERVIEWS
-        </span>
-        <h3 className="mt-3 text-[22px] leading-[1.15] font-extrabold text-white">
-          Example Walkthrough
-        </h3>
-      </div>
-    </button>
-
-    {/* CARD 3 — Placeholder, same exact size */}
-    <button
-      type="button"
-      className="group relative w-[296px] h-[319px] rounded-[14px] overflow-hidden bg-[#0B0A13] border border-[#2A2A35] shadow-md hover:shadow-xl transition-transform hover:-translate-y-1 focus:outline-none focus-visible:ring-2 focus-visible:ring-[#8B5CF6]"
-      data-navattic-open="https://capture.navattic.com/YOUR_THIRD_DEMO_ID"
-      data-navattic-title="Customizing the Lead Page"
-      aria-label="Open: Customizing the Lead Page"
-    >
-      <div className="pointer-events-none absolute top-0 right-0 w-7 h-7 bg-[#FFC52E] [clip-path:polygon(100%_0,0_0,100%_100%)]" />
-      <div className="h-2 bg-[#FFC52E]" />
-
-      <div className="h-[160px] bg-gradient-to-br from-slate-800 via-slate-900 to-black">
-        <div className="h-full ml-3 grid place-items-center rounded-l-sm">
-          <div className="flex items-center gap-2 text-slate-200 text-sm">
-            <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor" className="opacity-90">
-              <path d="M8 5v14l11-7z" />
-            </svg>
-            <span>Preview loads on click</span>
-          </div>
-        </div>
-      </div>
-
-      <div className="px-5 pt-4">
-        <span className="inline-flex items-center rounded-md px-3 py-1 text-[11px] font-semibold tracking-wide bg-[#FFC52E] text-black">
-          CRM
-        </span>
-        <h3 className="mt-3 text-[22px] leading-[1.15] font-extrabold text-white">
-          Customizing the Lead Page
-        </h3>
-      </div>
-    </button>
-
-  </div>
-</div>
+<SelfGuidedTours version="0.01" />
