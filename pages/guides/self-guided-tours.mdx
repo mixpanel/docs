@@ -1,16 +1,12 @@
-import Script from "next/script";
 import SelfGuidedTours from "../../components/SelfGuidedTours";
 
 # Self-Guided Product Tours
 
-Self-Guided Tours • **v0.05**
+<div className="mt-3 inline-flex items-center gap-2 rounded-full bg-fuchsia-600/15 text-fuchsia-300 px-3 py-1 text-xs font-medium">
+  Self-Guided Tours • v0.13
+</div>
 
 Explore our product with interactive, self-guided tours.  
 Click any card to launch a pop-up walkthrough — no new windows.
 
-{/* Navattic embed loader (CSP must allow https://js.navattic.com) */}
-<Script src="https://js.navattic.com/embeds.js" strategy="afterInteractive" />
-
-<div className="mt-6">
-  <SelfGuidedTours />
-</div>
+<SelfGuidedTours version="0.13" />
