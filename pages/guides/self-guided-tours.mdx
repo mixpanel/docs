@@ -1,30 +1,19 @@
-import Script from "next/script";
-
-# Self-Guided Product Tours
-
-Explore our product with interactive, self-guided tours.  
-Click any card to launch a pop-up walkthrough — no new windows.
-
-<Script src="https://js.navattic.com/embeds.js" strategy="afterInteractive" />
-
+{/* GRID (unchanged) */}
 <div className="not-prose nx-not-prose mt-12">
   <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
 
-    {/* CARD 1 — Launch an Experiment */}
+    {/* CARD 1 — fixed card + media heights */}
     <button
       type="button"
-      className="group relative text-left rounded-2xl overflow-hidden bg-[#0B0A13] border border-slate-800 shadow-md hover:shadow-xl hover:border-violet-500/50 transition-transform hover:-translate-y-1 focus:outline-none focus-visible:ring-2 focus-visible:ring-violet-400"
+      className="group relative text-left rounded-2xl overflow-hidden bg-[#0B0A13] border border-slate-800 shadow-md hover:shadow-xl hover:border-violet-500/50 transition-transform hover:-translate-y-1 focus:outline-none focus-visible:ring-2 focus-visible:ring-violet-400 h-[420px] w-full"
       data-navattic-open="https://capture.navattic.com/cmfkxwfa5000004lc8408f5wi"
       data-navattic-title="Launch an Experiment"
     >
-      {/* dog-ear */}
       <div className="absolute top-0 right-0 w-8 h-8 bg-violet-500 clip-path-[polygon(100%_0,0_0,100%_100%)] shadow-sm" />
-
-      {/* accent bar */}
       <div className="h-1.5 bg-violet-500" />
 
-      {/* consistent 16:9 image box */}
-      <div className="relative w-full bg-slate-900 aspect-[16/9]">
+      {/* FIXED MEDIA HEIGHT */}
+      <div className="relative w-full h-[210px] bg-slate-900">
         <img
           src="/navattic/launch-an-experiment.png"
           alt="Launch an Experiment preview"
@@ -33,8 +22,8 @@ Click any card to launch a pop-up walkthrough — no new windows.
         />
       </div>
 
-      {/* body */}
-      <div className="p-5">
+      {/* BODY fills remaining space */}
+      <div className="p-5 flex flex-col h-[calc(420px-1.5*4-210px)]"> {/* fallback; can remove if not needed */}
         <div className="inline-flex items-center rounded-md px-2 py-1 text-[11px] font-semibold tracking-wide bg-violet-600/20 text-violet-300 ring-1 ring-inset ring-violet-500/30">
           PRODUCT OVERVIEWS
         </div>
@@ -44,17 +33,16 @@ Click any card to launch a pop-up walkthrough — no new windows.
       </div>
     </button>
 
-    {/* CARD 2 — Placeholder example */}
+    {/* CARD 2 — placeholder, same fixed heights */}
     <button
       type="button"
-      className="group relative text-left rounded-2xl overflow-hidden bg-[#0B0A13] border border-slate-800 shadow-md hover:shadow-xl hover:border-violet-500/50 transition-transform hover:-translate-y-1 focus:outline-none focus-visible:ring-2 focus-visible:ring-violet-400"
+      className="group relative text-left rounded-2xl overflow-hidden bg-[#0B0A13] border border-slate-800 shadow-md hover:shadow-xl hover:border-violet-500/50 transition-transform hover:-translate-y-1 focus:outline-none focus-visible:ring-2 focus-visible:ring-violet-400 h-[420px] w-full"
       data-navattic-open="https://capture.navattic.com/YOUR_SECOND_DEMO_ID"
       data-navattic-title="Example Walkthrough"
     >
       <div className="absolute top-0 right-0 w-8 h-8 bg-violet-500 clip-path-[polygon(100%_0,0_0,100%_100%)] shadow-sm" />
       <div className="h-1.5 bg-violet-500" />
-      {/* Placeholder visual */}
-      <div className="relative w-full aspect-[16/9] bg-gradient-to-br from-slate-800 via-slate-900 to-black">
+      <div className="relative w-full h-[210px] bg-gradient-to-br from-slate-800 via-slate-900 to-black">
         <div className="absolute inset-0 grid place-items-center">
           <div className="flex items-center gap-3 text-slate-200">
             <svg width="22" height="22" viewBox="0 0 24 24" fill="currentColor" className="opacity-90">
@@ -74,16 +62,16 @@ Click any card to launch a pop-up walkthrough — no new windows.
       </div>
     </button>
 
-    {/* CARD 3 — Placeholder demo */}
+    {/* CARD 3 — placeholder, same fixed heights */}
     <button
       type="button"
-      className="group relative text-left rounded-2xl overflow-hidden bg-[#0B0A13] border border-slate-800 shadow-md hover:shadow-xl hover:border-violet-500/50 transition-transform hover:-translate-y-1 focus:outline-none focus-visible:ring-2 focus-visible:ring-violet-400"
+      className="group relative text-left rounded-2xl overflow-hidden bg-[#0B0A13] border border-slate-800 shadow-md hover:shadow-xl hover:border-violet-500/50 transition-transform hover:-translate-y-1 focus:outline-none focus-visible:ring-2 focus-visible:ring-violet-400 h-[420px] w-full"
       data-navattic-open="https://capture.navattic.com/YOUR_THIRD_DEMO_ID"
       data-navattic-title="Customizing the Lead Page"
     >
       <div className="absolute top-0 right-0 w-8 h-8 bg-violet-500 clip-path-[polygon(100%_0,0_0,100%_100%)] shadow-sm" />
       <div className="h-1.5 bg-violet-500" />
-      <div className="relative w-full aspect-[16/9] bg-gradient-to-br from-slate-800 via-slate-900 to-black">
+      <div className="relative w-full h-[210px] bg-gradient-to-br from-slate-800 via-slate-900 to-black">
         <div className="absolute inset-0 grid place-items-center">
           <div className="flex items-center gap-3 text-slate-200">
             <svg width="22" height="22" viewBox="0 0 24 24" fill="currentColor" className="opacity-90">
