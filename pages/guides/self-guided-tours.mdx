@@ -5,82 +5,47 @@ import Script from "next/script";
 Explore our product with interactive, self-guided tours.  
 Click any card to launch a pop-up walkthrough — no new windows.
 
-{/* Load Navattic’s official embed script */}
+{/* Navattic official embed */}
 <Script src="https://js.navattic.com/embeds.js" strategy="afterInteractive" />
 
-{/* Card grid */}
-<div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+{/* Grid */}
+<div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
 
-  {/* Card 1 */}
+  {/* CARD 1 — Launch an Experiment */}
   <button
     type="button"
-    className="group text-left bg-base100 rounded-xl border border-base300 hover:border-base400 focus:outline-none focus-visible:ring focus-visible:ring-primary/50 transition overflow-hidden"
+    className="group text-left rounded-2xl overflow-hidden border border-slate-700/60 bg-slate-900 hover:border-violet-400/60 focus:outline-none focus-visible:ring-2 focus-visible:ring-violet-400 transition"
     data-navattic-open="https://capture.navattic.com/cmfkxwfa5000004lc8408f5wi"
-    data-navattic-title="2-minute mini product tour"
+    data-navattic-title="Launch an Experiment"
   >
-    <img
-      src="/images/navattic/mini-tour.jpg"
-      alt="Mini product tour preview"
-      loading="lazy"
-      className="aspect-video w-full object-cover"
-    />
-    <div className="p-4">
-      <div className="inline-flex items-center text-[11px] font-medium bg-warning/20 text-warning px-2 py-1 rounded">
-        Product Overview
+    {/* top accent */}
+    <div className="h-1.5 bg-violet-500" />
+
+    {/* image */}
+    <div className="aspect-[16/10] w-full">
+      <img
+        src="/navattic/launch-an-experiment.png"
+        alt="Launch an Experiment preview"
+        className="h-full w-full object-cover"
+        loading="lazy"
+      />
+    </div>
+
+    {/* body */}
+    <div className="p-5 bg-[#0F0B1D]">
+      <div className="inline-flex items-center rounded-md px-2 py-1 text-[11px] font-semibold tracking-wide bg-violet-600/20 text-violet-300 ring-1 ring-inset ring-violet-500/30">
+        PRODUCT OVERVIEWS
       </div>
-      <h3 className="mt-2 text-lg font-semibold leading-snug group-hover:underline">
-        2-minute mini product tour
+      <h3 className="mt-3 text-2xl font-bold leading-tight text-white group-hover:text-violet-300 transition">
+        Launch an Experiment
       </h3>
-      <p className="mt-1 text-sm text-base-content/70">Opens in a modal.</p>
+      <p className="mt-1.5 text-sm text-slate-300">
+        Opens in a modal, not a new window.
+      </p>
     </div>
   </button>
 
-  {/* Card 2 */}
+  {/* CARD 2 — Placeholder example */}
   <button
     type="button"
-    className="group text-left bg-base100 rounded-xl border border-base300 hover:border-base400 focus:outline-none focus-visible:ring focus-visible:ring-primary/50 transition overflow-hidden"
-    data-navattic-open="https://capture.navattic.com/YOUR_SECOND_DEMO_ID"
-    data-navattic-title="5-minute full product tour"
-  >
-    <img
-      src="/images/navattic/full-tour.jpg"
-      alt="Full product tour preview"
-      loading="lazy"
-      className="aspect-video w-full object-cover"
-    />
-    <div className="p-4">
-      <div className="inline-flex items-center text-[11px] font-medium bg-info/20 text-info px-2 py-1 rounded">
-        Product Overview
-      </div>
-      <h3 className="mt-2 text-lg font-semibold leading-snug group-hover:underline">
-        5-minute full product tour
-      </h3>
-      <p className="mt-1 text-sm text-base-content/70">Opens in a modal.</p>
-    </div>
-  </button>
-
-  {/* Card 3 */}
-  <button
-    type="button"
-    className="group text-left bg-base100 rounded-xl border border-base300 hover:border-base400 focus:outline-none focus-visible:ring focus-visible:ring-primary/50 transition overflow-hidden"
-    data-navattic-open="https://capture.navattic.com/YOUR_THIRD_DEMO_ID"
-    data-navattic-title="Customizing the Lead Page"
-  >
-    <img
-      src="/images/navattic/lead-page.jpg"
-      alt="Lead page customization preview"
-      loading="lazy"
-      className="aspect-video w-full object-cover"
-    />
-    <div className="p-4">
-      <div className="inline-flex items-center text-[11px] font-medium bg-secondary/20 text-secondary px-2 py-1 rounded">
-        CRM
-      </div>
-      <h3 className="mt-2 text-lg font-semibold leading-snug group-hover:underline">
-        Customizing the Lead Page
-      </h3>
-      <p className="mt-1 text-sm text-base-content/70">Opens in a modal.</p>
-    </div>
-  </button>
-
-</div>
+    className="group text-
