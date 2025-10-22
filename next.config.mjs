@@ -64,7 +64,6 @@ export default withNextra({
       return parseRedirectPartsFromFile(filecontent).map(formatForNextRedirect);
     });
   },
-});
 
 // NEW: site-wide security headers incl. CSP
 async headers() {
@@ -92,6 +91,5 @@ async headers() {
         // { key: "X-Frame-Options", value: "SAMEORIGIN" }, // avoid if you embed iframes cross-origin
       ],
     },
-  ];
-},
+  ];  
 });
