@@ -4,8 +4,8 @@ import Script from "next/script";
 type Card = {
   title: string;
   label: string;
-  img?: string;        // if omitted, a black placeholder block is shown
-  popupUrl?: string;
+  img?: string;         // keep image support
+  popupUrl?: string;    // Navattic popup
 };
 
 const cards: Card[] = [
@@ -33,16 +33,15 @@ export default function SelfGuidedTours({ version }: { version?: string }) {
       {/* Navattic loader */}
       <Script src="https://js.navattic.com/embeds.js" strategy="afterInteractive" />
 
-      {/* Self-guided tours section */}
-      <section className="nx-not-prose not-prose mt-8" data-sgt>
+      {/* New card grid */}
+      <section className="nx-not-prose not-prose" data-sgt-root>
         {version ? (
-          <div className="mb-4 inline-flex items-center gap-2 rounded-full bg-fuchsia-600/15 text-fuchsia-300 px-3 py-1 text-xs font-medium">
+          <div className="mb-6 inline-flex items-center gap-2 rounded-full bg-fuchsia-600/15 text-fuchsia-300 px-3 py-1 text-xs font-medium">
             Self-Guided Tours v{version}
           </div>
         ) : null}
 
-        {/* grid of cards */}
-        <div className="flex flex-wrap gap-6">
+        <div className="flex flex-wrap gap-8">
           {cards.map((c, i) => (
             <button
               key={i}
@@ -54,22 +53,22 @@ export default function SelfGuidedTours({ version }: { version?: string }) {
               className="
                 relative overflow-hidden rounded-[14px]
                 bg-[#0B0A13] text-white
-                border-2 border-[#8B5CF6]/80          /* purple card border */
+                border-2 border-[#8B5CF6]                /* PURPLE BORDER */
                 shadow-md hover:shadow-xl
                 transition-transform hover:-translate-y-1
                 focus:outline-none focus-visible:ring-2 focus-visible:ring-[#8B5CF6]
               "
             >
-              {/* dog-ear */}
+              {/* Dog-ear */}
               <div
                 className="absolute top-0 right-0 w-7 h-7 bg-[#8B5CF6] pointer-events-none"
                 style={{ clipPath: 'polygon(100% 0, 0 0, 100% 100%)' }}
               />
 
-              {/* accent bar */}
+              {/* Top accent bar */}
               <div className="h-2 w-full bg-[#8B5CF6]" />
 
-              {/* image area */}
+              {/* Image area (indented slightly to the right) */}
               <div className="h-[160px] bg-[#151520]">
                 <div className="h-full ml-3 overflow-hidden rounded-l-sm">
                   {c.img ? (
@@ -93,7 +92,7 @@ export default function SelfGuidedTours({ version }: { version?: string }) {
                 </div>
               </div>
 
-              {/* text area */}
+              {/* Text area */}
               <div className="px-5 pt-4">
                 <span className="inline-flex items-center rounded-md px-3 py-1 text-[11px] font-semibold tracking-wide bg-[#8B5CF6] text-white">
                   {c.label}
