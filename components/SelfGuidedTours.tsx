@@ -1,92 +1,75 @@
-"use client";
-
+/* Close-style Navattic cards (fixed 296x319) */
 import React from "react";
 
-type Demo = {
-  id: string;              // Navattic demo id (the part after capture.navattic.com/)
-  title: string;           // Big title in the black footer
-  label: string;           // Small pill (e.g., PRODUCT OVERVIEWS)
-  img?: string;            // /navattic/…; if absent we show a black placeholder
-  alt?: string;
+type Card = {
+  title: string;             // Large headline in the black area
+  tag: string;               // Pill label (e.g., "PRODUCT OVERVIEWS")
+  demoUrl: string;           // Navattic capture URL
+  img?: string | null;       // Optional image; black placeholder if absent
 };
 
-const mx = {
-  // Mixpanel-ish colors
-  purple: "rgb(120 86 255)",          // primary accent
-  purple100: "rgb(232 224 255)",
-  black: "#0b0b0f",
-  white: "#ffffff",
-};
+const MP_PURPLE = "#7C6BFF"; // Mixpanel accent
+const MP_PURPLE_LIGHT = "#A89BFF"; // lighter shade for subtle accents
 
-// One fixed-size card (296w x 319h)
-function DemoCard({ demo }: { demo: Demo }) {
-  const embedUrl = `https://capture.navattic.com/${demo.id}`;
+function DogEar() {
+  return (
+    <div
+      aria-hidden
+      className="absolute right-0 top-0"
+      style={{
+        width: 0,
+        height: 0,
+        borderTop: "22px solid " + MP_PURPLE,
+        borderLeft: "22px solid transparent",
+      }}
+    />
+  );
+}
 
+function CardTile({ title, tag, demoUrl, img }: Card) {
   return (
     <button
       type="button"
-      data-navattic-open={embedUrl}
-      data-navattic-title={demo.title}
-      className={[
-        // Fixed size & rounded card shell
-        "relative w-[296px] h-[319px] rounded-[12px] overflow-hidden",
-        "shadow-lg ring-1 ring-black/10 dark:ring-white/10",
-        "transition-transform duration-150 hover:-translate-y-0.5 focus-visible:outline-none",
-        "bg-white dark:bg-[#151521]",
-      ].join(" ")}
-      aria-label={`Open tour: ${demo.title}`}
+      className="relative w-[296px] h-[319px] rounded-[14px] overflow-hidden border border-white/10 dark:border-white/10 bg-white dark:bg-[#0B0B11] shadow-md hover:shadow-lg transition"
+      data-navattic-open={demoUrl}
+      data-navattic-title={title}
     >
-      {/* Top bar accent + dog-ear */}
-      <div className="absolute top-0 left-0 right-0 h-[10px]" style={{ backgroundColor: mx.purple }} />
-      <div className="absolute top-[6px] right-[6px] w-5 h-5 overflow-hidden pointer-events-none">
-        {/* Dog ear made from a rotated square */}
-        <div
-          className="absolute -right-2 -top-2 w-6 h-6 rotate-45"
-          style={{ backgroundColor: mx.purple }}
-        />
-      </div>
+      {/* top ribbon */}
+      <div
+        className="absolute left-0 top-0 h-[10px] w-full"
+        style={{ backgroundColor: MP_PURPLE }}
+      />
+      {/* dog-ear */}
+      <DogEar />
 
-      {/* Image area (indented to the right) */}
-      <div className="absolute left-0 right-0 top-[10px] h-[168px]">
-        <div className="h-full w-full pr-[12px] pl-[20px] pt-[8px]">
-          {demo.img ? (
+      {/* image zone (indented to the right by 12px) */}
+      <div className="mt-[10px] pl-3 pr-0">
+        <div className="relative w-[calc(100%-12px)] h-[168px] overflow-hidden rounded-t-[10px] bg-black/80">
+          {img ? (
+            // eslint-disable-next-line @next/next/no-img-element
             <img
-              src={demo.img}
-              alt={demo.alt ?? ""}
-              className="h-full w-full object-cover rounded-t-[10px] rounded-br-[10px]"
-              draggable={false}
+              src={img}
+              alt=""
+              className="absolute inset-0 w-full h-full object-cover"
+              loading="lazy"
             />
           ) : (
-            <div
-              className="h-full w-full rounded-t-[10px] rounded-br-[10px]"
-              style={{ backgroundColor: mx.black }}
-            />
+            <div className="absolute inset-0 bg-black" />
           )}
         </div>
       </div>
 
-      {/* Black footer content */}
-      <div
-        className="absolute bottom-0 left-0 right-0 h-[151px] px-5 pt-3"
-        style={{ backgroundColor: mx.black, color: mx.white }}
-      >
-        {/* Label pill */}
-        <div className="mb-3">
-          <span
-            className="inline-block text-[11px] font-semibold tracking-wide px-2.5 py-1 rounded"
-            style={{
-              textTransform: "uppercase",
-              backgroundColor: mx.purple,
-              color: mx.white,
-            }}
-          >
-            {demo.label}
-          </span>
-        </div>
+      {/* bottom content */}
+      <div className="absolute left-0 right-0 bottom-0 bg-black text-white p-4 pt-3">
+        <span
+          className="inline-block text-[11px] font-semibold uppercase tracking-wide px-2 py-1 rounded"
+          style={{ backgroundColor: MP_PURPLE_LIGHT, color: "#0B0B11" }}
+        >
+          {tag}
+        </span>
 
-        {/* Title */}
-        <h3 className="text-[26px] leading-[30px] font-semibold">
-          {demo.title}
+        <h3 className="mt-2 text-[22px] leading-[1.1] font-semibold">
+          {title}
         </h3>
       </div>
     </button>
@@ -94,34 +77,32 @@ function DemoCard({ demo }: { demo: Demo }) {
 }
 
 export default function SelfGuidedTours() {
-  const demos: Demo[] = [
+  const cards: Card[] = [
     {
-      id: "cmfkxwfa5000004lc8408f5wi",
       title: "Launch an Experiment",
-      label: "Product Overviews",
-      img: "/navattic/launch-an-experiment.png",
-      alt: "Experiment tour preview",
+      tag: "PRODUCT OVERVIEWS",
+      demoUrl: "https://capture.navattic.com/cmfkxwfa5000004lc8408f5wi",
+      img: "/navattic/launch-an-experiment.png", // your uploaded image
     },
     {
-      id: "REPLACE_WITH_DEMO_ID",
       title: "Example Walkthrough",
-      label: "Product Overviews",
-      // no img => black placeholder
+      tag: "PRODUCT OVERVIEWS",
+      demoUrl: "https://capture.navattic.com/REPLACE_WITH_DEMO_ID",
+      img: null, // black placeholder
     },
     {
-      id: "REPLACE_WITH_DEMO_ID",
       title: "Customizing the Lead Page",
-      label: "CRM",
-      // no img => black placeholder
+      tag: "CRM",
+      demoUrl: "https://capture.navattic.com/REPLACE_WITH_DEMO_ID",
+      img: null, // black placeholder
     },
   ];
 
   return (
-    <div className="w-full">
-      {/* Card grid — each card is a fixed size so rows align like your reference */}
-      <div className="mt-6 grid gap-6 md:grid-cols-2 lg:grid-cols-3 place-items-start">
-        {demos.map((d) => (
-          <DemoCard key={d.title} demo={d} />
+    <div className="mt-6">
+      <div className="grid grid-cols-1 gap-6 md:grid-cols-3">
+        {cards.map((c) => (
+          <CardTile key={c.title} {...c} />
         ))}
       </div>
     </div>
