@@ -63,35 +63,5 @@ export default withNextra({
       const filecontent = fs.readFileSync(pathToFile, "utf8");
       return parseRedirectPartsFromFile(filecontent).map(formatForNextRedirect);
     });
- },
-
-  // NEW: site-wide security headers incl. CSP
-  async headers() {
-    // IMPORTANT: merge your existing allowed domains into these directives.
-    const csp = [
-      "default-src 'self';",
-      // Allow Navattic loader
-      "script-src 'self' 'unsafe-eval' 'unsafe-inline' https://js.navattic.com;",
-      // Allow the Navattic popup iframe
-      "frame-src 'self' https://capture.navattic.com;",
-      // (Optional) tighten/extend other directives as needed:
-      // "img-src 'self' data: blob:;",
-      // "style-src 'self' 'unsafe-inline';",
-      // "connect-src 'self';",
-    ].join(" ");
-
-    return [
-      {
-        source: "/(.*)",
-        headers: [
-          { key: "Content-Security-Policy", value: csp },
-          // You may also already set these elsewhere; keep or remove as appropriate:
-          // { key: "X-Content-Type-Options", value: "nosniff" },
-          // { key: "Referrer-Policy", value: "same-origin" },
-          // { key: "X-Frame-Options", value: "SAMEORIGIN" }, // avoid if you embed iframes cross-origin
-        ],
-      },
-    ];
-  },
-  
+ },  
 });
