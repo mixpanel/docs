@@ -9,103 +9,97 @@ Click any card to launch a pop-up walkthrough — no new windows.
 <Script src="https://js.navattic.com/embeds.js" strategy="afterInteractive" />
 
 {/* Card grid */}
-<div className="mt-8 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+<div className="not-prose mt-12">
+  <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
 
-  {/* CARD 1 — Launch an Experiment */}
-  <button
-    type="button"
-    className="group text-left rounded-2xl overflow-hidden bg-[#0B0A13] border border-slate-800 shadow-[0_1px_0_0_rgba(255,255,255,0.04)_inset,0_6px_24px_-12px_rgba(0,0,0,0.6)] hover:shadow-[0_1px_0_0_rgba(255,255,255,0.04)_inset,0_14px_36px_-10px_rgba(88,28,135,0.45)] hover:border-violet-500/50 focus:outline-none focus-visible:ring-2 focus-visible:ring-violet-400 transition"
-    data-navattic-open="https://capture.navattic.com/cmfkxwfa5000004lc8408f5wi"
-    data-navattic-title="Launch an Experiment"
-  >
-    {/* brand accent */}
-    <div className="h-1.5 bg-violet-500" />
+    {/* CARD 1 — Launch an Experiment */}
+    <button
+      type="button"
+      className="group text-left rounded-2xl overflow-hidden bg-[#0B0A13] border border-slate-800 shadow-md hover:shadow-xl hover:border-violet-500/50 transition-transform hover:-translate-y-1 focus:outline-none focus-visible:ring-2 focus-visible:ring-violet-400"
+      data-navattic-open="https://capture.navattic.com/cmfkxwfa5000004lc8408f5wi"
+      data-navattic-title="Launch an Experiment"
+    >
+      <div className="h-1.5 bg-violet-500" />
 
-    {/* consistent media box */}
-    <div className="relative aspect-[16/10] w-full bg-slate-900">
-      <img
-        src="/navattic/launch-an-experiment.png"
-        alt="Launch an Experiment preview"
-        className="absolute inset-0 h-full w-full object-cover"
-        loading="lazy"
-      />
-    </div>
-
-    {/* body */}
-    <div className="p-5">
-      <div className="inline-flex items-center rounded-md px-2 py-1 text-[11px] font-semibold tracking-wide bg-violet-600/20 text-violet-300 ring-1 ring-inset ring-violet-500/30">
-        PRODUCT OVERVIEWS
+      <div className="relative aspect-[16/9] w-full bg-slate-900">
+        <img
+          src="/navattic/launch-an-experiment.png"
+          alt="Launch an Experiment preview"
+          className="absolute inset-0 h-full w-full object-cover"
+          loading="lazy"
+        />
       </div>
-      <h3 className="mt-3 text-xl md:text-2xl font-bold leading-tight text-white group-hover:text-violet-300 transition">
-        Launch an Experiment
-      </h3>
-      <p className="mt-1.5 text-sm text-slate-300">
-        Opens in a modal, not a new window.
-      </p>
-    </div>
-  </button>
 
-  {/* CARD 2 — Placeholder example */}
-  <button
-    type="button"
-    className="group text-left rounded-2xl overflow-hidden bg-[#0B0A13] border border-slate-800 shadow-[0_1px_0_0_rgba(255,255,255,0.04)_inset,0_6px_24px_-12px_rgba(0,0,0,0.6)] hover:shadow-[0_1px_0_0_rgba(255,255,255,0.04)_inset,0_14px_36px_-10px_rgba(88,28,135,0.45)] hover:border-violet-500/50 focus:outline-none focus-visible:ring-2 focus-visible:ring-violet-400 transition"
-    data-navattic-open="https://capture.navattic.com/YOUR_SECOND_DEMO_ID"
-    data-navattic-title="Example Walkthrough"
-  >
-    <div className="h-1.5 bg-violet-500" />
+      <div className="p-5">
+        <div className="inline-flex items-center rounded-md px-2 py-1 text-[11px] font-semibold tracking-wide bg-violet-600/20 text-violet-300 ring-1 ring-inset ring-violet-500/30">
+          PRODUCT OVERVIEWS
+        </div>
+        <h3 className="mt-3 text-xl md:text-2xl font-bold leading-tight text-white group-hover:text-violet-300 transition">
+          Launch an Experiment
+        </h3>
+        <p className="mt-1.5 text-sm text-slate-300">
+          Opens in a modal, not a new window.
+        </p>
+      </div>
+    </button>
 
-    {/* Placeholder media area (same dimensions as real image) */}
-    <div className="relative aspect-[16/10] w-full bg-gradient-to-br from-slate-800 via-slate-900 to-black">
-      <div className="absolute inset-0 grid place-items-center">
-        <div className="flex items-center gap-3 text-slate-300/85">
-          <svg width="22" height="22" viewBox="0 0 24 24" fill="currentColor" className="opacity-80">
-            <path d="M8 5v14l11-7z" />
-          </svg>
-          <span className="text-sm font-medium">Preview loads on click</span>
+    {/* CARD 2 — Placeholder example */}
+    <button
+      type="button"
+      className="group text-left rounded-2xl overflow-hidden bg-[#0B0A13] border border-slate-800 shadow-md hover:shadow-xl hover:border-violet-500/50 transition-transform hover:-translate-y-1 focus:outline-none focus-visible:ring-2 focus-visible:ring-violet-400"
+      data-navattic-open="https://capture.navattic.com/YOUR_SECOND_DEMO_ID"
+      data-navattic-title="Example Walkthrough"
+    >
+      <div className="h-1.5 bg-violet-500" />
+      <div className="relative aspect-[16/9] w-full bg-gradient-to-br from-slate-800 via-slate-900 to-black">
+        <div className="absolute inset-0 grid place-items-center">
+          <div className="flex items-center gap-3 text-slate-300/85">
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="currentColor" className="opacity-80">
+              <path d="M8 5v14l11-7z" />
+            </svg>
+            <span className="text-sm font-medium">Preview loads on click</span>
+          </div>
         </div>
       </div>
-    </div>
-
-    <div className="p-5">
-      <div className="inline-flex items-center rounded-md px-2 py-1 text-[11px] font-semibold tracking-wide bg-violet-600/20 text-violet-300 ring-1 ring-inset ring-violet-500/30">
-        PRODUCT OVERVIEWS
+      <div className="p-5">
+        <div className="inline-flex items-center rounded-md px-2 py-1 text-[11px] font-semibold tracking-wide bg-violet-600/20 text-violet-300 ring-1 ring-inset ring-violet-500/30">
+          PRODUCT OVERVIEWS
+        </div>
+        <h3 className="mt-3 text-xl md:text-2xl font-bold leading-tight text-white group-hover:text-violet-300 transition">
+          Example Walkthrough
+        </h3>
+        <p className="mt-1.5 text-sm text-slate-300">Opens in a modal.</p>
       </div>
-      <h3 className="mt-3 text-xl md:text-2xl font-bold leading-tight text-white group-hover:text-violet-300 transition">
-        Example Walkthrough
-      </h3>
-      <p className="mt-1.5 text-sm text-slate-300">Opens in a modal.</p>
-    </div>
-  </button>
+    </button>
 
-  {/* CARD 3 — Placeholder demo */}
-  <button
-    type="button"
-    className="group text-left rounded-2xl overflow-hidden bg-[#0B0A13] border border-slate-800 shadow-[0_1px_0_0_rgba(255,255,255,0.04)_inset,0_6px_24px_-12px_rgba(0,0,0,0.6)] hover:shadow-[0_1px_0_0_rgba(255,255,255,0.04)_inset,0_14px_36px_-10px_rgba(88,28,135,0.45)] hover:border-violet-500/50 focus:outline-none focus-visible:ring-2 focus-visible:ring-violet-400 transition"
-    data-navattic-open="https://capture.navattic.com/YOUR_THIRD_DEMO_ID"
-    data-navattic-title="Customizing the Lead Page"
-  >
-    <div className="h-1.5 bg-violet-500" />
-
-    <div className="relative aspect-[16/10] w-full bg-gradient-to-br from-slate-800 via-slate-900 to-black">
-      <div className="absolute inset-0 grid place-items-center">
-        <div className="flex items-center gap-3 text-slate-300/85">
-          <svg width="22" height="22" viewBox="0 0 24 24" fill="currentColor" className="opacity-80">
-            <path d="M8 5v14l11-7z" />
-          </svg>
-          <span className="text-sm font-medium">Preview loads on click</span>
+    {/* CARD 3 — Placeholder demo */}
+    <button
+      type="button"
+      className="group text-left rounded-2xl overflow-hidden bg-[#0B0A13] border border-slate-800 shadow-md hover:shadow-xl hover:border-violet-500/50 transition-transform hover:-translate-y-1 focus:outline-none focus-visible:ring-2 focus-visible:ring-violet-400"
+      data-navattic-open="https://capture.navattic.com/YOUR_THIRD_DEMO_ID"
+      data-navattic-title="Customizing the Lead Page"
+    >
+      <div className="h-1.5 bg-violet-500" />
+      <div className="relative aspect-[16/9] w-full bg-gradient-to-br from-slate-800 via-slate-900 to-black">
+        <div className="absolute inset-0 grid place-items-center">
+          <div className="flex items-center gap-3 text-slate-300/85">
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="currentColor" className="opacity-80">
+              <path d="M8 5v14l11-7z" />
+            </svg>
+            <span className="text-sm font-medium">Preview loads on click</span>
+          </div>
         </div>
       </div>
-    </div>
-
-    <div className="p-5">
-      <div className="inline-flex items-center rounded-md px-2 py-1 text-[11px] font-semibold tracking-wide bg-fuchsia-600/20 text-fuchsia-300 ring-1 ring-inset ring-fuchsia-500/30">
-        CRM
+      <div className="p-5">
+        <div className="inline-flex items-center rounded-md px-2 py-1 text-[11px] font-semibold tracking-wide bg-fuchsia-600/20 text-fuchsia-300 ring-1 ring-inset ring-fuchsia-500/30">
+          CRM
+        </div>
+        <h3 className="mt-3 text-xl md:text-2xl font-bold leading-tight text-white group-hover:text-fuchsia-300 transition">
+          Customizing the Lead Page
+        </h3>
+        <p className="mt-1.5 text-sm text-slate-300">Opens in a modal.</p>
       </div>
-      <h3 className="mt-3 text-xl md:text-2xl font-bold leading-tight text-white group-hover:text-fuchsia-300 transition">
-        Customizing the Lead Page
-      </h3>
-      <p className="mt-1.5 text-sm text-slate-300">Opens in a modal.</p>
-    </div>
-  </button>
+    </button>
 
+  </div>
 </div>
