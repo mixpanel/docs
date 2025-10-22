@@ -1,133 +1,129 @@
-import React from "react";
-import Script from "next/script";
+"use client";
 
-type Card = {
-  title: string;
-  label: string;
-  img?: string;       // if absent -> black placeholder
-  popupUrl?: string;  // Navattic demo URL
+import React from "react";
+
+type Demo = {
+  id: string;              // Navattic demo id (the part after capture.navattic.com/)
+  title: string;           // Big title in the black footer
+  label: string;           // Small pill (e.g., PRODUCT OVERVIEWS)
+  img?: string;            // /navattic/…; if absent we show a black placeholder
+  alt?: string;
 };
 
-// Mixpanel-ish accent (purple) that reads in both themes
-const ACCENT = "#6E56CF"; // tweak if you have a stricter brand token
+const mx = {
+  // Mixpanel-ish colors
+  purple: "rgb(120 86 255)",          // primary accent
+  purple100: "rgb(232 224 255)",
+  black: "#0b0b0f",
+  white: "#ffffff",
+};
 
-const cards: Card[] = [
-  {
-    title: "Launch an Experiment",
-    label: "PRODUCT OVERVIEWS",
-    img: "/navattic/launch-an-experiment.png",
-    popupUrl: "https://capture.navattic.com/cmfkxwfa5000004lc8408f5wi",
-  },
-  {
-    title: "Example Walkthrough",
-    label: "PRODUCT OVERVIEWS",
-    // no img -> black fallback
-    popupUrl: "https://capture.navattic.com/YOUR_SECOND_DEMO_ID",
-  },
-  {
-    title: "Customizing the Lead Page",
-    label: "CRM",
-    // no img -> black fallback
-    popupUrl: "https://capture.navattic.com/YOUR_THIRD_DEMO_ID",
-  },
-];
-
-export default function SelfGuidedTours({ version }: { version?: string }) {
-  // left “indent” used by image & text to match the reference card
-  const insetPx = 12; // ~ml-3
+// One fixed-size card (296w x 319h)
+function DemoCard({ demo }: { demo: Demo }) {
+  const embedUrl = `https://capture.navattic.com/${demo.id}`;
 
   return (
-    <>
-      {/* Navattic pop-up loader */}
-      <Script src="https://js.navattic.com/embeds.js" strategy="afterInteractive" />
+    <button
+      type="button"
+      data-navattic-open={embedUrl}
+      data-navattic-title={demo.title}
+      className={[
+        // Fixed size & rounded card shell
+        "relative w-[296px] h-[319px] rounded-[12px] overflow-hidden",
+        "shadow-lg ring-1 ring-black/10 dark:ring-white/10",
+        "transition-transform duration-150 hover:-translate-y-0.5 focus-visible:outline-none",
+        "bg-white dark:bg-[#151521]",
+      ].join(" ")}
+      aria-label={`Open tour: ${demo.title}`}
+    >
+      {/* Top bar accent + dog-ear */}
+      <div className="absolute top-0 left-0 right-0 h-[10px]" style={{ backgroundColor: mx.purple }} />
+      <div className="absolute top-[6px] right-[6px] w-5 h-5 overflow-hidden pointer-events-none">
+        {/* Dog ear made from a rotated square */}
+        <div
+          className="absolute -right-2 -top-2 w-6 h-6 rotate-45"
+          style={{ backgroundColor: mx.purple }}
+        />
+      </div>
 
-      <div className="nx-not-prose not-prose mt-8">
-        {/* Optional little version chip in the grid header */}
-        {version ? (
-          <div className="mb-2 inline-flex items-center gap-2 rounded-full bg-fuchsia-600/15 text-fuchsia-300 px-3 py-1 text-xs font-medium">
-            Self-Guided Tours v{version}
-          </div>
-        ) : null}
-
-        <div className="flex flex-wrap gap-6">
-          {cards.map((c, i) => (
-            <button
-              key={i}
-              type="button"
-              aria-label={`Open: ${c.title}`}
-              data-navattic-open={c.popupUrl}
-              data-navattic-title={c.title}
-              // EXACT size to match the reference
-              style={{ width: 296, height: 319 }}
-              className={[
-                "relative overflow-hidden rounded-[14px]",
-                "border border-gray-200/60 dark:border-[#2A2A35]",
-                // black bottom area requested (works in light & dark)
-                "bg-[#0B0A13]",
-                "shadow-md hover:shadow-xl transition-transform hover:-translate-y-0.5",
-                "focus:outline-none focus-visible:ring-2",
-              ].join(" ")}
-            >
-              {/* Dog-ear in Mixpanel purple */}
-              <div
-                className="absolute top-0 right-0 w-7 h-7 pointer-events-none"
-                style={{
-                  background: ACCENT,
-                  clipPath: "polygon(100% 0, 0 0, 100% 100%)",
-                }}
-              />
-
-              {/* Thin top accent bar (full width) */}
-              <div
-                className="w-full"
-                style={{ height: 8, background: ACCENT }}
-              />
-
-              {/* Media area — slightly indented to the right */}
-              <div className="h-[160px] bg-[#13131C]">
-                <div
-                  className="h-full overflow-hidden rounded-l-sm"
-                  style={{ marginLeft: insetPx }}
-                >
-                  {c.img ? (
-                    <img
-                      src={c.img}
-                      alt={`${c.title} preview`}
-                      className="h-full w-full object-cover"
-                      loading="lazy"
-                      draggable={false}
-                    />
-                  ) : (
-                    <div className="h-full w-full bg-black grid place-items-center">
-                      <div className="flex items-center gap-2 text-slate-300 text-sm">
-                        <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor" className="opacity-80">
-                          <path d="M8 5v14l11-7z" />
-                        </svg>
-                        <span>Preview loads on click</span>
-                      </div>
-                    </div>
-                  )}
-                </div>
-              </div>
-
-              {/* Body — aligned to the same inset as the image */}
-              <div className="pt-4 pr-4" style={{ paddingLeft: insetPx + 8 }}>
-                <span
-                  className="inline-flex items-center rounded-md px-2.5 py-1 text-[11px] font-semibold tracking-wide"
-                  style={{ background: ACCENT, color: "#fff" }}
-                >
-                  {c.label}
-                </span>
-
-                {/* Title (short description) */}
-                <h3 className="mt-3 text-[20px] leading-[1.15] font-extrabold text-white">
-                  {c.title}
-                </h3>
-              </div>
-            </button>
-          ))}
+      {/* Image area (indented to the right) */}
+      <div className="absolute left-0 right-0 top-[10px] h-[168px]">
+        <div className="h-full w-full pr-[12px] pl-[20px] pt-[8px]">
+          {demo.img ? (
+            <img
+              src={demo.img}
+              alt={demo.alt ?? ""}
+              className="h-full w-full object-cover rounded-t-[10px] rounded-br-[10px]"
+              draggable={false}
+            />
+          ) : (
+            <div
+              className="h-full w-full rounded-t-[10px] rounded-br-[10px]"
+              style={{ backgroundColor: mx.black }}
+            />
+          )}
         </div>
       </div>
-    </>
+
+      {/* Black footer content */}
+      <div
+        className="absolute bottom-0 left-0 right-0 h-[151px] px-5 pt-3"
+        style={{ backgroundColor: mx.black, color: mx.white }}
+      >
+        {/* Label pill */}
+        <div className="mb-3">
+          <span
+            className="inline-block text-[11px] font-semibold tracking-wide px-2.5 py-1 rounded"
+            style={{
+              textTransform: "uppercase",
+              backgroundColor: mx.purple,
+              color: mx.white,
+            }}
+          >
+            {demo.label}
+          </span>
+        </div>
+
+        {/* Title */}
+        <h3 className="text-[26px] leading-[30px] font-semibold">
+          {demo.title}
+        </h3>
+      </div>
+    </button>
+  );
+}
+
+export default function SelfGuidedTours() {
+  const demos: Demo[] = [
+    {
+      id: "cmfkxwfa5000004lc8408f5wi",
+      title: "Launch an Experiment",
+      label: "Product Overviews",
+      img: "/navattic/launch-an-experiment.png",
+      alt: "Experiment tour preview",
+    },
+    {
+      id: "REPLACE_WITH_DEMO_ID",
+      title: "Example Walkthrough",
+      label: "Product Overviews",
+      // no img => black placeholder
+    },
+    {
+      id: "REPLACE_WITH_DEMO_ID",
+      title: "Customizing the Lead Page",
+      label: "CRM",
+      // no img => black placeholder
+    },
+  ];
+
+  return (
+    <div className="w-full">
+      {/* Card grid — each card is a fixed size so rows align like your reference */}
+      <div className="mt-6 grid gap-6 md:grid-cols-2 lg:grid-cols-3 place-items-start">
+        {demos.map((d) => (
+          <DemoCard key={d.title} demo={d} />
+        ))}
+      </div>
+    </div>
   );
 }
