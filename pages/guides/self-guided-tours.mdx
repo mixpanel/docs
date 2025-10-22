@@ -5,7 +5,7 @@ import Script from "next/script";
 Explore our product with interactive, self-guided tours.  
 Click any card to launch a pop-up walkthrough — no new windows.
 
-<Script src="https://js.navattic.com/embeds.js" strategy="afterInteractive" />
+<script src="https://js.navattic.com/embeds.js"></script>
 
 <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
 
@@ -34,28 +34,17 @@ Click any card to launch a pop-up walkthrough — no new windows.
   </button>
 
   {/* Card 2 */}
-  <button
-    type="button"
-    className="group text-left bg-base100 rounded-xl border border-base300 hover:border-base400 focus:outline-none focus-visible:ring focus-visible:ring-primary/50 transition overflow-hidden"
-    data-navattic-open="https://capture.navattic.com/YOUR_SECOND_DEMO_ID"
-    data-navattic-title="5-minute full product tour"
-  >
-    <img
-      src="/images/navattic/full-tour.jpg"
-      alt="Full product tour preview"
-      loading="lazy"
-      className="aspect-video w-full object-cover"
-    />
-    <div className="p-4">
-      <div className="inline-flex items-center text-[11px] font-medium bg-info/20 text-info px-2 py-1 rounded">
-        Product Overview
-      </div>
-      <h3 className="mt-2 text-lg font-semibold leading-snug group-hover:underline">
-        5-minute full product tour
-      </h3>
-      <p className="mt-1 text-sm text-base-content/70">Opens in a modal.</p>
-    </div>
-  </button>
+  <button id="demo">Open Pop-Up</button>
+<script>
+  // Preload the demo in the background
+  const config = { title: "2025_09_09_Launch an Experiment 3rd Party (Experiments in Mixpanel)" }
+  NavatticEmbed.initPopup("https://capture.navattic.com/cmfkxwfa5000004lc8408f5wi", config)
+  // Add an event handler to your button. For example:
+  const button = document.getElementById('demo');
+  button.addEventListener('click', function() {
+    NavatticEmbed.openPopup("https://capture.navattic.com/cmfkxwfa5000004lc8408f5wi");
+  });
+</script>
 
   {/* Card 3 */}
   <button
