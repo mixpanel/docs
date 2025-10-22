@@ -1,18 +1,34 @@
-{/* GRID (unchanged) */}
+import Script from "next/script";
+
+# Self-Guided Product Tours
+
+Track Mixpanel product releases and improvements in one place.  
+See what’s new, what got faster, and what opens up entirely new ways to answer questions about your product.
+
+Explore our product with interactive, self-guided tours.  
+Click any card to launch a pop-up walkthrough — no new windows.
+
+{/* Navattic official embed */}
+<Script src="https://js.navattic.com/embeds.js" strategy="afterInteractive" />
+
+{/* Card Grid */}
 <div className="not-prose nx-not-prose mt-12">
   <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
 
-    {/* CARD 1 — fixed card + media heights */}
+    {/* CARD 1 — Launch an Experiment */}
     <button
       type="button"
       className="group relative text-left rounded-2xl overflow-hidden bg-[#0B0A13] border border-slate-800 shadow-md hover:shadow-xl hover:border-violet-500/50 transition-transform hover:-translate-y-1 focus:outline-none focus-visible:ring-2 focus-visible:ring-violet-400 h-[420px] w-full"
       data-navattic-open="https://capture.navattic.com/cmfkxwfa5000004lc8408f5wi"
       data-navattic-title="Launch an Experiment"
     >
+      {/* Dog-ear */}
       <div className="absolute top-0 right-0 w-8 h-8 bg-violet-500 clip-path-[polygon(100%_0,0_0,100%_100%)] shadow-sm" />
+
+      {/* Top accent */}
       <div className="h-1.5 bg-violet-500" />
 
-      {/* FIXED MEDIA HEIGHT */}
+      {/* Image area (fixed height) */}
       <div className="relative w-full h-[210px] bg-slate-900">
         <img
           src="/navattic/launch-an-experiment.png"
@@ -22,18 +38,20 @@
         />
       </div>
 
-      {/* BODY fills remaining space */}
-      <div className="p-5 flex flex-col h-[calc(420px-1.5*4-210px)]"> {/* fallback; can remove if not needed */}
-        <div className="inline-flex items-center rounded-md px-2 py-1 text-[11px] font-semibold tracking-wide bg-violet-600/20 text-violet-300 ring-1 ring-inset ring-violet-500/30">
-          PRODUCT OVERVIEWS
+      {/* Text content */}
+      <div className="p-5 flex flex-col justify-between h-[calc(420px-210px)]">
+        <div>
+          <div className="inline-flex items-center rounded-md px-2 py-1 text-[11px] font-semibold tracking-wide bg-violet-600/20 text-violet-300 ring-1 ring-inset ring-violet-500/30">
+            PRODUCT OVERVIEWS
+          </div>
+          <h3 className="mt-3 text-2xl font-bold leading-tight text-white group-hover:text-violet-300 transition">
+            Launch an Experiment
+          </h3>
         </div>
-        <h3 className="mt-3 text-2xl font-bold leading-tight text-white group-hover:text-violet-300 transition">
-          Launch an Experiment
-        </h3>
       </div>
     </button>
 
-    {/* CARD 2 — placeholder, same fixed heights */}
+    {/* CARD 2 — Placeholder Example */}
     <button
       type="button"
       className="group relative text-left rounded-2xl overflow-hidden bg-[#0B0A13] border border-slate-800 shadow-md hover:shadow-xl hover:border-violet-500/50 transition-transform hover:-translate-y-1 focus:outline-none focus-visible:ring-2 focus-visible:ring-violet-400 h-[420px] w-full"
@@ -42,6 +60,8 @@
     >
       <div className="absolute top-0 right-0 w-8 h-8 bg-violet-500 clip-path-[polygon(100%_0,0_0,100%_100%)] shadow-sm" />
       <div className="h-1.5 bg-violet-500" />
+
+      {/* Placeholder (same size as image) */}
       <div className="relative w-full h-[210px] bg-gradient-to-br from-slate-800 via-slate-900 to-black">
         <div className="absolute inset-0 grid place-items-center">
           <div className="flex items-center gap-3 text-slate-200">
@@ -52,17 +72,20 @@
           </div>
         </div>
       </div>
-      <div className="p-5">
-        <div className="inline-flex items-center rounded-md px-2 py-1 text-[11px] font-semibold tracking-wide bg-violet-600/20 text-violet-300 ring-1 ring-inset ring-violet-500/30">
-          PRODUCT OVERVIEWS
+
+      <div className="p-5 flex flex-col justify-between h-[calc(420px-210px)]">
+        <div>
+          <div className="inline-flex items-center rounded-md px-2 py-1 text-[11px] font-semibold tracking-wide bg-violet-600/20 text-violet-300 ring-1 ring-inset ring-violet-500/30">
+            PRODUCT OVERVIEWS
+          </div>
+          <h3 className="mt-3 text-2xl font-bold leading-tight text-white group-hover:text-violet-300 transition">
+            Example Walkthrough
+          </h3>
         </div>
-        <h3 className="mt-3 text-2xl font-bold leading-tight text-white group-hover:text-violet-300 transition">
-          Example Walkthrough
-        </h3>
       </div>
     </button>
 
-    {/* CARD 3 — placeholder, same fixed heights */}
+    {/* CARD 3 — Placeholder Demo */}
     <button
       type="button"
       className="group relative text-left rounded-2xl overflow-hidden bg-[#0B0A13] border border-slate-800 shadow-md hover:shadow-xl hover:border-violet-500/50 transition-transform hover:-translate-y-1 focus:outline-none focus-visible:ring-2 focus-visible:ring-violet-400 h-[420px] w-full"
@@ -71,6 +94,7 @@
     >
       <div className="absolute top-0 right-0 w-8 h-8 bg-violet-500 clip-path-[polygon(100%_0,0_0,100%_100%)] shadow-sm" />
       <div className="h-1.5 bg-violet-500" />
+
       <div className="relative w-full h-[210px] bg-gradient-to-br from-slate-800 via-slate-900 to-black">
         <div className="absolute inset-0 grid place-items-center">
           <div className="flex items-center gap-3 text-slate-200">
@@ -81,13 +105,16 @@
           </div>
         </div>
       </div>
-      <div className="p-5">
-        <div className="inline-flex items-center rounded-md px-2 py-1 text-[11px] font-semibold tracking-wide bg-fuchsia-600/20 text-fuchsia-300 ring-1 ring-inset ring-fuchsia-500/30">
-          CRM
+
+      <div className="p-5 flex flex-col justify-between h-[calc(420px-210px)]">
+        <div>
+          <div className="inline-flex items-center rounded-md px-2 py-1 text-[11px] font-semibold tracking-wide bg-fuchsia-600/20 text-fuchsia-300 ring-1 ring-inset ring-fuchsia-500/30">
+            CRM
+          </div>
+          <h3 className="mt-3 text-2xl font-bold leading-tight text-white group-hover:text-fuchsia-300 transition">
+            Customizing the Lead Page
+          </h3>
         </div>
-        <h3 className="mt-3 text-2xl font-bold leading-tight text-white group-hover:text-fuchsia-300 transition">
-          Customizing the Lead Page
-        </h3>
       </div>
     </button>
 
