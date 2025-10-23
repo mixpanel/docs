@@ -1,15 +1,16 @@
 'use client';
 import React from 'react';
 import Image from 'next/image';
+import Script from 'next/script';
 
 type Card = {
   badge: string;
   title: string;
   blurb?: string;
-  href?: string;               // normal link fallback
   img?: string;
-  navatticOpen?: string;       // NEW: capture URL to open
-  navatticTitle?: string;      // NEW: title shown by Navattic
+  href?: string;
+  navatticOpen?: string;      // Navattic popup link
+  navatticTitle?: string;     // Navattic popup title
 };
 
 interface Props {
@@ -31,7 +32,6 @@ const styles = {
     justifyContent: 'center',
     marginTop: 32,
   } as React.CSSProperties,
-
   card: {
     position: 'relative',
     width: CARD_W,
@@ -43,7 +43,6 @@ const styles = {
     color: 'white',
     boxShadow: '0 10px 30px rgba(0,0,0,.25)',
   } as React.CSSProperties,
-
   dogEar: {
     position: 'absolute',
     right: 10,
@@ -54,7 +53,6 @@ const styles = {
     clipPath: 'polygon(0 0, 100% 0, 100% 100%)',
     boxShadow: '0 0 0 2px rgba(0,0,0,.15) inset',
   } as React.CSSProperties,
-
   mediaWrap: {
     height: IMAGE_H,
     marginLeft: 10,
@@ -64,20 +62,17 @@ const styles = {
     overflow: 'hidden',
     background: '#111',
   } as React.CSSProperties,
-
   mediaImg: {
     width: '100%',
     height: '100%',
     objectFit: 'cover' as const,
     display: 'block',
   } as React.CSSProperties,
-
   placeholder: {
     width: '100%',
     height: '100%',
     background: BLACK,
   } as React.CSSProperties,
-
   bottom: {
     position: 'absolute' as const,
     left: 0,
@@ -99,24 +94,18 @@ const styles = {
     padding: '8px 10px',
     marginBottom: 12,
   } as React.CSSProperties,
-
   title: {
     fontSize: 22,
     fontWeight: 700,
     lineHeight: 1.15,
     margin: 0,
   } as React.CSSProperties,
-
   blurb: {
     marginTop: 6,
     opacity: 0.85,
     fontSize: 14,
   } as React.CSSProperties,
-
-  linkLike: {
-    // makes <a> or <button> fill the card and look invisible
-    textDecoration: 'none',
-    color: 'inherit',
+  clickable: {
     display: 'block',
     width: '100%',
     height: '100%',
@@ -153,38 +142,46 @@ function CardView({ c }: { c: Card }) {
     </>
   );
 
-  let clickable: React.ReactNode = inside;
-
   if (c.navatticOpen) {
-    // Entire card is a Navattic trigger
-    clickable = (
-      <button
-        type="button"
-        style={styles.linkLike}
-        aria-label={c.title}
-        data-navattic-open={c.navatticOpen}
-        data-navattic-title={c.navatticTitle || c.title}
-      >
-        {inside}
-      </button>
-    );
-  } else if (c.href) {
-    clickable = (
-      <a href={c.href} style={styles.linkLike} aria-label={c.title}>
-        {inside}
-      </a>
+    // Make the entire card a Navattic trigger
+    return (
+      <div style={styles.card}>
+        <button
+          type="button"
+          style={styles.clickable}
+          data-navattic-open={c.navatticOpen}
+          data-navattic-title={c.navatticTitle || c.title}
+        >
+          {inside}
+        </button>
+      </div>
     );
   }
 
-  return <div style={styles.card}>{clickable}</div>;
+  if (c.href) {
+    return (
+      <div style={styles.card}>
+        <a href={c.href} style={styles.clickable}>
+          {inside}
+        </a>
+      </div>
+    );
+  }
+
+  return <div style={styles.card}>{inside}</div>;
 }
 
 export default function SelfGuidedTours({ cards }: Props) {
   return (
-    <div style={styles.grid}>
-      {cards.map((c, i) => (
-        <CardView key={i} c={c} />
-      ))}
-    </div>
+    <>
+      {/* ✅ Load Navattic embed once */}
+      <Script src="https://js.navattic.com/embeds.js" strategy="afterInteractive" />
+
+      <div style={styles.grid}>
+        {cards.map((c, i) => (
+          <CardView key={i} c={c} />
+        ))}
+      </div>
+    </>
   );
 }
