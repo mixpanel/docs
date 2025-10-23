@@ -23,8 +23,13 @@ const BORDER_RADIUS = 14;
 const CARD_W = 296;
 const CARD_H = 319;
 
-// Image height (you set this to 275)
+// Keep your current image height setting
 const IMAGE_H = 275;
+
+// NEW: fixed badge height (so all badges align)
+const BADGE_H = 32;         // visual height of the pill
+const BADGE_TOP = 12;       // distance from top of the bottom overlay to the badge
+const GAP_BELOW_BADGE = 12; // space between badge and title
 
 const styles = {
   grid: {
@@ -56,22 +61,22 @@ const styles = {
     background: MP_PURPLE,
     clipPath: 'polygon(0 0, 100% 0, 100% 100%)',
     boxShadow: '0 0 0 2px rgba(0,0,0,.15) inset',
-    zIndex: 5,                 // <<< ensure dog-ear sits above the image
-    pointerEvents: 'none',     // never intercept clicks
+    zIndex: 5,
+    pointerEvents: 'none',
   } as React.CSSProperties,
 
   // Indent LEFT to align with badge, bleed to RIGHT edge
   mediaWrap: {
     position: 'relative',
     height: IMAGE_H,
-    marginLeft: 16,            // left indent (aligns with badge)
-    marginRight: -16,          // extend to right edge
+    marginLeft: 16,
+    marginRight: -16,
     marginTop: 0,
     borderTopLeftRadius: 8,
     borderBottomLeftRadius: 8,
     overflow: 'hidden',
     background: '#111',
-    zIndex: 1,                 // <<< sit below dog-ear
+    zIndex: 1,
   } as React.CSSProperties,
 
   mediaImg: {
@@ -88,15 +93,27 @@ const styles = {
     background: BLACK,
   } as React.CSSProperties,
 
+  // Bottom overlay (text zone)
   bottom: {
     position: 'absolute' as const,
     left: 0,
     right: 0,
     bottom: 0,
-    padding: '14px 16px 18px',
+    padding: '12px 16px 18px 16px',
     background: BLACK,
     color: 'white',
-    zIndex: 3,               // <<< make sure text sits above the image
+    zIndex: 3,
+  },
+
+  // NEW: ‘anchor’ layer for the badge so its top is always at BADGE_TOP
+  badgeAnchor: {
+    position: 'absolute' as const,
+    top: BADGE_TOP,
+    left: 16,
+    height: BADGE_H,
+    display: 'flex',
+    alignItems: 'center',
+    pointerEvents: 'none', // make sure clicks go through to link/button
   },
 
   badge: {
@@ -106,10 +123,15 @@ const styles = {
     fontWeight: 700,
     letterSpacing: '.02em',
     fontSize: 12,
-    lineHeight: 1,
+    lineHeight: `${BADGE_H}px`, // make height consistent
     borderRadius: 8,
-    padding: '8px 10px',
-    marginBottom: 12,
+    padding: '0 10px',
+    height: BADGE_H,
+  } as React.CSSProperties,
+
+  // Spacer ensures the title always starts below the anchored badge
+  spacerBelowBadge: {
+    height: BADGE_H + GAP_BELOW_BADGE,
   } as React.CSSProperties,
 
   title: {
@@ -143,20 +165,22 @@ function CardView({ c }: { c: Card }) {
       <div style={styles.dogEar} aria-hidden />
       <div style={styles.mediaWrap}>
         {c.img ? (
-          <Image
-            src={c.img}
-            alt=""
-            fill
-            style={styles.mediaImg}
-            priority={false}
-          />
+          <Image src={c.img} alt="" fill style={styles.mediaImg} priority={false} />
         ) : (
           <div style={styles.placeholder} />
         )}
       </div>
 
       <div style={styles.bottom}>
-        <div style={styles.badge}>{c.badge}</div>
+        {/* anchored badge (absolute) */}
+        <div style={styles.badgeAnchor}>
+          <div style={styles.badge}>{c.badge}</div>
+        </div>
+
+        {/* spacer to push title below the badge at a consistent offset */}
+        <div style={styles.spacerBelowBadge} />
+
+        {/* flowing title + blurb */}
         <h3 style={styles.title}>{c.title}</h3>
         {c.blurb ? <div style={styles.blurb}>{c.blurb}</div> : null}
       </div>
