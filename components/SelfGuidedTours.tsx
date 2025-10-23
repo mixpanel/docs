@@ -6,8 +6,10 @@ type Card = {
   badge: string;
   title: string;
   blurb?: string;
-  href?: string;
+  href?: string;               // normal link fallback
   img?: string;
+  navatticOpen?: string;       // NEW: capture URL to open
+  navatticTitle?: string;      // NEW: title shown by Navattic
 };
 
 interface Props {
@@ -111,12 +113,18 @@ const styles = {
     fontSize: 14,
   } as React.CSSProperties,
 
-  link: {
+  linkLike: {
+    // makes <a> or <button> fill the card and look invisible
     textDecoration: 'none',
     color: 'inherit',
     display: 'block',
     width: '100%',
     height: '100%',
+    background: 'transparent',
+    border: 0,
+    padding: 0,
+    cursor: 'pointer',
+    textAlign: 'inherit',
   } as React.CSSProperties,
 };
 
@@ -145,17 +153,30 @@ function CardView({ c }: { c: Card }) {
     </>
   );
 
-  return (
-    <div style={styles.card}>
-      {c.href ? (
-        <a href={c.href} style={styles.link} aria-label={c.title}>
-          {inside}
-        </a>
-      ) : (
-        inside
-      )}
-    </div>
-  );
+  let clickable: React.ReactNode = inside;
+
+  if (c.navatticOpen) {
+    // Entire card is a Navattic trigger
+    clickable = (
+      <button
+        type="button"
+        style={styles.linkLike}
+        aria-label={c.title}
+        data-navattic-open={c.navatticOpen}
+        data-navattic-title={c.navatticTitle || c.title}
+      >
+        {inside}
+      </button>
+    );
+  } else if (c.href) {
+    clickable = (
+      <a href={c.href} style={styles.linkLike} aria-label={c.title}>
+        {inside}
+      </a>
+    );
+  }
+
+  return <div style={styles.card}>{clickable}</div>;
 }
 
 export default function SelfGuidedTours({ cards }: Props) {
