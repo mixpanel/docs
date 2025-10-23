@@ -23,9 +23,8 @@ const BORDER_RADIUS = 14;
 const CARD_W = 296;
 const CARD_H = 319;
 
-// slightly taller image area so it reaches top of card
+// Taller image
 const IMAGE_H = 275;
-const MEDIA_W = CARD_W - 32;
 
 const styles = {
   grid: {
@@ -59,12 +58,13 @@ const styles = {
     boxShadow: '0 0 0 2px rgba(0,0,0,.15) inset',
   } as React.CSSProperties,
 
-  // image flush with top + indent to match badge
+  // keep left indent, expand full width to the right
   mediaWrap: {
-    width: MEDIA_W,
+    position: 'relative',
     height: IMAGE_H,
-    marginLeft: 16,
-    marginTop: 0, // no black band above image
+    marginLeft: 16,   // left indent aligns with badge
+    marginRight: -16, // extend to right border
+    marginTop: 0,
     borderTopLeftRadius: 8,
     borderBottomLeftRadius: 8,
     overflow: 'hidden',
@@ -142,8 +142,7 @@ function CardView({ c }: { c: Card }) {
           <Image
             src={c.img}
             alt=""
-            width={MEDIA_W}
-            height={IMAGE_H}
+            fill
             style={styles.mediaImg}
             priority={false}
           />
@@ -191,6 +190,7 @@ function CardView({ c }: { c: Card }) {
 export default function SelfGuidedTours({ cards }: Props) {
   return (
     <>
+      {/* Navattic embed loader */}
       <Script src="https://js.navattic.com/embeds.js" strategy="afterInteractive" />
       <div style={styles.grid}>
         {cards.map((c, i) => (
