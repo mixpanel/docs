@@ -14,7 +14,7 @@ export type SGCard = {
   navatticTitle?: string;
 };
 
-export default function SelfGuidedTours({ cards }: { cards: SGCard[] }) {
+export default function SGTours({ cards }: { cards: SGCard[] }) {
   return (
     <div className="mx-auto mt-8 w-full max-w-7xl px-4">
       {/* 1/2/3 columns responsive, this matches the v0.18 look */}
