@@ -159,7 +159,7 @@ function CardView({ c }: { c: Card }) {
         )}
       </div>
 
-      <div style={styles.bottom}>
+      <div style={styles.bottom} className="sgt-bottom">
         <div style={styles.badge}>{c.badge}</div>
         <h3 style={styles.title}>{c.title}</h3>
         {c.blurb ? <div style={styles.blurb}>{c.blurb}</div> : null}
@@ -169,7 +169,7 @@ function CardView({ c }: { c: Card }) {
 
   if (c.navatticOpen) {
     return (
-      <div style={styles.card}>
+      <div style={styles.card} className="sgt-card">
         <button
           type="button"
           style={styles.clickable}
@@ -184,7 +184,7 @@ function CardView({ c }: { c: Card }) {
 
   if (c.href) {
     return (
-      <div style={styles.card}>
+      <div style={styles.card} className="sgt-card">
         <a href={c.href} style={styles.clickable}>
           {inside}
         </a>
@@ -192,7 +192,11 @@ function CardView({ c }: { c: Card }) {
     );
   }
 
-  return <div style={styles.card}>{inside}</div>;
+  return (
+    <div style={styles.card} className="sgt-card">
+      {inside}
+    </div>
+  );  
 }
 
 export default function SelfGuidedTours({ cards }: Props) {
