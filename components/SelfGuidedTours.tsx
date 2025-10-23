@@ -93,7 +93,7 @@ const styles = {
 
   bottom: {
     position: 'absolute' as const,
-    top: IMAGE_H + 8,
+    top: IMAGE_H + 18,
     left: 0,
     right: 0,
     bottom: 0,
