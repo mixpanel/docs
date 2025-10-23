@@ -23,13 +23,13 @@ const BORDER_RADIUS = 14;
 const CARD_W = 296;
 const CARD_H = 319;
 
-// Keep your current image height setting
+// keep your current image height
 const IMAGE_H = 275;
 
-// NEW: fixed badge height (so all badges align)
-const BADGE_H = 32;         // visual height of the pill
-const BADGE_TOP = 12;       // distance from top of the bottom overlay to the badge
-const GAP_BELOW_BADGE = 12; // space between badge and title
+// fixed badge position/height so all badges align
+const BADGE_H = 32;
+const BADGE_TOP = 12;
+const GAP_BELOW_BADGE = 12;
 
 const styles = {
   grid: {
@@ -65,7 +65,7 @@ const styles = {
     pointerEvents: 'none',
   } as React.CSSProperties,
 
-  // Indent LEFT to align with badge, bleed to RIGHT edge
+  // Indent left to align with badge, bleed to right edge
   mediaWrap: {
     position: 'relative',
     height: IMAGE_H,
@@ -93,9 +93,9 @@ const styles = {
     background: BLACK,
   } as React.CSSProperties,
 
-  // Bottom overlay (text zone)
+  // Bottom text overlay
   bottom: {
-    position: 'absolute' as const,
+    position: 'absolute',
     left: 0,
     right: 0,
     bottom: 0,
@@ -103,18 +103,18 @@ const styles = {
     background: BLACK,
     color: 'white',
     zIndex: 3,
-  },
+  } as React.CSSProperties,
 
-  // NEW: ‘anchor’ layer for the badge so its top is always at BADGE_TOP
+  // Anchored badge (absolute) – type cast avoids pointerEvents union error
   badgeAnchor: {
-    position: 'absolute' as const,
+    position: 'absolute',
     top: BADGE_TOP,
     left: 16,
     height: BADGE_H,
     display: 'flex',
     alignItems: 'center',
-    pointerEvents: 'none', // make sure clicks go through to link/button
-  },
+    pointerEvents: 'none',
+  } as React.CSSProperties,
 
   badge: {
     display: 'inline-block',
@@ -123,13 +123,13 @@ const styles = {
     fontWeight: 700,
     letterSpacing: '.02em',
     fontSize: 12,
-    lineHeight: `${BADGE_H}px`, // make height consistent
+    lineHeight: `${BADGE_H}px`,
     borderRadius: 8,
     padding: '0 10px',
     height: BADGE_H,
   } as React.CSSProperties,
 
-  // Spacer ensures the title always starts below the anchored badge
+  // Spacer so the title always starts right below the anchored badge
   spacerBelowBadge: {
     height: BADGE_H + GAP_BELOW_BADGE,
   } as React.CSSProperties,
@@ -172,15 +172,14 @@ function CardView({ c }: { c: Card }) {
       </div>
 
       <div style={styles.bottom}>
-        {/* anchored badge (absolute) */}
+        {/* anchored badge */}
         <div style={styles.badgeAnchor}>
           <div style={styles.badge}>{c.badge}</div>
         </div>
 
-        {/* spacer to push title below the badge at a consistent offset */}
+        {/* spacer to push title below fixed badge position */}
         <div style={styles.spacerBelowBadge} />
 
-        {/* flowing title + blurb */}
         <h3 style={styles.title}>{c.title}</h3>
         {c.blurb ? <div style={styles.blurb}>{c.blurb}</div> : null}
       </div>
