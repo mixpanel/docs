@@ -1,13 +1,34 @@
-import SelfGuidedTours from "../../components/SelfGuidedTours";
+import SGTCards from '../../components/SGTCards'
 
 # Self-Guided Product Tours
 
-Self-Guided Tours • **v0.16**
+Self-Guided Tours • **v0.17**
 
 Explore our product with interactive, self-guided tours.  
 Click any card to launch a pop-up walkthrough — no new windows.
 
-<SelfGuidedTours version="0.16" />
-
-{/* ===== Legacy section removed on purpose. If you still see small triangles, 
-    you are probably looking at cached HTML or a second copy of the old block in this file. ===== */}
+<SGTCards
+  cards={[
+    {
+      badge: 'PRODUCT OVERVIEWS',
+      title: '2-minute mini product tour',
+      blurb: 'Launch an Experiment',
+      img: '/navattic/launch-an-experiment.png',
+      href: '#', // your Navattic trigger or URL
+    },
+    {
+      badge: 'PRODUCT OVERVIEWS',
+      title: 'Example Walkthrough',
+      blurb: 'Preview loads on click',
+      // no img => black placeholder
+      href: '#',
+    },
+    {
+      badge: 'CRM',
+      title: 'Customizing the Lead Page',
+      blurb: 'Preview loads on click',
+      // no img => black placeholder
+      href: '#',
+    },
+  ]}
+/>
