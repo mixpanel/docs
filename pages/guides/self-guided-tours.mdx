@@ -1,11 +1,15 @@
-import SelfGuidedTours from "../../components/SelfGuidedTours";
+import Script from 'next/script';
+import SelfGuidedTours from '../../components/SelfGuidedTours';
 
 # Self-Guided Product Tours
 
-Self-Guided Tours • **v0.23**
+Self-Guided Tours • **v0.20**
 
 Explore our product with interactive, self-guided tours.  
 Click any card to launch a pop-up walkthrough — no new windows.
+
+{/* Load Navattic once on this page */}
+<Script src="https://js.navattic.com/embeds.js" strategy="afterInteractive" />
 
 <SelfGuidedTours
   cards={[
@@ -14,6 +18,7 @@ Click any card to launch a pop-up walkthrough — no new windows.
       title: '2-minute mini product tour',
       blurb: 'Launch an Experiment',
       img: '/navattic/launch-an-experiment.png',
+      // your working Navattic share link here:
       navatticUrl: 'https://capture.navattic.com/cmfkxwfa5000004lc8408f5wi',
       navatticTitle: 'Launch an Experiment',
     },
@@ -22,15 +27,14 @@ Click any card to launch a pop-up walkthrough — no new windows.
       title: 'Example Walkthrough',
       blurb: 'Preview loads on click',
       navatticUrl: 'https://capture.navattic.com/YOUR_SECOND_DEMO_ID',
-      navatticTitle: 'Example Walkthrough',
     },
     {
       badge: 'CRM',
       title: 'Customizing the Lead Page',
       blurb: 'Preview loads on click',
       navatticUrl: 'https://capture.navattic.com/YOUR_THIRD_DEMO_ID',
-      navatticTitle: 'Customizing the Lead Page',
     },
+    // extra dummies (kept from v0.18 behavior)
     {
       badge: 'AUTOMATION',
       title: 'How to build a Workflow',
