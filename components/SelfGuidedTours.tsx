@@ -64,7 +64,6 @@ const styles = {
   // keep left indent; bleed to right border
   mediaWrap: {
     position: 'relative',
-    height: IMAGE_H,
     marginLeft: 16,         // align with badge
     marginRight: -16,       // touch right border
     marginTop: 0,
