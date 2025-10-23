@@ -24,7 +24,7 @@ const CARD_W = 296;
 const CARD_H = 319;
 
 // keep whatever value you’re using now
-const IMAGE_H = 275;
+const IMAGE_H = 140;
 
 // fixed badge row height + gap so badges align perfectly across cards
 const BADGE_H = 32;
