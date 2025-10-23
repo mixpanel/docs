@@ -23,14 +23,15 @@ const BORDER_RADIUS = 14;
 const CARD_W = 296;
 const CARD_H = 319;
 
-// ↑ only minimal bump so the image reaches up toward the dog-ear a bit more
+// Image area sizing: fills the top block and anchors to top-left
 const IMAGE_H = 206;
+const MEDIA_W = CARD_W - 32; // card width minus the 16px left indent on both sides
 
 const styles = {
   grid: {
     display: 'grid',
     gap: 16,
-    gridTemplateColumns: 'repeat(auto-fit, minmax(296px, 1fr))',
+    gridTemplateColumns: 'repeat(3, minmax(296px, 1fr))',
     justifyContent: 'center',
     marginTop: 28,
   } as React.CSSProperties,
@@ -58,11 +59,13 @@ const styles = {
     boxShadow: '0 0 0 2px rgba(0,0,0,.15) inset',
   } as React.CSSProperties,
 
-  // ⬇ image area indented to align with badge (badge block uses left padding 16)
+  // Image area is indented to align with the badge (16px),
+  // and now hugs the top of the card.
   mediaWrap: {
+    width: MEDIA_W,
     height: IMAGE_H,
     marginLeft: 16,
-    marginTop: 8,
+    marginTop: 0, // was 8 — set to 0 so it reaches the very top
     borderTopLeftRadius: 8,
     borderBottomLeftRadius: 8,
     overflow: 'hidden',
@@ -73,8 +76,7 @@ const styles = {
     width: '100%',
     height: '100%',
     objectFit: 'cover',
-    // ⬇ anchor the visible portion to top-left so any crop happens on right/bottom
-    objectPosition: 'left top',
+    objectPosition: 'left top', // anchor so crop happens on right/bottom
     display: 'block',
   } as React.CSSProperties,
 
@@ -89,7 +91,7 @@ const styles = {
     left: 0,
     right: 0,
     bottom: 0,
-    padding: '14px 16px 18px', // left = 16 → matches mediaWrap marginLeft
+    padding: '14px 16px 18px', // left = 16 matches mediaWrap indent
     background: BLACK,
     color: 'white',
   },
@@ -141,7 +143,7 @@ function CardView({ c }: { c: Card }) {
           <Image
             src={c.img}
             alt=""
-            width={CARD_W}
+            width={MEDIA_W}
             height={IMAGE_H}
             style={styles.mediaImg}
             priority={false}
