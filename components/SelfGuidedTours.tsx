@@ -235,7 +235,7 @@ export default function SelfGuidedTours({ cards }: Props) {
           }
           .sgt-card .badge {
             background: ${MP_PURPLE};
-            color: ${DARK_TEXT};
+            color: ${LIGHT_TEXT};
           }
         }
       `}</style>
