@@ -24,7 +24,7 @@ const CARD_W = 296;
 const CARD_H = 319;
 
 // slightly taller image area so it reaches top of card
-const IMAGE_H = 220;
+const IMAGE_H = 250;
 const MEDIA_W = CARD_W - 32;
 
 const styles = {
