@@ -1,57 +1,50 @@
-import Script from 'next/script';
-import SGTours from '../../components/SGTours';
+import SelfGuidedTours from "../../components/SelfGuidedTours";
 
 # Self-Guided Product Tours
 
-Self-Guided Tours • **v0.20**
+Self-Guided Tours • **v0.19**
 
 Explore our product with interactive, self-guided tours.  
 Click any card to launch a pop-up walkthrough — no new windows.
 
-{/* Load Navattic once on this page */}
-<Script src="https://js.navattic.com/embeds.js" strategy="afterInteractive" />
-
-<SGTours
+<SelfGuidedTours
   cards={[
     {
       badge: 'PRODUCT OVERVIEWS',
       title: '2-minute mini product tour',
       blurb: 'Launch an Experiment',
       img: '/navattic/launch-an-experiment.png',
-      // your working Navattic share link here:
-      navatticUrl: 'https://capture.navattic.com/cmfkxwfa5000004lc8408f5wi',
-      navatticTitle: 'Launch an Experiment',
+      href: '#',
     },
     {
       badge: 'PRODUCT OVERVIEWS',
       title: 'Example Walkthrough',
       blurb: 'Preview loads on click',
-      navatticUrl: 'https://capture.navattic.com/YOUR_SECOND_DEMO_ID',
+      href: '#',
     },
     {
       badge: 'CRM',
       title: 'Customizing the Lead Page',
       blurb: 'Preview loads on click',
-      navatticUrl: 'https://capture.navattic.com/YOUR_THIRD_DEMO_ID',
+      href: '#',
     },
-    // extra dummies (kept from v0.18 behavior)
     {
       badge: 'AUTOMATION',
       title: 'How to build a Workflow',
       blurb: 'Preview loads on click',
-      navatticUrl: 'https://capture.navattic.com/YOUR_FOURTH_DEMO_ID',
+      href: '#',
     },
     {
       badge: 'REPORTING',
       title: 'Opportunity Pipeline',
       blurb: 'Preview loads on click',
-      navatticUrl: 'https://capture.navattic.com/YOUR_FIFTH_DEMO_ID',
+      href: '#',
     },
     {
       badge: 'COMMUNICATION',
       title: 'Using the Power Dialer',
       blurb: 'Preview loads on click',
-      navatticUrl: 'https://capture.navattic.com/YOUR_SIXTH_DEMO_ID',
+      href: '#',
     },
   ]}
 />
