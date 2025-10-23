@@ -23,7 +23,7 @@ const BORDER_RADIUS = 14;
 const CARD_W = 296;
 const CARD_H = 319;
 
-// Taller image
+// Image height (you set this to 275)
 const IMAGE_H = 275;
 
 const styles = {
@@ -56,26 +56,29 @@ const styles = {
     background: MP_PURPLE,
     clipPath: 'polygon(0 0, 100% 0, 100% 100%)',
     boxShadow: '0 0 0 2px rgba(0,0,0,.15) inset',
+    zIndex: 5,                 // <<< ensure dog-ear sits above the image
+    pointerEvents: 'none',     // never intercept clicks
   } as React.CSSProperties,
 
-  // keep left indent, expand full width to the right
+  // Keep left indent; bleed to the right border
   mediaWrap: {
     position: 'relative',
     height: IMAGE_H,
-    marginLeft: 16,   // left indent aligns with badge
-    marginRight: -16, // extend to right border
+    marginLeft: 16,            // left indent (aligns with badge)
+    marginRight: -16,          // extend to right edge
     marginTop: 0,
     borderTopLeftRadius: 8,
     borderBottomLeftRadius: 8,
     overflow: 'hidden',
     background: '#111',
+    zIndex: 1,                 // <<< sit below dog-ear
   } as React.CSSProperties,
 
   mediaImg: {
     width: '100%',
     height: '100%',
     objectFit: 'cover',
-    objectPosition: 'left top', // anchor top-left; crop right/bottom
+    objectPosition: 'left top',
     display: 'block',
   } as React.CSSProperties,
 
@@ -190,7 +193,6 @@ function CardView({ c }: { c: Card }) {
 export default function SelfGuidedTours({ cards }: Props) {
   return (
     <>
-      {/* Navattic embed loader */}
       <Script src="https://js.navattic.com/embeds.js" strategy="afterInteractive" />
       <div style={styles.grid}>
         {cards.map((c, i) => (
