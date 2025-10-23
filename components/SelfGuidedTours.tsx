@@ -23,14 +23,13 @@ const BORDER_RADIUS = 14;
 const CARD_W = 296;
 const CARD_H = 319;
 
-// keep your current height
+// Image height (you set this to 275)
 const IMAGE_H = 275;
 
 const styles = {
   grid: {
     display: 'grid',
     gap: 16,
-    // 3-up by default but remains responsive when the window shrinks
     gridTemplateColumns: 'repeat(auto-fit, minmax(296px, 1fr))',
     justifyContent: 'center',
     marginTop: 28,
@@ -57,29 +56,29 @@ const styles = {
     background: MP_PURPLE,
     clipPath: 'polygon(0 0, 100% 0, 100% 100%)',
     boxShadow: '0 0 0 2px rgba(0,0,0,.15) inset',
-    zIndex: 5,              // above image/text
-    pointerEvents: 'none',
+    zIndex: 5,                 // <<< ensure dog-ear sits above the image
+    pointerEvents: 'none',     // never intercept clicks
   } as React.CSSProperties,
 
-  // keep left indent; bleed to right border
+  // Indent LEFT to align with badge, bleed to RIGHT edge
   mediaWrap: {
     position: 'relative',
-    top: IMAGE_H,
-    marginLeft: 16,         // align with badge
-    marginRight: -16,       // touch right border
+    height: IMAGE_H,
+    marginLeft: 16,            // left indent (aligns with badge)
+    marginRight: -16,          // extend to right edge
     marginTop: 0,
     borderTopLeftRadius: 8,
     borderBottomLeftRadius: 8,
     overflow: 'hidden',
     background: '#111',
-    zIndex: 1,              // under dog-ear and text
+    zIndex: 1,                 // <<< sit below dog-ear
   } as React.CSSProperties,
 
   mediaImg: {
     width: '100%',
     height: '100%',
     objectFit: 'cover',
-    objectPosition: 'left top', // keep left edge visible
+    objectPosition: 'left top',
     display: 'block',
   } as React.CSSProperties,
 
@@ -89,18 +88,16 @@ const styles = {
     background: BLACK,
   } as React.CSSProperties,
 
-  // 👇 key change: anchor this block to a fixed TOP that starts just
-  // below the image so the badge/title/blurb align across all cards
   bottom: {
-    position: 'absolute',
+    position: 'absolute' as const,
     left: 0,
     right: 0,
-    bottom: 0,              // stretch down; content overlays the lower area
+    bottom: 0,
     padding: '14px 16px 18px',
     background: BLACK,
     color: 'white',
-    zIndex: 3,
-  } as React.CSSProperties,
+    zIndex: 3,               // <<< make sure text sits above the image
+  },
 
   badge: {
     display: 'inline-block',
@@ -146,7 +143,13 @@ function CardView({ c }: { c: Card }) {
       <div style={styles.dogEar} aria-hidden />
       <div style={styles.mediaWrap}>
         {c.img ? (
-          <Image src={c.img} alt="" fill style={styles.mediaImg} priority={false} />
+          <Image
+            src={c.img}
+            alt=""
+            fill
+            style={styles.mediaImg}
+            priority={false}
+          />
         ) : (
           <div style={styles.placeholder} />
         )}
