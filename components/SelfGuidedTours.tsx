@@ -224,7 +224,7 @@ export default function SelfGuidedTours({ cards }: Props) {
         }
 
         /* Light mode overrides */
-        @media (prefers-color-scheme: light) {
+        @media (color-scheme: light) {
           .sgt-card {
             background: ${LIGHT_BG};
             color: ${DARK_TEXT};
