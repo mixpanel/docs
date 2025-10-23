@@ -18,16 +18,10 @@ interface Props {
 }
 
 const MP_PURPLE = 'rgb(139 92 246)';
-const BLACK = '#0a0a0b';
-const LIGHT_BG = '#f8f8fa';
-const DARK_TEXT = '#111111';
-const LIGHT_TEXT = '#ffffff';
 const BORDER_RADIUS = 14;
 const CARD_W = 296;
 const CARD_H = 319;
-
-// Image height and width
-const IMAGE_H = 140;
+const IMAGE_H = 140; // your latest working height
 const IMAGE_W = 276;
 
 const styles = {
@@ -56,27 +50,26 @@ const styles = {
     top: 10,
     width: 22,
     height: 22,
-    background: MP_PURPLE,
+    background: 'var(--sgt-dogear)',
     clipPath: 'polygon(0 0, 100% 0, 100% 100%)',
     boxShadow: '0 0 0 2px rgba(0,0,0,.15) inset',
-    zIndex: 5,                 // <<< ensure dog-ear sits above the image
-    pointerEvents: 'none',     // never intercept clicks
+    zIndex: 5,
+    pointerEvents: 'none',
   } as React.CSSProperties,
 
-  // Indent LEFT to align with badge, bleed to RIGHT edge
   mediaWrap: {
     position: 'absolute',
     top: 18,
     height: IMAGE_H,
     width: IMAGE_W,
-    marginLeft: 16,            // left indent (aligns with badge)
-    marginRight: -16,          // extend to right edge
+    marginLeft: 16,
+    marginRight: -16,
     marginTop: 0,
     borderTopLeftRadius: 8,
     borderBottomLeftRadius: 8,
     overflow: 'hidden',
-    background: '#111',
-    zIndex: 1,                 // <<< sit below dog-ear
+    background: 'var(--sgt-media-bg)',
+    zIndex: 1,
   } as React.CSSProperties,
 
   mediaImg: {
@@ -90,7 +83,7 @@ const styles = {
   placeholder: {
     width: '100%',
     height: '100%',
-    background: BLACK,
+    background: 'var(--sgt-media-bg)',
   } as React.CSSProperties,
 
   bottom: {
@@ -100,13 +93,13 @@ const styles = {
     right: 0,
     bottom: 0,
     padding: '14px 16px 18px',
-    zIndex: 3,               // <<< make sure text sits above the image
+    zIndex: 3,
   },
 
   badge: {
     display: 'inline-block',
-    background: MP_PURPLE,
-    color: 'black',
+    background: 'var(--sgt-badge-bg)',
+    color: 'var(--sgt-badge-fg)',
     fontWeight: 700,
     letterSpacing: '.02em',
     fontSize: 12,
@@ -121,12 +114,13 @@ const styles = {
     fontWeight: 700,
     lineHeight: 1.15,
     margin: 0,
+    color: 'var(--sgt-title)',
   } as React.CSSProperties,
 
   blurb: {
     marginTop: 6,
-    opacity: 0.85,
     fontSize: 14,
+    color: 'var(--sgt-blurb)',
   } as React.CSSProperties,
 
   clickable: {
@@ -159,7 +153,7 @@ function CardView({ c }: { c: Card }) {
         )}
       </div>
 
-      <div style={styles.bottom} className="sgt-bottom">
+      <div style={styles.bottom}>
         <div style={styles.badge}>{c.badge}</div>
         <h3 style={styles.title}>{c.title}</h3>
         {c.blurb ? <div style={styles.blurb}>{c.blurb}</div> : null}
@@ -196,7 +190,7 @@ function CardView({ c }: { c: Card }) {
     <div style={styles.card} className="sgt-card">
       {inside}
     </div>
-  );  
+  );
 }
 
 export default function SelfGuidedTours({ cards }: Props) {
@@ -209,38 +203,36 @@ export default function SelfGuidedTours({ cards }: Props) {
         ))}
       </div>
 
-      {/* Dark/Light mode styling */}
+      {/* Light/Dark theme variables */}
       <style jsx global>{`
-        /* Default: dark mode */
-        .sgt-card {
-          background: ${BLACK};
-          color: ${LIGHT_TEXT};
-        }
-        .sgt-card h3,
-        .sgt-card p,
-        .sgt-bottom {
-          color: ${LIGHT_TEXT};
-          background: ${BLACK};
+        :root {
+          --sgt-card-bg: #0a0a0b;
+          --sgt-title: #ffffff;
+          --sgt-blurb: rgba(255, 255, 255, 0.85);
+          --sgt-border: ${MP_PURPLE};
+          --sgt-media-bg: #111111;
+          --sgt-dogear: ${MP_PURPLE};
+          --sgt-badge-bg: ${MP_PURPLE};
+          --sgt-badge-fg: #ffffff;
         }
 
-        /* Light mode overrides */
-        @media (color-scheme: light) {
-          .sgt-card {
-            background: ${LIGHT_BG};
-            color: ${DARK_TEXT};
-            border-color: ${MP_PURPLE};
-            box-shadow: 0 6px 20px rgba(0, 0, 0, 0.1);
+        @media (prefers-color-scheme: light) {
+          :root {
+            --sgt-card-bg: #f9f9fb;
+            --sgt-title: #111111;
+            --sgt-blurb: #333333;
+            --sgt-border: ${MP_PURPLE};
+            --sgt-media-bg: #d8d8dd;
+            --sgt-dogear: ${MP_PURPLE};
+            --sgt-badge-bg: ${MP_PURPLE};
+            --sgt-badge-fg: #ffffff; /* white text for visibility */
           }
-          .sgt-card h3,
-          .sgt-card p,
-          .sgt-bottom {
-            color: ${DARK_TEXT};
-            background: ${LIGHT_BG};
-          }
-          .sgt-card .badge {
-            background: ${MP_PURPLE};
-            color: ${LIGHT_TEXT};
-          }
+        }
+
+        .sgt-card {
+          background: var(--sgt-card-bg);
+          color: var(--sgt-title);
+          border-color: var(--sgt-border);
         }
       `}</style>
     </>
