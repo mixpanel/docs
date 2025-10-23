@@ -22,8 +22,9 @@ const BLACK = '#0a0a0b';
 const BORDER_RADIUS = 14;
 const CARD_W = 296;
 const CARD_H = 319;
-// ⬆️ image height extended so it reaches dog-ear
-const IMAGE_H = 188;
+
+// ↑ only minimal bump so the image reaches up toward the dog-ear a bit more
+const IMAGE_H = 206;
 
 const styles = {
   grid: {
@@ -33,6 +34,7 @@ const styles = {
     justifyContent: 'center',
     marginTop: 28,
   } as React.CSSProperties,
+
   card: {
     position: 'relative',
     width: CARD_W,
@@ -44,6 +46,7 @@ const styles = {
     color: 'white',
     boxShadow: '0 10px 30px rgba(0,0,0,.25)',
   } as React.CSSProperties,
+
   dogEar: {
     position: 'absolute',
     right: 10,
@@ -54,36 +57,43 @@ const styles = {
     clipPath: 'polygon(0 0, 100% 0, 100% 100%)',
     boxShadow: '0 0 0 2px rgba(0,0,0,.15) inset',
   } as React.CSSProperties,
-  // ⬇️ image area indented further so it aligns with the badge
+
+  // ⬇ image area indented to align with badge (badge block uses left padding 16)
   mediaWrap: {
     height: IMAGE_H,
-    marginLeft: 18, // align with badge indentation
-    marginTop: 8,   // brings top closer to dog-ear
+    marginLeft: 16,
+    marginTop: 8,
     borderTopLeftRadius: 8,
     borderBottomLeftRadius: 8,
     overflow: 'hidden',
     background: '#111',
   } as React.CSSProperties,
+
   mediaImg: {
     width: '100%',
     height: '100%',
-    objectFit: 'cover' as const,
+    objectFit: 'cover',
+    // ⬇ anchor the visible portion to top-left so any crop happens on right/bottom
+    objectPosition: 'left top',
     display: 'block',
   } as React.CSSProperties,
+
   placeholder: {
     width: '100%',
     height: '100%',
     background: BLACK,
   } as React.CSSProperties,
+
   bottom: {
     position: 'absolute' as const,
     left: 0,
     right: 0,
     bottom: 0,
-    padding: '14px 16px 18px',
+    padding: '14px 16px 18px', // left = 16 → matches mediaWrap marginLeft
     background: BLACK,
     color: 'white',
   },
+
   badge: {
     display: 'inline-block',
     background: MP_PURPLE,
@@ -96,17 +106,20 @@ const styles = {
     padding: '8px 10px',
     marginBottom: 12,
   } as React.CSSProperties,
+
   title: {
     fontSize: 22,
     fontWeight: 700,
     lineHeight: 1.15,
     margin: 0,
   } as React.CSSProperties,
+
   blurb: {
     marginTop: 6,
     opacity: 0.85,
     fontSize: 14,
   } as React.CSSProperties,
+
   clickable: {
     display: 'block',
     width: '100%',
@@ -131,11 +144,13 @@ function CardView({ c }: { c: Card }) {
             width={CARD_W}
             height={IMAGE_H}
             style={styles.mediaImg}
+            priority={false}
           />
         ) : (
           <div style={styles.placeholder} />
         )}
       </div>
+
       <div style={styles.bottom}>
         <div style={styles.badge}>{c.badge}</div>
         <h3 style={styles.title}>{c.title}</h3>
@@ -175,7 +190,7 @@ function CardView({ c }: { c: Card }) {
 export default function SelfGuidedTours({ cards }: Props) {
   return (
     <>
-      {/* keep Navattic loader once */}
+      {/* Navattic once per page (works across all cards) */}
       <Script src="https://js.navattic.com/embeds.js" strategy="afterInteractive" />
       <div style={styles.grid}>
         {cards.map((c, i) => (
