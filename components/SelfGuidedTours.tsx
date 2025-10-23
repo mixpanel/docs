@@ -23,12 +23,8 @@ const BORDER_RADIUS = 14;
 const CARD_W = 296;
 const CARD_H = 319;
 
-// keep whatever value you’re using now
+// Image height (you set this to 275)
 const IMAGE_H = 140;
-
-// fixed badge row height + gap so badges align perfectly across cards
-const BADGE_H = 32;
-const GAP_BELOW_BADGE = 12;
 
 const styles = {
   grid: {
@@ -60,22 +56,23 @@ const styles = {
     background: MP_PURPLE,
     clipPath: 'polygon(0 0, 100% 0, 100% 100%)',
     boxShadow: '0 0 0 2px rgba(0,0,0,.15) inset',
-    zIndex: 5,
-    pointerEvents: 'none',
+    zIndex: 5,                 // <<< ensure dog-ear sits above the image
+    pointerEvents: 'none',     // never intercept clicks
   } as React.CSSProperties,
 
-  // Image: indented on left to align to badge, bleeds to right edge
+  // Indent LEFT to align with badge, bleed to RIGHT edge
   mediaWrap: {
     position: 'relative',
+    top: -70,
     height: IMAGE_H,
-    marginLeft: 16,
-    marginRight: -16,
+    marginLeft: 16,            // left indent (aligns with badge)
+    marginRight: -16,          // extend to right edge
     marginTop: 0,
     borderTopLeftRadius: 8,
     borderBottomLeftRadius: 8,
     overflow: 'hidden',
     background: '#111',
-    zIndex: 1,
+    zIndex: 1,                 // <<< sit below dog-ear
   } as React.CSSProperties,
 
   mediaImg: {
@@ -92,24 +89,16 @@ const styles = {
     background: BLACK,
   } as React.CSSProperties,
 
-  // Bottom overlay
   bottom: {
-    position: 'absolute',
+    position: 'absolute' as const,
     left: 0,
     right: 0,
     bottom: 0,
-    padding: '12px 16px 18px 16px',
+    padding: '14px 16px 18px',
     background: BLACK,
     color: 'white',
-    zIndex: 3,
-  } as React.CSSProperties,
-
-  // NEW: grid to anchor badge consistently
-  bottomInner: {
-    display: 'grid',
-    gridTemplateRows: `${BADGE_H}px ${GAP_BELOW_BADGE}px auto auto 1fr`,
-    alignItems: 'start',
-  } as React.CSSProperties,
+    zIndex: 3,               // <<< make sure text sits above the image
+  },
 
   badge: {
     display: 'inline-block',
@@ -118,12 +107,10 @@ const styles = {
     fontWeight: 700,
     letterSpacing: '.02em',
     fontSize: 12,
-    lineHeight: `${BADGE_H}px`,
+    lineHeight: 1,
     borderRadius: 8,
-    padding: '0 10px',
-    height: BADGE_H,
-    // keep the left alignment with image indent
-    justifySelf: 'start',
+    padding: '8px 10px',
+    marginBottom: 12,
   } as React.CSSProperties,
 
   title: {
@@ -157,25 +144,22 @@ function CardView({ c }: { c: Card }) {
       <div style={styles.dogEar} aria-hidden />
       <div style={styles.mediaWrap}>
         {c.img ? (
-          <Image src={c.img} alt="" fill style={styles.mediaImg} priority={false} />
+          <Image
+            src={c.img}
+            alt=""
+            fill
+            style={styles.mediaImg}
+            priority={false}
+          />
         ) : (
           <div style={styles.placeholder} />
         )}
       </div>
 
       <div style={styles.bottom}>
-        <div style={styles.bottomInner}>
-          {/* Row 1: anchored badge */}
-          <div style={styles.badge}>{c.badge}</div>
-          {/* Row 2: fixed gap (empty cell) */}
-          <div />
-          {/* Row 3: title */}
-          <h3 style={styles.title}>{c.title}</h3>
-          {/* Row 4: blurb (optional) */}
-          {c.blurb ? <div style={styles.blurb}>{c.blurb}</div> : <div />}
-          {/* Row 5: flexible spacer to keep consistent height */}
-          <div />
-        </div>
+        <div style={styles.badge}>{c.badge}</div>
+        <h3 style={styles.title}>{c.title}</h3>
+        {c.blurb ? <div style={styles.blurb}>{c.blurb}</div> : null}
       </div>
     </>
   );
