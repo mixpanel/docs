@@ -1,5 +1,5 @@
 import Script from 'next/script';
-import SelfGuidedTours from '../../components/SelfGuidedTours';
+import SGTours from '../../components/SGTours';
 
 # Self-Guided Product Tours
 
@@ -11,7 +11,7 @@ Click any card to launch a pop-up walkthrough — no new windows.
 {/* Load Navattic once on this page */}
 <Script src="https://js.navattic.com/embeds.js" strategy="afterInteractive" />
 
-<SelfGuidedTours
+<SGTours
   cards={[
     {
       badge: 'PRODUCT OVERVIEWS',
