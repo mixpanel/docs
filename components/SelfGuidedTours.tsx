@@ -22,13 +22,13 @@ const BLACK = '#0a0a0b';
 const BORDER_RADIUS = 14;
 const CARD_W = 296;
 const CARD_H = 319;
-const IMAGE_H = 168;
+// ⬆️ image height extended so it reaches dog-ear
+const IMAGE_H = 188;
 
 const styles = {
-  // ↓ smaller gap = tighter spacing
   grid: {
     display: 'grid',
-    gap: 16, // was 24
+    gap: 16,
     gridTemplateColumns: 'repeat(auto-fit, minmax(296px, 1fr))',
     justifyContent: 'center',
     marginTop: 28,
@@ -54,10 +54,11 @@ const styles = {
     clipPath: 'polygon(0 0, 100% 0, 100% 100%)',
     boxShadow: '0 0 0 2px rgba(0,0,0,.15) inset',
   } as React.CSSProperties,
+  // ⬇️ image area indented further so it aligns with the badge
   mediaWrap: {
     height: IMAGE_H,
-    marginLeft: 10,
-    marginTop: 10,
+    marginLeft: 18, // align with badge indentation
+    marginTop: 8,   // brings top closer to dog-ear
     borderTopLeftRadius: 8,
     borderBottomLeftRadius: 8,
     overflow: 'hidden',
