@@ -23,12 +23,11 @@ const BORDER_RADIUS = 14;
 const CARD_W = 296;
 const CARD_H = 319;
 
-// keep your current image height
+// keep whatever value you’re using now
 const IMAGE_H = 275;
 
-// fixed badge position/height so all badges align
+// fixed badge row height + gap so badges align perfectly across cards
 const BADGE_H = 32;
-const BADGE_TOP = 12;
 const GAP_BELOW_BADGE = 12;
 
 const styles = {
@@ -65,7 +64,7 @@ const styles = {
     pointerEvents: 'none',
   } as React.CSSProperties,
 
-  // Indent left to align with badge, bleed to right edge
+  // Image: indented on left to align to badge, bleeds to right edge
   mediaWrap: {
     position: 'relative',
     height: IMAGE_H,
@@ -93,7 +92,7 @@ const styles = {
     background: BLACK,
   } as React.CSSProperties,
 
-  // Bottom text overlay
+  // Bottom overlay
   bottom: {
     position: 'absolute',
     left: 0,
@@ -105,15 +104,11 @@ const styles = {
     zIndex: 3,
   } as React.CSSProperties,
 
-  // Anchored badge (absolute) – type cast avoids pointerEvents union error
-  badgeAnchor: {
-    position: 'absolute',
-    top: BADGE_TOP,
-    left: 16,
-    height: BADGE_H,
-    display: 'flex',
-    alignItems: 'center',
-    pointerEvents: 'none',
+  // NEW: grid to anchor badge consistently
+  bottomInner: {
+    display: 'grid',
+    gridTemplateRows: `${BADGE_H}px ${GAP_BELOW_BADGE}px auto auto 1fr`,
+    alignItems: 'start',
   } as React.CSSProperties,
 
   badge: {
@@ -127,11 +122,8 @@ const styles = {
     borderRadius: 8,
     padding: '0 10px',
     height: BADGE_H,
-  } as React.CSSProperties,
-
-  // Spacer so the title always starts right below the anchored badge
-  spacerBelowBadge: {
-    height: BADGE_H + GAP_BELOW_BADGE,
+    // keep the left alignment with image indent
+    justifySelf: 'start',
   } as React.CSSProperties,
 
   title: {
@@ -172,16 +164,18 @@ function CardView({ c }: { c: Card }) {
       </div>
 
       <div style={styles.bottom}>
-        {/* anchored badge */}
-        <div style={styles.badgeAnchor}>
+        <div style={styles.bottomInner}>
+          {/* Row 1: anchored badge */}
           <div style={styles.badge}>{c.badge}</div>
+          {/* Row 2: fixed gap (empty cell) */}
+          <div />
+          {/* Row 3: title */}
+          <h3 style={styles.title}>{c.title}</h3>
+          {/* Row 4: blurb (optional) */}
+          {c.blurb ? <div style={styles.blurb}>{c.blurb}</div> : <div />}
+          {/* Row 5: flexible spacer to keep consistent height */}
+          <div />
         </div>
-
-        {/* spacer to push title below fixed badge position */}
-        <div style={styles.spacerBelowBadge} />
-
-        <h3 style={styles.title}>{c.title}</h3>
-        {c.blurb ? <div style={styles.blurb}>{c.blurb}</div> : null}
       </div>
     </>
   );
