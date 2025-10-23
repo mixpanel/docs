@@ -9,8 +9,8 @@ type Card = {
   blurb?: string;
   img?: string;
   href?: string;
-  navatticOpen?: string;      // Navattic popup link
-  navatticTitle?: string;     // Navattic popup title
+  navatticOpen?: string;
+  navatticTitle?: string;
 };
 
 interface Props {
@@ -25,12 +25,13 @@ const CARD_H = 319;
 const IMAGE_H = 168;
 
 const styles = {
+  // ↓ smaller gap = tighter spacing
   grid: {
     display: 'grid',
-    gap: 24,
-    gridTemplateColumns: 'repeat(auto-fill, minmax(296px, 1fr))',
+    gap: 16, // was 24
+    gridTemplateColumns: 'repeat(auto-fit, minmax(296px, 1fr))',
     justifyContent: 'center',
-    marginTop: 32,
+    marginTop: 28,
   } as React.CSSProperties,
   card: {
     position: 'relative',
@@ -143,7 +144,6 @@ function CardView({ c }: { c: Card }) {
   );
 
   if (c.navatticOpen) {
-    // Make the entire card a Navattic trigger
     return (
       <div style={styles.card}>
         <button
@@ -174,9 +174,8 @@ function CardView({ c }: { c: Card }) {
 export default function SelfGuidedTours({ cards }: Props) {
   return (
     <>
-      {/* ✅ Load Navattic embed once */}
+      {/* keep Navattic loader once */}
       <Script src="https://js.navattic.com/embeds.js" strategy="afterInteractive" />
-
       <div style={styles.grid}>
         {cards.map((c, i) => (
           <CardView key={i} c={c} />
