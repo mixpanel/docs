@@ -64,6 +64,7 @@ const styles = {
   // keep left indent; bleed to right border
   mediaWrap: {
     position: 'relative',
+    top: IMAGE_H,
     marginLeft: 16,         // align with badge
     marginRight: -16,       // touch right border
     marginTop: 0,
@@ -94,7 +95,6 @@ const styles = {
     position: 'absolute',
     left: 0,
     right: 0,
-    top: IMAGE_H,      // starts just under the image (consistent)
     bottom: 0,              // stretch down; content overlays the lower area
     padding: '14px 16px 18px',
     background: BLACK,
