@@ -19,11 +19,14 @@ interface Props {
 
 const MP_PURPLE = 'rgb(139 92 246)';
 const BLACK = '#0a0a0b';
+const LIGHT_BG = '#f8f8fa';
+const DARK_TEXT = '#111111';
+const LIGHT_TEXT = '#ffffff';
 const BORDER_RADIUS = 14;
 const CARD_W = 296;
 const CARD_H = 319;
 
-// Image height (you set this to 275)
+// Image height and width
 const IMAGE_H = 140;
 const IMAGE_W = 276;
 
@@ -43,9 +46,8 @@ const styles = {
     borderRadius: BORDER_RADIUS,
     overflow: 'hidden',
     border: `2px solid ${MP_PURPLE}`,
-    background: BLACK,
-    color: 'white',
     boxShadow: '0 10px 30px rgba(0,0,0,.25)',
+    transition: 'background 0.3s ease, color 0.3s ease',
   } as React.CSSProperties,
 
   dogEar: {
@@ -98,8 +100,6 @@ const styles = {
     right: 0,
     bottom: 0,
     padding: '14px 16px 18px',
-    background: BLACK,
-    color: 'white',
     zIndex: 3,               // <<< make sure text sits above the image
   },
 
@@ -204,6 +204,41 @@ export default function SelfGuidedTours({ cards }: Props) {
           <CardView key={i} c={c} />
         ))}
       </div>
+
+      {/* Dark/Light mode styling */}
+      <style jsx global>{`
+        /* Default: dark mode */
+        .sgt-card {
+          background: ${BLACK};
+          color: ${LIGHT_TEXT};
+        }
+        .sgt-card h3,
+        .sgt-card p,
+        .sgt-bottom {
+          color: ${LIGHT_TEXT};
+          background: ${BLACK};
+        }
+
+        /* Light mode overrides */
+        @media (prefers-color-scheme: light) {
+          .sgt-card {
+            background: ${LIGHT_BG};
+            color: ${DARK_TEXT};
+            border-color: ${MP_PURPLE};
+            box-shadow: 0 6px 20px rgba(0, 0, 0, 0.1);
+          }
+          .sgt-card h3,
+          .sgt-card p,
+          .sgt-bottom {
+            color: ${DARK_TEXT};
+            background: ${LIGHT_BG};
+          }
+          .sgt-card .badge {
+            background: ${MP_PURPLE};
+            color: ${DARK_TEXT};
+          }
+        }
+      `}</style>
     </>
   );
 }
