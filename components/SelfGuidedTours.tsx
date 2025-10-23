@@ -95,7 +95,7 @@ const styles = {
     position: 'absolute',
     left: 0,
     right: 0,
-    top: IMAGE_H + 12,      // starts just under the image (consistent)
+    top: IMAGE_H,      // starts just under the image (consistent)
     bottom: 0,              // stretch down; content overlays the lower area
     padding: '14px 16px 18px',
     background: BLACK,
