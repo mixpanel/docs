@@ -1,11 +1,15 @@
-import SelfGuidedTours from "../../components/SelfGuidedTours";
+import SelfGuidedTours from '../../components/SelfGuidedTours'
+import Script from 'next/script'
 
 # Self-Guided Product Tours
 
-Self-Guided Tours • **v0.19**
+Self-Guided Tours • **v0.30**
 
 Explore our product with interactive, self-guided tours.  
 Click any card to launch a pop-up walkthrough — no new windows.
+
+{/* Navattic loader (once per page) */}
+<Script src="https://js.navattic.com/embeds.js" strategy="afterInteractive" />
 
 <SelfGuidedTours
   cards={[
@@ -14,37 +18,46 @@ Click any card to launch a pop-up walkthrough — no new windows.
       title: '2-minute mini product tour',
       blurb: 'Launch an Experiment',
       img: '/navattic/launch-an-experiment.png',
-      href: '#',
+      // Your capture URL + friendly title
+      navatticOpen: 'https://capture.navattic.com/cmfkxwfa50000041c8408f5wi',
+      navatticTitle: 'Launch an Experiment',
     },
     {
       badge: 'PRODUCT OVERVIEWS',
       title: 'Example Walkthrough',
       blurb: 'Preview loads on click',
-      href: '#',
+      // re-use same capture for now (swap to the real one when ready)
+      navatticOpen: 'https://capture.navattic.com/cmfkxwfa50000041c8408f5wi',
+      navatticTitle: 'Example Walkthrough',
     },
     {
       badge: 'CRM',
       title: 'Customizing the Lead Page',
       blurb: 'Preview loads on click',
-      href: '#',
+      navatticOpen: 'https://capture.navattic.com/cmfkxwfa50000041c8408f5wi',
+      navatticTitle: 'Customizing the Lead Page',
     },
+    // DUMMIES
     {
       badge: 'AUTOMATION',
       title: 'How to build a Workflow',
       blurb: 'Preview loads on click',
-      href: '#',
+      navatticOpen: 'https://capture.navattic.com/cmfkxwfa50000041c8408f5wi',
+      navatticTitle: 'How to build a Workflow',
     },
     {
       badge: 'REPORTING',
       title: 'Opportunity Pipeline',
       blurb: 'Preview loads on click',
-      href: '#',
+      navatticOpen: 'https://capture.navattic.com/cmfkxwfa50000041c8408f5wi',
+      navatticTitle: 'Opportunity Pipeline',
     },
     {
       badge: 'COMMUNICATION',
       title: 'Using the Power Dialer',
       blurb: 'Preview loads on click',
-      href: '#',
+      navatticOpen: 'https://capture.navattic.com/cmfkxwfa50000041c8408f5wi',
+      navatticTitle: 'Using the Power Dialer',
     },
   ]}
 />
