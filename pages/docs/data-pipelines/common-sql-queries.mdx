@@ -1,0 +1,101 @@
+# Common SQL Queries
+
+### Count of total events per day in Pacific timezone, deduplicated by `event_name`, `time`, `distinct_id`, and `insert_id`
+
+```sql
+SELECT
+  DATE(time, 'America/Los_Angeles') AS event_date,
+  COUNT(DISTINCT CONCAT(event_name, time, distinct_id, insert_id)) AS event_count,
+FROM
+  `<your dataset>.mp_master_event`
+WHERE
+  DATE(time, 'America/Los_Angeles') >= '2025-08-01'
+  AND DATE(time, 'America/Los_Angeles') < '2025-09-16'
+GROUP BY
+  1
+ORDER BY
+  1 ASC
+```
+
+### Count of unique users per day (joining the events table with the identity mapping table) in Pacific timezone
+
+```sql
+SELECT
+  DATE(time, 'America/Los_Angeles') AS event_date,
+  COUNT(DISTINCT resolved_user_id) AS unique_users
+FROM (
+  SELECT
+    time,
+    IFNULL(id_mappings.resolved_distinct_id, events.distinct_id) AS resolved_user_id
+  FROM
+    `<your dataset>.mp_master_event` AS events
+  LEFT JOIN
+    `<your dataset>.mp_identity_mappings_data_view` AS id_mappings
+  ON
+    events.distinct_id = id_mappings.distinct_id
+  WHERE
+    DATE(time, 'America/Los_Angeles') >= '2025-08-01'
+    AND DATE(time, 'America/Los_Angeles') < '2025-09-16' )
+GROUP BY
+  1
+ORDER BY
+  1 ASC
+```
+
+### Top 20 events by volume
+
+```sql
+SELECT
+  event_name,
+  COUNT(*) AS event_count
+FROM
+  `<your dataset>.mp_master_event`
+WHERE
+  DATE(time, 'America/Los_Angeles') >= '2025-08-01'
+  AND DATE(time, 'America/Los_Angeles') < '2025-09-16'
+GROUP BY
+  1
+ORDER BY
+  2 DESC
+LIMIT
+  20
+```
+
+### Querying duplicate events (by `event_name`, `time`, `distinct_id`, and `insert_id`)
+
+```sql
+SELECT
+ *,
+ COUNT(*) OVER (PARTITION BY event_name, time, distinct_id, insert_id ) AS dup_group_size
+FROM
+ `<your dataset>.mp_master_event`
+WHERE
+ DATE(time, 'America/Los_Angeles') >= '2025-08-01'
+ AND DATE(time, 'America/Los_Angeles') < '2025-09-16'
+QUALIFY
+ dup_group_size > 1
+ORDER BY
+ DATE(time, 'America/Los_Angeles'),
+ event_name,
+ time
+ ```
+
+ ### Expanding `properties` JSON for specific events
+
+```sql
+SELECT
+ event_name,
+ KEY AS property_key,
+FROM
+ `<your dataset>.mp_master_event`
+CROSS JOIN
+ UNNEST(JSON_KEYS(properties)) AS KEY
+WHERE
+ event_name = 'Page View'
+GROUP BY
+ 1,
+ 2
+ORDER BY
+ 2 ASC
+```
+
