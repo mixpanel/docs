@@ -25,6 +25,7 @@ const CARD_H = 319;
 
 // Image height (you set this to 275)
 const IMAGE_H = 140;
+const IMAGE_W = 276;
 
 const styles = {
   grid: {
@@ -62,9 +63,10 @@ const styles = {
 
   // Indent LEFT to align with badge, bleed to RIGHT edge
   mediaWrap: {
-    position: 'relative',
-    top: -70,
+    position: 'absolute',
+    top: 18,
     height: IMAGE_H,
+    width: IMAGE_W,
     marginLeft: 16,            // left indent (aligns with badge)
     marginRight: -16,          // extend to right edge
     marginTop: 0,
@@ -91,6 +93,7 @@ const styles = {
 
   bottom: {
     position: 'absolute' as const,
+    top: IMAGE_H + 8,
     left: 0,
     right: 0,
     bottom: 0,
