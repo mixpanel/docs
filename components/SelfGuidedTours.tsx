@@ -23,15 +23,15 @@ const BORDER_RADIUS = 14;
 const CARD_W = 296;
 const CARD_H = 319;
 
-// Image area sizing: fills the top block and anchors to top-left
-const IMAGE_H = 206;
-const MEDIA_W = CARD_W - 32; // card width minus the 16px left indent on both sides
+// slightly taller image area so it reaches top of card
+const IMAGE_H = 220;
+const MEDIA_W = CARD_W - 32;
 
 const styles = {
   grid: {
     display: 'grid',
     gap: 16,
-    gridTemplateColumns: 'repeat(3, minmax(296px, 1fr))',
+    gridTemplateColumns: 'repeat(auto-fit, minmax(296px, 1fr))',
     justifyContent: 'center',
     marginTop: 28,
   } as React.CSSProperties,
@@ -59,13 +59,12 @@ const styles = {
     boxShadow: '0 0 0 2px rgba(0,0,0,.15) inset',
   } as React.CSSProperties,
 
-  // Image area is indented to align with the badge (16px),
-  // and now hugs the top of the card.
+  // image flush with top + indent to match badge
   mediaWrap: {
     width: MEDIA_W,
     height: IMAGE_H,
     marginLeft: 16,
-    marginTop: 0, // was 8 — set to 0 so it reaches the very top
+    marginTop: 0, // no black band above image
     borderTopLeftRadius: 8,
     borderBottomLeftRadius: 8,
     overflow: 'hidden',
@@ -76,7 +75,7 @@ const styles = {
     width: '100%',
     height: '100%',
     objectFit: 'cover',
-    objectPosition: 'left top', // anchor so crop happens on right/bottom
+    objectPosition: 'left top', // anchor top-left; crop right/bottom
     display: 'block',
   } as React.CSSProperties,
 
@@ -91,7 +90,7 @@ const styles = {
     left: 0,
     right: 0,
     bottom: 0,
-    padding: '14px 16px 18px', // left = 16 matches mediaWrap indent
+    padding: '14px 16px 18px',
     background: BLACK,
     color: 'white',
   },
@@ -192,7 +191,6 @@ function CardView({ c }: { c: Card }) {
 export default function SelfGuidedTours({ cards }: Props) {
   return (
     <>
-      {/* Navattic once per page (works across all cards) */}
       <Script src="https://js.navattic.com/embeds.js" strategy="afterInteractive" />
       <div style={styles.grid}>
         {cards.map((c, i) => (
