@@ -96,6 +96,7 @@ const styles = {
     padding: '14px 16px 18px',
     background: BLACK,
     color: 'white',
+    zIndex: 3,               // <<< make sure text sits above the image
   },
 
   badge: {
