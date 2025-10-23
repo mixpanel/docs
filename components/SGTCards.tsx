@@ -2,26 +2,31 @@
 import React from 'react';
 
 type Card = {
-  title: string;          // e.g., "2-minute mini product tour"
-  badge: string;          // e.g., "PRODUCT OVERVIEWS"
-  blurb?: string;         // e.g., "Launch an Experiment"
-  img?: string;           // e.g., "/navattic/launch-an-experiment.png"
-  href?: string;          // click target (optional)
+  title: string;
+  badge: string;
+  blurb?: string;
+  img?: string;
+  href?: string;
 };
 
-const MP_PURPLE = 'rgb(139 92 246)';        // brand accent (adjust if you prefer)
+const MP_PURPLE = 'rgb(139 92 246)';
 const BLACK = '#0a0a0b';
 const BORDER_RADIUS = 14;
 const CARD_W = 296;
 const CARD_H = 319;
-const IMAGE_H = 168;                        // top image area height
+const IMAGE_H = 168;
 
 const styles = {
+  // NEW: flex grid with wrap, 24px gaps, margin-top for spacing,
+  // and maxWidth = 3 cards + 2 gaps (296*3 + 24*2 = 936)
   grid: {
-    display: 'grid',
-    gridTemplateColumns: 'repeat(3, minmax(0, 1fr))',
+    display: 'flex',
+    flexWrap: 'wrap',
     gap: 24,
+    marginTop: 28,      // ← extra spacing from the text above
+    maxWidth: 936,      // ← locks default to 3 cards per row
   } as React.CSSProperties,
+
   card: {
     position: 'relative',
     width: CARD_W,
@@ -32,8 +37,9 @@ const styles = {
     background: BLACK,
     color: 'white',
     boxShadow: '0 10px 30px rgba(0,0,0,.25)',
+    flex: `0 0 ${CARD_W}px`,
   } as React.CSSProperties,
-  // dog-ear (folded corner)
+
   dogEar: {
     position: 'absolute',
     right: 10,
@@ -44,38 +50,40 @@ const styles = {
     clipPath: 'polygon(0 0, 100% 0, 100% 100%)',
     boxShadow: '0 0 0 2px rgba(0,0,0,.15) inset',
   } as React.CSSProperties,
-  // top image band, slightly indented to the right
+
   mediaWrap: {
     height: IMAGE_H,
-    marginLeft: 10, // the right-indent look
-    marginRight: 0,
+    marginLeft: 10,
     marginTop: 10,
-    marginBottom: 0,
     borderTopLeftRadius: 8,
     borderBottomLeftRadius: 8,
     overflow: 'hidden',
-    background: '#111', // behind placeholder
+    background: '#111',
   } as React.CSSProperties,
+
   mediaImg: {
     width: '100%',
     height: '100%',
-    objectFit: 'cover' as const,
+    objectFit: 'cover',
     display: 'block',
-  },
+  } as React.CSSProperties,
+
   placeholder: {
     width: '100%',
     height: '100%',
     background: BLACK,
   } as React.CSSProperties,
+
   bottom: {
-    position: 'absolute' as const,
+    position: 'absolute',
     left: 0,
     right: 0,
     bottom: 0,
     padding: '14px 16px 18px',
-    background: BLACK, // black panel
+    background: BLACK,
     color: 'white',
-  },
+  } as React.CSSProperties,
+
   badge: {
     display: 'inline-block',
     background: MP_PURPLE,
@@ -88,17 +96,20 @@ const styles = {
     padding: '8px 10px',
     marginBottom: 12,
   } as React.CSSProperties,
+
   title: {
     fontSize: 28,
     fontWeight: 700,
     lineHeight: 1.05,
     margin: 0,
   } as React.CSSProperties,
+
   blurb: {
     marginTop: 6,
     opacity: 0.85,
     fontSize: 14,
   } as React.CSSProperties,
+
   link: {
     textDecoration: 'none',
     color: 'inherit',
