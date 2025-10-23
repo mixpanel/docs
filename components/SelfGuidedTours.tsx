@@ -9,44 +9,30 @@ type Card = {
   badge: string;
   title: string;
   blurb?: string;
-  img?: string;             // optional image
-  href?: string;            // fallback URL
-  navatticUrl?: string;     // Navattic demo link
-  navatticTitle?: string;   // Navattic popup title
+  img?: string;          // keep for card 1 image
+  href?: string;         // optional link fallback
+  navatticUrl?: string;  // if present, opens Navattic popup
+  navatticTitle?: string;
 };
 
 export default function SelfGuidedTours({ cards }: { cards: Card[] }) {
   return (
     <>
-      {/* ✅ Load Navattic embed script once (client-side only) */}
-      <Script
-        src="https://js.navattic.com/embeds.js"
-        strategy="afterInteractive"
-      />
+      {/* Load Navattic once, after hydration */}
+      <Script src="https://js.navattic.com/embeds.js" strategy="afterInteractive" />
 
-      <div
-        className={clsx(
-          'mt-8 mx-auto w-full max-w-6xl px-4',
-        )}
-      >
-        {/* Responsive grid — 1/2/3 columns */}
-        <ul
-          className={clsx(
-            'grid gap-6',
-            'grid-cols-1 sm:grid-cols-2 lg:grid-cols-3',
-          )}
-        >
+      <div className="mx-auto mt-8 w-full max-w-7xl px-4">
+        {/* 1 / 2 / 3 column responsive grid */}
+        <ul className="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3">
           {cards.map((card, i) => {
-            const Wrapper: React.ElementType = 'a';
-            const isNavattic = Boolean(card.navatticUrl);
+            const Wrapper: any = 'a';
+            const isNav = !!card.navatticUrl;
 
-            const wrapperProps = isNavattic
+            const wrapperProps = isNav
               ? {
                   href: '#',
                   'data-navattic-open': card.navatticUrl,
-                  ...(card.navatticTitle
-                    ? { 'data-navattic-title': card.navatticTitle }
-                    : {}),
+                  ...(card.navatticTitle ? { 'data-navattic-title': card.navatticTitle } : {}),
                   onClick: (e: React.MouseEvent) => e.preventDefault(),
                 }
               : { href: card.href ?? '#' };
@@ -56,10 +42,10 @@ export default function SelfGuidedTours({ cards }: { cards: Card[] }) {
                 <Wrapper
                   {...wrapperProps}
                   className={clsx(
-                    'group block overflow-hidden rounded-2xl border-2 shadow-md',
+                    'group relative block overflow-hidden rounded-2xl border-2 shadow-md',
                     'border-[#8B5CF6]/60 hover:border-[#8B5CF6]',
                     'bg-[#0B0A13] text-white',
-                    'transition-transform hover:-translate-y-1',
+                    'transition-transform will-change-transform hover:-translate-y-1'
                   )}
                 >
                   {/* Dog-ear */}
@@ -68,37 +54,37 @@ export default function SelfGuidedTours({ cards }: { cards: Card[] }) {
                     style={{ clipPath: 'polygon(100% 0, 0 0, 100% 100%)' }}
                   />
 
-                  {/* Media (image or placeholder) */}
+                  {/* Media area: fixed height to prevent layout blow-ups */}
                   <div className="relative h-[160px] overflow-hidden">
+                    {/* indent the image to the right a bit */}
                     <div className="absolute inset-y-0 left-3 right-0">
                       {card.img ? (
                         <Image
                           src={card.img}
                           alt={card.title}
                           fill
-                          className="object-cover object-left"
-                          sizes="(min-width: 1024px) 320px, 45vw"
+                          className="h-full w-full object-cover object-left"
+                          sizes="(min-width:1024px) 320px, (min-width:640px) 45vw, 90vw"
+                          priority={i === 0}
                         />
                       ) : (
-                        <div className="h-full w-full bg-black/90" />
+                        <div className="h-full w-full bg-black" />
                       )}
                     </div>
                   </div>
 
-                    {/* Bottom section */}
-                    <div className="relative z-[1] bg-black p-4 md:p-5">
-                      <span className="inline-block rounded-md bg-[#8B5CF6] px-2.5 py-1 text-[11px] font-semibold tracking-wide text-white">
-                        {card.badge}
-                      </span>
-                      <h3 className="mt-3 text-[22px] md:text-[24px] font-semibold leading-tight">
-                        {card.title}
-                      </h3>
-                      {card.blurb ? (
-                        <p className="mt-1 text-sm md:text-[15px] text-white/80">
-                          {card.blurb}
-                        </p>
-                      ) : null}
-                    </div>
+                  {/* Bottom band */}
+                  <div className="relative z-[1] bg-black p-4 md:p-5">
+                    <span className="inline-block rounded-md bg-[#8B5CF6] px-2.5 py-1 text-[11px] font-semibold tracking-wide text-white">
+                      {card.badge}
+                    </span>
+                    <h3 className="mt-3 text-[22px] font-semibold leading-tight md:text-[24px]">
+                      {card.title}
+                    </h3>
+                    {card.blurb ? (
+                      <p className="mt-1 text-sm text-white/80 md:text-[15px]">{card.blurb}</p>
+                    ) : null}
+                  </div>
                 </Wrapper>
               </li>
             );
