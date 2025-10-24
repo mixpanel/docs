@@ -21,7 +21,7 @@ const MP_PURPLE = 'rgb(139 92 246)';
 const BORDER_RADIUS = 14;
 const CARD_W = 296;
 const CARD_H = 319;
-const IMAGE_H = 140; // your latest working height
+const IMAGE_H = 140;
 const IMAGE_W = 276;
 
 const styles = {
@@ -64,7 +64,6 @@ const styles = {
     width: IMAGE_W,
     marginLeft: 16,
     marginRight: -16,
-    marginTop: 0,
     borderTopLeftRadius: 8,
     borderBottomLeftRadius: 8,
     overflow: 'hidden',
@@ -141,13 +140,7 @@ function CardView({ c }: { c: Card }) {
       <div style={styles.dogEar} aria-hidden />
       <div style={styles.mediaWrap}>
         {c.img ? (
-          <Image
-            src={c.img}
-            alt=""
-            fill
-            style={styles.mediaImg}
-            priority={false}
-          />
+          <Image src={c.img} alt="" fill style={styles.mediaImg} priority={false} />
         ) : (
           <div style={styles.placeholder} />
         )}
@@ -203,11 +196,10 @@ export default function SelfGuidedTours({ cards }: Props) {
         ))}
       </div>
 
-      {/* Light/Dark theme variables */}
+      {/* Theming */}
       <style jsx global>{`
         :root {
-          
-          --sgt-card-bg: #ffffff;
+          --sgt-card-bg: #0a0a0b;
           --sgt-title: #ffffff;
           --sgt-blurb: rgba(255, 255, 255, 0.85);
           --sgt-border: ${MP_PURPLE};
@@ -217,21 +209,36 @@ export default function SelfGuidedTours({ cards }: Props) {
           --sgt-badge-fg: #ffffff;
         }
 
+        /* Handles both OS preference and explicit Mixpanel <html class="light"> */
         @media (prefers-color-scheme: light) {
           :root,
           html.light,
-          html[class*="light"],
-          [data-theme="light"] {
-            --sgt-card-bg: #ffffff;           /* pure white for clarity */
+          html[class*='light'],
+          [data-theme='light'] {
+            --sgt-card-bg: #ffffff;
             --sgt-title: #111111;
             --sgt-blurb: #333333;
             --sgt-border: ${MP_PURPLE};
-            --sgt-media-bg: #e7e7ec;          /* lighter than before (#d8d8dd) */
+            --sgt-media-bg: #e9e9ef;
             --sgt-dogear: ${MP_PURPLE};
             --sgt-badge-bg: ${MP_PURPLE};
-            --sgt-badge-fg: #ffffff;          /* white text on purple */
+            --sgt-badge-fg: #ffffff;
           }
-        }        
+        }
+
+        /* Ensure html.light overrides everything if class is present */
+        html.light,
+        html[class*='light'],
+        [data-theme='light'] {
+          --sgt-card-bg: #ffffff;
+          --sgt-title: #111111;
+          --sgt-blurb: #333333;
+          --sgt-border: ${MP_PURPLE};
+          --sgt-media-bg: #e9e9ef;
+          --sgt-dogear: ${MP_PURPLE};
+          --sgt-badge-bg: ${MP_PURPLE};
+          --sgt-badge-fg: #ffffff;
+        }
 
         .sgt-card {
           background: var(--sgt-card-bg);
