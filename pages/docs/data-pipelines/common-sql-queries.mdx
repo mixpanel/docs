@@ -86,22 +86,3 @@ ORDER BY
  time
  ```
 
- ### Expanding `properties` JSON for specific events
-
-```sql
-SELECT
- event_name,
- KEY AS property_key,
-FROM
- `<your dataset>.mp_master_event`
-CROSS JOIN
- UNNEST(JSON_KEYS(properties)) AS KEY
-WHERE
- event_name = 'Page View'
-GROUP BY
- 1,
- 2
-ORDER BY
- 2 ASC
-```
-
