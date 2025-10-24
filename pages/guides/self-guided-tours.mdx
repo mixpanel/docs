@@ -1,49 +1,93 @@
-import SelfGuidedTours from '../../components/SelfGuidedTours'
+import SelfGuidedTours from '@/components/SelfGuidedTours';
 
 # Self-Guided Product Tours
 
-Discover Mixpanel’s features through quick, self-guided tours.   
-Click on any card below to launch an interactive walkthrough.
+Discover Mixpanel’s core features through quick, self-guided tours.  
+Select any card below to explore interactive walkthroughs of key workflows.
+
+<br />
 
 <SelfGuidedTours
   cards={[
     {
       badge: 'PRODUCT OVERVIEWS',
-      title: 'Launch an Experiment',
-      blurb: 'Explore how to setup experiments in Mixpanel',
+      title: '2-minute mini product tour',
+      blurb: 'Launch an Experiment',
       img: '/navattic/launch-an-experiment.png',
-      navatticOpen: 'https://capture.navattic.com/cmfkxwfa5000004lc8408f5wi',
+      navatticOpen: 'cmfkxwfa5000004lc8408f5wi',
       navatticTitle: 'Launch an Experiment',
     },
     {
       badge: 'PRODUCT OVERVIEWS',
       title: 'Example Walkthrough',
       blurb: 'Preview loads on click',
-      navatticOpen: 'https://capture.navattic.com/YOUR_SECOND_DEMO_ID',
+      img: '/navattic/placeholder-1.png',
+      navatticOpen: 'REPLACE_WITH_DEMO_ID',
     },
     {
       badge: 'CRM',
       title: 'Customizing the Lead Page',
       blurb: 'Preview loads on click',
-      navatticOpen: 'https://capture.navattic.com/YOUR_THIRD_DEMO_ID',
+      img: '/navattic/placeholder-2.png',
+      navatticOpen: 'REPLACE_WITH_DEMO_ID',
     },
+    // More examples (these can have no image to show black placeholder)
     {
       badge: 'AUTOMATION',
       title: 'How to build a Workflow',
       blurb: 'Preview loads on click',
-      navatticOpen: 'https://capture.navattic.com/YOUR_FOURTH_DEMO_ID',
+      navatticOpen: 'REPLACE_WITH_DEMO_ID',
     },
     {
       badge: 'REPORTING',
       title: 'Opportunity Pipeline',
       blurb: 'Preview loads on click',
-      navatticOpen: 'https://capture.navattic.com/YOUR_FIFTH_DEMO_ID',
+      navatticOpen: 'REPLACE_WITH_DEMO_ID',
     },
     {
       badge: 'COMMUNICATION',
       title: 'Using the Power Dialer',
       blurb: 'Preview loads on click',
-      navatticOpen: 'https://capture.navattic.com/YOUR_SIXTH_DEMO_ID',
+      navatticOpen: 'REPLACE_WITH_DEMO_ID',
     },
   ]}
 />
+
+<div style={{ textAlign: 'center', marginTop: '28px' }}>
+  <a
+    href="https://mixpanel.com/contact-us/sales/"
+    className="sgt-cta"
+    style={{
+      display: 'inline-flex',
+      alignItems: 'center',
+      gap: '8px',
+      fontWeight: 700,
+      fontSize: '14px',
+      padding: '10px 14px',
+      borderRadius: '10px',
+      border: '1px solid rgb(139 92 246)',
+      color: 'var(--sgt-title)',
+      background: 'var(--sgt-card-bg)',
+      textDecoration: 'none',
+      boxShadow: '0 4px 16px rgba(0,0,0,.12)',
+      transition: 'transform .2s ease, box-shadow .2s ease, background .2s ease',
+    }}
+  >
+    Want a guided demo instead?
+    <span aria-hidden>→</span>
+  </a>
+</div>
+
+<style jsx global>{`
+  /* Reuse component hover/focus affordances for CTA */
+  .sgt-cta:hover {
+    transform: translateY(-1px);
+    box-shadow: 0 8px 20px rgba(139, 92, 246, 0.18);
+    background: rgba(139, 92, 246, 0.08);
+  }
+  .sgt-cta:focus-visible {
+    outline: 2px solid rgb(139 92 246);
+    outline-offset: 3px;
+    border-radius: 10px;
+  }
+`}</style>
