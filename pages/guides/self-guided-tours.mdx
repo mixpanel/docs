@@ -1,5 +1,4 @@
 import SelfGuidedTours from '../../components/SelfGuidedTours'
-import Script from 'next/script'
 
 # Self-Guided Product Tours
 
@@ -25,9 +24,6 @@ Select any card below to explore interactive walkthroughs of key workflows.
   - If `href` is provided (and `navatticOpen` is not), the card becomes a link.
   - Images should live under /public/navattic/ for easy referencing.
 */}
-
-{/* Navattic loader (once per page) */}
-<Script src="https://js.navattic.com/embeds.js" strategy="afterInteractive" />
 
 <SelfGuidedTours
   cards={[
