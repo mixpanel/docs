@@ -174,21 +174,25 @@ function CardView({ c }: { c: Card }) {
 
   // Use Navattic popup if navatticOpen is provided
   if (c.navatticOpen) {
-    return (
-      <div style={styles.card} className="sgt-card">
-        <button
-          type="button"
-          style={styles.clickable}
-          className="sgt-click"
-          data-navattic-open={c.navatticOpen}
-          data-navattic-title={c.navatticTitle || c.title}
-        >
-          {inside}
-        </button>
-      </div>
-    );
-  }
-
+      const navatticUrl = c.navatticOpen.startsWith('http')
+        ? c.navatticOpen
+        : `https://capture.navattic.com/${c.navatticOpen}`;
+  
+      return (
+        <div style={styles.card} className="sgt-card">
+          <button
+            type="button"
+            style={styles.clickable}
+            className="sgt-click"
+            data-navattic-open={navatticUrl}
+            data-navattic-title={c.navatticTitle || c.title}
+          >
+            {inside}
+          </button>
+        </div>
+      );
+    }
+  
   // Fallback to href links if needed
   if (c.href) {
     return (
