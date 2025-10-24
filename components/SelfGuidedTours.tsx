@@ -206,7 +206,8 @@ export default function SelfGuidedTours({ cards }: Props) {
       {/* Light/Dark theme variables */}
       <style jsx global>{`
         :root {
-          --sgt-card-bg: #0a0a0b;
+          
+          --sgt-card-bg: #ffffff;
           --sgt-title: #ffffff;
           --sgt-blurb: rgba(255, 255, 255, 0.85);
           --sgt-border: ${MP_PURPLE};
