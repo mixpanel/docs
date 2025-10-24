@@ -41,7 +41,8 @@ const styles = {
     overflow: 'hidden',
     border: `2px solid ${MP_PURPLE}`,
     boxShadow: '0 10px 30px rgba(0,0,0,.25)',
-    transition: 'background 0.3s ease, color 0.3s ease',
+    transition:
+      'transform .25s ease, box-shadow .25s ease, background .3s ease, color .3s ease',
   } as React.CSSProperties,
 
   dogEar: {
@@ -85,9 +86,10 @@ const styles = {
     background: 'var(--sgt-media-bg)',
   } as React.CSSProperties,
 
+  // micro spacing: IMAGE_H + 22 (was +18)
   bottom: {
     position: 'absolute' as const,
-    top: IMAGE_H + 18,
+    top: IMAGE_H + 22,
     left: 0,
     right: 0,
     bottom: 0,
@@ -95,12 +97,13 @@ const styles = {
     zIndex: 3,
   },
 
+  // bolder badge
   badge: {
     display: 'inline-block',
     background: 'var(--sgt-badge-bg)',
     color: 'var(--sgt-badge-fg)',
-    fontWeight: 700,
-    letterSpacing: '.02em',
+    fontWeight: 800,
+    letterSpacing: '.01em',
     fontSize: 12,
     lineHeight: 1,
     borderRadius: 8,
@@ -160,6 +163,7 @@ function CardView({ c }: { c: Card }) {
         <button
           type="button"
           style={styles.clickable}
+          className="sgt-click"
           data-navattic-open={c.navatticOpen}
           data-navattic-title={c.navatticTitle || c.title}
         >
@@ -172,7 +176,7 @@ function CardView({ c }: { c: Card }) {
   if (c.href) {
     return (
       <div style={styles.card} className="sgt-card">
-        <a href={c.href} style={styles.clickable}>
+        <a href={c.href} style={styles.clickable} className="sgt-click">
           {inside}
         </a>
       </div>
@@ -189,6 +193,7 @@ function CardView({ c }: { c: Card }) {
 export default function SelfGuidedTours({ cards }: Props) {
   return (
     <>
+      {/* Navattic embed loader */}
       <Script src="https://js.navattic.com/embeds.js" strategy="afterInteractive" />
       <div style={styles.grid}>
         {cards.map((c, i) => (
@@ -196,7 +201,7 @@ export default function SelfGuidedTours({ cards }: Props) {
         ))}
       </div>
 
-      {/* Theming */}
+      {/* Theme + interactions (hover/focus) */}
       <style jsx global>{`
         :root {
           --sgt-card-bg: #0a0a0b;
@@ -209,7 +214,6 @@ export default function SelfGuidedTours({ cards }: Props) {
           --sgt-badge-fg: #ffffff;
         }
 
-        /* Handles both OS preference and explicit Mixpanel <html class="light"> */
         @media (prefers-color-scheme: light) {
           :root,
           html.light,
@@ -226,7 +230,6 @@ export default function SelfGuidedTours({ cards }: Props) {
           }
         }
 
-        /* Ensure html.light overrides everything if class is present */
         html.light,
         html[class*='light'],
         [data-theme='light'] {
@@ -244,6 +247,23 @@ export default function SelfGuidedTours({ cards }: Props) {
           background: var(--sgt-card-bg);
           color: var(--sgt-title);
           border-color: var(--sgt-border);
+        }
+
+        /* Hover lift/glow */
+        .sgt-card:hover {
+          transform: translateY(-2px);
+          box-shadow: 0 8px 24px rgba(139, 92, 246, 0.25);
+        }
+
+        /* Keyboard focus */
+        .sgt-card:focus-within {
+          outline: 2px solid ${MP_PURPLE};
+          outline-offset: 2px;
+        }
+        .sgt-click:focus-visible {
+          outline: 2px solid ${MP_PURPLE};
+          outline-offset: 3px;
+          border-radius: 10px;
         }
       `}</style>
     </>
