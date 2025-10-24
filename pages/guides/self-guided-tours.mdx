@@ -31,7 +31,6 @@ Select any card below to explore interactive walkthroughs of key workflows.
       img: '/navattic/placeholder-2.png',
       navatticOpen: 'REPLACE_WITH_DEMO_ID',
     },
-    // More examples (these can have no image to show black placeholder)
     {
       badge: 'AUTOMATION',
       title: 'How to build a Workflow',
@@ -61,11 +60,11 @@ Select any card below to explore interactive walkthroughs of key workflows.
       display: 'inline-flex',
       alignItems: 'center',
       gap: '8px',
-      fontWeight: 700,
-      fontSize: '14px',
+      fontWeight: 600,         // was 700
+      fontSize: '15px',        // was 14px
       padding: '10px 14px',
       borderRadius: '10px',
-      border: '1px solid rgb(139 92 246)',
+      border: '1px solid rgb(139, 92, 246)',
       color: 'var(--sgt-title)',
       background: 'var(--sgt-card-bg)',
       textDecoration: 'none',
@@ -79,14 +78,13 @@ Select any card below to explore interactive walkthroughs of key workflows.
 </div>
 
 <style jsx global>{`
-  /* Reuse component hover/focus for CTA */
   .sgt-cta:hover {
     transform: translateY(-1px);
     box-shadow: 0 8px 20px rgba(139, 92, 246, 0.18);
     background: rgba(139, 92, 246, 0.08);
   }
   .sgt-cta:focus-visible {
-    outline: 2px solid rgb(139 92 246);
+    outline: 2px solid rgb(139, 92, 246);
     outline-offset: 3px;
     border-radius: 10px;
   }
