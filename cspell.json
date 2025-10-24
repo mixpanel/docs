@@ -67,6 +67,7 @@
     "callout",
     "Cartfile",
     "CCPA",
+    "chatbots",
     "checksumming",
     "chmln",
     "Clevertap",
@@ -223,6 +224,7 @@
     "screenflows",
     "searchbox",
     "serviceaccount",
+    "sessionreplay",
     "SFMC",
     "shlex",
     "shopify",
@@ -299,7 +301,9 @@
     "yourdomain",
     "yourfullname",
     "YOURPROJECT",
-    "zzhaystackzz"
+    "zzhaystackzz",
+    "NORTHAMERICA",
+    "SOUTHAMERICA"
   ],
   "dictionaries": [
     "custom-dictionary"
