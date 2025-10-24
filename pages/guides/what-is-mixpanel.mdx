@@ -1,75 +1,118 @@
-import ExtendedButton from "/components/ExtendedButton/ExtendedButton";
+# Mixpanel Introduction
 
-# What is Mixpanel?
+Mixpanel is a **digital analytics platform** that helps teams continuously improve their products by turning data into action. At its core, Mixpanel supports a **continuous innovation loop**—helping you observe what users do, analyze why it happens, decide what to do next, and act on those insights.
 
-Mixpanel will help you better understand your customers and answer questions about your product.
-It enables you to track how users engage with your product and analyze this data with interactive reports
-that let you query and visualize the results with just a few clicks.
+> **Why it matters:** Teams use Mixpanel to learn faster, align decisions across functions, and measure the impact of every product change.
 
-Mixpanel is built on three key concepts: [**Events**](#events), [**Users**](#users), and [**Properties**](#properties).
+---
+
+## See Mixpanel in Action
 
 <br></br>
-<div
-  style={{
-    position: "relative",
-    paddingBottom: "64.90384615384616%",
-    height: 0,
-  }}
->
-  <p>
-    <iframe
-      src="https://www.youtube.com/embed/sRQCfmvh3vg"
-      frameBorder="0"
-      webkitallowfullscreen="true"
-      mozallowfullscreen="true"
-      allowFullScreen
-      style={{
-        position: "absolute",
-        top: 0,
-        left: 0,
-        width: "100%",
-        height: "100%",
-        borderRadius: "16px",
-      }}
-    ></iframe>
-  </p>
+<section id="video" aria-label="Mixpanel overview video" style={{ padding: '8px 16px 32px' }}>
+  <div
+    style={{
+      display: 'flex',
+      flexWrap: 'wrap',
+      gap: 24,
+      alignItems: 'center',
+    }}
+  >
+    {/* Left: video with a min width so it wraps when narrow */}
+    <div style={{ flex: '1 1 480px', minWidth: 320 }}>
+      <div
+        style={{
+          position: 'relative',
+          paddingBottom: '56.25%',
+          height: 0,
+          overflow: 'hidden',
+          borderRadius: '16px',
+          boxShadow: '0 4px 20px rgba(0,0,0,0.08)',
+        }}
+      >
+        <iframe
+          title="Mixpanel Overview"
+          src="https://www.youtube.com/embed/sRQCfmvh3vg"
+          frameBorder="0"
+          allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+          allowFullScreen
+          style={{ position: 'absolute', top: 0, left: 0, width: '100%', height: '100%', border: 0 }}
+        />
+      </div>
+    </div>
+
+    {/* Right: text with a flexible basis */}
+    <aside style={{ flex: '1 1 320px', minWidth: 280 }}>
+      <h2 style={{ marginTop: 0 }}>**Mixpanel Overview**</h2>
+      <p>
+        In this 5-minute overview, learn how Mixpanel powers the continuous innovation loop––from observation to impact.
+      </p>
+<br></br>
+      <a href="https://youtu.be/sRQCfmvh3vg?si=oLrnLyO2ppWK9mzY" style={{ fontWeight: 600 }}>
+        Open in YouTube →
+      </a>
+    </aside>
+  </div>
+</section>
+
+---
+
+## Mixpanel Features That Power Continuous Innovation
+
+<div style={{ display: 'flex', flexWrap: 'wrap', alignItems: 'center', gap: '24px', margin: '32px 0' }}>
+  <div style={{ flex: '1 1 420px', minWidth: '280px' }}>
+
+Mixpanel is built around a simple but powerful framework for continuous improvement: **Observe → Analyze → Decide → Act (OADA)**.
+
+Each stage in the OADA framework connects directly to Mixpanel’s tools, helping you move from data to observation to action–—all in one platform.
+
+  </div>
+
+  <div style={{ flex: '1 1 300px', textAlign: 'center' }}>
+
+![OADA Loop diagram](/oada-loop-simple-wide-fcf9fa.png)
+
+*The cycle of continuous innovation.*
+
+  </div>
 </div>
 
-## Concepts
 
-Before you get started, you should know three Mixpanel concepts:
+| 👀 **Observe** | 📊 **Analyze** | 💡 **Decide** | 🚀 **Act** |
+|---|---|---|---|
+| See what’s happening in your product with [Session Replay](/docs/session-replay), [Heatmaps](/docs/session-replay/heatmaps), [Autocapture](/docs/tracking-methods/autocapture), and [Alerts](/docs/features/alerts). | Explore [Insights](/docs/reports/insights), [Funnels](/docs/reports/funnels), [Flows](/docs/reports/flows), [Retention](/docs/reports/retention), and [Cohorts](/docs/users/cohorts) to find what moves your metrics. | Align on what to change next with [Metric Trees](/docs/metric_tree), [Boards](/docs/boards), [Annotations](/docs/features/annotations), and shared insights. | Measure impact with [Experiments](/docs/experiments) and ship improvements with [Feature Flags](/docs/featureflags). |
 
-    - **Events** are actions that happen in your product
-    - **Users** are the people who use your product
-    - **Properties** are the attributes of your users and events
+All of this is powered by Mixpanel’s modern data foundation—–bringing together AI-assisted analysis through features like [MCP Server](/docs/features/mcp), robust [data governance](/docs/data-governance) for accuracy and trust, and built-in collaboration tools that help teams move from insight to action faster.
 
-### Events
+**Learn more:** [Go deeper on the OADA Loop →](/guides/oada-loop)
 
-An event is a data point that represents an interaction between a user and your product. Events can be a wide range of interactions.
+---
 
-Imagine you run a cafe where customers can purchase a coffee via an app. Each purchase is an event that can be tracked in Mixpanel.
+## Mixpanel Data Model
 
-![image](/event-1.svg)
+Everything in Mixpanel starts with **events**––the building blocks of your data model.
+   
+An event represents something a **user** does (like *Signed Up*, *Viewed a Product*, or *Completed Purchase*). Each event can include **properties** that add context, such as the user’s plan type, location, or device. Optionally, you can analyze data at the group level using [Group Analytics](/docs/data-structure/group-analytics).
 
-### Users
+![Data Model](/Data_Model_with_Group_Analytics.png)
 
-On the other side of an event is a user — the specific individual who completed an interaction with your product.
+Together, these events and properties form a flexible data model that mirrors how people actually use your product. Once instrumented, you can analyze this data instantly—–without writing SQL or waiting on an analyst.
 
-Each user has a unique identifier that you can use to track their activity. This identifier can be an email address, a username, or a unique ID. Mixpanel uses a unique ID to identify users.
+**Learn more:** [Dive deeper into how Mixpanel structures data →](/docs/data-structure/concepts)
 
-![image](/events-and-users.svg)
+---
 
-### Properties
+## Keep Learning
 
-You can track additional information about **users** and **events**. These details are called **properties**.
+Keep building your Mixpanel expertise with these resources designed to help you learn, connect, and put insights into action.
 
-An **Event Property** describes an event. For a coffee purchase, the event would be _Purchased Item_ and the event properties could be _type_ (in this case a Coffee) and _price_ (in this case $2.50).
+| Resource | Purpose | Link |
+|-----------|--------------|------|
+| **Community** | Connect with other Mixpanel users, share ideas, and learn how peers are tackling similar challenges. | [Open →](https://community.mixpanel.com/) |
+| **Developer Docs** | Build and extend Mixpanel with SDKs, APIs, and advanced implementation guides. | [Open →](https://developer.mixpanel.com/reference/overview) |
+| **Docs** | Explore product capabilities, setup guides, and detailed feature references. | [Open →](https://docs.mixpanel.com/) |
+| **Events** | Join live sessions and webinars to explore new features, use cases, and expert-led best practices. | [Open →](https://mixpanel.com/events) |
+| **Guides** | Apply Mixpanel best practices to real-world workflows and use cases. | 📍 You are here |
+| **Mixpanel University** | Follow guided learning paths to validate your skills and earn certifications. | [Open →](https://mixpanel.com/university/) |
 
-![image](/event.svg)
-
-A **User Property** describes a User. This could be their name, email, age, etc.
-
-![image](/user-profile.svg)
-
-Properties allow you to create groups of users (aka [cohorts](/docs/users/cohorts)) and also enable you to filter for certain events or users. These
-powerful features make it easy to identify trends and new customer insights.
+Wherever you are in your Mixpanel journey, these resources will help you keep learning, stay connected, and keep improving.
