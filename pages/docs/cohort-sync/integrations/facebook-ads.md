@@ -1,11 +1,10 @@
 # Facebook Ads
 
-
 ## Overview
 
 Export Mixpanel cohorts to Facebook Ads to use targeted advertisements in Facebook. Manage the Facebook Ads integration from the Mixpanel integrations page. The integration currently supports data from Mixpanel into Facebook Business.
 
->You must have a Facebook Business account connected to [Business Manager](https://audience.42matters.com/blog/how-to-connect-your-facebook-ad-account-to-business-manager-to-use-custom-audiences) to use this integration.
+> You must have a Facebook Business account connected to [Business Manager](https://audience.42matters.com/blog/how-to-connect-your-facebook-ad-account-to-business-manager-to-use-custom-audiences) to use this integration.
 
 ## Permissions
 
@@ -31,11 +30,11 @@ Follow these steps to enable the integration with Facebook Ads:
 
 ## Export a Cohort
 
-To export a cohort to Facebook Ads: 
+To export a cohort to Facebook Ads:
 
 1. Navigate to Cohorts by clicking in the **Data Management** tab and select **Cohorts**.
 
-2. Select the cohort that you want to export. Click on the three dot icon on the right side of the cohort. 
+2. Select the cohort that you want to export. Click on the three dot icon on the right side of the cohort.
 
 3. Click **Export to Facebook**. Select either a one-time sync or a dynamic sync. Click **Start Sync**.
 
@@ -46,14 +45,16 @@ To export a cohort to Facebook Ads:
 This integration supports two types of exports: one-time export and dynamic sync. When you generate a one-time export or a dynamic sync, it overwrites the previous export with an updated export that reflects users who qualify for the cohort at the time of export.
 
 ### One-Time Export
+
 In a one-time export, Mixpanel sends Facebook a static export of users who currently qualify for the cohort. The cohort data will not be updated in Facebook after a one-time export.
 
 ### Dynamic Sync
+
 In a dynamic sync, Mixpanel initiates a sync between a cohort and Facebook every two hours. The exported cohort will be updated every two hours to reflect the most recent list of users in a cohort.
 
 ## Select the Cohort in Facebook Ads
 
-You must log in to Facebook Business Manager to use the Mixpanel Cohort in Facebook Ads. Select the **Menu** in Facebook Business Manager top navigation. 
+You must log in to Facebook Business Manager to use the Mixpanel Cohort in Facebook Ads. Select the **Menu** in Facebook Business Manager top navigation.
 
 Click on **Audiences**.
 
@@ -63,11 +64,11 @@ The Mixpanel Cohort is available in the Audience list. Cohorts are exported to F
 
 ## Data Requirement
 
-Facebook uses email addresses to match users from the cohort with users from their system. If they do not have an email address, they will instead use either a combination of phone number or first and last name or the device advertising ID that you choose when setting up the connection.
+Meta uses _email addresses_ as the primary identifier to match users in your cohort with users in their system. If an email address is not available, Meta may instead attempt to match using other identifiers such as a _phone number_, _first and last name_, or a _device advertising ID_ (depending on your connection setup).
 
-In order to use this integration, you must set $email as a user profile property or have the advertising ID. In addition to email address, Mixpanel will send a first name user profile property, a last name user profile property, a phone number user property, an advertising id user property and the distinct id. 
+To use this integration, each user profile must include either an _email address_ or a _device advertising ID_. In addition to the email (if present), your system will send the following user profile properties (if available): first name, last name, phone number, advertising ID, and distinct_id. No other user properties will be exported.
 
-Facebook excludes cohort members from the audience if they are unable to match them with a user in their system. An inequality between the number of users in the Facebook audience and Mixpanel cohort indicates that Facebook was unable to find the user.
+If Meta is unable to match a cohort member with a user in their system, that member will be excluded from the resulting Meta audience. A lower count in the Meta audience compared to your cohort indicates that some users could not be matched.
 
 ## Troubleshooting Errors
 
@@ -76,8 +77,6 @@ Below are some common blocking errors (e.g. Error Message: Invalid OAuth 2.0 Acc
 #### Login Token Expired. Please disconnect and reconnect from Integrations Page.
 
 [Facebook tokens expire after 60 days of inactivity](https://developers.facebook.com/docs/facebook-login/auth-vs-data/). Users will have to log in again to resume the cohort exports.
-
- 
 
 #### (#200) The current user can not update audience XXXXXXXXXXX
 
@@ -106,5 +105,3 @@ Please disable two factor authentication and re-establish the connection from th
 #### (#2654) Customer List Audiences Are Not Available: Ad accounts owned by businesses new to Facebook Products can create customer file Custom Audiences after several weeks of following our policies.
 
 Please contact Facebook support to get this feature enabled for you.
-
-
