@@ -294,3 +294,4 @@
 /guides/launch/define-cohorts /guides/strategic-playbooks/onboarding-playbook/launch/define-cohorts
 /guides/launch/revenue-analytics /guides/strategic-playbooks/onboarding-playbook/launch/revenue-analytics
 /guides/beyond-onboarding /guides/strategic-playbooks/onboarding-playbook/beyond-onboarding
+/guides/what-is-mixpanel /guides/mixpanel-introduction
