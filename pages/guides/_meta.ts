@@ -3,7 +3,7 @@ export default {
 		"type": "separator",
 		"title": "DISCOVER MIXPANEL"
 	},
-	"what-is-mixpanel": "Mixpanel Introduction",
+	"mixpanel-introduction": "Mixpanel Introduction",
 	"changelog": {
     	title: "What's New? ↗",
     	href: "/changelogs",
