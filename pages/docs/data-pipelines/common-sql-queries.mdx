@@ -1,6 +1,8 @@
 # Common SQL Queries
 
-### Count of total events per day in Pacific timezone, deduplicated by `event_name`, `time`, `distinct_id`, and `insert_id`
+### Total daily count with deduplication logic and timezone adjustment 
+
+Events exported via pipelines (i.e. raw exports) can contain duplicates. Deduplication should be performed using 4 event properties: `event_name`, `time`, `distinct_id`, and `insert_id` (docs [here](https://developer.mixpanel.com/reference/event-deduplication)). This is an example of a total daily count, converted to a specific timezone and deduplicated.
 
 ```sql
 SELECT
@@ -17,7 +19,9 @@ ORDER BY
   1 ASC
 ```
 
-### Count of unique users per day (joining the events table with the identity mapping table) in Pacific timezone
+### Unique user count with user ID resolution
+
+Raw events may contain the original `distinct_id` associated with the user at the time of the event instead of the final canonical `distinct_id` for the user after authentication. The `mp_identity_mappings_data_view` contains mappings of the original `distinct_id`s to the resolved ones (i.e. canonical `distinct_id`s). You can use this mapping to make sure that the unique users calculations account for ID management and therefore more accurate.
 
 ```sql
 SELECT
@@ -61,7 +65,9 @@ LIMIT
   20
 ```
 
-### Querying duplicate events (by `event_name`, `time`, `distinct_id`, and `insert_id`)
+### Querying duplicate events 
+
+Raw exported events can contain duplicates. You can use these 4 event properties to identify duplicates: `event_name`, `time`, `distinct_id`, and `insert_id` (docs [here](https://developer.mixpanel.com/reference/event-deduplication)). This is an example of a query you can use to identify duplicate events in your raw data.
 
 ```sql
 SELECT
