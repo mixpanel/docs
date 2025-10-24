@@ -217,17 +217,20 @@ export default function SelfGuidedTours({ cards }: Props) {
         }
 
         @media (prefers-color-scheme: light) {
-          :root {
-            --sgt-card-bg: #f9f9fb;
+          :root,
+          html.light,
+          html[class*="light"],
+          [data-theme="light"] {
+            --sgt-card-bg: #ffffff;           /* pure white for clarity */
             --sgt-title: #111111;
             --sgt-blurb: #333333;
             --sgt-border: ${MP_PURPLE};
-            --sgt-media-bg: #d8d8dd;
+            --sgt-media-bg: #e7e7ec;          /* lighter than before (#d8d8dd) */
             --sgt-dogear: ${MP_PURPLE};
             --sgt-badge-bg: ${MP_PURPLE};
-            --sgt-badge-fg: #ffffff; /* white text for visibility */
+            --sgt-badge-fg: #ffffff;          /* white text on purple */
           }
-        }
+        }        
 
         .sgt-card {
           background: var(--sgt-card-bg);
