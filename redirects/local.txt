@@ -295,3 +295,12 @@
 /guides/launch/revenue-analytics /guides/strategic-playbooks/onboarding-playbook/launch/revenue-analytics
 /guides/beyond-onboarding /guides/strategic-playbooks/onboarding-playbook/beyond-onboarding
 /guides/what-is-mixpanel /guides/mixpanel-introduction
+/guides/guides-by-use-case/driving-product-innovation /guides/guides-by-use-case/engage-your-users/drive-product-innovation
+/guides/guides-by-use-case/ensuring-data-quality /guides/guides-by-workflow/ensure-data-quality
+/guides/guides-by-use-case/build-a-tracking-strategy /guides/guides-by-workflow/build-tracking-strategy
+/guides/strategic-playbooks/onboarding-playbook/launch/create-boards /guides/guides-by-topic/core-reports/create-boards
+/guides/strategic-playbooks/onboarding-playbook/launch/discover-insights /guides/guides-by-topic/core-reports/discover-insights
+/guides/strategic-playbooks/onboarding-playbook/launch/analyze-conversions /guides/guides-by-topic/core-reports/analyze-conversions
+/guides/strategic-playbooks/onboarding-playbook/launch/build-user-flows /guides/guides-by-topic/core-reports/build-user-flows
+/guides/strategic-playbooks/onboarding-playbook/launch/define-cohorts /guides/guides-by-topic/core-reports/define-cohorts
+/guides/strategic-playbooks/onboarding-playbook/launch/track-user-retention /guides/guides-by-topic/core-reports/track-user-retention

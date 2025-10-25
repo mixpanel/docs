@@ -15,6 +15,7 @@ export default {
 	},
 	"guides-by-use-case": "Guides by Use Case",
 	"guides-by-workflow": "Guides by Workflow",
+	"guides-by-topic": "Guides by Topic",
 	"best-practices-and-playbooks": {
 		"type": "separator",
 		"title": "BEST PRACTICES & PLAYBOOKS"

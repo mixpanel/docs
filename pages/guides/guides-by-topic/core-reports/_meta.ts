@@ -5,5 +5,4 @@ export default {
 	"build-user-flows": "Build User Flows",
 	"track-user-retention": "Track User Retention",
 	"define-cohorts": "Define Cohorts",
-	"revenue-analytics": "Revenue Analytics"
 }
