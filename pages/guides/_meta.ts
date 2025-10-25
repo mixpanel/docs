@@ -20,5 +20,6 @@ export default {
 		"type": "separator",
 		"title": "BEST PRACTICES & PLAYBOOKS"
 	},
+	"benchmarks": "Benchmarks",
 	"strategic-playbooks": "Strategic Playbooks"
 }
