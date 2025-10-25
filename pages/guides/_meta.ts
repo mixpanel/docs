@@ -3,7 +3,7 @@ export default {
 		"type": "separator",
 		"title": "DISCOVER MIXPANEL"
 	},
-	"what-is-mixpanel": "What is Mixpanel?",
+	"mixpanel-introduction": "Mixpanel Introduction",
 	"changelog": {
     	title: "What's New? ↗",
     	href: "/changelogs",
@@ -14,9 +14,12 @@ export default {
 		"title": "SOLUTIONS & WORKFLOWS"
 	},
 	"guides-by-use-case": "Guides by Use Case",
+	"guides-by-workflow": "Guides by Workflow",
+	"guides-by-topic": "Guides by Topic",
 	"best-practices-and-playbooks": {
 		"type": "separator",
 		"title": "BEST PRACTICES & PLAYBOOKS"
 	},
+	"benchmarks": "Benchmarks",
 	"strategic-playbooks": "Strategic Playbooks"
 }
