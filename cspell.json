@@ -276,6 +276,8 @@
     "urlencode",
     "urllib",
     "urlparse",
+    "Usership",
+    "usership",
     "utag",
     "utagdb",
     "Varbyte",
