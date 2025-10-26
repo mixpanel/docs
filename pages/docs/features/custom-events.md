@@ -30,6 +30,8 @@ In Lexicon, click on the **Custom Events** tab.
 
 ![image](https://github.com/mixpanel/docs/assets/2077899/fb4e1680-3b20-4f24-90de-0101cb097c54)
 
+Note: It may take several hours for recently created custom events to appear in Lexicon.
+
 Here you can see a list of all the custom events in the project. Click on the **name** of the event to edit its details.
 
 To delete a custom event, check the **box** beside the title of all the custom events you want to delete, then click the **delete** button at the top of the list.
