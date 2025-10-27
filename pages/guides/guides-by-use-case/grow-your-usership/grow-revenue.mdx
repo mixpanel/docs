@@ -1,1 +1,133 @@
-# Grow Revenue
+import { Callout, Steps } from 'nextra/components'
+
+# Understand and Grow Revenue with Mixpanel
+
+[Revenue analytics](/guides/strategic-playbooks/onboarding-playbook/launch/revenue-analytics) connects product usage to business results—helping you see which actions drive paying customers, where money comes from, and how to increase it.
+
+---
+
+## Before You Begin
+
+Revenue analytics in Mixpanel requires Warehouse Connectors. To analyze revenue, you will need to sync your billing or transactional data (for example, from your payment platform or internal finance systems) into Mixpanel using [Warehouse Connectors](/docs/tracking-methods/warehouse-connectors).
+
+After your warehouse is connected, set up the data structure that fits your business model:
+- **Transactional revenue** (e.g. one-time purchases, orders): Use [Mirror](/docs/tracking-methods/warehouse-connectors#mirror) to bring purchase events from your warehouse into Mixpanel. Mirror automatically syncs new transactions on a scheduled cadence. 
+- **Subscription-based revenue** (e.g. recurring plans, renewals): Use [Profile History](/docs/tracking-methods/warehouse-connectors#user-profiles) to track subscription changes, upgrades, and cancellations over time.
+
+Once your data source is connected, you can link behavioral data (from Mixpanel events) with business data (from Mirror, Profile History, and Warehouse Connectors) to understand how user actions drive revenue outcomes.
+
+📖 [Set up Warehouse Connectors →](/docs/tracking-methods/warehouse-connectors#step-1-connect-a-warehouse)
+
+<Callout type="info">
+    **Pro tip:** Make sure your revenue tables include shared identifiers such as `user_id` or `account_id` so Mixpanel can link purchases back to user actions.
+</Callout>
+
+---
+
+## What Is Revenue Analytics?
+
+Revenue analytics lets you connect product behavior to business impact. In Mixpanel, this means tracking events that represent value exchange (signups, upgrades, purchases, renewals) and tying them to monetary outcomes.
+
+When set up correctly, you can:
+- See which actions or features correlate with higher spend
+- Determine which in-trial actions lead to higher customer lifetime value after conversion
+- Understand retention patterns among paying customers
+- Align product and finance teams on shared metrics
+
+By following the steps in this guide, you will learn how to track, verify, and act on your revenue data to fuel growth.
+
+
+<Steps>
+
+### Capture the Right Revenue Events
+
+Once your warehouse connection is live, focus on the key moments that represent a value exchange—either when money is transferred or when a commitment to future revenue is established.
+
+- ✅ **Do** focus on meaningful milestones like `subscription_created`, `upgrade_completed`, or `payment_success`.
+- ❌ **Do not** log every possible interaction as a revenue event.
+
+Each event should include:
+- `amount` (numeric)
+- `currency` (ISO code)
+- `plan_type` (or equivalent)
+- `user_id` or `account_id`
+
+<Callout type="info">
+    **Pro tip:** For multi-currency transactions, include `base_currency` and `base_ccy_amount` so Mixpanel can convert all revenue to a single base currency for consistent reporting.
+</Callout>
+
+<Callout type="warning">
+    **Pitfall:** Missing any of these properties will prevent Mixpanel from rolling up revenue totals accurately.
+</Callout>
+
+### Verify and Define Your Revenue Data
+
+Before you begin analysis, confirm that Mixpanel is reading your data correctly.
+
+Steps to take:
+
+1. **Tag your revenue events** in Lexicon to make them discoverable and easy to reference across reports.
+
+2. **Check event integrity** — look for duplicate event names, missing properties, or inconsistent casing.
+
+3. **Compare totals** against your finance system or source-of-truth warehouse to confirm that imported revenue matches what you expect.
+
+Note: Warehouse Connector data updates on a scheduled sync (not in real time), so totals will reflect the most recent completed sync rather than live revenue changes.
+
+<Callout type="info">
+    **Pro tip:** Ask a finance or data engineer to confirm that your daily imports are up to date and correctly formatted.
+</Callout>
+
+📖 [Learn more about data validation →](/docs/tracking-best-practices/debugging)
+
+### Analyze What Drives Revenue
+
+Once your data is verified, you can start exploring what behaviors drive your business outcomes. There are many ways to analyze revenue in Mixpanel—each highlighting a different aspect of user value, conversion, or retention.
+
+One simple but powerful example is **Average Revenue Per User (ARPU).**
+
+**How it is calculated:**
+
+${ Average Revenue Per User (ARPU) = Sum of Revenue over time / Number of Unique Users}$
+
+
+Tracking ARPU helps you understand how much revenue each active user generates during a given period. It is a great starting point for comparing user segments, evaluating pricing changes, or measuring growth trends over time.
+
+**Tools to Help**
+
+- [Insights](/docs/reports/insights): Visualize ARPU trends and spot spikes or dips after product or pricing changes.
+- [Funnels](/docs/reports/funnels/funnels-overview): See how user behaviors along the purchase path affect downstream revenue.
+- [Cohorts](/docs/users/cohorts): Compare high-value cohorts (e.g. annual plan users) with lower-value ones to identify drivers of growth.
+
+
+**Example:** Explore how ARPU looks in practice in our [E-commerce demo project](https://mixpanel.com/s/300OIR). This sample dashboard uses an **Insights** report to calculate revenue per user over time, helping teams visualize revenue trends in real Mixpanel data.
+
+ARPU is just one approach to revenue analysis.
+
+- For transactional revenue, you can explore metrics like **Revenue per Purchase Event** or **Revenue by Feature Usage** to uncover which actions or products generate the most value.
+- For subscription-based revenue, try tracking **Recurring Revenue Change** or **Churned Revenue** to understand how upgrades, downgrades, and cancellations impact your overall recurring revenue growth.
+
+### Connect Insights to Action
+
+Revenue analytics is only valuable if it drives decisions. Once you have identified what moves the needle, turn insights into action across teams.
+
+- Share [Boards](/docs/boards) with product and growth teams to align on revenue drivers.
+- Set up [Alerts](/docs/features/alerts) to notify you of significant revenue drops or spikes.
+- Add [Annotations](/docs/features/annotations) to track launches, pricing changes, or campaigns that may explain revenue shifts.
+
+<Callout type="info">
+    **Pro tip:** When you notice a revenue dip or spike, dig into which user actions changed around the same time—and share those findings with product or marketing so they can act on them quickly.  Set up a quarterly review to ensure data stays current and your insights remain actionable.
+</Callout>
+
+</Steps>
+
+## Key Takeaways
+
+- Revenue analytics in Mixpanel requires Warehouse Connectors to import financial data.
+- Track only the key events that represent real value exchange.
+- Always verify totals and event integrity before drawing conclusions.
+- Use Funnels, Insights, and Cohorts to discover what behaviors drive conversions.
+- Refresh and share dashboards regularly to align business and product teams.
+
+
+📚 **Go deeper:** [Mixpanel Docs on Revenue Analytics](/guides/strategic-playbooks/onboarding-playbook/launch/revenue-analytics)

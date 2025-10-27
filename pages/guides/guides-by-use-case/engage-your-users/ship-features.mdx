@@ -37,7 +37,10 @@ Make sure to initialize the library with the config option `flags: true`.
 
 - ✅ **Do** confirm the SDK setup and flag evaluation flow with Engineering before creating a feature flag in Mixpanel.
 - ❌ **Do not** create flags in the UI before the SDK is integrated—the flag won't control behavior in your product until the SDK is configured.
-- ⚠️ **Pitfall:** Skipping SDK setup causes flags to appear “inactive” even if configured correctly in Mixpanel.
+
+<Callout type="warning">
+    **Pitfall:** Skipping SDK setup causes flags to appear “inactive” even if configured correctly in Mixpanel.
+</Callout>
 
 ---
 
@@ -101,7 +104,7 @@ After launch, use Mixpanel analytics to determine whether to expand, iterate, or
 
 Tools to Help
 - [Insights](/docs/reports/insights): Measure adoption and engagement by variant.
-- [Funnels](/docs/reports/funnels): Track conversion rates between control and variant users.
+- [Funnels](/docs/reports/funnels/funnels-overview): Track conversion rates between control and variant users.
 - [Boards](/docs/boards): Create a shared rollout dashboard with annotations and alerts.
 - [Session Replay](/docs/session-replay): Watch user interactions to diagnose UX issues.
 
