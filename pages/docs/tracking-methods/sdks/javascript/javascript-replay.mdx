@@ -172,9 +172,9 @@ mixpanel.get_session_replay_url();
 // https://mixpanel.com/projects/replay-redirect?replay_id=19307d78e24394fe15-0cd98d8fd9ad1d-1f525636-4b9600-19307d78e28194fe15&distinct_id=123&token=my-project-token
 ```
 
-## Heatmaps, Rage Clicks, and Dead Clicks
+## Heatmaps, Rage Clicks, and Dead Clicks (Web Only)
 
-The `record_heatmap_data` option enables three types of interaction tracking during replay sessions:
+The `record_heatmap_data` option (Web only; not available on mobile) enables three types of interaction tracking during replay sessions:
 
 1. **Click events** - Captures user clicks to populate click heatmaps
 2. **Rage clicks** - Captures multiple rapid clicks on the same element (`$mp_rage_click`)
@@ -189,7 +189,7 @@ These events are only captured when a session recording is in progress, and they
 ```javascript Javascript
 mixpanel.init('YOUR_PROJECT_TOKEN', {
   record_sessions_percent: 1, // Session Replay must be enabled for Heatmap
-  record_heatmap_data: true   // Enable Heatmap data collection
+  record_heatmap_data: true   // Enable Heatmap, Rage Click, and Dead Click collection
 });
 ```
 
