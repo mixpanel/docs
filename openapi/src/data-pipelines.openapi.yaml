@@ -598,6 +598,7 @@ components:
             - eu-west-2
             - eu-west-3
             - sa-east-1
+            - me-south-1
           description: The valid S3 region for the bucket.
         s3_role:
           type: string
