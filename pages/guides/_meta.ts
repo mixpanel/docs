@@ -4,6 +4,7 @@ export default {
 		"title": "DISCOVER MIXPANEL"
 	},
 	"mixpanel-introduction": "Mixpanel Introduction",
+	"self-guided-tours": "Self-Guided Tours",
 	"changelog": {
     	title: "What's New? ↗",
     	href: "/changelogs",
