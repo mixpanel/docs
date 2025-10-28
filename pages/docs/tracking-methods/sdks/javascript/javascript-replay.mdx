@@ -174,11 +174,12 @@ mixpanel.get_session_replay_url();
 
 ## Heatmaps, Rage Clicks, and Dead Clicks (Web Only)
 
-The `record_heatmap_data` option (Web only; not available on mobile) enables three types of interaction tracking during replay sessions:
+The `record_heatmap_data` option (Web only; not available on mobile) enables four types of interaction tracking during replay sessions:
 
 1. **Click events** - Captures user clicks to populate click heatmaps
 2. **Rage clicks** - Captures multiple rapid clicks on the same element (`$mp_rage_click`)
 3. **Dead clicks** - Captures clicks on unresponsive elements (`$mp_dead_click`)
+4. **Page Leave** - Captures when a page is "left" either by navigation or leaving the tab (`$mp_page_leave`)
 
 These events are only captured when a session recording is in progress, and they are exempt from your plan data allowance.
 
