@@ -304,3 +304,4 @@
 /guides/strategic-playbooks/onboarding-playbook/launch/build-user-flows /guides/guides-by-topic/core-reports/build-user-flows
 /guides/strategic-playbooks/onboarding-playbook/launch/define-cohorts /guides/guides-by-topic/core-reports/define-cohorts
 /guides/strategic-playbooks/onboarding-playbook/launch/track-user-retention /guides/guides-by-topic/core-reports/track-user-retention
+/guides/strategic-playbooks/onboarding-playbook/launch/revenue-analytics /docs/features/revenue-analytics
