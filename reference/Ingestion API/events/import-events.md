@@ -44,7 +44,7 @@ If you provide the `strict=1` parameter (recommended), `/import` will validate t
 * Each event must contain an event name, time, distinct\_id, and $insert\_id. These are used to deduplicate events so that this endpoint can be safely retried.
 * Each event must be smaller than 1MB of uncompressed JSON.
 * Each event must have fewer than 255 properties.
-* All nested object properties must have fewer than 255 keys and a max nesting depth is 3.
+* All nested object properties must have fewer than 255 keys.
 * All array properties must have fewer than 255 elements.
 
 ### Example of an event
