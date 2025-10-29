@@ -7,7 +7,7 @@ export default {
     type: "separator",
     title: (
       <div className={style.titleContainer}>
-        <DiscoverIcon /> DISCOVER MIXPANEL
+        <DiscoverIcon /> DISCOVER
       </div>
     ),
   },
@@ -22,7 +22,7 @@ export default {
     type: "separator",
     title: (
       <div className={style.titleContainer}>
-        <SolutionsIcon /> SOLUTIONS & WORKFLOWS
+        <SolutionsIcon /> WORKFLOWS
       </div>
     ),
   },
@@ -33,7 +33,7 @@ export default {
     type: "separator",
     title: (
       <div className={style.titleContainer}>
-        <PlaybooksIcon /> BEST PRACTICES & PLAYBOOKS
+        <PlaybooksIcon /> PLAYBOOKS
       </div>
     ),
   },
