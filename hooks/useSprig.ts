@@ -96,4 +96,43 @@ export const useSprig = () => {
     router.events.on('routeChangeComplete', handleRouteChange);
     return () => router.events.off('routeChangeComplete', handleRouteChange);
   }, [router, sprigEnvironmentId]);
+
+  // Track feature flags page visits
+  useEffect(() => {
+    if (!sprigEnvironmentId || typeof window === 'undefined') return;
+
+    const trackFeatureFlagView = () => {
+      const now = Date.now();
+
+      // Prevent duplicate events within debounce period
+      if (now - lastEventTime < EVENT_DEBOUNCE_MS) {
+        return;
+      }
+
+      if (!window.Sprig) {
+        return;
+      }
+
+      try {
+        lastEventTime = now;
+        window.Sprig('track', 'viewed_featureflags_docs');
+      } catch (error) {
+        console.error('Sprig track failed:', error);
+      }
+    };
+
+    const handleRouteChange = (url: string) => {
+      if (url.includes('/docs/featureflags')) {
+        trackFeatureFlagView();
+      }
+    };
+
+    // Track if already on feature flags page
+    if (router.asPath.includes('/docs/featureflags')) {
+      trackFeatureFlagView();
+    }
+
+    router.events.on('routeChangeComplete', handleRouteChange);
+    return () => router.events.off('routeChangeComplete', handleRouteChange);
+  }, [router, sprigEnvironmentId]);
 };
