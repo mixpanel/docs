@@ -1,5 +1,5 @@
 export default {
-    "build-a-tracking-strategy": "How to Build a Tracking Strategy",
-    "ensuring-data-quality": "Ensuring Data Quality",
-    "driving-product-innovation": "Driving Product Innovation"
+    "engage-your-users": "Engage Your Users",
+    "grow-your-usership": "Grow Your Usership",
+    "empower-your-team": "Empower Your Team",
 }
