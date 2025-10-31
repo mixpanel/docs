@@ -61,11 +61,6 @@ MixpanelAPI mixpanel = new MixpanelAPI(localConfig);
 // Start polling for flag definitions
 mixpanel.getLocalFlags().startPollingForDefinitions();
 
-// Wait for flags to be ready (recommended)
-while (!mixpanel.getLocalFlags().areFlagsReady()) {
-    Thread.sleep(100);
-}
-
 // This should be the 'key' of the feature flag from Mixpanel's UX.
 String flagKey = "sample-flag";
 
@@ -177,10 +172,6 @@ LocalFlagsConfig config = LocalFlagsConfig.builder()
 MixpanelAPI mixpanel = new MixpanelAPI(config);
 mixpanel.getLocalFlags().startPollingForDefinitions();
 
-while (!mixpanel.getLocalFlags().areFlagsReady()) {
-    Thread.sleep(100);
-}
-
 Map<String, Object> userContext = new HashMap<>();
 userContext.put("distinct_id", "user-123");
 
@@ -204,23 +195,6 @@ mixpanel.close();
 - Always include `distinct_id` in your user context
 - Include any custom properties used in your flag targeting rules
 - Use consistent data types for context values across your application
-
-### Readiness Check
-
-- For local evaluation, always check if flags are ready before evaluating using `areFlagsReady()`
-- This prevents race conditions where you might evaluate flags before they've been loaded from the server
-- Implement appropriate retry or wait logic until flags are ready
-
-```java
-mixpanel.getLocalFlags().startPollingForDefinitions();
-
-// Wait for flags to be ready
-while (!mixpanel.getLocalFlags().areFlagsReady()) {
-    Thread.sleep(100);
-}
-
-// Now safe to evaluate flags
-```
 
 ### Resource Management
 
