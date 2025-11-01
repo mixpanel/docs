@@ -13,6 +13,7 @@ export default {
   "google-pubsub": "Google Pubsub",
   "google-sheets": "Google Sheets",
   "google-tag-manager": "Google Tag Manager",
+  "langfuse": "Langfuse",
   "launchdarkly": "LaunchDarkly",
   "mparticle": "mParticle",
   "nextjs": "Next.js",
