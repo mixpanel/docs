@@ -20,56 +20,8 @@ Before implementing [Feature Flags](/docs/featureflags), ensure:
 ## Installing the SDK
 
 <Callout type="info">
-  The Java Feature Flags SDK is currently in Beta and uses a `-SNAPSHOT` version. You'll need to configure your build tool to pull snapshot versions from Sonatype's snapshot repository.
+  The Java Feature Flags SDK is currently in Beta and uses a `-SNAPSHOT` version (`1.6.0-SNAPSHOT`). You'll need to configure your build tool to pull snapshot versions from Sonatype's snapshot repository. See the [Sonatype snapshot documentation](https://central.sonatype.org/publish/publish-portal-snapshots/) for instructions on configuring Maven or Gradle.
 </Callout>
-
-### Maven
-
-Add the Sonatype snapshot repository to your `pom.xml`:
-
-```xml
-<repositories>
-    <repository>
-        <id>sonatype-snapshots</id>
-        <url>https://oss.sonatype.org/content/repositories/snapshots</url>
-        <snapshots>
-            <enabled>true</enabled>
-        </snapshots>
-    </repository>
-</repositories>
-```
-
-Then add the Mixpanel Java SDK dependency:
-
-```xml
-<dependency>
-    <groupId>com.mixpanel</groupId>
-    <artifactId>mixpanel-java</artifactId>
-    <version>1.6.0-SNAPSHOT</version>
-</dependency>
-```
-
-### Gradle
-
-Add the Sonatype snapshot repository to your `build.gradle`:
-
-```groovy
-repositories {
-    maven {
-        url "https://oss.sonatype.org/content/repositories/snapshots"
-    }
-}
-```
-
-Then add the Mixpanel Java SDK dependency:
-
-```groovy
-dependencies {
-    implementation 'com.mixpanel:mixpanel-java:1.6.0-SNAPSHOT'
-}
-```
-
-For more information about working with snapshot versions, see the [Sonatype snapshot documentation](https://central.sonatype.org/publish/publish-portal-snapshots/#publishing-via-other-methods).
 
 ## Flag Evaluation Modes
 
