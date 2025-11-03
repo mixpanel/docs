@@ -227,6 +227,30 @@ npx -y mcp-remote https://mcp.mixpanel.com/sse --allow-http
 
 ---
 
+### Option 5: ChatGPT (OpenAI)
+
+**Additional Requirements:**
+- OpenAI/ChatGPT account with MCP access
+
+**Setup Steps:**
+1. Enable Developer Mode
+   - Go to Settings → Connectors → Advanced
+   - Enable "Developer Mode" (see https://platform.openai.com/docs/guides/developer-mode)
+
+2. Add the Mixpanel MCP connector
+   - Create a new connector/integration in the ChatGPT Connectors UI
+   - Provide these values:
+     - Name: Mixpanel MCP
+     - Description: The MCP integration provides access to all core Mixpanel analysis capabilities through natural language queries.
+     - MCP Server URL: https://mcp.mixpanel.com/sse
+     - Authentication type: OAuth
+   - Click Create and then connect to Mixpanel and follow the OAuth flow to authorize Mixpanel access.
+
+3. Publish connector to workspace (optional)
+   - To make the connector available to other members: go to Settings → Apps & Connectors → Mixpanel → Publish
+
+---
+
 ## Use Case Examples
 
 **Channel Performance Analysis**
