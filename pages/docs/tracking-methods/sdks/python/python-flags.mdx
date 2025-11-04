@@ -92,7 +92,7 @@ user_context = {
 }
 
 remote_config = mixpanel.RemoteFlagsConfig(api_host=API_HOST, request_timeout_in_seconds=5)
-mixpanel = mixpanel.Mixpanel(PROJECT_TOKEN, remote_flags_config=remote_config) as mp:
+mixpanel = mixpanel.Mixpanel(PROJECT_TOKEN, remote_flags_config=remote_config)
 
 # Returns a dictionary, mapping flag keys to assigned variants ONLY for flags that the user context is in an assignment group for.
 # By default, this will not track an exposure event.
