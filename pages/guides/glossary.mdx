@@ -1,7 +1,7 @@
 # Mixpanel Glossary
 
-A collection of key analytics, data, and product terms every Mixpanel user should know.  
-Browse by category, or jump directly to an A–Z list with linkable headings.
+Use this glossary to get familiar with the concepts that power Mixpanel—from data tracking and privacy to growth metrics and product strategy.  
+Browse by category, or jump directly to an [A–Z list](#a-z-glossary) with linkable headings.
 
 ---
 
@@ -24,7 +24,7 @@ Browse by category, or jump directly to an A–Z list with linkable headings.
 - [Autocapture](#autocapture)
 - [Identify](#identify)
 - [Ingestion](#ingestion)
-- [SDK (Software Development Kit)](#sdk-software-development-kit)
+- [Software Development Kit (SDK)](#software-development-kit-sdk)
 - [First-party Cookies](#first-party-cookies)
 - [Third-party Cookies](#third-party-cookies)
 
@@ -43,12 +43,12 @@ Browse by category, or jump directly to an A–Z list with linkable headings.
 <details>
 <summary><strong>Business Model Terms</strong></summary>
 
-- [B2B (Business to Business)](#b2b-business-to-business)
-- [B2C (Business to Consumer)](#b2c-business-to-consumer)
-- [DAU (Daily Active Users)](#dau-daily-active-users)
-- [MOM (Month-on-Month)](#mom-month-on-month)
-- [NPS (Net Promoter Score)](#nps-net-promoter-score)
-- [MQL (Marketing Qualified Lead)](#mql-marketing-qualified-lead)
+- [Business to Business (B2B)](#business-to-business-b2b)
+- [Business to Consumer (B2C)](#business-to-consumer-b2c)
+- [Daily Active Users (DAU)](#daily-active-users-dau)
+- [Month-on-Month (MOM)](#month-on-month-mom)
+- [Net Promoter Score (NPS)](#net-promoter-score-nps)
+- [Marketing Qualified Lead (MQL)](#marketing-qualified-lead-mql)
 
 </details>
 
@@ -56,7 +56,7 @@ Browse by category, or jump directly to an A–Z list with linkable headings.
 <summary><strong>Product Development Terms</strong></summary>
 
 - [Feature Flag](#feature-flag)
-- [MVP (Minimum Viable Product)](#mvp-minimum-viable-product)
+- [Minimum Viable Product (MVP)](#minimum-viable-product-mvp)
 - [Multivariate Test](#multivariate-test)
 
 </details>
@@ -74,127 +74,167 @@ Browse by category, or jump directly to an A–Z list with linkable headings.
 <details>
 <summary><strong>Compliance & Privacy Terms</strong></summary>
 
-- [GDPR](#gdpr)
-- [HIPAA](#hipaa)
-- [BAA (Business Associate Agreement)](#baa-business-associate-agreement)
-- [PII (Personal Identifying Information)](#pii-personal-identifying-information)
-- [PHI (Personal Health Information)](#phi-personal-health-information)
+- [General Data Protection Regulation (GDPR)](#general-data-protection-regulation-gdpr)
+- [Health Insurance Portability and Accountability Act (HIPAA)](#health-insurance-portability-and-accountability-act-hipaa)
+- [Business Associate Agreement (BAA)](#business-associate-agreement-baa)
+- [Personally Identifying Information (PII)](#personally-identifying-information-pii)
+- [Personal Health Information (PHI)](#personal-health-information-phi)
 
 </details>
 
 <details>
 <summary><strong>Other Strategic Terms</strong></summary>
 
-- [GTM (Go-to Market)](#gtm-go-to-market)
+- [Go-to Market (GTM)](#go-to-market-gtm)
 - [Path](#path)
 
 </details>
 
 ---
 
-## A–Z Glossary (canonical anchor targets)
+## A–Z Glossary
 
 ### Active User
-People who currently use your product (distinct from just "Users").
+People who currently use your product—distinct from just “users.”  
+Active users can be segmented as Daily Active Users (DAU), Weekly Active Users (WAU), or Monthly Active Users (MAU) in Mixpanel.  
+Learn more about tracking user activity in [Events](../events).
 
 ### Alias
-A related user account used to connect two user accounts and their data.
+A related user account used to connect two user profiles and their data.  
+In Mixpanel, `alias()` links an anonymous user to a known user ID once they sign up or log in.  
+See [Identity Management](../identity-management).
 
 ### Annotation
-Short text notes applied to data to provide context.
+Short text notes applied to data to provide context.  
+Use annotations in Mixpanel charts to mark events like releases or campaigns.
 
 ### Autocapture
-The ability to capture user behavior automatically without dedicated instrumentation.
+Mixpanel’s SDKs automatically capture key user interactions (e.g., clicks, pageviews, form submissions) without manual instrumentation.  
+Learn more in [Events](../data-structure/events).
 
-### B2B (Business to Business)
-Selling to other businesses rather than individual users.
+### Business Associate Agreement (BAA)
+A legal document defining how Mixpanel or other vendors handle Protected Health Information (PHI) in compliance with HIPAA.
 
-### B2C (Business to Consumer)
-Selling to individual customers rather than businesses.
+### Business to Business (B2B)
+Selling products or services to other businesses rather than to individual consumers.
 
-### BAA (Business Associate Agreement)
-Legal document for handling personal health information.
+### Business to Consumer (B2C)
+Selling products or services directly to individual customers rather than to businesses.
 
 ### Bounce Rate
-The percentage of sessions where users had only one pageview, no autocaptures, and spent less than 10 seconds on the page.
+The percentage of sessions where users had only one pageview, no autocaptured events, and spent less than 10 seconds on the page.  
+High bounce rates can indicate low engagement or poor onboarding experiences.
 
 ### Dashboard
-A collection of multiple insights saved in one place for collaboration.
+A collection of multiple saved insights, reports, and metrics in one view for collaboration.  
+Mixpanel dashboards help teams monitor key metrics in real time.  
+See [Dashboards](../dashboards).
 
-### DAU (Daily Active Users)
-How many active users you have each day.
+### Daily Active Users (DAU)
+The number of distinct users who engage with your product each day.  
+Used to measure engagement and growth trends.  
+Learn more in [Events](../events).
 
 ### Data Lake
-A system for storing raw data for ambiguous or unknown purposes.
+A centralized repository for storing raw, unstructured data.  
+Data lakes are flexible for large-scale storage and exploration but require transformation for analysis.
 
 ### Data Warehouse
-A system for storing processed data for specific, known purposes.
+A system for storing processed, structured data optimized for analysis and reporting.  
+Commonly used to feed Mixpanel via pipelines or ETL tools.
 
 ### Dormant User
-A user who did not complete a specified action within the current period but had completed it in the previous period.
+A user who has not completed a specific action in the current period but did in the previous one.  
+Tracking dormant users helps teams identify reactivation opportunities.
 
 ### Feature Flag
-Used to divide users into groups where a feature is enabled or disabled.
+A configuration that controls whether a feature is visible or active for certain user groups.  
+Feature flags allow for safe rollouts and A/B testing.  
+See [Experiments](../experiments).
 
 ### First-party Cookies
-Data packets served by the website operator to store user preferences.
+Data packets served by your own website to store user preferences and enable consistent analytics across sessions.
 
 ### Formula
-An equation or calculation that modifies data from one or more series.
+An equation or expression that combines or modifies data from one or more series (e.g., dividing active users by new users).  
+In Mixpanel, formulas can be used to create ratios or derived metrics in reports.
 
-### GDPR
-General Data Protection Regulation governing data processing in the EU.
+### General Data Protection Regulation (GDPR)
+A European Union regulation that governs how personal data is collected, processed, and stored.  
+Mixpanel supports GDPR compliance through data controls and deletion tools.  
+See [Privacy and Compliance](../privacy-and-compliance).
 
-### GTM (Go-to Market)
-The plan for bringing a new product or feature to market.
+### Go-to Market (GTM)
+The plan and process for bringing a new product or feature to market, including target audience, messaging, and launch tactics.
 
 ### Groups
-Aggregating events by entities other than individual users (companies, teams, devices).
+Used in Mixpanel to analyze entities beyond individual users—like companies, teams, or devices—by grouping related events.  
+Learn more in [Group Analytics](../data-structure/groups).
 
-### HIPAA
-Health Insurance Portability and Accountability Act.
+### Health Insurance Portability and Accountability Act (HIPAA)
+A U.S. law that sets standards for protecting sensitive health information (PHI).  
+Mixpanel offers HIPAA-compliant plans for customers handling medical data.  
+See [Privacy and Compliance](../privacy-and-compliance).
 
 ### Identify
-The process of collecting, connecting, and combining data to a user; de-anonymizing a user with properties.
+The process of linking an event or session to a known user by assigning a unique identifier.  
+In Mixpanel, `identify()` ties events to a user profile across sessions.  
+See [Identity Management](../identity-management).
 
 ### Ingestion
-The process of getting events users trigger into the analytics platform.
+The process of getting event data into Mixpanel from SDKs, APIs, or integrations.  
+See [Data Pipelines and Ingestion](../data-structure/events).
 
-### MOM (Month-on-Month)
-Tracking performance from one month to the next.
+### Marketing Qualified Lead (MQL)
+A potential customer who has shown enough engagement or fit to be passed from marketing to sales for further qualification.
 
-### MQL (Marketing Qualified Lead)
-A potential customer identified as more likely to convert based on engagement signals.
+### Minimum Viable Product (MVP)
+The simplest version of a product that allows a team to validate assumptions or test a concept quickly with real users.
+
+### Month-on-Month (MOM)
+A measure comparing performance or metrics from one month to the next.  
+Often used to assess growth momentum or seasonality.
 
 ### Multivariate Test
-An A/B test with more than two variants.
+An experiment that tests more than two variants at once to understand the combined effect of multiple changes on user behavior.  
+See [Experiments](../experiments).
 
-### MVP (Minimum Viable Product)
-The simplest version of something built to test an idea.
+### Net Promoter Score (NPS)
+A customer satisfaction metric that measures how likely users are to recommend your product to others.  
+Typically gathered through surveys asking, “How likely are you to recommend us?”
 
 ### New User
-Someone who was first identified within a specified period.
-
-### NPS (Net Promoter Score)
-A metric for understanding customer satisfaction and loyalty.
+Someone who was first identified within a defined period—such as their first session or signup week.  
+Useful for measuring acquisition and onboarding effectiveness.
 
 ### Path
-A visualization of users' activity through a series of actions.
+A visualization showing the sequence of actions users take in your product.  
+In Mixpanel, Path reports help identify drop-offs and common user flows.  
+See [Paths](../reports/paths).
 
-### PHI (Personal Health Information)
-Information about an individual's health.
+### Personal Health Information (PHI)
+Information about an individual's health status or healthcare that can be linked to a specific person.  
+Covered under HIPAA and often referenced in BAAs.
 
-### PII (Personal Identifying Information)
-Information that can identify a user.
-
-### SDK (Software Development Kit)
-Tools for building and using a software platform.
+### Personally Identifying Information (PII)
+Any information that can directly or indirectly identify a user, such as names, email addresses, or device IDs.  
+See [Privacy and Compliance](../privacy-and-compliance).
 
 ### Session
-A period of time when users are engaged and interacting with your product.
+A period of continuous user activity within your product.  
+Sessions can be defined by a time window or event-based logic.  
+Learn more in [Sessions](../events/sessions).
+
+### Software Development Kit (SDK)
+A set of tools and libraries that allow developers to send events and user data from their apps to Mixpanel.  
+SDKs are available for JavaScript, iOS, Android, and server-side environments.  
+See [Implementing SDKs](../data-structure/events).
 
 ### Stickiness
-How many times users perform an action within a set period.
+A metric showing how frequently users perform an action within a given time period.  
+For example, it helps track how many users return daily or weekly to use a key feature.  
+See [Retention and Stickiness](../reports/retention).
 
 ### Third-party Cookies
-Cookies served by external parties.
+Cookies set by external domains or services, often used for advertising or cross-site tracking.  
+Mixpanel primarily relies on first-party data for analytics.
