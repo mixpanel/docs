@@ -97,7 +97,11 @@ All of this is powered by Mixpanel’s modern data foundation—–bringing toge
 
 Everything in Mixpanel starts with **events**––the building blocks of your data model.
    
-An event represents something a **user** does (like *Signed Up*, *Viewed a Product*, or *Completed Purchase*). Each event can include **properties** that add context, such as the user’s plan type, location, or device. Optionally, you can analyze data at the group level using [Group Analytics](/docs/data-structure/group-analytics).
+An event represents something a **user** does (like *Signed Up*, *Viewed a Product*, or *Completed Purchase*). Each event can include **event properties** that add context, such as the user’s plan type, location, or device. 
+
+Alongside events, Mixpanel also tracks **user profiles**––records that represent individual people. These profiles store demographic attributes known as **user properties** (like name, email, or signup date), which help you understand who your users are and analyze behavior at the individual level.
+
+Optionally, you can analyze data at the group level using [Group Analytics](/docs/data-structure/group-analytics).
 
 ![Data Model](/Data_Model_with_Group_Analytics.png)
 
