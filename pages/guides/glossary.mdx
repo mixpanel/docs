@@ -21,7 +21,6 @@ Browse by category, or jump directly to the [A–Z list](#az-glossary).
 <details>
 <summary><strong>Data & Technical Terms</strong></summary>
 
-- [Alias](#alias)
 - [Autocapture](#autocapture)
 - [Identify](#identify)
 - [Ingestion](#ingestion)
@@ -35,7 +34,7 @@ Browse by category, or jump directly to the [A–Z list](#az-glossary).
 <summary><strong>Analysis & Visualization Terms</strong></summary>
 
 - [Annotation](#annotation)
-- [Dashboard](#dashboard)
+- [Board](#board)
 - [Formula](#formula)
 - [Stickiness](#stickiness)
 
@@ -86,7 +85,6 @@ Browse by category, or jump directly to the [A–Z list](#az-glossary).
 <details>
 <summary><strong>Other Strategic Terms</strong></summary>
 
-- [Go-to Market (GTM)](#go-to-market-gtm)
 - [Path](#path)
 
 </details>
@@ -96,25 +94,16 @@ Browse by category, or jump directly to the [A–Z list](#az-glossary).
 ## A–Z Glossary
 
 ### Active User
-People who currently use your product—distinct from just “users.”  
-Active users can be segmented as Daily Active Users (DAU), Weekly Active Users (WAU), or Monthly Active Users (MAU) in Mixpanel.  
-Learn more about tracking user activity in [Events](../events).
-
-### Alias
-A related user account used to connect two user profiles and their data.  
-In Mixpanel, `alias()` links an anonymous user to a known user ID once they sign up or log in.  
-See [Identity Management](../identity-management).
+People who currently use your product—distinct from just “users.” Active users can be segmented as Daily Active Users (DAU), Weekly Active Users (WAU), or Monthly Active Users (MAU) in Mixpanel. Learn more about tracking user activity in [Events](/docs/data-structure/events-and-properties).
 
 ### Annotation
-Short text notes applied to data to provide context.  
-Use annotations in Mixpanel charts to mark events like releases or campaigns.
+Short text notes applied to data to provide context. Use [annotations](/docs/features/annotations) in Mixpanel charts to mark events like releases or campaigns.
 
 ### Autocapture
-Mixpanel’s SDKs automatically capture key user interactions (e.g., clicks, pageviews, form submissions) without manual instrumentation.  
-Learn more in [Events](../data-structure/events).
+[Autocapture](/docs/tracking-methods/autocapture) is a feature in Mixpanel that automatically collects commonly tracked user behavior data—such as page views, button clicks, form submissions, scrolls, dead clicks, and rage clicks—without requiring custom coding for each event. 
 
 ### Business Associate Agreement (BAA)
-A legal document defining how Mixpanel or other vendors handle Protected Health Information (PHI) in compliance with HIPAA.
+A legal document defining how vendors handle Protected Health Information (PHI) in compliance with [HIPAA](https://mixpanel.com/legal/mixpanel-hipaa/).
 
 ### Business to Business (B2B)
 Selling products or services to other businesses rather than to individual consumers.
@@ -122,55 +111,38 @@ Selling products or services to other businesses rather than to individual consu
 ### Business to Consumer (B2C)
 Selling products or services directly to individual customers rather than to businesses.
 
-### Bounce Rate
-The percentage of sessions where users had only one pageview, no autocaptured events, and spent less than 10 seconds on the page.  
-High bounce rates can indicate low engagement or poor onboarding experiences.
+### Board
+A collection of multiple saved insights, reports, and metrics in one view for collaboration. Mixpanel [Boards](/docs/boards) help teams monitor key metrics in real time.  
 
-### Dashboard
-A collection of multiple saved insights, reports, and metrics in one view for collaboration.  
-Mixpanel dashboards help teams monitor key metrics in real time.  
-See [Dashboards](../dashboards).
+### Bounce Rate
+The percentage of sessions where users had only one pageview. High bounce rates can indicate low engagement or poor onboarding experiences.
 
 ### Daily Active Users (DAU)
-The number of distinct users who engage with your product each day.  
-Used to measure engagement and growth trends.  
-Learn more in [Events](../events).
+The number of distinct users who engage with your product each day. [DAU](/blog/daily-active-users/) is used to measure engagement and growth trends.
 
 ### Data Lake
-A centralized repository for storing raw, unstructured data.  
-Data lakes are flexible for large-scale storage and exploration but require transformation for analysis.
+A centralized repository for storing raw, unstructured data. Data lakes are flexible for large-scale storage and exploration but require transformation for analysis.
 
 ### Data Warehouse
-A system for storing processed, structured data optimized for analysis and reporting.  
-Commonly used to feed Mixpanel via pipelines or ETL tools.
+A system for storing processed, structured data optimized for analysis and reporting. Data warehouses are commonly used to feed Mixpanel via [Warehouse Connectors](/docs/tracking-methods/warehouse-connectors).
 
 ### Dormant User
-A user who has not completed a specific action in the current period but did in the previous one.  
-Tracking dormant users helps teams identify reactivation opportunities.
+A user who has not completed a specific action in the current period but did in the previous one. Tracking dormant users helps teams identify reactivation opportunities.
 
 ### Feature Flag
-A configuration that controls whether a feature is visible or active for certain user groups.  
-Feature flags allow for safe rollouts and A/B testing.  
-See [Experiments](../experiments).
+A configuration that controls whether a feature is visible or active for certain user groups. [Feature flags](/docs/featureflags) allow for safe rollouts and A/B testing.  
 
 ### First-party Cookies
 Data packets served by your own website to store user preferences and enable consistent analytics across sessions.
 
 ### Formula
-An equation or expression that combines or modifies data from one or more series (e.g., dividing active users by new users).  
-In Mixpanel, formulas can be used to create ratios or derived metrics in reports.
+An equation or expression that combines or modifies data from one or more series (e.g. dividing active users by new users). In Mixpanel, formulas can be used to create ratios or derived metrics in reports.
 
 ### General Data Protection Regulation (GDPR)
-A European Union regulation that governs how personal data is collected, processed, and stored.  
-Mixpanel supports GDPR compliance through data controls and deletion tools.  
-See [Privacy and Compliance](../privacy-and-compliance).
-
-### Go-to Market (GTM)
-The plan and process for bringing a new product or feature to market, including target audience, messaging, and launch tactics.
+A European Union regulation that governs how personal data is collected, processed, and stored. Mixpanel supports [GDPR](/docs/privacy/gdpr-compliance) compliance through data controls and deletion tools.  
 
 ### Groups
-Used in Mixpanel to analyze entities beyond individual users—like companies, teams, or devices—by grouping related events.  
-Learn more in [Group Analytics](../data-structure/groups).
+Used in Mixpanel to analyze entities beyond individual users—like companies, teams, or devices—by grouping related events. Group analysis is supported via [Group Analytics](/docs/data-structure/group-analytics).
 
 ### Health Insurance Portability and Accountability Act (HIPAA)
 A U.S. law that sets standards for protecting sensitive health information (PHI).  
