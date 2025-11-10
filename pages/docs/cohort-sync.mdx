@@ -1,6 +1,24 @@
-# Cohort Syncs Overview
+import { Callout } from 'nextra/components'
+
+# Cohort Sync
+
+Cohort Sync is a feature in Mixpanel that allows you to export dynamic groups of users (called [Cohorts](/docs/users/cohorts)) who meet specific behavioral or property-based criteria, to external tools and platforms. This enables you to seamlessly connect your analytics insights with marketing automation, engagement, and advertising platforms such as Braze, Facebook Ads, Google Ads, and more.
+
+With Cohort Sync, you can:
+
+- Automatically and continuously sync user cohorts to third-party destinations, ensuring that your external tools always have the most up-to-date audience segments.
+- Choose from various sync cadences, including one-time, scheduled (hourly or daily), and real-time syncs, depending on your use case and the requirements of the destination platform.
+- Use these synced cohorts for targeted messaging, re-engagement campaigns, lookalike audience creation, and personalized user experiences in downstream platforms.
+- Reduce manual effort and maintenance, as the sync process is automated and updates as users enter or exit the cohort in Mixpanel.
+
+The value of Cohort Sync lies in its ability to bridge analytics and action: you can quickly act on user insights by targeting the right users in the right channels, improving campaign effectiveness and operational efficiency. This integration is especially useful for marketing, product, and growth teams who want to leverage behavioral data for personalized outreach and engagement without manual data exports or engineering support
 
 ## Limits
+
+<Callout type="info">
+    Only customers on a paid plan can save cohorts; therefore, the cohort sync feature is available exclusively to paid plan customers.
+</Callout>
+
 Each project is limited to 60 dynamic (recurring) cohort syncs across all destinations. This limit helps ensure that syncs are fast and reliable. We recommend pruning older unused syncs to stay within the limit. There are no limit on the number of cohorts for static, or 1-time, syncs.
 
 When exporting, each cohort is limited to 10 million users. We do this to keep syncs real-time and to avoid overloading downstream tools. If you exceed the limit, we recommend that you add a filter to the cohort to narrow the criteria, or break up the cohort into multiple cohorts and create multiple syncs.
