@@ -106,3 +106,7 @@ mixpanel.init('YOUR_PROJECT_TOKEN', {
 Backdrops are snapshots of your application in various states (such as a modal open, a menu expanded, or different page layouts). Backdrops are pulled from session replays that match the URL you're analyzing, helping you understand how different views or UI states affect user interactions.
 
 Backdrops are subject to the same retention policies as your session replays. Once a session replay expires, it can no longer be used as a backdrop. If you don't see enough backdrops (or can't find the specific view or state you're looking for), consider increasing your session replay sampling rate to capture a wider set of application states.
+
+<Callout type="warning">
+  Heatmaps only track scrolling on the main page (window). If your site scrolls inside a nested container (like a div with its own scrollbar), heatmaps and interactive mode may not display data correctly. The interactive backdrops feature lets you customize your backdrop, but click positions within nested scrollable elements will still not be fully reflected.
+</Callout>
