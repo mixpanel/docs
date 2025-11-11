@@ -51,7 +51,7 @@ jobs:
           fi
 
       - name: Push docs to version 🚀
-        uses: readmeio/rdme@b42200405455d8a58572aae4a341a23ff934ae38 # rdme version 10.5.1
+        uses: readmeio/rdme@62bc5a43208c46fc0d90c78ebeddf0365a41b2cc # rdme version 10.5.3
         with:
           rdme: reference upload ./reference --key=${{ secrets.README_API_KEY }} --branch=3.27-pr-${{ github.event.number }}
 
