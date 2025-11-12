@@ -63,3 +63,10 @@ The retrieval and deletion API calls are updated for version 3 and are made for 
 **EU Residency Server:** `eu.mixpanel.com/api/app/projects`
 **India Residency Server:** `in.mixpanel.com/api/app/projects`
 Use the Warehouse Connectors API to manually run a warehouse imports.
+
+### [**Feature Flags API**](ref:feature-flags-api)
+
+**Standard Server:** `api.mixpanel.com/flags`
+**EU Residency Server:** `api-eu.mixpanel.com/flags`
+**India Residency Server:** `api-in.mixpanel.com/flags`
+Use the Feature Flags API to assign your users to variants for experiments, rollout, and releases.
