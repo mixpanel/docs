@@ -188,21 +188,28 @@ NOTE: Cohort membership is refreshed every 2 hours when targeting anything aside
 
 
 ## Implementation
-
-Feature Flagging is supported on three client-side SDK's: Web, iOS, and Android and currently in "Beta" on server-side SDKs: Python, Node.js, and Java.
+Feature Flagging is currently supported on a subset of Mixpanel client and server SDK's.
 
 See our developer guides on implementing feature flags on these platforms below:
+
+### Client Side SDKs
 
 <Cards>
   <Cards.Card icon title="Web" href="/docs/tracking-methods/sdks/javascript/javascript-flags" />
   <Cards.Card icon title="iOS" href="/docs/tracking-methods/sdks/swift/swift-flags" />
   <Cards.Card icon title="Android" href="/docs/tracking-methods/sdks/android/android-flags" />
-  <Cards.Card icon title="Python" href="/docs/tracking-methods/sdks/python/python-flags" />
-  <Cards.Card icon title="Node.js" href="/docs/tracking-methods/sdks/nodejs/nodejs-flags" />
-  <Cards.Card icon title="Java" href="/docs/tracking-methods/sdks/java/java-flags" />
+  <Cards.Card icon title="React Native(Beta)" href="https://github.com/mixpanel/mixpanel-react-native/blob/feature/add-feature-flags-support/FEATURE_FLAGS_QUICKSTART.md" />
 </Cards>
 
-Coming soon: React Native, Ruby, Go
+### Server Side SDKs
+
+<Cards>
+  <Cards.Card icon title="Python" href="/docs/tracking-methods/sdks/python/python-flags" />
+  <Cards.Card icon title="Node.js (Beta)" href="/docs/tracking-methods/sdks/nodejs/nodejs-flags" />
+  <Cards.Card icon title="Java (Beta)" href="/docs/tracking-methods/sdks/java/java-flags" />
+</Cards>
+
+Coming soon: Ruby, Go
 
 <Callout type="info">
 If you'd like to see Feature Flags availability in other SDKs, please [reach out to the Support team](https://mixpanel.com/get-support).
