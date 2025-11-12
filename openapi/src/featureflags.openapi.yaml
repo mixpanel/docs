@@ -19,7 +19,9 @@ tags:
 paths:
   /flags:
     get:
-      operationId: get-variant-assignments 
+      operationId: get-variant-assignments
+      security:
+        - ProjectSecret: []
       parameters:
         - name: context
           in: query
@@ -48,6 +50,8 @@ paths:
   /flags/definitions:
     get:
       operationId: get-flag-definitions
+      security:
+        - ProjectSecret: []
       tags:
         - Flag Definitions
       summary: Get Feature Flag Definitions
@@ -64,6 +68,8 @@ paths:
         '403':
           $ref: ./common/responses.yaml#/403Forbidden
 components:
+  securitySchemes:
+    $ref: ./common/securitySchemes.yaml
   schemas:
     EvaluateFlagsRequest:
       title: EvaluateFlagsRequest
