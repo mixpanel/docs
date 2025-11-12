@@ -10,7 +10,7 @@ This developer guide will assist you in configuring your server-side Node.js pla
 
 Before implementing [Feature Flags](/docs/featureflags), ensure:
 
-- You are on an Enterprise subscription plan and have the appropriate version of the SDK installed (minimum supported version is [`v5.0.0`](https://github.com/mixpanel/mixpanel-node)). If not, please follow [this doc](/docs/quickstart/install-mixpanel) to install the SDK.
+- You are on an Enterprise subscription plan and have the [Mixpanel Node.js SDK](https://github.com/mixpanel/mixpanel-node) installed. If not, please follow [this doc](/docs/quickstart/install-mixpanel) to install the SDK.
 - You have your Project Token from your [Mixpanel Project Settings](/docs/orgs-and-projects/managing-projects#find-your-project-tokens)
 
 ## Flag Evaluation Scenarios
@@ -31,7 +31,7 @@ Targeting by Mixpanel cohorts and sticky variants are not supported in Local Eva
 
 - The SDK is configured with a `local_flags_config` object that specifies parameters:
     1) `api_host` - If your project is in the EU/IN region, this should be set to route to `api-eu.mixpanel.com`/`api-in.mixpanel.com` respectively.
-    2) `enable_polling` - This should be set to `true` to enable local evaluation.
+    2) `enable_polling` - This should be set to `true` to enable polling for new flag configurations.
     3) `polling_interval_in_seconds` - This is the interval in seconds at which the SDK will poll Mixpanel servers for feature flag configurations.
 
 - The SDK will continue to poll for the lifetime of the SDK instance or until stopped.
