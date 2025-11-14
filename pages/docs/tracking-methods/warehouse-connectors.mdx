@@ -260,6 +260,56 @@ If you are using [AWS PrivateLink](https://docs.aws.amazon.com/redshift/latest/m
 35.204.177.251
 ```
 </Tabs.Tab>
+<Tabs.Tab>
+
+Complete the following steps to get your Postgres connector up and running:
+
+<Callout type="info">
+The Postgres connector is currently in beta.
+</Callout>
+
+1. Navigate to **Project Settings**, then select **Warehouse Sources**.
+2. Click on `+ Add Connection` and select **Postgres**.
+3. You should see a new page to create your Postgres connector. Fill out the following fields:
+    - **Server Hostname**  - This is the hostname of your Postgres database.
+    - **Port**  - This is the port your database server is listening to. The default is `5432`.
+    - **Database** - This is the name of the database you want to connect to.
+    - **User Name** - This is the username you want to connect with. Please ensure it has the proper permissions.
+    - **Password** - This is the password for the user you want to connect with.
+    - **SSL Mode** - To keep your data secure, Mixpanel requires encryption for Postgres connections. You can choose between two SSL modes:
+        - **verify-full** (default, recommended) - Verifies both the server certificate and that the hostname matches the certificate.
+        - **verify-ca** - Verifies the server certificate against a trusted certificate authority.
+    - **Server CA Certificate** (Optional) - If your cloud provider doesn't use a public certificate registry (e.g., Google Cloud SQL, Supabase), you can upload a CA bundle as a PEM file to authenticate your server.
+    - Then, click Create Source.
+
+<Callout type="warning">
+The Postgres connector only supports IPv4 connections. If you are using a database provider like Supabase, you may need to explicitly use an IPv4 connection.
+</Callout>
+
+### IP Allowed List
+
+If you are using network policies or firewall rules to restrict access to your Postgres instance, you might need to add the following IP addresses to the allowed list.
+
+**US**
+```jsx
+34.170.209.182
+34.59.17.26
+35.226.128.70
+34.132.69.227
+```
+
+**EU**
+```jsx
+34.6.165.244
+34.13.194.46
+```
+
+**IN**
+```jsx
+34.14.173.30
+35.244.32.37
+```
+</Tabs.Tab>
 </ExtendedTabs>
 
 ---
