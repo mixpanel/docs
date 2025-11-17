@@ -221,7 +221,7 @@ If you are using [IP Access List](https://docs.databricks.com/en/security/networ
 ```
 
 **EU**
-```
+```jsx
 34.147.68.192
 35.204.164.122 
 35.204.177.251
@@ -253,7 +253,7 @@ Complete the following steps to get your Redshift connector up and running:
     - (Optional) **Policy Name** - This is an optional name for the policy, which contains role permissions that you need to grant the Mixpanel Service Account. After inputting a policy name, you can either copy-paste the JSON in the AWS UI or copy-paste the inline command line version that we generate and run in the AWS CLI.
     - **Role Name** - Input the name of the role. After inputting a role name, you can either copy-paste the JSON in the AWS UI or copy-paste the inline command line version that we generate and run in the AWS CLI. Running this command grants the Mixpanel Service Account the necessary permissions to read and export data from your Redshift tables.
     - Finally, attach the policy you created to the role you created by copy-pasting the command in the AWS CLI.
-    - Then, click Create Source.
+    - Then, click `Create Source`.
 5. In the third view, you should see a confirmation that your source was created. To establish the source connection, we need to ping your Redshift instance to actually create the service account user.
     - **Grant Access to Schema** - Enter the name of the schema you want to grant Mixpanel access to.
     - Copy the command generated and run in your Redshift worksheet. Once that command is run successfully, the connection will be established and you will be able to send data from Redshift tables to Mixpanel.
@@ -269,7 +269,7 @@ If you are using [AWS PrivateLink](https://docs.aws.amazon.com/redshift/latest/m
 ```
 
 **EU**
-```
+```jsx
 34.147.68.192
 35.204.164.122 
 35.204.177.251
@@ -289,13 +289,13 @@ Complete the following steps to get your Postgres connector up and running:
     - **Server Hostname**  - This is the hostname or IP address of your Postgres database.
     - **Port**  - This is the port your database server is listening to. The default is `5432`.
     - **Database** - This is the name of the database you want to connect to.
-    - **User Name** - This is the username you want to connect with. The user should have **read-only permissions** on your Postgres instance, as Mixpanel only needs to read data. Follow the **principle of least privilege** by granting access only to the specific schemas and tables you intend to sync.
+    - **User Name** - This is the username you want to connect with. The user should have read-only permissions on your Postgres instance, as Mixpanel only needs to read data. Follow the principle of least privilege by granting access only to the specific schemas and tables you intend to sync.
     - **Password** - This is the password for the user you want to connect with.
     - **Postgres SSL Mode** - To keep your data secure, Mixpanel requires encryption for Postgres connections. You can choose between two SSL [modes](https://www.postgresql.org/docs/current/libpq-ssl.html):
         - **verify-full** (default, recommended) - Verifies both the server certificate and that the hostname matches the certificate.
         - **verify-ca** - Verifies the server certificate against a trusted certificate authority.
     - **Server CA Certificate** (Optional) - If your cloud provider doesn't use a public certificate registry (e.g., Google Cloud SQL, Supabase), you can upload a CA bundle as a PEM file to authenticate your server.
-    - Then, click Create Source.
+    - Then, click `Create Source`.
 
 <Callout type="warning">
 The Postgres connector only supports IPv4 connections. If you are using a database provider like Supabase, you may need to explicitly use an IPv4 connection.
