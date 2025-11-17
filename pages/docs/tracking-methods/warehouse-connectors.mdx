@@ -140,7 +140,7 @@ JSON columns mapped in BigQuery containing multiple properties are subject to a 
       GRANT SELECT ON FUTURE MATERIALIZED VIEWS IN DATABASE <database> TO ROLE MIXPANEL_ROLE;
       ```
 
-    **IP Allowed List**
+    ### IP Allowlist
 
     If you are using [Snowflake Network policy](https://docs.snowflake.com/en/user-guide/network-policies) to restrict access to your instance, you might need to add the following IP addresses to the allowed list.
 
@@ -179,9 +179,9 @@ Complete the following steps to get your Databricks connector up and running:
 1. Navigate to **Project Settings**, then select **Warehouse Sources**.
 2. Click on `+ Add Connection` and select **Databricks**.
 3. You should see a new page to create your databricks connector. In the first view, fill out the following fields before clicking  `Create Source`:
-    - ** Server Hostname ** - This is the hostname of your Databricks cluster. This can be found in your workspace URL, or by navigating to [JDBC/ODBC connection settings](https://docs.databricks.com/en/integrations/jdbc-odbc-bi.html#step)
-    - ** HTTP Path ** - This is the HTTP path of the cluster you would like to connect to. This can be found in your cluster [JDBC/ODBC connection settings](https://docs.databricks.com/en/integrations/jdbc-odbc-bi.html#step)
-    - ** Access Token ** - This is the Personal access token used to authenticate with your Databricks cluster. Here are the instructions on [how to create an access token](https://docs.databricks.com/en/dev-tools/auth.html#databricks-personal-access-tokens-for-workspace-users)
+    - **Server Hostname** - This is the hostname of your Databricks cluster. This can be found in your workspace URL, or by navigating to [JDBC/ODBC connection settings](https://docs.databricks.com/en/integrations/jdbc-odbc-bi.html#step)
+    - **HTTP Path** - This is the HTTP path of the cluster you would like to connect to. This can be found in your cluster [JDBC/ODBC connection settings](https://docs.databricks.com/en/integrations/jdbc-odbc-bi.html#step)
+    - **Access Token** - This is the Personal access token used to authenticate with your Databricks cluster. Here are the instructions on [how to create an access token](https://docs.databricks.com/en/dev-tools/auth.html#databricks-personal-access-tokens-for-workspace-users)
 4. In the second view, you should see that the credentials are validated and a source is added.
 
 **Using Service Principals**
@@ -204,7 +204,7 @@ GRANT MODIFY ON ANY FILE TO <application_id_of_service_principal>
 7. During the setup processing Mixpanel, you can now use the token from the service principal when setting up the connection
 
 
-**IP Allowed List**
+### IP Allowlist
 
 If you are using [IP Access List](https://docs.databricks.com/en/security/network/front-end/ip-access-list.html) to restrict access to your instance, you might need to add the following IP addresses to the allowed list.
 
@@ -248,7 +248,7 @@ Complete the following steps to get your Redshift connector up and running:
     - **Grant Access to Schema** - Enter the name of the schema you want to grant Mixpanel access to.
     - Copy the command generated and run in your Redshift worksheet. Once that command is run successfully, the connection will be established and you will be able to send data from Redshift tables to Mixpanel.
 
-### IP Allowed List
+### IP Allowlist
 If you are using [AWS PrivateLink](https://docs.aws.amazon.com/redshift/latest/mgmt/security-private-link.html) to restrict access to your instance, you might need to add the following IP addresses to the allowed list.
 
 ```jsx
@@ -290,13 +290,22 @@ The Postgres connector only supports IPv4 connections. If you are using a databa
 
 If you are using network policies or firewall rules to restrict access to your Postgres instance, you might need to add the following IP addresses to the allowed list.
 
+**US**
 ```jsx
 34.170.209.182
 34.59.17.26
 35.226.128.70
 34.132.69.227
+```
+
+**EU**
+```jsx
 34.6.165.244
 34.13.194.46
+```
+
+**IN**
+```jsx
 34.14.173.30
 35.244.32.37
 ```
