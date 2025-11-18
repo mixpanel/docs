@@ -98,7 +98,7 @@ brew install node
 2. Go to **Settings** → **Connectors** → **Add Custom Connector**
 3. Configure the integration:
    - **Integration Name:** Mixpanel (or preferred name)
-   - **Integration URL:** `https://mcp.mixpanel.com/sse`
+   - **Integration URL:** `https://mcp.mixpanel.com/mcp`
 4. Click **Connect** and complete Mixpanel authorization
 
 For additional information on setting up Claude connectors, see [Claude's connector documentation](https://support.anthropic.com/en/articles/11724452-browsing-and-connecting-to-tools-from-the-directory).
@@ -123,7 +123,7 @@ For additional information on setting up Claude connectors, see [Claude's connec
       "args": [
         "-y",
         "mcp-remote",
-        "https://mcp.mixpanel.com/sse",
+        "https://mcp.mixpanel.com/mcp",
         "--allow-http"
       ]
     }
@@ -133,7 +133,7 @@ For additional information on setting up Claude connectors, see [Claude's connec
 
 4. Run authorization command in terminal:
 ```bash
-npx -y mcp-remote https://mcp.mixpanel.com/sse --allow-http
+npx -y mcp-remote https://mcp.mixpanel.com/mcp --allow-http
 ```
 
 5. Complete Mixpanel authorization via the provided link
@@ -158,7 +158,7 @@ npx -y mcp-remote https://mcp.mixpanel.com/sse --allow-http
       "args": [
         "-y",
         "mcp-remote",
-        "https://mcp.mixpanel.com/sse",
+        "https://mcp.mixpanel.com/mcp",
         "--allow-http"
       ]
     }
@@ -168,7 +168,7 @@ npx -y mcp-remote https://mcp.mixpanel.com/sse --allow-http
 
 4. Run authorization command in terminal:
 ```bash
-npx -y mcp-remote https://mcp.mixpanel.com/sse --allow-http
+npx -y mcp-remote https://mcp.mixpanel.com/mcp --allow-http
 ```
 
 5. Complete Mixpanel authorization via the provided link
@@ -189,7 +189,7 @@ npx -y mcp-remote https://mcp.mixpanel.com/sse --allow-http
    ```
 3. Configure Mixpanel MCP as a remote server and authorize:
    ```bash
-   npx -y mcp-remote https://mcp.mixpanel.com/sse --allow-http
+   npx -y mcp-remote https://mcp.mixpanel.com/mcp --allow-http
    ```
    Running this command will provide a link in your terminal to authorize your access with Mixpanel. Follow the authorization steps in your browser. After logging in via OAuth, you should see a confirmation message.
 
@@ -210,7 +210,7 @@ npx -y mcp-remote https://mcp.mixpanel.com/sse --allow-http
          "args": [
            "-y",
            "mcp-remote",
-           "https://mcp.mixpanel.com/sse",
+           "https://mcp.mixpanel.com/mcp",
            "--allow-http"
          ]
        }
@@ -246,7 +246,7 @@ npx -y mcp-remote https://mcp.mixpanel.com/sse --allow-http
    - Provide these values:
      - Name: Mixpanel MCP
      - Description: The MCP integration provides access to all core Mixpanel analysis capabilities through natural language queries.
-     - MCP Server URL: https://mcp.mixpanel.com/sse
+     - MCP Server URL: https://mcp.mixpanel.com/mcp
      - Authentication type: OAuth
    - Click Create and then connect to Mixpanel and follow the OAuth flow to authorize Mixpanel access.
 
@@ -344,7 +344,7 @@ npx -y mcp-remote https://mcp.mixpanel.com/sse --allow-http
 - **Protocol:** Model Context Protocol (MCP)
 - **Connection:** Server-sent events (SSE)
 - **Authentication:** OAuth with Mixpanel
-- **Endpoint:** `https://mcp.mixpanel.com/sse`
+- **Endpoint:** `https://mcp.mixpanel.com/mcp`
 
 ---
 
