@@ -9,7 +9,7 @@ import { Code, Callout } from 'nextra/components'
 ---
 ## Overview
 
-The Mixpanel Model Context Protocol (MCP) integration enables organizations to analyze product data using conversational AI. Teams can query events, funnels, and user behavior through AI interfaces (Claude, Cursor, etc.) using natural language, eliminating the need for complex dashboard navigation or technical query languages.
+The Mixpanel Model Context Protocol (MCP) integration enables organizations to analyze product and replay data using conversational AI. Teams can query events, session replays, funnels, and user behavior through AI interfaces (Claude, Cursor, etc.) using natural language, eliminating the need for complex dashboard navigation or technical query languages.
 
 <Callout type="info">
   **Beta Feature:** Help us improve this integration by sharing your feedback [here](https://docs.google.com/forms/d/e/1FAIpQLSchV5qoyiI9tmtxOkDF_4So5KKR1iiZzuqcPbwMOphQC_lEVA/viewform?usp=header).
@@ -35,6 +35,10 @@ The MCP integration provides access to all core Mixpanel analysis capabilities t
 - Property Values: Discover specific values for event properties (`get_event_property_values`)
 - Data Quality: Monitor and detect volume anomalies in data ingestion (`get_data_volume_anomalies`)
 - Lexicon Integration: Get direct links to event definitions and documentation in Mixpanel Lexicon (`get_lexicon_detail_url`)
+
+### Qualitative Analysis
+
+- Session Replays: Analyze a specific user's replays in combination with event data (`get_user_replays_data`)
 
 ### Query Capabilities
 
@@ -278,6 +282,20 @@ npx -y mcp-remote https://mcp.mixpanel.com/sse --allow-http
 - Query: "Compare user behavior across different feature roll outs"
 - Business Value: Measure feature impact and optimize product decisions
 
+**Session Replay Analysis**
+
+- Query: "What did this user do before they submitted positive feedback?"
+- Business Value: Understand user context and behavior patterns by combining event data with visual replay footage
+
+- Query: "What features does this user use most? Analyze their session replays"
+- Business Value: Better understand specific customers usage patterns without building reports or watching dozens of replays
+
+- Query: "This user reported an issue—what happened in their replays?"
+- Business Value: Accelerate support investigations by getting instant answers that combine events and replay context
+
+- Query: "Analyze all replays for user [user_id] and identify common patterns"
+- Business Value: Surface themes and patterns across multiple replays for faster, more comprehensive user analysis
+
 ### Key Benefits
 
 **Democratized Analytics**
@@ -289,6 +307,7 @@ npx -y mcp-remote https://mcp.mixpanel.com/sse --allow-http
 - Reduce time-to-insight from minutes to seconds
 - Eliminate context switching between tools
 - Enable real-time decision making
+- Save hours daily by analyzing replays and events together without manually piecing together
 
 **Strategic Value**
 - Accelerate product discovery processes
