@@ -30,6 +30,20 @@ Discover Mixpanel’s core features through quick, self-guided tours. Click any 
   </a>
 </div>
 
+<style jsx global>{`
+  /* CTA interactions reuse component look & feel */
+  .sgt-cta:hover {
+    transform: translateY(-1px);
+    box-shadow: 0 8px 20px rgba(139, 92, 246, 0.18);
+    background: rgba(139, 92, 246, 0.08);
+  }
+  .sgt-cta:focus-visible {
+    outline: 2px solid rgb(139, 92, 246);
+    outline-offset: 3px;
+    border-radius: 10px;
+  }
+`}</style>
+
 ## Tours by Category
 
 [Overview](#overview) • [Get Set Up](#get-set-up) • [Find Insights](#find-insights) • [Experiment & Optimize](#experiment-&-optimize) • [Govern & Maintain Data Quality](#govern-&-maintain-data-quality)
@@ -54,7 +68,7 @@ Discover Mixpanel’s core features through quick, self-guided tours. Click any 
   - Images should live under /public/navattic/ for easy referencing.
 */}
 
-## Overview
+### Overview
 Understand what Mixpanel is, how it works, and how to navigate it.
 
 <SelfGuidedTours
@@ -70,21 +84,15 @@ Understand what Mixpanel is, how it works, and how to navigate it.
   ]}
 />
 
-## Get Set Up
+### Get Set Up
 Connect data, configure your workspace, and validate that events flow correctly.
 
-## Find Insights
+### Find Insights
 Explore and analyze user behavior to understand what’s happening in your product.
-
-## Experiment & Optimize
-Run tests, manage feature rollouts, and improve product experiences.
-
-## Govern & Maintain Data Quality
-Ensure your data is consistent, trustworthy, and well-documented.
-
 
 <SelfGuidedTours
   cards={[
+
     {
       badge: 'ANALYSIS',
       title: 'Visualize Trends',
@@ -93,7 +101,8 @@ Ensure your data is consistent, trustworthy, and well-documented.
       navatticOpen: 'cmead9fmz000004l5ff34hgwo',
       navatticTitle: 'Visualize Trends with Data',
     },
-    {
+
+ {
       badge: 'ANALYSIS',
       title: 'Optimize User Conversion',
       blurb: 'Create a Funnels report',
@@ -101,6 +110,7 @@ Ensure your data is consistent, trustworthy, and well-documented.
       navatticOpen: 'cmer30mzn000104i52cqv05al',
       navatticTitle: 'Optimize User Conversion',
     },
+  
     {
       badge: 'AUTOCAPTURE',
       title: 'Analyze Autocaptured Data',
@@ -109,6 +119,7 @@ Ensure your data is consistent, trustworthy, and well-documented.
       navatticOpen: 'cmbrua13y000004l47jkmbvpg',
       navatticTitle: 'Analyzing Autocaptured Data',
     },
+
     {
       badge: 'SESSION REPLAY',
       title: 'Watch Playbacks',
@@ -117,6 +128,16 @@ Ensure your data is consistent, trustworthy, and well-documented.
       navatticOpen: 'cmapktdk2000104lb976zabd1',
       navatticTitle: 'Watch Playbacks of Digital Experiences',
     },
+
+]}
+/>
+
+### Experiment & Optimize
+Run tests, manage feature rollouts, and improve product experiences.
+
+<SelfGuidedTours
+  cards={[
+
     {
       badge: 'EXPERIMENTS',
       title: 'Conduct Experiments',
@@ -125,19 +146,11 @@ Ensure your data is consistent, trustworthy, and well-documented.
       navatticOpen: 'cmfciul3m000004jr47ov9ji6',
       navatticTitle: 'Evaluate Experiment Results',
     },
+
   ]}
 />
 
-<style jsx global>{`
-  /* CTA interactions reuse component look & feel */
-  .sgt-cta:hover {
-    transform: translateY(-1px);
-    box-shadow: 0 8px 20px rgba(139, 92, 246, 0.18);
-    background: rgba(139, 92, 246, 0.08);
-  }
-  .sgt-cta:focus-visible {
-    outline: 2px solid rgb(139, 92, 246);
-    outline-offset: 3px;
-    border-radius: 10px;
-  }
-`}</style>
+### Govern & Maintain Data Quality
+Ensure your data is consistent, trustworthy, and well-documented.
+
+
