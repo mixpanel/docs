@@ -1,9 +1,38 @@
 import SelfGuidedTours from '../../components/SelfGuidedTours'
 
-# Self-Guided Product Tours
+# Self-Guided Tours
 
-Discover Mixpanel’s core features through quick, self-guided tours.
-Select any card below to explore interactive walkthroughs of key workflows.
+Discover Mixpanel’s core features through quick, self-guided tours. Click any card below to explore interactive walkthroughs of key workflows.
+
+{/* Section CTA — content lives in MDX so it’s easy to change or A/B test */}
+<div style={{ textAlign: 'center', marginTop: '28px' }}>
+  <a
+    href="https://mixpanel.com/contact-us/sales/"
+    className="sgt-cta"
+    style={{
+      display: 'inline-flex',
+      alignItems: 'center',
+      gap: '8px',
+      fontWeight: 600,
+      fontSize: '15px',
+      padding: '10px 14px',
+      borderRadius: '10px',
+      border: '1px solid rgb(139, 92, 246)',
+      color: 'var(--sgt-title)',
+      background: 'var(--sgt-card-bg)',
+      textDecoration: 'none',
+      boxShadow: '0 4px 16px rgba(0,0,0,.12)',
+      transition: 'transform .2s ease, box-shadow .2s ease, background .2s ease',
+    }}
+  >
+    Want a guided demo instead?
+    <span aria-hidden>→</span>
+  </a>
+</div>
+
+# Tours by Category
+
+Overview • Get Set Up • Find Insights • Experiment & Optimize • Govern & Maintain Data Quality
 
 {/*
   Cards API (examples):
@@ -24,6 +53,8 @@ Select any card below to explore interactive walkthroughs of key workflows.
   - If `href` is provided (and `navatticOpen` is not), the card becomes a link.
   - Images should live under /public/navattic/ for easy referencing.
 */}
+
+# Overview
 
 <SelfGuidedTours
   cards={[
@@ -77,32 +108,6 @@ Select any card below to explore interactive walkthroughs of key workflows.
     },
   ]}
 />
-
-{/* Section CTA — content lives in MDX so it’s easy to change or A/B test */}
-<div style={{ textAlign: 'center', marginTop: '28px' }}>
-  <a
-    href="https://mixpanel.com/contact-us/sales/"
-    className="sgt-cta"
-    style={{
-      display: 'inline-flex',
-      alignItems: 'center',
-      gap: '8px',
-      fontWeight: 600,
-      fontSize: '15px',
-      padding: '10px 14px',
-      borderRadius: '10px',
-      border: '1px solid rgb(139, 92, 246)',
-      color: 'var(--sgt-title)',
-      background: 'var(--sgt-card-bg)',
-      textDecoration: 'none',
-      boxShadow: '0 4px 16px rgba(0,0,0,.12)',
-      transition: 'transform .2s ease, box-shadow .2s ease, background .2s ease',
-    }}
-  >
-    Want a guided demo instead?
-    <span aria-hidden>→</span>
-  </a>
-</div>
 
 <style jsx global>{`
   /* CTA interactions reuse component look & feel */
