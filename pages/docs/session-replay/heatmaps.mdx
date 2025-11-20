@@ -101,6 +101,21 @@ mixpanel.init('YOUR_PROJECT_TOKEN', {
 
 ![heatmap_selection_menu.png](/heatmap_selection_menu.png)
 
+### Goal Mode
+
+Goal Mode helps you see which UI elements actually drive conversions for any event goal, not just raw clicks. While traditional heatmaps show where users click, Goal Mode reveals whether those clicks lead to meaningful outcomes like signups, purchases, or feature adoption.
+
+To enable Goal Mode, click the **Goal** button in any heatmap. You'll be prompted to configure:
+
+- **Conversion Goal**: A user action deemed valuable to your business, such as a "Purchase" or "Sign Up" event. Select any Mixpanel event as your goal.
+- **Conversion Weight Property (Optional)**: An optional numeric property that is used to weight conversions, such as a "Purchase Amount" or "Order Value" property. This allows you to prioritize higher-value conversions.
+
+Once enabled, Goal Mode highlights the UI elements driving the most conversions, giving you a true aggregate visual of how your UI affects your core metrics. For example, you might discover whether a case study on your landing page is generating signups, or just a lot of clicks that don't convert.
+
+<Callout type="info">
+  Goal Mode works with any of your existing events and properties directly out of the box—no additional setup required.
+</Callout>
+
 ### Backdrops
 
 Backdrops are snapshots of your application in various states (such as a modal open, a menu expanded, or different page layouts). Backdrops are pulled from session replays that match the URL you're analyzing, helping you understand how different views or UI states affect user interactions.
