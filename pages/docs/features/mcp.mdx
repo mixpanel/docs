@@ -129,7 +129,7 @@ For additional information on setting up Claude connectors, see [Claude's connec
 
 4. Run authorization command in terminal:
 ```bash
-npx -y mcp-remote https://mcp.mixpanel.com/sse --allow-http
+npx -y mcp-remote https://mcp.mixpanel.com/sse --static-oauth-client-metadata '{ "scope": "projects analysis events insights segmentation retention data:read funnels flows data_definitions" }' --allow-http
 ```
 
 5. Complete Mixpanel authorization via the provided link
@@ -164,7 +164,7 @@ npx -y mcp-remote https://mcp.mixpanel.com/sse --allow-http
 
 4. Run authorization command in terminal:
 ```bash
-npx -y mcp-remote https://mcp.mixpanel.com/sse --allow-http
+npx -y mcp-remote https://mcp.mixpanel.com/sse --static-oauth-client-metadata '{ "scope": "projects analysis events insights segmentation retention data:read funnels flows data_definitions" }' --allow-http
 ```
 
 5. Complete Mixpanel authorization via the provided link
@@ -185,7 +185,7 @@ npx -y mcp-remote https://mcp.mixpanel.com/sse --allow-http
    ```
 3. Configure Mixpanel MCP as a remote server and authorize:
    ```bash
-   npx -y mcp-remote https://mcp.mixpanel.com/sse --allow-http
+   npx -y mcp-remote https://mcp.mixpanel.com/sse --static-oauth-client-metadata '{ "scope": "projects analysis events insights segmentation retention data:read funnels flows data_definitions" }' --allow-http
    ```
    Running this command will provide a link in your terminal to authorize your access with Mixpanel. Follow the authorization steps in your browser. After logging in via OAuth, you should see a confirmation message.
 

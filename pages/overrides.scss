@@ -696,6 +696,13 @@ article {
       //     opacity: 0.4;
       //   }
     }
+
+    // Modify Steps
+    .nextra-steps h2:before,.nextra-steps h3:before,.nextra-steps h4:before{
+        background-color: colors.$purple20;
+        color: colors.$purple140;
+    }
+
     //####Light Theme Code Syntax and Box####
     code,
     kbd,
@@ -1438,6 +1445,13 @@ article {
       svg {
         opacity: 0.4;
       }
+    }
+
+    // Modify steps
+    .nextra-steps h2:before,.nextra-steps h3:before,.nextra-steps h4:before{
+        background-color: colors.$purple140;
+        color: colors.$purple20;
+        border-color: colors.$purple140;
     }
 
     //ID management banner style

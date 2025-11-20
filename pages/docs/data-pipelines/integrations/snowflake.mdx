@@ -16,12 +16,17 @@ Mixpanel exports data to customer's database. We first load the data into a sing
 
 Mixpanel Data Pipelines supports static IP addresses for Snowflake connections when IP restrictions are configured on your Snowflake instance. If you are using [Snowflake Network policy](https://docs.snowflake.com/en/user-guide/network-policies) to restrict access to your instance, you might need to add the following IP addresses to the allowed list:
 
+**US**
 ```jsx
 34.31.112.201
-34.147.68.192
 35.184.21.33
 35.225.176.74
-35.204.164.122
+```
+
+**EU**
+```jsx
+34.147.68.192
+35.204.164.122 
 35.204.177.251
 ```
 

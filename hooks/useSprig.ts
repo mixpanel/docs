@@ -58,11 +58,11 @@ export const useSprig = () => {
     }
   }, [sprigEnvironmentId]);
 
-  // Track experimentation page visits
+  // Track page visits for specific documentation pages
   useEffect(() => {
     if (!sprigEnvironmentId || typeof window === 'undefined') return;
 
-    const trackExperimentView = () => {
+    const trackPageView = (eventName: string) => {
       const now = Date.now();
 
       // Prevent duplicate events within debounce period
@@ -76,7 +76,7 @@ export const useSprig = () => {
 
       try {
         lastEventTime = now;
-        window.Sprig('track', 'viewed_experimentation_docs');
+        window.Sprig('track', eventName);
       } catch (error) {
         console.error('Sprig track failed:', error);
       }
@@ -84,13 +84,17 @@ export const useSprig = () => {
 
     const handleRouteChange = (url: string) => {
       if (url.includes('/docs/experiments')) {
-        trackExperimentView();
+        trackPageView('viewed_experimentation_docs');
+      } else if (url.includes('/docs/featureflags')) {
+        trackPageView('viewed_featureflags_docs');
       }
     };
 
-    // Track if already on experimentation page
+    // Track if already on a tracked page
     if (router.asPath.includes('/docs/experiments')) {
-      trackExperimentView();
+      trackPageView('viewed_experimentation_docs');
+    } else if (router.asPath.includes('/docs/featureflags')) {
+      trackPageView('viewed_featureflags_docs');
     }
 
     router.events.on('routeChangeComplete', handleRouteChange);

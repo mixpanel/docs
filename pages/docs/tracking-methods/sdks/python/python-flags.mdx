@@ -2,10 +2,6 @@ import { Callout } from 'nextra/components'
 
 # Implement Feature Flags (Python)
 
-<Callout type="info">
-    The Python server-side SDK is currently in Beta.
-</Callout>
-
 ## Overview
 
 This developer guide will assist you in configuring your server-side Python platform for [Feature Flags](/docs/featureflags) using the [Mixpanel Python SDK](/docs/tracking-methods/sdks/python). Feature Flags allow you to control the rollout of your features, conduct A/B testing, and manage application behavior without deploying new code.
@@ -14,16 +10,18 @@ This developer guide will assist you in configuring your server-side Python plat
 
 Before implementing [Feature Flags](/docs/featureflags), ensure:
 
-- You are on an Enterprise subscription plan  and have the appropriate version of the SDK installed (minimum supported version is [`v5.0.0b2`](https://github.com/mixpanel/mixpanel-python). If not, please follow [this doc](/docs/quickstart/install-mixpanel) to install the SDK.
+- You are on an Enterprise subscription plan  and have the appropriate version of the SDK installed (minimum supported version is [`v5.0.0`](https://github.com/mixpanel/mixpanel-python). If not, please follow [this doc](/docs/quickstart/install-mixpanel) to install the SDK.
 - You have your Project Token from your [Mixpanel Project Settings](/docs/orgs-and-projects/managing-projects#find-your-project-tokens)
 
-## Flag Evaluation Modes
+## Flag Evaluation Scenarios
 
-There are two modes available for using the python SDK for feature flagging, Local Evaluation and Remote Evaluation.
+There are two scenarios available for using the python SDK for feature flagging, Local Evaluation and Remote Evaluation.
 
 For local evaluation, the SDK will poll Mixpanel servers for feature flag configurations. Assignment of user contexts to variants will be done locally within the SDK. This mode is recommended for low latency since there is no network call made at assignment time.
 
 For remote evaluation, the SDK will make a network call to Mixpanel servers at assignment time. This mode is recommended for use cases where you want to leverage Mixpanel cohorts for user targeting or sticky variants for persistent variant assignments.
+
+In either case there is also the capability to evaluate all flags for a given user context at once, to avoid needing to make multiple calls to get individual flag variants for the same user. This is particularly useful for remote evaluation to avoid incurring additional network calls.
 
 ## Local Evaluation
 
@@ -66,6 +64,8 @@ user_context = {
     }
 }
 
+# Gets the assigned variant for the flag for the given user context.
+# This will return the fallback_variant if the user context is not in an assignment group for the flag.
 variant_value = mixpanel.local_flags.get_variant_value(flag_key, fallback_variant, user_context)
 ```
 
@@ -76,15 +76,31 @@ variant_value = mixpanel.local_flags.get_variant_value(flag_key, fallback_varian
 ```python
 remote_config = mixpanel.RemoteFlagsConfig(api_host=API_HOST, request_timeout_in_seconds=5)
 
-mixpanel = mixpanel.Mixpanel(PROJECT_TOKEN, remote_flags_config=remote_config) as mp:
+mixpanel = mixpanel.Mixpanel(PROJECT_TOKEN, remote_flags_config=remote_config)
 
 # get_variant_value usage is the same as for local evaluation, but will make a network call to Mixpanel servers at assignment time.
-variant_value = mp.remote_flags.get_variant_value(flag_key, fallback_variant, user_context)
-    print(f"Variant value: {variant_value}")
-
+variant_value = mixpanel.remote_flags.get_variant_value(flag_key, fallback_variant, user_context)
 ```
 
+## Evaluate all flags at once
 
+Below is a remote evaluation sample of evaluating all flags for a given user context at once.
+
+```python
+user_context = {
+    "distinct_id": "1234",
+}
+
+remote_config = mixpanel.RemoteFlagsConfig(api_host=API_HOST, request_timeout_in_seconds=5)
+mixpanel = mixpanel.Mixpanel(PROJECT_TOKEN, remote_flags_config=remote_config)
+
+# Returns a dictionary, mapping flag keys to assigned variants ONLY for flags that the user context is in an assignment group for.
+# By default, this will not track an exposure event.
+variants = mixpanel.remote_flags.get_all_variants(user_context)
+
+# Given a flag key and the selected variant for that key, manually track an exposure event for a given flag and assigned variant, after exposing the user to the variant
+mixpanel.remote_flags.track_exposure_event(flagKey, selected_variant, user_context)
+```
 
 
 
