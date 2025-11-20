@@ -15,13 +15,13 @@ The process of moving from corporate vision to tangible results often devolves i
 - **Misaligned Resources and Priorities:** Strategic planning and financial budgeting often conflict, meaning resources (people, time, capital) are rarely allocated to the highest-leverage strategic initiatives.
 - **Absence of Clear Accountability:** When the connection between a team's work and a top-line outcome is vague, performance reviews default to subjective activity reports, shielding low-impact projects from scrutiny.
 - **Failure to Measure Outcomes Over Activities:** Teams naturally measure what’s easy (features shipped, tickets closed), creating a **"culture of activity"** where being busy is mistaken for making progress.
-The Metric Tree is the architectural solution designed to systematically address these root causes by forcing leadership to move from **ambiguity to precision**. You can learn more about Metric Trees in Mixpanel [here](https://docs.mixpanel.com/docs/metric_tree).
+The Metric Tree is the architectural solution designed to systematically address these root causes by forcing leadership to move from **ambiguity to precision**. You can learn more about Metric Trees in Mixpanel [here](/docs/metric_tree).
 
 ## 1. Design Your Value Architecture
 Before your organization can operationalize Metric Trees, you need to design the value architecture that defines how your business creates and measures impact. This step turns strategy into a quantifiable model every team can trace back to the North Star.
 
 ### Define Your North Star Metric
-Building a Metric Tree is not a data visualization exercise; it is the process of **codifying your organization's hypothesis for value creation**. These design choices are foundational strategic decisions. The apex of any Metric Tree is the [North Star Metric (NSM)](https://mixpanel.com/blog/north-star-metric/). This is the single metric that best captures the core value the product or service delivers to its customers. All efforts must orient toward its movement.
+Building a Metric Tree is not a data visualization exercise; it is the process of **codifying your organization's hypothesis for value creation**. These design choices are foundational strategic decisions. The apex of any Metric Tree is the **[North Star Metric (NSM)](https://mixpanel.com/blog/north-star-metric/)**. This is the single metric that best captures the **core value** the product or service delivers to its customers. All efforts must orient toward its movement.
 
 **A strong NSM must:**
 - **Lead to Revenue:** It must have a clear, causal link to the financial success of the business.
@@ -38,20 +38,21 @@ Building a Metric Tree is not a data visualization exercise; it is the process o
 
 ### Choose Your Architectural Model
 The Metric Tree is built on an underlying logic that defines the relationship between nodes.
-- **Deterministic Trees:** Built on unbreakable mathematical formulas (e.g. Revenue = Users x ARPU). Powerful for precise root cause analysis and forecasting.
-- **Hypothesis Trees:** Built on influential but not mathematically precise relationships (e.g. Improved Onboarding Completion Rate will lead to Week 1 Retention). Essential for innovation, making strategic assumptions explicit and testable.
-- **Organizational Trees:** Defines relationships based on team ownership and accountability (e.g. New Users decomposed into Organic Traffic (SEO Team) and Sign-up Conversion Rate (Product Team)). Highly effective for clear resource allocation.
+- **Deterministic Trees:** Built on unbreakable mathematical formulas (e.g. *Revenue = Users x ARPU*). Powerful for precise root cause analysis and forecasting.
+- **Hypothesis Trees:** Built on influential but not mathematically precise relationships (e.g. *Improved Onboarding Completion Rate will lead to Week 1 Retention*). Essential for innovation, making strategic assumptions explicit and testable.
+- **Organizational Trees:** Defines relationships based on team ownership and accountability (e.g. *New Users decomposed into Organic Traffic (SEO Team) and Sign-up Conversion Rate (Product Team)*). Highly effective for clear resource allocation.
 
-💡 **Pro tip:** Treat your tree as evolutionary––a living model. New initiatives start as Hypothesis branches; as experiments are run and validated, the link is hardened into a Deterministic branch. The rate at which hypotheses are validated is the organization’s learning velocity.
+💡 **Pro tip:** Treat your tree as *evolutionary*––a living model. New initiatives start as Hypothesis branches; as experiments are run and validated, the link is hardened into a Deterministic branch. The rate at which hypotheses are validated is the organization’s learning velocity.
 
 ### Decompose Into Actionable Inputs
 The goal is to break the NSM down into successive layers until the components are granular enough to be directly owned and influenced by a single team.
-- **Level 1: Value Drivers:** The 2-4 primary components that are **Mutually Exclusive and Collectively Exhaustive (MECE)** of the NSM (e.g. MAU = New Users + Retained Users + Resurrected Users).
-- **Level 2+: Input Metrics (The Leaves):** Decomposition continues until the metric is a lever a specific team can directly control through daily work (e.g. Sign-up Conversion Rate).
+- **Level 1: Value Drivers:** The 2-4 primary components that are **Mutually Exclusive and Collectively Exhaustive (MECE)** of the NSM (e.g. *MAU = New Users + Retained Users + Resurrected Users*).
+- **Level 2+: Input Metrics (The Leaves):** Decomposition continues until the metric is a lever a specific team can directly control through daily work (e.g. *Sign-up Conversion Rate*).
 
 ✅ **Do:** Keep decomposing until you reach metrics that a single team can influence directly. Anything broader is too abstract to drive accountability or improvement.
 
-[IMAGE]
+![Metric Trees](/north-star-metric-tree-framework-2600x1222.png)
+
 Once you’ve defined your value architecture, plan a cross-functional workshop to map your first Metric Tree collaboratively—[Section 4](4--Run-Metric-Tree-Workshops-for-Model-Creation) outlines how to run it.
 
 ## 2. Connect Data & Validate Relationships
@@ -111,7 +112,7 @@ As your teams act, your live Metric Tree in Mixpanel becomes your strategic cock
 - **Codify Learnings:** The "why" behind both successes and failures is rigorously investigated and documented. A successful bet that exceeded its forecast is analyzed to understand the underlying reasons for its success so they can be replicated. A failed bet is examined to distinguish between an execution problem (the team failed to deliver the initiative as planned) and a hypothesis failure (the team delivered the initiative perfectly, but it simply didn't have the desired effect). This distinction is critical for intelligent adaptation.
 - **Update the Tree:** The cycle culminates in updating the value architecture itself. A hypothesis that was validated with strong data may have its confidence score increased or even be converted to a deterministic link. A failed bet may be pruned from the tree or annotated with the learnings from the experiment. A new, unexpected driver that was discovered during the cycle might be added.
 
-Treat your Metric Tree as a living source of truth, not a static artifact. Over time, the tree becomes your organization’s collective intelligence on what truly drives value.
+Treat your Metric Tree as a *living source of truth*, not a static artifact. Over time, the tree becomes your organization’s collective intelligence on what truly drives value.
 
 ## 4. Run Metric Tree Workshops for Model Creation
 Building your first Metric Tree is a cross-functional exercise, not a data project. Use structured workshops to align leaders, validate logic, and accelerate adoption across the organization.
