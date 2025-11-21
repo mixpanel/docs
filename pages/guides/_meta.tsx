@@ -12,7 +12,7 @@ export default {
     ),
   },
   "mixpanel-introduction": "Mixpanel Introduction",
-  "self-guided-tours": "Self Guided Tours",
+  "self-guided-tours": "Self-Guided Tours",
   "changelog": {
       title: "What's New? ↗",
       href: "/changelogs",
