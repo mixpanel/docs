@@ -38,5 +38,6 @@ export default {
     ),
   },
   "benchmarks": "Benchmarks",
-  "strategic-playbooks": "Strategic Playbooks"
+  "strategic-playbooks": "Strategic Playbooks",
+  "glossary": "Glossary"
 }
