@@ -29,7 +29,7 @@ Each event has the following size limits:
 
 - Must be smaller than 1MB of uncompressed JSON.
 - Must have fewer than 255 properties.
-- All nested object properties must have fewer than 255 keys and max nesting depth is 3.
+- All nested object properties must have fewer than 255 keys.
 - All array properties must have fewer than 255 elements.
 
 To ensure real-time ingestion and quality-of-service, we have a rate limit of 2GB of uncompressed JSON/minute or ~30k events per second, measured on a rolling 1 minute basis.
