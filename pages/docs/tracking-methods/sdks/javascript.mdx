@@ -180,8 +180,8 @@ Note that disabling Autocapture does not disable Session Replay, which is [confi
 | Option | Description | Default |
 | --- | --- | --- |
 | `click` | When set to `true`, Mixpanel will track element clicks. It will not track textContent unless `capture_text_content` is also set to `true`. | `true` |
-| `dead_click` | When set to `true`, Mixpanel will track dead clicks on elements. You can also fine tune thresholds for classifying dead clicks as follows `{timeout_ms: $number}`. Each attribute is optional such that it reverts back to a value that is most optimal. | `true`
-| `rage_click` | When set to `true`, Mixpanel will track rage clicks on elements. You can also fine tune thresholds for classifying rage clicks as follows `{threshold_px: $number, timeout_ms: $number, click_count: $number}`. Each attribute is optional such that it reverts back to a value that is most optimal. | `true`
+| `dead_click` | When set to `true`, Mixpanel will track dead clicks on elements. You can also fine tune thresholds for classifying dead clicks using the [Dead Click Options](#dead-click-options) below. | `true`
+| `rage_click` | When set to `true`, Mixpanel will track rage clicks on elements. You can also fine tune thresholds for classifying rage clicks using the [Rage Click Options](#rage-click-options) below. | `true`
 | `input` | When set to `true`, Mixpanel will track when an input is provided. It will not capture input content. | `true` |
 | `pageview` | When set, Mixpanel will collect pageviews when some components of the URL change — including UTM parameters. | `"full-url"` |
 | `scroll` | When set, Mixpanel will collect page scrolls at specified scroll intervals. | `true` |
@@ -197,6 +197,19 @@ Note that disabling Autocapture does not disable Session Replay, which is [confi
 | `block_attrs` | Opts out specific attributes from Autocapture. | `[]` |
 | `allow_element_callback` | A user-provided function that determines whether a specific element should be tracked via Autocapture or not. The function receives the element as its first argument, and the DOM event as its second argument, and should return `true` if the element should be tracked (otherwise the element will NOT be tracked). | `not set` |
 | `block_element_callback` | A user-provided function that determines whether a specific element should be blocked from tracking via Autocapture or not. The function receives the element as its first argument, and the DOM event as its second argument, and should return `true` if the element should be blocked. | `not set` |
+
+**<span id="dead-click-options">Dead Click Options</span>**
+| Option       | Description                                                              | Default |
+| ------------ | ------------------------------------------------------------------------ | ------- |
+| `timeout_ms` | Time in milliseconds to wait after a click before qualifying it as dead. | `500`   |
+
+**<span id="rage-click-options">Rage Click Options</span>**
+| Option                            | Description                                                                                  | Default |
+| --------------------------------- | -------------------------------------------------------------------------------------------- | ------- |
+| `threshold_px`                    | Maximum pixel distance between clicks to be considered in the same location.                 | `30`    |
+| `timeout_ms`                      | Time window in milliseconds to group rapid consecutive clicks.                               | `1000`  |
+| `click_count`                     | Minimum number of clicks required within the time window to trigger rage click detection.    | `4`     |
+| `interactive_elements_only`       | When enabled, only tracks rage clicks on interactive elements (buttons, links, inputs, etc.) | `false` |
 
 **HTML attributes captured by default**
 
