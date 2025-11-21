@@ -98,7 +98,10 @@ brew install node
 2. Go to **Settings** → **Connectors** → **Add Custom Connector**
 3. Configure the integration:
    - **Integration Name:** Mixpanel (or preferred name)
-   - **Integration URL:** `https://mcp.mixpanel.com/mcp`
+   - **Integration URL**
+     - US: `https://mcp.mixpanel.com/mcp`
+     - EU: `https://mcp-eu.mixpanel.com/mcp`
+     - IN: `https://mcp-in.mixpanel.com/mcp`
 4. Click **Connect** and complete Mixpanel authorization
 
 For additional information on setting up Claude connectors, see [Claude's connector documentation](https://support.anthropic.com/en/articles/11724452-browsing-and-connecting-to-tools-from-the-directory).
@@ -123,7 +126,7 @@ For additional information on setting up Claude connectors, see [Claude's connec
       "args": [
         "-y",
         "mcp-remote",
-        "https://mcp.mixpanel.com/mcp",
+        "https://mcp.mixpanel.com/mcp", // or use mcp-eu.mixpanel.com/mcp for EU, mcp-in.mixpanel.com/mcp for IN
         "--allow-http"
       ]
     }
@@ -133,7 +136,17 @@ For additional information on setting up Claude connectors, see [Claude's connec
 
 4. Run authorization command in terminal:
 ```bash
-npx -y mcp-remote https://mcp.mixpanel.com/sse --static-oauth-client-metadata '{ "scope": "projects analysis events insights segmentation retention data:read funnels flows data_definitions" }' --allow-http
+npx -y mcp-remote https://mcp.mixpanel.com/mcp --static-oauth-client-metadata '{ "scope": "projects analysis events insights segmentation retention data:read funnels flows data_definitions" }' --allow-http
+```
+
+For EU,
+```bash
+npx -y mcp-remote https://mcp-eu.mixpanel.com/mcp --static-oauth-client-metadata '{ "scope": "projects analysis events insights segmentation retention data:read funnels flows data_definitions" }' --allow-http
+```
+
+For IN,
+```bash
+npx -y mcp-remote https://mcp-in.mixpanel.com/mcp --static-oauth-client-metadata '{ "scope": "projects analysis events insights segmentation retention data:read funnels flows data_definitions" }' --allow-http
 ```
 
 5. Complete Mixpanel authorization via the provided link
@@ -158,7 +171,7 @@ npx -y mcp-remote https://mcp.mixpanel.com/sse --static-oauth-client-metadata '{
       "args": [
         "-y",
         "mcp-remote",
-        "https://mcp.mixpanel.com/mcp",
+        "https://mcp.mixpanel.com/mcp", // or use mcp-eu.mixpanel.com/mcp for EU, mcp-in.mixpanel.com/mcp for IN
         "--allow-http"
       ]
     }
@@ -168,8 +181,19 @@ npx -y mcp-remote https://mcp.mixpanel.com/sse --static-oauth-client-metadata '{
 
 4. Run authorization command in terminal:
 ```bash
-npx -y mcp-remote https://mcp.mixpanel.com/sse --static-oauth-client-metadata '{ "scope": "projects analysis events insights segmentation retention data:read funnels flows data_definitions" }' --allow-http
+npx -y mcp-remote https://mcp.mixpanel.com/mcp --static-oauth-client-metadata '{ "scope": "projects analysis events insights segmentation retention data:read funnels flows data_definitions" }' --allow-http
 ```
+
+For EU,
+```bash
+npx -y mcp-remote https://mcp-eu.mixpanel.com/mcp --static-oauth-client-metadata '{ "scope": "projects analysis events insights segmentation retention data:read funnels flows data_definitions" }' --allow-http
+```
+
+For IN,
+```bash
+npx -y mcp-remote https://mcp-in.mixpanel.com/mcp --static-oauth-client-metadata '{ "scope": "projects analysis events insights segmentation retention data:read funnels flows data_definitions" }' --allow-http
+```
+
 
 5. Complete Mixpanel authorization via the provided link
 
@@ -189,8 +213,19 @@ npx -y mcp-remote https://mcp.mixpanel.com/sse --static-oauth-client-metadata '{
    ```
 3. Configure Mixpanel MCP as a remote server and authorize:
    ```bash
-   npx -y mcp-remote https://mcp.mixpanel.com/sse --static-oauth-client-metadata '{ "scope": "projects analysis events insights segmentation retention data:read funnels flows data_definitions" }' --allow-http
+   npx -y mcp-remote https://mcp.mixpanel.com/mcp --static-oauth-client-metadata '{ "scope": "projects analysis events insights segmentation retention data:read funnels flows data_definitions" }' --allow-http
    ```
+
+   For EU,
+   ```bash
+   npx -y mcp-remote https://mcp-eu.mixpanel.com/mcp --static-oauth-client-metadata '{ "scope": "projects analysis events insights segmentation retention data:read funnels flows data_definitions" }' --allow-http
+   ```
+
+   For IN,
+   ```bash
+   npx -y mcp-remote https://mcp-in.mixpanel.com/mcp --static-oauth-client-metadata '{ "scope": "projects analysis events insights segmentation retention data:read funnels flows data_definitions" }' --allow-http
+   ```
+
    Running this command will provide a link in your terminal to authorize your access with Mixpanel. Follow the authorization steps in your browser. After logging in via OAuth, you should see a confirmation message.
 
 4. **Verify Configuration (or Create It Manually):**  
@@ -210,7 +245,7 @@ npx -y mcp-remote https://mcp.mixpanel.com/sse --static-oauth-client-metadata '{
          "args": [
            "-y",
            "mcp-remote",
-           "https://mcp.mixpanel.com/mcp",
+           "https://mcp.mixpanel.com/mcp",  // or use mcp-eu.mixpanel.com/mcp for EU, mcp-in.mixpanel.com/mcp for IN
            "--allow-http"
          ]
        }
@@ -246,7 +281,10 @@ npx -y mcp-remote https://mcp.mixpanel.com/sse --static-oauth-client-metadata '{
    - Provide these values:
      - Name: Mixpanel MCP
      - Description: The MCP integration provides access to all core Mixpanel analysis capabilities through natural language queries.
-     - MCP Server URL: https://mcp.mixpanel.com/mcp
+     - MCP Server URL
+       - US: `https://mcp.mixpanel.com/mcp`
+       - EU: `https://mcp-eu.mixpanel.com/mcp`
+       - IN: `https://mcp-in.mixpanel.com/mcp`
      - Authentication type: OAuth
    - Click Create and then connect to Mixpanel and follow the OAuth flow to authorize Mixpanel access.
 
