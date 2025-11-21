@@ -1,0 +1,203 @@
+# Mixpanel Glossary
+
+Use this glossary to get familiar with the concepts that power Mixpanel—from data tracking and privacy to growth metrics and product strategy.  
+
+Browse by category, or jump directly to the [A–Z list](#az-glossary).
+
+---
+
+## Browse by Category
+
+<details>
+<summary><strong>Product & User Lifecycle Terms</strong></summary>
+
+- [Active User](#active-user)
+- [New User](#new-user)
+- [Dormant User](#dormant-user)
+- [Bounce Rate](#bounce-rate)
+
+</details>
+
+<details>
+<summary><strong>Data & Technical Terms</strong></summary>
+
+- [Autocapture](#autocapture)
+- [Identity Management](#identity-management)
+- [Ingestion](#ingestion)
+- [Software Development Kit (SDK)](#software-development-kit-sdk)
+- [First-party Cookies](#first-party-cookies)
+- [Third-party Cookies](#third-party-cookies)
+
+</details>
+
+<details>
+<summary><strong>Analysis & Visualization Terms</strong></summary>
+
+- [Annotation](#annotation)
+- [Board](#board)
+- [Formula](#formula)
+- [Stickiness](#stickiness)
+
+</details>
+
+<details>
+<summary><strong>Business Model Terms</strong></summary>
+
+- [Business to Business (B2B)](#business-to-business-b2b)
+- [Business to Consumer (B2C)](#business-to-consumer-b2c)
+- [Daily Active Users (DAU)](#daily-active-users-dau)
+- [Weekly Active Users (WAU)](#weekly-active-users-wau)
+- [Monthly Active Users (MAU)](#monthly-active-users-mau)
+- [Month-over-Month (MOM)](#month-over-month-mom)
+- [Quarter-over-Quarter (QoQ)](#quarter-over-quarter-qoq)
+- [Year-over-Year (YoY)](#year-over-year-yoy)
+- [Net Promoter Score (NPS)](#net-promoter-score-nps)
+- [Marketing Qualified Lead (MQL)](#marketing-qualified-lead-mql)
+- [Sales Qualified Lead (SQL)](#sales-qualified-lead-sql)
+
+</details>
+
+<details>
+<summary><strong>Product Development Terms</strong></summary>
+
+- [Feature Flag](#feature-flag)
+- [Minimum Viable Product (MVP)](#minimum-viable-product-mvp)
+- [Multivariate Test](#multivariate-test)
+
+</details>
+
+<details>
+<summary><strong>Data Management Terms</strong></summary>
+
+- [Data Lake](#data-lake)
+- [Data Warehouse](#data-warehouse)
+- [Groups](#groups)
+- [Session](#session)
+
+</details>
+
+<details>
+<summary><strong>Compliance & Privacy Terms</strong></summary>
+
+- [General Data Protection Regulation (GDPR)](#general-data-protection-regulation-gdpr)
+- [Health Insurance Portability and Accountability Act (HIPAA)](#health-insurance-portability-and-accountability-act-hipaa)
+- [Business Associate Agreement (BAA)](#business-associate-agreement-baa)
+- [Personally Identifying Information (PII)](#personally-identifying-information-pii)
+- [Personal Health Information (PHI)](#personal-health-information-phi)
+
+</details>
+
+---
+
+## A–Z Glossary
+
+### Active User
+People who currently use your product—distinct from just “users.” Active users can be segmented as Daily Active Users (DAU), Weekly Active Users (WAU), or Monthly Active Users (MAU) in Mixpanel. Learn more about tracking user activity in [Events](/docs/data-structure/events-and-properties).
+
+### Annotation
+Short text notes applied to data to provide context. Use [annotations](/docs/features/annotations) in Mixpanel charts to mark events like releases or campaigns.
+
+### Autocapture
+[Autocapture](/docs/tracking-methods/autocapture) is a feature in Mixpanel that automatically collects commonly tracked user behavior data—such as page views, button clicks, form submissions, scrolls, dead clicks, and rage clicks—without requiring custom coding for each event. 
+
+### Business Associate Agreement (BAA)
+A legal document defining how vendors handle Protected Health Information (PHI) in compliance with [HIPAA](https://mixpanel.com/legal/mixpanel-hipaa/).
+
+### Business to Business (B2B)
+Selling products or services to other businesses rather than to individual consumers.
+
+### Business to Consumer (B2C)
+Selling products or services directly to individual customers rather than to businesses.
+
+### Board
+A collection of multiple saved insights, reports, and metrics in one view for collaboration. Mixpanel [Boards](/docs/boards) help teams monitor key metrics in real time.  
+
+### Bounce Rate
+The percentage of sessions where users had only one pageview. High bounce rates can indicate low engagement or poor onboarding experiences.
+
+### Daily Active Users (DAU)
+The number of distinct users who engage with your product each day. [DAU](https://mixpanel.com/blog/daily-active-users/) is used to measure engagement and growth trends.
+
+### Data Lake
+A centralized repository for storing raw, unstructured data. Data lakes are flexible for large-scale storage and exploration but require transformation for analysis.
+
+### Data Warehouse
+A system for storing processed, structured data optimized for analysis and reporting. Data warehouses are commonly used to feed Mixpanel via [Warehouse Connectors](/docs/tracking-methods/warehouse-connectors).
+
+### Dormant User
+A user who has not completed a specific action in the current period but did in the previous one. Tracking dormant users helps teams identify reactivation opportunities.
+
+### Feature Flag
+A configuration that controls whether a feature is visible or active for certain user groups. [Feature flags](/docs/featureflags) allow for safe rollouts and A/B testing.  
+
+### First-party Cookies
+Data packets served by your own website to store user preferences and enable consistent analytics across sessions.
+
+### Formula
+An equation or expression that combines or modifies data from one or more series (e.g. dividing active users by new users). In Mixpanel, formulas can be used to create ratios or derived metrics in reports.
+
+### General Data Protection Regulation (GDPR)
+A European Union regulation that governs how personal data is collected, processed, and stored. Mixpanel supports [GDPR](https://mixpanel.com/legal/mixpanel-gdpr/) compliance through data controls and deletion tools.  
+
+### Groups
+Used in Mixpanel to analyze entities beyond individual users—like companies, teams, or devices—by grouping related events. Group analysis is supported via [Group Analytics](/docs/data-structure/group-analytics).
+
+### Health Insurance Portability and Accountability Act (HIPAA)
+A U.S. law that sets standards for protecting sensitive health information known as Protected Health Information (PHI). Mixpanel offers (HIPAA-compliant plans)[/legal/mixpanel-hipaa/] for customers handling medical data.  
+
+### Identity Management
+The process of linking an event or session to a known user by assigning a [unique identifier](/docs/tracking-methods/id-management). In Mixpanel, `identify()` ties events to a user profile across sessions.  
+
+### Ingestion
+The process of getting event data into Mixpanel from [SDKs](/docs/tracking-methods/sdks), [APIs](https://developer.mixpanel.com/reference/ingestion-api), or [integrations](/docs/tracking-methods/integrations).  
+
+### Marketing Qualified Lead (MQL)
+[MQLs](https://mixpanel.com/blog/marketing-qualified-leads/) are potential customers who have shown enough engagement or fit to be passed from marketing to sales for further qualification.
+
+### Minimum Viable Product (MVP)
+The simplest version of a product that allows a team to validate assumptions or test a concept quickly with real users.
+
+### Monthly Active Users (MAU)
+The number of distinct users who engage with your product within a 30-day period. [MAU](https://mixpanel.com/blog/mau/) is commonly used to assess long-term engagement and growth trends.
+
+### Month-over-Month (MOM)
+A measure comparing performance or metrics from one month to the next. Often used to assess growth momentum or seasonality.
+
+### Multivariate Test
+An [experiment](/docs/experiments) that tests more than two variants at once to understand the combined effect of multiple changes on user behavior.  
+
+### Net Promoter Score (NPS)
+A customer satisfaction metric that measures how likely users are to recommend your product to others. Typically gathered through surveys asking, “How likely are you to recommend us?”
+
+### New User
+Someone who was first identified within a defined period—such as their first session or signup week. Useful for measuring acquisition and onboarding effectiveness.
+
+### Personal Health Information (PHI)
+Information about an individual's health status or healthcare that can be linked to a specific person. Covered under [HIPAA](https://mixpanel.com/legal/mixpanel-hipaa/) and often referenced in BAAs.
+
+### Personally Identifying Information (PII)
+Any information that can directly or indirectly identify a user, such as names, email addresses, or device IDs. Mixpanel offers a variety of options to [protect user data](/docs/privacy/protecting-user-data).
+
+### Quarter-over-Quarter (QoQ)
+A comparison of a specific metric between one fiscal quarter and the previous quarter. QoQ analysis helps track short-term performance and momentum over time.
+
+### Sales Qualified Lead (SQL)
+A potential customer who has been vetted by sales as ready for direct engagement, typically following initial marketing qualification (MQL). SQLs show intent or fit strong enough to justify outreach by the sales team.
+
+### Session
+A period of continuous user activity within your product. [Sessions](/docs/features/sessions) can be defined by a time window or event-based logic.  
+
+### Software Development Kit (SDK)
+A set of tools and libraries that allow developers to send events and user data from their apps to Mixpanel. [Mixpanel SDKs](/docs/tracking-methods/sdks) are available for a wide range of environments.  
+
+### Stickiness
+A [retention metric](/docs/reports/retention) showing how frequently users perform an action within a given time period. For example, it helps track how many users return daily or weekly to use a key feature.  
+
+### Third-party Cookies
+[Cookies](https://mixpanel.com/blog/cookies-consent-and-the-gdpr-the-role-of-privacy-in-a-product-analytics-strategy/) set by external domains or services, often used for advertising or cross-site tracking. Mixpanel primarily relies on first-party data for analytics.
+
+### Weekly Active Users (WAU)
+The number of distinct users who engage with your product within a seven-day period. WAU is a key indicator of ongoing engagement and helps teams measure short-term product stickiness.
+
+### Year-over-Year (YoY)
+A comparison of a specific metric (such as revenue, retention, or active users) between one year and the same period in the previous year. YoY analysis helps teams understand long-term trends while accounting for seasonality.
