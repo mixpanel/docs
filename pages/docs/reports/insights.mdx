@@ -196,9 +196,25 @@ In the below image, we sort Country *within* Item Category, which respects the h
 
 Hierarchy is defined by the breakdown order in the query panel.
 
-###### View “N” segments
 
-The View “N” control lets you decide how many rows to display per breakdown in your table.
+##### Overall and Segment Sub-Totals
+
+**Overall:** This refers to the value considering all the segments, independent of whether displayed or not based on your View N control; i.e changes to View N will not affect Overall numbers
+
+![image](https://github.com/mixpanel/docs/assets/2077899/3d6556a4-9468-4d1f-8979-4fdb512f2aaa)
+
+**Sub-Totals:** In the grouped view, in addition to the Overall, segment sub-totals are also displayed. Similar to “Overall”, these values are independent of the View N control
+
+![image](https://github.com/mixpanel/docs/assets/2077899/ee7d8c9b-f738-4a5b-8967-300cf8322f76)
+
+
+##### Dynamic & Manual Segments
+
+Dynamic Segments let you decide how many segments to display per breakdown in your report. With Dynamic Segments, the segments selected in the report will change based on your latest data and the current sort order. Manual Segments let you choose specific segments that will always display in the report, regardless of the data or sorting. 
+
+![image](/dynamic_segments.png)
+
+When using Dynamic Segments, you can select the number of segments to display from the column headers. 
 
 ![View_N_gif](https://github.com/mixpanel/docs/assets/2077899/4fb0fd18-2ef7-416b-adaa-c7299da0f7b3)
 
@@ -212,20 +228,10 @@ In the grouped view, you can choose the number of rows you want to display for e
 
 ![image](https://github.com/mixpanel/docs/assets/2077899/b09c1ad1-1392-4ec0-9358-361f677c600d)
 
-**Notes**
+**Notes about Dynamic Segments**
 - View N only controls how many segments to display. To decide which segments to display i.e if it’s the top segments by value or bottom segments by value or alphabetical, please change the “Sort Order”.
 - View N will show the minimum of N and how many segments are in your report. For example, if you set N=10 but you only have 7 segments, we will only show 7 rows.
-- When selecting “Show All”, the maximum number of segments displayed in the UI will be 3000 given cardinality limits. If your breakdown has more than 3000 segments, you'll only see the top 3000, dictated by the sort order.
-
-##### Overall and Segment Sub-Totals
-
-**Overall:** This refers to the value considering all the segments, independent of whether displayed or not based on your View N control; i.e changes to View N will not affect Overall numbers
-
-![image](https://github.com/mixpanel/docs/assets/2077899/3d6556a4-9468-4d1f-8979-4fdb512f2aaa)
-
-**Sub-Totals:** In the grouped view, in addition to the Overall, segment sub-totals are also displayed. Similar to “Overall”, these values are independent of the View N control
-
-![image](https://github.com/mixpanel/docs/assets/2077899/ee7d8c9b-f738-4a5b-8967-300cf8322f76)
+- When selecting “Show All”, the maximum number of segments displayed in the UI will depend on the chart type. 
 
 
 ## Advanced
