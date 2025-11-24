@@ -12,9 +12,9 @@ info:
 servers:
   - $ref: ./common/app-api.yaml#/server
 tags:
-  - name: Evaluate Flags
+  - name: Get Variant Assignments
     description: Evaluate feature flags for a specific user
-  - name: Flag Definitions
+  - name: Get Flag Definitions
     description: Retrieve feature flag definitions
 paths:
   /flags:
