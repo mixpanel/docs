@@ -1,8 +1,7 @@
 ---
 title: Get Flag Definitions
-slug: get-flag-definitions
 category:
-  uri: feature-flags-api
+  uri: Feature Flags API
 content:
   excerpt: >-
     This endpoint returns the flag definitions for all enabled feature flags
