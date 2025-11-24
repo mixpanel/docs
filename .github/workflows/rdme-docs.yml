@@ -17,7 +17,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Check out repo 📚
-        uses: actions/checkout@v4
+        uses: actions/checkout@v6
 
       - name: Run `docs` command 🚀
         uses: readmeio/rdme@62bc5a43208c46fc0d90c78ebeddf0365a41b2cc  # rdme version 10.5.3
