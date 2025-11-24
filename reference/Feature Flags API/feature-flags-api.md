@@ -1,6 +1,5 @@
 ---
 title: Overview
-slug: feature-flags-api
 category:
   uri: Feature Flags API
 privacy:
