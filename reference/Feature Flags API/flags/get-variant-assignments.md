@@ -1,7 +1,9 @@
 ---
 title: Get Variant Assignments
+slug: "get-variant-assignments"
 category:
   uri: Feature Flags API
+categorySlug: "feature-flags-api"
 content:
   excerpt: >-
     This endpoint returns the variant assignments for enabled flags within a
