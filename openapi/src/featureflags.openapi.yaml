@@ -97,7 +97,7 @@ components:
           example: 'device456'
         custom_properties:
           type: object
-          description: Optional runtime properties for cohort evaluation
+          description: Optional runtime parameters for evaluation by runtime_evaluation_rule in rollout definitions
           additionalProperties: true
           example:
             country: 'US'
@@ -290,10 +290,17 @@ components:
           type: string
           description: Hash of the cohort definition for lookup
           example: 'cohort_abc123'
-        runtime_evaluation_definition:
+        runtime_evaluation_rule:
           type: object
           additionalProperties: true
-          description: Properties that are evaluated at request time for cohort matching
+          description: JsonLogic rule that's evaluated at request time based on runtime parameters in the request
+          example:
+            platform: 'web'
+        runtime_evaluation_definition:
+          deprecated: true
+          type: object
+          additionalProperties: true
+          description: Key-value pairs that are evaluated at request time for cohort matching, replaced by the more powerful runtime_evaluation_rule
           example:
             platform: 'web'
         variant_splits:
@@ -306,10 +313,12 @@ components:
             control: 0.5
             treatment: 0.5
         variant_override:
+          deprecated: true
           $ref: '#/components/schemas/VariantOverride'
     VariantOverride:
+      deprecated: true
       title: VariantOverride
-      description: Override to force a specific variant for a rollout rule
+      description: Override to force a specific variant for a rollout rule (replaced by variant_splits)
       type: object
       properties:
         key:
