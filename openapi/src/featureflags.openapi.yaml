@@ -31,7 +31,7 @@ paths:
             type: string
           example: '%7B%22distinct_id%22%3A%22user123%22%2C%22device_id%22%3A%22device456%22%7D'
       tags:
-        - Evaluate Flags
+        - Get Variant Assignments
       summary: Evaluate Feature Flags (GET)
       description: Evaluate all enabled feature flags for a user with the provided context. Returns selected variants for flags the user is eligible for.
       responses:
@@ -53,7 +53,7 @@ paths:
       security:
         - ProjectSecret: []
       tags:
-        - Flag Definitions
+        - Get Flag Definitions
       summary: Get Feature Flag Definitions
       description: Retrieve all enabled feature flag definitions for the authenticated project. Returns complete flag metadata including rulesets, variants, and rollout configurations.
       responses:
