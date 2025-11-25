@@ -1,7 +1,8 @@
 'use client';
-import React from 'react';
+import React, { useEffect } from 'react';
 import Image from 'next/image';
 import Script from 'next/script';
+import { usePathname } from 'next/navigation';
 
 /**
  * Card data shape passed from MDX.
@@ -174,24 +175,36 @@ function CardView({ c }: { c: Card }) {
 
   // Use Navattic popup if navatticOpen is provided
   if (c.navatticOpen) {
-      const navatticUrl = c.navatticOpen.startsWith('http')
-        ? c.navatticOpen
-        : `https://capture.navattic.com/${c.navatticOpen}`;
+    const navatticUrl = c.navatticOpen.startsWith('http')
+      ? c.navatticOpen
+      : `https://capture.navattic.com/${c.navatticOpen}`;
 
-      return (
-        <div style={styles.card} className="sgt-card">
-          <button
-            type="button"
-            style={styles.clickable}
-            className="sgt-click"
-            data-navattic-open={navatticUrl}
-            data-navattic-title={c.navatticTitle || c.title}
-          >
-            {inside}
-          </button>
-        </div>
-      );
-    }
+    return (
+      <div style={styles.card} className="sgt-card">
+        <button
+          type="button"
+          style={styles.clickable}
+          className="sgt-click"
+          data-navattic-open={navatticUrl}
+          data-navattic-title={c.navatticTitle || c.title}
+          onClick={(e) => {
+            const w = window as any;
+            // Fallback: if auto-binder didn't attach, open programmatically.
+            if (w?.Navattic?.open) {
+              e.preventDefault();
+              w.Navattic.open(navatticUrl, { title: c.navatticTitle || c.title });
+            } else if (w?.navatticEmbeds?.open) {
+              e.preventDefault();
+              w.navatticEmbeds.open(navatticUrl, { title: c.navatticTitle || c.title });
+            }
+            // Otherwise, let the data attribute handler do its thing.
+          }}
+        >
+          {inside}
+        </button>
+      </div>
+    );
+  }
 
   // Fallback to href links if needed
   if (c.href) {
@@ -216,9 +229,24 @@ function CardView({ c }: { c: Card }) {
  * SelfGuidedTours
  * - Renders a responsive grid of product-tour cards
  * - Loads Navattic's embed script once (popup mode)
+ * - Re-inits Navattic on client-side route changes
  * - Exposes a simple props API so MDX controls the content
  */
 export default function SelfGuidedTours({ cards }: Props) {
+  const pathname = usePathname();
+
+  // Rebind Navattic whenever the route changes (and on first mount)
+  useEffect(() => {
+    const rebind = () => {
+      const w = window as any;
+      if (w?.Navattic?.Embeds?.init) w.Navattic.Embeds.init();
+      if (w?.Navattic?.init) w.Navattic.init();
+      if (w?.navattic?.embeds?.init) w.navattic.embeds.init();
+      window.dispatchEvent(new Event('navattic:refresh'));
+    };
+    rebind();
+  }, [pathname]);
+
   return (
     <>
       {/* Navattic embed loader (newer API) */}
