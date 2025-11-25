@@ -6,4 +6,3 @@ node_modules
 .env*.local
 openapi/out
 public/sitemap*.xml
-public/robots.txt
