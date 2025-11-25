@@ -9,6 +9,7 @@ import { insertGTMScriptTags } from "../components/GTMScripts";
 import { SENTRY_VARS } from "../utils/error-reporting";
 import { useSprig } from "../hooks/useSprig";
 
+// added
 import Script from "next/script";
 import { useRouter } from "next/router";
 import { useCallback } from "react";
@@ -32,18 +33,10 @@ export default function MyApp({ Component, pageProps }: AppProps) {
       console.warn("[Navattic] rebind failed", e);
     }
   }, []);
-  
+
   useEffect(() => {
     insertGTMScriptTags();
     window.sentry = Sentry.init(SENTRY_VARS);
-
-    // run once on app mount
-    rebindNavattic();
-
-    // run after every client-side route change
-    const onDone = () => requestAnimationFrame(() => rebindNavattic());
-    router.events.on("routeChangeComplete", onDone);
-    return () => router.events.off("routeChangeComplete", onDone);    
 
     // TODO: Based on their doc: https://docs.kapa.ai/integrations/website-widget/javascript-api/events
     // we should be able to use `Kapa` as a function like below, but it seems like the global object interface has changed
@@ -61,12 +54,30 @@ export default function MyApp({ Component, pageProps }: AppProps) {
     //     track(`${DocsAIPrefix} ${eventName}`, properties);
     //   });
     // });
+
+    // run once on app mount
+    rebindNavattic();
+
+    // run after every client-side route change (Pages Router)
+    const onDone = () => requestAnimationFrame(() => rebindNavattic());
+    router.events.on("routeChangeComplete", onDone);
+    return () => router.events.off("routeChangeComplete", onDone);
   }, [router.events, rebindNavattic]);
 
   return (
     // <>
     // div here is a workaround for setting background color for light/dark mode toggle
     <div className="nx-bg-lightbg dark:nx-bg-darkbg">
+      {/* ⬇️ Load Navattic once, globally */}
+      <Script
+        id="navattic-embeds"
+        src="https://js.navattic.com/embeds.js"
+        strategy="afterInteractive"
+        onLoad={() => {
+          console.info("[Navattic] script loaded (global)");
+          rebindNavattic();
+        }}
+      />
       <Component {...pageProps} />
     </div>
     // </>
