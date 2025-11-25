@@ -1,5 +1,5 @@
 'use client';
-import React, { useEffect, useCallback } from 'react';
+import React, { useEffect, useCallback, useState } from 'react';
 import Image from 'next/image';
 import Script from 'next/script';
 import { useRouter } from 'next/router';
@@ -153,7 +153,13 @@ const styles = {
 };
 
 /* ---- One card view (supports Navattic popup or plain link) ---- */
-function CardView({ c }: { c: Card }) {
+function CardView({
+  c,
+  openInline, // inline overlay fallback opener (provided by parent)
+}: {
+  c: Card;
+  openInline?: (url: string, title: string) => void;
+}) {
   const inside = (
     <>
       <div style={styles.dogEar} aria-hidden />
@@ -196,6 +202,12 @@ function CardView({ c }: { c: Card }) {
             } else if (w?.navatticEmbeds?.open) {
               e.preventDefault();
               w.navatticEmbeds.open(navatticUrl, { title: c.navatticTitle || c.title });
+            } else {
+              // ---- Inline overlay fallback (Option 2) ----
+              // If the Navattic global is missing after client nav, show our own modal iframe.
+              e.preventDefault();
+              if (openInline) openInline(navatticUrl, c.navatticTitle || c.title);
+              else window.open(navatticUrl, '_blank', 'noopener,noreferrer'); // last resort
             }
             // Otherwise, let the data attribute handler do its thing.
           }}
@@ -235,6 +247,15 @@ function CardView({ c }: { c: Card }) {
 export default function SelfGuidedTours({ cards }: Props) {
   const router = useRouter();
 
+  // ---- Inline overlay fallback state (Option 2) ----
+  const [inlineUrl, setInlineUrl] = useState<string | null>(null);
+  const [inlineTitle, setInlineTitle] = useState<string>('');
+  const openInline = useCallback((url: string, title: string) => {
+    setInlineTitle(title);
+    setInlineUrl(url);
+  }, []);
+  const closeInline = useCallback(() => setInlineUrl(null), []);
+
   // Rebind Navattic whenever the route changes (and on first mount)
   const rebind = useCallback(() => {
     const w = window as any;
@@ -273,9 +294,67 @@ export default function SelfGuidedTours({ cards }: Props) {
       {/* Grid */}
       <div style={styles.grid}>
         {cards.map((c, i) => (
-          <CardView key={i} c={c} />
+          <CardView key={i} c={c} openInline={openInline} />
         ))}
       </div>
+
+      {/* ---- Inline overlay (iframe) shown when Navattic global is missing ---- */}
+      {inlineUrl && (
+        <div
+          role="dialog"
+          aria-label={inlineTitle}
+          onClick={closeInline}
+          style={{
+            position: 'fixed',
+            inset: 0,
+            background: 'rgba(0,0,0,.6)',
+            display: 'flex',
+            alignItems: 'center',
+            justifyContent: 'center',
+            zIndex: 9999,
+          }}
+        >
+          <div
+            onClick={(e) => e.stopPropagation()}
+            style={{
+              width: '90vw',
+              height: '80vh',
+              background: '#000',
+              borderRadius: 12,
+              overflow: 'hidden',
+              boxShadow: '0 10px 40px rgba(0,0,0,.5)',
+              position: 'relative',
+            }}
+          >
+            {/* simple close button */}
+            <button
+              onClick={closeInline}
+              aria-label="Close"
+              style={{
+                position: 'absolute',
+                top: 8,
+                right: 12,
+                zIndex: 2,
+                background: 'rgba(0,0,0,.6)',
+                color: '#fff',
+                border: 0,
+                borderRadius: 8,
+                padding: '6px 10px',
+                cursor: 'pointer',
+                fontWeight: 600,
+              }}
+            >
+              Close
+            </button>
+            <iframe
+              title={inlineTitle}
+              src={inlineUrl}
+              style={{ width: '100%', height: '100%', border: 0 }}
+              allow="clipboard-write; fullscreen"
+            />
+          </div>
+        </div>
+      )}
 
       {/* Theme variables + interactions */}
       <style jsx global>{`
