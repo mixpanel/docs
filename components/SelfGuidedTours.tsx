@@ -1,8 +1,8 @@
 'use client';
-import React, { useEffect, useCallback, useRef } from 'react';
+import React, { useEffect, useCallback } from 'react';
 import Image from 'next/image';
 import Script from 'next/script';
-import { usePathname } from 'next/navigation';
+import { useRouter } from 'next/router';
 
 /**
  * Card data shape passed from MDX.
@@ -233,8 +233,7 @@ function CardView({ c }: { c: Card }) {
  * - Exposes a simple props API so MDX controls the content
  */
 export default function SelfGuidedTours({ cards }: Props) {
-  const pathname = usePathname();
-  const loadedOnceRef = useRef(false); // track first successful load
+  const router = useRouter();
 
   // Rebind Navattic whenever the route changes (and on first mount)
   const rebind = useCallback(() => {
@@ -250,34 +249,14 @@ export default function SelfGuidedTours({ cards }: Props) {
   }, []);
 
   useEffect(() => {
-    // On subsequent navigations back to this page, force a fresh script load.
-    if (loadedOnceRef.current) {
-      // Remove any prior dynamic script
-      const prior = document.getElementById('navattic-embeds-dynamic');
-      if (prior) prior.remove();
+    // run on first mount
+    rebind();
 
-      // Clear globals so the new script fully re-initializes
-      try {
-        // @ts-ignore
-        delete (window as any).Navattic;
-        // @ts-ignore
-        delete (window as any).navatticEmbeds;
-      } catch {}
-
-      const s = document.createElement('script');
-      s.id = 'navattic-embeds-dynamic';
-      s.src = `https://js.navattic.com/embeds.js?cb=${Date.now()}`; // cache-bust to force reload
-      s.async = true;
-      s.onload = () => {
-        console.info('Navattic dynamic script reloaded');
-        rebind();
-      };
-      document.head.appendChild(s);
-    } else {
-      // First time we land here, rely on the <Script> tag's onLoad below.
-      rebind();
-    }
-  }, [pathname, rebind]);
+    // run after every client route change (Pages Router)
+    const onDone = () => rebind();
+    router.events.on('routeChangeComplete', onDone);
+    return () => router.events.off('routeChangeComplete', onDone);
+  }, [router.events, rebind]);
 
   return (
     <>
@@ -287,7 +266,6 @@ export default function SelfGuidedTours({ cards }: Props) {
         strategy="afterInteractive"
         onLoad={() => {
           console.info('Navattic script loaded (first load)');
-          loadedOnceRef.current = true;
           rebind();
         }}
       />
