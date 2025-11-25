@@ -1,5 +1,5 @@
 'use client';
-import React, { useEffect, useCallback } from 'react';
+import React, { useEffect, useCallback, useRef } from 'react';
 import Image from 'next/image';
 import Script from 'next/script';
 import { usePathname } from 'next/navigation';
@@ -234,6 +234,7 @@ function CardView({ c }: { c: Card }) {
  */
 export default function SelfGuidedTours({ cards }: Props) {
   const pathname = usePathname();
+  const loadedOnceRef = useRef(false); // track first successful load
 
   // Rebind Navattic whenever the route changes (and on first mount)
   const rebind = useCallback(() => {
@@ -249,7 +250,33 @@ export default function SelfGuidedTours({ cards }: Props) {
   }, []);
 
   useEffect(() => {
-    rebind();
+    // On subsequent navigations back to this page, force a fresh script load.
+    if (loadedOnceRef.current) {
+      // Remove any prior dynamic script
+      const prior = document.getElementById('navattic-embeds-dynamic');
+      if (prior) prior.remove();
+
+      // Clear globals so the new script fully re-initializes
+      try {
+        // @ts-ignore
+        delete (window as any).Navattic;
+        // @ts-ignore
+        delete (window as any).navatticEmbeds;
+      } catch {}
+
+      const s = document.createElement('script');
+      s.id = 'navattic-embeds-dynamic';
+      s.src = `https://js.navattic.com/embeds.js?cb=${Date.now()}`; // cache-bust to force reload
+      s.async = true;
+      s.onload = () => {
+        console.info('Navattic dynamic script reloaded');
+        rebind();
+      };
+      document.head.appendChild(s);
+    } else {
+      // First time we land here, rely on the <Script> tag's onLoad below.
+      rebind();
+    }
   }, [pathname, rebind]);
 
   return (
@@ -259,7 +286,8 @@ export default function SelfGuidedTours({ cards }: Props) {
         src="https://js.navattic.com/embeds.js"
         strategy="afterInteractive"
         onLoad={() => {
-          console.info('Navattic script loaded');
+          console.info('Navattic script loaded (first load)');
+          loadedOnceRef.current = true;
           rebind();
         }}
       />
