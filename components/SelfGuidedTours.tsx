@@ -1,5 +1,5 @@
 'use client';
-import React, { useEffect } from 'react';
+import React, { useEffect, useCallback } from 'react';
 import Image from 'next/image';
 import Script from 'next/script';
 import { usePathname } from 'next/navigation';
@@ -236,21 +236,33 @@ export default function SelfGuidedTours({ cards }: Props) {
   const pathname = usePathname();
 
   // Rebind Navattic whenever the route changes (and on first mount)
-  useEffect(() => {
-    const rebind = () => {
-      const w = window as any;
+  const rebind = useCallback(() => {
+    const w = window as any;
+    try {
       if (w?.Navattic?.Embeds?.init) w.Navattic.Embeds.init();
       if (w?.Navattic?.init) w.Navattic.init();
       if (w?.navattic?.embeds?.init) w.navattic.embeds.init();
       window.dispatchEvent(new Event('navattic:refresh'));
-    };
+    } catch (err) {
+      console.warn('Navattic rebind failed:', err);
+    }
+  }, []);
+
+  useEffect(() => {
     rebind();
-  }, [pathname]);
+  }, [pathname, rebind]);
 
   return (
     <>
       {/* Navattic embed loader (newer API) */}
-      <Script src="https://js.navattic.com/embeds.js" strategy="afterInteractive" />
+      <Script
+        src="https://js.navattic.com/embeds.js"
+        strategy="afterInteractive"
+        onLoad={() => {
+          console.info('Navattic script loaded');
+          rebind();
+        }}
+      />
 
       {/* Grid */}
       <div style={styles.grid}>
