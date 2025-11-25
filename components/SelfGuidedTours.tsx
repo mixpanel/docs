@@ -1,7 +1,6 @@
 'use client';
-import React, { useEffect, useCallback, useState } from 'react';
+import React, { useEffect, useState, useCallback } from 'react';
 import Image from 'next/image';
-import Script from 'next/script';
 import { useRouter } from 'next/router';
 
 /**
@@ -155,7 +154,7 @@ const styles = {
 /* ---- One card view (supports Navattic popup or plain link) ---- */
 function CardView({
   c,
-  openInline, // inline overlay fallback opener (provided by parent)
+  openInline, // inline overlay opener (provided by parent)
 }: {
   c: Card;
   openInline?: (url: string, title: string) => void;
@@ -179,7 +178,7 @@ function CardView({
     </>
   );
 
-  // Use Navattic popup if navatticOpen is provided
+  // Always open inline overlay if a Navattic URL is provided (consistent UX)
   if (c.navatticOpen) {
     const navatticUrl = c.navatticOpen.startsWith('http')
       ? c.navatticOpen
@@ -194,22 +193,8 @@ function CardView({
           data-navattic-open={navatticUrl}
           data-navattic-title={c.navatticTitle || c.title}
           onClick={(e) => {
-            const w = window as any;
-            // Fallback: if auto-binder didn't attach, open programmatically.
-            if (w?.Navattic?.open) {
-              e.preventDefault();
-              w.Navattic.open(navatticUrl, { title: c.navatticTitle || c.title });
-            } else if (w?.navatticEmbeds?.open) {
-              e.preventDefault();
-              w.navatticEmbeds.open(navatticUrl, { title: c.navatticTitle || c.title });
-            } else {
-              // ---- Inline overlay fallback (Option 2) ----
-              // If the Navattic global is missing after client nav, show our own modal iframe.
-              e.preventDefault();
-              if (openInline) openInline(navatticUrl, c.navatticTitle || c.title);
-              else window.open(navatticUrl, '_blank', 'noopener,noreferrer'); // last resort
-            }
-            // Otherwise, let the data attribute handler do its thing.
+            e.preventDefault();
+            openInline?.(navatticUrl, c.navatticTitle || c.title);
           }}
         >
           {inside}
@@ -222,7 +207,14 @@ function CardView({
   if (c.href) {
     return (
       <div style={styles.card} className="sgt-card">
-        <a href={c.href} style={styles.clickable} className="sgt-click">
+        <a
+          href={c.href}
+          style={styles.clickable}
+          className="sgt-click"
+          onClick={(e) => {
+            // Keep link behavior for non-Navattic cards
+          }}
+        >
           {inside}
         </a>
       </div>
@@ -240,57 +232,46 @@ function CardView({
 /**
  * SelfGuidedTours
  * - Renders a responsive grid of product-tour cards
- * - Loads Navattic's embed script once (popup mode)
- * - Re-inits Navattic on client-side route changes
- * - Exposes a simple props API so MDX controls the content
+ * - Shows a modal overlay for tours for a consistent experience
  */
 export default function SelfGuidedTours({ cards }: Props) {
   const router = useRouter();
 
-  // ---- Inline overlay fallback state (Option 2) ----
+  // Inline overlay state
   const [inlineUrl, setInlineUrl] = useState<string | null>(null);
   const [inlineTitle, setInlineTitle] = useState<string>('');
+
   const openInline = useCallback((url: string, title: string) => {
     setInlineTitle(title);
     setInlineUrl(url);
   }, []);
   const closeInline = useCallback(() => setInlineUrl(null), []);
 
-  // Rebind Navattic whenever the route changes (and on first mount)
-  const rebind = useCallback(() => {
-    const w = window as any;
-    try {
-      if (w?.Navattic?.Embeds?.init) w.Navattic.Embeds.init();
-      if (w?.Navattic?.init) w.Navattic.init();
-      if (w?.navattic?.embeds?.init) w.navattic.embeds.init();
-      window.dispatchEvent(new Event('navattic:refresh'));
-    } catch (err) {
-      console.warn('Navattic rebind failed:', err);
-    }
-  }, []);
-
+  // Close modal on route changes (avoid lingering overlay)
   useEffect(() => {
-    // run on first mount
-    rebind();
+    const onStart = () => closeInline();
+    router.events.on('routeChangeStart', onStart);
+    return () => router.events.off('routeChangeStart', onStart);
+  }, [router.events, closeInline]);
 
-    // run after every client route change (Pages Router)
-    const onDone = () => rebind();
-    router.events.on('routeChangeComplete', onDone);
-    return () => router.events.off('routeChangeComplete', onDone);
-  }, [router.events, rebind]);
+  // ESC to close + lock background scroll while open
+  useEffect(() => {
+    if (inlineUrl) {
+      const prevOverflow = document.body.style.overflow;
+      document.body.style.overflow = 'hidden';
+      const onKey = (e: KeyboardEvent) => {
+        if (e.key === 'Escape') closeInline();
+      };
+      window.addEventListener('keydown', onKey);
+      return () => {
+        window.removeEventListener('keydown', onKey);
+        document.body.style.overflow = prevOverflow;
+      };
+    }
+  }, [inlineUrl, closeInline]);
 
   return (
     <>
-      {/* Navattic embed loader (newer API) */}
-      <Script
-        src="https://js.navattic.com/embeds.js"
-        strategy="afterInteractive"
-        onLoad={() => {
-          console.info('Navattic script loaded (first load)');
-          rebind();
-        }}
-      />
-
       {/* Grid */}
       <div style={styles.grid}>
         {cards.map((c, i) => (
@@ -298,7 +279,7 @@ export default function SelfGuidedTours({ cards }: Props) {
         ))}
       </div>
 
-      {/* ---- Inline overlay (iframe) shown when Navattic global is missing ---- */}
+      {/* Inline overlay */}
       {inlineUrl && (
         <div
           role="dialog"
@@ -326,30 +307,89 @@ export default function SelfGuidedTours({ cards }: Props) {
               position: 'relative',
             }}
           >
-            {/* simple close button */}
-            <button
-              onClick={closeInline}
-              aria-label="Close"
+            {/* Header bar (chips + close) */}
+            <div
               style={{
                 position: 'absolute',
-                top: 8,
-                right: 12,
-                zIndex: 2,
-                background: 'rgba(0,0,0,.6)',
-                color: '#fff',
-                border: 0,
-                borderRadius: 8,
-                padding: '6px 10px',
-                cursor: 'pointer',
-                fontWeight: 600,
+                top: 0,
+                left: 0,
+                right: 0,
+                height: 44,
+                background: '#fff',
+                color: '#111',
+                display: 'flex',
+                alignItems: 'center',
+                justifyContent: 'space-between',
+                padding: '0 12px',
+                borderBottom: '1px solid rgba(0,0,0,.08)',
+                zIndex: 3,
               }}
             >
-              Close
-            </button>
+              <div style={{ display: 'flex', gap: 8, alignItems: 'center' }}>
+                <span
+                  style={{
+                    display: 'inline-flex',
+                    alignItems: 'center',
+                    gap: 6,
+                    padding: '6px 10px',
+                    borderRadius: 999,
+                    background: '#F3F4F6',
+                    fontWeight: 600,
+                    fontSize: 12,
+                  }}
+                >
+                  <span
+                    style={{
+                      width: 6,
+                      height: 6,
+                      borderRadius: '50%',
+                      background: '#9CA3AF',
+                      display: 'inline-block',
+                    }}
+                  />
+                  Viewing Interactive Demo
+                </span>
+
+                <span
+                  style={{
+                    display: 'inline-flex',
+                    alignItems: 'center',
+                    padding: '6px 10px',
+                    borderRadius: 999,
+                    background: MP_PURPLE,
+                    color: '#fff',
+                    fontWeight: 700,
+                    fontSize: 12,
+                  }}
+                >
+                  {inlineTitle}
+                </span>
+              </div>
+
+              <button
+                onClick={closeInline}
+                aria-label="Close"
+                style={{
+                  width: 28,
+                  height: 28,
+                  borderRadius: 6,
+                  border: '1px solid rgba(0,0,0,.1)',
+                  background: '#fff',
+                  display: 'inline-flex',
+                  alignItems: 'center',
+                  justifyContent: 'center',
+                  cursor: 'pointer',
+                }}
+              >
+                ×
+              </button>
+            </div>
+
+            {/* iframe body, positioned below header */}
             <iframe
               title={inlineTitle}
               src={inlineUrl}
-              style={{ width: '100%', height: '100%', border: 0 }}
+              style={{ width: '100%', height: '100%', border: 0, position: 'absolute', top: 44 }}
               allow="clipboard-write; fullscreen"
             />
           </div>
