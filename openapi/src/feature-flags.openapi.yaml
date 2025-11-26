@@ -11,7 +11,7 @@ info:
     url: https://opensource.org/licenses/MIT
   version: 1.0.0
 servers:
-  - $ref: ./common/app-api.yaml#/server
+  - $ref: ./common/feature-flags-api.yaml#/server
 tags:
   - name: Get Variant Assignments
     description: Evaluate feature flags for a specific user
