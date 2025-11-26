@@ -332,11 +332,12 @@ export default function SelfGuidedTours({ cards }: Props) {
                       background: '#E5E7EB',
                     }}
                   >
+                    {/* Chat/tooltip style icon */}
                     <svg
                       xmlns="http://www.w3.org/2000/svg"
                       viewBox="0 0 24 24"
-                      width="16"
-                      height="16"
+                      width="18"
+                      height="18"
                       fill="none"
                       stroke="currentColor"
                       strokeWidth="2"
@@ -344,7 +345,8 @@ export default function SelfGuidedTours({ cards }: Props) {
                       strokeLinejoin="round"
                       style={{ color: '#4B5563' }}
                     >
-                      <path d="M21 3H3v14h4v4l6-4h8z" />
+                      <path d="M7 8h10M7 12h6" />
+                      <path d="M5 20.5 7.5 18H19a2 2 0 0 0 2-2V6a2 2 0 0 0-2-2H5a2 2 0 0 0-2 2v10a2 2 0 0 0 2 2z" />
                     </svg>
                   </div>
                   <span
@@ -382,14 +384,14 @@ export default function SelfGuidedTours({ cards }: Props) {
                 style={{
                   width: 40,
                   height: 40,
-                  borderRadius: 999,
+                  borderRadius: 10,
                   border: '1px solid #E5E7EB',
                   background: '#FFFFFF',
                   display: 'inline-flex',
                   alignItems: 'center',
                   justifyContent: 'center',
                   cursor: 'pointer',
-                  fontSize: 18,
+                  fontSize: 20,
                   lineHeight: 1,
                   color: '#111827',
                   boxShadow: '0 1px 2px rgba(15,23,42,0.05)',
