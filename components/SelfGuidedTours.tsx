@@ -291,9 +291,11 @@ export default function SelfGuidedTours({ cards }: Props) {
           <div
             onClick={(e) => e.stopPropagation()}
             style={{
-              width: '90vw',
-              height: '80vh',
-              background: 'transparent',
+              width: 'calc(100vw - 64px)',
+              height: 'calc(100vh - 72px)',
+              maxWidth: 1440,
+              maxHeight: 900,              
+              background: '#F3F4F6',
               borderRadius: 12,
               overflow: 'hidden',
               boxShadow: '0 10px 40px rgba(0,0,0,.5)',
