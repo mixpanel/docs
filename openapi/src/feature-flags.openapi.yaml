@@ -24,6 +24,7 @@ paths:
       security:
         - ProjectSecret: []
       parameters:
+        - $ref: '#/components/parameters/ProjectToken'
         - name: context
           in: query
           description: 'URL-encoded JSON object containing evaluation context with distinct_id (required) and optional device_id and custom_properties object'
@@ -53,6 +54,8 @@ paths:
       operationId: get-flag-definitions
       security:
         - ProjectSecret: []
+      parameters:
+        - $ref: '#/components/parameters/ProjectToken'
       tags:
         - Get Flag Definitions
       summary: Get Feature Flag Definitions
@@ -71,6 +74,14 @@ paths:
 components:
   securitySchemes:
     $ref: ./common/securitySchemes.yaml
+  parameters:
+    ProjectToken:
+      name: token
+      in: query
+      schema:
+        type: string
+      description: 'Your project token'
+      required: true
   schemas:
     EvaluateFlagsRequest:
       title: EvaluateFlagsRequest
