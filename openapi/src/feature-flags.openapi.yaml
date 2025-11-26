@@ -26,11 +26,11 @@ paths:
       parameters:
         - name: context
           in: query
-          description: 'URL-encoded JSON object containing evaluation context with distinct_id and optional device_id, request_time_properties'
+          description: 'URL-encoded JSON object containing evaluation context with distinct_id (required) and optional device_id and custom_properties object'
           required: true
           schema:
             type: string
-          example: '%7B%22distinct_id%22%3A%22user123%22%2C%22device_id%22%3A%22device456%22%7D'
+          example: '%7B++%22distinct_id%22%3A%22user123%22%2C++%22device_id%22%3A%22device456%22%2C++%22custom_properties%22%3A+%7B++++%22some_key%22%3A+%22some_value%22%2C++++%22another_key%22%3A+32++%7D%7D%22'
       tags:
         - Get Variant Assignments
       summary: Evaluate Feature Flags (GET)
