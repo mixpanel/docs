@@ -332,27 +332,27 @@ export default function SelfGuidedTours({ cards }: Props) {
                       background: '#E5E7EB',
                     }}
                   >
-                    {/* Chat/tooltip style icon */}
+                    {/* SVG from original Navattic header (adjusted to TSX) */}
                     <svg
                       xmlns="http://www.w3.org/2000/svg"
                       viewBox="0 0 24 24"
-                      width="18"
-                      height="18"
+                      width="16"
+                      height="16"
                       fill="none"
                       stroke="currentColor"
-                      strokeWidth="2"
+                      strokeWidth={2}
                       strokeLinecap="round"
                       strokeLinejoin="round"
                       style={{ color: '#4B5563' }}
                     >
-                      <path d="M7 8h10M7 12h6" />
-                      <path d="M5 20.5 7.5 18H19a2 2 0 0 0 2-2V6a2 2 0 0 0-2-2H5a2 2 0 0 0-2 2v10a2 2 0 0 0 2 2z" />
+                      <path d="M21 11V5a2 2 0 0 0-2-2H5a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h6" />
+                      <path d="m12 12 4 10 1.7-4.3L22 16Z" />
                     </svg>
                   </div>
                   <span
                     style={{
                       fontSize: 14,
-                      fontWeight: 500, // slightly bold but not too heavy
+                      fontWeight: 500,
                     }}
                   >
                     Viewing Interactive Demo
@@ -382,8 +382,8 @@ export default function SelfGuidedTours({ cards }: Props) {
                 onClick={closeInline}
                 aria-label="Close"
                 style={{
-                  width: 40,
-                  height: 40,
+                  width: 36,
+                  height: 36,
                   borderRadius: 10,
                   border: '1px solid #E5E7EB',
                   background: '#FFFFFF',
