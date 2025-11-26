@@ -281,7 +281,7 @@ export default function SelfGuidedTours({ cards }: Props) {
           style={{
             position: 'fixed',
             inset: 0,
-            background: 'rgba(0,0,0,.6)',
+            background: 'rgba(15,23,42,0.55)',
             display: 'flex',
             alignItems: 'center',
             justifyContent: 'center',
@@ -307,7 +307,7 @@ export default function SelfGuidedTours({ cards }: Props) {
                 top: 0,
                 left: 0,
                 right: 0,
-                height: 52,
+                height: 48,
                 background: '#F9FAFB',
                 color: '#111827',
                 display: 'flex',
@@ -326,23 +326,25 @@ export default function SelfGuidedTours({ cards }: Props) {
                       display: 'inline-flex',
                       alignItems: 'center',
                       justifyContent: 'center',
-                      padding: '6px 10px',
+                      width: 40,
+                      height: 34,
+                      border: '1px solid #E5E7EB',
                       borderRadius: 10,
-                      background: '#E5E7EB',
+                      background: '#F3F4F6',
                     }}
                   >
                     {/* SVG from original Navattic header (adjusted to TSX) */}
                     <svg
                       xmlns="http://www.w3.org/2000/svg"
                       viewBox="0 0 24 24"
-                      width="16"
-                      height="16"
+                      width="20"
+                      height="20"
                       fill="none"
                       stroke="currentColor"
                       strokeWidth={2}
                       strokeLinecap="round"
                       strokeLinejoin="round"
-                      style={{ color: '#4B5563' }}
+                      style={{ color: '#111827' }}
                     >
                       <path d="M21 11V5a2 2 0 0 0-2-2H5a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h6" />
                       <path d="m12 12 4 10 1.7-4.3L22 16Z" />
@@ -366,7 +368,7 @@ export default function SelfGuidedTours({ cards }: Props) {
                     padding: '8px 16px',
                     borderRadius: 999,
                     background: '#FFFFFF',
-                    border: '1px solid #E5E7EB',
+                    border: '1px solid #D1D5DB',
                     boxShadow: '0 1px 2px rgba(15,23,42,0.05)',
                     fontWeight: 500,
                     fontSize: 14,
@@ -381,20 +383,20 @@ export default function SelfGuidedTours({ cards }: Props) {
                 onClick={closeInline}
                 aria-label="Close"
                 style={{
-                  width: 42,
-                  height: 34,
-                  borderRadius: 6,
-                  border: '1px solid #E5E7EB',
+                  width: 36,
+                  height: 36,
+                  borderRadius: 12,
+                  border: '1px solid #D1D5DB',
                   background: '#FFFFFF',
                   display: 'inline-flex',
                   alignItems: 'center',
                   justifyContent: 'center',
                   cursor: 'pointer',
-                  fontSize: 24,
-                  fontWeight: 300,
+                  fontSize: 22,
+                  fontWeight: 500,
                   lineHeight: 1,
-                  color: '#4B5563',
-                  boxShadow: '0 1px 2px rgba(15,23,42,0.05)',
+                  color: '#111827',
+                  boxShadow: '0 1px 2px rgba(0,0,0,0.05)',
                 }}
               >
                 ×
@@ -407,10 +409,10 @@ export default function SelfGuidedTours({ cards }: Props) {
               src={inlineUrl}
               style={{
                 width: '100%',
-                height: '100%',
+                height: 'calc(100% - 48px)',
                 border: 0,
                 position: 'absolute',
-                top: 52,
+                top: 48,
               }}
               allow="clipboard-write; fullscreen"
             />
