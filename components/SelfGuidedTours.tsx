@@ -323,12 +323,11 @@ export default function SelfGuidedTours({ cards }: Props) {
                 <div style={{ display: 'flex', gap: 8, alignItems: 'center' }}>
                   <div
                     style={{
-                      display: 'flex',
+                      display: 'inline-flex',
                       alignItems: 'center',
                       justifyContent: 'center',
-                      width: 28,
-                      height: 28,
-                      borderRadius: 999,
+                      padding: '6px 10px',
+                      borderRadius: 10,
                       background: '#E5E7EB',
                     }}
                   >
@@ -391,9 +390,10 @@ export default function SelfGuidedTours({ cards }: Props) {
                   alignItems: 'center',
                   justifyContent: 'center',
                   cursor: 'pointer',
-                  fontSize: 20,
+                  fontSize: 24,
+                  fontWeight: 300,
                   lineHeight: 1,
-                  color: '#111827',
+                  color: '#4B5563',
                   boxShadow: '0 1px 2px rgba(15,23,42,0.05)',
                 }}
               >
