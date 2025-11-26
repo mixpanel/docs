@@ -318,48 +318,57 @@ export default function SelfGuidedTours({ cards }: Props) {
                 zIndex: 3,
               }}
             >
-              <div style={{ display: 'flex', gap: 8, alignItems: 'center' }}>
-                {/* Viewing Interactive Demo pill */}
-                <span
-                  style={{
-                    display: 'inline-flex',
-                    alignItems: 'center',
-                    gap: 8,
-                    padding: '8px 14px',
-                    borderRadius: 999,
-                    background: '#FFFFFF',
-                    border: '1px solid #E5E7EB',
-                    boxShadow: '0 1px 2px rgba(15,23,42,0.05)',
-                    fontWeight: 600,
-                    fontSize: 13,
-                    lineHeight: 1.1,
-                  }}
-                >
-                  {/* small icon-ish dot */}
+              <div style={{ display: 'flex', gap: 12, alignItems: 'center' }}>
+                {/* Left icon + label (no pill) */}
+                <div style={{ display: 'flex', gap: 8, alignItems: 'center' }}>
+                  <div
+                    style={{
+                      display: 'flex',
+                      alignItems: 'center',
+                      justifyContent: 'center',
+                      width: 28,
+                      height: 28,
+                      borderRadius: 999,
+                      background: '#E5E7EB',
+                    }}
+                  >
+                    <svg
+                      xmlns="http://www.w3.org/2000/svg"
+                      viewBox="0 0 24 24"
+                      width="16"
+                      height="16"
+                      fill="none"
+                      stroke="currentColor"
+                      strokeWidth="2"
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                      style={{ color: '#4B5563' }}
+                    >
+                      <path d="M21 3H3v14h4v4l6-4h8z" />
+                    </svg>
+                  </div>
                   <span
                     style={{
-                      width: 8,
-                      height: 8,
-                      borderRadius: '50%',
-                      background: '#9CA3AF',
-                      display: 'inline-block',
+                      fontSize: 14,
+                      fontWeight: 500, // slightly bold but not too heavy
                     }}
-                  />
-                  Viewing Interactive Demo
-                </span>
+                  >
+                    Viewing Interactive Demo
+                  </span>
+                </div>
 
                 {/* Title pill */}
                 <span
                   style={{
                     display: 'inline-flex',
                     alignItems: 'center',
-                    padding: '8px 14px',
+                    padding: '8px 16px',
                     borderRadius: 999,
                     background: '#FFFFFF',
                     border: '1px solid #E5E7EB',
                     boxShadow: '0 1px 2px rgba(15,23,42,0.05)',
-                    fontWeight: 600,
-                    fontSize: 13,
+                    fontWeight: 500,
+                    fontSize: 14,
                     lineHeight: 1.1,
                   }}
                 >
@@ -371,8 +380,8 @@ export default function SelfGuidedTours({ cards }: Props) {
                 onClick={closeInline}
                 aria-label="Close"
                 style={{
-                  width: 36,
-                  height: 36,
+                  width: 40,
+                  height: 40,
                   borderRadius: 999,
                   border: '1px solid #E5E7EB',
                   background: '#FFFFFF',
@@ -380,7 +389,7 @@ export default function SelfGuidedTours({ cards }: Props) {
                   alignItems: 'center',
                   justifyContent: 'center',
                   cursor: 'pointer',
-                  fontSize: 16,
+                  fontSize: 18,
                   lineHeight: 1,
                   color: '#111827',
                   boxShadow: '0 1px 2px rgba(15,23,42,0.05)',
