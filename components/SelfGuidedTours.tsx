@@ -207,14 +207,7 @@ function CardView({
   if (c.href) {
     return (
       <div style={styles.card} className="sgt-card">
-        <a
-          href={c.href}
-          style={styles.clickable}
-          className="sgt-click"
-          onClick={(e) => {
-            // Keep link behavior for non-Navattic cards
-          }}
-        >
+        <a href={c.href} style={styles.clickable} className="sgt-click">
           {inside}
         </a>
       </div>
@@ -307,41 +300,46 @@ export default function SelfGuidedTours({ cards }: Props) {
               position: 'relative',
             }}
           >
-            {/* Header bar (chips + close) */}
+            {/* Header bar styled to closely match Navattic's */}
             <div
               style={{
                 position: 'absolute',
                 top: 0,
                 left: 0,
                 right: 0,
-                height: 44,
-                background: '#fff',
-                color: '#111',
+                height: 52,
+                background: '#F9FAFB',
+                color: '#111827',
                 display: 'flex',
                 alignItems: 'center',
                 justifyContent: 'space-between',
-                padding: '0 12px',
-                borderBottom: '1px solid rgba(0,0,0,.08)',
+                padding: '0 16px',
+                borderBottom: '1px solid #E5E7EB',
                 zIndex: 3,
               }}
             >
               <div style={{ display: 'flex', gap: 8, alignItems: 'center' }}>
+                {/* Viewing Interactive Demo pill */}
                 <span
                   style={{
                     display: 'inline-flex',
                     alignItems: 'center',
-                    gap: 6,
-                    padding: '6px 10px',
+                    gap: 8,
+                    padding: '8px 14px',
                     borderRadius: 999,
-                    background: '#F3F4F6',
+                    background: '#FFFFFF',
+                    border: '1px solid #E5E7EB',
+                    boxShadow: '0 1px 2px rgba(15,23,42,0.05)',
                     fontWeight: 600,
-                    fontSize: 12,
+                    fontSize: 13,
+                    lineHeight: 1.1,
                   }}
                 >
+                  {/* small icon-ish dot */}
                   <span
                     style={{
-                      width: 6,
-                      height: 6,
+                      width: 8,
+                      height: 8,
                       borderRadius: '50%',
                       background: '#9CA3AF',
                       display: 'inline-block',
@@ -350,16 +348,19 @@ export default function SelfGuidedTours({ cards }: Props) {
                   Viewing Interactive Demo
                 </span>
 
+                {/* Title pill */}
                 <span
                   style={{
                     display: 'inline-flex',
                     alignItems: 'center',
-                    padding: '6px 10px',
+                    padding: '8px 14px',
                     borderRadius: 999,
-                    background: MP_PURPLE,
-                    color: '#fff',
-                    fontWeight: 700,
-                    fontSize: 12,
+                    background: '#FFFFFF',
+                    border: '1px solid #E5E7EB',
+                    boxShadow: '0 1px 2px rgba(15,23,42,0.05)',
+                    fontWeight: 600,
+                    fontSize: 13,
+                    lineHeight: 1.1,
                   }}
                 >
                   {inlineTitle}
@@ -370,15 +371,19 @@ export default function SelfGuidedTours({ cards }: Props) {
                 onClick={closeInline}
                 aria-label="Close"
                 style={{
-                  width: 28,
-                  height: 28,
-                  borderRadius: 6,
-                  border: '1px solid rgba(0,0,0,.1)',
-                  background: '#fff',
+                  width: 36,
+                  height: 36,
+                  borderRadius: 999,
+                  border: '1px solid #E5E7EB',
+                  background: '#FFFFFF',
                   display: 'inline-flex',
                   alignItems: 'center',
                   justifyContent: 'center',
                   cursor: 'pointer',
+                  fontSize: 16,
+                  lineHeight: 1,
+                  color: '#111827',
+                  boxShadow: '0 1px 2px rgba(15,23,42,0.05)',
                 }}
               >
                 ×
@@ -389,7 +394,13 @@ export default function SelfGuidedTours({ cards }: Props) {
             <iframe
               title={inlineTitle}
               src={inlineUrl}
-              style={{ width: '100%', height: '100%', border: 0, position: 'absolute', top: 44 }}
+              style={{
+                width: '100%',
+                height: '100%',
+                border: 0,
+                position: 'absolute',
+                top: 52,
+              }}
               allow="clipboard-write; fullscreen"
             />
           </div>
