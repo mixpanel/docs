@@ -293,7 +293,7 @@ export default function SelfGuidedTours({ cards }: Props) {
             style={{
               width: '90vw',
               height: '80vh',
-              background: '#000',
+              background: 'transparent',
               borderRadius: 12,
               overflow: 'hidden',
               boxShadow: '0 10px 40px rgba(0,0,0,.5)',
@@ -381,9 +381,9 @@ export default function SelfGuidedTours({ cards }: Props) {
                 onClick={closeInline}
                 aria-label="Close"
                 style={{
-                  width: 36,
-                  height: 36,
-                  borderRadius: 10,
+                  width: 42,
+                  height: 34,
+                  borderRadius: 6,
                   border: '1px solid #E5E7EB',
                   background: '#FFFFFF',
                   display: 'inline-flex',
