@@ -1871,6 +1871,9 @@ article {
   .nextra-toc {
     background-color: colors.$darkbg;
     // Remove all hardcoded white backgrounds and shadow filters
+    ._shadow-\[0_12px_16px_rgb\(var\(\--nextra-bg\)\)\] {
+      box-shadow: unset;
+    }
     .nextra-toc-footer {
       background-color: colors.$darkbg;
       box-shadow: unset;
