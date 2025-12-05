@@ -1,4 +1,4 @@
-openapi: 3.0.2
+openapi: 3.1.0
 x-readme-deploy-id: data-pipelines-api
 info:
   title: Data Pipelines API
@@ -341,9 +341,7 @@ components:
           $ref: '#/components/schemas/ProjectId'
         type:
           type: string
-          enum:
-            - gcs-raw
-          readOnly: true
+          const: gcs-raw
         trial:
           type: boolean
           default: false
@@ -483,9 +481,7 @@ components:
           $ref: '#/components/schemas/ProjectId'
         type:
           type: string
-          enum:
-            - s3-raw
-          readOnly: true
+          const: s3-raw
         trial:
           type: boolean
           default: false
@@ -644,9 +640,7 @@ components:
           $ref: '#/components/schemas/ProjectId'
         type:
           type: string
-          enum:
-            - azure-raw
-          readOnly: true
+          const: azure-raw
         trial:
           type: boolean
           default: false
@@ -777,9 +771,7 @@ components:
           $ref: '#/components/schemas/ProjectId'
         type:
           type: string
-          enum:
-            - bigquery
-          readOnly: true
+          const: bigquery
         trial:
           type: boolean
           default: false
@@ -834,8 +826,7 @@ components:
             Mixpanel event data. `people` exports Mixpanel user data.
         sync:
           type: boolean
-          default: true
-          readOnly: true
+          const: true
           description: >
             **Default**: `true`
 
@@ -941,9 +932,7 @@ components:
           $ref: '#/components/schemas/ProjectId'
         type:
           type: string
-          enum:
-            - snowflake
-          readOnly: true
+          const: snowflake
         trial:
           type: boolean
           default: false
@@ -998,8 +987,7 @@ components:
             Mixpanel event data. `people` exports Mixpanel user data.
         sync:
           type: boolean
-          default: true
-          readOnly: true
+          const: true
           description: >
             **Default**: `true`
 
@@ -1083,9 +1071,7 @@ components:
           $ref: '#/components/schemas/ProjectId'
         type:
           type: string
-          enum:
-            - aws
-          readOnly: true
+          const: aws
         trial:
           type: boolean
           default: false
@@ -1140,8 +1126,7 @@ components:
             Mixpanel event data. `people` exports Mixpanel user data.
         sync:
           type: boolean
-          default: true
-          readOnly: true
+          const: true
           description: >
             **Default**: `true`
 
@@ -1296,9 +1281,7 @@ components:
           $ref: '#/components/schemas/ProjectId'
         type:
           type: string
-          enum:
-            - azure-blob
-          readOnly: true
+          const: azure-blob
         trial:
           type: boolean
           default: false
@@ -1353,8 +1336,7 @@ components:
             Mixpanel event data. `people` exports Mixpanel user data.
         sync:
           type: boolean
-          default: true
-          readOnly: true
+          const: true
           description: >
             **Default**: `true`
 
@@ -1460,9 +1442,7 @@ components:
           $ref: '#/components/schemas/ProjectId'
         type:
           type: string
-          enum:
-            - gcs-schema
-          readOnly: true
+          const: gcs-schema
         trial:
           type: boolean
           default: false
@@ -1502,8 +1482,7 @@ components:
             Mixpanel event data. `people` exports Mixpanel user data.
         sync:
           type: boolean
-          default: true
-          readOnly: true
+          const: true
           description: >
             **Default**: `true`
             A value of `true` updates exported data with any changes that occur
