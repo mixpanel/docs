@@ -340,7 +340,10 @@ components:
         project_id:
           $ref: '#/components/schemas/ProjectId'
         type:
-          $ref: '#/components/schemas/PipelineType'
+          type: string
+          enum:
+            - gcs-raw
+          readOnly: true
         trial:
           type: boolean
           default: false
@@ -479,7 +482,10 @@ components:
         project_id:
           $ref: '#/components/schemas/ProjectId'
         type:
-          $ref: '#/components/schemas/PipelineType'
+          type: string
+          enum:
+            - s3-raw
+          readOnly: true
         trial:
           type: boolean
           default: false
@@ -637,7 +643,10 @@ components:
         project_id:
           $ref: '#/components/schemas/ProjectId'
         type:
-          $ref: '#/components/schemas/PipelineType'
+          type: string
+          enum:
+            - azure-raw
+          readOnly: true
         trial:
           type: boolean
           default: false
@@ -767,7 +776,10 @@ components:
         project_id:
           $ref: '#/components/schemas/ProjectId'
         type:
-          $ref: '#/components/schemas/PipelineType'
+          type: string
+          enum:
+            - bigquery
+          readOnly: true
         trial:
           type: boolean
           default: false
@@ -822,9 +834,10 @@ components:
             Mixpanel event data. `people` exports Mixpanel user data.
         sync:
           type: boolean
-          default: false
+          default: true
+          readOnly: true
           description: >
-            **Default**: `false`
+            **Default**: `true`
 
 
             A value of `true` updates exported data with any changes that occur
@@ -927,7 +940,10 @@ components:
         project_id:
           $ref: '#/components/schemas/ProjectId'
         type:
-          $ref: '#/components/schemas/PipelineType'
+          type: string
+          enum:
+            - snowflake
+          readOnly: true
         trial:
           type: boolean
           default: false
@@ -982,9 +998,10 @@ components:
             Mixpanel event data. `people` exports Mixpanel user data.
         sync:
           type: boolean
-          default: false
+          default: true
+          readOnly: true
           description: >
-            **Default**: `false`
+            **Default**: `true`
 
 
             A value of `true` updates exported data with any changes that occur
@@ -1065,7 +1082,10 @@ components:
         project_id:
           $ref: '#/components/schemas/ProjectId'
         type:
-          $ref: '#/components/schemas/PipelineType'
+          type: string
+          enum:
+            - aws
+          readOnly: true
         trial:
           type: boolean
           default: false
@@ -1120,9 +1140,10 @@ components:
             Mixpanel event data. `people` exports Mixpanel user data.
         sync:
           type: boolean
-          default: false
+          default: true
+          readOnly: true
           description: >
-            **Default**: `false`
+            **Default**: `true`
 
 
             A value of `true` updates exported data with any changes that occur
@@ -1274,7 +1295,10 @@ components:
         project_id:
           $ref: '#/components/schemas/ProjectId'
         type:
-          $ref: '#/components/schemas/PipelineType'
+          type: string
+          enum:
+            - azure-blob
+          readOnly: true
         trial:
           type: boolean
           default: false
@@ -1329,9 +1353,10 @@ components:
             Mixpanel event data. `people` exports Mixpanel user data.
         sync:
           type: boolean
-          default: false
+          default: true
+          readOnly: true
           description: >
-            **Default**: `false`
+            **Default**: `true`
 
 
             A value of `true` updates exported data with any changes that occur
@@ -1434,7 +1459,10 @@ components:
         project_id:
           $ref: '#/components/schemas/ProjectId'
         type:
-          $ref: '#/components/schemas/PipelineType'
+          type: string
+          enum:
+            - gcs-schema
+          readOnly: true
         trial:
           type: boolean
           default: false
@@ -1474,9 +1502,10 @@ components:
             Mixpanel event data. `people` exports Mixpanel user data.
         sync:
           type: boolean
-          default: false
+          default: true
+          readOnly: true
           description: >
-            **Default**: `false`
+            **Default**: `true`
             A value of `true` updates exported data with any changes that occur
             in your Mixpanel dataset. These changes include deletions, late
             data, and imports that fall into your export window.
@@ -1613,15 +1642,6 @@ components:
     SchematizedEditParams:
       allOf:
         - $ref: '#/components/schemas/RawEditParams'
-        - type: object
-          properties:
-            enable_sync:
-              type: boolean
-              default: false
-              description: >
-                A value of `true` enables sync for your pipelines which updates exported data with
-                any changes that occur in your Mixpanel dataset. These changes include deletions, late
-                data, and imports that fall into your export window.
     AzureCommonEditParams:
       type: object
       properties:
