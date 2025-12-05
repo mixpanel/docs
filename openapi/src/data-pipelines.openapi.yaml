@@ -923,6 +923,7 @@ components:
         - from_date
         - bq_region
         - sync
+        - schema_type
 
     SchematizedSnowflakePipeline:
       title: Schematized Snowflake Pipeline
@@ -1062,6 +1063,7 @@ components:
         - snowflake_share_with
         - region
         - sync
+        - schema_type
 
     SchematizedAWSPipeline:
       title: Schematized AWS Pipeline
@@ -1272,6 +1274,7 @@ components:
         - s3_region
         - s3_role
         - sync
+        - schema_type
 
     SchematizedAzurePipeline:
       title: Schematized Azure Pipeline
@@ -1433,6 +1436,7 @@ components:
         - client_secret
         - tenant_id
         - sync
+        - schema_type
 
     SchematizedGCSPipeline:
       title: Schematized GCS Pipeline
@@ -1585,6 +1589,7 @@ components:
         - gcs_bucket
         - gcs_region
         - sync
+        - schema_type
     ErrorResponse:
       type: object
       properties:
