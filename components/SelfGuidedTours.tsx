@@ -1,7 +1,7 @@
 'use client';
-import React from 'react';
+import React, { useEffect, useState, useCallback } from 'react';
 import Image from 'next/image';
-import Script from 'next/script';
+import { useRouter } from 'next/router';
 
 /**
  * Card data shape passed from MDX.
@@ -152,7 +152,13 @@ const styles = {
 };
 
 /* ---- One card view (supports Navattic popup or plain link) ---- */
-function CardView({ c }: { c: Card }) {
+function CardView({
+  c,
+  openInline, // inline overlay opener (provided by parent)
+}: {
+  c: Card;
+  openInline?: (url: string, title: string) => void;
+}) {
   const inside = (
     <>
       <div style={styles.dogEar} aria-hidden />
@@ -172,26 +178,30 @@ function CardView({ c }: { c: Card }) {
     </>
   );
 
-  // Use Navattic popup if navatticOpen is provided
+  // Always open inline overlay if a Navattic URL is provided (consistent UX)
   if (c.navatticOpen) {
-      const navatticUrl = c.navatticOpen.startsWith('http')
-        ? c.navatticOpen
-        : `https://capture.navattic.com/${c.navatticOpen}`;
+    const navatticUrl = c.navatticOpen.startsWith('http')
+      ? c.navatticOpen
+      : `https://capture.navattic.com/${c.navatticOpen}`;
 
-      return (
-        <div style={styles.card} className="sgt-card">
-          <button
-            type="button"
-            style={styles.clickable}
-            className="sgt-click"
-            data-navattic-open={navatticUrl}
-            data-navattic-title={c.navatticTitle || c.title}
-          >
-            {inside}
-          </button>
-        </div>
-      );
-    }
+    return (
+      <div style={styles.card} className="sgt-card">
+        <button
+          type="button"
+          style={styles.clickable}
+          className="sgt-click"
+          data-navattic-open={navatticUrl}
+          data-navattic-title={c.navatticTitle || c.title}
+          onClick={(e) => {
+            e.preventDefault();
+            openInline?.(navatticUrl, c.navatticTitle || c.title);
+          }}
+        >
+          {inside}
+        </button>
+      </div>
+    );
+  }
 
   // Fallback to href links if needed
   if (c.href) {
@@ -215,21 +225,200 @@ function CardView({ c }: { c: Card }) {
 /**
  * SelfGuidedTours
  * - Renders a responsive grid of product-tour cards
- * - Loads Navattic's embed script once (popup mode)
- * - Exposes a simple props API so MDX controls the content
+ * - Shows a modal overlay for tours for a consistent experience
  */
 export default function SelfGuidedTours({ cards }: Props) {
+  const router = useRouter();
+
+  // Inline overlay state
+  const [inlineUrl, setInlineUrl] = useState<string | null>(null);
+  const [inlineTitle, setInlineTitle] = useState<string>('');
+
+  const openInline = useCallback((url: string, title: string) => {
+    setInlineTitle(title);
+    setInlineUrl(url);
+  }, []);
+  const closeInline = useCallback(() => setInlineUrl(null), []);
+
+  // Close modal on route changes (avoid lingering overlay)
+  useEffect(() => {
+    const onStart = () => closeInline();
+    router.events.on('routeChangeStart', onStart);
+    return () => router.events.off('routeChangeStart', onStart);
+  }, [router.events, closeInline]);
+
+  // ESC to close + lock background scroll while open
+  useEffect(() => {
+    if (inlineUrl) {
+      const prevOverflow = document.body.style.overflow;
+      document.body.style.overflow = 'hidden';
+      const onKey = (e: KeyboardEvent) => {
+        if (e.key === 'Escape') closeInline();
+      };
+      window.addEventListener('keydown', onKey);
+      return () => {
+        window.removeEventListener('keydown', onKey);
+        document.body.style.overflow = prevOverflow;
+      };
+    }
+  }, [inlineUrl, closeInline]);
+
   return (
     <>
-      {/* Navattic embed loader (newer API) */}
-      <Script src="https://js.navattic.com/embeds.js" strategy="afterInteractive" />
-
       {/* Grid */}
       <div style={styles.grid}>
         {cards.map((c, i) => (
-          <CardView key={i} c={c} />
+          <CardView key={i} c={c} openInline={openInline} />
         ))}
       </div>
+
+      {/* Inline overlay */}
+      {inlineUrl && (
+        <div
+          role="dialog"
+          aria-label={inlineTitle}
+          onClick={closeInline}
+          style={{
+            position: 'fixed',
+            inset: 0,
+            background: 'rgba(15,23,42,0.55)',
+            display: 'flex',
+            alignItems: 'center',
+            justifyContent: 'center',
+            zIndex: 9999,
+          }}
+        >
+          <div
+            onClick={(e) => e.stopPropagation()}
+            style={{
+              width: 'calc(100vw - 160px)',
+              height: 'calc(100vh - 144px)',
+              background: '#F3F4F6',
+              borderRadius: 12,
+              overflow: 'hidden',
+              boxShadow: '0 10px 40px rgba(0,0,0,.5)',
+              position: 'relative',
+            }}
+          >
+            {/* Header bar styled to closely match Navattic's */}
+            <div
+              style={{
+                position: 'absolute',
+                top: 0,
+                left: 0,
+                right: 0,
+                height: 48,
+                background: '#F9FAFB',
+                color: '#111827',
+                display: 'flex',
+                alignItems: 'center',
+                justifyContent: 'space-between',
+                padding: '0 16px',
+                borderBottom: '1px solid #E5E7EB',
+                zIndex: 3,
+              }}
+            >
+              <div style={{ display: 'flex', gap: 12, alignItems: 'center' }}>
+                {/* Left icon + label (no pill) */}
+                <div style={{ display: 'flex', gap: 8, alignItems: 'center' }}>
+                  <div
+                    style={{
+                      display: 'inline-flex',
+                      alignItems: 'center',
+                      justifyContent: 'center',
+                      width: 40,
+                      height: 34,
+                      border: '1px solid #E5E7EB',
+                      borderRadius: 10,
+                      background: '#F3F4F6',
+                    }}
+                  >
+                    {/* SVG from original Navattic header (adjusted to TSX) */}
+                    <svg
+                      xmlns="http://www.w3.org/2000/svg"
+                      viewBox="0 0 24 24"
+                      width="20"
+                      height="20"
+                      fill="none"
+                      stroke="currentColor"
+                      strokeWidth={2}
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                      style={{ color: '#111827' }}
+                    >
+                      <path d="M21 11V5a2 2 0 0 0-2-2H5a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h6" />
+                      <path d="m12 12 4 10 1.7-4.3L22 16Z" />
+                    </svg>
+                  </div>
+                  <span
+                    style={{
+                      fontSize: 14,
+                      fontWeight: 500,
+                    }}
+                  >
+                    Viewing Interactive Demo
+                  </span>
+                </div>
+
+                {/* Title pill */}
+                <span
+                  style={{
+                    display: 'inline-flex',
+                    alignItems: 'center',
+                    padding: '8px 16px',
+                    borderRadius: 999,
+                    background: '#FFFFFF',
+                    border: '1px solid #D1D5DB',
+                    boxShadow: '0 1px 2px rgba(15,23,42,0.05)',
+                    fontWeight: 500,
+                    fontSize: 14,
+                    lineHeight: 1.1,
+                  }}
+                >
+                  {inlineTitle}
+                </span>
+              </div>
+
+              <button
+                onClick={closeInline}
+                aria-label="Close"
+                style={{
+                  width: 36,
+                  height: 36,
+                  borderRadius: 12,
+                  border: '1px solid #D1D5DB',
+                  background: '#FFFFFF',
+                  display: 'inline-flex',
+                  alignItems: 'center',
+                  justifyContent: 'center',
+                  cursor: 'pointer',
+                  fontSize: 22,
+                  fontWeight: 500,
+                  lineHeight: 1,
+                  color: '#111827',
+                  boxShadow: '0 1px 2px rgba(0,0,0,0.05)',
+                }}
+              >
+                ×
+              </button>
+            </div>
+
+            {/* iframe body, positioned below header */}
+            <iframe
+              title={inlineTitle}
+              src={inlineUrl}
+              style={{
+                width: '100%',
+                height: 'calc(100% - 48px)',
+                border: 0,
+                position: 'absolute',
+                top: 48,
+              }}
+              allow="clipboard-write; fullscreen"
+            />
+          </div>
+        </div>
+      )}
 
       {/* Theme variables + interactions */}
       <style jsx global>{`
