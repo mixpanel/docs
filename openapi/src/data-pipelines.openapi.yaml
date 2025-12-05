@@ -343,6 +343,7 @@ components:
           type: string
           enum:
             - gcs-raw
+          default: gcs-raw
         trial:
           type: boolean
           default: false
@@ -484,6 +485,7 @@ components:
           type: string
           enum:
             - s3-raw
+          default: s3-raw
         trial:
           type: boolean
           default: false
@@ -644,6 +646,7 @@ components:
           type: string
           enum:
             - azure-raw
+          default: azure-raw
         trial:
           type: boolean
           default: false
@@ -776,6 +779,7 @@ components:
           type: string
           enum:
             - bigquery
+          default: bigquery
         trial:
           type: boolean
           default: false
@@ -832,6 +836,7 @@ components:
           type: boolean
           enum:
             - true
+          default: true
           description: >
             **Default**: `true`
 
@@ -939,6 +944,7 @@ components:
           type: string
           enum:
             - snowflake
+          default: snowflake
         trial:
           type: boolean
           default: false
@@ -995,6 +1001,7 @@ components:
           type: boolean
           enum:
             - true
+          default: true
           description: >
             **Default**: `true`
 
@@ -1080,6 +1087,7 @@ components:
           type: string
           enum:
             - aws
+          default: aws
         trial:
           type: boolean
           default: false
@@ -1136,6 +1144,7 @@ components:
           type: boolean
           enum:
             - true
+          default: true
           description: >
             **Default**: `true`
 
@@ -1292,6 +1301,7 @@ components:
           type: string
           enum:
             - azure-blob
+          default: azure-blob
         trial:
           type: boolean
           default: false
@@ -1348,6 +1358,7 @@ components:
           type: boolean
           enum:
             - true
+          default: true
           description: >
             **Default**: `true`
 
@@ -1453,8 +1464,7 @@ components:
           $ref: '#/components/schemas/ProjectId'
         type:
           type: string
-          enum:
-            - gcs-schema
+          default: gcs-schema
         trial:
           type: boolean
           default: false
@@ -1494,8 +1504,7 @@ components:
             Mixpanel event data. `people` exports Mixpanel user data.
         sync:
           type: boolean
-          enum:
-            - true
+          default: true
           description: >
             **Default**: `true`
             A value of `true` updates exported data with any changes that occur
