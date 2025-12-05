@@ -341,8 +341,6 @@ components:
           $ref: '#/components/schemas/ProjectId'
         type:
           type: string
-          enum:
-            - gcs-raw
           default: gcs-raw
         trial:
           type: boolean
@@ -483,8 +481,6 @@ components:
           $ref: '#/components/schemas/ProjectId'
         type:
           type: string
-          enum:
-            - s3-raw
           default: s3-raw
         trial:
           type: boolean
@@ -644,8 +640,6 @@ components:
           $ref: '#/components/schemas/ProjectId'
         type:
           type: string
-          enum:
-            - azure-raw
           default: azure-raw
         trial:
           type: boolean
@@ -777,8 +771,6 @@ components:
           $ref: '#/components/schemas/ProjectId'
         type:
           type: string
-          enum:
-            - bigquery
           default: bigquery
         trial:
           type: boolean
@@ -930,6 +922,7 @@ components:
         - type
         - from_date
         - bq_region
+        - sync
 
     SchematizedSnowflakePipeline:
       title: Schematized Snowflake Pipeline
@@ -939,8 +932,6 @@ components:
           $ref: '#/components/schemas/ProjectId'
         type:
           type: string
-          enum:
-            - snowflake
           default: snowflake
         trial:
           type: boolean
@@ -1070,6 +1061,7 @@ components:
         - from_date
         - snowflake_share_with
         - region
+        - sync
 
     SchematizedAWSPipeline:
       title: Schematized AWS Pipeline
@@ -1079,8 +1071,6 @@ components:
           $ref: '#/components/schemas/ProjectId'
         type:
           type: string
-          enum:
-            - aws
           default: aws
         trial:
           type: boolean
@@ -1281,6 +1271,7 @@ components:
         - s3_bucket
         - s3_region
         - s3_role
+        - sync
 
     SchematizedAzurePipeline:
       title: Schematized Azure Pipeline
@@ -1290,8 +1281,6 @@ components:
           $ref: '#/components/schemas/ProjectId'
         type:
           type: string
-          enum:
-            - azure-blob
           default: azure-blob
         trial:
           type: boolean
@@ -1443,6 +1432,7 @@ components:
         - client_id
         - client_secret
         - tenant_id
+        - sync
 
     SchematizedGCSPipeline:
       title: Schematized GCS Pipeline
@@ -1492,6 +1482,8 @@ components:
             Mixpanel event data. `people` exports Mixpanel user data.
         sync:
           type: boolean
+          enum:
+            - true
           default: true
           description: >
             A value of `true` updates exported data with any changes that occur
@@ -1592,6 +1584,7 @@ components:
         - from_date
         - gcs_bucket
         - gcs_region
+        - sync
     ErrorResponse:
       type: object
       properties:
