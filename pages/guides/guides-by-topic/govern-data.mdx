@@ -1,0 +1,93 @@
+import { Callout,Steps } from 'nextra/components'
+
+# Govern Your Mixpanel Data for Long-Term Success
+Keep your Mixpanel data clean, trusted, and discoverable—no matter how your team changes. This Guide outlines the essential practices to prevent data drift, manage change, and keep reports accurate over time.
+
+## Why Governance Matters
+Strong governance delivers business value far beyond tidy data. When teams trust their metrics, they can make decisions faster, align more easily, and confidently scale their analytics without second-guessing results. 
+
+Governance increases the return on your data investments by ensuring that all analysis draws from a consistent, reliable foundation. The result is greater speed to insight and higher confidence in every product decision.
+
+## What “Good” Governance Looks Like in Mixpanel
+A trusted data environment features:
+- A unified taxonomy for all events and properties.
+- Clear ownership defining accountability for data quality.
+- A structured QA workflow before new tracking goes live.
+- Continuous data hygiene to prune obsolete events.
+- Active documentation to keep teams aligned on definitions.
+
+Good governance isn’t about rigid control—it’s about creating clarity and trust that scale with your team. The steps below walk through how to put these principles into practice, starting with defining ownership and standardizing your data language.
+
+## Before You Begin: A Quick Tour of Lexicon
+It’s helpful to know where most of the data governance features in this Guide live. Many of the steps you’ll take—like defining event names, managing visibility, and reviewing descriptions—happen directly in Mixpanel’s Lexicon. 
+
+Take a quick interactive tour below to see how to navigate Lexicon before you begin implementing governance best practices.
+
+<iframe src="https://capture.navattic.com/cmdqcbvog000304ju6ku3c6nd" style="border:none;width:100%;height:100%;" data-navattic-demo-id="cmdqcbvog000304ju6ku3c6nd" allow="fullscreen"></iframe>
+
+With these basics in mind, you’ll be ready to apply governance best practices confidently.
+
+## The Data Governance Framework
+To make the workflow clear, this section introduces the core components of Mixpanel’s data governance framework and explains why each matters. These steps form a continuous cycle that keeps your data accurate, trusted, and useful over time.
+
+The Mixpanel Data Governance Framework includes:
+
+<Steps>
+
+{<h3>Establish and Document Data Governance Ownership.</h3>}
+
+Assign clear accountability for maintaining standards, reviewing new tracking, and ensuring data quality.
+
+{<h3>Standardize Your Taxonomy.</h3>}
+
+Define a shared vocabulary for events and properties to ensure teams interpret data consistently.
+
+{<h3>Manage Naming Changes Effectively.</h3>}
+
+Maintain continuity and understanding when renaming events and properties.
+
+{<h3>Maintain and Evolve Your Data Governance.</h3>}
+
+Create feedback loops and continuous improvement processes as your business grows.
+
+{<h3>Keep Training and Documentation Alive.</h3>}
+
+Maintain shared understanding through consistent documentation and training so governance practices stay effective as teams and data evolve.
+
+</Steps>
+
+Together, these components create a sustainable governance cycle that helps organizations evolve their analytics with confidence while minimizing data drift and confusion.
+
+### Establish and Document Data Governance Ownership
+Assign clear accountability for maintaining standards, reviewing new tracking, and ensuring data quality. These responsibilities are typically handled through ongoing processes.
+
+**Steps to take**
+- Designate a data governance owner or committee—often the analytics lead or data team—and at least one backup to ensure continuity when roles shift.
+- Define who reviews new events and manages Lexicon ownership inside Mixpanel.
+- Require sign-off for any schema or tracking changes before implementation.
+- Maintain your governance workflow, meeting notes, and approval records in an internal wiki or shared doc.
+
+<Callout type="info">
+**Pro tip**: If you already have a governance or tracking plan, update it to reflect current ownership and review processes. If you don’t, use the [Mixpanel Tracking Plan template](https://docs.google.com/spreadsheets/d/1ZdOZ6TMtRPxy7qRxiLsvH9HWcHJM6nZydWKoThRxFKc/edit?gid=1641519238#gid=1641519238) as a starting point to create one.
+</Callout>
+
+**Governance Roles and Responsibilities**
+It can be helpful to clearly outline governance roles and responsibilities so teams understand who does what. Here’s a typical setup you can use as a reference or adapt to fit your organization:
+
+| Role | Responsibilities |
+| --- | --- |
+| Data Owner | Approves new events and ensures correctness. |
+| Analyst / PM | Documents use cases and verifies metrics. |
+| Engineer | Implements approved tracking. |
+| Data Governor | Oversees Lexicon and enforces data standards. |
+
+
+<Callout type="warning">
+    **Pitfall:** Without a defined owner and clear process for how reviews happen, cleanup efforts stall and standards erode over time.
+</Callout>
+
+Once ownership is clear, the next step is to formalize your shared data language so that everyone in Mixpanel speaks the same analytical vocabulary.
+
+
+
+
