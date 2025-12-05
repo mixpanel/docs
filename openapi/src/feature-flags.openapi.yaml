@@ -34,7 +34,7 @@ paths:
           example: '%7B++%22distinct_id%22%3A%22user123%22%2C++%22device_id%22%3A%22device456%22%2C++%22custom_properties%22%3A+%7B++++%22some_key%22%3A+%22some_value%22%2C++++%22another_key%22%3A+32++%7D%7D%22'
       tags:
         - Get Variant Assignments
-      summary: Evaluate Feature Flags (GET)
+      summary: Evaluate Feature Flags (GET) - Test
       description: Evaluate all enabled feature flags for a user with the provided context. Returns selected variants for flags the user is eligible for.
       responses:
         '200':
