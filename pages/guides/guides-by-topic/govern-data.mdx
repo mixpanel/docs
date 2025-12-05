@@ -88,6 +88,44 @@ It can be helpful to clearly outline governance roles and responsibilities so te
 
 Once ownership is clear, the next step is to formalize your shared data language so that everyone in Mixpanel speaks the same analytical vocabulary.
 
+### Standardize Your Taxonomy
+Create a unified taxonomy that everyone in your organization can understand and use consistently. In Mixpanel, this shared vocabulary lives in Lexicon—your central reference for how events and properties are defined.
 
+Teams typically begin by auditing what they already have, clarifying event names and ownership, and setting rules for how new tracking is proposed and approved. 
 
+Once your governance structure is in place, you can use Mixpanel’s built-in tools to make adherence automatic. This ensures that consistency doesn’t depend on individuals and new data entering your workspace meets your established standards before it’s visible to everyone. 
 
+With this foundation set, Lexicon becomes the trusted single source of truth for how data is used across teams. 
+
+**Steps to take**
+- **Audit Data**: Audit all events and properties in [Lexicon](/docs/data-governance/lexicon). Add clear descriptions, categories, and owners for every event and property.
+- **Select Naming Convention**: Choose one naming format—'snake_case' is recommended—and enforce it.
+- **Enforce Data Standards**: Enable naming and description requirements in [Data Standards](/docs/data-governance/data-standards) to enforce your formatting and documentation rules.
+- **Tag Events**: [Tag events](/docs/data-governance/lexicon#lexicon-event-details) by domain or team to make ownership and accountability clear.
+- **Approve Events**: Turn on [Event Approval](/docs/data-governance/event-approval) to review unexpected tracking before it’s added to your Mixpanel project.
+- **Hide Data**: [Hide](/docs/data-governance/lexicon#hiding-data) deprecated or unused events to prevent less-frequently used items from cluttering your events and properties menu, or from being considered in your reports. 
+- **Drop Data**: For data that should no longer be available at all, consider [dropping it](/docs/data-governance/lexicon#dropping-data).
+
+Prefer a guided walkthrough of these features? Check out our self-guided tours on how to [Govern & Maintain Data Quality](/guides/self-guided-tours#govern--maintain-data-quality).
+
+👉 **Do this next**: Document your standards, and then schedule quarterly Lexicon reviews by data owners to keep definitions fresh and consistent.
+
+Together, these steps help prevent data drift and ensure that your taxonomy remains consistent—leading to data that’s both trusted by and easy to navigate for all team members.
+
+### Manage Naming Changes Effectively
+When you change the raw name of an event or property (not just the display name), careful change management is essential to preserve data continuity and trust.
+
+While updating a display name in Mixpanel doesn’t alter the raw event or property name, changing raw names impacts how data is collected and connected in reports, so coordination and communication are key.
+
+**Steps to take**
+When renaming raw events or properties:
+- **Communicate and document the change** before implementation so that all impacted teams (analysts, PMs, engineers) are aware of what’s changing and why.
+- **Use Mixpanel tools** like [Lexicon to merge events](/docs/data-governance/lexicon#merging-data) or [custom events to logically combine historical and new data](/docs/features/custom-events). The merge function in Lexicon can consolidate events or properties that represent the same underlying data, while custom events can group distinct raw events into a single analytical concept.
+- **Update related dashboards and reports** to reference the new names, verifying that historical trends remain intact.
+- **Record the update** in your governance log or internal documentation, including details on what was changed, the rationale, and which reports were reviewed.
+
+<Callout type="warning">
+    **Pitfall:** Changing event or property names without coordination leads to confusion, broken reports, and loss of trust in data.
+</Callout>
+
+A well-managed rename process—supported by documentation, communication, and Mixpanel’s tools—ensures data continuity and clarity as your taxonomy evolves.
