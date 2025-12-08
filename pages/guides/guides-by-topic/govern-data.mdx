@@ -1,0 +1,203 @@
+import { Callout,Steps } from 'nextra/components'
+
+# Govern Your Mixpanel Data for Long-Term Success
+Keep your Mixpanel data clean, trusted, and discoverable—no matter how your team changes. This Guide outlines the essential practices to prevent data drift, manage change, and keep reports accurate over time.
+
+## Why Governance Matters
+Strong governance delivers business value far beyond tidy data. When teams trust their metrics, they can make decisions faster, align more easily, and confidently scale their analytics without second-guessing results. 
+
+Governance increases the return on your data investments by ensuring that all analysis draws from a consistent, reliable foundation. The result is greater speed to insight and higher confidence in every product decision.
+
+## What “Good” Governance Looks Like in Mixpanel
+A trusted data environment features:
+- A unified taxonomy for all events and properties.
+- Clear ownership defining accountability for data quality.
+- A structured QA workflow before new tracking goes live.
+- Continuous data hygiene to prune obsolete events.
+- Active documentation to keep teams aligned on definitions.
+
+Good governance isn’t about rigid control—it’s about creating clarity and trust that scale with your team. The steps below walk through how to put these principles into practice, starting with defining ownership and standardizing your data language.
+
+## Before You Begin: A Quick Tour of Lexicon
+It’s helpful to know where most of the data governance features in this Guide live. Many of the steps you’ll take—like defining event names, managing visibility, and reviewing descriptions—happen directly in Mixpanel’s Lexicon. 
+
+Take a quick interactive tour below to see how to navigate Lexicon before you begin implementing governance best practices.
+<br></br>
+<div style={{ position: 'relative', paddingTop: '56.25%' }}>
+  <iframe
+    src="https://capture.navattic.com/cmdqcbvog000304ju6ku3c6nd"
+    title="Navattic walkthrough"
+    style={{ position: 'absolute', inset: 0, width: '100%', height: '100%', border: 0 }}
+    data-navattic-demo-id="cmfkxwfa5000004lc8408f5wi"
+    allowFullScreen
+  />
+</div>
+
+With these basics in mind, you’ll be ready to apply governance best practices confidently.
+
+## The Data Governance Framework
+To make the workflow clear, this section introduces the core components of Mixpanel’s data governance framework and explains why each matters. These steps form a continuous cycle that keeps your data accurate, trusted, and useful over time.
+
+The Mixpanel Data Governance Framework includes:
+
+<Steps>
+
+{<h3>Establish and Document Data Governance Ownership.</h3>}
+
+Assign clear accountability for maintaining standards, reviewing new tracking, and ensuring data quality.
+
+{<h3>Standardize Your Taxonomy.</h3>}
+
+Define a shared vocabulary for events and properties to ensure teams interpret data consistently.
+
+{<h3>Manage Naming Changes Effectively.</h3>}
+
+Maintain continuity and understanding when renaming events and properties.
+
+{<h3>Maintain and Evolve Your Data Governance.</h3>}
+
+Create feedback loops and continuous improvement processes as your business grows.
+
+{<h3>Keep Training and Documentation Alive.</h3>}
+
+Maintain shared understanding through consistent documentation and training so governance practices stay effective as teams and data evolve.
+
+</Steps>
+
+Together, these components create a sustainable governance cycle that helps organizations evolve their analytics with confidence while minimizing data drift and confusion.
+
+### Establish and Document Data Governance Ownership
+Assign clear accountability for maintaining standards, reviewing new tracking, and ensuring data quality. These responsibilities are typically handled through ongoing processes.
+
+**Steps to take**
+- Designate a data governance owner or committee—often the analytics lead or data team—and at least one backup to ensure continuity when roles shift.
+- Define who reviews new events and manages Lexicon ownership inside Mixpanel.
+- Require sign-off for any schema or tracking changes before implementation.
+- Maintain your governance workflow, meeting notes, and approval records in an internal wiki or shared doc.
+
+<Callout type="info">
+    **Pro tip**: If you already have a governance or tracking plan, update it to reflect current ownership and review processes. If you don’t, use the [Mixpanel Tracking Plan template](https://docs.google.com/spreadsheets/d/1ZdOZ6TMtRPxy7qRxiLsvH9HWcHJM6nZydWKoThRxFKc/edit?gid=1641519238#gid=1641519238) as a starting point to create one.
+</Callout>
+
+**Governance Roles and Responsibilities**
+It can be helpful to clearly outline governance roles and responsibilities so teams understand who does what. Here’s a typical setup you can use as a reference or adapt to fit your organization:
+
+| Role | Responsibilities |
+| --- | --- |
+| Data Owner | Approves new events and ensures correctness. |
+| Analyst / PM | Documents use cases and verifies metrics. |
+| Engineer | Implements approved tracking. |
+| Data Governor | Oversees Lexicon and enforces data standards. |
+
+
+<Callout type="warning">
+    **Pitfall:** Without a defined owner and clear process for how reviews happen, cleanup efforts stall and standards erode over time.
+</Callout>
+
+Once ownership is clear, the next step is to formalize your shared data language so that everyone in Mixpanel speaks the same analytical vocabulary.
+
+### Standardize Your Taxonomy
+Create a unified taxonomy that everyone in your organization can understand and use consistently. In Mixpanel, this shared vocabulary lives in Lexicon—your central reference for how events and properties are defined.
+
+Teams typically begin by auditing what they already have, clarifying event names and ownership, and setting rules for how new tracking is proposed and approved. 
+
+Once your governance structure is in place, you can use Mixpanel’s built-in tools to make adherence automatic. This ensures that consistency doesn’t depend on individuals and new data entering your workspace meets your established standards before it’s visible to everyone. 
+
+With this foundation set, Lexicon becomes the trusted single source of truth for how data is used across teams. 
+
+**Steps to take**
+- **Audit Data**: Audit all events and properties in [Lexicon](/docs/data-governance/lexicon). Add clear descriptions, categories, and owners for every event and property.
+- **Select Naming Convention**: Choose one naming format—`snake_case` is recommended—and enforce it.
+- **Enforce Data Standards**: Enable naming and description requirements in [Data Standards](/docs/data-governance/data-standards) to enforce your formatting and documentation rules.
+- **Tag Events**: [Tag events](/docs/data-governance/lexicon#lexicon-event-details) by domain or team to make ownership and accountability clear.
+- **Approve Events**: Turn on [Event Approval](/docs/data-governance/event-approval) to review unexpected tracking before it’s added to your Mixpanel project.
+- **Hide Data**: [Hide](/docs/data-governance/lexicon#hiding-data) deprecated or unused events to prevent less-frequently used items from cluttering your events and properties menu, or from being considered in your reports. 
+- **Drop Data**: For data that should no longer be available at all, consider [dropping it](/docs/data-governance/lexicon#dropping-data).
+
+Prefer a guided walkthrough of these features? Check out our self-guided tours on how to [Govern & Maintain Data Quality](/guides/self-guided-tours#govern--maintain-data-quality).
+
+👉 **Do this next**: Document your standards, and then schedule quarterly Lexicon reviews by data owners to keep definitions fresh and consistent.
+
+Together, these steps help prevent data drift and ensure that your taxonomy remains consistent—leading to data that’s both trusted by and easy to navigate for all team members.
+
+### Manage Naming Changes Effectively
+When you change the raw name of an event or property (not just the display name), careful change management is essential to preserve data continuity and trust.
+
+While updating a display name in Mixpanel doesn’t alter the raw event or property name, changing raw names impacts how data is collected and connected in reports, so coordination and communication are key.
+
+**Steps to take**
+
+When renaming raw events or properties:
+- **Communicate and document the change** before implementation so that all impacted teams (analysts, PMs, engineers) are aware of what’s changing and why.
+- **Use Mixpanel tools** like [Lexicon to merge events](/docs/data-governance/lexicon#merging-data) or [custom events to logically combine historical and new data](/docs/features/custom-events). The merge function in Lexicon can consolidate events or properties that represent the same underlying data, while custom events can group distinct raw events into a single analytical concept.
+- **Update related dashboards and reports** to reference the new names, verifying that historical trends remain intact.
+- **Record the update** in your governance log or internal documentation, including details on what was changed, the rationale, and which reports were reviewed.
+
+<Callout type="warning">
+    **Pitfall:** Changing event or property names without coordination leads to confusion, broken reports, and loss of trust in data.
+</Callout>
+
+A well-managed rename process—supported by documentation, communication, and Mixpanel’s tools—ensures data continuity and clarity as your taxonomy evolves.
+
+### Maintain and Evolve Your Data Governance
+Governance isn’t just about cleaning up—it’s about maintaining a strong feedback loop as your business and data evolve. 
+
+When a team launches a new feature or identifies a new use case to track, they should have a clear process for getting that data implemented in a way that aligns with your existing taxonomy and governance standards. This ensures consistency, prevents duplication, and keeps data relevant and trustworthy.
+
+Cleanup is ongoing. Start where trust matters most, then expand gradually. This process is as much about building habits as it is about deleting old data—regular reviews help maintain confidence in your analytics and prevent noise from creeping back in.
+
+**Steps to take**
+- Begin with high-impact areas—your key metrics and dashboards.
+- Use the [Mixpanel Monitoring Dashboard](https://mixpanel.com/project/3018488/view/3536632/app/boards/#id=6350211) to identify unused or duplicate events and see how your data is being used across the project. This dashboard gives you a clear view of event volume and identity trends, helping you pinpoint cleanup priorities and validate improvements over time.
+- To review properties, use Lexicon to audit property usage, spot redundancy, and assess whether property definitions still align with your taxonomy.
+- Review and clean one domain or product area at a time, ensuring each team validates their changes.
+- Establish recurring cleanup checkpoints—quarterly or per release cycle—to keep data quality consistent and prevent drift.
+
+These ongoing, focused reviews make cleanup part of your regular analytics rhythm rather than a disruptive, large-scale project. The result is a Mixpanel implementation that stays clean and trustworthy over time.
+
+#### Property Maintenance
+To support ongoing governance, regularly review both event and user properties as part of your data evolution workflows. Keeping properties organized ensures data remains accurate, relevant, and easier to analyze across teams.
+
+**Steps to take**
+- Periodically review [user profile properties](/docs/data-structure/user-profiles) and [event properties](/docs/data-structure/events-and-properties) in Mixpanel to identify fields that are outdated, redundant, or unused.
+- Remove properties that are no longer relevant to your analysis, and keep active ones clearly defined.
+Ensure that commonly used properties—like plan type, device, or lifecycle stage—are standardized across your product and data sources.
+- Document property standards in your governance wiki to make onboarding and troubleshooting easier.
+
+<Callout type="warning">
+    **Pitfall:** Letting properties accumulate unchecked leads to noisy data and makes analysis more difficult.
+</Callout>
+Routine property maintenance ensures your data stays clean, queries remain efficient, and every event and profile tells an accurate story of how people engage with your product.
+
+### Keep Training and Documentation Alive
+Sustainable governance relies on shared understanding. Governance processes, naming conventions, and tracking standards only work when everyone knows how and why to follow them. 
+
+Training and accessible documentation, using resources like the [Mixpanel Tracking Plan templates](/docs/tracking-best-practices/tracking-plan#translate-flows-into-events--properties), keep your entire organization aligned—especially as new people join and product tracking evolves.
+
+**Steps to take**
+- Document your standards and review process in a central wiki that all data contributors can access.
+- Include governance and Lexicon usage in onboarding for new PMs, analysts, and engineers.
+- Refresh training materials and documentation annually to reflect changes in your data model, team structure, or Mixpanel features.
+- Link learning resources directly from your Mixpanel Boards for quick reference.
+
+Well-documented and regularly reinforced governance practices ensure that data quality remains strong, institutional knowledge doesn’t fade, and every team member can confidently use Mixpanel to drive decisions.
+
+## Common Governance Pitfalls
+Even teams with strong data practices can run into issues that erode trust or slow decisions. Use the table below to self-diagnose common governance challenges and take quick action to fix them.
+
+| Pitfall | Impact | Quick Fix |
+| --- | --- | --- |
+| Unclear ownership | Confusion over who approves or maintains tracking, leading to delays and inconsistent standards. | Establish clear governance roles and document responsibilities. |
+| Inconsistent naming | Harder to find and interpret data across teams. | Enforce naming standards using [Data Standards](/docs/data-governance/data-standards) and [Lexicon](/docs/data-governance/lexicon) descriptions. |
+| Lack of cleanup process | Outdated or duplicate events clutter reports and reduce trust. | Schedule periodic reviews and [hide](/docs/data-governance/lexicon#hiding-data) or [drop](/docs/data-governance/lexicon#dropping-data) deprecated data. |
+| No documentation or training | New team members repeat mistakes or create data drift. | Centralize governance docs and include data standards in onboarding. |
+
+## Key Takeaways
+- Strong data governance creates trust, consistency, and clarity across your analytics so teams can make confident decisions as the business evolves.
+- Establish clear ownership to ensure accountability for maintaining standards, reviewing new tracking, and managing data quality.
+- Standardize your taxonomy so teams use a shared vocabulary for events and properties and interpret data consistently.
+- Manage naming changes effectively by communicating updates and using Mixpanel tools to preserve continuity and historical context.
+- Maintain and evolve governance processes through feedback loops and continuous improvement as your business grows.
+- Keep training and documentation alive to ensure teams stay aligned on how data is defined, tracked, and used.
+
+👉 **Next step**: Explore Mixpanel’s [Data Governance documentation](/docs/data-governance) to learn more about the tools and workflows that help you manage data quality, consistency, and trust across your workspace.
