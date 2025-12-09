@@ -14,6 +14,12 @@ This is **Mixpanel's Official Documentation** repository (https://docs.mixpanel.
 - **Node Version Required:** >=20.0.0 <21.0.0
 - **npm Version Required:** >=10.0.0 <12.0.0
 
+**Environment Setup:**
+- `.github/workflows/copilot-setup-steps.yml` - Automated environment setup for Copilot agents
+  - Pre-installs dependencies with `npm ci`
+  - Pre-builds OpenAPI specifications
+  - Ensures consistent environment across all coding sessions
+
 ## Critical Build & Validation Commands
 
 **ALWAYS run these commands in this exact order to validate changes:**
