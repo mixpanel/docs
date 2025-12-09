@@ -111,12 +111,13 @@ The documentation you work with is organized as follows:
 ## Key Files to Reference
 
 When answering questions, these are particularly important starting points in `/pages/docs/`:
-- `what-is-mixpanel.mdx` - Core concepts
-- `quickstart.mdx` - Getting started guide
-- `tracking-methods.mdx` - Implementation overview
+- `what-is-mixpanel.mdx` - Core concepts (Events, Users, Properties)
+- `quickstart/` directory - Getting started guides (install-mixpanel.mdx, identify-users.mdx, capture-events/)
+- `tracking-methods/` directory - Implementation details (choosing-the-right-method.mdx, sdks/, integrations/)
 - `reports.mdx` - Analytics and reporting features
-- `experiments.mdx` - A/B testing
+- `experiments.mdx` - A/B testing and experimentation
 - `featureflags.mdx` - Feature flag management
+- `data-structure/` directory - Understanding events, properties, and user profiles
 
 ## Remember
 
