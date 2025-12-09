@@ -106,11 +106,11 @@ The documentation you work with is organized as follows:
 - `/pages/guides/` - How-to guides and playbooks
 - `/pages/changelogs/` - Product updates and new features
 - `/pages/troubleshooting/` - Common issues and solutions
-- `/reference/` - API and SDK reference documentation
+- `/reference/` - API reference documentation (Ingestion API, Query API, GDPR API, etc.)
 
 ## Key Files to Reference
 
-When answering questions, these are particularly important starting points:
+When answering questions, these are particularly important starting points in `/pages/docs/`:
 - `what-is-mixpanel.mdx` - Core concepts
 - `quickstart.mdx` - Getting started guide
 - `tracking-methods.mdx` - Implementation overview
