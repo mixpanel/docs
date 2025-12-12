@@ -33,7 +33,7 @@ Once two-factor authentication has been enabled for your organization, an indivi
 
 #### Setup via second login
 
-On their second login, Mixpanel Users will be prompted to set up two-factor authentication via an authentication app or SMS.
+On their second login, Mixpanel Users will be prompted to set up two-factor authentication via an authentication app.
 
 ##### Authentication App
 
@@ -55,24 +55,6 @@ If you are unable to scan the QR code, click on “Can’t scan QR code?” This
 
 ![2FA Authentication App 3 Image](/2fa_authentication_app3.png)
 
-##### SMS Authentication
-
-1. In order to set up two-factor authentication via SMS, select the SMS option.
-
-![2FA SMS 1 Image](/2fa_sms1.png)
-
-2. Enter your mobile phone number and click Continue.
-
-![2FA SMS 2 Image](/2fa_sms2.png)
-
-3. You will receive a text message with your Mixpanel security code.
-
-![2FA SMS 3 Image](/2fa_sms3.png)
-
-4. On the "Two-factor verification screen", enter your Mixpanel security code, and click "Log in".
-
-![2FA SMS 4 Image](/2fa_sms4.png)
-
 #### Setup via personal settings page
 
 An individual user can also set up their two-factor authentication via their personal settings. In order to setup two-factor authentication, follow these steps:
@@ -87,7 +69,7 @@ An individual user can also set up their two-factor authentication via their per
 
 ### Changing your Two-Factor Authentication Method
 
-An individual user can change their two-factor authentication method via their personal settings page. Users can switch their authentication method from SMS to authentication app and vice versa. Additionally, users can also change their current authentication app to another authentication app (i.e. Authy to Google Authenticator)
+An individual user can switch between different authentication apps for their two-factor authentication method via their personal setting. (i.e. Authy to Google Authenticator)
 
 **Note: Changing your two-factor method will reset it**
 
@@ -103,7 +85,7 @@ Users can switch their method via the following steps:
 
 ### Login via backup methods
 
-If you are unable to log in due to two-factor authentication because you have either lost your phone or don’t have access to your number, we have a couple backup methods you can use to log in depending on your authentication method.
+If you are unable to log in due to two-factor authentication because you lost your phone, we have a couple backup methods you can use to log in depending on your authentication method.
 
 **Note: Contact support if none of these backup methods work for you.**
 
@@ -120,11 +102,6 @@ If an authentication app is your preferred method of authentication, you can log
 ![2FA Backup 2 Image](/2fa_backup2.png)
 
 **Note: If you use all your recovery codes, you will be asked to reset your two-factor authentication method on your next login.**
-
-
-#### Login via Authy (SMS)
-
-Mixpanel is integrated with Authy (a Twilio service), so if you download the Authy app, you can add your email address and phone number. Then, you can add your Mixpanel account to the app. You can learn more about Authy at https://www.authy.com/. Please feel free to contact support if you need additional assistance here.
 
 ### Resetting Two-Factor Authentication for Users
 
