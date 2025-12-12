@@ -113,7 +113,7 @@ Exclude events that don’t denote an action made by the user from your funnel t
 
 #### Excluded Events
 
-Exclude events from being tracked as part of a session (such as backend API events that don’t denote an action made by the user on the site), to ensure the validity of session metrics. [Mixpanel API events](/docs/features/sessions#what-mixpanel-api-events-are-by-default-excluded-from-session-calculations) will be excluded by default, but external API events, such as a message sent through another program, will not be excluded.
+Exclude events from being tracked as part of a session (such as backend API events that don’t denote an action made by the user on the site), to ensure the validity of session metrics. [Mixpanel API events](/docs/features/sessions#what-mixpanel-api-events-are-by-default-excluded-from-session-calculations) will be excluded by default, but external API events, such as a message sent through another program, will not be excluded. You can exclude events by going under Project Settings to Session Settings and selecting the events you wish to exclude.
 
 For example, you should exclude events triggered when a message is sent to a user or when a user is added to an A/B test, as the user did not cause those events.
 
