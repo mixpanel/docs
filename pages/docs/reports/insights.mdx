@@ -480,9 +480,9 @@ You can see a few samples of an event to help you decide whether that's the righ
 
 ### Date Range Guardrails
 
-To enable a great self-serve experience and quick queries, there are some guardrails added to the date-ranges depending on you query type. Specifically
-- if you create an hourly granularity report, the date range can range be a max of 31 days
-- if you create a daily granularity report, the date range can be a max of 12 months
-- if you have reports with All Events, the date range can be a max of 93 days (i.e 3 months)
-- if you have reports with cohorts, the date range can include a max of 93 time intervals - whether it be 93 weeks, or 93 days which enables a report - last 3 months at daily granularity
+To ensure a smooth self-serve experience and fast query performance, certain date-range guardrails apply depending on the type of report you create:
+- **Hourly granularity reports** can include a maximum date range of 31 days.
+- **Daily granularity reports** can include a maximum date range of 12 months.
+- **Reports using All Events** can include a maximum date range of 93 days (approximately 3 months).
+- **Reports using cohorts** can include up to 93 time intervals—for example, 93 weeks or 93 days. This allows queries such as “the last 3 months at daily granularity.
 
