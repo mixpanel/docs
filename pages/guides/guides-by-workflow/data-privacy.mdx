@@ -3,7 +3,7 @@ import { Callout,Steps } from 'nextra/components'
 # Mixpanel Guide to Data Privacy & PII Best Practices
 Mixpanel’s recommended approach for managing sensitive data is built on a simple goal: help you collect only what you need, reduce risk, and maintain high-quality analytics. 
 
-Privacy in analytics isn't solved by a single setting—it is a continuous practice. At Mixpanel, we aim to make responsible data behaviors the default, ensuring you can maintain a safe environment without compromising your team's velocity.
+Privacy in analytics isn't solved by a single setting—it's a continuous practice. At Mixpanel, we aim to make responsible data behaviors the default, ensuring you can maintain a safe environment without compromising your team's velocity.
 
 To achieve this balance, we recommend adhering to **four core principles** that act as practical habits for your team:
 - **Data Minimization**: Track only what supports your KPIs and product decision-making. If a specific data point or property doesn't drive insight, do not collect it.
@@ -11,11 +11,13 @@ To achieve this balance, we recommend adhering to **four core principles** that 
 - **Purpose Alignment**: Design tracking around meaningful "value moments" rather than exhaustive behavioral capture. Data collected without a specific purpose is almost always a liability.
 - **Shared Responsibility**: While Mixpanel provides governance tools like [Data Views](/docs/data-governance/data-views-and-classification#data-views-overview), [Data Classification](/docs/data-governance/data-views-and-classification#data-classification), [Data Deletion](/docs/data-governance/data-clean-up), and [privacy features](/docs/privacy), you determine what enters the system to align with your regulatory requirements.
 
+Below is a simple three-step framework for deciding what data to collect, identifying any sensitive data involved, and ensuring it’s handled safely.
+
 ## Phase 1: Design & Collection
-This phase focuses on the decision-making process before code is written: defining what data creates value versus what creates risk.
+This phase focuses on the decision-making process before data is collected: defining what data creates value versus what creates risk.
 
 ### What is PII? 
-PII (Personally Identifiable Information) refers to **any data point that can directly identify a person or can be combined with other data to do so**. While often associated with obvious fields like names or emails, PII in Mixpanel also includes technical identifiers—such as IP addresses or Device IDs—that require governance.
+PII (Personally Identifiable Information) refers to **any data point that can directly identify a person or can be combined with other data to do so**. While often associated with obvious fields like names or emails, PII in Mixpanel also includes technical identifiers—such as IP addresses or device IDs—that require governance.
 
 Understanding how these identifiers surface in events and profiles helps you design tracking that protects users while still giving product teams the insight they need.
 
@@ -41,9 +43,9 @@ While Mixpanel captures data through [events](/docs/data-structure/events-and-pr
 
 ### Tracking Don'ts
 - **DON'T send high-sensitivity data**: Never send government ID numbers, payment data, or credentials.
-- **DON'T rely on email/phone as IDs**: Treat emails and phone numbers as optional properties for communication, not as your primary stable user identifier .
+- **DON'T rely on email/phone as IDs**: Treat emails and phone numbers as optional properties for communication, not as your primary stable user identifier.
 - **DON'T send unreviewed free-text**: Avoid free-text fields (like form inputs) that may contain unintentional PII.
-- **DON'T send raw identifiers in Session Replay**: Mask or redact input fields where appropriate.
+- **DON'T send raw identifiers in Session Replay**: [Mask](/docs/session-replay/session-replay-privacy-controls#how-does-masking-and-blocking-work-what-are-the-high-level-technical-details) or redact input fields where appropriate.
 
 ### Handling "Must-Have" PII
 Mixpanel’s stance is that you should avoid sending highly sensitive data entirely. If you must send PII (like an email for targeting), ensure it has a legitimate business purpose approved by your compliance team, and mark it as "Classified" immediately.
