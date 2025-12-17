@@ -1,0 +1,90 @@
+import { Callout,Steps } from 'nextra/components'
+
+# Mixpanel Guide to Data Privacy & PII Best Practices
+Mixpanel’s recommended approach for managing sensitive data is built on a simple goal: help you collect only what you need, reduce risk, and maintain high-quality analytics. 
+
+Privacy in analytics isn't solved by a single setting—it is a continuous practice. At Mixpanel, we aim to make responsible data behaviors the default, ensuring you can maintain a safe environment without compromising your team's velocity.
+
+To achieve this balance, we recommend adhering to **four core principles** that act as practical habits for your team:
+- **Data Minimization**: Track only what supports your KPIs and product decision-making. If a specific data point or property doesn't drive insight, do not collect it.
+- **Pseudonymization by Default**: Use stable internal identifiers (like 'user_id') rather than emails or phone numbers. If internal IDs are identifying, hash or encrypt them before sending.
+- **Purpose Alignment**: Design tracking around meaningful "value moments" rather than exhaustive behavioral capture. Data collected without a specific purpose is almost always a liability.
+- **Shared Responsibility**: While Mixpanel provides governance tools like [Data Views](/docs/data-governance/data-views-and-classification#data-views-overview), [Data Classification](/docs/data-governance/data-views-and-classification#data-classification), [Data Deletion](/docs/data-governance/data-clean-up), and [privacy features](/docs/privacy), you determine what enters the system to align with your regulatory requirements.
+
+## Phase 1: Design & Collection
+This phase focuses on the decision-making process before code is written: defining what data creates value versus what creates risk.
+
+### What is PII? 
+PII (Personally Identifiable Information) refers to **any data point that can directly identify a person or can be combined with other data to do so**. While often associated with obvious fields like names or emails, PII in Mixpanel also includes technical identifiers—such as IP addresses or Device IDs—that require governance.
+
+Understanding how these identifiers surface in events and profiles helps you design tracking that protects users while still giving product teams the insight they need.
+
+PII can appear in several forms:
+- **Direct identifiers**: Names, emails, phone numbers.
+- **Account identifiers**: Internal user IDs, workspace IDs.
+- **Device/network identifiers**: IP address, device ID, ad IDs.
+- **Highly sensitive data**: Government IDs, payment card details, authentication secrets.
+
+### Classifying Data Risk
+While Mixpanel captures data through [events](/docs/data-structure/events-and-properties), [user profiles](/docs/data-structure/user-profiles), and (optionally) [group profiles](/docs/data-structure/group-analytics), the privacy risk lies almost entirely in the properties you attach to them. Use this matrix to classify your data before adding it to your tracking plan.
+
+************ TABLE *****************
+
+### Tracking Do's
+- **DO use internal IDs**: Use non-personally identifiable internal IDs (like 'user_id' or 'account_id') whenever possible. If an internal ID reveals identity, hash or encrypt it before sending.
+- **DO maintain a [tracking plan](/docs/tracking-best-practices/tracking-plan#translate-flows-into-events--properties)**: Document definitions, data types, business purposes, and PII flags for every event and property you intend to collect.
+- **DO track value moments**: Map events directly to KPIs—such as activation, engagement, monetization, or retention—rather than tracking every possible click.
+
+### Tracking Don'ts
+- **DON'T send high-sensitivity data**: Never send government ID numbers, payment data, or credentials.
+- **DON'T rely on email/phone as IDs**: Treat emails and phone numbers as optional properties for communication, not as your primary stable user identifier .
+- **DON'T send unreviewed free-text**: Avoid free-text fields (like form inputs) that may contain unintentional PII.
+- **DON'T send raw identifiers in Session Replay**: Mask or redact input fields where appropriate.
+
+### Handling "Must-Have" PII
+Mixpanel’s stance is that you should avoid sending highly sensitive data entirely. If you must send PII (like an email for targeting), ensure it has a legitimate business purpose approved by your compliance team, and mark it as "Classified" immediately.
+
+## Phase 2: Governance & Access
+Once you have defined what data to collect, you must ensure it is accessed safely. Rather than gating analytics behind complex configurations, Mixpanel uses a "governance layer" to control visibility without blocking data ingestion.
+
+<Steps>
+
+{<h3>Classify Sensitive Properties.</h3>}
+
+[Data Classification](/docs/data-governance/data-views-and-classification#data-classification) is your first line of defense. It is a simple toggle that marks a property as "Classified."
+- **Action**: Review your tracking plan and mark any property containing identifiers (e.g. '$email', '$ip') or sensitive business data as classified.
+- **Effect**: This does not stop data collection, but it tags the data so you can enforce policies on who views it.
+
+{<h3>Curate Data Views.</h3>}
+
+Instead of giving every user access to raw data, use [Data Views](/docs/data-governance/data-views-and-classification#data-views-overview) to create governed subsets of data relevant to their specific role. This allows you to "curate" a safe environment rather than just restricting access.
+
+- **Create a "Broad-Access" View**: Exclude classified PII (like email or Device ID) from the default view used by Product Managers and Analysts. This prevents accidental exposure while maintaining full analytical power.
+- **Create Regional Views**: Filter events by geography (e.g. `city` or `region`) to create specific views (like "EU Data Only") that align with local data residency and compliance requirements.
+
+{<h3>Define Access & Roles.</h3>}
+
+Privacy and strong governance depend on how you plan your organizational settings around who has access, how projects are structured, and how often those permissions are reviewed.
+
+- **Least-Privilege Access**: Grant teams access only to the Data Views they need. For example, Customer Support may need a "User History" view (with PII), while the Strategy team only needs "Anonymized Trends." Start with minimal permissions and add them only when necessary.
+- **Routine Access Reviews**: Conduct regular audits to confirm that only the right people can still see classified data.
+- **Training**: Train your teams on what PII is and how to interpret "Classified" badges inside Mixpanel so they understand the boundaries.
+- **Separate Environments**: Use separate Mixpanel projects for Production and QA. Never populate non-production projects with real user identifiers.
+
+{<h3>Operational Compliance.</h3>}
+
+Mixpanel includes specific [features to support compliance](/docs/privacy) with GDPR, CCPA, and other similar frameworks, helping you operationalize privacy requirements without manual workarounds.
+
+- **[Data Retention](/docs/privacy/gdpr-compliance#data-retention-policy)**: Set up policies to automatically purge older data that is no longer needed for analysis.
+- **[User Deletion API](/docs/privacy/gdpr-compliance#right-to-erasure)**: Integrate the Deletion API to delete all user-related data programmatically upon request (e.g. "Right to be Forgotten").
+- **[Opt-out Settings](/docs/privacy/protecting-user-data#opting-users-out-of-tracking)**: Ensure your SDK implementation respects user consent flags and local requirements.
+
+{<h3>Document in Lexicon.</h3>}
+
+Use Mixpanel [Lexicon](/docs/data-governance/lexicon) as your single source of truth. Document the privacy posture of each field—explicitly stating its business purpose and which Data Views it belongs to—so new team members understand how to handle it safely.
+
+</Steps>
+
+## Phase 3: Monitoring & Maintenance
+
+
