@@ -460,13 +460,109 @@ components:
     DatabricksClusterConfig:
       type: object
       nullable: true
+      additionalProperties: false
       properties:
         spark_version:
           type: string
+          description: Spark runtime version (e.g., '15.4.x-scala2.12')
         node_type_id:
           type: string
+          description: Instance type for worker nodes (e.g., 'n2-standard-4' for GCP)
+        driver_node_type_id:
+          type: string
+          nullable: true
+          description: Instance type for driver node (defaults to node_type_id if not set)
         num_workers:
           type: integer
+          minimum: 0
+          description: Fixed number of worker nodes
+        autoscale:
+          type: object
+          nullable: true
+          additionalProperties: false
+          description: Autoscaling configuration (overrides num_workers if set)
+          properties:
+            min_workers:
+              type: integer
+              minimum: 0
+            max_workers:
+              type: integer
+              minimum: 1
+        spark_conf:
+          type: object
+          nullable: true
+          additionalProperties:
+            type: string
+          description: Spark configuration key-value pairs
+        spark_env_vars:
+          type: object
+          nullable: true
+          additionalProperties:
+            type: string
+          description: Environment variables (PYSPARK_PYTHON is always included)
+        data_security_mode:
+          type: string
+          nullable: true
+          enum:
+            - USER_ISOLATION
+            - SINGLE_USER
+            - NONE
+            - LEGACY_TABLE_ACL
+            - LEGACY_PASSTHROUGH
+            - LEGACY_SINGLE_USER
+            - LEGACY_SINGLE_USER_STANDARD
+          description: Data security mode for the cluster
+        single_user_name:
+          type: string
+          nullable: true
+          description: Required if data_security_mode is SINGLE_USER
+        custom_tags:
+          type: object
+          nullable: true
+          additionalProperties:
+            type: string
+          description: Custom tags (provider=mixpanel is always added)
+        policy_id:
+          type: string
+          nullable: true
+          description: Cluster policy ID
+        instance_pool_id:
+          type: string
+          nullable: true
+          description: Instance pool ID for worker nodes
+        driver_instance_pool_id:
+          type: string
+          nullable: true
+          description: Instance pool ID for driver node
+        enable_elastic_disk:
+          type: boolean
+          nullable: true
+          description: Enable autoscaling local storage
+        runtime_engine:
+          type: string
+          nullable: true
+          enum:
+            - STANDARD
+            - PHOTON
+          description: Runtime engine (STANDARD or PHOTON)
+        aws_attributes:
+          type: object
+          nullable: true
+          description: AWS-specific cluster configuration
+        azure_attributes:
+          type: object
+          nullable: true
+          description: Azure-specific cluster configuration
+        gcp_attributes:
+          type: object
+          nullable: true
+          description: GCP-specific cluster configuration
+        init_scripts:
+          type: array
+          nullable: true
+          items:
+            type: object
+          description: Cluster initialization scripts
 
     DatabricksParams:
       type: object
