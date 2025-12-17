@@ -26,7 +26,7 @@ paths:
   /projects/{projectId}/warehouse-sources/imports:
     get:
       parameters:
-        - $ref: "#/components/parameters/projectId"
+        - $ref: ./common/parameters.yaml#/path/projectId
       operationId: list-warehouse-imports
       tags:
         - Warehouse Imports
@@ -45,21 +45,21 @@ paths:
                 type: object
                 properties:
                   status:
-                    $ref: "#/components/schemas/ResponseStatusOk"
+                    $ref: ./common/responses.yaml#/ResponseStatusOk
                   results:
                     type: array
                     items:
                       $ref: "#/components/schemas/WarehouseImport"
         "401":
-          $ref: "#/components/responses/401Unauthorized"
+          $ref: ./common/responses.yaml#/401Unauthorized
         "403":
-          $ref: "#/components/responses/403Forbidden"
+          $ref: ./common/responses.yaml#/403Forbidden
 
   /projects/{projectId}/warehouse-sources/imports/{importId}:
     get:
       parameters:
-        - $ref: "#/components/parameters/projectId"
-        - $ref: "#/components/parameters/importId"
+        - $ref: ./common/parameters.yaml#/path/projectId
+        - $ref: ./common/parameters.yaml#/path/importId
       operationId: get-warehouse-import
       tags:
         - Warehouse Imports
@@ -78,20 +78,20 @@ paths:
                 type: object
                 properties:
                   status:
-                    $ref: "#/components/schemas/ResponseStatusOk"
+                    $ref: ./common/responses.yaml#/ResponseStatusOk
                   results:
                     $ref: "#/components/schemas/WarehouseImportDetail"
         "401":
-          $ref: "#/components/responses/401Unauthorized"
+          $ref: ./common/responses.yaml#/401Unauthorized
         "403":
-          $ref: "#/components/responses/403Forbidden"
+          $ref: ./common/responses.yaml#/403Forbidden
         "404":
-          $ref: "#/components/responses/404NotFound"
+          $ref: ./common/responses.yaml#/404NotFound
 
     patch:
       parameters:
-        - $ref: "#/components/parameters/projectId"
-        - $ref: "#/components/parameters/importId"
+        - $ref: ./common/parameters.yaml#/path/projectId
+        - $ref: ./common/parameters.yaml#/path/importId
       operationId: update-warehouse-import
       tags:
         - Warehouse Imports
@@ -137,22 +137,22 @@ paths:
                 type: object
                 properties:
                   status:
-                    $ref: "#/components/schemas/ResponseStatusOk"
+                    $ref: ./common/responses.yaml#/ResponseStatusOk
                   results:
                     $ref: "#/components/schemas/WarehouseImportDetail"
         "400":
-          $ref: "#/components/responses/400BadRequest"
+          $ref: ./common/responses.yaml#/400BadRequest
         "401":
-          $ref: "#/components/responses/401Unauthorized"
+          $ref: ./common/responses.yaml#/401Unauthorized
         "403":
-          $ref: "#/components/responses/403Forbidden"
+          $ref: ./common/responses.yaml#/403Forbidden
         "404":
-          $ref: "#/components/responses/404NotFound"
+          $ref: ./common/responses.yaml#/404NotFound
 
     delete:
       parameters:
-        - $ref: "#/components/parameters/projectId"
-        - $ref: "#/components/parameters/importId"
+        - $ref: ./common/parameters.yaml#/path/projectId
+        - $ref: ./common/parameters.yaml#/path/importId
       operationId: delete-warehouse-import
       tags:
         - Warehouse Imports
@@ -182,18 +182,18 @@ paths:
                 type: object
                 properties:
                   status:
-                    $ref: "#/components/schemas/ResponseStatusOk"
+                    $ref: ./common/responses.yaml#/ResponseStatusOk
         "401":
-          $ref: "#/components/responses/401Unauthorized"
+          $ref: ./common/responses.yaml#/401Unauthorized
         "403":
-          $ref: "#/components/responses/403Forbidden"
+          $ref: ./common/responses.yaml#/403Forbidden
         "404":
-          $ref: "#/components/responses/404NotFound"
+          $ref: ./common/responses.yaml#/404NotFound
 
   /projects/{projectId}/warehouse-sources/imports/event-stream:
     post:
       parameters:
-        - $ref: "#/components/parameters/projectId"
+        - $ref: ./common/parameters.yaml#/path/projectId
       operationId: create-event-stream-import
       tags:
         - Warehouse Imports
@@ -231,20 +231,20 @@ paths:
                 type: object
                 properties:
                   status:
-                    $ref: "#/components/schemas/ResponseStatusOk"
+                    $ref: ./common/responses.yaml#/ResponseStatusOk
                   results:
                     $ref: "#/components/schemas/WarehouseImportDetail"
         "400":
-          $ref: "#/components/responses/400BadRequest"
+          $ref: ./common/responses.yaml#/400BadRequest
         "401":
-          $ref: "#/components/responses/401Unauthorized"
+          $ref: ./common/responses.yaml#/401Unauthorized
         "403":
-          $ref: "#/components/responses/403Forbidden"
+          $ref: ./common/responses.yaml#/403Forbidden
 
   /projects/{projectId}/warehouse-sources/imports/people:
     post:
       parameters:
-        - $ref: "#/components/parameters/projectId"
+        - $ref: ./common/parameters.yaml#/path/projectId
       operationId: create-people-import
       tags:
         - Warehouse Imports
@@ -269,20 +269,20 @@ paths:
                 type: object
                 properties:
                   status:
-                    $ref: "#/components/schemas/ResponseStatusOk"
+                    $ref: ./common/responses.yaml#/ResponseStatusOk
                   results:
                     $ref: "#/components/schemas/WarehouseImportDetail"
         "400":
-          $ref: "#/components/responses/400BadRequest"
+          $ref: ./common/responses.yaml#/400BadRequest
         "401":
-          $ref: "#/components/responses/401Unauthorized"
+          $ref: ./common/responses.yaml#/401Unauthorized
         "403":
-          $ref: "#/components/responses/403Forbidden"
+          $ref: ./common/responses.yaml#/403Forbidden
 
   /projects/{projectId}/warehouse-sources/imports/groups:
     post:
       parameters:
-        - $ref: "#/components/parameters/projectId"
+        - $ref: ./common/parameters.yaml#/path/projectId
       operationId: create-groups-import
       tags:
         - Warehouse Imports
@@ -306,20 +306,20 @@ paths:
                 type: object
                 properties:
                   status:
-                    $ref: "#/components/schemas/ResponseStatusOk"
+                    $ref: ./common/responses.yaml#/ResponseStatusOk
                   results:
                     $ref: "#/components/schemas/WarehouseImportDetail"
         "400":
-          $ref: "#/components/responses/400BadRequest"
+          $ref: ./common/responses.yaml#/400BadRequest
         "401":
-          $ref: "#/components/responses/401Unauthorized"
+          $ref: ./common/responses.yaml#/401Unauthorized
         "403":
-          $ref: "#/components/responses/403Forbidden"
+          $ref: ./common/responses.yaml#/403Forbidden
 
   /projects/{projectId}/warehouse-sources/imports/lookup-table:
     post:
       parameters:
-        - $ref: "#/components/parameters/projectId"
+        - $ref: ./common/parameters.yaml#/path/projectId
       operationId: create-lookup-table-import
       tags:
         - Warehouse Imports
@@ -344,21 +344,21 @@ paths:
                 type: object
                 properties:
                   status:
-                    $ref: "#/components/schemas/ResponseStatusOk"
+                    $ref: ./common/responses.yaml#/ResponseStatusOk
                   results:
                     $ref: "#/components/schemas/WarehouseImportDetail"
         "400":
-          $ref: "#/components/responses/400BadRequest"
+          $ref: ./common/responses.yaml#/400BadRequest
         "401":
-          $ref: "#/components/responses/401Unauthorized"
+          $ref: ./common/responses.yaml#/401Unauthorized
         "403":
-          $ref: "#/components/responses/403Forbidden"
+          $ref: ./common/responses.yaml#/403Forbidden
 
   /projects/{projectId}/warehouse-sources/imports/{importId}/manual-sync:
     put:
       parameters:
-        - $ref: "#/components/parameters/projectId"
-        - $ref: "#/components/parameters/importId"
+        - $ref: ./common/parameters.yaml#/path/projectId
+        - $ref: ./common/parameters.yaml#/path/importId
       operationId: run-an-import
       requestBody:
         required: true
@@ -378,19 +378,19 @@ paths:
                 type: object
                 properties:
                   status:
-                    $ref: "#/components/schemas/ResponseStatusOk"
+                    $ref: ./common/responses.yaml#/ResponseStatusOk
         "401":
-          $ref: "#/components/responses/401Unauthorized"
+          $ref: ./common/responses.yaml#/401Unauthorized
         "403":
-          $ref: "#/components/responses/403Forbidden"
+          $ref: ./common/responses.yaml#/403Forbidden
         "404":
-          $ref: "#/components/responses/404NotFound"
+          $ref: ./common/responses.yaml#/404NotFound
 
   /projects/{projectId}/warehouse-sources/imports/{importId}/history:
     get:
       parameters:
-        - $ref: "#/components/parameters/projectId"
-        - $ref: "#/components/parameters/importId"
+        - $ref: ./common/parameters.yaml#/path/projectId
+        - $ref: ./common/parameters.yaml#/path/importId
       operationId: get-import-history
       tags:
         - Warehouse Imports
@@ -406,39 +406,18 @@ paths:
                 type: object
                 properties:
                   status:
-                    $ref: "#/components/schemas/ResponseStatusOk"
+                    $ref: ./common/responses.yaml#/ResponseStatusOk
                   results:
                     $ref: "#/components/schemas/ImportJobHistory"
         "401":
-          $ref: "#/components/responses/401Unauthorized"
+          $ref: ./common/responses.yaml#/401Unauthorized
         "403":
-          $ref: "#/components/responses/403Forbidden"
+          $ref: ./common/responses.yaml#/403Forbidden
         "404":
-          $ref: "#/components/responses/404NotFound"
+          $ref: ./common/responses.yaml#/404NotFound
 
 components:
-  parameters:
-    projectId:
-      name: projectId
-      in: path
-      required: true
-      schema:
-        type: integer
-      description: The Mixpanel project ID
-
-    importId:
-      name: importId
-      in: path
-      required: true
-      schema:
-        type: integer
-      description: The warehouse import ID
-
   schemas:
-    ResponseStatusOk:
-      type: string
-      enum: ["ok"]
-
     SyncMode:
       type: string
       enum: [time_based, mirror, full_sync, one_time]
@@ -821,49 +800,6 @@ components:
                 type: integer
                 nullable: true
 
-  responses:
-    400BadRequest:
-      description: Bad Request
-      content:
-        application/json:
-          schema:
-            type: object
-            properties:
-              error:
-                type: string
-
-    401Unauthorized:
-      description: Unauthorized
-      content:
-        application/json:
-          schema:
-            type: object
-            properties:
-              error:
-                type: string
-
-    403Forbidden:
-      description: Forbidden
-      content:
-        application/json:
-          schema:
-            type: object
-            properties:
-              error:
-                type: string
-
-    404NotFound:
-      description: Not Found
-      content:
-        application/json:
-          schema:
-            type: object
-            properties:
-              error:
-                type: string
-
   securitySchemes:
     ServiceAccount:
-      type: http
-      scheme: basic
-      description: Use a Mixpanel Service Account for authentication.
+      $ref: ./common/securitySchemes.yaml#/ServiceAccount
