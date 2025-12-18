@@ -10,6 +10,20 @@ This developer guide will assist you in configuring your Swift app for [Session 
   Mobile Session Replay is generally available (GA) to customers on all plans and in all regions.
 </Callout>
 
+<Callout type="warning">
+  **iOS 26+ with Xcode 26: SwiftUI Automasking Issue**
+
+  Apple's iOS 26 introduces "Liquid Glass" rendering changes that affect automasking in Session Replay for SwiftUI apps. This is an industry-wide issue impacting all session replay vendors.
+
+  **Who is affected:** SwiftUI apps using automasking for text or images, built with Xcode 26, and running on iOS 26+.
+
+  **Impact:** Automasking may not function correctly, potentially exposing sensitive data that would normally be masked.
+
+  **Recommended action:** Do not rely solely on automasking for SwiftUI apps. Instead, [manually mark sensitive views](/docs/tracking-methods/sdks/swift/swift-replay#mark-views-as-sensitive) using `mpReplaySensitive(true)` and test thoroughly to ensure masking works as expected.
+
+  We are actively investigating fixes for this issue.
+</Callout>
+
 ## Best Practices
 
 Session Replay provides powerful insights into user behavior, but it also introduces risks, especially on mobile. These risks are not unique to Mixpanel; they are common across the entire session replay product category. Because SDKs run on end-user devices and screen content may include sensitive data, we recommend implementing / testing Session Replay carefully. Be especially cautious with masking, edge-case testing, and rollout strategies. For more information on risk categories and best practices, read more [here](/docs/session-replay#best-practices)
