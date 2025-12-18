@@ -94,3 +94,6 @@ For simple content changes, the reviewer will merge the PR for expediency. For c
 # Contributing to developer docs
 
 To make changes to developer docs, search internal documentation for "developer.mixpanel.com" or inquire in the #docs chat channel.
+
+[![Ask DeepWiki](https://deepwiki.com/badge.svg)](https://deepwiki.com/mixpanel/docs)
+
