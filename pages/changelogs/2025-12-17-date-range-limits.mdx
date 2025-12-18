@@ -1,32 +1,47 @@
 ---
-title: "Updated Date Range Guardrails for 'All Events' and Line & Column Charts"
+title: "Updated Date Range and Metric Block Guardrails for Insights Reports"
 slug: "changelog-2025-12-17-date-range-limits"
 hidden: false
 createdAt: "2025-12-17T10:00:00.000Z"
 updatedAt: "2025-12-17T10:00:00.000Z"
 date: "2025-12-17"
 thumbnail: ""
-description: "Updated Date Range Guardrails in Insights Reports"
+description: "Updated Guardrails for Insights Reports, covering Date Range constraints for 'All Events' and Line/Column charts, as well as Metric Block Limits."
 isAnnouncement: false
 ---
 
 <ChangelogPostHeader
   date="2025-12-17"
   image=""
-  title="Updated Date Range Guardrails for 'All Events' and Line & Column Charts"
+  title="Updated Date Range and Metric Block Guardrails for Insights Reports""
 />
 
-To enable a great self-serve experience and quick queries, we have updated guardrails for date ranges on reports using “All Events” and “Line/Column Charts” described below:
+To enable a great self-serve experience and quick queries, we have updated guardrails for Insights Reports as described below.
+
+# Updated Date Range Guardrails for 'All Events' and Line & Column Charts
 
 - For Line/Columns charts using “Hour” Unit, the report date range can be a maximum of 31 days
 - For Line/Columns charts using “Day” Unit, the report date range can be a maximum of 12 Months
 - For Insights Reports using “All Events”, the report date range can be a maximum of 93 days
 - For Insights Reports using “Cohort Over Time” with Line/Column charts, the report date range can be a maximum of 93 Unit Intervals (i.e., 93 Days for Day Unit, 93 Weeks for Week Unit)
 
+
 If your existing reports reach the guardrail, we recommend the following approaches to update your reports and receive the same analysis:
 
 - Combine events into [Custom Events](/docs/features/custom-events) or [Saved Behaviors](/docs/features/saved-metrics-and-behaviors), which are not subject to the 93-day “All Events” limit.
 - Utilize [Time Period Comparisons](/docs/reports/insights#time-period-comparisons) for year-over-year analysis.
 - Reduce the report date range, or create multiple reports with smaller date ranges in a single [Board](/docs/boards).
+
+
+# Updated Metric Block Guardrails
+
+Insights Reports will have a 40 metric/behavior block limit. This includes all metric and behavior blocks, such as hidden metrics and formulas.
+
+
+If you hit this limit, you can:
+- Migrate some metrics to a new report.
+- Utilize [Saved Formulas](/docs/reports/insights#save-formulas-for-re-use) if your report contains formulas.
+- Combine multiple events into a [Saved Behaviors](/docs/features/saved-metrics-and-behaviors#simple-behaviors).
+
 
 If you have any questions or need assistance building a report, please don’t hesitate to reach out to our [Support Team](https://mixpanel.com/get-support).
