@@ -20,6 +20,6 @@ jobs:
         uses: actions/checkout@v4
 
       - name: Run `docs` command 🚀
-        uses: readmeio/rdme@v8
+        uses: readmeio/rdme@62bc5a43208c46fc0d90c78ebeddf0365a41b2cc  # rdme version 10.5.3
         with:
-          rdme: docs ./reference --key=${{ secrets.README_API_KEY }} --version=3.26
+          rdme: reference upload ./reference --key=${{ secrets.README_API_KEY }} --branch=3.27

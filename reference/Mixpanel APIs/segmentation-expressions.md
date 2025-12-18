@@ -1,13 +1,16 @@
 ---
-title: "Segmentation Expressions"
-slug: "segmentation-expressions"
-hidden: false
-createdAt: "2020-10-21T23:25:38.408Z"
-updatedAt: "2021-11-03T19:36:47.214Z"
+title: Segmentation Expressions
+category:
+  uri: Mixpanel APIs
+content:
+  excerpt: ''
+privacy:
+  view: public
 ---
 Segmentation Expressions are used in [Query API](ref:query-api) and [Raw Data Export API](raw-data-export-api) to allow for more specificity when querying your data.
 
 The power of segmentation comes from the ability to define custom expressions based on property names in the where and on parameters. An expression consists of a property, combined with one or more operators that can perform mathematical operations, logical operations, or typecasts. Expression are then applied in the where and on parameters of the segmentation API. The full grammar for expressions is given here:
+
 ```txt
 <expression> ::= 'properties["' <property> '"]'
                 | <expression> <binary op> <expression>
@@ -26,30 +29,64 @@ The power of segmentation comes from the ability to define custom expressions ba
    <property> ::= 'properties["' <property name> '"]'
 ```
 
-[block:api-header]
-{
-  "title": "Examples"
-}
-[/block]
+## Examples
 
-[block:parameters]
-{
-  "data": {
-    "h-0": "Expression",
-    "h-1": "Description",
-    "0-0": "`properties[\"account_id\"] in [1,2,3,4]`",
-    "0-1": "Returns `true` if `account_id` event property is 1, 2, 3, or 4, otherwise `false`.",
-    "1-0": "`user[\"$email\"] == \"allison@example.com\"`",
-    "1-1": "Returns `true` if `$email` user property is \"allison@example.com\" otherwise `false`.",
-    "2-0": "`defined(properties[\"My Prop\"])`",
-    "2-1": "Returns `true` if `My Prop` event property has any value, otherwise `false`. This is the same as \"is set\" in the UI.",
-    "3-0": "`not defined(properties[\"city\"])`",
-    "3-1": "Returns `false` if `city` event property has any value, otherwise `true`. This is the same as \"is not set\" in the UI."
-  },
-  "cols": 2,
-  "rows": 4
-}
-[/block]
+<Table align={["left","left"]}>
+  <thead>
+    <tr>
+      <th>
+        Expression
+      </th>
+
+      <th>
+        Description
+      </th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <tr>
+      <td>
+        `properties["account_id"] in [1,2,3,4]`
+      </td>
+
+      <td>
+        Returns `true` if `account_id` event property is 1, 2, 3, or 4, otherwise `false`.
+      </td>
+    </tr>
+
+    <tr>
+      <td>
+        `user["$email"] == "allison@example.com"`
+      </td>
+
+      <td>
+        Returns `true` if `$email` user property is "[allison@example.com](mailto:allison@example.com)" otherwise `false`.
+      </td>
+    </tr>
+
+    <tr>
+      <td>
+        `defined(properties["My Prop"])`
+      </td>
+
+      <td>
+        Returns `true` if `My Prop` event property has any value, otherwise `false`. This is the same as "is set" in the UI.
+      </td>
+    </tr>
+
+    <tr>
+      <td>
+        `not defined(properties["city"])`
+      </td>
+
+      <td>
+        Returns `false` if `city` event property has any value, otherwise `true`. This is the same as "is not set" in the UI.
+      </td>
+    </tr>
+  </tbody>
+</Table>
+
 ## Typecast Operations
 
 Internally, all properties of events have a type. This type is determined when we parse the event sent to us into a JSON object. Currently, there are three types, string, number, and boolean, which may be specified directly. A property may also have the values null and undefined, which are only handled internally. The default type is string. If you wish to treat an expression as another type, you may use the typecast operators to cast a property to a different type. For example, if `properties["signed up"]` has values of `"true"` and `"false"` as strings, and you wish to encode them as booleans, you may cast them by using the `boolean() typecast function: boolean(properties["signed up"])`.
@@ -57,47 +94,161 @@ Internally, all properties of events have a type. This type is determined when w
 The typecasting rules are described below.
 
 ## Casting to String
-[block:parameters]
-{
-  "data": {
-    "0-0": "**Type**",
-    "0-1": "Result",
-    "1-0": "**String**",
-    "1-1": "Same String",
-    "2-0": "**Number**",
-    "2-1": "String containing the decimal representation of the number.",
-    "3-0": "**Boolean**",
-    "3-1": "\"true\" or \"false\"",
-    "4-0": "**null**",
-    "4-1": "null",
-    "5-0": "**Undefined**",
-    "5-1": "undefined"
-  },
-  "cols": 2,
-  "rows": 6
-}
-[/block]
+
+<Table align={["left","left"]}>
+  <thead>
+    <tr>
+      <th>
+
+      </th>
+
+      <th>
+
+      </th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <tr>
+      <td>
+        **Type**
+      </td>
+
+      <td>
+        Result
+      </td>
+    </tr>
+
+    <tr>
+      <td>
+        **String**
+      </td>
+
+      <td>
+        Same String
+      </td>
+    </tr>
+
+    <tr>
+      <td>
+        **Number**
+      </td>
+
+      <td>
+        String containing the decimal representation of the number.
+      </td>
+    </tr>
+
+    <tr>
+      <td>
+        **Boolean**
+      </td>
+
+      <td>
+        "true" or "false"
+      </td>
+    </tr>
+
+    <tr>
+      <td>
+        **null**
+      </td>
+
+      <td>
+        null
+      </td>
+    </tr>
+
+    <tr>
+      <td>
+        **Undefined**
+      </td>
+
+      <td>
+        undefined
+      </td>
+    </tr>
+  </tbody>
+</Table>
+
 ## Casting to Number
-[block:parameters]
-{
-  "data": {
-    "0-0": "**Type**",
-    "0-1": "Result",
-    "1-0": "**String**",
-    "1-1": "Attempts to interpret the string as a decimal. If this fails, the value becomes undefined.",
-    "2-0": "**Number**",
-    "2-1": "Same number",
-    "3-0": "**Boolean**",
-    "3-1": "1.0 if true, 0.0 if false",
-    "4-0": "**null**",
-    "4-1": "undefined",
-    "5-0": "**undefined**",
-    "5-1": "undefined"
-  },
-  "cols": 2,
-  "rows": 6
-}
-[/block]
+
+<Table align={["left","left"]}>
+  <thead>
+    <tr>
+      <th>
+
+      </th>
+
+      <th>
+
+      </th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <tr>
+      <td>
+        **Type**
+      </td>
+
+      <td>
+        Result
+      </td>
+    </tr>
+
+    <tr>
+      <td>
+        **String**
+      </td>
+
+      <td>
+        Attempts to interpret the string as a decimal. If this fails, the value becomes undefined.
+      </td>
+    </tr>
+
+    <tr>
+      <td>
+        **Number**
+      </td>
+
+      <td>
+        Same number
+      </td>
+    </tr>
+
+    <tr>
+      <td>
+        **Boolean**
+      </td>
+
+      <td>
+        1.0 if true, 0.0 if false
+      </td>
+    </tr>
+
+    <tr>
+      <td>
+        **null**
+      </td>
+
+      <td>
+        undefined
+      </td>
+    </tr>
+
+    <tr>
+      <td>
+        **undefined**
+      </td>
+
+      <td>
+        undefined
+      </td>
+    </tr>
+  </tbody>
+</Table>
+
 ## Binary Operations
 
 The arithmetic operators `"-"`, `"*"`, `"/"`, `"%"` perform the subtraction, multiplication, division, and remainder operations, respectively. The division operator will return undefined if the divisor is 0. The sign of the value of the remainder will be equivalent to the dividend. All four of these operators expect both operands to be of the type number, or else the result is undefined.
