@@ -52,6 +52,10 @@ For detailed setup guides per destination, see:
 
 ## Step 2: Creating the Pipeline
 
+<Callout type="info">
+ To create and manage a Data Pipeline, you must have an admin or owner project role. Learn more about [Roles and Permissions](/docs/orgs-and-projects/roles-and-permissions).
+</Callout>
+
 After configuring your destination to accept data exported from Mixpanel, we must initiate the pipeline from the Mixpanel UI.
 
 After configuring your destination, initiate data export in **Integrations** page on your Mixpanel project > **Create Pipeline** > fill in necessary configurations. You can choose different data sources including events, people and identity and other advanced options. See [Data Pipelines](/docs/data-pipelines/json-pipelines) for more details.
@@ -105,7 +109,7 @@ Discrepancies between the event counts in Mixpanel and those exported to your de
 
 ### What timezone is the data exported in?
 
-The data is exported in UTC timezone. You’ll need to convert it to your project’s timezone when running queries in your warehouse.
+The data is exported in UTC timezone. You’ll need to convert it to your project’s timezone when running queries in your warehouse. Please refer to [this page](/docs/data-pipelines/common-sql-queries) for some common SQL queries.
 
 ### How can I count events exported by Mixpanel in the warehouse?
 
@@ -152,3 +156,9 @@ Data arriving late is handled during a daily sync process the following day afte
 
 The Account Name should be set to your unique account identifier Eg. "blah2321.us-west-2" while the Storage Integration should be set to the name of the storage integration you created in Snowflake Eg. "MIXPANEL_EXPORT_STORAGE_INTEGRATION".
 
+### What happens to late-arriving data?
+
+For [incremental JSON pipelines](/docs/data-pipelines/json-pipelines#incremental-pipelines), late-arriving data will be exported as it's ingested. However, that is not the case for Raw and Schematized pipelines without [sync](/docs/data-pipelines/json-pipelines#events-data-sync) enabled — manual intervention will be needed to export late-arriving data into your data warehouse.
+### Can I change the destination of an existing pipeline?
+
+No, you cannot. If you need to change the destination, you would need to create a new pipeline.

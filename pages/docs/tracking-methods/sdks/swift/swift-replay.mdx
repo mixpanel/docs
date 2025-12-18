@@ -6,8 +6,22 @@ import { Callout } from 'nextra/components'
 
 This developer guide will assist you in configuring your Swift app for [Session Replay](/docs/session-replay) using the [Session Replay SDK (Swift)](/docs/tracking-methods/sdks/swift/swift-replay). Learn more about [viewing captured Replays in your project here](/docs/session-replay).
 
+<Callout type="info">
+  Mobile Session Replay is generally available (GA) to customers on all plans and in all regions.
+</Callout>
+
 <Callout type="warning">
-  Mobile Session Replay is generally available (GA) to customers on all plans and in all regions. To enable it for your organization, please contact your account manager or reach out to our support team. Ingestion of mobile session replays will not work until the feature has been enabled for your organization.
+  **iOS 26+ with Xcode 26: SwiftUI Automasking Issue**
+
+  Apple's iOS 26 introduces "Liquid Glass" rendering changes that affect automasking in Session Replay for SwiftUI apps. This is an industry-wide issue impacting all session replay vendors.
+
+  **Who is affected:** SwiftUI apps using automasking for text or images, built with Xcode 26, and running on iOS 26+.
+
+  **Impact:** Automasking may not function correctly, potentially exposing sensitive data that would normally be masked.
+
+  **Recommended action:** Do not rely solely on automasking for SwiftUI apps. Instead, [manually mark sensitive views](/docs/tracking-methods/sdks/swift/swift-replay#mark-views-as-sensitive) using `mpReplaySensitive(true)` and test thoroughly to ensure masking works as expected.
+
+  We are actively investigating fixes for this issue.
 </Callout>
 
 ## Best Practices

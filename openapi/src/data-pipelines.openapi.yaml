@@ -340,7 +340,8 @@ components:
         project_id:
           $ref: '#/components/schemas/ProjectId'
         type:
-          $ref: '#/components/schemas/PipelineType'
+          type: string
+          default: gcs-raw
         trial:
           type: boolean
           default: false
@@ -479,7 +480,8 @@ components:
         project_id:
           $ref: '#/components/schemas/ProjectId'
         type:
-          $ref: '#/components/schemas/PipelineType'
+          type: string
+          default: s3-raw
         trial:
           type: boolean
           default: false
@@ -598,6 +600,7 @@ components:
             - eu-west-2
             - eu-west-3
             - sa-east-1
+            - me-south-1
           description: The valid S3 region for the bucket.
         s3_role:
           type: string
@@ -636,7 +639,8 @@ components:
         project_id:
           $ref: '#/components/schemas/ProjectId'
         type:
-          $ref: '#/components/schemas/PipelineType'
+          type: string
+          default: azure-raw
         trial:
           type: boolean
           default: false
@@ -766,7 +770,8 @@ components:
         project_id:
           $ref: '#/components/schemas/ProjectId'
         type:
-          $ref: '#/components/schemas/PipelineType'
+          type: string
+          default: bigquery
         trial:
           type: boolean
           default: false
@@ -821,11 +826,10 @@ components:
             Mixpanel event data. `people` exports Mixpanel user data.
         sync:
           type: boolean
-          default: false
+          enum:
+            - true
+          default: true
           description: >
-            **Default**: `false`
-
-
             A value of `true` updates exported data with any changes that occur
             in your Mixpanel dataset. These changes include deletions, late
             data, and imports that fall into your export window.
@@ -918,6 +922,8 @@ components:
         - type
         - from_date
         - bq_region
+        - sync
+        - schema_type
 
     SchematizedSnowflakePipeline:
       title: Schematized Snowflake Pipeline
@@ -926,7 +932,8 @@ components:
         project_id:
           $ref: '#/components/schemas/ProjectId'
         type:
-          $ref: '#/components/schemas/PipelineType'
+          type: string
+          default: snowflake
         trial:
           type: boolean
           default: false
@@ -981,11 +988,10 @@ components:
             Mixpanel event data. `people` exports Mixpanel user data.
         sync:
           type: boolean
-          default: false
+          enum:
+            - true
+          default: true
           description: >
-            **Default**: `false`
-
-
             A value of `true` updates exported data with any changes that occur
             in your Mixpanel dataset. These changes include deletions, late
             data, and imports that fall into your export window.
@@ -1056,6 +1062,8 @@ components:
         - from_date
         - snowflake_share_with
         - region
+        - sync
+        - schema_type
 
     SchematizedAWSPipeline:
       title: Schematized AWS Pipeline
@@ -1064,7 +1072,8 @@ components:
         project_id:
           $ref: '#/components/schemas/ProjectId'
         type:
-          $ref: '#/components/schemas/PipelineType'
+          type: string
+          default: aws
         trial:
           type: boolean
           default: false
@@ -1119,11 +1128,10 @@ components:
             Mixpanel event data. `people` exports Mixpanel user data.
         sync:
           type: boolean
-          default: false
+          enum:
+            - true
+          default: true
           description: >
-            **Default**: `false`
-
-
             A value of `true` updates exported data with any changes that occur
             in your Mixpanel dataset. These changes include deletions, late
             data, and imports that fall into your export window.
@@ -1265,6 +1273,8 @@ components:
         - s3_bucket
         - s3_region
         - s3_role
+        - sync
+        - schema_type
 
     SchematizedAzurePipeline:
       title: Schematized Azure Pipeline
@@ -1273,7 +1283,8 @@ components:
         project_id:
           $ref: '#/components/schemas/ProjectId'
         type:
-          $ref: '#/components/schemas/PipelineType'
+          type: string
+          default: azure-blob
         trial:
           type: boolean
           default: false
@@ -1328,11 +1339,10 @@ components:
             Mixpanel event data. `people` exports Mixpanel user data.
         sync:
           type: boolean
-          default: false
+          enum:
+            - true
+          default: true
           description: >
-            **Default**: `false`
-
-
             A value of `true` updates exported data with any changes that occur
             in your Mixpanel dataset. These changes include deletions, late
             data, and imports that fall into your export window.
@@ -1425,6 +1435,8 @@ components:
         - client_id
         - client_secret
         - tenant_id
+        - sync
+        - schema_type
 
     SchematizedGCSPipeline:
       title: Schematized GCS Pipeline
@@ -1433,7 +1445,8 @@ components:
         project_id:
           $ref: '#/components/schemas/ProjectId'
         type:
-          $ref: '#/components/schemas/PipelineType'
+          type: string
+          default: gcs-schema
         trial:
           type: boolean
           default: false
@@ -1473,9 +1486,10 @@ components:
             Mixpanel event data. `people` exports Mixpanel user data.
         sync:
           type: boolean
-          default: false
+          enum:
+            - true
+          default: true
           description: >
-            **Default**: `false`
             A value of `true` updates exported data with any changes that occur
             in your Mixpanel dataset. These changes include deletions, late
             data, and imports that fall into your export window.
@@ -1574,6 +1588,8 @@ components:
         - from_date
         - gcs_bucket
         - gcs_region
+        - sync
+        - schema_type
     ErrorResponse:
       type: object
       properties:
@@ -1612,15 +1628,6 @@ components:
     SchematizedEditParams:
       allOf:
         - $ref: '#/components/schemas/RawEditParams'
-        - type: object
-          properties:
-            enable_sync:
-              type: boolean
-              default: false
-              description: >
-                A value of `true` enables sync for your pipelines which updates exported data with
-                any changes that occur in your Mixpanel dataset. These changes include deletions, late
-                data, and imports that fall into your export window.
     AzureCommonEditParams:
       type: object
       properties:

@@ -1,0 +1,203 @@
+import { Callout, Steps } from 'nextra/components'
+
+# Drive Product Innovation with Mixpanel Experiments
+
+Experimentation is how modern product teams make decisions with confidence. Instead of guessing, you test changes with real users, measure the impact, and move forward knowing what works. Mixpanel makes it possible to plan, run, and analyze experiments in one place.
+
+This guide shows you the best practices. Follow these steps to set up better experiments, avoid common mistakes, and scale experimentation across your team.
+
+## Why Experiment?
+
+Making product changes without data is risky. Experimentation helps you:
+
+- **Reduce risk**: Test with a subset of users before rolling out broadly.
+- **Learn faster**: Use data to validate ideas and iterate quickly.
+- **Discover surprises**: Sometimes tests uncover unexpected insights.
+
+Leading companies like [Step](https://mixpanel.com/customers/how-step-boosted-direct-deposits-by-14-with-mixpanels-experimentation/) use Mixpanel to build a culture of experimentation, moving quickly without losing customer trust.
+
+👉 **Do this next:** Identify one upcoming product change you are unsure about and commit to testing it before launch.
+
+### See Mixpanel Experiments in Action
+
+Before you dive into best practices, take a quick look at how experimentation works inside Mixpanel.
+
+<br></br>
+<section id="video" aria-label="Mixpanel Experiments video" style={{ padding: '8px 16px 32px' }}>
+  <div
+    style={{
+      display: 'flex',
+      flexWrap: 'wrap',
+      gap: 24,
+      alignItems: 'center',
+    }}
+  >
+    {/* Left: video with a min width so it wraps when narrow */}
+    <div style={{ flex: '1 1 480px', minWidth: 320 }}>
+      <div
+        style={{
+          position: 'relative',
+          paddingBottom: '56.25%',
+          height: 0,
+          overflow: 'hidden',
+          borderRadius: '16px',
+          boxShadow: '0 4px 20px rgba(0,0,0,0.08)',
+        }}
+      >
+        <iframe
+          title="Mixpanel Experiments"
+          src="https://www.youtube.com/embed/LZfIPCXcIPE"
+          frameBorder="0"
+          allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+          allowFullScreen
+          style={{ position: 'absolute', top: 0, left: 0, width: '100%', height: '100%', border: 0 }}
+        />
+      </div>
+    </div>
+
+    {/* Right: text with a flexible basis */}
+    <aside style={{ flex: '1 1 320px', minWidth: 280 }}>
+      <h2 style={{ marginTop: 0 }}>**Mixpanel Experiments**</h2>
+      <p>
+        In this 3-minute overview, learn how Mixpanel Experiments helps you reduce risk, learn faster, and discover surprises.
+      </p>
+<br></br>
+      <a href="https://youtu.be/LZfIPCXcIPE"
+         target="_blank" rel="noopener noreferrer" style={{ fontWeight: 600 }}>
+        Open in YouTube →
+      </a>
+    </aside>
+  </div>
+</section>
+
+## Setting Up Experiments the Right Way
+
+Good experiments start with good planning. Skip this step, and your analysis will not tell you much.
+
+### Write a strong hypothesis
+
+Format: *If [change], then [impact], because [reason].*
+
+Example: *If we shorten the onboarding flow from 3 steps to 2, activation will increase by 15% because new users will encounter less friction.*
+
+<Callout type="info">
+**Pro tip**: Keep hypotheses tied to a real user or business problem with measurable outcomes, not just a “gut feeling”.
+</Callout>
+
+### Choose the right metrics
+
+- **Primary metric**: The outcome that defines success (e.g. conversion rate).
+- **Guardrails**: Protect against unintended damage (e.g. churn, CSAT).
+- **Secondary metrics**: Add context but do not drive the decision.
+
+Define metrics *before* launch. Adding them later biases results.
+
+### Keep it simple
+
+Do not test multiple changes at once. Focus on a single variable so you know what drove the outcome.
+
+Testing too many things at once makes it impossible to know which change worked.
+
+👉 **Do this next:** Draft your hypothesis and list your primary and guardrail metrics. Review with your team before launch.
+
+
+## Choosing the Right Test Model
+
+Mixpanel supports the following models. Pick the right one up front:
+
+- **Frequentist**: Best for small lifts (< 2%). Wait until your full sample size is reached before calling results.
+- **Sequential**: Best for big, obvious changes (10%+). Let' you monitor results as data comes in and stop the experiment earlier.
+
+<Callout type="info">
+**Pro tip**: If you expect only a tiny lift (like 1%), choose Frequentist as you will need maximum rigor.
+</Callout>
+
+**Rule of thumb**
+- Frequentist → accuracy matters most + expected lift is low
+- Sequential → speed matters most + expected lift is high
+
+Learn more about [Experiment Model Types](/docs/reports/experiments#experiment-model-types).
+
+## Reading Results with Confidence
+
+Mixpanel's [Experiment Report](/docs/reports/experiments) gives you three key signals:
+
+- **Lift**: % change between control and variant.
+- **P-value**: How confident you can be that the result is not random (≤0.05 is usually significant).
+- **Confidence interval**: The likely range of the true impact.
+
+How to interpret:
+
+<Steps>
+
+{<h3>Start with the P-value.</h3>}
+
+This is your first and most important check.
+
+**If the P-value is > 0.05**: The result is *not statistically significant*. This means the difference you see is very likely due to random chance. You should *not implement the change*, even if the lift looks promising, because you can't be confident it's a real improvement.
+
+{<h3>Next, look at Lift and the Confidence Interval.</h3>}
+
+Only if the p-value is ≤ 0.05 do you move to these metrics. They tell you about the size and range of the true impact.
+
+</Steps>
+
+If your primary metric improves and the results are significant, you can trust it. If results are inconclusive, you still learned something. Revisit your hypothesis or run a follow-up. Use segmentation (new vs. returning users, geos, etc.) to understand nuances.
+
+Do not treat inconclusive results as failures; they provide valuable clues, even if they are not yet a win.
+
+👉 **Do this next:** Share experiment results in a [Mixpanel Board](https://mixpanel.com/blog/boards-collaborate-cards-mixpanel-feature-update/) and add notes on what the data means to provide additional context to your numbers.
+
+## Acting on Experiment Insights
+
+The most impactful teams do not stop at analysis; they act.
+
+- **Decide**: Ship the winning variant, revert, or run a follow-up.
+- **Document**: Capture the outcome in your Experiment Report.
+- **Share**: Use Boards to communicate decisions and learnings with stakeholders.
+- **Repeat**: Every experiment, win or lose, should inform your product strategy.
+
+<Callout type="info">
+**Pro tip**:Always explain why you made your decision, not just what you decided. This builds institutional knowledge.
+</Callout>
+
+👉 **Do this next:** Add a note in your Experiment Report explaining the reasoning behind your decision.
+
+## Avoid Common Pitfalls
+
+Stay alert to these common mistakes:
+
+- **Ending too early**: Always run until your experiment criteria (e.g. sample size or statistical boundary) is met.
+- **Overcomplicating**: Too many variants or changes muddy results.
+- **Ignoring guardrails**: Success on one metric can hide damage elsewhere.
+- **Underestimating sample size**: Small samples make results unreliable.
+
+Avoid declaring a test a success at the first sign of movement; early spikes often disappear as more data arrives.
+
+👉 **Do this next:** Review your last experiment—did you hit any of these pitfalls?
+
+## Scaling Experimentation as a Habit
+
+Experimentation works best when it is part of your culture.
+
+- **Secure leadership buy-in**: Leaders should model data-driven decisions.
+- **Create psychological safety**: Failed experiments = valuable learnings.
+- **Share openly**: Publish results so others can benefit.
+- **Use Mixpanel tools**: Boards and saved metrics keep experiments transparent and consistent.
+
+<Callout type="info">
+    **Pro tip**: Share at least one experiment outcome (good or bad) in every team meeting—it normalizes learning.
+</Callout>
+
+👉 **Do this next:** Create a recurring agenda item in your weekly standup for experiment learnings. Keep it lightweight; 2–3 minutes max.
+
+## Key Takeaways
+
+Experimentation in Mixpanel lets you move faster, mitigate risk, and make more strategic decisions. 
+
+To get started:
+1. **Begin testing your hypotheses with Mixpanel Experiments.** Use experiments to validate ideas with real user data before making broad product decisions.
+2. **Share learnings widely.** Make results visible to other teams so everyone benefits.
+3. **Treat experimentation as a repeatable process**, not a one-off.
+
+Learn more about the [Experiments Report](/docs/reports/experiments).

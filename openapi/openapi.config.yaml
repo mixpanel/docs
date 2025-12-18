@@ -8,6 +8,9 @@ apis:
   export:
     root: ./src/export.openapi.yaml
     output: ./out/event-export-api.json
+  featureflags:
+    root: ./src/feature-flags.openapi.yaml
+    output: ./out/feature-flags-api.json
   gdpr:
     root: ./src/gdpr.openapi.yaml
     output: ./out/gdpr-api-2.json
