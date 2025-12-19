@@ -16,12 +16,17 @@ Mixpanel exports data to customer's database. We first load the data into a sing
 
 Mixpanel Data Pipelines supports static IP addresses for Snowflake connections when IP restrictions are configured on your Snowflake instance. If you are using [Snowflake Network policy](https://docs.snowflake.com/en/user-guide/network-policies) to restrict access to your instance, you might need to add the following IP addresses to the allowed list:
 
+**US**
 ```jsx
 34.31.112.201
-34.147.68.192
 35.184.21.33
 35.225.176.74
-35.204.164.122
+```
+
+**EU**
+```jsx
+34.147.68.192
+35.204.164.122 
 35.204.177.251
 ```
 
@@ -66,7 +71,7 @@ password authentication
 ```sql
 CREATE USER MIXPANEL_EXPORT_USER PASSWORD='<password you provided>' DEFAULT_ROLE=MIXPANEL_EXPORT_ROLE;
 
-ALTER USER MIXPANEL_EXPORT_USER SET PASSWORD='<password you provided>'
+ALTER USER MIXPANEL_EXPORT_USER SET PASSWORD='<password you provided>';
 GRANT ROLE MIXPANEL_EXPORT_ROLE TO USER MIXPANEL_EXPORT_USER;
 ```
 
@@ -75,7 +80,7 @@ key-pair based authentication
 ```sql
 CREATE USER MIXPANEL_EXPORT_USER RSA_PUBLIC_KEY='<mixpanel generated key>' DEFAULT_ROLE=MIXPANEL_EXPORT_ROLE;
 
-ALTER USER MIXPANEL_EXPORT_USER SET RSA_PUBLIC_KEY='<mixpanel generated key>'
+ALTER USER MIXPANEL_EXPORT_USER SET RSA_PUBLIC_KEY='<mixpanel generated key>';
 GRANT ROLE MIXPANEL_EXPORT_ROLE TO USER MIXPANEL_EXPORT_USER;
 ```
 
@@ -145,3 +150,7 @@ GROUP BY
 LIMIT
   100;
 ```
+
+## Supported Snowflake Regions
+
+`US-WEST-AWS, US-EAST-AWS, US-EAST-2-AWS, EU-WEST-1-AWS, EU-CENTRAL-1-AWS, AP-SOUTHEAST-2-AWS`

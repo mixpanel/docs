@@ -696,6 +696,13 @@ article {
       //     opacity: 0.4;
       //   }
     }
+
+    // Modify Steps
+    .nextra-steps h2:before,.nextra-steps h3:before,.nextra-steps h4:before{
+        background-color: colors.$purple20;
+        color: colors.$purple140;
+    }
+
     //####Light Theme Code Syntax and Box####
     code,
     kbd,
@@ -746,6 +753,59 @@ article {
       color: colors.$purple100;
       border-bottom: solid colors.$purple100;
       border-bottom-width: 2px;
+    }
+
+    // Tab anchor link styles
+    .tab-label-with-anchor {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+
+      .tab-anchor-link {
+        opacity: 0;
+        transition: opacity 0.2s ease, color 0.2s ease, background-color 0.2s ease;
+        background: none;
+        border: none;
+        padding: 4px;
+        cursor: pointer;
+        display: inline-flex;
+        align-items: center;
+        color: colors.$purple100;
+        border-radius: 4px;
+
+        svg {
+          width: 14px;
+          height: 14px;
+        }
+
+        &:hover {
+          opacity: 1 !important;
+          background-color: rgba(120, 86, 255, 0.1);
+        }
+
+        &:focus-visible {
+          opacity: 1 !important;
+          outline: 2px solid colors.$purple100;
+          outline-offset: 2px;
+        }
+
+        &.copied {
+          opacity: 1 !important;
+          color: #228b22;
+        }
+      }
+    }
+
+    [role~="tab"]:hover .tab-anchor-link,
+    [role~="tab"]:focus-within .tab-anchor-link {
+      opacity: 0.6;
+    }
+
+    // Always show on mobile/touch devices
+    @media (hover: none) {
+      .tab-anchor-link {
+        opacity: 0.5 !important;
+      }
     }
 
     //modify code scroll bar
@@ -1440,6 +1500,13 @@ article {
       }
     }
 
+    // Modify steps
+    .nextra-steps h2:before,.nextra-steps h3:before,.nextra-steps h4:before{
+        background-color: colors.$purple140;
+        color: colors.$purple20;
+        border-color: colors.$purple140;
+    }
+
     //ID management banner style
     .idManagementBanner {
       .nextra-callout {
@@ -1518,6 +1585,25 @@ article {
       color: colors.$purple100;
       border-bottom: solid colors.$purple100;
       border-bottom-width: 2px;
+    }
+
+    // Tab anchor link styles (dark theme)
+    .tab-label-with-anchor {
+      .tab-anchor-link {
+        color: colors.$purple40;
+
+        &:hover {
+          background-color: rgba(167, 139, 250, 0.1);
+        }
+
+        &:focus-visible {
+          outline-color: colors.$purple40;
+        }
+
+        &.copied {
+          color: #90ee90;
+        }
+      }
     }
 
     //modify code scroll bar
@@ -1857,6 +1943,9 @@ article {
   .nextra-toc {
     background-color: colors.$darkbg;
     // Remove all hardcoded white backgrounds and shadow filters
+    ._shadow-\[0_12px_16px_rgb\(var\(\--nextra-bg\)\)\] {
+      box-shadow: unset;
+    }
     .nextra-toc-footer {
       background-color: colors.$darkbg;
       box-shadow: unset;

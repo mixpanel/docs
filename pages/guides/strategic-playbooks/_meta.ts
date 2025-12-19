@@ -1,4 +1,4 @@
 export default {
-    "onboarding-playbook": "The Onboarding Playbook",
+    "onboarding-playbook": "Onboarding Playbook",
     "project-migration": "Project Migration Playbook"
 }
