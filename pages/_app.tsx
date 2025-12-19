@@ -6,7 +6,6 @@ import { useEffect } from "react";
 import * as Sentry from "@sentry/react";
 
 import { insertGTMScriptTags } from "../components/GTMScripts";
-import { insertTrustArcScriptTags } from "../components/TrustArcScripts";
 import { SENTRY_VARS } from "../utils/error-reporting";
 import { useSprig } from "../hooks/useSprig";
 
@@ -15,7 +14,6 @@ export default function MyApp({ Component, pageProps }: AppProps) {
   useSprig();
 
   useEffect(() => {
-    insertTrustArcScriptTags();
     insertGTMScriptTags();
     window.sentry = Sentry.init(SENTRY_VARS);
 

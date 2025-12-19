@@ -1,1 +1,1 @@
-export { default as insertTrustArcScriptTags } from "./TrustArcScripts";
+export { default as TrustArcScripts } from "./TrustArcScripts";

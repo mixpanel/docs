@@ -1,10 +1,12 @@
 import { Html, Head, Main, NextScript } from "next/document";
-import Script from "next/script";
+import { TrustArcScripts } from "../components/TrustArcScripts";
 
 export default function Document() {
   return (
     <Html>
-      <Head />
+      <Head>
+        <TrustArcScripts />
+      </Head>
       <body>
         <Main />
         <NextScript />
