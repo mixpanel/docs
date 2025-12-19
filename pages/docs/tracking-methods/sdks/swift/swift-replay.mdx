@@ -6,10 +6,6 @@ import { Callout } from 'nextra/components'
 
 This developer guide will assist you in configuring your Swift app for [Session Replay](/docs/session-replay) using the [Session Replay SDK (Swift)](/docs/tracking-methods/sdks/swift/swift-replay). Learn more about [viewing captured Replays in your project here](/docs/session-replay).
 
-<Callout type="info">
-  Mobile Session Replay is generally available (GA) to customers on all plans and in all regions.
-</Callout>
-
 <Callout type="warning">
   **iOS 26+ with Xcode 26: SwiftUI Automasking Issue**
 
@@ -19,7 +15,11 @@ This developer guide will assist you in configuring your Swift app for [Session 
 
   **Impact:** Automasking may not function correctly, potentially exposing sensitive data that would normally be masked.
 
-  **Recommended action:** Do not rely solely on automasking for SwiftUI apps. Instead, [manually mark sensitive views](/docs/tracking-methods/sdks/swift/swift-replay#mark-views-as-sensitive) using `mpReplaySensitive(true)` and test thoroughly to ensure masking works as expected.
+  **Default behavior (v1.2.0+):** Session Replay is now disabled by default for apps built with Xcode 26+ running on iOS 26+.
+
+  **Re-enabling Session Replay:** If your app is built with Xcode 16 or earlier, does not use SwiftUI, or does not rely on automasking, it's safe to re-enable by setting `enableSessionReplayOniOS26AndLater = true` in your `MPSessionReplayConfig`.
+
+  **If you rely on automasking in a SwiftUI app:** Disable automasking by passing `autoMaskedViews: []` to your config, then [manually mark sensitive views](/docs/tracking-methods/sdks/swift/swift-replay#mark-views-as-sensitive) using `.mpReplaySensitive(true)` and test thoroughly to ensure masking works as expected.
 
   We are actively investigating fixes for this issue.
 </Callout>
