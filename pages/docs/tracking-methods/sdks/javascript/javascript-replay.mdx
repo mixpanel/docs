@@ -111,6 +111,7 @@ mixpanel.init(
 | `record_sessions_percent` | Percentage of SDK initializations that will qualify for replay data capture. A value of "1" = 1%. | `0` |
 | `record_canvas` | When true, Mixpanel will record snapshots of `<canvas>` elements on your site at up to 15 frames per second | `false` |
 | `record_heatmap_data` | When true, Mixpanel will capture click events during replays to populate Heatmaps. You can learn more [here](/docs/session-replay/heatmaps). | `false` |
+| `record_console` | When true, Mixpanel will record console logs, warnings, and errors as part of the replay. | `true` |
 
 Note: Canvas recording (record_canvas) utilizes [rrweb's](https://github.com/rrweb-io/rrweb) UNSAFE_replayCanvas option, which is experimental and not fully supported. We recommend testing thoroughly before deploying to production.
 
@@ -183,7 +184,7 @@ The `record_heatmap_data` option (Web only; not available on mobile) enables fou
 
 These events are only captured when a session recording is in progress, and they are exempt from your plan data allowance.
 
-**Important:** Session Replay must be enabled for `record_heatmap_data` to work. Heatmaps only collect data during sessions with recorded replays. If a page has limited replay coverage, the resulting Heatmap may provide limited or less meaningful insights.
+Session Replay must be enabled for `record_heatmap_data` to work. Heatmaps only collect data during sessions with recorded replays. If a page has limited replay coverage, the resulting Heatmap may provide limited or less meaningful insights.
 
 **Example Usage**
 
