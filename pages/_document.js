@@ -49,6 +49,7 @@ export default function Document() {
         </script>
         {/* Empty script tag as chrome bug fix, see https://stackoverflow.com/a/42969608/943337 */}
         <script> </script>
+        <div id="consent-banner"></div>
       </body>
     </Html>
   );
