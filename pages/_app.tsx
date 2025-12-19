@@ -8,12 +8,14 @@ import * as Sentry from "@sentry/react";
 import { insertGTMScriptTags } from "../components/GTMScripts";
 import { SENTRY_VARS } from "../utils/error-reporting";
 import { useSprig } from "../hooks/useSprig";
+import { insertTrustArcScriptTags } from "../components/TrustArcScripts";
 
 export default function MyApp({ Component, pageProps }: AppProps) {
   // Initialize Sprig surveys
   useSprig();
 
   useEffect(() => {
+    insertTrustArcScriptTags();
     insertGTMScriptTags();
     window.sentry = Sentry.init(SENTRY_VARS);
 
