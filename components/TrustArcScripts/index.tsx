@@ -1,1 +1,0 @@
-export { default as TrustArcScripts } from "./TrustArcScripts";
