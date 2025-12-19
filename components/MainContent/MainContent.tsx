@@ -9,7 +9,6 @@ const MainContent: React.FC<Props> = ({ children }): JSX.Element => {
     <>
       {children}
       <FeedbackCollector />
-      <div id="consent-banner"></div>
     </>
   );
 };
