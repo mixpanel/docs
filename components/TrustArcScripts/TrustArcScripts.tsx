@@ -12,8 +12,8 @@ export default function TrustArcScripts() {
             <script src={trustArcAutoBlockCoreSrc}></script>
             <script src={trustArcAutoBlockSrc}></script>
             <script type="text/javascript" async src={trustArcInitScriptSrc}></script>
-            <script>{reloadOnBannerScript}</script>
-            {/* <script>{reloadOnPreferencesScript}</script> */}
+            <script dangerouslySetInnerHTML={{ __html: reloadOnBannerScript }} />
+            {/* <script dangerouslySetInnerHTML={{ __html: reloadOnPreferencesScript }} /> */}
         </>
     )
 }
