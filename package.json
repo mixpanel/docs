@@ -30,7 +30,7 @@
   },
   "dependencies": {
     "@docsearch/js": "3.9.0",
-    "@docsearch/react": "3.9.0",
+    "@docsearch/react": "4.3.2",
     "@headlessui/react": "2.2.9",
     "@sentry/react": "8.50.0",
     "clsx": "2.1.1",
