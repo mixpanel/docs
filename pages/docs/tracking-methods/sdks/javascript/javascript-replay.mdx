@@ -78,7 +78,7 @@ mixpanel.stop_session_recording();
 | --- | --- |
 | We have a sensitive screen we don't want to capture | When user is about to access the sensitive screen, call `mixpanel.stop_session_recording()`. To resume recording once they leave this screen, you can resume recording with `mixpanel.start_session_recording()`  | 
 | We only want to record certain types of users (e.g. Free plan users only) | Using your application code, determine if current user meets the criteria of users you wish to capture. If they do, then call `mixpanel.start_session_recording()` to force recording on |
-| We only want to users utilizing certain features | When user is about to access the feature you wish to capture replays for, call `mixpanel.start_session_recording()` to force recording on |
+| We only want to record users utilizing certain features | When user is about to access the feature you wish to capture replays for, call `mixpanel.start_session_recording()` to force recording on |
 
 
 ### Additional Configuration Options
