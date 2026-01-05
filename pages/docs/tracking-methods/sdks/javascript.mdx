@@ -347,6 +347,10 @@ mixpanel.track_pageview({
     });
 ```
 
+<Callout type="warning">
+    The default page view event (`$mp_web_page_view`) cannot be merged with other events. 
+</Callout>
+
 ### Track UTM Tags
 
 The JavaScript library will automatically add the following UTM parameters present on the page to events fired from that page load:
