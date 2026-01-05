@@ -10,7 +10,7 @@ This developer guide will assist you in configuring your server-side Ruby platfo
 
 Before implementing [Feature Flags](/docs/featureflags), ensure:
 
-- You are on an Enterprise subscription plan and have the [Mixpanel Ruby SDK](https://github.com/mixpanel/mixpanel-ruby) installed. If not, please follow [this doc](/docs/quickstart/install-mixpanel) to install the SDK. The minimum supported version is [v2.3.0](https://rubygems.org/gems/mixpanel-ruby)
+- You are on an Enterprise subscription plan and have the [Mixpanel Ruby SDK](https://github.com/mixpanel/mixpanel-ruby) installed. If not, please follow [this doc](/docs/quickstart/install-mixpanel) to install the SDK. The minimum supported version is [v3.0.0](https://rubygems.org/gems/mixpanel-ruby)
 - You have your Project Token from your [Mixpanel Project Settings](/docs/orgs-and-projects/managing-projects#find-your-project-tokens)
 
 ## Flag Evaluation Scenarios
@@ -79,9 +79,6 @@ else
   # Feature is disabled
 end
 
-# Stop polling when shutting down your application
-tracker.local_flags.stop_polling_for_definitions!
-```
 
 ## Remote Evaluation
 
@@ -105,7 +102,10 @@ variant_value = tracker.remote_flags.get_variant_value(flag_key, fallback_varian
 # is_enabled? also works with remote flags
 if tracker.remote_flags.is_enabled?('beta_feature', user_context)
   # Feature is enabled
+else
+  # Feature is disabled
 end
+
 ```
 
 ### Evaluate all flags at once
