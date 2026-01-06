@@ -448,6 +448,10 @@ Mirror syncs work by having the warehouse compute which rows have been inserted,
 list of changes to Mixpanel. Change tracking is configured differently depending on the source warehouse. Mirror is
 supported for Snowflake, Databricks, BigQuery, and Redshift sources.
 
+<Callout type="info">
+  For User tables, Mirror Sync is available only when you select the Profile History table type. Mirror Sync is not available for the Standard table type.
+</Callout>
+
 <ExtendedTabs urlParam="mirror" urlToItemsMap={mirrorItems}>
 
 <Tabs.Tab>
