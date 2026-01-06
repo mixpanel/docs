@@ -140,6 +140,10 @@ This structure is created by Mixpanel and cannot be customized at the moment.
 
 No, all events and properties are exported as they are ingested into Mixpanel. It’s not possible to filter for events and properties to include or exclude in your data pipeline exports. However, it is possible to whitelist events to export and filter by properties if you’re using our older pipelines created via API (Raw and Schematized).
 
+### Why isn’t my hourly pipeline running exactly every hour?
+
+With incremental pipelines, the next export iteration begins after the previous one completes rather than on a fixed schedule. This ensures we export all data completely without the risk of cutting off late-arriving events. While your pipeline is configured for “hourly” export, the actual run time will vary based on how long each iteration takes to process.
+
 ## Change Log
 
 <details>
