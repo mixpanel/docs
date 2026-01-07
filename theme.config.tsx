@@ -62,10 +62,17 @@ const config: DocsThemeConfig = {
   },
   footer: {
     content: (
-      <>
-        <div>© Mixpanel {new Date().getFullYear()}</div>
-        <div id="teconsent">Cookie Preferences</div>
-      </>
+      <div style={{ display: "flex", flexWrap: "wrap" }}>
+        <div style={{ flexBasis: "100%" }}>
+          © Mixpanel {new Date().getFullYear()}
+        </div>
+        <div style={{ fontSize: "75%" }}>
+          {/* @ts-expect-error - truste is injected by TrustArc script at runtime */}
+          <a href="javascript:void(0)" onClick={() => truste.eu.clickListener}>
+            Cookie Preferences
+          </a>
+        </div>
+      </div>
     ),
   },
   logo: <MixpanelLogoWordmark width={125} />,
