@@ -69,7 +69,7 @@ const config: DocsThemeConfig = {
         <div style={{ fontSize: "75%" }}>
           <a
             href="javascript:void(0)"
-            {/* @ts-expect-error - truste is injected by TrustArc script at runtime */}
+            // @ts-expect-error - truste is injected by TrustArc script at runtime
             onClick={() => truste.eu.clickListener()}
           >
             Cookie Preferences
