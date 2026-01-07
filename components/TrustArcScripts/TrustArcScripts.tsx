@@ -13,8 +13,7 @@ export function TrustArcHeadScripts() {
 }
 
 export function TrustArcBodyScripts() {
-    // Reload on preference change from footer link. Uncomment and ensure works when link is added
-    // const reloadOnPreferencesScript = `var _STATE={};function runOnce(){!_STATE.hasRunOnce&&window.truste&&truste.eu&&truste.eu.prefclose&&(_STATE.oldValue=truste.eu.bindMap.prefCookie&&truste.eu.bindMap.prefCookie.split(":")[0].replace(/[^\d.]/g,"-"),_STATE.oldMethod=truste.eu.prefclose,truste.eu.prefclose=function(){_STATE.oldMethod(),truste.eu.bindMap.prefCookie&&truste.eu.bindMap.prefCookie.split(":")[0].replace(/[^\d.]/g,"-")!==_STATE.oldValue&&setTimeout(function(){window.location.reload()},20)},_STATE.hasRunOnce=!0,_STATE.i&&clearInterval(_STATE.i))}_STATE.i=setInterval(runOnce,10);`
+    const reloadOnPreferencesScript = `var _STATE={};function runOnce(){!_STATE.hasRunOnce&&window.truste&&truste.eu&&truste.eu.prefclose&&(_STATE.oldValue=truste.eu.bindMap.prefCookie&&truste.eu.bindMap.prefCookie.split(":")[0].replace(/[^\\d.]/g,"-"),_STATE.oldMethod=truste.eu.prefclose,truste.eu.prefclose=function(){_STATE.oldMethod(),truste.eu.bindMap.prefCookie&&truste.eu.bindMap.prefCookie.split(":")[0].replace(/[^\\d.]/g,"-")!==_STATE.oldValue&&setTimeout(function(){window.location.reload()},20)},_STATE.hasRunOnce=!0,_STATE.i&&clearInterval(_STATE.i))}_STATE.i=setInterval(runOnce,10);`;
 
     const reloadOnBannerScript = `document.body.addEventListener("click",function(t){t&&t.target&&("truste-consent-button"===t.target.id||"truste-consent-required"===t.target.id)&&setTimeout(function(){window.location.reload()},1e3)});`;
 
@@ -25,7 +24,10 @@ export function TrustArcBodyScripts() {
                 // eslint-disable-next-line @typescript-eslint/naming-convention
                 dangerouslySetInnerHTML={{ __html: reloadOnBannerScript }}
             />
-            {/* <script dangerouslySetInnerHTML={{ __html: reloadOnPreferencesScript }} /> */}
+            <script
+                // eslint-disable-next-line @typescript-eslint/naming-convention
+                dangerouslySetInnerHTML={{ __html: reloadOnPreferencesScript }}
+            />
         </>
     );
 }
