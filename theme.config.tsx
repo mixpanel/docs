@@ -67,8 +67,11 @@ const config: DocsThemeConfig = {
           © Mixpanel {new Date().getFullYear()}
         </div>
         <div style={{ fontSize: "75%" }}>
-          {/* @ts-expect-error - truste is injected by TrustArc script at runtime */}
-          <a href="javascript:void(0)" onClick={() => truste.eu.clickListener}>
+          <a
+            href="javascript:void(0)"
+            {/* @ts-expect-error - truste is injected by TrustArc script at runtime */}
+            onClick={() => truste.eu.clickListener()}
+          >
             Cookie Preferences
           </a>
         </div>
