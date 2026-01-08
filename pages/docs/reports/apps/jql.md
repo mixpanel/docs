@@ -1,9 +1,11 @@
 # JQL: Create custom queries using Javascript code
 
-> ❗️JQL is currently in maintenance mode and will be completely deprecated December 31, 2025. We recommend discontinuing use of JQL and using an [alternate method](https://docs.mixpanel.com/docs/export-methods) to get the data you need. Below are alternatives for common use cases and you need help deciding the best method for you, reach out to [support](mixpanel.com/get-support). 
-> - Raw Event export: [Export API](https://developer.mixpanel.com/reference/raw-data-export-api) or [Data Pipelines](https://docs.mixpanel.com/docs/data-pipelines)
-> - User Profile export: [Engage Query API](https://developer.mixpanel.com/reference/engage-query) or [Data Pipelines](https://docs.mixpanel.com/docs/data-pipelines)
-> - Other reporting: [Query API](https://developer.mixpanel.com/reference/query-api) or in-app [Core Reports](https://docs.mixpanel.com/docs/reports)
+> ❗️JQL is currently in maintenance mode. We recommend discontinuing use of JQL and using an [alternate method](/docs/export-methods) to get the data you need. Below are alternatives for common use cases and you need help deciding the best method for you, reach out to [support](https://mixpanel.com/contact-us/support).
+> - Raw Event export: [Export API](https://developer.mixpanel.com/reference/raw-data-export-api) or [Data Pipelines](/docs/data-pipelines)
+> - User Profile export: [Engage Query API](https://developer.mixpanel.com/reference/engage-query) or [Data Pipelines](/docs/data-pipelines)
+> - Other reporting: [Query API](https://developer.mixpanel.com/reference/query-api) or in-app [Core Reports](/docs/reports)
+>  
+> ❗️JQL is a self-serve tool. If you choose JQL, your developer team will be responsible to write and maintain the query logic.
 
 The JQL JavaScript code must define a `main()` function. This JavaScript will be compiled, and the `main()` function will be executed by the query engine. The return value of `main()` must be a sequence of zero or more transformations applied to a collection of events, user records or joined records.  
 Events are retrieved by calling the `Events()` function.

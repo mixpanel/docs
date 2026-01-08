@@ -25,7 +25,12 @@ The [Full API Reference](https://github.com/mixpanel/mixpanel-js/blob/master/doc
 
         ```javascript
         // Create an instance of the Mixpanel object
-        mixpanel.init('YOUR_PROJECT_TOKEN', {autocapture: true});
+        mixpanel.init("YOUR_PROJECT_TOKEN", {
+            autocapture: true,
+            track_pageview: true,
+            record_sessions_percent: 100, //records 100% of all sessions
+            record_heatmap_data: true,
+        });
         ```
 
         Altogether, with your particular library configuration, the code snippet should follow this basic structure:
@@ -36,7 +41,12 @@ The [Full API Reference](https://github.com/mixpanel/mixpanel-js/blob/master/doc
             (function (f, b) { if (!b.__SV) { var e, g, i, h; window.mixpanel = b; b._i = []; b.init = function (e, f, c) { function g(a, d) { var b = d.split("."); 2 == b.length && ((a = a[b[0]]), (d = b[1])); a[d] = function () { a.push([d].concat(Array.prototype.slice.call(arguments, 0))); }; } var a = b; "undefined" !== typeof c ? (a = b[c] = []) : (c = "mixpanel"); a.people = a.people || []; a.toString = function (a) { var d = "mixpanel"; "mixpanel" !== c && (d += "." + c); a || (d += " (stub)"); return d; }; a.people.toString = function () { return a.toString(1) + ".people (stub)"; }; i = "disable time_event track track_pageview track_links track_forms track_with_groups add_group set_group remove_group register register_once alias unregister identify name_tag set_config reset opt_in_tracking opt_out_tracking has_opted_in_tracking has_opted_out_tracking clear_opt_in_out_tracking start_batch_senders people.set people.set_once people.unset people.increment people.append people.union people.track_charge people.clear_charges people.delete_user people.remove".split( " "); for (h = 0; h < i.length; h++) g(a, i[h]); var j = "set set_once union unset remove delete".split(" "); a.get_group = function () { function b(c) { d[c] = function () { call2_args = arguments; call2 = [c].concat(Array.prototype.slice.call(call2_args, 0)); a.push([e, call2]); }; } for ( var d = {}, e = ["get_group"].concat( Array.prototype.slice.call(arguments, 0)), c = 0; c < j.length; c++) b(j[c]); return d; }; b._i.push([e, f, c]); }; b.__SV = 1.2; e = f.createElement("script"); e.type = "text/javascript"; e.async = !0; e.src = "undefined" !== typeof MIXPANEL_CUSTOM_LIB_URL ? MIXPANEL_CUSTOM_LIB_URL : "file:" === f.location.protocol && "//cdn.mxpnl.com/libs/mixpanel-2-latest.min.js".match(/^\/\//) ? "https://cdn.mxpnl.com/libs/mixpanel-2-latest.min.js" : "//cdn.mxpnl.com/libs/mixpanel-2-latest.min.js"; g = f.getElementsByTagName("script")[0]; g.parentNode.insertBefore(e, g); } })(document, window.mixpanel || []);
 
             // Create an instance of the Mixpanel object
-            mixpanel.init('YOUR_PROJECT_TOKEN', {autocapture: true});
+            mixpanel.init("YOUR_PROJECT_TOKEN", {
+                autocapture: true,
+                track_pageview: true,
+                record_sessions_percent: 100, //records 100% of all sessions
+                record_heatmap_data: true,
+            });
         </script>
         ```
     </Tabs.Tab>
@@ -62,7 +72,12 @@ The [Full API Reference](https://github.com/mixpanel/mixpanel-js/blob/master/doc
         import mixpanel from 'mixpanel-browser'
 
         // create an instance Mixpanel object using your project token
-        mixpanel.init('YOUR_PROJECT_TOKEN', {autocapture: true});
+        mixpanel.init("YOUR_PROJECT_TOKEN", {
+            autocapture: true,
+            track_pageview: true,
+            record_sessions_percent: 100, //records 100% of all sessions
+            record_heatmap_data: true,
+        });
         ```
     </Tabs.Tab>
 </Tabs>
@@ -114,7 +129,9 @@ mixpanel.init('YOUR_PROJECT_TOKEN', {
   autocapture: {
     pageview: "full-url",
     click: true,
+    dead_click: true,
     input: true,
+    rage_click: true,
     scroll: true,
     submit: true,
     capture_text_content: false,
@@ -160,9 +177,11 @@ mixpanel.init('YOUR_PROJECT_TOKEN', {
 Note that disabling Autocapture does not disable Session Replay, which is [configured separately](/docs/tracking-methods/sdks/javascript#session-replay).
 
 **Autocapture Init Options**
-| Option | Description | Default | 
+| Option | Description | Default |
 | --- | --- | --- |
 | `click` | When set to `true`, Mixpanel will track element clicks. It will not track textContent unless `capture_text_content` is also set to `true`. | `true` |
+| `dead_click` | When set to `true`, Mixpanel will track dead clicks on elements. You can also fine tune thresholds for classifying dead clicks using the [Dead Click Options](#dead-click-options) below. | `true`
+| `rage_click` | When set to `true`, Mixpanel will track rage clicks on elements. You can also fine tune thresholds for classifying rage clicks using the [Rage Click Options](#rage-click-options) below. | `true`
 | `input` | When set to `true`, Mixpanel will track when an input is provided. It will not capture input content. | `true` |
 | `pageview` | When set, Mixpanel will collect pageviews when some components of the URL change — including UTM parameters. | `"full-url"` |
 | `scroll` | When set, Mixpanel will collect page scrolls at specified scroll intervals. | `true` |
@@ -178,6 +197,19 @@ Note that disabling Autocapture does not disable Session Replay, which is [confi
 | `block_attrs` | Opts out specific attributes from Autocapture. | `[]` |
 | `allow_element_callback` | A user-provided function that determines whether a specific element should be tracked via Autocapture or not. The function receives the element as its first argument, and the DOM event as its second argument, and should return `true` if the element should be tracked (otherwise the element will NOT be tracked). | `not set` |
 | `block_element_callback` | A user-provided function that determines whether a specific element should be blocked from tracking via Autocapture or not. The function receives the element as its first argument, and the DOM event as its second argument, and should return `true` if the element should be blocked. | `not set` |
+
+**<span id="dead-click-options">Dead Click Options</span>**
+| Option       | Description                                                              | Default |
+| ------------ | ------------------------------------------------------------------------ | ------- |
+| `timeout_ms` | Time in milliseconds to wait after a click before qualifying it as dead. | `500`   |
+
+**<span id="rage-click-options">Rage Click Options</span>**
+| Option                            | Description                                                                                  | Default |
+| --------------------------------- | -------------------------------------------------------------------------------------------- | ------- |
+| `threshold_px`                    | Maximum pixel distance between clicks to be considered in the same location.                 | `30`    |
+| `timeout_ms`                      | Time window in milliseconds to group rapid consecutive clicks.                               | `1000`  |
+| `click_count`                     | Minimum number of clicks required within the time window to trigger rage click detection.    | `4`     |
+| `interactive_elements_only`       | When enabled, only tracks rage clicks on interactive elements (buttons, links, inputs, etc.) | `false` |
 
 **HTML attributes captured by default**
 
@@ -379,7 +411,7 @@ The Javascript SDK is a tracking SDK designed for real-time tracking in a client
 For bulk import of historical events older than 5 days, we will need to use the [/import API endpoint](https://developer.mixpanel.com/reference/import-events) which is optimized for scripting and supports ingesting historical data. We recommend the [Python SDK](/docs/tracking-methods/sdks/python) (see the [`.import_data()`](https://mixpanel.github.io/mixpanel-python/#primary-interface) function) and [mixpanel-utils module](https://github.com/mixpanel/mixpanel-utils) (see the [`import_events()`](https://github.com/mixpanel/mixpanel-utils?tab=readme-ov-file#import-events) function) which both leverages the /import API for event ingestion.
 
 ## Setting Super Properties
-Super properties are global event properties that you define once and apply to all events. 
+Super properties are global event properties that you define once and apply to all events.
 
 To register super properties, call [`.register()`](https://github.com/mixpanel/mixpanel-js/blob/master/doc/readme.io/javascript-full-api-reference.md#mixpanelregister).
 
@@ -439,7 +471,7 @@ mixpanel.identify('12345');
 ```
 
 ### Call Reset at Logout
-Call [`.reset()`](https://github.com/mixpanel/mixpanel-js/blob/master/doc/readme.io/javascript-full-api-reference.md#mixpanelreset) to clear data attributed to a user when they logout. This will clear the cookie/local storage and allows you to handle [multiple users on a single device](/docs/tracking-methods/id-management/identifying-users-simplified#multiple-users-one-device). 
+Call [`.reset()`](https://github.com/mixpanel/mixpanel-js/blob/master/doc/readme.io/javascript-full-api-reference.md#mixpanelreset) to clear data attributed to a user when they logout. This will clear the cookie/local storage and allows you to handle [multiple users on a single device](/docs/tracking-methods/id-management/identifying-users-simplified#multiple-users-one-device).
 
 **Example Usage**
 
@@ -571,7 +603,7 @@ A few commonly used people methods are highlighted below:
 
       // increment "age" by 2
       mixpanel.people.increment('age',2);
-      
+
       // use negative number to decrement
       // decrement "age" by 5
       mixpanel.people.increment('age',-5);
@@ -596,7 +628,7 @@ The Javascript SDK provides a few method for adding individual users to a group 
 ### Adding Users to a Group
 [All events must have the group key as an event property in order to be attributed to a group](/docs/data-structure/group-analytics#group-keys-tracked-as-event-properties). Without the group key, an event cannot be attributed to a group.
 
-Call the [`.set_group()`](https://github.com/mixpanel/mixpanel-js/blob/master/doc/readme.io/javascript-full-api-reference.md#mixpanelset_group) method to register the current user to a group, which would add the `group_key` as an event property set to the `group_id` value to all events moving forward. 
+Call the [`.set_group()`](https://github.com/mixpanel/mixpanel-js/blob/master/doc/readme.io/javascript-full-api-reference.md#mixpanelset_group) method to register the current user to a group, which would add the `group_key` as an event property set to the `group_id` value to all events moving forward.
 
 Alternatively, you can manually add the group key property to be more selective about which events to attribute to a group.
 
@@ -945,133 +977,7 @@ Here's a [full code sample](https://gist.github.com/ranic/80459104def4e4bcd73d5c
 
 ## Session Replay
 
-<Callout type="info">
-    See the developer's guide to implementing Session Replay with the Javascript SDK [here](/docs/session-replay/implement-session-replay/session-replay-web).
-</Callout>
-
-Mixpanel [Session Replay](/docs/session-replay) enables you to watch playbacks of your end-user's digital experiences on your website. By default, the Session Replay functionality is disabled and will not be loaded into your website until explicitly enabled.
-
-### Sampling
-
-Enable Session Replay and set your sampling rate with the `record_sessions_percent` config option when initializing the library. 
-
-Start with a low sampling rate and adjust according to your specific analytics needs.
-
-**Example Usage**
-
-```javascript
-mixpanel.init(
-    "<YOUR_PROJECT_TOKEN>", 
-    {
-        record_sessions_percent: 1  //records 1% of all sessions
-    }
-)
-```
-
-Start with a low sampling rate and adjust according to your specific analytics needs.
-
-### Replay Configurations
-
-Customize the Replay capture behavior using the library init options outlined below.
-
-| Option | Description | Default | 
-| --- | --- | --- |
-| `record_block_class` | CSS class name or regular expression for elements which will be replaced with an empty element of the same dimensions, blocking all contents.  | `new RegExp('^(mp-block\|fs-exclude\|amp-block\|rr-block\|ph-no-capture)$')` <br/> (common industry block classes) |
-| `record_block_selector` | CSS selector for elements which will be replaced with an empty element of the same dimensions, blocking all contents.  | `"img, video"` |
-| `record_idle_timeout_ms` | Duration of inactivity in milliseconds before ending a contiguous replay. A new replay collection will start when active again. | `1800000`<br/>(30 minutes) |
-| `record_mask_text_class` | CSS class name or regular expression for elements that will have their text contents masked. | `new RegExp('^(mp-mask\|fs-mask\|amp-mask\|rr-mask\|ph-mask)$')` <br/> (common industry mask classes) |
-| `record_mask_text_selector` | CSS selector for elements that will have their text contents masked. | `"*"` |
-| `record_max_ms` | Maximum length of a single replay in milliseconds. Up to 24 hours is supported. Once a replay has reached the maximum length, a new one will begin. | `86400000`<br/>(24 hours) |
-| `record_min_ms` | Minimum length of a single replay in milliseconds. Up to 8 seconds is supported. If a replay does not meet the minimum length, it will be discarded. | `0`<br/>(0 seconds) |
-| `record_sessions_percent` | Percentage of SDK initializations that will qualify for replay data capture. A value of "1" = 1%. | `0` |
-| `record_canvas` | When true, Mixpanel will record snapshots of `<canvas>` elements on your site at up to 15 frames per second | `false` |
-| `record_heatmap_data` | When true, Mixpanel will capture click events during replays to populate Heatmaps. Viewing Heatmaps is currently in Beta. | `false` |
-
-**Example Usage**
-
-```javascript
-mixpanel.init('YOUR_PROJECT_TOKEN', {
-    record_sessions_percent: 1,  //records 1% of all sessions
-    record_mask_text_selector: '', //unmask all text elements
-    record_block_selector: '' //unmask images and videos
-});
-```
-
-### Manual Capture
-
-Start and stop the capturing of Replay data manually at any time using the `start_session_recording()` and `stop_session_recording()` methods. These methods override the `record_sessions_percent` value from the [sampling init option](/docs/tracking-methods/sdks/javascript#sampling) above.
-
-**Example Usage**
-
-```javascript
-// force session recording to begin
-// no effect if replay data collection is in progress
-mixpanel.start_session_recording();
-
-// force session recording to end
-// no effect if replay data collection is not in progress
-mixpanel.stop_session_recording();
-```
-
-#### Get Replay ID
-
-Use the `get_session_recording_properties()` method to return the `$mp_replay_id` of the current recording taking place. Add this property to any events not tracked using the SDK to include the event in the current recording.
-
-Events tracked using the JavaScript SDK while session recording is active will have the `$mp_replay_id` added automatically.
-
-**Example Usage**
-
-```javascript
-mixpanel.get_session_recording_properties()
-// {$mp_replay_id: '19221397401184-063a51e0c3d58d-17525637-1d73c0-1919139740f185'}
-// Returns an empty object if there is no Replay in progress.
-```
-
-#### Get Replay URL
-
-Returns a URL linking to the current replay in the Mixpanel UI. This URL is accessible only by authenticated users with the necessary permissions for the Mixpanel project. This is useful for debugging purposes or for adding metadata to other platforms, such as support tickets.
-
-```javascript
-mixpanel.get_session_replay_url()
-// https://mixpanel.com/projects/replay-redirect?replay_id=19307d78e24394fe15-0cd98d8fd9ad1d-1f525636-4b9600-19307d78e28194fe15&distinct_id=123&token=my-project-token
-// Returns null if there is no Replay in progress.
-```
-### Heatmaps (Beta)
-
-<Callout type="info">
-Heatmaps are currently in private, closed beta. For early access, please contact your Account Manager.
-</Callout>
-
-Enable [Heatmaps](/docs/session-replay/heatmaps) data collection by setting `record_heatmap_data` to `true` during library initialization.
-
-Ensure Session Replay is enabled, as Heatmaps only collect data during sessions with recorded replays. If a page has limited replay coverage, the resulting Heatmap may provide limited or less meaningful insights.
-
-**Example Usage**
-
-```javascript Javascript
-mixpanel.init('YOUR_PROJECT_TOKEN', {
-  record_sessions_percent: 1, // Session Replay must be enabled for Heatmap
-  record_heatmap_data: true   // Enable Heatmap data collection
-});
-```
-
-If you use [Autocapture](/docs/tracking-methods/autocapture) to track clicks, you can leverage these clicks to populate the Heatmaps without setting the `record_heatmap_data` option during library initialization.
-
-**Example Usage**
-
-```javascript Javascript
-mixpanel.init('YOUR_PROJECT_TOKEN', {
-  autocapture: {
-    pageview: "full-url",
-    click: true, // click tracking enabled
-    input: true,
-    scroll: true,
-    submit: true,
-    capture_text_content: false,
-  },
-  record_sessions_percent: 1 // Session Replay enabled, recording 1% of all sessions
-});
-```
+See the developer's guide to implementing Session Replay with the Javascript SDK [here](/docs/tracking-methods/sdks/javascript/javascript-replay).
 
 ## Release History
 [See All Releases](https://github.com/mixpanel/mixpanel-js/releases).

@@ -18,6 +18,13 @@ export default {
             "breadcrumb": false,
         }
     },
+    "troubleshooting": {
+        "title": "FAQs",
+        "type": "page",
+        "theme": {
+            "breadcrumb": false,
+        }
+    },
     "api-reference": {
         "title": "API Docs ↗",
         "type": "page",

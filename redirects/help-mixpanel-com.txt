@@ -60,7 +60,7 @@ https://help.mixpanel.com/hc/en-us/articles/115004561786(.*) /docs/tracking/how-
 https://help.mixpanel.com/hc/en-us/articles/115004561926(.*) /docs/reports/funnels
 https://help.mixpanel.com/hc/en-us/articles/115004561926(.*) /docs/reports/funnels
 https://help.mixpanel.com/hc/en-us/articles/115004562246(.*) /docs/features/custom-events
-https://help.mixpanel.com/hc/en-us/articles/115004562723(.*) /docs/features/advanced#downloading-reports-from-mixpanel
+https://help.mixpanel.com/hc/en-us/articles/115004562723(.*) /docs/export-methods
 https://help.mixpanel.com/hc/en-us/articles/115004565746(.*) /docs/boards
 https://help.mixpanel.com/hc/en-us/articles/115004565766(.*) /docs
 https://help.mixpanel.com/hc/en-us/articles/115004565806(.*) /docs/data-structure/user-profiles#deleting-user-profiles
@@ -137,8 +137,8 @@ https://help.mixpanel.com/hc/en-us/articles/360000902886(.*) /docs/users
 https://help.mixpanel.com/hc/en-us/articles/360000953003(.*) /docs
 https://help.mixpanel.com/hc/en-us/articles/360001113426(.*) /docs/privacy/protecting-user-data
 https://help.mixpanel.com/hc/en-us/articles/360001131323(.*) /docs
-https://help.mixpanel.com/hc/en-us/articles/360001182866(.*) /docs/features/advanced#event-and-property-limitations
-https://help.mixpanel.com/hc/en-us/articles/360001236083(.*) /docs/features/advanced#custom-buckets
+https://help.mixpanel.com/hc/en-us/articles/360001182866(.*) /docs/reports
+https://help.mixpanel.com/hc/en-us/articles/360001236083(.*) /docs/features/custom-buckets
 https://help.mixpanel.com/hc/en-us/articles/360001243663(.*) /docs/cohort-sync/integrations/braze
 https://help.mixpanel.com/hc/en-us/articles/360001307806(.*) /docs/data-governance/lexicon
 https://help.mixpanel.com/hc/en-us/articles/360001321243(.*) /docs
@@ -152,7 +152,7 @@ https://help.mixpanel.com/hc/en-us/articles/360001355166(.*) /docs/tracking-meth
 https://help.mixpanel.com/hc/en-us/articles/360001355206(.*) /docs
 https://help.mixpanel.com/hc/en-us/articles/360001355266(.*) /docs/data-structure/events-and-properties
 https://help.mixpanel.com/hc/en-us/articles/360001355466(.*) /docs/best-practices/server-side-best-practices#identifying-users
-https://help.mixpanel.com/hc/en-us/articles/360001355506(.*) /docs/features/advanced#analyzing-first-time-users
+https://help.mixpanel.com/hc/en-us/articles/360001355506(.*) /docs/reports#first-time-ever-filter
 https://help.mixpanel.com/hc/en-us/articles/360001359106(.*) /docs/pricing#sales-tax
 https://help.mixpanel.com/hc/en-us/articles/360001360643(.*) /docs/features/advanced#top-segments-logic
 https://help.mixpanel.com/hc/en-us/articles/360001361023(.*) /docs
@@ -183,11 +183,11 @@ https://help.mixpanel.com/hc/en-us/articles/360028142571(.*) /docs/features/aler
 https://help.mixpanel.com/hc/en-us/articles/360028380611(.*) /docs/how-it-works/concepts
 https://help.mixpanel.com/hc/en-us/articles/360028823552(.*) /docs/admin/data-governance/data-audit
 https://help.mixpanel.com/hc/en-us/articles/360028823552(.*) /docs/data-governance/data-views-and-classification
-https://help.mixpanel.com/hc/en-us/articles/360029126351(.*) /docs/features/advanced#query-time-sampling
+https://help.mixpanel.com/hc/en-us/articles/360029126351(.*) /docs/reports#query-time-sampling
 https://help.mixpanel.com/hc/en-us/articles/360029190092(.*) /docs/reports/funnels#advanced
 https://help.mixpanel.com/hc/en-us/articles/360030848432(.*) /docs/features/custom-properties
 https://help.mixpanel.com/hc/en-us/articles/360031037172(.*) /docs/orgs-and-projects/roles-and-permissions#admin
-https://help.mixpanel.com/hc/en-us/articles/360031788492(.*) /docs/features/advanced#find-interesting-segments
+https://help.mixpanel.com/hc/en-us/articles/360031788492(.*) /docs/reports#find-interesting-segments
 https://help.mixpanel.com/hc/en-us/articles/360033248932(.*) /docs/data-structure/events-and-properties
 https://help.mixpanel.com/hc/en-us/articles/360034129112(.*) /docs/reports/apps/impact
 https://help.mixpanel.com/hc/en-us/articles/360035109991(.*) /docs/best-practices/create-a-tracking-plan
@@ -207,7 +207,7 @@ https://help.mixpanel.com/hc/en-us/articles/360041995352(.*) /docs/data-structur
 https://help.mixpanel.com/hc/en-us/articles/360041995352(.*) /docs/tracking/how-tos/events-properties
 https://help.mixpanel.com/hc/en-us/articles/360042412051(.*) /docs/what-is-mixpanel
 https://help.mixpanel.com/hc/en-us/articles/360043474691(.*) /docs/pricing/startup-program
-https://help.mixpanel.com/hc/en-us/articles/360043776692(.*) /docs/features/advanced#slack-integration
+https://help.mixpanel.com/hc/en-us/articles/360043776692(.*) /docs/features/slack-integration
 https://help.mixpanel.com/hc/en-us/articles/360043782572(.*) /docs/data-governance/data-views-and-classification#manage-data-view
 https://help.mixpanel.com/hc/en-us/articles/360043837132(.*) /docs/data-governance/data-views-and-classification#use-cases
 https://help.mixpanel.com/hc/en-us/articles/360044139291(.*) /docs/data-structure/lookup-tables
@@ -245,7 +245,7 @@ https://help.mixpanel.com/hc/en-us/articles/4409841288724(.*) /docs/boards/advan
 https://help.mixpanel.com/hc/en-us/articles/4409850288276(.*) /docs/boards/advanced
 https://help.mixpanel.com/hc/en-us/articles/4413141791764(.*) /docs/reports/flows#advanced
 https://help.mixpanel.com/hc/en-us/articles/4415881598996(.*) /docs/cohort-sync/integrations/salesforce-marketing-cloud
-https://help.mixpanel.com/hc/en-us/articles/4485419360916(.*) /docs/features/advanced#comparison-time-baseline-and-overall
+https://help.mixpanel.com/hc/en-us/articles/4485419360916(.*) /docs/reports#comparisons
 https://help.mixpanel.com/hc/en-us/articles/4870177097748(.*) https://github.com/mixpanel/mixpanel-gtm-template#readme
 https://help.mixpanel.com/hc/en-us/articles/5556776427156(.*) /docs/cohort-sync
 https://help.mixpanel.com/hc/en-us/articles/6739032703508(.*) /docs/boards/templates

@@ -2,19 +2,15 @@ import { Callout } from 'nextra/components'
 
 # Reports Overview
 
-A report is the basic unit of performing an analysis in Mixpanel.
+A report is a visual display of your tracked Mixpanel data.
 
 Mixpanel has several types of reports: [Insights](/docs/reports/insights), [Funnels](/docs/reports/funnels/funnels-overview), [Flows](/docs/reports/flows), [Retention](/docs/reports/retention) and other advanced reports, each with their specialized use.
 
-This article focuses on the common concepts across each report.
-
-## Report
-
-A report is the basic unit of performing an analysis in Mixpanel. A report can be saved to a board, and a board can contain many reports. Each report is made up of at least one **metric** and is displayed using the chosen **visualization**.
+This article focuses on the key concepts that are applicable across the four basic report types (Insights/Funnels/Flows/Retention).
 
 ## Metrics
 
-A metric is a some sort of **measurement** on a **behavior**. An example of a metric is "Unique Users" doing "Sign up", which is the measurement of unique users, on the behavior of "Sign up".
+Metrics are the values that the report will display. Every metric consists of a **measurement** on a **behavior**. An example of a metric is "Unique Users" doing "Sign up", which is the measurement of unique users, on the behavior of "Sign up".
 
 ## Behaviors
 
@@ -22,13 +18,15 @@ A behavior is an event or a sequence of events performed within some criteria. A
 
 ## Measurements
 
-A measurement is a selection on how to summarize behaviors. Depending on the behavior, certain measurements may be not be possible. For example, for a single event, you cannot measure the conversion rate of it. Some examples of measurements are: total events, unique users, total sessions, conversion rate, retention rate and aggregate property. The measurement is chosen at the bottom left area of the metric.
+The measurement tells the metric how to evaluate the behaviors. Some examples of measurements are: total events, unique users, total sessions, conversion rate, retention rate and aggregate property.
+
+Depending on the behavior, certain measurements may be not be possible. For example, you cannot use the conversion rate measurement when the metric only has a single event.  The measurement is chosen at the bottom left area of the metric.
 
 ![measurement](/report-measurement.png)
 
 ## Visualizations
 
-In the top right, you can change the type of visualization for your report. The options available will depend on the type of report that you started with. In this case, we switched to a bar view, allowing us to see the total number of "Log In" across the entire time range, allowing us a summarized view that is easily scanned.
+You can change the type of visualization by clicking the dropdown in the upper right corner of the report. The options available will depend on the type of report that you started with. In this case, we switched to a bar view, allowing us to see the total number of "login" events across the entire time range, broken down by the "Platform" property.
 
 ![/Screen_Shot_2022-07-11_at_3.07.02_PM.png](/Screen_Shot_2022-07-11_at_3.07.02_PM.png)
 
@@ -61,6 +59,22 @@ You can choose multiple property filters for each item in your query.
 You can select whether you would like the query to match any of these filters, or all of the filters by clicking on **and/or** beside the filters.
 
 ![image](https://github.com/mixpanel/docs/assets/2077899/9e3bcd31-2b12-48d1-b04f-cdda85dd2584)
+
+### First Time Ever Filter
+Sometimes, you might want to filter an event to only the first time that it's performed by a user. This helps answer the following questions:
+
+* How many users sign up or perform another key event for the first time each week?
+* Which referrers do most first-time users come from?
+* How quickly do users make a purchase after their first time engaging with the app?
+* How well do users retain after performing a key event for the first time?
+* What events do users perform before and after making their first purchase?
+
+You can do this by adding a First Time Filter to any event in Mixpanel. This filters the event down to only the first instance of the event performed by a user:
+
+![233894752-93851682-9d83-4c87-937d-8fd90db465c6.png](https://user-images.githubusercontent.com/2077899/233894752-93851682-9d83-4c87-937d-8fd90db465c6.png)
+
+Mixpanel computes this on-the-fly by scanning each user's history to determine if this was the first instance of the event performed by the user, based on timestamp.
+Note that when there's a tie in the timestamps of the first event (eg: the user does multiple first-time Purchases in the same second), all of those events will be considered the "first time" and will match the filter. The impact will be that Mixpanel includes multiple events for those users, so if you break down by user ID, you may see that the user did multiple first events.
 
 ## Breakdowns
 
@@ -129,6 +143,12 @@ The events and properties in the menu are prefixed to provide additional context
 
     ![/Screen_Shot_2021-11-18_at_12.29.06_PM.png](/Screen_Shot_2021-11-18_at_12.29.06_PM.png)
 
+### Duplicating Metrics
+
+To duplicate any metrics or properties in your query, select the inline action menu and choose **Duplicate**. Delete any events or properties by clicking the **trash** icon.
+
+![image](https://github.com/mixpanel/docs/assets/2077899/f496b609-47a3-4287-95f8-e9e6f2ac915d)
+
 ## Date Range
 
 Determine the time range of a query by clicking on the date range selector. The date range selector is common across all reports.
@@ -188,6 +208,11 @@ To Date respects start of week and start of quarter settings under project setti
 
 Enable hourly and minute level granularity by going to the advanced submenu under "custom" date range selection. This enables you to select time ranges up to the minute. You can also use this for the "Last" time range, to monitor only the past few hours or minutes. When doing time series using minutely or hourly intervals, there is a lower time range limit supported.
 
+#### Zoom In
+To zoom in, click on the graph and drag to highlight a specific window of time in your report. Click **Reset zoom** to return to the previous view.
+
+![zoom (1)](https://github.com/mixpanel/docs/assets/2077899/3add64ad-3fea-4d74-a3bf-303fcc1f4d9d)
+
 ## Comparisons
 
 Comparisons allow you to compare metrics, or broken down segments of metrics against each other. Depending on the type of comparison type, you are also able see the lift of a segment or metric against another.
@@ -213,6 +238,23 @@ Compare to segment allows you to set a property value as a baseline and see how 
 Compare to overall allows you compare each segment value and see what proportion it makes of the overall value.
 
 ![/compare_to_overall.png](/compare_to_overall.png)
+
+#### Supported Charts
+
+Comparisons are supported across all insights chart types. Depending on the exact configuration chosen, certain comparison operations may be disabled.
+
+| Chart Type | Time Comparison Supported | Percentage change over Baseline Supported | Percentage of Overall Supported |
+| --- | --- | --- | --- |
+| Insights Line | Yes | Yes | Yes |
+| Insights Stacked Line | No | No | Yes |
+| Insights Bar | Yes | Yes | Yes |
+| Insights Stacked Bar | Yes | No | No |
+| Insights Pie | No | No | No |
+| Insights Metric | Yes | Yes | Yes |
+| Funnels Steps | Yes | Yes | No |
+| Funnel Trends | Yes | Yes | No |
+| Retention Curve | No | Yes | No |
+| Retention Trends | Yes | Yes | No |
 
 ## Saving to a Board
 
@@ -242,21 +284,31 @@ You can either customize the ranges by clicking "[Customize Range](/docs/feature
 
 Or alternatively, if you'd like to see the exact numeric values you can typecast the Number property to a String to remove the range bucketing.
 
-## Sessions
+## View Users
 
-This is a period of continuous user activity. Use Sessions in Mixpanel to track which events users perform within a session, how many sessions contained a key action or how many sessions it takes for a user to convert in a funnel. [Learn more](/docs/features/sessions).
+View Users is a streamlined process for exploring the users contributing to a specific metric or point on a chart. By interacting with the chart, you can view a group of users experiencing friction or dig deep into which users are driving feature adoption.
 
-![/Screen_Shot_2022-07-11_at_3.27.25_PM.png](/Screen_Shot_2022-07-11_at_3.27.25_PM.png)
+View Users can help you:
+
+- See the users contributing to any metric and view their recent activities & properties.
+- Save these users as a cohort.
+- Export these users to a CSV file.
+
+![/View_Users_Insights_gif.gif](/View_Users_Insights_gif.gif)
 
 ## Segment Limits and Ordering
 
+<Callout type="warning">
+When you encounter a "cardinality limit" error or see a "-" in your report despite having data, it indicates that the query returned more unique segments than the UI can display. To resolve this, narrow the time range, apply filters to specific events or properties, or reduce the number of breakdowns. These steps limit the segments, making your report easier to interpret and reduce the strain on the querying capacity of your projects.
+</Callout>
+
 In order to keep the interactive analysis experience snappy for projects of all sizes, Mixpanel limits how many segments are returned when using breakdowns. When breakdown (also referred to as segmentation) limits are reached, the response will be truncated to only return the top N segments. We have higher limits available via CSV exports.
 
-### **UI**
+### UI
 
-We’re changing how many segments are returned back to the report (visible limit), how many segments can be selected at a time for visualization (selection limit) as well as the number of segments selected by default (default selection).
+We are changing how many segments are returned back to the report (visible limit), how many segments can be selected at a time for visualization (selection limit) as well as the number of segments selected by default (default selection).
 
-Here’s the breakdown per report visualization type:
+Here is the breakdown per report visualization type:
 
 | **Report Viz** | **Default Selection** | **Selection Limit** | **Visible Limit** |
 | --- | --- | --- | --- |
@@ -267,11 +319,11 @@ Here’s the breakdown per report visualization type:
 | Retention | 6 | 12 | 200 |
 | Funnels | 6 | 12 | 200 |
 
-### **CSV Export**
+### CSV Export
 
 When exporting a report as CSV, we offer elevated limits. For most reports, the CSV export limit is 10,000. For insights non-line charts, we allow for up-to 50,000.
 
-### **Top Segments logic**
+### Top Segments logic
 
 The way we pick the top segments differs according to the type of query. We choose the top segments based on the value shown in the metric value column.
 
@@ -303,5 +355,131 @@ You will see a banner at the top of your report indicating that results were tru
 
 ![image](/Segment_limits.png)
 
+## Query Time Sampling
 
+<Callout type="info">
+    This feature is available to customers with an Enterprise subscription plan in projects with over 2 billion monthly events.
+</Callout>
 
+Query-time sampling allows you to query a subset of users and shorten the time it takes for a report to load results. The Insights, Funnels, Retention, and Flows reports all support sampling at query time.
+
+### Enable Sampling
+
+From the report in which you would like to use sampling, click the **lightning bolt** in the upper right corner of the query builder.
+
+![/13109650264596](/13109650264596.png)
+
+This will enable sampling on the report and will be indicated by the lightning bolt symbol turning blue. The percentage of the total that is included in the query calculations will be indicated in the top right corner of the query builder.
+
+To turn off sampling, click the lightning bolt symbol in the upper right corner of the query builder again. The lightning bolt symbol will turn grey to indicate that sampling is disabled.
+
+### Query Time Sampling Calculation and Presentation
+
+Mixpanel will not sample, or drop, events at ingestion. Instead, Mixpanel will ingest all event data and sample it at query time. This prevents the loss of important data and, therefore, allows you to toggle sampling on and off depending on need.
+
+For example, if you have a need for iterative querying, then sampling will greatly speed up this process. When you build the proper query, you can turn off sampling and query the entire dataset.
+
+The following occurs when sampling is enabled:
+
+1. Mixpanel selects a uniformly random sample of users on which to run the analysis.
+2. The sample size is 10% of the total population.
+3. The report is generated using that subset of users.
+4. Mixpanel up-samples the data by multiplying by the inverse of the sampling factor. This is done for [functions](/docs/reports/insights) such as totals and uniques. Functions that do not scale with users (average, min, max) will not be up-sampled.
+5. The effect is that numbers should closely approximate results seen without sampling enabled. This works better as the number of users increases, particularly for customers with more than 5 million users.
+6. Mixpanel adds an annotation to reports.
+
+<Callout type="info">
+    If you save a report that uses query time sampling, then a version of the report *without* sampling is saved. This ensures that Boards and saved reports are computed on the entire dataset for high fidelity.
+</Callout>
+
+## Query Result Caching
+
+Mixpanel stores the results from a report query in our server cache and presents these results from there when appropriate. This saves time when running a complicated query multiple times, and allows you to surface previously calculated results near-instantaneously. The date range of the query will adjust how Mixpanel presents results from the server cache.
+
+- If the query date range is 1 year or over, then the query results are cached for up to 14 days.
+- If the query date range is under 1 year, then the query results are cached for up to 7 days.
+- If the query date range is under 6 months, then the query results are cached for up to 3 days.
+- If the query date range is under 2 months, then the query results are cached for up to 2 days.
+- If the query date range is under 1 month, then the query results are cached for up to 1 day.
+- If the query date range is under 1 week, then the query results are cached for up to 12 hours.
+- If the query date range is under 1 day, then the query results are cached for up to 1 hour.
+
+While this highlights the default server cache behavior, you can always refresh a report to include the most current data as described below.
+
+### Refreshing the Query Results Cache
+
+To refresh the query results cache, navigate to the report, click the three dots overflow menu at the top of the report, select **Refresh Data**.
+
+![public/Refresh_Data_Report.png](/Refresh_Data_Report.png)
+
+To refresh the query results' cache in a Board, click the three dots overflow menu at the top of the Board, and select **Refresh Data**.
+
+![public/Refresh_Data_Board.png](/Refresh_Data_Board.png)
+
+To refresh the query results' cache in a Board card, click the three dots overflow menu at the top of the card, and select **Refresh Data**. 
+
+![public/Refresh_Data_Board_Card.png](/Refresh_Data_Board_Card.png)
+
+## Find Interesting Segments
+
+Determine which users are either driving conversion and retention or behaving as outliers by using the built-in “Find Interesting Segments” feature.
+
+Find Interesting Segments can help you discover:
+
+- Whether certain property segments outperform the overall funnel conversion or retention rates.
+- Cohorts that perform bests to optimize for those behaviors.
+- Segments that are under-performing.
+- Changes in the conversion or retention rates of segments.
+- Change in population over time in funnels.
+
+User properties are not yet supported.
+
+### Interesting Segments in Funnels
+
+View the top and bottom converting segments in your funnel by clicking the **Find interesting segments** button at the bottom of the segmentation chart.
+
+![/10038188905364](/10038188905364.png)
+
+Rather than searching through multiple property breakdowns to find significant data, this feature automatically identifies this data for you. Mixpanel combs through your event properties and cohorts to show you which of those segments convert higher or lower than average, and are therefore statistically significant.
+
+There are two reports you will receive in your email: segment analysis and time comparison.
+
+### Segment Analysis
+
+An email that breaks down the top and bottom converting segments of your funnel based on statistical significance and other factors is automatically sent after you click the button. If no statistically significant segments are found, then the email shows non-statistically significant segments.
+
+Segment Analysis helps answer questions such as:
+
+- Which groups of users are driving my conversion rate?
+- Which groups of users are decreasing my conversion rate?
+
+This is done by examining which segments of users are converting at a high rate and have a large enough population size, or which segments are converting at a low rate and have a large enough population size. In the first scenario, this segment would raise the overall conversion rate, while in the second scenario, this segment would be lowering the overall conversion rate.
+
+### Time Comparison
+
+A time comparison chart is also included in the email. This chart shows a segment's behavior over time (in terms of both conversion rate change and population size change) as it relates to the overall population trend (population and conversion rate change).
+
+Time comparison answers questions such as:
+
+- Which groups of users are trending in a way that is different from the overall behavior?
+- Which groups of users are driving the overall behavior?
+
+Mixpanel automatically compares the currently selected date period to the previous one. For example, if you are viewing the current week, the email will compare to the week before.
+
+### Interesting Segments in Retention
+
+View the top and bottom converting segments in your retention report by clicking the **Find interesting segments** button at the bottom of the retention chart. This feature is not currently available for Frequency Retention.
+
+![/10037069627156](/10037069627156.png)
+
+Rather than searching through multiple segment breakdowns to find significant data, this feature automatically identifies that data for you. Mixpanel combs through your event properties and cohorts and shows you which of those segments retain at a higher or lower rate than average.
+
+An email that breaks down the top and bottom retaining segments of your Retention report based on changes in retention rates is automatically sent after you click the button.
+
+### Interpret Email Results
+
+When your analysis email says “no interesting segments”, this means that none of the segments you analyzed were behaving significantly differently from the overall population at a large enough volume. To resolve this issue, try extending the date range of the report or try a different report.
+
+If the analysis request included dates in the past five days and is sent from mobile SDK, data may be delayed and therefore not included at the time of the analysis. Likewise, the date window selected might still fall under the conversion window, and more conversions have yet to come through.
+
+Results are sorted by taking into consideration the property, the number of users in the report, as well as the deviation from overall conversion or retention behavior to surface the most meaningful segments to you.

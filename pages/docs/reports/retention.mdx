@@ -26,9 +26,13 @@ Building a Retention report follows the same high level steps as building any ot
 
 ### Step 1: Define your Retention Behavior
 
-The retention behavior is the basic building block of a Retention report. A retention behavior is doing an event and then coming back to do another event. In this case, since we want to know retention after signup, choose "Sign Up Completed" in the first event slot. Then, we want to know if users are coming back and using the product, so choose "Any Event" in the second event slot. At this point, your query should look like this:
+The Retention Behavior is the basic building block of a Retention report. A Retention Behavior is doing an event and then coming back to do another event. In this case, since we want to know retention after signup, choose "Sign Up Completed" in the first event slot. Then, we want to know if users are coming back and using the product, so choose "Any Event" in the second event slot. At this point, your query should look like this:
 
 ![/retention_beta_1.png](/retention_beta_1.png)
+
+You can save the Retention Behavior you built and reuse them in other reports. Select the "..." button in the top right corner of the metric, then click "Save Behavior". Note that saving a behavior and saving a metric is different; a saved behavior consists of the events/Funnels/Retention, while a saved metrics consists of the saved behavior and the measurements of the behavior.
+
+Learn more about [Saved Metrics and Behaviors](/docs/features/saved-metrics-and-behaviors).
 
 ### Step 2: Choose your Measurement
 
@@ -41,6 +45,10 @@ There are 4 types of measurement
 - Property Average: Average across users of sum of property within window (eg average watch time per user)
 
 ![/Updated_retention_measurements.png](/Updated_retention_measurements.png)
+
+Your Retention Behavior combined with the measurement forms a Metric. You can save the Retention Metric you built and reuse them in other reports (such as the Insights report). Select the "..." button in the top right corner of the metric, then click "Save Behavior". Note that saving a behavior and saving a metric is different; a saved behavior consists of the events/Funnels/Retention, while a saved metrics consists of the saved behavior and the measurements of the behavior.
+
+Learn more about [Saved Metrics and Behaviors](/docs/features/saved-metrics-and-behaviors).
 
 ### Step 3: Choose Filters
 
@@ -236,15 +244,13 @@ Above said, general expectation is product use-cases which focus on user stickin
 
 ### Saved Retention Behaviors
 
-You can define a retention behavior and save and share it. Press "Save as New" button to save your retention behavior definition. You can change the name and add a description.
+You can save the Funnel Behavior you built and reuse them in other reports. This can be helpful when there is a sequence of events that you frequently analyze (such as sign up flow), or if you want to analyze your Funnels Behavior along-side other metrics in an Insights report.
 
-![save retention](/save-retention-1.png)
+Select the "..." button in the top right corner of the metric, then click "Save Behavior". Note that saving a behavior and saving a metric is different; a saved behavior consists of the events/Funnels/Retention, while a saved metrics consists of the saved behavior and the measurements of the behavior.
 
-You can also load existing retention behavior definitions by clicking the name of retention behavior.
+[INSERT IMAGE]
 
-![save retention](/save-retention-2.png)
-
-See more about saved behaviors [here](/docs/features/saved-behaviors).
+Learn more about [Saved Metrics and Behaviors](/docs/features/saved-metrics-and-behaviors).
 
 ### Frequency View
 
@@ -357,4 +363,4 @@ In our sample data, this computes to:(500 * (1000 / 1500)) + (400 * (500 / 1500)
 
 ### What does the Metric view in the Retention Trends report show?
 
-The Metric view in the Retention Trends Report shows the ***overall value*** for the retention trend for that time period.  There is a `Cohortize` option under the `Advanced` menu that, when enabled will show the ***last complete bucket*** for that retention trend. Metric charts are often used to look at the most up-to-date data value, which in this case, would be the last / most recently completed cell. For days where there isn't yet a completed cell, Mixpanel uses the closest completed cell for that day.
+The Metric view in the Retention Trends Report shows the ***overall value*** for the retention trend for that time period.  There is a `Cohortize` option under the `Advanced` menu that, when enabled will show the ***weighted average bucket*** for that retention trend.

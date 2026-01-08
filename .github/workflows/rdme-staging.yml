@@ -14,41 +14,55 @@ jobs:
   # Pull Request
   # ////////////////////////////////////////////////////////////////////////
 
-  # Create a new ReadMe Version if it needs to and pushes content to the version
+  # Create a new ReadMe version if it needs to and pushes content to the version
   rdme-staging:
     if: ${{ github.event.pull_request.head.repo.full_name == 'mixpanel/docs' }}
     runs-on: ubuntu-latest
     steps:
       - name: Check out repo 📚
         uses: actions/checkout@v4
-      - uses: actions/setup-node@v4
+
+      - uses: actions/setup-node@v5
         with:
-          node-version: 18
+          node-version: 20
           cache: 'npm'
+
       - run: npm ci
+
       - name: Add node_modules to PATH
         run: echo "$PWD/node_modules/.bin" >> $GITHUB_PATH
 
-      # Try to create the readme version, if it errors it's ok we keep going since it was already created
       - name: Create readme version
         run: |
-          if rdme versions:create 0.0-pr-${{ github.event.number }} --key=${{ secrets.README_API_KEY }} --fork=v3.26 --main=false --beta=false --deprecated=false --isPublic=true; then
+          status=$(curl -s -o /dev/null -w "%{http_code}" -X POST "https://api.readme.com/v2/branches" \
+            -H "Content-Type: application/json" \
+            -H "Authorization: Bearer ${{ secrets.README_API_KEY }}" \
+            -d '{
+              "name": "3.27-pr-${{ github.event.number }}",
+              "base": "3.27",
+              "release_stage": "release",
+              "state": "current"
+            }')
+
+          if [ "$status" -eq 201 ]; then
             echo "Version created successfully"
           else
             echo "Errors because the version already exists, and so we can continue to the next step"
           fi
 
-      - name: Push docs to staging env 🚀
-        uses: readmeio/rdme@v8
+      - name: Push docs to version 🚀
+        uses: readmeio/rdme@62bc5a43208c46fc0d90c78ebeddf0365a41b2cc # rdme version 10.5.3
         with:
-          rdme: docs ./reference --key=${{ secrets.README_API_KEY }} --version=0.0-pr-${{ github.event.number }}
+          rdme: reference upload ./reference --key=${{ secrets.README_API_KEY }} --branch=3.27-pr-${{ github.event.number }}
 
-      # Push openapi specs to staging env
-      - run: npm run api:build
-      - run: npm run api:publish
+      - name: Build OpenAPI specs to version
+        run: npm run api:build
+
+      - name: Publish OpenAPI specs to version
+        run: npm run api:publish
         env:
           README_API_KEY: ${{ secrets.README_API_KEY }}
-          README_VERSION: 0.0-pr-${{ github.event.number }}
+          README_VERSION: 3.27-pr-${{ github.event.number }}
 
   # build and update comment with the proper link
   preview-notify:
@@ -71,13 +85,13 @@ jobs:
       # Build PR Comment
       - name: Build PR comment
         id: build-pr-comment
-        uses: actions/github-script@v7
+        uses: actions/github-script@v8
         with:
           result-encoding: string
           script: |
             return `
               # API Reference Preview
-              :rocket: https://developer.mixpanel.com/v0.0-pr-${{ github.event.number }}/reference/overview
+              :rocket: https://developer.mixpanel.com/v3.27-pr-${{ github.event.number }}/reference/overview
               Last updated: ${new Date().toLocaleString("en-US", {timeZone: "America/Los_Angeles"})} PT from ${{github.sha}}
             `
 

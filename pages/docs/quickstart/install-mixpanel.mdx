@@ -49,6 +49,8 @@ Choose from the methods below. Not sure how to choose? [Read our guide](/docs/tr
 ##### Configure the SDK
 Replace `YOUR_TOKEN` with your project token. You can find your token [here](https://mixpanel.com/settings/project).
 
+You can learn more about configuring Session Replay and Heatmaps [here](/docs/tracking-methods/sdks/javascript/javascript-replay).
+
 ```js Javascript
 //Import Mixpanel SDK
 import mixpanel from "mixpanel-browser";
@@ -58,6 +60,8 @@ mixpanel.init("YOUR_TOKEN", {
   debug: true,
   track_pageview: true,
   persistence: "localStorage",
+  record_sessions_percent: 100, //records 100% of all sessions
+  record_heatmap_data: true,
 });
 ```
 
@@ -109,6 +113,7 @@ $mp = Mixpanel::getInstance("YOUR_TOKEN");
 
 ?>
 ````
+
 </Tabs.Tab>
 
 <Tabs.Tab>
@@ -431,30 +436,119 @@ next step.**
 {/* Next Section */}
 
 # Integration / Framework Guides
-<Cards>
-  <Cards.Card icon title="Segment" href="/docs/tracking-methods/integrations/segment" />
-  <Cards.Card icon title="Google Tag Manager" href="/docs/tracking-methods/integrations/google-tag-manager" />
-  <Cards.Card icon title="Ad Spend" href="/docs/tracking-methods/integrations/ad-spend" />
-  <Cards.Card icon title="Amazon S3" href="/docs/tracking-methods/integrations/amazon-s3" />
-  <Cards.Card icon title="Amazon Kafka" href="/docs/tracking-methods/integrations/aws-kafka" />
-  <Cards.Card icon title="CMS & E-Commerce" href="/docs/tracking-methods/integrations/cms-ecommerce" />
-  <Cards.Card icon title="Customer.io" href="https://customer.io/docs/cdp/destinations/connections/mixpanel?utm_source=mixpanel&utm_medium=partner" />
-  <Cards.Card icon title="Freshpaint" href="/docs/tracking-methods/integrations/freshpaint" />
-  <Cards.Card icon title="Google Cloud Storage" href="/docs/tracking-methods/integrations/google-cloud-storage" />
-  <Cards.Card icon title="Google Pubsub" href="/docs/tracking-methods/integrations/google-pubsub" />
-  <Cards.Card icon title="Google Sheets" href="/docs/tracking-methods/integrations/google-sheets" />
-  <Cards.Card icon title="LaunchDarkly" href="/docs/tracking-methods/integrations/launchdarkly" />
-  <Cards.Card icon title="mParticle" href="/docs/tracking-methods/integrations/mparticle" />
-  <Cards.Card icon title="Next.js" href="/docs/tracking-methods/integrations/nextjs" />
-  <Cards.Card icon title="Mobile Attribution Tracking" href="/docs/tracking-methods/integrations/mobile-attribution-tracking" />
-  <Cards.Card icon title="Rudderstack" href="/docs/tracking-methods/integrations/rudderstack" />
-  <Cards.Card icon title="Shopify" href="/docs/tracking-methods/integrations/shopify" />
-  <Cards.Card icon title="Vendo for Shopify ↗" href="https://apps.shopify.com/vendo?utm_source=mixpanel&utm_medium=partner" />
-  <Cards.Card icon title="Snowplow" href="/docs/tracking-methods/integrations/snowplow" />
-  <Cards.Card icon title="Stripe" href="/docs/tracking-methods/integrations/stripe" />
-  <Cards.Card icon title="Tealium" href="/docs/tracking-methods/integrations/tealium" />
-</Cards>
 
+<Cards>
+  <Cards.Card
+    icon
+    title="Segment"
+    href="/docs/tracking-methods/integrations/segment"
+  />
+  <Cards.Card
+    icon
+    title="Google Tag Manager"
+    href="/docs/tracking-methods/integrations/google-tag-manager"
+  />
+  <Cards.Card
+    icon
+    title="Ad Spend"
+    href="/docs/tracking-methods/integrations/ad-spend"
+  />
+  <Cards.Card
+    icon
+    title="Amazon S3"
+    href="/docs/tracking-methods/integrations/amazon-s3"
+  />
+  <Cards.Card
+    icon
+    title="Amazon Kafka"
+    href="/docs/tracking-methods/integrations/aws-kafka"
+  />
+  <Cards.Card
+    icon
+    title="CMS & E-Commerce"
+    href="/docs/tracking-methods/integrations/cms-ecommerce"
+  />
+  <Cards.Card
+    icon
+    title="Customer.io"
+    href="https://customer.io/docs/cdp/destinations/connections/mixpanel?utm_source=mixpanel&utm_medium=partner"
+  />
+  <Cards.Card
+    icon
+    title="Freshpaint"
+    href="/docs/tracking-methods/integrations/freshpaint"
+  />
+  <Cards.Card
+    icon
+    title="Google Cloud Storage"
+    href="/docs/tracking-methods/integrations/google-cloud-storage"
+  />
+  <Cards.Card
+    icon
+    title="Google Pubsub"
+    href="/docs/tracking-methods/integrations/google-pubsub"
+  />
+  <Cards.Card
+    icon
+    title="Google Sheets"
+    href="/docs/tracking-methods/integrations/google-sheets"
+  />
+  <Cards.Card
+    icon
+    title="Langfuse"
+    href="/docs/tracking-methods/integrations/langfuse"
+  />
+  <Cards.Card
+    icon
+    title="LaunchDarkly"
+    href="/docs/tracking-methods/integrations/launchdarkly"
+  />
+  <Cards.Card
+    icon
+    title="mParticle"
+    href="/docs/tracking-methods/integrations/mparticle"
+  />
+  <Cards.Card
+    icon
+    title="Next.js"
+    href="/docs/tracking-methods/integrations/nextjs"
+  />
+  <Cards.Card
+    icon
+    title="Mobile Attribution Tracking"
+    href="/docs/tracking-methods/integrations/mobile-attribution-tracking"
+  />
+  <Cards.Card
+    icon
+    title="Rudderstack"
+    href="/docs/tracking-methods/integrations/rudderstack"
+  />
+  <Cards.Card
+    icon
+    title="Shopify"
+    href="/docs/tracking-methods/integrations/shopify"
+  />
+  <Cards.Card
+    icon
+    title="Vendo for Shopify ↗"
+    href="https://apps.shopify.com/vendo?utm_source=mixpanel&utm_medium=partner"
+  />
+  <Cards.Card
+    icon
+    title="Snowplow"
+    href="/docs/tracking-methods/integrations/snowplow"
+  />
+  <Cards.Card
+    icon
+    title="Stripe"
+    href="/docs/tracking-methods/integrations/stripe"
+  />
+  <Cards.Card
+    icon
+    title="Tealium"
+    href="/docs/tracking-methods/integrations/tealium"
+  />
+</Cards>
 
 <br></br>
 <br></br>
@@ -464,21 +558,21 @@ next step.**
 
 <hr></hr>
 <br></br>
-<div className="extendedButtonComponent" >
-<div className="bg-base100 rounded-xl">
-  <h2 className="text-2xl font-medium mb-2 color:bg-purple200">
-    Next: Identify Your Users
-  </h2>
-  <p>
-    With Mixpanel installed, you’re now ready to identify the users who use your
-    product.
-  </p>
-  <br></br>
-  <ExtendedButton
-    title="Identify Your Users"
-    link="/docs/quickstart/identify-users/"
-  ></ExtendedButton>
-</div>
+<div className="extendedButtonComponent">
+  <div className="bg-base100 rounded-xl">
+    <h2 className="text-2xl font-medium mb-2 color:bg-purple200">
+      Next: Identify Your Users
+    </h2>
+    <p>
+      With Mixpanel installed, you’re now ready to identify the users who use
+      your product.
+    </p>
+    <br></br>
+    <ExtendedButton
+      title="Identify Your Users"
+      link="/docs/quickstart/identify-users/"
+    ></ExtendedButton>
+  </div>
 </div>
 <br></br>
 <br></br>

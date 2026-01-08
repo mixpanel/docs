@@ -110,7 +110,7 @@ A step will either appear with a number beside it, indicating where it must fall
 
 If you have selected any order for your funnels steps, you have the option to select **Top paths** from the drop-down visualization list to view a [Sankey visualization](/docs/reports/flows#sankey-chart) of how your users are performing the steps in your funnel.
 
-![/funnels_any.gif](/funnels_any.gif)
+![/funnels_any.png](/funnels_any.png)
 
 ### Hold Property Constant
 
@@ -151,29 +151,33 @@ A few things to note about exclusion steps:
 3. There may be any number of exclusion events between steps.
 4. Exclusion steps have the same [two second grace period](/docs/reports/funnels/funnels-faq#how-does-the-funnel-handle-simultaneous-events) as other steps in the funnel.
 
-As an example, let's say you want to understand if users who browse for additional products between adding something to their cart and checking out are less likely to complete a purchase. To answer this question, you could create a funnel with three steps:
+As an example, let's say you want to understand if users who add additional products to their cart and checking out are less likely to complete a purchase. To answer this question, you could create a funnel with four steps:
 
-Step 1: Browse Product
+Step 1: Product Viewed
 
-Step 2: Add to Cart
+Step 2: Product Added
 
-Step 3: Purchase
+Step 3: Checkout Started
 
-You can exclude users who did another “Browse Product” event between Step 2 and Step 3 to see how that affects your funnel's conversion rate.
+Step 4: Purchase Completed
+
+You can exclude users who did another “Product Added” event between Step 2 and Step 3 to see how that affects your funnel's conversion rate.
 
 To add an exclusion step in your funnel, expand the “Advanced” menu and click “Exclude users who did…”. 
 
 Select an event from the list and choose whether you would like the event to be excluded between all steps, or between specific steps. Click the Filter icon beside the step to filter that event by an event or user profile property.
 
-![/exclude_2.gif](/exclude_2.gif)
+![/exclude_2.png](/exclude_2.png)
 
 ## Saved Funnel Behaviors
 
-You can define a funnel behavior and save and share it. Press “Save as New” button to save your funnel behavior definition. You can change the name and add a description.
+You can save the Funnel Behavior you built and reuse them in other reports. This can be helpful when there is a sequence of events that you frequently analyze (such as sign up flow), or if you want to analyze your Funnels Behavior along-side other metrics in an Insights report.
 
-You can also load existing funnel definitions by clicking the name of funnel.
+Select the "..." button in the top right corner of the metric, then click "Save Behavior". Note that saving a behavior and saving a metric is different; a saved behavior consists of the events/Funnels/Retention, while a saved metrics consists of the saved behavior and the measurements of the behavior.
 
-See more about saved behaviors [here](/docs/features/saved-behaviors).
+![/saved-funnel-behavior1.png](/saved-funnel-behavior1.png)
+
+Learn more about [Saved Metrics and Behaviors](/docs/features/saved-metrics-and-behaviors).
 
 ## Counting Methods and Measurements
 
@@ -230,7 +234,7 @@ This measurement type allows you to visualize a numeric event property through a
 
 **Note**: For many e-commerce flows, you will want to pair property sum with [hold property constant](/docs/reports/funnels/funnels-advanced#hold-property-constant) on item ID so you can track each individual item.
 
-To use property sum, select property sum from the measurement menu, and select a numeric property. In this case, we're seeing our 5 step purchase funnel, and we can see that our biggest drop-off is between viewing an item and adding it to cart.
+To use property sum, select property sum from the measurement menu, and select a numeric property. 
 
 ![funnels_property_sum.png](/funnels_property_sum.png)
 
@@ -248,7 +252,7 @@ For example, if a user performs “Step 1 → Step 2”:
 For example, if a user performs “Step 1 → Step 1 → Step 2”:
 - Frequency: “1 time” — we will count the second “Step 1” event so the frequency will be “1 time”
 
-See [here](/docs/features/advanced#behavioral-properties) for more information about behavioral properties.
+See [here](/docs/features/computed-properties#behavioral-properties) for more information about behavioral properties.
 
 ![funnels_behavioral_props.png](/funnels_behavioral_props.png)
 

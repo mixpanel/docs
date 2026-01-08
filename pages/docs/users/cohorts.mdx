@@ -24,15 +24,15 @@ Below are a few examples:
 
 **Filter by users who watched more than 10 videos in the last 7 days**
 
-![/Kapture_2021-04-06_at_13.43.06.gif](/Kapture_2021-04-06_at_13.43.06.gif)
+![/cohort_example_1.gif](/cohort_example_1.gif)
 
 **Filter to only users who watched a video for the very first time in the past 30 days**
 
-![/Kapture_2021-04-06_at_13.52.43.gif](/Kapture_2021-04-06_at_13.52.43.gif)
+![/cohort_example_2.gif](/cohort_example_2.gif)
 
 **Chaining cohorts together using the AND/OR operators**
 
-![/Kapture_2021-04-06_at_14.31.41.gif](/Kapture_2021-04-06_at_14.31.41.gif)
+![/cohort_example_3.gif](/cohort_example_3.gif)
 
 You can also access the builder directly from the query builder in any of our reports, by clicking Create Custom > Cohort. This will create a temporary cohort that only persists for your analysis session.
 
@@ -42,6 +42,9 @@ Because user profile properties only store the most recent value, cohorts involv
 For example, suppose the cohort’s filter criteria is: users where user[“City”] == “SF” and “Did Event: Order Ride 3 times in Last 7 days”.
 
 Mixpanel computes the above over the last 30 days and then groups the set of users who have property user[“City”] == “SF” as of right now and intersect that with the daily cohort of users who did Order Ride 3 times in the last 7 days.
+
+### Creating a Cohort via Lexicon
+Cohorts can also be created and managed in [Lexicon](/docs/data-governance/lexicon). In Lexicon, you can see all your saved cohorts alongside your other saved definitions like metrics, custom events, and custom properties.
 
 ### Creating a Cohort with Changing User Properties
 With historical user or group properties, you can optionally Add Time and Measurement to specify the time-range over which to search for the property value
@@ -135,3 +138,23 @@ We recommend sharing a set of key cohorts with your organization, to ensure that
 ## Exporting Cohorts
 
 You can download the list of users in any Cohort as a CSV via the Cohort Builder. You can also push cohorts to 3rd-party destinations like [Segment](/docs/cohort-sync/integrations/segment), [Braze](/docs/cohort-sync/integrations/braze), or a [Custom Webhook](/docs/cohort-sync/webhooks).
+
+## FAQ
+
+### How can I create cohorts based on dropped-off or retained users?
+
+There are two ways to create such cohorts. 
+
+The first way would be to create a Funnels report and click the respective segments in order to find the retained/dropped-off users. You can then click “View Users”, followed by “Create Cohort”. Here is a Funnels report to play with: https://mixpanel.com/s/8JY6o 
+
+The second way would be to use the Users page to create cohorts. For example, if you would like to find users who “watch video” and *then* “like video”. You can create the cohort in the Users page. Here is the cohort for reference: https://mixpanel.com/project/3187764/view/3699044/app/users#T9bjQw9kLb7c
+
+If you’d like to find those who have dropped off, you could switch “did” to “did not do”. Here is the cohort for reference: https://mixpanel.com/project/3187764/view/3699044/app/users#Umm8E4JZxLSe
+
+### I created two cohorts, Cohort AA: for users watched videos the last 30 days, and Cohort B: for users who liked videos in the last 30 days. I want to find out the users who did not watch videos AND did not like videos in the last 30 days. How do I create such a cohort? 
+
+You can do so by using the “AND” operator. Here is a cohort for reference: https://mixpanel.com/project/3187764/view/3699044/app/users#Tc76sqFRzbao 
+
+If you were to select multiple cohorts in the filter ([example](https://mixpanel.com/project/3187764/view/3699044/app/users#wPx5FmFoiHtD)), we will filter by cohort A OR cohort B. Therefore, it is still possible for the following cases to occur:
+- User is not in Cohort A (fulfils the criteria), but is in Cohort B
+- User is not in Cohort B (fulfils the criteria), but is in Cohort A

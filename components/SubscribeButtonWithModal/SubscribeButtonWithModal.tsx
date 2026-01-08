@@ -77,7 +77,7 @@ export default function SubscribeButtonWithModal() {
         setSubscribeInputState(SubscribeInputState.Success);
         setError(``);
       } catch (e) {
-        // send to rollbar.
+        // send to sentry.
         trackResponse({
           APIContext: {
             event: APITrackingEvents.Error,
@@ -86,7 +86,7 @@ export default function SubscribeButtonWithModal() {
               (e instanceof Error ? e.message : JSON.stringify(e)),
           },
           eventContext: `[DOCS] Subscribe to Product Updates Failed}`,
-          sendToRollbar: true,
+          sendToSentry: true,
         });
         setError(`Failed to subscribe. Please try again.`);
       }

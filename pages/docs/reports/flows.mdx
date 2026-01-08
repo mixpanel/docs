@@ -43,11 +43,15 @@ Filters exclude unwanted data. In this case, we only care about events performed
 
 ![/flows_3.png](/flows_3.png)
 
-### Step 4: Choose Breakdowns
+### Step 4: Expand The Events
 
-Breakdowns segment data into groups. In this case, we don't need to apply a breakdown since we already have the query in place to answer our question. However, if we wanted to see how the flow varies by city, we could add a "City" breakdown.
+Transforms a high-level view of certain flow step into a more granular, segmented analysis at any given point However, e.g. if we wanted to see how the flow varies by city for a "Check Out" event, we could expand the "Check Out" event by "City", which can either be an event property or user profile property.
 
-### Step 5: Analyze Results
+### Step 5: Choose Breakdowns
+
+The "Breakdown" feature in Mixpanel's Flows report helps you understand how the complete user journey differs for various segments of your audience. What it does: Instead of seeing one combined flow for all users, "Breakdown" separates the report into multiple, parallel flows. This lets you clearly compare the entire user journey (from entry to exit or drop-off) for specific groups, helping you identify where their paths diverge and where you might need to optimize for different audiences.
+
+### Step 6: Analyze Results
 
 Flows features two visualizations to help you view the results of your query in the clearest chart type. By default, Flows displays the User Flows chart, which uses a Sankey diagram to visually display multiple paths on the same chart. This visualization excels when trying to identify different variants of a similar path, or following one particular trail.
 

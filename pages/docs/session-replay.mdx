@@ -18,33 +18,31 @@ Session Replay is available for customers on Free, Growth, and Enterprise plans.
 
 ## Implementation
 
-Session Replay is supported on three platforms: Web, iOS, and Android. You can use Session Replay with CDPs (e.g., Segment and mParticle) on both Web and Mobile.
+Session Replay is supported on four primary platforms: Web, iOS, Android, and React Native (Beta). You can use Session Replay with CDPs (e.g., Segment and mParticle) on both Web and Mobile. We also support Electron desktop apps.
 
 See our developer guides on implementing Session Replay for these platforms below:
 
 <Cards>
-  <Cards.Card icon title="Web" href="/docs/session-replay/implement-session-replay/session-replay-web" />
-  <Cards.Card icon title="iOS (Beta)" href="/docs/session-replay/implement-session-replay/session-replay-ios" />
-  <Cards.Card icon title="Android (Alpha)" href="/docs/session-replay/implement-session-replay/session-replay-android" />
+  <Cards.Card icon title="Web" href="/docs/tracking-methods/sdks/javascript/javascript-replay" />
+  <Cards.Card icon title="iOS" href="/docs/tracking-methods/sdks/swift/swift-replay" />
+  <Cards.Card icon title="Android" href="/docs/tracking-methods/sdks/android/android-replay" />
+  <Cards.Card icon title="React Native (Beta)" href="/docs/tracking-methods/sdks/react-native/react-native-replay" />
 </Cards>
 
 ## Watching Replays
 
 <Callout type="info">
-By default, user replays are stored for 30 days after the time of ingestion. Customers on our Enterprise plan can customize this retention period. Once a replay is expired, there is no way to view that replay.
+By default, replays are stored for 30 days after the time of ingestion. Once a replay is expired, there is no way to view that replay. Enterprise plan customers with the paid session replay add-on can customize this retention period between 7 days and 360 days. For more information, reach out to your Account Manager or our sales team.
 </Callout>
 
-Replays can be viewed in three places:
+Session Replay is particularly valuable for understanding user frustration and identifying problematic user experiences. To find relevant replays, you can focus on interesting users (power users, purchases), interesting trends (KPIs spikes or dips), or replays where certain events or sentiment signals (like [dead clicks](/docs/tracking-methods/autocapture#dead-clicks)/[rage clicks](/docs/tracking-methods/autocapture#rage-clicks)) occur.
 
-1. From the User Profile page
-2. From Mixpanel reports
-3. On the Home page for your project
+To start using Session Replay, select **Session Replay** from the side navigation in your Mixpanel project. Here, you'll see your most recent replays and can easily filter them by events, properties, or custom time ranges to focus on the replays that matter most to you. Pro tip: when getting started with implementing Session Replay, you can use this view to check if replays are coming in as expected.
 
-### From User Profile page
+what makes Mixpanel Session Replay special is that it can be used seamlessly with your existing Mixpanel workflows, like:
 
-In any user's profile page, Click the "View Replays" button to watch replays from that user. From here, you will be taken to our Replay Player.
-
-![replayProfileEntry](/replayProfileEntryPoint.png)
+1. From Mixpanel reports
+2. From User profile pages
 
 ### From Mixpanel reports
 
@@ -52,15 +50,15 @@ In any user's profile page, Click the "View Replays" button to watch replays fro
   Reports entry point is currently supported for Event, Funnel, and User Profile metrics only.
 </Callout>
 
-Click any point on a chart for Event, Funnel, and User Profile, and select "View Replays" to view replays that show that event being fired. From here, you will be taken to our Replay Player. 
+Click any point on a chart for Event, Funnel, and User Profile, and select "View Replays" to view replays that show that event being fired. From here, you will be taken to our Replay Player.
 
 ![replayReportEntry](/replayReportEntryPoint.png)
 
-### From the Home page
+### From User Profile page
 
-Find the Latest Replays card and click on individual replays to view them or click on "View All Replays" to see up to 100 of your latest replays.
+In any user's profile page, Click the "View Replays" button to watch replays from that user. From here, you will be taken to our Replay Player.
 
-![replayHomeEntry](/replayHomeEntryPoint.png)
+![replayProfileEntry](/replayProfileEntryPoint.png)
 
 ### Replay Player
 
@@ -80,7 +78,61 @@ The Replay Feed on the left of the player also allows you to:
 - Sort replays by recency, activity, or duration
 - Search for replays by user's name / email, replay date, user ID, or the name of an event in the replay
 - See a feed of events that occurred during each replay
-- Display properties and their values within the event feed 
+- Display properties and their values within the event feed
+
+## Best Practices
+
+Session Replay is a powerful way to understand and debug user behavior by showing exactly what users see on their screens. This visibility is core to its value—but also introduces inherent privacy and security risks, especially when sensitive information appears in the UI.
+
+Mobile platforms add some unique challenges:
+- SDKs are installed directly on end-user devices, making them harder to roll back or patch quickly.
+- Android’s fragmented ecosystem demands broader testing across different devices and OS versions.
+
+These risks are common across all session replay tools, but well-established industry practices exist to help mitigate them. With careful planning and the right safeguards, teams can more confidently use session replay to improve their products.
+
+### Key Considerations
+
+| **Key Considerations**             | **Why It Matters**                                                                   |
+| ------------------------------ | ------------------------------------------------------------------------------------ |
+| **Industries**                 | Apps in healthcare, fintech, or other regulated spaces carry higher compliance risk. |
+| **Sensitive Screens**          | Checkout, payment, and profile screens often contain sensitive user data.            |
+| **Embedded Webviews**          | Embedded web views may require additional review to ensure expected behavior. |
+| **Uncommon App Architectures** | Custom or non-standard implementations may require additional testing and configuration.     |
+
+---
+
+To ensure successful implementation, we recommend:
+* Defensive programming, including safe initialization, graceful error handling (try/catch), and sensible fallback behavior
+* Thorough QA, including testing across device types and sensitive screens
+* Staged roll out, using feature flags to safely test and enable or disable Session Replay as needed
+
+Session Replay is a powerful feature that should be implemented with care. Following best practices can help you gain valuable insights into user behavior. We recommend thorough testing in your development environment before deploying to production.
+
+## Performance Considerations
+
+Our Session Replay SDKs are designed with performance in mind, utilizing optimized capture algorithms that reduce CPU and memory usage. However, as with any SDK integration, there may still be some risk of performance impacts. We recommend thorough testing and monitoring your app's performance during initial deployment.
+
+## Incident Handling
+
+If you encounter an unexpected or urgent issue, please reach out to our support team promptly so we can help resolve it as quickly as possible. Examples of situations that require immediate attention include:
+
+- Performance / stability issues with the SR SDK
+- Accidental ingestion of sensitive user data
+
+For these cases, [submit a request to our Support team](https://mixpanel.com/get-support) and include the following information:
+
+If you're experiencing performance / stability issues with the SR SDK:
+- Whether your issue is with Web, iOS, Android, or multiple platforms
+- Your Session Replay (SR) code snippet
+- Where you initialize the Session Replay SDK
+- Any relevant logs or performance metrics
+
+If you accidentally ingested sensitive user data:
+- Whether your issue is with Web, iOS, Android, or multiple platforms
+- Affected user IDs (if known)
+- Time range of the incident (if known)
+
+Our team will prioritize and address these issues as quickly as possible.
 
 ## FAQ
 
@@ -95,7 +147,7 @@ Replays are available for viewing in Mixpanel ~1 minute after the recording is c
 
 #### How long are replays stored?
 
-By default, user replays are stored for 30 days after the time of ingestion. Customers on our Enterprise plan can customize this retention period between 7 days and 360 days. Once a replay is expired, there is no way to view that replay.
+By default, replays are stored for 30 days after the time of ingestion. Once a replay is expired, there is no way to view that replay. Enterprise plan customers with the paid session replay add-on can customize this retention period between 7 days and 360 days. For more information, reach out to your Account Manager or our sales team.
 
 #### Why does it say the player failed to load?
 
@@ -113,13 +165,13 @@ You will not see the "View Replays" button if your organization is on an older p
 
 #### Can I use Session Replay with a CDP?
 
-You can use Session Replay with CDPs (e.g., Segment and mParticle) on both web and mobile. 
+You can use Session Replay with CDPs (e.g., Segment and mParticle) on both web and mobile.
 
 | Platform | Guidance |
 | --- | --- |
-| Web | Your app must include the Mixpanel Javascript SDK, with Session Replay enabled. Learn more in the developer guide [here](/docs/session-replay/implement-session-replay/session-replay-web#session-replay-with-a-cdp). |
-| iOS | Works with CDPs, but you must install the Mixpanel Session Replay SDK in your app. Read more in our [iOS implementation guide](/docs/session-replay/implement-session-replay/session-replay-ios). |
-| Android | Works with CDPs, but you must install the Mixpanel Session Replay SDK in your app. Read more in our [Android implementation guide](/docs/session-replay/implement-session-replay/session-replay-android). |
+| Web | Your app must include the Mixpanel Javascript SDK, with Session Replay enabled. Learn more in the developer guide [here](/docs/tracking-methods/sdks/javascript/javascript-replay#session-replay-with-a-cdp). |
+| iOS | Works with CDPs, but you must install the Mixpanel Session Replay SDK in your app. Read more in our [iOS implementation guide](/docs/tracking-methods/sdks/swift/swift-replay). |
+| Android | Works with CDPs, but you must install the Mixpanel Session Replay SDK in your app. Read more in our [Android implementation guide](/docs/tracking-methods/sdks/android/android-replay). |
 
 ### How does Session Replay work differently on web versus mobile?
 
@@ -135,4 +187,4 @@ When you enable Session Replay, use the above proxy metric to determine a starti
 
 #### Am I able to sample our Session Replay collection rate?
 
-Yes, you can configure the percentage of total replays that our SDK will capture as a sampling rate or manually trigger/end replay capture. See the developers guide for [implementing Session Replay](/docs/session-replay/implement-session-replay) to learn more about sampling and manual capture.
+Yes, you can configure the percentage of total replays that our SDK will capture as a sampling rate or manually trigger/end replay capture.

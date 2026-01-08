@@ -52,13 +52,9 @@ Mixpanel supports five data types for properties: String, Numeric, Boolean, Date
 - Mainly supported in core reports (i.e. Insights, Funnels, Flows, Retention, Users / Cohorts, Events) as filters and breakdowns. Property Names (ie keys) within an object are not supported in Lexicon.
 
 ### List of Objects
-<Callout type="info" >
-    Mixpanel supports object in a limited capacity. We recommend using the five non-object data types for most use cases as they are fully supported in the UI.
-</ Callout >
 
 - A JSON array of 1 level JSON objects with each object having similar sets of key-value pairs e.g. Cart = `[{"Brand":"Puma","Category":"Jacket","Price":30}, {"Brand":"Adidas","Category":"Hats","Price":15}]`
-- Limits of a List of Objects: Event Property = 8KB, User Profile Property = 256KB, max 255 keys and no nesting
-- Projects with fewer than 100 million events per month can include up to 20 objects per list. For projects exceeding this threshold, the system supports only the first 5 objects in each list.
+- Limits of a List of Objects: Event Property = 8KB, User Profile Property = 256KB, max 255 keys and no nesting; average list size = 50 objects
 - Mainly supported in core reports (i.e. Insights, Funnels, Flows, Retention, Users / Cohorts, Events) as filters and breakdowns. Property Names (ie keys) within an object are not supported in Lexicon.
 
 ## List Property Support
@@ -276,8 +272,6 @@ In each case, the object will have multiple properties, such as "price" and "bra
     ]
 }
 ```
-
-Projects with fewer than 100 million events per month can include up to 20 objects per list. For projects exceeding this threshold, the system supports only the first 5 objects in each list.
 
 ### Breakdown and Filter
 List of objects can be used like other properties in Mixpanel. Upon selecting a list of objects property, you will be prompted to select another property common to the objects in the list. Usage in measurements, filters, and breakdowns follows the same behavior as other [list properties](/docs/data-structure/property-reference/data-type#list-property-support).

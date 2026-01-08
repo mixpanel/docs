@@ -7,11 +7,11 @@ const YAML = require("yaml");
 const execFile = util.promisify(require("node:child_process").execFile);
 
 const README_API_KEY = process.env.README_API_KEY;
+const README_VERSION = process.env.README_VERSION;
 if (!README_API_KEY) {
   console.error(`README_API_KEY not set`);
   process.exit(1);
 }
-const README_VERSION = process.env.README_VERSION;
 if (!README_VERSION) {
   console.error(`README_VERSION not set`);
   process.exit(1);
@@ -31,13 +31,10 @@ async function execAndLog(cmd, args) {
 async function updateSpecs() {
   // fetch IDs of openapi specs via readme API
   const res = await fetch(
-    `https://dash.readme.com/api/v1/api-specification?perPage=10&page=1`,
+    `https://api.readme.com/v2/branches/${README_VERSION}/apis`,
     {
       headers: {
-        Authorization: `Basic ${Buffer.from(README_API_KEY).toString(
-          "base64"
-        )}`,
-        "x-readme-version": README_VERSION,
+        Authorization: `Bearer ${README_API_KEY}`,
       },
     }
   );
@@ -47,25 +44,39 @@ async function updateSpecs() {
   const outBase = path.resolve(__dirname, `out`);
   const filenames = fs
     .readdirSync(outBase)
-    .filter((fn) => fn.endsWith(`.openapi.yaml`));
+    .filter((fn) => fn.endsWith(`.json`));
+
+  if (!remoteSpecMetas) {
+    console.error(`!!! No remote specs found, please double check the API`);
+    process.exit(1);
+  }
 
   for (specFile of filenames) {
     // get ID of each spec by matching title between filename and metadata
     const fullPath = path.join(outBase, specFile);
     const yamlStr = fs.readFileSync(fullPath, "utf8");
     const spec = YAML.parse(yamlStr);
-    const specMeta = remoteSpecMetas.find((m) => m.title === spec.info.title);
+    const specMeta = remoteSpecMetas.data.find((m) => m.filename === specFile);
     if (!specMeta) {
       console.log(`!!! No spec found for "${spec.info.title}". Please upload it as found in the developer.mixpanel.com runbook.`);
       continue;
     }
-    const specId = specMeta.id;
 
     // validate and publish spec
-    console.log(`Updating ${spec.info.title} (${specFile}, ID ${specId})`);
-    await execAndLog('npx', ['rdme', 'openapi:validate', fullPath]);
+    console.log(`Updating ${spec.info.title} (${specFile})`);
+    await execAndLog('npx', ['rdme@10.5.3', 'openapi:validate', fullPath]);
+    // publish the json version
     await execAndLog(
-      'npx', ['rdme', 'openapi', fullPath, `--id=${specId}`, `--key=${README_API_KEY}`]
+      'npx', [
+        'rdme@10.5.3',
+        'openapi',
+        'upload',
+        `${fullPath}`,
+        `--key=${README_API_KEY}`,
+        `--slug=${specFile}`,
+        `--branch=${README_VERSION}`,
+        `--confirm-overwrite`,
+      ],
     );
   }
 }

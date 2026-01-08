@@ -1,3 +1,8 @@
+---
+title: Lexicon
+tags: [lexicon, data-governance, data-dictionary, event-definitions, event-properties, profile-properties, data-management, event-documentation, data-catalog, metadata-management, data-discovery, custom-events, cohorts, lookup-tables, formulas, behaviors, verified-data, data-quality, event-validation, data-standardization, analytics-governance, mixpanel-lexicon, event-catalog, property-definitions, data-lineage, session-replay-metadata]
+---
+
 import { Callout } from 'nextra/components'
 
 # Lexicon: Describe your events and data using a dictionary
@@ -20,10 +25,11 @@ Tracked Data
 3. Profile Properties
 
 Computed Data
-1. Custom Events
-2. Lookup Tables
-3. Formulas
-4. Behaviors
+1. Cohorts
+2. Custom Events
+3. Lookup Tables
+4. Formulas
+5. Behaviors
 
 ### Events
 
@@ -86,6 +92,10 @@ If you have Group Analytics enabled, you will see a dropdown on the Profile Prop
 
 ![Lexicon Profile Properties](/lexicon-group-analytics-GIF.gif)
 
+### Cohorts
+
+[Cohorts](/docs/users/cohorts) are groups of users that share a certain set of properties or who perform a similar sequence of events. You can create cohorts based on user properties, events, and other criteria to analyze user behavior and engagement.
+
 ### Custom Events
 
 [Custom Events](/docs/features/custom-events) are events and properties you combine into one event to use in Mixpanel reports. The fields for custom events are “Name”, “Description”, "Definition", "30 Day Queries", "Last Queried" and “Created” (defined above). 
@@ -115,6 +125,10 @@ This data lets you easily discover the parts of your implementation that are mos
 
 ## Dropping Data
 
+<Callout type="info">
+Only project owners may drop and undrop data from the Lexicon. Learn more about [Roles and Permissions](/docs/orgs-and-projects/roles-and-permissions).
+</Callout>
+
 In Lexicon, you can intercept and drop incoming events or properties. Mixpanel won’t store any **new data** for the event or property you select to drop. **Warning: You cannot recover event data after you drop it.**
 
 When an event is dropped, all events of that type that have previously been ingested (before dropping it) will still show in the interface. Only project owners can drop events and properties. **Note: It takes a few hours for Mixpanel to process the dropped event.**
@@ -129,7 +143,7 @@ Sample use cases for dropping events and properties are:
 
 **Dropping Events**
 
-By dropping an event, you can intercept and drop incoming events. Mixpanel won’t store any new data for the event you select to drop. 
+By dropping an event, you can intercept and drop incoming events. Mixpanel will not store any new data for the event you select to drop. 
 
 To drop an event in Lexicon:
 
@@ -167,6 +181,10 @@ To drop a property in Lexicon:
 
 ## Hiding Data
 
+<Callout type="info">
+You must have an admin or owner project role to hide and unhide data from the Lexicon. Learn more about [Roles and Permissions](/docs/orgs-and-projects/roles-and-permissions).
+</Callout>
+
 In Lexicon, you can hide any events or properties. Unlike [dropping data](/docs/data-governance/lexicon#dropping-data), hiding data does not affect data ingestion; any events/properties that are hidden will continue to be ingested in your project and count toward your data allowance.
 
 A hidden entity will not be indexed in your event/properties menu in the query builder. Any [inactive events and properties](/docs/tracking-best-practices/debugging#inactive-events-and-properties) will also be hidden.
@@ -198,6 +216,10 @@ To show an event or property:
 
 ## Merging Data
 
+<Callout type="info">
+Only project owners may merge and unmerge data from the Lexicon. Learn more about [Roles and Permissions](/docs/orgs-and-projects/roles-and-permissions).
+</Callout>
+
 In Lexicon, only project owners can merge events and event properties.
 
 Let's suppose your iOS app sends an event named “Purchase”, and your Android app sends an event named “purchase item”. Even though both events have the same function, you have to individually select them every time you build a report.
@@ -206,6 +228,10 @@ By merging “Purchase” and “purchase item” into a single event named “P
 
 Being able to merge events can help streamline your implementation, reduce your costs by eliminating redundant events being sent to Mixpanel, and simplify report analysis because you’re only using optimal events and properties.
 Do note however that user profile properties cannot be merged at this time.
+
+<Callout type="info">
+ After you merge an event into another, it no longer appears in reports or custom events that reference it. Update those reports with the new merged event to maintain accuracy.
+</Callout>
 
 **Merging Events**
 
@@ -240,7 +266,9 @@ To merge properties:
 To unmerge properties:
 
 1. Select the merged property to unmerge. The “Unmerge” icon appears.
+
 ![Lexicon Unmerge Events](/unmerge-properties.png)
+
 2. Click Unmerge. The merged property appears as the original two distinct properties.
 
 ## Verify Data
@@ -261,6 +289,24 @@ By providing a clear distinction between vetted and non-vetted data, it becomes 
 4. Now, whenever end users are creating reports, or browsing data in Lexicon, they will see a Verified icon next to this data item.
 
 ![verifyButton](/verifyButton.png)
+
+## Session Replay in Event Metadata
+
+Event metadata across Query Builder, Lexicon, and Event pages now automatically includes relevant Session Replays when available.
+
+**How it works:** When viewing event details, Session Replays that captured the specific event will appear in the metadata panel. This applies to:
+
+- Individual event inspection in Query Builder
+- Event definitions in Lexicon  
+- Event detail views on dedicated Event pages
+
+**Requirements:** This feature is available to accounts with Session Replay enabled. No additional configuration is needed—relevant replays will automatically appear when present.
+
+**What you'll see:** Session Replay thumbnails and links will display alongside standard event properties. Click any replay to view the full session context surrounding that event.
+
+This enhancement provides immediate visual context for event analysis without requiring manual correlation between Events and Session Replay data.
+
+For Session Replay setup and configuration, see our [Session Replay documentation](/docs/session-replay).
 
 ## Export and Import Lexicon Data
 
@@ -300,15 +346,15 @@ You can use an existing Token, or create a new token with a Token Role of Worksp
 
 For the Segment Workplace value, we recommend using the Slug name located in the Segment dashboard: Settings > General Settings.
 
-Once you have your Segment Token & Workspace, head over to Lexicon and Select Import from Segment.
+Once you have your Segment Token & Workspace, head over to Lexicon and select Import from Segment.
 - Enter your Token & Workspace
 - Select the Plan you want to import from Segment
 - Review the Events and Profile Properties that will be imported
 - Import your Segment Plan into Lexicon
 
 ### Avo.app Import
-In order to import your data dictionary from Avo.app, you will need to enable an integration with Mixpanel. The following information would be necessary in order to complete this integration from Avo.app:
-- Mixpanel Project ID (https://mixpanel.com/project/[Mixpanel Project ID]/...)
+To import your data dictionary from Avo.app, you will need to enable an integration with Mixpanel. The following information would be necessary to complete this integration from Avo.app:
+- Mixpanel Project ID (`https://mixpanel.com/project/[Mixpanel Project ID]/...`)
 - Mixpanel Service Account Username & Secret (Owner or Admin role required)
 To publish your Avo data dictionary to Lexicon, click the "Publish to Lexicon" button in the integration interface.
 
@@ -317,7 +363,7 @@ Click [here](https://www.avo.app/docs/publishing/integrations) for more informat
 ### mParticle Import
 When importing a data dictionary from mParticle, navigate to your Data Plan and select Download Plan Version from the upper right menu.
 
-- Click Import on the top right hand side of Lexicon
+- Click Import on the top right-hand side of Lexicon
 - Select mParticle
 - Select the downloaded JSON file from mParticle Data Plans
 - Review Events, Event Properties, and User Profile Properties to be imported.
@@ -329,18 +375,18 @@ Mixpanel provides a suite of API endpoints for you to Retrieve, Create, and Dele
 
 ### Lexicon UI vs Lexicon Schemas API
 
-The payload returned from the Lexicon Schemas API is most likely not an exact match of the Lexicon as seen in your project's UI. This because the Lexicon Schemas are a subset of the data that appears in Lexicon UI.
+The payload returned from the Lexicon Schemas API is most likely not an exact match of the Lexicon as seen in your project's UI. This is because the Lexicon Schemas are a subset of the data that appears in Lexicon UI.
 
-The Lexicon UI contain entities that were sent to your project within the last 30 days or has an associated Lexicon Schema.
+The Lexicon UI contains entities that were sent to your project within the last 30 days or have an associated Lexicon Schema.
 
-A Lexicon Schema is created when one of the following take place:
+A Lexicon Schema is created when one of the following takes place:
 1. When a schema is created through the Lexicon Schema API
 2. When a new entity is imported to your Lexicon via CSV import
 3. When metadata about an entity is added via the UI (such as adding description, hiding/showing, adding tags, etc.)
 
-When using the Lexicon Schema API to export, only entities that has a Schema are exported. Entities that are seen in your Lexicon UI that were sent within the last 30 days without a Schema will not be reflected in the Lexicon Schema payload.
+When using the Lexicon Schema API to export, only entities that have a Schema are exported. Entities that are seen in your Lexicon UI that were sent within the last 30 days without a Schema will not be reflected in the Lexicon Schema payload.
 
-To export all of your entities from the Lexicon, please use the [CSV export method](/docs/data-governance/lexicon#export-and-import-lexicon-data) which will export everything as seen in the UI, which includes recently sent entities and all entities with a Schema.
+To export all of your entities from the Lexicon, please use the [CSV export method](/docs/data-governance/lexicon#export-and-import-lexicon-data), which will export everything as seen in the UI, which includes recently sent entities and all entities with a Schema.
 
 ## Lexicon Event Details 
 

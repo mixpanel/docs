@@ -38,35 +38,39 @@ It's important to know what's the natural frequency at which your users use your
   <iframe src="https://www.loom.com/embed/c223230fd46d432880f6bcf804b07cac" frameborder="0" style={{ position: 'absolute', top: 0, left: 0, width: '100%', height: '100%' }} allowfullscreen></iframe>
 </p>
 
-### Step 1: Choose or Define your Behavior
+### Step 1: Define your Behavior
 
-Metrics are basing building blocks of an Insights report. A metric is made up of a behavior, and a way to measure that behavior. By default, Insights will prompt you to select the most basic form of a behavior: an event. However, you can also press the "+ Metrics" button to select add a metric based on a different type of behavior. You can also add a formula, which is a metric that is a function of other metrics.
+Metrics are the basic building blocks of an Insights report, and consists of profiles (users, groups, Cohorts) or behaviors (events, Funnels behavior, or Retention behavior) along with a measurement of those entities. Press the "Select Metrics" button to add a metric.
 
-To select an event and start with an event based metric, press "Select Event".
+To select an event and start with an event-based simple behavior metric, choose "Events" in the left column of the metrics menu, then select the events you want to measure. This creates a simple behavior.
 
 ![Choose Events](/choose-events.png)
 
-To select a different type of metric, press "+ Metrics" and choose your metric type from the list. See [Metric Types](/docs/reports/insights#metric-types) for a full list of supported metric types.
-
-![Choose Metrics](/choose-metrics.png)
+You can save the behavior you built and reuse them in other reports. Learn more about [Saved Metrics and Behaviors](/docs/features/saved-metrics-and-behaviors).
 
 ### Step 2: Choose your Measurement
 
-Once you've selected your behavior, you can choose how to measure that behavior. Depending on the type of behavior selected, Insights will default to a different measurement. If you're measuring a basic event, Insights will default to measuring the number of unique users who have done that event.
+Once you've selected your behavior, you can choose how to measure that behavior. A behavior combined with a measurement forms a Metric.
+
+Depending on the type of behavior selected, Insights will default to a different measurement. If you're measuring a Simple Behavior (events), Insights will default to measuring the number of unique users who have done that event.
 
 ![Choose Measurement](/choose-measurement.png)
 
+You can save the metric you built and reuse it in other reports. Select the "..." button in the top right corner of the metric, then click "Save Metric". Note that saving a metric and saving a behavior are different; a saved behavior consists of the events/Funnels/Retention, while a saved metric consists of the saved behavior and the measurements of the behavior.
+
+Learn more about [Saved Metrics and Behaviors](/docs/features/saved-metrics-and-behaviors).
+
 ### Step 3: Choose Filters
 
-Filters exclude unwanted data. In this case, we only care about events performed on the iOS platform. Therefore, add a "Platform" filter, where Platform equals "iOS Native". At this point, your query should look like this:
+Filters exclude unwanted data. In this case, we only care about events performed on the iOS platform. Therefore, add an "Operating System" filter, where OS equals "iOS". At this point, your query should look like this:
 
-![Choose Filters](/choose-filters.gif)
+![Choose Filters](/choose-filters.png)
 
 ### Step 4: Choose Breakdowns
 
-Breakdowns segment data into groups. In this case, we want to count message-sending users in different cities. Therefore, add a "City" breakdown. At this point, your query should look like this:
+Breakdowns segment data into groups. In this case, we want to count sign-ups based on users in different cities. Therefore, add a "City" breakdown. At this point, your query should look like this:
 
-![Choose Breakdowns](/choose-breakdowns.gif)
+![Choose Breakdowns](/choose-breakdowns.png)
 
 ### Step 5: Change Visualization
 
@@ -80,20 +84,42 @@ You now have a full analysis that you can use and add onto a Board, or use as a 
 
 ## Basic Features
 
-### Metric Types
+### Metrics
+
+Metrics are the basic building blocks of an Insights report, and consists of profiles (users, groups, Cohorts) or behaviors (events, Funnels behavior, or Retention behavior) along with a measurement of those entities. The table below outlines the types of Metrics that can be analyzed in the Insights report.
+
+**Behavioral Metrics**
 
 | Metric Type | Description |
 | --- | --- |
-| Event | A metric based off of a single event. The metric could measure the total number of occurrences, unique users, or aggregates a property of this event. |
+| Simple Behavior (events) | A metric based off of an event or group of events. The metric could measure the total number of occurrences, unique users, or aggregates a property of this event. |
+| Funnel Behavior | A metric based off a funnel behavior. You can select a saved funnel behavior or define a new funnel, then choose a measurement on that funnel to form a funnel metric. By default measures conversion rate on all steps of the funnel. |
+| Retention Behavior | A metric based off a retention behavior. You can select a saved retention behavior or define a new retention, then choose a measurement to form a retention metric. By default, measures retention rate. |
+
+**Other Metrics**
+
+| Metric Type | Description |
+| --- | --- |
 | Profile | A metric based off of the user or group profiles. You can measure the number of profiles, or an aggregate on properties of the profiles. |
-| Formula | A metric that is a function of other metrics. You can select a saved formula, or create a new formula based on the existing metrics in the report. |
-| Funnel | A metric based off a funnel behavior. You can select a saved funnel behavior or define a new funnel, then choose a measurement on that funnel to form a funnel metric. By default measures conversion rate on all steps of the funnel. |
-| Retention | A metric based off a retention behavior. You can select a saved retention behavior or define a new retention, then choose a measurement to form a retention metric. By default, measures retention rate. |
 | Cohort | A metric based off of a defined cohort. Measures the number of users who are part of that cohort. |
+| Formula | A metric that is a function of other metrics. You can select a saved formula, or create a new formula based on the existing metrics in the report. |
 
-If choosing Formula, Funnel, Retention or Cohort, you will be prompted first to selected a saved definition. If you wish to start by defining your own behavior, press "Create" in the top right of the menu.
+#### Saving Metrics and Behaviors
+You can save the metric and behaviors you built and reuse them in other analysis. Select the "..." button in the top right corner of the metric, then click "Save Metric" or "Save Behavior". Note that saving a metric and saving a behavior is different; a saved behavior consists of the events/Funnels/Retention, while a saved metrics consists of the behavior together with the measurements of the behavior.
 
-### Chart Types
+Learn more about [Saved Metrics and Behavior](/docs/features/saved-metrics-and-behaviors).
+
+![Insights Saved Behaviors](/insights-saved-behavior.png)
+
+#### Metric Limits
+Insight reports are limited to 40 metric/behavior blocks. This includes all metric and behavior blocks, such as hidden metrics and formulas.
+
+If you hit this limit, you can:
+- Migrate some metrics to a new report.
+- Use Saved Formulas if your report contains formulas. Learn more about [Saved Formulas](/docs/reports/insights#save-formulas-for-re-use).
+- Combine multiple events into a behavior. Learn more about [Saved Behaviors](/docs/features/saved-metrics-and-behaviors#simple-behaviors).
+
+### Charts
 
 Insights feature multiple visualizations to help you view the query results in the clearest chart type. By default, Insights displays the results on the line chart, which helps you understand how metrics trend over time. However, another chart type might present the results with more clarity. In Insights, you can choose to get a metric calculated either across the entire time period selected in the date picker or on a time-segmented view of the metric (e.g. daily breakdown).
 
@@ -165,37 +191,47 @@ The Grouped View preserves the hierarchy of breakdowns. It shows you segments wi
 You can sort segments alphabetically or by the value of a particular metric. In the grouped view, sorting is configured on a per-breakdown level and respects the breakdown hierarchy.
 
 In the below image, we sort Country *within* Item Category, which respects the hierarchy.
+
 ![image](https://github.com/mixpanel/docs/assets/2077899/4697ce00-d394-46ce-b538-66ec91ccd6e7)
 
-Hierarchy is defined by the breakdown order in the query panel:
-![image](https://github.com/mixpanel/docs/assets/2077899/ff2f72b3-89bc-459e-b8b7-e81655d04bb7)
+Hierarchy is defined by the breakdown order in the query panel.
 
-###### View “N” segments
-
-The View “N” control lets you decide how many rows to display per breakdown in your table.
-![View_N_gif](https://github.com/mixpanel/docs/assets/2077899/4fb0fd18-2ef7-416b-adaa-c7299da0f7b3)
-
-In the ungrouped view, choose the number of rows to display:
-![image](https://github.com/mixpanel/docs/assets/2077899/b1b25b19-51be-4934-bbfd-7562e0f98d4a)
-
-In the grouped view, you can choose the number of rows you want to display for each breakdown:
-![image](https://github.com/mixpanel/docs/assets/2077899/f9f8c83c-34ed-44bd-b4e7-f60b70255a6f)
-
-![image](https://github.com/mixpanel/docs/assets/2077899/b09c1ad1-1392-4ec0-9358-361f677c600d)
-
-**Notes**
-- View N only controls how many segments to display. To decide which segments to display i.e if it’s the top segments by value or bottom segments by value or alphabetical, please change the “Sort Order”.
-- View N will show the minimum of N and how many segments are in your report. For example, if you set N=10 but you only have 7 segments, we will only show 7 rows.
-- When selecting “Show All”, the maximum number of segments displayed in the UI will be 3000 given cardinality limits. If your breakdown has more than 3000 segments, you'll only see the top 3000, dictated by the sort order.
 
 ##### Overall and Segment Sub-Totals
 
 **Overall:** This refers to the value considering all the segments, independent of whether displayed or not based on your View N control; i.e changes to View N will not affect Overall numbers
+
 ![image](https://github.com/mixpanel/docs/assets/2077899/3d6556a4-9468-4d1f-8979-4fdb512f2aaa)
 
 **Sub-Totals:** In the grouped view, in addition to the Overall, segment sub-totals are also displayed. Similar to “Overall”, these values are independent of the View N control
 
 ![image](https://github.com/mixpanel/docs/assets/2077899/ee7d8c9b-f738-4a5b-8967-300cf8322f76)
+
+
+##### Dynamic & Manual Segments
+
+Dynamic Segments let you decide how many segments to display per breakdown in your report. With Dynamic Segments, the segments selected in the report will change based on your latest data and the current sort order. Manual Segments let you choose specific segments that will always display in the report, regardless of the data or sorting. 
+
+![image](/dynamic_segments.png)
+
+When using Dynamic Segments, you can select the number of segments to display from the column headers. 
+
+![View_N_gif](https://github.com/mixpanel/docs/assets/2077899/4fb0fd18-2ef7-416b-adaa-c7299da0f7b3)
+
+In the ungrouped view, choose the number of rows to display:
+
+![image](https://github.com/mixpanel/docs/assets/2077899/b1b25b19-51be-4934-bbfd-7562e0f98d4a)
+
+In the grouped view, you can choose the number of rows you want to display for each breakdown:
+
+![image](https://github.com/mixpanel/docs/assets/2077899/f9f8c83c-34ed-44bd-b4e7-f60b70255a6f)
+
+![image](https://github.com/mixpanel/docs/assets/2077899/b09c1ad1-1392-4ec0-9358-361f677c600d)
+
+**Notes about Dynamic Segments**
+- View N only controls how many segments to display. To decide which segments to display i.e if it’s the top segments by value or bottom segments by value or alphabetical, please change the “Sort Order”.
+- View N will show the minimum of N and how many segments are in your report. For example, if you set N=10 but you only have 7 segments, we will only show 7 rows.
+- When selecting “Show All”, the maximum number of segments displayed in the UI will depend on the chart type. 
 
 
 ## Advanced
@@ -228,7 +264,7 @@ To note, you cannot nest a formula metric when constructing another formula.
 
 Use existing events to create calculated formulas, like Bounce Rate & % Active Users, that can be saved and reused by others within the project.
 
-![saveformula.gif](/saveformula.gif)
+![saveformula.gif](/saveformula.png)
 
 Some nuances to note:
 - Once you save a formula, A,B,C refer to what’s **within** the saved formula modal
@@ -239,8 +275,6 @@ Some nuances to note:
 To access and re-use saved formulas, click on “+Formula”, and then see the list of saved formulas. You can also look at all the saved formulas in the Lexicon tab “Formulas”. Some callouts regarding permissions:
 - All roles can create a saved formula, but only some roles can share them with the whole project for re-use
 - You can only look at saved formulas created by you or shared with you
-
-![reuseformula.gif](/reuseformula.gif)
 
 ### Custom Bucketing
 
@@ -275,19 +309,9 @@ Profile metrics allow you to access profile data and visualize your users with f
 
 ### Annotations
 
-To clarify the results in your Insights report, add detailed annotations directly to the line chart. Annotations are tied to a specific date on the chart, rather than a specific data point on the chart.
+To clarify the results in your Insights report, add detailed annotations directly to your time-series charts (such as line, stacked line, column, and stacked columns charts). Annotations are tied to a specific date on the chart, rather than a particular point of data on the chart.
 
-To add an annotation, hover your mouse over the point on the chart you want to annotate, and click the blue **+** button that appears. Enter a description for the annotation, such as a holiday that occurred on that day or the end date of your fiscal year, then click **Save**. If you accidentally selected the incorrect date on the chart, you can edit the date and time of the annotation in this window.
-
-![Annotations 1](/advanced-annotations-1.png)
-
-View an existing annotation by clicking on the number found at the bottom of a report. You will be able to see who submitted the annotation.
-
-![Annotations 2](/advanced-annotations-2.png)
-
-Hover the cursor over the annotation to edit or delete it. Click on the **pencil icon** to edit an annotation, or the **trash icon** to delete an annotation. Add additional annotations to the same date by clicking **Add annotation**.
-
-![Annotations 3](/advanced-annotations-3.png)
+Learn more about [Annotations](/docs/features/annotations).
 
 ### Measurements
 
@@ -373,10 +397,7 @@ There are some cases though, where you want to know how the 2441 users are distr
 
 ![image](/uniques_count_once.png)
 
-To note - in a line chart, there are two concepts of time period: chart date range (3M below) and time interval (weekly interval below). When advanced controls are used in a line chart, it assigns a segment based on the first/last segment for each time interval, NOT across all time intervals in the chart range. For eg. user Joey could count towards Contact Page Wk of Feb 27 and Shop Page Wk of March 6. But in the same time interval, they would count only towards one segment.
-
-![image](/uniques_count_once_line.png)
-
+To note - in a line chart, there are two concepts of time period: chart date range (3M below) and time interval (weekly interval below). When advanced controls are used in a line chart, it assigns a segment based on the first/last segment for each time interval, NOT across all time intervals in the chart range.
 #### Aggregate Property
 
 | Function Name | Events Calculation | Profiles Calculation |
@@ -456,3 +477,12 @@ You can hover over any event and in the context panel, you now have the ability 
 You can see a few samples of an event to help you decide whether that's the right event you want for your analysis or which property you should use for filters/breakdowns.
 
 ![View Sample Events](/advanced-view-sample-events.gif)
+
+### Date Range Guardrails
+
+To ensure a smooth self-serve experience and fast query performance, certain date-range guardrails apply depending on the type of report you create:
+- **Hourly granularity reports** can include a maximum date range of 31 days.
+- **Daily granularity reports** can include a maximum date range of 12 months.
+- **Reports using All Events** can include a maximum date range of 93 days (approximately 3 months).
+- **Reports using cohorts** can include up to 93 time intervals—for example, 93 weeks or 93 days. This allows queries such as “the last 3 months at daily granularity.
+

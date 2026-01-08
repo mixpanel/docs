@@ -20,6 +20,7 @@ export const dwhItems = {
     'snowflake': 'Snowflake',
     'databricks': 'Databricks',
     'redshift': 'Redshift',
+    'postgres': 'Postgres',
 }
 
 export const mirrorItems = {
