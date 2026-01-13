@@ -1,4 +1,4 @@
-import { Callout } from 'nextra/components'
+import { Callout, Steps } from 'nextra/components'
 
 # Lookup Tables: Enrich ingested data using a CSV
 
@@ -105,11 +105,19 @@ Using the existing example from above, we add the "artist", "genre", "is_platinu
 
 Lookup Tables that are uploaded globally via the Lexicon can be accessed by other project users when they build reports.
 
-Go to **Lexicon > Import > Lookup Table** to upload a CSV file or manage existing Lookup Tables. Only project Owners and Admins can create global Lookup Table mapping via the Lexicon. Consumers and Analysts can only [create local mappings within reports](/docs/data-structure/lookup-tables#locally-within-a-report).
+<Steps>
+
+{<h3>Upload your Lookup Table CSV.</h3>}
+
+Navigate to **Lexicon**, select **Lookup Tables** from the left-hand sidebar, then click **"Import Lookup Table"** to upload a CSV file or manage existing Lookup Tables.
 
 ![image](/lexicon-lookup-table.png "Lexicon Lookup Tables")
 
+{<h3>Map the Lookup Table to an event or user profile property.</h3>}
+
 Once you have uploaded the CSV file for the Lookup Table, map it to an event or user profile property, which is the ID (e.g. song_id) that the Lookup Table join key will map to. Mixpanel will assume the first column of the CSV is the ID and will join it with that property.
+
+</Steps>
 
 ![image](/lexicon-import-lookup-table.png "Lexicon Import Lookup Table Modal")
 
