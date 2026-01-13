@@ -1,4 +1,4 @@
-import { Callout } from 'nextra/components'
+import { Callout,Steps } from 'nextra/components'
 
 # Cohorts: Group users by demographic and behavior
 
@@ -123,21 +123,28 @@ For example, consider this report: [https://mixpanel.com/s/4AuMRi](https://mixpa
 
 For the cohort on Jan 1, I'm looking at the users who watched a comedy video in the last 30 days before Dec 25 and who then subscribed over the same period of time. However, for the funnel on Dec 25, I'm looking at the users who watched a comedy video on Dec 25, and who have then also subscribed anytime within the next 30 day period from Dec 25. This means that if a user subsequently subscribes on Jan 3, the funnel chart can change to take that conversion into account. In this case, if you care about the conversion window, i.e. the amount of time that a user has in order to count as a conversion, using funnels would give you a more accurate answer.
 
+## Manage Your Cohorts
+You can view and manage all cohorts created by you or your teammates within your project by navigating to [**Lexicon**](/docs/data-governance/lexicon) and selecting **Cohorts** from the left-hand sidebar.
 
-## Saving and Sharing Cohorts
+### Saving and Sharing Cohorts
 
 <Callout type="info">
     Growth and Enterprise plan users can save an unlimited number of cohorts. Free plan users can create cohorts but cannot save them. See our [pricing page](https://mixpanel.com/pricing/) for more details.
 </Callout>
 
-Cohorts that you create are, by default, only visible to you. You can optionally share cohorts with specific other people or with your organization. This makes Cohorts that you create discoverable by others.
+You can manage Cohort sharing permissions by navigating to **Lexicon > Cohorts**, clicking the “…” button next to the desired Cohort, and selecting **"Share"** to open the sharing and permissions modal.
 
-We recommend sharing a set of key cohorts with your organization, to ensure that you align on key definitions of user behavior that are important for your business (eg: New Users, Power Users). We also recommend adding descriptions to such cohorts, to share context with your team.
+By default, Cohorts you create are visible only to you. You can choose to share Cohorts with specific individuals or with your entire organization, making them discoverable to others.
 
+We recommend sharing a core set of cohorts across your organization to ensure alignment on key definitions of user behavior that are important to your business (for example, New Users or Power Users). We also recommend adding clear descriptions to these cohorts to provide context and promote shared understanding across your team.
 
-## Exporting Cohorts
+### Exporting Cohorts
 
-You can download the list of users in any Cohort as a CSV via the Cohort Builder. You can also push cohorts to 3rd-party destinations like [Segment](/docs/cohort-sync/integrations/segment), [Braze](/docs/cohort-sync/integrations/braze), or a [Custom Webhook](/docs/cohort-sync/webhooks).
+You can download the list of users in any Cohort as a CSV via the Cohort Builder. You can also push Cohorts to native 3rd-party destinations like Segment or Braze using [Cohort Sync](/docs/cohort-sync), or to any other destinations using [Custom Webhooks](/docs/cohort-sync/webhooks).
+
+### Deleting Unused Cohorts
+
+You can delete any Cohorts from your project by navigating to **Lexicon > Cohorts**, clicking the “…” button next to the Cohort you wish to delete, and click **"Delete"**.
 
 ## FAQ
 
