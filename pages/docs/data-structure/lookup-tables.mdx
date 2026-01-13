@@ -117,9 +117,9 @@ Navigate to **Lexicon**, select **Lookup Tables** from the left-hand sidebar, th
 
 Once you have uploaded the CSV file for the Lookup Table, map it to an event or user profile property, which is the ID (e.g. song_id) that the Lookup Table join key will map to. Mixpanel will assume the first column of the CSV is the ID and will join it with that property.
 
-</Steps>
-
 ![image](/lexicon-import-lookup-table.png "Lexicon Import Lookup Table Modal")
+
+</Steps>
 
 #### Multiple Mappings
 
@@ -133,13 +133,25 @@ If you need to map multiple Lookup Tables to a single Mixpanel property for your
 Multiple Mixpanel properties can map to the same Lookup Table. For example, if you have a "first_location" property and a "last_location" property, they can both be mapped to the same "City" Lookup Table.
 
 ### Locally within a Report
-You can also upload Lookup Tables straight from your reports. Lookup Tables uploaded directly in reports create a local mapping that can only be used while you are in the report. This mapping is not global, and can't be used in other reports. 
+You can also upload Lookup Tables straight from your reports. Lookup Tables uploaded directly in reports create a local mapping that can only be used while you are in the report. This mapping is not global, and can't be used in other reports.
+
+This feature can be useful if you need to have the Lookup Table mapping only for a specific report or if you wish to override an existing globally mapped lookup table for a property within a report.
+
+<Steps>
+
+{<h3>Click the "..." button next to the breakdown property from your report and choose "Map Lookup Table".</h3>}
+
+This breakdown property will be used as the ID that the Lookup Table join key will map to.
 
 ![image](/map-ephemeral-lookup-table.png "Ephemeral Lookup Tables")
 
+{<h3>Select a Lookup Table to map to the breakdown property.</h3>}
+
+Alternatively, you may upload a new Lookup Table CSV for use locally in the report.
+
 ![image](/create-ephemeral-lookup-table-modal.png "Ephemeral Lookup Table Modal")
 
-This feature can be useful if you need to have the Lookup Table mapping only for a specific report or if you wish to override an existing globally mapped lookup table for a property within a report.
+</Steps>
 
 Lookup Tables can be replaced with a fresh copy, either via our UI, [API](https://developer.mixpanel.com/reference/replace-lookup-table), or [Warehouse Connectors](/docs/tracking-methods/data-warehouse#lookup-tables).
 
