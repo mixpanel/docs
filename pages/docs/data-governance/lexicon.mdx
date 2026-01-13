@@ -217,10 +217,8 @@ To show an event or property:
 ## Merging Data
 
 <Callout type="info">
-Only project owners may merge and unmerge data from the Lexicon. Learn more about [Roles and Permissions](/docs/orgs-and-projects/roles-and-permissions).
+In Lexicon, only project owners can merge events and event properties. Learn more about [Roles and Permissions](/docs/orgs-and-projects/roles-and-permissions).
 </Callout>
-
-In Lexicon, only project owners can merge events and event properties.
 
 Let's suppose your iOS app sends an event named “Purchase”, and your Android app sends an event named “purchase item”. Even though both events have the same function, you have to individually select them every time you build a report.
 
@@ -231,6 +229,10 @@ Do note however that user profile properties cannot be merged at this time.
 
 <Callout type="info">
  After you merge an event into another, it no longer appears in reports or custom events that reference it. Update those reports with the new merged event to maintain accuracy.
+</Callout>
+
+<Callout type="info">
+ [Autocapture](https://docs.mixpanel.com/docs/tracking-methods/autocapture) events cannot be merged. These events are displayed using preset labels such as “[Auto] Page View” and “[Auto] Element Click”. 
 </Callout>
 
 **Merging Events**

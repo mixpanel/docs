@@ -377,6 +377,9 @@ Here’s an example table that illustrates what can be loaded as user profiles i
 While Profiles typically only store the state of a user *as of now*, Profile History enables storing the state of a user *over time*. The distinction between the value a property of the profile has now vs the value it had at the time of an event allows you to do very powerful analysis.
 
 #### Profile History tables
+<Callout type="info">
+  Profile History tables are only available to organizations on an Enterprise plan.
+</Callout>
 To create an import of regular user profiles, pick the “Standard” Type when creating a user table import.
 
 <img src="/dw_standard_user_table.png" alt="Standard user table" width="300"/>
@@ -444,6 +447,10 @@ which changes Mixpanel will reflect.
 Mirror syncs work by having the warehouse compute which rows have been inserted, modified, or deleted and sending this
 list of changes to Mixpanel. Change tracking is configured differently depending on the source warehouse. Mirror is
 supported for Snowflake, Databricks, BigQuery, and Redshift sources.
+
+<Callout type="info">
+  For User tables, Mirror Sync is available only when you select the Profile History table type. Mirror Sync is not available for the Standard table type.
+</Callout>
 
 <ExtendedTabs urlParam="mirror" urlToItemsMap={mirrorItems}>
 

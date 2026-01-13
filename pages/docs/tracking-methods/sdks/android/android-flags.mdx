@@ -46,7 +46,7 @@ options.featureFlagsContext = context;
 MixpanelAPI mixpanel = MixpanelAPI.getInstance(getApplicationContext(), "YOUR_PROJECT_TOKEN", options);
 ```
 
-If you are using Runtime Targeting in any of the feature flags in your project, then any properties that you use in targeting should be included in a `customProperties` node within the context:
+If you are using Runtime Targeting in any of the feature flags in your project, then any properties that you use in targeting should be included in a `custom_properties` node within the context:
 
 ```java
 JSONObject customProperties = new JSONObject();
@@ -54,7 +54,7 @@ customProperties.put("platform", "android");
 
 JSONObject context = new JSONObject();
 context.put("company_id", "X");
-context.put("customProperties", customProperties);
+context.put("custom_properties", customProperties);
 
 MixpanelOptions options = new MixpanelOptions();
 options.featureFlagsEnabled = true;
@@ -174,7 +174,7 @@ if (isEnabled) {
 3. **Review SDK parameters**:
   - Ensure `featureFlagsEnabled = true` is set in MixpanelOptions
   - If using a custom Variant Assignment Key, ensure it is included in the `featureFlagsContext` JSONObject
-  - If using Runtime Targeting, ensure all properties used in targeting are included in the `customProperties` object within `featureFlagsContext`
+  - If using Runtime Targeting, ensure all properties used in targeting are included in the `custom_properties` object within `featureFlagsContext`
 
 4. **Check flags readiness**: Use `areFlagsReady()` to check if flags have been loaded before making synchronous calls
 5. **Enable debug logging**: Check Android logs for detailed information about flag requests and responses
