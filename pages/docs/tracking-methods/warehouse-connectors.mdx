@@ -72,6 +72,10 @@ Navigate to [Project Settings → Warehouse Sources](https://mixpanel.com/report
           ```
 
 JSON columns mapped in BigQuery containing multiple properties are subject to a hard limit of 1MB per record. This limitation is imposed by Google Cloud's handling of JSON objects and applies during the intermediate step where data is written to the GCS bucket.
+
+### IP Allowlist
+IP allowlists are [not supported](https://docs.cloud.google.com/vpc-service-controls/docs/use-access-levels) for BigQuery because Mixpanel's infrastructure runs on GCP, and inter-project communication in Google Cloud routes through internal Google IPs rather than public IPs. Instead, configure an ingress rule to allow access based on other attributes such as the service account.
+
 </Tabs.Tab>
 <Tabs.Tab>
     <div style={{position: 'relative', paddingBottom: '64.90384615384616%', height: 0}}>
