@@ -313,9 +313,9 @@ You can see your experiment MEU usage by going to Organization settings > Plan D
 ## References
 
 ### Experiment Model Types
-- Sequential: Allows you to detect lift and conclude experiments quickly, but may fail to reach significance for very small lifts. **When to use?** If you’re looking for impact as tiny as 1% i.e, super low lifts
+- Sequential: Allows you to detect lift and conclude experiments quickly, but may fail to reach significance for very small lifts. **When to use?** For large changes (~10%+ lift) when you want to stop early once significance is reached.
     
-- Frequentist: Capable of detecting smaller lifts, but requires you to keep experiments for the full duration. You’re discouraged from preemptively making decisions before the test duration is complete. **When to use?** If you’re looking for large impact changes like 10%+
+- Frequentist: Capable of detecting smaller lifts, but requires you to keep experiments for the full duration. You’re discouraged from preemptively making decisions before the test duration is complete. **When to use?** For very small changes (~1% lift) when precision matters.
 
 ### Experiment metric types
 - **Primary Metrics:**  Main goals you're trying to improve. These are metrics used to determine if the experiment succeeded. Examples: revenue, conversion rates, ARPU.

@@ -12,7 +12,7 @@ export default {
     ),
   },
   "mixpanel-introduction": "Mixpanel Introduction",
-  "self-guided-tours": "Self Guided Tours",
+  "self-guided-tours": "Self-Guided Tours",
   "changelog": {
       title: "What's New? ↗",
       href: "/changelogs",
@@ -38,5 +38,6 @@ export default {
     ),
   },
   "benchmarks": "Benchmarks",
-  "strategic-playbooks": "Strategic Playbooks"
+  "strategic-playbooks": "Strategic Playbooks",
+  "glossary": "Glossary"
 }
