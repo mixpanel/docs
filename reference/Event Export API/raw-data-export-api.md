@@ -9,6 +9,8 @@ privacy:
 ---
 The Mixpanel Export Data APIs allow you to export your raw data either manually or through a pipeline.
 
+Please note that deduplication is not applied to raw data exports. If you export events via the API, you may see duplicates. It is recommended to apply deduplication logic (event name, distinct_id, timestamp, $insert_id) to all exported data.
+
 Example usage:
 
 * If you receive a spike of 10K events but notice that only a few users contributed to it and would like to compare the data to another source.
