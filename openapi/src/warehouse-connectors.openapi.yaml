@@ -207,7 +207,7 @@ paths:
         ## Sync Modes
 
         - **time_based**: Incrementally syncs new rows based on an insert time column
-        - **mirror**: Detects changes in the source table and mirrors them to Mixpanel
+        - **mirror_mode**: Detects changes in the source table and mirrors them to Mixpanel
         - **full_sync**: Re-syncs all data on each run
         - **one_time**: Syncs data once and does not repeat
 
@@ -216,6 +216,8 @@ paths:
         You must specify either:
         - `event_name`: A static event name for all rows
         - `event_column_name`: The column containing the event name
+
+        For B2B projects, `company_column_name` is also required.
       requestBody:
         required: true
         content:
@@ -420,7 +422,7 @@ components:
   schemas:
     SyncMode:
       type: string
-      enum: [time_based, mirror, full_sync, one_time]
+      enum: [time_based, mirror_mode, full_sync, one_time]
 
     ImportType:
       type: string
@@ -662,6 +664,9 @@ components:
           type: string
         user_column_name:
           type: string
+        company_column_name:
+          type: string
+          description: Required for B2B projects. The column containing the company identifier.
         sync_mode:
           $ref: "#/components/schemas/SyncMode"
         run_every:
