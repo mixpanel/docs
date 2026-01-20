@@ -78,7 +78,7 @@ mixpanel.stop_session_recording();
 | --- | --- |
 | We have a sensitive screen we don't want to capture | When user is about to access the sensitive screen, call `mixpanel.stop_session_recording()`. To resume recording once they leave this screen, you can resume recording with `mixpanel.start_session_recording()`  | 
 | We only want to record certain types of users (e.g. Free plan users only) | Using your application code, determine if current user meets the criteria of users you wish to capture. If they do, then call `mixpanel.start_session_recording()` to force recording on |
-| We only want to users utilizing certain features | When user is about to access the feature you wish to capture replays for, call `mixpanel.start_session_recording()` to force recording on |
+| We only want to record users utilizing certain features | When user is about to access the feature you wish to capture replays for, call `mixpanel.start_session_recording()` to force recording on |
 
 
 ### Additional Configuration Options
@@ -111,6 +111,7 @@ mixpanel.init(
 | `record_sessions_percent` | Percentage of SDK initializations that will qualify for replay data capture. A value of "1" = 1%. | `0` |
 | `record_canvas` | When true, Mixpanel will record snapshots of `<canvas>` elements on your site at up to 15 frames per second | `false` |
 | `record_heatmap_data` | When true, Mixpanel will capture click events during replays to populate Heatmaps. You can learn more [here](/docs/session-replay/heatmaps). | `false` |
+| `record_console` | When true, Mixpanel will record console logs, warnings, and errors as part of the replay. | `true` |
 
 Note: Canvas recording (record_canvas) utilizes [rrweb's](https://github.com/rrweb-io/rrweb) UNSAFE_replayCanvas option, which is experimental and not fully supported. We recommend testing thoroughly before deploying to production.
 
@@ -183,7 +184,7 @@ The `record_heatmap_data` option (Web only; not available on mobile) enables fou
 
 These events are only captured when a session recording is in progress, and they are exempt from your plan data allowance.
 
-**Important:** Session Replay must be enabled for `record_heatmap_data` to work. Heatmaps only collect data during sessions with recorded replays. If a page has limited replay coverage, the resulting Heatmap may provide limited or less meaningful insights.
+Session Replay must be enabled for `record_heatmap_data` to work. Heatmaps only collect data during sessions with recorded replays. If a page has limited replay coverage, the resulting Heatmap may provide limited or less meaningful insights.
 
 **Example Usage**
 
@@ -385,7 +386,7 @@ Along with other data, the SDK respects all Do Not Track (DNT) settings as well 
 
 ### Retention
 
-User replays are stored for 30 days after the time of ingestion. There is no way to view a replay older than 30 days old.
+User replays are stored for 30 days after the time of ingestion by default. Customers with the custom volumes of Session Replay can customize this value between 7 and 365 days as an additional paid add-on. 
 
 ## FAQ
 

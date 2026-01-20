@@ -6,8 +6,22 @@ import { Callout } from 'nextra/components'
 
 This developer guide will assist you in configuring your Swift app for [Session Replay](/docs/session-replay) using the [Session Replay SDK (Swift)](/docs/tracking-methods/sdks/swift/swift-replay). Learn more about [viewing captured Replays in your project here](/docs/session-replay).
 
-<Callout type="info">
-  Mobile Session Replay is generally available (GA) to customers on all plans and in all regions.
+<Callout type="warning">
+  **iOS 26+ with Xcode 26: SwiftUI Automasking Issue**
+
+  Apple's iOS 26 introduces "Liquid Glass" rendering changes that affect automasking in Session Replay for SwiftUI apps. This is an industry-wide issue impacting all session replay vendors.
+
+  **Who is affected:** SwiftUI apps using automasking for text or images, built with Xcode 26, and running on iOS 26+.
+
+  **Impact:** Automasking may not function correctly, potentially exposing sensitive data that would normally be masked.
+
+  **Default behavior (v1.2.0+):** Session Replay is now disabled by default for apps built with Xcode 26+ running on iOS 26+.
+
+  **Re-enabling Session Replay:** If your app is built with Xcode 16 or earlier, does not use SwiftUI, or does not rely on automasking, it's safe to re-enable by setting `enableSessionReplayOniOS26AndLater = true` in your `MPSessionReplayConfig`.
+
+  **If you rely on automasking in a SwiftUI app:** Disable automasking by passing `autoMaskedViews: []` to your config, then [manually mark sensitive views](/docs/tracking-methods/sdks/swift/swift-replay#mark-views-as-sensitive) using `.mpReplaySensitive(true)` and test thoroughly to ensure masking works as expected.
+
+  We are actively investigating fixes for this issue.
 </Callout>
 
 ## Best Practices
@@ -170,7 +184,7 @@ MPSessionReplay.getInstance()?.captureScreenshot(withTouchEvent: touchEvent)
 
 Upon initialization you can provide a `MPSessionReplayConfig` object to customize your replay capture.
 
-Currently, there are six config options:
+Currently, there are seven config options:
 
 | Option | Description | Default | 
 | --- | --- | --- |
@@ -180,6 +194,7 @@ Currently, there are six config options:
 | `recordingSessionsPercent` | This is a value between `0.0` and `100.0` (default) that controls the sampling rate for automatically triggered session replays. <br/> At `0.0` no sessions will be recorded. At `100.0` all sessions will be recorded.  | `100.0` |
 | `flushInterval` | Specifies the flush interval (in seconds) at which session replay events are sent to the Mixpanel server. | `10` |
 | `enableLogging` | This is a boolean value that determines whether or not debugging logs are printed to the console. | `false` |
+| `enableSessionReplayOniOS26AndLater` | Forces Session Replay to be enabled on iOS 26+, bypassing compatibility checks. Session Replay is disabled by default for apps built with Xcode 26+ running on iOS 26+ due to SwiftUI automasking issues. See the warning callout above for details. | `false` |
 
 **autoMaskedViews Example Usage**
 ```swift Swift
@@ -191,13 +206,27 @@ MPSessionReplayConfig(autoMaskedViews: [])
 ```
 
 Alternatively:
-
 ```swift Swift
 // mask images only
 MPSessionReplay.getInstance()?.autoMaskedViews = [.image]
 
 // disable auto masking
 MPSessionReplay.getInstance()?.autoMaskedViews = []
+```
+
+**enableSessionReplayOniOS26AndLater Example Usage**
+```swift Swift
+let config = MPSessionReplayConfig(
+    autoMaskedViews: [],  // Disable automasking if using SwiftUI
+    wifiOnly: false
+)
+config.enableSessionReplayOniOS26AndLater = true
+
+MPSessionReplay.initialize(
+    token: Mixpanel.mainInstance().apiToken,
+    distinctId: Mixpanel.mainInstance().distinctId,
+    config: config
+)
 ```
 
 #### Identity Management
