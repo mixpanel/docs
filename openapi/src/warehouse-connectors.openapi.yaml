@@ -676,6 +676,10 @@ components:
           nullable: true
         property_mappings:
           $ref: "#/components/schemas/PropertyMappings"
+        start_time_ms:
+          type: number
+          nullable: true
+          description: Start time for the import schedule in milliseconds since epoch. Used with run_every to determine when scheduled syncs occur.
         databricks_params:
           $ref: "#/components/schemas/DatabricksParams"
 
