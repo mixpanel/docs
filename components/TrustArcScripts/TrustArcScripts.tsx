@@ -5,8 +5,8 @@ export function TrustArcHeadScripts() {
 
     return (
         <>
-            <script src={trustArcAutoBlockCoreSrc} async />
-            <script src={trustArcAutoBlockSrc} async />
+            <script src={trustArcAutoBlockCoreSrc} />
+            <script src={trustArcAutoBlockSrc} />
             <script type="text/javascript" async src={trustArcInitScriptSrc} />
         </>
     );
