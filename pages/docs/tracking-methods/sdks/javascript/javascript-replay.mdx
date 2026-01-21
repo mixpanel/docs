@@ -99,13 +99,18 @@ mixpanel.init(
 
 #### Init Options
 
-| Option | Description | Default | 
+| Option | Description | Default |
 | --- | --- | --- |
 | `record_block_class` | CSS class name or regular expression for elements which will be replaced with an empty element of the same dimensions, blocking all contents.  | `new RegExp('^(mp-block\|fs-exclude\|amp-block\|rr-block\|ph-no-capture)$')` <br/> (common industry block classes) |
 | `record_block_selector` | CSS selector for elements which will be replaced with an empty element of the same dimensions, blocking all contents.  | `"img, video"` |
 | `record_idle_timeout_ms` | Duration of inactivity in milliseconds before ending a contiguous replay. A new replay collection will start when active again. | `1800000`<br/>(30 minutes) |
-| `record_mask_text_class` | CSS class name or regular expression for elements that will have their text contents masked. | `new RegExp('^(mp-mask\|fs-mask\|amp-mask\|rr-mask\|ph-mask)$')` <br/> (common industry mask classes) |
-| `record_mask_text_selector` | CSS selector for elements that will have their text contents masked. | `"*"` |
+| `record_mask_all_text` | When `true`, all text is masked by default. Use `record_unmask_text_selector` to selectively reveal elements. | `true` |
+| `record_mask_text_selector` | CSS selector or array of selectors for elements to mask. Only applies when `record_mask_all_text` is `false`. | `""` |
+| `record_unmask_text_selector` | CSS selector or array of selectors for elements to unmask. Only applies when `record_mask_all_text` is `true`. | `""` |
+| `record_mask_text_class` | CSS class name or regular expression for elements that will have their text contents masked. Included for backward compatibility. | `new RegExp('^(mp-mask\|fs-mask\|amp-mask\|rr-mask\|ph-mask)$')` <br/> (common industry mask classes) |
+| `record_mask_all_inputs` | When `true`, all inputs are masked by default. Use `record_unmask_input_selector` to selectively reveal inputs. Note: [certain input types](/docs/session-replay/session-replay-privacy-controls#always-masked-inputs) are always masked regardless of this setting. | `true` |
+| `record_mask_input_selector` | CSS selector or array of selectors for inputs to mask. Only applies when `record_mask_all_inputs` is `false`. | `""` |
+| `record_unmask_input_selector` | CSS selector or array of selectors for inputs to unmask. Only applies when `record_mask_all_inputs` is `true`. | `""` |
 | `record_max_ms` | Maximum length of a single replay in milliseconds. Up to 24 hours is supported. Once a replay has reached the maximum length, a new one will begin. | `86400000`<br/>(24 hours) |
 | `record_min_ms` | Minimum length of a single replay in milliseconds. Up to 8 seconds is supported. If a replay does not meet the minimum length, it will be discarded. | `0`<br/>(0 seconds) |
 | `record_sessions_percent` | Percentage of SDK initializations that will qualify for replay data capture. A value of "1" = 1%. | `0` |
@@ -118,10 +123,22 @@ Note: Canvas recording (record_canvas) utilizes [rrweb's](https://github.com/rrw
 **Example Usage**
 
 ```javascript
+// Unmask navigation and public content while keeping everything else masked
 mixpanel.init('YOUR_PROJECT_TOKEN', {
-    record_sessions_percent: 1,  //records 1% of all sessions
-    record_mask_text_selector: '', //unmask all text elements
-    record_block_selector: '' //unmask images and videos
+    record_sessions_percent: 1,
+    record_unmask_text_selector: ['.navigation', '.public-content'],
+    record_unmask_input_selector: '#search-box'
+});
+```
+
+```javascript
+// Mask only sensitive areas while showing everything else
+mixpanel.init('YOUR_PROJECT_TOKEN', {
+    record_sessions_percent: 1,
+    record_mask_all_text: false,
+    record_mask_text_selector: ['.user-data', '#billing-section'],
+    record_mask_all_inputs: false,
+    record_mask_input_selector: '.sensitive-input'
 });
 ```
 
@@ -380,7 +397,9 @@ Mixpanel offers a privacy-first approach to Session Replay, including features s
 
 ### User Data
 
-The Mixpanel SDK will always mask all inputs. By default, all text on a page will also be masked unless a different `record_mask_text_selector` is specified (see [Additional Configuration](/docs/tracking-methods/sdks/javascript/javascript-replay#additional-configuration-options) above).
+By default, all text and inputs on a page are masked. You can selectively unmask elements using `record_unmask_text_selector` and `record_unmask_input_selector`, or change the default behavior using `record_mask_all_text` and `record_mask_all_inputs`.
+
+Note that [certain sensitive input types](/docs/session-replay/session-replay-privacy-controls#always-masked-inputs) (password, email, tel, hidden, and inputs with autocomplete attributes) are always masked regardless of your configuration.
 
 Along with other data, the SDK respects all Do Not Track (DNT) settings as well as manual opt-out for any replay data. 
 
@@ -392,7 +411,7 @@ User replays are stored for 30 days after the time of ingestion by default. Cust
 
 #### Can I prevent Session Replay from recording sensitive content?
 
-By default, all on-screen text elements are masked in replays. Additionally, you can customize how you leverage our SDK to fully control (1) where to record and (2) whom to record. Consider the [manual capture example scenarios](/docs/tracking-methods/sdks/javascript/javascript-replay#example-scenarios) and [init options](/docs/tracking-methods/sdks/javascript/javascript-replay#init-options) provided above to customize the replay capture of your implementation.
+By default, all on-screen text and input elements are masked in replays. You can selectively unmask elements using `record_unmask_text_selector` and `record_unmask_input_selector`. Additionally, [certain sensitive input types](/docs/session-replay/session-replay-privacy-controls#always-masked-inputs) are always masked regardless of configuration. Consider the [manual capture example scenarios](/docs/tracking-methods/sdks/javascript/javascript-replay#example-scenarios) and [init options](/docs/tracking-methods/sdks/javascript/javascript-replay#init-options) provided above to customize the replay capture of your implementation.
 
 #### How can I estimate how many Replays I will generate?
 
