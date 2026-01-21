@@ -10,7 +10,7 @@ This developer guide will assist you in configuring your server-side Python plat
 
 Before implementing [Feature Flags](/docs/featureflags), ensure:
 
-- You are on an Enterprise subscription plan  and have the appropriate version of the SDK installed (minimum supported version is [`v5.0.0`](https://github.com/mixpanel/mixpanel-python). If not, please follow [this doc](/docs/quickstart/install-mixpanel) to install the SDK.
+- You are on an Enterprise subscription plan  and have the appropriate version of the SDK installed (minimum supported version is [`v5.1.0`](https://github.com/mixpanel/mixpanel-python). If not, please follow [this doc](/docs/quickstart/install-mixpanel) to install the SDK.
 - You have your Project Token from your [Mixpanel Project Settings](/docs/orgs-and-projects/managing-projects#find-your-project-tokens)
 
 ## Flag Evaluation Scenarios
@@ -24,10 +24,6 @@ For remote evaluation, the SDK will make a network call to Mixpanel servers at a
 In either case there is also the capability to evaluate all flags for a given user context at once, to avoid needing to make multiple calls to get individual flag variants for the same user. This is particularly useful for remote evaluation to avoid incurring additional network calls.
 
 ## Local Evaluation
-
-<Callout type="warning">
-Support for runtime targeting is in pre-release.  Specify version `5.1.0b1` in your package management tool to have access. 
-</Callout>
 
 <Callout type="warning">
 Targeting by Mixpanel cohorts and sticky variants are not supported in Local Evaluation mode.
