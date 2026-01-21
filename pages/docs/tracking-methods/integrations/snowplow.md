@@ -1,24 +1,39 @@
 # Snowplow
 
-If you already use Snowplow to collect event data, it's easy to route that data to Mixpanel. The value of connecting Snowplow and Mixpanel is to enable fast, self-serve product analytics on the events you already collect. In this guide, we share the recommended ways to get events flowing from Snowplow → Mixpanel.
-
+If you already use Snowplow to collect event data, it's easy to route that data to Mixpanel. The value of connecting Snowplow and Mixpanel is to enable fast, self-serve product analytics on the events you already collect. Snowplow offers a native integration that forwards events directly to Mixpanel.
 
 ## How Snowplow Works
-Snowplow is an open-source, self-hosted platform for collecting and storing event data from your application. Teams use Snowplow's SDKs and platform to exercise full control over event data collection in their own cloud. Snowplow's [event-centric approach](https://docs.snowplowanalytics.com/docs/understanding-your-pipeline/canonical-event/) is fully compatible with Mixpanel; [our infrastructure](https://developer.mixpanel.com/docs/under-the-hood) is also purpose-built to ingest, store, and query events.
+[Snowplow](https://snowplow.io/) is a customer data infrastructure platform for collecting and storing event data from your application. Teams use Snowplow's SDKs and platform to exercise full control over event data collection in their own cloud. Snowplow's [event-centric approach](https://docs.snowplow.io/docs/fundamentals/events) is fully compatible with Mixpanel; [our infrastructure](https://developer.mixpanel.com/docs/under-the-hood) is also purpose-built to ingest, store, and query events.
 
-Below we show the architecture of a Snowplow pipeline from their [documentation](https://docs.snowplowanalytics.com/docs/understanding-your-pipeline).
+Below we show the architecture of a Snowplow pipeline from their [documentation](https://docs.snowplowanalytics.com/docs/fundamentals).
 
 ![image](/230695089-ad29a224-0f8e-425a-88a5-f34be4600628.png)
 
+## How the Integration Works
 
-## Integrating with Mixpanel
-Snowplow's main responsibility is to collect and validate events before storing the events in either:
+The Mixpanel integration uses Snowplow's [event forwarding](https://docs.snowplow.io/docs/destinations/forwarding-events/integrations/mixpanel). It works as a destination in your Snowplow pipeline. As events flow through Snowplow's collection and enrichment process, the event forwarder sends validated events directly to Mixpanel, in near real-time, via the [Mixpanel Import API](https://developer.mixpanel.com/reference/import-events).
 
-- A streaming system like Amazon Kinesis, Google PubSub, or ElasticSearch.
-- A data lake like Amazon S3 or Google Cloud Storage.
+## Setup
 
-Depending on which of the above destinations you've configured in Snowplow, you can follow our guides for ingesting *from* that destination into Mixpanel. We provide guides for [Amazon S3](/docs/tracking-methods/integrations/amazon-s3), [Google Cloud Storage](/docs/tracking-methods/integrations/google-cloud-storage), and [Google Pub/Sub](/docs/tracking-methods/integrations/google-pubsub). The process for Kinesis is very similar. Similar to Snowplow itself, these guides run fully in your own cloud and give you granular control over what exactly what gets sent to Mixpanel.
+### Create the Connection
 
-If you're using Snowplow to ingest events directly into a data warehouse like Snowflake or BigQuery, we recommend leveraging our Reverse ETL integrations with [Census](https://www.getcensus.com/integrations/mixpanel) and [HighTouch](https://hightouch.io/integrations/destinations/mixpanel). Reverse ETL tools let you model events using a SQL query and push them to all the tools in your stack, including Mixpanel.
+Add Mixpanel as an event forwarding destination in your Snowplow pipeline. This is configured in **Destinations** > **Connections** in the Snowplow Console UI:
 
-Finally, Mixpanel's [Import API](https://developer.mixpanel.com/reference/import-events) is a simple JSON-over-HTTP API. You can always use any other orchestration tools you have in your stack (Airflow, Dagster, Spark, etc.) to read data produced by Snowplow in your cloud and directly hit our import API to ingest them into Mixpanel.
+1. Select **Set up connection**, and choose **Loader connection** from the menu
+2. Select Mixpanel as the destination type
+3. Choose your Mixpanel server location
+4. Enter your Mixpanel account credentials
+
+### Identity Management
+
+The integration automatically handles user identification using Mixpanel's simplified ID merge functionality. It uses `distinct_id` for user identification, and combines `domain_userid` with `client_session.user_id` for device tracking, automatically connecting anonymous and identified user activity.
+
+### Schema Mapping
+
+The integration provides default mappings for:
+- Required fields: event name, timestamp, user ID, event ID
+- Optional fields: geographic data, device information, browser details, UTM parameters
+
+You can also add custom event properties using the format `properties.your_custom_field`.
+
+For detailed setup instructions, refer to the [Snowplow documentation](https://docs.snowplow.io/docs/destinations/forwarding-events).

@@ -2,10 +2,6 @@ import { Callout } from "nextra/components";
 
 # Implement Feature Flags (Java)
 
-<Callout type="info">
-  The Java feature flags implementation is currently in Beta.
-</Callout>
-
 ## Overview
 
 This developer guide will assist you in configuring your server-side Java platform for [Feature Flags](/docs/featureflags) using the [Mixpanel Java SDK](/docs/tracking-methods/sdks/java). Feature Flags allow you to control the rollout of your features, conduct A/B testing, and manage application behavior without deploying new code.
@@ -17,10 +13,6 @@ Before implementing [Feature Flags](/docs/featureflags), ensure:
 - You are on an Enterprise subscription plan and have the appropriate version of the SDK installed (minimum supported version is `1.6.0-SNAPSHOT`). If not, please follow [this doc](/docs/quickstart/install-mixpanel) to install the SDK.
 - You have your Project Token from your [Mixpanel Project Settings](/docs/orgs-and-projects/managing-projects#find-your-project-tokens)
 
-<Callout type="info">
-  The Java Feature Flags SDK is currently in Beta and uses a `-SNAPSHOT` version (`1.6.0-SNAPSHOT`). You'll need to configure your build tool to pull snapshot versions from Sonatype's snapshot repository. See the [Sonatype snapshot documentation](https://central.sonatype.org/publish/publish-portal-snapshots/) for instructions on configuring Maven or Gradle.
-</Callout>
-
 ## Flag Evaluation Modes
 
 There are two modes available for using the Java SDK for feature flagging: Local Evaluation and Remote Evaluation.
@@ -30,10 +22,6 @@ For local evaluation, the SDK will poll Mixpanel servers for feature flag config
 For remote evaluation, the SDK will make a network call to Mixpanel servers at assignment time. This mode is recommended for use cases where you want to leverage Mixpanel cohorts for user targeting or sticky variants for persistent variant assignments.
 
 ## Local Evaluation
-
-<Callout type="warning">
-Support for runtime targeting has not yet been released.  Thus runtime rules other than a single-condition, exact match key-value pair, will ALWAYS be evaluated to true. 
-</Callout>
 
 <Callout type="warning">
   Targeting by Mixpanel cohorts and sticky variants are not supported in Local
