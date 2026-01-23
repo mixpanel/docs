@@ -104,18 +104,18 @@ paths:
         The following fields can be modified:
 
         - **paused** (boolean, required): Pause or resume the import sync
-        - **run_every** (integer): Sync frequency in nanoseconds. Common values:
-          - Hourly: `3600000000000` (60 * 60 * 10^9)
-          - Daily: `86400000000000` (24 * 60 * 60 * 10^9)
-          - Weekly: `604800000000000` (7 * 24 * 60 * 60 * 10^9)
-        - **start_time_ms** (number): Start time for the import schedule in milliseconds since epoch
+        - **run_every** (integer): Sync frequency in nanoseconds. Must be one of the following values:
+          - `0`: API-triggered only (no scheduled sync)
+          - `3600000000000`: Hourly
+          - `86400000000000`: Daily
+          - `604800000000000`: Weekly
         - **databricks_params** (object): Databricks-specific cluster configuration (only for Databricks sources)
 
         ## Pause/Resume Behavior
 
         - When `paused: true`, the import job will be stopped and no new syncs will be triggered
         - When `paused: false`, the import job will be resumed with the specified frequency
-        - When resuming, you can optionally update `run_every` and `start_time_ms`
+        - When resuming, you can optionally update `run_every`
 
         ## Databricks Configuration
 
@@ -408,7 +408,7 @@ paths:
         - Warehouse Imports
       summary: Get import job history
       description: |
-        Returns the execution history for a warehouse import.
+        Returns the execution history for a warehouse import. Returns 100 most recent events.
       responses:
         "200":
           description: Success
@@ -433,6 +433,20 @@ components:
     SyncMode:
       type: string
       enum: [time_based, mirror_mode, full_sync, one_time]
+
+    SyncFrequency:
+      type: integer
+      description: |
+        Sync frequency in nanoseconds. Only these values are accepted:
+        - `0` - API-triggered only (use the manual-sync endpoint to trigger)
+        - `3600000000000` - Hourly
+        - `86400000000000` - Daily
+        - `604800000000000` - Weekly
+      enum:
+        - 0
+        - 3600000000000
+        - 86400000000000
+        - 604800000000000
 
     ImportType:
       type: string
@@ -589,8 +603,8 @@ components:
         paused:
           type: boolean
         run_every:
-          type: integer
-          nullable: true
+          allOf:
+            - $ref: "#/components/schemas/SyncFrequency"
         last_dispatch:
           type: integer
           nullable: true
@@ -625,9 +639,6 @@ components:
             group_id_column:
               type: string
               nullable: true
-            start_time_ms:
-              type: number
-              nullable: true
             databricks_params:
               $ref: "#/components/schemas/DatabricksParams"
 
@@ -639,12 +650,7 @@ components:
           type: boolean
           description: Whether to pause (true) or resume (false) the import
         run_every:
-          type: integer
-          description: Sync frequency in nanoseconds (hourly=3600000000000, daily=86400000000000, weekly=604800000000000)
-        start_time_ms:
-          type: number
-          nullable: true
-          description: Start time for the schedule in milliseconds since epoch
+          $ref: "#/components/schemas/SyncFrequency"
         databricks_params:
           $ref: "#/components/schemas/DatabricksParams"
 
@@ -680,7 +686,7 @@ components:
         sync_mode:
           $ref: "#/components/schemas/SyncMode"
         run_every:
-          type: integer
+          $ref: "#/components/schemas/SyncFrequency"
         insert_time_column_name:
           type: string
           nullable: true
@@ -716,7 +722,7 @@ components:
         sync_mode:
           $ref: "#/components/schemas/SyncMode"
         run_every:
-          type: integer
+          $ref: "#/components/schemas/SyncFrequency"
         insert_time_column_name:
           type: string
           nullable: true
@@ -751,7 +757,7 @@ components:
         sync_mode:
           $ref: "#/components/schemas/SyncMode"
         run_every:
-          type: integer
+          $ref: "#/components/schemas/SyncFrequency"
         insert_time_column_name:
           type: string
           nullable: true
@@ -794,7 +800,7 @@ components:
           type: string
           enum: [full_sync, one_time]
         run_every:
-          type: integer
+          $ref: "#/components/schemas/SyncFrequency"
         databricks_params:
           $ref: "#/components/schemas/DatabricksParams"
 
