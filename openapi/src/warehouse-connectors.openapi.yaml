@@ -226,7 +226,6 @@ paths:
           - Hourly: `3600000000000` (60 * 60 * 10^9)
           - Daily: `86400000000000` (24 * 60 * 60 * 10^9)
           - Weekly: `604800000000000` (7 * 24 * 60 * 60 * 10^9)
-        - **start_time_ms** (number): Optional start time for the import schedule in milliseconds since epoch
         - **databricks_params** (object): Databricks-specific cluster configuration (only for Databricks sources)
       requestBody:
         required: true
@@ -692,10 +691,6 @@ components:
           nullable: true
         property_mappings:
           $ref: "#/components/schemas/PropertyMappings"
-        start_time_ms:
-          type: number
-          nullable: true
-          description: Start time for the import schedule in milliseconds since epoch. Used with run_every to determine when scheduled syncs occur.
         databricks_params:
           $ref: "#/components/schemas/DatabricksParams"
 
