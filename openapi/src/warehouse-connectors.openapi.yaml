@@ -221,7 +221,7 @@ paths:
 
         ## Scheduling
 
-        - **run_every** (integer): Sync frequency in nanoseconds. Common values:
+        - **run_every** (integer): Sync frequency in nanoseconds. Allowed values:
           - Trigger via API: `0`
           - Hourly: `3600000000000` (60 * 60 * 10^9)
           - Daily: `86400000000000` (24 * 60 * 60 * 10^9)
