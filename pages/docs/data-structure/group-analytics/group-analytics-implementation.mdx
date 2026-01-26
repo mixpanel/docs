@@ -84,6 +84,8 @@ An event can be attributed to multiple groups. The convenience functions cited a
 mixpanel.track("Some Event", { company_id: ["company 1", "company 2", "company 3"] });
 ```
 
+Note that there is a limit of 300 group keys that the event will be attributed to. All group keys beyond that limit will be ignored.
+
 ## Updating Group Profiles
 
 To create or update a [group profile](../group-analytics#group-profiles), similarly to user profile operations, at least one (1) profile property must be set. A set operation for a group profile that does not exist would create said profile, while it would update an existing profile.
