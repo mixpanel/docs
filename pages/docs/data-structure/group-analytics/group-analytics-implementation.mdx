@@ -68,7 +68,7 @@ The group key(s) and their value should be present in every event you want assoc
 	</Tabs.Tab>
 </Tabs>
 
-Do note this is just a convenience function; for server-side libraries, or if there's no access to local storage, you can send the group key and value in every event tracked. Below you will see the same flow using python.
+Note this is just a convenience function; for server-side libraries, or if there's no access to local storage, you can send the group key and value in every event tracked. Below you will see the same flow using python.
 
 ```python
 mp.track('$device:anoymous_id', 'page_view',{'$device_id':'anoymous_id'})
@@ -83,8 +83,9 @@ An event can be attributed to multiple groups. The convenience functions cited a
 ```javascript Javascript
 mixpanel.track("Some Event", { company_id: ["company 1", "company 2", "company 3"] });
 ```
-
-Note that there is a limit of 300 group keys that the event will be attributed to. All group keys beyond that limit will be ignored.
+<Callout type="info">
+ Up to 300 group keys may be assigned to an event. Any additional groups beyond that number are ignored.
+</Callout>
 
 ## Updating Group Profiles
 
