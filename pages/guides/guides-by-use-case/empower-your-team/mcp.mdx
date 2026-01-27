@@ -23,7 +23,52 @@ If MCP is positioned as “a faster way to build reports,” most of this value 
 ## See MCP in Action
 This short walkthrough shows MCP in action end to end — from asking intent-based questions, to running live analysis against Mixpanel, to synthesizing digital analytics with external context like calendars, competitor activity, and benchmarks.
 
+<section id="video" aria-label="MCP video" style={{ padding: '8px 16px 32px' }}>
+  <div
+    style={{
+      display: 'flex',
+      flexWrap: 'wrap',
+      gap: 24,
+      alignItems: 'center',
+    }}
+  >
+    {/* Left: video with a min width so it wraps when narrow */}
+    <div style={{ flex: '1 1 480px', minWidth: 320 }}>
+      <div
+        style={{
+          position: 'relative',
+          paddingBottom: '56.25%',
+          height: 0,
+          overflow: 'hidden',
+          borderRadius: '16px',
+          boxShadow: '0 4px 20px rgba(0,0,0,0.08)',
+        }}
+      >
+        <iframe
+          title="Mixpanel Overview"
+          src="https://www.loom.com/share/9d7c54ffa9314ad69291dafb70d8ce8a"
+          frameBorder="0"
+          allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+          allowFullScreen
+          style={{ position: 'absolute', top: 0, left: 0, width: '100%', height: '100%', border: 0 }}
+        />
+      </div>
+    </div>
+
+    {/* Right: text with a flexible basis */}
+    <aside style={{ flex: '1 1 320px', minWidth: 280 }}>
+      <h2 style={{ marginTop: 0 }}>**MCP Overview**</h2>
+      <p>
 If you’re new to MCP, watch this first to ground the concepts below in a concrete example. If you’re evaluating MCP for your team, this video illustrates the difference between simply querying Mixpanel and using MCP as a data synthesis layer.
+      </p>
+<br></br>
+      <a href="https://www.loom.com/share/9d7c54ffa9314ad69291dafb70d8ce8a"
+         target="_blank" rel="noopener noreferrer" style={{ fontWeight: 600 }}>
+        Open in Loom →
+      </a>
+    </aside>
+  </div>
+</section>
 
 ## Before You Begin
 You’ll need:
@@ -59,7 +104,7 @@ For example, based on how your project is actually implemented, MCP can help det
 
 This is where MCP meaningfully reduces dependency on a few schema experts.
 
-### Step 2: Use MCP to Run Analysis Without Touching the UI
+## Step 2: Use MCP to Run Analysis Without Touching the UI
 Once MCP understands which events and properties represent your intent, you can ask it to analyze them directly.
 
 Be explicit about:
@@ -128,7 +173,7 @@ These issues come up most often when teams treat MCP as a shortcut instead of a 
 
 - **Treating MCP as a report builder**: It’s an exploration and synthesis layer, not a persistence layer.
 - **Asking underspecified questions**: MCP is powerful, but clarity of intent still matters.
-- **Using MCP to paper over unclear instrumentation**: MCP helps interpret data — it doesn’t fix structural issues. When this comes up, pause and invest in data governance first (clear event definitions, ownership, and approval workflows) before relying on MCP for analysis.
+- **Using MCP to paper over unclear instrumentation**: MCP helps interpret data — it doesn’t fix structural issues. When this comes up, pause and invest in [data governance](/guides/guides-by-topic/govern-data) first (clear event definitions, ownership, and approval workflows) before relying on MCP for analysis.
 
 ## Key Takeaways
 - MCP queries Mixpanel; it doesn’t write back to it.
@@ -136,4 +181,4 @@ These issues come up most often when teams treat MCP as a shortcut instead of a 
 - The real unlock is joining product behavior with external context.
 - The best teams use MCP to decide what to formalize in Mixpanel next.
 
-👉 **Next step**: Review the Mixpanel MCP Integration documentation to set up the integration correctly and understand how to connect Mixpanel MCP to your AI tools with confidence.
+👉 **Next step**: Review the [Mixpanel MCP Integration](/docs/features/mcp) documentation to set up the integration correctly and understand how to connect Mixpanel MCP to your AI tools with confidence.
