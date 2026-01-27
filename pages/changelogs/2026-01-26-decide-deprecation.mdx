@@ -16,16 +16,22 @@ isAnnouncement: false
   title="Retiring /decide Endpoint that was used in Older Mixpanel SDK Versions"
 />
 
-Starting April 2026, we will be fully retiring the `/decide` endpoint, which we began deprecating in 2022. Newer SDK versions no longer rely on it.
+Starting April 2026, we will be fully retiring the `/decide` endpoint, which was used in older versions of Mixpanel SDKs.
+We began deprecating this in 2022; newer SDK versions no longer rely on it.
 
 **If you’re running an SDK version from 2022 or earlier, please review the details below.**
 
+# How to check your project's current SDK Version:
+1. In an Insights Report, select "All Events" as your primary metric
+2. Break down by ["Mixpanel Library" and "Library Version"](/docs/data-structure/property-reference/reserved-properties#reserved-event-properties) event properties
+
+Tip: You can find a list of all Projects in your Organization in [Organization Settings > Projects](/docs/orgs-and-projects/managing-projects#viewing-project-information), and use the above check to confirm which SDK and versions are in use.
 
 # Mobile SDKs
 
 The `/decide` endpoint controlled whether [Legacy Automatically Tracked Mobile Events](/docs/tracking-methods/sdks/ios#legacy-automatically-tracked-events) `$ae_first_open`, `$ae_updated`, `$ae_crashed`, `$ae_session`, and `$ae_iap` were enabled or disabled for a Mixpanel Project.
 
-If you currently collect these events and your SDK version does not meet the minimum versions listed below, your application will stop tracking the Automatic Mobile events after April 2026.
+If you currently collect these events and your Mobile SDK version does not meet the minimum versions listed below, your application will stop tracking the Automatic Mobile events after April 2026.
 To keep collecting the Automatic Mobile events, please complete the following:
 1. **Update to at least the minimum SDK** **versions listed below** and 
 2. **Explicitly enable this tracking in your initialization code via `trackAutomaticEvents`**
