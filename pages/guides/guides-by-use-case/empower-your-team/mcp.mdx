@@ -1,7 +1,7 @@
 import { Callout, Steps } from 'nextra/components'
 
 # Use Mixpanel MCP to Turn Anyone into a Power User (and Go Beyond Mixpanel Data)
-Mixpanel Model Context Protocol (MCP) lets your team ask real questions about product behavior in natural language — and then take it further by synthesizing Mixpanel data with sources that don’t live in Mixpanel at all. 
+**Mixpanel Model Context Protocol (MCP)** lets your team ask real questions about product behavior in natural language — and then take it further by synthesizing Mixpanel data with sources that don’t live in Mixpanel at all. 
 
 This Guide shows how the best teams use Mixpanel MCP to close the context gap, speed up analysis, and unlock data synthesis workflows that used to take days.
 
@@ -49,8 +49,8 @@ This short walkthrough shows MCP in action end to end — from asking intent-bas
         }}
       >
         <iframe
-          title="Mixpanel Overview"
-          src="https://www.loom.com/share/9d7c54ffa9314ad69291dafb70d8ce8a"
+          title="MCP Overview"
+          src="https://www.loom.com/embed/9d7c54ffa9314ad69291dafb70d8ce8a"
           frameBorder="0"
           allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
           allowFullScreen
@@ -66,7 +66,7 @@ This short walkthrough shows MCP in action end to end — from asking intent-bas
 If you’re new to MCP, watch this first to ground the concepts below in a concrete example. If you’re evaluating MCP for your team, this video illustrates the difference between simply querying Mixpanel and using MCP as a data synthesis layer.
       </p>
 <br></br>
-      <a href="https://www.loom.com/share/9d7c54ffa9314ad69291dafb70d8ce8a"
+      <a href="https://www.loom.com/embed/9d7c54ffa9314ad69291dafb70d8ce8a"
          target="_blank" rel="noopener noreferrer" style={{ fontWeight: 600 }}>
         Open in Loom →
       </a>
@@ -98,7 +98,7 @@ Examples:
 ### Let MCP reason about your schema
 MCP reads your Mixpanel schema and reasons about how intent maps to your data — even when that intent doesn’t map cleanly to a single event.
 
-It doesn’t just answer the question you asked. MCP proactively suggests 'other relevant events and properties you may not have considered'.
+It doesn’t just answer the question you asked. MCP proactively suggests *other relevant events and properties* you may not have considered.
 
 This mirrors the value of [Lexicon](/docs/data-governance/lexicon) at its best: Instead of needing to know exactly what to look for, the AI helps surface adjacent signals that are often just as important.
 
@@ -172,7 +172,7 @@ Once MCP has analyzed:
 - Competitive signals
 - Industry benchmarks
 
-Ask it to synthesize: Given everything we’ve analyzed, what would you change about our checkout strategy going into the next holiday season?
+Ask it to synthesize: *Given everything we’ve analyzed, what would you change about our checkout strategy going into the next quarter?*
 
 This compresses work that previously took days or weeks into a single, iterative workflow.
 
@@ -180,12 +180,12 @@ This compresses work that previously took days or weeks into a single, iterative
 These issues come up most often when teams treat MCP as a shortcut instead of a complement to strong analytics fundamentals.
 
 - **Treating MCP as a report builder**: It’s an exploration and synthesis layer, not a persistence layer.
-- **Asking underspecified questions**: MCP is powerful, but clarity of intent still matters.
+- **Asking under-specified questions**: MCP is powerful, but clarity of intent still matters.
 - **Using MCP to paper over unclear instrumentation**: MCP helps interpret data — it doesn’t fix structural issues. When this comes up, pause and invest in [data governance](/guides/guides-by-topic/govern-data) first (clear event definitions, ownership, and approval workflows) before relying on MCP for analysis.
 
 ## Key Takeaways
 - MCP queries Mixpanel; it doesn’t write back to it.
-- Its biggest impact is reducing context friction, not clicks.
+- MCP's biggest impact is reducing context friction, not clicks.
 - The real unlock is joining product behavior with external context.
 - The best teams use MCP to decide what to formalize in Mixpanel next.
 
