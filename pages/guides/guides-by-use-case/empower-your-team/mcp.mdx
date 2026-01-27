@@ -1,0 +1,139 @@
+# Use Mixpanel MCP to Turn Anyone into a Power User (and Go Beyond Mixpanel Data)
+Mixpanel Model Context Protocol (MCP) lets your team ask real questions about product behavior in natural language — and then take it further by synthesizing Mixpanel data with sources that don’t live in Mixpanel at all. 
+
+This Guide shows how the best teams use Mixpanel MCP to close the context gap, speed up analysis, and unlock data synthesis workflows that used to take days.
+
+## What Is Mixpanel MCP?
+Mixpanel MCP connects your Mixpanel project to AI tools like ChatGPT, Claude, or Cursor. Instead of navigating reports or memorizing implementation details, you describe intent in plain English — and MCP translates that into real Mixpanel analysis behind the scenes.
+
+MCP does not replace the Mixpanel UI or create saved reports. It runs live analysis against your project and returns answers directly in your AI tool.
+
+Its real power is acting as a data synthesis layer, joining digital analytics with external, often unstructured data like spreadsheets, benchmarks, or internal documentation.
+
+## What Good Looks Like
+Teams using MCP well look materially different from teams that don’t:
+- New teammates can explore the product data without first learning the schema.
+- Analysts explore questions and sanity-check assumptions quickly before formalizing anything in Mixpanel.
+- Product questions are routinely answered with business context attached.
+- Strategic decisions are informed by synthesis, not stitched-together exports.
+- MCP and Lexicon are used together to proactively surface related events and properties, leading to clearer definitions and better metrics over time.
+
+If MCP is positioned as “a faster way to build reports,” most of this value never materializes.
+
+## See MCP in Action
+This short walkthrough shows MCP in action end to end — from asking intent-based questions, to running live analysis against Mixpanel, to synthesizing digital analytics with external context like calendars, competitor activity, and benchmarks.
+
+If you’re new to MCP, watch this first to ground the concepts below in a concrete example. If you’re evaluating MCP for your team, this video illustrates the difference between simply querying Mixpanel and using MCP as a data synthesis layer.
+
+## Before You Begin
+You’ll need:
+- MCP set up in your AI interface of choice. Review [Mixpanel MCP Integration](/docs/features/mcp) for details.
+- Access to a Mixpanel project with reasonably stable event definitions.
+- Any external context you want to analyze (CSVs, calendars, internal docs, benchmarks).
+
+Once MCP is connected, you select it as a data source inside the AI tool before asking questions.
+
+## Step 1: Use MCP to Eliminate the Context Gap
+Most teams don’t struggle with analysis first — they struggle with orientation.
+
+### Start with intent, not event names
+Begin with discovery questions that reflect how people actually think about the product, not how the data happens to be instrumented.
+
+Examples:
+- Which events and properties best represent checkout intent in our product?
+- How do we currently define activation for new users?
+- What signals represent meaningful engagement for a paid account?
+
+### Let MCP reason about your schema
+MCP reads your Mixpanel schema and reasons about how intent maps to your data — even when that intent doesn’t map cleanly to a single event.
+
+It doesn’t just answer the question you asked. MCP proactively suggests 'other relevant events and properties you may not have considered'.
+
+This mirrors the value of Lexicon at its best: Instead of needing to know exactly what to look for, the AI helps surface adjacent signals that are often just as important.
+
+### Example: clarifying ambiguous intent
+For example, based on how your project is actually implemented, MCP can help determine whether “purchase intent” is better represented by:
+- Checkout Started
+- Payment Method Added
+- A specific property on Purchase Completed
+
+This is where MCP meaningfully reduces dependency on a few schema experts.
+
+### Step 2: Use MCP to Run Analysis Without Touching the UI
+Once MCP understands which events and properties represent your intent, you can ask it to analyze them directly.
+
+Be explicit about:
+- The behavior you care about
+- The population
+- The timeframe
+- The shape of the answer
+
+Examples:
+- What’s the conversion rate from checkout intent to completed purchase for first-time buyers during the last two months?
+- Show me how that conversion changes week over week.
+
+MCP queries real Mixpanel data (funnels, trends, insights) and the AI analyzes those results to produce charts and written insights — directly in the AI interface.
+
+This is especially effective for:
+- Exploratory analysis
+- Sense-checking assumptions
+- Helping non-analysts answer real questions without report-builder fluency
+
+Tip: These outputs are not persisted in Mixpanel. When something matters, it’s best practice to recreate or formalize it in the Mixpanel UI.
+
+Think of MCP as a fast exploration layer — use it to discover and validate insights, then formalize the ones that matter in Mixpanel.
+
+## Step 3: Add Context Mixpanel Was Never Meant to Store
+Digital analytics tells you what users did. It rarely explains why.
+
+That’s where MCP becomes especially powerful: It lets you layer in context that lives outside your analytics tool, so behavior can be interpreted, not just measured.
+
+Use MCP to bring in additional context, such as:
+- Promotional or campaign calendars
+- Competitor announcements or pricing changes
+- Internal rollout notes or experiment timelines
+
+Then ask questions that explicitly connect behavior to context:
+- Do changes in conversion align with major promotional periods?
+- Are declines in checkout completion correlated with known competitor campaigns?
+
+MCP synthesizes this context with your product data in a single line of questioning — without manual exports or reconciliation.
+
+## Step 4: Combine Product Data with Unstructured Knowledge
+Some of the most important inputs into product decisions live in documents, not databases.
+
+If your AI tool is connected to sources like Notion or Google Drive, MCP can analyze those alongside Mixpanel data.
+
+Examples:
+- Compare our checkout conversion to the e-commerce benchmarks in our Q4 industry report.
+- Based on our historical performance and industry norms, where are we underperforming?
+
+This is where MCP clearly moves beyond analytics and into strategic reasoning.
+
+## Step 5: Use MCP for Synthesis, Not Just Answers
+The highest-value MCP prompts don’t ask for charts — they ask for judgment.
+
+Once MCP has analyzed:
+- Behavioral trends
+- Promotional context
+- Competitive signals
+- Industry benchmarks
+
+Ask it to synthesize: Given everything we’ve analyzed, what would you change about our checkout strategy going into the next holiday season?
+
+This compresses work that previously took days or weeks into a single, iterative workflow.
+
+## Common Pitfalls to Avoid
+These issues come up most often when teams treat MCP as a shortcut instead of a complement to strong analytics fundamentals.
+
+- **Treating MCP as a report builder**: It’s an exploration and synthesis layer, not a persistence layer.
+- **Asking underspecified questions**: MCP is powerful, but clarity of intent still matters.
+- **Using MCP to paper over unclear instrumentation**: MCP helps interpret data — it doesn’t fix structural issues. When this comes up, pause and invest in data governance first (clear event definitions, ownership, and approval workflows) before relying on MCP for analysis.
+
+## Key Takeaways
+- MCP queries Mixpanel; it doesn’t write back to it.
+- Its biggest impact is reducing context friction, not clicks.
+- The real unlock is joining product behavior with external context.
+- The best teams use MCP to decide what to formalize in Mixpanel next.
+
+👉 **Next step**: Review the Mixpanel MCP Integration documentation to set up the integration correctly and understand how to connect Mixpanel MCP to your AI tools with confidence.
