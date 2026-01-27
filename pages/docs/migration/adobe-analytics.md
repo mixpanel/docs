@@ -4,6 +4,8 @@ If you haven't already, we recommend starting with our [Migration Guides Overvie
 
 ## Differences in the data models
 
+Some text here.
+
 ### Data Model
 
 Mixpanel’s data model is based on events and properties, rather than Adobe which is schema-based with many different configurable data types. While this might be a shift if you come from the schema model where you define your data to be captured upfront before sending any data, we’ve found [schema-on-read](/docs/how-it-works/infrastructure#schema-on-read) to be both more flexible and easier to set up and use.
