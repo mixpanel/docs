@@ -16,7 +16,7 @@ isAnnouncement: false
   title="Annotations Timeline: Visualize Your Business Context"
 />
 
-Annotations let you add time-stamped notes so you can see metrics with context that matters to you. We've seen teams add valuable context about everything from product launches, marketing campaigns, outages, to holidays.
+Annotations enable you to add time-stamped notes, allowing you to view metrics with the context that matters to you. We've seen teams add valuable context about everything from product launches, marketing campaigns, outages, and holidays.
 
 Now, you can visualize all your annotations in a dedicated timeline view that shows how different types of events align across your data.
 
@@ -37,5 +37,7 @@ The timeline automatically syncs with your main chart, working seamlessly with b
 # Tag-Based Organization
 
 Use the tag filter to quickly analyze how particular categories of events impact your metrics. Focus on just Marketing campaigns, just Product releases, or any combination of tags that helps you tell your story.
+
+[Learn more →](/docs/features/annotations)
 
 If you have any questions or need assistance, please reach out to our [Support Team](https://mixpanel.com/get-support).
