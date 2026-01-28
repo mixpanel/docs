@@ -6,7 +6,7 @@ import { Callout, Steps } from 'nextra/components'
 This Guide shows how the best teams use Mixpanel MCP to close the context gap, speed up analysis, and unlock data synthesis workflows that used to take days.
 
 ## What Is Mixpanel MCP?
-Mixpanel MCP connects your Mixpanel project to AI tools like ChatGPT, Claude, or Cursor. Instead of navigating reports or memorizing implementation details, you describe intent in plain English — and MCP translates that into real Mixpanel analysis behind the scenes.
+Mixpanel MCP connects your Mixpanel project to your AI tools, such as ChatGPT, Claude, or Cursor. Instead of navigating reports or memorizing implementation details, you describe intent in plain English — and MCP translates that into real Mixpanel analysis behind the scenes.
 
 ![image](/mixpanel-mcp-2048x1151.jpeg)
 
@@ -198,6 +198,7 @@ These issues come up most often when teams treat MCP as a shortcut instead of a 
 - **Treating MCP as a report builder**: It’s an exploration and synthesis layer, not a persistence layer.
 - **Asking under-specified questions**: MCP is powerful, but clarity of intent still matters.
 - **Using MCP to paper over unclear instrumentation**: MCP helps interpret data — it doesn’t fix structural issues. When this comes up, pause and invest in [data governance](/guides/guides-by-topic/govern-data) first (clear event definitions, ownership, and approval workflows) before relying on MCP for analysis.
+- Using MCP without clear data-use guardrails: Only connect MCP to Mixpanel projects and external sources that comply with your organization’s security, privacy, and data-sharing policies, and be intentional about which data is exposed to AI tools. For detailed guidance, see [Mixpanel’s MCP security and compliance considerations](/docs/features/mcp#security--compliance-considerations).
 
 ## Key Takeaways
 - MCP queries Mixpanel; it doesn’t write back to it.
