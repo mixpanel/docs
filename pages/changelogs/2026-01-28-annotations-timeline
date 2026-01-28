@@ -1,0 +1,41 @@
+---
+title: "Annotations Timeline: Visualize Your Business Context"
+slug: "changelog-2026-01-28-annotations-timeline"
+hidden: false
+createdAt: "2026-01-28T10:00:00.000Z"
+updatedAt: "2026-01-28T10:00:00.000Z"
+date: "2026-01-28"
+thumbnail: ""
+description: "A new timeline visualization for annotations that shows how different event types align across your data, with interactive exploration and tag-based filtering."
+isAnnouncement: false
+---
+
+<ChangelogPostHeader
+  date="2026-01-28"
+  image=""
+  title="Annotations Timeline: Visualize Your Business Context"
+/>
+
+Annotations let you add time-stamped notes so you can see metrics with context that matters to you. We've seen teams add valuable context about everything from product launches, marketing campaigns, outages, to holidays.
+
+Now, you can visualize all your annotations in a dedicated timeline view that shows how different types of events align across your data.
+
+# Timeline Visualization
+
+A new chart view displays annotations grouped by tag in separate rows, making it easy to see patterns and relationships across different event types. See at a glance when your Marketing campaigns overlapped with Product releases, or how Outages coincided with traffic spikes.
+
+# Automatic Alignment
+
+The timeline automatically syncs with your main chart, working seamlessly with both line and column visualizations to show annotations exactly where events occurred. No manual configuration needed - the timeline stays perfectly aligned as you zoom, change date ranges, or switch chart types.
+
+# Interactive Exploration
+
+- **Hover** over any annotation to preview its details
+- **Click** to view the full annotation list, edit existing notes, or create new ones right from the timeline
+- **Filter by tag** to focus on specific event types and hide the rest
+
+# Tag-Based Organization
+
+Use the tag filter to quickly analyze how particular categories of events impact your metrics. Focus on just Marketing campaigns, just Product releases, or any combination of tags that helps you tell your story.
+
+If you have any questions or need assistance, please reach out to our [Support Team](https://mixpanel.com/get-support).
