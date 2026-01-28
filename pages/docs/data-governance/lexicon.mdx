@@ -105,7 +105,7 @@ If you have Group Analytics enabled, you will see a dropdown on the Profile Prop
 [Lookup Tables](/docs/data-structure/lookup-tables) in your project are listed in your Lexicon. Click into a Lookup Table definition to export the underlying CSV, replace the Lookup Table with a new CSV, and see which properties are linked.
 
 ### Formulas and Behaviors
-Saved [Formulas](/docs/reports/insights#formulas) and [Funnels/Retention Behaviors](/docs/features/saved-behaviors) in your project are also documented in your Lexicon. Review here to get an overview of existing definitions in your project that you can quickly leverage in your own analysis.
+Saved [Formulas](/docs/reports/insights#formulas) and [Funnels/Retention Behaviors](/docs/features/saved-metrics-and-behaviors) in your project are also documented in your Lexicon. Review here to get an overview of existing definitions in your project that you can quickly leverage in your own analysis.
 
 ## Filtering Events, Custom Events, and Properties
 
@@ -125,6 +125,10 @@ This data lets you easily discover the parts of your implementation that are mos
 
 ## Dropping Data
 
+<Callout type="info">
+Only project owners may drop and undrop data from the Lexicon. Learn more about [Roles and Permissions](/docs/orgs-and-projects/roles-and-permissions).
+</Callout>
+
 In Lexicon, you can intercept and drop incoming events or properties. Mixpanel won’t store any **new data** for the event or property you select to drop. **Warning: You cannot recover event data after you drop it.**
 
 When an event is dropped, all events of that type that have previously been ingested (before dropping it) will still show in the interface. Only project owners can drop events and properties. **Note: It takes a few hours for Mixpanel to process the dropped event.**
@@ -139,7 +143,7 @@ Sample use cases for dropping events and properties are:
 
 **Dropping Events**
 
-By dropping an event, you can intercept and drop incoming events. Mixpanel won’t store any new data for the event you select to drop. 
+By dropping an event, you can intercept and drop incoming events. Mixpanel will not store any new data for the event you select to drop. 
 
 To drop an event in Lexicon:
 
@@ -177,6 +181,10 @@ To drop a property in Lexicon:
 
 ## Hiding Data
 
+<Callout type="info">
+You must have an admin or owner project role to hide and unhide data from the Lexicon. Learn more about [Roles and Permissions](/docs/orgs-and-projects/roles-and-permissions).
+</Callout>
+
 In Lexicon, you can hide any events or properties. Unlike [dropping data](/docs/data-governance/lexicon#dropping-data), hiding data does not affect data ingestion; any events/properties that are hidden will continue to be ingested in your project and count toward your data allowance.
 
 A hidden entity will not be indexed in your event/properties menu in the query builder. Any [inactive events and properties](/docs/tracking-best-practices/debugging#inactive-events-and-properties) will also be hidden.
@@ -208,7 +216,9 @@ To show an event or property:
 
 ## Merging Data
 
-In Lexicon, only project owners can merge events and event properties.
+<Callout type="info">
+In Lexicon, only project owners can merge events and event properties. Learn more about [Roles and Permissions](/docs/orgs-and-projects/roles-and-permissions).
+</Callout>
 
 Let's suppose your iOS app sends an event named “Purchase”, and your Android app sends an event named “purchase item”. Even though both events have the same function, you have to individually select them every time you build a report.
 
@@ -219,6 +229,10 @@ Do note however that user profile properties cannot be merged at this time.
 
 <Callout type="info">
  After you merge an event into another, it no longer appears in reports or custom events that reference it. Update those reports with the new merged event to maintain accuracy.
+</Callout>
+
+<Callout type="info">
+ [Autocapture](https://docs.mixpanel.com/docs/tracking-methods/autocapture) events cannot be merged. These events are displayed using preset labels such as “[Auto] Page View” and “[Auto] Element Click”. 
 </Callout>
 
 **Merging Events**
@@ -254,7 +268,9 @@ To merge properties:
 To unmerge properties:
 
 1. Select the merged property to unmerge. The “Unmerge” icon appears.
+
 ![Lexicon Unmerge Events](/unmerge-properties.png)
+
 2. Click Unmerge. The merged property appears as the original two distinct properties.
 
 ## Verify Data

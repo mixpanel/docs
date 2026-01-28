@@ -67,9 +67,17 @@ Enter either the sample size (the number of users to be exposed to the experimen
 
 Mixpanel has set default automatic configurations, seen below. If required, please modify them as needed for the experiment
 
-1. **Experiment Model type**: Sequential 
-2. **Confidence Threshold**: 95% 
+1. **Experiment Model type**: Sequential
+2. **Confidence Threshold**: 95%
 3. **Experiment Start Date**: Date of the first user exposed to the experiment
+
+### Changing Settings Mid-Experiment
+
+Mixpanel analyzes your experiment on the fly, so you can adjust settings at any time if needed. If you notice a configuration mistake - like selecting Frequentist when you meant Sequential - feel free to correct it, even if the experiment has been running for weeks.
+
+The one thing to avoid is changing settings because the current results aren't what you hoped for. If you adjust the confidence level, metrics, or duration in search of a significant result, you're more likely to find something that looks meaningful but is actually noise. When you roll out that change, it may not deliver the improvement you expected.
+
+If you want to test a different configuration, restart the experiment instead. This resets the data and ensures your analysis starts fresh.
 
 ## Monitor Your Experiment
 
@@ -313,9 +321,9 @@ You can see your experiment MEU usage by going to Organization settings > Plan D
 ## References
 
 ### Experiment Model Types
-- Sequential: Allows you to detect lift and conclude experiments quickly, but may fail to reach significance for very small lifts. **When to use?** If you’re looking for impact as tiny as 1% i.e, super low lifts
+- Sequential: Allows you to detect lift and conclude experiments quickly, but may fail to reach significance for very small lifts. **When to use?** For large changes (~10%+ lift) when you want to stop early once significance is reached.
     
-- Frequentist: Capable of detecting smaller lifts, but requires you to keep experiments for the full duration. You’re discouraged from preemptively making decisions before the test duration is complete. **When to use?** If you’re looking for large impact changes like 10%+
+- Frequentist: Capable of detecting smaller lifts, but requires you to keep experiments for the full duration. You’re discouraged from preemptively making decisions before the test duration is complete. **When to use?** For very small changes (~1% lift) when precision matters.
 
 ### Experiment metric types
 - **Primary Metrics:**  Main goals you're trying to improve. These are metrics used to determine if the experiment succeeded. Examples: revenue, conversion rates, ARPU.

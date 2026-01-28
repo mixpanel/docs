@@ -73,23 +73,34 @@ import { dataItems } from "/utils/constants";
    export default MyApp;
    ```
 
-   b. **If using app router**, open or create the file `layout.js` or `layout.tsx` in your app/ directory
+   b. **If using app router**, first create a client component in a file (e.g. `components/MixpanelProvider.js`) to handle the client-side initialization.
    ```javascript
    'use client';
 
    import { useEffect } from 'react';
-   import { usePathname } from 'next/navigation';
    import { initMixpanel } from '../lib/mixpanelClient';
-  
-   export default function RootLayout({ children }) {
+
+   export default function MixpanelProvider({ children }) {
   
      useEffect(() => {
        initMixpanel(); // Initialize Mixpanel
      }, []);
+
+     return <>{children}</>;
+   }
+   ```
+
+   Next, open or create the file `layout.js` or `layout.tsx` in your app/ directory and wrap the body component with the MixpanelProvider.
+   ```javascript
+   import { MixpanelProvider } from '../components/MixpanelProvider';
+  
+   export default function RootLayout({ children }) {
   
      return (
        <html lang="en">
-         <body>{children}</body>
+         <body>
+         <MixpanelProvider>{children}</MixpanelProvider>
+         </body>
        </html>
      );
    }
