@@ -407,6 +407,24 @@ Along with other data, the SDK respects all Do Not Track (DNT) settings as well 
 
 User replays are stored for 30 days after the time of ingestion by default. Customers with the custom volumes of Session Replay can customize this value between 7 and 365 days as an additional paid add-on. 
 
+### Browser Storage
+
+Session Replay stores temporary replay data in the browser using IndexedDB with dynamically generated key names prefixed with `__mprec_` (short for "Mixpanel Recording"). These keys are used for session recording batchers and are constructed dynamically, for example:
+
+```
+__mprec_<instance_name>_<project_token>_<replay_id>
+```
+
+Where:
+- `__mprec_` identifies the data as Session Replay recording data
+- `<instance_name>` is the Mixpanel instance name (from `getConfig('name')`)
+- `<project_token>` is your Mixpanel project token
+- `<replay_id>` is a unique identifier for the recording session
+
+Each key stores temporary data required to construct a user's Session Replay and is deleted from IndexedDB after the data is successfully sent to Mixpanel.
+
+Some consent management platforms (like Cookiebot) require cookie or storage keys to be pre-declared and may not support dynamically generated names without manual configuration. If you use a CMP, you may need to work with their support team to properly classify these keys.
+
 ## FAQ
 
 #### Can I prevent Session Replay from recording sensitive content?
