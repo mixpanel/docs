@@ -20,9 +20,9 @@ Teams using MCP well look materially different from teams that don’t:
 - Analysts explore questions and sanity-check assumptions quickly before formalizing anything in Mixpanel.
 - Product questions are routinely answered with business context attached.
 - Strategic decisions are informed by synthesis, not stitched-together exports.
-- MCP and Lexicon are used together to proactively surface related events and properties, leading to clearer definitions and better metrics over time.
+- Teams don’t rely on a fixed list of key events; they use MCP to explore their Mixpanel schema, proactively surfacing related events and properties that clarify definitions and lead to better metrics over time.
 
-If MCP is positioned as “a faster way to build reports,” most of this value never materializes.
+If MCP is positioned solely as “a faster way to build reports,” most of this value never materializes.
 
 ## See MCP in Action
 This short walkthrough shows MCP in action end to end — from asking intent-based questions, to running live analysis against Mixpanel, to synthesizing digital analytics with external context like calendars, competitor activity, and benchmarks.
@@ -134,7 +134,7 @@ This is especially effective for:
 - Helping non-analysts answer real questions without report-builder fluency
 
 <Callout type="info">
-    **Pro tip:** These outputs are not persisted in Mixpanel. When something matters, it’s best practice to recreate or formalize it in the Mixpanel UI.
+    **Pro tip:** The analysis results you see in the AI interface (tables, charts, and explanations) are not saved back to Mixpanel. When an insight matters, best practice is to recreate or formalize the report directly in the Mixpanel UI so it’s persistent, shareable, and trusted.
 </Callout>
 
 Think of MCP as a fast exploration layer — use it to discover and validate insights, then formalize the ones that matter in Mixpanel.
@@ -179,11 +179,18 @@ Once MCP has analyzed:
 - Competitive signals
 - Industry benchmarks
 
-Ask it to synthesize: *Given everything we’ve analyzed, what would you change about our strategy going into the next quarter?*
+For example, ask it to synthesize: *Given everything we’ve analyzed, what would you change about our strategy going into the next quarter?*
 
 ![image](/mcp-synthesis.png)
 
 This compresses work that previously took days or weeks into a single, iterative workflow.
+
+### Keep a human in the loop
+MCP can help summarize signals, highlight tradeoffs, and suggest areas to investigate — but it doesn’t make decisions for you.
+
+Treat AI-generated recommendations as inputs, not answers. The final judgment should always come from your team, informed by domain knowledge, business constraints, and risk tolerance.
+
+Used this way, MCP accelerates strategic thinking without replacing human accountability.
 
 ## Common Pitfalls to Avoid
 These issues come up most often when teams treat MCP as a shortcut instead of a complement to strong analytics fundamentals.
