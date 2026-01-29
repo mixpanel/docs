@@ -20,7 +20,8 @@ The way sessions are computed, and thus how the Session Start and Session End ev
 * **Event Based**: Provide a starting event and ending event. The session starts when the user performs the starting event and ends when the user performs the ending event.
 * **Property Based**: Provide a `session_id` property. All events that a user performs which have the same value for `session_id` are considered part of the same session.
 
-Project Admins or Owners can choose between one of these configurations in [Project Settings](https://mixpanel.com/settings/project).
+Project Admins or Owners can choose between one of these configurations in [Project Settings](https://mixpanel.com/settings/project) > Overview > Session Settings.
+
 Since Mixpanel computes sessions on the fly, you can change this definition at any time and it will apply historically. Read more [below](#session-computation-deep-dive).
 
 ## Use Cases
@@ -71,7 +72,7 @@ Here we see that ~22% of sessions lead to the user starting the Checkout flow. Y
 
 ## Session Computation Deep-Dive
 
-Here, we provide more detail on how sessions are computed under the hood.
+Here, we provide more detail on how sessions are computed under the hood. Project Admins or Owners can choose between one of these session configurations in [Project Settings](https://mixpanel.com/settings/project) > Overview > Session Settings.
 
 ### Timeout-Based Sessions
 
