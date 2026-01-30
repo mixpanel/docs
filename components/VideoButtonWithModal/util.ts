@@ -7,7 +7,7 @@ const getYoutubeEmbedURL = (url: string) => {
   const videoId = url.split("v=")[1]
     ? url.split("v=")[1].split("&")[0]
     : url.split("/").pop();
-  return `https://www.youtube.com/embed/${videoId}`;
+  return `https://www.youtube-nocookie.com/embed/${videoId}`;
 };
 
 const getLoomEmbedURL = (url: string) => {

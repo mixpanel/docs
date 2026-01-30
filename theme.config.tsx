@@ -61,7 +61,22 @@ const config: DocsThemeConfig = {
     useLink: () => "https://mixpanel.com/contact-us/support",
   },
   footer: {
-    content: `© Mixpanel ${new Date().getFullYear()}`,
+    content: (
+      <div style={{ display: "flex", flexWrap: "wrap" }}>
+        <div style={{ flexBasis: "100%" }}>
+          © Mixpanel {new Date().getFullYear()}
+        </div>
+        <div style={{ fontSize: "75%" }}>
+          <a
+            href="javascript:void(0)"
+            // @ts-expect-error - truste is injected by TrustArc script at runtime
+            onClick={() => truste.eu.clickListener()}
+          >
+            Cookie Preferences
+          </a>
+        </div>
+      </div>
+    ),
   },
   logo: <MixpanelLogoWordmark width={125} />,
   logoLink: "https://mixpanel.com/home/",

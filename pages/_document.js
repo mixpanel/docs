@@ -1,10 +1,12 @@
 import { Html, Head, Main, NextScript } from "next/document";
-import Script from "next/script";
+import { TrustArcHeadScripts, TrustArcBodyScripts } from "../components/TrustArcScripts/TrustArcScripts";
 
 export default function Document() {
   return (
     <Html>
-      <Head />
+      <Head>
+        <TrustArcHeadScripts />
+      </Head>
       <body>
         <Main />
         <NextScript />
@@ -47,6 +49,8 @@ export default function Document() {
         </script>
         {/* Empty script tag as chrome bug fix, see https://stackoverflow.com/a/42969608/943337 */}
         <script> </script>
+        <TrustArcBodyScripts />
+        <div id="consent-banner"></div>
       </body>
     </Html>
   );
