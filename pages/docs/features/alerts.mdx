@@ -41,6 +41,34 @@ Create an alert for your Insights and Funnels reports and be notified when r
 
 ![](/255713687-91a2bb99-3a79-43d4-9d97-3b397aab0305.png)
 
+## Webhook Alerts
+Webhook Alerts allow you to send alert notifications from Mixpanel to third-party platforms via HTTP webhooks. When a configured alert is triggered, Mixpanel will automatically send a payload containing alert details to your specified endpoint.
+
+**Creating a Webhook:**
+
+1. Navigate to **Gear Icon** > **Integrations** > **Webhooks**
+
+2. Under Project Webhooks, click **"+ Add Webhook"**
+
+3. Complete the webhook configuration:
+    - **Name** - Enter a descriptive name for this webhook (e.g., "Production Alerts")
+    - **URL** - Enter the HTTPS endpoint where alert payloads will be sent (e.g., `https://example.com/webhooks/mixpanel`)
+    - **Username** - If your endpoint requires HTTP Basic Authentication, enter the username
+    - **Password**  - Enter the corresponding password for authentication
+4. Click **Test connection** to verify connectivity to your endpoint
+5. Click **Submit** to save the webhook
+
+**Configuring Webhook Delivery for an Alert:**
+
+Once you've created a webhook, you can use it to receive alert notifications:
+
+1. When creating or editing an alert, scroll to the **Notify** section
+2. Locate the **via Webhook** dropdown
+3. Select your webhook from the available options
+
+![image.png](/webhookalert2.png)
+
+4. Complete the rest of your alert configuration and save
 
 ## View & Manage Alerts
 
