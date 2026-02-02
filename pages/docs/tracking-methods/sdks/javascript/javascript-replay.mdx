@@ -59,6 +59,28 @@ This will have no effect if replay data collection is already in progress.
 mixpanel.start_session_recording();
 ```
 
+#### Pause Capturing Replay Data
+Call `pause_session_recording()` to pause any active replay data collection but do not clear the active recording.
+
+**Example Usage**
+
+```javascript Javascript
+// manually pause a replay capture
+mixpanel.pause_session_recording();
+```
+
+#### Resume Capturing Replay Data
+Call `resume_session_recording()` to resume replay data collection.
+
+This will have no effect if there is no non-active recording that was previously paused.
+
+**Example Usage**
+
+```javascript Javascript
+// Resume the paused replay capture.
+mixpanel.resume_session_recording();
+```
+
 #### Stop Capturing Replay Data
 
 Call `stop_session_recording()` to stop any active replay data collection. 
@@ -117,6 +139,7 @@ mixpanel.init(
 | `record_canvas` | When true, Mixpanel will record snapshots of `<canvas>` elements on your site at up to 15 frames per second | `false` |
 | `record_heatmap_data` | When true, Mixpanel will capture click events during replays to populate Heatmaps. You can learn more [here](/docs/session-replay/heatmaps). | `false` |
 | `record_console` | When true, Mixpanel will record console logs, warnings, and errors as part of the replay. | `true` |
+| `remote_settings_mode` | Setting for handling remote configuration during SDK initialization. Can be `disabled`, `fallback`, `strict`. | `disabled` |
 
 Note: Canvas recording (record_canvas) utilizes [rrweb's](https://github.com/rrweb-io/rrweb) UNSAFE_replayCanvas option, which is experimental and not fully supported. We recommend testing thoroughly before deploying to production.
 
@@ -141,6 +164,17 @@ mixpanel.init('YOUR_PROJECT_TOKEN', {
     record_mask_input_selector: '.sensitive-input'
 });
 ```
+## Remote Configuration
+
+By setting remote_settings_mode you can quickly set SDK options for your project in mixpanel under `Settings > Project > Session Replay`.
+
+Three modes are available:
+
+- `disabled`: Do not use remote configuration and proceed to use the hardcoded initial options provided in `mixpanel.init`
+- `fallback`: Attempt to retrieve remote configuration and proceed with those settings. If there is failure or timeout (500 ms), will use initial provided options.
+- `strict`: Will prevent session replay from auto-starting unless the remote configuration was successfully retrieved.
+
+Can use this setting to quickly update and adjust configurations to your liking.
 
 ## Replay ID
 
