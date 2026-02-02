@@ -1,4 +1,4 @@
-import { Callout, Tabs } from 'nextra/components'
+import { Callout } from 'nextra/components'
 
 # Databricks
 
@@ -46,7 +46,7 @@ Before setting up the integration, ensure you have:
 
 - A Databricks workspace with Unity Catalog enabled
 - Databricks Runtime 15.3+ (for VARIANT type support)
-- A SQL Warehouse (Serverless recommended for best performance and cost) or all-purpose compute cluster
+- A SQL Warehouse (Serverless recommended for best performance and cost)
 - Admin permissions in your Databricks workspace to create Service Principals
 
 ## Set Export Permissions
@@ -126,12 +126,10 @@ Look for `PrivilegeModelVersion`:
 
 **Note**: The Service Principal automatically becomes the **owner** of all objects it creates (tables, views, volumes), which grants it full permissions (SELECT, MODIFY, READ FILES, WRITE FILES, etc.) on those objects. No additional grants needed.
 
-### Step 5: Grant Compute Access
+### Step 5: Grant SQL Warehouse Access
 
-The Service Principal needs permission to use compute resources to execute queries. You can use either a SQL Warehouse or an All-Purpose Compute cluster.
+The Service Principal needs permission to use the SQL Warehouse to execute queries.
 
-<Tabs items={['SQL Warehouse', 'All-Purpose Compute']}>
-<Tabs.Tab>
 1. In your Databricks workspace, navigate to **SQL Warehouses**
 2. Click on your SQL Warehouse (or create one if needed)
 3. Go to the **Permissions** tab
@@ -139,24 +137,11 @@ The Service Principal needs permission to use compute resources to execute queri
 5. Search for your Service Principal by Application ID (from Step 1)
 6. Select permission level: **Can use** (minimum required)
 7. Click **Save**
-</Tabs.Tab>
-<Tabs.Tab>
-1. In your Databricks workspace, navigate to **Compute**
-2. Click on your All-Purpose Compute cluster (or create one if needed)
-3. Click the **More options** menu (three dots) and select **Edit permissions**
-4. Click **Add**
-5. Search for your Service Principal by Application ID (from Step 1)
-6. Select permission level: **Can Attach To** (minimum required)
-7. Click **Save**
-</Tabs.Tab>
-</Tabs>
 
-**Why this is needed**: Compute resources have their own access control separate from data permissions. Even with all catalog/schema/table permissions, the Service Principal cannot execute queries without compute access.
+**Why this is needed**: SQL Warehouses have their own access control separate from data permissions. Even with all catalog/schema/table permissions, the Service Principal cannot execute queries without warehouse access.
 
-### Step 6: Get Compute Connection Details
+### Step 6: Get SQL Warehouse Connection Details
 
-<Tabs items={['SQL Warehouse', 'All-Purpose Compute']}>
-<Tabs.Tab>
 1. In the same SQL Warehouse, go to the **Connection details** tab
 2. Note the following values:
    - **Server hostname**: e.g., `abc123.cloud.databricks.com`
@@ -167,17 +152,6 @@ The Service Principal needs permission to use compute resources to execute queri
 - Auto-scaling
 - Pay-per-use pricing
 - No idle cluster costs
-</Tabs.Tab>
-<Tabs.Tab>
-1. In the Compute cluster details, go to the **Configuration** tab
-2. Expand **Advanced options** and click **JDBC/ODBC**
-3. Note the following values:
-   - **Server hostname**: e.g., `abc123.cloud.databricks.com`
-   - **HTTP Path**: e.g., `/sql/protocolv1/o/1234567890/0123-456789-abcdefgh`
-
-**Note**: All-Purpose Compute clusters must be running to accept connections. Consider using a SQL Warehouse for workloads that benefit from auto-start and auto-scaling.
-</Tabs.Tab>
-</Tabs>
 
 ### Step 7: Configure Mixpanel Integration
 
