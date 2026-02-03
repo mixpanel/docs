@@ -57,6 +57,9 @@ This is the randomization bucket unit: `distinct_id` (user), `device_id`, or a *
 - **User** `distinct_id`  — best for logged-in experiences across device; a user sees a consistent experience across various sessions and devices
 - **Device** `device_id`  — best for pre-auth or acquisition flows; a device keeps a consistent variant between pre-auth and post-auth experiences.
 - **Group** `group_id` — target by account/org using a group key (e.g., `account_id`). Values for group keys will need to be supplied to the Mixpanel feature flag SDK through the `context` parameter
+<Callout type="info">
+You cannot change the variant assignment key of a flag once it has been enabled.
+</Callout>
 
 ### Variants Management
 
