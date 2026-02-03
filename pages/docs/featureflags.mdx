@@ -30,6 +30,7 @@ import { Cards, Callout, Steps } from 'nextra/components'
     - **Rollout %** — percentage of the eligible audience that receives the flag now.
 - **Rollout %** — percentage of the eligible Rollout Group that receives the flag now.
 - **Runtime Properties** — request-time attributes (e.g., URL path, app version) used to target immediately.
+- **Runtime Events** — event-based targeting (e.g., user clicked button, completed purchase) used to target users immediately after they perform actions.
 - **Assignment vs Exposure** — assignment is deciding the variant; exposure is when your app **uses** that variant to render.
 - **Feature Flag API Request** - is a call made to a feature flag API to retrieve the current state or configuration of one or more feature flags. This request allows an application to dynamically determine which features should be active for a user
 - **Context** - key value pairs mapping variant assignment keys to user values for variant assignment
@@ -86,9 +87,23 @@ These are dynamic audiences of Mixpanel users based on user behavior or properti
 
 **Runtime Targeting**
 
+Runtime targeting enables immediate, per-request decisions. There are two methods:
+
+**Runtime Properties**
+
 This method enables targeting users immediately based on device or platform properties. For example, only users who are on Android devices and in the UK.
 - When building a cohort, if you add a filter, navigate to `+ Create New`, you'll be able to add a new runtime property filter.
 - Runtime properties (e.g., `platform`, `path`, `country`) should be passed by the SDK at request time for immediate, per-request decisions.
+
+**Runtime Events**
+
+This method enables targeting users immediately when they perform specific actions tracked with `mixpanel.track()`. For example, show a feature to users the first time they complete onboarding, or target users who added items to cart.
+- When building a cohort, navigate to `+ Create New`, then click on `Runtime Event` to add a new runtime event filter.
+- You can optionally configure the targeting to apply only the first time a user performs an action after the flag is enabled. After the session where the user takes the action for the first time, they will exit the targeted cohort.
+- Runtime events can include filters on event properties for more fine-grained control (e.g., purchase_amount > $100, page_path contains '/checkout').
+- **Examples**:
+  - Target users the first time they complete the 'Sign Up' event
+  - Target users who trigger 'Add to Cart' event with product_category = 'premium'
 
 ### Rollout Percentage
 
@@ -118,13 +133,13 @@ Yes. You can couple run-time targeting with general cohorts. It works with an an
 
 **3. Why is control variant always non-sticky? I want all my variants to be sticky**
 
-Control variant is set to always be non-sticky to ensure this is the only group of users that can move up to other variants if allocation of other variants is increased. This is to avoid users moving from non-control variants.   
-NOTE: If you do want all users to be sticky and do not anticipate needing to change the variant allocation, mark control variant as 0%, and allocate all the 100% to the other variants. This is recommended for use-cases where you have no default or control experience, and are testing a brand new experience with 2+ variants 
+Control variant is set to always be non-sticky to ensure this is the only group of users that can move up to other variants if allocation of other variants is increased. This is to avoid users moving from non-control variants.
+NOTE: If you do want all users to be sticky and do not anticipate needing to change the variant allocation, mark control variant as 0%, and allocate all the 100% to the other variants. This is recommended for use-cases where you have no default or control experience, and are testing a brand new experience with 2+ variants
 
 **4. How do we avoid overlapping target audiences across 2 different feature flags?**
 
-Let's say we have 2 features: feature A and feature B, and we want these to be non-overlapping in audience targeting. 
-In the feature flag B page, in the target audience - 
+Let's say we have 2 features: feature A and feature B, and we want these to be non-overlapping in audience targeting.
+In the feature flag B page, in the target audience -
 - Create Rollout Group 1: any user who was exposed to feature flag A
     - Variant served: control 100% (no new experience, revert to default)
     - Rollout % : 100%
@@ -205,11 +220,12 @@ See our developer guides on implementing feature flags on these platforms below:
 
 <Cards>
   <Cards.Card icon title="Python" href="/docs/tracking-methods/sdks/python/python-flags" />
-  <Cards.Card icon title="Node.js (Beta)" href="/docs/tracking-methods/sdks/nodejs/nodejs-flags" />
-  <Cards.Card icon title="Java (Beta)" href="/docs/tracking-methods/sdks/java/java-flags" />
+  <Cards.Card icon title="Ruby (Beta)" href="/docs/tracking-methods/sdks/ruby/ruby-flags" />
+  <Cards.Card icon title="Node.js" href="/docs/tracking-methods/sdks/nodejs/nodejs-flags" />
+  <Cards.Card icon title="Java" href="/docs/tracking-methods/sdks/java/java-flags" />
 </Cards>
 
-Coming soon: Ruby, Go
+Coming soon: Go SDK
 
 <Callout type="info">
 If you'd like to see Feature Flags availability in other SDKs, please [reach out to the Support team](https://mixpanel.com/get-support).

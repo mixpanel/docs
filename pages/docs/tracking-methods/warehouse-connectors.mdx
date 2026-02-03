@@ -6,7 +6,7 @@ import { dwhItems, mirrorItems } from '../../../utils/constants';
 # Warehouse Connectors: Sync data from your data warehouse into Mixpanel
 
 <Callout type="info">
-Warehouse Connector is a free add-on available to organizations on a Growth or Enterprise plan. Learn more on our [pricing page](https://mixpanel.com/pricing/).
+Organizations on a paid *event-based* plan receive Warehouse Connector as a free add-on when they update or renew their plan. Learn more on our [pricing page](https://mixpanel.com/pricing/).
 </Callout>
 
 With Warehouse Connectors, you can sync data from data warehouses like Snowflake, BigQuery, Databricks, Redshift, and Postgres to Mixpanel. By unifying business data with product usage events, you can answer many more questions in Mixpanel:
@@ -72,6 +72,10 @@ Navigate to [Project Settings → Warehouse Sources](https://mixpanel.com/report
           ```
 
 JSON columns mapped in BigQuery containing multiple properties are subject to a hard limit of 1MB per record. This limitation is imposed by Google Cloud's handling of JSON objects and applies during the intermediate step where data is written to the GCS bucket.
+
+### VPC Service Controls
+IP allowlists are [not supported](https://docs.cloud.google.com/vpc-service-controls/docs/use-access-levels#limitations_of_using_access_levels_with) for BigQuery because Mixpanel's infrastructure runs on GCP, and inter-project communication in Google Cloud routes through internal Google IPs rather than public IPs. Instead, configure an ingress rule to allow access based on other attributes such as the project or service account. The service account is `project-<your-project-id>@mixpanel-warehouse-1.iam.gserviceaccount.com`. The Mixpanel project is `745258754925` for US, `848893383328` for EU, and `1054291822741` for IN. In addition, you may need to configure an egress rule to write data to `mixpanel-warehouse-1` project `435324298685`. 
+
 </Tabs.Tab>
 <Tabs.Tab>
     <div style={{position: 'relative', paddingBottom: '64.90384615384616%', height: 0}}>
@@ -377,6 +381,9 @@ Here’s an example table that illustrates what can be loaded as user profiles i
 While Profiles typically only store the state of a user *as of now*, Profile History enables storing the state of a user *over time*. The distinction between the value a property of the profile has now vs the value it had at the time of an event allows you to do very powerful analysis.
 
 #### Profile History tables
+<Callout type="info">
+  Profile History tables are only available to organizations on an Enterprise plan.
+</Callout>
 To create an import of regular user profiles, pick the “Standard” Type when creating a user table import.
 
 <img src="/dw_standard_user_table.png" alt="Standard user table" width="300"/>
@@ -444,6 +451,10 @@ which changes Mixpanel will reflect.
 Mirror syncs work by having the warehouse compute which rows have been inserted, modified, or deleted and sending this
 list of changes to Mixpanel. Change tracking is configured differently depending on the source warehouse. Mirror is
 supported for Snowflake, Databricks, BigQuery, and Redshift sources.
+
+<Callout type="info">
+  For User tables, Mirror Sync is available only when you select the Profile History table type. Mirror Sync is not available for the Standard table type.
+</Callout>
 
 <ExtendedTabs urlParam="mirror" urlToItemsMap={mirrorItems}>
 
