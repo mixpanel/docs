@@ -121,7 +121,6 @@ paths:
 
         For Databricks Jobs compute imports, you can update cluster configurations:
         - `export_cluster_config`: Configuration for the data export job cluster
-        - `run_queries_cluster_config`: Configuration for the query execution job cluster
       requestBody:
         required: true
         content:
@@ -573,8 +572,6 @@ components:
       nullable: true
       properties:
         export_cluster_config:
-          $ref: "#/components/schemas/DatabricksClusterConfig"
-        run_queries_cluster_config:
           $ref: "#/components/schemas/DatabricksClusterConfig"
 
     WarehouseImport:
