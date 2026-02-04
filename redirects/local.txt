@@ -271,7 +271,7 @@
 /docs/tutorials/plan/setup /guides/plan/setup
 /docs/tutorials/plan/tracking-strategy /guides/plan/tracking-strategy
 /docs/users/overview /docs/users
-/guides /guides/onboarding-overview/
+/guides /guides/mixpanel-introduction
 /guides/analytics-strategy /guides/plan/framework
 /docs/features/attribution /docs/features/computed-properties#attribution
 /docs/session-replay/implement-session-replay /docs/session-replay

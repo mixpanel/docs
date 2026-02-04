@@ -4,18 +4,20 @@ import { Callout } from 'nextra/components'
 
 <Callout type="info">
     The Experiment Report is a separately priced product add-on. It is currently only offered to those on the Enterprise Plan. See our [pricing page](https://mixpanel.com/pricing/) for more details.
+
+    Customers who have not purchased the Experiment add-on will be able to create up to 3 experiments per organization. Please note that creation is irreversible, so you would not be able to delete experiments. If you are interested in exploring the features fully, you can request a trial from your account team.
 </Callout>
 
 ## Why Experiment?
 
-Experimentation helps you make data-driven product decisions by measuring the real impact of changes on user behavior. Mixpanel is an ideal place to run experiments because all your product analytics data is already here, giving you comprehensive insights into how changes affect your entire user journey.
+Experimentation helps you make data-driven product decisions by measuring the real impact of changes on user behavior. Mixpanel is an ideal place to run experiments because all your product analytics data is already here, providing you with comprehensive insights into how changes affect your users' journey.
 
 ## Prerequisites
 
 Before getting started with experiments:
 
 - **Exposure Event Tracking**: [Implement](#implementation-for-experimentation) your experimentation events
-- **Baseline Metrics**: Have your key success metrics already measured in Mixpanel
+- **Baseline Metrics**: Ensure that Mixpanel is already tracking your key metrics
 
 ## Overview & Workflow
 
@@ -53,7 +55,7 @@ Only experiments tracked via exposure events, i.e, $experiment_started`, can be 
 </Callout>
 ### Step 2: Choose the ‘Control’ Variant
 
-Select the ‘Variant’ that represents your control. All your other variant(s) will be compared to the control, i.e, how much better are they performing vs the control variant. 
+Select the ‘Variant’ that represents your control. All your other variant(s) will be compared to the control, i.e, how much better they perform compared to the control variant. 
 
 ### Step 3: Choose Success Metrics
 
@@ -67,9 +69,17 @@ Enter either the sample size (the number of users to be exposed to the experimen
 
 Mixpanel has set default automatic configurations, seen below. If required, please modify them as needed for the experiment
 
-1. **Experiment Model type**: Sequential 
-2. **Confidence Threshold**: 95% 
+1. **Experiment Model type**: Sequential
+2. **Confidence Threshold**: 95%
 3. **Experiment Start Date**: Date of the first user exposed to the experiment
+
+### Changing Settings Mid-Experiment
+
+Mixpanel analyzes your experiment on the fly, so you can adjust settings at any time if needed. If you notice a configuration mistake - like selecting Frequentist when you meant Sequential - feel free to correct it, even if the experiment has been running for weeks.
+
+The one thing to avoid is changing settings because the current results aren't what you hoped for. If you adjust the confidence level, metrics, or duration in search of a significant result, you're more likely to find something that looks meaningful but is actually noise. When you roll out that change, it may not deliver the improvement you expected.
+
+If you want to test a different configuration, restart the experiment instead. This resets the data and ensures your analysis starts fresh.
 
 ## Monitor Your Experiment
 
@@ -169,7 +179,7 @@ To illustrate how these calculations work in practice, let's walk through a conc
 **For Average Cart Size (Value Metric - Normal Distribution):**
 
 1. **Group means:** Control = $60, Treatment = $67
-2. **Variance calculation:** Uses sample variance of cart values in each group
+2. **Variance calculation:** Uses the sample variance of cart values in each group
 3. **Standard error:** Calculated from combined variance and sample sizes
 4. **Z-score and p-value:** Computed using the same Z-test framework
 
@@ -185,7 +195,7 @@ Lift, mean, and variance are calculated differently based on the type of metric 
 **Count Metrics (Total Events, Sessions):**
 - **Group Rate:** Total count ÷ Number of users exposed
 - **Variance:** Equal to the mean (Poisson distribution property)
-- **Example:** If treatment group has 150 total purchases from 100 exposed users, group rate = 1.5 purchases per user
+- **Example:** If the treatment group has 150 total purchases from 100 exposed users, the group rate = 1.5 purchases per user
 
 **Rate Metrics (Conversion, Retention):** 
 - **Group Rate:** The actual rate (already normalized)
@@ -195,10 +205,10 @@ Lift, mean, and variance are calculated differently based on the type of metric 
 **Value Metrics (Averages, Sums):**
 - **Group Rate:** Sum of property values ÷ Number of users exposed  
 - **Variance:** Calculated from the distribution of individual property values
-- **Example:** If treatment group spent $5,000 total from 100 users, group rate = $50 average per exposed user
+- **Example:** If the treatment group spent $5,000 total from 100 users, the group rate = $50 average per exposed user
 
 **Why This Matters:**
-Normalizing by exposed users (not just converters) helps you understand the impact on your entire user base. A feature that increases average order value among buyers but reduces conversion rate might actually decrease overall revenue per user.
+Normalizing by exposed users (not just converters) helps you understand the impact on your entire user base. A feature that increases average order value among buyers but reduces conversion rate may decrease overall revenue per user.
 
 **Custom Formula Metrics:**
 For complex metrics using formulas like `Revenue per User = Total Revenue ÷ Unique Users`, Mixpanel uses propagation of uncertainty to estimate variance. This combines the variances of the component metrics (Total Revenue and Unique Users) to calculate the overall metric's statistical significance. The system assumes metrics in formulas are uncorrelated for these calculations.
@@ -313,9 +323,9 @@ You can see your experiment MEU usage by going to Organization settings > Plan D
 ## References
 
 ### Experiment Model Types
-- Sequential: Allows you to detect lift and conclude experiments quickly, but may fail to reach significance for very small lifts. **When to use?** If you’re looking for large impact changes like 10% +
+- Sequential: Allows you to detect lift and conclude experiments quickly, but may fail to reach significance for very small lifts. **When to use?** For large changes (~10%+ lift) when you want to stop early once significance is reached.
     
-- Frequentist: Capable of detecting smaller lifts, but requires you to keep experiments for the full duration. You’re discouraged from preemptively making decisions before the test duration is complete. **When to use?** If you’re looking for impact as tiny as 1% i.e, super low lifts
+- Frequentist: Capable of detecting smaller lifts, but requires you to keep experiments for the full duration. You’re discouraged from preemptively making decisions before the test duration is complete. **When to use?** For very small changes (~1% lift) when precision matters.
 
 ### Experiment metric types
 - **Primary Metrics:**  Main goals you're trying to improve. These are metrics used to determine if the experiment succeeded. Examples: revenue, conversion rates, ARPU.
@@ -354,7 +364,7 @@ Once the experiment is ready to review, you can choose to 'End Analysis'. Use th
 
 - **Ship Variant (any of the variants)**: You had a statistically significant result. You have made a decision to ship a variant to all users. NOTE: Shipping variant here is just a log; it does not actually trigger rolling out the feature flag unless you are using Mixpanel feature flags **(in beta today)**.
 - **Ship None**: You may not have had any statistically significant results, or even if you have statistically significant results, the lift is not sufficient to warrant a change in user experience. You decide not to ship the change.
-- **Defer Decision**: You may have a direction you want to go, but need to sync with other stakeholders before confirming the decision. This is an example where you might defer decision, and come back at a later date and log the final decision.
+- **Defer Decision**: You may have a direction you want to go, but need to sync with other stakeholders before confirming the decision. This is an example where you might defer a decision and come back at a later date and log the final decision.
 
 ### Experiment Management
 You can manage all your experiments via the Experiments Home tab. You can customize which columns you’d like to see. 
