@@ -196,7 +196,7 @@ Complete the following steps to get your Databricks connector up and running:
     - **HTTP Path** - For all-purpose compute, this is the HTTP path of the cluster you would like to connect to. This can be found in your cluster [JDBC/ODBC connection settings](https://docs.databricks.com/en/integrations/jdbc-odbc-bi.html#step)
 4. In the second view, you should see that the credentials are validated and a source is added.
 
-**Using Service Principals**
+### Using Service Principals
 If a service principal is used, you'll want to follow these steps:
 1. [Create the service principal](https://docs.databricks.com/en/admin/users-groups/service-principals.html#manage-service-principals-in-your-account) if it doesn't exist.
 2. Create a token for the service principal. You can do so through the Databricks CLI:
@@ -215,7 +215,7 @@ GRANT MODIFY ON ANY FILE TO <application_id_of_service_principal>
 ```
 7. During the setup process in Mixpanel, you can now use the token from the service principal when setting up the connection
 
-**Required Permissions**
+### Required Permissions
 
 The account or service principal used for the connection requires different permissions depending on the compute type selected:
 
