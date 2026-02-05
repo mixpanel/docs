@@ -39,9 +39,7 @@ This process will require setup on both SFMC and Mixpanel.
 
 ### Mixpanel Setup
 
-1. Navigate to **Data Management → Integrations** in Mixpanel.
-
-![SFMC 5 Image](/sfmc5.png)
+1. Select **Settings > Integrations** tab in the bottom left navigation bar of Mixpanel.
 
 2. Look for Salesforce Marketing Cloud in the Integrations list and click **Connect**. The following details are needed:
 
