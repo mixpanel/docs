@@ -166,13 +166,13 @@ mixpanel.init('YOUR_PROJECT_TOKEN', {
 ```
 ## Remote Configuration
 
-By setting remote_settings_mode you can quickly set SDK options for your project in mixpanel under `Settings > Project > Session Replay`.
+By setting `remote_settings_mode` you can quickly set SDK options for your project in mixpanel under `Settings > Project > Session Replay`.
 
 Three modes are available:
 
 - `disabled`: Do not use remote configuration and proceed to use the hardcoded initial options provided in `mixpanel.init`
 - `fallback`: Attempt to retrieve remote configuration and proceed with those settings. If there is failure or timeout (500 ms), will use initial provided options.
-- `strict`: Will prevent session replay from auto-starting unless the remote configuration was successfully retrieved.
+- `strict`: Will prevent session replay from auto-starting unless a remote configuration was successfully retrieved.
 
 Can use this setting to quickly update and adjust configurations to your liking.
 
@@ -181,6 +181,8 @@ List of currently supported remote settings:
 - `record_max_ms`
 - `record_min_ms`
 - `record_idle_timeout_ms`
+
+Settings that are not yet supported, will not appear in the remote configuration. These non-included options will use the value that was initially set by the user for all `remote_settings_mode` options.
 
 ## Replay ID
 
