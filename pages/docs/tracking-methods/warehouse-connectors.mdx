@@ -180,7 +180,7 @@ IP allowlists are [not supported](https://docs.cloud.google.com/vpc-service-cont
 </div>
 
 <Callout type="info">
-  The connection to Databricks only supports connecting directly to clusters or jobs compute. Connecting directly to SQL warehouses is not supported. The account used for the connection should have `can attach to` permissions to the cluster (and `can restart` if it auto-suspends), and `can use` to the warehouse the cluster leverages.
+  The connection to Databricks only supports connecting directly to clusters or jobs compute. Connecting directly to SQL warehouses is not supported.
 </Callout>
 
 Complete the following steps to get your Databricks connector up and running:
@@ -214,6 +214,18 @@ GRANT SELECT ON ANY FILE TO <application_id_of_service_principal>
 GRANT MODIFY ON ANY FILE TO <application_id_of_service_principal>
 ```
 7. During the setup process in Mixpanel, you can now use the token from the service principal when setting up the connection
+
+**Required Permissions**
+
+The account or service principal used for the connection requires different permissions depending on the compute type selected:
+
+- **All-Purpose Compute**:
+  - `CAN ATTACH TO` permission on the cluster
+  - `CAN RESTART` permission on the cluster (if the cluster auto-suspends)
+  - `CAN USE` permission on the SQL warehouse the cluster leverages
+
+- **Jobs Compute**:
+  - Cluster creation permissions - the account or service principal needs permission to create job clusters
 
 
 ### IP Allowlist
