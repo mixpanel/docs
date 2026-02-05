@@ -214,7 +214,8 @@ Mixpanel records all events in Coordinated Universal Time (UTC) at intake. By de
 ### Delayed Ingestion
 
 - Mixpanel accepts data that has been triggered a while ago, either via mobile SDKs or event import. You can check the $import property and the mp_processing_time_ms to confirm when data has been ingested.
-- Mixpanel events older than 5 days sent to our /track endpoint will not be ingested, but other systems might accept these events (e.g. Firebase). Check how old an event was at point of ingestion in the other system to confirm. 
+- Mixpanel events older than 5 days sent to our /track endpoint will not be ingested, but other systems might accept these events (e.g. Firebase). Check how old an event was at point of ingestion in the other system to confirm.
+- If the same report with the same date range returns different metrics from one day to the next, this typically indicates that late-arriving data were not yet ingested at the time of the previous view. This can occur when data are imported retroactively or when other ingestion delays occur.
 
 ### Cohort Export
 
