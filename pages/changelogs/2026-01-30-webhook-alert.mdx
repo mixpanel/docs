@@ -1,0 +1,32 @@
+---
+title: "Custom Alerts via webhook"
+slug: "changelog-2026-01-30-webhook-alert"
+hidden: false
+createdAt: "2026-01-30T00:00:00.165Z"
+updatedAt: "2026-01-30T00:00:00.165Z"
+date: "2026-01-30"
+thumbnail: ""
+video: ""
+description: "Custom Alerts can now send notifications via webhooks, enabling you to integrate Mixpanel alerts with any third-party platform or custom system in your stack."
+isAnnouncement: false
+---
+
+<ChangelogPostHeader
+  date="2026-01-30"
+  image=""
+  title="Custom Alerts via webhook"
+/>
+
+Custom Alerts can now send notifications via webhooks, enabling you to integrate Mixpanel alerts with any third-party platform or custom system in your stack.
+
+Previously, alerts were limited to Email and Slack notifications. With webhook support, you can now route alert notifications to incident management tools, custom dashboards, monitoring systems, or any HTTP endpoint you configure.
+
+What's new:
+- Project-level webhook configuration: Add and manage webhook endpoints in Settings > Integrations > Webhooks
+- HTTP Basic Authentication: Secure your webhooks with username and password authentication
+- Test connection: Verify webhook connectivity before saving your configuration
+- Easy alert integration: Select your configured webhook from the "via Webhook" dropdown when creating or editing alerts
+
+When an alert triggers, Mixpanel automatically sends a JSON payload containing alert details to your specified endpoint.
+
+More details on how to get started in our [docs](/docs/features/alerts#webhook-alerts).
