@@ -1,0 +1,9 @@
+# *
+User-agent: *
+Allow: /
+
+# Host
+Host: https://docs.mixpanel.com
+
+# Sitemaps
+Sitemap: https://docs.mixpanel.com/sitemap.xml
