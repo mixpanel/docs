@@ -98,12 +98,17 @@ This method enables targeting users immediately based on device or platform prop
 **Runtime Events**
 
 This method enables targeting users immediately when they perform specific actions tracked with `mixpanel.track()`. For example, show a feature to users the first time they complete onboarding, or target users who added items to cart.
-- When building a cohort, navigate to `+ Create New`, then click on `Runtime Event` to add a new runtime event filter.
-- You can optionally configure the targeting to apply only the first time a user performs an action after the flag is enabled. After the session where the user takes the action for the first time, they will exit the targeted cohort.
-- Runtime events can include filters on event properties for more fine-grained control (e.g., purchase_amount > $100, page_path contains '/checkout').
+- When adding a new filter to your rollout group, navigate to `+ Create New`, then click on `Runtime Event` to add a new runtime event filter.
+- Select an event, then optionally enable **"First Time"** to trigger only on the user's first occurrence of that event.
+- Configure the **duration** to control how long the variant persists: "End of Session" or "Indefinitely".
+- Add **property filters** for more fine-grained control (e.g., `purchase_amount > 100`, `page_path contains '/checkout'`).
 - **Examples**:
   - Target users the first time they complete the 'Sign Up' event
   - Target users who trigger 'Add to Cart' event with product_category = 'premium'
+
+<Callout type="info">
+    For detailed configuration options and examples, see our [Runtime Events guide](/docs/feature-flags/runtime-events).
+</Callout>
 
 ### Rollout Percentage
 
