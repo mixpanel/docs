@@ -8,12 +8,10 @@ export default function Document() {
       <body>
         <Main />
         <NextScript />
-        <script
-          dangerouslySetInnerHTML={{
-            __html: `(function(w,q){w['QualifiedObject']=q;w[q]=w[q]||function(){
-(w[q].q=w[q].q||[]).push(arguments)};})(window,'qualified')`,
-          }}
-        />
+        <script>
+          {`(function(w,q){w['QualifiedObject']=q;w[q]=w[q]||function(){
+(w[q].q=w[q].q||[]).push(arguments)};})(window,'qualified')`}
+        </script>
         <script async src="https://js.qualified.com/qualified.js?token=gSDtTCjJ2BozXgw6"></script>
         <script
           async
