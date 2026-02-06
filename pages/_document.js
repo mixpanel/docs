@@ -4,7 +4,15 @@ import Script from "next/script";
 export default function Document() {
   return (
     <Html>
-      <Head />
+      <Head>
+        <script
+          dangerouslySetInnerHTML={{
+            __html: `(function(w,q){w['QualifiedObject']=q;w[q]=w[q]||function(){
+(w[q].q=w[q].q||[]).push(arguments)};})(window,'qualified')`,
+          }}
+        />
+        <script async src="https://js.qualified.com/qualified.js?token=gSDtTCjJ2BozXgw6"></script>
+      </Head>
       <body>
         <Main />
         <NextScript />
