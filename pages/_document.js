@@ -4,7 +4,10 @@ import Script from "next/script";
 export default function Document() {
   return (
     <Html>
-      <Head>
+      <Head />
+      <body>
+        <Main />
+        <NextScript />
         <script
           dangerouslySetInnerHTML={{
             __html: `(function(w,q){w['QualifiedObject']=q;w[q]=w[q]||function(){
@@ -12,10 +15,6 @@ export default function Document() {
           }}
         />
         <script async src="https://js.qualified.com/qualified.js?token=gSDtTCjJ2BozXgw6"></script>
-      </Head>
-      <body>
-        <Main />
-        <NextScript />
         <script
           async
           src="https://widget.kapa.ai/kapa-widget.bundle.js"

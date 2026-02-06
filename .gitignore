@@ -5,5 +5,3 @@ node_modules
 .vercel
 .env*.local
 openapi/out
-public/sitemap*.xml
-public/robots.txt
