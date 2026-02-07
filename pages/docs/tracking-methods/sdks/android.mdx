@@ -254,6 +254,52 @@ mixpanel.track('log out');
 mixpanel.reset();
 ```
 
+### Custom Device ID Generation
+
+The Android SDK provides a [`DeviceIdProvider`](https://mixpanel.github.io/mixpanel-android/com/mixpanel/android/mpmetrics/DeviceIdProvider.html) interface for implementing custom device ID generation logic. This allows you to control where device IDs are stored and whether they persist across `.reset()` calls.
+
+<Callout type="warning">
+    Using a custom device ID provider is an architectural decision that should be made at project inception. Changing this after deployment can cause user identity management issues.
+</Callout>
+
+Configure the device ID provider using [`MixpanelOptions.Builder()`](https://mixpanel.github.io/mixpanel-android/com/mixpanel/android/mpmetrics/MixpanelOptions.Builder.html) when initializing the SDK. If the provider returns `null`, an empty string, or throws an exception, the SDK will fall back to generating a UUID-based device ID.
+
+**Example Usage**
+```java Java
+// create a device ID provider
+DeviceIdProvider provider = () -> {
+    return getYourCustomDeviceId();
+};
+
+// configure Mixpanel with custom device ID provider
+MixpanelOptions options = new MixpanelOptions.Builder()
+    .deviceIdProvider(provider)
+    .build();
+
+MixpanelAPI mixpanel = MixpanelAPI.getInstance(
+    context,
+    "YOUR_PROJECT_TOKEN",
+    false,
+    options
+);
+```
+
+**Persistent vs Ephemeral IDs**
+
+Returning the same value each time the provider is called creates a persistent device ID that survives `.reset()` calls. Returning different values generates a new device ID on each reset.
+
+```java Java
+// persistent ID - survives reset() calls
+DeviceIdProvider persistentProvider = () -> {
+    return getStoredDeviceId(); // returns same value every time
+};
+
+// ephemeral ID - changes on reset() calls
+DeviceIdProvider ephemeralProvider = () -> {
+    return generateNewDeviceId(); // returns new value each time
+};
+```
+
 ## Storing User Profiles
 
 Once your users are identified, create [user profiles](/docs/data-structure/user-profiles) by setting profile properties to describe them. Example profile properties include "name", "email", "company", and any other demographic details about the user.
