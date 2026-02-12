@@ -83,6 +83,25 @@ We make a changelog post for every feature we ship. It usually includes a Loom l
 
 [Here](https://github.com/mixpanel/docs/blob/2d7a6f88118577411cdd173f51abe30b7499044c/pages/changelogs/2024-04-18-ai-chatbot-search-in-docs.mdx) is an example that you can clone to add a new changelog post.
 
+# GitHub Copilot - MP Expert
+
+We have a custom GitHub Copilot agent called **MP Expert** that can help you understand and implement Mixpanel based on this documentation.
+
+**MP Expert** is designed to assist:
+- Mixpanel customers learning how to use the product
+- Customer support teams answering questions
+- Mixpanel employees searching the documentation
+
+To use MP Expert in VS Code or GitHub:
+1. Open GitHub Copilot Chat
+2. Type `@mp-expert` followed by your question
+3. Ask questions like:
+   - "How do I track custom events in my mobile app?"
+   - "What's the difference between a cohort and a segment?"
+   - "Can you explain how funnel reports work?"
+
+MP Expert has a friendly, customer-focused tone and provides guidance based on the official documentation. It's focused on helping people use Mixpanel—not on modifying the documentation system itself.
+
 # Maintainers
 
 [Marissa](https://github.com/marissakuhrau), [Isha](https://github.com/ishamehramixpanel), and [Myron](https://github.com/myronkaifung). Eventually we’ll expand this list, but keeping it tight for now.
