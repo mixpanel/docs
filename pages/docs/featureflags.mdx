@@ -10,7 +10,7 @@ import { Cards, Callout, Steps } from 'nextra/components'
 
 **Feature Flags** let you control who sees a feature and when. Use them to:
 - **Gradually roll out** changes (E.g 1% → 10% → 100%)
-- **Target** cohorts, regions, platforms, or group accounts
+- **Target** user and group cohorts, regions, or platforms
 - **Kill-switch** risky functionality instantly
 - **Serve variants** for A/B/x tests and analyze results with **Mixpanel Experiments**
 
@@ -26,10 +26,11 @@ import { Cards, Callout, Steps } from 'nextra/components'
 - **Fallback Value** — variant to use when an assignment is unavailable.
 - **Sticky Variants** — the same entity keeps the same variant over time.
 - **Rollout Groups** - The configuration determining which users are in the rollout. This is comprised of:
-    - **Targeting** — eligibility definition (All Users vs Cohorts; may include runtime properties).
+    - **Targeting** — eligibility definition (All Users vs Cohorts, may include runtime rules and first time event filters).
     - **Rollout %** — percentage of the eligible audience that receives the flag now.
 - **Rollout %** — percentage of the eligible Rollout Group that receives the flag now.
-- **Runtime Properties** — request-time attributes (e.g., URL path, app version) used to target immediately.
+- **Runtime Rules** — a rule evaluated at request time, whose only input are runtime properties
+- **Runtime Properties** — request-time attributes (e.g., URL path, app version) used by runtime rules for targeting decisions.
 - **Assignment vs Exposure** — assignment is deciding the variant; exposure is when your app **uses** that variant to render.
 - **Feature Flag API Request** - is a call made to a feature flag API to retrieve the current state or configuration of one or more feature flags. This request allows an application to dynamically determine which features should be active for a user
 - **Context** - key value pairs mapping variant assignment keys to user values for variant assignment
@@ -55,7 +56,7 @@ This is the randomization bucket unit: `distinct_id` (user), `device_id`, or a *
 **How to choose the right key?**
 - **User** `distinct_id`  — best for logged-in experiences across device; a user sees a consistent experience across various sessions and devices
 - **Device** `device_id`  — best for pre-auth or acquisition flows; a device keeps a consistent variant between pre-auth and post-auth experiences.
-- **Group** `group_id` — target by account/org using a group key (e.g., `account_id`). Values for group keys will need to be supplied to the Mixpanel feature flag SDK through the `context` parameter
+- **Group** `group_id` — target by account/org using a group key (e.g., `account_id`). Values for group keys will need to be supplied to the Mixpanel feature flag SDK through the `context` parameter. When a group key is selected, cohort targeting targets that group accordingly.  For example, if you have a Franchise data group with key `franchise_id`, and you want to use a flag to rollout a feature to select Franchises, then `franchise_id` should be your assigment key.
 
 ### Variants Management
 
@@ -77,17 +78,24 @@ Control variant by is always set to non-sticky. This is to ensure this is the on
 Feature flags may consist of one or more rollout groups. Users are evaluated against each rollout group in order until one is found that the user qualifies for.
 
 You can target 'All Users', or optionally target rollout of your feature flags to subsets of your user base rather than to all your users with [Cohorts](https://docs.mixpanel.com/docs/cohorts).
-These are dynamic audiences of Mixpanel users based on user behavior or properties. Use these to target feature flags to specific subsets of your user base. For example, target only users who did 5 purchases in the last week. 
+These are dynamic audiences of Mixpanel users based on user behavior or properties. Use these to target feature flags to specific subsets of your user base. For example, target only users who did 5 purchases in the last week.
+
+**Group Cohort Targeting**
+
+When the Variant Assignment Key is set to a group key (e.g., `company_id`, `account_id`), targeting uses **group cohorts** instead of user cohorts. Group cohorts are cohorts of entities matching the group key — for example, a cohort of Companies for a flag keyed on `company_id`.
+
+- Group cohorts are created in the same [cohort builder](/docs/cohorts), scoped to the relevant group key.
+- The cohort builder automatically corresponds to the the flag's assignment key.
+- Example: A flag with assignment key `company_id` lets you target a cohort like "Enterprise companies with >50 seats."
 
 <Callout type="info">
- - Cohorts used in feature flag targeting refresh on a periodic cadence (~every 2 hours). So once a user qualifies for a cohort, it can take up to 2 hours before they see a desired experience.
- - If you want users to continue seeing the same variant even if they disqualify from the cohort in the future, couple this with **Sticky Variants.** This will ensure a user continues to see the new experience until the flag is turned off.
+ - Cohorts used in feature flag targeting refresh on a periodic cadence (~every 2 hours). So once a user or group entity qualifies for a cohort, it can take up to 2 hours before they see a desired experience.
+ - If you want users or groups to continue seeing the same variant even if they disqualify from the cohort in the future, couple this with **Sticky Variants.** This will ensure they continue to see the new experience until the flag is turned off.
 </Callout>
 
-**Runtime Targeting**
+**Targeting with Runtime Rules**
 
 This method enables targeting users immediately based on device or platform properties. For example, only users who are on Android devices and in the UK.
-- When building a cohort, if you add a filter, navigate to `+ Create New`, you'll be able to add a new runtime property filter.
 - Runtime properties (e.g., `platform`, `path`, `country`) should be passed by the SDK at request time for immediate, per-request decisions.
 
 ### Rollout Percentage
@@ -114,7 +122,7 @@ Feature flags are scoped to data views. If targeting your flag to specific user 
 
 **2. Can I target a cohort, but also include run-time targeting like device or url path?**
 
-Yes. You can couple run-time targeting with general cohorts. It works with an and condition across the 2 groups.
+Yes. You can couple run-time targeting with both user cohorts and group cohorts. It works with an AND condition across the targeting criteria.
 
 **3. Why is control variant always non-sticky? I want all my variants to be sticky**
 
@@ -184,7 +192,7 @@ Mixpanel analytics downtime will result in suspended cohort membership refreshes
 **Performance**
 
 The latency of Feature flags API responses is usually on the order of milliseconds.
-NOTE: Cohort membership is refreshed every 2 hours when targeting anything aside from 'All Users' or 'Run Time Properties'. Therefore, new users entering cohorts may not be reflected in Feature flags API responses for up to that 2 hour period.
+NOTE: Cohort membership is refreshed every 2 hours when targeting anything aside from 'All Users'/'All Entities' or 'Runtime Rules'. Therefore, new users or group entities entering cohorts may not be reflected in Feature flags API responses for up to that 2 hour period.
 
 
 ## Implementation
