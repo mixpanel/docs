@@ -935,7 +935,7 @@ mixpanel.init('YOUR_PROJECT_TOKEN', {
 If you configure your instance to send data over HTTP (instead of HTTPS) but set `secure_cookie: true`, then your cookie data will not sent to the server.
 
 #### Hosted Subdomains
-By default, Mixpanel cookie works across subdomain, keeping Mixpanel's Distinct ID and [Super Properties](/docs/tracking-methods/sdks/javascript#setting-super-properties) consistent across your sub-domains. For hosted subdomains (see [complete list of affected domains](https://publicsuffix.org/list/effective_tld_names.dat)) that don't allow cross-subdomain cookies, disable cross-subdomain cookie by setting the  `cross_subdomain_cookie` configuration option to `false`. Alternatively, you can also use a `CNAME` to change from `yourdomain.hostapp.com` to `yourdomain.com`.
+By default, Mixpanel cookie works across subdomain, keeping Mixpanel's Distinct ID and [Super Properties](/docs/tracking-methods/sdks/javascript#setting-super-properties) consistent across your sub-domains. If you set persistence: 'localStorage', cross-subdomain tracking will not work because localStorage is not shared across subdomains. For hosted subdomains (see [complete list of affected domains](https://publicsuffix.org/list/effective_tld_names.dat)) that don't allow cross-subdomain cookies, disable cross-subdomain cookie by setting the  `cross_subdomain_cookie` configuration option to `false`. Alternatively, you can also use a `CNAME` to change from `yourdomain.hostapp.com` to `yourdomain.com`.
 
 **Example Usage**
 ```javascript
