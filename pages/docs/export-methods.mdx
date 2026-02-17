@@ -25,11 +25,12 @@ To export raw event data, use the [Raw Event Export API](https://developer.mixpa
 Example request:
 
 ```
-# Returning "sample_event" from 2024-07-23 to 2024-07-24
-curl --request GET \
-     --url 'https://data.mixpanel.com/api/2.0/export?from_date=2024-07-23&to_date=2024-07-24&limit=100&event=sample_event' \
+# Returning "sample_event" from 2026-01-10 to 2026-01-11
+curl -gG --request GET \
+     --url 'https://data.mixpanel.com/api/2.0/export?from_date=2026-01-10&to_date=2026-01-11&limit=100' \
+     --data-urlencode 'event=["sample_event"]' \
      --header 'accept: text/plain' \
-     --header 'authorization: Basic YOUR_TOKEN’
+     --header 'authorization: Basic YOUR_TOKEN'
 ```
 
 Example payload:
@@ -75,7 +76,7 @@ Sample request:
 curl --request POST \
      --url 'https://mixpanel.com/api/query/engage?project_id=1234567' \
      --header 'accept: application/json' \
-     --header 'authorization: Basic YOUR _TOKEN \
+     --header 'authorization: Basic YOUR_TOKEN' \
      --header 'content-type: application/x-www-form-urlencoded'
 ```
 
@@ -150,7 +151,9 @@ To export Group Profiles as a CSV, switch the group key to your group of choice 
 ### Downloading Reports via the UI
 You can download any reports as a CSV, PNG, or PDF by clicking the "..." button in the top right corner of the report UI, and then selecting "Export".
 
-When exporting a CSV of an Insights report in Bar, Stacked Bar, Pie, Table, or Metric view, you can export up to 50,000 rows of data. For all other views and reports, the export limit is 10,000 rows. If your report exceeds these limits, only the number of rows up to the limit in ascending order is returned.
+**Enterprise plan customers:** When you export a CSV from an Insights report in Bar, Stacked Bar, Pie, Table, or Metric view, you can export up to 50,000 rows of data. For all other views and reports, you can export up to 10,000 rows. If a report exceeds these limits, the export returns only the first rows in ascending order, up to the applicable limit.
+
+**All other customers:** You can export up to 10,000 rows of data for all report types.
 
 ### Exporting Reports via API
 

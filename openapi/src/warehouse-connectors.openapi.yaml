@@ -1,7 +1,11 @@
 openapi: 3.0.2
 info:
   title: Warehouse Connectors API
-  description: Connect an external warehouse to import events, users, groups, and lookup tables.
+  description: |
+    Connect an external warehouse to import events, users, groups, and lookup tables.
+
+    This API allows you to manage warehouse imports from external data warehouses including
+    BigQuery, Snowflake, Redshift, Databricks, and PostgreSQL.
   license:
     name: MIT
     url: https://opensource.org/licenses/MIT
@@ -13,9 +17,353 @@ servers:
 security:
   - ServiceAccount: []
 tags:
+  - name: Warehouse Imports
+    description: Manage warehouse data imports
   - name: Run an import
     description: Trigger an import sync via API
+
 paths:
+  /projects/{projectId}/warehouse-sources/imports:
+    get:
+      parameters:
+        - $ref: ./common/parameters.yaml#/path/projectId
+      operationId: list-warehouse-imports
+      tags:
+        - Warehouse Imports
+      summary: List all warehouse imports
+      description: |
+        Returns a list of all warehouse imports configured for the project.
+
+        Each import includes metadata about the import configuration, sync status,
+        and job scheduling information.
+      responses:
+        "200":
+          description: Success
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  status:
+                    $ref: ./common/responses.yaml#/ResponseStatusOk
+                  results:
+                    type: array
+                    items:
+                      $ref: "#/components/schemas/WarehouseImport"
+        "401":
+          $ref: ./common/responses.yaml#/401Unauthorized
+        "403":
+          $ref: ./common/responses.yaml#/403Forbidden
+
+  /projects/{projectId}/warehouse-sources/imports/{importId}:
+    get:
+      parameters:
+        - $ref: ./common/parameters.yaml#/path/projectId
+        - $ref: ./common/parameters.yaml#/path/importId
+      operationId: get-warehouse-import
+      tags:
+        - Warehouse Imports
+      summary: Get a specific warehouse import
+      description: |
+        Retrieves detailed information about a specific warehouse import by ID.
+
+        Returns the full configuration of the import including table parameters,
+        column mappings, and sync settings.
+      responses:
+        "200":
+          description: Success
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  status:
+                    $ref: ./common/responses.yaml#/ResponseStatusOk
+                  results:
+                    $ref: "#/components/schemas/WarehouseImportDetail"
+        "401":
+          $ref: ./common/responses.yaml#/401Unauthorized
+        "403":
+          $ref: ./common/responses.yaml#/403Forbidden
+        "404":
+          $ref: ./common/responses.yaml#/404NotFound
+
+    patch:
+      parameters:
+        - $ref: ./common/parameters.yaml#/path/projectId
+        - $ref: ./common/parameters.yaml#/path/importId
+      operationId: update-warehouse-import
+      tags:
+        - Warehouse Imports
+      summary: Update a warehouse import
+      description: |
+        Update an existing warehouse import's settings.
+
+        ## Patchable Fields
+
+        The following fields can be modified:
+
+        - **paused** (boolean, required): Pause or resume the import sync
+        - **run_every** (integer): Sync frequency in nanoseconds. Must be one of the following values:
+          - `0`: API-triggered only (no scheduled sync)
+          - `3600000000000`: Hourly
+          - `86400000000000`: Daily
+          - `604800000000000`: Weekly
+        - **databricks_params** (object): Databricks-specific cluster configuration (only for Databricks sources)
+
+        ## Pause/Resume Behavior
+
+        - When `paused: true`, the import job will be stopped and no new syncs will be triggered
+        - When `paused: false`, the import job will be resumed with the specified frequency
+        - When resuming, you can optionally update `run_every`
+
+        ## Databricks Configuration
+
+        For Databricks Jobs compute imports, you can update cluster configurations:
+        - `export_cluster_config`: Configuration for the data export job cluster
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/PatchWarehouseImportRequest"
+      responses:
+        "200":
+          description: Success
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  status:
+                    $ref: ./common/responses.yaml#/ResponseStatusOk
+                  results:
+                    $ref: "#/components/schemas/WarehouseImportDetail"
+        "400":
+          $ref: ./common/responses.yaml#/400BadRequest
+        "401":
+          $ref: ./common/responses.yaml#/401Unauthorized
+        "403":
+          $ref: ./common/responses.yaml#/403Forbidden
+        "404":
+          $ref: ./common/responses.yaml#/404NotFound
+
+    delete:
+      parameters:
+        - $ref: ./common/parameters.yaml#/path/projectId
+        - $ref: ./common/parameters.yaml#/path/importId
+      operationId: delete-warehouse-import
+      tags:
+        - Warehouse Imports
+      summary: Delete a warehouse import
+      description: |
+        Deletes a warehouse import and optionally deletes the imported data.
+
+        When `delete_data: true` is specified, an event deletion request will be
+        created to remove the imported events from Mixpanel.
+      requestBody:
+        required: false
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                delete_data:
+                  type: boolean
+                  description: Whether to also delete the imported data from Mixpanel
+                  default: false
+      responses:
+        "200":
+          description: Success
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  status:
+                    $ref: ./common/responses.yaml#/ResponseStatusOk
+        "401":
+          $ref: ./common/responses.yaml#/401Unauthorized
+        "403":
+          $ref: ./common/responses.yaml#/403Forbidden
+        "404":
+          $ref: ./common/responses.yaml#/404NotFound
+
+  /projects/{projectId}/warehouse-sources/imports/event-stream:
+    post:
+      parameters:
+        - $ref: ./common/parameters.yaml#/path/projectId
+      operationId: create-event-stream-import
+      tags:
+        - Warehouse Imports
+      summary: Create an event stream import
+      description: |
+        Create a new warehouse import for event data.
+
+        Event stream imports sync event data from your warehouse table to Mixpanel.
+        Each row in your table becomes an event in Mixpanel.
+
+        ## Sync Modes
+
+        - **time_based**: Incrementally syncs new rows based on an insert time column
+        - **mirror_mode**: Detects changes in the source table and mirrors them to Mixpanel
+        - **full_sync**: Re-syncs all data on each run
+        - **one_time**: Syncs data once and does not repeat
+
+        ## Required Column Mappings
+
+        You must specify either:
+        - `event_name`: A static event name for all rows
+        - `event_column_name`: The column containing the event name
+
+        For B2B projects, `company_column_name` is also required.
+
+        ## Scheduling
+
+        - **run_every** (integer): Sync frequency in nanoseconds. Allowed values:
+          - Trigger via API: `0`
+          - Hourly: `3600000000000` (60 * 60 * 10^9)
+          - Daily: `86400000000000` (24 * 60 * 60 * 10^9)
+          - Weekly: `604800000000000` (7 * 24 * 60 * 60 * 10^9)
+        - **databricks_params** (object): Databricks-specific cluster configuration (only for Databricks sources)
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/CreateEventStreamImportRequest"
+      responses:
+        "200":
+          description: Success
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  status:
+                    $ref: ./common/responses.yaml#/ResponseStatusOk
+                  results:
+                    $ref: "#/components/schemas/WarehouseImportDetail"
+        "400":
+          $ref: ./common/responses.yaml#/400BadRequest
+        "401":
+          $ref: ./common/responses.yaml#/401Unauthorized
+        "403":
+          $ref: ./common/responses.yaml#/403Forbidden
+
+  /projects/{projectId}/warehouse-sources/imports/people:
+    post:
+      parameters:
+        - $ref: ./common/parameters.yaml#/path/projectId
+      operationId: create-people-import
+      tags:
+        - Warehouse Imports
+      summary: Create a people (user profiles) import
+      description: |
+        Create a new warehouse import for user profile data.
+
+        People imports sync user properties from your warehouse to Mixpanel user profiles.
+        Each row represents a user, identified by the `user_column_name`.
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/CreatePeopleImportRequest"
+      responses:
+        "200":
+          description: Success
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  status:
+                    $ref: ./common/responses.yaml#/ResponseStatusOk
+                  results:
+                    $ref: "#/components/schemas/WarehouseImportDetail"
+        "400":
+          $ref: ./common/responses.yaml#/400BadRequest
+        "401":
+          $ref: ./common/responses.yaml#/401Unauthorized
+        "403":
+          $ref: ./common/responses.yaml#/403Forbidden
+
+  /projects/{projectId}/warehouse-sources/imports/groups:
+    post:
+      parameters:
+        - $ref: ./common/parameters.yaml#/path/projectId
+      operationId: create-groups-import
+      tags:
+        - Warehouse Imports
+      summary: Create a groups import
+      description: |
+        Create a new warehouse import for group profile data.
+
+        Groups imports sync group properties from your warehouse to Mixpanel group profiles.
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/CreateGroupsImportRequest"
+      responses:
+        "200":
+          description: Success
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  status:
+                    $ref: ./common/responses.yaml#/ResponseStatusOk
+                  results:
+                    $ref: "#/components/schemas/WarehouseImportDetail"
+        "400":
+          $ref: ./common/responses.yaml#/400BadRequest
+        "401":
+          $ref: ./common/responses.yaml#/401Unauthorized
+        "403":
+          $ref: ./common/responses.yaml#/403Forbidden
+
+  /projects/{projectId}/warehouse-sources/imports/lookup-table:
+    post:
+      parameters:
+        - $ref: ./common/parameters.yaml#/path/projectId
+      operationId: create-lookup-table-import
+      tags:
+        - Warehouse Imports
+      summary: Create a lookup table import
+      description: |
+        Create a new warehouse import for lookup table data.
+
+        Lookup tables allow you to enrich event and user properties with additional
+        attributes from your warehouse.
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/CreateLookupTableImportRequest"
+      responses:
+        "200":
+          description: Success
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  status:
+                    $ref: ./common/responses.yaml#/ResponseStatusOk
+                  results:
+                    $ref: "#/components/schemas/WarehouseImportDetail"
+        "400":
+          $ref: ./common/responses.yaml#/400BadRequest
+        "401":
+          $ref: ./common/responses.yaml#/401Unauthorized
+        "403":
+          $ref: ./common/responses.yaml#/403Forbidden
+
   /projects/{projectId}/warehouse-sources/imports/{importId}/manual-sync:
     put:
       parameters:
@@ -29,8 +377,8 @@ paths:
       tags:
         - Run an import
       summary: Run an import
-      description: >-
-        This API endpoint triggers an immediate sync for a given warehouse import.
+      description: |
+        Triggers an immediate sync for a given warehouse import.
       responses:
         "200":
           description: Success
@@ -40,13 +388,435 @@ paths:
                 type: object
                 properties:
                   status:
-                    $ref: "./common/responses.yaml#/ResponseStatusOk"
+                    $ref: ./common/responses.yaml#/ResponseStatusOk
         "401":
-          $ref: "./common/responses.yaml#/401Unauthorized"
+          $ref: ./common/responses.yaml#/401Unauthorized
         "403":
-          $ref: "./common/responses.yaml#/403Forbidden"
+          $ref: ./common/responses.yaml#/403Forbidden
         "404":
-          $ref: "./common/responses.yaml#/404NotFound"
+          $ref: ./common/responses.yaml#/404NotFound
+
+  /projects/{projectId}/warehouse-sources/imports/{importId}/history:
+    get:
+      parameters:
+        - $ref: ./common/parameters.yaml#/path/projectId
+        - $ref: ./common/parameters.yaml#/path/importId
+      operationId: get-import-history
+      tags:
+        - Warehouse Imports
+      summary: Get import job history
+      description: |
+        Returns the execution history for a warehouse import. Returns 100 most recent events.
+      responses:
+        "200":
+          description: Success
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  status:
+                    $ref: ./common/responses.yaml#/ResponseStatusOk
+                  results:
+                    $ref: "#/components/schemas/ImportJobHistory"
+        "401":
+          $ref: ./common/responses.yaml#/401Unauthorized
+        "403":
+          $ref: ./common/responses.yaml#/403Forbidden
+        "404":
+          $ref: ./common/responses.yaml#/404NotFound
+
 components:
+  schemas:
+    SyncMode:
+      type: string
+      enum: [time_based, mirror_mode, full_sync, one_time]
+
+    SyncFrequency:
+      type: integer
+      description: |
+        Sync frequency in nanoseconds. Only these values are accepted:
+        - `0` - API-triggered only (use the manual-sync endpoint to trigger)
+        - `3600000000000` - Hourly
+        - `86400000000000` - Daily
+        - `604800000000000` - Weekly
+      enum:
+        - 0
+        - 3600000000000
+        - 86400000000000
+        - 604800000000000
+
+    ImportType:
+      type: string
+      enum: [event_sync, event_stream, people, groups, lookup_table]
+
+    TableParams:
+      type: object
+      description: Table location parameters (structure depends on warehouse type)
+
+    PropertyMappings:
+      type: object
+      nullable: true
+      additionalProperties:
+        type: string
+
+    DatabricksClusterConfig:
+      type: object
+      nullable: true
+      additionalProperties: false
+      properties:
+        spark_version:
+          type: string
+          description: Spark runtime version (e.g., '15.4.x-scala2.12')
+        node_type_id:
+          type: string
+          description: Instance type for worker nodes (e.g., 'n2-standard-4' for GCP)
+        driver_node_type_id:
+          type: string
+          nullable: true
+          description: Instance type for driver node (defaults to node_type_id if not set)
+        num_workers:
+          type: integer
+          minimum: 0
+          description: Fixed number of worker nodes
+        autoscale:
+          type: object
+          nullable: true
+          additionalProperties: false
+          description: Autoscaling configuration (overrides num_workers if set)
+          properties:
+            min_workers:
+              type: integer
+              minimum: 0
+            max_workers:
+              type: integer
+              minimum: 1
+        spark_conf:
+          type: object
+          nullable: true
+          additionalProperties:
+            type: string
+          description: Spark configuration key-value pairs
+        spark_env_vars:
+          type: object
+          nullable: true
+          additionalProperties:
+            type: string
+          description: Environment variables (PYSPARK_PYTHON is always included)
+        data_security_mode:
+          type: string
+          nullable: true
+          enum:
+            - USER_ISOLATION
+            - SINGLE_USER
+            - NONE
+            - LEGACY_TABLE_ACL
+            - LEGACY_PASSTHROUGH
+            - LEGACY_SINGLE_USER
+            - LEGACY_SINGLE_USER_STANDARD
+          description: Data security mode for the cluster
+        single_user_name:
+          type: string
+          nullable: true
+          description: Required if data_security_mode is SINGLE_USER
+        custom_tags:
+          type: object
+          nullable: true
+          additionalProperties:
+            type: string
+          description: Custom tags (provider=mixpanel is always added)
+        policy_id:
+          type: string
+          nullable: true
+          description: Cluster policy ID
+        instance_pool_id:
+          type: string
+          nullable: true
+          description: Instance pool ID for worker nodes
+        driver_instance_pool_id:
+          type: string
+          nullable: true
+          description: Instance pool ID for driver node
+        enable_elastic_disk:
+          type: boolean
+          nullable: true
+          description: Enable autoscaling local storage
+        runtime_engine:
+          type: string
+          nullable: true
+          enum:
+            - STANDARD
+            - PHOTON
+          description: Runtime engine (STANDARD or PHOTON)
+        aws_attributes:
+          type: object
+          nullable: true
+          description: AWS-specific cluster configuration
+        azure_attributes:
+          type: object
+          nullable: true
+          description: Azure-specific cluster configuration
+        gcp_attributes:
+          type: object
+          nullable: true
+          description: GCP-specific cluster configuration
+        init_scripts:
+          type: array
+          nullable: true
+          items:
+            type: object
+          description: Cluster initialization scripts
+
+    DatabricksParams:
+      type: object
+      nullable: true
+      properties:
+        export_cluster_config:
+          $ref: "#/components/schemas/DatabricksClusterConfig"
+
+    WarehouseImport:
+      type: object
+      properties:
+        id:
+          type: integer
+        import_type:
+          $ref: "#/components/schemas/ImportType"
+        sync_mode:
+          $ref: "#/components/schemas/SyncMode"
+        created:
+          type: string
+          format: date-time
+        creator_id:
+          type: integer
+        creator_name:
+          type: string
+        creator_email:
+          type: string
+        warehouse_source_id:
+          type: integer
+        table_params:
+          $ref: "#/components/schemas/TableParams"
+        paused:
+          type: boolean
+        run_every:
+          allOf:
+            - $ref: "#/components/schemas/SyncFrequency"
+        last_dispatch:
+          type: integer
+          nullable: true
+        is_deleted:
+          type: boolean
+
+    WarehouseImportDetail:
+      allOf:
+        - $ref: "#/components/schemas/WarehouseImport"
+        - type: object
+          properties:
+            event_name:
+              type: string
+              nullable: true
+            event_column_name:
+              type: string
+              nullable: true
+            time_column_name:
+              type: string
+              nullable: true
+            user_column_name:
+              type: string
+              nullable: true
+            insert_time_column_name:
+              type: string
+              nullable: true
+            property_mappings:
+              $ref: "#/components/schemas/PropertyMappings"
+            group_key:
+              type: string
+              nullable: true
+            group_id_column:
+              type: string
+              nullable: true
+            databricks_params:
+              $ref: "#/components/schemas/DatabricksParams"
+
+    PatchWarehouseImportRequest:
+      type: object
+      required: [paused, run_every]
+      properties:
+        paused:
+          type: boolean
+          description: Whether to pause (true) or resume (false) the import
+        run_every:
+          $ref: "#/components/schemas/SyncFrequency"
+        databricks_params:
+          $ref: "#/components/schemas/DatabricksParams"
+
+    CreateEventStreamImportRequest:
+      type: object
+      required:
+        [
+          import_type,
+          warehouse_source_id,
+          table_params,
+          time_column_name,
+          sync_mode,
+        ]
+      properties:
+        import_type:
+          type: string
+          enum: [event_stream]
+        warehouse_source_id:
+          type: integer
+        table_params:
+          $ref: "#/components/schemas/TableParams"
+        event_name:
+          type: string
+        event_column_name:
+          type: string
+        time_column_name:
+          type: string
+        user_column_name:
+          type: string
+        company_column_name:
+          type: string
+          description: Required for B2B projects. The column containing the company identifier.
+        sync_mode:
+          $ref: "#/components/schemas/SyncMode"
+        run_every:
+          $ref: "#/components/schemas/SyncFrequency"
+        insert_time_column_name:
+          type: string
+          nullable: true
+        property_mappings:
+          $ref: "#/components/schemas/PropertyMappings"
+        databricks_params:
+          $ref: "#/components/schemas/DatabricksParams"
+
+    CreatePeopleImportRequest:
+      type: object
+      required:
+        [
+          import_type,
+          warehouse_source_id,
+          table_params,
+          user_column_name,
+          sync_mode,
+        ]
+      properties:
+        import_type:
+          type: string
+          enum: [people]
+        warehouse_source_id:
+          type: integer
+        table_params:
+          $ref: "#/components/schemas/TableParams"
+        user_column_name:
+          type: string
+        sync_mode:
+          $ref: "#/components/schemas/SyncMode"
+        run_every:
+          $ref: "#/components/schemas/SyncFrequency"
+        insert_time_column_name:
+          type: string
+          nullable: true
+        property_mappings:
+          $ref: "#/components/schemas/PropertyMappings"
+        databricks_params:
+          $ref: "#/components/schemas/DatabricksParams"
+
+    CreateGroupsImportRequest:
+      type: object
+      required:
+        [
+          import_type,
+          warehouse_source_id,
+          table_params,
+          group_key,
+          group_id_column,
+          sync_mode,
+        ]
+      properties:
+        import_type:
+          type: string
+          enum: [groups]
+        warehouse_source_id:
+          type: integer
+        table_params:
+          $ref: "#/components/schemas/TableParams"
+        group_key:
+          type: string
+        group_id_column:
+          type: string
+        sync_mode:
+          $ref: "#/components/schemas/SyncMode"
+        run_every:
+          $ref: "#/components/schemas/SyncFrequency"
+        insert_time_column_name:
+          type: string
+          nullable: true
+        property_mappings:
+          $ref: "#/components/schemas/PropertyMappings"
+        databricks_params:
+          $ref: "#/components/schemas/DatabricksParams"
+
+    CreateLookupTableImportRequest:
+      type: object
+      required:
+        [
+          import_type,
+          warehouse_source_id,
+          table_params,
+          mixpanel_property,
+          property_key_column_name,
+          sync_mode,
+        ]
+      properties:
+        import_type:
+          type: string
+          enum: [lookup_table]
+        warehouse_source_id:
+          type: integer
+        table_params:
+          $ref: "#/components/schemas/TableParams"
+        mixpanel_property:
+          type: object
+          required: [value, resourceType]
+          properties:
+            value:
+              type: string
+            resourceType:
+              type: string
+              enum: [event, user]
+        property_key_column_name:
+          type: string
+        sync_mode:
+          type: string
+          enum: [full_sync, one_time]
+        run_every:
+          $ref: "#/components/schemas/SyncFrequency"
+        databricks_params:
+          $ref: "#/components/schemas/DatabricksParams"
+
+    ImportJobHistory:
+      type: object
+      properties:
+        runs:
+          type: array
+          items:
+            type: object
+            properties:
+              status:
+                type: string
+                enum: [RUNNING, SUCCEEDED, FAILED, CANCELLED]
+              start_time:
+                type: integer
+                nullable: true
+              end_time:
+                type: integer
+                nullable: true
+              num_events_imported:
+                type: integer
+                nullable: true
+
   securitySchemes:
-    $ref: ./common/securitySchemes.yaml
+    ServiceAccount:
+      $ref: ./common/securitySchemes.yaml#/ServiceAccount

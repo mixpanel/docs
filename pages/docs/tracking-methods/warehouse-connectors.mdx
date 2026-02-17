@@ -6,7 +6,7 @@ import { dwhItems, mirrorItems } from '../../../utils/constants';
 # Warehouse Connectors: Sync data from your data warehouse into Mixpanel
 
 <Callout type="info">
-Warehouse Connector is a free add-on available to organizations on a Growth or Enterprise plan. Learn more on our [pricing page](https://mixpanel.com/pricing/).
+Organizations on a paid *event-based* plan receive Warehouse Connector as a free add-on when they update or renew their plan. Learn more on our [pricing page](https://mixpanel.com/pricing/).
 </Callout>
 
 With Warehouse Connectors, you can sync data from data warehouses like Snowflake, BigQuery, Databricks, Redshift, and Postgres to Mixpanel. By unifying business data with product usage events, you can answer many more questions in Mixpanel:
@@ -72,6 +72,10 @@ Navigate to [Project Settings → Warehouse Sources](https://mixpanel.com/report
           ```
 
 JSON columns mapped in BigQuery containing multiple properties are subject to a hard limit of 1MB per record. This limitation is imposed by Google Cloud's handling of JSON objects and applies during the intermediate step where data is written to the GCS bucket.
+
+### VPC Service Controls
+IP allowlists are [not supported](https://docs.cloud.google.com/vpc-service-controls/docs/use-access-levels#limitations_of_using_access_levels_with) for BigQuery because Mixpanel's infrastructure runs on GCP, and inter-project communication in Google Cloud routes through internal Google IPs rather than public IPs. Instead, configure an ingress rule to allow access based on other attributes such as the project or service account. The service account is `project-<your-project-id>@mixpanel-warehouse-1.iam.gserviceaccount.com`. The Mixpanel project is `745258754925` for US, `848893383328` for EU, and `1054291822741` for IN. In addition, you may need to configure an egress rule to write data to `mixpanel-warehouse-1` project `435324298685`. 
+
 </Tabs.Tab>
 <Tabs.Tab>
     <div style={{position: 'relative', paddingBottom: '64.90384615384616%', height: 0}}>
@@ -176,7 +180,7 @@ JSON columns mapped in BigQuery containing multiple properties are subject to a 
 </div>
 
 <Callout type="info">
-  The connection to Databricks only supports connecting directly to clusters. Connecting directly to jobs or SQL warehouses is not supported. The account used for the connection should have `can attach to` permissions to the cluster (and `can restart` if it auto-suspends), and `can use` to the warehouse the cluster leverages.
+  The connection to Databricks only supports connecting directly to clusters or jobs compute. Connecting directly to SQL warehouses is not supported.
 </Callout>
 
 Complete the following steps to get your Databricks connector up and running:
@@ -185,11 +189,14 @@ Complete the following steps to get your Databricks connector up and running:
 2. Click on `+ Add Connection` and select **Databricks**.
 3. You should see a new page to create your databricks connector. In the first view, fill out the following fields before clicking  `Create Source`:
     - **Server Hostname** - This is the hostname of your Databricks cluster. This can be found in your workspace URL, or by navigating to [JDBC/ODBC connection settings](https://docs.databricks.com/en/integrations/jdbc-odbc-bi.html#step)
-    - **HTTP Path** - This is the HTTP path of the cluster you would like to connect to. This can be found in your cluster [JDBC/ODBC connection settings](https://docs.databricks.com/en/integrations/jdbc-odbc-bi.html#step)
     - **Access Token** - This is the Personal access token used to authenticate with your Databricks cluster. Here are the instructions on [how to create an access token](https://docs.databricks.com/en/dev-tools/auth.html#databricks-personal-access-tokens-for-workspace-users)
+    - **Compute Type** - Select your preferred compute option. We recommend using all-purpose compute for development use cases and jobs compute for production use cases.
+        - **All-Purpose Compute** - Uses an existing Databricks cluster. This option has faster sync start times since the cluster may already be running, but can be more expensive as the cluster remains running after the sync completes until it times out.
+        - **Jobs Compute (Beta)** - Creates a dedicated Databricks job for each sync. You are only billed by Databricks for the exact duration of the job, making this more cost-effective. However, each sync has a longer start time (approximately 5-6 minutes) due to cluster spin-up. Also note that jobs compute does not support previewing data in the Mixpanel UI.
+    - **HTTP Path** - For all-purpose compute, this is the HTTP path of the cluster you would like to connect to. This can be found in your cluster [JDBC/ODBC connection settings](https://docs.databricks.com/en/integrations/jdbc-odbc-bi.html#step)
 4. In the second view, you should see that the credentials are validated and a source is added.
 
-**Using Service Principals**
+### Using Service Principals
 If a service principal is used, you'll want to follow these steps:
 1. [Create the service principal](https://docs.databricks.com/en/admin/users-groups/service-principals.html#manage-service-principals-in-your-account) if it doesn't exist.
 2. Create a token for the service principal. You can do so through the Databricks CLI:
@@ -207,6 +214,18 @@ GRANT SELECT ON ANY FILE TO <application_id_of_service_principal>
 GRANT MODIFY ON ANY FILE TO <application_id_of_service_principal>
 ```
 7. During the setup process in Mixpanel, you can now use the token from the service principal when setting up the connection
+
+### Required Permissions
+
+The account or service principal used for the connection requires different permissions depending on the compute type selected:
+
+- **All-Purpose Compute**:
+  - `CAN ATTACH TO` permission on the cluster
+  - `CAN RESTART` permission on the cluster (if the cluster auto-suspends)
+  - `CAN USE` permission on the SQL warehouse the cluster leverages
+
+- **Jobs Compute**:
+  - Cluster creation permissions - the account or service principal needs permission to create job clusters
 
 
 ### IP Allowlist
@@ -377,6 +396,9 @@ Here’s an example table that illustrates what can be loaded as user profiles i
 While Profiles typically only store the state of a user *as of now*, Profile History enables storing the state of a user *over time*. The distinction between the value a property of the profile has now vs the value it had at the time of an event allows you to do very powerful analysis.
 
 #### Profile History tables
+<Callout type="info">
+  Profile History tables are only available to organizations on an Enterprise plan.
+</Callout>
 To create an import of regular user profiles, pick the “Standard” Type when creating a user table import.
 
 <img src="/dw_standard_user_table.png" alt="Standard user table" width="300"/>
@@ -444,6 +466,10 @@ which changes Mixpanel will reflect.
 Mirror syncs work by having the warehouse compute which rows have been inserted, modified, or deleted and sending this
 list of changes to Mixpanel. Change tracking is configured differently depending on the source warehouse. Mirror is
 supported for Snowflake, Databricks, BigQuery, and Redshift sources.
+
+<Callout type="info">
+  For User tables, Mirror Sync is available only when you select the Profile History table type. Mirror Sync is not available for the Standard table type.
+</Callout>
 
 <ExtendedTabs urlParam="mirror" urlToItemsMap={mirrorItems}>
 

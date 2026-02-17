@@ -1,6 +1,8 @@
-import { Callout } from 'nextra/components'
+import { Callout, Cards, Steps } from 'nextra/components'
 
 # Cohort Sync
+
+## Overview
 
 Cohort Sync is a feature in Mixpanel that allows you to export dynamic groups of users (called [Cohorts](/docs/users/cohorts)) who meet specific behavioral or property-based criteria, to external tools and platforms. This enables you to seamlessly connect your analytics insights with marketing automation, engagement, and advertising platforms such as Braze, Facebook Ads, Google Ads, and more.
 
@@ -12,6 +14,37 @@ With Cohort Sync, you can:
 - Reduce manual effort and maintenance, as the sync process is automated and updates as users enter or exit the cohort in Mixpanel.
 
 The value of Cohort Sync lies in its ability to bridge analytics and action: you can quickly act on user insights by targeting the right users in the right channels, improving campaign effectiveness and operational efficiency. This integration is especially useful for marketing, product, and growth teams who want to leverage behavioral data for personalized outreach and engagement without manual data exports or engineering support
+
+## Using Cohort Sync
+
+### Establishing Connection
+
+Before you can use Cohort Sync to export Mixpanel cohorts, you must establish a connection between Mixpanel and your Cohort Sync destination. Mixpanel integrates natively with several third-party destinations (such as Segment and Braze). If you need to sync cohorts to a different destination, you can use Custom Webhooks to export cohort payloads to any destination of your choice.
+
+Refer to the Cohort Sync Integration directory below for partner-specific setup guides, or consult the Custom Webhooks guide.
+
+<Cards>
+  <Cards.Card icon title="Cohort Sync Integrations Directory" href="/docs/cohort-sync/integrations" />
+  <Cards.Card icon title="Custom Webhooks" href="/docs/cohort-sync/webhooks" />
+</Cards>
+
+### Initialize Cohort Sync
+
+Once a connection has been established between your Mixpanel project and your Cohort Sync destination/Webhooks, you can initialize a cohort sync export.
+
+<Steps>
+
+{<h3>Navigate to Lexicon and select "Cohorts" in the left-hand sidebar.</h3>}
+
+{<h3>Click the "..." button next to the Cohort you want to sync, and select "Export to...".</h3>}
+
+{<h3>Select one of your connections to open the export modal.</h3>}
+
+{<h3>Choose a one-time export or a recurring export.</h3>}
+
+Learn more about the [types of syncs](/docs/cohort-sync/webhooks#sync).
+
+</Steps>
 
 ## Limits
 
@@ -38,7 +71,9 @@ If these properties are not present in your project, users might not be matched 
 
 The email address and phone number properties will only show in the manual CSV exports for Google Ads and Facebook integrations.
 
-> Note: Exporting group-level cohorts (Group Analytics) is not currently supported.
+<Callout type="info">
+    Exporting group-level cohorts (Group Analytics) is not currently supported.
+</Callout>
 
 ## Troubleshooting
 

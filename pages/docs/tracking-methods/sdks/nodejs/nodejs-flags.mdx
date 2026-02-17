@@ -2,10 +2,6 @@ import { Callout } from 'nextra/components'
 
 # Implement Feature Flags (Node.js)
 
-<Callout type="info">
-  The Node.js feature flags implementation is currently in Beta.
-</Callout>
-
 ## Overview
 
 This developer guide will assist you in configuring your server-side Node.js platform for [Feature Flags](/docs/featureflags) using the [Mixpanel Node.js SDK](/docs/tracking-methods/sdks/nodejs). Feature Flags allow you to control the rollout of your features, conduct A/B testing, and manage application behavior without deploying new code.
@@ -14,7 +10,7 @@ This developer guide will assist you in configuring your server-side Node.js pla
 
 Before implementing [Feature Flags](/docs/featureflags), ensure:
 
-- You are on an Enterprise subscription plan and have the [Mixpanel Node.js SDK](https://github.com/mixpanel/mixpanel-node) installed. If not, please follow [this doc](/docs/quickstart/install-mixpanel) to install the SDK. The minimum supported version is [v0.19.0](https://www.npmjs.com/package/mixpanel)
+- You are on an Enterprise subscription plan and have the [Mixpanel Node.js SDK](https://github.com/mixpanel/mixpanel-node) installed. If not, please follow [this doc](/docs/quickstart/install-mixpanel) to install the SDK. The minimum supported version is [v0.20.0](https://www.npmjs.com/package/mixpanel)
 - You have your Project Token from your [Mixpanel Project Settings](/docs/orgs-and-projects/managing-projects#find-your-project-tokens)
 
 ## Flag Evaluation Scenarios
@@ -32,6 +28,7 @@ In either case there is also the capability to evaluate all flags for a given us
 <Callout type="warning">
 Targeting by Mixpanel cohorts and sticky variants are not supported in Local Evaluation mode.
 </Callout>
+
 
 - The SDK is configured with a `local_flags_config` object that specifies parameters:
     1) `api_host` - If your project is in the EU/IN region, this should be set to route to `api-eu.mixpanel.com`/`api-in.mixpanel.com` respectively.
