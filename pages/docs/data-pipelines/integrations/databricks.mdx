@@ -71,15 +71,22 @@ A Service Principal is a Databricks identity that Mixpanel will use to access yo
 4. Copy the **Secret value** immediately - it won't be shown again
 5. Store it securely - you'll need it for Mixpanel configuration
 
-### Step 3: Create Catalog and Schema (or use existing ones)
-
-Create a dedicated catalog and schema for Mixpanel data. You can run SQL under SQL Editor or Catalog Explorer.
+### Step 3: Create new Catalog (or use existing ones) and Schema
 
 <Callout type="info">
-  Note that you need `CREATE CATALOG` privilege to create a new catalog:
+  You need `CREATE CATALOG` privilege to create a new catalog:
   1. Go to Catalog → settings (gear icon) → metastore
   2. Click "Grant" button in "Permissions" tab and grant "CREATE CATALOG" to the user
 </Callout>
+<Callout type="info">
+  If you are using an existing shared catalog, ensure you have the following privileges on that catalog:
+  ```sql
+  GRANT USE CATALOG ON CATALOG <catalog> TO `<user>`;
+  GRANT CREATE SCHEMA ON CATALOG <catalog> TO `<user>`;
+  ```
+</Callout>
+
+Create a dedicated catalog and schema for Mixpanel data. You can run SQL under SQL Editor or Catalog Explorer.
 
 ```sql
 -- Create Catalog
