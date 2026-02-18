@@ -1,25 +1,27 @@
-import { Callout } from 'nextra/components'
+import { Callout } from "nextra/components";
 
 # Databricks
 
 <Callout type="info">
-  Customers on an Enterprise or Growth plan can access Data Pipeline as an add-on package. See our [pricing page](https://mixpanel.com/pricing/) for more details.
+  Customers on an Enterprise or Growth plan can access Data Pipeline as an
+  add-on package. See our [pricing page](https://mixpanel.com/pricing/) for more
+  details.
 </Callout>
 
 <Callout type="info">
-The Databricks export destination is currently in beta.
+  The Databricks export destination is currently in beta.
 </Callout>
 
 Export your Mixpanel data to Databricks using Unity Catalog Managed Volumes. This integration supports all Databricks clouds (AWS, GCP, and Azure).
 
 ## Design
 
-Mixpanel exports data to customer's Databricks workspace using Unity Catalog Managed Volumes. We first load the data into a single-column raw (VARIANT type) data table, then create a view to expose all properties as typed columns.
+Mixpanel exports data to the customer's Databricks workspace using Unity Catalog Managed Volumes. We first load the data into a single-column (VARIANT type) raw data table, then create a view to expose all properties as typed columns.
 
 ### Supported Features
 
 - **Cross-cloud Support**: Works with Databricks on AWS, GCP, or Azure
-- **Date Partitioning**: Raw tables are clustered by `event_date` for efficient date-based queries
+- **Date Clustering**: Raw tables use liquid clustering on `event_date` for efficient date-based queries
 - **Static IP Addresses**: Supports IP allowlisting for secure connections
 
 ### IP Allowlist
@@ -27,14 +29,16 @@ Mixpanel exports data to customer's Databricks workspace using Unity Catalog Man
 Mixpanel Data Pipelines supports static IP addresses for Databricks connections when IP restrictions are configured on your Databricks workspace. If you are using network policies to restrict access to your instance, you might need to add the following IP addresses to the allowed list:
 
 **US**
-```jsx
+
+```text
 34.31.112.201
 35.184.21.33
 35.225.176.74
 ```
 
 **EU**
-```jsx
+
+```text
 34.147.68.192
 35.204.164.122
 35.204.177.251
@@ -45,37 +49,41 @@ Mixpanel Data Pipelines supports static IP addresses for Databricks connections 
 Before setting up the integration, ensure you have:
 
 - A Databricks workspace with Unity Catalog enabled
-- Databricks Runtime 15.3+ (for VARIANT type support)
 - A SQL Warehouse (Serverless recommended for best performance and cost)
 - Admin permissions in your Databricks workspace to create Service Principals
 
 ## Set Export Permissions
 
-### Step 1: Create a Service Principal
+### Step 1: Create a Service Principal (or use existing one)
 
 A Service Principal is a Databricks identity that Mixpanel will use to access your workspace.
 
 1. In your Databricks workspace, navigate to **Settings** → **Identity and access** → **Service principals**
 2. Click **Add service principal**
-3. Enter a name (e.g., `mixpanel-export`)
-4. Click **Add**
-5. Note the **Application ID** (Client ID) - you'll need this later
+3. Click **Add new**
+4. Note the **Application ID** - you'll need this later
 
 ### Step 2: Generate OAuth Secret
 
 1. Click on the Service Principal you just created
 2. Navigate to the **Secrets** tab
-3. Click **Generate secret**
+3. Click **Generate secret** and enter lifetime (730 days recommended)
 4. Copy the **Secret value** immediately - it won't be shown again
 5. Store it securely - you'll need it for Mixpanel configuration
 
-### Step 3: Create Catalog and Schema
+### Step 3: Create Catalog and Schema (or use existing ones)
 
-Create a dedicated catalog and schema for Mixpanel data (or use existing ones).
+Create a dedicated catalog and schema for Mixpanel data. You can run SQL under SQL Editor or Catalog Explorer.
+
+<Callout type="info">
+  Note that you need `CREATE CATALOG` privilege to create a new catalog:
+  1. Go to Catalog → settings (gear icon) → metastore
+  2. Click "Grant" button in "Permissions" tab and grant "CREATE CATALOG" to the user
+</Callout>
 
 ```sql
-CREATE CATALOG IF NOT EXISTS mixpanel_export
-COMMENT 'Mixpanel data exports';
+-- Create Catalog
+CREATE CATALOG IF NOT EXISTS mixpanel_export;
 
 -- Create schema
 CREATE SCHEMA IF NOT EXISTS mixpanel_export.json_pipelines;
@@ -99,30 +107,26 @@ GRANT CREATE VOLUME ON SCHEMA mixpanel_export.json_pipelines
   TO `<service-principal-application-id>`;
 ```
 
-**For Metastore Privilege Version 1.1+ only**, additionally grant:
+**For Metastore Privilege Version 1.1+**, additionally grant "CREATE VIEW" on schema:
+
+- **Version 1.0**: privilege `CREATE TABLE` covers both tables and views
+- **Version 1.1+**: Separate `CREATE VIEW` privilege required
 
 ```sql
+-- Check your metastore privilege version by PrivilegeModelVersion
+DESCRIBE METASTORE;
+
 GRANT CREATE VIEW ON SCHEMA mixpanel_export.json_pipelines
   TO `<service-principal-application-id>`;
 ```
-
-To check your metastore privilege version:
-
-```sql
-DESCRIBE METASTORE;
-```
-
-Look for `PrivilegeModelVersion`:
-- **Version 1.0**: `CREATE TABLE` covers both tables and views
-- **Version 1.1+**: Separate `CREATE VIEW` privilege required
 
 #### Why These Permissions?
 
 - `USE CATALOG`: Required to access the catalog
 - `USE SCHEMA`: Required to access objects in the schema
 - `CREATE TABLE`: Create raw tables to store event data
-- `CREATE VIEW`: Create views with typed columns (metastore v1.1+ only)
 - `CREATE VOLUME`: Create temporary volumes for uploading files
+- `CREATE VIEW`: Create views with typed columns (metastore v1.1+ only)
 
 **Note**: The Service Principal automatically becomes the **owner** of all objects it creates (tables, views, volumes), which grants it full permissions (SELECT, MODIFY, READ FILES, WRITE FILES, etc.) on those objects. No additional grants needed.
 
@@ -148,6 +152,7 @@ The Service Principal needs permission to use the SQL Warehouse to execute queri
    - **HTTP Path**: e.g., `/sql/1.0/warehouses/xyz789`
 
 **Recommendation**: Use a Serverless SQL Warehouse for:
+
 - Fast startup (~3 seconds)
 - Auto-scaling
 - Pay-per-use pricing
@@ -164,7 +169,7 @@ Refer to [Step 2: Creating the Pipeline](/docs/data-pipelines/#step-2-creating-t
 - **Service Principal ID** (Application ID from Step 1)
 - **Service Principal Secret** (from Step 2)
 
-## Partitioning
+## Clustering
 
 Raw tables are clustered by the `event_date` column, which is computed in your project's timezone during data load. This clustering significantly improves query performance when filtering by date.
 
@@ -173,10 +178,12 @@ Raw tables are clustered by the `event_date` column, which is computed in your p
 Mixpanel creates a raw table and a view with typed columns:
 
 **Raw Table Columns** (`mp_master_event_raw`):
+
 - `DATA` (VARIANT) - Contains the complete event JSON
 - `event_date` (DATE) - Computed from event time in your project's timezone
 
 **View Columns** (`mp_master_event`):
+
 - `user_id` (STRING)
 - `time` (TIMESTAMP)
 - `properties` (VARIANT) - All event properties as semi-structured data
@@ -187,6 +194,15 @@ Mixpanel creates a raw table and a view with typed columns:
 - `event_date` (DATE)
 
 ## Queries
+
+<Callout type="info">
+  Remember to grant necessary permissions to any user who wants to query the table
+  ```sql
+  GRANT USE CATALOG ON CATALOG mixpanel_export TO `<user>`;
+  GRANT USE SCHEMA ON SCHEMA mixpanel_export.json_pipelines TO `<user>`;
+  GRANT SELECT ON SCHEMA mixpanel_export.json_pipelines TO `<user>`;
+  ```
+</Callout>
 
 Databricks supports a VARIANT type that can store semi-structured JSON data. Use the `::` syntax to extract and cast properties from VARIANT columns.
 
@@ -213,6 +229,18 @@ WHERE event_name = 'Purchase'
   AND properties:product:category::STRING = 'Electronics';
 ```
 
+### Getting the number of events per day
+
+```sql
+SELECT
+    event_date,
+    count(*) as event_count
+FROM mixpanel_export.json_pipelines.mp_master_event
+WHERE event_date >= '2024-01-01' AND event_date <= '2024-01-31'
+GROUP BY event_date
+ORDER BY event_date;
+```
+
 ### Efficient date filtering
 
 Use the `event_date` column for best performance:
@@ -227,18 +255,6 @@ FROM mixpanel_export.json_pipelines.mp_master_event
 WHERE event_date BETWEEN '2024-01-01' AND '2024-01-31'
   AND event_name = 'Purchase'
 ORDER BY time DESC;
-```
-
-### Getting the number of events per day
-
-```sql
-SELECT
-    event_date,
-    count(*) as event_count
-FROM mixpanel_export.json_pipelines.mp_master_event
-WHERE event_date >= '2024-01-01' AND event_date <= '2024-01-31'
-GROUP BY event_date
-ORDER BY event_date;
 ```
 
 ## Costs
