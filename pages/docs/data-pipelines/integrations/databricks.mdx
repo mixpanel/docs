@@ -74,15 +74,14 @@ A Service Principal is a Databricks identity that Mixpanel will use to access yo
 ### Step 3: Create new Catalog (or use existing ones) and Schema
 
 <Callout type="info">
-  You need `CREATE CATALOG` privilege to create a new catalog:
-  1. Go to Catalog → settings (gear icon) → metastore
-  2. Click "Grant" button in "Permissions" tab and grant "CREATE CATALOG" to the user
+  Creating a new catalog requires the `CREATE CATALOG` privilege, which is a metastore-level permission. Contact your **metastore admin** or **account admin** to grant this privilege.
 </Callout>
 <Callout type="info">
-  If you are using an existing shared catalog, ensure you have the following privileges on that catalog:
+  If you are using an existing shared catalog, contact the **catalog owner** or a **metastore admin** to grant the following privileges:
   ```sql
   GRANT USE CATALOG ON CATALOG <catalog> TO `<user>`;
   GRANT CREATE SCHEMA ON CATALOG <catalog> TO `<user>`;
+  GRANT MANAGE ON CATALOG <catalog> TO `<user>`;
   ```
 </Callout>
 
