@@ -193,6 +193,10 @@ User Profiles can be deleted either via the [Users](https://mixpanel.com/report/
 
 Similarly, [Group Profiles](/docs/data-structure/group-analytics#group-profiles) can also be deleted either via the [Users](https://mixpanel.com/report/users) page or programmatically via our [Groups API](https://developer.mixpanel.com/reference/delete-group).
 
+<Callout type="info">
+    Deleting a user profile removes only the user property data. It does not delete the user's tracked events; instead, those events continue to appear in your project as if they were tracked by anonymous users without user profile properties.
+</Callout>
+
 ## FAQ
 
 ### What should I send as a User Property vs an Event Property?

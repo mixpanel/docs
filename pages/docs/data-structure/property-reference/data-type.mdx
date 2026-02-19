@@ -138,6 +138,38 @@ Now let's assume that *"List of ProductIDs"* is mapped to a [lookup table](/d
         - P4: 2
 ### List Filter
 
+When filtering using a list property, you may additionally configure whether all items in the list must match your expression and whether to return all items from a list in your analysis.
+
+1. **Any in List:** If any item in your list matches your filter criteria, the event will be included.
+    
+    **Example:**
+    - Products: ["a","b","c","d"]
+    - Filter criteria: "Products" = "a", Any in List
+    - Result: The event is included since at least 1 item in the Products list property is "a".
+
+2. **All in List:** If every item in your list matches your filter criteria, the event will be included.
+
+    **Example:**
+    - Products: ["a","b","c","d"]
+    - Filter criteria: "Products" = "a", All in List
+    - Result: The event is not included because not all items in the Products list property is "a"
+
+3. **Include Matching Items:** If the event matches your filter criteria and the list property is included as a breakdown, return only the matching items from the list in the results.
+
+    **Example:**
+    - Products: ["a","b","c","d"]
+    - Filter criteria: "Products" = "a", Any in List, Include Matching Items
+    - Result: The event is included since at least 1 item in the Products list property is "a". In the resulting report, only "a" appears as a breakdown segment.
+
+4. **Include All Items:** If the event matches your filter criteria and the list property is included as a breakdown, return all items from the list in the results.
+
+    **Example:**
+    - Products: ["a","b","c","d"]
+    - Filter criteria: "Products" = "a", Any in List, Include All Items
+    - Result: The event is included since at least 1 item in the Products list property is "a". In the resulting report, "a", "b", "c", and "d" appears as a breakdown segment.
+
+**Additional Examples:**
+
 - Filter by any element of a list property
     - **Question:** TOTAL of *PurchaseCompleted* filtered by
 
@@ -243,6 +275,8 @@ Now let's assume that *"List of ProductIDs"* is mapped to a [lookup table](/d
         - P2: 2
         - P3: 1
         - P4: 2
+
+
 
 
 ## List of Objects Property Support
