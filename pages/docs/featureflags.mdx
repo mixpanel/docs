@@ -28,7 +28,7 @@ import { Cards, Callout, Steps } from 'nextra/components'
 - **Rollout Groups** - the configuration determining which users are in the rollout. This is comprised of:
     - **Filters** — the targeting configuration that determines whether a subject is eligible for this rollout. Filter types include Cohort and Runtime filters
     - **Cohort Filter** - a targeting method that uses Mixpanel cohorts to target users or group entities
-    - **Runtime Rule Filter** - a targeting method that checks data available at runtime against Runtime Property or Runtime Event configuration
+    - **Runtime Filter** - a targeting method that checks data available at runtime against a Runtime Property or Runtime Event
     - **Rollout %** — percentage of the audience that receives the flag if they are eligible for the rollout group
 - **Runtime Properties** — request-time attributes (e.g., URL path, app version) used to target immediately.
 - **Runtime Events** — event-based targeting (e.g., user clicked button, completed purchase) used to target users immediately after they perform actions.
@@ -94,18 +94,16 @@ When the Variant Assignment Key is set to a group key (e.g., `company_id`, `acco
  - If you want users or groups to continue seeing the same variant even if they disqualify from the cohort in the future, couple this with **Sticky Variants.** This will ensure they continue to see the new experience until the flag is turned off.
 </Callout>
 
-**Targeting with Runtime Rules**
-=======
 #### Runtime Targeting
 
-Runtime targeting enables immediate, per-request decisions. There are two methods:
+Runtime targeting enables immediate, per-request decisions. There are two types of Runtime Filters:
 
-**Runtime Rules**
+**Filter by Runtime Property**
 
 This method enables targeting users immediately based on device or platform properties. For example, only users who are on Android devices and in the UK.
 - Runtime properties (e.g., `platform`, `path`, `country`) should be passed by the SDK at request time for immediate, per-request decisions.
 
-**Runtime Events**
+**Filter by Runtime Event**
 
 This method enables targeting users immediately when they perform specific actions tracked with `mixpanel.track()`. For example, show a feature to users the first time they complete onboarding, or target users who added items to cart.
 - When building a cohort, navigate to `+ Create New`, then click on `Runtime Event` to add a new runtime event filter.
@@ -209,7 +207,7 @@ Mixpanel analytics downtime will result in suspended cohort membership refreshes
 **Performance**
 
 The latency of Feature flags API responses is usually on the order of milliseconds.
-NOTE: Cohort membership is refreshed every 2 hours when targeting anything aside from 'All Users'/'All Entities' or 'Runtime Rules'. Therefore, new users or group entities entering cohorts may not be reflected in Feature flags API responses for up to that 2 hour period.
+NOTE: Cohort membership is refreshed every 2 hours when targeting anything aside from 'All Users'/'All Entities' or 'Runtime Filters'. Therefore, new users or group entities entering cohorts may not be reflected in Feature flags API responses for up to that 2 hour period.
 
 
 ## Implementation
