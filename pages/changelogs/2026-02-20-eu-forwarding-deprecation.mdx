@@ -1,0 +1,58 @@
+---
+title: "Deprecation Notice: Legacy US-to-EU Data Forwarding ends July 2026 for EU Projects"
+slug: "changelog-2026-02-20-eu-forwarding-deprecation"
+hidden: false
+createdAt: "2026-02-20T10:00:00.000Z"
+updatedAt: "2026-02-20T10:00:00.000Z"
+date: "2026-02-20"
+thumbnail: ""
+description: "Starting July 2026, we will be fully retiring the legacy US-to-EU Data Forwarding Service for EU Projects"
+isAnnouncement: false
+---
+
+<ChangelogPostHeader
+  date="2026-02-20"
+  image=""
+  title="Deprecation Notice: Legacy US-to-EU Data Forwarding ends July 2026 for EU Projects"
+/>
+
+Starting July 2026, we will be sunsetting the legacy automated US-to-EU Data Forwarding process for [EU Data Residency projects](/docs/privacy/eu-residency) to align with data residency best practices and improve ingestion performance.
+After this date, data sent to our US Ingestion Servers for EU Data Residency projects will no longer be forwarded, which can result in data loss.
+
+# Is my project affected?
+- **EU Projects created before August 18, 2025: If your implementation sends data to Mixpanel's US Ingestion Servers (`api.mixpanel.com`), you may be affected by this change. Please review the action required below.**
+- EU Projects created on or after August 18, 2025: These projects already require direct ingestion to our EU Servers. No action is needed.
+
+
+# Required Action for EU Projects sending data to US Servers
+
+To avoid any disruption to data ingestion for your EU Projects, **please review and update your implementations to use the dedicated Ingestion API EU Subdomain (`api-eu.mixpanel.com`).** This ensures your data is routed directly to its intended destination.
+
+**Guidance**
+
+1. **Verify which projects have EU Data Residency:** Navigate to [Organization Settings](/docs/orgs-and-projects/managing-projects#viewing-project-information) > Projects and click into each Project to confirm whether Data Residency is set to EU.
+2. **Identify Traffic:** In your EU Project(s), create an Insights Report and break down “All Events” by the API Endpoint (`$mp_api_endpoint` ) event property to determine which Ingestion Servers your events came from. `$mp_api_endpoint=api-eu.mixpanel.com` is EU and `$mp_api_endpoint=api.mixpanel.com` is US.
+3. **Update and Review Implementation:** If your project has EU Data Residency, please follow the guides below that apply to your setup to ensure your data routes to our EU Servers.
+
+If you are using Mixpanel’s SDKs, the documentation linked below has instructions on updating your implementation code to EU:
+- [Javascript](/docs/tracking-methods/sdks/javascript#eu-data-residency)
+- [React Native](/docs/tracking-methods/sdks/react-native#eu-data-residency)
+- [Android](/docs/tracking-methods/sdks/android#eu-data-residency)
+- [iOS (Objective-C)](/docs/tracking-methods/sdks/ios#eu-data-residency)
+- [iOS (Swift)](/docs/tracking-methods/sdks/swift#eu-data-residency)
+- [Flutter](/docs/tracking-methods/sdks/flutter#eu-data-residency)
+- [Unity](/docs/tracking-methods/sdks/unity#eu-data-residency)
+- [Python](/docs/tracking-methods/sdks/python#eu-data-residency)
+- [Node.js](/docs/tracking-methods/sdks/nodejs#eu-data-residency)
+- [Ruby](/docs/tracking-methods/sdks/ruby#eu-data-residency)
+- [PHP](/docs/tracking-methods/sdks/php#eu-data-residency)
+- [Go](/docs/tracking-methods/sdks/go#eu-data-residency)
+- [Java](/docs/tracking-methods/sdks/java#eu-data-residency)
+
+If you are using Mixpanel’s Ingestion API Endpoints, Proxy Server, or an Implementation not listed above:
+- Please update your Ingestion API Base URL to the [EU Residency Server](https://developer.mixpanel.com/reference/overview): `api-eu.mixpanel.com`
+
+If you are using Partner Integrations that send data into Mixpanel (e.g., CDPs, Messaging, AB Testing):
+- Please contact the Partner’s Support Team for instructions on how to set the integration to point to Mixpanel’s EU Server URL.
+
+If you have questions about which specific projects we have observed US Traffic on or need further assistance, please don’t hesitate to reach out to [Mixpanel’s Support Team](/docs/response-times#contacting-mixpanel-support).
