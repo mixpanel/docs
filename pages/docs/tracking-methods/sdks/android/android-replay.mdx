@@ -99,7 +99,7 @@ When calling `.startRecording()` recording always begins regardless of the `reco
 
 ```kotlin
 // start recording with a specified sampling rate (10%)
-MPSessionReplay.getInstance()?.startRecording(withSessionsPercent: 10.0)
+MPSessionReplay.getInstance()?.startRecording(sessionsPercent = 10.0)
 ```
 
 Recording automatically stops when the app goes into the background. If the `autoStartRecording` configuration is `true` (default) recording will automatically start when the app returns to the foreground.
@@ -153,7 +153,7 @@ The current configuration options are:
 
 ```kotlin Kotlin
 // mask images only
-MPSessionReplayConfig(autoMaskedViews = mutableSetOf(AutoMaskedView.ImageView))
+MPSessionReplayConfig(autoMaskedViews = mutableSetOf(AutoMaskedView.Image))
 
 // disable auto masking
 MPSessionReplayConfig(autoMaskedViews = emptySet())
@@ -162,7 +162,7 @@ MPSessionReplayConfig(autoMaskedViews = emptySet())
 
 #### Identity Management
 
-The Mixpanel distinct ID for the current user can be passed into the initializer and changed at runtime by calling the `.identify(distinctId:)` method:
+The Mixpanel distinct ID for the current user can be passed into the initializer and changed at runtime by calling the `.identify(distinctId =)` method:
 
 **Example Usage**
 
@@ -183,7 +183,7 @@ fun logout() {
     mixpanel.reset()
     val newDistinctId = mixpanel.distinctId
     // change session replay distinct ID
-    MPSessionReplay.getInstance()?.identify(distinctId: newDistinctId)
+    MPSessionReplay.getInstance()?.identify(distinctId = newDistinctId)
 }
 ```
 
@@ -191,7 +191,7 @@ fun logout() {
 
 You can flush any currently queued session replay events at any time by calling `.flush()`:
 
-```swift Swift
+```kotlin
 MPSessionReplay.getInstance()?.flush()
 ```
 
@@ -219,7 +219,7 @@ Developers can enable or disable logging with the `enableLogging` option of the 
 
 ```kotlin
 val config = MPSessionReplayConfig(wifiOnly = false, enableLogging = true)
-MPSessionReplay.initialize(token: token, distinctId: distinctId, config: config)
+MPSessionReplay.initialize(appContext = this, token = token, distinctId = distinctId, config = config)
 ```
 
 ### Server-side Stitching
@@ -268,7 +268,7 @@ The Mixpanel SDK will always mask all inputs. To protect end-user privacy, input
 
 By default, all text, images, and WebViews are also masked.
 
-You can unmask these element at your own discretion using the [`autoMaskedViews` config option described above](/docs/tracking-methods/sdks/android/android-replay#additional-configuration-options).
+You can unmask these elements at your own discretion using the [`autoMaskedViews` config option described above](/docs/tracking-methods/sdks/android/android-replay#additional-configuration-options).
 
 Along with other data, the SDK respects all Do Not Track (DNT) settings as well as manual opt-out for any replay data. 
 
@@ -370,7 +370,7 @@ Mobile Session Replay is compatible with CDPs like Segment and mParticle, but yo
 
 Key Considerations:
 - If you are using Segment server-side, session replays will not be recorded, since the SDK isn’t running in the app.
-- For Segment's client-side Analytics-Swift SDK, you can use Segment’s Plugin Architecture to enrich events with the $mp_replay_id property, ensuring they’re linked to their replays.
+- For Segment's client-side Analytics-Kotlin SDK, you can use Segment’s Plugin Architecture to enrich events with the $mp_replay_id property, ensuring they’re linked to their replays.
 - The Mixpanel Session Replay SDK is separate from the standard Mixpanel tracking SDK. You do not need the regular SDK, but the Replay SDK must be configured with a distinct_id and project token.
 - Events can be linked to replays either by:
     - Manually attaching the current replay ID to each event
