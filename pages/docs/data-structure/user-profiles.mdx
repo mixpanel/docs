@@ -243,7 +243,7 @@ Historical profile properties can only be imported through a Warehouse Connector
 If a regular profile property shares a name with an historic property, the two properties will be treated as distinct and separate entities (they will not be de-dupped).
 
 ### What if I have the same property name sent through multiple WH syncs?
-If both syncs are regular user tables and they refer to the same Distinct ID(s), they will be de-dupped and only the latest value will be retained. If both syncs are historical user tables, we will have a warning popup if the conflict can be detected at sync creation time and you will have the option of renaming one of the columns. If one sync is for regular user table and the other for a historical one, see here (link to previous question).
+If both syncs are regular user tables and they refer to the same Distinct ID(s), they will be de-dupped and only the latest value will be retained. If both syncs are historical user tables, we will have a warning popup if the conflict can be detected at sync creation time and you will have the option of renaming one of the columns. If one sync is for regular user table and the other for a historical one, see [here](https://docs.mixpanel.com/docs/data-structure/user-profiles#what-if-i-have-the-same-property-name-sent-as-a-regular-profile-property-as-well-as-a-historic-property).
 
 ### I deleted my historical user table Warehouse sync and data but there are still empty user profiles!
 All the historical props will be deleted from the profile but the profile itself remains, along with any non-historical properties. This is to prevent accidentally deleting profile data sent through API/UI/CSV that might have been merged into the profile data sent via the Warehouse sync. 
