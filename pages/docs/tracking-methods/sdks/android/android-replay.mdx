@@ -370,7 +370,7 @@ Mobile Session Replay is compatible with CDPs like Segment and mParticle, but yo
 
 Key Considerations:
 - If you are using Segment server-side, session replays will not be recorded, since the SDK isn’t running in the app.
-- For Segment's client-side Analytics-Kotlin SDK, you can use Segment’s Plugin Architecture to enrich events with the $m`p_replay_id property, ensuring they’re linked to their replays.
+- For Segment's client-side Analytics-Kotlin SDK, you can use Segment’s Plugin Architecture to enrich events with the $mp_replay_id property, ensuring they’re linked to their replays.
 - The Mixpanel Session Replay SDK is separate from the standard Mixpanel tracking SDK. You do not need the regular SDK, but the Replay SDK must be configured with a distinct_id and project token.
 - Events can be linked to replays either by:
     - Manually attaching the current replay ID to each event
