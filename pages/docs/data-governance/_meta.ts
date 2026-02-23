@@ -4,6 +4,6 @@ export default {
     "data-standards": "Data Standards",
     "event-approval": "Event Approval",
     "data-volume-monitoring": "Data Volume Monitoring",
-    "warehouse-sync-monitoring": "Warehouse Sync Monitoring",
+    "warehouse-sync-monitoring": "Warehouse Sync Monitoring (Beta)",
     "data-clean-up": "Data Clean-Up",
 };
