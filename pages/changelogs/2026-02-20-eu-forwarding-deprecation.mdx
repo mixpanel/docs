@@ -31,7 +31,7 @@ To avoid any disruption to data ingestion for your EU Projects, **please review 
 **Guidance**
 
 1. **Verify which projects have EU Data Residency:** Navigate to [Organization Settings](/docs/orgs-and-projects/managing-projects#viewing-project-information) > Projects and click into each Project to confirm whether Data Residency is set to EU.
-2. **Identify Traffic:** In your EU Project(s), create an Insights Report and break down “All Events” by the API Endpoint (`$mp_api_endpoint` ) event property to determine which Ingestion Servers your events came from. `$mp_api_endpoint=api-eu.mixpanel.com` is EU and `$mp_api_endpoint=api.mixpanel.com` is US.
+2. **Identify Traffic:** In your EU Project(s), create an Insights Report and break down “All Events” by the API Endpoint (`$mp_api_endpoint` ) event property to determine which Ingestion Servers your events came from. `$mp_api_endpoint=api-eu.mixpanel.com` is EU and `$mp_api_endpoint=api.mixpanel.com or api-js.mixpanel.com` is US.
 3. **Update and Review Implementation:** If your project has EU Data Residency, please follow the guides below that apply to your setup to ensure your data routes to our EU Servers.
 
 If you are using Mixpanel’s SDKs, the documentation linked below has instructions on updating your implementation code to EU:
