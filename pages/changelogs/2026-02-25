@@ -1,0 +1,23 @@
+---
+title: "Security Protocol Update: Phasing Out TLS 1.0 and 1.1"
+slug: "changelog-2026-02-25-decide-deprecation"
+hidden: false
+createdAt: "2026-02-25T10:00:00.000Z"
+updatedAt: "2026-02-25T10:00:00.000Z"
+date: "2026-02-25"
+thumbnail: ""
+description: "Starting April 2026, we will be deprecating support for legacy TLS 1.0 and 1.1 protocols and adopting CNSA 2.0 cryptographic algorithms across our APIs and web app. "
+isAnnouncement: false
+---
+
+<ChangelogPostHeader
+  date="2026-02-24"
+  image=""
+  title="Security Protocol Update: Phasing Out TLS 1.0 and 1.1"
+/>
+
+To ensure we provide the most robust protection against evolving threats, we are upgrading our network security configuration. 
+
+Starting **April 2026**, we will be deprecating support for legacy TLS 1.0 and 1.1 protocols and adopting CNSA 2.0 cryptographic algorithms across our APIs and web app.
+
+After this date, all API requests must use at least TLS 1.2. Using at least TLS 1.2 is a recommended security best practice to improve data integrity and maintain compliance with industry standards.
