@@ -20,8 +20,9 @@ The way sessions are computed, and thus how the Session Start and Session End ev
 * **Event Based**: Provide a starting event and ending event. The session starts when the user performs the starting event and ends when the user performs the ending event.
 * **Property Based**: Provide a `session_id` property. All events that a user performs which have the same value for `session_id` are considered part of the same session.
 
-Project Admins or Owners can choose between one of these configurations in [Project Settings](https://mixpanel.com/settings/project).
-Since Mixpanel computes sessions on the fly, you can change this definition at any time and it will apply historically. Read more [below](#session-computation-deep-dive).
+Project Admins or Owners can choose between one of these configurations in [Project Settings](https://mixpanel.com/settings/project) > Overview > Session Settings.
+
+Since Mixpanel computes sessions dynamically at query, you can change this definition at any time and it will apply historically. Read more [below](#session-computation-deep-dive).
 
 ## Use Cases
 These use cases assume that you're tracking an event for each page a user views. You can do this automatically with our [Javascript SDK](/docs/quickstart/connect-your-data?sdk=javascript) or using a CDP like Segment.
@@ -33,7 +34,7 @@ Each Session event comes with a "Session Duration (seconds)" property, which is 
 
 You can use any of our aggregations (sum, average, 90th percentile, etc.) to study the time spent by your users per session. Here, we look at the average time spent per session:
 
-![](/session-average-duration.png)
+![session-average-duration](/session-average-duration.png)
 
 It looks like people spend ~5 minutes on average on our documentation site. Averages can hide skew, so we can also see a distribution by breaking down by the Session Duration property:
 
@@ -71,7 +72,7 @@ Here we see that ~22% of sessions lead to the user starting the Checkout flow. Y
 
 ## Session Computation Deep-Dive
 
-Here, we provide more detail on how sessions are computed under the hood.
+Here, we provide more detail on how sessions are computed under the hood. Project Admins or Owners can choose between one of these session configurations in [Project Settings](https://mixpanel.com/settings/project) > Overview > Session Settings.
 
 ### Timeout-Based Sessions
 
@@ -171,7 +172,7 @@ Sessions are reset every 24 hours at midnight (according to your project timezon
 
 ![/Untitled__3_.png](/Untitled__3_.png)
 
-Session Start Event is set to `Login` and Session End Event is set to `Logout`.
+Session Start Event is set to `Login` and Session End Event is set to `Logout`.
 
 1. A user performs “Login” at 11:15 pm triggering the “Session Start” event.
 2. They then wait 30 minutes and perform “Event B” at 11:45 pm.
@@ -181,7 +182,7 @@ Session Start Event is set to `Login` and Session End Event is set to `Logout
 
 ![/Untitled__4_.png](/Untitled__4_.png)
 
-Session Start Event is set to `Login` and Session End Event is set to `Logout`.
+Session Start Event is set to `Login` and Session End Event is set to `Logout`.
 
 1. A user performs “Login” at 11:00 am triggering the “Session Start” event.
 2. They then wait 15 minutes and perform a second “Login” at 11:15 am. Since the user is already in a session, a new “Session Start” event is not triggered.
@@ -202,25 +203,25 @@ Like Event Based Sessions, Sessions are reset every 24 hours at midnight (accord
 
 ![/10260746661780](/10260746661780.png)
 
-Session ID Property is set to `session_id`
+Session ID Property is set to `session_id`
 
-1. A user performs “Event A” at 11:15 pm with the `session_id` property set to value `456` and triggering the “Session Start” event.
+1. A user performs “Event A” at 11:15 pm with the `session_id` property set to value `456` and triggering the “Session Start” event.
 2. They then wait 30 minutes and perform “Event B” at 11:45 pm.
-3. Since all sessions are reset at midnight, when the user performs “Event C” at 12:15 am, it triggers new “Session End” and "Session Start" events despite the `session_id` value remaining constant. The "Session End" time is the time that “Event B” was performed resulting in a session length of 30 minutes for “Session 1”.
+3. Since all sessions are reset at midnight, when the user performs “Event C” at 12:15 am, it triggers new “Session End” and "Session Start" events despite the `session_id` value remaining constant. The "Session End" time is the time that “Event B” was performed resulting in a session length of 30 minutes for “Session 1”.
 4. The user then waits 15 minutes and performs “Event D” at 12:30am.
-5. Assuming the next event has a different `session_id` or no other events occur before the second day ends, then another "Session End" event will be triggered. The time of the "Session End" is the last event performed at 12:30 am. Therefore the session length for “Session 2” is 15 minutes.
+5. Assuming the next event has a different `session_id` or no other events occur before the second day ends, then another "Session End" event will be triggered. The time of the "Session End" is the last event performed at 12:30 am. Therefore the session length for “Session 2” is 15 minutes.
 
 ##### Example 2
 
 ![/Untitled__6_.png](/Untitled__6_.png)
 
-Session ID Property is set to `session_id`
+Session ID Property is set to `session_id`
 
-1. A user performs “Event A” at 11:00 am with the `session_id` property set to value `123` and triggering the “Session Start” event.
-2. They then wait 15 minutes and perform “Event B” at 11:15 am with the `session_id` property set to value `456`. Since the `session_id` property has changed, “Session End” and “Session Start” events are triggered. The "Session End" time is the time that “Event A” was performed resulting in a session length of 0 minutes for “Session 1”.
+1. A user performs “Event A” at 11:00 am with the `session_id` property set to value `123` and triggering the “Session Start” event.
+2. They then wait 15 minutes and perform “Event B” at 11:15 am with the `session_id` property set to value `456`. Since the `session_id` property has changed, “Session End” and “Session Start” events are triggered. The "Session End" time is the time that “Event A” was performed resulting in a session length of 0 minutes for “Session 1”.
 3. The user then waits 15 minutes and performs “Event C” at 12:45 am.
 4. The user then waits 15 minutes and performs “Event D” at 12:15 pm.
-5. Assuming the next event has a different `session_id` or no other events occur for the remainder of the day, another "Session End" event will be triggered. The time of the "Session End" is the last event performed at 12:15 pm. Therefore the session length for “Session 2” is 60 minutes.
+5. Assuming the next event has a different `session_id` or no other events occur for the remainder of the day, another "Session End" event will be triggered. The time of the "Session End" is the last event performed at 12:15 pm. Therefore the session length for “Session 2” is 60 minutes.
 
 ## Session Properties
 
@@ -261,7 +262,7 @@ You can add additional properties to be associated with the session by going und
 ## Session Controls in Reports
 ### Funnels
 
-In [Funnels](/docs/reports/funnels/funnels-overview), once you have set up sessions, a “Session Start” and “Session End” events will be generated in the report based on the funnel criteria.
+In [Funnels](/docs/reports/funnels/funnels-overview), once you have set up sessions, a “Session Start” and “Session End” events will be generated in the report based on the funnel criteria.
 
 ![image](https://github.com/mixpanel/docs/assets/2077899/e6c12438-00da-4ebe-8302-a52f5a9da511)
 
@@ -271,7 +272,7 @@ The event properties "Session Duration (Seconds)", "Session Event Count", "Sessi
 
 You can also choose to count Sessions instead of Uniques or Totals in the Conversion Details section. If you choose to count Sessions, the conversion window will be limited to one session.
 
-Whenever you make a change to session settings, you can then review the impact of this change in the Funnels Time to Convert Chart. If you see a large group of users doing 4+ hour sessions or just having sessions of <1 minute, you can create cohorts from these user segments and then evaluate their behavior in Flows to confirm Sessions is set up correctly.
+Whenever you make a change to session settings, you can then review the impact of this change in the Funnels Time to Convert Chart. If you see a large group of users doing 4+ hour sessions or just having sessions of \< 1 minute, you can create cohorts from these user segments and then evaluate their behavior in Flows to confirm Sessions is set up correctly.
 
 ![image](https://github.com/mixpanel/docs/assets/2077899/e986f4f1-ad96-408b-8217-2a979b66e9eb)
 
@@ -281,13 +282,13 @@ If you choose to count Uniques or Totals, you will be able to select a conversio
 
 ### Flows
 
-In [Flows](/docs/reports/flows), you can use the “Session Start” and “Session End” events to view the top Flows events within a session. 
+In [Flows](/docs/reports/flows), you can use the “Session Start” and “Session End” events to view the top Flows events within a session. 
 
 When you select sessions in Flows, the flow will be weighted by the number of sessions, rather than unique users.
 
 ### Insights
 
-In [Insights](/docs/reports/insights), you can use the “Session Start” and “Session End” events to explore a variety of metrics:
+In [Insights](/docs/reports/insights), you can use the “Session Start” and “Session End” events to explore a variety of metrics:
 
 - The total number of sessions over time
 - The average session length per user
