@@ -229,7 +229,99 @@ Click 'Analyze' on a metric to dive deeper into the results. This will open a no
 You can also add the experiment breakdowns and filters directly in a report via the Experiments tab in the query builder. This lets you do on-the-fly analysis with the experiment groups. Under the hood, the experiment breakdown and filter work the same as the Experiment report.
 
 
-## Looking under the hood - How does the analysis engine work? 
+## Advanced Statistical Methods
+
+Mixpanel offers several advanced statistical options to help you get more reliable experiment results. These features address common challenges in experimentation: controlling for multiple comparisons, handling outliers, validating experiment setup, and reducing variance to reach significance faster.
+
+### Methods at a Glance
+
+| Technique | What It Does | When to Use | Actions to Take |
+| --- | --- | --- | --- |
+| **Bonferroni Correction** | Makes significance thresholds stricter to account for testing multiple metrics/variants at once | You're tracking multiple metrics or testing multiple variants | If a metric loses significance after correction, don't treat it as a confirmed winner. Run a follow-up experiment focused on that metric alone. |
+| **Winsorization** | Caps extreme outlier values at a percentile you choose | Revenue or value-based metrics where outliers are common | If results change substantially after Winsorization, this indicates your original results were driven by outliers. Decide whether your business decision is about typical users or extreme ones. |
+| **SRM** | Checks whether your variant split matches the configured allocation | Always on as a health check | Pause the experiment. Identify and fix the root cause of the mismatch, then restart the experiment. |
+| **Retro-AA** | Checks whether variant groups were already different *before* the experiment started | Always on as a health check | Your groups had pre-existing bias. Consider enabling CUPED to correct for it. Investigate your assignment logic to prevent it in future experiments. |
+| **CUPED** | Uses pre-experiment behavior to adjust for natural variance and pre-existing bias, helping you reach significance faster | Your users have pre-experiment history and your metrics have high natural variance | If confidence intervals don't noticeably tighten, pre-experiment behavior isn't predictive for your metrics. Results are still valid, you just won't get faster detection. |
+
+### Bonferroni Correction
+
+When you track multiple metrics in an experiment, or test multiple variants against a control, you increase the chance of seeing a false positive. This is similar to rolling multiple dice: there's only a 1-in-6 chance of rolling a six with one die, but if you roll 10 dice, the chance that at least one shows a six is much higher.
+
+The same principle applies to experiment metrics. At a 95% confidence level, each metric has a 5% chance of showing a significant result by pure chance. But when you're tracking many metrics, the probability that at least one of them shows a false positive increases substantially.
+
+Bonferroni Correction addresses this by making the significance threshold stricter. When enabled, Mixpanel divides your confidence threshold by the number of comparisons being made (metrics × non-control variants). For example, if you have 3 metrics and 2 treatment variants, that's 6 total comparisons. If you selected a 95% confidence level, we'd increase the threshold to about 99% to compensate.
+
+**When to use Bonferroni Correction:**
+
+- You're tracking multiple primary metrics and want to reduce false positive risk
+- You have multiple treatment variants competing against control
+- You want higher confidence that significant results are real
+
+Bonferroni Correction is conservative. It reduces false positives but also makes it harder to detect true effects. If you have a single metric matters most to you, you may prefer to focus on that primary metric without correction.
+
+### Winsorization
+
+Outliers can distort experiment results, especially for revenue or value-based metrics. If most customers have cart sizes under $100 but one customer in the treatment group spends $100,000, this single extreme value could skew all your results and make it harder to detect real effects.
+
+Winsorization addresses this by capping extreme values at a specified percentile. When enabled, you select a percentile threshold (such as 5%). Mixpanel then finds the values at the top and bottom of that percentile range and caps any values beyond those limits. In the example above, if the 95th percentile corresponds to $90, then the $100,000 purchase would be treated as $90 for the analysis.
+
+**When to use Winsorization:**
+
+- Your metrics have high variance due to extreme values
+- You're measuring revenue, order value, or other metrics where outliers are common
+- You want to understand the effect on typical users rather than being influenced by rare extremes
+
+Winsorization changes the data being analyzed. If extreme values are genuinely important to your business (for example, if a small number of customers drive most of your revenue), you may want to analyze results without Winsorization to understand the full picture.
+
+### Health Checks
+
+Before trusting your experiment results, it's important to verify that your experiment was set up correctly. Mixpanel offers two health checks to help you validate your experiment's integrity.
+
+#### Sample Ratio Mismatch (SRM)
+
+When randomly assigning users to control or treatment groups, you expect the split to roughly match your allocation targets. If you configured a 50/50 split but ended up with 60% in control and 40% in treatment, something may have gone wrong.
+
+Small imbalances can happen by random chance, but larger mismatches often indicate a bug in your assignment logic, tracking implementation, or user bucketing. SRM uses a Chi-squared test to determine whether the observed split is likely due to chance or signals an actual problem.
+
+If Mixpanel detects a statistically significant sample ratio mismatch, you'll see a warning. We recommend investigating the root cause of the mismatch and restarting the experiment after fixing it.
+
+#### Retrospective-AA Analysis (Retro-AA)
+
+When you see lift in your experiment, you want to be confident it's caused by your treatment—not by pre-existing differences between the groups. Retro-AA helps you check this.
+
+The idea is simple: Mixpanel runs the same statistical analysis on 2 weeks of pre-experiment data. It looks at how each variant's users behaved *before* they were exposed to the experiment, using the same metrics you're measuring during the experiment.
+
+If the groups were properly randomized, there should be no significant difference in the pre-experiment period—users hadn't been treated yet, so nothing should cause a difference. But if Retro-AA finds statistically significant lift in the pre-experiment data, that's a red flag. It suggests the groups weren't equivalent to begin with, which means any lift you see during the experiment might not be caused by your treatment.
+
+**Example:** Your experiment shows the treatment group has 15% higher engagement. But Retro-AA reveals this same group already had 12% higher engagement before the experiment started. This suggests your randomization may have assigned more naturally-engaged users to treatment, and the lift you're seeing is largely a pre-existing difference rather than a treatment effect.
+
+Retro-AA failing for a metric doesn't necessarily invalidate your experiment. Enabling CUPED may help reduce the impact of pre-experiment bias on the data, allowing you to still analyze the results. You may however want to review your implementation to ensure assignment is not biased towards some users.
+
+#### Common reasons health checks may fail:
+
+- Bugs in the randomization or bucketing logic
+- Exposure events not firing consistently across variants
+- Users being reassigned to different variants mid-experiment
+
+### CUPED (Controlled-experiment Using Pre-Experiment Data)
+
+CUPED is a variance reduction technique that helps you reach statistical significance faster. It uses pre-experiment behavioral data to produce narrower confidence intervals, potentially reducing the time needed to conclude an experiment significantly.
+
+The core insight is that users who had high engagement or revenue *before* the experiment are likely to have high values *during* the experiment as well. By accounting for this correlation, CUPED can separate the natural variation in user behavior from the effect of your treatment.
+
+**How it works:** For each user, Mixpanel looks at their metric value during a pre-exposure period of your choosing and their metric value during the experiment. If these values are strongly correlated (users with high pre-experiment values tend to have high post-experiment values), CUPED uses this relationship to reduce variance in the experiment results. The mean values remain unchanged—CUPED only tightens the confidence intervals. This is applied to all metric categories: primary, secondary, and guardrail metrics.
+
+**Handling users without pre-experiment data:** Not all users in your experiment will have activity during the pre-exposure period. New users, or users who simply didn't perform the relevant event before the experiment, are assigned a value of zero for the pre-exposure metric. This allows all experiment users to be included while still benefiting from variance reduction for users who do have historical data.
+
+**When to use CUPED:**
+
+- You have sufficient pre-experiment data for most users in your experiment
+- Your metrics have high natural variance between users
+- You're measuring metrics where past behavior predicts future behavior (engagement, revenue, retention)
+
+CUPED works best when pre-experiment and post-experiment metrics are strongly correlated. If users' behavior is highly unpredictable or your experiment targets new users with no history, you may not see any benefit.
+
+## Looking under the hood - How does the analysis engine work?
 
 ![image](/exp_under_hood.png)
 
