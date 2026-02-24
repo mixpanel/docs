@@ -237,13 +237,13 @@ You can get an overview of how Group Profiles relate to Mixpanel's Data Model un
 The end time will be inferred from the next event sent with a higher `Start Timestamp`. If you do not have an updated value for a property and simply want it to become inactive at a certain timestamp, please set up your DWH table to set undefined for the property at the time that it becomes inactive/expires.
 
 ### How do I set the initial set of profile properties for the user?
-Historical profile properties can only be imported through a Warehouse Connector sync. For more information about the connectors and which are supported, see our [docs](https://docs.mixpanel.com/docs/tracking-methods/warehouse-connectors). There is currently no other method to import historical profile properties or set defaults. To set initial values, please ensure that your warehouse table has the rows covering the historical period you want to analyze.
+Historical profile properties can only be imported through a Warehouse Connector sync. For more information about the connectors and which are supported, see our [docs]/docs/tracking-methods/warehouse-connectors). There is currently no other method to import historical profile properties or set defaults. To set initial values, please ensure that your warehouse table has the rows covering the historical period you want to analyze.
 
 ### What if I have the same property name sent as a regular profile property as well as a historic property?
 If a regular profile property shares a name with an historic property, the two properties will be treated as distinct and separate entities (they will not be de-dupped).
 
 ### What if I have the same property name sent through multiple WH syncs?
-If both syncs are regular user tables and they refer to the same Distinct ID(s), they will be de-dupped and only the latest value will be retained. If both syncs are historical user tables, we will have a warning popup if the conflict can be detected at sync creation time and you will have the option of renaming one of the columns. If one sync is for regular user table and the other for a historical one, see here (link to previous question).
+If both syncs are regular user tables and they refer to the same Distinct ID(s), they will be de-dupped and only the latest value will be retained. If both syncs are historical user tables, we will have a warning popup if the conflict can be detected at sync creation time and you will have the option of renaming one of the columns. If one sync is for regular user table and the other for a historical one, see [here](/docs/data-structure/user-profiles#what-if-i-have-the-same-property-name-sent-as-a-regular-profile-property-as-well-as-a-historic-property).
 
 ### I deleted my historical user table Warehouse sync and data but there are still empty user profiles!
 All the historical props will be deleted from the profile but the profile itself remains, along with any non-historical properties. This is to prevent accidentally deleting profile data sent through API/UI/CSV that might have been merged into the profile data sent via the Warehouse sync. 
