@@ -1,4 +1,4 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1100 620" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif">
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 750 980" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif">
   <defs>
     <linearGradient id="headerGrad" x1="0%" y1="0%" x2="100%" y2="0%">
       <stop offset="0%" style="stop-color:#7856ff"/>
@@ -10,111 +10,119 @@
   </defs>
 
   <!-- Background -->
-  <rect width="1100" height="620" rx="16" fill="#fafafa"/>
+  <rect width="750" height="980" rx="16" fill="#fafafa"/>
 
   <!-- Header -->
-  <rect width="1100" height="60" rx="16" fill="url(#headerGrad)"/>
-  <rect y="30" width="1100" height="30" fill="url(#headerGrad)"/>
-  <text x="550" y="38" text-anchor="middle" fill="white" font-size="22" font-weight="700">Masking vs Blocking</text>
+  <rect width="750" height="56" rx="16" fill="url(#headerGrad)"/>
+  <rect y="28" width="750" height="28" fill="url(#headerGrad)"/>
+  <text x="375" y="37" text-anchor="middle" fill="white" font-size="22" font-weight="700">Masking vs Blocking</text>
 
-  <!-- LEFT SIDE: Masking -->
-  <rect x="30" y="80" width="510" height="510" rx="12" fill="white" filter="url(#shadow)"/>
-  <rect x="30" y="80" width="510" height="50" rx="12" fill="#7856ff"/>
-  <rect x="30" y="110" width="510" height="20" fill="#7856ff"/>
-  <text x="285" y="112" text-anchor="middle" fill="white" font-size="18" font-weight="600">MASKING</text>
-  <text x="285" y="155" text-anchor="middle" fill="#5f41cf" font-size="13" font-weight="600">Text replaced with asterisks  ****</text>
+  <!-- ===== MASKING SECTION ===== -->
+  <rect x="20" y="72" width="710" height="380" rx="12" fill="white" filter="url(#shadow)"/>
+  <rect x="20" y="72" width="710" height="44" rx="12" fill="#7856ff"/>
+  <rect x="20" y="100" width="710" height="16" fill="#7856ff"/>
+  <text x="375" y="101" text-anchor="middle" fill="white" font-size="18" font-weight="600">MASKING</text>
+  <text x="375" y="138" text-anchor="middle" fill="#5f41cf" font-size="14" font-weight="600">Text replaced with asterisks  ****</text>
 
   <!-- Original card -->
-  <text x="60" y="185" fill="#1f2023" font-size="12" font-weight="600" opacity="0.5">ORIGINAL</text>
-  <rect x="60" y="195" width="210" height="120" rx="8" fill="#f5f3ff" stroke="#7856ff33" stroke-width="1.5"/>
-  <text x="80" y="220" fill="#1f2023" font-size="13" font-weight="600">User Profile</text>
-  <text x="80" y="242" fill="#1f2023" font-size="12">Name: John Smith</text>
-  <text x="80" y="260" fill="#1f2023" font-size="12">Email: john@acme.com</text>
-  <text x="80" y="278" fill="#1f2023" font-size="12">Balance: $1,250.00</text>
-  <rect x="80" y="288" width="60" height="18" rx="4" fill="#7856ff"/>
-  <text x="110" y="301" text-anchor="middle" fill="white" font-size="10" font-weight="600">Edit</text>
+  <text x="50" y="170" fill="#1f2023" font-size="13" font-weight="600" opacity="0.5">ORIGINAL</text>
+  <rect x="50" y="180" width="280" height="110" rx="8" fill="#f5f3ff" stroke="#7856ff33" stroke-width="1.5"/>
+  <text x="70" y="205" fill="#1f2023" font-size="14" font-weight="600">User Profile</text>
+  <text x="70" y="226" fill="#1f2023" font-size="13">Name: John Smith</text>
+  <text x="70" y="246" fill="#1f2023" font-size="13">Email: john@acme.com</text>
+  <text x="70" y="266" fill="#1f2023" font-size="13">Balance: $1,250.00</text>
+  <rect x="70" y="273" width="60" height="18" rx="4" fill="#7856ff"/>
 
   <!-- Arrow -->
-  <text x="290" y="260" text-anchor="middle" fill="#7856ff" font-size="24">&#x27A1;</text>
+  <text x="375" y="245" text-anchor="middle" fill="#7856ff" font-size="28">&#x27A1;</text>
 
   <!-- Masked card -->
-  <text x="320" y="185" fill="#1f2023" font-size="12" font-weight="600" opacity="0.5">IN REPLAY</text>
-  <rect x="320" y="195" width="210" height="120" rx="8" fill="#f5f3ff" stroke="#7856ff" stroke-width="1.5" stroke-dasharray="4,3"/>
-  <text x="340" y="220" fill="#1f2023" font-size="13" font-weight="600">**** *******</text>
-  <text x="340" y="242" fill="#1f2023" font-size="12">*****: **** *****</text>
-  <text x="340" y="260" fill="#1f2023" font-size="12">*****: ****@****.***</text>
-  <text x="340" y="278" fill="#1f2023" font-size="12">********: $*,***.**</text>
-  <rect x="340" y="288" width="60" height="18" rx="4" fill="#7856ff"/>
-  <text x="370" y="301" text-anchor="middle" fill="white" font-size="10" font-weight="600">****</text>
+  <text x="420" y="170" fill="#1f2023" font-size="13" font-weight="600" opacity="0.5">IN REPLAY</text>
+  <rect x="420" y="180" width="280" height="110" rx="8" fill="#f5f3ff" stroke="#7856ff" stroke-width="1.5" stroke-dasharray="4,3"/>
+  <text x="440" y="205" fill="#1f2023" font-size="14" font-weight="600">**** *******</text>
+  <text x="440" y="226" fill="#1f2023" font-size="13">*****: **** *****</text>
+  <text x="440" y="246" fill="#1f2023" font-size="13">*****: ****@****.***</text>
+  <text x="440" y="266" fill="#1f2023" font-size="13">********: $*,***.**</text>
+  <rect x="440" y="273" width="60" height="18" rx="4" fill="#7856ff"/>
 
   <!-- What's captured -->
-  <rect x="60" y="340" width="460" height="130" rx="8" fill="#f0fdf4" stroke="#22c55e44" stroke-width="1"/>
-  <text x="80" y="365" fill="#16a34a" font-size="13" font-weight="700">What IS captured:</text>
-  <circle cx="85" cy="385" r="4" fill="#22c55e"/>
-  <text x="95" y="389" fill="#1f2023" font-size="12">DOM structure (tags, attributes, layout)</text>
-  <circle cx="85" cy="405" r="4" fill="#22c55e"/>
-  <text x="95" y="409" fill="#1f2023" font-size="12">Page layout and element positions</text>
-  <circle cx="85" cy="425" r="4" fill="#22c55e"/>
-  <text x="95" y="429" fill="#1f2023" font-size="12">User interactions (clicks, scrolls)</text>
-  <circle cx="85" cy="445" r="4" fill="#22c55e"/>
-  <text x="95" y="449" fill="#1f2023" font-size="12">CSS styles and visual appearance</text>
+  <rect x="50" y="305" width="310" height="120" rx="8" fill="#f0fdf4" stroke="#22c55e44" stroke-width="1"/>
+  <text x="70" y="328" fill="#16a34a" font-size="14" font-weight="700">What IS captured:</text>
+  <circle cx="72" cy="348" r="4" fill="#22c55e"/>
+  <text x="82" y="352" fill="#1f2023" font-size="13">DOM structure &amp; layout</text>
+  <circle cx="72" cy="368" r="4" fill="#22c55e"/>
+  <text x="82" y="372" fill="#1f2023" font-size="13">Element positions &amp; styles</text>
+  <circle cx="72" cy="388" r="4" fill="#22c55e"/>
+  <text x="82" y="392" fill="#1f2023" font-size="13">User interactions (clicks, scrolls)</text>
+  <circle cx="72" cy="408" r="4" fill="#22c55e"/>
+  <text x="82" y="412" fill="#1f2023" font-size="13">CSS styles</text>
 
-  <rect x="60" y="480" width="460" height="50" rx="8" fill="#fef2f2" stroke="#ef444444" stroke-width="1"/>
-  <text x="80" y="505" fill="#dc2626" font-size="13" font-weight="700">What is NOT captured:</text>
-  <circle cx="280" cy="515" r="4" fill="#ef4444"/>
-  <text x="290" y="519" fill="#1f2023" font-size="12">Actual text content (replaced with ****)</text>
-  <circle cx="80" cy="515" r="4" fill="#ef4444"/>
-  <text x="90" y="519" fill="#1f2023" font-size="12">Input values</text>
+  <rect x="380" y="305" width="320" height="120" rx="8" fill="#fef2f2" stroke="#ef444444" stroke-width="1"/>
+  <text x="400" y="328" fill="#dc2626" font-size="14" font-weight="700">What is NOT captured:</text>
+  <circle cx="402" cy="352" r="4" fill="#ef4444"/>
+  <text x="412" y="356" fill="#1f2023" font-size="13">Actual text content</text>
+  <circle cx="402" cy="375" r="4" fill="#ef4444"/>
+  <text x="412" y="379" fill="#1f2023" font-size="13">Input values</text>
 
-  <!-- RIGHT SIDE: Blocking -->
-  <rect x="560" y="80" width="510" height="510" rx="12" fill="white" filter="url(#shadow)"/>
-  <rect x="560" y="80" width="510" height="50" rx="12" fill="#ff7557"/>
-  <rect x="560" y="110" width="510" height="20" fill="#ff7557"/>
-  <text x="815" y="112" text-anchor="middle" fill="white" font-size="18" font-weight="600">BLOCKING</text>
-  <text x="815" y="155" text-anchor="middle" fill="#e05535" font-size="13" font-weight="600">Entire element replaced with placeholder</text>
+  <text x="375" y="445" text-anchor="middle" fill="#7856ff" font-size="13" font-weight="600">&#x2713; Children can be selectively unmasked</text>
+
+  <!-- ===== BLOCKING SECTION ===== -->
+  <rect x="20" y="468" width="710" height="380" rx="12" fill="white" filter="url(#shadow)"/>
+  <rect x="20" y="468" width="710" height="44" rx="12" fill="#ff7557"/>
+  <rect x="20" y="496" width="710" height="16" fill="#ff7557"/>
+  <text x="375" y="497" text-anchor="middle" fill="white" font-size="18" font-weight="600">BLOCKING</text>
+  <text x="375" y="534" text-anchor="middle" fill="#e05535" font-size="14" font-weight="600">Entire element replaced with placeholder</text>
 
   <!-- Original card -->
-  <text x="590" y="185" fill="#1f2023" font-size="12" font-weight="600" opacity="0.5">ORIGINAL</text>
-  <rect x="590" y="195" width="210" height="120" rx="8" fill="#fff7ed" stroke="#ff755733" stroke-width="1.5"/>
-  <text x="610" y="220" fill="#1f2023" font-size="13" font-weight="600">User Profile</text>
-  <rect x="610" y="230" width="80" height="60" rx="6" fill="#7856ff22"/>
-  <text x="650" y="265" text-anchor="middle" fill="#5f41cf" font-size="20">&#x1F464;</text>
-  <text x="700" y="252" fill="#1f2023" font-size="12">John Smith</text>
-  <text x="700" y="270" fill="#1f2023" font-size="11" opacity="0.6">Admin</text>
-  <text x="610" y="304" fill="#1f2023" font-size="11">Last login: Feb 24</text>
+  <text x="50" y="566" fill="#1f2023" font-size="13" font-weight="600" opacity="0.5">ORIGINAL</text>
+  <rect x="50" y="576" width="280" height="110" rx="8" fill="#fff7ed" stroke="#ff755733" stroke-width="1.5"/>
+  <text x="70" y="601" fill="#1f2023" font-size="14" font-weight="600">User Profile</text>
+  <rect x="70" y="611" width="80" height="55" rx="6" fill="#7856ff22"/>
+  <text x="110" y="644" text-anchor="middle" fill="#5f41cf" font-size="22">&#x1F464;</text>
+  <text x="165" y="635" fill="#1f2023" font-size="13">John Smith</text>
+  <text x="165" y="655" fill="#1f2023" font-size="12" opacity="0.6">Admin</text>
+  <text x="70" y="680" fill="#1f2023" font-size="12">Last login: Feb 24</text>
 
   <!-- Arrow -->
-  <text x="820" y="260" text-anchor="middle" fill="#ff7557" font-size="24">&#x27A1;</text>
+  <text x="375" y="641" text-anchor="middle" fill="#ff7557" font-size="28">&#x27A1;</text>
 
   <!-- Blocked card -->
-  <text x="850" y="185" fill="#1f2023" font-size="12" font-weight="600" opacity="0.5">IN REPLAY</text>
-  <rect x="850" y="195" width="210" height="120" rx="8" fill="#f5f5f5" stroke="#ff7557" stroke-width="2" stroke-dasharray="6,4"/>
-  <rect x="870" y="215" width="170" height="80" rx="6" fill="#e5e5e5"/>
-  <text x="955" y="255" text-anchor="middle" fill="#a3a3a3" font-size="13" font-style="italic">empty placeholder</text>
-  <text x="955" y="275" text-anchor="middle" fill="#a3a3a3" font-size="11">(same dimensions)</text>
+  <text x="420" y="566" fill="#1f2023" font-size="13" font-weight="600" opacity="0.5">IN REPLAY</text>
+  <rect x="420" y="576" width="280" height="110" rx="8" fill="#f5f5f5" stroke="#ff7557" stroke-width="2" stroke-dasharray="6,4"/>
+  <rect x="445" y="600" width="230" height="65" rx="6" fill="#e5e5e5"/>
+  <text x="560" y="636" text-anchor="middle" fill="#a3a3a3" font-size="14" font-style="italic">empty placeholder</text>
 
   <!-- What's captured -->
-  <rect x="590" y="340" width="460" height="70" rx="8" fill="#f0fdf4" stroke="#22c55e44" stroke-width="1"/>
-  <text x="610" y="365" fill="#16a34a" font-size="13" font-weight="700">What IS captured:</text>
-  <circle cx="615" cy="385" r="4" fill="#22c55e"/>
-  <text x="625" y="389" fill="#1f2023" font-size="12">Element dimensions (width &amp; height)</text>
-  <circle cx="815" cy="385" r="4" fill="#22c55e"/>
-  <text x="825" y="389" fill="#1f2023" font-size="12">User interactions (clicks)</text>
+  <rect x="50" y="700" width="310" height="70" rx="8" fill="#f0fdf4" stroke="#22c55e44" stroke-width="1"/>
+  <text x="70" y="723" fill="#16a34a" font-size="14" font-weight="700">What IS captured:</text>
+  <circle cx="72" cy="743" r="4" fill="#22c55e"/>
+  <text x="82" y="747" fill="#1f2023" font-size="13">Element dimensions</text>
+  <circle cx="240" cy="743" r="4" fill="#22c55e"/>
+  <text x="250" y="747" fill="#1f2023" font-size="13">Interactions</text>
 
-  <rect x="590" y="420" width="460" height="110" rx="8" fill="#fef2f2" stroke="#ef444444" stroke-width="1"/>
-  <text x="610" y="445" fill="#dc2626" font-size="13" font-weight="700">What is NOT captured:</text>
-  <circle cx="615" cy="465" r="4" fill="#ef4444"/>
-  <text x="625" y="469" fill="#1f2023" font-size="12">No text content</text>
-  <circle cx="615" cy="485" r="4" fill="#ef4444"/>
-  <text x="625" y="489" fill="#1f2023" font-size="12">No child elements (entire subtree removed)</text>
-  <circle cx="615" cy="505" r="4" fill="#ef4444"/>
-  <text x="625" y="509" fill="#1f2023" font-size="12">No images, styles, or inner structure</text>
+  <rect x="380" y="700" width="320" height="120" rx="8" fill="#fef2f2" stroke="#ef444444" stroke-width="1"/>
+  <text x="400" y="723" fill="#dc2626" font-size="14" font-weight="700">What is NOT captured:</text>
+  <circle cx="402" cy="743" r="4" fill="#ef4444"/>
+  <text x="412" y="747" fill="#1f2023" font-size="13">No text content</text>
+  <circle cx="402" cy="766" r="4" fill="#ef4444"/>
+  <text x="412" y="770" fill="#1f2023" font-size="13">No child elements (subtree removed)</text>
+  <circle cx="402" cy="789" r="4" fill="#ef4444"/>
+  <text x="412" y="793" fill="#1f2023" font-size="13">No images, styles, or structure</text>
 
-  <!-- Footnote -->
-  <text x="815" y="555" text-anchor="middle" fill="#ff7557" font-size="12" font-weight="600">&#x26A0; Children cannot be unblocked</text>
-  <text x="285" y="555" text-anchor="middle" fill="#7856ff" font-size="12" font-weight="600">&#x2713; Children can be selectively unmasked</text>
+  <text x="375" y="840" text-anchor="middle" fill="#ff7557" font-size="13" font-weight="600">&#x26A0; Children cannot be unblocked</text>
 
-  <!-- Bottom border accent -->
-  <rect y="610" width="1100" height="10" rx="0" fill="url(#headerGrad)"/>
-  <rect y="610" width="1100" height="5" rx="0" fill="url(#headerGrad)"/>
+  <!-- Bottom comparison bar -->
+  <rect x="20" y="870" width="710" height="80" rx="10" fill="white" filter="url(#shadow)" stroke="#7856ff22" stroke-width="1"/>
+  <rect x="20" y="870" width="355" height="80" rx="10" fill="#f5f3ff"/>
+  <text x="197" y="900" text-anchor="middle" fill="#7856ff" font-size="14" font-weight="700">Masking</text>
+  <text x="197" y="920" text-anchor="middle" fill="#5f41cf" font-size="12">Text → ****  |  Layout preserved</text>
+  <text x="197" y="938" text-anchor="middle" fill="#5f41cf" font-size="12">Children can be unmasked</text>
+
+  <rect x="375" y="870" width="355" height="80" rx="10" fill="#fff7ed"/>
+  <text x="552" y="900" text-anchor="middle" fill="#ff7557" font-size="14" font-weight="700">Blocking</text>
+  <text x="552" y="920" text-anchor="middle" fill="#e05535" font-size="12">Element → empty box  |  Subtree gone</text>
+  <text x="552" y="938" text-anchor="middle" fill="#e05535" font-size="12">Children cannot be unblocked</text>
+
+  <!-- Bottom border -->
+  <rect y="970" width="750" height="10" fill="url(#headerGrad)"/>
 </svg>
