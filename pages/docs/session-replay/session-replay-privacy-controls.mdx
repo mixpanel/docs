@@ -24,7 +24,9 @@ Blocked data is similarly suppressed client-side, meaning it is not collected in
 
 Note: interactions (such as mouse-clicks) with blocked and masked elements are still captured by Session Replay for Web.
 
-![Masking vs Blocking](/01-masking-vs-blocking.svg)
+<div>
+  <img src="/01-masking-vs-blocking.svg" alt="Masking vs Blocking" style={{width: '100%'}} />
+</div>
 
 ## Configuring Privacy Controls
 
@@ -44,7 +46,9 @@ Text masking and input masking are two separate pipelines that are configured in
 
 This means you can configure them independently. For example, you could unmask form labels while keeping input values masked — the label "Full Name" would be visible but the typed value "John Smith" would show as `****`.
 
-![Text vs Input Masking](/02-text-vs-input-masking.svg)
+<div>
+  <img src="/02-text-vs-input-masking.svg" alt="Text vs Input Masking" style={{width: '100%'}} />
+</div>
 
 ## Text Masking Configuration
 
@@ -167,11 +171,15 @@ Both masking and unmasking selectors propagate through the DOM tree. When checki
 **Blocking does NOT support unblocking children.** When an element is blocked, the entire subtree is removed during DOM serialization. The recording engine never traverses inside a blocked element, so children cannot opt out. There is no unblock selector or class.
 </Callout>
 
-![Nesting and Inheritance](/03-nesting-inheritance.svg)
+<div>
+  <img src="/03-nesting-inheritance.svg" alt="Nesting and Inheritance" style={{width: '100%'}} />
+</div>
 
 ## Quick Reference: Which Config Do I Use?
 
-![Configuration Recipes](/04-configuration-recipes.svg)
+<div>
+  <img src="/04-configuration-recipes.svg" alt="Configuration Recipes" style={{width: '100%'}} />
+</div>
 
 ## Disabling Replay Collection 
 
