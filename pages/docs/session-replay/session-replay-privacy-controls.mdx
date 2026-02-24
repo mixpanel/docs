@@ -23,7 +23,9 @@ Masked data is suppressed client-side, meaning it is not collected in its origin
 Blocked data is similarly suppressed client-side, meaning it is not collected in its original form by Mixpanel’s SDK, and the data is not stored on Mixpanel servers. However, blocked elements will be rendered with a placeholder element (e.g., an empty box of similar size). 
 
 Note: interactions (such as mouse-clicks) with blocked and masked elements are still captured by Session Replay for Web.
-  
+
+![Masking vs Blocking](/01-masking-vs-blocking.svg)
+
 ## Configuring Privacy Controls
 
 By default, Mixpanel masks and/or blocks the most common elements that contain content like input text, non-input text, images, and videos. However, Mixpanel also offers its customers a range of privacy controls to choose to unmask / unblock elements as needed, which are detailed further on this page.
@@ -35,6 +37,14 @@ By default, Mixpanel masks and/or blocks the most common elements that contain c
 | Videos and Images | By default, Mixpanel blocks videos and images. These elements will be rendered with a placeholder element (i.e., an empty box of similar size). Note: interactions with blocked elements will still be captured (e.g., mouse-clicks). | Yes. Mixpanel empowers its customers to decide to record images and videos as-is. |
 
 Other elements not listed in this table are captured by default, and can be blocked at your discretion. You can specify a CSS selector under the config option `record_block_selector` to block all elements which match the selector.
+
+### Text Masking vs Input Masking
+
+Text masking and input masking are two separate pipelines that are configured independently. Text masking handles visible text inside any HTML element (`<p>`, `<h1>`, `<span>`, `<label>`, `<button>`, etc.), while input masking handles values typed into `<input>`, `<textarea>`, and `<select>` elements.
+
+This means you can configure them independently. For example, you could unmask form labels while keeping input values masked — the label "Full Name" would be visible but the typed value "John Smith" would show as `****`.
+
+![Text vs Input Masking](/02-text-vs-input-masking.svg)
 
 ## Text Masking Configuration
 
@@ -144,6 +154,24 @@ mixpanel.init('YOUR_PROJECT_TOKEN', {
 ```html
 <img src="https://example.com/photo.jpg" class="mp-block"/>
 ```
+
+## How Nesting and Inheritance Works
+
+Both masking and unmasking selectors propagate through the DOM tree. When checking if an element should be masked, the SDK checks the **element itself and all of its ancestors**.
+
+**Masking propagates to children:** If a parent element matches a masking selector, all descendants are also masked — even deeply nested ones.
+
+**Unmasking overrides ancestor masking:** When `record_mask_all_text` is `true`, adding `record_unmask_text_selector` on a container will unmask that container and all its children, even though the rest of the page remains masked.
+
+<Callout type="warning">
+**Blocking does NOT support unblocking children.** When an element is blocked, the entire subtree is removed during DOM serialization. The recording engine never traverses inside a blocked element, so children cannot opt out. There is no unblock selector or class.
+</Callout>
+
+![Nesting and Inheritance](/03-nesting-inheritance.svg)
+
+## Quick Reference: Which Config Do I Use?
+
+![Configuration Recipes](/04-configuration-recipes.svg)
 
 ## Disabling Replay Collection 
 
