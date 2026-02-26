@@ -23,11 +23,18 @@ To ensure we provide the most robust protection against evolving threats, we are
 After this date, all API requests must use at least TLS 1.2. 
 Using at least TLS 1.2 is a recommended security best practice to improve data integrity and maintain compliance with industry standards.
 
+### Updated TLS Protocols Support
+| TLS Protocol Version | Support Status | Notes |
+| :--- | :--- | :--- |
+| **TLS 1.0** | ❌ Disabled | No longer supported |
+| **TLS 1.1** | ❌ Disabled | No longer supported |
+| **TLS 1.2** | ✅ Enabled | Minimum supported version |
+| **TLS 1.3** | ✅ Enabled | Preferred where available |
 
-Mixpanel will also mirror the commonly accepted standards for TLS 1.2 and TLS 1.3 Cipher Suite compatibility, as listed in this [external resource](https://wiki.mozilla.org/Security/Server_Side_TLS#Intermediate_compatibility_(recommended)).
 
 ### Updated Mixpanel Cipher Suite Support by TLS version
-| TLS Version | Supported Cipher Suite |
+Mixpanel will also mirror the commonly accepted standards for TLS 1.2 and TLS 1.3 Cipher Suite compatibility, as listed in this [external resource](https://wiki.mozilla.org/Security/Server_Side_TLS#Intermediate_compatibility_(recommended)).
+| TLS Version | ✅ Supported Cipher Suite |
 | :--- | :--- |
 | **v1.2** | TLS_ECDHE_ECDSA_WITH_CHACHA20_POLY1305_SHA256 |
 | | TLS_ECDHE_ECDSA_WITH_AES_256_GCM_SHA384 |
@@ -48,13 +55,30 @@ Any data sent to Mixpanel’s Ingestion API endpoints after **April 1, 2026** vi
 
 While the vast majority of modern traffic uses TLS 1.2 or 1.3, data can be sent to Mixpanel via TLS 1.0 and 1.1 when end-users access your application from older browsers or devices with operating systems that don’t support or enforce modern TLS versions.
 
-For example, the following browsers and OS may still use TLS 1.0 or 1.1:
+### Commonly Affected Examples
+
+The following browsers and OS may still use TLS 1.0 or 1.1:
 - Browsers: Chrome <84 | Firefox <78 (Released around June/July 2020)
 - Mobile OS: iOS <13 | Android <10
 
+| Category | Impacted Versions / Environments | Examples & Notes |
+| :--- | :--- | :--- |
+| **Mobile** | Android < 5.0 (pre-Lollipop) | 2012 Samsung Galaxy S4 |
+| | iOS < 9 | 2010 iPhone 4 |
+| **Desktop OS** | Windows XP, Vista, early Windows 7 | Without critical security updates |
+| | macOS < 10.9 | Legacy Apple systems |
+| **Browsers / Runtimes** | Internet Explorer ≤ 10 | |
+| | Firefox < 78 | |
+| | Chrome < 84 | |
+| | Java 6 / early Java 7 | |
+| | Python < 2.7.9 | OpenSSL without TLS 1.2 support |
+| | Old OpenSSL versions (< 1.0.1) | |
+| **Embedded / IoT** | Legacy firmware | Hardcoded TLS stacks / Non-upgradable |
+| **Protocol Specific** | Devices supporting only SSLv3 / TLS 1.0 | |
+
 Please Note: While we’ve listed some common versions above, compatibility can vary. For example, Chrome 30-32 started supporting TLS 1.2. 
 
-For a comprehensive list of environments that may still use TLS 1.0/11, we recommend visiting the Browser/OS Official Documentation or you can refer to the [TLS Support Version History](https://en.wikipedia.org/wiki/Version_history_for_TLS/SSL_support_in_web_browsers) (External Resource).
+For a comprehensive list of environments that may still use TLS 1.0/1.1, we recommend visiting the Browser/OS Official Documentation or referring to the [TLS Support Version History](https://en.wikipedia.org/wiki/Version_history_for_TLS/SSL_support_in_web_browsers) (External Resource).
 
 
 # <u>How to identify affected users</u>
