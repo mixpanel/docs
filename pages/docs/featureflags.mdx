@@ -253,6 +253,24 @@ You have two options -
     - When you initialize the mixpanel feature flag SDK, configure it to not track any `$experiment_started` events directly to Mixpanel.
     - This way you use the mixpanel SDK to serve the feature flags, but when an end-user sees exposure, they manually use their existing method of tracking events through their CDP to mixpanel to track the $experiment_started event
 
+
+## Identifying User Exposures
+
+### User Profile Exposure Table
+
+When using Mixpanel Feature Flags, exposure events will be tracked to Mixpanel, and can be viewed on a specific user's Profile Page.
+The Profile Page displays a table of the enabled flags that a user has been exposed to.
+
+#### Feature Gate
+When a user has been exposed to a feature flag of the type Feature Gate, a row will appear in this table displaying the most recent time that the user was exposed to the gate.
+When viewing the table, you can click on the right arrow button to open the associated Feature Flag page in a new tab.
+
+#### Experiment & Dynamic Config
+The Feature Flags tab on a user's profile page will display the most recently viewed variant seen by the selected user, as well as the time that the exposure event was tracked.
+If a user later sees a new variant, that will be displayed instead. If the flag is tied to an experiment, clicking on the right arrow will open a menu allowing the user to navigate
+to the feature flag page of the associated flag, or the related experiment page.
+
+
 ## Feature Flagging Pricing FAQ
 
 <Callout type="info">

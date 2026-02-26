@@ -1,0 +1,148 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 750 1340" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif">
+  <defs>
+    <linearGradient id="hGrad5" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" style="stop-color:#7856ff"/>
+      <stop offset="100%" style="stop-color:#5f41cf"/>
+    </linearGradient>
+    <filter id="sh5" x="-2%" y="-2%" width="104%" height="108%">
+      <feDropShadow dx="0" dy="2" stdDeviation="4" flood-color="#1f202320"/>
+    </filter>
+  </defs>
+
+  <!-- Background -->
+  <rect width="750" height="1340" rx="16" fill="#fafafa"/>
+
+  <!-- Header -->
+  <rect width="750" height="56" rx="16" fill="url(#hGrad5)"/>
+  <rect y="28" width="750" height="28" fill="url(#hGrad5)"/>
+  <text x="375" y="37" text-anchor="middle" fill="white" font-size="22" font-weight="700">Nesting &amp; Inheritance Behavior</text>
+  <text x="375" y="82" text-anchor="middle" fill="#5f41cf" font-size="14">Selectors match the element AND all its ancestors up the DOM tree</text>
+
+  <!-- ===== SCENARIO 1: Mask All + Unmask Selector ===== -->
+  <rect x="20" y="102" width="710" height="280" rx="12" fill="white" filter="url(#sh5)"/>
+  <rect x="20" y="102" width="710" height="42" rx="12" fill="#7856ff"/>
+  <rect x="20" y="130" width="710" height="14" fill="#7856ff"/>
+  <text x="375" y="130" text-anchor="middle" fill="white" font-size="15" font-weight="600">Scenario 1: Mask All + Selective Unmask</text>
+
+  <rect x="40" y="155" width="670" height="30" rx="6" fill="#f5f3ff" stroke="#7856ff44" stroke-width="1"/>
+  <text x="55" y="175" fill="#5f41cf" font-size="12" font-weight="600" font-family="monospace">record_mask_all_text: true,  record_unmask_text_selector: '.public'</text>
+
+  <rect x="40" y="195" width="670" height="175" rx="8" fill="#f9fafb" stroke="#e5e7eb" stroke-width="1"/>
+  <rect x="55" y="208" width="640" height="152" rx="6" fill="white" stroke="#e5e7eb" stroke-width="1" stroke-dasharray="4,3"/>
+  <text x="70" y="226" fill="#6b7280" font-size="12" font-family="monospace">&lt;div&gt;</text>
+
+  <rect x="75" y="236" width="600" height="28" rx="4" fill="#fef2f2" stroke="#ef444444" stroke-width="1"/>
+  <text x="90" y="255" fill="#6b7280" font-size="12" font-family="monospace">&lt;h1&gt;</text>
+  <text x="135" y="255" fill="#ef4444" font-size="13" font-weight="600">**** *********</text>
+  <rect x="560" y="241" width="100" height="20" rx="10" fill="#ef4444"/>
+  <text x="610" y="255" text-anchor="middle" fill="white" font-size="10" font-weight="700">MASKED</text>
+
+  <rect x="75" y="272" width="600" height="72" rx="6" fill="#f0fdf4" stroke="#22c55e88" stroke-width="1.5"/>
+  <text x="90" y="290" fill="#22c55e" font-size="12" font-family="monospace" font-weight="700">&lt;div class="public"&gt;</text>
+  <rect x="95" y="298" width="560" height="18" rx="4" fill="#dcfce7"/>
+  <text x="110" y="312" fill="#16a34a" font-size="13">Product name: Widget Pro</text>
+  <rect x="560" y="300" width="80" height="16" rx="8" fill="#22c55e"/>
+  <text x="600" y="312" text-anchor="middle" fill="white" font-size="9" font-weight="700">VISIBLE</text>
+  <rect x="95" y="322" width="560" height="18" rx="4" fill="#dcfce7"/>
+  <text x="110" y="336" fill="#16a34a" font-size="13">Category: Tools</text>
+  <rect x="560" y="324" width="80" height="16" rx="8" fill="#22c55e"/>
+  <text x="600" y="336" text-anchor="middle" fill="white" font-size="9" font-weight="700">VISIBLE</text>
+
+  <rect x="75" y="350" width="600" height="7" rx="4" fill="#fef2f2" stroke="#ef444444" stroke-width="1"/>
+
+  <!-- ===== SCENARIO 2: Show All + Selective Mask ===== -->
+  <rect x="20" y="400" width="710" height="280" rx="12" fill="white" filter="url(#sh5)"/>
+  <rect x="20" y="400" width="710" height="42" rx="12" fill="#5f41cf"/>
+  <rect x="20" y="428" width="710" height="14" fill="#5f41cf"/>
+  <text x="375" y="428" text-anchor="middle" fill="white" font-size="15" font-weight="600">Scenario 2: Show All + Selective Mask</text>
+
+  <rect x="40" y="453" width="670" height="30" rx="6" fill="#f5f3ff" stroke="#7856ff44" stroke-width="1"/>
+  <text x="55" y="473" fill="#5f41cf" font-size="12" font-weight="600" font-family="monospace">record_mask_all_text: false,  record_mask_text_selector: '.pii'</text>
+
+  <rect x="40" y="493" width="670" height="175" rx="8" fill="#f9fafb" stroke="#e5e7eb" stroke-width="1"/>
+  <rect x="55" y="506" width="640" height="152" rx="6" fill="white" stroke="#e5e7eb" stroke-width="1" stroke-dasharray="4,3"/>
+  <text x="70" y="524" fill="#6b7280" font-size="12" font-family="monospace">&lt;div&gt;</text>
+
+  <rect x="75" y="534" width="600" height="28" rx="4" fill="#dcfce7" stroke="#22c55e44" stroke-width="1"/>
+  <text x="90" y="553" fill="#6b7280" font-size="12" font-family="monospace">&lt;h1&gt;</text>
+  <text x="135" y="553" fill="#16a34a" font-size="13" font-weight="500">My Dashboard</text>
+  <rect x="560" y="539" width="100" height="20" rx="10" fill="#22c55e"/>
+  <text x="610" y="553" text-anchor="middle" fill="white" font-size="10" font-weight="700">VISIBLE</text>
+
+  <rect x="75" y="570" width="600" height="72" rx="6" fill="#fef2f2" stroke="#ef444488" stroke-width="1.5"/>
+  <text x="90" y="588" fill="#ef4444" font-size="12" font-family="monospace" font-weight="700">&lt;div class="pii"&gt;</text>
+  <rect x="95" y="596" width="560" height="18" rx="4" fill="#fee2e2"/>
+  <text x="110" y="610" fill="#ef4444" font-size="13" font-weight="600">*****: **** *****</text>
+  <rect x="560" y="598" width="80" height="16" rx="8" fill="#ef4444"/>
+  <text x="600" y="610" text-anchor="middle" fill="white" font-size="9" font-weight="700">MASKED</text>
+  <rect x="95" y="620" width="560" height="18" rx="4" fill="#fee2e2"/>
+  <text x="110" y="634" fill="#ef4444" font-size="13" font-weight="600">***: $*,***.**</text>
+  <rect x="560" y="622" width="80" height="16" rx="8" fill="#ef4444"/>
+  <text x="600" y="634" text-anchor="middle" fill="white" font-size="9" font-weight="700">MASKED</text>
+
+  <rect x="75" y="648" width="600" height="7" rx="4" fill="#dcfce7" stroke="#22c55e44" stroke-width="1"/>
+
+  <!-- ===== SCENARIO 3: CSS class inheritance ===== -->
+  <rect x="20" y="698" width="710" height="260" rx="12" fill="white" filter="url(#sh5)"/>
+  <rect x="20" y="698" width="710" height="42" rx="12" fill="#472ba0"/>
+  <rect x="20" y="726" width="710" height="14" fill="#472ba0"/>
+  <text x="375" y="726" text-anchor="middle" fill="white" font-size="15" font-weight="600">Scenario 3: CSS Class Inheritance</text>
+
+  <rect x="40" y="751" width="670" height="30" rx="6" fill="#f5f3ff" stroke="#7856ff44" stroke-width="1"/>
+  <text x="55" y="771" fill="#5f41cf" font-size="12" font-weight="600" font-family="monospace">No SDK config needed — just add class="mp-mask" in HTML</text>
+
+  <rect x="40" y="791" width="670" height="152" rx="8" fill="#f9fafb" stroke="#e5e7eb" stroke-width="1"/>
+
+  <rect x="55" y="804" width="640" height="130" rx="6" fill="#fef2f2" stroke="#ef444466" stroke-width="1.5"/>
+  <text x="70" y="822" fill="#ef4444" font-size="12" font-family="monospace" font-weight="700">&lt;div class="mp-mask"&gt;</text>
+
+  <rect x="75" y="832" width="600" height="26" rx="4" fill="#fee2e2"/>
+  <text x="90" y="850" fill="#ef4444" font-size="13" font-weight="600">**** ** ******</text>
+  <rect x="560" y="836" width="100" height="20" rx="10" fill="#ef4444"/>
+  <text x="610" y="850" text-anchor="middle" fill="white" font-size="10" font-weight="700">MASKED</text>
+
+  <rect x="75" y="866" width="600" height="58" rx="6" fill="#fee2e2" stroke="#ef444444" stroke-width="1" stroke-dasharray="3,2"/>
+  <text x="90" y="884" fill="#6b7280" font-size="12" font-family="monospace">&lt;div&gt;  (no class on this child)</text>
+  <rect x="95" y="894" width="560" height="22" rx="4" fill="#fecaca"/>
+  <text x="110" y="910" fill="#ef4444" font-size="13" font-weight="600">**** ****** *** — grandchild also masked</text>
+  <rect x="560" y="898" width="80" height="18" rx="9" fill="#ef4444"/>
+  <text x="600" y="911" text-anchor="middle" fill="white" font-size="9" font-weight="700">MASKED</text>
+
+  <!-- ===== SCENARIO 4: Blocking = no unblock ===== -->
+  <rect x="20" y="978" width="710" height="260" rx="12" fill="white" filter="url(#sh5)"/>
+  <rect x="20" y="978" width="710" height="42" rx="12" fill="#ff7557"/>
+  <rect x="20" y="1006" width="710" height="14" fill="#ff7557"/>
+  <text x="375" y="1006" text-anchor="middle" fill="white" font-size="15" font-weight="600">Scenario 4: Blocking = No Unblock</text>
+
+  <rect x="40" y="1031" width="670" height="30" rx="6" fill="#fff7ed" stroke="#ff755744" stroke-width="1"/>
+  <text x="55" y="1051" fill="#e05535" font-size="12" font-weight="600" font-family="monospace">class="mp-block" on parent — entire subtree is gone</text>
+
+  <!-- Original -->
+  <text x="55" y="1085" fill="#6b7280" font-size="12" font-weight="600">ORIGINAL HTML</text>
+  <rect x="55" y="1095" width="280" height="95" rx="6" fill="white" stroke="#ff755766" stroke-width="1.5"/>
+  <text x="70" y="1115" fill="#6b7280" font-size="11" font-family="monospace">&lt;div class="mp-block"&gt;</text>
+  <text x="90" y="1135" fill="#1f2023" font-size="12">&lt;p&gt;Secret data&lt;/p&gt;</text>
+  <text x="90" y="1155" fill="#1f2023" font-size="12">&lt;img src="photo.jpg"&gt;</text>
+  <text x="90" y="1175" fill="#1f2023" font-size="12">&lt;div&gt;Nested child&lt;/div&gt;</text>
+
+  <!-- Arrow -->
+  <text x="375" y="1145" text-anchor="middle" fill="#ff7557" font-size="30">&#x27A1;</text>
+
+  <!-- Blocked result -->
+  <text x="425" y="1085" fill="#6b7280" font-size="12" font-weight="600">IN REPLAY</text>
+  <rect x="425" y="1095" width="280" height="95" rx="6" fill="#f5f5f5" stroke="#ff7557" stroke-width="2" stroke-dasharray="6,4"/>
+  <rect x="450" y="1115" width="230" height="55" rx="4" fill="#e5e5e5"/>
+  <text x="565" y="1147" text-anchor="middle" fill="#a3a3a3" font-size="13" font-style="italic">empty box</text>
+
+  <!-- Warning -->
+  <rect x="55" y="1200" width="650" height="24" rx="6" fill="#fef2f2" stroke="#ef4444" stroke-width="1"/>
+  <text x="375" y="1217" text-anchor="middle" fill="#dc2626" font-size="12" font-weight="700">&#x26A0; Children cannot opt out. The subtree is never traversed.</text>
+
+  <!-- Bottom summary -->
+  <rect x="20" y="1258" width="710" height="55" rx="10" fill="white" filter="url(#sh5)" stroke="#7856ff33" stroke-width="1"/>
+  <text x="375" y="1282" text-anchor="middle" fill="#7856ff" font-size="15" font-weight="700">How does inheritance work?</text>
+  <text x="375" y="1302" text-anchor="middle" fill="#1f2023" font-size="13">A child inherits the masking/unmasking state of its nearest matching ancestor.</text>
+
+  <!-- Bottom border -->
+  <rect y="1333" width="750" height="7" fill="url(#hGrad5)"/>
+</svg>
