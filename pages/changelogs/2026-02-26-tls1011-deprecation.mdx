@@ -1,0 +1,104 @@
+---
+title: "Security Protocol Update: Phasing Out TLS 1.0 and 1.1"
+slug: "changelog-2026-02-26-decide-deprecation"
+hidden: false
+createdAt: "2026-02-26T10:00:00.000Z"
+updatedAt: "2026-02-26T10:00:00.000Z"
+date: "2026-02-26"
+thumbnail: ""
+description: "Starting April 2026, we will be deprecating support for legacy TLS 1.0 and 1.1 protocols and adopting CNSA 2.0 cryptographic algorithms across our APIs and web app. "
+isAnnouncement: false
+---
+
+<ChangelogPostHeader
+  date="2026-02-26"
+  image=""
+  title="Security Protocol Update: Phasing Out TLS 1.0 and 1.1"
+/>
+
+To ensure we provide the most robust protection against evolving threats, we are upgrading our network security configuration. 
+
+**Starting April 2026, we will be deprecating support for legacy TLS 1.0 and 1.1 protocols and adopting CNSA 2.0 cryptographic algorithms across our APIs and web app.**
+
+After this date, all API requests must use at least TLS 1.2. 
+Using at least TLS 1.2 is a recommended security best practice to improve data integrity and maintain compliance with industry standards.
+
+### Updated TLS Protocols Support
+| TLS Protocol Version | Support Status | Notes |
+| :--- | :--- | :--- |
+| **TLS 1.0** | ❌ Disabled | No longer supported |
+| **TLS 1.1** | ❌ Disabled | No longer supported |
+| **TLS 1.2** | ✅ Enabled | Minimum supported version |
+| **TLS 1.3** | ✅ Enabled | Preferred where available |
+
+
+### Updated Mixpanel Cipher Suite Support by TLS version
+Mixpanel will also mirror the commonly accepted standards for TLS 1.2 and TLS 1.3 Cipher Suite compatibility, as listed in this [external resource](https://wiki.mozilla.org/Security/Server_Side_TLS#Intermediate_compatibility_(recommended)).
+| TLS Version | ✅ Supported Cipher Suite |
+| :--- | :--- |
+| **v1.2** | TLS_ECDHE_ECDSA_WITH_CHACHA20_POLY1305_SHA256 |
+| | TLS_ECDHE_ECDSA_WITH_AES_256_GCM_SHA384 |
+| | TLS_ECDHE_ECDSA_WITH_AES_128_GCM_SHA256 |
+| | TLS_ECDHE_RSA_WITH_CHACHA20_POLY1305_SHA256 |
+| | TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384 |
+| | TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256 |
+| | TLS_DHE_RSA_WITH_CHACHA20_POLY1305_SHA256 |
+| | TLS_DHE_RSA_WITH_AES_256_GCM_SHA384 |
+| | TLS_DHE_RSA_WITH_AES_128_GCM_SHA256 |
+| **v1.3** | TLS_AES128_GCM_SHA256 |
+| | TLS_AES256_GCM_SHA384 |
+| | TLS_CHACHA20_POLY1305_SHA256 |
+
+# <u>What’s the impact of this change?</u>
+
+Any data sent to Mixpanel’s Ingestion API endpoints after **April 1, 2026** via TLS 1.0 and 1.1 will not be accepted, meaning you will not receive analytics information from users who engage with your applications using the 1.0 and 1.1 versions of TLS.
+
+While the vast majority of modern traffic uses TLS 1.2 or 1.3, data can be sent to Mixpanel via TLS 1.0 and 1.1 when end-users access your application from older browsers or devices with operating systems that don’t support or enforce modern TLS versions.
+
+### Commonly Affected Examples
+
+The following browsers and OS may still use TLS 1.0 or 1.1:
+| Category | Impacted Versions / Environments | Examples & Notes |
+| :--- | :--- | :--- |
+| **Mobile** | Android < 5.0 (pre-Lollipop) | 2012 Samsung Galaxy S4 |
+| | iOS < 9 | 2010 iPhone 4 |
+| **Desktop OS** | Windows XP, Vista, early Windows 7 | Without critical security updates |
+| | macOS < 10.9 | Legacy Apple systems |
+| **Browsers / Runtimes** | Internet Explorer ≤ 10 | |
+| | Firefox < 78 | |
+| | Chrome < 84 | |
+| | Java 6 / early Java 7 | |
+| | Python < 2.7.9 | OpenSSL without TLS 1.2 support |
+| | Old OpenSSL versions (< 1.0.1) | |
+| **Embedded / IoT** | Legacy firmware | Hardcoded TLS stacks / Non-upgradable |
+| **Protocol Specific** | Devices supporting only SSLv3 / TLS 1.0 | |
+
+Please Note: While we’ve listed some common versions above, compatibility can vary. For example, Chrome 30-32 started supporting TLS 1.2. 
+
+For a comprehensive list of environments that may still use TLS 1.0/1.1, we recommend visiting the Browser/OS Official Documentation or referring to the [TLS Support Version History](https://en.wikipedia.org/wiki/Version_history_for_TLS/SSL_support_in_web_browsers) (External Resource).
+
+
+# <u>How to identify affected users</u>
+
+More than 99% of Mixpanel Web and API Traffic use TLS 1.2+; however, to assess how many users are potentially affected by this change in your projects:
+1. In an Insights report, select `All Events` as the primary metric
+2. Break down by the [following properties](/docs/data-structure/property-reference/default-properties), depending on your tracking SDK(s)
+    - JavaScript (Web): Browser (`$browser`) and Browser Version (`$browser_version`)
+    - Mobile: Operating System (`$os`), OS Version (`$os_version`)
+
+Tip: You can create a [Custom Property](/docs/features/custom-properties) to quickly bucket users. 
+For example, the following Custom Property can help check against Chrome and Firefox.
+
+![Custom Prop Example](/changelog/tls-dep-custom-prop-example.png)
+
+# <u>Recommended Actions</u>
+- **Client-Side Tracking:** Where possible, we recommend encouraging users to update their browsers or OS to a version that communicates using TLS 1.2+.
+- **Server-Side Tracking:** Verify your server environments are configured to use TLS 1.2+.
+- **Protocol Migration:** If your application currently utilizes legacy TLS versions, we recommend deprecating them in favor of TLS 1.2+ to ensure long-term security and compatibility.
+- **Proxying:** We understand that some devices have hardware/software limitations that may not be able to use TLS 1.2+. In these cases, if you would like to maintain tracking for these devices, you could consider implementing a proxy server that accepts TLS 1.0/1.1 from end users and forwards the tracking data to Mixpanel Ingestion APIs via TLS 1.2+.
+
+# <u>Support & Inquiries</u>
+We have notified users whose projects were detected receiving legacy TLS 1.0/1.1 Ingestion traffic. 
+If you have questions about your project’s compatibility or need general assistance, please reach out to [Mixpanel Support](/docs/response-times#contacting-mixpanel-support). 
+
+For technical questions about TLS protocols or broader security questions, please contact our GRC Team at grc@mixpanel.com.
