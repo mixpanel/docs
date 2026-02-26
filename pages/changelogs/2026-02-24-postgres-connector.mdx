@@ -1,0 +1,55 @@
+---
+title: "Postgres Connectors now in Public Beta"
+slug: "changelog-2026-02-24-postgres-connector"
+hidden: false
+createdAt: "2026-02-24T00:00:00.165Z"
+updatedAt: "2026-02-24T00:00:00.165Z"
+date: "2026-02-24"
+thumbnail: "/changelog/postgres-connector-changelog.png"
+description: "We’re pleased to announce the Postgres Connector, now available in Public Beta — a simpler way to bring your transactional data into Mixpanel."
+isAnnouncement: false
+---
+
+<ChangelogPostHeader
+  date="2026-02-24"
+  image="/changelog/postgres-connector-changelog.png"
+  title="Postgres Connectors now in Public Beta"
+/>
+
+## New: Postgres Connector (Public Beta)
+
+We’re pleased to announce the **Postgres Connector**, now available in **Public Beta** — a simpler way to bring your transactional data into Mixpanel.
+
+### What it does
+
+The Postgres Connector enables you to connect your Postgres database directly to Mixpanel and begin analyzing your data without needing intermediate tools or custom pipelines. This means you can get your most important user and product data into Mixpanel much faster and with less engineering effort.
+
+Unlike traditional ingestion approaches that require CDPs, ETL tools, or custom scripts, the Postgres Connector is built to work right from your database to Mixpanel. Early-stage teams, especially those without a data warehouse, can now include more complete data in their analytics workflows with minimal setup.
+
+### Why this matters
+
+Many small and growing customers have told us it’s hard to get **complete user context** into Mixpanel because:
+
+- Existing options often require costly third-party tools.
+- Building custom sync scripts takes significant engineering time.
+- Important data lives only in transactional databases.
+
+That’s especially true for AI-centric products where app and model usage logs are often stored in Postgres and aren’t feeding into analytics today. The Postgres Connector helps close that gap.
+
+### How it works
+
+- Connect your Postgres database directly from the Mixpanel UI.
+- Sync tables from Postgres into Mixpanel without intermediate services.
+- Compatible with all Postgres versions and major managed providers including:
+  - DigitalOcean Managed PostgreSQL
+  - Google Cloud SQL
+  - Supabase
+  - Neon
+  - Amazon RDS
+  - and more!
+
+This connector builds on Mixpanel’s Warehouse Connectors framework, which already supports popular data warehouses like Snowflake, BigQuery, Redshift, and Databricks. With this beta, we’re extending those same sync capabilities to transactional databases and bringing more of your source-of-truth data into Mixpanel for analysis. Learn more and get started [here](/docs/tracking-methods/warehouse-connectors).
+
+### Try it today
+
+The Postgres Connector is now available in Public Beta. We encourage you to give it a try. It’s designed to make your data ingestion smoother and your analytics richer, with less friction.
