@@ -109,7 +109,7 @@ paths:
           - `3600000000000`: Hourly
           - `86400000000000`: Daily
           - `604800000000000`: Weekly
-        - **databricks_params** (object): Databricks-specific cluster configuration (only for Databricks sources)
+        - **databricks_params** (object): Databricks-specific cluster configuration (only for Databricks sources). Note: this is a full replacement, not a partial merge. Always provide the complete desired cluster configuration.
 
         ## Pause/Resume Behavior
 
