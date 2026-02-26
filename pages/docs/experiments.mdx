@@ -51,7 +51,7 @@ Before creating an experiment report, ensure you have:
 Click 'New Experiment' from the Experiment report menu and select your experiment. Any experiment started in the last 30 days will automatically be detected and populated in the dropdown. To analyze experiments that began before 30 days, please hard-code the experiment name
 
 <Callout type="info">
-Only experiments tracked via exposure events, i.e, $experiment_started`, can be analyzed in the experiment report. Read more on how to track experiments [here](#adding-experiments-to-an-implementation). 
+Only experiments tracked via exposure events, i.e, `$experiment_started`, can be analyzed in the experiment report. Read more on how to track experiments [here](#implementation-for-experimentation). 
 </Callout>
 ### Step 2: Choose the ‘Control’ Variant
 
@@ -257,7 +257,7 @@ Bonferroni Correction addresses this by making the significance threshold strict
 - You have multiple treatment variants competing against control
 - You want higher confidence that significant results are real
 
-Bonferroni Correction is conservative. It reduces false positives but also makes it harder to detect true effects. If you have a single metric matters most to you, you may prefer to focus on that primary metric without correction.
+Bonferroni Correction is conservative. It reduces false positives but also makes it harder to detect true effects. If you have a single metric that matters most to you, you may prefer to focus on that primary metric without correction.
 
 ### Winsorization
 
