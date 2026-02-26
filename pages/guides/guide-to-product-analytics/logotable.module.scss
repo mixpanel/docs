@@ -1,0 +1,29 @@
+.logoTable {
+    display: flex;
+    gap: 20px;
+    justify-content: space-between;
+    margin: 50px 0;
+}
+.logo {
+    height: 30px;
+    max-width: 150px;
+}
+.logoSpeaker {
+    font-size: 16px;
+    margin-top: 16px;
+}
+.logoText {
+    width: 80%;
+}
+
+@media (max-width: 766px) {
+    .logoTable {
+        display: block;
+    }
+    .logo {
+        margin-bottom: 16px;
+    }
+    .logoText {
+        width: 100%;
+    }
+}
