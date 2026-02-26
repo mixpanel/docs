@@ -679,6 +679,9 @@ components:
         company_column_name:
           type: string
           description: Required for B2B projects. The column containing the company identifier.
+        device_column_name:
+          type: string
+          nullable: true
         sync_mode:
           $ref: "#/components/schemas/SyncMode"
         run_every:
