@@ -48,7 +48,7 @@
     "@redocly/cli": "2.15.1",
     "@types/mixpanel": "2.14.9",
     "@types/node": "25.2.0",
-    "autoprefixer": "10.4.21",
+    "autoprefixer": "10.4.24",
     "cspell": "9.2.1",
     "postcss": "8.5.6",
     "rdme": "^10.6.0",
