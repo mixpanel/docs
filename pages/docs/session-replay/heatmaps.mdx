@@ -28,7 +28,7 @@ To function, Heatmaps require Session Replay to be enabled, as they rely on sess
 Heatmaps only capture data during sessions with recorded replays. If a page has limited replay coverage, the Heatmap may not offer meaningful insights.
 
 <Callout type="warning">
-  When clicks occur very close to page navigation events, the heatmap may occasionally show clicks on the wrong page. This happens because the timing between page changes and click events may not align perfectly. If you notice clicks appearing on the wrong page, try using a different [backdrop](#backdrops) to find the correct page state.
+  When clicks occur very close to page navigation events, the heatmap may occasionally show clicks on the wrong page. This happens because the timing between page changes and click events may not align perfectly. If you notice clicks appearing on the wrong page, try using a different [UI State](#ui-states) to find the correct page state.
 </Callout>
 
 ### Implementation
@@ -88,9 +88,9 @@ mixpanel.init('YOUR_PROJECT_TOKEN', {
 
 ![heatmap_rename.png](/heatmap_rename.png)
 
-4. Rotate through backdrops to view different states of your application for the same URL.
+4. Rotate through UI States to view different states of your application for the same URL.
 
-![heatmap_backdrops.png](/heatmap_backdrops.png)
+![UI States view](/heatmap_backdrops.png)
 
 5. Use the Click Map and Heatmap toggles to show or hide each view. Click Maps help you see exactly which elements users click, which can clarify any inaccuracies in traditional heatmaps caused by dynamic page elements.
 
@@ -116,12 +116,12 @@ Once enabled, Goal Mode highlights the UI elements driving the most conversions,
   Goal Mode works with any of your existing events and properties directly out of the box—no additional setup required.
 </Callout>
 
-### Backdrops
+### UI States
 
-Backdrops are snapshots of your application in various states (such as a modal open, a menu expanded, or different page layouts). Backdrops are pulled from session replays that match the URL you're analyzing, helping you understand how different views or UI states affect user interactions.
+UI States are snapshots of your application in various states (such as a modal open, a menu expanded, or different page layouts). UI States are pulled from session replays that match the URL you're analyzing, helping you understand how different views or UI states affect user interactions.
 
-Backdrops are subject to the same retention policies as your session replays. Once a session replay expires, it can no longer be used as a backdrop. If you don't see enough backdrops (or can't find the specific view or state you're looking for), consider increasing your session replay sampling rate to capture a wider set of application states.
+UI States are subject to the same retention policies as your session replays. Once a session replay expires, it can no longer be used as a UI State. If you don't see enough UI States (or can't find the specific view or state you're looking for), consider increasing your session replay sampling rate to capture a wider set of application states.
 
 <Callout type="warning">
-  Heatmaps only track scrolling on the main page (window). If your site scrolls inside a nested container (like a div with its own scrollbar), heatmaps and interactive mode may not display data correctly. The interactive backdrops feature lets you customize your backdrop, but click positions within nested scrollable elements will still not be fully reflected.
+  Heatmaps only track scrolling on the main page (window). If your site scrolls inside a nested container (like a div with its own scrollbar), heatmaps and interactive mode may not display data correctly. The interactive UI States feature lets you customize your UI State, but click positions within nested scrollable elements will still not be fully reflected.
 </Callout>

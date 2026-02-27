@@ -336,7 +336,33 @@ analytics.addSourceMiddleware(({ payload, next, integrations }) => {
 
 ### mParticle: Web SDK
 
-mParticle's Web SDK has a `.getDeviceId()` method which can be used to [retrieve the device_id](https://docs.mparticle.com/developers/client-sdks/web/initialization/#device-id-device-application-stamp). In the following example, we use this method to bind mParticle's device_id to Mixpanel's device_id, as well as patching [logPageView()](https://docs.mparticle.com/developers/sdk/web/core-apidocs/classes/mParticle%20&%20mParticleInstance.html#method_logPageView) and [logEvent()](https://docs.mparticle.com/developers/sdk/web/core-apidocs/classes/mParticle%20&%20mParticleInstance.html#method_logEvent) to include session replay properties on all mParticle events. 
+mParticle offers a direct integration for Session Replay with Mixpanel. You can configure Session Replay settings directly in your mParticle connection settings, which automatically handles session replay properties on all events.
+
+#### Direct Integration (Recommended)
+
+To use the direct integration:
+
+1. Ensure you have the [Mixpanel JavaScript SDK installed](/docs/tracking-methods/sdks/javascript#installing-the-library) in your application with Session Replay enabled.
+2. Configure Session Replay settings in your [mParticle Mixpanel connection settings](https://docs.mparticle.com/integrations/mixpanel/event/#connection-settings), including:
+   - **Session Recording Percentage**: Percentage of SDK initializations that will qualify for replay data capture
+   - **Record Heatmap Data**: Enable heatmap, rage click, and dead click collection
+   - Additional privacy and configuration options as needed
+
+The direct integration automatically includes session replay properties (`$mp_replay_id`) on all events forwarded through mParticle, without requiring any additional code changes.
+
+**Note**: You must still enable Session Replay in your Mixpanel JavaScript SDK (for example by setting `record_sessions_percent` in `mixpanel.init`), and this client-side sampling configuration should align with your mParticle Session Recording Percentage setting.
+
+**Example Usage**
+
+```javascript Javascript
+mixpanel.init('MIXPANEL-PROJECT-TOKEN', {
+	record_sessions_percent: 10  // Configure this to match your mParticle connection settings
+});
+```
+
+#### Manual Implementation (Advanced)
+
+If you need more control over the integration, you can manually patch mParticle's methods to include session replay properties. This approach requires you to bind mParticle's device_id to Mixpanel's device_id and patch [logPageView()](https://docs.mparticle.com/developers/sdk/web/core-apidocs/classes/mParticle%20&%20mParticleInstance.html#method_logPageView) and [logEvent()](https://docs.mparticle.com/developers/sdk/web/core-apidocs/classes/mParticle%20&%20mParticleInstance.html#method_logEvent) methods.
 
 This configuration assumes you are [forwarding web requests server side](https://docs.mparticle.com/integrations/mixpanel/event/#connection-settings) in the connection settings.
 
