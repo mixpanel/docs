@@ -743,6 +743,11 @@ paths:
                   legend_size:
                     type: integer
                     description: List of all dates.
+        '400':
+          $ref: './common/responses.yaml#/400BadRequest'
+          example:
+            error: The error "invalid project id for cluster" indicates that the request was sent to an incorrect regional subdomain. Verify the project's data residency configuration and ensure that the API request is directed to the appropriate regional subdomain for the specified project.
+            status: 400
   /segmentation/numeric:
     get:
       operationId: segmentation-numeric-query
