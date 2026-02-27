@@ -3,7 +3,16 @@ title: "Analyze User Engagement"
 description: "Understand product usage intervals, identify power/core/casual users, and track user lifecycle patterns for better engagement insights."
 ---
 
+import style from './logotable.module.scss';
+
 # Analyze User Engagement
+
+## Questions answered
+- [What is my product usage interval?](#what-is-my-product-usage-interval)
+- [Who are my power/core/casual users?](#who-are-my-powercorecasual-users)
+- [What is the right definition of power/core/casual users for my product?](#what-is-the-right-definition-of-powercorecasual-users-for-my-product)
+- [Besides segmenting by level of engagement, how else can you analyze different groups of users with product analytics?](#besides-segmenting-by-level-of-engagement-how-else-can-you-analyze-different-groups-of-users-with-product-analytics)
+- [How can I track new users, resurrected users, retained users, and dormant users?](#how-can-i-track-new-users-resurrected-users-retained-users-and-dormant-users)
 
 In the previous chapters on value and active usage, you learned what to measure, and how to decide whether your users are active or not based on true value moments.
 
@@ -15,17 +24,20 @@ To group your users based on how engaged they are, we need to know how frequentl
 
 The answer, inevitably, is: **"It depends."** Take the now-popular "concierge medicine" category and apps like One Medical, Forward, or Parsley Health. The key value proposition of these apps is the convenience of booking medical appointments, so somebody who books an appointment once every six months on One Medical may well be "very active." And somebody who books an appointment every year is still "quite active."
 
-Now let's flip it and look at the other extreme—a video-hosting social media app like TikTok. The value moment here might be watching a video and "hearting" it. Every night, a typical "active" user can "heart" 10, 20, even 30 videos. That's a far cry from once a year! 
+Now let's flip it and look at the other extreme — a video-hosting social media app like TikTok. The value moment here might be watching a video and "hearting" it. Every night, a typical "active" user can "heart" 10, 20, even 30 videos. That's a far cry from once a year! 
 
 **In short, there's no standard "good" product usage interval, and you will need a combination of your product intuition and data to figure out the right one for your product.**
 
-Reforge pioneered this way of thinking about product usage intervals with their "habit zone" framework.
+[Reforge](https://www.reforge.com/) pioneered this way of thinking about product usage intervals with their "habit zone" framework.
+
+![image](/Chart-Cadence.png)
 
 > "Fundamentally, the 'right frequency' of activity needs to be defined based on a candid assessment of how the product's target user personas can get optimal value out of the product. Highly frequent usage is expected for certain product categories (e.g., messaging, music, fitness trackers) whereas less frequent usage is better for users' success or fulfillment in other product categories (e.g., personal finance, shopping). 
 >
 > Great PMs understand how their product should fit into their target users' lives and accordingly decide the right activity metric. As a tactic, great PMs also separate out proactive usage (where the user made the decision to engage with the product) from reactive usage (where a notification or other prompt from your product brought the user to it)."
 >
-> **Shreyas Doshi**, *Lead PM at Stripe; Former Lead PM at Twitter, Google, Yahoo*
+> <div className={style.logoSpeaker}>**Shreyas Doshi**</div>
+*Lead PM at Stripe; Former Lead PM at Twitter, Google, Yahoo*
 
 ## Who are my power/core/casual users?
 
@@ -35,13 +47,15 @@ To find your power/core/casual users, start by defining what it means to be "a p
 2. Highlight "total" to bring up all the different ways you can group your users. Select "total per user"
 3. Select your level of aggregation. **Median (50th percentile) will be your core users. 90th percentile will be your power users. 25th percentile will be your casual users**
 4. By highlighting the line graph, you can view how many videos each group typically watches hourly, daily, weekly, or monthly
-5. Customize the date range. Mixpanel will default your line graph over time to a lookback of the last 30 days
+5. Customize the date range. Mixpanel will default your line graph over time to a lookback of the last 30 days (from the active day) and a day-by-day count
 
 ### Take it one step further: Build and save your new cohorts
 
 1. Click over to "Users" and "Cohorts"
 2. Define what it means to be a power/core/casual user. For example, "Users that watched videos 2 or more times in the last 7 days"
 3. Save the cohort
+
+![image](/ChartUser.png)
 
 Using the median value as a baseline for your analysis, you can create cohorts to track how different groups of users are changing over time.
 
@@ -70,17 +84,26 @@ For a video platform company, a depth metric might be the number of videos watch
 
 ### Industry Examples
 
-> "Active users are people who are using Viber seven out of seven days a week. From a product perspective, if we're doing something good, active users are supposed to grow and if we're doing something bad, then eventually they're going to drop. We monitor this metric daily."
->
-> **Idan Dadon**, *Product Manager, Viber*
+<div className={style.logoTable}>
+    <img src="/logo-viber.svg" className={style.logo}/>
+    <div className={style.logoText}>
+        "Active users are people who are using Viber seven out of seven days a week. From a product perspective, if we're doing something good, active users are supposed to grow and if we're doing something bad, then eventually they're going to drop. We monitor this metric daily."<div className={style.logoSpeaker}>**Idan Dadon**</div> *Product Manager, Viber*
+    </div>
+</div>
 
-> "To us, an active member is someone who has an active plan—they haven't canceled or their plan hasn't expired. To make sure our members are getting value, we also look at how many of them have continued treatment in the past four months."
->
-> **Ira Patnaik**, *Director of Product, Ro*
+<div className={style.logoTable}>
+    <img src="/logo-ro.svg" className={style.logo}/>
+    <div className={style.logoText}>
+        "To us, an active member is someone who has an active plan—they haven't canceled or their plan hasn't expired. To make sure our members are getting value, we also look at how many of them have continued treatment in the past four months."<div className={style.logoSpeaker}>**Ira Patnaik**</div> *Director of Product, Ro*
+    </div>
+</div>
 
-> "An active user takes a trip 1-2 times per year. For us, it's a bit tricky because the shopping funnel has distinct phases—dreaming, planning, deciding, and booking. We haven't necessarily cracked the code of how to recognize what part of the funnel a person is in based on the activity that they're doing on the site."
->
-> **Jamie Kapilivsky**, *Data Insights, Vrbo, part of Expedia Group*
+<div className={style.logoTable}>
+    <img src="/logo-vrbo.png" className={style.logo}/>
+    <div className={style.logoText}>
+        "An active user takes a trip 1-2 times per year. For us, it's a bit tricky because the shopping funnel has distinct phases—dreaming, planning, deciding, and booking. We haven't necessarily cracked the code of how to recognize what part of the funnel a person is in based on the activity that they're doing on the site and what the common actions are that can help us decide that a shopper has officially moved past one phase to the next one."<div className={style.logoSpeaker}>**Jamie Kapilivsky**</div> *Data Insights, Vrbo, part of Expedia Group*
+    </div>
+</div>
 
 ## How can I tie active usage to my value exchange (monetization) model?
 
@@ -92,49 +115,62 @@ For example, on social media entertainment apps like TikTok, where users engage 
 
 ### Regional and Behavioral Cohorts
 
-> "We create cohorts based on percentiles of activity (to identify power users), region-based cohorts/breakdowns by countries (there's a lot of cultural difference in how people use the app as well as their data usage). We break it down as much as we can and try to understand users based on their behavior, not the average behavior."
->
-> **Idan Dadon**, *Product Manager, Viber*
+<div className={style.logoTable}>
+    <img src="/logo-viber.svg" className={style.logo}/>
+    <div className={style.logoText}>
+        "We create cohorts based on percentiles of activity (to identify power users), region-based cohorts/breakdowns by countries (there's a lot of cultural difference in how people use the app as well as their data usage). We break it down as much as we can and try to understand users based on their behavior, not the average behavior."<div className={style.logoSpeaker}>**Idan Dadon**</div> *Product Manager, Viber*
+    </div>
+</div>
 
-### Comprehensive Segmentation Strategy
+<div className={style.logoTable}>
+    <img src="/logo-avira.svg" className={style.logo}/>
+    <div className={style.logoText}>
+        "We use a lot of cohorts, including: free/paid users, new/existing users, operating systems (Windows 10 versus Windows 7), region, and frequency of use.
+        - **Free/paid users**: We look at how free users behave versus how paid users behave. Do paid users use the Smart Scan more often than free users, for example, or less often? What features do they use? We can then find behavioural twins in the free segment and push them to become paid.
+        - **New/existing users**: We define a 'new' user as someone using our product for 30 days or less. We've noted that people tend to go from free to paid within the first 30 days. We look at this cohort specifically to see what the free to paid rate is, and how they behave.
+        - **Operating systems (Windows 10 versus Windows 7)**: We've learned that our system speed up cleaning product is more interesting for people who still are on Windows 7, because they are on old hardware, and perhaps don’t want to invest in new hardware.
+        - **Region**: Our marketing is based on different regions: Germany/Austria/Switzerland; U.S./English-speaking countries; and the rest of the world. We use these segments to see how regional users behave differently, and how business KPIs differ in these different countries.
+        - **Frequency**: On how many days out of the last 28, 48 or 91 days has a user used our product?”
+        <div className={style.logoSpeaker}>**Manuel Eugster**</div> *Vice President Data Intelligence, Avira*
+    </div>
+</div>
 
-> "We use a lot of cohorts, including: free/paid users, new/existing users, operating systems (Windows 10 versus Windows 7), region, and frequency of use.
->
-> - **Free/paid users**: We look at how free users behave versus how paid users behave. Do paid users use the Smart Scan more often than free users, for example, or less often? What features do they use? We can then find behavioural twins in the free segment and push them to become paid.
-> - **New/existing users**: We define a 'new' user as someone using our product for 30 days or less. We've noted that people tend to go from free to paid within the first 30 days.
-> - **Operating systems**: We've learned that our system speed up cleaning product is more interesting for people who still are on Windows 7, because they are on old hardware.
-> - **Region**: Our marketing is based on different regions. We use these segments to see how regional users behave differently, and how business KPIs differ in these different countries."
->
-> **Manuel Eugster**, *Vice President Data Intelligence, Avira*
+<div className={style.logoTable}>
+    <img src="/logo-primephonic.png" className={style.logo}/>
+    <div className={style.logoText}>
+        "We've tested whether and how different pricing models—monthly/annual subscription, voucher codes, free trial periods, refer-a-friend—affect conversion. We're able to make cohorts out of those users, and to see whether a user entering through a voucher code is a better or worse converter, two months from now, three months from now, etc."<div className={style.logoSpeaker}>**Henrique Boregio**</div> *CTO, Primephonic*
+    </div>
+</div>
 
-### Testing and Conversion Analysis
-
-> "We've tested whether and how different pricing models—monthly/annual subscription, voucher codes, free trial periods, refer-a-friend—affect conversion. We're able to make cohorts out of those users, and to see whether a user entering through a voucher code is a better or worse converter, two months from now, three months from now, etc."
->
-> **Henrique Boregio**, *CTO, Primephonic*
+<div className={style.logoTable}>
+    <img src="/logo-spc.png" className={style.logo}/>
+    <div className={style.logoText}>
+        "We've created cohorts based on people who open the app but then don't use it; people that open the app but don't complete registration; people who open the app and do complete registrations; and those who open the app but don't purchase cards."<div className={style.logoSpeaker}>**Ola Dipeolu**</div> *Data and Insights Manager, SPC Card*
+    </div>
+</div>
 
 ## How can I track new users, resurrected users, retained users, and dormant users?
 
 To explore user behavior with lifecycle analysis, create cohorts for each group of users.
 
-In Mixpanel, you can define these groups in two simple steps:
+**In Mixpanel, you can define these groups in two simple steps:**
 
 1. Select a meaningful event (your value moment, such as "watch video")
 2. Check if a user has performed the event within your typical product usage interval (such as 7 days)
 
-### Example: Creating a Resurrected Users Cohort
-
-To create a cohort for resurrected users, you can select users who:
+**For example, to create a cohort for resurrected users, you can select users who:**
 
 - Performed "watch video" in the last 7 days
 - Did NOT perform "watch video" between 14 and 7 days ago  
 - Performed "watch video" between 21 to 14 days ago
 
-### Apply Similar Logic to Other Cohorts
+**Now let's apply similar logic to other cohorts:**
 
 - **New active users**: Performed "sign up" in the last 7 days AND "watch video" at least once within the same time window
 - **Retained users**: Performed "watch video" at least once in two consecutive intervals
 - **Dormant users**: Performed "watch video" in previous usage interval, but did not in the current one
+
+![image](/ChartUser02.png)
 
 Once you create the cohorts you'd like to track, head over to the Insights report in Mixpanel to visualize their growth over time.
 
