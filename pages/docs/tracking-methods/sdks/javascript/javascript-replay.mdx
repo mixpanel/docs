@@ -308,6 +308,8 @@ To use the direct integration:
 
 The direct integration automatically includes session replay properties (`$mp_replay_id`) on all events forwarded through mParticle, without requiring any additional code changes.
 
+**Note**: You must still enable Session Replay in your Mixpanel JavaScript SDK (for example by setting `record_sessions_percent` in `mixpanel.init`), and this client-side sampling configuration should align with your mParticle Session Recording Percentage setting.
+
 **Example Usage**
 
 ```javascript Javascript
