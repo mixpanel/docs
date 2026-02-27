@@ -6,22 +6,22 @@ import { Callout } from 'nextra/components'
 
 This developer guide will assist you in configuring your Swift app for [Session Replay](/docs/session-replay) using the [Session Replay SDK (Swift)](/docs/tracking-methods/sdks/swift/swift-replay). Learn more about [viewing captured Replays in your project here](/docs/session-replay).
 
-<Callout type="warning">
-  **iOS 26+ with Xcode 26: SwiftUI Automasking Issue**
+<Callout type="info">
+  **iOS 26+ with Xcode 26: SwiftUI Automasking Issue — Fixed in [v1.2.1](https://github.com/mixpanel/mixpanel-ios-session-replay-package/releases/tag/v1.2.1)**
 
-  Apple's iOS 26 introduces "Liquid Glass" rendering changes that affect automasking in Session Replay for SwiftUI apps. This is an industry-wide issue impacting all session replay vendors.
+  The iOS 26 "Liquid Glass" rendering changes that affected automasking in Session Replay for SwiftUI apps have been addressed in v1.2.1. Upgrade to v1.2.1 to get the fix.
 
-  **Who is affected:** SwiftUI apps using automasking for text or images, built with Xcode 26, and running on iOS 26+.
+  **Who was affected:** SwiftUI apps using automasking for text or images, built with Xcode 26, and running on iOS 26+.
 
-  **Impact:** Automasking may not function correctly, potentially exposing sensitive data that would normally be masked.
+  **If you are on v1.2.0:** Session Replay is disabled by default for apps built with Xcode 26+ running on iOS 26+. Upgrade to v1.2.1 and enable session replay by setting `config.enableSessionReplayOniOS26AndLater = true` during SDK initialization.
 
-  **Default behavior (v1.2.0+):** Session Replay is now disabled by default for apps built with Xcode 26+ running on iOS 26+.
+  **If you re-enabled Session Replay on v1.2.0:** Upgrade to v1.2.1 to get the fix.
 
-  **Re-enabling Session Replay:** If your app is built with Xcode 16 or earlier, does not use SwiftUI, or does not rely on automasking, it's safe to re-enable by setting `enableSessionReplayOniOS26AndLater = true` in your `MPSessionReplayConfig`.
+  **If you disabled automasking as a workaround:** Upgrade to v1.2.1 and enable the automasking config.
 
-  **If you rely on automasking in a SwiftUI app:** Disable automasking by passing `autoMaskedViews: []` to your config, then [manually mark sensitive views](/docs/tracking-methods/sdks/swift/swift-replay#mark-views-as-sensitive) using `.mpReplaySensitive(true)` and test thoroughly to ensure masking works as expected.
+  While the iOS 26 "Liquid Glass" fix is now available, we still recommend thoroughly testing session replays in your app before pushing to production. We also encourage explicitly masking sensitive views rather than relying solely on the SDK's automasking.
 
-  We are actively investigating fixes for this issue.
+  **Note:** The `enableSessionReplayOniOS26AndLater` flag is still used by SDK in v1.2.1 but will be removed in a future minor version.
 </Callout>
 
 ## Best Practices
