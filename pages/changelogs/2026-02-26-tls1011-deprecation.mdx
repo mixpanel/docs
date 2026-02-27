@@ -49,7 +49,7 @@ Mixpanel will also mirror the commonly accepted standards for TLS 1.2 and TLS 1.
 | | TLS_AES256_GCM_SHA384 |
 | | TLS_CHACHA20_POLY1305_SHA256 |
 
-# <u>What’s the impact of this change?</u>
+## <u>What’s the impact of this change?</u>
 
 Any data sent to Mixpanel’s Ingestion API endpoints after **April 1, 2026** via TLS 1.0 and 1.1 will not be accepted, meaning you will not receive analytics information from users who engage with your applications using the 1.0 and 1.1 versions of TLS.
 
@@ -78,7 +78,7 @@ Please Note: While we’ve listed some common versions above, compatibility can 
 For a comprehensive list of environments that may still use TLS 1.0/1.1, we recommend visiting the Browser/OS Official Documentation or referring to the [TLS Support Version History](https://en.wikipedia.org/wiki/Version_history_for_TLS/SSL_support_in_web_browsers) (External Resource).
 
 
-# <u>How to identify affected users</u>
+## <u>How to identify affected users</u>
 
 More than 99% of Mixpanel Web and API Traffic use TLS 1.2+; however, to assess how many users are potentially affected by this change in your projects:
 1. In an Insights report, select `All Events` as the primary metric
@@ -91,13 +91,13 @@ For example, the following Custom Property can help check against Chrome and Fir
 
 ![Custom Prop Example](/changelog/tls-dep-custom-prop-example.png)
 
-# <u>Recommended Actions</u>
+## <u>Recommended Actions</u>
 - **Client-Side Tracking:** Where possible, we recommend encouraging users to update their browsers or OS to a version that communicates using TLS 1.2+.
 - **Server-Side Tracking:** Verify your server environments are configured to use TLS 1.2+.
 - **Protocol Migration:** If your application currently utilizes legacy TLS versions, we recommend deprecating them in favor of TLS 1.2+ to ensure long-term security and compatibility.
 - **Proxying:** We understand that some devices have hardware/software limitations that may not be able to use TLS 1.2+. In these cases, if you would like to maintain tracking for these devices, you could consider implementing a proxy server that accepts TLS 1.0/1.1 from end users and forwards the tracking data to Mixpanel Ingestion APIs via TLS 1.2+.
 
-# <u>Support & Inquiries</u>
+## <u>Support & Inquiries</u>
 We have notified users whose projects were detected receiving legacy TLS 1.0/1.1 Ingestion traffic. 
 If you have questions about your project’s compatibility or need general assistance, please reach out to [Mixpanel Support](/docs/response-times#contacting-mixpanel-support). 
 
