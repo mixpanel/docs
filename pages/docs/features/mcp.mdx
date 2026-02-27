@@ -22,23 +22,33 @@ The MCP integration provides access to all core Mixpanel analysis capabilities t
 
 ### Analytics Functions
 
-- Segmentation: Event counts and unique users with filtering and grouping (run_segmentation_query)
-- Funnels: Conversion rate analysis across user journeys (run_funnels_query)
-- Retention: User engagement and return behavior tracking (run_retention_query)
-- Frequency: User engagement patterns and usage intensity (run_frequency_query)
+- Segmentation: Event counts and unique users with filtering and grouping (`Run-Segmentation-Query`)
+- Funnels: Conversion rate analysis across user journeys (`Run-Funnels-Query`)
+- Retention: User engagement and return behavior tracking (`Run-Retention-Query`)
+- Frequency: User engagement patterns and usage intensity (`Run-Frequency-Query`)
 
 ### Data Discovery & Exploration
 
-- Project Management: Access projects and workspace information (`get_projects`, `get_project_info`)
-- Event Discovery: Browse all available events in your project (`get_events`)
-- Event Properties: Explore properties available for each event (`get_event_properties`)
-- Property Values: Discover specific values for event properties (`get_event_property_values`)
-- Data Quality: Monitor and detect volume anomalies in data ingestion (`get_data_volume_anomalies`)
-- Lexicon Integration: Get direct links to event definitions and documentation in Mixpanel Lexicon (`get_lexicon_detail_url`)
+- Project Management: Access projects and workspace information (`Get-Projects`)
+- Event Discovery: Browse all available events in your project (`Get-Events`)
+- Property Names: Explore properties available for events or users (`Get-Property-Names`)
+- Property Values: Discover specific values for event or user properties (`Get-Property-Values`)
+- Data Quality: Get and filter data quality issues by event, property, type, or date range (`Get-Issues`)
+- Lexicon Integration: Get direct links to event or property definitions in Mixpanel Lexicon (`Get-Lexicon-URL`)
+
+### Data Management
+
+- Edit Event: Modify event metadata such as description, display name, tags, verification, and visibility (`Edit-Event`)
+- Event Details: Retrieve full event metadata before editing (`Get-Event-Details`)
+- Edit Property: Modify property metadata such as description, display name, hidden status, and PII classification (`Edit-Property`)
+- Create Tag: Create tags for organizing events and properties in Lexicon (`Create-Tag`)
+- Rename Tag: Rename existing tags across all associated events and properties (`Rename-Tag`)
+- Delete Tag: Remove tags from your project (`Delete-Tag`)
+- Dismiss Issues: Dismiss data quality issues using natural criteria such as event names, property names, or issue types (`Dismiss-Issues`)
 
 ### Qualitative Analysis
 
-- Session Replays: Analyze a specific user's replays in combination with event data (`get_user_replays_data`)
+- Session Replays: Analyze a specific user's replays in combination with event data (`Get-User-Replays-Data`)
 
 ### Query Capabilities
 
@@ -293,6 +303,55 @@ npx -y mcp-remote https://mcp-in.mixpanel.com/mcp --static-oauth-client-metadata
 
 ---
 
+## Building Custom Integrations (OAuth)
+
+If you are building a third-party MCP client or custom integration that connects to Mixpanel's MCP server, use the following OAuth configuration.
+
+### MCP Server Endpoints
+
+| Region | Endpoint |
+| ------ | -------- |
+| US     | `https://mcp.mixpanel.com/mcp` |
+| EU     | `https://mcp-eu.mixpanel.com/mcp` |
+| IN     | `https://mcp-in.mixpanel.com/mcp` |
+
+### OAuth Discovery
+
+Clients can discover the full OAuth configuration at the `/.well-known/oauth-authorization-server` path on the MCP server URL (e.g., `https://mcp.mixpanel.com/.well-known/oauth-authorization-server`).
+
+### Dynamic Client Registration
+
+Register your client at the registration endpoint for the appropriate region:
+
+| Region | Registration Endpoint |
+| ------ | --------------------- |
+| US     | `https://mixpanel.com/oauth/mcp/register/` |
+| EU     | `https://eu.mixpanel.com/oauth/mcp/register/` |
+| IN     | `https://in.mixpanel.com/oauth/mcp/register/` |
+
+### Authorization Code Flow with PKCE
+
+Mixpanel's MCP server uses the **Authorization Code flow with PKCE (S256)**:
+
+- **Authorization endpoint:** `https://{mixpanel_domain}/oauth/authorize`
+- **Token endpoint:** `https://{mixpanel_domain}/oauth/token/`
+- **Supported grant types:** `authorization_code`, `refresh_token`
+- **Supported response types:** `code`
+- **Code challenge method:** `S256`
+- **Token endpoint auth methods:** `none`, `client_secret_basic`, `client_secret_post`
+
+Where `{mixpanel_domain}` is `mixpanel.com` (US), `eu.mixpanel.com` (EU), or `in.mixpanel.com` (IN).
+
+### Required OAuth Scopes
+
+The following scopes are **mandatory** — connections will fail without all of them:
+
+```
+projects analysis events insights segmentation retention data:read funnels flows data_definitions
+```
+
+---
+
 ## Use Case Examples
 
 **Channel Performance Analysis**
@@ -377,12 +436,17 @@ npx -y mcp-remote https://mcp-in.mixpanel.com/mcp --static-oauth-client-metadata
 - **Claude Pro:** Web interface with native MCP support
 - **Claude Free:** Desktop app with configuration setup
 - **Cursor:** AI-powered code editor integration
+- **Google Gemini CLI:** Command-line interface with MCP support
+- **ChatGPT (OpenAI):** Web interface with MCP connector support
 
 **Integration Architecture**
 - **Protocol:** Model Context Protocol (MCP)
-- **Connection:** Server-sent events (SSE)
-- **Authentication:** OAuth with Mixpanel
-- **Endpoint:** `https://mcp.mixpanel.com/mcp`
+- **Transport:** Streamable HTTP
+- **Authentication:** OAuth 2.0 with PKCE (S256)
+- **Endpoints:**
+  - US: `https://mcp.mixpanel.com/mcp`
+  - EU: `https://mcp-eu.mixpanel.com/mcp`
+  - IN: `https://mcp-in.mixpanel.com/mcp`
 
 ---
 
