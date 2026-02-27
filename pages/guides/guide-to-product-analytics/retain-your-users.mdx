@@ -1,0 +1,178 @@
+---
+title: "Retain Your Users"
+description: "Learn to identify user drop-off points, measure retention effectively, and focus on users who find the most value in your product."
+---
+
+import { Callout } from 'nextra/components'
+import style from './logotable.module.scss';
+
+# Retain Your Users
+
+## Questions answered
+- [Where are my users dropping off?](#where-are-my-users-dropping-off)
+- [Should B2B and B2C companies measure drop off on their user's path to value differently?](#should-b2b-and-b2c-companies-measure-drop-off-on-their-users-path-to-value-differently)
+- [How can I measure user drop off?](#how-can-i-measure-user-drop-off)
+- [Why should I measure retention?](#why-should-i-measure-retention)
+- [How do I measure retention?](#how-do-i-measure-retention)
+- [When it comes to retention, what's the difference between a good PM and a great PM?](#when-it-comes-to-retention-whats-the-difference-between-a-good-pm-and-a-great-pm)
+- [Who are my most retained users?](#who-are-my-most-retained-users)
+
+In previous chapters, we've established that the most successful products are those that bring the most value to users. That's why measuring value is key to product analytics, whether it's defining activation, tracking the growth of DAU/WAU/MAU, or grouping users by their level of engagement.
+
+Some products can deliver an incredible amount of value in a single value moment. For example, you download an AR measuring app, use it once when you buy a couch, and delete it for good. You open a dating app, swipe on the first person you see, fall in love at first sight, and never use the app again. **But for most digital products, the only way to bring a lot of value to users is to keep them coming back regularly and engaging with your product.**
+
+## Where are my users dropping off?
+
+Users are more likely to retain when they successfully experience value in your product early and often. But somewhere on their path to value, at least some users are going to drop off. So it's not surprising that one of the most popular questions in product analytics is (and something our support team at Mixpanel gets asked frequently) **"Where are my users dropping off?"**
+
+To realize the value of your business, a user needs to survive two key drop offs in their product journey:
+
+1. **The value moment**, which is key to activation, engagement, and retention (the moment when they get value)
+2. **The value exchange** (or payment), which is essential to monetization and business health (the moment when you get value)
+
+![image](/UserDropoffChart.png)
+
+The value moments for the user and the business are sometimes the same. For example, the value moment in shopping apps (e.g., "complete checkout") is naturally tied to revenue. People get value when they buy an item they like; shops get value when people buy that item.
+
+More often, however, the journey to value and the journey to value exchange in digital products are two different journeys. For a fitness app like ClassPass, for example, people get the value when they complete workouts, while ClassPass gets value when people buy workout credits.
+
+Which one of the two drop offs should you focus on? Focusing on value is more helpful for building better products than focusing on revenue. If you optimize your product to get users to pay you but don’t optimize for the value they get, soon you will have a churn problem. In fact, it’s the perfect way to end up with a leaky bucket—many customers who pay once and never come back. This goes back to the point made earlier in the book: if people don’t get value from your product, they won’t use it, and of course they won’t pay for it.
+
+**Key insights:**
+- Drop-offs most often occur before the value exchange moment (e.g., before a person submits their credit card information, makes a purchase, etc.).
+- The more important drop-off point to track, however, is the drop-off before the value moment. The more people reach value in your product, the more people will reach value exchange.
+- The fewer steps to get to the value moment, the fewer points of drop-off you'll encounter.
+
+## Should B2B and B2C companies measure drop off on their user's path to value differently?
+
+**No.** B2B enterprise products are also no longer immune to this type of churn. For a while, CTOs, CIOs, and CEOs of Fortune 2000 companies were purchasing software based on what the analyst firms told them (regardless of whether end users liked or hated the software). But now, especially with freemium products, employees often trial different tools, or purchase paid plans with their credit card, and then expense it (until their IT department figures out that it makes more sense to get a company license). And in many cases, SaaS contracts don’t get renewed shortly after an email goes out to the team with the subject line: “Does anyone use this?”
+
+**Enterprise buyers are not that different from consumers now.** So for any product, B2C or B2B, understanding and measuring value comes first.
+
+## How can I measure user drop off?
+
+We've established that the end goal—the moment where value is realized—should be crystal clear, as should the points leading up to that moment. **If users open your app or product for the first time, what is the shortest and most ideal path to the value moment?** That is the funnel to work with.
+
+Each step, screen, page, or button in that journey is critical and the conversion from one to the next will point you to the areas you need to optimize.
+
+The Mixpanel Funnels report helps you understand and measure drop off within a product.
+
+To build a funnel, head over to the Funnels report in Mixpanel and add steps by selecting events from the drop-down list.
+
+For example, when you select "sign up" and "watch video," you'll see how many people out of those who sign up go on to watch a video. Use filters and exclusion steps (e.g., "exclude users who did not do X") and modify conversion criteria (e.g., rearrange the order or select "any order funnels") to customize your question for Mixpanel.
+
+If you’re thinking, “My product is too complex and unique to have a single path to value,” this is a sign of an insufficiently thought-out product. If you can’t express the path to value and build a funnel, go back to the “sign up” page of your product. As a user, go through all the steps to define the dominant canonical journey in your product.
+
+### Key Questions to Ask
+
+With this funnel in mind, as a PM you can expand the range of questions and ways to focus:
+
+- **Where is the lowest conversion rate?**
+- **Do converted users share certain characteristics of behavior?**
+- **Are users performing certain steps more than once?**
+- **Do users get hung up on certain steps longer than on others?**
+
+And finally, "Where are my users dropping off?" is a good question to ask, but only if you get to the question behind it: **"Where should I direct my resources and creativity to increase the number of users that reach the value moment?"**
+
+### Industry Example
+
+<div className={style.logoTable}>
+    <img src="/logo-deliveroo.svg" className={style.logo}/>
+    <div className={style.logoText}>
+        "Deliveroo wants to ensure its restaurant partners are successful, that they get orders and high ROI from using the company's services. We look closely at the conversion funnel from sign up to the first order. For each market, we have targets we want partners to hit, so we know they are reducing churn and increasing conversion. We track how well our restaurant partners are doing on the platform. Are they engaged? Are they taking actions that are good indicators of whether they're going to be successful? How long has it taken them to onboard? We want our partners to be able to go from making the decision to be on Deliveroo to actually taking their first order in a matter of hours, and being able to look at these metrics is what's going to enable us to do that."<div className={style.logoSpeaker}>**Jordan Ng**</div> *Senior Product Manager, Deliveroo*
+    </div>
+</div>
+
+## Why should I measure retention?
+
+So: you've mastered conversion analysis, tracked your users' journey to their first value moment, and then streamlined your UX so as many users as possible reach the value exchange moment where you actually make some revenue. Congratulations! 
+
+However: **in a world where every user knows what is best for themselves and can delete your app or unsubscribe from your product at the click of a link, your product can survive only if it repeatedly brings value to users.** As with a reality show, you might win the challenge one week, but everything resets for next week’s challenge, and if you don’t show up and bring value, you might just get cut.
+
+It's not enough to ask: "Does my product bring value to users?" Instead, you have to ask **"Does my product bring value to users—over and over and over again?"**
+
+To put it another way: "Grey's Anatomy" remains on air after 16 years because, after all this time, it still brings an addictive emotional release. **Is your product the "Grey's Anatomy" of your industry? Or will it be cancelled after one season?**
+
+### Common Retention Mistakes
+
+With this in mind, as a PM, you don’t need convincing that measuring retention or churn is valuable. You’re probably already tracking it, with product analytics or in some other way. But the key is not to set out to “fix churn” through interdepartmental task forces and changes to your pricing model. You’ll need to fix your product itself. Low churn and high retention rate are two sides of the same coin—and reliable signals of lasting product success.
+
+Retention data can show you which customers are more likely to stay, and how they compare to those who churn. Such insights are helpful by themselves, but even more so as a starting point for more qualitative digging. The paths and actions that retained users take in your product can inspire product optimizations that help more new users find value faster and stick around for longer.
+
+Since retention is simply the percent of users who stay with your product and continue using it in a given period, calculating it is pretty straightforward. You just take the number of your active users during that period divided by the number of active users at the beginning of the period. And yet PMs often get this metric wrong.<sup>4</sup> Brian Balfour from Reforge says that there are three mistakes companies make when defining their retention metric:
+
+#### Focus on revenue
+SaaS companies often focus on monthly or annual revenue retention instead of measuring the frequency and depth of product usage.
+
+#### Choosing the wrong frequency  
+Some products should focus on daily retention vs. weekly or monthly. This depends on your product's natural usage interval.
+
+#### Failure to tie retention back to value
+Your retention metric should reflect the number of retained users who experience value. Defining what "active" means for your product is a great place to start.
+
+### Industry Example
+
+<div className={style.logoTable}>
+    <img src="/logo-deliveroo.svg" className={style.logo}/>
+    <div className={style.logoText}>
+        "Deliveroo looks at one-week and three-week retention to see if restaurants are engaging with the platform. Are they finding value in using Hub? You don't necessarily need to use Hub to get orders. You could get set up and then completely go on autopilot and your orders can come in. You may not necessarily need to come back to that portal, but we want to help you grow and manage your business. It's an opportunity for us to educate you, give direction, and help you improve your business so we want to measure that engagement and retention."<div className={style.logoSpeaker}>**Jordan Ng**</div> *Senior Product Manager, Deliveroo*
+    </div>
+</div>
+
+## How do I measure retention?
+
+**N Day retention** calculates the percentage of users who come back on a specific day.
+
+**Unbounded retention** calculates the percentage of users who come back on a specific day (or week, month, etc.) or any time unit afterwards.
+
+To analyze retention in Mixpanel, select up to two events to see how many people come back to perform the same event.
+
+## When it comes to retention, what's the difference between a good PM and a great PM?
+
+Remember how you identified the user interaction that symbolizes the moment when your users get value back? That should be the metric that you build your retention reports around. **A good PM gets this far and, once a month, they look at the report to see if things went up or down, they nod, and then go back to not looking at it.**
+
+**A great PM focuses on the users that are getting the most value**—they are likely the best fit for your product. A common misstep for new PMs is to focus on the users that churned and obsess about how to get them back. Instead, **obsess over the users that are getting value**. Look at the full breadth of behavior for those users; interview them; send them an email; offer them a gift card in exchange for 15 minutes of their time. Build the best, most valuable product for these users and you won't have a churn problem in the first place.
+
+### Expert Perspectives
+
+<div className={style.logoTable}>
+    <img src="/logo-ziprecruiter.png" className={style.logo}/>
+    <div className={style.logoText}>
+        "A good PM builds a value-moment retention report and analyses on a regular cadence. They can make conjectures about how feature releases or product updates impacted retention rate. A great PM breaks down retention data by cohorts to understand what causes churn. They obsess over the users that get the most value, connect with their use cases, and build features specifically for them.
+
+        A great PM works with their data science team on a definition that makes sense for the business. They also account for 'happy churn.' Especially with transactional services, some users churn because your service works as intended, which is a good thing."<div className={style.logoSpeaker}>**Akio Bandle**</div> *Senior Product Manager, ZipRecruiter*
+    </div>
+</div>
+
+<div className={style.logoTable}>
+    <img src="/logo-vrbo.png" className={style.logo}/>
+    <div className={style.logoText}>
+        "A great PM understands the difference between correlation and causation; they can figure out that a higher conversion rate among more intentful visitors is not a signal that they need to drive that particular user behavior, but that it's a function of the way they've built their analysis. They don't go after opportunities based on that information and then find themselves in a position where they have to defend their sizing of that opportunity and why they prioritized that work.
+
+        A great product manager needs to see the difference between an actual trend that can be corrected or adjusted... and a data point."<div className={style.logoSpeaker}>**John Meakin**</div> *Lead Statistician, Vrbo, part of Expedia Group*
+    </div>
+</div>
+
+## Who are my most retained users?
+
+Mixpanel can help you understand which users are sticking around longer and continue to get value.
+
+You can create cohorts for retained users directly from the Retention report. Simply click a segment of the Retention report, and click the "create cohort" button.
+
+You can then investigate what causes your users to be retained by exploring the different properties of your "retained users" cohort in the Insights report.
+
+![image](/retained_gif.gif)
+
+<Callout type="info">
+  4. Why Retention is the Silent Killer (2017). Reforge.
+  https://www.reforge.com/blog/retention-engagement-growth-silent-killer
+</Callout>
+
+
+## Next Steps
+
+### Grow and scale
+
+Now that you understand retention and how to identify your most valuable users, the next chapter focuses on growth strategies and scaling your product.
+
+[Read Chapter 5 →](/guides/guide-to-product-analytics/grow-and-scale)
