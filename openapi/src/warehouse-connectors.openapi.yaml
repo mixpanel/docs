@@ -19,8 +19,6 @@ security:
 tags:
   - name: Warehouse Imports
     description: Manage warehouse data imports
-  - name: Run an import
-    description: Trigger an import sync via API
 
 paths:
   /projects/{projectId}/warehouse-sources/imports:
@@ -375,7 +373,7 @@ paths:
         content:
           application/json: {}
       tags:
-        - Run an import
+        - Warehouse Imports
       summary: Run an import
       description: |
         Triggers an immediate sync for a given warehouse import.
