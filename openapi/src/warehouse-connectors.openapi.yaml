@@ -19,8 +19,6 @@ security:
 tags:
   - name: Warehouse Imports
     description: Manage warehouse data imports
-  - name: Run an import
-    description: Trigger an import sync via API
 
 paths:
   /projects/{projectId}/warehouse-sources/imports:
@@ -109,7 +107,7 @@ paths:
           - `3600000000000`: Hourly
           - `86400000000000`: Daily
           - `604800000000000`: Weekly
-        - **databricks_params** (object): Databricks-specific cluster configuration (only for Databricks sources)
+        - **databricks_params** (object): Databricks-specific cluster configuration (only for Databricks sources). Note: this is a full replacement, not a partial merge. Always provide the complete desired cluster configuration.
 
         ## Pause/Resume Behavior
 
@@ -375,7 +373,7 @@ paths:
         content:
           application/json: {}
       tags:
-        - Run an import
+        - Warehouse Imports
       summary: Run an import
       description: |
         Triggers an immediate sync for a given warehouse import.
@@ -679,6 +677,9 @@ components:
         company_column_name:
           type: string
           description: Required for B2B projects. The column containing the company identifier.
+        device_column_name:
+          type: string
+          nullable: true
         sync_mode:
           $ref: "#/components/schemas/SyncMode"
         run_every:
