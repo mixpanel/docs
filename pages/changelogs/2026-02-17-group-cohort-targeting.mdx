@@ -1,0 +1,29 @@
+---
+title: "Feature Flags — Group Cohort Targeting"
+slug: "changelog-2026-02-17-group-cohort-targeting"
+hidden: false
+createdAt: "2026-02-17T13:00:00.000Z"
+updatedAt: "2026-02-17T13:00:00.000Z"
+date: "2026-02-17"
+thumbnail: "/changelog/data-group-cohort-targeting.png"
+description: "Target via group cohorts — cohorts of companies, organizations, or any data group entity — for precise B2B rollouts."
+isAnnouncement: false
+---
+
+<ChangelogPostHeader
+  date="2026-02-17"
+  image="/changelog/data-group-cohort-targeting.png"
+  title="Feature Flags — Group Cohort Targeting"
+/>
+
+Feature flag rollout groups can now target **group cohorts** — cohorts built on a group key dimension such as Company, Organization, or any custom group entity.
+
+**What's new:**
+- **Target groups, not just users:** When a flag's Variant Assignment Key is set to a group key (e.g., `company_id`), the cohort builder automatically shifts its identity-dimension to that group (instead of users).
+- **B2B-ready rollouts:** Build cohorts like "Enterprise companies with >50 seats" or "Organizations on the Pro plan" and target them directly for rollouts.
+- **Same cohort builder:** Group cohorts are created in the existing cohort builder, scoped to the relevant group key — no new tools to learn.
+- **Combine with [runtime targeting](/docs/featureflags#runtime-targeting):** Layer runtime properties (e.g., platform, region) on top of group cohort targeting with AND conditions for precise control.
+
+Group cohorts follow the same ~2-hour refresh cadence as user cohorts.
+
+[Learn more about Group Cohort Targeting →](/docs/featureflags#rollout-groups)

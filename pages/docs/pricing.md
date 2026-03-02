@@ -32,7 +32,7 @@ The high-level differences between the three are:
 
 - **Free:** Mixpanel is usage-based and you can use it for free for as long as you want, no trial needed. If you are new to Mixpanel and want to test it out, we encourage you to use our free plan and upgrade once you have an estimate of your project’s volume. Limited to a maximum of 5 saved reports per user account and 1M total events. Features like cohorts, lookup tables, custom properties, or permissions are not included.
 - **Growth:** The typical Growth plan customer is a small team using Mixpanel (fewer than 50 employees). Growth plans purchased after February 2025 include the first 1M events free.
-- **Enterprise:** Designed for large teams that require access controls and permissions, data governance features, dedicated onboarding support, and account management. Some exclusive reports for Enterprise are Signal, Experiments, and Impact, with features like Data Views, sensitive data classification, or SSO.
+- **Enterprise:** Designed for large teams that require access controls and permissions, data governance features, dedicated onboarding support, and account management. Some exclusive reports for Enterprise are Signal, Experiments, and Impact, with features like Data Views and sensitive data classification.
 
 ## Choosing the Right Plan
 

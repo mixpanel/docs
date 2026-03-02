@@ -1,6 +1,8 @@
 # Syncing cohorts to a custom webhook
 
-Mixpanel supports syncing cohorts to a custom webhook URL that you provide via our Integrations UI. When a sync is established, we will sync the full contents of the cohort to the URL and subsequently sync diffs (ie: the users who entered or exited the cohort since the last sync).
+Mixpanel lets you sync cohorts to a custom webhook URL that you provide through the Integrations UI. After you establish a sync, Mixpanel sends the full cohort to the URL and then sends incremental updates that include users who enter or exit the cohort since the previous sync.
+
+This capability allows you to export cohorts to destinations that do not have a [native Mixpanel integration](/docs/cohort-sync/integrations).
 
 ## Prerequisites
 * A paid Mixpanel plan
@@ -114,7 +116,7 @@ Consider A, B, C, D, E, and F as users. The sync interval is 30 minutes. T repre
 * **T+10mins**: B, D leave the cohort
 * **T+20mins**: E, F join the cohort
 * **T+30mins**: `add_members(E, F)` | `remove_members(B, D)`
-* <...No cohort changes...>
+* \<...No cohort changes...>
 * **T+1h**: `add_members()` | `remove_members()` calls are made to the customer webhook
 
 ### Failed Syncs
