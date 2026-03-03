@@ -36,6 +36,10 @@ import { Cards, Callout, Steps } from 'nextra/components'
 - **Feature Flag API Request** - is a call made to a feature flag API to retrieve the current state or configuration of one or more feature flags. This request allows an application to dynamically determine which features should be active for a user
 - **Context** - key value pairs mapping variant assignment keys to user values for variant assignment
 
+<Callout type="info">
+Users will not be reassigned different variants when purely increasing overall rollout %. If rollout % is initially increased and later decreased, or if variant splits are altered, then variation reassignment may occur for users.
+</Callout>
+
 
 ## Types of Feature Flags
 
