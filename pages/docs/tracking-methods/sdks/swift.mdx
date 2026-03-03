@@ -245,6 +245,51 @@ Mixpanel.mainInstance().reset()
     If you want to use IFV(identifierForVendor) as the distinct_id, you can set `MIXPANEL_UNIQUE_DISTINCT_ID` in build settings `Active Compilation Conditions` on the Mixpanel framework target. The IFV will not change when you call `reset`, but will change upon app uninstalls/reinstalls.
 </Callout>
 
+### Custom Device ID Generation
+
+The Swift SDK provides a [`deviceIdProvider`](https://mixpanel.github.io/mixpanel-swift/Classes/MixpanelOptions.html) closure in `MixpanelOptions` for implementing custom device ID generation logic. This allows you to control where device IDs are stored and whether they persist across `.reset()` calls.
+
+<Callout type="warning">
+    Using a custom device ID provider is an architectural decision that should be made at project inception. Changing this after deployment can cause user identity management issues.
+</Callout>
+
+Configure the device ID provider using `MixpanelOptions` when initializing the SDK. If the provider returns `nil` or an empty string, the SDK will fall back to generating a default device ID (UUID or IDFV).
+
+**Example Usage**
+```swift Swift
+// create a device ID provider
+let options = MixpanelOptions(
+    token: "YOUR_PROJECT_TOKEN",
+    deviceIdProvider: {
+        return getYourCustomDeviceId()
+    }
+)
+
+let mixpanel = Mixpanel.initialize(options: options)
+```
+
+**Persistent vs Ephemeral IDs**
+
+Returning the same value each time the provider is called creates a persistent device ID that survives `.reset()` calls. Returning different values generates a new device ID on each reset.
+
+```swift Swift
+// persistent ID - survives reset() calls
+let options = MixpanelOptions(
+    token: "YOUR_PROJECT_TOKEN",
+    deviceIdProvider: {
+        return getStoredDeviceId() // returns same value every time
+    }
+)
+
+// ephemeral ID - changes on reset() calls
+let options = MixpanelOptions(
+    token: "YOUR_PROJECT_TOKEN",
+    deviceIdProvider: {
+        return generateNewDeviceId() // returns new value each time
+    }
+)
+```
+
 
 ## Storing User Profiles
 
