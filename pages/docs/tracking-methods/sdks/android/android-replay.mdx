@@ -148,6 +148,7 @@ The current configuration options are:
 | `recordingSessionsPercent` | This is a value between `0.0` and `100.0` that controls the sampling rate for recording session replays. <br/> At `0.0` no sessions will be recorded. At `100.0` all sessions will be recorded.  | `100.0` |
 | `flushInterval` | Specifies the flush interval (in seconds) at which session replay events are sent to the Mixpanel server. | `10` |
 | `enableLogging` | This is a boolean value that determines whether or not debugging logs are printed to the console. | `false` |
+| `remoteSettingsMode` | Setting for handling remote configuration during SDK initialization. Can be `disabled`, `fallback`, `strict`. | `disabled` |
 
 **autoMaskedViews Example Usage**
 
@@ -194,6 +195,23 @@ You can flush any currently queued session replay events at any time by calling 
 ```kotlin
 MPSessionReplay.getInstance()?.flush()
 ```
+
+## Remote Configuration
+
+By setting `remoteSettingsMode` you can quickly set SDK options for your project in mixpanel under `Settings > Project > Session Replay`.
+
+Three modes are available:
+
+- `disabled`: Do not use remote configuration and proceed to use the hardcoded initial options provided in `MPSessionReplay.initialize`
+- `fallback`: Attempt to retrieve remote configuration and proceed with those settings. If there is failure or timeout (500 ms), will use initial provided options.
+- `strict`: Will prevent session replay from auto-starting unless a remote configuration was successfully retrieved.
+
+Can use this setting to quickly update and adjust configurations to your liking.
+
+List of currently supported remote settings:
+- `recordingSessionsPercent`
+
+Settings that are not yet supported, will not appear in the remote configuration. These non-included options will use the value that was initially set by the user for all `remoteSettingsMode` options.
 
 ## Replay ID
 

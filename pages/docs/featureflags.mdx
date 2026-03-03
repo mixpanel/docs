@@ -36,13 +36,17 @@ import { Cards, Callout, Steps } from 'nextra/components'
 - **Feature Flag API Request** - is a call made to a feature flag API to retrieve the current state or configuration of one or more feature flags. This request allows an application to dynamically determine which features should be active for a user
 - **Context** - key value pairs mapping variant assignment keys to user values for variant assignment
 
+<Callout type="info">
+Users will not be reassigned different variants when purely increasing overall rollout %. If rollout % is initially increased and later decreased, or if variant splits are altered, then variation reassignment may occur for users.
+</Callout>
+
 
 ## Types of Feature Flags
 
 We support the following types of Flags 
 1. **Feature Gate** : Toggle a feature on or off for targeted users or all users. Useful for phased or controlled rollout.
 2. [**Experiment**](/docs/experiments) : Deliver different variant experiences (e.g., layouts, flows, pricing) to a targeted group of users. Enables measuring and analyzing impact.
-3. [Coming Soon] **Dynamic Config** : Configure features with flexible key-value pairs instead of just on/off. It lets you:
+3. **Dynamic Config** : Configure features with flexible key-value pairs instead of just on/off. It lets you:
     - Pass JSON payloads (e.g., `{"cta_text": "Buy now", "discount": 20}`) to customize behavior or UI dynamically
     - Update values instantly without redeploying code
 
@@ -110,12 +114,17 @@ This method enables targeting users immediately based on device or platform prop
 **Filter by Runtime Event**
 
 This method enables targeting users immediately when they perform specific actions tracked with `mixpanel.track()`. For example, show a feature to users the first time they complete onboarding, or target users who added items to cart.
-- When building a cohort, navigate to `+ Create New`, then click on `Runtime Event` to add a new runtime event filter.
-- You can optionally configure the targeting to apply only the first time a user performs an action after the flag is enabled. After the session where the user takes the action for the first time, they will exit the targeted cohort.
-- Runtime events can include filters on event properties for more fine-grained control (e.g., purchase_amount > $100, page_path contains '/checkout').
+- When adding a new filter to your rollout group, navigate to `+ Create New`, then click on `Runtime Event` to add a new runtime event filter.
+- Select an event, then optionally enable **"First Time"** to trigger only on the user's first occurrence of that event.
+- Configure the **duration** to control how long the variant persists: "End of Session" or "Indefinitely".
+- Add **property filters** for more fine-grained control (e.g., `purchase_amount > 100`, `page_path contains '/checkout'`).
 - **Examples**:
   - Target users the first time they complete the 'Sign Up' event
   - Target users who trigger 'Add to Cart' event with product_category = 'premium'
+
+<Callout type="info">
+    For detailed configuration options and examples, see our [Runtime Events guide](/docs/feature-flags/runtime-events).
+</Callout>
 
 ### Rollout Percentage
 
