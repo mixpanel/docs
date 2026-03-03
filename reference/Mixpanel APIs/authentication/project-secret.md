@@ -1,5 +1,5 @@
 ---
-title: 'Project Secret [Deprecating]'
+title: 'Project Secret [Deprecated]'
 category:
   uri: Mixpanel APIs
 content:
@@ -10,7 +10,7 @@ privacy:
 <Callout icon="❗️" theme="error">
   Deprecation Warning
 
-  This authentication method is in the process of being deprecated. Please use Service Accounts instead. We will continue to support Project Secret authentication for legacy customers indefinitely so you aren't at risk of your existing scripts breaking, but we highly recommend migrating to Service Accounts for any subsequent usage.
+  This authentication method has been deprecated and will be fully retired on **March 3, 2027**. Please migrate to [Service Accounts](../../Service%20Accounts%20API/service-accounts-api.md) instead, as they are the recommended authentication mechanism going forward.
 </Callout>
 
 Before we introduced Service Accounts, Project Secret was the standard authentication mechanism for importing and exporting data in your project.
