@@ -24,13 +24,3 @@ privacy:
 **Projects with[Classified Data](https://help.mixpanel.com/hc/en-us/articles/360044295131-Data-Classification)**
 
 * Your results may be filtered based on the Service Account's sensitivity settings.
-
-## Project Secret
-
-[Project Secret Authentication Details](ref:project-secret)
-
-<Callout icon="❗️" theme="error">
-  Please migrate existing integrations to use Service Account authentication
-
-  Project Secret authentication is in the process of being deprecated. This authentication method does not currently have an EOL date.
-</Callout>

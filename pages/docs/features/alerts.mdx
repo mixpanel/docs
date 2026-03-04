@@ -41,6 +41,77 @@ Create an alert for your Insights and Funnels reports and be notified when r
 
 ![](/255713687-91a2bb99-3a79-43d4-9d97-3b397aab0305.png)
 
+## Webhook Alerts
+Webhook Alerts allow you to send alert notifications from Mixpanel to third-party platforms via HTTP webhooks. When a configured alert is triggered, Mixpanel will automatically send a payload containing alert details to your specified endpoint.
+
+**Creating a Webhook:**
+
+1. Navigate to **Gear Icon** > **Integrations** > **Notification Webhook**. Note this is separate to [Custom Webhooks](/docs/cohort-sync/webhooks) (meant to sync cohorts)
+
+2. Under Project Webhooks, click **"+ Add Webhook"**
+
+3. Complete the webhook configuration:
+    - **Name** - Enter a descriptive name for this webhook (e.g., "Production Alerts")
+    - **URL** - Enter the HTTPS endpoint where alert payloads will be sent (e.g., `https://example.com/webhooks/mixpanel`)
+    - **Username** - If your endpoint requires HTTP Basic Authentication, enter the username
+    - **Password**  - Enter the corresponding password for authentication
+4. Click **Test connection** to verify connectivity to your endpoint
+5. Click **Submit** to save the webhook
+
+**Configuring Webhook Delivery for an Alert:**
+
+Once you've created a webhook, you can use it to receive alert notifications:
+
+1. When creating or editing an alert, scroll to the **Notify** section
+2. Locate the **via Webhook** dropdown
+3. Select your webhook from the available options
+
+![image.png](/webhookalert2.png)
+
+4. Complete the rest of your alert configuration and save
+
+**Sample payload received from the Webhook**
+
+You'll receive a POST request to your endpoint, containing a payload with the following structure:
+```json
+{
+    "event_type": "custom_alert_triggered",
+    "alert":
+    {
+        "id": 123123,
+        "name": "Webhook Test",
+        "creator": "Last Name, First Name",
+        "creator_email": "first_name.last_name@example.com",
+        "project_id": 9876543,
+        "project_name": "My Prod project",
+        "fired_at": "2026-02-06T10:53:30Z",
+        "workspace_id": 12345,
+        "workspace_name": "All Project Data"
+    },
+    "condition":
+    {
+        "type": "absolute",
+        "operator": ">",
+        "threshold": 0,
+        "current_value": "20,000",
+        "formatted_value": "20,000",
+        "sentence": "above 0"
+    },
+    "report":
+    {
+        "name": "Custom Alert Insights Report",
+        "type": "insights",
+        "url": "https://mixpanel.com/project/9876543/view/12345/app/insights?mp_source=webhook&alert_id=123123#report/BOOKMARKID"
+    },
+    "links":
+    {
+        "report_url": "https://mixpanel.com/project/9876543/view/12345/app/insights?mp_source=webhook&alert_id=123123#report/BOOKMARKID",
+        "edit_alert_url": "https://mixpanel.com/settings/account/alert-settings/alert/123123?mp_source=webhook",
+        "root_cause_analysis_url": "https://mixpanel.com/project/9876543/view/12345/app/boards/?mp_source=webhook#rca=123123&time=1770404010"
+    }
+}
+```
+
 
 ## View & Manage Alerts
 
