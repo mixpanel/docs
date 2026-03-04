@@ -39,7 +39,7 @@ requests.get(
 
 > 🚧 Owner or Admin Permissions Required
 >
-> You must have Owner or Admin permissions to manage a project's Service Accounts. Learn more in our [permissions help doc](https://mixpanelsupport.zendesk.com/hc/en-us/articles/360024613412).
+> You must have Owner or Admin permissions to manage a project's Service Accounts. Learn more in our [permissions help doc](https://docs.mixpanel.com/docs/orgs-and-projects/roles-and-permissions#permissions).
 
 <HTMLBlock>{`
 <div class="mixpanel-custom-two-column">
@@ -87,7 +87,7 @@ requests.get(
 </style>
 `}</HTMLBlock>
 
-Any service account you create from the project settings page will be automatically be assigned an admin role. Deleting a service account will revoke access only from that project.
+Any service account you create from the project settings page will be automatically be assigned an organization member role. Deleting a service account will revoke access only from that project.
 
 <HTMLBlock>{`
 <div class="create-service-account">
