@@ -39,7 +39,7 @@ requests.get(
 
 > 🚧 Owner or Admin Permissions Required
 >
-> You must have Owner or Admin permissions to manage a project's Service Accounts. Learn more in our [permissions help doc](https://mixpanelsupport.zendesk.com/hc/en-us/articles/360024613412).
+> You must have Owner or Admin permissions to manage a project's Service Accounts. Learn more in our [permissions help doc](https://docs.mixpanel.com/docs/orgs-and-projects/roles-and-permissions#permissions).
 
 <HTMLBlock>{`
 <div class="mixpanel-custom-two-column">
@@ -52,12 +52,12 @@ requests.get(
     </p>
   </div>
   <div class="image-container">
-  	<img src="https://files.readme.io/a77f1df-org_settings.png"/>    
+  	<img src="https://files.readme.io/2eb540d5d067b44feb76d057cd628dd9a0648c6310607f6d7332dff433fa22b4-org_SA.png"/>    
   </div>
 </div>
 <div class="mixpanel-custom-two-column">
   <div class="image-container">
-  	<img src="https://files.readme.io/37798c5-25f47be-Screen_Shot_2020-07-14_at_4.30.49_PM.png"/>
+  	<img src="https://files.readme.io/0e83a19d5f7b55a0e3369e706a69515f14e7f4fd6fda17b0a83da0eb790e76cf-project_SA.png"/>
   </div>
   <div>
     <p>
@@ -87,11 +87,11 @@ requests.get(
 </style>
 `}</HTMLBlock>
 
-Any service account you create from the project settings page will be automatically be assigned an admin role. Deleting a service account will revoke access only from that project.
+Any service account you create from the project settings page will be automatically be assigned an organization member role. Deleting a service account will revoke access only from that project.
 
 <HTMLBlock>{`
 <div class="create-service-account">
-  <img src="https://files.readme.io/bcc971b-4f76ee5-Screen_Shot_2020-07-29_at_1.57.16_PM.png"/>
+  <img src="https://files.readme.io/650ddf66560638c3dcae7341b6ef006899fd35069dd99319ef7462e4c3611e74-created_SA.png"/>
 </div>
   
 <style>

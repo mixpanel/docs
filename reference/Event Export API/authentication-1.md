@@ -24,11 +24,3 @@ privacy:
 **Projects with[Classified Data](https://help.mixpanel.com/hc/en-us/articles/360044295131-Data-Classification)**
 
 * The Service Account must have permission to access classified data.
-
-## Project Secret
-
-[Project Secret Authentication Details](ref:authentication#project-secret)
-
-> ❗️ Please migrate existing integrations to use Service Account authentication
->
-> Project Secret authentication is in the process of being deprecated. This authentication method does not currently have an EOL date.
