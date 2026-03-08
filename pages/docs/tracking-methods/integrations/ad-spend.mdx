@@ -12,11 +12,35 @@ In this doc, we give step-by-step guidance on how to bring your advertising netw
 **NOTE:** If you are a Marketer reading this, we encourage you to share this with your dev team to get this one-time setup done. This should not take more than a couple of hours.
 
 <Callout type="info">
-If you prefer not to build and maintain your data pipelines, consider using [Vendo](/docs/tracking-methods/integrations/vendo). The Vendo integration with Mixpanel allows seamless integration of advertising data from Google, Meta, and other ad platforms into Mixpanel without the need for custom development. Learn more [here](https://www.vendodata.com/connections?utm_source=mixpanel-partner-portal&utm_medium=partner).
+If you prefer not to build and maintain your data pipelines, consider using [Vendo](/docs/tracking-methods/integrations/vendo). The Vendo integration with Mixpanel allows seamless integration of advertising data from Google, Meta, and other ad platforms into Mixpanel without the need for custom development. Learn more [here](https://www.vendodata.com/integrations/mixpanel).
 </Callout>
 
+## Importing via Warehouse Connectors
 
-## Understanding the Data Model
+If your ad spend data is already in a data warehouse, you can bring it into Mixpanel using [Warehouse Connectors](/docs/tracking-methods/warehouse-connectors) — no custom code or cloud functions required.
+
+### Using the Ad Spend Template
+
+<div style={{position: 'relative', paddingBottom: '64.90384615384616%', height: 0}}>
+    <iframe src="https://www.loom.com/embed/69dbc98ffeca415aafb10ede7a52b925?t=271"
+        frameBorder="0"
+        webkitallowfullscreen="true" mozallowfullscreen="true" allowFullScreen
+        style={{position: 'absolute', 'top': 0, 'left': 0, 'width': '100%', 'height': '100%'}}>
+    </iframe>
+</div>
+
+The Ad Spend template provides a streamlined setup for mapping your warehouse table to Mixpanel's ad spend data model.
+
+1. Connect your warehouse in **Project Settings → Warehouse Sources**.
+2. Select a table or view that contains your ad metrics and choose the **Ad Spend** template.
+3. Map columns for required Mixpanel fields (event name, timestamp) and ad metrics like `cost`, `clicks`, and `impressions`.
+4. Set a sync schedule (e.g. hourly or daily). Mixpanel will sync rows from your table and turn each one into an event you can analyze in Insights and other reports.
+
+## Importing via APIs
+
+The sections below walk through building custom API pipelines to pull data directly from ad networks and send it to Mixpanel. This approach gives you full control but requires writing and hosting code.
+
+### Understanding the Data Model
 
 Events are the core of Mixpanel's data model. Fundamentally, an event is a row of data with a name, a timestamp, and a set of properties. This is how we can represent Ad Data as events.
 
@@ -75,7 +99,7 @@ If we were to send this data more than once to Mixpanel, we know that these 3 pr
 Note: Keep in mind the [Insert ID length limitations](https://developer.mixpanel.com/reference/import-events#propertiesinsert_id). If your ad network has long campaign IDs or other unique properties to use, you should use MD5 or another hashing algorithm to shorten your Insert ID.
 
 
-## Gathering Data from Ad Networks
+### Gathering Data from Ad Networks
 
 Different ad networks provide different ways to access their raw data. Some allow you to manually download a CSV export that can be transformed into the above format and sent to Mixpanel. Most networks also have APIs that allow you to automate exporting the metrics that you’re interested in.
 
@@ -88,7 +112,7 @@ Different ad networks provide different ways to access their raw data. Some allo
 - LinkedIn provides a Marketing Reporting API for ad performance data: [https://learn.microsoft.com/en-us/linkedin/marketing/integrations/ads-reporting/getting-started](https://learn.microsoft.com/en-us/linkedin/marketing/integrations/ads-reporting/getting-started)
 - Twitter provides an Ads Analytics API that can be used to extract performance data: [https://developer.twitter.com/en/docs/twitter-ads-api/analytics/overview](https://developer.twitter.com/en/docs/twitter-ads-api/analytics/overview)
 
-## **Detailed Guides**
+## Detailed Guides
 
 Below are detailed guides for Google and Facebook Ad Networks. The same general process described in these two guides can be followed for any other ad network as well by using their export APIs and pushing the data to Mixpanel.
 
