@@ -315,6 +315,49 @@ paths:
           $ref: '#/components/responses/Unauthorized'
         '403':
           $ref: '#/components/responses/Forbidden'
+  /nessie/pipeline/task-status:
+    get:
+      operationId: get-warehouse-pipeline-task-status
+      tags:
+        - Retrieve Pipelines
+      summary: Get Pipeline Task Status
+      description: >-
+        This endpoint returns the status of a specific pipeline run, including
+        status, start time, and completion time (if applicable). This is
+        particularly useful for incremental pipelines.
+      parameters:
+        - $ref: ./common/parameters.yaml#/query/projectId
+        - in: query
+          name: name
+          schema:
+            type: string
+          required: true
+          description: The name that uniquely identifies the pipeline.
+        - in: query
+          name: run_id
+          schema:
+            type: string
+          required: true
+          description: >-
+            The identifier for a specific pipeline run. You can obtain run IDs
+            from the List Pipeline Logs endpoint.
+      responses:
+        '200':
+          description: Success
+          content:
+            application/json:
+              examples:
+                example:
+                  value:
+                    run_id: '2026-02-23|2026-02-23|1771876800'
+                    job_id: events-hourly-bigquery-multischema
+                    start_time: '2026-02-23T20:00:00Z'
+                    end_time: '2026-02-23T20:34:34Z'
+                    status: succeeded
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '403':
+          $ref: '#/components/responses/Forbidden'
 components:
   securitySchemes:
     $ref: ./common/securitySchemes.yaml
