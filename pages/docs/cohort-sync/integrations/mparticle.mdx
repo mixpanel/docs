@@ -73,7 +73,8 @@ To ensure $mparticle_user_id appears as a specific property on the user profile,
 
 Web SDK Example:
 
-```const currentUser = mParticle.Identity.getCurrentUser();
+```
+const currentUser = mParticle.Identity.getCurrentUser();
 if (currentUser) {
     const mpid = currentUser.getMPID();
     currentUser.setUserAttribute("$mparticle_user_id", mpid);
@@ -82,7 +83,8 @@ if (currentUser) {
 
 iOS (Swift) Example:
 
-```if let currentUser = MParticle.sharedInstance().identity.currentUser {
+```
+if let currentUser = MParticle.sharedInstance().identity.currentUser {
     currentUser.setUserAttribute("$mparticle_user_id", value: currentUser.mpid.stringValue)
 }
 ```
