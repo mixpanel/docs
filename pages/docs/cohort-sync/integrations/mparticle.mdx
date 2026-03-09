@@ -67,7 +67,7 @@ In a dynamic sync, Mixpanel initiates a sync every 15 minutes. Mixpanel sends "d
 
 If you find that Mixpanel Cohorts are not properly matching again mParticle Cohorts, this is most likely because the primary identifier in mParticle is not set in Mixpanel’s user profiles. This is easy to connect using one of the two below methods
 
-### Set $mparticule_user_id as a User Attribute via SDK (Recommended for Developers)
+### Set $mparticle_user_id as a User Attribute via SDK (Recommended for Developers)
 
 To ensure $mparticle_user_id appears as a specific property on the user profile, you can manually set it as a user attribute in your app's code. Since mParticle forwards all user attributes to Mixpanel (if "Include User Attributes" is enabled), this is the most reliable method.
 
