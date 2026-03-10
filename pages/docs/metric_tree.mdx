@@ -31,7 +31,32 @@ The idea is to think through your strategy and the various hypotheses without co
 
 ![image](/metrictree2.png)
 
-### Step 2: Make the metrics real with data 
+#### Option: Build with AI
+Don't know where to start? Skip the blank canvas and let AI draft your first metric tree. When creating a new tree, click "Build with AI" under one of the two available starter templates.
+
+You'll be prompted to enter:
+- **Business name** — the name of your company or product
+- **Business URL** — your website or product URL, which helps the AI understand your domain and model
+- **Custom instructions** (optional) — any specific context about your goals, team focus, or metrics you care about most
+
+Click Submit, and within a few minutes you'll see a fully structured metric tree generated for your business — complete with hypothesized input metrics, drivers, and connections up to your top-level KPI.
+
+Think of it as a first draft, not a final answer. Once it's generated, you can refine the structure, rename metrics, add or remove nodes, and connect real data just as you would with a manually built tree.
+
+<Callout type="info">
+  **Tip:** The more context you provide in the custom instructions field, the more tailored your tree will be. Custom instructions work at any scope — from a company-wide strategy to a single feature area. Here are some examples:
+
+  For a product leader building a team-wide strategy tree:
+  - "We're a B2B SaaS company. Focus on the metrics that drive trial-to-paid conversion and long-term retention across our entire funnel."
+  - "Build a tree rooted in ARR, with branches for new business, expansion, and churn. We have separate teams owning each."
+
+  For a PM zeroing in on a specific initiative or feature area:
+  - "I own our onboarding flow. I want to understand what behaviors in the first 7 days predict long-term retention."
+  - "We just launched a collaboration feature and I need to track whether adoption is driving engagement and upgrades."
+  - "Focus on activation. Our north star is users who complete 3 core actions in week 1."
+</Callout>
+
+### Step 2: Make the metrics real with data
 Click on connect metric, and connect the metric card to the metric with data. This is a regular Mixpanel query panel. You can choose to bring in [saved metrics](/docs/features/saved-metrics-and-behaviors), or create a metric. 
 
 <Callout type="info">
@@ -97,6 +122,14 @@ Click on a metric. When the query panel opens, navigate to the Context tab. With
 ![image](/metrictree7.png)
 
 # FAQ
+
+## How do AI-generated metric trees work, and what data does Mixpanel use to generate them?
+
+AI-generated metric trees are built using an outside-in analysis powered by OpenAI. The system draws on industry best practices, common growth models, and the context you provide about your product in the custom instructions field — such as your business model, team focus, or the specific outcome you're trying to drive.
+
+At this time, none of your Mixpanel data is used. The AI has no access to your events, user data, or existing metrics. Everything it generates is based on publicly available information and the details you choose to share in the prompt.
+
+This means the generated tree is a starting hypothesis, not a data-validated model. Treat it as a well-informed first draft that reflects what's known about your industry and product category — and then make it yours by connecting real metrics from your Mixpanel data.
 
 ## What does the "As Of" control on the top left of the metric tree do? 
 `As of` determines the end date reference point for the metric tree. 
