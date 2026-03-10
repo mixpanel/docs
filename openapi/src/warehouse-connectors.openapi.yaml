@@ -680,6 +680,9 @@ components:
         device_column_name:
           type: string
           nullable: true
+        json_properties_column_name:
+          type: string
+          nullable: true
         sync_mode:
           $ref: "#/components/schemas/SyncMode"
         run_every:
@@ -712,6 +715,9 @@ components:
           $ref: "#/components/schemas/TableParams"
         user_column_name:
           type: string
+        json_properties_column_name:
+          type: string
+          nullable: true
         sync_mode:
           $ref: "#/components/schemas/SyncMode"
         run_every:
@@ -752,6 +758,9 @@ components:
         run_every:
           $ref: "#/components/schemas/SyncFrequency"
         insert_time_column_name:
+          type: string
+          nullable: true
+        json_properties_column_name:
           type: string
           nullable: true
         property_mappings:
