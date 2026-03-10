@@ -339,15 +339,13 @@ mParticle offers a direct integration for Session Replay with Mixpanel. You can 
 
 To use the direct integration:
 
-1. Ensure you have the [Mixpanel JavaScript SDK installed](/docs/tracking-methods/sdks/javascript#installing-the-library) in your application with Session Replay enabled.
+1. Ensure you have the mParticle Mixpanel Web integration enabled for your web workspace. This will load the Mixpanel JavaScript SDK and Session Replay on your site automatically via mParticle (no separate SDK install in your app code is required).
 2. Configure Session Replay settings in your [mParticle Mixpanel connection settings](https://docs.mparticle.com/integrations/mixpanel/event/#connection-settings), including:
    - **Session Recording Percentage**: Percentage of SDK initializations that will qualify for replay data capture
    - **Record Heatmap Data**: Enable heatmap, rage click, and dead click collection
    - Additional privacy and configuration options as needed
 
 The direct integration automatically includes session replay properties (`$mp_replay_id`) on all events forwarded through mParticle, without requiring any additional code changes.
-
-**Note**: You must still enable Session Replay in your Mixpanel JavaScript SDK (for example by setting `record_sessions_percent` in `mixpanel.init`), and this client-side sampling configuration should align with your mParticle Session Recording Percentage setting.
 
 **Example Usage**
 
