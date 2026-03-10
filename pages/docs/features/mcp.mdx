@@ -132,7 +132,7 @@ For additional information on setting up Claude connectors, see [Claude's connec
 **Setup Steps:**
 1. Open Claude desktop app
 2. Navigate to **Settings** (from window nav bar) → **Developer** → **Edit Config**
-3. Add the following configuration:
+3. Add the following configuration (replace the URL with `https://mcp-eu.mixpanel.com/mcp` for EU or `https://mcp-in.mixpanel.com/mcp` for IN):
 
 ```json
 {
@@ -142,7 +142,7 @@ For additional information on setting up Claude connectors, see [Claude's connec
       "args": [
         "-y",
         "mcp-remote",
-        "https://mcp.mixpanel.com/mcp", // or use mcp-eu.mixpanel.com/mcp for EU, mcp-in.mixpanel.com/mcp for IN
+        "https://mcp.mixpanel.com/mcp",
         "--allow-http"
       ]
     }
@@ -177,7 +177,7 @@ npx -y mcp-remote https://mcp-in.mixpanel.com/mcp --allow-http
 **Setup Steps:**
 1. Open Cursor application
 2. Navigate to **Cursor Settings** → **MCP & Integrations** → **MCP Tools** → **New MCP Server**
-3. This opens MCP.json where you paste the following configuration:
+3. This opens MCP.json where you paste the following configuration (replace the URL with `https://mcp-eu.mixpanel.com/mcp` for EU or `https://mcp-in.mixpanel.com/mcp` for IN):
 
 ```json
 {
@@ -187,7 +187,7 @@ npx -y mcp-remote https://mcp-in.mixpanel.com/mcp --allow-http
       "args": [
         "-y",
         "mcp-remote",
-        "https://mcp.mixpanel.com/mcp", // or use mcp-eu.mixpanel.com/mcp for EU, mcp-in.mixpanel.com/mcp for IN
+        "https://mcp.mixpanel.com/mcp",
         "--allow-http"
       ]
     }
@@ -250,7 +250,7 @@ npx -y mcp-remote https://mcp-in.mixpanel.com/mcp --allow-http
    ls -la ~/.gemini
    cat ~/.gemini/settings.json
    ```
-   The contents should be similar to the following:
+   The contents should be similar to the following (replace the URL with `https://mcp-eu.mixpanel.com/mcp` for EU or `https://mcp-in.mixpanel.com/mcp` for IN):
    ```json
    {
      "theme": "Default",
@@ -261,7 +261,7 @@ npx -y mcp-remote https://mcp-in.mixpanel.com/mcp --allow-http
          "args": [
            "-y",
            "mcp-remote",
-           "https://mcp.mixpanel.com/mcp",  // or use mcp-eu.mixpanel.com/mcp for EU, mcp-in.mixpanel.com/mcp for IN
+           "https://mcp.mixpanel.com/mcp",
            "--allow-http"
          ]
        }
@@ -363,7 +363,7 @@ dashboard_reports bookmarks user_details
 ```
 
 <Callout type="info">
-  When using `npx mcp-remote` without `--static-oauth-client-metadata`, the client automatically discovers and requests all available scopes from the server, including optional ones. We recommend this approach so you always have access to the latest features.
+  To request only a subset of scopes, pass `--static-oauth-client-metadata '{ "scope": "..." }'` to `npx mcp-remote`. Otherwise, all available scopes are requested automatically.
 </Callout>
 
 ---
