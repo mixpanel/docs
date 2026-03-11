@@ -982,11 +982,9 @@ location /_mp/api/ {
 
 # Proxy all async module files (recorder, targeting, etc.) to cdn.mxpnl.com/libs/
 location /_mp/libs/ {
-    resolver 8.8.8.8;
     proxy_ssl_server_name on;
-    set $mixpanel_cdn "cdn.mxpnl.com";
-    proxy_set_header Host $mixpanel_cdn;
-    proxy_pass https://$mixpanel_cdn/libs/;
+    proxy_set_header Host cdn.mxpnl.com;
+    proxy_pass https://cdn.mxpnl.com/libs/;
 }
 ```
 
