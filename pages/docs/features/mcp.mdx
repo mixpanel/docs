@@ -22,23 +22,39 @@ The MCP integration provides access to all core Mixpanel analysis capabilities t
 
 ### Analytics Functions
 
-- Segmentation: Event counts and unique users with filtering and grouping (run_segmentation_query)
-- Funnels: Conversion rate analysis across user journeys (run_funnels_query)
-- Retention: User engagement and return behavior tracking (run_retention_query)
-- Frequency: User engagement patterns and usage intensity (run_frequency_query)
+- Run Query: Execute insights, funnels, flows, and retention queries and return data points (`Run-Query`)
+- Query Schema: Get the full instructions and JSON schema for building a query (`Get-Query-Schema`)
+- Get Report: Retrieve a saved report from a Mixpanel project, optionally including results (`Get-Report`)
+
+### Dashboards
+
+- Create Dashboard: Create a new dashboard with rows of text cards and reports (`Create-Dashboard`)
+- List Dashboards: Browse dashboards in a project, with optional title search (`List-Dashboards`)
+- Get Dashboard: Retrieve detailed information about a specific dashboard (`Get-Dashboard`)
 
 ### Data Discovery & Exploration
 
-- Project Management: Access projects and workspace information (`get_projects`, `get_project_info`)
-- Event Discovery: Browse all available events in your project (`get_events`)
-- Event Properties: Explore properties available for each event (`get_event_properties`)
-- Property Values: Discover specific values for event properties (`get_event_property_values`)
-- Data Quality: Monitor and detect volume anomalies in data ingestion (`get_data_volume_anomalies`)
-- Lexicon Integration: Get direct links to event definitions and documentation in Mixpanel Lexicon (`get_lexicon_detail_url`)
+- Project Management: Access projects and workspace information (`Get-Projects`)
+- Event Discovery: Browse all available events in your project (`Get-Events`)
+- Property Names: Explore properties available for events or users (`Get-Property-Names`)
+- Property Values: Discover specific values for event or user properties (`Get-Property-Values`)
+- Property Details: Retrieve full property metadata (`Get-Property`)
+- Data Quality: Get and filter data quality issues by event, property, type, or date range (`Get-Issues`)
+- Lexicon Integration: Get direct links to event or property definitions in Mixpanel Lexicon (`Get-Lexicon-URL`)
+
+### Data Management
+
+- Edit Event: Modify event metadata such as description, display name, tags, verification, and visibility (`Edit-Event`)
+- Event Details: Retrieve full event metadata before editing (`Get-Event-Details`)
+- Edit Property: Modify property metadata such as description, display name, hidden status, and PII classification (`Edit-Property`)
+- Create Tag: Create tags for organizing events and properties in Lexicon (`Create-Tag`)
+- Rename Tag: Rename existing tags across all associated events and properties (`Rename-Tag`)
+- Delete Tag: Remove tags from your project (`Delete-Tag`)
+- Dismiss Issues: Dismiss data quality issues using natural criteria such as event names, property names, or issue types (`Dismiss-Issues`)
 
 ### Qualitative Analysis
 
-- Session Replays: Analyze a specific user's replays in combination with event data (`get_user_replays_data`)
+- Session Replays: Analyze a specific user's replays in combination with event data (`Get-User-Replays-Data`)
 
 ### Query Capabilities
 
@@ -116,7 +132,7 @@ For additional information on setting up Claude connectors, see [Claude's connec
 **Setup Steps:**
 1. Open Claude desktop app
 2. Navigate to **Settings** (from window nav bar) → **Developer** → **Edit Config**
-3. Add the following configuration:
+3. Add the following configuration (replace the URL with `https://mcp-eu.mixpanel.com/mcp` for EU or `https://mcp-in.mixpanel.com/mcp` for IN):
 
 ```json
 {
@@ -126,7 +142,7 @@ For additional information on setting up Claude connectors, see [Claude's connec
       "args": [
         "-y",
         "mcp-remote",
-        "https://mcp.mixpanel.com/mcp", // or use mcp-eu.mixpanel.com/mcp for EU, mcp-in.mixpanel.com/mcp for IN
+        "https://mcp.mixpanel.com/mcp",
         "--allow-http"
       ]
     }
@@ -136,17 +152,17 @@ For additional information on setting up Claude connectors, see [Claude's connec
 
 4. Run authorization command in terminal:
 ```bash
-npx -y mcp-remote https://mcp.mixpanel.com/mcp --static-oauth-client-metadata '{ "scope": "projects analysis events insights segmentation retention data:read funnels flows data_definitions" }' --allow-http
+npx -y mcp-remote https://mcp.mixpanel.com/mcp --allow-http
 ```
 
 For EU,
 ```bash
-npx -y mcp-remote https://mcp-eu.mixpanel.com/mcp --static-oauth-client-metadata '{ "scope": "projects analysis events insights segmentation retention data:read funnels flows data_definitions" }' --allow-http
+npx -y mcp-remote https://mcp-eu.mixpanel.com/mcp --allow-http
 ```
 
 For IN,
 ```bash
-npx -y mcp-remote https://mcp-in.mixpanel.com/mcp --static-oauth-client-metadata '{ "scope": "projects analysis events insights segmentation retention data:read funnels flows data_definitions" }' --allow-http
+npx -y mcp-remote https://mcp-in.mixpanel.com/mcp --allow-http
 ```
 
 5. Complete Mixpanel authorization via the provided link
@@ -155,13 +171,13 @@ npx -y mcp-remote https://mcp-in.mixpanel.com/mcp --static-oauth-client-metadata
 
 ### Option 3: Cursor
 **Additional Requirements:**
-- Cursor application  
+- Cursor application
 - Command line access
 
 **Setup Steps:**
 1. Open Cursor application
 2. Navigate to **Cursor Settings** → **MCP & Integrations** → **MCP Tools** → **New MCP Server**
-3. This opens MCP.json where you paste the following configuration:
+3. This opens MCP.json where you paste the following configuration (replace the URL with `https://mcp-eu.mixpanel.com/mcp` for EU or `https://mcp-in.mixpanel.com/mcp` for IN):
 
 ```json
 {
@@ -171,7 +187,7 @@ npx -y mcp-remote https://mcp-in.mixpanel.com/mcp --static-oauth-client-metadata
       "args": [
         "-y",
         "mcp-remote",
-        "https://mcp.mixpanel.com/mcp", // or use mcp-eu.mixpanel.com/mcp for EU, mcp-in.mixpanel.com/mcp for IN
+        "https://mcp.mixpanel.com/mcp",
         "--allow-http"
       ]
     }
@@ -181,17 +197,17 @@ npx -y mcp-remote https://mcp-in.mixpanel.com/mcp --static-oauth-client-metadata
 
 4. Run authorization command in terminal:
 ```bash
-npx -y mcp-remote https://mcp.mixpanel.com/mcp --static-oauth-client-metadata '{ "scope": "projects analysis events insights segmentation retention data:read funnels flows data_definitions" }' --allow-http
+npx -y mcp-remote https://mcp.mixpanel.com/mcp --allow-http
 ```
 
 For EU,
 ```bash
-npx -y mcp-remote https://mcp-eu.mixpanel.com/mcp --static-oauth-client-metadata '{ "scope": "projects analysis events insights segmentation retention data:read funnels flows data_definitions" }' --allow-http
+npx -y mcp-remote https://mcp-eu.mixpanel.com/mcp --allow-http
 ```
 
 For IN,
 ```bash
-npx -y mcp-remote https://mcp-in.mixpanel.com/mcp --static-oauth-client-metadata '{ "scope": "projects analysis events insights segmentation retention data:read funnels flows data_definitions" }' --allow-http
+npx -y mcp-remote https://mcp-in.mixpanel.com/mcp --allow-http
 ```
 
 
@@ -213,28 +229,28 @@ npx -y mcp-remote https://mcp-in.mixpanel.com/mcp --static-oauth-client-metadata
    ```
 3. Configure Mixpanel MCP as a remote server and authorize:
    ```bash
-   npx -y mcp-remote https://mcp.mixpanel.com/mcp --static-oauth-client-metadata '{ "scope": "projects analysis events insights segmentation retention data:read funnels flows data_definitions" }' --allow-http
+   npx -y mcp-remote https://mcp.mixpanel.com/mcp --allow-http
    ```
 
    For EU,
    ```bash
-   npx -y mcp-remote https://mcp-eu.mixpanel.com/mcp --static-oauth-client-metadata '{ "scope": "projects analysis events insights segmentation retention data:read funnels flows data_definitions" }' --allow-http
+   npx -y mcp-remote https://mcp-eu.mixpanel.com/mcp --allow-http
    ```
 
    For IN,
    ```bash
-   npx -y mcp-remote https://mcp-in.mixpanel.com/mcp --static-oauth-client-metadata '{ "scope": "projects analysis events insights segmentation retention data:read funnels flows data_definitions" }' --allow-http
+   npx -y mcp-remote https://mcp-in.mixpanel.com/mcp --allow-http
    ```
 
    Running this command will provide a link in your terminal to authorize your access with Mixpanel. Follow the authorization steps in your browser. After logging in via OAuth, you should see a confirmation message.
 
-4. **Verify Configuration (or Create It Manually):**  
+4. **Verify Configuration (or Create It Manually):**
    After authorization, your `settings.json` file for the Gemini CLI should be updated automatically. You can find this file at `~/.gemini/settings.json`. To check, run:
    ```bash
    ls -la ~/.gemini
    cat ~/.gemini/settings.json
    ```
-   The contents should be similar to the following:
+   The contents should be similar to the following (replace the URL with `https://mcp-eu.mixpanel.com/mcp` for EU or `https://mcp-in.mixpanel.com/mcp` for IN):
    ```json
    {
      "theme": "Default",
@@ -245,7 +261,7 @@ npx -y mcp-remote https://mcp-in.mixpanel.com/mcp --static-oauth-client-metadata
          "args": [
            "-y",
            "mcp-remote",
-           "https://mcp.mixpanel.com/mcp",  // or use mcp-eu.mixpanel.com/mcp for EU, mcp-in.mixpanel.com/mcp for IN
+           "https://mcp.mixpanel.com/mcp",
            "--allow-http"
          ]
        }
@@ -255,7 +271,7 @@ npx -y mcp-remote https://mcp-in.mixpanel.com/mcp --static-oauth-client-metadata
    ```
    This configuration ensures that the Gemini CLI knows how to connect to the Mixpanel remote server.
    If `settings.json` is not available, create it manually using the same contents as above.
-   
+
 
 5. Complete Mixpanel authorization via the provided link (if not already done).
 6. Run the Gemini CLI
@@ -290,6 +306,65 @@ npx -y mcp-remote https://mcp-in.mixpanel.com/mcp --static-oauth-client-metadata
 
 3. Publish connector to workspace (optional)
    - To make the connector available to other members: go to Settings → Apps & Connectors → Mixpanel → Publish
+
+---
+
+## Building Custom Integrations (OAuth)
+
+If you are building a third-party MCP client or custom integration that connects to Mixpanel's MCP server, use the following OAuth configuration.
+
+### MCP Server Endpoints
+
+| Region | Endpoint |
+| ------ | -------- |
+| US     | `https://mcp.mixpanel.com/mcp` |
+| EU     | `https://mcp-eu.mixpanel.com/mcp` |
+| IN     | `https://mcp-in.mixpanel.com/mcp` |
+
+### OAuth Discovery
+
+Clients can discover the full OAuth configuration at the `/.well-known/oauth-authorization-server` path on the MCP server URL (e.g., `https://mcp.mixpanel.com/.well-known/oauth-authorization-server`).
+
+### Dynamic Client Registration
+
+Register your client at the registration endpoint for the appropriate region:
+
+| Region | Registration Endpoint |
+| ------ | --------------------- |
+| US     | `https://mixpanel.com/oauth/mcp/register/` |
+| EU     | `https://eu.mixpanel.com/oauth/mcp/register/` |
+| IN     | `https://in.mixpanel.com/oauth/mcp/register/` |
+
+### Authorization Code Flow with PKCE
+
+Mixpanel's MCP server uses the **Authorization Code flow with PKCE (S256)**:
+
+- **Authorization endpoint:** `https://{mixpanel_domain}/oauth/authorize`
+- **Token endpoint:** `https://{mixpanel_domain}/oauth/token/`
+- **Supported grant types:** `authorization_code`, `refresh_token`
+- **Supported response types:** `code`
+- **Code challenge method:** `S256`
+- **Token endpoint auth methods:** `none`, `client_secret_basic`, `client_secret_post`
+
+Where `{mixpanel_domain}` is `mixpanel.com` (US), `eu.mixpanel.com` (EU), or `in.mixpanel.com` (IN).
+
+### Required OAuth Scopes
+
+The following scopes are **mandatory** — connections will fail without all of them:
+
+```
+projects analysis events insights segmentation retention data:read funnels flows data_definitions
+```
+
+The following scopes are **optional** — they enable additional features when granted:
+
+```
+dashboard_reports bookmarks user_details
+```
+
+<Callout type="info">
+  To request only a subset of scopes, pass `--static-oauth-client-metadata '{ "scope": "..." }'` to `npx mcp-remote`. Otherwise, all available scopes are requested automatically.
+</Callout>
 
 ---
 
@@ -339,7 +414,7 @@ npx -y mcp-remote https://mcp-in.mixpanel.com/mcp --static-oauth-client-metadata
 - Instant insights without dashboard complexity
 - Accessible to non-technical stakeholders
 
-**Enhanced Productivity**  
+**Enhanced Productivity**
 - Reduce time-to-insight from minutes to seconds
 - Eliminate context switching between tools
 - Enable real-time decision making
@@ -377,12 +452,17 @@ npx -y mcp-remote https://mcp-in.mixpanel.com/mcp --static-oauth-client-metadata
 - **Claude Pro:** Web interface with native MCP support
 - **Claude Free:** Desktop app with configuration setup
 - **Cursor:** AI-powered code editor integration
+- **Google Gemini CLI:** Command-line interface with MCP support
+- **ChatGPT (OpenAI):** Web interface with MCP connector support
 
 **Integration Architecture**
 - **Protocol:** Model Context Protocol (MCP)
-- **Connection:** Server-sent events (SSE)
-- **Authentication:** OAuth with Mixpanel
-- **Endpoint:** `https://mcp.mixpanel.com/mcp`
+- **Transport:** Streamable HTTP
+- **Authentication:** OAuth 2.0 with PKCE (S256)
+- **Endpoints:**
+  - US: `https://mcp.mixpanel.com/mcp`
+  - EU: `https://mcp-eu.mixpanel.com/mcp`
+  - IN: `https://mcp-in.mixpanel.com/mcp`
 
 ---
 
@@ -393,3 +473,5 @@ npx -y mcp-remote https://mcp-in.mixpanel.com/mcp --static-oauth-client-metadata
 - **Authorization fails:** Ensure proper Mixpanel account permissions
 - **Desktop app issues:** Restart application after configuration changes
 - **Free user limitations:** Remote URL integrations only supported in desktop app
+- **"MCP access is not enabled for this project":** This means MCP has not been enabled at the organization level. Ask your **organization administrator** to enable MCP access in **Settings > Org > Overview**. Note that after the admin enables access, it may take up to 15 minutes for the change to take effect.
+- **"Missing scope" error:** This usually means your cached authorization was created with an outdated scope list. To fix this, clear your cached auth data by deleting the `.mcp-auth` folder in the directory where you ran the authorization command, then re-run the authorization command to get a fresh token with all available scopes. If you previously used `--static-oauth-client-metadata` in your authorization command, either remove that flag so the client auto-discovers all scopes from the server or update the scopes used for that parameter for explicit control of scopes requested.

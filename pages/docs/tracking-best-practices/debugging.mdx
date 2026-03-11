@@ -15,9 +15,9 @@ Mixpanel doesn't receive any data until you start sending events. If you haven't
 
 ### Debugging with Events
 
-Use [Events](https://mixpanel.com/report/events) to confirm that events are arriving to your Mixpanel project, so you can troubleshoot your Mixpanel setup quickly. With Events, you can see a feed of events along with all of their properties coming into Mixpanel.
+Use the [Events](https://mixpanel.com/report/events) view (formerly called "Live View") to confirm that events are arriving to your Mixpanel project, so you can troubleshoot your Mixpanel setup quickly. To access the Events view, expand the "Data" tab from the left-hand navigation of the UI and select "Events".
 
-![Events Report](/eventheader.png)
+With Events, you can see a feed of events along with all of their properties coming into Mixpanel.
 
 ### Find Yourself
 The next step to validating your events is to manually trigger some of those events on your own device. After you have fired some events, navigate to Events and search or filter using any user-level information you know is available in the event's raw payload. Search by `$user_id`, `$device_id`, `distinct_id`, or user property values. If you are using Mixpanel's JavaScript SDK, you can use [`mixpanel.get_distinct_id`](https://github.com/mixpanel/mixpanel-js/blob/master/doc/readme.io/javascript-full-api-reference.md#mixpanelget_distinct_id) to return your own distinct_id in your browser console and copy the distinct_id value into the Events search bar.
@@ -214,7 +214,8 @@ Mixpanel records all events in Coordinated Universal Time (UTC) at intake. By de
 ### Delayed Ingestion
 
 - Mixpanel accepts data that has been triggered a while ago, either via mobile SDKs or event import. You can check the $import property and the mp_processing_time_ms to confirm when data has been ingested.
-- Mixpanel events older than 5 days sent to our /track endpoint will not be ingested, but other systems might accept these events (e.g. Firebase). Check how old an event was at point of ingestion in the other system to confirm. 
+- Mixpanel events older than 5 days sent to our /track endpoint will not be ingested, but other systems might accept these events (e.g. Firebase). Check how old an event was at point of ingestion in the other system to confirm.
+- If the same report with the same date range returns different metrics from one day to the next, this typically indicates that late-arriving data were not yet ingested at the time of the previous view. This can occur when data are imported retroactively or when other ingestion delays occur.
 
 ### Cohort Export
 

@@ -1,0 +1,128 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 750 680" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif">
+  <defs>
+    <linearGradient id="hGrad2" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" style="stop-color:#7856ff"/>
+      <stop offset="100%" style="stop-color:#5f41cf"/>
+    </linearGradient>
+    <filter id="sh2" x="-2%" y="-2%" width="104%" height="108%">
+      <feDropShadow dx="0" dy="2" stdDeviation="4" flood-color="#1f202320"/>
+    </filter>
+  </defs>
+
+  <!-- Background -->
+  <rect width="750" height="680" rx="16" fill="#fafafa"/>
+
+  <!-- Header -->
+  <rect width="750" height="56" rx="16" fill="url(#hGrad2)"/>
+  <rect y="28" width="750" height="28" fill="url(#hGrad2)"/>
+  <text x="375" y="37" text-anchor="middle" fill="white" font-size="22" font-weight="700">Text Masking vs Input Masking</text>
+  <text x="375" y="82" text-anchor="middle" fill="#5f41cf" font-size="14">Two separate pipelines evaluated independently on different parts of the DOM</text>
+
+  <!-- Form mockup -->
+  <rect x="20" y="100" width="390" height="390" rx="12" fill="white" filter="url(#sh2)" stroke="#e5e7eb" stroke-width="1"/>
+  <rect x="20" y="100" width="390" height="40" rx="12" fill="#f9fafb"/>
+  <rect x="20" y="128" width="390" height="12" fill="#f9fafb"/>
+  <text x="215" y="126" text-anchor="middle" fill="#1f2023" font-size="15" font-weight="600">Registration Form</text>
+
+  <!-- Field 1: Full Name -->
+  <text x="45" y="172" fill="#1f2023" font-size="14" font-weight="500">Full Name</text>
+  <rect x="45" y="180" width="340" height="38" rx="6" fill="white" stroke="#d1d5db" stroke-width="1.5"/>
+  <text x="60" y="204" fill="#6b7280" font-size="14">John Smith</text>
+
+  <!-- Field 2: Email -->
+  <text x="45" y="245" fill="#1f2023" font-size="14" font-weight="500">Email Address</text>
+  <rect x="45" y="253" width="340" height="38" rx="6" fill="white" stroke="#d1d5db" stroke-width="1.5"/>
+  <text x="60" y="277" fill="#6b7280" font-size="14">john@example.com</text>
+
+  <!-- Field 3: Password -->
+  <text x="45" y="318" fill="#1f2023" font-size="14" font-weight="500">Password</text>
+  <rect x="45" y="326" width="340" height="38" rx="6" fill="white" stroke="#d1d5db" stroke-width="1.5"/>
+  <text x="60" y="350" fill="#6b7280" font-size="14">********</text>
+
+  <!-- Welcome text -->
+  <text x="45" y="400" fill="#1f2023" font-size="14">Welcome back! Please fill out the form.</text>
+
+  <!-- Button -->
+  <rect x="45" y="418" width="130" height="38" rx="6" fill="#7856ff"/>
+  <text x="110" y="442" text-anchor="middle" fill="white" font-size="14" font-weight="600">Submit</text>
+
+  <!-- Annotation lines -->
+  <line x1="395" y1="168" x2="430" y2="168" stroke="#7856ff" stroke-width="1.5" stroke-dasharray="4,3"/>
+  <line x1="395" y1="199" x2="430" y2="199" stroke="#72bef4" stroke-width="1.5" stroke-dasharray="4,3"/>
+  <line x1="395" y1="241" x2="430" y2="241" stroke="#7856ff" stroke-width="1.5" stroke-dasharray="4,3"/>
+  <line x1="395" y1="272" x2="430" y2="272" stroke="#72bef4" stroke-width="1.5" stroke-dasharray="4,3"/>
+  <line x1="395" y1="314" x2="430" y2="314" stroke="#7856ff" stroke-width="1.5" stroke-dasharray="4,3"/>
+  <line x1="395" y1="345" x2="430" y2="345" stroke="#72bef4" stroke-width="1.5" stroke-dasharray="4,3"/>
+  <line x1="395" y1="396" x2="430" y2="396" stroke="#7856ff" stroke-width="1.5" stroke-dasharray="4,3"/>
+  <line x1="395" y1="437" x2="430" y2="437" stroke="#7856ff" stroke-width="1.5" stroke-dasharray="4,3"/>
+
+  <!-- RIGHT SIDE: Annotations -->
+  <rect x="435" y="155" width="295" height="32" rx="6" fill="#f5f3ff" stroke="#7856ff" stroke-width="1.5"/>
+  <circle cx="452" cy="171" r="9" fill="#7856ff"/>
+  <text x="452" y="175" text-anchor="middle" fill="white" font-size="11" font-weight="700">T</text>
+  <text x="468" y="175" fill="#5f41cf" font-size="13" font-weight="600">TEXT</text>
+  <text x="510" y="175" fill="#1f2023" font-size="12">label "Full Name"</text>
+
+  <rect x="435" y="187" width="295" height="32" rx="6" fill="#eef6ff" stroke="#72bef4" stroke-width="1.5"/>
+  <circle cx="452" cy="203" r="9" fill="#72bef4"/>
+  <text x="452" y="207" text-anchor="middle" fill="white" font-size="11" font-weight="700">I</text>
+  <text x="468" y="207" fill="#2563eb" font-size="13" font-weight="600">INPUT</text>
+  <text x="518" y="207" fill="#1f2023" font-size="12">value "John Smith"</text>
+
+  <rect x="435" y="228" width="295" height="32" rx="6" fill="#f5f3ff" stroke="#7856ff" stroke-width="1.5"/>
+  <circle cx="452" cy="244" r="9" fill="#7856ff"/>
+  <text x="452" y="248" text-anchor="middle" fill="white" font-size="11" font-weight="700">T</text>
+  <text x="468" y="248" fill="#5f41cf" font-size="13" font-weight="600">TEXT</text>
+  <text x="510" y="248" fill="#1f2023" font-size="12">label "Email Address"</text>
+
+  <rect x="435" y="260" width="295" height="32" rx="6" fill="#fef2f2" stroke="#ef4444" stroke-width="1.5"/>
+  <circle cx="452" cy="276" r="9" fill="#ef4444"/>
+  <text x="452" y="280" text-anchor="middle" fill="white" font-size="11" font-weight="700">!</text>
+  <text x="468" y="280" fill="#dc2626" font-size="13" font-weight="600">ALWAYS MASKED</text>
+  <text x="600" y="280" fill="#1f2023" font-size="11">type="email"</text>
+
+  <rect x="435" y="301" width="295" height="32" rx="6" fill="#f5f3ff" stroke="#7856ff" stroke-width="1.5"/>
+  <circle cx="452" cy="317" r="9" fill="#7856ff"/>
+  <text x="452" y="321" text-anchor="middle" fill="white" font-size="11" font-weight="700">T</text>
+  <text x="468" y="321" fill="#5f41cf" font-size="13" font-weight="600">TEXT</text>
+  <text x="510" y="321" fill="#1f2023" font-size="12">label "Password"</text>
+
+  <rect x="435" y="333" width="295" height="32" rx="6" fill="#fef2f2" stroke="#ef4444" stroke-width="1.5"/>
+  <circle cx="452" cy="349" r="9" fill="#ef4444"/>
+  <text x="452" y="353" text-anchor="middle" fill="white" font-size="11" font-weight="700">!</text>
+  <text x="468" y="353" fill="#dc2626" font-size="13" font-weight="600">ALWAYS MASKED</text>
+  <text x="600" y="353" fill="#1f2023" font-size="11">type="password"</text>
+
+  <rect x="435" y="383" width="295" height="32" rx="6" fill="#f5f3ff" stroke="#7856ff" stroke-width="1.5"/>
+  <circle cx="452" cy="399" r="9" fill="#7856ff"/>
+  <text x="452" y="403" text-anchor="middle" fill="white" font-size="11" font-weight="700">T</text>
+  <text x="468" y="403" fill="#5f41cf" font-size="13" font-weight="600">TEXT</text>
+  <text x="510" y="403" fill="#1f2023" font-size="12">paragraph text</text>
+
+  <rect x="435" y="424" width="295" height="32" rx="6" fill="#f5f3ff" stroke="#7856ff" stroke-width="1.5"/>
+  <circle cx="452" cy="440" r="9" fill="#7856ff"/>
+  <text x="452" y="444" text-anchor="middle" fill="white" font-size="11" font-weight="700">T</text>
+  <text x="468" y="444" fill="#5f41cf" font-size="13" font-weight="600">TEXT</text>
+  <text x="510" y="444" fill="#1f2023" font-size="12">button text "Submit"</text>
+
+  <!-- Legend box -->
+  <rect x="20" y="510" width="710" height="140" rx="12" fill="white" filter="url(#sh2)"/>
+  <text x="375" y="540" text-anchor="middle" fill="#1f2023" font-size="16" font-weight="700">Key Takeaway</text>
+
+  <rect x="40" y="555" width="330" height="80" rx="8" fill="#f5f3ff"/>
+  <circle cx="60" cy="580" r="9" fill="#7856ff"/>
+  <text x="60" y="584" text-anchor="middle" fill="white" font-size="11" font-weight="700">T</text>
+  <text x="78" y="584" fill="#5f41cf" font-size="14" font-weight="600">Text Masking</text>
+  <text x="78" y="604" fill="#1f2023" font-size="13">Handles visible text in &lt;p&gt;, &lt;h1&gt;,</text>
+  <text x="78" y="622" fill="#1f2023" font-size="13">&lt;span&gt;, &lt;label&gt;, &lt;button&gt;, etc.</text>
+
+  <rect x="390" y="555" width="320" height="80" rx="8" fill="#eef6ff"/>
+  <circle cx="410" cy="580" r="9" fill="#72bef4"/>
+  <text x="410" y="584" text-anchor="middle" fill="white" font-size="11" font-weight="700">I</text>
+  <text x="428" y="584" fill="#2563eb" font-size="14" font-weight="600">Input Masking</text>
+  <text x="428" y="604" fill="#1f2023" font-size="13">Handles values in &lt;input&gt;,</text>
+  <text x="428" y="622" fill="#1f2023" font-size="13">&lt;textarea&gt;, and &lt;select&gt;.</text>
+
+  <!-- Bottom border -->
+  <rect y="670" width="750" height="10" fill="url(#hGrad2)"/>
+</svg>
