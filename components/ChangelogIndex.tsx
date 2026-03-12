@@ -27,7 +27,7 @@ const getVideoEmbedURL = (videoURL) => {
     const host = parsedURL.host;
     if (host === "www.youtube.com" || host === "youtube.com" || host === "youtu.be") {
       const videoId = parsedURL.searchParams.get("v") || parsedURL.pathname.split("/").pop();
-      return `https://www.youtube.com/embed/${videoId}`;
+      return `https://www.youtube-nocookie.com/embed/${videoId}`;
     } else if (host === "www.loom.com" || host === "loom.com") {
       const videoId = parsedURL.pathname.split("/").pop();
       return `https://www.loom.com/embed/${videoId}?hideEmbedTopBar=true`;
