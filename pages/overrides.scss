@@ -648,7 +648,11 @@ article {
           background-color: colors.$purple50;
           transition-duration: 0.5s;
         }
+        span {
+          background-color: rgba(0,0,0,0);
+        }
       }
+
     }
 
     //modify anchor links hastags
@@ -1463,6 +1467,9 @@ article {
           background-color: colors.$purple100;
           transition-duration: 0.5s;
         }
+        span {
+          background-color: rgba(0,0,0,0);
+        }
       }
     }
 
@@ -1750,7 +1757,7 @@ article {
     }
 
     .changelogMainContainerWrapper {
-      background: colors.$grey100;
+      background: colors.$darkbg;
     }
     .changelogMainContainer {
       background-color: colors.$darkbg;

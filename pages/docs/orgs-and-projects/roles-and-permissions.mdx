@@ -13,6 +13,8 @@ To invite and manage users in your organization and project, you will need an ad
 
 You can invite users to an organization or to a project with specific role permissions. See [Permissions](/docs/orgs-and-projects/roles-and-permissions#permissions) to learn more about organization roles and project roles.
 
+Mixpanel enforces a domain-based rate limit of about 10 invite emails per hour per email domain for organization/project user invitations.
+
 #### Invite Users to an Organization
 
 To invite a user to an organization:
@@ -70,7 +72,7 @@ To remove a user from a project:
 2. Find the user(s) to remove and click the checkbox next to their name.
 3. Click the **Delete** button that appears at the top of the table.
 
-A user may be a member of multiple projects. Deleting a user from one project does not affect their access to other projects within the organization.
+A user can belong to multiple projects. Removing a user from one project does not affect their access to other projects within the organization. Any assets the user created (such as boards or reports) remain available in the project and are not automatically removed when the user is removed.
 
 <Callout type="info">
   Only users with Organization Owner or Organization Admin roles can remove users that have access to a project granted through a [Team](/docs/orgs-and-projects/roles-and-permissions#teams).
@@ -111,7 +113,9 @@ The table below breaks down the roles and permissions of each role:
 
 **Owner**
 <Callout type="info">
-  As a best practice, it is recommended to have at least 2 Organization Owners at all times, in case an owner loses access to their account or is no longer working with the company.
+  It is recommended to have at least 2 Organization Owners at all times, in case an owner loses access to their account or is no longer working with the company.
+
+  If all existing owners are no longer working with the company and you need to assign a new owner, please [reach out to the support team](https://mixpanel.com/get-support).
 </Callout>
 
 Organization Owners have administrative permissions for the organization and all the projects in the organization. Multiple users can be Owners. However, each organization must have at least one Owner.

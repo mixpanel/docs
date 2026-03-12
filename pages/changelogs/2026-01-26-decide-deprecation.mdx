@@ -1,0 +1,59 @@
+---
+title: "Retiring /decide Endpoint Used in Older Mixpanel SDK Versions"
+slug: "changelog-2026-01-26-decide-deprecation"
+hidden: false
+createdAt: "2026-01-26T10:00:00.000Z"
+updatedAt: "2026-01-28T10:00:00.000Z"
+date: "2026-01-26"
+thumbnail: ""
+description: "Starting April 2026, we will be fully retiring the /decide endpoint, which we began deprecating in 2022. Newer SDK versions no longer rely on it. "
+isAnnouncement: false
+---
+
+<ChangelogPostHeader
+  date="2026-01-26"
+  image=""
+  title="Retiring /decide Endpoint Used in Older Mixpanel SDK Versions"
+/>
+
+Starting April 2026, we will be fully retiring the `/decide` endpoint, which was used in older versions of Mixpanel SDKs.
+We began deprecating this in 2022; newer SDK versions no longer rely on it.
+
+**If you’re running an SDK version from 2022 or earlier, please review the details below.**
+
+# How to check your project's current SDK Version:
+1. In an Insights Report, select "All Events" as your primary metric
+2. Break down by ["Mixpanel Library" and "Library Version"](/docs/data-structure/property-reference/default-properties) event properties
+
+Tip: You can find a list of all Projects in your Organization in [Organization Settings > Projects](/docs/orgs-and-projects/managing-projects#viewing-project-information), and use the above check to confirm which SDK and versions are in use.
+
+# Mobile SDKs
+
+The `/decide` endpoint controlled whether [Legacy Automatically Tracked Mobile Events](/docs/tracking-methods/sdks/ios#legacy-automatically-tracked-events) `$ae_first_open`, `$ae_updated`, `$ae_crashed`, `$ae_session`, and `$ae_iap` were enabled or disabled for a Mixpanel Project.
+
+If you currently collect these events and your Mobile SDK version does not meet the minimum versions listed below, your application will stop tracking the Automatic Mobile events after April 2026.
+To keep collecting the Automatic Mobile events, please complete the following:
+1. **Update to at least the minimum SDK** **versions listed below** and 
+2. **Explicitly enable this tracking in your initialization code via `trackAutomaticEvents`**
+
+
+Minimum Version and Guides:
+- **Android:**  [v7.0.0+](https://github.com/mixpanel/mixpanel-android/releases/tag/v7.0.0) | [Initialization Guide](/docs/tracking-methods/sdks/android#library-configuration)
+- **React Native:** [v.2.0.0+](https://github.com/mixpanel/mixpanel-react-native/releases/tag/v2.0.0) | [Initialization Guide](/docs/tracking-methods/sdks/react-native#library-configuration)
+- **iOS (Objective-C):** [v.5.0.0+](https://github.com/mixpanel/mixpanel-iphone/releases/tag/v5.0.0) | [Initialization Guide](/docs/tracking-methods/sdks/ios#library-configuration)
+- **iOS (Swift):** [v.4.0.0+](https://github.com/mixpanel/mixpanel-swift/releases/tag/v4.0.0) | [Initialization Guide](/docs/tracking-methods/sdks/swift#library-configuration)
+- **Flutter:** [v.2.0.0+](https://github.com/mixpanel/mixpanel-flutter/releases/tag/v2.0.0) | [Initialization Guide](/docs/tracking-methods/sdks/flutter#library-configuration)
+
+
+
+# JavaScript (Web) SDK
+
+If your JavaScript SDK version is older than the minimum version below, there will be no functionality change; however, your application will begin receiving `410` Response Error Codes from this endpoint. We strongly recommend updating to the minimum version below.
+
+Minimum Version:
+- **JavaScript:** [v.2.45.0+](https://github.com/mixpanel/mixpanel-js/releases/tag/v2.45.0)
+
+
+
+
+If you have any questions or need assistance with checking your Mixpanel Project's SDK versions, you can reach out to [Mixpanel’s Support Team](/docs/response-times#contacting-mixpanel-support).
