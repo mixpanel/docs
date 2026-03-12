@@ -21,6 +21,7 @@ export default {
     "mailchimp": "Mailchimp",
     "marketo": "Marketo",
     "moengage": "MoEngage",
+    "mparticle": "mParticle",
     "onesignal": "OneSignal",
     "salesforce-marketing-cloud": "Salesforce Marketing Cloud",
     "segment": "Segment",

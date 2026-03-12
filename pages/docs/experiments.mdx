@@ -5,7 +5,7 @@ import { Callout } from 'nextra/components'
 <Callout type="info">
     The Experiment Report is a separately priced product add-on. It is currently only offered to those on the Enterprise Plan. See our [pricing page](https://mixpanel.com/pricing/) for more details.
 
-    Customers who have not purchased the Experiment add-on will be able to create up to 3 experiments per organization. Please note that creation is irreversible, so you would not be able to delete experiments. If you are interested in exploring the features fully, you can request a trial from your account team.
+    Customers who have not purchased the Experiment add-on will be able to create up to 3 experiments per project. Please note that creation is irreversible, so you would not be able to delete experiments. If you are interested in exploring the features fully, you can request a trial from your account team.
 </Callout>
 
 ## Why Experiment?
@@ -115,17 +115,20 @@ Mixpanel uses Frequentist statistical methods to compute p-values and confidence
 
 **Metric Types and Their Distributions:**
 
-Mixpanel categorizes metrics into three types, each using different statistical distributions:
+Mixpanel categorizes metrics into four types, each using different statistical distributions:
 
-1. **Count Metrics** (Total Events, Total Sessions): Use **Poisson distribution**
-   - Examples: Total purchases, total page views, session count
+1. **Total Events Metrics**: Use **normal distribution** of per-user event counts
+   - Examples: Total purchases, total page views
+   - Variance is calculated directly from the distribution of per-user event counts
+
+2. **Total Sessions Metrics**: Use **Poisson distribution**
    - Variance equals the mean (characteristic of Poisson distributions)
 
-2. **Rate Metrics** (Conversion rates, Retention rates): Use **Bernoulli distribution**
+3. **Rate Metrics** (Conversion rates, Retention rates): Use **Bernoulli distribution**
    - Examples: Signup conversion rate, checkout completion rate, 7-day retention
    - Models binary outcomes (did/didn't convert) across your user base
 
-3. **Value Metrics** (Averages, Sums of properties): Use **normal distribution approximation**
+4. **Value Metrics** (Averages, Sums of properties): Use **normal distribution approximation**
    - Examples: Average order value, total revenue, average session duration
    - Calculates variance using sample statistics
 
@@ -192,10 +195,14 @@ $Lift= { (variant \,group\,rate - control \,group\,rate) \over (control \,group\
 
 Lift, mean, and variance are calculated differently based on the type of metric being analyzed:
 
-**Count Metrics (Total Events, Sessions):**
+**Total Events Metrics:**
+- **Group Rate:** Total count ÷ Number of users exposed
+- **Variance:** Calculated directly from the per-user event counts, treated as a continuous variable
+- **Example:** If the treatment group has 150 total purchases from 100 exposed users, the group rate = 1.5 purchases per user
+
+**Total Sessions Metrics:**
 - **Group Rate:** Total count ÷ Number of users exposed
 - **Variance:** Equal to the mean (Poisson distribution property)
-- **Example:** If the treatment group has 150 total purchases from 100 exposed users, the group rate = 1.5 purchases per user
 
 **Rate Metrics (Conversion, Retention):** 
 - **Group Rate:** The actual rate (already normalized)

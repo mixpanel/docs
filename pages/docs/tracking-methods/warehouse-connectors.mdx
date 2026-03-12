@@ -32,13 +32,31 @@ Navigate to [Project Settings → Warehouse Sources](https://mixpanel.com/report
 <ExtendedTabs urlParam="dwh" urlToItemsMap={dwhItems}>
 
 <Tabs.Tab>
-    <div style={{position: 'relative', paddingBottom: '64.90384615384616%', height: 0}}>
-        <iframe src="https://www.loom.com/embed/04f4ea75310744cdab477e1b47684db3?sid=3728258e-b860-431f-bdf2-cff508b2b19e"
-            frameBorder="0"
-            webkitallowfullscreen="true" mozallowfullscreen="true" allowFullScreen
-            style={{position: 'absolute', 'top': 0, 'left': 0, 'width': '100%', 'height': '100%'}}>
-        </iframe>
-    </div>
+    <div
+  style={{
+    position: "relative",
+    paddingBottom: "64.90384615384616%",
+    height: 0,
+  }}
+>
+  <p>
+    <iframe
+      src="https://www.youtube-nocookie.com/embed/9u60IdyxIVY"
+      frameBorder="0"
+      webkitallowfullscreen="true"
+      mozallowfullscreen="true"
+      allowFullScreen
+      style={{
+        position: "absolute",
+        top: 0,
+        left: 0,
+        width: "100%",
+        height: "100%",
+        borderRadius: "16px",
+      }}
+    ></iframe>
+  </p>
+</div>
 
         The BigQuery connector works by giving a Mixpanel-managed service account permission to read from BigQuery in your GCP project. You will need:
         - Your GCP Project ID, which you can find in the URL of Google Cloud Console (`https://console.cloud.google.com/bigquery?project=YOUR_GCP_PROJECT`).
@@ -78,13 +96,31 @@ IP allowlists are [not supported](https://docs.cloud.google.com/vpc-service-cont
 
 </Tabs.Tab>
 <Tabs.Tab>
-    <div style={{position: 'relative', paddingBottom: '64.90384615384616%', height: 0}}>
-        <iframe src="https://www.loom.com/embed/5dbaf37d9308404393417043551aed55"
-            frameBorder="0"
-            webkitallowfullscreen="true" mozallowfullscreen="true" allowFullScreen
-            style={{position: 'absolute', 'top': 0, 'left': 0, 'width': '100%', 'height': '100%'}}>
-        </iframe>
-    </div>
+    <div
+  style={{
+    position: "relative",
+    paddingBottom: "64.90384615384616%",
+    height: 0,
+  }}
+>
+  <p>
+    <iframe
+      src="https://www.youtube-nocookie.com/embed/i-ytJQdojio"
+      frameBorder="0"
+      webkitallowfullscreen="true"
+      mozallowfullscreen="true"
+      allowFullScreen
+      style={{
+        position: "absolute",
+        top: 0,
+        left: 0,
+        width: "100%",
+        height: "100%",
+        borderRadius: "16px",
+      }}
+    ></iframe>
+  </p>
+</div>
 
     To connect to Snowflake, you will need:
     - Your [Snowflake account identifier](https://docs.snowflake.com/user-guide/admin-account-identifier), which you can find in the
@@ -178,12 +214,30 @@ IP allowlists are [not supported](https://docs.cloud.google.com/vpc-service-cont
     See the [Snowflake documentation on this setting](https://docs.snowflake.com/en/sql-reference/parameters#prevent-unload-to-inline-url) before making the change.
 </Tabs.Tab>
 <Tabs.Tab>
-    <div style={{position: 'relative', paddingBottom: '64.90384615384616%', height: 0}}>
-    <iframe src="https://www.loom.com/embed/56a21b31e75342498317cbb6f31285eb"
-        frameBorder="0"
-        webkitallowfullscreen="true" mozallowfullscreen="true" allowFullScreen
-        style={{position: 'absolute', 'top': 0, 'left': 0, 'width': '100%', 'height': '100%'}}>
-    </iframe>
+    <div
+  style={{
+    position: "relative",
+    paddingBottom: "64.90384615384616%",
+    height: 0,
+  }}
+>
+  <p>
+    <iframe
+      src="https://www.youtube-nocookie.com/embed/Fr-isqO1w2s"
+      frameBorder="0"
+      webkitallowfullscreen="true"
+      mozallowfullscreen="true"
+      allowFullScreen
+      style={{
+        position: "absolute",
+        top: 0,
+        left: 0,
+        width: "100%",
+        height: "100%",
+        borderRadius: "16px",
+      }}
+    ></iframe>
+  </p>
 </div>
 
 <Callout type="info">
@@ -192,47 +246,62 @@ IP allowlists are [not supported](https://docs.cloud.google.com/vpc-service-cont
 
 Complete the following steps to get your Databricks connector up and running:
 
-1. Navigate to **Project Settings**, then select **Warehouse Sources**.
-2. Click on `+ Add Connection` and select **Databricks**.
-3. You should see a new page to create your databricks connector. In the first view, fill out the following fields before clicking  `Create Source`:
-    - **Server Hostname** - This is the hostname of your Databricks cluster. This can be found in your workspace URL, or by navigating to [JDBC/ODBC connection settings](https://docs.databricks.com/en/integrations/jdbc-odbc-bi.html#step)
-    - **Access Token** - This is the Personal access token used to authenticate with your Databricks cluster. Here are the instructions on [how to create an access token](https://docs.databricks.com/en/dev-tools/auth.html#databricks-personal-access-tokens-for-workspace-users)
-    - **Compute Type** - Select your preferred compute option. We recommend using all-purpose compute for development use cases and jobs compute for production use cases.
-        - **All-Purpose Compute** - Uses an existing Databricks cluster. This option has faster sync start times since the cluster may already be running, but can be more expensive as the cluster remains running after the sync completes until it times out.
-        - **Jobs Compute (Beta)** - Creates a dedicated Databricks job for each sync. You are only billed by Databricks for the exact duration of the job, making this more cost-effective. However, each sync has a longer start time (approximately 5-6 minutes) due to cluster spin-up. Also note that jobs compute does not support previewing data in the Mixpanel UI.
-    - **HTTP Path** - For all-purpose compute, this is the HTTP path of the cluster you would like to connect to. This can be found in your cluster [JDBC/ODBC connection settings](https://docs.databricks.com/en/integrations/jdbc-odbc-bi.html#step)
-4. In the second view, you should see that the credentials are validated and a source is added.
+### Step 1: Set up authentication
 
-### Using Service Principals
-If a service principal is used, you'll want to follow these steps:
-1. [Create the service principal](https://docs.databricks.com/en/admin/users-groups/service-principals.html#manage-service-principals-in-your-account) if it doesn't exist.
-2. Create a token for the service principal. You can do so through the Databricks CLI:
+You can authenticate with either a personal access token or a service principal. We recommend using a **service principal** for production use cases.
+
+**Option A: Personal Access Token**
+
+Create a personal access token by following the [Databricks instructions](https://docs.databricks.com/aws/en/dev-tools/auth/pat#create-personal-access-tokens-for-workspace-users). Save this token — you'll need it when connecting in Mixpanel.
+
+**Option B: Service Principal (Recommended)**
+
+1. [Create the service principal](https://docs.databricks.com/en/admin/users-groups/service-principals.html#manage-service-principals-in-your-account) in your Databricks account if it doesn't already exist.
+2. Generate a token for the service principal using the Databricks CLI:
 ```bash
 databricks configure --token
-databricks token-management create-obo-token <application_id_of_service_principal> 31536000 --comment "Mixpanel warehouse connector service principal token"
+databricks token-management create-obo-token <application_id_of_service_principal> --lifetime-seconds 31536000 --comment "Mixpanel warehouse connector service principal token"
 ```
-3. Copy the token generated for later use
-4. Give the service principal `Can Attach` permissions to the cluster (in Cluster > Permissions)
-    - Note the cluster needs to be a shared compute resource and not a single-user cluster (unless the service principal created the cluster as well)
-5. Give the service principal access to the catalogs you want to read in Mixpanel
-6. When table access control is enabled in the account, the service principal also requires access to the files that will be read. You can add access like:
-```bash
-GRANT SELECT ON ANY FILE TO <application_id_of_service_principal>
-GRANT MODIFY ON ANY FILE TO <application_id_of_service_principal>
+3. Save the generated token — you'll need it when connecting in Mixpanel.
+
+### Step 2: Grant permissions
+
+The user or service principal you're connecting with needs the following permissions. The exact permissions depend on which compute type you plan to use.
+
+**Compute permissions:**
+
+| Permission | All-Purpose Compute | Jobs Compute |
+|---|---|---|
+| `CAN ATTACH TO` on the cluster | Required | Not needed |
+| `CAN RESTART` on the cluster | Required if the cluster auto-suspends | Not needed |
+| Cluster creation permissions | Not needed | Required |
+
+For all-purpose compute, the cluster must be a **shared** compute resource, not a single-user cluster (unless the service principal created the cluster).
+
+You can set these in Databricks under **Compute → your cluster → Edit Permissions**.
+
+**Data permissions:**
+
+Grant read access to the catalogs and schemas you want to sync to Mixpanel. You can do this in Databricks under **Catalog → your catalog → Permissions → Grant**, and select the **Data Reader** role.
+
+Mixpanel also needs file-level permissions to read table data and write intermediate results to cloud storage. Run the following SQL in a Databricks notebook or SQL editor:
+```sql
+GRANT SELECT ON ANY FILE TO `<application_id_or_username>`;
+GRANT MODIFY ON ANY FILE TO `<application_id_or_username>`;
 ```
-7. During the setup process in Mixpanel, you can now use the token from the service principal when setting up the connection
 
-### Required Permissions
+### Step 3: Connect in Mixpanel
 
-The account or service principal used for the connection requires different permissions depending on the compute type selected:
-
-- **All-Purpose Compute**:
-  - `CAN ATTACH TO` permission on the cluster
-  - `CAN RESTART` permission on the cluster (if the cluster auto-suspends)
-  - `CAN USE` permission on the SQL warehouse the cluster leverages
-
-- **Jobs Compute**:
-  - Cluster creation permissions - the account or service principal needs permission to create job clusters
+1. Navigate to **Project Settings**, then select **Warehouse Sources**.
+2. Click on `+ Add Connection` and select **Databricks**.
+3. Fill out the following fields, then click **Create Source**:
+    - **Server Hostname** — The hostname of your Databricks workspace. Find this in your workspace URL, or under your cluster's [JDBC/ODBC settings](https://docs.databricks.com/en/integrations/jdbc-odbc-bi.html#step).
+    - **Access Token** — The personal access token or service principal token you created above.
+    - **Compute Type** — Select your preferred compute option:
+        - **All-Purpose Compute** — Uses an existing cluster. Faster sync start times, but the cluster stays running after the sync completes until it times out. Best for development.
+        - **Jobs Compute (Beta)** — Creates a dedicated job for each sync. You're only billed for the exact job duration, making it more cost-effective. Syncs take ~5-6 minutes longer to start due to cluster spin-up, and data preview in the Mixpanel UI is not supported. Best for production.
+    - **HTTP Path** — For all-purpose compute, the HTTP path of your cluster. Find this under your cluster's [JDBC/ODBC settings](https://docs.databricks.com/en/integrations/jdbc-odbc-bi.html#step).
+4. Confirm that the credentials are validated and the source is added.
 
 
 ### IP Allowlist
@@ -263,12 +332,30 @@ If you are using [IP Access List](https://docs.databricks.com/en/security/networ
 </Tabs.Tab>
 <Tabs.Tab>
 
-<div style={{position: 'relative', paddingBottom: '64.90384615384616%', height: 0}}>
-    <iframe src="https://www.loom.com/embed/76f4658dd850457e9634c706ee0d9430"
-        frameBorder="0"
-        webkitallowfullscreen="true" mozallowfullscreen="true" allowFullScreen
-        style={{position: 'absolute', 'top': 0, 'left': 0, 'width': '100%', 'height': '100%'}}>
-    </iframe>
+<div
+  style={{
+    position: "relative",
+    paddingBottom: "64.90384615384616%",
+    height: 0,
+  }}
+>
+  <p>
+    <iframe
+      src="https://www.youtube-nocookie.com/embed/d3LCU5NdQsM"
+      frameBorder="0"
+      webkitallowfullscreen="true"
+      mozallowfullscreen="true"
+      allowFullScreen
+      style={{
+        position: "absolute",
+        top: 0,
+        left: 0,
+        width: "100%",
+        height: "100%",
+        borderRadius: "16px",
+      }}
+    ></iframe>
+  </p>
 </div>
 
 Complete the following steps to get your Redshift connector up and running:
@@ -335,6 +422,11 @@ Complete the following steps to get your Postgres connector up and running:
         - **verify-full** (default, recommended) - Verifies both the server certificate and that the hostname matches the certificate.
         - **verify-ca** - Verifies the server certificate against a trusted certificate authority.
     - **Server CA Certificate** (Optional) - If your cloud provider doesn't use a public certificate registry (e.g., Google Cloud SQL, Supabase), you can upload a CA bundle as a PEM file to authenticate your server.
+    - **SSH Tunnel** (Optional) - If you need to connect through an SSH tunnel, enable and configure the following:
+        - **Bastion Hostname** - The hostname of your SSH server.
+        - **Bastion Port** - The port your SSH server is listening on.
+        - **SSH Username** - The username for SSH authentication.
+        - **SSH Private Key** - Paste the contents of your private key file. At this time, only non-encrypted private keys are supported.
     - Then, click `Create Source`.
 
 <Callout type="warning">
@@ -834,8 +926,6 @@ This will count as an update event for each row in the sync.
 If your warehouse workflow **drops and recreates tables**, Mirror will treat this as a full delete and re-insert, with each row counted as a billable event. Mirror looks at the data already ingested into Mixpanel and uses warehouse-specific logic to identify changes made within your warehouse platform. In the case of a full table delete, Mixpanel will register each deleted row as a billable event, and the same applies when the table is recreated.
 
 If instead your workflow updates existing tables—by appending, updating, or deleting specific rows or columns—only the affected rows will be billed, as shown in the table above.
-
-**Note on Deletes**: If you delete events using [Mixpanel UI](https://docs.mixpanel.com/docs/data-governance/data-clean-up), those deletes are not counted towards billable events. Only Deletes coming from the warehouse using Mirror are billable.
 
 **Note on Backfills**: You can also backfill using `Append` mode if you create a new sync. But for an ongoing sync, you cannot backfill for older days within the existing sync once the `insert_time` has moved past.
 
