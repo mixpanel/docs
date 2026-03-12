@@ -121,9 +121,9 @@ Click on a metric. When the query panel opens, navigate to the Context tab. With
 
 ![image](/metrictree7.png)
 
-# FAQ
+## FAQ
 
-## How do AI-generated metric trees work, and what data does Mixpanel use to generate them?
+### How do AI-generated metric trees work, and what data does Mixpanel use to generate them?
 
 AI-generated metric trees are built using an outside-in analysis powered by OpenAI. The system draws on industry best practices, common growth models, and the context you provide about your product in the custom instructions field — such as your business model, team focus, or the specific outcome you're trying to drive.
 
@@ -131,33 +131,33 @@ At this time, none of your Mixpanel data is used. The AI has no access to your e
 
 This means the generated tree is a starting hypothesis, not a data-validated model. Treat it as a well-informed first draft that reflects what's known about your industry and product category — and then make it yours by connecting real metrics from your Mixpanel data.
 
-## What does the "As Of" control on the top left of the metric tree do? 
+### What does the "As Of" control on the top left of the metric tree do? 
 `As of` determines the end date reference point for the metric tree. 
 
 For example, if you want to look at how the metric tree looked at the end of Q1, i.e, March 2025, you could set "As of 31 March 2025". All the metrics in the metric tree which are based on last 30 Days, or the last 3 months etc, will look at measuring the value of last 30D as of 31 March 2025, i.e, 2-31 March 2025, instead of last 30D as of today.
 
 ![image](/metrictree8.png)
 
-## What does Filtering a tree do? 
+### What does Filtering a tree do? 
 
 Filtering a tree is similar to filtering a board. It filters every metric in the metric tree. If you’re looking to filter only a specific metric, please use [inline filters](/docs/reports/funnels/funnels-advanced#inline-filtering-pre-query).
 
-## How do I see the metric trend chart (metric time series)? 
+### How do I see the metric trend chart (metric time series)? 
 
 Access the 3-dot overflow menu on the top right of the metric tree. Click on Show/ Hide > Show Metric Chart. 
 
 If you want to look at a longer time series chart for a particular metric, go to the specific metric card, click on the overflow menu, and choose View Chart.
 
-## I want to move trees across projects. How do I do that? 
+#### I want to move trees across projects. How do I do that? 
 You can copy a tree and paste a tree in a new project. To select the whole tree, use the `select tool` in the toolbar below, in the middle of the screen. Then  Copy (Cmd + C), and Paste (Cmd + V) in the new project.  
 
-## How many trees do you suggest we create?
+### How many trees do you suggest we create?
 Create minimal trees so there is a complete map of the strategy in one place vs across disparate trees. Ideally, start with one tree per company, and depending on the size, maybe create separate trees for each function or business line if required
 
-## Does the top of a metric tree have to be revenue-related? 
+### Does the top of a metric tree have to be revenue-related? 
 No, it doesn’t have to. We generally ask people to start a tree at L2 or L3 level where there is more functional ownership, for example, marketing can own Volume of Sign-Ups or Product can own WAU (Weekly Active Users).
 
-## What is correlation? How do I access it?  
+### What is correlation? How do I access it?  
 Access the 3-dot overflow menu on the top right of the metric tree. Click on Show/ Hide > Show Correlation. Correlation numbers should show up across all the edges, i.e the connection between two metric cards.  
 
 ![image](/metrictree9.png)
@@ -176,7 +176,7 @@ Where:
 
 The resulting **r-value** determines the correlation score displayed on the edge.
 
-### Interpreting the Correlation Score
+#### Interpreting the Correlation Score
  
 - **(0.6 to 1.0) Strong Positive Correlation:** The two metrics tend to move in the same direction strongly. As one metric increases, the other increases. Similarly, as one metric decreases, the other decreases
 - **(0.3 to 0.6) Moderate Positive Correlation :** Some relationship exists
@@ -186,7 +186,7 @@ The resulting **r-value** determines the correlation score displayed on the edge
 - **(-0.6 to -0.3) Moderate Negative Correlation :** Some inverse relationship exists.
 - **(-1.0 to -0.6) Strong Negative Correlation :** The two metrics strongly move in opposite directions. As one metric increases, the other decreases and vice versa.
 
-### To compute the Pearson correlation, we use:
+#### To compute the Pearson correlation, we use:
 
 - **Time-series data** from both metrics.
 - **Matching timestamps**: Data points are aligned by timestamp to ensure proper comparison.
@@ -195,7 +195,7 @@ The resulting **r-value** determines the correlation score displayed on the edge
     1. If 2 time-series data have different lengths, correlations are calculated based on the overlapping lengths between the 2 
     2. All correlations are run on a daily granularity, since event data is available on a daily basis to compute metrics at that granular view.
 
-### Limitations of Correlation
+#### Limitations of Correlation
 
 - **Correlation does not imply causation**: A high correlation does not necessarily mean that one metric influences the other.
 - **Non-linear relationships**: Pearson correlation captures only linear relationships. If the metrics are related in a non-linear way, this score might not reflect the true relationship.
