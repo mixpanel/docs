@@ -422,6 +422,11 @@ Complete the following steps to get your Postgres connector up and running:
         - **verify-full** (default, recommended) - Verifies both the server certificate and that the hostname matches the certificate.
         - **verify-ca** - Verifies the server certificate against a trusted certificate authority.
     - **Server CA Certificate** (Optional) - If your cloud provider doesn't use a public certificate registry (e.g., Google Cloud SQL, Supabase), you can upload a CA bundle as a PEM file to authenticate your server.
+    - **SSH Tunnel** (Optional) - If you need to connect through an SSH tunnel, enable and configure the following:
+        - **Bastion Hostname** - The hostname of your SSH server.
+        - **Bastion Port** - The port your SSH server is listening on.
+        - **SSH Username** - The username for SSH authentication.
+        - **SSH Private Key** - Paste the contents of your private key file. At this time, only non-encrypted private keys are supported.
     - Then, click `Create Source`.
 
 <Callout type="warning">
