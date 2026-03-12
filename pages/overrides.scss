@@ -648,7 +648,11 @@ article {
           background-color: colors.$purple50;
           transition-duration: 0.5s;
         }
+        span {
+          background-color: rgba(0,0,0,0);
+        }
       }
+
     }
 
     //modify anchor links hastags
@@ -1462,6 +1466,9 @@ article {
         &:hover {
           background-color: colors.$purple100;
           transition-duration: 0.5s;
+        }
+        span {
+          background-color: rgba(0,0,0,0);
         }
       }
     }
