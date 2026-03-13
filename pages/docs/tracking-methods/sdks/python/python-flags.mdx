@@ -86,14 +86,26 @@ mp = mixpanel.Mixpanel(PROJECT_TOKEN, remote_flags_config=remote_config)
 variant_value = mp.remote_flags.get_variant_value(flag_key, fallback_variant, user_context)
 ```
 
-### Suppress automatic exposure tracking
+## Suppress automatic exposure tracking
 
-By default, `get_variant_value()` automatically tracks an exposure event. Note that `get_variant_value()` does not expose a `reportExposure` parameter — to suppress automatic exposure tracking, call `get_variant()` directly with `reportExposure=False`, then manually track the exposure when you're ready to expose the user to the variant.
+By default, `get_variant_value()` automatically tracks an exposure event. Note that `get_variant_value()` does not expose a `report_exposure` parameter — to suppress automatic exposure tracking, call `get_variant()` directly with `report_exposure=False`, then manually track the exposure when you're ready to expose the user to the variant. This applies to both local and remote evaluation.
 
 ```python
 from mixpanel import SelectedVariant
 
-# To suppress automatic exposure tracking, use get_variant() directly with reportExposure=False
+# Local evaluation - suppress automatic exposure tracking with report_exposure=False
+fallback = SelectedVariant(variant_value=fallback_variant)
+variant = mp.local_flags.get_variant(flag_key, fallback, user_context, report_exposure=False)
+variant_value = variant.variant_value
+
+# Manually track exposure when you're ready to expose the user to the variant
+mp.local_flags.track_exposure_event(flag_key, variant, user_context)
+```
+
+```python
+from mixpanel import SelectedVariant
+
+# Remote evaluation - suppress automatic exposure tracking with report_exposure=False
 fallback = SelectedVariant(variant_value=fallback_variant)
 variant = mp.remote_flags.get_variant(flag_key, fallback, user_context, reportExposure=False)
 variant_value = variant.variant_value

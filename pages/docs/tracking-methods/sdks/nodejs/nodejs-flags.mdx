@@ -74,16 +74,6 @@ const userContext = {
 const variantValue = mixpanel.local_flags.getVariantValue(flagKey, fallbackValue, userContext);
 ```
 
-To suppress automatic exposure tracking, pass `false` as the optional 4th parameter, then manually call `trackExposureEvent` when you're ready to expose the user to the variant.
-
-```javascript
-// Pass false to suppress automatic exposure tracking
-const variantValue = mixpanel.local_flags.getVariantValue(flagKey, fallbackValue, userContext, false);
-
-// Manually track exposure when you're ready to expose the user to the variant
-mixpanel.local_flags.trackExposureEvent(flagKey, selectedVariant, userContext);
-```
-
 ## Remote Evaluation
 
 - The SDK is configured with a `remote_flags_config` object to use remote evaluation.
@@ -102,10 +92,20 @@ const mixpanel = Mixpanel.init('YOUR_PROJECT_TOKEN', {
 const variantValue = await mixpanel.remote_flags.getVariantValue(flagKey, fallbackValue, userContext);
 ```
 
-To suppress automatic exposure tracking, pass `false` as the optional 4th parameter, then manually call `trackExposureEvent` when you're ready to expose the user to the variant.
+## Suppress automatic exposure tracking
+
+To suppress automatic exposure tracking, pass `false` as the optional 4th parameter, then manually call `trackExposureEvent` when you're ready to expose the user to the variant. This applies to both local and remote evaluation.
 
 ```javascript
-// Pass false to suppress automatic exposure tracking
+// Local evaluation - pass false to suppress automatic exposure tracking
+const variantValue = mixpanel.local_flags.getVariantValue(flagKey, fallbackValue, userContext, false);
+
+// Manually track exposure when you're ready to expose the user to the variant
+mixpanel.local_flags.trackExposureEvent(flagKey, selectedVariant, userContext);
+```
+
+```javascript
+// Remote evaluation - pass false to suppress automatic exposure tracking
 const variantValue = await mixpanel.remote_flags.getVariantValue(flagKey, fallbackValue, userContext, false);
 
 // Manually track exposure when you're ready to expose the user to the variant
