@@ -74,6 +74,16 @@ const userContext = {
 const variantValue = mixpanel.local_flags.getVariantValue(flagKey, fallbackValue, userContext);
 ```
 
+To suppress automatic exposure tracking, pass `false` as the optional 4th parameter, then manually call `trackExposureEvent` when you're ready to expose the user to the variant.
+
+```javascript
+// Pass false to suppress automatic exposure tracking
+const variantValue = mixpanel.local_flags.getVariantValue(flagKey, fallbackValue, userContext, false);
+
+// Manually track exposure when you're ready to expose the user to the variant
+mixpanel.local_flags.trackExposureEvent(flagKey, selectedVariant, userContext);
+```
+
 ## Remote Evaluation
 
 - The SDK is configured with a `remote_flags_config` object to use remote evaluation.
@@ -90,6 +100,16 @@ const mixpanel = Mixpanel.init('YOUR_PROJECT_TOKEN', {
 
 // getVariantValue usage is the same as for local evaluation, but will make a network call to Mixpanel servers at assignment time.
 const variantValue = await mixpanel.remote_flags.getVariantValue(flagKey, fallbackValue, userContext);
+```
+
+To suppress automatic exposure tracking, pass `false` as the optional 4th parameter, then manually call `trackExposureEvent` when you're ready to expose the user to the variant.
+
+```javascript
+// Pass false to suppress automatic exposure tracking
+const variantValue = await mixpanel.remote_flags.getVariantValue(flagKey, fallbackValue, userContext, false);
+
+// Manually track exposure when you're ready to expose the user to the variant
+mixpanel.remote_flags.trackExposureEvent(flagKey, selectedVariant, userContext);
 ```
 
 ## Evaluate all flags at once
