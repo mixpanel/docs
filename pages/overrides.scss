@@ -1195,6 +1195,14 @@ article {
       margin-bottom: $base-spacing;
     }
 
+    // Both .nextra-toc-footer and .nextra-sidebar-footer share the same Nextra-compiled
+    // box-shadow: 0 -12px 16px rgb(var(--nextra-bg)). The left sidebar's shadow is overridden
+    // by our ._sticky._bottom-0 rule to a much subtler value. Match that here so both sides
+    // have the same (barely-visible) treatment instead of the right having a visible fade.
+    .nextra-toc-footer {
+      box-shadow: 0px -7px 6px -8px rgba(32, 31, 36, 0.1);
+    }
+
     // Force the inner grid to full height so the footer (last min-content row)
     // always anchors to the bottom of the TOC column.
     > div {
@@ -1317,7 +1325,7 @@ article {
       color: colors.$grey50;
     }
   }
-
+  
   //##############################Light Theme Footer##############################
   footer {
     background-color: colors.$lightbg !important;
@@ -1331,6 +1339,8 @@ article {
     //bottom box with trademark logo
     ._mx-auto {
       background-color: colors.$lightbg;
+      padding-top: 10px;
+      padding-bottom: 10px;
     }
   }
 
@@ -2190,6 +2200,8 @@ article {
     //bottom box with trademark logo
     ._mx-auto {
       background-color: colors.$darkbg;
+      padding-top: 10px;
+      padding-bottom: 10px;
     }
   }
 
