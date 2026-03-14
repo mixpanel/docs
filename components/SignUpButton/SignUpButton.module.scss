@@ -1,7 +1,7 @@
 @use "../../pages/theme/colors.scss" as colors;
 
 .signUpButton {
-  background: linear-gradient(1deg, colors.$purple100 0.97%, colors.$purple50 96.96%);
+  background: linear-gradient(1deg, #{colors.$purple100} 0.97%, #{colors.$purple50} 96.96%);
   font-weight: 500;
   font-size: 1rem;
   line-height: 1.5rem;
@@ -12,11 +12,25 @@
   user-select: none;
   border: 1px solid #1b0b3b;
 
-  &:hover {
-    background-color: colors.$purple100;
-    transition-property: background;
-    transition-duration: 10s;
-    transition-timing-function: ease-in-out;
-    background: linear-gradient(1deg, #{colors.$purple140} 0.97%, #{colors.$purple100} 96.96%)
+  // CSS can't interpolate between two gradients, so we layer the hover gradient
+  // behind the text via ::after and transition its opacity instead.
+  // isolation: isolate creates a stacking context so z-index: -1 on ::after
+  // sits above this element's own background but below its inline text content.
+  position: relative;
+  isolation: isolate;
+
+  &::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    border-radius: inherit;
+    background: linear-gradient(1deg, #{colors.$purple140} 0.97%, #{colors.$purple100} 96.96%);
+    opacity: 0;
+    transition: opacity 0.2s ease-in-out;
+    z-index: -1;
+  }
+
+  &:hover::after {
+    opacity: 1;
   }
 }

@@ -1370,22 +1370,45 @@ article {
 //
 // Why --button-bg works (and --mantine-primary-color-filled didn't):
 //   The shadow DOM's own <style> re-declares --mantine-primary-color-filled on #kapa-widget-root,
-//   overriding any inherited value. But --button-bg and --button-hover are never re-declared
-//   anywhere inside the shadow DOM — the button reads:
-//     background: var(--button-bg, var(--mantine-primary-color-filled))
-//     hover:      background-color: var(--button-hover, var(--mantine-primary-color-filled-hover))
-//   Setting them here lets them cascade straight through to the button.
+//   overriding any inherited value. But --button-bg is never re-declared inside the shadow DOM —
+//   the button reads: background: var(--button-bg, var(--mantine-primary-color-filled))
+//
+// Gradient transition:
+//   CSS cannot interpolate between two <image> values (gradients snap instantly).
+//   The fix: register the gradient stop colors as @property <color> types, which CAN be
+//   interpolated. The transition runs on #kapa-widget-container; the animated values cascade
+//   through the shadow boundary into --button-bg at each animation frame.
+
+@property --kapa-gradient-from {
+  syntax: '<color>';
+  initial-value: #{colors.$purple100};
+  inherits: true;
+}
+
+@property --kapa-gradient-to {
+  syntax: '<color>';
+  initial-value: #{colors.$purple50};
+  inherits: true;
+}
+
 #kapa-widget-container {
-  --button-bg: linear-gradient(1deg, #{colors.$purple100} 0.97%, #{colors.$purple50} 96.96%);
+  --kapa-gradient-from: #{colors.$purple100};
+  --kapa-gradient-to: #{colors.$purple50};
+  --button-bg: linear-gradient(1deg, var(--kapa-gradient-from) 0.97%, var(--kapa-gradient-to) 96.96%);
   // --button-hover feeds into background-color, which renders behind the gradient image
   // and is therefore invisible. Suppress it so it doesn't interfere.
   --button-hover: transparent;
+  // Lock the Mantine scale so the image (sized via calc(2rem * var(--mantine-scale)))
+  // doesn't grow on hover.
+  --mantine-scale: 1;
+  transition: --kapa-gradient-from 0.2s ease-in-out, --kapa-gradient-to 0.2s ease-in-out;
 }
 
-// When the user hovers, swap --button-bg to the darker purple140 gradient.
 // #kapa-widget-container gets :hover when any descendant (including the shadow-DOM button) is hovered.
 #kapa-widget-container:hover {
-  --button-bg: linear-gradient(1deg, #{colors.$purple140} 0.97%, #{colors.$purple100} 96.96%);
+  --kapa-gradient-from: #{colors.$purple140};
+  --kapa-gradient-to: #{colors.$purple100};
+  --mantine-scale: 1;
 }
 
 //##############################Dark Theme Starts Here###################################
