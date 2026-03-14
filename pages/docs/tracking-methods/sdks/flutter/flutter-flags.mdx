@@ -86,6 +86,21 @@ String updatedDistinctId = "";
 mixpanel.identify(updatedDistinctId);
 ```
 
+### Manual Reload (iOS & Android)
+
+To refresh flag variants that may have changed during the lifetime of your app, you can manually reload flags. This is supported on iOS and Android.
+
+```dart
+FeatureFlags flags = mixpanel.getFeatureFlags();
+
+// Manually reload flag assignments
+await flags.loadFlags();
+```
+
+<Callout type="info">
+On Web, `loadFlags()` is not supported. Use `updateContext()` to trigger a flag reload instead.
+</Callout>
+
 ### Update Context (Web Only)
 
 <Callout type="warning">
