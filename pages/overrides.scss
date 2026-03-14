@@ -516,6 +516,26 @@ article {
   }
 }
 
+// Fix: sidebar sticky positioning doesn't activate reliably when the element's natural
+// starting position is too close to its `top` threshold (both ~64px = navbar height).
+// A small negative margin shifts the natural position above the threshold so the browser
+// always activates sticky. Scoped to desktop only so the mobile slide animation is unaffected.
+@media (min-width: 768px) {
+  .nextra-sidebar-container {
+    margin-top: -10px;
+    margin-left: -5px;
+  }
+}
+
+// Reduce vertical padding on sidebar nav items (default _py-1.5 ~= 5.28px top/bottom)
+.nextra-sidebar-container {
+  .nextra-scrollbar a,
+  .nextra-scrollbar button {
+    padding-top: 1px !important;
+    padding-bottom: 1px !important;
+  }
+}
+
 //##############################Light Theme Starts Here##################################
 .light {
   line-height: 1.8;
@@ -1064,14 +1084,16 @@ article {
 
     ._transform-gpu {
       // styles the separator / category titles text
-      .first\:_mt-0 {
+      .first\:_mt-0,
+      li[class*="not(:first-child)"]:not(:first-child) {
         align-items: center;
         color: colors.$grey80;
         display: flex;
         grid-gap: 8px;
         letter-spacing: 0.16rem;
+        margin-top: 0.25rem !important;
         padding-bottom: 0;
-        padding-top: 24px;
+        padding-top: 12px;
       }
 
       // modify pressed state
@@ -1169,8 +1191,8 @@ article {
 
     // Add some spacing between the sidebar sections
     ul li {
-      margin-top: $base-spacing * 2;
-      margin-bottom: $base-spacing * 2;
+      margin-top: $base-spacing;
+      margin-bottom: $base-spacing;
     }
   }
 
@@ -1324,6 +1346,30 @@ article {
   ._mb-8 > a:hover {
     color: colors.$purple100;
   }
+}
+
+// ############################### Kapa Widget (Ask AI Button) ###############################
+// The kapa widget renders inside a Shadow DOM. Regular CSS selectors can't pierce it, but
+// CSS custom properties DO inherit across shadow boundaries.
+//
+// Why --button-bg works (and --mantine-primary-color-filled didn't):
+//   The shadow DOM's own <style> re-declares --mantine-primary-color-filled on #kapa-widget-root,
+//   overriding any inherited value. But --button-bg and --button-hover are never re-declared
+//   anywhere inside the shadow DOM — the button reads:
+//     background: var(--button-bg, var(--mantine-primary-color-filled))
+//     hover:      background-color: var(--button-hover, var(--mantine-primary-color-filled-hover))
+//   Setting them here lets them cascade straight through to the button.
+#kapa-widget-container {
+  --button-bg: linear-gradient(1deg, #{colors.$purple100} 0.97%, #{colors.$purple50} 96.96%);
+  // --button-hover feeds into background-color, which renders behind the gradient image
+  // and is therefore invisible. Suppress it so it doesn't interfere.
+  --button-hover: transparent;
+}
+
+// When the user hovers, swap --button-bg to the darker purple140 gradient.
+// #kapa-widget-container gets :hover when any descendant (including the shadow-DOM button) is hovered.
+#kapa-widget-container:hover {
+  --button-bg: linear-gradient(1deg, #{colors.$purple140} 0.97%, #{colors.$purple100} 96.96%);
 }
 
 //##############################Dark Theme Starts Here###################################
@@ -1997,8 +2043,8 @@ article {
 
     // Add some spacing between the sidebar sections
     ul li {
-      margin-top: $base-spacing * 2;
-      margin-bottom: $base-spacing * 2;
+      margin-top: $base-spacing;
+      margin-bottom: $base-spacing;
     }
   }
 
