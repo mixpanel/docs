@@ -57,7 +57,7 @@ const config: DocsThemeConfig = {
     );
   },
   feedback: {
-    content: "Question? Contact our Support Team",
+    content: "Contact Support",
     useLink: () => "https://mixpanel.com/contact-us/support",
   },
   footer: {
