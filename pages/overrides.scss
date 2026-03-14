@@ -536,6 +536,124 @@ article {
   }
 }
 
+// ExtendedAccordion — structural styles (shared across light and dark)
+.extended-accordion {
+  border-radius: 12px;
+  border: 1px solid;
+  margin-top: 16px;
+
+  &:last-of-type {
+    margin-bottom: 0;
+  }
+
+  .accordion-header {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 14px 20px;
+    background: none;
+    border: none;
+    cursor: pointer;
+    text-align: left;
+    border-radius: 12px;
+    gap: 12px;
+
+    .accordion-title-row {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      flex: 1;
+      min-width: 0;
+    }
+
+    .accordion-title {
+      font-size: 1rem;
+      font-weight: 500;
+    }
+
+    .accordion-anchor-link {
+      opacity: 0;
+      flex-shrink: 0;
+      transition: opacity 0.2s ease, background-color 0.2s ease;
+      padding: 4px;
+      border-radius: 4px;
+      display: inline-flex;
+      align-items: center;
+      cursor: pointer;
+
+      svg {
+        width: 14px;
+        height: 14px;
+      }
+
+      &:hover {
+        opacity: 1 !important;
+      }
+
+      &:focus-visible {
+        opacity: 1 !important;
+        outline: 2px solid;
+        outline-offset: 2px;
+      }
+
+      &.copied {
+        opacity: 1 !important;
+      }
+    }
+
+    &:hover .accordion-anchor-link,
+    &:focus-within .accordion-anchor-link {
+      opacity: 0.6;
+    }
+
+    .accordion-chevron {
+      flex-shrink: 0;
+      transition: transform 0.2s ease;
+
+      &.rotated {
+        transform: rotate(90deg);
+      }
+    }
+  }
+
+  .accordion-body {
+    display: grid;
+    grid-template-rows: 0fr;
+    transition: grid-template-rows 0.25s ease;
+
+    .accordion-content {
+      overflow: hidden;
+      padding: 0 20px;
+
+      // Prevent Safari from applying display:none when hidden="until-found"
+      // is set (Safari treats it as a boolean hidden attribute).
+      // In Chrome/Firefox, hidden="until-found" sets content-visibility:hidden
+      // instead, which this rule doesn't interfere with.
+      &[hidden] {
+        display: block !important;
+      }
+    }
+  }
+
+  &.open {
+    .accordion-body {
+      grid-template-rows: 1fr;
+
+      .accordion-content {
+        padding-top: 12px;
+        padding-bottom: 16px;
+      }
+    }
+  }
+
+  @media (hover: none) {
+    .accordion-anchor-link {
+      opacity: 0.5 !important;
+    }
+  }
+}
+
 //##############################Light Theme Starts Here##################################
 .light {
   line-height: 1.8;
@@ -854,6 +972,42 @@ article {
         }
         summary:hover {
           background-color: colors.$lightbg;
+        }
+      }
+    }
+
+    // ExtendedAccordion (light theme — color overrides only; structure is global)
+    .extended-accordion {
+      background-color: colors.$lightbg;
+      border-color: colors.$base120;
+
+      .accordion-header {
+        &:hover {
+          background-color: colors.$base120;
+        }
+
+        .accordion-title {
+          color: colors.$grey100;
+        }
+
+        .accordion-anchor-link {
+          color: colors.$purple100;
+
+          &:hover {
+            background-color: rgba(120, 86, 255, 0.1);
+          }
+
+          &:focus-visible {
+            outline-color: colors.$purple100;
+          }
+
+          &.copied {
+            color: #228b22;
+          }
+        }
+
+        .accordion-chevron {
+          color: colors.$grey50;
         }
       }
     }
@@ -1740,6 +1894,50 @@ article {
         }
         summary:hover {
           background-color: colors.$darkbg;
+        }
+      }
+    }
+
+    // ExtendedAccordion (dark theme)
+    .extended-accordion {
+      background-color: rgba(255, 255, 255, 0.05);
+      border-color: rgba(255, 255, 255, 0.1);
+
+      .accordion-header {
+        &:hover {
+          background-color: rgba(255, 255, 255, 0.08);
+        }
+
+        .accordion-title {
+          color: rgba(255, 255, 255, 0.9);
+        }
+
+        .accordion-anchor-link {
+          color: colors.$purple40;
+
+          &:hover {
+            opacity: 1 !important;
+            background-color: rgba(167, 139, 250, 0.1);
+          }
+
+          &:focus-visible {
+            opacity: 1 !important;
+            outline-color: colors.$purple40;
+          }
+
+          &.copied {
+            opacity: 1 !important;
+            color: #90ee90;
+          }
+        }
+
+        &:hover .accordion-anchor-link,
+        &:focus-within .accordion-anchor-link {
+          opacity: 0.6;
+        }
+
+        .accordion-chevron {
+          color: rgba(255, 255, 255, 0.4);
         }
       }
     }
