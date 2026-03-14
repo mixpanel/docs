@@ -1194,6 +1194,12 @@ article {
       margin-top: $base-spacing;
       margin-bottom: $base-spacing;
     }
+
+    // Force the inner grid to full height so the footer (last min-content row)
+    // always anchors to the bottom of the TOC column.
+    > div {
+      height: calc(100vh - var(--nextra-navbar-height));
+    }
   }
 
   // Custom Search theming from Algolia Docsearch
@@ -2002,6 +2008,12 @@ article {
     .nextra-toc-footer {
       background-color: colors.$darkbg;
       box-shadow: unset;
+    }
+
+    // Force the inner grid to full height so the footer (last min-content row)
+    // always anchors to the bottom of the TOC column.
+    > div {
+      height: calc(100vh - var(--nextra-navbar-height));
     }
     // ._bg-white {
     //   background-color: colors.$black;
