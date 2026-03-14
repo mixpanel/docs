@@ -1681,20 +1681,40 @@ article {
 
     // Tab anchor link styles (dark theme)
     .tab-label-with-anchor {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+
       .tab-anchor-link {
+        opacity: 0;
         color: colors.$purple40;
 
         &:hover {
+          opacity: 1 !important;
           background-color: rgba(167, 139, 250, 0.1);
         }
 
         &:focus-visible {
+          opacity: 1 !important;
           outline-color: colors.$purple40;
         }
 
         &.copied {
+          opacity: 1 !important;
           color: #90ee90;
         }
+      }
+    }
+
+    [role~="tab"]:hover .tab-anchor-link,
+    [role~="tab"]:focus-within .tab-anchor-link {
+      opacity: 0.6;
+    }
+
+    // Always show on mobile/touch devices
+    @media (hover: none) {
+      .tab-anchor-link {
+        opacity: 0.5 !important;
       }
     }
 
