@@ -3,6 +3,7 @@ export default {
     "annotations": "Annotations",
     "embeds": "Embeds",
     "chart-customization": "Chart Customization",
+    "comments": "Comments",
     "custom-buckets": "Custom Buckets",
     "custom-events": "Custom Events",
     "custom-properties": "Custom Properties",
