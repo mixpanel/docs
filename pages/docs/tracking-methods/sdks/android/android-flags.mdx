@@ -29,10 +29,11 @@ FeatureFlagOptions featureFlagOptions = new FeatureFlagOptions.Builder()
     .enabled(true)
     .build();
 
-MixpanelOptions options = new MixpanelOptions();
-options.featureFlagOptions = featureFlagOptions;
+MixpanelOptions options = new MixpanelOptions.Builder()
+    .featureFlagOptions(featureFlagOptions)
+    .build();
 
-MixpanelAPI mixpanel = MixpanelAPI.getInstance(context, "YOUR_PROJECT_TOKEN", options);
+MixpanelAPI mixpanel = MixpanelAPI.getInstance(context, "YOUR_PROJECT_TOKEN", false, options);
 ```
 
 If your flag is configured with a Variant Assignment Key other than `distinct_id` or `device_id` for any of the feature flags in your project, then the call to initialize feature flags must include those keys.
@@ -48,10 +49,11 @@ FeatureFlagOptions featureFlagOptions = new FeatureFlagOptions.Builder()
     .context(context)
     .build();
 
-MixpanelOptions options = new MixpanelOptions();
-options.featureFlagOptions = featureFlagOptions;
+MixpanelOptions options = new MixpanelOptions.Builder()
+    .featureFlagOptions(featureFlagOptions)
+    .build();
 
-MixpanelAPI mixpanel = MixpanelAPI.getInstance(getApplicationContext(), "YOUR_PROJECT_TOKEN", options);
+MixpanelAPI mixpanel = MixpanelAPI.getInstance(getApplicationContext(), "YOUR_PROJECT_TOKEN", false, options);
 ```
 
 If you are using Runtime Targeting in any of the feature flags in your project, then any properties that you use in targeting should be included in a `custom_properties` node within the context:
@@ -69,10 +71,11 @@ FeatureFlagOptions featureFlagOptions = new FeatureFlagOptions.Builder()
     .context(context)
     .build();
 
-MixpanelOptions options = new MixpanelOptions();
-options.featureFlagOptions = featureFlagOptions;
+MixpanelOptions options = new MixpanelOptions.Builder()
+    .featureFlagOptions(featureFlagOptions)
+    .build();
 
-MixpanelAPI mixpanel = MixpanelAPI.getInstance(getApplicationContext(), "YOUR_PROJECT_TOKEN", options);
+MixpanelAPI mixpanel = MixpanelAPI.getInstance(getApplicationContext(), "YOUR_PROJECT_TOKEN", false, options);
 ```
 
 ## Flag Reload
@@ -103,10 +106,11 @@ FeatureFlagOptions featureFlagOptions = new FeatureFlagOptions.Builder()
     .prefetchFlags(false)
     .build();
 
-MixpanelOptions options = new MixpanelOptions();
-options.featureFlagOptions = featureFlagOptions;
+MixpanelOptions options = new MixpanelOptions.Builder()
+    .featureFlagOptions(featureFlagOptions)
+    .build();
 
-MixpanelAPI mixpanel = MixpanelAPI.getInstance(context, "YOUR_PROJECT_TOKEN", options);
+MixpanelAPI mixpanel = MixpanelAPI.getInstance(context, "YOUR_PROJECT_TOKEN", false, options);
 
 // Flags will not be fetched until identify() or loadFlags() is called
 mixpanel.identify("user-123");
