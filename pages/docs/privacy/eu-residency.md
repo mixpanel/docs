@@ -11,6 +11,7 @@ By default, Mixpanel stores user data on its US Servers via the Google Cloud Pla
 You can enable this by selecting the "EU Data Residency" option when creating a new project and using our EU subdomain during all API calls.
 
 > ⚠️ Important: For new EU projects created on or after August 18, 2025, no data will be ingested into your new EU data residency project unless your SDK is sending data to the EU endpoint. Ensure you are using the EU endpoint in your SDK configuration.
+> For EU Projects created before August 18, 2025, US-to-EU Data Forwarding ends July 2026, please ensure you are using the EU endpoint in your SDK configuration. See [changelog here](https://docs.mixpanel.com/changelogs/2026-02-20-eu-forwarding-deprecation).
 
 For existing EU projects created prior to August 18, 2025, we encourage you to update your SDK configuration to use the dedicated EU endpoint. This is a best practice that ensures your project is correctly aligned with its data residency.
 

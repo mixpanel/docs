@@ -10,7 +10,7 @@ This guide describes how Mixpanel data is exported into a Snowflake dataset. Cre
 
 ## Design
 
-Mixpanel exports data to customer's database. We first load the data into a single-column raw (VARIANT type) data table. Then, we create a view to expose all properties as columns.
+Mixpanel exports data to your database. We first load the data into a single-column raw (VARIANT type) data table. Then, we create a view to expose all properties as columns.
 
 ### IP Restrictions
 
@@ -26,15 +26,22 @@ Mixpanel Data Pipelines supports static IP addresses for Snowflake connections w
 **EU**
 ```jsx
 34.147.68.192
-35.204.164.122 
+35.204.164.122
 35.204.177.251
+```
+
+**IN**
+```jsx
+34.47.224.29
+34.93.42.83
+35.244.19.238
 ```
 
 ## Set Export Permissions
 
 ### Step 1: Create a Role and Grant Permissions
 
-Create a role (`MIXPANEL_EXPORT_ROLE` as example) and grant access on your database, schema, warehouse to the role. Replace `<database name>`, `<schema name>`, `<warehouse name>` with actual names.
+Create a role (`MIXPANEL_EXPORT_ROLE` as an example) and grant access on your database, schema, warehouse to the role. Replace `<database name>`, `<schema name>`, `<warehouse name>` with actual names.
 
 ```sql
 CREATE ROLE MIXPANEL_EXPORT_ROLE;
@@ -45,9 +52,9 @@ GRANT OPERATE ON WAREHOUSE <warehouse name> TO ROLE MIXPANEL_EXPORT_ROLE;
 GRANT MONITOR ON WAREHOUSE <warehouse name> TO ROLE MIXPANEL_EXPORT_ROLE;
 ```
 
-### Step 2: Create storage integration
+### Step 2: Create a Storage Integration
 
-To enable Mixpanel to load from gcs owned by mixpanel to your warehouse, you need you create a gcs storage integration with gcs bucket `"gcs://mixpanel-export-pipelines-<project-id>` owned by Mixpanel and then grant this integration to the role. Replace `<project-id>` to your Mixpanel project ID.
+Mixpanel stages exported data in a GCS bucket (`gcs://mixpanel-export-pipelines-<project-id>`) before loading it into your warehouse. This bucket is created and managed by Mixpanel — you do *not* need to create it yourself. To allow Mixpanel to load data from this bucket into your Snowflake warehouse, create a GCS storage integration and grant it to the role. Replace `<project-id>` with your Mixpanel project ID.
 
 ```sql
 CREATE STORAGE INTEGRATION MIXPANEL_EXPORT_STORAGE_INTEGRATION
@@ -58,13 +65,13 @@ CREATE STORAGE INTEGRATION MIXPANEL_EXPORT_STORAGE_INTEGRATION
 GRANT USAGE ON INTEGRATION MIXPANEL_EXPORT_STORAGE_INTEGRATION TO MIXPANEL_EXPORT_ROLE;
 ```
 
-### Step 3: Authentication to user
+### Step 3: Authenticate the User
 
 Refer to [Step 2: Creating the Pipeline](/docs/data-pipelines/#step-2-creating-the-pipeline)
-to create data pipeline via UI.
+to create a data pipeline via the UI.
 
-We provide two different authentications: password and key-pair. In the example, create a user with either password or public key and then grant the role to user. You can fine the public key in the UI of creating Snowflake pipelines.
-If you already have a user, change fields and grant the role.
+We provide two different authentication methods: password and key-pair. In the example, create a user with either a password or public key and then grant the role to the user. You can find the public key in the Snowflake pipeline creation UI.
+If you already have a user, change the fields and grant the role.
 
 password authentication
 
@@ -86,15 +93,15 @@ GRANT ROLE MIXPANEL_EXPORT_ROLE TO USER MIXPANEL_EXPORT_USER;
 
 ## Partitioning
 
-The data in the raw tables is clustered based on `time` column but in project's timezone. To be exact, we use `CLUSTER BY (TO_DATE(CONVERT_TIMEZONE('UTC','<TIMEZONE>', TO_TIMESTAMP(DATA:time::NUMBER)))` where `TIMEZONE` is the Mixpanel project's timezone.
+The data in the raw tables is clustered based on the `time` column in the project's timezone. To be exact, we use `CLUSTER BY (TO_DATE(CONVERT_TIMEZONE('UTC','<TIMEZONE>', TO_TIMESTAMP(DATA:time::NUMBER)))` where `TIMEZONE` is the Mixpanel project's timezone.
 
 ## Queries
 
 A query is a request for data results. You can perform actions on the data, such as combine data from different tables; add, change, or delete table data; and perform calculations.
 
-Snowflake supports a Object type that can store JSON objects and arrays. Mixpanel exposes array and object top-level properties as Object columns in the view.
+Snowflake supports an Object type that can store JSON objects and arrays. Mixpanel exposes array and object top-level properties as Object columns in the view.
 
-Here is an example of how you can query the raw table when using one table for all the events. `DB_NAME` and `SCHEMA_NAME` should be replaced by your snowflake database and schema name.
+Here is an example of how you can query the raw table when using one table for all the events. `DB_NAME` and `SCHEMA_NAME` should be replaced by your Snowflake database and schema name.
 
 ```sql
 SELECT count(*)
@@ -112,7 +119,7 @@ WHERE event_name = 'sign up';
 
 ### Getting the number of events in each day
 
-You will need this if you suspect the export process is not exporting all the events you want. As time column in the tables is in UTC timezone, you first need to convert that to your Mixpanel project timezone, and then, get the number of events for each day. The following query will do that for you.
+You will need this if you suspect the export process is not exporting all the events you want. As the time column in the tables is in UTC timezone, you first need to convert that to your Mixpanel project timezone, and then, get the number of events for each day. The following query will do that for you.
 
 ```sql
 SELECT
@@ -130,7 +137,7 @@ This example returns the number of events in each day in your project timezone. 
 
 When using the ID mappings table, you should use the **resolved** `distinct_id` in place of the non-resolved `distinct_id` whenever present. If there is no **resolved** `distinct_id`, you can then use the `distinct_id` from the existing people or events table.
 
-Below is an example SQL query that references the ID mapping table to count number of events in a specific date range for each unique user in San Francisco
+Below is an example SQL query that references the ID mapping table to count the number of events in a specific date range for each unique user in San Francisco.
 
 ```sql
 SELECT
