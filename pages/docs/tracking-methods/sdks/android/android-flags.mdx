@@ -17,7 +17,7 @@ Before implementing Feature Flags, ensure:
 
 ## Flag Initialization
 
-Initializing the SDK with feature flags enabled requires setting the `featureFlagsEnabled` option to `true` in `MixpanelOptions`. This enables making an outbound request to Mixpanel servers with the current user context.
+Initializing the SDK with feature flags enabled requires passing a `FeatureFlagOptions` configuration to `MixpanelOptions`. This enables making an outbound request to Mixpanel servers with the current user context.
 The server will assign the user context to a variant for each feature flag according to how they are configured in the Mixpanel UX.
 
 The response will include an assigned variant for each flag that the user context is in a rollout group for. If a flag is not returned, it most likely signifies that the user was either not in the rollout percentage for a flag or in the configured targeting cohort.
@@ -25,8 +25,12 @@ The response will include an assigned variant for each flag that the user contex
 **Example Usage**
 
 ```java Java
+FeatureFlagOptions featureFlagOptions = new FeatureFlagOptions.Builder()
+    .enabled(true)
+    .build();
+
 MixpanelOptions options = new MixpanelOptions();
-options.featureFlagsEnabled = true;
+options.featureFlagOptions = featureFlagOptions;
 
 MixpanelAPI mixpanel = MixpanelAPI.getInstance(context, "YOUR_PROJECT_TOKEN", options);
 ```
@@ -39,9 +43,13 @@ For example, for a Variant Assignment Key, `company_id`, you would setup the SDK
 JSONObject context = new JSONObject();
 context.put("company_id", "X");
 
+FeatureFlagOptions featureFlagOptions = new FeatureFlagOptions.Builder()
+    .enabled(true)
+    .context(context)
+    .build();
+
 MixpanelOptions options = new MixpanelOptions();
-options.featureFlagsEnabled = true;
-options.featureFlagsContext = context;
+options.featureFlagOptions = featureFlagOptions;
 
 MixpanelAPI mixpanel = MixpanelAPI.getInstance(getApplicationContext(), "YOUR_PROJECT_TOKEN", options);
 ```
@@ -56,9 +64,13 @@ JSONObject context = new JSONObject();
 context.put("company_id", "X");
 context.put("custom_properties", customProperties);
 
+FeatureFlagOptions featureFlagOptions = new FeatureFlagOptions.Builder()
+    .enabled(true)
+    .context(context)
+    .build();
+
 MixpanelOptions options = new MixpanelOptions();
-options.featureFlagsEnabled = true;
-options.featureFlagsContext = context;
+options.featureFlagOptions = featureFlagOptions;
 
 MixpanelAPI mixpanel = MixpanelAPI.getInstance(getApplicationContext(), "YOUR_PROJECT_TOKEN", options);
 ```
@@ -81,6 +93,27 @@ mixpanel.identify(updatedDistinctId);
 // Manually reload flags if desired
 mixpanel.flags.loadFlags();
 ```
+## Deferred Flag Loading
+
+By default, feature flags are automatically fetched when the app first enters the foreground (`prefetchFlags` defaults to `true`). If your workflow requires calling `identify()` before the first flag fetch — for example, to ensure flags are evaluated against the correct user — you can defer automatic loading by setting `prefetchFlags(false)`:
+
+```java
+FeatureFlagOptions featureFlagOptions = new FeatureFlagOptions.Builder()
+    .enabled(true)
+    .prefetchFlags(false)
+    .build();
+
+MixpanelOptions options = new MixpanelOptions();
+options.featureFlagOptions = featureFlagOptions;
+
+MixpanelAPI mixpanel = MixpanelAPI.getInstance(context, "YOUR_PROJECT_TOKEN", options);
+
+// Flags will not be fetched until identify() or loadFlags() is called
+mixpanel.identify("user-123");
+```
+
+When `prefetchFlags` is set to `false`, flags will not be loaded until you explicitly call `identify()` or `mixpanel.flags.loadFlags()`.
+
 ## Flag Evaluation
 
 Lookup the assigned value for a feature flag.
@@ -158,6 +191,36 @@ if (isEnabled) {
 }
 ```
 
+### Get All Flag Assignments
+
+You can retrieve all feature flag assignments at once. These methods do **not** trigger `$experiment_started` tracking events.
+
+**Synchronous**
+
+`getAllVariantsSync()` returns a `Map<String, MixpanelFlagVariant>` containing all current flag assignments. If flags have not been loaded yet, it returns an empty map.
+
+```java
+Map<String, MixpanelFlagVariant> allFlags = mixpanel.flags.getAllVariantsSync();
+
+for (Map.Entry<String, MixpanelFlagVariant> entry : allFlags.entrySet()) {
+    Log.d("Flags", entry.getKey() + ": " + entry.getValue().value);
+}
+```
+
+**Asynchronous**
+
+`getAllVariants()` returns a `Map<String, MixpanelFlagVariant>` via a callback. If flags have not been loaded yet, it will attempt to fetch them before returning.
+
+```java
+mixpanel.flags.getAllVariants(new FlagCompletionCallback<Map<String, MixpanelFlagVariant>>() {
+    @Override
+    public void onComplete(Map<String, MixpanelFlagVariant> allFlags) {
+        for (Map.Entry<String, MixpanelFlagVariant> entry : allFlags.entrySet()) {
+            Log.d("Flags", entry.getKey() + ": " + entry.getValue().value);
+        }
+    }
+});
+```
 
 ## Frequently Asked Questions
 
@@ -172,9 +235,9 @@ if (isEnabled) {
   - If you are using a targeting cohort, verify on the mixpanel 'Users' page that the user's `distinct_id` is a member of that cohort.
 
 3. **Review SDK parameters**:
-  - Ensure `featureFlagsEnabled = true` is set in MixpanelOptions
-  - If using a custom Variant Assignment Key, ensure it is included in the `featureFlagsContext` JSONObject
-  - If using Runtime Targeting, ensure all properties used in targeting are included in the `custom_properties` object within `featureFlagsContext`
+  - Ensure `FeatureFlagOptions` is configured with `.enabled(true)` and passed to `MixpanelOptions`
+  - If using a custom Variant Assignment Key, ensure it is included in the `FeatureFlagOptions` `.context()` JSONObject
+  - If using Runtime Targeting, ensure all properties used in targeting are included in the `custom_properties` object within the `FeatureFlagOptions` context
 
 4. **Check flags readiness**: Use `areFlagsReady()` to check if flags have been loaded before making synchronous calls
 5. **Enable debug logging**: Check Android logs for detailed information about flag requests and responses
