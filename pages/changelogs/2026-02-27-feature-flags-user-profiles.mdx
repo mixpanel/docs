@@ -1,0 +1,28 @@
+---
+title: "Feature Flags: Exposures on User Profiles"
+slug: "changelog-2026-02-27-feature-flags-user-profiles"
+hidden: false
+createdAt: "2026-03-13T00:00:00.000Z"
+updatedAt: "2026-03-13T00:00:00.000Z"
+date: "2026-02-27"
+description: "See which feature flags a user was exposed to — and which variant they saw — directly on their profile."
+---
+
+<ChangelogPostHeader
+  date="2026-02-27"
+  title="Feature Flags: Exposures on User Profiles"
+/>
+
+See which feature flags a user was exposed to — and which variant they saw — directly on their profile.
+
+With Mixpanel Feature Flags, you can target users [via](/docs/featureflags#types-of-feature-flags) Dynamic Configs, Experiments, and Feature Gates. When something looks off, the fastest way to debug is knowing exactly which flags a user saw and which variant they were served.
+
+Until now, validating targeting or troubleshooting support issues often meant digging through reports and stitching together the answer manually.
+
+Now, User Profiles include a new **Feature Flags** section that shows the enabled flags a user was most recently exposed to, including:
+
+- Variant assignment
+- Flag type (Experiment, Feature Gate, Dynamic Config)
+- A searchable table that loads progressively as you scroll
+
+This makes it much easier to confirm rollout behavior, validate experiment enrollment, and triage unexpected end-user experiences. [Learn more →](/docs/featureflags#identifying-user-exposures)
