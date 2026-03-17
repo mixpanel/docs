@@ -67,14 +67,17 @@ export default function ExtendedTabs(props: ExtendedTabsType) {
     const tabItemsWithAnchors = Object.entries(props.urlToItemsMap).map(([key, label], index) => (
         <span key={key} className="tab-label-with-anchor">
             <span className="tab-label-text">{label}</span>
-            <button
+            <span
+                role="button"
+                tabIndex={0}
                 className={`tab-anchor-link ${copiedIndex === index ? 'copied' : ''}`}
                 onClick={(e) => handleCopyLink(key, index, e)}
+                onKeyDown={(e) => { if (e.key === 'Enter' || e.key === ' ') handleCopyLink(key, index, e as unknown as React.MouseEvent); }}
                 aria-label={`Copy link to ${label} tab`}
                 title={copiedIndex === index ? 'Copied!' : 'Copy link to this tab'}
             >
                 <LinkIcon />
-            </button>
+            </span>
         </span>
     ));
 
