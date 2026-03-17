@@ -1,0 +1,2 @@
+Set up Mixpanel tracking in this project: `public/mixpanel-skill/test-app`. My project token is metrics-1. 
+Use the Mixpanel setup skill: public/mixpanel-skill/skill.md

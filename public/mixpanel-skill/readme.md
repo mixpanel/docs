@@ -81,3 +81,9 @@ These phases apply to Full Implementation mode only. Quick Start uses Live View 
 - **Not legal advice.** The compliance and privacy guardrails in `SKILL.md` are implementation defaults, not legal guidance. Customer policy and counsel are the authoritative source for consent and data residency requirements.
 - **No enforcement mechanism.** The skill guides the agent to gate phases and reject shortcuts, but a customer who overrides the agent can bypass any guardrail. The skill documents the risk, not the enforcement.
 - **Developer Handoff Spec is unverified.** When no codebase access is available, the generated specification cannot be tested for correctness. The agent fills the template with session context, but cannot verify the code compiles, runs, or produces events in Live View. The developer receiving the spec must validate it.
+
+---
+
+## Testing
+
+<!-- TODO: Add testing guidance for validating changes to mixpanel-skill -->
