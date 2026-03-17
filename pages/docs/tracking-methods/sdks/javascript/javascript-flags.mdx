@@ -85,6 +85,18 @@ mixpanel.flags.update_context({
 });
 ```
 
+3) To reload flags without changing context, you can call `load_flags` directly. The returned Promise resolves on success or rejects on failure:
+
+```javascript
+try {
+  await mixpanel.flags.load_flags();
+  // Flags have been successfully refreshed
+} catch (error) {
+  // Flag fetch failed (e.g., network error)
+  console.error('Failed to load flags:', error);
+}
+```
+
 ## Flag Evaluation
 
 Lookup the assigned value for a feature flag.

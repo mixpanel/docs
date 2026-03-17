@@ -97,6 +97,18 @@ FeatureFlags flags = mixpanel.getFeatureFlags();
 await flags.loadFlags();
 ```
 
+The `loadFlags()` Future completes successfully when flags have been refreshed, or throws a `PlatformException` on failure (e.g., network error). You can use try/catch to handle errors:
+
+```dart
+try {
+  await flags.loadFlags();
+  // Flags have been successfully refreshed
+} on PlatformException catch (e) {
+  // Flag fetch failed (e.g., network error)
+  print('Failed to load flags: ${e.message}');
+}
+```
+
 <Callout type="info">
 On Web, `loadFlags()` is not supported. Use `updateContext()` to trigger a flag reload instead.
 </Callout>
