@@ -7,12 +7,6 @@ import { Callout } from 'nextra/components'
 
 # Mixpanel MCP Server
 
-<Callout type="info">
-  **Admin setup required.** An organization admin must enable MCP in **Settings → Org → Overview** before anyone in the org can connect. See [Permissions & Access](#permissions--access).
-</Callout>
-
----
-
 ## Overview
 
 Mixpanel provides a hosted [Model Context Protocol (MCP)](https://modelcontextprotocol.io) server that gives AI assistants direct access to your Mixpanel data. Once connected, you can query events, funnels, flows, retention, session replays, and more using natural language — no dashboard navigation required.
@@ -30,8 +24,6 @@ The server is available at:
 | US | `https://mcp.mixpanel.com/mcp` |
 | EU | `https://mcp-eu.mixpanel.com/mcp` |
 | IN | `https://mcp-in.mixpanel.com/mcp` |
-
----
 
 ## Available Tools
 
@@ -58,17 +50,14 @@ The server is available at:
 | | `Dismiss-Issues` | Bulk-dismiss data quality issues by event, property, or type |
 | **Session Replays** | `Get-User-Replays-Data` | Analyze a specific user's replays alongside their event data |
 
----
-
 ## Permissions & Access
 
 **Organization admins** must enable MCP in **Settings → Org → Overview** before anyone in the org can connect. Changes can take up to 15 minutes to take effect.
 
 Once enabled:
-- Any Mixpanel user can connect using their own credentials
+- Any Mixpanel user in your organization can connect using their own credentials
 - Users can only access projects they already have permission to view in Mixpanel
-
----
+- The roles & permissions of the user will be applied to their MCP access as well
 
 ## Connecting to the MCP Server
 
@@ -81,8 +70,6 @@ Claude's web and desktop apps support connecting to remote MCP servers directly.
 3. Click **Connect** and complete the Mixpanel OAuth flow
 
 See [Claude's connector documentation](https://support.anthropic.com/en/articles/11724452-browsing-and-connecting-to-tools-from-the-directory) for more detail.
-
----
 
 ### Claude (Free / Desktop), Cursor, Gemini CLI, and other JSON-configured clients
 
@@ -117,8 +104,6 @@ For clients that use a JSON config file, add the following to your MCP servers c
 
 After saving the config, the client will prompt you to authorize with Mixpanel the first time it connects.
 
----
-
 ### ChatGPT (OpenAI)
 
 1. Go to **Settings → Connectors → Advanced** and enable Developer Mode
@@ -127,8 +112,6 @@ After saving the config, the client will prompt you to authorize with Mixpanel t
    - **Authentication:** OAuth
 3. Complete the Mixpanel OAuth flow
 4. Optionally publish the connector to your workspace so teammates can use it
-
----
 
 ## Building Custom Integrations (OAuth)
 
@@ -176,8 +159,6 @@ dashboard_reports bookmarks user_details
   To request a specific subset of scopes, pass `--static-oauth-client-metadata '{ "scope": "..." }'` to `npx mcp-remote`. Otherwise all available scopes are requested automatically.
 </Callout>
 
----
-
 ## Example Queries
 
 Once connected, try asking your AI assistant:
@@ -206,8 +187,6 @@ Once connected, try asking your AI assistant:
 - "Show me all data quality issues for the Signup event"
 - "Dismiss all low-priority issues for deprecated events"
 
----
-
 ## Security Considerations
 
 This server lets AI assistants query your Mixpanel data using your credentials. Review your organization's data handling policies before connecting, especially if your data includes personal information.
@@ -221,8 +200,6 @@ This server lets AI assistants query your Mixpanel data using your credentials. 
 - Start with non-production projects to validate the setup
 - Conduct a security review before using with sensitive production data
 - Review applicable compliance requirements (GDPR, CCPA, etc.)
-
----
 
 ## Troubleshooting
 
