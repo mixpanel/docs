@@ -8,6 +8,7 @@ import dotenv from "dotenv";
 import { productsRouter } from "./routes/products.js";
 import { ordersRouter } from "./routes/orders.js";
 import { contactRouter } from "./routes/contact.js";
+import authRouter from "./routes/auth.js";
 
 dotenv.config();
 
@@ -28,6 +29,7 @@ app.get("/api/health", (req, res) => res.json({ ok: true }));
 app.use("/api/products", productsRouter);
 app.use("/api/orders", ordersRouter);
 app.use("/api/contact", contactRouter);
+app.use("/api/auth", authRouter);
 
 // Serve built client in production
 const clientDist = path.join(__dirname, "..", "..", "client", "dist");

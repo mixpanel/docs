@@ -1,11 +1,40 @@
 import React from "react";
-import { Link, NavLink } from "react-router-dom";
+import { Link, NavLink, useNavigate } from "react-router-dom";
 import { useCart } from "../state/cart.jsx";
+import { useAuth } from "../state/auth.jsx";
 
 function CartCount() {
   const { items } = useCart();
   const count = items.reduce((s, it) => s + it.qty, 0);
   return <span className="badge">{count} item{count === 1 ? "" : "s"}</span>;
+}
+
+function AuthNav() {
+  const { user, logout } = useAuth();
+  const nav = useNavigate();
+
+  function handleLogout() {
+    logout();
+    nav("/");
+  }
+
+  if (user) {
+    return (
+      <>
+        <span className="small" style={{ opacity: 0.7 }}>{user.name}</span>
+        <button className="btn" onClick={handleLogout} style={{ marginLeft: 8 }}>
+          Log Out
+        </button>
+      </>
+    );
+  }
+
+  return (
+    <>
+      <NavLink to="/login">Log In</NavLink>
+      <NavLink to="/signup" className="btn">Sign Up</NavLink>
+    </>
+  );
 }
 
 export default function Layout({ children }) {
@@ -26,6 +55,7 @@ export default function Layout({ children }) {
             <NavLink to="/faq">FAQ</NavLink>
             <NavLink to="/about">About</NavLink>
             <CartCount />
+            <AuthNav />
           </nav>
         </div>
       </header>
