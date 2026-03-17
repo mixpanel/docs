@@ -1,0 +1,232 @@
+---
+title: MCP Server
+tags: [mcp, model context protocol, ai, cursor, anthropic, chatgpt, openai, claude, gemini, natural language, mixpanel, llm]
+---
+
+import { Callout } from 'nextra/components'
+
+# Mixpanel MCP Server
+
+<Callout type="info">
+  **Admin setup required.** An organization admin must enable MCP in **Settings → Org → Overview** before anyone in the org can connect. See [Permissions & Access](#permissions--access).
+</Callout>
+
+---
+
+## Overview
+
+Mixpanel provides a hosted [Model Context Protocol (MCP)](https://modelcontextprotocol.io) server that gives AI assistants direct access to your Mixpanel data. Once connected, you can query events, funnels, flows, retention, session replays, and more using natural language — no dashboard navigation required.
+
+A typical workflow looks like:
+1. **Discover** — find your projects, events, and properties
+2. **Query** — run insights, funnels, flows, or retention analyses
+3. **Create** — build dashboards, organize Lexicon, or dismiss data quality issues
+4. **Iterate** — refine with follow-up questions in the same conversation
+
+The server is available at:
+
+| Region | URL |
+| ------ | --- |
+| US | `https://mcp.mixpanel.com/mcp` |
+| EU | `https://mcp-eu.mixpanel.com/mcp` |
+| IN | `https://mcp-in.mixpanel.com/mcp` |
+
+---
+
+## Available Tools
+
+| Category | Tool | Description |
+| -------- | ---- | ----------- |
+| **Analytics** | `Run-Query` | Execute insights, funnels, flows, and retention queries |
+| | `Get-Query-Schema` | Get the full JSON schema for building a query |
+| | `Get-Report` | Retrieve a saved report, optionally including results |
+| **Dashboards** | `Create-Dashboard` | Create a new dashboard with text cards and reports |
+| | `List-Dashboards` | Browse dashboards in a project |
+| | `Get-Dashboard` | Retrieve a specific dashboard |
+| **Data Discovery** | `Get-Projects` | List your projects and workspaces |
+| | `Get-Events` | Browse all events in a project |
+| | `Get-Property-Names` | Explore properties for events or users |
+| | `Get-Property-Values` | Discover values for a specific property |
+| | `Get-Event-Details` | Retrieve full event metadata |
+| | `Get-Issues` | Get data quality issues filtered by event, property, type, or date |
+| | `Get-Lexicon-URL` | Get a direct link to an event or property in Lexicon |
+| **Data Management** | `Edit-Event` | Update event description, display name, tags, or visibility |
+| | `Edit-Property` | Update property description, display name, hidden status, or PII classification |
+| | `Create-Tag` | Create a new tag in Lexicon |
+| | `Rename-Tag` | Rename an existing tag across all associated events and properties |
+| | `Delete-Tag` | Remove a tag from your project |
+| | `Dismiss-Issues` | Bulk-dismiss data quality issues by event, property, or type |
+| **Session Replays** | `Get-User-Replays-Data` | Analyze a specific user's replays alongside their event data |
+
+---
+
+## Permissions & Access
+
+**Organization admins** must enable MCP in **Settings → Org → Overview** before anyone in the org can connect. Changes can take up to 15 minutes to take effect.
+
+Once enabled:
+- Any Mixpanel user can connect using their own credentials
+- Users can only access projects they already have permission to view in Mixpanel
+
+---
+
+## Connecting to the MCP Server
+
+### Claude (Pro / Team / Enterprise)
+
+Claude's web and desktop apps support connecting to remote MCP servers directly.
+
+1. Go to **Settings → Connectors → Add Custom Connector**
+2. Set the URL to the appropriate regional endpoint
+3. Click **Connect** and complete the Mixpanel OAuth flow
+
+See [Claude's connector documentation](https://support.anthropic.com/en/articles/11724452-browsing-and-connecting-to-tools-from-the-directory) for more detail.
+
+---
+
+### Claude (Free / Desktop), Cursor, Gemini CLI, and other JSON-configured clients
+
+For clients that use a JSON config file, add the following to your MCP servers config (replace the URL with the EU or IN endpoint if needed):
+
+```json
+{
+  "mcpServers": {
+    "mixpanel": {
+      "command": "npx",
+      "args": [
+        "-y",
+        "mcp-remote",
+        "https://mcp.mixpanel.com/mcp"
+      ]
+    }
+  }
+}
+```
+
+**Where to add this config:**
+
+| Client | Config location |
+| ------ | --------------- |
+| Claude Desktop (Free) | **Settings → Developer → Edit Config** |
+| Cursor | **Cursor Settings → MCP & Integrations → MCP Tools → New MCP Server** |
+| Gemini CLI | `~/.gemini/settings.json` |
+| Kiro | `.kiro/settings/mcp.json` in your project |
+| Codex CLI | `~/.codex/config.json` |
+| Replit | **Tools → AI Settings → MCP Servers** |
+| Lovable | **Settings → MCP Servers** |
+
+After saving the config, the client will prompt you to authorize with Mixpanel the first time it connects.
+
+---
+
+### ChatGPT (OpenAI)
+
+1. Go to **Settings → Connectors → Advanced** and enable Developer Mode
+2. Create a new connector with:
+   - **MCP Server URL:** your regional endpoint
+   - **Authentication:** OAuth
+3. Complete the Mixpanel OAuth flow
+4. Optionally publish the connector to your workspace so teammates can use it
+
+---
+
+## Building Custom Integrations (OAuth)
+
+If you're building a third-party MCP client or custom integration, use the following OAuth configuration.
+
+### OAuth Discovery
+
+Discover the full OAuth configuration at:
+
+```
+https://mcp.mixpanel.com/.well-known/oauth-authorization-server
+```
+
+### Dynamic Client Registration
+
+| Region | Registration Endpoint |
+| ------ | --------------------- |
+| US     | `https://mixpanel.com/oauth/mcp/register/` |
+| EU     | `https://eu.mixpanel.com/oauth/mcp/register/` |
+| IN     | `https://in.mixpanel.com/oauth/mcp/register/` |
+
+### Authorization Code Flow with PKCE
+
+Mixpanel uses **Authorization Code + PKCE (S256)**:
+
+- **Authorization endpoint:** `https://{mixpanel_domain}/oauth/authorize`
+- **Token endpoint:** `https://{mixpanel_domain}/oauth/token/`
+- **Grant types:** `authorization_code`, `refresh_token`
+- **Code challenge method:** `S256`
+- **Token endpoint auth methods:** `none`, `client_secret_basic`, `client_secret_post`
+
+### Required OAuth Scopes
+
+**Mandatory:**
+```
+projects analysis events insights segmentation retention data:read funnels flows data_definitions
+```
+
+**Optional:**
+```
+dashboard_reports bookmarks user_details
+```
+
+<Callout type="info">
+  To request a specific subset of scopes, pass `--static-oauth-client-metadata '{ "scope": "..." }'` to `npx mcp-remote`. Otherwise all available scopes are requested automatically.
+</Callout>
+
+---
+
+## Example Queries
+
+Once connected, try asking your AI assistant:
+
+**Getting oriented**
+- "What Mixpanel projects do I have access to?" *(start here)*
+- "What are the most frequently fired events in this project over the last 7 days?"
+
+**Querying data**
+- "Show me daily active users for the past 30 days"
+- "Build a funnel from signup to first purchase and show where users drop off"
+- "What's the 7-day retention for users who completed onboarding last month?"
+- "Compare conversion rates by acquisition channel for Q1 vs Q2"
+
+**Creating & organizing**
+- "Create a dashboard with our core acquisition and retention metrics"
+- "Tag all checkout-related events with 'Checkout' in Lexicon"
+- "Find all events without a description and add placeholder descriptions"
+
+**Session replays**
+- "Show me replays for user [user ID] and summarize what they did before submitting negative feedback"
+- "This user reported a bug — what happened in their last session?"
+
+**Data quality**
+- "Which properties on the Purchase Completed event are marked as PII?"
+- "Show me all data quality issues for the Signup event"
+- "Dismiss all low-priority issues for deprecated events"
+
+---
+
+## Security Considerations
+
+This server lets AI assistants query your Mixpanel data using your credentials. Review your organization's data handling policies before connecting, especially if your data includes personal information.
+
+**Access controls:**
+- MCP must be explicitly enabled by an org admin
+- Users can only query projects they already have access to in Mixpanel
+- Existing project permissions and data governance rules remain in effect
+
+**Best practices:**
+- Start with non-production projects to validate the setup
+- Conduct a security review before using with sensitive production data
+- Review applicable compliance requirements (GDPR, CCPA, etc.)
+
+---
+
+## Troubleshooting
+
+- **"MCP access is not enabled for this project"** — Ask your org admin to enable MCP in **Settings → Org → Overview**.
+- **"Missing scope" error** — Your cached auth token was created with an outdated scope list. Delete the `.mcp-auth` folder in the directory where you ran the authorization command, then re-authorize.
+- **Authorization fails** — Ensure your Mixpanel account has access to at least one project and that MCP is enabled at the org level.
+- **Desktop app doesn't pick up config changes** — Restart the application after editing the config file.
