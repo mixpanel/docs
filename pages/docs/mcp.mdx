@@ -1,6 +1,6 @@
 ---
 title: MCP Server
-tags: [mcp, model context protocol, ai, cursor, anthropic, chatgpt, openai, claude, gemini, natural language, mixpanel, llm]
+tags: [mcp, model context protocol, ai, agents, cursor, anthropic, chatgpt, openai, claude, codex, codex cli, cli, claude code, gemini, natural language, mixpanel, llm]
 ---
 
 import { Callout } from 'nextra/components'
@@ -12,18 +12,10 @@ import { Callout } from 'nextra/components'
 Mixpanel provides a hosted [Model Context Protocol (MCP)](https://modelcontextprotocol.io) server that gives AI assistants direct access to your Mixpanel data. Once connected, you can query events, funnels, flows, retention, session replays, and more using natural language — no dashboard navigation required.
 
 A typical workflow looks like:
-1. **Discover** — find your projects, events, and properties
-2. **Query** — run insights, funnels, flows, or retention analyses
-3. **Create** — build dashboards, organize Lexicon, or dismiss data quality issues
-4. **Iterate** — refine with follow-up questions in the same conversation
-
-The server is available at:
-
-| Region | URL |
-| ------ | --- |
-| US | `https://mcp.mixpanel.com/mcp` |
-| EU | `https://mcp-eu.mixpanel.com/mcp` |
-| IN | `https://mcp-in.mixpanel.com/mcp` |
+1. **Discover**: Find your projects, events, and properties
+2. **Query**: Run insights, funnels, flows, or retention analyses
+3. **Create**: Build dashboards, organize Lexicon, or manage data quality issues
+4. **Iterate**: Refine with follow-up questions in the same conversation
 
 ## Available Tools
 
@@ -50,68 +42,104 @@ The server is available at:
 | | `Dismiss-Issues` | Bulk-dismiss data quality issues by event, property, or type |
 | **Session Replays** | `Get-User-Replays-Data` | Analyze a specific user's replays alongside their event data |
 
-## Permissions & Access
+## MCP Server URLs
 
-**Organization admins** must enable MCP in **Settings → Org → Overview** before anyone in the org can connect. Changes can take up to 15 minutes to take effect.
-
-Once enabled:
-- Any Mixpanel user in your organization can connect using their own credentials
-- Users can only access projects they already have permission to view in Mixpanel
-- The roles & permissions of the user will be applied to their MCP access as well
+| Region | URL |
+| ------ | --- |
+| US | `https://mcp.mixpanel.com/mcp` |
+| EU | `https://mcp-eu.mixpanel.com/mcp` |
+| IN | `https://mcp-in.mixpanel.com/mcp` |
 
 ## Connecting to the MCP Server
 
-### Claude (Pro / Team / Enterprise)
+### Claude
 
-Claude's web and desktop apps support connecting to remote MCP servers directly.
+- Go to [claude.ai/customize/connectors](https://claude.ai/customize/connectors) and search for **Mixpanel**. Click **Connect** and complete the Mixpanel OAuth flow.
+- For EU or IN regions, use **Settings → Connectors → Add Custom Connector** instead, and enter your [MCP Server URL](#mcp-server-urls).
 
-1. Go to **Settings → Connectors → Add Custom Connector**
-2. Set the URL to the appropriate regional endpoint
+### ChatGPT
+
+1. Go to **Settings → Connectors → Advanced** and enable Developer Mode
+2. Add a new connector — set the [MCP Server URL](#mcp-server-urls) to your regional endpoint and Authentication to **OAuth**
+3. Complete the Mixpanel OAuth flow
+4. Optionally publish the connector to your workspace so teammates can use it
+
+### Codex
+
+1. Go to **Settings → MCP Servers → + Add Server**
+2. Provide a name, Mixpanel
+3. Select Streamable HTTP
+3. Enter your [MCP Server URL](#mcp-server-urls)
+
+### Codex CLI
+
+Add the following to `~/.codex/config.toml` (use the EU or IN URL if needed):
+
+```toml
+[mcp_servers.mixpanel]
+url = "https://mcp.mixpanel.com/mcp"
+```
+
+Then authorize:
+
+```bash
+codex mcp login mixpanel
+```
+
+### Notion
+
+1. Go to **Settings → Connections → + Add custom MCP**
+2. Enter your [MCP Server URL](#mcp-server-urls) and give it a name
 3. Click **Connect** and complete the Mixpanel OAuth flow
 
-See [Claude's connector documentation](https://support.anthropic.com/en/articles/11724452-browsing-and-connecting-to-tools-from-the-directory) for more detail.
+### Cursor
 
-### Claude (Free / Desktop), Cursor, Gemini CLI, and other JSON-configured clients
-
-For clients that use a JSON config file, add the following to your MCP servers config (replace the URL with the EU or IN endpoint if needed):
+- Go to **Settings → Tools & MCP → New MCP Server** to open `~/.cursor/mcp.json`, then add:
+- Once Cursor connects, it will prompt you to authorize with Mixpanel.
 
 ```json
 {
   "mcpServers": {
     "mixpanel": {
       "command": "npx",
-      "args": [
-        "-y",
-        "mcp-remote",
-        "https://mcp.mixpanel.com/mcp"
-      ]
+      "args": ["-y", "mcp-remote", "https://mcp.mixpanel.com/mcp"]
     }
   }
 }
 ```
 
-**Where to add this config:**
+### Gemini CLI
 
-| Client | Config location |
-| ------ | --------------- |
-| Claude Desktop (Free) | **Settings → Developer → Edit Config** |
-| Cursor | **Cursor Settings → MCP & Integrations → MCP Tools → New MCP Server** |
-| Gemini CLI | `~/.gemini/settings.json` |
-| Kiro | `.kiro/settings/mcp.json` in your project |
-| Codex CLI | `~/.codex/config.json` |
-| Replit | **Tools → AI Settings → MCP Servers** |
-| Lovable | **Settings → MCP Servers** |
+```bash
+gemini mcp add mixpanel npx -y mcp-remote https://mcp.mixpanel.com/mcp
+```
 
-After saving the config, the client will prompt you to authorize with Mixpanel the first time it connects.
+Or edit `~/.gemini/settings.json` and add:
 
-### ChatGPT (OpenAI)
+```json
+{
+  "mcpServers": {
+    "mixpanel": {
+      "command": "npx",
+      "args": ["-y", "mcp-remote", "https://mcp.mixpanel.com/mcp"]
+    }
+  }
+}
+```
 
-1. Go to **Settings → Connectors → Advanced** and enable Developer Mode
-2. Create a new connector with:
-   - **MCP Server URL:** your regional endpoint
-   - **Authentication:** OAuth
-3. Complete the Mixpanel OAuth flow
-4. Optionally publish the connector to your workspace so teammates can use it
+### Other JSON-configured clients
+
+Any client that supports the MCP JSON config format can connect using the same snippet above. The first time it connects it will prompt you to authorize with Mixpanel.
+
+## Permissions & Access
+
+<Callout type="info">
+  **Admin setup required.** An organization admin must enable MCP in **Settings → Org → Overview** before anyone can connect. Changes can take up to 15 minutes to take effect.
+</Callout>
+
+- Once enabled, any Mixpanel user in your organization can connect. No additional configuration needed. 
+- Users authenticate with their own Mixpanel credentials, so all existing project permissions and roles apply. 
+- Users can only see data from projects they already have access to.
 
 ## Building Custom Integrations (OAuth)
 
@@ -147,12 +175,23 @@ Mixpanel uses **Authorization Code + PKCE (S256)**:
 
 **Mandatory:**
 ```
-projects analysis events insights segmentation retention data:read funnels flows data_definitions
+projects 
+analysis 
+events 
+insights 
+segmentation 
+retention 
+data:read 
+funnels 
+flows 
+data_definitions
 ```
 
 **Optional:**
 ```
-dashboard_reports bookmarks user_details
+dashboard_reports 
+bookmarks 
+user_details
 ```
 
 <Callout type="info">
@@ -163,47 +202,51 @@ dashboard_reports bookmarks user_details
 
 Once connected, try asking your AI assistant:
 
-**Getting oriented**
-- "What Mixpanel projects do I have access to?" *(start here)*
-- "What are the most frequently fired events in this project over the last 7 days?"
+**Understand your data**
+- "What projects do I have access to?"
+- "What are the most fired events this week?"
+- "Which properties on `checkout_completed` are marked as PII?"
 
-**Querying data**
-- "Show me daily active users for the past 30 days"
-- "Build a funnel from signup to first purchase and show where users drop off"
-- "What's the 7-day retention for users who completed onboarding last month?"
-- "Compare conversion rates by acquisition channel for Q1 vs Q2"
+**Query & analyze**
+- "How many sign ups did we have in February?"
+- "What's our signup-to-purchase conversion rate this month vs last month?"
+- "Show 7-day retention for users who completed onboarding in Q1"
+- "Which acquisition channels have the best 30-day retention?"
 
-**Creating & organizing**
-- "Create a dashboard with our core acquisition and retention metrics"
-- "Tag all checkout-related events with 'Checkout' in Lexicon"
-- "Find all events without a description and add placeholder descriptions"
+**Create & build**
+- "Create a board of purchase metrics"
+- "Build a weekly growth dashboard with signups, activations, and churn"
 
-**Session replays**
-- "Show me replays for user [user ID] and summarize what they did before submitting negative feedback"
-- "This user reported a bug — what happened in their last session?"
+**Automate Lexicon work**
+- "Add descriptions to any events that don't have one"
+- "Tag all checkout-related events with 'Checkout'"
+- "Hide any events that haven't fired in the last 90 days"
+- "Find all properties that look like PII but aren't flagged yet"
 
-**Data quality**
-- "Which properties on the Purchase Completed event are marked as PII?"
-- "Show me all data quality issues for the Signup event"
-- "Dismiss all low-priority issues for deprecated events"
+**Triage data quality**
+- "Show me all open data quality issues for the Signup event"
+- "Dismiss all issues for events we deprecated last quarter"
+
+**Investigate users**
+- "This user reported a bug — what happened in their last 3 sessions?"
+- "Walk me through what [user ID] did before they churned"
 
 ## Security Considerations
 
-This server lets AI assistants query your Mixpanel data using your credentials. Review your organization's data handling policies before connecting, especially if your data includes personal information.
+When connected, the AI assistant can both **read and write** to Mixpanel on your behalf. Your Mixpanel data is also sent to whichever AI provider you're using (Claude, ChatGPT, etc.), so review that provider's data handling policies before connecting.
 
-**Access controls:**
-- MCP must be explicitly enabled by an org admin
-- Users can only query projects they already have access to in Mixpanel
-- Existing project permissions and data governance rules remain in effect
+**Access controls**
+- MCP must be explicitly enabled by an org admin. It is off by default
+- Users can only access projects they already have permission to view in Mixpanel
+- All existing roles and project-level permissions remain in effect
 
-**Best practices:**
-- Start with non-production projects to validate the setup
-- Conduct a security review before using with sensitive production data
-- Review applicable compliance requirements (GDPR, CCPA, etc.)
+**Other considerations**
+- Check applicable compliance requirements (GDPR, CCPA, etc.) before connecting to projects with personal data
+- If using a shared AI environment (e.g., a team workspace), be aware that conversation history may be visible to others
 
 ## Troubleshooting
 
-- **"MCP access is not enabled for this project"** — Ask your org admin to enable MCP in **Settings → Org → Overview**.
-- **"Missing scope" error** — Your cached auth token was created with an outdated scope list. Delete the `.mcp-auth` folder in the directory where you ran the authorization command, then re-authorize.
-- **Authorization fails** — Ensure your Mixpanel account has access to at least one project and that MCP is enabled at the org level.
-- **Desktop app doesn't pick up config changes** — Restart the application after editing the config file.
+- **"MCP access is not enabled for this project"**: Ask your org admin to enable MCP in **Settings → Org → Overview**.
+- **"Missing scope" error**: Your cached auth token was created with an outdated scope list. Delete the `.mcp-auth` folder in the directory where you ran the authorization command, then re-authorize.
+- **Authorization fails**: Ensure your Mixpanel account has access to at least one project and that MCP is enabled at the org level.
+- **Desktop app doesn't pick up config changes**: Restart the application after editing the config file.

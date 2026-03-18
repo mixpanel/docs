@@ -280,6 +280,7 @@
 /docs/session-replay/implement-session-replay/session-replay-android /docs/tracking-methods/sdks/android/android-replay
 /docs/features/advanced /docs/reports
 /docs/features/mcp /docs/mcp
+/docs/mixpanel-ai/mcp /docs/mcp
 /guides/onboarding-overview /guides/strategic-playbooks/onboarding-playbook
 /guides/plan/setup /guides/strategic-playbooks/onboarding-playbook/plan/setup
 /guides/plan/framework /guides/strategic-playbooks/onboarding-playbook/plan/framework
