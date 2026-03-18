@@ -956,9 +956,6 @@ There are two steps: setting up a proxy server and pointing our JavaScript SDK a
 
 Below is a complete nginx reference configuration that proxies all Mixpanel traffic — tracking, Session Replay, and CDN assets — through your own domain. Adapt the path prefix and domain to your environment.
 
-<Callout type="info">
-  **Why different upstream hosts?** Most Mixpanel endpoints use `api.mixpanel.com`, but Session Replay's `/record` endpoint uses `api-js.mixpanel.com`. Your proxy must route each to the correct host or recordings will fail.
-</Callout>
 ```nginx
 # -------------------------------------------------------------------
 # Mixpanel Proxy – nginx reference config
