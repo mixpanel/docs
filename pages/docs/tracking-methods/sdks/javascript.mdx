@@ -967,14 +967,14 @@ Below is a complete nginx reference configuration that proxies all Mixpanel traf
 # configured resolver instead of the system resolver.
 # -------------------------------------------------------------------
 
-# Tracking endpoints → api-js.mixpanel.com
+# Tracking endpoints → api.mixpanel.com
 location /_mp/api/ {
     proxy_ssl_server_name on;
-    proxy_set_header Host api-js.mixpanel.com;
+    proxy_set_header Host api.mixpanel.com;
     proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
     proxy_set_header X-Forwarded-Host $server_name;
     client_max_body_size 10m;
-    proxy_pass https://api-js.mixpanel.com/;
+    proxy_pass https://api.mixpanel.com/;
 }
 
 # Proxy all async module files (recorder, targeting, etc.) to cdn.mxpnl.com/libs/
