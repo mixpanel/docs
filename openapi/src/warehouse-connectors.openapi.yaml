@@ -387,6 +387,12 @@ paths:
                 properties:
                   status:
                     $ref: ./common/responses.yaml#/ResponseStatusOk
+                  results:
+                    type: object
+                    properties:
+                      run_id:
+                        type: string
+                        description: The unique identifier for the triggered sync run.
         "401":
           $ref: ./common/responses.yaml#/401Unauthorized
         "403":
