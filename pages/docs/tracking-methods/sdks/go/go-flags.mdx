@@ -10,10 +10,10 @@ This developer guide will assist you in configuring your server-side Go platform
 
 Before implementing [Feature Flags](/docs/featureflags), ensure:
 
-- You are on an Enterprise subscription plan and have the [Mixpanel Go SDK](https://github.com/mixpanel/mixpanel-go) installed. If not, please follow [this doc](/docs/quickstart/install-mixpanel) to install the SDK. The minimum supported version is [`v2.0.0-beta.1`](https://github.com/mixpanel/mixpanel-go/releases/tag/v2.0.0-beta.1)
+- You are on an Enterprise subscription plan and have the [Mixpanel Go SDK](https://github.com/mixpanel/mixpanel-go) installed. If not, please follow [this doc](/docs/quickstart/install-mixpanel) to install the SDK. The minimum supported version is [`v2.0.0`](https://github.com/mixpanel/mixpanel-go/releases/tag/v2.0.0)
 
 ```bash
-go get github.com/mixpanel/mixpanel-go@v2.0.0-beta.1
+go get github.com/mixpanel/mixpanel-go@v2.0.0
 ```
 
 - You have your Project Token from your [Mixpanel Project Settings](/docs/orgs-and-projects/managing-projects#find-your-project-tokens)
@@ -118,7 +118,7 @@ func main() {
 		},
 	}
 
-	mp := mixpanel.NewApiClient("YOUR_PROJECT_TOKEN", mixpanel.WithRemoteFlags(remoteConfig))
+	mp := mixpanel.NewApiClient("YOUR_PROJECT_TOKEN", mixpanel.WithRemoteFlags(remoteConfig, mixpanel.DefaultFlagsExposureTracker))
 
 	ctx := context.Background()
 
@@ -155,7 +155,7 @@ func main() {
 		},
 	}
 
-	mp := mixpanel.NewApiClient("YOUR_PROJECT_TOKEN", mixpanel.WithRemoteFlags(remoteConfig))
+	mp := mixpanel.NewApiClient("YOUR_PROJECT_TOKEN", mixpanel.WithRemoteFlags(remoteConfig, mixpanel.DefaultFlagsExposureTracker))
 
 	ctx := context.Background()
 
@@ -165,5 +165,44 @@ func main() {
 
 	// Given a flag key and the selected variant for that key, manually track an exposure event for a given flag and assigned variant, after exposing the user to the variant
 	mp.RemoteFlags.TrackExposureEvent(ctx, flagKey, selectedVariant, userContext)
+}
+```
+
+## Custom Exposure Tracking
+
+By default, the SDK sends exposure events synchronously via `DefaultFlagsExposureTracker`. You can provide a custom `TrackerBuilder` — a function that receives the `*ApiClient` and returns a `flags.Tracker` — to control how exposure events are sent.
+
+### Asynchronous tracker
+
+For example, to avoid blocking on exposure event delivery, you could wrap the tracking call in a goroutine like shown below. If desired, you could implement controls around how many active go routines can be in flight at once.
+
+```go
+package main
+
+import (
+	"context"
+
+	mixpanel "github.com/mixpanel/mixpanel-go"
+	"github.com/mixpanel/mixpanel-go/flags"
+)
+
+func asyncTracker(client *mixpanel.ApiClient) flags.Tracker {
+	return func(distinctID string, eventName string, props map[string]any) {
+		go func() {
+			event := client.NewEvent(eventName, distinctID, props)
+			_ = client.Track(context.Background(), []*mixpanel.Event{event})
+		}()
+	}
+}
+
+func main() {
+	localConfig := flags.LocalFlagsConfig{
+		FlagsConfig: flags.FlagsConfig{
+			APIHost: "api.mixpanel.com",
+		},
+		EnablePolling:   true,
+		PollingInterval: 60 * time.Second,
+	}
+	mp = mixpanel.NewApiClient("YOUR_PROJECT_TOKEN", mixpanel.WithLocalFlagsAndTracker(localConfig, asyncTracker))
 }
 ```

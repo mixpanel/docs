@@ -7,6 +7,7 @@ import MainContent from "./components/MainContent/MainContent";
 import SignUpButton from "./components/SignUpButton/SignUpButton";
 import ChangelogPostHeader from "./components/ChangelogPostHeader/ChangelogPostHeader";
 import { VideoButtonWithModal } from "./components/VideoButtonWithModal";
+import ExtendedAccordion from "./components/ExtendedAccordion/ExtendedAccordion";
 
 const config: DocsThemeConfig = {
   darkMode: true,
@@ -57,7 +58,7 @@ const config: DocsThemeConfig = {
     );
   },
   feedback: {
-    content: "Question? Contact our Support Team",
+    content: "Contact Support",
     useLink: () => "https://mixpanel.com/contact-us/support",
   },
   footer: {
@@ -84,6 +85,7 @@ const config: DocsThemeConfig = {
   components: {
     ChangelogPostHeader: ChangelogPostHeader,
     VideoButtonWithModal: VideoButtonWithModal,
+    ExtendedAccordion: ExtendedAccordion,
   },
   search: {
     component: Search,
