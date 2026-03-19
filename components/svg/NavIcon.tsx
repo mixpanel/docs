@@ -73,6 +73,25 @@ function SupportIcon() {
     )
 }
 
+function MixpanelAIIcon() {
+    return (
+        <svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+            {/* Cord */}
+            <path d="M6 12.5C6 13.88 7.12 15 8.5 15C9.88 15 11 13.88 11 12.5V7.5C11 6.95 11.45 6.5 12 6.5H15.5" stroke="#B094FF" strokeWidth="1.2" strokeLinecap="round"/>
+            {/* Socket body */}
+            <path d="M7.5 7L7.9 11H4.1L4.5 7H7.5Z" fill="#B094FF"/>
+            {/* Plug body outer */}
+            <rect x="1.5" y="2.5" width="9" height="5" rx="2" fill="#B094FF"/>
+            {/* Plug body inner recess */}
+            <rect x="2.5" y="3" width="7" height="3.5" rx="1.5" fill="#7856FF" fillOpacity="0.4"/>
+            {/* Left pin */}
+            <rect x="3.5" y="0" width="1.2" height="3" rx="0.6" fill="#7856FF"/>
+            {/* Right pin */}
+            <rect x="7.3" y="0" width="1.2" height="3" rx="0.6" fill="#7856FF"/>
+        </svg>
+    )
+}
+
 function SolutionsIcon() {
     return (
         <svg width="15" height="16" viewBox="0 0 15 16" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -116,6 +135,7 @@ export {
     AdminIcon,
     DataOutIcon,
     SupportIcon,
+    MixpanelAIIcon,
     SolutionsIcon,
     PlaybooksIcon,
     DiscoverIcon
