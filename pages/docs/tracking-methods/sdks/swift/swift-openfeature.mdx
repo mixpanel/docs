@@ -1,0 +1,100 @@
+import { Callout } from 'nextra/components'
+
+# OpenFeature Provider (Swift)
+
+## Overview
+
+The Mixpanel OpenFeature provider allows you to use [Mixpanel Feature Flags](/docs/featureflags) through the standardized [OpenFeature](https://openfeature.dev/) API. This provider wraps the Mixpanel Swift SDK's `MixpanelFlags` protocol, letting you use the OpenFeature Swift SDK with Mixpanel as the backend.
+
+For the core Feature Flags SDK guide, see [Feature Flags (Swift)](/docs/tracking-methods/sdks/swift/swift-flags).
+
+## Prerequisites
+
+- You are on an Enterprise subscription plan
+- You have the [Mixpanel Swift SDK](/docs/tracking-methods/sdks/swift) installed
+- You have your Project Token from your [Mixpanel Project Settings](/docs/orgs-and-projects/managing-projects#find-your-project-tokens)
+
+## Installation
+
+### Swift Package Manager
+
+Add the OpenFeature provider package to your `Package.swift`:
+
+```swift
+dependencies: [
+    .package(url: "https://github.com/mixpanel/mixpanel-swift-openfeature-provider", from: "0.1.0"),
+    .package(url: "https://github.com/open-feature/swift-sdk", from: "0.1.0"),
+]
+```
+
+### CocoaPods
+
+```ruby
+pod 'MixpanelOpenFeatureProvider'
+pod 'OpenFeature'
+```
+
+## Usage
+
+The provider wraps `MixpanelFlags` from the Mixpanel Swift SDK.
+
+```swift
+import Mixpanel
+import MixpanelOpenFeatureProvider
+import OpenFeature
+
+// Initialize Mixpanel with feature flags enabled
+Mixpanel.initialize(token: "YOUR_PROJECT_TOKEN", options: MixpanelOptions(
+    featureFlagOptions: FeatureFlagOptions(enabled: true)
+))
+
+// Register the OpenFeature provider
+let provider = MixpanelProvider(flags: Mixpanel.mainInstance().flags)
+OpenFeatureAPI.shared.setProvider(provider: provider)
+
+let client = OpenFeatureAPI.shared.getClient()
+let showNewUI = client.getBooleanValue(key: "new-ui", defaultValue: false)
+```
+
+## Supported Flag Types
+
+| OpenFeature Method | Swift Type |
+|---|---|
+| `getBooleanValue` / `getBooleanDetails` | `Bool` |
+| `getStringValue` / `getStringDetails` | `String` |
+| `getIntegerValue` / `getIntegerDetails` | `Int64` |
+| `getDoubleValue` / `getDoubleDetails` | `Double` |
+| `getObjectValue` / `getObjectDetails` | `Value` |
+
+## Context and Identity
+
+<Callout type="info">
+Context is set globally when registering the provider, not per-evaluation. Per-evaluation context passed to individual flag evaluations is ignored.
+</Callout>
+
+- **`targetingKey`** has no special meaning in this provider. It is treated as a regular context property.
+- Identity should be managed through the Mixpanel SDK via `Mixpanel.mainInstance().identify()`.
+
+## Error Handling
+
+The provider returns the default value on all errors, with an error code indicating the cause:
+
+| Error Code | Condition |
+|---|---|
+| `PROVIDER_NOT_READY` | The provider has not been initialized |
+| `FLAG_NOT_FOUND` | The requested flag does not exist |
+| `TYPE_MISMATCH` | The flag value does not match the requested type |
+
+Use `getDetails()` methods instead of `getValue()` to inspect error codes:
+
+```swift
+let details = client.getBooleanDetails(key: "my-flag", defaultValue: false)
+if let errorCode = details.errorCode {
+    print("Flag error: \(errorCode) - \(details.errorMessage ?? "")")
+}
+```
+
+## Lifecycle
+
+- **`onClose()`** is a no-op. The Mixpanel SDK manages its own lifecycle.
+- The reason code for successful evaluations is `STATIC`.

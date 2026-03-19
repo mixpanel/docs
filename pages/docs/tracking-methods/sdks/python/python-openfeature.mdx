@@ -1,0 +1,101 @@
+import { Callout } from 'nextra/components'
+
+# OpenFeature Provider (Python)
+
+## Overview
+
+The Mixpanel OpenFeature provider allows you to use [Mixpanel Feature Flags](/docs/featureflags) through the standardized [OpenFeature](https://openfeature.dev/) API. This provider wraps the Mixpanel Python SDK's feature flags, letting you use the OpenFeature Python SDK with Mixpanel as the backend.
+
+For the core Feature Flags SDK guide, see [Feature Flags (Python)](/docs/tracking-methods/sdks/python/python-flags).
+
+## Prerequisites
+
+- You are on an Enterprise subscription plan
+- You have the [Mixpanel Python SDK](/docs/tracking-methods/sdks/python) installed
+- You have your Project Token from your [Mixpanel Project Settings](/docs/orgs-and-projects/managing-projects#find-your-project-tokens)
+
+## Installation
+
+```bash
+pip install mixpanel-openfeature-provider openfeature-sdk
+```
+
+## Usage
+
+The provider wraps either a local or remote flags provider from the Mixpanel SDK.
+
+### With Local Evaluation
+
+```python
+from mixpanel import Mixpanel
+from openfeature import api
+from mixpanel_openfeature import MixpanelProvider
+
+mp = Mixpanel("YOUR_PROJECT_TOKEN", local_flags_config={
+    "enable_polling": True,
+    "polling_interval_in_seconds": 60
+})
+
+mp.local_flags.start_polling_for_definitions()
+
+# Register the provider
+api.set_provider(MixpanelProvider(mp.local_flags))
+
+client = api.get_client()
+show_new_ui = client.get_boolean_value("new-ui", False)
+```
+
+### With Remote Evaluation
+
+```python
+mp = Mixpanel("YOUR_PROJECT_TOKEN", remote_flags_config={
+    "api_host": "api.mixpanel.com"
+})
+
+api.set_provider(MixpanelProvider(mp.remote_flags))
+
+client = api.get_client()
+variant = client.get_string_value("checkout-flow", "control")
+```
+
+## Supported Flag Types
+
+| OpenFeature Method | Python Type |
+|---|---|
+| `get_boolean_value` / `get_boolean_details` | `bool` |
+| `get_string_value` / `get_string_details` | `str` |
+| `get_integer_value` / `get_integer_details` | `int` |
+| `get_float_value` / `get_float_details` | `float` |
+| `get_object_value` / `get_object_details` | `dict` |
+
+## Context and Identity
+
+<Callout type="info">
+Context is set globally when registering the provider, not per-evaluation. Per-evaluation context passed to individual flag evaluations is ignored.
+</Callout>
+
+- **`targeting_key`** has no special meaning in this provider. It is treated as a regular context property.
+- Identity should be managed through the Mixpanel SDK (e.g., setting `distinct_id` in the context).
+
+## Error Handling
+
+The provider returns the default value on all errors, with an error code indicating the cause:
+
+| Error Code | Condition |
+|---|---|
+| `PROVIDER_NOT_READY` | The provider has not been initialized |
+| `FLAG_NOT_FOUND` | The requested flag does not exist |
+| `TYPE_MISMATCH` | The flag value does not match the requested type |
+
+Use `get_details()` methods instead of `get_value()` to inspect error codes:
+
+```python
+details = client.get_boolean_details("my-flag", False)
+if details.error_code:
+    print(f"Flag error: {details.error_code} - {details.error_message}")
+```
+
+## Lifecycle
+
+- **`shutdown()`** is a no-op. The Mixpanel SDK manages its own lifecycle.
+- The reason code for successful evaluations is `STATIC`.

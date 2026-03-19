@@ -1,0 +1,89 @@
+import { Callout } from 'nextra/components'
+
+# OpenFeature Provider (Android)
+
+## Overview
+
+The Mixpanel OpenFeature provider allows you to use [Mixpanel Feature Flags](/docs/featureflags) through the standardized [OpenFeature](https://openfeature.dev/) API. This provider wraps the Mixpanel Android SDK's `MixpanelAPI.Flags`, letting you use the OpenFeature Kotlin SDK with Mixpanel as the backend.
+
+For the core Feature Flags SDK guide, see [Feature Flags (Android)](/docs/tracking-methods/sdks/android/android-flags).
+
+## Prerequisites
+
+- You are on an Enterprise subscription plan
+- You have the [Mixpanel Android SDK](/docs/tracking-methods/sdks/android) installed
+- You have your Project Token from your [Mixpanel Project Settings](/docs/orgs-and-projects/managing-projects#find-your-project-tokens)
+
+## Installation
+
+Add the OpenFeature provider and SDK to your `build.gradle`:
+
+```groovy
+dependencies {
+    implementation 'com.mixpanel:mixpanel-android-openfeature-provider:1.0.0'
+    implementation 'dev.openfeature:android-sdk:0.3.0'
+}
+```
+
+## Usage
+
+The provider wraps `MixpanelAPI.Flags` from the Mixpanel Android SDK.
+
+```kotlin
+import com.mixpanel.android.mpmetrics.MixpanelAPI
+import com.mixpanel.openfeature.MixpanelProvider
+import dev.openfeature.sdk.OpenFeatureAPI
+
+// Initialize Mixpanel
+val mixpanel = MixpanelAPI.getInstance(context, "YOUR_PROJECT_TOKEN")
+
+// Register the OpenFeature provider
+val provider = MixpanelProvider(mixpanel.flags)
+OpenFeatureAPI.setProvider(provider)
+
+val client = OpenFeatureAPI.getClient()
+val showNewUI = client.getBooleanValue("new-ui", false)
+```
+
+## Supported Flag Types
+
+| OpenFeature Method | Kotlin Type |
+|---|---|
+| `getBooleanValue` / `getBooleanDetails` | `Boolean` |
+| `getStringValue` / `getStringDetails` | `String` |
+| `getIntegerValue` / `getIntegerDetails` | `Int` |
+| `getDoubleValue` / `getDoubleDetails` | `Double` |
+| `getObjectValue` / `getObjectDetails` | `Value` |
+
+## Context and Identity
+
+<Callout type="info">
+Context is set globally when registering the provider, not per-evaluation. Per-evaluation context passed to individual flag evaluations is ignored.
+</Callout>
+
+- **`targetingKey`** has no special meaning in this provider. It is treated as a regular context property.
+- Identity should be managed through the Mixpanel SDK via `mixpanel.identify()`.
+
+## Error Handling
+
+The provider returns the default value on all errors, with an error code indicating the cause:
+
+| Error Code | Condition |
+|---|---|
+| `PROVIDER_NOT_READY` | The provider has not been initialized |
+| `FLAG_NOT_FOUND` | The requested flag does not exist |
+| `TYPE_MISMATCH` | The flag value does not match the requested type |
+
+Use `getDetails()` methods instead of `getValue()` to inspect error codes:
+
+```kotlin
+val details = client.getBooleanDetails("my-flag", false)
+if (details.errorCode != null) {
+    Log.d("Flags", "Flag error: ${details.errorCode} - ${details.errorMessage}")
+}
+```
+
+## Lifecycle
+
+- **`shutdown()`** is a no-op. The Mixpanel SDK manages its own lifecycle.
+- The reason code for successful evaluations is `STATIC`.

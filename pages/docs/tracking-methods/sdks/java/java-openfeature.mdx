@@ -1,0 +1,120 @@
+import { Callout } from 'nextra/components'
+
+# OpenFeature Provider (Java)
+
+## Overview
+
+The Mixpanel OpenFeature provider allows you to use [Mixpanel Feature Flags](/docs/featureflags) through the standardized [OpenFeature](https://openfeature.dev/) API. This provider wraps the Mixpanel Java SDK's feature flags, letting you use the OpenFeature Java SDK with Mixpanel as the backend.
+
+For the core Feature Flags SDK guide, see [Feature Flags (Java)](/docs/tracking-methods/sdks/java/java-flags).
+
+## Prerequisites
+
+- You are on an Enterprise subscription plan
+- You have the [Mixpanel Java SDK](/docs/tracking-methods/sdks/java) installed (minimum version `v1.7.0`)
+- You have your Project Token from your [Mixpanel Project Settings](/docs/orgs-and-projects/managing-projects#find-your-project-tokens)
+
+## Installation
+
+Add the OpenFeature provider and SDK to your Maven `pom.xml`:
+
+```xml
+<dependency>
+    <groupId>com.mixpanel</groupId>
+    <artifactId>mixpanel-java-openfeature-provider</artifactId>
+    <version>1.7.0</version>
+</dependency>
+<dependency>
+    <groupId>dev.openfeature</groupId>
+    <artifactId>sdk</artifactId>
+    <version>1.20.1</version>
+</dependency>
+```
+
+Or with Gradle:
+
+```groovy
+implementation 'com.mixpanel:mixpanel-java-openfeature-provider:1.7.0'
+implementation 'dev.openfeature:sdk:1.20.1'
+```
+
+## Usage
+
+The provider wraps a `BaseFlagsProvider` (either `LocalFlagsProvider` or `RemoteFlagsProvider`) from the Mixpanel SDK.
+
+### With Local Evaluation
+
+```java
+import com.mixpanel.mixpanelapi.featureflags.provider.LocalFlagsProvider;
+import com.mixpanel.openfeature.MixpanelProvider;
+import dev.openfeature.sdk.*;
+
+// Initialize Mixpanel flags provider
+LocalFlagsProvider flagsProvider = new LocalFlagsProvider("YOUR_PROJECT_TOKEN", config, sdkVersion, eventSender);
+
+// Register with OpenFeature
+OpenFeatureAPI api = OpenFeatureAPI.getInstance();
+api.setProvider(new MixpanelProvider(flagsProvider));
+
+Client client = api.getClient();
+boolean showNewUI = client.getBooleanValue("new-ui", false);
+```
+
+### With Remote Evaluation
+
+```java
+import com.mixpanel.mixpanelapi.featureflags.provider.RemoteFlagsProvider;
+
+RemoteFlagsProvider flagsProvider = new RemoteFlagsProvider("YOUR_PROJECT_TOKEN", config, sdkVersion, eventSender);
+
+OpenFeatureAPI api = OpenFeatureAPI.getInstance();
+api.setProvider(new MixpanelProvider(flagsProvider));
+
+Client client = api.getClient();
+String variant = client.getStringValue("checkout-flow", "control");
+```
+
+## Supported Flag Types
+
+| OpenFeature Method | Java Type |
+|---|---|
+| `getBooleanValue` / `getBooleanDetails` | `Boolean` |
+| `getStringValue` / `getStringDetails` | `String` |
+| `getIntegerValue` / `getIntegerDetails` | `Integer` (coerces from `Long`, `Double`) |
+| `getDoubleValue` / `getDoubleDetails` | `Double` (coerces from `Integer`, `Long`) |
+| `getObjectValue` / `getObjectDetails` | `Value` (wraps maps, lists, and primitives) |
+
+Numeric types are coerced automatically. For example, a flag returning a `Long` value will work with `getIntegerValue()`.
+
+## Context and Identity
+
+<Callout type="info">
+Context is set globally when registering the provider, not per-evaluation. Per-evaluation context passed to individual flag evaluations is ignored.
+</Callout>
+
+- **`targetingKey`** has no special meaning in this provider. It is treated as a regular context property.
+- Identity should be managed through the Mixpanel SDK (e.g., setting `distinct_id` in the context).
+
+## Error Handling
+
+The provider returns the default value on all errors, with an error code indicating the cause:
+
+| Error Code | Condition |
+|---|---|
+| `PROVIDER_NOT_READY` | The provider has not been initialized |
+| `FLAG_NOT_FOUND` | The requested flag does not exist |
+| `TYPE_MISMATCH` | The flag value does not match the requested type |
+
+Use `getDetails()` methods instead of `getValue()` to inspect error codes:
+
+```java
+FlagEvaluationDetails<Boolean> details = client.getBooleanDetails("my-flag", false);
+if (details.getErrorCode() != null) {
+    System.out.println("Flag error: " + details.getErrorCode() + " - " + details.getErrorMessage());
+}
+```
+
+## Lifecycle
+
+- **`shutdown()`** is a no-op. The Mixpanel SDK manages its own lifecycle.
+- The reason code for successful evaluations is `STATIC`.
