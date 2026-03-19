@@ -331,6 +331,42 @@ This is an offer, not a gate. The user decides.
 
 **Do not proceed to "what's next" until at least one event is confirmed in Live View.**
 
+**Session Replay — offer this for client-side platforms only (Web JS, iOS, Android, React Native). Skip for server-side implementations.**
+
+Once at least one event is confirmed in Live View, ask:
+
+> "Events are flowing — nice. While we're here, want to turn on Session Replay? It lets you watch real user sessions alongside your event data, and it takes one line. All text and form inputs are masked by default, so it's privacy-safe out of the box. Most teams find it valuable early — it shows exactly where users drop off before you have enough data for statistical significance in funnels.
+>
+> Just add `record_sessions_percent: 100` to your `mixpanel.init()` call. Start at 100% while verifying, then dial it down if volume becomes a cost concern."
+
+If the customer mentioned healthcare, fintech, or another regulated industry (from Pre-Flight research or earlier in the conversation), add:
+
+> "One caveat for your industry: Session Replay carries higher compliance risk even with default masking. Before turning it on, review your privacy notice with legal counsel. You can also use `record_block_selector` to exclude specific screens — like checkout, profile pages, or any screen with sensitive data — from ever being recorded."
+
+If enabling:
+
+```js
+// JavaScript
+mixpanel.init('YOUR_PROJECT_TOKEN', {
+  // ... existing config ...
+  record_sessions_percent: 100,  // 0–100; start at 100 to verify, reduce later if needed
+})
+```
+
+```swift
+// iOS (Swift)
+Mixpanel.initialize(token: "YOUR_PROJECT_TOKEN", trackAutomaticEvents: true)
+Mixpanel.mainInstance().sessionReplayProperties = ["record_sessions_percent": 100]
+```
+
+```kotlin
+// Android (Kotlin)
+val mixpanel = MixpanelAPI.getInstance(context, "YOUR_PROJECT_TOKEN", true)
+mixpanel.startSessionRecording()
+```
+
+Note: Session Replay and Autocapture are independent — disabling one does not affect the other.
+
 ### Developer Handoff Spec Generation (No Codebase Access Mode)
 
 **When to use:** User went through Quick Start discovery and planning but doesn't have codebase access (marked with `handoff_mode: true` at Codebase Access Check).
@@ -393,6 +429,7 @@ Present prioritized next steps:
 3. **Dev/prod project split** — Create a separate dev project before sending production traffic
 4. **Analytics strategy** — Define KPIs and measurement framework (RAE framework available)
 5. **Data governance** — Set up Lexicon, Data Standards, and Event Approval as you scale
+6. **Session Replay** (if enabled) — Open the Session Replay tab in Mixpanel and confirm recordings are appearing. If no sessions appear after triggering user flows, check that `record_sessions_percent` is set and the init call is running on the client side.
 
 **If Developer Handoff Spec was generated (no codebase access path):**
 
@@ -777,6 +814,42 @@ Place each `track()` call as close to the triggering action as possible — in t
 
 **Post-deploy verification (after each new event or batch):** Beyond Live View, confirm the event appears in Reports for the expected date range (e.g. run a segmentation or Insights query filtered by the event name and today's date). Check that key properties are populating with expected values. Event and property names are case-sensitive — zero results often mean a typo or casing mismatch. See `reference.md § Phase 8 — Post-Deploy Verification` for details.
 
+**Session Replay — offer this for client-side platforms only (Web JS, iOS, Android, React Native). Skip for server-side implementations.**
+
+Now that events are confirmed flowing in Live View, offer Session Replay:
+
+> "Events are live — nice work. Want to turn on Session Replay while we're in the init config? It lets you watch real user sessions alongside your event data, and it takes one line. All text and form inputs are masked by default, so it's privacy-safe out of the box. Most teams wish they'd enabled it earlier.
+>
+> Add `record_sessions_percent: 100` to your `mixpanel.init()` call. Start at 100% to verify it's working, then reduce the sample rate later if volume becomes a cost concern."
+
+If the customer mentioned healthcare, fintech, or another regulated industry in Phase 0, add:
+
+> "One caveat for your industry: Session Replay carries higher compliance risk even with default masking. Before enabling, review your privacy notice with legal counsel. You can also use `record_block_selector` to exclude specific screens — like checkout, profile pages, or anything with sensitive data — from ever being recorded."
+
+If enabling:
+
+```js
+// JavaScript
+mixpanel.init('YOUR_PROJECT_TOKEN', {
+  // ... existing config ...
+  record_sessions_percent: 100,  // 0–100; start at 100 to verify, reduce later if needed
+})
+```
+
+```swift
+// iOS (Swift)
+Mixpanel.initialize(token: "YOUR_PROJECT_TOKEN", trackAutomaticEvents: true)
+Mixpanel.mainInstance().sessionReplayProperties = ["record_sessions_percent": 100]
+```
+
+```kotlin
+// Android (Kotlin)
+val mixpanel = MixpanelAPI.getInstance(context, "YOUR_PROJECT_TOKEN", true)
+mixpanel.startSessionRecording()
+```
+
+Note: Session Replay and Autocapture are independent — disabling one does not affect the other.
+
 **Output of this phase:** All tracking and initialization code written and placed in the codebase. At least one event confirmed arriving in Mixpanel Live View. Customer ready to wire up identity calls.
 
 ### Phase 7 — Identity Management
@@ -930,6 +1003,7 @@ Next steps:
 - Add Lexicon descriptions for every event
 - Enable Data Standards and Event Approval in Project Settings
 - Schedule quarterly governance reviews
+- (If Session Replay was enabled) Open the Session Replay tab in Mixpanel and confirm recordings are appearing. If none appear after triggering user flows, verify `record_sessions_percent` is set in the init call and the SDK is running client-side.
 
 **Output of this phase:** Lexicon populated, Data Standards enabled, Event Approval enabled, governance roles named and documented, `AGENTS.md` created. Implementation complete.
 
