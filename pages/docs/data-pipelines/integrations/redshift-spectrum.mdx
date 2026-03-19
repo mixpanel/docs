@@ -147,7 +147,7 @@ Create a policy in IAM with the necessary permissions to enable Mixpanel to inte
     {
       "Sid": "MixpanelS3AccessStatement",
       "Effect": "Allow",
-      "Action": ["s3:GetObject", "s3:ListBucket"],
+      "Action": ["s3:GetObject", "s3:ListBucket", "s3:PutObject", "s3:DeleteObject"],
       "Resource": ["arn:aws:s3:::<BUCKET_NAME>", "arn:aws:s3:::<BUCKET_NAME>/*"]
     }
   ]

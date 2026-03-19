@@ -90,6 +90,12 @@ To delete, pause, or unpause a JSON pipeline:
 
 Note: JSON pipelines can only be managed through the UI, not via the data pipelines API.
 
+### Backfilling Historical Data
+
+You can schedule an initial backfill when creating a pipeline. This ensures that historical data is also exported to the data warehouse. Note that the `from_date` must be within 6 months in the past.
+
+The completion time for a backfill depends on the number of days and the amount of data in the project. Larger backfills can take up to multiple weeks.
+
 ### Viewing Pipeline Configuration
 
 To check a pipeline's configuration:
