@@ -1,7 +1,7 @@
 export function TrustArcHeadScripts() {
     const trustArcAutoBlockCoreSrc = `https://consent.trustarc.com/v2/autoblockasset/core.min.js?cmId=9iv2en`;
     const trustArcAutoBlockSrc = `https://consent.trustarc.com/v2/autoblock?cmId=9iv2en`;
-    const trustArcInitScriptSrc = `https://consent.trustarc.com/v2/notice/9iv2en`;
+    const trustArcInitScriptSrc = `https://consent.trustarc.com/v2/notice/9iv2en?pcookie`;
 
     return (
         <>

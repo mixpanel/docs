@@ -54,8 +54,10 @@ export default function Document() {
         </script>
         {/* Empty script tag as chrome bug fix, see https://stackoverflow.com/a/42969608/943337 */}
         <script> </script>
-        <TrustArcBodyScripts />
+        {/* Trustarc - body scripts are to refresh page when user changes preferences. Removed at request of legal. Could be necessary for GDPR*/}
+        {/* <TrustArcBodyScripts /> */}
         <div id="consent-banner"></div>
+        {/* end Trustarc */}
       </body>
     </Html>
   );
