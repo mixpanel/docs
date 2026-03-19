@@ -968,6 +968,7 @@ Below is a complete nginx reference configuration that proxies all Mixpanel traf
 # -------------------------------------------------------------------
 
 # Tracking endpoints → api.mixpanel.com
+# If you have EU or IN residency enabled, use api-eu.mixpanel.com or api-in.mixpanel.com respectively
 location /_mp/api/ {
     proxy_ssl_server_name on;
     proxy_set_header Host api.mixpanel.com;
