@@ -29,7 +29,7 @@ mixpanel.track('Sign Up', {
 🎉 Congratulations, you've tracked your first event! You can see it in Mixpanel via the [Events page](https://mixpanel.com/report/events).
 
 **More resources:**
-_ Video: [Debug Common Issues When Installing Mixpanel on Web](https://www.loom.com/embed/fbba03274dc441b49b578e8a734b1d99).
+_ Video: [Debug Common Issues When Installing Mixpanel on Web](https://www.loom.com/share/fbba03274dc441b49b578e8a734b1d99).
 _ Docs: [Read the Full Javascript SDK Docs](/docs/tracking-methods/sdks/javascript/) \* Github: [Browse the Open Source SDKs](https://github.com/mixpanel)
 
 </Tabs.Tab>
@@ -319,30 +319,17 @@ All of our sample code transparently retries and backoff from rate limit excepti
 
 ## FAQ
 
-export function FAQBox({ title, children }) {
-  return (
-    <details
-      open={false}
-      className="last-of-type:mb-0 rounded-xl bg-[#f5f2f2] p-0 mt-6"
-    >
-      <summary>
-        <strong className="text-lg font-medium">{title}</strong>
-      </summary>
-      <div className="nx-p-2">{children}</div>
-    </details>
-  );
-}
 
 <div className="faqComponent" >
 
-<FAQBox title="Does Mixpanel automatically track page views?">
+<ExtendedAccordion title="Does Mixpanel automatically track page views?">
   Yes, if you pass `track_pageview: true` in the `mixpanel.init()` call,
   Mixpanel will automatically track a "Page View" event every time a new page is
   loaded. Learn more
   [here](/docs/tracking-methods/sdks/javascript#tracking-page-views).
-</FAQBox>
+</ExtendedAccordion>
 
-<FAQBox title="Why aren't my events showing up?">
+<ExtendedAccordion title="Why aren't my events showing up?">
   If tracking from the web, make sure you've disabled ad blockers and your Do Not Track (DNT) 
   browser settings are set to false when testing your JavaScript implementation. If 
   the DNT setting is set to true, then Mixpanel won't collect information from that Mixpanel 
@@ -353,5 +340,5 @@ If tracking from a mobile device, events may take 1-2 minutes to appear because 
 mobile SDKs buffer events for 1 minute, or when the app transitions to the background, to
 conserve battery life and bandwidth. You can call `.flush()` in the mobile SDKs to manually flush events to Mixpanel.
 
-</FAQBox>
+</ExtendedAccordion>
 </div>

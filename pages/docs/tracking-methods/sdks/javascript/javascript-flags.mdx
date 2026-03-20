@@ -90,6 +90,7 @@ mixpanel.flags.update_context({
 Lookup the assigned value for a feature flag.
 This action triggers tracking an exposure event, `$experiment_started` to your Mixpanel project.
 
+### Asynchronous Flag Variant Retrieval
 
 **Experiment Flags: Get Variant Value**
 
@@ -121,6 +122,37 @@ if (isEnabled) {
   showOldFeature();
 }
 ```
+
+### Synchronous Flag Variant Retrieval
+**Experiment Flags: Get Variant Value**
+
+```javascript
+// Fetch the variant value once flags are ready and track an exposure event *if* the user context is in a rollout group for the feature flag.
+const fallback = "control"; // the value to use if the user doesn't match any of the flag's rollout rules
+const variant_value = mixpanel.flags.get_variant_value_sync("my-feature-flag", fallback);
+
+// Use flag value in your application logic
+if (variant_value == "variant_a") {
+  showExperienceForVariantA();
+} else if (variant_value == "variant_b") {
+  showExperienceForVariantB();
+} else if (variant_value == "control") {
+  showDefaultExperience();
+}
+```
+**Feature Gates: Check if Flag is Enabled/Disabled**
+```javascript
+// Fetch the variant value once flags are ready and track an exposure event *if* the user context is in a rollout group for the feature flag.
+const fallback = false;
+const isEnabled = mixpanel.flags.is_enabled_sync("my-feature-flag", fallback);
+
+// Use the result in your application logic. 
+if (isEnabled) {
+  showNewFeature();
+} else {
+  showOldFeature();
+}
+
 
 ## Frequently Asked Questions
 

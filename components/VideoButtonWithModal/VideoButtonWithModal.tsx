@@ -15,6 +15,14 @@ type VideoButtonModalProps = {
 const PLAY_BUTTON_BASE_CLASS =
   "nx-flex nx-items-center nx-px-2 nx-py-1 nx-text-xs nx-font-semibold nx-text-purple140 nx-shadow-sm focus-visible:nx-outline focus-visible:nx-outline-2 focus-visible:nx-outline-offset-2 focus-visible:nx-outline-purple140";
 
+function getLoomShareURL(embedURL: string): string | null {
+  if (!embedURL.includes("loom.com")) {
+    return null;
+  }
+  // Convert loom.com/embed/VIDEO_ID to loom.com/share/VIDEO_ID
+  return embedURL.replace("/embed/", "/share/");
+}
+
 export default function VideoButtonWithModal({
   title = "Video about this feature",
   showThumbnail = true,
@@ -22,6 +30,23 @@ export default function VideoButtonWithModal({
 }: VideoButtonModalProps) {
   const embedURL = getVideoEmbedURL(props.src);
   let [isOpen, setIsOpen] = useState(false);
+
+  // If it's a Loom URL, return a simple link instead of the modal
+  const loomShareURL = getLoomShareURL(embedURL);
+  if (loomShareURL) {
+    return (
+      <p style={{ marginTop: "1.5rem" }}>
+        <a 
+          href={loomShareURL} 
+          target="_blank" 
+          rel="noopener noreferrer"
+          className="nextra-focus _text-primary-600 _underline hover:_no-underline _decoration-from-font [text-underline-position:from-font]"
+        >
+          Link to Demo
+        </a>
+      </p>
+    );
+  }
 
   // TODO: update this style and abstract it as time allows to a single button component
   // https://www.figma.com/design/8kiticjQNChvsP9y7s9SRf/Product-Releases-(Copy)?node-id=982-75355&node-type=frame&t=O7vwnwoAoOx42stw-0
