@@ -60,7 +60,7 @@ This is the randomization bucket unit: `distinct_id` (user), `device_id`, or a *
 
 **How to choose the right key?**
 - **User** `distinct_id`  — best for logged-in experiences across device; a user sees a consistent experience across various sessions and devices
-- **Device** `device_id`  — best for pre-auth or acquisition flows; a device keeps a consistent variant between pre-auth and post-auth experiences.
+- **Device** `device_id`  — best for pre-auth or acquisition flows; a device keeps a consistent variant between pre-auth and post-auth experiences. 
 - **Group** `group_id` — target by account/org using a group key (e.g., `account_id`). Values for group keys will need to be supplied to the Mixpanel feature flag SDK through the `context` parameter. When a group key is selected, cohort targeting targets that group accordingly.  For example, if you have a Franchise data group with key `franchise_id`, and you want to use a flag to rollout a feature to select Franchises, then `franchise_id` should be your assignment key.
 
 <Callout type="info">
@@ -101,6 +101,11 @@ When the Variant Assignment Key is set to a group key (e.g., `company_id`, `acco
  - Cohorts used in feature flag targeting refresh on a periodic cadence (~every 2 hours). So once a user or group entity qualifies for a cohort, it can take up to 2 hours before they see a desired experience.
  - If you want users or groups to continue seeing the same variant even if they disqualify from the cohort in the future, couple this with **Sticky Variants.** This will ensure they continue to see the new experience until the flag is turned off.
 </Callout>
+
+<Callout type="warning">
+Note that cohort targeting for `device_id` assignment key flags builds cohorts against Users, not devices. Furthermore, since this targeting is against users, it will only target authenticated users, which could defeat the purpose of using an auth-insensitive `device_id` rollout.  If you wish to do group cohort targeting against devices, make device a Data Group and then use group targeting against it.  
+</Callout>
+
 
 #### Runtime Targeting
 
