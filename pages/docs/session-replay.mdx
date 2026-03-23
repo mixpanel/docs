@@ -209,3 +209,7 @@ When you enable Session Replay, use the above proxy metric to determine a starti
 #### Am I able to sample our Session Replay collection rate?
 
 Yes, you can configure the percentage of total replays that our SDK will capture as a sampling rate or manually trigger/end replay capture.
+
+#### Can I record cross-origin iframes within my page?
+
+Yes, Session Replay supports recording cross-origin iframes embedded within your page (Web only, SDK v2.77.0+). Both the parent page and child iframe must have the Mixpanel SDK initialized with `record_allowed_iframe_origins` configured to include each other's origins. For detailed setup instructions, see [Cross-Origin Iframe Recording](/docs/tracking-methods/sdks/javascript/javascript-replay#cross-origin-iframe-recording).
