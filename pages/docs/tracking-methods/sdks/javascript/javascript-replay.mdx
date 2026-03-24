@@ -249,7 +249,11 @@ Network recording uses two complementary mechanisms:
 
 ## Remote Configuration
 
-By setting `remote_settings_mode` you can quickly set SDK options for your project in mixpanel under `Settings > Project > Session Replay`.
+<Callout type="info">
+  Available only for customers with a paid session replay add-on. Requires version 2.74.0
+</Callout>
+
+By setting `remote_settings_mode` you can quickly set SDK options for your project in Mixpanel under `Settings > Organization Settings > Session Replay`.
 
 Three modes are available:
 
@@ -263,6 +267,14 @@ List of currently supported remote settings:
 - `record_sessions_percent`
 
 Settings that are not yet supported, will not appear in the remote configuration. These non-included options will use the value that was initially set by the user for all `remote_settings_mode` options.
+
+**Example Usage**
+```javascript
+mixpanel.init('YOUR_PROJECT_TOKEN', {
+    record_sessions_percent: 100,
+    remote_settings_mode: 'fallback'
+});
+```
 
 ## Cross-Origin Iframe Recording
 
