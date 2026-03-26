@@ -257,7 +257,7 @@ Three modes are available:
 
 - `Disabled`: Do not use remote configuration and proceed to use the hardcoded initial options provided by the user during initialization. This is the default behavior. 
 - `Fallback`: Attempt to retrieve remote configuration and proceed with those settings. If there is failure or timeout (500 ms), will use previously cached remote settings (from last successful fetch) or the SDK initialization config.
-- `Strict`: Requires successful remote configuration fetch for SDK initialization. If there is failure or timeout (500 ms), SDK initialization will fail and the Session Replay features will be unavailable.
+- `Strict`: Requires successful remote configuration fetch for SDK initialization. If there is failure or timeout (500 ms), SDK initialization will fail and the Session Replay features will be unavailable for that app launch.
 
 Can use this setting to quickly update and adjust configurations to your liking.
 
