@@ -3,11 +3,11 @@ import { Callout, Steps } from 'nextra/components'
 # Use Mixpanel MCP to Go From "What Happened?" to "What Should We Do?"
 **Mixpanel Model Context Protocol (MCP)** connects your Mixpanel project to the AI tools your team already uses—such as Claude, ChatGPT, Cursor, and Gemini — so you can ask real questions about product behavior in plain language and get answers without touching the Mixpanel UI.
 
-![image](/mixpanel-mcp-2048x1151.jpeg)
-
 But the bigger unlock isn't speed. It's context. MCP lets you layer in information that doesn't live in Mixpanel at all — campaign calendars, competitor signals, industry benchmarks, internal docs — and synthesize it with your product data in a single workflow. That's work that used to take days of manual exports and reconciliation.
 
-This guide covers how to use MCP well: how to orient yourself in a new project, run analysis without building reports, and go from "what happened" to "what should we do about it."
+![image](/mixpanel-mcp-2048x1151.jpeg)
+
+This guide covers how to use MCP well: how to orient yourself in a new project, run analysis without building reports, and go from “What happened?” to “What should we do about it?”
 
 ## What Good Looks Like
 Before diving into steps, it's worth being clear about what "good" looks like in practice. Teams that use MCP effectively look materially different from teams that don't:
@@ -20,7 +20,7 @@ Before diving into steps, it's worth being clear about what "good" looks like in
 If you're using MCP only as a faster way to build reports, most of this value never materializes.
 
 ## See MCP in Action
-Before reading further, watch this walkthrough. It shows MCP end to end — from asking intent-based questions, to running live analysis against Mixpanel, to synthesizing product data with external context like calendars and benchmarks.
+Before reading further, watch this walkthrough. It shows MCP end to end — from asking intent-based questions, to running live analysis against Mixpanel, and synthesizing product data with external context like calendars and benchmarks.
 <br></br>
 
 <section id="video" aria-label="MCP video" style={{ padding: '8px 16px 32px' }}>
@@ -79,7 +79,7 @@ You’ll need:
 Once MCP is connected, select it as a data source inside your AI tool before asking questions.
 
 ## Step 1: Use MCP to Eliminate the Context Gap
-Most teams don’t struggle with analysis first — they struggle with orientation. Before you can answer "what's our onboarding completion rate," you need to know how onboarding is actually instrumented in your project.
+Most teams don’t struggle with analysis first — they struggle with orientation. For instance, before you can answer “What's our activation rate?”, you need to know how activation is actually instrumented in your project.
 
 ### Start with intent, not event names
 Begin with discovery questions that reflect how people actually think about the product, not how the data happens to be instrumented.
@@ -121,11 +121,10 @@ Be explicit about:
 - The timeframe
 - The shape of the answer (trend, funnel, breakdown) 
 
-Vague prompt:
-Show me checkout conversion.
+The more specific your question, the more useful the answer. Vague prompts return vague results.
 
-Better prompt:
-What's the conversion rate from Checkout Started to Purchase Completed for first-time buyers over the last 60 days? Show me how that rate changes week over week.
+| Vague prompt | Show me checkout conversion. | 
+| Better prompt | What's the conversion rate from Checkout Started to Purchase Completed for first-time buyers over the last 60 days? Show me how that rate changes week over week. | 
 
 MCP queries real Mixpanel data (funnels, trends, insights) and the AI analyzes those results to produce charts and written insights — directly in the AI interface.
 
@@ -155,9 +154,7 @@ Attach these external files or documents directly to your AI chat and ask questi
 - Here are our experiment rollout dates. Which feature launches correlate with changes in retention?
 - Activation rate for new signups dropped from 42% to 31% over the last three weeks. Here's our campaign schedule — does the drop align with any traffic source or campaign change? Are there differences by acquisition channel?
 
-This is synthesis that previously required a data analyst, a spreadsheet, and a few days of manual work.
-
-Now, MCP synthesizes this context with your product data in a single line of questioning — without manual exports or reconciliation.
+This is synthesis that previously required a data analyst, a spreadsheet, and a few days of manual work. Now, MCP synthesizes this context with your product data in a single line of questioning — without manual exports or reconciliation.
 
 ## Step 4: Combine Product Data with Unstructured Knowledge
 Some of the most important inputs into product decisions live in documents, not databases.
@@ -176,7 +173,7 @@ This is where MCP moves beyond analytics and into strategic reasoning — connec
 ## Step 5: Use MCP for Synthesis, Not Just Answers
 The highest-value MCP prompts don’t ask for charts — they ask for judgment.
 
-Once MCP has analyzed behavior, campaign context, benchmarks, and qualitative signals, ask MCP to synthesize across all of it: *Given everything we’ve analyzed, what would you change about our strategy going into the next quarter?*
+Once MCP has analyzed behavior, campaign context, benchmarks, and qualitative signals, ask MCP to synthesize across all of it: "Given everything we’ve analyzed, what would you change about our strategy going into the next quarter?"
 
 ![image](/mcp-synthesis.png)
 
@@ -201,6 +198,6 @@ These issues come up most often when teams treat MCP as a shortcut instead of a 
 - MCP can both query Mixpanel and write back to it. Create boards, update Lexicon, and triage data quality issues, all from your AI tool.
 - MCP's biggest impact is reducing context friction, not clicks. The real unlock is joining product behavior with external context.
 - Use MCP to explore and validate. Use Mixpanel to formalize and share.
-- The best teams use MCP to move faster from *what happened* to *what should we do about it*.
+- The best teams use MCP to move faster from "What happened?" to "What should we do about it?"
 
 👉 **Next step**: Review the [Mixpanel MCP Integration](/docs/features/mcp) documentation to set up the integration correctly and understand how to connect Mixpanel MCP to your AI tools with confidence.
