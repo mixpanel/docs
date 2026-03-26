@@ -103,6 +103,32 @@ mixpanel.stop_session_recording();
 | We only want to record users utilizing certain features | When user is about to access the feature you wish to capture replays for, call `mixpanel.start_session_recording()` to force recording on |
 
 
+#### Cross-Origin iFrame Recording (Requires minimum SDK version: 2.76)
+
+Session Replay can capture content from cross-origin iframes embedded within your page, providing a unified replay experience across parent pages and embedded third-party content. This feature requires explicit domain allowlisting via `record_allowed_iframe_origins` for security purposes. 
+
+**Example Usage**
+
+On your parent site `www.yoursite.com`, specify the origins from which recording data is accepted:
+
+```mixpanel.init('YOUR_PROJECT_TOKEN', {
+  record_sessions_percent: 100,
+  record_allowed_iframe_origins: [
+    'https://embedded-widget.example.com',
+  ],
+});
+```
+
+On the child iframe page `https://embedded-widget.example.com`, add the parent page's origin to `record_allowed_iframe_origins`:
+
+```mixpanel.init('YOUR_PROJECT_TOKEN', {
+  record_sessions_percent: 100,
+  record_allowed_iframe_origins: [
+    'https://yoursite.com',
+  ],
+});
+```
+
 ### Additional Configuration Options
 
 You can customize the behavior of replay captures by using the init options outlined below.
