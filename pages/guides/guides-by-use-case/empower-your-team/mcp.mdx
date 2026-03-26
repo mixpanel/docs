@@ -123,7 +123,7 @@ Be explicit about:
 
 The more specific your question, the more useful the answer. Vague prompts return vague results.
 
-| Specificity | Example Prompt |
+| Prompt Specificity | Sample Prompt |
 | --- | --- |
 | Vague | Show me checkout conversion. | 
 | Specific | What's the conversion rate from Checkout Started to Purchase Completed for first-time buyers over the last 60 days? Show me how that rate changes week over week. | 
@@ -150,29 +150,28 @@ That context might include:
 - Competitor announcements or pricing changes
 - Internal rollout notes or experiment timelines
 
-Attach these external files or documents directly to your AI chat and ask questions that connect behavior to context:
+Attach these external files or documents directly to your AI chat and ask questions that connect behavior to context.
 
-| --- | --- |
 | Context | Prompt | 
 | --- | --- |
-| Promotional Calendar | Do changes in checkout conversion align with our promotional calendar? I've attached our Q1 campaign schedule. | 
-| Competitor Announcements | We saw a 15% drop in feature adoption last month. Here's a competitor announcement from that period — could this be related? | 
-| Rollout Timelines | Here are our experiment rollout dates. Which feature launches correlate with changes in retention? | 
-| Campaign Schedule | Activation rate for new signups dropped from 42% to 31% over the last three weeks. Here's our campaign schedule — does the drop align with any traffic source or campaign change? Are there differences by acquisition channel? | 
+| **Promotional Calendar** | Do changes in checkout conversion align with our promotional calendar? I've attached our Q1 campaign schedule. | 
+| **Competitor Announcement** | We saw a 15% drop in feature adoption last month. Here's a competitor announcement from that period — could this be related? | 
+| **Rollout Timelines** | Here are our experiment rollout dates. Which feature launches correlate with changes in retention? | 
+| **Campaign Schedule** | Activation rate for new signups dropped from 42% to 31% over the last three weeks. Here's our campaign schedule — does the drop align with any traffic source or campaign change? Are there differences by acquisition channel? | 
 
 This is synthesis that previously required a data analyst, a spreadsheet, and a few days of manual work. Now, MCP synthesizes this context with your product data in a single line of questioning — without manual exports or reconciliation.
 
 ## Step 4: Combine Product Data with Unstructured Knowledge
-Some of the most important inputs into product decisions live in documents, not databases.
-
-If your AI tool is connected to sources like Notion or Google Drive, MCP can analyze those alongside Mixpanel data.
+Some of the most important inputs into product decisions live in documents, not databases. If your AI tool is connected to sources like Notion or Google Drive, MCP can analyze those alongside Mixpanel data.
 
 ![image](/mcp-notion.gif)
 
 Examples:
-- Compare our 30-day retention to the benchmarks in our Q4 industry report.
-- Based on our historical performance and the SaaS benchmarks in this doc, where are we most underperforming?
-- Here are notes from our last three customer interviews. What do they say about the friction points MCP just surfaced in the onboarding funnel?
+| Unstructured Knowledge | Prompt | 
+| --- | --- |
+| **Industry Benchmarks** | Compare our 30-day retention to the benchmarks in our Q4 industry report. | 
+| **Historical Performance** | Based on our historical performance and the SaaS benchmarks in this doc, where are we most underperforming? | 
+| **Customer Interviews** | Here are notes from our last three customer interviews. What do they say about the friction points MCP just surfaced in the onboarding funnel? | 
 
 This is where MCP moves beyond analytics and into strategic reasoning — connecting quantitative signals to qualitative context in a single workflow.
 
