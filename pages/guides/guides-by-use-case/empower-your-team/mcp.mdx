@@ -98,6 +98,10 @@ It doesn’t just answer the question you asked. MCP proactively suggests *other
 
 This mirrors the value of [Lexicon](/docs/data-governance/lexicon) at its best: Instead of needing to know exactly what to look for, the AI helps surface adjacent signals that are often just as important.
 
+<Callout type="warning">
+    **Pitfall:** MCP helps interpret data — it doesn’t fix structural issues. When structural issues are found, pause and invest in [data governance](/guides/guides-by-topic/govern-data) first.
+</Callout>
+
 ### Example: clarifying ambiguous intent
 For example, based on how your project is actually implemented, MCP can help determine whether “purchase intent” is better represented by:
 - Checkout Started
@@ -171,7 +175,7 @@ Examples:
 | --- | --- |
 | **Industry Benchmarks** | Compare our 30-day retention to the benchmarks in our Q4 industry report. | 
 | **Historical Performance** | Based on our historical performance and the SaaS benchmarks in this doc, where are we most underperforming? | 
-| **Customer Interviews** | Here are notes from our last three customer interviews. What do they say about the friction points MCP just surfaced in the onboarding funnel? | 
+| **Customer Interviews** | I've attached notes from our last three customer interviews. Based on what users said, where does the onboarding experience seem to be breaking down, and does that match what you're seeing in the funnel data? | 
 
 This is where MCP moves beyond analytics and into strategic reasoning — connecting quantitative signals to qualitative context in a single workflow.
 
@@ -185,11 +189,14 @@ Once MCP has analyzed behavior, campaign context, benchmarks, and qualitative si
 This compresses work that previously took days or weeks into a single, iterative workflow.
 
 ### Keep a human in the loop
-MCP can help summarize signals, highlight tradeoffs, and suggest areas to investigate — but it doesn’t make decisions for you.
+
+<Callout type="info">
+    MCP can help summarize signals, highlight tradeoffs, and suggest areas to investigate — but it doesn’t make decisions for you.
 
 Treat AI-generated recommendations as inputs, not answers. The final judgment should always come from your team, informed by domain knowledge, business constraints, and risk tolerance.
 
 Used this way, MCP accelerates strategic thinking without replacing human accountability.
+</Callout>
 
 ## Common Pitfalls to Avoid
 These issues come up most often when teams treat MCP as a shortcut instead of a complement to strong analytics fundamentals.
