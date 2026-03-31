@@ -2,13 +2,13 @@ import { Callout } from 'nextra/components'
 
 # Eliminate Data Drift Between Your Warehouse and Mixpanel Using Mirror
 
-When your warehouse is the source of truth, you need Mixpanel to stay in sync with it — not just ingest a snapshot and drift. [Mirror sync mode](/docs/tracking-methods/warehouse-connectors) does that by tracking every change in your warehouse (new rows, updates, and deletions) and reflecting them in Mixpanel automatically. The result is a Mixpanel project that always matches your warehouse, without manual reconciliation.
+When your warehouse is the source of truth, you need Mixpanel to stay in sync with it — not just ingest a snapshot and drift. [Mirror sync mode](/docs/tracking-methods/warehouse-connectors#mirror) does that by tracking every change in your warehouse (new rows, updates, and deletions) and reflecting them in Mixpanel automatically. The result is a Mixpanel project that always matches your warehouse, without manual reconciliation.
 
 Getting there takes more than pointing a connector at a table. How you model your data, which sync mode you choose, and how you map identifiers all determine whether your analytics hold up under real-world conditions.
 
 ## Before You Start
 
-Mirror is one of several sync modes in [Warehouse Connectors](/docs/tracking-methods/warehouse-connectors#mirror). It uses Change Data Capture (CDC) to detect and replicate changes, which means every row update or deletion in your source counts as a billable event in Mixpanel. That makes data modeling decisions consequential — not just for accuracy, but for cost.
+Mirror is one of several sync modes in [Warehouse Connectors](/docs/tracking-methods/warehouse-connectors). It uses Change Data Capture (CDC) to detect and replicate changes, which means every row update or deletion in your source counts as a billable event in Mixpanel. That makes data modeling decisions consequential — not just for accuracy, but for cost.
 
 You'll need:
 - Access to a supported warehouse: Snowflake, BigQuery, Databricks, or Redshift
