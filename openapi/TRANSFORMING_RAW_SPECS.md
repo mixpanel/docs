@@ -136,7 +136,7 @@ Raw specs from the backend often include both `/projects/{project_id}/...` and `
 
 ### 8. Flatten `$defs` into `components/schemas`
 
-This is the most involved step. Raw specs from Python/FastAPI frameworks use JSON Schema `$defs` nested inside each response schema, leading to massive duplication.
+This is the most involved step. Raw specs from Pydantic/FastAPI use JSON Schema `$defs` nested inside each response schema, leading to massive duplication.
 
 **Before (raw):** Each response has its own copy of shared types inline:
 ```yaml
