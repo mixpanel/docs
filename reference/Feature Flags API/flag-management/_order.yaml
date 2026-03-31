@@ -1,0 +1,15 @@
+- list-feature-flags
+- create-feature-flag
+- get-feature-flag
+- update-feature-flag
+- delete-feature-flag
+- archive-feature-flag
+- unarchive-feature-flag
+- duplicate-feature-flag
+- get-feature-flag-history
+- get-feature-flag-limits
+- get-feature-flag-views
+- record-feature-flag-view
+- update-feature-flag-test-users
+- get-last-cohort-sync-time
+- get-feature-flag-users

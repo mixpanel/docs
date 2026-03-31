@@ -1,4 +1,4 @@
-openapi: 3.0.2
+openapi: 3.1.0
 x-readme-deploy-id: feature-flags-api
 info:
   title: Feature Flags API
@@ -17,6 +17,8 @@ tags:
     description: Evaluate feature flags for a specific user
   - name: Get Flag Definitions
     description: Retrieve feature flag definitions
+  - name: Flag Management
+    description: Create, update, delete, and manage feature flags
 paths:
   /flags:
     get:
@@ -71,6 +73,408 @@ paths:
           $ref: ./common/responses.yaml#/401Unauthorized
         '403':
           $ref: ./common/responses.yaml#/403Forbidden
+
+  # --- Project-scoped management paths ---
+
+  /projects/{project_id}/feature-flags:
+    servers:
+      - $ref: ./common/app-api.yaml#/server
+    parameters:
+      - $ref: '#/components/parameters/ProjectId'
+    get:
+      operationId: list-feature-flags
+      tags:
+        - Flag Management
+      summary: List Feature Flags
+      security:
+        - ServiceAccount: []
+      parameters:
+        - name: include_archived
+          in: query
+          schema:
+            type: string
+            enum:
+              - 'true'
+              - 'false'
+          description: Whether to include archived (soft-deleted) feature flags. Defaults to false.
+      responses:
+        '200':
+          description: Success
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ListFeatureFlagResponse'
+        '401':
+          $ref: ./common/responses.yaml#/401Unauthorized
+        '403':
+          $ref: ./common/responses.yaml#/403Forbidden
+    post:
+      operationId: create-feature-flag
+      tags:
+        - Flag Management
+      summary: Create Feature Flag
+      security:
+        - ServiceAccount: []
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/FeatureFlagRequest'
+      responses:
+        '200':
+          description: Success
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SingleFeatureFlagResponse'
+        '401':
+          $ref: ./common/responses.yaml#/401Unauthorized
+        '403':
+          $ref: ./common/responses.yaml#/403Forbidden
+
+  /projects/{project_id}/feature-flags/limits:
+    servers:
+      - $ref: ./common/app-api.yaml#/server
+    parameters:
+      - $ref: '#/components/parameters/ProjectId'
+    get:
+      operationId: get-feature-flag-limits
+      tags:
+        - Flag Management
+      summary: Get Feature Flag Limits
+      security:
+        - ServiceAccount: []
+      responses:
+        '200':
+          description: Success
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/FeatureFlagLimitsResponse'
+        '401':
+          $ref: ./common/responses.yaml#/401Unauthorized
+        '403':
+          $ref: ./common/responses.yaml#/403Forbidden
+
+  /projects/{project_id}/feature-flags/{flag_id}:
+    servers:
+      - $ref: ./common/app-api.yaml#/server
+    parameters:
+      - $ref: '#/components/parameters/ProjectId'
+      - $ref: '#/components/parameters/FlagId'
+    get:
+      operationId: get-feature-flag
+      tags:
+        - Flag Management
+      summary: Get Feature Flag
+      security:
+        - ServiceAccount: []
+      responses:
+        '200':
+          description: Success
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SingleFeatureFlagResponse'
+        '401':
+          $ref: ./common/responses.yaml#/401Unauthorized
+        '403':
+          $ref: ./common/responses.yaml#/403Forbidden
+    delete:
+      operationId: delete-feature-flag
+      tags:
+        - Flag Management
+      summary: Delete Feature Flag
+      security:
+        - ServiceAccount: []
+      responses:
+        '200':
+          description: Success
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DeleteFeatureFlagResponse'
+        '401':
+          $ref: ./common/responses.yaml#/401Unauthorized
+        '403':
+          $ref: ./common/responses.yaml#/403Forbidden
+    put:
+      operationId: update-feature-flag
+      tags:
+        - Flag Management
+      summary: Update Feature Flag
+      security:
+        - ServiceAccount: []
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/FeatureFlagRequest'
+      responses:
+        '200':
+          description: Success
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SingleFeatureFlagResponse'
+        '401':
+          $ref: ./common/responses.yaml#/401Unauthorized
+        '403':
+          $ref: ./common/responses.yaml#/403Forbidden
+
+  /projects/{project_id}/feature-flags/{flag_id}/archive:
+    servers:
+      - $ref: ./common/app-api.yaml#/server
+    parameters:
+      - $ref: '#/components/parameters/ProjectId'
+      - $ref: '#/components/parameters/FlagId'
+    post:
+      operationId: archive-feature-flag
+      tags:
+        - Flag Management
+      summary: Archive Feature Flag
+      security:
+        - ServiceAccount: []
+      requestBody:
+        required: false
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ArchiveFeatureFlagRequest'
+      responses:
+        '200':
+          description: Success
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SingleFeatureFlagResponse'
+        '401':
+          $ref: ./common/responses.yaml#/401Unauthorized
+        '403':
+          $ref: ./common/responses.yaml#/403Forbidden
+    delete:
+      operationId: unarchive-feature-flag
+      tags:
+        - Flag Management
+      summary: Unarchive Feature Flag
+      security:
+        - ServiceAccount: []
+      responses:
+        '200':
+          description: Success
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SingleFeatureFlagResponse'
+        '401':
+          $ref: ./common/responses.yaml#/401Unauthorized
+        '403':
+          $ref: ./common/responses.yaml#/403Forbidden
+
+  /projects/{project_id}/feature-flags/{flag_id}/duplicate:
+    servers:
+      - $ref: ./common/app-api.yaml#/server
+    parameters:
+      - $ref: '#/components/parameters/ProjectId'
+      - $ref: '#/components/parameters/FlagId'
+    post:
+      operationId: duplicate-feature-flag
+      tags:
+        - Flag Management
+      summary: Duplicate Feature Flag
+      security:
+        - ServiceAccount: []
+      requestBody:
+        required: false
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/DuplicateFeatureFlagRequest'
+      responses:
+        '201':
+          description: Created
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SingleFeatureFlagResponse'
+        '401':
+          $ref: ./common/responses.yaml#/401Unauthorized
+        '403':
+          $ref: ./common/responses.yaml#/403Forbidden
+
+  /projects/{project_id}/feature-flags/{flag_id}/history:
+    servers:
+      - $ref: ./common/app-api.yaml#/server
+    parameters:
+      - $ref: '#/components/parameters/ProjectId'
+      - $ref: '#/components/parameters/FlagId'
+    get:
+      operationId: get-feature-flag-history
+      tags:
+        - Flag Management
+      summary: Get Feature Flag History
+      security:
+        - ServiceAccount: []
+      parameters:
+        - name: page
+          in: query
+          schema:
+            type: string
+          description: ISO 8601 datetime cursor for pagination. Empty or omitted for the first page.
+        - name: page_size
+          in: query
+          schema:
+            type: integer
+            default: 10
+          description: Number of history entries per page. Defaults to 10.
+      responses:
+        '200':
+          description: Success
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/FeatureFlagHistoryResponse'
+        '401':
+          $ref: ./common/responses.yaml#/401Unauthorized
+        '403':
+          $ref: ./common/responses.yaml#/403Forbidden
+
+  /projects/{project_id}/feature-flags/{resource_id}/views:
+    servers:
+      - $ref: ./common/app-api.yaml#/server
+    parameters:
+      - $ref: '#/components/parameters/ProjectId'
+      - $ref: '#/components/parameters/ResourceId'
+    get:
+      operationId: get-feature-flag-views
+      tags:
+        - Flag Management
+      summary: Get Feature Flag Views
+      security:
+        - ServiceAccount: []
+      responses:
+        '200':
+          description: Success
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/PresenceResponse'
+        '401':
+          $ref: ./common/responses.yaml#/401Unauthorized
+        '403':
+          $ref: ./common/responses.yaml#/403Forbidden
+    post:
+      operationId: record-feature-flag-view
+      tags:
+        - Flag Management
+      summary: Record Feature Flag View
+      security:
+        - ServiceAccount: []
+      requestBody:
+        required: false
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/FeatureFlagPresenceRequest'
+      responses:
+        '200':
+          description: Success
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/PresenceResponse'
+        '401':
+          $ref: ./common/responses.yaml#/401Unauthorized
+        '403':
+          $ref: ./common/responses.yaml#/403Forbidden
+
+  /projects/{project_id}/feature-flags/{flag_id}/test-users:
+    servers:
+      - $ref: ./common/app-api.yaml#/server
+    parameters:
+      - $ref: '#/components/parameters/ProjectId'
+      - $ref: '#/components/parameters/FlagId'
+    put:
+      operationId: update-feature-flag-test-users
+      tags:
+        - Flag Management
+      summary: Update Feature Flag Test Users
+      security:
+        - ServiceAccount: []
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ManagementTestUsers'
+      responses:
+        '200':
+          description: Success
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SingleFeatureFlagResponse'
+        '401':
+          $ref: ./common/responses.yaml#/401Unauthorized
+        '403':
+          $ref: ./common/responses.yaml#/403Forbidden
+
+  /projects/{project_id}/feature-flags/last-cohort-sync-time:
+    servers:
+      - $ref: ./common/app-api.yaml#/server
+    parameters:
+      - $ref: '#/components/parameters/ProjectId'
+    post:
+      operationId: get-last-cohort-sync-time
+      tags:
+        - Flag Management
+      summary: Get Last Cohort Sync Time
+      security:
+        - ServiceAccount: []
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CohortSyncTimeRequest'
+      responses:
+        '200':
+          description: Success
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/CohortSyncTime'
+        '401':
+          $ref: ./common/responses.yaml#/401Unauthorized
+        '403':
+          $ref: ./common/responses.yaml#/403Forbidden
+
+  /projects/{project_id}/feature-flags/users:
+    servers:
+      - $ref: ./common/app-api.yaml#/server
+    parameters:
+      - $ref: '#/components/parameters/ProjectId'
+    post:
+      operationId: get-feature-flag-users
+      tags:
+        - Flag Management
+      summary: Get Feature Flag Users
+      security:
+        - ServiceAccount: []
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/FeatureFlagUsersRequest'
+      responses:
+        '200':
+          description: Success
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/FeatureFlagUsersResponse'
+        '401':
+          $ref: ./common/responses.yaml#/401Unauthorized
+        '403':
+          $ref: ./common/responses.yaml#/403Forbidden
 components:
   securitySchemes:
     $ref: ./common/securitySchemes.yaml
@@ -82,7 +486,26 @@ components:
         type: string
       description: 'Your project token'
       required: true
+    ProjectId:
+      name: project_id
+      in: path
+      schema:
+        type: integer
+      required: true
+    FlagId:
+      name: flag_id
+      in: path
+      schema:
+        type: string
+      required: true
+    ResourceId:
+      name: resource_id
+      in: path
+      schema:
+        type: string
+      required: true
   schemas:
+    # --- Existing evaluation schemas ---
     EvaluateFlagsRequest:
       title: EvaluateFlagsRequest
       description: Request body for feature flag evaluation
@@ -350,3 +773,1131 @@ components:
           example:
             qa_user_1: 'treatment'
             qa_user_2: 'control'
+
+    # --- Management enums ---
+    FeatureFlagStatus:
+      enum:
+        - enabled
+        - disabled
+        - archived
+      title: FeatureFlagStatus
+      type: string
+    FirstTimeEventDuration:
+      enum:
+        - end_of_session
+        - indefinitely
+      title: FirstTimeEventDuration
+      type: string
+    RuntimeEventTimeWindow:
+      enum:
+        - while_flag_enabled
+      title: RuntimeEventTimeWindow
+      type: string
+    ServingMethod:
+      enum:
+        - client
+        - server
+        - remote_or_local
+        - remote_only
+      title: ServingMethod
+      type: string
+    FeatureFlagContractStatus:
+      description: Status of a project's feature flags contract.
+      enum:
+        - active
+        - grace_period
+        - expired
+      title: FeatureFlagContractStatus
+      type: string
+
+    # --- Management sub-schemas (collision-safe names) ---
+    ManagementVariant:
+      additionalProperties: false
+      properties:
+        key:
+          title: ''
+          type: string
+        value:
+          anyOf:
+            - type: boolean
+            - maxLength: 32768
+              type: string
+            - {}
+          title: ''
+        description:
+          anyOf:
+            - type: string
+            - type: 'null'
+          default: null
+          title: ''
+        is_control:
+          title: ''
+          type: boolean
+        split:
+          maximum: 1.0
+          minimum: 0.0
+          title: ''
+          type: number
+        is_sticky:
+          default: false
+          title: ''
+          type: boolean
+      required:
+        - key
+        - value
+        - is_control
+        - split
+      title: ManagementVariant
+      type: object
+
+    ManagementVariantOverride:
+      additionalProperties: false
+      description: A pointer to the variant defined under ruleset.variants[<key>]
+      properties:
+        key:
+          title: ''
+          type: string
+      required:
+        - key
+      title: ManagementVariantOverride
+      type: object
+
+    RuntimeEventRule:
+      additionalProperties: false
+      description: Configuration for first-time event targeting in rollout groups.
+      properties:
+        event_name:
+          title: ''
+          type: string
+        time_window:
+          $ref: '#/components/schemas/RuntimeEventTimeWindow'
+        duration:
+          anyOf:
+            - $ref: '#/components/schemas/FirstTimeEventDuration'
+            - type: 'null'
+          default: null
+          title: ''
+        property_filters:
+          anyOf:
+            - additionalProperties: true
+              type: object
+            - type: 'null'
+          default: null
+          title: ''
+      required:
+        - event_name
+        - time_window
+      title: RuntimeEventRule
+      type: object
+
+    ManagementRollout:
+      additionalProperties: false
+      properties:
+        name:
+          anyOf:
+            - type: string
+            - type: 'null'
+          default: null
+          title: ''
+        cohort_definition:
+          anyOf:
+            - additionalProperties: true
+              type: object
+            - type: 'null'
+          title: ''
+        runtime_evaluation_definition:
+          anyOf:
+            - additionalProperties: true
+              type: object
+            - type: 'null'
+          title: ''
+        runtime_evaluation_rule:
+          anyOf:
+            - additionalProperties: true
+              type: object
+            - type: 'null'
+          default: null
+          title: ''
+        runtime_event_rule:
+          anyOf:
+            - $ref: '#/components/schemas/RuntimeEventRule'
+            - type: 'null'
+          default: null
+          title: ''
+        cohort_hash:
+          anyOf:
+            - type: string
+            - type: 'null'
+          default: null
+          title: ''
+        rollout_percentage:
+          maximum: 1.0
+          minimum: 0.0
+          title: ''
+          type: number
+        variant_override:
+          anyOf:
+            - $ref: '#/components/schemas/ManagementVariantOverride'
+            - type: 'null'
+          default: null
+          title: ''
+        variant_splits:
+          additionalProperties:
+            type: number
+          title: ''
+          type: object
+      required:
+        - rollout_percentage
+        - variant_splits
+      title: ManagementRollout
+      type: object
+
+    ManagementRuleSet:
+      additionalProperties: false
+      properties:
+        variants:
+          items:
+            $ref: '#/components/schemas/ManagementVariant'
+          maxItems: 11
+          title: ''
+          type: array
+        rollout:
+          items:
+            $ref: '#/components/schemas/ManagementRollout'
+          title: ''
+          type: array
+        test:
+          anyOf:
+            - additionalProperties:
+                additionalProperties:
+                  type: string
+                type: object
+              type: object
+            - type: 'null'
+          default: null
+          title: ''
+      required:
+        - variants
+        - rollout
+      title: ManagementRuleSet
+      type: object
+
+    # --- Management request schemas ---
+    FeatureFlagRequest:
+      additionalProperties: false
+      properties:
+        name:
+          maxLength: 255
+          minLength: 1
+          title: ''
+          type: string
+        key:
+          maxLength: 255
+          minLength: 1
+          title: ''
+          type: string
+        description:
+          anyOf:
+            - type: string
+            - type: 'null'
+          default: null
+          title: ''
+        tags:
+          items:
+            type: string
+          title: ''
+          type: array
+        experiment_id:
+          anyOf:
+            - format: uuid4
+              type: string
+            - type: 'null'
+          default: null
+          title: ''
+        status:
+          $ref: '#/components/schemas/FeatureFlagStatus'
+          default: disabled
+        context:
+          maxLength: 255
+          minLength: 1
+          title: ''
+          type: string
+        data_group_id:
+          anyOf:
+            - type: string
+            - type: integer
+            - type: 'null'
+          default: null
+          title: ''
+        serving_method:
+          $ref: '#/components/schemas/ServingMethod'
+        ruleset:
+          $ref: '#/components/schemas/ManagementRuleSet'
+        workspace_id:
+          anyOf:
+            - type: integer
+            - type: 'null'
+          default: null
+          title: ''
+        is_experiment_active:
+          anyOf:
+            - type: boolean
+            - type: 'null'
+          default: null
+          title: ''
+        hash_salt:
+          anyOf:
+            - maxLength: 32
+              minLength: 32
+              type: string
+            - type: 'null'
+          default: null
+          title: ''
+        reset_hash_salt:
+          anyOf:
+            - type: boolean
+            - type: 'null'
+          default: null
+          title: ''
+      required:
+        - name
+        - key
+        - tags
+        - context
+        - serving_method
+        - ruleset
+      title: FeatureFlagApiPayload
+      type: object
+
+    ArchiveFeatureFlagRequest:
+      type: object
+      description: Empty request body for archiving a feature flag
+
+    DuplicateFeatureFlagRequest:
+      type: object
+      description: Empty request body for duplicating a feature flag
+
+    FeatureFlagPresenceRequest:
+      type: object
+      description: Empty request body for recording a presence view
+
+    ManagementTestUsers:
+      additionalProperties: false
+      properties:
+        users:
+          additionalProperties:
+            type: string
+          type: object
+      title: ManagementTestUsers
+      type: object
+
+    CohortSyncTimeRequest:
+      additionalProperties: false
+      properties:
+        cohort:
+          additionalProperties: true
+          type: object
+      required:
+        - cohort
+      title: CohortSyncTimeRequest
+      type: object
+
+    FeatureFlagUsersRequest:
+      additionalProperties: false
+      properties:
+        data_group_id:
+          type:
+            - string
+            - 'null'
+        search:
+          type:
+            - string
+            - 'null'
+          default: ''
+        user_list:
+          anyOf:
+            - items:
+                type: string
+              type: array
+            - additionalProperties:
+                items:
+                  type: string
+                type: array
+              type: object
+            - type: 'null'
+      title: FeatureFlagUsersRequest
+      type: object
+
+    # --- Management response schemas ---
+    ManagementApiErrorResponse:
+      additionalProperties: false
+      properties:
+        status:
+          const: error
+          title: ''
+          type: string
+        type:
+          title: ''
+          type: string
+        error:
+          title: ''
+          anyOf:
+            - type: string
+            - type: object
+      required:
+        - status
+        - type
+        - error
+      title: ManagementApiErrorResponse
+      type: object
+
+    FeatureFlagApiResponse:
+      additionalProperties: false
+      properties:
+        can_update_basic:
+          default: false
+          title: ''
+          type: boolean
+        is_superadmin:
+          default: false
+          title: ''
+          type: boolean
+        allow_staff_override:
+          default: false
+          title: ''
+          type: boolean
+        can_view:
+          default: false
+          title: ''
+          type: boolean
+        can_share:
+          default: false
+          title: ''
+          type: boolean
+        can_pin:
+          default: false
+          title: ''
+          type: boolean
+        is_shared_with_project:
+          default: false
+          title: ''
+          type: boolean
+        name:
+          maxLength: 255
+          minLength: 1
+          title: ''
+          type: string
+        key:
+          maxLength: 255
+          minLength: 1
+          title: ''
+          type: string
+        description:
+          anyOf:
+            - type: string
+            - type: 'null'
+          default: null
+          title: ''
+        tags:
+          items:
+            type: string
+          title: ''
+          type: array
+        experiment_id:
+          anyOf:
+            - format: uuid4
+              type: string
+            - type: 'null'
+          default: null
+          title: ''
+        status:
+          $ref: '#/components/schemas/FeatureFlagStatus'
+          default: disabled
+        context:
+          maxLength: 255
+          minLength: 1
+          title: ''
+          type: string
+        data_group_id:
+          anyOf:
+            - type: string
+            - type: integer
+            - type: 'null'
+          default: null
+          title: ''
+        serving_method:
+          $ref: '#/components/schemas/ServingMethod'
+        ruleset:
+          $ref: '#/components/schemas/ManagementRuleSet'
+        workspace_id:
+          anyOf:
+            - type: integer
+            - type: 'null'
+          default: null
+          title: ''
+        is_experiment_active:
+          anyOf:
+            - type: boolean
+            - type: 'null'
+          default: null
+          title: ''
+        hash_salt:
+          anyOf:
+            - maxLength: 32
+              minLength: 32
+              type: string
+            - type: 'null'
+          default: null
+          title: ''
+        reset_hash_salt:
+          anyOf:
+            - type: boolean
+            - type: 'null'
+          default: null
+          title: ''
+        id:
+          format: uuid4
+          title: ''
+          type: string
+        project_id:
+          title: ''
+          type: integer
+        content_type:
+          const: feature-flags
+          title: ''
+          type: string
+        created:
+          format: date-time
+          title: ''
+          type: string
+        creator_id:
+          anyOf:
+            - type: integer
+            - type: 'null'
+          title: ''
+        creator_name:
+          anyOf:
+            - type: string
+            - type: 'null'
+          title: ''
+        creator_email:
+          anyOf:
+            - type: string
+            - type: 'null'
+          title: ''
+        modified:
+          format: date-time
+          title: ''
+          type: string
+        last_modified_by_id:
+          anyOf:
+            - type: integer
+            - type: 'null'
+          default: null
+          title: ''
+        last_modified_by_name:
+          anyOf:
+            - type: string
+            - type: 'null'
+          default: null
+          title: ''
+        last_modified_by_email:
+          anyOf:
+            - type: string
+            - type: 'null'
+          default: null
+          title: ''
+        is_favorited:
+          anyOf:
+            - type: boolean
+            - type: 'null'
+          default: null
+          title: ''
+        pinned_date:
+          anyOf:
+            - type: string
+            - type: 'null'
+          default: null
+          title: ''
+        enabled_at:
+          anyOf:
+            - format: date-time
+              type: string
+            - type: 'null'
+          default: null
+          title: ''
+        deleted:
+          anyOf:
+            - format: date-time
+              type: string
+            - type: 'null'
+          default: null
+          title: ''
+        content_environments_id:
+          anyOf:
+            - type: string
+            - type: 'null'
+          default: null
+          title: ''
+        project_name:
+          anyOf:
+            - type: string
+            - type: 'null'
+          default: null
+          title: ''
+      required:
+        - name
+        - key
+        - tags
+        - context
+        - serving_method
+        - ruleset
+        - id
+        - project_id
+        - content_type
+        - created
+        - creator_id
+        - creator_name
+        - creator_email
+        - modified
+      title: FeatureFlagApiResponse
+      type: object
+
+    SingleFeatureFlagApiResponse:
+      additionalProperties: false
+      properties:
+        status:
+          const: ok
+          title: ''
+          type: string
+        results:
+          $ref: '#/components/schemas/FeatureFlagApiResponse'
+      required:
+        - status
+        - results
+      title: SingleFeatureFlagApiResponse
+      type: object
+
+    SingleFeatureFlagResponse:
+      anyOf:
+        - $ref: '#/components/schemas/SingleFeatureFlagApiResponse'
+        - $ref: '#/components/schemas/ManagementApiErrorResponse'
+
+    ListFeatureFlagApiResponse:
+      additionalProperties: false
+      properties:
+        status:
+          title: ''
+          type: string
+        results:
+          items:
+            $ref: '#/components/schemas/FeatureFlagApiResponse'
+          title: ''
+          type: array
+      required:
+        - status
+        - results
+      title: ListFeatureFlagApiResponse
+      type: object
+
+    ListFeatureFlagResponse:
+      anyOf:
+        - $ref: '#/components/schemas/ListFeatureFlagApiResponse'
+        - $ref: '#/components/schemas/ManagementApiErrorResponse'
+
+    DeleteFeatureFlagApiResponse:
+      additionalProperties: false
+      properties:
+        status:
+          const: ok
+          title: ''
+          type: string
+        results:
+          additionalProperties: true
+          title: ''
+          type: object
+      required:
+        - status
+        - results
+      title: DeleteFeatureFlagApiResponse
+      type: object
+
+    DeleteFeatureFlagResponse:
+      anyOf:
+        - $ref: '#/components/schemas/DeleteFeatureFlagApiResponse'
+        - $ref: '#/components/schemas/ManagementApiErrorResponse'
+
+    ExperimentHistory:
+      additionalProperties: false
+      properties:
+        can_update_basic:
+          default: false
+          title: ''
+          type: boolean
+        is_superadmin:
+          default: false
+          title: ''
+          type: boolean
+        allow_staff_override:
+          default: false
+          title: ''
+          type: boolean
+        can_view:
+          default: false
+          title: ''
+          type: boolean
+        can_share:
+          default: false
+          title: ''
+          type: boolean
+        can_pin:
+          default: false
+          title: ''
+          type: boolean
+        is_shared_with_project:
+          default: false
+          title: ''
+          type: boolean
+        name:
+          anyOf:
+            - maxLength: 255
+              type: string
+            - type: 'null'
+          title: ''
+        description:
+          anyOf:
+            - type: string
+            - type: 'null'
+          default: null
+          title: ''
+        hypothesis:
+          anyOf:
+            - type: string
+            - type: 'null'
+          default: null
+          title: ''
+        status:
+          anyOf:
+            - type: string
+            - type: 'null'
+          default: draft
+          title: ''
+        variants:
+          anyOf:
+            - items: {}
+              type: array
+            - type: 'null'
+          title: ''
+        metrics:
+          anyOf:
+            - items: {}
+              type: array
+            - type: 'null'
+          title: ''
+        settings:
+          anyOf:
+            - additionalProperties: true
+              type: object
+            - type: 'null'
+          title: ''
+        exposures_cache:
+          anyOf:
+            - additionalProperties: true
+              type: object
+            - type: 'null'
+          title: ''
+        results_cache:
+          anyOf:
+            - additionalProperties: true
+              type: object
+            - type: 'null'
+          title: ''
+        start_date:
+          anyOf:
+            - format: date-time
+              type: string
+            - type: 'null'
+          default: null
+          title: ''
+        end_date:
+          anyOf:
+            - format: date-time
+              type: string
+            - type: 'null'
+          default: null
+          title: ''
+        id:
+          format: uuid4
+          title: ''
+          type: string
+        project_id:
+          title: ''
+          type: integer
+        content_type:
+          const: experiments
+          title: ''
+          type: string
+        creator_id:
+          anyOf:
+            - type: integer
+            - type: 'null'
+          default: null
+          title: ''
+        creator_name:
+          anyOf:
+            - type: string
+            - type: 'null'
+          default: null
+          title: ''
+        creator_email:
+          anyOf:
+            - type: string
+            - type: 'null'
+          default: null
+          title: ''
+        created:
+          anyOf:
+            - format: date-time
+              type: string
+            - type: 'null'
+          default: null
+          title: ''
+        modified:
+          format: date-time
+          title: ''
+          type: string
+        last_modified_by_id:
+          anyOf:
+            - type: integer
+            - type: 'null'
+          default: null
+          title: ''
+        last_modified_by_name:
+          anyOf:
+            - type: string
+            - type: 'null'
+          default: null
+          title: ''
+        last_modified_by_email:
+          anyOf:
+            - type: string
+            - type: 'null'
+          default: null
+          title: ''
+        is_favorited:
+          anyOf:
+            - type: boolean
+            - type: 'null'
+          default: null
+          title: ''
+        pinned_date:
+          anyOf:
+            - type: string
+            - type: 'null'
+          default: null
+          title: ''
+        history_id:
+          maxLength: 255
+          minLength: 1
+          title: ''
+          type: string
+        history_date:
+          format: date-time
+          title: ''
+          type: string
+        history_user_id:
+          anyOf:
+            - type: integer
+            - type: 'null'
+          default: null
+          title: ''
+        history_change_reason:
+          anyOf:
+            - type: string
+            - type: 'null'
+          default: null
+          title: ''
+        history_type:
+          maxLength: 1
+          minLength: 1
+          title: ''
+          type: string
+      required:
+        - name
+        - id
+        - project_id
+        - content_type
+        - modified
+        - history_id
+        - history_date
+        - history_type
+      title: ExperimentHistory
+      type: object
+
+    FeatureFlagHistory:
+      additionalProperties: true
+      properties:
+        can_update_basic:
+          default: false
+          title: ''
+          type: boolean
+        is_superadmin:
+          default: false
+          title: ''
+          type: boolean
+        allow_staff_override:
+          default: false
+          title: ''
+          type: boolean
+        can_view:
+          default: false
+          title: ''
+          type: boolean
+        can_share:
+          default: false
+          title: ''
+          type: boolean
+        can_pin:
+          default: false
+          title: ''
+          type: boolean
+        is_shared_with_project:
+          default: false
+          title: ''
+          type: boolean
+        content_type:
+          const: feature-flags
+          title: ''
+          type: string
+        history_id:
+          maxLength: 255
+          minLength: 1
+          title: ''
+          type: string
+        history_date:
+          format: date-time
+          title: ''
+          type: string
+        history_user_id:
+          anyOf:
+            - type: integer
+            - type: 'null'
+          default: null
+          title: ''
+        history_change_reason:
+          anyOf:
+            - type: string
+            - type: 'null'
+          default: null
+          title: ''
+        history_type:
+          maxLength: 1
+          minLength: 1
+          title: ''
+          type: string
+      required:
+        - content_type
+        - history_id
+        - history_date
+        - history_type
+      title: FeatureFlagHistory
+      type: object
+
+    FeatureFlagHistoryData:
+      additionalProperties: false
+      properties:
+        events:
+          items:
+            items:
+              anyOf:
+                - discriminator:
+                    mapping:
+                      experiments: '#/components/schemas/ExperimentHistory'
+                      feature-flags: '#/components/schemas/FeatureFlagHistory'
+                    propertyName: content_type
+                  oneOf:
+                    - $ref: '#/components/schemas/ExperimentHistory'
+                    - $ref: '#/components/schemas/FeatureFlagHistory'
+                - type: 'null'
+            type: array
+          title: ''
+          type: array
+        count:
+          title: ''
+          type: integer
+      required:
+        - events
+        - count
+      title: FeatureFlagHistoryData
+      type: object
+
+    FeatureFlagHistoryApiResponse:
+      additionalProperties: false
+      properties:
+        status:
+          title: ''
+          type: string
+        results:
+          $ref: '#/components/schemas/FeatureFlagHistoryData'
+      required:
+        - status
+        - results
+      title: FeatureFlagHistoryApiResponse
+      type: object
+
+    FeatureFlagHistoryResponse:
+      anyOf:
+        - $ref: '#/components/schemas/FeatureFlagHistoryApiResponse'
+        - $ref: '#/components/schemas/ManagementApiErrorResponse'
+
+    FeatureFlagLimitsResults:
+      additionalProperties: false
+      properties:
+        limit:
+          title: ''
+          type: integer
+        is_trial:
+          title: ''
+          type: boolean
+        current_usage:
+          title: ''
+          type: integer
+        contract_status:
+          $ref: '#/components/schemas/FeatureFlagContractStatus'
+        is_startup_blocked:
+          title: ''
+          type: boolean
+        startup_block_message:
+          title: ''
+          type: string
+      required:
+        - limit
+        - is_trial
+        - current_usage
+        - contract_status
+        - is_startup_blocked
+        - startup_block_message
+      title: FeatureFlagLimitsResults
+      type: object
+
+    FeatureFlagLimitsApiResponse:
+      additionalProperties: false
+      properties:
+        status:
+          const: ok
+          title: ''
+          type: string
+        results:
+          $ref: '#/components/schemas/FeatureFlagLimitsResults'
+      required:
+        - status
+        - results
+      title: FeatureFlagLimitsApiResponse
+      type: object
+
+    FeatureFlagLimitsResponse:
+      anyOf:
+        - $ref: '#/components/schemas/FeatureFlagLimitsApiResponse'
+        - $ref: '#/components/schemas/ManagementApiErrorResponse'
+
+    FeatureFlagUsersApiResponse:
+      additionalProperties: false
+      properties:
+        status:
+          const: ok
+          title: ''
+          type: string
+        results:
+          additionalProperties:
+            items:
+              additionalProperties: true
+              type: object
+            type: array
+          title: ''
+          type: object
+      required:
+        - status
+        - results
+      title: FeatureFlagUsersApiResponse
+      type: object
+
+    FeatureFlagUsersResponse:
+      anyOf:
+        - $ref: '#/components/schemas/FeatureFlagUsersApiResponse'
+        - $ref: '#/components/schemas/ManagementApiErrorResponse'
+
+    PresenceResponse:
+      type: object
+      properties:
+        status:
+          type: string
+        results:
+          type: object
+          properties:
+            views:
+              type: array
+              items:
+                type: object
+                properties:
+                  user:
+                    type: object
+                    properties:
+                      id:
+                        type: integer
+                      email:
+                        type: string
+                      name:
+                        type: string
+                  timestamp:
+                    type: integer
+            total:
+              type: integer
+
+    CohortSyncTime:
+      anyOf:
+        - additionalProperties: false
+          properties:
+            status:
+              enum:
+                - ok
+              type: string
+            results:
+              additionalProperties: false
+              properties:
+                last_synced_at:
+                  format: date-time
+                  type: string
+              required:
+                - last_synced_at
+              title: CohortSyncTime
+              type: object
+          required:
+            - status
+            - results
+          title: CohortSyncTimeApiResponse
+          type: object
+        - additionalProperties: false
+          properties:
+            status:
+              enum:
+                - error
+              type: string
+            error:
+              anyOf:
+                - type: string
+                - additionalProperties: true
+                  type: object
+            type:
+              type:
+                - string
+                - 'null'
+            details:
+              additionalProperties: true
+              type:
+                - object
+                - 'null'
+          required:
+            - status
+            - error
+          title: ApiErrorResponse
+          type: object
