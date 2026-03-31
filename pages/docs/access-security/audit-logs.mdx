@@ -1,16 +1,16 @@
 import { Callout } from 'nextra/components'
 
-# Audit Logs
+# Audit Log
 
-Mixpanel Audit Logs track activity within your organization and projects, providing visibility into who made changes, when they occurred, and what was modified. Audit logs help teams maintain security, troubleshoot issues, and meet compliance requirements.
+Mixpanel's Audit Log tracks activity within your organization and projects, providing visibility into who made changes, when they occurred, and what was modified. Audit log helps teams maintain security, troubleshoot issues, and meet compliance requirements.
 
 <Callout type="info">
-    Audit logs are available on all plans. Free and Growth plans retain logs for 90 days. Enterprise plans retain logs for 2 years. See our [pricing page](https://mixpanel.com/pricing/) for more details.
+    Audit log is available on all plans. Free and Growth plans retain logs for 90 days. Enterprise plans retain logs for 2 years. See our [pricing page](https://mixpanel.com/pricing/) for more details.
 </Callout>
 
-## Accessing Audit Logs
+## Accessing Audit Log
 
-Audit logs can be accessed at two levels by users with Admin or Owner roles in the organization:
+Audit log can be accessed at two levels by users with Admin or Owner roles in the organization:
 
 - **Organization-level logs** — Found in Organization Settings.
 - **Project-level logs** — Found in Project Settings.
@@ -25,13 +25,12 @@ Some events are tracked only at the organization level, while most are available
 
 ## Tracked Events
 
-The current Audit logging contains only actions made within the Mixpanel UI. Each line in the UI will contain information on the Date and Time, User, Action, IP and Project or Org if available. Clicking on each log item you'll be able to see a raw view with additional information.  Logging for each set of events starts on the following dates:
+The current audit logging contains only actions made within the Mixpanel UI. Each line in the UI will contain information on the Date and Time, User, Action, IP and Project or Org if available. Clicking on each log item you'll be able to see a raw view with additional information.  Logging for each set of events starts on the following dates:
 - **Alerts** - 2026-01-31T00:00:00Z
 - **Boards** - 2026-03-31T19:00:00Z
 - **Board Subscriptions** - 2026-03-31T19:00:00Z
 - **Reports** - 2026-03-31T19:00:00Z
 - **Cohorts** - 2026-03-31T19:00:00Z
-- **Custom Roles** - 2026-03-31T19:00:00Z
 - **Data Pipelines** - 2026-03-31T19:00:00Z
 - **Warehouse Sources** - 2026-03-31T19:00:00Z
 - **Data Management** - 2026-03-31T19:00:00Z
@@ -39,7 +38,7 @@ The current Audit logging contains only actions made within the Mixpanel UI. Eac
 - **Service Accounts** - 2026-03-31T19:00:00Z
 - **User Authentication** - 2026-03-31T19:00:00Z
 
-Mixpanel tracks the following events in your audit logs:
+Mixpanel tracks the following events in your Audit Log:
 
 ### Alerts
 
@@ -149,12 +148,12 @@ Mixpanel tracks the following events in your audit logs:
 | `session.logged_out` | User Logged Out | A user logged out of the organization | Organization only |
 | `user.twofactor_enabled` | User Enabled Two-Factor Auth | A user activated two-factor authentication | Organization only |
 
-## Exporting Audit Logs
+## Exporting Audit Log
 
-You can export your audit logs to CSV format for further analysis or archival purposes. The export will contain the raw data information for each event.
+You can export your audit log info to CSV format for further analysis or archival purposes. The export will contain the raw data information for each event.
 
-1. **Navigate to the audit logs** page in Organization Settings or Project Settings.
-2. **Click the CSV Export button** to download the current view of audit logs.
+1. **Navigate to the Audit Log** page in Organization Settings or Project Settings.
+2. **Click the CSV Export button** to download the current view of Audit Log.
 3. The export includes all visible events within the selected time range.
 
 ## Limitations
@@ -163,19 +162,17 @@ You can export your audit logs to CSV format for further analysis or archival pu
   - Free & Growth plans: 90 days
   - Enterprise plans: 2 years
 - **Organization-only events** (service account management, login/logout, two-factor auth) are only visible in Organization Settings, not Project Settings.
-- Audit logs are read-only and cannot be modified or deleted.
 
 ## FAQ
 
-#### Who can access audit logs?
+#### Who can access Audit Log?
 
-Only users with Admin or Owner roles in an organization can view audit logs for that organization or project.
+Only users with Admin or Owner roles in an organization can view audit log for that organization or project.
 
-#### Can I filter audit logs by event type or user?
+#### Can I filter Audit Log by event type or user?
 
-Yes, the audit logs interface provides filtering options to help you find specific events or actions by particular users.
+Yes, the Audit Log interface provides filtering options to help you find specific events or actions by particular users.
 
+#### What's the difference between organization and project Audit Log?
 
-#### What's the difference between organization and project audit logs?
-
-Most events appear in both places. Organization audit logs contain additional organization-wide events like user authentication and service account creation. Project audit logs track project-specific events like report creation and data exports. The tables with a scope field say which audit log will contain the event. If there is not scope column in a table, the event should show up in both Organization and Project audit logs.
+Most events appear in both places. Organization Audit Log contains additional organization-wide events like user authentication and service account creation. Project Audit Log tracks is limited to project-specific events. The tables with a scope field say which audit log will contain the event. If there is not scope column in a table, the event should show up in both organization and project audit logs.
