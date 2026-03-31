@@ -8,7 +8,7 @@ Getting there takes more than pointing a connector at a table. How you model you
 
 ## Before You Start
 
-Mirror is one of several sync modes in [Warehouse Connectors](/docs/tracking-methods/warehouse-connectors). It uses Change Data Capture (CDC) to detect and replicate changes, which means every row update or deletion in your source counts as a billable event in Mixpanel. That makes data modeling decisions consequential — not just for accuracy, but for cost.
+Mirror is one of several sync modes in [Warehouse Connectors](/docs/tracking-methods/warehouse-connectors#mirror). It uses Change Data Capture (CDC) to detect and replicate changes, which means every row update or deletion in your source counts as a billable event in Mixpanel. That makes data modeling decisions consequential — not just for accuracy, but for cost.
 
 You'll need:
 - Access to a supported warehouse: Snowflake, BigQuery, Databricks, or Redshift
@@ -22,7 +22,7 @@ Not every table belongs on Mirror. The sync mode you choose determines how Mixpa
 | Sync Mode | What it does | Best for |
 | --- | --- | --- |
 | Mirror | Reflects new rows, updates, and deletions via CDC | Transactional events, profile history (SCD Type 2) |
-| Append | Loads new rows only; ignores changes and deletes | Immutable event logs (e.g., raw page views) |
+| Append | Loads new rows only; ignores changes and deletes | Immutable event logs (e.g. raw page views) |
 | Full Sync | Overwrites with a fresh snapshot each run | Lookup tables, current-state profiles |
 | One-Time | Single load, no recurring updates | Historical backfills from a static source |
 
@@ -38,7 +38,7 @@ Mirror works by detecting row-level changes, so your event tables need to be str
 
 ### Naming conventions
 
-Use `snake_case` for event and property names (e.g., `purchase_completed`). Follow an object-action pattern — `order_shipped`, `user_signed_up` — so event names are self-explanatory across teams and in downstream exports.
+Use `snake_case` for event and property names (e.g. `purchase_completed`). Follow an object-action pattern — `order_shipped`, `user_signed_up` — so event names are self-explanatory across teams and in downstream exports.
 
 There's a soft limit of 5,000 distinct event names in Mixpanel. Exceeding it makes data discovery and autocomplete harder to work with.
 
@@ -98,7 +98,7 @@ The [`distinct_id`](/docs/tracking-methods/id-management) is the primary join ke
 
 In a warehouse-native setup, you define this mapping. The column you map to `distinct_id` in your Events table must contain the exact same values as the primary key in your User Profiles table. If they don't match, events and profiles won't join, and your analyses will fragment.
 
-For group-level analysis using [Group Analytics](/docs/data-structure/group-analytics), the Group Key (e.g., `account_id`) plays the same role — make sure it's consistent across event and group profile tables.
+For group-level analysis using [Group Analytics](/docs/data-structure/group-analytics), the Group Key (e.g. `account_id`) plays the same role — make sure it's consistent across event and group profile tables.
 
 <Callout type="info">
   **Pro tip**: Unlike client-side SDK tracking, Mirror doesn't handle ID bridging automatically. Validate your identity mapping before your first sync, not after. A mismatch across millions of rows is expensive to fix.
