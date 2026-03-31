@@ -199,6 +199,85 @@ You can then enter [Preview mode](https://support.google.com/tagmanager/answer/6
 
 You can also enable the Javascript SDK's [Debug Mode](https://docs.mixpanel.com/docs/tracking-methods/sdks/javascript#debug-mode) by following [Steps 1-4](http://localhost:3000/docs/tracking-methods/integrations/google-tag-manager#custom-initialization-options). Then, add `debug` and `true` as an Option key and Option value, respectively.
 
+## Feature Flags
+
+Feature Flags allow you to control feature rollout, conduct A/B testing, and manage application behavior without deploying new code. Since the GTM integration wraps the [Mixpanel JavaScript SDK](/docs/tracking-methods/sdks/javascript), feature flags are implemented using the same JS SDK methods. For a full reference, see the [Feature Flags overview](/docs/featureflags) and [JavaScript SDK flags guide](/docs/tracking-methods/sdks/javascript/javascript-flags).
+
+### Prerequisites
+
+- Enterprise subscription plan with the minimum supported JS SDK version [`v2.71.0`](https://github.com/mixpanel/mixpanel-js/releases/tag/v2.71.0)
+- Your Project Token from [Mixpanel Project Settings](/docs/orgs-and-projects/managing-projects#find-your-project-tokens)
+
+### Flag Initialization
+
+Enable feature flags in your existing `init` tag using **Set Options Manually**:
+
+1. Open your Mixpanel `init` tag in GTM
+2. Under **Initialization**, choose **Set Options Manually**
+3. Add a new option with key `flags` and boolean value `true`
+
+For a simple setup, this is sufficient. If your flags use a custom Variant Assignment Key (e.g., `company_id`) or Runtime Targeting, you'll need to pass a context object. Since GTM's key-value interface only supports primitive values, create a **Custom JavaScript Variable** that returns the flags config object:
+
+```javascript Javascript
+function() {
+  return {
+    context: {
+      company_id: "your_company_id",
+      custom_properties: {
+        platform: "web",
+      },
+    },
+  };
+}
+```
+
+Then in your `init` tag, set `flags` to reference this Custom JavaScript Variable instead of a boolean.
+
+### Flag Evaluation
+
+<Callout type="warning">
+Flag evaluation methods (`get_variant_value`, `is_enabled`) are "getter" commands and are not available as standard Mixpanel GTM tag types. Use a **Custom JavaScript Variable** in GTM to evaluate flags.
+</Callout>
+
+**Experiment Flags — get a variant value:**
+
+Create a Custom JavaScript Variable for each flag you want to evaluate:
+
+```javascript Javascript
+function() {
+  var fallback = "control";
+  return mixpanel.flags.get_variant_value("my-feature-flag", fallback);
+}
+```
+
+**Feature Gates — check if a flag is enabled:**
+
+```javascript Javascript
+function() {
+  var fallback = false;
+  return mixpanel.flags.is_enabled("my-feature-flag", fallback);
+}
+```
+
+Once created, these variables can be used in GTM trigger conditions, tag configurations, or passed as event properties in a `- Track` tag.
+
+### Flag Reload
+
+Flags reload automatically when you call `identify` via the GTM `identify` tag (e.g., after a user logs in or out).
+
+To manually reload flags with updated context, add a **Custom HTML** tag with the following:
+
+```html HTML
+<script>
+  mixpanel.flags.update_context({
+    company_id: "new_company_id",
+    custom_properties: {
+      platform: "web",
+    },
+  });
+</script>
+```
+
 ## FAQ
 
 ### Why is my Mixpanel tag not firing?
