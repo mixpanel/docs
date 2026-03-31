@@ -45,7 +45,7 @@ This way, the user does not need to worry about initialization; just ensure that
 
 ### Custom Initialization Options
 
-To add initialization options for capabilities like [Session Replay](/docs/tracking-methods/sdks/javascript#implementation--sampling) (`record_sessions_percent`), [Heatmaps](/docs/tracking-methods/sdks/javascript#heatmaps) (`record_heatmap_data`), routing data to [EU Servers for EU Data Residency](/docs/tracking-methods/sdks/javascript#eu-data-residency), or routing data to [IN Servers for India Data Residency](/docs/tracking-methods/sdks/javascript#india-data-residency) to Google Tag Manager:
+To add initialization options for capabilities like [Session Replay](/docs/tracking-methods/sdks/javascript#implementation--sampling) (`record_sessions_percent`), [Heatmaps](/docs/tracking-methods/sdks/javascript#heatmaps) (`record_heatmap_data`), [Feature Flags](/docs/featureflags), routing data to [EU Servers for EU Data Residency](/docs/tracking-methods/sdks/javascript#eu-data-residency), or routing data to [IN Servers for India Data Residency](/docs/tracking-methods/sdks/javascript#india-data-residency) to Google Tag Manager:
 
 1. Add a new tag in GTM and choose the Mixpanel tag type
 
@@ -116,6 +116,58 @@ This approach allows for customized autocapture options beyond the simple enable
 
 </Steps>
 
+### Google Tag Manager with Feature Flag Configuration
+
+Feature Flags allow you to control feature rollout, conduct A/B testing, and manage application behavior without deploying new code. Since the GTM integration wraps the [Mixpanel JavaScript SDK](/docs/tracking-methods/sdks/javascript), feature flags are implemented using the same JS SDK methods. For a full reference, see the [Feature Flags overview](/docs/featureflags) and [JavaScript SDK flags guide](/docs/tracking-methods/sdks/javascript/javascript-flags).
+
+#### Flag Initialization
+
+1. Open your Mixpanel `init` tag in GTM
+2. Under Feature Flags, 
+  a) Select Enabled to enable feature flag fetching.
+  b) If your flags use a data group key as a custom Variant Assignment Key (e.g., `company_id`) or Runtime Targeting, you'll need to pass a context object. Since GTM's key-value interface only supports primitive values, create a **Custom JavaScript Variable** that returns the flags config object:
+
+```javascript Javascript
+function() {
+  return {
+    context: {
+      company_id: "your_company_id",
+      custom_properties: {
+        platform: "web",
+      },
+    },
+  };
+}
+```
+
+#### Flag Evaluation
+
+<Callout type="info">
+Flag evaluation methods (`get_variant_value`, `is_enabled`) are "getter" commands and are not available as standard Mixpanel GTM tag types. Use a **Custom JavaScript Variable** in GTM to evaluate flags.
+</Callout>
+
+**Feature Gates — check if a flag is enabled:**
+
+```javascript Javascript
+async function() {
+  var fallback = false;
+  return await mixpanel.flags.is_enabled("my-feature-flag", fallback);
+}
+```
+
+**Experiment Flags or Dynamic Configuration Flags— get a variant value:**
+
+Create a Custom JavaScript Variable for each flag you want to evaluate:
+
+```javascript Javascript
+async function() {
+  var fallback = "control";
+  return await mixpanel.flags.get_variant_value("my-feature-flag", fallback);
+}
+```
+
+If the current user is in the rollout of the flag, an exposure event, `$experiment_started` will be tracked automatically to Mixpanel.
+
 ## Sending Mixpanel Commands
 
 After adding the **Project Token** to its respective field, you need to choose what **type** of tag to use. Each type corresponds with some command you can use with the Mixpanel Javascript API.
@@ -139,7 +191,7 @@ These are tags you will likely need in any Mixpanel-GTM implementation:
 | - Track          | [`track`](https://github.com/mixpanel/mixpanel-js/blob/master/doc/readme.io/javascript-full-api-reference.md#mixpaneltrack)                   | Tracks an event. This is the most important and frequently used Mixpanel function.                                                                                                                                   |
 | - Track Pageview | [`track_pageview`](https://github.com/mixpanel/mixpanel-js/blob/master/doc/readme.io/javascript-full-api-reference.md#mixpaneltrack_pageview) | Tracks a default Mixpanel page view event, which can include extra default event properties to improve page view data                                                                                                |
 | init             | [`init`](https://github.com/mixpanel/mixpanel-js/blob/master/doc/readme.io/javascript-full-api-reference.md#mixpanelinit)                     | Initializes a new instance of Mixpanel                                                                                                                                                                               |
-| identify         | [`identify`](https://github.com/mixpanel/mixpanel-js/blob/master/doc/readme.io/javascript-full-api-reference.md#mixpanelidentify)             | Identifies a user with a unique ID to track user activity across devices and ties a user to their events                                                                                                             |
+| identify         | [`identify`](https://github.com/mixpanel/mixpanel-js/blob/master/doc/readme.io/javascript-full-api-reference.md#mixpanelidentify)             | Identifies a user with a unique ID to track user activity across devices and ties a user to their events. If using feature flags, this will also trigger a reload of flags with the new user id                      |
 | register         | [`register`](https://github.com/mixpanel/mixpanel-js/blob/master/doc/readme.io/javascript-full-api-reference.md#mixpanelregister)             | Registers a set of [super properties](https://docs.mixpanel.com/docs/tracking-methods/sdks/javascript#setting-super-properties), which are included with all events. Overwrites existing super properties if present |
 | reset            | [`reset`](https://github.com/mixpanel/mixpanel-js/blob/master/doc/readme.io/javascript-full-api-reference.md#mixpanelreset)                   | Clears super properties and generates a new random distinct_id                                                                                                                                                       |
 
@@ -198,85 +250,6 @@ Be sure to save the tag once you are done.
 You can then enter [Preview mode](https://support.google.com/tagmanager/answer/6107056?hl=en&sjid=13808649871508707391-NC) by clicking the blue **Preview** button in the Google Tag Manager UI. This opens a new tab with your website running the GTM container, and you can proceed to test the Mixpanel tag as if the container were published. In the Tag Assistant Preview tab, you can see additional information about the trigger events, tags, and variables that fire while you are browsing the page in Preview mode.
 
 You can also enable the Javascript SDK's [Debug Mode](https://docs.mixpanel.com/docs/tracking-methods/sdks/javascript#debug-mode) by following [Steps 1-4](http://localhost:3000/docs/tracking-methods/integrations/google-tag-manager#custom-initialization-options). Then, add `debug` and `true` as an Option key and Option value, respectively.
-
-## Feature Flags
-
-Feature Flags allow you to control feature rollout, conduct A/B testing, and manage application behavior without deploying new code. Since the GTM integration wraps the [Mixpanel JavaScript SDK](/docs/tracking-methods/sdks/javascript), feature flags are implemented using the same JS SDK methods. For a full reference, see the [Feature Flags overview](/docs/featureflags) and [JavaScript SDK flags guide](/docs/tracking-methods/sdks/javascript/javascript-flags).
-
-### Prerequisites
-
-- Enterprise subscription plan with the minimum supported JS SDK version [`v2.71.0`](https://github.com/mixpanel/mixpanel-js/releases/tag/v2.71.0)
-- Your Project Token from [Mixpanel Project Settings](/docs/orgs-and-projects/managing-projects#find-your-project-tokens)
-
-### Flag Initialization
-
-Enable feature flags in your existing `init` tag using **Set Options Manually**:
-
-1. Open your Mixpanel `init` tag in GTM
-2. Under **Initialization**, choose **Set Options Manually**
-3. Add a new option with key `flags` and boolean value `true`
-
-For a simple setup, this is sufficient. If your flags use a custom Variant Assignment Key (e.g., `company_id`) or Runtime Targeting, you'll need to pass a context object. Since GTM's key-value interface only supports primitive values, create a **Custom JavaScript Variable** that returns the flags config object:
-
-```javascript Javascript
-function() {
-  return {
-    context: {
-      company_id: "your_company_id",
-      custom_properties: {
-        platform: "web",
-      },
-    },
-  };
-}
-```
-
-Then in your `init` tag, set `flags` to reference this Custom JavaScript Variable instead of a boolean.
-
-### Flag Evaluation
-
-<Callout type="warning">
-Flag evaluation methods (`get_variant_value`, `is_enabled`) are "getter" commands and are not available as standard Mixpanel GTM tag types. Use a **Custom JavaScript Variable** in GTM to evaluate flags.
-</Callout>
-
-**Experiment Flags — get a variant value:**
-
-Create a Custom JavaScript Variable for each flag you want to evaluate:
-
-```javascript Javascript
-function() {
-  var fallback = "control";
-  return mixpanel.flags.get_variant_value("my-feature-flag", fallback);
-}
-```
-
-**Feature Gates — check if a flag is enabled:**
-
-```javascript Javascript
-function() {
-  var fallback = false;
-  return mixpanel.flags.is_enabled("my-feature-flag", fallback);
-}
-```
-
-Once created, these variables can be used in GTM trigger conditions, tag configurations, or passed as event properties in a `- Track` tag.
-
-### Flag Reload
-
-Flags reload automatically when you call `identify` via the GTM `identify` tag (e.g., after a user logs in or out).
-
-To manually reload flags with updated context, add a **Custom HTML** tag with the following:
-
-```html HTML
-<script>
-  mixpanel.flags.update_context({
-    company_id: "new_company_id",
-    custom_properties: {
-      platform: "web",
-    },
-  });
-</script>
-```
 
 ## FAQ
 
