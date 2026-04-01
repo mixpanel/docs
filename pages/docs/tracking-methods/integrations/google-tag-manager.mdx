@@ -123,50 +123,41 @@ Feature Flags allow you to control feature rollout, conduct A/B testing, and man
 #### Flag Initialization
 
 1. Open your Mixpanel `init` tag in GTM
-2. Under Feature Flags, 
-  a) Select Enabled to enable feature flag fetching.
-  b) If your flags use a data group key as a custom Variant Assignment Key (e.g., `company_id`) or Runtime Targeting, you'll need to pass a context object. Since GTM's key-value interface only supports primitive values, create a **Custom JavaScript Variable** that returns the flags config object:
+2. Under Feature Flags,
+   - a) Select Enabled to enable feature flag fetching.
+   - b) If your flags use a data group key as a custom Variant Assignment Key (e.g., `company_id`) or Runtime Targeting, you'll need to pass a context object.
+      - You can create a **Custom JavaScript Variable** that returns the flags config object:
 
-```javascript Javascript
-function() {
-  return {
-    context: {
-      company_id: "your_company_id",
-      custom_properties: {
-        platform: "web",
-      },
-    },
-  };
-}
-```
+        ```javascript Javascript
+        function() {
+          return {
+            context: {
+              company_id: "your_company_id",
+              custom_properties: {
+                platform: "web",
+              },
+            },
+          };
+        }
+        ```
+      - You can create a **Data Layer Variable** in GTM whose value is set by your application to return the flags config object, and then reference that variable in your Mixpanel init tag.
 
 #### Flag Evaluation
 
-<Callout type="info">
-Flag evaluation methods (`get_variant_value`, `is_enabled`) are "getter" commands and are not available as standard Mixpanel GTM tag types. Use a **Custom JavaScript Variable** in GTM to evaluate flags.
-</Callout>
+There are multiple ways to evaluate feature flags after initialization of the Mixpanel tag in GTM.
 
-**Feature Gates — check if a flag is enabled:**
+The most flexible way would be to direct use in your application by referencing `window.mixpanel` which is available once GTM loads the Mixpanel tag
 
-```javascript Javascript
-async function() {
-  var fallback = false;
-  return await mixpanel.flags.is_enabled("my-feature-flag", fallback);
-}
+```javascript Javscript
+// Check if a Feature Gate flag is enabled
+await window.mixpanel.flags.is_enabled("flag_key", false)
+
+// Get the variant value for an Experiment or Dynamic Configuration flag
+await window.mixpanel.flags.get_variant_value("flag_key", "control")
 ```
+Alternatively, you can implement this logic in GTM directly such as in Custom HTML tags or in Custom Javascript variables to evaluate flags and push the results to the data layer for use by your implementation.
 
-**Experiment Flags or Dynamic Configuration Flags— get a variant value:**
-
-Create a Custom JavaScript Variable for each flag you want to evaluate:
-
-```javascript Javascript
-async function() {
-  var fallback = "control";
-  return await mixpanel.flags.get_variant_value("my-feature-flag", fallback);
-}
-```
-
-If the current user is in the rollout of the flag, an exposure event, `$experiment_started` will be tracked automatically to Mixpanel.
+If the current user is in your feature flag rollout, evaluation will trigger tracking an exposure event, `$experiment_started`, to Mixpanel.
 
 ## Sending Mixpanel Commands
 
