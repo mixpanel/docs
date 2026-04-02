@@ -1,0 +1,106 @@
+import { Callout, Tabs } from 'nextra/components'
+
+# Use Mixpanel MCP with Finance Data
+Financial services teams often have the behavioral data and the business data — but they live in separate systems. The Mixpanel MCP server lets you query across both at once, so you can connect what users did in your product to what that means for revenue, risk, and compliance.
+
+## Use Cases
+
+Each use case below shows a cross-system question your team can ask, the data sources it draws from, and what you can do with the answer.
+
+### Account Opening Funnel × CRM Pipeline
+
+**The question**: Which high-value prospects are dropping off during account opening, and what's their Salesforce lead score?
+
+| Data source | What you're pulling |
+| --- | --- |
+| Mixpanel | Funnel events |
+| Salesforce | Lead and opportunity data |
+
+When drop-off concentrates among high-AUM prospects, the problem isn't just a UX issue — it's a revenue problem. Combining funnel data with lead scores tells you where to focus first.
+
+### Feature Adoption × Transaction Revenue
+
+**The question**: Do users who adopt mobile check deposit generate more monthly transaction volume than those who don't?
+
+| Data source | What you're pulling |
+| --- | --- |
+| Mixpanel | Feature usage events |
+| Payment processor / core banking | Transaction data |
+
+This is how you move from "people use this feature" to "this feature drives revenue." Use the answer to prioritize your roadmap around features with measurable financial impact — not just high engagement.
+
+<Callout type="info">
+  **Pro tip**: Run this analysis across several features at once to build a clearer picture of which behaviors actually correlate with transaction volume. One feature rarely tells the whole story.
+</Callout>
+
+### Session Behavior × Fraud Signals
+
+**The question**: Are there behavioral patterns in Mixpanel session data that correlate with flagged fraud cases?
+
+| Data source | What you're pulling |
+| --- | --- |
+| Mixpanel | Session replay, event sequences |
+| Fraud detection system | Flagged accounts |
+
+Traditional fraud detection flags transactions after the fact. Behavioral patterns — unusual navigation sequences, rapid form completion, atypical device switching — can show up earlier. This join gives your risk team a behavioral layer to work with alongside transaction signals.
+
+<Callout type="warning">
+  **Pitfall**: Behavioral patterns are correlational, not causal. Use them to triage and investigate, not to automatically flag or restrict accounts.
+</Callout>
+
+### Onboarding Completion × KYC Status
+
+**The question**: What's the completion rate for users stuck in KYC verification, and how does it vary by document type?
+
+| Data source | What you're pulling |
+| --- | --- |
+| Mixpanel | Onboarding funnel |
+| KYC / compliance system | Verification status |
+
+KYC is one of the most common places onboarding falls apart in regulated products — and it's one of the hardest to instrument well. This join shows you exactly which document types or verification steps are driving abandonment, so you can address friction without compromising compliance requirements.
+
+## Sample Prompts by Role
+
+These are starting points. Adjust the time ranges, segments, and metrics to match your product and data.
+
+<Tabs items={['Product Manager', 'Data Analyst', 'Growth / Marketing', 'Customer Success / Ops']}>
+  <Tabs.Tab>
+    - Show me the account opening funnel with conversion rates at each step, broken down by account type
+    - Which onboarding step has the highest drop-off, and has it changed since our last release?
+    - What's the funnel from app download to account created to KYC completed to first funded, by platform?
+  </Tabs.Tab>
+  <Tabs.Tab>
+    - What's the 30-day retention for users who completed their first trade in week 1 vs. those who didn't?
+    - How does feature usage differ between users in the $0–1K balance tier vs. $10K+ tier?
+    - Show me the top 5 events performed by users who are still active at Day 90
+  </Tabs.Tab>
+  <Tabs.Tab>
+    - Compare onboarding completion for users acquired through paid ads vs. organic referral
+    - Which features have the highest adoption rate among users who signed up in the past 60 days?
+    - What's the average time from signup to first deposit, and how has that trended over 6 months?
+  </Tabs.Tab>
+  <Tabs.Tab>
+    - What percentage of users who activated push notifications are retained at Day 30?
+    - Which KYC document types have the highest failure rate, and how does that affect downstream activation?
+  </Tabs.Tab>
+</Tabs>
+
+## Recommended Data Connections
+
+| Source | What it adds |
+| --- | --- |
+| Salesforce | CRM and pipeline context |
+| Stripe | Payment and transaction data |
+| Slack | Alert teams on key signals |
+| Google Sheets | Compliance tracking and reporting |
+| Snowflake / BigQuery | Data warehouse joins |
+
+## Key Takeaways
+
+- Connect Mixpanel funnel data with CRM records to identify where high-value prospects drop off — not just where drop-off is highest.
+- Feature adoption means more when you can tie it to transaction volume or revenue outcomes, not just engagement metrics.
+- Behavioral session data can complement fraud detection systems, giving risk teams earlier signals to investigate.
+- KYC and compliance steps are often the highest-friction points in onboarding — instrument them carefully and join with verification status to find what's actually causing abandonment.
+- The MCP server handles the cross-system query; the value comes from knowing which question to ask.
+
+👉 **Next step**: See the [MCP Integration Guides overview](/guides/mcp-industry-guides) for other industry guides, or visit [Mixpanel MCP setup](/docs/mcp) to connect your data sources.
