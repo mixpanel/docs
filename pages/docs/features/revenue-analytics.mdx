@@ -166,38 +166,25 @@ Ultimately, the Goal is to have (New + Upsell) - Downgrade to be positive, which
 
 ## FAQ
 
-export function FAQBox({ title, children }) {
-  return (
-    <details
-      open={false}
-      className="last-of-type:mb-0 rounded-xl bg-[#f5f2f2] p-0 mt-6"
-    >
-      <summary>
-        <strong className="text-lg font-medium ">{title}</strong>
-      </summary>
-      <div className="nx-p-2">{children}</div>
-    </details>
-  );
-}
 
 <div className="faqComponent" >
 
-<FAQBox title="Can all customers use these features?">
+<ExtendedAccordion title="Can all customers use these features?">
   Only customers using the [Warehouse Connectors](/docs/tracking-methods/warehouse-connectors) get access to these features.
-</FAQBox>
+</ExtendedAccordion>
 
-<FAQBox title="What should be the shape of the data to analyze these metrics?">
+<ExtendedAccordion title="What should be the shape of the data to analyze these metrics?">
   Once you set the [Warehouse Connectors](/docs/tracking-methods/warehouse-connectors), be sure that you have [Mirror Mode](/docs/tracking-methods/warehouse-connectors#mirror) turned on to ensure your data is 100% in sync with the warehouse, even if the warehouse data is updated:
 
   For transaction-based models - Send purchase value as an event property on every purchase event. Example: `{"event_name": "Purchase completed", "properties": {"item": "clothing", "price": 100}}`
 
   For subscription-based models - Send a monthly snapshot of the revenue per user/ account as a [Historical Profile Property](/docs/data-structure/user-profiles#importing-historical-profile-values). If a user/account is not active, set the revenue data to zero for the immediate month following so we can tag this as a churned user/account.
-</FAQBox>
+</ExtendedAccordion>
 
-<FAQBox title="We have multiple SKUs per account, each with its own contract. Can we send this as a revenue object property for an account?">
+<ExtendedAccordion title="We have multiple SKUs per account, each with its own contract. Can we send this as a revenue object property for an account?">
   We do not support profile history for object-type properties. To be able to look at revenue per SKU, we recommend sending each SKU revenue as a historical numerical property. 
   
   If you have 5 SKUs, send 5 historical properties (SKU_revenue_1, SKU_revenue_2, …, SKU_revenue_5).
-</FAQBox>
+</ExtendedAccordion>
 
 </div>

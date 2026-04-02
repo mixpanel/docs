@@ -4,6 +4,7 @@ import {
   DataInIcon,
   DataOutIcon,
   IntroIcon,
+  MixpanelAIIcon,
   SupportIcon,
 } from "../../components/svg/NavIcon";
 
@@ -49,6 +50,15 @@ export default {
   users: "Users",
   "session-replay": "Session Replay",
   features: "Features",
+  "mixpanel-ai-section": {
+    type: "separator",
+    title: (
+      <div className={style.titleContainer}>
+        <MixpanelAIIcon /> MIXPANEL AI
+      </div>
+    ),
+  },
+  "mcp": "MCP Server",
   admin: {
     type: "separator",
     title: (
