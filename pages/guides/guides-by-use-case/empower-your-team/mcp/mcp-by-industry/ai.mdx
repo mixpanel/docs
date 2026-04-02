@@ -1,1 +1,112 @@
+import { Callout, Tabs } from 'nextra/components'
 
+# Use Mixpanel MCP with AI Product Data
+AI products have a layer of complexity that most product analytics setups weren't built for: quality isn't just about UX, it's about model performance. The Mixpanel MCP server lets you connect behavioral data with model evaluation scores, error tracking, infrastructure costs, and billing data — so you can understand how what's happening under the hood translates into what users actually do.
+
+## Use Cases
+
+Each use case below shows a cross-system question your team can ask, the data sources it draws from, and what you can do with the answer.
+
+### User Engagement × Model Quality
+
+**The question**: Do users who interact with higher-scoring model outputs have better retention?
+
+| Data source | What you're pulling |
+| --- | --- |
+| Mixpanel | Engagement events, thumbs up/down signals |
+| Eval platform | Model scores, quality metrics |
+
+Thumbs up/down signals tell you something, but they're noisy and self-selected. Combining them with eval scores gives your ML team a more grounded optimization target — one that's anchored in what actually keeps users coming back, not just what they rate in the moment.
+
+### Feature Usage × Infrastructure Cost
+
+**The question**: Which AI features have the highest per-user compute cost relative to their retention impact?
+
+| Data source | What you're pulling |
+| --- | --- |
+| Mixpanel | Feature usage events |
+| Cloud provider | Compute costs, API call volumes |
+
+Not every high-engagement feature is worth what it costs to serve. This join helps you find the features where cost and retention impact are misaligned — either expensive features that aren't driving retention, or underinvested features that are.
+
+<Callout type="info">
+  **Pro tip**: Run this analysis before roadmap planning, not after. Knowing your cost-to-retain ratio per feature is one of the more defensible inputs into prioritization conversations.
+</Callout>
+
+### Error Rates × User Drop-off
+
+**The question**: When error rates spike, how quickly does it show up in session frequency?
+
+| Data source | What you're pulling |
+| --- | --- |
+| Mixpanel | Session frequency, feature events |
+| Sentry | Error rates, latency data |
+
+Infrastructure teams often work from SLOs that don't account for user behavior. This join gives you the user-side view of a reliability incident — how fast it ripples into engagement, which segments feel it most, and whether recovery shows up in the data after a fix ships.
+
+<Callout type="warning">
+  **Pitfall**: A spike in errors doesn't always produce an immediate drop in sessions — some users retry, some don't notice. Look at lagged engagement (Day 3, Day 7) rather than same-day metrics to get a more accurate picture of impact.
+</Callout>
+
+### Prompt Patterns × Conversion
+
+**The question**: Which prompt types lead to the highest satisfaction and paid conversion?
+
+| Data source | What you're pulling |
+| --- | --- |
+| Mixpanel | Prompt events, satisfaction signals |
+| Billing system | Conversion and plan data |
+
+Different users come to AI products with different jobs to be done — writing, coding, analysis, research. This join shows you which use cases your product serves best and which ones convert, which is useful both for positioning and for deciding where to invest in fine-tuning.
+
+## Sample Prompts by Role
+
+These are starting points. Adjust the time ranges, segments, and metrics to match your product and data.
+
+<Tabs items={['Product Manager', 'ML Engineering Lead', 'Data Analyst', 'Growth / Marketing Lead']}>
+  <Tabs.Tab>
+    - Retention curve for users who used an AI feature 5+ times in their first week?
+    - Funnel from free signup to first AI interaction to 10th interaction to upgrade to paid?
+    - Conversion rate for users who hit a "wow moment" in session 1 vs. later?
+    - Which use case categories (writing, coding, analysis) have the highest retention correlation?
+  </Tabs.Tab>
+  <Tabs.Tab>
+    - User segments with the highest thumbs-down ratio on AI outputs?
+    - Engagement pattern for users who hit rate limits vs. those who don't?
+    - Adoption curve for the newest model version — are users switching?
+    - When error rates spike, how quickly does it show up in session frequency?
+  </Tabs.Tab>
+  <Tabs.Tab>
+    - Daily trend of AI outputs per user, segmented by plan tier?
+    - Average time from signup to first power-use session (10+ prompts)?
+    - Output export rate difference between free and paid users?
+    - Which prompt types correlate most with upgrade within 30 days?
+  </Tabs.Tab>
+  <Tabs.Tab>
+    - Funnel from free signup to first AI interaction to 10th interaction to upgrade to paid?
+    - Which acquisition channels produce users with the highest AI feature adoption?
+    - Conversion rate by use case category — which jobs-to-be-done convert best?
+    - How does time-to-first-value differ across paid channels?
+  </Tabs.Tab>
+</Tabs>
+
+## Recommended Data Connections
+
+| Source | What it adds |
+| --- | --- |
+| Weights & Biases | Model eval and experiment tracking |
+| Sentry | Error and latency monitoring |
+| Stripe | Billing and usage-based pricing |
+| GitHub | Deployment and release tracking |
+| Slack | ML and product team alerts |
+| Snowflake / BigQuery | Model logs and cost data |
+
+## Key Takeaways
+
+- Model quality and user retention are measurable together — connecting eval scores with engagement data gives ML teams a product-centric target to optimize toward.
+- Cost-to-serve analysis only means something when it's paired with retention impact; high compute cost on a high-retention feature is a different problem than high compute cost on a feature users abandon.
+- Reliability incidents have a lagged user impact — look at engagement trends in the days after an incident, not just the day of.
+- Prompt patterns and use case categories are underused signals for both product positioning and fine-tuning decisions.
+- The teams getting the most from this setup are the ones sharing data across ML, product, and growth — not keeping it siloed by function.
+
+👉 **Next step**: See the [MCP by Industry](/guides/guides-by-use-case/empower-your-team/mcp/mcp-by-industry) page for other industry guides, or visit [Integration Pairings](/guides/guides-by-use-case/empower-your-team/mcp/integration-pairings) to explore what each data connection unlocks.
