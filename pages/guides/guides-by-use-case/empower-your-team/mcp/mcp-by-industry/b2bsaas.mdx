@@ -1,0 +1,162 @@
+import { Callout, Tabs } from 'nextra/components'
+
+# MCP for B2B SaaS: Use Cases and Sample Prompts
+B2B SaaS companies sit at the intersection of product usage and commercial outcomes — but those two worlds usually live in separate systems. The Mixpanel MCP server lets you combine product analytics with CRM data, support tickets, billing records, and engineering tools, so you can answer the questions that matter most: who's ready to buy, who's at risk of churning, and what's actually driving expansion.
+
+## Use Cases
+
+Each use case below shows a cross-system question your team can ask, the data sources it draws from, and what you can do with the answer.
+
+### Product Usage × Sales Pipeline (PQL Scoring)
+
+**The question**: Which trial users have the highest feature adoption, and what stage are they at in the Salesforce pipeline?
+
+| Data source | What you're pulling |
+| --- | --- |
+| Mixpanel | Feature usage, activation events |
+| Salesforce | Opportunity stage, lead score |
+
+Demographic fit tells you who a prospect is. Product engagement tells you whether they're actually getting value. Combining both gives your sales team a prioritization signal that's grounded in behavior — not just firmographics.
+
+<Callout type="info">
+  **Pro tip**: The most useful PQL threshold isn't always the one based on the most events — it's the one that correlates most strongly with conversion. Run this analysis before setting your PQL definition, not after.
+</Callout>
+
+### Feature Adoption × Support Tickets (Churn Prediction)
+
+**The question**: Are accounts with declining usage also generating more support tickets?
+
+| Data source | What you're pulling |
+| --- | --- |
+| Mixpanel | Usage trends, retention |
+| Zendesk / Intercom | Ticket volume, sentiment |
+
+Either signal alone is noisy. A support ticket might mean a frustrated user or a curious one. Declining usage might be a seasonal slowdown or a real disengagement. When both signals move together, you have a meaningful early warning — and time to intervene before the renewal conversation starts.
+
+### Activation Funnel × Revenue Expansion
+
+**The question**: Do accounts that complete all onboarding steps in week 1 have higher expansion revenue at 12 months?
+
+| Data source | What you're pulling |
+| --- | --- |
+| Mixpanel | Onboarding funnel |
+| Stripe / billing | MRR, expansion events |
+
+Onboarding investment is often justified by intuition rather than data. This join gives you a number: accounts that hit activation milestone X in week 1 expand at Y% higher rates at 12 months. That's a number worth knowing before your next onboarding redesign.
+
+### User Engagement × Account Health
+
+**The question**: Which enterprise accounts have users who've gone inactive in the last 14 days?
+
+| Data source | What you're pulling |
+| --- | --- |
+| Mixpanel | User-level engagement |
+| CRM | Account tier, CSM assignment |
+
+Account health scores built on aggregate usage miss the user-level signal that matters most: when a champion goes quiet. This join surfaces individual user inactivity inside your highest-value accounts, routed to the right CSM before the account flags at renewal.
+
+<Callout type="warning">
+  **Pitfall**: Accounts where one user does all the activity look healthy in aggregate but carry significant key-person risk. Filter for accounts where a single user accounts for 80%+ of events — those are worth a proactive check-in regardless of overall engagement levels.
+</Callout>
+
+### Release Impact × Bug Reports
+
+**The question**: After v3.2, which new features are driving the most support tickets relative to usage volume?
+
+| Data source | What you're pulling |
+| --- | --- |
+| Mixpanel | Feature usage post-release |
+| Sentry / Jira | Error reports, bug tickets |
+
+Usage volume and support ticket volume tell different stories about a release. A feature with high usage and high tickets is a quality problem. A feature with low usage and low tickets might be a discoverability problem. Knowing which is which shapes where you invest in the next sprint.
+
+## Sample Prompts by Role
+
+These are starting points. Adjust the time ranges, segments, and metrics to match your product and data.
+
+<Tabs items={['Product Manager', 'Data Analyst', 'RevOps / Sales Lead', 'Customer Success Manager', 'Engineering Lead', 'Executive']}>
+  <Tabs.Tab>
+    - Show me a funnel from signup to workspace created to first invite to first report built, by plan type
+    - What's the weekly retention for users who completed 3+ key actions in their first session?
+    - Which features have the highest usage on Enterprise vs. Pro plan?
+    - What's the average time-to-value (how long to reach our "aha moment" event)?
+    - Compare feature adoption between invited users vs. workspace creators
+    - What's the funnel from trial to activation milestone to upgrade conversation to paid conversion?
+    - Show me the impact of our last release: new feature adoption and retention change
+    - Which features are most correlated with 30-day retention? Rank them
+    - What's the engagement pattern in the 2 weeks before upgrade?
+    - How does onboarding completion differ for users who watch the tutorial vs. skip?
+  </Tabs.Tab>
+  <Tabs.Tab>
+    - Pull the monthly cohort retention table for the past 12 months (M0 through M6)
+    - What's the frequency distribution of our core action per week?
+    - Segment all users by `company_size` and show engagement metrics for each
+    - Which user properties correlate strongest with long-term retention?
+    - Show me the event taxonomy: all events with 30-day volume, sorted by frequency
+    - What data quality issues exist? Events with low property fill rates or inconsistent naming?
+    - DAU trend for 6 months segmented by platform (web, iOS, Android, API)
+    - What's the distribution of active days per month?
+    - List all properties on "Feature Used" and top 20 values for `feature_name`
+    - Week-over-week trends for our top 10 events — any significant decline?
+  </Tabs.Tab>
+  <Tabs.Tab>
+    - Which trial accounts completed 3+ activation milestones this week?
+    - Trial-to-paid conversion rate by acquisition channel for the past quarter?
+    - Usage pattern difference between trials that convert vs. don't — what predicts conversion?
+    - Which enterprise trials invited 5+ team members? Those are strong signals
+    - Average time from trial start to paid conversion, by `company_size`?
+    - Accounts where usage increased 50%+ month-over-month (expansion candidates)
+    - Which features are most used by accounts that expand within 12 months?
+    - Trial accounts that hit PQL threshold this month but haven't been contacted?
+    - Win rate for deals where the champion is a heavy user vs. outbound-sourced deals?
+    - Engagement of pipeline accounts vs. churned accounts — what's the early warning signal?
+  </Tabs.Tab>
+  <Tabs.Tab>
+    - Health check for [Account Name]: WAU, feature adoption breadth, trend vs. baseline
+    - Which accounts have seen a 20%+ usage decline over the past 30 days?
+    - Feature adoption gap between my healthiest and at-risk accounts?
+    - Accounts with users who haven't logged in for 14+ days but were previously active weekly?
+    - Onboarding completion status for accounts started in the past 60 days?
+    - Accounts only using 1–2 features — these are shallow adoption and at risk
+    - Engagement summary for all accounts in my book, sorted by declining usage
+    - Accounts where one user does all the activity — that's key-person risk
+    - Support event pattern for my top 5 largest accounts?
+    - This quarter's usage for [Account Name] vs. last quarter — what changed?
+  </Tabs.Tab>
+  <Tabs.Tab>
+    - After our last deploy, did error event volume or rate change?
+    - Which features have the highest latency-related events?
+    - Adoption curve for the feature shipped 2 weeks ago (daily active users since launch)?
+    - Trend in "Error Encountered" events over 90 days, by `error_type`?
+    - Which platform has the highest crash or error events per session?
+  </Tabs.Tab>
+  <Tabs.Tab>
+    - Company dashboard: WAU, DAU/MAU ratio, activation rate, trial conversion, net retention (week-over-week and quarter-over-quarter)
+    - Overall product health: engagement trends, feature adoption breadth, leading churn indicator
+    - Which customer segment is growing fastest in product adoption?
+    - Free-tier engagement vs. paid — are we converting our most engaged free users?
+    - Leading indicator that an account will expand: what behavior shows up 30 days before?
+  </Tabs.Tab>
+</Tabs>
+
+## Recommended Data Connections
+
+| Source | What it adds |
+| --- | --- |
+| Salesforce / HubSpot | Pipeline and account context |
+| Stripe | Billing, MRR, and expansion data |
+| Zendesk / Intercom | Support ticket correlation |
+| Slack | Surface signals to GTM teams |
+| Sentry | Error and stability monitoring |
+| Jira / Linear | Product issue tracking |
+| Notion | Product documentation and wikis |
+
+## Key Takeaways
+
+- PQL models built on behavioral data outperform demographic scoring alone — product engagement is a more direct signal of value realized than firmographic fit.
+- Declining usage and rising support tickets are each weak signals individually; when they move together in the same account, treat it as an early churn warning.
+- Onboarding completion in week 1 has measurable long-term revenue impact — the data to prove it is already in your systems, it just requires the join.
+- Key-person risk is one of the most common account health blind spots; aggregate usage scores hide it, user-level data surfaces it.
+- The Engineering Lead tab is often missing from product analytics setups — release impact analysis that connects feature usage to error rates belongs in the same workflow, not a separate tool.
+
+👉 **Next step**: See the [MCP by Industry](/guides/guides-by-use-case/empower-your-team/mcp/mcp-by-industry) page for other industry guides, or visit [Integration Pairings](/guides/guides-by-use-case/empower-your-team/mcp/integration-pairings) to explore what each data connection unlocks.
