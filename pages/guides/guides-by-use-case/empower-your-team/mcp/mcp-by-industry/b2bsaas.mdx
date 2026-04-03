@@ -1,7 +1,7 @@
 import { Callout, Tabs } from 'nextra/components'
 
 # MCP for B2B SaaS: Use Cases and Sample Prompts
-B2B SaaS companies sit at the intersection of product usage and commercial outcomes — but those two worlds usually live in separate systems. The Mixpanel MCP server lets you combine product analytics with CRM data, support tickets, billing records, and engineering tools, so you can answer the questions that matter most: who's ready to buy, who's at risk of churning, and what's actually driving expansion.
+B2B SaaS companies sit at the intersection of product usage and commercial outcomes — but those two worlds usually live in separate systems. The Mixpanel MCP server lets you combine digital analytics with CRM data, support tickets, billing records, and engineering tools, so you can answer the questions that matter most: who's ready to buy, who's at risk of churning, and what's actually driving expansion.
 
 ## Use Cases
 
@@ -80,34 +80,34 @@ These are starting points. Adjust the time ranges, segments, and metrics to matc
 
 <Tabs items={['Product Manager', 'Data Analyst', 'RevOps / Sales Lead', 'Customer Success Manager', 'Engineering Lead', 'Executive']}>
   <Tabs.Tab>
-    - Show me a funnel from signup to workspace created to first invite to first report built, by plan type
+    - Show me a funnel from signup to workspace created to first invite to first report built, by plan type.
     - What's the weekly retention for users who completed 3+ key actions in their first session?
     - Which features have the highest usage on Enterprise vs. Pro plan?
     - What's the average time-to-value (how long to reach our "aha moment" event)?
-    - Compare feature adoption between invited users vs. workspace creators
+    - Compare feature adoption between invited users vs. workspace creators.
     - What's the funnel from trial to activation milestone to upgrade conversation to paid conversion?
-    - Show me the impact of our last release: new feature adoption and retention change
-    - Which features are most correlated with 30-day retention? Rank them
+    - Show me the impact of our last release: new feature adoption and retention change.
+    - Which features are most correlated with 30-day retention? Rank them.
     - What's the engagement pattern in the 2 weeks before upgrade?
     - How does onboarding completion differ for users who watch the tutorial vs. skip?
   </Tabs.Tab>
   <Tabs.Tab>
-    - Pull the monthly cohort retention table for the past 12 months (M0 through M6)
+    - Pull the monthly cohort retention table for the past 12 months (M0 through M6).
     - What's the frequency distribution of our core action per week?
-    - Segment all users by `company_size` and show engagement metrics for each
+    - Segment all users by `company_size` and show engagement metrics for each.
     - Which user properties correlate strongest with long-term retention?
-    - Show me the event taxonomy: all events with 30-day volume, sorted by frequency
+    - Show me the event taxonomy: all events with 30-day volume, sorted by frequency.
     - What data quality issues exist? Events with low property fill rates or inconsistent naming?
     - DAU trend for 6 months segmented by platform (web, iOS, Android, API)
     - What's the distribution of active days per month?
-    - List all properties on "Feature Used" and top 20 values for `feature_name`
+    - List all properties on "Feature Used" and top 20 values for `feature_name`.
     - Week-over-week trends for our top 10 events — any significant decline?
   </Tabs.Tab>
   <Tabs.Tab>
     - Which trial accounts completed 3+ activation milestones this week?
     - Trial-to-paid conversion rate by acquisition channel for the past quarter?
     - Usage pattern difference between trials that convert vs. don't — what predicts conversion?
-    - Which enterprise trials invited 5+ team members? Those are strong signals
+    - Which enterprise trials invited 5+ team members? Those are strong signals.
     - Average time from trial start to paid conversion, by `company_size`?
     - Accounts where usage increased 50%+ month-over-month (expansion candidates)
     - Which features are most used by accounts that expand within 12 months?
@@ -161,6 +161,6 @@ These are starting points. Adjust the time ranges, segments, and metrics to matc
 - Declining usage and rising support tickets are each weak signals individually; when they move together in the same account, treat it as an early churn warning.
 - Onboarding completion in week 1 has measurable long-term revenue impact — the data to prove it is already in your systems, it just requires the join.
 - Key-person risk is one of the most common account health blind spots; aggregate usage scores hide it, user-level data surfaces it.
-- The Engineering Lead tab is often missing from product analytics setups — release impact analysis that connects feature usage to error rates belongs in the same workflow, not a separate tool.
+- Engineering leads rarely have a direct line to product usage data — release impact analysis usually requires a separate data pull or a handoff to an analyst. MCP makes it practical to answer those questions directly.
 
-👉 **Next step**: See the [MCP by Industry](/guides/guides-by-use-case/empower-your-team/mcp/mcp-by-industry) page for other industry guides, or visit [Integration Pairings](/guides/guides-by-use-case/empower-your-team/mcp/integrations) to explore what each data connection unlocks.
+👉 **Next step**: See the [MCP by Industry](/guides/guides-by-use-case/empower-your-team/mcp/mcp-by-industry) page for other industry guides, or visit [MCP Integration Pairings](/guides/guides-by-use-case/empower-your-team/mcp/integrations) to explore what each data connection unlocks.
