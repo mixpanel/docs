@@ -1,0 +1,134 @@
+import { Callout, Tabs } from 'nextra/components'
+
+# MCP for Healthcare: Use Cases and Sample Prompts
+Healthcare organizations track patient engagement across portals, telehealth apps, and wellness platforms — but behavioral data rarely lives next to scheduling, outcomes, or operational data. The Mixpanel MCP server lets you combine product analytics with those systems to understand what drives appointment adherence, care plan compliance, and long-term patient retention.
+
+<Callout type="warning">
+  **Compliance note**: All data accessed through the Mixpanel MCP server respects your existing project permissions and data governance settings. For HIPAA-covered entities, ensure PHI is handled according to your BAA with Mixpanel and that any joined data sources maintain equivalent protections.
+</Callout>
+
+## Use Cases
+
+Each use case below shows a cross-system question your team can ask, the data sources it draws from, and what you can do with the answer.
+
+### Portal Engagement × Appointment Adherence
+
+**The question**: Do patients who actively use the patient portal have higher appointment completion rates?
+
+| Data source | What you're pulling |
+| --- | --- |
+| Mixpanel | Portal usage events |
+| Scheduling system | Appointment data |
+
+Portal investment is often justified by engagement metrics alone. This join gives you a more meaningful number: whether portal-engaged patients actually show up to their appointments at higher rates. That's the metric that justifies continued investment and shapes outreach strategy for low-engagement patients.
+
+### Telehealth UX × Patient Satisfaction
+
+**The question**: Which parts of the telehealth flow have the highest drop-off, and how do those correlate with post-visit satisfaction scores?
+
+| Data source | What you're pulling |
+| --- | --- |
+| Mixpanel | Telehealth funnel events |
+| Survey platform | NPS / CSAT data |
+
+Drop-off in a telehealth flow could mean a technical problem, a UX problem, or a patient who changed their mind. Satisfaction scores help you distinguish between them. When a funnel step with high drop-off also correlates with low CSAT, you have a clear case for prioritization.
+
+<Callout type="info">
+  **Pro tip**: Segment this analysis by device type. Mobile and desktop patients often experience telehealth flows differently, and the friction points are rarely the same across platforms.
+</Callout>
+
+### Feature Adoption × Care Plan Compliance
+
+**The question**: Are patients who use the medication reminder feature more likely to complete their care plan milestones?
+
+| Data source | What you're pulling |
+| --- | --- |
+| Mixpanel | Feature usage |
+| EHR / care management | Plan completion data |
+
+Clinical value is difficult to demonstrate from product data alone. This join connects a specific feature — medication reminders, secure messaging, educational content — to downstream care outcomes. That's the evidence your clinical and executive stakeholders need to support continued investment in digital health features.
+
+### Onboarding Flow × Patient Demographics
+
+**The question**: How does onboarding completion vary by age group and device type, and where are older patients dropping off?
+
+| Data source | What you're pulling |
+| --- | --- |
+| Mixpanel | Onboarding funnel, device properties |
+| Patient demographics | Age, location |
+
+Digital health tools are only valuable if patients can actually use them. Onboarding completion data segmented by age and device reveals where specific populations are struggling — and whether the experience is creating barriers for the patients who often need the most support.
+
+<Callout type="warning">
+  **Pitfall**: Aggregate onboarding completion rates can look healthy while masking significant drop-off in specific age groups or device types. Always segment before drawing conclusions about onboarding performance.
+</Callout>
+
+## Sample Prompts by Role
+
+These are starting points. Adjust the time ranges, segments, and metrics to match your product and data.
+
+<Tabs items={['Product Manager', 'Data Analyst', 'Clinical / Operations Lead', 'Executive']}>
+  <Tabs.Tab>
+    - Show me the telehealth visit completion funnel broken down by device type over the last 90 days
+    - What's the 30-day retention for patients who completed onboarding in one session vs. multiple?
+    - Which features have the highest weekly active usage among patients aged 65+?
+    - Compare the appointment booking funnel for new patients vs. returning patients
+    - What's the average time from account creation to first appointment booked?
+    - Which onboarding step has the highest abandonment, and does it vary by insurance type?
+    - Show me the adoption curve for our medication reminder feature since launch
+    - What's the funnel from portal login to message sent to response viewed, by device type?
+    - How does feature adoption differ between provider-referred vs. self-signup patients?
+    - What percentage of patients who use secure messaging are retained at 90 days?
+  </Tabs.Tab>
+  <Tabs.Tab>
+    - Run a retention analysis for the Q4 2025 patient cohort, segmented by primary care type
+    - What are the top 10 most frequent events and their week-over-week trends for 6 months?
+    - Show me the frequency distribution for portal logins — how often do active patients log in per month?
+    - Which user properties are most different between patients retained at Day 60 vs. churned?
+    - Pull all events containing "telehealth" and show their daily trend for the past quarter
+    - What data quality issues exist? Events with inconsistent property values or missing fields?
+    - Compare engagement metrics across our three patient segments
+    - What's the median session duration by platform, and has it changed since our last app update?
+    - List all properties on "Appointment Booked" and show distribution of values
+    - Run a segmentation of patients by `age_group` and show the top 5 events for each
+  </Tabs.Tab>
+  <Tabs.Tab>
+    - What percentage of patients are completing full care plan milestones each month? Show the trend
+    - Which departments have the lowest appointment completion rates based on portal engagement?
+    - Are patients who engage with educational content more likely to complete follow-up visits?
+    - Show me the weekly trend of prescription refill requests through the portal vs. phone calls
+    - What's the no-show rate for telehealth vs. in-person, correlated with portal engagement?
+    - Which patient populations are underutilizing the patient portal?
+    - What's the average time between symptom checker usage and appointment booking?
+    - Show me care plan compliance rates for patients using the medication reminder vs. those not
+    - How many patients actively use secure messaging, and what's the provider response time trend?
+    - Which wellness program features have the highest engagement?
+  </Tabs.Tab>
+  <Tabs.Tab>
+    - Patient engagement dashboard: monthly active patients, portal adoption, telehealth completion, 30-day retention (month-over-month and year-over-year)
+    - What's the overall digital health ROI story — engagement vs. care adherence metrics?
+    - Which patient segments are growing fastest in digital adoption?
+    - How does mobile app engagement compare to the web portal?
+    - What are the leading indicators that a patient will disengage from our platform?
+  </Tabs.Tab>
+</Tabs>
+
+## Recommended Data Connections
+
+| Source | What it adds |
+| --- | --- |
+| Google Sheets | Operational and outcomes tracking |
+| Slack | Care team alerts and escalations |
+| Notion | Clinical workflow documentation |
+| Jira | Product issue tracking |
+| Snowflake / BigQuery | De-identified data warehouse joins |
+
+## Key Takeaways
+
+- Portal engagement and appointment adherence are measurable together — that connection is the clearest ROI argument for digital health investment.
+- Telehealth drop-off analysis only becomes actionable when paired with satisfaction data; without it, you can't distinguish technical friction from patient behavior.
+- Feature adoption tied to care plan compliance is the metric that earns clinical buy-in — product engagement alone rarely moves that conversation.
+- Onboarding completion rates must be segmented by age and device to be meaningful; aggregate numbers hide the access gaps that matter most in healthcare contexts.
+- The Clinical / Operations Lead is often the decision-maker for portal and telehealth investment, but rarely has direct access to behavioral data — MCP makes that accessible without a data engineering request.
+
+👉 **Next step**: See the [MCP by Industry](/guides/guides-by-use-case/empower-your-team/mcp/mcp-by-industry) page for other industry guides, or visit [Integration Pairings](/guides/guides-by-use-case/empower-your-team/mcp/integration-pairings) to explore what each data connection unlocks.
