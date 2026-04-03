@@ -56,7 +56,7 @@ There's a soft limit of 5,000 distinct event names in Mixpanel. Exceeding it mak
 
 \* *User ID or Device ID is technically optional in connector setup, but without one, events can't be linked to a user profile or attributed to a consistent identity.*
 
-Each event supports a maximum of 255 properties. Property names and values longer than 255 characters are truncated.
+Each event supports a maximum of 255 [data type](/docs/data-structure/property-reference/data-type) properties. Property names longer than 255 characters are truncated. For a full list of limits, see [Events and Properties](/docs/data-structure/events-and-properties#what-are-the-limits-of-events-and-properties).
 
 <Callout type="warning">
   **Pitfall**: Adding a new column to a source table triggers a full resync of every row in that table. For large datasets, that's a significant spike in billable event volume. Plan schema changes intentionally and time them to avoid unexpected cost.
@@ -101,7 +101,7 @@ In a warehouse-native setup, you define this mapping. The column you map to `dis
 For group-level analysis using [Group Analytics](/docs/data-structure/group-analytics), the Group Key (e.g. `account_id`) plays the same role — make sure it's consistent across event and group profile tables.
 
 <Callout type="info">
-  **Pro tip**: Unlike client-side SDK tracking, Mirror doesn't handle ID bridging automatically. Validate your identity mapping before your first sync, not after. A mismatch across millions of rows is expensive to fix.
+  **Pro tip**: Unlike client-side SDK tracking, Mirror doesn't handle ID bridging automatically. [Validate your identity mapping](/docs/tracking-methods/id-management) before your first sync, not after. A mismatch across millions of rows is expensive to fix.
 </Callout>
 
 ## Phase 5: Configure Sync Frequency and Monitor Health
