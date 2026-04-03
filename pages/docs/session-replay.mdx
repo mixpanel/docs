@@ -35,17 +35,23 @@ See our developer guides on implementing Session Replay for these platforms belo
   UI Controls is currently available for Web. Support for iOS, Android, React Native, and Flutter is coming soon.
 </Callout>
 
-With UI Controls, teams can manage Session Replay sampling directly from the Mixpanel UI — no code changes or redeployment required. This is available exclusively to customers with the paid Session Replay Add-On. Changes made in the UI take effect almost immediately.
+With UI Controls, teams can manage Session Replay sampling directly from the Mixpanel UI — no code changes or redeployment required. This is available exclusively to customers with the paid Session Replay Add-On. Changes made in the UI take effect within an hour.
+
+![remoteSettingsTab](/remoteSettingsTab.png)
 
 ### Baseline Sampling Rate
 
 Set a global sampling rate that applies to all sessions. This is the default capture rate before any conditional rules are applied. For example, you might set a baseline of 1% to capture a small portion of all traffic.
+
+![remoteSettingsGlobal](/remoteSettingsGlobal.png)
 
 ### Conditional Rules
 
 Layer rules on top of the baseline rate using any event, property, or URL you're already tracking. Conditional rules are **additive only**: if a session isn't being captured, a matching rule can start capturing it; if a session is already being captured, rules have no additional effect.
 
 For example, you can sample 1% of all sessions globally, but capture 100% of sessions where `checkout_error` fires or where users land on your pricing page.
+
+![remoteSettingsConditional](/remoteSettingsConditional.png)
 
 ### Prerequisites
 
@@ -55,6 +61,7 @@ To use UI Controls, your project must meet the following requirements:
 - **Remote configuration enabled in your SDK**: Your SDK must have remote configuration enabled so it can receive sampling updates from the UI. See the platform-specific guides for setup instructions:
   - [JavaScript](/docs/tracking-methods/sdks/javascript/javascript-replay#remote-configuration)
   - [Android](/docs/tracking-methods/sdks/android/android-replay#remote-configuration)
+  - [iOS](/docs/tracking-methods/sdks/swift/swift-replay#remote-configuration)
 
 ## Watching Replays
 
