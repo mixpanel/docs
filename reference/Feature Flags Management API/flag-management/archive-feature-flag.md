@@ -6,4 +6,7 @@ content:
   excerpt: ''
 privacy:
   view: public
+api:
+  method: post
+  path: /projects/{project_id}/workspaces/{workspace_id}/feature-flags/{flag_id}/archive
 ---
