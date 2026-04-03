@@ -1,7 +1,7 @@
 import { Callout, Tabs } from 'nextra/components'
 
 # MCP for Healthcare: Use Cases and Sample Prompts
-Healthcare organizations track patient engagement across portals, telehealth apps, and wellness platforms — but behavioral data rarely lives next to scheduling, outcomes, or operational data. The Mixpanel MCP server lets you combine product analytics with those systems to understand what drives appointment adherence, care plan compliance, and long-term patient retention.
+Healthcare organizations track patient engagement across portals, telehealth apps, and wellness platforms — but behavioral data rarely lives next to scheduling, outcomes, or operational data. The Mixpanel MCP server lets you combine digital analytics with those systems to understand what drives appointment adherence, care plan compliance, and long-term patient retention.
 
 <Callout type="warning">
   **Compliance note**: All data accessed through the Mixpanel MCP server respects your existing project permissions and data governance settings. For HIPAA-covered entities, ensure PHI is handled according to your BAA with Mixpanel and that any joined data sources maintain equivalent protections.
@@ -73,38 +73,38 @@ These are starting points. Adjust the time ranges, segments, and metrics to matc
 
 <Tabs items={['Product Manager', 'Data Analyst', 'Clinical / Operations Lead', 'Executive']}>
   <Tabs.Tab>
-    - Show me the telehealth visit completion funnel broken down by device type over the last 90 days
+    - Show me the telehealth visit completion funnel broken down by device type over the last 90 days.
     - What's the 30-day retention for patients who completed onboarding in one session vs. multiple?
     - Which features have the highest weekly active usage among patients aged 65+?
-    - Compare the appointment booking funnel for new patients vs. returning patients
+    - Compare the appointment booking funnel for new patients vs. returning patients.
     - What's the average time from account creation to first appointment booked?
     - Which onboarding step has the highest abandonment, and does it vary by insurance type?
-    - Show me the adoption curve for our medication reminder feature since launch
+    - Show me the adoption curve for our medication reminder feature since launch.
     - What's the funnel from portal login to message sent to response viewed, by device type?
     - How does feature adoption differ between provider-referred vs. self-signup patients?
     - What percentage of patients who use secure messaging are retained at 90 days?
   </Tabs.Tab>
   <Tabs.Tab>
-    - Run a retention analysis for the Q4 2025 patient cohort, segmented by primary care type
+    - Run a retention analysis for the Q4 2025 patient cohort, segmented by primary care type.
     - What are the top 10 most frequent events and their week-over-week trends for 6 months?
     - Show me the frequency distribution for portal logins — how often do active patients log in per month?
     - Which user properties are most different between patients retained at Day 60 vs. churned?
-    - Pull all events containing "telehealth" and show their daily trend for the past quarter
+    - Pull all events containing "telehealth" and show their daily trend for the past quarter.
     - What data quality issues exist? Events with inconsistent property values or missing fields?
-    - Compare engagement metrics across our three patient segments
+    - Compare engagement metrics across our three patient segments.
     - What's the median session duration by platform, and has it changed since our last app update?
-    - List all properties on "Appointment Booked" and show distribution of values
-    - Run a segmentation of patients by `age_group` and show the top 5 events for each
+    - List all properties on "Appointment Booked" and show distribution of values.
+    - Run a segmentation of patients by `age_group` and show the top 5 events for each.
   </Tabs.Tab>
   <Tabs.Tab>
-    - What percentage of patients are completing full care plan milestones each month? Show the trend
+    - What percentage of patients are completing full care plan milestones each month? Show the trend.
     - Which departments have the lowest appointment completion rates based on portal engagement?
     - Are patients who engage with educational content more likely to complete follow-up visits?
-    - Show me the weekly trend of prescription refill requests through the portal vs. phone calls
+    - Show me the weekly trend of prescription refill requests through the portal vs. phone calls.
     - What's the no-show rate for telehealth vs. in-person, correlated with portal engagement?
     - Which patient populations are underutilizing the patient portal?
     - What's the average time between symptom checker usage and appointment booking?
-    - Show me care plan compliance rates for patients using the medication reminder vs. those not
+    - Show me care plan compliance rates for patients using the medication reminder vs. those not.
     - How many patients actively use secure messaging, and what's the provider response time trend?
     - Which wellness program features have the highest engagement?
   </Tabs.Tab>
@@ -135,4 +135,4 @@ These are starting points. Adjust the time ranges, segments, and metrics to matc
 - Onboarding completion rates must be segmented by age and device to be meaningful; aggregate numbers hide the access gaps that matter most in healthcare contexts.
 - The Clinical / Operations Lead is often the decision-maker for portal and telehealth investment, but rarely has direct access to behavioral data — MCP makes that accessible without a data engineering request.
 
-👉 **Next step**: See the [MCP by Industry](/guides/guides-by-use-case/empower-your-team/mcp/mcp-by-industry) page for other industry guides, or visit [Integration Pairings](/guides/guides-by-use-case/empower-your-team/mcp/integrations) to explore what each data connection unlocks.
+👉 **Next step**: See the [MCP by Industry](/guides/guides-by-use-case/empower-your-team/mcp/mcp-by-industry) page for other industry guides, or visit [MCP Integration Pairings](/guides/guides-by-use-case/empower-your-team/mcp/integrations) to explore what each data connection unlocks.
