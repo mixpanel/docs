@@ -5,5 +5,4 @@ export default {
     "finance": "Finance",
     "healthcare": "Healthcare",
     "media": "Media & Entertainment"
-
 }
