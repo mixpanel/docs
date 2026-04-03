@@ -56,7 +56,7 @@ There's a soft limit of 5,000 distinct event names in Mixpanel. Exceeding it mak
 
 \* *User ID or Device ID is technically optional in connector setup, but without one, events can't be linked to a user profile or attributed to a consistent identity.*
 
-Each event supports a maximum of 255 [data type](/docs/data-structure/property-reference/data-type) properties. Property names longer than 255 characters are truncated. For a full list of limits, see [Events and Properties](/docs/data-structure/events-and-properties#what-are-the-limits-of-events-and-properties).
+Each event supports a maximum of 255 properties. Property names longer than 255 characters are truncated. For [data type](/docs/data-structure/property-reference/data-type) details and a full list of [events and properties limits](/docs/data-structure/events-and-properties#what-are-the-limits-of-events-and-properties), refer to the Mixpanel docs.
 
 <Callout type="warning">
   **Pitfall**: Adding a new column to a source table triggers a full resync of every row in that table. For large datasets, that's a significant spike in billable event volume. Plan schema changes intentionally and time them to avoid unexpected cost.
