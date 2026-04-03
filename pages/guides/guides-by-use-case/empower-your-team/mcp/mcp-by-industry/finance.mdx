@@ -1,7 +1,7 @@
 import { Callout, Tabs } from 'nextra/components'
 
 # MCP for Finance: Use Cases and Sample Prompts
-Financial services teams often have the behavioral data and the business data — but they live in separate systems. The Mixpanel MCP server lets you query across both at once, so you can connect what users did in your product to what that means for revenue, risk, and compliance.
+Financial services teams often have behavioral and business data — but they live in separate systems. The Mixpanel MCP server lets you query across both at once, so you can connect what users did in your product to what that means for revenue, risk, and compliance.
 
 ## Use Cases
 
@@ -69,48 +69,48 @@ These are starting points. Adjust the time ranges, segments, and metrics to matc
 
 <Tabs items={['Product Manager', 'Data Analyst', 'Growth / Marketing', 'Customer Success / Ops', 'Executive']}>
   <Tabs.Tab>
-    - Show me the account opening funnel with conversion rates at each step, broken down by account type
+    - Show me the account opening funnel with conversion rates at each step, broken down by account type.
     - What's the 30-day retention for users who completed their first trade in week 1 vs. those who didn't?
     - Which features have the highest adoption rate among users who signed up in the past 60 days?
-    - Compare onboarding completion for users acquired through paid ads vs. organic referral
+    - Compare onboarding completion for users acquired through paid ads vs. organic referral.
     - What's the average time from signup to first deposit, and how has that trended over 6 months?
-    - Show me the top 5 events performed by users who are still active at Day 90
+    - Show me the top 5 events performed by users who are still active at Day 90.
     - Which onboarding step has the highest drop-off, and has it changed since our last release?
     - What's the funnel from app download to account created to KYC completed to first funded, by platform?
-    - How does feature usage differ between users in the $0–1K balance tier vs. $10K+ tier?
+    - How does feature usage differ between users in the $0-1K balance tier vs. $10K+ tier?
     - What percentage of users who activated push notifications are retained at Day 30?
   </Tabs.Tab>
   <Tabs.Tab>
-    - Pull the weekly trend of daily active users segmented by account type for the past 12 months
+    - Pull the weekly trend of daily active users segmented by account type for the past 12 months.
     - What's the frequency distribution for login events — how many times per week do active users log in?
-    - Run a retention analysis for the January 2026 signup cohort, broken down by acquisition channel
-    - Which user properties are most predictive of 90-day retention? Compare top decile vs. churned
-    - Show me event counts for all transaction-related events over the past quarter, grouped by week
+    - Run a retention analysis for the January 2026 signup cohort, broken down by acquisition channel.
+    - Which user properties are most predictive of 90-day retention? Compare top decile vs. churned.
+    - Show me event counts for all transaction-related events over the past quarter, grouped by week.
     - What are the top data quality issues in our project right now?
     - Compare segmentation of users by region and account type — where are our highest-engagement cohorts?
     - What's the correlation between number of features adopted in the first 14 days and 6-month retention?
-    - Pull property values for `acquisition_channel` and show distribution of signups across channels for Q1
-    - List all events containing "transfer" and show their 30-day usage trends
+    - Pull property values for `acquisition_channel` and show distribution of signups across channels for Q1.
+    - List all events containing "transfer" and show their 30-day usage trends.
   </Tabs.Tab>
   <Tabs.Tab>
     - What's our signup-to-funded-account conversion rate by UTM campaign over the past 90 days?
     - Which acquisition channels have the highest Day 7 retention (not just signups, but users who came back)?
-    - Show me the weekly new user trend overlaid with our activation rate
+    - Show me the weekly new user trend overlaid with our activation rate.
     - How does the referral program funnel perform compared to paid acquisition?
     - What's the reactivation rate for users who received the win-back campaign last month?
     - Which landing page leads to the highest rate of account funding?
-    - Compare behavior of users who signed up during our holiday promotion vs. non-promotional periods
+    - Compare behavior of users who signed up during our holiday promotion vs. non-promotional periods.
     - What's the cost-per-funded-account factoring in drop-off between signup and first deposit?
-    - Show me top 3 acquisition channels by volume and their 30/60/90 day retention curves
+    - Show me top 3 acquisition channels by volume and their 30/60/90 day retention curves.
     - Which user segments have the highest cross-sell potential into investment products?
   </Tabs.Tab>
   <Tabs.Tab>
     - Which enterprise accounts have seen a decline in weekly active users over the past 30 days?
     - What's the health score breakdown for accounts in the $50K+ ACV tier?
-    - Show me the top support-related events (password resets, failed transactions) and their weekly trend
+    - Show me the top support-related events (password resets, failed transactions) and their weekly trend.
     - Which accounts have users who haven't logged in for 14+ days?
     - What's the feature adoption gap between our most engaged and least engaged accounts?
-    - Pull the usage summary for [Account Name] — features used, activity trend this quarter
+    - Pull the usage summary for [Account Name], including features used and activity trend this quarter.
     - Are there accounts where usage dropped below historical average by more than 25%?
     - Which newly onboarded accounts from the past 60 days haven't hit activation milestones?
     - Show me the retention curve for accounts managed by each CSM — are there patterns?
