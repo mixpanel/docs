@@ -1,0 +1,74 @@
+import { Callout } from 'nextra/components'
+
+# Integration Pairings
+Each pairing below shows the questions that become answerable when you connect Mixpanel's MCP server alongside another data source. These work across all industries — for vertical-specific use cases, see [MCP by Industry](/guides/guides-by-use-case/empower-your-team/mcp/mcp-by-industry).
+
+## Mixpanel + Salesforce
+
+Product signals meet pipeline context. When you join Mixpanel's behavioral data with Salesforce opportunity and lead data, you can move from "this account is engaged" to "this account is engaged, has an open opportunity above $X, and hasn't been contacted in two weeks."
+
+| # | Question |
+| --- | --- |
+| 1 | Which trial accounts with the highest product engagement also have an open opportunity above $X? |
+| 2 | Do accounts where the champion is a heavy user convert at a higher win rate? |
+| 3 | What's the product usage pattern in the 14 days before a deal closes vs. deals that go dark? |
+| 4 | Which product features are most adopted by accounts that expand their contract? |
+| 5 | Are there churned accounts that re-engaged in the product but don't have a re-open opportunity? |
+
+## Mixpanel + Stripe
+
+Product behavior meets revenue. Joining Mixpanel with Stripe lets you move from measuring feature adoption to measuring what that adoption is worth — in MRR, expansion, and conversion.
+
+| # | Question |
+| --- | --- |
+| 1 | Do users who adopt [feature] generate higher monthly recurring revenue? |
+| 2 | What's the activation-to-paid conversion rate by feature adoption depth? |
+| 3 | Which user behaviors in the 7 days before upgrade are most predictive of expansion? |
+| 4 | What's the revenue impact of a 10% improvement in onboarding completion? |
+| 5 | How does usage-based billing align with actual feature usage patterns? |
+
+## Mixpanel + Sentry
+
+User experience meets reliability. This pairing answers the question that engineering and product teams often can't align on: when something breaks, how much does it actually affect user behavior?
+
+| # | Question |
+| --- | --- |
+| 1 | When error rates spike, how quickly does it show up in user engagement metrics? |
+| 2 | Which errors have the highest impact on session abandonment? |
+| 3 | Are there features with high adoption but disproportionately high error rates? |
+| 4 | After a bug fix deployment, did user engagement recover — and how long did it take? |
+| 5 | Which user segments experience the most errors, and does it correlate with churn? |
+
+<Callout type="info">
+  **Pro tip**: Look at engagement recovery in the 7 days after a fix ships, not just the day of. User behavior often lags reliability improvements by several days.
+</Callout>
+
+## Mixpanel + Slack
+
+Analytics meet action. This pairing is less about answering questions and more about getting answers to the right people at the right time — automatically.
+
+| # | Question |
+| --- | --- |
+| 1 | Can I get a weekly summary of key metrics posted to our team channel every Monday? |
+| 2 | When a key account's usage drops below a threshold, can an alert go to the CS channel? |
+| 3 | Can I generate a launch performance summary and post it after each release? |
+| 4 | When a trial account hits activation milestones, can the sales channel get notified? |
+| 5 | Can my team ask data questions in Slack and get Mixpanel-powered answers? |
+
+## Mixpanel + Notion
+
+Analytics meet documentation. If your team's strategy lives in Notion, this pairing closes the loop between what you're planning and what the data shows.
+
+| # | Question |
+| --- | --- |
+| 1 | Can I generate a product performance summary and save it to our team wiki? |
+| 2 | When reviewing a spec in Notion, can I pull usage data for the feature being discussed? |
+| 3 | Can I create a data-informed QBR template that pulls live metrics into Notion? |
+| 4 | When planning a new feature, can I reference engagement data for similar existing features? |
+| 5 | Can I maintain a living "key metrics" page in Notion that reflects current Mixpanel data? |
+
+<Callout type="warning">
+  **Pitfall**: Notion pages that pull live Mixpanel data via MCP reflect a point-in-time snapshot, not a persistent live connection. Treat them as up-to-date when generated, not as dashboards that auto-refresh.
+</Callout>
+
+👉 **Next step**: See [MCP by Industry](/guides/guides-by-use-case/empower-your-team/mcp/mcp-by-industry) for vertical-specific use cases and role-based prompts, or return to [Explore Data with AI](/guides/guides-by-use-case/empower-your-team/mcp) for the full MCP workflow guide.
