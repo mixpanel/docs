@@ -719,6 +719,13 @@ Route data to Mixpanel's EU servers by adding these meta-data entries under the 
 ...
 ```
 
+Alternatively, you can route data to Mixpanel's EU servers by calling `.setServerURL()` to set the `serverURL` to `https://api-eu.mixpanel.com` after initializing the client.
+
+```xml Java
+// set the Mixpanel instance to send data using Mixpanel's EU domain
+mixpanel.setServerURL("https://api-eu.mixpanel.com");
+```
+
 ### India Data Residency
 
 Route data to Mixpanel's India servers by adding these meta-data entries under the `<application>` tag of your app's `AndroidManifest.xml` to set the URLs of the API requests to our India domain.
@@ -738,6 +745,13 @@ Route data to Mixpanel's India servers by adding these meta-data entries under t
     ...
 </application>
 ...
+```
+
+Alternatively, you can route data to Mixpanel's IN servers by calling `.setServerURL()` to set the `serverURL` to `https://api-in.mixpanel.com` after initializing the client.
+
+```xml Java
+// set the Mixpanel instance to send data using Mixpanel's IN domain
+mixpanel.setServerURL("https://api-in.mixpanel.com");
 ```
 
 ### Disable Geolocation
