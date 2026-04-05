@@ -1,0 +1,8 @@
+Set up Mixpanel tracking in this project: `public/mixpanel-skill/test-app`. My project token is mixpanel-token. 
+Use the Mixpanel setup skill: public/mixpanel-skill/skill.md
+
+Use below Mock User Profile
+1. Use Quick Start
+2. Not using CDP
+3. No users in EU or California
+4. Use one Recommended value moment
