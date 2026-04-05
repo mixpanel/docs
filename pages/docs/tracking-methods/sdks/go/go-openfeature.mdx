@@ -1,0 +1,120 @@
+import { Callout } from 'nextra/components'
+
+# OpenFeature Provider (Go)
+
+## Overview
+
+The Mixpanel OpenFeature provider allows you to use [Mixpanel Feature Flags](/docs/featureflags) through the standardized [OpenFeature](https://openfeature.dev/) API. This provider wraps the Mixpanel Go SDK's feature flags, letting you use the OpenFeature Go SDK with Mixpanel as the backend.
+
+For the core Feature Flags SDK guide, see [Feature Flags (Go)](/docs/tracking-methods/sdks/go/go-flags).
+
+## Prerequisites
+
+- You are on an Enterprise subscription plan
+- You have the [Mixpanel Go SDK](/docs/tracking-methods/sdks/go) installed (minimum version `v2.0.0`)
+- You have your Project Token from your [Mixpanel Project Settings](/docs/orgs-and-projects/managing-projects#find-your-project-tokens)
+
+## Installation
+
+```bash
+go get github.com/mixpanel/mixpanel-go/openfeature-provider
+go get github.com/open-feature/go-sdk
+```
+
+## Usage
+
+The provider wraps either a `LocalFlagsProvider` or `RemoteFlagsProvider` from the Mixpanel SDK.
+
+### With Local Evaluation
+
+```go
+package main
+
+import (
+    "context"
+    "fmt"
+
+    mixpanel "github.com/mixpanel/mixpanel-go"
+    mpof "github.com/mixpanel/mixpanel-go/openfeature-provider"
+    "github.com/open-feature/go-sdk/openfeature"
+)
+
+func main() {
+    mp := mixpanel.NewClient("YOUR_PROJECT_TOKEN",
+        mixpanel.WithLocalFlagsConfig(mixpanel.LocalFlagsConfig{
+            EnablePolling:    true,
+            PollingInterval:  60 * time.Second,
+        }),
+    )
+
+    mp.LocalFlags().StartPollingForDefinitions()
+    defer mp.LocalFlags().StopPollingForDefinitions()
+
+    // Register the provider
+    provider := mpof.NewMixpanelProvider(mp.LocalFlags())
+    openfeature.SetProvider(provider)
+
+    client := openfeature.NewClient("my-app")
+    showNewUI, _ := client.BooleanValue(context.Background(), "new-ui", false, openfeature.EvaluationContext{})
+    fmt.Println("Show new UI:", showNewUI)
+}
+```
+
+### With Remote Evaluation
+
+```go
+mp := mixpanel.NewClient("YOUR_PROJECT_TOKEN",
+    mixpanel.WithRemoteFlagsConfig(mixpanel.RemoteFlagsConfig{
+        APIHost: "api.mixpanel.com",
+    }),
+)
+
+provider := mpof.NewMixpanelProvider(mp.RemoteFlags())
+openfeature.SetProvider(provider)
+
+client := openfeature.NewClient("my-app")
+variant, _ := client.StringValue(context.Background(), "checkout-flow", "control", openfeature.EvaluationContext{})
+```
+
+## Supported Flag Types
+
+| OpenFeature Method | Go Type |
+|---|---|
+| `BooleanValue` / `BooleanValueDetails` | `bool` |
+| `StringValue` / `StringValueDetails` | `string` |
+| `IntValue` / `IntValueDetails` | `int64` |
+| `FloatValue` / `FloatValueDetails` | `float64` |
+| `ObjectValue` / `ObjectValueDetails` | `interface{}` |
+
+## Context and Identity
+
+<Callout type="info">
+Context is set globally when registering the provider, not per-evaluation. Per-evaluation context passed to individual flag evaluations is ignored.
+</Callout>
+
+- **`targetingKey`** has no special meaning in this provider. It is treated as a regular context property.
+- Identity should be managed through the Mixpanel SDK (e.g., setting `distinct_id` in the context).
+
+## Error Handling
+
+The provider returns the default value on all errors, with a resolution error indicating the cause:
+
+| Error Code | Condition |
+|---|---|
+| `PROVIDER_NOT_READY` | The provider has not been initialized |
+| `FLAG_NOT_FOUND` | The requested flag does not exist |
+| `TYPE_MISMATCH` | The flag value does not match the requested type |
+
+Use `ValueDetails` methods to inspect error codes:
+
+```go
+details, err := client.BooleanValueDetails(ctx, "my-flag", false, openfeature.EvaluationContext{})
+if details.ErrorCode != "" {
+    fmt.Printf("Flag error: %s - %s\n", details.ErrorCode, details.ErrorMessage)
+}
+```
+
+## Lifecycle
+
+- **`Shutdown()`** is a no-op. The Mixpanel SDK manages its own lifecycle.
+- The reason code for successful evaluations is `STATIC`.
