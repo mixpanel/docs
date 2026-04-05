@@ -1470,6 +1470,56 @@ After deploying a new event (or batch), verify it is flowing correctly beyond a 
 
 If you have access to a segmentation or query tool (e.g. Run-Segmentation-Query, Get-Property-Values), use it to confirm event volume and property value distribution. Otherwise, direct the customer to Mixpanel Reports and Lexicon to run these checks.
 
+### Session Replay
+
+Session Replay records real user sessions alongside event data. It is off by default and enabled via a single init config option. Only offer this for client-side platforms (Web JS, iOS, Android, React Native) — it does not apply to server-side SDKs.
+
+**Enabling (per platform):**
+
+```js
+// JavaScript (Browser)
+mixpanel.init('YOUR_PROJECT_TOKEN', {
+  // ... existing config ...
+  record_sessions_percent: 100,  // 0–100; start at 100 to verify, reduce later if needed
+})
+```
+
+```swift
+// iOS (Swift)
+Mixpanel.initialize(token: "YOUR_PROJECT_TOKEN", trackAutomaticEvents: true)
+Mixpanel.mainInstance().sessionReplayProperties = ["record_sessions_percent": 100]
+```
+
+```kotlin
+// Android (Kotlin)
+val mixpanel = MixpanelAPI.getInstance(context, "YOUR_PROJECT_TOKEN", true)
+mixpanel.startSessionRecording()
+```
+
+```tsx
+// React Native — add to MixpanelProvider config
+<MixpanelProvider token="YOUR_PROJECT_TOKEN" config={{ record_sessions_percent: 100 }}>
+```
+
+**Privacy defaults:** All text content and form inputs are masked by default (`[****]`). Images and videos are blocked. These defaults cannot be overridden for password, email, tel, and hidden input types.
+
+**Selective blocking (sensitive screens):** Use `record_block_selector` to completely exclude a screen or element from recording:
+
+```js
+mixpanel.init('YOUR_PROJECT_TOKEN', {
+  record_sessions_percent: 100,
+  record_block_selector: '.sensitive-screen, #checkout, #patient-records',
+})
+```
+
+**Regulated industries (healthcare, fintech, and similar):** Session Replay carries higher compliance risk even with default masking. Direct the customer to review their privacy notice with legal counsel before enabling. Use `record_block_selector` to exclude any screens with PHI, PII, or financial data.
+
+**Verification:** After enabling, open the Session Replay tab in Mixpanel and trigger a user flow. Recordings appear within ~1 minute of the session ending. If no recordings appear, confirm the init config is present and running on the client side (not server-rendered without hydration).
+
+**Notes:**
+- Session Replay and Autocapture are independent — disabling one does not affect the other.
+- `record_sessions_percent: 100` records all sessions. Reduce this value (e.g. to `10`) if volume or cost becomes a concern after initial validation.
+
 ---
 
 #### JavaScript (Browser)
