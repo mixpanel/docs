@@ -4,10 +4,12 @@
 This is Mixpanel's official documentation site, built with Nextra 3 (Next.js). Documentation pages are MDX files located in the `pages/` directory. The site uses Tailwind CSS for styling and is deployed via Vercel.
 
 ## Repository Structure
-- `pages/` — All documentation content as `.mdx` files
+- `pages/docs/` — All documentation content as `.mdx` or `.md` files. This documentation covers all Mixpanel product features and serves as the primary reference for understanding how they work.
+- `pages/guides/` — All guides content as `.mdx` or `.md` files. These guides walk through real-world use cases for Mixpanel and show users how to combine Mixpanel features to solve them.
+- `pages/changelogs/` — All changelog content as `.mdx` or `.md` files. Release note for any change that materially affects the customer experience. Small improvements in load time, moving a button, etc. don't get a dedicated changelog
 - `components/` — React components used within docs
-- `public/` — Static assets (images, GIFs)
-- `openapi/` — OpenAPI spec files for API reference docs
+- `public/` — Static assets (images, GIFs, etc.)
+- `openapi/` — OpenAPI spec files for API reference docs. These files describe Mixpanel's public APIs.
 - `redirects/` — URL redirect configuration
 
 ## Writing Style Review
