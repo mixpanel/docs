@@ -299,3 +299,87 @@ To delete a team in Mixpanel:
 4. Click the **Delete** button that appears at the top of the table.
 
 ![image](/Del_Team.png "Delete Team")
+
+## Custom Roles
+
+<Callout type="info">
+Custom Roles is available to organizations on **Enterprise** plans. See our [pricing page](https://mixpanel.com/pricing/) for more details.
+</Callout>
+
+Custom roles let you create specialized access profiles beyond the four default project roles (Owner, Admin, Analyst, Consumer). With custom roles, you can define granular permissions tailored to specific job functions or workflows. Each project can have up to **5 custom roles**.
+
+Only project **Owners** and **Admins** can create and manage custom roles.
+
+### Creating a Custom Role
+
+To create a custom role:
+
+1. Under "Project Settings", click **Project Users**.
+2. Select the **Custom Roles** tab to see a list of current roles in the project.
+3. Click **Create Role**.
+4. Enter a **Name** and optional **Description** for the role. Names must be unique within the project.
+5. Optionally, select an existing role as a template to start with its permissions pre-selected.
+6. Configure permissions by toggling individual permissions on or off across the available categories (see [Permission Categories](/docs/orgs-and-projects/roles-and-permissions#permission-categories) below).
+7. Click **Save** to create the role.
+
+Once created, the custom role will appear alongside default roles when assigning project roles to users.
+
+### Permission Categories
+
+When creating or editing a custom role, you can configure permissions across six categories:
+
+| **Category** | **Configurable Permissions** |
+|---|---|
+| **Analysis** | Save reports & boards, create custom data definitions (cohorts, custom events, custom properties, metrics, behaviors), manage all analysis & custom definitions created by others |
+| **Feature Flags & Experimentation** | Create experiments, create feature flags, manage feature flags created by others |
+| **Data Management** | Edit metadata, set event & property visibility, data verification, manage schemas, manage lookup tables, mark sensitive data, edit profiles, data deletion/dropping/merging, data settings access (volume monitoring, quality monitoring, event approval, data standards) |
+| **Data Access, Exports & Alerts** | Public boards, sensitive data access, export data from Mixpanel, create alerts & webhooks, create board subscriptions, manage all alerts |
+| **Data Sources** | Create & manage cohort syncs, create & manage pipelines, create & manage data warehouses |
+| **Settings** | View & edit project settings (workspaces, service accounts, project users, project info, security settings, usage analytics) |
+
+<Callout type="info">
+All custom roles automatically include base permissions: viewing reports, editing visibility of entities you created, and locking/unlocking entities you created. These permissions cannot be removed.
+</Callout>
+
+### Editing a Custom Role
+
+To edit an existing custom role:
+
+1. Under "Project Settings", click **Project Users**.
+2. Select the **Custom Roles** tab.
+3. Find the role you want to edit and click the overflow menu (three dots) on the role card.
+4. Select **Edit** to modify the role name, description, or permissions.
+5. Click **Save** to apply your changes.
+
+Changes to a custom role take effect immediately for all users assigned to that role.
+
+### Cloning a Custom Role
+
+You can clone a custom role to quickly create a similar role within the same project or copy it to another project.
+
+To clone a custom role:
+
+1. Under "Project Settings", click **Project Users**.
+2. Select the **Custom Roles** tab.
+3. Find the role you want to clone and click the overflow menu (three dots) on the role card.
+4. Select **Clone** and choose whether to clone within the current project or to another project.
+5. If cloning to another project, select the target project.
+6. Modify the name, description, or permissions as needed.
+7. Click **Save** to create the cloned role.
+
+<Callout type="info">
+Cloning a role to another project requires the **manage custom roles** permission on the target project. Any permissions gated by features that are not enabled on the target project will be automatically excluded from the cloned role.
+</Callout>
+
+### Deleting a Custom Role
+
+To delete a custom role:
+
+1. Under "Project Settings", click **Project Users**.
+2. Select the **Custom Roles** tab.
+3. Find the role you want to delete and click the overflow menu (three dots) on the role card.
+4. Select **Delete** and confirm the deletion.
+
+<Callout type="info">
+When a custom role is deleted, all users currently assigned to that role will be automatically reassigned to the **Consumer** role. Review the list of affected users before confirming deletion.
+</Callout>
