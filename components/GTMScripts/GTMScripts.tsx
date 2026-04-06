@@ -39,6 +39,7 @@ export default function insertGTMScriptTags() {
             record_heatmap_data: true,
             record_mask_text_selector: '',
             autocapture: true,
+            opt_out_tracking_by_default: true,
         })
     `;
 
@@ -60,7 +61,6 @@ export default function insertGTMScriptTags() {
 
   // Run
   addScriptBody({ scriptBody: initMixpanelScript, tagType: `script` });
-  // initMixpanelScript();
   if (isProd) {
     addScriptBody({ scriptBody: prodGTMScript, tagType: `script` });
     addScriptBody({ scriptBody: prodGTMNoScript, tagType: `noscript` });
