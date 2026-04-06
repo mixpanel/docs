@@ -84,6 +84,8 @@ The [Full API Reference](https://github.com/mixpanel/mixpanel-js/blob/master/doc
 
 ### Library Configuration
 
+<Callout type="warning">For projects with EU or India data residency, you must configure the SDK to use the correct regional endpoint. Events sent to the wrong region will not be ingested. Learn more about [Privacy-Friendly Tracking](/docs/tracking-methods/sdks/javascript#privacy-friendly-tracking).</Callout>
+
 The Mixpanel object can be initialized with different configurations. See a complete list of the configuration options and default values [here](https://github.com/mixpanel/mixpanel-js/blob/master/doc/readme.io/javascript-full-api-reference.md#mixpanelset_config).
 
 You can override the default configuration using the `config` argument when initializing the library.
