@@ -83,6 +83,8 @@ func application(_ application: UIApplication,
 
 ### Library Configuration
 
+<Callout type="warning">For projects with EU or India data residency, you must configure the SDK to use the correct regional endpoint. Events sent to the wrong region will not be ingested. Learn more about [Privacy-Friendly Tracking](/docs/tracking-methods/sdks/swift#privacy-friendly-tracking).</Callout>
+
 The Mixpanel instance can be customized with different configurations. The [.initialize()](https://mixpanel.github.io/mixpanel-swift/Classes/Mixpanel.html) method accepts arguments that sets some configurations on your instance upon initialization. 
 
 After initialization, you can further customize the instance using the configuration options [here](https://mixpanel.github.io/mixpanel-swift/Classes/MixpanelInstance.html).
