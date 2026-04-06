@@ -103,6 +103,32 @@ mixpanel.stop_session_recording();
 | We only want to record users utilizing certain features | When user is about to access the feature you wish to capture replays for, call `mixpanel.start_session_recording()` to force recording on |
 
 
+#### Cross-Origin iFrame Recording (Requires minimum SDK version: 2.76)
+
+Session Replay captures content from cross-origin iframes embedded within your page, delivering a unified replay experience across parent pages and embedded third-party content. To enable this feature, you must explicitly allowlist domains using record_allowed_iframe_origins for security purposes.
+
+**Example Usage**
+
+On your parent site `www.yoursite.com`, specify the origins from which recording data is accepted:
+
+```mixpanel.init('YOUR_PROJECT_TOKEN', {
+  record_sessions_percent: 100,
+  record_allowed_iframe_origins: [
+    'https://embedded-widget.example.com',
+  ],
+});
+```
+
+On the child iframe page `https://embedded-widget.example.com`, add the parent page's origin to `record_allowed_iframe_origins`:
+
+```mixpanel.init('YOUR_PROJECT_TOKEN', {
+  record_sessions_percent: 100,
+  record_allowed_iframe_origins: [
+    'https://yoursite.com',
+  ],
+});
+```
+
 ### Additional Configuration Options
 
 You can customize the behavior of replay captures by using the init options outlined below.
@@ -249,7 +275,11 @@ Network recording uses two complementary mechanisms:
 
 ## Remote Configuration
 
-By setting `remote_settings_mode` you can quickly set SDK options for your project in mixpanel under `Settings > Project > Session Replay`.
+<Callout type="info">
+  Available only for customers with a paid session replay add-on. Requires version 2.74.0
+</Callout>
+
+By setting `remote_settings_mode` you can quickly set SDK options for your project in Mixpanel under `Settings > Organization Settings > Session Replay`.
 
 Three modes are available:
 
@@ -263,6 +293,67 @@ List of currently supported remote settings:
 - `record_sessions_percent`
 
 Settings that are not yet supported, will not appear in the remote configuration. These non-included options will use the value that was initially set by the user for all `remote_settings_mode` options.
+
+**Example Usage**
+```javascript
+mixpanel.init('YOUR_PROJECT_TOKEN', {
+    record_sessions_percent: 100,
+    remote_settings_mode: 'fallback'
+});
+```
+
+## Cross-Origin Iframe Recording
+
+<Callout type="info">
+Cross-origin iframe recording requires SDK version 2.77.0 or later.
+</Callout>
+
+Session Replay can capture content from cross-origin iframes embedded within your page, providing a unified replay experience across parent pages and embedded third-party content. This is useful when your application embeds widgets, checkout flows, or other cross-origin content that you want to include in your replays.
+
+The SDK handles the communication between parent and child frames automatically using a secure handshake mechanism.
+
+### Configuration
+
+Both the parent page and the child iframe page must be configured to allow cross-origin recording.
+
+#### Parent Page Setup
+
+On your parent page, add the origins of any iframes you want to record to the `record_allowed_iframe_origins` array:
+
+```javascript
+mixpanel.init('YOUR_PROJECT_TOKEN', {
+    record_sessions_percent: 100,
+    record_allowed_iframe_origins: [
+        'https://embedded-widget.example.com',
+        'https://partner-checkout.example.com'
+    ]
+});
+```
+
+#### Child Iframe Page Setup
+
+On the child iframe page, add the parent page's origin to `record_allowed_iframe_origins`:
+
+```javascript
+mixpanel.init('YOUR_PROJECT_TOKEN', {
+    record_sessions_percent: 100,
+    record_allowed_iframe_origins: [
+        'https://yoursite.com'
+    ]
+});
+```
+
+### Origin Format Requirements
+
+Origins must be specified in the format `protocol://domain[:port]`. The SDK performs exact matching, so ensure your origins are formatted correctly.
+
+| Format | Example | Valid |
+|--------|---------|-------|
+| HTTPS domain | `https://example.com` | ✓ |
+| HTTP with port | `http://localhost:3000` | ✓ |
+| No protocol | `example.com` | ✗ |
+| With path | `https://example.com/page` | ✗ |
+| Wildcard | `https://*.example.com` | ✗ |
 
 ## Replay ID
 

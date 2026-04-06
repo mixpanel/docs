@@ -200,16 +200,33 @@ When connected, the AI assistant can both **read and write** to Mixpanel on your
 - **Authorization fails**: Ensure your Mixpanel account has access to at least one project and that MCP is enabled at the org level.
 - **Desktop app doesn't pick up config changes**: Restart the application after editing the config file.
 
+## Rate Limits
+- A maximum of 600 MCP requests/hour per user
+
 ## Building Custom Integrations (OAuth)
 
 If you're building a third-party MCP client or custom integration, use the following OAuth configuration.
 
 ### OAuth Discovery
 
-Discover the full OAuth configuration at:
+Mixpanel's MCP server supports OAuth discovery via two well-known endpoints, following RFC 8414 and RFC 9728:
 
+**Protected Resource Metadata (RFC 9728):**
+Discover which authorization servers can issue tokens for this resource:
 ```
-https://mcp.mixpanel.com/.well-known/oauth-authorization-server
+https://mcp.mixpanel.com/.well-known/oauth-protected-resource/mcp
+```
+
+**Authorization Server Metadata (RFC 8414):**
+Discover authorization, token, and registration endpoints:
+```
+https://mcp.mixpanel.com/.well-known/oauth-authorization-server/mcp
+```
+
+The following endpoints are deprecated but still available:
+```
+/.well-known/oauth-protected-resource
+/.well-known/oauth-authorization-server
 ```
 
 ### Dynamic Client Registration

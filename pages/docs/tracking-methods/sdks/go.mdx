@@ -533,6 +533,16 @@ ctx := context.Background()
 mp := mixpanel.NewApiClient("YOUR_PROJECT_TOKEN", mixpanel.EuResidency())
 ```
 
+### IN Data Residency
+
+Route data to Mixpanel's IN servers by using the [`InResidency`](https://github.com/mixpanel/mixpanel-go/blob/2d7b4a098b47064e7ae5874472368e8699232a96/mixpanel.go#L138) option during the library initialization.
+```go
+ctx := context.Background()
+
+//Initialize Mixpanel with request URL set to Mixpanel's IN domain
+mp := mixpanel.NewApiClient("YOUR_PROJECT_TOKEN", mixpanel.InResidency())
+```
+
 ### Disable Geolocation
 
 The Go SDK parse the request IP address to generate geolocation properties for events and profiles. You may want to disable them to prevent the unintentional setting of your data's geolocation to the location of your server that is sending the request, or to prevent geolocation data from being tracked entirely.
