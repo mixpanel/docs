@@ -303,6 +303,7 @@
     "pubspec",
     "pyproject",
     "Pushwoosh",
+    "Pydantic",
     "qlad",
     "quickstart",
     "Rahul",
@@ -442,7 +443,8 @@
     "zabd",
     "zwaeqor",
     "NORTHAMERICA",
-    "SOUTHAMERICA"
+    "SOUTHAMERICA",
+    "twofactor"
   ],
   "dictionaries": [
     "custom-dictionary"

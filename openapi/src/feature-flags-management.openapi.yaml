@@ -1,0 +1,738 @@
+openapi: 3.1.0
+x-readme-deploy-id: feature-flags-management-api
+info:
+  title: Feature Flags Management API
+  description: >-
+    Use the Feature Flags Management API to create, update, delete, and manage feature flags.
+  contact:
+    url: 'https://mixpanel.com/get-support'
+  license:
+    name: MIT
+    url: https://opensource.org/licenses/MIT
+  version: 1.0.0
+servers:
+  - $ref: ./common/app-api.yaml#/server
+security:
+  - ServiceAccount: []
+tags:
+  - name: Flag Management
+    description: Create, update, delete, and manage feature flags
+paths:
+  /projects/{project_id}/workspaces/{workspace_id}/feature-flags:
+    parameters:
+      - $ref: '#/components/parameters/ProjectId'
+      - $ref: '#/components/parameters/WorkspaceId'
+    get:
+      operationId: list-feature-flags
+      tags:
+        - Flag Management
+      summary: List Feature Flags
+      parameters:
+        - name: include_archived
+          in: query
+          schema:
+            type: string
+            enum:
+              - 'true'
+              - 'false'
+          description: Whether to include archived (soft-deleted) feature flags. Defaults to false.
+      responses:
+        '200':
+          description: Success
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ListFeatureFlagResponse'
+        '401':
+          $ref: ./common/responses.yaml#/401Unauthorized
+        '403':
+          $ref: ./common/responses.yaml#/403Forbidden
+    post:
+      operationId: create-feature-flag
+      tags:
+        - Flag Management
+      summary: Create Feature Flag
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/FeatureFlagRequest'
+      responses:
+        '200':
+          description: Success
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SingleFeatureFlagResponse'
+        '401':
+          $ref: ./common/responses.yaml#/401Unauthorized
+        '403':
+          $ref: ./common/responses.yaml#/403Forbidden
+
+  /projects/{project_id}/workspaces/{workspace_id}/feature-flags/{flag_id}:
+    parameters:
+      - $ref: '#/components/parameters/ProjectId'
+      - $ref: '#/components/parameters/WorkspaceId'
+      - $ref: '#/components/parameters/FlagId'
+    get:
+      operationId: get-feature-flag
+      tags:
+        - Flag Management
+      summary: Get Feature Flag
+      responses:
+        '200':
+          description: Success
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SingleFeatureFlagResponse'
+        '401':
+          $ref: ./common/responses.yaml#/401Unauthorized
+        '403':
+          $ref: ./common/responses.yaml#/403Forbidden
+    delete:
+      operationId: delete-feature-flag
+      tags:
+        - Flag Management
+      summary: Delete Feature Flag
+      responses:
+        '200':
+          description: Success
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DeleteFeatureFlagResponse'
+        '401':
+          $ref: ./common/responses.yaml#/401Unauthorized
+        '403':
+          $ref: ./common/responses.yaml#/403Forbidden
+    put:
+      operationId: update-feature-flag
+      tags:
+        - Flag Management
+      summary: Update Feature Flag
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/FeatureFlagRequest'
+      responses:
+        '200':
+          description: Success
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SingleFeatureFlagResponse'
+        '401':
+          $ref: ./common/responses.yaml#/401Unauthorized
+        '403':
+          $ref: ./common/responses.yaml#/403Forbidden
+
+components:
+  securitySchemes:
+    $ref: ./common/securitySchemes.yaml
+  parameters:
+    ProjectId:
+      name: project_id
+      in: path
+      schema:
+        type: integer
+      required: true
+    WorkspaceId:
+      name: workspace_id
+      in: path
+      schema:
+        type: integer
+      required: true
+    FlagId:
+      name: flag_id
+      in: path
+      schema:
+        type: string
+      required: true
+  schemas:
+    # --- Enums ---
+    FeatureFlagStatus:
+      enum:
+        - enabled
+        - disabled
+        - archived
+      title: FeatureFlagStatus
+      type: string
+    FirstTimeEventDuration:
+      enum:
+        - end_of_session
+        - indefinitely
+      title: FirstTimeEventDuration
+      type: string
+    RuntimeEventTimeWindow:
+      enum:
+        - while_flag_enabled
+      title: RuntimeEventTimeWindow
+      type: string
+    ServingMethod:
+      enum:
+        - client
+        - server
+        - remote_or_local
+        - remote_only
+      title: ServingMethod
+      type: string
+    # --- Sub-schemas ---
+    ManagementVariant:
+      additionalProperties: false
+      properties:
+        key:
+          title: ''
+          type: string
+        value:
+          anyOf:
+            - type: boolean
+            - maxLength: 32768
+              type: string
+            - {}
+          title: ''
+        description:
+          anyOf:
+            - type: string
+            - type: 'null'
+          default: null
+          title: ''
+        is_control:
+          title: ''
+          type: boolean
+        split:
+          maximum: 1.0
+          minimum: 0.0
+          title: ''
+          type: number
+        is_sticky:
+          default: false
+          title: ''
+          type: boolean
+      required:
+        - key
+        - value
+        - is_control
+        - split
+      title: ManagementVariant
+      type: object
+
+    ManagementVariantOverride:
+      additionalProperties: false
+      description: A pointer to the variant defined under ruleset.variants[<key>]
+      properties:
+        key:
+          title: ''
+          type: string
+      required:
+        - key
+      title: ManagementVariantOverride
+      type: object
+
+    RuntimeEventRule:
+      additionalProperties: false
+      description: Configuration for first-time event targeting in rollout groups.
+      properties:
+        event_name:
+          title: ''
+          type: string
+        time_window:
+          $ref: '#/components/schemas/RuntimeEventTimeWindow'
+        duration:
+          anyOf:
+            - $ref: '#/components/schemas/FirstTimeEventDuration'
+            - type: 'null'
+          default: null
+          title: ''
+        property_filters:
+          anyOf:
+            - additionalProperties: true
+              type: object
+            - type: 'null'
+          default: null
+          title: ''
+      required:
+        - event_name
+        - time_window
+      title: RuntimeEventRule
+      type: object
+
+    ManagementRollout:
+      additionalProperties: false
+      properties:
+        name:
+          anyOf:
+            - type: string
+            - type: 'null'
+          default: null
+          title: ''
+        cohort_definition:
+          anyOf:
+            - additionalProperties: true
+              type: object
+            - type: 'null'
+          title: ''
+        runtime_evaluation_definition:
+          anyOf:
+            - additionalProperties: true
+              type: object
+            - type: 'null'
+          title: ''
+        runtime_evaluation_rule:
+          anyOf:
+            - additionalProperties: true
+              type: object
+            - type: 'null'
+          default: null
+          title: ''
+        runtime_event_rule:
+          anyOf:
+            - $ref: '#/components/schemas/RuntimeEventRule'
+            - type: 'null'
+          default: null
+          title: ''
+        cohort_hash:
+          anyOf:
+            - type: string
+            - type: 'null'
+          default: null
+          title: ''
+        rollout_percentage:
+          maximum: 1.0
+          minimum: 0.0
+          title: ''
+          type: number
+        variant_override:
+          anyOf:
+            - $ref: '#/components/schemas/ManagementVariantOverride'
+            - type: 'null'
+          default: null
+          title: ''
+        variant_splits:
+          additionalProperties:
+            type: number
+          title: ''
+          type: object
+      required:
+        - rollout_percentage
+        - variant_splits
+      title: ManagementRollout
+      type: object
+
+    ManagementRuleSet:
+      additionalProperties: false
+      properties:
+        variants:
+          items:
+            $ref: '#/components/schemas/ManagementVariant'
+          maxItems: 11
+          title: ''
+          type: array
+        rollout:
+          items:
+            $ref: '#/components/schemas/ManagementRollout'
+          title: ''
+          type: array
+        test:
+          anyOf:
+            - additionalProperties:
+                additionalProperties:
+                  type: string
+                type: object
+              type: object
+            - type: 'null'
+          default: null
+          title: ''
+      required:
+        - variants
+        - rollout
+      title: ManagementRuleSet
+      type: object
+
+    # --- Request schemas ---
+    FeatureFlagRequest:
+      additionalProperties: false
+      properties:
+        name:
+          maxLength: 255
+          minLength: 1
+          title: ''
+          type: string
+        key:
+          maxLength: 255
+          minLength: 1
+          title: ''
+          type: string
+        description:
+          anyOf:
+            - type: string
+            - type: 'null'
+          default: null
+          title: ''
+        tags:
+          items:
+            type: string
+          title: ''
+          type: array
+        experiment_id:
+          anyOf:
+            - format: uuid4
+              type: string
+            - type: 'null'
+          default: null
+          title: ''
+        status:
+          $ref: '#/components/schemas/FeatureFlagStatus'
+          default: disabled
+        context:
+          maxLength: 255
+          minLength: 1
+          title: ''
+          type: string
+        data_group_id:
+          anyOf:
+            - type: string
+            - type: integer
+            - type: 'null'
+          default: null
+          title: ''
+        serving_method:
+          $ref: '#/components/schemas/ServingMethod'
+        ruleset:
+          $ref: '#/components/schemas/ManagementRuleSet'
+        workspace_id:
+          anyOf:
+            - type: integer
+            - type: 'null'
+          default: null
+          title: ''
+        is_experiment_active:
+          anyOf:
+            - type: boolean
+            - type: 'null'
+          default: null
+          title: ''
+        hash_salt:
+          anyOf:
+            - maxLength: 32
+              minLength: 32
+              type: string
+            - type: 'null'
+          default: null
+          title: ''
+        reset_hash_salt:
+          anyOf:
+            - type: boolean
+            - type: 'null'
+          default: null
+          title: ''
+      required:
+        - name
+        - key
+        - tags
+        - context
+        - serving_method
+        - ruleset
+      title: FeatureFlagApiPayload
+      type: object
+
+    # --- Response schemas ---
+    ManagementApiErrorResponse:
+      additionalProperties: false
+      properties:
+        status:
+          const: error
+          title: ''
+          type: string
+        type:
+          title: ''
+          type: string
+        error:
+          title: ''
+          anyOf:
+            - type: string
+            - type: object
+      required:
+        - status
+        - type
+        - error
+      title: ManagementApiErrorResponse
+      type: object
+
+    FeatureFlagApiResponse:
+      additionalProperties: false
+      properties:
+        can_update_basic:
+          default: false
+          title: ''
+          type: boolean
+        is_superadmin:
+          default: false
+          title: ''
+          type: boolean
+        allow_staff_override:
+          default: false
+          title: ''
+          type: boolean
+        can_view:
+          default: false
+          title: ''
+          type: boolean
+        can_share:
+          default: false
+          title: ''
+          type: boolean
+        can_pin:
+          default: false
+          title: ''
+          type: boolean
+        is_shared_with_project:
+          default: false
+          title: ''
+          type: boolean
+        name:
+          maxLength: 255
+          minLength: 1
+          title: ''
+          type: string
+        key:
+          maxLength: 255
+          minLength: 1
+          title: ''
+          type: string
+        description:
+          anyOf:
+            - type: string
+            - type: 'null'
+          default: null
+          title: ''
+        tags:
+          items:
+            type: string
+          title: ''
+          type: array
+        experiment_id:
+          anyOf:
+            - format: uuid4
+              type: string
+            - type: 'null'
+          default: null
+          title: ''
+        status:
+          $ref: '#/components/schemas/FeatureFlagStatus'
+          default: disabled
+        context:
+          maxLength: 255
+          minLength: 1
+          title: ''
+          type: string
+        data_group_id:
+          anyOf:
+            - type: string
+            - type: integer
+            - type: 'null'
+          default: null
+          title: ''
+        serving_method:
+          $ref: '#/components/schemas/ServingMethod'
+        ruleset:
+          $ref: '#/components/schemas/ManagementRuleSet'
+        workspace_id:
+          anyOf:
+            - type: integer
+            - type: 'null'
+          default: null
+          title: ''
+        is_experiment_active:
+          anyOf:
+            - type: boolean
+            - type: 'null'
+          default: null
+          title: ''
+        hash_salt:
+          anyOf:
+            - maxLength: 32
+              minLength: 32
+              type: string
+            - type: 'null'
+          default: null
+          title: ''
+        reset_hash_salt:
+          anyOf:
+            - type: boolean
+            - type: 'null'
+          default: null
+          title: ''
+        id:
+          format: uuid4
+          title: ''
+          type: string
+        project_id:
+          title: ''
+          type: integer
+        content_type:
+          const: feature-flags
+          title: ''
+          type: string
+        created:
+          format: date-time
+          title: ''
+          type: string
+        creator_id:
+          anyOf:
+            - type: integer
+            - type: 'null'
+          title: ''
+        creator_name:
+          anyOf:
+            - type: string
+            - type: 'null'
+          title: ''
+        creator_email:
+          anyOf:
+            - type: string
+            - type: 'null'
+          title: ''
+        modified:
+          format: date-time
+          title: ''
+          type: string
+        last_modified_by_id:
+          anyOf:
+            - type: integer
+            - type: 'null'
+          default: null
+          title: ''
+        last_modified_by_name:
+          anyOf:
+            - type: string
+            - type: 'null'
+          default: null
+          title: ''
+        last_modified_by_email:
+          anyOf:
+            - type: string
+            - type: 'null'
+          default: null
+          title: ''
+        is_favorited:
+          anyOf:
+            - type: boolean
+            - type: 'null'
+          default: null
+          title: ''
+        pinned_date:
+          anyOf:
+            - type: string
+            - type: 'null'
+          default: null
+          title: ''
+        enabled_at:
+          anyOf:
+            - format: date-time
+              type: string
+            - type: 'null'
+          default: null
+          title: ''
+        deleted:
+          anyOf:
+            - format: date-time
+              type: string
+            - type: 'null'
+          default: null
+          title: ''
+        content_environments_id:
+          anyOf:
+            - type: string
+            - type: 'null'
+          default: null
+          title: ''
+        project_name:
+          anyOf:
+            - type: string
+            - type: 'null'
+          default: null
+          title: ''
+      required:
+        - name
+        - key
+        - tags
+        - context
+        - serving_method
+        - ruleset
+        - id
+        - project_id
+        - content_type
+        - created
+        - creator_id
+        - creator_name
+        - creator_email
+        - modified
+      title: FeatureFlagApiResponse
+      type: object
+
+    SingleFeatureFlagApiResponse:
+      additionalProperties: false
+      properties:
+        status:
+          const: ok
+          title: ''
+          type: string
+        results:
+          $ref: '#/components/schemas/FeatureFlagApiResponse'
+      required:
+        - status
+        - results
+      title: SingleFeatureFlagApiResponse
+      type: object
+
+    SingleFeatureFlagResponse:
+      anyOf:
+        - $ref: '#/components/schemas/SingleFeatureFlagApiResponse'
+        - $ref: '#/components/schemas/ManagementApiErrorResponse'
+
+    ListFeatureFlagApiResponse:
+      additionalProperties: false
+      properties:
+        status:
+          title: ''
+          type: string
+        results:
+          items:
+            $ref: '#/components/schemas/FeatureFlagApiResponse'
+          title: ''
+          type: array
+      required:
+        - status
+        - results
+      title: ListFeatureFlagApiResponse
+      type: object
+
+    ListFeatureFlagResponse:
+      anyOf:
+        - $ref: '#/components/schemas/ListFeatureFlagApiResponse'
+        - $ref: '#/components/schemas/ManagementApiErrorResponse'
+
+    DeleteFeatureFlagApiResponse:
+      additionalProperties: false
+      properties:
+        status:
+          const: ok
+          title: ''
+          type: string
+        results:
+          additionalProperties: true
+          title: ''
+          type: object
+      required:
+        - status
+        - results
+      title: DeleteFeatureFlagApiResponse
+      type: object
+
+    DeleteFeatureFlagResponse:
+      anyOf:
+        - $ref: '#/components/schemas/DeleteFeatureFlagApiResponse'
+        - $ref: '#/components/schemas/ManagementApiErrorResponse'
+
