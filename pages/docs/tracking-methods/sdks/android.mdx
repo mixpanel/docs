@@ -68,6 +68,9 @@ public class MainActivity extends ActionBarActivity {
 ```
 
 ### Library Configuration
+
+<Callout type="warning">For projects with EU or India data residency, you must configure the SDK to use the correct regional endpoint. Events sent to the wrong region will not be ingested. Learn more about [Privacy-Friendly Tracking](/docs/tracking-methods/sdks/android#privacy-friendly-tracking).</Callout>
+
 The library can be initialized with different configurations. See a complete list of the configuration options and methods under [`MPConfig`](https://mixpanel.github.io/mixpanel-android/com/mixpanel/android/mpmetrics/MPConfig.html).
 
 You can set the library configuration by adding `meta-data` entries under the `<application>` of your app's `AndroidManifest.xml`.
