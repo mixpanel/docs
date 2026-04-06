@@ -2,3 +2,4 @@
 # ======================
 *                    @mixpanel/docs-reviewers
 package*.json        @mixpanel/interactive
+.github/*            @mixpanel/interactive
