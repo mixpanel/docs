@@ -442,7 +442,8 @@
     "zabd",
     "zwaeqor",
     "NORTHAMERICA",
-    "SOUTHAMERICA"
+    "SOUTHAMERICA",
+    "twofactor"
   ],
   "dictionaries": [
     "custom-dictionary"
