@@ -119,6 +119,13 @@ function rewriteDocsHrefToRelative(href, absOutFile, absOutRoot) {
   // Map to file path under output root.
   // Most pages are written as <slug>.md at the same relative location.
   if (!relPath.endsWith('.md')) relPath = `${relPath}.md`;
+
+  // Output path overrides (when GitBook IA differs from source tree).
+  // Keep this small and explicit.
+  if (relPath === 'quickstart/install-with-ai.md') {
+    relPath = 'intro/quickstart/install-with-ai.md';
+  }
+
   const absTarget = path.join(absOutRoot, relPath);
 
   // Compute relative from current output file.
@@ -147,7 +154,18 @@ function rewriteInternalDocsLinks(src, absOutFile, absOutRoot) {
 
   // HTML links: rewrite href attr regardless of other attributes.
   out = out.replace(/<a\b([^>]*?)\shref="([^"]+)"([^>]*)>/g, (all, pre, href, post) => {
-    const rewritten = rewriteDocsHrefToRelative(href, absOutFile, absOutRoot);
+    let rewritten = rewriteDocsHrefToRelative(href, absOutFile, absOutRoot);
+
+    // Also rewrite known moved targets even if they are already relative.
+    // Example: ./quickstart/install-with-ai.md -> ./intro/quickstart/install-with-ai.md
+    const cleaned = href.replace(/^\.\//, '').replace(/^\//, '');
+    if (cleaned === 'quickstart/install-with-ai.md' || cleaned === 'quickstart/install-with-ai') {
+      const absTarget = path.join(absOutRoot, 'intro/quickstart/install-with-ai.md');
+      const fromDir = path.dirname(absOutFile);
+      let rel = toPosixPath(path.relative(fromDir, absTarget));
+      if (!rel.startsWith('.')) rel = `./${rel}`;
+      rewritten = rel;
+    }
     return `<a${pre} href="${escapeHtml(rewritten)}"${post}>`;
   });
 
@@ -316,6 +334,53 @@ function stripJsxStyleObjectsAndAttributeBraces(src) {
   }
 
   return out.join('\n');
+}
+
+function stripJsxComments(src) {
+  // Remove JSX comments like `{/* ... */}` that can leak into markdown.
+  // Only do this outside code fences.
+  const lines = String(src).split('\n');
+  const out = [];
+  let inFence = false;
+  let inJsxCommentBlock = false;
+  for (let line of lines) {
+    const t = line.trim();
+    if (t.startsWith('```')) {
+      inFence = !inFence;
+      out.push(line);
+      continue;
+    }
+    if (inFence) {
+      out.push(line);
+      continue;
+    }
+
+    if (inJsxCommentBlock) {
+      if (line.includes('*/}')) {
+        inJsxCommentBlock = false;
+        // Drop everything up to and including the end marker on this line.
+        const rest = line.split('*/}').slice(1).join('*/}');
+        if (rest.trim()) out.push(rest);
+      }
+      continue;
+    }
+
+    // Start of a multiline JSX comment block.
+    if (line.includes('{/*') && !line.includes('*/}')) {
+      inJsxCommentBlock = true;
+      const before = line.split('{/*')[0];
+      if (before.trim()) out.push(before);
+      continue;
+    }
+
+    // Drop whole-line JSX comments (single line).
+    if (/^\s*\{\/\*[\s\S]*\*\/\}\s*$/.test(line)) continue;
+
+    // Remove inline JSX comments.
+    line = line.replace(/\{\/\*[\s\S]*?\*\/\}/g, '');
+    out.push(line);
+  }
+  return out.join('\n').replace(/\n{3,}/g, '\n\n');
 }
 
 function normalizeEmbedUrl(url) {
@@ -980,6 +1045,7 @@ function convertOne(src, maps) {
   out = stripMdxExportsAndImports(out);
   out = jsxHtmlToHtml(out);
   out = stripJsxStyleObjectsAndAttributeBraces(out);
+  out = stripJsxComments(out);
   out = convertIframesToEmbeds(out);
   out = convertExtendedButton(out);
   out = convertCards(out);

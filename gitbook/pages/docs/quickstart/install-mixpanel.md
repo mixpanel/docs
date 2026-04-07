@@ -12,8 +12,6 @@ Already collect product data? Connect your
 
 Choose from the methods below. Not sure how to choose? [Read our guide](../tracking-methods/choosing-the-right-method.md).
 
-{/* TABS */}
-
 {% tabs %}
 {% tab title="Javascript" %}
 ##### Install the SDK
@@ -415,8 +413,6 @@ next step.**
 
 {% endtabs %}
 
-{/* Next Section */}
-
 # Integration / Framework Guides
 
 <table data-view="cards">
@@ -540,8 +536,6 @@ next step.**
     </tr>
   </tbody>
 </table>
-
-{/* Next Section */}
 
 <hr></hr>
 <div class="bg-base100 rounded-xl">

@@ -393,8 +393,6 @@ For example, you might use this to discover that most users who dropped off are 
 
 Click on the “...” icon besides a step and click "Rename" to rename it.
 
-{/* Next Section */}
-
 <hr></hr>
 <div class="bg-base100 rounded-xl">
   <h2 class="text-2xl font-medium mb-2 color:bg-purple200">

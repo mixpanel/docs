@@ -54,8 +54,6 @@ using a reverse proxy.
 
 Want to learn more? [Read our full guide](./tracking-methods/choosing-the-right-method.md) on choosing the right method for tracking.
 
-{/* Next Section */}
-
 <hr></hr>
 
 <div class="bg-base100 rounded-xl">

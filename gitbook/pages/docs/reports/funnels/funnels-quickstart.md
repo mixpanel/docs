@@ -61,8 +61,6 @@ You can visualize your metric in a variety of ways. Mixpanel allows you to choos
 
 ![/funnels_beta_5.png](/funnels_beta_5.png)
 
-{/* Next Section */}
-
 <hr></hr>
 <div class="bg-base100 rounded-xl">
   <h2 class="text-2xl font-medium mb-2 color:bg-purple200">

@@ -18,8 +18,6 @@ Imagine your product is a B2B messaging application. You might use Funnels to an
 - What departments complete the payment funnel most often?
 - Why did the successful users purchase?
 
-{/* Next Section */}
-
 <hr></hr>
 <div class="bg-base100 rounded-xl">
   <h2 class="text-2xl font-medium mb-2 color:bg-purple200">

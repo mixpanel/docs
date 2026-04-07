@@ -18,10 +18,6 @@ If your ad spend data is already in a data warehouse, you can bring it into Mixp
 
 ### Using the Ad Spend Template
 
-{/* <div >
-{% embed url="https://www.loom.com/embed/69dbc98ffeca415aafb10ede7a52b925" %}
-</div> */}
-
 [Link to Demo](https://www.loom.com/share/69dbc98ffeca415aafb10ede7a52b925)
 
 The Ad Spend template provides a streamlined setup for mapping your warehouse table to Mixpanel's ad spend data model.

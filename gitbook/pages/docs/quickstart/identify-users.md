@@ -233,8 +233,6 @@ All of our sample code transparently retries and backoff from rate limit excepti
 
 🎉 Congratulations, you've tracked your first user! You can see them in Mixpanel via the [Users page](https://mixpanel.com/report/users).
 
-{/* Next Section */}
-
 <hr></hr>
 
 <div class="bg-base100 rounded-xl">

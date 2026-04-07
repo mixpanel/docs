@@ -268,8 +268,6 @@ All of our sample code transparently retries and backoff from rate limit excepti
 
 {% endtabs %}
 
-{/* Next Section */}
-
 <hr></hr>
 <div class="bg-base100 rounded-xl">
   <h2 class="text-2xl font-medium mb-2 color:bg-purple200">

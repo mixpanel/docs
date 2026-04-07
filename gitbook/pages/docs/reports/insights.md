@@ -296,10 +296,6 @@ When you have multiple metrics, or have broken down a metric by a property, you 
 
 Profile metrics allow you to access profile data and visualize your users with filters and breakdowns based on their profile properties. When exploring Profiles, you are always analyzing all user profiles. Select the [Measurement](./insights.md#measurements) you want to use to calculate results by clicking on **Total** and selecting an option from the drop-down. You can calculate based on users or profile property value.
 
-{/* <p >
-  {% embed url="https://www.loom.com/embed/dc5e909f2d7f427ca962e493e87894ad" %}
-</p> */}
-
 [Link to Demo](https://www.loom.com/share/dc5e909f2d7f427ca962e493e87894ad)
 
 ### Annotations
@@ -309,10 +305,6 @@ To clarify the results in your Insights report, add detailed annotations directl
 Learn more about [Annotations](../features/annotations.md).
 
 ### Measurements
-
-{/* <p >
-  {% embed url="https://www.loom.com/embed/22d760d014234a1eb566f68dda79c58f" %}
-</p> */}
 
 [Link to Demo](https://www.loom.com/share/22d760d014234a1eb566f68dda79c58f)
 
@@ -451,10 +443,6 @@ Allows you to change the metric being measured. Access by going into the advance
 - **Rolling Average:** Rolling analysis calculates the rolling average of the data set. A rolling average curve is a series of averages from subsets of data. Use rolling average analysis to remove noise or spikes from data and smooth out trends over time. Mixpanel calculates the rolling average based on the selected time interval (hour, day, week, month, or quarter) for each data point in the graph.
 For example, if you make a rolling analysis query for the past 30 days, Mixpanel calculates the rolling 7-day average by default. The value reported on each day in the line graph is the average of the values from the 7 days leading to that day. In the case of the first 6 days in your selected time period, the 7-day-average calculation will include days before the selected time period.
 - **Cumulative:** Adds up the values of each point on the graph as it goes along, so the height of the line will increase over time.
-
-{/* <p >
-  {% embed url="https://www.loom.com/embed/4d49fe9a64e24fb2b6cac44f86839fd2" %}
-</p> */}
 
 [Link to Demo](https://www.loom.com/share/4d49fe9a64e24fb2b6cac44f86839fd2)
 

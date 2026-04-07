@@ -105,10 +105,6 @@ If you use a Mixpanel js-sdk, we have updated our sdk to track utm parameters mo
 
 Please watch this video to better understand.
 
-{/* <div >
-{% embed url="https://www.loom.com/embed/1cebcd9687df4046af53ac90980907f7?sid=4d6d0920-8cc2-43f2-8361-bdb5a034969f" %}
-</div> */}
-
 [Link to Demo](https://www.loom.com/share/1cebcd9687df4046af53ac90980907f7)
 
 **2. What does attribution on "unique users" mean?**
